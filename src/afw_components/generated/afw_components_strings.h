@@ -15525,6710 +15525,4266 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2222 \
-    "Component to display a list of options that may be selected or can be autocompleted by typing."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2222 */
-#define afw_components_s_zz__2222 \
-    (&afw_components_self_v_zz__2222.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2222 */
-#define afw_components_self_s_zz__2222 \
-    (afw_components_self_v_zz__2222.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2222 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2222;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2222 */
-#define afw_components_z_zz__2222 \
-    (afw_components_self_v_zz__2222.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2222 */
-#define afw_components_v_zz__2222 \
-    (&afw_components_self_v_zz__2222.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2223 \
-    "This component provides a dropdown picker with possible values to quickly select from. By typing, it will narrow down the selection to make the list even shorter to choose a selection from. Additionally, it will offer the user the ability to enter a new value, if allowed."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2223 */
-#define afw_components_s_zz__2223 \
-    (&afw_components_self_v_zz__2223.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2223 */
-#define afw_components_self_s_zz__2223 \
-    (afw_components_self_v_zz__2223.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2223 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2223;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2223 */
-#define afw_components_z_zz__2223 \
-    (afw_components_self_v_zz__2223.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2223 */
-#define afw_components_v_zz__2223 \
-    (&afw_components_self_v_zz__2223.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2224 \
-    "This component is a very powerful container, which implements a box allowing items to be added in a flexible way."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2224 */
-#define afw_components_s_zz__2224 \
-    (&afw_components_self_v_zz__2224.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2224 */
-#define afw_components_self_s_zz__2224 \
-    (afw_components_self_v_zz__2224.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2224 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2224;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2224 */
-#define afw_components_z_zz__2224 \
-    (afw_components_self_v_zz__2224.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2224 */
-#define afw_components_v_zz__2224 \
-    (&afw_components_self_v_zz__2224.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2225 \
-    "This component renders a path of url links that the user can click to navigate at any point within an application."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2225 */
-#define afw_components_s_zz__2225 \
-    (&afw_components_self_v_zz__2225.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2225 */
-#define afw_components_self_s_zz__2225 \
-    (afw_components_self_v_zz__2225.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2225 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2225;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2225 */
-#define afw_components_z_zz__2225 \
-    (afw_components_self_v_zz__2225.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2225 */
-#define afw_components_v_zz__2225 \
-    (&afw_components_self_v_zz__2225.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2226 \
-    "This component encapsulates a wide range of Button features, including labels, icons and colors. The Button component may even allow for a dropdown of selected actions to perform when clicked."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2226 */
-#define afw_components_s_zz__2226 \
-    (&afw_components_self_v_zz__2226.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2226 */
-#define afw_components_self_s_zz__2226 \
-    (afw_components_self_v_zz__2226.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2226 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2226;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2226 */
-#define afw_components_z_zz__2226 \
-    (afw_components_self_v_zz__2226.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2226 */
-#define afw_components_v_zz__2226 \
-    (&afw_components_self_v_zz__2226.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2227 \
-    "This component container is visible when a target element is clicked. It's used to quickly show or grab input from the user in a popup area and can be dismissed."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2227 */
-#define afw_components_s_zz__2227 \
-    (&afw_components_self_v_zz__2227.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2227 */
-#define afw_components_self_s_zz__2227 \
-    (afw_components_self_v_zz__2227.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2227 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2227;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2227 */
-#define afw_components_z_zz__2227 \
-    (afw_components_self_v_zz__2227.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2227 */
-#define afw_components_v_zz__2227 \
-    (&afw_components_self_v_zz__2227.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2228 \
-    "This component can display a variety of simple or complex chart data in forms such as Pie, Line or Bar to offer a visual representation of the provided data."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2228 */
-#define afw_components_s_zz__2228 \
-    (&afw_components_self_v_zz__2228.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2228 */
-#define afw_components_self_s_zz__2228 \
-    (afw_components_self_v_zz__2228.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2228 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2228;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2228 */
-#define afw_components_z_zz__2228 \
-    (afw_components_self_v_zz__2228.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2228 */
-#define afw_components_v_zz__2228 \
-    (&afw_components_self_v_zz__2228.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2229 \
-    "This component is simply a checkbox that allows the user to click to enable or disable its value."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2229 */
-#define afw_components_s_zz__2229 \
-    (&afw_components_self_v_zz__2229.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2229 */
-#define afw_components_self_s_zz__2229 \
-    (afw_components_self_v_zz__2229.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2229 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2229;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2229 */
-#define afw_components_z_zz__2229 \
-    (afw_components_self_v_zz__2229.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2229 */
-#define afw_components_v_zz__2229 \
-    (&afw_components_self_v_zz__2229.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2230 \
-    "This component provides a mutually exclusive list of options, organized as radio buttons, that may be selected."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2230 */
-#define afw_components_s_zz__2230 \
-    (&afw_components_self_v_zz__2230.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2230 */
-#define afw_components_self_s_zz__2230 \
-    (afw_components_self_v_zz__2230.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2230 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2230;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2230 */
-#define afw_components_z_zz__2230 \
-    (afw_components_self_v_zz__2230.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2230 */
-#define afw_components_v_zz__2230 \
-    (&afw_components_self_v_zz__2230.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2231 \
-    "This component displays a rich text editor that allows the user to manually edit the source code for a particular piece of data."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2231 */
-#define afw_components_s_zz__2231 \
-    (&afw_components_self_v_zz__2231.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2231 */
-#define afw_components_self_s_zz__2231 \
-    (afw_components_self_v_zz__2231.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2231 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2231;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2231 */
-#define afw_components_z_zz__2231 \
-    (afw_components_self_v_zz__2231.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2231 */
-#define afw_components_v_zz__2231 \
-    (&afw_components_self_v_zz__2231.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2232 \
-    "A layout container that displays content that can be hidden by a collapsible control."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2232 */
-#define afw_components_s_zz__2232 \
-    (&afw_components_self_v_zz__2232.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2232 */
-#define afw_components_self_s_zz__2232 \
-    (afw_components_self_v_zz__2232.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2232 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2232;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2232 */
-#define afw_components_z_zz__2232 \
-    (afw_components_self_v_zz__2232.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2232 */
-#define afw_components_v_zz__2232 \
-    (&afw_components_self_v_zz__2232.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2233 \
-    "This component helps organize data into a group, which can be temporarily concealed or revealed by clicking on the collapse or expand icons. This may be important for preserving real estate on the screen, or reducing the amount of data that may be present at a given time, to avoid overloading the end user with information."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2233 */
-#define afw_components_s_zz__2233 \
-    (&afw_components_self_v_zz__2233.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2233 */
-#define afw_components_self_s_zz__2233 \
-    (afw_components_self_v_zz__2233.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2233 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2233;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2233 */
-#define afw_components_z_zz__2233 \
-    (afw_components_self_v_zz__2233.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2233 */
-#define afw_components_v_zz__2233 \
-    (&afw_components_self_v_zz__2233.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2234 \
-    "A component that allows you to select a date from a calendar."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2234 */
-#define afw_components_s_zz__2234 \
-    (&afw_components_self_v_zz__2234.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2234 */
-#define afw_components_self_s_zz__2234 \
-    (afw_components_self_v_zz__2234.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2234 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2234;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2234 */
-#define afw_components_z_zz__2234 \
-    (afw_components_self_v_zz__2234.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2234 */
-#define afw_components_v_zz__2234 \
-    (&afw_components_self_v_zz__2234.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2235 \
-    "This component understands date values and allows the user to select a date from a calendar, or enter it in the appropriate format."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2235 */
-#define afw_components_s_zz__2235 \
-    (&afw_components_self_v_zz__2235.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2235 */
-#define afw_components_self_s_zz__2235 \
-    (afw_components_self_v_zz__2235.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2235 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2235;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2235 */
-#define afw_components_z_zz__2235 \
-    (afw_components_self_v_zz__2235.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2235 */
-#define afw_components_v_zz__2235 \
-    (&afw_components_self_v_zz__2235.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2236 \
-    "This component understands both dates and time formats, which allows the user to select a date and time from a calendar and clock for higher date precision."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2236 */
-#define afw_components_s_zz__2236 \
-    (&afw_components_self_v_zz__2236.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2236 */
-#define afw_components_self_s_zz__2236 \
-    (afw_components_self_v_zz__2236.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2236 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2236;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2236 */
-#define afw_components_z_zz__2236 \
-    (afw_components_self_v_zz__2236.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2236 */
-#define afw_components_v_zz__2236 \
-    (&afw_components_self_v_zz__2236.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2237 \
-    "A layout container that displays content inside a popup, with a confirmation response."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2237 */
-#define afw_components_s_zz__2237 \
-    (&afw_components_self_v_zz__2237.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2237 */
-#define afw_components_self_s_zz__2237 \
-    (afw_components_self_v_zz__2237.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2237 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2237;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2237 */
-#define afw_components_z_zz__2237 \
-    (afw_components_self_v_zz__2237.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2237 */
-#define afw_components_v_zz__2237 \
-    (&afw_components_self_v_zz__2237.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2238 \
-    "This component container is visible when a target element is clicked. It's used to quickly show or grab input from the user in a popup area and can be dismissed by confirming or cancelling via buttons."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2238 */
-#define afw_components_s_zz__2238 \
-    (&afw_components_self_v_zz__2238.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2238 */
-#define afw_components_self_s_zz__2238 \
-    (afw_components_self_v_zz__2238.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2238 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2238;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2238 */
-#define afw_components_z_zz__2238 \
-    (afw_components_self_v_zz__2238.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2238 */
-#define afw_components_v_zz__2238 \
-    (&afw_components_self_v_zz__2238.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2239 \
-    "A component that displays a Divider line to separate content."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2239 */
-#define afw_components_s_zz__2239 \
-    (&afw_components_self_v_zz__2239.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2239 */
-#define afw_components_self_s_zz__2239 \
-    (afw_components_self_v_zz__2239.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2239 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2239;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2239 */
-#define afw_components_z_zz__2239 \
-    (afw_components_self_v_zz__2239.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2239 */
-#define afw_components_v_zz__2239 \
-    (&afw_components_self_v_zz__2239.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2240 \
-    "A very simple way to divide content from the remaining content with the user of an dividing line."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2240 */
-#define afw_components_s_zz__2240 \
-    (&afw_components_self_v_zz__2240.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2240 */
-#define afw_components_self_s_zz__2240 \
-    (afw_components_self_v_zz__2240.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2240 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2240;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2240 */
-#define afw_components_z_zz__2240 \
-    (afw_components_self_v_zz__2240.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2240 */
-#define afw_components_v_zz__2240 \
-    (&afw_components_self_v_zz__2240.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2241 \
-    "A component that renders content inside a side sheet anchored to one of the edges."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2241 */
-#define afw_components_s_zz__2241 \
-    (&afw_components_self_v_zz__2241.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2241 */
-#define afw_components_self_s_zz__2241 \
-    (afw_components_self_v_zz__2241.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2241 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2241;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2241 */
-#define afw_components_z_zz__2241 \
-    (afw_components_self_v_zz__2241.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2241 */
-#define afw_components_v_zz__2241 \
-    (&afw_components_self_v_zz__2241.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2242 \
-    "This component, which contains other content, is anchored to one of the edges of the main window. It's often animated to slide into view when an action occurs, but can be optionally docked, or permanent."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2242 */
-#define afw_components_s_zz__2242 \
-    (&afw_components_self_v_zz__2242.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2242 */
-#define afw_components_self_s_zz__2242 \
-    (afw_components_self_v_zz__2242.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2242 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2242;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2242 */
-#define afw_components_z_zz__2242 \
-    (afw_components_self_v_zz__2242.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2242 */
-#define afw_components_v_zz__2242 \
-    (&afw_components_self_v_zz__2242.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2243 \
-    "A component that displays a set of options that can be selected from a dropdown."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2243 */
-#define afw_components_s_zz__2243 \
-    (&afw_components_self_v_zz__2243.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2243 */
-#define afw_components_self_s_zz__2243 \
-    (afw_components_self_v_zz__2243.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2243 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2243;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2243 */
-#define afw_components_z_zz__2243 \
-    (afw_components_self_v_zz__2243.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2243 */
-#define afw_components_v_zz__2243 \
-    (&afw_components_self_v_zz__2243.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2244 \
-    "This component, given a set of options, provides the user with the ability to select one of the values by clicking on the dropdown icon and selecting the appropriate value from a list."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2244 */
-#define afw_components_s_zz__2244 \
-    (&afw_components_self_v_zz__2244.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2244 */
-#define afw_components_self_s_zz__2244 \
-    (afw_components_self_v_zz__2244.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2244 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2244;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2244 */
-#define afw_components_z_zz__2244 \
-    (afw_components_self_v_zz__2244.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2244 */
-#define afw_components_v_zz__2244 \
-    (&afw_components_self_v_zz__2244.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2245 \
-    "A component that manages a list of options in a Dropdown picker."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2245 */
-#define afw_components_s_zz__2245 \
-    (&afw_components_self_v_zz__2245.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2245 */
-#define afw_components_self_s_zz__2245 \
-    (afw_components_self_v_zz__2245.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2245 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2245;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2245 */
-#define afw_components_z_zz__2245 \
-    (afw_components_self_v_zz__2245.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2245 */
-#define afw_components_v_zz__2245 \
-    (&afw_components_self_v_zz__2245.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2246 \
-    "This component, given a set of options, provides the user with the ability to select, edit, add or delete one of the values by clicking on the dropdown icon and selecting the appropriate value and button from a list."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2246 */
-#define afw_components_s_zz__2246 \
-    (&afw_components_self_v_zz__2246.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2246 */
-#define afw_components_self_s_zz__2246 \
-    (afw_components_self_v_zz__2246.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2246 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2246;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2246 */
-#define afw_components_z_zz__2246 \
-    (afw_components_self_v_zz__2246.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2246 */
-#define afw_components_v_zz__2246 \
-    (&afw_components_self_v_zz__2246.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2247 \
-    "A component that calls out with an editable multiline text area."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2247 */
-#define afw_components_s_zz__2247 \
-    (&afw_components_self_v_zz__2247.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2247 */
-#define afw_components_self_s_zz__2247 \
-    (afw_components_self_v_zz__2247.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2247 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2247;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2247 */
-#define afw_components_z_zz__2247 \
-    (afw_components_self_v_zz__2247.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2247 */
-#define afw_components_v_zz__2247 \
-    (&afw_components_self_v_zz__2247.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2248 \
-    "This component wraps an editable text field inside a Callout component. This is useful when a label needs to be quickly edited by popping up an editor, rather than navigating them to a new page. The EditableLabel component that it displays may be a multiline text field."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2248 */
-#define afw_components_s_zz__2248 \
-    (&afw_components_self_v_zz__2248.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2248 */
-#define afw_components_self_s_zz__2248 \
-    (afw_components_self_v_zz__2248.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2248 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2248;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2248 */
-#define afw_components_z_zz__2248 \
-    (afw_components_self_v_zz__2248.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2248 */
-#define afw_components_v_zz__2248 \
-    (&afw_components_self_v_zz__2248.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2249 \
-    "A component that renders an label, which can be edited when clicked."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2249 */
-#define afw_components_s_zz__2249 \
-    (&afw_components_self_v_zz__2249.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2249 */
-#define afw_components_self_s_zz__2249 \
-    (afw_components_self_v_zz__2249.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2249 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2249;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2249 */
-#define afw_components_z_zz__2249 \
-    (afw_components_self_v_zz__2249.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2249 */
-#define afw_components_v_zz__2249 \
-    (&afw_components_self_v_zz__2249.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2250 \
-    "This component provides a very quick way for a label to become 'editable' simply by clicking on the text label. After clicking on the label, the component changes from a static label to an editable TextField component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2250 */
-#define afw_components_s_zz__2250 \
-    (&afw_components_self_v_zz__2250.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2250 */
-#define afw_components_self_s_zz__2250 \
-    (afw_components_self_v_zz__2250.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2250 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2250;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2250 */
-#define afw_components_z_zz__2250 \
-    (afw_components_self_v_zz__2250.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2250 */
-#define afw_components_v_zz__2250 \
-    (&afw_components_self_v_zz__2250.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2251 \
-    "A component that hides content under screen breakpoint conditions."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2251 */
-#define afw_components_s_zz__2251 \
-    (&afw_components_self_v_zz__2251.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2251 */
-#define afw_components_self_s_zz__2251 \
-    (afw_components_self_v_zz__2251.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2251 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2251;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2251 */
-#define afw_components_z_zz__2251 \
-    (afw_components_self_v_zz__2251.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2251 */
-#define afw_components_v_zz__2251 \
-    (&afw_components_self_v_zz__2251.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2252 \
-    "This is a utility component that gives a layout the ability to hide content under screen size conditions. This is necessary for responsive layouts to provide both complex or simply designs that are accessible and usable from a variety of screen devices."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2252 */
-#define afw_components_s_zz__2252 \
-    (&afw_components_self_v_zz__2252.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2252 */
-#define afw_components_self_s_zz__2252 \
-    (afw_components_self_v_zz__2252.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2252 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2252;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2252 */
-#define afw_components_z_zz__2252 \
-    (afw_components_self_v_zz__2252.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2252 */
-#define afw_components_v_zz__2252 \
-    (&afw_components_self_v_zz__2252.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2253 \
-    "This component displays an icon, which references a common dictionary of icon names, each of which may map to the appropriate icon library depending on the framework that is being used. The icon itself may be clickable."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2253 */
-#define afw_components_s_zz__2253 \
-    (&afw_components_self_v_zz__2253.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2253 */
-#define afw_components_self_s_zz__2253 \
-    (afw_components_self_v_zz__2253.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2253 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2253;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2253 */
-#define afw_components_z_zz__2253 \
-    (afw_components_self_v_zz__2253.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2253 */
-#define afw_components_v_zz__2253 \
-    (&afw_components_self_v_zz__2253.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2254 \
-    "This component displays an image from a variety of sources and formats."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2254 */
-#define afw_components_s_zz__2254 \
-    (&afw_components_self_v_zz__2254.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2254 */
-#define afw_components_self_s_zz__2254 \
-    (afw_components_self_v_zz__2254.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2254 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2254;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2254 */
-#define afw_components_z_zz__2254 \
-    (afw_components_self_v_zz__2254.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2254 */
-#define afw_components_v_zz__2254 \
-    (&afw_components_self_v_zz__2254.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2255 \
-    "This component understands how to render a link with the appropriate framework style, and handles the React Routing, if the link references another component within this same application."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2255 */
-#define afw_components_s_zz__2255 \
-    (&afw_components_self_v_zz__2255.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2255 */
-#define afw_components_self_s_zz__2255 \
-    (afw_components_self_v_zz__2255.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2255 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2255;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2255 */
-#define afw_components_z_zz__2255 \
-    (afw_components_self_v_zz__2255.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2255 */
-#define afw_components_v_zz__2255 \
-    (&afw_components_self_v_zz__2255.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2256 \
-    "This component is a simple container component that renders its contents in a sequential, scrollable list."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2256 */
-#define afw_components_s_zz__2256 \
-    (&afw_components_self_v_zz__2256.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2256 */
-#define afw_components_self_s_zz__2256 \
-    (afw_components_self_v_zz__2256.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2256 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2256;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2256 */
-#define afw_components_z_zz__2256 \
-    (afw_components_self_v_zz__2256.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2256 */
-#define afw_components_v_zz__2256 \
-    (&afw_components_self_v_zz__2256.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2257 \
-    "A component that allows the user to manage a list of text items."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2257 */
-#define afw_components_s_zz__2257 \
-    (&afw_components_self_v_zz__2257.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2257 */
-#define afw_components_self_s_zz__2257 \
-    (afw_components_self_v_zz__2257.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2257 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2257;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2257 */
-#define afw_components_z_zz__2257 \
-    (afw_components_self_v_zz__2257.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2257 */
-#define afw_components_v_zz__2257 \
-    (&afw_components_self_v_zz__2257.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2258 \
-    "This component renders a list of text and optional secondary text, items, which allows the user to add, edit or delete items from the list."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2258 */
-#define afw_components_s_zz__2258 \
-    (&afw_components_self_v_zz__2258.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2258 */
-#define afw_components_self_s_zz__2258 \
-    (afw_components_self_v_zz__2258.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2258 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2258;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2258 */
-#define afw_components_z_zz__2258 \
-    (afw_components_self_v_zz__2258.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2258 */
-#define afw_components_v_zz__2258 \
-    (&afw_components_self_v_zz__2258.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2259 \
-    "This component pops up a Menu of items, each of which take an appropriate action when clicked. Menu items may also open up new submenus in order to organize or filter a set of items in a way that's easy for the end user to understand and select from."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2259 */
-#define afw_components_s_zz__2259 \
-    (&afw_components_self_v_zz__2259.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2259 */
-#define afw_components_self_s_zz__2259 \
-    (afw_components_self_v_zz__2259.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2259 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2259;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2259 */
-#define afw_components_z_zz__2259 \
-    (afw_components_self_v_zz__2259.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2259 */
-#define afw_components_v_zz__2259 \
-    (&afw_components_self_v_zz__2259.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2260 \
-    "This component displays a text message within a surface that may alert the user to additional information, errors or warnings."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2260 */
-#define afw_components_s_zz__2260 \
-    (&afw_components_self_v_zz__2260.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2260 */
-#define afw_components_self_s_zz__2260 \
-    (afw_components_self_v_zz__2260.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2260 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2260;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2260 */
-#define afw_components_z_zz__2260 \
-    (afw_components_self_v_zz__2260.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2260 */
-#define afw_components_v_zz__2260 \
-    (&afw_components_self_v_zz__2260.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2261 \
-    "This component represents any additional native HTML node that is required by the end user, which is not covered by other components within this library."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2261 */
-#define afw_components_s_zz__2261 \
-    (&afw_components_self_v_zz__2261.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2261 */
-#define afw_components_self_s_zz__2261 \
-    (afw_components_self_v_zz__2261.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2261 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2261;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2261 */
-#define afw_components_z_zz__2261 \
-    (afw_components_self_v_zz__2261.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2261 */
-#define afw_components_v_zz__2261 \
-    (&afw_components_self_v_zz__2261.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2262 \
-    "This component, often referred to as a Side Nav, displays a list of clickable links into a horizontal panel."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2262 */
-#define afw_components_s_zz__2262 \
-    (&afw_components_self_v_zz__2262.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2262 */
-#define afw_components_self_s_zz__2262 \
-    (afw_components_self_v_zz__2262.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2262 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2262;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2262 */
-#define afw_components_z_zz__2262 \
-    (afw_components_self_v_zz__2262.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2262 */
-#define afw_components_v_zz__2262 \
-    (&afw_components_self_v_zz__2262.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2263 \
-    "A component that allows contents to be displayed on a Paper like surface."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2263 */
-#define afw_components_s_zz__2263 \
-    (&afw_components_self_v_zz__2263.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2263 */
-#define afw_components_self_s_zz__2263 \
-    (afw_components_self_v_zz__2263.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2263 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2263;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2263 */
-#define afw_components_z_zz__2263 \
-    (afw_components_self_v_zz__2263.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2263 */
-#define afw_components_v_zz__2263 \
-    (&afw_components_self_v_zz__2263.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2264 \
-    "This component allows data on its surface to stand out by providing an edged, or raised outline, with shadow depth and optional corner radius style. This component is another useful container to help separate a section of data from its surrounding contents."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2264 */
-#define afw_components_s_zz__2264 \
-    (&afw_components_self_v_zz__2264.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2264 */
-#define afw_components_self_s_zz__2264 \
-    (afw_components_self_v_zz__2264.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2264 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2264;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2264 */
-#define afw_components_z_zz__2264 \
-    (afw_components_self_v_zz__2264.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2264 */
-#define afw_components_v_zz__2264 \
-    (&afw_components_self_v_zz__2264.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2265 \
-    "A component that allows one or more items to be picked from a list."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2265 */
-#define afw_components_s_zz__2265 \
-    (&afw_components_self_v_zz__2265.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2265 */
-#define afw_components_self_s_zz__2265 \
-    (afw_components_self_v_zz__2265.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2265 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2265;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2265 */
-#define afw_components_z_zz__2265 \
-    (afw_components_self_v_zz__2265.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2265 */
-#define afw_components_v_zz__2265 \
-    (&afw_components_self_v_zz__2265.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2266 \
-    "This component allows for zero or more items to be selected from a list. When an item is selected, it appears as a tag in the selection, which may also be later removed."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2266 */
-#define afw_components_s_zz__2266 \
-    (&afw_components_self_v_zz__2266.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2266 */
-#define afw_components_self_s_zz__2266 \
-    (afw_components_self_v_zz__2266.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2266 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2266;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2266 */
-#define afw_components_z_zz__2266 \
-    (afw_components_self_v_zz__2266.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2266 */
-#define afw_components_v_zz__2266 \
-    (&afw_components_self_v_zz__2266.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2267 \
-    "A layout container that renders content in a grid format, with breakpoints defined for a variety of screen sizes."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2267 */
-#define afw_components_s_zz__2267 \
-    (&afw_components_self_v_zz__2267.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2267 */
-#define afw_components_self_s_zz__2267 \
-    (afw_components_self_v_zz__2267.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2267 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2267;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2267 */
-#define afw_components_z_zz__2267 \
-    (afw_components_self_v_zz__2267.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2267 */
-#define afw_components_v_zz__2267 \
-    (&afw_components_self_v_zz__2267.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2268 \
-    "This container component defines a Row/Column grid of components to display content horizontally and vertically, depending on the screen size. For larger displays, you may assign breakpoints that allow for all content to fit, while on smaller mobile devices, content will be divided up into chunks."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2268 */
-#define afw_components_s_zz__2268 \
-    (&afw_components_self_v_zz__2268.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2268 */
-#define afw_components_self_s_zz__2268 \
-    (afw_components_self_v_zz__2268.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2268 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2268;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2268 */
-#define afw_components_z_zz__2268 \
-    (afw_components_self_v_zz__2268.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2268 */
-#define afw_components_v_zz__2268 \
-    (&afw_components_self_v_zz__2268.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2269 \
-    "A component that displays a skeleton, or shape, of a component that may shimmer to indicate that an actual component is waiting to be loaded."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2269 */
-#define afw_components_s_zz__2269 \
-    (&afw_components_self_v_zz__2269.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2269 */
-#define afw_components_self_s_zz__2269 \
-    (afw_components_self_v_zz__2269.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2269 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2269;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2269 */
-#define afw_components_z_zz__2269 \
-    (afw_components_self_v_zz__2269.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2269 */
-#define afw_components_v_zz__2269 \
-    (&afw_components_self_v_zz__2269.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2270 \
-    "The Skeleton is a feedback utility component, similar to the Spinner, but it takes on a shape that gives the user the perspective that data is nearly ready and the component is attempting to render. It's a component placeholder, which often animates or shimmers."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2270 */
-#define afw_components_s_zz__2270 \
-    (&afw_components_self_v_zz__2270.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2270 */
-#define afw_components_self_s_zz__2270 \
-    (afw_components_self_v_zz__2270.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2270 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2270;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2270 */
-#define afw_components_z_zz__2270 \
-    (afw_components_self_v_zz__2270.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2270 */
-#define afw_components_v_zz__2270 \
-    (&afw_components_self_v_zz__2270.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2271 \
-    "A component that displays numeric values in a slider control."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2271 */
-#define afw_components_s_zz__2271 \
-    (&afw_components_self_v_zz__2271.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2271 */
-#define afw_components_self_s_zz__2271 \
-    (afw_components_self_v_zz__2271.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2271 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2271;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2271 */
-#define afw_components_z_zz__2271 \
-    (afw_components_self_v_zz__2271.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2271 */
-#define afw_components_v_zz__2271 \
-    (&afw_components_self_v_zz__2271.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2272 \
-    "This component is used for numeric values, and allows the user to slide a controller to increase or decrease its value without having to enter data manually."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2272 */
-#define afw_components_s_zz__2272 \
-    (&afw_components_self_v_zz__2272.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2272 */
-#define afw_components_self_s_zz__2272 \
-    (afw_components_self_v_zz__2272.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2272 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2272;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2272 */
-#define afw_components_z_zz__2272 \
-    (afw_components_self_v_zz__2272.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2272 */
-#define afw_components_v_zz__2272 \
-    (&afw_components_self_v_zz__2272.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2273 \
-    "This component pops up a small bar at the bottom of the screen to alert the user of a recent activity, such as a success or error status, typically following an action that was taken by the user."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2273 */
-#define afw_components_s_zz__2273 \
-    (&afw_components_self_v_zz__2273.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2273 */
-#define afw_components_self_s_zz__2273 \
-    (afw_components_self_v_zz__2273.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2273 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2273;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2273 */
-#define afw_components_z_zz__2273 \
-    (afw_components_self_v_zz__2273.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2273 */
-#define afw_components_v_zz__2273 \
-    (&afw_components_self_v_zz__2273.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2274 \
-    "A component that renders a numeric field that an be incremented or decremented."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2274 */
-#define afw_components_s_zz__2274 \
-    (&afw_components_self_v_zz__2274.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2274 */
-#define afw_components_self_s_zz__2274 \
-    (afw_components_self_v_zz__2274.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2274 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2274;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2274 */
-#define afw_components_z_zz__2274 \
-    (afw_components_self_v_zz__2274.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2274 */
-#define afw_components_v_zz__2274 \
-    (&afw_components_self_v_zz__2274.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2275 \
-    "This utility component displays a spinning circle to indicate to the user to wait for processing to complete."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2275 */
-#define afw_components_s_zz__2275 \
-    (&afw_components_self_v_zz__2275.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2275 */
-#define afw_components_self_s_zz__2275 \
-    (afw_components_self_v_zz__2275.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2275 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2275;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2275 */
-#define afw_components_z_zz__2275 \
-    (afw_components_self_v_zz__2275.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2275 */
-#define afw_components_v_zz__2275 \
-    (&afw_components_self_v_zz__2275.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2276 \
-    "A component that displays a Stepper indicating a list of steps and the current one you are on."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2276 */
-#define afw_components_s_zz__2276 \
-    (&afw_components_self_v_zz__2276.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2276 */
-#define afw_components_self_s_zz__2276 \
-    (afw_components_self_v_zz__2276.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2276 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2276;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2276 */
-#define afw_components_z_zz__2276 \
-    (afw_components_self_v_zz__2276.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2276 */
-#define afw_components_v_zz__2276 \
-    (&afw_components_self_v_zz__2276.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2277 \
-    "This component is useful for creating a step-by-step wizard, with each step providing a title, its contents, and a Next button to get to the next step."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2277 */
-#define afw_components_s_zz__2277 \
-    (&afw_components_self_v_zz__2277.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2277 */
-#define afw_components_self_s_zz__2277 \
-    (afw_components_self_v_zz__2277.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2277 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2277;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2277 */
-#define afw_components_z_zz__2277 \
-    (afw_components_self_v_zz__2277.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2277 */
-#define afw_components_v_zz__2277 \
-    (&afw_components_self_v_zz__2277.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2278 \
-    "This component arranges data into rows and columns, which can be optionally sorted, selected and edited through actions."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2278 */
-#define afw_components_s_zz__2278 \
-    (&afw_components_self_v_zz__2278.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2278 */
-#define afw_components_self_s_zz__2278 \
-    (afw_components_self_v_zz__2278.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2278 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2278;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2278 */
-#define afw_components_z_zz__2278 \
-    (afw_components_self_v_zz__2278.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2278 */
-#define afw_components_v_zz__2278 \
-    (&afw_components_self_v_zz__2278.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2279 \
-    "This component displays a list of components, one at a time, by containing the content inside of their individual tabs. A tab has a clickable link, which when clicked, will switch the content to the desired component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2279 */
-#define afw_components_s_zz__2279 \
-    (&afw_components_self_v_zz__2279.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2279 */
-#define afw_components_self_s_zz__2279 \
-    (afw_components_self_v_zz__2279.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2279 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2279;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2279 */
-#define afw_components_z_zz__2279 \
-    (afw_components_self_v_zz__2279.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2279 */
-#define afw_components_v_zz__2279 \
-    (&afw_components_self_v_zz__2279.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2280 \
-    "A component that renders a text field with a label and description."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2280 */
-#define afw_components_s_zz__2280 \
-    (&afw_components_self_v_zz__2280.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2280 */
-#define afw_components_self_s_zz__2280 \
-    (afw_components_self_v_zz__2280.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2280 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2280;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2280 */
-#define afw_components_z_zz__2280 \
-    (afw_components_self_v_zz__2280.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2280 */
-#define afw_components_v_zz__2280 \
-    (&afw_components_self_v_zz__2280.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2281 \
-    "This is a simple component for inputting text. It may display an outlined or underlined field from which the user can enter text into. It may also display a label and description to help the user understand its contents."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2281 */
-#define afw_components_s_zz__2281 \
-    (&afw_components_self_v_zz__2281.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2281 */
-#define afw_components_self_s_zz__2281 \
-    (afw_components_self_v_zz__2281.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2281 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2281;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2281 */
-#define afw_components_z_zz__2281 \
-    (afw_components_self_v_zz__2281.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2281 */
-#define afw_components_v_zz__2281 \
-    (&afw_components_self_v_zz__2281.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2282 \
-    "This component understands a time duration data type and renders a convenient way to select a duration of time."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2282 */
-#define afw_components_s_zz__2282 \
-    (&afw_components_self_v_zz__2282.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2282 */
-#define afw_components_self_s_zz__2282 \
-    (afw_components_self_v_zz__2282.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2282 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2282;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2282 */
-#define afw_components_z_zz__2282 \
-    (afw_components_self_v_zz__2282.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2282 */
-#define afw_components_v_zz__2282 \
-    (&afw_components_self_v_zz__2282.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2283 \
-    "This component allows a time to be chosen, typically from a clock or spin buttons."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2283 */
-#define afw_components_s_zz__2283 \
-    (&afw_components_self_v_zz__2283.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2283 */
-#define afw_components_self_s_zz__2283 \
-    (afw_components_self_v_zz__2283.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2283 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2283;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2283 */
-#define afw_components_z_zz__2283 \
-    (afw_components_self_v_zz__2283.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2283 */
-#define afw_components_v_zz__2283 \
-    (&afw_components_self_v_zz__2283.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2284 \
-    "This component allows a timezone to be chosen, typically from a dropdown of timezones, or from a world map."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2284 */
-#define afw_components_s_zz__2284 \
-    (&afw_components_self_v_zz__2284.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2284 */
-#define afw_components_self_s_zz__2284 \
-    (afw_components_self_v_zz__2284.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2284 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2284;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2284 */
-#define afw_components_z_zz__2284 \
-    (afw_components_self_v_zz__2284.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2284 */
-#define afw_components_v_zz__2284 \
-    (&afw_components_self_v_zz__2284.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2285 \
-    "A component that renders a boolean value as a toggleable switch."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2285 */
-#define afw_components_s_zz__2285 \
-    (&afw_components_self_v_zz__2285.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2285 */
-#define afw_components_self_s_zz__2285 \
-    (afw_components_self_v_zz__2285.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2285 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2285;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2285 */
-#define afw_components_z_zz__2285 \
-    (afw_components_self_v_zz__2285.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2285 */
-#define afw_components_v_zz__2285 \
-    (&afw_components_self_v_zz__2285.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2286 \
-    "This component takes a boolean value and displays it as a switch that can be toggled on or off to represent true or false. It may also have text labels to interpret its meaning."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2286 */
-#define afw_components_s_zz__2286 \
-    (&afw_components_self_v_zz__2286.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2286 */
-#define afw_components_self_s_zz__2286 \
-    (afw_components_self_v_zz__2286.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2286 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2286;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2286 */
-#define afw_components_z_zz__2286 \
-    (afw_components_self_v_zz__2286.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2286 */
-#define afw_components_v_zz__2286 \
-    (&afw_components_self_v_zz__2286.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2287 \
-    "A component to display a selectable choice of options, presented as buttons that can be toggled on or off."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2287 */
-#define afw_components_s_zz__2287 \
-    (&afw_components_self_v_zz__2287.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2287 */
-#define afw_components_self_s_zz__2287 \
-    (afw_components_self_v_zz__2287.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2287 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2287;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2287 */
-#define afw_components_z_zz__2287 \
-    (afw_components_self_v_zz__2287.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2287 */
-#define afw_components_v_zz__2287 \
-    (&afw_components_self_v_zz__2287.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2288 \
-    "This component provides a list of options, organized as buttons, that may be toggled on or off. They may be inclusive or exclusive."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2288 */
-#define afw_components_s_zz__2288 \
-    (&afw_components_self_v_zz__2288.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2288 */
-#define afw_components_self_s_zz__2288 \
-    (afw_components_self_v_zz__2288.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2288 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2288;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2288 */
-#define afw_components_z_zz__2288 \
-    (afw_components_self_v_zz__2288.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2288 */
-#define afw_components_v_zz__2288 \
-    (&afw_components_self_v_zz__2288.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2289 \
-    "A container component that arranges a series of buttons or other minor content in a horizontal bar."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2289 */
-#define afw_components_s_zz__2289 \
-    (&afw_components_self_v_zz__2289.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2289 */
-#define afw_components_self_s_zz__2289 \
-    (afw_components_self_v_zz__2289.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2289 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2289;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2289 */
-#define afw_components_z_zz__2289 \
-    (afw_components_self_v_zz__2289.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2289 */
-#define afw_components_v_zz__2289 \
-    (&afw_components_self_v_zz__2289.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2290 \
-    "This component is used to provide actions, via buttons, labels or other small components, condensed into a common location so the user may use it to view or change data that is presented in the layout below."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2290 */
-#define afw_components_s_zz__2290 \
-    (&afw_components_self_v_zz__2290.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2290 */
-#define afw_components_self_s_zz__2290 \
-    (afw_components_self_v_zz__2290.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2290 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2290;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2290 */
-#define afw_components_z_zz__2290 \
-    (afw_components_self_v_zz__2290.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2290 */
-#define afw_components_v_zz__2290 \
-    (&afw_components_self_v_zz__2290.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2291 \
-    "This component renders a small popup with text when the user hovers over an element for a specific amount of time. This may provide helpful hints to explain to the user what they are looking at."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2291 */
-#define afw_components_s_zz__2291 \
-    (&afw_components_self_v_zz__2291.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2291 */
-#define afw_components_self_s_zz__2291 \
-    (afw_components_self_v_zz__2291.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2291 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2291;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2291 */
-#define afw_components_z_zz__2291 \
-    (afw_components_self_v_zz__2291.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2291 */
-#define afw_components_v_zz__2291 \
-    (&afw_components_self_v_zz__2291.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2292 \
-    "This component helps to organize content into a Tree structure, where nodes can be selected, expanded, or collapsed to allow the user to navigate more complex nested data or component structures."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2292 */
-#define afw_components_s_zz__2292 \
-    (&afw_components_self_v_zz__2292.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2292 */
-#define afw_components_self_s_zz__2292 \
-    (afw_components_self_v_zz__2292.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2292 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2292;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2292 */
-#define afw_components_z_zz__2292 \
-    (afw_components_self_v_zz__2292.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2292 */
-#define afw_components_v_zz__2292 \
-    (&afw_components_self_v_zz__2292.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2293 \
-    "This component is a very simple one, which renders text into a static label with specified color, size or style.."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2293 */
-#define afw_components_s_zz__2293 \
-    (&afw_components_self_v_zz__2293.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2293 */
-#define afw_components_self_s_zz__2293 \
-    (afw_components_self_v_zz__2293.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2293 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2293;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2293 */
-#define afw_components_z_zz__2293 \
-    (afw_components_self_v_zz__2293.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2293 */
-#define afw_components_v_zz__2293 \
-    (&afw_components_self_v_zz__2293.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2294 \
-    "Defines the screen size breakpoints for this column definition."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2294 */
-#define afw_components_s_zz__2294 \
-    (&afw_components_self_v_zz__2294.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2294 */
-#define afw_components_self_s_zz__2294 \
-    (afw_components_self_v_zz__2294.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2294 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2294;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2294 */
-#define afw_components_z_zz__2294 \
-    (afw_components_self_v_zz__2294.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2294 */
-#define afw_components_v_zz__2294 \
-    (&afw_components_self_v_zz__2294.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2295 \
-    "Defines arbitrary Component properties that may be applicable to a specific Component Type."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2295 */
-#define afw_components_s_zz__2295 \
-    (&afw_components_self_v_zz__2295.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2295 */
-#define afw_components_self_s_zz__2295 \
-    (afw_components_self_v_zz__2295.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2295 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2295;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2295 */
-#define afw_components_z_zz__2295 \
-    (afw_components_self_v_zz__2295.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2295 */
-#define afw_components_v_zz__2295 \
-    (&afw_components_self_v_zz__2295.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2296 \
-    "The object, containing the property, to be displayed by the Adaptive Property Layout component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2296 */
-#define afw_components_s_zz__2296 \
-    (&afw_components_self_v_zz__2296.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2296 */
-#define afw_components_self_s_zz__2296 \
-    (afw_components_self_v_zz__2296.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2296 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2296;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2296 */
-#define afw_components_z_zz__2296 \
-    (afw_components_self_v_zz__2296.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2296 */
-#define afw_components_v_zz__2296 \
-    (&afw_components_self_v_zz__2296.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2297 \
-    "The property name in the object to be displayed by the Adaptive Property Layout component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2297 */
-#define afw_components_s_zz__2297 \
-    (&afw_components_self_v_zz__2297.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2297 */
-#define afw_components_self_s_zz__2297 \
-    (afw_components_self_v_zz__2297.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2297 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2297;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2297 */
-#define afw_components_z_zz__2297 \
-    (afw_components_self_v_zz__2297.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2297 */
-#define afw_components_v_zz__2297 \
-    (&afw_components_self_v_zz__2297.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2298 \
-    "Adaptive Layout definition for the Adaptive Property Layout component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2298 */
-#define afw_components_s_zz__2298 \
-    (&afw_components_self_v_zz__2298.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2298 */
-#define afw_components_self_s_zz__2298 \
-    (afw_components_self_v_zz__2298.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2298 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2298;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2298 */
-#define afw_components_z_zz__2298 \
-    (afw_components_self_v_zz__2298.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2298 */
-#define afw_components_v_zz__2298 \
-    (&afw_components_self_v_zz__2298.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2299 \
-    "Specifies whether the Autocomplete component is currently loading."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2299 */
-#define afw_components_s_zz__2299 \
-    (&afw_components_self_v_zz__2299.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2299 */
-#define afw_components_self_s_zz__2299 \
-    (afw_components_self_v_zz__2299.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2299 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2299;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2299 */
-#define afw_components_z_zz__2299 \
-    (afw_components_self_v_zz__2299.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2299 */
-#define afw_components_v_zz__2299 \
-    (&afw_components_self_v_zz__2299.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2300 \
-    "Specifies the placeholder text displayed when no value is present."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2300 */
-#define afw_components_s_zz__2300 \
-    (&afw_components_self_v_zz__2300.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2300 */
-#define afw_components_self_s_zz__2300 \
-    (afw_components_self_v_zz__2300.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2300 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2300;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2300 */
-#define afw_components_z_zz__2300 \
-    (afw_components_self_v_zz__2300.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2300 */
-#define afw_components_v_zz__2300 \
-    (&afw_components_self_v_zz__2300.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2301 \
-    "This aligns a flex container's lines within when there is extra space in the cross-axis, similar to how 'Justify Content' aligns individual items within the main-axis."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2301 */
-#define afw_components_s_zz__2301 \
-    (&afw_components_self_v_zz__2301.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2301 */
-#define afw_components_self_s_zz__2301 \
-    (afw_components_self_v_zz__2301.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2301 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2301;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2301 */
-#define afw_components_z_zz__2301 \
-    (afw_components_self_v_zz__2301.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2301 */
-#define afw_components_v_zz__2301 \
-    (&afw_components_self_v_zz__2301.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2302 \
-    "This defines the default behavior for how flex items are laid out along the cross axis on the current line. Think of it as the 'Justify Content' version for the cross axis (perpendicular to the main-axis)."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2302 */
-#define afw_components_s_zz__2302 \
-    (&afw_components_self_v_zz__2302.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2302 */
-#define afw_components_self_s_zz__2302 \
-    (afw_components_self_v_zz__2302.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2302 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2302;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2302 */
-#define afw_components_z_zz__2302 \
-    (afw_components_self_v_zz__2302.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2302 */
-#define afw_components_v_zz__2302 \
-    (&afw_components_self_v_zz__2302.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2303 \
-    "This declares the direction that items are oriented inside the Box."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2303 */
-#define afw_components_s_zz__2303 \
-    (&afw_components_self_v_zz__2303.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2303 */
-#define afw_components_self_s_zz__2303 \
-    (afw_components_self_v_zz__2303.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2303 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2303;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2303 */
-#define afw_components_z_zz__2303 \
-    (afw_components_self_v_zz__2303.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2303 */
-#define afw_components_v_zz__2303 \
-    (&afw_components_self_v_zz__2303.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2304 \
-    "This defines the alignment along the main axis. It helps distribute extra free space leftover when either all the flex items on a line are inflexible, or are flexible but have reached their maximum size. It also exerts some control over the alignment of items when they overflow the line."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2304 */
-#define afw_components_s_zz__2304 \
-    (&afw_components_self_v_zz__2304.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2304 */
-#define afw_components_self_s_zz__2304 \
-    (afw_components_self_v_zz__2304.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2304 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2304;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2304 */
-#define afw_components_z_zz__2304 \
-    (afw_components_self_v_zz__2304.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2304 */
-#define afw_components_v_zz__2304 \
-    (&afw_components_self_v_zz__2304.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2305 \
-    "By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2305 */
-#define afw_components_s_zz__2305 \
-    (&afw_components_self_v_zz__2305.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2305 */
-#define afw_components_self_s_zz__2305 \
-    (afw_components_self_v_zz__2305.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2305 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2305;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2305 */
-#define afw_components_z_zz__2305 \
-    (afw_components_self_v_zz__2305.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2305 */
-#define afw_components_v_zz__2305 \
-    (&afw_components_self_v_zz__2305.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2306 \
-    "This declares the components to be rendered inside the BoxItem."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2306 */
-#define afw_components_s_zz__2306 \
-    (&afw_components_self_v_zz__2306.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2306 */
-#define afw_components_self_s_zz__2306 \
-    (afw_components_self_v_zz__2306.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2306 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2306;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2306 */
-#define afw_components_z_zz__2306 \
-    (afw_components_self_v_zz__2306.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2306 */
-#define afw_components_v_zz__2306 \
-    (&afw_components_self_v_zz__2306.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2307 \
-    "This defines the ability for a flex item to grow if necessary. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space inside the flex container the item should take up.\n\nIf all items have flex-grow set to 1, the remaining space in the container will be distributed equally to all children. If one of the children has a value of 2, the remaining space would take up twice as much space as the others (or it will try to, at least)."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2307 */
-#define afw_components_s_zz__2307 \
-    (&afw_components_self_v_zz__2307.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2307 */
-#define afw_components_self_s_zz__2307 \
-    (afw_components_self_v_zz__2307.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2307 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2307;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2307 */
-#define afw_components_z_zz__2307 \
-    (afw_components_self_v_zz__2307.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2307 */
-#define afw_components_v_zz__2307 \
-    (&afw_components_self_v_zz__2307.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2308 \
-    "By default, flex items are laid out in the source order. However, the order property controls the order in which they appear in the flex container."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2308 */
-#define afw_components_s_zz__2308 \
-    (&afw_components_self_v_zz__2308.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2308 */
-#define afw_components_self_s_zz__2308 \
-    (afw_components_self_v_zz__2308.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2308 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2308;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2308 */
-#define afw_components_z_zz__2308 \
-    (afw_components_self_v_zz__2308.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2308 */
-#define afw_components_v_zz__2308 \
-    (&afw_components_self_v_zz__2308.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2309 \
-    "This defines the ability for a flex item to shrink if necessary."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2309 */
-#define afw_components_s_zz__2309 \
-    (&afw_components_self_v_zz__2309.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2309 */
-#define afw_components_self_s_zz__2309 \
-    (afw_components_self_v_zz__2309.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2309 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2309;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2309 */
-#define afw_components_z_zz__2309 \
-    (afw_components_self_v_zz__2309.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2309 */
-#define afw_components_v_zz__2309 \
-    (&afw_components_self_v_zz__2309.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2310 \
-    "Adaptive Layout definition for the Flexible BoxItem component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2310 */
-#define afw_components_s_zz__2310 \
-    (&afw_components_self_v_zz__2310.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2310 */
-#define afw_components_self_s_zz__2310 \
-    (afw_components_self_v_zz__2310.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2310 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2310;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2310 */
-#define afw_components_z_zz__2310 \
-    (afw_components_self_v_zz__2310.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2310 */
-#define afw_components_v_zz__2310 \
-    (&afw_components_self_v_zz__2310.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2311 \
-    "Adaptive Layout definition for the Flexible BreadcrumbItem component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2311 */
-#define afw_components_s_zz__2311 \
-    (&afw_components_self_v_zz__2311.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2311 */
-#define afw_components_self_s_zz__2311 \
-    (afw_components_self_v_zz__2311.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2311 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2311;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2311 */
-#define afw_components_z_zz__2311 \
-    (afw_components_self_v_zz__2311.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2311 */
-#define afw_components_v_zz__2311 \
-    (&afw_components_self_v_zz__2311.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2312 \
-    "Specifies an optional color for this Button (primary, secondary, error)."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2312 */
-#define afw_components_s_zz__2312 \
-    (&afw_components_self_v_zz__2312.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2312 */
-#define afw_components_self_s_zz__2312 \
-    (afw_components_self_v_zz__2312.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2312 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2312;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2312 */
-#define afw_components_z_zz__2312 \
-    (afw_components_self_v_zz__2312.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2312 */
-#define afw_components_v_zz__2312 \
-    (&afw_components_self_v_zz__2312.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2313 \
-    "Specifies optional text to be added below the main text label."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2313 */
-#define afw_components_s_zz__2313 \
-    (&afw_components_self_v_zz__2313.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2313 */
-#define afw_components_self_s_zz__2313 \
-    (afw_components_self_v_zz__2313.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2313 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2313;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2313 */
-#define afw_components_z_zz__2313 \
-    (afw_components_self_v_zz__2313.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2313 */
-#define afw_components_v_zz__2313 \
-    (&afw_components_self_v_zz__2313.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2314 \
-    "Specifies the position of the callout, relative to the target component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2314 */
-#define afw_components_s_zz__2314 \
-    (&afw_components_self_v_zz__2314.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2314 */
-#define afw_components_self_s_zz__2314 \
-    (afw_components_self_v_zz__2314.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2314 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2314;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2314 */
-#define afw_components_z_zz__2314 \
-    (afw_components_self_v_zz__2314.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2314 */
-#define afw_components_v_zz__2314 \
-    (&afw_components_self_v_zz__2314.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2315 \
-    "The orientation of the Choice Group (horizontal or vertical)."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2315 */
-#define afw_components_s_zz__2315 \
-    (&afw_components_self_v_zz__2315.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2315 */
-#define afw_components_self_s_zz__2315 \
-    (afw_components_self_v_zz__2315.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2315 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2315;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2315 */
-#define afw_components_z_zz__2315 \
-    (afw_components_self_v_zz__2315.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2315 */
-#define afw_components_v_zz__2315 \
-    (&afw_components_self_v_zz__2315.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2316 \
-    "Specifies whether this option is disabled in the ChoiceGroup."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2316 */
-#define afw_components_s_zz__2316 \
-    (&afw_components_self_v_zz__2316.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2316 */
-#define afw_components_self_s_zz__2316 \
-    (afw_components_self_v_zz__2316.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2316 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2316;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2316 */
-#define afw_components_z_zz__2316 \
-    (afw_components_self_v_zz__2316.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2316 */
-#define afw_components_v_zz__2316 \
-    (&afw_components_self_v_zz__2316.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2317 \
-    "Adaptive Layout definition for the ChoiceGroupOption component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2317 */
-#define afw_components_s_zz__2317 \
-    (&afw_components_self_v_zz__2317.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2317 */
-#define afw_components_self_s_zz__2317 \
-    (afw_components_self_v_zz__2317.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2317 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2317;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2317 */
-#define afw_components_z_zz__2317 \
-    (afw_components_self_v_zz__2317.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2317 */
-#define afw_components_v_zz__2317 \
-    (&afw_components_self_v_zz__2317.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2318 \
-    "The source value for the CodeEditor component should be read-only."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2318 */
-#define afw_components_s_zz__2318 \
-    (&afw_components_self_v_zz__2318.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2318 */
-#define afw_components_self_s_zz__2318 \
-    (afw_components_self_v_zz__2318.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2318 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2318;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2318 */
-#define afw_components_z_zz__2318 \
-    (afw_components_self_v_zz__2318.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2318 */
-#define afw_components_v_zz__2318 \
-    (&afw_components_self_v_zz__2318.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2319 \
-    "Specifies whether the gutter should be visible in CodeEditor component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2319 */
-#define afw_components_s_zz__2319 \
-    (&afw_components_self_v_zz__2319.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2319 */
-#define afw_components_self_s_zz__2319 \
-    (afw_components_self_v_zz__2319.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2319 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2319;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2319 */
-#define afw_components_z_zz__2319 \
-    (afw_components_self_v_zz__2319.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2319 */
-#define afw_components_v_zz__2319 \
-    (&afw_components_self_v_zz__2319.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2320 \
-    "Specifies whether the line numbers should be visible in CodeEditor component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2320 */
-#define afw_components_s_zz__2320 \
-    (&afw_components_self_v_zz__2320.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2320 */
-#define afw_components_self_s_zz__2320 \
-    (afw_components_self_v_zz__2320.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2320 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2320;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2320 */
-#define afw_components_z_zz__2320 \
-    (afw_components_self_v_zz__2320.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2320 */
-#define afw_components_v_zz__2320 \
-    (&afw_components_self_v_zz__2320.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2321 \
-    "Specifies whether the print margin should be visible in CodeEditor component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2321 */
-#define afw_components_s_zz__2321 \
-    (&afw_components_self_v_zz__2321.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2321 */
-#define afw_components_self_s_zz__2321 \
-    (afw_components_self_v_zz__2321.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2321 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2321;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2321 */
-#define afw_components_z_zz__2321 \
-    (afw_components_self_v_zz__2321.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2321 */
-#define afw_components_v_zz__2321 \
-    (&afw_components_self_v_zz__2321.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2322 \
-    "Specifies the component contained within this Collapsible Body."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2322 */
-#define afw_components_s_zz__2322 \
-    (&afw_components_self_v_zz__2322.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2322 */
-#define afw_components_self_s_zz__2322 \
-    (afw_components_self_v_zz__2322.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2322 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2322;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2322 */
-#define afw_components_z_zz__2322 \
-    (afw_components_self_v_zz__2322.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2322 */
-#define afw_components_v_zz__2322 \
-    (&afw_components_self_v_zz__2322.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2323 \
-    "Specifies the component contained within this Collapsible Header."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2323 */
-#define afw_components_s_zz__2323 \
-    (&afw_components_self_v_zz__2323.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2323 */
-#define afw_components_self_s_zz__2323 \
-    (afw_components_self_v_zz__2323.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2323 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2323;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2323 */
-#define afw_components_z_zz__2323 \
-    (afw_components_self_v_zz__2323.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2323 */
-#define afw_components_v_zz__2323 \
-    (&afw_components_self_v_zz__2323.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2324 \
-    "Specifies whether the Collapsible content is collapsed or not."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2324 */
-#define afw_components_s_zz__2324 \
-    (&afw_components_self_v_zz__2324.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2324 */
-#define afw_components_self_s_zz__2324 \
-    (afw_components_self_v_zz__2324.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2324 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2324;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2324 */
-#define afw_components_z_zz__2324 \
-    (afw_components_self_v_zz__2324.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2324 */
-#define afw_components_v_zz__2324 \
-    (&afw_components_self_v_zz__2324.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2325 \
-    "Specifies whether the Collapsible should render the collapse feature."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2325 */
-#define afw_components_s_zz__2325 \
-    (&afw_components_self_v_zz__2325.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2325 */
-#define afw_components_self_s_zz__2325 \
-    (afw_components_self_v_zz__2325.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2325 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2325;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2325 */
-#define afw_components_z_zz__2325 \
-    (afw_components_self_v_zz__2325.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2325 */
-#define afw_components_v_zz__2325 \
-    (&afw_components_self_v_zz__2325.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2326 \
-    "This attribute is used to define a string that labels the current element. Use it in cases where a text label is not visible on the screen."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2326 */
-#define afw_components_s_zz__2326 \
-    (&afw_components_self_v_zz__2326.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2326 */
-#define afw_components_self_s_zz__2326 \
-    (afw_components_self_v_zz__2326.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2326 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2326;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2326 */
-#define afw_components_z_zz__2326 \
-    (afw_components_self_v_zz__2326.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2326 */
-#define afw_components_v_zz__2326 \
-    (&afw_components_self_v_zz__2326.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2327 \
-    "Establishes the relationships between objects and their label(s)."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2327 */
-#define afw_components_s_zz__2327 \
-    (&afw_components_self_v_zz__2327.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2327 */
-#define afw_components_self_s_zz__2327 \
-    (afw_components_self_v_zz__2327.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2327 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2327;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2327 */
-#define afw_components_z_zz__2327 \
-    (afw_components_self_v_zz__2327.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2327 */
-#define afw_components_v_zz__2327 \
-    (&afw_components_self_v_zz__2327.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2328 \
-    "Used internally, to indicate that the component is being rendered in 'design mode', in case it needs to behave differently."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2328 */
-#define afw_components_s_zz__2328 \
-    (&afw_components_self_v_zz__2328.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2328 */
-#define afw_components_self_s_zz__2328 \
-    (afw_components_self_v_zz__2328.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2328 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2328;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2328 */
-#define afw_components_z_zz__2328 \
-    (afw_components_self_v_zz__2328.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2328 */
-#define afw_components_v_zz__2328 \
-    (&afw_components_self_v_zz__2328.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2329 \
-    "Identifies to parsing software the exact function of an element (and its children) as part of a web application."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2329 */
-#define afw_components_s_zz__2329 \
-    (&afw_components_self_v_zz__2329.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2329 */
-#define afw_components_self_s_zz__2329 \
-    (afw_components_self_v_zz__2329.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2329 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2329;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2329 */
-#define afw_components_z_zz__2329 \
-    (afw_components_self_v_zz__2329.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2329 */
-#define afw_components_v_zz__2329 \
-    (&afw_components_self_v_zz__2329.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2330 \
-    "An object representing the CSS style to be applied to this layout component type."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2330 */
-#define afw_components_s_zz__2330 \
-    (&afw_components_self_v_zz__2330.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2330 */
-#define afw_components_self_s_zz__2330 \
-    (afw_components_self_v_zz__2330.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2330 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2330;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2330 */
-#define afw_components_z_zz__2330 \
-    (afw_components_self_v_zz__2330.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2330 */
-#define afw_components_v_zz__2330 \
-    (&afw_components_self_v_zz__2330.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2331 \
-    "Any contents that needs to be rendered inside the Dialog's footer area."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2331 */
-#define afw_components_s_zz__2331 \
-    (&afw_components_self_v_zz__2331.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2331 */
-#define afw_components_self_s_zz__2331 \
-    (afw_components_self_v_zz__2331.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2331 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2331;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2331 */
-#define afw_components_z_zz__2331 \
-    (afw_components_self_v_zz__2331.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2331 */
-#define afw_components_v_zz__2331 \
-    (&afw_components_self_v_zz__2331.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2332 \
-    "Determines if the Dialog should block dismissing until the user clicks a button."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2332 */
-#define afw_components_s_zz__2332 \
-    (&afw_components_self_v_zz__2332.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2332 */
-#define afw_components_self_s_zz__2332 \
-    (afw_components_self_v_zz__2332.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2332 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2332;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2332 */
-#define afw_components_z_zz__2332 \
-    (afw_components_self_v_zz__2332.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2332 */
-#define afw_components_v_zz__2332 \
-    (&afw_components_self_v_zz__2332.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2333 \
-    "Should a close button be rendered, to allow the user to dismiss the Dialog."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2333 */
-#define afw_components_s_zz__2333 \
-    (&afw_components_self_v_zz__2333.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2333 */
-#define afw_components_self_s_zz__2333 \
-    (afw_components_self_v_zz__2333.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2333 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2333;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2333 */
-#define afw_components_z_zz__2333 \
-    (afw_components_self_v_zz__2333.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2333 */
-#define afw_components_v_zz__2333 \
-    (&afw_components_self_v_zz__2333.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2334 \
-    "The content text to display inside the dialog box, directly under the Title."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2334 */
-#define afw_components_s_zz__2334 \
-    (&afw_components_self_v_zz__2334.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2334 */
-#define afw_components_self_s_zz__2334 \
-    (afw_components_self_v_zz__2334.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2334 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2334;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2334 */
-#define afw_components_z_zz__2334 \
-    (afw_components_self_v_zz__2334.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2334 */
-#define afw_components_v_zz__2334 \
-    (&afw_components_self_v_zz__2334.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2335 \
-    "The modified source value for the DiffEditor component to render."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2335 */
-#define afw_components_s_zz__2335 \
-    (&afw_components_self_v_zz__2335.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2335 */
-#define afw_components_self_s_zz__2335 \
-    (afw_components_self_v_zz__2335.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2335 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2335;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2335 */
-#define afw_components_z_zz__2335 \
-    (afw_components_self_v_zz__2335.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2335 */
-#define afw_components_v_zz__2335 \
-    (&afw_components_self_v_zz__2335.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2336 \
-    "The original source value for the DiffEditor component to render."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2336 */
-#define afw_components_s_zz__2336 \
-    (&afw_components_self_v_zz__2336.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2336 */
-#define afw_components_self_s_zz__2336 \
-    (afw_components_self_v_zz__2336.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2336 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2336;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2336 */
-#define afw_components_z_zz__2336 \
-    (afw_components_self_v_zz__2336.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2336 */
-#define afw_components_v_zz__2336 \
-    (&afw_components_self_v_zz__2336.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2337 \
-    "Specifies whether the line numbers should be visible in DiffEditor component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2337 */
-#define afw_components_s_zz__2337 \
-    (&afw_components_self_v_zz__2337.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2337 */
-#define afw_components_self_s_zz__2337 \
-    (afw_components_self_v_zz__2337.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2337 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2337;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2337 */
-#define afw_components_z_zz__2337 \
-    (afw_components_self_v_zz__2337.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2337 */
-#define afw_components_v_zz__2337 \
-    (&afw_components_self_v_zz__2337.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2338 \
-    "This property describes which side of the page, the drawer should be anchored to. It may be one of 'bottom', 'top', 'left' or 'right'."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2338 */
-#define afw_components_s_zz__2338 \
-    (&afw_components_self_v_zz__2338.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2338 */
-#define afw_components_self_s_zz__2338 \
-    (afw_components_self_v_zz__2338.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2338 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2338;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2338 */
-#define afw_components_z_zz__2338 \
-    (afw_components_self_v_zz__2338.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2338 */
-#define afw_components_v_zz__2338 \
-    (&afw_components_self_v_zz__2338.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2339 \
-    "This declares a list of items to be rendered inside the Drawer."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2339 */
-#define afw_components_s_zz__2339 \
-    (&afw_components_self_v_zz__2339.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2339 */
-#define afw_components_self_s_zz__2339 \
-    (afw_components_self_v_zz__2339.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2339 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2339;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2339 */
-#define afw_components_z_zz__2339 \
-    (afw_components_self_v_zz__2339.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2339 */
-#define afw_components_v_zz__2339 \
-    (&afw_components_self_v_zz__2339.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2340 \
-    "This property describes whether the drawer should be anchored temporary, persistent or permanent. If temporary, the drawer will be dismissed when the user unblocks its focus. If persistent, the drawer will be displayed until the user manually closes it. If permanent, the drawer will always remain open."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2340 */
-#define afw_components_s_zz__2340 \
-    (&afw_components_self_v_zz__2340.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2340 */
-#define afw_components_self_s_zz__2340 \
-    (afw_components_self_v_zz__2340.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2340 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2340;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2340 */
-#define afw_components_z_zz__2340 \
-    (afw_components_self_v_zz__2340.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2340 */
-#define afw_components_v_zz__2340 \
-    (&afw_components_self_v_zz__2340.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2341 \
-    "Whether the options managed by this Dropdown Editor are editable."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2341 */
-#define afw_components_s_zz__2341 \
-    (&afw_components_self_v_zz__2341.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2341 */
-#define afw_components_self_s_zz__2341 \
-    (afw_components_self_v_zz__2341.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2341 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2341;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2341 */
-#define afw_components_z_zz__2341 \
-    (afw_components_self_v_zz__2341.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2341 */
-#define afw_components_v_zz__2341 \
-    (&afw_components_self_v_zz__2341.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2342 \
-    "Adaptive component definition for the Dropdown Option component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2342 */
-#define afw_components_s_zz__2342 \
-    (&afw_components_self_v_zz__2342.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2342 */
-#define afw_components_self_s_zz__2342 \
-    (afw_components_self_v_zz__2342.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2342 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2342;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2342 */
-#define afw_components_z_zz__2342 \
-    (afw_components_self_v_zz__2342.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2342 */
-#define afw_components_v_zz__2342 \
-    (&afw_components_self_v_zz__2342.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2343 \
-    "The placeholder value for the text field when no value exists."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2343 */
-#define afw_components_s_zz__2343 \
-    (&afw_components_self_v_zz__2343.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2343 */
-#define afw_components_self_s_zz__2343 \
-    (afw_components_self_v_zz__2343.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2343 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2343;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2343 */
-#define afw_components_z_zz__2343 \
-    (afw_components_self_v_zz__2343.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2343 */
-#define afw_components_v_zz__2343 \
-    (&afw_components_self_v_zz__2343.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2344 \
-    "Adaptive Layout definition for the EditableCallout component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2344 */
-#define afw_components_s_zz__2344 \
-    (&afw_components_self_v_zz__2344.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2344 */
-#define afw_components_self_s_zz__2344 \
-    (afw_components_self_v_zz__2344.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2344 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2344;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2344 */
-#define afw_components_z_zz__2344 \
-    (afw_components_self_v_zz__2344.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2344 */
-#define afw_components_v_zz__2344 \
-    (&afw_components_self_v_zz__2344.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2345 \
-    "Specifies whether the TextField for the EditableLabel needs to be multilined."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2345 */
-#define afw_components_s_zz__2345 \
-    (&afw_components_self_v_zz__2345.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2345 */
-#define afw_components_self_s_zz__2345 \
-    (afw_components_self_v_zz__2345.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2345 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2345;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2345 */
-#define afw_components_z_zz__2345 \
-    (afw_components_self_v_zz__2345.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2345 */
-#define afw_components_v_zz__2345 \
-    (&afw_components_self_v_zz__2345.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2346 \
-    "The breakpoint conditions for which the contained component will be hidden (xs, sm, md, lg, xl)."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2346 */
-#define afw_components_s_zz__2346 \
-    (&afw_components_self_v_zz__2346.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2346 */
-#define afw_components_self_s_zz__2346 \
-    (afw_components_self_v_zz__2346.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2346 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2346;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2346 */
-#define afw_components_z_zz__2346 \
-    (afw_components_self_v_zz__2346.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2346 */
-#define afw_components_v_zz__2346 \
-    (&afw_components_self_v_zz__2346.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2347 \
-    "This content will only be displayed on large displays or smaller."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2347 */
-#define afw_components_s_zz__2347 \
-    (&afw_components_self_v_zz__2347.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2347 */
-#define afw_components_self_s_zz__2347 \
-    (afw_components_self_v_zz__2347.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2347 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2347;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2347 */
-#define afw_components_z_zz__2347 \
-    (afw_components_self_v_zz__2347.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2347 */
-#define afw_components_v_zz__2347 \
-    (&afw_components_self_v_zz__2347.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2348 \
-    "This content will only be displayed on medium displays or smaller."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2348 */
-#define afw_components_s_zz__2348 \
-    (&afw_components_self_v_zz__2348.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2348 */
-#define afw_components_self_s_zz__2348 \
-    (afw_components_self_v_zz__2348.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2348 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2348;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2348 */
-#define afw_components_z_zz__2348 \
-    (afw_components_self_v_zz__2348.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2348 */
-#define afw_components_v_zz__2348 \
-    (&afw_components_self_v_zz__2348.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2349 \
-    "This content will only be displayed on small displays or smaller."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2349 */
-#define afw_components_s_zz__2349 \
-    (&afw_components_self_v_zz__2349.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2349 */
-#define afw_components_self_s_zz__2349 \
-    (afw_components_self_v_zz__2349.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2349 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2349;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2349 */
-#define afw_components_z_zz__2349 \
-    (afw_components_self_v_zz__2349.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2349 */
-#define afw_components_v_zz__2349 \
-    (&afw_components_self_v_zz__2349.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2350 \
-    "This content will only be displayed on extra large displays or smaller."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2350 */
-#define afw_components_s_zz__2350 \
-    (&afw_components_self_v_zz__2350.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2350 */
-#define afw_components_self_s_zz__2350 \
-    (afw_components_self_v_zz__2350.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2350 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2350;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2350 */
-#define afw_components_z_zz__2350 \
-    (afw_components_self_v_zz__2350.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2350 */
-#define afw_components_v_zz__2350 \
-    (&afw_components_self_v_zz__2350.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2351 \
-    "The layout components that are contained by this List component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2351 */
-#define afw_components_s_zz__2351 \
-    (&afw_components_self_v_zz__2351.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2351 */
-#define afw_components_self_s_zz__2351 \
-    (afw_components_self_v_zz__2351.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2351 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2351;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2351 */
-#define afw_components_z_zz__2351 \
-    (afw_components_self_v_zz__2351.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2351 */
-#define afw_components_v_zz__2351 \
-    (&afw_components_self_v_zz__2351.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2352 \
-    "Optional components to be displayed for the Message component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2352 */
-#define afw_components_s_zz__2352 \
-    (&afw_components_self_v_zz__2352.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2352 */
-#define afw_components_self_s_zz__2352 \
-    (afw_components_self_v_zz__2352.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2352 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2352;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2352 */
-#define afw_components_z_zz__2352 \
-    (afw_components_self_v_zz__2352.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2352 */
-#define afw_components_v_zz__2352 \
-    (&afw_components_self_v_zz__2352.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2353 \
-    "Specifies whether this Modal component is blocking or can lightly be dismissed."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2353 */
-#define afw_components_s_zz__2353 \
-    (&afw_components_self_v_zz__2353.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2353 */
-#define afw_components_self_s_zz__2353 \
-    (afw_components_self_v_zz__2353.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2353 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2353;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2353 */
-#define afw_components_z_zz__2353 \
-    (afw_components_self_v_zz__2353.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2353 */
-#define afw_components_v_zz__2353 \
-    (&afw_components_self_v_zz__2353.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2354 \
-    "The layout row components that are contained by this Responsive."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2354 */
-#define afw_components_s_zz__2354 \
-    (&afw_components_self_v_zz__2354.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2354 */
-#define afw_components_self_s_zz__2354 \
-    (afw_components_self_v_zz__2354.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2354 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2354;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2354 */
-#define afw_components_z_zz__2354 \
-    (afw_components_self_v_zz__2354.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2354 */
-#define afw_components_v_zz__2354 \
-    (&afw_components_self_v_zz__2354.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2355 \
-    "Defines the screen size breakpoints for this column definition"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2355 */
-#define afw_components_s_zz__2355 \
-    (&afw_components_self_v_zz__2355.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2355 */
-#define afw_components_self_s_zz__2355 \
-    (afw_components_self_v_zz__2355.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2355 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2355;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2355 */
-#define afw_components_z_zz__2355 \
-    (afw_components_self_v_zz__2355.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2355 */
-#define afw_components_v_zz__2355 \
-    (&afw_components_self_v_zz__2355.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2356 \
-    "The layout components that are contained by this Responsive component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2356 */
-#define afw_components_s_zz__2356 \
-    (&afw_components_self_v_zz__2356.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2356 */
-#define afw_components_self_s_zz__2356 \
-    (afw_components_self_v_zz__2356.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2356 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2356;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2356 */
-#define afw_components_z_zz__2356 \
-    (afw_components_self_v_zz__2356.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2356 */
-#define afw_components_v_zz__2356 \
-    (&afw_components_self_v_zz__2356.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2357 \
-    "The layout columns that are contained by this ResponsiveRow component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2357 */
-#define afw_components_s_zz__2357 \
-    (&afw_components_self_v_zz__2357.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2357 */
-#define afw_components_self_s_zz__2357 \
-    (afw_components_self_v_zz__2357.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2357 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2357;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2357 */
-#define afw_components_z_zz__2357 \
-    (afw_components_self_v_zz__2357.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2357 */
-#define afw_components_v_zz__2357 \
-    (&afw_components_self_v_zz__2357.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2358 \
-    "The breakpoint definition on extra extra large resolution screens."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2358 */
-#define afw_components_s_zz__2358 \
-    (&afw_components_self_v_zz__2358.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2358 */
-#define afw_components_self_s_zz__2358 \
-    (afw_components_self_v_zz__2358.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2358 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2358;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2358 */
-#define afw_components_z_zz__2358 \
-    (afw_components_self_v_zz__2358.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2358 */
-#define afw_components_v_zz__2358 \
-    (&afw_components_self_v_zz__2358.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2359 \
-    "The breakpoint definition on extra extra extra large resolution screens."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2359 */
-#define afw_components_s_zz__2359 \
-    (&afw_components_self_v_zz__2359.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2359 */
-#define afw_components_self_s_zz__2359 \
-    (afw_components_self_v_zz__2359.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2359 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2359;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2359 */
-#define afw_components_z_zz__2359 \
-    (afw_components_self_v_zz__2359.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2359 */
-#define afw_components_v_zz__2359 \
-    (&afw_components_self_v_zz__2359.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2360 \
-    "Adaptive parameters definition for the Responsive Breakpoints."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2360 */
-#define afw_components_s_zz__2360 \
-    (&afw_components_self_v_zz__2360.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2360 */
-#define afw_components_self_s_zz__2360 \
-    (afw_components_self_v_zz__2360.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2360 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2360;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2360 */
-#define afw_components_z_zz__2360 \
-    (afw_components_self_v_zz__2360.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2360 */
-#define afw_components_v_zz__2360 \
-    (&afw_components_self_v_zz__2360.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2361 \
-    "The type of message for the Snackbar component (error, warning, info, success)."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2361 */
-#define afw_components_s_zz__2361 \
-    (&afw_components_self_v_zz__2361.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2361 */
-#define afw_components_self_s_zz__2361 \
-    (afw_components_self_v_zz__2361.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2361 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2361;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2361 */
-#define afw_components_z_zz__2361 \
-    (afw_components_self_v_zz__2361.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2361 */
-#define afw_components_v_zz__2361 \
-    (&afw_components_self_v_zz__2361.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2362 \
-    "The list of steps to be displayed for a the Stepper component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2362 */
-#define afw_components_s_zz__2362 \
-    (&afw_components_self_v_zz__2362.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2362 */
-#define afw_components_self_s_zz__2362 \
-    (afw_components_self_v_zz__2362.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2362 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2362;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2362 */
-#define afw_components_z_zz__2362 \
-    (afw_components_self_v_zz__2362.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2362 */
-#define afw_components_v_zz__2362 \
-    (&afw_components_self_v_zz__2362.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2363 \
-    "Sets or returns the alignment between the lines inside a flexible container when the items do not use all available space"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2363 */
-#define afw_components_s_zz__2363 \
-    (&afw_components_self_v_zz__2363.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2363 */
-#define afw_components_self_s_zz__2363 \
-    (afw_components_self_v_zz__2363.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2363 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2363;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2363 */
-#define afw_components_z_zz__2363 \
-    (afw_components_self_v_zz__2363.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2363 */
-#define afw_components_v_zz__2363 \
-    (&afw_components_self_v_zz__2363.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2364 \
-    "Sets or returns the alignment for items inside a flexible container"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2364 */
-#define afw_components_s_zz__2364 \
-    (&afw_components_self_v_zz__2364.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2364 */
-#define afw_components_self_s_zz__2364 \
-    (afw_components_self_v_zz__2364.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2364 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2364;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2364 */
-#define afw_components_z_zz__2364 \
-    (afw_components_self_v_zz__2364.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2364 */
-#define afw_components_v_zz__2364 \
-    (&afw_components_self_v_zz__2364.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2365 \
-    "Sets or returns the alignment for selected items inside a flexible container"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2365 */
-#define afw_components_s_zz__2365 \
-    (&afw_components_self_v_zz__2365.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2365 */
-#define afw_components_self_s_zz__2365 \
-    (afw_components_self_v_zz__2365.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2365 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2365;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2365 */
-#define afw_components_z_zz__2365 \
-    (afw_components_self_v_zz__2365.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2365 */
-#define afw_components_v_zz__2365 \
-    (&afw_components_self_v_zz__2365.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2366 \
-    "A shorthand property for all the animation properties below, except the animationPlayState property"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2366 */
-#define afw_components_s_zz__2366 \
-    (&afw_components_self_v_zz__2366.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2366 */
-#define afw_components_self_s_zz__2366 \
-    (afw_components_self_v_zz__2366.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2366 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2366;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2366 */
-#define afw_components_z_zz__2366 \
-    (afw_components_self_v_zz__2366.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2366 */
-#define afw_components_v_zz__2366 \
-    (&afw_components_self_v_zz__2366.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2367 \
-    "Sets or returns whether or not the animation should play in reverse on alternate cycles"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2367 */
-#define afw_components_s_zz__2367 \
-    (&afw_components_self_v_zz__2367.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2367 */
-#define afw_components_self_s_zz__2367 \
-    (afw_components_self_v_zz__2367.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2367 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2367;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2367 */
-#define afw_components_z_zz__2367 \
-    (afw_components_self_v_zz__2367.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2367 */
-#define afw_components_v_zz__2367 \
-    (&afw_components_self_v_zz__2367.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2368 \
-    "Sets or returns how many seconds or milliseconds an animation takes to complete one cycle"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2368 */
-#define afw_components_s_zz__2368 \
-    (&afw_components_self_v_zz__2368.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2368 */
-#define afw_components_self_s_zz__2368 \
-    (afw_components_self_v_zz__2368.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2368 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2368;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2368 */
-#define afw_components_z_zz__2368 \
-    (afw_components_self_v_zz__2368.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2368 */
-#define afw_components_v_zz__2368 \
-    (&afw_components_self_v_zz__2368.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2369 \
-    "Sets or returns what values are applied by the animation outside the time it is executing"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2369 */
-#define afw_components_s_zz__2369 \
-    (&afw_components_self_v_zz__2369.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2369 */
-#define afw_components_self_s_zz__2369 \
-    (afw_components_self_v_zz__2369.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2369 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2369;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2369 */
-#define afw_components_z_zz__2369 \
-    (afw_components_self_v_zz__2369.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2369 */
-#define afw_components_v_zz__2369 \
-    (&afw_components_self_v_zz__2369.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2370 \
-    "Sets or returns the number of times an animation should be played"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2370 */
-#define afw_components_s_zz__2370 \
-    (&afw_components_self_v_zz__2370.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2370 */
-#define afw_components_self_s_zz__2370 \
-    (afw_components_self_v_zz__2370.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2370 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2370;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2370 */
-#define afw_components_z_zz__2370 \
-    (afw_components_self_v_zz__2370.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2370 */
-#define afw_components_v_zz__2370 \
-    (&afw_components_self_v_zz__2370.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2371 \
-    "Sets or returns whether or not an element should be visible when not facing the screen"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2371 */
-#define afw_components_s_zz__2371 \
-    (&afw_components_self_v_zz__2371.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2371 */
-#define afw_components_self_s_zz__2371 \
-    (afw_components_self_v_zz__2371.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2371 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2371;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2371 */
-#define afw_components_z_zz__2371 \
-    (afw_components_self_v_zz__2371.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2371 */
-#define afw_components_v_zz__2371 \
-    (&afw_components_self_v_zz__2371.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2372 \
-    "Sets or returns all the background properties in one declaration"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2372 */
-#define afw_components_s_zz__2372 \
-    (&afw_components_self_v_zz__2372.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2372 */
-#define afw_components_self_s_zz__2372 \
-    (afw_components_self_v_zz__2372.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2372 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2372;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2372 */
-#define afw_components_z_zz__2372 \
-    (afw_components_self_v_zz__2372.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2372 */
-#define afw_components_v_zz__2372 \
-    (&afw_components_self_v_zz__2372.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2373 \
-    "Sets or returns whether a background-image is fixed or scrolls with the page"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2373 */
-#define afw_components_s_zz__2373 \
-    (&afw_components_self_v_zz__2373.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2373 */
-#define afw_components_self_s_zz__2373 \
-    (afw_components_self_v_zz__2373.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2373 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2373;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2373 */
-#define afw_components_z_zz__2373 \
-    (afw_components_self_v_zz__2373.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2373 */
-#define afw_components_v_zz__2373 \
-    (&afw_components_self_v_zz__2373.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2374 \
-    "Sets or returns the positioning area of the background images"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2374 */
-#define afw_components_s_zz__2374 \
-    (&afw_components_self_v_zz__2374.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2374 */
-#define afw_components_self_s_zz__2374 \
-    (afw_components_self_v_zz__2374.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2374 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2374;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2374 */
-#define afw_components_z_zz__2374 \
-    (afw_components_self_v_zz__2374.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2374 */
-#define afw_components_v_zz__2374 \
-    (&afw_components_self_v_zz__2374.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2375 \
-    "Sets or returns borderWidth, borderStyle, and borderColor in one declaration"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2375 */
-#define afw_components_s_zz__2375 \
-    (&afw_components_self_v_zz__2375.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2375 */
-#define afw_components_self_s_zz__2375 \
-    (afw_components_self_v_zz__2375.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2375 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2375;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2375 */
-#define afw_components_z_zz__2375 \
-    (afw_components_self_v_zz__2375.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2375 */
-#define afw_components_v_zz__2375 \
-    (&afw_components_self_v_zz__2375.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2376 \
-    "Sets or returns all the borderBottom properties in one declaration"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2376 */
-#define afw_components_s_zz__2376 \
-    (&afw_components_self_v_zz__2376.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2376 */
-#define afw_components_self_s_zz__2376 \
-    (afw_components_self_v_zz__2376.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2376 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2376;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2376 */
-#define afw_components_z_zz__2376 \
-    (afw_components_self_v_zz__2376.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2376 */
-#define afw_components_v_zz__2376 \
-    (&afw_components_self_v_zz__2376.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2377 \
-    "Sets or returns the shape of the border of the bottom-left corner"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2377 */
-#define afw_components_s_zz__2377 \
-    (&afw_components_self_v_zz__2377.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2377 */
-#define afw_components_self_s_zz__2377 \
-    (afw_components_self_v_zz__2377.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2377 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2377;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2377 */
-#define afw_components_z_zz__2377 \
-    (afw_components_self_v_zz__2377.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2377 */
-#define afw_components_v_zz__2377 \
-    (&afw_components_self_v_zz__2377.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2378 \
-    "Sets or returns the shape of the border of the bottom-right corner"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2378 */
-#define afw_components_s_zz__2378 \
-    (&afw_components_self_v_zz__2378.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2378 */
-#define afw_components_self_s_zz__2378 \
-    (afw_components_self_v_zz__2378.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2378 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2378;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2378 */
-#define afw_components_z_zz__2378 \
-    (afw_components_self_v_zz__2378.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2378 */
-#define afw_components_v_zz__2378 \
-    (&afw_components_self_v_zz__2378.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2379 \
-    "Sets or returns whether the table border should be collapsed into a single border, or not"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2379 */
-#define afw_components_s_zz__2379 \
-    (&afw_components_self_v_zz__2379.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2379 */
-#define afw_components_self_s_zz__2379 \
-    (afw_components_self_v_zz__2379.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2379 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2379;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2379 */
-#define afw_components_z_zz__2379 \
-    (afw_components_self_v_zz__2379.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2379 */
-#define afw_components_v_zz__2379 \
-    (&afw_components_self_v_zz__2379.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2380 \
-    "Sets or returns the color of an element's border (can have up to four values)"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2380 */
-#define afw_components_s_zz__2380 \
-    (&afw_components_self_v_zz__2380.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2380 */
-#define afw_components_self_s_zz__2380 \
-    (afw_components_self_v_zz__2380.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2380 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2380;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2380 */
-#define afw_components_z_zz__2380 \
-    (afw_components_self_v_zz__2380.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2380 */
-#define afw_components_v_zz__2380 \
-    (&afw_components_self_v_zz__2380.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2381 \
-    "A shorthand property for setting or returning all the borderImage properties"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2381 */
-#define afw_components_s_zz__2381 \
-    (&afw_components_self_v_zz__2381.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2381 */
-#define afw_components_self_s_zz__2381 \
-    (afw_components_self_v_zz__2381.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2381 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2381;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2381 */
-#define afw_components_z_zz__2381 \
-    (afw_components_self_v_zz__2381.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2381 */
-#define afw_components_v_zz__2381 \
-    (&afw_components_self_v_zz__2381.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2382 \
-    "Sets or returns the amount by which the border image area extends beyond the border box"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2382 */
-#define afw_components_s_zz__2382 \
-    (&afw_components_self_v_zz__2382.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2382 */
-#define afw_components_self_s_zz__2382 \
-    (afw_components_self_v_zz__2382.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2382 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2382;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2382 */
-#define afw_components_z_zz__2382 \
-    (afw_components_self_v_zz__2382.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2382 */
-#define afw_components_v_zz__2382 \
-    (&afw_components_self_v_zz__2382.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2383 \
-    "Sets or returns whether the image-border should be repeated, rounded or stretched"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2383 */
-#define afw_components_s_zz__2383 \
-    (&afw_components_self_v_zz__2383.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2383 */
-#define afw_components_self_s_zz__2383 \
-    (afw_components_self_v_zz__2383.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2383 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2383;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2383 */
-#define afw_components_z_zz__2383 \
-    (afw_components_self_v_zz__2383.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2383 */
-#define afw_components_v_zz__2383 \
-    (&afw_components_self_v_zz__2383.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2384 \
-    "Sets or returns all the borderLeft properties in one declaration"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2384 */
-#define afw_components_s_zz__2384 \
-    (&afw_components_self_v_zz__2384.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2384 */
-#define afw_components_self_s_zz__2384 \
-    (afw_components_self_v_zz__2384.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2384 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2384;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2384 */
-#define afw_components_z_zz__2384 \
-    (afw_components_self_v_zz__2384.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2384 */
-#define afw_components_v_zz__2384 \
-    (&afw_components_self_v_zz__2384.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2385 \
-    "A shorthand property for setting or returning all the four borderRadius properties"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2385 */
-#define afw_components_s_zz__2385 \
-    (&afw_components_self_v_zz__2385.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2385 */
-#define afw_components_self_s_zz__2385 \
-    (afw_components_self_v_zz__2385.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2385 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2385;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2385 */
-#define afw_components_z_zz__2385 \
-    (afw_components_self_v_zz__2385.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2385 */
-#define afw_components_v_zz__2385 \
-    (&afw_components_self_v_zz__2385.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2386 \
-    "Sets or returns all the borderRight properties in one declaration"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2386 */
-#define afw_components_s_zz__2386 \
-    (&afw_components_self_v_zz__2386.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2386 */
-#define afw_components_self_s_zz__2386 \
-    (afw_components_self_v_zz__2386.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2386 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2386;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2386 */
-#define afw_components_z_zz__2386 \
-    (afw_components_self_v_zz__2386.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2386 */
-#define afw_components_v_zz__2386 \
-    (&afw_components_self_v_zz__2386.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2387 \
-    "Sets or returns the style of an element's border (can have up to four values)"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2387 */
-#define afw_components_s_zz__2387 \
-    (&afw_components_self_v_zz__2387.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2387 */
-#define afw_components_self_s_zz__2387 \
-    (afw_components_self_v_zz__2387.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2387 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2387;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2387 */
-#define afw_components_z_zz__2387 \
-    (afw_components_self_v_zz__2387.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2387 */
-#define afw_components_v_zz__2387 \
-    (&afw_components_self_v_zz__2387.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2388 \
-    "Sets or returns all the borderTop properties in one declaration"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2388 */
-#define afw_components_s_zz__2388 \
-    (&afw_components_self_v_zz__2388.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2388 */
-#define afw_components_self_s_zz__2388 \
-    (afw_components_self_v_zz__2388.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2388 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2388;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2388 */
-#define afw_components_z_zz__2388 \
-    (afw_components_self_v_zz__2388.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2388 */
-#define afw_components_v_zz__2388 \
-    (&afw_components_self_v_zz__2388.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2389 \
-    "Sets or returns the shape of the border of the top-left corner"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2389 */
-#define afw_components_s_zz__2389 \
-    (&afw_components_self_v_zz__2389.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2389 */
-#define afw_components_self_s_zz__2389 \
-    (afw_components_self_v_zz__2389.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2389 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2389;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2389 */
-#define afw_components_z_zz__2389 \
-    (afw_components_self_v_zz__2389.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2389 */
-#define afw_components_v_zz__2389 \
-    (&afw_components_self_v_zz__2389.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2390 \
-    "Sets or returns the shape of the border of the top-right corner"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2390 */
-#define afw_components_s_zz__2390 \
-    (&afw_components_self_v_zz__2390.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2390 */
-#define afw_components_self_s_zz__2390 \
-    (afw_components_self_v_zz__2390.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2390 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2390;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2390 */
-#define afw_components_z_zz__2390 \
-    (afw_components_self_v_zz__2390.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2390 */
-#define afw_components_v_zz__2390 \
-    (&afw_components_self_v_zz__2390.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2391 \
-    "Sets or returns the width of an element's border (can have up to four values)"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2391 */
-#define afw_components_s_zz__2391 \
-    (&afw_components_self_v_zz__2391.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2391 */
-#define afw_components_self_s_zz__2391 \
-    (afw_components_self_v_zz__2391.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2391 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2391;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2391 */
-#define afw_components_z_zz__2391 \
-    (afw_components_self_v_zz__2391.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2391 */
-#define afw_components_v_zz__2391 \
-    (&afw_components_self_v_zz__2391.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2392 \
-    "Sets or returns the behavior of the background and border of an element at page-break, or, for in-line elements, at line-break."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2392 */
-#define afw_components_s_zz__2392 \
-    (&afw_components_self_v_zz__2392.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2392 */
-#define afw_components_self_s_zz__2392 \
-    (afw_components_self_v_zz__2392.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2392 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2392;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2392 */
-#define afw_components_z_zz__2392 \
-    (afw_components_self_v_zz__2392.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2392 */
-#define afw_components_v_zz__2392 \
-    (&afw_components_self_v_zz__2392.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2393 \
-    "Allows you to define certain elements to fit an area in a certain way"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2393 */
-#define afw_components_s_zz__2393 \
-    (&afw_components_self_v_zz__2393.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2393 */
-#define afw_components_self_s_zz__2393 \
-    (afw_components_self_v_zz__2393.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2393 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2393;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2393 */
-#define afw_components_z_zz__2393 \
-    (afw_components_self_v_zz__2393.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2393 */
-#define afw_components_v_zz__2393 \
-    (&afw_components_self_v_zz__2393.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2394 \
-    "Sets or returns the position of the element relative to floating objects"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2394 */
-#define afw_components_s_zz__2394 \
-    (&afw_components_self_v_zz__2394.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2394 */
-#define afw_components_self_s_zz__2394 \
-    (afw_components_self_v_zz__2394.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2394 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2394;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2394 */
-#define afw_components_z_zz__2394 \
-    (afw_components_self_v_zz__2394.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2394 */
-#define afw_components_v_zz__2394 \
-    (&afw_components_self_v_zz__2394.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2395 \
-    "Sets or returns which part of a positioned element is visible"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2395 */
-#define afw_components_s_zz__2395 \
-    (&afw_components_self_v_zz__2395.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2395 */
-#define afw_components_self_s_zz__2395 \
-    (afw_components_self_v_zz__2395.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2395 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2395;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2395 */
-#define afw_components_z_zz__2395 \
-    (afw_components_self_v_zz__2395.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2395 */
-#define afw_components_v_zz__2395 \
-    (&afw_components_self_v_zz__2395.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2396 \
-    "Sets or returns the number of columns an element should be divided into"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2396 */
-#define afw_components_s_zz__2396 \
-    (&afw_components_self_v_zz__2396.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2396 */
-#define afw_components_self_s_zz__2396 \
-    (afw_components_self_v_zz__2396.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2396 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2396;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2396 */
-#define afw_components_z_zz__2396 \
-    (afw_components_self_v_zz__2396.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2396 */
-#define afw_components_v_zz__2396 \
-    (&afw_components_self_v_zz__2396.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2397 \
-    "A shorthand property for setting or returning all the columnRule properties"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2397 */
-#define afw_components_s_zz__2397 \
-    (&afw_components_self_v_zz__2397.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2397 */
-#define afw_components_self_s_zz__2397 \
-    (afw_components_self_v_zz__2397.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2397 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2397;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2397 */
-#define afw_components_z_zz__2397 \
-    (afw_components_self_v_zz__2397.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2397 */
-#define afw_components_v_zz__2397 \
-    (&afw_components_self_v_zz__2397.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2398 \
-    "Sets or returns how many columns an element should span across"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2398 */
-#define afw_components_s_zz__2398 \
-    (&afw_components_self_v_zz__2398.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2398 */
-#define afw_components_self_s_zz__2398 \
-    (afw_components_self_v_zz__2398.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2398 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2398;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2398 */
-#define afw_components_z_zz__2398 \
-    (afw_components_self_v_zz__2398.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2398 */
-#define afw_components_v_zz__2398 \
-    (&afw_components_self_v_zz__2398.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2399 \
-    "A shorthand property for setting or returning columnWidth and columnCount"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2399 */
-#define afw_components_s_zz__2399 \
-    (&afw_components_self_v_zz__2399.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2399 */
-#define afw_components_self_s_zz__2399 \
-    (afw_components_self_v_zz__2399.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2399 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2399;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2399 */
-#define afw_components_z_zz__2399 \
-    (afw_components_self_v_zz__2399.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2399 */
-#define afw_components_v_zz__2399 \
-    (&afw_components_self_v_zz__2399.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2400 \
-    "Used with the :before and :after pseudo-elements, to insert generated content"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2400 */
-#define afw_components_s_zz__2400 \
-    (&afw_components_self_v_zz__2400.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2400 */
-#define afw_components_self_s_zz__2400 \
-    (afw_components_self_v_zz__2400.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2400 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2400;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2400 */
-#define afw_components_z_zz__2400 \
-    (afw_components_self_v_zz__2400.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2400 */
-#define afw_components_v_zz__2400 \
-    (&afw_components_self_v_zz__2400.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2401 \
-    "Sets or returns the type of cursor to display for the mouse pointer"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2401 */
-#define afw_components_s_zz__2401 \
-    (&afw_components_self_v_zz__2401.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2401 */
-#define afw_components_self_s_zz__2401 \
-    (afw_components_self_v_zz__2401.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2401 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2401;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2401 */
-#define afw_components_z_zz__2401 \
-    (afw_components_self_v_zz__2401.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2401 */
-#define afw_components_v_zz__2401 \
-    (&afw_components_self_v_zz__2401.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2402 \
-    "Sets or returns whether to show the border and background of empty cells, or not"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2402 */
-#define afw_components_s_zz__2402 \
-    (&afw_components_self_v_zz__2402.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2402 */
-#define afw_components_self_s_zz__2402 \
-    (afw_components_self_v_zz__2402.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2402 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2402;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2402 */
-#define afw_components_z_zz__2402 \
-    (afw_components_self_v_zz__2402.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2402 */
-#define afw_components_v_zz__2402 \
-    (&afw_components_self_v_zz__2402.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2403 \
-    "Sets or returns image filters (visual effects, like blur and saturation)"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2403 */
-#define afw_components_s_zz__2403 \
-    (&afw_components_self_v_zz__2403.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2403 */
-#define afw_components_self_s_zz__2403 \
-    (afw_components_self_v_zz__2403.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2403 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2403;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2403 */
-#define afw_components_z_zz__2403 \
-    (afw_components_self_v_zz__2403.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2403 */
-#define afw_components_v_zz__2403 \
-    (&afw_components_self_v_zz__2403.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2404 \
-    "A shorthand property for the flexDirection and the flexWrap properties"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2404 */
-#define afw_components_s_zz__2404 \
-    (&afw_components_self_v_zz__2404.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2404 */
-#define afw_components_self_s_zz__2404 \
-    (afw_components_self_v_zz__2404.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2404 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2404;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2404 */
-#define afw_components_z_zz__2404 \
-    (afw_components_self_v_zz__2404.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2404 */
-#define afw_components_v_zz__2404 \
-    (&afw_components_self_v_zz__2404.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2405 \
-    "Sets or returns how much the item will grow relative to the rest"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2405 */
-#define afw_components_s_zz__2405 \
-    (&afw_components_self_v_zz__2405.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2405 */
-#define afw_components_self_s_zz__2405 \
-    (afw_components_self_v_zz__2405.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2405 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2405;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2405 */
-#define afw_components_z_zz__2405 \
-    (afw_components_self_v_zz__2405.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2405 */
-#define afw_components_v_zz__2405 \
-    (&afw_components_self_v_zz__2405.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2406 \
-    "Sets or returns how the item will shrink relative to the rest"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2406 */
-#define afw_components_s_zz__2406 \
-    (&afw_components_self_v_zz__2406.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2406 */
-#define afw_components_self_s_zz__2406 \
-    (afw_components_self_v_zz__2406.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2406 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2406;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2406 */
-#define afw_components_z_zz__2406 \
-    (afw_components_self_v_zz__2406.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2406 */
-#define afw_components_v_zz__2406 \
-    (&afw_components_self_v_zz__2406.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2407 \
-    "Sets or returns whether the flexible items should wrap or not"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2407 */
-#define afw_components_s_zz__2407 \
-    (&afw_components_self_v_zz__2407.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2407 */
-#define afw_components_self_s_zz__2407 \
-    (afw_components_self_v_zz__2407.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2407 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2407;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2407 */
-#define afw_components_z_zz__2407 \
-    (afw_components_self_v_zz__2407.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2407 */
-#define afw_components_v_zz__2407 \
-    (&afw_components_self_v_zz__2407.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2408 \
-    "Sets or returns fontStyle, fontVariant, fontWeight, fontSize, lineHeight, and fontFamily in one declaration"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2408 */
-#define afw_components_s_zz__2408 \
-    (&afw_components_self_v_zz__2408.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2408 */
-#define afw_components_self_s_zz__2408 \
-    (afw_components_self_v_zz__2408.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2408 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2408;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2408 */
-#define afw_components_z_zz__2408 \
-    (afw_components_self_v_zz__2408.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2408 */
-#define afw_components_v_zz__2408 \
-    (&afw_components_self_v_zz__2408.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2409 \
-    "Selects a normal, condensed, or expanded face from a font family"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2409 */
-#define afw_components_s_zz__2409 \
-    (&afw_components_self_v_zz__2409.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2409 */
-#define afw_components_self_s_zz__2409 \
-    (afw_components_self_v_zz__2409.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2409 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2409;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2409 */
-#define afw_components_z_zz__2409 \
-    (afw_components_self_v_zz__2409.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2409 */
-#define afw_components_v_zz__2409 \
-    (&afw_components_self_v_zz__2409.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2410 \
-    "Sets or returns whether the style of the font is normal, italic or oblique"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2410 */
-#define afw_components_s_zz__2410 \
-    (&afw_components_self_v_zz__2410.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2410 */
-#define afw_components_self_s_zz__2410 \
-    (afw_components_self_v_zz__2410.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2410 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2410;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2410 */
-#define afw_components_z_zz__2410 \
-    (afw_components_self_v_zz__2410.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2410 */
-#define afw_components_v_zz__2410 \
-    (&afw_components_self_v_zz__2410.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2411 \
-    "Sets or returns whether the font should be displayed in small capital letters"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2411 */
-#define afw_components_s_zz__2411 \
-    (&afw_components_self_v_zz__2411.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2411 */
-#define afw_components_self_s_zz__2411 \
-    (afw_components_self_v_zz__2411.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2411 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2411;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2411 */
-#define afw_components_z_zz__2411 \
-    (afw_components_self_v_zz__2411.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2411 */
-#define afw_components_v_zz__2411 \
-    (&afw_components_self_v_zz__2411.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2412 \
-    "Specifies whether a punctuation character may be placed outside the line box"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2412 */
-#define afw_components_s_zz__2412 \
-    (&afw_components_self_v_zz__2412.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2412 */
-#define afw_components_self_s_zz__2412 \
-    (afw_components_self_v_zz__2412.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2412 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2412;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2412 */
-#define afw_components_z_zz__2412 \
-    (afw_components_self_v_zz__2412.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2412 */
-#define afw_components_v_zz__2412 \
-    (&afw_components_self_v_zz__2412.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2413 \
-    "Provides the author the ability to style an element with an iconic equivalent"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2413 */
-#define afw_components_s_zz__2413 \
-    (&afw_components_self_v_zz__2413.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2413 */
-#define afw_components_self_s_zz__2413 \
-    (afw_components_self_v_zz__2413.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2413 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2413;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2413 */
-#define afw_components_z_zz__2413 \
-    (afw_components_self_v_zz__2413.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2413 */
-#define afw_components_v_zz__2413 \
-    (&afw_components_self_v_zz__2413.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2414 \
-    "Specifies a rotation in the right or clockwise direction that a user agent applies to an image"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2414 */
-#define afw_components_s_zz__2414 \
-    (&afw_components_self_v_zz__2414.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2414 */
-#define afw_components_self_s_zz__2414 \
-    (afw_components_self_v_zz__2414.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2414 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2414;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2414 */
-#define afw_components_z_zz__2414 \
-    (afw_components_self_v_zz__2414.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2414 */
-#define afw_components_v_zz__2414 \
-    (&afw_components_self_v_zz__2414.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2415 \
-    "Defines whether an element must create a new stacking content"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2415 */
-#define afw_components_s_zz__2415 \
-    (&afw_components_self_v_zz__2415.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2415 */
-#define afw_components_self_s_zz__2415 \
-    (afw_components_self_v_zz__2415.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2415 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2415;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2415 */
-#define afw_components_z_zz__2415 \
-    (afw_components_self_v_zz__2415.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2415 */
-#define afw_components_v_zz__2415 \
-    (&afw_components_self_v_zz__2415.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2416 \
-    "Sets or returns the alignment between the items inside a flexible container when the items do not use all available space."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2416 */
-#define afw_components_s_zz__2416 \
-    (&afw_components_self_v_zz__2416.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2416 */
-#define afw_components_self_s_zz__2416 \
-    (afw_components_self_v_zz__2416.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2416 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2416;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2416 */
-#define afw_components_z_zz__2416 \
-    (afw_components_self_v_zz__2416.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2416 */
-#define afw_components_v_zz__2416 \
-    (&afw_components_self_v_zz__2416.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2417 \
-    "Sets or returns listStyleImage, listStylePosition, and listStyleType in one declaration"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2417 */
-#define afw_components_s_zz__2417 \
-    (&afw_components_self_v_zz__2417.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2417 */
-#define afw_components_self_s_zz__2417 \
-    (afw_components_self_v_zz__2417.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2417 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2417;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2417 */
-#define afw_components_z_zz__2417 \
-    (afw_components_self_v_zz__2417.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2417 */
-#define afw_components_v_zz__2417 \
-    (&afw_components_self_v_zz__2417.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2418 \
-    "Sets or returns the margins of an element (can have up to four values)"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2418 */
-#define afw_components_s_zz__2418 \
-    (&afw_components_self_v_zz__2418.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2418 */
-#define afw_components_self_s_zz__2418 \
-    (afw_components_self_v_zz__2418.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2418 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2418;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2418 */
-#define afw_components_z_zz__2418 \
-    (afw_components_self_v_zz__2418.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2418 */
-#define afw_components_v_zz__2418 \
-    (&afw_components_self_v_zz__2418.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2419 \
-    "Sets or returns where to navigate when using the arrow-down navigation key"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2419 */
-#define afw_components_s_zz__2419 \
-    (&afw_components_self_v_zz__2419.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2419 */
-#define afw_components_self_s_zz__2419 \
-    (afw_components_self_v_zz__2419.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2419 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2419;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2419 */
-#define afw_components_z_zz__2419 \
-    (afw_components_self_v_zz__2419.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2419 */
-#define afw_components_v_zz__2419 \
-    (&afw_components_self_v_zz__2419.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2420 \
-    "Sets or returns where to navigate when using the arrow-left navigation key"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2420 */
-#define afw_components_s_zz__2420 \
-    (&afw_components_self_v_zz__2420.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2420 */
-#define afw_components_self_s_zz__2420 \
-    (afw_components_self_v_zz__2420.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2420 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2420;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2420 */
-#define afw_components_z_zz__2420 \
-    (afw_components_self_v_zz__2420.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2420 */
-#define afw_components_v_zz__2420 \
-    (&afw_components_self_v_zz__2420.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2421 \
-    "Sets or returns where to navigate when using the arrow-right navigation key"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2421 */
-#define afw_components_s_zz__2421 \
-    (&afw_components_self_v_zz__2421.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2421 */
-#define afw_components_self_s_zz__2421 \
-    (afw_components_self_v_zz__2421.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2421 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2421;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2421 */
-#define afw_components_z_zz__2421 \
-    (afw_components_self_v_zz__2421.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2421 */
-#define afw_components_v_zz__2421 \
-    (&afw_components_self_v_zz__2421.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2422 \
-    "Sets or returns where to navigate when using the arrow-up navigation key"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2422 */
-#define afw_components_s_zz__2422 \
-    (&afw_components_self_v_zz__2422.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2422 */
-#define afw_components_self_s_zz__2422 \
-    (afw_components_self_v_zz__2422.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2422 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2422;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2422 */
-#define afw_components_z_zz__2422 \
-    (afw_components_self_v_zz__2422.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2422 */
-#define afw_components_v_zz__2422 \
-    (&afw_components_self_v_zz__2422.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2423 \
-    "Specifies how the contents of a replaced element should be fitted to the box established by its used height and width"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2423 */
-#define afw_components_s_zz__2423 \
-    (&afw_components_self_v_zz__2423.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2423 */
-#define afw_components_self_s_zz__2423 \
-    (afw_components_self_v_zz__2423.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2423 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2423;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2423 */
-#define afw_components_z_zz__2423 \
-    (afw_components_self_v_zz__2423.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2423 */
-#define afw_components_v_zz__2423 \
-    (&afw_components_self_v_zz__2423.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2424 \
-    "Specifies the alignment of the replaced element inside its box"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2424 */
-#define afw_components_s_zz__2424 \
-    (&afw_components_self_v_zz__2424.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2424 */
-#define afw_components_self_s_zz__2424 \
-    (afw_components_self_v_zz__2424.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2424 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2424;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2424 */
-#define afw_components_z_zz__2424 \
-    (afw_components_self_v_zz__2424.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2424 */
-#define afw_components_v_zz__2424 \
-    (&afw_components_self_v_zz__2424.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2425 \
-    "Sets or returns the order of the flexible item, relative to the rest"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2425 */
-#define afw_components_s_zz__2425 \
-    (&afw_components_self_v_zz__2425.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2425 */
-#define afw_components_self_s_zz__2425 \
-    (afw_components_self_v_zz__2425.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2425 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2425;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2425 */
-#define afw_components_z_zz__2425 \
-    (afw_components_self_v_zz__2425.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2425 */
-#define afw_components_v_zz__2425 \
-    (&afw_components_self_v_zz__2425.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2426 \
-    "Sets or returns the minimum number of lines for an element that must be left at the bottom of a page when a page break occurs inside an element"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2426 */
-#define afw_components_s_zz__2426 \
-    (&afw_components_self_v_zz__2426.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2426 */
-#define afw_components_self_s_zz__2426 \
-    (afw_components_self_v_zz__2426.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2426 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2426;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2426 */
-#define afw_components_z_zz__2426 \
-    (afw_components_self_v_zz__2426.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2426 */
-#define afw_components_v_zz__2426 \
-    (&afw_components_self_v_zz__2426.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2427 \
-    "Sets or returns all the outline properties in one declaration"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2427 */
-#define afw_components_s_zz__2427 \
-    (&afw_components_self_v_zz__2427.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2427 */
-#define afw_components_self_s_zz__2427 \
-    (afw_components_self_v_zz__2427.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2427 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2427;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2427 */
-#define afw_components_z_zz__2427 \
-    (afw_components_self_v_zz__2427.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2427 */
-#define afw_components_v_zz__2427 \
-    (&afw_components_self_v_zz__2427.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2428 \
-    "Sets or returns what to do with content that renders outside the element box"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2428 */
-#define afw_components_s_zz__2428 \
-    (&afw_components_self_v_zz__2428.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2428 */
-#define afw_components_self_s_zz__2428 \
-    (afw_components_self_v_zz__2428.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2428 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2428;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2428 */
-#define afw_components_z_zz__2428 \
-    (afw_components_self_v_zz__2428.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2428 */
-#define afw_components_v_zz__2428 \
-    (&afw_components_self_v_zz__2428.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2429 \
-    "Specifies what to do with the left/right edges of the content, if it overflows the element's content area"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2429 */
-#define afw_components_s_zz__2429 \
-    (&afw_components_self_v_zz__2429.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2429 */
-#define afw_components_self_s_zz__2429 \
-    (afw_components_self_v_zz__2429.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2429 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2429;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2429 */
-#define afw_components_z_zz__2429 \
-    (afw_components_self_v_zz__2429.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2429 */
-#define afw_components_v_zz__2429 \
-    (&afw_components_self_v_zz__2429.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2430 \
-    "Specifies what to do with the top/bottom edges of the content, if it overflows the element's content area"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2430 */
-#define afw_components_s_zz__2430 \
-    (&afw_components_self_v_zz__2430.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2430 */
-#define afw_components_self_s_zz__2430 \
-    (afw_components_self_v_zz__2430.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2430 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2430;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2430 */
-#define afw_components_z_zz__2430 \
-    (afw_components_self_v_zz__2430.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2430 */
-#define afw_components_v_zz__2430 \
-    (&afw_components_self_v_zz__2430.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2431 \
-    "Sets or returns the padding of an element (can have up to four values)"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2431 */
-#define afw_components_s_zz__2431 \
-    (&afw_components_self_v_zz__2431.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2431 */
-#define afw_components_self_s_zz__2431 \
-    (afw_components_self_v_zz__2431.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2431 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2431;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2431 */
-#define afw_components_z_zz__2431 \
-    (afw_components_self_v_zz__2431.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2431 */
-#define afw_components_v_zz__2431 \
-    (&afw_components_self_v_zz__2431.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2432 \
-    "Sets or returns the perspective on how 3D elements are viewed"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2432 */
-#define afw_components_s_zz__2432 \
-    (&afw_components_self_v_zz__2432.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2432 */
-#define afw_components_self_s_zz__2432 \
-    (afw_components_self_v_zz__2432.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2432 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2432;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2432 */
-#define afw_components_z_zz__2432 \
-    (afw_components_self_v_zz__2432.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2432 */
-#define afw_components_v_zz__2432 \
-    (&afw_components_self_v_zz__2432.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2433 \
-    "Sets or returns the type of positioning method used for an element (static, relative, absolute or fixed)"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2433 */
-#define afw_components_s_zz__2433 \
-    (&afw_components_self_v_zz__2433.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2433 */
-#define afw_components_self_s_zz__2433 \
-    (afw_components_self_v_zz__2433.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2433 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2433;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2433 */
-#define afw_components_z_zz__2433 \
-    (afw_components_self_v_zz__2433.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2433 */
-#define afw_components_v_zz__2433 \
-    (&afw_components_self_v_zz__2433.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2434 \
-    "Sets or returns the type of quotation marks for embedded quotations"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2434 */
-#define afw_components_s_zz__2434 \
-    (&afw_components_self_v_zz__2434.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2434 */
-#define afw_components_self_s_zz__2434 \
-    (afw_components_self_v_zz__2434.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2434 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2434;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2434 */
-#define afw_components_z_zz__2434 \
-    (afw_components_self_v_zz__2434.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2434 */
-#define afw_components_v_zz__2434 \
-    (&afw_components_self_v_zz__2434.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2435 \
-    "Sets or returns whether or not an element is resizable by the user"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2435 */
-#define afw_components_s_zz__2435 \
-    (&afw_components_self_v_zz__2435.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2435 */
-#define afw_components_self_s_zz__2435 \
-    (afw_components_self_v_zz__2435.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2435 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2435;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2435 */
-#define afw_components_z_zz__2435 \
-    (afw_components_self_v_zz__2435.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2435 */
-#define afw_components_v_zz__2435 \
-    (&afw_components_self_v_zz__2435.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2436 \
-    "Sets or returns the way to lay out table cells, rows, and columns"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2436 */
-#define afw_components_s_zz__2436 \
-    (&afw_components_self_v_zz__2436.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2436 */
-#define afw_components_self_s_zz__2436 \
-    (afw_components_self_v_zz__2436.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2436 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2436;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2436 */
-#define afw_components_z_zz__2436 \
-    (afw_components_self_v_zz__2436.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2436 */
-#define afw_components_v_zz__2436 \
-    (&afw_components_self_v_zz__2436.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2437 \
-    "Sets or returns how the last line of a block or a line right before a forced line break is aligned when text-align is 'justify'"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2437 */
-#define afw_components_s_zz__2437 \
-    (&afw_components_self_v_zz__2437.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2437 */
-#define afw_components_self_s_zz__2437 \
-    (afw_components_self_v_zz__2437.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2437 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2437;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2437 */
-#define afw_components_z_zz__2437 \
-    (afw_components_self_v_zz__2437.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2437 */
-#define afw_components_v_zz__2437 \
-    (&afw_components_self_v_zz__2437.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2438 \
-    "Sets or returns the justification method used when text-align is 'justify'"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2438 */
-#define afw_components_s_zz__2438 \
-    (&afw_components_self_v_zz__2438.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2438 */
-#define afw_components_self_s_zz__2438 \
-    (afw_components_self_v_zz__2438.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2438 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2438;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2438 */
-#define afw_components_z_zz__2438 \
-    (afw_components_self_v_zz__2438.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2438 */
-#define afw_components_v_zz__2438 \
-    (&afw_components_self_v_zz__2438.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2439 \
-    "Sets or returns what should happen when text overflows the containing element"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2439 */
-#define afw_components_s_zz__2439 \
-    (&afw_components_self_v_zz__2439.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2439 */
-#define afw_components_self_s_zz__2439 \
-    (afw_components_self_v_zz__2439.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2439 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2439;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2439 */
-#define afw_components_z_zz__2439 \
-    (afw_components_self_v_zz__2439.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2439 */
-#define afw_components_v_zz__2439 \
-    (&afw_components_self_v_zz__2439.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2440 \
-    "A shorthand property for setting or returning the four transition properties"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2440 */
-#define afw_components_s_zz__2440 \
-    (&afw_components_self_v_zz__2440.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2440 */
-#define afw_components_self_s_zz__2440 \
-    (afw_components_self_v_zz__2440.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2440 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2440;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2440 */
-#define afw_components_z_zz__2440 \
-    (afw_components_self_v_zz__2440.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2440 */
-#define afw_components_v_zz__2440 \
-    (&afw_components_self_v_zz__2440.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2441 \
-    "Sets or returns how many seconds or milliseconds a transition effect takes to complete"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2441 */
-#define afw_components_s_zz__2441 \
-    (&afw_components_self_v_zz__2441.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2441 */
-#define afw_components_self_s_zz__2441 \
-    (afw_components_self_v_zz__2441.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2441 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2441;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2441 */
-#define afw_components_z_zz__2441 \
-    (afw_components_self_v_zz__2441.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2441 */
-#define afw_components_v_zz__2441 \
-    (&afw_components_self_v_zz__2441.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2442 \
-    "Sets or returns the CSS property that the transition effect is for"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2442 */
-#define afw_components_s_zz__2442 \
-    (&afw_components_self_v_zz__2442.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2442 */
-#define afw_components_self_s_zz__2442 \
-    (afw_components_self_v_zz__2442.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2442 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2442;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2442 */
-#define afw_components_z_zz__2442 \
-    (afw_components_self_v_zz__2442.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2442 */
-#define afw_components_v_zz__2442 \
-    (&afw_components_self_v_zz__2442.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2443 \
-    "Sets or returns whether the text should be overridden to support multiple languages in the same document"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2443 */
-#define afw_components_s_zz__2443 \
-    (&afw_components_self_v_zz__2443.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2443 */
-#define afw_components_self_s_zz__2443 \
-    (afw_components_self_v_zz__2443.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2443 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2443;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2443 */
-#define afw_components_z_zz__2443 \
-    (afw_components_self_v_zz__2443.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2443 */
-#define afw_components_v_zz__2443 \
-    (&afw_components_self_v_zz__2443.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2444 \
-    "Sets or returns whether the text of an element can be selected or not"
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2444 */
-#define afw_components_s_zz__2444 \
-    (&afw_components_self_v_zz__2444.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2444 */
-#define afw_components_self_s_zz__2444 \
-    (afw_components_self_v_zz__2444.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2444 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2444;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2444 */
-#define afw_components_z_zz__2444 \
-    (afw_components_self_v_zz__2444.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2444 */
-#define afw_components_v_zz__2444 \
-    (&afw_components_self_v_zz__2444.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2445 \
+#define AFW_COMPONENTS_Q_zz__016e1fe2503c \
     "Sets or returns the vertical alignment of the content in an element"
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2445 */
-#define afw_components_s_zz__2445 \
-    (&afw_components_self_v_zz__2445.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__016e1fe2503c */
+#define afw_components_s_zz__016e1fe2503c \
+    (&afw_components_self_v_zz__016e1fe2503c.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2445 */
-#define afw_components_self_s_zz__2445 \
-    (afw_components_self_v_zz__2445.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__016e1fe2503c */
+#define afw_components_self_s_zz__016e1fe2503c \
+    (afw_components_self_v_zz__016e1fe2503c.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2445 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__016e1fe2503c */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2445;
+    afw_components_self_v_zz__016e1fe2503c;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2445 */
-#define afw_components_z_zz__2445 \
-    (afw_components_self_v_zz__2445.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__016e1fe2503c */
+#define afw_components_z_zz__016e1fe2503c \
+    (afw_components_self_v_zz__016e1fe2503c.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2445 */
-#define afw_components_v_zz__2445 \
-    (&afw_components_self_v_zz__2445.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__016e1fe2503c */
+#define afw_components_v_zz__016e1fe2503c \
+    (&afw_components_self_v_zz__016e1fe2503c.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2446 \
-    "Sets or returns how to handle tabs, line breaks and whitespace in a text"
+#define AFW_COMPONENTS_Q_zz__01d265820387 \
+    "Sets or returns whether the text of an element can be selected or not"
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2446 */
-#define afw_components_s_zz__2446 \
-    (&afw_components_self_v_zz__2446.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__01d265820387 */
+#define afw_components_s_zz__01d265820387 \
+    (&afw_components_self_v_zz__01d265820387.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2446 */
-#define afw_components_self_s_zz__2446 \
-    (afw_components_self_v_zz__2446.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__01d265820387 */
+#define afw_components_self_s_zz__01d265820387 \
+    (afw_components_self_v_zz__01d265820387.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2446 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__01d265820387 */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2446;
+    afw_components_self_v_zz__01d265820387;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2446 */
-#define afw_components_z_zz__2446 \
-    (afw_components_self_v_zz__2446.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__01d265820387 */
+#define afw_components_z_zz__01d265820387 \
+    (afw_components_self_v_zz__01d265820387.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2446 */
-#define afw_components_v_zz__2446 \
-    (&afw_components_self_v_zz__2446.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__01d265820387 */
+#define afw_components_v_zz__01d265820387 \
+    (&afw_components_self_v_zz__01d265820387.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2447 \
-    "Sets or returns the minimum number of lines for an element that must be visible at the top of a page"
+#define AFW_COMPONENTS_Q_zz__01d8f12d72e3 \
+    "Sets or returns how the item will shrink relative to the rest"
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2447 */
-#define afw_components_s_zz__2447 \
-    (&afw_components_self_v_zz__2447.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__01d8f12d72e3 */
+#define afw_components_s_zz__01d8f12d72e3 \
+    (&afw_components_self_v_zz__01d8f12d72e3.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2447 */
-#define afw_components_self_s_zz__2447 \
-    (afw_components_self_v_zz__2447.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__01d8f12d72e3 */
+#define afw_components_self_s_zz__01d8f12d72e3 \
+    (afw_components_self_v_zz__01d8f12d72e3.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2447 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__01d8f12d72e3 */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2447;
+    afw_components_self_v_zz__01d8f12d72e3;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2447 */
-#define afw_components_z_zz__2447 \
-    (afw_components_self_v_zz__2447.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__01d8f12d72e3 */
+#define afw_components_z_zz__01d8f12d72e3 \
+    (afw_components_self_v_zz__01d8f12d72e3.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2447 */
-#define afw_components_v_zz__2447 \
-    (&afw_components_self_v_zz__2447.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__01d8f12d72e3 */
+#define afw_components_v_zz__01d8f12d72e3 \
+    (&afw_components_self_v_zz__01d8f12d72e3.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2448 \
-    "Allows long, unbreakable words to be broken and wrap to the next line"
+#define AFW_COMPONENTS_Q_zz__01f7cb00a5c4 \
+    "This component arranges data into rows and columns, which can be optionally sorted, selected and edited through actions."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2448 */
-#define afw_components_s_zz__2448 \
-    (&afw_components_self_v_zz__2448.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__01f7cb00a5c4 */
+#define afw_components_s_zz__01f7cb00a5c4 \
+    (&afw_components_self_v_zz__01f7cb00a5c4.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2448 */
-#define afw_components_self_s_zz__2448 \
-    (afw_components_self_v_zz__2448.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__01f7cb00a5c4 */
+#define afw_components_self_s_zz__01f7cb00a5c4 \
+    (afw_components_self_v_zz__01f7cb00a5c4.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2448 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__01f7cb00a5c4 */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2448;
+    afw_components_self_v_zz__01f7cb00a5c4;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2448 */
-#define afw_components_z_zz__2448 \
-    (afw_components_self_v_zz__2448.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__01f7cb00a5c4 */
+#define afw_components_z_zz__01f7cb00a5c4 \
+    (afw_components_self_v_zz__01f7cb00a5c4.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2448 */
-#define afw_components_v_zz__2448 \
-    (&afw_components_self_v_zz__2448.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__01f7cb00a5c4 */
+#define afw_components_v_zz__01f7cb00a5c4 \
+    (&afw_components_self_v_zz__01f7cb00a5c4.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2449 \
-    "The fieldName for the rows used in this Table component column definition."
+#define AFW_COMPONENTS_Q_zz__022a87e31c4e \
+    "This component displays a rich text editor that allows the user to manually edit the source code for a particular piece of data."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2449 */
-#define afw_components_s_zz__2449 \
-    (&afw_components_self_v_zz__2449.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__022a87e31c4e */
+#define afw_components_s_zz__022a87e31c4e \
+    (&afw_components_self_v_zz__022a87e31c4e.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2449 */
-#define afw_components_self_s_zz__2449 \
-    (afw_components_self_v_zz__2449.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__022a87e31c4e */
+#define afw_components_self_s_zz__022a87e31c4e \
+    (afw_components_self_v_zz__022a87e31c4e.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2449 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__022a87e31c4e */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2449;
+    afw_components_self_v_zz__022a87e31c4e;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2449 */
-#define afw_components_z_zz__2449 \
-    (afw_components_self_v_zz__2449.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__022a87e31c4e */
+#define afw_components_z_zz__022a87e31c4e \
+    (afw_components_self_v_zz__022a87e31c4e.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2449 */
-#define afw_components_v_zz__2449 \
-    (&afw_components_self_v_zz__2449.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__022a87e31c4e */
+#define afw_components_v_zz__022a87e31c4e \
+    (&afw_components_self_v_zz__022a87e31c4e.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2450 \
-    "The maximum width for this column used in this Table component."
+#define AFW_COMPONENTS_Q_zz__0252bb9cca43 \
+    "This component allows data on its surface to stand out by providing an edged, or raised outline, with shadow depth and optional corner radius style. This component is another useful container to help separate a section of data from its surrounding contents."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2450 */
-#define afw_components_s_zz__2450 \
-    (&afw_components_self_v_zz__2450.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__0252bb9cca43 */
+#define afw_components_s_zz__0252bb9cca43 \
+    (&afw_components_self_v_zz__0252bb9cca43.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2450 */
-#define afw_components_self_s_zz__2450 \
-    (afw_components_self_v_zz__2450.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__0252bb9cca43 */
+#define afw_components_self_s_zz__0252bb9cca43 \
+    (afw_components_self_v_zz__0252bb9cca43.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2450 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__0252bb9cca43 */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2450;
+    afw_components_self_v_zz__0252bb9cca43;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2450 */
-#define afw_components_z_zz__2450 \
-    (afw_components_self_v_zz__2450.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__0252bb9cca43 */
+#define afw_components_z_zz__0252bb9cca43 \
+    (afw_components_self_v_zz__0252bb9cca43.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2450 */
-#define afw_components_v_zz__2450 \
-    (&afw_components_self_v_zz__2450.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__0252bb9cca43 */
+#define afw_components_v_zz__0252bb9cca43 \
+    (&afw_components_self_v_zz__0252bb9cca43.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2451 \
-    "The minimum width for this column used in this Table component."
+#define AFW_COMPONENTS_Q_zz__027807b852cd \
+    "The layout components that are contained by this List component."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2451 */
-#define afw_components_s_zz__2451 \
-    (&afw_components_self_v_zz__2451.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__027807b852cd */
+#define afw_components_s_zz__027807b852cd \
+    (&afw_components_self_v_zz__027807b852cd.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2451 */
-#define afw_components_self_s_zz__2451 \
-    (afw_components_self_v_zz__2451.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__027807b852cd */
+#define afw_components_self_s_zz__027807b852cd \
+    (afw_components_self_v_zz__027807b852cd.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2451 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__027807b852cd */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2451;
+    afw_components_self_v_zz__027807b852cd;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2451 */
-#define afw_components_z_zz__2451 \
-    (afw_components_self_v_zz__2451.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__027807b852cd */
+#define afw_components_z_zz__027807b852cd \
+    (afw_components_self_v_zz__027807b852cd.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2451 */
-#define afw_components_v_zz__2451 \
-    (&afw_components_self_v_zz__2451.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__027807b852cd */
+#define afw_components_v_zz__027807b852cd \
+    (&afw_components_self_v_zz__027807b852cd.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2452 \
-    "The name to display for this column used in this Table component."
+#define AFW_COMPONENTS_Q_zz__02a30b142164 \
+    "A container component that arranges a series of buttons or other minor content in a horizontal bar."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2452 */
-#define afw_components_s_zz__2452 \
-    (&afw_components_self_v_zz__2452.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__02a30b142164 */
+#define afw_components_s_zz__02a30b142164 \
+    (&afw_components_self_v_zz__02a30b142164.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2452 */
-#define afw_components_self_s_zz__2452 \
-    (afw_components_self_v_zz__2452.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__02a30b142164 */
+#define afw_components_self_s_zz__02a30b142164 \
+    (afw_components_self_v_zz__02a30b142164.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2452 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__02a30b142164 */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2452;
+    afw_components_self_v_zz__02a30b142164;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2452 */
-#define afw_components_z_zz__2452 \
-    (afw_components_self_v_zz__2452.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__02a30b142164 */
+#define afw_components_z_zz__02a30b142164 \
+    (afw_components_self_v_zz__02a30b142164.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2452 */
-#define afw_components_v_zz__2452 \
-    (&afw_components_self_v_zz__2452.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__02a30b142164 */
+#define afw_components_v_zz__02a30b142164 \
+    (&afw_components_self_v_zz__02a30b142164.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2453 \
-    "An optional badge number to display next to the Tab text, indicating the number of items."
+#define AFW_COMPONENTS_Q_zz__04c813fa6a8b \
+    "Specifies the placeholder text displayed when no value is present."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2453 */
-#define afw_components_s_zz__2453 \
-    (&afw_components_self_v_zz__2453.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__04c813fa6a8b */
+#define afw_components_s_zz__04c813fa6a8b \
+    (&afw_components_self_v_zz__04c813fa6a8b.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2453 */
-#define afw_components_self_s_zz__2453 \
-    (afw_components_self_v_zz__2453.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__04c813fa6a8b */
+#define afw_components_self_s_zz__04c813fa6a8b \
+    (afw_components_self_v_zz__04c813fa6a8b.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2453 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__04c813fa6a8b */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2453;
+    afw_components_self_v_zz__04c813fa6a8b;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2453 */
-#define afw_components_z_zz__2453 \
-    (afw_components_self_v_zz__2453.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__04c813fa6a8b */
+#define afw_components_z_zz__04c813fa6a8b \
+    (afw_components_self_v_zz__04c813fa6a8b.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2453 */
-#define afw_components_v_zz__2453 \
-    (&afw_components_self_v_zz__2453.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__04c813fa6a8b */
+#define afw_components_v_zz__04c813fa6a8b \
+    (&afw_components_self_v_zz__04c813fa6a8b.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2454 \
-    "The description for the TextField component that describes this input."
+#define AFW_COMPONENTS_Q_zz__058fcd121174 \
+    "Sets or returns the minimum number of lines for an element that must be left at the bottom of a page when a page break occurs inside an element"
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2454 */
-#define afw_components_s_zz__2454 \
-    (&afw_components_self_v_zz__2454.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__058fcd121174 */
+#define afw_components_s_zz__058fcd121174 \
+    (&afw_components_self_v_zz__058fcd121174.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2454 */
-#define afw_components_self_s_zz__2454 \
-    (afw_components_self_v_zz__2454.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__058fcd121174 */
+#define afw_components_self_s_zz__058fcd121174 \
+    (afw_components_self_v_zz__058fcd121174.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2454 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__058fcd121174 */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2454;
+    afw_components_self_v_zz__058fcd121174;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2454 */
-#define afw_components_z_zz__2454 \
-    (afw_components_self_v_zz__2454.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__058fcd121174 */
+#define afw_components_z_zz__058fcd121174 \
+    (afw_components_self_v_zz__058fcd121174.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2454 */
-#define afw_components_v_zz__2454 \
-    (&afw_components_self_v_zz__2454.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__058fcd121174 */
+#define afw_components_v_zz__058fcd121174 \
+    (&afw_components_self_v_zz__058fcd121174.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2455 \
-    "The value of the TimeDuration component expressed as a dayTime."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2455 */
-#define afw_components_s_zz__2455 \
-    (&afw_components_self_v_zz__2455.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2455 */
-#define afw_components_self_s_zz__2455 \
-    (afw_components_self_v_zz__2455.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2455 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2455;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2455 */
-#define afw_components_z_zz__2455 \
-    (afw_components_self_v_zz__2455.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2455 */
-#define afw_components_v_zz__2455 \
-    (&afw_components_self_v_zz__2455.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2456 \
-    "The description for the TimeDuration component that describes this input."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2456 */
-#define afw_components_s_zz__2456 \
-    (&afw_components_self_v_zz__2456.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2456 */
-#define afw_components_self_s_zz__2456 \
-    (afw_components_self_v_zz__2456.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2456 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2456;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2456 */
-#define afw_components_z_zz__2456 \
-    (afw_components_self_v_zz__2456.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2456 */
-#define afw_components_v_zz__2456 \
-    (&afw_components_self_v_zz__2456.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2457 \
-    "The value of the TimeDuration component expressed as a yearMonth."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2457 */
-#define afw_components_s_zz__2457 \
-    (&afw_components_self_v_zz__2457.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2457 */
-#define afw_components_self_s_zz__2457 \
-    (afw_components_self_v_zz__2457.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2457 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2457;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2457 */
-#define afw_components_z_zz__2457 \
-    (afw_components_self_v_zz__2457.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2457 */
-#define afw_components_v_zz__2457 \
-    (&afw_components_self_v_zz__2457.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2458 \
-    "Specifies whether the Toolbar should be condensed as much as possible."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2458 */
-#define afw_components_s_zz__2458 \
-    (&afw_components_self_v_zz__2458.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2458 */
-#define afw_components_self_s_zz__2458 \
-    (afw_components_self_v_zz__2458.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2458 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2458;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2458 */
-#define afw_components_z_zz__2458 \
-    (afw_components_self_v_zz__2458.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2458 */
-#define afw_components_v_zz__2458 \
-    (&afw_components_self_v_zz__2458.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2459 \
-    "The color of the text. This may be a theme definition, or an actual color."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2459 */
-#define afw_components_s_zz__2459 \
-    (&afw_components_self_v_zz__2459.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2459 */
-#define afw_components_self_s_zz__2459 \
-    (afw_components_self_v_zz__2459.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2459 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2459;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2459 */
-#define afw_components_z_zz__2459 \
-    (afw_components_self_v_zz__2459.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2459 */
-#define afw_components_v_zz__2459 \
-    (&afw_components_self_v_zz__2459.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2460 \
-    "This allows you to explicitly set the underlying HTML tag in order to get the semantics correct."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2460 */
-#define afw_components_s_zz__2460 \
-    (&afw_components_self_v_zz__2460.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2460 */
-#define afw_components_self_s_zz__2460 \
-    (afw_components_self_v_zz__2460.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2460 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2460;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2460 */
-#define afw_components_z_zz__2460 \
-    (afw_components_self_v_zz__2460.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2460 */
-#define afw_components_v_zz__2460 \
-    (&afw_components_self_v_zz__2460.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2461 \
-    "An object describing a particular set of filtering options, including the ability to recurse it to embedded objects."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2461 */
-#define afw_components_s_zz__2461 \
-    (&afw_components_self_v_zz__2461.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2461 */
-#define afw_components_self_s_zz__2461 \
-    (afw_components_self_v_zz__2461.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2461 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2461;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2461 */
-#define afw_components_z_zz__2461 \
-    (afw_components_self_v_zz__2461.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2461 */
-#define afw_components_v_zz__2461 \
-    (&afw_components_self_v_zz__2461.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2462 \
-    "Determines when headers should be applied to Object Forms and their embedded objects."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2462 */
-#define afw_components_s_zz__2462 \
-    (&afw_components_self_v_zz__2462.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2462 */
-#define afw_components_self_s_zz__2462 \
-    (afw_components_self_v_zz__2462.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2462 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2462;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2462 */
-#define afw_components_z_zz__2462 \
-    (afw_components_self_v_zz__2462.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2462 */
-#define afw_components_v_zz__2462 \
-    (&afw_components_self_v_zz__2462.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2463 \
-    "Should embedded objects in collapsible layouts be collapsed by default."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2463 */
-#define afw_components_s_zz__2463 \
-    (&afw_components_self_v_zz__2463.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2463 */
-#define afw_components_self_s_zz__2463 \
-    (afw_components_self_v_zz__2463.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2463 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2463;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2463 */
-#define afw_components_z_zz__2463 \
-    (afw_components_self_v_zz__2463.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2463 */
-#define afw_components_v_zz__2463 \
-    (&afw_components_self_v_zz__2463.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2464 \
-    "The object to be displayed by the Object Form Layout component."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2464 */
-#define afw_components_s_zz__2464 \
-    (&afw_components_self_v_zz__2464.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2464 */
-#define afw_components_self_s_zz__2464 \
-    (afw_components_self_v_zz__2464.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2464 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2464;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2464 */
-#define afw_components_z_zz__2464 \
-    (afw_components_self_v_zz__2464.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2464 */
-#define afw_components_v_zz__2464 \
-    (&afw_components_self_v_zz__2464.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2465 \
-    "In readonly mode, labels and values should be stacked horizontal (row) or vertical (column)."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2465 */
-#define afw_components_s_zz__2465 \
-    (&afw_components_self_v_zz__2465.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2465 */
-#define afw_components_self_s_zz__2465 \
-    (afw_components_self_v_zz__2465.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2465 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2465;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2465 */
-#define afw_components_z_zz__2465 \
-    (afw_components_self_v_zz__2465.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2465 */
-#define afw_components_v_zz__2465 \
-    (&afw_components_self_v_zz__2465.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2466 \
-    "The property descriptions should be displayed in editable mode."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2466 */
-#define afw_components_s_zz__2466 \
-    (&afw_components_self_v_zz__2466.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2466 */
-#define afw_components_self_s_zz__2466 \
-    (afw_components_self_v_zz__2466.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2466 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2466;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2466 */
-#define afw_components_z_zz__2466 \
-    (afw_components_self_v_zz__2466.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2466 */
-#define afw_components_v_zz__2466 \
-    (&afw_components_self_v_zz__2466.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2467 \
+#define AFW_COMPONENTS_Q_zz__06180c51fab4 \
     "The properties should be displayed along with their labels instead of property names."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2467 */
-#define afw_components_s_zz__2467 \
-    (&afw_components_self_v_zz__2467.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__06180c51fab4 */
+#define afw_components_s_zz__06180c51fab4 \
+    (&afw_components_self_v_zz__06180c51fab4.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2467 */
-#define afw_components_self_s_zz__2467 \
-    (afw_components_self_v_zz__2467.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__06180c51fab4 */
+#define afw_components_self_s_zz__06180c51fab4 \
+    (afw_components_self_v_zz__06180c51fab4.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2467 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__06180c51fab4 */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2467;
+    afw_components_self_v_zz__06180c51fab4;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2467 */
-#define afw_components_z_zz__2467 \
-    (afw_components_self_v_zz__2467.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__06180c51fab4 */
+#define afw_components_z_zz__06180c51fab4 \
+    (afw_components_self_v_zz__06180c51fab4.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2467 */
-#define afw_components_v_zz__2467 \
-    (&afw_components_self_v_zz__2467.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__06180c51fab4 */
+#define afw_components_v_zz__06180c51fab4 \
+    (&afw_components_self_v_zz__06180c51fab4.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2468 \
-    "An object describing a particular set of sorting options, including the ability to recurse it to embedded objects."
+#define AFW_COMPONENTS_Q_zz__06d9c54ae9b0 \
+    "Sets or returns whether or not an element is resizable by the user"
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2468 */
-#define afw_components_s_zz__2468 \
-    (&afw_components_self_v_zz__2468.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__06d9c54ae9b0 */
+#define afw_components_s_zz__06d9c54ae9b0 \
+    (&afw_components_self_v_zz__06d9c54ae9b0.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2468 */
-#define afw_components_self_s_zz__2468 \
-    (afw_components_self_v_zz__2468.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__06d9c54ae9b0 */
+#define afw_components_self_s_zz__06d9c54ae9b0 \
+    (afw_components_self_v_zz__06d9c54ae9b0.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2468 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__06d9c54ae9b0 */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2468;
+    afw_components_self_v_zz__06d9c54ae9b0;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2468 */
-#define afw_components_z_zz__2468 \
-    (afw_components_self_v_zz__2468.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__06d9c54ae9b0 */
+#define afw_components_z_zz__06d9c54ae9b0 \
+    (afw_components_self_v_zz__06d9c54ae9b0.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2468 */
-#define afw_components_v_zz__2468 \
-    (&afw_components_self_v_zz__2468.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__06d9c54ae9b0 */
+#define afw_components_v_zz__06d9c54ae9b0 \
+    (&afw_components_self_v_zz__06d9c54ae9b0.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2469 \
-    "Adaptive Layout definition for the Object Form Preferred Component option."
+#define AFW_COMPONENTS_Q_zz__079a08970868 \
+    "This component, given a set of options, provides the user with the ability to select, edit, add or delete one of the values by clicking on the dropdown icon and selecting the appropriate value and button from a list."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2469 */
-#define afw_components_s_zz__2469 \
-    (&afw_components_self_v_zz__2469.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__079a08970868 */
+#define afw_components_s_zz__079a08970868 \
+    (&afw_components_self_v_zz__079a08970868.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2469 */
-#define afw_components_self_s_zz__2469 \
-    (afw_components_self_v_zz__2469.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__079a08970868 */
+#define afw_components_self_s_zz__079a08970868 \
+    (afw_components_self_v_zz__079a08970868.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2469 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__079a08970868 */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2469;
+    afw_components_self_v_zz__079a08970868;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2469 */
-#define afw_components_z_zz__2469 \
-    (afw_components_self_v_zz__2469.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__079a08970868 */
+#define afw_components_z_zz__079a08970868 \
+    (afw_components_self_v_zz__079a08970868.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2469 */
-#define afw_components_v_zz__2469 \
-    (&afw_components_self_v_zz__2469.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__079a08970868 */
+#define afw_components_v_zz__079a08970868 \
+    (&afw_components_self_v_zz__079a08970868.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2470 \
-    "Specifies exclusive (AND) conditions for properties to display (required, optional, valued, unvalued)."
+#define AFW_COMPONENTS_Q_zz__083a0baaa31c \
+    "Sets or returns all the borderBottom properties in one declaration"
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2470 */
-#define afw_components_s_zz__2470 \
-    (&afw_components_self_v_zz__2470.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__083a0baaa31c */
+#define afw_components_s_zz__083a0baaa31c \
+    (&afw_components_self_v_zz__083a0baaa31c.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2470 */
-#define afw_components_self_s_zz__2470 \
-    (afw_components_self_v_zz__2470.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__083a0baaa31c */
+#define afw_components_self_s_zz__083a0baaa31c \
+    (afw_components_self_v_zz__083a0baaa31c.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2470 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__083a0baaa31c */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2470;
+    afw_components_self_v_zz__083a0baaa31c;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2470 */
-#define afw_components_z_zz__2470 \
-    (afw_components_self_v_zz__2470.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__083a0baaa31c */
+#define afw_components_z_zz__083a0baaa31c \
+    (afw_components_self_v_zz__083a0baaa31c.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2470 */
-#define afw_components_v_zz__2470 \
-    (&afw_components_self_v_zz__2470.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__083a0baaa31c */
+#define afw_components_v_zz__083a0baaa31c \
+    (&afw_components_self_v_zz__083a0baaa31c.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2471 \
-    "Specifies inclusive (OR) conditions for properties to display (required, optional, valued, unvalued)."
+#define AFW_COMPONENTS_Q_zz__0c3f138b2b4d \
+    "Specifies whether the Collapsible should render the collapse feature."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2471 */
-#define afw_components_s_zz__2471 \
-    (&afw_components_self_v_zz__2471.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__0c3f138b2b4d */
+#define afw_components_s_zz__0c3f138b2b4d \
+    (&afw_components_self_v_zz__0c3f138b2b4d.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2471 */
-#define afw_components_self_s_zz__2471 \
-    (afw_components_self_v_zz__2471.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__0c3f138b2b4d */
+#define afw_components_self_s_zz__0c3f138b2b4d \
+    (afw_components_self_v_zz__0c3f138b2b4d.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2471 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__0c3f138b2b4d */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2471;
+    afw_components_self_v_zz__0c3f138b2b4d;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2471 */
-#define afw_components_z_zz__2471 \
-    (afw_components_self_v_zz__2471.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__0c3f138b2b4d */
+#define afw_components_z_zz__0c3f138b2b4d \
+    (afw_components_self_v_zz__0c3f138b2b4d.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2471 */
-#define afw_components_v_zz__2471 \
-    (&afw_components_self_v_zz__2471.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__0c3f138b2b4d */
+#define afw_components_v_zz__0c3f138b2b4d \
+    (&afw_components_self_v_zz__0c3f138b2b4d.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2472 \
-    "The Preferred Component to apply to this layout rule definition. For example, single booleans should be Switch components."
+#define AFW_COMPONENTS_Q_zz__0c5f1c4517d7 \
+    "A component to display a selectable choice of options, presented as buttons that can be toggled on or off."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2472 */
-#define afw_components_s_zz__2472 \
-    (&afw_components_self_v_zz__2472.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__0c5f1c4517d7 */
+#define afw_components_s_zz__0c5f1c4517d7 \
+    (&afw_components_self_v_zz__0c5f1c4517d7.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2472 */
-#define afw_components_self_s_zz__2472 \
-    (afw_components_self_v_zz__2472.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__0c5f1c4517d7 */
+#define afw_components_self_s_zz__0c5f1c4517d7 \
+    (afw_components_self_v_zz__0c5f1c4517d7.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2472 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__0c5f1c4517d7 */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2472;
+    afw_components_self_v_zz__0c5f1c4517d7;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2472 */
-#define afw_components_z_zz__2472 \
-    (afw_components_self_v_zz__2472.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__0c5f1c4517d7 */
+#define afw_components_z_zz__0c5f1c4517d7 \
+    (afw_components_self_v_zz__0c5f1c4517d7.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2472 */
-#define afw_components_v_zz__2472 \
-    (&afw_components_self_v_zz__2472.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__0c5f1c4517d7 */
+#define afw_components_v_zz__0c5f1c4517d7 \
+    (&afw_components_self_v_zz__0c5f1c4517d7.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2473 \
-    "Additional properties to be passed to each preferred component."
+#define AFW_COMPONENTS_Q_zz__0df0dcc40f32 \
+    "A very simple way to divide content from the remaining content with the user of an dividing line."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2473 */
-#define afw_components_s_zz__2473 \
-    (&afw_components_self_v_zz__2473.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__0df0dcc40f32 */
+#define afw_components_s_zz__0df0dcc40f32 \
+    (&afw_components_self_v_zz__0df0dcc40f32.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2473 */
-#define afw_components_self_s_zz__2473 \
-    (afw_components_self_v_zz__2473.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__0df0dcc40f32 */
+#define afw_components_self_s_zz__0df0dcc40f32 \
+    (afw_components_self_v_zz__0df0dcc40f32.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2473 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__0df0dcc40f32 */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2473;
+    afw_components_self_v_zz__0df0dcc40f32;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2473 */
-#define afw_components_z_zz__2473 \
-    (afw_components_self_v_zz__2473.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__0df0dcc40f32 */
+#define afw_components_z_zz__0df0dcc40f32 \
+    (afw_components_self_v_zz__0df0dcc40f32.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2473 */
-#define afw_components_v_zz__2473 \
-    (&afw_components_self_v_zz__2473.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__0df0dcc40f32 */
+#define afw_components_v_zz__0df0dcc40f32 \
+    (&afw_components_self_v_zz__0df0dcc40f32.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2474 \
+#define AFW_COMPONENTS_Q_zz__0e38955d0202 \
+    "The description for the TimeDuration component that describes this input."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__0e38955d0202 */
+#define afw_components_s_zz__0e38955d0202 \
+    (&afw_components_self_v_zz__0e38955d0202.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__0e38955d0202 */
+#define afw_components_self_s_zz__0e38955d0202 \
+    (afw_components_self_v_zz__0e38955d0202.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__0e38955d0202 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__0e38955d0202;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__0e38955d0202 */
+#define afw_components_z_zz__0e38955d0202 \
+    (afw_components_self_v_zz__0e38955d0202.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__0e38955d0202 */
+#define afw_components_v_zz__0e38955d0202 \
+    (&afw_components_self_v_zz__0e38955d0202.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__0e4d7ed2890d \
+    "Sets or returns the number of columns an element should be divided into"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__0e4d7ed2890d */
+#define afw_components_s_zz__0e4d7ed2890d \
+    (&afw_components_self_v_zz__0e4d7ed2890d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__0e4d7ed2890d */
+#define afw_components_self_s_zz__0e4d7ed2890d \
+    (afw_components_self_v_zz__0e4d7ed2890d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__0e4d7ed2890d */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__0e4d7ed2890d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__0e4d7ed2890d */
+#define afw_components_z_zz__0e4d7ed2890d \
+    (afw_components_self_v_zz__0e4d7ed2890d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__0e4d7ed2890d */
+#define afw_components_v_zz__0e4d7ed2890d \
+    (&afw_components_self_v_zz__0e4d7ed2890d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__0f69c1761010 \
+    "An object representing the CSS style to be applied to this layout component type."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__0f69c1761010 */
+#define afw_components_s_zz__0f69c1761010 \
+    (&afw_components_self_v_zz__0f69c1761010.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__0f69c1761010 */
+#define afw_components_self_s_zz__0f69c1761010 \
+    (afw_components_self_v_zz__0f69c1761010.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__0f69c1761010 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__0f69c1761010;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__0f69c1761010 */
+#define afw_components_z_zz__0f69c1761010 \
+    (afw_components_self_v_zz__0f69c1761010.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__0f69c1761010 */
+#define afw_components_v_zz__0f69c1761010 \
+    (&afw_components_self_v_zz__0f69c1761010.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__1052baa5025b \
+    "This component can display a variety of simple or complex chart data in forms such as Pie, Line or Bar to offer a visual representation of the provided data."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1052baa5025b */
+#define afw_components_s_zz__1052baa5025b \
+    (&afw_components_self_v_zz__1052baa5025b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1052baa5025b */
+#define afw_components_self_s_zz__1052baa5025b \
+    (afw_components_self_v_zz__1052baa5025b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__1052baa5025b */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__1052baa5025b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__1052baa5025b */
+#define afw_components_z_zz__1052baa5025b \
+    (afw_components_self_v_zz__1052baa5025b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__1052baa5025b */
+#define afw_components_v_zz__1052baa5025b \
+    (&afw_components_self_v_zz__1052baa5025b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__10a96299eab7 \
+    "Specifies whether this option is disabled in the ChoiceGroup."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__10a96299eab7 */
+#define afw_components_s_zz__10a96299eab7 \
+    (&afw_components_self_v_zz__10a96299eab7.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__10a96299eab7 */
+#define afw_components_self_s_zz__10a96299eab7 \
+    (afw_components_self_v_zz__10a96299eab7.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__10a96299eab7 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__10a96299eab7;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__10a96299eab7 */
+#define afw_components_z_zz__10a96299eab7 \
+    (afw_components_self_v_zz__10a96299eab7.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__10a96299eab7 */
+#define afw_components_v_zz__10a96299eab7 \
+    (&afw_components_self_v_zz__10a96299eab7.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__11810b4bee23 \
+    "Adaptive Layout definition for the Adaptive Property Layout component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__11810b4bee23 */
+#define afw_components_s_zz__11810b4bee23 \
+    (&afw_components_self_v_zz__11810b4bee23.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__11810b4bee23 */
+#define afw_components_self_s_zz__11810b4bee23 \
+    (afw_components_self_v_zz__11810b4bee23.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__11810b4bee23 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__11810b4bee23;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__11810b4bee23 */
+#define afw_components_z_zz__11810b4bee23 \
+    (afw_components_self_v_zz__11810b4bee23.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__11810b4bee23 */
+#define afw_components_v_zz__11810b4bee23 \
+    (&afw_components_self_v_zz__11810b4bee23.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__122358cd56be \
+    "Specifies whether the Autocomplete component is currently loading."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__122358cd56be */
+#define afw_components_s_zz__122358cd56be \
+    (&afw_components_self_v_zz__122358cd56be.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__122358cd56be */
+#define afw_components_self_s_zz__122358cd56be \
+    (afw_components_self_v_zz__122358cd56be.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__122358cd56be */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__122358cd56be;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__122358cd56be */
+#define afw_components_z_zz__122358cd56be \
+    (afw_components_self_v_zz__122358cd56be.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__122358cd56be */
+#define afw_components_v_zz__122358cd56be \
+    (&afw_components_self_v_zz__122358cd56be.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__12ae991908d9 \
+    "By default, flex items are laid out in the source order. However, the order property controls the order in which they appear in the flex container."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__12ae991908d9 */
+#define afw_components_s_zz__12ae991908d9 \
+    (&afw_components_self_v_zz__12ae991908d9.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__12ae991908d9 */
+#define afw_components_self_s_zz__12ae991908d9 \
+    (afw_components_self_v_zz__12ae991908d9.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__12ae991908d9 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__12ae991908d9;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__12ae991908d9 */
+#define afw_components_z_zz__12ae991908d9 \
+    (afw_components_self_v_zz__12ae991908d9.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__12ae991908d9 */
+#define afw_components_v_zz__12ae991908d9 \
+    (&afw_components_self_v_zz__12ae991908d9.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__130c18907fe9 \
+    "This component is a very powerful container, which implements a box allowing items to be added in a flexible way."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__130c18907fe9 */
+#define afw_components_s_zz__130c18907fe9 \
+    (&afw_components_self_v_zz__130c18907fe9.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__130c18907fe9 */
+#define afw_components_self_s_zz__130c18907fe9 \
+    (afw_components_self_v_zz__130c18907fe9.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__130c18907fe9 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__130c18907fe9;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__130c18907fe9 */
+#define afw_components_z_zz__130c18907fe9 \
+    (afw_components_self_v_zz__130c18907fe9.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__130c18907fe9 */
+#define afw_components_v_zz__130c18907fe9 \
+    (&afw_components_self_v_zz__130c18907fe9.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__1413896b9929 \
+    "This component provides a dropdown picker with possible values to quickly select from. By typing, it will narrow down the selection to make the list even shorter to choose a selection from. Additionally, it will offer the user the ability to enter a new value, if allowed."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1413896b9929 */
+#define afw_components_s_zz__1413896b9929 \
+    (&afw_components_self_v_zz__1413896b9929.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1413896b9929 */
+#define afw_components_self_s_zz__1413896b9929 \
+    (afw_components_self_v_zz__1413896b9929.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__1413896b9929 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__1413896b9929;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__1413896b9929 */
+#define afw_components_z_zz__1413896b9929 \
+    (afw_components_self_v_zz__1413896b9929.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__1413896b9929 */
+#define afw_components_v_zz__1413896b9929 \
+    (&afw_components_self_v_zz__1413896b9929.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__152c480d0783 \
+    "Sets or returns which part of a positioned element is visible"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__152c480d0783 */
+#define afw_components_s_zz__152c480d0783 \
+    (&afw_components_self_v_zz__152c480d0783.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__152c480d0783 */
+#define afw_components_self_s_zz__152c480d0783 \
+    (afw_components_self_v_zz__152c480d0783.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__152c480d0783 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__152c480d0783;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__152c480d0783 */
+#define afw_components_z_zz__152c480d0783 \
+    (afw_components_self_v_zz__152c480d0783.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__152c480d0783 */
+#define afw_components_v_zz__152c480d0783 \
+    (&afw_components_self_v_zz__152c480d0783.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__15337eab00e4 \
+    "This component container is visible when a target element is clicked. It's used to quickly show or grab input from the user in a popup area and can be dismissed."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__15337eab00e4 */
+#define afw_components_s_zz__15337eab00e4 \
+    (&afw_components_self_v_zz__15337eab00e4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__15337eab00e4 */
+#define afw_components_self_s_zz__15337eab00e4 \
+    (afw_components_self_v_zz__15337eab00e4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__15337eab00e4 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__15337eab00e4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__15337eab00e4 */
+#define afw_components_z_zz__15337eab00e4 \
+    (afw_components_self_v_zz__15337eab00e4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__15337eab00e4 */
+#define afw_components_v_zz__15337eab00e4 \
+    (&afw_components_self_v_zz__15337eab00e4.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__18485f0edb89 \
+    "This container component defines a Row/Column grid of components to display content horizontally and vertically, depending on the screen size. For larger displays, you may assign breakpoints that allow for all content to fit, while on smaller mobile devices, content will be divided up into chunks."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__18485f0edb89 */
+#define afw_components_s_zz__18485f0edb89 \
+    (&afw_components_self_v_zz__18485f0edb89.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__18485f0edb89 */
+#define afw_components_self_s_zz__18485f0edb89 \
+    (afw_components_self_v_zz__18485f0edb89.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__18485f0edb89 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__18485f0edb89;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__18485f0edb89 */
+#define afw_components_z_zz__18485f0edb89 \
+    (afw_components_self_v_zz__18485f0edb89.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__18485f0edb89 */
+#define afw_components_v_zz__18485f0edb89 \
+    (&afw_components_self_v_zz__18485f0edb89.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__1b5e14a6cf6c \
+    "This component container is visible when a target element is clicked. It's used to quickly show or grab input from the user in a popup area and can be dismissed by confirming or cancelling via buttons."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1b5e14a6cf6c */
+#define afw_components_s_zz__1b5e14a6cf6c \
+    (&afw_components_self_v_zz__1b5e14a6cf6c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1b5e14a6cf6c */
+#define afw_components_self_s_zz__1b5e14a6cf6c \
+    (afw_components_self_v_zz__1b5e14a6cf6c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__1b5e14a6cf6c */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__1b5e14a6cf6c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__1b5e14a6cf6c */
+#define afw_components_z_zz__1b5e14a6cf6c \
+    (afw_components_self_v_zz__1b5e14a6cf6c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__1b5e14a6cf6c */
+#define afw_components_v_zz__1b5e14a6cf6c \
+    (&afw_components_self_v_zz__1b5e14a6cf6c.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__1bc22f86ca36 \
+    "This component renders a list of text and optional secondary text, items, which allows the user to add, edit or delete items from the list."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1bc22f86ca36 */
+#define afw_components_s_zz__1bc22f86ca36 \
+    (&afw_components_self_v_zz__1bc22f86ca36.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1bc22f86ca36 */
+#define afw_components_self_s_zz__1bc22f86ca36 \
+    (afw_components_self_v_zz__1bc22f86ca36.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__1bc22f86ca36 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__1bc22f86ca36;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__1bc22f86ca36 */
+#define afw_components_z_zz__1bc22f86ca36 \
+    (afw_components_self_v_zz__1bc22f86ca36.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__1bc22f86ca36 */
+#define afw_components_v_zz__1bc22f86ca36 \
+    (&afw_components_self_v_zz__1bc22f86ca36.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__1bcd5bb91cc0 \
+    "The fieldName for the rows used in this Table component column definition."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1bcd5bb91cc0 */
+#define afw_components_s_zz__1bcd5bb91cc0 \
+    (&afw_components_self_v_zz__1bcd5bb91cc0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1bcd5bb91cc0 */
+#define afw_components_self_s_zz__1bcd5bb91cc0 \
+    (afw_components_self_v_zz__1bcd5bb91cc0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__1bcd5bb91cc0 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__1bcd5bb91cc0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__1bcd5bb91cc0 */
+#define afw_components_z_zz__1bcd5bb91cc0 \
+    (afw_components_self_v_zz__1bcd5bb91cc0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__1bcd5bb91cc0 */
+#define afw_components_v_zz__1bcd5bb91cc0 \
+    (&afw_components_self_v_zz__1bcd5bb91cc0.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__1c499d887857 \
+    "Specifies whether a punctuation character may be placed outside the line box"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1c499d887857 */
+#define afw_components_s_zz__1c499d887857 \
+    (&afw_components_self_v_zz__1c499d887857.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1c499d887857 */
+#define afw_components_self_s_zz__1c499d887857 \
+    (afw_components_self_v_zz__1c499d887857.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__1c499d887857 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__1c499d887857;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__1c499d887857 */
+#define afw_components_z_zz__1c499d887857 \
+    (afw_components_self_v_zz__1c499d887857.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__1c499d887857 */
+#define afw_components_v_zz__1c499d887857 \
+    (&afw_components_self_v_zz__1c499d887857.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__1d28c8d738a3 \
+    "This component pops up a Menu of items, each of which take an appropriate action when clicked. Menu items may also open up new submenus in order to organize or filter a set of items in a way that's easy for the end user to understand and select from."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1d28c8d738a3 */
+#define afw_components_s_zz__1d28c8d738a3 \
+    (&afw_components_self_v_zz__1d28c8d738a3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1d28c8d738a3 */
+#define afw_components_self_s_zz__1d28c8d738a3 \
+    (afw_components_self_v_zz__1d28c8d738a3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__1d28c8d738a3 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__1d28c8d738a3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__1d28c8d738a3 */
+#define afw_components_z_zz__1d28c8d738a3 \
+    (afw_components_self_v_zz__1d28c8d738a3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__1d28c8d738a3 */
+#define afw_components_v_zz__1d28c8d738a3 \
+    (&afw_components_self_v_zz__1d28c8d738a3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__1f37d5a275e5 \
+    "Provides the author the ability to style an element with an iconic equivalent"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1f37d5a275e5 */
+#define afw_components_s_zz__1f37d5a275e5 \
+    (&afw_components_self_v_zz__1f37d5a275e5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__1f37d5a275e5 */
+#define afw_components_self_s_zz__1f37d5a275e5 \
+    (afw_components_self_v_zz__1f37d5a275e5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__1f37d5a275e5 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__1f37d5a275e5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__1f37d5a275e5 */
+#define afw_components_z_zz__1f37d5a275e5 \
+    (afw_components_self_v_zz__1f37d5a275e5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__1f37d5a275e5 */
+#define afw_components_v_zz__1f37d5a275e5 \
+    (&afw_components_self_v_zz__1f37d5a275e5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__20336e404600 \
+    "The minimum width for this column used in this Table component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__20336e404600 */
+#define afw_components_s_zz__20336e404600 \
+    (&afw_components_self_v_zz__20336e404600.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__20336e404600 */
+#define afw_components_self_s_zz__20336e404600 \
+    (afw_components_self_v_zz__20336e404600.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__20336e404600 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__20336e404600;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__20336e404600 */
+#define afw_components_z_zz__20336e404600 \
+    (afw_components_self_v_zz__20336e404600.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__20336e404600 */
+#define afw_components_v_zz__20336e404600 \
+    (&afw_components_self_v_zz__20336e404600.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__233cc745939b \
+    "Adaptive parameters definition for the Responsive Breakpoints."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__233cc745939b */
+#define afw_components_s_zz__233cc745939b \
+    (&afw_components_self_v_zz__233cc745939b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__233cc745939b */
+#define afw_components_self_s_zz__233cc745939b \
+    (afw_components_self_v_zz__233cc745939b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__233cc745939b */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__233cc745939b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__233cc745939b */
+#define afw_components_z_zz__233cc745939b \
+    (afw_components_self_v_zz__233cc745939b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__233cc745939b */
+#define afw_components_v_zz__233cc745939b \
+    (&afw_components_self_v_zz__233cc745939b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__234b99cb5616 \
+    "Sets or returns whether the font should be displayed in small capital letters"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__234b99cb5616 */
+#define afw_components_s_zz__234b99cb5616 \
+    (&afw_components_self_v_zz__234b99cb5616.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__234b99cb5616 */
+#define afw_components_self_s_zz__234b99cb5616 \
+    (afw_components_self_v_zz__234b99cb5616.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__234b99cb5616 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__234b99cb5616;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__234b99cb5616 */
+#define afw_components_z_zz__234b99cb5616 \
+    (afw_components_self_v_zz__234b99cb5616.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__234b99cb5616 */
+#define afw_components_v_zz__234b99cb5616 \
+    (&afw_components_self_v_zz__234b99cb5616.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__24d6297d39fd \
+    "A component that displays a Divider line to separate content."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__24d6297d39fd */
+#define afw_components_s_zz__24d6297d39fd \
+    (&afw_components_self_v_zz__24d6297d39fd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__24d6297d39fd */
+#define afw_components_self_s_zz__24d6297d39fd \
+    (afw_components_self_v_zz__24d6297d39fd.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__24d6297d39fd */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__24d6297d39fd;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__24d6297d39fd */
+#define afw_components_z_zz__24d6297d39fd \
+    (afw_components_self_v_zz__24d6297d39fd.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__24d6297d39fd */
+#define afw_components_v_zz__24d6297d39fd \
+    (&afw_components_self_v_zz__24d6297d39fd.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__250ae3844998 \
+    "Specifies whether the Toolbar should be condensed as much as possible."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__250ae3844998 */
+#define afw_components_s_zz__250ae3844998 \
+    (&afw_components_self_v_zz__250ae3844998.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__250ae3844998 */
+#define afw_components_self_s_zz__250ae3844998 \
+    (afw_components_self_v_zz__250ae3844998.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__250ae3844998 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__250ae3844998;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__250ae3844998 */
+#define afw_components_z_zz__250ae3844998 \
+    (afw_components_self_v_zz__250ae3844998.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__250ae3844998 */
+#define afw_components_v_zz__250ae3844998 \
+    (&afw_components_self_v_zz__250ae3844998.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__277f85af08df \
+    "Sets or returns the alignment between the items inside a flexible container when the items do not use all available space."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__277f85af08df */
+#define afw_components_s_zz__277f85af08df \
+    (&afw_components_self_v_zz__277f85af08df.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__277f85af08df */
+#define afw_components_self_s_zz__277f85af08df \
+    (afw_components_self_v_zz__277f85af08df.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__277f85af08df */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__277f85af08df;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__277f85af08df */
+#define afw_components_z_zz__277f85af08df \
+    (afw_components_self_v_zz__277f85af08df.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__277f85af08df */
+#define afw_components_v_zz__277f85af08df \
+    (&afw_components_self_v_zz__277f85af08df.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__2905a8071af5 \
+    "Determines if the Dialog should block dismissing until the user clicks a button."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2905a8071af5 */
+#define afw_components_s_zz__2905a8071af5 \
+    (&afw_components_self_v_zz__2905a8071af5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2905a8071af5 */
+#define afw_components_self_s_zz__2905a8071af5 \
+    (afw_components_self_v_zz__2905a8071af5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2905a8071af5 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__2905a8071af5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2905a8071af5 */
+#define afw_components_z_zz__2905a8071af5 \
+    (afw_components_self_v_zz__2905a8071af5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2905a8071af5 */
+#define afw_components_v_zz__2905a8071af5 \
+    (&afw_components_self_v_zz__2905a8071af5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__29756efafb0f \
+    "This component understands a time duration data type and renders a convenient way to select a duration of time."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__29756efafb0f */
+#define afw_components_s_zz__29756efafb0f \
+    (&afw_components_self_v_zz__29756efafb0f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__29756efafb0f */
+#define afw_components_self_s_zz__29756efafb0f \
+    (afw_components_self_v_zz__29756efafb0f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__29756efafb0f */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__29756efafb0f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__29756efafb0f */
+#define afw_components_z_zz__29756efafb0f \
+    (afw_components_self_v_zz__29756efafb0f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__29756efafb0f */
+#define afw_components_v_zz__29756efafb0f \
+    (&afw_components_self_v_zz__29756efafb0f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__29ba91d64ff8 \
+    "This component is used to provide actions, via buttons, labels or other small components, condensed into a common location so the user may use it to view or change data that is presented in the layout below."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__29ba91d64ff8 */
+#define afw_components_s_zz__29ba91d64ff8 \
+    (&afw_components_self_v_zz__29ba91d64ff8.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__29ba91d64ff8 */
+#define afw_components_self_s_zz__29ba91d64ff8 \
+    (afw_components_self_v_zz__29ba91d64ff8.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__29ba91d64ff8 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__29ba91d64ff8;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__29ba91d64ff8 */
+#define afw_components_z_zz__29ba91d64ff8 \
+    (afw_components_self_v_zz__29ba91d64ff8.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__29ba91d64ff8 */
+#define afw_components_v_zz__29ba91d64ff8 \
+    (&afw_components_self_v_zz__29ba91d64ff8.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__2e8f8b36a05d \
+    "Optional components to be displayed for the Message component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2e8f8b36a05d */
+#define afw_components_s_zz__2e8f8b36a05d \
+    (&afw_components_self_v_zz__2e8f8b36a05d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2e8f8b36a05d */
+#define afw_components_self_s_zz__2e8f8b36a05d \
+    (afw_components_self_v_zz__2e8f8b36a05d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2e8f8b36a05d */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__2e8f8b36a05d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2e8f8b36a05d */
+#define afw_components_z_zz__2e8f8b36a05d \
+    (afw_components_self_v_zz__2e8f8b36a05d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2e8f8b36a05d */
+#define afw_components_v_zz__2e8f8b36a05d \
+    (&afw_components_self_v_zz__2e8f8b36a05d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__2f16a705e1d2 \
     "Any property that matches this dataType will have a Preferred Component applied to its layout."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2474 */
-#define afw_components_s_zz__2474 \
-    (&afw_components_self_v_zz__2474.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2f16a705e1d2 */
+#define afw_components_s_zz__2f16a705e1d2 \
+    (&afw_components_self_v_zz__2f16a705e1d2.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2474 */
-#define afw_components_self_s_zz__2474 \
-    (afw_components_self_v_zz__2474.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2f16a705e1d2 */
+#define afw_components_self_s_zz__2f16a705e1d2 \
+    (afw_components_self_v_zz__2f16a705e1d2.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2474 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2f16a705e1d2 */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2474;
+    afw_components_self_v_zz__2f16a705e1d2;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2474 */
-#define afw_components_z_zz__2474 \
-    (afw_components_self_v_zz__2474.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2f16a705e1d2 */
+#define afw_components_z_zz__2f16a705e1d2 \
+    (afw_components_self_v_zz__2f16a705e1d2.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2474 */
-#define afw_components_v_zz__2474 \
-    (&afw_components_self_v_zz__2474.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2f16a705e1d2 */
+#define afw_components_v_zz__2f16a705e1d2 \
+    (&afw_components_self_v_zz__2f16a705e1d2.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2475 \
+#define AFW_COMPONENTS_Q_zz__2f1dc02458ca \
+    "This component displays a text message within a surface that may alert the user to additional information, errors or warnings."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2f1dc02458ca */
+#define afw_components_s_zz__2f1dc02458ca \
+    (&afw_components_self_v_zz__2f1dc02458ca.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2f1dc02458ca */
+#define afw_components_self_s_zz__2f1dc02458ca \
+    (afw_components_self_v_zz__2f1dc02458ca.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2f1dc02458ca */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__2f1dc02458ca;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2f1dc02458ca */
+#define afw_components_z_zz__2f1dc02458ca \
+    (afw_components_self_v_zz__2f1dc02458ca.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2f1dc02458ca */
+#define afw_components_v_zz__2f1dc02458ca \
+    (&afw_components_self_v_zz__2f1dc02458ca.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__312c8d8841c8 \
+    "Sets or returns the way to lay out table cells, rows, and columns"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__312c8d8841c8 */
+#define afw_components_s_zz__312c8d8841c8 \
+    (&afw_components_self_v_zz__312c8d8841c8.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__312c8d8841c8 */
+#define afw_components_self_s_zz__312c8d8841c8 \
+    (afw_components_self_v_zz__312c8d8841c8.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__312c8d8841c8 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__312c8d8841c8;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__312c8d8841c8 */
+#define afw_components_z_zz__312c8d8841c8 \
+    (afw_components_self_v_zz__312c8d8841c8.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__312c8d8841c8 */
+#define afw_components_v_zz__312c8d8841c8 \
+    (&afw_components_self_v_zz__312c8d8841c8.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__31dc409d0daf \
+    "Sets or returns the alignment for selected items inside a flexible container"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__31dc409d0daf */
+#define afw_components_s_zz__31dc409d0daf \
+    (&afw_components_self_v_zz__31dc409d0daf.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__31dc409d0daf */
+#define afw_components_self_s_zz__31dc409d0daf \
+    (afw_components_self_v_zz__31dc409d0daf.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__31dc409d0daf */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__31dc409d0daf;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__31dc409d0daf */
+#define afw_components_z_zz__31dc409d0daf \
+    (afw_components_self_v_zz__31dc409d0daf.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__31dc409d0daf */
+#define afw_components_v_zz__31dc409d0daf \
+    (&afw_components_self_v_zz__31dc409d0daf.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__3249b5b227c3 \
+    "This component provides a list of options, organized as buttons, that may be toggled on or off. They may be inclusive or exclusive."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3249b5b227c3 */
+#define afw_components_s_zz__3249b5b227c3 \
+    (&afw_components_self_v_zz__3249b5b227c3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3249b5b227c3 */
+#define afw_components_self_s_zz__3249b5b227c3 \
+    (afw_components_self_v_zz__3249b5b227c3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__3249b5b227c3 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__3249b5b227c3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__3249b5b227c3 */
+#define afw_components_z_zz__3249b5b227c3 \
+    (afw_components_self_v_zz__3249b5b227c3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__3249b5b227c3 */
+#define afw_components_v_zz__3249b5b227c3 \
+    (&afw_components_self_v_zz__3249b5b227c3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__324e493a80dd \
+    "Specifies the component contained within this Collapsible Body."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__324e493a80dd */
+#define afw_components_s_zz__324e493a80dd \
+    (&afw_components_self_v_zz__324e493a80dd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__324e493a80dd */
+#define afw_components_self_s_zz__324e493a80dd \
+    (afw_components_self_v_zz__324e493a80dd.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__324e493a80dd */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__324e493a80dd;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__324e493a80dd */
+#define afw_components_z_zz__324e493a80dd \
+    (afw_components_self_v_zz__324e493a80dd.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__324e493a80dd */
+#define afw_components_v_zz__324e493a80dd \
+    (&afw_components_self_v_zz__324e493a80dd.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__332672507341 \
+    "This aligns a flex container's lines within when there is extra space in the cross-axis, similar to how 'Justify Content' aligns individual items within the main-axis."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__332672507341 */
+#define afw_components_s_zz__332672507341 \
+    (&afw_components_self_v_zz__332672507341.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__332672507341 */
+#define afw_components_self_s_zz__332672507341 \
+    (afw_components_self_v_zz__332672507341.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__332672507341 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__332672507341;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__332672507341 */
+#define afw_components_z_zz__332672507341 \
+    (afw_components_self_v_zz__332672507341.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__332672507341 */
+#define afw_components_v_zz__332672507341 \
+    (&afw_components_self_v_zz__332672507341.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__34ac2d91a231 \
+    "Should embedded objects in collapsible layouts be collapsed by default."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__34ac2d91a231 */
+#define afw_components_s_zz__34ac2d91a231 \
+    (&afw_components_self_v_zz__34ac2d91a231.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__34ac2d91a231 */
+#define afw_components_self_s_zz__34ac2d91a231 \
+    (afw_components_self_v_zz__34ac2d91a231.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__34ac2d91a231 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__34ac2d91a231;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__34ac2d91a231 */
+#define afw_components_z_zz__34ac2d91a231 \
+    (afw_components_self_v_zz__34ac2d91a231.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__34ac2d91a231 */
+#define afw_components_v_zz__34ac2d91a231 \
+    (&afw_components_self_v_zz__34ac2d91a231.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__34e63e7584b3 \
+    "A shorthand property for the flexDirection and the flexWrap properties"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__34e63e7584b3 */
+#define afw_components_s_zz__34e63e7584b3 \
+    (&afw_components_self_v_zz__34e63e7584b3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__34e63e7584b3 */
+#define afw_components_self_s_zz__34e63e7584b3 \
+    (afw_components_self_v_zz__34e63e7584b3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__34e63e7584b3 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__34e63e7584b3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__34e63e7584b3 */
+#define afw_components_z_zz__34e63e7584b3 \
+    (afw_components_self_v_zz__34e63e7584b3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__34e63e7584b3 */
+#define afw_components_v_zz__34e63e7584b3 \
+    (&afw_components_self_v_zz__34e63e7584b3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__35cc6f1923e8 \
+    "Specifies whether the line numbers should be visible in DiffEditor component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__35cc6f1923e8 */
+#define afw_components_s_zz__35cc6f1923e8 \
+    (&afw_components_self_v_zz__35cc6f1923e8.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__35cc6f1923e8 */
+#define afw_components_self_s_zz__35cc6f1923e8 \
+    (afw_components_self_v_zz__35cc6f1923e8.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__35cc6f1923e8 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__35cc6f1923e8;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__35cc6f1923e8 */
+#define afw_components_z_zz__35cc6f1923e8 \
+    (afw_components_self_v_zz__35cc6f1923e8.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__35cc6f1923e8 */
+#define afw_components_v_zz__35cc6f1923e8 \
+    (&afw_components_self_v_zz__35cc6f1923e8.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__35cda96349af \
+    "By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__35cda96349af */
+#define afw_components_s_zz__35cda96349af \
+    (&afw_components_self_v_zz__35cda96349af.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__35cda96349af */
+#define afw_components_self_s_zz__35cda96349af \
+    (afw_components_self_v_zz__35cda96349af.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__35cda96349af */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__35cda96349af;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__35cda96349af */
+#define afw_components_z_zz__35cda96349af \
+    (afw_components_self_v_zz__35cda96349af.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__35cda96349af */
+#define afw_components_v_zz__35cda96349af \
+    (&afw_components_self_v_zz__35cda96349af.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__35efc0ad81e2 \
+    "Sets or returns the padding of an element (can have up to four values)"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__35efc0ad81e2 */
+#define afw_components_s_zz__35efc0ad81e2 \
+    (&afw_components_self_v_zz__35efc0ad81e2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__35efc0ad81e2 */
+#define afw_components_self_s_zz__35efc0ad81e2 \
+    (afw_components_self_v_zz__35efc0ad81e2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__35efc0ad81e2 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__35efc0ad81e2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__35efc0ad81e2 */
+#define afw_components_z_zz__35efc0ad81e2 \
+    (afw_components_self_v_zz__35efc0ad81e2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__35efc0ad81e2 */
+#define afw_components_v_zz__35efc0ad81e2 \
+    (&afw_components_self_v_zz__35efc0ad81e2.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__38c5cda3b12c \
+    "Sets or returns listStyleImage, listStylePosition, and listStyleType in one declaration"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__38c5cda3b12c */
+#define afw_components_s_zz__38c5cda3b12c \
+    (&afw_components_self_v_zz__38c5cda3b12c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__38c5cda3b12c */
+#define afw_components_self_s_zz__38c5cda3b12c \
+    (afw_components_self_v_zz__38c5cda3b12c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__38c5cda3b12c */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__38c5cda3b12c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__38c5cda3b12c */
+#define afw_components_z_zz__38c5cda3b12c \
+    (afw_components_self_v_zz__38c5cda3b12c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__38c5cda3b12c */
+#define afw_components_v_zz__38c5cda3b12c \
+    (&afw_components_self_v_zz__38c5cda3b12c.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__3ad97906d571 \
+    "The property name in the object to be displayed by the Adaptive Property Layout component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3ad97906d571 */
+#define afw_components_s_zz__3ad97906d571 \
+    (&afw_components_self_v_zz__3ad97906d571.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3ad97906d571 */
+#define afw_components_self_s_zz__3ad97906d571 \
+    (afw_components_self_v_zz__3ad97906d571.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__3ad97906d571 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__3ad97906d571;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__3ad97906d571 */
+#define afw_components_z_zz__3ad97906d571 \
+    (afw_components_self_v_zz__3ad97906d571.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__3ad97906d571 */
+#define afw_components_v_zz__3ad97906d571 \
+    (&afw_components_self_v_zz__3ad97906d571.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__3b52a49f2044 \
+    "Sets or returns all the outline properties in one declaration"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3b52a49f2044 */
+#define afw_components_s_zz__3b52a49f2044 \
+    (&afw_components_self_v_zz__3b52a49f2044.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3b52a49f2044 */
+#define afw_components_self_s_zz__3b52a49f2044 \
+    (afw_components_self_v_zz__3b52a49f2044.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__3b52a49f2044 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__3b52a49f2044;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__3b52a49f2044 */
+#define afw_components_z_zz__3b52a49f2044 \
+    (afw_components_self_v_zz__3b52a49f2044.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__3b52a49f2044 */
+#define afw_components_v_zz__3b52a49f2044 \
+    (&afw_components_self_v_zz__3b52a49f2044.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__3bf7dabb0a8a \
     "Any property name that matches this name will have a Preferred Component applied to its layout."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2475 */
-#define afw_components_s_zz__2475 \
-    (&afw_components_self_v_zz__2475.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3bf7dabb0a8a */
+#define afw_components_s_zz__3bf7dabb0a8a \
+    (&afw_components_self_v_zz__3bf7dabb0a8a.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2475 */
-#define afw_components_self_s_zz__2475 \
-    (afw_components_self_v_zz__2475.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3bf7dabb0a8a */
+#define afw_components_self_s_zz__3bf7dabb0a8a \
+    (afw_components_self_v_zz__3bf7dabb0a8a.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2475 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__3bf7dabb0a8a */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2475;
+    afw_components_self_v_zz__3bf7dabb0a8a;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2475 */
-#define afw_components_z_zz__2475 \
-    (afw_components_self_v_zz__2475.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__3bf7dabb0a8a */
+#define afw_components_z_zz__3bf7dabb0a8a \
+    (afw_components_self_v_zz__3bf7dabb0a8a.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2475 */
-#define afw_components_v_zz__2475 \
-    (&afw_components_self_v_zz__2475.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__3bf7dabb0a8a */
+#define afw_components_v_zz__3bf7dabb0a8a \
+    (&afw_components_self_v_zz__3bf7dabb0a8a.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2476 \
+#define AFW_COMPONENTS_Q_zz__3d2c43332fa4 \
+    "The breakpoint definition on extra extra extra large resolution screens."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3d2c43332fa4 */
+#define afw_components_s_zz__3d2c43332fa4 \
+    (&afw_components_self_v_zz__3d2c43332fa4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3d2c43332fa4 */
+#define afw_components_self_s_zz__3d2c43332fa4 \
+    (afw_components_self_v_zz__3d2c43332fa4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__3d2c43332fa4 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__3d2c43332fa4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__3d2c43332fa4 */
+#define afw_components_z_zz__3d2c43332fa4 \
+    (afw_components_self_v_zz__3d2c43332fa4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__3d2c43332fa4 */
+#define afw_components_v_zz__3d2c43332fa4 \
+    (&afw_components_self_v_zz__3d2c43332fa4.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__3d9eac4481e4 \
+    "Selects a normal, condensed, or expanded face from a font family"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3d9eac4481e4 */
+#define afw_components_s_zz__3d9eac4481e4 \
+    (&afw_components_self_v_zz__3d9eac4481e4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3d9eac4481e4 */
+#define afw_components_self_s_zz__3d9eac4481e4 \
+    (afw_components_self_v_zz__3d9eac4481e4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__3d9eac4481e4 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__3d9eac4481e4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__3d9eac4481e4 */
+#define afw_components_z_zz__3d9eac4481e4 \
+    (afw_components_self_v_zz__3d9eac4481e4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__3d9eac4481e4 */
+#define afw_components_v_zz__3d9eac4481e4 \
+    (&afw_components_self_v_zz__3d9eac4481e4.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__3dbd4b04a2fb \
+    "Determines when headers should be applied to Object Forms and their embedded objects."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3dbd4b04a2fb */
+#define afw_components_s_zz__3dbd4b04a2fb \
+    (&afw_components_self_v_zz__3dbd4b04a2fb.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3dbd4b04a2fb */
+#define afw_components_self_s_zz__3dbd4b04a2fb \
+    (afw_components_self_v_zz__3dbd4b04a2fb.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__3dbd4b04a2fb */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__3dbd4b04a2fb;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__3dbd4b04a2fb */
+#define afw_components_z_zz__3dbd4b04a2fb \
+    (afw_components_self_v_zz__3dbd4b04a2fb.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__3dbd4b04a2fb */
+#define afw_components_v_zz__3dbd4b04a2fb \
+    (&afw_components_self_v_zz__3dbd4b04a2fb.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__3e873abe0b1d \
     "The required properties should be sorted before optional properties."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2476 */
-#define afw_components_s_zz__2476 \
-    (&afw_components_self_v_zz__2476.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3e873abe0b1d */
+#define afw_components_s_zz__3e873abe0b1d \
+    (&afw_components_self_v_zz__3e873abe0b1d.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2476 */
-#define afw_components_self_s_zz__2476 \
-    (afw_components_self_v_zz__2476.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3e873abe0b1d */
+#define afw_components_self_s_zz__3e873abe0b1d \
+    (afw_components_self_v_zz__3e873abe0b1d.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2476 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__3e873abe0b1d */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2476;
+    afw_components_self_v_zz__3e873abe0b1d;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2476 */
-#define afw_components_z_zz__2476 \
-    (afw_components_self_v_zz__2476.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__3e873abe0b1d */
+#define afw_components_z_zz__3e873abe0b1d \
+    (afw_components_self_v_zz__3e873abe0b1d.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2476 */
-#define afw_components_v_zz__2476 \
-    (&afw_components_self_v_zz__2476.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__3e873abe0b1d */
+#define afw_components_v_zz__3e873abe0b1d \
+    (&afw_components_self_v_zz__3e873abe0b1d.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2477 \
+#define AFW_COMPONENTS_Q_zz__3ea2e0407553 \
     "Components that contain other layout components for a particular arrangement."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2477 */
-#define afw_components_s_zz__2477 \
-    (&afw_components_self_v_zz__2477.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3ea2e0407553 */
+#define afw_components_s_zz__3ea2e0407553 \
+    (&afw_components_self_v_zz__3ea2e0407553.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2477 */
-#define afw_components_self_s_zz__2477 \
-    (afw_components_self_v_zz__2477.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__3ea2e0407553 */
+#define afw_components_self_s_zz__3ea2e0407553 \
+    (afw_components_self_v_zz__3ea2e0407553.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2477 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__3ea2e0407553 */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2477;
+    afw_components_self_v_zz__3ea2e0407553;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2477 */
-#define afw_components_z_zz__2477 \
-    (afw_components_self_v_zz__2477.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__3ea2e0407553 */
+#define afw_components_z_zz__3ea2e0407553 \
+    (afw_components_self_v_zz__3ea2e0407553.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2477 */
-#define afw_components_v_zz__2477 \
-    (&afw_components_self_v_zz__2477.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__3ea2e0407553 */
+#define afw_components_v_zz__3ea2e0407553 \
+    (&afw_components_self_v_zz__3ea2e0407553.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2478 \
+#define AFW_COMPONENTS_Q_zz__40298ffffbd6 \
+    "A shorthand property for setting or returning the four transition properties"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__40298ffffbd6 */
+#define afw_components_s_zz__40298ffffbd6 \
+    (&afw_components_self_v_zz__40298ffffbd6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__40298ffffbd6 */
+#define afw_components_self_s_zz__40298ffffbd6 \
+    (afw_components_self_v_zz__40298ffffbd6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__40298ffffbd6 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__40298ffffbd6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__40298ffffbd6 */
+#define afw_components_z_zz__40298ffffbd6 \
+    (afw_components_self_v_zz__40298ffffbd6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__40298ffffbd6 */
+#define afw_components_v_zz__40298ffffbd6 \
+    (&afw_components_self_v_zz__40298ffffbd6.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__40cda293888c \
+    "Sets or returns the shape of the border of the bottom-right corner"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__40cda293888c */
+#define afw_components_s_zz__40cda293888c \
+    (&afw_components_self_v_zz__40cda293888c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__40cda293888c */
+#define afw_components_self_s_zz__40cda293888c \
+    (afw_components_self_v_zz__40cda293888c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__40cda293888c */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__40cda293888c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__40cda293888c */
+#define afw_components_z_zz__40cda293888c \
+    (afw_components_self_v_zz__40cda293888c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__40cda293888c */
+#define afw_components_v_zz__40cda293888c \
+    (&afw_components_self_v_zz__40cda293888c.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__410019c1313c \
+    "Specifies what to do with the top/bottom edges of the content, if it overflows the element's content area"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__410019c1313c */
+#define afw_components_s_zz__410019c1313c \
+    (&afw_components_self_v_zz__410019c1313c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__410019c1313c */
+#define afw_components_self_s_zz__410019c1313c \
+    (afw_components_self_v_zz__410019c1313c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__410019c1313c */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__410019c1313c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__410019c1313c */
+#define afw_components_z_zz__410019c1313c \
+    (afw_components_self_v_zz__410019c1313c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__410019c1313c */
+#define afw_components_v_zz__410019c1313c \
+    (&afw_components_self_v_zz__410019c1313c.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__418939066580 \
+    "This component is used for numeric values, and allows the user to slide a controller to increase or decrease its value without having to enter data manually."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__418939066580 */
+#define afw_components_s_zz__418939066580 \
+    (&afw_components_self_v_zz__418939066580.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__418939066580 */
+#define afw_components_self_s_zz__418939066580 \
+    (afw_components_self_v_zz__418939066580.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__418939066580 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__418939066580;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__418939066580 */
+#define afw_components_z_zz__418939066580 \
+    (afw_components_self_v_zz__418939066580.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__418939066580 */
+#define afw_components_v_zz__418939066580 \
+    (&afw_components_self_v_zz__418939066580.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__43cd24fa7816 \
+    "This component provides a very quick way for a label to become 'editable' simply by clicking on the text label. After clicking on the label, the component changes from a static label to an editable TextField component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__43cd24fa7816 */
+#define afw_components_s_zz__43cd24fa7816 \
+    (&afw_components_self_v_zz__43cd24fa7816.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__43cd24fa7816 */
+#define afw_components_self_s_zz__43cd24fa7816 \
+    (afw_components_self_v_zz__43cd24fa7816.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__43cd24fa7816 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__43cd24fa7816;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__43cd24fa7816 */
+#define afw_components_z_zz__43cd24fa7816 \
+    (afw_components_self_v_zz__43cd24fa7816.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__43cd24fa7816 */
+#define afw_components_v_zz__43cd24fa7816 \
+    (&afw_components_self_v_zz__43cd24fa7816.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__441d882a57b2 \
+    "Used internally, to indicate that the component is being rendered in 'design mode', in case it needs to behave differently."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__441d882a57b2 */
+#define afw_components_s_zz__441d882a57b2 \
+    (&afw_components_self_v_zz__441d882a57b2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__441d882a57b2 */
+#define afw_components_self_s_zz__441d882a57b2 \
+    (afw_components_self_v_zz__441d882a57b2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__441d882a57b2 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__441d882a57b2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__441d882a57b2 */
+#define afw_components_z_zz__441d882a57b2 \
+    (afw_components_self_v_zz__441d882a57b2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__441d882a57b2 */
+#define afw_components_v_zz__441d882a57b2 \
+    (&afw_components_self_v_zz__441d882a57b2.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__44a636db114f \
+    "This content will only be displayed on large displays or smaller."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__44a636db114f */
+#define afw_components_s_zz__44a636db114f \
+    (&afw_components_self_v_zz__44a636db114f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__44a636db114f */
+#define afw_components_self_s_zz__44a636db114f \
+    (afw_components_self_v_zz__44a636db114f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__44a636db114f */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__44a636db114f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__44a636db114f */
+#define afw_components_z_zz__44a636db114f \
+    (afw_components_self_v_zz__44a636db114f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__44a636db114f */
+#define afw_components_v_zz__44a636db114f \
+    (&afw_components_self_v_zz__44a636db114f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__45c1828eec67 \
+    "This component understands date values and allows the user to select a date from a calendar, or enter it in the appropriate format."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__45c1828eec67 */
+#define afw_components_s_zz__45c1828eec67 \
+    (&afw_components_self_v_zz__45c1828eec67.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__45c1828eec67 */
+#define afw_components_self_s_zz__45c1828eec67 \
+    (afw_components_self_v_zz__45c1828eec67.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__45c1828eec67 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__45c1828eec67;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__45c1828eec67 */
+#define afw_components_z_zz__45c1828eec67 \
+    (afw_components_self_v_zz__45c1828eec67.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__45c1828eec67 */
+#define afw_components_v_zz__45c1828eec67 \
+    (&afw_components_self_v_zz__45c1828eec67.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__45cd643adf18 \
+    "Sets or returns where to navigate when using the arrow-down navigation key"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__45cd643adf18 */
+#define afw_components_s_zz__45cd643adf18 \
+    (&afw_components_self_v_zz__45cd643adf18.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__45cd643adf18 */
+#define afw_components_self_s_zz__45cd643adf18 \
+    (afw_components_self_v_zz__45cd643adf18.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__45cd643adf18 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__45cd643adf18;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__45cd643adf18 */
+#define afw_components_z_zz__45cd643adf18 \
+    (afw_components_self_v_zz__45cd643adf18.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__45cd643adf18 */
+#define afw_components_v_zz__45cd643adf18 \
+    (&afw_components_self_v_zz__45cd643adf18.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__4853e40eaaed \
+    "Defines the screen size breakpoints for this column definition."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__4853e40eaaed */
+#define afw_components_s_zz__4853e40eaaed \
+    (&afw_components_self_v_zz__4853e40eaaed.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__4853e40eaaed */
+#define afw_components_self_s_zz__4853e40eaaed \
+    (afw_components_self_v_zz__4853e40eaaed.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__4853e40eaaed */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__4853e40eaaed;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__4853e40eaaed */
+#define afw_components_z_zz__4853e40eaaed \
+    (afw_components_self_v_zz__4853e40eaaed.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__4853e40eaaed */
+#define afw_components_v_zz__4853e40eaaed \
+    (&afw_components_self_v_zz__4853e40eaaed.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__4900a482680a \
     "Components that allow for users to pick or select data from a source."
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2478 */
-#define afw_components_s_zz__2478 \
-    (&afw_components_self_v_zz__2478.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__4900a482680a */
+#define afw_components_s_zz__4900a482680a \
+    (&afw_components_self_v_zz__4900a482680a.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2478 */
-#define afw_components_self_s_zz__2478 \
-    (afw_components_self_v_zz__2478.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__4900a482680a */
+#define afw_components_self_s_zz__4900a482680a \
+    (afw_components_self_v_zz__4900a482680a.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2478 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__4900a482680a */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2478;
+    afw_components_self_v_zz__4900a482680a;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2478 */
-#define afw_components_z_zz__2478 \
-    (afw_components_self_v_zz__2478.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__4900a482680a */
+#define afw_components_z_zz__4900a482680a \
+    (afw_components_self_v_zz__4900a482680a.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2478 */
-#define afw_components_v_zz__2478 \
-    (&afw_components_self_v_zz__2478.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__4900a482680a */
+#define afw_components_v_zz__4900a482680a \
+    (&afw_components_self_v_zz__4900a482680a.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2479 \
-    "Components that provide notification, feedback or contextual information."
+#define AFW_COMPONENTS_Q_zz__4912f227a091 \
+    "Sets or returns the style of an element's border (can have up to four values)"
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2479 */
-#define afw_components_s_zz__2479 \
-    (&afw_components_self_v_zz__2479.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__4912f227a091 */
+#define afw_components_s_zz__4912f227a091 \
+    (&afw_components_self_v_zz__4912f227a091.internal)
 
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2479 */
-#define afw_components_self_s_zz__2479 \
-    (afw_components_self_v_zz__2479.internal)
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__4912f227a091 */
+#define afw_components_self_s_zz__4912f227a091 \
+    (afw_components_self_v_zz__4912f227a091.internal)
 
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2479 */
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__4912f227a091 */
 extern const afw_value_string_t \
-    afw_components_self_v_zz__2479;
+    afw_components_self_v_zz__4912f227a091;
 
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2479 */
-#define afw_components_z_zz__2479 \
-    (afw_components_self_v_zz__2479.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__4912f227a091 */
+#define afw_components_z_zz__4912f227a091 \
+    (afw_components_self_v_zz__4912f227a091.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2479 */
-#define afw_components_v_zz__2479 \
-    (&afw_components_self_v_zz__2479.pub)
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__4912f227a091 */
+#define afw_components_v_zz__4912f227a091 \
+    (&afw_components_self_v_zz__4912f227a091.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__4ab9ca04016c \
+    "Allows you to define certain elements to fit an area in a certain way"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__4ab9ca04016c */
+#define afw_components_s_zz__4ab9ca04016c \
+    (&afw_components_self_v_zz__4ab9ca04016c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__4ab9ca04016c */
+#define afw_components_self_s_zz__4ab9ca04016c \
+    (afw_components_self_v_zz__4ab9ca04016c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__4ab9ca04016c */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__4ab9ca04016c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__4ab9ca04016c */
+#define afw_components_z_zz__4ab9ca04016c \
+    (afw_components_self_v_zz__4ab9ca04016c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__4ab9ca04016c */
+#define afw_components_v_zz__4ab9ca04016c \
+    (&afw_components_self_v_zz__4ab9ca04016c.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__4c84f632125b \
+    "In readonly mode, labels and values should be stacked horizontal (row) or vertical (column)."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__4c84f632125b */
+#define afw_components_s_zz__4c84f632125b \
+    (&afw_components_self_v_zz__4c84f632125b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__4c84f632125b */
+#define afw_components_self_s_zz__4c84f632125b \
+    (afw_components_self_v_zz__4c84f632125b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__4c84f632125b */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__4c84f632125b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__4c84f632125b */
+#define afw_components_z_zz__4c84f632125b \
+    (afw_components_self_v_zz__4c84f632125b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__4c84f632125b */
+#define afw_components_v_zz__4c84f632125b \
+    (&afw_components_self_v_zz__4c84f632125b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__4e90621fdaf6 \
+    "Sets or returns the shape of the border of the top-left corner"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__4e90621fdaf6 */
+#define afw_components_s_zz__4e90621fdaf6 \
+    (&afw_components_self_v_zz__4e90621fdaf6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__4e90621fdaf6 */
+#define afw_components_self_s_zz__4e90621fdaf6 \
+    (afw_components_self_v_zz__4e90621fdaf6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__4e90621fdaf6 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__4e90621fdaf6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__4e90621fdaf6 */
+#define afw_components_z_zz__4e90621fdaf6 \
+    (afw_components_self_v_zz__4e90621fdaf6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__4e90621fdaf6 */
+#define afw_components_v_zz__4e90621fdaf6 \
+    (&afw_components_self_v_zz__4e90621fdaf6.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__50553b8fc828 \
+    "This component understands both dates and time formats, which allows the user to select a date and time from a calendar and clock for higher date precision."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__50553b8fc828 */
+#define afw_components_s_zz__50553b8fc828 \
+    (&afw_components_self_v_zz__50553b8fc828.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__50553b8fc828 */
+#define afw_components_self_s_zz__50553b8fc828 \
+    (afw_components_self_v_zz__50553b8fc828.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__50553b8fc828 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__50553b8fc828;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__50553b8fc828 */
+#define afw_components_z_zz__50553b8fc828 \
+    (afw_components_self_v_zz__50553b8fc828.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__50553b8fc828 */
+#define afw_components_v_zz__50553b8fc828 \
+    (&afw_components_self_v_zz__50553b8fc828.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__508d98c572bd \
+    "Sets or returns the color of an element's border (can have up to four values)"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__508d98c572bd */
+#define afw_components_s_zz__508d98c572bd \
+    (&afw_components_self_v_zz__508d98c572bd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__508d98c572bd */
+#define afw_components_self_s_zz__508d98c572bd \
+    (afw_components_self_v_zz__508d98c572bd.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__508d98c572bd */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__508d98c572bd;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__508d98c572bd */
+#define afw_components_z_zz__508d98c572bd \
+    (afw_components_self_v_zz__508d98c572bd.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__508d98c572bd */
+#define afw_components_v_zz__508d98c572bd \
+    (&afw_components_self_v_zz__508d98c572bd.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__51722a742de7 \
+    "A component that renders an label, which can be edited when clicked."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__51722a742de7 */
+#define afw_components_s_zz__51722a742de7 \
+    (&afw_components_self_v_zz__51722a742de7.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__51722a742de7 */
+#define afw_components_self_s_zz__51722a742de7 \
+    (afw_components_self_v_zz__51722a742de7.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__51722a742de7 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__51722a742de7;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__51722a742de7 */
+#define afw_components_z_zz__51722a742de7 \
+    (afw_components_self_v_zz__51722a742de7.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__51722a742de7 */
+#define afw_components_v_zz__51722a742de7 \
+    (&afw_components_self_v_zz__51722a742de7.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__52ed43a246ba \
+    "This component encapsulates a wide range of Button features, including labels, icons and colors. The Button component may even allow for a dropdown of selected actions to perform when clicked."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__52ed43a246ba */
+#define afw_components_s_zz__52ed43a246ba \
+    (&afw_components_self_v_zz__52ed43a246ba.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__52ed43a246ba */
+#define afw_components_self_s_zz__52ed43a246ba \
+    (afw_components_self_v_zz__52ed43a246ba.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__52ed43a246ba */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__52ed43a246ba;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__52ed43a246ba */
+#define afw_components_z_zz__52ed43a246ba \
+    (afw_components_self_v_zz__52ed43a246ba.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__52ed43a246ba */
+#define afw_components_v_zz__52ed43a246ba \
+    (&afw_components_self_v_zz__52ed43a246ba.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__54c14138c740 \
+    "This defines the ability for a flex item to shrink if necessary."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__54c14138c740 */
+#define afw_components_s_zz__54c14138c740 \
+    (&afw_components_self_v_zz__54c14138c740.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__54c14138c740 */
+#define afw_components_self_s_zz__54c14138c740 \
+    (afw_components_self_v_zz__54c14138c740.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__54c14138c740 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__54c14138c740;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__54c14138c740 */
+#define afw_components_z_zz__54c14138c740 \
+    (afw_components_self_v_zz__54c14138c740.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__54c14138c740 */
+#define afw_components_v_zz__54c14138c740 \
+    (&afw_components_self_v_zz__54c14138c740.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__54f8a4389513 \
+    "A component that renders a text field with a label and description."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__54f8a4389513 */
+#define afw_components_s_zz__54f8a4389513 \
+    (&afw_components_self_v_zz__54f8a4389513.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__54f8a4389513 */
+#define afw_components_self_s_zz__54f8a4389513 \
+    (afw_components_self_v_zz__54f8a4389513.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__54f8a4389513 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__54f8a4389513;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__54f8a4389513 */
+#define afw_components_z_zz__54f8a4389513 \
+    (afw_components_self_v_zz__54f8a4389513.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__54f8a4389513 */
+#define afw_components_v_zz__54f8a4389513 \
+    (&afw_components_self_v_zz__54f8a4389513.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__55154a689904 \
+    "A component that calls out with an editable multiline text area."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__55154a689904 */
+#define afw_components_s_zz__55154a689904 \
+    (&afw_components_self_v_zz__55154a689904.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__55154a689904 */
+#define afw_components_self_s_zz__55154a689904 \
+    (afw_components_self_v_zz__55154a689904.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__55154a689904 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__55154a689904;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__55154a689904 */
+#define afw_components_z_zz__55154a689904 \
+    (afw_components_self_v_zz__55154a689904.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__55154a689904 */
+#define afw_components_v_zz__55154a689904 \
+    (&afw_components_self_v_zz__55154a689904.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__5573cfd1a654 \
+    "This content will only be displayed on small displays or smaller."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5573cfd1a654 */
+#define afw_components_s_zz__5573cfd1a654 \
+    (&afw_components_self_v_zz__5573cfd1a654.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5573cfd1a654 */
+#define afw_components_self_s_zz__5573cfd1a654 \
+    (afw_components_self_v_zz__5573cfd1a654.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__5573cfd1a654 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__5573cfd1a654;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__5573cfd1a654 */
+#define afw_components_z_zz__5573cfd1a654 \
+    (afw_components_self_v_zz__5573cfd1a654.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__5573cfd1a654 */
+#define afw_components_v_zz__5573cfd1a654 \
+    (&afw_components_self_v_zz__5573cfd1a654.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__55c767730702 \
+    "This utility component displays a spinning circle to indicate to the user to wait for processing to complete."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__55c767730702 */
+#define afw_components_s_zz__55c767730702 \
+    (&afw_components_self_v_zz__55c767730702.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__55c767730702 */
+#define afw_components_self_s_zz__55c767730702 \
+    (afw_components_self_v_zz__55c767730702.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__55c767730702 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__55c767730702;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__55c767730702 */
+#define afw_components_z_zz__55c767730702 \
+    (afw_components_self_v_zz__55c767730702.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__55c767730702 */
+#define afw_components_v_zz__55c767730702 \
+    (&afw_components_self_v_zz__55c767730702.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__56025cec53ed \
+    "Specifies the component contained within this Collapsible Header."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__56025cec53ed */
+#define afw_components_s_zz__56025cec53ed \
+    (&afw_components_self_v_zz__56025cec53ed.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__56025cec53ed */
+#define afw_components_self_s_zz__56025cec53ed \
+    (afw_components_self_v_zz__56025cec53ed.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__56025cec53ed */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__56025cec53ed;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__56025cec53ed */
+#define afw_components_z_zz__56025cec53ed \
+    (afw_components_self_v_zz__56025cec53ed.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__56025cec53ed */
+#define afw_components_v_zz__56025cec53ed \
+    (&afw_components_self_v_zz__56025cec53ed.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__5675333140f5 \
+    "This component, which contains other content, is anchored to one of the edges of the main window. It's often animated to slide into view when an action occurs, but can be optionally docked, or permanent."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5675333140f5 */
+#define afw_components_s_zz__5675333140f5 \
+    (&afw_components_self_v_zz__5675333140f5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5675333140f5 */
+#define afw_components_self_s_zz__5675333140f5 \
+    (afw_components_self_v_zz__5675333140f5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__5675333140f5 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__5675333140f5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__5675333140f5 */
+#define afw_components_z_zz__5675333140f5 \
+    (afw_components_self_v_zz__5675333140f5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__5675333140f5 */
+#define afw_components_v_zz__5675333140f5 \
+    (&afw_components_self_v_zz__5675333140f5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__56765d3d58cc \
+    "Specifies the position of the callout, relative to the target component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__56765d3d58cc */
+#define afw_components_s_zz__56765d3d58cc \
+    (&afw_components_self_v_zz__56765d3d58cc.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__56765d3d58cc */
+#define afw_components_self_s_zz__56765d3d58cc \
+    (afw_components_self_v_zz__56765d3d58cc.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__56765d3d58cc */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__56765d3d58cc;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__56765d3d58cc */
+#define afw_components_z_zz__56765d3d58cc \
+    (afw_components_self_v_zz__56765d3d58cc.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__56765d3d58cc */
+#define afw_components_v_zz__56765d3d58cc \
+    (&afw_components_self_v_zz__56765d3d58cc.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__5742ceaf63c6 \
+    "Specifies whether the TextField for the EditableLabel needs to be multilined."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5742ceaf63c6 */
+#define afw_components_s_zz__5742ceaf63c6 \
+    (&afw_components_self_v_zz__5742ceaf63c6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5742ceaf63c6 */
+#define afw_components_self_s_zz__5742ceaf63c6 \
+    (afw_components_self_v_zz__5742ceaf63c6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__5742ceaf63c6 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__5742ceaf63c6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__5742ceaf63c6 */
+#define afw_components_z_zz__5742ceaf63c6 \
+    (afw_components_self_v_zz__5742ceaf63c6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__5742ceaf63c6 */
+#define afw_components_v_zz__5742ceaf63c6 \
+    (&afw_components_self_v_zz__5742ceaf63c6.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__592999103af3 \
+    "Any contents that needs to be rendered inside the Dialog's footer area."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__592999103af3 */
+#define afw_components_s_zz__592999103af3 \
+    (&afw_components_self_v_zz__592999103af3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__592999103af3 */
+#define afw_components_self_s_zz__592999103af3 \
+    (afw_components_self_v_zz__592999103af3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__592999103af3 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__592999103af3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__592999103af3 */
+#define afw_components_z_zz__592999103af3 \
+    (afw_components_self_v_zz__592999103af3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__592999103af3 */
+#define afw_components_v_zz__592999103af3 \
+    (&afw_components_self_v_zz__592999103af3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__5943ee68ae10 \
+    "A component that hides content under screen breakpoint conditions."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5943ee68ae10 */
+#define afw_components_s_zz__5943ee68ae10 \
+    (&afw_components_self_v_zz__5943ee68ae10.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5943ee68ae10 */
+#define afw_components_self_s_zz__5943ee68ae10 \
+    (afw_components_self_v_zz__5943ee68ae10.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__5943ee68ae10 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__5943ee68ae10;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__5943ee68ae10 */
+#define afw_components_z_zz__5943ee68ae10 \
+    (afw_components_self_v_zz__5943ee68ae10.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__5943ee68ae10 */
+#define afw_components_v_zz__5943ee68ae10 \
+    (&afw_components_self_v_zz__5943ee68ae10.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__59d4c35d42fd \
+    "Sets or returns how much the item will grow relative to the rest"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__59d4c35d42fd */
+#define afw_components_s_zz__59d4c35d42fd \
+    (&afw_components_self_v_zz__59d4c35d42fd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__59d4c35d42fd */
+#define afw_components_self_s_zz__59d4c35d42fd \
+    (afw_components_self_v_zz__59d4c35d42fd.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__59d4c35d42fd */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__59d4c35d42fd;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__59d4c35d42fd */
+#define afw_components_z_zz__59d4c35d42fd \
+    (afw_components_self_v_zz__59d4c35d42fd.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__59d4c35d42fd */
+#define afw_components_v_zz__59d4c35d42fd \
+    (&afw_components_self_v_zz__59d4c35d42fd.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__5a78f4296c8f \
+    "The Skeleton is a feedback utility component, similar to the Spinner, but it takes on a shape that gives the user the perspective that data is nearly ready and the component is attempting to render. It's a component placeholder, which often animates or shimmers."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5a78f4296c8f */
+#define afw_components_s_zz__5a78f4296c8f \
+    (&afw_components_self_v_zz__5a78f4296c8f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5a78f4296c8f */
+#define afw_components_self_s_zz__5a78f4296c8f \
+    (afw_components_self_v_zz__5a78f4296c8f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__5a78f4296c8f */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__5a78f4296c8f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__5a78f4296c8f */
+#define afw_components_z_zz__5a78f4296c8f \
+    (afw_components_self_v_zz__5a78f4296c8f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__5a78f4296c8f */
+#define afw_components_v_zz__5a78f4296c8f \
+    (&afw_components_self_v_zz__5a78f4296c8f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__5bcb76a297bb \
+    "The layout columns that are contained by this ResponsiveRow component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5bcb76a297bb */
+#define afw_components_s_zz__5bcb76a297bb \
+    (&afw_components_self_v_zz__5bcb76a297bb.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5bcb76a297bb */
+#define afw_components_self_s_zz__5bcb76a297bb \
+    (afw_components_self_v_zz__5bcb76a297bb.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__5bcb76a297bb */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__5bcb76a297bb;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__5bcb76a297bb */
+#define afw_components_z_zz__5bcb76a297bb \
+    (afw_components_self_v_zz__5bcb76a297bb.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__5bcb76a297bb */
+#define afw_components_v_zz__5bcb76a297bb \
+    (&afw_components_self_v_zz__5bcb76a297bb.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__5cc0ab1dd0d6 \
+    "This is a utility component that gives a layout the ability to hide content under screen size conditions. This is necessary for responsive layouts to provide both complex or simply designs that are accessible and usable from a variety of screen devices."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5cc0ab1dd0d6 */
+#define afw_components_s_zz__5cc0ab1dd0d6 \
+    (&afw_components_self_v_zz__5cc0ab1dd0d6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5cc0ab1dd0d6 */
+#define afw_components_self_s_zz__5cc0ab1dd0d6 \
+    (afw_components_self_v_zz__5cc0ab1dd0d6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__5cc0ab1dd0d6 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__5cc0ab1dd0d6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__5cc0ab1dd0d6 */
+#define afw_components_z_zz__5cc0ab1dd0d6 \
+    (afw_components_self_v_zz__5cc0ab1dd0d6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__5cc0ab1dd0d6 */
+#define afw_components_v_zz__5cc0ab1dd0d6 \
+    (&afw_components_self_v_zz__5cc0ab1dd0d6.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__5ce8b8b00d43 \
+    "The value of the TimeDuration component expressed as a yearMonth."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5ce8b8b00d43 */
+#define afw_components_s_zz__5ce8b8b00d43 \
+    (&afw_components_self_v_zz__5ce8b8b00d43.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5ce8b8b00d43 */
+#define afw_components_self_s_zz__5ce8b8b00d43 \
+    (afw_components_self_v_zz__5ce8b8b00d43.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__5ce8b8b00d43 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__5ce8b8b00d43;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__5ce8b8b00d43 */
+#define afw_components_z_zz__5ce8b8b00d43 \
+    (afw_components_self_v_zz__5ce8b8b00d43.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__5ce8b8b00d43 */
+#define afw_components_v_zz__5ce8b8b00d43 \
+    (&afw_components_self_v_zz__5ce8b8b00d43.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__5ef1bb5aa954 \
+    "Specifies the alignment of the replaced element inside its box"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5ef1bb5aa954 */
+#define afw_components_s_zz__5ef1bb5aa954 \
+    (&afw_components_self_v_zz__5ef1bb5aa954.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5ef1bb5aa954 */
+#define afw_components_self_s_zz__5ef1bb5aa954 \
+    (afw_components_self_v_zz__5ef1bb5aa954.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__5ef1bb5aa954 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__5ef1bb5aa954;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__5ef1bb5aa954 */
+#define afw_components_z_zz__5ef1bb5aa954 \
+    (afw_components_self_v_zz__5ef1bb5aa954.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__5ef1bb5aa954 */
+#define afw_components_v_zz__5ef1bb5aa954 \
+    (&afw_components_self_v_zz__5ef1bb5aa954.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__5ef3009dba6b \
+    "Additional properties to be passed to each preferred component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5ef3009dba6b */
+#define afw_components_s_zz__5ef3009dba6b \
+    (&afw_components_self_v_zz__5ef3009dba6b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5ef3009dba6b */
+#define afw_components_self_s_zz__5ef3009dba6b \
+    (afw_components_self_v_zz__5ef3009dba6b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__5ef3009dba6b */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__5ef3009dba6b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__5ef3009dba6b */
+#define afw_components_z_zz__5ef3009dba6b \
+    (afw_components_self_v_zz__5ef3009dba6b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__5ef3009dba6b */
+#define afw_components_v_zz__5ef3009dba6b \
+    (&afw_components_self_v_zz__5ef3009dba6b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__5f6ed18e11e3 \
+    "The type of message for the Snackbar component (error, warning, info, success)."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5f6ed18e11e3 */
+#define afw_components_s_zz__5f6ed18e11e3 \
+    (&afw_components_self_v_zz__5f6ed18e11e3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5f6ed18e11e3 */
+#define afw_components_self_s_zz__5f6ed18e11e3 \
+    (afw_components_self_v_zz__5f6ed18e11e3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__5f6ed18e11e3 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__5f6ed18e11e3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__5f6ed18e11e3 */
+#define afw_components_z_zz__5f6ed18e11e3 \
+    (afw_components_self_v_zz__5f6ed18e11e3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__5f6ed18e11e3 */
+#define afw_components_v_zz__5f6ed18e11e3 \
+    (&afw_components_self_v_zz__5f6ed18e11e3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__5f7cb23ee58e \
+    "A shorthand property for setting or returning columnWidth and columnCount"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5f7cb23ee58e */
+#define afw_components_s_zz__5f7cb23ee58e \
+    (&afw_components_self_v_zz__5f7cb23ee58e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__5f7cb23ee58e */
+#define afw_components_self_s_zz__5f7cb23ee58e \
+    (afw_components_self_v_zz__5f7cb23ee58e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__5f7cb23ee58e */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__5f7cb23ee58e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__5f7cb23ee58e */
+#define afw_components_z_zz__5f7cb23ee58e \
+    (afw_components_self_v_zz__5f7cb23ee58e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__5f7cb23ee58e */
+#define afw_components_v_zz__5f7cb23ee58e \
+    (&afw_components_self_v_zz__5f7cb23ee58e.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__617ddfead7e3 \
+    "Used with the :before and :after pseudo-elements, to insert generated content"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__617ddfead7e3 */
+#define afw_components_s_zz__617ddfead7e3 \
+    (&afw_components_self_v_zz__617ddfead7e3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__617ddfead7e3 */
+#define afw_components_self_s_zz__617ddfead7e3 \
+    (afw_components_self_v_zz__617ddfead7e3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__617ddfead7e3 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__617ddfead7e3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__617ddfead7e3 */
+#define afw_components_z_zz__617ddfead7e3 \
+    (afw_components_self_v_zz__617ddfead7e3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__617ddfead7e3 */
+#define afw_components_v_zz__617ddfead7e3 \
+    (&afw_components_self_v_zz__617ddfead7e3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__6319c8c2ce4c \
+    "This defines the alignment along the main axis. It helps distribute extra free space leftover when either all the flex items on a line are inflexible, or are flexible but have reached their maximum size. It also exerts some control over the alignment of items when they overflow the line."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6319c8c2ce4c */
+#define afw_components_s_zz__6319c8c2ce4c \
+    (&afw_components_self_v_zz__6319c8c2ce4c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6319c8c2ce4c */
+#define afw_components_self_s_zz__6319c8c2ce4c \
+    (afw_components_self_v_zz__6319c8c2ce4c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__6319c8c2ce4c */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__6319c8c2ce4c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__6319c8c2ce4c */
+#define afw_components_z_zz__6319c8c2ce4c \
+    (afw_components_self_v_zz__6319c8c2ce4c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__6319c8c2ce4c */
+#define afw_components_v_zz__6319c8c2ce4c \
+    (&afw_components_self_v_zz__6319c8c2ce4c.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__6435052add5d \
+    "This component helps to organize content into a Tree structure, where nodes can be selected, expanded, or collapsed to allow the user to navigate more complex nested data or component structures."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6435052add5d */
+#define afw_components_s_zz__6435052add5d \
+    (&afw_components_self_v_zz__6435052add5d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6435052add5d */
+#define afw_components_self_s_zz__6435052add5d \
+    (afw_components_self_v_zz__6435052add5d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__6435052add5d */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__6435052add5d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__6435052add5d */
+#define afw_components_z_zz__6435052add5d \
+    (afw_components_self_v_zz__6435052add5d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__6435052add5d */
+#define afw_components_v_zz__6435052add5d \
+    (&afw_components_self_v_zz__6435052add5d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__64fa94bbdd43 \
+    "This component allows a time to be chosen, typically from a clock or spin buttons."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__64fa94bbdd43 */
+#define afw_components_s_zz__64fa94bbdd43 \
+    (&afw_components_self_v_zz__64fa94bbdd43.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__64fa94bbdd43 */
+#define afw_components_self_s_zz__64fa94bbdd43 \
+    (afw_components_self_v_zz__64fa94bbdd43.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__64fa94bbdd43 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__64fa94bbdd43;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__64fa94bbdd43 */
+#define afw_components_z_zz__64fa94bbdd43 \
+    (afw_components_self_v_zz__64fa94bbdd43.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__64fa94bbdd43 */
+#define afw_components_v_zz__64fa94bbdd43 \
+    (&afw_components_self_v_zz__64fa94bbdd43.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__651387b7ab1a \
+    "Sets or returns whether the table border should be collapsed into a single border, or not"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__651387b7ab1a */
+#define afw_components_s_zz__651387b7ab1a \
+    (&afw_components_self_v_zz__651387b7ab1a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__651387b7ab1a */
+#define afw_components_self_s_zz__651387b7ab1a \
+    (afw_components_self_v_zz__651387b7ab1a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__651387b7ab1a */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__651387b7ab1a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__651387b7ab1a */
+#define afw_components_z_zz__651387b7ab1a \
+    (afw_components_self_v_zz__651387b7ab1a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__651387b7ab1a */
+#define afw_components_v_zz__651387b7ab1a \
+    (&afw_components_self_v_zz__651387b7ab1a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__659c54e59915 \
+    "Specifies an optional color for this Button (primary, secondary, error)."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__659c54e59915 */
+#define afw_components_s_zz__659c54e59915 \
+    (&afw_components_self_v_zz__659c54e59915.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__659c54e59915 */
+#define afw_components_self_s_zz__659c54e59915 \
+    (afw_components_self_v_zz__659c54e59915.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__659c54e59915 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__659c54e59915;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__659c54e59915 */
+#define afw_components_z_zz__659c54e59915 \
+    (afw_components_self_v_zz__659c54e59915.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__659c54e59915 */
+#define afw_components_v_zz__659c54e59915 \
+    (&afw_components_self_v_zz__659c54e59915.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__68995d2ab4f2 \
+    "The source value for the CodeEditor component should be read-only."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__68995d2ab4f2 */
+#define afw_components_s_zz__68995d2ab4f2 \
+    (&afw_components_self_v_zz__68995d2ab4f2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__68995d2ab4f2 */
+#define afw_components_self_s_zz__68995d2ab4f2 \
+    (afw_components_self_v_zz__68995d2ab4f2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__68995d2ab4f2 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__68995d2ab4f2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__68995d2ab4f2 */
+#define afw_components_z_zz__68995d2ab4f2 \
+    (afw_components_self_v_zz__68995d2ab4f2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__68995d2ab4f2 */
+#define afw_components_v_zz__68995d2ab4f2 \
+    (&afw_components_self_v_zz__68995d2ab4f2.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__6990c66ef3bb \
+    "The property descriptions should be displayed in editable mode."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6990c66ef3bb */
+#define afw_components_s_zz__6990c66ef3bb \
+    (&afw_components_self_v_zz__6990c66ef3bb.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6990c66ef3bb */
+#define afw_components_self_s_zz__6990c66ef3bb \
+    (afw_components_self_v_zz__6990c66ef3bb.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__6990c66ef3bb */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__6990c66ef3bb;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__6990c66ef3bb */
+#define afw_components_z_zz__6990c66ef3bb \
+    (afw_components_self_v_zz__6990c66ef3bb.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__6990c66ef3bb */
+#define afw_components_v_zz__6990c66ef3bb \
+    (&afw_components_self_v_zz__6990c66ef3bb.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__69a6b69aef03 \
+    "Sets or returns the number of times an animation should be played"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__69a6b69aef03 */
+#define afw_components_s_zz__69a6b69aef03 \
+    (&afw_components_self_v_zz__69a6b69aef03.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__69a6b69aef03 */
+#define afw_components_self_s_zz__69a6b69aef03 \
+    (afw_components_self_v_zz__69a6b69aef03.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__69a6b69aef03 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__69a6b69aef03;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__69a6b69aef03 */
+#define afw_components_z_zz__69a6b69aef03 \
+    (afw_components_self_v_zz__69a6b69aef03.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__69a6b69aef03 */
+#define afw_components_v_zz__69a6b69aef03 \
+    (&afw_components_self_v_zz__69a6b69aef03.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__69b067226b58 \
+    "Allows long, unbreakable words to be broken and wrap to the next line"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__69b067226b58 */
+#define afw_components_s_zz__69b067226b58 \
+    (&afw_components_self_v_zz__69b067226b58.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__69b067226b58 */
+#define afw_components_self_s_zz__69b067226b58 \
+    (afw_components_self_v_zz__69b067226b58.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__69b067226b58 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__69b067226b58;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__69b067226b58 */
+#define afw_components_z_zz__69b067226b58 \
+    (afw_components_self_v_zz__69b067226b58.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__69b067226b58 */
+#define afw_components_v_zz__69b067226b58 \
+    (&afw_components_self_v_zz__69b067226b58.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__6a249311e772 \
+    "Should a close button be rendered, to allow the user to dismiss the Dialog."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6a249311e772 */
+#define afw_components_s_zz__6a249311e772 \
+    (&afw_components_self_v_zz__6a249311e772.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6a249311e772 */
+#define afw_components_self_s_zz__6a249311e772 \
+    (afw_components_self_v_zz__6a249311e772.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__6a249311e772 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__6a249311e772;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__6a249311e772 */
+#define afw_components_z_zz__6a249311e772 \
+    (afw_components_self_v_zz__6a249311e772.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__6a249311e772 */
+#define afw_components_v_zz__6a249311e772 \
+    (&afw_components_self_v_zz__6a249311e772.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__6a476f3d67ac \
+    "Sets or returns how many seconds or milliseconds an animation takes to complete one cycle"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6a476f3d67ac */
+#define afw_components_s_zz__6a476f3d67ac \
+    (&afw_components_self_v_zz__6a476f3d67ac.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6a476f3d67ac */
+#define afw_components_self_s_zz__6a476f3d67ac \
+    (afw_components_self_v_zz__6a476f3d67ac.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__6a476f3d67ac */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__6a476f3d67ac;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__6a476f3d67ac */
+#define afw_components_z_zz__6a476f3d67ac \
+    (afw_components_self_v_zz__6a476f3d67ac.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__6a476f3d67ac */
+#define afw_components_v_zz__6a476f3d67ac \
+    (&afw_components_self_v_zz__6a476f3d67ac.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__6b7330e71675 \
+    "This component displays an image from a variety of sources and formats."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6b7330e71675 */
+#define afw_components_s_zz__6b7330e71675 \
+    (&afw_components_self_v_zz__6b7330e71675.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6b7330e71675 */
+#define afw_components_self_s_zz__6b7330e71675 \
+    (afw_components_self_v_zz__6b7330e71675.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__6b7330e71675 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__6b7330e71675;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__6b7330e71675 */
+#define afw_components_z_zz__6b7330e71675 \
+    (afw_components_self_v_zz__6b7330e71675.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__6b7330e71675 */
+#define afw_components_v_zz__6b7330e71675 \
+    (&afw_components_self_v_zz__6b7330e71675.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__6d09be4c3226 \
+    "Sets or returns all the borderRight properties in one declaration"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6d09be4c3226 */
+#define afw_components_s_zz__6d09be4c3226 \
+    (&afw_components_self_v_zz__6d09be4c3226.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6d09be4c3226 */
+#define afw_components_self_s_zz__6d09be4c3226 \
+    (afw_components_self_v_zz__6d09be4c3226.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__6d09be4c3226 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__6d09be4c3226;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__6d09be4c3226 */
+#define afw_components_z_zz__6d09be4c3226 \
+    (afw_components_self_v_zz__6d09be4c3226.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__6d09be4c3226 */
+#define afw_components_v_zz__6d09be4c3226 \
+    (&afw_components_self_v_zz__6d09be4c3226.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__6d742b150739 \
+    "The placeholder value for the text field when no value exists."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6d742b150739 */
+#define afw_components_s_zz__6d742b150739 \
+    (&afw_components_self_v_zz__6d742b150739.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6d742b150739 */
+#define afw_components_self_s_zz__6d742b150739 \
+    (afw_components_self_v_zz__6d742b150739.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__6d742b150739 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__6d742b150739;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__6d742b150739 */
+#define afw_components_z_zz__6d742b150739 \
+    (afw_components_self_v_zz__6d742b150739.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__6d742b150739 */
+#define afw_components_v_zz__6d742b150739 \
+    (&afw_components_self_v_zz__6d742b150739.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__6e7fc4508742 \
+    "An optional badge number to display next to the Tab text, indicating the number of items."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6e7fc4508742 */
+#define afw_components_s_zz__6e7fc4508742 \
+    (&afw_components_self_v_zz__6e7fc4508742.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6e7fc4508742 */
+#define afw_components_self_s_zz__6e7fc4508742 \
+    (afw_components_self_v_zz__6e7fc4508742.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__6e7fc4508742 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__6e7fc4508742;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__6e7fc4508742 */
+#define afw_components_z_zz__6e7fc4508742 \
+    (afw_components_self_v_zz__6e7fc4508742.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__6e7fc4508742 */
+#define afw_components_v_zz__6e7fc4508742 \
+    (&afw_components_self_v_zz__6e7fc4508742.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__6ececcaa8b1b \
+    "Sets or returns fontStyle, fontVariant, fontWeight, fontSize, lineHeight, and fontFamily in one declaration"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6ececcaa8b1b */
+#define afw_components_s_zz__6ececcaa8b1b \
+    (&afw_components_self_v_zz__6ececcaa8b1b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__6ececcaa8b1b */
+#define afw_components_self_s_zz__6ececcaa8b1b \
+    (afw_components_self_v_zz__6ececcaa8b1b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__6ececcaa8b1b */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__6ececcaa8b1b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__6ececcaa8b1b */
+#define afw_components_z_zz__6ececcaa8b1b \
+    (afw_components_self_v_zz__6ececcaa8b1b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__6ececcaa8b1b */
+#define afw_components_v_zz__6ececcaa8b1b \
+    (&afw_components_self_v_zz__6ececcaa8b1b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__7433ef0c8a38 \
+    "Adaptive Layout definition for the ChoiceGroupOption component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7433ef0c8a38 */
+#define afw_components_s_zz__7433ef0c8a38 \
+    (&afw_components_self_v_zz__7433ef0c8a38.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7433ef0c8a38 */
+#define afw_components_self_s_zz__7433ef0c8a38 \
+    (afw_components_self_v_zz__7433ef0c8a38.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__7433ef0c8a38 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__7433ef0c8a38;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__7433ef0c8a38 */
+#define afw_components_z_zz__7433ef0c8a38 \
+    (afw_components_self_v_zz__7433ef0c8a38.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__7433ef0c8a38 */
+#define afw_components_v_zz__7433ef0c8a38 \
+    (&afw_components_self_v_zz__7433ef0c8a38.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__7438bf5b0810 \
+    "The breakpoint conditions for which the contained component will be hidden (xs, sm, md, lg, xl)."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7438bf5b0810 */
+#define afw_components_s_zz__7438bf5b0810 \
+    (&afw_components_self_v_zz__7438bf5b0810.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7438bf5b0810 */
+#define afw_components_self_s_zz__7438bf5b0810 \
+    (afw_components_self_v_zz__7438bf5b0810.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__7438bf5b0810 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__7438bf5b0810;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__7438bf5b0810 */
+#define afw_components_z_zz__7438bf5b0810 \
+    (afw_components_self_v_zz__7438bf5b0810.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__7438bf5b0810 */
+#define afw_components_v_zz__7438bf5b0810 \
+    (&afw_components_self_v_zz__7438bf5b0810.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__752b65b47f0c \
+    "Specifies optional text to be added below the main text label."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__752b65b47f0c */
+#define afw_components_s_zz__752b65b47f0c \
+    (&afw_components_self_v_zz__752b65b47f0c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__752b65b47f0c */
+#define afw_components_self_s_zz__752b65b47f0c \
+    (afw_components_self_v_zz__752b65b47f0c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__752b65b47f0c */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__752b65b47f0c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__752b65b47f0c */
+#define afw_components_z_zz__752b65b47f0c \
+    (afw_components_self_v_zz__752b65b47f0c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__752b65b47f0c */
+#define afw_components_v_zz__752b65b47f0c \
+    (&afw_components_self_v_zz__752b65b47f0c.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__757373ebc3a5 \
+    "This component is simply a checkbox that allows the user to click to enable or disable its value."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__757373ebc3a5 */
+#define afw_components_s_zz__757373ebc3a5 \
+    (&afw_components_self_v_zz__757373ebc3a5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__757373ebc3a5 */
+#define afw_components_self_s_zz__757373ebc3a5 \
+    (afw_components_self_v_zz__757373ebc3a5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__757373ebc3a5 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__757373ebc3a5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__757373ebc3a5 */
+#define afw_components_z_zz__757373ebc3a5 \
+    (afw_components_self_v_zz__757373ebc3a5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__757373ebc3a5 */
+#define afw_components_v_zz__757373ebc3a5 \
+    (&afw_components_self_v_zz__757373ebc3a5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__7590a3a69a7f \
+    "A shorthand property for all the animation properties below, except the animationPlayState property"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7590a3a69a7f */
+#define afw_components_s_zz__7590a3a69a7f \
+    (&afw_components_self_v_zz__7590a3a69a7f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7590a3a69a7f */
+#define afw_components_self_s_zz__7590a3a69a7f \
+    (afw_components_self_v_zz__7590a3a69a7f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__7590a3a69a7f */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__7590a3a69a7f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__7590a3a69a7f */
+#define afw_components_z_zz__7590a3a69a7f \
+    (afw_components_self_v_zz__7590a3a69a7f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__7590a3a69a7f */
+#define afw_components_v_zz__7590a3a69a7f \
+    (&afw_components_self_v_zz__7590a3a69a7f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__7892fc2a5217 \
+    "This content will only be displayed on medium displays or smaller."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7892fc2a5217 */
+#define afw_components_s_zz__7892fc2a5217 \
+    (&afw_components_self_v_zz__7892fc2a5217.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7892fc2a5217 */
+#define afw_components_self_s_zz__7892fc2a5217 \
+    (afw_components_self_v_zz__7892fc2a5217.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__7892fc2a5217 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__7892fc2a5217;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__7892fc2a5217 */
+#define afw_components_z_zz__7892fc2a5217 \
+    (afw_components_self_v_zz__7892fc2a5217.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__7892fc2a5217 */
+#define afw_components_v_zz__7892fc2a5217 \
+    (&afw_components_self_v_zz__7892fc2a5217.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__7a45fc3ca2e3 \
+    "Specifies whether the gutter should be visible in CodeEditor component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7a45fc3ca2e3 */
+#define afw_components_s_zz__7a45fc3ca2e3 \
+    (&afw_components_self_v_zz__7a45fc3ca2e3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7a45fc3ca2e3 */
+#define afw_components_self_s_zz__7a45fc3ca2e3 \
+    (afw_components_self_v_zz__7a45fc3ca2e3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__7a45fc3ca2e3 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__7a45fc3ca2e3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__7a45fc3ca2e3 */
+#define afw_components_z_zz__7a45fc3ca2e3 \
+    (afw_components_self_v_zz__7a45fc3ca2e3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__7a45fc3ca2e3 */
+#define afw_components_v_zz__7a45fc3ca2e3 \
+    (&afw_components_self_v_zz__7a45fc3ca2e3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__7a73955a8ed9 \
+    "Sets or returns whether to show the border and background of empty cells, or not"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7a73955a8ed9 */
+#define afw_components_s_zz__7a73955a8ed9 \
+    (&afw_components_self_v_zz__7a73955a8ed9.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7a73955a8ed9 */
+#define afw_components_self_s_zz__7a73955a8ed9 \
+    (afw_components_self_v_zz__7a73955a8ed9.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__7a73955a8ed9 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__7a73955a8ed9;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__7a73955a8ed9 */
+#define afw_components_z_zz__7a73955a8ed9 \
+    (afw_components_self_v_zz__7a73955a8ed9.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__7a73955a8ed9 */
+#define afw_components_v_zz__7a73955a8ed9 \
+    (&afw_components_self_v_zz__7a73955a8ed9.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__7c179c3e4185 \
+    "Defines arbitrary Component properties that may be applicable to a specific Component Type."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7c179c3e4185 */
+#define afw_components_s_zz__7c179c3e4185 \
+    (&afw_components_self_v_zz__7c179c3e4185.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7c179c3e4185 */
+#define afw_components_self_s_zz__7c179c3e4185 \
+    (afw_components_self_v_zz__7c179c3e4185.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__7c179c3e4185 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__7c179c3e4185;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__7c179c3e4185 */
+#define afw_components_z_zz__7c179c3e4185 \
+    (afw_components_self_v_zz__7c179c3e4185.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__7c179c3e4185 */
+#define afw_components_v_zz__7c179c3e4185 \
+    (&afw_components_self_v_zz__7c179c3e4185.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__7f8ffe37767e \
+    "Sets or returns image filters (visual effects, like blur and saturation)"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7f8ffe37767e */
+#define afw_components_s_zz__7f8ffe37767e \
+    (&afw_components_self_v_zz__7f8ffe37767e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7f8ffe37767e */
+#define afw_components_self_s_zz__7f8ffe37767e \
+    (afw_components_self_v_zz__7f8ffe37767e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__7f8ffe37767e */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__7f8ffe37767e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__7f8ffe37767e */
+#define afw_components_z_zz__7f8ffe37767e \
+    (afw_components_self_v_zz__7f8ffe37767e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__7f8ffe37767e */
+#define afw_components_v_zz__7f8ffe37767e \
+    (&afw_components_self_v_zz__7f8ffe37767e.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__7fcbfc408208 \
+    "Sets or returns where to navigate when using the arrow-up navigation key"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7fcbfc408208 */
+#define afw_components_s_zz__7fcbfc408208 \
+    (&afw_components_self_v_zz__7fcbfc408208.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__7fcbfc408208 */
+#define afw_components_self_s_zz__7fcbfc408208 \
+    (afw_components_self_v_zz__7fcbfc408208.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__7fcbfc408208 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__7fcbfc408208;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__7fcbfc408208 */
+#define afw_components_z_zz__7fcbfc408208 \
+    (afw_components_self_v_zz__7fcbfc408208.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__7fcbfc408208 */
+#define afw_components_v_zz__7fcbfc408208 \
+    (&afw_components_self_v_zz__7fcbfc408208.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__81105dbb4694 \
+    "The object to be displayed by the Object Form Layout component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__81105dbb4694 */
+#define afw_components_s_zz__81105dbb4694 \
+    (&afw_components_self_v_zz__81105dbb4694.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__81105dbb4694 */
+#define afw_components_self_s_zz__81105dbb4694 \
+    (afw_components_self_v_zz__81105dbb4694.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__81105dbb4694 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__81105dbb4694;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__81105dbb4694 */
+#define afw_components_z_zz__81105dbb4694 \
+    (afw_components_self_v_zz__81105dbb4694.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__81105dbb4694 */
+#define afw_components_v_zz__81105dbb4694 \
+    (&afw_components_self_v_zz__81105dbb4694.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__819ecde59dee \
+    "Adaptive Layout definition for the Flexible BoxItem component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__819ecde59dee */
+#define afw_components_s_zz__819ecde59dee \
+    (&afw_components_self_v_zz__819ecde59dee.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__819ecde59dee */
+#define afw_components_self_s_zz__819ecde59dee \
+    (afw_components_self_v_zz__819ecde59dee.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__819ecde59dee */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__819ecde59dee;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__819ecde59dee */
+#define afw_components_z_zz__819ecde59dee \
+    (afw_components_self_v_zz__819ecde59dee.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__819ecde59dee */
+#define afw_components_v_zz__819ecde59dee \
+    (&afw_components_self_v_zz__819ecde59dee.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__82d711a3d97d \
+    "Sets or returns the shape of the border of the top-right corner"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__82d711a3d97d */
+#define afw_components_s_zz__82d711a3d97d \
+    (&afw_components_self_v_zz__82d711a3d97d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__82d711a3d97d */
+#define afw_components_self_s_zz__82d711a3d97d \
+    (afw_components_self_v_zz__82d711a3d97d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__82d711a3d97d */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__82d711a3d97d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__82d711a3d97d */
+#define afw_components_z_zz__82d711a3d97d \
+    (afw_components_self_v_zz__82d711a3d97d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__82d711a3d97d */
+#define afw_components_v_zz__82d711a3d97d \
+    (&afw_components_self_v_zz__82d711a3d97d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__8332a1838ff5 \
+    "This component helps organize data into a group, which can be temporarily concealed or revealed by clicking on the collapse or expand icons. This may be important for preserving real estate on the screen, or reducing the amount of data that may be present at a given time, to avoid overloading the end user with information."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__8332a1838ff5 */
+#define afw_components_s_zz__8332a1838ff5 \
+    (&afw_components_self_v_zz__8332a1838ff5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__8332a1838ff5 */
+#define afw_components_self_s_zz__8332a1838ff5 \
+    (afw_components_self_v_zz__8332a1838ff5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__8332a1838ff5 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__8332a1838ff5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__8332a1838ff5 */
+#define afw_components_z_zz__8332a1838ff5 \
+    (afw_components_self_v_zz__8332a1838ff5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__8332a1838ff5 */
+#define afw_components_v_zz__8332a1838ff5 \
+    (&afw_components_self_v_zz__8332a1838ff5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__836ecefc9e2b \
+    "Sets or returns whether the style of the font is normal, italic or oblique"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__836ecefc9e2b */
+#define afw_components_s_zz__836ecefc9e2b \
+    (&afw_components_self_v_zz__836ecefc9e2b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__836ecefc9e2b */
+#define afw_components_self_s_zz__836ecefc9e2b \
+    (afw_components_self_v_zz__836ecefc9e2b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__836ecefc9e2b */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__836ecefc9e2b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__836ecefc9e2b */
+#define afw_components_z_zz__836ecefc9e2b \
+    (afw_components_self_v_zz__836ecefc9e2b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__836ecefc9e2b */
+#define afw_components_v_zz__836ecefc9e2b \
+    (&afw_components_self_v_zz__836ecefc9e2b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__85661b577c44 \
+    "Sets or returns where to navigate when using the arrow-right navigation key"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__85661b577c44 */
+#define afw_components_s_zz__85661b577c44 \
+    (&afw_components_self_v_zz__85661b577c44.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__85661b577c44 */
+#define afw_components_self_s_zz__85661b577c44 \
+    (afw_components_self_v_zz__85661b577c44.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__85661b577c44 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__85661b577c44;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__85661b577c44 */
+#define afw_components_z_zz__85661b577c44 \
+    (afw_components_self_v_zz__85661b577c44.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__85661b577c44 */
+#define afw_components_v_zz__85661b577c44 \
+    (&afw_components_self_v_zz__85661b577c44.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__85b33f4c407a \
+    "This component allows for zero or more items to be selected from a list. When an item is selected, it appears as a tag in the selection, which may also be later removed."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__85b33f4c407a */
+#define afw_components_s_zz__85b33f4c407a \
+    (&afw_components_self_v_zz__85b33f4c407a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__85b33f4c407a */
+#define afw_components_self_s_zz__85b33f4c407a \
+    (afw_components_self_v_zz__85b33f4c407a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__85b33f4c407a */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__85b33f4c407a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__85b33f4c407a */
+#define afw_components_z_zz__85b33f4c407a \
+    (afw_components_self_v_zz__85b33f4c407a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__85b33f4c407a */
+#define afw_components_v_zz__85b33f4c407a \
+    (&afw_components_self_v_zz__85b33f4c407a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__880858efb278 \
+    "Sets or returns how many columns an element should span across"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__880858efb278 */
+#define afw_components_s_zz__880858efb278 \
+    (&afw_components_self_v_zz__880858efb278.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__880858efb278 */
+#define afw_components_self_s_zz__880858efb278 \
+    (afw_components_self_v_zz__880858efb278.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__880858efb278 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__880858efb278;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__880858efb278 */
+#define afw_components_z_zz__880858efb278 \
+    (afw_components_self_v_zz__880858efb278.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__880858efb278 */
+#define afw_components_v_zz__880858efb278 \
+    (&afw_components_self_v_zz__880858efb278.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__886ac20be07d \
+    "Sets or returns what should happen when text overflows the containing element"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__886ac20be07d */
+#define afw_components_s_zz__886ac20be07d \
+    (&afw_components_self_v_zz__886ac20be07d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__886ac20be07d */
+#define afw_components_self_s_zz__886ac20be07d \
+    (afw_components_self_v_zz__886ac20be07d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__886ac20be07d */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__886ac20be07d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__886ac20be07d */
+#define afw_components_z_zz__886ac20be07d \
+    (afw_components_self_v_zz__886ac20be07d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__886ac20be07d */
+#define afw_components_v_zz__886ac20be07d \
+    (&afw_components_self_v_zz__886ac20be07d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__88f291033bb2 \
+    "Specifies whether the line numbers should be visible in CodeEditor component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__88f291033bb2 */
+#define afw_components_s_zz__88f291033bb2 \
+    (&afw_components_self_v_zz__88f291033bb2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__88f291033bb2 */
+#define afw_components_self_s_zz__88f291033bb2 \
+    (afw_components_self_v_zz__88f291033bb2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__88f291033bb2 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__88f291033bb2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__88f291033bb2 */
+#define afw_components_z_zz__88f291033bb2 \
+    (afw_components_self_v_zz__88f291033bb2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__88f291033bb2 */
+#define afw_components_v_zz__88f291033bb2 \
+    (&afw_components_self_v_zz__88f291033bb2.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__88f6bb392605 \
+    "This component provides a mutually exclusive list of options, organized as radio buttons, that may be selected."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__88f6bb392605 */
+#define afw_components_s_zz__88f6bb392605 \
+    (&afw_components_self_v_zz__88f6bb392605.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__88f6bb392605 */
+#define afw_components_self_s_zz__88f6bb392605 \
+    (afw_components_self_v_zz__88f6bb392605.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__88f6bb392605 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__88f6bb392605;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__88f6bb392605 */
+#define afw_components_z_zz__88f6bb392605 \
+    (afw_components_self_v_zz__88f6bb392605.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__88f6bb392605 */
+#define afw_components_v_zz__88f6bb392605 \
+    (&afw_components_self_v_zz__88f6bb392605.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__896edf2f46c2 \
+    "Sets or returns whether a background-image is fixed or scrolls with the page"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__896edf2f46c2 */
+#define afw_components_s_zz__896edf2f46c2 \
+    (&afw_components_self_v_zz__896edf2f46c2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__896edf2f46c2 */
+#define afw_components_self_s_zz__896edf2f46c2 \
+    (afw_components_self_v_zz__896edf2f46c2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__896edf2f46c2 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__896edf2f46c2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__896edf2f46c2 */
+#define afw_components_z_zz__896edf2f46c2 \
+    (afw_components_self_v_zz__896edf2f46c2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__896edf2f46c2 */
+#define afw_components_v_zz__896edf2f46c2 \
+    (&afw_components_self_v_zz__896edf2f46c2.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__8b4697ff8d7f \
+    "Sets or returns the perspective on how 3D elements are viewed"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__8b4697ff8d7f */
+#define afw_components_s_zz__8b4697ff8d7f \
+    (&afw_components_self_v_zz__8b4697ff8d7f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__8b4697ff8d7f */
+#define afw_components_self_s_zz__8b4697ff8d7f \
+    (afw_components_self_v_zz__8b4697ff8d7f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__8b4697ff8d7f */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__8b4697ff8d7f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__8b4697ff8d7f */
+#define afw_components_z_zz__8b4697ff8d7f \
+    (afw_components_self_v_zz__8b4697ff8d7f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__8b4697ff8d7f */
+#define afw_components_v_zz__8b4697ff8d7f \
+    (&afw_components_self_v_zz__8b4697ff8d7f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__8bcd84360314 \
+    "Adaptive Layout definition for the Flexible BreadcrumbItem component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__8bcd84360314 */
+#define afw_components_s_zz__8bcd84360314 \
+    (&afw_components_self_v_zz__8bcd84360314.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__8bcd84360314 */
+#define afw_components_self_s_zz__8bcd84360314 \
+    (afw_components_self_v_zz__8bcd84360314.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__8bcd84360314 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__8bcd84360314;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__8bcd84360314 */
+#define afw_components_z_zz__8bcd84360314 \
+    (afw_components_self_v_zz__8bcd84360314.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__8bcd84360314 */
+#define afw_components_v_zz__8bcd84360314 \
+    (&afw_components_self_v_zz__8bcd84360314.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__8c3907fc5731 \
+    "Specifies what to do with the left/right edges of the content, if it overflows the element's content area"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__8c3907fc5731 */
+#define afw_components_s_zz__8c3907fc5731 \
+    (&afw_components_self_v_zz__8c3907fc5731.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__8c3907fc5731 */
+#define afw_components_self_s_zz__8c3907fc5731 \
+    (afw_components_self_v_zz__8c3907fc5731.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__8c3907fc5731 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__8c3907fc5731;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__8c3907fc5731 */
+#define afw_components_z_zz__8c3907fc5731 \
+    (afw_components_self_v_zz__8c3907fc5731.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__8c3907fc5731 */
+#define afw_components_v_zz__8c3907fc5731 \
+    (&afw_components_self_v_zz__8c3907fc5731.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__8c478959b4f0 \
+    "Sets or returns the behavior of the background and border of an element at page-break, or, for in-line elements, at line-break."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__8c478959b4f0 */
+#define afw_components_s_zz__8c478959b4f0 \
+    (&afw_components_self_v_zz__8c478959b4f0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__8c478959b4f0 */
+#define afw_components_self_s_zz__8c478959b4f0 \
+    (afw_components_self_v_zz__8c478959b4f0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__8c478959b4f0 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__8c478959b4f0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__8c478959b4f0 */
+#define afw_components_z_zz__8c478959b4f0 \
+    (afw_components_self_v_zz__8c478959b4f0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__8c478959b4f0 */
+#define afw_components_v_zz__8c478959b4f0 \
+    (&afw_components_self_v_zz__8c478959b4f0.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__8da8251d2e46 \
+    "A component that displays numeric values in a slider control."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__8da8251d2e46 */
+#define afw_components_s_zz__8da8251d2e46 \
+    (&afw_components_self_v_zz__8da8251d2e46.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__8da8251d2e46 */
+#define afw_components_self_s_zz__8da8251d2e46 \
+    (afw_components_self_v_zz__8da8251d2e46.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__8da8251d2e46 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__8da8251d2e46;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__8da8251d2e46 */
+#define afw_components_z_zz__8da8251d2e46 \
+    (afw_components_self_v_zz__8da8251d2e46.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__8da8251d2e46 */
+#define afw_components_v_zz__8da8251d2e46 \
+    (&afw_components_self_v_zz__8da8251d2e46.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__8faca3bc1423 \
+    "This attribute is used to define a string that labels the current element. Use it in cases where a text label is not visible on the screen."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__8faca3bc1423 */
+#define afw_components_s_zz__8faca3bc1423 \
+    (&afw_components_self_v_zz__8faca3bc1423.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__8faca3bc1423 */
+#define afw_components_self_s_zz__8faca3bc1423 \
+    (afw_components_self_v_zz__8faca3bc1423.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__8faca3bc1423 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__8faca3bc1423;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__8faca3bc1423 */
+#define afw_components_z_zz__8faca3bc1423 \
+    (afw_components_self_v_zz__8faca3bc1423.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__8faca3bc1423 */
+#define afw_components_v_zz__8faca3bc1423 \
+    (&afw_components_self_v_zz__8faca3bc1423.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__921ba25b331d \
+    "Sets or returns the CSS property that the transition effect is for"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__921ba25b331d */
+#define afw_components_s_zz__921ba25b331d \
+    (&afw_components_self_v_zz__921ba25b331d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__921ba25b331d */
+#define afw_components_self_s_zz__921ba25b331d \
+    (afw_components_self_v_zz__921ba25b331d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__921ba25b331d */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__921ba25b331d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__921ba25b331d */
+#define afw_components_z_zz__921ba25b331d \
+    (afw_components_self_v_zz__921ba25b331d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__921ba25b331d */
+#define afw_components_v_zz__921ba25b331d \
+    (&afw_components_self_v_zz__921ba25b331d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__930c688d5c27 \
+    "Establishes the relationships between objects and their label(s)."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__930c688d5c27 */
+#define afw_components_s_zz__930c688d5c27 \
+    (&afw_components_self_v_zz__930c688d5c27.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__930c688d5c27 */
+#define afw_components_self_s_zz__930c688d5c27 \
+    (afw_components_self_v_zz__930c688d5c27.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__930c688d5c27 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__930c688d5c27;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__930c688d5c27 */
+#define afw_components_z_zz__930c688d5c27 \
+    (afw_components_self_v_zz__930c688d5c27.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__930c688d5c27 */
+#define afw_components_v_zz__930c688d5c27 \
+    (&afw_components_self_v_zz__930c688d5c27.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__939fdef059c9 \
+    "Sets or returns all the borderLeft properties in one declaration"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__939fdef059c9 */
+#define afw_components_s_zz__939fdef059c9 \
+    (&afw_components_self_v_zz__939fdef059c9.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__939fdef059c9 */
+#define afw_components_self_s_zz__939fdef059c9 \
+    (afw_components_self_v_zz__939fdef059c9.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__939fdef059c9 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__939fdef059c9;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__939fdef059c9 */
+#define afw_components_z_zz__939fdef059c9 \
+    (afw_components_self_v_zz__939fdef059c9.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__939fdef059c9 */
+#define afw_components_v_zz__939fdef059c9 \
+    (&afw_components_self_v_zz__939fdef059c9.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__94dee34009da \
+    "This component takes a boolean value and displays it as a switch that can be toggled on or off to represent true or false. It may also have text labels to interpret its meaning."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__94dee34009da */
+#define afw_components_s_zz__94dee34009da \
+    (&afw_components_self_v_zz__94dee34009da.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__94dee34009da */
+#define afw_components_self_s_zz__94dee34009da \
+    (afw_components_self_v_zz__94dee34009da.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__94dee34009da */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__94dee34009da;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__94dee34009da */
+#define afw_components_z_zz__94dee34009da \
+    (afw_components_self_v_zz__94dee34009da.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__94dee34009da */
+#define afw_components_v_zz__94dee34009da \
+    (&afw_components_self_v_zz__94dee34009da.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__9504479f5eef \
+    "Sets or returns where to navigate when using the arrow-left navigation key"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__9504479f5eef */
+#define afw_components_s_zz__9504479f5eef \
+    (&afw_components_self_v_zz__9504479f5eef.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__9504479f5eef */
+#define afw_components_self_s_zz__9504479f5eef \
+    (afw_components_self_v_zz__9504479f5eef.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__9504479f5eef */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__9504479f5eef;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__9504479f5eef */
+#define afw_components_z_zz__9504479f5eef \
+    (afw_components_self_v_zz__9504479f5eef.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__9504479f5eef */
+#define afw_components_v_zz__9504479f5eef \
+    (&afw_components_self_v_zz__9504479f5eef.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__96bd46f38f26 \
+    "The breakpoint definition on extra extra large resolution screens."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__96bd46f38f26 */
+#define afw_components_s_zz__96bd46f38f26 \
+    (&afw_components_self_v_zz__96bd46f38f26.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__96bd46f38f26 */
+#define afw_components_self_s_zz__96bd46f38f26 \
+    (afw_components_self_v_zz__96bd46f38f26.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__96bd46f38f26 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__96bd46f38f26;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__96bd46f38f26 */
+#define afw_components_z_zz__96bd46f38f26 \
+    (afw_components_self_v_zz__96bd46f38f26.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__96bd46f38f26 */
+#define afw_components_v_zz__96bd46f38f26 \
+    (&afw_components_self_v_zz__96bd46f38f26.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__97fdaf16e9f6 \
+    "A component that renders content inside a side sheet anchored to one of the edges."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__97fdaf16e9f6 */
+#define afw_components_s_zz__97fdaf16e9f6 \
+    (&afw_components_self_v_zz__97fdaf16e9f6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__97fdaf16e9f6 */
+#define afw_components_self_s_zz__97fdaf16e9f6 \
+    (afw_components_self_v_zz__97fdaf16e9f6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__97fdaf16e9f6 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__97fdaf16e9f6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__97fdaf16e9f6 */
+#define afw_components_z_zz__97fdaf16e9f6 \
+    (afw_components_self_v_zz__97fdaf16e9f6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__97fdaf16e9f6 */
+#define afw_components_v_zz__97fdaf16e9f6 \
+    (&afw_components_self_v_zz__97fdaf16e9f6.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__9a0980576590 \
+    "Sets or returns the alignment between the lines inside a flexible container when the items do not use all available space"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__9a0980576590 */
+#define afw_components_s_zz__9a0980576590 \
+    (&afw_components_self_v_zz__9a0980576590.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__9a0980576590 */
+#define afw_components_self_s_zz__9a0980576590 \
+    (afw_components_self_v_zz__9a0980576590.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__9a0980576590 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__9a0980576590;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__9a0980576590 */
+#define afw_components_z_zz__9a0980576590 \
+    (afw_components_self_v_zz__9a0980576590.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__9a0980576590 */
+#define afw_components_v_zz__9a0980576590 \
+    (&afw_components_self_v_zz__9a0980576590.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__9abbcef3e1dd \
+    "Sets or returns what to do with content that renders outside the element box"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__9abbcef3e1dd */
+#define afw_components_s_zz__9abbcef3e1dd \
+    (&afw_components_self_v_zz__9abbcef3e1dd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__9abbcef3e1dd */
+#define afw_components_self_s_zz__9abbcef3e1dd \
+    (afw_components_self_v_zz__9abbcef3e1dd.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__9abbcef3e1dd */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__9abbcef3e1dd;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__9abbcef3e1dd */
+#define afw_components_z_zz__9abbcef3e1dd \
+    (afw_components_self_v_zz__9abbcef3e1dd.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__9abbcef3e1dd */
+#define afw_components_v_zz__9abbcef3e1dd \
+    (&afw_components_self_v_zz__9abbcef3e1dd.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__9d1c121c574f \
+    "A component that displays a Stepper indicating a list of steps and the current one you are on."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__9d1c121c574f */
+#define afw_components_s_zz__9d1c121c574f \
+    (&afw_components_self_v_zz__9d1c121c574f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__9d1c121c574f */
+#define afw_components_self_s_zz__9d1c121c574f \
+    (afw_components_self_v_zz__9d1c121c574f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__9d1c121c574f */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__9d1c121c574f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__9d1c121c574f */
+#define afw_components_z_zz__9d1c121c574f \
+    (afw_components_self_v_zz__9d1c121c574f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__9d1c121c574f */
+#define afw_components_v_zz__9d1c121c574f \
+    (&afw_components_self_v_zz__9d1c121c574f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__9e1c47402b1b \
+    "Sets or returns the type of cursor to display for the mouse pointer"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__9e1c47402b1b */
+#define afw_components_s_zz__9e1c47402b1b \
+    (&afw_components_self_v_zz__9e1c47402b1b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__9e1c47402b1b */
+#define afw_components_self_s_zz__9e1c47402b1b \
+    (afw_components_self_v_zz__9e1c47402b1b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__9e1c47402b1b */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__9e1c47402b1b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__9e1c47402b1b */
+#define afw_components_z_zz__9e1c47402b1b \
+    (afw_components_self_v_zz__9e1c47402b1b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__9e1c47402b1b */
+#define afw_components_v_zz__9e1c47402b1b \
+    (&afw_components_self_v_zz__9e1c47402b1b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__9f19c0221a4c \
+    "Identifies to parsing software the exact function of an element (and its children) as part of a web application."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__9f19c0221a4c */
+#define afw_components_s_zz__9f19c0221a4c \
+    (&afw_components_self_v_zz__9f19c0221a4c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__9f19c0221a4c */
+#define afw_components_self_s_zz__9f19c0221a4c \
+    (afw_components_self_v_zz__9f19c0221a4c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__9f19c0221a4c */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__9f19c0221a4c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__9f19c0221a4c */
+#define afw_components_z_zz__9f19c0221a4c \
+    (afw_components_self_v_zz__9f19c0221a4c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__9f19c0221a4c */
+#define afw_components_v_zz__9f19c0221a4c \
+    (&afw_components_self_v_zz__9f19c0221a4c.pub)
 
 
 
@@ -36221,6 +33777,396 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__a0b6fc821b35 \
+    "The name to display for this column used in this Table component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a0b6fc821b35 */
+#define afw_components_s_zz__a0b6fc821b35 \
+    (&afw_components_self_v_zz__a0b6fc821b35.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a0b6fc821b35 */
+#define afw_components_self_s_zz__a0b6fc821b35 \
+    (afw_components_self_v_zz__a0b6fc821b35.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__a0b6fc821b35 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__a0b6fc821b35;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__a0b6fc821b35 */
+#define afw_components_z_zz__a0b6fc821b35 \
+    (afw_components_self_v_zz__a0b6fc821b35.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__a0b6fc821b35 */
+#define afw_components_v_zz__a0b6fc821b35 \
+    (&afw_components_self_v_zz__a0b6fc821b35.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__a0d480d840b8 \
+    "The layout row components that are contained by this Responsive."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a0d480d840b8 */
+#define afw_components_s_zz__a0d480d840b8 \
+    (&afw_components_self_v_zz__a0d480d840b8.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a0d480d840b8 */
+#define afw_components_self_s_zz__a0d480d840b8 \
+    (afw_components_self_v_zz__a0d480d840b8.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__a0d480d840b8 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__a0d480d840b8;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__a0d480d840b8 */
+#define afw_components_z_zz__a0d480d840b8 \
+    (afw_components_self_v_zz__a0d480d840b8.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__a0d480d840b8 */
+#define afw_components_v_zz__a0d480d840b8 \
+    (&afw_components_self_v_zz__a0d480d840b8.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__a1fbc1c147c1 \
+    "Defines the screen size breakpoints for this column definition"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a1fbc1c147c1 */
+#define afw_components_s_zz__a1fbc1c147c1 \
+    (&afw_components_self_v_zz__a1fbc1c147c1.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a1fbc1c147c1 */
+#define afw_components_self_s_zz__a1fbc1c147c1 \
+    (afw_components_self_v_zz__a1fbc1c147c1.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__a1fbc1c147c1 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__a1fbc1c147c1;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__a1fbc1c147c1 */
+#define afw_components_z_zz__a1fbc1c147c1 \
+    (afw_components_self_v_zz__a1fbc1c147c1.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__a1fbc1c147c1 */
+#define afw_components_v_zz__a1fbc1c147c1 \
+    (&afw_components_self_v_zz__a1fbc1c147c1.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__a2724df1943b \
+    "A shorthand property for setting or returning all the four borderRadius properties"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a2724df1943b */
+#define afw_components_s_zz__a2724df1943b \
+    (&afw_components_self_v_zz__a2724df1943b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a2724df1943b */
+#define afw_components_self_s_zz__a2724df1943b \
+    (afw_components_self_v_zz__a2724df1943b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__a2724df1943b */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__a2724df1943b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__a2724df1943b */
+#define afw_components_z_zz__a2724df1943b \
+    (afw_components_self_v_zz__a2724df1943b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__a2724df1943b */
+#define afw_components_v_zz__a2724df1943b \
+    (&afw_components_self_v_zz__a2724df1943b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__a2da491fabf2 \
+    "The value of the TimeDuration component expressed as a dayTime."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a2da491fabf2 */
+#define afw_components_s_zz__a2da491fabf2 \
+    (&afw_components_self_v_zz__a2da491fabf2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a2da491fabf2 */
+#define afw_components_self_s_zz__a2da491fabf2 \
+    (afw_components_self_v_zz__a2da491fabf2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__a2da491fabf2 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__a2da491fabf2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__a2da491fabf2 */
+#define afw_components_z_zz__a2da491fabf2 \
+    (afw_components_self_v_zz__a2da491fabf2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__a2da491fabf2 */
+#define afw_components_v_zz__a2da491fabf2 \
+    (&afw_components_self_v_zz__a2da491fabf2.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__a2e3ea61e341 \
+    "The description for the TextField component that describes this input."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a2e3ea61e341 */
+#define afw_components_s_zz__a2e3ea61e341 \
+    (&afw_components_self_v_zz__a2e3ea61e341.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a2e3ea61e341 */
+#define afw_components_self_s_zz__a2e3ea61e341 \
+    (afw_components_self_v_zz__a2e3ea61e341.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__a2e3ea61e341 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__a2e3ea61e341;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__a2e3ea61e341 */
+#define afw_components_z_zz__a2e3ea61e341 \
+    (afw_components_self_v_zz__a2e3ea61e341.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__a2e3ea61e341 */
+#define afw_components_v_zz__a2e3ea61e341 \
+    (&afw_components_self_v_zz__a2e3ea61e341.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__a45cebc812e3 \
+    "Specifies whether the Collapsible content is collapsed or not."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a45cebc812e3 */
+#define afw_components_s_zz__a45cebc812e3 \
+    (&afw_components_self_v_zz__a45cebc812e3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a45cebc812e3 */
+#define afw_components_self_s_zz__a45cebc812e3 \
+    (afw_components_self_v_zz__a45cebc812e3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__a45cebc812e3 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__a45cebc812e3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__a45cebc812e3 */
+#define afw_components_z_zz__a45cebc812e3 \
+    (afw_components_self_v_zz__a45cebc812e3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__a45cebc812e3 */
+#define afw_components_v_zz__a45cebc812e3 \
+    (&afw_components_self_v_zz__a45cebc812e3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__a6f758c915f0 \
+    "A shorthand property for setting or returning all the borderImage properties"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a6f758c915f0 */
+#define afw_components_s_zz__a6f758c915f0 \
+    (&afw_components_self_v_zz__a6f758c915f0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a6f758c915f0 */
+#define afw_components_self_s_zz__a6f758c915f0 \
+    (afw_components_self_v_zz__a6f758c915f0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__a6f758c915f0 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__a6f758c915f0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__a6f758c915f0 */
+#define afw_components_z_zz__a6f758c915f0 \
+    (afw_components_self_v_zz__a6f758c915f0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__a6f758c915f0 */
+#define afw_components_v_zz__a6f758c915f0 \
+    (&afw_components_self_v_zz__a6f758c915f0.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__a7701af559f0 \
+    "This is a simple component for inputting text. It may display an outlined or underlined field from which the user can enter text into. It may also display a label and description to help the user understand its contents."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a7701af559f0 */
+#define afw_components_s_zz__a7701af559f0 \
+    (&afw_components_self_v_zz__a7701af559f0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a7701af559f0 */
+#define afw_components_self_s_zz__a7701af559f0 \
+    (afw_components_self_v_zz__a7701af559f0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__a7701af559f0 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__a7701af559f0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__a7701af559f0 */
+#define afw_components_z_zz__a7701af559f0 \
+    (afw_components_self_v_zz__a7701af559f0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__a7701af559f0 */
+#define afw_components_v_zz__a7701af559f0 \
+    (&afw_components_self_v_zz__a7701af559f0.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__a7ca0d63496e \
+    "Sets or returns borderWidth, borderStyle, and borderColor in one declaration"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a7ca0d63496e */
+#define afw_components_s_zz__a7ca0d63496e \
+    (&afw_components_self_v_zz__a7ca0d63496e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a7ca0d63496e */
+#define afw_components_self_s_zz__a7ca0d63496e \
+    (afw_components_self_v_zz__a7ca0d63496e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__a7ca0d63496e */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__a7ca0d63496e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__a7ca0d63496e */
+#define afw_components_z_zz__a7ca0d63496e \
+    (afw_components_self_v_zz__a7ca0d63496e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__a7ca0d63496e */
+#define afw_components_v_zz__a7ca0d63496e \
+    (&afw_components_self_v_zz__a7ca0d63496e.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__a8d88983920f \
+    "The content text to display inside the dialog box, directly under the Title."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a8d88983920f */
+#define afw_components_s_zz__a8d88983920f \
+    (&afw_components_self_v_zz__a8d88983920f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a8d88983920f */
+#define afw_components_self_s_zz__a8d88983920f \
+    (afw_components_self_v_zz__a8d88983920f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__a8d88983920f */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__a8d88983920f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__a8d88983920f */
+#define afw_components_z_zz__a8d88983920f \
+    (afw_components_self_v_zz__a8d88983920f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__a8d88983920f */
+#define afw_components_v_zz__a8d88983920f \
+    (&afw_components_self_v_zz__a8d88983920f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__a8eb6716813a \
+    "The object, containing the property, to be displayed by the Adaptive Property Layout component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a8eb6716813a */
+#define afw_components_s_zz__a8eb6716813a \
+    (&afw_components_self_v_zz__a8eb6716813a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__a8eb6716813a */
+#define afw_components_self_s_zz__a8eb6716813a \
+    (afw_components_self_v_zz__a8eb6716813a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__a8eb6716813a */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__a8eb6716813a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__a8eb6716813a */
+#define afw_components_z_zz__a8eb6716813a \
+    (afw_components_self_v_zz__a8eb6716813a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__a8eb6716813a */
+#define afw_components_v_zz__a8eb6716813a \
+    (&afw_components_self_v_zz__a8eb6716813a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__aacb4dcf718b \
+    "Sets or returns all the background properties in one declaration"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__aacb4dcf718b */
+#define afw_components_s_zz__aacb4dcf718b \
+    (&afw_components_self_v_zz__aacb4dcf718b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__aacb4dcf718b */
+#define afw_components_self_s_zz__aacb4dcf718b \
+    (afw_components_self_v_zz__aacb4dcf718b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__aacb4dcf718b */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__aacb4dcf718b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__aacb4dcf718b */
+#define afw_components_z_zz__aacb4dcf718b \
+    (afw_components_self_v_zz__aacb4dcf718b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__aacb4dcf718b */
+#define afw_components_v_zz__aacb4dcf718b \
+    (&afw_components_self_v_zz__aacb4dcf718b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__ab2232c76a6d \
+    "A component that displays a set of options that can be selected from a dropdown."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ab2232c76a6d */
+#define afw_components_s_zz__ab2232c76a6d \
+    (&afw_components_self_v_zz__ab2232c76a6d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ab2232c76a6d */
+#define afw_components_self_s_zz__ab2232c76a6d \
+    (afw_components_self_v_zz__ab2232c76a6d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__ab2232c76a6d */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__ab2232c76a6d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__ab2232c76a6d */
+#define afw_components_z_zz__ab2232c76a6d \
+    (afw_components_self_v_zz__ab2232c76a6d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__ab2232c76a6d */
+#define afw_components_v_zz__ab2232c76a6d \
+    (&afw_components_self_v_zz__ab2232c76a6d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__ae3293e27a73 \
+    "This declares the components to be rendered inside the BoxItem."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ae3293e27a73 */
+#define afw_components_s_zz__ae3293e27a73 \
+    (&afw_components_self_v_zz__ae3293e27a73.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ae3293e27a73 */
+#define afw_components_self_s_zz__ae3293e27a73 \
+    (afw_components_self_v_zz__ae3293e27a73.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__ae3293e27a73 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__ae3293e27a73;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__ae3293e27a73 */
+#define afw_components_z_zz__ae3293e27a73 \
+    (afw_components_self_v_zz__ae3293e27a73.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__ae3293e27a73 */
+#define afw_components_v_zz__ae3293e27a73 \
+    (&afw_components_self_v_zz__ae3293e27a73.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__aria_label \
     "aria-label"
 
@@ -36269,6 +34215,2060 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__aria_labelledby */
 #define afw_components_v_zz__aria_labelledby \
     (&afw_components_self_v_zz__aria_labelledby.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b0baca384221 \
+    "Sets or returns the type of positioning method used for an element (static, relative, absolute or fixed)"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b0baca384221 */
+#define afw_components_s_zz__b0baca384221 \
+    (&afw_components_self_v_zz__b0baca384221.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b0baca384221 */
+#define afw_components_self_s_zz__b0baca384221 \
+    (afw_components_self_v_zz__b0baca384221.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b0baca384221 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b0baca384221;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b0baca384221 */
+#define afw_components_z_zz__b0baca384221 \
+    (afw_components_self_v_zz__b0baca384221.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b0baca384221 */
+#define afw_components_v_zz__b0baca384221 \
+    (&afw_components_self_v_zz__b0baca384221.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b0e6b7807623 \
+    "Sets or returns how many seconds or milliseconds a transition effect takes to complete"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b0e6b7807623 */
+#define afw_components_s_zz__b0e6b7807623 \
+    (&afw_components_self_v_zz__b0e6b7807623.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b0e6b7807623 */
+#define afw_components_self_s_zz__b0e6b7807623 \
+    (afw_components_self_v_zz__b0e6b7807623.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b0e6b7807623 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b0e6b7807623;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b0e6b7807623 */
+#define afw_components_z_zz__b0e6b7807623 \
+    (afw_components_self_v_zz__b0e6b7807623.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b0e6b7807623 */
+#define afw_components_v_zz__b0e6b7807623 \
+    (&afw_components_self_v_zz__b0e6b7807623.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b1a9b9a533a4 \
+    "A component that allows you to select a date from a calendar."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b1a9b9a533a4 */
+#define afw_components_s_zz__b1a9b9a533a4 \
+    (&afw_components_self_v_zz__b1a9b9a533a4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b1a9b9a533a4 */
+#define afw_components_self_s_zz__b1a9b9a533a4 \
+    (afw_components_self_v_zz__b1a9b9a533a4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b1a9b9a533a4 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b1a9b9a533a4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b1a9b9a533a4 */
+#define afw_components_z_zz__b1a9b9a533a4 \
+    (afw_components_self_v_zz__b1a9b9a533a4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b1a9b9a533a4 */
+#define afw_components_v_zz__b1a9b9a533a4 \
+    (&afw_components_self_v_zz__b1a9b9a533a4.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b3311a35ad4d \
+    "Sets or returns whether the text should be overridden to support multiple languages in the same document"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b3311a35ad4d */
+#define afw_components_s_zz__b3311a35ad4d \
+    (&afw_components_self_v_zz__b3311a35ad4d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b3311a35ad4d */
+#define afw_components_self_s_zz__b3311a35ad4d \
+    (afw_components_self_v_zz__b3311a35ad4d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b3311a35ad4d */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b3311a35ad4d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b3311a35ad4d */
+#define afw_components_z_zz__b3311a35ad4d \
+    (afw_components_self_v_zz__b3311a35ad4d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b3311a35ad4d */
+#define afw_components_v_zz__b3311a35ad4d \
+    (&afw_components_self_v_zz__b3311a35ad4d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b43bf860eee5 \
+    "The Preferred Component to apply to this layout rule definition. For example, single booleans should be Switch components."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b43bf860eee5 */
+#define afw_components_s_zz__b43bf860eee5 \
+    (&afw_components_self_v_zz__b43bf860eee5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b43bf860eee5 */
+#define afw_components_self_s_zz__b43bf860eee5 \
+    (afw_components_self_v_zz__b43bf860eee5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b43bf860eee5 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b43bf860eee5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b43bf860eee5 */
+#define afw_components_z_zz__b43bf860eee5 \
+    (afw_components_self_v_zz__b43bf860eee5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b43bf860eee5 */
+#define afw_components_v_zz__b43bf860eee5 \
+    (&afw_components_self_v_zz__b43bf860eee5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b4d8f0485ca3 \
+    "This defines the default behavior for how flex items are laid out along the cross axis on the current line. Think of it as the 'Justify Content' version for the cross axis (perpendicular to the main-axis)."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b4d8f0485ca3 */
+#define afw_components_s_zz__b4d8f0485ca3 \
+    (&afw_components_self_v_zz__b4d8f0485ca3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b4d8f0485ca3 */
+#define afw_components_self_s_zz__b4d8f0485ca3 \
+    (afw_components_self_v_zz__b4d8f0485ca3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b4d8f0485ca3 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b4d8f0485ca3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b4d8f0485ca3 */
+#define afw_components_z_zz__b4d8f0485ca3 \
+    (afw_components_self_v_zz__b4d8f0485ca3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b4d8f0485ca3 */
+#define afw_components_v_zz__b4d8f0485ca3 \
+    (&afw_components_self_v_zz__b4d8f0485ca3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b554e9e09c22 \
+    "This component, given a set of options, provides the user with the ability to select one of the values by clicking on the dropdown icon and selecting the appropriate value from a list."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b554e9e09c22 */
+#define afw_components_s_zz__b554e9e09c22 \
+    (&afw_components_self_v_zz__b554e9e09c22.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b554e9e09c22 */
+#define afw_components_self_s_zz__b554e9e09c22 \
+    (afw_components_self_v_zz__b554e9e09c22.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b554e9e09c22 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b554e9e09c22;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b554e9e09c22 */
+#define afw_components_z_zz__b554e9e09c22 \
+    (afw_components_self_v_zz__b554e9e09c22.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b554e9e09c22 */
+#define afw_components_v_zz__b554e9e09c22 \
+    (&afw_components_self_v_zz__b554e9e09c22.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b58b654510fd \
+    "Sets or returns the margins of an element (can have up to four values)"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b58b654510fd */
+#define afw_components_s_zz__b58b654510fd \
+    (&afw_components_self_v_zz__b58b654510fd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b58b654510fd */
+#define afw_components_self_s_zz__b58b654510fd \
+    (afw_components_self_v_zz__b58b654510fd.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b58b654510fd */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b58b654510fd;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b58b654510fd */
+#define afw_components_z_zz__b58b654510fd \
+    (afw_components_self_v_zz__b58b654510fd.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b58b654510fd */
+#define afw_components_v_zz__b58b654510fd \
+    (&afw_components_self_v_zz__b58b654510fd.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b5e7d0cdf37f \
+    "Sets or returns the order of the flexible item, relative to the rest"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b5e7d0cdf37f */
+#define afw_components_s_zz__b5e7d0cdf37f \
+    (&afw_components_self_v_zz__b5e7d0cdf37f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b5e7d0cdf37f */
+#define afw_components_self_s_zz__b5e7d0cdf37f \
+    (afw_components_self_v_zz__b5e7d0cdf37f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b5e7d0cdf37f */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b5e7d0cdf37f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b5e7d0cdf37f */
+#define afw_components_z_zz__b5e7d0cdf37f \
+    (afw_components_self_v_zz__b5e7d0cdf37f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b5e7d0cdf37f */
+#define afw_components_v_zz__b5e7d0cdf37f \
+    (&afw_components_self_v_zz__b5e7d0cdf37f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b6bf909eb2e3 \
+    "Sets or returns the justification method used when text-align is 'justify'"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b6bf909eb2e3 */
+#define afw_components_s_zz__b6bf909eb2e3 \
+    (&afw_components_self_v_zz__b6bf909eb2e3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b6bf909eb2e3 */
+#define afw_components_self_s_zz__b6bf909eb2e3 \
+    (afw_components_self_v_zz__b6bf909eb2e3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b6bf909eb2e3 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b6bf909eb2e3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b6bf909eb2e3 */
+#define afw_components_z_zz__b6bf909eb2e3 \
+    (afw_components_self_v_zz__b6bf909eb2e3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b6bf909eb2e3 */
+#define afw_components_v_zz__b6bf909eb2e3 \
+    (&afw_components_self_v_zz__b6bf909eb2e3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b747fcf8252f \
+    "A component that renders a numeric field that an be incremented or decremented."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b747fcf8252f */
+#define afw_components_s_zz__b747fcf8252f \
+    (&afw_components_self_v_zz__b747fcf8252f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b747fcf8252f */
+#define afw_components_self_s_zz__b747fcf8252f \
+    (afw_components_self_v_zz__b747fcf8252f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b747fcf8252f */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b747fcf8252f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b747fcf8252f */
+#define afw_components_z_zz__b747fcf8252f \
+    (afw_components_self_v_zz__b747fcf8252f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b747fcf8252f */
+#define afw_components_v_zz__b747fcf8252f \
+    (&afw_components_self_v_zz__b747fcf8252f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b75e1680106c \
+    "This component displays a list of components, one at a time, by containing the content inside of their individual tabs. A tab has a clickable link, which when clicked, will switch the content to the desired component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b75e1680106c */
+#define afw_components_s_zz__b75e1680106c \
+    (&afw_components_self_v_zz__b75e1680106c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b75e1680106c */
+#define afw_components_self_s_zz__b75e1680106c \
+    (afw_components_self_v_zz__b75e1680106c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b75e1680106c */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b75e1680106c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b75e1680106c */
+#define afw_components_z_zz__b75e1680106c \
+    (afw_components_self_v_zz__b75e1680106c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b75e1680106c */
+#define afw_components_v_zz__b75e1680106c \
+    (&afw_components_self_v_zz__b75e1680106c.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b78d848b1119 \
+    "Sets or returns the alignment for items inside a flexible container"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b78d848b1119 */
+#define afw_components_s_zz__b78d848b1119 \
+    (&afw_components_self_v_zz__b78d848b1119.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b78d848b1119 */
+#define afw_components_self_s_zz__b78d848b1119 \
+    (afw_components_self_v_zz__b78d848b1119.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b78d848b1119 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b78d848b1119;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b78d848b1119 */
+#define afw_components_z_zz__b78d848b1119 \
+    (afw_components_self_v_zz__b78d848b1119.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b78d848b1119 */
+#define afw_components_v_zz__b78d848b1119 \
+    (&afw_components_self_v_zz__b78d848b1119.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b89198502888 \
+    "This component is a very simple one, which renders text into a static label with specified color, size or style.."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b89198502888 */
+#define afw_components_s_zz__b89198502888 \
+    (&afw_components_self_v_zz__b89198502888.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b89198502888 */
+#define afw_components_self_s_zz__b89198502888 \
+    (afw_components_self_v_zz__b89198502888.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b89198502888 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b89198502888;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b89198502888 */
+#define afw_components_z_zz__b89198502888 \
+    (afw_components_self_v_zz__b89198502888.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b89198502888 */
+#define afw_components_v_zz__b89198502888 \
+    (&afw_components_self_v_zz__b89198502888.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b8e316c67080 \
+    "The color of the text. This may be a theme definition, or an actual color."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b8e316c67080 */
+#define afw_components_s_zz__b8e316c67080 \
+    (&afw_components_self_v_zz__b8e316c67080.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b8e316c67080 */
+#define afw_components_self_s_zz__b8e316c67080 \
+    (afw_components_self_v_zz__b8e316c67080.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b8e316c67080 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b8e316c67080;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b8e316c67080 */
+#define afw_components_z_zz__b8e316c67080 \
+    (afw_components_self_v_zz__b8e316c67080.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b8e316c67080 */
+#define afw_components_v_zz__b8e316c67080 \
+    (&afw_components_self_v_zz__b8e316c67080.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b8ed9d66dc91 \
+    "This component, often referred to as a Side Nav, displays a list of clickable links into a horizontal panel."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b8ed9d66dc91 */
+#define afw_components_s_zz__b8ed9d66dc91 \
+    (&afw_components_self_v_zz__b8ed9d66dc91.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b8ed9d66dc91 */
+#define afw_components_self_s_zz__b8ed9d66dc91 \
+    (afw_components_self_v_zz__b8ed9d66dc91.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b8ed9d66dc91 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b8ed9d66dc91;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b8ed9d66dc91 */
+#define afw_components_z_zz__b8ed9d66dc91 \
+    (afw_components_self_v_zz__b8ed9d66dc91.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b8ed9d66dc91 */
+#define afw_components_v_zz__b8ed9d66dc91 \
+    (&afw_components_self_v_zz__b8ed9d66dc91.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__b91fbb782272 \
+    "Sets or returns what values are applied by the animation outside the time it is executing"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b91fbb782272 */
+#define afw_components_s_zz__b91fbb782272 \
+    (&afw_components_self_v_zz__b91fbb782272.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__b91fbb782272 */
+#define afw_components_self_s_zz__b91fbb782272 \
+    (afw_components_self_v_zz__b91fbb782272.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__b91fbb782272 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__b91fbb782272;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__b91fbb782272 */
+#define afw_components_z_zz__b91fbb782272 \
+    (afw_components_self_v_zz__b91fbb782272.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__b91fbb782272 */
+#define afw_components_v_zz__b91fbb782272 \
+    (&afw_components_self_v_zz__b91fbb782272.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__ba103ceb011f \
+    "This declares the direction that items are oriented inside the Box."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ba103ceb011f */
+#define afw_components_s_zz__ba103ceb011f \
+    (&afw_components_self_v_zz__ba103ceb011f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ba103ceb011f */
+#define afw_components_self_s_zz__ba103ceb011f \
+    (afw_components_self_v_zz__ba103ceb011f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__ba103ceb011f */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__ba103ceb011f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__ba103ceb011f */
+#define afw_components_z_zz__ba103ceb011f \
+    (afw_components_self_v_zz__ba103ceb011f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__ba103ceb011f */
+#define afw_components_v_zz__ba103ceb011f \
+    (&afw_components_self_v_zz__ba103ceb011f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__bbf494b5f14d \
+    "This property describes whether the drawer should be anchored temporary, persistent or permanent. If temporary, the drawer will be dismissed when the user unblocks its focus. If persistent, the drawer will be displayed until the user manually closes it. If permanent, the drawer will always remain open."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__bbf494b5f14d */
+#define afw_components_s_zz__bbf494b5f14d \
+    (&afw_components_self_v_zz__bbf494b5f14d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__bbf494b5f14d */
+#define afw_components_self_s_zz__bbf494b5f14d \
+    (afw_components_self_v_zz__bbf494b5f14d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__bbf494b5f14d */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__bbf494b5f14d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__bbf494b5f14d */
+#define afw_components_z_zz__bbf494b5f14d \
+    (afw_components_self_v_zz__bbf494b5f14d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__bbf494b5f14d */
+#define afw_components_v_zz__bbf494b5f14d \
+    (&afw_components_self_v_zz__bbf494b5f14d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__bc3208b63fee \
+    "This declares a list of items to be rendered inside the Drawer."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__bc3208b63fee */
+#define afw_components_s_zz__bc3208b63fee \
+    (&afw_components_self_v_zz__bc3208b63fee.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__bc3208b63fee */
+#define afw_components_self_s_zz__bc3208b63fee \
+    (afw_components_self_v_zz__bc3208b63fee.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__bc3208b63fee */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__bc3208b63fee;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__bc3208b63fee */
+#define afw_components_z_zz__bc3208b63fee \
+    (afw_components_self_v_zz__bc3208b63fee.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__bc3208b63fee */
+#define afw_components_v_zz__bc3208b63fee \
+    (&afw_components_self_v_zz__bc3208b63fee.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__bc5fcc050065 \
+    "Adaptive component definition for the Dropdown Option component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__bc5fcc050065 */
+#define afw_components_s_zz__bc5fcc050065 \
+    (&afw_components_self_v_zz__bc5fcc050065.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__bc5fcc050065 */
+#define afw_components_self_s_zz__bc5fcc050065 \
+    (afw_components_self_v_zz__bc5fcc050065.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__bc5fcc050065 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__bc5fcc050065;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__bc5fcc050065 */
+#define afw_components_z_zz__bc5fcc050065 \
+    (afw_components_self_v_zz__bc5fcc050065.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__bc5fcc050065 */
+#define afw_components_v_zz__bc5fcc050065 \
+    (&afw_components_self_v_zz__bc5fcc050065.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__bc82172b5b86 \
+    "The list of steps to be displayed for a the Stepper component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__bc82172b5b86 */
+#define afw_components_s_zz__bc82172b5b86 \
+    (&afw_components_self_v_zz__bc82172b5b86.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__bc82172b5b86 */
+#define afw_components_self_s_zz__bc82172b5b86 \
+    (afw_components_self_v_zz__bc82172b5b86.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__bc82172b5b86 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__bc82172b5b86;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__bc82172b5b86 */
+#define afw_components_z_zz__bc82172b5b86 \
+    (afw_components_self_v_zz__bc82172b5b86.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__bc82172b5b86 */
+#define afw_components_v_zz__bc82172b5b86 \
+    (&afw_components_self_v_zz__bc82172b5b86.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__be19cec99496 \
+    "Sets or returns how to handle tabs, line breaks and whitespace in a text"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__be19cec99496 */
+#define afw_components_s_zz__be19cec99496 \
+    (&afw_components_self_v_zz__be19cec99496.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__be19cec99496 */
+#define afw_components_self_s_zz__be19cec99496 \
+    (afw_components_self_v_zz__be19cec99496.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__be19cec99496 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__be19cec99496;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__be19cec99496 */
+#define afw_components_z_zz__be19cec99496 \
+    (afw_components_self_v_zz__be19cec99496.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__be19cec99496 */
+#define afw_components_v_zz__be19cec99496 \
+    (&afw_components_self_v_zz__be19cec99496.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__c216a9814aef \
+    "This component displays an icon, which references a common dictionary of icon names, each of which may map to the appropriate icon library depending on the framework that is being used. The icon itself may be clickable."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c216a9814aef */
+#define afw_components_s_zz__c216a9814aef \
+    (&afw_components_self_v_zz__c216a9814aef.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c216a9814aef */
+#define afw_components_self_s_zz__c216a9814aef \
+    (afw_components_self_v_zz__c216a9814aef.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__c216a9814aef */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__c216a9814aef;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__c216a9814aef */
+#define afw_components_z_zz__c216a9814aef \
+    (afw_components_self_v_zz__c216a9814aef.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__c216a9814aef */
+#define afw_components_v_zz__c216a9814aef \
+    (&afw_components_self_v_zz__c216a9814aef.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__c2433132f35b \
+    "Specifies whether this Modal component is blocking or can lightly be dismissed."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c2433132f35b */
+#define afw_components_s_zz__c2433132f35b \
+    (&afw_components_self_v_zz__c2433132f35b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c2433132f35b */
+#define afw_components_self_s_zz__c2433132f35b \
+    (afw_components_self_v_zz__c2433132f35b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__c2433132f35b */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__c2433132f35b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__c2433132f35b */
+#define afw_components_z_zz__c2433132f35b \
+    (afw_components_self_v_zz__c2433132f35b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__c2433132f35b */
+#define afw_components_v_zz__c2433132f35b \
+    (&afw_components_self_v_zz__c2433132f35b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__c3bda3aa2287 \
+    "Defines whether an element must create a new stacking content"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c3bda3aa2287 */
+#define afw_components_s_zz__c3bda3aa2287 \
+    (&afw_components_self_v_zz__c3bda3aa2287.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c3bda3aa2287 */
+#define afw_components_self_s_zz__c3bda3aa2287 \
+    (afw_components_self_v_zz__c3bda3aa2287.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__c3bda3aa2287 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__c3bda3aa2287;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__c3bda3aa2287 */
+#define afw_components_z_zz__c3bda3aa2287 \
+    (afw_components_self_v_zz__c3bda3aa2287.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__c3bda3aa2287 */
+#define afw_components_v_zz__c3bda3aa2287 \
+    (&afw_components_self_v_zz__c3bda3aa2287.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__c54fb9246b60 \
+    "A component that renders a boolean value as a toggleable switch."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c54fb9246b60 */
+#define afw_components_s_zz__c54fb9246b60 \
+    (&afw_components_self_v_zz__c54fb9246b60.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c54fb9246b60 */
+#define afw_components_self_s_zz__c54fb9246b60 \
+    (afw_components_self_v_zz__c54fb9246b60.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__c54fb9246b60 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__c54fb9246b60;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__c54fb9246b60 */
+#define afw_components_z_zz__c54fb9246b60 \
+    (afw_components_self_v_zz__c54fb9246b60.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__c54fb9246b60 */
+#define afw_components_v_zz__c54fb9246b60 \
+    (&afw_components_self_v_zz__c54fb9246b60.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__c62ba45c9844 \
+    "Sets or returns the positioning area of the background images"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c62ba45c9844 */
+#define afw_components_s_zz__c62ba45c9844 \
+    (&afw_components_self_v_zz__c62ba45c9844.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c62ba45c9844 */
+#define afw_components_self_s_zz__c62ba45c9844 \
+    (afw_components_self_v_zz__c62ba45c9844.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__c62ba45c9844 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__c62ba45c9844;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__c62ba45c9844 */
+#define afw_components_z_zz__c62ba45c9844 \
+    (afw_components_self_v_zz__c62ba45c9844.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__c62ba45c9844 */
+#define afw_components_v_zz__c62ba45c9844 \
+    (&afw_components_self_v_zz__c62ba45c9844.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__c6ad7debd3b3 \
+    "Specifies a rotation in the right or clockwise direction that a user agent applies to an image"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c6ad7debd3b3 */
+#define afw_components_s_zz__c6ad7debd3b3 \
+    (&afw_components_self_v_zz__c6ad7debd3b3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c6ad7debd3b3 */
+#define afw_components_self_s_zz__c6ad7debd3b3 \
+    (afw_components_self_v_zz__c6ad7debd3b3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__c6ad7debd3b3 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__c6ad7debd3b3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__c6ad7debd3b3 */
+#define afw_components_z_zz__c6ad7debd3b3 \
+    (afw_components_self_v_zz__c6ad7debd3b3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__c6ad7debd3b3 */
+#define afw_components_v_zz__c6ad7debd3b3 \
+    (&afw_components_self_v_zz__c6ad7debd3b3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__c6efb05bc6ec \
+    "An object describing a particular set of filtering options, including the ability to recurse it to embedded objects."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c6efb05bc6ec */
+#define afw_components_s_zz__c6efb05bc6ec \
+    (&afw_components_self_v_zz__c6efb05bc6ec.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c6efb05bc6ec */
+#define afw_components_self_s_zz__c6efb05bc6ec \
+    (afw_components_self_v_zz__c6efb05bc6ec.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__c6efb05bc6ec */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__c6efb05bc6ec;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__c6efb05bc6ec */
+#define afw_components_z_zz__c6efb05bc6ec \
+    (afw_components_self_v_zz__c6efb05bc6ec.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__c6efb05bc6ec */
+#define afw_components_v_zz__c6efb05bc6ec \
+    (&afw_components_self_v_zz__c6efb05bc6ec.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__c80d9ba46b02 \
+    "A component that allows the user to manage a list of text items."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c80d9ba46b02 */
+#define afw_components_s_zz__c80d9ba46b02 \
+    (&afw_components_self_v_zz__c80d9ba46b02.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c80d9ba46b02 */
+#define afw_components_self_s_zz__c80d9ba46b02 \
+    (afw_components_self_v_zz__c80d9ba46b02.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__c80d9ba46b02 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__c80d9ba46b02;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__c80d9ba46b02 */
+#define afw_components_z_zz__c80d9ba46b02 \
+    (afw_components_self_v_zz__c80d9ba46b02.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__c80d9ba46b02 */
+#define afw_components_v_zz__c80d9ba46b02 \
+    (&afw_components_self_v_zz__c80d9ba46b02.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__c90e9d4ee799 \
+    "Sets or returns the amount by which the border image area extends beyond the border box"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c90e9d4ee799 */
+#define afw_components_s_zz__c90e9d4ee799 \
+    (&afw_components_self_v_zz__c90e9d4ee799.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c90e9d4ee799 */
+#define afw_components_self_s_zz__c90e9d4ee799 \
+    (afw_components_self_v_zz__c90e9d4ee799.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__c90e9d4ee799 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__c90e9d4ee799;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__c90e9d4ee799 */
+#define afw_components_z_zz__c90e9d4ee799 \
+    (afw_components_self_v_zz__c90e9d4ee799.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__c90e9d4ee799 */
+#define afw_components_v_zz__c90e9d4ee799 \
+    (&afw_components_self_v_zz__c90e9d4ee799.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__c918c8fb1742 \
+    "Component to display a list of options that may be selected or can be autocompleted by typing."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c918c8fb1742 */
+#define afw_components_s_zz__c918c8fb1742 \
+    (&afw_components_self_v_zz__c918c8fb1742.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__c918c8fb1742 */
+#define afw_components_self_s_zz__c918c8fb1742 \
+    (afw_components_self_v_zz__c918c8fb1742.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__c918c8fb1742 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__c918c8fb1742;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__c918c8fb1742 */
+#define afw_components_z_zz__c918c8fb1742 \
+    (afw_components_self_v_zz__c918c8fb1742.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__c918c8fb1742 */
+#define afw_components_v_zz__c918c8fb1742 \
+    (&afw_components_self_v_zz__c918c8fb1742.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__ca63e72dc7ee \
+    "Sets or returns how the last line of a block or a line right before a forced line break is aligned when text-align is 'justify'"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ca63e72dc7ee */
+#define afw_components_s_zz__ca63e72dc7ee \
+    (&afw_components_self_v_zz__ca63e72dc7ee.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ca63e72dc7ee */
+#define afw_components_self_s_zz__ca63e72dc7ee \
+    (afw_components_self_v_zz__ca63e72dc7ee.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__ca63e72dc7ee */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__ca63e72dc7ee;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__ca63e72dc7ee */
+#define afw_components_z_zz__ca63e72dc7ee \
+    (afw_components_self_v_zz__ca63e72dc7ee.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__ca63e72dc7ee */
+#define afw_components_v_zz__ca63e72dc7ee \
+    (&afw_components_self_v_zz__ca63e72dc7ee.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__cabf91361b26 \
+    "Sets or returns the shape of the border of the bottom-left corner"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__cabf91361b26 */
+#define afw_components_s_zz__cabf91361b26 \
+    (&afw_components_self_v_zz__cabf91361b26.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__cabf91361b26 */
+#define afw_components_self_s_zz__cabf91361b26 \
+    (afw_components_self_v_zz__cabf91361b26.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__cabf91361b26 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__cabf91361b26;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__cabf91361b26 */
+#define afw_components_z_zz__cabf91361b26 \
+    (afw_components_self_v_zz__cabf91361b26.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__cabf91361b26 */
+#define afw_components_v_zz__cabf91361b26 \
+    (&afw_components_self_v_zz__cabf91361b26.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__cc4661fbf012 \
+    "This property describes which side of the page, the drawer should be anchored to. It may be one of 'bottom', 'top', 'left' or 'right'."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__cc4661fbf012 */
+#define afw_components_s_zz__cc4661fbf012 \
+    (&afw_components_self_v_zz__cc4661fbf012.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__cc4661fbf012 */
+#define afw_components_self_s_zz__cc4661fbf012 \
+    (afw_components_self_v_zz__cc4661fbf012.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__cc4661fbf012 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__cc4661fbf012;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__cc4661fbf012 */
+#define afw_components_z_zz__cc4661fbf012 \
+    (afw_components_self_v_zz__cc4661fbf012.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__cc4661fbf012 */
+#define afw_components_v_zz__cc4661fbf012 \
+    (&afw_components_self_v_zz__cc4661fbf012.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__cc78edfc54d8 \
+    "Sets or returns whether the image-border should be repeated, rounded or stretched"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__cc78edfc54d8 */
+#define afw_components_s_zz__cc78edfc54d8 \
+    (&afw_components_self_v_zz__cc78edfc54d8.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__cc78edfc54d8 */
+#define afw_components_self_s_zz__cc78edfc54d8 \
+    (afw_components_self_v_zz__cc78edfc54d8.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__cc78edfc54d8 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__cc78edfc54d8;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__cc78edfc54d8 */
+#define afw_components_z_zz__cc78edfc54d8 \
+    (afw_components_self_v_zz__cc78edfc54d8.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__cc78edfc54d8 */
+#define afw_components_v_zz__cc78edfc54d8 \
+    (&afw_components_self_v_zz__cc78edfc54d8.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__cc8702dfac0b \
+    "The original source value for the DiffEditor component to render."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__cc8702dfac0b */
+#define afw_components_s_zz__cc8702dfac0b \
+    (&afw_components_self_v_zz__cc8702dfac0b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__cc8702dfac0b */
+#define afw_components_self_s_zz__cc8702dfac0b \
+    (afw_components_self_v_zz__cc8702dfac0b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__cc8702dfac0b */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__cc8702dfac0b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__cc8702dfac0b */
+#define afw_components_z_zz__cc8702dfac0b \
+    (afw_components_self_v_zz__cc8702dfac0b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__cc8702dfac0b */
+#define afw_components_v_zz__cc8702dfac0b \
+    (&afw_components_self_v_zz__cc8702dfac0b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__cd790f8d0d34 \
+    "A component that allows contents to be displayed on a Paper like surface."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__cd790f8d0d34 */
+#define afw_components_s_zz__cd790f8d0d34 \
+    (&afw_components_self_v_zz__cd790f8d0d34.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__cd790f8d0d34 */
+#define afw_components_self_s_zz__cd790f8d0d34 \
+    (afw_components_self_v_zz__cd790f8d0d34.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__cd790f8d0d34 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__cd790f8d0d34;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__cd790f8d0d34 */
+#define afw_components_z_zz__cd790f8d0d34 \
+    (afw_components_self_v_zz__cd790f8d0d34.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__cd790f8d0d34 */
+#define afw_components_v_zz__cd790f8d0d34 \
+    (&afw_components_self_v_zz__cd790f8d0d34.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__ce8ffeb94767 \
+    "The maximum width for this column used in this Table component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ce8ffeb94767 */
+#define afw_components_s_zz__ce8ffeb94767 \
+    (&afw_components_self_v_zz__ce8ffeb94767.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ce8ffeb94767 */
+#define afw_components_self_s_zz__ce8ffeb94767 \
+    (afw_components_self_v_zz__ce8ffeb94767.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__ce8ffeb94767 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__ce8ffeb94767;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__ce8ffeb94767 */
+#define afw_components_z_zz__ce8ffeb94767 \
+    (afw_components_self_v_zz__ce8ffeb94767.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__ce8ffeb94767 */
+#define afw_components_v_zz__ce8ffeb94767 \
+    (&afw_components_self_v_zz__ce8ffeb94767.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__cec82d023fcc \
+    "Specifies inclusive (OR) conditions for properties to display (required, optional, valued, unvalued)."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__cec82d023fcc */
+#define afw_components_s_zz__cec82d023fcc \
+    (&afw_components_self_v_zz__cec82d023fcc.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__cec82d023fcc */
+#define afw_components_self_s_zz__cec82d023fcc \
+    (afw_components_self_v_zz__cec82d023fcc.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__cec82d023fcc */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__cec82d023fcc;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__cec82d023fcc */
+#define afw_components_z_zz__cec82d023fcc \
+    (afw_components_self_v_zz__cec82d023fcc.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__cec82d023fcc */
+#define afw_components_v_zz__cec82d023fcc \
+    (&afw_components_self_v_zz__cec82d023fcc.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__cfe8bd609cce \
+    "This defines the ability for a flex item to grow if necessary. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space inside the flex container the item should take up.\n\nIf all items have flex-grow set to 1, the remaining space in the container will be distributed equally to all children. If one of the children has a value of 2, the remaining space would take up twice as much space as the others (or it will try to, at least)."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__cfe8bd609cce */
+#define afw_components_s_zz__cfe8bd609cce \
+    (&afw_components_self_v_zz__cfe8bd609cce.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__cfe8bd609cce */
+#define afw_components_self_s_zz__cfe8bd609cce \
+    (afw_components_self_v_zz__cfe8bd609cce.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__cfe8bd609cce */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__cfe8bd609cce;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__cfe8bd609cce */
+#define afw_components_z_zz__cfe8bd609cce \
+    (afw_components_self_v_zz__cfe8bd609cce.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__cfe8bd609cce */
+#define afw_components_v_zz__cfe8bd609cce \
+    (&afw_components_self_v_zz__cfe8bd609cce.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__d042757d108d \
+    "This component allows a timezone to be chosen, typically from a dropdown of timezones, or from a world map."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__d042757d108d */
+#define afw_components_s_zz__d042757d108d \
+    (&afw_components_self_v_zz__d042757d108d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__d042757d108d */
+#define afw_components_self_s_zz__d042757d108d \
+    (afw_components_self_v_zz__d042757d108d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__d042757d108d */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__d042757d108d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__d042757d108d */
+#define afw_components_z_zz__d042757d108d \
+    (afw_components_self_v_zz__d042757d108d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__d042757d108d */
+#define afw_components_v_zz__d042757d108d \
+    (&afw_components_self_v_zz__d042757d108d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__d08c01b7671c \
+    "This component renders a small popup with text when the user hovers over an element for a specific amount of time. This may provide helpful hints to explain to the user what they are looking at."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__d08c01b7671c */
+#define afw_components_s_zz__d08c01b7671c \
+    (&afw_components_self_v_zz__d08c01b7671c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__d08c01b7671c */
+#define afw_components_self_s_zz__d08c01b7671c \
+    (afw_components_self_v_zz__d08c01b7671c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__d08c01b7671c */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__d08c01b7671c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__d08c01b7671c */
+#define afw_components_z_zz__d08c01b7671c \
+    (afw_components_self_v_zz__d08c01b7671c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__d08c01b7671c */
+#define afw_components_v_zz__d08c01b7671c \
+    (&afw_components_self_v_zz__d08c01b7671c.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__d0daedc2d655 \
+    "Specifies exclusive (AND) conditions for properties to display (required, optional, valued, unvalued)."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__d0daedc2d655 */
+#define afw_components_s_zz__d0daedc2d655 \
+    (&afw_components_self_v_zz__d0daedc2d655.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__d0daedc2d655 */
+#define afw_components_self_s_zz__d0daedc2d655 \
+    (afw_components_self_v_zz__d0daedc2d655.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__d0daedc2d655 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__d0daedc2d655;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__d0daedc2d655 */
+#define afw_components_z_zz__d0daedc2d655 \
+    (afw_components_self_v_zz__d0daedc2d655.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__d0daedc2d655 */
+#define afw_components_v_zz__d0daedc2d655 \
+    (&afw_components_self_v_zz__d0daedc2d655.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__d1c0100ed624 \
+    "The modified source value for the DiffEditor component to render."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__d1c0100ed624 */
+#define afw_components_s_zz__d1c0100ed624 \
+    (&afw_components_self_v_zz__d1c0100ed624.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__d1c0100ed624 */
+#define afw_components_self_s_zz__d1c0100ed624 \
+    (afw_components_self_v_zz__d1c0100ed624.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__d1c0100ed624 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__d1c0100ed624;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__d1c0100ed624 */
+#define afw_components_z_zz__d1c0100ed624 \
+    (afw_components_self_v_zz__d1c0100ed624.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__d1c0100ed624 */
+#define afw_components_v_zz__d1c0100ed624 \
+    (&afw_components_self_v_zz__d1c0100ed624.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__d7134bed5bfd \
+    "A component that displays a skeleton, or shape, of a component that may shimmer to indicate that an actual component is waiting to be loaded."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__d7134bed5bfd */
+#define afw_components_s_zz__d7134bed5bfd \
+    (&afw_components_self_v_zz__d7134bed5bfd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__d7134bed5bfd */
+#define afw_components_self_s_zz__d7134bed5bfd \
+    (afw_components_self_v_zz__d7134bed5bfd.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__d7134bed5bfd */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__d7134bed5bfd;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__d7134bed5bfd */
+#define afw_components_z_zz__d7134bed5bfd \
+    (afw_components_self_v_zz__d7134bed5bfd.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__d7134bed5bfd */
+#define afw_components_v_zz__d7134bed5bfd \
+    (&afw_components_self_v_zz__d7134bed5bfd.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__d96a296e8e52 \
+    "Sets or returns the width of an element's border (can have up to four values)"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__d96a296e8e52 */
+#define afw_components_s_zz__d96a296e8e52 \
+    (&afw_components_self_v_zz__d96a296e8e52.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__d96a296e8e52 */
+#define afw_components_self_s_zz__d96a296e8e52 \
+    (afw_components_self_v_zz__d96a296e8e52.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__d96a296e8e52 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__d96a296e8e52;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__d96a296e8e52 */
+#define afw_components_z_zz__d96a296e8e52 \
+    (afw_components_self_v_zz__d96a296e8e52.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__d96a296e8e52 */
+#define afw_components_v_zz__d96a296e8e52 \
+    (&afw_components_self_v_zz__d96a296e8e52.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__dab072119e07 \
+    "A layout container that displays content that can be hidden by a collapsible control."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__dab072119e07 */
+#define afw_components_s_zz__dab072119e07 \
+    (&afw_components_self_v_zz__dab072119e07.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__dab072119e07 */
+#define afw_components_self_s_zz__dab072119e07 \
+    (afw_components_self_v_zz__dab072119e07.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__dab072119e07 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__dab072119e07;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__dab072119e07 */
+#define afw_components_z_zz__dab072119e07 \
+    (afw_components_self_v_zz__dab072119e07.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__dab072119e07 */
+#define afw_components_v_zz__dab072119e07 \
+    (&afw_components_self_v_zz__dab072119e07.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__dbb6ff9d7e39 \
+    "This component wraps an editable text field inside a Callout component. This is useful when a label needs to be quickly edited by popping up an editor, rather than navigating them to a new page. The EditableLabel component that it displays may be a multiline text field."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__dbb6ff9d7e39 */
+#define afw_components_s_zz__dbb6ff9d7e39 \
+    (&afw_components_self_v_zz__dbb6ff9d7e39.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__dbb6ff9d7e39 */
+#define afw_components_self_s_zz__dbb6ff9d7e39 \
+    (afw_components_self_v_zz__dbb6ff9d7e39.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__dbb6ff9d7e39 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__dbb6ff9d7e39;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__dbb6ff9d7e39 */
+#define afw_components_z_zz__dbb6ff9d7e39 \
+    (afw_components_self_v_zz__dbb6ff9d7e39.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__dbb6ff9d7e39 */
+#define afw_components_v_zz__dbb6ff9d7e39 \
+    (&afw_components_self_v_zz__dbb6ff9d7e39.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__dd156fafad63 \
+    "This component understands how to render a link with the appropriate framework style, and handles the React Routing, if the link references another component within this same application."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__dd156fafad63 */
+#define afw_components_s_zz__dd156fafad63 \
+    (&afw_components_self_v_zz__dd156fafad63.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__dd156fafad63 */
+#define afw_components_self_s_zz__dd156fafad63 \
+    (afw_components_self_v_zz__dd156fafad63.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__dd156fafad63 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__dd156fafad63;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__dd156fafad63 */
+#define afw_components_z_zz__dd156fafad63 \
+    (afw_components_self_v_zz__dd156fafad63.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__dd156fafad63 */
+#define afw_components_v_zz__dd156fafad63 \
+    (&afw_components_self_v_zz__dd156fafad63.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__de03ddc6488a \
+    "This component represents any additional native HTML node that is required by the end user, which is not covered by other components within this library."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__de03ddc6488a */
+#define afw_components_s_zz__de03ddc6488a \
+    (&afw_components_self_v_zz__de03ddc6488a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__de03ddc6488a */
+#define afw_components_self_s_zz__de03ddc6488a \
+    (afw_components_self_v_zz__de03ddc6488a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__de03ddc6488a */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__de03ddc6488a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__de03ddc6488a */
+#define afw_components_z_zz__de03ddc6488a \
+    (afw_components_self_v_zz__de03ddc6488a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__de03ddc6488a */
+#define afw_components_v_zz__de03ddc6488a \
+    (&afw_components_self_v_zz__de03ddc6488a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__e183fdb6c9b5 \
+    "This component pops up a small bar at the bottom of the screen to alert the user of a recent activity, such as a success or error status, typically following an action that was taken by the user."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e183fdb6c9b5 */
+#define afw_components_s_zz__e183fdb6c9b5 \
+    (&afw_components_self_v_zz__e183fdb6c9b5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e183fdb6c9b5 */
+#define afw_components_self_s_zz__e183fdb6c9b5 \
+    (afw_components_self_v_zz__e183fdb6c9b5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__e183fdb6c9b5 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__e183fdb6c9b5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__e183fdb6c9b5 */
+#define afw_components_z_zz__e183fdb6c9b5 \
+    (afw_components_self_v_zz__e183fdb6c9b5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__e183fdb6c9b5 */
+#define afw_components_v_zz__e183fdb6c9b5 \
+    (&afw_components_self_v_zz__e183fdb6c9b5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__e1ff9844e955 \
+    "A layout container that renders content in a grid format, with breakpoints defined for a variety of screen sizes."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e1ff9844e955 */
+#define afw_components_s_zz__e1ff9844e955 \
+    (&afw_components_self_v_zz__e1ff9844e955.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e1ff9844e955 */
+#define afw_components_self_s_zz__e1ff9844e955 \
+    (afw_components_self_v_zz__e1ff9844e955.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__e1ff9844e955 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__e1ff9844e955;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__e1ff9844e955 */
+#define afw_components_z_zz__e1ff9844e955 \
+    (afw_components_self_v_zz__e1ff9844e955.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__e1ff9844e955 */
+#define afw_components_v_zz__e1ff9844e955 \
+    (&afw_components_self_v_zz__e1ff9844e955.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__e3817d708529 \
+    "Specifies how the contents of a replaced element should be fitted to the box established by its used height and width"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e3817d708529 */
+#define afw_components_s_zz__e3817d708529 \
+    (&afw_components_self_v_zz__e3817d708529.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e3817d708529 */
+#define afw_components_self_s_zz__e3817d708529 \
+    (afw_components_self_v_zz__e3817d708529.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__e3817d708529 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__e3817d708529;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__e3817d708529 */
+#define afw_components_z_zz__e3817d708529 \
+    (afw_components_self_v_zz__e3817d708529.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__e3817d708529 */
+#define afw_components_v_zz__e3817d708529 \
+    (&afw_components_self_v_zz__e3817d708529.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__e3f4748d790e \
+    "Sets or returns the type of quotation marks for embedded quotations"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e3f4748d790e */
+#define afw_components_s_zz__e3f4748d790e \
+    (&afw_components_self_v_zz__e3f4748d790e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e3f4748d790e */
+#define afw_components_self_s_zz__e3f4748d790e \
+    (afw_components_self_v_zz__e3f4748d790e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__e3f4748d790e */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__e3f4748d790e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__e3f4748d790e */
+#define afw_components_z_zz__e3f4748d790e \
+    (afw_components_self_v_zz__e3f4748d790e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__e3f4748d790e */
+#define afw_components_v_zz__e3f4748d790e \
+    (&afw_components_self_v_zz__e3f4748d790e.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__e729ae8516a3 \
+    "Sets or returns the minimum number of lines for an element that must be visible at the top of a page"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e729ae8516a3 */
+#define afw_components_s_zz__e729ae8516a3 \
+    (&afw_components_self_v_zz__e729ae8516a3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e729ae8516a3 */
+#define afw_components_self_s_zz__e729ae8516a3 \
+    (afw_components_self_v_zz__e729ae8516a3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__e729ae8516a3 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__e729ae8516a3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__e729ae8516a3 */
+#define afw_components_z_zz__e729ae8516a3 \
+    (afw_components_self_v_zz__e729ae8516a3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__e729ae8516a3 */
+#define afw_components_v_zz__e729ae8516a3 \
+    (&afw_components_self_v_zz__e729ae8516a3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__e7a92d141ef8 \
+    "The orientation of the Choice Group (horizontal or vertical)."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e7a92d141ef8 */
+#define afw_components_s_zz__e7a92d141ef8 \
+    (&afw_components_self_v_zz__e7a92d141ef8.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e7a92d141ef8 */
+#define afw_components_self_s_zz__e7a92d141ef8 \
+    (afw_components_self_v_zz__e7a92d141ef8.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__e7a92d141ef8 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__e7a92d141ef8;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__e7a92d141ef8 */
+#define afw_components_z_zz__e7a92d141ef8 \
+    (afw_components_self_v_zz__e7a92d141ef8.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__e7a92d141ef8 */
+#define afw_components_v_zz__e7a92d141ef8 \
+    (&afw_components_self_v_zz__e7a92d141ef8.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__e7b14a0e8406 \
+    "Sets or returns whether or not the animation should play in reverse on alternate cycles"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e7b14a0e8406 */
+#define afw_components_s_zz__e7b14a0e8406 \
+    (&afw_components_self_v_zz__e7b14a0e8406.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e7b14a0e8406 */
+#define afw_components_self_s_zz__e7b14a0e8406 \
+    (afw_components_self_v_zz__e7b14a0e8406.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__e7b14a0e8406 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__e7b14a0e8406;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__e7b14a0e8406 */
+#define afw_components_z_zz__e7b14a0e8406 \
+    (afw_components_self_v_zz__e7b14a0e8406.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__e7b14a0e8406 */
+#define afw_components_v_zz__e7b14a0e8406 \
+    (&afw_components_self_v_zz__e7b14a0e8406.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__e992163c6675 \
+    "Adaptive Layout definition for the Object Form Preferred Component option."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e992163c6675 */
+#define afw_components_s_zz__e992163c6675 \
+    (&afw_components_self_v_zz__e992163c6675.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__e992163c6675 */
+#define afw_components_self_s_zz__e992163c6675 \
+    (afw_components_self_v_zz__e992163c6675.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__e992163c6675 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__e992163c6675;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__e992163c6675 */
+#define afw_components_z_zz__e992163c6675 \
+    (afw_components_self_v_zz__e992163c6675.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__e992163c6675 */
+#define afw_components_v_zz__e992163c6675 \
+    (&afw_components_self_v_zz__e992163c6675.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__ea28e895eafc \
+    "A layout container that displays content inside a popup, with a confirmation response."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ea28e895eafc */
+#define afw_components_s_zz__ea28e895eafc \
+    (&afw_components_self_v_zz__ea28e895eafc.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ea28e895eafc */
+#define afw_components_self_s_zz__ea28e895eafc \
+    (afw_components_self_v_zz__ea28e895eafc.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__ea28e895eafc */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__ea28e895eafc;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__ea28e895eafc */
+#define afw_components_z_zz__ea28e895eafc \
+    (afw_components_self_v_zz__ea28e895eafc.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__ea28e895eafc */
+#define afw_components_v_zz__ea28e895eafc \
+    (&afw_components_self_v_zz__ea28e895eafc.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__ec1f2fd5e4b9 \
+    "Adaptive Layout definition for the EditableCallout component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ec1f2fd5e4b9 */
+#define afw_components_s_zz__ec1f2fd5e4b9 \
+    (&afw_components_self_v_zz__ec1f2fd5e4b9.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ec1f2fd5e4b9 */
+#define afw_components_self_s_zz__ec1f2fd5e4b9 \
+    (afw_components_self_v_zz__ec1f2fd5e4b9.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__ec1f2fd5e4b9 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__ec1f2fd5e4b9;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__ec1f2fd5e4b9 */
+#define afw_components_z_zz__ec1f2fd5e4b9 \
+    (afw_components_self_v_zz__ec1f2fd5e4b9.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__ec1f2fd5e4b9 */
+#define afw_components_v_zz__ec1f2fd5e4b9 \
+    (&afw_components_self_v_zz__ec1f2fd5e4b9.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__ef19effa6347 \
+    "This component is a simple container component that renders its contents in a sequential, scrollable list."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ef19effa6347 */
+#define afw_components_s_zz__ef19effa6347 \
+    (&afw_components_self_v_zz__ef19effa6347.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ef19effa6347 */
+#define afw_components_self_s_zz__ef19effa6347 \
+    (afw_components_self_v_zz__ef19effa6347.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__ef19effa6347 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__ef19effa6347;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__ef19effa6347 */
+#define afw_components_z_zz__ef19effa6347 \
+    (afw_components_self_v_zz__ef19effa6347.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__ef19effa6347 */
+#define afw_components_v_zz__ef19effa6347 \
+    (&afw_components_self_v_zz__ef19effa6347.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__f09582a81e43 \
+    "Sets or returns all the borderTop properties in one declaration"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f09582a81e43 */
+#define afw_components_s_zz__f09582a81e43 \
+    (&afw_components_self_v_zz__f09582a81e43.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f09582a81e43 */
+#define afw_components_self_s_zz__f09582a81e43 \
+    (afw_components_self_v_zz__f09582a81e43.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__f09582a81e43 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__f09582a81e43;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__f09582a81e43 */
+#define afw_components_z_zz__f09582a81e43 \
+    (afw_components_self_v_zz__f09582a81e43.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__f09582a81e43 */
+#define afw_components_v_zz__f09582a81e43 \
+    (&afw_components_self_v_zz__f09582a81e43.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__f102f7fce112 \
+    "This component is useful for creating a step-by-step wizard, with each step providing a title, its contents, and a Next button to get to the next step."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f102f7fce112 */
+#define afw_components_s_zz__f102f7fce112 \
+    (&afw_components_self_v_zz__f102f7fce112.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f102f7fce112 */
+#define afw_components_self_s_zz__f102f7fce112 \
+    (afw_components_self_v_zz__f102f7fce112.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__f102f7fce112 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__f102f7fce112;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__f102f7fce112 */
+#define afw_components_z_zz__f102f7fce112 \
+    (afw_components_self_v_zz__f102f7fce112.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__f102f7fce112 */
+#define afw_components_v_zz__f102f7fce112 \
+    (&afw_components_self_v_zz__f102f7fce112.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__f22662e0fc8c \
+    "A component that allows one or more items to be picked from a list."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f22662e0fc8c */
+#define afw_components_s_zz__f22662e0fc8c \
+    (&afw_components_self_v_zz__f22662e0fc8c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f22662e0fc8c */
+#define afw_components_self_s_zz__f22662e0fc8c \
+    (afw_components_self_v_zz__f22662e0fc8c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__f22662e0fc8c */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__f22662e0fc8c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__f22662e0fc8c */
+#define afw_components_z_zz__f22662e0fc8c \
+    (afw_components_self_v_zz__f22662e0fc8c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__f22662e0fc8c */
+#define afw_components_v_zz__f22662e0fc8c \
+    (&afw_components_self_v_zz__f22662e0fc8c.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__f2edaa837f91 \
+    "Specifies whether the print margin should be visible in CodeEditor component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f2edaa837f91 */
+#define afw_components_s_zz__f2edaa837f91 \
+    (&afw_components_self_v_zz__f2edaa837f91.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f2edaa837f91 */
+#define afw_components_self_s_zz__f2edaa837f91 \
+    (afw_components_self_v_zz__f2edaa837f91.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__f2edaa837f91 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__f2edaa837f91;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__f2edaa837f91 */
+#define afw_components_z_zz__f2edaa837f91 \
+    (afw_components_self_v_zz__f2edaa837f91.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__f2edaa837f91 */
+#define afw_components_v_zz__f2edaa837f91 \
+    (&afw_components_self_v_zz__f2edaa837f91.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__f30e39fa86b2 \
+    "This allows you to explicitly set the underlying HTML tag in order to get the semantics correct."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f30e39fa86b2 */
+#define afw_components_s_zz__f30e39fa86b2 \
+    (&afw_components_self_v_zz__f30e39fa86b2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f30e39fa86b2 */
+#define afw_components_self_s_zz__f30e39fa86b2 \
+    (afw_components_self_v_zz__f30e39fa86b2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__f30e39fa86b2 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__f30e39fa86b2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__f30e39fa86b2 */
+#define afw_components_z_zz__f30e39fa86b2 \
+    (afw_components_self_v_zz__f30e39fa86b2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__f30e39fa86b2 */
+#define afw_components_v_zz__f30e39fa86b2 \
+    (&afw_components_self_v_zz__f30e39fa86b2.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__f4d6ff1d08f6 \
+    "Sets or returns the position of the element relative to floating objects"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f4d6ff1d08f6 */
+#define afw_components_s_zz__f4d6ff1d08f6 \
+    (&afw_components_self_v_zz__f4d6ff1d08f6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f4d6ff1d08f6 */
+#define afw_components_self_s_zz__f4d6ff1d08f6 \
+    (afw_components_self_v_zz__f4d6ff1d08f6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__f4d6ff1d08f6 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__f4d6ff1d08f6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__f4d6ff1d08f6 */
+#define afw_components_z_zz__f4d6ff1d08f6 \
+    (afw_components_self_v_zz__f4d6ff1d08f6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__f4d6ff1d08f6 */
+#define afw_components_v_zz__f4d6ff1d08f6 \
+    (&afw_components_self_v_zz__f4d6ff1d08f6.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__f648531e3c25 \
+    "An object describing a particular set of sorting options, including the ability to recurse it to embedded objects."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f648531e3c25 */
+#define afw_components_s_zz__f648531e3c25 \
+    (&afw_components_self_v_zz__f648531e3c25.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f648531e3c25 */
+#define afw_components_self_s_zz__f648531e3c25 \
+    (afw_components_self_v_zz__f648531e3c25.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__f648531e3c25 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__f648531e3c25;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__f648531e3c25 */
+#define afw_components_z_zz__f648531e3c25 \
+    (afw_components_self_v_zz__f648531e3c25.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__f648531e3c25 */
+#define afw_components_v_zz__f648531e3c25 \
+    (&afw_components_self_v_zz__f648531e3c25.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__f70104a9d375 \
+    "Sets or returns whether or not an element should be visible when not facing the screen"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f70104a9d375 */
+#define afw_components_s_zz__f70104a9d375 \
+    (&afw_components_self_v_zz__f70104a9d375.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f70104a9d375 */
+#define afw_components_self_s_zz__f70104a9d375 \
+    (afw_components_self_v_zz__f70104a9d375.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__f70104a9d375 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__f70104a9d375;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__f70104a9d375 */
+#define afw_components_z_zz__f70104a9d375 \
+    (afw_components_self_v_zz__f70104a9d375.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__f70104a9d375 */
+#define afw_components_v_zz__f70104a9d375 \
+    (&afw_components_self_v_zz__f70104a9d375.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__f7a5252eaad5 \
+    "A shorthand property for setting or returning all the columnRule properties"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f7a5252eaad5 */
+#define afw_components_s_zz__f7a5252eaad5 \
+    (&afw_components_self_v_zz__f7a5252eaad5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__f7a5252eaad5 */
+#define afw_components_self_s_zz__f7a5252eaad5 \
+    (afw_components_self_v_zz__f7a5252eaad5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__f7a5252eaad5 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__f7a5252eaad5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__f7a5252eaad5 */
+#define afw_components_z_zz__f7a5252eaad5 \
+    (afw_components_self_v_zz__f7a5252eaad5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__f7a5252eaad5 */
+#define afw_components_v_zz__f7a5252eaad5 \
+    (&afw_components_self_v_zz__f7a5252eaad5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__fb30a261065b \
+    "The layout components that are contained by this Responsive component."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__fb30a261065b */
+#define afw_components_s_zz__fb30a261065b \
+    (&afw_components_self_v_zz__fb30a261065b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__fb30a261065b */
+#define afw_components_self_s_zz__fb30a261065b \
+    (afw_components_self_v_zz__fb30a261065b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__fb30a261065b */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__fb30a261065b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__fb30a261065b */
+#define afw_components_z_zz__fb30a261065b \
+    (afw_components_self_v_zz__fb30a261065b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__fb30a261065b */
+#define afw_components_v_zz__fb30a261065b \
+    (&afw_components_self_v_zz__fb30a261065b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__fb4e63a54319 \
+    "A component that manages a list of options in a Dropdown picker."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__fb4e63a54319 */
+#define afw_components_s_zz__fb4e63a54319 \
+    (&afw_components_self_v_zz__fb4e63a54319.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__fb4e63a54319 */
+#define afw_components_self_s_zz__fb4e63a54319 \
+    (afw_components_self_v_zz__fb4e63a54319.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__fb4e63a54319 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__fb4e63a54319;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__fb4e63a54319 */
+#define afw_components_z_zz__fb4e63a54319 \
+    (afw_components_self_v_zz__fb4e63a54319.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__fb4e63a54319 */
+#define afw_components_v_zz__fb4e63a54319 \
+    (&afw_components_self_v_zz__fb4e63a54319.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__fefc04084cf5 \
+    "Components that provide notification, feedback or contextual information."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__fefc04084cf5 */
+#define afw_components_s_zz__fefc04084cf5 \
+    (&afw_components_self_v_zz__fefc04084cf5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__fefc04084cf5 */
+#define afw_components_self_s_zz__fefc04084cf5 \
+    (afw_components_self_v_zz__fefc04084cf5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__fefc04084cf5 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__fefc04084cf5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__fefc04084cf5 */
+#define afw_components_z_zz__fefc04084cf5 \
+    (afw_components_self_v_zz__fefc04084cf5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__fefc04084cf5 */
+#define afw_components_v_zz__fefc04084cf5 \
+    (&afw_components_self_v_zz__fefc04084cf5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__ff007d47652e \
+    "Sets or returns whether the flexible items should wrap or not"
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ff007d47652e */
+#define afw_components_s_zz__ff007d47652e \
+    (&afw_components_self_v_zz__ff007d47652e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ff007d47652e */
+#define afw_components_self_s_zz__ff007d47652e \
+    (afw_components_self_v_zz__ff007d47652e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__ff007d47652e */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__ff007d47652e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__ff007d47652e */
+#define afw_components_z_zz__ff007d47652e \
+    (afw_components_self_v_zz__ff007d47652e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__ff007d47652e */
+#define afw_components_v_zz__ff007d47652e \
+    (&afw_components_self_v_zz__ff007d47652e.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__ff250b38197d \
+    "Whether the options managed by this Dropdown Editor are editable."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ff250b38197d */
+#define afw_components_s_zz__ff250b38197d \
+    (&afw_components_self_v_zz__ff250b38197d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ff250b38197d */
+#define afw_components_self_s_zz__ff250b38197d \
+    (afw_components_self_v_zz__ff250b38197d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__ff250b38197d */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__ff250b38197d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__ff250b38197d */
+#define afw_components_z_zz__ff250b38197d \
+    (afw_components_self_v_zz__ff250b38197d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__ff250b38197d */
+#define afw_components_v_zz__ff250b38197d \
+    (&afw_components_self_v_zz__ff250b38197d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__ff27520bc98c \
+    "This component renders a path of url links that the user can click to navigate at any point within an application."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ff27520bc98c */
+#define afw_components_s_zz__ff27520bc98c \
+    (&afw_components_self_v_zz__ff27520bc98c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ff27520bc98c */
+#define afw_components_self_s_zz__ff27520bc98c \
+    (afw_components_self_v_zz__ff27520bc98c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__ff27520bc98c */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__ff27520bc98c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__ff27520bc98c */
+#define afw_components_z_zz__ff27520bc98c \
+    (afw_components_self_v_zz__ff27520bc98c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__ff27520bc98c */
+#define afw_components_v_zz__ff27520bc98c \
+    (&afw_components_self_v_zz__ff27520bc98c.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__ff31d7f691e4 \
+    "This content will only be displayed on extra large displays or smaller."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ff31d7f691e4 */
+#define afw_components_s_zz__ff31d7f691e4 \
+    (&afw_components_self_v_zz__ff31d7f691e4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__ff31d7f691e4 */
+#define afw_components_self_s_zz__ff31d7f691e4 \
+    (afw_components_self_v_zz__ff31d7f691e4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__ff31d7f691e4 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__ff31d7f691e4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__ff31d7f691e4 */
+#define afw_components_z_zz__ff31d7f691e4 \
+    (afw_components_self_v_zz__ff31d7f691e4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__ff31d7f691e4 */
+#define afw_components_v_zz__ff31d7f691e4 \
+    (&afw_components_self_v_zz__ff31d7f691e4.pub)
 
 
 

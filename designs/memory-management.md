@@ -1787,7 +1787,7 @@ options['const'][dataType][label] = value
 | `U` | `AFW_U_…` | unquoted `#define` |
 | `*z` | `afw_z_…` | `const char *` into the utf8 |
 
-Non-`string` types get a prefix insert (`afw_boolean_v_true`, `afw_integer_v_zero`, …). Bad identifiers become `zz__…` (or a numbered label if very long). Same value within a dataType reuses one label.
+Non-`string` types get a prefix insert (`afw_boolean_v_true`, `afw_integer_v_zero`, …). Bad identifiers become `zz__…`. Short values keep a sanitized spelling; long values use `zz__` plus `sha256` of the text (not a process-wide counter — that used to make every later package rename when core added a brief). Same value within a dataType reuses one label.
 
 **Who fills the bag before emit** (order matters; from `generate.py`):
 

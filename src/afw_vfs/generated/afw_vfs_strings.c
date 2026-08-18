@@ -374,69 +374,51 @@ afw_vfs_self_v_zz__ = {
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2582 = {
+afw_vfs_self_v_zz__025995016701 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2582)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__025995016701)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2583 = {
+afw_vfs_self_v_zz__2f2b7390a506 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2583)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2f2b7390a506)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2584 = {
+afw_vfs_self_v_zz__38304307d786 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2584)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__38304307d786)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2585 = {
+afw_vfs_self_v_zz__3dc82bfbfbc3 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2585)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__3dc82bfbfbc3)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2586 = {
+afw_vfs_self_v_zz__55729e8021b7 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2586)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__55729e8021b7)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2587 = {
+afw_vfs_self_v_zz__79f959ad442e = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2587)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__79f959ad442e)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2588 = {
+afw_vfs_self_v_zz__824be34f6220 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2588)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__824be34f6220)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2589 = {
+afw_vfs_self_v_zz__8ea45321d198 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2589)
-};
-
-const afw_value_string_t
-afw_vfs_self_v_zz__2590 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2590)
-};
-
-const afw_value_string_t
-afw_vfs_self_v_zz__2591 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2591)
-};
-
-const afw_value_string_t
-afw_vfs_self_v_zz__2592 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2592)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__8ea45321d198)
 };
 
 const afw_value_string_t
@@ -599,6 +581,24 @@ const afw_value_string_t
 afw_vfs_self_v_zz__VFS_to_operating_system_directory_map = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_zz__VFS_to_operating_system_directory_map)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__a9c70700d89b = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__a9c70700d89b)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__e84b94515505 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__e84b94515505)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__ea26965c1db6 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__ea26965c1db6)
 };
 
 const afw_value_string_t
