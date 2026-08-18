@@ -19,8 +19,11 @@ interface IAnyObject {
 
 /**
  * This returns a specified number of random octets as dataType base64Binary.
+ * numberOfOctets must be a non-negative integer and must not exceed
+ * 1,000,000.
  * 
- * @param {integer} numberOfOctets - The number of random octets to generate.
+ * @param {integer} numberOfOctets - The number of random octets to generate
+ *     (0 or more, up to 1,000,000).
  * 
  * @returns {base64Binary}
  */
@@ -53,8 +56,11 @@ export function afwRandomDigits(client : any, numberOfDigits : number) : any {
 
 /**
  * This returns a specified number of random octets as dataType hexBinary.
+ * numberOfOctets must be a non-negative integer and must not exceed
+ * 1,000,000.
  * 
- * @param {integer} numberOfOctets - The number of random octets to generate.
+ * @param {integer} numberOfOctets - The number of random octets to generate
+ *     (0 or more, up to 1,000,000).
  * 
  * @returns {hexBinary}
  */

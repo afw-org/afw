@@ -14,6 +14,28 @@
 #include "afw_internal.h"
 
 
+/* Hard cap so random_* octets cannot allocate without bound. */
+#define AFW_RANDOM_MAX_OCTETS 1000000
+
+
+/* numberOfOctets: non-negative integer within the cap. */
+static afw_size_t
+impl_random_octet_count(
+    const afw_value_integer_t *numberOfOctets,
+    afw_xctx_t *xctx)
+{
+    afw_integer_t n;
+
+    n = numberOfOctets->internal;
+    if (n < 0 || n > AFW_RANDOM_MAX_OCTETS) {
+        AFW_THROW_ERROR_FZ(argument_error, xctx,
+            "numberOfOctets must be between 0 and %d inclusive",
+            AFW_RANDOM_MAX_OCTETS);
+    }
+    return (afw_size_t)n;
+}
+
+
 
 /*
  * Adaptive function: random_base64Binary
@@ -23,6 +45,7 @@
  * See afw_function_bindings_internal.h for more information.
  *
  * This returns a specified number of random octets as dataType base64Binary.
+ * numberOfOctets must be a non-negative integer and must not exceed 1,000,000.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -37,11 +60,16 @@
  *
  * Parameters:
  *
- *   numberOfOctets - (integer) The number of random octets to generate.
+ *   numberOfOctets - (integer) The number of random octets to generate (0 or
+ *       more, up to 1,000,000).
  *
  * Returns:
  *
  *   (base64Binary)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - numberOfOctets is negative or exceeds the maximum allowed
  */
 const afw_value_t *
 afw_function_execute_random_base64Binary(
@@ -53,14 +81,12 @@ afw_function_execute_random_base64Binary(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(numberOfOctets,
         1, integer);
 
-    if (numberOfOctets->internal < 0) {
-        AFW_THROW_ERROR_Z(general, "numberOfOctets must be greater than 0",
-            x->xctx);
-    }
-
-
     result = afw_value_allocate_unmanaged_base64Binary(x->p, x->xctx);
-    result->internal.size = (afw_size_t)numberOfOctets->internal;
+    result->internal.size = impl_random_octet_count(numberOfOctets, x->xctx);
+    if (result->internal.size == 0) {
+        result->internal.ptr = NULL;
+        return &result->pub;
+    }
     result->internal.ptr = afw_pool_malloc(x->p,
         result->internal.size, x->xctx);
     apr_generate_random_bytes((unsigned char *)result->internal.ptr,
@@ -144,6 +170,7 @@ afw_function_execute_random_digits(
  * See afw_function_bindings_internal.h for more information.
  *
  * This returns a specified number of random octets as dataType hexBinary.
+ * numberOfOctets must be a non-negative integer and must not exceed 1,000,000.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -158,11 +185,16 @@ afw_function_execute_random_digits(
  *
  * Parameters:
  *
- *   numberOfOctets - (integer) The number of random octets to generate.
+ *   numberOfOctets - (integer) The number of random octets to generate (0 or
+ *       more, up to 1,000,000).
  *
  * Returns:
  *
  *   (hexBinary)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - numberOfOctets is negative or exceeds the maximum allowed
  */
 const afw_value_t *
 afw_function_execute_random_hexBinary(
@@ -174,14 +206,12 @@ afw_function_execute_random_hexBinary(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(numberOfOctets,
         1, integer);
 
-    if (numberOfOctets->internal < 0) {
-        AFW_THROW_ERROR_Z(general, "numberOfOctets must be greater than 0",
-            x->xctx);
-    }
-
-
     result = afw_value_allocate_unmanaged_hexBinary(x->p, x->xctx);
-    result->internal.size = (afw_size_t)numberOfOctets->internal;
+    result->internal.size = impl_random_octet_count(numberOfOctets, x->xctx);
+    if (result->internal.size == 0) {
+        result->internal.ptr = NULL;
+        return &result->pub;
+    }
     result->internal.ptr = afw_pool_malloc(x->p,
         result->internal.size, x->xctx);
     apr_generate_random_bytes((unsigned char *)result->internal.ptr,
