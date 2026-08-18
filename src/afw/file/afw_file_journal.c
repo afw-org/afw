@@ -62,8 +62,8 @@ const afw_adapter_journal_inf_t * afw_file_internal_get_journal_inf()
  *
  * And journal entry will be at offset 3183.
  *
- * Note: this doesn't strictly check cursor syntax because open will
- * take care of not found.  Should probably do more checking.
+ * Date prefix is ten digits. Offset is decimal digits that fit in
+ * signed afw_off_t. Invalid cursor returns NULL.
  */
 #define IMPL_RELATIVE_ENTRY_PATH_WA_Z_SIZE sizeof("y2016/m07/d04/h23")
 static afw_utf8_z_t *
@@ -766,10 +766,26 @@ impl_afw_adapter_journal_get_entry_internal(
 
     /* If get_first, get path to first journal file. */
     if (get_first) {
+        const afw_utf8_z_t *first_entry_save_path_z;
+        apr_finfo_t first_finfo;
+
         first_entry_save_path = afw_utf8_printf(xctx->p, xctx,
             AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY
             "/path_to_first_journal_file",
             AFW_UTF8_FMT_ARG(adapter->root));
+        first_entry_save_path_z = afw_utf8_to_utf8_z(
+            first_entry_save_path, p, xctx);
+        AFW_ERROR_FOOTPRINT("apr_stat()");
+        rv = apr_stat(&first_finfo, first_entry_save_path_z,
+            APR_FINFO_TYPE, apr_p);
+        /* No pointer file yet: empty journal, not an error. */
+        if (APR_STATUS_IS_ENOENT(rv)) {
+            return;
+        }
+        if (rv != APR_SUCCESS) {
+            AFW_THROW_ERROR_RV_Z(general, apr, rv,
+                "apr_stat() failed.", xctx);
+        }
         relative_entry_path_z = afw_utf8_to_utf8_z(
             afw_utf8_from_raw(
                 afw_file_to_memory(first_entry_save_path, 0, p, xctx),

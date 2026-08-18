@@ -10,11 +10,13 @@ entry.objectId (not request.objectId). before_each runs once per file.
 //? sourceType: script
 //?
 //? test: empty-get-first
-//? description: journal_get_first with no entries is an error
-//? expect: error
+//? description: journal_get_first with no entries returns no entry
+//? expect: 0
 //? source: ...
 
-journal_get_first("journal")
+const journal = journal_get_first("journal");
+assert(is_nullish(journal.entry), "empty journal has no entry");
+return 0;
 
 //?
 //? test: cursor-too-short
