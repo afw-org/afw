@@ -40,6 +40,42 @@ These are the sticky choices that explain a lot of surface oddity:
 
 ---
 
+## Adaptive concepts
+
+**Adaptive Objects** started it. The type square (handbook architecture) is the core:
+
+| Noun | Role |
+|------|------|
+| **Adaptive Object** | The instance. Described by an Adaptive Object Type. |
+| **Adaptive Object Type** | Describes one or more Adaptive Objects. **Is itself an Adaptive Object** (its type is `_AdaptiveObjectType_`). |
+| **Adaptive Property** | A name plus an **Adaptive Value** on an object. |
+| **Adaptive Property Type** | Describes a property (data type, constraints, …). Lives on the Object Type (usually under `propertyTypes`). |
+
+**Adaptive Value** is a 2012 pillar, not a primitive sitting in the type square. A property’s payload is a value, but a value is much more than that: a typed instance (including object and array), or something that **evaluates** to one (call, compiled unit, symbol, …) via an Adaptive Value Interface. That is also the center of the libafw implementation (`afw_value_t`). Same idea at both layers, not two different “values.” **Adaptive Data Type** is how a kind of value is represented, compared, and converted.
+
+The rest of **Adaptive Framework** is more concepts to *support* that square. The vision has not changed since 2012; the implementation has. **libafw** (`src/afw`) is the C implementation of most of it. The public **`afw` repository** is the **base**. See [`lineage-and-library-floor.md`](lineage-and-library-floor.md) and [`AGENTS.md`](../AGENTS.md) *Main components*.
+
+Some implementation surfaces also use the Adaptive prefix (**Adaptive Script**, **Adaptive Template**; **Adaptive Expression** is the original language surface). Those are how you write against the vision, not extra pillars. Do not treat Script as the whole of AFW.
+
+Handbook architecture and the glossary use the same names. When a row and the tree disagree, the tree wins.
+
+| Noun | Role |
+|------|------|
+| **Adaptive Interface** | Formal contract (generate XML → C call macros / vtables). Core and extensions supply **implementations** (adapter, content type, request handler, …). |
+| **Adapter** | Adaptive Interface for access to Adaptive Objects (and their types). Each `adapterType` is an implementation (file, ldap, model, …). |
+| **Adaptive Mapping** | Transform objects between shapes / adapters. The shipped adapter implementation is the **model adapter** (`adapterType` `model`). Other adapter types could do mapping another way later. `_AdaptiveModel_` is what that adapter loads — not a 2012 pillar. |
+| **Adaptive Layout** | Map objects and properties onto UI (layout objects and components). Peer of Adaptive Mapping. |
+| **Adaptive Function** | Named function registered in the environment; called from expressions, scripts, or templates. |
+| **Adaptive Environment** | Process registries. Extensions register the same way as core. |
+| **Content type** | External encoding of Adaptive Objects and their values. |
+| **Adaptive Schema** | The Adaptive Object Types an adapter presents. |
+| **Adaptive Service** | How an adapter, log, authorization handler, and similar are configured and started. |
+| **Request handler** | How a host turns a client request into work. |
+
+Related: **authorization** (handlers on the environment).
+
+---
+
 ## Intended uses (product framing)
 
 Historically and still, AFW aims at places where **policy, mapping, and automation** need to be precise, embeddable, and inspectable:
@@ -58,7 +94,7 @@ Hosts today include the **`afw` CLI** (including `--local`) and **`afwfcgi`**; b
 
 ### Values are the center
 
-Every significant script/eval entity is (or is reached through) an **`afw_value_t`**: an interface pointer (`inf`) plus payload. Evaluation is mostly **lazy** via `inf` methods (`optional_evaluate`, and for long-running correctness, release/clone policies — see value-memory rules and [`memory-management.md`](memory-management.md)).
+This is the libafw side of the **Adaptive Value** concept above. Every significant script/eval entity is (or is reached through) an **`afw_value_t`**: an interface pointer (`inf`) plus payload. Evaluation is mostly **lazy** via `inf` methods (`optional_evaluate`, and for long-running correctness, release/clone policies — see value-memory rules and [`memory-management.md`](memory-management.md)).
 
 Rough families of value kinds (names evolve; see `afw_value.h` / generated declares for truth):
 
