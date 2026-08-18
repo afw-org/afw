@@ -49,6 +49,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`issue-33-error-codes.md`](issue-33-error-codes.md) | **#33** — review error codes / HTTP map / script `e.id` (closed; PR **#173** → `mgg-develop`) |
 | [`issue-62-script-language.md`](issue-62-script-language.md) | **#62 closed** (PR **#174**) — Adaptive Script language index (multi `let`/`const`, `for` init, assignment chain, result value, labels) |
 | [`libafw-headers-and-api-surface.md`](libafw-headers-and-api-surface.md) | libafw header layers (`afw.h` / internal / minimal / common), install public-only goal, Doxygen public vs internal |
+| [`lineage-and-library-floor.md`](lineage-and-library-floor.md) | Base vs private packages; Docker ICU/APR floor; ICU stays in `afw_utf8` |
 
 ## Conventions
 

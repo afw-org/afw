@@ -105,11 +105,11 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 |-------|---------|
 | **Settled map** | Ongoing partner role; beta = quality bar; hard choices by **consensus** (ask what you think → discuss → live verify → either side can be wrong) |
 | **Day rules** | `afw-project` (role one-liner, hard rules, terminology, plain language) |
-| **Deep / reference** | [`ai-partner-lessons.md`](ai-partner-lessons.md) (optional team one-pager), mantras (*How consensus is grown*), philosophy pad, agent-support |
+| **Deep / reference** | [`ai-partner-lessons.md`](ai-partner-lessons.md) (optional team one-pager), mantras (*How consensus is grown*), philosophy pad (*Adaptive concepts*), agent-support |
 | **Probe** | Live system when debating models (`afwfcgi`, env registries) — not CI |
 | **Open** | More mantras as shared over time |
 | **Gap** | None critical; grow mantras pad, don’t invent phrases |
-| **Also** | Crash-shaped review lists: private Project + how-to issue; public `afw` one card at a time — [`agent-support.md`](agent-support.md) *Disclosure-sensitive C review* |
+| **Also** | Crash-shaped review lists: private Project + how-to issue; public `afw` one card at a time — [`agent-support.md`](agent-support.md) *Disclosure-sensitive C review*. Base vs private packages, Docker ICU/APR floor, ICU home: [`lineage-and-library-floor.md`](lineage-and-library-floor.md) |
 | **Origin note** | Env/runtime “smaller chunks → live discovery → adapters click” discussion: genesis of this support-partner path (ah-ha → map) |
 
 ---
@@ -196,7 +196,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 |-------|---------|
 | **Settled map** | #158 closed (PR **#165**): host-specific wake + core `terminating` |
 | **Day rules** | `afw-server`, `afw-server-fcgi`, `afw-command` |
-| **Deep pad** | None required; user notes in `whats-new.md` |
+| **Deep pad** | [`lineage-and-library-floor.md`](lineage-and-library-floor.md) — Docker bases are the ICU/APR floor (this Ubuntu container is not the oldest) |
 | **Probe** | `src/afw/tests/advanced/afwfcgi_signal_shutdown/`; `afwfcgi --help`; after `--cdev`/`--install`, restart long-lived `afwfcgi` (stale process maps deleted `libafw` — CLI `afw` does not) |
 | **Open** | Drain timeout, SIGHUP, Windows service, general signal framework, every extension retrieve loop, `--local` read unblock |
 | **Gap** | Stale-`afwfcgi` and GDB `-n 1` notes now in `agent-support` live-stack playbook |
@@ -309,6 +309,7 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 | **Probe** | Extension tests under `src/afw_*/tests/` |
 | **Open** | Index residuals on LMDB; other adapters index interface NULL |
 | **Gap** | No per-extension support cards — add when symptoms cluster |
+| **Also** | Not-yet-public extensions live in `inter-afw-private` and promote to this repo if they become base — [`lineage-and-library-floor.md`](lineage-and-library-floor.md) |
 
 ---
 
