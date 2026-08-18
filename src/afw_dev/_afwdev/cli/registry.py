@@ -15,6 +15,7 @@ from _afwdev.cli.handlers import misc as misc_handlers
 from _afwdev.cli.handlers import test_validate as test_validate_handlers
 from _afwdev.scaffold.handlers import add as add_handlers
 from _afwdev.scaffold.handlers import make as make_handlers
+from _afwdev.scaffold.handlers import prime as prime_handlers
 
 
 def _make_afw_package(args, options):
@@ -39,6 +40,7 @@ SUBCOMMAND_HANDLERS = {
     'make-afw-package': _make_afw_package,
     'make-command': make_handlers.subcommand_make_command,
     'make-extension': make_handlers.subcommand_make_extension,
+    'prime-test-c-probe': prime_handlers.subcommand_prime_test_c_probe,
     'settings': misc_handlers.subcommand_settings,
     'task': misc_handlers.subcommand_task,
     'test': test_validate_handlers.subcommand_test,

@@ -114,13 +114,10 @@ def run(options):
                 "Using --tests-path (exclusive): " + ", ".join(tests_paths))
     else:
         for srcdir in package.get_afw_package(options)['srcdirs']:
-            total_srcdirs += 1
-
             if not fnmatch.fnmatch(srcdir, options['srcdir_pattern']):
-                srcdirs_skipped += 1
-                srcdirs_passed += 1
                 continue
 
+            total_srcdirs += 1
             package.set_options_from_existing_package_srcdir(
                 options, srcdir, set_all=True)
 

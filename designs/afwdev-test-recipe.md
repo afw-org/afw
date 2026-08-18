@@ -55,7 +55,8 @@ Then: `afwdev task check-149`
 
 - After `./afwdev build --install` / `--cdev`, **restart afwfcgi** if attach tests talk to a long-lived process (stale libs).  
 - **`afwdev blast` is retired** — use `schedule.firehose` leaves under `tests-extra/`.
-- Full verify: `./afwdev build --fulldev` then `afwdev test --env-mode valgrind -j` then `afwdev test -j`. Valgrind is heavy; if thrashing, try **`-j 4`** (full cores can still finish ~5 min when healthy on a 32-core/30 GiB box).
+- Full verify: `./afwdev build --fulldev` then `afwdev test --env-mode valgrind -j` then `afwdev test -j`. Valgrind is heavy; if thrashing, try **`-j 4`** (full cores can still finish ~5 min when healthy on a 32-core/30 GiB box). That valgrind run wraps `.as` via `afw` **and** C probes via `run_c_probe()` (suite suppressions cover libunwind on a throw). See [`c-probes.md`](c-probes.md).
+- A real `--test-pattern` shows passing cases (no need for `--show-all`). `--srcdir-pattern` only counts matching source dirs in the summary.
 - `//? expect-stdout` / `expect-stderr` on Adaptive test scripts; orchestrated leaves use hyphen keys + optional x-afw demux (`expect-response`, `expect-raw-*`).
 - `service_start` after stop needs conf adapter + `_AdaptiveServiceConf_` (see lifecycle leaf).
 - Structured Python errors: `_afwdev.common.errors` (`AfwAdaptiveError`, `AfwdevProcessError`, `AfwdevRunnerError`) — issue **#61**; Adaptive error objects ride on `exc.object` / `to_error_dict()`.

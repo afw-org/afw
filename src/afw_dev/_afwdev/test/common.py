@@ -27,6 +27,52 @@ from _afwdev.common import msg, nfc
 from _afwdev.common.errors import error_message, error_to_dict
 
 
+def outcome_flag(value, default=False):
+    """Coerce a case outcome (passed / skip) to bool.
+
+    Print used ``== True`` and parse used ``== False``, so a leftover
+    truthy string (a Python ``and`` chain that yielded compiler text)
+    could print as fail and count as pass. After coerce they agree.
+    """
+    if value is None:
+        return bool(default)
+    return bool(value)
+
+
+def normalize_test_response(response):
+    """Make passed / skip real bools on a test response (in place)."""
+    if not response or not isinstance(response, dict):
+        return response
+    if "skip" in response:
+        response["skip"] = outcome_flag(response.get("skip"), False)
+    for tc in response.get("tests") or []:
+        if not isinstance(tc, dict):
+            continue
+        tc["passed"] = outcome_flag(tc.get("passed"), False)
+        tc["skip"] = outcome_flag(tc.get("skip"), False)
+    return response
+
+
+def show_all_cases(options):
+    """True when the console should print passing cases too.
+
+    ``--show-all`` always wins. A real ``--test-pattern`` is an inspect
+    loop, so cases are shown without typing --show-all. Full ``test -j``
+    stays errors-only.
+    """
+    if not options:
+        return False
+    if options.get("show_all"):
+        return True
+    pattern = options.get("test-pattern")
+    return bool(pattern) and pattern != ".*"
+
+
+def errors_only_console(options):
+    """True when passing cases should stay off the console."""
+    return options.get("errors", True) and not show_all_cases(options)
+
+
 ##
 # @brief Human-readable message for a process killed by a signal
 # @param returncode Subprocess return code (negative when killed by signal)
@@ -828,24 +874,25 @@ def print_test_response(options, test, response, hasFailures, allSuccess, allSki
         if allSkipped:
             return        
 
-        # Default is errors-only; --show-all prints passes/skips too
-        errors_only = options.get('errors', True) and not options.get('show_all')
+        # Default is errors-only; --show-all or a real --test-pattern
+        # prints passes/skips too.
+        errors_only = errors_only_console(options)
             
         for testCase in response['tests']:
             
-            tc_skip = testCase.get('skip')
-            tc_passed = testCase.get('passed', False)                
+            tc_skip = outcome_flag(testCase.get('skip'), False)
+            tc_passed = outcome_flag(testCase.get('passed'), False)
             tc_description = testCase.get('description')
             tc_test = testCase.get('test')               
 
-            if tc_skip == True:                                            
+            if tc_skip:                                            
                 if not errors_only:
                     msg.warn("    \u25cb", end="")
                     msg.highlighted_info(" {}".format(tc_test))
                     if (msg.is_verbose_mode()):
                         print("\033[2m      {}\033[0m\n".format(tc_description))
                     msg.debug(nfc.json_dumps(testCase, sort_keys=True, indent=4))                  
-            elif tc_passed == True:
+            elif tc_passed:
                 if not errors_only:
                     msg.success("    \u2713", end="")
                     msg.highlighted_info(" {}".format(tc_test))
@@ -894,25 +941,33 @@ def parse_test_run(test, options, response, error):
         allSkipped = True
 
     if response != None:
+        normalize_test_response(response)
         # check if all tests were skipped
-        allSkipped = response.get("skip", False)
+        allSkipped = outcome_flag(response.get("skip"), False)
 
-        if not "tests" in response:
-            msg.debug("Parsing test run, returned no tests: {}".format(test))            
+        cases = response.get("tests")
+        if not isinstance(cases, list):
+            msg.debug("Parsing test run, returned no tests: {}".format(test))
             msg.debug(nfc.json_dumps(response, sort_keys=True, indent=4))
-
-            pass
-
-        for testCase in response.get("tests"):
-            if allSkipped or testCase.get("skip") == True:
-                allSuccess = False
-                numSkipped += 1
-            elif testCase.get("passed", False) == False:
-                hasFailures = True
-                allSuccess = False
-                numFailures += 1
-            else:
-                numPassed += 1
+            hasFailures = True
+            allSuccess = False
+            numFailures += 1
+        else:
+            for testCase in cases:
+                if not isinstance(testCase, dict):
+                    hasFailures = True
+                    allSuccess = False
+                    numFailures += 1
+                    continue
+                if allSkipped or outcome_flag(testCase.get("skip"), False):
+                    allSuccess = False
+                    numSkipped += 1
+                elif not outcome_flag(testCase.get("passed"), False):
+                    hasFailures = True
+                    allSuccess = False
+                    numFailures += 1
+                else:
+                    numPassed += 1
 
     if error != None:
         hasFailures = True

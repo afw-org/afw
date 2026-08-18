@@ -10,13 +10,45 @@
 #
 
 import os
+import sys
 import json
-import importlib
+import importlib.util
 import threading
 from contextlib import redirect_stdout, redirect_stderr
 
 from _afwdev.common import msg
-from _afwdev.common.errors import wrap_exception
+from _afwdev.common.errors import AfwdevRunnerError, wrap_exception
+from _afwdev.test import context as test_context
+
+
+def _module_name_for_test(test):
+    # Each file needs its own module name. Loading every .py as "test"
+    # reuses sys.modules["test"] and can inherit run() from the previous
+    # file in the same process.
+    return "_afwdev_python_test_" + str(abs(hash(os.path.abspath(test))))
+
+
+def _load_test_module(mod_name, path):
+    spec = importlib.util.spec_from_file_location(mod_name, path)
+    if spec is None or spec.loader is None:
+        raise AfwdevRunnerError("Unable to load python test: " + path)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[mod_name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+def _response_from_stdout(path, stdout):
+    text = (stdout or "").strip()
+    if not text:
+        raise AfwdevRunnerError(
+            "No run() and no JSON on stdout: " + path)
+    try:
+        return json.loads(text)
+    except ValueError as e:
+        raise AfwdevRunnerError(
+            "No run() and stdout was not test result JSON: " + path
+        ) from e
 
 ##
 # @brief Runs the tests under the python interpreter.
@@ -70,19 +102,28 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
                 t_out.start()
                 t_err.start()
 
-                test_module = importlib.machinery.SourceFileLoader("test", test).load_module()                                                              
-                if hasattr(test_module, 'run'): 
-                    # uncomment these, if we want to pass along the same data to the actual python test module                   
-                    response = test_module.run(
-                        #options=options, 
-                        #testEnvironment=testEnvironment, 
-                        #testGroupConfig=testGroupConfig, 
-                        #msg=msg
+                mod_name = _module_name_for_test(test)
+                if mod_name in sys.modules:
+                    del sys.modules[mod_name]
+                test_module = _load_test_module(mod_name, test)
+                has_run = hasattr(test_module, 'run') and callable(
+                    test_module.run)
+                if has_run:
+                    # c_probe (and similar helpers) read test context so
+                    # --env-mode valgrind can wrap a compiled probe.
+                    test_context.push(
+                        options=options,
+                        test=test,
+                        testEnvironment=testEnvironment,
+                        testGroupConfig=testGroupConfig,
                     )
-                else:
-                    # FIXME: This should be a test failure.
-                    #msg.error("No run() method found in test module " + test + "!")
-                    pass
+                    try:
+                        response = test_module.run()
+                    finally:
+                        test_context.pop()
+                    if response is None:
+                        raise AfwdevRunnerError(
+                            "run() returned None: " + test)
 
                 stdout_w.close()
                 stdout_w_closed = True
@@ -95,8 +136,9 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
                 stdout = "".join(drain_buf_out)
                 debug = "".join(drain_buf_err)
 
-                if not hasattr(test_module, 'run'):                                        
-                    response = json.loads(stdout)        
+                if not has_run:
+                    response = _response_from_stdout(test, stdout)
+                sys.modules.pop(mod_name, None) 
         
     except Exception as e:
         if stdout:

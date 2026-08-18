@@ -350,6 +350,37 @@ _info_add_core_interface = {
 }
 
 
+# subcommand prime-test-c-probe
+
+_info_prime_test_c_probe_path = {
+    "optionName": "probe_path",
+    "arg": "path",
+    "nargs": 1,
+    "help":
+        "New test leaf, relative to the current directory or absolute. "
+        "Must be under tests/ or tests-extra/ (for example "
+        "tests/hole or src/myext/tests/advanced/hole).",
+}
+
+_info_prime_test_c_probe = {
+    "subcommand": "prime-test-c-probe",
+    "help": "Prime a C probe test leaf",
+    "description":
+        "Copy the C probe closet pair into a new empty directory. The "
+        "path is relative to the current working directory or absolute, "
+        "and must be a leaf under tests/ or tests-extra/. Writes "
+        "<leaf>_probe.c and <leaf>.py. The directory must be new or "
+        "empty (not a parent of other tests, not an orchestrated leaf). "
+        "There is no cmake target. After editing the marked blocks, "
+        "run afwdev test --test-pattern '<leaf>' or "
+        "afwdev test -T <path> for a tests-extra leaf.",
+    "thing": "C probe",
+    "args": [
+        _info_prime_test_c_probe_path,
+    ]
+}
+
+
 # subcommand add-log-type
 
 _info_add_log_type = {
@@ -938,7 +969,10 @@ _info_test_pattern = {
     "arg": "--test-pattern",
     "default": ".*",
     "noprompt": True,
-    "help": "Test filename pattern to match and run."
+    "help":
+        "Test filename pattern to match and run. "
+        "A real pattern (not the default .*) also shows passing cases, "
+        "as if --show-all were set."
 }
 
 _info_test_js = {
@@ -1072,6 +1106,7 @@ be used.
 # All subcommand infos (order here does not matter; --help sorts by name)
 _subcommand_infos = [
     _info_add_adapter_type,
+    _info_prime_test_c_probe,
     _info_add_content_type,
     _info_add_core_interface,
     _info_add_log_type,

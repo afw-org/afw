@@ -9,7 +9,9 @@
 #          The advantage of using valgrind is to perform comprehensive 
 #          memory checking on each test.
 #
-#          Only Adaptive Scripts (.as) files are supported.
+#          This mode wraps Adaptive Scripts (.as) with valgrind. Python
+#          tests still use python mode; checked-in C probes are wrapped
+#          by _afwdev.test.c_probe when --env-mode valgrind is set.
 #
 
 import os

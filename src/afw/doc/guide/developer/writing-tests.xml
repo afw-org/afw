@@ -52,6 +52,7 @@
 afwdev test -j
 afwdev test --srcdir-pattern afw --test-pattern 'rql/.*'
 afwdev test --list --test-pattern smoke
+# A real --test-pattern shows passing cases (no --show-all needed)
 ]]></code>
     </section>
     <section>
@@ -72,7 +73,11 @@ afwdev test --list --test-pattern smoke
                 </row>
                 <row>
                     <column>Python (<literal>.py</literal> with <literal>run()</literal>)</column>
-                    <column>Use a Python test when you need to control the process, read environment values, or call APIs that are not easy to use from Adaptive Script. A few of these compile a small checked-in <literal>.c</literal> against installed <literal>libafw</literal> and run it, when script cannot reach the code under test.</column>
+                    <column>Use a Python test when you need to control the process, read environment values, or call APIs that are not easy to use from Adaptive Script.</column>
+                </row>
+                <row>
+                    <column>C probe (<literal>*_probe.c</literal> plus a thin <literal>.py</literal>)</column>
+                    <column>Use a C probe when Adaptive Script cannot reach the hole. See C Probes below.</column>
                 </row>
                 <row>
                     <column><literal>commands_*.txt</literal></column>
@@ -86,7 +91,92 @@ afwdev test --list --test-pattern smoke
         </table>
         <paragraph>
             You will usually want to write an Adaptive test script, unless 
-            you need a separate process, your own server, or Python APIs.
+            you need a separate process, your own server, Python APIs, or 
+            a C probe.
+        </paragraph>
+    </section>
+    <section>
+        <title>C Probes</title>
+        <paragraph>
+            Prefer an Adaptive test script. Write a C probe only when 
+            script cannot reach the code under test: a wrapping 
+            <literal>size_t</literal>, a second implementation of an 
+            interface that literals never use, a hand-set 
+            <literal>afw_utf8_t</literal>, helpers that need a live 
+            directory to go through the adapter, and similar holes. The 
+            <literal>.c</literal> is not part of the cmake library build 
+            and is not a cmake test target. It compiles against the 
+            installed <literal>libafw</literal> at test time.
+        </paragraph>
+        <paragraph>
+            Start with 
+            <literal>afwdev prime-test-c-probe &lt;path&gt;</literal>. 
+            The path is relative to the current directory or absolute, 
+            and must be a new leaf under <literal>tests/</literal> or 
+            <literal>tests-extra/</literal> (for example 
+            <literal>tests/hole</literal> from an extension srcdir, or 
+            <literal>src/myext/tests/advanced/hole</literal> from the 
+            package root). That writes the closet pair. Fill the marked 
+            blocks in the <literal>.c</literal> and the case list in 
+            the <literal>.py</literal>. Then 
+            <literal>afwdev test --test-pattern 'hole'</literal>, or 
+            <literal>afwdev test -T &lt;path&gt;</literal> for a 
+            <literal>tests-extra</literal> leaf. The closet itself is 
+            <literal>src/afw_dev/_resources/closet/c_probe/</literal> 
+            if you need to copy by hand.
+        </paragraph>
+        <paragraph>
+            Check in a <literal>*_probe.c</literal> next to a thin 
+            Python <literal>run()</literal> that calls 
+            <literal>run_c_probe()</literal> from 
+            <literal>_afwdev.test.c_probe</literal>. The helper compiles 
+            the probe once and runs each named case. The probe takes the 
+            case name as <literal>argv[1]</literal> and exits 
+            <literal>0</literal> on pass.
+        </paragraph>
+        <code><![CDATA[from _afwdev.test.c_probe import run_c_probe
+
+def run():
+    return run_c_probe(
+        "pool_alloc_probe.c",
+        "Pool malloc rejects a wrapping size",
+        [
+            ("overflow", "pool malloc of SIZE_MAX throws memory"),
+            ("overflow-subpool", "subpool malloc of SIZE_MAX throws memory"),
+        ],
+    )
+]]></code>
+        <paragraph>
+            Extra libraries go in <literal>libraries</literal>. The LDAP 
+            filter probe uses 
+            <literal>libraries=("afwldap", "afw")</literal>. Headers and 
+            libraries come from the install prefix, or from 
+            <literal>AFW_INCLUDE_DIR</literal> and 
+            <literal>AFW_LIB_DIR</literal>.
+        </paragraph>
+        <paragraph>
+            Live examples (after you have the closet copy): 
+            <literal>src/afw/tests/advanced/pool_alloc/</literal>, 
+            <literal>array_view_index/</literal>, 
+            <literal>associative_array_set/</literal>, 
+            <literal>utf8_icu_bound/</literal>, and 
+            <literal>src/afw_ldap/tests/ldap_filter/</literal>.
+        </paragraph>
+        <header>Valgrind</header>
+        <paragraph>
+            <literal>afwdev test --env-mode valgrind</literal> still 
+            wraps Adaptive scripts with the <literal>afw</literal> CLI. 
+            The same mode also wraps C probes: the helper runs each 
+            case under valgrind with the suite suppressions 
+            (<literal>valgrind.suppress</literal>). Those suppressions 
+            cover known libunwind noise inside 
+            <literal>afw_os_backtrace</literal> when a probe throws. 
+            That is not an overread in the code under test. A 
+            standalone valgrind on the compiled probe, without that 
+            file, can still report that noise. Judge a probe by its 
+            exit code, and by the helper's valgrind wrap when you want 
+            memory checking. The UTF-8 and error-struct side of a throw 
+            is a separate issue from this recipe.
         </paragraph>
     </section>
     <section>
@@ -256,7 +346,7 @@ return 0;
                 </row>
                 <row>
                     <column><literal>valgrind</literal></column>
-                    <column>Runs <literal>.as</literal> files under valgrind. Orchestrated tests wrap <literal>afwfcgi</literal> when that is supported.</column>
+                    <column>Runs <literal>.as</literal> files under valgrind. C probes compiled by <literal>run_c_probe()</literal> are also wrapped. Orchestrated tests wrap <literal>afwfcgi</literal> when that is supported.</column>
                 </row>
                 <row>
                     <column><literal>afwfcgi</literal></column>

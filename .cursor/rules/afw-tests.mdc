@@ -117,19 +117,27 @@ next time. Mantra: *A new error gets a test that would have caught it*
 (`designs/mantras-and-working-style.md`).
 
 When script cannot reach the hole (C-only size, a second impl of an
-interface that literals never use, …), the gate is a Python `run()`
-that compiles a checked-in `*_probe.c` against installed `libafw` and
-execs it. Same pattern: `src/afw/tests/advanced/pool_alloc/`,
+interface that literals never use, …), the gate is a thin Python
+`run()` that calls `run_c_probe()` from `_afwdev.test.c_probe`. Check
+in a `*_probe.c` next to that `.py`. The helper compiles against
+installed `libafw` and runs named cases (`argv[1]`, exit 0 = pass).
+Start with `afwdev prime-test-c-probe <path>` (cwd-relative or
+absolute leaf under `tests/` or `tests-extra/`).
+Closet source: `src/afw_dev/_resources/closet/c_probe/`.
+Live examples: `src/afw/tests/advanced/pool_alloc/`,
 `src/afw/tests/advanced/array_view_index/`,
-`src/afw/tests/advanced/utf8_icu_bound/`. Do not invent a cmake
-test target for these. The `.c` is not part of `libafw`.
+`src/afw/tests/advanced/utf8_icu_bound/`,
+`src/afw_ldap/tests/ldap_filter/` (extra `libraries=("afwldap", "afw")`).
+Do not invent a cmake test target. The `.c` is not part of `libafw`.
+Handbook **Writing Tests** has the recipe.
 
-`afwdev test --env-mode valgrind` wraps the **`afw` CLI**, not that
-compiled probe binary. A standalone `valgrind` on a probe that
-**throws** can trip libunwind in `afw_os_backtrace`; that is not an
-overread in the code under test. Judge the probe by its exit code
-(and by valgrind on `afw` when the hole is script-reachable).
-Making probes first-class (and addressing unwind) is issue **#207**.
+`afwdev test --env-mode valgrind` wraps the **`afw` CLI** for `.as`
+files **and** wraps C probes (the helper runs each case under
+valgrind with `valgrind.suppress`). A standalone `valgrind` on a
+probe that **throws**, without that file, can trip libunwind in
+`afw_os_backtrace`; that is not an overread in the code under test.
+Judge the probe by its exit code and by the helper's valgrind wrap.
+The UTF-8 / error-struct side of a throw is issue **#206**.
 
 When fixing a C/runtime bug, add `.as` coverage that fails without the fix
 unless the hole is C-only (then the probe above):
@@ -165,13 +173,16 @@ When a compile, decompile, type-syntax, or compiler-internal change can break **
 
 ## Python tests (afwdev python mode)
 - `.py` files always run in **python** mode (not the default `afw` env-mode runner). Implemented by `src/afw_dev/_afwdev/test/modes/python.py`: import the module and call **`run()`**.
-- Prefer `def run():` returning `{ "description", "tests": [ { "test", "description", "passed", "skip", ... } ] }`.
+- Prefer `def run():` returning `{ "description", "tests": [ { "test", "description", "passed", "skip", ... } ] }`. `run()` returning `None` is a failure. No `run()` still accepts JSON on stdout (legacy); empty or non-JSON stdout is a failure.
+- `passed` and `skip` should be real booleans. The runner coerces leftovers (`bool()`), so a Python `and` chain that yields an error string counts as **pass** and prints as pass — wrap those expressions in `bool(...)`.
+- A real `--test-pattern` (not the default `.*`) shows passing cases as well as `--show-all`. Full `test -j` stays errors-only.
 - Use this when a pure `.as` test_script is not enough: spawn `afw`/`afw --local`/helpers, binary stdin protocols, compile C helpers, multi-step host checks, JSON Schema against generate output, etc.
 - The runner may chdir to a temp work dir with fixtures copied: resolve the package root (walk to `afw-package.json` from `__file__`) if you need the monorepo; do not assume `cwd` is the package root.
 - Put sibling helpers in `_name.py` so they are not discovered as tests.
 - **Example — local host protocol:** `src/afw_command/tests/local_test.py` feeds `local_test_*_input.txt` to `afw --local` and compares stdout to `*_expect.txt`. The local-mode version banner is **normalized** before compare so package version bumps do not require expect edits.
 - **Example — env octets:** `src/afw/tests/miscellaneous/environment_variables_external.py` (compile helper + exec `afw`).
 - **Example — generate artifacts:** `src/afw_dev/tests/json_schema/*.py`.
+- **Example — C probe:** `src/afw/tests/advanced/pool_alloc/pool_alloc.py` calls `run_c_probe()`. Helper self-tests: `src/afw_dev/tests/c_probe/`.
 
 ### JSON Schema projection tests
 - `src/afw_dev/tests/json_schema/` — tags `json_schema`, `generate`.

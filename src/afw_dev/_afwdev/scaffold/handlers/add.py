@@ -2,7 +2,7 @@
 ##
 # @file add.py
 # @ingroup afwdev_scaffold
-# @brief Handlers for add-adapter-type, add-content-type, add-log-type, and
+# @brief Handlers for add-adapter-type, add-content-type, add-log-type,
 #        add-core-interface.
 # @details Shared steps are in add_registry_type; these handlers supply the
 #          interface list, conf skeleton, and registry_type for each variant.

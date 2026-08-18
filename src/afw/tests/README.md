@@ -14,14 +14,18 @@ A few places that are easy to misunderstand:
 - `test262/` — language tests derived from TC39; see that folder's README
 - `environments/` — shared fixtures named from a group's `config.py`
 - `advanced/` — short orchestrated tests (`orchestration.yaml`) that are
-  part of the default run. A few groups are a Python `run()` that
-  compiles a checked-in `*_probe.c` against installed `libafw` and
-  execs it (pool wrap, C-array view index, UTF-8 ICU bound). Use that
-  when Adaptive Script cannot reach the hole. The `.c` is not part of
-  the cmake library build. `afwdev test --env-mode valgrind` wraps
-  `afw`, not the probe. Standalone valgrind on a throwing probe can
-  hit libunwind in `afw_os_backtrace`; that is not the hole.
-  First-class probes: issue **#207**.
+  part of the default run. A few groups are a thin Python `run()` plus
+  a checked-in `*_probe.c` (pool wrap, C-array view index, UTF-8 ICU
+  bound). Use that when Adaptive Script cannot reach the hole. Call
+  `run_c_probe()` from `_afwdev.test.c_probe` — do not copy a `cc`
+  line. Start with `afwdev prime-test-c-probe <path>` (a leaf under
+  `tests/` or `tests-extra/`).
+  The `.c` is not part of the cmake library build.
+  `afwdev test --env-mode valgrind` wraps `afw` **and** those probe
+  binaries (suite suppressions cover libunwind noise in
+  `afw_os_backtrace` on a throw). Standalone valgrind without that
+  file can still report that noise; that is not the hole. Handbook
+  **Writing Tests** has the recipe.
 
 Longer tests, including firehose, live next door in
 `src/afw/tests-extra/` and are only run when you pass
