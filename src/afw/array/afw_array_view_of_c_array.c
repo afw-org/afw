@@ -221,7 +221,7 @@ impl_afw_array_get_entry_internal(
 
     /* List of internals. */
     else {
-        if (i > self->count) {
+        if (i >= self->count) {
             e = NULL;
         }
         else if (self->indirect) {
