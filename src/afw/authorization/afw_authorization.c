@@ -1112,7 +1112,8 @@ impl_get_reference(
     afw_authorization_handler_id_anchor_t *anchor;
     const afw_authorization_handler_t *instance;
 
-    AFW_LOCK_READ_BEGIN(xctx->env->authorization_handler_id_anchor_rw_lock) {
+    /* Increment mutates the anchor; write lock matches release. */
+    AFW_LOCK_WRITE_BEGIN(xctx->env->authorization_handler_id_anchor_rw_lock) {
 
         instance = NULL;
         anchor = (afw_authorization_handler_id_anchor_t *)
@@ -1126,7 +1127,7 @@ impl_get_reference(
         }
     }
 
-    AFW_LOCK_READ_END;
+    AFW_LOCK_WRITE_END;
 
     return instance;
 }
@@ -1186,7 +1187,7 @@ afw_authorization_handler_release(
             anchor = anchor->stopping);
 
         if (anchor) {
-            anchor->reference_count--;;
+            anchor->reference_count--;
             if (anchor->reference_count <= 0) {
                 destroy = true;
                 anchor->reference_count = 0;
