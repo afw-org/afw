@@ -43,6 +43,58 @@ impl_read_content_cb(
 }
 
 
+/* CONTENT_LENGTH is unsigned digits that fit in afw_size_t. */
+static afw_boolean_t
+impl_parse_content_length(
+    const afw_utf8_z_t *s,
+    afw_size_t *out)
+{
+    afw_size_t n;
+    unsigned int digit;
+
+    if (!s || *s == 0) {
+        return false;
+    }
+
+    n = 0;
+    for (; *s; s++) {
+        if (*s < '0' || *s > '9') {
+            return false;
+        }
+        digit = (unsigned int)(*s - '0');
+        if (n > (AFW_SIZE_T_MAX - (afw_size_t)digit) / 10) {
+            return false;
+        }
+        n = n * 10 + (afw_size_t)digit;
+    }
+
+    *out = n;
+    return true;
+}
+
+
+void
+afw_server_fcgi_internal_set_content_length(
+    afw_server_fcgi_internal_request_t *self,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *value;
+    const afw_utf8_z_t *length_z;
+
+    value = afw_object_get_property(self->pub.properties,
+        AFW_REQUEST_s_PN_CONTENT_LENGTH, xctx);
+    if (!value) {
+        return;
+    }
+    length_z = afw_value_as_utf8_z(value, xctx->p, xctx);
+    if (!impl_parse_content_length(length_z, &self->pub.content_length))
+    {
+        AFW_THROW_ERROR_Z(request_syntax,
+            "Invalid Content-Length.", xctx);
+    }
+}
+
+
 static afw_size_t
 impl_write_content_cb(
     void *context,
@@ -67,7 +119,6 @@ afw_server_fcgi_internal_create_request(
 {
     afw_server_fcgi_internal_request_t *self = NULL;
     const afw_value_t *value;
-    const afw_utf8_z_t *length_z;
     const afw_utf8_octet_t *c;
     afw_size_t len;
 
@@ -137,14 +188,6 @@ afw_server_fcgi_internal_create_request(
     self->pub.content_type = afw_object_old_get_property_as_utf8(
         self->pub.properties,
         AFW_REQUEST_s_PN_CONTENT_TYPE, xctx->p, xctx);
-
-    /* Get request content length. */
-    value = afw_object_get_property(self->pub.properties,
-        AFW_REQUEST_s_PN_CONTENT_LENGTH, xctx);
-    if (value) {
-        length_z = afw_value_as_utf8_z(value, xctx->p, xctx);
-        self->pub.content_length = atoi(length_z);
-    }
 
     /* Get request accept header. */
     value = afw_object_get_property(self->pub.properties,

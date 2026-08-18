@@ -111,6 +111,16 @@ afw_server_fcgi_internal_create_request(
     afw_xctx_t *xctx);
 
 /**
+ * Parse CONTENT_LENGTH onto the request. Throws request_syntax if present
+ * and not unsigned digits that fit in afw_size_t. Call inside the request
+ * TRY so the client gets an HTTP error body.
+ */
+void
+afw_server_fcgi_internal_set_content_length(
+    afw_server_fcgi_internal_request_t *self,
+    afw_xctx_t *xctx);
+
+/**
  * Create an internal fcgi request.
  */
 const afw_object_t *

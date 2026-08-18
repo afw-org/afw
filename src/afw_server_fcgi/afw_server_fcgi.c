@@ -262,6 +262,9 @@ static void impl_process_request(afw_server_fcgi_internal_t *self,
     /* Handle request errors in request session xctx. */
     AFW_TRY{
 
+        afw_server_fcgi_internal_set_content_length(
+            (afw_server_fcgi_internal_request_t *)request, xctx);
+
         afw_request_impl_trace_begin(request, xctx);
 
         /* Process request. */

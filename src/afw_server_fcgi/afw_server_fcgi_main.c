@@ -87,6 +87,10 @@ static int process_args(int argc, const char * const * argv, self_args_t *args, 
         }
         else if (strcmp(argv[i], "-n") == 0) {
             i++;
+            if (i >= argc) {
+                print_usage();
+                goto error;
+            }
             n = strtol(argv[i], NULL, 10);
             if (n < 0 || n > 9999 || errno == ERANGE) {
                 print_usage();
