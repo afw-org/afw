@@ -62,8 +62,8 @@ const afw_adapter_journal_inf_t * afw_file_internal_get_journal_inf()
  *
  * And journal entry will be at offset 3183.
  *
- * Note: this doesn't strictly check cursor syntax because open will
- * take care of not found.  Should probably do more checking.
+ * Date prefix is ten digits. Offset is decimal digits that fit in
+ * signed afw_off_t. Invalid cursor returns NULL.
  */
 #define IMPL_RELATIVE_ENTRY_PATH_WA_Z_SIZE sizeof("y2016/m07/d04/h23")
 static afw_utf8_z_t *
@@ -80,6 +80,12 @@ impl_object_id_to_relative_entry_path(
     if (entry_object_id->len < strlen("ccyymmddhh_0")) return NULL;
     o = &relative_entry_path_wa_z[0];
     i = entry_object_id->s;
+    for (count = 0; count < 10; count++) {
+        if (i[count] < '0' || i[count] > '9') {
+            return NULL;
+        }
+    }
+    if (i[10] != '_') return NULL;
     *o++ = 'y';
     *o++ = *i++;
     *o++ = *i++;
@@ -98,11 +104,31 @@ impl_object_id_to_relative_entry_path(
     *o++ = *i++;
     *o++ = *i++;
     *o = 0;
-    if (*i++ != '_') return NULL;
+    i++; /* skip '_' already checked */
     for (*offset = 0, count = entry_object_id->len - strlen("ccyymmddhh_");
         count > 0; count--)
     {
-        *offset = *offset * 10 + (*i++ - '0');
+        unsigned int digit;
+
+        if (*i < '0' || *i > '9') {
+            return NULL;
+        }
+        digit = (unsigned int)(*i++ - '0');
+        /*
+         * Offset is a signed afw_off_t fed to apr_file_seek, and later
+         * printed as afw_integer_t. Bound to the smaller of those.
+         */
+        if (sizeof(afw_off_t) < sizeof(afw_integer_t)) {
+            if (*offset > ((afw_off_t)AFW_INT32_MAX - (afw_off_t)digit) / 10) {
+                return NULL;
+            }
+        }
+        else if (*offset >
+            ((afw_off_t)AFW_INTEGER_MAX - (afw_off_t)digit) / 10)
+        {
+            return NULL;
+        }
+        *offset = *offset * 10 + (afw_off_t)digit;
     }
 
     return &relative_entry_path_wa_z[0];
@@ -740,10 +766,26 @@ impl_afw_adapter_journal_get_entry_internal(
 
     /* If get_first, get path to first journal file. */
     if (get_first) {
+        const afw_utf8_z_t *first_entry_save_path_z;
+        apr_finfo_t first_finfo;
+
         first_entry_save_path = afw_utf8_printf(xctx->p, xctx,
             AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY
             "/path_to_first_journal_file",
             AFW_UTF8_FMT_ARG(adapter->root));
+        first_entry_save_path_z = afw_utf8_to_utf8_z(
+            first_entry_save_path, p, xctx);
+        AFW_ERROR_FOOTPRINT("apr_stat()");
+        rv = apr_stat(&first_finfo, first_entry_save_path_z,
+            APR_FINFO_TYPE, apr_p);
+        /* No pointer file yet: empty journal, not an error. */
+        if (APR_STATUS_IS_ENOENT(rv)) {
+            return;
+        }
+        if (rv != APR_SUCCESS) {
+            AFW_THROW_ERROR_RV_Z(general, apr, rv,
+                "apr_stat() failed.", xctx);
+        }
         relative_entry_path_z = afw_utf8_to_utf8_z(
             afw_utf8_from_raw(
                 afw_file_to_memory(first_entry_save_path, 0, p, xctx),
@@ -756,7 +798,11 @@ impl_afw_adapter_journal_get_entry_internal(
     else if (entry_object_id) {
         relative_entry_path_z = impl_object_id_to_relative_entry_path(
             entry_object_id, relative_entry_path_wa_z, &offset, xctx);
-        if (!relative_entry_path_z) return; /** @fixme Is this an error?*/
+        if (!relative_entry_path_z) {
+            AFW_THROW_ERROR_FZ(syntax, xctx,
+                "Invalid journal cursor " AFW_UTF8_FMT_Q,
+                AFW_UTF8_FMT_ARG(entry_object_id));
+        }
     }
 
     else {

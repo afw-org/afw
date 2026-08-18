@@ -5,15 +5,17 @@
 //? description: Test file journal interface methods.
 //? sourceType: script
 //?
-//? test: journal_get_first
-//? description: test file journal_get_first with no entries
-//? skip: true
+//? test: journal_get_first-empty
+//? description: journal_get_first with no entries returns no entry
+//? skip: false
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw
 
 let journal = journal_get_first("journal");
+assert(is_nullish(journal.entry), "empty journal has no entry");
 let journal2 = journal_get_first("journal");
+assert(is_nullish(journal2.entry), "second empty get_first still has no entry");
 
 return 0;
 
@@ -30,7 +32,7 @@ const result = add_object("file", "_AdaptiveObject_", {
 });
 
 let journal = journal_get_first("journal");
-assert(journal.entry.request.objectId === result.request.objectId);
+assert(journal.entry.objectId === result.objectId);
 
 return 0;
 
