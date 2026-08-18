@@ -129,6 +129,7 @@ compiled probe binary. A standalone `valgrind` on a probe that
 **throws** can trip libunwind in `afw_os_backtrace`; that is not an
 overread in the code under test. Judge the probe by its exit code
 (and by valgrind on `afw` when the hole is script-reachable).
+Making probes first-class (and addressing unwind) is issue **#207**.
 
 When fixing a C/runtime bug, add `.as` coverage that fails without the fix
 unless the hole is C-only (then the probe above):

@@ -21,6 +21,7 @@ A few places that are easy to misunderstand:
   the cmake library build. `afwdev test --env-mode valgrind` wraps
   `afw`, not the probe. Standalone valgrind on a throwing probe can
   hit libunwind in `afw_os_backtrace`; that is not the hole.
+  First-class probes: issue **#207**.
 
 Longer tests, including firehose, live next door in
 `src/afw/tests-extra/` and are only run when you pass
