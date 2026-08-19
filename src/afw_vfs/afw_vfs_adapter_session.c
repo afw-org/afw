@@ -18,6 +18,7 @@
 #include "afw_vfs_adapter_internal.h"
 #include <apr_fnmatch.h>
 #include <apr_file_info.h>
+#include <string.h>
 
 
 /* Declares and rti/inf defines for interface afw_adapter_session */
@@ -45,6 +46,54 @@ impl_dir_read_done(apr_status_t rv)
     }
 #endif
     return false;
+}
+
+
+static const afw_utf8_t impl_s_afw_tmp = AFW_UTF8_LITERAL(".afw-tmp");
+
+
+static void
+impl_utf8_from_z(afw_utf8_t *s, const afw_utf8_z_t *z)
+{
+    s->s = (const afw_utf8_octet_t *)z;
+    s->len = z ? strlen((const char *)z) : 0;
+}
+
+
+static const afw_utf8_z_t *
+impl_to_z(
+    const afw_utf8_t *s,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    return afw_utf8_to_utf8_z(s, p, xctx);
+}
+
+
+static const afw_utf8_z_t *
+impl_z_trailing_slash(
+    const afw_utf8_z_t *s_z,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_utf8_t base;
+
+    impl_utf8_from_z(&base, s_z);
+    return impl_to_z(
+        afw_utf8_concat(p, xctx, &base, afw_s_a_slash, NULL),
+        p, xctx);
+}
+
+
+static const afw_utf8_t *
+impl_vfs_path(
+    const afw_utf8_t *adapter_id,
+    const afw_utf8_t *object_id,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    return afw_utf8_concat(p, xctx,
+        afw_s_a_slash, adapter_id, afw_s_a_slash, object_id, NULL);
 }
 
 
@@ -250,10 +299,10 @@ impl_resolve_host_path(
          */
         adjusted.s = object_id->s + vfs_entry->key.len;
         adjusted.len = object_id->len - vfs_entry->key.len;
-        merged_z = (char *)afw_utf8_z_printf(p, xctx,
-            AFW_UTF8_FMT AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&vfs_entry->string),
-            AFW_UTF8_FMT_ARG(&adjusted));
+        merged_z = (char *)impl_to_z(
+            afw_utf8_concat(p, xctx,
+                &vfs_entry->string, &adjusted, NULL),
+            p, xctx);
     }
 
     if (!impl_path_is_under_root(merged_z, root_z)) {
@@ -268,7 +317,7 @@ impl_resolve_host_path(
     if (want_trailing_slash) {
         afw_size_t mlen = strlen(merged_z);
         if (mlen == 0 || merged_z[mlen - 1] != '/') {
-            return afw_utf8_z_printf(p, xctx, "%s/", merged_z);
+            return (char *)impl_z_trailing_slash(merged_z, p, xctx);
         }
     }
 
@@ -376,10 +425,8 @@ impl_read_file_object(
             xctx);
         afw_object_set_property(object,
             afw_vfs_s_isDirectory, afw_boolean_v_true, xctx);
-        vfs_path = afw_utf8_printf(p, xctx,
-            "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&self->pub.adapter->adapter_id),
-            AFW_UTF8_FMT_ARG(object_id));
+        vfs_path = impl_vfs_path(
+            &self->pub.adapter->adapter_id, object_id, p, xctx);
         afw_object_set_property_as_anyURI(object,
             afw_vfs_s_vfsPath, vfs_path, xctx);
         filenames = afw_array_of_create(afw_data_type_string, p, xctx);
@@ -501,10 +548,8 @@ impl_read_file_object(
             xctx);
         afw_object_set_property(object,
             afw_vfs_s_isDirectory, afw_boolean_v_false, xctx);
-        vfs_path = afw_utf8_printf(p, xctx,
-            "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&self->pub.adapter->adapter_id),
-            AFW_UTF8_FMT_ARG(object_id));
+        vfs_path = impl_vfs_path(
+            &self->pub.adapter->adapter_id, object_id, p, xctx);
         afw_object_set_property_as_anyURI(object,
             afw_vfs_s_vfsPath, vfs_path, xctx);
         if (afw_utf8_is_valid((const afw_utf8_octet_t *)buff, size_read, xctx)) {
@@ -621,15 +666,21 @@ impl_process_directory(
 
         /* If this is a directory and recursive is specified, traverse. */
         if (ctx->recursive && finfo.filetype == APR_DIR) {
+            afw_utf8_t name;
+            const afw_utf8_t *joined;
+
             afw_memory_clear(&subdirectory_vfs_entry);
-            subdirectory_vfs_entry.key_z = afw_utf8_z_printf(
-                ctx->p, xctx, "%s%s/", vfs_entry->key_z, finfo.name);
-            subdirectory_vfs_entry.key.len =
-                strlen(subdirectory_vfs_entry.key_z);
-            subdirectory_vfs_entry.string_z = afw_utf8_z_printf(
-                ctx->p, xctx, "%s%s/", vfs_entry->string_z, finfo.name);
-            subdirectory_vfs_entry.string.len =
-                strlen(subdirectory_vfs_entry.string_z);
+            impl_utf8_from_z(&name, finfo.name);
+            joined = afw_utf8_concat(ctx->p, xctx,
+                &vfs_entry->key, &name, afw_s_a_slash, NULL);
+            subdirectory_vfs_entry.key_z = impl_to_z(
+                joined, ctx->p, xctx);
+            subdirectory_vfs_entry.key.len = joined->len;
+            joined = afw_utf8_concat(ctx->p, xctx,
+                &vfs_entry->string, &name, afw_s_a_slash, NULL);
+            subdirectory_vfs_entry.string_z = impl_to_z(
+                joined, ctx->p, xctx);
+            subdirectory_vfs_entry.string.len = joined->len;
             shortcut = impl_process_directory(self,
                 ctx, &subdirectory_vfs_entry, xctx);
             if (shortcut) {
@@ -657,9 +708,19 @@ impl_process_directory(
 
             /* Read file object.  Object has its own pool. */
             object_p = afw_pool_create(ctx->p, xctx);
-            object_id = afw_utf8_printf(object_p, xctx,
-                "%s%s%s", vfs_entry->key_z, finfo.name,
-                finfo.filetype == APR_DIR ? "/" : "");
+            {
+                afw_utf8_t name;
+
+                impl_utf8_from_z(&name, finfo.name);
+                if (finfo.filetype == APR_DIR) {
+                    object_id = afw_utf8_concat(object_p, xctx,
+                        &vfs_entry->key, &name, afw_s_a_slash, NULL);
+                }
+                else {
+                    object_id = afw_utf8_concat(object_p, xctx,
+                        &vfs_entry->key, &name, NULL);
+                }
+            }
             object = impl_read_file_object(self, ctx->impl_request, vfs_entry,
                 object_id, ctx->includeHidden, object_p, xctx);
         }
@@ -861,12 +922,15 @@ impl_afw_adapter_session_retrieve_objects(
                 subdirectory_vfs_entry.string.len = vfs_entry->string.len;
             }
             else {
-                subdirectory_vfs_entry.string_z = afw_utf8_z_printf(p, xctx,
-                    AFW_UTF8_FMT AFW_UTF8_FMT,
-                    AFW_UTF8_FMT_ARG(&vfs_entry->string),
-                    AFW_UTF8_FMT_ARG(&remainder));
-                subdirectory_vfs_entry.string.len =
-                    strlen(subdirectory_vfs_entry.string_z);
+                {
+                    const afw_utf8_t *joined;
+
+                    joined = afw_utf8_concat(p, xctx,
+                        &vfs_entry->string, &remainder, NULL);
+                    subdirectory_vfs_entry.string_z = impl_to_z(
+                        joined, p, xctx);
+                    subdirectory_vfs_entry.string.len = joined->len;
+                }
             }
         }
         else {
@@ -1100,7 +1164,14 @@ impl_write_data_to_file(
      * Atomic full-file write: write to a temp sibling, then rename into place
      * so a failed write does not leave a truncated destination.
      */
-    tmp_path_z = afw_utf8_z_printf(xctx->p, xctx, "%s.afw-tmp", path_z);
+    {
+        afw_utf8_t path;
+
+        impl_utf8_from_z(&path, path_z);
+        tmp_path_z = impl_to_z(
+            afw_utf8_concat(xctx->p, xctx, &path, &impl_s_afw_tmp, NULL),
+            xctx->p, xctx);
+    }
     flag = APR_FOPEN_WRITE | APR_FOPEN_CREATE | APR_FOPEN_TRUNCATE |
         APR_FOPEN_BINARY | APR_FOPEN_EXCL;
     rv = apr_file_open(&fd, tmp_path_z, flag, APR_FPROT_OS_DEFAULT, apr_p);
@@ -1155,10 +1226,10 @@ impl_write_data_to_file(
 
     /* Make file executable if match in adapter->mark_executable. */
     if (adapter->mark_executable) {
-        vfs_path_z = afw_utf8_z_printf(self->pub.p, xctx,
-            "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
-            AFW_UTF8_FMT_ARG(object_id));
+        vfs_path_z = impl_to_z(
+            impl_vfs_path(&adapter->pub.adapter_id, object_id,
+                self->pub.p, xctx),
+            self->pub.p, xctx);
         for (pattern = adapter->mark_executable; pattern->s_z; pattern++) {
             if (apr_fnmatch(pattern->s_z, vfs_path_z, 0) ==
                 APR_SUCCESS)
