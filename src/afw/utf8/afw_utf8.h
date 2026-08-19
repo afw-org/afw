@@ -24,17 +24,29 @@
  * no refcount. Adaptive values (`const afw_value_t *`) are what can hold
  * a lifetime. See @ref afw_utf8 and `designs/c-naming-and-payloads.md`.
  *
- * ## `afw_utf8_t->s` is not a C string
+ * ## Internal vs **external**
  *
- * `.s` is octets for `.len` bytes. There is usually **no** trailing `0` at
- * `s[len]` (new `create`, slices from `substring_byte`, a window into
- * another string). The bytes **may contain U+0000**.
+ * **Internal** is AFW's NFC world: `afw_utf8_t`, `.s` + `.len`. Slices,
+ * hashes, `memcpy`, `stream_write`, curl POSTFIELDS+SIZE. `.s` is octets
+ * for `.len` bytes. There is usually **no** trailing `0` at `s[len]`.
+ * The bytes **may contain U+0000**.
  *
- * Do **not** pass `string->s` to `fopen`, `strlen`, `strcmp`, or any API
- * that expects a 0-terminated C string. Always use `afw_utf8_to_utf8_z`
- * or `afw_utf8_z_create` when you need a `utf8_z` / C string. Those throw
- * if the length-prefixed bytes contain a `0`. Use `.s` and `.len` (or
- * `as_memory`) for length-prefixed work.
+ * **External** is not that world (libc, APR paths, LDAP DNs, libxml
+ * regexp, logs, env names). Say **external C string** or
+ * **external octets** when you need the shape. Cross with a named door:
+ *
+ * | External | Door |
+ * |----------|------|
+ * | C string | `afw_utf8_to_utf8_z` / `z_create` (throw if interior `0`) |
+ * | Encode for logs/names | `forced_safe` (not promised NFC) |
+ * | Octets + size | `as_memory` / write with `len` (NULs are data) |
+ *
+ * Generated literals: `afw_s_*` (internal) and `afw_z_*` (external C
+ * string of the same `"…"`). `afw_utf8_utf8_z_t` is the utf8 + z pair
+ * when the buffer is already a C string (see `afw_common.h`).
+ *
+ * Do **not** pass `string->s` to `fopen`, `strlen`, `strcmp`, or any
+ * external C-string API.
  *
  * ## Naming
  *
@@ -54,8 +66,8 @@
  * | `z_set` / `z_set_no_copy` | Fill yours from a `utf8_z` |
  * | `set` / `set_no_copy` | Fill yours from octets + len |
  * | `clone` | Copy an existing `afw_utf8_t` (struct + bytes) |
- * | `to_utf8_z` / `z_create` | 0-terminated C string (throw if embedded 0) |
- * | `forced_safe` | Always copy; encode invalid/Cc as `^hex^`; not NFC; not a value |
+ * | `to_utf8_z` / `z_create` | External C string (throw if embedded 0) |
+ * | `forced_safe` | External encode; invalid/Cc as `^hex^`; not NFC; not a value |
  * | `create_property_name` | Same encode, then NFC (property name only) |
  *
  * `AFW_UTF8_LITERAL` is a trusted C `"…"` initializer (no check).
@@ -673,15 +685,15 @@ afw_utf8_printf_v(
 
 
 /**
- * @brief Convert utf8 to utf8_z in specified pool.
+ * @brief Convert utf8 to an external C string in specified pool.
  * @param string to convert.
  * @param p pool used for result.
  * @param xctx of caller.
  * @return utf8_z 0 terminated string.
  *
- * Always use this (or `afw_utf8_z_create`) when you need a 0-terminated
- * UTF-8 C string from an `afw_utf8_t`. Do not use `string->s` as a C
- * string: it is not 0-terminated and may contain U+0000.
+ * Always use this (or `afw_utf8_z_create`) at the external C-string
+ * door. Do not use `string->s` as a C string: it is not 0-terminated
+ * and may contain U+0000.
  *
  * The input is assumed to already be valid utf-8. Throws if the
  * length-prefixed bytes contain a 0. A C string cannot represent that
@@ -863,9 +875,9 @@ afw_utf8_substring_byte(
  * @param p pool used for result.
  * @param xctx of caller.
  *
- * Always use this (or `afw_utf8_to_utf8_z`) when you need a 0-terminated
- * UTF-8 C string from length-prefixed octets. Do not use `s` as a C
- * string unless `len` is `AFW_UTF8_Z_LEN` and `s` is already `utf8_z`.
+ * Always use this (or `afw_utf8_to_utf8_z`) at the external C-string
+ * door from length-prefixed octets. Do not use `s` as a C string unless
+ * `len` is `AFW_UTF8_Z_LEN` and `s` is already `utf8_z`.
  *
  * A copy is always required to add a 0 byte.
  *

@@ -604,6 +604,10 @@
  * owns the bytes (a pool, a value header, a stack, a literal). Adaptive
  * **values** (`afw_value_*`) are what can `get_reference` / release.
  *
+ * **Internal** is NFC `afw_utf8_t`. **External** (libc, APR, LDAP, logs)
+ * uses a named door: `to_utf8_z` / `z_create`, `forced_safe`, or
+ * `as_memory`.
+ *
  * **Naming (short name does more):**
  *
  * Prefix `afw_utf8_z_` when you **have** a C string. Prefix `afw_utf8_`
@@ -619,8 +623,8 @@
  * | `set` / `z_set` | Caller `afw_utf8_t *` | Copy into `p` + NFC |
  * | `set_no_copy` / `z_set_no_copy` | Caller `afw_utf8_t *` | Point; no `p` |
  * | `clone` | New `const` in `p` | Copy struct + `.s` |
- * | `to_utf8_z` / `z_create` | `utf8_z` | 0-terminated C string; throw if embedded 0 |
- * | `forced_safe` | create/set (always copy) | Encode invalid/Cc as `^hex^`; not NFC; not a value |
+ * | `to_utf8_z` / `z_create` | `utf8_z` | External C string; throw if embedded 0 |
+ * | `forced_safe` | create/set (always copy) | External encode; `^hex^`; not NFC; not a value |
  * | `create_property_name` | New `const` in `p` | Same encode, then NFC (is a name) |
  *
  * `p` only if something new lives there.
