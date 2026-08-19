@@ -30,6 +30,8 @@ If something in `inter-afw-private` is ready to be part of the base, it is **pro
 
 When working in `inter-afw-private`, check out **`afw` as a sibling directory** (same parent). How the private tree should include or reference the base can wait until that work starts.
 
+Any other AFW package next to this repo uses the same sibling layout. To drop the Grok/Cursor write wall and thin `AGENTS.md` into that package, see [`sibling-afw-package.md`](sibling-afw-package.md) (*When asked to prime*).
+
 ## Library floor (Docker)
 
 Develop against the **published image bases**, not against “whatever this workstation or this one container happens to have.” The in-tree `docker/images/afw-dev-base/` files are the matrix:

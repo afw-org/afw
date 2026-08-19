@@ -309,7 +309,7 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 | **Probe** | Extension tests under `src/afw_*/tests/` |
 | **Open** | Index residuals on LMDB; other adapters index interface NULL |
 | **Gap** | No per-extension support cards — add when symptoms cluster |
-| **Also** | Not-yet-public extensions live in `inter-afw-private` and promote to this repo if they become base — [`lineage-and-library-floor.md`](lineage-and-library-floor.md) |
+| **Also** | Not-yet-public extensions live in `inter-afw-private` and promote to this repo if they become base — [`lineage-and-library-floor.md`](lineage-and-library-floor.md). Any sibling AFW package: [`sibling-afw-package.md`](sibling-afw-package.md) |
 
 ---
 

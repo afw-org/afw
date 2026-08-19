@@ -205,4 +205,4 @@ afwdev generate --srcdir-pattern '*'
 
 ## Other repositories
 
-External AFW packages can implement the same interfaces and add interface XML; `additional_generate/` allows bespoke codegen without forking core afwdev generators. Base-repo extension DSOs (`afw_curl`, `afw_ldap`, …) are documented in [`.cursor/rules/afw-extensions.mdc`](.cursor/rules/afw-extensions.mdc).
+External AFW packages can implement the same interfaces and add interface XML; `additional_generate/` allows bespoke codegen without forking core afwdev generators. Base-repo extension DSOs (`afw_curl`, `afw_ldap`, …) are documented in [`.cursor/rules/afw-extensions.mdc`](.cursor/rules/afw-extensions.mdc). Working in another Git repo **next to** this one (sibling checkout, write wall, prime kit): [`designs/sibling-afw-package.md`](designs/sibling-afw-package.md).
