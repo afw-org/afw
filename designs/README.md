@@ -20,7 +20,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 |------|--------|
 | [`ai-partner-lessons.md`](ai-partner-lessons.md) | **Optional** team lessons — pairing with an AI partner on issues/support (follow or not) |
 | [`knowledge-atlas.md`](knowledge-atlas.md) | **Topic atlas** — area → rules/pads/probes/gaps; **how the C surface fits**; admin/Fiddle §16. Start here for “where is X?” |
-| [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) | Maintainer framing — design philosophy, core value/pool/compile model, product taste; **not** always-on rules |
+| [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) | **Whole story** — why AFW is shaped this way, how parts relate (values, compile, pools, env, hosts). Keep and correct; do not trim maps. Not always-on rules |
 | [`mantras-and-working-style.md`](mantras-and-working-style.md) | Mike mantras + partnership habits (subset; grow when shared); philosophy/taste questions — **not** always-on |
 | [`memory-management.md`](memory-management.md) | Umbrella **#2** — pools, value lifetimes, escape |
 | [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | Value vs utf8/memory payloads; `create` / `set` / `no_copy` / `forced_safe`; code_point dir |

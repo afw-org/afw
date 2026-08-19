@@ -4,7 +4,7 @@
 **Not** published handbook, end-user docs, or always-on agent rules.  
 **Not** a substitute for code, tests, or [`.cursor/rules/`](../.cursor/rules/).
 
-**How to use this pad:** open it when questions touch product taste, origins, continuity, or “why not do X the usual way?” For **mantras and partnership habits**, prefer [`mantras-and-working-style.md`](mantras-and-working-style.md). For day-to-day implementation detail, prefer rules, `AGENTS.md`, issue pads, and the tree. When this note and live code disagree, **code wins** — then thin this pad.
+**How to use this pad:** this is the **whole-story** framing (why AFW is shaped this way, and how the internal parts relate). For **where is X / probe**, use [`knowledge-atlas.md`](knowledge-atlas.md). For mantras, [`mantras-and-working-style.md`](mantras-and-working-style.md). For day-to-day implementation, rules, `AGENTS.md`, issue pads, and the tree. When this note and live code disagree, **code wins** — then **correct this pad**, do not delete a map because it feels long.
 
 **Provenance:** distilled (2026-08) from an earlier Grok conversation about Adaptive Framework’s design intent and core runtime, plus later maintainer work. Some inventory details below were snapshots at the time; the **philosophy and structural model** are what we keep. Do not treat test counts, exact inf lists, or unfinished memory polish notes as current status.
 
@@ -192,14 +192,57 @@ From the earlier dump and early AI onboarding — useful archaeology, easy to mi
 
 ---
 
+## How the parts relate
+
+One process, several layers. Do not flatten them into one adjective (`managed`, `borrow`, `raw`).
+
+```text
+generate/ metadata + interface XML
+        ↓  afwdev
+  generated/ headers, bindings, registration
+        ↓
+  environment registries  (what exists)
+        ↓
+  compile  →  compiled_value  (own pool, one full_source)
+        ↓
+  evaluate values  (inf + payload; always returns a value)
+        ↓
+  hosts: afw CLI · afwfcgi · admin POST /afw
+```
+
+| Part | Job | Talks to |
+|------|-----|----------|
+| **Metadata / generate** | Functions, data types, object types, C interfaces defined once | `afwdev` → headers, bindings, env register, docs |
+| **Environment** | Process-wide registries; discoverable on `adapterId=afw` | Extensions and hosts register the same way |
+| **Compile** | Syntax → value graph | `compiled_value` owns pool + `full_source`; nodes hold **contextual** windows (offset/size), not copies of source |
+| **Evaluate** | Walk the graph; `optional_evaluate` or already-a-result | New memory from the evaluate `p` or a **child** of `p` |
+| **Values** | Public type is only `const afw_value_t *` (`inf` + private body) | Built-ins see **already evaluated** args (`AFW_FUNCTION_EVALUATE_*` → typed `arg->internal`) |
+| **Payloads** | `afw_utf8_t` / `afw_memory_t` / `afw_integer_t` | **No pool, no RC.** Lifetime is whoever owns the bytes. Doors: `create`/`set`/`no_copy` — [`c-naming-and-payloads.md`](c-naming-and-payloads.md) |
+| **Objects / arrays** | Instances (maybe own pool); value header points at them | Script expects **mutable**; const/shared get a **wrapper**. Dual `->value` face ≠ wrapper |
+| **Code points** | Unicode properties (identifier, whitespace, Cc) | `src/afw/code_point/` — encoding-neutral. UTF-8 encode/NFC stays in `afw_utf8` |
+| **Hosts** | `afw`, `afwfcgi`, admin app | Same env. GET adapter CRUD ≠ POST `/afw` actions |
+
+**Lifetime (the sentence that still holds):** almost everything dies with a **pool**. Request/`afw` command: that was enough. Objects could have their own pool so a retrieve could drop them early. Child pools hold their parent — a leftover hold on a child keeps the chain (often up to `xctx->p`). Long-running scripts break “long enough”: scopes need a pool; assign uses **`clone_or_reference`** (the name we want is **`get_reference`** — keep this value; the inf decides clone vs hold vs wrap). Scalars have no RC; they **clone**. Objects/arrays **reference** (or wrap and pin `instance->p`).
+
+**Compile vs evaluate of `compile()`:** a script is compiled **once** and may be evaluated many times. Adaptive `compile()` during an evaluation must live on **`x->p`**, not the containing script’s compile pool, or every eval leaks ([#212](https://github.com/afw-org/afw/issues/212)). `parent` on `compiled_value` is not the backtrace — the **evaluation stack** + per-unit `full_source` is. Lex intern is `shared`, not a walk of `parent`.
+
+**Errors:** `get_info()` → contextual → exact span in that unit’s `full_source`. Nested compile+eval prints each source as the stack changes. `decompile()` is compiled-form Adaptive (recompilable when supported), not original pretty source. `stringify()` is JSON of an evaluated value. Listing is the human tree.
+
+**Print / untrusted bytes:** `forced_safe` makes viewable UTF-8 (`^hex^` for invalid/Cc, `^^` for caret) — not NFC, not a value. Property names at env/FCGI boundaries: same encode, then NFC (`create_property_name`).
+
+---
+
 ## Related pads and hubs
 
 | Doc | Role |
 |-----|------|
 | [`../AGENTS.md`](../AGENTS.md) | System map, agent mission, knowledge map |
+| [`knowledge-atlas.md`](knowledge-atlas.md) | Topic → rules / pad / probe (the index, not a second story) |
+| [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | Value vs utf8/memory doors; `forced_safe`; code_point |
 | [`mantras-and-working-style.md`](mantras-and-working-style.md) | Mantras, anti-patterns, partnership habits (reference) |
 | [`memory-management.md`](memory-management.md) | Long-running pools / escape / #2 |
 | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | Env registries as runtime objects |
+| [`lineage-and-library-floor.md`](lineage-and-library-floor.md) | Base vs private packages; ICU home |
 | [`agent-support.md`](agent-support.md) | Support playbook stubs; capture checklist |
 | [`../whats-new.md`](../whats-new.md) | User/operator-facing notes on develop |
 
@@ -207,4 +250,4 @@ From the earlier dump and early AI onboarding — useful archaeology, easy to mi
 
 ## Continuity
 
-The goal of writing this down is practical: so someone working with Mike — or continuing work later — can still recover **how AFW thinks**, not only what the last PR touched. Assistants should use this pad as **orientation and taste**, then verify and implement against the living tree. Prefer improving this document with a short, dated correction over letting chat become the only memory of a design decision.
+The goal of writing this down is practical: so someone working with Mike — or continuing work later — can still recover **how AFW thinks**, not only what the last PR touched. Assistants should use this pad as **orientation and taste**, then verify and implement against the living tree. Prefer improving this document with a short, dated correction over letting chat become the only memory of a design decision. **Do not trim maps** (how parts relate, lifetime sentences, named doors) to make the file short — correct them when the tree changes.

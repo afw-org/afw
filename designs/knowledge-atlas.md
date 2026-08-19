@@ -10,7 +10,7 @@
 
 1. Land on a **topic** below.  
 2. Open **day rules** for how to work; **deep pad** for why/history; **probe** to verify.  
-3. For philosophy/taste: [`mantras-and-working-style.md`](mantras-and-working-style.md), [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md).  
+3. For the **whole story** (why + how parts relate): [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md). Mantras: [`mantras-and-working-style.md`](mantras-and-working-style.md).  
 4. For symptom-shaped support: [`agent-support.md`](agent-support.md).
 
 **Hubs:** [`AGENTS.md`](../AGENTS.md) · [`designs/README.md`](README.md) · [`beta-backlog.md`](../beta-backlog.md) · [`whats-new.md`](../whats-new.md)
