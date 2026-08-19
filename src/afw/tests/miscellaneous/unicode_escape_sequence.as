@@ -43,3 +43,19 @@ return "\A" === "A" && "\z" === "z" && "\Q" === "Q";
 //? source: ...
 
 return "\0" === "\u0000" && length("\0") === 1;
+
+//?
+//? test: NullEscape-length-prefixed
+//? description: Embedded NUL stays in the length-prefixed string
+//? expect: true
+//? source: ...
+
+return length("abc\0def") === 7;
+
+//?
+//? test: NullEscape-c-string-boundary
+//? description: Embedded NUL cannot convert to a C string
+//? expect: error
+//? source: ...
+
+return regexp_match("abc\0def", "abc");

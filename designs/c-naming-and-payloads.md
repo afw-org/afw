@@ -65,6 +65,8 @@ Do **not** rename `afw_value_create_managed_<dt>` to `afw_value_create_<dt>` on 
 
 **Gotcha:** a walker that treats `afw_utf8_t->s` as a C string needs a trailing `0`. Old `create` could point at a `z` buffer. New `create` copies **without** a `0`. The RQL origin string uses `create_no_copy` onto `afw_utf8_z_create` for that.
 
+**C-string door:** `afw_utf8_to_utf8_z`, `afw_utf8_z_create`, and `afw_utf8_array_to_utf8_z_with_separator` throw if the length-prefixed bytes contain a `0` (pieces and separator). `afw_utf8_z_array_to_utf8_z_with_separator` checks the separator the same way; the `utf8_z` pieces are already C strings. A C string cannot hold that value. The length-prefixed concat (`array_to_utf8_with_separator`) does not throw. Do not ban `\0`/`\x00` in the lexer — Adaptive strings are length-prefixed. `forced_safe` / `z_printf` still encode U+0000 as `^00^`. File logical paths already rejected an embedded NUL (`afw_file_path.c`).
+
 ## Code points vs UTF-8
 
 Unicode **code-point** tests (identifier, whitespace, Cc) live in **`src/afw/code_point/`** (`afw_code_point.h`). They take an `afw_code_point_t`, not octets. UTF-8 encode/decode stays in `afw_utf8`.

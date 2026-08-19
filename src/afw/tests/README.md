@@ -16,7 +16,8 @@ A few places that are easy to misunderstand:
 - `advanced/` — short orchestrated tests (`orchestration.yaml`) that are
   part of the default run. A few groups are a thin Python `run()` plus
   a checked-in `*_probe.c` (pool wrap, C-array view index, UTF-8 ICU
-  bound). Use that when Adaptive Script cannot reach the hole. Call
+  bound, UTF-8 to C string). Use that when Adaptive Script cannot reach
+  the hole. Call
   `run_c_probe()` from `_afwdev.test.c_probe` — do not copy a `cc`
   line. Start with `afwdev prime-test-c-probe <path>` (a leaf under
   `tests/` or `tests-extra/`).
