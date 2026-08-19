@@ -606,18 +606,24 @@
  *
  * **Naming (short name does more):**
  *
+ * Prefix `afw_utf8_z_` when you **have** a C string. Prefix `afw_utf8_`
+ * when you have length-prefixed `utf8`. Mixed predicates spell both
+ * types in argument order (`starts_with_utf8_z`).
+ *
  * | Door | Dest | Bytes |
  * |------|------|--------|
- * | `create` / `create_z` | New `const` in `p` | Copy + NFC (or throw) |
- * | `create_no_copy` / `_z` | New `const` in `p` | Point at `s`; NFC or throw |
- * | `set` / `set_z` | Caller `afw_utf8_t *` | Copy into `p` + NFC |
- * | `set_no_copy` / `_z` | Caller `afw_utf8_t *` | Point; no `p` |
+ * | `create` | New `const` in `p` | Copy + NFC (or throw) |
+ * | `create_no_copy` | New `const` in `p` | Point at `s`; NFC or throw |
+ * | `z_to_utf8` | New `const` in `p` | Ingest `utf8_z` (copy + NFC) |
+ * | `z_as_utf8` | New `const` in `p` | Ingest `utf8_z` (point) |
+ * | `set` / `z_set` | Caller `afw_utf8_t *` | Copy into `p` + NFC |
+ * | `set_no_copy` / `z_set_no_copy` | Caller `afw_utf8_t *` | Point; no `p` |
  * | `clone` | New `const` in `p` | Copy struct + `.s` |
+ * | `to_utf8_z` / `z_create` | `utf8_z` | 0-terminated C string; throw if embedded 0 |
  * | `forced_safe` | create/set (always copy) | Encode invalid/Cc as `^hex^`; not NFC; not a value |
  * | `create_property_name` | New `const` in `p` | Same encode, then NFC (is a name) |
  *
- * Suffix `_z` = that argument is `0`-terminated. Prefix `z_` = result is
- * `utf8_z`. `p` only if something new lives there.
+ * `p` only if something new lives there.
  *
  * See `afw_utf8.h` and `designs/c-naming-and-payloads.md`.
  */

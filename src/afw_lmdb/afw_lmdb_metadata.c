@@ -89,7 +89,7 @@ const afw_array_t * afw_lmdb_metadata_retrieve_objects(
 afw_boolean_t afw_lmdb_metadata_handles(const afw_utf8_t *object_type_id)
 {
     if (object_type_id  && (
-        afw_utf8_starts_with_z(object_type_id,
+        afw_utf8_starts_with_utf8_z(object_type_id,
             AFW_LMDB_Q_OBJECT_TYPE_SYNTHETIC_PREFIX)
         ))
     {

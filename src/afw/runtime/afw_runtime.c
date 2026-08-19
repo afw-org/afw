@@ -494,7 +494,7 @@ impl_check_manifest_cb(
         }
 
         /* Check for entry match. */
-        if (!afw_utf8_starts_with_z(entry, "/afw/")) {
+        if (!afw_utf8_starts_with_utf8_z(entry, "/afw/")) {
             continue;
         }
         s.s = entry->s + 5;

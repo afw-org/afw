@@ -24,16 +24,19 @@ Most scalars are one chunk (`afw_integer_t`). Objects/arrays are a `const` point
 
 | Verb | Struct | Bytes |
 |------|--------|--------|
-| **`create` / `create_z`** | New `const` in `p` | **Copy** (utf8: NFC or throw) |
-| **`create_no_copy` / `_z`** | New `const` in `p` | **Point** at `s`. NFC or throw. `p` is the struct only. |
-| **`set` / `set_z`** | Your non-const struct | Copy into `p` |
-| **`set_no_copy` / `_z`** | Your non-const struct | Point. No `p`. |
+| **`create`** | New `const` in `p` | **Copy** (utf8: NFC or throw) |
+| **`create_no_copy`** | New `const` in `p` | **Point** at `s`. NFC or throw. `p` is the struct only. |
+| **`z_to_utf8`** | New `const` in `p` | Ingest `utf8_z` (copy + NFC) |
+| **`z_as_utf8`** | New `const` in `p` | Ingest `utf8_z` (point) |
+| **`set` / `z_set`** | Your non-const struct | Copy into `p` (octets vs `utf8_z`) |
+| **`set_no_copy` / `z_set_no_copy`** | Your non-const struct | Point. No `p`. |
 | **`clone`** | New `const` in `p` | Copy struct **and** `.s` from an existing `afw_utf8_t` |
 
 **Rule:** shorter name does more / is safer. Extra words take a guard off (`no_copy`, like `create_unmanaged` on objects). **`p` only if something new lives there.**
 
-- Suffix **`_z`** = that **argument** is `0`-terminated.
-- Prefix **`z_`** = the **result** is `utf8_z`.
+- Prefix **`afw_utf8_z_`** when you **have** a C string. Prefix **`afw_utf8_`** when you have length-prefixed `utf8`.
+- **`to_utf8_z` / `z_create`**: result is a C string (throw if the bytes contain a `0`).
+- Mixed predicates spell both types in argument order (`starts_with_utf8_z`).
 - **`from_memory` / `as_memory`**: utf8 ↔ `afw_memory_t`. No `afw_raw_t`.
 
 `AFW_UTF8_LITERAL` is a trusted C `"…"` initializer. ASCII (including `\n`) is always UTF-8 NFC. `\x` or a non-UTF-8 source file is a programmer error. AFW does not support EBCDIC.
@@ -65,7 +68,7 @@ Do **not** rename `afw_value_create_managed_<dt>` to `afw_value_create_<dt>` on 
 
 **Gotcha:** a walker that treats `afw_utf8_t->s` as a C string needs a trailing `0`. Old `create` could point at a `z` buffer. New `create` copies **without** a `0`. The RQL origin string uses `create_no_copy` onto `afw_utf8_z_create` for that.
 
-**C-string door:** `afw_utf8_to_utf8_z`, `afw_utf8_z_create`, and `afw_utf8_array_to_utf8_z_with_separator` throw if the length-prefixed bytes contain a `0` (pieces and separator). `afw_utf8_z_array_to_utf8_z_with_separator` checks the separator the same way; the `utf8_z` pieces are already C strings. A C string cannot hold that value. The length-prefixed concat (`array_to_utf8_with_separator`) does not throw. Do not ban `\0`/`\x00` in the lexer — Adaptive strings are length-prefixed. `forced_safe` / `z_printf` still encode U+0000 as `^00^`. File logical paths already rejected an embedded NUL (`afw_file_path.c`).
+**C-string door:** `afw_utf8_to_utf8_z`, `afw_utf8_z_create`, and `afw_utf8_array_to_utf8_z_with_separator` throw if the length-prefixed bytes contain a `0` (pieces and separator). `afw_utf8_z_array_with_separator` checks the separator the same way; the `utf8_z` pieces are already C strings. A C string cannot hold that value. The length-prefixed concat (`array_to_utf8_with_separator`) does not throw. Do not ban `\0`/`\x00` in the lexer — Adaptive strings are length-prefixed. `forced_safe` / `z_printf` still encode U+0000 as `^00^`. File logical paths already rejected an embedded NUL (`afw_file_path.c`).
 
 ## Code points vs UTF-8
 

@@ -38,7 +38,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | Old installed headers / mixed binaries | Rebuild once. Prune stale names under the include prefix (`afw_*_internal.h`, old `afw_function_bindings.h`, `afw_declare_helpers.h`, …). |
 | `#include` of core internals or package `*_declare_helpers.h` | `#include "afw.h"`. Core **`AFW_DECLARE` / `AFW_DEFINE` / `AFW_BEGIN_DECLARES`** live in **`afw_common.h`**. Package `*_declare_helpers.h` is **not generated**. |
 | Type name `afw_iterator` as the old opaque cursor | That name is the new **keyless** iterator. Legacy cursor is **`afw_iterator_old`**. [#153](#utf-8-code-point-sequences-issue-153) |
-| `afw_utf8_create` / `create_copy` / `from_utf8_z` / `from_raw` | **`create` always copies** (old `create_copy`). Point without copy is **`create_no_copy`**. `from_utf8_z` → **`create_z`**. `from_raw` / `as_raw` → **`from_memory` / `as_memory`**. Env/request names that are not UTF-8 are **`^` + hex + `^`**, not `_NONUTF8_` + whole-name hex. [UTF-8 doors](#utf-8-create-set-and-forced_safe) |
+| `afw_utf8_create` / `create_copy` / `from_utf8_z` / `from_raw` | **`create` always copies** (old `create_copy`). Point without copy is **`create_no_copy`**. `from_utf8_z` → **`utf8_z_to_utf8`** (copy) or **`utf8_z_as_utf8`** (point). `from_raw` / `as_raw` → **`from_memory` / `as_memory`**. Env/request names that are not UTF-8 are **`^` + hex + `^`**, not `_NONUTF8_` + whole-name hex. [UTF-8 doors](#utf-8-create-set-and-forced_safe) |
 
 **Details:** [libafw C API cleanup](#libafw-c-api-cleanup-release-ready-surface).
 
@@ -486,9 +486,11 @@ C `afw_utf8_t` doors now say **who owns the little struct** and **whether `.s` i
 |-----|-----|
 | `afw_utf8_create_copy` | **`afw_utf8_create`** (always copy into `p`, NFC or throw) |
 | `afw_utf8_create` (point if already NFC) | **`afw_utf8_create_no_copy`** (struct in `p`, `.s` stays yours; not-NFC throws) |
-| `afw_utf8_from_utf8_z` | **`afw_utf8_create_z`** (copy) or **`create_no_copy_z`** |
+| `afw_utf8_from_utf8_z` | **`afw_utf8_z_to_utf8`** (copy) or **`afw_utf8_z_as_utf8`** (point) |
 | `afw_utf8_from_raw` / `as_raw` | **`afw_utf8_from_memory` / `as_memory`** |
-| Hand-set `.s` / `.len` | **`afw_utf8_set`** (copy into `p`) or **`set_no_copy`** (point; no `p`) |
+| Hand-set `.s` / `.len` | **`afw_utf8_set`** (copy into `p`) or **`set_no_copy`** (point; no `p`). From a C string: **`afw_utf8_z_set`** / **`afw_utf8_z_set_no_copy`**. |
+| `afw_utf8_starts_with_z` / `ends_with_z` | **`afw_utf8_starts_with_utf8_z`** / **`ends_with_utf8_z`** |
+| `afw_utf8_z_starts_with_z` | **`afw_utf8_z_starts_with`** |
 
 `afw_memory_t` uses the same verbs (no NFC). There is no `afw_raw_t`.
 

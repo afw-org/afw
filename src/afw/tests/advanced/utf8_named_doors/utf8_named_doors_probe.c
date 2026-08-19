@@ -97,8 +97,8 @@ impl_create_set_copy(const afw_pool_t *p, afw_xctx_t *xctx)
         return 1;
     }
 
-    c = afw_utf8_create_z("abc", p, xctx);
-    if (impl_eq(c, "abc", 3, "create_z")) {
+    c = afw_utf8_z_to_utf8("abc", p, xctx);
+    if (impl_eq(c, "abc", 3, "z_to_utf8")) {
         return 1;
     }
 

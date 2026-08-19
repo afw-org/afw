@@ -194,7 +194,7 @@ impl_z_array_sep(const afw_pool_t *p, afw_xctx_t *xctx)
     list[0] = "hello";
     list[1] = "world";
     list[2] = NULL;
-    (void)afw_utf8_z_array_to_utf8_z_with_separator(list, &sep, p, xctx);
+    (void)afw_utf8_z_array_with_separator(list, &sep, p, xctx);
 }
 
 static int

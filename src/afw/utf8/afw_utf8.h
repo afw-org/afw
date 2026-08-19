@@ -41,18 +41,22 @@
  * **Less in the name, more we do.** Extra words take a safety off or pick
  * a non-default policy. **`p` only if something new lives there.**
  *
+ * Prefix **`afw_utf8_z_`** when you **have** a C string. Prefix
+ * **`afw_utf8_`** when you have length-prefixed `utf8`. Mixed predicates
+ * spell both types in argument order (`starts_with_utf8_z`).
+ *
  * | Name | What we do |
  * |------|------------|
- * | `create` / `create_z` | New struct in `p`, **copy** bytes, NFC or throw |
- * | `create_no_copy` / `_z` | New struct in `p`, **point** at `s`, NFC or throw |
- * | `set` / `set_z` | Fill your non-const `afw_utf8_t`, copy into `p` |
- * | `set_no_copy` / `_z` | Fill yours, point; no `p` |
+ * | `create` | New struct in `p`, **copy** octets, NFC or throw |
+ * | `create_no_copy` | New struct in `p`, **point** at `s`, NFC or throw |
+ * | `z_to_utf8` | Ingest `utf8_z` (copy + NFC) |
+ * | `z_as_utf8` | Ingest `utf8_z` (point; already NFC) |
+ * | `z_set` / `z_set_no_copy` | Fill yours from a `utf8_z` |
+ * | `set` / `set_no_copy` | Fill yours from octets + len |
  * | `clone` | Copy an existing `afw_utf8_t` (struct + bytes) |
+ * | `to_utf8_z` / `z_create` | 0-terminated C string (throw if embedded 0) |
  * | `forced_safe` | Always copy; encode invalid/Cc as `^hex^`; not NFC; not a value |
  * | `create_property_name` | Same encode, then NFC (property name only) |
- *
- * Suffix `_z` = that **argument** is `0`-terminated. Prefix `z_` = the
- * **result** is `utf8_z`. Two `_z`s means both.
  *
  * `AFW_UTF8_LITERAL` is a trusted C `"…"` initializer (no check).
  */
@@ -264,12 +268,15 @@ afw_utf8_from_encoding(
 
 
 /**
- * @brief Create utf-8 in p from a 0-terminated C string (copy, NFC or throw).
+ * @brief Ingest a 0-terminated C string: new utf8 in p (copy, NFC or throw).
  * @param s_z 0-terminated octets.
  * @param p pool for the struct and the copy.
  * @param xctx of caller.
+ *
+ * You have a `utf8_z`; you get an `afw_utf8_t`. Inverse of
+ * `afw_utf8_to_utf8_z`.
  */
-#define afw_utf8_create_z(s_z, p, xctx) \
+#define afw_utf8_z_to_utf8(s_z, p, xctx) \
     afw_utf8_nfc(s_z, AFW_UTF8_Z_LEN, afw_utf8_nfc_option_create_copy, \
         p, xctx)
 
@@ -283,8 +290,8 @@ afw_utf8_from_encoding(
  *
  * Extra words take the copy off. p holds the little struct; bytes stay at s
  * and must live as long as the result. Cannot rewrite someone else's memory,
- * so not-NFC throws. `s` is still not a C string unless it already was
- * 0-terminated and you asked for a `utf8_z`.
+ * so not-NFC throws. `s` is still not a C string. Ingest a `utf8_z` with
+ * `afw_utf8_z_as_utf8` / `afw_utf8_z_to_utf8`.
  */
 AFW_DECLARE(const afw_utf8_t *)
 afw_utf8_create_no_copy(
@@ -293,8 +300,13 @@ afw_utf8_create_no_copy(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Ingest a 0-terminated C string: new utf8 pointing at s_z (no copy).
+ *
+ * `s_z` must already be valid NFC. Inverse of a C string you already own.
+ */
 AFW_DECLARE(const afw_utf8_t *)
-afw_utf8_create_no_copy_z(
+afw_utf8_z_as_utf8(
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -373,7 +385,7 @@ afw_utf8_array_to_utf8_z_with_separator(
  * not, or if the separator contains a 0 byte.
  */
 AFW_DECLARE(const afw_utf8_z_t *)
-afw_utf8_z_array_to_utf8_z_with_separator(
+afw_utf8_z_array_with_separator(
     const afw_utf8_z_t * const * strings_z,
     const afw_utf8_t * separator,
     const afw_pool_t *p, afw_xctx_t *xctx);
@@ -414,8 +426,11 @@ afw_utf8_set(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Ingest a 0-terminated C string into a preallocated utf8 (copy + NFC).
+ */
 AFW_DECLARE(void)
-afw_utf8_set_z(
+afw_utf8_z_set(
     afw_utf8_t *to,
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
@@ -437,8 +452,11 @@ afw_utf8_set_no_copy(
     afw_size_t len,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Ingest a 0-terminated C string into a preallocated utf8 (point).
+ */
 AFW_DECLARE(void)
-afw_utf8_set_no_copy_z(
+afw_utf8_z_set_no_copy(
     afw_utf8_t *to,
     const afw_utf8_z_t *s_z,
     afw_xctx_t *xctx);
@@ -456,8 +474,11 @@ afw_utf8_set_forced_safe(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Ingest a 0-terminated C string with forced_safe encode (copy).
+ */
 AFW_DECLARE(void)
-afw_utf8_set_forced_safe_z(
+afw_utf8_z_set_forced_safe(
     afw_utf8_t *to,
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
@@ -477,8 +498,11 @@ afw_utf8_create_forced_safe(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Ingest a 0-terminated C string with forced_safe encode (new utf8).
+ */
 AFW_DECLARE(const afw_utf8_t *)
-afw_utf8_create_forced_safe_z(
+afw_utf8_z_create_forced_safe(
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -495,8 +519,11 @@ afw_utf8_create_property_name(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Ingest a 0-terminated C string as a property name (encode, then NFC).
+ */
 AFW_DECLARE(const afw_utf8_t *)
-afw_utf8_create_property_name_z(
+afw_utf8_z_create_property_name(
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -689,7 +716,7 @@ afw_utf8_starts_with(
  * The input strings are assumed to already be valid utf-8.
  */
 AFW_DECLARE(afw_boolean_t)
-afw_utf8_starts_with_z(
+afw_utf8_starts_with_utf8_z(
     const afw_utf8_t *string, const afw_utf8_z_t *starts_with_z);
 
 
@@ -717,7 +744,7 @@ afw_utf8_ends_with(
  * The input strings are assumed to already be valid utf-8.
  */
 AFW_DECLARE(afw_boolean_t)
-afw_utf8_ends_with_z(
+afw_utf8_ends_with_utf8_z(
     const afw_utf8_t *string, const afw_utf8_z_t *ends_with_z);
 
 
@@ -859,7 +886,7 @@ afw_utf8_z_create(
  * @return true or false.
  */
 AFW_DECLARE(afw_boolean_t)
-afw_utf8_len_starts_with_z(
+afw_utf8_len_starts_with_utf8_z(
     const afw_utf8_octet_t *s1, afw_size_t len1, const afw_utf8_z_t *s2_z);
 
 
@@ -872,7 +899,7 @@ afw_utf8_len_starts_with_z(
  * @return true or false.
  */
 AFW_DECLARE(afw_boolean_t)
-afw_utf8_z_starts_with_z(
+afw_utf8_z_starts_with(
     const afw_utf8_z_t *s1_z, const afw_utf8_z_t *s2_z);
 
 

@@ -189,7 +189,7 @@ afw_object_type_property_type_get_extended(
     /* If the property name starts with _meta_, process accordingly. 
        @fixme not implemented yet
      */
-    if (afw_utf8_starts_with_z(property_name_extended,
+    if (afw_utf8_starts_with_utf8_z(property_name_extended,
         AFW_OBJECT_Q_PN_META  "."))
     {
         meta = NULL;

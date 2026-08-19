@@ -1387,7 +1387,7 @@ int afw_lmdb_internal_reader_list_cb(
     afw_lmdb_internal_reader_list_cb_ctx * context = (afw_lmdb_internal_reader_list_cb_ctx *)ctx;
     const afw_utf8_t *message;
 
-    message = afw_utf8_create_z(msg, context->pool, context->xctx);
+    message = afw_utf8_z_to_utf8(msg, context->pool, context->xctx);
     *(context->list) = afw_utf8_create(
     message->s, message->len, context->pool, context->xctx);
 
