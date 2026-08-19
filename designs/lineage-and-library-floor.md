@@ -53,8 +53,7 @@ Keep ICU (`unicode/*.h`, `U8_*`, `u_*`, `unorm2_*`) in **`src/afw/utf8/`** (NFC,
 
 | Place | Use |
 |-------|-----|
-| `src/afw/utf8/afw_utf8.c` | `U8_*`, `unorm2_*`, `u_str*`, `u_tolower`, NFC quick check |
+| `src/afw/utf8/afw_utf8.c` | `U8_*`, `unorm2_*`, `u_str*`, `u_tolower`, NFC, `u_errorName` wrap |
 | `src/afw/code_point/afw_code_point.c` | `u_hasBinaryProperty` / `u_charType` |
-| `src/afw/environment/afw_environment_register_core.c` | `u_errorName` for the ICU error-code decoder |
 
-`u_errorName` can wait for an `afw_utf8_*` wrap. [#206](https://github.com/afw-org/afw/issues/206).
+Env ICU decoder calls `afw_utf8_icu_error_name_z()`. [#206](https://github.com/afw-org/afw/issues/206).

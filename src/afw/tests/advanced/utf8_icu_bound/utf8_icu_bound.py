@@ -28,6 +28,10 @@ def run():
                 "compare_ignore_case of valid UTF-8",
             ),
             (
+                "compare-mixed-width",
+                "compare_ignore_case independent offsets (iX vs İX)",
+            ),
+            (
                 "compare-truncated",
                 "compare_ignore_case of a truncated sequence throws",
             ),

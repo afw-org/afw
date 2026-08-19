@@ -168,6 +168,47 @@ impl_compare_valid(const afw_pool_t *p, afw_xctx_t *xctx)
 }
 
 static int
+impl_compare_mixed_width(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_utf8_t a;
+    afw_utf8_t b;
+    int cmp;
+
+    (void)p;
+    /* "iX" vs "İX" (U+0130). Same ignore-case; İ is two bytes. */
+    impl_utf8_set(&a, "iX", 2);
+    impl_utf8_set(&b, "\xC4\xB0X", 3);
+    cmp = afw_utf8_compare_ignore_case(&a, &b, xctx);
+    if (cmp != 0) {
+        fprintf(stderr, "compare mixed: iX vs IX -> %d\n", cmp);
+        return 1;
+    }
+    cmp = afw_utf8_compare_ignore_case(&b, &a, xctx);
+    if (cmp != 0) {
+        fprintf(stderr, "compare mixed: IX vs iX -> %d\n", cmp);
+        return 1;
+    }
+
+    impl_utf8_set(&a, "i", 1);
+    impl_utf8_set(&b, "\xC4\xB0", 2);
+    cmp = afw_utf8_compare_ignore_case(&a, &b, xctx);
+    if (cmp != 0) {
+        fprintf(stderr, "compare mixed: i vs I -> %d\n", cmp);
+        return 1;
+    }
+
+    impl_utf8_set(&a, "A", 1);
+    impl_utf8_set(&b, "\xC3\x80", 2);
+    cmp = afw_utf8_compare_ignore_case(&a, &b, xctx);
+    if (cmp == 0) {
+        fprintf(stderr, "compare mixed: A vs A-grave equal\n");
+        return 1;
+    }
+
+    return 0;
+}
+
+static int
 impl_compare_truncated(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_utf8_t a;
@@ -182,6 +223,10 @@ impl_compare_truncated(const afw_pool_t *p, afw_xctx_t *xctx)
     impl_utf8_set(&a, "a", 1);
     impl_utf8_set(&b, "\xC3", 1);
     rc |= impl_expect_throw(&a, &b, false, p, xctx, "compare s2");
+    /* Equal prefix, truncated remainder. */
+    impl_utf8_set(&a, "a", 1);
+    impl_utf8_set(&b, "a\xC3", 2);
+    rc |= impl_expect_throw(&a, &b, false, p, xctx, "compare remainder");
     return rc;
 }
 
@@ -214,13 +259,17 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "compare-valid") == 0) {
         rc = impl_compare_valid(p, xctx);
     }
+    else if (strcmp(case_name, "compare-mixed-width") == 0) {
+        rc = impl_compare_mixed_width(p, xctx);
+    }
     else if (strcmp(case_name, "compare-truncated") == 0) {
         rc = impl_compare_truncated(p, xctx);
     }
     else {
         fprintf(stderr, "usage: utf8_icu_bound_probe "
             "to_lower-valid|to_lower-truncated|"
-            "compare-valid|compare-truncated\n");
+            "compare-valid|compare-mixed-width|"
+            "compare-truncated\n");
         rc = 2;
     }
 

@@ -241,6 +241,94 @@ impl_printf_safe(const afw_pool_t *p, afw_xctx_t *xctx)
 }
 
 static int
+impl_printf_nul(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_utf8_t *c;
+    afw_utf8_t s;
+    char in[3];
+    const afw_utf8_z_t *z;
+
+    in[0] = 'a';
+    in[1] = 0;
+    in[2] = 'b';
+    s.s = (const afw_utf8_octet_t *)in;
+    s.len = 3;
+    c = afw_utf8_printf(p, xctx, "x=" AFW_UTF8_FMT,
+        AFW_UTF8_FMT_ARG(&s));
+    if (impl_eq(c, "x=a^00^b", 8, "printf nul")) {
+        return 1;
+    }
+
+    c = afw_utf8_printf(p, xctx, "n=%d x=" AFW_UTF8_FMT, 3,
+        AFW_UTF8_FMT_ARG(&s));
+    if (impl_eq(c, "n=3 x=a^00^b", 12, "printf mixed")) {
+        return 1;
+    }
+
+    z = afw_utf8_z_printf(p, xctx, "x=" AFW_UTF8_FMT,
+        AFW_UTF8_FMT_ARG(&s));
+    if (!z || strcmp((const char *)z, "x=a^00^b") != 0) {
+        fprintf(stderr, "z_printf nul: got %s\n", z ? (const char *)z : "?");
+        return 1;
+    }
+    return 0;
+}
+
+static int
+impl_error_backtrace(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_utf8_t fake;
+    char in[3];
+    const afw_object_t *obj;
+    const afw_utf8_t *got;
+    int rc;
+
+    in[0] = 'x';
+    in[1] = (char)0xff;
+    in[2] = 'y';
+    fake.s = (const afw_utf8_octet_t *)in;
+    fake.len = 3;
+
+    afw_flag_set(afw_s_a_flag_response_error_backtrace, true, xctx);
+
+    rc = 0;
+    AFW_TRY {
+        AFW_THROW_ERROR_Z(general, "probe", xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        xctx->error->backtrace = &fake;
+        obj = afw_error_to_object(xctx->error, p, xctx);
+        got = afw_object_get_property_as_string(
+            obj, afw_s_backtrace, p, xctx);
+        if (!got || got->len != 6 ||
+            memcmp(got->s, "x^FF^y", 6) != 0)
+        {
+            fprintf(stderr, "error backtrace: got len=%lu\n",
+                (unsigned long)(got ? got->len : 0));
+            rc = 1;
+        }
+    }
+    AFW_ENDTRY;
+    return rc;
+}
+
+static int
+impl_icu_error_name(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_utf8_z_t *z;
+
+    (void)p;
+    (void)xctx;
+    z = afw_utf8_icu_error_name_z(0);
+    if (!z || strcmp((const char *)z, "U_ZERO_ERROR") != 0) {
+        fprintf(stderr, "icu error name: got %s\n",
+            z ? (const char *)z : "?");
+        return 1;
+    }
+    return 0;
+}
+
+static int
 impl_from_memory(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t hello = AFW_UTF8_LITERAL("hello");
@@ -294,13 +382,23 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "printf-safe") == 0) {
         rc = impl_printf_safe(p, xctx);
     }
+    else if (strcmp(case_name, "printf-nul") == 0) {
+        rc = impl_printf_nul(p, xctx);
+    }
+    else if (strcmp(case_name, "error-backtrace") == 0) {
+        rc = impl_error_backtrace(p, xctx);
+    }
+    else if (strcmp(case_name, "icu-error-name") == 0) {
+        rc = impl_icu_error_name(p, xctx);
+    }
     else if (strcmp(case_name, "from-memory") == 0) {
         rc = impl_from_memory(p, xctx);
     }
     else {
         fprintf(stderr, "usage: utf8_named_doors_probe "
             "create-set-copy|no-copy|forced-safe|property-name|"
-            "printf-safe|from-memory\n");
+            "printf-safe|printf-nul|error-backtrace|icu-error-name|"
+            "from-memory\n");
         rc = 2;
     }
 

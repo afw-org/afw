@@ -34,6 +34,18 @@ def run():
                 "printf uses forced_safe",
             ),
             (
+                "printf-nul",
+                "AFW_UTF8_FMT copies n bytes including interior 0",
+            ),
+            (
+                "error-backtrace",
+                "error object backtrace is forced_safe then NFC",
+            ),
+            (
+                "icu-error-name",
+                "icu error name wrap, no unicode include in env",
+            ),
+            (
                 "from-memory",
                 "as_memory / from_memory",
             ),

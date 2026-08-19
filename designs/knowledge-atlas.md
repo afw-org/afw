@@ -347,7 +347,7 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 | Array semantics | `array-semantics.md` | Shipped (#39) |
 | Converts | `conversion-functions.md` | Shipped with #39 wave |
 | UTF-8 / memory C doors | [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | `create` copies; `no_copy` points; `forced_safe` `^hex^`; `src/afw/code_point/` |
-| UTF-8 code points (script) | `utf8-code-point-sequences.md` | #153 oriented; #190 empty-match `replace`; `to_lower` / ignore-case compare use bounded `U8_NEXT` / `U8_APPEND`; ignore-case lockstep leftover is [#206](https://github.com/afw-org/afw/issues/206) |
+| UTF-8 code points (script) | `utf8-code-point-sequences.md` | #153 oriented; #190 empty-match `replace`; `to_lower` / ignore-case compare use bounded `U8_NEXT` / `U8_APPEND` and independent offsets ([#206](https://github.com/afw-org/afw/issues/206)) |
 | Mutable faces | `issue-17-mutable-object-faces.md` | Closed PR #150 |
 | Expression property names | `issue-38-…` | Closed |
 | Meta on wire | `issue-138-…` | Design/status in pad |

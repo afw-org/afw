@@ -750,8 +750,17 @@ afw_error_print(FILE *fp, const afw_error_t *error)
     }
 
     if (error->backtrace) {
-        rv = fprintf(fp, "\nbacktrace:\n" AFW_UTF8_FMT "\n",
-            AFW_UTF8_FMT_ARG(error->backtrace));
+        rv = fputs("\nbacktrace:\n", fp);
+        if (rv < 0) goto return_rv;
+        if (error->backtrace->len > 0 && error->backtrace->s) {
+            if (fwrite(error->backtrace->s, 1, error->backtrace->len,
+                fp) != error->backtrace->len)
+            {
+                rv = -1;
+                goto return_rv;
+            }
+        }
+        rv = fputc('\n', fp);
         if (rv < 0) goto return_rv;
     }
 
@@ -839,6 +848,23 @@ impl_add_contextual(
 }
 
 
+/* Adaptive string for a diagnostic utf8: forced_safe, then NFC. */
+static const afw_utf8_t *
+impl_utf8_forced_safe_value(
+    const afw_utf8_t *s,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *encoded;
+
+    if (!s) {
+        return NULL;
+    }
+    encoded = afw_utf8_create_forced_safe(s->s, s->len, p, xctx);
+    return afw_utf8_create(encoded->s, encoded->len, p, xctx);
+}
+
+
 /* Add error info to an existing object. */
 AFW_DECLARE(void)
 afw_error_add_to_object(
@@ -888,7 +914,9 @@ afw_error_add_to_object(
             xctx->env->flag_index_response_error_backtrace, xctx))
     {
         afw_object_set_property_as_string(object,
-            afw_s_backtrace, error->backtrace, xctx);
+            afw_s_backtrace,
+            impl_utf8_forced_safe_value(error->backtrace, p, xctx),
+            xctx);
     }
 
     /* Evaluation backtrace. */
@@ -898,7 +926,9 @@ afw_error_add_to_object(
         evaluation_backtrace = impl_evaluation_backtrace(error, p, xctx);
         if (evaluation_backtrace) {
             afw_object_set_property_as_string(object,
-                afw_s_backtraceEvaluation, evaluation_backtrace, xctx);
+                afw_s_backtraceEvaluation,
+                impl_utf8_forced_safe_value(evaluation_backtrace, p, xctx),
+                xctx);
         }
     }
 

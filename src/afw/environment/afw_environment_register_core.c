@@ -13,7 +13,6 @@
  */
 
 #include "afw_internal.h"
-#include <unicode/utypes.h>
 #include <string.h>
 #include <errno.h>
 
@@ -45,7 +44,9 @@ static const afw_utf8_z_t * impl_rv_decoder_z_apr(int rv,
 static const afw_utf8_z_t * impl_rv_decoder_z_icu(int rv,
     afw_utf8_z_t *wa, afw_size_t wa_size)
 {
-    return u_errorName(rv);
+    (void)wa;
+    (void)wa_size;
+    return afw_utf8_icu_error_name_z(rv);
 }
 
 

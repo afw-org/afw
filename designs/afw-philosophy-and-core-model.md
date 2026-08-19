@@ -228,7 +228,7 @@ generate/ metadata + interface XML
 
 **Errors:** `get_info()` → contextual → exact span in that unit’s `full_source`. Nested compile+eval prints each source as the stack changes. `decompile()` is compiled-form Adaptive (recompilable when supported), not original pretty source. `stringify()` is JSON of an evaluated value. Listing is the human tree.
 
-**Print / untrusted bytes:** `forced_safe` makes viewable UTF-8 (`^hex^` for invalid/Cc, `^^` for caret) — not NFC, not a value. Property names at env/FCGI boundaries: same encode, then NFC (`create_property_name`).
+**Print / untrusted bytes:** `forced_safe` makes viewable UTF-8 (`^hex^` for invalid/Cc, `^^` for caret) — not NFC, not a value. `afw_utf8_printf` / `z_printf` always encode that way (logs and traces, not data files). Property names at env/FCGI boundaries: same encode, then NFC (`create_property_name`).
 
 ---
 

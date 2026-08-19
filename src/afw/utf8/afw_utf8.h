@@ -190,6 +190,18 @@ afw_utf8_from_code_point(afw_utf8_octet_t utf8_z[5], afw_code_point_t cp,
 
 
 /**
+ * @brief ICU UErrorCode name as a static C string (ASCII).
+ * @param rv ICU error code (UErrorCode as int).
+ * @return Static name such as `U_ZERO_ERROR`. Never throws.
+ *
+ * Wraps `u_errorName`. Call this instead of including ICU unicode
+ * headers outside `utf8/` and `code_point/`.
+ */
+AFW_DECLARE(const afw_utf8_z_t *)
+afw_utf8_icu_error_name_z(int rv);
+
+
+/**
  * @brief Determine if series of bytes is valid utf-8.
  * @param s pointer to bytes to be tested.
  * @param len is number of bytes.
@@ -660,7 +672,12 @@ afw_utf8_line_count_and_max_column(
  * @param ... arguments for format_z.
  * @return utf8 string.
  *
- * Format output goes through create_forced_safe so a bad %s does not throw.
+ * Assembles with AFW's formatter, then create_forced_safe so a bad %s
+ * does not throw. `AFW_UTF8_FMT` (`%.*s`) copies n bytes, including an
+ * interior 0; libc printf still stops at 0.
+ *
+ * Viewable text (logs, errors, traces). Not a data-file writer: do not
+ * use this to round-trip octets. Write `.s` + `.len` or `as_memory`.
  */
 AFW_DECLARE_ELLIPSIS(const afw_utf8_t *)
 afw_utf8_printf(
@@ -676,7 +693,8 @@ afw_utf8_printf(
  * @param xctx of caller.
  * @return utf8 string.
  *
- * Format output goes through create_forced_safe so a bad %s does not throw.
+ * Same as afw_utf8_printf: assemble, then forced_safe. Viewable text,
+ * not a data-file writer.
  */
 AFW_DECLARE(const afw_utf8_t *)
 afw_utf8_printf_v(
@@ -967,6 +985,9 @@ afw_utf8_z_query_string_to_object(
 
 /**
  * Create a utf8_z string using a c format string and va_list in specified pool.
+ *
+ * Same formatter as afw_utf8_printf, then forced_safe, then a trailing 0.
+ * Viewable text, not a data-file writer.
  */
 AFW_DECLARE(const afw_utf8_z_t *)
 afw_utf8_z_printf_v(
@@ -976,6 +997,8 @@ afw_utf8_z_printf_v(
 
 /**
  * Create a utf8_z string using a c format string in specified pool.
+ *
+ * Same as afw_utf8_z_printf_v. Viewable text, not a data-file writer.
  */
 AFW_DECLARE_ELLIPSIS(const afw_utf8_z_t *)
 afw_utf8_z_printf(

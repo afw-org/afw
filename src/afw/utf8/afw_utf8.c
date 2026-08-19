@@ -17,6 +17,9 @@
 #include <unicode/uchar.h>
 #include <unicode/unorm2.h>
 #include <unicode/ustring.h>
+#include <unicode/utypes.h>
+#include <string.h>
+#include <stddef.h>
 
 static const afw_utf8_z_t * impl_z_empty = "";
 
@@ -71,6 +74,17 @@ afw_utf8_from_code_point(afw_utf8_octet_t utf8_z[5], afw_code_point_t cp,
     U8_APPEND((afw_octet_t *)utf8_z, i, 4, cp, isError);
     utf8_z[i] = 0;
     return (isError == FALSE);
+}
+
+
+/* ICU UErrorCode name as a static ASCII C string. Never throws. */
+AFW_DEFINE(const afw_utf8_z_t *)
+afw_utf8_icu_error_name_z(int rv)
+{
+    const char *s;
+
+    s = u_errorName((UErrorCode)rv);
+    return s ? (const afw_utf8_z_t *)s : impl_z_empty;
 }
 
 
@@ -813,21 +827,233 @@ AFW_DEFINE(const afw_utf8_t *) afw_utf8_concat_v(
 
 
 
+/*
+ * AFW_UTF8_FMT is "%.*s". libc %.*s stops at an interior 0. Copy n
+ * bytes, then forced_safe the assembled buffer (length, not strlen).
+ * Viewable text (logs, errors, traces), not a data-file writer.
+ *
+ * va_arg lives in this function. Do not pass ap to apr_pvsprintf
+ * mid-walk (the list is then indeterminate).
+ */
+#define IMPL_PSPRINTF(val) \
+    ((star_width && star_prec) \
+        ? apr_psprintf(apr_p, spec, aw, aprec, (val)) \
+        : star_width \
+            ? apr_psprintf(apr_p, spec, aw, (val)) \
+            : star_prec \
+                ? apr_psprintf(apr_p, spec, aprec, (val)) \
+                : apr_psprintf(apr_p, spec, (val)))
+
+static void
+impl_format_to_writer(
+    const afw_writer_t *w,
+    const afw_utf8_z_t *format_z,
+    va_list ap,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    apr_pool_t *apr_p;
+    const afw_utf8_z_t *f;
+    const afw_utf8_z_t *start;
+    const afw_utf8_z_t *piece;
+    const char *s;
+    char spec[64];
+    char conv;
+    char lenmod;
+    int star_width;
+    int star_prec;
+    int aw;
+    int aprec;
+    int n;
+    afw_size_t spec_len;
+
+    apr_p = afw_pool_get_apr_pool(p);
+    f = format_z;
+    while (*f) {
+        if (*f != '%') {
+            start = f;
+            while (*f && *f != '%') {
+                f++;
+            }
+            afw_writer_write(w, start, (afw_size_t)(f - start), xctx);
+            continue;
+        }
+        if (f[1] == '%') {
+            afw_writer_write(w, "%", 1, xctx);
+            f += 2;
+            continue;
+        }
+        /* AFW_UTF8_FMT: copy n bytes, including interior 0. */
+        if (f[1] == '.' && f[2] == '*' && f[3] == 's') {
+            n = va_arg(ap, int);
+            s = va_arg(ap, const char *);
+            if (n > 0 && s) {
+                afw_writer_write(w, s, (afw_size_t)n, xctx);
+            }
+            f += 4;
+            continue;
+        }
+        start = f;
+        f++;
+        star_width = 0;
+        star_prec = 0;
+        lenmod = 0;
+        while (*f && strchr("-+ #0'", *f)) {
+            f++;
+        }
+        if (*f == '*') {
+            star_width = 1;
+            f++;
+        }
+        else {
+            while (*f >= '0' && *f <= '9') {
+                f++;
+            }
+        }
+        if (*f == '.') {
+            f++;
+            if (*f == '*') {
+                star_prec = 1;
+                f++;
+            }
+            else {
+                while (*f >= '0' && *f <= '9') {
+                    f++;
+                }
+            }
+        }
+        if (*f == 'h') {
+            lenmod = 'h';
+            f++;
+            if (*f == 'h') {
+                f++;
+            }
+        }
+        else if (*f == 'l') {
+            lenmod = 'l';
+            f++;
+            if (*f == 'l') {
+                lenmod = 'L';
+                f++;
+            }
+        }
+        else if (*f && strchr("Lztjq", *f)) {
+            lenmod = *f;
+            f++;
+        }
+        if (!*f) {
+            afw_writer_write(w, start, (afw_size_t)(f - start), xctx);
+            break;
+        }
+        conv = *f++;
+        spec_len = (afw_size_t)(f - start);
+        if (spec_len == 0 || spec_len >= sizeof(spec)) {
+            afw_writer_write(w, start, spec_len, xctx);
+            continue;
+        }
+        memcpy(spec, start, spec_len);
+        spec[spec_len] = 0;
+        aw = 0;
+        aprec = 0;
+        if (star_width) {
+            aw = va_arg(ap, int);
+        }
+        if (star_prec) {
+            aprec = va_arg(ap, int);
+        }
+        piece = NULL;
+        if (conv == 's') {
+            s = va_arg(ap, const char *);
+            piece = IMPL_PSPRINTF(s);
+        }
+        else if (conv == 'c') {
+            n = va_arg(ap, int);
+            piece = IMPL_PSPRINTF(n);
+        }
+        else if (conv == 'p') {
+            piece = IMPL_PSPRINTF(va_arg(ap, void *));
+        }
+        else if (strchr("di", conv)) {
+            if (lenmod == 'L' || lenmod == 'j' || lenmod == 'q') {
+                piece = IMPL_PSPRINTF(va_arg(ap, long long));
+            }
+            else if (lenmod == 'l') {
+                piece = IMPL_PSPRINTF(va_arg(ap, long));
+            }
+            else if (lenmod == 'z' || lenmod == 't') {
+                piece = IMPL_PSPRINTF(va_arg(ap, ptrdiff_t));
+            }
+            else {
+                piece = IMPL_PSPRINTF(va_arg(ap, int));
+            }
+        }
+        else if (strchr("uoxX", conv)) {
+            if (lenmod == 'L' || lenmod == 'j' || lenmod == 'q') {
+                piece = IMPL_PSPRINTF(va_arg(ap, unsigned long long));
+            }
+            else if (lenmod == 'l') {
+                piece = IMPL_PSPRINTF(va_arg(ap, unsigned long));
+            }
+            else if (lenmod == 'z' || lenmod == 't') {
+                piece = IMPL_PSPRINTF(va_arg(ap, afw_size_t));
+            }
+            else {
+                piece = IMPL_PSPRINTF(va_arg(ap, unsigned));
+            }
+        }
+        else if (strchr("fFeEgGaA", conv)) {
+            if (lenmod == 'L') {
+                piece = IMPL_PSPRINTF(va_arg(ap, long double));
+            }
+            else {
+                piece = IMPL_PSPRINTF(va_arg(ap, double));
+            }
+        }
+        if (piece) {
+            afw_writer_write_z(w, piece, xctx);
+        }
+        else {
+            afw_writer_write(w, start, spec_len, xctx);
+        }
+    }
+}
+
+#undef IMPL_PSPRINTF
+
+
+static const afw_utf8_t *
+impl_printf_forced_safe(
+    const afw_utf8_z_t *format_z,
+    va_list ap,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_writer_t *w;
+    afw_utf8_t assembled;
+    const afw_utf8_t *safe;
+
+    w = afw_utf8_writer_create(NULL, p, xctx);
+    impl_format_to_writer(w, format_z, ap, p, xctx);
+    afw_utf8_writer_current_string(w, &assembled, xctx);
+    safe = afw_utf8_create_forced_safe(
+        assembled.s, assembled.len, p, xctx);
+    afw_writer_release(w, xctx);
+    return safe;
+}
+
+
 /* Create a string using a c format string. */
 AFW_DEFINE_ELLIPSIS(const afw_utf8_t *)
 afw_utf8_printf(
     const afw_pool_t *p, afw_xctx_t *xctx, const afw_utf8_z_t *format, ...)
 {
     va_list arg;
-    const afw_utf8_z_t *s;
+    const afw_utf8_t *result;
 
-    /* Use apr_pvsprint() to produce c string. */
     va_start(arg, format);
-    s = apr_pvsprintf(afw_pool_get_apr_pool(p), format, arg);
+    result = impl_printf_forced_safe(format, arg, p, xctx);
     va_end(arg);
-
-    /* Format output may contain anything %s handed us. */
-    return afw_utf8_create_forced_safe(s, AFW_UTF8_Z_LEN, p, xctx);
+    return result;
 }
 
 
@@ -837,13 +1063,7 @@ afw_utf8_printf_v(
     const afw_utf8_z_t *format, va_list arg,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_utf8_z_t *s;
-
-    /* Use apr_pvsprint() to produce c string. */
-    s = apr_pvsprintf(afw_pool_get_apr_pool(p), format, arg);
-
-    /* Format output may contain anything %s handed us. */
-    return afw_utf8_create_forced_safe(s, AFW_UTF8_Z_LEN, p, xctx);
+    return impl_printf_forced_safe(format, arg, p, xctx);
 }
 
 
@@ -1197,9 +1417,8 @@ AFW_DEFINE(int) afw_utf8_compare_ignore_case(
     const afw_utf8_t *s1, const afw_utf8_t *s2, afw_xctx_t *xctx)
 {
     UChar32 c1, c2;
-    int32_t i, len, i2, len1, len2;
+    int32_t i1, i2, len1, len2;
     const uint8_t *cs1, *cs2;
-    int result;
 
     /* ICU only supports 32 bit non-negative lengths. */
     if (s1->len > AFW_INT32_MAX ||
@@ -1213,31 +1432,38 @@ AFW_DEFINE(int) afw_utf8_compare_ignore_case(
     cs2 = (const uint8_t *)s2->s;
     len1 = (int32_t)s1->len;
     len2 = (int32_t)s2->len;
-    len = (len1 <= len2) ? len1 : len2;
-    result = 0;
-    for (i = 0; i < len;) {
-        /*
-         * U8_NEXT increments i. Don't use i in the first call so the
-         * offset stays correct for both the loop and the other string.
-         */
-        i2 = i;
-        U8_NEXT(cs1, i2, len1, c1);
-        U8_NEXT(cs2, i, len2, c2);
+    i1 = 0;
+    i2 = 0;
+
+    while (i1 < len1 && i2 < len2) {
+        U8_NEXT(cs1, i1, len1, c1);
+        U8_NEXT(cs2, i2, len2, c2);
         if (c1 < 0 || c2 < 0) {
             AFW_THROW_ERROR_Z(general, "Not valid UTF-8", xctx);
         }
         c1 = u_tolower(c1);
         c2 = u_tolower(c2);
-        if (c1 == c2) continue;
-        result = (int)(c1 > c2) ? 1 : -1;
-        break;
+        if (c1 != c2) {
+            return (c1 > c2) ? 1 : -1;
+        }
     }
 
-    if (result == 0 && s1->len != s2->len) {
-        result = (s1->len > s2->len) ? 1 : -1;
+    while (i1 < len1) {
+        U8_NEXT(cs1, i1, len1, c1);
+        if (c1 < 0) {
+            AFW_THROW_ERROR_Z(general, "Not valid UTF-8", xctx);
+        }
+        return 1;
+    }
+    while (i2 < len2) {
+        U8_NEXT(cs2, i2, len2, c2);
+        if (c2 < 0) {
+            AFW_THROW_ERROR_Z(general, "Not valid UTF-8", xctx);
+        }
+        return -1;
     }
 
-    return result;
+    return 0;
 }
 
 
@@ -1343,29 +1569,18 @@ afw_utf8_z_printf_v(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_utf8_z_t *result;
+    const afw_utf8_t *safe;
+    afw_utf8_z_t *z;
+    afw_size_t n;
 
-    result = apr_pvsprintf(afw_pool_get_apr_pool(p), format_z, ap);
-
-    if (!result) {
-        AFW_THROW_MEMORY_ERROR(xctx);
+    safe = impl_printf_forced_safe(format_z, ap, p, xctx);
+    n = safe->len;
+    z = afw_pool_malloc(p, n + 1, xctx);
+    if (n > 0) {
+        memcpy(z, safe->s, n);
     }
-
-    /* Encode, then copy with a trailing 0. Do not NFC. */
-    {
-        const afw_utf8_t *safe;
-        afw_utf8_z_t *z;
-        afw_size_t n;
-
-        safe = afw_utf8_create_forced_safe(result, AFW_UTF8_Z_LEN, p, xctx);
-        n = safe->len;
-        z = afw_pool_malloc(p, n + 1, xctx);
-        if (n > 0) {
-            memcpy(z, safe->s, n);
-        }
-        z[n] = 0;
-        return z;
-    }
+    z[n] = 0;
+    return z;
 }
 
 

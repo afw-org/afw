@@ -738,6 +738,9 @@ typedef struct afw_utf8_array_s {
 
 /**
  * @brief Format string specifier used for afw_utf8_t.
+ *
+ * With libc printf this is `%.*s` and still stops at an interior 0.
+ * `afw_utf8_printf` / `z_printf` copy n bytes, then `forced_safe`.
  */
 #define AFW_UTF8_FMT "%.*s"
 

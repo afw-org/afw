@@ -137,7 +137,7 @@ valgrind with `valgrind.suppress`). A standalone `valgrind` on a
 probe that **throws**, without that file, can trip libunwind in
 `afw_os_backtrace`; that is not an overread in the code under test.
 Judge the probe by its exit code and by the helper's valgrind wrap.
-The UTF-8 / error-struct side of a throw is issue **#206**.
+Error-object `backtrace` is `forced_safe` then NFC (issue **#206**).
 
 When fixing a C/runtime bug, add `.as` coverage that fails without the fix
 unless the hole is C-only (then the probe above):

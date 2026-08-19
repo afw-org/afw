@@ -39,6 +39,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | `#include` of core internals or package `*_declare_helpers.h` | `#include "afw.h"`. Core **`AFW_DECLARE` / `AFW_DEFINE` / `AFW_BEGIN_DECLARES`** live in **`afw_common.h`**. Package `*_declare_helpers.h` is **not generated**. |
 | Type name `afw_iterator` as the old opaque cursor | That name is the new **keyless** iterator. Legacy cursor is **`afw_iterator_old`**. [#153](#utf-8-code-point-sequences-issue-153) |
 | `afw_utf8_create` / `create_copy` / `from_utf8_z` / `from_raw` | **`create` always copies** (old `create_copy`). Point without copy is **`create_no_copy`**. `from_utf8_z` → **`utf8_z_to_utf8`** (copy) or **`utf8_z_as_utf8`** (point). `from_raw` / `as_raw` → **`from_memory` / `as_memory`**. Env/request names that are not UTF-8 are **`^` + hex + `^`**, not `_NONUTF8_` + whole-name hex. [UTF-8 doors](#utf-8-create-set-and-forced_safe) |
+| `afw_utf8_printf` / `z_printf` to write a data file | Don't. Those formatters always **`forced_safe`** the result (viewable text, `^hex^` for bad runs). For octets, write `.s` + `.len` or **`as_memory`**. |
 
 **Details:** [libafw C API cleanup](#libafw-c-api-cleanup-release-ready-surface).
 
@@ -74,7 +75,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**C builders / afwdev**](#c-api-docs-and-full-package-builds-issue-1) ([#1](https://github.com/afw-org/afw/issues/1)) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
 | [**Value / memory (α/β)**](#value-lifetime--memory-management-issue-2--alphabeta) ([#2](https://github.com/afw-org/afw/issues/2)) | Permanent scalar reuse, dual-face object/array values, safer managed object value release; **`afw_pool_release` returns pool or NULL**; managed object faces pin base |
 | [**`stringify` / `decompile` / listing**](#stringify-decompile-compiler-listing-and-binary-text) ([#18](https://github.com/afw-org/afw/issues/18)) | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
-| [**UTF-8 create / set / forced_safe**](#utf-8-create-set-and-forced_safe) | C doors: short **`create`/`set` copy**; **`no_copy`** points; **`forced_safe`** encodes invalid runs as `^hex^`. Env/request names use that encode (not `_NONUTF8_` + whole-name hex) |
+| [**UTF-8 create / set / forced_safe**](#utf-8-create-set-and-forced_safe) | C doors: short **`create`/`set` copy**; **`no_copy`** points; **`forced_safe`** encodes invalid runs as `^hex^`. Env/request names use that encode (not `_NONUTF8_` + whole-name hex). **`afw_utf8_printf`** is its own formatter: `AFW_UTF8_FMT` copies n bytes (interior `0` is data), then the whole result is **`forced_safe`** — viewable text, not a data-file writer |
 | [**UTF-8 in JSON / Fiddle**](#utf-8-in-json-results-and-python-local-mode) | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
 | [**Python `Session("local")`**](#utf-8-in-json-results-and-python-local-mode) | Local FIFO client uses **binary octet** framing so large/UTF-8 responses no longer hang |
 | [**Param / catch Patterns**](#function-parameter-and-catch-patterns-issue-140) ([#140](https://github.com/afw-org/afw/issues/140)) | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys; type syntax for later checking |
@@ -494,11 +495,15 @@ C `afw_utf8_t` doors now say **who owns the little struct** and **whether `.s` i
 
 `afw_memory_t` uses the same verbs (no NFC). There is no `afw_raw_t`.
 
-**`forced_safe`** (create/set, always copy): valid UTF-8 text passes through; `^` becomes `^^`; Unicode control (Cc) and invalid UTF-8 **runs** become `^` + uppercase hex + `^`. Tab/LF/CR and other whitespace/EOL stay as text. Result is valid UTF-8, **not** promised NFC, **not** an Adaptive value. `printf` / `z_printf` use this so a bad `%s` does not throw.
+**`forced_safe`** (create/set, always copy): valid UTF-8 text passes through; `^` becomes `^^`; Unicode control (Cc) and invalid UTF-8 **runs** become `^` + uppercase hex + `^`. Tab/LF/CR and other whitespace/EOL stay as text. Result is valid UTF-8, **not** promised NFC, **not** an Adaptive value.
 
-**`create_property_name`**: same encode, then NFC. Used for process env and FCGI/CGI request parameter names.
+**`afw_utf8_printf` / `z_printf`** assemble with their own formatter, then **`forced_safe` the whole result**. That is the point: a bad `%s` or a truncated path in an error message does not NFC-throw, and an interior `0` in an `afw_utf8_t` is not a C-string terminator. `AFW_UTF8_FMT` (`%.*s`) copies **n bytes** (including U+0000); libc `printf` with the same specifier still stops at `0`. Use these for **viewable** text (logs, error objects, traces). Do **not** use them to write data files or round-trip octets — write `.s` + `.len` or **`as_memory`**.
+
+**`create_property_name`**: same encode as `forced_safe`, then NFC. Used for process env and FCGI/CGI request parameter names.
 
 `AFW_UTF8_LITERAL` is still a trusted C `"…"` initializer (no check). ASCII including `\n` is always UTF-8 NFC.
+
+`eq_ignore_case` walks each string with its own code-point offset (mixed-width such as `"iX"` vs `"İX"`). Error-object `backtrace` is `forced_safe` then NFC.
 
 [↑ Highlights](#highlights)
 
