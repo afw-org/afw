@@ -244,6 +244,44 @@ impl_array_z(const afw_pool_t *p, afw_xctx_t *xctx)
         "z-array separator");
 }
 
+static void
+impl_concat_z_embedded(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_utf8_t root;
+    afw_utf8_t type;
+    const afw_utf8_t *joined;
+
+    impl_utf8_set(&root, "root/", 5);
+    impl_utf8_set(&type, impl_embedded, sizeof(impl_embedded));
+    joined = afw_utf8_concat(p, xctx, &root, &type, NULL);
+    (void)afw_utf8_to_utf8_z(joined, p, xctx);
+}
+
+static int
+impl_concat_z(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_utf8_t root;
+    afw_utf8_t type;
+    afw_utf8_t slash;
+    afw_utf8_t id;
+    const afw_utf8_t *joined;
+    const afw_utf8_z_t *z;
+
+    impl_utf8_set(&root, "root/", 5);
+    impl_utf8_set(&type, "Type", 4);
+    impl_utf8_set(&slash, "/", 1);
+    impl_utf8_set(&id, "id", 2);
+    joined = afw_utf8_concat(p, xctx, &root, &type, &slash, &id, NULL);
+    z = afw_utf8_to_utf8_z(joined, p, xctx);
+    if (!z || strcmp(z, "root/Type/id") != 0) {
+        fprintf(stderr, "concat-z ok: got %s\n", z ? z : "(null)");
+        return 1;
+    }
+
+    return impl_expect_throw(impl_concat_z_embedded, p, xctx,
+        "concat-z embedded");
+}
+
 int
 main(int argc, char **argv)
 {
@@ -279,9 +317,12 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "array-z") == 0) {
         rc = impl_array_z(p, xctx);
     }
+    else if (strcmp(case_name, "concat-z") == 0) {
+        rc = impl_concat_z(p, xctx);
+    }
     else {
         fprintf(stderr, "usage: utf8_to_utf8_z_probe "
-            "empty|ok|embedded|z-create|array-z\n");
+            "empty|ok|embedded|z-create|array-z|concat-z\n");
         rc = 2;
     }
 

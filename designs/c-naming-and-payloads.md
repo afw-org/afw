@@ -79,6 +79,8 @@ ICU: `afw_utf8.c` (NFC, to_lower, `afw_utf8_icu_error_name_z`) and `afw_code_poi
 
 `afw_utf8_printf` / `z_printf`: own formatter; `AFW_UTF8_FMT` (`%.*s`) copies n bytes (interior `0` is data), then `forced_safe` the assembled buffer. libc `printf` with the same specifier still stops at `0`. Do not use these to write data files or round-trip octets — `.s` + `.len` / `as_memory`.
 
+LDAP filters and file-adapter paths (dir open, journal, object files): **concat `.len`**, then **`to_utf8_z`**. Do not glue those with `AFW_UTF8_FMT` / `apr_psprintf`.
+
 ## Related
 
 - [`memory-management.md`](memory-management.md) — #2 pools / escape (do not fold this pad into it).

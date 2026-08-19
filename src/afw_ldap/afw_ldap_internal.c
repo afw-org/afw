@@ -21,6 +21,19 @@ char * afw_ldap_internal_allattrs[] = { "+", "*", NULL };
 
 static const int impl_zero = 0;
 
+static const afw_utf8_t impl_s_eq = AFW_UTF8_LITERAL("=");
+static const afw_utf8_t impl_s_lt = AFW_UTF8_LITERAL("<");
+static const afw_utf8_t impl_s_le = AFW_UTF8_LITERAL("<=");
+static const afw_utf8_t impl_s_gt = AFW_UTF8_LITERAL(">");
+static const afw_utf8_t impl_s_ge = AFW_UTF8_LITERAL(">=");
+static const afw_utf8_t impl_s_ne_open = AFW_UTF8_LITERAL("!(");
+static const afw_utf8_t impl_s_close = AFW_UTF8_LITERAL(")");
+static const afw_utf8_t impl_s_and_open = AFW_UTF8_LITERAL("&(");
+static const afw_utf8_t impl_s_or_open = AFW_UTF8_LITERAL("|(");
+static const afw_utf8_t impl_s_or_and_open = AFW_UTF8_LITERAL("|(&(");
+static const afw_utf8_t impl_s_close_open = AFW_UTF8_LITERAL(")(");
+static const afw_utf8_t impl_s_close2_open = AFW_UTF8_LITERAL("))(");
+
 
 LDAPMessage *
 afw_ldap_internal_search_s(
@@ -533,40 +546,29 @@ afw_ldap_internal_expression_from_filter_entry(
 
     switch (entry->op_id) {
         case afw_query_criteria_filter_op_id_eq:
-            filter_expression = afw_utf8_printf(xctx->p, xctx,
-                AFW_UTF8_FMT "=" AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(property_name), 
-                AFW_UTF8_FMT_ARG(property_value));
+            filter_expression = afw_utf8_concat(xctx->p, xctx,
+                property_name, &impl_s_eq, property_value, NULL);
             break;
         case afw_query_criteria_filter_op_id_ne:
-            filter_expression = afw_utf8_printf(xctx->p, xctx,
-                "!(" AFW_UTF8_FMT "=" AFW_UTF8_FMT ")",
-                AFW_UTF8_FMT_ARG(property_name), 
-                AFW_UTF8_FMT_ARG(property_value));
+            filter_expression = afw_utf8_concat(xctx->p, xctx,
+                &impl_s_ne_open, property_name, &impl_s_eq,
+                property_value, &impl_s_close, NULL);
             break;
         case afw_query_criteria_filter_op_id_lt:
-            filter_expression = afw_utf8_printf(xctx->p, xctx,
-                AFW_UTF8_FMT "<" AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(property_name), 
-                AFW_UTF8_FMT_ARG(property_value));
+            filter_expression = afw_utf8_concat(xctx->p, xctx,
+                property_name, &impl_s_lt, property_value, NULL);
             break;
         case afw_query_criteria_filter_op_id_le:
-            filter_expression = afw_utf8_printf(xctx->p, xctx,
-                AFW_UTF8_FMT "<=" AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(property_name), 
-                AFW_UTF8_FMT_ARG(property_value));
+            filter_expression = afw_utf8_concat(xctx->p, xctx,
+                property_name, &impl_s_le, property_value, NULL);
             break;
         case afw_query_criteria_filter_op_id_gt:
-            filter_expression = afw_utf8_printf(xctx->p, xctx,
-                AFW_UTF8_FMT ">" AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(property_name), 
-                AFW_UTF8_FMT_ARG(property_value));
+            filter_expression = afw_utf8_concat(xctx->p, xctx,
+                property_name, &impl_s_gt, property_value, NULL);
             break;
         case afw_query_criteria_filter_op_id_ge:
-            filter_expression = afw_utf8_printf(xctx->p, xctx,
-                AFW_UTF8_FMT ">=" AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(property_name), 
-                AFW_UTF8_FMT_ARG(property_value));
+            filter_expression = afw_utf8_concat(xctx->p, xctx,
+                property_name, &impl_s_ge, property_value, NULL);
             break;
         default:
             AFW_THROW_ERROR_Z(query_too_complex,
@@ -607,10 +609,10 @@ impl_expression_from_query_criteria(
             session, entry->on_false, xctx);
 
         /* (|(&(filter_expression)(on_true))(on_false)) */
-        filter_expression = afw_utf8_printf(xctx->p, xctx,
-            "|(&(" AFW_UTF8_FMT ")(" AFW_UTF8_FMT "))(" AFW_UTF8_FMT ")",
-            AFW_UTF8_FMT_ARG(filter_expression), 
-            AFW_UTF8_FMT_ARG(on_true), AFW_UTF8_FMT_ARG(on_false));
+        filter_expression = afw_utf8_concat(xctx->p, xctx,
+            &impl_s_or_and_open, filter_expression,
+            &impl_s_close_open, on_true,
+            &impl_s_close2_open, on_false, &impl_s_close, NULL);
     }
 
     /* (entry AND on_true) */
@@ -620,9 +622,9 @@ impl_expression_from_query_criteria(
             session, entry->on_true, xctx);
 
         /* (&(filter_expression)(on_true)) */
-        filter_expression = afw_utf8_printf(xctx->p, xctx, "&(" AFW_UTF8_FMT ")(" AFW_UTF8_FMT ")",
-            filter_expression->len, filter_expression->s,
-            on_true->len, on_true->s);
+        filter_expression = afw_utf8_concat(xctx->p, xctx,
+            &impl_s_and_open, filter_expression,
+            &impl_s_close_open, on_true, &impl_s_close, NULL);
     }
 
     /* (entry OR on_false) */
@@ -632,10 +634,9 @@ impl_expression_from_query_criteria(
             session, entry->on_false, xctx);
 
         /* (|(filter_expression)(on_false)) */
-        filter_expression = afw_utf8_printf(xctx->p, xctx,
-            "|(" AFW_UTF8_FMT ")(" AFW_UTF8_FMT ")",
-            AFW_UTF8_FMT_ARG(filter_expression),
-            AFW_UTF8_FMT_ARG(on_false));
+        filter_expression = afw_utf8_concat(xctx->p, xctx,
+            &impl_s_or_open, filter_expression,
+            &impl_s_close_open, on_false, &impl_s_close, NULL);
     }
 
     return filter_expression;

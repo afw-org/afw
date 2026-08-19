@@ -28,6 +28,11 @@
 static const afw_utf8_t impl_factory_description =
 AFW_UTF8_LITERAL("Adapter type for accessing objects contained in files.");
 
+static const afw_utf8_t impl_s_journal_dir = AFW_UTF8_LITERAL(
+    AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY "/");
+static const afw_utf8_t impl_s_journal_lock = AFW_UTF8_LITERAL(
+    AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY "/journal_lock");
+
 /* File adapter factory instance. */
 static const afw_adapter_factory_t impl_adapter_factory =
 {
@@ -59,7 +64,11 @@ afw_file_insure_full_path(const afw_utf8_t *path,
     }
     len = strlen(full_path_z);
     if (len > 0 && full_path_z[len - 1] != '/') {
-        full_path = afw_utf8_printf(p, xctx, "%s/", full_path_z);
+        afw_utf8_t base;
+
+        base.s = (const afw_utf8_octet_t *)full_path_z;
+        base.len = len;
+        full_path = afw_utf8_concat(p, xctx, &base, afw_s_a_slash, NULL);
     }
     else {
         full_path = afw_utf8_create(full_path_z, AFW_UTF8_Z_LEN, p, xctx);
@@ -333,14 +342,14 @@ afw_file_adapter_create_cede_p(
         p, xctx);
 
     /* Make path for journal directory. */
-    self->journal_dir_path_z = afw_utf8_z_printf(p, xctx,
-        AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY "/",
-        AFW_UTF8_FMT_ARG(self->root));
+    self->journal_dir_path_z = afw_utf8_to_utf8_z(
+        afw_utf8_concat(p, xctx, self->root, &impl_s_journal_dir, NULL),
+        p, xctx);
 
     /* Make path to journal lock file. */
-    self->journal_lock_file_path_z = afw_utf8_z_printf(p, xctx,
-        AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY "/journal_lock",
-        AFW_UTF8_FMT_ARG(self->root));
+    self->journal_lock_file_path_z = afw_utf8_to_utf8_z(
+        afw_utf8_concat(p, xctx, self->root, &impl_s_journal_lock, NULL),
+        p, xctx);
 
     self->journal_rw_lock = afw_lock_create_rw_and_register(
         afw_s_a_lock_file_journal_anchor,
@@ -433,12 +442,14 @@ impl_get_full_path(
     const afw_utf8_t * object_id,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    return afw_utf8_printf(p, xctx,
-        AFW_UTF8_FMT AFW_UTF8_FMT "/" AFW_UTF8_FMT AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(adapter->root),
-        AFW_UTF8_FMT_ARG(object_type_id),
-        AFW_UTF8_FMT_ARG(object_id),
-        AFW_UTF8_FMT_ARG(adapter->filename_suffix));
+    return afw_utf8_concat(p, xctx,
+        adapter->root,
+        object_type_id,
+        afw_s_a_slash,
+        object_id,
+        adapter->filename_suffix
+            ? adapter->filename_suffix : afw_s_a_empty_string,
+        NULL);
 }
 
 
@@ -483,11 +494,11 @@ impl_afw_adapter_session_retrieve_objects(
     const afw_utf8_t *object_id;
     afw_size_t len;
 
-    /* Open ObjectType's directory. */
-    dirname_z = apr_psprintf(afw_pool_get_apr_pool(p),
-        AFW_UTF8_FMT AFW_UTF8_FMT "/",
-        AFW_UTF8_FMT_ARG(adapter->root),
-        AFW_UTF8_FMT_ARG(object_type_id));
+    /* Open ObjectType's directory. Concat .len, then C-string door. */
+    dirname_z = afw_utf8_to_utf8_z(
+        afw_utf8_concat(p, xctx,
+            adapter->root, object_type_id, afw_s_a_slash, NULL),
+        p, xctx);
     rv = apr_dir_open(&dir, dirname_z, afw_pool_get_apr_pool(p));
 
     /* If not found, return no objects. */
@@ -543,13 +554,14 @@ impl_afw_adapter_session_retrieve_objects(
         /* Determine object_id and full_path. */
         object_id = afw_utf8_create(finfo.name, len, obj_p, xctx);
         
-        /** @fixme: Mike filename_suffix could be NULL here */
-        full_path = afw_utf8_printf(obj_p, xctx,
-            AFW_UTF8_FMT AFW_UTF8_FMT "/" AFW_UTF8_FMT AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(adapter->root),
-            AFW_UTF8_FMT_ARG(object_type_id),
-            AFW_UTF8_FMT_ARG(object_id),
-            AFW_UTF8_FMT_OPTIONAL_ARG(adapter->filename_suffix));
+        full_path = afw_utf8_concat(obj_p, xctx,
+            adapter->root,
+            object_type_id,
+            afw_s_a_slash,
+            object_id,
+            adapter->filename_suffix
+                ? adapter->filename_suffix : afw_s_a_empty_string,
+            NULL);
 
         /*
          * Load file to memory and convert to object &self->pub.  Ceed control
