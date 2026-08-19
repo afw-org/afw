@@ -13,8 +13,8 @@
  *
  * Lazy object over process environ/getenv. Values are Adaptive string when the
  * external bytes are valid UTF-8 (NFC), otherwise hexBinary. Property names that
- * are not valid UTF-8 are exposed as "_NONUTF8_" + lowercase hex of the raw
- * name. First access caches into an internal memory object; retrieve prefers
+ * are not valid UTF-8 are exposed with a forced_safe encode (^hex^). First
+ * access caches into an internal memory object; retrieve prefers
  * cached/set properties and does not emit duplicates.
  */
 
@@ -73,7 +73,7 @@ impl_cache_environ_entry(
 
     for (s = c = (const afw_utf8_octet_t *)entry; *c && *c != '='; c++);
     name_len = (afw_size_t)(c - s);
-    property_name = afw_utf8_create_property_name_from_external_octets(
+    property_name = afw_utf8_create_property_name(
         s, name_len, self->pub.p, xctx);
 
     if (afw_object_has_property(self->properties, property_name, xctx)) {
@@ -223,8 +223,8 @@ impl_afw_object_get_property(
     }
 
     /*
-     * Lazy getenv for UTF-8 property names. Synthetic _NONUTF8_* names are
-     * only populated via load_all / iterate (raw name is not a C string key).
+     * Lazy getenv for UTF-8 property names. Encoded names (^hex^) are only
+     * populated via load_all / iterate (raw name is not a C string key).
      */
     value = NULL;
     property_name_z = afw_utf8_z_create(property_name->s, property_name->len,

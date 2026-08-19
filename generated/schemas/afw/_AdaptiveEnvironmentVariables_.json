@@ -3,8 +3,8 @@
     "$defs": {
         "_AdaptiveEnvironmentVariables_": {
             "additionalProperties": true,
-            "description": "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 are exposed as _NONUTF8_ followed by uppercase hex of the raw name bytes.",
-            "markdownDescription": "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 are exposed as _NONUTF8_ followed by uppercase hex of the raw name bytes.",
+            "description": "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 use a forced_safe encoding: valid text stays, invalid runs are ^ plus uppercase hex plus ^. A caret in a valid name becomes ^^.",
+            "markdownDescription": "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 use a forced_safe encoding: valid text stays, invalid runs are ^ plus uppercase hex plus ^. A caret in a valid name becomes ^^.",
             "properties": {
                 "_meta_": {
                     "additionalProperties": true,
@@ -24,8 +24,8 @@
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": true,
-    "description": "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 are exposed as _NONUTF8_ followed by uppercase hex of the raw name bytes.",
-    "markdownDescription": "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 are exposed as _NONUTF8_ followed by uppercase hex of the raw name bytes.",
+    "description": "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 use a forced_safe encoding: valid text stays, invalid runs are ^ plus uppercase hex plus ^. A caret in a valid name becomes ^^.",
+    "markdownDescription": "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 use a forced_safe encoding: valid text stays, invalid runs are ^ plus uppercase hex plus ^. A caret in a valid name becomes ^^.",
     "properties": {
         "_meta_": {
             "additionalProperties": true,

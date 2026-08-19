@@ -109,7 +109,7 @@ afw_number_double_to_utf8(
         strcpy(s, AFW_NUMBER_Q_INFINITY);
     }
 
-    return afw_utf8_create_copy(s, AFW_UTF8_Z_LEN, p, xctx);
+    return afw_utf8_create(s, AFW_UTF8_Z_LEN, p, xctx);
 }
 
 

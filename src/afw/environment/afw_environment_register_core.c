@@ -211,14 +211,15 @@ impl_create_environment_variables_object(
 
     /*
      * Snapshot process environ at startup. Names that are not valid UTF-8 use
-     * _NONUTF8_ + hex; values are string if valid UTF-8 else hexBinary. Never
+     * forced_safe encode (^hex^); values are string if valid UTF-8 else
+     * hexBinary. Never
      * fail environment create because of a single bad entry.
      */
     for (v = environ; *v; v++)
     {
         for (s = c = *v; *c != '=' && *c != 0; c++);
         name_len = (afw_size_t)(c - s);
-        name = afw_utf8_create_property_name_from_external_octets(
+        name = afw_utf8_create_property_name(
             (const afw_utf8_octet_t *)s, name_len, result->p, xctx);
         if (*c == '=') {
             c++;

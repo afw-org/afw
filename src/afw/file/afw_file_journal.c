@@ -787,7 +787,7 @@ impl_afw_adapter_journal_get_entry_internal(
                 "apr_stat() failed.", xctx);
         }
         relative_entry_path_z = afw_utf8_to_utf8_z(
-            afw_utf8_from_raw(
+            afw_utf8_from_memory(
                 afw_file_to_memory(first_entry_save_path, 0, p, xctx),
                 p, xctx),
             p, xctx);

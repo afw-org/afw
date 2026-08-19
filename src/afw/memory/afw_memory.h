@@ -46,15 +46,49 @@ memset((to), 0, sizeof(*(to)))
 
 
 /**
- * @brief Create a afw_memory_t struct for a ptr and size.
- * @param ptr
- * @param size
- * @param p to use.
+ * @brief Create afw_memory_t in p (copy bytes).
+ * @param ptr octets.
+ * @param size number of bytes.
+ * @param p pool for the struct and the copy.
  * @param xctx of caller.
  * @return Pointer to afw_memory_t.
+ *
+ * Short name is safe: always copy. No NFC (untyped bytes).
  */
 AFW_DEFINE_STATIC_INLINE(const afw_memory_t *)
 afw_memory_create(
+    const afw_byte_t *ptr,
+    afw_size_t size,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_memory_t *result;
+    afw_byte_t *copy;
+
+    result = afw_pool_malloc_type(p, afw_memory_t, xctx);
+    if (size > 0 && ptr) {
+        copy = afw_pool_malloc(p, size, xctx);
+        memcpy(copy, ptr, size);
+        result->ptr = copy;
+        result->size = size;
+    }
+    else {
+        result->ptr = NULL;
+        result->size = 0;
+    }
+    return result;
+}
+
+
+/**
+ * @brief Create afw_memory_t in p pointing at ptr (no copy).
+ * @param ptr octets that must live as long as the result.
+ * @param size number of bytes.
+ * @param p pool for the struct only.
+ * @param xctx of caller.
+ */
+AFW_DEFINE_STATIC_INLINE(const afw_memory_t *)
+afw_memory_create_no_copy(
     const afw_byte_t *ptr,
     afw_size_t size,
     const afw_pool_t *p,
@@ -66,6 +100,39 @@ afw_memory_create(
     result->ptr = ptr;
     result->size = size;
     return result;
+}
+
+
+/**
+ * @brief Set a preallocated afw_memory_t (copy bytes into p).
+ */
+AFW_DEFINE_STATIC_INLINE(void)
+afw_memory_set(
+    afw_memory_t *to,
+    const afw_byte_t *ptr,
+    afw_size_t size,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_memory_t *created;
+
+    created = afw_memory_create(ptr, size, p, xctx);
+    to->ptr = created->ptr;
+    to->size = created->size;
+}
+
+
+/**
+ * @brief Set a preallocated afw_memory_t pointing at ptr (no copy).
+ */
+AFW_DEFINE_STATIC_INLINE(void)
+afw_memory_set_no_copy(
+    afw_memory_t *to,
+    const afw_byte_t *ptr,
+    afw_size_t size)
+{
+    to->ptr = ptr;
+    to->size = size;
 }
 
 

@@ -500,7 +500,7 @@ impl_syntax_handler_single_string_to_value(
         AFW_THROW_ERROR_Z(general, "Expecting single value", xctx);
     }
 
-    s = afw_utf8_create_copy((*bv)->bv_val, (*bv)->bv_len, p, xctx);
+    s = afw_utf8_create((*bv)->bv_val, (*bv)->bv_len, p, xctx);
     return afw_value_create_unmanaged_string(s, p, xctx);
 }
 
@@ -914,7 +914,7 @@ impl_syntax_handler_list_string_to_value(
     result = afw_value_create_unmanaged_array(list, p, xctx);
 
     for (; count > 0; count--, bv++, e++) {
-        s = afw_utf8_create_copy((*bv)->bv_val, (*bv)->bv_len, p, xctx);
+        s = afw_utf8_create((*bv)->bv_val, (*bv)->bv_len, p, xctx);
         e->s = s->s;
         e->len = s->len;
     }

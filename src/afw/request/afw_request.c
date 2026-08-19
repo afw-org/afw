@@ -203,7 +203,7 @@ afw_request_body_to_value(
     }
 
     return afw_content_type_raw_to_value(content_type, 
-        afw_utf8_as_raw(string, xctx->p, xctx), afw_s_a_request_body,
+        afw_utf8_as_memory(string, xctx->p, xctx), afw_s_a_request_body,
         xctx->p, xctx);
 }
 

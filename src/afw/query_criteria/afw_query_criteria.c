@@ -1956,7 +1956,8 @@ afw_query_criteria_parse_url_encoded_rql_string(
 
     /* Parse string. */
     queryz = afw_utf8_z_create(url_encoded_rql_string->s, url_encoded_rql_string->len, p, xctx);
-    parser.criteria->origin_query_string = afw_utf8_create(queryz,
+    /* Point at queryz so .s stays 0-terminated for the z walker. */
+    parser.criteria->origin_query_string = afw_utf8_create_no_copy(queryz,
         url_encoded_rql_string->len, p, xctx);
     parser.start = parser.criteria->origin_query_string->s;
     parser.c = parser.start;

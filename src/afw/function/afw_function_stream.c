@@ -505,7 +505,7 @@ afw_function_execute_open_file(
      * for the life of the stream table (not just the open_file call pool).
      */
     stream = afw_stream_fd_open_and_create(
-        afw_utf8_create_copy(
+        afw_utf8_create(
             streamId->internal.s, streamId->internal.len,
             x->xctx->p, x->xctx),
         resolved_path, &mode->internal,

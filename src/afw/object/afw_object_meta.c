@@ -783,7 +783,7 @@ afw_object_meta_add_thrown_error(
     }
 
     else {
-        message = afw_utf8_create_copy(error->message_z, AFW_UTF8_Z_LEN,
+        message = afw_utf8_create(error->message_z, AFW_UTF8_Z_LEN,
             instance->p, xctx);
     }
 
@@ -874,7 +874,7 @@ afw_object_meta_add_thrown_property_error(
     }
 
     else {
-        message = afw_utf8_create_copy(error->message_z, AFW_UTF8_Z_LEN,
+        message = afw_utf8_create(error->message_z, AFW_UTF8_Z_LEN,
             instance->p, xctx);
     }
 

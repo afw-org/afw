@@ -12,7 +12,7 @@
  * @brief Implementation of afw_object interface for FCGI request properties.
  *
  * Lazy object over FCGX request envp. Values are Adaptive string when valid
- * UTF-8 (NFC), otherwise hexBinary. Non-UTF-8 names use "_NONUTF8_" + hex.
+ * UTF-8 (NFC), otherwise hexBinary. Non-UTF-8 names use forced_safe encode.
  * First access caches into an internal memory object; retrieve prefers cache
  * and does not emit duplicates from envp.
  */
@@ -58,7 +58,7 @@ impl_cache_envp_entry(
 
     for (s = c = (const afw_utf8_octet_t *)entry; *c && *c != '='; c++);
     name_len = (afw_size_t)(c - s);
-    property_name = afw_utf8_create_property_name_from_external_octets(
+    property_name = afw_utf8_create_property_name(
         s, name_len, self->pub.p, xctx);
 
     if (afw_object_has_property(self->properties, property_name, xctx)) {

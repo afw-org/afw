@@ -561,5 +561,5 @@ const afw_utf8_t * afw_yaml_from_value(
         writer->context, writer->callback, p, xctx);
 
     raw = afw_memory_writer_retrieve_and_release(writer, xctx);
-    return afw_utf8_from_raw(raw, p, xctx);
+    return afw_utf8_from_memory(raw, p, xctx);
 }

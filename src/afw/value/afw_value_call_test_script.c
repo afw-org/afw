@@ -122,7 +122,7 @@ impl_test_script_check_stream_expect(
         *(const afw_stream_t **)&xctx->stream_anchor->streams[n] = NULL;
     }
     else {
-        actual_owned = afw_utf8_create_copy(
+        actual_owned = afw_utf8_create(
             (const afw_utf8_octet_t *)"", 0, p, xctx);
     }
 

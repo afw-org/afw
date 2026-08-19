@@ -360,50 +360,324 @@ afw_utf8_nfc(
 
 
 /*
- * Create a property name from untrusted external octets. Valid UTF-8 becomes
- * an NFC name; otherwise "_NONUTF8_" + uppercase hex of the raw bytes.
+ * forced_safe encode: valid text through; '^' -> '^^'; Cc and invalid
+ * utf-8 runs -> '^' + uppercase hex + '^'. Whitespace/EOL left as text.
  */
-AFW_DEFINE(const afw_utf8_t *)
-afw_utf8_create_property_name_from_external_octets(
+#define IMPL_FORCED_SAFE_ESC ((afw_utf8_octet_t)'^')
+
+static const afw_utf8_octet_t impl_hex_digit[] = "0123456789ABCDEF";
+
+typedef enum {
+    impl_enc_text,
+    impl_enc_caret,
+    impl_enc_hex
+} impl_enc_kind_t;
+
+static impl_enc_kind_t
+impl_forced_safe_kind(
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    afw_size_t i,
+    afw_size_t *end)
+{
+    UChar32 cp;
+    int32_t ii;
+    int32_t slen;
+    afw_size_t start;
+
+    start = i;
+    slen = (int32_t)len;
+    ii = (int32_t)i;
+    U8_NEXT(s, ii, slen, cp);
+    *end = (afw_size_t)ii;
+    if (*end <= start) {
+        *end = start + 1;
+    }
+
+    if (cp < 0) {
+        return impl_enc_hex;
+    }
+    if (cp == 0x5E) {
+        return impl_enc_caret;
+    }
+    if (afw_compile_code_point_is_WhitespaceOrEOL((afw_code_point_t)cp)) {
+        return impl_enc_text;
+    }
+    if (u_charType(cp) == U_CONTROL_CHAR) {
+        return impl_enc_hex;
+    }
+    return impl_enc_text;
+}
+
+static const afw_utf8_t *
+impl_utf8_encode_forced_safe(
     const afw_utf8_octet_t *s,
     afw_size_t len,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_memory_t memory;
-    afw_utf8_t hex;
     afw_utf8_t *result;
     afw_utf8_octet_t *out;
-    afw_size_t prefix_len;
-    const afw_utf8_octet_t *prefix =
-        (const afw_utf8_octet_t *)AFW_UTF8_Z_NONUTF8_PROPERTY_NAME_PREFIX;
+    afw_size_t i;
+    afw_size_t end;
+    afw_size_t need;
+    afw_size_t o;
+    afw_size_t b;
+    afw_boolean_t in_hex;
+    impl_enc_kind_t kind;
 
     if (len == AFW_UTF8_Z_LEN) {
-        len = (s) ? strlen(s) : 0;
+        len = (s) ? strlen((const char *)s) : 0;
     }
-
     if (!s || len == 0) {
         return afw_s_a_empty_string;
     }
 
-    if (afw_utf8_is_valid(s, len, xctx)) {
-        return afw_utf8_create_copy(s, len, p, xctx);
+    need = 0;
+    in_hex = false;
+    for (i = 0; i < len; i = end) {
+        kind = impl_forced_safe_kind(s, len, i, &end);
+        if (kind == impl_enc_hex) {
+            if (!in_hex) {
+                need += 1;
+                in_hex = true;
+            }
+            need += 2 * (end - i);
+        }
+        else {
+            if (in_hex) {
+                need += 1;
+                in_hex = false;
+            }
+            need += (kind == impl_enc_caret) ? 2 : (end - i);
+        }
+    }
+    if (in_hex) {
+        need += 1;
     }
 
-    memory.ptr = (const afw_byte_t *)s;
-    memory.size = len;
-    afw_memory_encode_printable_hex(&hex, &memory, p, xctx);
-
-    prefix_len = strlen(AFW_UTF8_Z_NONUTF8_PROPERTY_NAME_PREFIX);
     result = afw_pool_calloc_type(p, afw_utf8_t, xctx);
-    result->len = prefix_len + hex.len;
-    out = afw_pool_malloc(p, result->len, xctx);
-    memcpy(out, prefix, prefix_len);
-    if (hex.len > 0) {
-        memcpy(out + prefix_len, hex.s, hex.len);
+    if (need == 0) {
+        return result;
     }
+    out = afw_pool_malloc(p, need, xctx);
     result->s = out;
+    result->len = need;
+
+    o = 0;
+    in_hex = false;
+    for (i = 0; i < len; i = end) {
+        kind = impl_forced_safe_kind(s, len, i, &end);
+        if (kind == impl_enc_hex) {
+            if (!in_hex) {
+                out[o++] = IMPL_FORCED_SAFE_ESC;
+                in_hex = true;
+            }
+            for (b = i; b < end; b++) {
+                out[o++] = impl_hex_digit[(s[b] >> 4) & 0x0f];
+                out[o++] = impl_hex_digit[s[b] & 0x0f];
+            }
+        }
+        else {
+            if (in_hex) {
+                out[o++] = IMPL_FORCED_SAFE_ESC;
+                in_hex = false;
+            }
+            if (kind == impl_enc_caret) {
+                out[o++] = IMPL_FORCED_SAFE_ESC;
+                out[o++] = IMPL_FORCED_SAFE_ESC;
+            }
+            else {
+                memcpy(out + o, s + i, end - i);
+                o += end - i;
+            }
+        }
+    }
+    if (in_hex) {
+        out[o++] = IMPL_FORCED_SAFE_ESC;
+    }
+    result->len = o;
     return result;
+}
+
+
+AFW_DEFINE(const afw_utf8_t *)
+afw_utf8_create_no_copy(
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_utf8_t *result;
+
+    if (!s) {
+        return afw_s_a_empty_string;
+    }
+    if (len == AFW_UTF8_Z_LEN) {
+        len = strlen((const char *)s);
+    }
+    if (len == 0) {
+        return afw_s_a_empty_string;
+    }
+    if (!afw_utf8_is_nfc(s, len, p, xctx)) {
+        AFW_THROW_ERROR_Z(general, "Not valid UTF-8 NFC", xctx);
+    }
+    result = afw_pool_calloc_type(p, afw_utf8_t, xctx);
+    result->s = s;
+    result->len = len;
+    return result;
+}
+
+
+AFW_DEFINE(const afw_utf8_t *)
+afw_utf8_create_no_copy_z(
+    const afw_utf8_z_t *s_z,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    return afw_utf8_create_no_copy(
+        (const afw_utf8_octet_t *)s_z, AFW_UTF8_Z_LEN, p, xctx);
+}
+
+
+AFW_DEFINE(void)
+afw_utf8_set(
+    afw_utf8_t *to,
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *created;
+
+    created = afw_utf8_create(s, len, p, xctx);
+    to->s = created->s;
+    to->len = created->len;
+}
+
+
+AFW_DEFINE(void)
+afw_utf8_set_z(
+    afw_utf8_t *to,
+    const afw_utf8_z_t *s_z,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_utf8_set(to, (const afw_utf8_octet_t *)s_z, AFW_UTF8_Z_LEN, p, xctx);
+}
+
+
+AFW_DEFINE(void)
+afw_utf8_set_no_copy(
+    afw_utf8_t *to,
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    afw_xctx_t *xctx)
+{
+    if (!s) {
+        to->s = NULL;
+        to->len = 0;
+        return;
+    }
+    if (len == AFW_UTF8_Z_LEN) {
+        len = strlen((const char *)s);
+    }
+    if (len == 0) {
+        to->s = NULL;
+        to->len = 0;
+        return;
+    }
+    if (!afw_utf8_is_nfc(s, len, xctx->p, xctx)) {
+        AFW_THROW_ERROR_Z(general, "Not valid UTF-8 NFC", xctx);
+    }
+    to->s = s;
+    to->len = len;
+}
+
+
+AFW_DEFINE(void)
+afw_utf8_set_no_copy_z(
+    afw_utf8_t *to,
+    const afw_utf8_z_t *s_z,
+    afw_xctx_t *xctx)
+{
+    afw_utf8_set_no_copy(to, (const afw_utf8_octet_t *)s_z,
+        AFW_UTF8_Z_LEN, xctx);
+}
+
+
+AFW_DEFINE(const afw_utf8_t *)
+afw_utf8_create_forced_safe(
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    return impl_utf8_encode_forced_safe(s, len, p, xctx);
+}
+
+
+AFW_DEFINE(const afw_utf8_t *)
+afw_utf8_create_forced_safe_z(
+    const afw_utf8_z_t *s_z,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    return impl_utf8_encode_forced_safe(
+        (const afw_utf8_octet_t *)s_z, AFW_UTF8_Z_LEN, p, xctx);
+}
+
+
+AFW_DEFINE(void)
+afw_utf8_set_forced_safe(
+    afw_utf8_t *to,
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *created;
+
+    created = impl_utf8_encode_forced_safe(s, len, p, xctx);
+    to->s = created->s;
+    to->len = created->len;
+}
+
+
+AFW_DEFINE(void)
+afw_utf8_set_forced_safe_z(
+    afw_utf8_t *to,
+    const afw_utf8_z_t *s_z,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_utf8_set_forced_safe(to, (const afw_utf8_octet_t *)s_z,
+        AFW_UTF8_Z_LEN, p, xctx);
+}
+
+
+AFW_DEFINE(const afw_utf8_t *)
+afw_utf8_create_property_name(
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *encoded;
+
+    encoded = impl_utf8_encode_forced_safe(s, len, p, xctx);
+    return afw_utf8_create(encoded->s, encoded->len, p, xctx);
+}
+
+
+AFW_DEFINE(const afw_utf8_t *)
+afw_utf8_create_property_name_z(
+    const afw_utf8_z_t *s_z,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    return afw_utf8_create_property_name(
+        (const afw_utf8_octet_t *)s_z, AFW_UTF8_Z_LEN, p, xctx);
 }
 
 
@@ -516,8 +790,8 @@ afw_utf8_printf(
     s = apr_pvsprintf(afw_pool_get_apr_pool(p), format, arg);
     va_end(arg);
 
-    /* Make an afw_string from result of apr_pvsprintf() and return it. */
-    return afw_utf8_create(s, AFW_UTF8_Z_LEN, p, xctx);
+    /* Format output may contain anything %s handed us. */
+    return afw_utf8_create_forced_safe(s, AFW_UTF8_Z_LEN, p, xctx);
 }
 
 
@@ -532,8 +806,8 @@ afw_utf8_printf_v(
     /* Use apr_pvsprint() to produce c string. */
     s = apr_pvsprintf(afw_pool_get_apr_pool(p), format, arg);
 
-    /* Make an afw_string from result of apr_pvsprintf() and return it. */
-    return afw_utf8_create(s, AFW_UTF8_Z_LEN, p, xctx);
+    /* Format output may contain anything %s handed us. */
+    return afw_utf8_create_forced_safe(s, AFW_UTF8_Z_LEN, p, xctx);
 }
 
 
@@ -946,7 +1220,21 @@ afw_utf8_z_printf_v(
         AFW_THROW_MEMORY_ERROR(xctx);
     }
 
-    return result;
+    /* Encode, then copy with a trailing 0. Do not NFC. */
+    {
+        const afw_utf8_t *safe;
+        afw_utf8_z_t *z;
+        afw_size_t n;
+
+        safe = afw_utf8_create_forced_safe(result, AFW_UTF8_Z_LEN, p, xctx);
+        n = safe->len;
+        z = afw_pool_malloc(p, n + 1, xctx);
+        if (n > 0) {
+            memcpy(z, safe->s, n);
+        }
+        z[n] = 0;
+        return z;
+    }
 }
 
 /* Clone a pointer array of utf-8 to specified pool. */

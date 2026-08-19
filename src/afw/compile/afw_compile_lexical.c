@@ -2527,7 +2527,7 @@ afw_compile_get_string_literal(
 
     result = apr_hash_get(parser->shared->string_literals, s, len);
     if (!result) {
-        result = afw_utf8_create_copy(s, len,
+        result = afw_utf8_create(s, len,
             parser->p, parser->xctx);
         apr_hash_set(parser->shared->string_literals,
             (const void *)result->s,

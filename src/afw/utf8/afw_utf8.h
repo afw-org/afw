@@ -166,36 +166,39 @@ afw_utf8_from_code_point(afw_utf8_octet_t utf8_z[5], afw_code_point_t cp,
 
 
 /**
- * @brief Convert utf-8 string to raw in specified pool.
- * @param string to convert.
- * @param p pool used for result.
+ * @brief View an afw_utf8_t as afw_memory_t (same layout).
+ * @param string to view.
+ * @param p unused (kept so the signature matches other create-style doors).
  * @param xctx of caller.
- * @return raw
+ * @return memory (cast of string).
+ *
+ * Cast only. Does not copy. The utf8 bytes are already NFC.
  */
 AFW_DEFINE_STATIC_INLINE(const afw_memory_t *)
-afw_utf8_as_raw(
+afw_utf8_as_memory(
     const afw_utf8_t *string, const afw_pool_t *p, afw_xctx_t *xctx)
 {
+    (void)p;
+    (void)xctx;
     return (const afw_memory_t *)string;
 }
 
 
 /**
- * @brief Convert raw to a utf-8 NFC normalizing if necessary in specified
- *    pool.
- * @param raw value to convert.
+ * @brief Create utf-8 from afw_memory_t (copy + NFC, or throw).
+ * @param memory octets that must be valid utf-8.
  * @param p pool used for result.
  * @param xctx of caller.
  * @return utf8
  *
- * The raw memory must represent valid utf-8 or an error is thrown.
+ * Short name: copy into p and NFC. Invalid utf-8 throws.
  */
 AFW_DEFINE_STATIC_INLINE(const afw_utf8_t *)
-afw_utf8_from_raw(
-    const afw_memory_t *raw, const afw_pool_t *p, afw_xctx_t *xctx)
+afw_utf8_from_memory(
+    const afw_memory_t *memory, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    return afw_utf8_nfc((const afw_utf8_octet_t *)raw->ptr, raw->size,
-        afw_utf8_nfc_option_create, p, xctx);
+    return afw_utf8_nfc((const afw_utf8_octet_t *)memory->ptr, memory->size,
+        afw_utf8_nfc_option_create_copy, p, xctx);
 }
 
 
@@ -220,35 +223,54 @@ afw_utf8_from_encoding(
 
 
 /**
- * @brief Create utf-8 string without copy unless necessary in pool specified.
- * @param s pointer to utf-8 characters.
- * @param len is number of bytes.
- * @param p pool used for result.
+ * @brief Create utf-8 in p (copy bytes, NFC or throw).
+ * @param s pointer to octets.
+ * @param len number of bytes or AFW_UTF8_Z_LEN.
+ * @param p pool for the struct and the copy.
  * @param xctx of caller.
- * @return utf8 string.
+ * @return const afw_utf8_t in p.
  *
- * This only creates a new afw_string_t struct and sets its values.
- *
- * The input string will be NFC normalized if it is not already.
+ * Short name is the safe door: always copy into p. Invalid utf-8 throws.
+ * Valid but not NFC is normalized into p.
  */
-#define afw_utf8_create(s,len, p,  xctx) \
-    afw_utf8_nfc(s, len, afw_utf8_nfc_option_create, p, xctx)
-
+#define afw_utf8_create(s, len, p, xctx) \
+    afw_utf8_nfc(s, len, afw_utf8_nfc_option_create_copy, p, xctx)
 
 
 /**
- * @brief Make utf-8 string without copy in specified pool.
- * @param s_z pointer to zero terminated utf-8 characters.
- * @param len is number of bytes.
- * @param p pool used for result.
+ * @brief Create utf-8 in p from a 0-terminated C string (copy, NFC or throw).
+ * @param s_z 0-terminated octets.
+ * @param p pool for the struct and the copy.
  * @param xctx of caller.
- * @return utf8 string.
- *
- * The input string will be NFC normalized if it is not already.
  */
-#define afw_utf8_from_utf8_z(s_z, p, xctx) \
-    afw_utf8_nfc(s_z, AFW_UTF8_Z_LEN, afw_utf8_nfc_option_create, \
+#define afw_utf8_create_z(s_z, p, xctx) \
+    afw_utf8_nfc(s_z, AFW_UTF8_Z_LEN, afw_utf8_nfc_option_create_copy, \
         p, xctx)
+
+
+/**
+ * @brief Create utf-8 in p pointing at s (no copy). NFC or throw.
+ * @param s pointer to octets that must already be valid NFC.
+ * @param len number of bytes or AFW_UTF8_Z_LEN.
+ * @param p pool for the struct only.
+ * @param xctx of caller.
+ *
+ * Extra words take the copy off. p holds the little struct; bytes stay at s
+ * and must live as long as the result. Cannot rewrite someone else's memory,
+ * so not-NFC throws.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_utf8_create_no_copy(
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE(const afw_utf8_t *)
+afw_utf8_create_no_copy_z(
+    const afw_utf8_z_t *s_z,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 
 /**
@@ -336,61 +358,121 @@ afw_utf8_z_array_to_utf8_z_with_separator(
  * @param xctx of caller.
  * @return utf8 string.
  *
- * The input string is assumed to already be valid utf-8.
+ * Clone copies the struct and the bytes (same byte policy as create).
  */
 AFW_DEFINE_STATIC_INLINE(const afw_utf8_t *)
 afw_utf8_clone(
     const afw_utf8_t *string, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     return (string)
-        ? afw_utf8_nfc(string->s, string->len,
-            afw_utf8_nfc_option_create_copy, p, xctx)
+        ? afw_utf8_create(string->s, string->len, p, xctx)
         : NULL;
 }
 
 
 
 /**
- * @brief Make a utf-8 sting from chars in pool specified.
- * @param s pointer to chars.
- * @param len of chars in bytes or AFW_UTF8_Z_LEN.
- * @param p pool used for result.
+ * @brief Set a preallocated non-const afw_utf8_t from octets (copy + NFC).
+ * @param to caller-owned struct to set.
+ * @param s octets.
+ * @param len number of bytes or AFW_UTF8_Z_LEN.
+ * @param p pool for the copied bytes.
  * @param xctx of caller.
- * @return utf8 string.
  *
- * The input string must already be valid utf-8.  An error is thrown if it is
- * not.
+ * Writes to->s / to->len. Bytes are copied into p (can NFC). Invalid throws.
  */
-#define afw_utf8_create_copy(s, len, p, xctx) \
-    afw_utf8_nfc(s, len, afw_utf8_nfc_option_create_copy, p, xctx)
+AFW_DECLARE(void)
+afw_utf8_set(
+    afw_utf8_t *to,
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
+AFW_DECLARE(void)
+afw_utf8_set_z(
+    afw_utf8_t *to,
+    const afw_utf8_z_t *s_z,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
- * @brief Prefix for property names synthesized from non-UTF-8 external names.
+ * @brief Set a preallocated afw_utf8_t pointing at s (no copy). NFC or throw.
+ * @param to caller-owned struct to set.
+ * @param s octets that must already be valid NFC.
+ * @param len number of bytes or AFW_UTF8_Z_LEN.
+ * @param xctx of caller.
  *
- * When an external name (e.g. process env or FCGI parameter name) is not valid
- * UTF-8, afw_utf8_create_property_name_from_external_octets() produces
- * "_NONUTF8_" followed by uppercase hex of the raw name bytes.
+ * No p: nothing new is allocated. Bytes stay at s.
  */
-#define AFW_UTF8_Z_NONUTF8_PROPERTY_NAME_PREFIX "_NONUTF8_"
+AFW_DECLARE(void)
+afw_utf8_set_no_copy(
+    afw_utf8_t *to,
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    afw_xctx_t *xctx);
 
+AFW_DECLARE(void)
+afw_utf8_set_no_copy_z(
+    afw_utf8_t *to,
+    const afw_utf8_z_t *s_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Set to from a forced_safe encoding of s (always copy).
+ *
+ * Result is valid utf-8, not promised NFC, not an Adaptive value.
+ */
+AFW_DECLARE(void)
+afw_utf8_set_forced_safe(
+    afw_utf8_t *to,
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE(void)
+afw_utf8_set_forced_safe_z(
+    afw_utf8_t *to,
+    const afw_utf8_z_t *s_z,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Create a forced_safe utf-8 in p (encode, always copy, no NFC).
+ *
+ * Encode: valid text passes through; '^' becomes '^^'; Unicode Cc
+ * (U_CONTROL_CHAR) and invalid utf-8 runs become '^' + uppercase hex + '^'.
+ * Whitespace/EOL is left as text. Never NFC-throws. Not an Adaptive value.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_utf8_create_forced_safe(
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE(const afw_utf8_t *)
+afw_utf8_create_forced_safe_z(
+    const afw_utf8_z_t *s_z,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Create an object property name from untrusted external name octets.
- * @param s pointer to name octets (may be NULL).
- * @param len number of bytes, or AFW_UTF8_Z_LEN if s is NUL-terminated.
- * @param p pool for the result.
- * @param xctx of caller.
- * @return NFC utf-8 name if s is valid UTF-8; otherwise
- *    "_NONUTF8_" + uppercase hex of the raw bytes (always valid ASCII/UTF-8).
  *
- * Property names must be afw_utf8_t. Use this at boundaries instead of putting
- * non-UTF-8 bytes into a property name.
+ * Same encode as create_forced_safe, then NFC. Result is a property name.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_utf8_create_property_name_from_external_octets(
+afw_utf8_create_property_name(
     const afw_utf8_octet_t *s,
     afw_size_t len,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE(const afw_utf8_t *)
+afw_utf8_create_property_name_z(
+    const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
@@ -514,8 +596,7 @@ afw_utf8_line_count_and_max_column(
  * @param ... arguments for format_z.
  * @return utf8 string.
  *
- * Care must be used using this function.  No check is made to determine
- * if strings are valid utf-8.
+ * Format output goes through create_forced_safe so a bad %s does not throw.
  */
 AFW_DECLARE_ELLIPSIS(const afw_utf8_t *)
 afw_utf8_printf(
@@ -531,8 +612,7 @@ afw_utf8_printf(
  * @param xctx of caller.
  * @return utf8 string.
  *
- * Care must be used using this function.  No check is made to determine
- * if strings are valid utf-8.
+ * Format output goes through create_forced_safe so a bad %s does not throw.
  */
 AFW_DECLARE(const afw_utf8_t *)
 afw_utf8_printf_v(
@@ -807,11 +887,8 @@ afw_utf8_z_compare_ignore_case(
 {
     afw_utf8_t a1, a2;
 
-    a1.s = s1;
-    a1.len = s1 ? strlen(s1): 0;
-
-    a2.s = s2;
-    a2.len = s2 ? strlen(s2): 0;
+    afw_utf8_set_no_copy_z(&a1, s1, xctx);
+    afw_utf8_set_no_copy_z(&a2, s2, xctx);
 
     return afw_utf8_compare_ignore_case(&a1, &a2, xctx);
 }

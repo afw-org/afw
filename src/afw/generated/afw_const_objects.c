@@ -33362,7 +33362,7 @@ impl_313_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_313_property_description = {
     &afw_self_s_description,
-    &afw_self_v_zz__a5c3ea298efe.pub
+    &afw_self_v_zz__1c3c43ea7b89.pub
 };
 
 static const afw_runtime_property_t
@@ -109851,7 +109851,7 @@ impl_1028_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_1028_property_description = {
     &afw_self_s_description,
-    &afw_self_v_zz__a3715402ef52.pub
+    &afw_self_v_zz__a96a58fc4306.pub
 };
 
 static const afw_runtime_property_t

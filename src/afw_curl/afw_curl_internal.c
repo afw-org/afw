@@ -82,7 +82,7 @@ afw_curl_internal_write_response_headers_cb(
     {
         header->argv[0] = header->callback;
         header->argv[1] = afw_value_create_unmanaged_string(
-            afw_utf8_create_copy(buffer, nitems, appdata->pool, appdata->xctx),
+            afw_utf8_create(buffer, nitems, appdata->pool, appdata->xctx),
             appdata->pool, appdata->xctx);
         header->argv[2] = header->userData;
         if (!header->call) {
@@ -99,7 +99,7 @@ afw_curl_internal_write_response_headers_cb(
     {
         afw_array_push_value(appdata->headers,
             afw_value_create_unmanaged_string(
-                afw_utf8_create_copy(buffer, nitems, appdata->pool, appdata->xctx),
+                afw_utf8_create(buffer, nitems, appdata->pool, appdata->xctx),
                 appdata->pool, appdata->xctx),
             appdata->xctx
         );

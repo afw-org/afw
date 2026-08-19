@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 Tests for process environment boundary: valid UTF-8 → string, invalid → hexBinary,
-non-UTF-8 names → _NONUTF8_ + hex. Uses a small C helper to setenv raw bytes then
-exec afw (issue #71 related external-octets handling).
+non-UTF-8 names → forced_safe encode (^ + hex run + ^). Uses a small C helper
+to setenv raw bytes then exec afw (issue #71 related external-octets handling).
 """
 
 import os
@@ -66,7 +66,7 @@ def _run_script(helper, script_body):
 
 def run():
     description = (
-        "Process env external octets: string | hexBinary and _NONUTF8_ names"
+        "Process env external octets: string | hexBinary and ^hex^ names"
     )
     tests = []
     work = tempfile.mkdtemp(prefix="afw_env_ext_")
@@ -145,14 +145,14 @@ def run():
         ),
         (
             "bad_name_nonutf8_prefix",
-            "Invalid UTF-8 env name exposed as _NONUTF8_ + hex",
+            "Invalid UTF-8 env name exposed as forced_safe ^hex^",
             textwrap.dedent(
                 """\
                 const e = get_object("afw", "_AdaptiveEnvironmentVariables_", "current");
                 /* Force full environ load (lazy get only does getenv by UTF-8 name). */
                 string(e);
-                /* BAD\\xffN → uppercase hex 424144FF4E */
-                const k = "_NONUTF8_424144FF4E";
+                /* BAD + 0xff + N → BAD^FF^N */
+                const k = "BAD^FF^N";
                 const v = e[k];
                 if (v === null || v === undefined) {
                     print("FAIL missing key");

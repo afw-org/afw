@@ -86,7 +86,7 @@ impl_afw_content_type_raw_to_value(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    return afw_json_to_value(afw_utf8_from_raw(raw, p, xctx),
+    return afw_json_to_value(afw_utf8_from_memory(raw, p, xctx),
         source_location, p, xctx);
 }
 
@@ -110,14 +110,14 @@ impl_afw_content_type_raw_to_object(
     const afw_pool_t *use_p;
     const afw_utf8_t *string;
 
-    /* If not cede_p, get subpool now to use for afw_utf8_from_raw(). */
+    /* If not cede_p, get subpool now to use for afw_utf8_from_memory(). */
     use_p = p;
     if (!cede_p) {
         use_p = afw_pool_create(p, xctx);
     }
 
     /* Convert raw to utf8. An error may be thrown if not valid utf-8. */
-    string = afw_utf8_from_raw(raw, use_p, xctx);
+    string = afw_utf8_from_memory(raw, use_p, xctx);
 
     /*
      * Call afw_compile_to_object() to convert json to object.  Always cede_p
