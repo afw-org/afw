@@ -176,9 +176,17 @@ afw_vfs_adapter_internal_create_cede_p(
                     entries->string.len = mlen;
                 }
                 else {
-                    entries->string_z = afw_utf8_z_printf(p, xctx,
-                        "%s/", merged_z);
-                    entries->string.len = strlen(entries->string_z);
+                    {
+                        afw_utf8_t base;
+
+                        base.s = (const afw_utf8_octet_t *)merged_z;
+                        base.len = mlen;
+                        entries->string_z = afw_utf8_to_utf8_z(
+                            afw_utf8_concat(p, xctx,
+                                &base, afw_s_a_slash, NULL),
+                            p, xctx);
+                        entries->string.len = mlen + 1;
+                    }
                 }
             }
         }
