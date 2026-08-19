@@ -400,10 +400,10 @@ impl_forced_safe_kind(
     if (cp == 0x5E) {
         return impl_enc_caret;
     }
-    if (afw_compile_code_point_is_WhitespaceOrEOL((afw_code_point_t)cp)) {
+    if (afw_code_point_is_whitespace_or_eol((afw_code_point_t)cp)) {
         return impl_enc_text;
     }
-    if (u_charType(cp) == U_CONTROL_CHAR) {
+    if (afw_code_point_is_control((afw_code_point_t)cp)) {
         return impl_enc_hex;
     }
     return impl_enc_text;
@@ -1509,7 +1509,7 @@ afw_utf8_line_count_and_max_column(
         if (cp == '\t') {
             column_number += tab_size;
         }
-        else if (afw_compile_code_point_is_EOL(cp)) {
+        else if (afw_code_point_is_eol(cp)) {
             *number_of_lines += 1;
             column_number = 1;
         }

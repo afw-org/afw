@@ -19,7 +19,10 @@
 
 /**
  * @file afw_memory.h
- * @brief Header file for Adaptive Framework Memory
+ * @brief Untyped pointer+length (`afw_memory_t`) and byte helpers.
+ *
+ * Same dest/copy verbs as @ref afw_utf8 (`create` copies, `create_no_copy`
+ * points) without NFC. See `designs/c-naming-and-payloads.md`.
  */
 
 AFW_BEGIN_DECLARES

@@ -2920,8 +2920,8 @@ impl_test_script_get_next_key_value(
                                 AFW_COMPILE_THROW_ERROR_Z(
                                     "Invalid utf-8 in '<<<' path");
                             }
-                            if (!afw_compile_code_point_is_Whitespace(cp) &&
-                                !afw_compile_code_point_is_EOL(cp))
+                            if (!afw_code_point_is_whitespace(cp) &&
+                                !afw_code_point_is_eol(cp))
                             {
                                 path_start = save;
                                 break;
@@ -2942,8 +2942,8 @@ impl_test_script_get_next_key_value(
                                 AFW_COMPILE_THROW_ERROR_Z(
                                     "Invalid utf-8 in '<<<' path");
                             }
-                            if (!afw_compile_code_point_is_Whitespace(cp) &&
-                                !afw_compile_code_point_is_EOL(cp))
+                            if (!afw_code_point_is_whitespace(cp) &&
+                                !afw_code_point_is_eol(cp))
                             {
                                 end_trim = offset;
                             }
@@ -2992,8 +2992,8 @@ impl_test_script_get_next_key_value(
                              * Also drop EOL code points if present on the line
                              * (e.g. stray CR).
                              */
-                            if (!afw_compile_code_point_is_Whitespace(cp) &&
-                                !afw_compile_code_point_is_EOL(cp))
+                            if (!afw_code_point_is_whitespace(cp) &&
+                                !afw_code_point_is_eol(cp))
                             {
                                 end_trim = offset;
                             }

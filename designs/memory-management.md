@@ -15,6 +15,8 @@ Living design / discussion notes for long-running AFW process memory: pools, val
 
 **`afw_value` (adaptive values) are central to AFW** — not a minor helper type. Script/eval is a graph of values; compile returns a value; functions, literals, objects-as-data, arrays, closures, and scope variables are (or carry) values. Lifetime and escape for long-running work hang on **value inf policy** (`optional_evaluate`, `optional_release`, `clone_or_reference`) with pools/subpools underneath. When in doubt for #2 and script MM: **think in values first**; hide pool/object nastiness behind the value. (Stated again in other conversations; recorded here so it is not only chat memory.)
 
+**Payloads are not values.** `afw_utf8_t` / `afw_memory_t` / `afw_integer_t` do not know a pool. `create` / `set` / `no_copy` / `forced_safe` naming for those structs: [`c-naming-and-payloads.md`](c-naming-and-payloads.md). Do not put `managed` on utf8/memory payloads; that word stays on value infs and object/array instances (#2).
+
 - **Do** record decisions, open questions, rejected ideas, and archaeology.
 - **Do not** treat this as committed API or a merge plan for old branches.
 - Code changes come only after discussion produces clear invariants and a phased plan.

@@ -23,6 +23,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) | Maintainer framing — design philosophy, core value/pool/compile model, product taste; **not** always-on rules |
 | [`mantras-and-working-style.md`](mantras-and-working-style.md) | Mike mantras + partnership habits (subset; grow when shared); philosophy/taste questions — **not** always-on |
 | [`memory-management.md`](memory-management.md) | Umbrella **#2** — pools, value lifetimes, escape |
+| [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | Value vs utf8/memory payloads; `create` / `set` / `no_copy` / `forced_safe`; code_point dir |
 | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | **#149 closed** (PRs #160–#162) — architecture map: generate maps, OT `runtime`, accessors, env registration, checklist; keep for **#2** follow-on |
 | [`runtime-value-accessors.md`](runtime-value-accessors.md) | Live catalog snapshot of `_AdaptiveRuntimeValueAccessor_` (refresh via `afw -x` retrieve) |
 | [`afwdev-test-recipe.md`](afwdev-test-recipe.md) | Gate vs lab: `test -j`, `-T` / `tests-extra`, firehose, `--output`, valgrind notes |
@@ -50,7 +51,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`issue-33-error-codes.md`](issue-33-error-codes.md) | **#33** — review error codes / HTTP map / script `e.id` (closed; PR **#173** → `mgg-develop`) |
 | [`issue-62-script-language.md`](issue-62-script-language.md) | **#62 closed** (PR **#174**) — Adaptive Script language index (multi `let`/`const`, `for` init, assignment chain, result value, labels) |
 | [`libafw-headers-and-api-surface.md`](libafw-headers-and-api-surface.md) | libafw header layers (`afw.h` / internal / minimal / common), install public-only goal, Doxygen public vs internal |
-| [`lineage-and-library-floor.md`](lineage-and-library-floor.md) | Base vs private packages; Docker ICU/APR floor; ICU stays in `afw_utf8` |
+| [`lineage-and-library-floor.md`](lineage-and-library-floor.md) | Base vs private packages; Docker ICU/APR floor; ICU in `utf8/` + `code_point/` |
 
 ## Conventions
 

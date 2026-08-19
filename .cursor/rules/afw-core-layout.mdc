@@ -57,7 +57,7 @@ alwaysApply: false
 | `log/`, `trace/`, `flag/`, `lock/`, `thread/` | Observability and concurrency |
 
 ## Small utilities
-`ascii/`, `associative_array/`, `atomic/`, `endian/`, `error/`, `memory/`, `number/`, `safe_cast/`, `time/`, `uri/`, `uuid/`, `version/`, `components/` (stub). Prefer `array/` over deprecated `array_template/`. Prefer `log/afw_log.h` over `*_deprecated*`.
+`ascii/`, `code_point/` (Unicode CP properties; not UTF-8 encode), `associative_array/`, `atomic/`, `endian/`, `error/`, `memory/`, `number/`, `safe_cast/`, `time/`, `uri/`, `uuid/`, `version/`, `components/` (stub). Prefer `array/` over deprecated `array_template/`. Prefer `log/afw_log.h` over `*_deprecated*`. UTF-8 encode/NFC is `utf8/`.
 
 ## Usage modes (pick the right dirs)
 1. **Script compile/eval** → `compile/`, `value/`, `xctx/`, `pool/` (`afw-script-eval`, `afw-runtime-model`)

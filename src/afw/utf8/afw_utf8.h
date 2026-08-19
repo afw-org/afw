@@ -20,7 +20,29 @@
  * @file afw_utf8.h
  * @brief UTF-8 string types and public string helpers.
  *
- * This is the header file for AFW String functions.
+ * `afw_utf8_t` is a pointer + length. It does **not** know a pool and has
+ * no refcount. Adaptive values (`const afw_value_t *`) are what can hold
+ * a lifetime. See @ref afw_utf8 and `designs/c-naming-and-payloads.md`.
+ *
+ * ## Naming
+ *
+ * **Less in the name, more we do.** Extra words take a safety off or pick
+ * a non-default policy. **`p` only if something new lives there.**
+ *
+ * | Name | What we do |
+ * |------|------------|
+ * | `create` / `create_z` | New struct in `p`, **copy** bytes, NFC or throw |
+ * | `create_no_copy` / `_z` | New struct in `p`, **point** at `s`, NFC or throw |
+ * | `set` / `set_z` | Fill your non-const `afw_utf8_t`, copy into `p` |
+ * | `set_no_copy` / `_z` | Fill yours, point; no `p` |
+ * | `clone` | Copy an existing `afw_utf8_t` (struct + bytes) |
+ * | `forced_safe` | Always copy; encode invalid/Cc as `^hex^`; not NFC; not a value |
+ * | `create_property_name` | Same encode, then NFC (property name only) |
+ *
+ * Suffix `_z` = that **argument** is `0`-terminated. Prefix `z_` = the
+ * **result** is `utf8_z`. Two `_z`s means both.
+ *
+ * `AFW_UTF8_LITERAL` is a trusted C `"…"` initializer (no check).
  */
 
 AFW_BEGIN_DECLARES
