@@ -505,6 +505,8 @@ C `afw_utf8_t` doors now say **who owns the little struct** and **whether `.s` i
 
 `eq_ignore_case` walks each string with its own code-point offset (mixed-width such as `"iX"` vs `"İX"`). Error-object `backtrace` is `forced_safe` then NFC.
 
+LDAP filters and file-adapter paths that used to glue pieces with `AFW_UTF8_FMT` now **concat `.len`**, then **`to_utf8_z`**. An interior `0` throws at that door instead of becoming a truncated or `^00^`-encoded path/filter.
+
 [↑ Highlights](#highlights)
 
 ---

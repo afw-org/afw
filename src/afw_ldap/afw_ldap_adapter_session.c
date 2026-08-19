@@ -22,6 +22,23 @@
 #define AFW_ADAPTER_SESSION_SELF_T afw_ldap_internal_adapter_session_t
 #include "afw_adapter_session_impl_declares.h"
 
+static const afw_utf8_t impl_s_objectclass_eq =
+    AFW_UTF8_LITERAL("objectclass=");
+static const afw_utf8_t impl_s_structural_eq =
+    AFW_UTF8_LITERAL("structuralobjectclass=");
+static const afw_utf8_t impl_s_objectclass_star =
+    AFW_UTF8_LITERAL("objectclass=*");
+static const afw_utf8_t impl_s_and_wrap_open =
+    AFW_UTF8_LITERAL("(&(");
+static const afw_utf8_t impl_s_close_open =
+    AFW_UTF8_LITERAL(")(");
+static const afw_utf8_t impl_s_close2 =
+    AFW_UTF8_LITERAL("))");
+static const afw_utf8_t impl_s_open_structural =
+    AFW_UTF8_LITERAL("(structuralobjectclass=");
+static const afw_utf8_t impl_s_close =
+    AFW_UTF8_LITERAL(")");
+
 
 afw_ldap_internal_adapter_session_t *
 afw_ldap_internal_adapter_session_create(
@@ -109,33 +126,31 @@ impl_afw_adapter_session_retrieve_objects(
         }
     }
 
-    /* Determine filter_z. */
+    /* Determine filter_z. Concat .len, then C-string door (throw on 0). */
     if (object_type_id) {
         escaped_type = afw_ldap_internal_filter_escape(
             object_type_id, p, xctx);
         /* Check to see if the user wants inherited object types to be returned */
         if (AFW_OBJECT_OPTION_IS(impl_request->options, includeDescendentObjectTypes)) {
-            filter_class = afw_utf8_printf(p, xctx,
-                "objectclass=" AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(escaped_type));
+            filter_class = afw_utf8_concat(p, xctx,
+                &impl_s_objectclass_eq, escaped_type, NULL);
         } else {
-            filter_class = afw_utf8_printf(p, xctx,
-                "structuralobjectclass=" AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(escaped_type));
+            filter_class = afw_utf8_concat(p, xctx,
+                &impl_s_structural_eq, escaped_type, NULL);
         }
     } else {
-        filter_class = afw_utf8_printf(p, xctx, "objectclass=*");
+        filter_class = &impl_s_objectclass_star;
     }
     if (criteria && criteria->filter) {
         filter = afw_ldap_internal_expression_from_query_criteria(
             self, criteria->filter, xctx);
-        filter = afw_utf8_printf(p, xctx,
-            "(&(" AFW_UTF8_FMT ")(" AFW_UTF8_FMT "))",
-            AFW_UTF8_FMT_ARG(filter_class), AFW_UTF8_FMT_ARG(filter));
+        filter = afw_utf8_concat(p, xctx,
+            &impl_s_and_wrap_open, filter_class,
+            &impl_s_close_open, filter, &impl_s_close2, NULL);
     } else {
         filter = filter_class;
     }
-    filter_z = afw_utf8_z_create(filter->s, filter->len, p, xctx);
+    filter_z = afw_utf8_to_utf8_z(filter, p, xctx);
 
     /* Start search. */
     msgid = ldap_search(self->ld, base_z, LDAP_SCOPE_SUBTREE,
@@ -252,9 +267,10 @@ impl_afw_adapter_session_get_object(
     ldap_scope = LDAP_SCOPE_BASE;
     escaped_type = afw_ldap_internal_filter_escape(
         object_type_id, p, xctx);
-    filter_z = apr_psprintf(afw_pool_get_apr_pool(xctx->p),
-        "(structuralobjectclass=" AFW_UTF8_FMT ")",
-        AFW_UTF8_FMT_ARG(escaped_type));
+    filter_z = afw_utf8_to_utf8_z(
+        afw_utf8_concat(p, xctx,
+            &impl_s_open_structural, escaped_type, &impl_s_close, NULL),
+        p, xctx);
     rv = ldap_search_s(self->ld, (char *)dn_z, ldap_scope, (char *)filter_z,
         afw_ldap_internal_allattrs, 0, &res);
     if (res) {

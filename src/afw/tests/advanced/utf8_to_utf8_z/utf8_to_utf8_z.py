@@ -35,5 +35,9 @@ def run():
                 "array-z",
                 "array-to-z throws on piece or separator; utf8 concat keeps NUL",
             ),
+            (
+                "concat-z",
+                "concat .len then to_utf8_z throws if a piece has 0",
+            ),
         ],
     )

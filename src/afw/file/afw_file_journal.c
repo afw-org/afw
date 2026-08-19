@@ -12,6 +12,7 @@
  */
 
 #include "afw_internal.h"
+#include <apr_strings.h>
 
 
 
@@ -33,6 +34,28 @@ typedef struct afw_adapter_journal_lock_s {
     unsigned char filler;          /* filler - ignore                  */
 } afw_adapter_journal_lock_t;
 
+
+static const afw_utf8_t impl_s_path_to_first = AFW_UTF8_LITERAL(
+    AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY
+    "/path_to_first_journal_file");
+static const afw_utf8_t impl_s_journal_slash = AFW_UTF8_LITERAL(
+    AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY "/");
+
+static const afw_utf8_z_t *
+impl_journal_path_z(
+    const afw_utf8_t *root,
+    const afw_utf8_z_t *tail_z,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_utf8_t tail;
+
+    tail.s = (const afw_utf8_octet_t *)tail_z;
+    tail.len = tail_z ? strlen((const char *)tail_z) : 0;
+    return afw_utf8_to_utf8_z(
+        afw_utf8_concat(p, xctx, root, &impl_s_journal_slash, &tail, NULL),
+        p, xctx);
+}
 
 const afw_adapter_journal_inf_t * afw_file_internal_get_journal_inf()
 {
@@ -179,12 +202,16 @@ impl_open_and_retrieve_peer_object(
     apr_status_t rv;
     afw_size_t len;
 
-    *full_peer_path_z = afw_utf8_z_printf(p, xctx,
-        AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER
-        "/" AFW_UTF8_FMT AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(adapter->root),
-        AFW_UTF8_FMT_ARG(consumer_id),
-        AFW_UTF8_FMT_OPTIONAL_ARG(adapter->filename_suffix));
+    *full_peer_path_z = afw_utf8_to_utf8_z(
+        afw_utf8_concat(p, xctx,
+            adapter->root,
+            AFW_OBJECT_S_OBJECT_TYPE_ID_PROVISIONING_PEER,
+            afw_s_a_slash,
+            consumer_id,
+            adapter->filename_suffix
+                ? adapter->filename_suffix : afw_s_a_empty_string,
+            NULL),
+        p, xctx);
 
     AFW_ERROR_FOOTPRINT("apr_stat()");
     rv = apr_stat(&finfo, *full_peer_path_z, APR_FINFO_SIZE,
@@ -376,10 +403,8 @@ impl_afw_adapter_journal_add_entry_internal(
     first_entry = rv == APR_EOF;
     if (!first_entry && rv != APR_SUCCESS) goto error_lock_apr;
     if (first_entry) {
-        first_entry_save_path = afw_utf8_printf(xctx->p, xctx,
-            AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY
-            "/path_to_first_journal_file",
-            AFW_UTF8_FMT_ARG(adapter->root));
+        first_entry_save_path = afw_utf8_concat(xctx->p, xctx,
+            adapter->root, &impl_s_path_to_first, NULL);
         temp_raw.ptr = (const afw_byte_t *)relative_entry_path_z;
         temp_raw.size = strlen(relative_entry_path_z);
         afw_file_from_memory(first_entry_save_path, &temp_raw,
@@ -404,11 +429,14 @@ impl_afw_adapter_journal_add_entry_internal(
         || lock.hour    != now.tm_hour)
         )
     {
-        old_full_entry_path_z = afw_utf8_z_printf(p, xctx,
-            AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY
-            "/y%02d%02d/m%02d/d%02d/h%02d",
-            AFW_UTF8_FMT_ARG(adapter->root),
-            lock.century, lock.year, lock.month, lock.day, lock.hour);
+        char ymdh[32];
+
+        apr_snprintf(ymdh, sizeof(ymdh),
+            "y%02d%02d/m%02d/d%02d/h%02d",
+            lock.century, lock.year, lock.month, lock.day,
+            lock.hour);
+        old_full_entry_path_z = impl_journal_path_z(
+            adapter->root, ymdh, p, xctx);
     }
 
     /* Update lock struct. */
@@ -423,20 +451,20 @@ impl_afw_adapter_journal_add_entry_internal(
     lock.usec    = afw_endian_native_to_big_uint32(now.tm_usec);
 
     /* Path to file that will hold event. */
-    full_entry_path_z = afw_utf8_z_printf(p, xctx,
-        AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY "/%s",
-        AFW_UTF8_FMT_ARG(adapter->root), relative_entry_path_z);
+    full_entry_path_z = impl_journal_path_z(
+        adapter->root, relative_entry_path_z, p, xctx);
 
     /*
      * If switching journal file or first entry, make sure all directories
      * exist.
      */
     if (old_full_entry_path_z || first_entry) {
-        full_entry_dir_path_z = afw_utf8_z_printf(p, xctx,
-            AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY
-            "/y%02d%02d/m%02d/d%02d/",
-            AFW_UTF8_FMT_ARG(adapter->root),
+        char ymd[24];
+
+        apr_snprintf(ymd, sizeof(ymd), "y%02d%02d/m%02d/d%02d/",
             lock.century, lock.year, lock.month, lock.day);
+        full_entry_dir_path_z = impl_journal_path_z(
+            adapter->root, ymd, p, xctx);
         AFW_ERROR_FOOTPRINT("apr_dir_make_recursive()");
         rv = apr_dir_make_recursive(full_entry_dir_path_z,
             APR_FPROT_OS_DEFAULT, apr_p);
@@ -769,10 +797,8 @@ impl_afw_adapter_journal_get_entry_internal(
         const afw_utf8_z_t *first_entry_save_path_z;
         apr_finfo_t first_finfo;
 
-        first_entry_save_path = afw_utf8_printf(xctx->p, xctx,
-            AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY
-            "/path_to_first_journal_file",
-            AFW_UTF8_FMT_ARG(adapter->root));
+        first_entry_save_path = afw_utf8_concat(xctx->p, xctx,
+            adapter->root, &impl_s_path_to_first, NULL);
         first_entry_save_path_z = afw_utf8_to_utf8_z(
             first_entry_save_path, p, xctx);
         AFW_ERROR_FOOTPRINT("apr_stat()");
