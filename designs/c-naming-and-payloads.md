@@ -61,6 +61,10 @@ Env / FCGI names: only three `create_property_name` callers. Documented in objec
 
 Managed scalar headers in `xctx->p` only work if we actually `free` (including `AFW_TRY`). That will not last #2 as the *home* for those headers; assign should clone into the destination pool.
 
+Do **not** rename `afw_value_create_managed_<dt>` to `afw_value_create_<dt>` on this campaign. `afw_value_create_*` already means “new value” (graph nodes, `from_external`, `now_utc`). Most C uses `create_unmanaged_*`. Making managed the short name would freeze the `xctx->p` experiment as the default; #2 may drop managed scalars. Then the short value create can be the **pool** door (today’s unmanaged). `managed` stays extra words only where a hold is real (object/array instance, maybe large utf8).
+
+**Gotcha:** a walker that treats `afw_utf8_t->s` as a C string needs a trailing `0`. Old `create` could point at a `z` buffer. New `create` copies **without** a `0`. The RQL origin string uses `create_no_copy` onto `afw_utf8_z_create` for that.
+
 ## Code points vs UTF-8
 
 Unicode **code-point** tests (identifier, whitespace, Cc) live in **`src/afw/code_point/`** (`afw_code_point.h`). They take an `afw_code_point_t`, not octets. UTF-8 encode/decode stays in `afw_utf8`.
