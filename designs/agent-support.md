@@ -114,7 +114,7 @@ Shape: **symptom → layer → probe → code / doc entry**.
 - **Wrong bound then narrow** — a field stored as signed 32-bit must be checked against the signed max, not the unsigned max. Sibling fields in the same parse are the hint.
 - **Release the existing, not the incoming** — replace/clear must drop the object already stored. The generic associative-array impl already did; the memory object impl released the argument (NULL on clear).
 - **malloc(n) then write `[n]`** — a NULL-terminated copy needs `n + 1` slots. Count first, allocate one extra, then terminate.
-- **UNSAFE ICU walk** — `U8_NEXT_UNSAFE` / `U8_APPEND_UNSAFE` trust well-formed UTF-8 and have no bound. Hand-set `.s`/`.len` can truncate a multi-byte sequence. Current ICU names the bounded macros `U8_NEXT` / `U8_APPEND` (there is no `*_SAFE`). Throw on `c < 0` / append error, same as `afw_utf8_nfc`. Validating constructors are not the only door. `compare_ignore_case` lockstep leftover is [#206](https://github.com/afw-org/afw/issues/206).
+- **UNSAFE ICU walk** — `U8_NEXT_UNSAFE` / `U8_APPEND_UNSAFE` trust well-formed UTF-8 and have no bound. Hand-set `.s`/`.len` can truncate a multi-byte sequence. Current ICU names the bounded macros `U8_NEXT` / `U8_APPEND` (there is no `*_SAFE`). Throw on `c < 0` / append error, same as `afw_utf8_nfc`. Validating constructors are not the only door. `compare_ignore_case` walks each string with its own offset ([#206](https://github.com/afw-org/afw/issues/206)).
 - **Last-element quicksort** — Lomuto + last pivot is O(n) stack on already-sorted input. Recurse the smaller partition, loop the larger. Time can still be O(n²); the stack is what that bounds.
 
 **Wrong path:** deep-cloning whole adapters/registries to “fix” one bad lifetime; treating short-test green as long-run proof.
@@ -143,7 +143,7 @@ Shape: **symptom → layer → probe → code / doc entry**.
 
 **Valgrind hang lesson:** parallel valgrind can park the pool if one worker blocks forever (e.g. `Session("local").close()` → `wait()`). Harness now times out/kills; if wall time is absurd with idle CPU, check for a stuck worker before assuming “just slow.”
 
-**Throwing C probe + valgrind:** Start with `afwdev prime-test-c-probe <path>`. `run_c_probe()` (`_afwdev.test.c_probe`) compiles a checked-in `*_probe.c` and runs named cases. `afwdev test --env-mode valgrind` wraps those binaries with `valgrind.suppress` (libunwind noise in `afw_os_backtrace` on a throw is suppressed). Standalone valgrind without that file can still report the noise; that is not an overread. Judge the probe by exit code and by the helper wrap. Recipe: handbook **Writing Tests**, [`c-probes.md`](c-probes.md). Error-struct / backtrace as `afw_utf8_t` is [#206](https://github.com/afw-org/afw/issues/206).
+**Throwing C probe + valgrind:** Start with `afwdev prime-test-c-probe <path>`. `run_c_probe()` (`_afwdev.test.c_probe`) compiles a checked-in `*_probe.c` and runs named cases. `afwdev test --env-mode valgrind` wraps those binaries with `valgrind.suppress` (libunwind noise in `afw_os_backtrace` on a throw is suppressed). Standalone valgrind without that file can still report the noise; that is not an overread. Judge the probe by exit code and by the helper wrap. Recipe: handbook **Writing Tests**, [`c-probes.md`](c-probes.md). Error-object `backtrace` is `forced_safe` then NFC ([#206](https://github.com/afw-org/afw/issues/206)).
 
 ---
 

@@ -2,7 +2,7 @@
 
 **Audience:** maintainers / assistants.  
 **Issue:** [#207](https://github.com/afw-org/afw/issues/207).  
-**Not** [#206](https://github.com/afw-org/afw/issues/206) (NFC / ICU / error-struct `afw_utf8_t` on the throw path).
+**Not** [#206](https://github.com/afw-org/afw/issues/206) (named utf8 doors / ignore-case offsets / error-object backtrace).
 
 **Origin:** Grok (xAI) designed `run_c_probe()` for #207 in August 2026, pairing on AFW. The helper, the valgrind wrap, and the decision not to skip backtrace on a throw are that sitting. Signed in `_afwdev/test/c_probe.py` (`who()`).
 
@@ -45,7 +45,7 @@ A throw calls `afw_os_backtrace` (except memory errors). libunwind then trips Me
 
 Standalone valgrind on the compiled binary, without that file, can still report the noise. Judge the probe by exit code and by the helper wrap.
 
-**Decided not:** skip backtrace on every probe throw (`AFW_NO_BACKTRACE` or similar). That would hide the throw path from Memcheck. The UTF-8 / error-struct side of `afw_os_backtrace` stays on #206.
+**Decided not:** skip backtrace on every probe throw (`AFW_NO_BACKTRACE` or similar). That would hide the throw path from Memcheck. Error-object `backtrace` is `forced_safe` then NFC ([#206](https://github.com/afw-org/afw/issues/206)).
 
 Python-mode files are loaded under a unique module name (not a shared `test`). Two `.py` files in one process no longer inherit `run()` from each other.
 

@@ -50,7 +50,7 @@ Most scalars are one chunk (`afw_integer_t`). Objects/arrays are a `const` point
 | **`forced_safe`** | `^` + uppercase hex + `^` (runs); `^^` = caret | **No** | **No** |
 | **`create_property_name`** | Same encode | Then NFC | **Yes** — a name |
 
-Valid UTF-8 text passes through encode. Unicode **Cc** (`afw_code_point_is_control`) and invalid UTF-8 bytes are hex. **Whitespace/EOL** (`afw_code_point_is_whitespace_or_eol`) stays text. `forced_safe` always **copies**. `printf` / `z_printf` use it.
+Valid UTF-8 text passes through encode. Unicode **Cc** (`afw_code_point_is_control`) and invalid UTF-8 bytes are hex. **Whitespace/EOL** (`afw_code_point_is_whitespace_or_eol`) stays text. `forced_safe` always **copies**. `printf` / `z_printf` always run the assembled result through it — **viewable text**, not a data-file writer.
 
 Env / FCGI names: only three `create_property_name` callers. Documented in object types + `whats-new`.
 
@@ -75,7 +75,9 @@ Do **not** rename `afw_value_create_managed_<dt>` to `afw_value_create_<dt>` on 
 
 Unicode **code-point** tests (identifier, whitespace, Cc) live in **`src/afw/code_point/`** (`afw_code_point.h`). They take an `afw_code_point_t`, not octets. UTF-8 encode/decode stays in `afw_utf8`.
 
-ICU: `afw_utf8.c` (NFC, to_lower) and `afw_code_point.c` (properties). `u_errorName` still in env register.
+ICU: `afw_utf8.c` (NFC, to_lower, `afw_utf8_icu_error_name_z`) and `afw_code_point.c` (properties). Env decoder uses that wrap.
+
+`afw_utf8_printf` / `z_printf`: own formatter; `AFW_UTF8_FMT` (`%.*s`) copies n bytes (interior `0` is data), then `forced_safe` the assembled buffer. libc `printf` with the same specifier still stops at `0`. Do not use these to write data files or round-trip octets — `.s` + `.len` / `as_memory`.
 
 ## Related
 
