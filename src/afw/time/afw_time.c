@@ -1052,7 +1052,7 @@ afw_date_internal_to_utf8(
     len += impl_set_internal_to_utf8_time_zone(&date->time_zone, &to[len],
         xctx);
 
-    return afw_utf8_create_copy(&to[0], len, p, xctx);
+    return afw_utf8_create(&to[0], len, p, xctx);
 }
 
 
@@ -1090,7 +1090,7 @@ afw_dateTime_internal_to_utf8(
     len += impl_set_internal_to_utf8_time_zone(&dateTime->time_zone, &to[len],
         xctx);
 
-    return afw_utf8_create_copy(&to[0], len, p, xctx);
+    return afw_utf8_create(&to[0], len, p, xctx);
 }
 
 
@@ -1225,7 +1225,7 @@ afw_dayTimeDuration_internal_to_utf8(
     }
 
     /* Return result. */
-    return afw_utf8_create_copy(s, c - s, p, xctx);
+    return afw_utf8_create(s, c - s, p, xctx);
 }
 
 
@@ -1376,7 +1376,7 @@ afw_time_internal_to_utf8(
     len += impl_set_internal_to_utf8_time_zone(&time->time_zone, &to[len],
         xctx);
 
-    return afw_utf8_create_copy(&to[0], len, p, xctx);
+    return afw_utf8_create(&to[0], len, p, xctx);
 }
 
 
@@ -1449,7 +1449,7 @@ afw_yearMonthDuration_internal_to_utf8(
     }
 
     /* Return result. */
-    return afw_utf8_create_copy(s, c - s, p, xctx);
+    return afw_utf8_create(s, c - s, p, xctx);
 }
 
 
@@ -2054,7 +2054,7 @@ afw_dateType_internal_to_generalized_time(
     len += impl_set_internal_to_utf8_time_zone(&dateTime->time_zone, &to[len],
         xctx);
 
-    return afw_utf8_create_copy(&to[0], len, p, xctx);
+    return afw_utf8_create(&to[0], len, p, xctx);
 }
 
 

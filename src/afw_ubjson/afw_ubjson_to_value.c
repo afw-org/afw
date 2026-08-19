@@ -225,7 +225,7 @@ const afw_utf8_t * afw_ubjson_parse_string(
             "Error: string length exceeds input.", xctx);
     }
 
-    string = afw_utf8_create_copy((const afw_utf8_octet_t *)parser->ptr, len, parser->p, xctx);
+    string = afw_utf8_create((const afw_utf8_octet_t *)parser->ptr, len, parser->p, xctx);
   
     parser->ptr += len;
     parser->cursor += len;
@@ -438,7 +438,7 @@ const afw_value_t * afw_ubjson_parse_value(
         /* Char */
         case AFW_UBJSON_MARKER_CHAR:
             c = afw_ubjson_next_byte(parser, xctx);
-            string = afw_utf8_create_copy((const afw_utf8_octet_t *)&c, 1, parser->p, xctx);
+            string = afw_utf8_create((const afw_utf8_octet_t *)&c, 1, parser->p, xctx);
             value = afw_value_create_unmanaged_string(string, parser->p, xctx);
             break;
 

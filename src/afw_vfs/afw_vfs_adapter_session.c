@@ -514,7 +514,7 @@ impl_read_file_object(
                 afw_vfs_s_data, data_string, xctx);
         }
         else {
-            data_binary = afw_memory_create(buff, size_read, p, xctx);
+            data_binary = afw_memory_create_no_copy(buff, size_read, p, xctx);
             afw_object_set_property_as_hexBinary(object,
                 afw_vfs_s_data, data_binary, xctx);
         }

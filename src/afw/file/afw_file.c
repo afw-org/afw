@@ -62,7 +62,7 @@ afw_file_insure_full_path(const afw_utf8_t *path,
         full_path = afw_utf8_printf(p, xctx, "%s/", full_path_z);
     }
     else {
-        full_path = afw_utf8_create_copy(full_path_z, AFW_UTF8_Z_LEN, p, xctx);
+        full_path = afw_utf8_create(full_path_z, AFW_UTF8_Z_LEN, p, xctx);
     }
     return full_path;  
 }

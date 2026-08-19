@@ -75,7 +75,7 @@ impl_get_token(afw_command_local_parse_t *x)
             if (*x->cursor == '"') {
                 /** @todo need to deal with escaped stuff. */
                 x->token_type = afw_command_local_parse_token_type_string;
-                x->string = afw_utf8_create_copy(
+                x->string = afw_utf8_create(
                     (const afw_utf8_octet_t *)start,
                     (x->cursor - start),
                     x->p, x->xctx);
@@ -96,7 +96,7 @@ impl_get_token(afw_command_local_parse_t *x)
             *x->cursor == ':')
         {
             x->token_type = afw_command_local_parse_token_type_string;
-            x->string = afw_utf8_create_copy(
+            x->string = afw_utf8_create(
                 (const afw_utf8_octet_t *)start,
                 (x->cursor - start),
                 x->p, x->xctx);

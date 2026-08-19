@@ -202,7 +202,7 @@ afw_compile_parse_Template(afw_compile_parser_t *parser)
         if ((substitution || cp < 0) &&
             !afw_compile_cursor_equal(string_cursor))
         {
-            string = afw_utf8_create_copy(
+            string = afw_utf8_create(
                 afw_compile_source_buffer_at(string_cursor),
                 afw_compile_source_buffer_length_from(string_cursor),
                 parser->p, parser->xctx);
@@ -318,7 +318,7 @@ afw_compile_parse_TemplateString(afw_compile_parser_t *parser)
         /* If substitution or end and string is not empty, push string value. */
         if ((substitution || cp == '`') && parser->s->nelts > 0)
         {
-            string = afw_utf8_create_copy(
+            string = afw_utf8_create(
                 (afw_utf8_octet_t *)parser->s->elts, parser->s->nelts,
                 parser->p, parser->xctx);
             APR_ARRAY_PUSH(values, const afw_value_t *) =

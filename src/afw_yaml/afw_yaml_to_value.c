@@ -150,7 +150,7 @@ const afw_value_t * afw_yaml_parse_scalar(
                     }
                 }
                 else {
-                    str = afw_utf8_create_copy(s, len, parser->p, xctx);
+                    str = afw_utf8_create(s, len, parser->p, xctx);
                     value = afw_value_create_unmanaged_string(
                         str, parser->p, xctx);
                 }
@@ -164,7 +164,7 @@ const afw_value_t * afw_yaml_parse_scalar(
         case YAML_DOUBLE_QUOTED_SCALAR_STYLE:
         case YAML_ANY_SCALAR_STYLE:
         default:
-            str = afw_utf8_create_copy(s, len, parser->p, xctx);
+            str = afw_utf8_create(s, len, parser->p, xctx);
             value = afw_value_create_unmanaged_string(str, parser->p, xctx);
             break;
     }

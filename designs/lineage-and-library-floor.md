@@ -47,13 +47,12 @@ This development container is **Ubuntu 22.04** (ICU 70.1, APR 1.7 as of 2026-08)
 
 ## Where ICU belongs
 
-Keep ICU (`unicode/*.h`, `U8_*`, `u_*`, `unorm2_*`) in **`src/afw/utf8/`** (`afw_utf8.c` / `afw_utf8.h`) except rare overrides.
-
-On current `develop`, the only other core includes are:
+Keep ICU (`unicode/*.h`, `U8_*`, `u_*`, `unorm2_*`) in **`src/afw/utf8/`** (NFC, to_lower, UTF-8 walk) and **`src/afw/code_point/`** (identifier / whitespace / Cc — encoding-neutral). Do not pull `unicode/*.h` into every TU.
 
 | Place | Use |
 |-------|-----|
-| `src/afw/compile/afw_compile_code_point.c` | `u_hasBinaryProperty` / `u_charType` for identifier start/continue and whitespace |
+| `src/afw/utf8/afw_utf8.c` | `U8_*`, `unorm2_*`, `u_str*`, `u_tolower`, NFC quick check |
+| `src/afw/code_point/afw_code_point.c` | `u_hasBinaryProperty` / `u_charType` |
 | `src/afw/environment/afw_environment_register_core.c` | `u_errorName` for the ICU error-code decoder |
 
-A later pass can wrap those through `afw_utf8.h` so the rest of core does not include ICU. Prefer **functions** in that header over macros that pull `unicode/*.h` into every translation unit. Owned by [#206](https://github.com/afw-org/afw/issues/206).
+`u_errorName` can wait for an `afw_utf8_*` wrap. [#206](https://github.com/afw-org/afw/issues/206).

@@ -538,7 +538,7 @@ impl_evaluation_backtrace(
     }
     
     afw_utf8_writer_current_string(w, &s, xctx);
-    result = afw_utf8_create_copy(s.s, s.len, p, xctx);
+    result = afw_utf8_create(s.s, s.len, p, xctx);
     afw_writer_release(w, xctx);
     return result;
 }
@@ -944,7 +944,7 @@ afw_error_add_to_object(
     if (error->rv_source_id_z) {
         afw_object_set_property_as_string(object,
             afw_s_rvSourceId,
-            afw_utf8_create_copy(error->rv_source_id_z,
+            afw_utf8_create(error->rv_source_id_z,
                 AFW_UTF8_Z_LEN, p, xctx),
             xctx);
     }
@@ -957,14 +957,14 @@ afw_error_add_to_object(
     if (error->rv_decoded_z) {
         afw_object_set_property_as_string(object,
             afw_s_rvDecoded,
-            afw_utf8_create_copy(error->rv_decoded_z,
+            afw_utf8_create(error->rv_decoded_z,
                 AFW_UTF8_Z_LEN, p, xctx),
             xctx);
     }
 
     afw_object_set_property_as_string(object,
         afw_s_message,
-        afw_utf8_create_copy(error->message_z,
+        afw_utf8_create(error->message_z,
             AFW_UTF8_Z_LEN, p, xctx),
         xctx);
 

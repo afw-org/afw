@@ -245,7 +245,7 @@ afw_file_path_resolve_rootFilePaths(
             AFW_THROW_ERROR_Z(general,
                 "Internal error resolving rootFilePaths.", xctx);
         }
-        return afw_utf8_create_copy(root_z, AFW_UTF8_Z_LEN, p, xctx);
+        return afw_utf8_create(root_z, AFW_UTF8_Z_LEN, p, xctx);
     }
 
     addpath_z = apr_pstrndup(apr_p, (const char *)rem_s, rem_len);
@@ -276,5 +276,5 @@ afw_file_path_resolve_rootFilePaths(
             (int)logical_path->len, logical_path->s);
     }
 
-    return afw_utf8_create_copy(merged_z, AFW_UTF8_Z_LEN, p, xctx);
+    return afw_utf8_create(merged_z, AFW_UTF8_Z_LEN, p, xctx);
 }

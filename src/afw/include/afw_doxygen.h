@@ -126,6 +126,7 @@
  *
  * Start with `afw_value.h`. Kind layouts for core maintainers:
  * `afw_value_internal.h` and generated data-type bindings.
+ * Payloads vs values: `designs/c-naming-and-payloads.md`.
  *
  * @{
  */
@@ -345,14 +346,17 @@
  *
  * Compiler/parser internals for libafw only (not extension API).
  */
-/**
- * @defgroup afw_code_point Code points (compiler)
- * @ingroup afw_compile
- *
- * Unicode code-point helpers used by the Adaptive Script lexer/parser.
- */
-
 /** @} */
+
+/**
+ * @defgroup afw_code_point Code points
+ *
+ * Unicode **code-point** property tests (identifier, whitespace, EOL,
+ * general category Cc). Encoding-neutral: they take an `afw_code_point_t`,
+ * not UTF-8 octets. UTF-8 encode/decode lives in @ref afw_utf8.
+ *
+ * Home: `src/afw/code_point/` (`afw_code_point.h`).
+ */
 
 /**
  * @defgroup afw_request Request & Handlers
@@ -526,11 +530,12 @@
 /**
  * @defgroup afw_memory Memory
  *
- * Low-level memory helpers used with pools (copy, set, compare, etc.).
+ * Untyped pointer+length (`afw_memory_t`) plus copy/encode helpers.
  *
- * Prefer pool allocation (`afw_pool_*`) for AFW-owned lifetimes. These
- * utilities are for byte-oriented work once you have a buffer from a pool
- * or temporary stack storage.
+ * Same dest/copy verbs as @ref afw_utf8 (`create` copies, `create_no_copy`
+ * points, `set` / `set_no_copy`) but **no NFC** and no `forced_safe`.
+ * Cast utf8 → memory with `afw_utf8_as_memory`; the other way is
+ * `afw_utf8_from_memory` (NFC). There is no `afw_raw_t`.
  */
 
 /**
@@ -595,7 +600,26 @@
  * UTF-8 strings (`afw_utf8_t`) and NFC normalization helpers.
  *
  * Most AFW text is UTF-8 with length + pointer (not always NUL-terminated).
- * Use create/compare helpers rather than assuming C string semantics.
+ * The little struct has **no pool and no refcount**. Lifetime is whoever
+ * owns the bytes (a pool, a value header, a stack, a literal). Adaptive
+ * **values** (`afw_value_*`) are what can `get_reference` / release.
+ *
+ * **Naming (short name does more):**
+ *
+ * | Door | Dest | Bytes |
+ * |------|------|--------|
+ * | `create` / `create_z` | New `const` in `p` | Copy + NFC (or throw) |
+ * | `create_no_copy` / `_z` | New `const` in `p` | Point at `s`; NFC or throw |
+ * | `set` / `set_z` | Caller `afw_utf8_t *` | Copy into `p` + NFC |
+ * | `set_no_copy` / `_z` | Caller `afw_utf8_t *` | Point; no `p` |
+ * | `clone` | New `const` in `p` | Copy struct + `.s` |
+ * | `forced_safe` | create/set (always copy) | Encode invalid/Cc as `^hex^`; not NFC; not a value |
+ * | `create_property_name` | New `const` in `p` | Same encode, then NFC (is a name) |
+ *
+ * Suffix `_z` = that argument is `0`-terminated. Prefix `z_` = result is
+ * `utf8_z`. `p` only if something new lives there.
+ *
+ * See `afw_utf8.h` and `designs/c-naming-and-payloads.md`.
  */
 
 /**

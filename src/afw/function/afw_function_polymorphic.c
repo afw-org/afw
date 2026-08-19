@@ -1828,7 +1828,7 @@ afw_function_execute_regexp_match(
     rx = xmlRegexpCompile(regexp_z);
     if (rx == NULL) {
         err = xmlGetLastError();
-        err_message = afw_utf8_create_copy(err->message, AFW_UTF8_Z_LEN,
+        err_message = afw_utf8_create(err->message, AFW_UTF8_Z_LEN,
             x->p, x->xctx);
         xmlResetError(err);
         xmlRegFreeRegexp(rx);

@@ -3,7 +3,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 are exposed as _NONUTF8_ followed by uppercase hex of the raw name bytes.",
+    "description": "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 use a forced_safe encoding: valid text stays, invalid runs are ^ plus uppercase hex plus ^. A caret in a valid name becomes ^^.",
     "objectType": "_AdaptiveEnvironmentVariables_",
     "otherProperties": {
     }

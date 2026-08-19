@@ -631,7 +631,7 @@ afw_value_create_from_external_octets(
 
     /* Valid UTF-8 → NFC string value. */
     if (afw_utf8_is_valid(s, len, xctx)) {
-        string = afw_utf8_create_copy(s, len, p, xctx);
+        string = afw_utf8_create(s, len, p, xctx);
         return afw_value_create_unmanaged_string(string, p, xctx);
     }
 

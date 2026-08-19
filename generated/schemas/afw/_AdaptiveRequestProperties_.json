@@ -3,8 +3,8 @@
     "$defs": {
         "_AdaptiveRequestProperties_": {
             "additionalProperties": true,
-            "description": "Object type for adaptive request properties (per-request CGI/FCGI-like parameters and headers). Known properties are strings. Additional properties from the request environment are string when valid UTF-8 (NFC), otherwise hexBinary; non-UTF-8 names use _NONUTF8_ plus uppercase hex of the raw name.",
-            "markdownDescription": "Object type for adaptive request properties (per-request CGI/FCGI-like parameters and headers). Known properties are strings. Additional properties from the request environment are string when valid UTF-8 (NFC), otherwise hexBinary; non-UTF-8 names use _NONUTF8_ plus uppercase hex of the raw name.",
+            "description": "Object type for adaptive request properties (per-request CGI/FCGI-like parameters and headers). Known properties are strings. Additional properties from the request environment are string when valid UTF-8 (NFC), otherwise hexBinary; non-UTF-8 names use a forced_safe encoding (^ plus uppercase hex plus ^ for invalid runs; ^^ is a literal caret).",
+            "markdownDescription": "Object type for adaptive request properties (per-request CGI/FCGI-like parameters and headers). Known properties are strings. Additional properties from the request environment are string when valid UTF-8 (NFC), otherwise hexBinary; non-UTF-8 names use a forced_safe encoding (^ plus uppercase hex plus ^ for invalid runs; ^^ is a literal caret).",
             "properties": {
                 "ACCEPT": {
                     "description": "A list of the media types the client can accept.",
@@ -565,8 +565,8 @@
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": true,
-    "description": "Object type for adaptive request properties (per-request CGI/FCGI-like parameters and headers). Known properties are strings. Additional properties from the request environment are string when valid UTF-8 (NFC), otherwise hexBinary; non-UTF-8 names use _NONUTF8_ plus uppercase hex of the raw name.",
-    "markdownDescription": "Object type for adaptive request properties (per-request CGI/FCGI-like parameters and headers). Known properties are strings. Additional properties from the request environment are string when valid UTF-8 (NFC), otherwise hexBinary; non-UTF-8 names use _NONUTF8_ plus uppercase hex of the raw name.",
+    "description": "Object type for adaptive request properties (per-request CGI/FCGI-like parameters and headers). Known properties are strings. Additional properties from the request environment are string when valid UTF-8 (NFC), otherwise hexBinary; non-UTF-8 names use a forced_safe encoding (^ plus uppercase hex plus ^ for invalid runs; ^^ is a literal caret).",
+    "markdownDescription": "Object type for adaptive request properties (per-request CGI/FCGI-like parameters and headers). Known properties are strings. Additional properties from the request environment are string when valid UTF-8 (NFC), otherwise hexBinary; non-UTF-8 names use a forced_safe encoding (^ plus uppercase hex plus ^ for invalid runs; ^^ is a literal caret).",
     "properties": {
         "ACCEPT": {
             "description": "A list of the media types the client can accept.",

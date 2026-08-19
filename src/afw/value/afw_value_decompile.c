@@ -36,7 +36,7 @@ afw_value_decompile_to_string(
         writer = afw_utf8_writer_create(tab, p, xctx);
         afw_value_decompile(value, writer, xctx);
         afw_utf8_writer_current_string(writer, &current_string, xctx);
-        result = afw_utf8_create_copy(current_string.s, current_string.len,
+        result = afw_utf8_create(current_string.s, current_string.len,
             p, xctx);
         afw_writer_release(writer, xctx);
     }

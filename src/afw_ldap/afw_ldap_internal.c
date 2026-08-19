@@ -272,7 +272,7 @@ afw_ldap_internal_create_object_from_entry(
             a = ldap_next_attribute(self->ld, e, be))
         {
             bv = ldap_get_values_len(self->ld, e, a);
-            property_name = afw_utf8_create_copy(a, AFW_UTF8_Z_LEN,
+            property_name = afw_utf8_create(a, AFW_UTF8_Z_LEN,
                 o->p, xctx);
 
             /* Get attribute for this property name if there is one. */

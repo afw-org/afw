@@ -429,7 +429,7 @@ afw_compile_skip_ws(afw_compile_parser_t *parser)
                 }
             }
 
-            else if (!afw_compile_code_point_is_WhitespaceOrEOL(cp))
+            else if (!afw_code_point_is_whitespace_or_eol(cp))
             {
                 afw_compile_restore_cursor(start_offset);
                 state = state_finished;
@@ -497,7 +497,7 @@ afw_compile_skip_ws(afw_compile_parser_t *parser)
                 parser->last_octet_eof = false;
                 state = state_finished;
             }
-            else if (afw_compile_code_point_is_EOL(cp)) {
+            else if (afw_code_point_is_eol(cp)) {
                 state = state_ws;
                 if (parser->get_token_before_eol) {
                     parser->get_token_found_eol = true;
@@ -1238,7 +1238,7 @@ reserved_identifier:
     /* Make sure reserved identifier is not followed by id_continue cp. */
     afw_compile_save_cursor(start_offset);
     cp = afw_compile_get_code_point();
-    if (afw_compile_code_point_is_IdentifierContinue(cp)) goto error;
+    if (afw_code_point_is_identifier_continue(cp)) goto error;
     afw_compile_restore_cursor(start_offset);
     return true;
 
@@ -1257,14 +1257,14 @@ impl_get_identifier(afw_compile_parser_t *parser)
     /* Scan for end of identifier. */
     afw_compile_save_cursor(start_offset);
     cp = afw_compile_get_code_point();
-    if (!afw_compile_code_point_is_IdentifierStart(cp)) {
+    if (!afw_code_point_is_identifier_start(cp)) {
         AFW_COMPILE_THROW_ERROR_Z("Invalid start code point for identifier");
     }
     for (;;) {
         afw_compile_save_cursor(save);
         cp = afw_compile_get_code_point();
         if (cp < 0) break;
-        if (!afw_compile_code_point_is_IdentifierContinue(cp)) {
+        if (!afw_code_point_is_identifier_continue(cp)) {
             afw_compile_restore_cursor(save);
             break;
         }
@@ -1915,7 +1915,7 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
                 afw_compile_token_type_compile_time_substitute_start;
         }
         else if (cp2 >= 0 &&
-            afw_compile_code_point_is_IdentifierStart(cp2))
+            afw_code_point_is_identifier_start(cp2))
         {
             /* Name after '#'; do not treat as special literal (true, NaN, …). */
             afw_compile_restore_cursor(temp_cursor);
@@ -2284,7 +2284,7 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
         break;
 
     default:
-        if (afw_compile_code_point_is_IdentifierStart(cp)) {
+        if (afw_code_point_is_identifier_start(cp)) {
             afw_compile_restore_cursor(entry_cursor);
             impl_parse_identifier(parser);
         }
@@ -2527,7 +2527,7 @@ afw_compile_get_string_literal(
 
     result = apr_hash_get(parser->shared->string_literals, s, len);
     if (!result) {
-        result = afw_utf8_create_copy(s, len,
+        result = afw_utf8_create(s, len,
             parser->p, parser->xctx);
         apr_hash_set(parser->shared->string_literals,
             (const void *)result->s,

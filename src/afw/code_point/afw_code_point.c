@@ -1,14 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Unicode Code Point Support
+ * Adaptive Framework Unicode code point support
  *
- * Copyright (c) 2010-2024 Clemson University
+ * Copyright (c) 2010-2026 Clemson University
  *
  */
 
 /**
- * @file afw_compile_code_point.c
- * @brief Adaptive framework unicode code point support.
+ * @file afw_code_point.c
+ * @brief Unicode code-point property tests (ICU lives here and in utf8).
  */
 
 #include "afw_internal.h"
@@ -16,9 +16,8 @@
 #include <unicode/utypes.h>
 
 
-/* Determine if codepoint is one that can start an afw identifier. */
 AFW_DEFINE(afw_boolean_t)
-afw_compile_code_point_is_IdentifierStart(afw_code_point_t cp)
+afw_code_point_is_identifier_start(afw_code_point_t cp)
 {
     return u_hasBinaryProperty(cp, UCHAR_ID_START)
         || cp == '$'
@@ -26,9 +25,8 @@ afw_compile_code_point_is_IdentifierStart(afw_code_point_t cp)
 }
 
 
-/* Determine if codepoint is one that can continue an afw identifier. */
 AFW_DEFINE(afw_boolean_t)
-afw_compile_code_point_is_IdentifierContinue(afw_code_point_t cp)
+afw_code_point_is_identifier_continue(afw_code_point_t cp)
 {
     return u_hasBinaryProperty(cp, UCHAR_ID_CONTINUE)
         || cp == '$'
@@ -37,10 +35,9 @@ afw_compile_code_point_is_IdentifierContinue(afw_code_point_t cp)
 }
 
 
-/* Determine if codepoint matches AFW EOL production. */
 AFW_DEFINE(afw_boolean_t)
-afw_compile_code_point_is_EOL(afw_code_point_t cp)
-{   
+afw_code_point_is_eol(afw_code_point_t cp)
+{
     return (   cp == 0x000A /* LF  */
             || cp == 0x000D /* CR  */
             || cp == 0x2028 /* LS  */
@@ -49,9 +46,8 @@ afw_compile_code_point_is_EOL(afw_code_point_t cp)
 }
 
 
-/* Determine if codepoint matches AFW Whitespace production. */
 AFW_DEFINE(afw_boolean_t)
-afw_compile_code_point_is_Whitespace(afw_code_point_t cp)
+afw_code_point_is_whitespace(afw_code_point_t cp)
 {
     if (   cp == 0x0009 /* Tab */
         || cp == 0x000B /* VT */
@@ -62,14 +58,14 @@ afw_compile_code_point_is_Whitespace(afw_code_point_t cp)
         return true;
     }
 
-    /* This function checks for TAB + Zs */
+    /* TAB + Zs */
     return u_charType(cp) == U_SPACE_SEPARATOR;
 }
 
-/* Determine if codepoint matches AFW WhitespaceOrEOL production. */
+
 AFW_DEFINE(afw_boolean_t)
-afw_compile_code_point_is_WhitespaceOrEOL(afw_code_point_t cp)
-{   
+afw_code_point_is_whitespace_or_eol(afw_code_point_t cp)
+{
     if (   cp == 0x0009 /* Tab */
         || cp == 0x000B /* VT */
         || cp == 0x000C /* FF */
@@ -83,7 +79,12 @@ afw_compile_code_point_is_WhitespaceOrEOL(afw_code_point_t cp)
         return true;
     }
 
-    /* USP = SPACE_SEPARATOR = Zs */
     return u_charType(cp) == U_SPACE_SEPARATOR;
 }
 
+
+AFW_DEFINE(afw_boolean_t)
+afw_code_point_is_control(afw_code_point_t cp)
+{
+    return u_charType(cp) == U_CONTROL_CHAR;
+}

@@ -853,7 +853,7 @@ void afw_lmdb_internal_cursor_reset(
 
     memset(&self->data, 0, sizeof(MDB_val));
     if (self->key_string) { 
-        key_string = afw_utf8_create_copy(
+        key_string = afw_utf8_create(
             self->key_string->s, self->key_string->len,
             xctx->p, xctx);
 
@@ -969,7 +969,7 @@ afw_adapter_impl_index_cursor_t * afw_lmdb_internal_cursor_create(
     }
 
     if (value) {
-        self->key_string = afw_utf8_create_copy(
+        self->key_string = afw_utf8_create(
             value->s, value->len, xctx->p, xctx);
     } else
         self->key_string = NULL;
@@ -1167,7 +1167,7 @@ impl_afw_adapter_impl_index_cursor_contains_object (
     afw_lmdb_internal_set_key(&index,
         self->object_type_id, uuid, xctx->p, xctx);
 
-    key_string = afw_utf8_create_copy(
+    key_string = afw_utf8_create(
         self->key_string->s, self->key_string->len, xctx->p, xctx);
 
     key.mv_data = (void *)key_string->s;
@@ -1387,8 +1387,8 @@ int afw_lmdb_internal_reader_list_cb(
     afw_lmdb_internal_reader_list_cb_ctx * context = (afw_lmdb_internal_reader_list_cb_ctx *)ctx;
     const afw_utf8_t *message;
 
-    message = afw_utf8_from_utf8_z(msg, context->pool, context->xctx);
-    *(context->list) = afw_utf8_create_copy(
+    message = afw_utf8_create_z(msg, context->pool, context->xctx);
+    *(context->list) = afw_utf8_create(
     message->s, message->len, context->pool, context->xctx);
 
     return (int)strlen(msg);

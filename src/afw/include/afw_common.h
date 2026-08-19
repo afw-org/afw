@@ -644,7 +644,7 @@ typedef enum afw_compile_type_e {
  * IMPORTANT:  This must match up with afw_utf8_t since it is accepted to
  *            cast from afw_utf8_t to afw_memory_t.  Don't cast the other way
  *            around unless you are positive ptr point to NFC Unicode --
- *            use afw_utf8_from_raw() instead.
+ *            use afw_utf8_from_memory() instead.
  */
 typedef struct afw_memory_s {
     const afw_byte_t *ptr;
@@ -673,7 +673,7 @@ typedef afw_utf8_octet_t afw_utf8_z_t;
  * IMPORTANT:  This must match up with afw_utf8_t since it is accepted to
  *            cast from afw_utf8_t to afw_memory_t.  Don't cast the other way
  *            around unless you are positive ptr point to NFC Unicode --
- *            use afw_utf8_from_raw() instead.
+ *            use afw_utf8_from_memory() instead.
  *
  * All UTF-8 strings MUST be NFC normalized.  Doing otherwise can cause
  * unintended minor or major errors.
@@ -716,12 +716,17 @@ typedef struct afw_utf8_array_s {
 
 
 /**
- * @brief String literal initializer.
+ * @brief Trusted C string-literal initializer (no NFC check).
  *
- * Example of use:
+ * Example:
  *
  * static const afw_utf8_t hello = AFW_UTF8_LITERAL("Hello World");
  *
+ * ASCII (including \\n, \\t, \\\\) is always valid UTF-8 and already NFC.
+ * Invalid only via \\xNN that is not UTF-8, or a non-UTF-8 source file.
+ * AFW does not support EBCDIC. Those are programmer errors, same as a
+ * bad pointer. Runtime / unknown bytes go through afw_utf8_set /
+ * afw_utf8_create, not this macro.
  */
 #define AFW_UTF8_LITERAL(A_STRING) {A_STRING, sizeof(A_STRING) - 1}
 

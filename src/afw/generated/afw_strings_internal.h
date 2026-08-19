@@ -7075,6 +7075,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__1c3c43ea7b89 \
+    "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 use a forced_safe encoding: valid text stays, invalid runs are ^ plus uppercase hex plus ^. A caret in a valid name becomes ^^."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1c3c43ea7b89 */
+#define afw_s_zz__1c3c43ea7b89 \
+    (&afw_self_v_zz__1c3c43ea7b89.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1c3c43ea7b89 */
+#define afw_self_s_zz__1c3c43ea7b89 \
+    (afw_self_v_zz__1c3c43ea7b89.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__1c3c43ea7b89 */
+extern const afw_value_string_t \
+    afw_self_v_zz__1c3c43ea7b89;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__1c3c43ea7b89 */
+#define afw_z_zz__1c3c43ea7b89 \
+    (afw_self_v_zz__1c3c43ea7b89.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__1c3c43ea7b89 */
+#define afw_v_zz__1c3c43ea7b89 \
+    (&afw_self_v_zz__1c3c43ea7b89.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__1c60330b5050 \
     "All of the flags that include this flag. When setting flags in this array, this flag will also be set."
 
@@ -119369,32 +119395,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__a3715402ef52 \
-    "Object type for adaptive request properties (per-request CGI/FCGI-like parameters and headers). Known properties are strings. Additional properties from the request environment are string when valid UTF-8 (NFC), otherwise hexBinary; non-UTF-8 names use _NONUTF8_ plus uppercase hex of the raw name."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a3715402ef52 */
-#define afw_s_zz__a3715402ef52 \
-    (&afw_self_v_zz__a3715402ef52.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a3715402ef52 */
-#define afw_self_s_zz__a3715402ef52 \
-    (afw_self_v_zz__a3715402ef52.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a3715402ef52 */
-extern const afw_value_string_t \
-    afw_self_v_zz__a3715402ef52;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a3715402ef52 */
-#define afw_z_zz__a3715402ef52 \
-    (afw_self_v_zz__a3715402ef52.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a3715402ef52 */
-#define afw_v_zz__a3715402ef52 \
-    (&afw_self_v_zz__a3715402ef52.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__a3a1c46c1870 \
     "This is maximum normal length of the to_string() for this value.  If not specified, maxLength is used."
 
@@ -119833,32 +119833,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__a545642f3ec4 */
 #define afw_v_zz__a545642f3ec4 \
     (&afw_self_v_zz__a545642f3ec4.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__a5c3ea298efe \
-    "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 are exposed as _NONUTF8_ followed by uppercase hex of the raw name bytes."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a5c3ea298efe */
-#define afw_s_zz__a5c3ea298efe \
-    (&afw_self_v_zz__a5c3ea298efe.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a5c3ea298efe */
-#define afw_self_s_zz__a5c3ea298efe \
-    (afw_self_v_zz__a5c3ea298efe.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a5c3ea298efe */
-extern const afw_value_string_t \
-    afw_self_v_zz__a5c3ea298efe;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a5c3ea298efe */
-#define afw_z_zz__a5c3ea298efe \
-    (afw_self_v_zz__a5c3ea298efe.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a5c3ea298efe */
-#define afw_v_zz__a5c3ea298efe \
-    (&afw_self_v_zz__a5c3ea298efe.pub)
 
 
 
@@ -120665,6 +120639,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__a9699fd7faec */
 #define afw_v_zz__a9699fd7faec \
     (&afw_self_v_zz__a9699fd7faec.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__a96a58fc4306 \
+    "Object type for adaptive request properties (per-request CGI/FCGI-like parameters and headers). Known properties are strings. Additional properties from the request environment are string when valid UTF-8 (NFC), otherwise hexBinary; non-UTF-8 names use a forced_safe encoding (^ plus uppercase hex plus ^ for invalid runs; ^^ is a literal caret)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a96a58fc4306 */
+#define afw_s_zz__a96a58fc4306 \
+    (&afw_self_v_zz__a96a58fc4306.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a96a58fc4306 */
+#define afw_self_s_zz__a96a58fc4306 \
+    (afw_self_v_zz__a96a58fc4306.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__a96a58fc4306 */
+extern const afw_value_string_t \
+    afw_self_v_zz__a96a58fc4306;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a96a58fc4306 */
+#define afw_z_zz__a96a58fc4306 \
+    (afw_self_v_zz__a96a58fc4306.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__a96a58fc4306 */
+#define afw_v_zz__a96a58fc4306 \
+    (&afw_self_v_zz__a96a58fc4306.pub)
 
 
 

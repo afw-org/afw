@@ -10,7 +10,7 @@
 
 1. Land on a **topic** below.  
 2. Open **day rules** for how to work; **deep pad** for why/history; **probe** to verify.  
-3. For philosophy/taste: [`mantras-and-working-style.md`](mantras-and-working-style.md), [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md).  
+3. For the **whole story** (why + how parts relate): [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md). Mantras: [`mantras-and-working-style.md`](mantras-and-working-style.md).  
 4. For symptom-shaped support: [`agent-support.md`](agent-support.md).
 
 **Hubs:** [`AGENTS.md`](../AGENTS.md) · [`designs/README.md`](README.md) · [`beta-backlog.md`](../beta-backlog.md) · [`whats-new.md`](../whats-new.md)
@@ -144,7 +144,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | Values first; permanent / managed / managed_slice / unmanaged; hierarchical pools; short request teardown proven; long-running needs escape discipline |
+| **Settled map** | Values first; permanent / managed / managed_slice / unmanaged; hierarchical pools; short request teardown proven; long-running needs escape discipline. Payloads (`afw_utf8_t` / `afw_memory_t`) have no pool; doors are `create`/`set`/`no_copy`/`forced_safe` — [`c-naming-and-payloads.md`](c-naming-and-payloads.md) |
 | **Day rules** | `afw-runtime-model` (always-on), `afw-value-memory`, `afw-script-eval` |
 | **Deep pad** | [`memory-management.md`](memory-management.md) (**large** — do not rewrite this pass); philosophy pad core model |
 | **Probe** | Targeted `.as` + `afwdev test -j --env-mode valgrind`; orchestrated multi-request leaves; never “fix memory” without a metric/story |
@@ -346,7 +346,8 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 |-------|------------|--------|
 | Array semantics | `array-semantics.md` | Shipped (#39) |
 | Converts | `conversion-functions.md` | Shipped with #39 wave |
-| UTF-8 code points | `utf8-code-point-sequences.md` | #153 oriented; #190 empty-match `replace`; `to_lower` / ignore-case compare use bounded `U8_NEXT` / `U8_APPEND`; ignore-case lockstep leftover is [#206](https://github.com/afw-org/afw/issues/206) |
+| UTF-8 / memory C doors | [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | `create` copies; `no_copy` points; `forced_safe` `^hex^`; `src/afw/code_point/` |
+| UTF-8 code points (script) | `utf8-code-point-sequences.md` | #153 oriented; #190 empty-match `replace`; `to_lower` / ignore-case compare use bounded `U8_NEXT` / `U8_APPEND`; ignore-case lockstep leftover is [#206](https://github.com/afw-org/afw/issues/206) |
 | Mutable faces | `issue-17-mutable-object-faces.md` | Closed PR #150 |
 | Expression property names | `issue-38-…` | Closed |
 | Meta on wire | `issue-138-…` | Design/status in pad |

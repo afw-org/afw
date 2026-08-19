@@ -522,7 +522,7 @@ afw_json_from_value_with_indent(
         writer->context, writer->callback, p, xctx);
 
     raw = afw_memory_writer_retrieve_and_release(writer, xctx);
-    return afw_utf8_from_raw(raw, p, xctx);
+    return afw_utf8_from_memory(raw, p, xctx);
 }
 
 

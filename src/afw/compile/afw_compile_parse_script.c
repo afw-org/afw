@@ -33,7 +33,7 @@ impl_function_definition_rethrow =
 static const afw_utf8_t *
 impl_copy_token_identifier(afw_compile_parser_t *parser)
 {
-    return afw_utf8_create_copy(
+    return afw_utf8_create(
         parser->token->identifier_name->s,
         parser->token->identifier_name->len,
         parser->p, parser->xctx);
@@ -2703,7 +2703,7 @@ impl_test_script_load_file_value(
     }
 
     if (base_dir_len == 0) {
-        abs_path = afw_utf8_create_copy(rel_path->s, rel_path->len,
+        abs_path = afw_utf8_create(rel_path->s, rel_path->len,
             parser->p, parser->xctx);
     }
     else {
@@ -2733,7 +2733,7 @@ impl_test_script_load_file_value(
 
         /* Empty file is a valid empty string value. */
         if (finfo.size == 0) {
-            return afw_utf8_create_copy((const afw_utf8_octet_t *)"", 0,
+            return afw_utf8_create((const afw_utf8_octet_t *)"", 0,
                 parser->p, parser->xctx);
         }
 
@@ -2762,7 +2762,7 @@ impl_test_script_load_file_value(
                 AFW_UTF8_FMT_ARG(abs_path));
         }
 
-        result = afw_utf8_create_copy((const afw_utf8_octet_t *)buff,
+        result = afw_utf8_create((const afw_utf8_octet_t *)buff,
             (afw_size_t)finfo.size, parser->p, parser->xctx);
     }
 
@@ -2826,7 +2826,7 @@ impl_test_script_get_next_key_value(
                     AFW_COMPILE_THROW_ERROR_Z("Expecting ':' after key");
                 }
                 if (*c == ':' || *c == ' ') {
-                    *key = afw_utf8_create_copy(start, c - start,
+                    *key = afw_utf8_create(start, c - start,
                         parser->p, parser->xctx);
                     state = 2;
                     if (*c == ':') {
@@ -2871,7 +2871,7 @@ impl_test_script_get_next_key_value(
                             afw_compile_get_raw_line(&line);
                             if (!line.s) {
                                 *string_length = end_cursor - start_cursor;
-                                *string = afw_utf8_create_copy(
+                                *string = afw_utf8_create(
                                     parser->full_source->s + start_cursor,
                                     *string_length, parser->p, parser->xctx);
                                 break;
@@ -2883,7 +2883,7 @@ impl_test_script_get_next_key_value(
                                 if (*string_length > 0) {
                                     *string_length -= 1;
                                 }
-                                *string = afw_utf8_create_copy(
+                                *string = afw_utf8_create(
                                     parser->full_source->s + start_cursor,
                                     *string_length,  parser->p, parser->xctx);
                                 break;
@@ -2920,8 +2920,8 @@ impl_test_script_get_next_key_value(
                                 AFW_COMPILE_THROW_ERROR_Z(
                                     "Invalid utf-8 in '<<<' path");
                             }
-                            if (!afw_compile_code_point_is_Whitespace(cp) &&
-                                !afw_compile_code_point_is_EOL(cp))
+                            if (!afw_code_point_is_whitespace(cp) &&
+                                !afw_code_point_is_eol(cp))
                             {
                                 path_start = save;
                                 break;
@@ -2942,8 +2942,8 @@ impl_test_script_get_next_key_value(
                                 AFW_COMPILE_THROW_ERROR_Z(
                                     "Invalid utf-8 in '<<<' path");
                             }
-                            if (!afw_compile_code_point_is_Whitespace(cp) &&
-                                !afw_compile_code_point_is_EOL(cp))
+                            if (!afw_code_point_is_whitespace(cp) &&
+                                !afw_code_point_is_eol(cp))
                             {
                                 end_trim = offset;
                             }
@@ -2953,7 +2953,7 @@ impl_test_script_get_next_key_value(
                                 "'<<<' requires a path after the marker");
                         }
 
-                        path = afw_utf8_create_copy(start + path_start,
+                        path = afw_utf8_create(start + path_start,
                             end_trim - path_start, parser->p, parser->xctx);
                         file_value = impl_test_script_load_file_value(
                             parser, path);
@@ -2992,14 +2992,14 @@ impl_test_script_get_next_key_value(
                              * Also drop EOL code points if present on the line
                              * (e.g. stray CR).
                              */
-                            if (!afw_compile_code_point_is_Whitespace(cp) &&
-                                !afw_compile_code_point_is_EOL(cp))
+                            if (!afw_code_point_is_whitespace(cp) &&
+                                !afw_code_point_is_eol(cp))
                             {
                                 end_trim = offset;
                             }
                         }
                         *string_length = end_trim;
-                        *string = afw_utf8_create_copy(start, *string_length,
+                        *string = afw_utf8_create(start, *string_length,
                             parser->p, parser->xctx);
                         c = end;
                     }
@@ -3369,7 +3369,7 @@ afw_compile_parse_TestScript(
             &key, &string, &string_offset, &string_length);
     }
 
-    string = afw_utf8_create_copy(
+    string = afw_utf8_create(
         parser->full_source->s, parser->full_source->len,
         parser->p, parser->xctx);
     afw_object_set_property_as_string(test_script_object,

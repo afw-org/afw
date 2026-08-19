@@ -17,6 +17,7 @@ Prefer thin, accurate units. After deep sessions use the capture checklist; prom
 - [ ] Live probe (command or retrieve that proves it)
 - [ ] Optional one-sentence user/operator note (`whats-new.md` if shipping)
 - [ ] Atlas topic row touched if the map changed
+- [ ] If it is how the **parts relate** (values, compile, pools, payloads, env), correct [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) — do not leave it only in chat or MEMORY, and do not trim that pad to make it short
 
 ## Playbooks
 

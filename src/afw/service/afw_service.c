@@ -518,7 +518,7 @@ impl_start_cb(
          */
         if (service) {
             service->status = afw_service_status_error;
-            service->status_message = afw_utf8_create_copy(
+            service->status_message = afw_utf8_create(
                 AFW_ERROR_THROWN->message_z, AFW_UTF8_Z_LEN,
                 p, xctx);
             service->status_debug = afw_error_to_utf8(
@@ -879,7 +879,7 @@ impl_AdaptiveService_cb(
         }
 
         AFW_CATCH_UNHANDLED{
-            error_message = afw_utf8_create_copy(
+            error_message = afw_utf8_create(
                 AFW_ERROR_THROWN->message_z, AFW_UTF8_Z_LEN,
                 p, xctx);
             afw_object_set_property_as_string(object,
@@ -1091,7 +1091,7 @@ afw_service_get_object(
             afw_object_set_property_as_string(result,
                 afw_s_serviceId, service_id, xctx);
 
-            error_message = afw_utf8_create_copy(
+            error_message = afw_utf8_create(
                 AFW_ERROR_THROWN->message_z, AFW_UTF8_Z_LEN,
                 p, xctx);
             afw_object_set_property_as_string(result,
@@ -1426,7 +1426,7 @@ impl_restart_get_cb(
     AFW_CATCH_UNHANDLED {
         if (service) {
             service->status = afw_service_status_error;
-            service->status_message = afw_utf8_create_copy(
+            service->status_message = afw_utf8_create(
                 AFW_ERROR_THROWN->message_z, AFW_UTF8_Z_LEN,
                 p, xctx);
             service->status_debug = afw_error_to_utf8(
