@@ -694,8 +694,13 @@ typedef struct afw_utf8_s {
 
 
 /**
- * @brief NFC normalized UTF-8 string accessible as afw_utf8_t or afw_utf8_z_t
-*/
+ * @brief Internal utf8 + external C string (same pointer).
+ *
+ * Use when the bytes are already 0-terminated (C literal, `z_create`
+ * result). `.s` is length-prefixed NFC; `.s_z` is the external C string.
+ * No interior 0 in `.s.len` bytes. There is no create for this type.
+ * Generated strings use `afw_s_*` / `afw_z_*` instead.
+ */
 typedef union afw_utf8_utf8_z_s {
     afw_utf8_t s;
     const afw_utf8_z_t *s_z;
@@ -848,7 +853,9 @@ typedef struct afw_key_string_s {
 
 
 /**
- * @brief Typedef for key/string pair that have both utf8 and utf8_z.
+ * @brief Key/string pair, each an internal utf8 + external C string.
+ *
+ * Same contract as `afw_utf8_utf8_z_t` on both sides. VFS map uses this.
  */
 typedef struct afw_key_z_string_z_s {
     union {

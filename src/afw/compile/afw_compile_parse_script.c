@@ -2795,7 +2795,7 @@ impl_test_script_get_next_key_value(
             break;
         }
 
-        if (!afw_utf8_starts_with_z(&line, "//?")) {
+        if (!afw_utf8_starts_with_utf8_z(&line, "//?")) {
             AFW_COMPILE_THROW_ERROR_Z("Line must start with '//?'");
         }
 
@@ -2863,7 +2863,7 @@ impl_test_script_get_next_key_value(
                     remaining.len = end - start;
 
                     /* If "...", string is next line to end or "//?" line. */
-                    if (afw_utf8_starts_with_z(&remaining, "...")) {
+                    if (afw_utf8_starts_with_utf8_z(&remaining, "...")) {
                         afw_compile_save_cursor(start_cursor);
                         afw_compile_save_cursor(*string_offset);
                         for (;;) {
@@ -2876,7 +2876,7 @@ impl_test_script_get_next_key_value(
                                     *string_length, parser->p, parser->xctx);
                                 break;
                             }
-                            else if (afw_utf8_starts_with_z(&line, "//?")) {
+                            else if (afw_utf8_starts_with_utf8_z(&line, "//?")) {
                                 afw_compile_restore_cursor(end_cursor);
                                 /* Don't include \n before //? */
                                 *string_length = end_cursor - start_cursor;
@@ -2897,7 +2897,7 @@ impl_test_script_get_next_key_value(
                      * (relative to the test script directory). See
                      * writing-tests.md. File is not whitespace-trimmed.
                      */
-                    else if (afw_utf8_starts_with_z(&remaining, "<<<")) {
+                    else if (afw_utf8_starts_with_utf8_z(&remaining, "<<<")) {
                         afw_size_t value_len;
                         afw_size_t offset;
                         afw_size_t end_trim;

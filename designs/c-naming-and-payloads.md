@@ -24,17 +24,21 @@ Most scalars are one chunk (`afw_integer_t`). Objects/arrays are a `const` point
 
 | Verb | Struct | Bytes |
 |------|--------|--------|
-| **`create` / `create_z`** | New `const` in `p` | **Copy** (utf8: NFC or throw) |
-| **`create_no_copy` / `_z`** | New `const` in `p` | **Point** at `s`. NFC or throw. `p` is the struct only. |
-| **`set` / `set_z`** | Your non-const struct | Copy into `p` |
-| **`set_no_copy` / `_z`** | Your non-const struct | Point. No `p`. |
+| **`create`** | New `const` in `p` | **Copy** (utf8: NFC or throw) |
+| **`create_no_copy`** | New `const` in `p` | **Point** at `s`. NFC or throw. `p` is the struct only. |
+| **`z_to_utf8`** | New `const` in `p` | Ingest `utf8_z` (copy + NFC) |
+| **`z_as_utf8`** | New `const` in `p` | Ingest `utf8_z` (point) |
+| **`set` / `z_set`** | Your non-const struct | Copy into `p` (octets vs `utf8_z`) |
+| **`set_no_copy` / `z_set_no_copy`** | Your non-const struct | Point. No `p`. |
 | **`clone`** | New `const` in `p` | Copy struct **and** `.s` from an existing `afw_utf8_t` |
 
 **Rule:** shorter name does more / is safer. Extra words take a guard off (`no_copy`, like `create_unmanaged` on objects). **`p` only if something new lives there.**
 
-- Suffix **`_z`** = that **argument** is `0`-terminated.
-- Prefix **`z_`** = the **result** is `utf8_z`.
+- Prefix **`afw_utf8_z_`** when you **have** a C string. Prefix **`afw_utf8_`** when you have length-prefixed `utf8`.
+- Mixed predicates spell both types in argument order (`starts_with_utf8_z`).
 - **`from_memory` / `as_memory`**: utf8 ↔ `afw_memory_t`. No `afw_raw_t`.
+
+**Internal** is NFC `afw_utf8_t` (`.s` + `.len`). **External** is not that world. Spell **external C string** or **external octets** when the shape matters. Cross with a named door: `to_utf8_z` / `z_create` (C string, throw if interior `0`), `forced_safe` (encode for logs/names), `as_memory` / write with `len` (octets + size). `afw_utf8_utf8_z_t` is the utf8 + z pair when the buffer is already a C string (literal / `z_create`); generated strings use `afw_s_*` / `afw_z_*`.
 
 `AFW_UTF8_LITERAL` is a trusted C `"…"` initializer. ASCII (including `\n`) is always UTF-8 NFC. `\x` or a non-UTF-8 source file is a programmer error. AFW does not support EBCDIC.
 
@@ -64,6 +68,8 @@ Managed scalar headers in `xctx->p` only work if we actually `free` (including `
 Do **not** rename `afw_value_create_managed_<dt>` to `afw_value_create_<dt>` on this campaign. `afw_value_create_*` already means “new value” (graph nodes, `from_external`, `now_utc`). Most C uses `create_unmanaged_*`. Making managed the short name would freeze the `xctx->p` experiment as the default; #2 may drop managed scalars. Then the short value create can be the **pool** door (today’s unmanaged). `managed` stays extra words only where a hold is real (object/array instance, maybe large utf8).
 
 **Gotcha:** a walker that treats `afw_utf8_t->s` as a C string needs a trailing `0`. Old `create` could point at a `z` buffer. New `create` copies **without** a `0`. The RQL origin string uses `create_no_copy` onto `afw_utf8_z_create` for that.
+
+**External C string:** `afw_utf8_to_utf8_z`, `afw_utf8_z_create`, and `afw_utf8_array_to_utf8_z_with_separator` throw if the length-prefixed bytes contain a `0` (pieces and separator). `afw_utf8_z_array_with_separator` checks the separator the same way. A C string cannot hold that value. Length-prefixed concat (`array_to_utf8_with_separator`) stays internal and does not throw. Do not ban `\0`/`\x00` in the lexer. `forced_safe` / `z_printf` still encode U+0000 as `^00^`. File logical paths already rejected an embedded NUL (`afw_file_path.c`).
 
 ## Code points vs UTF-8
 

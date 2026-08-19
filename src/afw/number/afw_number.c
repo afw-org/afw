@@ -220,25 +220,25 @@ afw_number_parse(
     /* If parse double, allow Infinity, -Infinity, and NaN. */
     if (d) {
         d0 = 0;
-        if (afw_utf8_len_starts_with_z(c, len, AFW_NUMBER_Q_INF)) {
+        if (afw_utf8_len_starts_with_utf8_z(c, len, AFW_NUMBER_Q_INF)) {
             *d = 1 / d0;
             if (is_double) *is_double = true;
             return strlen(AFW_NUMBER_Q_INF);
         }
         
-        else if (afw_utf8_len_starts_with_z(c, len, AFW_NUMBER_Q_INFINITY)) {
+        else if (afw_utf8_len_starts_with_utf8_z(c, len, AFW_NUMBER_Q_INFINITY)) {
             *d = 1 / d0;
             if (is_double) *is_double = true;
             return strlen(AFW_NUMBER_Q_INFINITY);
         }
         
-        else if (afw_utf8_len_starts_with_z(c, len, AFW_NUMBER_Q_NEGATIVE_INF)) {
+        else if (afw_utf8_len_starts_with_utf8_z(c, len, AFW_NUMBER_Q_NEGATIVE_INF)) {
             *d = -1 / d0;
             if (is_double) *is_double = true;
             return strlen(AFW_NUMBER_Q_NEGATIVE_INF);
         }
         
-        else if (afw_utf8_len_starts_with_z(c, len,
+        else if (afw_utf8_len_starts_with_utf8_z(c, len,
             AFW_NUMBER_Q_NEGATIVE_INFINITY))
         {
             *d = -1 / d0;
@@ -246,13 +246,13 @@ afw_number_parse(
             return strlen(AFW_NUMBER_Q_NEGATIVE_INFINITY);
         }
 
-        else if (afw_utf8_len_starts_with_z(c, len, AFW_NUMBER_Q_NAN)) {
+        else if (afw_utf8_len_starts_with_utf8_z(c, len, AFW_NUMBER_Q_NAN)) {
             *d = sqrt(-1);
             if (is_double) *is_double = true;
             return strlen(AFW_NUMBER_Q_NAN);
         }
         
-        else if (afw_utf8_len_starts_with_z(c, len, AFW_NUMBER_Q_NEGATIVE_NAN)) {
+        else if (afw_utf8_len_starts_with_utf8_z(c, len, AFW_NUMBER_Q_NEGATIVE_NAN)) {
             *d = sqrt(-1);
             if (is_double) *is_double = true;
             return strlen(AFW_NUMBER_Q_NEGATIVE_NAN);

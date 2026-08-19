@@ -530,7 +530,7 @@ afw_utf8_create_no_copy(
 
 
 AFW_DEFINE(const afw_utf8_t *)
-afw_utf8_create_no_copy_z(
+afw_utf8_z_as_utf8(
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -557,7 +557,7 @@ afw_utf8_set(
 
 
 AFW_DEFINE(void)
-afw_utf8_set_z(
+afw_utf8_z_set(
     afw_utf8_t *to,
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
@@ -596,7 +596,7 @@ afw_utf8_set_no_copy(
 
 
 AFW_DEFINE(void)
-afw_utf8_set_no_copy_z(
+afw_utf8_z_set_no_copy(
     afw_utf8_t *to,
     const afw_utf8_z_t *s_z,
     afw_xctx_t *xctx)
@@ -618,7 +618,7 @@ afw_utf8_create_forced_safe(
 
 
 AFW_DEFINE(const afw_utf8_t *)
-afw_utf8_create_forced_safe_z(
+afw_utf8_z_create_forced_safe(
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -645,7 +645,7 @@ afw_utf8_set_forced_safe(
 
 
 AFW_DEFINE(void)
-afw_utf8_set_forced_safe_z(
+afw_utf8_z_set_forced_safe(
     afw_utf8_t *to,
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
@@ -671,13 +671,47 @@ afw_utf8_create_property_name(
 
 
 AFW_DEFINE(const afw_utf8_t *)
-afw_utf8_create_property_name_z(
+afw_utf8_z_create_property_name(
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     return afw_utf8_create_property_name(
         (const afw_utf8_octet_t *)s_z, AFW_UTF8_Z_LEN, p, xctx);
+}
+
+
+static void
+impl_throw_if_embedded_nul(
+    const afw_utf8_octet_t *s, afw_size_t len, afw_xctx_t *xctx)
+{
+    if (s && len > 0 && memchr(s, 0, len)) {
+        AFW_THROW_ERROR_Z(general,
+            "Embedded NUL in utf-8 string used as C string",
+            xctx);
+    }
+}
+
+
+/*
+ * Convert utf8 to utf8_z in specified pool.
+ */
+AFW_DEFINE(const afw_utf8_z_t *)
+afw_utf8_to_utf8_z(
+    const afw_utf8_t *string, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_utf8_z_t *result;
+
+    if (!string || string->len == 0) {
+        return impl_z_empty;
+    }
+
+    impl_throw_if_embedded_nul(string->s, string->len, xctx);
+
+    result = afw_pool_malloc(p, string->len + 1, xctx);
+    memcpy(result, string->s, string->len);
+    result[string->len] = 0;
+    return result;
 }
 
 
@@ -698,6 +732,8 @@ afw_utf8_z_create(
     if (!s || s_len == 0) {
         return impl_z_empty;
     }
+
+    impl_throw_if_embedded_nul(s, s_len, xctx);
 
     /* Allocate memory for string including length byte. */
     s_z = afw_pool_malloc(p, s_len + 1, xctx);
@@ -812,6 +848,29 @@ afw_utf8_printf_v(
 
 
 
+/* Clone a utf-8 string into a specific pool. */
+AFW_DEFINE(const afw_utf8_t *)
+afw_utf8_clone(
+    const afw_utf8_t *string, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    return (string)
+        ? afw_utf8_create(string->s, string->len, p, xctx)
+        : NULL;
+}
+
+
+/* Set result to a substring of string using byte indexes. */
+AFW_DEFINE(void)
+afw_utf8_substring_byte(
+    afw_utf8_t *result, const afw_utf8_t *string, afw_size_t start,
+    afw_size_t end)
+{
+    if (end > string->len) end = string->len;
+    result->len = (end > start) ? end - start : 0;
+    result->s = (result->len > 0) ? string->s + start : NULL;
+}
+
+
 /* Check to see if a string starts with another string. */
 AFW_DEFINE(afw_boolean_t) afw_utf8_starts_with(
     const afw_utf8_t *string, const afw_utf8_t *starts_with)
@@ -822,12 +881,46 @@ AFW_DEFINE(afw_boolean_t) afw_utf8_starts_with(
 
 
 /* Check to see if a string starts with a utf8_z string. */
-AFW_DEFINE(afw_boolean_t) afw_utf8_starts_with_z(
+AFW_DEFINE(afw_boolean_t) afw_utf8_starts_with_utf8_z(
     const afw_utf8_t *string, const afw_utf8_z_t *starts_with_z)
 {
     afw_size_t len = strlen(starts_with_z);
     return (string->len >= len &&
         memcmp(string->s, starts_with_z, len) == 0);
+}
+
+
+/* Returns true if series of bytes for len s1 starts with s2_z. */
+AFW_DEFINE(afw_boolean_t)
+afw_utf8_len_starts_with_utf8_z(
+    const afw_utf8_octet_t *s1, afw_size_t len1, const afw_utf8_z_t *s2_z)
+{
+    while (*s2_z) {
+        if (len1-- <= 0 || *s1 != *s2_z) {
+            return false;
+        }
+        s1++;
+        s2_z++;
+    }
+
+    return true;
+}
+
+
+/* Returns true if zero terminated s1 starts with s2. */
+AFW_DEFINE(afw_boolean_t)
+afw_utf8_z_starts_with(
+    const afw_utf8_z_t *s1_z, const afw_utf8_z_t *s2_z)
+{
+    while (*s2_z) {
+        if (!*s1_z || *s1_z != *s2_z) {
+            return false;
+        }
+        s1_z++;
+        s2_z++;
+    }
+
+    return true;
 }
 
 
@@ -844,7 +937,7 @@ afw_utf8_ends_with(
 
 /* Check to see if a string ends with a utf8_z string. */
 AFW_DEFINE(afw_boolean_t)
-afw_utf8_ends_with_z(
+afw_utf8_ends_with_utf8_z(
     const afw_utf8_t *string, const afw_utf8_z_t *ends_with_z)
 {
     afw_size_t len = strlen(ends_with_z);
@@ -1158,6 +1251,44 @@ AFW_DEFINE(afw_boolean_t) afw_utf8_equal_utf8_z(
 }
 
 
+/* Compare two zero terminated utf-8 strings ignoring case. */
+AFW_DEFINE(int)
+afw_utf8_z_compare_ignore_case(
+    const afw_utf8_z_t *s1, const afw_utf8_z_t *s2, afw_xctx_t *xctx)
+{
+    afw_utf8_t a1, a2;
+
+    afw_utf8_z_set_no_copy(&a1, s1, xctx);
+    afw_utf8_z_set_no_copy(&a2, s2, xctx);
+
+    return afw_utf8_compare_ignore_case(&a1, &a2, xctx);
+}
+
+
+/* Compare two zero terminated UTF8 strings to be equal. */
+AFW_DEFINE(afw_boolean_t)
+afw_utf8_z_equal(
+    const afw_utf8_z_t *s1, const afw_utf8_z_t *s2)
+{
+    return (s1 && s2 && (strcmp((const char *)s1, (const char *)s2) == 0
+        || s1 == s2)) ? TRUE : FALSE;
+}
+
+
+/*
+ * Compare two zero terminated UTF8 strings to be equal, ignoring case.
+ *
+ * @fixme See header: needs xctx when XACML no longer uses this.
+ */
+AFW_DEFINE(afw_boolean_t)
+afw_utf8_z_equal_ignore_case(
+    const afw_utf8_z_t *s1, const afw_utf8_z_t *s2)
+{
+    return (strcasecmp((const char *)s1, (const char *)s2) == 0)
+        ? true : false;
+}
+
+
 /* Concatenate zero terminated UTF8 strings. */
 static const afw_utf8_z_t * impl_u8z_concat_v(
     const afw_pool_t *p, afw_xctx_t *xctx, va_list ap)
@@ -1235,6 +1366,22 @@ afw_utf8_z_printf_v(
         z[n] = 0;
         return z;
     }
+}
+
+
+/* Create a utf8_z string using a c format string in specified pool. */
+AFW_DEFINE_ELLIPSIS(const afw_utf8_z_t *)
+afw_utf8_z_printf(
+    const afw_pool_t *p, afw_xctx_t *xctx, const afw_utf8_z_t *format_z, ...)
+{
+    va_list ap;
+    const afw_utf8_z_t *result;
+
+    va_start(ap, format_z);
+    result = afw_utf8_z_printf_v(format_z, ap, p, xctx);
+    va_end(ap);
+
+    return result;
 }
 
 /* Clone a pointer array of utf-8 to specified pool. */
@@ -1344,10 +1491,12 @@ afw_utf8_array_to_utf8_z_with_separator(
     len = 1;
     for (count = 0, c = strings; *c; count++, c++)
     {
+        impl_throw_if_embedded_nul((*c)->s, (*c)->len, xctx);
         len += (*c)->len;
     }
 
     if (separator) {
+        impl_throw_if_embedded_nul(separator->s, separator->len, xctx);
         len += (count - 1) * separator->len;
     }
 
@@ -1371,7 +1520,7 @@ afw_utf8_array_to_utf8_z_with_separator(
 
 /* Concat array of utf-8 with optional separator to specified pool. */
 AFW_DEFINE(const afw_utf8_z_t *)
-afw_utf8_z_array_to_utf8_z_with_separator(
+afw_utf8_z_array_with_separator(
     const afw_utf8_z_t * const * strings_z,
     const afw_utf8_t * separator,
     const afw_pool_t *p, afw_xctx_t *xctx)
@@ -1391,6 +1540,7 @@ afw_utf8_z_array_to_utf8_z_with_separator(
     }
 
     if (separator) {
+        impl_throw_if_embedded_nul(separator->s, separator->len, xctx);
         len += (count - 1) * separator->len;
     }
 
@@ -1409,6 +1559,26 @@ afw_utf8_z_array_to_utf8_z_with_separator(
     *o = 0;
 
     return result;
+}
+
+
+/* Returns pointer in path_z past last / or \. */
+AFW_DEFINE(const afw_utf8_z_t *)
+afw_utf8_z_file_name_from_path(
+    const afw_utf8_z_t *path_z)
+{
+    const afw_utf8_z_t *file_name;
+    const afw_utf8_z_t *c;
+
+    if (!path_z) return "";
+
+    for (c = file_name = path_z; *c; c++) {
+        if ((*c == '/') || (*c == '\\')) {
+            file_name = c + 1;
+        }
+    }
+
+    return file_name;
 }
 
 

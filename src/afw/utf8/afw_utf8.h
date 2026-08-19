@@ -24,23 +24,51 @@
  * no refcount. Adaptive values (`const afw_value_t *`) are what can hold
  * a lifetime. See @ref afw_utf8 and `designs/c-naming-and-payloads.md`.
  *
+ * ## Internal vs **external**
+ *
+ * **Internal** is AFW's NFC world: `afw_utf8_t`, `.s` + `.len`. Slices,
+ * hashes, `memcpy`, `stream_write`, curl POSTFIELDS+SIZE. `.s` is octets
+ * for `.len` bytes. There is usually **no** trailing `0` at `s[len]`.
+ * The bytes **may contain U+0000**.
+ *
+ * **External** is not that world (libc, APR paths, LDAP DNs, libxml
+ * regexp, logs, env names). Say **external C string** or
+ * **external octets** when you need the shape. Cross with a named door:
+ *
+ * | External | Door |
+ * |----------|------|
+ * | C string | `afw_utf8_to_utf8_z` / `z_create` (throw if interior `0`) |
+ * | Encode for logs/names | `forced_safe` (not promised NFC) |
+ * | Octets + size | `as_memory` / write with `len` (NULs are data) |
+ *
+ * Generated literals: `afw_s_*` (internal) and `afw_z_*` (external C
+ * string of the same `"…"`). `afw_utf8_utf8_z_t` is the utf8 + z pair
+ * when the buffer is already a C string (see `afw_common.h`).
+ *
+ * Do **not** pass `string->s` to `fopen`, `strlen`, `strcmp`, or any
+ * external C-string API.
+ *
  * ## Naming
  *
  * **Less in the name, more we do.** Extra words take a safety off or pick
  * a non-default policy. **`p` only if something new lives there.**
  *
+ * Prefix **`afw_utf8_z_`** when you **have** a C string. Prefix
+ * **`afw_utf8_`** when you have length-prefixed `utf8`. Mixed predicates
+ * spell both types in argument order (`starts_with_utf8_z`).
+ *
  * | Name | What we do |
  * |------|------------|
- * | `create` / `create_z` | New struct in `p`, **copy** bytes, NFC or throw |
- * | `create_no_copy` / `_z` | New struct in `p`, **point** at `s`, NFC or throw |
- * | `set` / `set_z` | Fill your non-const `afw_utf8_t`, copy into `p` |
- * | `set_no_copy` / `_z` | Fill yours, point; no `p` |
+ * | `create` | New struct in `p`, **copy** octets, NFC or throw |
+ * | `create_no_copy` | New struct in `p`, **point** at `s`, NFC or throw |
+ * | `z_to_utf8` | Ingest `utf8_z` (copy + NFC) |
+ * | `z_as_utf8` | Ingest `utf8_z` (point; already NFC) |
+ * | `z_set` / `z_set_no_copy` | Fill yours from a `utf8_z` |
+ * | `set` / `set_no_copy` | Fill yours from octets + len |
  * | `clone` | Copy an existing `afw_utf8_t` (struct + bytes) |
- * | `forced_safe` | Always copy; encode invalid/Cc as `^hex^`; not NFC; not a value |
+ * | `to_utf8_z` / `z_create` | External C string (throw if embedded 0) |
+ * | `forced_safe` | External encode; invalid/Cc as `^hex^`; not NFC; not a value |
  * | `create_property_name` | Same encode, then NFC (property name only) |
- *
- * Suffix `_z` = that **argument** is `0`-terminated. Prefix `z_` = the
- * **result** is `utf8_z`. Two `_z`s means both.
  *
  * `AFW_UTF8_LITERAL` is a trusted C `"…"` initializer (no check).
  */
@@ -195,15 +223,10 @@ afw_utf8_from_code_point(afw_utf8_octet_t utf8_z[5], afw_code_point_t cp,
  * @return memory (cast of string).
  *
  * Cast only. Does not copy. The utf8 bytes are already NFC.
+ * The view is pointer + size, not a C string.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_memory_t *)
-afw_utf8_as_memory(
-    const afw_utf8_t *string, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    (void)p;
-    (void)xctx;
-    return (const afw_memory_t *)string;
-}
+#define afw_utf8_as_memory(string, p, xctx) \
+    ((const afw_memory_t *)(string))
 
 
 /**
@@ -215,13 +238,9 @@ afw_utf8_as_memory(
  *
  * Short name: copy into p and NFC. Invalid utf-8 throws.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_utf8_t *)
-afw_utf8_from_memory(
-    const afw_memory_t *memory, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    return afw_utf8_nfc((const afw_utf8_octet_t *)memory->ptr, memory->size,
-        afw_utf8_nfc_option_create_copy, p, xctx);
-}
+#define afw_utf8_from_memory(memory, p, xctx) \
+    afw_utf8_nfc((const afw_utf8_octet_t *)(memory)->ptr, (memory)->size, \
+        afw_utf8_nfc_option_create_copy, p, xctx)
 
 
 
@@ -253,19 +272,23 @@ afw_utf8_from_encoding(
  * @return const afw_utf8_t in p.
  *
  * Short name is the safe door: always copy into p. Invalid utf-8 throws.
- * Valid but not NFC is normalized into p.
+ * Valid but not NFC is normalized into p. The copy has no trailing 0;
+ * do not use the result `->s` as a C string.
  */
 #define afw_utf8_create(s, len, p, xctx) \
     afw_utf8_nfc(s, len, afw_utf8_nfc_option_create_copy, p, xctx)
 
 
 /**
- * @brief Create utf-8 in p from a 0-terminated C string (copy, NFC or throw).
+ * @brief Ingest a 0-terminated C string: new utf8 in p (copy, NFC or throw).
  * @param s_z 0-terminated octets.
  * @param p pool for the struct and the copy.
  * @param xctx of caller.
+ *
+ * You have a `utf8_z`; you get an `afw_utf8_t`. Inverse of
+ * `afw_utf8_to_utf8_z`.
  */
-#define afw_utf8_create_z(s_z, p, xctx) \
+#define afw_utf8_z_to_utf8(s_z, p, xctx) \
     afw_utf8_nfc(s_z, AFW_UTF8_Z_LEN, afw_utf8_nfc_option_create_copy, \
         p, xctx)
 
@@ -279,7 +302,8 @@ afw_utf8_from_encoding(
  *
  * Extra words take the copy off. p holds the little struct; bytes stay at s
  * and must live as long as the result. Cannot rewrite someone else's memory,
- * so not-NFC throws.
+ * so not-NFC throws. `s` is still not a C string. Ingest a `utf8_z` with
+ * `afw_utf8_z_as_utf8` / `afw_utf8_z_to_utf8`.
  */
 AFW_DECLARE(const afw_utf8_t *)
 afw_utf8_create_no_copy(
@@ -288,8 +312,13 @@ afw_utf8_create_no_copy(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Ingest a 0-terminated C string: new utf8 pointing at s_z (no copy).
+ *
+ * `s_z` must already be valid NFC. Inverse of a C string you already own.
+ */
 AFW_DECLARE(const afw_utf8_t *)
-afw_utf8_create_no_copy_z(
+afw_utf8_z_as_utf8(
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -343,7 +372,10 @@ afw_utf8_array_to_utf8_with_separator(
  * @return utf8_z 0 terminated string.
  *
  * The input strings must already be valid utf-8.  An error is thrown if it is
- * not.
+ * not, or if a piece or the separator contains a 0 byte.
+ *
+ * Use this (or `to_utf8_z` / `z_create`) when the result must be a
+ * 0-terminated C string. Do not concatenate and then use a piece `->s`.
  */
 AFW_DECLARE(const afw_utf8_z_t *)
 afw_utf8_array_to_utf8_z_with_separator(
@@ -362,10 +394,10 @@ afw_utf8_array_to_utf8_z_with_separator(
  * @return utf8_z 0 terminated string.
  *
  * The input strings must already be valid utf-8.  An error is thrown if it is
- * not.
+ * not, or if the separator contains a 0 byte.
  */
 AFW_DECLARE(const afw_utf8_z_t *)
-afw_utf8_z_array_to_utf8_z_with_separator(
+afw_utf8_z_array_with_separator(
     const afw_utf8_z_t * const * strings_z,
     const afw_utf8_t * separator,
     const afw_pool_t *p, afw_xctx_t *xctx);
@@ -374,22 +406,17 @@ afw_utf8_z_array_to_utf8_z_with_separator(
 
 /**
  * @brief Clone a utf-8 string into a specific pool.
- * @param string
- * @param len is number of bytes.
+ * @param string to clone, or NULL.
  * @param p pool used for result.
  * @param xctx of caller.
- * @return utf8 string.
+ * @return utf8 string, or NULL if string is NULL.
  *
  * Clone copies the struct and the bytes (same byte policy as create).
+ * The copy has no trailing 0.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_utf8_t *)
+AFW_DECLARE(const afw_utf8_t *)
 afw_utf8_clone(
-    const afw_utf8_t *string, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    return (string)
-        ? afw_utf8_create(string->s, string->len, p, xctx)
-        : NULL;
-}
+    const afw_utf8_t *string, const afw_pool_t *p, afw_xctx_t *xctx);
 
 
 
@@ -411,8 +438,11 @@ afw_utf8_set(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Ingest a 0-terminated C string into a preallocated utf8 (copy + NFC).
+ */
 AFW_DECLARE(void)
-afw_utf8_set_z(
+afw_utf8_z_set(
     afw_utf8_t *to,
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
@@ -434,8 +464,11 @@ afw_utf8_set_no_copy(
     afw_size_t len,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Ingest a 0-terminated C string into a preallocated utf8 (point).
+ */
 AFW_DECLARE(void)
-afw_utf8_set_no_copy_z(
+afw_utf8_z_set_no_copy(
     afw_utf8_t *to,
     const afw_utf8_z_t *s_z,
     afw_xctx_t *xctx);
@@ -453,8 +486,11 @@ afw_utf8_set_forced_safe(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Ingest a 0-terminated C string with forced_safe encode (copy).
+ */
 AFW_DECLARE(void)
-afw_utf8_set_forced_safe_z(
+afw_utf8_z_set_forced_safe(
     afw_utf8_t *to,
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
@@ -474,8 +510,11 @@ afw_utf8_create_forced_safe(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Ingest a 0-terminated C string with forced_safe encode (new utf8).
+ */
 AFW_DECLARE(const afw_utf8_t *)
-afw_utf8_create_forced_safe_z(
+afw_utf8_z_create_forced_safe(
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -492,8 +531,11 @@ afw_utf8_create_property_name(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Ingest a 0-terminated C string as a property name (encode, then NFC).
+ */
 AFW_DECLARE(const afw_utf8_t *)
-afw_utf8_create_property_name_z(
+afw_utf8_z_create_property_name(
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -643,29 +685,23 @@ afw_utf8_printf_v(
 
 
 /**
- * @brief Convert utf8 to utf8_z in specified pool.
+ * @brief Convert utf8 to an external C string in specified pool.
  * @param string to convert.
  * @param p pool used for result.
  * @param xctx of caller.
  * @return utf8_z 0 terminated string.
  *
- * The input strings are assumed to already be valid utf-8.
+ * Always use this (or `afw_utf8_z_create`) at the external C-string
+ * door. Do not use `string->s` as a C string: it is not 0-terminated
+ * and may contain U+0000.
+ *
+ * The input is assumed to already be valid utf-8. Throws if the
+ * length-prefixed bytes contain a 0. A C string cannot represent that
+ * value. `forced_safe` / `z_printf` still encode U+0000.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_utf8_z_t *)
+AFW_DECLARE(const afw_utf8_z_t *)
 afw_utf8_to_utf8_z(
-    const afw_utf8_t *string, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_utf8_z_t * result;
-
-    if (!string || string->len == 0) {
-        return "";
-    }
-
-    result = afw_pool_malloc(p, string->len + 1, xctx);
-    memcpy(result, string->s, string->len);
-    result[string->len] = 0;
-    return result;
-}
+    const afw_utf8_t *string, const afw_pool_t *p, afw_xctx_t *xctx);
 
 
 /**
@@ -692,7 +728,7 @@ afw_utf8_starts_with(
  * The input strings are assumed to already be valid utf-8.
  */
 AFW_DECLARE(afw_boolean_t)
-afw_utf8_starts_with_z(
+afw_utf8_starts_with_utf8_z(
     const afw_utf8_t *string, const afw_utf8_z_t *starts_with_z);
 
 
@@ -720,7 +756,7 @@ afw_utf8_ends_with(
  * The input strings are assumed to already be valid utf-8.
  */
 AFW_DECLARE(afw_boolean_t)
-afw_utf8_ends_with_z(
+afw_utf8_ends_with_utf8_z(
     const afw_utf8_t *string, const afw_utf8_z_t *ends_with_z);
 
 
@@ -817,33 +853,36 @@ afw_utf8_parse_csv(
  *    end of string, substring will include all bytes up to end
  *    of string.
  *
+ * Result points into `string` (no copy). There is no trailing 0 at
+ * `result->s[result->len]`. Do not use `result->s` as a C string.
+ *
  * If string might contain codepoints > 127, you should use
  * afw_utf8_substring().
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_utf8_substring_byte(
     afw_utf8_t *result, const afw_utf8_t *string, afw_size_t start,
-    afw_size_t end)
-{
-    if (end > string->len) end = string->len;
-    result->len = (end > start) ? end - start : 0;
-    result->s = (result->len > 0) ? string->s + start : NULL;
-}
+    afw_size_t end);
 
 
-/* -- The following are primarily zero terminate utf-8 string functions. -- */
+/* -- Zero-terminated utf-8 (`utf8_z` / C string) -- */
 
 /**
- * @brief Create a NFC Normalized zero terminated UTF-8 string in specified
+ * @brief Create a NFC normalized 0-terminated UTF-8 string in specified
  *    pool.
  * @param s pointer to utf-8 characters.
  * @param len is number of bytes.
  * @param p pool used for result.
  * @param xctx of caller.
  *
+ * Always use this (or `afw_utf8_to_utf8_z`) at the external C-string
+ * door from length-prefixed octets. Do not use `s` as a C string unless
+ * `len` is `AFW_UTF8_Z_LEN` and `s` is already `utf8_z`.
+ *
  * A copy is always required to add a 0 byte.
  *
- * An error is thrown if s is not valid utf-8.
+ * Throws if s is not valid utf-8, or if the length-prefixed bytes
+ * contain a 0 (a C string cannot represent that value).
  */
 AFW_DECLARE(const afw_utf8_z_t *)
 afw_utf8_z_create(
@@ -858,20 +897,9 @@ afw_utf8_z_create(
  * @param s2_z 0 terminated string.
  * @return true or false.
  */
-AFW_DEFINE_STATIC_INLINE(afw_boolean_t)
-afw_utf8_len_starts_with_z(
-    const afw_utf8_octet_t *s1, afw_size_t len1, const afw_utf8_z_t *s2_z)
-{
-    while (*s2_z) {
-        if (len1-- <= 0 || *s1 != *s2_z) {
-            return false;
-        }
-        s1++;
-        s2_z++;
-    }
-
-    return true;
-}
+AFW_DECLARE(afw_boolean_t)
+afw_utf8_len_starts_with_utf8_z(
+    const afw_utf8_octet_t *s1, afw_size_t len1, const afw_utf8_z_t *s2_z);
 
 
 /**
@@ -882,38 +910,17 @@ afw_utf8_len_starts_with_z(
  * @param s2_z 0 terminated string.
  * @return true or false.
  */
-AFW_DEFINE_STATIC_INLINE(afw_boolean_t)
-afw_utf8_z_starts_with_z(
-    const afw_utf8_z_t *s1_z, const afw_utf8_z_t *s2_z)
-{
-    while (*s2_z) {
-        if (!*s1_z || *s1_z != *s2_z) {
-            return false;
-        }
-        s1_z++;
-        s2_z++;
-    }
-
-    return true;
-}
+AFW_DECLARE(afw_boolean_t)
+afw_utf8_z_starts_with(
+    const afw_utf8_z_t *s1_z, const afw_utf8_z_t *s2_z);
 
 
 /**
  * @brief Compare two zero terminated utf-8 strings ignoring case.
- *
- * 
  */
-AFW_DEFINE_STATIC_INLINE(int)
+AFW_DECLARE(int)
 afw_utf8_z_compare_ignore_case(
-    const afw_utf8_z_t *s1, const afw_utf8_z_t *s2, afw_xctx_t *xctx)
-{
-    afw_utf8_t a1, a2;
-
-    afw_utf8_set_no_copy_z(&a1, s1, xctx);
-    afw_utf8_set_no_copy_z(&a2, s2, xctx);
-
-    return afw_utf8_compare_ignore_case(&a1, &a2, xctx);
-}
+    const afw_utf8_z_t *s1, const afw_utf8_z_t *s2, afw_xctx_t *xctx);
 
 
 /** @fixme Need to fix comments below and polish comments above. */
@@ -922,13 +929,9 @@ afw_utf8_z_compare_ignore_case(
  * Compare two zero terminated UTF8 strings to be equal.
  * Strings should already be normalized (NFC, etc.)
  */
-AFW_DEFINE_STATIC_INLINE(afw_boolean_t)
+AFW_DECLARE(afw_boolean_t)
 afw_utf8_z_equal(
-    const afw_utf8_z_t *s1, const afw_utf8_z_t *s2)
-{
-    return (s1 && s2 && (strcmp((const char *)s1, (const char *)s2) == 0
-        || s1 == s2)) ? TRUE : FALSE;
-}
+    const afw_utf8_z_t *s1, const afw_utf8_z_t *s2);
 
 
 /**
@@ -940,12 +943,9 @@ afw_utf8_z_equal(
  * when XACML is chanced not to use this.  New version has xctx so
  * error can be thrown if string is not UTF8 or too large.
  */
-AFW_DEFINE_STATIC_INLINE(afw_boolean_t)
+AFW_DECLARE(afw_boolean_t)
 afw_utf8_z_equal_ignore_case(
-    const afw_utf8_z_t *s1, const afw_utf8_z_t *s2)
-{
-    return (strcasecmp((const char *)s1, (const char *)s2) == 0) ? true : false;
-}
+    const afw_utf8_z_t *s1, const afw_utf8_z_t *s2);
 
 
 
@@ -977,42 +977,18 @@ afw_utf8_z_printf_v(
 /**
  * Create a utf8_z string using a c format string in specified pool.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_utf8_z_t *)
+AFW_DECLARE_ELLIPSIS(const afw_utf8_z_t *)
 afw_utf8_z_printf(
-    const afw_pool_t *p, afw_xctx_t *xctx, const afw_utf8_z_t *format_z, ...)
-{
-    va_list ap;
-    const afw_utf8_z_t *result;
-
-    va_start(ap, format_z);
-    result = afw_utf8_z_printf_v(format_z, ap, p, xctx);
-    va_end(ap);
-
-    return result;
-};
+    const afw_pool_t *p, afw_xctx_t *xctx, const afw_utf8_z_t *format_z, ...);
 
 
 
 /**
  * Returns pointer in path_z past last / or \.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_utf8_z_t *)
+AFW_DECLARE(const afw_utf8_z_t *)
 afw_utf8_z_file_name_from_path(
-    const afw_utf8_z_t *path_z)
-{
-    const afw_utf8_z_t *file_name;
-    const afw_utf8_z_t *c;
-
-    if (!path_z) return "";
-
-    for (c = file_name = path_z; *c; c++) {
-        if ((*c == '/') || (*c == '\\')) {
-            file_name = c + 1;
-        }
-    }
-
-    return file_name;
-}
+    const afw_utf8_z_t *path_z);
 
 
 /**

@@ -1966,7 +1966,7 @@ afw_query_criteria_parse_url_encoded_rql_string(
         while (1) {
 
             /* If "sort(", parser sort criteria. It can only occur once. */
-            if (afw_utf8_z_starts_with_z(parser.c, "sort(")) {
+            if (afw_utf8_z_starts_with(parser.c, "sort(")) {
                 if (parser.criteria->first_sort) {
                     AFW_THROW_ERROR_Z(general,
                         "sort() specified multiple times in query string",
@@ -1977,7 +1977,7 @@ afw_query_criteria_parse_url_encoded_rql_string(
             }
 
             /* If "select(", parser select criteria. It can only occur once. */
-            else if (afw_utf8_z_starts_with_z(parser.c, "select(")) {
+            else if (afw_utf8_z_starts_with(parser.c, "select(")) {
                 if (parser.criteria->select) {
                     AFW_THROW_ERROR_Z(general,
                         "select() specified multiple times in query string",
@@ -1988,7 +1988,7 @@ afw_query_criteria_parse_url_encoded_rql_string(
             }
 
             /* If "limit(", parser limit criteria. It can only occur once.
-            else if (afw_utf8_z_starts_with_z(parser.c, "select(")) {
+            else if (afw_utf8_z_starts_with(parser.c, "select(")) {
                 if (parser.criteria->limit) {
                     AFW_THROW_ERROR_Z(general,
                         "limit() specified multiple times in query string",

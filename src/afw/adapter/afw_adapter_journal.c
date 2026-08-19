@@ -385,7 +385,7 @@ afw_adapter_internal_journal_get_entry(
     /** @fixme Might want to url_decode consumer_id and entry_cursor. */
 
     /* get_first */
-    if (afw_utf8_starts_with_z(object_id, "get_first")) {
+    if (afw_utf8_starts_with_utf8_z(object_id, "get_first")) {
         syntax_z = "get_first";
         option = afw_adapter_journal_option_get_first;
         option_z = "get_first";
@@ -393,7 +393,7 @@ afw_adapter_internal_journal_get_entry(
     }
 
     /* get_by_cursor:<event_cursor> */
-    else if (afw_utf8_starts_with_z(object_id, "get_by_cursor:")) {
+    else if (afw_utf8_starts_with_utf8_z(object_id, "get_by_cursor:")) {
         syntax_z = "get_by_cursor:<event_cursor>";
         option = afw_adapter_journal_option_get_by_cursor;
         option_z = "get_by_cursor";
@@ -405,7 +405,7 @@ afw_adapter_internal_journal_get_entry(
     }
 
     /* get_next_after_cursor:<event_cursor> */
-    else if (afw_utf8_starts_with_z(object_id, "get_next_after_cursor:")) {
+    else if (afw_utf8_starts_with_utf8_z(object_id, "get_next_after_cursor:")) {
         syntax_z = "get_next_after_cursor:<event_cursor>";
         option = afw_adapter_journal_option_get_next_after_cursor;
         option_z = "get_next_after_cursor";
@@ -417,7 +417,7 @@ afw_adapter_internal_journal_get_entry(
     }
 
     /* get_next_for_consumer:<consumer_id> */
-    else if (afw_utf8_starts_with_z(object_id, "get_next_for_consumer:"))
+    else if (afw_utf8_starts_with_utf8_z(object_id, "get_next_for_consumer:"))
     {
         limit_applies = true;
         syntax_z = "get_next_for_consumer:<consumer_id>";
@@ -431,7 +431,7 @@ afw_adapter_internal_journal_get_entry(
     }
 
     /* get_next_for_consumer_after_cursor:<consumer_id>:<event_cursor> */
-    else if (afw_utf8_starts_with_z(object_id,
+    else if (afw_utf8_starts_with_utf8_z(object_id,
         "get_next_for_consumer_after_cursor:"))
     {
         limit_applies = true;
@@ -453,7 +453,7 @@ afw_adapter_internal_journal_get_entry(
     }
 
     /* advance_cursor_for_consumer:<consumer_id> */
-    else if (afw_utf8_starts_with_z(object_id,
+    else if (afw_utf8_starts_with_utf8_z(object_id,
         "advance_cursor_for_consumer:"))
     {
         limit_applies = true;
