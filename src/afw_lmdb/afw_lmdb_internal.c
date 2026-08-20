@@ -1270,14 +1270,30 @@ afw_lmdb_transaction_t * afw_lmdb_transaction_create(
 
     self->session = (afw_adapter_session_t *)session;
 
-    /* 
+    /*
+     * If a transaction is already active for this session (e.g. the
+     * implicit per-request transaction begun by add_object/modify_object/
+     * delete_object/replace_object, or an outer explicit transaction),
+     * reuse it. LMDB only allows a single write transaction per thread;
+     * calling mdb_txn_begin() again here would self-deadlock on LMDB's
+     * writer mutex. This handle does not own the transaction, so
+     * commit()/release() on it become no-ops -- only the owner's
+     * commit/release actually ends the transaction.
+     */
+    if (session->transaction) {
+        self->txn = session->transaction->txn;
+        self->owner = false;
+        return self;
+    }
+
+    /*
         Anytime we need to begin a transaction, we must first obtain
         a database lock to prevent another transactions from opening
-        databases. 
+        databases.
      */
     apr_thread_rwlock_rdlock(session->adapter->dbLock);
 
-    afw_trace_z(1, session->adapter->pub.trace_flag_index, 
+    afw_trace_z(1, session->adapter->pub.trace_flag_index,
         NULL, "LMDB Begin read transaction.", xctx);
 
     rc = mdb_txn_begin(session->adapter->dbEnv, NULL, 0, &self->txn);
@@ -1292,6 +1308,7 @@ afw_lmdb_transaction_t * afw_lmdb_transaction_create(
             "Unable to begin transaction.", xctx);
     }
 
+    self->owner = true;
     session->transaction = self;
     session->currTxn = self->txn;
 
@@ -1310,6 +1327,15 @@ impl_afw_adapter_transaction_release (
     afw_lmdb_adapter_session_t * session =
         (afw_lmdb_adapter_session_t *)self->session;
 
+    /*
+     * A non-owning handle (reentrant reuse of an already-active session
+     * transaction) does not release -- the owner is still using it.
+     */
+    if (!self->owner) {
+        self->txn = NULL;
+        return;
+    }
+
     /* if our session still has an active transaction going, abort it */
     if (session->transaction) {
         mdb_txn_abort(self->txn);
@@ -1321,6 +1347,7 @@ impl_afw_adapter_transaction_release (
 
     self->txn = NULL;
     session->transaction = NULL;
+    session->currTxn = NULL;
 }
 
 /*
@@ -1335,6 +1362,15 @@ impl_afw_adapter_transaction_commit (
     afw_lmdb_adapter_session_t * session =
         (afw_lmdb_adapter_session_t *)self->session;
     int rc;
+
+    /*
+     * A non-owning handle (reentrant reuse of an already-active session
+     * transaction) does not commit -- the owner will, when it releases.
+     */
+    if (!self->owner) {
+        self->txn = NULL;
+        return;
+    }
 
     rc = mdb_txn_commit(self->txn);
     if (rc) {
@@ -1352,6 +1388,7 @@ impl_afw_adapter_transaction_commit (
     /* clear our session transaction to prevent further commits */
     self->txn = NULL;
     session->transaction = NULL;
+    session->currTxn = NULL;
 }
 
 /*

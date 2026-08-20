@@ -8,7 +8,7 @@
 //? test: index_current_object
 //? description: index_create value/filter scripts use current::object (issue #54)
 //? skip: true
-//? skipReason: FIXME: LMDB index_create txn/save_config and retroactive hang; unskip when create path is fixed (#57)
+//? skipReason: FIXME: retroactive index_create's retrieve_objects(object_type_id=NULL) crashes in the generic adapter wrapper (afw_adapter_impl.c impl_afw_adapter_session_retrieve_objects, building ctx.resource_id via AFW_UTF8_FMT_ARG on a NULL object_type_id when impl_request is also NULL) -- core adapter bug, not LMDB-specific; unskip when that's fixed
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw

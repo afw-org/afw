@@ -174,8 +174,8 @@ impl_afw_adapter_impl_index_open(
     const afw_pool_t * pool,
     afw_xctx_t *xctx)
 {
-    const afw_lmdb_adapter_t *adapter = self->adapter;   
-    const afw_lmdb_adapter_session_t * session = NULL;     
+    const afw_lmdb_adapter_t *adapter = self->adapter;
+    const afw_lmdb_adapter_session_t * session = self->session;
     const afw_utf8_t *database;
     unsigned int flags;
 
