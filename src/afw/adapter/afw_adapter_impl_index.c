@@ -522,10 +522,13 @@ afw_boolean_t afw_adapter_impl_index_try(
         else
         {
             /* no value script: index property with the same name as the key */
-            {
+            if (key) {
                 const afw_value_string_t key_value =
                     AFW_VALUE_STRING_UNMANAGED(key);
                 eval = afw_object_get_property(object, &key_value.pub, xctx);
+            }
+            else {
+                eval = NULL;
             }
         }
 
