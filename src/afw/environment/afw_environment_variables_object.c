@@ -76,7 +76,6 @@ impl_cache_environ_entry(
     name_len = (afw_size_t)(c - s);
     property_name_utf8 = afw_utf8_create_property_name(
         s, name_len, self->pub.p, xctx);
-    /* FIXME #2: utf8 name wrap; create the string value once. */
     property_name = afw_value_create_unmanaged_string(
         property_name_utf8, self->pub.p, xctx);
 
@@ -232,7 +231,7 @@ impl_afw_object_get_property(
      * populated via load_all / iterate (raw name is not a C string key).
      */
     value = NULL;
-    /* FIXME #2: utf8 name wrap; getenv still wants a C string. */
+    /* getenv is a C-string API; as_utf8 at that door. */
     property_name_utf8 = afw_object_string_property_name_as_utf8(
         property_name, xctx);
     property_name_z = afw_utf8_z_create(

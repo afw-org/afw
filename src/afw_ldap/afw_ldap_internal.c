@@ -298,12 +298,17 @@ afw_ldap_internal_create_object_from_entry(
 
             /* If there is a value, set its property. */
             if (value) {
-                /* FIXME #2: utf8 name wrap; LDAP attr could be
-                   afw_value_string_t. */
-                afw_object_set_property(o,
-                    afw_value_create_unmanaged_string(
-                        property_name, o->p, xctx),
-                    value, xctx);
+                if (attribute && attribute->attribute_type) {
+                    afw_object_set_property(o,
+                        &attribute->attribute_type->property_name.pub,
+                        value, xctx);
+                }
+                else {
+                    afw_object_set_property(o,
+                        afw_value_create_unmanaged_string(
+                            property_name, o->p, xctx),
+                        value, xctx);
+                }
             }
 
             /* Free bv and a. */

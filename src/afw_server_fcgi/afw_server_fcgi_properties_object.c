@@ -61,7 +61,6 @@ impl_cache_envp_entry(
     name_len = (afw_size_t)(c - s);
     property_name_utf8 = afw_utf8_create_property_name(
         s, name_len, self->pub.p, xctx);
-    /* FIXME #2: utf8 name wrap; create the string value once. */
     property_name = afw_value_create_unmanaged_string(
         property_name_utf8, self->pub.p, xctx);
 

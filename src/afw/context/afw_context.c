@@ -66,6 +66,7 @@ impl_contribute_cb_variables_cb(
         (const afw_context_cb_variable_t * const *)entry->wa;
     const afw_context_cb_variable_t *const *variable;
     const afw_value_t *value;
+    const afw_value_t *name_value;
     const afw_utf8_t *name;
 
     (void)include_untrusted;
@@ -77,24 +78,22 @@ impl_contribute_cb_variables_cb(
     for (variable = variables; *variable; variable++) {
         name = (*variable)->meta->name;
         {
-            const afw_value_string_t name_value =
+            const afw_value_string_t has_name =
                 AFW_VALUE_STRING_UNMANAGED(name);
-            if (afw_object_has_property(object, &name_value.pub, xctx))
+            if (afw_object_has_property(object, &has_name.pub, xctx))
             {
                 continue;
             }
         }
+        /* SET: intern once into the object pool; has stayed stack. */
+        name_value = afw_value_create_unmanaged_string(name, object->p, xctx);
         value = (*variable)->get_cb(entry, name, xctx);
         if (value) {
-            /* SET: name header must live with the object. */
-            afw_object_set_property(object,
-                afw_value_create_unmanaged_string(name, object->p, xctx),
-                value, xctx);
+            afw_object_set_property(object, name_value, value, xctx);
         }
         else {
             /* Known name on this frame; present but unset → undefined. */
-            afw_object_set_property(object,
-                afw_value_create_unmanaged_string(name, object->p, xctx),
+            afw_object_set_property(object, name_value,
                 afw_value_undefined, xctx);
         }
     }
@@ -599,7 +598,7 @@ afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
     while ((object = afw_object_old_get_next_property_as_object(
         objects, &iterator, &qualifier_id, xctx)))
     {
-        /* FIXME #2: utf8 name wrap; qualifier ids still utf8 here. */
+        /* Qualifier ids stay utf8 on this API; as_utf8 at that door. */
         qualifier_id_utf8 = afw_object_string_property_name_as_utf8(
             qualifier_id, xctx);
         detail_source_location = afw_utf8_printf(

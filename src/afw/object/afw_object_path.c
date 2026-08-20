@@ -134,7 +134,7 @@ impl_object_path_parse(
     const afw_utf8_t *token;
     afw_boolean_t is_reserved;
     afw_boolean_t at_end;
-    const afw_utf8_t *name;
+    const afw_value_t *name = NULL;
     const afw_octet_t *c;
     const afw_octet_t *prev_c;
     afw_object_path_property_name_entry_t *prev_name;
@@ -351,7 +351,8 @@ impl_object_path_parse(
                 goto error;
             }
 
-            name = afw_utf8_create(token->s, token->len, p, xctx);
+            name = afw_value_create_unmanaged_string(
+                afw_utf8_create(token->s, token->len, p, xctx), p, xctx);
             state = impl_state_after_option_name;
             break;
 
@@ -362,10 +363,8 @@ impl_object_path_parse(
             if (at_end ||
                 (is_reserved && !afw_utf8_equal(token, afw_s_a_equal)))
             {
-                /* FIXME #2: utf8 name wrap; prefer afw_value_string_t. */
                 afw_object_set_property(parsed->options_object,
-                    afw_value_create_unmanaged_string(name, p, xctx),
-                    afw_boolean_v_true, xctx);
+                    name, afw_boolean_v_true, xctx);
             }
 
             if (at_end) {
@@ -401,10 +400,8 @@ impl_object_path_parse(
                 goto error;
             }
 
-            /* FIXME #2: utf8 name wrap; prefer afw_value_string_t. */
             afw_object_set_property_as_string(parsed->options_object,
-                afw_value_create_unmanaged_string(name, p, xctx),
-                token, xctx);
+                name, token, xctx);
 
             state = impl_state_after_option_value;
 

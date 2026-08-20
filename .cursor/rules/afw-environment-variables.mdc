@@ -37,7 +37,7 @@ Untrusted external bytes (env, FCGI, similar) **must not** become string/`afw_ut
 | API | Role |
 |-----|------|
 | `afw_value_create_from_external_octets` / `_z` | Valid UTF-8 → **string** (NFC via `afw_utf8_*`); else **hexBinary** (copy of same raw bytes). Does **not** throw on invalid UTF-8. |
-| `afw_utf8_create_property_name_from_external_octets` | Valid UTF-8 name → NFC name; else **`_NONUTF8_` + uppercase hex** of raw name bytes. Property names are always `afw_utf8_t`. |
+| `afw_utf8_create_property_name_from_external_octets` | Valid UTF-8 name → NFC name; else **`_NONUTF8_` + uppercase hex** of raw name bytes. That door returns **utf8**; intern a **string value** at object SET. |
 | `afw_value_create_string_from_u8z` | Requires valid UTF-8; **throws** if not. For trusted/required text only. |
 
 **Never** reintroduce helpers that wrap unchecked bytes as string (removed: `afw_value_make_string_copy`, `afw_value_make_single_string`).

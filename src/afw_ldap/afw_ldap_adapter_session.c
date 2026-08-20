@@ -378,7 +378,7 @@ impl_afw_adapter_session_add_object(
     while ((value = afw_object_get_next_property(object,
         &iterator, &property_name, xctx)))
     {
-        /* FIXME #2: utf8 name wrap; LDAP attr could be afw_value_string_t. */
+        /* LDAP C APIs still take utf8 / C strings; as_utf8 at that door. */
         property_name_utf8 = afw_object_string_property_name_as_utf8(
             property_name, xctx);
         attribute = afw_ldap_metadata_get_object_type_attribute(

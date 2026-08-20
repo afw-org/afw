@@ -23,7 +23,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) | **Whole story** — why AFW is shaped this way, how parts relate (values, compile, pools, env, hosts). Keep and correct; do not trim maps. Not always-on rules |
 | [`mantras-and-working-style.md`](mantras-and-working-style.md) | Mike mantras + partnership habits (subset; grow when shared); philosophy/taste questions — **not** always-on |
 | [`memory-management.md`](memory-management.md) | Umbrella **#2** — pools, value lifetimes, escape |
-| [`issue-2-property-name-values.md`](issue-2-property-name-values.md) | **#2** — object property names as `const afw_value_t *` (this branch; script/JSON string-only) |
+| [`issue-2-property-name-values.md`](issue-2-property-name-values.md) | **#2** — object property names as `const afw_value_t *` (landed PR **#220** + wrap-cleanup; script/JSON string-only) |
 | [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | Value vs utf8/memory payloads; `create` / `set` / `no_copy` / `forced_safe`; code_point dir |
 | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | **#149 closed** (PRs #160–#162) — architecture map: generate maps, OT `runtime`, accessors, env registration, checklist; keep for **#2** follow-on |
 | [`runtime-value-accessors.md`](runtime-value-accessors.md) | Live catalog snapshot of `_AdaptiveRuntimeValueAccessor_` (refresh via `afw -x` retrieve) |

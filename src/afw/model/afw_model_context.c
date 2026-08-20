@@ -184,7 +184,7 @@ afw_model_internal_get_current_mappedPropertyName(
         ctx->property_level.model_property_type)
     {
         ctx->property_level.mapped_property_name_value =
-            ctx->property_level.model_property_type->mapped_property_name_value;
+            &ctx->property_level.model_property_type->mapped_property_name.pub;
     }
 
     return ctx->property_level.mapped_property_name_value;
@@ -286,7 +286,7 @@ afw_model_internal_get_current_propertyName(
         ctx->property_level.model_property_type)
     {
         ctx->property_level.property_name_value =
-            ctx->property_level.model_property_type->property_name_value;
+            &ctx->property_level.model_property_type->property_name.pub;
     }
 
     return ctx->property_level.property_name_value;
@@ -438,7 +438,7 @@ impl_mappedPropertyName_from_mapped_cb(
         ctx->property_level.model_property_type)
     {
         ctx->property_level.mapped_property_name_value =
-            ctx->property_level.model_property_type->mapped_property_name_value;
+            &ctx->property_level.model_property_type->mapped_property_name.pub;
     }
 
     return ctx->property_level.mapped_property_name_value;
@@ -553,7 +553,7 @@ impl_propertyName_to_mapped_cb(
         ctx->property_level.model_property_type)
     {
         ctx->property_level.property_name_value =
-            ctx->property_level.model_property_type->property_name_value;
+            &ctx->property_level.model_property_type->property_name.pub;
     }
 
     return ctx->property_level.property_name_value;
