@@ -84,6 +84,7 @@ Use any subset; none of this is mandatory for the team.
 - **Discuss → plan → execute when agreed** on multi-step hard work (especially memory / long-running lifetime).  
 - **Flexible plan, one step, then re-decide** — living candidate order, not a locked script; after a step, ask **“what do you think we should do next?”** and adapt (see mantras pad *Partnership habits*). Good for issue wrap-ups and residual passes.  
 - **Hold commits and PRs until asked** in a pairing session, unless you agree otherwise for a stretch.  
+- **Name the partner on the commit and PR.** `Co-Authored-By` trailer plus a Generated-with line on the PR body. Same visibility a human co-author would get. Silent human-only authorship of partner work is the wrong default.  
 - Keep **language tests** (`afwdev test -j`) as the correctness gate; keep **load / soak** as a separate lab (`tests-extra/` / `-T`, firehose) — do not redefine the gate as soak.  
 - **Never hand-edit `generated/`** — metadata is the single source of truth.  
 - Prefer **plain language** in chat and maintainer notes when a short phrase is enough.  
@@ -165,7 +166,10 @@ to “implement everything on `develop`.”
    for a stretch (see *Practical defaults* above).  
 7. **When the vertical is ready for review:**  
    **“Open a PR against `develop`”** (or your target branch). Review the
-   diff yourself; treat the partner’s draft description as a starting point.  
+   diff yourself; treat the partner’s draft description as a starting point.
+   Name the partner as a co-author on the commit and PR (`Co-Authored-By`,
+   a Generated-with line). Do not ship the work as silent human-only
+   authorship.  
 8. **After a real click** (shipped behavior or a durable mental model), add or
    update a **short map** in `designs/` (atlas row, playbook note, or thin pad)
    if the next person would care — issue ids as pointers only. User-facing
