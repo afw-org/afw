@@ -172,15 +172,21 @@ impl_log_current_contribute_variables_cb(
     (void)include_untrusted;
 
     for (np = names; *np; np++) {
-        if (afw_object_has_property(object, *np, xctx)) {
+        if (afw_object_has_property(object,
+            afw_value_create_unmanaged_string(*np, object->p, xctx), xctx))
+        {
             continue;
         }
         value = impl_log_current_variable_get_cb(entry, *np, xctx);
         if (value) {
-            afw_object_set_property(object, *np, value, xctx);
+            afw_object_set_property(object,
+                afw_value_create_unmanaged_string(*np, object->p, xctx),
+                value, xctx);
         }
         else {
-            afw_object_set_property(object, *np, afw_value_undefined, xctx);
+            afw_object_set_property(object,
+                afw_value_create_unmanaged_string(*np, object->p, xctx),
+                afw_value_undefined, xctx);
         }
     }
 }
@@ -691,7 +697,7 @@ impl_afw_service_type_start_cede_p (
     const afw_utf8_t *log_type;
 
     log_type = afw_object_old_get_property_as_utf8(properties,
-        afw_s_logType, p, xctx);
+        afw_v_logType, p, xctx);
     if (!log_type) {
         AFW_THROW_ERROR_Z(general, "parameter logType missing", xctx);
     }
@@ -774,28 +780,30 @@ impl_afw_service_type_restart_cede_p (
 AFW_DEFINE(void)
 afw_log_impl_throw_property_invalid(
     const afw_log_t *log,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     AFW_THROW_ERROR_FZ(general, xctx,
         "Configuration type=log, logId=" AFW_UTF8_FMT_Q
         " property name " AFW_UTF8_FMT_Q " is not valid.",
         AFW_UTF8_FMT_ARG(&log->log_id),
-        AFW_UTF8_FMT_ARG(property_name));
+        AFW_UTF8_FMT_ARG(
+            afw_object_property_name_display_utf8(property_name, xctx)));
 }
 
 
 AFW_DEFINE(void)
 afw_log_impl_throw_property_required(
     const afw_log_t *log,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     AFW_THROW_ERROR_FZ(general, xctx,
         "Configuration type=log, logId=" AFW_UTF8_FMT_Q
         " property name " AFW_UTF8_FMT_Q " is required.",
         AFW_UTF8_FMT_ARG(&log->log_id),
-        AFW_UTF8_FMT_ARG(property_name));
+        AFW_UTF8_FMT_ARG(
+            afw_object_property_name_display_utf8(property_name, xctx)));
 }
 
 
@@ -828,14 +836,14 @@ afw_log_impl_create_cede_p(
 
     /* Get source location.  Default it to adapter. */
     self->source_location = afw_object_old_get_property_as_string(
-        properties, afw_s_sourceLocation, xctx);
+        properties, afw_v_sourceLocation, xctx);
     if (!self->source_location) {
         self->source_location = afw_s_log;
     }
 
     /* Get log_id from parameters. Default to log_type. */
     s = afw_object_old_get_property_as_utf8(properties,
-        afw_s_logId, p, xctx);
+        afw_v_logId, p, xctx);
     memcpy(&self->log_id, s, sizeof(afw_utf8_t));
 
     /* Service id. */
@@ -845,7 +853,8 @@ afw_log_impl_create_cede_p(
 
     /* Process <priority>, if they exists. */
     for (e = afw_log_get_priority_id_map(); e->priority_id; e++) {
-        b = afw_object_old_get_property_as_boolean(properties, e->priority_id,
+        b = afw_object_old_get_property_as_boolean(properties,
+            afw_value_create_unmanaged_string(e->priority_id, p, xctx),
             &found, xctx);
         if (found) {
             afw_log_set_priority_in_mask(&impl->mask, e->priority, b);
@@ -854,11 +863,11 @@ afw_log_impl_create_cede_p(
 
     /* Compile filter, if it exists. */
     impl->filter = afw_object_old_get_property_as_compiled_script(
-        properties, afw_s_filter, self->source_location, NULL, p, xctx); 
+        properties, afw_v_filter, self->source_location, NULL, p, xctx); 
 
     /* Compile format, if it exists. */
     impl->format = afw_object_old_get_property_as_compiled_template(
-        properties, afw_s_format, self->source_location, NULL, p, xctx); 
+        properties, afw_v_format, self->source_location, NULL, p, xctx); 
 
     /* Return new log. */
     return self;

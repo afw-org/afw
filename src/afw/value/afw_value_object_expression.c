@@ -63,7 +63,7 @@ impl_afw_value_optional_evaluate(
     const afw_object_t *to;
     const afw_value_t *v;
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
 
     from = ((const afw_value_object_expression_t *)&self->pub)->internal;
     to = afw_object_create_unmanaged(p, xctx);
@@ -106,7 +106,7 @@ impl_afw_value_produce_compiler_listing(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *pv;
 
     afw_value_compiler_listing_begin_value(writer, &self->pub,
@@ -123,7 +123,9 @@ impl_afw_value_produce_compiler_listing(
             break;
         }
         afw_writer_write_z(writer, "property ", xctx);
-        afw_writer_write_utf8(writer, property_name, xctx);
+        afw_writer_write_utf8(writer,
+            afw_object_property_name_display_utf8(property_name, xctx),
+            xctx);
         afw_writer_write_z(writer, " ", xctx);
         afw_value_compiler_listing_value(pv, writer, xctx);
     }

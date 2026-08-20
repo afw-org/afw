@@ -42,7 +42,7 @@ afw_object_meta_create_accessor_with_options(
 {
     afw_object_internal_meta_accessor_self_t *self;
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
 
     /* If instance of this implementation with no meta, return NULL. */
     if (!instance->meta.meta_object && instance->inf == &impl_afw_object_inf)
@@ -125,7 +125,7 @@ impl_afw_object_get_count(
 const afw_value_t *
 impl_afw_object_get_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     /* There is no intent to implement this method. */
@@ -141,7 +141,7 @@ const afw_value_t *
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
     const afw_iterator_old_t **iterator,
-    const afw_utf8_t **property_name,
+    const afw_value_t **property_name,
     afw_xctx_t *xctx)
 {
     const afw_pool_t *p = self->pub.p;
@@ -174,11 +174,11 @@ impl_afw_object_get_next_property(
             /* If limited_data, always provide parentPaths. */
             if (self->limited_meta && afw_object_meta_object(self->instance)) {
                 result = afw_object_get_property(
-                    afw_object_meta_object(self->instance), afw_s_parentPaths,
+                    afw_object_meta_object(self->instance), afw_v_parentPaths,
                     xctx);
                 if (result) {
                     if (property_name) {
-                        *property_name = afw_s_parentPaths;
+                        *property_name = afw_v_parentPaths;
                     }
                     goto return_result;
                 }
@@ -214,12 +214,12 @@ impl_afw_object_get_next_property(
                 if (self->limited_meta ||
                     !afw_object_has_property(
                         afw_object_meta_object(self->instance),
-                        afw_s_objectId, xctx))
+                        afw_v_objectId, xctx))
                 {
                     s = afw_object_meta_get_object_id(self->instance, xctx);
                     if (s) {
                         if (property_name) {
-                            *property_name = afw_s_objectId;
+                            *property_name = afw_v_objectId;
                         }
                         result = afw_value_create_unmanaged_string(s, p, xctx);
                         goto return_result;
@@ -244,13 +244,13 @@ impl_afw_object_get_next_property(
                 if (self->limited_meta ||
                     !afw_object_has_property(
                         afw_object_meta_object(self->instance),
-                        afw_s_objectType, xctx))
+                        afw_v_objectType, xctx))
                 {
                     s = afw_object_meta_get_object_type_id(self->instance,
                         xctx);
                     if (s) {
                         if (property_name) {
-                            *property_name = afw_s_objectType;
+                            *property_name = afw_v_objectType;
                         }
                         result = afw_value_create_unmanaged_string(s, p, xctx);
                         goto return_result;
@@ -275,12 +275,12 @@ impl_afw_object_get_next_property(
             {
                 if (self->limited_meta ||
                     !afw_object_has_property(
-                        afw_object_meta_object(self->instance), afw_s_path, xctx))
+                        afw_object_meta_object(self->instance), afw_v_path, xctx))
                 {
                     s = afw_object_meta_get_path(self->instance, xctx);
                     if (s) {
                         if (property_name) {
-                            *property_name = afw_s_path;
+                            *property_name = afw_v_path;
                         }
                         result = afw_value_create_unmanaged_string(s, p, xctx);
                         goto return_result;
@@ -316,7 +316,7 @@ return_result:
 afw_boolean_t
 impl_afw_object_has_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     /* There is no intent to implement this method. */

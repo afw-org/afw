@@ -389,7 +389,7 @@ afw_curl_internal_options(
      * types. For now, we will just set the options that we know about.
      */
     if (options) {
-        verbose = afw_object_old_get_property_as_boolean(options, afw_curl_s_verbose, &found, xctx);
+        verbose = afw_object_old_get_property_as_boolean(options, afw_curl_v_verbose, &found, xctx);
         if (found && verbose == AFW_TRUE) {
             res = curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
             if (res != CURLE_OK)
@@ -400,21 +400,21 @@ afw_curl_internal_options(
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting verbose.", xctx);
         }
 
-        sslVerifyPeer = afw_object_old_get_property_as_boolean(options, afw_curl_s_sslVerifyPeer, &found, xctx);
+        sslVerifyPeer = afw_object_old_get_property_as_boolean(options, afw_curl_v_sslVerifyPeer, &found, xctx);
         if (found && sslVerifyPeer == AFW_FALSE) {
             res = curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting sslVerifyPeer.", xctx);
         }
 
-        sslVerifyHost = afw_object_old_get_property_as_boolean(options, afw_curl_s_sslVerifyHost, &found, xctx);
+        sslVerifyHost = afw_object_old_get_property_as_boolean(options, afw_curl_v_sslVerifyHost, &found, xctx);
         if (found && sslVerifyHost == AFW_FALSE) {
             res = curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting sslVerifyHost.", xctx);
         }
 
-        sslVerifyStatus = afw_object_old_get_property_as_boolean(options, afw_curl_s_sslVerifyStatus, &found, xctx);
+        sslVerifyStatus = afw_object_old_get_property_as_boolean(options, afw_curl_v_sslVerifyStatus, &found, xctx);
         if (found && sslVerifyStatus == AFW_FALSE) {
 #ifdef CURLOPT_SSL_VERIFYSTATUS
             res = curl_easy_setopt(curl, CURLOPT_SSL_VERIFYSTATUS, 0);
@@ -425,28 +425,28 @@ afw_curl_internal_options(
 #endif
         }
 
-        followLocation = afw_object_old_get_property_as_boolean(options, afw_curl_s_followLocation, &found, xctx);
+        followLocation = afw_object_old_get_property_as_boolean(options, afw_curl_v_followLocation, &found, xctx);
         if (found && followLocation == AFW_TRUE) {
             res = curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting followLocation.", xctx);
         }
 
-        proxy = afw_object_old_get_property_as_string(options, afw_curl_s_proxy, xctx);
+        proxy = afw_object_old_get_property_as_string(options, afw_curl_v_proxy, xctx);
         if (proxy) {
             res = curl_easy_setopt(curl, CURLOPT_PROXY, afw_utf8_to_utf8_z(proxy, xctx->p, xctx));
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting proxy.", xctx);
         }
 
-        userPassword = afw_object_old_get_property_as_string(options, afw_curl_s_userPassword, xctx);
+        userPassword = afw_object_old_get_property_as_string(options, afw_curl_v_userPassword, xctx);
         if (userPassword) {
             res = curl_easy_setopt(curl, CURLOPT_USERPWD, afw_utf8_to_utf8_z(userPassword, xctx->p, xctx));
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting userPassword.", xctx);
         }
 
-        awsSigv4 = afw_object_old_get_property_as_string(options, afw_curl_s_awsSigv4, xctx);
+        awsSigv4 = afw_object_old_get_property_as_string(options, afw_curl_v_awsSigv4, xctx);
         if (awsSigv4) {
 #ifdef CURLOPT_AWS_SIGV4
             res = curl_easy_setopt(curl, CURLOPT_AWS_SIGV4, afw_utf8_to_utf8_z(awsSigv4, xctx->p, xctx));
@@ -457,14 +457,14 @@ afw_curl_internal_options(
 #endif
         }
 
-        caInfo = afw_object_old_get_property_as_string(options, afw_curl_s_caInfo, xctx);
+        caInfo = afw_object_old_get_property_as_string(options, afw_curl_v_caInfo, xctx);
         if (caInfo) {
             res = curl_easy_setopt(curl, CURLOPT_CAINFO, afw_utf8_to_utf8_z(caInfo, xctx->p, xctx));
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting caInfo.", xctx);
         }
 
-        caBlob = afw_object_old_get_property_as_string(options, afw_curl_s_caBlob, xctx);
+        caBlob = afw_object_old_get_property_as_string(options, afw_curl_v_caBlob, xctx);
         if (caBlob) {
 #ifdef CURLOPT_CAINFO_BLOB
             struct curl_blob *blob;
@@ -482,7 +482,7 @@ afw_curl_internal_options(
 #endif
         }
 
-        caPath = afw_object_old_get_property_as_string(options, afw_curl_s_caPath, xctx);
+        caPath = afw_object_old_get_property_as_string(options, afw_curl_v_caPath, xctx);
         if (caPath) {
             res = curl_easy_setopt(curl, CURLOPT_CAPATH, afw_utf8_to_utf8_z(caPath, xctx->p, xctx));
             if (res != CURLE_OK)
@@ -490,37 +490,37 @@ afw_curl_internal_options(
         }
 
         readFunc = afw_object_get_property(options, 
-            afw_curl_s_readFunction, xctx);
+            afw_curl_v_readFunction, xctx);
         if (readFunc && reader) {
             reader->callback = readFunc;
         }
 
         readUserData = afw_object_get_property(options, 
-            afw_curl_s_readUserData, xctx);
+            afw_curl_v_readUserData, xctx);
         if (readUserData && reader) {
             reader->userData = readUserData;
         }
 
         writeFunc = afw_object_get_property(options, 
-            afw_curl_s_writeFunction, xctx);
+            afw_curl_v_writeFunction, xctx);
         if (writeFunc && writer) {
             writer->callback = writeFunc;
         }
 
         writeUserData = afw_object_get_property(options, 
-            afw_curl_s_writeUserData, xctx);
+            afw_curl_v_writeUserData, xctx);
         if (writeUserData && writer) {
             writer->userData = writeUserData;
         }
 
         headerFunc = afw_object_get_property(options, 
-            afw_curl_s_headerFunction, xctx);
+            afw_curl_v_headerFunction, xctx);
         if (headerFunc && header) {
             header->callback = headerFunc;
         }
 
         headerUserData = afw_object_get_property(options, 
-            afw_curl_s_headerUserData, xctx);
+            afw_curl_v_headerUserData, xctx);
         if (headerUserData && header) {
             header->userData = headerUserData;
         }
@@ -668,7 +668,7 @@ afw_curl_internal_http_post(
         if (res != CURLE_OK) 
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_getinfo()", xctx);
 
-        afw_object_set_property_as_integer(result, afw_curl_s_response_code, response_code, xctx);
+        afw_object_set_property_as_integer(result, afw_curl_v_response_code, response_code, xctx);
 
         /* parse the response body and attach it, too */
         response_body = afw_curl_internal_parse_response(response, pool, xctx);
@@ -677,13 +677,13 @@ afw_curl_internal_http_post(
             afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
 
             afw_object_set_property_as_string(result,
-                afw_curl_s_response, encoded_response, xctx);
+                afw_curl_v_response, encoded_response, xctx);
         }
 
         /* append the headers */
         if (response->headers) {
             afw_object_set_property_as_array(result,
-                afw_curl_s_headers, response->headers, xctx);
+                afw_curl_v_headers, response->headers, xctx);
         }
     }
 
@@ -804,7 +804,7 @@ afw_curl_internal_http_get(
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_getinfo()", xctx);
         }
 
-        afw_object_set_property_as_integer(result, afw_curl_s_response_code, response_code, xctx);
+        afw_object_set_property_as_integer(result, afw_curl_v_response_code, response_code, xctx);
 
         /* parse the response body and attach it, too */
         response_body = afw_curl_internal_parse_response(response, pool, xctx);
@@ -813,13 +813,13 @@ afw_curl_internal_http_get(
             afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
 
             afw_object_set_property_as_string(result,
-                afw_curl_s_response, encoded_response, xctx);
+                afw_curl_v_response, encoded_response, xctx);
         }
 
         /* append the headers */
         if (response->headers) {
             afw_object_set_property_as_array(result,
-                afw_curl_s_headers, response->headers, xctx);
+                afw_curl_v_headers, response->headers, xctx);
         }
     }
 
@@ -942,7 +942,7 @@ afw_curl_internal_http_delete(
         if (res != CURLE_OK) 
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_getinfo()", xctx);
 
-        afw_object_set_property_as_integer(result, afw_curl_s_response_code, response_code, xctx);
+        afw_object_set_property_as_integer(result, afw_curl_v_response_code, response_code, xctx);
 
         /* parse the response body and attach it, too */
         response_body = afw_curl_internal_parse_response(response, pool, xctx);
@@ -951,13 +951,13 @@ afw_curl_internal_http_delete(
             afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
 
             afw_object_set_property_as_string(result,
-                afw_curl_s_response, encoded_response, xctx);
+                afw_curl_v_response, encoded_response, xctx);
         }
 
         /* append the headers */
         if (response->headers) {
             afw_object_set_property_as_array(result,
-                afw_curl_s_headers, response->headers, xctx);
+                afw_curl_v_headers, response->headers, xctx);
         }
     }
 
@@ -1091,7 +1091,7 @@ afw_curl_internal_http_put(
         if (res != CURLE_OK) 
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_getinfo()", xctx);
 
-        afw_object_set_property_as_integer(result, afw_curl_s_response_code, response_code, xctx);
+        afw_object_set_property_as_integer(result, afw_curl_v_response_code, response_code, xctx);
 
         /* parse the response body and attach it, too */
         response_body = afw_curl_internal_parse_response(response, pool, xctx);
@@ -1100,13 +1100,13 @@ afw_curl_internal_http_put(
             afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
 
             afw_object_set_property_as_string(result,
-                afw_curl_s_response, encoded_response, xctx);
+                afw_curl_v_response, encoded_response, xctx);
         }
 
         /* append the headers */
         if (response->headers) {
             afw_object_set_property_as_array(result,
-                afw_curl_s_headers, response->headers, xctx);
+                afw_curl_v_headers, response->headers, xctx);
         }
     }
 
@@ -1240,7 +1240,7 @@ afw_curl_internal_http_patch(
         if (res != CURLE_OK) 
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_getinfo()", xctx);
 
-        afw_object_set_property_as_integer(result, afw_curl_s_response_code, response_code, xctx);
+        afw_object_set_property_as_integer(result, afw_curl_v_response_code, response_code, xctx);
 
         /* parse the response body and attach it, too */
         response_body = afw_curl_internal_parse_response(response, pool, xctx);
@@ -1249,13 +1249,13 @@ afw_curl_internal_http_patch(
             afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
 
             afw_object_set_property_as_string(result,
-                afw_curl_s_response, encoded_response, xctx);
+                afw_curl_v_response, encoded_response, xctx);
         }
 
         /* append the headers */
         if (response->headers) {
             afw_object_set_property_as_array(result,
-                afw_curl_s_headers, response->headers, xctx);
+                afw_curl_v_headers, response->headers, xctx);
         }
     }
 
@@ -1371,7 +1371,7 @@ afw_curl_internal_http_head(
         if (res != CURLE_OK) 
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_getinfo()", xctx);
 
-        afw_object_set_property_as_integer(result, afw_curl_s_response_code, response_code, xctx);
+        afw_object_set_property_as_integer(result, afw_curl_v_response_code, response_code, xctx);
 
         /* parse the response body and attach it, too */
         response_body = afw_curl_internal_parse_response(response, pool, xctx);
@@ -1380,13 +1380,13 @@ afw_curl_internal_http_head(
             afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
 
             afw_object_set_property_as_string(result,
-                afw_curl_s_response, encoded_response, xctx);
+                afw_curl_v_response, encoded_response, xctx);
         }
 
         /* append the headers */
         if (response->headers) {
             afw_object_set_property_as_array(result,
-                afw_curl_s_headers, response->headers, xctx);
+                afw_curl_v_headers, response->headers, xctx);
         }
     }
 
@@ -1504,7 +1504,7 @@ afw_curl_internal_http_options(
         if (res != CURLE_OK) 
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_getinfo()", xctx);
 
-        afw_object_set_property_as_integer(result, afw_curl_s_response_code, response_code, xctx);
+        afw_object_set_property_as_integer(result, afw_curl_v_response_code, response_code, xctx);
 
         /* parse the response body and attach it, too */
         response_body = afw_curl_internal_parse_response(response, pool, xctx);
@@ -1513,13 +1513,13 @@ afw_curl_internal_http_options(
             afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
 
             afw_object_set_property_as_string(result,
-                afw_curl_s_response, encoded_response, xctx);
+                afw_curl_v_response, encoded_response, xctx);
         }
 
         /* append the headers */
         if (response->headers) {
             afw_object_set_property_as_array(result,
-                afw_curl_s_headers, response->headers, xctx);
+                afw_curl_v_headers, response->headers, xctx);
         }
     }
 

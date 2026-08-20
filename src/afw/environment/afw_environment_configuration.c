@@ -36,10 +36,10 @@ afw_environment_configure_with_object(
 
     /* Added sourceLocation property to conf. */
     afw_object_set_property_as_string(conf,
-        afw_s_sourceLocation, source_location, xctx);
+        afw_v_sourceLocation, source_location, xctx);
 
     /* Get type property. */
-    type = afw_object_old_get_property_as_utf8(conf, afw_s_type, p, xctx);
+    type = afw_object_old_get_property_as_utf8(conf, afw_v_type, p, xctx);
     if (!type) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -121,7 +121,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
     const afw_utf8_t *detail_source_location;
 
     extension_id = afw_object_old_get_property_as_utf8(entry,
-        afw_s_extensionId, p, xctx);
+        afw_v_extensionId, p, xctx);
 
     if (!extension_id) {
         AFW_THROW_ERROR_FZ(general, xctx,
@@ -132,7 +132,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
 
     /* modulePath is a template evaluated at extension conf create (#15). */
     module_path = NULL;
-    value = afw_object_get_property(entry, afw_s_modulePath, xctx);
+    value = afw_object_get_property(entry, afw_v_modulePath, xctx);
     if (value) {
         detail_source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/" AFW_UTF8_FMT,
@@ -154,7 +154,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
         manifest = afw_runtime_get_object(afw_s__AdaptiveManifest_,
             extension_id, xctx);
         if (manifest) {
-            value = afw_object_get_property(manifest, afw_s_modulePath, xctx);
+            value = afw_object_get_property(manifest, afw_v_modulePath, xctx);
             if (value) {
                 detail_source_location = afw_utf8_printf(p, xctx,
                     AFW_UTF8_FMT "/_AdaptiveManifest_/" AFW_UTF8_FMT
@@ -209,14 +209,14 @@ afw_environment_prepare_conf_type_properties(
 
     /* Get sourceLocation.  Default for now to empty string. */
     source_location = afw_object_old_get_property_as_string(
-        properties, afw_s_sourceLocation, xctx);
+        properties, afw_v_sourceLocation, xctx);
     if (!source_location) {
         source_location = afw_s_a_empty_string;
     }
 
     /* Get type. */
     type = afw_object_old_get_property_as_string(properties,
-        afw_s_type, xctx);
+        afw_v_type, xctx);
     if (!type || type->len == 0) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -239,7 +239,10 @@ afw_environment_prepare_conf_type_properties(
     subtype = NULL;
     if (conf_type->subtype_property_name) {
         subtype = afw_object_old_get_property_as_string(
-            properties, conf_type->subtype_property_name, xctx);
+            properties,
+            afw_value_create_unmanaged_string(
+                conf_type->subtype_property_name, properties->p, xctx),
+            xctx);
         if (!subtype || subtype->len == 0) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -255,7 +258,10 @@ afw_environment_prepare_conf_type_properties(
     id = afw_s_current;
     if (conf_type->id_property_name) {
         id = afw_object_old_get_property_as_string(
-            properties, conf_type->id_property_name, xctx);
+            properties,
+            afw_value_create_unmanaged_string(
+                conf_type->id_property_name, properties->p, xctx),
+            xctx);
         if (!id || id->len == 0) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -283,7 +289,7 @@ afw_environment_prepare_conf_type_properties(
     if (source_location == afw_s_a_empty_string) {
         source_location = path;
         afw_object_set_property_as_string(properties,
-            afw_s_sourceLocation, source_location, xctx);
+            afw_v_sourceLocation, source_location, xctx);
     }
 
     /* If not adapter for afw (which will cause loop), normalize result. */

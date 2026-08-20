@@ -203,7 +203,7 @@ static void convert_object_to_ubjson(
     const afw_object_t * obj)
 {
     const afw_iterator_old_t *property_iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *next;
     const afw_object_t *meta;
 
@@ -231,7 +231,9 @@ static void convert_object_to_ubjson(
     if (next) {
         while (1) {
             /* property name */
-            convert_string_to_ubjson(wa, property_name, AFW_FALSE);
+            convert_string_to_ubjson(wa,
+                afw_object_string_property_name_as_utf8(
+                    property_name, wa->xctx), AFW_FALSE);
 
             /* property value */
             convert_value_to_ubjson(wa, next);

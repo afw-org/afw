@@ -53,31 +53,22 @@ afw_value_create_object_construct(
 
 
 /*
- * Resolve a property name value to utf8 (same idea as reference_by_key assign).
+ * Script/JSON: property names are string values only (typed keys later).
  */
-static const afw_utf8_t *
+static const afw_value_t *
 impl_name_from_value(
     const afw_value_t *name_value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_utf8_t *name;
+    AFW_ASSERT(p);
 
     if (!name_value) {
         AFW_THROW_ERROR_Z(undefined_value,
             "Object property name expression evaluated to undefined",
             xctx);
     }
-    if (afw_value_is_string(name_value)) {
-        return &((const afw_value_string_t *)name_value)->internal;
-    }
-    name = afw_value_as_utf8(name_value, p, xctx);
-    if (!name) {
-        AFW_THROW_ERROR_Z(argument_error,
-            "Object property name expression must produce a string",
-            xctx);
-    }
-    return name;
+    return afw_object_require_string_property_name(name_value, xctx);
 }
 
 
@@ -95,7 +86,7 @@ impl_afw_value_optional_evaluate(
     const afw_object_t *from;
     const afw_value_t *v;
     const afw_value_t *name_v;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_iterator_old_t *iterator;
     const afw_compile_value_contextual_t *saved_contextual;
 
@@ -188,7 +179,9 @@ impl_afw_value_produce_compiler_listing(
         }
         else {
             afw_writer_write_z(writer, "property ", xctx);
-            afw_writer_write_utf8(writer, e->static_name, xctx);
+            afw_writer_write_utf8(writer,
+                afw_object_string_property_name_as_utf8(
+                    e->static_name, xctx), xctx);
             afw_writer_write_z(writer, " ", xctx);
             afw_value_compiler_listing_value(e->value, writer, xctx);
         }
@@ -232,7 +225,11 @@ impl_afw_value_decompile(
         else {
             /* Quoted string key is always valid Adaptive object syntax. */
             afw_data_type_write_as_expression(
-                afw_data_type_string, writer, e->static_name, xctx);
+                afw_data_type_string, writer,
+                &((const afw_value_string_t *)
+                    afw_object_require_string_property_name(
+                        e->static_name, xctx))->internal,
+                xctx);
             afw_writer_write_z(writer, ": ", xctx);
             afw_value_decompile_value(e->value, writer, xctx);
         }

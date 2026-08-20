@@ -26,14 +26,14 @@ AFW_BEGIN_DECLARES
 /* definition for an individual index */
 typedef struct {
     const afw_utf8_t * object_type_id;
-    const afw_utf8_t * property_name;
+    const afw_value_t * property_name;
 } afw_adapter_impl_index_property_t;
 
 /* context to hold data for our callback routine */
 typedef struct {
     const afw_adapter_impl_index_t * instance;
     const afw_utf8_t *object_type_id;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_utf8_t *index_type;
     int mode;
     int num_indexed;

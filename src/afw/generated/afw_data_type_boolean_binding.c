@@ -226,7 +226,7 @@ afw_data_type_boolean =
 AFW_DEFINE(void)
 afw_object_set_property_as_boolean(
     const afw_object_t *object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_boolean_t internal,
     afw_xctx_t *xctx)
 {
@@ -325,7 +325,7 @@ afw_data_type_boolean_to_utf8(afw_boolean_t internal,
 AFW_DEFINE(afw_boolean_t)
 afw_object_get_property_as_boolean_source(
     const afw_object_t *object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,
@@ -360,7 +360,7 @@ AFW_DEFINE(afw_boolean_t)
 afw_object_get_next_property_as_boolean_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
-    const afw_utf8_t * *property_name,
+    const afw_value_t * *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,

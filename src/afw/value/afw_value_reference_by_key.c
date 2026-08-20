@@ -97,7 +97,6 @@ impl_afw_value_optional_evaluate(
     const afw_value_object_t *object_value;
     const afw_value_array_t *list;
     const afw_value_t *key;
-    const afw_utf8_t *name;
     const afw_value_t *result;
     const afw_compile_value_contextual_t *saved_contextual;
 
@@ -116,14 +115,9 @@ impl_afw_value_optional_evaluate(
         object_value = (const afw_value_object_t *)v;
 
         key = afw_value_evaluate(self->key, p, xctx);
-        if (afw_value_is_string(key)) {
-            name = &((const afw_value_string_t *)key)->internal;
-        }
-        else {
-            name = afw_value_as_utf8(key, p, xctx);
-        }
+        key = afw_object_require_string_property_name(key, xctx);
 
-        v = afw_object_get_property(object_value->internal, name, xctx);
+        v = afw_object_get_property(object_value->internal, key, xctx);
         /* Missing is NULL; evaluate() returns it as-is and we still pop. */
         result = afw_value_evaluate(v, p, xctx);
     }
@@ -237,8 +231,7 @@ impl_afw_value_get_evaluated_meta(
         }
         result = afw_object_get_property_meta(
             ((const afw_value_object_t *)aggregate_value)->internal,
-            &((const afw_value_string_t *)key)->internal,
-            p, xctx);
+            key, p, xctx);
     }
     else if (afw_value_is_array(aggregate_value)) {
         key = afw_value_convert(key, afw_data_type_integer, false, p, xctx);

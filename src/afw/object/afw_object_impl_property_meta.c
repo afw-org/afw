@@ -46,7 +46,7 @@
 static const afw_value_t *
 impl_get_dataType(
     afw_object_impl_property_meta_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     const afw_data_type_t *data_type;
@@ -67,7 +67,7 @@ impl_get_dataType(
 static void
 impl_set_dataType(
     afw_object_impl_property_meta_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -78,7 +78,7 @@ impl_set_dataType(
 static const afw_value_t *
 impl_get_key(
     afw_object_impl_property_meta_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
@@ -86,8 +86,7 @@ impl_get_key(
     result = NULL;
 
     if (self->property_name) {
-        result = afw_value_create_unmanaged_string(
-            self->property_name, self->pub.p, xctx);
+        result = self->property_name;
     }
 
     return result;
@@ -97,7 +96,7 @@ impl_get_key(
 static const afw_value_t *
 impl_get_value(
     afw_object_impl_property_meta_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     return self->property_value;
@@ -107,7 +106,7 @@ impl_get_value(
 static void
 impl_set_value(
     afw_object_impl_property_meta_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -119,7 +118,7 @@ impl_set_value(
 static const afw_value_t *
 impl_get_valueInfId(
     afw_object_impl_property_meta_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
@@ -136,23 +135,24 @@ impl_get_valueInfId(
 static void
 impl_set_error_immutable(
     afw_object_impl_property_meta_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
     AFW_THROW_ERROR_FZ(general, xctx,
         "Property " AFW_UTF8_FMT_Q " immutable",
-        AFW_UTF8_FMT_ARG(property_name));
+        AFW_UTF8_FMT_ARG(
+            afw_object_property_name_display_utf8(property_name, xctx)));
 }
 
 
 
 static const afw_object_impl_name_handler_t impl_handler[] =
 {
-    { afw_s_dataType, impl_get_dataType, impl_set_dataType },
-    { afw_s_key, impl_get_key, impl_set_error_immutable },
-    { afw_s_value, impl_get_value, impl_set_value },
-    { afw_s_valueInfId, impl_get_valueInfId, impl_set_error_immutable }
+    { afw_v_dataType, impl_get_dataType, impl_set_dataType },
+    { afw_v_key, impl_get_key, impl_set_error_immutable },
+    { afw_v_value, impl_get_value, impl_set_value },
+    { afw_v_valueInfId, impl_get_valueInfId, impl_set_error_immutable }
 };
 
 static const afw_object_impl_name_handler_t *impl_handler_end =
@@ -209,14 +209,14 @@ impl_afw_object_get_count(
 const afw_value_t *
 impl_afw_object_get_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     const afw_object_impl_name_handler_t *h;
 
     /* If get callback for this property, return it's result. */
     for (h = &impl_handler[0]; h < impl_handler_end; h++) {
-        if (afw_utf8_equal(h->property_name, property_name)) {
+        if (afw_value_equal(h->property_name, property_name, xctx)) {
             if (h->get) {
                 return h->get(self, property_name, xctx);
             }
@@ -244,12 +244,12 @@ const afw_value_t *
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
     const afw_iterator_old_t **iterator,
-    const afw_utf8_t **property_name,
+    const afw_value_t **property_name,
     afw_xctx_t *xctx)
 {
     const afw_object_impl_name_handler_t *h;
     const afw_value_t *result;
-    const afw_utf8_t *next_property_name;
+    const afw_value_t *next_property_name;
 
     /*
      * If this is the first time (*iterator is NULL), set iterator to first
@@ -306,7 +306,7 @@ impl_afw_object_get_next_property(
             }
             for (h = &impl_handler[0];
                 h < impl_handler_end &&
-                !afw_utf8_equal(h->property_name, next_property_name);
+                !afw_value_equal(h->property_name, next_property_name, xctx);
                 h++);
             if (h >= impl_handler_end) {
                 if (property_name) {
@@ -333,7 +333,7 @@ impl_afw_object_get_next_property(
 afw_boolean_t
 impl_afw_object_has_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     return impl_afw_object_get_property(self, property_name, xctx) != NULL;
@@ -380,7 +380,7 @@ impl_afw_object_setter_set_immutable(
 void
 impl_afw_object_setter_set_property(
     const afw_object_setter_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -389,7 +389,7 @@ impl_afw_object_setter_set_property(
     const afw_object_impl_name_handler_t *h;
 
     for (h = &impl_handler[0]; h < impl_handler_end; h++) {
-        if (afw_utf8_equal(h->property_name, property_name)) {
+        if (afw_value_equal(h->property_name, property_name, xctx)) {
             if (h->set) {
                 h->set(object_impl_property_meta_object_self, property_name, value, xctx);
                 return;
@@ -413,7 +413,7 @@ impl_afw_object_setter_set_property(
 AFW_DECLARE(const afw_value_t *)
 afw_object_impl_get_property_meta(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -431,7 +431,7 @@ AFW_DECLARE(const afw_value_t *)
 afw_object_impl_get_next_property_meta(
     const afw_object_t *instance,
     const afw_iterator_old_t **iterator,
-    const afw_utf8_t **property_name,
+    const afw_value_t **property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -447,7 +447,7 @@ afw_object_impl_get_next_property_meta(
 const afw_value_t *
 afw_object_impl_internal_get_property_meta(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -491,13 +491,13 @@ const afw_value_t *
 afw_object_impl_internal_get_next_property_meta(
     const afw_object_t *instance,
     const afw_iterator_old_t **iterator,
-    const afw_utf8_t **property_name,
+    const afw_value_t **property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *property_value;
     const afw_value_t *result;
-    const afw_utf8_t *next_property_name;
+    const afw_value_t *next_property_name;
 
     result = NULL;
     property_value = afw_object_get_next_property(instance,

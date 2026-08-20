@@ -744,11 +744,11 @@ impl_afw_adapter_journal_get_entry_internal(
         /* If using consumer cursors, set variables as appropriate. */
         if (use_consumer_cursors) {
             currentCursor = afw_object_old_get_property_as_string(peer,
-                afw_s_currentCursor, xctx);
+                afw_v_currentCursor, xctx);
             consumeCursor = afw_object_old_get_property_as_string(peer,
-                afw_s_consumeCursor, xctx);
+                afw_v_consumeCursor, xctx);
             advanceCursor = afw_object_old_get_property_as_string(peer,
-                afw_s_advanceCursor, xctx);
+                afw_v_advanceCursor, xctx);
             if (consumeCursor) {
                 entry_object_id = consumeCursor;
                 check_filter = false;
@@ -775,9 +775,9 @@ impl_afw_adapter_journal_get_entry_internal(
          */
         else if (advance_consumer_cursor) {
             advanceCursor = afw_object_old_get_property_as_string(peer,
-                afw_s_advanceCursor, xctx);
+                afw_v_advanceCursor, xctx);
             currentCursor = afw_object_old_get_property_as_string(peer,
-                afw_s_currentCursor, xctx);
+                afw_v_currentCursor, xctx);
             if (advanceCursor) {
                 entry_object_id = advanceCursor;
                 skip_first_entry = false;
@@ -909,7 +909,7 @@ impl_afw_adapter_journal_get_entry_internal(
             /* If reissue, set reissue property and mark applicable. */
             if (reissue) {
                 applicable = true;
-                afw_object_set_property_as_boolean(response, afw_s_reissue,
+                afw_object_set_property_as_boolean(response, afw_v_reissue,
                     true, xctx);
             }
 
@@ -944,12 +944,12 @@ impl_afw_adapter_journal_get_entry_internal(
         /* Set peer lastContactTime to now. */
         now = afw_dateTime_now_utc(p, xctx);
         afw_object_set_property_as_dateTime(peer,
-            afw_s_lastContactTime, now, xctx);
+            afw_v_lastContactTime, now, xctx);
 
         /* If advance_consumer_cursor, set peer advanceCursor */
         if (advance_consumer_cursor) {
             afw_object_set_property_as_string(peer,
-                afw_s_advanceCursor, entry_object_id, xctx);
+                afw_v_advanceCursor, entry_object_id, xctx);
         }
 
         /* If use_consumer_cursors and not reissue, update peer cursors. */
@@ -961,19 +961,19 @@ impl_afw_adapter_journal_get_entry_internal(
              */
             if (applicable) {
                 afw_object_set_property_as_string(peer,
-                    afw_s_currentCursor, entry_object_id, xctx);
+                    afw_v_currentCursor, entry_object_id, xctx);
                 afw_object_set_property_as_string(peer,
-                    afw_s_consumeCursor, entry_object_id, xctx);
+                    afw_v_consumeCursor, entry_object_id, xctx);
                 afw_object_set_property_as_dateTime(peer,
-                    afw_s_consumeStartTime, now, xctx);
-                afw_object_remove_property(peer, afw_s_advanceCursor,
+                    afw_v_consumeStartTime, now, xctx);
+                afw_object_remove_property(peer, afw_v_advanceCursor,
                     xctx);
             }
 
             /* If not applicable, set advance cursor to to point to eof. */
             else {
                 afw_object_set_property_as_string(peer,
-                    afw_s_advanceCursor, entry_object_id, xctx);
+                    afw_v_advanceCursor, entry_object_id, xctx);
             }
 
         }
@@ -985,7 +985,7 @@ impl_afw_adapter_journal_get_entry_internal(
     }
 
     /* Set entryCursor property. */
-    afw_object_set_property_as_string(response, afw_s_entryCursor,
+    afw_object_set_property_as_string(response, afw_v_entryCursor,
         entry_object_id, xctx);
 
     /*
@@ -993,7 +993,7 @@ impl_afw_adapter_journal_get_entry_internal(
      * advance_consumer_cursor request.
      */
     if (applicable && !advance_consumer_cursor) {
-        afw_object_set_property_as_object(response, afw_s_entry, entry,
+        afw_object_set_property_as_object(response, afw_v_entry, entry,
             xctx);
     }
     return;
@@ -1074,19 +1074,19 @@ impl_afw_adapter_journal_mark_entry_consumed(
         &full_peer_path_z, xctx);
 
     consume_cursor = afw_object_old_get_property_as_string(peer,
-        afw_s_consumeCursor, xctx);
+        afw_v_consumeCursor, xctx);
     if (!consume_cursor || !afw_utf8_equal(entry_cursor, consume_cursor)) {
         AFW_THROW_ERROR_Z(general,
             "Object id supplied is not currently being consumed", xctx);
     }
 
     /* Remove consume* properties. */
-    afw_object_remove_property(peer, afw_s_consumeCursor, xctx);
-    afw_object_remove_property(peer, afw_s_consumeStartTime, xctx);
+    afw_object_remove_property(peer, afw_v_consumeCursor, xctx);
+    afw_object_remove_property(peer, afw_v_consumeStartTime, xctx);
 
     /* Update lastContactTime property. */
     now = afw_dateTime_now_utc(xctx->p, xctx);
-    afw_object_set_property_as_dateTime(peer, afw_s_lastContactTime,
+    afw_object_set_property_as_dateTime(peer, afw_v_lastContactTime,
         now, xctx);
 
     /* Write peer object and close. */

@@ -133,7 +133,7 @@ afw_log_impl_create_cede_p(
 AFW_DECLARE(void)
 afw_log_impl_throw_property_invalid(
     const afw_log_t *log,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 
@@ -147,7 +147,7 @@ afw_log_impl_throw_property_invalid(
 AFW_DECLARE(void)
 afw_log_impl_throw_property_required(
     const afw_log_t *log,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 

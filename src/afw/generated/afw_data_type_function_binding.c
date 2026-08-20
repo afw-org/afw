@@ -226,7 +226,7 @@ afw_data_type_function =
 AFW_DEFINE(void)
 afw_object_set_property_as_function(
     const afw_object_t *object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t * internal,
     afw_xctx_t *xctx)
 {
@@ -335,7 +335,7 @@ afw_data_type_function_to_utf8(const afw_value_t * internal,
 AFW_DEFINE(const afw_value_t *)
 afw_object_get_property_as_function_source(
     const afw_object_t *object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -367,7 +367,7 @@ AFW_DEFINE(const afw_value_t *)
 afw_object_get_next_property_as_function_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
-    const afw_utf8_t * *property_name,
+    const afw_value_t * *property_name,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx)

@@ -120,7 +120,7 @@ impl_afw_adapter_session_retrieve_objects(
     base_z = "";
     if (adapter_type_specific) {
         s = afw_object_old_get_property_as_string(adapter_type_specific,
-            afw_ldap_s_base, xctx);
+            afw_ldap_v_base, xctx);
         if (s) {
             base_z = (char *)afw_utf8_to_utf8_z(s, p, xctx);
         }
@@ -328,7 +328,8 @@ impl_afw_adapter_session_add_object(
     afw_ldap_object_type_attribute_t *attribute;
     apr_array_header_t *mods;
     const afw_value_t *value;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
+    const afw_utf8_t *property_name_utf8;
     const afw_iterator_old_t *iterator;
     struct berval **bvals;
     LDAPMod *mod;
@@ -377,19 +378,22 @@ impl_afw_adapter_session_add_object(
     while ((value = afw_object_get_next_property(object,
         &iterator, &property_name, xctx)))
     {
+        /* FIXME #2: utf8 name wrap; LDAP attr could be afw_value_string_t. */
+        property_name_utf8 = afw_object_string_property_name_as_utf8(
+            property_name, xctx);
         attribute = afw_ldap_metadata_get_object_type_attribute(
-            first_attribute, property_name);
+            first_attribute, property_name_utf8);
         if (!attribute || attribute->attribute_type->never_allow_write) {
             continue;  /** @fixme Should this be an error??? */
         }
         
-        bvals = afw_ldap_metadata_value_to_bv(self, property_name, value,
-            xctx);
+        bvals = afw_ldap_metadata_value_to_bv(self,
+            property_name_utf8, value, xctx);
         if (bvals) {
             mod = afw_pool_calloc_type(p, LDAPMod, xctx);
             mod->mod_op = LDAP_MOD_ADD | LDAP_MOD_BVALUES;
             mod->mod_type = apr_pstrndup(afw_pool_get_apr_pool(p),
-                property_name->s, property_name->len);
+                property_name_utf8->s, property_name_utf8->len);
             mod->mod_vals.modv_bvals = bvals;
             APR_ARRAY_PUSH(mods, LDAPMod *) = mod;
         }
@@ -470,7 +474,8 @@ impl_afw_adapter_session_modify_object(
                 "LDAP adapter only allows entity properties to be modified",
                 xctx);
         }
-        property_name = &(*e)->first_property_name_entry->property_name;
+        property_name =
+            &(*e)->first_property_name_entry->property_name.internal;
 
         /* Get property type for property and make sure it can be written. */
         attribute = afw_ldap_metadata_get_object_type_attribute(
@@ -487,9 +492,6 @@ impl_afw_adapter_session_modify_object(
         mod = afw_pool_calloc_type(p, LDAPMod, xctx);
         mod->mod_type = apr_pstrndup(afw_pool_get_apr_pool(p),
             property_name->s, property_name->len);
-        mod->mod_type = apr_pstrndup(afw_pool_get_apr_pool(p),
-            (*e)->first_property_name_entry->property_name.s,
-            (*e)->first_property_name_entry->property_name.len);
 
         switch ((*e)->type) {
 

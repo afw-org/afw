@@ -35,13 +35,13 @@ impl_1;
 
 static const afw_runtime_property_t
 impl_1_property_description = {
-    &afw_server_fcgi_self_s_description,
+    afw_server_fcgi_v_description,
     &afw_server_fcgi_self_v_zz__Adaptive_Framework_afw_server_fcgi_collection_.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_objectId = {
-    &afw_server_fcgi_self_s_objectId,
+    afw_server_fcgi_v_objectId,
     &afw_server_fcgi_self_v_afw_server_fcgi.pub
 };
 

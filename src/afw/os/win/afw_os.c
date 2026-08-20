@@ -26,10 +26,6 @@ static const afw_utf8_t
 impl_dso_suffix =
     AFW_UTF8_LITERAL(".dll");
 
-static const afw_utf8_t
-impl_s_os =
-    AFW_UTF8_LITERAL("os");
-
 
 #ifdef __EXAMPLE_FOR_CREATING_WITH_CB_WRAPPER_
 static const afw_object_t *
@@ -49,24 +45,24 @@ impl_get_<objectId>_object_cb(
         xctx);
     afw_object_meta_set_read_only(result, xctx);
     afw_object_meta_set_property_from_utf8_z(
-        result, afw_s_description,
+        result, afw_v_description,
         "<objectId> description.",
         xctx);
 
     /* Add in system specific info properties. */
     /** @fixme Replace with appropriate code. */
     afw_object_set_property_from_utf8_z(result,
-        &impl_s_os,
+        afw_v_os,
         "windows",
         xctx);
 
     afw_object_meta_set_property_type_property_from_utf8_z(
-        result, &impl_s_os, afw_s_label,
+        result, afw_v_os, afw_v_label,
         "OS",
         xctx);
 
     afw_object_meta_set_property_type_property_from_utf8_z(
-        result, &impl_s_os, afw_s_description,
+        result, afw_v_os, afw_v_description,
         "Operating system.",
         xctx);
  
@@ -90,48 +86,48 @@ impl_create_general_object(afw_xctx_t *xctx)
         xctx);
     afw_object_meta_set_read_only(result, xctx);
     afw_object_meta_set_property_from_utf8_z(
-        result, afw_s_description,
+        result, afw_v_description,
         "General systems info.",
         xctx);
 
     /* Add in system specific info properties. */
     /** @fixme Replace with appropriate code. */
     afw_object_set_property_as_string_from_utf8_z(result,
-        &impl_s_os,
+        afw_v_os,
         "windows",
         xctx);
 
     afw_object_meta_set_property_type_property_from_utf8_z(
-        result, &impl_s_os, afw_s_label,
+        result, afw_v_os, afw_v_label,
         "OS",
         xctx);
 
     afw_object_meta_set_property_type_property_from_utf8_z(
-        result, &impl_s_os, afw_s_description,
+        result, afw_v_os, afw_v_description,
         "Operating system.",
         xctx);
 
     /** @fixme Remove this section.  Was for testing time functions. */
     afw_object_set_property_as_date_from_parts(result,
-        afw_s_S, 1923, 12, 31, -4, 0, xctx);
+        afw_v_S, 1923, 12, 31, -4, 0, xctx);
  
     afw_object_set_property_as_dateTime_from_parts(result,
-        afw_s_N, 1923, 12, 31, 12, 30, 14,  999999, -4, 0, xctx);
+        afw_v_N, 1923, 12, 31, 12, 30, 14,  999999, -4, 0, xctx);
  
     afw_object_set_property_as_time_from_parts(result,
-        afw_s_M, 12, 30, 14, 999999, -4, 0, xctx);
+        afw_v_M, 12, 30, 14, 999999, -4, 0, xctx);
  
     afw_object_set_property_as_dayTimeDuration_from_parts(result,
-        afw_s_B, true, 12, 34, 56, 78, 90, xctx);
+        afw_v_B, true, 12, 34, 56, 78, 90, xctx);
  
     afw_object_set_property_as_dayTimeDuration_from_parts(result,
-        afw_s_L, false, 12, 34, 56, 78, 90, xctx);
+        afw_v_L, false, 12, 34, 56, 78, 90, xctx);
 
     afw_object_set_property_as_yearMonthDuration_from_parts(result,
-        afw_s_SS, true, 100, 200, xctx);
+        afw_v_SS, true, 100, 200, xctx);
  
     afw_object_set_property_as_yearMonthDuration_from_parts(result,
-        afw_s_NS, false, 100, 200, xctx);
+        afw_v_NS, false, 100, 200, xctx);
  
     /* Return result. */
     return result;

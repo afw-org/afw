@@ -51,7 +51,7 @@ impl_afw_array_get_count(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     afw_size_t count;
 
     count = 0;
@@ -122,7 +122,7 @@ impl_afw_array_get_entry_value(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *property_value;
     afw_value_meta_object_self_t *meta_self;
     const afw_pool_t *use_p;
@@ -169,7 +169,8 @@ impl_afw_array_get_entry_value(
         if (i == resolved) {
             meta_self = afw_value_internal_create_meta_object_self(
                 property_value, use_p, xctx);
-            meta_self->key = property_name;
+            meta_self->key = afw_object_string_property_name_as_utf8(
+                property_name, xctx);
             return &meta_self->meta_object_value.pub;
         }
         i++;
@@ -218,7 +219,7 @@ impl_afw_array_get_next_value(
     afw_xctx_t *xctx)
 {
     const afw_value_t *property_value;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     afw_value_meta_object_self_t *meta_self;
     const afw_pool_t *use_p;
     impl_meta_values_object_iterator_t *state;
@@ -248,7 +249,8 @@ impl_afw_array_get_next_value(
 
     meta_self = afw_value_internal_create_meta_object_self(
         property_value, use_p, xctx);
-    meta_self->key = property_name;
+    meta_self->key = afw_object_property_name_display_utf8(
+        property_name, xctx);
 
     return &meta_self->meta_object_value.pub;
 }

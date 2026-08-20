@@ -206,7 +206,7 @@ impl_create_environment_variables_object(
         afw_s__AdaptiveSystemInfo_,
         afw_s_initialEnvironmentVariables,
         xctx);
-    afw_object_meta_set_property_as(result, afw_s_description, string,
+    afw_object_meta_set_property_as(result, afw_v_description, string,
         &impl_s_description_initialEnvironmentVariables, xctx);
     afw_object_meta_set_read_only(result, xctx);
 
@@ -226,7 +226,10 @@ impl_create_environment_variables_object(
             c++;
         }
         value = afw_value_create_from_external_z(c, result->p, xctx);
-        afw_object_set_property(result, name, value, xctx);
+        /* FIXME #2: utf8 name wrap; create the string value once. */
+        afw_object_set_property(result,
+            afw_value_create_unmanaged_string(name, result->p, xctx),
+            value, xctx);
     }
 
     return result;

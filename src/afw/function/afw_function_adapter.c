@@ -22,7 +22,7 @@ impl_create_journal_entry(const afw_value_object_t *journal,
     const afw_object_t *journal_entry;
     const afw_iterator_old_t *iterator;
     const afw_value_t *value;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
 
     journal_entry = afw_object_create(p, xctx);
     if (journal) {
@@ -188,9 +188,9 @@ impl_retrieve_to_response_cb(
         p = (object->p) ? object->p : ctx->p;
         response_object = afw_object_create_unmanaged(p, xctx);
         afw_object_set_property_as_boolean(response_object,
-            afw_s_intermediate, true, xctx);
+            afw_v_intermediate, true, xctx);
         afw_object_set_property_as_object(response_object,
-            afw_s_result, object, xctx);
+            afw_v_result, object, xctx);
         object_value = afw_value_create_unmanaged_object(
             response_object, p, xctx);
         response_stream = afw_stream_standard(response_body, xctx);
@@ -1425,7 +1425,7 @@ afw_function_execute_reconcile_object(
     }
 
     reconcilable = afw_object_meta_get_property_as_string(
-        object->internal, afw_s_reconcilable, x->xctx);
+        object->internal, afw_v_reconcilable, x->xctx);
     if (!reconcilable) {
         AFW_THROW_ERROR_Z(general,
             "object is not reconcilable",

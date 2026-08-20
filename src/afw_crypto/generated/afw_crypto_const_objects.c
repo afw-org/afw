@@ -41,19 +41,19 @@ impl_3;
 
 static const afw_runtime_property_t
 impl_3_property_brief = {
-    &afw_crypto_self_s_brief,
+    afw_crypto_v_brief,
     &afw_crypto_self_v_Algorithm.pub
 };
 
 static const afw_runtime_property_t
 impl_3_property_dataType = {
-    &afw_crypto_self_s_dataType,
+    afw_crypto_v_dataType,
     &afw_crypto_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_3_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__Always_AES_GCM_in_v1_.pub
 };
 
@@ -124,19 +124,19 @@ impl_4;
 
 static const afw_runtime_property_t
 impl_4_property_brief = {
-    &afw_crypto_self_s_brief,
+    afw_crypto_v_brief,
     &afw_crypto_self_v_Ciphertext.pub
 };
 
 static const afw_runtime_property_t
 impl_4_property_dataType = {
-    &afw_crypto_self_s_dataType,
+    afw_crypto_v_dataType,
     &afw_crypto_self_v_base64Binary.pub
 };
 
 static const afw_runtime_property_t
 impl_4_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__Encrypted_octets_without_authentication_tag_.pub
 };
 
@@ -207,19 +207,19 @@ impl_5;
 
 static const afw_runtime_property_t
 impl_5_property_brief = {
-    &afw_crypto_self_s_brief,
+    afw_crypto_v_brief,
     &afw_crypto_self_v_zz__Initialization_vector.pub
 };
 
 static const afw_runtime_property_t
 impl_5_property_dataType = {
-    &afw_crypto_self_s_dataType,
+    afw_crypto_v_dataType,
     &afw_crypto_self_v_base64Binary.pub
 };
 
 static const afw_runtime_property_t
 impl_5_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__IV_used_for_this_encryption__12_octets_recommended__.pub
 };
 
@@ -290,19 +290,19 @@ impl_6;
 
 static const afw_runtime_property_t
 impl_6_property_brief = {
-    &afw_crypto_self_s_brief,
+    afw_crypto_v_brief,
     &afw_crypto_self_v_zz__AES_key_length_bits.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_dataType = {
-    &afw_crypto_self_s_dataType,
+    afw_crypto_v_dataType,
     &afw_crypto_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__128_or_256_.pub
 };
 
@@ -373,19 +373,19 @@ impl_7;
 
 static const afw_runtime_property_t
 impl_7_property_brief = {
-    &afw_crypto_self_s_brief,
+    afw_crypto_v_brief,
     &afw_crypto_self_v_zz__GCM_tag.pub
 };
 
 static const afw_runtime_property_t
 impl_7_property_dataType = {
-    &afw_crypto_self_s_dataType,
+    afw_crypto_v_dataType,
     &afw_crypto_self_v_base64Binary.pub
 };
 
 static const afw_runtime_property_t
 impl_7_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__16_octet_authentication_tag_.pub
 };
 
@@ -459,7 +459,7 @@ impl_2_property_value_algorithm = {
 
 static const afw_runtime_property_t
 impl_2_property_algorithm = {
-    &afw_crypto_self_s_algorithm,
+    afw_crypto_v_algorithm,
     &impl_2_property_value_algorithm.pub
 };
 
@@ -471,7 +471,7 @@ impl_2_property_value_ciphertext = {
 
 static const afw_runtime_property_t
 impl_2_property_ciphertext = {
-    &afw_crypto_self_s_ciphertext,
+    afw_crypto_v_ciphertext,
     &impl_2_property_value_ciphertext.pub
 };
 
@@ -483,7 +483,7 @@ impl_2_property_value_iv = {
 
 static const afw_runtime_property_t
 impl_2_property_iv = {
-    &afw_crypto_self_s_iv,
+    afw_crypto_v_iv,
     &impl_2_property_value_iv.pub
 };
 
@@ -495,7 +495,7 @@ impl_2_property_value_keyLength = {
 
 static const afw_runtime_property_t
 impl_2_property_keyLength = {
-    &afw_crypto_self_s_keyLength,
+    afw_crypto_v_keyLength,
     &impl_2_property_value_keyLength.pub
 };
 
@@ -507,7 +507,7 @@ impl_2_property_value_tag = {
 
 static const afw_runtime_property_t
 impl_2_property_tag = {
-    &afw_crypto_self_s_tag,
+    afw_crypto_v_tag,
     &impl_2_property_value_tag.pub
 };
 
@@ -577,25 +577,25 @@ impl_2__value = {
 
 static const afw_runtime_property_t
 impl_1_property_allowAdd = {
-    &afw_crypto_self_s_allowAdd,
+    afw_crypto_v_allowAdd,
     &afw_crypto_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_allowChange = {
-    &afw_crypto_self_s_allowChange,
+    afw_crypto_v_allowChange,
     &afw_crypto_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_allowDelete = {
-    &afw_crypto_self_s_allowDelete,
+    afw_crypto_v_allowDelete,
     &afw_crypto_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_allowEntity = {
-    &afw_crypto_self_s_allowEntity,
+    afw_crypto_v_allowEntity,
     &afw_crypto_boolean_self_v_true.pub
 };
 
@@ -633,19 +633,19 @@ impl_1_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_1_property_collectionURIs = {
-    &afw_crypto_self_s_collectionURIs,
+    afw_crypto_v_collectionURIs,
     &impl_1_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__c7c1e0ad0b31.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_objectType = {
-    &afw_crypto_self_s_objectType,
+    afw_crypto_v_objectType,
     &afw_crypto_self_v__AdaptiveCryptoEncryptResult_.pub
 };
 
@@ -657,7 +657,7 @@ impl_1_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_1_property_propertyTypes = {
-    &afw_crypto_self_s_propertyTypes,
+    afw_crypto_v_propertyTypes,
     &impl_1_property_value_propertyTypes.pub
 };
 
@@ -739,19 +739,19 @@ impl_10;
 
 static const afw_runtime_property_t
 impl_10_property_brief = {
-    &afw_crypto_self_s_brief,
+    afw_crypto_v_brief,
     &afw_crypto_self_v_zz__Algorithm_name.pub
 };
 
 static const afw_runtime_property_t
 impl_10_property_dataType = {
-    &afw_crypto_self_s_dataType,
+    afw_crypto_v_dataType,
     &afw_crypto_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_10_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__b3bb5e59e7f5.pub
 };
 
@@ -822,19 +822,19 @@ impl_11;
 
 static const afw_runtime_property_t
 impl_11_property_brief = {
-    &afw_crypto_self_s_brief,
+    afw_crypto_v_brief,
     &afw_crypto_self_v_zz__Whether_export_is_allowed.pub
 };
 
 static const afw_runtime_property_t
 impl_11_property_dataType = {
-    &afw_crypto_self_s_dataType,
+    afw_crypto_v_dataType,
     &afw_crypto_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_11_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__If_true__crypto_export_key_may_return_raw_key_octets_.pub
 };
 
@@ -905,19 +905,19 @@ impl_12;
 
 static const afw_runtime_property_t
 impl_12_property_brief = {
-    &afw_crypto_self_s_brief,
+    afw_crypto_v_brief,
     &afw_crypto_self_v_zz__Key_format.pub
 };
 
 static const afw_runtime_property_t
 impl_12_property_dataType = {
-    &afw_crypto_self_s_dataType,
+    afw_crypto_v_dataType,
     &afw_crypto_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_12_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__Always_raw_in_v1_.pub
 };
 
@@ -988,19 +988,19 @@ impl_13;
 
 static const afw_runtime_property_t
 impl_13_property_brief = {
-    &afw_crypto_self_s_brief,
+    afw_crypto_v_brief,
     &afw_crypto_self_v_zz__Keystore_id.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_dataType = {
-    &afw_crypto_self_s_dataType,
+    afw_crypto_v_dataType,
     &afw_crypto_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__Random_64_bit_keystore_key_id__process_local_capability__.pub
 };
 
@@ -1071,19 +1071,19 @@ impl_14;
 
 static const afw_runtime_property_t
 impl_14_property_brief = {
-    &afw_crypto_self_s_brief,
+    afw_crypto_v_brief,
     &afw_crypto_self_v_zz__Key_length_in_bits.pub
 };
 
 static const afw_runtime_property_t
 impl_14_property_dataType = {
-    &afw_crypto_self_s_dataType,
+    afw_crypto_v_dataType,
     &afw_crypto_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_14_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__Bit_length_when_known__e_g__128_or_256_for_AES_GCM__.pub
 };
 
@@ -1154,25 +1154,25 @@ impl_15;
 
 static const afw_runtime_property_t
 impl_15_property_brief = {
-    &afw_crypto_self_s_brief,
+    afw_crypto_v_brief,
     &afw_crypto_self_v_zz__Permitted_operations.pub
 };
 
 static const afw_runtime_property_t
 impl_15_property_dataType = {
-    &afw_crypto_self_s_dataType,
+    afw_crypto_v_dataType,
     &afw_crypto_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_15_property_dataTypeParameter = {
-    &afw_crypto_self_s_dataTypeParameter,
+    afw_crypto_v_dataTypeParameter,
     &afw_crypto_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_15_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__Subset_of_encrypt__decrypt__sign__verify__derive_.pub
 };
 
@@ -1247,7 +1247,7 @@ impl_9_property_value_algorithm = {
 
 static const afw_runtime_property_t
 impl_9_property_algorithm = {
-    &afw_crypto_self_s_algorithm,
+    afw_crypto_v_algorithm,
     &impl_9_property_value_algorithm.pub
 };
 
@@ -1259,7 +1259,7 @@ impl_9_property_value_extractable = {
 
 static const afw_runtime_property_t
 impl_9_property_extractable = {
-    &afw_crypto_self_s_extractable,
+    afw_crypto_v_extractable,
     &impl_9_property_value_extractable.pub
 };
 
@@ -1271,7 +1271,7 @@ impl_9_property_value_format = {
 
 static const afw_runtime_property_t
 impl_9_property_format = {
-    &afw_crypto_self_s_format,
+    afw_crypto_v_format,
     &impl_9_property_value_format.pub
 };
 
@@ -1283,7 +1283,7 @@ impl_9_property_value_keyId = {
 
 static const afw_runtime_property_t
 impl_9_property_keyId = {
-    &afw_crypto_self_s_keyId,
+    afw_crypto_v_keyId,
     &impl_9_property_value_keyId.pub
 };
 
@@ -1295,7 +1295,7 @@ impl_9_property_value_length = {
 
 static const afw_runtime_property_t
 impl_9_property_length = {
-    &afw_crypto_self_s_length,
+    afw_crypto_v_length,
     &impl_9_property_value_length.pub
 };
 
@@ -1307,7 +1307,7 @@ impl_9_property_value_usages = {
 
 static const afw_runtime_property_t
 impl_9_property_usages = {
-    &afw_crypto_self_s_usages,
+    afw_crypto_v_usages,
     &impl_9_property_value_usages.pub
 };
 
@@ -1378,25 +1378,25 @@ impl_9__value = {
 
 static const afw_runtime_property_t
 impl_8_property_allowAdd = {
-    &afw_crypto_self_s_allowAdd,
+    afw_crypto_v_allowAdd,
     &afw_crypto_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_allowChange = {
-    &afw_crypto_self_s_allowChange,
+    afw_crypto_v_allowChange,
     &afw_crypto_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_allowDelete = {
-    &afw_crypto_self_s_allowDelete,
+    afw_crypto_v_allowDelete,
     &afw_crypto_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_allowEntity = {
-    &afw_crypto_self_s_allowEntity,
+    afw_crypto_v_allowEntity,
     &afw_crypto_boolean_self_v_true.pub
 };
 
@@ -1434,19 +1434,19 @@ impl_8_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_8_property_collectionURIs = {
-    &afw_crypto_self_s_collectionURIs,
+    afw_crypto_v_collectionURIs,
     &impl_8_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__7f437228c789.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_objectType = {
-    &afw_crypto_self_s_objectType,
+    afw_crypto_v_objectType,
     &afw_crypto_self_v__AdaptiveCryptoKey_.pub
 };
 
@@ -1458,7 +1458,7 @@ impl_8_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_8_property_propertyTypes = {
-    &afw_crypto_self_s_propertyTypes,
+    afw_crypto_v_propertyTypes,
     &impl_8_property_value_propertyTypes.pub
 };
 
@@ -1540,25 +1540,25 @@ impl_18;
 
 static const afw_runtime_property_t
 impl_18_property_brief = {
-    &afw_crypto_self_s_brief,
+    afw_crypto_v_brief,
     &afw_crypto_self_v_zz__Supported_algorithms.pub
 };
 
 static const afw_runtime_property_t
 impl_18_property_dataType = {
-    &afw_crypto_self_s_dataType,
+    afw_crypto_v_dataType,
     &afw_crypto_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_18_property_dataTypeParameter = {
-    &afw_crypto_self_s_dataTypeParameter,
+    afw_crypto_v_dataTypeParameter,
     &afw_crypto_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_18_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__Normative_algorithm_name_registry_supported_by_this_build_.pub
 };
 
@@ -1630,19 +1630,19 @@ impl_19;
 
 static const afw_runtime_property_t
 impl_19_property_brief = {
-    &afw_crypto_self_s_brief,
+    afw_crypto_v_brief,
     &afw_crypto_self_v_zz__Extension_version.pub
 };
 
 static const afw_runtime_property_t
 impl_19_property_dataType = {
-    &afw_crypto_self_s_dataType,
+    afw_crypto_v_dataType,
     &afw_crypto_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_19_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__afw_crypto_package_extension_version_string_.pub
 };
 
@@ -1713,19 +1713,19 @@ impl_20;
 
 static const afw_runtime_property_t
 impl_20_property_brief = {
-    &afw_crypto_self_s_brief,
+    afw_crypto_v_brief,
     &afw_crypto_self_v_zz__OpenSSL_version.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_dataType = {
-    &afw_crypto_self_s_dataType,
+    afw_crypto_v_dataType,
     &afw_crypto_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__OpenSSL_version_OPENSSL_VERSION__string_.pub
 };
 
@@ -1799,7 +1799,7 @@ impl_17_property_value_algorithms = {
 
 static const afw_runtime_property_t
 impl_17_property_algorithms = {
-    &afw_crypto_self_s_algorithms,
+    afw_crypto_v_algorithms,
     &impl_17_property_value_algorithms.pub
 };
 
@@ -1811,7 +1811,7 @@ impl_17_property_value_extensionVersion = {
 
 static const afw_runtime_property_t
 impl_17_property_extensionVersion = {
-    &afw_crypto_self_s_extensionVersion,
+    afw_crypto_v_extensionVersion,
     &impl_17_property_value_extensionVersion.pub
 };
 
@@ -1823,7 +1823,7 @@ impl_17_property_value_opensslVersion = {
 
 static const afw_runtime_property_t
 impl_17_property_opensslVersion = {
-    &afw_crypto_self_s_opensslVersion,
+    afw_crypto_v_opensslVersion,
     &impl_17_property_value_opensslVersion.pub
 };
 
@@ -1891,25 +1891,25 @@ impl_17__value = {
 
 static const afw_runtime_property_t
 impl_16_property_allowAdd = {
-    &afw_crypto_self_s_allowAdd,
+    afw_crypto_v_allowAdd,
     &afw_crypto_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_16_property_allowChange = {
-    &afw_crypto_self_s_allowChange,
+    afw_crypto_v_allowChange,
     &afw_crypto_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_16_property_allowDelete = {
-    &afw_crypto_self_s_allowDelete,
+    afw_crypto_v_allowDelete,
     &afw_crypto_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_16_property_allowEntity = {
-    &afw_crypto_self_s_allowEntity,
+    afw_crypto_v_allowEntity,
     &afw_crypto_boolean_self_v_true.pub
 };
 
@@ -1947,19 +1947,19 @@ impl_16_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_16_property_collectionURIs = {
-    &afw_crypto_self_s_collectionURIs,
+    afw_crypto_v_collectionURIs,
     &impl_16_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_16_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__6d03f0da03d4.pub
 };
 
 static const afw_runtime_property_t
 impl_16_property_objectType = {
-    &afw_crypto_self_s_objectType,
+    afw_crypto_v_objectType,
     &afw_crypto_self_v__AdaptiveCryptoVersionInfo_.pub
 };
 
@@ -1971,7 +1971,7 @@ impl_16_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_16_property_propertyTypes = {
-    &afw_crypto_self_s_propertyTypes,
+    afw_crypto_v_propertyTypes,
     &impl_16_property_value_propertyTypes.pub
 };
 
@@ -2047,19 +2047,19 @@ impl_21;
 
 static const afw_runtime_property_t
 impl_21_property_brief = {
-    &afw_crypto_self_s_brief,
+    afw_crypto_v_brief,
     &afw_crypto_self_v_zz__Cryptographic_Adaptive_Script_functions.pub
 };
 
 static const afw_runtime_property_t
 impl_21_property_category = {
-    &afw_crypto_self_s_category,
+    afw_crypto_v_category,
     &afw_crypto_self_v_crypto.pub
 };
 
 static const afw_runtime_property_t
 impl_21_property_description = {
-    &afw_crypto_self_s_description,
+    afw_crypto_v_description,
     &afw_crypto_self_v_zz__c99747e7651b.pub
 };
 

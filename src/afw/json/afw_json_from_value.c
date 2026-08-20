@@ -246,7 +246,7 @@ impl_convert_object_to_json(
     const afw_object_t *obj)
 {
     const afw_iterator_old_t *property_iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *next;
     afw_boolean_t starting_comma_needed;
     const afw_object_t *meta;
@@ -286,7 +286,9 @@ impl_convert_object_to_json(
             }
             impl_put_ws(wa);
             wa->skip_next_ws = 1;
-            impl_put_json_string(wa, property_name);
+            impl_put_json_string(wa,
+                afw_object_string_property_name_as_utf8(
+                    property_name, wa->xctx));
 
             impl_putc(wa, ':');
             if (wa->do_ws) {

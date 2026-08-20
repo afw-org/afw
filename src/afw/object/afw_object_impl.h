@@ -34,7 +34,7 @@ typedef struct afw_object_impl_property_meta_object_self_s {
     const afw_object_t *owning_object;
     afw_value_object_t meta_object_value;
     const afw_value_t *property_value;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_object_t *property_type_object;
     afw_boolean_t is_immutable;
 } afw_object_impl_property_meta_object_self_t;
@@ -42,17 +42,17 @@ typedef struct afw_object_impl_property_meta_object_self_s {
 
 typedef const afw_value_t *(*afw_object_impl_special_get_t) (
     afw_object_impl_property_meta_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 typedef void (*afw_object_impl_special_set_t) (
     afw_object_impl_property_meta_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
 typedef struct {
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     afw_object_impl_special_get_t get;
     afw_object_impl_special_set_t set;
 } afw_object_impl_name_handler_t;
@@ -150,7 +150,7 @@ afw_object_impl_get_meta(
 extern const afw_value_t *
 afw_object_impl_internal_get_property_meta(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
@@ -174,7 +174,7 @@ afw_object_impl_internal_get_property_meta(
  * const afw_value_t *
  * impl_afw_object_get_property_meta(
  *    const afw_object_t * instance,
- *    const afw_utf8_t * property_name,
+ *    const afw_value_t * property_name,
  *    afw_xctx_t *xctx)
  * {
  *    return afw_object_impl_get_property_meta(
@@ -184,7 +184,7 @@ afw_object_impl_internal_get_property_meta(
 AFW_DECLARE(const afw_value_t *)
 afw_object_impl_get_property_meta(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
@@ -210,7 +210,7 @@ extern const afw_value_t *
 afw_object_impl_internal_get_next_property_meta(
     const afw_object_t *instance,
     const afw_iterator_old_t **iterator,
-    const afw_utf8_t **property_name,
+    const afw_value_t **property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
@@ -235,7 +235,7 @@ afw_object_impl_internal_get_next_property_meta(
  * impl_afw_object_get_next_property_meta(
  *    const afw_object_t *instance,
  *    const afw_iterator_old_t **iterator,
- *    const afw_utf8_t **property_name,
+ *    const afw_value_t **property_name,
  *    afw_xctx_t *xctx)
  * {
  *    return afw_object_impl_get_next_property_meta(
@@ -246,7 +246,7 @@ AFW_DECLARE(const afw_value_t *)
 afw_object_impl_get_next_property_meta(
     const afw_object_t *instance,
     const afw_iterator_old_t **iterator,
-    const afw_utf8_t **property_name,
+    const afw_value_t **property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 

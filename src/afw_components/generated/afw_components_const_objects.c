@@ -35,43 +35,43 @@ impl_1;
 
 static const afw_runtime_property_t
 impl_1_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__c918c8fb1742.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_inputs.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Autocomplete.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__1413896b9929.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Autocomplete.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Autocomplete.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Autocomplete.pub
 };
 
@@ -146,43 +146,43 @@ impl_2;
 
 static const afw_runtime_property_t
 impl_2_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_renders_a_flexible_Box_of_content_.pub
 };
 
 static const afw_runtime_property_t
 impl_2_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_containers.pub
 };
 
 static const afw_runtime_property_t
 impl_2_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Box.pub
 };
 
 static const afw_runtime_property_t
 impl_2_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__130c18907fe9.pub
 };
 
 static const afw_runtime_property_t
 impl_2_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Box.pub
 };
 
 static const afw_runtime_property_t
 impl_2_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Box.pub
 };
 
 static const afw_runtime_property_t
 impl_2_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Box.pub
 };
 
@@ -257,43 +257,43 @@ impl_3;
 
 static const afw_runtime_property_t
 impl_3_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_renders_a_Breadcrumb_path_with_links.pub
 };
 
 static const afw_runtime_property_t
 impl_3_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_containers.pub
 };
 
 static const afw_runtime_property_t
 impl_3_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Breadcrumb.pub
 };
 
 static const afw_runtime_property_t
 impl_3_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__ff27520bc98c.pub
 };
 
 static const afw_runtime_property_t
 impl_3_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Breadcrumb.pub
 };
 
 static const afw_runtime_property_t
 impl_3_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Breadcrumb.pub
 };
 
 static const afw_runtime_property_t
 impl_3_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Breadcrumb.pub
 };
 
@@ -368,43 +368,43 @@ impl_4;
 
 static const afw_runtime_property_t
 impl_4_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__Component_to_display_a_Button_.pub
 };
 
 static const afw_runtime_property_t
 impl_4_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_inputs.pub
 };
 
 static const afw_runtime_property_t
 impl_4_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Button.pub
 };
 
 static const afw_runtime_property_t
 impl_4_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__52ed43a246ba.pub
 };
 
 static const afw_runtime_property_t
 impl_4_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Button.pub
 };
 
 static const afw_runtime_property_t
 impl_4_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Button.pub
 };
 
 static const afw_runtime_property_t
 impl_4_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Button.pub
 };
 
@@ -479,43 +479,43 @@ impl_5;
 
 static const afw_runtime_property_t
 impl_5_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_layout_container_that_displays_content_inside_a_popup_.pub
 };
 
 static const afw_runtime_property_t
 impl_5_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_containers.pub
 };
 
 static const afw_runtime_property_t
 impl_5_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Callout.pub
 };
 
 static const afw_runtime_property_t
 impl_5_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__15337eab00e4.pub
 };
 
 static const afw_runtime_property_t
 impl_5_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Callout.pub
 };
 
 static const afw_runtime_property_t
 impl_5_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Callout.pub
 };
 
 static const afw_runtime_property_t
 impl_5_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Callout.pub
 };
 
@@ -590,43 +590,43 @@ impl_6;
 
 static const afw_runtime_property_t
 impl_6_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__Component_to_display_data_in_a_Chart_.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_structured.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Chart.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__1052baa5025b.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Chart.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Chart.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Chart.pub
 };
 
@@ -701,43 +701,43 @@ impl_7;
 
 static const afw_runtime_property_t
 impl_7_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_displays_a_checkbox_.pub
 };
 
 static const afw_runtime_property_t
 impl_7_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_inputs.pub
 };
 
 static const afw_runtime_property_t
 impl_7_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Checkbox.pub
 };
 
 static const afw_runtime_property_t
 impl_7_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__757373ebc3a5.pub
 };
 
 static const afw_runtime_property_t
 impl_7_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Checkbox.pub
 };
 
 static const afw_runtime_property_t
 impl_7_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Checkbox.pub
 };
 
 static const afw_runtime_property_t
 impl_7_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Checkbox.pub
 };
 
@@ -812,43 +812,43 @@ impl_8;
 
 static const afw_runtime_property_t
 impl_8_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_to_display_a_selectable_choice_of_options_.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_inputs.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_ChoiceGroup.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__88f6bb392605.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_ChoiceGroup.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_ChoiceGroup.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Choice_Group.pub
 };
 
@@ -923,43 +923,43 @@ impl_9;
 
 static const afw_runtime_property_t
 impl_9_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_renders_a_rich_text_editor_.pub
 };
 
 static const afw_runtime_property_t
 impl_9_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_editors.pub
 };
 
 static const afw_runtime_property_t
 impl_9_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_CodeEditor.pub
 };
 
 static const afw_runtime_property_t
 impl_9_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__022a87e31c4e.pub
 };
 
 static const afw_runtime_property_t
 impl_9_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_CodeEditor.pub
 };
 
 static const afw_runtime_property_t
 impl_9_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_CodeEditor.pub
 };
 
 static const afw_runtime_property_t
 impl_9_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Code_Editor.pub
 };
 
@@ -1034,43 +1034,43 @@ impl_10;
 
 static const afw_runtime_property_t
 impl_10_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__dab072119e07.pub
 };
 
 static const afw_runtime_property_t
 impl_10_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_containers.pub
 };
 
 static const afw_runtime_property_t
 impl_10_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Collapsible.pub
 };
 
 static const afw_runtime_property_t
 impl_10_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__8332a1838ff5.pub
 };
 
 static const afw_runtime_property_t
 impl_10_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Collapsible.pub
 };
 
 static const afw_runtime_property_t
 impl_10_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Collapsible.pub
 };
 
 static const afw_runtime_property_t
 impl_10_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Collapsible.pub
 };
 
@@ -1145,43 +1145,43 @@ impl_11;
 
 static const afw_runtime_property_t
 impl_11_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__b1a9b9a533a4.pub
 };
 
 static const afw_runtime_property_t
 impl_11_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_pickers.pub
 };
 
 static const afw_runtime_property_t
 impl_11_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_DatePicker.pub
 };
 
 static const afw_runtime_property_t
 impl_11_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__45c1828eec67.pub
 };
 
 static const afw_runtime_property_t
 impl_11_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_DatePicker.pub
 };
 
 static const afw_runtime_property_t
 impl_11_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_DatePicker.pub
 };
 
 static const afw_runtime_property_t
 impl_11_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Date_Picker.pub
 };
 
@@ -1256,43 +1256,43 @@ impl_12;
 
 static const afw_runtime_property_t
 impl_12_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_allows_you_to_select_a_date_and_time_.pub
 };
 
 static const afw_runtime_property_t
 impl_12_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_pickers.pub
 };
 
 static const afw_runtime_property_t
 impl_12_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_DateTimePicker.pub
 };
 
 static const afw_runtime_property_t
 impl_12_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__50553b8fc828.pub
 };
 
 static const afw_runtime_property_t
 impl_12_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_DateTimePicker.pub
 };
 
 static const afw_runtime_property_t
 impl_12_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_DateTimePicker.pub
 };
 
 static const afw_runtime_property_t
 impl_12_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Date_Time_Picker.pub
 };
 
@@ -1367,43 +1367,43 @@ impl_13;
 
 static const afw_runtime_property_t
 impl_13_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__ea28e895eafc.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_containers.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Dialog.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__1b5e14a6cf6c.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Dialog.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Dialog.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Dialog.pub
 };
 
@@ -1478,43 +1478,43 @@ impl_14;
 
 static const afw_runtime_property_t
 impl_14_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_compares_two_objects_.pub
 };
 
 static const afw_runtime_property_t
 impl_14_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_editors.pub
 };
 
 static const afw_runtime_property_t
 impl_14_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_DiffEditor.pub
 };
 
 static const afw_runtime_property_t
 impl_14_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__This_component_displays_the_differences_between_two_objects_.pub
 };
 
 static const afw_runtime_property_t
 impl_14_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_DiffEditor.pub
 };
 
 static const afw_runtime_property_t
 impl_14_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_DiffEditor.pub
 };
 
 static const afw_runtime_property_t
 impl_14_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Diff_Editor.pub
 };
 
@@ -1589,43 +1589,43 @@ impl_15;
 
 static const afw_runtime_property_t
 impl_15_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__24d6297d39fd.pub
 };
 
 static const afw_runtime_property_t
 impl_15_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_content.pub
 };
 
 static const afw_runtime_property_t
 impl_15_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Divider.pub
 };
 
 static const afw_runtime_property_t
 impl_15_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__0df0dcc40f32.pub
 };
 
 static const afw_runtime_property_t
 impl_15_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Divider.pub
 };
 
 static const afw_runtime_property_t
 impl_15_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Divider.pub
 };
 
 static const afw_runtime_property_t
 impl_15_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Divider.pub
 };
 
@@ -1700,43 +1700,43 @@ impl_16;
 
 static const afw_runtime_property_t
 impl_16_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__97fdaf16e9f6.pub
 };
 
 static const afw_runtime_property_t
 impl_16_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_containers.pub
 };
 
 static const afw_runtime_property_t
 impl_16_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Drawer.pub
 };
 
 static const afw_runtime_property_t
 impl_16_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__5675333140f5.pub
 };
 
 static const afw_runtime_property_t
 impl_16_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Drawer.pub
 };
 
 static const afw_runtime_property_t
 impl_16_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Drawer.pub
 };
 
 static const afw_runtime_property_t
 impl_16_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Drawer.pub
 };
 
@@ -1811,43 +1811,43 @@ impl_17;
 
 static const afw_runtime_property_t
 impl_17_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__ab2232c76a6d.pub
 };
 
 static const afw_runtime_property_t
 impl_17_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_pickers.pub
 };
 
 static const afw_runtime_property_t
 impl_17_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Dropdown.pub
 };
 
 static const afw_runtime_property_t
 impl_17_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b554e9e09c22.pub
 };
 
 static const afw_runtime_property_t
 impl_17_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Dropdown.pub
 };
 
 static const afw_runtime_property_t
 impl_17_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Dropdown.pub
 };
 
 static const afw_runtime_property_t
 impl_17_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Dropdown.pub
 };
 
@@ -1922,43 +1922,43 @@ impl_18;
 
 static const afw_runtime_property_t
 impl_18_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__fb4e63a54319.pub
 };
 
 static const afw_runtime_property_t
 impl_18_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_editors.pub
 };
 
 static const afw_runtime_property_t
 impl_18_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_DropdownEditor.pub
 };
 
 static const afw_runtime_property_t
 impl_18_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__079a08970868.pub
 };
 
 static const afw_runtime_property_t
 impl_18_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_DropdownEditor.pub
 };
 
 static const afw_runtime_property_t
 impl_18_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_DropdownEditor.pub
 };
 
 static const afw_runtime_property_t
 impl_18_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Dropdown_Editor.pub
 };
 
@@ -2033,43 +2033,43 @@ impl_19;
 
 static const afw_runtime_property_t
 impl_19_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__55154a689904.pub
 };
 
 static const afw_runtime_property_t
 impl_19_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_editors.pub
 };
 
 static const afw_runtime_property_t
 impl_19_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_EditableCallout.pub
 };
 
 static const afw_runtime_property_t
 impl_19_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__dbb6ff9d7e39.pub
 };
 
 static const afw_runtime_property_t
 impl_19_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_EditableCallout.pub
 };
 
 static const afw_runtime_property_t
 impl_19_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_EditableCallout.pub
 };
 
 static const afw_runtime_property_t
 impl_19_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Editable_Callout.pub
 };
 
@@ -2144,43 +2144,43 @@ impl_20;
 
 static const afw_runtime_property_t
 impl_20_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__51722a742de7.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_editors.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_EditableLabel.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__43cd24fa7816.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_EditableLabel.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_EditableLabel.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Editable_Label.pub
 };
 
@@ -2255,43 +2255,43 @@ impl_21;
 
 static const afw_runtime_property_t
 impl_21_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__5943ee68ae10.pub
 };
 
 static const afw_runtime_property_t
 impl_21_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_utilities.pub
 };
 
 static const afw_runtime_property_t
 impl_21_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Hidden.pub
 };
 
 static const afw_runtime_property_t
 impl_21_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__5cc0ab1dd0d6.pub
 };
 
 static const afw_runtime_property_t
 impl_21_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Hidden.pub
 };
 
 static const afw_runtime_property_t
 impl_21_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Hidden.pub
 };
 
 static const afw_runtime_property_t
 impl_21_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Hidden.pub
 };
 
@@ -2366,43 +2366,43 @@ impl_22;
 
 static const afw_runtime_property_t
 impl_22_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_displays_an_icon_.pub
 };
 
 static const afw_runtime_property_t
 impl_22_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_content.pub
 };
 
 static const afw_runtime_property_t
 impl_22_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Icon.pub
 };
 
 static const afw_runtime_property_t
 impl_22_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__c216a9814aef.pub
 };
 
 static const afw_runtime_property_t
 impl_22_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Icon.pub
 };
 
 static const afw_runtime_property_t
 impl_22_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Icon.pub
 };
 
 static const afw_runtime_property_t
 impl_22_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Icon.pub
 };
 
@@ -2477,43 +2477,43 @@ impl_23;
 
 static const afw_runtime_property_t
 impl_23_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_displays_an_image_.pub
 };
 
 static const afw_runtime_property_t
 impl_23_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_content.pub
 };
 
 static const afw_runtime_property_t
 impl_23_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Image.pub
 };
 
 static const afw_runtime_property_t
 impl_23_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__6b7330e71675.pub
 };
 
 static const afw_runtime_property_t
 impl_23_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Image.pub
 };
 
 static const afw_runtime_property_t
 impl_23_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Image.pub
 };
 
 static const afw_runtime_property_t
 impl_23_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Image.pub
 };
 
@@ -2588,43 +2588,43 @@ impl_24;
 
 static const afw_runtime_property_t
 impl_24_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_renders_a_url_link_.pub
 };
 
 static const afw_runtime_property_t
 impl_24_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_navigation.pub
 };
 
 static const afw_runtime_property_t
 impl_24_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Link.pub
 };
 
 static const afw_runtime_property_t
 impl_24_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__dd156fafad63.pub
 };
 
 static const afw_runtime_property_t
 impl_24_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Link.pub
 };
 
 static const afw_runtime_property_t
 impl_24_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Link.pub
 };
 
 static const afw_runtime_property_t
 impl_24_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Link.pub
 };
 
@@ -2699,43 +2699,43 @@ impl_25;
 
 static const afw_runtime_property_t
 impl_25_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_layout_container_that_renders_a_list_of_components_.pub
 };
 
 static const afw_runtime_property_t
 impl_25_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_containers.pub
 };
 
 static const afw_runtime_property_t
 impl_25_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_List.pub
 };
 
 static const afw_runtime_property_t
 impl_25_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__ef19effa6347.pub
 };
 
 static const afw_runtime_property_t
 impl_25_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_List.pub
 };
 
 static const afw_runtime_property_t
 impl_25_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_List.pub
 };
 
 static const afw_runtime_property_t
 impl_25_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_List.pub
 };
 
@@ -2810,43 +2810,43 @@ impl_26;
 
 static const afw_runtime_property_t
 impl_26_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__c80d9ba46b02.pub
 };
 
 static const afw_runtime_property_t
 impl_26_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_editors.pub
 };
 
 static const afw_runtime_property_t
 impl_26_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_ListEditor.pub
 };
 
 static const afw_runtime_property_t
 impl_26_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__1bc22f86ca36.pub
 };
 
 static const afw_runtime_property_t
 impl_26_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_ListEditor.pub
 };
 
 static const afw_runtime_property_t
 impl_26_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_ListEditor.pub
 };
 
 static const afw_runtime_property_t
 impl_26_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__List_Editor.pub
 };
 
@@ -2921,43 +2921,43 @@ impl_27;
 
 static const afw_runtime_property_t
 impl_27_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_renders_a_Menu_to_be_displayed_.pub
 };
 
 static const afw_runtime_property_t
 impl_27_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_navigation.pub
 };
 
 static const afw_runtime_property_t
 impl_27_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Menu.pub
 };
 
 static const afw_runtime_property_t
 impl_27_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__1d28c8d738a3.pub
 };
 
 static const afw_runtime_property_t
 impl_27_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Menu.pub
 };
 
 static const afw_runtime_property_t
 impl_27_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Menu.pub
 };
 
 static const afw_runtime_property_t
 impl_27_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Menu.pub
 };
 
@@ -3032,43 +3032,43 @@ impl_28;
 
 static const afw_runtime_property_t
 impl_28_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_renders_a_message_to_be_displayed_.pub
 };
 
 static const afw_runtime_property_t
 impl_28_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_content.pub
 };
 
 static const afw_runtime_property_t
 impl_28_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Message.pub
 };
 
 static const afw_runtime_property_t
 impl_28_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__2f1dc02458ca.pub
 };
 
 static const afw_runtime_property_t
 impl_28_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Message.pub
 };
 
 static const afw_runtime_property_t
 impl_28_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Message.pub
 };
 
 static const afw_runtime_property_t
 impl_28_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Message.pub
 };
 
@@ -3143,43 +3143,43 @@ impl_29;
 
 static const afw_runtime_property_t
 impl_29_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_layout_container_that_displays_content_inside_a_popup_.pub
 };
 
 static const afw_runtime_property_t
 impl_29_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_containers.pub
 };
 
 static const afw_runtime_property_t
 impl_29_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Modal.pub
 };
 
 static const afw_runtime_property_t
 impl_29_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__15337eab00e4.pub
 };
 
 static const afw_runtime_property_t
 impl_29_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Modal.pub
 };
 
 static const afw_runtime_property_t
 impl_29_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Modal.pub
 };
 
 static const afw_runtime_property_t
 impl_29_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Modal.pub
 };
 
@@ -3254,43 +3254,43 @@ impl_30;
 
 static const afw_runtime_property_t
 impl_30_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_displays_a_native_HTML_element_.pub
 };
 
 static const afw_runtime_property_t
 impl_30_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_content.pub
 };
 
 static const afw_runtime_property_t
 impl_30_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Native.pub
 };
 
 static const afw_runtime_property_t
 impl_30_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__de03ddc6488a.pub
 };
 
 static const afw_runtime_property_t
 impl_30_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Native.pub
 };
 
 static const afw_runtime_property_t
 impl_30_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Native.pub
 };
 
 static const afw_runtime_property_t
 impl_30_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Native.pub
 };
 
@@ -3365,43 +3365,43 @@ impl_31;
 
 static const afw_runtime_property_t
 impl_31_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_navigational_component_that_displays_a_list_of_links_.pub
 };
 
 static const afw_runtime_property_t
 impl_31_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_navigation.pub
 };
 
 static const afw_runtime_property_t
 impl_31_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Nav.pub
 };
 
 static const afw_runtime_property_t
 impl_31_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b8ed9d66dc91.pub
 };
 
 static const afw_runtime_property_t
 impl_31_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Nav.pub
 };
 
 static const afw_runtime_property_t
 impl_31_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Nav.pub
 };
 
 static const afw_runtime_property_t
 impl_31_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Nav.pub
 };
 
@@ -3476,43 +3476,43 @@ impl_32;
 
 static const afw_runtime_property_t
 impl_32_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__cd790f8d0d34.pub
 };
 
 static const afw_runtime_property_t
 impl_32_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_containers.pub
 };
 
 static const afw_runtime_property_t
 impl_32_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Paper.pub
 };
 
 static const afw_runtime_property_t
 impl_32_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__0252bb9cca43.pub
 };
 
 static const afw_runtime_property_t
 impl_32_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Paper.pub
 };
 
 static const afw_runtime_property_t
 impl_32_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Paper.pub
 };
 
 static const afw_runtime_property_t
 impl_32_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Paper.pub
 };
 
@@ -3587,43 +3587,43 @@ impl_33;
 
 static const afw_runtime_property_t
 impl_33_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__f22662e0fc8c.pub
 };
 
 static const afw_runtime_property_t
 impl_33_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_pickers.pub
 };
 
 static const afw_runtime_property_t
 impl_33_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Picker.pub
 };
 
 static const afw_runtime_property_t
 impl_33_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__85b33f4c407a.pub
 };
 
 static const afw_runtime_property_t
 impl_33_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Picker.pub
 };
 
 static const afw_runtime_property_t
 impl_33_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Picker.pub
 };
 
 static const afw_runtime_property_t
 impl_33_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Picker.pub
 };
 
@@ -3698,43 +3698,43 @@ impl_34;
 
 static const afw_runtime_property_t
 impl_34_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__e1ff9844e955.pub
 };
 
 static const afw_runtime_property_t
 impl_34_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_containers.pub
 };
 
 static const afw_runtime_property_t
 impl_34_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Responsive.pub
 };
 
 static const afw_runtime_property_t
 impl_34_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__18485f0edb89.pub
 };
 
 static const afw_runtime_property_t
 impl_34_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Responsive.pub
 };
 
 static const afw_runtime_property_t
 impl_34_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Responsive.pub
 };
 
 static const afw_runtime_property_t
 impl_34_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Responsive.pub
 };
 
@@ -3809,43 +3809,43 @@ impl_35;
 
 static const afw_runtime_property_t
 impl_35_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__d7134bed5bfd.pub
 };
 
 static const afw_runtime_property_t
 impl_35_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_utilities.pub
 };
 
 static const afw_runtime_property_t
 impl_35_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Skeleton.pub
 };
 
 static const afw_runtime_property_t
 impl_35_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__5a78f4296c8f.pub
 };
 
 static const afw_runtime_property_t
 impl_35_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Skeleton.pub
 };
 
 static const afw_runtime_property_t
 impl_35_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Skeleton.pub
 };
 
 static const afw_runtime_property_t
 impl_35_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Skeleton.pub
 };
 
@@ -3920,43 +3920,43 @@ impl_36;
 
 static const afw_runtime_property_t
 impl_36_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__8da8251d2e46.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_inputs.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Slider.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__418939066580.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Slider.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Slider.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Slider.pub
 };
 
@@ -4031,43 +4031,43 @@ impl_37;
 
 static const afw_runtime_property_t
 impl_37_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_renders_a_Snackbar_to_be_displayed_.pub
 };
 
 static const afw_runtime_property_t
 impl_37_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_utilities.pub
 };
 
 static const afw_runtime_property_t
 impl_37_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Snackbar.pub
 };
 
 static const afw_runtime_property_t
 impl_37_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__e183fdb6c9b5.pub
 };
 
 static const afw_runtime_property_t
 impl_37_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Snackbar.pub
 };
 
 static const afw_runtime_property_t
 impl_37_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Snackbar.pub
 };
 
 static const afw_runtime_property_t
 impl_37_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Snackbar.pub
 };
 
@@ -4142,43 +4142,43 @@ impl_38;
 
 static const afw_runtime_property_t
 impl_38_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__b747fcf8252f.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_inputs.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_SpinButton.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b747fcf8252f.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_SpinButton.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_SpinButton.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Spin_Button.pub
 };
 
@@ -4253,43 +4253,43 @@ impl_39;
 
 static const afw_runtime_property_t
 impl_39_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_displays_a_spinner_progress_indicator_.pub
 };
 
 static const afw_runtime_property_t
 impl_39_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_utilities.pub
 };
 
 static const afw_runtime_property_t
 impl_39_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Spinner.pub
 };
 
 static const afw_runtime_property_t
 impl_39_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__55c767730702.pub
 };
 
 static const afw_runtime_property_t
 impl_39_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Spinner.pub
 };
 
 static const afw_runtime_property_t
 impl_39_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Spinner.pub
 };
 
 static const afw_runtime_property_t
 impl_39_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Spinner.pub
 };
 
@@ -4364,43 +4364,43 @@ impl_40;
 
 static const afw_runtime_property_t
 impl_40_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__9d1c121c574f.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_utilities.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Stepper.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__f102f7fce112.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Stepper.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Stepper.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Stepper.pub
 };
 
@@ -4475,43 +4475,43 @@ impl_41;
 
 static const afw_runtime_property_t
 impl_41_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_displays_data_in_a_table_format_.pub
 };
 
 static const afw_runtime_property_t
 impl_41_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_structured.pub
 };
 
 static const afw_runtime_property_t
 impl_41_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Table.pub
 };
 
 static const afw_runtime_property_t
 impl_41_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__01f7cb00a5c4.pub
 };
 
 static const afw_runtime_property_t
 impl_41_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Table.pub
 };
 
 static const afw_runtime_property_t
 impl_41_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Table.pub
 };
 
 static const afw_runtime_property_t
 impl_41_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Table.pub
 };
 
@@ -4586,43 +4586,43 @@ impl_42;
 
 static const afw_runtime_property_t
 impl_42_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_layout_container_that_renders_a_series_of_tabs_.pub
 };
 
 static const afw_runtime_property_t
 impl_42_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_navigation.pub
 };
 
 static const afw_runtime_property_t
 impl_42_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Tabs.pub
 };
 
 static const afw_runtime_property_t
 impl_42_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b75e1680106c.pub
 };
 
 static const afw_runtime_property_t
 impl_42_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Tabs.pub
 };
 
 static const afw_runtime_property_t
 impl_42_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Tabs.pub
 };
 
 static const afw_runtime_property_t
 impl_42_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Tabs.pub
 };
 
@@ -4697,43 +4697,43 @@ impl_43;
 
 static const afw_runtime_property_t
 impl_43_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__54f8a4389513.pub
 };
 
 static const afw_runtime_property_t
 impl_43_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_inputs.pub
 };
 
 static const afw_runtime_property_t
 impl_43_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_TextField.pub
 };
 
 static const afw_runtime_property_t
 impl_43_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__a7701af559f0.pub
 };
 
 static const afw_runtime_property_t
 impl_43_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_TextField.pub
 };
 
 static const afw_runtime_property_t
 impl_43_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_TextField.pub
 };
 
 static const afw_runtime_property_t
 impl_43_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Text_Field.pub
 };
 
@@ -4808,43 +4808,43 @@ impl_44;
 
 static const afw_runtime_property_t
 impl_44_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_renders_a_time_duration_.pub
 };
 
 static const afw_runtime_property_t
 impl_44_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_inputs.pub
 };
 
 static const afw_runtime_property_t
 impl_44_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_TimeDuration.pub
 };
 
 static const afw_runtime_property_t
 impl_44_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__29756efafb0f.pub
 };
 
 static const afw_runtime_property_t
 impl_44_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_TimeDuration.pub
 };
 
 static const afw_runtime_property_t
 impl_44_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_TimeDuration.pub
 };
 
 static const afw_runtime_property_t
 impl_44_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Time_Duration.pub
 };
 
@@ -4919,43 +4919,43 @@ impl_45;
 
 static const afw_runtime_property_t
 impl_45_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_allows_a_time_to_be_chosen_.pub
 };
 
 static const afw_runtime_property_t
 impl_45_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_pickers.pub
 };
 
 static const afw_runtime_property_t
 impl_45_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_TimePicker.pub
 };
 
 static const afw_runtime_property_t
 impl_45_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__64fa94bbdd43.pub
 };
 
 static const afw_runtime_property_t
 impl_45_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_TimePicker.pub
 };
 
 static const afw_runtime_property_t
 impl_45_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_TimePicker.pub
 };
 
 static const afw_runtime_property_t
 impl_45_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Time_Picker.pub
 };
 
@@ -5030,43 +5030,43 @@ impl_46;
 
 static const afw_runtime_property_t
 impl_46_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_allows_a_timezone_to_be_chosen_.pub
 };
 
 static const afw_runtime_property_t
 impl_46_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_pickers.pub
 };
 
 static const afw_runtime_property_t
 impl_46_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_TimezonePicker.pub
 };
 
 static const afw_runtime_property_t
 impl_46_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__d042757d108d.pub
 };
 
 static const afw_runtime_property_t
 impl_46_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_TimezonePicker.pub
 };
 
 static const afw_runtime_property_t
 impl_46_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_TimezonePicker.pub
 };
 
 static const afw_runtime_property_t
 impl_46_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Timezone_Picker.pub
 };
 
@@ -5141,43 +5141,43 @@ impl_47;
 
 static const afw_runtime_property_t
 impl_47_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__c54fb9246b60.pub
 };
 
 static const afw_runtime_property_t
 impl_47_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_inputs.pub
 };
 
 static const afw_runtime_property_t
 impl_47_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Toggle.pub
 };
 
 static const afw_runtime_property_t
 impl_47_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__94dee34009da.pub
 };
 
 static const afw_runtime_property_t
 impl_47_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Toggle.pub
 };
 
 static const afw_runtime_property_t
 impl_47_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Toggle.pub
 };
 
 static const afw_runtime_property_t
 impl_47_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Toggle.pub
 };
 
@@ -5252,43 +5252,43 @@ impl_48;
 
 static const afw_runtime_property_t
 impl_48_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__0c5f1c4517d7.pub
 };
 
 static const afw_runtime_property_t
 impl_48_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_inputs.pub
 };
 
 static const afw_runtime_property_t
 impl_48_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_ToggleButtons.pub
 };
 
 static const afw_runtime_property_t
 impl_48_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__3249b5b227c3.pub
 };
 
 static const afw_runtime_property_t
 impl_48_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_ToggleButtons.pub
 };
 
 static const afw_runtime_property_t
 impl_48_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_ToggleButtons.pub
 };
 
 static const afw_runtime_property_t
 impl_48_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Toggle_Buttons.pub
 };
 
@@ -5363,43 +5363,43 @@ impl_49;
 
 static const afw_runtime_property_t
 impl_49_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__02a30b142164.pub
 };
 
 static const afw_runtime_property_t
 impl_49_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_containers.pub
 };
 
 static const afw_runtime_property_t
 impl_49_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Toolbar.pub
 };
 
 static const afw_runtime_property_t
 impl_49_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__29ba91d64ff8.pub
 };
 
 static const afw_runtime_property_t
 impl_49_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Toolbar.pub
 };
 
 static const afw_runtime_property_t
 impl_49_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Toolbar.pub
 };
 
 static const afw_runtime_property_t
 impl_49_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Toolbar.pub
 };
 
@@ -5474,43 +5474,43 @@ impl_50;
 
 static const afw_runtime_property_t
 impl_50_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_surrounds_content_with_a_tooltip_.pub
 };
 
 static const afw_runtime_property_t
 impl_50_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_utilities.pub
 };
 
 static const afw_runtime_property_t
 impl_50_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Tooltip.pub
 };
 
 static const afw_runtime_property_t
 impl_50_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__d08c01b7671c.pub
 };
 
 static const afw_runtime_property_t
 impl_50_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Tooltip.pub
 };
 
 static const afw_runtime_property_t
 impl_50_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Tooltip.pub
 };
 
 static const afw_runtime_property_t
 impl_50_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Tooltip.pub
 };
 
@@ -5585,43 +5585,43 @@ impl_51;
 
 static const afw_runtime_property_t
 impl_51_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_renders_data_in_a_Tree_structure_.pub
 };
 
 static const afw_runtime_property_t
 impl_51_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_structured.pub
 };
 
 static const afw_runtime_property_t
 impl_51_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Tree.pub
 };
 
 static const afw_runtime_property_t
 impl_51_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__6435052add5d.pub
 };
 
 static const afw_runtime_property_t
 impl_51_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Tree.pub
 };
 
 static const afw_runtime_property_t
 impl_51_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Tree.pub
 };
 
 static const afw_runtime_property_t
 impl_51_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Tree.pub
 };
 
@@ -5696,43 +5696,43 @@ impl_52;
 
 static const afw_runtime_property_t
 impl_52_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__A_component_that_renders_a_text_label_.pub
 };
 
 static const afw_runtime_property_t
 impl_52_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_content.pub
 };
 
 static const afw_runtime_property_t
 impl_52_property_componentType = {
-    &afw_components_self_s_componentType,
+    afw_components_v_componentType,
     &afw_components_self_v_Typography.pub
 };
 
 static const afw_runtime_property_t
 impl_52_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b89198502888.pub
 };
 
 static const afw_runtime_property_t
 impl_52_property_implementationId = {
-    &afw_components_self_s_implementationId,
+    afw_components_v_implementationId,
     &afw_components_self_v_Typography.pub
 };
 
 static const afw_runtime_property_t
 impl_52_property_instanceObjectType = {
-    &afw_components_self_s_instanceObjectType,
+    afw_components_v_instanceObjectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Typography.pub
 };
 
 static const afw_runtime_property_t
 impl_52_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Typography.pub
 };
 
@@ -5813,31 +5813,31 @@ impl_55;
 
 static const afw_runtime_property_t
 impl_55_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_55_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_55_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_Responsive_Breakpoints.pub
 };
 
 static const afw_runtime_property_t
 impl_55_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__4853e40eaaed.pub
 };
 
 static const afw_runtime_property_t
 impl_55_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Breakpoints.pub
 };
 
@@ -5910,25 +5910,25 @@ impl_56;
 
 static const afw_runtime_property_t
 impl_56_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_56_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_56_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__7c179c3e4185.pub
 };
 
 static const afw_runtime_property_t
 impl_56_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Component_Props.pub
 };
 
@@ -6000,25 +6000,25 @@ impl_57;
 
 static const afw_runtime_property_t
 impl_57_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_57_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_57_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__a8eb6716813a.pub
 };
 
 static const afw_runtime_property_t
 impl_57_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Object.pub
 };
 
@@ -6090,25 +6090,25 @@ impl_58;
 
 static const afw_runtime_property_t
 impl_58_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_58_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_58_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__3ad97906d571.pub
 };
 
 static const afw_runtime_property_t
 impl_58_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Property_Name.pub
 };
 
@@ -6183,7 +6183,7 @@ impl_54_property_value_breakpoints = {
 
 static const afw_runtime_property_t
 impl_54_property_breakpoints = {
-    &afw_components_self_s_breakpoints,
+    afw_components_v_breakpoints,
     &impl_54_property_value_breakpoints.pub
 };
 
@@ -6195,7 +6195,7 @@ impl_54_property_value_componentProps = {
 
 static const afw_runtime_property_t
 impl_54_property_componentProps = {
-    &afw_components_self_s_componentProps,
+    afw_components_v_componentProps,
     &impl_54_property_value_componentProps.pub
 };
 
@@ -6207,7 +6207,7 @@ impl_54_property_value_object = {
 
 static const afw_runtime_property_t
 impl_54_property_object = {
-    &afw_components_self_s_object,
+    afw_components_v_object,
     &impl_54_property_value_object.pub
 };
 
@@ -6219,7 +6219,7 @@ impl_54_property_value_propertyName = {
 
 static const afw_runtime_property_t
 impl_54_property_propertyName = {
-    &afw_components_self_s_propertyName,
+    afw_components_v_propertyName,
     &impl_54_property_value_propertyName.pub
 };
 
@@ -6307,25 +6307,25 @@ impl_54__value = {
 
 static const afw_runtime_property_t
 impl_53_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_53_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_53_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_53_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -6363,19 +6363,19 @@ impl_53_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_53_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_53_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_53_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__11810b4bee23.pub
 };
 
 static const afw_runtime_property_t
 impl_53_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_PropertyForm.pub
 };
 
@@ -6387,7 +6387,7 @@ impl_53_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_53_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_53_property_value_propertyTypes.pub
 };
 
@@ -6469,25 +6469,25 @@ impl_61;
 
 static const afw_runtime_property_t
 impl_61_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_61_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_61_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_Autocomplete_component_can_be_changed_.pub
 };
 
 static const afw_runtime_property_t
 impl_61_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Allow_Write.pub
 };
 
@@ -6559,31 +6559,31 @@ impl_62;
 
 static const afw_runtime_property_t
 impl_62_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_62_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_62_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_62_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_Autocomplete_component_is_disabled_.pub
 };
 
 static const afw_runtime_property_t
 impl_62_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Disabled.pub
 };
 
@@ -6656,31 +6656,31 @@ impl_63;
 
 static const afw_runtime_property_t
 impl_63_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_63_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_63_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_63_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__122358cd56be.pub
 };
 
 static const afw_runtime_property_t
 impl_63_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Is_Loading.pub
 };
 
@@ -6753,31 +6753,31 @@ impl_64;
 
 static const afw_runtime_property_t
 impl_64_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_64_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_64_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_label_for_the_Autocomplete_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_64_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_64_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_a_label.pub
 };
 
@@ -6850,31 +6850,31 @@ impl_65;
 
 static const afw_runtime_property_t
 impl_65_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_65_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_65_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_Autocomplete_Option.pub
 };
 
 static const afw_runtime_property_t
 impl_65_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_available_options_for_the_Autocomplete_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_65_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Options.pub
 };
 
@@ -6947,31 +6947,31 @@ impl_66;
 
 static const afw_runtime_property_t
 impl_66_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_66_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_66_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__04c813fa6a8b.pub
 };
 
 static const afw_runtime_property_t
 impl_66_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Placeholder.pub
 };
 
 static const afw_runtime_property_t
 impl_66_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_a_placeholder_.pub
 };
 
@@ -7044,25 +7044,25 @@ impl_67;
 
 static const afw_runtime_property_t
 impl_67_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_67_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_67_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_this_Autocomplete_component_is_required_.pub
 };
 
 static const afw_runtime_property_t
 impl_67_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Required.pub
 };
 
@@ -7134,31 +7134,31 @@ impl_68;
 
 static const afw_runtime_property_t
 impl_68_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_68_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_68_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_Autocomplete_Option.pub
 };
 
 static const afw_runtime_property_t
 impl_68_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_option_value_for_the_Autocomplete_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_68_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Value.pub
 };
 
@@ -7234,7 +7234,7 @@ impl_60_property_value_allowWrite = {
 
 static const afw_runtime_property_t
 impl_60_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &impl_60_property_value_allowWrite.pub
 };
 
@@ -7246,7 +7246,7 @@ impl_60_property_value_disabled = {
 
 static const afw_runtime_property_t
 impl_60_property_disabled = {
-    &afw_components_self_s_disabled,
+    afw_components_v_disabled,
     &impl_60_property_value_disabled.pub
 };
 
@@ -7258,7 +7258,7 @@ impl_60_property_value_isLoading = {
 
 static const afw_runtime_property_t
 impl_60_property_isLoading = {
-    &afw_components_self_s_isLoading,
+    afw_components_v_isLoading,
     &impl_60_property_value_isLoading.pub
 };
 
@@ -7270,7 +7270,7 @@ impl_60_property_value_label = {
 
 static const afw_runtime_property_t
 impl_60_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_60_property_value_label.pub
 };
 
@@ -7282,7 +7282,7 @@ impl_60_property_value_options = {
 
 static const afw_runtime_property_t
 impl_60_property_options = {
-    &afw_components_self_s_options,
+    afw_components_v_options,
     &impl_60_property_value_options.pub
 };
 
@@ -7294,7 +7294,7 @@ impl_60_property_value_placeholder = {
 
 static const afw_runtime_property_t
 impl_60_property_placeholder = {
-    &afw_components_self_s_placeholder,
+    afw_components_v_placeholder,
     &impl_60_property_value_placeholder.pub
 };
 
@@ -7306,7 +7306,7 @@ impl_60_property_value_required = {
 
 static const afw_runtime_property_t
 impl_60_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &impl_60_property_value_required.pub
 };
 
@@ -7318,7 +7318,7 @@ impl_60_property_value_value = {
 
 static const afw_runtime_property_t
 impl_60_property_value = {
-    &afw_components_self_s_value,
+    afw_components_v_value,
     &impl_60_property_value_value.pub
 };
 
@@ -7410,25 +7410,25 @@ impl_60__value = {
 
 static const afw_runtime_property_t
 impl_59_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_59_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_59_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_59_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -7466,19 +7466,19 @@ impl_59_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_59_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_59_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_59_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Autocomplete_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_59_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Autocomplete.pub
 };
 
@@ -7490,7 +7490,7 @@ impl_59_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_59_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_59_property_value_propertyTypes.pub
 };
 
@@ -7572,25 +7572,25 @@ impl_71;
 
 static const afw_runtime_property_t
 impl_71_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_71_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_71_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_unique_key_assigned_to_the_selected_Autocomplete_option_.pub
 };
 
 static const afw_runtime_property_t
 impl_71_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Key.pub
 };
 
@@ -7662,25 +7662,25 @@ impl_72;
 
 static const afw_runtime_property_t
 impl_72_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_72_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_72_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Text_to_display_in_the_Autocomplete_List.pub
 };
 
 static const afw_runtime_property_t
 impl_72_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Text.pub
 };
 
@@ -7755,7 +7755,7 @@ impl_70_property_value_key = {
 
 static const afw_runtime_property_t
 impl_70_property_key = {
-    &afw_components_self_s_key,
+    afw_components_v_key,
     &impl_70_property_value_key.pub
 };
 
@@ -7767,7 +7767,7 @@ impl_70_property_value_text = {
 
 static const afw_runtime_property_t
 impl_70_property_text = {
-    &afw_components_self_s_text,
+    afw_components_v_text,
     &impl_70_property_value_text.pub
 };
 
@@ -7834,25 +7834,25 @@ impl_70__value = {
 
 static const afw_runtime_property_t
 impl_69_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_69_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_69_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_69_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -7890,25 +7890,25 @@ impl_69_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_69_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_69_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_69_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Option_for_Autocomplete_component.pub
 };
 
 static const afw_runtime_property_t
 impl_69_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Option.pub
 };
 
 static const afw_runtime_property_t
 impl_69_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Autocomplete_Option.pub
 };
 
@@ -7920,7 +7920,7 @@ impl_69_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_69_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_69_property_value_propertyTypes.pub
 };
 
@@ -8003,7 +8003,7 @@ impl_75;
 
 static const afw_runtime_property_t
 impl_75_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -8052,31 +8052,31 @@ impl_75_property_value_allowedValues = {
 
 static const afw_runtime_property_t
 impl_75_property_allowedValues = {
-    &afw_components_self_s_allowedValues,
+    afw_components_v_allowedValues,
     &impl_75_property_value_allowedValues.pub
 };
 
 static const afw_runtime_property_t
 impl_75_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__Aligns_the_Box_lines_within.pub
 };
 
 static const afw_runtime_property_t
 impl_75_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_75_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__332672507341.pub
 };
 
 static const afw_runtime_property_t
 impl_75_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Align_Content.pub
 };
 
@@ -8150,7 +8150,7 @@ impl_76;
 
 static const afw_runtime_property_t
 impl_76_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -8198,37 +8198,37 @@ impl_76_property_value_allowedValues = {
 
 static const afw_runtime_property_t
 impl_76_property_allowedValues = {
-    &afw_components_self_s_allowedValues,
+    afw_components_v_allowedValues,
     &impl_76_property_value_allowedValues.pub
 };
 
 static const afw_runtime_property_t
 impl_76_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__Alignment_along_the_cross_axis.pub
 };
 
 static const afw_runtime_property_t
 impl_76_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_76_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_self_v_stretch.pub
 };
 
 static const afw_runtime_property_t
 impl_76_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b4d8f0485ca3.pub
 };
 
 static const afw_runtime_property_t
 impl_76_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Align_Items.pub
 };
 
@@ -8303,37 +8303,37 @@ impl_77;
 
 static const afw_runtime_property_t
 impl_77_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_77_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__Items_inside_of_the_Box.pub
 };
 
 static const afw_runtime_property_t
 impl_77_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_77_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_BoxItem.pub
 };
 
 static const afw_runtime_property_t
 impl_77_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__This_declares_a_list_of_items_to_be_rendered_inside_the_Box_.pub
 };
 
 static const afw_runtime_property_t
 impl_77_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
@@ -8407,7 +8407,7 @@ impl_78;
 
 static const afw_runtime_property_t
 impl_78_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -8448,37 +8448,37 @@ impl_78_property_value_allowedValues = {
 
 static const afw_runtime_property_t
 impl_78_property_allowedValues = {
-    &afw_components_self_s_allowedValues,
+    afw_components_v_allowedValues,
     &impl_78_property_value_allowedValues.pub
 };
 
 static const afw_runtime_property_t
 impl_78_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__The_direction_of_items.pub
 };
 
 static const afw_runtime_property_t
 impl_78_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_78_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_self_v_row.pub
 };
 
 static const afw_runtime_property_t
 impl_78_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__ba103ceb011f.pub
 };
 
 static const afw_runtime_property_t
 impl_78_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Direction.pub
 };
 
@@ -8553,7 +8553,7 @@ impl_79;
 
 static const afw_runtime_property_t
 impl_79_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -8600,37 +8600,37 @@ impl_79_property_value_allowedValues = {
 
 static const afw_runtime_property_t
 impl_79_property_allowedValues = {
-    &afw_components_self_s_allowedValues,
+    afw_components_v_allowedValues,
     &impl_79_property_value_allowedValues.pub
 };
 
 static const afw_runtime_property_t
 impl_79_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__Alignment_along_the_main_axis.pub
 };
 
 static const afw_runtime_property_t
 impl_79_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_79_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_self_v_zz__flex_start.pub
 };
 
 static const afw_runtime_property_t
 impl_79_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__6319c8c2ce4c.pub
 };
 
 static const afw_runtime_property_t
 impl_79_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Justify_Content.pub
 };
 
@@ -8705,7 +8705,7 @@ impl_80;
 
 static const afw_runtime_property_t
 impl_80_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -8745,37 +8745,37 @@ impl_80_property_value_allowedValues = {
 
 static const afw_runtime_property_t
 impl_80_property_allowedValues = {
-    &afw_components_self_s_allowedValues,
+    afw_components_v_allowedValues,
     &impl_80_property_value_allowedValues.pub
 };
 
 static const afw_runtime_property_t
 impl_80_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__Item_wrap_behavior.pub
 };
 
 static const afw_runtime_property_t
 impl_80_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_80_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_self_v_nowrap.pub
 };
 
 static const afw_runtime_property_t
 impl_80_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__35cda96349af.pub
 };
 
 static const afw_runtime_property_t
 impl_80_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Wrap.pub
 };
 
@@ -8853,7 +8853,7 @@ impl_74_property_value_alignContent = {
 
 static const afw_runtime_property_t
 impl_74_property_alignContent = {
-    &afw_components_self_s_alignContent,
+    afw_components_v_alignContent,
     &impl_74_property_value_alignContent.pub
 };
 
@@ -8865,7 +8865,7 @@ impl_74_property_value_alignItems = {
 
 static const afw_runtime_property_t
 impl_74_property_alignItems = {
-    &afw_components_self_s_alignItems,
+    afw_components_v_alignItems,
     &impl_74_property_value_alignItems.pub
 };
 
@@ -8877,7 +8877,7 @@ impl_74_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_74_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_74_property_value_contains.pub
 };
 
@@ -8889,7 +8889,7 @@ impl_74_property_value_direction = {
 
 static const afw_runtime_property_t
 impl_74_property_direction = {
-    &afw_components_self_s_direction,
+    afw_components_v_direction,
     &impl_74_property_value_direction.pub
 };
 
@@ -8901,7 +8901,7 @@ impl_74_property_value_justifyContent = {
 
 static const afw_runtime_property_t
 impl_74_property_justifyContent = {
-    &afw_components_self_s_justifyContent,
+    afw_components_v_justifyContent,
     &impl_74_property_value_justifyContent.pub
 };
 
@@ -8913,7 +8913,7 @@ impl_74_property_value_wrap = {
 
 static const afw_runtime_property_t
 impl_74_property_wrap = {
-    &afw_components_self_s_wrap,
+    afw_components_v_wrap,
     &impl_74_property_value_wrap.pub
 };
 
@@ -9003,25 +9003,25 @@ impl_74__value = {
 
 static const afw_runtime_property_t
 impl_73_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_73_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_73_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_73_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -9059,19 +9059,19 @@ impl_73_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_73_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_73_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_73_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Flexible_Box_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_73_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Box.pub
 };
 
@@ -9083,7 +9083,7 @@ impl_73_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_73_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_73_property_value_propertyTypes.pub
 };
 
@@ -9165,37 +9165,37 @@ impl_83;
 
 static const afw_runtime_property_t
 impl_83_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_83_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__Components_inside_of_the_BoxItem.pub
 };
 
 static const afw_runtime_property_t
 impl_83_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_83_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_.pub
 };
 
 static const afw_runtime_property_t
 impl_83_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__ae3293e27a73.pub
 };
 
 static const afw_runtime_property_t
 impl_83_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
@@ -9269,31 +9269,31 @@ impl_84;
 
 static const afw_runtime_property_t
 impl_84_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_84_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__Ability_to_grow.pub
 };
 
 static const afw_runtime_property_t
 impl_84_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_84_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_integer_self_v_zero.pub
 };
 
 static const afw_runtime_property_t
 impl_84_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__cfe8bd609cce.pub
 };
 
@@ -9366,31 +9366,31 @@ impl_85;
 
 static const afw_runtime_property_t
 impl_85_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_85_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__Order_of_item.pub
 };
 
 static const afw_runtime_property_t
 impl_85_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_85_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_integer_self_v_zero.pub
 };
 
 static const afw_runtime_property_t
 impl_85_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__12ae991908d9.pub
 };
 
@@ -9463,31 +9463,31 @@ impl_86;
 
 static const afw_runtime_property_t
 impl_86_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_86_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__Ability_to_shrink.pub
 };
 
 static const afw_runtime_property_t
 impl_86_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_86_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_integer_self_v_one.pub
 };
 
 static const afw_runtime_property_t
 impl_86_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__54c14138c740.pub
 };
 
@@ -9563,7 +9563,7 @@ impl_82_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_82_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_82_property_value_contains.pub
 };
 
@@ -9575,7 +9575,7 @@ impl_82_property_value_grow = {
 
 static const afw_runtime_property_t
 impl_82_property_grow = {
-    &afw_components_self_s_grow,
+    afw_components_v_grow,
     &impl_82_property_value_grow.pub
 };
 
@@ -9587,7 +9587,7 @@ impl_82_property_value_order = {
 
 static const afw_runtime_property_t
 impl_82_property_order = {
-    &afw_components_self_s_order,
+    afw_components_v_order,
     &impl_82_property_value_order.pub
 };
 
@@ -9599,7 +9599,7 @@ impl_82_property_value_shrink = {
 
 static const afw_runtime_property_t
 impl_82_property_shrink = {
-    &afw_components_self_s_shrink,
+    afw_components_v_shrink,
     &impl_82_property_value_shrink.pub
 };
 
@@ -9687,25 +9687,25 @@ impl_82__value = {
 
 static const afw_runtime_property_t
 impl_81_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_81_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_81_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_81_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -9743,19 +9743,19 @@ impl_81_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_81_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_81_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_81_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__819ecde59dee.pub
 };
 
 static const afw_runtime_property_t
 impl_81_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_BoxItem.pub
 };
 
@@ -9767,7 +9767,7 @@ impl_81_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_81_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_81_property_value_propertyTypes.pub
 };
 
@@ -9849,43 +9849,43 @@ impl_89;
 
 static const afw_runtime_property_t
 impl_89_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_89_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__Breadcrumb_items.pub
 };
 
 static const afw_runtime_property_t
 impl_89_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_89_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_BreadcrumbItem.pub
 };
 
 static const afw_runtime_property_t
 impl_89_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Breadcrumb_items.pub
 };
 
 static const afw_runtime_property_t
 impl_89_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Items.pub
 };
 
 static const afw_runtime_property_t
 impl_89_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -9963,7 +9963,7 @@ impl_88_property_value_items = {
 
 static const afw_runtime_property_t
 impl_88_property_items = {
-    &afw_components_self_s_items,
+    afw_components_v_items,
     &impl_88_property_value_items.pub
 };
 
@@ -10048,25 +10048,25 @@ impl_88__value = {
 
 static const afw_runtime_property_t
 impl_87_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_87_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_87_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_87_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -10104,19 +10104,19 @@ impl_87_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_87_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_87_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_87_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Breadcrumb_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_87_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Breadcrumb.pub
 };
 
@@ -10128,7 +10128,7 @@ impl_87_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_87_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_87_property_value_propertyTypes.pub
 };
 
@@ -10210,37 +10210,37 @@ impl_92;
 
 static const afw_runtime_property_t
 impl_92_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_92_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__Unique_key.pub
 };
 
 static const afw_runtime_property_t
 impl_92_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_92_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Unique_key.pub
 };
 
 static const afw_runtime_property_t
 impl_92_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Key.pub
 };
 
 static const afw_runtime_property_t
 impl_92_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -10314,37 +10314,37 @@ impl_93;
 
 static const afw_runtime_property_t
 impl_93_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_93_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__.pub
 };
 
 static const afw_runtime_property_t
 impl_93_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_93_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__.pub
 };
 
 static const afw_runtime_property_t
 impl_93_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Text.pub
 };
 
 static const afw_runtime_property_t
 impl_93_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -10421,7 +10421,7 @@ impl_91_property_value_key = {
 
 static const afw_runtime_property_t
 impl_91_property_key = {
-    &afw_components_self_s_key,
+    afw_components_v_key,
     &impl_91_property_value_key.pub
 };
 
@@ -10433,7 +10433,7 @@ impl_91_property_value_text = {
 
 static const afw_runtime_property_t
 impl_91_property_text = {
-    &afw_components_self_s_text,
+    afw_components_v_text,
     &impl_91_property_value_text.pub
 };
 
@@ -10519,25 +10519,25 @@ impl_91__value = {
 
 static const afw_runtime_property_t
 impl_90_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_90_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_90_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_90_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -10575,19 +10575,19 @@ impl_90_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_90_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_90_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_90_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__8bcd84360314.pub
 };
 
 static const afw_runtime_property_t
 impl_90_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_BreadcrumbItem.pub
 };
 
@@ -10599,7 +10599,7 @@ impl_90_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_90_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_90_property_value_propertyTypes.pub
 };
 
@@ -10681,25 +10681,25 @@ impl_96;
 
 static const afw_runtime_property_t
 impl_96_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_96_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_96_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__659c54e59915.pub
 };
 
 static const afw_runtime_property_t
 impl_96_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Color.pub
 };
 
@@ -10740,7 +10740,7 @@ impl_96_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_96_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_96_property_value_possibleValues.pub
 };
 
@@ -10813,25 +10813,25 @@ impl_97;
 
 static const afw_runtime_property_t
 impl_97_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_97_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_97_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_this_Button_component_is_disabled_.pub
 };
 
 static const afw_runtime_property_t
 impl_97_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Disabled.pub
 };
 
@@ -10903,25 +10903,25 @@ impl_98;
 
 static const afw_runtime_property_t
 impl_98_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_98_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_98_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_an_optional_dropdown_icon_for_this_Button_.pub
 };
 
 static const afw_runtime_property_t
 impl_98_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Dropdown.pub
 };
 
@@ -10993,25 +10993,25 @@ impl_99;
 
 static const afw_runtime_property_t
 impl_99_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_99_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_99_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_an_optional_icon_for_this_Button_.pub
 };
 
 static const afw_runtime_property_t
 impl_99_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Icon.pub
 };
 
@@ -11083,31 +11083,31 @@ impl_100;
 
 static const afw_runtime_property_t
 impl_100_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_100_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_100_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_the_text_on_the_Button_.pub
 };
 
 static const afw_runtime_property_t
 impl_100_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_100_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_a_label.pub
 };
 
@@ -11180,25 +11180,25 @@ impl_101;
 
 static const afw_runtime_property_t
 impl_101_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_101_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_101_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__752b65b47f0c.pub
 };
 
 static const afw_runtime_property_t
 impl_101_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Secondary_Text.pub
 };
 
@@ -11270,25 +11270,25 @@ impl_102;
 
 static const afw_runtime_property_t
 impl_102_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_102_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_102_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_a_size_for_the_button__small_.pub
 };
 
 static const afw_runtime_property_t
 impl_102_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Size.pub
 };
 
@@ -11328,7 +11328,7 @@ impl_102_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_102_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_102_property_value_possibleValues.pub
 };
 
@@ -11401,25 +11401,25 @@ impl_103;
 
 static const afw_runtime_property_t
 impl_103_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_103_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_103_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_type_of_Button__icon__split__compound__default__.pub
 };
 
 static const afw_runtime_property_t
 impl_103_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Type.pub
 };
 
@@ -11460,7 +11460,7 @@ impl_103_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_103_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_103_property_value_possibleValues.pub
 };
 
@@ -11536,7 +11536,7 @@ impl_95_property_value_color = {
 
 static const afw_runtime_property_t
 impl_95_property_color = {
-    &afw_components_self_s_color,
+    afw_components_v_color,
     &impl_95_property_value_color.pub
 };
 
@@ -11548,7 +11548,7 @@ impl_95_property_value_disabled = {
 
 static const afw_runtime_property_t
 impl_95_property_disabled = {
-    &afw_components_self_s_disabled,
+    afw_components_v_disabled,
     &impl_95_property_value_disabled.pub
 };
 
@@ -11560,7 +11560,7 @@ impl_95_property_value_dropdown = {
 
 static const afw_runtime_property_t
 impl_95_property_dropdown = {
-    &afw_components_self_s_dropdown,
+    afw_components_v_dropdown,
     &impl_95_property_value_dropdown.pub
 };
 
@@ -11572,7 +11572,7 @@ impl_95_property_value_icon = {
 
 static const afw_runtime_property_t
 impl_95_property_icon = {
-    &afw_components_self_s_icon,
+    afw_components_v_icon,
     &impl_95_property_value_icon.pub
 };
 
@@ -11584,7 +11584,7 @@ impl_95_property_value_label = {
 
 static const afw_runtime_property_t
 impl_95_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_95_property_value_label.pub
 };
 
@@ -11596,7 +11596,7 @@ impl_95_property_value_secondaryText = {
 
 static const afw_runtime_property_t
 impl_95_property_secondaryText = {
-    &afw_components_self_s_secondaryText,
+    afw_components_v_secondaryText,
     &impl_95_property_value_secondaryText.pub
 };
 
@@ -11608,7 +11608,7 @@ impl_95_property_value_size = {
 
 static const afw_runtime_property_t
 impl_95_property_size = {
-    &afw_components_self_s_size,
+    afw_components_v_size,
     &impl_95_property_value_size.pub
 };
 
@@ -11620,7 +11620,7 @@ impl_95_property_value_type = {
 
 static const afw_runtime_property_t
 impl_95_property_type = {
-    &afw_components_self_s_type,
+    afw_components_v_type,
     &impl_95_property_value_type.pub
 };
 
@@ -11712,25 +11712,25 @@ impl_95__value = {
 
 static const afw_runtime_property_t
 impl_94_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_94_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_94_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_94_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -11768,19 +11768,19 @@ impl_94_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_94_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_94_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_94_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Button_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_94_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Button.pub
 };
 
@@ -11792,7 +11792,7 @@ impl_94_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_94_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_94_property_value_propertyTypes.pub
 };
 
@@ -11874,31 +11874,31 @@ impl_106;
 
 static const afw_runtime_property_t
 impl_106_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_106_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_106_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_.pub
 };
 
 static const afw_runtime_property_t
 impl_106_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__04c813fa6a8b.pub
 };
 
 static const afw_runtime_property_t
 impl_106_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
@@ -11971,25 +11971,25 @@ impl_107;
 
 static const afw_runtime_property_t
 impl_107_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_107_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_107_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_gap_space_between_target_and_the_Callout_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_107_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Gap_Space.pub
 };
 
@@ -12061,31 +12061,31 @@ impl_108;
 
 static const afw_runtime_property_t
 impl_108_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_108_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_108_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_this_Callout_component_is_open_.pub
 };
 
 static const afw_runtime_property_t
 impl_108_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Open.pub
 };
 
 static const afw_runtime_property_t
 impl_108_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -12158,31 +12158,31 @@ impl_109;
 
 static const afw_runtime_property_t
 impl_109_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_109_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_109_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_Callout_TargetPosition.pub
 };
 
 static const afw_runtime_property_t
 impl_109_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__56765d3d58cc.pub
 };
 
 static const afw_runtime_property_t
 impl_109_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Target_Position.pub
 };
 
@@ -12258,7 +12258,7 @@ impl_105_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_105_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_105_property_value_contains.pub
 };
 
@@ -12270,7 +12270,7 @@ impl_105_property_value_gapSpace = {
 
 static const afw_runtime_property_t
 impl_105_property_gapSpace = {
-    &afw_components_self_s_gapSpace,
+    afw_components_v_gapSpace,
     &impl_105_property_value_gapSpace.pub
 };
 
@@ -12282,7 +12282,7 @@ impl_105_property_value_open = {
 
 static const afw_runtime_property_t
 impl_105_property_open = {
-    &afw_components_self_s_open,
+    afw_components_v_open,
     &impl_105_property_value_open.pub
 };
 
@@ -12294,7 +12294,7 @@ impl_105_property_value_targetPosition = {
 
 static const afw_runtime_property_t
 impl_105_property_targetPosition = {
-    &afw_components_self_s_targetPosition,
+    afw_components_v_targetPosition,
     &impl_105_property_value_targetPosition.pub
 };
 
@@ -12382,25 +12382,25 @@ impl_105__value = {
 
 static const afw_runtime_property_t
 impl_104_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_104_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_104_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_104_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -12438,19 +12438,19 @@ impl_104_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_104_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_104_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_104_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Callout_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_104_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Callout.pub
 };
 
@@ -12462,7 +12462,7 @@ impl_104_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_104_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_104_property_value_propertyTypes.pub
 };
 
@@ -12544,25 +12544,25 @@ impl_112;
 
 static const afw_runtime_property_t
 impl_112_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_112_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_112_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Duration_in_milliseconds_to_animate_the_chart_data_.pub
 };
 
 static const afw_runtime_property_t
 impl_112_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Animate_Duration.pub
 };
 
@@ -12634,31 +12634,31 @@ impl_113;
 
 static const afw_runtime_property_t
 impl_113_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_113_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_113_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_Chart_Data.pub
 };
 
 static const afw_runtime_property_t
 impl_113_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_data_for_the_Chart_.pub
 };
 
 static const afw_runtime_property_t
 impl_113_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Data.pub
 };
 
@@ -12731,25 +12731,25 @@ impl_114;
 
 static const afw_runtime_property_t
 impl_114_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_114_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_114_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_or_not_the_Chart_contains_tooltips_.pub
 };
 
 static const afw_runtime_property_t
 impl_114_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Tooltip.pub
 };
 
@@ -12821,25 +12821,25 @@ impl_115;
 
 static const afw_runtime_property_t
 impl_115_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_115_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_115_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_type_of_Chart_to_display__bar__area__line__pie__.pub
 };
 
 static const afw_runtime_property_t
 impl_115_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Type.pub
 };
 
@@ -12914,7 +12914,7 @@ impl_111_property_value_animateDuration = {
 
 static const afw_runtime_property_t
 impl_111_property_animateDuration = {
-    &afw_components_self_s_animateDuration,
+    afw_components_v_animateDuration,
     &impl_111_property_value_animateDuration.pub
 };
 
@@ -12926,7 +12926,7 @@ impl_111_property_value_data = {
 
 static const afw_runtime_property_t
 impl_111_property_data = {
-    &afw_components_self_s_data,
+    afw_components_v_data,
     &impl_111_property_value_data.pub
 };
 
@@ -12938,7 +12938,7 @@ impl_111_property_value_tooltip = {
 
 static const afw_runtime_property_t
 impl_111_property_tooltip = {
-    &afw_components_self_s_tooltip,
+    afw_components_v_tooltip,
     &impl_111_property_value_tooltip.pub
 };
 
@@ -12950,7 +12950,7 @@ impl_111_property_value_type = {
 
 static const afw_runtime_property_t
 impl_111_property_type = {
-    &afw_components_self_s_type,
+    afw_components_v_type,
     &impl_111_property_value_type.pub
 };
 
@@ -13038,25 +13038,25 @@ impl_111__value = {
 
 static const afw_runtime_property_t
 impl_110_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_110_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_110_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_110_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -13094,25 +13094,25 @@ impl_110_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_110_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_110_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_110_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__A_component_to_display_data_in_a_Chart_.pub
 };
 
 static const afw_runtime_property_t
 impl_110_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Chart.pub
 };
 
 static const afw_runtime_property_t
 impl_110_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Chart.pub
 };
 
@@ -13124,7 +13124,7 @@ impl_110_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_110_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_110_property_value_propertyTypes.pub
 };
 
@@ -13207,25 +13207,25 @@ impl_118;
 
 static const afw_runtime_property_t
 impl_118_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_118_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_118_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__X_Axis_Data_point_.pub
 };
 
 static const afw_runtime_property_t
 impl_118_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_X.pub
 };
 
@@ -13297,25 +13297,25 @@ impl_119;
 
 static const afw_runtime_property_t
 impl_119_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_119_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_119_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Y_Axis_Data_point_.pub
 };
 
 static const afw_runtime_property_t
 impl_119_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Y.pub
 };
 
@@ -13390,7 +13390,7 @@ impl_117_property_value_x = {
 
 static const afw_runtime_property_t
 impl_117_property_x = {
-    &afw_components_self_s_x,
+    afw_components_v_x,
     &impl_117_property_value_x.pub
 };
 
@@ -13402,7 +13402,7 @@ impl_117_property_value_y = {
 
 static const afw_runtime_property_t
 impl_117_property_y = {
-    &afw_components_self_s_y,
+    afw_components_v_y,
     &impl_117_property_value_y.pub
 };
 
@@ -13469,25 +13469,25 @@ impl_117__value = {
 
 static const afw_runtime_property_t
 impl_116_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_116_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_116_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_116_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -13525,25 +13525,25 @@ impl_116_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_116_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_116_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_116_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Data_for_Chart_component.pub
 };
 
 static const afw_runtime_property_t
 impl_116_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Data.pub
 };
 
 static const afw_runtime_property_t
 impl_116_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Chart_Data.pub
 };
 
@@ -13555,7 +13555,7 @@ impl_116_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_116_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_116_property_value_propertyTypes.pub
 };
 
@@ -13638,25 +13638,25 @@ impl_122;
 
 static const afw_runtime_property_t
 impl_122_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_122_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_122_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_which_side_the_checkbox_is_on__start_or_end__.pub
 };
 
 static const afw_runtime_property_t
 impl_122_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Box_Side.pub
 };
 
@@ -13728,31 +13728,31 @@ impl_123;
 
 static const afw_runtime_property_t
 impl_123_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_123_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_123_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_description_for_the_Checkbox_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_123_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Description.pub
 };
 
 static const afw_runtime_property_t
 impl_123_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_description_.pub
 };
 
@@ -13825,25 +13825,25 @@ impl_124;
 
 static const afw_runtime_property_t
 impl_124_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_124_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_124_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_Checkbox_component_is_disabled_.pub
 };
 
 static const afw_runtime_property_t
 impl_124_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Disabled.pub
 };
 
@@ -13915,31 +13915,31 @@ impl_125;
 
 static const afw_runtime_property_t
 impl_125_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_125_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_125_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_label_for_the_Checkbox_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_125_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_125_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_label.pub
 };
 
@@ -14012,25 +14012,25 @@ impl_126;
 
 static const afw_runtime_property_t
 impl_126_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_126_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_126_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_value_for_the_Checkbox_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_126_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Value.pub
 };
 
@@ -14105,7 +14105,7 @@ impl_121_property_value_boxSide = {
 
 static const afw_runtime_property_t
 impl_121_property_boxSide = {
-    &afw_components_self_s_boxSide,
+    afw_components_v_boxSide,
     &impl_121_property_value_boxSide.pub
 };
 
@@ -14117,7 +14117,7 @@ impl_121_property_value_description = {
 
 static const afw_runtime_property_t
 impl_121_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &impl_121_property_value_description.pub
 };
 
@@ -14129,7 +14129,7 @@ impl_121_property_value_disabled = {
 
 static const afw_runtime_property_t
 impl_121_property_disabled = {
-    &afw_components_self_s_disabled,
+    afw_components_v_disabled,
     &impl_121_property_value_disabled.pub
 };
 
@@ -14141,7 +14141,7 @@ impl_121_property_value_label = {
 
 static const afw_runtime_property_t
 impl_121_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_121_property_value_label.pub
 };
 
@@ -14153,7 +14153,7 @@ impl_121_property_value_value = {
 
 static const afw_runtime_property_t
 impl_121_property_value = {
-    &afw_components_self_s_value,
+    afw_components_v_value,
     &impl_121_property_value_value.pub
 };
 
@@ -14242,25 +14242,25 @@ impl_121__value = {
 
 static const afw_runtime_property_t
 impl_120_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_120_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_120_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_120_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -14298,19 +14298,19 @@ impl_120_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_120_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_120_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_120_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Checkbox_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_120_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Checkbox.pub
 };
 
@@ -14322,7 +14322,7 @@ impl_120_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_120_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_120_property_value_propertyTypes.pub
 };
 
@@ -14404,31 +14404,31 @@ impl_129;
 
 static const afw_runtime_property_t
 impl_129_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_129_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_129_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_label_for_the_ChoiceGroup_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_129_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_129_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_label.pub
 };
 
@@ -14501,37 +14501,37 @@ impl_130;
 
 static const afw_runtime_property_t
 impl_130_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_130_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_130_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_ChoiceGroup_Option.pub
 };
 
 static const afw_runtime_property_t
 impl_130_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_available_options_for_the_ChoiceGroup_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_130_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Options.pub
 };
 
 static const afw_runtime_property_t
 impl_130_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -14605,25 +14605,25 @@ impl_131;
 
 static const afw_runtime_property_t
 impl_131_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_131_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_131_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__e7a92d141ef8.pub
 };
 
 static const afw_runtime_property_t
 impl_131_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Orientation.pub
 };
 
@@ -14662,7 +14662,7 @@ impl_131_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_131_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_131_property_value_possibleValues.pub
 };
 
@@ -14735,25 +14735,25 @@ impl_132;
 
 static const afw_runtime_property_t
 impl_132_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_132_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_132_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_this_ChoiceGroup_component_is_required_.pub
 };
 
 static const afw_runtime_property_t
 impl_132_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Required.pub
 };
 
@@ -14825,25 +14825,25 @@ impl_133;
 
 static const afw_runtime_property_t
 impl_133_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_133_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_133_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_value_of_the_selected_key_for_the_ChoiceGroup_options_.pub
 };
 
 static const afw_runtime_property_t
 impl_133_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Selected_Key.pub
 };
 
@@ -14918,7 +14918,7 @@ impl_128_property_value_label = {
 
 static const afw_runtime_property_t
 impl_128_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_128_property_value_label.pub
 };
 
@@ -14930,7 +14930,7 @@ impl_128_property_value_options = {
 
 static const afw_runtime_property_t
 impl_128_property_options = {
-    &afw_components_self_s_options,
+    afw_components_v_options,
     &impl_128_property_value_options.pub
 };
 
@@ -14942,7 +14942,7 @@ impl_128_property_value_orientation = {
 
 static const afw_runtime_property_t
 impl_128_property_orientation = {
-    &afw_components_self_s_orientation,
+    afw_components_v_orientation,
     &impl_128_property_value_orientation.pub
 };
 
@@ -14954,7 +14954,7 @@ impl_128_property_value_required = {
 
 static const afw_runtime_property_t
 impl_128_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &impl_128_property_value_required.pub
 };
 
@@ -14966,7 +14966,7 @@ impl_128_property_value_selectedKey = {
 
 static const afw_runtime_property_t
 impl_128_property_selectedKey = {
-    &afw_components_self_s_selectedKey,
+    afw_components_v_selectedKey,
     &impl_128_property_value_selectedKey.pub
 };
 
@@ -15055,25 +15055,25 @@ impl_128__value = {
 
 static const afw_runtime_property_t
 impl_127_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_127_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_127_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_127_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -15111,25 +15111,25 @@ impl_127_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_127_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_127_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_127_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_ChoiceGroup_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_127_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_ChoiceGroup.pub
 };
 
 static const afw_runtime_property_t
 impl_127_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_ChoiceGroup.pub
 };
 
@@ -15141,7 +15141,7 @@ impl_127_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_127_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_127_property_value_propertyTypes.pub
 };
 
@@ -15286,25 +15286,25 @@ impl_137;
 
 static const afw_runtime_property_t
 impl_137_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_137_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_137_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__10a96299eab7.pub
 };
 
 static const afw_runtime_property_t
 impl_137_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Disabled.pub
 };
 
@@ -15376,31 +15376,31 @@ impl_138;
 
 static const afw_runtime_property_t
 impl_138_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_138_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_138_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_key_identifier_for_this_option_.pub
 };
 
 static const afw_runtime_property_t
 impl_138_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Key.pub
 };
 
 static const afw_runtime_property_t
 impl_138_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -15473,25 +15473,25 @@ impl_139;
 
 static const afw_runtime_property_t
 impl_139_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_139_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_139_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_text_displayed_for_this_option_.pub
 };
 
 static const afw_runtime_property_t
 impl_139_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Text.pub
 };
 
@@ -15566,7 +15566,7 @@ impl_136_property_value_disabled = {
 
 static const afw_runtime_property_t
 impl_136_property_disabled = {
-    &afw_components_self_s_disabled,
+    afw_components_v_disabled,
     &impl_136_property_value_disabled.pub
 };
 
@@ -15578,7 +15578,7 @@ impl_136_property_value_key = {
 
 static const afw_runtime_property_t
 impl_136_property_key = {
-    &afw_components_self_s_key,
+    afw_components_v_key,
     &impl_136_property_value_key.pub
 };
 
@@ -15590,7 +15590,7 @@ impl_136_property_value_text = {
 
 static const afw_runtime_property_t
 impl_136_property_text = {
-    &afw_components_self_s_text,
+    afw_components_v_text,
     &impl_136_property_value_text.pub
 };
 
@@ -15658,25 +15658,25 @@ impl_136__value = {
 
 static const afw_runtime_property_t
 impl_134_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_134_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_134_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_134_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -15714,25 +15714,25 @@ impl_134_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_134_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_134_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_134_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__7433ef0c8a38.pub
 };
 
 static const afw_runtime_property_t
 impl_134_property_objectIdPropertyName = {
-    &afw_components_self_s_objectIdPropertyName,
+    afw_components_v_objectIdPropertyName,
     &afw_components_self_v_key.pub
 };
 
 static const afw_runtime_property_t
 impl_134_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_ChoiceGroup_Option.pub
 };
 
@@ -15744,7 +15744,7 @@ impl_134_property_value_otherProperties = {
 
 static const afw_runtime_property_t
 impl_134_property_otherProperties = {
-    &afw_components_self_s_otherProperties,
+    afw_components_v_otherProperties,
     &impl_134_property_value_otherProperties.pub
 };
 
@@ -15756,7 +15756,7 @@ impl_134_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_134_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_134_property_value_propertyTypes.pub
 };
 
@@ -15840,25 +15840,25 @@ impl_142;
 
 static const afw_runtime_property_t
 impl_142_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_142_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_142_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__68995d2ab4f2.pub
 };
 
 static const afw_runtime_property_t
 impl_142_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Read_Only.pub
 };
 
@@ -15930,25 +15930,25 @@ impl_143;
 
 static const afw_runtime_property_t
 impl_143_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_143_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_143_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__7a45fc3ca2e3.pub
 };
 
 static const afw_runtime_property_t
 impl_143_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Gutter.pub
 };
 
@@ -16020,25 +16020,25 @@ impl_144;
 
 static const afw_runtime_property_t
 impl_144_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_144_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_144_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__88f291033bb2.pub
 };
 
 static const afw_runtime_property_t
 impl_144_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Line_Numbers.pub
 };
 
@@ -16110,25 +16110,25 @@ impl_145;
 
 static const afw_runtime_property_t
 impl_145_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_145_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_145_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__f2edaa837f91.pub
 };
 
 static const afw_runtime_property_t
 impl_145_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Print_Margin.pub
 };
 
@@ -16200,31 +16200,31 @@ impl_146;
 
 static const afw_runtime_property_t
 impl_146_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_146_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_146_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_source_value_for_the_CodeEditor_component_to_render_.pub
 };
 
 static const afw_runtime_property_t
 impl_146_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Source.pub
 };
 
 static const afw_runtime_property_t
 impl_146_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_some_text_that_has_been_entered_into_the_editor_.pub
 };
 
@@ -16300,7 +16300,7 @@ impl_141_property_value_readOnly = {
 
 static const afw_runtime_property_t
 impl_141_property_readOnly = {
-    &afw_components_self_s_readOnly,
+    afw_components_v_readOnly,
     &impl_141_property_value_readOnly.pub
 };
 
@@ -16312,7 +16312,7 @@ impl_141_property_value_showGutter = {
 
 static const afw_runtime_property_t
 impl_141_property_showGutter = {
-    &afw_components_self_s_showGutter,
+    afw_components_v_showGutter,
     &impl_141_property_value_showGutter.pub
 };
 
@@ -16324,7 +16324,7 @@ impl_141_property_value_showLineNumbers = {
 
 static const afw_runtime_property_t
 impl_141_property_showLineNumbers = {
-    &afw_components_self_s_showLineNumbers,
+    afw_components_v_showLineNumbers,
     &impl_141_property_value_showLineNumbers.pub
 };
 
@@ -16336,7 +16336,7 @@ impl_141_property_value_showPrintMargin = {
 
 static const afw_runtime_property_t
 impl_141_property_showPrintMargin = {
-    &afw_components_self_s_showPrintMargin,
+    afw_components_v_showPrintMargin,
     &impl_141_property_value_showPrintMargin.pub
 };
 
@@ -16348,7 +16348,7 @@ impl_141_property_value_source = {
 
 static const afw_runtime_property_t
 impl_141_property_source = {
-    &afw_components_self_s_source,
+    afw_components_v_source,
     &impl_141_property_value_source.pub
 };
 
@@ -16437,25 +16437,25 @@ impl_141__value = {
 
 static const afw_runtime_property_t
 impl_140_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_140_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_140_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_140_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -16493,25 +16493,25 @@ impl_140_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_140_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_140_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_140_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_CodeEditor_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_140_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_CodeEditor.pub
 };
 
 static const afw_runtime_property_t
 impl_140_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_CodeEditor.pub
 };
 
@@ -16523,7 +16523,7 @@ impl_140_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_140_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_140_property_value_propertyTypes.pub
 };
 
@@ -16606,31 +16606,31 @@ impl_149;
 
 static const afw_runtime_property_t
 impl_149_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_149_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_149_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_.pub
 };
 
 static const afw_runtime_property_t
 impl_149_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__324e493a80dd.pub
 };
 
 static const afw_runtime_property_t
 impl_149_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
@@ -16703,31 +16703,31 @@ impl_150;
 
 static const afw_runtime_property_t
 impl_150_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_150_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_150_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_.pub
 };
 
 static const afw_runtime_property_t
 impl_150_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__56025cec53ed.pub
 };
 
 static const afw_runtime_property_t
 impl_150_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Header_Items.pub
 };
 
@@ -16800,31 +16800,31 @@ impl_151;
 
 static const afw_runtime_property_t
 impl_151_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_151_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_151_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_151_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__a45cebc812e3.pub
 };
 
 static const afw_runtime_property_t
 impl_151_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Is_Collapsed.pub
 };
 
@@ -16897,31 +16897,31 @@ impl_152;
 
 static const afw_runtime_property_t
 impl_152_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_152_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_152_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_152_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__0c3f138b2b4d.pub
 };
 
 static const afw_runtime_property_t
 impl_152_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Show_Collapse.pub
 };
 
@@ -16997,7 +16997,7 @@ impl_148_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_148_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_148_property_value_contains.pub
 };
 
@@ -17009,7 +17009,7 @@ impl_148_property_value_headerItems = {
 
 static const afw_runtime_property_t
 impl_148_property_headerItems = {
-    &afw_components_self_s_headerItems,
+    afw_components_v_headerItems,
     &impl_148_property_value_headerItems.pub
 };
 
@@ -17021,7 +17021,7 @@ impl_148_property_value_isCollapsed = {
 
 static const afw_runtime_property_t
 impl_148_property_isCollapsed = {
-    &afw_components_self_s_isCollapsed,
+    afw_components_v_isCollapsed,
     &impl_148_property_value_isCollapsed.pub
 };
 
@@ -17033,7 +17033,7 @@ impl_148_property_value_showCollapse = {
 
 static const afw_runtime_property_t
 impl_148_property_showCollapse = {
-    &afw_components_self_s_showCollapse,
+    afw_components_v_showCollapse,
     &impl_148_property_value_showCollapse.pub
 };
 
@@ -17121,25 +17121,25 @@ impl_148__value = {
 
 static const afw_runtime_property_t
 impl_147_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_147_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_147_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_147_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -17177,25 +17177,25 @@ impl_147_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_147_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_147_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_147_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Collapsible_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_147_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Collapsible_Layout.pub
 };
 
 static const afw_runtime_property_t
 impl_147_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Collapsible.pub
 };
 
@@ -17207,7 +17207,7 @@ impl_147_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_147_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_147_property_value_propertyTypes.pub
 };
 
@@ -17352,25 +17352,25 @@ impl_156;
 
 static const afw_runtime_property_t
 impl_156_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_156_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_156_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__8faca3bc1423.pub
 };
 
 static const afw_runtime_property_t
 impl_156_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__ARIA_Label.pub
 };
 
@@ -17442,25 +17442,25 @@ impl_157;
 
 static const afw_runtime_property_t
 impl_157_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_157_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_157_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__930c688d5c27.pub
 };
 
 static const afw_runtime_property_t
 impl_157_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__ARIA_Labelled_By.pub
 };
 
@@ -17532,25 +17532,25 @@ impl_158;
 
 static const afw_runtime_property_t
 impl_158_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_158_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_158_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_CSS_class_to_be_assigned_to_this_layout_component_type_.pub
 };
 
 static const afw_runtime_property_t
 impl_158_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Class_Name.pub
 };
 
@@ -17622,25 +17622,25 @@ impl_159;
 
 static const afw_runtime_property_t
 impl_159_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_159_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_159_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__441d882a57b2.pub
 };
 
 static const afw_runtime_property_t
 impl_159_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Design_Mode.pub
 };
 
@@ -17712,25 +17712,25 @@ impl_160;
 
 static const afw_runtime_property_t
 impl_160_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_160_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_160_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_a_unique_id_for_an_element_.pub
 };
 
 static const afw_runtime_property_t
 impl_160_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Id.pub
 };
 
@@ -17802,25 +17802,25 @@ impl_161;
 
 static const afw_runtime_property_t
 impl_161_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_161_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_161_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__9f19c0221a4c.pub
 };
 
 static const afw_runtime_property_t
 impl_161_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Role.pub
 };
 
@@ -17868,7 +17868,7 @@ impl_161_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_161_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_161_property_value_possibleValues.pub
 };
 
@@ -17941,31 +17941,31 @@ impl_162;
 
 static const afw_runtime_property_t
 impl_162_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_162_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_162_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_Style.pub
 };
 
 static const afw_runtime_property_t
 impl_162_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__0f69c1761010.pub
 };
 
 static const afw_runtime_property_t
 impl_162_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Style_Properties.pub
 };
 
@@ -18038,25 +18038,25 @@ impl_163;
 
 static const afw_runtime_property_t
 impl_163_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_163_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_163_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_extra_information_about_an_element_.pub
 };
 
 static const afw_runtime_property_t
 impl_163_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Title.pub
 };
 
@@ -18131,7 +18131,7 @@ impl_155_property_value_aria_label = {
 
 static const afw_runtime_property_t
 impl_155_property_aria_label = {
-    &afw_components_self_s_a_aria_label,
+    afw_components_v_a_aria_label,
     &impl_155_property_value_aria_label.pub
 };
 
@@ -18143,7 +18143,7 @@ impl_155_property_value_aria_labelledby = {
 
 static const afw_runtime_property_t
 impl_155_property_aria_labelledby = {
-    &afw_components_self_s_a_aria_labelledby,
+    afw_components_v_a_aria_labelledby,
     &impl_155_property_value_aria_labelledby.pub
 };
 
@@ -18155,7 +18155,7 @@ impl_155_property_value_className = {
 
 static const afw_runtime_property_t
 impl_155_property_className = {
-    &afw_components_self_s_className,
+    afw_components_v_className,
     &impl_155_property_value_className.pub
 };
 
@@ -18167,7 +18167,7 @@ impl_155_property_value_designMode = {
 
 static const afw_runtime_property_t
 impl_155_property_designMode = {
-    &afw_components_self_s_designMode,
+    afw_components_v_designMode,
     &impl_155_property_value_designMode.pub
 };
 
@@ -18179,7 +18179,7 @@ impl_155_property_value_id = {
 
 static const afw_runtime_property_t
 impl_155_property_id = {
-    &afw_components_self_s_id,
+    afw_components_v_id,
     &impl_155_property_value_id.pub
 };
 
@@ -18191,7 +18191,7 @@ impl_155_property_value_role = {
 
 static const afw_runtime_property_t
 impl_155_property_role = {
-    &afw_components_self_s_role,
+    afw_components_v_role,
     &impl_155_property_value_role.pub
 };
 
@@ -18203,7 +18203,7 @@ impl_155_property_value_style = {
 
 static const afw_runtime_property_t
 impl_155_property_style = {
-    &afw_components_self_s_style,
+    afw_components_v_style,
     &impl_155_property_value_style.pub
 };
 
@@ -18215,7 +18215,7 @@ impl_155_property_value_title = {
 
 static const afw_runtime_property_t
 impl_155_property_title = {
-    &afw_components_self_s_title,
+    afw_components_v_title,
     &impl_155_property_value_title.pub
 };
 
@@ -18288,25 +18288,25 @@ impl_155__value = {
 
 static const afw_runtime_property_t
 impl_153_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_153_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_153_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_153_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -18344,19 +18344,19 @@ impl_153_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_153_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_153_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_153_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_common_properties_.pub
 };
 
 static const afw_runtime_property_t
 impl_153_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Common.pub
 };
 
@@ -18368,7 +18368,7 @@ impl_153_property_value_otherProperties = {
 
 static const afw_runtime_property_t
 impl_153_property_otherProperties = {
-    &afw_components_self_s_otherProperties,
+    afw_components_v_otherProperties,
     &impl_153_property_value_otherProperties.pub
 };
 
@@ -18380,7 +18380,7 @@ impl_153_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_153_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_153_property_value_propertyTypes.pub
 };
 
@@ -18463,31 +18463,31 @@ impl_166;
 
 static const afw_runtime_property_t
 impl_166_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_166_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_166_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_description_for_the_DatePicker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_166_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Description.pub
 };
 
 static const afw_runtime_property_t
 impl_166_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_description_.pub
 };
 
@@ -18560,25 +18560,25 @@ impl_167;
 
 static const afw_runtime_property_t
 impl_167_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_167_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_167_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_DatePicker_component_is_disabled_.pub
 };
 
 static const afw_runtime_property_t
 impl_167_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Disabled.pub
 };
 
@@ -18650,31 +18650,31 @@ impl_168;
 
 static const afw_runtime_property_t
 impl_168_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_168_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_168_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_label_for_the_DatePicker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_168_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_168_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_label.pub
 };
 
@@ -18747,25 +18747,25 @@ impl_169;
 
 static const afw_runtime_property_t
 impl_169_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_169_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_169_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_Date_Picker_value_is_required_.pub
 };
 
 static const afw_runtime_property_t
 impl_169_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Required.pub
 };
 
@@ -18837,25 +18837,25 @@ impl_170;
 
 static const afw_runtime_property_t
 impl_170_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_170_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_dateTime.pub
 };
 
 static const afw_runtime_property_t
 impl_170_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_value_for_the_DatePicker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_170_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Value.pub
 };
 
@@ -18930,7 +18930,7 @@ impl_165_property_value_description = {
 
 static const afw_runtime_property_t
 impl_165_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &impl_165_property_value_description.pub
 };
 
@@ -18942,7 +18942,7 @@ impl_165_property_value_disabled = {
 
 static const afw_runtime_property_t
 impl_165_property_disabled = {
-    &afw_components_self_s_disabled,
+    afw_components_v_disabled,
     &impl_165_property_value_disabled.pub
 };
 
@@ -18954,7 +18954,7 @@ impl_165_property_value_label = {
 
 static const afw_runtime_property_t
 impl_165_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_165_property_value_label.pub
 };
 
@@ -18966,7 +18966,7 @@ impl_165_property_value_required = {
 
 static const afw_runtime_property_t
 impl_165_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &impl_165_property_value_required.pub
 };
 
@@ -18978,7 +18978,7 @@ impl_165_property_value_value = {
 
 static const afw_runtime_property_t
 impl_165_property_value = {
-    &afw_components_self_s_value,
+    afw_components_v_value,
     &impl_165_property_value_value.pub
 };
 
@@ -19067,25 +19067,25 @@ impl_165__value = {
 
 static const afw_runtime_property_t
 impl_164_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_164_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_164_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_164_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -19123,25 +19123,25 @@ impl_164_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_164_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_164_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_164_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_DatePicker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_164_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Date_Picker.pub
 };
 
 static const afw_runtime_property_t
 impl_164_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_DatePicker.pub
 };
 
@@ -19153,7 +19153,7 @@ impl_164_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_164_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_164_property_value_propertyTypes.pub
 };
 
@@ -19236,31 +19236,31 @@ impl_173;
 
 static const afw_runtime_property_t
 impl_173_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_173_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_173_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_description_for_the_DateTimePicker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_173_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Description.pub
 };
 
 static const afw_runtime_property_t
 impl_173_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_description_.pub
 };
 
@@ -19333,25 +19333,25 @@ impl_174;
 
 static const afw_runtime_property_t
 impl_174_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_174_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_174_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_DateTimePicker_component_is_disabled_.pub
 };
 
 static const afw_runtime_property_t
 impl_174_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Disabled.pub
 };
 
@@ -19423,31 +19423,31 @@ impl_175;
 
 static const afw_runtime_property_t
 impl_175_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_175_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_175_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_label_for_the_DateTimePicker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_175_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_175_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_label.pub
 };
 
@@ -19520,25 +19520,25 @@ impl_176;
 
 static const afw_runtime_property_t
 impl_176_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_176_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_176_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_Date_Picker_value_is_required_.pub
 };
 
 static const afw_runtime_property_t
 impl_176_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Required.pub
 };
 
@@ -19610,25 +19610,25 @@ impl_177;
 
 static const afw_runtime_property_t
 impl_177_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_177_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_dateTime.pub
 };
 
 static const afw_runtime_property_t
 impl_177_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_value_for_the_DateTimePicker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_177_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Value.pub
 };
 
@@ -19703,7 +19703,7 @@ impl_172_property_value_description = {
 
 static const afw_runtime_property_t
 impl_172_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &impl_172_property_value_description.pub
 };
 
@@ -19715,7 +19715,7 @@ impl_172_property_value_disabled = {
 
 static const afw_runtime_property_t
 impl_172_property_disabled = {
-    &afw_components_self_s_disabled,
+    afw_components_v_disabled,
     &impl_172_property_value_disabled.pub
 };
 
@@ -19727,7 +19727,7 @@ impl_172_property_value_label = {
 
 static const afw_runtime_property_t
 impl_172_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_172_property_value_label.pub
 };
 
@@ -19739,7 +19739,7 @@ impl_172_property_value_required = {
 
 static const afw_runtime_property_t
 impl_172_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &impl_172_property_value_required.pub
 };
 
@@ -19751,7 +19751,7 @@ impl_172_property_value_value = {
 
 static const afw_runtime_property_t
 impl_172_property_value = {
-    &afw_components_self_s_value,
+    afw_components_v_value,
     &impl_172_property_value_value.pub
 };
 
@@ -19840,25 +19840,25 @@ impl_172__value = {
 
 static const afw_runtime_property_t
 impl_171_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_171_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_171_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_171_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -19896,25 +19896,25 @@ impl_171_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_171_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_171_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_171_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_DateTimePicker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_171_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Date_Time_Picker.pub
 };
 
 static const afw_runtime_property_t
 impl_171_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_DateTimePicker.pub
 };
 
@@ -19926,7 +19926,7 @@ impl_171_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_171_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_171_property_value_propertyTypes.pub
 };
 
@@ -20009,31 +20009,31 @@ impl_180;
 
 static const afw_runtime_property_t
 impl_180_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_180_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_180_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponent_.pub
 };
 
 static const afw_runtime_property_t
 impl_180_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Any_contents_that_needs_to_be_rendered_inside_the_Dialog_.pub
 };
 
 static const afw_runtime_property_t
 impl_180_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
@@ -20106,31 +20106,31 @@ impl_181;
 
 static const afw_runtime_property_t
 impl_181_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_181_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_181_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponent_.pub
 };
 
 static const afw_runtime_property_t
 impl_181_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__592999103af3.pub
 };
 
 static const afw_runtime_property_t
 impl_181_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Footer.pub
 };
 
@@ -20203,31 +20203,31 @@ impl_182;
 
 static const afw_runtime_property_t
 impl_182_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_182_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_182_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_182_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Should_the_Dialog_be_full_screen_.pub
 };
 
 static const afw_runtime_property_t
 impl_182_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Full_Screen.pub
 };
 
@@ -20300,25 +20300,25 @@ impl_183;
 
 static const afw_runtime_property_t
 impl_183_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_183_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_183_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__2905a8071af5.pub
 };
 
 static const afw_runtime_property_t
 impl_183_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Is_Blocking.pub
 };
 
@@ -20390,25 +20390,25 @@ impl_184;
 
 static const afw_runtime_property_t
 impl_184_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_184_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_184_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_maximum_width_of_the_Dialog_.pub
 };
 
 static const afw_runtime_property_t
 impl_184_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Max_Width.pub
 };
 
@@ -20449,7 +20449,7 @@ impl_184_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_184_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_184_property_value_possibleValues.pub
 };
 
@@ -20522,25 +20522,25 @@ impl_185;
 
 static const afw_runtime_property_t
 impl_185_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_185_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_185_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_this_Dialog_component_is_open_.pub
 };
 
 static const afw_runtime_property_t
 impl_185_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Open.pub
 };
 
@@ -20612,31 +20612,31 @@ impl_186;
 
 static const afw_runtime_property_t
 impl_186_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_186_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_186_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_186_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__6a249311e772.pub
 };
 
 static const afw_runtime_property_t
 impl_186_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Show_Close.pub
 };
 
@@ -20709,25 +20709,25 @@ impl_187;
 
 static const afw_runtime_property_t
 impl_187_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_187_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_187_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__a8d88983920f.pub
 };
 
 static const afw_runtime_property_t
 impl_187_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Subtext.pub
 };
 
@@ -20799,25 +20799,25 @@ impl_188;
 
 static const afw_runtime_property_t
 impl_188_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_188_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_188_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_title_text_to_display_at_the_top_of_the_dialog_box_.pub
 };
 
 static const afw_runtime_property_t
 impl_188_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Title.pub
 };
 
@@ -20892,7 +20892,7 @@ impl_179_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_179_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_179_property_value_contains.pub
 };
 
@@ -20904,7 +20904,7 @@ impl_179_property_value_footer = {
 
 static const afw_runtime_property_t
 impl_179_property_footer = {
-    &afw_components_self_s_footer,
+    afw_components_v_footer,
     &impl_179_property_value_footer.pub
 };
 
@@ -20916,7 +20916,7 @@ impl_179_property_value_fullScreen = {
 
 static const afw_runtime_property_t
 impl_179_property_fullScreen = {
-    &afw_components_self_s_fullScreen,
+    afw_components_v_fullScreen,
     &impl_179_property_value_fullScreen.pub
 };
 
@@ -20928,7 +20928,7 @@ impl_179_property_value_isBlocking = {
 
 static const afw_runtime_property_t
 impl_179_property_isBlocking = {
-    &afw_components_self_s_isBlocking,
+    afw_components_v_isBlocking,
     &impl_179_property_value_isBlocking.pub
 };
 
@@ -20940,7 +20940,7 @@ impl_179_property_value_maxWidth = {
 
 static const afw_runtime_property_t
 impl_179_property_maxWidth = {
-    &afw_components_self_s_maxWidth,
+    afw_components_v_maxWidth,
     &impl_179_property_value_maxWidth.pub
 };
 
@@ -20952,7 +20952,7 @@ impl_179_property_value_open = {
 
 static const afw_runtime_property_t
 impl_179_property_open = {
-    &afw_components_self_s_open,
+    afw_components_v_open,
     &impl_179_property_value_open.pub
 };
 
@@ -20964,7 +20964,7 @@ impl_179_property_value_showClose = {
 
 static const afw_runtime_property_t
 impl_179_property_showClose = {
-    &afw_components_self_s_showClose,
+    afw_components_v_showClose,
     &impl_179_property_value_showClose.pub
 };
 
@@ -20976,7 +20976,7 @@ impl_179_property_value_subText = {
 
 static const afw_runtime_property_t
 impl_179_property_subText = {
-    &afw_components_self_s_subText,
+    afw_components_v_subText,
     &impl_179_property_value_subText.pub
 };
 
@@ -20988,7 +20988,7 @@ impl_179_property_value_title = {
 
 static const afw_runtime_property_t
 impl_179_property_title = {
-    &afw_components_self_s_title,
+    afw_components_v_title,
     &impl_179_property_value_title.pub
 };
 
@@ -21081,25 +21081,25 @@ impl_179__value = {
 
 static const afw_runtime_property_t
 impl_178_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_178_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_178_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_178_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -21137,19 +21137,19 @@ impl_178_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_178_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_178_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_178_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Dialog_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_178_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Dialog.pub
 };
 
@@ -21161,7 +21161,7 @@ impl_178_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_178_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_178_property_value_propertyTypes.pub
 };
 
@@ -21243,31 +21243,31 @@ impl_191;
 
 static const afw_runtime_property_t
 impl_191_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_191_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_191_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__d1c0100ed624.pub
 };
 
 static const afw_runtime_property_t
 impl_191_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Modified.pub
 };
 
 static const afw_runtime_property_t
 impl_191_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_modified_text_.pub
 };
 
@@ -21340,31 +21340,31 @@ impl_192;
 
 static const afw_runtime_property_t
 impl_192_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_192_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_192_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__cc8702dfac0b.pub
 };
 
 static const afw_runtime_property_t
 impl_192_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Original.pub
 };
 
 static const afw_runtime_property_t
 impl_192_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_original_text_.pub
 };
 
@@ -21437,25 +21437,25 @@ impl_193;
 
 static const afw_runtime_property_t
 impl_193_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_193_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_193_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__35cc6f1923e8.pub
 };
 
 static const afw_runtime_property_t
 impl_193_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Line_Numbers.pub
 };
 
@@ -21530,7 +21530,7 @@ impl_190_property_value_modified = {
 
 static const afw_runtime_property_t
 impl_190_property_modified = {
-    &afw_components_self_s_modified,
+    afw_components_v_modified,
     &impl_190_property_value_modified.pub
 };
 
@@ -21542,7 +21542,7 @@ impl_190_property_value_original = {
 
 static const afw_runtime_property_t
 impl_190_property_original = {
-    &afw_components_self_s_original,
+    afw_components_v_original,
     &impl_190_property_value_original.pub
 };
 
@@ -21554,7 +21554,7 @@ impl_190_property_value_showLineNumbers = {
 
 static const afw_runtime_property_t
 impl_190_property_showLineNumbers = {
-    &afw_components_self_s_showLineNumbers,
+    afw_components_v_showLineNumbers,
     &impl_190_property_value_showLineNumbers.pub
 };
 
@@ -21641,25 +21641,25 @@ impl_190__value = {
 
 static const afw_runtime_property_t
 impl_189_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_189_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_189_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_189_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -21697,25 +21697,25 @@ impl_189_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_189_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_189_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_189_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_DiffEditor_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_189_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_DiffEditor.pub
 };
 
 static const afw_runtime_property_t
 impl_189_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_DiffEditor.pub
 };
 
@@ -21727,7 +21727,7 @@ impl_189_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_189_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_189_property_value_propertyTypes.pub
 };
 
@@ -21885,25 +21885,25 @@ impl_195__value = {
 
 static const afw_runtime_property_t
 impl_194_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_194_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_194_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_194_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -21941,25 +21941,25 @@ impl_194_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_194_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_194_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_194_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Divider_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_194_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Divider.pub
 };
 
 static const afw_runtime_property_t
 impl_194_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Divider.pub
 };
 
@@ -21971,7 +21971,7 @@ impl_194_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_194_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_194_property_value_propertyTypes.pub
 };
 
@@ -22054,7 +22054,7 @@ impl_198;
 
 static const afw_runtime_property_t
 impl_198_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -22095,37 +22095,37 @@ impl_198_property_value_allowedValues = {
 
 static const afw_runtime_property_t
 impl_198_property_allowedValues = {
-    &afw_components_self_s_allowedValues,
+    afw_components_v_allowedValues,
     &impl_198_property_value_allowedValues.pub
 };
 
 static const afw_runtime_property_t
 impl_198_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__Side_that_this_drawer_is_anchored_to.pub
 };
 
 static const afw_runtime_property_t
 impl_198_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_198_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_self_v_left.pub
 };
 
 static const afw_runtime_property_t
 impl_198_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__cc4661fbf012.pub
 };
 
 static const afw_runtime_property_t
 impl_198_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Anchor.pub
 };
 
@@ -22200,37 +22200,37 @@ impl_199;
 
 static const afw_runtime_property_t
 impl_199_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_199_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__Items_inside_of_the_Drawer.pub
 };
 
 static const afw_runtime_property_t
 impl_199_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_199_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_DrawerItem.pub
 };
 
 static const afw_runtime_property_t
 impl_199_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__bc3208b63fee.pub
 };
 
 static const afw_runtime_property_t
 impl_199_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
@@ -22304,31 +22304,31 @@ impl_200;
 
 static const afw_runtime_property_t
 impl_200_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_200_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_200_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_this_Drawer_component_is_open_.pub
 };
 
 static const afw_runtime_property_t
 impl_200_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Open.pub
 };
 
 static const afw_runtime_property_t
 impl_200_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -22401,7 +22401,7 @@ impl_201;
 
 static const afw_runtime_property_t
 impl_201_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -22441,37 +22441,37 @@ impl_201_property_value_allowedValues = {
 
 static const afw_runtime_property_t
 impl_201_property_allowedValues = {
-    &afw_components_self_s_allowedValues,
+    afw_components_v_allowedValues,
     &impl_201_property_value_allowedValues.pub
 };
 
 static const afw_runtime_property_t
 impl_201_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__The_variant_to_use.pub
 };
 
 static const afw_runtime_property_t
 impl_201_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_201_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_self_v_temporary.pub
 };
 
 static const afw_runtime_property_t
 impl_201_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__bbf494b5f14d.pub
 };
 
 static const afw_runtime_property_t
 impl_201_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Variant.pub
 };
 
@@ -22549,7 +22549,7 @@ impl_197_property_value_anchor = {
 
 static const afw_runtime_property_t
 impl_197_property_anchor = {
-    &afw_components_self_s_anchor,
+    afw_components_v_anchor,
     &impl_197_property_value_anchor.pub
 };
 
@@ -22561,7 +22561,7 @@ impl_197_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_197_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_197_property_value_contains.pub
 };
 
@@ -22573,7 +22573,7 @@ impl_197_property_value_open = {
 
 static const afw_runtime_property_t
 impl_197_property_open = {
-    &afw_components_self_s_open,
+    afw_components_v_open,
     &impl_197_property_value_open.pub
 };
 
@@ -22585,7 +22585,7 @@ impl_197_property_value_variant = {
 
 static const afw_runtime_property_t
 impl_197_property_variant = {
-    &afw_components_self_s_variant,
+    afw_components_v_variant,
     &impl_197_property_value_variant.pub
 };
 
@@ -22673,25 +22673,25 @@ impl_197__value = {
 
 static const afw_runtime_property_t
 impl_196_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_196_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_196_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_196_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -22729,19 +22729,19 @@ impl_196_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_196_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_196_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_196_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Drawer_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_196_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Drawer.pub
 };
 
@@ -22753,7 +22753,7 @@ impl_196_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_196_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_196_property_value_propertyTypes.pub
 };
 
@@ -22835,31 +22835,31 @@ impl_204;
 
 static const afw_runtime_property_t
 impl_204_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_204_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_204_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_description_for_this_dropdown_editor_.pub
 };
 
 static const afw_runtime_property_t
 impl_204_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Description.pub
 };
 
 static const afw_runtime_property_t
 impl_204_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_description_.pub
 };
 
@@ -22932,25 +22932,25 @@ impl_205;
 
 static const afw_runtime_property_t
 impl_205_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_205_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_205_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__ff250b38197d.pub
 };
 
 static const afw_runtime_property_t
 impl_205_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Editable.pub
 };
 
@@ -23022,31 +23022,31 @@ impl_206;
 
 static const afw_runtime_property_t
 impl_206_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_206_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_206_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_label_for_the_Dropdown_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_206_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_206_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_label.pub
 };
 
@@ -23119,25 +23119,25 @@ impl_207;
 
 static const afw_runtime_property_t
 impl_207_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_207_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_207_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Whether_this_Dropdown_allows_for_multiple_selections_.pub
 };
 
 static const afw_runtime_property_t
 impl_207_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Multi_Select.pub
 };
 
@@ -23209,31 +23209,31 @@ impl_208;
 
 static const afw_runtime_property_t
 impl_208_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_208_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_208_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_Dropdown_Option.pub
 };
 
 static const afw_runtime_property_t
 impl_208_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_the_available_options_for_the_dropdown_.pub
 };
 
 static const afw_runtime_property_t
 impl_208_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Options.pub
 };
 
@@ -23306,31 +23306,31 @@ impl_209;
 
 static const afw_runtime_property_t
 impl_209_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_209_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_209_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_209_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_key_s__that_are_selected_for_the_Dropdown_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_209_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Selected_Keys.pub
 };
 
@@ -23406,7 +23406,7 @@ impl_203_property_value_description = {
 
 static const afw_runtime_property_t
 impl_203_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &impl_203_property_value_description.pub
 };
 
@@ -23418,7 +23418,7 @@ impl_203_property_value_editable = {
 
 static const afw_runtime_property_t
 impl_203_property_editable = {
-    &afw_components_self_s_editable,
+    afw_components_v_editable,
     &impl_203_property_value_editable.pub
 };
 
@@ -23430,7 +23430,7 @@ impl_203_property_value_label = {
 
 static const afw_runtime_property_t
 impl_203_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_203_property_value_label.pub
 };
 
@@ -23442,7 +23442,7 @@ impl_203_property_value_multiselect = {
 
 static const afw_runtime_property_t
 impl_203_property_multiselect = {
-    &afw_components_self_s_multiselect,
+    afw_components_v_multiselect,
     &impl_203_property_value_multiselect.pub
 };
 
@@ -23454,7 +23454,7 @@ impl_203_property_value_options = {
 
 static const afw_runtime_property_t
 impl_203_property_options = {
-    &afw_components_self_s_options,
+    afw_components_v_options,
     &impl_203_property_value_options.pub
 };
 
@@ -23466,7 +23466,7 @@ impl_203_property_value_selectedKeys = {
 
 static const afw_runtime_property_t
 impl_203_property_selectedKeys = {
-    &afw_components_self_s_selectedKeys,
+    afw_components_v_selectedKeys,
     &impl_203_property_value_selectedKeys.pub
 };
 
@@ -23556,25 +23556,25 @@ impl_203__value = {
 
 static const afw_runtime_property_t
 impl_202_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_202_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_202_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_202_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -23612,25 +23612,25 @@ impl_202_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_202_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_202_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_202_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Dropdown_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_202_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Dropdown.pub
 };
 
 static const afw_runtime_property_t
 impl_202_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Dropdown.pub
 };
 
@@ -23642,7 +23642,7 @@ impl_202_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_202_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_202_property_value_propertyTypes.pub
 };
 
@@ -23725,25 +23725,25 @@ impl_212;
 
 static const afw_runtime_property_t
 impl_212_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_212_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_212_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_description_for_this_dropdown_editor_.pub
 };
 
 static const afw_runtime_property_t
 impl_212_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Description.pub
 };
 
@@ -23815,25 +23815,25 @@ impl_213;
 
 static const afw_runtime_property_t
 impl_213_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_213_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_213_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__ff250b38197d.pub
 };
 
 static const afw_runtime_property_t
 impl_213_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Editable.pub
 };
 
@@ -23905,25 +23905,25 @@ impl_214;
 
 static const afw_runtime_property_t
 impl_214_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_214_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_214_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_label_for_the_Dropdown_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_214_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
@@ -23995,25 +23995,25 @@ impl_215;
 
 static const afw_runtime_property_t
 impl_215_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_215_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_215_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Whether_this_Dropdown_allows_for_multiple_selections_.pub
 };
 
 static const afw_runtime_property_t
 impl_215_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Multi_Select.pub
 };
 
@@ -24085,31 +24085,31 @@ impl_216;
 
 static const afw_runtime_property_t
 impl_216_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_216_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_216_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_Dropdown_Option.pub
 };
 
 static const afw_runtime_property_t
 impl_216_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_the_available_options_for_the_dropdown_.pub
 };
 
 static const afw_runtime_property_t
 impl_216_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Options.pub
 };
 
@@ -24182,31 +24182,31 @@ impl_217;
 
 static const afw_runtime_property_t
 impl_217_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_217_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_217_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_217_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_key_s__that_are_selected_for_the_Dropdown_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_217_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Selected_Keys.pub
 };
 
@@ -24282,7 +24282,7 @@ impl_211_property_value_description = {
 
 static const afw_runtime_property_t
 impl_211_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &impl_211_property_value_description.pub
 };
 
@@ -24294,7 +24294,7 @@ impl_211_property_value_editable = {
 
 static const afw_runtime_property_t
 impl_211_property_editable = {
-    &afw_components_self_s_editable,
+    afw_components_v_editable,
     &impl_211_property_value_editable.pub
 };
 
@@ -24306,7 +24306,7 @@ impl_211_property_value_label = {
 
 static const afw_runtime_property_t
 impl_211_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_211_property_value_label.pub
 };
 
@@ -24318,7 +24318,7 @@ impl_211_property_value_multiselect = {
 
 static const afw_runtime_property_t
 impl_211_property_multiselect = {
-    &afw_components_self_s_multiselect,
+    afw_components_v_multiselect,
     &impl_211_property_value_multiselect.pub
 };
 
@@ -24330,7 +24330,7 @@ impl_211_property_value_options = {
 
 static const afw_runtime_property_t
 impl_211_property_options = {
-    &afw_components_self_s_options,
+    afw_components_v_options,
     &impl_211_property_value_options.pub
 };
 
@@ -24342,7 +24342,7 @@ impl_211_property_value_selectedKeys = {
 
 static const afw_runtime_property_t
 impl_211_property_selectedKeys = {
-    &afw_components_self_s_selectedKeys,
+    afw_components_v_selectedKeys,
     &impl_211_property_value_selectedKeys.pub
 };
 
@@ -24432,25 +24432,25 @@ impl_211__value = {
 
 static const afw_runtime_property_t
 impl_210_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_210_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_210_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_210_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -24488,25 +24488,25 @@ impl_210_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_210_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_210_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_210_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_DropdownEditor_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_210_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Dropdown.pub
 };
 
 static const afw_runtime_property_t
 impl_210_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_DropdownEditor.pub
 };
 
@@ -24518,7 +24518,7 @@ impl_210_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_210_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_210_property_value_propertyTypes.pub
 };
 
@@ -24663,31 +24663,31 @@ impl_221;
 
 static const afw_runtime_property_t
 impl_221_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_221_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_221_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_key_identifier_for_this_option_.pub
 };
 
 static const afw_runtime_property_t
 impl_221_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Key.pub
 };
 
 static const afw_runtime_property_t
 impl_221_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -24760,25 +24760,25 @@ impl_222;
 
 static const afw_runtime_property_t
 impl_222_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_222_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_222_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_text_displayed_for_this_option_.pub
 };
 
 static const afw_runtime_property_t
 impl_222_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Text.pub
 };
 
@@ -24853,7 +24853,7 @@ impl_220_property_value_key = {
 
 static const afw_runtime_property_t
 impl_220_property_key = {
-    &afw_components_self_s_key,
+    afw_components_v_key,
     &impl_220_property_value_key.pub
 };
 
@@ -24865,7 +24865,7 @@ impl_220_property_value_text = {
 
 static const afw_runtime_property_t
 impl_220_property_text = {
-    &afw_components_self_s_text,
+    afw_components_v_text,
     &impl_220_property_value_text.pub
 };
 
@@ -24932,25 +24932,25 @@ impl_220__value = {
 
 static const afw_runtime_property_t
 impl_218_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_218_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_218_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_218_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -24988,25 +24988,25 @@ impl_218_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_218_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_218_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_218_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__bc5fcc050065.pub
 };
 
 static const afw_runtime_property_t
 impl_218_property_objectIdPropertyName = {
-    &afw_components_self_s_objectIdPropertyName,
+    afw_components_v_objectIdPropertyName,
     &afw_components_self_v_key.pub
 };
 
 static const afw_runtime_property_t
 impl_218_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Dropdown_Option.pub
 };
 
@@ -25018,7 +25018,7 @@ impl_218_property_value_otherProperties = {
 
 static const afw_runtime_property_t
 impl_218_property_otherProperties = {
-    &afw_components_self_s_otherProperties,
+    afw_components_v_otherProperties,
     &impl_218_property_value_otherProperties.pub
 };
 
@@ -25030,7 +25030,7 @@ impl_218_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_218_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_218_property_value_propertyTypes.pub
 };
 
@@ -25114,25 +25114,25 @@ impl_225;
 
 static const afw_runtime_property_t
 impl_225_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_225_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_225_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_EditableCallout_component_is_writable_.pub
 };
 
 static const afw_runtime_property_t
 impl_225_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Allow_Write.pub
 };
 
@@ -25204,25 +25204,25 @@ impl_226;
 
 static const afw_runtime_property_t
 impl_226_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_226_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_226_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_EditableCallout_component_is_disabled_.pub
 };
 
 static const afw_runtime_property_t
 impl_226_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Disabled.pub
 };
 
@@ -25294,31 +25294,31 @@ impl_227;
 
 static const afw_runtime_property_t
 impl_227_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_227_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_227_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_EditableCallout_component_is_visible_.pub
 };
 
 static const afw_runtime_property_t
 impl_227_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Open.pub
 };
 
 static const afw_runtime_property_t
 impl_227_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -25391,25 +25391,25 @@ impl_228;
 
 static const afw_runtime_property_t
 impl_228_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_228_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_228_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__6d742b150739.pub
 };
 
 static const afw_runtime_property_t
 impl_228_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Placeholder.pub
 };
 
@@ -25481,25 +25481,25 @@ impl_229;
 
 static const afw_runtime_property_t
 impl_229_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_229_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_229_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_value_for_the_EditableCallout_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_229_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Value.pub
 };
 
@@ -25574,7 +25574,7 @@ impl_224_property_value_allowWrite = {
 
 static const afw_runtime_property_t
 impl_224_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &impl_224_property_value_allowWrite.pub
 };
 
@@ -25586,7 +25586,7 @@ impl_224_property_value_disabled = {
 
 static const afw_runtime_property_t
 impl_224_property_disabled = {
-    &afw_components_self_s_disabled,
+    afw_components_v_disabled,
     &impl_224_property_value_disabled.pub
 };
 
@@ -25598,7 +25598,7 @@ impl_224_property_value_open = {
 
 static const afw_runtime_property_t
 impl_224_property_open = {
-    &afw_components_self_s_open,
+    afw_components_v_open,
     &impl_224_property_value_open.pub
 };
 
@@ -25610,7 +25610,7 @@ impl_224_property_value_placeholder = {
 
 static const afw_runtime_property_t
 impl_224_property_placeholder = {
-    &afw_components_self_s_placeholder,
+    afw_components_v_placeholder,
     &impl_224_property_value_placeholder.pub
 };
 
@@ -25622,7 +25622,7 @@ impl_224_property_value_value = {
 
 static const afw_runtime_property_t
 impl_224_property_value = {
-    &afw_components_self_s_value,
+    afw_components_v_value,
     &impl_224_property_value_value.pub
 };
 
@@ -25711,25 +25711,25 @@ impl_224__value = {
 
 static const afw_runtime_property_t
 impl_223_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_223_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_223_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_223_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -25767,25 +25767,25 @@ impl_223_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_223_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_223_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_223_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__ec1f2fd5e4b9.pub
 };
 
 static const afw_runtime_property_t
 impl_223_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_EditableCallout.pub
 };
 
 static const afw_runtime_property_t
 impl_223_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_EditableCallout.pub
 };
 
@@ -25797,7 +25797,7 @@ impl_223_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_223_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_223_property_value_propertyTypes.pub
 };
 
@@ -25880,25 +25880,25 @@ impl_232;
 
 static const afw_runtime_property_t
 impl_232_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_232_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_232_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__5742ceaf63c6.pub
 };
 
 static const afw_runtime_property_t
 impl_232_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Multiline.pub
 };
 
@@ -25970,31 +25970,31 @@ impl_233;
 
 static const afw_runtime_property_t
 impl_233_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_233_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_233_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__6d742b150739.pub
 };
 
 static const afw_runtime_property_t
 impl_233_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Placeholder.pub
 };
 
 static const afw_runtime_property_t
 impl_233_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_a_placeholder_.pub
 };
 
@@ -26067,31 +26067,31 @@ impl_234;
 
 static const afw_runtime_property_t
 impl_234_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_234_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_234_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_value_for_the_EditableLabel_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_234_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Value.pub
 };
 
 static const afw_runtime_property_t
 impl_234_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_label_value_.pub
 };
 
@@ -26167,7 +26167,7 @@ impl_231_property_value_multiline = {
 
 static const afw_runtime_property_t
 impl_231_property_multiline = {
-    &afw_components_self_s_multiline,
+    afw_components_v_multiline,
     &impl_231_property_value_multiline.pub
 };
 
@@ -26179,7 +26179,7 @@ impl_231_property_value_placeholder = {
 
 static const afw_runtime_property_t
 impl_231_property_placeholder = {
-    &afw_components_self_s_placeholder,
+    afw_components_v_placeholder,
     &impl_231_property_value_placeholder.pub
 };
 
@@ -26191,7 +26191,7 @@ impl_231_property_value_value = {
 
 static const afw_runtime_property_t
 impl_231_property_value = {
-    &afw_components_self_s_value,
+    afw_components_v_value,
     &impl_231_property_value_value.pub
 };
 
@@ -26278,25 +26278,25 @@ impl_231__value = {
 
 static const afw_runtime_property_t
 impl_230_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_230_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_230_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_230_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -26334,25 +26334,25 @@ impl_230_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_230_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_230_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_230_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_EditableLabel_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_230_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_EditableLabel.pub
 };
 
 static const afw_runtime_property_t
 impl_230_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_EditableLabel.pub
 };
 
@@ -26364,7 +26364,7 @@ impl_230_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_230_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_230_property_value_propertyTypes.pub
 };
 
@@ -26447,31 +26447,31 @@ impl_237;
 
 static const afw_runtime_property_t
 impl_237_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_237_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_237_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_.pub
 };
 
 static const afw_runtime_property_t
 impl_237_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_contained_component_that_will_be_hidden_.pub
 };
 
 static const afw_runtime_property_t
 impl_237_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
@@ -26544,31 +26544,31 @@ impl_238;
 
 static const afw_runtime_property_t
 impl_238_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_238_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_238_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_238_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__7438bf5b0810.pub
 };
 
 static const afw_runtime_property_t
 impl_238_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_For.pub
 };
 
@@ -26641,25 +26641,25 @@ impl_239;
 
 static const afw_runtime_property_t
 impl_239_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_239_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_239_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__44a636db114f.pub
 };
 
 static const afw_runtime_property_t
 impl_239_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Large.pub
 };
 
@@ -26731,25 +26731,25 @@ impl_240;
 
 static const afw_runtime_property_t
 impl_240_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_240_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_240_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__7892fc2a5217.pub
 };
 
 static const afw_runtime_property_t
 impl_240_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Medium.pub
 };
 
@@ -26821,25 +26821,25 @@ impl_241;
 
 static const afw_runtime_property_t
 impl_241_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_241_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_241_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__5573cfd1a654.pub
 };
 
 static const afw_runtime_property_t
 impl_241_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Small.pub
 };
 
@@ -26911,25 +26911,25 @@ impl_242;
 
 static const afw_runtime_property_t
 impl_242_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_242_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_242_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__ff31d7f691e4.pub
 };
 
 static const afw_runtime_property_t
 impl_242_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Extra_Large.pub
 };
 
@@ -27001,25 +27001,25 @@ impl_243;
 
 static const afw_runtime_property_t
 impl_243_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_243_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_243_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__This_content_will_only_be_displayed_on_extra_small_displays_.pub
 };
 
 static const afw_runtime_property_t
 impl_243_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Extra_Small.pub
 };
 
@@ -27094,7 +27094,7 @@ impl_236_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_236_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_236_property_value_contains.pub
 };
 
@@ -27106,7 +27106,7 @@ impl_236_property_value_for = {
 
 static const afw_runtime_property_t
 impl_236_property_for = {
-    &afw_components_self_s_for,
+    afw_components_v_for,
     &impl_236_property_value_for.pub
 };
 
@@ -27118,7 +27118,7 @@ impl_236_property_value_lgDown = {
 
 static const afw_runtime_property_t
 impl_236_property_lgDown = {
-    &afw_components_self_s_lgDown,
+    afw_components_v_lgDown,
     &impl_236_property_value_lgDown.pub
 };
 
@@ -27130,7 +27130,7 @@ impl_236_property_value_mdDown = {
 
 static const afw_runtime_property_t
 impl_236_property_mdDown = {
-    &afw_components_self_s_mdDown,
+    afw_components_v_mdDown,
     &impl_236_property_value_mdDown.pub
 };
 
@@ -27142,7 +27142,7 @@ impl_236_property_value_smDown = {
 
 static const afw_runtime_property_t
 impl_236_property_smDown = {
-    &afw_components_self_s_smDown,
+    afw_components_v_smDown,
     &impl_236_property_value_smDown.pub
 };
 
@@ -27154,7 +27154,7 @@ impl_236_property_value_xlDown = {
 
 static const afw_runtime_property_t
 impl_236_property_xlDown = {
-    &afw_components_self_s_xlDown,
+    afw_components_v_xlDown,
     &impl_236_property_value_xlDown.pub
 };
 
@@ -27166,7 +27166,7 @@ impl_236_property_value_xsDown = {
 
 static const afw_runtime_property_t
 impl_236_property_xsDown = {
-    &afw_components_self_s_xsDown,
+    afw_components_v_xsDown,
     &impl_236_property_value_xsDown.pub
 };
 
@@ -27257,25 +27257,25 @@ impl_236__value = {
 
 static const afw_runtime_property_t
 impl_235_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_235_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_235_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_235_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -27313,19 +27313,19 @@ impl_235_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_235_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_235_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_235_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Hidden_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_235_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Hidden.pub
 };
 
@@ -27337,7 +27337,7 @@ impl_235_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_235_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_235_property_value_propertyTypes.pub
 };
 
@@ -27419,31 +27419,31 @@ impl_246;
 
 static const afw_runtime_property_t
 impl_246_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_246_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_246_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_name_of_the_icon_to_render_.pub
 };
 
 static const afw_runtime_property_t
 impl_246_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Icon_Name.pub
 };
 
 static const afw_runtime_property_t
 impl_246_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_home.pub
 };
 
@@ -27519,7 +27519,7 @@ impl_245_property_value_iconName = {
 
 static const afw_runtime_property_t
 impl_245_property_iconName = {
-    &afw_components_self_s_iconName,
+    afw_components_v_iconName,
     &impl_245_property_value_iconName.pub
 };
 
@@ -27604,25 +27604,25 @@ impl_245__value = {
 
 static const afw_runtime_property_t
 impl_244_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_244_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_244_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_244_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -27660,25 +27660,25 @@ impl_244_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_244_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_244_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_244_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Icon_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_244_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Icon.pub
 };
 
 static const afw_runtime_property_t
 impl_244_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Icon.pub
 };
 
@@ -27690,7 +27690,7 @@ impl_244_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_244_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_244_property_value_propertyTypes.pub
 };
 
@@ -27773,25 +27773,25 @@ impl_249;
 
 static const afw_runtime_property_t
 impl_249_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_249_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_249_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_source_for_the_image_to_be_rendered_.pub
 };
 
 static const afw_runtime_property_t
 impl_249_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Image_Source.pub
 };
 
@@ -27866,7 +27866,7 @@ impl_248_property_value_src = {
 
 static const afw_runtime_property_t
 impl_248_property_src = {
-    &afw_components_self_s_src,
+    afw_components_v_src,
     &impl_248_property_value_src.pub
 };
 
@@ -27951,25 +27951,25 @@ impl_248__value = {
 
 static const afw_runtime_property_t
 impl_247_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_247_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_247_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_247_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -28007,25 +28007,25 @@ impl_247_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_247_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_247_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_247_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Image_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_247_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Image.pub
 };
 
 static const afw_runtime_property_t
 impl_247_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Image.pub
 };
 
@@ -28037,7 +28037,7 @@ impl_247_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_247_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_247_property_value_propertyTypes.pub
 };
 
@@ -28120,25 +28120,25 @@ impl_252;
 
 static const afw_runtime_property_t
 impl_252_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_252_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_252_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_the_Label_is_disabled_.pub
 };
 
 static const afw_runtime_property_t
 impl_252_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Disabled.pub
 };
 
@@ -28210,31 +28210,31 @@ impl_253;
 
 static const afw_runtime_property_t
 impl_253_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_253_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_253_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_value_for_the_Label_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_253_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Value.pub
 };
 
 static const afw_runtime_property_t
 impl_253_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_a_label.pub
 };
 
@@ -28307,25 +28307,25 @@ impl_254;
 
 static const afw_runtime_property_t
 impl_254_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_254_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_254_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_associated_form_field_is_required_.pub
 };
 
 static const afw_runtime_property_t
 impl_254_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Required.pub
 };
 
@@ -28400,7 +28400,7 @@ impl_251_property_value_disabled = {
 
 static const afw_runtime_property_t
 impl_251_property_disabled = {
-    &afw_components_self_s_disabled,
+    afw_components_v_disabled,
     &impl_251_property_value_disabled.pub
 };
 
@@ -28412,7 +28412,7 @@ impl_251_property_value_label = {
 
 static const afw_runtime_property_t
 impl_251_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_251_property_value_label.pub
 };
 
@@ -28424,7 +28424,7 @@ impl_251_property_value_required = {
 
 static const afw_runtime_property_t
 impl_251_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &impl_251_property_value_required.pub
 };
 
@@ -28511,25 +28511,25 @@ impl_251__value = {
 
 static const afw_runtime_property_t
 impl_250_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_250_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_250_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_250_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -28567,25 +28567,25 @@ impl_250_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_250_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_250_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_250_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Label_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_250_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_250_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Label.pub
 };
 
@@ -28597,7 +28597,7 @@ impl_250_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_250_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_250_property_value_propertyTypes.pub
 };
 
@@ -28680,25 +28680,25 @@ impl_257;
 
 static const afw_runtime_property_t
 impl_257_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_257_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_257_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_the_Link_is_disabled_.pub
 };
 
 static const afw_runtime_property_t
 impl_257_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Disabled.pub
 };
 
@@ -28770,31 +28770,31 @@ impl_258;
 
 static const afw_runtime_property_t
 impl_258_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_258_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_258_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_text_value_displayed_for_the_Link_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_258_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Text.pub
 };
 
 static const afw_runtime_property_t
 impl_258_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_text_for_the_link_.pub
 };
 
@@ -28867,31 +28867,31 @@ impl_259;
 
 static const afw_runtime_property_t
 impl_259_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_259_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_259_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_URL_for_the_link_.pub
 };
 
 static const afw_runtime_property_t
 impl_259_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Url.pub
 };
 
 static const afw_runtime_property_t
 impl_259_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__http___www_google_com_.pub
 };
 
@@ -28967,7 +28967,7 @@ impl_256_property_value_disabled = {
 
 static const afw_runtime_property_t
 impl_256_property_disabled = {
-    &afw_components_self_s_disabled,
+    afw_components_v_disabled,
     &impl_256_property_value_disabled.pub
 };
 
@@ -28979,7 +28979,7 @@ impl_256_property_value_text = {
 
 static const afw_runtime_property_t
 impl_256_property_text = {
-    &afw_components_self_s_text,
+    afw_components_v_text,
     &impl_256_property_value_text.pub
 };
 
@@ -28991,7 +28991,7 @@ impl_256_property_value_url = {
 
 static const afw_runtime_property_t
 impl_256_property_url = {
-    &afw_components_self_s_url,
+    afw_components_v_url,
     &impl_256_property_value_url.pub
 };
 
@@ -29078,25 +29078,25 @@ impl_256__value = {
 
 static const afw_runtime_property_t
 impl_255_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_255_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_255_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_255_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -29134,25 +29134,25 @@ impl_255_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_255_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_255_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_255_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Link_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_255_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Link.pub
 };
 
 static const afw_runtime_property_t
 impl_255_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Link.pub
 };
 
@@ -29164,7 +29164,7 @@ impl_255_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_255_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_255_property_value_propertyTypes.pub
 };
 
@@ -29247,31 +29247,31 @@ impl_262;
 
 static const afw_runtime_property_t
 impl_262_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_262_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_262_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_.pub
 };
 
 static const afw_runtime_property_t
 impl_262_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__027807b852cd.pub
 };
 
 static const afw_runtime_property_t
 impl_262_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
@@ -29344,25 +29344,25 @@ impl_263;
 
 static const afw_runtime_property_t
 impl_263_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_263_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_263_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Can_the_List_items_be_selected_.pub
 };
 
 static const afw_runtime_property_t
 impl_263_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Selectable.pub
 };
 
@@ -29437,7 +29437,7 @@ impl_261_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_261_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_261_property_value_contains.pub
 };
 
@@ -29449,7 +29449,7 @@ impl_261_property_value_selectable = {
 
 static const afw_runtime_property_t
 impl_261_property_selectable = {
-    &afw_components_self_s_selectable,
+    afw_components_v_selectable,
     &impl_261_property_value_selectable.pub
 };
 
@@ -29535,25 +29535,25 @@ impl_261__value = {
 
 static const afw_runtime_property_t
 impl_260_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_260_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_260_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_260_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -29591,25 +29591,25 @@ impl_260_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_260_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_260_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_260_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_List_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_260_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__List_Layout.pub
 };
 
 static const afw_runtime_property_t
 impl_260_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_List.pub
 };
 
@@ -29621,7 +29621,7 @@ impl_260_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_260_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_260_property_value_propertyTypes.pub
 };
 
@@ -29704,25 +29704,25 @@ impl_266;
 
 static const afw_runtime_property_t
 impl_266_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_266_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_266_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_this_list_is_currently_editable_.pub
 };
 
 static const afw_runtime_property_t
 impl_266_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Editable.pub
 };
 
@@ -29794,31 +29794,31 @@ impl_267;
 
 static const afw_runtime_property_t
 impl_267_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_267_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_267_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_ListEditor_Item.pub
 };
 
 static const afw_runtime_property_t
 impl_267_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_list_of_items_to_be_managed_.pub
 };
 
 static const afw_runtime_property_t
 impl_267_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Items.pub
 };
 
@@ -29894,7 +29894,7 @@ impl_265_property_value_editable = {
 
 static const afw_runtime_property_t
 impl_265_property_editable = {
-    &afw_components_self_s_editable,
+    afw_components_v_editable,
     &impl_265_property_value_editable.pub
 };
 
@@ -29906,7 +29906,7 @@ impl_265_property_value_items = {
 
 static const afw_runtime_property_t
 impl_265_property_items = {
-    &afw_components_self_s_items,
+    afw_components_v_items,
     &impl_265_property_value_items.pub
 };
 
@@ -29992,25 +29992,25 @@ impl_265__value = {
 
 static const afw_runtime_property_t
 impl_264_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_264_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_264_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_264_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -30048,25 +30048,25 @@ impl_264_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_264_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_264_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_264_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_ListEditor_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_264_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__ListEditor_Layout.pub
 };
 
 static const afw_runtime_property_t
 impl_264_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_ListEditor.pub
 };
 
@@ -30078,7 +30078,7 @@ impl_264_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_264_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_264_property_value_propertyTypes.pub
 };
 
@@ -30161,25 +30161,25 @@ impl_270;
 
 static const afw_runtime_property_t
 impl_270_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_270_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_270_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_secondary_text_to_display_.pub
 };
 
 static const afw_runtime_property_t
 impl_270_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Secondary_Text.pub
 };
 
@@ -30251,25 +30251,25 @@ impl_271;
 
 static const afw_runtime_property_t
 impl_271_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_271_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_271_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_primary_text_to_display_.pub
 };
 
 static const afw_runtime_property_t
 impl_271_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Primary_Text.pub
 };
 
@@ -30344,7 +30344,7 @@ impl_269_property_value_secondary = {
 
 static const afw_runtime_property_t
 impl_269_property_secondary = {
-    &afw_components_self_s_secondary,
+    afw_components_v_secondary,
     &impl_269_property_value_secondary.pub
 };
 
@@ -30356,7 +30356,7 @@ impl_269_property_value_text = {
 
 static const afw_runtime_property_t
 impl_269_property_text = {
-    &afw_components_self_s_text,
+    afw_components_v_text,
     &impl_269_property_value_text.pub
 };
 
@@ -30423,25 +30423,25 @@ impl_269__value = {
 
 static const afw_runtime_property_t
 impl_268_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_268_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_268_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_268_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -30479,25 +30479,25 @@ impl_268_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_268_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_268_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_268_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Component_definition_for_a_ListEditor_Item_.pub
 };
 
 static const afw_runtime_property_t
 impl_268_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__ListEditor_Item.pub
 };
 
 static const afw_runtime_property_t
 impl_268_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_ListEditor_Item.pub
 };
 
@@ -30509,7 +30509,7 @@ impl_268_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_268_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_268_property_value_propertyTypes.pub
 };
 
@@ -30592,31 +30592,31 @@ impl_274;
 
 static const afw_runtime_property_t
 impl_274_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_274_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_274_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_Menu_Item.pub
 };
 
 static const afw_runtime_property_t
 impl_274_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Item_to_display_under_this_Menu_.pub
 };
 
 static const afw_runtime_property_t
 impl_274_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Item.pub
 };
 
@@ -30689,25 +30689,25 @@ impl_275;
 
 static const afw_runtime_property_t
 impl_275_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_275_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_275_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_this_menu_is_open_.pub
 };
 
 static const afw_runtime_property_t
 impl_275_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Open.pub
 };
 
@@ -30782,7 +30782,7 @@ impl_273_property_value_items = {
 
 static const afw_runtime_property_t
 impl_273_property_items = {
-    &afw_components_self_s_items,
+    afw_components_v_items,
     &impl_273_property_value_items.pub
 };
 
@@ -30794,7 +30794,7 @@ impl_273_property_value_open = {
 
 static const afw_runtime_property_t
 impl_273_property_open = {
-    &afw_components_self_s_open,
+    afw_components_v_open,
     &impl_273_property_value_open.pub
 };
 
@@ -30880,25 +30880,25 @@ impl_273__value = {
 
 static const afw_runtime_property_t
 impl_272_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_272_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_272_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_272_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -30936,25 +30936,25 @@ impl_272_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_272_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_272_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_272_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Menu_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_272_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Menu.pub
 };
 
 static const afw_runtime_property_t
 impl_272_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Menu.pub
 };
 
@@ -30966,7 +30966,7 @@ impl_272_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_272_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_272_property_value_propertyTypes.pub
 };
 
@@ -31049,25 +31049,25 @@ impl_278;
 
 static const afw_runtime_property_t
 impl_278_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_278_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_278_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Color_for_this_Menu_Item_.pub
 };
 
 static const afw_runtime_property_t
 impl_278_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Color.pub
 };
 
@@ -31139,25 +31139,25 @@ impl_279;
 
 static const afw_runtime_property_t
 impl_279_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_279_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_279_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__This_Menu_Item_is_disabled_.pub
 };
 
 static const afw_runtime_property_t
 impl_279_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Disabled.pub
 };
 
@@ -31229,25 +31229,25 @@ impl_280;
 
 static const afw_runtime_property_t
 impl_280_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_280_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_280_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Icon_for_this_Menu_Item_.pub
 };
 
 static const afw_runtime_property_t
 impl_280_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Icon.pub
 };
 
@@ -31319,19 +31319,19 @@ impl_281;
 
 static const afw_runtime_property_t
 impl_281_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_281_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Key_for_this_Menu_Item_.pub
 };
 
 static const afw_runtime_property_t
 impl_281_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Key.pub
 };
 
@@ -31402,25 +31402,25 @@ impl_282;
 
 static const afw_runtime_property_t
 impl_282_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_282_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_282_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Label_for_this_Menu_Item_.pub
 };
 
 static const afw_runtime_property_t
 impl_282_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
@@ -31492,25 +31492,25 @@ impl_283;
 
 static const afw_runtime_property_t
 impl_283_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_283_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_283_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Type_for_Menu_item__divider__.pub
 };
 
 static const afw_runtime_property_t
 impl_283_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Type.pub
 };
 
@@ -31585,7 +31585,7 @@ impl_277_property_value_color = {
 
 static const afw_runtime_property_t
 impl_277_property_color = {
-    &afw_components_self_s_color,
+    afw_components_v_color,
     &impl_277_property_value_color.pub
 };
 
@@ -31597,7 +31597,7 @@ impl_277_property_value_disabled = {
 
 static const afw_runtime_property_t
 impl_277_property_disabled = {
-    &afw_components_self_s_disabled,
+    afw_components_v_disabled,
     &impl_277_property_value_disabled.pub
 };
 
@@ -31609,7 +31609,7 @@ impl_277_property_value_icon = {
 
 static const afw_runtime_property_t
 impl_277_property_icon = {
-    &afw_components_self_s_icon,
+    afw_components_v_icon,
     &impl_277_property_value_icon.pub
 };
 
@@ -31621,7 +31621,7 @@ impl_277_property_value_key = {
 
 static const afw_runtime_property_t
 impl_277_property_key = {
-    &afw_components_self_s_key,
+    afw_components_v_key,
     &impl_277_property_value_key.pub
 };
 
@@ -31633,7 +31633,7 @@ impl_277_property_value_label = {
 
 static const afw_runtime_property_t
 impl_277_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_277_property_value_label.pub
 };
 
@@ -31645,7 +31645,7 @@ impl_277_property_value_type = {
 
 static const afw_runtime_property_t
 impl_277_property_type = {
-    &afw_components_self_s_type,
+    afw_components_v_type,
     &impl_277_property_value_type.pub
 };
 
@@ -31716,25 +31716,25 @@ impl_277__value = {
 
 static const afw_runtime_property_t
 impl_276_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_276_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_276_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_276_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -31772,25 +31772,25 @@ impl_276_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_276_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_276_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_276_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Menu_Item_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_276_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Menu_Item.pub
 };
 
 static const afw_runtime_property_t
 impl_276_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Menu_Item.pub
 };
 
@@ -31802,7 +31802,7 @@ impl_276_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_276_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_276_property_value_propertyTypes.pub
 };
 
@@ -31885,25 +31885,25 @@ impl_286;
 
 static const afw_runtime_property_t
 impl_286_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_286_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_286_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_Message_can_be_dismissed_.pub
 };
 
 static const afw_runtime_property_t
 impl_286_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Can_Dismiss.pub
 };
 
@@ -31975,31 +31975,31 @@ impl_287;
 
 static const afw_runtime_property_t
 impl_287_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_287_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_287_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_.pub
 };
 
 static const afw_runtime_property_t
 impl_287_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__2e8f8b36a05d.pub
 };
 
 static const afw_runtime_property_t
 impl_287_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
@@ -32072,25 +32072,25 @@ impl_288;
 
 static const afw_runtime_property_t
 impl_288_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_288_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_288_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_Message_message_is_multilined_.pub
 };
 
 static const afw_runtime_property_t
 impl_288_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Is_Multiline.pub
 };
 
@@ -32162,31 +32162,31 @@ impl_289;
 
 static const afw_runtime_property_t
 impl_289_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_289_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_289_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Optional_message_to_be_displayed_for_the_Message_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_289_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Message.pub
 };
 
 static const afw_runtime_property_t
 impl_289_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_message_to_be_displayed_.pub
 };
 
@@ -32259,25 +32259,25 @@ impl_290;
 
 static const afw_runtime_property_t
 impl_290_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_290_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_290_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Status_of_message__error__info__warning__.pub
 };
 
 static const afw_runtime_property_t
 impl_290_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Status.pub
 };
 
@@ -32317,7 +32317,7 @@ impl_290_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_290_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_290_property_value_possibleValues.pub
 };
 
@@ -32393,7 +32393,7 @@ impl_285_property_value_canDismiss = {
 
 static const afw_runtime_property_t
 impl_285_property_canDismiss = {
-    &afw_components_self_s_canDismiss,
+    afw_components_v_canDismiss,
     &impl_285_property_value_canDismiss.pub
 };
 
@@ -32405,7 +32405,7 @@ impl_285_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_285_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_285_property_value_contains.pub
 };
 
@@ -32417,7 +32417,7 @@ impl_285_property_value_isMultiline = {
 
 static const afw_runtime_property_t
 impl_285_property_isMultiline = {
-    &afw_components_self_s_isMultiline,
+    afw_components_v_isMultiline,
     &impl_285_property_value_isMultiline.pub
 };
 
@@ -32429,7 +32429,7 @@ impl_285_property_value_message = {
 
 static const afw_runtime_property_t
 impl_285_property_message = {
-    &afw_components_self_s_message,
+    afw_components_v_message,
     &impl_285_property_value_message.pub
 };
 
@@ -32441,7 +32441,7 @@ impl_285_property_value_status = {
 
 static const afw_runtime_property_t
 impl_285_property_status = {
-    &afw_components_self_s_status,
+    afw_components_v_status,
     &impl_285_property_value_status.pub
 };
 
@@ -32530,25 +32530,25 @@ impl_285__value = {
 
 static const afw_runtime_property_t
 impl_284_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_284_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_284_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_284_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -32586,19 +32586,19 @@ impl_284_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_284_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_284_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_284_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Message_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_284_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Message.pub
 };
 
@@ -32610,7 +32610,7 @@ impl_284_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_284_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_284_property_value_propertyTypes.pub
 };
 
@@ -32692,31 +32692,31 @@ impl_293;
 
 static const afw_runtime_property_t
 impl_293_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_293_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_293_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_.pub
 };
 
 static const afw_runtime_property_t
 impl_293_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__04c813fa6a8b.pub
 };
 
 static const afw_runtime_property_t
 impl_293_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
@@ -32789,25 +32789,25 @@ impl_294;
 
 static const afw_runtime_property_t
 impl_294_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_294_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_294_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__c2433132f35b.pub
 };
 
 static const afw_runtime_property_t
 impl_294_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Is_Blocking.pub
 };
 
@@ -32879,31 +32879,31 @@ impl_295;
 
 static const afw_runtime_property_t
 impl_295_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_295_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_295_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_this_Modal_component_is_open_.pub
 };
 
 static const afw_runtime_property_t
 impl_295_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Open.pub
 };
 
 static const afw_runtime_property_t
 impl_295_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -32979,7 +32979,7 @@ impl_292_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_292_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_292_property_value_contains.pub
 };
 
@@ -32991,7 +32991,7 @@ impl_292_property_value_isBlocking = {
 
 static const afw_runtime_property_t
 impl_292_property_isBlocking = {
-    &afw_components_self_s_isBlocking,
+    afw_components_v_isBlocking,
     &impl_292_property_value_isBlocking.pub
 };
 
@@ -33003,7 +33003,7 @@ impl_292_property_value_open = {
 
 static const afw_runtime_property_t
 impl_292_property_open = {
-    &afw_components_self_s_open,
+    afw_components_v_open,
     &impl_292_property_value_open.pub
 };
 
@@ -33090,25 +33090,25 @@ impl_292__value = {
 
 static const afw_runtime_property_t
 impl_291_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_291_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_291_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_291_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -33146,19 +33146,19 @@ impl_291_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_291_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_291_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_291_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Modal_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_291_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Modal.pub
 };
 
@@ -33170,7 +33170,7 @@ impl_291_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_291_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_291_property_value_propertyTypes.pub
 };
 
@@ -33252,25 +33252,25 @@ impl_298;
 
 static const afw_runtime_property_t
 impl_298_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_298_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_298_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_HTML_Tag_name_.pub
 };
 
 static const afw_runtime_property_t
 impl_298_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Tag_Name.pub
 };
 
@@ -33345,7 +33345,7 @@ impl_297_property_value_tag = {
 
 static const afw_runtime_property_t
 impl_297_property_tag = {
-    &afw_components_self_s_tag,
+    afw_components_v_tag,
     &impl_297_property_value_tag.pub
 };
 
@@ -33430,25 +33430,25 @@ impl_297__value = {
 
 static const afw_runtime_property_t
 impl_296_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_296_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_296_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_296_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -33486,19 +33486,19 @@ impl_296_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_296_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_296_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_296_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Native_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_296_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Native.pub
 };
 
@@ -33510,7 +33510,7 @@ impl_296_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_296_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_296_property_value_propertyTypes.pub
 };
 
@@ -33592,31 +33592,31 @@ impl_301;
 
 static const afw_runtime_property_t
 impl_301_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_301_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_301_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_Nav_Item.pub
 };
 
 static const afw_runtime_property_t
 impl_301_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Item_to_be_displayed_by_this_Nav_layout_.pub
 };
 
 static const afw_runtime_property_t
 impl_301_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Item.pub
 };
 
@@ -33692,7 +33692,7 @@ impl_300_property_value_items = {
 
 static const afw_runtime_property_t
 impl_300_property_items = {
-    &afw_components_self_s_items,
+    afw_components_v_items,
     &impl_300_property_value_items.pub
 };
 
@@ -33777,25 +33777,25 @@ impl_300__value = {
 
 static const afw_runtime_property_t
 impl_299_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_299_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_299_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_299_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -33833,19 +33833,19 @@ impl_299_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_299_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_299_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_299_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Nav_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_299_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Nav.pub
 };
 
@@ -33857,7 +33857,7 @@ impl_299_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_299_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_299_property_value_propertyTypes.pub
 };
 
@@ -33939,25 +33939,25 @@ impl_304;
 
 static const afw_runtime_property_t
 impl_304_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_304_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_304_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Icon_for_this_Nav_item_.pub
 };
 
 static const afw_runtime_property_t
 impl_304_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Icon.pub
 };
 
@@ -34029,25 +34029,25 @@ impl_305;
 
 static const afw_runtime_property_t
 impl_305_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_305_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_305_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Is_the_current_Nav_link_expanded_.pub
 };
 
 static const afw_runtime_property_t
 impl_305_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Is_Expanded.pub
 };
 
@@ -34119,25 +34119,25 @@ impl_306;
 
 static const afw_runtime_property_t
 impl_306_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_306_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_306_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Label_for_this_Nav_item_.pub
 };
 
 static const afw_runtime_property_t
 impl_306_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
@@ -34209,25 +34209,25 @@ impl_307;
 
 static const afw_runtime_property_t
 impl_307_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_307_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_307_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Is_the_current_Nav_link_selected_.pub
 };
 
 static const afw_runtime_property_t
 impl_307_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Is_Selected.pub
 };
 
@@ -34299,25 +34299,25 @@ impl_308;
 
 static const afw_runtime_property_t
 impl_308_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_308_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_308_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Url_for_this_Nav_item_.pub
 };
 
 static const afw_runtime_property_t
 impl_308_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Url.pub
 };
 
@@ -34392,7 +34392,7 @@ impl_303_property_value_icon = {
 
 static const afw_runtime_property_t
 impl_303_property_icon = {
-    &afw_components_self_s_icon,
+    afw_components_v_icon,
     &impl_303_property_value_icon.pub
 };
 
@@ -34404,7 +34404,7 @@ impl_303_property_value_isExpanded = {
 
 static const afw_runtime_property_t
 impl_303_property_isExpanded = {
-    &afw_components_self_s_isExpanded,
+    afw_components_v_isExpanded,
     &impl_303_property_value_isExpanded.pub
 };
 
@@ -34416,7 +34416,7 @@ impl_303_property_value_label = {
 
 static const afw_runtime_property_t
 impl_303_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_303_property_value_label.pub
 };
 
@@ -34428,7 +34428,7 @@ impl_303_property_value_selected = {
 
 static const afw_runtime_property_t
 impl_303_property_selected = {
-    &afw_components_self_s_selected,
+    afw_components_v_selected,
     &impl_303_property_value_selected.pub
 };
 
@@ -34440,7 +34440,7 @@ impl_303_property_value_url = {
 
 static const afw_runtime_property_t
 impl_303_property_url = {
-    &afw_components_self_s_url,
+    afw_components_v_url,
     &impl_303_property_value_url.pub
 };
 
@@ -34510,25 +34510,25 @@ impl_303__value = {
 
 static const afw_runtime_property_t
 impl_302_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_302_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_302_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_302_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -34566,25 +34566,25 @@ impl_302_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_302_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_302_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_302_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Item_for_the_Nav_component.pub
 };
 
 static const afw_runtime_property_t
 impl_302_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Item.pub
 };
 
 static const afw_runtime_property_t
 impl_302_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Nav_Item.pub
 };
 
@@ -34596,7 +34596,7 @@ impl_302_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_302_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_302_property_value_propertyTypes.pub
 };
 
@@ -34679,31 +34679,31 @@ impl_311;
 
 static const afw_runtime_property_t
 impl_311_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_311_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_311_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_.pub
 };
 
 static const afw_runtime_property_t
 impl_311_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Contained_component_on_this_Paper_layout_.pub
 };
 
 static const afw_runtime_property_t
 impl_311_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
@@ -34776,25 +34776,25 @@ impl_312;
 
 static const afw_runtime_property_t
 impl_312_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_312_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_312_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Depth_elevation_appearance_of_the_Paper_surface_.pub
 };
 
 static const afw_runtime_property_t
 impl_312_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Elevation.pub
 };
 
@@ -34866,31 +34866,31 @@ impl_313;
 
 static const afw_runtime_property_t
 impl_313_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_313_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_313_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_313_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Use_square_corners_instead_of_rounded_.pub
 };
 
 static const afw_runtime_property_t
 impl_313_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Square.pub
 };
 
@@ -34966,7 +34966,7 @@ impl_310_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_310_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_310_property_value_contains.pub
 };
 
@@ -34978,7 +34978,7 @@ impl_310_property_value_elevation = {
 
 static const afw_runtime_property_t
 impl_310_property_elevation = {
-    &afw_components_self_s_elevation,
+    afw_components_v_elevation,
     &impl_310_property_value_elevation.pub
 };
 
@@ -34990,7 +34990,7 @@ impl_310_property_value_square = {
 
 static const afw_runtime_property_t
 impl_310_property_square = {
-    &afw_components_self_s_square,
+    afw_components_v_square,
     &impl_310_property_value_square.pub
 };
 
@@ -35077,25 +35077,25 @@ impl_310__value = {
 
 static const afw_runtime_property_t
 impl_309_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_309_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_309_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_309_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -35133,19 +35133,19 @@ impl_309_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_309_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_309_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_309_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Paper_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_309_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Paper.pub
 };
 
@@ -35157,7 +35157,7 @@ impl_309_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_309_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_309_property_value_propertyTypes.pub
 };
 
@@ -35239,31 +35239,31 @@ impl_316;
 
 static const afw_runtime_property_t
 impl_316_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_316_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_316_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_text_description_for_this_Picker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_316_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Description.pub
 };
 
 static const afw_runtime_property_t
 impl_316_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_description_.pub
 };
 
@@ -35336,31 +35336,31 @@ impl_317;
 
 static const afw_runtime_property_t
 impl_317_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_317_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_317_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_Picker_Item.pub
 };
 
 static const afw_runtime_property_t
 impl_317_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Items_to_be_displayed_by_this_Picker_layout_.pub
 };
 
 static const afw_runtime_property_t
 impl_317_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Items.pub
 };
 
@@ -35433,31 +35433,31 @@ impl_318;
 
 static const afw_runtime_property_t
 impl_318_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_318_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_318_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_text_label_for_this_Picker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_318_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_318_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_label.pub
 };
 
@@ -35533,7 +35533,7 @@ impl_315_property_value_description = {
 
 static const afw_runtime_property_t
 impl_315_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &impl_315_property_value_description.pub
 };
 
@@ -35545,7 +35545,7 @@ impl_315_property_value_items = {
 
 static const afw_runtime_property_t
 impl_315_property_items = {
-    &afw_components_self_s_items,
+    afw_components_v_items,
     &impl_315_property_value_items.pub
 };
 
@@ -35557,7 +35557,7 @@ impl_315_property_value_label = {
 
 static const afw_runtime_property_t
 impl_315_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_315_property_value_label.pub
 };
 
@@ -35644,25 +35644,25 @@ impl_315__value = {
 
 static const afw_runtime_property_t
 impl_314_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_314_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_314_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_314_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -35700,19 +35700,19 @@ impl_314_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_314_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_314_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_314_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Picker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_314_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Picker.pub
 };
 
@@ -35724,7 +35724,7 @@ impl_314_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_314_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_314_property_value_propertyTypes.pub
 };
 
@@ -35806,25 +35806,25 @@ impl_321;
 
 static const afw_runtime_property_t
 impl_321_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_321_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_321_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Key_for_this_Picker_item_.pub
 };
 
 static const afw_runtime_property_t
 impl_321_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Key.pub
 };
 
@@ -35896,25 +35896,25 @@ impl_322;
 
 static const afw_runtime_property_t
 impl_322_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_322_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_322_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Label_for_this_Picker_item_.pub
 };
 
 static const afw_runtime_property_t
 impl_322_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
@@ -35989,7 +35989,7 @@ impl_320_property_value_key = {
 
 static const afw_runtime_property_t
 impl_320_property_key = {
-    &afw_components_self_s_key,
+    afw_components_v_key,
     &impl_320_property_value_key.pub
 };
 
@@ -36001,7 +36001,7 @@ impl_320_property_value_label = {
 
 static const afw_runtime_property_t
 impl_320_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_320_property_value_label.pub
 };
 
@@ -36068,25 +36068,25 @@ impl_320__value = {
 
 static const afw_runtime_property_t
 impl_319_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_319_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_319_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_319_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -36124,25 +36124,25 @@ impl_319_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_319_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_319_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_319_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Item_for_the_Nav_component.pub
 };
 
 static const afw_runtime_property_t
 impl_319_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Item.pub
 };
 
 static const afw_runtime_property_t
 impl_319_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Picker_Item.pub
 };
 
@@ -36154,7 +36154,7 @@ impl_319_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_319_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_319_property_value_propertyTypes.pub
 };
 
@@ -36237,25 +36237,25 @@ impl_325;
 
 static const afw_runtime_property_t
 impl_325_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_325_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_325_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Align_content_.pub
 };
 
 static const afw_runtime_property_t
 impl_325_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Align_Content.pub
 };
 
@@ -36298,7 +36298,7 @@ impl_325_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_325_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_325_property_value_possibleValues.pub
 };
 
@@ -36371,25 +36371,25 @@ impl_326;
 
 static const afw_runtime_property_t
 impl_326_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_326_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_326_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Align_items_.pub
 };
 
 static const afw_runtime_property_t
 impl_326_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Align_Items.pub
 };
 
@@ -36431,7 +36431,7 @@ impl_326_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_326_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_326_property_value_possibleValues.pub
 };
 
@@ -36504,25 +36504,25 @@ impl_327;
 
 static const afw_runtime_property_t
 impl_327_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_327_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_327_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Justify_content_.pub
 };
 
 static const afw_runtime_property_t
 impl_327_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Justify.pub
 };
 
@@ -36564,7 +36564,7 @@ impl_327_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_327_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_327_property_value_possibleValues.pub
 };
 
@@ -36637,37 +36637,37 @@ impl_328;
 
 static const afw_runtime_property_t
 impl_328_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_328_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_328_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_ResponsiveRow.pub
 };
 
 static const afw_runtime_property_t
 impl_328_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__a0d480d840b8.pub
 };
 
 static const afw_runtime_property_t
 impl_328_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Rows.pub
 };
 
 static const afw_runtime_property_t
 impl_328_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -36741,25 +36741,25 @@ impl_329;
 
 static const afw_runtime_property_t
 impl_329_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_329_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_329_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Spacing_between_rows_.pub
 };
 
 static const afw_runtime_property_t
 impl_329_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Spacing.pub
 };
 
@@ -36801,7 +36801,7 @@ impl_329_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_329_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_329_property_value_possibleValues.pub
 };
 
@@ -36877,7 +36877,7 @@ impl_324_property_value_alignContent = {
 
 static const afw_runtime_property_t
 impl_324_property_alignContent = {
-    &afw_components_self_s_alignContent,
+    afw_components_v_alignContent,
     &impl_324_property_value_alignContent.pub
 };
 
@@ -36889,7 +36889,7 @@ impl_324_property_value_alignItems = {
 
 static const afw_runtime_property_t
 impl_324_property_alignItems = {
-    &afw_components_self_s_alignItems,
+    afw_components_v_alignItems,
     &impl_324_property_value_alignItems.pub
 };
 
@@ -36901,7 +36901,7 @@ impl_324_property_value_justify = {
 
 static const afw_runtime_property_t
 impl_324_property_justify = {
-    &afw_components_self_s_justify,
+    afw_components_v_justify,
     &impl_324_property_value_justify.pub
 };
 
@@ -36913,7 +36913,7 @@ impl_324_property_value_rows = {
 
 static const afw_runtime_property_t
 impl_324_property_rows = {
-    &afw_components_self_s_rows,
+    afw_components_v_rows,
     &impl_324_property_value_rows.pub
 };
 
@@ -36925,7 +36925,7 @@ impl_324_property_value_spacing = {
 
 static const afw_runtime_property_t
 impl_324_property_spacing = {
-    &afw_components_self_s_spacing,
+    afw_components_v_spacing,
     &impl_324_property_value_spacing.pub
 };
 
@@ -37014,25 +37014,25 @@ impl_324__value = {
 
 static const afw_runtime_property_t
 impl_323_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_323_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_323_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_323_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -37070,25 +37070,25 @@ impl_323_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_323_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_323_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_323_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Responsive_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_323_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Responsive.pub
 };
 
 static const afw_runtime_property_t
 impl_323_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Responsive.pub
 };
 
@@ -37100,7 +37100,7 @@ impl_323_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_323_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_323_property_value_propertyTypes.pub
 };
 
@@ -37183,31 +37183,31 @@ impl_332;
 
 static const afw_runtime_property_t
 impl_332_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_332_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_332_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_Responsive_Breakpoints.pub
 };
 
 static const afw_runtime_property_t
 impl_332_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__a1fbc1c147c1.pub
 };
 
 static const afw_runtime_property_t
 impl_332_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Breakpoints.pub
 };
 
@@ -37280,31 +37280,31 @@ impl_333;
 
 static const afw_runtime_property_t
 impl_333_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_333_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_333_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_.pub
 };
 
 static const afw_runtime_property_t
 impl_333_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__fb30a261065b.pub
 };
 
 static const afw_runtime_property_t
 impl_333_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
@@ -37380,7 +37380,7 @@ impl_331_property_value_breakpoints = {
 
 static const afw_runtime_property_t
 impl_331_property_breakpoints = {
-    &afw_components_self_s_breakpoints,
+    afw_components_v_breakpoints,
     &impl_331_property_value_breakpoints.pub
 };
 
@@ -37392,7 +37392,7 @@ impl_331_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_331_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_331_property_value_contains.pub
 };
 
@@ -37459,25 +37459,25 @@ impl_331__value = {
 
 static const afw_runtime_property_t
 impl_330_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_330_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_330_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_330_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -37515,25 +37515,25 @@ impl_330_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_330_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_330_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_330_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_ResponsiveCol_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_330_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Column.pub
 };
 
 static const afw_runtime_property_t
 impl_330_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_ResponsiveCol.pub
 };
 
@@ -37545,7 +37545,7 @@ impl_330_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_330_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_330_property_value_propertyTypes.pub
 };
 
@@ -37628,37 +37628,37 @@ impl_336;
 
 static const afw_runtime_property_t
 impl_336_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_336_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_336_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_ResponsiveCol.pub
 };
 
 static const afw_runtime_property_t
 impl_336_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__5bcb76a297bb.pub
 };
 
 static const afw_runtime_property_t
 impl_336_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Columns.pub
 };
 
 static const afw_runtime_property_t
 impl_336_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -37735,7 +37735,7 @@ impl_335_property_value_columns = {
 
 static const afw_runtime_property_t
 impl_335_property_columns = {
-    &afw_components_self_s_columns,
+    afw_components_v_columns,
     &impl_335_property_value_columns.pub
 };
 
@@ -37801,25 +37801,25 @@ impl_335__value = {
 
 static const afw_runtime_property_t
 impl_334_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_334_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_334_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_334_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -37857,25 +37857,25 @@ impl_334_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_334_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_334_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_334_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_ResponsiveRow_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_334_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Row.pub
 };
 
 static const afw_runtime_property_t
 impl_334_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_ResponsiveRow.pub
 };
 
@@ -37887,7 +37887,7 @@ impl_334_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_334_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_334_property_value_propertyTypes.pub
 };
 
@@ -37970,25 +37970,25 @@ impl_339;
 
 static const afw_runtime_property_t
 impl_339_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_339_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_339_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_breakpoint_definition_on_large_resolution_screens_.pub
 };
 
 static const afw_runtime_property_t
 impl_339_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Large.pub
 };
 
@@ -38037,7 +38037,7 @@ impl_339_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_339_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_339_property_value_possibleValues.pub
 };
 
@@ -38110,25 +38110,25 @@ impl_340;
 
 static const afw_runtime_property_t
 impl_340_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_340_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_340_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_breakpoint_definition_on_medium_resolution_screens_.pub
 };
 
 static const afw_runtime_property_t
 impl_340_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Medium.pub
 };
 
@@ -38177,7 +38177,7 @@ impl_340_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_340_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_340_property_value_possibleValues.pub
 };
 
@@ -38250,25 +38250,25 @@ impl_341;
 
 static const afw_runtime_property_t
 impl_341_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_341_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_341_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_breakpoint_definition_on_small_resolution_screens_.pub
 };
 
 static const afw_runtime_property_t
 impl_341_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Small.pub
 };
 
@@ -38317,7 +38317,7 @@ impl_341_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_341_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_341_property_value_possibleValues.pub
 };
 
@@ -38390,25 +38390,25 @@ impl_342;
 
 static const afw_runtime_property_t
 impl_342_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_342_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_342_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_breakpoint_definition_on_extra_large_resolution_screens_.pub
 };
 
 static const afw_runtime_property_t
 impl_342_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Extra_Large.pub
 };
 
@@ -38457,7 +38457,7 @@ impl_342_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_342_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_342_property_value_possibleValues.pub
 };
 
@@ -38530,25 +38530,25 @@ impl_343;
 
 static const afw_runtime_property_t
 impl_343_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_343_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_343_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__96bd46f38f26.pub
 };
 
 static const afw_runtime_property_t
 impl_343_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__XX_Large.pub
 };
 
@@ -38597,7 +38597,7 @@ impl_343_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_343_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_343_property_value_possibleValues.pub
 };
 
@@ -38670,25 +38670,25 @@ impl_344;
 
 static const afw_runtime_property_t
 impl_344_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_344_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_344_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__3d2c43332fa4.pub
 };
 
 static const afw_runtime_property_t
 impl_344_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__XXX_Large.pub
 };
 
@@ -38737,7 +38737,7 @@ impl_344_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_344_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_344_property_value_possibleValues.pub
 };
 
@@ -38813,7 +38813,7 @@ impl_338_property_value_large = {
 
 static const afw_runtime_property_t
 impl_338_property_large = {
-    &afw_components_self_s_large,
+    afw_components_v_large,
     &impl_338_property_value_large.pub
 };
 
@@ -38825,7 +38825,7 @@ impl_338_property_value_medium = {
 
 static const afw_runtime_property_t
 impl_338_property_medium = {
-    &afw_components_self_s_medium,
+    afw_components_v_medium,
     &impl_338_property_value_medium.pub
 };
 
@@ -38837,7 +38837,7 @@ impl_338_property_value_small = {
 
 static const afw_runtime_property_t
 impl_338_property_small = {
-    &afw_components_self_s_small,
+    afw_components_v_small,
     &impl_338_property_value_small.pub
 };
 
@@ -38849,7 +38849,7 @@ impl_338_property_value_xl = {
 
 static const afw_runtime_property_t
 impl_338_property_xl = {
-    &afw_components_self_s_xl,
+    afw_components_v_xl,
     &impl_338_property_value_xl.pub
 };
 
@@ -38861,7 +38861,7 @@ impl_338_property_value_xxl = {
 
 static const afw_runtime_property_t
 impl_338_property_xxl = {
-    &afw_components_self_s_xxl,
+    afw_components_v_xxl,
     &impl_338_property_value_xxl.pub
 };
 
@@ -38873,7 +38873,7 @@ impl_338_property_value_xxxl = {
 
 static const afw_runtime_property_t
 impl_338_property_xxxl = {
-    &afw_components_self_s_xxxl,
+    afw_components_v_xxxl,
     &impl_338_property_value_xxxl.pub
 };
 
@@ -38944,25 +38944,25 @@ impl_338__value = {
 
 static const afw_runtime_property_t
 impl_337_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_337_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_337_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_337_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -39000,25 +39000,25 @@ impl_337_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_337_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_337_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_337_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__233cc745939b.pub
 };
 
 static const afw_runtime_property_t
 impl_337_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Breakpoints.pub
 };
 
 static const afw_runtime_property_t
 impl_337_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Responsive_Breakpoints.pub
 };
 
@@ -39030,7 +39030,7 @@ impl_337_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_337_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_337_property_value_propertyTypes.pub
 };
 
@@ -39113,19 +39113,19 @@ impl_347;
 
 static const afw_runtime_property_t
 impl_347_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_347_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_CSS_height_of_the_skeleton_.pub
 };
 
 static const afw_runtime_property_t
 impl_347_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Height.pub
 };
 
@@ -39196,25 +39196,25 @@ impl_348;
 
 static const afw_runtime_property_t
 impl_348_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_348_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_348_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_shape_of_the_skeleton_to_display__line_or_circle__.pub
 };
 
 static const afw_runtime_property_t
 impl_348_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Type.pub
 };
 
@@ -39286,19 +39286,19 @@ impl_349;
 
 static const afw_runtime_property_t
 impl_349_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_349_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_CSS_width_of_the_skeleton_.pub
 };
 
 static const afw_runtime_property_t
 impl_349_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Width.pub
 };
 
@@ -39372,7 +39372,7 @@ impl_346_property_value_height = {
 
 static const afw_runtime_property_t
 impl_346_property_height = {
-    &afw_components_self_s_height,
+    afw_components_v_height,
     &impl_346_property_value_height.pub
 };
 
@@ -39384,7 +39384,7 @@ impl_346_property_value_type = {
 
 static const afw_runtime_property_t
 impl_346_property_type = {
-    &afw_components_self_s_type,
+    afw_components_v_type,
     &impl_346_property_value_type.pub
 };
 
@@ -39396,7 +39396,7 @@ impl_346_property_value_width = {
 
 static const afw_runtime_property_t
 impl_346_property_width = {
-    &afw_components_self_s_width,
+    afw_components_v_width,
     &impl_346_property_value_width.pub
 };
 
@@ -39483,25 +39483,25 @@ impl_346__value = {
 
 static const afw_runtime_property_t
 impl_345_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_345_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_345_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_345_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -39539,19 +39539,19 @@ impl_345_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_345_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_345_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_345_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Skeleton_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_345_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Skeleton.pub
 };
 
@@ -39563,7 +39563,7 @@ impl_345_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_345_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_345_property_value_propertyTypes.pub
 };
 
@@ -39645,25 +39645,25 @@ impl_352;
 
 static const afw_runtime_property_t
 impl_352_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_352_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_352_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_Slider_component_is_disabled_.pub
 };
 
 static const afw_runtime_property_t
 impl_352_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Disabled.pub
 };
 
@@ -39735,31 +39735,31 @@ impl_353;
 
 static const afw_runtime_property_t
 impl_353_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_353_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_353_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_label_for_the_Slider_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_353_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_353_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_label.pub
 };
 
@@ -39832,31 +39832,31 @@ impl_354;
 
 static const afw_runtime_property_t
 impl_354_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_354_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_354_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_maximum_value_for_the_Slider_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_354_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Minimum.pub
 };
 
 static const afw_runtime_property_t
 impl_354_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_100.pub
 };
 
@@ -39929,31 +39929,31 @@ impl_355;
 
 static const afw_runtime_property_t
 impl_355_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_355_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_355_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_minimum_value_for_the_Slider_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_355_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Minimum.pub
 };
 
 static const afw_runtime_property_t
 impl_355_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_0.pub
 };
 
@@ -40026,25 +40026,25 @@ impl_356;
 
 static const afw_runtime_property_t
 impl_356_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_356_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_356_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Indicates_whether_the_value_of_the_Slider_should_be_visible_.pub
 };
 
 static const afw_runtime_property_t
 impl_356_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Show_Number.pub
 };
 
@@ -40116,31 +40116,31 @@ impl_357;
 
 static const afw_runtime_property_t
 impl_357_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_357_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_357_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_incremental_step_value_for_the_Slider_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_357_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Step.pub
 };
 
 static const afw_runtime_property_t
 impl_357_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_10.pub
 };
 
@@ -40213,31 +40213,31 @@ impl_358;
 
 static const afw_runtime_property_t
 impl_358_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_358_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_358_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_value_for_the_Slider_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_358_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Value.pub
 };
 
 static const afw_runtime_property_t
 impl_358_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_50.pub
 };
 
@@ -40310,25 +40310,25 @@ impl_359;
 
 static const afw_runtime_property_t
 impl_359_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_359_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_359_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Indicates_whether_the_Slider_component_is_vertical_oriented_.pub
 };
 
 static const afw_runtime_property_t
 impl_359_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Vertical.pub
 };
 
@@ -40403,7 +40403,7 @@ impl_351_property_value_disabled = {
 
 static const afw_runtime_property_t
 impl_351_property_disabled = {
-    &afw_components_self_s_disabled,
+    afw_components_v_disabled,
     &impl_351_property_value_disabled.pub
 };
 
@@ -40415,7 +40415,7 @@ impl_351_property_value_label = {
 
 static const afw_runtime_property_t
 impl_351_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_351_property_value_label.pub
 };
 
@@ -40427,7 +40427,7 @@ impl_351_property_value_max = {
 
 static const afw_runtime_property_t
 impl_351_property_max = {
-    &afw_components_self_s_max,
+    afw_components_v_max,
     &impl_351_property_value_max.pub
 };
 
@@ -40439,7 +40439,7 @@ impl_351_property_value_min = {
 
 static const afw_runtime_property_t
 impl_351_property_min = {
-    &afw_components_self_s_min,
+    afw_components_v_min,
     &impl_351_property_value_min.pub
 };
 
@@ -40451,7 +40451,7 @@ impl_351_property_value_showNumber = {
 
 static const afw_runtime_property_t
 impl_351_property_showNumber = {
-    &afw_components_self_s_showNumber,
+    afw_components_v_showNumber,
     &impl_351_property_value_showNumber.pub
 };
 
@@ -40463,7 +40463,7 @@ impl_351_property_value_step = {
 
 static const afw_runtime_property_t
 impl_351_property_step = {
-    &afw_components_self_s_step,
+    afw_components_v_step,
     &impl_351_property_value_step.pub
 };
 
@@ -40475,7 +40475,7 @@ impl_351_property_value_value = {
 
 static const afw_runtime_property_t
 impl_351_property_value = {
-    &afw_components_self_s_value,
+    afw_components_v_value,
     &impl_351_property_value_value.pub
 };
 
@@ -40487,7 +40487,7 @@ impl_351_property_value_vertical = {
 
 static const afw_runtime_property_t
 impl_351_property_vertical = {
-    &afw_components_self_s_vertical,
+    afw_components_v_vertical,
     &impl_351_property_value_vertical.pub
 };
 
@@ -40579,25 +40579,25 @@ impl_351__value = {
 
 static const afw_runtime_property_t
 impl_350_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_350_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_350_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_350_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -40635,19 +40635,19 @@ impl_350_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_350_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_350_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_350_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Slider_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_350_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Slider.pub
 };
 
@@ -40659,7 +40659,7 @@ impl_350_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_350_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_350_property_value_propertyTypes.pub
 };
 
@@ -40741,25 +40741,25 @@ impl_362;
 
 static const afw_runtime_property_t
 impl_362_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_362_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_362_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_amount_of_time__in_milliseconds_to_display_the_Snackbar_.pub
 };
 
 static const afw_runtime_property_t
 impl_362_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Duration.pub
 };
 
@@ -40831,31 +40831,31 @@ impl_363;
 
 static const afw_runtime_property_t
 impl_363_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_363_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_363_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_message_to_be_displayed_in_the_Snackbar_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_363_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Message.pub
 };
 
 static const afw_runtime_property_t
 impl_363_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_a_snackbar_message_.pub
 };
 
@@ -40928,25 +40928,25 @@ impl_364;
 
 static const afw_runtime_property_t
 impl_364_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_364_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_364_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_Snackbar_is_open_or_not_.pub
 };
 
 static const afw_runtime_property_t
 impl_364_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Open.pub
 };
 
@@ -41018,25 +41018,25 @@ impl_365;
 
 static const afw_runtime_property_t
 impl_365_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_365_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_365_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__5f6ed18e11e3.pub
 };
 
 static const afw_runtime_property_t
 impl_365_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Type.pub
 };
 
@@ -41077,7 +41077,7 @@ impl_365_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_365_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_365_property_value_possibleValues.pub
 };
 
@@ -41153,7 +41153,7 @@ impl_361_property_value_duration = {
 
 static const afw_runtime_property_t
 impl_361_property_duration = {
-    &afw_components_self_s_duration,
+    afw_components_v_duration,
     &impl_361_property_value_duration.pub
 };
 
@@ -41165,7 +41165,7 @@ impl_361_property_value_message = {
 
 static const afw_runtime_property_t
 impl_361_property_message = {
-    &afw_components_self_s_message,
+    afw_components_v_message,
     &impl_361_property_value_message.pub
 };
 
@@ -41177,7 +41177,7 @@ impl_361_property_value_open = {
 
 static const afw_runtime_property_t
 impl_361_property_open = {
-    &afw_components_self_s_open,
+    afw_components_v_open,
     &impl_361_property_value_open.pub
 };
 
@@ -41189,7 +41189,7 @@ impl_361_property_value_type = {
 
 static const afw_runtime_property_t
 impl_361_property_type = {
-    &afw_components_self_s_type,
+    afw_components_v_type,
     &impl_361_property_value_type.pub
 };
 
@@ -41277,25 +41277,25 @@ impl_361__value = {
 
 static const afw_runtime_property_t
 impl_360_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_360_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_360_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_360_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -41333,19 +41333,19 @@ impl_360_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_360_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_360_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_360_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Snackbar_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_360_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Snackbar.pub
 };
 
@@ -41357,7 +41357,7 @@ impl_360_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_360_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_360_property_value_propertyTypes.pub
 };
 
@@ -41439,25 +41439,25 @@ impl_368;
 
 static const afw_runtime_property_t
 impl_368_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_368_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_368_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_SpinButton_component_is_disabled_.pub
 };
 
 static const afw_runtime_property_t
 impl_368_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Disabled.pub
 };
 
@@ -41529,31 +41529,31 @@ impl_369;
 
 static const afw_runtime_property_t
 impl_369_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_369_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_369_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_label_for_the_SpinButton_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_369_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_369_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_label.pub
 };
 
@@ -41626,31 +41626,31 @@ impl_370;
 
 static const afw_runtime_property_t
 impl_370_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_370_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_370_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_maximum_value_for_the_SpinButton_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_370_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Minimum.pub
 };
 
 static const afw_runtime_property_t
 impl_370_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_20.pub
 };
 
@@ -41723,31 +41723,31 @@ impl_371;
 
 static const afw_runtime_property_t
 impl_371_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_371_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_371_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_minimum_value_for_the_SpinButton_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_371_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Minimum.pub
 };
 
 static const afw_runtime_property_t
 impl_371_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_5.pub
 };
 
@@ -41820,31 +41820,31 @@ impl_372;
 
 static const afw_runtime_property_t
 impl_372_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_372_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_372_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_incremental_step_value_for_the_SpinButton_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_372_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Step.pub
 };
 
 static const afw_runtime_property_t
 impl_372_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_1.pub
 };
 
@@ -41917,31 +41917,31 @@ impl_373;
 
 static const afw_runtime_property_t
 impl_373_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_373_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_373_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_value_for_the_SpinButton_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_373_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Value.pub
 };
 
 static const afw_runtime_property_t
 impl_373_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_10.pub
 };
 
@@ -42017,7 +42017,7 @@ impl_367_property_value_disabled = {
 
 static const afw_runtime_property_t
 impl_367_property_disabled = {
-    &afw_components_self_s_disabled,
+    afw_components_v_disabled,
     &impl_367_property_value_disabled.pub
 };
 
@@ -42029,7 +42029,7 @@ impl_367_property_value_label = {
 
 static const afw_runtime_property_t
 impl_367_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_367_property_value_label.pub
 };
 
@@ -42041,7 +42041,7 @@ impl_367_property_value_max = {
 
 static const afw_runtime_property_t
 impl_367_property_max = {
-    &afw_components_self_s_max,
+    afw_components_v_max,
     &impl_367_property_value_max.pub
 };
 
@@ -42053,7 +42053,7 @@ impl_367_property_value_min = {
 
 static const afw_runtime_property_t
 impl_367_property_min = {
-    &afw_components_self_s_min,
+    afw_components_v_min,
     &impl_367_property_value_min.pub
 };
 
@@ -42065,7 +42065,7 @@ impl_367_property_value_step = {
 
 static const afw_runtime_property_t
 impl_367_property_step = {
-    &afw_components_self_s_step,
+    afw_components_v_step,
     &impl_367_property_value_step.pub
 };
 
@@ -42077,7 +42077,7 @@ impl_367_property_value_value = {
 
 static const afw_runtime_property_t
 impl_367_property_value = {
-    &afw_components_self_s_value,
+    afw_components_v_value,
     &impl_367_property_value_value.pub
 };
 
@@ -42167,25 +42167,25 @@ impl_367__value = {
 
 static const afw_runtime_property_t
 impl_366_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_366_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_366_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_366_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -42223,19 +42223,19 @@ impl_366_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_366_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_366_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_366_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_SpinButton_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_366_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_SpinButton.pub
 };
 
@@ -42247,7 +42247,7 @@ impl_366_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_366_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_366_property_value_propertyTypes.pub
 };
 
@@ -42329,31 +42329,31 @@ impl_376;
 
 static const afw_runtime_property_t
 impl_376_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_376_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_376_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_label_for_the_Spinner_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_376_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_376_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_a_label.pub
 };
 
@@ -42426,25 +42426,25 @@ impl_377;
 
 static const afw_runtime_property_t
 impl_377_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_377_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_377_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_size_of_the_Spinner_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_377_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Size.pub
 };
 
@@ -42519,7 +42519,7 @@ impl_375_property_value_label = {
 
 static const afw_runtime_property_t
 impl_375_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_375_property_value_label.pub
 };
 
@@ -42531,7 +42531,7 @@ impl_375_property_value_size = {
 
 static const afw_runtime_property_t
 impl_375_property_size = {
-    &afw_components_self_s_size,
+    afw_components_v_size,
     &impl_375_property_value_size.pub
 };
 
@@ -42617,25 +42617,25 @@ impl_375__value = {
 
 static const afw_runtime_property_t
 impl_374_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_374_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_374_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_374_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -42673,19 +42673,19 @@ impl_374_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_374_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_374_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_374_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Spinner_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_374_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Spinner.pub
 };
 
@@ -42697,7 +42697,7 @@ impl_374_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_374_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_374_property_value_propertyTypes.pub
 };
 
@@ -42779,25 +42779,25 @@ impl_380;
 
 static const afw_runtime_property_t
 impl_380_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_380_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_380_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_step_that_is_actively_displayed_.pub
 };
 
 static const afw_runtime_property_t
 impl_380_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Active_Step.pub
 };
 
@@ -42869,31 +42869,31 @@ impl_381;
 
 static const afw_runtime_property_t
 impl_381_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_381_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_381_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_381_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__bc82172b5b86.pub
 };
 
 static const afw_runtime_property_t
 impl_381_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Steps.pub
 };
 
@@ -42969,7 +42969,7 @@ impl_379_property_value_activeStep = {
 
 static const afw_runtime_property_t
 impl_379_property_activeStep = {
-    &afw_components_self_s_activeStep,
+    afw_components_v_activeStep,
     &impl_379_property_value_activeStep.pub
 };
 
@@ -42981,7 +42981,7 @@ impl_379_property_value_steps = {
 
 static const afw_runtime_property_t
 impl_379_property_steps = {
-    &afw_components_self_s_steps,
+    afw_components_v_steps,
     &impl_379_property_value_steps.pub
 };
 
@@ -43067,25 +43067,25 @@ impl_379__value = {
 
 static const afw_runtime_property_t
 impl_378_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_378_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_378_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_378_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -43123,19 +43123,19 @@ impl_378_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_378_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_378_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_378_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Stepper_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_378_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Stepper.pub
 };
 
@@ -43147,7 +43147,7 @@ impl_378_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_378_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_378_property_value_propertyTypes.pub
 };
 
@@ -43291,19 +43291,19 @@ impl_385;
 
 static const afw_runtime_property_t
 impl_385_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_385_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_385_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__9a0980576590.pub
 };
 
@@ -43374,19 +43374,19 @@ impl_386;
 
 static const afw_runtime_property_t
 impl_386_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_386_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_386_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b78d848b1119.pub
 };
 
@@ -43457,19 +43457,19 @@ impl_387;
 
 static const afw_runtime_property_t
 impl_387_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_387_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_387_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__31dc409d0daf.pub
 };
 
@@ -43540,19 +43540,19 @@ impl_388;
 
 static const afw_runtime_property_t
 impl_388_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_388_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_388_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__7590a3a69a7f.pub
 };
 
@@ -43623,19 +43623,19 @@ impl_389;
 
 static const afw_runtime_property_t
 impl_389_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_389_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_389_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_when_the_animation_will_start.pub
 };
 
@@ -43706,19 +43706,19 @@ impl_390;
 
 static const afw_runtime_property_t
 impl_390_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_390_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_390_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__e7b14a0e8406.pub
 };
 
@@ -43789,19 +43789,19 @@ impl_391;
 
 static const afw_runtime_property_t
 impl_391_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_391_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_391_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__6a476f3d67ac.pub
 };
 
@@ -43872,19 +43872,19 @@ impl_392;
 
 static const afw_runtime_property_t
 impl_392_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_392_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_392_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b91fbb782272.pub
 };
 
@@ -43955,19 +43955,19 @@ impl_393;
 
 static const afw_runtime_property_t
 impl_393_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_393_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_393_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__69a6b69aef03.pub
 };
 
@@ -44038,19 +44038,19 @@ impl_394;
 
 static const afw_runtime_property_t
 impl_394_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_394_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_394_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_a_name_for_the__keyframes_animation.pub
 };
 
@@ -44121,19 +44121,19 @@ impl_395;
 
 static const afw_runtime_property_t
 impl_395_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_395_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_395_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_whether_the_animation_is_running_or_paused.pub
 };
 
@@ -44204,19 +44204,19 @@ impl_396;
 
 static const afw_runtime_property_t
 impl_396_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_396_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_396_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_speed_curve_of_the_animation.pub
 };
 
@@ -44287,19 +44287,19 @@ impl_397;
 
 static const afw_runtime_property_t
 impl_397_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_397_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_397_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__f70104a9d375.pub
 };
 
@@ -44370,19 +44370,19 @@ impl_398;
 
 static const afw_runtime_property_t
 impl_398_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_398_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_398_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__aacb4dcf718b.pub
 };
 
@@ -44453,19 +44453,19 @@ impl_399;
 
 static const afw_runtime_property_t
 impl_399_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_399_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_399_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__896edf2f46c2.pub
 };
 
@@ -44536,19 +44536,19 @@ impl_400;
 
 static const afw_runtime_property_t
 impl_400_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_400_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_400_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_painting_area_of_the_background.pub
 };
 
@@ -44619,19 +44619,19 @@ impl_401;
 
 static const afw_runtime_property_t
 impl_401_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_401_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_401_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_background_color_of_an_element.pub
 };
 
@@ -44702,19 +44702,19 @@ impl_402;
 
 static const afw_runtime_property_t
 impl_402_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_402_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_402_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_background_image_for_an_element.pub
 };
 
@@ -44785,19 +44785,19 @@ impl_403;
 
 static const afw_runtime_property_t
 impl_403_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_403_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_403_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__c62ba45c9844.pub
 };
 
@@ -44868,19 +44868,19 @@ impl_404;
 
 static const afw_runtime_property_t
 impl_404_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_404_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_404_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_starting_position_of_a_background_image.pub
 };
 
@@ -44951,19 +44951,19 @@ impl_405;
 
 static const afw_runtime_property_t
 impl_405_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_405_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_405_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_how_to_repeat__tile__a_background_image.pub
 };
 
@@ -45034,19 +45034,19 @@ impl_406;
 
 static const afw_runtime_property_t
 impl_406_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_406_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_406_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_size_of_the_background_image.pub
 };
 
@@ -45117,19 +45117,19 @@ impl_407;
 
 static const afw_runtime_property_t
 impl_407_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_407_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_407_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__a7ca0d63496e.pub
 };
 
@@ -45200,19 +45200,19 @@ impl_408;
 
 static const afw_runtime_property_t
 impl_408_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_408_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_408_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__083a0baaa31c.pub
 };
 
@@ -45283,19 +45283,19 @@ impl_409;
 
 static const afw_runtime_property_t
 impl_409_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_409_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_409_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_color_of_the_bottom_border_.pub
 };
 
@@ -45366,19 +45366,19 @@ impl_410;
 
 static const afw_runtime_property_t
 impl_410_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_410_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_410_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__cabf91361b26.pub
 };
 
@@ -45449,19 +45449,19 @@ impl_411;
 
 static const afw_runtime_property_t
 impl_411_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_411_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_411_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__40cda293888c.pub
 };
 
@@ -45532,19 +45532,19 @@ impl_412;
 
 static const afw_runtime_property_t
 impl_412_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_412_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_412_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_style_of_the_bottom_border.pub
 };
 
@@ -45615,19 +45615,19 @@ impl_413;
 
 static const afw_runtime_property_t
 impl_413_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_413_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_413_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_width_of_the_bottom_border.pub
 };
 
@@ -45698,19 +45698,19 @@ impl_414;
 
 static const afw_runtime_property_t
 impl_414_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_414_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_414_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__651387b7ab1a.pub
 };
 
@@ -45781,19 +45781,19 @@ impl_415;
 
 static const afw_runtime_property_t
 impl_415_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_415_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_415_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__508d98c572bd.pub
 };
 
@@ -45864,19 +45864,19 @@ impl_416;
 
 static const afw_runtime_property_t
 impl_416_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_416_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_416_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__a6f758c915f0.pub
 };
 
@@ -45947,19 +45947,19 @@ impl_417;
 
 static const afw_runtime_property_t
 impl_417_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_417_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_417_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__c90e9d4ee799.pub
 };
 
@@ -46030,19 +46030,19 @@ impl_418;
 
 static const afw_runtime_property_t
 impl_418_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_418_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_418_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__cc78edfc54d8.pub
 };
 
@@ -46113,19 +46113,19 @@ impl_419;
 
 static const afw_runtime_property_t
 impl_419_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_419_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_419_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_inward_offsets_of_the_image_border.pub
 };
 
@@ -46196,19 +46196,19 @@ impl_420;
 
 static const afw_runtime_property_t
 impl_420_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_420_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_420_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_image_to_be_used_as_a_border.pub
 };
 
@@ -46279,19 +46279,19 @@ impl_421;
 
 static const afw_runtime_property_t
 impl_421_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_421_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_421_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_widths_of_the_image_border.pub
 };
 
@@ -46362,19 +46362,19 @@ impl_422;
 
 static const afw_runtime_property_t
 impl_422_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_422_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_422_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__939fdef059c9.pub
 };
 
@@ -46445,19 +46445,19 @@ impl_423;
 
 static const afw_runtime_property_t
 impl_423_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_423_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_423_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_color_of_the_left_border.pub
 };
 
@@ -46528,19 +46528,19 @@ impl_424;
 
 static const afw_runtime_property_t
 impl_424_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_424_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_424_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_style_of_the_left_border.pub
 };
 
@@ -46611,19 +46611,19 @@ impl_425;
 
 static const afw_runtime_property_t
 impl_425_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_425_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_425_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_width_of_the_left_border.pub
 };
 
@@ -46694,19 +46694,19 @@ impl_426;
 
 static const afw_runtime_property_t
 impl_426_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_426_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_426_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__a2724df1943b.pub
 };
 
@@ -46777,19 +46777,19 @@ impl_427;
 
 static const afw_runtime_property_t
 impl_427_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_427_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_427_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__6d09be4c3226.pub
 };
 
@@ -46860,19 +46860,19 @@ impl_428;
 
 static const afw_runtime_property_t
 impl_428_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_428_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_428_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_color_of_the_right_border.pub
 };
 
@@ -46943,19 +46943,19 @@ impl_429;
 
 static const afw_runtime_property_t
 impl_429_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_429_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_429_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_style_of_the_right_border.pub
 };
 
@@ -47026,19 +47026,19 @@ impl_430;
 
 static const afw_runtime_property_t
 impl_430_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_430_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_430_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_width_of_the_right_border.pub
 };
 
@@ -47109,19 +47109,19 @@ impl_431;
 
 static const afw_runtime_property_t
 impl_431_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_431_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_431_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_space_between_cells_in_a_table.pub
 };
 
@@ -47192,19 +47192,19 @@ impl_432;
 
 static const afw_runtime_property_t
 impl_432_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_432_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_432_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__4912f227a091.pub
 };
 
@@ -47275,19 +47275,19 @@ impl_433;
 
 static const afw_runtime_property_t
 impl_433_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_433_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_433_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__f09582a81e43.pub
 };
 
@@ -47358,19 +47358,19 @@ impl_434;
 
 static const afw_runtime_property_t
 impl_434_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_434_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_434_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_color_of_the_top_border.pub
 };
 
@@ -47441,19 +47441,19 @@ impl_435;
 
 static const afw_runtime_property_t
 impl_435_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_435_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_435_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__4e90621fdaf6.pub
 };
 
@@ -47524,19 +47524,19 @@ impl_436;
 
 static const afw_runtime_property_t
 impl_436_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_436_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_436_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__82d711a3d97d.pub
 };
 
@@ -47607,19 +47607,19 @@ impl_437;
 
 static const afw_runtime_property_t
 impl_437_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_437_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_437_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_style_of_the_top_border.pub
 };
 
@@ -47690,19 +47690,19 @@ impl_438;
 
 static const afw_runtime_property_t
 impl_438_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_438_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_438_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_width_of_the_top_border.pub
 };
 
@@ -47773,19 +47773,19 @@ impl_439;
 
 static const afw_runtime_property_t
 impl_439_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_439_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_439_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__d96a296e8e52.pub
 };
 
@@ -47856,19 +47856,19 @@ impl_440;
 
 static const afw_runtime_property_t
 impl_440_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_440_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_440_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_bottom_position_of_a_positioned_element.pub
 };
 
@@ -47939,19 +47939,19 @@ impl_441;
 
 static const afw_runtime_property_t
 impl_441_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_441_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_441_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__8c478959b4f0.pub
 };
 
@@ -48022,19 +48022,19 @@ impl_442;
 
 static const afw_runtime_property_t
 impl_442_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_442_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_442_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Attaches_one_or_more_drop_shadows_to_the_box.pub
 };
 
@@ -48105,19 +48105,19 @@ impl_443;
 
 static const afw_runtime_property_t
 impl_443_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_443_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_443_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__4ab9ca04016c.pub
 };
 
@@ -48188,19 +48188,19 @@ impl_444;
 
 static const afw_runtime_property_t
 impl_444_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_444_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_444_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_position_of_the_table_caption.pub
 };
 
@@ -48271,19 +48271,19 @@ impl_445;
 
 static const afw_runtime_property_t
 impl_445_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_445_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_445_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__f4d6ff1d08f6.pub
 };
 
@@ -48354,19 +48354,19 @@ impl_446;
 
 static const afw_runtime_property_t
 impl_446_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_446_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_446_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__152c480d0783.pub
 };
 
@@ -48437,19 +48437,19 @@ impl_447;
 
 static const afw_runtime_property_t
 impl_447_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_447_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_447_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_color_of_the_text.pub
 };
 
@@ -48520,19 +48520,19 @@ impl_448;
 
 static const afw_runtime_property_t
 impl_448_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_448_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_448_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__0e4d7ed2890d.pub
 };
 
@@ -48603,19 +48603,19 @@ impl_449;
 
 static const afw_runtime_property_t
 impl_449_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_449_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_449_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_how_to_fill_columns.pub
 };
 
@@ -48686,19 +48686,19 @@ impl_450;
 
 static const afw_runtime_property_t
 impl_450_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_450_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_450_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_gap_between_the_columns.pub
 };
 
@@ -48769,19 +48769,19 @@ impl_451;
 
 static const afw_runtime_property_t
 impl_451_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_451_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_451_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__f7a5252eaad5.pub
 };
 
@@ -48852,19 +48852,19 @@ impl_452;
 
 static const afw_runtime_property_t
 impl_452_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_452_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_452_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_color_of_the_rule_between_columns.pub
 };
 
@@ -48935,19 +48935,19 @@ impl_453;
 
 static const afw_runtime_property_t
 impl_453_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_453_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_453_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_style_of_the_rule_between_columns.pub
 };
 
@@ -49018,19 +49018,19 @@ impl_454;
 
 static const afw_runtime_property_t
 impl_454_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_454_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_454_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_width_of_the_rule_between_columns.pub
 };
 
@@ -49101,19 +49101,19 @@ impl_455;
 
 static const afw_runtime_property_t
 impl_455_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_455_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_455_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__880858efb278.pub
 };
 
@@ -49184,19 +49184,19 @@ impl_456;
 
 static const afw_runtime_property_t
 impl_456_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_456_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_456_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_width_of_the_columns.pub
 };
 
@@ -49267,19 +49267,19 @@ impl_457;
 
 static const afw_runtime_property_t
 impl_457_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_457_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_457_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__5f7cb23ee58e.pub
 };
 
@@ -49350,19 +49350,19 @@ impl_458;
 
 static const afw_runtime_property_t
 impl_458_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_458_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_458_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__617ddfead7e3.pub
 };
 
@@ -49433,19 +49433,19 @@ impl_459;
 
 static const afw_runtime_property_t
 impl_459_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_459_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_459_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Increments_one_or_more_counters.pub
 };
 
@@ -49516,19 +49516,19 @@ impl_460;
 
 static const afw_runtime_property_t
 impl_460_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_460_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_460_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Creates_or_resets_one_or_more_counters.pub
 };
 
@@ -49599,19 +49599,19 @@ impl_461;
 
 static const afw_runtime_property_t
 impl_461_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_461_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_461_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_horizontal_alignment_of_an_element.pub
 };
 
@@ -49682,19 +49682,19 @@ impl_462;
 
 static const afw_runtime_property_t
 impl_462_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_462_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_462_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__9e1c47402b1b.pub
 };
 
@@ -49765,19 +49765,19 @@ impl_463;
 
 static const afw_runtime_property_t
 impl_463_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_463_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_463_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_text_direction.pub
 };
 
@@ -49848,19 +49848,19 @@ impl_464;
 
 static const afw_runtime_property_t
 impl_464_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_464_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_464_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_an_element_s_display_type.pub
 };
 
@@ -49931,19 +49931,19 @@ impl_465;
 
 static const afw_runtime_property_t
 impl_465_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_465_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_465_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__7a73955a8ed9.pub
 };
 
@@ -50014,19 +50014,19 @@ impl_466;
 
 static const afw_runtime_property_t
 impl_466_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_466_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_466_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__7f8ffe37767e.pub
 };
 
@@ -50097,19 +50097,19 @@ impl_467;
 
 static const afw_runtime_property_t
 impl_467_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_467_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_467_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_length_of_the_item__relative_to_the_rest.pub
 };
 
@@ -50180,19 +50180,19 @@ impl_468;
 
 static const afw_runtime_property_t
 impl_468_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_468_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_468_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_initial_length_of_a_flexible_item.pub
 };
 
@@ -50263,19 +50263,19 @@ impl_469;
 
 static const afw_runtime_property_t
 impl_469_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_469_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_469_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_direction_of_the_flexible_items.pub
 };
 
@@ -50346,19 +50346,19 @@ impl_470;
 
 static const afw_runtime_property_t
 impl_470_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_470_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_470_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__34e63e7584b3.pub
 };
 
@@ -50429,19 +50429,19 @@ impl_471;
 
 static const afw_runtime_property_t
 impl_471_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_471_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_471_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__59d4c35d42fd.pub
 };
 
@@ -50512,19 +50512,19 @@ impl_472;
 
 static const afw_runtime_property_t
 impl_472_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_472_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_472_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__01d8f12d72e3.pub
 };
 
@@ -50595,19 +50595,19 @@ impl_473;
 
 static const afw_runtime_property_t
 impl_473_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_473_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_473_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__ff007d47652e.pub
 };
 
@@ -50678,19 +50678,19 @@ impl_474;
 
 static const afw_runtime_property_t
 impl_474_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_474_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_474_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__6ececcaa8b1b.pub
 };
 
@@ -50761,19 +50761,19 @@ impl_475;
 
 static const afw_runtime_property_t
 impl_475_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_475_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_475_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_font_family_for_text.pub
 };
 
@@ -50844,19 +50844,19 @@ impl_476;
 
 static const afw_runtime_property_t
 impl_476_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_476_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_476_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_font_size_of_the_text.pub
 };
 
@@ -50927,19 +50927,19 @@ impl_477;
 
 static const afw_runtime_property_t
 impl_477_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_477_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_477_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Preserves_the_readability_of_text_when_font_fallback_occurs.pub
 };
 
@@ -51010,19 +51010,19 @@ impl_478;
 
 static const afw_runtime_property_t
 impl_478_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_478_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_478_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__3d9eac4481e4.pub
 };
 
@@ -51093,19 +51093,19 @@ impl_479;
 
 static const afw_runtime_property_t
 impl_479_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_479_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_479_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__836ecefc9e2b.pub
 };
 
@@ -51176,19 +51176,19 @@ impl_480;
 
 static const afw_runtime_property_t
 impl_480_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_480_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_480_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__234b99cb5616.pub
 };
 
@@ -51259,19 +51259,19 @@ impl_481;
 
 static const afw_runtime_property_t
 impl_481_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_481_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_481_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_boldness_of_the_font.pub
 };
 
@@ -51342,19 +51342,19 @@ impl_482;
 
 static const afw_runtime_property_t
 impl_482_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_482_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_482_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__1c499d887857.pub
 };
 
@@ -51425,19 +51425,19 @@ impl_483;
 
 static const afw_runtime_property_t
 impl_483_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_483_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_483_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_height_of_an_element.pub
 };
 
@@ -51508,19 +51508,19 @@ impl_484;
 
 static const afw_runtime_property_t
 impl_484_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_484_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_484_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_how_to_split_words_to_improve_the_layout_of_paragraphs.pub
 };
 
@@ -51591,19 +51591,19 @@ impl_485;
 
 static const afw_runtime_property_t
 impl_485_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_485_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_485_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__1f37d5a275e5.pub
 };
 
@@ -51674,19 +51674,19 @@ impl_486;
 
 static const afw_runtime_property_t
 impl_486_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_486_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_486_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__c6ad7debd3b3.pub
 };
 
@@ -51757,19 +51757,19 @@ impl_487;
 
 static const afw_runtime_property_t
 impl_487_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_487_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_487_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__c3bda3aa2287.pub
 };
 
@@ -51840,19 +51840,19 @@ impl_488;
 
 static const afw_runtime_property_t
 impl_488_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_488_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_488_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__277f85af08df.pub
 };
 
@@ -51923,19 +51923,19 @@ impl_489;
 
 static const afw_runtime_property_t
 impl_489_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_489_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_489_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_left_position_of_a_positioned_element.pub
 };
 
@@ -52006,19 +52006,19 @@ impl_490;
 
 static const afw_runtime_property_t
 impl_490_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_490_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_490_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_space_between_characters_in_a_text.pub
 };
 
@@ -52089,19 +52089,19 @@ impl_491;
 
 static const afw_runtime_property_t
 impl_491_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_491_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_491_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_distance_between_lines_in_a_text.pub
 };
 
@@ -52172,19 +52172,19 @@ impl_492;
 
 static const afw_runtime_property_t
 impl_492_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_492_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_492_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__38c5cda3b12c.pub
 };
 
@@ -52255,19 +52255,19 @@ impl_493;
 
 static const afw_runtime_property_t
 impl_493_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_493_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_493_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_an_image_as_the_list_item_marker.pub
 };
 
@@ -52338,19 +52338,19 @@ impl_494;
 
 static const afw_runtime_property_t
 impl_494_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_494_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_494_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_position_of_the_list_item_marker.pub
 };
 
@@ -52421,19 +52421,19 @@ impl_495;
 
 static const afw_runtime_property_t
 impl_495_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_495_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_495_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_list_item_marker_type.pub
 };
 
@@ -52504,19 +52504,19 @@ impl_496;
 
 static const afw_runtime_property_t
 impl_496_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_496_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_496_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b58b654510fd.pub
 };
 
@@ -52587,19 +52587,19 @@ impl_497;
 
 static const afw_runtime_property_t
 impl_497_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_497_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_497_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_bottom_margin_of_an_element.pub
 };
 
@@ -52670,19 +52670,19 @@ impl_498;
 
 static const afw_runtime_property_t
 impl_498_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_498_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_498_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_left_margin_of_an_element.pub
 };
 
@@ -52753,19 +52753,19 @@ impl_499;
 
 static const afw_runtime_property_t
 impl_499_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_499_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_499_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_right_margin_of_an_element.pub
 };
 
@@ -52836,19 +52836,19 @@ impl_500;
 
 static const afw_runtime_property_t
 impl_500_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_500_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_500_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_top_margin_of_an_element.pub
 };
 
@@ -52919,19 +52919,19 @@ impl_501;
 
 static const afw_runtime_property_t
 impl_501_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_501_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_501_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_maximum_height_of_an_element.pub
 };
 
@@ -53002,19 +53002,19 @@ impl_502;
 
 static const afw_runtime_property_t
 impl_502_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_502_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_502_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_maximum_width_of_an_element.pub
 };
 
@@ -53085,19 +53085,19 @@ impl_503;
 
 static const afw_runtime_property_t
 impl_503_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_503_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_503_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_minimum_height_of_an_element.pub
 };
 
@@ -53168,19 +53168,19 @@ impl_504;
 
 static const afw_runtime_property_t
 impl_504_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_504_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_504_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_minimum_width_of_an_element.pub
 };
 
@@ -53251,19 +53251,19 @@ impl_505;
 
 static const afw_runtime_property_t
 impl_505_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_505_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_505_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__45cd643adf18.pub
 };
 
@@ -53334,19 +53334,19 @@ impl_506;
 
 static const afw_runtime_property_t
 impl_506_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_506_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_506_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_tabbing_order_for_an_element.pub
 };
 
@@ -53417,19 +53417,19 @@ impl_507;
 
 static const afw_runtime_property_t
 impl_507_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_507_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_507_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__9504479f5eef.pub
 };
 
@@ -53500,19 +53500,19 @@ impl_508;
 
 static const afw_runtime_property_t
 impl_508_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_508_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_508_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__85661b577c44.pub
 };
 
@@ -53583,19 +53583,19 @@ impl_509;
 
 static const afw_runtime_property_t
 impl_509_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_509_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_509_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__7fcbfc408208.pub
 };
 
@@ -53666,19 +53666,19 @@ impl_510;
 
 static const afw_runtime_property_t
 impl_510_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_510_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_510_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__e3817d708529.pub
 };
 
@@ -53749,19 +53749,19 @@ impl_511;
 
 static const afw_runtime_property_t
 impl_511_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_511_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_511_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__5ef1bb5aa954.pub
 };
 
@@ -53832,19 +53832,19 @@ impl_512;
 
 static const afw_runtime_property_t
 impl_512_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_512_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_512_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_opacity_level_for_an_element.pub
 };
 
@@ -53915,19 +53915,19 @@ impl_513;
 
 static const afw_runtime_property_t
 impl_513_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_513_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_513_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b5e7d0cdf37f.pub
 };
 
@@ -53998,19 +53998,19 @@ impl_514;
 
 static const afw_runtime_property_t
 impl_514_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_514_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_514_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__058fcd121174.pub
 };
 
@@ -54081,19 +54081,19 @@ impl_515;
 
 static const afw_runtime_property_t
 impl_515_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_515_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_515_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__3b52a49f2044.pub
 };
 
@@ -54164,19 +54164,19 @@ impl_516;
 
 static const afw_runtime_property_t
 impl_516_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_516_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_516_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_color_of_the_outline_around_a_element.pub
 };
 
@@ -54247,19 +54247,19 @@ impl_517;
 
 static const afw_runtime_property_t
 impl_517_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_517_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_517_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Offsets_an_outline__and_draws_it_beyond_the_border_edge.pub
 };
 
@@ -54330,19 +54330,19 @@ impl_518;
 
 static const afw_runtime_property_t
 impl_518_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_518_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_518_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_style_of_the_outline_around_an_element.pub
 };
 
@@ -54413,19 +54413,19 @@ impl_519;
 
 static const afw_runtime_property_t
 impl_519_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_519_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_519_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_width_of_the_outline_around_an_element.pub
 };
 
@@ -54496,19 +54496,19 @@ impl_520;
 
 static const afw_runtime_property_t
 impl_520_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_520_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_520_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__9abbcef3e1dd.pub
 };
 
@@ -54579,19 +54579,19 @@ impl_521;
 
 static const afw_runtime_property_t
 impl_521_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_521_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_521_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__8c3907fc5731.pub
 };
 
@@ -54662,19 +54662,19 @@ impl_522;
 
 static const afw_runtime_property_t
 impl_522_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_522_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_522_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__410019c1313c.pub
 };
 
@@ -54745,19 +54745,19 @@ impl_523;
 
 static const afw_runtime_property_t
 impl_523_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_523_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_523_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__35efc0ad81e2.pub
 };
 
@@ -54828,19 +54828,19 @@ impl_524;
 
 static const afw_runtime_property_t
 impl_524_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_524_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_524_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_bottom_padding_of_an_element.pub
 };
 
@@ -54911,19 +54911,19 @@ impl_525;
 
 static const afw_runtime_property_t
 impl_525_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_525_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_525_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_left_padding_of_an_element.pub
 };
 
@@ -54994,19 +54994,19 @@ impl_526;
 
 static const afw_runtime_property_t
 impl_526_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_526_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_526_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_right_padding_of_an_element.pub
 };
 
@@ -55077,19 +55077,19 @@ impl_527;
 
 static const afw_runtime_property_t
 impl_527_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_527_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_527_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_top_padding_of_an_element.pub
 };
 
@@ -55160,19 +55160,19 @@ impl_528;
 
 static const afw_runtime_property_t
 impl_528_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_528_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_528_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_page_break_behavior_after_an_element.pub
 };
 
@@ -55243,19 +55243,19 @@ impl_529;
 
 static const afw_runtime_property_t
 impl_529_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_529_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_529_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_page_break_behavior_before_an_element.pub
 };
 
@@ -55326,19 +55326,19 @@ impl_530;
 
 static const afw_runtime_property_t
 impl_530_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_530_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_530_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_page_break_behavior_inside_an_element.pub
 };
 
@@ -55409,19 +55409,19 @@ impl_531;
 
 static const afw_runtime_property_t
 impl_531_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_531_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_531_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__8b4697ff8d7f.pub
 };
 
@@ -55492,19 +55492,19 @@ impl_532;
 
 static const afw_runtime_property_t
 impl_532_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_532_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_532_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_bottom_position_of_3D_elements.pub
 };
 
@@ -55575,19 +55575,19 @@ impl_533;
 
 static const afw_runtime_property_t
 impl_533_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_533_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_533_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b0baca384221.pub
 };
 
@@ -55658,19 +55658,19 @@ impl_534;
 
 static const afw_runtime_property_t
 impl_534_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_534_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_534_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__e3f4748d790e.pub
 };
 
@@ -55741,19 +55741,19 @@ impl_535;
 
 static const afw_runtime_property_t
 impl_535_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_535_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_535_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__06d9c54ae9b0.pub
 };
 
@@ -55824,19 +55824,19 @@ impl_536;
 
 static const afw_runtime_property_t
 impl_536_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_536_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_536_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_right_position_of_a_positioned_element.pub
 };
 
@@ -55907,19 +55907,19 @@ impl_537;
 
 static const afw_runtime_property_t
 impl_537_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_537_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_537_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_length_of_the_tab_character.pub
 };
 
@@ -55990,19 +55990,19 @@ impl_538;
 
 static const afw_runtime_property_t
 impl_538_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_538_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_538_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__312c8d8841c8.pub
 };
 
@@ -56073,19 +56073,19 @@ impl_539;
 
 static const afw_runtime_property_t
 impl_539_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_539_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_539_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_horizontal_alignment_of_text.pub
 };
 
@@ -56156,19 +56156,19 @@ impl_540;
 
 static const afw_runtime_property_t
 impl_540_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_540_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_540_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__ca63e72dc7ee.pub
 };
 
@@ -56239,19 +56239,19 @@ impl_541;
 
 static const afw_runtime_property_t
 impl_541_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_541_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_541_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_decoration_of_a_text.pub
 };
 
@@ -56322,19 +56322,19 @@ impl_542;
 
 static const afw_runtime_property_t
 impl_542_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_542_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_542_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_color_of_the_text_decoration.pub
 };
 
@@ -56405,19 +56405,19 @@ impl_543;
 
 static const afw_runtime_property_t
 impl_543_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_543_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_543_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_type_of_line_in_a_text_decoration.pub
 };
 
@@ -56488,19 +56488,19 @@ impl_544;
 
 static const afw_runtime_property_t
 impl_544_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_544_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_544_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_style_of_the_line_in_a_text_decoration.pub
 };
 
@@ -56571,19 +56571,19 @@ impl_545;
 
 static const afw_runtime_property_t
 impl_545_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_545_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_545_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_indentation_of_the_first_line_of_text.pub
 };
 
@@ -56654,19 +56654,19 @@ impl_546;
 
 static const afw_runtime_property_t
 impl_546_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_546_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_546_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b6bf909eb2e3.pub
 };
 
@@ -56737,19 +56737,19 @@ impl_547;
 
 static const afw_runtime_property_t
 impl_547_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_547_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_547_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__886ac20be07d.pub
 };
 
@@ -56820,19 +56820,19 @@ impl_548;
 
 static const afw_runtime_property_t
 impl_548_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_548_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_548_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_shadow_effect_of_a_text.pub
 };
 
@@ -56903,19 +56903,19 @@ impl_549;
 
 static const afw_runtime_property_t
 impl_549_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_549_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_549_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_capitalization_of_a_text.pub
 };
 
@@ -56986,19 +56986,19 @@ impl_550;
 
 static const afw_runtime_property_t
 impl_550_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_550_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_550_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_top_position_of_a_positioned_element.pub
 };
 
@@ -57069,19 +57069,19 @@ impl_551;
 
 static const afw_runtime_property_t
 impl_551_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_551_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_551_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Applies_a_2D_or_3D_transformation_to_an_element.pub
 };
 
@@ -57152,19 +57152,19 @@ impl_552;
 
 static const afw_runtime_property_t
 impl_552_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_552_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_552_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_position_of_transformed_elements.pub
 };
 
@@ -57235,19 +57235,19 @@ impl_553;
 
 static const afw_runtime_property_t
 impl_553_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_553_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_553_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_how_nested_elements_are_rendered_in_3D_space.pub
 };
 
@@ -57318,19 +57318,19 @@ impl_554;
 
 static const afw_runtime_property_t
 impl_554_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_554_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_554_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__40298ffffbd6.pub
 };
 
@@ -57401,19 +57401,19 @@ impl_555;
 
 static const afw_runtime_property_t
 impl_555_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_555_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_555_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_when_the_transition_effect_will_start.pub
 };
 
@@ -57484,19 +57484,19 @@ impl_556;
 
 static const afw_runtime_property_t
 impl_556_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_556_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_556_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b0e6b7807623.pub
 };
 
@@ -57567,19 +57567,19 @@ impl_557;
 
 static const afw_runtime_property_t
 impl_557_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_557_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_557_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__921ba25b331d.pub
 };
 
@@ -57650,19 +57650,19 @@ impl_558;
 
 static const afw_runtime_property_t
 impl_558_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_558_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_558_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_speed_curve_of_the_transition_effect.pub
 };
 
@@ -57733,19 +57733,19 @@ impl_559;
 
 static const afw_runtime_property_t
 impl_559_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_559_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_559_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b3311a35ad4d.pub
 };
 
@@ -57816,19 +57816,19 @@ impl_560;
 
 static const afw_runtime_property_t
 impl_560_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_560_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_560_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__01d265820387.pub
 };
 
@@ -57899,19 +57899,19 @@ impl_561;
 
 static const afw_runtime_property_t
 impl_561_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_561_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_561_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__016e1fe2503c.pub
 };
 
@@ -57982,19 +57982,19 @@ impl_562;
 
 static const afw_runtime_property_t
 impl_562_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_562_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_562_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_whether_an_element_should_be_visible.pub
 };
 
@@ -58065,19 +58065,19 @@ impl_563;
 
 static const afw_runtime_property_t
 impl_563_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_563_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_563_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__be19cec99496.pub
 };
 
@@ -58148,19 +58148,19 @@ impl_564;
 
 static const afw_runtime_property_t
 impl_564_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_564_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_564_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__e729ae8516a3.pub
 };
 
@@ -58231,19 +58231,19 @@ impl_565;
 
 static const afw_runtime_property_t
 impl_565_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_565_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_565_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_width_of_an_element.pub
 };
 
@@ -58314,19 +58314,19 @@ impl_566;
 
 static const afw_runtime_property_t
 impl_566_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_566_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_566_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_line_breaking_rules_for_non_CJK_scripts.pub
 };
 
@@ -58397,19 +58397,19 @@ impl_567;
 
 static const afw_runtime_property_t
 impl_567_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_567_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_567_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_spacing_between_words_in_a_text.pub
 };
 
@@ -58480,19 +58480,19 @@ impl_568;
 
 static const afw_runtime_property_t
 impl_568_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_568_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_568_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__69b067226b58.pub
 };
 
@@ -58563,19 +58563,19 @@ impl_569;
 
 static const afw_runtime_property_t
 impl_569_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_569_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_569_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_or_returns_the_stack_order_of_a_positioned_element.pub
 };
 
@@ -58649,7 +58649,7 @@ impl_384_property_value_alignContent = {
 
 static const afw_runtime_property_t
 impl_384_property_alignContent = {
-    &afw_components_self_s_alignContent,
+    afw_components_v_alignContent,
     &impl_384_property_value_alignContent.pub
 };
 
@@ -58661,7 +58661,7 @@ impl_384_property_value_alignItems = {
 
 static const afw_runtime_property_t
 impl_384_property_alignItems = {
-    &afw_components_self_s_alignItems,
+    afw_components_v_alignItems,
     &impl_384_property_value_alignItems.pub
 };
 
@@ -58673,7 +58673,7 @@ impl_384_property_value_alignSelf = {
 
 static const afw_runtime_property_t
 impl_384_property_alignSelf = {
-    &afw_components_self_s_alignSelf,
+    afw_components_v_alignSelf,
     &impl_384_property_value_alignSelf.pub
 };
 
@@ -58685,7 +58685,7 @@ impl_384_property_value_animation = {
 
 static const afw_runtime_property_t
 impl_384_property_animation = {
-    &afw_components_self_s_animation,
+    afw_components_v_animation,
     &impl_384_property_value_animation.pub
 };
 
@@ -58697,7 +58697,7 @@ impl_384_property_value_animationDelay = {
 
 static const afw_runtime_property_t
 impl_384_property_animationDelay = {
-    &afw_components_self_s_animationDelay,
+    afw_components_v_animationDelay,
     &impl_384_property_value_animationDelay.pub
 };
 
@@ -58709,7 +58709,7 @@ impl_384_property_value_animationDirection = {
 
 static const afw_runtime_property_t
 impl_384_property_animationDirection = {
-    &afw_components_self_s_animationDirection,
+    afw_components_v_animationDirection,
     &impl_384_property_value_animationDirection.pub
 };
 
@@ -58721,7 +58721,7 @@ impl_384_property_value_animationDuration = {
 
 static const afw_runtime_property_t
 impl_384_property_animationDuration = {
-    &afw_components_self_s_animationDuration,
+    afw_components_v_animationDuration,
     &impl_384_property_value_animationDuration.pub
 };
 
@@ -58733,7 +58733,7 @@ impl_384_property_value_animationFillMode = {
 
 static const afw_runtime_property_t
 impl_384_property_animationFillMode = {
-    &afw_components_self_s_animationFillMode,
+    afw_components_v_animationFillMode,
     &impl_384_property_value_animationFillMode.pub
 };
 
@@ -58745,7 +58745,7 @@ impl_384_property_value_animationIterationCount = {
 
 static const afw_runtime_property_t
 impl_384_property_animationIterationCount = {
-    &afw_components_self_s_animationIterationCount,
+    afw_components_v_animationIterationCount,
     &impl_384_property_value_animationIterationCount.pub
 };
 
@@ -58757,7 +58757,7 @@ impl_384_property_value_animationName = {
 
 static const afw_runtime_property_t
 impl_384_property_animationName = {
-    &afw_components_self_s_animationName,
+    afw_components_v_animationName,
     &impl_384_property_value_animationName.pub
 };
 
@@ -58769,7 +58769,7 @@ impl_384_property_value_animationPlayState = {
 
 static const afw_runtime_property_t
 impl_384_property_animationPlayState = {
-    &afw_components_self_s_animationPlayState,
+    afw_components_v_animationPlayState,
     &impl_384_property_value_animationPlayState.pub
 };
 
@@ -58781,7 +58781,7 @@ impl_384_property_value_animationTimingFunction = {
 
 static const afw_runtime_property_t
 impl_384_property_animationTimingFunction = {
-    &afw_components_self_s_animationTimingFunction,
+    afw_components_v_animationTimingFunction,
     &impl_384_property_value_animationTimingFunction.pub
 };
 
@@ -58793,7 +58793,7 @@ impl_384_property_value_backfaceVisibility = {
 
 static const afw_runtime_property_t
 impl_384_property_backfaceVisibility = {
-    &afw_components_self_s_backfaceVisibility,
+    afw_components_v_backfaceVisibility,
     &impl_384_property_value_backfaceVisibility.pub
 };
 
@@ -58805,7 +58805,7 @@ impl_384_property_value_background = {
 
 static const afw_runtime_property_t
 impl_384_property_background = {
-    &afw_components_self_s_background,
+    afw_components_v_background,
     &impl_384_property_value_background.pub
 };
 
@@ -58817,7 +58817,7 @@ impl_384_property_value_backgroundAttachment = {
 
 static const afw_runtime_property_t
 impl_384_property_backgroundAttachment = {
-    &afw_components_self_s_backgroundAttachment,
+    afw_components_v_backgroundAttachment,
     &impl_384_property_value_backgroundAttachment.pub
 };
 
@@ -58829,7 +58829,7 @@ impl_384_property_value_backgroundClip = {
 
 static const afw_runtime_property_t
 impl_384_property_backgroundClip = {
-    &afw_components_self_s_backgroundClip,
+    afw_components_v_backgroundClip,
     &impl_384_property_value_backgroundClip.pub
 };
 
@@ -58841,7 +58841,7 @@ impl_384_property_value_backgroundColor = {
 
 static const afw_runtime_property_t
 impl_384_property_backgroundColor = {
-    &afw_components_self_s_backgroundColor,
+    afw_components_v_backgroundColor,
     &impl_384_property_value_backgroundColor.pub
 };
 
@@ -58853,7 +58853,7 @@ impl_384_property_value_backgroundImage = {
 
 static const afw_runtime_property_t
 impl_384_property_backgroundImage = {
-    &afw_components_self_s_backgroundImage,
+    afw_components_v_backgroundImage,
     &impl_384_property_value_backgroundImage.pub
 };
 
@@ -58865,7 +58865,7 @@ impl_384_property_value_backgroundOrigin = {
 
 static const afw_runtime_property_t
 impl_384_property_backgroundOrigin = {
-    &afw_components_self_s_backgroundOrigin,
+    afw_components_v_backgroundOrigin,
     &impl_384_property_value_backgroundOrigin.pub
 };
 
@@ -58877,7 +58877,7 @@ impl_384_property_value_backgroundPosition = {
 
 static const afw_runtime_property_t
 impl_384_property_backgroundPosition = {
-    &afw_components_self_s_backgroundPosition,
+    afw_components_v_backgroundPosition,
     &impl_384_property_value_backgroundPosition.pub
 };
 
@@ -58889,7 +58889,7 @@ impl_384_property_value_backgroundRepeat = {
 
 static const afw_runtime_property_t
 impl_384_property_backgroundRepeat = {
-    &afw_components_self_s_backgroundRepeat,
+    afw_components_v_backgroundRepeat,
     &impl_384_property_value_backgroundRepeat.pub
 };
 
@@ -58901,7 +58901,7 @@ impl_384_property_value_backgroundSize = {
 
 static const afw_runtime_property_t
 impl_384_property_backgroundSize = {
-    &afw_components_self_s_backgroundSize,
+    afw_components_v_backgroundSize,
     &impl_384_property_value_backgroundSize.pub
 };
 
@@ -58913,7 +58913,7 @@ impl_384_property_value_border = {
 
 static const afw_runtime_property_t
 impl_384_property_border = {
-    &afw_components_self_s_border,
+    afw_components_v_border,
     &impl_384_property_value_border.pub
 };
 
@@ -58925,7 +58925,7 @@ impl_384_property_value_borderBottom = {
 
 static const afw_runtime_property_t
 impl_384_property_borderBottom = {
-    &afw_components_self_s_borderBottom,
+    afw_components_v_borderBottom,
     &impl_384_property_value_borderBottom.pub
 };
 
@@ -58937,7 +58937,7 @@ impl_384_property_value_borderBottomColor = {
 
 static const afw_runtime_property_t
 impl_384_property_borderBottomColor = {
-    &afw_components_self_s_borderBottomColor,
+    afw_components_v_borderBottomColor,
     &impl_384_property_value_borderBottomColor.pub
 };
 
@@ -58949,7 +58949,7 @@ impl_384_property_value_borderBottomLeftRadius = {
 
 static const afw_runtime_property_t
 impl_384_property_borderBottomLeftRadius = {
-    &afw_components_self_s_borderBottomLeftRadius,
+    afw_components_v_borderBottomLeftRadius,
     &impl_384_property_value_borderBottomLeftRadius.pub
 };
 
@@ -58961,7 +58961,7 @@ impl_384_property_value_borderBottomRightRadius = {
 
 static const afw_runtime_property_t
 impl_384_property_borderBottomRightRadius = {
-    &afw_components_self_s_borderBottomRightRadius,
+    afw_components_v_borderBottomRightRadius,
     &impl_384_property_value_borderBottomRightRadius.pub
 };
 
@@ -58973,7 +58973,7 @@ impl_384_property_value_borderBottomStyle = {
 
 static const afw_runtime_property_t
 impl_384_property_borderBottomStyle = {
-    &afw_components_self_s_borderBottomStyle,
+    afw_components_v_borderBottomStyle,
     &impl_384_property_value_borderBottomStyle.pub
 };
 
@@ -58985,7 +58985,7 @@ impl_384_property_value_borderBottomWidth = {
 
 static const afw_runtime_property_t
 impl_384_property_borderBottomWidth = {
-    &afw_components_self_s_borderBottomWidth,
+    afw_components_v_borderBottomWidth,
     &impl_384_property_value_borderBottomWidth.pub
 };
 
@@ -58997,7 +58997,7 @@ impl_384_property_value_borderCollapse = {
 
 static const afw_runtime_property_t
 impl_384_property_borderCollapse = {
-    &afw_components_self_s_borderCollapse,
+    afw_components_v_borderCollapse,
     &impl_384_property_value_borderCollapse.pub
 };
 
@@ -59009,7 +59009,7 @@ impl_384_property_value_borderColor = {
 
 static const afw_runtime_property_t
 impl_384_property_borderColor = {
-    &afw_components_self_s_borderColor,
+    afw_components_v_borderColor,
     &impl_384_property_value_borderColor.pub
 };
 
@@ -59021,7 +59021,7 @@ impl_384_property_value_borderImage = {
 
 static const afw_runtime_property_t
 impl_384_property_borderImage = {
-    &afw_components_self_s_borderImage,
+    afw_components_v_borderImage,
     &impl_384_property_value_borderImage.pub
 };
 
@@ -59033,7 +59033,7 @@ impl_384_property_value_borderImageOutset = {
 
 static const afw_runtime_property_t
 impl_384_property_borderImageOutset = {
-    &afw_components_self_s_borderImageOutset,
+    afw_components_v_borderImageOutset,
     &impl_384_property_value_borderImageOutset.pub
 };
 
@@ -59045,7 +59045,7 @@ impl_384_property_value_borderImageRepeat = {
 
 static const afw_runtime_property_t
 impl_384_property_borderImageRepeat = {
-    &afw_components_self_s_borderImageRepeat,
+    afw_components_v_borderImageRepeat,
     &impl_384_property_value_borderImageRepeat.pub
 };
 
@@ -59057,7 +59057,7 @@ impl_384_property_value_borderImageSlice = {
 
 static const afw_runtime_property_t
 impl_384_property_borderImageSlice = {
-    &afw_components_self_s_borderImageSlice,
+    afw_components_v_borderImageSlice,
     &impl_384_property_value_borderImageSlice.pub
 };
 
@@ -59069,7 +59069,7 @@ impl_384_property_value_borderImageSource = {
 
 static const afw_runtime_property_t
 impl_384_property_borderImageSource = {
-    &afw_components_self_s_borderImageSource,
+    afw_components_v_borderImageSource,
     &impl_384_property_value_borderImageSource.pub
 };
 
@@ -59081,7 +59081,7 @@ impl_384_property_value_borderImageWidth = {
 
 static const afw_runtime_property_t
 impl_384_property_borderImageWidth = {
-    &afw_components_self_s_borderImageWidth,
+    afw_components_v_borderImageWidth,
     &impl_384_property_value_borderImageWidth.pub
 };
 
@@ -59093,7 +59093,7 @@ impl_384_property_value_borderLeft = {
 
 static const afw_runtime_property_t
 impl_384_property_borderLeft = {
-    &afw_components_self_s_borderLeft,
+    afw_components_v_borderLeft,
     &impl_384_property_value_borderLeft.pub
 };
 
@@ -59105,7 +59105,7 @@ impl_384_property_value_borderLeftColor = {
 
 static const afw_runtime_property_t
 impl_384_property_borderLeftColor = {
-    &afw_components_self_s_borderLeftColor,
+    afw_components_v_borderLeftColor,
     &impl_384_property_value_borderLeftColor.pub
 };
 
@@ -59117,7 +59117,7 @@ impl_384_property_value_borderLeftStyle = {
 
 static const afw_runtime_property_t
 impl_384_property_borderLeftStyle = {
-    &afw_components_self_s_borderLeftStyle,
+    afw_components_v_borderLeftStyle,
     &impl_384_property_value_borderLeftStyle.pub
 };
 
@@ -59129,7 +59129,7 @@ impl_384_property_value_borderLeftWidth = {
 
 static const afw_runtime_property_t
 impl_384_property_borderLeftWidth = {
-    &afw_components_self_s_borderLeftWidth,
+    afw_components_v_borderLeftWidth,
     &impl_384_property_value_borderLeftWidth.pub
 };
 
@@ -59141,7 +59141,7 @@ impl_384_property_value_borderRadius = {
 
 static const afw_runtime_property_t
 impl_384_property_borderRadius = {
-    &afw_components_self_s_borderRadius,
+    afw_components_v_borderRadius,
     &impl_384_property_value_borderRadius.pub
 };
 
@@ -59153,7 +59153,7 @@ impl_384_property_value_borderRight = {
 
 static const afw_runtime_property_t
 impl_384_property_borderRight = {
-    &afw_components_self_s_borderRight,
+    afw_components_v_borderRight,
     &impl_384_property_value_borderRight.pub
 };
 
@@ -59165,7 +59165,7 @@ impl_384_property_value_borderRightColor = {
 
 static const afw_runtime_property_t
 impl_384_property_borderRightColor = {
-    &afw_components_self_s_borderRightColor,
+    afw_components_v_borderRightColor,
     &impl_384_property_value_borderRightColor.pub
 };
 
@@ -59177,7 +59177,7 @@ impl_384_property_value_borderRightStyle = {
 
 static const afw_runtime_property_t
 impl_384_property_borderRightStyle = {
-    &afw_components_self_s_borderRightStyle,
+    afw_components_v_borderRightStyle,
     &impl_384_property_value_borderRightStyle.pub
 };
 
@@ -59189,7 +59189,7 @@ impl_384_property_value_borderRightWidth = {
 
 static const afw_runtime_property_t
 impl_384_property_borderRightWidth = {
-    &afw_components_self_s_borderRightWidth,
+    afw_components_v_borderRightWidth,
     &impl_384_property_value_borderRightWidth.pub
 };
 
@@ -59201,7 +59201,7 @@ impl_384_property_value_borderSpacing = {
 
 static const afw_runtime_property_t
 impl_384_property_borderSpacing = {
-    &afw_components_self_s_borderSpacing,
+    afw_components_v_borderSpacing,
     &impl_384_property_value_borderSpacing.pub
 };
 
@@ -59213,7 +59213,7 @@ impl_384_property_value_borderStyle = {
 
 static const afw_runtime_property_t
 impl_384_property_borderStyle = {
-    &afw_components_self_s_borderStyle,
+    afw_components_v_borderStyle,
     &impl_384_property_value_borderStyle.pub
 };
 
@@ -59225,7 +59225,7 @@ impl_384_property_value_borderTop = {
 
 static const afw_runtime_property_t
 impl_384_property_borderTop = {
-    &afw_components_self_s_borderTop,
+    afw_components_v_borderTop,
     &impl_384_property_value_borderTop.pub
 };
 
@@ -59237,7 +59237,7 @@ impl_384_property_value_borderTopColor = {
 
 static const afw_runtime_property_t
 impl_384_property_borderTopColor = {
-    &afw_components_self_s_borderTopColor,
+    afw_components_v_borderTopColor,
     &impl_384_property_value_borderTopColor.pub
 };
 
@@ -59249,7 +59249,7 @@ impl_384_property_value_borderTopLeftRadius = {
 
 static const afw_runtime_property_t
 impl_384_property_borderTopLeftRadius = {
-    &afw_components_self_s_borderTopLeftRadius,
+    afw_components_v_borderTopLeftRadius,
     &impl_384_property_value_borderTopLeftRadius.pub
 };
 
@@ -59261,7 +59261,7 @@ impl_384_property_value_borderTopRightRadius = {
 
 static const afw_runtime_property_t
 impl_384_property_borderTopRightRadius = {
-    &afw_components_self_s_borderTopRightRadius,
+    afw_components_v_borderTopRightRadius,
     &impl_384_property_value_borderTopRightRadius.pub
 };
 
@@ -59273,7 +59273,7 @@ impl_384_property_value_borderTopStyle = {
 
 static const afw_runtime_property_t
 impl_384_property_borderTopStyle = {
-    &afw_components_self_s_borderTopStyle,
+    afw_components_v_borderTopStyle,
     &impl_384_property_value_borderTopStyle.pub
 };
 
@@ -59285,7 +59285,7 @@ impl_384_property_value_borderTopWidth = {
 
 static const afw_runtime_property_t
 impl_384_property_borderTopWidth = {
-    &afw_components_self_s_borderTopWidth,
+    afw_components_v_borderTopWidth,
     &impl_384_property_value_borderTopWidth.pub
 };
 
@@ -59297,7 +59297,7 @@ impl_384_property_value_borderWidth = {
 
 static const afw_runtime_property_t
 impl_384_property_borderWidth = {
-    &afw_components_self_s_borderWidth,
+    afw_components_v_borderWidth,
     &impl_384_property_value_borderWidth.pub
 };
 
@@ -59309,7 +59309,7 @@ impl_384_property_value_bottom = {
 
 static const afw_runtime_property_t
 impl_384_property_bottom = {
-    &afw_components_self_s_bottom,
+    afw_components_v_bottom,
     &impl_384_property_value_bottom.pub
 };
 
@@ -59321,7 +59321,7 @@ impl_384_property_value_boxDecorationBreak = {
 
 static const afw_runtime_property_t
 impl_384_property_boxDecorationBreak = {
-    &afw_components_self_s_boxDecorationBreak,
+    afw_components_v_boxDecorationBreak,
     &impl_384_property_value_boxDecorationBreak.pub
 };
 
@@ -59333,7 +59333,7 @@ impl_384_property_value_boxShadow = {
 
 static const afw_runtime_property_t
 impl_384_property_boxShadow = {
-    &afw_components_self_s_boxShadow,
+    afw_components_v_boxShadow,
     &impl_384_property_value_boxShadow.pub
 };
 
@@ -59345,7 +59345,7 @@ impl_384_property_value_boxSizing = {
 
 static const afw_runtime_property_t
 impl_384_property_boxSizing = {
-    &afw_components_self_s_boxSizing,
+    afw_components_v_boxSizing,
     &impl_384_property_value_boxSizing.pub
 };
 
@@ -59357,7 +59357,7 @@ impl_384_property_value_captionSide = {
 
 static const afw_runtime_property_t
 impl_384_property_captionSide = {
-    &afw_components_self_s_captionSide,
+    afw_components_v_captionSide,
     &impl_384_property_value_captionSide.pub
 };
 
@@ -59369,7 +59369,7 @@ impl_384_property_value_clear = {
 
 static const afw_runtime_property_t
 impl_384_property_clear = {
-    &afw_components_self_s_clear,
+    afw_components_v_clear,
     &impl_384_property_value_clear.pub
 };
 
@@ -59381,7 +59381,7 @@ impl_384_property_value_clip = {
 
 static const afw_runtime_property_t
 impl_384_property_clip = {
-    &afw_components_self_s_clip,
+    afw_components_v_clip,
     &impl_384_property_value_clip.pub
 };
 
@@ -59393,7 +59393,7 @@ impl_384_property_value_color = {
 
 static const afw_runtime_property_t
 impl_384_property_color = {
-    &afw_components_self_s_color,
+    afw_components_v_color,
     &impl_384_property_value_color.pub
 };
 
@@ -59405,7 +59405,7 @@ impl_384_property_value_columnCount = {
 
 static const afw_runtime_property_t
 impl_384_property_columnCount = {
-    &afw_components_self_s_columnCount,
+    afw_components_v_columnCount,
     &impl_384_property_value_columnCount.pub
 };
 
@@ -59417,7 +59417,7 @@ impl_384_property_value_columnFill = {
 
 static const afw_runtime_property_t
 impl_384_property_columnFill = {
-    &afw_components_self_s_columnFill,
+    afw_components_v_columnFill,
     &impl_384_property_value_columnFill.pub
 };
 
@@ -59429,7 +59429,7 @@ impl_384_property_value_columnGap = {
 
 static const afw_runtime_property_t
 impl_384_property_columnGap = {
-    &afw_components_self_s_columnGap,
+    afw_components_v_columnGap,
     &impl_384_property_value_columnGap.pub
 };
 
@@ -59441,7 +59441,7 @@ impl_384_property_value_columnRule = {
 
 static const afw_runtime_property_t
 impl_384_property_columnRule = {
-    &afw_components_self_s_columnRule,
+    afw_components_v_columnRule,
     &impl_384_property_value_columnRule.pub
 };
 
@@ -59453,7 +59453,7 @@ impl_384_property_value_columnRuleColor = {
 
 static const afw_runtime_property_t
 impl_384_property_columnRuleColor = {
-    &afw_components_self_s_columnRuleColor,
+    afw_components_v_columnRuleColor,
     &impl_384_property_value_columnRuleColor.pub
 };
 
@@ -59465,7 +59465,7 @@ impl_384_property_value_columnRuleStyle = {
 
 static const afw_runtime_property_t
 impl_384_property_columnRuleStyle = {
-    &afw_components_self_s_columnRuleStyle,
+    afw_components_v_columnRuleStyle,
     &impl_384_property_value_columnRuleStyle.pub
 };
 
@@ -59477,7 +59477,7 @@ impl_384_property_value_columnRuleWidth = {
 
 static const afw_runtime_property_t
 impl_384_property_columnRuleWidth = {
-    &afw_components_self_s_columnRuleWidth,
+    afw_components_v_columnRuleWidth,
     &impl_384_property_value_columnRuleWidth.pub
 };
 
@@ -59489,7 +59489,7 @@ impl_384_property_value_columnSpan = {
 
 static const afw_runtime_property_t
 impl_384_property_columnSpan = {
-    &afw_components_self_s_columnSpan,
+    afw_components_v_columnSpan,
     &impl_384_property_value_columnSpan.pub
 };
 
@@ -59501,7 +59501,7 @@ impl_384_property_value_columnWidth = {
 
 static const afw_runtime_property_t
 impl_384_property_columnWidth = {
-    &afw_components_self_s_columnWidth,
+    afw_components_v_columnWidth,
     &impl_384_property_value_columnWidth.pub
 };
 
@@ -59513,7 +59513,7 @@ impl_384_property_value_columns = {
 
 static const afw_runtime_property_t
 impl_384_property_columns = {
-    &afw_components_self_s_columns,
+    afw_components_v_columns,
     &impl_384_property_value_columns.pub
 };
 
@@ -59525,7 +59525,7 @@ impl_384_property_value_content = {
 
 static const afw_runtime_property_t
 impl_384_property_content = {
-    &afw_components_self_s_content,
+    afw_components_v_content,
     &impl_384_property_value_content.pub
 };
 
@@ -59537,7 +59537,7 @@ impl_384_property_value_counterIncrement = {
 
 static const afw_runtime_property_t
 impl_384_property_counterIncrement = {
-    &afw_components_self_s_counterIncrement,
+    afw_components_v_counterIncrement,
     &impl_384_property_value_counterIncrement.pub
 };
 
@@ -59549,7 +59549,7 @@ impl_384_property_value_counterReset = {
 
 static const afw_runtime_property_t
 impl_384_property_counterReset = {
-    &afw_components_self_s_counterReset,
+    afw_components_v_counterReset,
     &impl_384_property_value_counterReset.pub
 };
 
@@ -59561,7 +59561,7 @@ impl_384_property_value_cssFloat = {
 
 static const afw_runtime_property_t
 impl_384_property_cssFloat = {
-    &afw_components_self_s_cssFloat,
+    afw_components_v_cssFloat,
     &impl_384_property_value_cssFloat.pub
 };
 
@@ -59573,7 +59573,7 @@ impl_384_property_value_cursor = {
 
 static const afw_runtime_property_t
 impl_384_property_cursor = {
-    &afw_components_self_s_cursor,
+    afw_components_v_cursor,
     &impl_384_property_value_cursor.pub
 };
 
@@ -59585,7 +59585,7 @@ impl_384_property_value_direction = {
 
 static const afw_runtime_property_t
 impl_384_property_direction = {
-    &afw_components_self_s_direction,
+    afw_components_v_direction,
     &impl_384_property_value_direction.pub
 };
 
@@ -59597,7 +59597,7 @@ impl_384_property_value_display = {
 
 static const afw_runtime_property_t
 impl_384_property_display = {
-    &afw_components_self_s_display,
+    afw_components_v_display,
     &impl_384_property_value_display.pub
 };
 
@@ -59609,7 +59609,7 @@ impl_384_property_value_emptyCells = {
 
 static const afw_runtime_property_t
 impl_384_property_emptyCells = {
-    &afw_components_self_s_emptyCells,
+    afw_components_v_emptyCells,
     &impl_384_property_value_emptyCells.pub
 };
 
@@ -59621,7 +59621,7 @@ impl_384_property_value_filter = {
 
 static const afw_runtime_property_t
 impl_384_property_filter = {
-    &afw_components_self_s_filter,
+    afw_components_v_filter,
     &impl_384_property_value_filter.pub
 };
 
@@ -59633,7 +59633,7 @@ impl_384_property_value_flex = {
 
 static const afw_runtime_property_t
 impl_384_property_flex = {
-    &afw_components_self_s_flex,
+    afw_components_v_flex,
     &impl_384_property_value_flex.pub
 };
 
@@ -59645,7 +59645,7 @@ impl_384_property_value_flexBasis = {
 
 static const afw_runtime_property_t
 impl_384_property_flexBasis = {
-    &afw_components_self_s_flexBasis,
+    afw_components_v_flexBasis,
     &impl_384_property_value_flexBasis.pub
 };
 
@@ -59657,7 +59657,7 @@ impl_384_property_value_flexDirection = {
 
 static const afw_runtime_property_t
 impl_384_property_flexDirection = {
-    &afw_components_self_s_flexDirection,
+    afw_components_v_flexDirection,
     &impl_384_property_value_flexDirection.pub
 };
 
@@ -59669,7 +59669,7 @@ impl_384_property_value_flexFlow = {
 
 static const afw_runtime_property_t
 impl_384_property_flexFlow = {
-    &afw_components_self_s_flexFlow,
+    afw_components_v_flexFlow,
     &impl_384_property_value_flexFlow.pub
 };
 
@@ -59681,7 +59681,7 @@ impl_384_property_value_flexGrow = {
 
 static const afw_runtime_property_t
 impl_384_property_flexGrow = {
-    &afw_components_self_s_flexGrow,
+    afw_components_v_flexGrow,
     &impl_384_property_value_flexGrow.pub
 };
 
@@ -59693,7 +59693,7 @@ impl_384_property_value_flexShrink = {
 
 static const afw_runtime_property_t
 impl_384_property_flexShrink = {
-    &afw_components_self_s_flexShrink,
+    afw_components_v_flexShrink,
     &impl_384_property_value_flexShrink.pub
 };
 
@@ -59705,7 +59705,7 @@ impl_384_property_value_flexWrap = {
 
 static const afw_runtime_property_t
 impl_384_property_flexWrap = {
-    &afw_components_self_s_flexWrap,
+    afw_components_v_flexWrap,
     &impl_384_property_value_flexWrap.pub
 };
 
@@ -59717,7 +59717,7 @@ impl_384_property_value_font = {
 
 static const afw_runtime_property_t
 impl_384_property_font = {
-    &afw_components_self_s_font,
+    afw_components_v_font,
     &impl_384_property_value_font.pub
 };
 
@@ -59729,7 +59729,7 @@ impl_384_property_value_fontFamily = {
 
 static const afw_runtime_property_t
 impl_384_property_fontFamily = {
-    &afw_components_self_s_fontFamily,
+    afw_components_v_fontFamily,
     &impl_384_property_value_fontFamily.pub
 };
 
@@ -59741,7 +59741,7 @@ impl_384_property_value_fontSize = {
 
 static const afw_runtime_property_t
 impl_384_property_fontSize = {
-    &afw_components_self_s_fontSize,
+    afw_components_v_fontSize,
     &impl_384_property_value_fontSize.pub
 };
 
@@ -59753,7 +59753,7 @@ impl_384_property_value_fontSizeAdjust = {
 
 static const afw_runtime_property_t
 impl_384_property_fontSizeAdjust = {
-    &afw_components_self_s_fontSizeAdjust,
+    afw_components_v_fontSizeAdjust,
     &impl_384_property_value_fontSizeAdjust.pub
 };
 
@@ -59765,7 +59765,7 @@ impl_384_property_value_fontStretch = {
 
 static const afw_runtime_property_t
 impl_384_property_fontStretch = {
-    &afw_components_self_s_fontStretch,
+    afw_components_v_fontStretch,
     &impl_384_property_value_fontStretch.pub
 };
 
@@ -59777,7 +59777,7 @@ impl_384_property_value_fontStyle = {
 
 static const afw_runtime_property_t
 impl_384_property_fontStyle = {
-    &afw_components_self_s_fontStyle,
+    afw_components_v_fontStyle,
     &impl_384_property_value_fontStyle.pub
 };
 
@@ -59789,7 +59789,7 @@ impl_384_property_value_fontVariant = {
 
 static const afw_runtime_property_t
 impl_384_property_fontVariant = {
-    &afw_components_self_s_fontVariant,
+    afw_components_v_fontVariant,
     &impl_384_property_value_fontVariant.pub
 };
 
@@ -59801,7 +59801,7 @@ impl_384_property_value_fontWeight = {
 
 static const afw_runtime_property_t
 impl_384_property_fontWeight = {
-    &afw_components_self_s_fontWeight,
+    afw_components_v_fontWeight,
     &impl_384_property_value_fontWeight.pub
 };
 
@@ -59813,7 +59813,7 @@ impl_384_property_value_hangingPunctuation = {
 
 static const afw_runtime_property_t
 impl_384_property_hangingPunctuation = {
-    &afw_components_self_s_hangingPunctuation,
+    afw_components_v_hangingPunctuation,
     &impl_384_property_value_hangingPunctuation.pub
 };
 
@@ -59825,7 +59825,7 @@ impl_384_property_value_height = {
 
 static const afw_runtime_property_t
 impl_384_property_height = {
-    &afw_components_self_s_height,
+    afw_components_v_height,
     &impl_384_property_value_height.pub
 };
 
@@ -59837,7 +59837,7 @@ impl_384_property_value_hyphens = {
 
 static const afw_runtime_property_t
 impl_384_property_hyphens = {
-    &afw_components_self_s_hyphens,
+    afw_components_v_hyphens,
     &impl_384_property_value_hyphens.pub
 };
 
@@ -59849,7 +59849,7 @@ impl_384_property_value_icon = {
 
 static const afw_runtime_property_t
 impl_384_property_icon = {
-    &afw_components_self_s_icon,
+    afw_components_v_icon,
     &impl_384_property_value_icon.pub
 };
 
@@ -59861,7 +59861,7 @@ impl_384_property_value_imageOrientation = {
 
 static const afw_runtime_property_t
 impl_384_property_imageOrientation = {
-    &afw_components_self_s_imageOrientation,
+    afw_components_v_imageOrientation,
     &impl_384_property_value_imageOrientation.pub
 };
 
@@ -59873,7 +59873,7 @@ impl_384_property_value_isolation = {
 
 static const afw_runtime_property_t
 impl_384_property_isolation = {
-    &afw_components_self_s_isolation,
+    afw_components_v_isolation,
     &impl_384_property_value_isolation.pub
 };
 
@@ -59885,7 +59885,7 @@ impl_384_property_value_justifyContent = {
 
 static const afw_runtime_property_t
 impl_384_property_justifyContent = {
-    &afw_components_self_s_justifyContent,
+    afw_components_v_justifyContent,
     &impl_384_property_value_justifyContent.pub
 };
 
@@ -59897,7 +59897,7 @@ impl_384_property_value_left = {
 
 static const afw_runtime_property_t
 impl_384_property_left = {
-    &afw_components_self_s_left,
+    afw_components_v_left,
     &impl_384_property_value_left.pub
 };
 
@@ -59909,7 +59909,7 @@ impl_384_property_value_letterSpacing = {
 
 static const afw_runtime_property_t
 impl_384_property_letterSpacing = {
-    &afw_components_self_s_letterSpacing,
+    afw_components_v_letterSpacing,
     &impl_384_property_value_letterSpacing.pub
 };
 
@@ -59921,7 +59921,7 @@ impl_384_property_value_lineHeight = {
 
 static const afw_runtime_property_t
 impl_384_property_lineHeight = {
-    &afw_components_self_s_lineHeight,
+    afw_components_v_lineHeight,
     &impl_384_property_value_lineHeight.pub
 };
 
@@ -59933,7 +59933,7 @@ impl_384_property_value_listStyle = {
 
 static const afw_runtime_property_t
 impl_384_property_listStyle = {
-    &afw_components_self_s_listStyle,
+    afw_components_v_listStyle,
     &impl_384_property_value_listStyle.pub
 };
 
@@ -59945,7 +59945,7 @@ impl_384_property_value_listStyleImage = {
 
 static const afw_runtime_property_t
 impl_384_property_listStyleImage = {
-    &afw_components_self_s_listStyleImage,
+    afw_components_v_listStyleImage,
     &impl_384_property_value_listStyleImage.pub
 };
 
@@ -59957,7 +59957,7 @@ impl_384_property_value_listStylePosition = {
 
 static const afw_runtime_property_t
 impl_384_property_listStylePosition = {
-    &afw_components_self_s_listStylePosition,
+    afw_components_v_listStylePosition,
     &impl_384_property_value_listStylePosition.pub
 };
 
@@ -59969,7 +59969,7 @@ impl_384_property_value_listStyleType = {
 
 static const afw_runtime_property_t
 impl_384_property_listStyleType = {
-    &afw_components_self_s_listStyleType,
+    afw_components_v_listStyleType,
     &impl_384_property_value_listStyleType.pub
 };
 
@@ -59981,7 +59981,7 @@ impl_384_property_value_margin = {
 
 static const afw_runtime_property_t
 impl_384_property_margin = {
-    &afw_components_self_s_margin,
+    afw_components_v_margin,
     &impl_384_property_value_margin.pub
 };
 
@@ -59993,7 +59993,7 @@ impl_384_property_value_marginBottom = {
 
 static const afw_runtime_property_t
 impl_384_property_marginBottom = {
-    &afw_components_self_s_marginBottom,
+    afw_components_v_marginBottom,
     &impl_384_property_value_marginBottom.pub
 };
 
@@ -60005,7 +60005,7 @@ impl_384_property_value_marginLeft = {
 
 static const afw_runtime_property_t
 impl_384_property_marginLeft = {
-    &afw_components_self_s_marginLeft,
+    afw_components_v_marginLeft,
     &impl_384_property_value_marginLeft.pub
 };
 
@@ -60017,7 +60017,7 @@ impl_384_property_value_marginRight = {
 
 static const afw_runtime_property_t
 impl_384_property_marginRight = {
-    &afw_components_self_s_marginRight,
+    afw_components_v_marginRight,
     &impl_384_property_value_marginRight.pub
 };
 
@@ -60029,7 +60029,7 @@ impl_384_property_value_marginTop = {
 
 static const afw_runtime_property_t
 impl_384_property_marginTop = {
-    &afw_components_self_s_marginTop,
+    afw_components_v_marginTop,
     &impl_384_property_value_marginTop.pub
 };
 
@@ -60041,7 +60041,7 @@ impl_384_property_value_maxHeight = {
 
 static const afw_runtime_property_t
 impl_384_property_maxHeight = {
-    &afw_components_self_s_maxHeight,
+    afw_components_v_maxHeight,
     &impl_384_property_value_maxHeight.pub
 };
 
@@ -60053,7 +60053,7 @@ impl_384_property_value_maxWidth = {
 
 static const afw_runtime_property_t
 impl_384_property_maxWidth = {
-    &afw_components_self_s_maxWidth,
+    afw_components_v_maxWidth,
     &impl_384_property_value_maxWidth.pub
 };
 
@@ -60065,7 +60065,7 @@ impl_384_property_value_minHeight = {
 
 static const afw_runtime_property_t
 impl_384_property_minHeight = {
-    &afw_components_self_s_minHeight,
+    afw_components_v_minHeight,
     &impl_384_property_value_minHeight.pub
 };
 
@@ -60077,7 +60077,7 @@ impl_384_property_value_minWidth = {
 
 static const afw_runtime_property_t
 impl_384_property_minWidth = {
-    &afw_components_self_s_minWidth,
+    afw_components_v_minWidth,
     &impl_384_property_value_minWidth.pub
 };
 
@@ -60089,7 +60089,7 @@ impl_384_property_value_navDown = {
 
 static const afw_runtime_property_t
 impl_384_property_navDown = {
-    &afw_components_self_s_navDown,
+    afw_components_v_navDown,
     &impl_384_property_value_navDown.pub
 };
 
@@ -60101,7 +60101,7 @@ impl_384_property_value_navIndex = {
 
 static const afw_runtime_property_t
 impl_384_property_navIndex = {
-    &afw_components_self_s_navIndex,
+    afw_components_v_navIndex,
     &impl_384_property_value_navIndex.pub
 };
 
@@ -60113,7 +60113,7 @@ impl_384_property_value_navLeft = {
 
 static const afw_runtime_property_t
 impl_384_property_navLeft = {
-    &afw_components_self_s_navLeft,
+    afw_components_v_navLeft,
     &impl_384_property_value_navLeft.pub
 };
 
@@ -60125,7 +60125,7 @@ impl_384_property_value_navRight = {
 
 static const afw_runtime_property_t
 impl_384_property_navRight = {
-    &afw_components_self_s_navRight,
+    afw_components_v_navRight,
     &impl_384_property_value_navRight.pub
 };
 
@@ -60137,7 +60137,7 @@ impl_384_property_value_navUp = {
 
 static const afw_runtime_property_t
 impl_384_property_navUp = {
-    &afw_components_self_s_navUp,
+    afw_components_v_navUp,
     &impl_384_property_value_navUp.pub
 };
 
@@ -60149,7 +60149,7 @@ impl_384_property_value_objectFit = {
 
 static const afw_runtime_property_t
 impl_384_property_objectFit = {
-    &afw_components_self_s_objectFit,
+    afw_components_v_objectFit,
     &impl_384_property_value_objectFit.pub
 };
 
@@ -60161,7 +60161,7 @@ impl_384_property_value_objectPosition = {
 
 static const afw_runtime_property_t
 impl_384_property_objectPosition = {
-    &afw_components_self_s_objectPosition,
+    afw_components_v_objectPosition,
     &impl_384_property_value_objectPosition.pub
 };
 
@@ -60173,7 +60173,7 @@ impl_384_property_value_opacity = {
 
 static const afw_runtime_property_t
 impl_384_property_opacity = {
-    &afw_components_self_s_opacity,
+    afw_components_v_opacity,
     &impl_384_property_value_opacity.pub
 };
 
@@ -60185,7 +60185,7 @@ impl_384_property_value_order = {
 
 static const afw_runtime_property_t
 impl_384_property_order = {
-    &afw_components_self_s_order,
+    afw_components_v_order,
     &impl_384_property_value_order.pub
 };
 
@@ -60197,7 +60197,7 @@ impl_384_property_value_orphans = {
 
 static const afw_runtime_property_t
 impl_384_property_orphans = {
-    &afw_components_self_s_orphans,
+    afw_components_v_orphans,
     &impl_384_property_value_orphans.pub
 };
 
@@ -60209,7 +60209,7 @@ impl_384_property_value_outline = {
 
 static const afw_runtime_property_t
 impl_384_property_outline = {
-    &afw_components_self_s_outline,
+    afw_components_v_outline,
     &impl_384_property_value_outline.pub
 };
 
@@ -60221,7 +60221,7 @@ impl_384_property_value_outlineColor = {
 
 static const afw_runtime_property_t
 impl_384_property_outlineColor = {
-    &afw_components_self_s_outlineColor,
+    afw_components_v_outlineColor,
     &impl_384_property_value_outlineColor.pub
 };
 
@@ -60233,7 +60233,7 @@ impl_384_property_value_outlineOffset = {
 
 static const afw_runtime_property_t
 impl_384_property_outlineOffset = {
-    &afw_components_self_s_outlineOffset,
+    afw_components_v_outlineOffset,
     &impl_384_property_value_outlineOffset.pub
 };
 
@@ -60245,7 +60245,7 @@ impl_384_property_value_outlineStyle = {
 
 static const afw_runtime_property_t
 impl_384_property_outlineStyle = {
-    &afw_components_self_s_outlineStyle,
+    afw_components_v_outlineStyle,
     &impl_384_property_value_outlineStyle.pub
 };
 
@@ -60257,7 +60257,7 @@ impl_384_property_value_outlineWidth = {
 
 static const afw_runtime_property_t
 impl_384_property_outlineWidth = {
-    &afw_components_self_s_outlineWidth,
+    afw_components_v_outlineWidth,
     &impl_384_property_value_outlineWidth.pub
 };
 
@@ -60269,7 +60269,7 @@ impl_384_property_value_overflow = {
 
 static const afw_runtime_property_t
 impl_384_property_overflow = {
-    &afw_components_self_s_overflow,
+    afw_components_v_overflow,
     &impl_384_property_value_overflow.pub
 };
 
@@ -60281,7 +60281,7 @@ impl_384_property_value_overflowX = {
 
 static const afw_runtime_property_t
 impl_384_property_overflowX = {
-    &afw_components_self_s_overflowX,
+    afw_components_v_overflowX,
     &impl_384_property_value_overflowX.pub
 };
 
@@ -60293,7 +60293,7 @@ impl_384_property_value_overflowY = {
 
 static const afw_runtime_property_t
 impl_384_property_overflowY = {
-    &afw_components_self_s_overflowY,
+    afw_components_v_overflowY,
     &impl_384_property_value_overflowY.pub
 };
 
@@ -60305,7 +60305,7 @@ impl_384_property_value_padding = {
 
 static const afw_runtime_property_t
 impl_384_property_padding = {
-    &afw_components_self_s_padding,
+    afw_components_v_padding,
     &impl_384_property_value_padding.pub
 };
 
@@ -60317,7 +60317,7 @@ impl_384_property_value_paddingBottom = {
 
 static const afw_runtime_property_t
 impl_384_property_paddingBottom = {
-    &afw_components_self_s_paddingBottom,
+    afw_components_v_paddingBottom,
     &impl_384_property_value_paddingBottom.pub
 };
 
@@ -60329,7 +60329,7 @@ impl_384_property_value_paddingLeft = {
 
 static const afw_runtime_property_t
 impl_384_property_paddingLeft = {
-    &afw_components_self_s_paddingLeft,
+    afw_components_v_paddingLeft,
     &impl_384_property_value_paddingLeft.pub
 };
 
@@ -60341,7 +60341,7 @@ impl_384_property_value_paddingRight = {
 
 static const afw_runtime_property_t
 impl_384_property_paddingRight = {
-    &afw_components_self_s_paddingRight,
+    afw_components_v_paddingRight,
     &impl_384_property_value_paddingRight.pub
 };
 
@@ -60353,7 +60353,7 @@ impl_384_property_value_paddingTop = {
 
 static const afw_runtime_property_t
 impl_384_property_paddingTop = {
-    &afw_components_self_s_paddingTop,
+    afw_components_v_paddingTop,
     &impl_384_property_value_paddingTop.pub
 };
 
@@ -60365,7 +60365,7 @@ impl_384_property_value_pageBreakAfter = {
 
 static const afw_runtime_property_t
 impl_384_property_pageBreakAfter = {
-    &afw_components_self_s_pageBreakAfter,
+    afw_components_v_pageBreakAfter,
     &impl_384_property_value_pageBreakAfter.pub
 };
 
@@ -60377,7 +60377,7 @@ impl_384_property_value_pageBreakBefore = {
 
 static const afw_runtime_property_t
 impl_384_property_pageBreakBefore = {
-    &afw_components_self_s_pageBreakBefore,
+    afw_components_v_pageBreakBefore,
     &impl_384_property_value_pageBreakBefore.pub
 };
 
@@ -60389,7 +60389,7 @@ impl_384_property_value_pageBreakInside = {
 
 static const afw_runtime_property_t
 impl_384_property_pageBreakInside = {
-    &afw_components_self_s_pageBreakInside,
+    afw_components_v_pageBreakInside,
     &impl_384_property_value_pageBreakInside.pub
 };
 
@@ -60401,7 +60401,7 @@ impl_384_property_value_perspective = {
 
 static const afw_runtime_property_t
 impl_384_property_perspective = {
-    &afw_components_self_s_perspective,
+    afw_components_v_perspective,
     &impl_384_property_value_perspective.pub
 };
 
@@ -60413,7 +60413,7 @@ impl_384_property_value_perspectiveOrigin = {
 
 static const afw_runtime_property_t
 impl_384_property_perspectiveOrigin = {
-    &afw_components_self_s_perspectiveOrigin,
+    afw_components_v_perspectiveOrigin,
     &impl_384_property_value_perspectiveOrigin.pub
 };
 
@@ -60425,7 +60425,7 @@ impl_384_property_value_position = {
 
 static const afw_runtime_property_t
 impl_384_property_position = {
-    &afw_components_self_s_position,
+    afw_components_v_position,
     &impl_384_property_value_position.pub
 };
 
@@ -60437,7 +60437,7 @@ impl_384_property_value_quotes = {
 
 static const afw_runtime_property_t
 impl_384_property_quotes = {
-    &afw_components_self_s_quotes,
+    afw_components_v_quotes,
     &impl_384_property_value_quotes.pub
 };
 
@@ -60449,7 +60449,7 @@ impl_384_property_value_resize = {
 
 static const afw_runtime_property_t
 impl_384_property_resize = {
-    &afw_components_self_s_resize,
+    afw_components_v_resize,
     &impl_384_property_value_resize.pub
 };
 
@@ -60461,7 +60461,7 @@ impl_384_property_value_right = {
 
 static const afw_runtime_property_t
 impl_384_property_right = {
-    &afw_components_self_s_right,
+    afw_components_v_right,
     &impl_384_property_value_right.pub
 };
 
@@ -60473,7 +60473,7 @@ impl_384_property_value_tabSize = {
 
 static const afw_runtime_property_t
 impl_384_property_tabSize = {
-    &afw_components_self_s_tabSize,
+    afw_components_v_tabSize,
     &impl_384_property_value_tabSize.pub
 };
 
@@ -60485,7 +60485,7 @@ impl_384_property_value_tableLayout = {
 
 static const afw_runtime_property_t
 impl_384_property_tableLayout = {
-    &afw_components_self_s_tableLayout,
+    afw_components_v_tableLayout,
     &impl_384_property_value_tableLayout.pub
 };
 
@@ -60497,7 +60497,7 @@ impl_384_property_value_textAlign = {
 
 static const afw_runtime_property_t
 impl_384_property_textAlign = {
-    &afw_components_self_s_textAlign,
+    afw_components_v_textAlign,
     &impl_384_property_value_textAlign.pub
 };
 
@@ -60509,7 +60509,7 @@ impl_384_property_value_textAlignLast = {
 
 static const afw_runtime_property_t
 impl_384_property_textAlignLast = {
-    &afw_components_self_s_textAlignLast,
+    afw_components_v_textAlignLast,
     &impl_384_property_value_textAlignLast.pub
 };
 
@@ -60521,7 +60521,7 @@ impl_384_property_value_textDecoration = {
 
 static const afw_runtime_property_t
 impl_384_property_textDecoration = {
-    &afw_components_self_s_textDecoration,
+    afw_components_v_textDecoration,
     &impl_384_property_value_textDecoration.pub
 };
 
@@ -60533,7 +60533,7 @@ impl_384_property_value_textDecorationColor = {
 
 static const afw_runtime_property_t
 impl_384_property_textDecorationColor = {
-    &afw_components_self_s_textDecorationColor,
+    afw_components_v_textDecorationColor,
     &impl_384_property_value_textDecorationColor.pub
 };
 
@@ -60545,7 +60545,7 @@ impl_384_property_value_textDecorationLine = {
 
 static const afw_runtime_property_t
 impl_384_property_textDecorationLine = {
-    &afw_components_self_s_textDecorationLine,
+    afw_components_v_textDecorationLine,
     &impl_384_property_value_textDecorationLine.pub
 };
 
@@ -60557,7 +60557,7 @@ impl_384_property_value_textDecorationStyle = {
 
 static const afw_runtime_property_t
 impl_384_property_textDecorationStyle = {
-    &afw_components_self_s_textDecorationStyle,
+    afw_components_v_textDecorationStyle,
     &impl_384_property_value_textDecorationStyle.pub
 };
 
@@ -60569,7 +60569,7 @@ impl_384_property_value_textIndent = {
 
 static const afw_runtime_property_t
 impl_384_property_textIndent = {
-    &afw_components_self_s_textIndent,
+    afw_components_v_textIndent,
     &impl_384_property_value_textIndent.pub
 };
 
@@ -60581,7 +60581,7 @@ impl_384_property_value_textJustify = {
 
 static const afw_runtime_property_t
 impl_384_property_textJustify = {
-    &afw_components_self_s_textJustify,
+    afw_components_v_textJustify,
     &impl_384_property_value_textJustify.pub
 };
 
@@ -60593,7 +60593,7 @@ impl_384_property_value_textOverflow = {
 
 static const afw_runtime_property_t
 impl_384_property_textOverflow = {
-    &afw_components_self_s_textOverflow,
+    afw_components_v_textOverflow,
     &impl_384_property_value_textOverflow.pub
 };
 
@@ -60605,7 +60605,7 @@ impl_384_property_value_textShadow = {
 
 static const afw_runtime_property_t
 impl_384_property_textShadow = {
-    &afw_components_self_s_textShadow,
+    afw_components_v_textShadow,
     &impl_384_property_value_textShadow.pub
 };
 
@@ -60617,7 +60617,7 @@ impl_384_property_value_textTransform = {
 
 static const afw_runtime_property_t
 impl_384_property_textTransform = {
-    &afw_components_self_s_textTransform,
+    afw_components_v_textTransform,
     &impl_384_property_value_textTransform.pub
 };
 
@@ -60629,7 +60629,7 @@ impl_384_property_value_top = {
 
 static const afw_runtime_property_t
 impl_384_property_top = {
-    &afw_components_self_s_top,
+    afw_components_v_top,
     &impl_384_property_value_top.pub
 };
 
@@ -60641,7 +60641,7 @@ impl_384_property_value_transform = {
 
 static const afw_runtime_property_t
 impl_384_property_transform = {
-    &afw_components_self_s_transform,
+    afw_components_v_transform,
     &impl_384_property_value_transform.pub
 };
 
@@ -60653,7 +60653,7 @@ impl_384_property_value_transformOrigin = {
 
 static const afw_runtime_property_t
 impl_384_property_transformOrigin = {
-    &afw_components_self_s_transformOrigin,
+    afw_components_v_transformOrigin,
     &impl_384_property_value_transformOrigin.pub
 };
 
@@ -60665,7 +60665,7 @@ impl_384_property_value_transformStyle = {
 
 static const afw_runtime_property_t
 impl_384_property_transformStyle = {
-    &afw_components_self_s_transformStyle,
+    afw_components_v_transformStyle,
     &impl_384_property_value_transformStyle.pub
 };
 
@@ -60677,7 +60677,7 @@ impl_384_property_value_transition = {
 
 static const afw_runtime_property_t
 impl_384_property_transition = {
-    &afw_components_self_s_transition,
+    afw_components_v_transition,
     &impl_384_property_value_transition.pub
 };
 
@@ -60689,7 +60689,7 @@ impl_384_property_value_transitionDelay = {
 
 static const afw_runtime_property_t
 impl_384_property_transitionDelay = {
-    &afw_components_self_s_transitionDelay,
+    afw_components_v_transitionDelay,
     &impl_384_property_value_transitionDelay.pub
 };
 
@@ -60701,7 +60701,7 @@ impl_384_property_value_transitionDuration = {
 
 static const afw_runtime_property_t
 impl_384_property_transitionDuration = {
-    &afw_components_self_s_transitionDuration,
+    afw_components_v_transitionDuration,
     &impl_384_property_value_transitionDuration.pub
 };
 
@@ -60713,7 +60713,7 @@ impl_384_property_value_transitionProperty = {
 
 static const afw_runtime_property_t
 impl_384_property_transitionProperty = {
-    &afw_components_self_s_transitionProperty,
+    afw_components_v_transitionProperty,
     &impl_384_property_value_transitionProperty.pub
 };
 
@@ -60725,7 +60725,7 @@ impl_384_property_value_transitionTimingFunction = {
 
 static const afw_runtime_property_t
 impl_384_property_transitionTimingFunction = {
-    &afw_components_self_s_transitionTimingFunction,
+    afw_components_v_transitionTimingFunction,
     &impl_384_property_value_transitionTimingFunction.pub
 };
 
@@ -60737,7 +60737,7 @@ impl_384_property_value_unicodeBidi = {
 
 static const afw_runtime_property_t
 impl_384_property_unicodeBidi = {
-    &afw_components_self_s_unicodeBidi,
+    afw_components_v_unicodeBidi,
     &impl_384_property_value_unicodeBidi.pub
 };
 
@@ -60749,7 +60749,7 @@ impl_384_property_value_userSelect = {
 
 static const afw_runtime_property_t
 impl_384_property_userSelect = {
-    &afw_components_self_s_userSelect,
+    afw_components_v_userSelect,
     &impl_384_property_value_userSelect.pub
 };
 
@@ -60761,7 +60761,7 @@ impl_384_property_value_verticalAlign = {
 
 static const afw_runtime_property_t
 impl_384_property_verticalAlign = {
-    &afw_components_self_s_verticalAlign,
+    afw_components_v_verticalAlign,
     &impl_384_property_value_verticalAlign.pub
 };
 
@@ -60773,7 +60773,7 @@ impl_384_property_value_visibility = {
 
 static const afw_runtime_property_t
 impl_384_property_visibility = {
-    &afw_components_self_s_visibility,
+    afw_components_v_visibility,
     &impl_384_property_value_visibility.pub
 };
 
@@ -60785,7 +60785,7 @@ impl_384_property_value_whiteSpace = {
 
 static const afw_runtime_property_t
 impl_384_property_whiteSpace = {
-    &afw_components_self_s_whiteSpace,
+    afw_components_v_whiteSpace,
     &impl_384_property_value_whiteSpace.pub
 };
 
@@ -60797,7 +60797,7 @@ impl_384_property_value_widows = {
 
 static const afw_runtime_property_t
 impl_384_property_widows = {
-    &afw_components_self_s_widows,
+    afw_components_v_widows,
     &impl_384_property_value_widows.pub
 };
 
@@ -60809,7 +60809,7 @@ impl_384_property_value_width = {
 
 static const afw_runtime_property_t
 impl_384_property_width = {
-    &afw_components_self_s_width,
+    afw_components_v_width,
     &impl_384_property_value_width.pub
 };
 
@@ -60821,7 +60821,7 @@ impl_384_property_value_wordBreak = {
 
 static const afw_runtime_property_t
 impl_384_property_wordBreak = {
-    &afw_components_self_s_wordBreak,
+    afw_components_v_wordBreak,
     &impl_384_property_value_wordBreak.pub
 };
 
@@ -60833,7 +60833,7 @@ impl_384_property_value_wordSpacing = {
 
 static const afw_runtime_property_t
 impl_384_property_wordSpacing = {
-    &afw_components_self_s_wordSpacing,
+    afw_components_v_wordSpacing,
     &impl_384_property_value_wordSpacing.pub
 };
 
@@ -60845,7 +60845,7 @@ impl_384_property_value_wordWrap = {
 
 static const afw_runtime_property_t
 impl_384_property_wordWrap = {
-    &afw_components_self_s_wordWrap,
+    afw_components_v_wordWrap,
     &impl_384_property_value_wordWrap.pub
 };
 
@@ -60857,7 +60857,7 @@ impl_384_property_value_zIndex = {
 
 static const afw_runtime_property_t
 impl_384_property_zIndex = {
-    &afw_components_self_s_zIndex,
+    afw_components_v_zIndex,
     &impl_384_property_value_zIndex.pub
 };
 
@@ -61107,25 +61107,25 @@ impl_384__value = {
 
 static const afw_runtime_property_t
 impl_382_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_382_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_382_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_382_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -61163,19 +61163,19 @@ impl_382_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_382_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_382_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_382_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_CSS_style_properties_.pub
 };
 
 static const afw_runtime_property_t
 impl_382_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Style.pub
 };
 
@@ -61187,7 +61187,7 @@ impl_382_property_value_otherProperties = {
 
 static const afw_runtime_property_t
 impl_382_property_otherProperties = {
-    &afw_components_self_s_otherProperties,
+    afw_components_v_otherProperties,
     &impl_382_property_value_otherProperties.pub
 };
 
@@ -61199,7 +61199,7 @@ impl_382_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_382_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_382_property_value_propertyTypes.pub
 };
 
@@ -61282,37 +61282,37 @@ impl_572;
 
 static const afw_runtime_property_t
 impl_572_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_572_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_572_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_Table_Column.pub
 };
 
 static const afw_runtime_property_t
 impl_572_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_columns_that_are_defined_for_this_Table_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_572_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Columns.pub
 };
 
 static const afw_runtime_property_t
 impl_572_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -61386,25 +61386,25 @@ impl_573;
 
 static const afw_runtime_property_t
 impl_573_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_573_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_573_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Indicates_whether_this_Table_compact_appears_compact_.pub
 };
 
 static const afw_runtime_property_t
 impl_573_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Compact.pub
 };
 
@@ -61476,25 +61476,25 @@ impl_574;
 
 static const afw_runtime_property_t
 impl_574_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_574_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_574_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Indicates_whether_this_Table_displays_column_headers_.pub
 };
 
 static const afw_runtime_property_t
 impl_574_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Header_Visible.pub
 };
 
@@ -61566,31 +61566,31 @@ impl_575;
 
 static const afw_runtime_property_t
 impl_575_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_575_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_575_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_rows_that_are_defined_for_this_Table_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_575_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Rows.pub
 };
 
 static const afw_runtime_property_t
 impl_575_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -61663,25 +61663,25 @@ impl_576;
 
 static const afw_runtime_property_t
 impl_576_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_576_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_576_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_selection_mode_for_this_table__none__single__multiple__.pub
 };
 
 static const afw_runtime_property_t
 impl_576_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Selection_Mode.pub
 };
 
@@ -61756,7 +61756,7 @@ impl_571_property_value_columns = {
 
 static const afw_runtime_property_t
 impl_571_property_columns = {
-    &afw_components_self_s_columns,
+    afw_components_v_columns,
     &impl_571_property_value_columns.pub
 };
 
@@ -61768,7 +61768,7 @@ impl_571_property_value_compact = {
 
 static const afw_runtime_property_t
 impl_571_property_compact = {
-    &afw_components_self_s_compact,
+    afw_components_v_compact,
     &impl_571_property_value_compact.pub
 };
 
@@ -61780,7 +61780,7 @@ impl_571_property_value_isHeaderVisible = {
 
 static const afw_runtime_property_t
 impl_571_property_isHeaderVisible = {
-    &afw_components_self_s_isHeaderVisible,
+    afw_components_v_isHeaderVisible,
     &impl_571_property_value_isHeaderVisible.pub
 };
 
@@ -61792,7 +61792,7 @@ impl_571_property_value_rows = {
 
 static const afw_runtime_property_t
 impl_571_property_rows = {
-    &afw_components_self_s_rows,
+    afw_components_v_rows,
     &impl_571_property_value_rows.pub
 };
 
@@ -61804,7 +61804,7 @@ impl_571_property_value_selectionMode = {
 
 static const afw_runtime_property_t
 impl_571_property_selectionMode = {
-    &afw_components_self_s_selectionMode,
+    afw_components_v_selectionMode,
     &impl_571_property_value_selectionMode.pub
 };
 
@@ -61893,25 +61893,25 @@ impl_571__value = {
 
 static const afw_runtime_property_t
 impl_570_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_570_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_570_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_570_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -61949,25 +61949,25 @@ impl_570_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_570_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_570_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_570_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Table_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_570_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Table_Layout.pub
 };
 
 static const afw_runtime_property_t
 impl_570_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Table.pub
 };
 
@@ -61979,7 +61979,7 @@ impl_570_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_570_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_570_property_value_propertyTypes.pub
 };
 
@@ -62062,25 +62062,25 @@ impl_579;
 
 static const afw_runtime_property_t
 impl_579_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_579_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_579_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__1bcd5bb91cc0.pub
 };
 
 static const afw_runtime_property_t
 impl_579_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Field_Name.pub
 };
 
@@ -62152,25 +62152,25 @@ impl_580;
 
 static const afw_runtime_property_t
 impl_580_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_580_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_580_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Indicates_this_column_is_multilined_in_this_Table_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_580_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Multiline.pub
 };
 
@@ -62242,25 +62242,25 @@ impl_581;
 
 static const afw_runtime_property_t
 impl_581_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_581_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_581_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Indicates_this_column_is_resizable_in_this_Table_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_581_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Resizable.pub
 };
 
@@ -62332,31 +62332,31 @@ impl_582;
 
 static const afw_runtime_property_t
 impl_582_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_582_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_582_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_key_for_this_column_used_in_this_Table_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_582_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Key.pub
 };
 
 static const afw_runtime_property_t
 impl_582_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -62429,25 +62429,25 @@ impl_583;
 
 static const afw_runtime_property_t
 impl_583_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_583_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_583_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__ce8ffeb94767.pub
 };
 
 static const afw_runtime_property_t
 impl_583_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Max_Width.pub
 };
 
@@ -62519,25 +62519,25 @@ impl_584;
 
 static const afw_runtime_property_t
 impl_584_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_584_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_584_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__20336e404600.pub
 };
 
 static const afw_runtime_property_t
 impl_584_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Min_Width.pub
 };
 
@@ -62609,31 +62609,31 @@ impl_585;
 
 static const afw_runtime_property_t
 impl_585_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_585_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_585_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__a0b6fc821b35.pub
 };
 
 static const afw_runtime_property_t
 impl_585_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Name.pub
 };
 
 static const afw_runtime_property_t
 impl_585_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -62709,7 +62709,7 @@ impl_578_property_value_fieldName = {
 
 static const afw_runtime_property_t
 impl_578_property_fieldName = {
-    &afw_components_self_s_fieldName,
+    afw_components_v_fieldName,
     &impl_578_property_value_fieldName.pub
 };
 
@@ -62721,7 +62721,7 @@ impl_578_property_value_isMultiline = {
 
 static const afw_runtime_property_t
 impl_578_property_isMultiline = {
-    &afw_components_self_s_isMultiline,
+    afw_components_v_isMultiline,
     &impl_578_property_value_isMultiline.pub
 };
 
@@ -62733,7 +62733,7 @@ impl_578_property_value_isResizable = {
 
 static const afw_runtime_property_t
 impl_578_property_isResizable = {
-    &afw_components_self_s_isResizable,
+    afw_components_v_isResizable,
     &impl_578_property_value_isResizable.pub
 };
 
@@ -62745,7 +62745,7 @@ impl_578_property_value_key = {
 
 static const afw_runtime_property_t
 impl_578_property_key = {
-    &afw_components_self_s_key,
+    afw_components_v_key,
     &impl_578_property_value_key.pub
 };
 
@@ -62757,7 +62757,7 @@ impl_578_property_value_maxWidth = {
 
 static const afw_runtime_property_t
 impl_578_property_maxWidth = {
-    &afw_components_self_s_maxWidth,
+    afw_components_v_maxWidth,
     &impl_578_property_value_maxWidth.pub
 };
 
@@ -62769,7 +62769,7 @@ impl_578_property_value_minWidth = {
 
 static const afw_runtime_property_t
 impl_578_property_minWidth = {
-    &afw_components_self_s_minWidth,
+    afw_components_v_minWidth,
     &impl_578_property_value_minWidth.pub
 };
 
@@ -62781,7 +62781,7 @@ impl_578_property_value_name = {
 
 static const afw_runtime_property_t
 impl_578_property_name = {
-    &afw_components_self_s_name,
+    afw_components_v_name,
     &impl_578_property_value_name.pub
 };
 
@@ -62853,25 +62853,25 @@ impl_578__value = {
 
 static const afw_runtime_property_t
 impl_577_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_577_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_577_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_577_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -62909,31 +62909,31 @@ impl_577_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_577_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_577_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_577_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_column_definition_for_the_Table_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_577_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Table_Layout_Column.pub
 };
 
 static const afw_runtime_property_t
 impl_577_property_objectIdPropertyName = {
-    &afw_components_self_s_objectIdPropertyName,
+    afw_components_v_objectIdPropertyName,
     &afw_components_self_v_key.pub
 };
 
 static const afw_runtime_property_t
 impl_577_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Table_Column.pub
 };
 
@@ -62945,7 +62945,7 @@ impl_577_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_577_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_577_property_value_propertyTypes.pub
 };
 
@@ -63085,25 +63085,25 @@ impl_587__value = {
 
 static const afw_runtime_property_t
 impl_586_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_586_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_586_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_586_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -63141,25 +63141,25 @@ impl_586_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_586_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_586_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_586_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_column_definition_for_the_Table_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_586_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Table_Layout_Row.pub
 };
 
 static const afw_runtime_property_t
 impl_586_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Table_Row.pub
 };
 
@@ -63171,7 +63171,7 @@ impl_586_property_value_otherProperties = {
 
 static const afw_runtime_property_t
 impl_586_property_otherProperties = {
-    &afw_components_self_s_otherProperties,
+    afw_components_v_otherProperties,
     &impl_586_property_value_otherProperties.pub
 };
 
@@ -63254,25 +63254,25 @@ impl_590;
 
 static const afw_runtime_property_t
 impl_590_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_590_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_590_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_amount_of_space_between_the_tabs_and_tabbed_content_.pub
 };
 
 static const afw_runtime_property_t
 impl_590_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Gap_Space.pub
 };
 
@@ -63344,31 +63344,31 @@ impl_591;
 
 static const afw_runtime_property_t
 impl_591_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_591_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_591_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_Tabs_Tab.pub
 };
 
 static const afw_runtime_property_t
 impl_591_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_tabs_that_are_defined_for_this_Tabs_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_591_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Tabs.pub
 };
 
@@ -63444,7 +63444,7 @@ impl_589_property_value_gapSpace = {
 
 static const afw_runtime_property_t
 impl_589_property_gapSpace = {
-    &afw_components_self_s_gapSpace,
+    afw_components_v_gapSpace,
     &impl_589_property_value_gapSpace.pub
 };
 
@@ -63456,7 +63456,7 @@ impl_589_property_value_tabs = {
 
 static const afw_runtime_property_t
 impl_589_property_tabs = {
-    &afw_components_self_s_tabs,
+    afw_components_v_tabs,
     &impl_589_property_value_tabs.pub
 };
 
@@ -63542,25 +63542,25 @@ impl_589__value = {
 
 static const afw_runtime_property_t
 impl_588_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_588_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_588_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_588_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -63598,25 +63598,25 @@ impl_588_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_588_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_588_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_588_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Tabs_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_588_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Tabs_Layout.pub
 };
 
 static const afw_runtime_property_t
 impl_588_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Tabs.pub
 };
 
@@ -63628,7 +63628,7 @@ impl_588_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_588_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_588_property_value_propertyTypes.pub
 };
 
@@ -63711,25 +63711,25 @@ impl_594;
 
 static const afw_runtime_property_t
 impl_594_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_594_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_594_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__6e7fc4508742.pub
 };
 
 static const afw_runtime_property_t
 impl_594_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Badge.pub
 };
 
@@ -63801,31 +63801,31 @@ impl_595;
 
 static const afw_runtime_property_t
 impl_595_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_595_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_595_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_.pub
 };
 
 static const afw_runtime_property_t
 impl_595_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_layout_components_that_are_contained_by_this_Tabs_tab_.pub
 };
 
 static const afw_runtime_property_t
 impl_595_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
@@ -63898,25 +63898,25 @@ impl_596;
 
 static const afw_runtime_property_t
 impl_596_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_596_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_596_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_text_for_this_Tabs_tab_.pub
 };
 
 static const afw_runtime_property_t
 impl_596_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Text.pub
 };
 
@@ -63991,7 +63991,7 @@ impl_593_property_value_badge = {
 
 static const afw_runtime_property_t
 impl_593_property_badge = {
-    &afw_components_self_s_badge,
+    afw_components_v_badge,
     &impl_593_property_value_badge.pub
 };
 
@@ -64003,7 +64003,7 @@ impl_593_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_593_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_593_property_value_contains.pub
 };
 
@@ -64015,7 +64015,7 @@ impl_593_property_value_text = {
 
 static const afw_runtime_property_t
 impl_593_property_text = {
-    &afw_components_self_s_text,
+    afw_components_v_text,
     &impl_593_property_value_text.pub
 };
 
@@ -64083,25 +64083,25 @@ impl_593__value = {
 
 static const afw_runtime_property_t
 impl_592_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_592_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_592_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_592_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -64139,31 +64139,31 @@ impl_592_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_592_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_592_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_592_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Tabs_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_592_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Tab.pub
 };
 
 static const afw_runtime_property_t
 impl_592_property_objectIdPropertyName = {
-    &afw_components_self_s_objectIdPropertyName,
+    afw_components_v_objectIdPropertyName,
     &afw_components_self_v_text.pub
 };
 
 static const afw_runtime_property_t
 impl_592_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Tabs_Tab.pub
 };
 
@@ -64175,7 +64175,7 @@ impl_592_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_592_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_592_property_value_propertyTypes.pub
 };
 
@@ -64259,31 +64259,31 @@ impl_599;
 
 static const afw_runtime_property_t
 impl_599_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_599_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_599_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__a2e3ea61e341.pub
 };
 
 static const afw_runtime_property_t
 impl_599_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Description.pub
 };
 
 static const afw_runtime_property_t
 impl_599_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_a_description_of_the_TextField_.pub
 };
 
@@ -64356,25 +64356,25 @@ impl_600;
 
 static const afw_runtime_property_t
 impl_600_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_600_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_600_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_the_TextField_is_disabled_.pub
 };
 
 static const afw_runtime_property_t
 impl_600_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Disabled.pub
 };
 
@@ -64446,31 +64446,31 @@ impl_601;
 
 static const afw_runtime_property_t
 impl_601_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_601_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_601_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_label_for_the_TextField_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_601_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_601_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_a_label.pub
 };
 
@@ -64543,25 +64543,25 @@ impl_602;
 
 static const afw_runtime_property_t
 impl_602_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_602_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_602_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_this_TextField_component_is_multilined_.pub
 };
 
 static const afw_runtime_property_t
 impl_602_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Multiline.pub
 };
 
@@ -64633,31 +64633,31 @@ impl_603;
 
 static const afw_runtime_property_t
 impl_603_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_603_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_603_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_placeholder_text_for_this_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_603_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Placeholder.pub
 };
 
 static const afw_runtime_property_t
 impl_603_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_a_placeholder.pub
 };
 
@@ -64730,25 +64730,25 @@ impl_604;
 
 static const afw_runtime_property_t
 impl_604_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_604_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_604_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_this_TextField_component_is_required_.pub
 };
 
 static const afw_runtime_property_t
 impl_604_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Required.pub
 };
 
@@ -64820,25 +64820,25 @@ impl_605;
 
 static const afw_runtime_property_t
 impl_605_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_605_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_605_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_the_number_of_rows_to_display_.pub
 };
 
 static const afw_runtime_property_t
 impl_605_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Rows.pub
 };
 
@@ -64910,25 +64910,25 @@ impl_606;
 
 static const afw_runtime_property_t
 impl_606_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_606_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_606_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_value_of_the_TextField_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_606_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Value.pub
 };
 
@@ -65003,7 +65003,7 @@ impl_598_property_value_description = {
 
 static const afw_runtime_property_t
 impl_598_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &impl_598_property_value_description.pub
 };
 
@@ -65015,7 +65015,7 @@ impl_598_property_value_disabled = {
 
 static const afw_runtime_property_t
 impl_598_property_disabled = {
-    &afw_components_self_s_disabled,
+    afw_components_v_disabled,
     &impl_598_property_value_disabled.pub
 };
 
@@ -65027,7 +65027,7 @@ impl_598_property_value_label = {
 
 static const afw_runtime_property_t
 impl_598_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_598_property_value_label.pub
 };
 
@@ -65039,7 +65039,7 @@ impl_598_property_value_multiline = {
 
 static const afw_runtime_property_t
 impl_598_property_multiline = {
-    &afw_components_self_s_multiline,
+    afw_components_v_multiline,
     &impl_598_property_value_multiline.pub
 };
 
@@ -65051,7 +65051,7 @@ impl_598_property_value_placeholder = {
 
 static const afw_runtime_property_t
 impl_598_property_placeholder = {
-    &afw_components_self_s_placeholder,
+    afw_components_v_placeholder,
     &impl_598_property_value_placeholder.pub
 };
 
@@ -65063,7 +65063,7 @@ impl_598_property_value_required = {
 
 static const afw_runtime_property_t
 impl_598_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &impl_598_property_value_required.pub
 };
 
@@ -65075,7 +65075,7 @@ impl_598_property_value_rows = {
 
 static const afw_runtime_property_t
 impl_598_property_rows = {
-    &afw_components_self_s_rows,
+    afw_components_v_rows,
     &impl_598_property_value_rows.pub
 };
 
@@ -65087,7 +65087,7 @@ impl_598_property_value_value = {
 
 static const afw_runtime_property_t
 impl_598_property_value = {
-    &afw_components_self_s_value,
+    afw_components_v_value,
     &impl_598_property_value_value.pub
 };
 
@@ -65179,25 +65179,25 @@ impl_598__value = {
 
 static const afw_runtime_property_t
 impl_597_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_597_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_597_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_597_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -65235,25 +65235,25 @@ impl_597_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_597_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_597_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_597_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_TextField_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_597_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_TextField.pub
 };
 
 static const afw_runtime_property_t
 impl_597_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_TextField.pub
 };
 
@@ -65265,7 +65265,7 @@ impl_597_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_597_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_597_property_value_propertyTypes.pub
 };
 
@@ -65348,25 +65348,25 @@ impl_609;
 
 static const afw_runtime_property_t
 impl_609_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_609_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_609_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__a2da491fabf2.pub
 };
 
 static const afw_runtime_property_t
 impl_609_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Value.pub
 };
 
@@ -65438,31 +65438,31 @@ impl_610;
 
 static const afw_runtime_property_t
 impl_610_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_610_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_610_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__0e38955d0202.pub
 };
 
 static const afw_runtime_property_t
 impl_610_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Description.pub
 };
 
 static const afw_runtime_property_t
 impl_610_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_description_.pub
 };
 
@@ -65535,25 +65535,25 @@ impl_611;
 
 static const afw_runtime_property_t
 impl_611_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_611_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_611_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_the_TimeDuration_is_disabled_.pub
 };
 
 static const afw_runtime_property_t
 impl_611_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Disabled.pub
 };
 
@@ -65625,31 +65625,31 @@ impl_612;
 
 static const afw_runtime_property_t
 impl_612_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_612_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_612_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_label_for_the_TimeDuration_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_612_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_612_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_label.pub
 };
 
@@ -65722,25 +65722,25 @@ impl_613;
 
 static const afw_runtime_property_t
 impl_613_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_613_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_613_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_the_TimeDuration_is_required_.pub
 };
 
 static const afw_runtime_property_t
 impl_613_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Required.pub
 };
 
@@ -65812,25 +65812,25 @@ impl_614;
 
 static const afw_runtime_property_t
 impl_614_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_614_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_614_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__5ce8b8b00d43.pub
 };
 
 static const afw_runtime_property_t
 impl_614_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Value.pub
 };
 
@@ -65905,7 +65905,7 @@ impl_608_property_value_dayTimeDuration = {
 
 static const afw_runtime_property_t
 impl_608_property_dayTimeDuration = {
-    &afw_components_self_s_dayTimeDuration,
+    afw_components_v_dayTimeDuration,
     &impl_608_property_value_dayTimeDuration.pub
 };
 
@@ -65917,7 +65917,7 @@ impl_608_property_value_description = {
 
 static const afw_runtime_property_t
 impl_608_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &impl_608_property_value_description.pub
 };
 
@@ -65929,7 +65929,7 @@ impl_608_property_value_disabled = {
 
 static const afw_runtime_property_t
 impl_608_property_disabled = {
-    &afw_components_self_s_disabled,
+    afw_components_v_disabled,
     &impl_608_property_value_disabled.pub
 };
 
@@ -65941,7 +65941,7 @@ impl_608_property_value_label = {
 
 static const afw_runtime_property_t
 impl_608_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_608_property_value_label.pub
 };
 
@@ -65953,7 +65953,7 @@ impl_608_property_value_required = {
 
 static const afw_runtime_property_t
 impl_608_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &impl_608_property_value_required.pub
 };
 
@@ -65965,7 +65965,7 @@ impl_608_property_value_yearMonthDuration = {
 
 static const afw_runtime_property_t
 impl_608_property_yearMonthDuration = {
-    &afw_components_self_s_yearMonthDuration,
+    afw_components_v_yearMonthDuration,
     &impl_608_property_value_yearMonthDuration.pub
 };
 
@@ -66055,25 +66055,25 @@ impl_608__value = {
 
 static const afw_runtime_property_t
 impl_607_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_607_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_607_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_607_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -66111,25 +66111,25 @@ impl_607_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_607_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_607_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_607_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_TimeDuration_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_607_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Time_Duration.pub
 };
 
 static const afw_runtime_property_t
 impl_607_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_TimeDuration.pub
 };
 
@@ -66141,7 +66141,7 @@ impl_607_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_607_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_607_property_value_propertyTypes.pub
 };
 
@@ -66224,25 +66224,25 @@ impl_617;
 
 static const afw_runtime_property_t
 impl_617_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_617_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_617_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_text_description_for_this_TimePicker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_617_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Description.pub
 };
 
@@ -66314,25 +66314,25 @@ impl_618;
 
 static const afw_runtime_property_t
 impl_618_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_618_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_618_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_text_label_for_this_TimePicker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_618_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
@@ -66407,7 +66407,7 @@ impl_616_property_value_description = {
 
 static const afw_runtime_property_t
 impl_616_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &impl_616_property_value_description.pub
 };
 
@@ -66419,7 +66419,7 @@ impl_616_property_value_label = {
 
 static const afw_runtime_property_t
 impl_616_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_616_property_value_label.pub
 };
 
@@ -66505,25 +66505,25 @@ impl_616__value = {
 
 static const afw_runtime_property_t
 impl_615_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_615_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_615_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_615_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -66561,19 +66561,19 @@ impl_615_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_615_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_615_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_615_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_TimePicker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_615_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_TimePicker.pub
 };
 
@@ -66585,7 +66585,7 @@ impl_615_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_615_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_615_property_value_propertyTypes.pub
 };
 
@@ -66667,31 +66667,31 @@ impl_621;
 
 static const afw_runtime_property_t
 impl_621_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_621_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_621_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_text_description_for_this_TimezonePicker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_621_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Description.pub
 };
 
 static const afw_runtime_property_t
 impl_621_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_description_.pub
 };
 
@@ -66764,31 +66764,31 @@ impl_622;
 
 static const afw_runtime_property_t
 impl_622_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_622_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_622_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_text_label_for_this_TimezonePicker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_622_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_622_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_label.pub
 };
 
@@ -66864,7 +66864,7 @@ impl_620_property_value_description = {
 
 static const afw_runtime_property_t
 impl_620_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &impl_620_property_value_description.pub
 };
 
@@ -66876,7 +66876,7 @@ impl_620_property_value_label = {
 
 static const afw_runtime_property_t
 impl_620_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_620_property_value_label.pub
 };
 
@@ -66962,25 +66962,25 @@ impl_620__value = {
 
 static const afw_runtime_property_t
 impl_619_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_619_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_619_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_619_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -67018,19 +67018,19 @@ impl_619_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_619_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_619_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_619_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_TimezonePicker_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_619_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_TimezonePicker.pub
 };
 
@@ -67042,7 +67042,7 @@ impl_619_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_619_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_619_property_value_propertyTypes.pub
 };
 
@@ -67124,25 +67124,25 @@ impl_625;
 
 static const afw_runtime_property_t
 impl_625_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_625_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_625_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_Toggle_component_is_disabled_.pub
 };
 
 static const afw_runtime_property_t
 impl_625_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Disabled.pub
 };
 
@@ -67214,31 +67214,31 @@ impl_626;
 
 static const afw_runtime_property_t
 impl_626_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_626_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_626_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_label_for_the_Toggle_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_626_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
 static const afw_runtime_property_t
 impl_626_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_label.pub
 };
 
@@ -67311,25 +67311,25 @@ impl_627;
 
 static const afw_runtime_property_t
 impl_627_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_627_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_627_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_text_displayed_when_the_Toggle_component_is_off_.pub
 };
 
 static const afw_runtime_property_t
 impl_627_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Off_Text.pub
 };
 
@@ -67401,25 +67401,25 @@ impl_628;
 
 static const afw_runtime_property_t
 impl_628_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_628_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_628_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_text_displayed_when_the_Toggle_component_is_on_.pub
 };
 
 static const afw_runtime_property_t
 impl_628_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__On_Text.pub
 };
 
@@ -67491,25 +67491,25 @@ impl_629;
 
 static const afw_runtime_property_t
 impl_629_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_629_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_629_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_value_for_the_Toggle_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_629_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Value.pub
 };
 
@@ -67584,7 +67584,7 @@ impl_624_property_value_disabled = {
 
 static const afw_runtime_property_t
 impl_624_property_disabled = {
-    &afw_components_self_s_disabled,
+    afw_components_v_disabled,
     &impl_624_property_value_disabled.pub
 };
 
@@ -67596,7 +67596,7 @@ impl_624_property_value_label = {
 
 static const afw_runtime_property_t
 impl_624_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_624_property_value_label.pub
 };
 
@@ -67608,7 +67608,7 @@ impl_624_property_value_offText = {
 
 static const afw_runtime_property_t
 impl_624_property_offText = {
-    &afw_components_self_s_offText,
+    afw_components_v_offText,
     &impl_624_property_value_offText.pub
 };
 
@@ -67620,7 +67620,7 @@ impl_624_property_value_onText = {
 
 static const afw_runtime_property_t
 impl_624_property_onText = {
-    &afw_components_self_s_onText,
+    afw_components_v_onText,
     &impl_624_property_value_onText.pub
 };
 
@@ -67632,7 +67632,7 @@ impl_624_property_value_value = {
 
 static const afw_runtime_property_t
 impl_624_property_value = {
-    &afw_components_self_s_value,
+    afw_components_v_value,
     &impl_624_property_value_value.pub
 };
 
@@ -67721,25 +67721,25 @@ impl_624__value = {
 
 static const afw_runtime_property_t
 impl_623_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_623_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_623_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_623_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -67777,19 +67777,19 @@ impl_623_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_623_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_623_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_623_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Toggle_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_623_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Toggle.pub
 };
 
@@ -67801,7 +67801,7 @@ impl_623_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_623_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_623_property_value_propertyTypes.pub
 };
 
@@ -67883,31 +67883,31 @@ impl_632;
 
 static const afw_runtime_property_t
 impl_632_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_632_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_632_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_632_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_the_choices_are_mutually_exclusive_.pub
 };
 
 static const afw_runtime_property_t
 impl_632_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Exclusive.pub
 };
 
@@ -67980,25 +67980,25 @@ impl_633;
 
 static const afw_runtime_property_t
 impl_633_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_633_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_633_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_label_for_the_ToggleButtons_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_633_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
@@ -68070,37 +68070,37 @@ impl_634;
 
 static const afw_runtime_property_t
 impl_634_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_634_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_634_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_634_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_available_options_for_the_ToggleButtons_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_634_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Options.pub
 };
 
 static const afw_runtime_property_t
 impl_634_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -68174,25 +68174,25 @@ impl_635;
 
 static const afw_runtime_property_t
 impl_635_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_635_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_635_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Specifies_whether_this_ToggleButtons_component_is_required_.pub
 };
 
 static const afw_runtime_property_t
 impl_635_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Required.pub
 };
 
@@ -68267,7 +68267,7 @@ impl_631_property_value_exclusive = {
 
 static const afw_runtime_property_t
 impl_631_property_exclusive = {
-    &afw_components_self_s_exclusive,
+    afw_components_v_exclusive,
     &impl_631_property_value_exclusive.pub
 };
 
@@ -68279,7 +68279,7 @@ impl_631_property_value_label = {
 
 static const afw_runtime_property_t
 impl_631_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_631_property_value_label.pub
 };
 
@@ -68291,7 +68291,7 @@ impl_631_property_value_options = {
 
 static const afw_runtime_property_t
 impl_631_property_options = {
-    &afw_components_self_s_options,
+    afw_components_v_options,
     &impl_631_property_value_options.pub
 };
 
@@ -68303,7 +68303,7 @@ impl_631_property_value_required = {
 
 static const afw_runtime_property_t
 impl_631_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &impl_631_property_value_required.pub
 };
 
@@ -68391,25 +68391,25 @@ impl_631__value = {
 
 static const afw_runtime_property_t
 impl_630_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_630_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_630_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_630_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -68447,25 +68447,25 @@ impl_630_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_630_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_630_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_630_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_ToggleButtons_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_630_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_ToggleButtons.pub
 };
 
 static const afw_runtime_property_t
 impl_630_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_ToggleButtons.pub
 };
 
@@ -68477,7 +68477,7 @@ impl_630_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_630_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_630_property_value_propertyTypes.pub
 };
 
@@ -68560,25 +68560,25 @@ impl_638;
 
 static const afw_runtime_property_t
 impl_638_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_638_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_638_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Defines_the_align_content_style_property_.pub
 };
 
 static const afw_runtime_property_t
 impl_638_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Align_Items.pub
 };
 
@@ -68621,7 +68621,7 @@ impl_638_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_638_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_638_property_value_possibleValues.pub
 };
 
@@ -68694,25 +68694,25 @@ impl_639;
 
 static const afw_runtime_property_t
 impl_639_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_639_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_639_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Defines_the_align_items_style_property_.pub
 };
 
 static const afw_runtime_property_t
 impl_639_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Align_Items.pub
 };
 
@@ -68754,7 +68754,7 @@ impl_639_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_639_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_639_property_value_possibleValues.pub
 };
 
@@ -68827,37 +68827,37 @@ impl_640;
 
 static const afw_runtime_property_t
 impl_640_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_640_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_640_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_.pub
 };
 
 static const afw_runtime_property_t
 impl_640_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__A_list_of_components_to_be_contained_by_this_Toolbar_.pub
 };
 
 static const afw_runtime_property_t
 impl_640_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
 static const afw_runtime_property_t
 impl_640_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -68931,25 +68931,25 @@ impl_641;
 
 static const afw_runtime_property_t
 impl_641_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_641_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_641_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__250ae3844998.pub
 };
 
 static const afw_runtime_property_t
 impl_641_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Dense.pub
 };
 
@@ -69021,25 +69021,25 @@ impl_642;
 
 static const afw_runtime_property_t
 impl_642_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_642_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_642_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Defines_the_justify_content_style_property_.pub
 };
 
 static const afw_runtime_property_t
 impl_642_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Justify.pub
 };
 
@@ -69082,7 +69082,7 @@ impl_642_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_642_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_642_property_value_possibleValues.pub
 };
 
@@ -69155,25 +69155,25 @@ impl_643;
 
 static const afw_runtime_property_t
 impl_643_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_643_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_643_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_spacing_between_items_in_the_Toolbar_.pub
 };
 
 static const afw_runtime_property_t
 impl_643_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Spacing.pub
 };
 
@@ -69216,7 +69216,7 @@ impl_643_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_643_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_643_property_value_possibleValues.pub
 };
 
@@ -69292,7 +69292,7 @@ impl_637_property_value_alignContent = {
 
 static const afw_runtime_property_t
 impl_637_property_alignContent = {
-    &afw_components_self_s_alignContent,
+    afw_components_v_alignContent,
     &impl_637_property_value_alignContent.pub
 };
 
@@ -69304,7 +69304,7 @@ impl_637_property_value_alignItems = {
 
 static const afw_runtime_property_t
 impl_637_property_alignItems = {
-    &afw_components_self_s_alignItems,
+    afw_components_v_alignItems,
     &impl_637_property_value_alignItems.pub
 };
 
@@ -69316,7 +69316,7 @@ impl_637_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_637_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_637_property_value_contains.pub
 };
 
@@ -69328,7 +69328,7 @@ impl_637_property_value_dense = {
 
 static const afw_runtime_property_t
 impl_637_property_dense = {
-    &afw_components_self_s_dense,
+    afw_components_v_dense,
     &impl_637_property_value_dense.pub
 };
 
@@ -69340,7 +69340,7 @@ impl_637_property_value_justify = {
 
 static const afw_runtime_property_t
 impl_637_property_justify = {
-    &afw_components_self_s_justify,
+    afw_components_v_justify,
     &impl_637_property_value_justify.pub
 };
 
@@ -69352,7 +69352,7 @@ impl_637_property_value_spacing = {
 
 static const afw_runtime_property_t
 impl_637_property_spacing = {
-    &afw_components_self_s_spacing,
+    afw_components_v_spacing,
     &impl_637_property_value_spacing.pub
 };
 
@@ -69442,25 +69442,25 @@ impl_637__value = {
 
 static const afw_runtime_property_t
 impl_636_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_636_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_636_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_636_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -69498,19 +69498,19 @@ impl_636_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_636_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_636_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_636_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Toolbar_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_636_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Toolbar.pub
 };
 
@@ -69522,7 +69522,7 @@ impl_636_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_636_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_636_property_value_propertyTypes.pub
 };
 
@@ -69604,31 +69604,31 @@ impl_646;
 
 static const afw_runtime_property_t
 impl_646_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_646_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_646_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_.pub
 };
 
 static const afw_runtime_property_t
 impl_646_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Content_that_can_be_rendered_inside_this_tooltip_display_.pub
 };
 
 static const afw_runtime_property_t
 impl_646_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
@@ -69701,25 +69701,25 @@ impl_647;
 
 static const afw_runtime_property_t
 impl_647_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_647_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_647_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_content_to_display_in_the_Tooltip_.pub
 };
 
 static const afw_runtime_property_t
 impl_647_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Content.pub
 };
 
@@ -69791,25 +69791,25 @@ impl_648;
 
 static const afw_runtime_property_t
 impl_648_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_648_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_648_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_time_delay__in_milliseconds__before_displaying_tooltip_.pub
 };
 
 static const afw_runtime_property_t
 impl_648_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Delay.pub
 };
 
@@ -69881,31 +69881,31 @@ impl_649;
 
 static const afw_runtime_property_t
 impl_649_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_649_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_649_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_.pub
 };
 
 static const afw_runtime_property_t
 impl_649_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_target_to_wrap_inside_this_tooltip_.pub
 };
 
 static const afw_runtime_property_t
 impl_649_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Target.pub
 };
 
@@ -69981,7 +69981,7 @@ impl_645_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_645_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_645_property_value_contains.pub
 };
 
@@ -69993,7 +69993,7 @@ impl_645_property_value_content = {
 
 static const afw_runtime_property_t
 impl_645_property_content = {
-    &afw_components_self_s_content,
+    afw_components_v_content,
     &impl_645_property_value_content.pub
 };
 
@@ -70005,7 +70005,7 @@ impl_645_property_value_delay = {
 
 static const afw_runtime_property_t
 impl_645_property_delay = {
-    &afw_components_self_s_delay,
+    afw_components_v_delay,
     &impl_645_property_value_delay.pub
 };
 
@@ -70017,7 +70017,7 @@ impl_645_property_value_target = {
 
 static const afw_runtime_property_t
 impl_645_property_target = {
-    &afw_components_self_s_target,
+    afw_components_v_target,
     &impl_645_property_value_target.pub
 };
 
@@ -70105,25 +70105,25 @@ impl_645__value = {
 
 static const afw_runtime_property_t
 impl_644_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_644_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_644_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_644_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -70161,19 +70161,19 @@ impl_644_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_644_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_644_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_644_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Tooltip_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_644_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Tooltip.pub
 };
 
@@ -70185,7 +70185,7 @@ impl_644_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_644_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_644_property_value_propertyTypes.pub
 };
 
@@ -70267,37 +70267,37 @@ impl_652;
 
 static const afw_runtime_property_t
 impl_652_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_652_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_652_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_Tree_Node.pub
 };
 
 static const afw_runtime_property_t
 impl_652_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_children_of_this_Tree_.pub
 };
 
 static const afw_runtime_property_t
 impl_652_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Children.pub
 };
 
 static const afw_runtime_property_t
 impl_652_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -70371,25 +70371,25 @@ impl_653;
 
 static const afw_runtime_property_t
 impl_653_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_653_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_653_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_tree_nodes_should_be_condensed_in_space_.pub
 };
 
 static const afw_runtime_property_t
 impl_653_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Dense.pub
 };
 
@@ -70461,31 +70461,31 @@ impl_654;
 
 static const afw_runtime_property_t
 impl_654_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_654_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_654_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_654_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_keys_of_nodes_in_this_tree_that_are_expanded_.pub
 };
 
 static const afw_runtime_property_t
 impl_654_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Expanded_Keys.pub
 };
 
@@ -70558,31 +70558,31 @@ impl_655;
 
 static const afw_runtime_property_t
 impl_655_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_655_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_655_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_655_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_keys_of_nodes_in_this_tree_that_are_selected_.pub
 };
 
 static const afw_runtime_property_t
 impl_655_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Selected_Keys.pub
 };
 
@@ -70658,7 +70658,7 @@ impl_651_property_value_children = {
 
 static const afw_runtime_property_t
 impl_651_property_children = {
-    &afw_components_self_s_children,
+    afw_components_v_children,
     &impl_651_property_value_children.pub
 };
 
@@ -70670,7 +70670,7 @@ impl_651_property_value_dense = {
 
 static const afw_runtime_property_t
 impl_651_property_dense = {
-    &afw_components_self_s_dense,
+    afw_components_v_dense,
     &impl_651_property_value_dense.pub
 };
 
@@ -70682,7 +70682,7 @@ impl_651_property_value_expandedKeys = {
 
 static const afw_runtime_property_t
 impl_651_property_expandedKeys = {
-    &afw_components_self_s_expandedKeys,
+    afw_components_v_expandedKeys,
     &impl_651_property_value_expandedKeys.pub
 };
 
@@ -70694,7 +70694,7 @@ impl_651_property_value_selectedKeys = {
 
 static const afw_runtime_property_t
 impl_651_property_selectedKeys = {
-    &afw_components_self_s_selectedKeys,
+    afw_components_v_selectedKeys,
     &impl_651_property_value_selectedKeys.pub
 };
 
@@ -70782,25 +70782,25 @@ impl_651__value = {
 
 static const afw_runtime_property_t
 impl_650_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_650_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_650_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_650_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -70838,25 +70838,25 @@ impl_650_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_650_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_650_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_650_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Tree_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_650_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Tree_Layout.pub
 };
 
 static const afw_runtime_property_t
 impl_650_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Tree.pub
 };
 
@@ -70868,7 +70868,7 @@ impl_650_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_650_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_650_property_value_propertyTypes.pub
 };
 
@@ -70951,31 +70951,31 @@ impl_658;
 
 static const afw_runtime_property_t
 impl_658_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_658_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_658_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayoutComponentType_Tree_Node.pub
 };
 
 static const afw_runtime_property_t
 impl_658_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_children_of_this_Tree_Node_.pub
 };
 
 static const afw_runtime_property_t
 impl_658_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Children.pub
 };
 
@@ -71048,31 +71048,31 @@ impl_659;
 
 static const afw_runtime_property_t
 impl_659_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_659_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_659_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_.pub
 };
 
 static const afw_runtime_property_t
 impl_659_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Optional_component_under_this_tree_node_.pub
 };
 
 static const afw_runtime_property_t
 impl_659_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Contains.pub
 };
 
@@ -71145,25 +71145,25 @@ impl_660;
 
 static const afw_runtime_property_t
 impl_660_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_660_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_660_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_icon_for_this_tree_node_.pub
 };
 
 static const afw_runtime_property_t
 impl_660_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Icon.pub
 };
 
@@ -71235,31 +71235,31 @@ impl_661;
 
 static const afw_runtime_property_t
 impl_661_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_661_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_661_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_unique_identifying_key_for_this_tree_node_.pub
 };
 
 static const afw_runtime_property_t
 impl_661_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Key.pub
 };
 
 static const afw_runtime_property_t
 impl_661_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -71332,25 +71332,25 @@ impl_662;
 
 static const afw_runtime_property_t
 impl_662_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_662_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_662_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_label_for_this_tree_node_.pub
 };
 
 static const afw_runtime_property_t
 impl_662_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Label.pub
 };
 
@@ -71425,7 +71425,7 @@ impl_657_property_value_children = {
 
 static const afw_runtime_property_t
 impl_657_property_children = {
-    &afw_components_self_s_children,
+    afw_components_v_children,
     &impl_657_property_value_children.pub
 };
 
@@ -71437,7 +71437,7 @@ impl_657_property_value_contains = {
 
 static const afw_runtime_property_t
 impl_657_property_contains = {
-    &afw_components_self_s_contains,
+    afw_components_v_contains,
     &impl_657_property_value_contains.pub
 };
 
@@ -71449,7 +71449,7 @@ impl_657_property_value_icon = {
 
 static const afw_runtime_property_t
 impl_657_property_icon = {
-    &afw_components_self_s_icon,
+    afw_components_v_icon,
     &impl_657_property_value_icon.pub
 };
 
@@ -71461,7 +71461,7 @@ impl_657_property_value_key = {
 
 static const afw_runtime_property_t
 impl_657_property_key = {
-    &afw_components_self_s_key,
+    afw_components_v_key,
     &impl_657_property_value_key.pub
 };
 
@@ -71473,7 +71473,7 @@ impl_657_property_value_label = {
 
 static const afw_runtime_property_t
 impl_657_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &impl_657_property_value_label.pub
 };
 
@@ -71543,25 +71543,25 @@ impl_657__value = {
 
 static const afw_runtime_property_t
 impl_656_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_656_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_656_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_656_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -71599,25 +71599,25 @@ impl_656_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_656_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_656_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_656_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Tree_Node_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_656_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Tree_Node.pub
 };
 
 static const afw_runtime_property_t
 impl_656_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Tree_Node.pub
 };
 
@@ -71629,7 +71629,7 @@ impl_656_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_656_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_656_property_value_propertyTypes.pub
 };
 
@@ -71712,31 +71712,31 @@ impl_665;
 
 static const afw_runtime_property_t
 impl_665_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_665_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__The_color_of_the_text.pub
 };
 
 static const afw_runtime_property_t
 impl_665_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_665_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b8e316c67080.pub
 };
 
 static const afw_runtime_property_t
 impl_665_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Color.pub
 };
 
@@ -71780,7 +71780,7 @@ impl_665_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_665_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_665_property_value_possibleValues.pub
 };
 
@@ -71854,31 +71854,31 @@ impl_666;
 
 static const afw_runtime_property_t
 impl_666_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_666_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__The_size_of_the_text.pub
 };
 
 static const afw_runtime_property_t
 impl_666_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_666_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_size_of_the_text__1_11__.pub
 };
 
 static const afw_runtime_property_t
 impl_666_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Size.pub
 };
 
@@ -71926,7 +71926,7 @@ impl_666_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_666_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_666_property_value_possibleValues.pub
 };
 
@@ -72000,31 +72000,31 @@ impl_667;
 
 static const afw_runtime_property_t
 impl_667_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_667_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__The_html_tag_to_produce.pub
 };
 
 static const afw_runtime_property_t
 impl_667_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_667_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__f30e39fa86b2.pub
 };
 
 static const afw_runtime_property_t
 impl_667_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Tag.pub
 };
 
@@ -72070,7 +72070,7 @@ impl_667_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_667_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_667_property_value_possibleValues.pub
 };
 
@@ -72144,43 +72144,43 @@ impl_668;
 
 static const afw_runtime_property_t
 impl_668_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_668_property_brief = {
-    &afw_components_self_s_brief,
+    afw_components_v_brief,
     &afw_components_self_v_zz__The_text_string_to_be_displayed.pub
 };
 
 static const afw_runtime_property_t
 impl_668_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_668_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_actual_text_content_to_be_rendered_by_this_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_668_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Text.pub
 };
 
 static const afw_runtime_property_t
 impl_668_property_required = {
-    &afw_components_self_s_required,
+    afw_components_v_required,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_668_property_testDataParameter = {
-    &afw_components_self_s_testDataParameter,
+    afw_components_v_testDataParameter,
     &afw_components_self_v_zz__This_is_the_text_to_be_displayed_.pub
 };
 
@@ -72258,7 +72258,7 @@ impl_664_property_value_color = {
 
 static const afw_runtime_property_t
 impl_664_property_color = {
-    &afw_components_self_s_color,
+    afw_components_v_color,
     &impl_664_property_value_color.pub
 };
 
@@ -72270,7 +72270,7 @@ impl_664_property_value_size = {
 
 static const afw_runtime_property_t
 impl_664_property_size = {
-    &afw_components_self_s_size,
+    afw_components_v_size,
     &impl_664_property_value_size.pub
 };
 
@@ -72282,7 +72282,7 @@ impl_664_property_value_tag = {
 
 static const afw_runtime_property_t
 impl_664_property_tag = {
-    &afw_components_self_s_tag,
+    afw_components_v_tag,
     &impl_664_property_value_tag.pub
 };
 
@@ -72294,7 +72294,7 @@ impl_664_property_value_text = {
 
 static const afw_runtime_property_t
 impl_664_property_text = {
-    &afw_components_self_s_text,
+    afw_components_v_text,
     &impl_664_property_value_text.pub
 };
 
@@ -72382,25 +72382,25 @@ impl_664__value = {
 
 static const afw_runtime_property_t
 impl_663_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_663_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_663_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_663_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -72438,19 +72438,19 @@ impl_663_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_663_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_663_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_663_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Typography_component_.pub
 };
 
 static const afw_runtime_property_t
 impl_663_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayoutComponentType_Typography.pub
 };
 
@@ -72462,7 +72462,7 @@ impl_663_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_663_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_663_property_value_propertyTypes.pub
 };
 
@@ -72544,31 +72544,31 @@ impl_671;
 
 static const afw_runtime_property_t
 impl_671_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_671_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_671_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayoutComponentType_Responsive_Breakpoints.pub
 };
 
 static const afw_runtime_property_t
 impl_671_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__a1fbc1c147c1.pub
 };
 
 static const afw_runtime_property_t
 impl_671_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Breakpoints.pub
 };
 
@@ -72641,31 +72641,31 @@ impl_672;
 
 static const afw_runtime_property_t
 impl_672_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_672_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_672_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_integer_self_v_one.pub
 };
 
 static const afw_runtime_property_t
 impl_672_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_the_number_of_columns_to_split_the_object_.pub
 };
 
 static const afw_runtime_property_t
 impl_672_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Columns.pub
 };
 
@@ -72738,31 +72738,31 @@ impl_673;
 
 static const afw_runtime_property_t
 impl_673_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_673_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_673_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayout_ObjectResponsive_embedded.pub
 };
 
 static const afw_runtime_property_t
 impl_673_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Options_to_apply_to_embedded_objects_.pub
 };
 
 static const afw_runtime_property_t
 impl_673_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Embedded.pub
 };
 
@@ -72835,31 +72835,31 @@ impl_674;
 
 static const afw_runtime_property_t
 impl_674_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_674_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_674_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayout_ObjectResponsive_filterOptions.pub
 };
 
 static const afw_runtime_property_t
 impl_674_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__c6efb05bc6ec.pub
 };
 
 static const afw_runtime_property_t
 impl_674_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Filter_Options.pub
 };
 
@@ -72932,31 +72932,31 @@ impl_675;
 
 static const afw_runtime_property_t
 impl_675_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_675_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_675_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_self_v_embedded.pub
 };
 
 static const afw_runtime_property_t
 impl_675_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__3dbd4b04a2fb.pub
 };
 
 static const afw_runtime_property_t
 impl_675_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Header_Options.pub
 };
 
@@ -72997,7 +72997,7 @@ impl_675_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_675_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_675_property_value_possibleValues.pub
 };
 
@@ -73071,31 +73071,31 @@ impl_676;
 
 static const afw_runtime_property_t
 impl_676_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_676_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_676_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_676_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__34ac2d91a231.pub
 };
 
 static const afw_runtime_property_t
 impl_676_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Is_Collapsed.pub
 };
 
@@ -73168,31 +73168,31 @@ impl_677;
 
 static const afw_runtime_property_t
 impl_677_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_677_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_677_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_integer_self_v_zero.pub
 };
 
 static const afw_runtime_property_t
 impl_677_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Current_nested_depth_from_embedded_objects_.pub
 };
 
 static const afw_runtime_property_t
 impl_677_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Nesting_Depth.pub
 };
 
@@ -73265,25 +73265,25 @@ impl_678;
 
 static const afw_runtime_property_t
 impl_678_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_678_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_678_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__81105dbb4694.pub
 };
 
 static const afw_runtime_property_t
 impl_678_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Object.pub
 };
 
@@ -73355,31 +73355,31 @@ impl_679;
 
 static const afw_runtime_property_t
 impl_679_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_679_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_679_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_zz__object__AdaptiveLayout_ObjectResponsive_preferredComponent.pub
 };
 
 static const afw_runtime_property_t
 impl_679_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_preferences_for_components_for_Adaptive_Properties_.pub
 };
 
 static const afw_runtime_property_t
 impl_679_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Preferred_Components.pub
 };
 
@@ -73452,7 +73452,7 @@ impl_680;
 
 static const afw_runtime_property_t
 impl_680_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
@@ -73491,31 +73491,31 @@ impl_680_property_value_allowedValues = {
 
 static const afw_runtime_property_t
 impl_680_property_allowedValues = {
-    &afw_components_self_s_allowedValues,
+    afw_components_v_allowedValues,
     &impl_680_property_value_allowedValues.pub
 };
 
 static const afw_runtime_property_t
 impl_680_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_680_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_self_v_horizontal.pub
 };
 
 static const afw_runtime_property_t
 impl_680_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__4c84f632125b.pub
 };
 
 static const afw_runtime_property_t
 impl_680_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Readonly_Orientation.pub
 };
 
@@ -73589,31 +73589,31 @@ impl_681;
 
 static const afw_runtime_property_t
 impl_681_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_681_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_681_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_681_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__6990c66ef3bb.pub
 };
 
 static const afw_runtime_property_t
 impl_681_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Show_Descriptions.pub
 };
 
@@ -73686,31 +73686,31 @@ impl_682;
 
 static const afw_runtime_property_t
 impl_682_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_682_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_682_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_682_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__06180c51fab4.pub
 };
 
 static const afw_runtime_property_t
 impl_682_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Show_Labels.pub
 };
 
@@ -73783,25 +73783,25 @@ impl_683;
 
 static const afw_runtime_property_t
 impl_683_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_683_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_683_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__If_true__the_object_s_metadata_should_also_be_displayed_.pub
 };
 
 static const afw_runtime_property_t
 impl_683_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Show_Meta.pub
 };
 
@@ -73873,31 +73873,31 @@ impl_684;
 
 static const afw_runtime_property_t
 impl_684_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_684_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_684_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v__AdaptiveLayout_ObjectResponsive_sortOptions.pub
 };
 
 static const afw_runtime_property_t
 impl_684_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__f648531e3c25.pub
 };
 
 static const afw_runtime_property_t
 impl_684_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Sort_Options.pub
 };
 
@@ -73970,25 +73970,25 @@ impl_685;
 
 static const afw_runtime_property_t
 impl_685_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_685_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_685_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Sets_the_spacing_between_rows_.pub
 };
 
 static const afw_runtime_property_t
 impl_685_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Spacing.pub
 };
 
@@ -74063,7 +74063,7 @@ impl_670_property_value_breakpoints = {
 
 static const afw_runtime_property_t
 impl_670_property_breakpoints = {
-    &afw_components_self_s_breakpoints,
+    afw_components_v_breakpoints,
     &impl_670_property_value_breakpoints.pub
 };
 
@@ -74075,7 +74075,7 @@ impl_670_property_value_columns = {
 
 static const afw_runtime_property_t
 impl_670_property_columns = {
-    &afw_components_self_s_columns,
+    afw_components_v_columns,
     &impl_670_property_value_columns.pub
 };
 
@@ -74087,7 +74087,7 @@ impl_670_property_value_embedded = {
 
 static const afw_runtime_property_t
 impl_670_property_embedded = {
-    &afw_components_self_s_embedded,
+    afw_components_v_embedded,
     &impl_670_property_value_embedded.pub
 };
 
@@ -74099,7 +74099,7 @@ impl_670_property_value_filterOptions = {
 
 static const afw_runtime_property_t
 impl_670_property_filterOptions = {
-    &afw_components_self_s_filterOptions,
+    afw_components_v_filterOptions,
     &impl_670_property_value_filterOptions.pub
 };
 
@@ -74111,7 +74111,7 @@ impl_670_property_value_headerOptions = {
 
 static const afw_runtime_property_t
 impl_670_property_headerOptions = {
-    &afw_components_self_s_headerOptions,
+    afw_components_v_headerOptions,
     &impl_670_property_value_headerOptions.pub
 };
 
@@ -74123,7 +74123,7 @@ impl_670_property_value_isCollapsed = {
 
 static const afw_runtime_property_t
 impl_670_property_isCollapsed = {
-    &afw_components_self_s_isCollapsed,
+    afw_components_v_isCollapsed,
     &impl_670_property_value_isCollapsed.pub
 };
 
@@ -74135,7 +74135,7 @@ impl_670_property_value_nestingDepth = {
 
 static const afw_runtime_property_t
 impl_670_property_nestingDepth = {
-    &afw_components_self_s_nestingDepth,
+    afw_components_v_nestingDepth,
     &impl_670_property_value_nestingDepth.pub
 };
 
@@ -74147,7 +74147,7 @@ impl_670_property_value_object = {
 
 static const afw_runtime_property_t
 impl_670_property_object = {
-    &afw_components_self_s_object,
+    afw_components_v_object,
     &impl_670_property_value_object.pub
 };
 
@@ -74159,7 +74159,7 @@ impl_670_property_value_preferredComponents = {
 
 static const afw_runtime_property_t
 impl_670_property_preferredComponents = {
-    &afw_components_self_s_preferredComponents,
+    afw_components_v_preferredComponents,
     &impl_670_property_value_preferredComponents.pub
 };
 
@@ -74171,7 +74171,7 @@ impl_670_property_value_readOnlyOrientation = {
 
 static const afw_runtime_property_t
 impl_670_property_readOnlyOrientation = {
-    &afw_components_self_s_readOnlyOrientation,
+    afw_components_v_readOnlyOrientation,
     &impl_670_property_value_readOnlyOrientation.pub
 };
 
@@ -74183,7 +74183,7 @@ impl_670_property_value_showDescriptions = {
 
 static const afw_runtime_property_t
 impl_670_property_showDescriptions = {
-    &afw_components_self_s_showDescriptions,
+    afw_components_v_showDescriptions,
     &impl_670_property_value_showDescriptions.pub
 };
 
@@ -74195,7 +74195,7 @@ impl_670_property_value_showLabels = {
 
 static const afw_runtime_property_t
 impl_670_property_showLabels = {
-    &afw_components_self_s_showLabels,
+    afw_components_v_showLabels,
     &impl_670_property_value_showLabels.pub
 };
 
@@ -74207,7 +74207,7 @@ impl_670_property_value_showMeta = {
 
 static const afw_runtime_property_t
 impl_670_property_showMeta = {
-    &afw_components_self_s_showMeta,
+    afw_components_v_showMeta,
     &impl_670_property_value_showMeta.pub
 };
 
@@ -74219,7 +74219,7 @@ impl_670_property_value_sortOptions = {
 
 static const afw_runtime_property_t
 impl_670_property_sortOptions = {
-    &afw_components_self_s_sortOptions,
+    afw_components_v_sortOptions,
     &impl_670_property_value_sortOptions.pub
 };
 
@@ -74231,7 +74231,7 @@ impl_670_property_value_spacing = {
 
 static const afw_runtime_property_t
 impl_670_property_spacing = {
-    &afw_components_self_s_spacing,
+    afw_components_v_spacing,
     &impl_670_property_value_spacing.pub
 };
 
@@ -74330,25 +74330,25 @@ impl_670__value = {
 
 static const afw_runtime_property_t
 impl_669_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_669_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_669_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_669_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -74386,19 +74386,19 @@ impl_669_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_669_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_669_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_669_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Object_Form_.pub
 };
 
 static const afw_runtime_property_t
 impl_669_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayout_ObjectResponsive.pub
 };
 
@@ -74410,7 +74410,7 @@ impl_669_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_669_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_669_property_value_propertyTypes.pub
 };
 
@@ -74492,25 +74492,25 @@ impl_688;
 
 static const afw_runtime_property_t
 impl_688_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_688_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_688_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_Preferred_Component_to_apply_to_this_embedded_object_.pub
 };
 
 static const afw_runtime_property_t
 impl_688_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Component.pub
 };
 
@@ -74552,7 +74552,7 @@ impl_688_property_value_possibleValues = {
 
 static const afw_runtime_property_t
 impl_688_property_possibleValues = {
-    &afw_components_self_s_possibleValues,
+    afw_components_v_possibleValues,
     &impl_688_property_value_possibleValues.pub
 };
 
@@ -74628,7 +74628,7 @@ impl_687_property_value_component = {
 
 static const afw_runtime_property_t
 impl_687_property_component = {
-    &afw_components_self_s_component,
+    afw_components_v_component,
     &impl_687_property_value_component.pub
 };
 
@@ -74694,25 +74694,25 @@ impl_687__value = {
 
 static const afw_runtime_property_t
 impl_686_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_686_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_686_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_686_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -74750,19 +74750,19 @@ impl_686_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_686_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_686_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_686_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__e992163c6675.pub
 };
 
 static const afw_runtime_property_t
 impl_686_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayout_ObjectResponsive_embedded.pub
 };
 
@@ -74774,7 +74774,7 @@ impl_686_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_686_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_686_property_value_propertyTypes.pub
 };
 
@@ -74856,31 +74856,31 @@ impl_691;
 
 static const afw_runtime_property_t
 impl_691_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_691_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_691_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_691_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__d0daedc2d655.pub
 };
 
 static const afw_runtime_property_t
 impl_691_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Exclusive_Property_Conditions.pub
 };
 
@@ -74953,31 +74953,31 @@ impl_692;
 
 static const afw_runtime_property_t
 impl_692_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_692_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_692_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_692_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__cec82d023fcc.pub
 };
 
 static const afw_runtime_property_t
 impl_692_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Inclusive_Property_Conditions.pub
 };
 
@@ -75050,25 +75050,25 @@ impl_693;
 
 static const afw_runtime_property_t
 impl_693_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_693_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_693_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Exclude_embedded_properties_from_display_.pub
 };
 
 static const afw_runtime_property_t
 impl_693_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Hide_Embedded_Properties.pub
 };
 
@@ -75140,31 +75140,31 @@ impl_694;
 
 static const afw_runtime_property_t
 impl_694_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_694_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_694_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_694_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Do_not_display_the_specified_properties_.pub
 };
 
 static const afw_runtime_property_t
 impl_694_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Hide_Properties.pub
 };
 
@@ -75237,31 +75237,31 @@ impl_695;
 
 static const afw_runtime_property_t
 impl_695_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_695_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_695_property_dataTypeParameter = {
-    &afw_components_self_s_dataTypeParameter,
+    afw_components_v_dataTypeParameter,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_695_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Display_the_specified_properties_.pub
 };
 
 static const afw_runtime_property_t
 impl_695_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Show_Properties.pub
 };
 
@@ -75334,25 +75334,25 @@ impl_696;
 
 static const afw_runtime_property_t
 impl_696_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_696_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_696_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Show_properties_only_if_they_are_required_.pub
 };
 
 static const afw_runtime_property_t
 impl_696_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Show_Required_Properties.pub
 };
 
@@ -75424,25 +75424,25 @@ impl_697;
 
 static const afw_runtime_property_t
 impl_697_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_697_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_697_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Show_properties_only_if_they_contain_values_.pub
 };
 
 static const afw_runtime_property_t
 impl_697_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Show_Valued_Properties.pub
 };
 
@@ -75514,31 +75514,31 @@ impl_698;
 
 static const afw_runtime_property_t
 impl_698_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_698_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_698_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_698_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Recurse_filter_options_to_embedded_objects_.pub
 };
 
 static const afw_runtime_property_t
 impl_698_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Recurse.pub
 };
 
@@ -75614,7 +75614,7 @@ impl_690_property_value_filterCondAndProperties = {
 
 static const afw_runtime_property_t
 impl_690_property_filterCondAndProperties = {
-    &afw_components_self_s_filterCondAndProperties,
+    afw_components_v_filterCondAndProperties,
     &impl_690_property_value_filterCondAndProperties.pub
 };
 
@@ -75626,7 +75626,7 @@ impl_690_property_value_filterCondOrProperties = {
 
 static const afw_runtime_property_t
 impl_690_property_filterCondOrProperties = {
-    &afw_components_self_s_filterCondOrProperties,
+    afw_components_v_filterCondOrProperties,
     &impl_690_property_value_filterCondOrProperties.pub
 };
 
@@ -75638,7 +75638,7 @@ impl_690_property_value_filterExcludeEmbeddedProperties = {
 
 static const afw_runtime_property_t
 impl_690_property_filterExcludeEmbeddedProperties = {
-    &afw_components_self_s_filterExcludeEmbeddedProperties,
+    afw_components_v_filterExcludeEmbeddedProperties,
     &impl_690_property_value_filterExcludeEmbeddedProperties.pub
 };
 
@@ -75650,7 +75650,7 @@ impl_690_property_value_filterExcludeProperties = {
 
 static const afw_runtime_property_t
 impl_690_property_filterExcludeProperties = {
-    &afw_components_self_s_filterExcludeProperties,
+    afw_components_v_filterExcludeProperties,
     &impl_690_property_value_filterExcludeProperties.pub
 };
 
@@ -75662,7 +75662,7 @@ impl_690_property_value_filterProperties = {
 
 static const afw_runtime_property_t
 impl_690_property_filterProperties = {
-    &afw_components_self_s_filterProperties,
+    afw_components_v_filterProperties,
     &impl_690_property_value_filterProperties.pub
 };
 
@@ -75674,7 +75674,7 @@ impl_690_property_value_filterRequiredProperties = {
 
 static const afw_runtime_property_t
 impl_690_property_filterRequiredProperties = {
-    &afw_components_self_s_filterRequiredProperties,
+    afw_components_v_filterRequiredProperties,
     &impl_690_property_value_filterRequiredProperties.pub
 };
 
@@ -75686,7 +75686,7 @@ impl_690_property_value_filterValuedProperties = {
 
 static const afw_runtime_property_t
 impl_690_property_filterValuedProperties = {
-    &afw_components_self_s_filterValuedProperties,
+    afw_components_v_filterValuedProperties,
     &impl_690_property_value_filterValuedProperties.pub
 };
 
@@ -75698,7 +75698,7 @@ impl_690_property_value_recurse = {
 
 static const afw_runtime_property_t
 impl_690_property_recurse = {
-    &afw_components_self_s_recurse,
+    afw_components_v_recurse,
     &impl_690_property_value_recurse.pub
 };
 
@@ -75771,25 +75771,25 @@ impl_690__value = {
 
 static const afw_runtime_property_t
 impl_689_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_689_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_689_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_689_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -75827,19 +75827,19 @@ impl_689_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_689_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_689_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_689_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_parameters_for_ObjectForm_filter_options_.pub
 };
 
 static const afw_runtime_property_t
 impl_689_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayout_ObjectResponsive_filterOptions.pub
 };
 
@@ -75851,7 +75851,7 @@ impl_689_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_689_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_689_property_value_propertyTypes.pub
 };
 
@@ -75933,25 +75933,25 @@ impl_701;
 
 static const afw_runtime_property_t
 impl_701_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_701_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_701_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__b43bf860eee5.pub
 };
 
 static const afw_runtime_property_t
 impl_701_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Component.pub
 };
 
@@ -76023,25 +76023,25 @@ impl_702;
 
 static const afw_runtime_property_t
 impl_702_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_702_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_object.pub
 };
 
 static const afw_runtime_property_t
 impl_702_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__5ef3009dba6b.pub
 };
 
 static const afw_runtime_property_t
 impl_702_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Component_Properties.pub
 };
 
@@ -76113,25 +76113,25 @@ impl_703;
 
 static const afw_runtime_property_t
 impl_703_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_703_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_703_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__2f16a705e1d2.pub
 };
 
 static const afw_runtime_property_t
 impl_703_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Data_Type.pub
 };
 
@@ -76203,25 +76203,25 @@ impl_704;
 
 static const afw_runtime_property_t
 impl_704_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_704_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_704_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__3bf7dabb0a8a.pub
 };
 
 static const afw_runtime_property_t
 impl_704_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Property_Name.pub
 };
 
@@ -76296,7 +76296,7 @@ impl_700_property_value_component = {
 
 static const afw_runtime_property_t
 impl_700_property_component = {
-    &afw_components_self_s_component,
+    afw_components_v_component,
     &impl_700_property_value_component.pub
 };
 
@@ -76308,7 +76308,7 @@ impl_700_property_value_componentProps = {
 
 static const afw_runtime_property_t
 impl_700_property_componentProps = {
-    &afw_components_self_s_componentProps,
+    afw_components_v_componentProps,
     &impl_700_property_value_componentProps.pub
 };
 
@@ -76320,7 +76320,7 @@ impl_700_property_value_dataType = {
 
 static const afw_runtime_property_t
 impl_700_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &impl_700_property_value_dataType.pub
 };
 
@@ -76332,7 +76332,7 @@ impl_700_property_value_propertyName = {
 
 static const afw_runtime_property_t
 impl_700_property_propertyName = {
-    &afw_components_self_s_propertyName,
+    afw_components_v_propertyName,
     &impl_700_property_value_propertyName.pub
 };
 
@@ -76401,25 +76401,25 @@ impl_700__value = {
 
 static const afw_runtime_property_t
 impl_699_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_699_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_699_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_699_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -76457,19 +76457,19 @@ impl_699_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_699_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_699_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_699_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__e992163c6675.pub
 };
 
 static const afw_runtime_property_t
 impl_699_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayout_ObjectResponsive_preferredComponent.pub
 };
 
@@ -76481,7 +76481,7 @@ impl_699_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_699_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_699_property_value_propertyTypes.pub
 };
 
@@ -76563,31 +76563,31 @@ impl_707;
 
 static const afw_runtime_property_t
 impl_707_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_707_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_707_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_707_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Recurse_sort_options_to_embedded_objects_.pub
 };
 
 static const afw_runtime_property_t
 impl_707_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Recurse.pub
 };
 
@@ -76660,25 +76660,25 @@ impl_708;
 
 static const afw_runtime_property_t
 impl_708_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_708_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_708_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_properties_should_be_sorted_by_their_data_type_.pub
 };
 
 static const afw_runtime_property_t
 impl_708_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Sort_By_Data_Type.pub
 };
 
@@ -76750,31 +76750,31 @@ impl_709;
 
 static const afw_runtime_property_t
 impl_709_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_709_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_709_property_defaultValue = {
-    &afw_components_self_s_defaultValue,
+    afw_components_v_defaultValue,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_709_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__The_properties_should_be_sorted_by_their_property_name_.pub
 };
 
 static const afw_runtime_property_t
 impl_709_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Sort_By_Property_Name.pub
 };
 
@@ -76847,25 +76847,25 @@ impl_710;
 
 static const afw_runtime_property_t
 impl_710_property_allowWrite = {
-    &afw_components_self_s_allowWrite,
+    afw_components_v_allowWrite,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_710_property_dataType = {
-    &afw_components_self_s_dataType,
+    afw_components_v_dataType,
     &afw_components_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_710_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__3e873abe0b1d.pub
 };
 
 static const afw_runtime_property_t
 impl_710_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_zz__Sort_By_Required.pub
 };
 
@@ -76940,7 +76940,7 @@ impl_706_property_value_recurse = {
 
 static const afw_runtime_property_t
 impl_706_property_recurse = {
-    &afw_components_self_s_recurse,
+    afw_components_v_recurse,
     &impl_706_property_value_recurse.pub
 };
 
@@ -76952,7 +76952,7 @@ impl_706_property_value_sortByDataType = {
 
 static const afw_runtime_property_t
 impl_706_property_sortByDataType = {
-    &afw_components_self_s_sortByDataType,
+    afw_components_v_sortByDataType,
     &impl_706_property_value_sortByDataType.pub
 };
 
@@ -76964,7 +76964,7 @@ impl_706_property_value_sortByPropertyName = {
 
 static const afw_runtime_property_t
 impl_706_property_sortByPropertyName = {
-    &afw_components_self_s_sortByPropertyName,
+    afw_components_v_sortByPropertyName,
     &impl_706_property_value_sortByPropertyName.pub
 };
 
@@ -76976,7 +76976,7 @@ impl_706_property_value_sortByRequired = {
 
 static const afw_runtime_property_t
 impl_706_property_sortByRequired = {
-    &afw_components_self_s_sortByRequired,
+    afw_components_v_sortByRequired,
     &impl_706_property_value_sortByRequired.pub
 };
 
@@ -77045,25 +77045,25 @@ impl_706__value = {
 
 static const afw_runtime_property_t
 impl_705_property_allowAdd = {
-    &afw_components_self_s_allowAdd,
+    afw_components_v_allowAdd,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_705_property_allowChange = {
-    &afw_components_self_s_allowChange,
+    afw_components_v_allowChange,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_705_property_allowDelete = {
-    &afw_components_self_s_allowDelete,
+    afw_components_v_allowDelete,
     &afw_components_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_705_property_allowEntity = {
-    &afw_components_self_s_allowEntity,
+    afw_components_v_allowEntity,
     &afw_components_boolean_self_v_false.pub
 };
 
@@ -77101,19 +77101,19 @@ impl_705_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_705_property_collectionURIs = {
-    &afw_components_self_s_collectionURIs,
+    afw_components_v_collectionURIs,
     &impl_705_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_705_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Adaptive_Layout_parameters_for_ObjectForm_sort_options_.pub
 };
 
 static const afw_runtime_property_t
 impl_705_property_objectType = {
-    &afw_components_self_s_objectType,
+    afw_components_v_objectType,
     &afw_components_self_v__AdaptiveLayout_ObjectResponsive_sortOptions.pub
 };
 
@@ -77125,7 +77125,7 @@ impl_705_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_705_property_propertyTypes = {
-    &afw_components_self_s_propertyTypes,
+    afw_components_v_propertyTypes,
     &impl_705_property_value_propertyTypes.pub
 };
 
@@ -77201,19 +77201,19 @@ impl_711;
 
 static const afw_runtime_property_t
 impl_711_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_containers.pub
 };
 
 static const afw_runtime_property_t
 impl_711_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__3ea2e0407553.pub
 };
 
 static const afw_runtime_property_t
 impl_711_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Containers.pub
 };
 
@@ -77284,19 +77284,19 @@ impl_712;
 
 static const afw_runtime_property_t
 impl_712_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_content.pub
 };
 
 static const afw_runtime_property_t
 impl_712_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Components_that_display_simple_data_.pub
 };
 
 static const afw_runtime_property_t
 impl_712_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Content.pub
 };
 
@@ -77367,19 +77367,19 @@ impl_713;
 
 static const afw_runtime_property_t
 impl_713_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_editors.pub
 };
 
 static const afw_runtime_property_t
 impl_713_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Components_that_display_data_and_allow_for_it_to_be_edited_.pub
 };
 
 static const afw_runtime_property_t
 impl_713_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Editors.pub
 };
 
@@ -77450,19 +77450,19 @@ impl_714;
 
 static const afw_runtime_property_t
 impl_714_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_inputs.pub
 };
 
 static const afw_runtime_property_t
 impl_714_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Components_that_provide_basic_inputs_for_a_user_to_supply_.pub
 };
 
 static const afw_runtime_property_t
 impl_714_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Inputs.pub
 };
 
@@ -77533,19 +77533,19 @@ impl_715;
 
 static const afw_runtime_property_t
 impl_715_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_navigation.pub
 };
 
 static const afw_runtime_property_t
 impl_715_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Components_that_provide_or_facilitate_content_navigation_.pub
 };
 
 static const afw_runtime_property_t
 impl_715_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Navigation.pub
 };
 
@@ -77616,19 +77616,19 @@ impl_716;
 
 static const afw_runtime_property_t
 impl_716_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_pickers.pub
 };
 
 static const afw_runtime_property_t
 impl_716_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__4900a482680a.pub
 };
 
 static const afw_runtime_property_t
 impl_716_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Pickers.pub
 };
 
@@ -77699,19 +77699,19 @@ impl_717;
 
 static const afw_runtime_property_t
 impl_717_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_structured.pub
 };
 
 static const afw_runtime_property_t
 impl_717_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__Components_that_structure_data_in_a_special_way_.pub
 };
 
 static const afw_runtime_property_t
 impl_717_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Structured.pub
 };
 
@@ -77782,19 +77782,19 @@ impl_718;
 
 static const afw_runtime_property_t
 impl_718_property_category = {
-    &afw_components_self_s_category,
+    afw_components_v_category,
     &afw_components_self_v_utilities.pub
 };
 
 static const afw_runtime_property_t
 impl_718_property_description = {
-    &afw_components_self_s_description,
+    afw_components_v_description,
     &afw_components_self_v_zz__fefc04084cf5.pub
 };
 
 static const afw_runtime_property_t
 impl_718_property_label = {
-    &afw_components_self_s_label,
+    afw_components_v_label,
     &afw_components_self_v_Utilities.pub
 };
 

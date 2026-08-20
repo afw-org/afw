@@ -60,24 +60,24 @@ afw_curl_function_execute_curl_version_info(
             object, afw_curl_s__AdaptiveCurlVersionInfo_, xctx);
 
         afw_object_set_property_as_string_from_utf8_z(object, 
-            afw_curl_s_version, version_info->version, xctx);
+            afw_curl_v_version, version_info->version, xctx);
         afw_object_set_property_as_integer(object, 
-            afw_curl_s_version_num, version_info->version_num, xctx);
+            afw_curl_v_version_num, version_info->version_num, xctx);
         afw_object_set_property_as_string_from_utf8_z(object, 
-            afw_curl_s_host, version_info->host, xctx);
+            afw_curl_v_host, version_info->host, xctx);
         afw_object_set_property_as_string_from_utf8_z(object, 
-            afw_curl_s_ssl_version, version_info->ssl_version, xctx);
+            afw_curl_v_ssl_version, version_info->ssl_version, xctx);
 
         afw_object_set_property_as_integer(object, 
-            afw_curl_s_ssl_version_num, version_info->ssl_version_num, xctx);
+            afw_curl_v_ssl_version_num, version_info->ssl_version_num, xctx);
 
         if (version_info->libz_version)
             afw_object_set_property_as_string_from_utf8_z(object, 
-                afw_curl_s_libz_version, version_info->libz_version, xctx);
+                afw_curl_v_libz_version, version_info->libz_version, xctx);
 
         if (version_info->libssh_version)
             afw_object_set_property_as_string_from_utf8_z(object, 
-                afw_curl_s_libssh_version, version_info->libssh_version, xctx);
+                afw_curl_v_libssh_version, version_info->libssh_version, xctx);
 
         /* collect features */
 

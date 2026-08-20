@@ -20,7 +20,7 @@
 static void
 impl_clone_and_set_property(
     const afw_object_t *obj,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -1155,7 +1155,7 @@ impl_afw_data_type_object_compare_internal(
     const afw_object_t *o2;
     const afw_value_t *v1;
     const afw_value_t *v2;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     afw_size_t count1, count2;
     const afw_iterator_old_t *iterator;
 
@@ -1431,7 +1431,7 @@ impl_object_clone_properties_and_meta(
     const afw_pool_t *p = to->p;
     const afw_iterator_old_t *iterator;
     const afw_value_t *value;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     afw_object_meta_t *to_meta;
     const afw_object_t *delta;
 
@@ -1490,7 +1490,7 @@ impl_clone_embedded_object(
     const afw_object_t * *to,
     const afw_object_t *from,
     const afw_object_t *embedding_object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     *to = afw_object_create_embedded(
@@ -1506,7 +1506,7 @@ impl_clone_embedded_object(
 static void
 impl_clone_and_set_property(
     const afw_object_t *obj,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -1514,7 +1514,7 @@ impl_clone_and_set_property(
     const afw_pool_t *p = obj->p;
 
     /* Clone property name.*/
-    property_name = afw_utf8_clone(property_name, p, xctx);
+    property_name = afw_value_clone(property_name, p, xctx);
 
     /* If object, handle special to support embedding object. */
     if (afw_value_is_object(value)) {
@@ -1532,9 +1532,7 @@ impl_clone_and_set_property(
     }
 
     /* Set property to cloned value. */
-    afw_object_set_property(obj,
-        afw_utf8_clone(property_name, p, xctx),
-        cloned_value, xctx);
+    afw_object_set_property(obj, property_name, cloned_value, xctx);
 }
 
 
@@ -1764,7 +1762,7 @@ afw_data_type_object_value_compiler_listing(
     const afw_object_t *object;
     const afw_iterator_old_t *iterator;
     const afw_value_t *pv;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
  
     object = afw_value_as_object(object_value, xctx);
     afw_value_compiler_listing_begin_value(writer, object_value, NULL, xctx);
@@ -1783,7 +1781,9 @@ afw_data_type_object_value_compiler_listing(
             continue;
         }
         afw_writer_write_z(writer, "property ", xctx);
-        afw_writer_write_utf8(writer, property_name, xctx);
+        afw_writer_write_utf8(writer,
+            afw_object_string_property_name_as_utf8(property_name, xctx),
+            xctx);
         afw_writer_write_z(writer, " ", xctx);
         afw_value_compiler_listing_value(pv, writer, xctx);
     }
@@ -2012,7 +2012,7 @@ impl_afw_data_type_object_write_as_expression(
     const afw_object_t *object;
     const afw_iterator_old_t *iterator;
     const afw_value_t *value;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     afw_size_t i;
 
     object = *(const afw_object_t * const *)from_internal;
@@ -2033,7 +2033,9 @@ impl_afw_data_type_object_write_as_expression(
         if (writer->tab) {
             afw_writer_write_eol(writer, xctx);
         }
-        afw_json_write_encoded_string(property_name, writer, xctx);
+        afw_json_write_encoded_string(
+            afw_object_string_property_name_as_utf8(property_name, xctx),
+            writer, xctx);
         if (writer->tab) {
             /* if there is any tab argument, use one space to separate property keys from values */
             afw_writer_write_z(writer, ": ", xctx);

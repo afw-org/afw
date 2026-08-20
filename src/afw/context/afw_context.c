@@ -76,16 +76,26 @@ impl_contribute_cb_variables_cb(
 
     for (variable = variables; *variable; variable++) {
         name = (*variable)->meta->name;
-        if (afw_object_has_property(object, name, xctx)) {
-            continue;
+        {
+            const afw_value_string_t name_value =
+                AFW_VALUE_STRING_UNMANAGED(name);
+            if (afw_object_has_property(object, &name_value.pub, xctx))
+            {
+                continue;
+            }
         }
         value = (*variable)->get_cb(entry, name, xctx);
         if (value) {
-            afw_object_set_property(object, name, value, xctx);
+            /* SET: name header must live with the object. */
+            afw_object_set_property(object,
+                afw_value_create_unmanaged_string(name, object->p, xctx),
+                value, xctx);
         }
         else {
             /* Known name on this frame; present but unset → undefined. */
-            afw_object_set_property(object, name, afw_value_undefined, xctx);
+            afw_object_set_property(object,
+                afw_value_create_unmanaged_string(name, object->p, xctx),
+                afw_value_undefined, xctx);
         }
     }
 }
@@ -122,7 +132,7 @@ afw_context_type_create(
         afw_s__AdaptiveContextType_, context_type_id, xctx);
 
     afw_object_set_property_as_string(result,
-        afw_s_contextTypeId, context_type_id, xctx);
+        afw_v_contextTypeId, context_type_id, xctx);
 
     return result;
 }
@@ -138,11 +148,11 @@ afw_context_type_insure_qualifier_definitions_object_exists(
     const afw_object_t *result;
 
     result = afw_object_old_get_property_as_object(
-        context_type_object, afw_s_qualifierDefinitions, xctx);
+        context_type_object, afw_v_qualifierDefinitions, xctx);
     
     if (!result) {
         result = afw_object_create_embedded(
-            context_type_object, afw_s_qualifierDefinitions,
+            context_type_object, afw_v_qualifierDefinitions,
             xctx);
         afw_object_meta_set_object_type_id(result,
             afw_s__AdaptiveQualifierDefinitions_, xctx);
@@ -167,10 +177,13 @@ afw_context_type_insure_variable_definitions_object_exists(
         afw_context_type_insure_qualifier_definitions_object_exists(
             context_type_object, xctx);
     result = afw_object_old_get_property_as_object(qualifier_definitions,
-        qualifier_id, xctx);
+        afw_value_create_unmanaged_string(qualifier_id,
+            context_type_object->p, xctx), xctx);
     if (!result) {
         result = afw_object_create_embedded(
-            qualifier_definitions, qualifier_id, xctx);
+            qualifier_definitions,
+            afw_value_create_unmanaged_string(qualifier_id,
+                context_type_object->p, xctx), xctx);
         afw_object_meta_set_object_type_id(result,
             afw_s__AdaptivePropertyTypes_, xctx);
     }
@@ -203,7 +216,7 @@ afw_context_type_register_cb_variables(
         afw_s_a_context_type_application_qualifier_definitions_path,
         xctx);
     afw_object_set_property_as_string_from_utf8_z(context_type_object,
-        afw_s_description, description_z, xctx);
+        afw_v_description, description_z, xctx);
 
     variable_definitions =
         afw_context_type_insure_variable_definitions_object_exists(
@@ -253,14 +266,15 @@ afw_context_variable_definition_add_z(
     afw_value_t value;
 
     definition = afw_object_create_embedded(variable_definitions,
-        variable_name, xctx);
+        afw_value_create_unmanaged_string(variable_name,
+            variable_definitions->p, xctx), xctx);
     afw_object_meta_set_object_type_id(definition,
         afw_s__AdaptiveValueMeta_, xctx);
 
     value.inf = value_inf;
     data_type = (value_inf) ? afw_value_get_data_type(&value, xctx) : NULL;
     if (data_type) {
-        afw_object_set_property_as_string(definition, afw_s_dataType,
+        afw_object_set_property_as_string(definition, afw_v_dataType,
             &data_type->data_type_id, xctx);
     }
     if (label_z) {
@@ -268,7 +282,7 @@ afw_context_variable_definition_add_z(
             definition->p, xctx);
         string_value->internal.s = label_z;
         string_value->internal.len = strlen(label_z);
-        afw_object_set_property(definition, afw_s_label,
+        afw_object_set_property(definition, afw_v_label,
             &string_value->pub, xctx);
     }
     if (description_z) {
@@ -276,7 +290,7 @@ afw_context_variable_definition_add_z(
             definition->p, xctx);
         string_value->internal.s = description_z;
         string_value->internal.len = strlen(description_z);
-        afw_object_set_property(definition, afw_s_description,
+        afw_object_set_property(definition, afw_v_description,
             &string_value->pub, xctx);
     }
     if (data_type_parameter_z) {
@@ -284,7 +298,7 @@ afw_context_variable_definition_add_z(
             definition->p, xctx);
         string_value->internal.s = data_type_parameter_z;
         string_value->internal.len = strlen(data_type_parameter_z);
-        afw_object_set_property(definition, afw_s_dataTypeParameter,
+        afw_object_set_property(definition, afw_v_dataTypeParameter,
             &string_value->pub, xctx);
     }
     if (data_type_parameter_formatted_z) {
@@ -292,7 +306,7 @@ afw_context_variable_definition_add_z(
             definition->p, xctx);
         string_value->internal.s = data_type_parameter_formatted_z;
         string_value->internal.len = strlen(data_type_parameter_formatted_z);
-        afw_object_set_property(definition, afw_s_dataTypeParameterFormatted,
+        afw_object_set_property(definition, afw_v_dataTypeParameterFormatted,
             &string_value->pub, xctx);
     }
 }
@@ -308,7 +322,7 @@ afw_context_variable_definitions_add(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *value;
 
     iterator = NULL;
@@ -334,7 +348,7 @@ afw_context_qualifier_definitions_merge(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *value;
     const afw_object_t *variable_definitions;
     const afw_object_t *variable_definitions_to_add;
@@ -376,7 +390,7 @@ afw_context_variable_definitions_add_based_on_object(
     const afw_object_t *other_properties;
     const afw_value_t *value;
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_pool_t *p = variable_definitions->p;
     const afw_utf8_t *s;
     const afw_data_type_t *data_type;
@@ -397,9 +411,9 @@ afw_context_variable_definitions_add_based_on_object(
         &afw_object_options_composite, p, xctx);
 
     property_types = afw_object_old_get_property_as_object(
-        object_type_object, afw_s_propertyTypes, xctx);
+        object_type_object, afw_v_propertyTypes, xctx);
     other_properties = afw_object_old_get_property_as_object(
-        object_type_object, afw_s_otherProperties, xctx);
+        object_type_object, afw_v_otherProperties, xctx);
     iterator = NULL;
     while ((value = afw_object_get_next_property(object,
         &iterator, &property_name, xctx)))
@@ -417,7 +431,9 @@ afw_context_variable_definitions_add_based_on_object(
             continue; /** @fixme How should this be handled? */
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Missing property type for " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(property_name));
+                AFW_UTF8_FMT_ARG(
+                    afw_object_property_name_display_utf8(
+                        property_name, xctx)));
         }
 
         value_data_type = afw_value_get_data_type(value, xctx);
@@ -429,7 +445,7 @@ afw_context_variable_definitions_add_based_on_object(
          * use relatedPropertyType for pt if it is.
          */
         s = afw_object_old_get_property_as_string(pt,
-            afw_s_dataType, xctx);
+            afw_v_dataType, xctx);
         if (s) {
             data_type = afw_environment_get_data_type(s, xctx);
             if (data_type && data_type->evaluated) {
@@ -438,7 +454,7 @@ afw_context_variable_definitions_add_based_on_object(
                 }
                 /** @fixme NOW relatedPropertyType no longer exists.
                 pt = afw_object_old_get_property_as_object(pt,
-                    afw_s_relatedPropertyType, xctx);*/
+                    afw_v_relatedPropertyType, xctx);*/
             }
         }
 
@@ -447,7 +463,7 @@ afw_context_variable_definitions_add_based_on_object(
             pt = afw_object_create_unmanaged(p, xctx);
             if (value_data_type) {
                 afw_object_set_property_as_string(pt,
-                    afw_s_dataType, &value_data_type->data_type_id, xctx);
+                    afw_v_dataType, &value_data_type->data_type_id, xctx);
             }
         }
 
@@ -473,7 +489,7 @@ afw_context_variable_definitions_add_based_on_object_type_id(
     const afw_object_t *pt;
     const afw_object_t *related_pt;
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_utf8_t *data_type_id;
     const afw_data_type_t *data_type = NULL;
     afw_value_string_t *source_value;
@@ -490,19 +506,19 @@ afw_context_variable_definitions_add_based_on_object_type_id(
         &afw_object_options_composite, p, xctx);
 
     property_types = afw_object_old_get_property_as_object(
-        object_type_object, afw_s_propertyTypes, xctx);
+        object_type_object, afw_v_propertyTypes, xctx);
     iterator = NULL;
     while ((pt = afw_object_old_get_next_property_as_object(
         property_types, &iterator, &property_name, xctx)))
     {
         /* Skip custom. */
-        if (afw_utf8_equal(property_name, afw_s_custom)) {
+        if (afw_value_equal(property_name, afw_v_custom, xctx)) {
             continue;
         }
 
         /* Get data type. */
         data_type_id = afw_object_old_get_property_as_string(pt,
-            afw_s_dataType, xctx);
+            afw_v_dataType, xctx);
         if (data_type_id) {
             data_type = afw_environment_get_data_type(data_type_id, xctx);
         }
@@ -516,7 +532,7 @@ afw_context_variable_definitions_add_based_on_object_type_id(
             /* Use relatedPropertyType for property type if available or skip. */
             /** @fixme NOW relatedPropertyType no longer exists.
             related_pt = afw_object_old_get_property_as_object(
-                pt, afw_s_relatedPropertyType, xctx);*/
+                pt, afw_v_relatedPropertyType, xctx);*/
             related_pt = NULL;
             if (!related_pt) {
                 continue;
@@ -574,7 +590,8 @@ afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *qualifier_id;
+    const afw_value_t *qualifier_id;
+    const afw_utf8_t *qualifier_id_utf8;
     const afw_utf8_t *detail_source_location;
     const afw_object_t *object;
 
@@ -582,13 +599,16 @@ afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
     while ((object = afw_object_old_get_next_property_as_object(
         objects, &iterator, &qualifier_id, xctx)))
     {
+        /* FIXME #2: utf8 name wrap; qualifier ids still utf8 here. */
+        qualifier_id_utf8 = afw_object_string_property_name_as_utf8(
+            qualifier_id, xctx);
         detail_source_location = afw_utf8_printf(
             object->p, xctx,
             AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(source_location),
-            AFW_UTF8_FMT_ARG(qualifier_id));
+            AFW_UTF8_FMT_ARG(qualifier_id_utf8));
         afw_context_variable_definitions_compile_and_add_based_on_object(
-            context_type_object, object,
-            qualifier_id, detail_source_location, xctx);
+            context_type_object, object, qualifier_id_utf8,
+            detail_source_location, xctx);
     }
 }

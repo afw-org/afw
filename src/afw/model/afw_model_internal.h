@@ -263,6 +263,7 @@ struct afw_model_internal_property_type_s {
     const afw_utf8_t *property_name;
 
     /** @brief Property name as adaptive value. */
+    /* FIXME #2: utf8 name wrap; one afw_value_string_t is both. */
     const afw_value_t *property_name_value;
 
     /** @brief Compiled value for this property. */
@@ -317,6 +318,7 @@ struct afw_model_internal_property_type_s {
     const afw_utf8_t *mapped_property_name;
 
     /** @brief Mapped property name as adaptive value. */
+    /* FIXME #2: utf8 name wrap; one afw_value_string_t is both. */
     const afw_value_t *mapped_property_name_value;
  
     /** @brief initial value or NULL if value from object used asis. */

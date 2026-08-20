@@ -222,7 +222,7 @@ impl_add_adapted_properties_from_adapter(
             afw_memory_clear(&ctx->property_level);
             ctx->property_level.model_property_type = *pt;
             ctx->property_level.mapped_value = afw_object_get_property(
-                mapped_object, (*pt)->mapped_property_name, xctx);
+                mapped_object, (*pt)->mapped_property_name_value, xctx);
 
             use_default_processing = true;
             if ((*pt)->onGetProperty) {
@@ -245,7 +245,7 @@ impl_add_adapted_properties_from_adapter(
 
             if (!afw_value_is_nullish(value)) {
                 afw_object_set_property(result,
-                    (*pt)->property_name,
+                    (*pt)->property_name_value,
                     value, xctx);
             }
             else if ((*pt)->required) {
@@ -257,7 +257,7 @@ impl_add_adapted_properties_from_adapter(
 
         AFW_CATCH_UNHANDLED{
             afw_object_meta_add_thrown_property_error(result,
-                (*pt)->property_name, -1, AFW_ERROR_THROWN,
+                (*pt)->property_name_value, -1, AFW_ERROR_THROWN,
                 xctx);
         }
 
@@ -826,7 +826,7 @@ afw_model_adapter_create_cede_p(
 
     /* Get modelLocationAdapterId.  It can not be the same as adapterId. */
     self->model_location_adapter_id = afw_object_old_get_property_as_utf8(properties,
-        afw_s_modelLocationAdapterId, p, xctx);
+        afw_v_modelLocationAdapterId, p, xctx);
     if (afw_utf8_equal(self->model_location_adapter_id, &adapter->adapter_id)) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -874,7 +874,7 @@ afw_model_adapter_create_cede_p(
 
         /** @fixme Load modelId */
         self->model_id = afw_object_old_get_property_as_utf8(properties,
-            afw_s_modelId, p, xctx);
+            afw_v_modelId, p, xctx);
     }
 
     AFW_FINALLY{
@@ -891,17 +891,17 @@ afw_model_adapter_create_cede_p(
      * all used operations in on* may omit it.
      */
     self->mappedAdapterId_value = afw_object_get_property(properties,
-        afw_s_mappedAdapterId, xctx);
+        afw_v_mappedAdapterId, xctx);
     if (self->mappedAdapterId_value) {
         if (!afw_value_is_string(self->mappedAdapterId_value)) {
             afw_adapter_impl_throw_property_invalid(adapter,
-                afw_s_mappedAdapterId, xctx);
+                afw_v_mappedAdapterId, xctx);
         }
         self->mapped_adapter_id =
             &((const afw_value_string_t *)self->mappedAdapterId_value)->internal;
         if (afw_utf8_equal(self->mapped_adapter_id, &self->pub.adapter_id)) {
             afw_adapter_impl_throw_property_invalid(adapter,
-                afw_s_mappedAdapterId, xctx);
+                afw_v_mappedAdapterId, xctx);
         }
     }
     else {
@@ -1355,7 +1355,7 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
 {
     const afw_pool_t *p = ctx->p;
     const afw_object_t *result;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_utf8_t *mapped_property_name;
     const afw_value_t *value;
     const afw_value_t *mapped_value;
@@ -1373,14 +1373,18 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
     {
         impl_get_property_type_by_property_name(
             &pt, &mapped_property_name,
-            ctx->model_object_type, property_name, xctx);
+            ctx->model_object_type,
+            afw_object_string_property_name_as_utf8(property_name, xctx),
+            xctx);
 
         if (!pt) {
             afw_object_meta_add_property_error_fz(
                 ctx->impl_request->request,
                 property_name, xctx,
                 "Invalid property " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(property_name));
+                AFW_UTF8_FMT_ARG(
+                    afw_object_property_name_display_utf8(
+                        property_name, xctx)));
         }
         else if (pt->allow_write)
         {
@@ -1398,7 +1402,10 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
             }
             if (!afw_value_is_nullish(mapped_value)) {
                 afw_object_set_property(result,
-                    mapped_property_name, mapped_value, xctx);
+                    (pt == ctx->model_object_type->property_type_other)
+                        ? property_name
+                        : pt->mapped_property_name_value,
+                    mapped_value, xctx);
             }
         }
     }
@@ -1411,13 +1418,13 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
         if (pts) for (; *pts; pts++) {
             pt = *pts;
             if (pt->onGetInitialValue &&
-                !afw_object_has_property(result, pt->mapped_property_name,
-                    xctx))
+                !afw_object_has_property(result,
+                    pt->mapped_property_name_value, xctx))
             {
                 mapped_value = afw_value_evaluate(
                     pt->onGetInitialValue, p, xctx);
                 afw_object_set_property(result,
-                    pt->mapped_property_name, mapped_value,
+                    pt->mapped_property_name_value, mapped_value,
                     xctx);
             }
         }
@@ -1596,11 +1603,12 @@ afw_model_internal_complete_ctx_default_modify_object(
         /* Add mapped name to entry. */
         impl_get_property_type_by_property_name(
             &model_property_type, &mapped_property_name, ctx->model_object_type,
-            &(*entry)->first_property_name_entry->property_name, xctx);
+            &(*entry)->first_property_name_entry->property_name.internal, xctx);
         if (!model_property_type) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Property name " AFW_UTF8_FMT_Q " invalid",
-                AFW_UTF8_FMT_ARG(&(*entry)->first_property_name_entry->property_name));
+                AFW_UTF8_FMT_ARG(
+                    &(*entry)->first_property_name_entry->property_name.internal));
         }
         afw_array_push_value(mapped_entry,
             model_property_type->mapped_property_name_value, xctx);

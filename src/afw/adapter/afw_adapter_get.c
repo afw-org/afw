@@ -64,7 +64,7 @@ afw_adapter_get_object(
     /* Set request in journal entry. */
     afw_memory_clear(&impl_request);
     impl_request.request = request = afw_object_create_embedded(
-        journal_entry, afw_s_request, xctx);
+        journal_entry, afw_v_request, xctx);
     impl_request.p = request->p;
     impl_request.journal_entry = journal_entry;
     impl_request.resource_id = afw_utf8_printf(impl_request.p, xctx,
@@ -76,16 +76,16 @@ afw_adapter_get_object(
         AFW_UTF8_FMT_ARG(object_type_id),
         AFW_UTF8_FMT_ARG(object_id));
     afw_object_set_property_as_string(request,
-        afw_s_resourceId, impl_request.resource_id, xctx);
+        afw_v_resourceId, impl_request.resource_id, xctx);
     impl_request.options = options;
     afw_object_set_property(request,
-        afw_s_function, afw_v_get_object, xctx);
+        afw_v_function, afw_v_get_object, xctx);
     afw_object_set_property_as_string(request,
-        afw_s_adapterId, adapter_id, xctx);
+        afw_v_adapterId, adapter_id, xctx);
     afw_object_set_property_as_string(request,
-        afw_s_objectType, object_type_id, xctx);
+        afw_v_objectType, object_type_id, xctx);
     afw_object_set_property_as_string(request,
-        afw_s_objectId, object_id, xctx);
+        afw_v_objectId, object_id, xctx);
 
     /* Get an active session with adapter. */
     session = afw_adapter_session_get_cached(adapter_id, false, xctx);

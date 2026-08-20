@@ -10,6 +10,7 @@
 #define __AFW_OBJECT_PATH_H
 
 #include "afw_interface.h"
+#include "afw_data_type_typedefs.h"
 
 /**
  * @addtogroup afw_object_path
@@ -29,7 +30,7 @@ AFW_BEGIN_DECLARES
 /** @brief Property name path struct. */
 struct afw_object_path_property_name_entry_s {
     const afw_object_path_property_name_entry_t *next;
-    afw_utf8_t property_name;
+    afw_value_string_t property_name;
 };
 
 

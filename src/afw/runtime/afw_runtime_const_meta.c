@@ -112,7 +112,7 @@ impl_afw_object_get_count(
 const afw_value_t *
 impl_afw_object_get_property (
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
     /* Assign &self->pub pointer to self. */
@@ -121,7 +121,7 @@ impl_afw_object_get_property (
     result = NULL;
 
     /* Parent paths. */
-    if (afw_utf8_equal(property_name, afw_s_parentPaths)) {
+    if (afw_value_equal(property_name, afw_v_parentPaths, xctx)) {
         if (self->parent_paths) {
             result = &self->parent_paths->pub;
         }
@@ -139,7 +139,7 @@ const afw_value_t *
 impl_afw_object_get_next_property (
     AFW_OBJECT_SELF_T *self,
     const afw_iterator_old_t * * iterator,
-    const afw_utf8_t * * property_name,
+    const afw_value_t * * property_name,
     afw_xctx_t *xctx)
 {
     /* Assign &self->pub pointer to self. */
@@ -151,7 +151,7 @@ impl_afw_object_get_next_property (
         *iterator = (afw_iterator_old_t *)afw_s_null;
         if (self->parent_paths) {
             if (property_name) {
-                *property_name = afw_s_parentPaths;
+                *property_name = afw_v_parentPaths;
             }
             return &self->parent_paths->pub;
         }
@@ -169,10 +169,11 @@ impl_afw_object_get_next_property (
 afw_boolean_t
 impl_afw_object_has_property (
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
-    return (afw_utf8_equal(property_name, afw_s_parentPaths)) ? true : false;
+    return (afw_value_equal(property_name, afw_v_parentPaths, xctx))
+        ? true : false;
 }
 
 

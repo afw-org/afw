@@ -313,29 +313,29 @@ afw_file_adapter_create_cede_p(
 
     /* Get content_type parameters. */
     content_type = afw_object_old_get_property_as_utf8(properties,
-        afw_s_contentType, p, xctx);
+        afw_v_contentType, p, xctx);
     self->content_type = afw_environment_get_content_type(content_type,
         xctx);
     if (!self->content_type)
     {
         afw_adapter_impl_throw_property_invalid(adapter,
-            afw_s_contentType, xctx);
+            afw_v_contentType, xctx);
     }
 
     /* Get optional filename extension */
     self->filename_suffix = afw_object_old_get_property_as_utf8(
-        properties, afw_s_filenameSuffix, p, xctx);
+        properties, afw_v_filenameSuffix, p, xctx);
     if (!self->filename_suffix) {
         self->filename_suffix = afw_s_a_empty_string;
     }
 
     /* Get root from parameters and make it full path. */
     value = afw_object_get_property_compile_and_evaluate_as(
-        properties,  afw_s_root, adapter->source_location,
+        properties,  afw_v_root, adapter->source_location,
         afw_compile_type_template, p, xctx);
     if (!afw_value_is_string(value)) {
         afw_adapter_impl_throw_property_invalid(adapter,
-            afw_s_root, xctx);
+            afw_v_root, xctx);
     }
     self->root = afw_file_insure_full_path(
         &((afw_value_string_t *)value)->internal,
@@ -360,7 +360,7 @@ afw_file_adapter_create_cede_p(
 
     /* If isDevelopmentInput is true, provide appropriate object types. */
     b = afw_object_old_get_property_as_boolean_deprecated(properties,
-        afw_s_isDevelopmentInput, xctx);
+        afw_v_isDevelopmentInput, xctx);
     if (b) {
         afw_adapter_impl_set_supported_core_object_type(adapter,
             afw_s__AdaptiveCollection_, true, true, xctx);

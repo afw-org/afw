@@ -1259,23 +1259,25 @@ impl_custom_variable_get_cb(
 
     result = NULL;
 
+    const afw_value_string_t name_value = AFW_VALUE_STRING_UNMANAGED(name);
+
     if (ctx->property_level.model_property_type &&
         ctx->property_level.model_property_type->custom_variables) {
         result = afw_object_get_property(
             ctx->property_level.model_property_type->custom_variables,
-            name, xctx);
+            &name_value.pub, xctx);
     }
 
     if (!result && ctx->model_object_type->custom_variables) {
         result = afw_object_get_property(
             ctx->model_object_type->custom_variables,
-            name, xctx);
+            &name_value.pub, xctx);
     }
 
     if (!result && ctx->model_object_type->model->custom_variables) {
         result = afw_object_get_property(
             ctx->model_object_type->model->custom_variables,
-            name, xctx);
+            &name_value.pub, xctx);
     }
 
     return result;

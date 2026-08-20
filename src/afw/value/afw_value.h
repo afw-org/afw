@@ -37,6 +37,41 @@
 
 AFW_BEGIN_DECLARES
 
+/**
+ * @brief Trusted C string-literal initializer for a permanent string value.
+ *
+ * Same shape generate uses for `afw_self_v_*`. Example:
+ *
+ * static const afw_value_string_t impl_v_sysname =
+ *     AFW_VALUE_STRING_LITERAL("sysname");
+ *
+ * Object APIs take `&impl_v_sysname.pub`; utf8 is
+ * `&impl_v_sysname.internal`. If generate already has the text, use
+ * `afw_v_*` instead of a local.
+ *
+ * `static const` lives with the `.so` — permanent inf, not unmanaged.
+ */
+#define AFW_VALUE_STRING_LITERAL(A_STRING) { \
+    { &afw_value_permanent_string_inf }, \
+    AFW_UTF8_LITERAL(A_STRING) \
+}
+
+
+/**
+ * @brief Unmanaged string value initializer from an existing utf8.
+ *
+ * `A_UTF8` is `const afw_utf8_t *`. Copies the utf8 struct, not the bytes.
+ * Stack is enough for get/has. Do **not** store `&pub` on an object.
+ *
+ * const afw_value_string_t name = AFW_VALUE_STRING_UNMANAGED(utf8);
+ * afw_object_get_property(obj, &name.pub, xctx);
+ */
+#define AFW_VALUE_STRING_UNMANAGED(A_UTF8) { \
+    { &afw_value_unmanaged_string_inf }, \
+    *(A_UTF8) \
+}
+
+
 /** @brief Filled in by afw_value get_info method. */
 struct afw_value_info_s {
     const afw_utf8_t *value_inf_id;

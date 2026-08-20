@@ -114,10 +114,12 @@ impl_entry_cb(
     afw_xctx_t *xctx)
 {
     const afw_object_t *entries = (const afw_object_t *)context;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
 
     if (object) {
-        property_name = afw_object_meta_get_object_id(object, xctx);
+        property_name = afw_value_create_unmanaged_string(
+            afw_object_meta_get_object_id(object, xctx),
+            entries->p, xctx);
         afw_object_set_property_as_object(entries, property_name,
             object, xctx);
     }
@@ -150,13 +152,13 @@ impl_make_registry_type_value(
 const afw_value_t *
 impl_afw_object_get_property (
     const afw_object_t * self,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
     const afw_environment_registry_type_t *type;
 
     type = afw_environment_get_registry_type(
-        property_name, xctx);
+        afw_object_string_property_name_as_utf8(property_name, xctx), xctx);
 
     return (type && type->object_type_id)
         ? impl_make_registry_type_value(type->object_type_id, xctx)
@@ -172,7 +174,7 @@ const afw_value_t *
 impl_afw_object_get_next_property (
     const afw_object_t * self,
     const afw_iterator_old_t * * iterator,
-    const afw_utf8_t * * property_name,
+    const afw_value_t * * property_name,
     afw_xctx_t *xctx)
 {
     int registry_type_number;
@@ -197,7 +199,8 @@ impl_afw_object_get_next_property (
     if (registry_type) {
         *(char **)iterator = (char *)0 + registry_type_number + 1;
         if (property_name) {
-            *property_name = registry_type->property_name;
+            *property_name = afw_value_create_unmanaged_string(
+                registry_type->property_name, xctx->p, xctx);
         }
     }
     else {
@@ -219,7 +222,7 @@ impl_afw_object_get_next_property (
 afw_boolean_t
 impl_afw_object_has_property (
     const afw_object_t * self,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
     return impl_afw_object_get_property(self, property_name, xctx) != NULL;

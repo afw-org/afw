@@ -391,7 +391,7 @@ struct afw_compile_internal_parser_s {
 
     const afw_object_t *embedding_object;
 
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
 
     afw_compile_token_t token_storage;
 
@@ -614,7 +614,7 @@ struct afw_compile_internal_assignment_property_s {
          * property_name_was_string: decompile should quote static name.
          */
         struct {
-            const afw_utf8_t *property_name;
+            const afw_value_t *property_name;
             const afw_value_t *property_name_expr;
             const afw_compile_assignment_element_t *assignment_element;
             afw_boolean_t property_name_was_string;

@@ -59,13 +59,15 @@ afw_object_create_const_from_key_value_strings_z(
         }
     }
     self->entry = e = afw_pool_calloc(p,
-        self->entry_count * sizeof(afw_object_const_key_value_self_t), xctx);
+        self->entry_count *
+            sizeof(afw_object_const_key_value_string_entry_t), xctx);
     self->entry_end = e + self->entry_count;
 
     /* Set entries */
     for (c = pairs; *c; c += 2, e++) {
-        e->key.s = *c;
-        e->key.len = strlen(*c);
+        e->key.inf = &afw_value_unmanaged_string_inf;
+        e->key.internal.s = *c;
+        e->key.internal.len = strlen(*c);
         e->value.inf = &afw_value_unmanaged_string_inf;
         e->value.internal.s = *(c + 1);
         e->value.internal.len = strlen(*(c + 1));
@@ -126,13 +128,13 @@ impl_afw_object_get_count(
 const afw_value_t *
 impl_afw_object_get_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
     const afw_object_const_key_value_string_entry_t *e;
 
     for (e = self->entry; e < self->entry_end; e++) {
-        if (afw_utf8_equal(&e->key, property_name)) {
+        if (afw_value_equal(&e->key.pub, property_name, xctx)) {
             return &e->value.pub;
         }
     }
@@ -147,7 +149,7 @@ const afw_value_t *
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
     const afw_iterator_old_t * * iterator,
-    const afw_utf8_t * * property_name,
+    const afw_value_t * * property_name,
     afw_xctx_t *xctx)
 {
     const afw_object_const_key_value_string_entry_t *e;
@@ -161,7 +163,7 @@ impl_afw_object_get_next_property(
     if (e < self->entry_end) {
         result = (const afw_value_t *)& e->value;
         if (property_name) {
-            *property_name = &e->key;
+            *property_name = &e->key.pub;
         }
         *iterator = (afw_iterator_old_t *)(e + 1);
     }
@@ -182,7 +184,7 @@ impl_afw_object_get_next_property(
 afw_boolean_t
 impl_afw_object_has_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
     return impl_afw_object_get_property(self, property_name, xctx) != NULL;

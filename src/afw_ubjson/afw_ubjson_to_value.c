@@ -24,7 +24,7 @@ typedef struct afw_ubjson_parser_s {
     size_t cursor;
     const afw_utf8_t *path;
     const afw_object_t *embedding_object;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_pool_t *p;
     afw_boolean_t cede_p;
 } afw_ubjson_parser_t;
@@ -296,12 +296,12 @@ const afw_object_t * afw_ubjson_parse_object(
     afw_xctx_t *xctx)
 {
     const afw_object_t * obj;
-    const afw_utf8_t * property_name;
+    const afw_value_t * property_name;
     const afw_value_t *property_value;
     char type = 0;
     char c;
     const afw_object_t *saved_embedding_object;
-    const afw_utf8_t *saved_property_name;
+    const afw_value_t *saved_property_name;
     const afw_object_t *_meta_;
 
     /* Create new memory object.*/
@@ -342,12 +342,13 @@ const afw_object_t * afw_ubjson_parse_object(
 
     c = afw_ubjson_peek_byte(parser, xctx);
     while (c != AFW_UBJSON_MARKER_OBJECT_) {
-        property_name = afw_ubjson_parse_string(parser, xctx);
+        property_name = afw_value_create_unmanaged_string(
+            afw_ubjson_parse_string(parser, xctx), parser->p, xctx);
         parser->property_name = property_name;
         property_value = afw_ubjson_parse_value(parser, type, xctx);
 
         /* check if this is a meta property */
-        if (afw_utf8_equal(property_name, afw_s__meta_)) {
+        if (afw_value_equal(property_name, afw_v__meta_, xctx)) {
             if (!afw_value_is_object(property_value)) {
                 AFW_THROW_ERROR_Z(general, "_meta_ property must be an object", xctx);
             }

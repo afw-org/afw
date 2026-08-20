@@ -3,19 +3,19 @@
 **Audience:** maintainers / assistants. **Not** handbook.  
 **GitHub:** umbrella [#2](https://github.com/afw-org/afw/issues/2) (memory). Another feature branch in that campaign — not the first, not the last.  
 **Parent pad:** [`memory-management.md`](memory-management.md) (do not dump this novel there).  
-**Related:** [#38](https://github.com/afw-org/afw/issues/38) construct `[expr]:` (closed; still converts names to utf8); [`c-naming-and-payloads.md`](c-naming-and-payloads.md) (utf8 has no pool).
+**Related:** [#38](https://github.com/afw-org/afw/issues/38) construct `[expr]:` (closed; leftover `as_utf8` on names cleaned here — throw, not convert); [`c-naming-and-payloads.md`](c-naming-and-payloads.md) (utf8 has no pool).
 
-**Status:** discussed 2026-08-20. **No code until execute is requested.** One feature branch off `develop` for this C/script/JSON cut plus the leftover autoconvert cleanup listed below. Name should blame #2 (example: `issue-2-property-name-values`). Local commits; push only when we would keep the branch.
+**Status:** coded on `issue-2-property-name-values`. Interface names-as-values, script/JSON string-only, path entries as `afw_value_string_t`, get-only wraps as stack `AFW_VALUE_STRING_UNMANAGED`. Remaining `FIXME #2: utf8 name wrap` are SET (need a living header) or LDAP/model utf8 twins.
 
 #2 is a **retrofit**: memory was built for **request** lifetime (bulk free when the request-session pool dies). Adaptive Script added **scope** lifetimes (nested, assign, escape, closures) inside and across those requests. Faces, catalog, permanent `afw_v_*`, dual `->value`, pool-release-returns-NULL already landed on other feature branches. This branch is names-as-values only; more #2 branches will follow.
 
 ## Why (values first)
 
-Object property names are `const afw_utf8_t *` today. Payloads have no pool; the setter comment is “name must live as long as the object.” Generated strings already emit **both** `afw_s_*` (utf8 view) and `afw_v_*` (`&afw_self_v_*.pub`) — that bag exists so names can be values.
+Object property names were `const afw_utf8_t *`. Payloads have no pool; the setter comment is “name must live as long as the object.” Generated strings already emit **both** `afw_s_*` (utf8 view) and `afw_v_*` (`&afw_self_v_*.pub`) — that pair exists so names can be values.
 
 This slice: **`afw_object` / `afw_object_setter` (and helpers that are really a property name) take `const afw_value_t *`.** Implementations compare with **`afw_value_equal`** (already type + internal for evaluated values; pointer identity first). Store-as-is lifetime, same contract as utf8; extra `inf` pointer only. **`clone_or_reference` of names is later #2**, not this branch.
 
-Call sites that already pass `afw_s_foo` become `afw_v_foo`. Dynamic names: `afw_value_create_unmanaged_string` in the object (or compile) pool — copies the `afw_utf8_t` struct, not the bytes (same as utf8 today).
+Call sites that already pass `afw_s_foo` become `afw_v_foo`. Dynamic names: `afw_value_create_unmanaged_string` in the object (or compile) pool — copies the `afw_utf8_t` struct, not the bytes (same as utf8 today). C that already owns a string name as utf8 still wraps at object get/set; that is the leftover pass (`afw_value_string_t` is both `&pub` and `&internal`).
 
 ## Layering (settled)
 
@@ -65,15 +65,15 @@ NULL name **pointer** is invalid. `null` / `undefined` as a name: script/JSON th
 - `AFW_VALUE_STRING_LITERAL` as a **stored** compound literal (dangling if inf is permanent). Prefer generated `afw_v_*` or `static const afw_value_string_t`.
 - JSON/XML metadata encoding, object_view/options replacement, typed keys in script, hexBinary/non-Unicode names — **later** (see above). Not #138’s `"_meta_"` collision either, though they share the “JSON stripped XML meta” history.
 
-## Leftover autoconvert (cleanup **on this branch**)
+## Leftover autoconvert (cleaned **on this branch**)
 
-Old expression language (and early Adaptive Script) autoconverted. Built-in parameter checks later required exact types. These object-name edges still convert — missed in that campaign. Fix them with the helper, same branch as the C type change.
+Old expression language (and early Adaptive Script) autoconverted. Built-in parameter checks later required exact types. These object-name edges still converted — missed in that campaign. Now string or throw via `afw_object_require_string_property_name`.
 
-| Site | Today | This branch |
-|------|--------|-------------|
+| Site | Was | Now |
+|------|-----|-----|
 | `afw_value_reference_by_key.c` object path | not string → `afw_value_as_utf8` (`obj[1]` → `"1"`) | string or throw |
 | `afw_value_object_construct.c` `impl_name_from_value` | same (`{ [1]: x }`) | string or throw |
-| Assign through `reference_by_key` | likely same convert — verify while there | string or throw |
+| Assign through `reference_by_key` | same convert | string or throw |
 
 Already strict (leave as-is except pass `const afw_value_t *` into object APIs):
 
@@ -89,19 +89,12 @@ Recorded so they are not only chat. Do not mix into the XML/`s`→`v` sweep.
 |---------|--------|
 | **`eq` / `==`** | Metadata says convert arg2 to arg1’s type. C `afw_function_execute_eq` **throws** if data types differ. Same typecheck-campaign leftover; separate fix. |
 | **`properties_ht`** | Memory object comment / union for a property hash table; lookup is still a linear list + `afw_utf8_equal`. Residual; not required to land names-as-values. |
+| **utf8 name wrap → `afw_value_string_t`** | Path entries and get-only (qualifier, dotted get, custom::, …) use `&pub` / `AFW_VALUE_STRING_UNMANAGED`. Remaining grep `FIXME #2: utf8 name wrap`: SET still allocates a header in the object pool; LDAP attr names and model `property_name` + `_value` twins still utf8+value. |
 
 When pairing on #2, keep adding rows here (or a later leftovers pad) instead of growing `memory-management.md`.
 
-## Suggested execute order (when asked)
+## This land (done)
 
-1. Edge helper: string property name or throw (compiler, JSON/YAML/UBJSON write).
-2. Interface XML + generate (`afw_object` / setter, `const_objects` name field, `afw_runtime_property_t`).
-3. Memory object + helpers (store `const afw_value_t *`, `afw_value_equal`).
-4. Other object impls until the tree compiles.
-5. Mechanical `afw_s_` → `afw_v_` call-site sweep; wrap remaining dynamic utf8 as unmanaged string values.
-6. Compiler construct + `reference_by_key` object path (kill `as_utf8`).
-7. Content types: string values in/out; throw otherwise.
-8. Tests: generated-name match; two unmanaged strings with same text; `obj[1]` on object throws; `arr[1]` still works; JSON string keys; #38 tests updated for throw-not-convert.
-9. `./afwdev build --cdev` while iterating; fulldev + valgrind before considering push.
+Interface XML + generate, memory object `afw_value_equal`, `s`→`v` call sites, script/JSON/YAML/UBJSON string-only (throw), `AFW_VALUE_STRING_LITERAL` / `UNMANAGED`, path entries as string values, get-only stack names, tests. SET wraps and LDAP/model utf8 twins still marked.
 
 Do not hand-edit `generated/`.

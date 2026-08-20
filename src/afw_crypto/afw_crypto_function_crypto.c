@@ -105,9 +105,9 @@ afw_crypto_function_execute_crypto_version_info(
 
     ossl = OpenSSL_version(OPENSSL_VERSION);
     afw_object_set_property_as_string_from_utf8_z(object,
-        afw_crypto_s_opensslVersion, ossl, xctx);
+        afw_crypto_v_opensslVersion, ossl, xctx);
     afw_object_set_property_as_string_from_utf8_z(object,
-        afw_crypto_s_extensionVersion, AFW_CRYPTO_VERSION_STRING, xctx);
+        afw_crypto_v_extensionVersion, AFW_CRYPTO_VERSION_STRING, xctx);
 
     algs = afw_array_create_generic(p, xctx);
 #define PUSH_ALG(Z) \
@@ -122,7 +122,7 @@ afw_crypto_function_execute_crypto_version_info(
     PUSH_ALG("PBKDF2");
 #undef PUSH_ALG
 
-    afw_object_set_property(object, afw_crypto_s_algorithms,
+    afw_object_set_property(object, afw_crypto_v_algorithms,
         afw_value_create_unmanaged_array(algs, p, xctx), xctx);
 
     return afw_value_create_unmanaged_object(object, p, xctx);
@@ -729,7 +729,7 @@ afw_crypto_function_execute_crypto_encrypt(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(data_v, 3);
 
     alg_obj = algorithm->internal;
-    name_v = afw_object_get_property(alg_obj, afw_crypto_s_name, xctx);
+    name_v = afw_object_get_property(alg_obj, afw_crypto_v_name, xctx);
     if (!name_v || !AFW_VALUE_IS_DATA_TYPE(name_v, string) ||
         !afw_utf8_equal_utf8_z(
             &((const afw_value_string_t *)name_v)->internal, "AES-GCM")) {
@@ -826,14 +826,14 @@ afw_crypto_function_execute_crypto_encrypt(
         afw_object_meta_set_object_type_id(result_obj,
             afw_crypto_s__AdaptiveCryptoEncryptResult_, xctx);
         afw_object_set_property_as_string_from_utf8_z(result_obj,
-            afw_crypto_s_algorithm, "AES-GCM", xctx);
-        afw_object_set_property_as_integer(result_obj, afw_crypto_s_keyLength,
+            afw_crypto_v_algorithm, "AES-GCM", xctx);
+        afw_object_set_property_as_integer(result_obj, afw_crypto_v_keyLength,
             key_bits, xctx);
 
         mem.ptr = out;
         mem.size = (afw_size_t)len;
         afw_object_set_property_as_base64Binary(result_obj,
-            afw_crypto_s_ciphertext, &mem, xctx);
+            afw_crypto_v_ciphertext, &mem, xctx);
 
         if (iv_in) {
             mem.ptr = afw_pool_malloc(x->p, iv_in->size, xctx);
@@ -845,14 +845,14 @@ afw_crypto_function_execute_crypto_encrypt(
             memcpy((void *)mem.ptr, iv_buf, AFW_CRYPTO_AES_GCM_IV_LEN);
             mem.size = AFW_CRYPTO_AES_GCM_IV_LEN;
         }
-        afw_object_set_property_as_base64Binary(result_obj, afw_crypto_s_iv,
+        afw_object_set_property_as_base64Binary(result_obj, afw_crypto_v_iv,
             &mem, xctx);
 
         mem.ptr = afw_pool_malloc(x->p, AFW_CRYPTO_AES_GCM_TAG_LEN, xctx);
         memcpy((void *)mem.ptr, tag, AFW_CRYPTO_AES_GCM_TAG_LEN);
         mem.size = AFW_CRYPTO_AES_GCM_TAG_LEN;
         OPENSSL_cleanse(tag, sizeof(tag));
-        afw_object_set_property_as_base64Binary(result_obj, afw_crypto_s_tag,
+        afw_object_set_property_as_base64Binary(result_obj, afw_crypto_v_tag,
             &mem, xctx);
 
         result = afw_value_create_unmanaged_object(result_obj, x->p, xctx);
@@ -938,7 +938,7 @@ afw_crypto_function_execute_crypto_decrypt(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(data_v, 3);
 
     alg_obj = algorithm->internal;
-    name_v = afw_object_get_property(alg_obj, afw_crypto_s_name, xctx);
+    name_v = afw_object_get_property(alg_obj, afw_crypto_v_name, xctx);
     if (!name_v || !AFW_VALUE_IS_DATA_TYPE(name_v, string) ||
         !afw_utf8_equal_utf8_z(
             &((const afw_value_string_t *)name_v)->internal, "AES-GCM")) {
@@ -1123,7 +1123,7 @@ afw_crypto_function_execute_crypto_derive_key(
     }
 
     alg_obj = algorithm->internal;
-    v = afw_object_get_property(alg_obj, afw_crypto_s_name, xctx);
+    v = afw_object_get_property(alg_obj, afw_crypto_v_name, xctx);
     if (!v || !AFW_VALUE_IS_DATA_TYPE(v, string) ||
         !afw_utf8_equal_utf8_z(
             &((const afw_value_string_t *)v)->internal, "PBKDF2")) {
@@ -1140,7 +1140,7 @@ afw_crypto_function_execute_crypto_derive_key(
             xctx);
     }
 
-    v = afw_object_get_property(alg_obj, afw_crypto_s_length, xctx);
+    v = afw_object_get_property(alg_obj, afw_crypto_v_length, xctx);
     if (!v || !AFW_VALUE_IS_DATA_TYPE(v, integer)) {
         AFW_THROW_ERROR_Z(argument_error,
             "error:crypto:invalid_key_length: PBKDF2 length (octets) required",
@@ -1154,7 +1154,7 @@ afw_crypto_function_execute_crypto_derive_key(
     }
 
     iterations = AFW_CRYPTO_PBKDF2_DEFAULT_ITERATIONS;
-    v = afw_object_get_property(alg_obj, afw_crypto_s_iterations, xctx);
+    v = afw_object_get_property(alg_obj, afw_crypto_v_iterations, xctx);
     if (v) {
         if (!AFW_VALUE_IS_DATA_TYPE(v, integer)) {
             AFW_THROW_ERROR_Z(argument_error,
@@ -1170,7 +1170,7 @@ afw_crypto_function_execute_crypto_derive_key(
     }
 
     /* hash optional; only SHA-256 in v1 */
-    v = afw_object_get_property(alg_obj, afw_crypto_s_hash, xctx);
+    v = afw_object_get_property(alg_obj, afw_crypto_v_hash, xctx);
     if (v) {
         if (!AFW_VALUE_IS_DATA_TYPE(v, string) ||
             !afw_utf8_equal_utf8_z(
@@ -1353,26 +1353,26 @@ afw_crypto_function_execute_crypto_seal(
         afw_object_meta_set_object_type_id(result_obj,
             afw_crypto_s__AdaptiveCryptoEncryptResult_, xctx);
         afw_object_set_property_as_string_from_utf8_z(result_obj,
-            afw_crypto_s_algorithm, "AES-GCM", xctx);
-        afw_object_set_property_as_integer(result_obj, afw_crypto_s_keyLength,
+            afw_crypto_v_algorithm, "AES-GCM", xctx);
+        afw_object_set_property_as_integer(result_obj, afw_crypto_v_keyLength,
             key_bits, xctx);
 
         mem.ptr = out;
         mem.size = (afw_size_t)len;
         afw_object_set_property_as_base64Binary(result_obj,
-            afw_crypto_s_ciphertext, &mem, xctx);
+            afw_crypto_v_ciphertext, &mem, xctx);
 
         mem.ptr = afw_pool_malloc(x->p, AFW_CRYPTO_AES_GCM_IV_LEN, xctx);
         memcpy((void *)mem.ptr, iv_buf, AFW_CRYPTO_AES_GCM_IV_LEN);
         mem.size = AFW_CRYPTO_AES_GCM_IV_LEN;
-        afw_object_set_property_as_base64Binary(result_obj, afw_crypto_s_iv,
+        afw_object_set_property_as_base64Binary(result_obj, afw_crypto_v_iv,
             &mem, xctx);
 
         mem.ptr = afw_pool_malloc(x->p, AFW_CRYPTO_AES_GCM_TAG_LEN, xctx);
         memcpy((void *)mem.ptr, tag, AFW_CRYPTO_AES_GCM_TAG_LEN);
         mem.size = AFW_CRYPTO_AES_GCM_TAG_LEN;
         OPENSSL_cleanse(tag, sizeof(tag));
-        afw_object_set_property_as_base64Binary(result_obj, afw_crypto_s_tag,
+        afw_object_set_property_as_base64Binary(result_obj, afw_crypto_v_tag,
             &mem, xctx);
 
         result = afw_value_create_unmanaged_object(result_obj, x->p, xctx);

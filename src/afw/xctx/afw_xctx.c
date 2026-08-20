@@ -428,14 +428,16 @@ afw_xctx_qualifier_stack_qualifiers_object_push(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *qualifier_name;
+    const afw_value_t *qualifier_name;
     const afw_object_t *qualifier_object;
 
     for (iterator = NULL;
         (qualifier_object = afw_object_old_get_next_property_as_object(
             context_object, &iterator, &qualifier_name, xctx)); )
     {
-        afw_xctx_qualifier_stack_qualifier_object_push(qualifier_name, qualifier_object,
+        afw_xctx_qualifier_stack_qualifier_object_push(
+            afw_object_string_property_name_as_utf8(qualifier_name, xctx),
+            qualifier_object,
             secure, p, xctx);
     }
 }
@@ -494,7 +496,10 @@ impl_get_object_variable_cb(
      * Present null/undefined properties should be stored as afw_value_null /
      * afw_value_undefined (or other values), not omitted.
      */
-    return afw_object_get_property(entry->qualifier_object, name, xctx);
+    const afw_value_string_t name_value = AFW_VALUE_STRING_UNMANAGED(name);
+
+    return afw_object_get_property(entry->qualifier_object,
+        &name_value.pub, xctx);
 }
 
 
@@ -511,7 +516,7 @@ impl_contribute_object_variables_cb(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *value;
 
     (void)include_untrusted;

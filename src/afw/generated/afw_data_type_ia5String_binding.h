@@ -337,7 +337,7 @@ afw_object_get_property_as_ia5String_source( \
 AFW_DECLARE(const afw_utf8_t *)
 afw_object_get_property_as_ia5String_source(
     const afw_object_t *object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -391,7 +391,7 @@ AFW_DECLARE(const afw_utf8_t *)
 afw_object_get_next_property_as_ia5String_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
-    const afw_utf8_t * *property_name,
+    const afw_value_t * *property_name,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -412,7 +412,7 @@ afw_object_get_next_property_as_ia5String_source(
 AFW_DECLARE(void)
 afw_object_set_property_as_ia5String(
     const afw_object_t *object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_t * internal,
     afw_xctx_t *xctx);
 

@@ -226,7 +226,7 @@ afw_boolean_t afw_adapter_impl_index_object_type_applicable(
     const afw_iterator_old_t * object_type_iterator;
 
     objectTypes = afw_object_old_get_property_as_array(
-        indexDefinition, afw_s_objectType, xctx);
+        indexDefinition, afw_v_objectType, xctx);
 
     /* no objectTypes means all/any are applicable */
     if (objectTypes == NULL)
@@ -268,7 +268,7 @@ afw_boolean_t afw_adapter_impl_index_filter_applicable(
 
     /* if we have a filter, evaluate it to decide if we should apply this indexDefinition */
     filter = afw_object_old_get_property_as_string(
-        indexDefinition, afw_s_filter, xctx);
+        indexDefinition, afw_v_filter, xctx);
     if (filter) {
         filterValue = afw_compile_to_value(filter,  NULL,
             afw_compile_type_script, NULL, NULL, object->p, xctx);
@@ -308,7 +308,7 @@ afw_boolean_t afw_adapter_impl_index_option_case_insensitive(
     const afw_iterator_old_t * option_iterator;
 
     options = afw_object_old_get_property_as_array(
-        indexDefinition, afw_s_options, xctx);
+        indexDefinition, afw_v_options, xctx);
    
     if (options) { 
         option_iterator = NULL;
@@ -347,7 +347,7 @@ afw_boolean_t afw_adapter_impl_index_option_unique(
     const afw_iterator_old_t * option_iterator;
 
     options = afw_object_old_get_property_as_array(
-        indexDefinition, afw_s_options, xctx);
+        indexDefinition, afw_v_options, xctx);
   
     if (options) { 
         option_iterator = NULL;
@@ -395,7 +395,7 @@ void afw_adapter_impl_index_apply(
     const afw_utf8_t  * value_string;
 
     options = afw_object_old_get_property_as_array(
-        indexDefinition, afw_s_options, xctx);
+        indexDefinition, afw_v_options, xctx);
 
     if (options) {
         option_iterator = NULL;
@@ -506,7 +506,7 @@ afw_boolean_t afw_adapter_impl_index_try(
 
         /* generate an index value based on the provided expression */
         value_expression = afw_object_old_get_property_as_string(
-            indexDefinition, afw_s_value, xctx);
+            indexDefinition, afw_v_value, xctx);
         if (value_expression)
         {
             value = afw_compile_to_value(value_expression, NULL,
@@ -522,7 +522,11 @@ afw_boolean_t afw_adapter_impl_index_try(
         else
         {
             /* no value script: index property with the same name as the key */
-            eval = afw_object_get_property(object, key, xctx);
+            {
+                const afw_value_string_t key_value =
+                    AFW_VALUE_STRING_UNMANAGED(key);
+                eval = afw_object_get_property(object, &key_value.pub, xctx);
+            }
         }
 
         /* if eval is nullish, then we didn't generate a value and shouldn't index */
@@ -596,7 +600,7 @@ void afw_adapter_impl_index_open_definition(
     afw_boolean_t integer = false;
 
     options = afw_object_old_get_property_as_array(
-        indexDefinition, afw_s_options, xctx);
+        indexDefinition, afw_v_options, xctx);
     if (options) {
         option_iterator = NULL;
         option = afw_array_get_next_value(options, &option_iterator,
@@ -620,7 +624,7 @@ void afw_adapter_impl_index_open_definition(
     }
 
     objectType = afw_object_old_get_property_as_array(
-        indexDefinition, afw_s_objectType, xctx);
+        indexDefinition, afw_v_objectType, xctx);
 
     if (objectType) {
         object_type_iterator = NULL;
@@ -647,14 +651,15 @@ AFW_DEFINE(void) afw_adapter_impl_index_open_definitions(
 {
     const afw_object_t * indexDefinition;
     const afw_iterator_old_t * index_iterator;
-    const afw_utf8_t   * key;
+    const afw_value_t  * key;
 
     index_iterator = NULL;
     indexDefinition = afw_object_old_get_next_property_as_object(
         indexDefinitions, &index_iterator, &key, xctx);
 
     while (indexDefinition) {
-        afw_adapter_impl_index_open_definition(indexer, key, 
+        afw_adapter_impl_index_open_definition(indexer,
+            afw_object_string_property_name_as_utf8(key, xctx), 
             indexDefinition, pool, xctx);
 
         indexDefinition = afw_object_old_get_next_property_as_object(
@@ -734,7 +739,6 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_list(
     const afw_iterator_old_t           * index_iterator;
     const afw_object_t             * indexDefinition;
     const afw_object_t             * result;
-    const afw_utf8_t               * key;
 
     session = afw_adapter_session_get_cached(adapterId, false, xctx);
 
@@ -750,6 +754,8 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_list(
         result = afw_object_create(pool, xctx);
 
         index_iterator = NULL;
+        const afw_value_t *key;
+
         indexDefinition = afw_object_old_get_next_property_as_object(
             instance->indexDefinitions, &index_iterator, &key, xctx);
         while (indexDefinition) {
@@ -800,7 +806,8 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
     }
 
     indexDefinition = afw_object_old_get_property_as_object(
-        indexer->indexDefinitions, key, xctx);
+        indexer->indexDefinitions,
+        afw_value_create_unmanaged_string(key, pool, xctx), xctx);
     if (indexDefinition == NULL) {
         AFW_THROW_ERROR_Z(general,
             "Error there is no index definition by this key.", xctx);
@@ -808,14 +815,15 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
 
     /* first, we remove the index from the configuration, 
         so it's no longer in use */
-    afw_object_remove_property(indexer->indexDefinitions, key, xctx);
+    afw_object_remove_property(indexer->indexDefinitions,
+        afw_value_create_unmanaged_string(key, pool, xctx), xctx);
 
     afw_adapter_impl_index_update_index_definitions(
         indexer, indexer->indexDefinitions, xctx);
 
     /* get all applicable objectTypes */
     objectTypes = afw_object_old_get_property_as_array(
-        indexDefinition, afw_s_objectType, xctx);
+        indexDefinition, afw_v_objectType, xctx);
     if (objectTypes) {
         object_type_iterator = NULL;
 
@@ -895,10 +903,11 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
     }
 
     indexDefinition = afw_object_old_get_property_as_object(
-        indexDefinitions, key, xctx);
+        indexDefinitions,
+        afw_value_create_unmanaged_string(key, pool, xctx), xctx);
     if (indexDefinition) {
         /** @fixme already indexed, rebuild? */
-        afw_object_set_property_as_string_from_utf8_z(result, afw_s_message, 
+        afw_object_set_property_as_string_from_utf8_z(result, afw_v_message, 
             "An index definition by this key already exists.", xctx);
         return result;
     }
@@ -908,19 +917,19 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
 
     if (value)
         afw_object_set_property_as_string(indexDefinition,
-            afw_s_value, value, xctx);
+            afw_v_value, value, xctx);
 
     if (objectType)
         afw_object_set_property_as_array(indexDefinition,
-            afw_s_objectType, objectType, xctx);
+            afw_v_objectType, objectType, xctx);
    
     if (filter)
         afw_object_set_property_as_string(indexDefinition,
-            afw_s_filter, filter, xctx);
+            afw_v_filter, filter, xctx);
    
     if (options)
         afw_object_set_property_as_array(indexDefinition,
-            afw_s_options, options, xctx);
+            afw_v_options, options, xctx);
 
     ctx.instance = indexer;
     ctx.key = key;
@@ -947,7 +956,9 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
 
     /* now, tell the adapter to add the new indexDefinition for configuration */
     afw_object_set_property_as_object(
-        indexDefinitions, key, indexDefinition, xctx);
+        indexDefinitions,
+        afw_value_create_unmanaged_string(key, pool, xctx),
+        indexDefinition, xctx);
 
     afw_adapter_impl_index_update_index_definitions(
         indexer, indexDefinitions, xctx);
@@ -957,9 +968,9 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
 
     /* return metrics */
     afw_object_set_property_as_integer(
-        result, afw_s_num_indexed, ctx.num_indexed, xctx);
+        result, afw_v_num_indexed, ctx.num_indexed, xctx);
     afw_object_set_property_as_integer(
-        result, afw_s_num_processed, ctx.num_processed, xctx);
+        result, afw_v_num_processed, ctx.num_processed, xctx);
 
     return result;
 }
@@ -981,8 +992,10 @@ afw_boolean_t afw_adapter_impl_index_is_property_indexed(
     const afw_object_t * indexDefinition;
 
     if (instance->indexDefinitions) {
+        const afw_value_string_t property_name_value =
+            AFW_VALUE_STRING_UNMANAGED(property_name);
         indexDefinition = afw_object_old_get_property_as_object(
-            instance->indexDefinitions, property_name, xctx);
+            instance->indexDefinitions, &property_name_value.pub, xctx);
         if (indexDefinition) {
             if (afw_adapter_impl_index_object_type_applicable(
                 indexDefinition, object_type_id, xctx)) {
@@ -1010,8 +1023,10 @@ const afw_object_t * afw_adapter_impl_index_get_index_definition(
     const afw_object_t * indexDefinition = NULL;
 
     if (instance->indexDefinitions) {
+        const afw_value_string_t property_name_value =
+            AFW_VALUE_STRING_UNMANAGED(property_name);
         indexDefinition = afw_object_old_get_property_as_object(
-            instance->indexDefinitions, property_name, xctx);
+            instance->indexDefinitions, &property_name_value.pub, xctx);
         if (indexDefinition) {
             if (afw_adapter_impl_index_object_type_applicable(
                 indexDefinition, object_type_id, xctx)) {
@@ -1039,7 +1054,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_object(
     const afw_utf8_t               * object_id,
     afw_xctx_t                    * xctx)
 {
-    const afw_utf8_t   * index_name;
+    const afw_value_t  * index_name;
     const afw_object_t * indexDefinition;
     const afw_iterator_old_t * index_iterator;
 
@@ -1049,7 +1064,9 @@ AFW_DEFINE(void) afw_adapter_impl_index_object(
         indexDefinition = afw_object_old_get_next_property_as_object(
             instance->indexDefinitions, &index_iterator, &index_name, xctx);
         while (indexDefinition) {
-            afw_adapter_impl_index_try(instance, index_name, object, 
+            afw_adapter_impl_index_try(instance,
+                afw_object_string_property_name_as_utf8(index_name, xctx),
+                object, 
                 object_type_id, object_id, indexDefinition, 
                 afw_adapter_impl_index_mode_add, xctx);
 
@@ -1074,7 +1091,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_unindex_object(
     const afw_utf8_t               * object_id,
     afw_xctx_t                    * xctx)
 {
-    const afw_utf8_t   * index_name;
+    const afw_value_t  * index_name;
     const afw_object_t * indexDefinition;
     const afw_iterator_old_t * index_iterator;
 
@@ -1084,7 +1101,9 @@ AFW_DEFINE(void) afw_adapter_impl_index_unindex_object(
         indexDefinition = afw_object_old_get_next_property_as_object(
             instance->indexDefinitions, &index_iterator, &index_name, xctx);
         while (indexDefinition) {
-            afw_adapter_impl_index_try(instance, index_name, object, 
+            afw_adapter_impl_index_try(instance,
+                afw_object_string_property_name_as_utf8(index_name, xctx),
+                object, 
                 object_type_id, object_id, indexDefinition,
                 afw_adapter_impl_index_mode_delete, xctx);
 
@@ -1112,7 +1131,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_reindex_object(
     const afw_utf8_t               * object_id,
     afw_xctx_t                    * xctx)
 {
-    const afw_utf8_t   * index_name;
+    const afw_value_t  * index_name;
     const afw_iterator_old_t * index_iterator;
     const afw_object_t * indexDefinition;
 
@@ -1122,12 +1141,16 @@ AFW_DEFINE(void) afw_adapter_impl_index_reindex_object(
             instance->indexDefinitions, &index_iterator, &index_name, xctx);
         while (indexDefinition) {
             /* remove indexes from the old object */
-            afw_adapter_impl_index_try(instance, index_name, old_object,
+            afw_adapter_impl_index_try(instance,
+                afw_object_string_property_name_as_utf8(index_name, xctx),
+                old_object,
                 object_type_id, object_id, indexDefinition,
                 afw_adapter_impl_index_mode_delete, xctx);
 
             /* now add back the new ones */
-            afw_adapter_impl_index_try(instance, index_name, new_object,
+            afw_adapter_impl_index_try(instance,
+                afw_object_string_property_name_as_utf8(index_name, xctx),
+                new_object,
                 object_type_id, object_id, indexDefinition, 
                 afw_adapter_impl_index_mode_add, xctx);
 
@@ -1182,7 +1205,8 @@ AFW_DEFINE(afw_boolean_t) afw_adapter_impl_index_sargable_entry(
 
     /* Determine if this property is indexed */
     sargable = afw_adapter_impl_index_is_property_indexed(instance,
-        object_type_id, entry->property_name, xctx);
+        object_type_id,
+        entry->property_name, xctx);
    
     /* A bottom leaf of our query decision tree */ 
     if (entry->on_true == AFW_QUERY_CRITERIA_TRUE &&
@@ -1464,7 +1488,8 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list(
 
     /* Determine if this property is indexed */
     indexDefinition = afw_adapter_impl_index_get_index_definition(
-        instance, object_type_id, entry->property_name, xctx);
+        instance, object_type_id,
+        entry->property_name, xctx);
     if (indexDefinition)
     {
         /* if the indexDefinition is case-insensitive, then we need
@@ -1480,7 +1505,8 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list(
         /** @fixme we need to register open cursors to be released, because we
             may not know exactly when to discard them */
         cursor = afw_adapter_impl_index_open_cursor(instance, object_type_id, 
-            entry->property_name, entry->op_id, value_string, unique, xctx->p, xctx);
+            entry->property_name,
+            entry->op_id, value_string, unique, xctx->p, xctx);
     } 
 
     if (cursor) {
@@ -1642,7 +1668,9 @@ static afw_boolean_t afw_adapter_impl_index_applies(
     const afw_query_criteria_filter_entry_t *entry = cursor->filter_entry;
     const afw_value_t *value;
 
-    value = afw_object_get_property(object, entry->property_name, xctx);
+    value = afw_object_get_property(object,
+        afw_value_create_unmanaged_string(
+            entry->property_name, xctx->p, xctx), xctx);
     if (value) {
         switch (entry->op_id) {
             case afw_query_criteria_filter_op_id_eq:

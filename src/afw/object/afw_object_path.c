@@ -13,6 +13,16 @@
 
 #include "afw_internal.h"
 
+static void
+impl_path_name_from_utf8(
+    afw_object_path_property_name_entry_t *entry,
+    const afw_utf8_t *utf8)
+{
+    entry->property_name.inf = &afw_value_unmanaged_string_inf;
+    entry->property_name.internal = *utf8;
+}
+
+
 typedef enum {
     impl_state_end,
     impl_state_slash_before_adapter_id,
@@ -65,7 +75,7 @@ impl_set_result_paths(
             AFW_URI_OCTET_UNRESERVED, xctx);
     parsed->entity_path.len = path_len;
     for (name = parsed->first_property_name; name; name = name->next) {
-        path_len += name->property_name.len + 1 /* slash */;
+        path_len += name->property_name.internal.len + 1 /* slash */;
     }
     parsed->normalized_path.len = path_len;
 
@@ -100,7 +110,7 @@ impl_set_result_paths(
     for (name = parsed->first_property_name; name; name = name->next) {
         *s++ = '/';
         path_len--;
-        len = afw_uri_encode_to_preallocated(s, path_len, &name->property_name,
+        len = afw_uri_encode_to_preallocated(s, path_len, &name->property_name.internal,
             AFW_URI_OCTET_UNRESERVED, p, xctx);
         path_len -= len;
         s += len;
@@ -352,8 +362,10 @@ impl_object_path_parse(
             if (at_end ||
                 (is_reserved && !afw_utf8_equal(token, afw_s_a_equal)))
             {
+                /* FIXME #2: utf8 name wrap; prefer afw_value_string_t. */
                 afw_object_set_property(parsed->options_object,
-                    name, afw_boolean_v_true, xctx);
+                    afw_value_create_unmanaged_string(name, p, xctx),
+                    afw_boolean_v_true, xctx);
             }
 
             if (at_end) {
@@ -389,8 +401,10 @@ impl_object_path_parse(
                 goto error;
             }
 
+            /* FIXME #2: utf8 name wrap; prefer afw_value_string_t. */
             afw_object_set_property_as_string(parsed->options_object,
-                name, token, xctx);
+                afw_value_create_unmanaged_string(name, p, xctx),
+                token, xctx);
 
             state = impl_state_after_option_value;
 
@@ -489,7 +503,7 @@ impl_object_path_parse(
                         curr_name = (afw_object_path_property_name_entry_t *)
                             curr_name->next)
                     {
-                        if (afw_utf8_starts_with(&curr_name->property_name,
+                        if (afw_utf8_starts_with(&curr_name->property_name.internal,
                             afw_s_a_asterisk))
                         {
                             parsed->contains_unresolved_substitutions = true;
@@ -543,25 +557,23 @@ impl_object_path_parse(
                 if (!current_parsed ||
                     !current_parsed->first_property_name ||
                     !relative_name ||
-                    afw_utf8_equal(&relative_name->property_name,
+                    afw_utf8_equal(&relative_name->property_name.internal,
                         afw_s_a_asterisk)
                     )
                 {
                     parsed->contains_unresolved_substitutions = true;
-                    afw_memory_copy(&curr_name->property_name,
-                        afw_s_a_asterisk);
+                    impl_path_name_from_utf8(curr_name, afw_s_a_asterisk);
                 }
 
                 else {
                     parsed->substituted_property_name = true;
                     parsed->substitution_occurred = true;
-                    afw_memory_copy(&curr_name->property_name,
-                        &relative_name->property_name);
+                    curr_name->property_name = relative_name->property_name;
                 }
             }
 
             else {
-                afw_memory_copy(&curr_name->property_name, token);
+                impl_path_name_from_utf8(curr_name, token);
             }
 
             prev_name = curr_name;
@@ -636,11 +648,11 @@ afw_object_path_property_name_list_get_property(
     const afw_value_t *result;
 
     result = afw_object_get_property(object,
-        &first_property_name->property_name, xctx);
+        &first_property_name->property_name.pub, xctx);
 
     for (name = first_property_name->next; name; name = name->next) {
         result = afw_object_get_property(object,
-            &name->property_name, xctx);
+            &name->property_name.pub, xctx);
         if (!result) {
             break;
         }
@@ -736,89 +748,88 @@ afw_object_path_parsed_to_object(
 
     if (parsed->original_path.len > 0) {
         afw_object_set_property_as_string(result,
-            afw_s_originalPath, &parsed->original_path, xctx);
+            afw_v_originalPath, &parsed->original_path, xctx);
     }
 
     if (parsed->normalized_path.len > 0) {
         afw_object_set_property_as_string(result,
-            afw_s_normalizedPath, &parsed->normalized_path, xctx);
+            afw_v_normalizedPath, &parsed->normalized_path, xctx);
     }
 
     if (parsed->entity_path.len > 0) {
         afw_object_set_property_as_string(result,
-            afw_s_entityPath, &parsed->entity_path, xctx);
+            afw_v_entityPath, &parsed->entity_path, xctx);
     }
 
     if (parsed->adapter_id.len > 0) {
         afw_object_set_property_as_string(result,
-            afw_s_adapterId, &parsed->adapter_id, xctx);
+            afw_v_adapterId, &parsed->adapter_id, xctx);
     }
 
     if (parsed->object_type_id.len > 0) {
         afw_object_set_property_as_string(result,
-            afw_s_objectType, &parsed->object_type_id, xctx);
+            afw_v_objectType, &parsed->object_type_id, xctx);
     }
 
     if (parsed->entity_object_id.len > 0) {
         afw_object_set_property_as_string(result,
-            afw_s_entityObjectId, &parsed->entity_object_id, xctx);
+            afw_v_entityObjectId, &parsed->entity_object_id, xctx);
     }
 
     if (parsed->undecoded_object_id.len > 0) {
         afw_object_set_property_as_string(result,
-            afw_s_objectId, &parsed->undecoded_object_id, xctx);
+            afw_v_objectId, &parsed->undecoded_object_id, xctx);
     }
 
     if (parsed->first_property_name) {
         list = afw_array_of_create(
             afw_data_type_string, p, xctx);
         for (name = parsed->first_property_name; name; name = name->next) {
-            value = afw_value_create_unmanaged_string(
-                &name->property_name, p, xctx);
+            value = &name->property_name.pub;
             afw_array_push_value(list, value, xctx);
         }
         afw_object_set_property_as_array(result,
-            afw_s_propertyTypes, list, xctx);
+            afw_v_propertyTypes, list, xctx);
     }
 
     if (parsed->options_object) {
         afw_object_set_property_as_object(result,
-            afw_s_optionsObject, parsed->options_object, xctx);
+            afw_v_optionsObject, parsed->options_object, xctx);
     }
 
     if (parsed->substitution_occurred) {
         afw_object_set_property(result,
-            afw_s_substitutionOccurred, afw_boolean_v_true, xctx);
+            afw_v_substitutionOccurred, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_adapter_id) {
         afw_object_set_property(result,
-            afw_s_substitutedAdapterId, afw_boolean_v_true, xctx);
+            afw_v_substitutedAdapterId, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_object_type_id) {
         afw_object_set_property(result,
-            afw_s_substitutedObjectTypeId, afw_boolean_v_true, xctx);
+            afw_v_substitutedObjectTypeId, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_entire_object_id) {
         afw_object_set_property(result,
-            afw_s_substitutedEntireObjectId, afw_boolean_v_true, xctx);
+            afw_v_substitutedEntireObjectId, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_entity_object_id) {
         afw_object_set_property(result,
-            afw_s_substitutedEntityObjectId, afw_boolean_v_true, xctx);
+            afw_v_substitutedEntityObjectId, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_property_name) {
         afw_object_set_property(result,
-            afw_s_substitutedPropertyName, afw_boolean_v_true, xctx);
+            afw_v_substitutedPropertyName, afw_boolean_v_true, xctx);
     }
 
     if (parsed->contains_unresolved_substitutions) {
         afw_object_set_property(result,
-            afw_s_containsUnresolvedSubstitutions, afw_boolean_v_true, xctx);
+            afw_v_containsUnresolvedSubstitutions, afw_boolean_v_true, xctx);
     }
 
     return result;}
@@ -871,7 +882,7 @@ afw_object_path_parsed_are_equivalent(
 
         if (!name2) goto not_equal;
 
-        if (!afw_utf8_equal(&name1->property_name, &name2->property_name)) {
+        if (!afw_utf8_equal(&name1->property_name.internal, &name2->property_name.internal)) {
             goto not_equal;
         }
     }
@@ -1015,7 +1026,7 @@ afw_object_path_make_property_name_expression(
 
     /** @fixme Improve to generate ['name'] when needed. */
     for (len = 0, entry = first; entry; entry = entry->next) {
-        len += entry->property_name.len + 1;
+        len += entry->property_name.internal.len + 1;
     }
     len--;
 
@@ -1023,13 +1034,13 @@ afw_object_path_make_property_name_expression(
     result->s = s = afw_pool_malloc(p, len, xctx);
     result->len = len;
 
-    memcpy(s, first->property_name.s, first->property_name.len);
-    s += first->property_name.len;
+    memcpy(s, first->property_name.internal.s, first->property_name.internal.len);
+    s += first->property_name.internal.len;
 
     for (entry = first->next; entry; entry = entry->next) {
         *s++ = '/';
-        memcpy(s, entry->property_name.s, entry->property_name.len);
-        s += entry->property_name.len;
+        memcpy(s, entry->property_name.internal.s, entry->property_name.internal.len);
+        s += entry->property_name.internal.len;
     }
 
     return result;

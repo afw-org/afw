@@ -48,11 +48,11 @@ afw_ldap_internal_adapter_create_cede_p(
         const afw_value_t *url_value;
 
         url_value = afw_object_get_property_compile_and_evaluate_as(
-            properties, afw_ldap_s_url, adapter->source_location,
+            properties, afw_ldap_v_url, adapter->source_location,
             afw_compile_type_template, p, xctx);
         if (!afw_value_is_string(url_value)) {
             afw_adapter_impl_throw_property_invalid(adapter,
-                afw_ldap_s_url, xctx);
+                afw_ldap_v_url, xctx);
         }
         self->url_z = afw_utf8_to_utf8_z(
             &((const afw_value_string_t *)url_value)->internal, p, xctx);
@@ -63,17 +63,17 @@ afw_ldap_internal_adapter_create_cede_p(
         &(self->lud), &err);
     if (rv != APR_SUCCESS) {
         afw_adapter_impl_throw_property_invalid(adapter,
-            afw_ldap_s_url, xctx);
+            afw_ldap_v_url, xctx);
     }
 
     /* Get compiled bindParameter. */
     self->bind_parameters = afw_object_old_get_property_as_compiled_template(
-        properties, afw_ldap_s_bindParameters,
+        properties, afw_ldap_v_bindParameters,
         adapter->impl->source_location, NULL, adapter->p, xctx);
 
     /* Get preventVerifyCert. */
     self->prevent_verify_cert = afw_object_old_get_property_as_boolean(
-        properties, afw_ldap_s_preventVerifyCert, &found, xctx);
+        properties, afw_ldap_v_preventVerifyCert, &found, xctx);
 
     /** @fixme add parameter. */
     self->timeout.tv_sec = 30;

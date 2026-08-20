@@ -95,7 +95,7 @@ impl_afw_object_get_count(
 const afw_value_t *
 impl_afw_object_get_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
     const afw_object_t * const *obj;
@@ -118,7 +118,7 @@ const afw_value_t *
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
     const afw_iterator_old_t * * iterator,
-    const afw_utf8_t * * property_name,
+    const afw_value_t * * property_name,
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
@@ -152,7 +152,7 @@ impl_afw_object_get_next_property(
 afw_boolean_t
 impl_afw_object_has_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
     return impl_afw_object_get_property(self, property_name, xctx) != NULL;

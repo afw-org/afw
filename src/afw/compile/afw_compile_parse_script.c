@@ -223,7 +223,8 @@ impl_compile_check_object_pattern(
                 /* Dynamic name: cannot check at compile. */
                 continue;
             }
-            name = ap->property_name;
+            name = afw_object_string_property_name_as_utf8(
+                ap->property_name, parser->xctx);
             if (ap->assignment_element) {
                 type = ap->assignment_element->type;
             }
@@ -235,7 +236,9 @@ impl_compile_check_object_pattern(
         if (!name || !type || afw_value_type_is_any(type)) {
             continue;
         }
-        pv = afw_object_get_property(obj, name, parser->xctx);
+        pv = afw_object_get_property(obj,
+            afw_value_create_unmanaged_string(name, parser->p, parser->xctx),
+            parser->xctx);
         if (!pv) {
             continue;
         }
@@ -3176,7 +3179,7 @@ afw_compile_parse_TestScript(
     test_list = afw_array_of_create(afw_data_type_object,
         parser->p, parser->xctx);
     afw_object_set_property_as_array(test_script_object,
-        afw_s_tests, test_list, parser->xctx);
+        afw_v_tests, test_list, parser->xctx);
 
     /* Process TestScriptDefinition */
     for (global_source_type = NULL, test_script_id = NULL;;)
@@ -3198,7 +3201,9 @@ afw_compile_parse_TestScript(
         if (afw_utf8_equal(key, afw_s_skip)) {
             if (afw_utf8_equal(string, afw_s_true)) {
                 afw_object_set_property(test_script_object,
-                    key, afw_boolean_v_true, parser->xctx);
+                    afw_value_create_unmanaged_string(
+                        key, parser->p, parser->xctx),
+                    afw_boolean_v_true, parser->xctx);
             }
             else if (!afw_utf8_equal(string, afw_s_false)) {
                 AFW_COMPILE_THROW_ERROR_Z(
@@ -3206,7 +3211,9 @@ afw_compile_parse_TestScript(
             }
         }
         else {
-            if (afw_object_has_property(test_script_object, key, parser->xctx))
+            if (afw_object_has_property(test_script_object,
+                afw_value_create_unmanaged_string(
+                    key, parser->p, parser->xctx), parser->xctx))
             {
                 AFW_COMPILE_THROW_ERROR_FZ(
                     AFW_UTF8_FMT_Q " already specified",
@@ -3216,16 +3223,18 @@ afw_compile_parse_TestScript(
                 global_source_type = string;
             }
             afw_object_set_property_as_string(test_script_object,
-                key, string, parser->xctx);
+                afw_value_create_unmanaged_string(
+                    key, parser->p, parser->xctx),
+                string, parser->xctx);
         }
     }
     if (!global_source_type) {
         global_source_type = afw_s_script;
         afw_object_set_property_as_string(test_script_object,
-            afw_s_sourceType, global_source_type, parser->xctx);
+            afw_v_sourceType, global_source_type, parser->xctx);
     }
     afw_object_set_property_as_integer(test_script_object,
-        afw_s_upToTestsUTF8OctetOffsetInTestScript,
+        afw_v_upToTestsUTF8OctetOffsetInTestScript,
             afw_safe_cast_size_to_integer(up_to_tests_offset, parser->xctx),
             parser->xctx);
 
@@ -3235,12 +3244,12 @@ afw_compile_parse_TestScript(
         if (!key || afw_utf8_equal(key, afw_s_test)) {
             if (test_object) {
                 if (!afw_object_has_property(test_object,
-                    afw_s_source, parser->xctx))
+                    afw_v_source, parser->xctx))
                 {
                     AFW_COMPILE_THROW_ERROR_Z("'source:' missing");
                 }
                 if (!afw_object_has_property(test_object,
-                    afw_s_expect, parser->xctx))
+                    afw_v_expect, parser->xctx))
                 {
                     AFW_COMPILE_THROW_ERROR_Z("'expect:' missing");
                 }
@@ -3254,7 +3263,7 @@ afw_compile_parse_TestScript(
                     test_object, parser->p, parser->xctx),
                 parser->xctx);
             afw_object_set_property_as_string(test_object,
-                afw_s_test, string, parser->xctx);
+                afw_v_test, string, parser->xctx);
         }
 
         else if (afw_utf8_equal(key, afw_s_skip)) {
@@ -3263,7 +3272,9 @@ afw_compile_parse_TestScript(
                     AFW_COMPILE_THROW_ERROR_Z("'test:' missing");
                 }
                 afw_object_set_property(test_object,
-                    key, afw_boolean_v_true, parser->xctx);
+                    afw_value_create_unmanaged_string(
+                        key, parser->p, parser->xctx),
+                    afw_boolean_v_true, parser->xctx);
             }
             else if (!afw_utf8_equal(string, afw_s_false)) {
                 AFW_COMPILE_THROW_ERROR_Z(
@@ -3278,13 +3289,17 @@ afw_compile_parse_TestScript(
         }
 
         else {
-            if (afw_object_has_property(test_object, key, parser->xctx)) {
+            if (afw_object_has_property(test_object,
+                afw_value_create_unmanaged_string(
+                    key, parser->p, parser->xctx), parser->xctx)) {
                 AFW_COMPILE_THROW_ERROR_FZ(
                     AFW_UTF8_FMT_Q " already specified",
                     AFW_UTF8_FMT_ARG(key));
             }
             afw_object_set_property_as_string(test_object,
-                key, string, parser->xctx);
+                afw_value_create_unmanaged_string(
+                    key, parser->p, parser->xctx),
+                string, parser->xctx);
         }
 
         if (afw_utf8_equal(key, afw_s_expect)) {
@@ -3299,29 +3314,29 @@ afw_compile_parse_TestScript(
                 AFW_UTF8_FMT_ARG(test_script_id),
                 string_offset, source_line, source_column);
             afw_object_set_property_as_string(test_object,
-                afw_s_expectLocation, expect_location, parser->xctx);
+                afw_v_expectLocation, expect_location, parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                afw_s_expectLineNumberInTestScript,
+                afw_v_expectLineNumberInTestScript,
                     afw_safe_cast_size_to_integer(source_line, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                afw_s_expectColumnNumberInTestScript,
+                afw_v_expectColumnNumberInTestScript,
                     afw_safe_cast_size_to_integer(source_column, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                afw_s_expectCodepointOffsetInTestScript,
+                afw_v_expectCodepointOffsetInTestScript,
                     afw_safe_cast_size_to_integer(string_offset, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                afw_s_expectCodepointLengthInTestScript,
+                afw_v_expectCodepointLengthInTestScript,
                     afw_safe_cast_size_to_integer(string_length, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                afw_s_expectUTF8OctetOffsetInTestScript,
+                afw_v_expectUTF8OctetOffsetInTestScript,
                     afw_safe_cast_size_to_integer(string_offset, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                afw_s_expectUTF8OctetLengthInTestScript,
+                afw_v_expectUTF8OctetLengthInTestScript,
                     afw_safe_cast_size_to_integer(string_length, parser->xctx),
                     parser->xctx);
         }
@@ -3338,29 +3353,29 @@ afw_compile_parse_TestScript(
                 AFW_UTF8_FMT_ARG(test_script_id),
                 string_offset, source_line, source_column);
             afw_object_set_property_as_string(test_object,
-                afw_s_sourceLocation, source_location, parser->xctx);
+                afw_v_sourceLocation, source_location, parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                afw_s_sourceLineNumberInTestScript,
+                afw_v_sourceLineNumberInTestScript,
                     afw_safe_cast_size_to_integer(source_line, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                afw_s_sourceColumnNumberInTestScript,
+                afw_v_sourceColumnNumberInTestScript,
                     afw_safe_cast_size_to_integer(source_column, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                afw_s_sourceCodepointOffsetInTestScript,
+                afw_v_sourceCodepointOffsetInTestScript,
                     afw_safe_cast_size_to_integer(string_offset, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                afw_s_sourceCodepointLengthInTestScript,
+                afw_v_sourceCodepointLengthInTestScript,
                     afw_safe_cast_size_to_integer(string_length, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                afw_s_sourceUTF8OctetOffsetInTestScript,
+                afw_v_sourceUTF8OctetOffsetInTestScript,
                     afw_safe_cast_size_to_integer(string_offset, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                afw_s_sourceUTF8OctetLengthInTestScript,
+                afw_v_sourceUTF8OctetLengthInTestScript,
                     afw_safe_cast_size_to_integer(string_length, parser->xctx),
                     parser->xctx);
         }
@@ -3373,7 +3388,7 @@ afw_compile_parse_TestScript(
         parser->full_source->s, parser->full_source->len,
         parser->p, parser->xctx);
     afw_object_set_property_as_string(test_script_object,
-        afw_s_source, string, parser->xctx);
+        afw_v_source, string, parser->xctx);
 
     /* Result is a call_test_script value. */
     result = afw_value_call_test_script_create(

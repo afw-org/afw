@@ -66,7 +66,7 @@ static const afw_value_string_t entry_type_value[] = {
  */
 static const afw_object_t *
 impl_find_object(
-    const afw_utf8_t * *property_name,
+    const afw_value_t * *property_name,
     afw_boolean_t create_if_necessary,
     const afw_object_t *entity,
     const afw_object_path_property_name_entry_t *first_property_name_entry,
@@ -77,16 +77,16 @@ impl_find_object(
     const afw_object_path_property_name_entry_t *entry;
 
     result = entity;
-    *property_name = &first_property_name_entry->property_name;
+    *property_name = &first_property_name_entry->property_name.pub;
     for (entry = first_property_name_entry; entry->next; entry = entry->next)
     {
-        *property_name = &entry->next->property_name;
+        *property_name = &entry->next->property_name.pub;
         object = afw_object_old_get_property_as_object(result,
-            &entry->property_name, xctx);
+            &entry->property_name.pub, xctx);
         if (!object) {
             if (create_if_necessary) {
                 object = afw_object_create_embedded(result,
-                    &entry->property_name, xctx);
+                    &entry->property_name.pub, xctx);
             }
             else {
                 result = NULL;
@@ -109,7 +109,7 @@ impl_set_property(
     afw_xctx_t *xctx)
 {
     const afw_object_t *obj;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
 
     obj = impl_find_object(&property_name, true, object,
         first_property_name_entry, xctx);
@@ -211,9 +211,8 @@ afw_adapter_modify_entries_from_list(
         if (afw_value_is_string(value)) {
             entry->first_property_name_entry = property_name_entry =
                 afw_pool_calloc_type(p, afw_object_path_property_name_entry_t, xctx);
-            s = &((const afw_value_string_t *)value)->internal;
-            property_name_entry->property_name.s = s->s;
-            property_name_entry->property_name.len = s->len;
+            property_name_entry->property_name =
+                *(const afw_value_string_t *)value;
         }
         else if (afw_value_is_array(value)) {
             for (names_i = NULL, prev_property_name_list = NULL;;) {
@@ -228,8 +227,9 @@ afw_adapter_modify_entries_from_list(
                 }
                 property_name_entry = afw_pool_calloc_type(p,
                     afw_object_path_property_name_entry_t, xctx);
-                property_name_entry->property_name.s = s->s;
-                property_name_entry->property_name.len = s->len;
+                property_name_entry->property_name.inf =
+                    &afw_value_unmanaged_string_inf;
+                property_name_entry->property_name.internal = *s;
                 if (prev_property_name_list) {
                     prev_property_name_list->next = property_name_entry;
                 }
@@ -307,17 +307,13 @@ afw_adapter_modify_entries_to_list(
                 property_name_entry;
                 property_name_entry = property_name_entry->next)
             {
-                value = afw_value_create_unmanaged_string(
-                    &property_name_entry->property_name,
-                    p, xctx);
+                value = &property_name_entry->property_name.pub;
                 afw_array_push_value(name_list, value, xctx);
             }
             value = afw_value_create_unmanaged_array(name_list, p, xctx);
         }
         else {
-            value = afw_value_create_unmanaged_string(
-                &(*e)->first_property_name_entry->property_name,
-                p, xctx);
+            value = &(*e)->first_property_name_entry->property_name.pub;
         }
         afw_array_push_value(tuple, value, xctx);
 
@@ -352,7 +348,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
     const afw_value_t *new_value;
     const afw_array_t *list;
     const afw_object_t *obj;
-    const afw_utf8_t *property_name = NULL;
+    const afw_value_t *property_name = NULL;
     const afw_utf8_t *s;
 
     /** @fixme is this supposed to be use **/
@@ -376,7 +372,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
                     "add_value " AFW_UTF8_FMT_Q
                     " must be a defined and evaluated value",
                     AFW_UTF8_FMT_ARG(
-                        &first_property_name_entry->property_name));
+                        &first_property_name_entry->property_name.internal));
             }
 
             /* If object already has this property, add value to it. */
@@ -504,7 +500,7 @@ impl_add_reconcile_property(
     const afw_object_type_property_type_t *embedding_pt,
     const afw_utf8_t *embedding_property_name,
     const afw_object_type_property_type_t *pt,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_array_t *property_names,
     const afw_value_t *value)
 {
@@ -524,7 +520,9 @@ impl_add_reconcile_property(
         // return; /** @fixme Ignore these on reconcile???
         AFW_THROW_ERROR_FZ(general, wa->xctx,
             "Property " AFW_UTF8_FMT " can not be modified",
-            AFW_UTF8_FMT_ARG(property_name));
+            AFW_UTF8_FMT_ARG(
+                afw_object_property_name_display_utf8(
+                    property_name, wa->xctx)));
         //*/
     }
 
@@ -541,15 +539,13 @@ impl_add_reconcile_property(
         new_property_names = afw_array_create_or_clone(
             property_names, afw_data_type_string, false,
             wa->p, wa->xctx);
-        v = afw_value_create_unmanaged_string(property_name,
-            wa->p, wa->xctx);
+        v = property_name;
         afw_array_push_value(new_property_names, v, wa->xctx);
         v = afw_value_create_unmanaged_array(new_property_names,
             wa->p, wa->xctx);
     }
     else {
-        v = afw_value_create_unmanaged_string(property_name,
-            wa->p, wa->xctx);
+        v = property_name;
     }
     afw_array_push_value(tuple, v, wa->xctx);
 
@@ -576,7 +572,7 @@ impl_reconcile_object(
     const afw_object_t *journal_entry)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *original_value;
     const afw_value_t *modified_value;
     const afw_value_t *value;
@@ -600,7 +596,9 @@ impl_reconcile_object(
         if (!pt) {
             AFW_THROW_ERROR_FZ(general, wa->xctx,
                 "Missing property type for " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(property_name));
+                AFW_UTF8_FMT_ARG(
+                afw_object_property_name_display_utf8(
+                    property_name, wa->xctx)));
         }
 
         /* Normalize modified value. */
@@ -632,8 +630,7 @@ impl_reconcile_object(
                     afw_array_create_or_clone(
                         property_names, afw_data_type_string, false,
                         wa->p, wa->xctx);
-                value = afw_value_create_unmanaged_string(property_name,
-                    wa->p, wa->xctx);
+                value = property_name;
                 afw_array_push_value(new_property_names, value, wa->xctx);
 
                 /* Try getting object type id from pt. */
@@ -683,7 +680,8 @@ impl_reconcile_object(
 
                 /* Reconcile the two objects. */
                 impl_reconcile_object(wa,
-                    pt, property_name,
+                    pt, afw_object_string_property_name_as_utf8(
+                        property_name, wa->xctx),
                     property_object_type,
                     new_property_names,
                     ((const afw_value_object_t *)original_value)
@@ -807,7 +805,7 @@ afw_adapter_modify_object(
     /* Set request in journal entry. */
     afw_memory_clear(&impl_request);
     impl_request.request = request = afw_object_create_embedded(
-        journal_entry, afw_s_request, xctx);
+        journal_entry, afw_v_request, xctx);
     impl_request.p = request->p;
     impl_request.journal_entry = journal_entry;
     impl_request.resource_id = afw_utf8_printf(impl_request.p, xctx,
@@ -819,17 +817,17 @@ afw_adapter_modify_object(
         AFW_UTF8_FMT_ARG(object_type_id),
         AFW_UTF8_FMT_ARG(object_id));
     afw_object_set_property_as_string(request,
-        afw_s_resourceId, impl_request.resource_id, xctx);
+        afw_v_resourceId, impl_request.resource_id, xctx);
     afw_object_set_property(request,
-        afw_s_function, afw_v_modify_object, xctx);
+        afw_v_function, afw_v_modify_object, xctx);
     afw_object_set_property_as_string(request,
-        afw_s_adapterId, adapter_id, xctx);
+        afw_v_adapterId, adapter_id, xctx);
     afw_object_set_property_as_string(request,
-        afw_s_objectType, object_type_id, xctx);
+        afw_v_objectType, object_type_id, xctx);
     afw_object_set_property_as_string(request,
-        afw_s_objectId, object_id, xctx);
+        afw_v_objectId, object_id, xctx);
     afw_object_set_property_as_array(request,
-        afw_s_entries, entries, xctx);
+        afw_v_entries, entries, xctx);
 
     /* Parse entries. */
     entry = afw_adapter_modify_entries_from_list(entries, xctx->p, xctx);
@@ -878,7 +876,7 @@ afw_adapter_modify_using_update_object(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *value;
     const afw_array_t *entries;
     const afw_array_t *entry;
@@ -910,8 +908,7 @@ afw_adapter_modify_using_update_object(
         afw_array_push_value(entry,
             &impl_value_set_property.pub,
             xctx);
-        property_name_value = afw_value_create_unmanaged_string(
-            property_name, xctx->p, xctx);
+        property_name_value = property_name;
         afw_array_push_value(entry, property_name_value, xctx);
         afw_array_push_value(entry, value, xctx);
         entry_value = afw_value_create_unmanaged_array(entry, xctx->p, xctx);

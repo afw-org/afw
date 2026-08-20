@@ -233,7 +233,8 @@ afw_compile_parse_AssignmentProperty(
                 "String property name in destructure requires ':' binding");
         }
         ap->is_rename = true;
-        ap->property_name = identifier;
+        ap->property_name = afw_value_create_unmanaged_string(
+            identifier, parser->p, parser->xctx);
         ap->property_name_expr = NULL;
         ap->property_name_was_string = true;
         ap->assignment_element = afw_compile_parse_AssignmentElement(
@@ -251,7 +252,8 @@ afw_compile_parse_AssignmentProperty(
     afw_compile_get_token();
     if (afw_compile_token_is(colon)) {
         ap->is_rename = true;
-        ap->property_name = identifier;
+        ap->property_name = afw_value_create_unmanaged_string(
+            identifier, parser->p, parser->xctx);
         ap->property_name_expr = NULL;
         ap->property_name_was_string = false;
         ap->assignment_element = afw_compile_parse_AssignmentElement(

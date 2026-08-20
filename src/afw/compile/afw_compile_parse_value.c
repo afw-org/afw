@@ -328,7 +328,7 @@ impl_object_construct_entry_append(
     afw_value_object_construct_entry_t **entries_head,
     afw_value_object_construct_entry_t **entries_tail,
     afw_value_object_construct_entry_type_t type,
-    const afw_utf8_t *static_name,
+    const afw_value_t *static_name,
     const afw_value_t *name_expr,
     const afw_value_t *value,
     const afw_value_t *spread_expr)
@@ -366,7 +366,7 @@ impl_object_migrate_properties_to_entries(
     afw_value_object_construct_entry_t **entries_tail)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *name;
+    const afw_value_t *name;
     const afw_value_t *v;
 
     if (!obj) {
@@ -393,7 +393,7 @@ afw_compile_parse_Object(
     const afw_value_t *v;
     const afw_value_t *name_expr;
     const afw_object_t *embedding_object;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_object_t *_meta_;
     afw_compile_args_t *args;
     const afw_value_t **argv;
@@ -406,7 +406,7 @@ afw_compile_parse_Object(
     afw_boolean_t name_is_expression;
     afw_value_object_construct_entry_t *entries_head;
     afw_value_object_construct_entry_t *entries_tail;
-    const afw_utf8_t *saved_parser_property_name;
+    const afw_value_t *saved_parser_property_name;
     afw_size_t i;
 
     /* Return NULL if next token is not '{'. */
@@ -457,18 +457,21 @@ afw_compile_parse_Object(
                 if (afw_compile_token_is(utf8_string) &&
                     parser->token->string_quote_character == '"')
                 {
-                    parser->property_name = parser->token->string;
+                    parser->property_name = afw_value_create_unmanaged_string(
+                        parser->token->string, parser->p, parser->xctx);
                 }
             }
 
             else if (afw_compile_token_is(utf8_string)) {
-                parser->property_name = parser->token->string;
+                parser->property_name = afw_value_create_unmanaged_string(
+                    parser->token->string, parser->p, parser->xctx);
             }
 
             else if (afw_compile_token_is(identifier) &&
                 !parser->token->identifier_qualifier)
             {
-                parser->property_name = parser->token->identifier_name;
+                parser->property_name = afw_value_create_unmanaged_string(
+                    parser->token->identifier_name, parser->p, parser->xctx);
             }
 
             /*
@@ -618,8 +621,8 @@ afw_compile_parse_Object(
                             afw_value_object_construct_entry_name_expr,
                             NULL, name_expr, v, NULL);
                     }
-                    else if (afw_utf8_equal(parser->property_name,
-                        afw_s__meta_))
+                    else if (afw_value_equal(parser->property_name,
+                        afw_v__meta_, parser->xctx))
                     {
                         /* Literal _meta_ still installs sideband meta. */
                         if (!afw_value_is_object(v)) {
@@ -637,7 +640,8 @@ afw_compile_parse_Object(
                 }
 
                 /* If this is _meta_ property, set meta in object. */
-                else if (afw_utf8_equal(parser->property_name, afw_s__meta_)) {
+                else if (afw_value_equal(parser->property_name, afw_v__meta_,
+                    parser->xctx)) {
                     if (!afw_value_is_object(v)) {
                         AFW_COMPILE_THROW_ERROR_Z(
                             "'_meta_' property must be an object");

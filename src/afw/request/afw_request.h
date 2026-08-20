@@ -38,6 +38,7 @@ AFW_BEGIN_DECLARES
  * The content type of the request.
  */
 #define AFW_REQUEST_s_PN_CONTENT_TYPE afw_s_CONTENT_TYPE
+#define AFW_REQUEST_v_PN_CONTENT_TYPE afw_v_CONTENT_TYPE
 
 /** @brief Request property name CONTENT_LENGTH quoted string.
  *
@@ -50,6 +51,7 @@ AFW_BEGIN_DECLARES
  * The content length of the request, if available.
  */
 #define AFW_REQUEST_s_PN_CONTENT_LENGTH afw_s_CONTENT_LENGTH
+#define AFW_REQUEST_v_PN_CONTENT_LENGTH afw_v_CONTENT_LENGTH
 
 /**
  * @brief Request property name HTTP_ACCEPT quoted string.
@@ -60,6 +62,7 @@ AFW_BEGIN_DECLARES
  * @brief Request property name HTTP_ACCEPT afw_utf8_t.
  */
 #define AFW_REQUEST_s_PN_HTTP_ACCEPT afw_s_HTTP_ACCEPT
+#define AFW_REQUEST_v_PN_HTTP_ACCEPT afw_v_HTTP_ACCEPT
 
 /**
  * @brief Request property name PATH_INFO quoted string.
@@ -74,6 +77,7 @@ AFW_BEGIN_DECLARES
  * The query string.
  */
 #define AFW_REQUEST_s_PN_PATH_INFO afw_s_PATH_INFO
+#define AFW_REQUEST_v_PN_PATH_INFO afw_v_PATH_INFO
 
 /**
  * @brief Request property name QUERY_STRING quoted string.
@@ -88,6 +92,7 @@ AFW_BEGIN_DECLARES
  * The query string.
  */
 #define AFW_REQUEST_s_PN_QUERY_STRING afw_s_QUERY_STRING
+#define AFW_REQUEST_v_PN_QUERY_STRING afw_v_QUERY_STRING
 
 /**
  * @brief Request property name REQUEST_METHOD quoted string.
@@ -104,6 +109,7 @@ AFW_BEGIN_DECLARES
  * "DELETE".
  */
 #define AFW_REQUEST_s_PN_REQUEST_METHOD afw_s_REQUEST_METHOD
+#define AFW_REQUEST_v_PN_REQUEST_METHOD afw_v_REQUEST_METHOD
 
 /**
  * @brief Request property name REQUEST_URI quoted string.
@@ -118,6 +124,7 @@ AFW_BEGIN_DECLARES
  * The query string.
  */
 #define AFW_REQUEST_s_PN_REQUEST_URI afw_s_REQUEST_URI
+#define AFW_REQUEST_v_PN_REQUEST_URI afw_v_REQUEST_URI
 
 /** @brief Request method GET quoted string. */
 #define AFW_REQUEST_Q_METHOD_GET AFW_Q_GET

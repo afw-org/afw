@@ -4497,7 +4497,7 @@ typedef void
 typedef void
 (*afw_object_setter_set_property_t)(
     const afw_object_setter_t * instance,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     const afw_value_t * value,
     afw_xctx_t * xctx);
 
@@ -4655,14 +4655,14 @@ typedef const afw_value_t *
 typedef const afw_value_t *
 (*afw_object_get_property_t)(
     const afw_object_t * instance,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t * xctx);
 
 /** @sa afw_object_get_property_meta() */
 typedef const afw_value_t *
 (*afw_object_get_property_meta_t)(
     const afw_object_t * instance,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 
@@ -4671,7 +4671,7 @@ typedef const afw_value_t *
 (*afw_object_get_next_property_t)(
     const afw_object_t * instance,
     const afw_iterator_old_t * * iterator,
-    const afw_utf8_t * * property_name,
+    const afw_value_t * * property_name,
     afw_xctx_t * xctx);
 
 /** @sa afw_object_get_next_property_meta() */
@@ -4679,7 +4679,7 @@ typedef const afw_value_t *
 (*afw_object_get_next_property_meta_t)(
     const afw_object_t * instance,
     const afw_iterator_old_t * * iterator,
-    const afw_utf8_t * * property_name,
+    const afw_value_t * * property_name,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 
@@ -4687,7 +4687,7 @@ typedef const afw_value_t *
 typedef afw_boolean_t
 (*afw_object_has_property_t)(
     const afw_object_t * instance,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t * xctx);
 
 /** @sa afw_object_get_setter() */
