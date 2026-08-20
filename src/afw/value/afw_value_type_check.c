@@ -462,12 +462,14 @@ impl_get_typed_object_property(
 
     if (AFW_VALUE_IS_DATA_TYPE(value, object)) {
         obj = ((const afw_value_object_t *)value)->internal;
+        /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t). */
         return afw_object_get_property(obj,
             afw_value_create_unmanaged_string(name, xctx->p, xctx), xctx);
     }
 
     if (afw_value_is_object_expression(value)) {
         obj = ((const afw_value_object_expression_t *)value)->internal;
+        /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t). */
         return afw_object_get_property(obj,
             afw_value_create_unmanaged_string(name, xctx->p, xctx), xctx);
     }

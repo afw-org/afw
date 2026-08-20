@@ -52,7 +52,7 @@ afw_ldap_internal_adapter_create_cede_p(
             afw_compile_type_template, p, xctx);
         if (!afw_value_is_string(url_value)) {
             afw_adapter_impl_throw_property_invalid(adapter,
-                afw_ldap_s_url, xctx);
+                afw_ldap_v_url, xctx);
         }
         self->url_z = afw_utf8_to_utf8_z(
             &((const afw_value_string_t *)url_value)->internal, p, xctx);
@@ -63,7 +63,7 @@ afw_ldap_internal_adapter_create_cede_p(
         &(self->lud), &err);
     if (rv != APR_SUCCESS) {
         afw_adapter_impl_throw_property_invalid(adapter,
-            afw_ldap_s_url, xctx);
+            afw_ldap_v_url, xctx);
     }
 
     /* Get compiled bindParameter. */

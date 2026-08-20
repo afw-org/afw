@@ -77,6 +77,7 @@ impl_find_object(
     const afw_object_path_property_name_entry_t *entry;
 
     result = entity;
+    /* FIXME #2: utf8 name wrap; path entry could be afw_value_string_t. */
     *property_name = afw_value_create_unmanaged_string(
         &first_property_name_entry->property_name, entity->p, xctx);
     for (entry = first_property_name_entry; entry->next; entry = entry->next)

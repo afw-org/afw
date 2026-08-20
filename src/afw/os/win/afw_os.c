@@ -49,7 +49,7 @@ impl_get_<objectId>_object_cb(
         xctx);
     afw_object_meta_set_read_only(result, xctx);
     afw_object_meta_set_property_from_utf8_z(
-        result, afw_s_description,
+        result, afw_v_description,
         "<objectId> description.",
         xctx);
 
@@ -90,7 +90,7 @@ impl_create_general_object(afw_xctx_t *xctx)
         xctx);
     afw_object_meta_set_read_only(result, xctx);
     afw_object_meta_set_property_from_utf8_z(
-        result, afw_s_description,
+        result, afw_v_description,
         "General systems info.",
         xctx);
 

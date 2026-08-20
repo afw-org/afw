@@ -141,7 +141,8 @@ impl_set_error_immutable(
 {
     AFW_THROW_ERROR_FZ(general, xctx,
         "Property " AFW_UTF8_FMT_Q " immutable",
-        AFW_UTF8_FMT_ARG(property_name));
+        AFW_UTF8_FMT_ARG(
+            afw_object_property_name_display_utf8(property_name, xctx)));
 }
 
 

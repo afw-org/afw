@@ -260,7 +260,8 @@ afw_object_options_set_from_object(
         else {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Invalid view option " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(name));
+                AFW_UTF8_FMT_ARG(
+                    afw_object_property_name_display_utf8(name, xctx)));
         }
     }
 

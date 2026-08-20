@@ -352,8 +352,10 @@ impl_object_path_parse(
             if (at_end ||
                 (is_reserved && !afw_utf8_equal(token, afw_s_a_equal)))
             {
+                /* FIXME #2: utf8 name wrap; prefer afw_value_string_t. */
                 afw_object_set_property(parsed->options_object,
-                    name, afw_boolean_v_true, xctx);
+                    afw_value_create_unmanaged_string(name, p, xctx),
+                    afw_boolean_v_true, xctx);
             }
 
             if (at_end) {
@@ -389,8 +391,10 @@ impl_object_path_parse(
                 goto error;
             }
 
+            /* FIXME #2: utf8 name wrap; prefer afw_value_string_t. */
             afw_object_set_property_as_string(parsed->options_object,
-                name, token, xctx);
+                afw_value_create_unmanaged_string(name, p, xctx),
+                token, xctx);
 
             state = impl_state_after_option_value;
 
@@ -635,12 +639,15 @@ afw_object_path_property_name_list_get_property(
     const afw_object_path_property_name_entry_t *name;
     const afw_value_t *result;
 
+    /* FIXME #2: utf8 name wrap; path entry could be afw_value_string_t. */
     result = afw_object_get_property(object,
-        &first_property_name->property_name, xctx);
+        afw_value_create_unmanaged_string(
+            &first_property_name->property_name, xctx->p, xctx), xctx);
 
     for (name = first_property_name->next; name; name = name->next) {
         result = afw_object_get_property(object,
-            &name->property_name, xctx);
+            afw_value_create_unmanaged_string(
+                &name->property_name, xctx->p, xctx), xctx);
         if (!result) {
             break;
         }

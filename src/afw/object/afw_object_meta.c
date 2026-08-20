@@ -90,6 +90,7 @@ afw_object_meta_add_needed_object_type(
         objectTypes = afw_object_create_embedded(meta,
             afw_v_objectTypes, xctx);
     }
+    /* FIXME #2: utf8 name wrap; object type id used as a property name. */
     afw_object_set_property_as_object(objectTypes,
         afw_value_create_unmanaged_string(
             object_type->meta.id, objectTypes->p, xctx),
@@ -420,6 +421,8 @@ afw_object_meta_set_meta_object(
             property_types = afw_object_old_get_property_as_object(
                 meta, afw_v_propertyTypes, xctx);
             if (property_types) {
+                /* FIXME #2: utf8 name wrap (get-only: stack
+                   afw_value_string_t). */
                 property_type = afw_object_old_get_property_as_object(
                     property_types,
                     afw_value_create_unmanaged_string(
@@ -619,9 +622,9 @@ afw_object_meta_set_read_only(
     afw_xctx_t *xctx)
 {
     afw_object_meta_set_property(instance,
-        afw_s_allowChange, afw_boolean_v_false, xctx);
+        afw_v_allowChange, afw_boolean_v_false, xctx);
     afw_object_meta_set_property(instance,
-        afw_s_allowDelete, afw_boolean_v_false, xctx);
+        afw_v_allowDelete, afw_boolean_v_false, xctx);
 }
 
 
@@ -645,7 +648,7 @@ afw_object_meta_add_error(
             afw_v_errors, errors, xctx);
         afw_object_set_property(meta, afw_v_hasErrors, afw_boolean_v_true, xctx);
         afw_object_meta_set_property(afw_object_get_entity(instance, xctx),
-            afw_s_hasErrors, afw_boolean_v_true, xctx);
+            afw_v_hasErrors, afw_boolean_v_true, xctx);
     }
 
     value = afw_value_create_unmanaged_string(message, instance->p, xctx);
@@ -744,7 +747,9 @@ afw_object_meta_log_errors(
                     AFW_UTF8_FMT
                     "." AFW_UTF8_FMT,
                     AFW_UTF8_FMT_ARG(source_location),
-                    AFW_UTF8_FMT_ARG(property_name));
+                    AFW_UTF8_FMT_ARG(
+                        afw_object_property_name_display_utf8(
+                            property_name, xctx)));
                 impl_log_errors(errors, property_source_location, xctx);
             }
         }
@@ -764,7 +769,9 @@ afw_object_meta_log_errors(
                 AFW_UTF8_FMT
                 "." AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(source_location),
-                AFW_UTF8_FMT_ARG(property_name));
+                AFW_UTF8_FMT_ARG(
+                    afw_object_property_name_display_utf8(
+                        property_name, xctx)));
             afw_object_meta_log_errors(embedded,
                 property_source_location, xctx);
         }
@@ -830,9 +837,9 @@ afw_object_meta_add_property_error(
         afw_object_set_property_as_array(property_type,
             afw_v_errors, errors, xctx);
         afw_object_meta_set_property(instance,
-            afw_s_hasErrors, afw_boolean_v_true, xctx);
+            afw_v_hasErrors, afw_boolean_v_true, xctx);
         afw_object_meta_set_property(afw_object_get_entity(instance, xctx),
-            afw_s_hasErrors, afw_boolean_v_true, xctx);
+            afw_v_hasErrors, afw_boolean_v_true, xctx);
     }
 
     value = afw_value_create_unmanaged_string(message, instance->p, xctx);

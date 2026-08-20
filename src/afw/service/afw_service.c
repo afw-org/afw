@@ -330,7 +330,9 @@ impl_initialize_and_start_service_using_conf(
     if (service->service_type->conf_type->subtype_property_name) {
         service->conf_subtype = afw_object_old_get_property_as_string(
             service->properties,
-            service->service_type->conf_type->subtype_property_name, xctx);
+            afw_value_create_unmanaged_string(
+                service->service_type->conf_type->subtype_property_name,
+                service->properties->p, xctx), xctx);
         if (!service->conf_subtype || service->conf_subtype->len == 0)
         {
             AFW_THROW_ERROR_FZ(general, xctx,
@@ -348,7 +350,9 @@ impl_initialize_and_start_service_using_conf(
     {
         service->conf_id = afw_object_old_get_property_as_string(
             service->properties,
-            service->service_type->conf_type->id_property_name, xctx);
+            afw_value_create_unmanaged_string(
+                service->service_type->conf_type->id_property_name,
+                service->properties->p, xctx), xctx);
         if (!service->conf_id || service->conf_id->len == 0)
         {
             AFW_THROW_ERROR_FZ(general, xctx,
@@ -649,7 +653,9 @@ impl_add_runtime_service_info_to_object(
     subtype = NULL;
     if (service_type->conf_type->subtype_property_name) {
         subtype = afw_object_old_get_property_as_string(conf_property,
-            service_type->conf_type->subtype_property_name, xctx);
+            afw_value_create_unmanaged_string(
+                service_type->conf_type->subtype_property_name,
+                conf_property->p, xctx), xctx);
         if (!subtype) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "missing 'conf/" AFW_UTF8_FMT

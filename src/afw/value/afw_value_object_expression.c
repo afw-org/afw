@@ -123,7 +123,9 @@ impl_afw_value_produce_compiler_listing(
             break;
         }
         afw_writer_write_z(writer, "property ", xctx);
-        afw_writer_write_utf8(writer, property_name, xctx);
+        afw_writer_write_utf8(writer,
+            afw_object_property_name_display_utf8(property_name, xctx),
+            xctx);
         afw_writer_write_z(writer, " ", xctx);
         afw_value_compiler_listing_value(pv, writer, xctx);
     }

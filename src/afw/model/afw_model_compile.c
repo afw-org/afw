@@ -62,7 +62,8 @@ impl_compile_custom(
         source_location = afw_utf8_printf(model->p, xctx,
             AFW_UTF8_FMT "/custom/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(path),
-            AFW_UTF8_FMT_ARG(property_name));
+            AFW_UTF8_FMT_ARG(
+                afw_object_property_name_display_utf8(property_name, xctx)));
         value = afw_compile_template_source(s, source_location,
             NULL, model->shared, NULL, xctx);
         afw_object_set_property(result, property_name, value, xctx);
@@ -173,6 +174,7 @@ impl_compile_property_type(
     if (!pt->mapped_property_name) {
         pt->mapped_property_name = pt->property_name;
     }
+    /* FIXME #2: utf8 name wrap; one afw_value_string_t is both. */
     pt->mapped_property_name_value = afw_value_create_unmanaged_string(
         pt->mapped_property_name, p, xctx);
 
@@ -408,15 +410,15 @@ impl_harvest_object_type(
         afw_s__AdaptiveObjectType_,
         object_type_id, xctx);
     afw_object_meta_set_property(result,
-        afw_s_allowAdd, afw_boolean_v_false, xctx);
+        afw_v_allowAdd, afw_boolean_v_false, xctx);
     afw_object_meta_set_property(result,
-        afw_s_allowChange, afw_boolean_v_false, xctx);
+        afw_v_allowChange, afw_boolean_v_false, xctx);
     afw_object_meta_set_property(result,
-        afw_s_allowDelete, afw_boolean_v_false, xctx);
+        afw_v_allowDelete, afw_boolean_v_false, xctx);
 
     /* If object has resolvedParentPaths, use as parentPaths. */
     value = afw_object_meta_get_property(object,
-        afw_s_resolvedParentPaths, xctx);
+        afw_v_resolvedParentPaths, xctx);
     if (value) {
         AFW_VALUE_ASSERT_IS_DATA_TYPE(value, array, xctx);
         from_parent_paths = (const afw_value_array_t *)value;
@@ -439,7 +441,7 @@ impl_harvest_object_type(
             }
         }
         afw_object_meta_set_property(result,
-            afw_s_parentPaths, (const afw_value_t *)to_parent_paths, xctx);
+            afw_v_parentPaths, (const afw_value_t *)to_parent_paths, xctx);
     }
 
     /* allowAdd */
@@ -531,7 +533,7 @@ impl_harvest_object_type(
         afw_v_otherProperties, xctx);
     if (obj) {
         impl_harvest_property_type(
-            result, afw_s_otherProperties,
+            result, afw_v_otherProperties,
             composite, obj, p, xctx);
     }
 
@@ -548,10 +550,10 @@ impl_harvest_object_type(
 
         /* If object has resolvedParentPaths, use as parentPaths. */
         value = afw_object_meta_get_property(property_types,
-            afw_s_resolvedParentPaths, xctx);
+            afw_v_resolvedParentPaths, xctx);
         if (value) {
             afw_object_meta_set_property(propertyTypes,
-                afw_s_parentPaths, value, xctx);
+                afw_v_parentPaths, value, xctx);
         }
 
         /* Add all properties that were not inherited. */

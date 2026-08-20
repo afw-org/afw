@@ -235,6 +235,7 @@ afw_object_type_property_type_get_extended(
     }
 
     /* Attempt to get property and return if error or found. */
+    /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t is enough). */
     result = afw_object_type_property_type_get(object_type,
         afw_value_create_unmanaged_string(&pn, xctx->p, xctx), xctx);
     if (result) {

@@ -252,7 +252,7 @@ afw_ldap_internal_create_object_from_entry(
 {
     const afw_object_t *o;
     char *a;
-    const afw_value_t *property_name;
+    const afw_utf8_t *property_name;
     BerElement *be;
     struct berval **bv;
     const afw_value_t *value;
@@ -298,7 +298,12 @@ afw_ldap_internal_create_object_from_entry(
 
             /* If there is a value, set its property. */
             if (value) {
-                afw_object_set_property(o, property_name, value, xctx);
+                /* FIXME #2: utf8 name wrap; LDAP attr could be
+                   afw_value_string_t. */
+                afw_object_set_property(o,
+                    afw_value_create_unmanaged_string(
+                        property_name, o->p, xctx),
+                    value, xctx);
             }
 
             /* Free bv and a. */
@@ -519,7 +524,7 @@ afw_ldap_internal_expression_from_filter_entry(
     afw_xctx_t *xctx)
 {
     const afw_utf8_t *filter_expression = NULL;
-    const afw_value_t *property_name, *property_value;
+    const afw_utf8_t *property_name, *property_value;
     struct berval **bv;
     
 

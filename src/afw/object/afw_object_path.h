@@ -29,6 +29,7 @@ AFW_BEGIN_DECLARES
 /** @brief Property name path struct. */
 struct afw_object_path_property_name_entry_s {
     const afw_object_path_property_name_entry_t *next;
+    /* FIXME #2: utf8 name wrap; this could be afw_value_string_t. */
     afw_utf8_t property_name;
 };
 

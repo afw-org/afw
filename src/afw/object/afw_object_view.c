@@ -62,7 +62,7 @@ static void
 impl_set_property(
     afw_object_view_internal_object_self_t *self,
     const afw_object_t *origin,
-    const afw_utf8_t *original_name,
+    const afw_value_t *original_name,
     const afw_value_t *original_value,
     afw_xctx_t *xctx);
 
@@ -70,7 +70,8 @@ impl_set_property(
 static afw_object_view_property_t *
 impl_get_property(
     afw_object_view_internal_object_self_t *self,
-    const afw_value_t *property_name);
+    const afw_value_t *property_name,
+    afw_xctx_t *xctx);
 
 
 /* Add requested meta properties. */
@@ -148,14 +149,14 @@ impl_meta_set_property(
 static void
 impl_meta_set_property_type_property(
     afw_object_view_internal_object_self_t *self,
-    const afw_utf8_t *property_type_id,
     const afw_value_t *property_name,
+    const afw_value_t *property_type_property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
     afw_object_meta_set_property_type_property(
         ((const afw_object_t *)self),
-        property_type_id, property_name, value, xctx);
+        property_name, property_type_property_name, value, xctx);
 }
 
 
@@ -300,12 +301,13 @@ impl_make_value(
 static afw_object_view_property_t *
 impl_get_property(
     afw_object_view_internal_object_self_t *self,
-    const afw_value_t *property_name)
+    const afw_value_t *property_name,
+    afw_xctx_t *xctx)
 {
     afw_object_view_property_t *prop;
 
     for (prop = self->first_property;
-        prop && !afw_utf8_equal(prop->name, property_name);
+        prop && !afw_value_equal(prop->name, property_name, xctx);
         prop = prop->next_property);
 
     return prop;
@@ -349,7 +351,7 @@ impl_update_property_value(
 {
     afw_object_view_property_t *prop;
 
-    prop = impl_get_property(self, property_name);
+    prop = impl_get_property(self, property_name, xctx);
     if (!prop) {
         AFW_THROW_ERROR_Z(general,
             "Internal error - impl_update_property_value()",
@@ -551,7 +553,7 @@ impl_object_type_related_object_option_processing(
                 s_value = impl_shared_string_value(view,
                     &value_data_type->data_type_id, xctx);
                 afw_object_meta_set_property_type_property(instance,
-                    property_name, afw_s_dataType, s_value, xctx);
+                    property_name, afw_v_dataType, s_value, xctx);
             }
 
             /* If object, set dataTypeParameter if different */
@@ -573,7 +575,8 @@ impl_object_type_related_object_option_processing(
                         s_value = impl_shared_string_value(view,
                             object_type_id, xctx);
                         afw_object_meta_set_property_type_property(instance,
-                            property_name, afw_s_dataTypeParameter, s_value, xctx);
+                            property_name, afw_v_dataTypeParameter, s_value,
+                            xctx);
                     }
                 }
             }
@@ -627,8 +630,7 @@ impl_additional_object_option_processing(
     {
         if (self->pub.meta.id) {
             v = impl_shared_string_value(self->view, self->pub.meta.id, xctx);
-            impl_meta_set_property(self, AFW_OBJECT_S_PN_OBJECT_ID, v,
-                xctx);
+            impl_meta_set_property(self, afw_v_objectId, v, xctx);
         }
     }
 
@@ -639,7 +641,7 @@ impl_additional_object_option_processing(
             v = impl_shared_string_value(self->view,
                 afw_object_meta_get_object_type_id(&self->pub, xctx),
                 xctx);
-            impl_meta_set_property(self, afw_s_objectType, v, xctx);
+            impl_meta_set_property(self, afw_v_objectType, v, xctx);
         }
     }
 
@@ -655,7 +657,7 @@ impl_additional_object_option_processing(
         }
         if (self->pub.meta.object_uri) {
             v = impl_shared_path_value(self, self->pub.meta.object_uri, xctx);
-            impl_meta_set_property(self, afw_s_path, v, xctx);
+            impl_meta_set_property(self, afw_v_path, v, xctx);
         }
     }
 
@@ -681,15 +683,15 @@ impl_additional_object_option_processing(
 
         if (AFW_OBJECT_OPTION_IS(options, composite)) {
             if (AFW_OBJECT_OPTION_IS(options, resolvedParentPaths)) {
-                impl_meta_set_property(self, afw_s_resolvedParentPaths,
+                impl_meta_set_property(self, afw_v_resolvedParentPaths,
                     &resolved_parent_paths->pub, xctx);
             }
             afw_object_meta_set_property((const afw_object_t *)self,
-                afw_s_parentPaths, NULL, xctx);
+                afw_v_parentPaths, NULL, xctx);
         }
 
         else {
-            impl_meta_set_property(self, afw_s_parentPaths,
+            impl_meta_set_property(self, afw_v_parentPaths,
                 &resolved_parent_paths->pub, xctx);
         }
     }
@@ -704,12 +706,14 @@ impl_additional_object_option_processing(
                 if (!path) {
                     AFW_THROW_ERROR_FZ(general, xctx,
                         "Property " AFW_UTF8_FMT_Q
-                            " is missing path for inheritedFrom", 
-                        AFW_UTF8_FMT_ARG(prop->name));
+                            " is missing path for inheritedFrom",
+                        AFW_UTF8_FMT_ARG(
+                            afw_object_property_name_display_utf8(
+                                prop->name, xctx)));
                 }
                 v = impl_shared_path_value(self, path, xctx);
                 impl_meta_set_property_type_property(self,
-                    prop->name, afw_s_inheritedFrom,
+                    prop->name, afw_v_inheritedFrom,
                     v, xctx);
             }
         }
@@ -836,7 +840,7 @@ impl_merge_properties(
         parent_prop;
         parent_prop = parent_prop->next_property)
     {
-        self_prop = impl_get_property(self, parent_prop->name);
+        self_prop = impl_get_property(self, parent_prop->name, xctx);
         if (!self_prop) {
             impl_set_property(self,
                 parent_prop->origin, parent_prop->name, parent_prop->value, xctx);
@@ -932,7 +936,7 @@ impl_add_origin_properties(
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
-    const afw_utf8_t *name;
+    const afw_value_t *name;
     const afw_iterator_old_t *iterator;
 
     /* Make array of properties. */
@@ -942,7 +946,7 @@ impl_add_origin_properties(
             break;
         }
 
-        if (!afw_utf8_equal(name, afw_s__meta_)) {
+        if (!afw_value_equal(name, afw_v__meta_, xctx)) {
             impl_set_property(self, self->origin, name, value, xctx);
         }
     }
@@ -1034,7 +1038,11 @@ impl_get_object_by_uri(
         for (name = path_parsed->first_property_name; name; name = name->next) {
             result = (afw_object_view_internal_object_self_t *)
                 afw_object_old_get_property_as_object(
-                (const afw_object_t *)result, &name->property_name, xctx);
+                (const afw_object_t *)result,
+                /* FIXME #2: utf8 name wrap; path entry could be
+                   afw_value_string_t. */
+                afw_value_create_unmanaged_string(
+                    &name->property_name, xctx->p, xctx), xctx);
             if (!result) {
                 goto error;
             }
@@ -1116,7 +1124,8 @@ impl_object_create(
     self->pub.value = (const afw_value_t *)&self->value;
     self->view = view;
     self->pub.meta.embedding_object = (const afw_object_t *)embedding_object;
-    self->pub.meta.id = property_name;
+    self->pub.meta.id = afw_object_string_property_name_as_utf8(
+        property_name, xctx);
     self->pub.meta.object_type_uri = origin->meta.object_type_uri;
     self->origin = origin;
     self->uri_parsed = uri_parsed;
@@ -1155,7 +1164,7 @@ impl_object_create(
     /* Set meta using clone of origin's meta and set path if entity. */
     afw_object_meta_clone_and_set((const afw_object_t *)self, origin, xctx);
     if (uri_parsed && uri_parsed->path_parsed) {
-        impl_meta_set_property(self, afw_s_path, value, xctx);
+        impl_meta_set_property(self, afw_v_path, value, xctx);
     }
 
     /* Add self properties from origin. */
@@ -1236,7 +1245,7 @@ impl_afw_object_get_property(
 {
     afw_object_view_property_t *prop;
 
-    prop = impl_get_property(self, property_name);
+    prop = impl_get_property(self, property_name, xctx);
 
     return (prop) ? prop->value : NULL;
 }
@@ -1391,7 +1400,7 @@ afw_object_view_create(
             &afw_object_options_reconcilable_meta_property,
             p, xctx);
         value = afw_value_create_unmanaged_string(reconcilable, p, xctx);
-        impl_meta_set_property(self, afw_s_reconcilable, value, xctx);
+        impl_meta_set_property(self, afw_v_reconcilable, value, xctx);
     }
 
     /* Return view. */

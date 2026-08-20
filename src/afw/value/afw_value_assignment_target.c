@@ -156,7 +156,9 @@ impl_assignment_property_produce_compiler_listing(
         afw_writer_increment_indent(writer, xctx);
 
         afw_writer_write_z(writer, "property_name: ", xctx);
-        afw_writer_write_utf8(writer, self->property_name, xctx);
+        afw_writer_write_utf8(writer,
+            afw_object_property_name_display_utf8(self->property_name, xctx),
+            xctx);
         afw_writer_write_eol(writer, xctx);
 
         impl_assignment_element_produce_compiler_listing(
@@ -437,11 +439,17 @@ impl_decompile_object_pattern(
             else if (ap->property_name) {
                 if (ap->property_name_was_string) {
                     afw_writer_write_z(writer, "\"", xctx);
-                    afw_writer_write_utf8(writer, ap->property_name, xctx);
+                    afw_writer_write_utf8(writer,
+                        afw_object_property_name_display_utf8(
+                            ap->property_name, xctx),
+                        xctx);
                     afw_writer_write_z(writer, "\"", xctx);
                 }
                 else {
-                    afw_writer_write_utf8(writer, ap->property_name, xctx);
+                    afw_writer_write_utf8(writer,
+                        afw_object_property_name_display_utf8(
+                            ap->property_name, xctx),
+                        xctx);
                 }
             }
             afw_writer_write_z(writer, writer->tab ? ": " : ":", xctx);

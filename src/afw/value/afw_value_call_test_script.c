@@ -127,7 +127,9 @@ impl_test_script_check_stream_expect(
     }
 
     /* Actual capture for harness / failure display. */
-    afw_object_set_property_as_string(test, streamId, actual_owned, xctx);
+    afw_object_set_property_as_string(test,
+        afw_value_create_unmanaged_string(streamId, p, xctx),
+        actual_owned, xctx);
 
     if (!afw_utf8_equal(actual_owned, expect)) {
         afw_object_set_property(test, afw_v_passed,

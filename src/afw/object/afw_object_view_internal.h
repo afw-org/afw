@@ -46,7 +46,7 @@ struct afw_object_view_property_s {
     afw_object_view_property_t *next_property;
 
     /* Property name. */
-    const afw_utf8_t *name;
+    const afw_value_t *name;
 
     /* Property value. */
     const afw_value_t *value;

@@ -89,6 +89,7 @@ Recorded so they are not only chat. Do not mix into the XML/`s`→`v` sweep.
 |---------|--------|
 | **`eq` / `==`** | Metadata says convert arg2 to arg1’s type. C `afw_function_execute_eq` **throws** if data types differ. Same typecheck-campaign leftover; separate fix. |
 | **`properties_ht`** | Memory object comment / union for a property hash table; lookup is still a linear list + `afw_utf8_equal`. Residual; not required to land names-as-values. |
+| **utf8 name wrap → `afw_value_string_t`** | After the interface change, some C still holds a string name as `afw_utf8_t` and `create_unmanaged_string`s a header at each object get/set. `afw_value_string_t` is already both (`&pub` for object APIs, `&internal` for utf8: hash, FMT, LDAP, path). Model twins (`property_name` + `property_name_value`) are the same idea as two pointers. Path `property_name_entry`, LDAP attr names, qualifier/`custom::` lookups, dotted `get_property_extended` slices: grep `FIXME #2: utf8 name wrap`. Get-only can be a stack `afw_value_string_t` (do not store). Set still needs a header that lives as long as the object. **Not this land** — mark and revisit. |
 
 When pairing on #2, keep adding rows here (or a later leftovers pad) instead of growing `memory-management.md`.
 

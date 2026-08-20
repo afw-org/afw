@@ -210,8 +210,10 @@ afw_command_local_parse_request(
         }
 
         /* Add header to properties. */
+        /* FIXME #2: utf8 name wrap; prefer afw_value_string_t. */
         afw_object_set_property_as_string(self->this_request_properties,
-            name, x.string, xctx);
+            afw_value_create_unmanaged_string(name, xctx->p, xctx),
+            x.string, xctx);
 
         /* EOL */
         impl_get_token(&x);

@@ -1084,7 +1084,8 @@ afw_runtime_value_accessor_null_terminated_array_of_utf8_z_key_value_pair_object
     {
         object = afw_object_create_unmanaged(p, xctx);
         for (; *s_z; s_z++) {
-            property_name = afw_utf8_create(*s_z, AFW_UTF8_Z_LEN, p, xctx);
+            property_name = afw_value_create_unmanaged_string(
+                afw_utf8_create(*s_z, AFW_UTF8_Z_LEN, p, xctx), p, xctx);
             s_z++;
             if (!s_z) {
                 AFW_THROW_ERROR_Z(general, "Unpaired key/value pair", xctx);

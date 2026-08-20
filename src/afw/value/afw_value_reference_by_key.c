@@ -231,8 +231,7 @@ impl_afw_value_get_evaluated_meta(
         }
         result = afw_object_get_property_meta(
             ((const afw_value_object_t *)aggregate_value)->internal,
-            &((const afw_value_string_t *)key)->internal,
-            p, xctx);
+            key, p, xctx);
     }
     else if (afw_value_is_array(aggregate_value)) {
         key = afw_value_convert(key, afw_data_type_integer, false, p, xctx);

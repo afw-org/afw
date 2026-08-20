@@ -321,7 +321,9 @@ impl_parse_schema_entry(
 
     /* Get value and set property with this value and passed name. */
     val = impl_get_value(self);
-    afw_object_set_property(obj, name, val, xctx);
+    /* FIXME #2: utf8 name wrap; prefer afw_value_string_t. */
+    afw_object_set_property(obj,
+        afw_value_create_unmanaged_string(name, p, xctx), val, xctx);
 
     /* Loop processing keywords. */
     while ((kwd = impl_get_token(self))) {
@@ -357,8 +359,10 @@ impl_parse_schema_entry(
         }
 
         /* Set property. */
+        /* FIXME #2: utf8 name wrap; prefer afw_value_string_t. */
         afw_object_set_property(obj,
-            afw_utf8_create(kwd, AFW_UTF8_Z_LEN, p, xctx),
+            afw_value_create_unmanaged_string(
+                afw_utf8_create(kwd, AFW_UTF8_Z_LEN, p, xctx), p, xctx),
             val, xctx);
     }
 
@@ -410,7 +414,9 @@ impl_parse_definition(
     /* Use metadata p. */
     p = metadata->p;
 
-    value = afw_object_get_property(metadata->schema_object, name_in_schema, xctx);
+    /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t). */
+    value = afw_object_get_property(metadata->schema_object,
+        afw_value_create_unmanaged_string(name_in_schema, p, xctx), xctx);
     if (!value) {
         return NULL;
     }
@@ -722,8 +728,10 @@ impl_a_property_to_object_type(
     }
 
     /* Create object for property. */
+    /* FIXME #2: utf8 name wrap; prefer afw_value_string_t. */
     prop = afw_object_create_embedded(properties,
-        name, xctx);
+        afw_value_create_unmanaged_string(name, properties->p, xctx),
+        xctx);
 
     /* Set parent to corresponding value meta. */
     parent = apr_hash_get(metadata->value_meta_objects,
@@ -759,7 +767,9 @@ impl_properties_to_object_type(
 
     req_pn.s = (required) ? "MUST" : "MAY";
     req_pn.len = strlen(req_pn.s);
-    value = afw_object_get_property(object_class_object, &req_pn, xctx);
+    /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t). */
+    value = afw_object_get_property(object_class_object,
+        afw_value_create_unmanaged_string(&req_pn, xctx->p, xctx), xctx);
     if (!value) {
         return;
     }
@@ -897,7 +907,10 @@ impl_add_parents_and_property_types(
             )
         {
             attribute_type = apr_hash_get(metadata->attribute_types,
-                property_name->s, property_name->len);
+                afw_object_string_property_name_as_utf8(
+                    property_name, xctx)->s,
+                afw_object_string_property_name_as_utf8(
+                    property_name, xctx)->len);
             if (object_type_attribute->attribute_type) {
                 object_type_attribute->next =
                     afw_pool_calloc_type(p,

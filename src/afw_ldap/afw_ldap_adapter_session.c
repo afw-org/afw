@@ -378,18 +378,23 @@ impl_afw_adapter_session_add_object(
         &iterator, &property_name, xctx)))
     {
         attribute = afw_ldap_metadata_get_object_type_attribute(
-            first_attribute, property_name);
+            first_attribute,
+            afw_object_string_property_name_as_utf8(property_name, xctx));
         if (!attribute || attribute->attribute_type->never_allow_write) {
             continue;  /** @fixme Should this be an error??? */
         }
         
-        bvals = afw_ldap_metadata_value_to_bv(self, property_name, value,
-            xctx);
+        bvals = afw_ldap_metadata_value_to_bv(self,
+            afw_object_string_property_name_as_utf8(property_name, xctx),
+            value, xctx);
         if (bvals) {
             mod = afw_pool_calloc_type(p, LDAPMod, xctx);
             mod->mod_op = LDAP_MOD_ADD | LDAP_MOD_BVALUES;
             mod->mod_type = apr_pstrndup(afw_pool_get_apr_pool(p),
-                property_name->s, property_name->len);
+                afw_object_string_property_name_as_utf8(
+                    property_name, xctx)->s,
+                afw_object_string_property_name_as_utf8(
+                    property_name, xctx)->len);
             mod->mod_vals.modv_bvals = bvals;
             APR_ARRAY_PUSH(mods, LDAPMod *) = mod;
         }
@@ -435,7 +440,7 @@ impl_afw_adapter_session_modify_object(
     afw_ldap_object_type_attribute_t *first_attribute;
     afw_ldap_object_type_attribute_t *attribute;
     apr_array_header_t *mods;
-    const afw_value_t *property_name;
+    const afw_utf8_t *property_name;
     const afw_adapter_modify_entry_t * const * e;
     LDAPMod *mod;
     char *dn_z;

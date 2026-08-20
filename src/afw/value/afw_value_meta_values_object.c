@@ -169,7 +169,8 @@ impl_afw_array_get_entry_value(
         if (i == resolved) {
             meta_self = afw_value_internal_create_meta_object_self(
                 property_value, use_p, xctx);
-            meta_self->key = property_name;
+            meta_self->key = afw_object_string_property_name_as_utf8(
+                property_name, xctx);
             return &meta_self->meta_object_value.pub;
         }
         i++;
@@ -248,7 +249,8 @@ impl_afw_array_get_next_value(
 
     meta_self = afw_value_internal_create_meta_object_self(
         property_value, use_p, xctx);
-    meta_self->key = property_name;
+    meta_self->key = afw_object_property_name_display_utf8(
+        property_name, xctx);
 
     return &meta_self->meta_object_value.pub;
 }

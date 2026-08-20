@@ -99,10 +99,10 @@ impl_get_valueInfId(
 static const afw_value_meta_name_handler_t
 impl_handler[] =
 {
-    { &afw_self_s_dataType, impl_get_dataType, NULL },
-    { &afw_self_s_key, impl_get_key, NULL },
-    { &afw_self_s_value, impl_get_value, NULL },
-    { &afw_self_s_valueInfId, impl_get_valueInfId, NULL }
+    { afw_v_dataType, impl_get_dataType, NULL },
+    { afw_v_key, impl_get_key, NULL },
+    { afw_v_value, impl_get_value, NULL },
+    { afw_v_valueInfId, impl_get_valueInfId, NULL }
 };
 
 static const afw_value_meta_name_handler_t *impl_handler_end =
@@ -166,7 +166,7 @@ impl_afw_object_get_property(
 
     /* If get callback for this property, return it's result. */
     for (h = &impl_handler[0]; h < impl_handler_end; h++) {
-        if (afw_utf8_equal(h->property_name, property_name)) {
+        if (afw_value_equal(h->property_name, property_name, xctx)) {
             if (h->get) {
                 return h->get(self, property_name, xctx);
             }
@@ -198,7 +198,7 @@ impl_afw_object_get_next_property(
 {
     const afw_value_meta_name_handler_t *h;
     const afw_value_t *result;
-    const afw_utf8_t *next_property_name;
+    const afw_value_t *next_property_name;
 
     /*
      * If this is the first time (*iterator is NULL), set iterator to first
@@ -256,7 +256,7 @@ impl_afw_object_get_next_property(
             }
             for (h = &impl_handler[0];
                 h < impl_handler_end &&
-                !afw_utf8_equal(h->property_name, next_property_name);
+                !afw_value_equal(h->property_name, next_property_name, xctx);
                 h++);
             if (h >= impl_handler_end) {
                 if (property_name) {
@@ -339,7 +339,7 @@ impl_afw_object_setter_set_property(
 
     /* If get callback for this property, return it's result. */
     for (h = &impl_handler[0]; h < impl_handler_end; h++) {
-        if (afw_utf8_equal(h->property_name, property_name)) {
+        if (afw_value_equal(h->property_name, property_name, xctx)) {
             if (h->set) {
                 h->set(meta_object_self, property_name, value, xctx);
                 return;

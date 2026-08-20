@@ -833,7 +833,7 @@ static const afw_utf8_t * const *
 impl_parse_string_select(impl_string_parser_t *parser)
 {
     afw_const_utf8_a_stack_t *names;
-    const afw_value_t *property_name;
+    const afw_utf8_t *property_name;
     static const afw_utf8_t * const *result;
 
     /* Make an array to hold zero terminated list of property names. */
@@ -2125,7 +2125,9 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
         else {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Unknown query criteria property " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(property_name));
+                AFW_UTF8_FMT_ARG(
+                    afw_object_property_name_display_utf8(
+                        property_name, xctx)));
         }
     }
 
@@ -2374,7 +2376,7 @@ impl_entry_to_query_string(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const afw_value_t *property_name;
+    const afw_utf8_t *property_name;
     const afw_value_t *value;
     afw_boolean_t first_loop;
     const afw_utf8_z_t *fiql_op;

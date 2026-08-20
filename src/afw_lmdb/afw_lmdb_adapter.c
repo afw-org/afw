@@ -578,8 +578,11 @@ impl_afw_adapter_get_additional_metrics (
 
                 rc = mdb_stat(txn, db2, &stat);
                 if (rc == 0) {
+                    /* FIXME #2: utf8 name wrap; prefer afw_value_string_t. */
                     database = afw_object_create_embedded(statistics,
-                        database_str, xctx); 
+                        afw_value_create_unmanaged_string(
+                            database_str, p, xctx),
+                        xctx); 
 
                     afw_object_meta_set_object_type_id(database,
                         afw_lmdb_s__AdaptiveAdapterMetrics_adapter_lmdb_statistic,

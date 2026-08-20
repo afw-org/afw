@@ -110,7 +110,8 @@ struct afw_ldap_metadata_attribute_type_s {
     const afw_object_t *attribute_type_object;
 
     /* Attribute type/property name. */
-    const afw_value_t *property_name;
+    /* FIXME #2: utf8 name wrap; this could be afw_value_string_t. */
+    const afw_utf8_t *property_name;
 
     /* Associated property type object. */
     const afw_object_t *property_type_object;

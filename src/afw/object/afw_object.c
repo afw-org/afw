@@ -287,7 +287,9 @@ afw_object_get_property_compile_as(
     }
     use_source_location = afw_utf8_printf(p, xctx,
         AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(use_source_location), AFW_UTF8_FMT_ARG(property_name));
+        AFW_UTF8_FMT_ARG(use_source_location),
+        AFW_UTF8_FMT_ARG(
+            afw_object_property_name_display_utf8(property_name, xctx)));
 
     value = afw_object_get_property(instance, property_name, xctx);
 
@@ -396,6 +398,7 @@ afw_object_get_property_extended(
 
 
     /* Attempt to get property and return if error or found. */
+    /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t is enough). */
     result = afw_object_get_property(obj,
         afw_value_create_unmanaged_string(&pn, xctx->p, xctx), xctx);
     if (result) {
@@ -474,7 +477,8 @@ afw_object_old_get_property_as_compiled_script(
             AFW_UTF8_FMT " " AFW_UTF8_FMT_Q
             " is not an evaluated value",
             AFW_UTF8_FMT_OPTIONAL_ARG(source_location),
-            AFW_UTF8_FMT_ARG(property_name));
+            AFW_UTF8_FMT_ARG(
+                afw_object_property_name_display_utf8(property_name, xctx)));
     }
 
     result = afw_compile_script(result,
@@ -508,7 +512,8 @@ afw_object_old_get_property_as_compiled_template(
             AFW_UTF8_FMT " " AFW_UTF8_FMT_Q
             " is not an evaluated value",
             AFW_UTF8_FMT_OPTIONAL_ARG(source_location),
-            AFW_UTF8_FMT_ARG(property_name));
+            AFW_UTF8_FMT_ARG(
+                afw_object_property_name_display_utf8(property_name, xctx)));
     }
 
     result = afw_compile_template(result,

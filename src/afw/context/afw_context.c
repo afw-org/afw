@@ -76,6 +76,8 @@ impl_contribute_cb_variables_cb(
 
     for (variable = variables; *variable; variable++) {
         name = (*variable)->meta->name;
+        /* FIXME #2: utf8 name wrap; context meta->name could be
+           afw_value_string_t. */
         if (afw_object_has_property(object,
             afw_value_create_unmanaged_string(name, object->p, xctx), xctx))
         {

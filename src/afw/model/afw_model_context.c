@@ -1261,21 +1261,25 @@ impl_custom_variable_get_cb(
 
     if (ctx->property_level.model_property_type &&
         ctx->property_level.model_property_type->custom_variables) {
+        /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t). */
         result = afw_object_get_property(
             ctx->property_level.model_property_type->custom_variables,
-            name, xctx);
+            afw_value_create_unmanaged_string(name, xctx->p, xctx),
+            xctx);
     }
 
     if (!result && ctx->model_object_type->custom_variables) {
         result = afw_object_get_property(
             ctx->model_object_type->custom_variables,
-            name, xctx);
+            afw_value_create_unmanaged_string(name, xctx->p, xctx),
+            xctx);
     }
 
     if (!result && ctx->model_object_type->model->custom_variables) {
         result = afw_object_get_property(
             ctx->model_object_type->model->custom_variables,
-            name, xctx);
+            afw_value_create_unmanaged_string(name, xctx->p, xctx),
+            xctx);
     }
 
     return result;
