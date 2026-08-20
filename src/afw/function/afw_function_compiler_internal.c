@@ -403,9 +403,9 @@ impl_object_destructure(
     const afw_compile_assignment_property_t *ap;
     const afw_object_t *object;
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
-    const afw_utf8_t *bound_name;
-    const afw_utf8_t **resolved_names;
+    const afw_value_t *property_name;
+    const afw_value_t *bound_name;
+    const afw_value_t **resolved_names;
     const afw_value_t *v;
     const afw_value_t *name_v;
     const afw_object_t *rest;
@@ -426,7 +426,7 @@ impl_object_destructure(
         }
         if (nprops > 0) {
             resolved_names = afw_pool_calloc(p,
-                sizeof(afw_utf8_t *) * nprops, xctx);
+                sizeof(const afw_value_t *) * nprops, xctx);
         }
     }
 
@@ -437,7 +437,8 @@ impl_object_destructure(
         if (ap->is_rename) {
             if (ap->property_name_expr) {
                 name_v = afw_value_evaluate(ap->property_name_expr, p, xctx);
-                bound_name = afw_value_as_utf8(name_v, p, xctx);
+                bound_name = afw_object_require_string_property_name(
+                    name_v, xctx);
             }
             else {
                 bound_name = ap->property_name;
@@ -465,10 +466,12 @@ impl_object_destructure(
         else {
             if (resolved_names) {
                 resolved_names[i] =
-                    ap->symbol_reference->symbol->name;
+                    afw_value_create_unmanaged_string(
+                        ap->symbol_reference->symbol->name, p, xctx);
             }
             v = afw_object_get_property(object,
-                ap->symbol_reference->symbol->name, xctx);
+                afw_value_create_unmanaged_string(
+                    ap->symbol_reference->symbol->name, p, xctx), xctx);
             if (!v) {
                 v = impl_evaluate_pattern_default(
                     ap->default_value, p, xctx);
@@ -495,7 +498,7 @@ impl_object_destructure(
                 bound_name = resolved_names
                     ? resolved_names[i] : NULL;
                 if (bound_name &&
-                    afw_utf8_equal(bound_name, property_name))
+                    afw_value_equal(bound_name, property_name, xctx))
                 {
                     break;
                 }
@@ -678,7 +681,6 @@ impl_assign_value(
         const afw_array_t *list;
         const afw_value_t *key;
         const afw_value_t *aggregate_value;
-        const afw_utf8_t *name;
 
         if (afw_value_is_script_function_definition(value)) {
             value = impl_create_closure_if_needed(
@@ -693,10 +695,8 @@ impl_assign_value(
             if (afw_object_is_immutable(object, xctx)) {
                 AFW_THROW_ERROR_Z(general, "Target object is immutable", xctx);
             }
-            name = afw_value_is_string(key)
-                ? &((const afw_value_string_t *)key)->internal
-                : afw_value_as_utf8(key, p, xctx);
-            afw_object_set_property(object, name, value, xctx);
+            key = afw_object_require_string_property_name(key, xctx);
+            afw_object_set_property(object, key, value, xctx);
         }
 
         else if (afw_value_is_array(aggregate_value)) {

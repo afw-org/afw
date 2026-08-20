@@ -52,7 +52,7 @@ struct afw_object_type_extended_data_type_s {
 struct afw_object_type_property_type_s {
     const afw_object_type_property_type_t *next;
     const afw_object_t *property_type_object;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
 
     /** @fixme add constraint things. */
 
@@ -127,7 +127,7 @@ afw_object_type_internal_create(
 AFW_DECLARE(const afw_object_type_property_type_t *)
 afw_object_type_property_type_get(
     const afw_object_type_t *object_type,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 
@@ -163,7 +163,7 @@ AFW_DECLARE(const afw_object_type_property_type_t *)
 afw_object_type_property_type_get_next(
     const afw_object_type_t *object_type,
     const afw_iterator_old_t * *iterator,
-    const afw_utf8_t * *property_name,
+    const afw_value_t * *property_name,
     afw_xctx_t *xctx);
 
 
@@ -195,7 +195,7 @@ afw_object_type_property_type_normalize(
 AFW_DECLARE(const afw_value_t *)
 afw_object_type_property_normalize(
     const afw_object_type_t *object_type,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);

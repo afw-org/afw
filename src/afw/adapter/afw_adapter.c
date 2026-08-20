@@ -601,11 +601,11 @@ afw_adapter_internal_register_afw_adapter(afw_xctx_t *xctx)
 
     p = afw_pool_create(xctx->env->p, xctx);
     conf = afw_object_create_unmanaged(p, xctx);
-    afw_object_set_property(conf, afw_s_type, afw_v_adapter, xctx);
+    afw_object_set_property(conf, afw_v_type, afw_v_adapter, xctx);
     afw_object_set_property(conf,
-        afw_s_adapterType, afw_v_afw_runtime, xctx);
-    afw_object_set_property(conf, afw_s_adapterId, afw_v_afw, xctx);
-    afw_object_set_property(conf, afw_s_sourceLocation,
+        afw_v_adapterType, afw_v_afw_runtime, xctx);
+    afw_object_set_property(conf, afw_v_adapterId, afw_v_afw, xctx);
+    afw_object_set_property(conf, afw_v_sourceLocation,
         afw_v_a_Core_afw_adapter, xctx);
     afw_adapter_internal_conf_type_create_cede_p(afw_s_adapter,
         conf, afw_s_a_Core_afw_adapter, p, xctx);
@@ -625,7 +625,7 @@ afw_adapter_internal_conf_type_create_cede_p(
 
     /* Get adapter_id. */
     adapter_id = afw_object_old_get_property_as_string(conf,
-        afw_s_adapterId, xctx);
+        afw_v_adapterId, xctx);
     if (!adapter_id) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -772,7 +772,7 @@ impl_afw_service_type_start_cede_p (
     const afw_utf8_t *adapter_type;
 
     adapter_type = afw_object_old_get_property_as_utf8(properties,
-        afw_s_adapterType, p, xctx);
+        afw_v_adapterType, p, xctx);
     if (!adapter_type) {
         AFW_THROW_ERROR_Z(general,
             "parameter adapterType missing",

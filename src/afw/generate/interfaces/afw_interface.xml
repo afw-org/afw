@@ -3873,7 +3873,7 @@ AFW_DEFINE(const afw_log_t *)
     <description>Pointer to this object setter instance.</description>
       </parameter>
 
-      <parameter name="property_name" type="const afw_utf8_t *">
+      <parameter name="property_name" type="const afw_value_t *">
     <description>
           Property name of property to set.
         </description>
@@ -4044,7 +4044,7 @@ AFW_DEFINE(const afw_log_t *)
     <description>Pointer to this object instance.</description>
       </parameter>
 
-      <parameter name="property_name" type="const afw_utf8_t *">
+      <parameter name="property_name" type="const afw_value_t *">
     <description>Property name.</description>
       </parameter>
 
@@ -4069,7 +4069,7 @@ AFW_DEFINE(const afw_log_t *)
     <description>Pointer to this object instance.</description>
       </parameter>
 
-      <parameter name="property_name" type="const afw_utf8_t *">
+      <parameter name="property_name" type="const afw_value_t *">
     <description>Property name.</description>
       </parameter>
 
@@ -4103,7 +4103,7 @@ AFW_DEFINE(const afw_log_t *)
     <description>Address of iterator pointer. Set to NULL before call to get first property.</description>
       </parameter>
 
-      <parameter name="property_name" type="const afw_utf8_t * *">
+      <parameter name="property_name" type="const afw_value_t * *">
     <description>Place to return pointer to property name or NULL.</description>
       </parameter>
 
@@ -4134,7 +4134,7 @@ AFW_DEFINE(const afw_log_t *)
     <description>Address of iterator pointer. Set to NULL before call to get first property.</description>
       </parameter>
 
-      <parameter name="property_name" type="const afw_utf8_t * *">
+      <parameter name="property_name" type="const afw_value_t * *">
     <description>Place to return pointer to property name.</description>
       </parameter>
 
@@ -4164,7 +4164,7 @@ AFW_DEFINE(const afw_log_t *)
     <description>Pointer to this object instance.</description>
       </parameter>
 
-      <parameter name="property_name" type="const afw_utf8_t *">
+      <parameter name="property_name" type="const afw_value_t *">
     <description>Property name.</description>
       </parameter>
 

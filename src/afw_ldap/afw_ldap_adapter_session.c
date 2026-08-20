@@ -120,7 +120,7 @@ impl_afw_adapter_session_retrieve_objects(
     base_z = "";
     if (adapter_type_specific) {
         s = afw_object_old_get_property_as_string(adapter_type_specific,
-            afw_ldap_s_base, xctx);
+            afw_ldap_v_base, xctx);
         if (s) {
             base_z = (char *)afw_utf8_to_utf8_z(s, p, xctx);
         }
@@ -328,7 +328,7 @@ impl_afw_adapter_session_add_object(
     afw_ldap_object_type_attribute_t *attribute;
     apr_array_header_t *mods;
     const afw_value_t *value;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_iterator_old_t *iterator;
     struct berval **bvals;
     LDAPMod *mod;
@@ -435,7 +435,7 @@ impl_afw_adapter_session_modify_object(
     afw_ldap_object_type_attribute_t *first_attribute;
     afw_ldap_object_type_attribute_t *attribute;
     apr_array_header_t *mods;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_adapter_modify_entry_t * const * e;
     LDAPMod *mod;
     char *dn_z;

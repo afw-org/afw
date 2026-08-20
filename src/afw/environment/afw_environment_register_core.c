@@ -226,7 +226,9 @@ impl_create_environment_variables_object(
             c++;
         }
         value = afw_value_create_from_external_z(c, result->p, xctx);
-        afw_object_set_property(result, name, value, xctx);
+        afw_object_set_property(result,
+            afw_value_create_unmanaged_string(name, result->p, xctx),
+            value, xctx);
     }
 
     return result;

@@ -51,7 +51,7 @@ impl_afw_array_get_count(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     afw_size_t count;
 
     count = 0;
@@ -122,7 +122,7 @@ impl_afw_array_get_entry_value(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *property_value;
     afw_value_meta_object_self_t *meta_self;
     const afw_pool_t *use_p;
@@ -218,7 +218,7 @@ impl_afw_array_get_next_value(
     afw_xctx_t *xctx)
 {
     const afw_value_t *property_value;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     afw_value_meta_object_self_t *meta_self;
     const afw_pool_t *use_p;
     impl_meta_values_object_iterator_t *state;

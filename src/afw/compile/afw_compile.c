@@ -408,7 +408,7 @@ afw_compile_templates(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_utf8_t *detail_source_location;
     const afw_value_t *value;
 
@@ -472,7 +472,7 @@ afw_compile_object_all_template_properties(
     afw_xctx_t *xctx)
 {
     const afw_object_t *result;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_value_t *compiled_value;

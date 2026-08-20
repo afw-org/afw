@@ -64,7 +64,7 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
     fd.write(' * ' + path + '\n')
     fd.write(' */\n')
     
-    s_ = '&' + prefix + 'self_s_'
+    v_ = prefix + 'v_'
     propnames = sorted(list(iter(obj)))
     meta = obj.get('_meta_', {})
     if '_meta_' in propnames:
@@ -197,9 +197,9 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
         fd.write('\nstatic const afw_runtime_property_t\n')
         fd.write(obj['_meta_']['_label_'] + '_property_' + tag_propname + ' = {\n')
         if '-' in propname:
-            fd.write('    ' + s_ + 'a_' + tag_propname + ',\n')
+            fd.write('    ' + v_ + 'a_' + tag_propname + ',\n')
         else:
-            fd.write('    ' + s_ + propname + ',\n')
+            fd.write('    ' + v_ + propname + ',\n')
 
         fd.write('    ' + value_expr + '\n')
         fd.write('};\n')

@@ -226,7 +226,7 @@ afw_data_type_double =
 AFW_DEFINE(void)
 afw_object_set_property_as_double(
     const afw_object_t *object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     double internal,
     afw_xctx_t *xctx)
 {
@@ -335,7 +335,7 @@ afw_data_type_double_to_utf8(double internal,
 AFW_DEFINE(double)
 afw_object_get_property_as_double_source(
     const afw_object_t *object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,
@@ -370,7 +370,7 @@ AFW_DEFINE(double)
 afw_object_get_next_property_as_double_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
-    const afw_utf8_t * *property_name,
+    const afw_value_t * *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,

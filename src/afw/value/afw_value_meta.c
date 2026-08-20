@@ -33,7 +33,7 @@
 static const afw_value_t *
 impl_get_dataType(
     afw_value_meta_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     const afw_data_type_t *data_type;
@@ -54,7 +54,7 @@ impl_get_dataType(
 static const afw_value_t *
 impl_get_key(
     afw_value_meta_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
@@ -73,7 +73,7 @@ impl_get_key(
 static const afw_value_t *
 impl_get_value(
     afw_value_meta_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     return self->evaluated_value;
@@ -83,7 +83,7 @@ impl_get_value(
 static const afw_value_t *
 impl_get_valueInfId(
     afw_value_meta_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
@@ -159,7 +159,7 @@ impl_afw_object_get_count(
 const afw_value_t *
 impl_afw_object_get_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     const afw_value_meta_name_handler_t *h;
@@ -193,7 +193,7 @@ const afw_value_t *
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
     const afw_iterator_old_t **iterator,
-    const afw_utf8_t **property_name,
+    const afw_value_t **property_name,
     afw_xctx_t *xctx)
 {
     const afw_value_meta_name_handler_t *h;
@@ -283,7 +283,7 @@ impl_afw_object_get_next_property(
 afw_boolean_t
 impl_afw_object_has_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     return
@@ -327,7 +327,7 @@ impl_afw_object_setter_set_immutable(
 void
 impl_afw_object_setter_set_property(
     const afw_object_setter_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {

@@ -264,7 +264,7 @@ int afw_lmdb_internal_delete_index(
 afw_boolean_t afw_lmdb_internal_is_property_indexed(
     const afw_lmdb_adapter_t *adapter,
     const afw_utf8_t *object_type_id,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 const afw_object_t * afw_lmdb_internal_create_object_from_entry(

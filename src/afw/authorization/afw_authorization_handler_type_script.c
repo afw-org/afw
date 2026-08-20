@@ -79,7 +79,7 @@ afw_authorization_handler_type_script_create_cede_p(
     self->authorization_check =
         afw_object_old_get_property_as_compiled_script(
             self->pub.properties,
-            afw_s_authorizationCheck,
+            afw_v_authorizationCheck,
             detail_source_location, NULL, p, xctx);
 
     /* Make context. */
@@ -118,7 +118,7 @@ afw_authorization_handler_type_script_create_cede_p(
 
     /* qualifiedVariables definitions. */
     self->qualified_variables = afw_object_old_get_property_as_object(
-        self->pub.properties, afw_s_qualifiedVariables, xctx);
+        self->pub.properties, afw_v_qualifiedVariables, xctx);
     if (self->qualified_variables) {
         detail_source_location = afw_utf8_printf(
             self->qualified_variables->p, xctx,

@@ -57,7 +57,7 @@ afw_function_execute_add_properties(
     const afw_value_object_t *target;
     const afw_value_object_t *source;
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *value;
     afw_size_t count;
 
@@ -248,10 +248,10 @@ afw_function_execute_property_delete(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(name, 2, string);
 
     /* If property exists, delete it and return true.*/
-    has = afw_object_has_property(object->internal, &name->internal, x->xctx);
+    has = afw_object_has_property(object->internal, &name->pub, x->xctx);
     if (has) {
         afw_object_set_property(object->internal,
-            &name->internal, NULL, x->xctx);
+            &name->pub, NULL, x->xctx);
     }
     return (has) ? afw_boolean_v_true : afw_boolean_v_false;
 }
@@ -332,10 +332,10 @@ afw_function_execute_property_delete_by_reference(
     afw_xctx_evaluation_stack_pop_parameter_number(x->xctx);
 
     /* If property exists, delete it and return true.*/
-    has = afw_object_has_property(object->internal, &name->internal, x->xctx);
+    has = afw_object_has_property(object->internal, &name->pub, x->xctx);
     if (has) {
         afw_object_set_property(object->internal,
-            &name->internal, NULL, x->xctx);
+            &name->pub, NULL, x->xctx);
     }
     return (has) ? afw_boolean_v_true : afw_boolean_v_false;
 }
@@ -386,7 +386,7 @@ afw_function_execute_property_exists(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(name, 2, string);
 
-    has = afw_object_has_property(object->internal, &name->internal, x->xctx);
+    has = afw_object_has_property(object->internal, &name->pub, x->xctx);
 
     return (has) ? afw_boolean_v_true : afw_boolean_v_false;
 }
@@ -443,7 +443,7 @@ afw_function_execute_property_get(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(name, 2, string);
 
     result = afw_object_get_property(object->internal,
-        &name->internal, x->xctx);
+        &name->pub, x->xctx);
     if (!result) {
         result = afw_value_undefined;
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
@@ -501,7 +501,7 @@ afw_function_execute_property_is_not_null(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(name, 2, string);
 
-    value = afw_object_get_property(object->internal, &name->internal,
+    value = afw_object_get_property(object->internal, &name->pub,
         x->xctx);
 
     return (value && !afw_value_is_null(value))
@@ -549,7 +549,7 @@ afw_function_execute_entries(
     const afw_array_t *result_array;
     const afw_array_t *pair;
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *value;
     const afw_value_t *name_value;
 
@@ -562,8 +562,7 @@ afw_function_execute_entries(
         if (!value) {
             break;
         }
-        name_value = afw_value_create_unmanaged_string(
-            property_name, x->p, x->xctx);
+        name_value = property_name;
         pair = afw_array_create_generic(x->p, x->xctx);
         afw_array_push_value(pair, name_value, x->xctx);
         afw_array_push_value(pair, value, x->xctx);
@@ -613,7 +612,7 @@ afw_function_execute_keys(
     const afw_value_object_t *object;
     const afw_array_t *result_array;
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *value;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
@@ -626,7 +625,7 @@ afw_function_execute_keys(
             break;
         }
         afw_array_push_value(result_array,
-            afw_value_create_unmanaged_string(property_name, x->p, x->xctx),
+            property_name,
             x->xctx);
     }
 
@@ -672,7 +671,7 @@ afw_function_execute_values(
     const afw_value_object_t *object;
     const afw_array_t *result_array;
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *value;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);

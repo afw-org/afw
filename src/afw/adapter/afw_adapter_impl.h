@@ -397,7 +397,7 @@ afw_adapter_impl_push_qualifiers(
 AFW_DECLARE(void)
 afw_adapter_impl_throw_property_invalid(
     const afw_adapter_t *adapter,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 
@@ -411,7 +411,7 @@ afw_adapter_impl_throw_property_invalid(
 AFW_DECLARE(void)
 afw_adapter_impl_throw_property_required(
     const afw_adapter_t *adapter,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 

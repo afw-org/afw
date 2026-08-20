@@ -28,6 +28,46 @@
 
 AFW_BEGIN_DECLARES
 
+/**
+ * @brief Require a string property name (script / JSON / YAML / UBJSON).
+ * @param name evaluated property name, or NULL.
+ * @param xctx of caller.
+ * @return name if it is an evaluated string; NULL if name is NULL; throws
+ *    otherwise.
+ *
+ * Object implementations do not call this. Compiler and content types do.
+ * A later typed-key encoding can grow here.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_object_require_string_property_name(
+    const afw_value_t *name,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Utf8 view of a string property name for display / JSON keys.
+ * @param name evaluated property name value.
+ * @param xctx of caller.
+ * @return utf8 of a string name; a placeholder if name is not a string.
+ *
+ * Does not throw. For JSON write, call
+ * afw_object_require_string_property_name() first.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_object_property_name_display_utf8(
+    const afw_value_t *name,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Utf8 internals of a required string property name.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_object_string_property_name_as_utf8(
+    const afw_value_t *name,
+    afw_xctx_t *xctx);
+
+
 /** @brief Quoted prefix for all core adaptive object types. */
 #define AFW_OBJECT_Q_CORE_ID_PREFIX AFW_Q__Adaptive
 
@@ -199,7 +239,8 @@ while (0)
 #define AFW_OBJECT_ERROR_PROPERTY_IMMUTABLE(property_name) \
 AFW_THROW_ERROR_FZ(read_only, xctx, \
     "Object property " AFW_UTF8_FMT_Q " is immutable", \
-    AFW_UTF8_FMT_ARG(property_name))
+    AFW_UTF8_FMT_ARG( \
+        afw_object_property_name_display_utf8((property_name), xctx)))
 
 /**
  * @brief Set an object to immutable if it is not already.
@@ -224,7 +265,7 @@ afw_object_set_immutable(const afw_object_t *instance, afw_xctx_t *xctx);
 AFW_DECLARE(void)
 afw_object_remove_property(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 
@@ -251,7 +292,7 @@ afw_object_remove_property(
 AFW_DECLARE(void)
 afw_object_set_property(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -272,7 +313,7 @@ afw_object_set_property(
 AFW_DECLARE(void)
 afw_object_set_property_as_date_from_parts(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     int year,
     int month,
     int day,
@@ -301,7 +342,7 @@ afw_object_set_property_as_date_from_parts(
 AFW_DECLARE(void)
 afw_object_set_property_as_dateTime_from_parts(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     int year,
     int month,
     int day,
@@ -329,7 +370,7 @@ afw_object_set_property_as_dateTime_from_parts(
 AFW_DECLARE(void)
 afw_object_set_property_as_dayTimeDuration_from_parts(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_boolean_t is_positive,
     int days,
     int hours,
@@ -356,7 +397,7 @@ afw_object_set_property_as_dayTimeDuration_from_parts(
 AFW_DECLARE(void)
 afw_object_set_property_as_time_from_parts(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     int hour,
     int minute,
     int second,
@@ -378,7 +419,7 @@ afw_object_set_property_as_time_from_parts(
 AFW_DECLARE(void)
 afw_object_set_property_as_yearMonthDuration_from_parts(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_boolean_t is_positive,
     int years,
     int months,
@@ -395,7 +436,7 @@ afw_object_set_property_as_yearMonthDuration_from_parts(
 AFW_DECLARE(void)
 afw_object_set_property_as_string_from_utf8_z(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_z_t *string_z,
     afw_xctx_t *xctx);
 
@@ -494,7 +535,7 @@ afw_object_resolve_instance(
 AFW_DECLARE(const afw_value_t *)
 afw_object_get_property_compile_as(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_t *source_location,
     afw_compile_type_t compile_type,
     const afw_pool_t *p,
@@ -518,7 +559,7 @@ afw_object_get_property_compile_as(
 AFW_DECLARE(const afw_value_t *)
 afw_object_get_property_compile_and_evaluate_as(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_t *source_location,
     afw_compile_type_t compile_type,
     const afw_pool_t *p,
@@ -563,7 +604,7 @@ afw_object_get_property_extended(
 AFW_DECLARE(const afw_value_t * const *)
 afw_object_old_get_property_as_array_of_values(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 
@@ -581,7 +622,7 @@ afw_object_old_get_property_as_array_of_values(
  */
 AFW_DECLARE(const afw_utf8_t * const *)
 afw_object_old_get_property_as_array_of_strings(
-    const afw_object_t *instance, const afw_utf8_t *property_name,
+    const afw_object_t *instance, const afw_value_t *property_name,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 
@@ -603,7 +644,7 @@ afw_object_old_get_property_as_array_of_strings(
 AFW_DECLARE(const afw_value_t *)
 afw_object_old_get_property_as_compiled_script(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_t *source_location,
     const afw_compile_shared_t *shared,
     const afw_pool_t *p, afw_xctx_t *xctx);
@@ -627,7 +668,7 @@ afw_object_old_get_property_as_compiled_script(
 AFW_DECLARE(const afw_value_t *)
 afw_object_old_get_property_as_compiled_template(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_t *source_location,
     const afw_compile_shared_t *shared,
     const afw_pool_t *p, afw_xctx_t *xctx);
@@ -647,7 +688,7 @@ afw_object_old_get_property_as_compiled_template(
 AFW_DECLARE(afw_boolean_t)
 afw_object_old_get_property_as_boolean_deprecated(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 
@@ -666,7 +707,7 @@ afw_object_old_get_property_as_boolean_deprecated(
 AFW_DECLARE(afw_integer_t)
 afw_object_old_get_property_as_integer_deprecated(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_boolean_t *found,
     afw_xctx_t *xctx);
 
@@ -682,7 +723,7 @@ afw_object_old_get_property_as_integer_deprecated(
 AFW_DECLARE(const afw_utf8_t *)
 afw_object_old_get_property_as_utf8(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
@@ -702,7 +743,7 @@ afw_object_old_get_property_as_utf8(
 AFW_DECLARE(const afw_utf8_z_t *)
 afw_object_old_get_property_as_utf8_z(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
@@ -952,7 +993,7 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_embedded(
     const afw_object_t *embedding_object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 
@@ -971,7 +1012,7 @@ afw_object_create_embedded(
 AFW_DECLARE(const afw_object_t *)
 afw_object_insure_embedded_exists(
     const afw_object_t *embedding_object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 
@@ -1004,7 +1045,8 @@ afw_object_insure_embedded_exists(
     result,embedding_object,property_name,always_create_unmanaged, \
     cede_p,entity_p,xctx) \
     if (always_create_unmanaged || \
-        (property_name && afw_utf8_equal(property_name, afw_s__meta_))) \
+        (property_name && \
+        afw_value_equal((property_name), afw_v__meta_, xctx))) \
     { \
         result = afw_object_create_unmanaged(entity_p, xctx); \
     } \

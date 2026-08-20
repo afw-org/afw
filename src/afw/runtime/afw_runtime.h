@@ -91,8 +91,8 @@ struct afw_runtime_object_type_meta_s {
  */
 struct afw_runtime_object_map_property_s {
 
-    /** @brief Property name. */
-    const afw_utf8_t *name;
+    /** @brief Property name (evaluated value; usually a string). */
+    const afw_value_t *name;
 
     /** @brief Offset of internal property value in internal object struct.
      *
@@ -189,7 +189,7 @@ struct afw_runtime_const_object_meta_object_s {
 
 
 struct afw_runtime_property_s {
-    const afw_utf8_t *name;
+    const afw_value_t *name;
     const afw_value_t *value;
 };
 
@@ -545,7 +545,7 @@ afw_runtime_object_get_meta(
 const afw_value_t *
 afw_runtime_object_get_property(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 
@@ -556,7 +556,7 @@ afw_runtime_object_get_property(
 const afw_value_t *
 afw_runtime_object_get_property_meta(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
@@ -569,7 +569,7 @@ const afw_value_t *
 afw_runtime_object_get_next_own_property(
     const afw_object_t * instance,
     const afw_iterator_old_t * * iterator,
-    const afw_utf8_t * * property_name,
+    const afw_value_t * * property_name,
     afw_xctx_t *xctx);
 
 
@@ -581,7 +581,7 @@ const afw_value_t *
 afw_runtime_object_get_next_property_meta(
     const afw_object_t *instance,
     const afw_iterator_old_t **iterator,
-    const afw_utf8_t **property_name,
+    const afw_value_t **property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
@@ -593,7 +593,7 @@ afw_runtime_object_get_next_property_meta(
 afw_boolean_t
 afw_runtime_object_has_property(
     const afw_object_t * instance,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx);
 
 

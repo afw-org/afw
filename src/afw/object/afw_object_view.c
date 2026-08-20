@@ -70,7 +70,7 @@ impl_set_property(
 static afw_object_view_property_t *
 impl_get_property(
     afw_object_view_internal_object_self_t *self,
-    const afw_utf8_t *property_name);
+    const afw_value_t *property_name);
 
 
 /* Add requested meta properties. */
@@ -124,7 +124,7 @@ static afw_object_view_internal_object_self_t *
 impl_object_create(
     afw_object_view_internal_view_t *view,
     afw_object_view_internal_object_self_t *embedding_object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_object_t *origin,
     const afw_uri_parsed_t *uri_parsed,
     afw_xctx_t *xctx);
@@ -136,7 +136,7 @@ impl_object_create(
 static void
 impl_meta_set_property(
     afw_object_view_internal_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -149,7 +149,7 @@ static void
 impl_meta_set_property_type_property(
     afw_object_view_internal_object_self_t *self,
     const afw_utf8_t *property_type_id,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -242,7 +242,7 @@ static const afw_value_t *
 impl_make_value(
     afw_object_view_internal_object_self_t *self,
     const afw_object_t *origin,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *original_value,
     afw_xctx_t *xctx)
 {
@@ -300,7 +300,7 @@ impl_make_value(
 static afw_object_view_property_t *
 impl_get_property(
     afw_object_view_internal_object_self_t *self,
-    const afw_utf8_t *property_name)
+    const afw_value_t *property_name)
 {
     afw_object_view_property_t *prop;
 
@@ -317,7 +317,7 @@ static void
 impl_set_property(
     afw_object_view_internal_object_self_t *self,
     const afw_object_t *origin,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *original_value,
     afw_xctx_t *xctx)
 {
@@ -343,7 +343,7 @@ impl_set_property(
 static void
 impl_update_property_value(
     afw_object_view_internal_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -365,7 +365,7 @@ static const afw_value_t *
 impl_normalize_value(
     afw_object_view_internal_object_self_t *self,
     const afw_object_type_property_type_t *pt,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -405,7 +405,7 @@ impl_object_type_related_object_option_processing(
     const afw_object_type_t *object_type;
     const afw_iterator_old_t *iterator;
     const afw_value_t *value;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_utf8_t *s;
     const afw_value_t *s_value;
     const afw_value_t *new_value;
@@ -566,7 +566,7 @@ impl_object_type_related_object_option_processing(
                     if (pt) {
                         s = afw_object_old_get_property_as_string(
                             pt->property_type_object,
-                            afw_s_dataTypeParameter,
+                            afw_v_dataTypeParameter,
                             xctx);
                     }
                     if (s && !afw_utf8_equal(s, object_type_id)) {
@@ -1094,7 +1094,7 @@ static afw_object_view_internal_object_self_t *
 impl_object_create(
     afw_object_view_internal_view_t *view,
     afw_object_view_internal_object_self_t *embedding_object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_object_t *origin,
     const afw_uri_parsed_t *uri_parsed,
     afw_xctx_t *xctx)
@@ -1231,7 +1231,7 @@ impl_afw_object_get_count(
 const afw_value_t *
 impl_afw_object_get_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
     afw_object_view_property_t *prop;
@@ -1250,7 +1250,7 @@ const afw_value_t *
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
     const afw_iterator_old_t * * iterator,
-    const afw_utf8_t * * property_name,
+    const afw_value_t * * property_name,
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
@@ -1297,7 +1297,7 @@ impl_afw_object_get_next_property(
 afw_boolean_t
 impl_afw_object_has_property (
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
     return (impl_afw_object_get_property(self,

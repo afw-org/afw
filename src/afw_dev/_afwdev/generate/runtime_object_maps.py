@@ -29,6 +29,7 @@ def write_c_map(fd, prefix, obj, options, onGetValueCFunctionNames):
 
     id = obj['_meta_']['objectId']
     s_ = '&' + prefix + 'self_s_'
+    v_ = prefix + 'v_'
 
     typedef = None
     runtime = obj.get('runtime')
@@ -62,7 +63,7 @@ def write_c_map(fd, prefix, obj, options, onGetValueCFunctionNames):
             propertyType_runtime = propertyType.get('runtime', {})
             memberName = propertyType_runtime.get('memberName', name)
             fd.write('    {\n')
-            fd.write('        ' + s_ +  name + ',\n')
+            fd.write('        ' + v_ +  name + ',\n')
 
             # offset or -1 if onGetValueCFunctionName specified
             if propertyType_runtime.get("onGetValueCFunctionName") is not None:

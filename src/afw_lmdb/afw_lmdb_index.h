@@ -29,7 +29,7 @@ afw_adapter_impl_index_t * afw_lmdb_adapter_impl_index_create(
 
 const afw_utf8_t * afw_lmdb_index_database(
     const afw_utf8_t *object_type_id,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_pool_t *pool,
     afw_xctx_t *xctx);
 

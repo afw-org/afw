@@ -363,7 +363,7 @@ void convert_object_to_yaml(
     const afw_object_t *obj)
 {
     const afw_iterator_old_t *property_iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *next;
     const afw_object_t *meta;
 
@@ -398,7 +398,9 @@ void convert_object_to_yaml(
     if (next) {
         while (1) {
             (wa->indent)++;
-            put_yaml_string(wa, property_name);
+            put_yaml_string(wa,
+                afw_object_string_property_name_as_utf8(
+                    property_name, wa->xctx));
 
             impl_puts(wa, ": ");
 

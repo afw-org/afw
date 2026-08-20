@@ -510,7 +510,7 @@ void afw_lmdb_internal_save_config(
 
     /* set our last updateTimeStamp property */
     now = afw_value_create_dateTime_now_utc(config->p, xctx);
-    afw_object_set_property(config, afw_lmdb_s_updateTimeStamp, now, xctx);
+    afw_object_set_property(config, afw_lmdb_v_updateTimeStamp, now, xctx);
 
     /* write out our object to raw string */
     raw = afw_content_type_object_to_raw(self->ubjson, config,
@@ -577,8 +577,8 @@ const afw_object_t * afw_lmdb_internal_get_config(
         /* get the current time for timestamps */
         now = afw_value_create_dateTime_now_utc(p, xctx);
 
-        afw_object_set_property(config, afw_lmdb_s_createTimeStamp, now, xctx);
-        afw_object_set_property(config, afw_lmdb_s_updateTimeStamp, now, xctx);
+        afw_object_set_property(config, afw_lmdb_v_createTimeStamp, now, xctx);
+        afw_object_set_property(config, afw_lmdb_v_updateTimeStamp, now, xctx);
 
         /* go ahead and write it back out */
         raw_out = afw_content_type_object_to_raw(

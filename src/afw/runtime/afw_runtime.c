@@ -472,7 +472,7 @@ impl_check_manifest_cb(
         return false;
     }
 
-    providesObjects_value = afw_object_get_property(object, afw_s_providesObjects, xctx);
+    providesObjects_value = afw_object_get_property(object, afw_v_providesObjects, xctx);
     if (!providesObjects_value) {
         return false;
     }
@@ -515,9 +515,9 @@ impl_check_manifest_cb(
 
         /* If extension provides object, load extension and break. */
         extension_id = afw_object_old_get_property_as_string(object,
-            afw_s_extensionId, xctx);
+            afw_v_extensionId, xctx);
         module_path = afw_object_old_get_property_as_string(object,
-            afw_s_modulePath, xctx);
+            afw_v_modulePath, xctx);
         if (extension_id && module_path) {
             afw_environment_load_extension(extension_id, module_path,
                 NULL, xctx);
@@ -1059,7 +1059,7 @@ afw_runtime_object_get_object_type_id(
 const afw_value_t *
 afw_runtime_object_get_property(
     const afw_object_t * instance,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
     const afw_runtime_object_map_property_t  *prop;
@@ -1077,7 +1077,7 @@ afw_runtime_object_get_property(
             count > 0;
             prop++, count--)
         {
-            if (afw_utf8_equal(property_name, prop->name)) {
+            if (afw_value_equal(property_name, prop->name, xctx)) {
                 return impl_make_value_from_map_entry(instance, prop, xctx);
             }
         }
@@ -1096,7 +1096,7 @@ afw_runtime_object_get_property(
 
     if (more) {
         for (; *more; more++) {
-            if (afw_utf8_equal(property_name, (*more)->name)) {
+            if (afw_value_equal(property_name, (*more)->name, xctx)) {
                 return (*more)->value;
             }
         }
@@ -1129,7 +1129,7 @@ afw_runtime_object_get_meta(
 const afw_value_t *
 afw_runtime_object_get_property_meta(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -1146,7 +1146,7 @@ const afw_value_t *
 afw_runtime_object_get_next_own_property(
     const afw_object_t * instance,
     const afw_iterator_old_t * * iterator,
-    const afw_utf8_t * * property_name,
+    const afw_value_t * * property_name,
     afw_xctx_t *xctx)
 {
     const afw_runtime_object_map_property_t  *map_entry;
@@ -1230,7 +1230,7 @@ const afw_value_t *
 afw_runtime_object_get_next_property_meta(
     const afw_object_t *instance,
     const afw_iterator_old_t **iterator,
-    const afw_utf8_t **property_name,
+    const afw_value_t **property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -1245,7 +1245,7 @@ afw_runtime_object_get_next_property_meta(
 afw_boolean_t
 afw_runtime_object_has_property(
     const afw_object_t * instance,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
     /* Use impl_get_own_property() to determine if property exists. */

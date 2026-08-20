@@ -255,7 +255,7 @@ afw_data_type_json =
 AFW_DEFINE(void)
 afw_object_set_property_as_json(
     const afw_object_t *object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_t * internal,
     afw_xctx_t *xctx)
 {
@@ -416,7 +416,7 @@ afw_data_type_json_to_utf8(const afw_utf8_t * internal,
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_property_as_json_source(
     const afw_object_t *object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -448,7 +448,7 @@ AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_next_property_as_json_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
-    const afw_utf8_t * *property_name,
+    const afw_value_t * *property_name,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx)

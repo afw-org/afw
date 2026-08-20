@@ -301,7 +301,7 @@ afw_value_is_fully_evaluated(
 {
     afw_boolean_t result;
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *v;
 
     result = true;
@@ -679,7 +679,7 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
 {
     const afw_iterator_old_t *iterator;
     const afw_object_t *object;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_object_t *qualifier_object;
     const afw_value_t *result;
     int top;

@@ -736,37 +736,37 @@ afw_object_path_parsed_to_object(
 
     if (parsed->original_path.len > 0) {
         afw_object_set_property_as_string(result,
-            afw_s_originalPath, &parsed->original_path, xctx);
+            afw_v_originalPath, &parsed->original_path, xctx);
     }
 
     if (parsed->normalized_path.len > 0) {
         afw_object_set_property_as_string(result,
-            afw_s_normalizedPath, &parsed->normalized_path, xctx);
+            afw_v_normalizedPath, &parsed->normalized_path, xctx);
     }
 
     if (parsed->entity_path.len > 0) {
         afw_object_set_property_as_string(result,
-            afw_s_entityPath, &parsed->entity_path, xctx);
+            afw_v_entityPath, &parsed->entity_path, xctx);
     }
 
     if (parsed->adapter_id.len > 0) {
         afw_object_set_property_as_string(result,
-            afw_s_adapterId, &parsed->adapter_id, xctx);
+            afw_v_adapterId, &parsed->adapter_id, xctx);
     }
 
     if (parsed->object_type_id.len > 0) {
         afw_object_set_property_as_string(result,
-            afw_s_objectType, &parsed->object_type_id, xctx);
+            afw_v_objectType, &parsed->object_type_id, xctx);
     }
 
     if (parsed->entity_object_id.len > 0) {
         afw_object_set_property_as_string(result,
-            afw_s_entityObjectId, &parsed->entity_object_id, xctx);
+            afw_v_entityObjectId, &parsed->entity_object_id, xctx);
     }
 
     if (parsed->undecoded_object_id.len > 0) {
         afw_object_set_property_as_string(result,
-            afw_s_objectId, &parsed->undecoded_object_id, xctx);
+            afw_v_objectId, &parsed->undecoded_object_id, xctx);
     }
 
     if (parsed->first_property_name) {
@@ -778,47 +778,47 @@ afw_object_path_parsed_to_object(
             afw_array_push_value(list, value, xctx);
         }
         afw_object_set_property_as_array(result,
-            afw_s_propertyTypes, list, xctx);
+            afw_v_propertyTypes, list, xctx);
     }
 
     if (parsed->options_object) {
         afw_object_set_property_as_object(result,
-            afw_s_optionsObject, parsed->options_object, xctx);
+            afw_v_optionsObject, parsed->options_object, xctx);
     }
 
     if (parsed->substitution_occurred) {
         afw_object_set_property(result,
-            afw_s_substitutionOccurred, afw_boolean_v_true, xctx);
+            afw_v_substitutionOccurred, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_adapter_id) {
         afw_object_set_property(result,
-            afw_s_substitutedAdapterId, afw_boolean_v_true, xctx);
+            afw_v_substitutedAdapterId, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_object_type_id) {
         afw_object_set_property(result,
-            afw_s_substitutedObjectTypeId, afw_boolean_v_true, xctx);
+            afw_v_substitutedObjectTypeId, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_entire_object_id) {
         afw_object_set_property(result,
-            afw_s_substitutedEntireObjectId, afw_boolean_v_true, xctx);
+            afw_v_substitutedEntireObjectId, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_entity_object_id) {
         afw_object_set_property(result,
-            afw_s_substitutedEntityObjectId, afw_boolean_v_true, xctx);
+            afw_v_substitutedEntityObjectId, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_property_name) {
         afw_object_set_property(result,
-            afw_s_substitutedPropertyName, afw_boolean_v_true, xctx);
+            afw_v_substitutedPropertyName, afw_boolean_v_true, xctx);
     }
 
     if (parsed->contains_unresolved_substitutions) {
         afw_object_set_property(result,
-            afw_s_containsUnresolvedSubstitutions, afw_boolean_v_true, xctx);
+            afw_v_containsUnresolvedSubstitutions, afw_boolean_v_true, xctx);
     }
 
     return result;}

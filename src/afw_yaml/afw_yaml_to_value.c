@@ -21,7 +21,7 @@ typedef struct afw_yaml_parser_s {
     apr_hash_t *anchors;
     afw_boolean_t docStarted;
     const afw_object_t *embedding_object;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_pool_t *p;
     const afw_utf8_t *path;
     afw_boolean_t cede_p;
@@ -201,11 +201,11 @@ const afw_object_t * afw_yaml_parse_object(
 {
     yaml_token_t *token;
     const afw_object_t *object;
-    const afw_utf8_t *key = NULL;
+    const afw_value_t *key = NULL;
     const afw_value_t *v;
     int done = 0;
     const afw_object_t *saved_embedding_object;
-    const afw_utf8_t *saved_property_name;
+    const afw_value_t *saved_property_name;
     const afw_object_t *_meta_;
 
     impl_yaml_parse_nesting_enter(parser, xctx);
@@ -238,7 +238,7 @@ const afw_object_t * afw_yaml_parse_object(
         if (token->type == YAML_KEY_TOKEN) {
             v = afw_yaml_parse_value(parser, xctx);
             if (v && afw_value_is_string(v)) {
-                key = afw_value_as_utf8(v, xctx->p, xctx);
+                key = afw_object_require_string_property_name(v, xctx);
                 parser->property_name = key;
             }
         } else if (token->type == YAML_VALUE_TOKEN) {
@@ -254,7 +254,7 @@ const afw_object_t * afw_yaml_parse_object(
                 }
 
                 /* check if it's a meta object */
-                if (afw_utf8_equal(key, afw_s__meta_)) {
+                if (afw_value_equal(key, afw_v__meta_, xctx)) {
                     if (!afw_value_is_object(v)) {
                         AFW_THROW_ERROR_Z(general,
                             "_meta_ property must be an object", xctx);

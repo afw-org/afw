@@ -814,7 +814,7 @@ impl_add_contextual(
 
     if (contextual->source_location) {
         afw_object_set_property_as_string(object,
-            afw_s_sourceLocation,
+            afw_v_sourceLocation,
             contextual->source_location, xctx);
     }
 
@@ -822,7 +822,7 @@ impl_add_contextual(
     if (value_source.len > 0) {
 
         afw_object_set_property_as_integer(object,
-            afw_s_offset, (afw_integer_t)contextual->value_offset, xctx);
+            afw_v_offset, (afw_integer_t)contextual->value_offset, xctx);
         line = 0;
         c = value_source.s;
         end = c + (contextual->value_offset < value_source.len ?
@@ -840,9 +840,9 @@ impl_add_contextual(
         if (line != 1) {
             line++;
             afw_object_set_property_as_integer(object,
-                afw_s_line, line, xctx);
+                afw_v_line, line, xctx);
             afw_object_set_property_as_integer(object,
-                afw_s_column, (afw_integer_t)(end - last_nl), xctx);
+                afw_v_column, (afw_integer_t)(end - last_nl), xctx);
         }
     }
 }
@@ -886,7 +886,7 @@ afw_error_add_to_object(
     /* data. */
     if (error->data) {
         afw_object_set_property(object,
-            afw_s_data,
+            afw_v_data,
             error->data,
             xctx);
     }
@@ -900,7 +900,7 @@ afw_error_add_to_object(
                 p, xctx);
         }
         afw_object_set_property_as_string(object,
-            afw_s_errorSource,
+            afw_v_errorSource,
             afw_utf8_create(
                 afw_error_source_file(error),
                 AFW_UTF8_Z_LEN, p, xctx),
@@ -914,7 +914,7 @@ afw_error_add_to_object(
             xctx->env->flag_index_response_error_backtrace, xctx))
     {
         afw_object_set_property_as_string(object,
-            afw_s_backtrace,
+            afw_v_backtrace,
             impl_utf8_forced_safe_value(error->backtrace, p, xctx),
             xctx);
     }
@@ -926,7 +926,7 @@ afw_error_add_to_object(
         evaluation_backtrace = impl_evaluation_backtrace(error, p, xctx);
         if (evaluation_backtrace) {
             afw_object_set_property_as_string(object,
-                afw_s_backtraceEvaluation,
+                afw_v_backtraceEvaluation,
                 impl_utf8_forced_safe_value(evaluation_backtrace, p, xctx),
                 xctx);
         }
@@ -935,45 +935,45 @@ afw_error_add_to_object(
 
     /* Add properties to object. */
 
-    afw_object_set_property(object, afw_s_error, afw_boolean_v_true, xctx);
+    afw_object_set_property(object, afw_v_error, afw_boolean_v_true, xctx);
 
     afw_object_set_property_as_integer(object,
-        afw_s_errorCode, error->code, xctx);
+        afw_v_errorCode, error->code, xctx);
 
 
     /* If parser source available, set appropriate properties. */
     if (error->parser_source) {
         afw_object_set_property_as_integer(object,
-            afw_s_parserCursor,
+            afw_v_parserCursor,
             (afw_integer_t)error->parser_cursor,
             xctx);
         afw_object_set_property_as_string(object,
-            afw_s_parserSource, error->parser_source, xctx);
+            afw_v_parserSource, error->parser_source, xctx);
         afw_utf8_line_column_of_offset(
             &source_line, &source_column,
             error->parser_source, error->parser_cursor, 4, xctx);
         afw_object_set_property_as_integer(object,
-            afw_s_parserLineNumber, source_line, xctx);
+            afw_v_parserLineNumber, source_line, xctx);
         afw_object_set_property_as_integer(object,
-            afw_s_parserColumnNumber, source_column, xctx);
+            afw_v_parserColumnNumber, source_column, xctx);
     }
 
     else if (error->parser_cursor > 0) {
         afw_object_set_property_as_integer(object,
-            afw_s_parserCursor,
+            afw_v_parserCursor,
             (afw_integer_t)error->parser_cursor,
             xctx);
     }
 
     afw_object_set_property_as_string(object,
-        afw_s_id,
+        afw_v_id,
         afw_utf8_create(afw_error_code_id_z(error),
             AFW_UTF8_Z_LEN, p, xctx),
         xctx);
 
     if (error->rv_source_id_z) {
         afw_object_set_property_as_string(object,
-            afw_s_rvSourceId,
+            afw_v_rvSourceId,
             afw_utf8_create(error->rv_source_id_z,
                 AFW_UTF8_Z_LEN, p, xctx),
             xctx);
@@ -981,25 +981,25 @@ afw_error_add_to_object(
 
     if (error->rv) {
         afw_object_set_property_as_integer(object,
-            afw_s_rv, error->rv, xctx);
+            afw_v_rv, error->rv, xctx);
     }
 
     if (error->rv_decoded_z) {
         afw_object_set_property_as_string(object,
-            afw_s_rvDecoded,
+            afw_v_rvDecoded,
             afw_utf8_create(error->rv_decoded_z,
                 AFW_UTF8_Z_LEN, p, xctx),
             xctx);
     }
 
     afw_object_set_property_as_string(object,
-        afw_s_message,
+        afw_v_message,
         afw_utf8_create(error->message_z,
             AFW_UTF8_Z_LEN, p, xctx),
         xctx);
 
     afw_object_set_property_as_string(object,
-        afw_s_xctxUUID, xctx->uuid, xctx);
+        afw_v_xctxUUID, xctx->uuid, xctx);
 }
 
 

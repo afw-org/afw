@@ -14,6 +14,58 @@
 #include "afw_internal.h"
 
 
+static const afw_utf8_t
+impl_non_string_property_name_display =
+    AFW_UTF8_LITERAL("<non-string>");
+
+
+/* Require a string property name (script / JSON / YAML / UBJSON). */
+AFW_DEFINE(const afw_value_t *)
+afw_object_require_string_property_name(
+    const afw_value_t *name,
+    afw_xctx_t *xctx)
+{
+    if (!name) {
+        return NULL;
+    }
+    if (!afw_value_is_string(name)) {
+        AFW_THROW_ERROR_Z(argument_error,
+            "Property name must be a string value",
+            xctx);
+    }
+    return name;
+}
+
+
+/* Utf8 view of a property name for display (does not throw). */
+AFW_DEFINE(const afw_utf8_t *)
+afw_object_property_name_display_utf8(
+    const afw_value_t *name,
+    afw_xctx_t *xctx)
+{
+    AFW_ASSERT(xctx);
+
+    if (!name) {
+        return afw_s_undefined;
+    }
+    if (afw_value_is_string(name)) {
+        return &((const afw_value_string_t *)name)->internal;
+    }
+    return &impl_non_string_property_name_display;
+}
+
+
+/* Utf8 internals of a required string property name. */
+AFW_DEFINE(const afw_utf8_t *)
+afw_object_string_property_name_as_utf8(
+    const afw_value_t *name,
+    afw_xctx_t *xctx)
+{
+    name = afw_object_require_string_property_name(name, xctx);
+    return (name) ? &((const afw_value_string_t *)name)->internal : NULL;
+}
+
+
 /* Set an object to immutable if it is not already. */
 AFW_DEFINE(void)
 afw_object_set_immutable(
@@ -34,7 +86,7 @@ afw_object_set_immutable(
 AFW_DEFINE(void)
 afw_object_remove_property(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     afw_object_set_property(instance, property_name, NULL, xctx);
@@ -45,7 +97,7 @@ afw_object_remove_property(
 AFW_DEFINE(void)
 afw_object_set_property(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -65,7 +117,7 @@ afw_object_set_property(
 AFW_DEFINE(void)
 afw_object_set_property_as_date_from_parts(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     int year,
     int month,
     int day,
@@ -90,7 +142,7 @@ afw_object_set_property_as_date_from_parts(
 AFW_DEFINE(void)
 afw_object_set_property_as_dateTime_from_parts(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     int year,
     int month,
     int day,
@@ -120,7 +172,7 @@ afw_object_set_property_as_dateTime_from_parts(
 AFW_DEFINE(void)
 afw_object_set_property_as_dayTimeDuration_from_parts(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_boolean_t is_positive,
     int days,
     int hours,
@@ -145,7 +197,7 @@ afw_object_set_property_as_dayTimeDuration_from_parts(
 AFW_DEFINE(void)
 afw_object_set_property_as_time_from_parts(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     int hour,
     int minute,
     int second,
@@ -171,7 +223,7 @@ afw_object_set_property_as_time_from_parts(
 AFW_DEFINE(void)
 afw_object_set_property_as_yearMonthDuration_from_parts(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_boolean_t is_positive,
     int years,
     int months,
@@ -193,7 +245,7 @@ afw_object_set_property_as_yearMonthDuration_from_parts(
 AFW_DEFINE(void)
 afw_object_set_property_as_string_from_utf8_z(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_z_t *string_z,
     afw_xctx_t *xctx)
 {
@@ -214,7 +266,7 @@ afw_object_set_property_as_string_from_utf8_z(
 AFW_DEFINE(const afw_value_t *)
 afw_object_get_property_compile_as(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_t *source_location,
     afw_compile_type_t compile_type,
     const afw_pool_t *p,
@@ -251,7 +303,7 @@ afw_object_get_property_compile_as(
 AFW_DEFINE(const afw_value_t *)
 afw_object_get_property_compile_and_evaluate_as(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_t *source_location,
     afw_compile_type_t compile_type,
     const afw_pool_t *p,
@@ -344,7 +396,8 @@ afw_object_get_property_extended(
 
 
     /* Attempt to get property and return if error or found. */
-    result = afw_object_get_property(obj, &pn, xctx);
+    result = afw_object_get_property(obj,
+        afw_value_create_unmanaged_string(&pn, xctx->p, xctx), xctx);
     if (result) {
 
         /* If dotted name, process rest of name if it's object. */
@@ -369,7 +422,7 @@ afw_object_get_property_extended(
 AFW_DEFINE(const afw_value_t * const *)
 afw_object_old_get_property_as_array_of_values(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_value_t *value;
@@ -386,7 +439,7 @@ afw_object_old_get_property_as_array_of_values(
  */
 AFW_DEFINE(const afw_utf8_t * const *)
 afw_object_old_get_property_as_array_of_strings(
-    const afw_object_t *instance, const afw_utf8_t *property_name,
+    const afw_object_t *instance, const afw_value_t *property_name,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_value_t *value;
@@ -402,7 +455,7 @@ afw_object_old_get_property_as_array_of_strings(
 AFW_DEFINE(const afw_value_t *)
 afw_object_old_get_property_as_compiled_script(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_t *source_location,
     const afw_compile_shared_t *shared,
     const afw_pool_t *p, afw_xctx_t *xctx)
@@ -436,7 +489,7 @@ afw_object_old_get_property_as_compiled_script(
 AFW_DEFINE(const afw_value_t *)
 afw_object_old_get_property_as_compiled_template(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_t *source_location,
     const afw_compile_shared_t *shared,
     const afw_pool_t *p, afw_xctx_t *xctx)
@@ -470,7 +523,7 @@ afw_object_old_get_property_as_compiled_template(
 AFW_DEFINE(afw_boolean_t)
 afw_object_old_get_property_as_boolean_deprecated(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     const afw_utf8_t *string;
@@ -529,7 +582,7 @@ afw_object_old_get_property_as_boolean_deprecated(
 AFW_DEFINE(afw_integer_t)
 afw_object_old_get_property_as_integer_deprecated(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_boolean_t *found,
     afw_xctx_t *xctx)
 {
@@ -565,7 +618,7 @@ afw_object_old_get_property_as_integer_deprecated(
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_old_get_property_as_utf8(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -589,7 +642,7 @@ afw_object_old_get_property_as_utf8(
 AFW_DEFINE(const afw_utf8_z_t *)
 afw_object_old_get_property_as_utf8_z(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -617,7 +670,7 @@ afw_object_merge(
     const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_value_t *from_value;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_object_t *embedded_object;
 
     iterator = NULL;
@@ -662,7 +715,7 @@ afw_object_property_count(
 {
     afw_size_t result;
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
 
     iterator = NULL;
     result = 0;

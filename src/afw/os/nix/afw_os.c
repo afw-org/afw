@@ -183,7 +183,7 @@ impl_get_<objectId>_object_cb(
     /* Add in system specific info properties. */
     /** @fixme Replace with appropriate code. */
     afw_object_set_property_as_string(result,
-        &impl_s_os, &impl_s_linux, xctx);
+        afw_value_create_unmanaged_string(&impl_s_os, p, xctx), &impl_s_linux, xctx);
     afw_object_meta_set_property_type_property_as(result,
         &impl_s_os, afw_s_label,
         single, string, &impl_s_os_label, xctx);
@@ -226,11 +226,11 @@ impl_get_resourceLimits_object_cb(
     rc = getrlimit(RLIMIT_CPU, limits);
     if (rc == 0) {
         afw_object_set_property_as_integer(result,
-            &impl_s_rl_cpu, limits->rlim_cur, xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_cpu, p, xctx), limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_cpu, afw_s_label, "CPU Time", xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_cpu, p, xctx), afw_v_label, "CPU Time", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_cpu, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_rl_cpu, p, xctx), afw_v_description,
             "The maximum amount of CPU time the process can use. If it runs for longer than this, it gets a signal: SIGXCPU. The value is measured in seconds.",
             xctx);
     }
@@ -238,11 +238,11 @@ impl_get_resourceLimits_object_cb(
     rc = getrlimit(RLIMIT_FSIZE, limits);
     if (rc == 0) {
         afw_object_set_property_as_integer(result,
-            &impl_s_rl_fsize, limits->rlim_cur, xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_fsize, p, xctx), limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_fsize, afw_s_label, "File Size", xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_fsize, p, xctx), afw_v_label, "File Size", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_fsize, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_rl_fsize, p, xctx), afw_v_description,
             "The maximum size of file the process can create. Trying to write a larger file causes a signal: SIGXFSZ.",
             xctx);
     }
@@ -250,11 +250,11 @@ impl_get_resourceLimits_object_cb(
     rc = getrlimit(RLIMIT_STACK, limits);
     if (rc == 0) {
         afw_object_set_property_as_integer(result,
-            &impl_s_rl_stack, limits->rlim_cur, xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_stack, p, xctx), limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_stack, afw_s_label, "Stack Size", xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_stack, p, xctx), afw_v_label, "Stack Size", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_stack, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_rl_stack, p, xctx), afw_v_description,
             "The maximum stack size for the process. If the process tries to extend its stack past this size, it gets a SIGSEGV signal",
             xctx);
     }
@@ -262,11 +262,11 @@ impl_get_resourceLimits_object_cb(
     rc = getrlimit(RLIMIT_CORE, limits);
     if (rc == 0) {
         afw_object_set_property_as_integer(result,
-            &impl_s_rl_core, limits->rlim_cur, xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_core, p, xctx), limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_core, afw_s_label, "Core Size", xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_core, p, xctx), afw_v_label, "Core Size", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_core, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_rl_core, p, xctx), afw_v_description,
             "The maximum size core file that this process can create. If the process terminates and would dump a core file larger than this, then no core file is created.  So setting this limit to zero prevents core files from ever being created.",
             xctx);
     }
@@ -274,11 +274,11 @@ impl_get_resourceLimits_object_cb(
     rc = getrlimit(RLIMIT_RSS, limits);
     if (rc == 0) {
         afw_object_set_property_as_integer(result,
-            &impl_s_rl_rss, limits->rlim_cur, xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_rss, p, xctx), limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_rss, afw_s_label, "Physical Memory", xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_rss, p, xctx), afw_v_label, "Physical Memory", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_rss, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_rl_rss, p, xctx), afw_v_description,
             "The maximum amount of physical memory that this process should get. This parameter is a guide for the system’s scheduler and memory allocator; the system may give the process more memory when there is a surplus.",
             xctx);
     }
@@ -286,11 +286,11 @@ impl_get_resourceLimits_object_cb(
     rc = getrlimit(RLIMIT_MEMLOCK, limits);
     if (rc == 0) {
         afw_object_set_property_as_integer(result,
-            &impl_s_rl_memlock, limits->rlim_cur, xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_memlock, p, xctx), limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_memlock, afw_s_label, "Locked Physical Memory", xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_memlock, p, xctx), afw_v_label, "Locked Physical Memory", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_memlock, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_rl_memlock, p, xctx), afw_v_description,
             "The maximum amount of memory that can be locked into physical memory (so it will never be paged out).",
             xctx);
     }
@@ -298,11 +298,11 @@ impl_get_resourceLimits_object_cb(
     rc = getrlimit(RLIMIT_NPROC, limits);
     if (rc == 0) {
         afw_object_set_property_as_integer(result,
-            &impl_s_rl_nproc, limits->rlim_cur, xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_nproc, p, xctx), limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_nproc, afw_s_label, "Processes", xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_nproc, p, xctx), afw_v_label, "Processes", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_nproc, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_rl_nproc, p, xctx), afw_v_description,
             "The maximum number of processes that can be created with the same user ID.  If you have reached the limit for your user ID, fork will fail with EAGAIN.",
             xctx);
     }
@@ -314,11 +314,11 @@ impl_get_resourceLimits_object_cb(
 #endif
     if (rc == 0) {
         afw_object_set_property_as_integer(result,
-            &impl_s_rl_ofile, limits->rlim_cur, xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_ofile, p, xctx), limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_ofile, afw_s_label, "Open Files", xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_ofile, p, xctx), afw_v_label, "Open Files", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_ofile, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_rl_ofile, p, xctx), afw_v_description,
             "The maximum number of files that the process can open. If it tries to open more files than this, its open attempt fails with errno EMFILE.",
             xctx);
     }
@@ -330,11 +330,11 @@ impl_get_resourceLimits_object_cb(
 #endif
     if (rc == 0) {
         afw_object_set_property_as_integer(result,
-            &impl_s_rl_as, limits->rlim_cur, xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_as, p, xctx), limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_as, afw_s_label, "Total Memory", xctx);
+            afw_value_create_unmanaged_string(&impl_s_rl_as, p, xctx), afw_v_label, "Total Memory", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_rl_as, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_rl_as, p, xctx), afw_v_description,
             "The maximum size of total memory that this process should get. If the process tries to allocate more memory beyond this amount with, for example, brk, malloc, mmap or sbrk, the allocation function fails.",
             xctx);
     }
@@ -370,150 +370,150 @@ impl_get_resourceUsage_object_cb(
     rc = getrusage(RUSAGE_SELF, usage);
     if (rc == 0) {
         afw_object_set_property_as_dayTimeDuration_from_parts(result,
-            &impl_s_ru_utime, true,
+            afw_value_create_unmanaged_string(&impl_s_ru_utime, p, xctx), true,
             0, 0, 0, usage->ru_utime.tv_sec, usage->ru_utime.tv_usec,
             xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_utime, afw_s_label, "User Time", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_utime, p, xctx), afw_v_label, "User Time", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_utime, afw_s_description, 
+            afw_value_create_unmanaged_string(&impl_s_ru_utime, p, xctx), afw_v_description, 
             "Time spent executing user instructions.", 
             xctx);
 
         afw_object_set_property_as_dayTimeDuration_from_parts(result,
-            &impl_s_ru_stime, true,
+            afw_value_create_unmanaged_string(&impl_s_ru_stime, p, xctx), true,
             0, 0, 0, usage->ru_stime.tv_sec, usage->ru_stime.tv_usec,
             xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_stime, afw_s_label, "System Time", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_stime, p, xctx), afw_v_label, "System Time", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_stime, afw_s_description, 
+            afw_value_create_unmanaged_string(&impl_s_ru_stime, p, xctx), afw_v_description, 
             "Time spent in operating system code on behalf of this processes.",
             xctx);
 
         afw_object_set_property_as_integer(result,
-            &impl_s_ru_maxrss, usage->ru_maxrss, xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_maxrss, p, xctx), usage->ru_maxrss, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_maxrss, afw_s_label, "Max Resident Size", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_maxrss, p, xctx), afw_v_label, "Max Resident Size", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_maxrss, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_ru_maxrss, p, xctx), afw_v_description,
             "The maximum resident set size used, in kilobytes. That is, the maximum number of kilobytes of physical memory that this process used simultaneously.", 
             xctx);
 
         afw_object_set_property_as_integer(result,
-            &impl_s_ru_ixrss, usage->ru_ixrss, xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_ixrss, p, xctx), usage->ru_ixrss, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_ixrss, afw_s_label, "Shared Memory Size", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_ixrss, p, xctx), afw_v_label, "Shared Memory Size", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_ixrss, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_ru_ixrss, p, xctx), afw_v_description,
             "An integral value expressed in kilobytes times ticks of execution, which indicates the amount of memory used by text that was shared with other processes.",
             xctx);
 
         afw_object_set_property_as_integer(result,
-            &impl_s_ru_idrss, usage->ru_idrss, xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_idrss, p, xctx), usage->ru_idrss, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_idrss, afw_s_label, "Unshared Data Size", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_idrss, p, xctx), afw_v_label, "Unshared Data Size", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_idrss, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_ru_idrss, p, xctx), afw_v_description,
             "An integral value expressed the same way, which is the amount of unshared memory used for data.",
             xctx);
 
         afw_object_set_property_as_integer(result,
-            &impl_s_ru_isrss, usage->ru_isrss, xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_isrss, p, xctx), usage->ru_isrss, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_isrss, afw_s_label, "Unshared Stack Size", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_isrss, p, xctx), afw_v_label, "Unshared Stack Size", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_isrss, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_ru_isrss, p, xctx), afw_v_description,
             "An integral value expressed the same way, which is the amount of unshared memory used for stack space.",
             xctx);
 
         afw_object_set_property_as_integer(result,
-            &impl_s_ru_minflt, usage->ru_minflt, xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_minflt, p, xctx), usage->ru_minflt, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_minflt, afw_s_label, "Page Reclaims", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_minflt, p, xctx), afw_v_label, "Page Reclaims", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_minflt, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_ru_minflt, p, xctx), afw_v_description,
             "The number of page faults which were serviced without requiring any I/O.",
             xctx);
 
         afw_object_set_property_as_integer(result,
-            &impl_s_ru_majflt, usage->ru_majflt, xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_majflt, p, xctx), usage->ru_majflt, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_majflt, afw_s_label, "Page Faults", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_majflt, p, xctx), afw_v_label, "Page Faults", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_majflt, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_ru_majflt, p, xctx), afw_v_description,
             "The number of page faults which were serviced by doing I/O.",
             xctx);
 
         afw_object_set_property_as_integer(result,
-            &impl_s_ru_nswap, usage->ru_nswap, xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_nswap, p, xctx), usage->ru_nswap, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_nswap, afw_s_label, "Swaps", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_nswap, p, xctx), afw_v_label, "Swaps", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_nswap, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_ru_nswap, p, xctx), afw_v_description,
             "The number of times this processes was swapped entirely out of main memory.",
             xctx);
 
         afw_object_set_property_as_integer(result,
-            &impl_s_ru_inblock, usage->ru_inblock, xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_inblock, p, xctx), usage->ru_inblock, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_inblock, afw_s_label, "Disk Reads", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_inblock, p, xctx), afw_v_label, "Disk Reads", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_inblock, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_ru_inblock, p, xctx), afw_v_description,
             "The number of times the file system had to read from the disk on behalf of this processes.",
             xctx);
 
         afw_object_set_property_as_integer(result,
-            &impl_s_ru_oublock, usage->ru_oublock, xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_oublock, p, xctx), usage->ru_oublock, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_oublock, afw_s_label, "Disk Writes", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_oublock, p, xctx), afw_v_label, "Disk Writes", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_oublock, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_ru_oublock, p, xctx), afw_v_description,
             "The number of times the file system had to write to the disk on behalf of this processes.",
             xctx);
 
         afw_object_set_property_as_integer(result,
-            &impl_s_ru_msgsnd, usage->ru_msgsnd, xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_msgsnd, p, xctx), usage->ru_msgsnd, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_msgsnd, afw_s_label, "Messages Sent", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_msgsnd, p, xctx), afw_v_label, "Messages Sent", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_msgsnd, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_ru_msgsnd, p, xctx), afw_v_description,
             "Number of IPC messages sent.",
             xctx);
 
         afw_object_set_property_as_integer(result,
-            &impl_s_ru_msgrcv, usage->ru_msgrcv, xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_msgrcv, p, xctx), usage->ru_msgrcv, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_msgrcv, afw_s_label, "Messages Received", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_msgrcv, p, xctx), afw_v_label, "Messages Received", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_msgrcv, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_ru_msgrcv, p, xctx), afw_v_description,
             "Number of IPC messages received.",
             xctx);
 
         afw_object_set_property_as_integer(result,
-            &impl_s_ru_nsignals, usage->ru_nsignals, xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_nsignals, p, xctx), usage->ru_nsignals, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_nsignals, afw_s_label, "Signals Received", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_nsignals, p, xctx), afw_v_label, "Signals Received", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_nsignals, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_ru_nsignals, p, xctx), afw_v_description,
             "Number of signals received.",
             xctx);
 
         afw_object_set_property_as_integer(result,
-            &impl_s_ru_nvcsw, usage->ru_nvcsw, xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_nvcsw, p, xctx), usage->ru_nvcsw, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_nvcsw, afw_s_label, "Voluntary Context Switches", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_nvcsw, p, xctx), afw_v_label, "Voluntary Context Switches", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_nvcsw, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_ru_nvcsw, p, xctx), afw_v_description,
             "The number of times this processes voluntarily invoked a context switch (usually to wait for some service).",
             xctx);
 
         afw_object_set_property_as_integer(result,
-            &impl_s_ru_nivcsw, usage->ru_nivcsw, xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_nivcsw, p, xctx), usage->ru_nivcsw, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_nivcsw, afw_s_label, "Involuntary Context Switches", xctx);
+            afw_value_create_unmanaged_string(&impl_s_ru_nivcsw, p, xctx), afw_v_label, "Involuntary Context Switches", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_ru_nivcsw, afw_s_description,
+            afw_value_create_unmanaged_string(&impl_s_ru_nivcsw, p, xctx), afw_v_description,
             "The number of times an involuntary context switch took place (because a time slice expired, or another process of higher priority was scheduled).",
             xctx);
     }
@@ -546,39 +546,39 @@ impl_create_general_object(afw_xctx_t *xctx)
     rc = uname(uname_s);
     if (rc > -1) {
         afw_object_set_property_as_string_from_utf8_z(result,
-            &impl_s_sysname, uname_s->sysname, xctx);
+            afw_value_create_unmanaged_string(&impl_s_sysname, p, xctx), uname_s->sysname, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_sysname, afw_s_label, "System Name", xctx);
+            afw_value_create_unmanaged_string(&impl_s_sysname, p, xctx), afw_v_label, "System Name", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_sysname, afw_s_description, "This is the name of the operating system in use.", xctx);
+            afw_value_create_unmanaged_string(&impl_s_sysname, p, xctx), afw_v_description, "This is the name of the operating system in use.", xctx);
 
         afw_object_set_property_as_string_from_utf8_z(result,
-            &impl_s_nodename, uname_s->nodename, xctx);
+            afw_value_create_unmanaged_string(&impl_s_nodename, p, xctx), uname_s->nodename, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_nodename, afw_s_label, "Node Name", xctx);
+            afw_value_create_unmanaged_string(&impl_s_nodename, p, xctx), afw_v_label, "Node Name", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_nodename, afw_s_description, "This is the host name of this particular computer. In the GNU C Library, the value is the same as that returned by gethostname.", xctx);
+            afw_value_create_unmanaged_string(&impl_s_nodename, p, xctx), afw_v_description, "This is the host name of this particular computer. In the GNU C Library, the value is the same as that returned by gethostname.", xctx);
 
         afw_object_set_property_as_string_from_utf8_z(result,
-            &impl_s_release, uname_s->release, xctx);
+            afw_value_create_unmanaged_string(&impl_s_release, p, xctx), uname_s->release, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_release, afw_s_label, "Release", xctx);
+            afw_value_create_unmanaged_string(&impl_s_release, p, xctx), afw_v_label, "Release", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_release, afw_s_description, "This is the current release level of the operating system implementation.", xctx);
+            afw_value_create_unmanaged_string(&impl_s_release, p, xctx), afw_v_description, "This is the current release level of the operating system implementation.", xctx);
 
         afw_object_set_property_as_string_from_utf8_z(result,
-            &impl_s_version, uname_s->version, xctx);
+            afw_value_create_unmanaged_string(&impl_s_version, p, xctx), uname_s->version, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_version, afw_s_label, "Version", xctx);
+            afw_value_create_unmanaged_string(&impl_s_version, p, xctx), afw_v_label, "Version", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_version, afw_s_description, "This is the current version level within the release of the operating system.", xctx);
+            afw_value_create_unmanaged_string(&impl_s_version, p, xctx), afw_v_description, "This is the current version level within the release of the operating system.", xctx);
 
         afw_object_set_property_as_string_from_utf8_z(result,
-            &impl_s_machine, uname_s->machine, xctx);
+            afw_value_create_unmanaged_string(&impl_s_machine, p, xctx), uname_s->machine, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_machine, afw_s_label, "Machine", xctx);
+            afw_value_create_unmanaged_string(&impl_s_machine, p, xctx), afw_v_label, "Machine", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_machine, afw_s_description, "This is a description of the type of hardware that is in use.", xctx);
+            afw_value_create_unmanaged_string(&impl_s_machine, p, xctx), afw_v_description, "This is a description of the type of hardware that is in use.", xctx);
 
 #ifndef __MACH__
         /** 
@@ -591,9 +591,9 @@ impl_create_general_object(afw_xctx_t *xctx)
          *    &impl_s_domainname, uname_s->domainname, xctx);
          */
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_domainname, afw_s_label, "Domain Name", xctx);
+            afw_value_create_unmanaged_string(&impl_s_domainname, p, xctx), afw_v_label, "Domain Name", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_s_domainname, afw_s_description, "This is the NIS or YP domain name. It is the same value returned by getdomainname.", xctx);
+            afw_value_create_unmanaged_string(&impl_s_domainname, p, xctx), afw_v_description, "This is the NIS or YP domain name. It is the same value returned by getdomainname.", xctx);
 #endif
     }
 

@@ -302,11 +302,11 @@ impl_initialize_and_start_service_using_conf(
 
     /* Set sourceLocation in properties. */
     afw_object_set_property_as_string(service->properties,
-        afw_s_sourceLocation, conf_source_location, xctx);
+        afw_v_sourceLocation, conf_source_location, xctx);
     /* type */
     service->type = afw_object_old_get_property_as_string(
         service->properties,
-        afw_s_type, xctx);
+        afw_v_type, xctx);
     if (!service->type || service->type->len == 0) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -439,7 +439,7 @@ impl_start_cb(
          * is a manual start and startup is manual.
          */
         startup = afw_object_old_get_property_as_string(object,
-            afw_s_startup, xctx);
+            afw_v_startup, xctx);
         if (
             !startup ||
             (!afw_utf8_equal(startup, afw_s_immediate) &&
@@ -452,7 +452,7 @@ impl_start_cb(
 
         /* Get serviceId.  Default to object id. */
         service_id = afw_object_old_get_property_as_string(object,
-            afw_s_serviceId, xctx);
+            afw_v_serviceId, xctx);
         if (!service_id) {
             service_id = afw_object_meta_get_object_id(object, xctx);
         }
@@ -495,7 +495,7 @@ impl_start_cb(
         }
 
         conf = afw_object_old_get_property_as_object(object,
-            afw_s_conf, xctx);
+            afw_v_conf, xctx);
         if (!conf) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -640,11 +640,11 @@ impl_add_runtime_service_info_to_object(
     }
 
     afw_object_set_property_as_string(object,
-        afw_s_serviceId, service_id, xctx);
+        afw_v_serviceId, service_id, xctx);
     afw_object_set_property_as_string(object,
-        afw_s_serviceType, type, xctx);
+        afw_v_serviceType, type, xctx);
     afw_object_set_property_as_string(object,
-        afw_s_confId, id, xctx);
+        afw_v_confId, id, xctx);
 
     subtype = NULL;
     if (service_type->conf_type->subtype_property_name) {
@@ -659,7 +659,7 @@ impl_add_runtime_service_info_to_object(
                 AFW_UTF8_FMT_ARG(service_id));
         }
         afw_object_set_property_as_string(object,
-            afw_s_confSubtype, subtype, xctx);
+            afw_v_confSubtype, subtype, xctx);
     }
 
     if (service_type->conf_type->id_runtime_object_type_id) {
@@ -670,7 +670,7 @@ impl_add_runtime_service_info_to_object(
                 id_runtime_object_type_id),
             AFW_UTF8_FMT_ARG(id));
         afw_object_set_property_as_string(object,
-            afw_s_uriRelated, s, xctx);
+            afw_v_uriRelated, s, xctx);
     }
 
     if (subtype) {
@@ -686,11 +686,11 @@ impl_add_runtime_service_info_to_object(
     }
 
     afw_object_set_property_as_string(object,
-        afw_s_confPropertyObjectType, conf_object_type_id, xctx);
+        afw_v_confPropertyObjectType, conf_object_type_id, xctx);
 
     startup = afw_service_startup_invalid;
     if (service_conf) {
-        startup_value = afw_object_get_property(service_conf, afw_s_startup,
+        startup_value = afw_object_get_property(service_conf, afw_v_startup,
             xctx);
         if (afw_value_is_string(startup_value)) {
             startup = afw_service_startup_as_enum(
@@ -700,9 +700,9 @@ impl_add_runtime_service_info_to_object(
         if (startup == afw_service_startup_permanent) {
             startup = afw_service_startup_invalid;
         }
-        afw_object_set_property(object, afw_s_startup,
+        afw_object_set_property(object, afw_v_startup,
             (const afw_value_t *)&impl_startup_values[startup], xctx);
-        afw_object_set_property(object, afw_s_startupDescription,
+        afw_object_set_property(object, afw_v_startupDescription,
             (const afw_value_t *)&impl_startup_descriptions[startup], xctx);
 
         if (startup == afw_service_startup_manual ||
@@ -739,10 +739,10 @@ impl_add_runtime_service_info_to_object(
         }
     }
     else  {
-        afw_object_set_property(object, afw_s_startup,
+        afw_object_set_property(object, afw_v_startup,
             (const afw_value_t *)
             &impl_startup_values[afw_service_startup_permanent], xctx);
-        afw_object_set_property(object, afw_s_startupDescription,
+        afw_object_set_property(object, afw_v_startupDescription,
             (const afw_value_t *)
             &impl_startup_descriptions[afw_service_startup_permanent], xctx);
     }
@@ -760,32 +760,32 @@ impl_add_runtime_service_info_to_object(
         }
 
         afw_object_set_property(object,
-            afw_s_status,
+            afw_v_status,
             afw_service_status_as_value(service->status),
             xctx);
 
         afw_object_set_property(object,
-            afw_s_statusDescription,
+            afw_v_statusDescription,
             afw_service_status_description_as_value(service->status),
             xctx);
 
         if (service->source_location && service->source_location->len > 0) {
             afw_object_set_property_as_string(object,
-                afw_s_sourceLocation, service->source_location, xctx);
+                afw_v_sourceLocation, service->source_location, xctx);
         }
 
         afw_object_set_property_as_dateTime(object,
-            afw_s_startTime, &service->start_time, xctx);
+            afw_v_startTime, &service->start_time, xctx);
 
 
         if (service->status_message && service->status_message->len > 0) {
             afw_object_set_property_as_string(object,
-                afw_s_statusMessage, service->status_message, xctx);
+                afw_v_statusMessage, service->status_message, xctx);
         }
 
         if (service->status_debug && service->status_debug->len > 0) {
             afw_object_set_property_as_string(object,
-                afw_s_statusDebug, service->status_debug, xctx);
+                afw_v_statusDebug, service->status_debug, xctx);
         }
 
     }
@@ -803,17 +803,17 @@ impl_add_runtime_service_info_to_object(
             value_description =  (const afw_value_t *)
                 &impl_status_descriptions[afw_service_status_ready_to_start];
         }
-        afw_object_set_property(object, afw_s_status, value, xctx);
-        afw_object_set_property(object, afw_s_statusDescription,
+        afw_object_set_property(object, afw_v_status, value, xctx);
+        afw_object_set_property(object, afw_v_statusDescription,
             value_description, xctx);
     }
 
     afw_object_set_property_as_boolean(object,
-        afw_s_canStart, can_start, xctx);
+        afw_v_canStart, can_start, xctx);
     afw_object_set_property_as_boolean(object,
-        afw_s_canStop, can_stop, xctx);
+        afw_v_canStop, can_stop, xctx);
     afw_object_set_property_as_boolean(object,
-        afw_s_canRestart, can_restart, xctx);
+        afw_v_canRestart, can_restart, xctx);
 }
 
 
@@ -852,19 +852,19 @@ impl_AdaptiveService_cb(
 
             service_id = afw_object_old_get_property_as_string(
                 original_object,
-                afw_s_serviceId, xctx);
+                afw_v_serviceId, xctx);
             if (!service_id) {
                 AFW_THROW_ERROR_Z(general, "missing serviceId", xctx);
             }
 
             s = afw_object_meta_get_path(original_object, xctx);
             afw_object_set_property_as_anyURI(object,
-                afw_s_uriServiceConf, s, xctx);
+                afw_v_uriServiceConf, s, xctx);
             afw_object_set_property_as_string(object,
-                afw_s_sourceLocation, s, xctx);
+                afw_v_sourceLocation, s, xctx);
 
             conf_property = afw_object_old_get_property_as_object(
-                original_object, afw_s_conf, xctx);
+                original_object, afw_v_conf, xctx);
             if (!conf_property) {
                 AFW_THROW_ERROR_FZ(general, xctx,
                     "missing conf property in serviceId " AFW_UTF8_FMT_Q,
@@ -883,16 +883,16 @@ impl_AdaptiveService_cb(
                 AFW_ERROR_THROWN->message_z, AFW_UTF8_Z_LEN,
                 p, xctx);
             afw_object_set_property_as_string(object,
-                afw_s_statusMessage,
+                afw_v_statusMessage,
                 error_message, xctx);
             error_message = afw_error_to_utf8(AFW_ERROR_THROWN,
                 p, xctx);
             afw_object_set_property_as_string(object,
-                afw_s_statusDebug,
+                afw_v_statusDebug,
                 error_message, xctx);
-            afw_object_set_property(object, afw_s_startup,
+            afw_object_set_property(object, afw_v_startup,
                 impl_startup_value(disabled), xctx);
-            afw_object_set_property(object, afw_s_status,
+            afw_object_set_property(object, afw_v_status,
                 impl_status_value(error), xctx);
         }
 
@@ -1089,22 +1089,22 @@ afw_service_get_object(
                 result = afw_object_create_unmanaged(p, xctx);
             }
             afw_object_set_property_as_string(result,
-                afw_s_serviceId, service_id, xctx);
+                afw_v_serviceId, service_id, xctx);
 
             error_message = afw_utf8_create(
                 AFW_ERROR_THROWN->message_z, AFW_UTF8_Z_LEN,
                 p, xctx);
             afw_object_set_property_as_string(result,
-                afw_s_statusMessage, error_message, xctx);
+                afw_v_statusMessage, error_message, xctx);
 
             error_message = afw_error_to_utf8(AFW_ERROR_THROWN,
                 p, xctx);
             afw_object_set_property_as_string(result,
-                afw_s_statusDebug, error_message, xctx);
+                afw_v_statusDebug, error_message, xctx);
 
-            afw_object_set_property(result, afw_s_startup,
+            afw_object_set_property(result, afw_v_startup,
                 impl_startup_value(disabled), xctx);
-            afw_object_set_property(result, afw_s_status,
+            afw_object_set_property(result, afw_v_status,
                 impl_status_value(error), xctx);
         }
 
@@ -1373,7 +1373,7 @@ impl_restart_get_cb(
          * is a manual start and startup is manual.
          */
         startup = afw_object_old_get_property_as_string(object,
-            afw_s_startup, xctx);
+            afw_v_startup, xctx);
         if (!startup ||
             (!afw_utf8_equal(startup, afw_s_immediate) &&
                 !afw_utf8_equal(startup, afw_s_manual)))
@@ -1383,7 +1383,7 @@ impl_restart_get_cb(
 
         /* Get serviceId.  Default to object id. */
         service_id = afw_object_old_get_property_as_string(object,
-            afw_s_serviceId, xctx);
+            afw_v_serviceId, xctx);
         if (!service_id) {
             service_id = afw_object_meta_get_object_id(object, xctx);
         }
@@ -1410,7 +1410,7 @@ impl_restart_get_cb(
             p, xctx, AFW_UTF8_FMT "/conf",
             AFW_UTF8_FMT_ARG(source_location));
         conf = afw_object_old_get_property_as_object(object,
-            afw_s_conf, xctx);
+            afw_v_conf, xctx);
         if (!conf) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT

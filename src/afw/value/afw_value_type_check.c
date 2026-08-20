@@ -462,12 +462,14 @@ impl_get_typed_object_property(
 
     if (AFW_VALUE_IS_DATA_TYPE(value, object)) {
         obj = ((const afw_value_object_t *)value)->internal;
-        return afw_object_get_property(obj, name, xctx);
+        return afw_object_get_property(obj,
+            afw_value_create_unmanaged_string(name, xctx->p, xctx), xctx);
     }
 
     if (afw_value_is_object_expression(value)) {
         obj = ((const afw_value_object_expression_t *)value)->internal;
-        return afw_object_get_property(obj, name, xctx);
+        return afw_object_get_property(obj,
+            afw_value_create_unmanaged_string(name, xctx->p, xctx), xctx);
     }
 
     if (afw_value_is_object_construct(value)) {
@@ -481,7 +483,10 @@ impl_get_typed_object_property(
             }
             else if (e->type == afw_value_object_construct_entry_static &&
                 e->static_name &&
-                afw_utf8_equal(e->static_name, name))
+                afw_value_is_string(e->static_name) &&
+                afw_utf8_equal(
+                    &((const afw_value_string_t *)e->static_name)->internal,
+                    name))
             {
                 found = e->value;
             }
@@ -1282,7 +1287,7 @@ impl_foreach_object_literal_prop(
 {
     const afw_object_t *obj;
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *name;
+    const afw_value_t *name;
     const afw_value_t *pv;
     const afw_value_object_construct_t *construct;
     const afw_value_object_construct_entry_t *e;
@@ -1295,7 +1300,8 @@ impl_foreach_object_literal_prop(
             if (e->type == afw_value_object_construct_entry_static &&
                 e->static_name)
             {
-                cb(e->static_name, e->value, data, xctx);
+                cb(afw_object_string_property_name_as_utf8(
+                    e->static_name, xctx), e->value, data, xctx);
             }
         }
         return;
@@ -1317,7 +1323,8 @@ impl_foreach_object_literal_prop(
             break;
         }
         if (name) {
-            cb(name, pv, data, xctx);
+            cb(afw_object_string_property_name_as_utf8(name, xctx),
+                pv, data, xctx);
         }
     }
 }

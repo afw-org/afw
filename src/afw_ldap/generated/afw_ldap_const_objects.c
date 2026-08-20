@@ -41,31 +41,31 @@ impl_3;
 
 static const afw_runtime_property_t
 impl_3_property_allowQuery = {
-    &afw_ldap_self_s_allowQuery,
+    afw_ldap_v_allowQuery,
     &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_3_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_3_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__This_is_used_as_the_base_for_ldap_search___.pub
 };
 
 static const afw_runtime_property_t
 impl_3_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_zz__Base_Override.pub
 };
 
 static const afw_runtime_property_t
 impl_3_property_required = {
-    &afw_ldap_self_s_required,
+    afw_ldap_v_required,
     &afw_ldap_boolean_self_v_false.pub
 };
 
@@ -141,7 +141,7 @@ impl_2_property_value_base = {
 
 static const afw_runtime_property_t
 impl_2_property_base = {
-    &afw_ldap_self_s_base,
+    afw_ldap_v_base,
     &impl_2_property_value_base.pub
 };
 
@@ -207,25 +207,25 @@ impl_2__value = {
 
 static const afw_runtime_property_t
 impl_1_property_allowAdd = {
-    &afw_ldap_self_s_allowAdd,
+    afw_ldap_v_allowAdd,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_allowChange = {
-    &afw_ldap_self_s_allowChange,
+    afw_ldap_v_allowChange,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_allowDelete = {
-    &afw_ldap_self_s_allowDelete,
+    afw_ldap_v_allowDelete,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_allowEntity = {
-    &afw_ldap_self_s_allowEntity,
+    afw_ldap_v_allowEntity,
     &afw_ldap_boolean_self_v_false.pub
 };
 
@@ -263,19 +263,19 @@ impl_1_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_1_property_collectionURIs = {
-    &afw_ldap_self_s_collectionURIs,
+    afw_ldap_v_collectionURIs,
     &impl_1_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__8b33474eebb8.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_objectType = {
-    &afw_ldap_self_s_objectType,
+    afw_ldap_v_objectType,
     &afw_ldap_self_v__AdaptiveAdapterTypeSpecific_ldap_retrieve_objects.pub
 };
 
@@ -287,7 +287,7 @@ impl_1_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_1_property_propertyTypes = {
-    &afw_ldap_self_s_propertyTypes,
+    afw_ldap_v_propertyTypes,
     &impl_1_property_value_propertyTypes.pub
 };
 
@@ -369,37 +369,37 @@ impl_6;
 
 static const afw_runtime_property_t
 impl_6_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_template.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_dataTypeParameter = {
-    &afw_ldap_self_s_dataTypeParameter,
+    afw_ldap_v_dataTypeParameter,
     &afw_ldap_self_v_zz__object__AdaptiveConf_adapter_ldap_bind.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__Bind_parameters_for_this_LDAP_adapter_.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_zz__Bind_Parameters.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_required = {
-    &afw_ldap_self_s_required,
+    afw_ldap_v_required,
     &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_unique = {
-    &afw_ldap_self_s_unique,
+    afw_ldap_v_unique,
     &afw_ldap_boolean_self_v_false.pub
 };
 
@@ -473,37 +473,37 @@ impl_7;
 
 static const afw_runtime_property_t
 impl_7_property_allowQuery = {
-    &afw_ldap_self_s_allowQuery,
+    afw_ldap_v_allowQuery,
     &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_7_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_7_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__e667a1ba28a0.pub
 };
 
 static const afw_runtime_property_t
 impl_7_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_zz__Prevent_Verify_Cert.pub
 };
 
 static const afw_runtime_property_t
 impl_7_property_required = {
-    &afw_ldap_self_s_required,
+    afw_ldap_v_required,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_7_property_unique = {
-    &afw_ldap_self_s_unique,
+    afw_ldap_v_unique,
     &afw_ldap_boolean_self_v_false.pub
 };
 
@@ -577,43 +577,43 @@ impl_8;
 
 static const afw_runtime_property_t
 impl_8_property_allowQuery = {
-    &afw_ldap_self_s_allowQuery,
+    afw_ldap_v_allowQuery,
     &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_contextType = {
-    &afw_ldap_self_s_contextType,
+    afw_ldap_v_contextType,
     &afw_ldap_self_v_process.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_template.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__4e02acddce85.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_Url.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_required = {
-    &afw_ldap_self_s_required,
+    afw_ldap_v_required,
     &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_unique = {
-    &afw_ldap_self_s_unique,
+    afw_ldap_v_unique,
     &afw_ldap_boolean_self_v_false.pub
 };
 
@@ -691,7 +691,7 @@ impl_5_property_value_bindParameters = {
 
 static const afw_runtime_property_t
 impl_5_property_bindParameters = {
-    &afw_ldap_self_s_bindParameters,
+    afw_ldap_v_bindParameters,
     &impl_5_property_value_bindParameters.pub
 };
 
@@ -703,7 +703,7 @@ impl_5_property_value_preventVerifyCert = {
 
 static const afw_runtime_property_t
 impl_5_property_preventVerifyCert = {
-    &afw_ldap_self_s_preventVerifyCert,
+    afw_ldap_v_preventVerifyCert,
     &impl_5_property_value_preventVerifyCert.pub
 };
 
@@ -715,7 +715,7 @@ impl_5_property_value_url = {
 
 static const afw_runtime_property_t
 impl_5_property_url = {
-    &afw_ldap_self_s_url,
+    afw_ldap_v_url,
     &impl_5_property_value_url.pub
 };
 
@@ -802,7 +802,7 @@ impl_5__value = {
 
 static const afw_runtime_property_t
 impl_4_property_allowEntity = {
-    &afw_ldap_self_s_allowEntity,
+    afw_ldap_v_allowEntity,
     &afw_ldap_boolean_self_v_false.pub
 };
 
@@ -840,19 +840,19 @@ impl_4_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_4_property_collectionURIs = {
-    &afw_ldap_self_s_collectionURIs,
+    afw_ldap_v_collectionURIs,
     &impl_4_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_4_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__Object_type_for_type_adapter_adapter_type_ldap_conf_entries_.pub
 };
 
 static const afw_runtime_property_t
 impl_4_property_objectType = {
-    &afw_ldap_self_s_objectType,
+    afw_ldap_v_objectType,
     &afw_ldap_self_v__AdaptiveConf_adapter_ldap.pub
 };
 
@@ -864,7 +864,7 @@ impl_4_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_4_property_propertyTypes = {
-    &afw_ldap_self_s_propertyTypes,
+    afw_ldap_v_propertyTypes,
     &impl_4_property_value_propertyTypes.pub
 };
 
@@ -943,37 +943,37 @@ impl_11;
 
 static const afw_runtime_property_t
 impl_11_property_allowQuery = {
-    &afw_ldap_self_s_allowQuery,
+    afw_ldap_v_allowQuery,
     &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_11_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_11_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__Distinguished_Name__DN__to_bind_with_.pub
 };
 
 static const afw_runtime_property_t
 impl_11_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_zz__Bind_DN.pub
 };
 
 static const afw_runtime_property_t
 impl_11_property_required = {
-    &afw_ldap_self_s_required,
+    afw_ldap_v_required,
     &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_11_property_unique = {
-    &afw_ldap_self_s_unique,
+    afw_ldap_v_unique,
     &afw_ldap_boolean_self_v_false.pub
 };
 
@@ -1047,37 +1047,37 @@ impl_12;
 
 static const afw_runtime_property_t
 impl_12_property_allowQuery = {
-    &afw_ldap_self_s_allowQuery,
+    afw_ldap_v_allowQuery,
     &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_12_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_password.pub
 };
 
 static const afw_runtime_property_t
 impl_12_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__Password_to_bind_with_.pub
 };
 
 static const afw_runtime_property_t
 impl_12_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_zz__Bind_Password.pub
 };
 
 static const afw_runtime_property_t
 impl_12_property_required = {
-    &afw_ldap_self_s_required,
+    afw_ldap_v_required,
     &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_12_property_unique = {
-    &afw_ldap_self_s_unique,
+    afw_ldap_v_unique,
     &afw_ldap_boolean_self_v_false.pub
 };
 
@@ -1154,7 +1154,7 @@ impl_10_property_value_dn = {
 
 static const afw_runtime_property_t
 impl_10_property_dn = {
-    &afw_ldap_self_s_dn,
+    afw_ldap_v_dn,
     &impl_10_property_value_dn.pub
 };
 
@@ -1166,7 +1166,7 @@ impl_10_property_value_password = {
 
 static const afw_runtime_property_t
 impl_10_property_password = {
-    &afw_ldap_self_s_password,
+    afw_ldap_v_password,
     &impl_10_property_value_password.pub
 };
 
@@ -1233,25 +1233,25 @@ impl_10__value = {
 
 static const afw_runtime_property_t
 impl_9_property_allowAdd = {
-    &afw_ldap_self_s_allowAdd,
+    afw_ldap_v_allowAdd,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_9_property_allowChange = {
-    &afw_ldap_self_s_allowChange,
+    afw_ldap_v_allowChange,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_9_property_allowDelete = {
-    &afw_ldap_self_s_allowDelete,
+    afw_ldap_v_allowDelete,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_9_property_allowEntity = {
-    &afw_ldap_self_s_allowEntity,
+    afw_ldap_v_allowEntity,
     &afw_ldap_boolean_self_v_false.pub
 };
 
@@ -1289,19 +1289,19 @@ impl_9_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_9_property_collectionURIs = {
-    &afw_ldap_self_s_collectionURIs,
+    afw_ldap_v_collectionURIs,
     &impl_9_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_9_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__1aa5d7b29249.pub
 };
 
 static const afw_runtime_property_t
 impl_9_property_objectType = {
-    &afw_ldap_self_s_objectType,
+    afw_ldap_v_objectType,
     &afw_ldap_self_v__AdaptiveConf_adapter_ldap_bind.pub
 };
 
@@ -1313,7 +1313,7 @@ impl_9_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_9_property_propertyTypes = {
-    &afw_ldap_self_s_propertyTypes,
+    afw_ldap_v_propertyTypes,
     &impl_9_property_value_propertyTypes.pub
 };
 
@@ -1457,13 +1457,13 @@ impl_16;
 
 static const afw_runtime_property_t
 impl_16_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_16_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_Description.pub
 };
 
@@ -1533,13 +1533,13 @@ impl_17;
 
 static const afw_runtime_property_t
 impl_17_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_17_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_zz__Is_Single.pub
 };
 
@@ -1609,13 +1609,13 @@ impl_18;
 
 static const afw_runtime_property_t
 impl_18_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_18_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_Syntax.pub
 };
 
@@ -1685,13 +1685,13 @@ impl_19;
 
 static const afw_runtime_property_t
 impl_19_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_19_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_zz__Numeric_OID.pub
 };
 
@@ -1764,7 +1764,7 @@ impl_15_property_value_DESC = {
 
 static const afw_runtime_property_t
 impl_15_property_DESC = {
-    &afw_ldap_self_s_DESC,
+    afw_ldap_v_DESC,
     &impl_15_property_value_DESC.pub
 };
 
@@ -1776,7 +1776,7 @@ impl_15_property_value_SINGLE_VALUE = {
 
 static const afw_runtime_property_t
 impl_15_property_SINGLE_VALUE = {
-    &afw_ldap_self_s_SINGLE_VALUE,
+    afw_ldap_v_SINGLE_VALUE,
     &impl_15_property_value_SINGLE_VALUE.pub
 };
 
@@ -1788,7 +1788,7 @@ impl_15_property_value_SYNTAX = {
 
 static const afw_runtime_property_t
 impl_15_property_SYNTAX = {
-    &afw_ldap_self_s_SYNTAX,
+    afw_ldap_v_SYNTAX,
     &impl_15_property_value_SYNTAX.pub
 };
 
@@ -1800,7 +1800,7 @@ impl_15_property_value_numericoid = {
 
 static const afw_runtime_property_t
 impl_15_property_numericoid = {
-    &afw_ldap_self_s_numericoid,
+    afw_ldap_v_numericoid,
     &impl_15_property_value_numericoid.pub
 };
 
@@ -1869,25 +1869,25 @@ impl_15__value = {
 
 static const afw_runtime_property_t
 impl_13_property_allowAdd = {
-    &afw_ldap_self_s_allowAdd,
+    afw_ldap_v_allowAdd,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_allowChange = {
-    &afw_ldap_self_s_allowChange,
+    afw_ldap_v_allowChange,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_allowDelete = {
-    &afw_ldap_self_s_allowDelete,
+    afw_ldap_v_allowDelete,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_allowEntity = {
-    &afw_ldap_self_s_allowEntity,
+    afw_ldap_v_allowEntity,
     &afw_ldap_boolean_self_v_true.pub
 };
 
@@ -1925,19 +1925,19 @@ impl_13_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_13_property_collectionURIs = {
-    &afw_ldap_self_s_collectionURIs,
+    afw_ldap_v_collectionURIs,
     &impl_13_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__e496786a4ec3.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_objectType = {
-    &afw_ldap_self_s_objectType,
+    afw_ldap_v_objectType,
     &afw_ldap_self_v__AdaptiveLdapAttributeType_.pub
 };
 
@@ -1949,7 +1949,7 @@ impl_13_property_value_otherProperties = {
 
 static const afw_runtime_property_t
 impl_13_property_otherProperties = {
-    &afw_ldap_self_s_otherProperties,
+    afw_ldap_v_otherProperties,
     &impl_13_property_value_otherProperties.pub
 };
 
@@ -1961,7 +1961,7 @@ impl_13_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_13_property_propertyTypes = {
-    &afw_ldap_self_s_propertyTypes,
+    afw_ldap_v_propertyTypes,
     &impl_13_property_value_propertyTypes.pub
 };
 
@@ -2100,25 +2100,25 @@ impl_21__value = {
 
 static const afw_runtime_property_t
 impl_20_property_allowAdd = {
-    &afw_ldap_self_s_allowAdd,
+    afw_ldap_v_allowAdd,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_allowChange = {
-    &afw_ldap_self_s_allowChange,
+    afw_ldap_v_allowChange,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_allowDelete = {
-    &afw_ldap_self_s_allowDelete,
+    afw_ldap_v_allowDelete,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_allowEntity = {
-    &afw_ldap_self_s_allowEntity,
+    afw_ldap_v_allowEntity,
     &afw_ldap_boolean_self_v_true.pub
 };
 
@@ -2156,19 +2156,19 @@ impl_20_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_20_property_collectionURIs = {
-    &afw_ldap_self_s_collectionURIs,
+    afw_ldap_v_collectionURIs,
     &impl_20_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__d0229f8dd302.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_objectType = {
-    &afw_ldap_self_s_objectType,
+    afw_ldap_v_objectType,
     &afw_ldap_self_v__AdaptiveLdapMatchingRuleUse_.pub
 };
 
@@ -2180,7 +2180,7 @@ impl_20_property_value_otherProperties = {
 
 static const afw_runtime_property_t
 impl_20_property_otherProperties = {
-    &afw_ldap_self_s_otherProperties,
+    afw_ldap_v_otherProperties,
     &impl_20_property_value_otherProperties.pub
 };
 
@@ -2318,25 +2318,25 @@ impl_23__value = {
 
 static const afw_runtime_property_t
 impl_22_property_allowAdd = {
-    &afw_ldap_self_s_allowAdd,
+    afw_ldap_v_allowAdd,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_22_property_allowChange = {
-    &afw_ldap_self_s_allowChange,
+    afw_ldap_v_allowChange,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_22_property_allowDelete = {
-    &afw_ldap_self_s_allowDelete,
+    afw_ldap_v_allowDelete,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_22_property_allowEntity = {
-    &afw_ldap_self_s_allowEntity,
+    afw_ldap_v_allowEntity,
     &afw_ldap_boolean_self_v_true.pub
 };
 
@@ -2374,19 +2374,19 @@ impl_22_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_22_property_collectionURIs = {
-    &afw_ldap_self_s_collectionURIs,
+    afw_ldap_v_collectionURIs,
     &impl_22_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_22_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__f7c728a85bc2.pub
 };
 
 static const afw_runtime_property_t
 impl_22_property_objectType = {
-    &afw_ldap_self_s_objectType,
+    afw_ldap_v_objectType,
     &afw_ldap_self_v__AdaptiveLdapMatchingRule_.pub
 };
 
@@ -2398,7 +2398,7 @@ impl_22_property_value_otherProperties = {
 
 static const afw_runtime_property_t
 impl_22_property_otherProperties = {
-    &afw_ldap_self_s_otherProperties,
+    afw_ldap_v_otherProperties,
     &impl_22_property_value_otherProperties.pub
 };
 
@@ -2542,19 +2542,19 @@ impl_27;
 
 static const afw_runtime_property_t
 impl_27_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_27_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__Abstract_Class.pub
 };
 
 static const afw_runtime_property_t
 impl_27_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_Abstract.pub
 };
 
@@ -2625,19 +2625,19 @@ impl_28;
 
 static const afw_runtime_property_t
 impl_28_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_28_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__Auxiliary_Class.pub
 };
 
 static const afw_runtime_property_t
 impl_28_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_Auxiliary.pub
 };
 
@@ -2708,13 +2708,13 @@ impl_29;
 
 static const afw_runtime_property_t
 impl_29_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_29_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_Description.pub
 };
 
@@ -2784,25 +2784,25 @@ impl_30;
 
 static const afw_runtime_property_t
 impl_30_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_30_property_dataTypeParameter = {
-    &afw_ldap_self_s_dataTypeParameter,
+    afw_ldap_v_dataTypeParameter,
     &afw_ldap_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_30_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__Optional_attributes_of_class_.pub
 };
 
 static const afw_runtime_property_t
 impl_30_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_Optional.pub
 };
 
@@ -2874,25 +2874,25 @@ impl_31;
 
 static const afw_runtime_property_t
 impl_31_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_31_property_dataTypeParameter = {
-    &afw_ldap_self_s_dataTypeParameter,
+    afw_ldap_v_dataTypeParameter,
     &afw_ldap_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_31_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__Required_attributes_of_class_.pub
 };
 
 static const afw_runtime_property_t
 impl_31_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_Required.pub
 };
 
@@ -2964,25 +2964,25 @@ impl_32;
 
 static const afw_runtime_property_t
 impl_32_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_32_property_dataTypeParameter = {
-    &afw_ldap_self_s_dataTypeParameter,
+    afw_ldap_v_dataTypeParameter,
     &afw_ldap_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_32_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__Name_of_class_.pub
 };
 
 static const afw_runtime_property_t
 impl_32_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_Name.pub
 };
 
@@ -3054,19 +3054,19 @@ impl_33;
 
 static const afw_runtime_property_t
 impl_33_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_33_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__Structural_Class.pub
 };
 
 static const afw_runtime_property_t
 impl_33_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_Structural.pub
 };
 
@@ -3137,25 +3137,25 @@ impl_34;
 
 static const afw_runtime_property_t
 impl_34_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_array.pub
 };
 
 static const afw_runtime_property_t
 impl_34_property_dataTypeParameter = {
-    &afw_ldap_self_s_dataTypeParameter,
+    afw_ldap_v_dataTypeParameter,
     &afw_ldap_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_34_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__Superior_classes_.pub
 };
 
 static const afw_runtime_property_t
 impl_34_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_Sup.pub
 };
 
@@ -3227,13 +3227,13 @@ impl_35;
 
 static const afw_runtime_property_t
 impl_35_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_35_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_zz__Numeric_OID.pub
 };
 
@@ -3306,7 +3306,7 @@ impl_26_property_value_ABSTRACT = {
 
 static const afw_runtime_property_t
 impl_26_property_ABSTRACT = {
-    &afw_ldap_self_s_ABSTRACT,
+    afw_ldap_v_ABSTRACT,
     &impl_26_property_value_ABSTRACT.pub
 };
 
@@ -3318,7 +3318,7 @@ impl_26_property_value_AUXILIARY = {
 
 static const afw_runtime_property_t
 impl_26_property_AUXILIARY = {
-    &afw_ldap_self_s_AUXILIARY,
+    afw_ldap_v_AUXILIARY,
     &impl_26_property_value_AUXILIARY.pub
 };
 
@@ -3330,7 +3330,7 @@ impl_26_property_value_DESC = {
 
 static const afw_runtime_property_t
 impl_26_property_DESC = {
-    &afw_ldap_self_s_DESC,
+    afw_ldap_v_DESC,
     &impl_26_property_value_DESC.pub
 };
 
@@ -3342,7 +3342,7 @@ impl_26_property_value_MAY = {
 
 static const afw_runtime_property_t
 impl_26_property_MAY = {
-    &afw_ldap_self_s_MAY,
+    afw_ldap_v_MAY,
     &impl_26_property_value_MAY.pub
 };
 
@@ -3354,7 +3354,7 @@ impl_26_property_value_MUST = {
 
 static const afw_runtime_property_t
 impl_26_property_MUST = {
-    &afw_ldap_self_s_MUST,
+    afw_ldap_v_MUST,
     &impl_26_property_value_MUST.pub
 };
 
@@ -3366,7 +3366,7 @@ impl_26_property_value_NAME = {
 
 static const afw_runtime_property_t
 impl_26_property_NAME = {
-    &afw_ldap_self_s_NAME,
+    afw_ldap_v_NAME,
     &impl_26_property_value_NAME.pub
 };
 
@@ -3378,7 +3378,7 @@ impl_26_property_value_STRUCTURAL = {
 
 static const afw_runtime_property_t
 impl_26_property_STRUCTURAL = {
-    &afw_ldap_self_s_STRUCTURAL,
+    afw_ldap_v_STRUCTURAL,
     &impl_26_property_value_STRUCTURAL.pub
 };
 
@@ -3390,7 +3390,7 @@ impl_26_property_value_SUP = {
 
 static const afw_runtime_property_t
 impl_26_property_SUP = {
-    &afw_ldap_self_s_SUP,
+    afw_ldap_v_SUP,
     &impl_26_property_value_SUP.pub
 };
 
@@ -3402,7 +3402,7 @@ impl_26_property_value_numericoid = {
 
 static const afw_runtime_property_t
 impl_26_property_numericoid = {
-    &afw_ldap_self_s_numericoid,
+    afw_ldap_v_numericoid,
     &impl_26_property_value_numericoid.pub
 };
 
@@ -3476,25 +3476,25 @@ impl_26__value = {
 
 static const afw_runtime_property_t
 impl_24_property_allowAdd = {
-    &afw_ldap_self_s_allowAdd,
+    afw_ldap_v_allowAdd,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_24_property_allowChange = {
-    &afw_ldap_self_s_allowChange,
+    afw_ldap_v_allowChange,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_24_property_allowDelete = {
-    &afw_ldap_self_s_allowDelete,
+    afw_ldap_v_allowDelete,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_24_property_allowEntity = {
-    &afw_ldap_self_s_allowEntity,
+    afw_ldap_v_allowEntity,
     &afw_ldap_boolean_self_v_true.pub
 };
 
@@ -3532,19 +3532,19 @@ impl_24_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_24_property_collectionURIs = {
-    &afw_ldap_self_s_collectionURIs,
+    afw_ldap_v_collectionURIs,
     &impl_24_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_24_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__3fefa501c911.pub
 };
 
 static const afw_runtime_property_t
 impl_24_property_objectType = {
-    &afw_ldap_self_s_objectType,
+    afw_ldap_v_objectType,
     &afw_ldap_self_v__AdaptiveLdapObjectClass_.pub
 };
 
@@ -3556,7 +3556,7 @@ impl_24_property_value_otherProperties = {
 
 static const afw_runtime_property_t
 impl_24_property_otherProperties = {
-    &afw_ldap_self_s_otherProperties,
+    afw_ldap_v_otherProperties,
     &impl_24_property_value_otherProperties.pub
 };
 
@@ -3568,7 +3568,7 @@ impl_24_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_24_property_propertyTypes = {
-    &afw_ldap_self_s_propertyTypes,
+    afw_ldap_v_propertyTypes,
     &impl_24_property_value_propertyTypes.pub
 };
 
@@ -3707,25 +3707,25 @@ impl_37__value = {
 
 static const afw_runtime_property_t
 impl_36_property_allowAdd = {
-    &afw_ldap_self_s_allowAdd,
+    afw_ldap_v_allowAdd,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_allowChange = {
-    &afw_ldap_self_s_allowChange,
+    afw_ldap_v_allowChange,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_allowDelete = {
-    &afw_ldap_self_s_allowDelete,
+    afw_ldap_v_allowDelete,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_allowEntity = {
-    &afw_ldap_self_s_allowEntity,
+    afw_ldap_v_allowEntity,
     &afw_ldap_boolean_self_v_true.pub
 };
 
@@ -3763,19 +3763,19 @@ impl_36_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_36_property_collectionURIs = {
-    &afw_ldap_self_s_collectionURIs,
+    afw_ldap_v_collectionURIs,
     &impl_36_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__1acdd55f3020.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_objectType = {
-    &afw_ldap_self_s_objectType,
+    afw_ldap_v_objectType,
     &afw_ldap_self_v__AdaptiveLdapRootDse_.pub
 };
 
@@ -3787,7 +3787,7 @@ impl_36_property_value_otherProperties = {
 
 static const afw_runtime_property_t
 impl_36_property_otherProperties = {
-    &afw_ldap_self_s_otherProperties,
+    afw_ldap_v_otherProperties,
     &impl_36_property_value_otherProperties.pub
 };
 
@@ -3925,25 +3925,25 @@ impl_39__value = {
 
 static const afw_runtime_property_t
 impl_38_property_allowAdd = {
-    &afw_ldap_self_s_allowAdd,
+    afw_ldap_v_allowAdd,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_allowChange = {
-    &afw_ldap_self_s_allowChange,
+    afw_ldap_v_allowChange,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_allowDelete = {
-    &afw_ldap_self_s_allowDelete,
+    afw_ldap_v_allowDelete,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_allowEntity = {
-    &afw_ldap_self_s_allowEntity,
+    afw_ldap_v_allowEntity,
     &afw_ldap_boolean_self_v_true.pub
 };
 
@@ -3981,19 +3981,19 @@ impl_38_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_38_property_collectionURIs = {
-    &afw_ldap_self_s_collectionURIs,
+    afw_ldap_v_collectionURIs,
     &impl_38_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__86e94b23485a.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_objectType = {
-    &afw_ldap_self_s_objectType,
+    afw_ldap_v_objectType,
     &afw_ldap_self_v__AdaptiveLdapSchema_.pub
 };
 
@@ -4005,7 +4005,7 @@ impl_38_property_value_otherProperties = {
 
 static const afw_runtime_property_t
 impl_38_property_otherProperties = {
-    &afw_ldap_self_s_otherProperties,
+    afw_ldap_v_otherProperties,
     &impl_38_property_value_otherProperties.pub
 };
 
@@ -4149,13 +4149,13 @@ impl_43;
 
 static const afw_runtime_property_t
 impl_43_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_43_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_Description.pub
 };
 
@@ -4225,13 +4225,13 @@ impl_44;
 
 static const afw_runtime_property_t
 impl_44_property_dataType = {
-    &afw_ldap_self_s_dataType,
+    afw_ldap_v_dataType,
     &afw_ldap_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_44_property_label = {
-    &afw_ldap_self_s_label,
+    afw_ldap_v_label,
     &afw_ldap_self_v_zz__Numeric_OID.pub
 };
 
@@ -4304,7 +4304,7 @@ impl_42_property_value_DESC = {
 
 static const afw_runtime_property_t
 impl_42_property_DESC = {
-    &afw_ldap_self_s_DESC,
+    afw_ldap_v_DESC,
     &impl_42_property_value_DESC.pub
 };
 
@@ -4316,7 +4316,7 @@ impl_42_property_value_numericoid = {
 
 static const afw_runtime_property_t
 impl_42_property_numericoid = {
-    &afw_ldap_self_s_numericoid,
+    afw_ldap_v_numericoid,
     &impl_42_property_value_numericoid.pub
 };
 
@@ -4383,25 +4383,25 @@ impl_42__value = {
 
 static const afw_runtime_property_t
 impl_40_property_allowAdd = {
-    &afw_ldap_self_s_allowAdd,
+    afw_ldap_v_allowAdd,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_allowChange = {
-    &afw_ldap_self_s_allowChange,
+    afw_ldap_v_allowChange,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_allowDelete = {
-    &afw_ldap_self_s_allowDelete,
+    afw_ldap_v_allowDelete,
     &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_allowEntity = {
-    &afw_ldap_self_s_allowEntity,
+    afw_ldap_v_allowEntity,
     &afw_ldap_boolean_self_v_true.pub
 };
 
@@ -4439,19 +4439,19 @@ impl_40_property_value_collectionURIs = {
 
 static const afw_runtime_property_t
 impl_40_property_collectionURIs = {
-    &afw_ldap_self_s_collectionURIs,
+    afw_ldap_v_collectionURIs,
     &impl_40_property_value_collectionURIs.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__db9b7855287c.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_objectType = {
-    &afw_ldap_self_s_objectType,
+    afw_ldap_v_objectType,
     &afw_ldap_self_v__AdaptiveLdapSyntax_.pub
 };
 
@@ -4463,7 +4463,7 @@ impl_40_property_value_otherProperties = {
 
 static const afw_runtime_property_t
 impl_40_property_otherProperties = {
-    &afw_ldap_self_s_otherProperties,
+    afw_ldap_v_otherProperties,
     &impl_40_property_value_otherProperties.pub
 };
 
@@ -4475,7 +4475,7 @@ impl_40_property_value_propertyTypes = {
 
 static const afw_runtime_property_t
 impl_40_property_propertyTypes = {
-    &afw_ldap_self_s_propertyTypes,
+    afw_ldap_v_propertyTypes,
     &impl_40_property_value_propertyTypes.pub
 };
 
@@ -4552,13 +4552,13 @@ impl_45;
 
 static const afw_runtime_property_t
 impl_45_property_description = {
-    &afw_ldap_self_s_description,
+    afw_ldap_v_description,
     &afw_ldap_self_v_zz__Adaptive_Framework_LDAP_extension_collection_.pub
 };
 
 static const afw_runtime_property_t
 impl_45_property_objectId = {
-    &afw_ldap_self_s_objectId,
+    afw_ldap_v_objectId,
     &afw_ldap_self_v_ldap_extension.pub
 };
 

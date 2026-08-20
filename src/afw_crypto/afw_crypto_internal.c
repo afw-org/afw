@@ -165,13 +165,13 @@ afw_crypto_internal_parse_algorithm_param(
     }
     else if (AFW_VALUE_IS_DATA_TYPE(algorithm, object)) {
         obj = ((const afw_value_object_t *)algorithm)->internal;
-        v = afw_object_get_property(obj, afw_crypto_s_name, xctx);
+        v = afw_object_get_property(obj, afw_crypto_v_name, xctx);
         if (!v || !AFW_VALUE_IS_DATA_TYPE(v, string)) {
             AFW_THROW_ERROR_Z(argument_error, "error:crypto:unknown_algorithm: object requires string name",
                 xctx);
         }
         name = &((const afw_value_string_t *)v)->internal;
-        v = afw_object_get_property(obj, afw_crypto_s_length, xctx);
+        v = afw_object_get_property(obj, afw_crypto_v_length, xctx);
         if (v) {
             if (!AFW_VALUE_IS_DATA_TYPE(v, integer)) {
                 AFW_THROW_ERROR_Z(argument_error, "error:crypto:unknown_algorithm: length must be integer",
@@ -360,25 +360,25 @@ impl_make_cryptokey_object(
     afw_object_meta_set_object_type_id(obj,
         afw_crypto_s__AdaptiveCryptoKey_, xctx);
 
-    afw_object_set_property_as_integer(obj, afw_crypto_s_keyId,
+    afw_object_set_property_as_integer(obj, afw_crypto_v_keyId,
         e->key_id, xctx);
 
     alg_name = afw_utf8_create(e->alg_name_z, AFW_UTF8_Z_LEN, p, xctx);
-    afw_object_set_property_as_string(obj, afw_crypto_s_algorithm,
+    afw_object_set_property_as_string(obj, afw_crypto_v_algorithm,
         alg_name, xctx);
 
-    afw_object_set_property(obj, afw_crypto_s_usages,
+    afw_object_set_property(obj, afw_crypto_v_usages,
         afw_value_create_unmanaged_array(usages, p, xctx), xctx);
 
-    afw_object_set_property_as_boolean(obj, afw_crypto_s_extractable,
+    afw_object_set_property_as_boolean(obj, afw_crypto_v_extractable,
         e->extractable, xctx);
 
     if (e->length_bits > 0) {
-        afw_object_set_property_as_integer(obj, afw_crypto_s_length,
+        afw_object_set_property_as_integer(obj, afw_crypto_v_length,
             e->length_bits, xctx);
     }
 
-    afw_object_set_property_as_string(obj, afw_crypto_s_format,
+    afw_object_set_property_as_string(obj, afw_crypto_v_format,
         afw_utf8_create("raw", AFW_UTF8_Z_LEN, p, xctx), xctx);
 
     return afw_value_create_unmanaged_object(obj, p, xctx);
@@ -576,7 +576,7 @@ impl_key_id_from_value(const afw_value_t *key_value, afw_xctx_t *xctx)
         AFW_THROW_ERROR_Z(argument_error, "error:crypto:unknown_key: expected CryptoKey object", xctx);
     }
     obj = ((const afw_value_object_t *)key_value)->internal;
-    v = afw_object_get_property(obj, afw_crypto_s_keyId, xctx);
+    v = afw_object_get_property(obj, afw_crypto_v_keyId, xctx);
     if (!v || !AFW_VALUE_IS_DATA_TYPE(v, integer)) {
         AFW_THROW_ERROR_Z(not_found, "error:crypto:unknown_key: missing keyId", xctx);
     }
@@ -706,7 +706,7 @@ impl_resolve_reference_object(
     const afw_memory_t *file_mem;
     afw_utf8_t as_utf8;
 
-    v = afw_object_get_property(obj, afw_crypto_s_from, xctx);
+    v = afw_object_get_property(obj, afw_crypto_v_from, xctx);
     if (!v || !AFW_VALUE_IS_DATA_TYPE(v, string)) {
         AFW_THROW_ERROR_Z(argument_error, "error:crypto:expected_binary: key reference requires string from",
             xctx);
@@ -715,7 +715,7 @@ impl_resolve_reference_object(
 
     encoding = NULL;
     has_encoding = false;
-    v = afw_object_get_property(obj, afw_crypto_s_encoding, xctx);
+    v = afw_object_get_property(obj, afw_crypto_v_encoding, xctx);
     if (v) {
         if (!AFW_VALUE_IS_DATA_TYPE(v, string)) {
             AFW_THROW_ERROR_Z(argument_error, "error:crypto:invalid_encoding: encoding must be string",
@@ -726,7 +726,7 @@ impl_resolve_reference_object(
     }
 
     if (afw_utf8_equal_utf8_z(from, "material")) {
-        v = afw_object_get_property(obj, afw_crypto_s_data, xctx);
+        v = afw_object_get_property(obj, afw_crypto_v_data, xctx);
         if (!v) {
             AFW_THROW_ERROR_Z(argument_error, "error:crypto:expected_binary: material reference needs data",
                 xctx);
@@ -736,7 +736,7 @@ impl_resolve_reference_object(
     }
 
     if (afw_utf8_equal_utf8_z(from, "environment")) {
-        v = afw_object_get_property(obj, afw_crypto_s_name, xctx);
+        v = afw_object_get_property(obj, afw_crypto_v_name, xctx);
         if (!v || !AFW_VALUE_IS_DATA_TYPE(v, string)) {
             AFW_THROW_ERROR_Z(argument_error, "error:crypto:env_not_found: environment ref needs name",
                 xctx);
@@ -787,7 +787,7 @@ impl_resolve_reference_object(
     }
 
     if (afw_utf8_equal_utf8_z(from, "file")) {
-        v = afw_object_get_property(obj, afw_crypto_s_path, xctx);
+        v = afw_object_get_property(obj, afw_crypto_v_path, xctx);
         if (!v || !AFW_VALUE_IS_DATA_TYPE(v, string)) {
             AFW_THROW_ERROR_Z(argument_error, "error:crypto:path_not_allowed: file ref needs path string",
                 xctx);
@@ -873,7 +873,7 @@ afw_crypto_internal_resolve_key(
     obj = ((const afw_value_object_t *)key_value)->internal;
 
     /* CryptoKey: has keyId */
-    v = afw_object_get_property(obj, afw_crypto_s_keyId, xctx);
+    v = afw_object_get_property(obj, afw_crypto_v_keyId, xctx);
     if (v && AFW_VALUE_IS_DATA_TYPE(v, integer)) {
         id = ((const afw_value_integer_t *)v)->internal;
         if (!impl_keystore_ready) {
@@ -898,7 +898,7 @@ afw_crypto_internal_resolve_key(
     }
 
     /* Reference object with from */
-    v = afw_object_get_property(obj, afw_crypto_s_from, xctx);
+    v = afw_object_get_property(obj, afw_crypto_v_from, xctx);
     if (v) {
         return impl_resolve_reference_object(obj, allow_utf8_material, p,
             xctx);

@@ -1068,7 +1068,7 @@ afw_runtime_value_accessor_null_terminated_array_of_utf8_z_key_value_pair_object
     const afw_utf8_z_t * const *s_z;
     const afw_array_t *list;
     const afw_object_t *object;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *value;
     const afw_value_t *result;
 

@@ -45,9 +45,9 @@ void afw_request_handler_internal_conf_type_create_cede_p(
 
     /* Get uri_prefix and handler_type. */
     e->uri_prefix = afw_object_old_get_property_as_utf8(entry,
-        afw_s_uriPrefix, p, xctx);
+        afw_v_uriPrefix, p, xctx);
     e->handler_type = afw_object_old_get_property_as_utf8(entry,
-        afw_s_requestHandlerType, p, xctx);
+        afw_v_requestHandlerType, p, xctx);
 
     /* Log request handler active. */
     AFW_LOG_FZ(info, xctx, "Request handler for URI prefix " AFW_UTF8_FMT_Q

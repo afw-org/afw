@@ -511,7 +511,7 @@ impl_contribute_object_variables_cb(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *value;
 
     (void)include_untrusted;

@@ -61,7 +61,8 @@ impl_cache_environ_entry(
 {
     const afw_utf8_octet_t *s;
     const afw_utf8_octet_t *c;
-    const afw_utf8_t *property_name;
+    const afw_utf8_t *property_name_utf8;
+    const afw_value_t *property_name;
     const afw_value_t *value;
     afw_size_t name_len;
     const afw_utf8_octet_t *value_octets;
@@ -73,8 +74,10 @@ impl_cache_environ_entry(
 
     for (s = c = (const afw_utf8_octet_t *)entry; *c && *c != '='; c++);
     name_len = (afw_size_t)(c - s);
-    property_name = afw_utf8_create_property_name(
+    property_name_utf8 = afw_utf8_create_property_name(
         s, name_len, self->pub.p, xctx);
+    property_name = afw_value_create_unmanaged_string(
+        property_name_utf8, self->pub.p, xctx);
 
     if (afw_object_has_property(self->properties, property_name, xctx)) {
         return;
@@ -208,7 +211,7 @@ impl_afw_object_get_meta(
 const afw_value_t *
 impl_afw_object_get_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
     const char *s;
@@ -227,7 +230,9 @@ impl_afw_object_get_property(
      * populated via load_all / iterate (raw name is not a C string key).
      */
     value = NULL;
-    property_name_z = afw_utf8_z_create(property_name->s, property_name->len,
+    property_name_z = afw_utf8_z_create(
+        afw_object_string_property_name_as_utf8(property_name, xctx)->s,
+        afw_object_string_property_name_as_utf8(property_name, xctx)->len,
         xctx->p, xctx);
     s = getenv(property_name_z);
     if (s) {
@@ -246,7 +251,7 @@ impl_afw_object_get_property(
 const afw_value_t *
 impl_afw_object_get_property_meta(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -263,7 +268,7 @@ const afw_value_t *
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
     const afw_iterator_old_t * * iterator,
-    const afw_utf8_t * * property_name,
+    const afw_value_t * * property_name,
     afw_xctx_t *xctx)
 {
 
@@ -285,7 +290,7 @@ const afw_value_t *
 impl_afw_object_get_next_property_meta(
     AFW_OBJECT_SELF_T *self,
     const afw_iterator_old_t **iterator,
-    const afw_utf8_t **property_name,
+    const afw_value_t **property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -301,7 +306,7 @@ impl_afw_object_get_next_property_meta(
 afw_boolean_t
 impl_afw_object_has_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;

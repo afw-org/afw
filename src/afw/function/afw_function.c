@@ -152,11 +152,11 @@ afw_function_execute_requiresExecuteAccess_wrapper(
 
         /* Set properties in object to be available in authorization check. */
         afw_object_set_property_as_object(
-            obj, afw_s_function, x->function->object, xctx);
+            obj, afw_v_function, x->function->object, xctx);
         argv_array = afw_array_const_create_array_of_values(
             &argv[1], x->argc, obj->p, xctx);
         afw_object_set_property_as_array(
-            obj, afw_s_arguments, argv_array, xctx);
+            obj, afw_v_arguments, argv_array, xctx);
         for (argc = 1, parameter = x->function->parameters;
             argc <= x->function->parameters_count;
             argc++, parameter++)
@@ -173,12 +173,12 @@ afw_function_execute_requiresExecuteAccess_wrapper(
                         &argv[1], 0, obj->p, xctx);
                 }
                 afw_object_set_property_as_array(
-                    obj, &(*parameter)->name->internal, argv_array, xctx);
+                    obj, &(*parameter)->name->pub, argv_array, xctx);
             }
             else {
                 afw_object_set_property(
                     obj,
-                    &(*parameter)->name->internal,
+                    &(*parameter)->name->pub,
                     (argc <= x->argc) ? argv[argc] : NULL,
                     xctx);
             }

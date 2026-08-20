@@ -833,7 +833,7 @@ static const afw_utf8_t * const *
 impl_parse_string_select(impl_string_parser_t *parser)
 {
     afw_const_utf8_a_stack_t *names;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     static const afw_utf8_t * const *result;
 
     /* Make an array to hold zero terminated list of property names. */
@@ -1421,7 +1421,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
 
     /* Get "op" property and get its corresponding operator. */
     s = afw_object_old_get_property_as_string(filter_object,
-        afw_s_op, parser->xctx);
+        afw_v_op, parser->xctx);
     if (!s) {
         AFW_THROW_ERROR_Z(general, "Missing \"op\" property", parser->xctx);
     }
@@ -1453,7 +1453,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
     {
         impl_query_object_parse_nesting_enter(parser);
         filters_list = afw_object_old_get_property_as_array(filter_object,
-            afw_s_filters, parser->xctx);
+            afw_v_filters, parser->xctx);
         if (!filters_list) {
             AFW_THROW_ERROR_Z(general,
                 "Property \"filters\" for this op",
@@ -1513,7 +1513,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         entry->on_false = on_false;
         *filter = entry;
         entry->property_name = afw_object_old_get_property_as_string(
-            filter_object, afw_s_property, parser->xctx);
+            filter_object, afw_v_property, parser->xctx);
         if (parser->criteria->object_type && entry->property_name) {
             entry->pt = afw_object_type_property_type_get_extended(
                 parser->criteria->object_type,
@@ -1526,7 +1526,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         }
 
         entry->value = afw_object_get_property(
-            filter_object, afw_s_value, parser->xctx);
+            filter_object, afw_v_value, parser->xctx);
         /** @fixme Make sure this is a single value/list. */
     }
 }
@@ -2048,14 +2048,14 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
     const afw_iterator_old_t *iterator;
     const afw_array_t *sort;
     const afw_array_t *select;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_utf8_t *url_encoded_rql_string;
     const afw_value_t *value;
     impl_AdaptiveQueryCriteria_object_parser_t parser;
 
     /* If urlEncodedRQLString property present, process it and return result. */
     url_encoded_rql_string = afw_object_old_get_property_as_string(
-        query_object, afw_s_urlEncodedRQLString, xctx);
+        query_object, afw_v_urlEncodedRQLString, xctx);
     if (url_encoded_rql_string) {
 
         /* Make sure only urlEncodedRQLString is specified. */
@@ -2065,7 +2065,7 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
             if (!value) {
                 break;
             }
-            if (!afw_utf8_equal(property_name, afw_s_urlEncodedRQLString)) {
+            if (!afw_value_equal(property_name, afw_v_urlEncodedRQLString, xctx)) {
                 AFW_THROW_ERROR_Z(general,
                     "Property urlEncodedRQLString must be specified alone",
                     xctx);
@@ -2100,7 +2100,7 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
         }
 
         /* filter property */
-        if (afw_utf8_equal(property_name, afw_s_filter)) {
+        if (afw_value_equal(property_name, afw_v_filter, xctx)) {
             filter_object = afw_value_as_object(value, xctx);
             impl_AdaptiveQueryCriteria_object_parse_filter(&parser,
                 filter_object, &criteria->filter, &criteria->tree,
@@ -2108,14 +2108,14 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
         }
 
         /* select property */
-        else if (afw_utf8_equal(property_name, afw_s_select)) {
+        else if (afw_value_equal(property_name, afw_v_select, xctx)) {
             select = afw_value_as_array(value, xctx);
             criteria->select = impl_AdaptiveQueryCriteria_object_parse_select(
                 &parser, select);
         }
 
         /* sort property */
-        else if (afw_utf8_equal(property_name, afw_s_sort)) {
+        else if (afw_value_equal(property_name, afw_v_sort, xctx)) {
             sort = afw_value_as_array(value, xctx);
             criteria->first_sort = impl_AdaptiveQueryCriteria_object_parse_sort(
                 &parser, sort);
@@ -2224,13 +2224,13 @@ impl_criteria_filter_to_property_value(
     }
 
     filter = afw_object_create_unmanaged(p, xctx);
-    afw_object_set_property_as_string(filter, afw_s_op, entry->op_name, xctx);
+    afw_object_set_property_as_string(filter, afw_v_op, entry->op_name, xctx);
 
     if (entry->op_id == afw_query_criteria_filter_op_id_and ||
         entry->op_id == afw_query_criteria_filter_op_id_or)
     {
         filters = afw_array_create_generic(p, xctx);
-        afw_object_set_property_as_array(filter, afw_s_filters, filters, xctx);
+        afw_object_set_property_as_array(filter, afw_v_filters, filters, xctx);
         for (e = entry->first_conjunctive_child; e; e = e->next_conjunctive_sibling) {
             o = impl_criteria_filter_to_property_value(e, p, xctx);
             v = afw_value_create_unmanaged_object(o, p, xctx);
@@ -2240,8 +2240,8 @@ impl_criteria_filter_to_property_value(
 
     else {
         afw_object_set_property_as_string(filter,
-            afw_s_property, entry->property_name, xctx);
-        afw_object_set_property(filter, afw_s_value, entry->value, xctx);
+            afw_v_property, entry->property_name, xctx);
+        afw_object_set_property(filter, afw_v_value, entry->value, xctx);
     }
 
     return filter;
@@ -2332,7 +2332,7 @@ afw_query_criteria_to_AdaptiveQueryCriteria_object(
         criteria->tree, object->p, xctx);
     if (filter) {
         afw_object_set_property_as_object(object,
-            afw_s_filter, filter, xctx);
+            afw_v_filter, filter, xctx);
     }
 
     /* select */
@@ -2340,7 +2340,7 @@ afw_query_criteria_to_AdaptiveQueryCriteria_object(
         select = impl_criteria_select_to_property_value(
             criteria->select, object->p, xctx);
         afw_object_set_property_as_array(object,
-            afw_s_select, select, xctx);
+            afw_v_select, select, xctx);
     }
 
     /* sort */
@@ -2348,7 +2348,7 @@ afw_query_criteria_to_AdaptiveQueryCriteria_object(
         sort = impl_criteria_sort_to_property_value(
             criteria->first_sort, object->p, xctx);
         afw_object_set_property_as_array(object,
-            afw_s_sort, sort, xctx);
+            afw_v_sort, sort, xctx);
     }
 
     /* Return _AdaptiveQueryCriteria_ object */
@@ -2374,7 +2374,7 @@ impl_entry_to_query_string(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *value;
     afw_boolean_t first_loop;
     const afw_utf8_z_t *fiql_op;

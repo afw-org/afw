@@ -476,7 +476,7 @@ impl_stringify_prepare_object(
 {
     const afw_object_t *out;
     const afw_iterator_old_t *iterator;
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     const afw_value_t *next;
     const afw_value_t *child;
 
@@ -488,10 +488,14 @@ impl_stringify_prepare_object(
         if (!next) {
             break;
         }
-        if (!impl_stringify_name_allowed(ctx, property_name)) {
+        if (!impl_stringify_name_allowed(ctx,
+            afw_object_string_property_name_as_utf8(
+                property_name, ctx->xctx))) {
             continue;
         }
-        child = impl_stringify_prepare(ctx, property_name, next);
+        child = impl_stringify_prepare(ctx,
+            afw_object_string_property_name_as_utf8(
+                property_name, ctx->xctx), next);
         if (afw_value_is_undefined(child) || !child) {
             /* Omit property when replacer returns undefined. */
             continue;
@@ -753,15 +757,15 @@ afw_function_execute_test_script(
     AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
     result = afw_object_create(x->p, xctx);
-    afw_object_set_property(result, afw_s_passed, afw_boolean_v_true, xctx);
+    afw_object_set_property(result, afw_v_passed, afw_boolean_v_true, xctx);
     afw_object_set_property_as_string(result,
-        afw_s_id, &id->internal, xctx);
+        afw_v_id, &id->internal, xctx);
     afw_object_set_property_as_string(result,
-        afw_s_description, &description->internal, xctx);
+        afw_v_description, &description->internal, xctx);
     afw_object_set_property_as_string(result,
-        afw_s_expression, &expression->internal, xctx);
+        afw_v_expression, &expression->internal, xctx);
     afw_object_set_property_as_string(result,
-        afw_s_expected,
+        afw_v_expected,
         afw_value_as_casted_utf8(expected, x->p, xctx),
         xctx);
 
@@ -780,12 +784,12 @@ afw_function_execute_test_script(
             evaluated = afw_value_evaluate(compiled, x->p, xctx);
         }
 
-        afw_object_set_property_as_string(result, afw_s_result,
+        afw_object_set_property_as_string(result, afw_v_result,
             afw_value_as_casted_utf8(evaluated, x->p, xctx),
             xctx);
 
         if (!afw_value_equal(evaluated, expected, xctx)) {
-            afw_object_set_property(result, afw_s_passed, afw_boolean_v_false,
+            afw_object_set_property(result, afw_v_passed, afw_boolean_v_false,
                 xctx);
         }
     }
@@ -798,12 +802,12 @@ afw_function_execute_test_script(
                     &((const afw_value_string_t *)expected)->internal,
                     afw_s_error))
             {
-                afw_object_set_property(result, afw_s_passed, afw_boolean_v_false,
+                afw_object_set_property(result, afw_v_passed, afw_boolean_v_false,
                     xctx);
             }
 
             /* Set error property. */
-            afw_object_set_property_as_object(result, afw_s_error,
+            afw_object_set_property_as_object(result, afw_v_error,
                 afw_error_to_object(AFW_ERROR_THROWN, x->p, xctx), xctx);
     }
 
@@ -881,16 +885,16 @@ afw_function_execute_test_template(
     AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
     result = afw_object_create(x->p, xctx);
-    afw_object_set_property(result, afw_s_passed, afw_boolean_v_true, xctx);
+    afw_object_set_property(result, afw_v_passed, afw_boolean_v_true, xctx);
     afw_object_set_property_as_string(result,
-        afw_s_id, &id->internal, xctx);
+        afw_v_id, &id->internal, xctx);
     afw_object_set_property_as_string(result,
-        afw_s_description, &description->internal, xctx);
+        afw_v_description, &description->internal, xctx);
     afw_object_set_property_as_string(result,
-        afw_s_template, &template->internal, xctx);
+        afw_v_template, &template->internal, xctx);
 
     afw_object_set_property_as_string(result,
-        afw_s_expected, 
+        afw_v_expected, 
         afw_value_as_casted_utf8(expected, x->p, xctx),
         xctx);
 
@@ -908,12 +912,12 @@ afw_function_execute_test_template(
             evaluated = afw_value_evaluate(compiled, x->p, xctx);
         }
 
-        afw_object_set_property_as_string(result, afw_s_result,
+        afw_object_set_property_as_string(result, afw_v_result,
             afw_value_as_casted_utf8(evaluated, x->p, xctx),
             xctx);
 
         if (!afw_value_equal(evaluated, expected, xctx)) {
-            afw_object_set_property(result, afw_s_passed, afw_boolean_v_false,
+            afw_object_set_property(result, afw_v_passed, afw_boolean_v_false,
                 xctx);
         }
     }
@@ -926,12 +930,12 @@ afw_function_execute_test_template(
                 &((const afw_value_string_t *)expected)->internal,
                 afw_s_error))
         {
-            afw_object_set_property(result, afw_s_passed, afw_boolean_v_false,
+            afw_object_set_property(result, afw_v_passed, afw_boolean_v_false,
                 xctx);
         }
 
         /* Set error property. */
-        afw_object_set_property_as_object(result, afw_s_error,
+        afw_object_set_property_as_object(result, afw_v_error,
             afw_error_to_object(AFW_ERROR_THROWN, x->p, xctx), xctx);
     }
 
@@ -1008,21 +1012,21 @@ afw_function_execute_test_value(
     AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
     result = afw_object_create(x->p, xctx);
-    afw_object_set_property(result, afw_s_passed, afw_boolean_v_true, xctx);
+    afw_object_set_property(result, afw_v_passed, afw_boolean_v_true, xctx);
     afw_object_set_property_as_string(result,
-        afw_s_id, &id->internal, xctx);
+        afw_v_id, &id->internal, xctx);
     afw_object_set_property_as_string(result,
-        afw_s_description, &description->internal, xctx);
+        afw_v_description, &description->internal, xctx);
 
     if (afw_value_is_any_call(AFW_FUNCTION_ARGV(3))) {
         afw_value_contextual_resolve_value_source(&value_source,
             ((const afw_value_call_t *)x->argv[3])->args.contextual);
         afw_object_set_property_as_string(result,
-            afw_s_value, &value_source, xctx);
+            afw_v_value, &value_source, xctx);
     }
 
     afw_object_set_property_as_string(result,
-        afw_s_expected, 
+        afw_v_expected, 
         afw_value_as_casted_utf8(expected, x->p, xctx),
         xctx);
 
@@ -1035,12 +1039,12 @@ afw_function_execute_test_value(
                 value, x->argv[5], x->p, xctx);
         }
 
-        afw_object_set_property_as_string(result, afw_s_result,
+        afw_object_set_property_as_string(result, afw_v_result,
             afw_value_as_casted_utf8(value, x->p, xctx),
             xctx);
         
         if (!afw_value_equal(value, expected, xctx)) {
-            afw_object_set_property(result, afw_s_passed, afw_boolean_v_false,
+            afw_object_set_property(result, afw_v_passed, afw_boolean_v_false,
                 xctx);
         }
 
@@ -1054,12 +1058,12 @@ afw_function_execute_test_value(
                 &((const afw_value_string_t *)expected)->internal,
                 afw_s_error))
         {
-            afw_object_set_property(result, afw_s_passed, afw_boolean_v_false,
+            afw_object_set_property(result, afw_v_passed, afw_boolean_v_false,
                 xctx);
         }
 
         /* Set error property. */
-        afw_object_set_property_as_object(result, afw_s_error,
+        afw_object_set_property_as_object(result, afw_v_error,
             afw_error_to_object(AFW_ERROR_THROWN, x->p, xctx), xctx);
     }
 

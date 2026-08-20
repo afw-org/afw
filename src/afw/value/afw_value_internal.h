@@ -619,7 +619,7 @@ struct afw_value_object_construct_entry_s {
     afw_value_object_construct_entry_type_t type;
 
     /** Static name when type is static; otherwise NULL. */
-    const afw_utf8_t *static_name;
+    const afw_value_t *static_name;
 
     /** Name expression when type is name_expr; otherwise NULL. */
     const afw_value_t *name_expr;
@@ -866,17 +866,17 @@ typedef struct afw_value_meta_values_list_list_self_s {
 
 typedef const afw_value_t *(*afw_value_meta_special_get_t) (
     afw_value_meta_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 typedef void (*afw_value_meta_special_set_t) (
     afw_value_meta_object_self_t *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
 typedef struct {
-    const afw_utf8_t *property_name;
+    const afw_value_t *property_name;
     afw_value_meta_special_get_t get;
     afw_value_meta_special_set_t set;
 } afw_value_meta_name_handler_t;

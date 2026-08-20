@@ -139,7 +139,7 @@ afw_object_memory_wrapper_base(const afw_object_t *object)
 AFW_DEFINE(const afw_object_t *)
 afw_object_create_embedded(
     const afw_object_t *embedding_object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     const afw_pool_t *p;
@@ -164,7 +164,8 @@ afw_object_create_embedded(
     self->value.internal = (const afw_object_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     self->pub.meta.embedding_object = embedding_object;
-    self->pub.meta.id = property_name;
+    self->pub.meta.id = afw_object_string_property_name_as_utf8(
+        property_name, xctx);
     self->managed_by_entity = true;
     self->setter.inf = &impl_afw_object_setter_inf;
     self->setter.object = (const afw_object_t *)self;
@@ -184,7 +185,7 @@ afw_object_create_embedded(
 AFW_DEFINE(const afw_object_t *)
 afw_object_insure_embedded_exists(
     const afw_object_t *embedding_object,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     const afw_object_t *result;
@@ -292,7 +293,7 @@ impl_afw_object_get_count(
 static const afw_value_t *
 impl_get_local_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_boolean_t *found_local,
     afw_xctx_t *xctx)
 {
@@ -301,7 +302,7 @@ impl_get_local_property(
     *found_local = false;
 
     for (e = self->first_property; e; e = e->next) {
-        if (afw_utf8_equal(e->name, property_name)) {
+        if (afw_value_equal(e->name, property_name, xctx)) {
             *found_local = true;
             return e->value;
         }
@@ -314,7 +315,7 @@ impl_get_local_property(
 static afw_boolean_t
 impl_has_local_property_name(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx)
 {
     afw_boolean_t found_local;
@@ -334,7 +335,7 @@ impl_has_local_property_name(
 static const afw_value_t *
 impl_promote_structured_from_base(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -381,7 +382,7 @@ impl_promote_structured_from_base(
 const afw_value_t *
 impl_afw_object_get_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
@@ -426,13 +427,13 @@ const afw_value_t *
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
     const afw_iterator_old_t * * iterator,
-    const afw_utf8_t * * property_name,
+    const afw_value_t * * property_name,
     afw_xctx_t *xctx)
 {
     afw_object_internal_name_value_entry_t *e;
     impl_memory_wrapped_iterator_t *wit;
     const afw_value_t *value;
-    const afw_utf8_t *name;
+    const afw_value_t *name;
 
     /* Fast path: no wrapped base — original list walk. */
     if (!self->wrapped) {
@@ -523,7 +524,7 @@ impl_afw_object_get_next_property(
 afw_boolean_t
 impl_afw_object_has_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
@@ -582,7 +583,7 @@ impl_afw_object_setter_set_immutable (
 void
 impl_afw_object_setter_set_property(
     const afw_object_setter_t * self,
-    const afw_utf8_t * property_name,
+    const afw_value_t * property_name,
     const afw_value_t * value,
     afw_xctx_t *xctx)
 {
@@ -596,7 +597,7 @@ impl_afw_object_setter_set_property(
 
     for (e = memory_object_self->first_property,final_e = NULL; e; e = e->next) {
         final_e = e;
-        if (afw_utf8_equal(e->name, property_name)) {
+        if (afw_value_equal(e->name, property_name, xctx)) {
             e->value = value;
             return;
         }
@@ -611,7 +612,7 @@ impl_afw_object_setter_set_property(
     }
     e = afw_pool_calloc_type(self->object->p,
         afw_object_internal_name_value_entry_t, xctx);
-    e->name = (property_name) ? property_name : afw_s_a_empty_string;
+    e->name = (property_name) ? property_name : afw_v_a_empty_string;
 
     /** @fixme
      * Need to think about setting a property that is an object.  Embedding

@@ -135,7 +135,7 @@ afw_object_meta_add_thrown_error(
 AFW_DECLARE(void)
 afw_object_meta_add_property_error(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     const afw_utf8_t *message,
     afw_xctx_t *xctx);
 
@@ -185,7 +185,7 @@ afw_object_meta_add_property_error(instance, property_name, \
 AFW_DECLARE(void)
 afw_object_meta_add_thrown_property_error(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_integer_t index,
     const afw_error_t *error,
     afw_xctx_t *xctx);
@@ -426,7 +426,7 @@ afw_object_meta_get_path(
 AFW_DECLARE(const afw_object_t *)
 afw_object_meta_get_property_type(
     const afw_object_t *instance,
-    const afw_utf8_t *property_name,
+    const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
 

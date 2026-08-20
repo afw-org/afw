@@ -40,7 +40,7 @@ afw_object_internal_name_value_entry_t;
  */
 struct afw_object_internal_name_value_entry_s {
     afw_object_internal_name_value_entry_t *next;
-    const afw_utf8_t *name;
+    const afw_value_t *name;
     const afw_value_t *value;
 };
 
@@ -94,7 +94,7 @@ typedef struct {
 /* Self typedef "const for key value string" entry. */
 typedef struct
 afw_object_const_key_value_string_entry_s {
-    afw_utf8_t key;
+    afw_value_string_t key;
     afw_value_string_t value;
 } afw_object_const_key_value_string_entry_t;
 

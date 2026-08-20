@@ -424,14 +424,14 @@ impl_read_file_object(
             object_id,
             xctx);
         afw_object_set_property(object,
-            afw_vfs_s_isDirectory, afw_boolean_v_true, xctx);
+            afw_vfs_v_isDirectory, afw_boolean_v_true, xctx);
         vfs_path = impl_vfs_path(
             &self->pub.adapter->adapter_id, object_id, p, xctx);
         afw_object_set_property_as_anyURI(object,
-            afw_vfs_s_vfsPath, vfs_path, xctx);
+            afw_vfs_v_vfsPath, vfs_path, xctx);
         filenames = afw_array_of_create(afw_data_type_string, p, xctx);
         afw_object_set_property_as_array(object,
-            afw_vfs_s_data, filenames, xctx);
+            afw_vfs_v_data, filenames, xctx);
         for (;;) {
 
             /* Read next directory entry until there are no more.*/
@@ -547,21 +547,21 @@ impl_read_file_object(
             object_id,
             xctx);
         afw_object_set_property(object,
-            afw_vfs_s_isDirectory, afw_boolean_v_false, xctx);
+            afw_vfs_v_isDirectory, afw_boolean_v_false, xctx);
         vfs_path = impl_vfs_path(
             &self->pub.adapter->adapter_id, object_id, p, xctx);
         afw_object_set_property_as_anyURI(object,
-            afw_vfs_s_vfsPath, vfs_path, xctx);
+            afw_vfs_v_vfsPath, vfs_path, xctx);
         if (afw_utf8_is_valid((const afw_utf8_octet_t *)buff, size_read, xctx)) {
             data_string = afw_utf8_create((const afw_utf8_octet_t *)buff,
                 size_read, p, xctx);
             afw_object_set_property_as_string(object,
-                afw_vfs_s_data, data_string, xctx);
+                afw_vfs_v_data, data_string, xctx);
         }
         else {
             data_binary = afw_memory_create_no_copy(buff, size_read, p, xctx);
             afw_object_set_property_as_hexBinary(object,
-                afw_vfs_s_data, data_binary, xctx);
+                afw_vfs_v_data, data_binary, xctx);
         }
     }
 
@@ -575,7 +575,7 @@ impl_read_file_object(
             afw_dateTime_set_from_apr_time(&dateTime->internal,
                 finfo.atime, xctx);
             afw_object_set_property(
-                object, afw_vfs_s_timeAccessed, &dateTime->pub, xctx);
+                object, afw_vfs_v_timeAccessed, &dateTime->pub, xctx);
         }
 
         /** The time the file was created. */
@@ -584,7 +584,7 @@ impl_read_file_object(
             afw_dateTime_set_from_apr_time(&dateTime->internal,
                 finfo.ctime, xctx);
             afw_object_set_property(
-                object, afw_vfs_s_timeCreated, &dateTime->pub, xctx);
+                object, afw_vfs_v_timeCreated, &dateTime->pub, xctx);
         }
 
         /** The time the file was last modified. */
@@ -593,7 +593,7 @@ impl_read_file_object(
             afw_dateTime_set_from_apr_time(&dateTime->internal,
                 finfo.mtime, xctx);
             afw_object_set_property(
-                object, afw_vfs_s_timeModified, &dateTime->pub, xctx);
+                object, afw_vfs_v_timeModified, &dateTime->pub, xctx);
         }
     }
 
@@ -867,11 +867,11 @@ impl_afw_adapter_session_retrieve_objects(
 
         /* includeHidden */
         ctx.includeHidden = afw_object_old_get_property_as_boolean(
-            adapter_type_specific, afw_vfs_s_includeHidden, &found, xctx);
+            adapter_type_specific, afw_vfs_v_includeHidden, &found, xctx);
 
         /* subdirectory */
         subdirectory = afw_object_old_get_property_as_string(
-            adapter_type_specific, afw_vfs_s_subdirectory, xctx);
+            adapter_type_specific, afw_vfs_v_subdirectory, xctx);
         if (subdirectory &&
             (
                 afw_utf8_starts_with(subdirectory, afw_s_a_slash) ||
@@ -889,11 +889,11 @@ impl_afw_adapter_session_retrieve_objects(
 
         /* suffix */
         ctx.suffix = afw_object_old_get_property_as_string(
-            adapter_type_specific, afw_vfs_s_suffix, xctx);
+            adapter_type_specific, afw_vfs_v_suffix, xctx);
 
         /* recursive */
         ctx.recursive = afw_object_old_get_property_as_boolean(
-            adapter_type_specific, afw_vfs_s_recursive, &found, xctx);
+            adapter_type_specific, afw_vfs_v_recursive, &found, xctx);
     }
 
     /*
@@ -997,7 +997,7 @@ impl_afw_adapter_session_get_object(
     include_hidden = false;
     if (adapter_type_specific) {
         include_hidden = afw_object_old_get_property_as_boolean(
-            adapter_type_specific, afw_vfs_s_includeHidden, &found, xctx);
+            adapter_type_specific, afw_vfs_v_includeHidden, &found, xctx);
     }
 
     /* Get object or NULL and pass it to callback. */
@@ -1298,7 +1298,7 @@ impl_afw_adapter_session_add_object(
 
     /* If regular file, get data property and write to file. */
     else {
-        data = afw_object_get_property(object, afw_vfs_s_data, xctx);
+        data = afw_object_get_property(object, afw_vfs_v_data, xctx);
         impl_write_data_to_file(self,
             suggested_object_id, path.s_z, data, true, xctx);
     }
@@ -1427,7 +1427,7 @@ impl_afw_adapter_session_replace_object(
     }
 
     /* Write data property and write to file (omitted data => empty). */
-    data = afw_object_get_property(replacement_object, afw_vfs_s_data, xctx);
+    data = afw_object_get_property(replacement_object, afw_vfs_v_data, xctx);
     impl_write_data_to_file(self,
         object_id, path.s_z, data, false, xctx);
 }
