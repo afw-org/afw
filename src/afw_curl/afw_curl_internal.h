@@ -52,6 +52,14 @@ typedef struct afw_curl_internal_read_cb_s {
     size_t                            bytes_sent;
     afw_curl_internal_script_cb_t   * header;
     afw_curl_internal_script_cb_t   * reader;
+    /*
+     * Bytes from the reader script's last returned chunk that did not fit
+     * in the buffer libcurl offered on that call, still waiting to be
+     * drained across subsequent callback invocations before the script is
+     * called again.
+     */
+    const afw_memory_t              * pending_payload;
+    size_t                             pending_offset;
     const afw_pool_t                * pool;
     afw_xctx_t                      * xctx;
 } afw_curl_internal_read_cb_t;
