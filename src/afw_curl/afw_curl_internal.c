@@ -1567,7 +1567,7 @@ afw_curl_internal_smtp_send(
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
 
         /* set the required (by us) from address */
-        curl_easy_setopt(curl, CURLOPT_MAIL_FROM, afw_utf8_to_utf8_z(mail_from, xctx->p, xctx));
+        res = curl_easy_setopt(curl, CURLOPT_MAIL_FROM, afw_utf8_to_utf8_z(mail_from, xctx->p, xctx));
         if (res != CURLE_OK)
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
 
@@ -1582,8 +1582,10 @@ afw_curl_internal_smtp_send(
             value = afw_array_get_next_value(mail_recipients, &iterator, pool, xctx);
         }
 
-        curl_easy_setopt(curl, CURLOPT_MAIL_RCPT, recipients);
-        
+        res = curl_easy_setopt(curl, CURLOPT_MAIL_RCPT, recipients);
+        if (res != CURLE_OK)
+            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
+
         /* set any options, that may have been specified */
         afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
 
