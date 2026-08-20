@@ -212,47 +212,75 @@ afw_curl_internal_request_cb(
     afw_curl_internal_script_cb_t * reader = appdata->reader;
     const afw_value_t *return_value;
     const afw_memory_t *payload;
+    size_t capacity;
+    size_t remaining;
+    size_t n;
 
-    if ((size == 0) || (nitems == 0) || ((size * nitems) < 1)) {
+    capacity = size * nitems;
+    if ((size == 0) || (nitems == 0) || (capacity < 1)) {
         return 0;
     }
-    
+
     /* check to see if a callback was provided by adaptive script */
     if (reader && reader->callback)
     {
-        reader->argv[0] = reader->callback;
-        reader->argv[1] = reader->userData;
-        reader->argv[2] = afw_value_create_unmanaged_integer(
-            size, appdata->pool, appdata->xctx);
-        reader->argv[3] = afw_value_create_unmanaged_integer(
-            nitems, appdata->pool, appdata->xctx);
-        if (!reader->call) {
-            reader->call = afw_value_call_create(reader->contextual,
-                3, &reader->argv[0], false, appdata->pool, appdata->xctx);
-        }
-        return_value = afw_value_evaluate(reader->call, 
-            appdata->pool, appdata->xctx);
+        /* drain any bytes left over from a previous script call first */
+        if (!appdata->pending_payload) {
+            reader->argv[0] = reader->callback;
+            reader->argv[1] = reader->userData;
+            reader->argv[2] = afw_value_create_unmanaged_integer(
+                size, appdata->pool, appdata->xctx);
+            reader->argv[3] = afw_value_create_unmanaged_integer(
+                nitems, appdata->pool, appdata->xctx);
+            if (!reader->call) {
+                reader->call = afw_value_call_create(reader->contextual,
+                    3, &reader->argv[0], false, appdata->pool, appdata->xctx);
+            }
+            return_value = afw_value_evaluate(reader->call,
+                appdata->pool, appdata->xctx);
 
-        /* copy the bytes returned into buffer (null indicates end of data) */
-        if (afw_value_is_null(return_value)) {
-            return 0;
+            /* copy the bytes returned into buffer (null indicates end of data) */
+            if (afw_value_is_null(return_value)) {
+                return 0;
+            }
+
+            payload = afw_value_as_hexBinary(return_value, appdata->xctx);
+            if (payload->size == 0) {
+                return 0;
+            }
+
+            appdata->pending_payload = payload;
+            appdata->pending_offset = 0;
         }
 
-        payload = afw_value_as_hexBinary(return_value, appdata->xctx);
-        memcpy(buffer, payload->ptr, payload->size);
-        
-        return payload->size;
+        remaining = appdata->pending_payload->size - appdata->pending_offset;
+        n = (remaining < capacity) ? remaining : capacity;
+
+        memcpy(buffer,
+            appdata->pending_payload->ptr + appdata->pending_offset, n);
+        appdata->pending_offset += n;
+
+        /* fully drained -- next call evaluates the script again */
+        if (appdata->pending_offset == appdata->pending_payload->size) {
+            appdata->pending_payload = NULL;
+            appdata->pending_offset = 0;
+        }
+
+        return n;
     }
 
     else
     {
-        if (appdata->bytes_sent == appdata->payload->len)
+        remaining = appdata->payload->len - appdata->bytes_sent;
+        if (remaining == 0)
             return 0;
-    
-        memcpy(buffer, appdata->payload->s, appdata->payload->len); 
-        appdata->bytes_sent = appdata->payload->len;
 
-        return appdata->bytes_sent;
+        n = (remaining < capacity) ? remaining : capacity;
+
+        memcpy(buffer, appdata->payload->s + appdata->bytes_sent, n);
+        appdata->bytes_sent += n;
+
+        return n;
     }
 }
 afw_curl_internal_write_cb_t *
