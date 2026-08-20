@@ -612,7 +612,20 @@ impl_afw_object_setter_set_property(
     }
     e = afw_pool_calloc_type(self->object->p,
         afw_object_internal_name_value_entry_t, xctx);
-    e->name = (property_name) ? property_name : afw_v_a_empty_string;
+    /*
+     * Unmanaged string names may be stack (AFW_VALUE_STRING_UNMANAGED) or
+     * another pool. Copy the header into this object pool so get-promote
+     * cannot keep a pointer below the caller's frame.
+     */
+    if (!property_name) {
+        property_name = afw_v_a_empty_string;
+    }
+    else if (property_name->inf == &afw_value_unmanaged_string_inf) {
+        property_name = afw_value_create_unmanaged_string(
+            &((const afw_value_string_t *)property_name)->internal,
+            self->object->p, xctx);
+    }
+    e->name = property_name;
 
     /** @fixme
      * Need to think about setting a property that is an object.  Embedding
