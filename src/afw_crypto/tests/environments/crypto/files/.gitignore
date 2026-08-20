@@ -1,0 +1,4 @@
+# Runtime files created by crypto_seal_unseal.as and
+# crypto_bind_parameters_template.as (git does not track empty directories).
+*
+!.gitignore
