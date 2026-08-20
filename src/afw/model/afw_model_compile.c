@@ -28,6 +28,15 @@ impl_compile_property_type(
     const afw_value_t *property_name,
     afw_xctx_t *xctx);
 
+static void
+impl_name_from_utf8(afw_value_string_t *name, const afw_utf8_t *utf8)
+{
+    name->inf = &afw_value_unmanaged_string_inf;
+    if (utf8) {
+        name->internal = *utf8;
+    }
+}
+
 
 static const afw_model_object_type_t *
 impl_object_type_compile(
@@ -93,9 +102,8 @@ impl_compile_property_type(
  
     /* Allocate and initialize property type struct. */
     pt = afw_pool_calloc_type(p, afw_model_property_type_t, xctx);
-    pt->property_name = afw_object_string_property_name_as_utf8(
-        property_name, xctx);
-    pt->property_name_value = property_name;
+    impl_name_from_utf8(&pt->property_name,
+        afw_object_string_property_name_as_utf8(property_name, xctx));
     pt->property_type_object = object;
     pt->property_type_object_value = afw_value_create_unmanaged_object(
         pt->property_type_object, p, xctx);
@@ -169,14 +177,14 @@ impl_compile_property_type(
     }
 
     /* mappedPropertyName */
-    pt->mapped_property_name = afw_object_old_get_property_as_string(object,
+    s = afw_object_old_get_property_as_string(object,
         afw_v_mappedPropertyName, xctx);
-    if (!pt->mapped_property_name) {
+    if (s) {
+        impl_name_from_utf8(&pt->mapped_property_name, s);
+    }
+    else {
         pt->mapped_property_name = pt->property_name;
     }
-    /* FIXME #2: utf8 name wrap; one afw_value_string_t is both. */
-    pt->mapped_property_name_value = afw_value_create_unmanaged_string(
-        pt->mapped_property_name, p, xctx);
 
     /* onGetProperty */
     s = afw_object_old_get_property_as_string(object,
@@ -694,9 +702,7 @@ impl_object_type_compile(
             pt++)
         {
             *pt = impl_compile_property_type(
-                ot, pt_object,
-                afw_value_create_unmanaged_string(
-                    pt_object->meta.id, p, xctx), xctx);
+                ot, pt_object, property_name, xctx);
         }
     }
 
@@ -772,9 +778,7 @@ impl_object_type_compile(
     if (pt_object) {
         ot->property_type_other =
             impl_compile_property_type(
-                ot, pt_object,
-                afw_value_create_unmanaged_string(
-                    pt_object->meta.id, p, xctx), xctx);
+                ot, pt_object, afw_v_otherProperties, xctx);
     }
 
     /* Return object type struct. */
@@ -839,7 +843,7 @@ afw_model_compile(
         object_type = afw_object_old_get_next_property_as_object(
             objectTypes, &iterator, &property_name, xctx);
         if (!object_type) break;
-        /* FIXME #2: utf8 name wrap; objectType ids stay utf8 hash keys. */
+        /* objectType ids stay utf8 hash keys; as_utf8 at that door. */
         property_name_utf8 = afw_object_string_property_name_as_utf8(
             property_name, xctx);
         model_object_type = impl_object_type_compile(model,

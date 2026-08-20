@@ -10,6 +10,7 @@
 #define __AFW_MODEL_INTERNAL_H__
 
 #include "afw_interface.h"
+#include "afw_data_type_typedefs.h"
 
 /**
  * @addtogroup afw_model_internal
@@ -259,12 +260,8 @@ struct afw_model_internal_object_type_s {
 
 struct afw_model_internal_property_type_s {
 
-    /** @brief Property name or regular expression if other. */
-    const afw_utf8_t *property_name;
-
-    /** @brief Property name as adaptive value. */
-    /* FIXME #2: utf8 name wrap; one afw_value_string_t is both. */
-    const afw_value_t *property_name_value;
+    /** @brief Property name (`&pub` at object APIs, `&internal` as utf8). */
+    afw_value_string_t property_name;
 
     /** @brief Compiled value for this property. */
     const afw_value_compiled_value_t *compiled_value;
@@ -314,12 +311,8 @@ struct afw_model_internal_property_type_s {
     /** @brief defaultValue or NULL. */
     const afw_value_t *default_value;
 
-    /** @brief Mapped property name. */
-    const afw_utf8_t *mapped_property_name;
-
-    /** @brief Mapped property name as adaptive value. */
-    /* FIXME #2: utf8 name wrap; one afw_value_string_t is both. */
-    const afw_value_t *mapped_property_name_value;
+    /** @brief Mapped property name (`&pub` at object APIs, `&internal` as utf8). */
+    afw_value_string_t mapped_property_name;
  
     /** @brief initial value or NULL if value from object used asis. */
     const afw_value_t *onGetInitialValue;

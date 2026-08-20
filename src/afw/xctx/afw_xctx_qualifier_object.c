@@ -114,11 +114,14 @@ afw_xctx_qualifiers_object_create(
             continue;
         }
         /* One nested snapshot per qualifier name; create merges all entries. */
-        /* FIXME #2: utf8 name wrap; qualifier could be afw_value_string_t. */
-        if (afw_object_has_property(qualifiers,
-            afw_value_create_unmanaged_string(&c->qualifier, p, xctx),
-            xctx)) {
-            continue;
+        {
+            const afw_value_string_t qualifier_name =
+                AFW_VALUE_STRING_UNMANAGED(&c->qualifier);
+            if (afw_object_has_property(qualifiers,
+                &qualifier_name.pub, xctx))
+            {
+                continue;
+            }
         }
         qualifier_object = afw_xctx_qualifier_object_create(
             &c->qualifier, include_untrusted, p, xctx);
@@ -127,7 +130,8 @@ afw_xctx_qualifiers_object_create(
             continue;
         }
         afw_object_set_property_as_object(qualifiers,
-            afw_value_create_unmanaged_string(&c->qualifier, p, xctx),
+            afw_value_create_unmanaged_string(&c->qualifier,
+                qualifiers->p, xctx),
             qualifier_object, xctx);
     }
 

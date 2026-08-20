@@ -20,6 +20,7 @@
 
 #include "afw_ldap.h"
 #include "afw_ldap_internal.h"
+#include "afw_data_type_typedefs.h"
 
 
 #ifdef __cplusplus
@@ -109,9 +110,8 @@ struct afw_ldap_metadata_attribute_type_s {
     /* Associated attribute type object. */
     const afw_object_t *attribute_type_object;
 
-    /* Attribute type/property name. */
-    /* FIXME #2: utf8 name wrap; this could be afw_value_string_t. */
-    const afw_utf8_t *property_name;
+    /* Attribute type/property name (`&pub` at object APIs, `&internal` as utf8). */
+    afw_value_string_t property_name;
 
     /* Associated property type object. */
     const afw_object_t *property_type_object;

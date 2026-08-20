@@ -90,7 +90,7 @@ afw_object_meta_add_needed_object_type(
         objectTypes = afw_object_create_embedded(meta,
             afw_v_objectTypes, xctx);
     }
-    /* FIXME #2: utf8 name wrap; object type id used as a property name. */
+    /* Object type ids stay utf8; intern the name into objectTypes. */
     afw_object_set_property_as_object(objectTypes,
         afw_value_create_unmanaged_string(
             object_type->meta.id, objectTypes->p, xctx),

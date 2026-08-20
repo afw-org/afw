@@ -209,10 +209,10 @@ afw_command_local_parse_request(
                 x.line_number);
         }
 
-        /* Add header to properties. */
-        /* FIXME #2: utf8 name wrap; prefer afw_value_string_t. */
+        /* Add header to properties. Intern name into the object pool. */
         afw_object_set_property_as_string(self->this_request_properties,
-            afw_value_create_unmanaged_string(name, xctx->p, xctx),
+            afw_value_create_unmanaged_string(name,
+                self->this_request_properties->p, xctx),
             x.string, xctx);
 
         /* EOL */

@@ -196,7 +196,8 @@ impl_create_environment_variables_object(
     char **v;
     char *s;
     char *c;
-    const afw_utf8_t *name;
+    const afw_utf8_t *name_utf8;
+    const afw_value_t *name;
     const afw_value_t *value;
     afw_size_t name_len;
 
@@ -220,16 +221,14 @@ impl_create_environment_variables_object(
     {
         for (s = c = *v; *c != '=' && *c != 0; c++);
         name_len = (afw_size_t)(c - s);
-        name = afw_utf8_create_property_name(
+        name_utf8 = afw_utf8_create_property_name(
             (const afw_utf8_octet_t *)s, name_len, result->p, xctx);
         if (*c == '=') {
             c++;
         }
         value = afw_value_create_from_external_z(c, result->p, xctx);
-        /* FIXME #2: utf8 name wrap; create the string value once. */
-        afw_object_set_property(result,
-            afw_value_create_unmanaged_string(name, result->p, xctx),
-            value, xctx);
+        name = afw_value_create_unmanaged_string(name_utf8, result->p, xctx);
+        afw_object_set_property(result, name, value, xctx);
     }
 
     return result;

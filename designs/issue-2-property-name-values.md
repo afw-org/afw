@@ -5,7 +5,7 @@
 **Parent pad:** [`memory-management.md`](memory-management.md) (do not dump this novel there).  
 **Related:** [#38](https://github.com/afw-org/afw/issues/38) construct `[expr]:` (closed; leftover `as_utf8` on names cleaned here — throw, not convert); [`c-naming-and-payloads.md`](c-naming-and-payloads.md) (utf8 has no pool).
 
-**Status:** coded on `issue-2-property-name-values`. Interface names-as-values, script/JSON string-only, path entries as `afw_value_string_t`, get-only wraps as stack `AFW_VALUE_STRING_UNMANAGED`. Remaining `FIXME #2: utf8 name wrap` are SET (need a living header) or LDAP/model utf8 twins.
+**Status:** wrap-cleanup on `issue-2-property-name-wrap-cleanup` (after PR #220). Interface names-as-values, script/JSON string-only, path entries as `afw_value_string_t`, get-only wraps as stack `AFW_VALUE_STRING_UNMANAGED`. SET intern-once into the object/parse pool is done. LDAP `attribute_type->property_name` and model property-type `property_name` / `mapped_property_name` are one embedded `afw_value_string_t` (`&pub` / `&internal`). Edge as_utf8 (getenv, stringify replacer, qualifier ids, objectType hash keys) stays at those utf8 APIs. `descriptionPropertyName` / `objectIdPropertyName` on a model object type stay utf8+value peels of a config string (not object keys).
 
 #2 is a **retrofit**: memory was built for **request** lifetime (bulk free when the request-session pool dies). Adaptive Script added **scope** lifetimes (nested, assign, escape, closures) inside and across those requests. Faces, catalog, permanent `afw_v_*`, dual `->value`, pool-release-returns-NULL already landed on other feature branches. This branch is names-as-values only; more #2 branches will follow.
 
@@ -89,12 +89,12 @@ Recorded so they are not only chat. Do not mix into the XML/`s`→`v` sweep.
 |---------|--------|
 | **`eq` / `==`** | Metadata says convert arg2 to arg1’s type. C `afw_function_execute_eq` **throws** if data types differ. Same typecheck-campaign leftover; separate fix. |
 | **`properties_ht`** | Memory object comment / union for a property hash table; lookup is still a linear list + `afw_utf8_equal`. Residual; not required to land names-as-values. |
-| **utf8 name wrap → `afw_value_string_t`** | Path entries and get-only (qualifier, dotted get, custom::, …) use `&pub` / `AFW_VALUE_STRING_UNMANAGED`. Remaining grep `FIXME #2: utf8 name wrap`: SET still allocates a header in the object pool; LDAP attr names and model `property_name` + `_value` twins still utf8+value. |
+| **utf8 name wrap → `afw_value_string_t`** | Path entries, LDAP attr names, and model property-type names are one `afw_value_string_t`. Get-only uses stack `AFW_VALUE_STRING_UNMANAGED`. SET intern-once into the object pool when the owner is still utf8. |
 
 When pairing on #2, keep adding rows here (or a later leftovers pad) instead of growing `memory-management.md`.
 
 ## This land (done)
 
-Interface XML + generate, memory object `afw_value_equal`, `s`→`v` call sites, script/JSON/YAML/UBJSON string-only (throw), `AFW_VALUE_STRING_LITERAL` / `UNMANAGED`, path entries as string values, get-only stack names, tests. SET wraps and LDAP/model utf8 twins still marked.
+Interface XML + generate, memory object `afw_value_equal`, `s`→`v` call sites, script/JSON/YAML/UBJSON string-only (throw), `AFW_VALUE_STRING_LITERAL` / `UNMANAGED`, path entries as string values, get-only stack names, SET intern-once, LDAP/model property-name owners as `afw_value_string_t`, tests.
 
 Do not hand-edit `generated/`.

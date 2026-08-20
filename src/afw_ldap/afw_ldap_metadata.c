@@ -321,9 +321,8 @@ impl_parse_schema_entry(
 
     /* Get value and set property with this value and passed name. */
     val = impl_get_value(self);
-    /* FIXME #2: utf8 name wrap; prefer afw_value_string_t. */
     afw_object_set_property(obj,
-        afw_value_create_unmanaged_string(name, p, xctx), val, xctx);
+        afw_value_create_unmanaged_string(name, obj->p, xctx), val, xctx);
 
     /* Loop processing keywords. */
     while ((kwd = impl_get_token(self))) {
@@ -358,11 +357,11 @@ impl_parse_schema_entry(
             val = impl_get_value(self);
         }
 
-        /* Set property. */
-        /* FIXME #2: utf8 name wrap; prefer afw_value_string_t. */
+        /* Set property. Intern keyword name into the schema object. */
         afw_object_set_property(obj,
             afw_value_create_unmanaged_string(
-                afw_utf8_create(kwd, AFW_UTF8_Z_LEN, p, xctx), p, xctx),
+                afw_utf8_create(kwd, AFW_UTF8_Z_LEN, obj->p, xctx),
+                obj->p, xctx),
             val, xctx);
     }
 
@@ -523,6 +522,13 @@ impl_make_property_type_and_handler_hash_tables(
         attribute_type = afw_pool_calloc_type(p,
             afw_ldap_metadata_attribute_type_t, xctx);
         attribute_type->attribute_type_object = attribute_type_object;
+        id = afw_object_meta_get_object_id(attribute_type_object, xctx);
+        if (!id) {
+            AFW_THROW_ERROR_Z(general,
+                "LDAP attribute type object is missing objectId", xctx);
+        }
+        attribute_type->property_name.inf = &afw_value_unmanaged_string_inf;
+        attribute_type->property_name.internal = *id;
 
         /*
          * Use syntax to determine datatype and handler.  Add handler to
@@ -618,11 +624,9 @@ impl_make_property_type_and_handler_hash_tables(
                 /* Create property type object and set ids. */
                 attribute_type->property_type_object =
                     afw_object_create_unmanaged(metadata->p, xctx);
-                id = afw_object_meta_get_object_id(attribute_type_object, xctx);
                 afw_object_meta_set_ids(
                     attribute_type->property_type_object,
                     adapter_id, afw_s__AdaptiveValueMeta_, id, xctx);
-                attribute_type->property_name = id;
 
                 /* Set data type and data type parameter. */
                 if (attribute_type->is_single) {
@@ -730,8 +734,7 @@ impl_a_property_to_object_type(
         return;
     }
 
-    /* Create object for property. */
-    /* FIXME #2: utf8 name wrap; prefer afw_value_string_t. */
+    /* Create object for property. Intern name into properties. */
     prop = afw_object_create_embedded(properties,
         afw_value_create_unmanaged_string(name, properties->p, xctx),
         xctx);
@@ -833,7 +836,8 @@ afw_ldap_metadata_get_object_type_attribute(
     for (result = first;
         result &&
         (!result->attribute_type ||
-            !afw_utf8_equal(name, result->attribute_type->property_name)
+            !afw_utf8_equal(name,
+                &result->attribute_type->property_name.internal)
             );
         result = result->next);
 
@@ -913,8 +917,7 @@ impl_add_parents_and_property_types(
                 property_types_object, &iterator, &property_name, xctx))
             )
         {
-            /* FIXME #2: utf8 name wrap; LDAP attr could be
-               afw_value_string_t. */
+            /* Attribute types stay utf8 hash keys; as_utf8 at that door. */
             property_name_utf8 = afw_object_string_property_name_as_utf8(
                 property_name, xctx);
             attribute_type = apr_hash_get(metadata->attribute_types,
@@ -1014,8 +1017,8 @@ impl_add_parents_and_property_types(
             {
                 if (parent_object_type_attribute->attribute_type &&
                     !afw_ldap_metadata_get_object_type_attribute(result,
-                        parent_object_type_attribute->attribute_type->
-                        property_name))
+                        &parent_object_type_attribute->attribute_type->
+                        property_name.internal))
                 {
                     if (object_type_attribute->attribute_type) {
                         object_type_attribute->next =
