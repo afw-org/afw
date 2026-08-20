@@ -22,6 +22,7 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | `stringify` for Adaptive-looking text (`date("…")`, …) | **`stringify` is pure JSON**. Use **`decompile`** for Adaptive compiled form. [stringify / decompile](#stringify-decompile-compiler-listing-and-binary-text) |
 | `e.id` names `cast_error`, `arg_error`, `undefined`, `code`, … | `conversion_error`, `argument_error`, `undefined_value`, `coding_error`, … Some HTTP statuses changed (syntax **400**, missing adapter **404**). Prefer **`e.id`**. [Error codes](#error-codes-trycatch-and-http-issue-33) |
 | `null()` / `function()` converts; `empty_array`; `(array of …)` / `(object "OT")` | Those converts are gone (use the literal / function value). **`create_array(n)`**. Type spellings are a hard cut. [Converts](#conversion-functions-type-named), [Types](#adaptive-script-types-issue-28), [Arrays](#array-semantics-issue-39) |
+| `obj[1]` / `{ [1]: x }` on objects | The name must be a **string**. Integer/boolean keys **throw** (no convert to `"1"` / `"true"`). Array indexes stay integer. [#2](#object-property-names-as-values-issue-2) |
 | `variable_exists` as “has a defined value” | It is **bound** (true when the value is **undefined**). `variable_get` default only if **not bound**. [variable_exists](#variable_exists-bound-vs-undefined-issue-131) |
 | Index filter/value scripts using bare `object` | **`current::object`** (and `objectId` / `objectType` / `key`). [Index `current::`](#adapter-index-filtervalue-current-issue-54--partial) |
 | Function metadata `maximumNumberOfParameters` | **`maxNumberOfParameters`**. [Rename](#maxnumberofparameters-issue-125) |
@@ -40,6 +41,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | Type name `afw_iterator` as the old opaque cursor | That name is the new **keyless** iterator. Legacy cursor is **`afw_iterator_old`**. [#153](#utf-8-code-point-sequences-issue-153) |
 | `afw_utf8_create` / `create_copy` / `from_utf8_z` / `from_raw` | **`create` always copies** (old `create_copy`). Point without copy is **`create_no_copy`**. `from_utf8_z` → **`utf8_z_to_utf8`** (copy) or **`utf8_z_as_utf8`** (point). `from_raw` / `as_raw` → **`from_memory` / `as_memory`**. Env/request names that are not UTF-8 are **`^` + hex + `^`**, not `_NONUTF8_` + whole-name hex. [UTF-8 doors](#utf-8-create-set-and-forced_safe) |
 | `afw_utf8_printf` / `z_printf` to write a data file | Don't. Those formatters always **`forced_safe`** the result (viewable text, `^hex^` for bad runs). For octets, write `.s` + `.len` or **`as_memory`**. |
+| Object `property_name` as `const afw_utf8_t *` | **`const afw_value_t *`**. Call sites that passed `afw_s_foo` use **`afw_v_foo`**. File-local statics: **`AFW_VALUE_STRING_LITERAL("foo")`** then `&impl.pub`. [#2](#object-property-names-as-values-issue-2) |
 
 **Details:** [libafw C API cleanup](#libafw-c-api-cleanup-release-ready-surface).
 
@@ -54,6 +56,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 |------|----------------|
 | [**libafw C API cleanup**](#libafw-c-api-cleanup-release-ready-surface) | Toward a **release-ready** supported C surface: public install + implementer headers; internals off install; declare helpers **removed**; **rebuild** out-of-tree C once against this line |
 | [**Object / array helpers**](#object-and-array-helpers-issue-55) ([#55](https://github.com/afw-org/afw/issues/55)) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` (C array-setter reshape covered by C API rebuild rule) |
+| [**Object property names as values**](#object-property-names-as-values-issue-2) ([#2](https://github.com/afw-org/afw/issues/2)) | C object APIs take **`const afw_value_t *` names**; script/JSON **string only** (integer object keys throw; array indexes still work) |
 | [**Expression property names**](#expression-property-names-in-object-values-issue-38) ([#38](https://github.com/afw-org/afw/issues/38)) | Object values may use `{ [expression]: value }` (same idea as `obj[expr]` get/set) |
 | [**Qualifier snapshots**](#list-active-qualified-variables-issue-9) ([#9](https://github.com/afw-org/afw/issues/9)) | **`qualifier(name)`** / **`qualifiers()`** return **fresh listable objects** (not live proxies); optional **`includeUntrusted`**; missing name → **nullish**; can be **large** |
 | [**Multi-frame `::` get**](#multi-frame-get-aligned-with-snapshots) | Stacked same-name qualifiers: first **defining** frame wins (was “first matching frame only”); aligned with snapshot semantics (landed with [#15](https://github.com/afw-org/afw/issues/15) work) |
@@ -648,11 +651,30 @@ metadata when docs are built.
 
 ---
 
+## Object property names as values (issue [#2](https://github.com/afw-org/afw/issues/2))
+
+**Issue [#2](https://github.com/afw-org/afw/issues/2)** — one feature branch in the memory/value campaign. Object **property names** in C are **`const afw_value_t *`**, compared with **`afw_value_equal`**. Adaptive Script and JSON/YAML/UBJSON remain **string names only**: a non-string name **throws** (no convert of `1` to `"1"`). Array and string indexes stay integer.
+
+```adaptive
+const o = { foo: 1 };
+o.foo;        // 1
+o["foo"];     // 1
+o[1];         // throws — not lookup of "1"
+const a = [10, 20];
+a[1];         // 20 — array index is still integer
+```
+
+C call sites that passed **`afw_s_foo`** as a property name use **`afw_v_foo`**. File-local static names that are not already generated: **`AFW_VALUE_STRING_LITERAL("sysname")`**, then **`&impl.pub`** at object APIs.
+
+[↑ Highlights](#highlights)
+
+---
+
 ## Expression property names in object values (issue [#38](https://github.com/afw-org/afw/issues/38))
 
 **Issue [#38](https://github.com/afw-org/afw/issues/38)** — **closed** 2026-08-04 (landed via PR **[#139](https://github.com/afw-org/afw/pull/139)** on `mgg-develop`).
 
-In an **object value**, a property name may be an **expression in square brackets**, not only an identifier or string literal. The expression is evaluated when the object value is evaluated; the result is used as the property name (a string). This matches **`obj[expression]`** get and assignment on an existing object.
+In an **object value**, a property name may be an **expression in square brackets**, not only an identifier or string literal. The expression is evaluated when the object value is evaluated; the result is used as the property name. The name must be a **string** (non-string throws — see [#2](#object-property-names-as-values-issue-2)). This matches **`obj[expression]`** get and assignment on an existing object.
 
 ```adaptive
 const col = "Customer Name";

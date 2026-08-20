@@ -1603,11 +1603,12 @@ afw_model_internal_complete_ctx_default_modify_object(
         /* Add mapped name to entry. */
         impl_get_property_type_by_property_name(
             &model_property_type, &mapped_property_name, ctx->model_object_type,
-            &(*entry)->first_property_name_entry->property_name, xctx);
+            &(*entry)->first_property_name_entry->property_name.internal, xctx);
         if (!model_property_type) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Property name " AFW_UTF8_FMT_Q " invalid",
-                AFW_UTF8_FMT_ARG(&(*entry)->first_property_name_entry->property_name));
+                AFW_UTF8_FMT_ARG(
+                    &(*entry)->first_property_name_entry->property_name.internal));
         }
         afw_array_push_value(mapped_entry,
             model_property_type->mapped_property_name_value, xctx);

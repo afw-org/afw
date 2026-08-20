@@ -235,9 +235,11 @@ afw_object_type_property_type_get_extended(
     }
 
     /* Attempt to get property and return if error or found. */
-    /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t is enough). */
-    result = afw_object_type_property_type_get(object_type,
-        afw_value_create_unmanaged_string(&pn, xctx->p, xctx), xctx);
+    {
+        const afw_value_string_t pn_value = AFW_VALUE_STRING_UNMANAGED(&pn);
+        result = afw_object_type_property_type_get(object_type,
+            &pn_value.pub, xctx);
+    }
     if (result) {
         /* If dotted name, process rest of name if it's object. */
         if (after_dot.len > 0) {

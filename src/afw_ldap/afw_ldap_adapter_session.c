@@ -474,7 +474,8 @@ impl_afw_adapter_session_modify_object(
                 "LDAP adapter only allows entity properties to be modified",
                 xctx);
         }
-        property_name = &(*e)->first_property_name_entry->property_name;
+        property_name =
+            &(*e)->first_property_name_entry->property_name.internal;
 
         /* Get property type for property and make sure it can be written. */
         attribute = afw_ldap_metadata_get_object_type_attribute(
@@ -491,9 +492,6 @@ impl_afw_adapter_session_modify_object(
         mod = afw_pool_calloc_type(p, LDAPMod, xctx);
         mod->mod_type = apr_pstrndup(afw_pool_get_apr_pool(p),
             property_name->s, property_name->len);
-        mod->mod_type = apr_pstrndup(afw_pool_get_apr_pool(p),
-            (*e)->first_property_name_entry->property_name.s,
-            (*e)->first_property_name_entry->property_name.len);
 
         switch ((*e)->type) {
 

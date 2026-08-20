@@ -414,9 +414,12 @@ impl_parse_definition(
     /* Use metadata p. */
     p = metadata->p;
 
-    /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t). */
-    value = afw_object_get_property(metadata->schema_object,
-        afw_value_create_unmanaged_string(name_in_schema, p, xctx), xctx);
+    {
+        const afw_value_string_t name_value =
+            AFW_VALUE_STRING_UNMANAGED(name_in_schema);
+        value = afw_object_get_property(metadata->schema_object,
+            &name_value.pub, xctx);
+    }
     if (!value) {
         return NULL;
     }
@@ -767,9 +770,12 @@ impl_properties_to_object_type(
 
     req_pn.s = (required) ? "MUST" : "MAY";
     req_pn.len = strlen(req_pn.s);
-    /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t). */
-    value = afw_object_get_property(object_class_object,
-        afw_value_create_unmanaged_string(&req_pn, xctx->p, xctx), xctx);
+    {
+        const afw_value_string_t req_pn_value =
+            AFW_VALUE_STRING_UNMANAGED(&req_pn);
+        value = afw_object_get_property(object_class_object,
+            &req_pn_value.pub, xctx);
+    }
     if (!value) {
         return;
     }

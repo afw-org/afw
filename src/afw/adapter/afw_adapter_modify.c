@@ -77,21 +77,16 @@ impl_find_object(
     const afw_object_path_property_name_entry_t *entry;
 
     result = entity;
-    /* FIXME #2: utf8 name wrap; path entry could be afw_value_string_t. */
-    *property_name = afw_value_create_unmanaged_string(
-        &first_property_name_entry->property_name, entity->p, xctx);
+    *property_name = &first_property_name_entry->property_name.pub;
     for (entry = first_property_name_entry; entry->next; entry = entry->next)
     {
-        *property_name = afw_value_create_unmanaged_string(
-            &entry->next->property_name, entity->p, xctx);
+        *property_name = &entry->next->property_name.pub;
         object = afw_object_old_get_property_as_object(result,
-            afw_value_create_unmanaged_string(
-                &entry->property_name, entity->p, xctx), xctx);
+            &entry->property_name.pub, xctx);
         if (!object) {
             if (create_if_necessary) {
                 object = afw_object_create_embedded(result,
-                    afw_value_create_unmanaged_string(
-                        &entry->property_name, entity->p, xctx), xctx);
+                    &entry->property_name.pub, xctx);
             }
             else {
                 result = NULL;
@@ -216,9 +211,8 @@ afw_adapter_modify_entries_from_list(
         if (afw_value_is_string(value)) {
             entry->first_property_name_entry = property_name_entry =
                 afw_pool_calloc_type(p, afw_object_path_property_name_entry_t, xctx);
-            s = &((const afw_value_string_t *)value)->internal;
-            property_name_entry->property_name.s = s->s;
-            property_name_entry->property_name.len = s->len;
+            property_name_entry->property_name =
+                *(const afw_value_string_t *)value;
         }
         else if (afw_value_is_array(value)) {
             for (names_i = NULL, prev_property_name_list = NULL;;) {
@@ -233,8 +227,9 @@ afw_adapter_modify_entries_from_list(
                 }
                 property_name_entry = afw_pool_calloc_type(p,
                     afw_object_path_property_name_entry_t, xctx);
-                property_name_entry->property_name.s = s->s;
-                property_name_entry->property_name.len = s->len;
+                property_name_entry->property_name.inf =
+                    &afw_value_unmanaged_string_inf;
+                property_name_entry->property_name.internal = *s;
                 if (prev_property_name_list) {
                     prev_property_name_list->next = property_name_entry;
                 }
@@ -312,17 +307,13 @@ afw_adapter_modify_entries_to_list(
                 property_name_entry;
                 property_name_entry = property_name_entry->next)
             {
-                value = afw_value_create_unmanaged_string(
-                    &property_name_entry->property_name,
-                    p, xctx);
+                value = &property_name_entry->property_name.pub;
                 afw_array_push_value(name_list, value, xctx);
             }
             value = afw_value_create_unmanaged_array(name_list, p, xctx);
         }
         else {
-            value = afw_value_create_unmanaged_string(
-                &(*e)->first_property_name_entry->property_name,
-                p, xctx);
+            value = &(*e)->first_property_name_entry->property_name.pub;
         }
         afw_array_push_value(tuple, value, xctx);
 
@@ -381,7 +372,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
                     "add_value " AFW_UTF8_FMT_Q
                     " must be a defined and evaluated value",
                     AFW_UTF8_FMT_ARG(
-                        &first_property_name_entry->property_name));
+                        &first_property_name_entry->property_name.internal));
             }
 
             /* If object already has this property, add value to it. */

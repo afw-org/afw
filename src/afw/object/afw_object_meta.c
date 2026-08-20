@@ -421,13 +421,12 @@ afw_object_meta_set_meta_object(
             property_types = afw_object_old_get_property_as_object(
                 meta, afw_v_propertyTypes, xctx);
             if (property_types) {
-                /* FIXME #2: utf8 name wrap (get-only: stack
-                   afw_value_string_t). */
-                property_type = afw_object_old_get_property_as_object(
-                    property_types,
-                    afw_value_create_unmanaged_string(
-                        instance->meta.id, property_types->p, xctx),
-                    xctx);
+                {
+                    const afw_value_string_t id_value =
+                        AFW_VALUE_STRING_UNMANAGED(instance->meta.id);
+                    property_type = afw_object_old_get_property_as_object(
+                        property_types, &id_value.pub, xctx);
+                }
                 if (property_type) {
                     object_type_id = afw_object_old_get_property_as_string(
                         property_type, afw_v_dataTypeParameter, xctx);

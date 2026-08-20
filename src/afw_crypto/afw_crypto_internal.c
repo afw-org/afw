@@ -918,10 +918,9 @@ afw_crypto_internal_object_get_binary(
     afw_xctx_t *xctx)
 {
     const afw_value_t *v;
+    const afw_value_string_t name_value = AFW_VALUE_STRING_UNMANAGED(name);
 
-    /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t). */
-    v = afw_object_get_property(obj,
-        afw_value_create_unmanaged_string(name, xctx->p, xctx), xctx);
+    v = afw_object_get_property(obj, &name_value.pub, xctx);
     if (!v) {
         if (required) {
             AFW_THROW_ERROR_Z(argument_error, missing_prefix, xctx);
@@ -943,10 +942,9 @@ afw_crypto_internal_object_get_binary_or_b64string(
     const afw_value_t *v;
     afw_memory_t *mem;
     const afw_utf8_t *s;
+    const afw_value_string_t name_value = AFW_VALUE_STRING_UNMANAGED(name);
 
-    /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t). */
-    v = afw_object_get_property(obj,
-        afw_value_create_unmanaged_string(name, xctx->p, xctx), xctx);
+    v = afw_object_get_property(obj, &name_value.pub, xctx);
     if (!v) {
         if (required) {
             AFW_THROW_ERROR_Z(argument_error, missing_prefix, xctx);

@@ -1039,10 +1039,7 @@ impl_get_object_by_uri(
             result = (afw_object_view_internal_object_self_t *)
                 afw_object_old_get_property_as_object(
                 (const afw_object_t *)result,
-                /* FIXME #2: utf8 name wrap; path entry could be
-                   afw_value_string_t. */
-                afw_value_create_unmanaged_string(
-                    &name->property_name, xctx->p, xctx), xctx);
+                &name->property_name.pub, xctx);
             if (!result) {
                 goto error;
             }

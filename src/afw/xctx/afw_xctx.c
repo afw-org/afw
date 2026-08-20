@@ -496,9 +496,10 @@ impl_get_object_variable_cb(
      * Present null/undefined properties should be stored as afw_value_null /
      * afw_value_undefined (or other values), not omitted.
      */
-    /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t is enough). */
+    const afw_value_string_t name_value = AFW_VALUE_STRING_UNMANAGED(name);
+
     return afw_object_get_property(entry->qualifier_object,
-        afw_value_create_unmanaged_string(name, xctx->p, xctx), xctx);
+        &name_value.pub, xctx);
 }
 
 

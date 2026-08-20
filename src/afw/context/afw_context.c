@@ -76,15 +76,17 @@ impl_contribute_cb_variables_cb(
 
     for (variable = variables; *variable; variable++) {
         name = (*variable)->meta->name;
-        /* FIXME #2: utf8 name wrap; context meta->name could be
-           afw_value_string_t. */
-        if (afw_object_has_property(object,
-            afw_value_create_unmanaged_string(name, object->p, xctx), xctx))
         {
-            continue;
+            const afw_value_string_t name_value =
+                AFW_VALUE_STRING_UNMANAGED(name);
+            if (afw_object_has_property(object, &name_value.pub, xctx))
+            {
+                continue;
+            }
         }
         value = (*variable)->get_cb(entry, name, xctx);
         if (value) {
+            /* SET: name header must live with the object. */
             afw_object_set_property(object,
                 afw_value_create_unmanaged_string(name, object->p, xctx),
                 value, xctx);

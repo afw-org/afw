@@ -522,10 +522,11 @@ afw_boolean_t afw_adapter_impl_index_try(
         else
         {
             /* no value script: index property with the same name as the key */
-            /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t). */
-            eval = afw_object_get_property(object,
-                afw_value_create_unmanaged_string(key, object->p, xctx),
-                xctx);
+            {
+                const afw_value_string_t key_value =
+                    AFW_VALUE_STRING_UNMANAGED(key);
+                eval = afw_object_get_property(object, &key_value.pub, xctx);
+            }
         }
 
         /* if eval is nullish, then we didn't generate a value and shouldn't index */
@@ -991,11 +992,10 @@ afw_boolean_t afw_adapter_impl_index_is_property_indexed(
     const afw_object_t * indexDefinition;
 
     if (instance->indexDefinitions) {
-        /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t). */
+        const afw_value_string_t property_name_value =
+            AFW_VALUE_STRING_UNMANAGED(property_name);
         indexDefinition = afw_object_old_get_property_as_object(
-            instance->indexDefinitions,
-            afw_value_create_unmanaged_string(property_name, xctx->p, xctx),
-            xctx);
+            instance->indexDefinitions, &property_name_value.pub, xctx);
         if (indexDefinition) {
             if (afw_adapter_impl_index_object_type_applicable(
                 indexDefinition, object_type_id, xctx)) {
@@ -1023,11 +1023,10 @@ const afw_object_t * afw_adapter_impl_index_get_index_definition(
     const afw_object_t * indexDefinition = NULL;
 
     if (instance->indexDefinitions) {
-        /* FIXME #2: utf8 name wrap (get-only: stack afw_value_string_t). */
+        const afw_value_string_t property_name_value =
+            AFW_VALUE_STRING_UNMANAGED(property_name);
         indexDefinition = afw_object_old_get_property_as_object(
-            instance->indexDefinitions,
-            afw_value_create_unmanaged_string(property_name, xctx->p, xctx),
-            xctx);
+            instance->indexDefinitions, &property_name_value.pub, xctx);
         if (indexDefinition) {
             if (afw_adapter_impl_index_object_type_applicable(
                 indexDefinition, object_type_id, xctx)) {

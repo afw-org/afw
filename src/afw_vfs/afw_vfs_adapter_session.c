@@ -1364,7 +1364,7 @@ impl_afw_adapter_session_modify_object(
     }
     else if (
         !afw_utf8_equal(
-            &(*entry)->first_property_name_entry->property_name,
+            &(*entry)->first_property_name_entry->property_name.internal,
             afw_vfs_s_data))
     {
         valid = false;
