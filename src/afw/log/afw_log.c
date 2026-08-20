@@ -787,7 +787,8 @@ afw_log_impl_throw_property_invalid(
         "Configuration type=log, logId=" AFW_UTF8_FMT_Q
         " property name " AFW_UTF8_FMT_Q " is not valid.",
         AFW_UTF8_FMT_ARG(&log->log_id),
-        AFW_UTF8_FMT_ARG(property_name));
+        AFW_UTF8_FMT_ARG(
+            afw_object_property_name_display_utf8(property_name, xctx)));
 }
 
 
@@ -801,7 +802,8 @@ afw_log_impl_throw_property_required(
         "Configuration type=log, logId=" AFW_UTF8_FMT_Q
         " property name " AFW_UTF8_FMT_Q " is required.",
         AFW_UTF8_FMT_ARG(&log->log_id),
-        AFW_UTF8_FMT_ARG(property_name));
+        AFW_UTF8_FMT_ARG(
+            afw_object_property_name_display_utf8(property_name, xctx)));
 }
 
 
@@ -851,7 +853,8 @@ afw_log_impl_create_cede_p(
 
     /* Process <priority>, if they exists. */
     for (e = afw_log_get_priority_id_map(); e->priority_id; e++) {
-        b = afw_object_old_get_property_as_boolean(properties, e->priority_id,
+        b = afw_object_old_get_property_as_boolean(properties,
+            afw_value_create_unmanaged_string(e->priority_id, p, xctx),
             &found, xctx);
         if (found) {
             afw_log_set_priority_in_mask(&impl->mask, e->priority, b);

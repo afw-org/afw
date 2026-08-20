@@ -692,7 +692,9 @@ impl_object_type_compile(
             pt++)
         {
             *pt = impl_compile_property_type(
-                ot, pt_object, pt_object->meta.id, xctx);
+                ot, pt_object,
+                afw_value_create_unmanaged_string(
+                    pt_object->meta.id, p, xctx), xctx);
         }
     }
 
@@ -768,7 +770,9 @@ impl_object_type_compile(
     if (pt_object) {
         ot->property_type_other =
             impl_compile_property_type(
-                ot, pt_object, pt_object->meta.id, xctx);
+                ot, pt_object,
+                afw_value_create_unmanaged_string(
+                    pt_object->meta.id, p, xctx), xctx);
     }
 
     /* Return object type struct. */
@@ -833,9 +837,13 @@ afw_model_compile(
             objectTypes, &iterator, &property_name, xctx);
         if (!object_type) break;
         model_object_type = impl_object_type_compile(model,
-            adapter_id, property_name, object_type, xctx);
+            adapter_id,
+            afw_object_string_property_name_as_utf8(property_name, xctx),
+            object_type, xctx);
         apr_hash_set(model->model_object_types,
-            property_name->s, property_name->len, model_object_type);
+            afw_object_string_property_name_as_utf8(property_name, xctx)->s,
+            afw_object_string_property_name_as_utf8(property_name, xctx)->len,
+            model_object_type);
     }
 
     /* Return model. */

@@ -319,7 +319,7 @@ afw_file_adapter_create_cede_p(
     if (!self->content_type)
     {
         afw_adapter_impl_throw_property_invalid(adapter,
-            afw_s_contentType, xctx);
+            afw_v_contentType, xctx);
     }
 
     /* Get optional filename extension */
@@ -335,7 +335,7 @@ afw_file_adapter_create_cede_p(
         afw_compile_type_template, p, xctx);
     if (!afw_value_is_string(value)) {
         afw_adapter_impl_throw_property_invalid(adapter,
-            afw_s_root, xctx);
+            afw_v_root, xctx);
     }
     self->root = afw_file_insure_full_path(
         &((afw_value_string_t *)value)->internal,

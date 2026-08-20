@@ -522,7 +522,9 @@ afw_boolean_t afw_adapter_impl_index_try(
         else
         {
             /* no value script: index property with the same name as the key */
-            eval = afw_object_get_property(object, key, xctx);
+            eval = afw_object_get_property(object,
+                afw_value_create_unmanaged_string(key, object->p, xctx),
+                xctx);
         }
 
         /* if eval is nullish, then we didn't generate a value and shouldn't index */
@@ -1202,8 +1204,7 @@ AFW_DEFINE(afw_boolean_t) afw_adapter_impl_index_sargable_entry(
     /* Determine if this property is indexed */
     sargable = afw_adapter_impl_index_is_property_indexed(instance,
         object_type_id,
-        afw_object_string_property_name_as_utf8(
-            entry->property_name, xctx), xctx);
+        entry->property_name, xctx);
    
     /* A bottom leaf of our query decision tree */ 
     if (entry->on_true == AFW_QUERY_CRITERIA_TRUE &&
@@ -1486,8 +1487,7 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list(
     /* Determine if this property is indexed */
     indexDefinition = afw_adapter_impl_index_get_index_definition(
         instance, object_type_id,
-        afw_object_string_property_name_as_utf8(
-            entry->property_name, xctx), xctx);
+        entry->property_name, xctx);
     if (indexDefinition)
     {
         /* if the indexDefinition is case-insensitive, then we need
@@ -1503,8 +1503,7 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list(
         /** @fixme we need to register open cursors to be released, because we
             may not know exactly when to discard them */
         cursor = afw_adapter_impl_index_open_cursor(instance, object_type_id, 
-            afw_object_string_property_name_as_utf8(
-                entry->property_name, xctx),
+            entry->property_name,
             entry->op_id, value_string, unique, xctx->p, xctx);
     } 
 
@@ -1667,7 +1666,9 @@ static afw_boolean_t afw_adapter_impl_index_applies(
     const afw_query_criteria_filter_entry_t *entry = cursor->filter_entry;
     const afw_value_t *value;
 
-    value = afw_object_get_property(object, entry->property_name, xctx);
+    value = afw_object_get_property(object,
+        afw_value_create_unmanaged_string(
+            entry->property_name, xctx->p, xctx), xctx);
     if (value) {
         switch (entry->op_id) {
             case afw_query_criteria_filter_op_id_eq:

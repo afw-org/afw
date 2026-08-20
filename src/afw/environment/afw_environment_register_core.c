@@ -206,7 +206,7 @@ impl_create_environment_variables_object(
         afw_s__AdaptiveSystemInfo_,
         afw_s_initialEnvironmentVariables,
         xctx);
-    afw_object_meta_set_property_as(result, afw_s_description, string,
+    afw_object_meta_set_property_as(result, afw_v_description, string,
         &impl_s_description_initialEnvironmentVariables, xctx);
     afw_object_meta_set_read_only(result, xctx);
 

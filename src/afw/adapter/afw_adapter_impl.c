@@ -150,7 +150,8 @@ afw_adapter_impl_throw_property_invalid(
         " is not valid.",
         AFW_UTF8_FMT_ARG(adapter->impl->source_location),
         AFW_UTF8_FMT_ARG(&adapter->adapter_id),
-        AFW_UTF8_FMT_ARG(property_name));
+        AFW_UTF8_FMT_ARG(
+            afw_object_property_name_display_utf8(property_name, xctx)));
 }
 
 
@@ -168,7 +169,8 @@ afw_adapter_impl_throw_property_required(
         " is required.",
         AFW_UTF8_FMT_ARG(adapter->impl->source_location),
         AFW_UTF8_FMT_ARG(&adapter->adapter_id),
-        AFW_UTF8_FMT_ARG(property_name));
+        AFW_UTF8_FMT_ARG(
+            afw_object_property_name_display_utf8(property_name, xctx)));
 }
 
 

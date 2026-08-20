@@ -528,7 +528,9 @@ impl_add_reconcile_property(
         // return; /** @fixme Ignore these on reconcile???
         AFW_THROW_ERROR_FZ(general, wa->xctx,
             "Property " AFW_UTF8_FMT " can not be modified",
-            AFW_UTF8_FMT_ARG(property_name));
+            AFW_UTF8_FMT_ARG(
+                afw_object_property_name_display_utf8(
+                    property_name, wa->xctx)));
         //*/
     }
 
@@ -602,7 +604,9 @@ impl_reconcile_object(
         if (!pt) {
             AFW_THROW_ERROR_FZ(general, wa->xctx,
                 "Missing property type for " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(property_name));
+                AFW_UTF8_FMT_ARG(
+                afw_object_property_name_display_utf8(
+                    property_name, wa->xctx)));
         }
 
         /* Normalize modified value. */

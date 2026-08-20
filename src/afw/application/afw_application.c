@@ -534,7 +534,9 @@ afw_application_internal_application_conf_type_create_cede_p(
                     "rootFilePaths." AFW_UTF8_FMT
                     " must evaluate to string",
                     AFW_UTF8_FMT_ARG(detail_source_location),
-                    AFW_UTF8_FMT_ARG(property_name));
+                    AFW_UTF8_FMT_ARG(
+                        afw_object_property_name_display_utf8(
+                            property_name, xctx)));
             }
             full_path = afw_file_insure_full_path(
                 &((const afw_value_string_t *)evaluated)->internal,

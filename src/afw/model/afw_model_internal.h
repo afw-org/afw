@@ -260,7 +260,7 @@ struct afw_model_internal_object_type_s {
 struct afw_model_internal_property_type_s {
 
     /** @brief Property name or regular expression if other. */
-    const afw_value_t *property_name;
+    const afw_utf8_t *property_name;
 
     /** @brief Property name as adaptive value. */
     const afw_value_t *property_name_value;

@@ -437,7 +437,9 @@ afw_compile_templates(
             detail_source_location = afw_utf8_printf(object->p, xctx,
                 AFW_UTF8_FMT "/" AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(source_location),
-                AFW_UTF8_FMT_ARG(property_name));
+                AFW_UTF8_FMT_ARG(
+                    afw_object_property_name_display_utf8(
+                        property_name, xctx)));
             value = afw_compile_to_value(
                 &((afw_value_template_t *)value)->internal,
                 detail_source_location,
@@ -451,7 +453,9 @@ afw_compile_templates(
             detail_source_location = afw_utf8_printf(object->p, xctx,
                 AFW_UTF8_FMT "/" AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(source_location),
-                AFW_UTF8_FMT_ARG(property_name));
+                AFW_UTF8_FMT_ARG(
+                    afw_object_property_name_display_utf8(
+                        property_name, xctx)));
             afw_compile_templates(
                 ((const afw_value_object_t *)value)->internal,
                 detail_source_location, true, shared, xctx);
@@ -493,7 +497,9 @@ afw_compile_object_all_template_properties(
         detail_source_location = afw_utf8_printf(object->p, xctx,
                 AFW_UTF8_FMT " property " AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(source_location),
-                AFW_UTF8_FMT_ARG(property_name));
+                AFW_UTF8_FMT_ARG(
+                    afw_object_property_name_display_utf8(
+                        property_name, xctx)));
         value_data_type = afw_value_get_data_type(value, xctx);
         if (!value_data_type ||
             !afw_utf8_equal(&value_data_type->cType, afw_s_afw_utf8_t))

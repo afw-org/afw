@@ -112,7 +112,7 @@ impl_call_function(
             else if (!afw_value_is_boolean_true((*a)->optional)) {
                 AFW_THROW_ERROR_FZ(general, xctx,
                     "Missing parameter " AFW_UTF8_FMT_Q,
-                    AFW_UTF8_FMT_ARG(&(*a)->name->pub));
+                    AFW_UTF8_FMT_ARG(&(*a)->name->internal));
             }
         }
 
@@ -238,7 +238,7 @@ afw_action_perform(
     const afw_value_t *action_response_entry_value;
     const afw_utf8_t *functionId;
     const afw_value_function_definition_t *function;
-    const afw_utf8_t *name;
+    const afw_value_t *name;
     afw_integer_t action_number = 0;
     const afw_value_t *value;
     const afw_iterator_old_t *iterator;
@@ -259,10 +259,10 @@ afw_action_perform(
     AFW_TRY{
 
         /* Get actions property.  If it doesn't exist, process single function. */
-        name = afw_s_actions;
+        name = afw_v_actions;
         value = afw_object_get_property(request, name, xctx);
         if (!value) {
-            name = afw_s_function;
+            name = afw_v_function;
             value = afw_object_get_property(request, name, xctx);
             if (!value) {
                 AFW_THROW_ERROR_Z(syntax,
@@ -297,7 +297,8 @@ afw_action_perform(
         if (!afw_value_is_array(value)) {
             AFW_THROW_ERROR_FZ(syntax, xctx,
                 "Property " AFW_UTF8_FMT_Q " of actions is missing or invalid",
-                AFW_UTF8_FMT_ARG(name));
+                AFW_UTF8_FMT_ARG(
+                    afw_object_property_name_display_utf8(name, xctx)));
         }
         actions = ((const afw_value_array_t *)value)->internal;
 
@@ -345,7 +346,7 @@ afw_action_perform(
             }
 
             /* Get required function. */
-            name = afw_s_function;
+            name = afw_v_function;
             value = afw_object_get_property(action_entry, name, xctx);
             if (!value) {
                 value = afw_object_get_property(request, name, xctx);
@@ -355,7 +356,9 @@ afw_action_perform(
                 AFW_THROW_ERROR_FZ(syntax, xctx,
                     "Property " AFW_UTF8_FMT_Q " of action " AFW_INTEGER_FMT
                     " is missing or invalid",
-                    AFW_UTF8_FMT_ARG(name), action_number);
+                    AFW_UTF8_FMT_ARG(
+                        afw_object_property_name_display_utf8(name, xctx)),
+                    action_number);
             }
 
             /* Get function. */
