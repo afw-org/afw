@@ -2,7 +2,7 @@
 
 **Audience:** maintainers and AI assistants; useful secondary reading for extension/command authors.  
 **Not** published handbook or end-user docs.  
-**Status:** architecture reference for **[#149](https://github.com/afw-org/afw/issues/149)** (child of **[#2 Memory management](https://github.com/afw-org/afw/issues/2)**). Phases 1–3 shipped (accessor registry, lock+copy `referenceCount`, objectOptions pool fix, lock-safe live metrics/properties). Pad remains the map for #2-adjacent follow-on.  
+**Status:** architecture reference for **[#149](https://github.com/afw-org/afw/issues/149)** (child of **[#2 Memory management](https://github.com/afw-org/afw/issues/2)**). Phases 1–3 shipped (accessor registry, lock+copy `referenceCount`, objectOptions pool fix, live metrics/properties). Metrics/properties also pin the instance until the caller pool is released. Pad remains the map for #2-adjacent follow-on.  
 **Related pads:** [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) (discovery notes; may be superseded by this file for architecture), [`memory-management.md`](memory-management.md) (#2 umbrella).  
 **Related issues (separate tracks):** [#49](https://github.com/afw-org/afw/issues/49) `maxObjects`, [#127](https://github.com/afw-org/afw/issues/127) progressive retrieve release, [#17](https://github.com/afw-org/afw/issues/17) faces (different lifetime problem).
 
@@ -500,7 +500,8 @@ High signal for #149 (adjust as inventory proceeds):
 4. ~~Phase 1 PR to `mgg-develop`~~ — [PR #160](https://github.com/afw-org/afw/pull/160) merged 2026-08-09 (`32ff0706`).  
 5. ~~EnvironmentRegistry/`current` + rich objectOptions “must have a pool” (§14.7).~~ **fixed** PR **#161**.  
 6. ~~metrics / properties: document-R + lock-safe pointer load~~ — `adapter_metrics` loads under lock; new `adapter_properties`; OT prose. **No** deep metrics snapshot (product accepts live-while-active).  
-   **Residual:** the lock only makes the **pointer load** safe. After `AFW_LOCK_END` the accessor does not hold an adapter/session reference. A concurrent stop can still destroy the pool behind the live object. `returnsLiveReference` plus “only valid while you hold a session” is a contract the API does not enforce. Same shape on `adapter_properties`. Follow-on under **#2**: copy under lock, or hold `afw_adapter_get_reference` for the value’s life — discuss first.  
+   **Pin for the caller pool (not #2):** after the pointer load, the accessor increments the instance `reference_count` and registers `afw_adapter_release` on `p`. Stop/replace drains until that pool is cleaned up. Counters still live. Values are unmanaged; do not cache them past `p`. Direct GET of `_AdaptiveAdapterMetrics_` does not go through this accessor.  
+   **Later (#2, not this pin):** runtime objects still **map over active data**. Const graphs are fine. Some live mapped objects may instead need a copy into the requestor’s pool **while the lock is still held** (clone as properties are read, or a memory object of copied values). That shortens how long changing/disappearing data must stay pinned. That is not how runtime objects work today; inventory other properties/types before assuming the pin is enough everywhere.  
 7. **Out of #149 / under #2 if needed:** services/logs custom paths; deeper escape/leak work.
 
 When decisions stabilize, promote invariants into `.cursor/rules` or developer docs and thin the pads.
@@ -538,7 +539,7 @@ Views reshape presentation; **#149 still reasons about the base object + accesso
 
 - **Active** instance accepts new `get_reference` traffic.
 - On replace/stop: old anchor copy chained on **`stopping`**; new active installed; old drains until **reference_count → 0** then destroy.
-- Runtime OT `_AdaptiveAdapter_` maps the anchor. Accessors **`stopping_adapter_instances`** and **`adapter_reference_count`** **lock + copy** into the request pool. **`metrics` / `properties`** remain **live while active** (documented on the OT; product choice — not full-clone on get). Parallel pattern for authorization handlers (`authorization_handler_reference_count`, stopping_*).
+- Runtime OT `_AdaptiveAdapter_` maps the anchor. Accessors **`stopping_adapter_instances`** and **`adapter_reference_count`** **lock + copy** into the request pool. **`metrics` / `properties`** remain **live while active** (not a full clone) and **pin the instance** until the caller pool is cleaned up. Parallel pattern for authorization handlers (`authorization_handler_reference_count`, stopping_*).
 
 Service control for probes: `service_get` / `service_start` / `service_stop` / `service_restart`. Prefer **files / vfs / lmdb** (etc.). Do **not** stop permanent **adapter-afw** / **adapter-conf** (can strand the host).
 
@@ -585,7 +586,7 @@ Adapter types normalize **object stores** behind one object API (provisioning). 
 | **service_startup** / **service_status** | no | memcpy enum → permanent utf8 name string | **S** (enum) + **P** (name) | |
 | **stopping_adapter_instances** | **yes** `adapter_id_anchor_lock` | count + copy refcounts into array on `p` | **S** | **Reference implementation for #149** |
 | **stopping_authorization_handler_instances** | **yes** rw lock | same pattern | **S** | |
-| **adapter_metrics** | no | unmanaged object value wrapping `adapter->impl->metrics_object` | **R/L** | Pointer into instance; OK while instance refcount holds; dangling after destroy |
+| **adapter_metrics** | no | unmanaged object value wrapping `adapter->impl->metrics_object` | **R/L** | Pointer into instance; accessor pins instance until `p` cleanup |
 | **adapter_additional_metrics** | no | may call adapter for extra metrics object on `p` | **R** / varies | |
 | **applicable_flags** | no | builds array of flag id values on `p` | **S** (array); flag ids **P** | |
 | **null_terminated_array_of_*** | no | builds array view/wrappers on `p` | often **S** shell + **P** element ptrs | Function metadata tables (permanent) |
@@ -612,8 +613,8 @@ Plus **18** `onGetValueCFunctionName` model `current::` callbacks (xctx model st
 | adapterId | indirect | **E** | id in env/anchor; stable for process life of id registration |
 | serviceId | indirect | **E** | same |
 | referenceCount | **adapter_reference_count** | **P (snapshot)** | lock + copy integer under `adapter_id_anchor_lock` |
-| properties | default (object *) | **R/L** | copies **pointer** to properties object into value; object lives with adapter/conf lifetime; **NULL when fully stopped** |
-| metrics | adapter_metrics | **R/L** | pointer to metrics runtime object on instance; **NULL when no active adapter** |
+| properties | adapter_properties | **R/L** | pointer to properties object; pin until `p` cleanup; **NULL when fully stopped** |
+| metrics | adapter_metrics | **R/L** | pointer to metrics runtime object on instance; pin until `p` cleanup; **NULL when no active adapter** |
 | stopping | stopping_adapter_instances | **S** | lock+copy; empty/absent when no draining instances |
 
 **Live probes (full AFWDev afwfcgi, 2026-08-08):**
@@ -643,7 +644,7 @@ Plus **18** `onGetValueCFunctionName` model `current::` callbacks (xctx model st
 ### 14.5 Candidate fixes
 
 1. **referenceCount (adapter + auth):** done — lock + copy.  
-2. **metrics / properties:** chose **(a) document-R + lock-safe pointer load** — not deep snapshot. `adapter_metrics` loads active adapter under `adapter_id_anchor_lock`; `adapter_properties` loads properties under the same lock; both `returnsLiveReference`.  
+2. **metrics / properties:** live-while-active (not a deep snapshot) plus instance pin until caller pool cleanup. `adapter_metrics` / `adapter_properties` load under `adapter_id_anchor_lock`, increment the instance refcount, wrap the live object, release on `p` cleanup. Both `returnsLiveReference`.  
 3. **Keep** stopping_* as the gold standard for true multi-instance drain snapshots.  
 4. Optional later (not #149 close-out): mid-drain `stopping[]` test with concurrent session holder.
 

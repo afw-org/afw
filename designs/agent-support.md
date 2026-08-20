@@ -102,7 +102,7 @@ Shape: **symptom → layer → probe → code / doc entry**.
 
 - **Create vs evaluate** — do not mix (`afw-script-eval`). `argv[0]` at create is the callee expression; `x->function` is harvest at evaluate.  
 - **New get, old delete** — look-through / face / view added on read; mutate/delete/count still the old impl. Faces: delete is a local NULL tombstone (`issue-17`).  
-- **Sibling already learned it** — `split()` empty separator vs `replace()` empty match; `create_array()` cap vs `read(n)`; `copies_under_lock` vs live metrics.  
+- **Sibling already learned it** — `split()` empty separator vs `replace()` empty match; `create_array()` cap vs `read(n)`; `copies_under_lock` vs live metrics (metrics/properties pin the instance until the caller pool is cleaned up; they are not a deep snapshot).  
 - **Two impls of one interface** — memory array index uses `>= count`; C-array view used `> count` (gate: `tests/advanced/array_view_index/`).  
 - **Script integer → malloc / spin / C stack** — APR pools often abort on huge alloc; empty match + “replace all” never advances; type and destructure parse have a nesting limit (`AFW_COMPILE_PARSE_NESTING_MAX`); other grammars may not.  
 - **Type names are declared before use** — like script values, not hoisted. Self-ref in the same `type` / `interface` body is allowed. Unknown names are a compile error even with typeCheck off.  

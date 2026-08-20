@@ -28,3 +28,7 @@ tests:
   - name: test_script hybrid step
     sourceType: test_script
     sourcePath: step_catalog_sane.as
+  - name: hold metrics and properties across service_stop
+    sourceType: script
+    sourcePath: hold_metrics_across_stop.as
+    expect: file

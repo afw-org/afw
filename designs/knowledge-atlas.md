@@ -47,7 +47,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 
 | Area | Pointers |
 |------|----------|
-| Env / runtime catalog / accessors | #149 pads; atlas §5; **#2 leftover:** live metrics after unlock |
+| Env / runtime catalog / accessors | #149 pads; atlas §5; metrics/properties pin until caller pool cleanup |
 | Hosts / stop | #158; atlas §6 |
 | Memory / faces / `create_array` | #2 pad; #17 faces; atlas §3 |
 | Types | #28 pad + `typescript-differences.md`; #186 parse nesting; #188 names declared before use |
@@ -174,7 +174,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | **Day rules** | `afw-environment`, `afw-environment-variables`, `afw-core-services` (runtime section) |
 | **Deep pads** | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) (architecture), [`runtime-value-accessors.md`](runtime-value-accessors.md) (catalog snapshot), [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) (discovery notes) |
 | **Probe** | Typed `retrieve_objects` / GET `/afw/_Adaptive…_/`; `/afw/_AdaptiveRuntimeValueAccessor_/`; **do not** stop permanent `adapter-afw` / `adapter-conf`; prefer typed retrieve over full `current` materialize |
-| **Open** | Residuals under **#2**; metrics/properties live pointer after unlock (lock-safe load ≠ lifetime); more adapters may need terminating checks; attach lifecycle for orchestrated leaves not fully built |
+| **Open** | Residuals under **#2** (managed object/array, long-running escape). Metrics/properties pin the instance until the caller pool is cleaned up (not a deep snapshot; not a managed wrapper). Runtime objects still map over live data; const graphs are fine. A later #2 option is clone-into-requestor-pool **under the lock** so changing data need only live long enough to copy. More adapters may need terminating checks; attach lifecycle for orchestrated leaves not fully built |
 | **Gap** | Live-stack / action probes now in `agent-support`. Architecture pad remains the deep map. |
 
 **Registry discovery (condensed)**
