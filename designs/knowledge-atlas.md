@@ -49,7 +49,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 |------|----------|
 | Env / runtime catalog / accessors | #149 pads; atlas §5; metrics/properties pin until caller pool cleanup |
 | Hosts / stop | #158; atlas §6 |
-| Memory / faces / `create_array` | #2 pad; #17 faces; atlas §3 |
+| Memory / faces / `create_array` | #2 pad; names-as-values slice; #17 faces; atlas §3 |
 | Types | #28 pad + `typescript-differences.md`; #186 parse nesting; #188 names declared before use |
 | Script language | #62 pad; #33 errors; #172 must-change |
 | Compile / call / spread | `afw-script-eval`; #140 / #181; `compiler_internal` kind-check |
@@ -146,9 +146,9 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 |-------|---------|
 | **Settled map** | Values first; permanent / managed / managed_slice / unmanaged; hierarchical pools; short request teardown proven; long-running needs escape discipline. Payloads (`afw_utf8_t` / `afw_memory_t`) have no pool; doors are `create`/`set`/`no_copy`/`forced_safe` — [`c-naming-and-payloads.md`](c-naming-and-payloads.md) |
 | **Day rules** | `afw-runtime-model` (always-on), `afw-value-memory`, `afw-script-eval` |
-| **Deep pad** | [`memory-management.md`](memory-management.md) (**large** — do not rewrite this pass); philosophy pad core model |
+| **Deep pad** | [`memory-management.md`](memory-management.md) (**large** — do not rewrite this pass); philosophy pad core model; next discussed branch [`issue-2-property-name-values.md`](issue-2-property-name-values.md) |
 | **Probe** | Targeted `.as` + `afwdev test -j --env-mode valgrind`; orchestrated multi-request leaves; never “fix memory” without a metric/story |
-| **Open** | Umbrella **#2** — phased partner workflow in memory pad; parent of closed #149. Next on-ramp: array managed/unmanaged pools; `create_array` still ignores `options` (see memory pad 2026-08-16). Allocator overflow shipped as a local check. Optional free-list splice waits on **#2** (naive `else` livelocks first-fit). Candidate wrap-APR pool: memory pad **Candidate: back toward old afw_pool**. |
+| **Open** | Umbrella **#2** — retrofit of request-lifetime MM for script **scope** lifetimes; many feature branches, more to come; parent of closed #149. **Discussed next branch:** property names as values (script/JSON string-only) — [`issue-2-property-name-values.md`](issue-2-property-name-values.md). Also: array managed/unmanaged pools; `create_array` still ignores `options` (see memory pad 2026-08-16). Allocator overflow shipped as a local check. Optional free-list splice waits on **#2** (naive `else` livelocks first-fit). Candidate wrap-APR pool: memory pad **Candidate: back toward old afw_pool**. |
 | **Gap** | Thin “support one-pager” for leaks vs the novel-length pad — optional later; playbook points at pad |
 
 ---

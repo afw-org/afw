@@ -15,7 +15,8 @@ Sideband **meta** is real and load-bearing (adapters, object options, reconcile,
 - **#38** only adds another way to hit an **existing** problem.  
 - **Do not** ban `"_meta_"` in language or normal property set.  
 - **Interim:** app data that round-trips map CTs should avoid property name `"_meta_"`.  
-- **Rich typing / `objectTypes` etc.:** historical goal was type-aware / dynamic client UI; XML was early primary CT; JSON won; large options bloat instances—discuss instance meta vs type fetch/cache without mandating one UI architecture.  
+- **Rich typing / `objectTypes` etc.:** historical goal was type-aware / dynamic client UI; XML was early primary CT; JSON won; large options bloat instances (`afw_object_view` + object options) — discuss instance meta vs type fetch/cache without mandating one UI architecture.  
+- **Typed property names (later, not #2 names-as-values branch):** JSON keys are strings today; a future in-string encoding (`dataType` + `to_string`, possibly hexBinary for non-Unicode store keys) is parked on [`issue-2-property-name-values.md`](issue-2-property-name-values.md) (*Later — JSON lost XML metadata*). Related to this pad’s “how does the app learn types without XML”; not the `"_meta_"` collision fix itself.  
 - **reconcile_object**, file/LMDB essential meta, admin + TS client all in the blast radius.  
 - Full discussion lives on the **GitHub issue body**; expand this pad when implementation design starts.
 
