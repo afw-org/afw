@@ -217,6 +217,7 @@ impl_afw_object_get_property(
 {
     const char *s;
     const afw_value_t *value;
+    const afw_utf8_t *property_name_utf8;
     const afw_utf8_z_t *property_name_z;
 
     /* Look for property in cache first. */
@@ -231,9 +232,11 @@ impl_afw_object_get_property(
      * populated via load_all / iterate (raw name is not a C string key).
      */
     value = NULL;
+    /* FIXME #2: utf8 name wrap; getenv still wants a C string. */
+    property_name_utf8 = afw_object_string_property_name_as_utf8(
+        property_name, xctx);
     property_name_z = afw_utf8_z_create(
-        afw_object_string_property_name_as_utf8(property_name, xctx)->s,
-        afw_object_string_property_name_as_utf8(property_name, xctx)->len,
+        property_name_utf8->s, property_name_utf8->len,
         xctx->p, xctx);
     s = getenv(property_name_z);
     if (s) {

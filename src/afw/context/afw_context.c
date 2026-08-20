@@ -589,6 +589,7 @@ afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
 {
     const afw_iterator_old_t *iterator;
     const afw_value_t *qualifier_id;
+    const afw_utf8_t *qualifier_id_utf8;
     const afw_utf8_t *detail_source_location;
     const afw_object_t *object;
 
@@ -596,16 +597,16 @@ afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
     while ((object = afw_object_old_get_next_property_as_object(
         objects, &iterator, &qualifier_id, xctx)))
     {
+        /* FIXME #2: utf8 name wrap; qualifier ids still utf8 here. */
+        qualifier_id_utf8 = afw_object_string_property_name_as_utf8(
+            qualifier_id, xctx);
         detail_source_location = afw_utf8_printf(
             object->p, xctx,
             AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(source_location),
-            AFW_UTF8_FMT_ARG(
-                afw_object_string_property_name_as_utf8(
-                    qualifier_id, xctx)));
+            AFW_UTF8_FMT_ARG(qualifier_id_utf8));
         afw_context_variable_definitions_compile_and_add_based_on_object(
-            context_type_object, object,
-            afw_object_string_property_name_as_utf8(qualifier_id, xctx),
+            context_type_object, object, qualifier_id_utf8,
             detail_source_location, xctx);
     }
 }

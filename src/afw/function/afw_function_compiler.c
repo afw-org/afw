@@ -477,6 +477,7 @@ impl_stringify_prepare_object(
     const afw_object_t *out;
     const afw_iterator_old_t *iterator;
     const afw_value_t *property_name;
+    const afw_utf8_t *property_name_utf8;
     const afw_value_t *next;
     const afw_value_t *child;
 
@@ -488,14 +489,13 @@ impl_stringify_prepare_object(
         if (!next) {
             break;
         }
-        if (!impl_stringify_name_allowed(ctx,
-            afw_object_string_property_name_as_utf8(
-                property_name, ctx->xctx))) {
+        /* FIXME #2: utf8 name wrap; stringify replacer still takes utf8. */
+        property_name_utf8 = afw_object_string_property_name_as_utf8(
+            property_name, ctx->xctx);
+        if (!impl_stringify_name_allowed(ctx, property_name_utf8)) {
             continue;
         }
-        child = impl_stringify_prepare(ctx,
-            afw_object_string_property_name_as_utf8(
-                property_name, ctx->xctx), next);
+        child = impl_stringify_prepare(ctx, property_name_utf8, next);
         if (afw_value_is_undefined(child) || !child) {
             /* Omit property when replacer returns undefined. */
             continue;

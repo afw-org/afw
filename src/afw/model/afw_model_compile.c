@@ -794,6 +794,7 @@ afw_model_compile(
     const afw_object_t *object_type;
     const afw_model_object_type_t *model_object_type;
     const afw_value_t *property_name;
+    const afw_utf8_t *property_name_utf8;
     afw_model_t *model;
     const afw_utf8_t *path;
     const afw_object_t *clone;
@@ -838,13 +839,13 @@ afw_model_compile(
         object_type = afw_object_old_get_next_property_as_object(
             objectTypes, &iterator, &property_name, xctx);
         if (!object_type) break;
+        /* FIXME #2: utf8 name wrap; objectType ids stay utf8 hash keys. */
+        property_name_utf8 = afw_object_string_property_name_as_utf8(
+            property_name, xctx);
         model_object_type = impl_object_type_compile(model,
-            adapter_id,
-            afw_object_string_property_name_as_utf8(property_name, xctx),
-            object_type, xctx);
+            adapter_id, property_name_utf8, object_type, xctx);
         apr_hash_set(model->model_object_types,
-            afw_object_string_property_name_as_utf8(property_name, xctx)->s,
-            afw_object_string_property_name_as_utf8(property_name, xctx)->len,
+            property_name_utf8->s, property_name_utf8->len,
             model_object_type);
     }
 
