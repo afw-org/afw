@@ -45,7 +45,7 @@ Prefer **git** for durable shared truth (designs, rules, handbook, tests, living
 4. When chat is stuck, **close the loop live** (`afw`, `afwfcgi`, runtime objects on `adapterId=afw`, the code the partner named).  
 5. If you decide to work it: ask for a **feature branch** off the right base (often `develop`), then implement in **small verticals** you both agree (build/test as you go). A useful cadence for wrap-ups and exploratory edges: **flexible plan, one step, then re-decide** — share a living candidate order; finish one step; then **“what do you think we should do next?”** and adapt (see [`designs/mantras-and-working-style.md`](designs/mantras-and-working-style.md)).  
 6. **Commit / push when you ask** for a checkpoint — not as a silent default after every edit (unless you agree otherwise for a stretch).  
-7. When ready: **“Open a PR”** against the target branch; you still own review.  
+7. When ready: **“Open a PR”** against the target branch; you still own review. **Name the partner** on the commit and PR (`Co-Authored-By` trailer, a Generated-with line) — same visibility a human co-author would get. Silent human-only authorship of partner work is the wrong default.  
 8. After a real click, leave a **thin map** in git if it will help the next person (atlas row, playbook note, or short pad) — issue ids as pointers only.
 
 Support without an issue: steps 1–4 are enough (symptom → discuss → live probe → optional map).
