@@ -36,169 +36,98 @@ static const afw_utf8_t impl_s_general_description =
     AFW_UTF8_LITERAL("General systems info.");
 
 /* Property names as static string values (&pub / &internal). */
-static const afw_value_string_t impl_v_sysname = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("sysname")
-};
+static const afw_value_string_t impl_v_sysname =
+    AFW_VALUE_STRING_LITERAL("sysname");
 
-static const afw_value_string_t impl_v_nodename = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("nodename")
-};
+static const afw_value_string_t impl_v_nodename =
+    AFW_VALUE_STRING_LITERAL("nodename");
 
-static const afw_value_string_t impl_v_release = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("release")
-};
+static const afw_value_string_t impl_v_release =
+    AFW_VALUE_STRING_LITERAL("release");
 
-static const afw_value_string_t impl_v_version = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("version")
-};
+static const afw_value_string_t impl_v_machine =
+    AFW_VALUE_STRING_LITERAL("machine");
 
-static const afw_value_string_t impl_v_machine = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("machine")
-};
-
-static const afw_value_string_t impl_v_domainname = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("domainname")
-};
+static const afw_value_string_t impl_v_domainname =
+    AFW_VALUE_STRING_LITERAL("domainname");
 
 
 /* string literals for resource usage object */
 static const afw_utf8_t impl_s_resourceUsage =
 AFW_UTF8_LITERAL("resourceUsage");
 
-static const afw_value_string_t impl_v_ru_utime = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("utime")
-};
+static const afw_value_string_t impl_v_ru_utime =
+    AFW_VALUE_STRING_LITERAL("utime");
 
-static const afw_value_string_t impl_v_ru_stime = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("stime")
-};
+static const afw_value_string_t impl_v_ru_stime =
+    AFW_VALUE_STRING_LITERAL("stime");
 
-static const afw_value_string_t impl_v_ru_maxrss = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("maxrss")
-};
+static const afw_value_string_t impl_v_ru_maxrss =
+    AFW_VALUE_STRING_LITERAL("maxrss");
 
-static const afw_value_string_t impl_v_ru_ixrss = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("ixrss")
-};
+static const afw_value_string_t impl_v_ru_ixrss =
+    AFW_VALUE_STRING_LITERAL("ixrss");
 
-static const afw_value_string_t impl_v_ru_idrss = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("idrss")
-};
+static const afw_value_string_t impl_v_ru_idrss =
+    AFW_VALUE_STRING_LITERAL("idrss");
 
-static const afw_value_string_t impl_v_ru_isrss = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("isrss")
-};
+static const afw_value_string_t impl_v_ru_isrss =
+    AFW_VALUE_STRING_LITERAL("isrss");
 
-static const afw_value_string_t impl_v_ru_minflt = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("minflt")
-};
+static const afw_value_string_t impl_v_ru_minflt =
+    AFW_VALUE_STRING_LITERAL("minflt");
 
-static const afw_value_string_t impl_v_ru_majflt = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("majflt")
-};
+static const afw_value_string_t impl_v_ru_majflt =
+    AFW_VALUE_STRING_LITERAL("majflt");
 
-static const afw_value_string_t impl_v_ru_nswap = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("nswap")
-};
+static const afw_value_string_t impl_v_ru_nswap =
+    AFW_VALUE_STRING_LITERAL("nswap");
 
-static const afw_value_string_t impl_v_ru_inblock = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("inblock")
-};
+static const afw_value_string_t impl_v_ru_inblock =
+    AFW_VALUE_STRING_LITERAL("inblock");
 
-static const afw_value_string_t impl_v_ru_oublock = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("oublock")
-};
+static const afw_value_string_t impl_v_ru_oublock =
+    AFW_VALUE_STRING_LITERAL("oublock");
 
-static const afw_value_string_t impl_v_ru_msgsnd = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("msgsnd")
-};
+static const afw_value_string_t impl_v_ru_msgsnd =
+    AFW_VALUE_STRING_LITERAL("msgsnd");
 
-static const afw_value_string_t impl_v_ru_msgrcv = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("msgrcv")
-};
+static const afw_value_string_t impl_v_ru_msgrcv =
+    AFW_VALUE_STRING_LITERAL("msgrcv");
 
-static const afw_value_string_t impl_v_ru_nsignals = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("nsignals")
-};
+static const afw_value_string_t impl_v_ru_nsignals =
+    AFW_VALUE_STRING_LITERAL("nsignals");
 
-static const afw_value_string_t impl_v_ru_nvcsw = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("nvcsw")
-};
+static const afw_value_string_t impl_v_ru_nvcsw =
+    AFW_VALUE_STRING_LITERAL("nvcsw");
 
-static const afw_value_string_t impl_v_ru_nivcsw = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("nivcsw")
-};
+static const afw_value_string_t impl_v_ru_nivcsw =
+    AFW_VALUE_STRING_LITERAL("nivcsw");
 
 /* string literals for resource usage object */
 static const afw_utf8_t impl_s_resourceLimits =
 AFW_UTF8_LITERAL("resourceLimits");
 
-static const afw_value_string_t impl_v_rl_cpu = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("cpu")
-};
+static const afw_value_string_t impl_v_rl_cpu =
+    AFW_VALUE_STRING_LITERAL("cpu");
 
-static const afw_value_string_t impl_v_rl_fsize = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("fsize")
-};
+static const afw_value_string_t impl_v_rl_fsize =
+    AFW_VALUE_STRING_LITERAL("fsize");
 
-static const afw_value_string_t impl_v_rl_stack = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("stack")
-};
+static const afw_value_string_t impl_v_rl_stack =
+    AFW_VALUE_STRING_LITERAL("stack");
 
-static const afw_value_string_t impl_v_rl_core = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("core")
-};
+static const afw_value_string_t impl_v_rl_rss =
+    AFW_VALUE_STRING_LITERAL("rss");
 
-static const afw_value_string_t impl_v_rl_rss = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("rss")
-};
+static const afw_value_string_t impl_v_rl_memlock =
+    AFW_VALUE_STRING_LITERAL("memlock");
 
-static const afw_value_string_t impl_v_rl_memlock = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("memlock")
-};
+static const afw_value_string_t impl_v_rl_nproc =
+    AFW_VALUE_STRING_LITERAL("nproc");
 
-static const afw_value_string_t impl_v_rl_nproc = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("nproc")
-};
-
-static const afw_value_string_t impl_v_rl_ofile = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("ofile")
-};
-
-static const afw_value_string_t impl_v_rl_as = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("as")
-};
+static const afw_value_string_t impl_v_rl_ofile =
+    AFW_VALUE_STRING_LITERAL("ofile");
 
 
 #ifdef __EXAMPLE_FOR_CREATING_WITH_CB_WRAPPER_
@@ -324,11 +253,11 @@ impl_get_resourceLimits_object_cb(
     rc = getrlimit(RLIMIT_CORE, limits);
     if (rc == 0) {
         afw_object_set_property_as_integer(result,
-            &impl_v_rl_core.pub, limits->rlim_cur, xctx);
+            afw_v_core, limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_v_rl_core.pub, afw_v_label, "Core Size", xctx);
+            afw_v_core, afw_v_label, "Core Size", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_v_rl_core.pub, afw_v_description,
+            afw_v_core, afw_v_description,
             "The maximum size core file that this process can create. If the process terminates and would dump a core file larger than this, then no core file is created.  So setting this limit to zero prevents core files from ever being created.",
             xctx);
     }
@@ -392,11 +321,11 @@ impl_get_resourceLimits_object_cb(
 #endif
     if (rc == 0) {
         afw_object_set_property_as_integer(result,
-            &impl_v_rl_as.pub, limits->rlim_cur, xctx);
+            afw_v_as, limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_v_rl_as.pub, afw_v_label, "Total Memory", xctx);
+            afw_v_as, afw_v_label, "Total Memory", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_v_rl_as.pub, afw_v_description,
+            afw_v_as, afw_v_description,
             "The maximum size of total memory that this process should get. If the process tries to allocate more memory beyond this amount with, for example, brk, malloc, mmap or sbrk, the allocation function fails.",
             xctx);
     }
@@ -629,11 +558,11 @@ impl_create_general_object(afw_xctx_t *xctx)
             &impl_v_release.pub, afw_v_description, "This is the current release level of the operating system implementation.", xctx);
 
         afw_object_set_property_as_string_from_utf8_z(result,
-            &impl_v_version.pub, uname_s->version, xctx);
+            afw_v_version, uname_s->version, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_v_version.pub, afw_v_label, "Version", xctx);
+            afw_v_version, afw_v_label, "Version", xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
-            &impl_v_version.pub, afw_v_description, "This is the current version level within the release of the operating system.", xctx);
+            afw_v_version, afw_v_description, "This is the current version level within the release of the operating system.", xctx);
 
         afw_object_set_property_as_string_from_utf8_z(result,
             &impl_v_machine.pub, uname_s->machine, xctx);

@@ -26,12 +26,6 @@ static const afw_utf8_t
 impl_dso_suffix =
     AFW_UTF8_LITERAL(".dll");
 
-static const afw_value_string_t
-impl_v_os = {
-    .inf = &afw_value_unmanaged_string_inf,
-    .internal = AFW_UTF8_LITERAL("os")
-};
-
 
 #ifdef __EXAMPLE_FOR_CREATING_WITH_CB_WRAPPER_
 static const afw_object_t *
@@ -58,17 +52,17 @@ impl_get_<objectId>_object_cb(
     /* Add in system specific info properties. */
     /** @fixme Replace with appropriate code. */
     afw_object_set_property_from_utf8_z(result,
-        &impl_v_os.pub,
+        afw_v_os,
         "windows",
         xctx);
 
     afw_object_meta_set_property_type_property_from_utf8_z(
-        result, &impl_v_os.pub, afw_v_label,
+        result, afw_v_os, afw_v_label,
         "OS",
         xctx);
 
     afw_object_meta_set_property_type_property_from_utf8_z(
-        result, &impl_v_os.pub, afw_v_description,
+        result, afw_v_os, afw_v_description,
         "Operating system.",
         xctx);
  
@@ -99,17 +93,17 @@ impl_create_general_object(afw_xctx_t *xctx)
     /* Add in system specific info properties. */
     /** @fixme Replace with appropriate code. */
     afw_object_set_property_as_string_from_utf8_z(result,
-        &impl_v_os.pub,
+        afw_v_os,
         "windows",
         xctx);
 
     afw_object_meta_set_property_type_property_from_utf8_z(
-        result, &impl_v_os.pub, afw_v_label,
+        result, afw_v_os, afw_v_label,
         "OS",
         xctx);
 
     afw_object_meta_set_property_type_property_from_utf8_z(
-        result, &impl_v_os.pub, afw_v_description,
+        result, afw_v_os, afw_v_description,
         "Operating system.",
         xctx);
 
