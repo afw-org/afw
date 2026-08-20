@@ -271,7 +271,7 @@ _Many draft items below are superseded or refined by **Value Lifetime Model (tar
 | 2026-08-16 | **`create_array(n)`** is a likely first script-facing constructor when #2 starts on arrays | Today: `afw_array_create_generic(x->p)` (`create_with_options` **ignores** `options`), push `undefined` n times, always `create_unmanaged_array` wrapper. Objects already have `AFW_OBJECT_MEMORY_OPTION_managed` / `unmanaged` / `managed_cede_p` (private subpool vs caller pool). Arrays do not. 1,000,000 cap is a resource policy, not the #2 create path. Discuss instance vs value first; then this constructor. Finding #8 (`read()` cap) is sibling policy only — do not treat current `create_array` as the finished alloc model. |
 | 2026-08-06 | Removed unfinished **`create_composite`** / **`properties_callback`**; keep **`create_merged`**, **`aggregate_external`**, views / option composite | Faces are product look-through; multi-base aggregate is different |
 | 2026-08-17 | **Candidate (not decided):** back toward wrap-APR `afw_pool` (no prefixes on live allocs). Script objects/arrays in the script-start pool, managed; scalars clone; optional intrusive free list in dead values; first-fit now, better later | See **Candidate: back toward old afw_pool**. Current subpool+prefix code stays until #2 chooses. Optional free-list splice (triage **P3**) is **#2**, not a local `else`. |
-| 2026-08-20 | **Another #2 feature branch:** object **property names** are `const afw_value_t *`; implementations use `afw_value_equal`; store-as-is (clone of names is later #2). Script + JSON/YAML/UBJSON **string names only** (throw, no `as_utf8`). Coded on `issue-2-property-name-values` (fulldev + valgrind green). Later: utf8 name wrap → `afw_value_string_t`. Pad: [`issue-2-property-name-values.md`](issue-2-property-name-values.md). | Not the first #2 branch and not the last. Values-first: names join the same world as property values. Generated `afw_v_*` already exist for the common call sites. |
+| 2026-08-20 | **Another #2 feature branch:** object **property names** are `const afw_value_t *`; implementations use `afw_value_equal`; store-as-is (clone of names is later #2). Script + JSON/YAML/UBJSON **string names only** (throw, no `as_utf8`). PR **#220** + wrap-cleanup (`issue-2-property-name-wrap-cleanup`): owners are `afw_value_string_t`; SET intern-once; get/has stack `UNMANAGED`; never store stack `&pub`. Pad: [`issue-2-property-name-values.md`](issue-2-property-name-values.md). | Not the first #2 branch and not the last. Values-first: names join the same world as property values. Generated `afw_v_*` already exist for the common call sites. |
 
 ### Open questions (need maintainer perspective when back)
 
@@ -1138,7 +1138,7 @@ See **Future: compile-time type checking** below for a full stash of notes. Shor
 | **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **−1a + −1b + −1c done** |
 | **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **0a–0d done** — phase 0 complete |
 | **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | **1a + 1b′ + 1c done** → **1d** next |
-| **Names as values** | Object property names `const afw_value_t *` (script/JSON string-only). Another #2 feature branch; more will follow | **coded** on `issue-2-property-name-values` — [`issue-2-property-name-values.md`](issue-2-property-name-values.md); later wrap pass |
+| **Names as values** | Object property names `const afw_value_t *` (script/JSON string-only). Another #2 feature branch; more will follow | **landed** PR **#220** + wrap-cleanup — [`issue-2-property-name-values.md`](issue-2-property-name-values.md). Later #2: name `clone_or_reference`, intern/hash, typed JSON keys |
 | **2** | Assign / scope: **`clone_or_reference`** so variable-held values own needed lifetime | pending |
 | **3** | Scope/symbol release correctness; escape (closures, returned compile results) | pending |
 | **4** | Accounting / graceful OOM / limits (later) | pending |
@@ -1548,7 +1548,7 @@ Ties to stale tip: identity of `object->value` / `array->value` + managed create
 
 #### Property names as values (2026-08-20)
 
-Discussed branch: [`issue-2-property-name-values.md`](issue-2-property-name-values.md). Interface names become values; object impls do not care about JSON/script; lifetime store-as-is until later #2 `clone_or_reference`. Do not expand here.
+Landed: [`issue-2-property-name-values.md`](issue-2-property-name-values.md) (PR **#220** + wrap-cleanup). Interface names are values; object impls do not care about JSON/script; lifetime store-as-is until later #2 `clone_or_reference` of names. Do not expand here.
 
 #### `->value` / create APIs (still open from archaeology)
 
@@ -1863,7 +1863,7 @@ Register at env bootstrap so paths like `/afw/_AdaptiveObjectType_/…` resolve 
 - Discussed changing `afw_object` / setter `property_name` from utf8 to `const afw_value_t *`. Generated `afw_v_*` already exist; `afw_value_equal` is already type+internal.
 - Settled: impls have no extra ifs; Adaptive Script and JSON/YAML/UBJSON are **string only** (throw, no autoconvert). `reference_by_key` is the future door for non-string object keys. Array/string indexes already require integer.
 - Leftover `as_utf8` on object keys (`reference_by_key`, `object_construct`) is missed typecheck-campaign autoconvert — cleanup **on that one branch**. `eq` docs vs C throw noted as **not** that branch.
-- Pad: [`issue-2-property-name-values.md`](issue-2-property-name-values.md). Coded on `issue-2-property-name-values`; later utf8 name wrap → `afw_value_string_t`.
+- Pad: [`issue-2-property-name-values.md`](issue-2-property-name-values.md). Landed PR **#220** + wrap-cleanup (`afw_value_string_t` owners, SET intern-once). Later #2: name `clone_or_reference`, intern/hash, typed JSON keys.
 
 ### 2026-07-22 — kickoff
 

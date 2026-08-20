@@ -693,7 +693,8 @@ Compile errors look like: passing `const afw_utf8_t *` to get/set; `AFW_UTF8_FMT
 | Your package `afw_mypkg_s_url` as an object key | `afw_mypkg_v_url` (after generate in **that** tree) |
 | File-local `static const afw_utf8_t impl_s_foo = AFW_UTF8_LITERAL("foo")` used only as an object key | `static const afw_value_string_t impl_v_foo = AFW_VALUE_STRING_LITERAL("foo");` then **`&impl_v_foo.pub`**. If generate already has the text, use `afw_v_foo` / `afw_mypkg_v_foo` instead of a local. |
 | A **utf8** you already hold, **get/has only** | Stack: `const afw_value_string_t n = AFW_VALUE_STRING_UNMANAGED(utf8);` then `&n.pub`. Do **not** store `&n.pub` on an object. |
-| A **utf8** you already hold, **set / embed** (object keeps the name) | `afw_value_create_unmanaged_string(utf8, object->p, xctx)` so the header lives with the object. |
+| A **utf8** you already hold, **set / embed** (object keeps the name) | `afw_value_create_unmanaged_string(utf8, object->p, xctx)` so the header lives with the object. Memory-object set also **interns** unmanaged string headers into `object->p` (promote-on-get must not keep a stack pointer). |
+| A **string name you own** for the life of the object | Embed `afw_value_string_t` on the owner (`&pub` at object APIs, `&internal` as utf8). Path entries already do this. |
 | `AFW_UTF8_FMT_ARG(property_name)` or `write_utf8` of a **value** name | `AFW_UTF8_FMT_ARG(afw_object_property_name_display_utf8(property_name, xctx))` |
 | Need the utf8 of a name you know is a string | `afw_object_string_property_name_as_utf8(name, xctx)` (throws if not a string) |
 | `get_next_property` / `old_get_next_property_as_*` | The name out-parameter is **`const afw_value_t **`**. Use that pointer at object APIs; take utf8 only when a utf8 API still wants it. |
