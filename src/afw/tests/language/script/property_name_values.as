@@ -106,3 +106,20 @@ return 0;
 
 const o = compile(json("{\"1\": 9}"));
 return o[1];
+
+//?
+//? test: object-boolean-index-throws
+//? description: obj[true] is a type error, not lookup of "true"
+//? expect: error
+//? source: ...
+
+const o = { "true": 1 };
+return o[true];
+
+//?
+//? test: object-construct-boolean-name-throws
+//? description: { [true]: x } throws (no convert to "true")
+//? expect: error
+//? source: ...
+
+return { [true]: "x" };

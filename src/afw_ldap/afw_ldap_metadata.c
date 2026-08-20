@@ -859,6 +859,7 @@ impl_add_parents_and_property_types(
     afw_ldap_metadata_attribute_type_t *attribute_type;
     afw_value_array_t *parent_paths;
     const afw_value_t *property_name;
+    const afw_utf8_t *property_name_utf8;
     const afw_utf8_t *object_type_id;
     const afw_utf8_t *s;
     afw_utf8_t *ids;
@@ -906,11 +907,13 @@ impl_add_parents_and_property_types(
                 property_types_object, &iterator, &property_name, xctx))
             )
         {
+            /* FIXME #2: utf8 name wrap; LDAP attr could be
+               afw_value_string_t. */
+            property_name_utf8 = afw_object_string_property_name_as_utf8(
+                property_name, xctx);
             attribute_type = apr_hash_get(metadata->attribute_types,
-                afw_object_string_property_name_as_utf8(
-                    property_name, xctx)->s,
-                afw_object_string_property_name_as_utf8(
-                    property_name, xctx)->len);
+                property_name_utf8->s,
+                property_name_utf8->len);
             if (object_type_attribute->attribute_type) {
                 object_type_attribute->next =
                     afw_pool_calloc_type(p,

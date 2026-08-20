@@ -1401,11 +1401,10 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
                 ctx->property_level.value = NULL;
             }
             if (!afw_value_is_nullish(mapped_value)) {
-                /* FIXME #2: utf8 name wrap; PT already has
-                   mapped_property_name_value. */
                 afw_object_set_property(result,
-                    afw_value_create_unmanaged_string(
-                        mapped_property_name, p, xctx),
+                    (pt == ctx->model_object_type->property_type_other)
+                        ? property_name
+                        : pt->mapped_property_name_value,
                     mapped_value, xctx);
             }
         }

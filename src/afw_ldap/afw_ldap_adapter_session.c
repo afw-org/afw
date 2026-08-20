@@ -329,6 +329,7 @@ impl_afw_adapter_session_add_object(
     apr_array_header_t *mods;
     const afw_value_t *value;
     const afw_value_t *property_name;
+    const afw_utf8_t *property_name_utf8;
     const afw_iterator_old_t *iterator;
     struct berval **bvals;
     LDAPMod *mod;
@@ -377,24 +378,22 @@ impl_afw_adapter_session_add_object(
     while ((value = afw_object_get_next_property(object,
         &iterator, &property_name, xctx)))
     {
+        /* FIXME #2: utf8 name wrap; LDAP attr could be afw_value_string_t. */
+        property_name_utf8 = afw_object_string_property_name_as_utf8(
+            property_name, xctx);
         attribute = afw_ldap_metadata_get_object_type_attribute(
-            first_attribute,
-            afw_object_string_property_name_as_utf8(property_name, xctx));
+            first_attribute, property_name_utf8);
         if (!attribute || attribute->attribute_type->never_allow_write) {
             continue;  /** @fixme Should this be an error??? */
         }
         
         bvals = afw_ldap_metadata_value_to_bv(self,
-            afw_object_string_property_name_as_utf8(property_name, xctx),
-            value, xctx);
+            property_name_utf8, value, xctx);
         if (bvals) {
             mod = afw_pool_calloc_type(p, LDAPMod, xctx);
             mod->mod_op = LDAP_MOD_ADD | LDAP_MOD_BVALUES;
             mod->mod_type = apr_pstrndup(afw_pool_get_apr_pool(p),
-                afw_object_string_property_name_as_utf8(
-                    property_name, xctx)->s,
-                afw_object_string_property_name_as_utf8(
-                    property_name, xctx)->len);
+                property_name_utf8->s, property_name_utf8->len);
             mod->mod_vals.modv_bvals = bvals;
             APR_ARRAY_PUSH(mods, LDAPMod *) = mod;
         }
