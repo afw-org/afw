@@ -537,18 +537,27 @@ afw_curl_internal_parse_response(
     afw_memory_t * response_body = NULL;
 
     if (response && response->response) {
+        apr_status_t rv;
         apr_off_t len;
         apr_size_t size;
 
         response_body = afw_xctx_calloc_type(afw_memory_t, xctx);
 
         /* the response field is an APR Bucket Brigade that needs to be flattened */
-        apr_brigade_length(response->response, 1, &len);
+        rv = apr_brigade_length(response->response, 1, &len);
+        if (rv != APR_SUCCESS || len < 0) {
+            AFW_THROW_ERROR_RV_Z(general, apr, rv,
+                "apr_brigade_length() failed.", xctx);
+        }
         size = (apr_size_t) len;
         response_body->ptr = apr_palloc(afw_pool_get_apr_pool(pool), size);
-        response_body->size = size;
 
-        apr_brigade_flatten(response->response, (char *)response_body->ptr, &size);
+        rv = apr_brigade_flatten(response->response, (char *)response_body->ptr, &size);
+        if (rv != APR_SUCCESS) {
+            AFW_THROW_ERROR_RV_Z(general, apr, rv,
+                "apr_brigade_flatten() failed.", xctx);
+        }
+        response_body->size = size;
     }
 
     return response_body;
