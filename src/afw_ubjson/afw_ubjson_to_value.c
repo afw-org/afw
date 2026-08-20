@@ -18,6 +18,9 @@
             to UBJSON, back to JSON, we lose special characters. */
 
 
+/* Matches cJSON's CJSON_NESTING_LIMIT default. */
+#define AFW_UBJSON_MAX_DEPTH 1000
+
 typedef struct afw_ubjson_parser_s {
     const afw_memory_t *input;
     const unsigned char *ptr;
@@ -27,6 +30,7 @@ typedef struct afw_ubjson_parser_s {
     const afw_value_t *property_name;
     const afw_pool_t *p;
     afw_boolean_t cede_p;
+    unsigned int depth;
 } afw_ubjson_parser_t;
 
 
@@ -62,7 +66,7 @@ size_t afw_ubjson_parse_length(
 static unsigned char afw_ubjson_peek_byte(
     afw_ubjson_parser_t *parser, afw_xctx_t *xctx)
 {
-    if (parser->cursor > parser->input->size) {
+    if (parser->cursor >= parser->input->size) {
         AFW_THROW_ERROR_Z(general, "Error: expected end of document.", xctx);
     }
 
@@ -74,7 +78,7 @@ static unsigned char afw_ubjson_next_byte(
 {
     unsigned char c;
 
-    if (parser->cursor > parser->input->size) {
+    if (parser->cursor >= parser->input->size) {
         AFW_THROW_ERROR_Z(general, "Error: expected end of document.", xctx);
     }
 
@@ -87,10 +91,10 @@ static unsigned char afw_ubjson_next_byte(
 }
 
 static void afw_ubjson_next_bytes(
-    afw_ubjson_parser_t *parser, unsigned char *buf, 
+    afw_ubjson_parser_t *parser, unsigned char *buf,
     size_t len, afw_xctx_t *xctx)
 {
-    if (parser->cursor + len > parser->input->size) {
+    if (len > parser->input->size - parser->cursor) {
         AFW_THROW_ERROR_Z(general, "Error: expected end of document.", xctx);
     }
 
@@ -104,7 +108,7 @@ size_t afw_ubjson_parse_length(
 {
     unsigned char c;
     afw_c_types_t c_type;
-    size_t d;
+    afw_int64_t d;
 
     c = afw_ubjson_next_byte(parser, xctx);
 
@@ -132,12 +136,23 @@ size_t afw_ubjson_parse_length(
             break;
 
         default:
-            AFW_THROW_ERROR_RV_Z(general, ubjson_marker, c, 
+            AFW_THROW_ERROR_RV_Z(general, ubjson_marker, c,
                 "Error: invalid numeric type for string length", xctx);
             break;
     }
 
-    return d;
+    /*
+     * A negative length marker (e.g. INT8 = -1) would otherwise
+     * sign-extend when returned as size_t, producing a value near
+     * SIZE_MAX that can overflow the cursor+len bounds checks at call
+     * sites and drive a massive out-of-bounds read.
+     */
+    if (d < 0) {
+        AFW_THROW_ERROR_Z(general,
+            "Error: negative length not allowed.", xctx);
+    }
+
+    return (size_t)d;
 }
 
 const afw_value_t * afw_ubjson_parse_number(
@@ -220,8 +235,8 @@ const afw_utf8_t * afw_ubjson_parse_string(
 
     len = afw_ubjson_parse_length(parser, xctx);
 
-    if (parser->cursor + len > parser->input->size) {
-        AFW_THROW_ERROR_Z(general, 
+    if (len > parser->input->size - parser->cursor) {
+        AFW_THROW_ERROR_Z(general,
             "Error: string length exceeds input.", xctx);
     }
 
@@ -249,6 +264,11 @@ const afw_array_t * afw_ubjson_parse_array(
     const afw_value_t *value;
     char c;
     char type = 0;
+
+    if (++parser->depth > AFW_UBJSON_MAX_DEPTH) {
+        AFW_THROW_ERROR_Z(general,
+            "Error: maximum nesting depth exceeded.", xctx);
+    }
 
     list = afw_array_create_generic(parser->p, xctx);
 
@@ -279,6 +299,8 @@ const afw_array_t * afw_ubjson_parse_array(
 
     afw_ubjson_next_byte(parser, xctx);
 
+    parser->depth--;
+
     /* Return. */
     return list;
 }
@@ -303,6 +325,11 @@ const afw_object_t * afw_ubjson_parse_object(
     const afw_object_t *saved_embedding_object;
     const afw_value_t *saved_property_name;
     const afw_object_t *_meta_;
+
+    if (++parser->depth > AFW_UBJSON_MAX_DEPTH) {
+        AFW_THROW_ERROR_Z(general,
+            "Error: maximum nesting depth exceeded.", xctx);
+    }
 
     /* Create new memory object.*/
     AFW_OBJECT_CREATE_ENTITY_OR_EMBEDDED(obj,
@@ -376,6 +403,8 @@ const afw_object_t * afw_ubjson_parse_object(
     /* Set parser->embedding_object to previous value and return object. */
     parser->embedding_object = saved_embedding_object;
     parser->property_name = saved_property_name;
+
+    parser->depth--;
 
     return obj;
 }
@@ -489,6 +518,7 @@ const afw_value_t * afw_ubjson_to_value(
     parser.p = p;
     parser.path = path;
     parser.cede_p = false;
+    parser.depth = 0;
 
     value = afw_ubjson_parse_value(&parser, 0, xctx);
 
@@ -519,6 +549,7 @@ afw_ubjson_to_object(
     parser.property_name = NULL;
     parser.p = (cede_p) ? p : afw_pool_create(p, xctx);
     parser.cede_p = true;
+    parser.depth = 0;
     parser.path = afw_object_path_make(
         adapter_id, object_type_id, object_id, parser.p, xctx);
 
