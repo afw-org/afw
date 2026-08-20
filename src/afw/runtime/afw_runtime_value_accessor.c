@@ -682,6 +682,75 @@ afw_runtime_value_accessor_uint32(
 }
 
 
+/* --- adapter live-object pin (metrics / properties) ---------------------- */
+
+static void
+impl_release_adapter_cleanup(
+    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+
+    if (data) {
+        afw_adapter_release((const afw_adapter_t *)data, xctx);
+    }
+}
+
+/*
+ * Caller holds adapter_id_anchor_lock. Increment the instance's anchor
+ * count so stop/replace drains instead of destroying while p still holds
+ * a live metrics/properties object. Skip when p is the instance pool
+ * (same lifetime — extra pin would release during destroy).
+ */
+static const afw_adapter_t *
+impl_pin_adapter_for_pool_lock_held(
+    const afw_adapter_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_adapter_id_anchor_t *anchor;
+
+    if (!instance || p == instance->p) {
+        return NULL;
+    }
+
+    for (
+        anchor = (afw_adapter_id_anchor_t *)
+            afw_environment_get_adapter_id(&instance->adapter_id, xctx);
+        anchor;
+        anchor = anchor->stopping)
+    {
+        if (anchor->adapter == instance) {
+            anchor->reference_count++;
+            return instance;
+        }
+    }
+
+    return NULL;
+}
+
+static void
+impl_register_adapter_pin_cleanup(
+    const afw_adapter_t *held,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!held) {
+        return;
+    }
+
+    AFW_TRY {
+        afw_pool_register_cleanup_before(
+            p, (void *)held, NULL, impl_release_adapter_cleanup, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        afw_adapter_release(held, xctx);
+        AFW_ERROR_RETHROW;
+    }
+    AFW_ENDTRY;
+}
+
+
 /* --- adapter_metrics ----------------------------------------------------- */
 
 static const afw_utf8_t
@@ -697,10 +766,11 @@ impl_description_adapter_metrics =
         "active adapter and returns an object value wrapping "
         "adapter->impl->metrics_object without deep-copying metrics. NULL when "
         "no active adapter. The metrics object is live environment state "
-        "(returnsLiveReference): counters may change while held and the "
-        "object is only valid while the adapter remains active (or while you "
-        "hold a session reference that keeps the instance alive). Do not "
-        "cache across service stop/replace.");
+        "(returnsLiveReference): counters may change while held. The accessor "
+        "increments the instance reference count and releases it when p is "
+        "cleaned up, so a concurrent stop drains instead of destroying the "
+        "pool behind the object. Do not cache beyond the pool that produced "
+        "the value.");
 
 static const afw_runtime_value_accessor_info_t
 impl_info_adapter_metrics = {
@@ -718,6 +788,7 @@ afw_runtime_value_accessor_adapter_metrics(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_adapter_t *adapter;
+    const afw_adapter_t *held;
     const afw_object_t *metrics_object;
 
     (void)prop;
@@ -727,13 +798,20 @@ afw_runtime_value_accessor_adapter_metrics(
     }
 
     metrics_object = NULL;
+    held = NULL;
     AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
         adapter = *(const afw_adapter_t * const *)internal;
         if (adapter && adapter->impl) {
             metrics_object = adapter->impl->metrics_object;
+            if (metrics_object) {
+                held = impl_pin_adapter_for_pool_lock_held(
+                    adapter, p, xctx);
+            }
         }
     }
     AFW_LOCK_END;
+
+    impl_register_adapter_pin_cleanup(held, p, xctx);
 
     return (metrics_object)
         ? afw_value_create_unmanaged_object(metrics_object, p, xctx)
@@ -755,8 +833,11 @@ impl_description_adapter_properties =
         "afw_adapter_id_anchor_t. Under adapter_id_anchor_lock, loads the "
         "properties pointer and returns an object value wrapping it without "
         "deep copy. NULL when no properties. Live environment state "
-        "(returnsLiveReference): valid while the adapter registration / "
-        "conf properties remain; typically cleared or replaced on stop.");
+        "(returnsLiveReference). Same pin as adapter_metrics: the accessor "
+        "increments the instance reference count and releases it when p is "
+        "cleaned up, so a concurrent stop drains instead of destroying the "
+        "pool behind the object. Typically absent on the active anchor after "
+        "full stop.");
 
 static const afw_runtime_value_accessor_info_t
 impl_info_adapter_properties = {
@@ -773,19 +854,35 @@ afw_runtime_value_accessor_adapter_properties(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
+    const afw_adapter_id_anchor_t *anchor;
+    const afw_adapter_t *adapter;
+    const afw_adapter_t *held;
     const afw_object_t *properties;
-
-    (void)prop;
 
     if (!internal) {
         return NULL;
     }
 
     properties = NULL;
+    adapter = NULL;
+    held = NULL;
     AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
         properties = *(const afw_object_t * const *)internal;
+        if (properties && prop &&
+            prop->offset != (afw_size_t)-1)
+        {
+            anchor = (const afw_adapter_id_anchor_t *)(
+                (const char *)internal - prop->offset);
+            adapter = anchor->adapter;
+            if (adapter) {
+                held = impl_pin_adapter_for_pool_lock_held(
+                    adapter, p, xctx);
+            }
+        }
     }
     AFW_LOCK_END;
+
+    impl_register_adapter_pin_cleanup(held, p, xctx);
 
     return (properties)
         ? afw_value_create_unmanaged_object(properties, p, xctx)

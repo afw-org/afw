@@ -90,7 +90,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Orchestrated tests**](#orchestrated-tests-issue-157) ([#157](https://github.com/afw-org/afw/issues/157)) | Hermetic multi-step leaves via `orchestration.yaml` (hosts `afwfcgi` / `local`); `//? expect-stdout` / `expect-stderr`; opt-in `tests-extra/` |
 | [**afwdev test recipe flags**](#afwdev-test-recipe-flags) | `-T` / `--tests-path`, `--output` / `--output-format` for machine summaries |
 | [**Graceful process stop**](#graceful-process-stop-sigtermsigint-issue-158) ([#158](https://github.com/afw-org/afw/issues/158)) | **`afwfcgi`** honors **SIGTERM/SIGINT** (stop accept, drain workers, unlink Unix listen path); **`afw`** sets **`terminating`**; mid-request I/O can throw **503 Server Terminating** |
-| [**Runtime catalog / accessors**](#runtime-catalog--accessors-issue-149) ([#149](https://github.com/afw-org/afw/issues/149)) | Lock+copy **`referenceCount`**; accessor registry; rich objectOptions on permanent shells fixed; **metrics/properties** live-while-active with lock-safe pointer load |
+| [**Runtime catalog / accessors**](#runtime-catalog--accessors-issue-149) ([#149](https://github.com/afw-org/afw/issues/149)) | Lock+copy **`referenceCount`**; accessor registry; rich objectOptions on permanent shells fixed; **metrics/properties** live-while-active, instance pinned until the caller pool is released |
 | [**Error codes**](#error-codes-trycatch-and-http-issue-33) ([#33](https://github.com/afw-org/afw/issues/33)) | Review of `e.id` / HTTP map; script `throw` … `id "not_found"` (and similar) sets the catch object and HTTP status |
 | [**Multi `let` / `const`**](#multi-let-and-const-issue-62) ([#62](https://github.com/afw-org/afw/issues/62)) | Several names on one `let` / `const`; C-style `for` init; `x = y = 1;` chain; script result is set by assignment, `return`, and a call that is not void; loop labels |
 | [**Compiler literals**](#compiler-literals-issue-106) ([#106](https://github.com/afw-org/afw/issues/106)) | `#doubleMax`, `#integerMax`, `#pi`, `#infinity`, and related `#` names fold to those values at compile |
@@ -298,9 +298,9 @@ Child of **[#2](https://github.com/afw-org/afw/issues/2)** memory work. Focused 
 | **`referenceCount` on catalog adapter / auth handler objects** | Snapshot under the existing anchor lock |
 | **`_AdaptiveRuntimeValueAccessor_`** | First-class registry objects (lock-copy / live-reference contracts) |
 | **Rich objectOptions on permanent / const shells** | `metaFull+normalize` (etc.) on **`EnvironmentRegistry/current`** no longer throws **Object must have a pool** (mutable propertyTypes on the view pool) |
-| **`metrics` / `properties` on `_AdaptiveAdapter_`** | Live-while-active: pointer loaded under **adapter_id_anchor_lock** (`adapter_metrics` / `adapter_properties`); not a deep snapshot of counters or conf |
+| **`metrics` / `properties` on `_AdaptiveAdapter_`** | Live-while-active: pointer loaded under **adapter_id_anchor_lock** (`adapter_metrics` / `adapter_properties`); not a deep snapshot of counters or conf. Getting either property holds the instance until that request/caller pool is released, so a concurrent **service stop** drains instead of destroying the object |
 
-If you hold Adaptive values from `/afw/…` adapter objects across **service stop**, treat **metrics** / **properties** as valid only while the instance is active (or you hold a session ref); **`referenceCount`** is a safe integer snapshot. Full-registry materialize size and long-running pool pressure remain under **[#2](https://github.com/afw-org/afw/issues/2)**.
+If you hold Adaptive values from `/afw/…` adapter objects across **service stop**, **metrics** / **properties** obtained through `_AdaptiveAdapter_` stay valid for the pool that produced them (the instance stays in the stopping chain until that pool is cleaned up). **`referenceCount`** is still a safe integer snapshot. Caching those objects past the request is unmanaged — full-registry materialize size and long-running pool pressure remain under **[#2](https://github.com/afw-org/afw/issues/2)**.
 
 [↑ Highlights](#highlights)
 

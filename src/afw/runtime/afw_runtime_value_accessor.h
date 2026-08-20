@@ -377,7 +377,8 @@ afw_runtime_value_accessor_uint32(
  * @return object value wrapping metrics_object, or NULL if no active adapter.
  *
  * Loads the adapter pointer under adapter_id_anchor_lock. Result is still a
- * live reference (not a deep snapshot of counters).
+ * live reference (not a deep snapshot of counters). Pins the instance until
+ * p is cleaned up so stop/replace cannot destroy the pool behind the object.
  */
 const afw_value_t *
 afw_runtime_value_accessor_adapter_metrics(
@@ -391,6 +392,8 @@ afw_runtime_value_accessor_adapter_metrics(
  * @param p is pool to use.
  * @param xctx of caller.
  * @return object value wrapping properties, or NULL.
+ *
+ * Pins the instance until p is cleaned up, same as adapter_metrics.
  */
 const afw_value_t *
 afw_runtime_value_accessor_adapter_properties(
