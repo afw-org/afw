@@ -207,16 +207,16 @@ struct afw_model_internal_object_type_s {
     /** @brief NULL terminated list of descendants. */
     const afw_model_object_type_t * *descendants;
 
-    /** @brief descriptionPropertyName. */
+    /** @brief descriptionPropertyName (utf8 config peel, not a key). */
     const afw_utf8_t *description_property_name;
 
-    /** @brief descriptionPropertyName value. */
+    /** @brief descriptionPropertyName as stored on the model object. */
     const afw_value_t *description_property_name_value;
 
-    /** @brief objectIdPropertyName. */
+    /** @brief objectIdPropertyName (utf8 config peel, not a key). */
     const afw_utf8_t *object_id_property_name;
 
-    /** @brief objectIdPropertyName value. */
+    /** @brief objectIdPropertyName as stored on the model object. */
     const afw_value_t *object_id_property_name_value;
 
     /** @brief NULL terminated list of property types for this object type. */

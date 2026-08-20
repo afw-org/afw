@@ -489,7 +489,7 @@ impl_stringify_prepare_object(
         if (!next) {
             break;
         }
-        /* Stringify replacer still takes utf8; as_utf8 at that door. */
+        /* Replacer allow-list and callback take utf8, not a name value. */
         property_name_utf8 = afw_object_string_property_name_as_utf8(
             property_name, ctx->xctx);
         if (!impl_stringify_name_allowed(ctx, property_name_utf8)) {

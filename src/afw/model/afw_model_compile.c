@@ -843,7 +843,7 @@ afw_model_compile(
         object_type = afw_object_old_get_next_property_as_object(
             objectTypes, &iterator, &property_name, xctx);
         if (!object_type) break;
-        /* objectType ids stay utf8 hash keys; as_utf8 at that door. */
+        /* objectType ids are utf8 hash keys, not object property names. */
         property_name_utf8 = afw_object_string_property_name_as_utf8(
             property_name, xctx);
         model_object_type = impl_object_type_compile(model,

@@ -231,7 +231,7 @@ impl_afw_object_get_property(
      * populated via load_all / iterate (raw name is not a C string key).
      */
     value = NULL;
-    /* getenv is a C-string API; as_utf8 at that door. */
+    /* getenv wants a C string. Not an object-key conversion. */
     property_name_utf8 = afw_object_string_property_name_as_utf8(
         property_name, xctx);
     property_name_z = afw_utf8_z_create(

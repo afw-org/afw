@@ -598,7 +598,7 @@ afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
     while ((object = afw_object_old_get_next_property_as_object(
         objects, &iterator, &qualifier_id, xctx)))
     {
-        /* Qualifier ids stay utf8 on this API; as_utf8 at that door. */
+        /* These APIs take utf8 qualifier ids, not object-key values. */
         qualifier_id_utf8 = afw_object_string_property_name_as_utf8(
             qualifier_id, xctx);
         detail_source_location = afw_utf8_printf(
