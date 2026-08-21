@@ -37,6 +37,11 @@ afw_value_closure_binding_create(
     self->inf = &afw_value_closure_binding_inf;
     self->script_function_definition = script_function_definition;
     self->enclosing_lexical_scope = enclosing_lexical_scope;
+    /*
+     * Stay at 1 and pin the enclosing scope until overlay/property
+     * holds land. Create-at-0 would drop that pin for `o.fn = function…`
+     * (not a slot). Named-slot add_reference is an extra hold.
+     */
     self->reference_count = 1;
     afw_xctx_scope_get_reference(enclosing_lexical_scope, xctx);
 
@@ -52,12 +57,15 @@ impl_afw_value_optional_release(
     AFW_VALUE_SELF_T *self,
     afw_xctx_t * xctx)
 {
-    if (self->reference_count <= 1) {
+    if (self->reference_count == 0) {
+        return;
+    }
+    if (self->reference_count == 1) {
+        self->reference_count = 0;
         afw_xctx_scope_release(self->enclosing_lexical_scope, xctx);
+        return;
     }
-    else {
-        self->reference_count--;
-    }
+    self->reference_count--;
 }
 
 /*

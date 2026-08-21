@@ -246,6 +246,11 @@ struct afw_xctx_scope_s {
     afw_size_t reference_count;
     afw_size_t scope_number;
     /*
+     * Last-release walk can re-enter via a closure that holds this
+     * scope. Skip a nested release while tearing down.
+     */
+    afw_boolean_t destroying;
+    /*
      * When this struct is created by afw_xctx_scope_create(), it will be
      * allocated large enough to hold block->symbol_count symbol_values.
      */ 
@@ -349,8 +354,9 @@ afw_xctx_scope_create(
  * @param original_scope to clone.
  * @param xctx of caller.
  *
- * This function calls afw_xctx_scope_create() and clones the value from the
- * original_scope's symbol_values to this new created scope.
+ * This function calls afw_xctx_scope_create() and `add_reference`s each
+ * original symbol into the new scope (same protocol as assign). The
+ * hidden result is not on the scope and is not copied.
  *
  * This function was originally needed to support the incrementor of 'for'
  * statements since each increment needs its own copy of variables to support
@@ -413,9 +419,8 @@ afw_xctx_scope_deactivate(
  * @param scope must match afw_xctx_scope_current(xctx)
  * @param xctx of caller.
  * 
- * This will decrement the reference count of this scope and any parent scopes.
- * If any of these scopes reference count goes to zero, there resources will be
- * freed.
+ * Decrement the reference count. On last release, walk slots (`release`
+ * each), then the parent lexical scope, then this scope's pool.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_release(
@@ -653,11 +658,42 @@ afw_xctx_scope_symbol_set_value_by_name(
  * Assignment and return write this. Most other statements do not.
  */
 #define afw_xctx_script_result_set(v, xctx) \
-do { \
-    ((afw_xctx_t *)xctx)->script_result = \
-        ((v) ? (v) : afw_value_undefined); \
-    ((afw_xctx_t *)xctx)->script_result_written = true; \
-} while (0)
+    afw_xctx_script_result_set_value((v), (xctx))
+
+
+/**
+ * @brief Assign into the current hidden result slot.
+ * @param value to store (NULL becomes undefined).
+ * @param xctx of caller.
+ *
+ * Same protocol as a named slot (`release` old, `add_reference` new).
+ */
+AFW_DECLARE(void)
+afw_xctx_script_result_set_value(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Restore a parked caller hidden result after a nested activation.
+ * @param saved caller `script_result` pointer.
+ * @param saved_active caller `script_result_active`.
+ * @param saved_written caller `script_result_written`.
+ * @param donate true to park the callee hold for the caller to store;
+ *    false to `release` a nested write (for init/increment).
+ * @param xctx of caller.
+ *
+ * Not an assign into the caller slot. Call/block last-`release` must
+ * already have run so named slots are walked while the callee hidden
+ * result still holds the return.
+ */
+AFW_DECLARE(void)
+afw_xctx_script_result_restore(
+    const afw_value_t *saved,
+    afw_boolean_t saved_active,
+    afw_boolean_t saved_written,
+    afw_boolean_t donate,
+    afw_xctx_t *xctx);
 
 
 

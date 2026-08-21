@@ -49,6 +49,7 @@ impl_afw_value_optional_evaluate(
     afw_boolean_t saved_script_result_written;
     int nelts;
 
+    result = NULL;
     nelts = xctx->scope_stack->nelts;
     saved_script_result = xctx->script_result;
     saved_script_result_active = xctx->script_result_active;
@@ -96,9 +97,20 @@ impl_afw_value_optional_evaluate(
         /* Pop off the NULL compiled value indicator on scope stack. */
         apr_array_pop(xctx->scope_stack);
 
-        xctx->script_result = saved_script_result;
-        xctx->script_result_active = saved_script_result_active;
-        xctx->script_result_written = saved_script_result_written;
+        if (xctx->script_result_active &&
+            result &&
+            !afw_value_is_undefined(result) &&
+            !afw_value_is_void(result) &&
+            xctx->script_result != result)
+        {
+            afw_value_slot_store(&xctx->script_result, result,
+                xctx->p, xctx);
+        }
+        afw_xctx_script_result_restore(
+            saved_script_result,
+            saved_script_result_active,
+            saved_script_result_written,
+            true, xctx);
         
     }
     AFW_ENDTRY;

@@ -1159,6 +1159,74 @@ afw_value_contains(
 
 
 /**
+ * @brief Hold a value (NULL-safe `clone_or_reference`).
+ * @param value to hold, or NULL.
+ * @param p pool for a clone if the inf needs one (unused for a bump).
+ * @param xctx of caller.
+ * @return value, a clone, or NULL if value is NULL.
+ *
+ * Inf method still named `clone_or_reference`. Missing method, NULL, and
+ * undefined are no-ops. Assign to a slot should use
+ * `afw_value_slot_store()`.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_add_reference(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Drop a hold (NULL-safe `optional_release`).
+ * @param value to release, or NULL.
+ * @param xctx of caller.
+ *
+ * Missing method, NULL, and undefined are no-ops.
+ */
+AFW_DECLARE(void)
+afw_value_release(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Assign into a slot: `release` old, `add_reference` incoming.
+ * @param slot address of the stored pointer.
+ * @param incoming value to store (NULL becomes undefined).
+ * @param p pool for `add_reference`.
+ * @param xctx of caller.
+ *
+ * Same pointer is a no-op. A donated return hold (callee hidden result)
+ * is taken as this slot's hold instead of a second `add_reference`.
+ */
+AFW_DECLARE(void)
+afw_value_slot_store(
+    const afw_value_t **slot,
+    const afw_value_t *incoming,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Park a callee hidden-result hold until the caller stores it.
+ * @param value returned from a script activation, already held.
+ * @param xctx of caller.
+ *
+ * Used when restoring the caller's `script_result` so the callee last
+ * `release` can walk named slots first. `afw_value_slot_store()` takes
+ * a matching pointer as the slot hold. No-op for NULL / undefined / void.
+ */
+AFW_DECLARE(void)
+afw_value_donate_return(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+
+/**
  * @brief Get the optimized version of this value.
  * @param value to optimize.
  * @param p to use (currently unused by implementation).

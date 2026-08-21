@@ -786,8 +786,11 @@ impl_evaluate_for_increment(
     saved_result = xctx->script_result;
     saved_written = xctx->script_result_written;
     impl_evaluate_one_or_more_values(x, parameter_number, values, p, xctx);
-    xctx->script_result = saved_result;
-    xctx->script_result_written = saved_written;
+    afw_xctx_script_result_restore(
+        saved_result,
+        xctx->script_result_active,
+        saved_written,
+        false, xctx);
 }
 
 

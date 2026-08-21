@@ -44,6 +44,43 @@ assert(a() === 10, "closure a still 10 after b()");
 return 0;
 
 //?
+//? test: overwrite-returned-closure
+//? description: Slot overwrite of a returned closure keeps the new binding (#2)
+//? skip: false
+//? expect: 0
+//? source: ...
+
+function make(n) {
+    let v = n;
+    return function() {
+        return v;
+    };
+}
+
+let a = make(1);
+a = make(2);
+assert(a() === 2);
+return 0;
+
+//?
+//? test: let-x-equals-call-returned-closure
+//? description: let x = f() holds the returned closure across callee walk (#2)
+//? skip: false
+//? expect: 0
+//? source: ...
+
+function f() {
+    let n = 9;
+    return function() {
+        return n;
+    };
+}
+
+let x = f();
+assert(x() === 9);
+return 0;
+
+//?
 //? test: parameter-capture
 //? description: Returned function closes over formal parameter (issue #35; supported)
 //? skip: false

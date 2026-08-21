@@ -339,11 +339,10 @@ impl_afw_value_optional_evaluate(
                     }
                     else if ((*params)->symbol) {
                         /* NULL / missing optional → permanent undefined singleton. */
-                        if (!value) {
-                            value = afw_value_undefined;
-                        }
-                        *afw_xctx_scope_symbol_get_value_address(
-                            (*params)->symbol, parameter_scope, xctx) = value;
+                        afw_value_slot_store(
+                            afw_xctx_scope_symbol_get_value_address(
+                                (*params)->symbol, parameter_scope, xctx),
+                            value, p, xctx);
                     }
                 }
             }
@@ -406,6 +405,19 @@ impl_afw_value_optional_evaluate(
                     "return", check_ctx, xctx);
             }
         }
+
+        /*
+         * Hold the C return in this frame's hidden result so callee
+         * last-release can walk named slots first.
+         */
+        if (result &&
+            !afw_value_is_undefined(result) &&
+            !afw_value_is_void(result) &&
+            xctx->script_result != result)
+        {
+            afw_value_slot_store(&xctx->script_result, result,
+                xctx->p, xctx);
+        }
     }
 
     AFW_FINALLY{
@@ -431,9 +443,11 @@ impl_afw_value_optional_evaluate(
         }
 
         afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
-        xctx->script_result = saved_script_result;
-        xctx->script_result_active = saved_script_result_active;
-        xctx->script_result_written = saved_script_result_written;
+        afw_xctx_script_result_restore(
+            saved_script_result,
+            saved_script_result_active,
+            saved_script_result_written,
+            true, xctx);
     }
 
     AFW_ENDTRY;

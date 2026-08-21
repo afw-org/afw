@@ -4,7 +4,7 @@
 
 **GitHub:** [#2 Memory management](https://github.com/afw-org/afw/issues/2).
 
-**Status:** **Working story** from a long discuss-only session (2026-08-20–21). **Not implemented.** Do not start coding until asked. Vocabulary can still tweak; the picture is what later #2 sessions should share.
+**Status:** **Working story** from a long discuss-only session (2026-08-20–21). First vertical (**slot protocol**) is on branch `issue-2-slot-protocol` — existing pools/infs, no bindings rename, no pool rewrite. Vocabulary can still tweak; the picture is what later #2 sessions should share.
 
 **This file is the campaign map.** Older notes, phase archaeology, and rejected experiments stay in [`memory-management.md`](memory-management.md). When that pad and this file disagree, **this file wins** until we change it on purpose.
 
@@ -263,7 +263,7 @@ This pass is specified with **`xctx->p` as the usual ancestor**. Adapter caches,
 
 Do **not** treat this as a commit plan. When we execute:
 
-1. **Slot protocol** — assign + hidden result + scope last-`release` walk + `for` clone holds.
+1. **Slot protocol** — assign + hidden result + scope last-`release` walk + `for` clone holds. (Started: `issue-2-slot-protocol`. Closure create stays at 1 until overlay/property holds; create-at-0 would break `o.fn = function…`.)
 2. **Scalar `add_reference`** wrapper in `xctx->p`; copy utf8/memory; drop generated slice; rename when bindings change.
 3. **Object/array instance holds** — dual face, no second header; arrays match objects; `create_array`.
 4. **Script wrapper overlay holds** — `set` / last-`release`; wrap every script-mutable path we missed.
