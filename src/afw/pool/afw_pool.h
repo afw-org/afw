@@ -67,8 +67,8 @@ struct afw_pool_cleanup_s {
  * If any of the pool functions are called from other than the specific thread,
  * an error is thrown.
  *
- * The only way to create a thread specific pool is by calling the
- * afw_thread_create() function and accessing the thread struct's p member.
+ * A thread-specific pool is created by afw_pool_thread_create() (used from
+ * afw_thread_create()). Access it as the thread struct's p member.
  *
  * If the parent is a multithread pool, the created pool will also be a
  * multithreaded pool.
@@ -144,11 +144,12 @@ afw_pool_heap_tracker_create(
  * @param xctx of caller.
  * @return new thread struct with p set.
  *
- * This function may be enhanced at a future time, but at this point it should
- * be considered internal and only called from afw_thread_create().
+ * Internal. Only called from afw_thread_create(). Does not start a
+ * pthread; it creates the thread-specific pool and the thread struct
+ * in that pool.
  */
 AFW_DECLARE(afw_thread_t *)
-afw_pool_create_thread(
+afw_pool_thread_create(
     afw_size_t size,
     afw_xctx_t *xctx);
 

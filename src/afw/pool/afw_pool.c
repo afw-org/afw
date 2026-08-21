@@ -711,7 +711,7 @@ afw_pool_create_xctx_p(
 
 
 AFW_DEFINE(afw_thread_t *)
-afw_pool_create_thread(
+afw_pool_thread_create(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
@@ -729,7 +729,7 @@ afw_pool_create_thread(
     self->pub.managed_p = &self->pub;
 
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
-        "afw_pool_create_thread " AFW_SIZE_T_FMT,
+        "afw_pool_thread_create " AFW_SIZE_T_FMT,
         size);
 
     return thread;
