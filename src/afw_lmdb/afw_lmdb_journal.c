@@ -354,7 +354,7 @@ afw_lmdb_journal_get_next_for_consumer_after_cursor(
         peer, afw_v_consumeFilter, xctx);
 
     /* Scan our journal until we find an applicable entry, or hit our limit */
-    for (i = 0; (i < limit) || !found;  i++) {
+    for (i = 0; (limit == 0 || i < limit) && !found;  i++) {
         entry = afw_lmdb_adapter_journal_get_entry_object(self,
             session, adapter, dbiJournal, txn, cursor, xctx);
 
@@ -480,7 +480,7 @@ impl_afw_adapter_journal_get_next_for_consumer(
         cursor = 1;
 
     /* Scan our journal until we find an applicable entry, or hit our limit */
-    for (i = 0; (i < limit) || !found;  i++) {
+    for (i = 0; (limit == 0 || i < limit) && !found;  i++) {
         entry = afw_lmdb_adapter_journal_get_entry_object(self,
             session, adapter, dbiJournal, txn, cursor, xctx);
 
@@ -612,7 +612,7 @@ afw_lmdb_journal_advance_cursor_for_consumer(
         cursor = 1;
 
     /* Scan our journal until we find an applicable entry, or hit our limit */
-    for (i = 0; (i < limit) || !found;  i++) {
+    for (i = 0; (limit == 0 || i < limit) && !found;  i++) {
         entry = afw_lmdb_adapter_journal_get_entry_object(self,
             session, adapter, dbiJournal, txn, cursor, xctx);
 
