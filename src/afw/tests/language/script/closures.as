@@ -685,7 +685,7 @@ return 0;
 //?
 //? test: after2-escape-via-list-from-loop
 //? description: List of for-let closures remains valid after builder returns (#2)
-//? skip: true
+//? skip: false
 //? expect: 0
 //? source: ...
 
@@ -721,7 +721,7 @@ return 0;
 //?
 //? test: after2-capture-mutable-object
 //? description: Closure over mutable object keeps fields after factory returns (#2)
-//? skip: true
+//? skip: false
 //? expect: 0
 //? source: ...
 
@@ -745,7 +745,7 @@ return 0;
 //?
 //? test: after2-nested-factory-return
 //? description: Nested returned factories share outer binding after escape (#2)
-//? skip: true
+//? skip: false
 //? expect: 0
 //? source: ...
 
@@ -767,7 +767,7 @@ return 0;
 //?
 //? test: after2-catch-param-escaped
 //? description: Closure over catch parameter returned from function (#2)
-//? skip: true
+//? skip: false
 //? expect: 0
 //? source: ...
 
@@ -791,7 +791,7 @@ return 0;
 //?
 //? test: after2-for-let-escaped-from-function
 //? description: for-let closures returned in object keep per-iteration bindings (#2)
-//? skip: true
+//? skip: false
 //? expect: 0
 //? source: ...
 
@@ -831,7 +831,7 @@ return 0;
 //?
 //? test: after2-escape-via-property-assign
 //? description: Factory returns object with assigned closures; call after return (#2)
-//? skip: true
+//? skip: false
 //? expect: 0
 //? source: ...
 
@@ -862,6 +862,7 @@ return 0;
 //? test: after2-list-of-mutable-captures
 //? description: Several closures each with own mutable object after builder returns (#2)
 //? skip: true
+//? skipReason: FIXME: object literal + function in the same for-let body hits parent-static-scope (#35 compile), not remaining #2 hold protocol.
 //? expect: 0
 //? source: ...
 
@@ -869,9 +870,10 @@ function build() {
     let c0;
     let c1;
     for (let i = 0; i < 2; i = i + 1) {
-        let state = {
-            n: i
-        };
+        /* Property assign, not `{ n: i }` — object-literal + function in
+         * the same for body still hits parent-static-scope (#35 compile). */
+        let state = {};
+        state.n = i;
         const tick = function() {
             state.n = state.n + 10;
             return state.n;
