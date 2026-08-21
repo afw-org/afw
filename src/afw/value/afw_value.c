@@ -39,6 +39,133 @@ AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_undefined =
 { &impl_value_undefined.pub };
 
+
+/* Take a matching donated return hold, if any. */
+static afw_boolean_t
+impl_take_donated_return(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_size_t i;
+
+    if (!value || !xctx->script_result_donated_count) {
+        return false;
+    }
+    i = xctx->script_result_donated_count;
+    while (i > 0) {
+        i--;
+        if (xctx->script_result_donated[i] == value) {
+            xctx->script_result_donated_count--;
+            if (i < xctx->script_result_donated_count) {
+                xctx->script_result_donated[i] =
+                    xctx->script_result_donated[
+                        xctx->script_result_donated_count];
+            }
+            xctx->script_result_donated[
+                xctx->script_result_donated_count] = NULL;
+            return true;
+        }
+    }
+    return false;
+}
+
+
+/* NULL-safe clone_or_reference. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_add_reference(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!value || !value->inf || !value->inf->clone_or_reference) {
+        return value;
+    }
+    return afw_value_clone_or_reference(value, p, xctx);
+}
+
+
+/* NULL-safe optional_release. */
+AFW_DEFINE(void)
+afw_value_release(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    if (!value || afw_value_is_undefined(value) ||
+        !value->inf || !value->inf->optional_release)
+    {
+        return;
+    }
+    afw_value_optional_release(value, xctx);
+}
+
+
+/* Assign into a slot. */
+AFW_DEFINE(void)
+afw_value_slot_store(
+    const afw_value_t **slot,
+    const afw_value_t *incoming,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_boolean_t taken;
+
+    if (!incoming) {
+        incoming = afw_value_undefined;
+    }
+    taken = impl_take_donated_return(incoming, xctx);
+    if (*slot == incoming) {
+        if (taken) {
+            afw_value_release(incoming, xctx);
+        }
+        return;
+    }
+    afw_value_release(*slot, xctx);
+    if (taken) {
+        *slot = incoming;
+    }
+    else {
+        *slot = afw_value_add_reference(incoming, p, xctx);
+    }
+}
+
+
+/* Park callee hidden-result hold for the caller to store. */
+AFW_DEFINE(void)
+afw_value_donate_return(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_size_t n;
+    const afw_value_t **a;
+
+    if (!value || afw_value_is_undefined(value) ||
+        afw_value_is_void(value) ||
+        !value->inf || !value->inf->optional_release)
+    {
+        return;
+    }
+    if (xctx->script_result_donated_count >=
+        xctx->script_result_donated_alloc)
+    {
+        n = xctx->script_result_donated_alloc == 0
+            ? 8
+            : xctx->script_result_donated_alloc * 2;
+        a = afw_pool_calloc(xctx->p,
+            n * sizeof(const afw_value_t *), xctx);
+        if (xctx->script_result_donated &&
+            xctx->script_result_donated_count > 0)
+        {
+            memcpy(a, xctx->script_result_donated,
+                xctx->script_result_donated_count *
+                    sizeof(const afw_value_t *));
+        }
+        xctx->script_result_donated = a;
+        xctx->script_result_donated_alloc = n;
+    }
+    xctx->script_result_donated[
+        xctx->script_result_donated_count++] = value;
+}
+
 static const afw_value_void_t
 impl_value_void = {
     {&afw_value_permanent_void_inf},
@@ -376,6 +503,25 @@ afw_value_clone(const afw_value_t *value,
 
     /* If value is evaluated, clone it. */
     if (value->inf->is_evaluated_of_data_type) {
+        /* Independent instance + dual face; not a wrap of the original. */
+        if (AFW_VALUE_IS_DATA_TYPE(value, object)) {
+            const afw_object_t *from =
+                ((const afw_value_object_t *)value)->internal;
+            const afw_object_t *to = NULL;
+
+            afw_data_type_clone_internal(afw_data_type_object,
+                (void *)&to, &from, p, xctx);
+            return afw_object_as_value(to, p, xctx);
+        }
+        if (AFW_VALUE_IS_DATA_TYPE(value, array)) {
+            const afw_array_t *from =
+                ((const afw_value_array_t *)value)->internal;
+            const afw_array_t *to = NULL;
+
+            afw_data_type_clone_internal(afw_data_type_array,
+                (void *)&to, &from, p, xctx);
+            return afw_array_as_value(to, p, xctx);
+        }
         evaluated = afw_value_common_allocate(
             value->inf->is_evaluated_of_data_type, p, xctx);
         afw_data_type_clone_internal(value->inf->is_evaluated_of_data_type,
@@ -415,9 +561,7 @@ afw_value_isolate_mutable_default(
         /* Always a *new* face over the base (even if value was already a face). */
         obj = afw_object_memory_wrapper_base(obj);
         face_obj = afw_object_create_wrapper_unmanaged(obj, p, xctx);
-        return face_obj->value
-            ? face_obj->value
-            : afw_value_create_unmanaged_object(face_obj, p, xctx);
+        return afw_object_as_value(face_obj, p, xctx);
     }
 
     if (AFW_VALUE_IS_DATA_TYPE(value, array)) {
@@ -427,9 +571,7 @@ afw_value_isolate_mutable_default(
         }
         arr = afw_array_memory_wrapper_base(arr);
         face_arr = afw_array_create_wrapper_unmanaged(arr, p, xctx);
-        return face_arr->value
-            ? face_arr->value
-            : afw_value_create_unmanaged_array(face_arr, p, xctx);
+        return afw_array_as_value(face_arr, p, xctx);
     }
 
     /* Scalars and other types: clone as before. */

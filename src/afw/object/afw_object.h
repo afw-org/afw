@@ -1065,6 +1065,26 @@ afw_object_insure_embedded_exists(
 
 
 /**
+ * @brief Evaluated value for an object instance.
+ * @param object instance, or NULL.
+ * @param p used only if a heap wrapper is required (no dual face).
+ * @param xctx of caller.
+ * @return object->value when present; otherwise an unmanaged heap
+ *    wrapper. NULL if object is NULL.
+ *
+ * Use this whenever C has an instance and needs an Adaptive value.
+ * Do not call create_unmanaged_object for that — it allocates a
+ * second header whose optional_release does not hold the instance.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_object_as_value(
+    const afw_object_t *object,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+
+/**
  * @brief Clone an object to a specified pool.
  * @param object to clone.
  * @param p used for cloned object.

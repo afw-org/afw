@@ -47,6 +47,7 @@ afw_xctx_internal_create_initialize(
             na, 0, "apr_pcalloc() failed");
     }
     self->p = p;
+    self->script_result = afw_value_undefined;
     self->mode = afw_authorization_mode_id_user_value;
     self->current_try = unhandled_error;
     self->error = error;
@@ -295,10 +296,7 @@ afw_xctx_scope_symbol_set_value(
      * with undefined" is never confused with "not applicable" at the pointer
      * level (issue #131). let without initializer and nullish assigns land here.
      */
-    if (!value) {
-        value = afw_value_undefined;
-    }
-    *value_address = value;
+    afw_value_slot_store(value_address, value, xctx->p, xctx);
 }
 
 
@@ -322,10 +320,7 @@ afw_xctx_scope_symbol_set_value_by_name(
             AFW_UTF8_FMT_ARG(symbol_name));
     }
 
-    if (!value) {
-        value = afw_value_undefined;
-    }
-    *value_address = value;
+    afw_value_slot_store(value_address, value, xctx->p, xctx);
 }
 
 
@@ -764,10 +759,10 @@ afw_xctx_scope_clone(
     scope = (afw_xctx_scope_t *)afw_xctx_scope_create(
         original_scope->block, original_scope->parent_lexical_scope, xctx);
 
-    /* Copy entries. */
+    /* Per-slot add_reference; hidden result is not on the scope. */
     for (afw_size_t i = 0; i < scope->block->symbol_count; i++) {
-        /** @fixme change these to value references when that's done. */
-        scope->symbol_values[i] = original_scope->symbol_values[i];
+        afw_value_slot_store(&scope->symbol_values[i],
+            original_scope->symbol_values[i], scope->p, xctx);
     }
 
     afw_xctx_scope_debug(
@@ -876,11 +871,23 @@ afw_xctx_scope_release(
         "-1 afw_xctx_scope_release() begin",
         scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
 
+    if (scope->destroying) {
+        return;
+    }
+
     /*
-     * If never activated or reference count is 1, release reference to parent
-     * lexical scope and free this scope's pool.
+     * Last release: walk slots, then parent lexical, then this pool.
+     * Closures in slots may re-enter; destroying skips that nested call.
      */
     if (scope->reference_count <= 1) {
+        ((afw_xctx_scope_t *)scope)->destroying = true;
+        if (scope->block) {
+            for (afw_size_t i = 0; i < scope->block->symbol_count; i++) {
+                afw_value_release(scope->symbol_values[i], xctx);
+                ((afw_xctx_scope_t *)scope)->symbol_values[i] =
+                    afw_value_undefined;
+            }
+        }
         if (scope->parent_lexical_scope) {
             afw_xctx_scope_release(scope->parent_lexical_scope, xctx);
         }
@@ -899,6 +906,52 @@ afw_xctx_evaluation_result_set(
     afw_xctx_t *xctx,
     const afw_value_t *value)
 {
-    /** @fixme Change to use afw_value_clone_or_reference() when that is in place. */
     ((afw_xctx_t *)xctx)->evaluation_result = value;
+}
+
+
+/* Assign into the current hidden result slot. */
+AFW_DEFINE(void)
+afw_xctx_script_result_set_value(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_value_slot_store(&xctx->script_result, value, xctx->p, xctx);
+    xctx->script_result_written = true;
+}
+
+
+/* Restore parked caller hidden result after a nested activation. */
+AFW_DEFINE(void)
+afw_xctx_script_result_restore(
+    const afw_value_t *saved,
+    afw_boolean_t saved_active,
+    afw_boolean_t saved_written,
+    afw_boolean_t donate,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *current;
+
+    current = xctx->script_result;
+    if (current && current != saved &&
+        !afw_value_is_undefined(current) &&
+        !afw_value_is_void(current))
+    {
+        if (donate) {
+            afw_value_donate_return(current, xctx);
+        }
+        else {
+            afw_value_release(current, xctx);
+        }
+    }
+    else if (donate && current == saved && current &&
+        !afw_value_is_undefined(current) &&
+        xctx->script_result_written)
+    {
+        afw_value_release(current, xctx);
+    }
+
+    xctx->script_result = saved;
+    xctx->script_result_active = saved_active;
+    xctx->script_result_written = saved_written;
 }

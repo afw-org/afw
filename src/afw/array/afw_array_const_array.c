@@ -149,6 +149,16 @@ impl_afw_array_release (
 }
 
 
+void
+impl_afw_array_get_reference(
+    AFW_ARRAY_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    (void)self;
+    (void)xctx;
+}
+
+
 
 /*
  * Implementation of method get_count for interface afw_array.

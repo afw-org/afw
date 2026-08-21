@@ -148,7 +148,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | **Day rules** | `afw-runtime-model` (always-on), `afw-value-memory` (**current tree**; campaign target is the lifetime pad), `afw-script-eval` |
 | **Deep pad** | [`issue-2-lifetime.md`](issue-2-lifetime.md) (**campaign map**); archaeology [`memory-management.md`](memory-management.md); philosophy core model; names-as-values [`issue-2-property-name-values.md`](issue-2-property-name-values.md); faces [`issue-17-mutable-object-faces.md`](issue-17-mutable-object-faces.md) |
 | **Probe** | Targeted `.as` + `afwdev test -j --env-mode valgrind`; orchestrated multi-request leaves; never “fix memory” without a metric/story |
-| **Open** | Umbrella **#2** — story recorded, **not coded**. Many feature branches, more to come; parent of closed #149. **Names as values** landed (PR **#220** + wrap-cleanup). Arrays still ignore create `options`; `create_array` on the on-ramp. Optional free-list splice waits on #2 (naive `else` livelocks first-fit). Pool rewrite after the value protocol. |
+| **Open** | Umbrella **#2**. Slot protocol + scalar boxing + array instance holds + overlay `set` + `as_value` + deep `clone()` + for-of per-iteration on `issue-2-slot-protocol`. **Names as values** landed (PR **#220**). Live pool still develop (`create_subpool`); wrap-APR parked as `afw_pool_apr_*`. Remaining: pool design (request vs script scope), object-literal method closures (#35 compile), optional `free`. |
 | **Gap** | Lifetime pad is the one-pager that was missing; keep `memory-management.md` as archaeology |
 
 ---

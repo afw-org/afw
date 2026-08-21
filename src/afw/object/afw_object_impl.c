@@ -14,6 +14,23 @@
 #include "afw_internal.h"
 
 
+AFW_DEFINE(const afw_value_t *)
+afw_object_as_value(
+    const afw_object_t *object,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_value_object_t *v;
+
+    if (object && object->value) {
+        return object->value;
+    }
+    v = afw_pool_calloc(p, sizeof(afw_value_object_t), xctx);
+    v->inf = &afw_value_unmanaged_object_inf;
+    v->internal = object;
+    return &v->pub;
+}
+
 
 AFW_DEFINE(const afw_utf8_t * const *)
 afw_object_impl_get_parent_paths_from_parents(

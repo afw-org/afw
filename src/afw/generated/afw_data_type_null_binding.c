@@ -76,7 +76,7 @@ impl_afw_value_permanent_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* unmanaged null: optional_release NULL; */
-/* clone_or_reference returns the same instance (pool lifetime). */
+/* clone_or_reference boxes a managed copy in xctx->p. */
 #define AFW_IMPLEMENTATION_ID "null"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_null_inf
@@ -395,13 +395,13 @@ impl_afw_value_managed_optional_release(
     afw_value_null_managed_t *self =
         (afw_value_null_managed_t *)instance;
 
-    /* Create starts at 0; get_reference increments. Free only at 0. */
+    /* Do not first-fit free into xctx->p while scope
+     * subpools still exist (prefix). Last hold leaks until
+     * xctx destroy; pool reuse is a later #2 slice. */
     if (self->reference_count == 0) {
-        afw_pool_free_memory((void *)instance, xctx);
+        return;
     }
-    else {
-        self->reference_count--;
-    }
+    self->reference_count--;
 }
 
 /* Implementation of method get_reference for unmanaged value. */
@@ -411,7 +411,9 @@ impl_afw_value_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* Unmanaged: return same instance (pool owns storage). */
+    /* Unmanaged null sentinels keep pointer identity. */
+    (void)p;
+    (void)xctx;
     return instance;
 }
 

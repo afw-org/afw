@@ -1745,14 +1745,7 @@ for (const let of []) {}
 //? description:...
     const ForDeclaration: creates a fresh binding per iteration (closures
     capture the value from each iteration)
-//? expect: 0
-//? skip: true
-//? skipReason: ...
-FIXME: for-of const + per-iteration closure capture still wrong (all
-closures see the last binding). Closures work in general but escape /
-loop-binding capture needs #35 and lifetime work under #2 — not a
-test262-only fix. Keep correct expect (0); do not paper over with
-expect: error.
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1935,7 +1928,7 @@ return 0;
 //? test: head-let-fresh-binding-per-iteration
 //? description:...
     let ForDeclaration: creates a fresh binding per iteration
-//? expect: error:Assertion failed: `f[0]()` returns `1`
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1951,6 +1944,7 @@ assert(s === 6, "The value of `s` is `6`");
 assert(f[0]() === 1, "`f[0]()` returns `1`");
 assert(f[1]() === 2, "`f[1]()` returns `2`");
 assert(f[2]() === 3, "`f[2]()` returns `3`");
+return 0;
 
 
 //? test: head-let-init
@@ -3613,7 +3607,7 @@ assert(i === 1);
 //? description:...
     Creation of new lexical environment for each evaluation of the statement
     body
-//? expect: error:Assertion failed
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3630,6 +3624,7 @@ for (let x of ['first', 'second'])
 
 assert(probeFirst() === 'first');
 assert(probeSecond() === 'second');
+return 0;
 
 
 //? test: scope-body-lex-close

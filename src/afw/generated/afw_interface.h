@@ -3817,6 +3817,12 @@ typedef void
     const afw_array_t * instance,
     afw_xctx_t * xctx);
 
+/** @sa afw_array_get_reference() */
+typedef void
+(*afw_array_get_reference_t)(
+    const afw_array_t * instance,
+    afw_xctx_t * xctx);
+
 /** @sa afw_array_get_count() */
 typedef afw_size_t
 (*afw_array_get_count_t)(
@@ -3901,6 +3907,7 @@ typedef const afw_array_setter_t *
 struct afw_array_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_array_release_t release;
+    afw_array_get_reference_t get_reference;
     afw_array_get_count_t get_count;
     afw_array_get_data_type_t get_data_type;
     afw_array_get_entry_meta_t get_entry_meta;
@@ -3916,9 +3923,11 @@ struct afw_array_inf_s {
 /**
  * @brief Call method `release` of interface `afw_array`.
  *
- * Release resources associated with adaptive value array. This will
- * automatically be called
- * if value array is part of an adaptive adapter session.
+ * Reduces the array's reference count and releases the array's
+ * resources if the count is 0. An array returned from a managed
+ * create has a reference count of 1. Calls to method
+ * get_reference() increment the count. Unmanaged memory arrays
+ * treat this as a no-op (pool bulk free).
  * @param instance Pointer to this value array instance.
  * @param xctx This is the caller's xctx.
  * @relates afw_array_t
@@ -3929,6 +3938,26 @@ struct afw_array_inf_s {
     xctx \
 ) \
 (instance)->inf->release( \
+    (instance), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `get_reference` of interface `afw_array`.
+ *
+ * Adds an additional reference to a managed array. Necessary if
+ * this array may be referenced after it would normally be
+ * released. Unmanaged memory arrays treat this as a no-op.
+ * @param instance Pointer to this value array instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_array_t
+ * @see @ref afw_array_s "afw_array_t"
+ */
+#define afw_array_get_reference( \
+    instance, \
+    xctx \
+) \
+(instance)->inf->get_reference( \
     (instance), \
     (xctx) \
 )

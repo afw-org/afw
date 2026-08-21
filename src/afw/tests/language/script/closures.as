@@ -44,6 +44,43 @@ assert(a() === 10, "closure a still 10 after b()");
 return 0;
 
 //?
+//? test: overwrite-returned-closure
+//? description: Slot overwrite of a returned closure keeps the new binding (#2)
+//? skip: false
+//? expect: 0
+//? source: ...
+
+function make(n) {
+    let v = n;
+    return function() {
+        return v;
+    };
+}
+
+let a = make(1);
+a = make(2);
+assert(a() === 2);
+return 0;
+
+//?
+//? test: let-x-equals-call-returned-closure
+//? description: let x = f() holds the returned closure across callee walk (#2)
+//? skip: false
+//? expect: 0
+//? source: ...
+
+function f() {
+    let n = 9;
+    return function() {
+        return n;
+    };
+}
+
+let x = f();
+assert(x() === 9);
+return 0;
+
+//?
 //? test: parameter-capture
 //? description: Returned function closes over formal parameter (issue #35; supported)
 //? skip: false
@@ -589,14 +626,13 @@ return 0;
 //?
 //? test: before2-for-of-let-per-iteration
 //? description: for-of let should be per-iteration like for-let (could fix before #2; #35)
-//? skip: true
+//? skip: false
 //? expect: 0
 //? source: ...
 
 /*
- * Today both closures see the final iteration value (shared binding). ES and
- * Adaptive for(let i=…) use per-iteration bindings; for-of should match for
- * author comfort. Scope-per-iteration work, not #2 lifetime.
+ * let/const for-of heads clone the loop-local scope each iteration
+ * (same protocol as C-style for). No for-in.
  */
 let f0;
 let f1;
@@ -616,6 +652,60 @@ for (let v of items) {
 }
 assert(f0() === 10, "first iteration value");
 assert(f1() === 20, "second iteration value");
+return 0;
+
+//?
+//? test: for-of-const-per-iteration
+//? description: for-of const head is a fresh binding per iteration
+//? skip: false
+//? expect: 0
+//? source: ...
+
+let f0;
+let f1;
+let f2;
+let i = 0;
+for (const x of [1, 2, 3]) {
+    if (i === 0) {
+        f0 = function() { return x; };
+    } else if (i === 1) {
+        f1 = function() { return x; };
+    } else {
+        f2 = function() { return x; };
+    }
+    i = i + 1;
+}
+assert(f0() === 1);
+assert(f1() === 2);
+assert(f2() === 3);
+return 0;
+
+//?
+//? test: for-of-assign-outer-shared-binding
+//? description: for (x of …) when x is already declared is one binding
+//? skip: false
+//? expect: 0
+//? source: ...
+
+let x;
+let f0;
+let f1;
+const items = [10, 20];
+let idx = 0;
+for (x of items) {
+    if (idx === 0) {
+        f0 = function() {
+            return x;
+        };
+    } else {
+        f1 = function() {
+            return x;
+        };
+    }
+    idx = idx + 1;
+}
+assert(f0() === 20, "outer x is one binding");
+assert(f1() === 20, "both closures see last");
 return 0;
 
 //?
@@ -648,7 +738,7 @@ return 0;
 //?
 //? test: after2-escape-via-list-from-loop
 //? description: List of for-let closures remains valid after builder returns (#2)
-//? skip: true
+//? skip: false
 //? expect: 0
 //? source: ...
 
@@ -684,7 +774,7 @@ return 0;
 //?
 //? test: after2-capture-mutable-object
 //? description: Closure over mutable object keeps fields after factory returns (#2)
-//? skip: true
+//? skip: false
 //? expect: 0
 //? source: ...
 
@@ -708,7 +798,7 @@ return 0;
 //?
 //? test: after2-nested-factory-return
 //? description: Nested returned factories share outer binding after escape (#2)
-//? skip: true
+//? skip: false
 //? expect: 0
 //? source: ...
 
@@ -730,7 +820,7 @@ return 0;
 //?
 //? test: after2-catch-param-escaped
 //? description: Closure over catch parameter returned from function (#2)
-//? skip: true
+//? skip: false
 //? expect: 0
 //? source: ...
 
@@ -754,7 +844,7 @@ return 0;
 //?
 //? test: after2-for-let-escaped-from-function
 //? description: for-let closures returned in object keep per-iteration bindings (#2)
-//? skip: true
+//? skip: false
 //? expect: 0
 //? source: ...
 
@@ -794,7 +884,7 @@ return 0;
 //?
 //? test: after2-escape-via-property-assign
 //? description: Factory returns object with assigned closures; call after return (#2)
-//? skip: true
+//? skip: false
 //? expect: 0
 //? source: ...
 
@@ -825,6 +915,7 @@ return 0;
 //? test: after2-list-of-mutable-captures
 //? description: Several closures each with own mutable object after builder returns (#2)
 //? skip: true
+//? skipReason: FIXME: object literal + function in the same for-let body hits parent-static-scope (#35 compile), not remaining #2 hold protocol.
 //? expect: 0
 //? source: ...
 
@@ -832,9 +923,10 @@ function build() {
     let c0;
     let c1;
     for (let i = 0; i < 2; i = i + 1) {
-        let state = {
-            n: i
-        };
+        /* Property assign, not `{ n: i }` — object-literal + function in
+         * the same for body still hits parent-static-scope (#35 compile). */
+        let state = {};
+        state.n = i;
         const tick = function() {
             state.n = state.n + 10;
             return state.n;

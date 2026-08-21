@@ -436,7 +436,9 @@ impl_afw_value_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* Unmanaged: return same instance (pool owns storage). */
+    /* Object/array/function: instance hold is a later slice. */
+    (void)p;
+    (void)xctx;
     return instance;
 }
 
@@ -453,9 +455,13 @@ impl_afw_value_managed_get_reference(
     const afw_array_t *arr = self->internal;
     afw_boolean_t embedded;
 
-    /* Arrays: no container get_reference; heap RC only. */
+    /* Hold is on the array (pool RC). */
+    if (arr) {
+        afw_array_get_reference(arr, xctx);
+    }
+
+    /* Heap wrappers: bump value RC so optional_release frees once. */
     (void)p;
-    (void)xctx;
     embedded = (arr && arr->value == instance);
     if (!embedded) {
         ((afw_value_array_managed_t *)instance)->

@@ -64,6 +64,9 @@ impl_script_face_object(
 
 
 
+
+
+
 /* Used by retrieve_objects*() */
 typedef struct impl_retrieve_cb_ctx_s {
     const afw_pool_t *p;
@@ -122,11 +125,11 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
             }
             afw_object_get_reference(object, xctx);
             afw_array_push_value(ctx->array,
-                afw_value_create_unmanaged_object(face, ctx->p, xctx), xctx);
+                afw_object_as_value(face, ctx->p, xctx), xctx);
         }
         else {
             ctx->argv[0] = ctx->objectCallback;
-            ctx->argv[1] = afw_value_create_unmanaged_object(face, p, xctx);
+            ctx->argv[1] = afw_object_as_value(face, p, xctx);
             ctx->argv[2] = ctx->userData;
             if (!ctx->call) {
                 ctx->call = afw_value_call_create(ctx->contextual,
@@ -1002,7 +1005,7 @@ afw_function_execute_get_object(
     if (!AFW_OBJECT_OPTION_IS(object_options, reconcilable)) {
         obj = impl_script_face_object(obj, x->p, x->xctx);
     }
-    return afw_value_create_unmanaged_object(obj, x->p, x->xctx);
+    return afw_object_as_value(obj, x->p, x->xctx);
 }
 
 
@@ -1109,7 +1112,7 @@ afw_function_execute_get_object_with_uri(
     if (!AFW_OBJECT_OPTION_IS(object_options, reconcilable)) {
         obj = impl_script_face_object(obj, x->p, x->xctx);
     }
-    return afw_value_create_unmanaged_object(obj, x->p, x->xctx);
+    return afw_object_as_value(obj, x->p, x->xctx);
 }
 
 

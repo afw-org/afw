@@ -62,8 +62,10 @@ afw_data_type_anyURI;
 /**
  * @brief Unmanaged evaluated value inf for data type anyURI.
  *
- * Lifetime is the containing pool. optional_release is NULL;
- * clone_or_reference returns the same instance (no clone, no RC).
+ * Lifetime is the containing pool until clone_or_reference.
+ * Scalar clone_or_reference boxes a managed copy in xctx->p.
+ * Object/array/function return the same instance (no clone).
+ * optional_release is NULL on the unmanaged inf.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_anyURI_inf;

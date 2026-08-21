@@ -598,7 +598,23 @@ impl_afw_object_setter_set_property(
     for (e = memory_object_self->first_property,final_e = NULL; e; e = e->next) {
         final_e = e;
         if (afw_value_equal(e->name, property_name, xctx)) {
-            e->value = value;
+            /*
+             * Overlay hold only on look-through faces. Generic memory
+             * objects still store the pointer (adapter/runtime/snapshots).
+             */
+            if (memory_object_self->wrapped) {
+                if (!value) {
+                    afw_value_release(e->value, xctx);
+                    e->value = NULL;
+                }
+                else {
+                    afw_value_slot_store(&e->value, value,
+                        xctx->p, xctx);
+                }
+            }
+            else {
+                e->value = value;
+            }
             return;
         }
     }
@@ -626,19 +642,15 @@ impl_afw_object_setter_set_property(
             self->object->p, xctx);
     }
     e->name = property_name;
-
-    /** @fixme
-     * Need to think about setting a property that is an object.  Embedding
-     * object and property name needs to be correct, plus path and related
-     * meta needs to be clear.  Might involve clone, but
-     * afw_object_create_embedded() also calls this, so if embedded
-     * object is this self, no clone needed.  Also consider that clone
-     * might not should be used since the one setting property might want
-     * to add properties after doing the set.
-     */
-    e->value = (value && memory_object_self->clone_on_set)
-        ? afw_value_clone(value, memory_object_self->pub.p, xctx)
-        : value;
+    e->value = NULL;
+    if (value) {
+        if (memory_object_self->wrapped) {
+            afw_value_slot_store(&e->value, value, xctx->p, xctx);
+        }
+        else {
+            e->value = value;
+        }
+    }
     if (final_e) {
         final_e->next = e;
     }

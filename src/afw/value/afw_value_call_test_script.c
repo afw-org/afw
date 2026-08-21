@@ -257,6 +257,12 @@ impl_afw_value_optional_evaluate(
             continue;
         }
 
+        /*
+         * Drop leftover donated pointers from a prior case. Same xctx
+         * runs every case; a stale pointer can alias a new compile.
+         */
+        xctx->script_result_donated_count = 0;
+
         if (info->compile_type == afw_compile_type_error) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "source_type=" AFW_UTF8_FMT_Q " is invalid",

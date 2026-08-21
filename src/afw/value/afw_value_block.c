@@ -151,6 +151,14 @@ afw_value_block_evaluate_block(
         {
             result = last;
         }
+        if (result &&
+            !afw_value_is_undefined(result) &&
+            !afw_value_is_void(result) &&
+            xctx->script_result != result)
+        {
+            afw_value_slot_store(&xctx->script_result, result,
+                xctx->p, xctx);
+        }
     }
     AFW_FINALLY{
         afw_xctx_scope_deactivate(scope, xctx);

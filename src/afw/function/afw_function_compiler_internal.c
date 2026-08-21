@@ -786,8 +786,11 @@ impl_evaluate_for_increment(
     saved_result = xctx->script_result;
     saved_written = xctx->script_result_written;
     impl_evaluate_one_or_more_values(x, parameter_number, values, p, xctx);
-    xctx->script_result = saved_result;
-    xctx->script_result_written = saved_written;
+    afw_xctx_script_result_restore(
+        saved_result,
+        xctx->script_result_active,
+        saved_written,
+        false, xctx);
 }
 
 
@@ -1266,12 +1269,21 @@ afw_function_execute_for_of(
     const afw_value_t *result;
     const afw_value_t *iterable;
     const afw_value_t *value;
+    const afw_value_t *for_of_target;
+    const afw_xctx_scope_t *scope;
+    const afw_xctx_scope_t *previous_iterator_scope;
     afw_compile_internal_assignment_type_t assignment_type;
+    afw_compile_internal_assignment_type_t head_type;
     afw_iterator_t iterator;
     const afw_utf8_t *this_label;
+    afw_boolean_t clone_each;
+    afw_boolean_t first;
 
     result = afw_value_undefined;
     this_label = NULL;
+    previous_iterator_scope = NULL;
+    clone_each = false;
+    first = true;
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(3);
@@ -1285,26 +1297,19 @@ afw_function_execute_for_of(
         iterable = afw_function_evaluate_required_parameter(x, 2, NULL);
 
         assignment_type = afw_compile_assignment_type_use_assignment_targets;
-        /*
-         * After the first iteration, let/var heads reassign the same slot
-         * (assign_only). const for-of must rebind each iteration without
-         * treating that as a user assignment to const (ES: fresh binding
-         * per iteration; Adaptive: same slot, const define type each time).
-         */
-        {
-            const afw_value_t *for_of_target = x->argv[1];
-            afw_boolean_t const_for_of_head;
+        for_of_target = x->argv[1];
+        if (afw_value_is_assignment_target(for_of_target)) {
+            const afw_value_assignment_target_t *at =
+                (const afw_value_assignment_target_t *)for_of_target;
 
-            const_for_of_head = false;
-            if (afw_value_is_assignment_target(for_of_target)) {
-                const afw_value_assignment_target_t *at =
-                    (const afw_value_assignment_target_t *)for_of_target;
-                if (at->assignment_target->assignment_type ==
-                    afw_compile_assignment_type_const)
-                {
-                    const_for_of_head = true;
-                }
+            head_type = at->assignment_target->assignment_type;
+            /* let/const open a loop-local block; clone it per iteration. */
+            if (head_type == afw_compile_assignment_type_let ||
+                head_type == afw_compile_assignment_type_const)
+            {
+                clone_each = true;
             }
+        }
 
         if (!afw_value_has_iterator(iterable)) {
             AFW_THROW_ERROR_Z(general,
@@ -1314,22 +1319,40 @@ afw_function_execute_for_of(
 
         afw_value_initialize_iterator(iterable, &iterator, xctx);
         while ((value = afw_iterator_get_next(&iterator, p, xctx)) != NULL) {
+            if (clone_each && !first) {
+                if (previous_iterator_scope) {
+                    scope = afw_xctx_scope_clone(
+                        previous_iterator_scope, xctx);
+                    afw_xctx_scope_deactivate(
+                        previous_iterator_scope, xctx);
+                }
+                else {
+                    scope = afw_xctx_scope_clone(
+                        afw_xctx_scope_current(xctx), xctx);
+                }
+                previous_iterator_scope = scope;
+                afw_xctx_scope_activate(scope, xctx);
+                /* Still let/const define on the clone, not assign_only. */
+            }
             impl_assign(x->argv[1], value, assignment_type, p, xctx);
-            if (!const_for_of_head) {
+            if (!clone_each) {
                 assignment_type =
                     afw_compile_assignment_type_assign_only;
             }
             result = afw_value_block_evaluate_statement(
                 x, x->argv[3], p, xctx);
+            first = false;
             if (impl_loop_should_exit(this_label, xctx)) {
                 break;
             }
         }
-        } /* const_for_of_head scope */
     }
     AFW_FINALLY{
 
         impl_loop_consume_if_target(this_label, xctx);
+        if (previous_iterator_scope) {
+            afw_xctx_scope_deactivate(previous_iterator_scope, xctx);
+        }
 
     }
     AFW_ENDTRY;

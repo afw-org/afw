@@ -6,11 +6,10 @@ What already changed is in [`changes.md`](changes.md).
 
 **`Never:`** is decided-not. Do not burn it down unless the product flips.
 
-## Remaining `FIXME:` (3)
+## Remaining `FIXME:` (2)
 
 | Test | Why it stays |
 |------|----------------|
-| `statements/for-of.as` `head-const-fresh-binding-per-iteration` | Closures from `for (const x of …)` all see the last binding. **#35 / #2**. Honest `expect: 0`. |
 | `language/script/string_code_points.as` `Deferred-produce-type-script-call-return` | Runtime `f()` would false-green. Needs compile-time produce-type on script-call IR. |
 | `lmdb/adapter/index_current.as` `index_current_object` | LMDB `index_create` hang. **#57**. |
 
