@@ -83,35 +83,41 @@ afw_pool_create(
 
 
 /**
- * @brief Create a subpool of a pool.
- * @param parent of new subpool.
+ * @brief Create a pool whose managed_p is itself.
+ * @param parent of new pool.
  * @param xctx of caller.
  * @return new pool.
  *
- * This creates a subpool of a parent pool.
- *
- * When memory is allocated from the subpool, it is allocated from the parent
- * pool. The memory is tracked in the subpool and when the subpool is destroyed
- * or subpool memory is freed, the memory is returned to the parent.
- *
- * When a subpool is destroyed, all of it's children pools are released. If
- * there are any children that remain after being released, their parent is
- * changed to the subpool's parent. This makes subpools useful for scopes where
- * the children pools might still be needed because variables accessing them are
- * still in scope. To be clear, all the children pools will be destroyed when
- * the subpool is destroyed unless they have a reference count greater than 1.
- *
- * Subpool's have a small amount of overhead per allocation as well as overhead
- * when the subpool is destroyed but they can be useful in situations where the
- * subpool will most often hold a small number of allocations that will usually
- * total less than 4k. Externally, subpool are used the same as a pool.
- *
- * This function is used by afw_xctx_scope_create() to create a unique subpool
- * for each xctx scope with a parent pool of xctx->p.
+ * Same as afw_pool_create() then p->managed_p = p. Use for xctx->p and
+ * factory/conf instance pools (adapter->p, server->p, ...).
  */
 AFW_DECLARE(const afw_pool_t *)
-afw_pool_create_subpool(
-    const afw_pool_t *parent, 
+afw_pool_create_as_managed_p(
+    const afw_pool_t *parent,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create an evaluation heap.
+ * @param parent of the heap (the p passed to compiled_value evaluate).
+ * @param xctx of caller.
+ * @return new heap. managed_p is self.
+ */
+AFW_DECLARE(const afw_pool_t *)
+afw_pool_heap_create(
+    const afw_pool_t *parent,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create a heap tracker (scope pool).
+ * @param parent heap from afw_pool_heap_create().
+ * @param xctx of caller.
+ * @return tracker. managed_p is the heap.
+ */
+AFW_DECLARE(const afw_pool_t *)
+afw_pool_heap_tracker_create(
+    const afw_pool_t *parent,
     afw_xctx_t *xctx);
 
 

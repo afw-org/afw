@@ -1,4 +1,4 @@
 {
     "name": "afw_pool",
-    "description": "Hierarchical memory pool: fast allocate with bulk free on destroy or\n      release. Most AFW values, objects, and scopes allocate from pools;\n      subpools scope lifetime under a parent. Prefer afw_pool_create* /\n      afw_pool_calloc helpers and call macros over managing APR pools by\n      hand. Do not free individual allocations unless the pool supports it\n      (free_memory path). See group afw_pool."
+    "description": "Hierarchical memory pool: fast allocate with bulk free on destroy or\n      release. Most AFW values, objects, and scopes allocate from pools.\n      Prefer afw_pool_create* / afw_pool_calloc helpers and call macros over\n      managing APR pools by hand. Do not free individual allocations unless\n      the pool supports it (free_memory path). See group afw_pool."
 }

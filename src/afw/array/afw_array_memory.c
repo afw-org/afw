@@ -84,7 +84,7 @@ afw_array_create_with_options(
 
     /* If managed, create subpool for array. */
     if (options == AFW_ARRAY_MEMORY_OPTION_managed) {
-        p = afw_pool_create_subpool(p, xctx);
+        p = afw_pool_create(p->managed_p, xctx);
     }
 
     /* Allocate memory for self. */

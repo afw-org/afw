@@ -2203,6 +2203,13 @@ struct afw_xctx_s {
     const afw_value_t *evaluation_result;
 
     /**
+     * Heap for the current compiled_value evaluate wrap, or NULL.
+     * Nested compiled_value evaluate save/restore this. Scopes make
+     * trackers of this heap.
+     */
+    const afw_pool_t *evaluation_heap;
+
+    /**
      * The execution context (xctx) evaluation stack.
      */
     afw_xctx_evaluation_stack_t *evaluation_stack;

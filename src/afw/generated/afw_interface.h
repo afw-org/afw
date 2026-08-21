@@ -6899,11 +6899,10 @@ struct afw_stream_inf_s {
  * @addtogroup afw_pool_interface afw_pool
  *
  * Hierarchical memory pool: fast allocate with bulk free on destroy or
- * release. Most AFW values, objects, and scopes allocate from pools;
- * subpools scope lifetime under a parent. Prefer afw_pool_create* /
- * afw_pool_calloc helpers and call macros over managing APR pools by
- * hand. Do not free individual allocations unless the pool supports it
- * (free_memory path). See group afw_pool.
+ * release. Most AFW values, objects, and scopes allocate from pools.
+ * Prefer afw_pool_create* / afw_pool_calloc helpers and call macros over
+ * managing APR pools by hand. Do not free individual allocations unless
+ * the pool supports it (free_memory path). See group afw_pool.
  *
  * @{
  */
@@ -6919,6 +6918,14 @@ struct afw_stream_inf_s {
  */
 struct afw_pool_s {
     const afw_pool_inf_t *inf;
+
+    /**
+     * Pool to use for managed object/array instances and other managed
+     * allocations made while this pool is the current p. Never NULL after
+     * create. Heap and job pools (xctx, factory, thread, env) set this to
+     * self; other pools inherit the parent.
+     */
+    const afw_pool_t * managed_p;
 };
 
 /** @brief String name of interface `afw_pool` (`AFW_POOL_INTERFACE_NAME`). */

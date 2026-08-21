@@ -113,8 +113,13 @@ struct afw_pool_internal_self_s {
     /** @brief Optional pool name. */
     const afw_utf8_t *name;
 
-    /** @brief Parent pool of this pool. */
+    /** @brief Parent heap when this is a tracker. */
     afw_pool_internal_self_t *parent;
+
+    /**
+     * @brief AFW parent when this is a heap (usually an APR pool).
+     */
+    const afw_pool_t *external_parent;
 
     /** @brief First subpool of this pool. */
     afw_pool_internal_self_t *first_child;

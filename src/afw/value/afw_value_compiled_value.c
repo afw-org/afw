@@ -45,6 +45,8 @@ impl_afw_value_optional_evaluate(
 {
     const afw_value_t *result;
     const afw_value_t *saved_script_result;
+    const afw_pool_t *heap;
+    const afw_pool_t *saved_evaluation_heap;
     afw_boolean_t saved_script_result_active;
     afw_boolean_t saved_script_result_written;
     int nelts;
@@ -54,6 +56,9 @@ impl_afw_value_optional_evaluate(
     saved_script_result = xctx->script_result;
     saved_script_result_active = xctx->script_result_active;
     saved_script_result_written = xctx->script_result_written;
+    saved_evaluation_heap = xctx->evaluation_heap;
+    heap = afw_pool_heap_create(p, xctx);
+    xctx->evaluation_heap = heap;
     if (self->full_source_type &&
         afw_utf8_equal(self->full_source_type, afw_s_script))
     {
@@ -83,6 +88,10 @@ impl_afw_value_optional_evaluate(
             result = afw_value_evaluate(self->root_value, p, xctx);
         }
 
+        if (result) {
+            result = afw_value_clone(result, p->managed_p, xctx);
+        }
+
     }
     AFW_FINALLY {
 
@@ -104,7 +113,7 @@ impl_afw_value_optional_evaluate(
             xctx->script_result != result)
         {
             afw_value_slot_store(&xctx->script_result, result,
-                xctx->p, xctx);
+                p->managed_p, xctx);
         }
         if (xctx->script_result_active &&
             xctx->script_result &&
@@ -118,6 +127,11 @@ impl_afw_value_optional_evaluate(
             saved_script_result_active,
             saved_script_result_written,
             true, xctx);
+
+        xctx->evaluation_heap = saved_evaluation_heap;
+        if (heap) {
+            afw_pool_release(heap, xctx);
+        }
         
     }
     AFW_ENDTRY;

@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Parked wrap-APR pool internal header (not wired).
+ * General (APR) pool internal header.
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -13,7 +13,7 @@
 
 /**
  * @file afw_pool_apr_internal.h
- * @brief Parked wrap-APR pool internals. Live code uses afw_pool_internal.h.
+ * @brief Internals for the general (APR) pool implementation.
  */
 
 AFW_BEGIN_DECLARES
@@ -34,6 +34,9 @@ struct afw_pool_apr_self_s {
     afw_pool_apr_self_t *prev_sibling;
     afw_pool_apr_self_t *next_sibling;
 
+    /** @brief AFW parent when it is not this impl (e.g. a heap). */
+    const afw_pool_t *afw_parent;
+
     const afw_thread_t *thread;
 
     afw_pool_cleanup_t *first_cleanup;
@@ -47,11 +50,11 @@ struct afw_pool_apr_self_s {
 
 
 AFW_DECLARE(const afw_pool_t *)
-afw_pool_apr_internal_create_base_pool();
+afw_pool_internal_create_base_pool();
 
 
 extern void
-afw_pool_apr_print_debug_info(
+afw_pool_print_debug_info(
     int indent,
     const afw_pool_t *pool,
     afw_xctx_t *xctx);

@@ -73,7 +73,8 @@
  * - Thread-specific vs multithreaded pools.
  * - No manual free for most allocations; bulk release on pool destroy.
  *
- * Key functions: afw_pool_create(), afw_pool_create_subpool(),
+ * Key functions: afw_pool_create(), afw_pool_heap_create(),
+ * afw_pool_heap_tracker_create(),
  * afw_pool_calloc(), afw_pool_malloc().
  *
  * @{

@@ -144,7 +144,7 @@ afw_xctx_create(
     afw_xctx_t *self;
 
     /* Create a new pool for xctx and initialize. */
-    p = afw_pool_create(xctx->p, xctx);
+    p = afw_pool_create_as_managed_p(xctx->p, xctx);
     self = afw_xctx_internal_create_initialize(xctx->current_try,
         NULL, (afw_environment_internal_t *)xctx->env, p);
     if (!self) {
@@ -707,7 +707,10 @@ afw_xctx_scope_create(
             xctx);
     }
     
-    p = afw_pool_create_subpool(xctx->p, xctx);
+    if (!xctx->evaluation_heap) {
+        xctx->evaluation_heap = afw_pool_heap_create(xctx->p, xctx);
+    }
+    p = afw_pool_heap_tracker_create(xctx->evaluation_heap, xctx);
     scope = afw_pool_calloc(p,
         (
             sizeof(afw_xctx_scope_t) + // Size of struct.
