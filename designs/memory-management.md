@@ -3,9 +3,11 @@
 **Audience:** maintainers and assistants.  
 **Not user docs.** Related always-on runtime rules: [`.cursor/rules/afw-value-memory.mdc`](../.cursor/rules/afw-value-memory.mdc). Beta checklist pointer: [`beta-backlog.md`](../beta-backlog.md). GitHub: [#2 Memory management](https://github.com/afw-org/afw/issues/2).
 
+**Campaign map (2026-08-21):** [`issue-2-lifetime.md`](issue-2-lifetime.md) is the **working story** (holds, pools, assign, script faces). When this pad and that file disagree, **that file wins**. This file keeps archaeology, old phases, P3, and the wrap-APR candidate notes.
+
 ## Purpose of this file
 
-Living design / discussion notes for long-running AFW process memory: pools, value lifetimes, object/array ↔ value identity, escape (closures, retained results), and what we will implement later.
+Living design / discussion notes for long-running AFW process memory: pools, value lifetimes, object/array ↔ value identity, escape (closures, retained results), and what we will implement later. **Current invariants** belong in [`issue-2-lifetime.md`](issue-2-lifetime.md).
 
 **End goal of the discussion:** a coherent **AFW memory-management story** — useful for implementing **#2** now, and as durable context for **humans and assistants** on later work (not only this issue). Prefer clear narrative and invariants over a pile of undigested archaeology.
 
@@ -272,6 +274,7 @@ _Many draft items below are superseded or refined by **Value Lifetime Model (tar
 | 2026-08-06 | Removed unfinished **`create_composite`** / **`properties_callback`**; keep **`create_merged`**, **`aggregate_external`**, views / option composite | Faces are product look-through; multi-base aggregate is different |
 | 2026-08-17 | **Candidate (not decided):** back toward wrap-APR `afw_pool` (no prefixes on live allocs). Script objects/arrays in the script-start pool, managed; scalars clone; optional intrusive free list in dead values; first-fit now, better later | See **Candidate: back toward old afw_pool**. Current subpool+prefix code stays until #2 chooses. Optional free-list splice (triage **P3**) is **#2**, not a local `else`. |
 | 2026-08-20 | **Another #2 feature branch:** object **property names** are `const afw_value_t *`; implementations use `afw_value_equal`; store-as-is (clone of names is later #2). Script + JSON/YAML/UBJSON **string names only** (throw, no `as_utf8`). PR **#220** + wrap-cleanup (`issue-2-property-name-wrap-cleanup`): owners are `afw_value_string_t`; SET intern-once; get/has stack `UNMANAGED`; never store stack `&pub`. Pad: [`issue-2-property-name-values.md`](issue-2-property-name-values.md). | Not the first #2 branch and not the last. Values-first: names join the same world as property values. Generated `afw_v_*` already exist for the common call sites. |
+| 2026-08-21 | **Working story** for managed/unmanaged/permanent, pools, assign, scalar `add_reference` box, script faces, `return`, `for` clone | Pad: [`issue-2-lifetime.md`](issue-2-lifetime.md). Discuss-only; **not coded**. Supersedes 2026-07-24 “clone_or_reference never returns unmanaged” / managed-container walk / slice-as-lifetime as the campaign map. Current pools host the protocol; wrap-APR later. |
 
 ### Open questions (need maintainer perspective when back)
 
@@ -2220,4 +2223,11 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 - **Candidate** (not decided) recorded under Subpools: back toward wrap-APR, no live prefixes, script objects/arrays in `xctx->p` managed, scalars clone, intrusive free list in dead values, first-fit then tweak.
 - Do not start that revert on a card sitting. Next card sitting is separate.
 
-_(Append dated notes as we talk; fold durable points up into **By area** / **Cross-cutting**.)_
+### 2026-08-21 — working story recorded
+
+- Long discuss session: managed/unmanaged/permanent for objects/arrays and values; pools as glue; assign as script hold site; scalar wrapper in `xctx->p`; script-evaluation-aware face.
+- **Campaign map:** [`issue-2-lifetime.md`](issue-2-lifetime.md). This pad is archaeology.
+- **Not coded.** Current pools can host; pool rewrite later.
+- 2026-07-24 target model and 2026-08-17 wrap-APR candidate are **inputs** to that story, not competing maps.
+
+_(Append dated notes as we talk; fold durable points up into **By area** / **Cross-cutting**. Prefer folding into `issue-2-lifetime.md` when the working story changes.)_

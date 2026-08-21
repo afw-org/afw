@@ -22,7 +22,8 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`knowledge-atlas.md`](knowledge-atlas.md) | **Topic atlas** — area → rules/pads/probes/gaps; **how the C surface fits**; admin/Fiddle §16. Start here for “where is X?” |
 | [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) | **Whole story** — why AFW is shaped this way, how parts relate (values, compile, pools, env, hosts). Keep and correct; do not trim maps. Not always-on rules |
 | [`mantras-and-working-style.md`](mantras-and-working-style.md) | Mike mantras + partnership habits (subset; grow when shared); philosophy/taste questions — **not** always-on |
-| [`memory-management.md`](memory-management.md) | Umbrella **#2** — pools, value lifetimes, escape |
+| [`issue-2-lifetime.md`](issue-2-lifetime.md) | **#2 working story** (2026-08-21) — holds, pools, assign, script faces; **not coded** |
+| [`memory-management.md`](memory-management.md) | Umbrella **#2** archaeology / old phases (campaign map is `issue-2-lifetime.md`) |
 | [`issue-2-property-name-values.md`](issue-2-property-name-values.md) | **#2** — object property names as `const afw_value_t *` (landed PR **#220** + wrap-cleanup; script/JSON string-only) |
 | [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | Value vs utf8/memory payloads; `create` / `set` / `no_copy` / `forced_safe`; code_point dir |
 | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | **#149 closed** (PRs #160–#162) — architecture map: generate maps, OT `runtime`, accessors, env registration, checklist; keep for **#2** follow-on |

@@ -6,7 +6,7 @@
 
 **How to use this pad:** this is the **whole-story** framing (why AFW is shaped this way, and how the internal parts relate). For **where is X / probe**, use [`knowledge-atlas.md`](knowledge-atlas.md). For mantras, [`mantras-and-working-style.md`](mantras-and-working-style.md). For day-to-day implementation, rules, `AGENTS.md`, issue pads, and the tree. When this note and live code disagree, **code wins** — then **correct this pad**, do not delete a map because it feels long.
 
-**Provenance:** distilled (2026-08) from an earlier Grok conversation about Adaptive Framework’s design intent and core runtime, plus later maintainer work. Some inventory details below were snapshots at the time; the **philosophy and structural model** are what we keep. Do not treat test counts, exact inf lists, or unfinished memory polish notes as current status.
+**Provenance:** distilled (2026-08) from pairing sessions (including a pass over mgg-develop work) about Adaptive Framework’s design intent and core runtime, plus later maintainer work. **This pad lives in git** (`designs/afw-philosophy-and-core-model.md`) — not only in a container home directory. Some inventory details below were snapshots at the time; the **philosophy and structural model** are what we keep. Do not treat test counts, exact inf lists, or unfinished memory polish notes as current status. Lifetime campaign: [`issue-2-lifetime.md`](issue-2-lifetime.md) (the remaining unresolved part of this story as of 2026-08, now recorded).
 
 ---
 
@@ -31,7 +31,7 @@ These are the sticky choices that explain a lot of surface oddity:
 | **Metadata as single source of truth** | Object types, functions, data types, and C **interfaces** are defined once (generate metadata / interface XML). Headers, bindings, registration, and much docs/tests follow from that. Prefer fixing the source of truth over hand-editing generated output. |
 | **Uniform models** | Capabilities show up the same way whether they came from core, an extension, or a host: environment registries, adaptive values, interface call macros. Prefer one pattern repeated over special snowflake stacks. |
 | **Immutability first** | The script/eval world is an **immutable value graph** evaluated lazily. Mutation is deliberate and constrained (objects/faces, assignment into scopes) — not the default mental model of “everything is a bag of mutable state.” |
-| **Pool-centric lifetime** | Memory is hierarchical pools and subpools (request/xctx/scope), not a general GC for all work. Escaping values use reference counting / managed policies so bulk free still works when a pool dies. |
+| **Pool-centric lifetime** | Memory is hierarchical pools (request/`xctx`/scope). **Destroy of a pool is lifetime; optional `free` is reuse.** Escaping uses `add_reference` / `release` so bulk free still works when a pool dies. Working story: [`issue-2-lifetime.md`](issue-2-lifetime.md). |
 | **Small patterned pieces** | Prefer many small, named, interface-shaped pieces over one mega-framework. Extensions and packages stay as self-contained as practical against **public** core APIs. |
 | **Curated Adaptive Script** | Syntax borrows *some* familiarity from modern languages (lambdas, destructuring, optional types, etc.) without becoming TypeScript/JavaScript: no prototype chains, no loose “anything goes” object model, Adaptive types and values on Adaptive terms. |
 | **Production short path first** | Short-lived request/script work was the proven path (pool teardown cleans up). Long-running subscribers, shared compiled units, and process lifetime are the harder campaign — same model, stricter escape discipline. |
@@ -82,7 +82,7 @@ Historically and still, AFW aims at places where **policy, mapping, and automati
 
 - authorization and decision policies evaluated as Adaptive Script / expressions;
 - object mapping and transformation across adapters and content types;
-- long-running work that **compiles once** (e.g. into a longer-lived pool) and evaluates many times — with memory discipline still under active care (umbrella **#2**);
+- long-running work that **compiles once** (e.g. into a longer-lived pool) and evaluates many times — memory discipline is umbrella **#2**; working story [`issue-2-lifetime.md`](issue-2-lifetime.md);
 - tooling for people who are not full-time C programmers (higher-level script, admin surfaces, eventual natural-language → script paths);
 - environments that care about clear lifetime and reentrancy (servers, embedded-ish hosts), not only one-shot CLI.
 
@@ -94,7 +94,7 @@ Hosts today include the **`afw` CLI** (including `--local`) and **`afwfcgi`**; b
 
 ### Values are the center
 
-This is the libafw side of the **Adaptive Value** concept above. Every significant script/eval entity is (or is reached through) an **`afw_value_t`**: an interface pointer (`inf`) plus payload. Evaluation is mostly **lazy** via `inf` methods (`optional_evaluate`, and for long-running correctness, release/clone policies — see value-memory rules and [`memory-management.md`](memory-management.md)).
+This is the libafw side of the **Adaptive Value** concept above. Every significant script/eval entity is (or is reached through) an **`afw_value_t`**: an interface pointer (`inf`) plus payload. Evaluation is mostly **lazy** via `inf` methods (`optional_evaluate`, and for long-running correctness, `add_reference` / `release` — see value-memory rules, [`issue-2-lifetime.md`](issue-2-lifetime.md), and archaeology in [`memory-management.md`](memory-management.md)).
 
 Rough families of value kinds (names evolve; see `afw_value.h` / generated declares for truth):
 
@@ -115,18 +115,22 @@ Compile entry points (e.g. `afw_compile_to_value` and related) place the result 
 
 ### Pools and escape
 
-- **Hierarchical pools:** process/base, thread or request-related, **subpools** for xctx and scopes.
-- **Subpool destroy:** returns tracked memory to the parent story and deals with survivors that must outlive the subpool (reparent / refcount paths — details in code and memory pads).
-- **Reference counting** is not “GC for everything”; it is for **escaping** values (classic example: `closure_binding` holding a scope alive while the closure remains reachable).
-- **Data-type value lifetimes** (permanent / managed / managed_slice / unmanaged) are part of the same story; long-running work cares about managed release/clone and evaluating into the right pool (`scope->p`).
+Full working story: [`issue-2-lifetime.md`](issue-2-lifetime.md) (2026-08-21). Archaeology: [`memory-management.md`](memory-management.md).
 
-Short scripts and request-scoped work were production-proven early because **destroying the request pool** papered over incomplete escape polish. Long-running processes need the full story — that is why **#2** remains a first-class campaign, not a footnote.
+- **Destroy is lifetime. Optional `free` is reuse.** Hierarchical pools: process/base, request/`xctx->p`, **scope** children. Creating a child holds the parent. The xctx try/finally **destroys** `xctx->p` at request / `afw` command end — leftover holds do not keep the request alive.
+- **Managed** = in the hold protocol (`add_reference` / `release` match). Managed objects/arrays have **their own pool** under `xctx->p`. Scalar temps that escape become a **managed wrapper in `xctx->p`**.
+- **Unmanaged** = holds optional; count to zero does **not** destroy the instance; `add_reference` keeps **that instance’s pool**.
+- **Permanent** / **compiled unit** = immutable; holds are no-ops. **Everything in a compiled unit is immutable.** Script mutates a **face** over literals, not the compiled instance.
+- **`add_reference` / `release`** are not “GC for everything.” Classic example: `closure_binding` holding a **scope** so symbols survive `}`.
+- Current pool impl (prefixes, first-fit) can **host** this protocol. A simpler wrap-APR pool is a later swap, not a gate.
+
+Short scripts and request-scoped work were production-proven early because **destroying the request pool** papered over incomplete escape polish. Long-running processes need the full hold protocol — that is why **#2** remains a first-class campaign.
 
 ### Scopes and symbols
 
 Execution carries an **`afw_xctx_t`**: pool, scope stack, evaluation stack, qualifier stack, **statement_flow** (sequential / break / continue / return / rethrow-style control — structured leave paths rather than C++ exceptions for normal script control).
 
-Scopes (`afw_xctx_scope_t`) bind a pool, a block, lexical parent, and a **symbol value array** sized from the block. Resolution walks lexical depth and indexes symbols directly. Assignment (`let` / `const` / assign) stores into the scope and participates in refcount/lifetime rules. Deactivate/release walks symbols and releases values.
+Scopes (`afw_xctx_scope_t`) bind a pool, a block, lexical parent, and a **symbol value array** sized from the block. Resolution walks lexical depth and indexes symbols directly. Assignment (`let` / `const` / assign) is the script **`add_reference` site**; **read** is a pointer copy. Deactivate is one `release`; **last `release`** (not `}`) walks slots then lets the scope pool go. Closures keep the scope. **`return`** writes a hidden result slot and ends the block; assign into the **caller** happens when the block ends. Tree today: last `release` is still mostly pool-only — the walk is the #2 target.
 
 ### Compilation
 
@@ -170,7 +174,7 @@ From the earlier dump and early AI onboarding — useful archaeology, easy to mi
 | `list_expression` | C name heritage; product term is **array**. Do not revive “bag” for objects. |
 | “No exceptions” | Script control is **statement_flow** / structured leave; Adaptive still has error/throw paths and C error macros. |
 | “2730/2902 tests” | Point-in-time CI flavor only; ignore for progress math. |
-| “optional_release/clone only remaining polish” | Directionally right for long-running; the real work is multi-phase (**#2**, managed policies, containers, faces, catalog lifetimes). See memory pad. |
+| “optional_release/clone only remaining polish” | Directionally right for long-running; the real work is **#2**. Working story: [`issue-2-lifetime.md`](issue-2-lifetime.md). |
 | “Use as permanent context for all future questions” | Superseded by this **thin pad** + live code/rules. Do not paste the raw dump into always-on rules. |
 
 ---
@@ -217,12 +221,12 @@ generate/ metadata + interface XML
 | **Compile** | Syntax → value graph | `compiled_value` owns pool + `full_source`; nodes hold **contextual** windows (offset/size), not copies of source |
 | **Evaluate** | Walk the graph; `optional_evaluate` or already-a-result | New memory from the evaluate `p` or a **child** of `p` |
 | **Values** | Public type is only `const afw_value_t *` (`inf` + private body) | Built-ins see **already evaluated** args (`AFW_FUNCTION_EVALUATE_*` → typed `arg->internal`) |
-| **Payloads** | `afw_utf8_t` / `afw_memory_t` / `afw_integer_t` | **No pool, no RC.** Lifetime is whoever owns the bytes. Doors: `create`/`set`/`no_copy` — [`c-naming-and-payloads.md`](c-naming-and-payloads.md) |
-| **Objects / arrays** | Instances (maybe own pool); value header points at them | Script expects **mutable**; const/shared get a **wrapper**. Dual `->value` face ≠ wrapper |
+| **Payloads** | `afw_utf8_t` / `afw_memory_t` / `afw_integer_t` | **No pool, no reference count.** Lifetime is whoever owns the bytes. Doors: `create`/`set`/`no_copy` — [`c-naming-and-payloads.md`](c-naming-and-payloads.md) |
+| **Objects / arrays** | Instances (maybe own pool); embedded `->value` is the Adaptive **name** | Script mutates a **face** (look-through + overlay). Dual `->value` ≠ face ≠ scalar box. Compiled literals stay immutable. |
 | **Code points** | Unicode properties (identifier, whitespace, Cc) | `src/afw/code_point/` — encoding-neutral. UTF-8 encode/NFC stays in `afw_utf8` |
 | **Hosts** | `afw`, `afwfcgi`, admin app | Same env. GET adapter CRUD ≠ POST `/afw` actions |
 
-**Lifetime (the sentence that still holds):** almost everything dies with a **pool**. Request/`afw` command: that was enough. Objects could have their own pool so a retrieve could drop them early. Child pools hold their parent — a leftover hold on a child keeps the chain (often up to `xctx->p`). Long-running scripts break “long enough”: scopes need a pool; assign uses **`clone_or_reference`** (the name we want is **`get_reference`** — keep this value; the inf decides clone vs hold vs wrap). Scalars have no RC; they **clone**. Objects/arrays **reference** (or wrap and pin `instance->p`).
+**Lifetime (working story 2026-08-21):** almost everything dies with a **pool**. Request/`afw` command: **destroy `xctx->p`** is the safety net. Managed objects/arrays have their own child of `xctx->p`. Child pools hold their parent. Long-running scripts need **`add_reference` / `release`** on slots and on object/array instances — not “the request was long enough.” Assign uses **`add_reference`** (today’s `clone_or_reference` was a memory-jog). Scalars that escape become a **managed box in `xctx->p`** (copy utf8/memory bytes). Objects/arrays **`add_reference` the instance**. Script faces isolate compiled/adapter bases. Detail: [`issue-2-lifetime.md`](issue-2-lifetime.md).
 
 **Compile vs evaluate of `compile()`:** a script is compiled **once** and may be evaluated many times. Adaptive `compile()` during an evaluation must live on **`x->p`**, not the containing script’s compile pool, or every eval leaks ([#212](https://github.com/afw-org/afw/issues/212)). `parent` on `compiled_value` is not the backtrace — the **evaluation stack** + per-unit `full_source` is. Lex intern is `shared`, not a walk of `parent`.
 
@@ -240,7 +244,8 @@ generate/ metadata + interface XML
 | [`knowledge-atlas.md`](knowledge-atlas.md) | Topic → rules / pad / probe (the index, not a second story) |
 | [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | Value vs utf8/memory doors; `forced_safe`; code_point |
 | [`mantras-and-working-style.md`](mantras-and-working-style.md) | Mantras, anti-patterns, partnership habits (reference) |
-| [`memory-management.md`](memory-management.md) | Long-running pools / escape / #2 |
+| [`issue-2-lifetime.md`](issue-2-lifetime.md) | **#2 working story** (2026-08-21) — holds, pools, assign, faces |
+| [`memory-management.md`](memory-management.md) | #2 archaeology / old phases; superseded as the campaign map |
 | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | Env registries as runtime objects |
 | [`lineage-and-library-floor.md`](lineage-and-library-floor.md) | Base vs private packages; ICU home |
 | [`agent-support.md`](agent-support.md) | Support playbook stubs; capture checklist |

@@ -11,7 +11,8 @@ Dump **details, design thoughts, unfinished plans, and “don’t forget” item
 |----------|------|
 | **`beta-backlog.md`** (this file) | Working notes, plans, archaeology, half-decided design. Source of truth for “what we still need to remember.” |
 | **`designs/`** | Per-issue / per-theme design pads (not user docs). See [`designs/README.md`](designs/README.md). |
-| **`designs/memory-management.md`** | Living design notes for umbrella **#2** (long-running memory, value/object identity, escape). |
+| **`designs/issue-2-lifetime.md`** | **#2 working story** (2026-08-21, not coded) — holds, pools, assign, script faces. |
+| **`designs/memory-management.md`** | Umbrella **#2** archaeology / old phases (campaign map is `issue-2-lifetime.md`). |
 | **`whats-new.md`** | What **users** of AFW need to know about **`develop`** (behavior, APIs, migration). |
 | **GitHub issues** | Optional promotion when something needs discussion, an assignee, PR linkage, or is a real beta blocker. Prefer thematic umbrellas (e.g. language, memory) over one infinite meta-issue. |
 
@@ -293,8 +294,8 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 
 **Status:** pointer / **beta-relevant**
 
-- Umbrella **#2** (memory). Working design pad: [`designs/memory-management.md`](designs/memory-management.md). Related: retrieve caps **#49**, progressive release **#127**, value lifetime rules in project docs / `.cursor/rules/afw-value-memory.mdc`.
-- **#2** continues as **many feature branches** (request-lifetime MM retrofitted for script **scope** lifetimes). **Names as values** landed (PR **#220** + wrap-cleanup): object property names are `const afw_value_t *`; script/JSON string-only. Pad: [`designs/issue-2-property-name-values.md`](designs/issue-2-property-name-values.md). `eq` docs-vs-C is noted there as **not** that work. Later #2: name `clone_or_reference`, intern/hash, typed JSON keys.
+- Umbrella **#2** (memory). **Working story:** [`designs/issue-2-lifetime.md`](designs/issue-2-lifetime.md) (2026-08-21, **not coded**). Archaeology: [`designs/memory-management.md`](designs/memory-management.md). Related: retrieve caps **#49**, progressive release **#127**, current-tree rules `.cursor/rules/afw-value-memory.mdc`.
+- **#2** continues as **many feature branches** (request-lifetime MM retrofitted for script **scope** lifetimes). **Names as values** landed (PR **#220** + wrap-cleanup): object property names are `const afw_value_t *`; script/JSON string-only. Pad: [`designs/issue-2-property-name-values.md`](designs/issue-2-property-name-values.md). `eq` docs-vs-C is noted there as **not** that work.
 - **#149** (child of **#2**) — runtime / `afw` adapter **catalog lifetime** — **closed** 2026-08-09 (PRs #160–#162). Pads: [`runtime-objects-and-environment.md`](designs/runtime-objects-and-environment.md), [`runtime-catalog-lifetime.md`](designs/runtime-catalog-lifetime.md), [`runtime-value-accessors.md`](designs/runtime-value-accessors.md). Residual cost/memory under **#2**.
 - **#17 mutable object faces** — **done** on `mgg-develop` (PR **#150**, 2026-08-06). Literals + emit, no object/array clone-on-bind, nested hard edge, adapter get/retrieve/callback, #110 defaults, journal get/consumer/advance, YAML hygiene. Pad: [`designs/issue-17-mutable-object-faces.md`](designs/issue-17-mutable-object-faces.md). User: **`whats-new.md`**.
 - **Qualifier snapshots (issue #9)** — `qualifier()` / `qualifiers()` allocate **fresh memory objects** and can get **very large** (`environment::`, `request::`, nested `qualifiers()` over every active qualifier, multi-entry contribute). Documented as debug/tools/not hot path + size warning in function metadata, language XML, `whats-new.md`.

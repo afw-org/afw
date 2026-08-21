@@ -18,6 +18,7 @@ Prefer thin, accurate units. After deep sessions use the capture checklist; prom
 - [ ] Optional one-sentence user/operator note (`whats-new.md` if shipping)
 - [ ] Atlas topic row touched if the map changed
 - [ ] If it is how the **parts relate** (values, compile, pools, payloads, env), correct [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) — do not leave it only in chat or MEMORY, and do not trim that pad to make it short
+- [ ] If it is **#2 lifetime** (holds, pools, assign, faces), correct [`issue-2-lifetime.md`](issue-2-lifetime.md) — that is the campaign map; `memory-management.md` is archaeology
 
 ## Playbooks
 

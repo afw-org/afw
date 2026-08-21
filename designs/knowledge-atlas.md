@@ -49,7 +49,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 |------|----------|
 | Env / runtime catalog / accessors | #149 pads; atlas §5; metrics/properties pin until caller pool cleanup |
 | Hosts / stop | #158; atlas §6 |
-| Memory / faces / `create_array` | #2 pad; names-as-values slice; #17 faces; atlas §3 |
+| Memory / faces / `create_array` | [`issue-2-lifetime.md`](issue-2-lifetime.md); names-as-values slice; #17 faces; atlas §3 |
 | Types | #28 pad + `typescript-differences.md`; #186 parse nesting; #188 names declared before use |
 | Script language | #62 pad; #33 errors; #172 must-change |
 | Compile / call / spread | `afw-script-eval`; #140 / #181; `compiler_internal` kind-check |
@@ -144,12 +144,12 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | Values first; permanent / managed / managed_slice / unmanaged; hierarchical pools; short request teardown proven; long-running needs escape discipline. Payloads (`afw_utf8_t` / `afw_memory_t`) have no pool; doors are `create`/`set`/`no_copy`/`forced_safe` — [`c-naming-and-payloads.md`](c-naming-and-payloads.md) |
-| **Day rules** | `afw-runtime-model` (always-on), `afw-value-memory`, `afw-script-eval` |
-| **Deep pad** | [`memory-management.md`](memory-management.md) (**large** — do not rewrite this pass); philosophy pad core model; names-as-values branch [`issue-2-property-name-values.md`](issue-2-property-name-values.md) |
+| **Settled map** | Values first. **Working story:** [`issue-2-lifetime.md`](issue-2-lifetime.md) — destroy is lifetime; optional `free` is reuse; managed = hold protocol under `xctx->p`; unmanaged = optional holds, zero does not destroy; compiled unit immutable; assign is the script hold site; scalar `add_reference` boxes in `xctx->p`; objects/arrays hold the instance; script mutates a face. Payloads (`afw_utf8_t` / `afw_memory_t`) have no pool; doors are `create`/`set`/`no_copy`/`forced_safe` — [`c-naming-and-payloads.md`](c-naming-and-payloads.md) |
+| **Day rules** | `afw-runtime-model` (always-on), `afw-value-memory` (**current tree**; campaign target is the lifetime pad), `afw-script-eval` |
+| **Deep pad** | [`issue-2-lifetime.md`](issue-2-lifetime.md) (**campaign map**); archaeology [`memory-management.md`](memory-management.md); philosophy core model; names-as-values [`issue-2-property-name-values.md`](issue-2-property-name-values.md); faces [`issue-17-mutable-object-faces.md`](issue-17-mutable-object-faces.md) |
 | **Probe** | Targeted `.as` + `afwdev test -j --env-mode valgrind`; orchestrated multi-request leaves; never “fix memory” without a metric/story |
-| **Open** | Umbrella **#2** — retrofit of request-lifetime MM for script **scope** lifetimes; many feature branches, more to come; parent of closed #149. **Names as values** landed (PR **#220** + wrap-cleanup; script/JSON string-only; owners `afw_value_string_t`) — [`issue-2-property-name-values.md`](issue-2-property-name-values.md). Also: array managed/unmanaged pools; `create_array` still ignores `options` (see memory pad 2026-08-16). Allocator overflow shipped as a local check. Optional free-list splice waits on **#2** (naive `else` livelocks first-fit). Candidate wrap-APR pool: memory pad **Candidate: back toward old afw_pool**. |
-| **Gap** | Thin “support one-pager” for leaks vs the novel-length pad — optional later; playbook points at pad |
+| **Open** | Umbrella **#2** — story recorded, **not coded**. Many feature branches, more to come; parent of closed #149. **Names as values** landed (PR **#220** + wrap-cleanup). Arrays still ignore create `options`; `create_array` on the on-ramp. Optional free-list splice waits on #2 (naive `else` livelocks first-fit). Pool rewrite after the value protocol. |
+| **Gap** | Lifetime pad is the one-pager that was missing; keep `memory-management.md` as archaeology |
 
 ---
 
