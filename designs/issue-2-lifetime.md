@@ -4,7 +4,7 @@
 
 **GitHub:** [#2 Memory management](https://github.com/afw-org/afw/issues/2).
 
-**Status:** **Working story** from a long discuss-only session (2026-08-20–21). First vertical (**slot protocol**) is on branch `issue-2-slot-protocol` — existing pools/infs, no bindings rename, no pool rewrite. Vocabulary can still tweak; the picture is what later #2 sessions should share.
+**Status:** Working story recorded 2026-08-20–21. **First verticals 1–4 landed** on branch `issue-2-slot-protocol` (slot protocol, scalar boxing, arrays matching objects, overlay `set` on faces, `as_value`, deep `clone()`, for-of `let`/`const` per-iteration). **Live pool is still develop** (prefix / first-fit / `create_subpool`). Wrap-APR is **parked** as `afw_pool_apr_*` (compiled, not wired). Fulldev + valgrind: 4167 passed (2026-08-21).
 
 **This file is the campaign map.** Older notes, phase archaeology, and rejected experiments stay in [`memory-management.md`](memory-management.md). When that pad and this file disagree, **this file wins** until we change it on purpose.
 
@@ -248,7 +248,7 @@ This pass is specified with **`xctx->p` as the usual ancestor**. Adapter caches,
 
 ## Tweaks, not new models
 
-- Missed wrap on qualified variables, `object()`, `create_array`, `clone`, or other script-mutable returns.
+- Missed wrap on some C `create_unmanaged_object` returns (worry list). `create_array`, `clone()`, get/retrieve materialize use dual face / `as_value`. Object-literal `{ get: function()… }` is compile #35, not this protocol.
 - `.c` home for a dedicated script wrapper; retrieve still on the memory face until switch.
 - Forgotten C create until xctx destroy; unmanaged face pinning a scope (like closures).
 - Dead unmanaged faces in one long scope on overwrite (optional `free` later).
@@ -257,7 +257,7 @@ This pass is specified with **`xctx->p` as the usual ancestor**. Adapter caches,
 - Escape **past** one xctx (env, adapter cache, compiled units reused across requests) — same words, not this pass’s safety net.
 - `#35` closure trustworthiness still depends on this protocol being real.
 - Nested **`compile()`** assigned to a variable is **unevaluated** (the graph). It does not run and does not touch `script_result`. `evaluate()` of that value (and model-adapter `on*` compiled at model load, run later on a request) goes through `compiled_value` evaluate, which already save/restores `script_result` / active / written and pushes a NULL scope-stack sentinel. The donated-return list on xctx is **not** a second running result: pointer-matched hold transfer for a C return until `slot_store` takes it. Permanents are no-op holds if the same singleton is stored while a donate is pending. Model `current::useDefaultProcessing` is an **unmanaged null sentinel** (pointer identity, not `afw_value_null`); do not box unmanaged null.
-- Memory **arrays** still lag memory objects: create `options` ignored, `release` no-op, no child pool, unmanaged dual face. Array #17 faces exist (isolation) but do not pin the wrapped instance the way managed object faces do. That is step 3 (`create_array` + instance holds) plus leftover wrapper pin; overlay element `set` is step 4. Not this slot-protocol slice.
+- Wrap-APR vs develop pool: request/object vs **script scope** (APR child per block/`for-of` clone is expensive). Parked until we design; may be our own bump/region for scopes. `create_unmanaged_object` / `_array` stay for scalars / data-type create.
 
 ---
 
@@ -265,11 +265,11 @@ This pass is specified with **`xctx->p` as the usual ancestor**. Adapter caches,
 
 Do **not** treat this as a commit plan. When we execute:
 
-1. **Slot protocol** — assign + hidden result + scope last-`release` walk + `for` clone holds. (Started: `issue-2-slot-protocol`. Closure create stays at 1 until overlay/property holds; create-at-0 would break `o.fn = function…`.)
-2. **Scalar `add_reference`** wrapper in `xctx->p`; copy utf8/memory; drop generated slice; rename when bindings change. (Started on `issue-2-slot-protocol`: unmanaged scalar `clone_or_reference` boxes in `xctx->p`; no rename; slice infs still generated. Boxed headers are **not** first-fit `free`d while scope subpools exist — they leak until xctx destroy until the pool slice.)
-3. **Object/array instance holds** — dual face, no second header; arrays match objects; `create_array`. (Started on `issue-2-slot-protocol`: memory arrays honor create options, managed subpool + `get_reference`/`release`, managed wrapper pin; `create_generic` stays unmanaged; `create_array` returns the dual face.)
-4. **Script wrapper overlay holds** — `set` / last-`release`; wrap every script-mutable path we missed. (Started on `issue-2-slot-protocol`: overlay `set` on faces; array element holds. `after2-*` closure escape tests in `closures.as` unskipped except compile-time object-literal methods. get_object / retrieve materialize use dual face. Remaining: object-literal methods / parent-static-scope compile.)
-5. **Pools** — only after the protocol is honest; optional free list + adjacent combine; size classes later. **Discuss first.** Candidate starting point is the wrap-APR impl on `main` at [`4ecc2b3c`](https://github.com/afw-org/afw/commit/4ecc2b3c8e07917328fcb2ed874cb6b85f7b1164) (`afw_pool_singlethreaded.c` / `afw_pool_multithreaded.c`: `apr_palloc`, `apr_pool_destroy`, `free` not implemented). Current `afw_pool.c` is the #75 combined prefix + first-fit + subpool (P3). Do not treat that file as the rewrite base.
+1. **Slot protocol** — landed. Closure create stays at 1 (create-at-0 would break `o.fn = function…` on generic objects).
+2. **Scalar `add_reference`** — landed (box in `xctx->p`; no bindings rename; no first-fit free of boxes). Unmanaged **null** not boxed (`useDefaultProcessing`).
+3. **Object/array instance holds** — landed for memory arrays (`get_reference`/`release`, options, wrapper pin). `create_generic` unmanaged. `create_array` dual face.
+4. **Overlay `set`** — landed on **faces** and array elements. Generic objects store as-is. `as_value` is the instance→value door. `clone()` is a deep independent graph.
+5. **Pools** — **paused.** Live: develop `afw_pool.c`. Parked: `afw_pool_apr_*`. Next design: request/object vs script-scope (APR is poor per-block).
 
 Current pools the whole way through 1–4.
 

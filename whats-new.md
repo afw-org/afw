@@ -77,7 +77,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Templates**](#compile-time-template-substitutions-issue-97) ([#97](https://github.com/afw-org/afw/issues/97)) | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates |
 | [**Adapter index `current::`**](#adapter-index-filtervalue-current-issue-54--partial) ([#54](https://github.com/afw-org/afw/issues/54) partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
 | [**C builders / afwdev**](#c-api-docs-and-full-package-builds-issue-1) ([#1](https://github.com/afw-org/afw/issues/1)) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
-| [**Value / memory (α/β)**](#value-lifetime--memory-management-issue-2--alphabeta) ([#2](https://github.com/afw-org/afw/issues/2)) | Permanent scalar reuse, dual-face object/array values, safer managed object value release; **`afw_pool_release` returns pool or NULL**; managed object faces pin base |
+| [**Value / memory (α/β)**](#value-lifetime--memory-management-issue-2--alphabeta) ([#2](https://github.com/afw-org/afw/issues/2)) | Slot protocol (assign / last-`release` walk / `for` clone holds); scalar boxing; arrays match objects; overlay `set` on faces; **`as_value`**; deep `clone()`; for-of `let`/`const` per-iteration. Pool rewrite **paused** |
 | [**`stringify` / `decompile` / listing**](#stringify-decompile-compiler-listing-and-binary-text) ([#18](https://github.com/afw-org/afw/issues/18)) | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
 | [**UTF-8 create / set / forced_safe**](#utf-8-create-set-and-forced_safe) | C doors: short **`create`/`set` copy**; **`no_copy`** points; **`forced_safe`** encodes invalid runs as `^hex^`. Env/request names use that encode (not `_NONUTF8_` + whole-name hex). **`afw_utf8_printf`** is its own formatter: `AFW_UTF8_FMT` copies n bytes (interior `0` is data), then the whole result is **`forced_safe`** — viewable text, not a data-file writer |
 | [**UTF-8 in JSON / Fiddle**](#utf-8-in-json-results-and-python-local-mode) | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
@@ -781,25 +781,24 @@ Tests: `src/afw/tests/language/script/object_expression_names.as`.
 
 ## Value lifetime / memory management (issue [#2](https://github.com/afw-org/afw/issues/2)) — alpha/beta
 
-**Issue [#2](https://github.com/afw-org/afw/issues/2)** — work in progress on `develop` via branch `issue-#2` (partial land; design continues).
+**Issue [#2](https://github.com/afw-org/afw/issues/2)** — campaign continues. Slot protocol and related verticals landed on `issue-2-slot-protocol`. **Not** a finished memory-management productization (α/β). Pool rewrite is **paused** (live pool is still develop; wrap-APR is parked as `afw_pool_apr_*`).
 
-This is **not** a finished memory-management productization. Treat it as **alpha/beta** on the maintainer develop line: useful foundation and mostly behavior-compatible for in-tree tests, but the long-running escape / assign / scope-release story is **not** complete.
+### What landed (high level)
 
-### What landed so far (high level)
-
-- Prefer **shared permanent Adaptive values** (generated constants / `afw_v_*`) for known scalars instead of allocating fresh ones where safe (null, boolean true/false, many const_objects properties).
-- **Object and array instances** more consistently expose a dual Adaptive value face (`->value`) with a lifetime-matched permanent/managed/unmanaged inf. C should use **`afw_object_as_value` / `afw_array_as_value`** when an instance needs an Adaptive value. `create_unmanaged_object` / `create_unmanaged_array` still allocate a separate header (do not use them to “box” a dual-face instance).
-- **Managed object values**: container-aware `optional_release` / `clone_or_reference` paths that do **not** free an embedded dual-face header; `create_managed_object` requires a non-null object and takes a container hold.
-- **`afw_pool_release`**: returns the pool if still referenced, or **NULL** if that call destroyed the pool (C API; ignore return if you do not care). Used so managed **object faces** can hold one reference on the wrapped base and drop it only when the face pool is destroyed. Unmanaged faces still borrow. Array faces remain pool-owned for now.
-- Living design notes for maintainers: `designs/memory-management.md` (not user docs).
+- Prefer **shared permanent Adaptive values** (`afw_v_*`) for known scalars where safe.
+- **Slot protocol:** assign / parameters `add_reference` the new value and `release` the old; scope last-`release` walks slots; C-style `for` and **`for-of` `let`/`const`** clone the loop-local scope per iteration (`for (x of …)` when `x` already exists is still one binding). No `var` hoist, no TDZ, no `for-in`.
+- **Scalars:** unmanaged `clone_or_reference` boxes a managed copy in `xctx->p` (utf8/memory copy octets). Unmanaged **null** is not boxed (model `useDefaultProcessing` pointer identity).
+- **Objects/arrays:** dual face; C uses **`afw_object_as_value` / `afw_array_as_value`**. Memory arrays honor create options, `get_reference`/`release`, managed wrapper pin. Overlay **`set`** on look-through faces holds the local overlay pointer. **`clone()`** is a **deep independent graph** (nested objects/arrays too). Get/retrieve already return a **face** — do not `clone()` just to set properties.
+- **`afw_pool_release`**: returns the pool or **NULL** if that call destroyed it.
+- Campaign map: `designs/issue-2-lifetime.md` (not user docs).
 
 **C note:** value/pool lifetime work is part of the [C API cleanup](#libafw-c-api-cleanup-release-ready-surface) line — same rebuild rule for out-of-tree linkers.
 
 ### Not done yet (do not rely on)
 
-- Script **assign** via `clone_or_reference` (objects/arrays as shared references; scalars typically cloned when escaping).
-- Scope teardown walking each variable with value release (today: scope subpool bulk free).
-- Full target model: `clone_or_reference` never returns unmanaged; managed wrappers for unmanaged containers; property promote-on-get; etc.
+- Pool rewrite (request/object vs script-scope; optional `free` into dead headers). Live allocations still use develop’s prefix / `create_subpool`.
+- Object-literal methods `{ get: function()… }` (compile **#35**: wrap the function as a closure when the construct stores it — same as assign/`return`).
+- Renaming `clone_or_reference` → `add_reference`; dropping generated slice infs.
 
 [↑ Highlights](#highlights)
 

@@ -8,7 +8,7 @@ alwaysApply: false
 
 Use when changing value lifetime, reference count, create/allocate APIs, data type bindings, const objects/strings, pools/scopes, or debugging leaks for **long-running scripts**.
 
-**Campaign target (not coded):** [`designs/issue-2-lifetime.md`](../../designs/issue-2-lifetime.md). This rule describes the **current tree**. Do not implement the lifetime pad until asked. When they disagree, the pad is where #2 is going; this rule is what the bindings still generate.
+**Campaign map:** [`designs/issue-2-lifetime.md`](../../designs/issue-2-lifetime.md) (slot protocol landed on `issue-2-slot-protocol`; pool rewrite paused). This rule still describes **bindings + live develop pool**. When they disagree, the pad is where #2 is going.
 
 ## Pool and scope model
 
