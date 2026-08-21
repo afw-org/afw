@@ -788,7 +788,7 @@ This is **not** a finished memory-management productization. Treat it as **alpha
 ### What landed so far (high level)
 
 - Prefer **shared permanent Adaptive values** (generated constants / `afw_v_*`) for known scalars instead of allocating fresh ones where safe (null, boolean true/false, many const_objects properties).
-- **Object and array instances** more consistently expose a dual Adaptive value face (`->value`) with a lifetime-matched permanent/managed/unmanaged inf.
+- **Object and array instances** more consistently expose a dual Adaptive value face (`->value`) with a lifetime-matched permanent/managed/unmanaged inf. C should use **`afw_object_as_value` / `afw_array_as_value`** when an instance needs an Adaptive value. `create_unmanaged_object` / `create_unmanaged_array` still allocate a separate header (do not use them to “box” a dual-face instance).
 - **Managed object values**: container-aware `optional_release` / `clone_or_reference` paths that do **not** free an embedded dual-face header; `create_managed_object` requires a non-null object and takes a container hold.
 - **`afw_pool_release`**: returns the pool if still referenced, or **NULL** if that call destroyed the pool (C API; ignore return if you do not care). Used so managed **object faces** can hold one reference on the wrapped base and drop it only when the face pool is destroyed. Unmanaged faces still borrow. Array faces remain pool-owned for now.
 - Living design notes for maintainers: `designs/memory-management.md` (not user docs).
@@ -797,7 +797,6 @@ This is **not** a finished memory-management productization. Treat it as **alpha
 
 ### Not done yet (do not rely on)
 
-- Value **create** always returning existing dual-face identity (no double-wrap) — planned next (**1d**).
 - Script **assign** via `clone_or_reference` (objects/arrays as shared references; scalars typically cloned when escaping).
 - Scope teardown walking each variable with value release (today: scope subpool bulk free).
 - Full target model: `clone_or_reference` never returns unmanaged; managed wrappers for unmanaged containers; property promote-on-get; etc.

@@ -63,21 +63,7 @@ impl_script_face_object(
 }
 
 
-/* Prefer the instance dual face over a second heap header. */
-static const afw_value_t *
-impl_object_as_value(
-    const afw_object_t *object,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    if (!object) {
-        return NULL;
-    }
-    if (object->value) {
-        return object->value;
-    }
-    return afw_value_create_unmanaged_object(object, p, xctx);
-}
+
 
 
 
@@ -139,11 +125,11 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
             }
             afw_object_get_reference(object, xctx);
             afw_array_push_value(ctx->array,
-                impl_object_as_value(face, ctx->p, xctx), xctx);
+                afw_object_as_value(face, ctx->p, xctx), xctx);
         }
         else {
             ctx->argv[0] = ctx->objectCallback;
-            ctx->argv[1] = impl_object_as_value(face, p, xctx);
+            ctx->argv[1] = afw_object_as_value(face, p, xctx);
             ctx->argv[2] = ctx->userData;
             if (!ctx->call) {
                 ctx->call = afw_value_call_create(ctx->contextual,
@@ -1019,7 +1005,7 @@ afw_function_execute_get_object(
     if (!AFW_OBJECT_OPTION_IS(object_options, reconcilable)) {
         obj = impl_script_face_object(obj, x->p, x->xctx);
     }
-    return impl_object_as_value(obj, x->p, x->xctx);
+    return afw_object_as_value(obj, x->p, x->xctx);
 }
 
 
@@ -1126,7 +1112,7 @@ afw_function_execute_get_object_with_uri(
     if (!AFW_OBJECT_OPTION_IS(object_options, reconcilable)) {
         obj = impl_script_face_object(obj, x->p, x->xctx);
     }
-    return impl_object_as_value(obj, x->p, x->xctx);
+    return afw_object_as_value(obj, x->p, x->xctx);
 }
 
 

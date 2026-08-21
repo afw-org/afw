@@ -148,9 +148,7 @@ impl_face_nested_structured_value(
             return value;
         }
         wrap_obj = afw_object_create_wrapper_unmanaged(nested_obj, p, xctx);
-        return wrap_obj->value
-            ? wrap_obj->value
-            : afw_value_create_unmanaged_object(wrap_obj, p, xctx);
+        return afw_object_as_value(wrap_obj, p, xctx);
     }
 
     if (afw_value_is_array(value)) {
@@ -159,9 +157,7 @@ impl_face_nested_structured_value(
             return value;
         }
         wrap_arr = afw_array_create_wrapper_unmanaged(nested_arr, p, xctx);
-        return wrap_arr->value
-            ? wrap_arr->value
-            : afw_value_create_unmanaged_array(wrap_arr, p, xctx);
+        return afw_array_as_value(wrap_arr, p, xctx);
     }
 
     return value;

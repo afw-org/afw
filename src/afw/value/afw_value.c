@@ -511,10 +511,7 @@ afw_value_clone(const afw_value_t *value,
 
             afw_data_type_clone_internal(afw_data_type_object,
                 (void *)&to, &from, p, xctx);
-            if (to && to->value) {
-                return to->value;
-            }
-            return afw_value_create_unmanaged_object(to, p, xctx);
+            return afw_object_as_value(to, p, xctx);
         }
         if (AFW_VALUE_IS_DATA_TYPE(value, array)) {
             const afw_array_t *from =
@@ -523,10 +520,7 @@ afw_value_clone(const afw_value_t *value,
 
             afw_data_type_clone_internal(afw_data_type_array,
                 (void *)&to, &from, p, xctx);
-            if (to && to->value) {
-                return to->value;
-            }
-            return afw_value_create_unmanaged_array(to, p, xctx);
+            return afw_array_as_value(to, p, xctx);
         }
         evaluated = afw_value_common_allocate(
             value->inf->is_evaluated_of_data_type, p, xctx);
@@ -567,9 +561,7 @@ afw_value_isolate_mutable_default(
         /* Always a *new* face over the base (even if value was already a face). */
         obj = afw_object_memory_wrapper_base(obj);
         face_obj = afw_object_create_wrapper_unmanaged(obj, p, xctx);
-        return face_obj->value
-            ? face_obj->value
-            : afw_value_create_unmanaged_object(face_obj, p, xctx);
+        return afw_object_as_value(face_obj, p, xctx);
     }
 
     if (AFW_VALUE_IS_DATA_TYPE(value, array)) {
@@ -579,9 +571,7 @@ afw_value_isolate_mutable_default(
         }
         arr = afw_array_memory_wrapper_base(arr);
         face_arr = afw_array_create_wrapper_unmanaged(arr, p, xctx);
-        return face_arr->value
-            ? face_arr->value
-            : afw_value_create_unmanaged_array(face_arr, p, xctx);
+        return afw_array_as_value(face_arr, p, xctx);
     }
 
     /* Scalars and other types: clone as before. */

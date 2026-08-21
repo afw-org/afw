@@ -125,6 +125,25 @@ afw_array_memory_wrapper_base(const afw_array_t *array);
 
 
 /**
+ * @brief Evaluated value for an array instance.
+ * @param array instance, or NULL.
+ * @param p used only if a heap wrapper is required (no dual face).
+ * @param xctx of caller.
+ * @return array->value when present; otherwise an unmanaged heap
+ *    wrapper. NULL if array is NULL.
+ *
+ * Use this whenever C has an instance and needs an Adaptive value.
+ * Do not call create_unmanaged_array for that — it allocates a
+ * second header whose optional_release does not hold the instance.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_array_as_value(
+    const afw_array_t *array,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Create an array of a specific data type in memory.
  * @param data_type if array only holds one data type or NULL.
  * @param p to use for the array.

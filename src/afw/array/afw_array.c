@@ -14,6 +14,24 @@
 #include "afw_internal.h"
 
 
+AFW_DEFINE(const afw_value_t *)
+afw_array_as_value(
+    const afw_array_t *array,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_value_array_t *v;
+
+    if (array && array->value) {
+        return array->value;
+    }
+    v = afw_pool_calloc(p, sizeof(afw_value_array_t), xctx);
+    v->inf = &afw_value_unmanaged_array_inf;
+    v->internal = array;
+    return &v->pub;
+}
+
+
 /* Get next value from array whose data type cType is afw_utf8_t. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_array_of_utf8_get_next(
