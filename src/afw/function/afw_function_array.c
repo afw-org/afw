@@ -304,7 +304,8 @@ afw_function_execute_create_array(
         afw_array_push_value(array, afw_value_undefined, x->xctx);
     }
 
-    return afw_value_create_unmanaged_array(array, x->p, x->xctx);
+    /* Dual face on the instance; no extra heap header. */
+    return array->value;
 }
 
 /*

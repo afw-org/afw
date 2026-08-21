@@ -60,6 +60,7 @@ struct afw_memory_internal_array_s {
     const afw_array_t *wrapped;
     afw_boolean_t immutable;
     afw_boolean_t generic;
+    afw_boolean_t unmanaged;
 };
 
 
@@ -81,6 +82,11 @@ afw_array_create_with_options(
     afw_memory_internal_array_t *self;
     afw_memory_internal_array_ring_t *ring;
 
+    /* If managed, create subpool for array. */
+    if (options == AFW_ARRAY_MEMORY_OPTION_managed) {
+        p = afw_pool_create_subpool(p, xctx);
+    }
+
     /* Allocate memory for self. */
     self = afw_pool_calloc_type(p, afw_memory_internal_array_t, xctx);
 
@@ -90,12 +96,14 @@ afw_array_create_with_options(
     /* Initialize self. */
     self->pub.inf = &impl_afw_array_inf;
     self->pub.p = p;
+    self->unmanaged = AFW_ARRAY_MEMORY_OPTION_IS(options, unmanaged);
     /*
-     * Dual face embedded in pool-owned instance. Unmanaged value face:
-     * array has no get_reference and release is a no-op; do not use
-     * managed free-header on this embedded value.
+     * Dual face: inf matches array lifetime — managed when RC owns a
+     * subpool; unmanaged when options say unmanaged (pool bulk free).
      */
-    self->value.inf = &afw_value_unmanaged_array_inf;
+    self->value.inf = self->unmanaged
+        ? &afw_value_unmanaged_array_inf
+        : &afw_value_managed_array_inf;
     self->value.internal = (const afw_array_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     self->data_type = data_type;
@@ -106,7 +114,6 @@ afw_array_create_with_options(
     self->setter.inf = &impl_afw_array_setter_inf;
     self->setter.array = (const afw_array_t *)self;
 
-    /* Return new object. */
     return (const afw_array_t *)self;
 
 }
@@ -184,6 +191,13 @@ afw_array_create_wrapper_with_options(
     self = (afw_memory_internal_array_t *)
         afw_array_create_with_options(options, data_type, p, xctx);
     self->wrapped = wrapped;
+    /*
+     * Managed face: one reference on wrapped for the face's life.
+     * Released when the face pool is destroyed. Unmanaged faces borrow.
+     */
+    if (!self->unmanaged) {
+        afw_array_get_reference(wrapped, xctx);
+    }
 
     /*
      * Materialize entries onto the face so ring mutators only touch local
@@ -294,17 +308,33 @@ impl_promote_structured_entry(
 void
 impl_afw_array_release(
     AFW_ARRAY_SELF_T *self,
-    afw_xctx_t *xctx) {
+    afw_xctx_t *xctx)
+{
+    const afw_array_t *wrapped;
 
-    /*
-     * Continue release, even if there is already an error.  Don't overwrite
-     * existing error.
-     */
+    if (self->unmanaged) {
+        return;
+    }
 
-    /*
-     * Storage for value array is allocated in the pool provided, so nothing
-     * needs to be done.
-     */
+    wrapped = self->wrapped;
+    if (afw_pool_release(self->pub.p, xctx) == NULL && wrapped) {
+        afw_array_release(wrapped, xctx);
+    }
+}
+
+
+/*
+ * Implementation of method get_reference of interface afw_array.
+ */
+void
+impl_afw_array_get_reference(
+    AFW_ARRAY_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    if (self->unmanaged) {
+        return;
+    }
+    afw_pool_get_reference(self->pub.p, xctx);
 }
 
 

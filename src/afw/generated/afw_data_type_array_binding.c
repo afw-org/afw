@@ -455,9 +455,13 @@ impl_afw_value_managed_get_reference(
     const afw_array_t *arr = self->internal;
     afw_boolean_t embedded;
 
-    /* Arrays: no container get_reference; heap RC only. */
+    /* Hold is on the array (pool RC). */
+    if (arr) {
+        afw_array_get_reference(arr, xctx);
+    }
+
+    /* Heap wrappers: bump value RC so optional_release frees once. */
     (void)p;
-    (void)xctx;
     embedded = (arr && arr->value == instance);
     if (!embedded) {
         ((afw_value_array_managed_t *)instance)->

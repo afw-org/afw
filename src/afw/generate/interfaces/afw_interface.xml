@@ -3238,8 +3238,32 @@ const afw_content_type_t *
     <method name="release">
 
       <description>
-        Release resources associated with adaptive value array. This will automatically be called
-        if value array is part of an adaptive adapter session.
+        Reduces the array's reference count and releases the array's
+        resources if the count is 0. An array returned from a managed
+        create has a reference count of 1. Calls to method
+        get_reference() increment the count. Unmanaged memory arrays
+        treat this as a no-op (pool bulk free).
+      </description>
+
+      <parameter name="instance" type="const afw_array_t *">
+    <description>Pointer to this value array instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+    <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="get_reference">
+
+      <description>
+        Adds an additional reference to a managed array. Necessary if
+        this array may be referenced after it would normally be
+        released. Unmanaged memory arrays treat this as a no-op.
       </description>
 
       <parameter name="instance" type="const afw_array_t *">

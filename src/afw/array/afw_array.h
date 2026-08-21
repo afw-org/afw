@@ -30,8 +30,21 @@ AFW_THROW_ERROR_Z(read_only, "List immutable", xctx)
 
 
 /**
+ * Memory array create options. Same bit values as
+ * AFW_OBJECT_MEMORY_OPTION_*. 0 is managed (own subpool).
+ * create_generic stays unmanaged so existing C (compile, YAML, …)
+ * keeps pool-bulk lifetime without a matching release.
+ */
+#define AFW_ARRAY_MEMORY_OPTION_managed              0
+#define AFW_ARRAY_MEMORY_OPTION_unmanaged            (1 << 0)
+#define AFW_ARRAY_MEMORY_OPTION_managed_cede_p       (1 << 1)
+#define AFW_ARRAY_MEMORY_OPTION_IS(options_mask, option) \
+    ((((options_mask) & (AFW_ARRAY_MEMORY_OPTION_ ## option))) != 0)
+
+
+/**
  * @brief Create an array in memory with options.
- * @param options
+ * @param options AFW_ARRAY_MEMORY_OPTION_* (same bits as objects).
  * @param data_type if array only holds one data type or NULL.
  * @param p to use for the array.
  * @param xctx of caller.
@@ -52,7 +65,7 @@ afw_array_create_with_options(
 
 /**
  * @brief Create a memory array that wraps another array (mutable face).
- * @param options reserved (same convention as create_with_options; usually 0).
+ * @param options AFW_ARRAY_MEMORY_OPTION_* (unmanaged borrow vs managed pin).
  * @param wrapped base array for isolation. Required (non-NULL). Any
  *     afw_array implementation is allowed (memory, adapter-backed, view of
  *     C array, …).
@@ -78,15 +91,16 @@ afw_array_create_wrapper_with_options(
  * @brief Create a memory wrapper over another array (options 0).
  */
 #define afw_array_create_wrapper(wrapped, p, xctx) \
-    afw_array_create_wrapper_with_options(0, wrapped, p, xctx)
+    afw_array_create_wrapper_with_options( \
+        AFW_ARRAY_MEMORY_OPTION_managed, wrapped, p, xctx)
 
 
 /**
  * @brief Create an unmanaged memory wrapper over another array.
- * Same as create_wrapper for current memory arrays (pool-owned face).
  */
 #define afw_array_create_wrapper_unmanaged(wrapped, p, xctx) \
-    afw_array_create_wrapper_with_options(0, wrapped, p, xctx)
+    afw_array_create_wrapper_with_options( \
+        AFW_ARRAY_MEMORY_OPTION_unmanaged, wrapped, p, xctx)
 
 
 /**
@@ -122,7 +136,16 @@ afw_array_memory_wrapper_base(const afw_array_t *array);
  * that data type.
  */
 #define afw_array_of_create(data_type, p, xctx) \
-    afw_array_create_with_options(0, data_type, p, xctx)
+    afw_array_create_with_options( \
+        AFW_ARRAY_MEMORY_OPTION_unmanaged, data_type, p, xctx)
+
+
+/**
+ * @brief Create a managed memory array (own subpool).
+ */
+#define afw_array_create(p, xctx) \
+    afw_array_create_with_options( \
+        AFW_ARRAY_MEMORY_OPTION_managed, NULL, p, xctx)
 
 
 
@@ -139,7 +162,8 @@ afw_array_memory_wrapper_base(const afw_array_t *array);
  * afw_array_get_data_type() will return that data type.
  */
 #define afw_array_create_generic(p, xctx) \
-    afw_array_create_with_options(0, NULL, p, xctx)
+    afw_array_create_with_options( \
+        AFW_ARRAY_MEMORY_OPTION_unmanaged, NULL, p, xctx)
 
 
 
