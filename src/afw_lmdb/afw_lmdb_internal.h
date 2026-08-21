@@ -70,6 +70,12 @@ typedef struct afw_lmdb_transaction_s {
     afw_adapter_transaction_t pub;
     afw_adapter_session_t *session;
     MDB_txn *txn;
+    /*
+     * false when this handle was created while a transaction was already
+     * active on the session (reentrant reuse) -- it does not own the
+     * underlying MDB_txn and must not begin/commit/abort/release it.
+     */
+    afw_boolean_t owner;
 } afw_lmdb_transaction_t;
 
 /* defines the data used to remember our open transaction handle */
@@ -433,7 +439,7 @@ do { \
                 AFW_THROW_ERROR_RV_Z(general, lmdb_internal, this_rc, \
                     "Unable to commit transaction.", this_xctx); \
             } \
-            afw_trace_z(1, this_session->adapter->pub.trace_flag_index, \
+            afw_trace_z(1, this_adapter->pub.trace_flag_index, \
                 NULL, "LMDB Transaction committed.", this_xctx); \
         } \
     }
@@ -452,7 +458,7 @@ do { \
                 AFW_THROW_ERROR_RV_Z(general, lmdb_internal, this_rc, \
                     "Unable to abort transaction.", this_xctx); \
             } \
-            afw_trace_z(1, this_session->adapter->pub.trace_flag_index, \
+            afw_trace_z(1, this_adapter->pub.trace_flag_index, \
                 NULL, "LMDB Transaction aborted.", this_xctx); \
         } \
     }
@@ -467,7 +473,7 @@ do { \
             if (this_txn && !this_txnHandled) { \
                 mdb_txn_abort(this_txn); \
                 this_txnHandled = true; \
-                afw_trace_z(1, this_session->adapter->pub.trace_flag_index, \
+                afw_trace_z(1, this_adapter->pub.trace_flag_index, \
                     NULL, "LMDB Transaction aborted.", this_xctx); \
             } \
             if (this_session) \
