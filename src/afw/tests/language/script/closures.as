@@ -626,14 +626,13 @@ return 0;
 //?
 //? test: before2-for-of-let-per-iteration
 //? description: for-of let should be per-iteration like for-let (could fix before #2; #35)
-//? skip: true
+//? skip: false
 //? expect: 0
 //? source: ...
 
 /*
- * Today both closures see the final iteration value (shared binding). ES and
- * Adaptive for(let i=…) use per-iteration bindings; for-of should match for
- * author comfort. Scope-per-iteration work, not #2 lifetime.
+ * let/const for-of heads clone the loop-local scope each iteration
+ * (same protocol as C-style for). No for-in.
  */
 let f0;
 let f1;
@@ -653,6 +652,60 @@ for (let v of items) {
 }
 assert(f0() === 10, "first iteration value");
 assert(f1() === 20, "second iteration value");
+return 0;
+
+//?
+//? test: for-of-const-per-iteration
+//? description: for-of const head is a fresh binding per iteration
+//? skip: false
+//? expect: 0
+//? source: ...
+
+let f0;
+let f1;
+let f2;
+let i = 0;
+for (const x of [1, 2, 3]) {
+    if (i === 0) {
+        f0 = function() { return x; };
+    } else if (i === 1) {
+        f1 = function() { return x; };
+    } else {
+        f2 = function() { return x; };
+    }
+    i = i + 1;
+}
+assert(f0() === 1);
+assert(f1() === 2);
+assert(f2() === 3);
+return 0;
+
+//?
+//? test: for-of-assign-outer-shared-binding
+//? description: for (x of …) when x is already declared is one binding
+//? skip: false
+//? expect: 0
+//? source: ...
+
+let x;
+let f0;
+let f1;
+const items = [10, 20];
+let idx = 0;
+for (x of items) {
+    if (idx === 0) {
+        f0 = function() {
+            return x;
+        };
+    } else {
+        f1 = function() {
+            return x;
+        };
+    }
+    idx = idx + 1;
+}
+assert(f0() === 20, "outer x is one binding");
+assert(f1() === 20, "both closures see last");
 return 0;
 
 //?
