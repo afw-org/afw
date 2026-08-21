@@ -602,54 +602,74 @@ impl_is_this_impl(const afw_pool_t *p)
 }
 
 
-AFW_DEFINE(const afw_pool_t *)
-afw_pool_create(
+static AFW_POOL_SELF_T *
+impl_create_child(
     const afw_pool_t *parent,
+    const afw_pool_inf_t *inf,
+    const afw_thread_t *thread,
     afw_xctx_t *xctx)
 {
     AFW_POOL_SELF_T *self;
     AFW_POOL_SELF_T *apr_parent;
-    const afw_pool_inf_t *inf;
     apr_pool_t *parent_apr;
-
-    if (!parent) {
-        AFW_THROW_ERROR_Z(general, "Parent required", xctx);
-    }
 
     parent_apr = afw_pool_get_apr_pool(parent);
 
     if (impl_is_this_impl(parent)) {
         apr_parent = (AFW_POOL_SELF_T *)parent;
-        inf = apr_parent->thread
-            ? &impl_afw_pool_inf
-            : &impl_afw_pool_multithreaded_inf;
         if (apr_parent->thread) {
             self = impl_create(parent_apr, inf, xctx);
-            self->thread = apr_parent->thread;
+            self->thread = thread;
             impl_add_child(apr_parent, self, xctx);
         }
         else {
             IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
                 self = impl_create(parent_apr, inf, xctx);
-                self->thread = apr_parent->thread;
+                self->thread = thread;
                 impl_add_child(apr_parent, self, xctx);
             }
             IMPL_MULTITHREADED_LOCK_END;
         }
     }
     else {
-        /* Parent is another impl (heap). Single-threaded child. */
-        inf = &impl_afw_pool_inf;
         self = impl_create(parent_apr, inf, xctx);
-        self->thread = xctx->thread;
+        self->thread = thread;
         self->afw_parent = parent;
         afw_pool_get_reference(parent, xctx);
     }
 
+    return self;
+}
+
+
+AFW_DEFINE(const afw_pool_t *)
+afw_pool_create(
+    const afw_pool_t *parent,
+    afw_xctx_t *xctx)
+{
+    AFW_POOL_SELF_T *self;
+    const afw_pool_inf_t *inf;
+    const afw_thread_t *thread;
+
+    if (!parent) {
+        AFW_THROW_ERROR_Z(general, "Parent required", xctx);
+    }
+
+    if (impl_is_this_impl(parent)) {
+        thread = ((AFW_POOL_SELF_T *)parent)->thread;
+        inf = thread
+            ? &impl_afw_pool_inf
+            : &impl_afw_pool_multithreaded_inf;
+    }
+    else {
+        thread = xctx->thread;
+        inf = &impl_afw_pool_inf;
+    }
+
+    self = impl_create_child(parent, inf, thread, xctx);
     self->pub.managed_p = parent->managed_p
         ? parent->managed_p
         : &self->pub;
-
     return &self->pub;
 }
 
@@ -664,6 +684,29 @@ afw_pool_create_as_managed_p(
     p = afw_pool_create(parent, xctx);
     ((afw_pool_t *)p)->managed_p = p;
     return p;
+}
+
+
+AFW_DEFINE(const afw_pool_t *)
+afw_pool_create_xctx_p(
+    const afw_pool_t *parent,
+    afw_xctx_t *xctx)
+{
+    AFW_POOL_SELF_T *self;
+
+    if (!parent) {
+        AFW_THROW_ERROR_Z(general, "Parent required", xctx);
+    }
+
+    /*
+     * Always single-threaded: an xctx is one thread's work, even when
+     * parent is env/base (afw command). Linking onto a mt parent still
+     * takes the env lock.
+     */
+    self = impl_create_child(parent, &impl_afw_pool_inf,
+        xctx->thread, xctx);
+    self->pub.managed_p = &self->pub;
+    return &self->pub;
 }
 
 

@@ -88,11 +88,28 @@ afw_pool_create(
  * @param xctx of caller.
  * @return new pool.
  *
- * Same as afw_pool_create() then p->managed_p = p. Use for xctx->p and
- * factory/conf instance pools (adapter->p, server->p, ...).
+ * Same as afw_pool_create() then p->managed_p = p. Use for factory/conf
+ * instance pools (adapter->p, server->p, …). Parent decides mt vs
+ * single-thread. For xctx->p use afw_pool_create_xctx_p().
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create_as_managed_p(
+    const afw_pool_t *parent,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create xctx->p (managed_p = self, always single-threaded).
+ * @param parent of new pool (may be multithreaded env/base).
+ * @param xctx of caller.
+ * @return new pool.
+ *
+ * An xctx is one thread's work. This avoids the env pool lock on every
+ * alloc when afw creates a child xctx of base. Factory pools stay on
+ * afw_pool_create_as_managed_p().
+ */
+AFW_DECLARE(const afw_pool_t *)
+afw_pool_create_xctx_p(
     const afw_pool_t *parent,
     afw_xctx_t *xctx);
 
