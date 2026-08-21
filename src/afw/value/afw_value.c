@@ -503,6 +503,31 @@ afw_value_clone(const afw_value_t *value,
 
     /* If value is evaluated, clone it. */
     if (value->inf->is_evaluated_of_data_type) {
+        /* Independent instance + dual face; not a wrap of the original. */
+        if (AFW_VALUE_IS_DATA_TYPE(value, object)) {
+            const afw_object_t *from =
+                ((const afw_value_object_t *)value)->internal;
+            const afw_object_t *to = NULL;
+
+            afw_data_type_clone_internal(afw_data_type_object,
+                (void *)&to, &from, p, xctx);
+            if (to && to->value) {
+                return to->value;
+            }
+            return afw_value_create_unmanaged_object(to, p, xctx);
+        }
+        if (AFW_VALUE_IS_DATA_TYPE(value, array)) {
+            const afw_array_t *from =
+                ((const afw_value_array_t *)value)->internal;
+            const afw_array_t *to = NULL;
+
+            afw_data_type_clone_internal(afw_data_type_array,
+                (void *)&to, &from, p, xctx);
+            if (to && to->value) {
+                return to->value;
+            }
+            return afw_value_create_unmanaged_array(to, p, xctx);
+        }
         evaluated = afw_value_common_allocate(
             value->inf->is_evaluated_of_data_type, p, xctx);
         afw_data_type_clone_internal(value->inf->is_evaluated_of_data_type,

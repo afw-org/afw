@@ -27,6 +27,7 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | Index filter/value scripts using bare `object` | **`current::object`** (and `objectId` / `objectType` / `key`). [Index `current::`](#adapter-index-filtervalue-current-issue-54--partial) |
 | Function metadata `maximumNumberOfParameters` | **`maxNumberOfParameters`**. [Rename](#maxnumberofparameters-issue-125) |
 | `checkIndividualObjectReadAccess` policies that only handle `query` | Also handle action **`read`**. [Adapter auth](#adapter-getretrieve-authorization-issue-90) |
+| `clone(get_object(…))` / `clone(retrieve_…)` just to set properties | **Not needed.** Get/retrieve already return a **mutable face**. Keep **`clone()`** for a **deep independent copy** (including nested objects). [Faces](#mutable-object-faces-issue-17) |
 
 ### C programmers
 
@@ -431,7 +432,7 @@ Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` r
 | Tool | Meaning |
 |------|---------|
 | **Face (platform)** | Mutable local layer; base not poisoned; **not** a deep copy and **not** store write-through |
-| **`clone()`** | Explicit **deep** independent copy of a graph (or when you still need a free-form object over reconcilable/entity paths) |
+| **`clone()`** | Explicit **deep** independent copy of a graph — nested objects/arrays are new instances too (or when you still need a free-form object over reconcilable/entity paths) |
 | **`freeze`** | Explicit **immutability** of a value graph (or as documented for that API) |
 | **`const`** | **Binding-level** only — the name cannot be reassigned; nested properties may still be mutable unless frozen |
 

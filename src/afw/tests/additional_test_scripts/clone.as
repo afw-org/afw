@@ -28,6 +28,43 @@ assert(obj1 !== obj2);
 
 return 0;
 
+//?
+//? test: clone_object_nested
+//? description: Nested object properties are independent after clone
+//? expect: 0
+//? source: ...
+
+let orig = {
+    child: { x: 1 }
+};
+let copy = clone(orig);
+
+copy.child.x = 2;
+orig.child.y = 3;
+
+assert(orig.child.x === 1, "orig nested not changed by copy");
+assert(copy.child.x === 2, "copy nested changed");
+assert(is_nullish(copy.child.y), "copy nested not changed by orig");
+
+return 0;
+
+//?
+//? test: clone_array_of_objects
+//? description: Objects inside a cloned array are independent
+//? expect: 0
+//? source: ...
+
+let orig = [{ x: 1 }];
+let copy = clone(orig);
+
+copy[0].x = 2;
+
+assert(orig[0].x === 1, "orig element not changed");
+assert(copy[0].x === 2, "copy element changed");
+
+return 0;
+
+//?
 //? test: clone_list
 //? description: Clone an array
 //? expect: 0
