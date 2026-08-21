@@ -410,13 +410,23 @@ impl_afw_value_optional_evaluate(
          * Hold the C return in this frame's hidden result so callee
          * last-release can walk named slots first.
          */
-        if (result &&
+        if (afw_value_is_void(result)) {
+            afw_value_slot_store(&xctx->script_result,
+                afw_value_undefined, xctx->p, xctx);
+        }
+        else if (result &&
             !afw_value_is_undefined(result) &&
-            !afw_value_is_void(result) &&
             xctx->script_result != result)
         {
             afw_value_slot_store(&xctx->script_result, result,
                 xctx->p, xctx);
+        }
+        if (!afw_value_is_void(result) &&
+            xctx->script_result &&
+            !afw_value_is_undefined(xctx->script_result) &&
+            !afw_value_is_void(xctx->script_result))
+        {
+            result = xctx->script_result;
         }
     }
 

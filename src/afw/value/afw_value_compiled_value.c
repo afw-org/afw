@@ -106,6 +106,13 @@ impl_afw_value_optional_evaluate(
             afw_value_slot_store(&xctx->script_result, result,
                 xctx->p, xctx);
         }
+        if (xctx->script_result_active &&
+            xctx->script_result &&
+            !afw_value_is_undefined(xctx->script_result) &&
+            !afw_value_is_void(xctx->script_result))
+        {
+            result = xctx->script_result;
+        }
         afw_xctx_script_result_restore(
             saved_script_result,
             saved_script_result_active,

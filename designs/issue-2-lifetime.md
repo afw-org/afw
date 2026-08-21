@@ -256,6 +256,8 @@ This pass is specified with **`xctx->p` as the usual ancestor**. Adapter caches,
 - Pool rewrite, size-class free lists, interned compile literals as true `permanent_*` infs.
 - Escape **past** one xctx (env, adapter cache, compiled units reused across requests) — same words, not this pass’s safety net.
 - `#35` closure trustworthiness still depends on this protocol being real.
+- Nested **`compile()`** assigned to a variable is **unevaluated** (the graph). It does not run and does not touch `script_result`. `evaluate()` of that value (and model-adapter `on*` compiled at model load, run later on a request) goes through `compiled_value` evaluate, which already save/restores `script_result` / active / written and pushes a NULL scope-stack sentinel. The donated-return list on xctx is **not** a second running result: pointer-matched hold transfer for a C return until `slot_store` takes it. Permanents are no-op holds if the same singleton is stored while a donate is pending. Model `current::useDefaultProcessing` is an **unmanaged null sentinel** (pointer identity, not `afw_value_null`); do not box unmanaged null.
+- Memory **arrays** still lag memory objects: create `options` ignored, `release` no-op, no child pool, unmanaged dual face. Array #17 faces exist (isolation) but do not pin the wrapped instance the way managed object faces do. That is step 3 (`create_array` + instance holds) plus leftover wrapper pin; overlay element `set` is step 4. Not this slot-protocol slice.
 
 ---
 
@@ -264,7 +266,7 @@ This pass is specified with **`xctx->p` as the usual ancestor**. Adapter caches,
 Do **not** treat this as a commit plan. When we execute:
 
 1. **Slot protocol** — assign + hidden result + scope last-`release` walk + `for` clone holds. (Started: `issue-2-slot-protocol`. Closure create stays at 1 until overlay/property holds; create-at-0 would break `o.fn = function…`.)
-2. **Scalar `add_reference`** wrapper in `xctx->p`; copy utf8/memory; drop generated slice; rename when bindings change.
+2. **Scalar `add_reference`** wrapper in `xctx->p`; copy utf8/memory; drop generated slice; rename when bindings change. (Started on `issue-2-slot-protocol`: unmanaged scalar `clone_or_reference` boxes in `xctx->p`; no rename; slice infs still generated. Boxed headers are **not** first-fit `free`d while scope subpools exist — they leak until xctx destroy until the pool slice.)
 3. **Object/array instance holds** — dual face, no second header; arrays match objects; `create_array`.
 4. **Script wrapper overlay holds** — `set` / last-`release`; wrap every script-mutable path we missed.
 5. **Pools** — only after the protocol is honest; optional free list + adjacent combine; size classes later.

@@ -139,7 +139,8 @@ afw_value_donate_return(
     const afw_value_t **a;
 
     if (!value || afw_value_is_undefined(value) ||
-        afw_value_is_void(value))
+        afw_value_is_void(value) ||
+        !value->inf || !value->inf->optional_release)
     {
         return;
     }
