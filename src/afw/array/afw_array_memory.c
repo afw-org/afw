@@ -648,32 +648,15 @@ impl_maybe_clear_generic_data_type(afw_memory_internal_array_t *self)
 
 
 
-/*
- * @fixme Issue #2 — value lifetime / managed escape.
- *
- * When hold-on-store is wired (clone_or_reference on push/insert/set, same
- * family as scope assign and object properties), discard paths should call
- * afw_value_optional_release on the previous element when the inf supports
- * it. Until then, match memory objects: store/replace the pointer as-is and
- * rely on pool bulk free for short scripts/requests. Releasing without a
- * prior hold can free a shared managed value (RC starts at 0) and UAF.
- *
- * Intended helper (commented out until #2 lands):
- *
- * static void
- * impl_optional_release_value(
- *     const afw_value_t *value,
- *     afw_xctx_t *xctx)
- * {
- *     if (value && value->inf && value->inf->optional_release) {
- *         afw_value_optional_release(value, xctx);
- *     }
- * }
- *
- * Call on set_value replace (if old != new), remove_value_by_index,
- * remove_value, remove_internal, and remove_all_values. Do NOT call on
- * pop_value / shift_value (ownership transfers to the caller).
- */
+/* Overlay hold: same protocol as scope assign. Not pop/shift. */
+static void
+impl_store_element(
+    const afw_value_t **slot,
+    const afw_value_t *incoming,
+    afw_xctx_t *xctx)
+{
+    afw_value_slot_store(slot, incoming, xctx->p, xctx);
+}
 
 
 
@@ -808,7 +791,7 @@ impl_afw_array_setter_push_value(
 
     ep = afw_pool_calloc_type(
         array_self->pub.p, afw_memory_internal_array_entry_t, xctx);
-    ep->value = value;
+    impl_store_element(&ep->value, value, xctx);
     APR_RING_INSERT_TAIL(array_self->ring, ep,
         afw_memory_internal_array_entry_s, link);
     array_self->count++;
@@ -932,7 +915,7 @@ impl_afw_array_setter_insert_value(
 
     nep = afw_pool_calloc_type(
         array_self->pub.p, afw_memory_internal_array_entry_t, xctx);
-    nep->value = value;
+    impl_store_element(&nep->value, value, xctx);
 
     /* index 0 = unshift (front); index == count = push (append). */
     if (at == 0) {
@@ -1021,12 +1004,7 @@ impl_afw_array_setter_set_value(
         AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
     }
 
-    /*
-     * @fixme #2: optional_release previous managed value when hold-on-store
-     * is in place (see impl_optional_release_value comment above). Same
-     * store-as-is policy as afw_object_memory set_property for now.
-     */
-    lep->value = value;
+    impl_store_element(&lep->value, value, xctx);
 }
 
 
@@ -1052,7 +1030,7 @@ impl_afw_array_setter_remove_value_by_index(
         AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
     }
 
-    /* @fixme #2: optional_release lep->value when hold-on-store lands. */
+    afw_value_release(lep->value, xctx);
     APR_RING_REMOVE(lep, link);
     array_self->count--;
     impl_maybe_clear_generic_data_type(array_self);
@@ -1076,7 +1054,7 @@ impl_afw_array_setter_remove_value(
     APR_RING_FOREACH(ep, array_self->ring, afw_memory_internal_array_entry_s, link)
     {
         if (afw_value_equal(value, ep->value, xctx)) {
-            /* @fixme #2: optional_release ep->value when hold-on-store lands. */
+            afw_value_release(ep->value, xctx);
             APR_RING_REMOVE(ep, link);
             array_self->count--;
             impl_maybe_clear_generic_data_type(array_self);
@@ -1110,7 +1088,7 @@ impl_afw_array_setter_remove_internal(
                 &((const afw_value_common_t *)ep->value)->internal,
                 internal, data_type->c_type_size) == 0)
         {
-            /* @fixme #2: optional_release ep->value when hold-on-store lands. */
+            afw_value_release(ep->value, xctx);
             APR_RING_REMOVE(ep, link);
             array_self->count--;
             impl_maybe_clear_generic_data_type(array_self);
@@ -1134,10 +1112,15 @@ impl_afw_array_setter_remove_all_values(
     afw_memory_internal_array_t *array_self =
         (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
 
-    /*
-     * @fixme #2: walk ring and optional_release each element value before
-     * re-init when hold-on-store lands (see impl_optional_release_value).
-     */
+    {
+        afw_memory_internal_array_entry_t *ep;
+
+        APR_RING_FOREACH(ep, array_self->ring,
+            afw_memory_internal_array_entry_s, link)
+        {
+            afw_value_release(ep->value, xctx);
+        }
+    }
     APR_RING_INIT(array_self->ring, afw_memory_internal_array_entry_s, link);
     array_self->count = 0;
 

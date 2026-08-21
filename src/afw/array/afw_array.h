@@ -538,8 +538,8 @@ afw_array_insert_value(
  * @param value New value.
  * @param xctx of caller.
  *
- * Stores as-is today (like object set_property). Issue #2: optional_release
- * previous managed value once hold-on-store is wired.
+ * Overlay hold: release the stored pointer, add_reference the new
+ * value, store. Same protocol as object set_property.
  */
 AFW_DECLARE(void)
 afw_array_set_value(
