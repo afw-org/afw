@@ -49,6 +49,66 @@ afw_value_closure_binding_create(
 }
 
 
+
+/*
+ * Bind a script function to its defining scope when stored (assign, return,
+ * object/array literal). Capture at the store, not at a later call, and not
+ * by hoisting names.
+ */
+AFW_DEFINE(const afw_value_t *)
+afw_value_closure_binding_create_if_needed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_value_script_function_definition_t *function;
+    const afw_xctx_scope_t *scope;
+    afw_size_t defining_depth;
+
+    if (!value || !afw_value_is_script_function_definition(value)) {
+        return value;
+    }
+
+    function = (const afw_value_script_function_definition_t *)value;
+    scope = afw_xctx_scope_current(xctx);
+    if (!scope || !scope->block) {
+        return value;
+    }
+
+    /*
+     * Prefer signature param block's parent depth when present — same reason
+     * as call_script_function: script_function->depth can lag #block unwrap
+     * renumbering.
+     */
+    defining_depth = function->depth;
+    if (function->signature && function->signature->block) {
+        if (function->signature->block->parent_block) {
+            defining_depth =
+                function->signature->block->parent_block->depth;
+        }
+        else {
+            defining_depth = 0;
+        }
+    }
+
+    /*
+     * Bind the defining scope, not a nested block we happen to be in (e.g.
+     * `if { c0 = tick }` where tick was created in the enclosing body).
+     * Returning the raw definition here used to skip the hold and break
+     * later calls. Walk the lexical parent chain; do not hoist names.
+     */
+    for (; scope; scope = scope->parent_lexical_scope) {
+        if (defining_depth == scope->block->depth) {
+            break;
+        }
+    }
+    if (!scope) {
+        AFW_THROW_ERROR_Z(general,
+            "Internal error: scope not found", xctx);
+    }
+    return afw_value_closure_binding_create(function, scope, xctx);
+}
+
+
 /*
  * Implementation of method optional_release for interface afw_value.
  */

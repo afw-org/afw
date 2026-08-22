@@ -1685,6 +1685,25 @@ afw_value_closure_binding_create(
 
 
 /**
+ * @brief Bind a script function to the current lexical scope if needed.
+ * @param value candidate value (any kind).
+ * @param xctx of caller.
+ * @return value, or a closure_binding holding the defining scope.
+ *
+ * Store-time capture for assign, return, and object/array literals. Not
+ * hoisting: the function still uses the scope in which it was written, and
+ * names must be declared before use. Non-script-function values are
+ * returned unchanged. If the current scope is nested inside the defining
+ * scope, the defining scope is the one held (not the inner block).
+ */
+AFW_DEFINE(const afw_value_t *)
+afw_value_closure_binding_create_if_needed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+
+/**
  * @brief Create a call value.
  * @param contextual information for function call.
  * @param argc number of arguments (does not include argv[0]).

@@ -118,11 +118,13 @@ impl_afw_value_optional_evaluate(
             name_v = afw_value_evaluate(e->name_expr, p, xctx);
             property_name = impl_name_from_value(name_v, p, xctx);
             v = afw_value_evaluate(e->value, p, xctx);
+            v = afw_value_closure_binding_create_if_needed(v, xctx);
             afw_object_set_property(to, property_name, v, xctx);
         }
         else {
             /* static */
             v = afw_value_evaluate(e->value, p, xctx);
+            v = afw_value_closure_binding_create_if_needed(v, xctx);
             afw_object_set_property(to, e->static_name, v, xctx);
         }
     }

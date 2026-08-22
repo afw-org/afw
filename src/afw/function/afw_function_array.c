@@ -152,6 +152,8 @@ afw_function_execute_array(
         /* If not an array expression, add evaluated argument as element. */
         else {
             entry = afw_value_evaluate(*arg, x->p, x->xctx);
+            entry = afw_value_closure_binding_create_if_needed(
+                entry, x->xctx);
             afw_array_push_value(array, entry, x->xctx);
         }
 

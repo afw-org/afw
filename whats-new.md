@@ -781,7 +781,7 @@ Tests: `src/afw/tests/language/script/object_expression_names.as`.
 
 ## Value lifetime / memory management (issue [#2](https://github.com/afw-org/afw/issues/2)) — alpha/beta
 
-**Issue [#2](https://github.com/afw-org/afw/issues/2)** — campaign continues. Slot protocol landed. Pool split landed on `issue-2-pool-heap` (general APR pool vs evaluation heap/tracker). **Not** a finished memory-management productization (α/β).
+**Issue [#2](https://github.com/afw-org/afw/issues/2)** — campaign continues. Slot protocol landed. Pool split landed (general APR pool vs evaluation heap/tracker). Closures / throw-path rewind (**[#35](https://github.com/afw-org/afw/issues/35)**) bind at store. **Not** a finished memory-management productization (α/β).
 
 ### What landed (high level)
 
@@ -791,15 +791,14 @@ Tests: `src/afw/tests/language/script/object_expression_names.as`.
 - **Scalars:** unmanaged `clone_or_reference` boxes a managed copy in `p->managed_p` (utf8/memory copy octets). Unmanaged **null** is not boxed (model `useDefaultProcessing` pointer identity).
 - **Objects/arrays:** dual face; C uses **`afw_object_as_value` / `afw_array_as_value`**. Memory arrays honor create options, `get_reference`/`release`, managed wrapper pin. Overlay **`set`** on look-through faces holds the local overlay pointer. **`clone()`** is a **deep independent graph** (nested objects/arrays too). Get/retrieve already return a **face** — do not `clone()` just to set properties.
 - **`afw_pool_release`**: returns the pool or **NULL** if that call destroyed it.
+- **Closures (#35):** object/array literals wrap a script function as a closure when the construct stores it (same as assign/`return`). Nested-block assign (`if { c0 = tick }`) holds the **defining** scope, not the inner block. No let/const hoisting. Throw-path tests: `src/afw/tests/language/script/throw_rewind.as`.
 - Campaign map: `designs/issue-2-lifetime.md` (not user docs).
 
 **C note:** value/pool lifetime work is part of the [C API cleanup](#libafw-c-api-cleanup-release-ready-surface) line — same rebuild rule for out-of-tree linkers.
 
 ### Not done yet (do not rely on)
 
-- Closures and throw-path scope rewind (**#35**).
-- Object-literal methods `{ get: function()… }` (compile **#35**: wrap the function as a closure when the construct stores it — same as assign/`return`).
-- Renaming `clone_or_reference` → `add_reference`; dropping generated slice infs; optional `free` / first-fit tuning.
+- Renaming `clone_or_reference` → `add_reference`; dropping generated slice infs; optional `free` / first-fit tuning (P3).
 
 [↑ Highlights](#highlights)
 
