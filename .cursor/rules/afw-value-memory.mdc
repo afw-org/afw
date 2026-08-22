@@ -8,7 +8,7 @@ alwaysApply: false
 
 Use when changing value lifetime, reference count, create/allocate APIs, data type bindings, const objects/strings, pools/scopes, or debugging leaks for **long-running scripts**.
 
-**Campaign map:** [`designs/issue-2-lifetime.md`](../../designs/issue-2-lifetime.md) (slot protocol landed; pool split on `issue-2-pool-heap`). When they disagree, the pad is where #2 is going.
+**Campaign map:** [`designs/issue-2-lifetime.md`](../../designs/issue-2-lifetime.md) (slots, pool split, #35 store-time bind, wrapper overlay holds + create-at-0). When they disagree, the pad is where #2 is going.
 
 ## Pool and scope model
 
@@ -16,7 +16,7 @@ Use when changing value lifetime, reference count, create/allocate APIs, data ty
 - **Heap / heap tracker:** single-thread only. One compiled_value evaluate creates a heap, scopes use trackers, wrap **releases** the heap (a closure hold may keep it). **No reparent** on destroy; parent cascade destroys children.
 - `managed_p`: job pools and heap set self; others inherit. Managed object/array: `afw_pool_create(p->managed_p)`.
 - `compiled_value` owns a dedicated compile pool; evaluation scratch is the heap.
-- Scope create/activate/deactivate: reference count on scopes; `closure_binding` holds the scope; last-release walks `symbol_values`. Store-time bind for literals and nested assign is **#35**.
+- Scope create/activate/deactivate: reference count on scopes; `closure_binding` holds the scope; last-release walks `symbol_values`. Store-time bind for literals and nested assign is **#35**. Closure create-at-0; face overlay `set` is the hold for `o.fn = function…`.
 - Short scripts: pool + scope bulk free is enough. **Long-running** needs correct managed escape paths (below).
 
 ## Lifetimes (inf chooses policy)
