@@ -6,9 +6,9 @@ Not in default `afwdev test -j`. Braced empty `{ }` fails RSS (APR tracker)
 with in_use flat; unbraced `i = i + 1` fails both until optional free.
 empty_stmt should pass today. Measure-only: AFW_ISSUE2_RSS_ASSERT=0.
 
-    afwdev test -T src/afw/tests-extra/issue-2 --show-all
+    afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-loops --show-all
     AFW_ISSUE2_WORKLOAD=empty_stmt,empty_loop,integer_assign_no_brace \\
-        AFW_ISSUE2_DURATION_S=15 afwdev test -T src/afw/tests-extra/issue-2 --show-all
+        AFW_ISSUE2_DURATION_S=15 afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-loops --show-all
 """
 
 from __future__ import print_function
