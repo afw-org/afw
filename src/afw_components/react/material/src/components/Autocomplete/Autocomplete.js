@@ -157,7 +157,7 @@ Autocomplete.propTypes = {
     label:                              PropTypes.string,
     /**
      * options
-     * Data Type: (list, object _AdaptiveLayoutComponentType_Autocomplete_Options)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_Autocomplete_Options)
      * 
      * The available options for the Autocomplete component.
      */

@@ -190,7 +190,7 @@ ListEditor.propTypes = {
     editable:                           PropTypes.bool,
     /**
      * items
-     * Data Type: (list, object _AdaptiveLayoutComponentType_ListEditor_Item)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_ListEditor_Item)
      * 
      * The list of items to be managed.
      */
