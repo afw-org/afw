@@ -75,6 +75,7 @@ impl_afw_value_optional_evaluate(
             break;
         }
         v = afw_value_evaluate(v, p, xctx);
+        v = afw_value_closure_binding_create_if_needed(v, xctx);
         afw_object_set_property(to, property_name, v, xctx);
     }
 

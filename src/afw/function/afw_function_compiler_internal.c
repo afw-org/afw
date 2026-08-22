@@ -242,45 +242,10 @@ impl_create_closure_if_needed(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_xctx_scope_t *scope;
-    const afw_value_t *result;
-    afw_size_t defining_depth;
+    (void)p;
 
-    scope = afw_xctx_scope_current(xctx);
-
-    /*
-     * Prefer signature param block's parent depth when present — same reason
-     * as call_script_function: script_function->depth can lag #block unwrap
-     * renumbering.
-     */
-    defining_depth = function->depth;
-    if (function->signature && function->signature->block) {
-        if (function->signature->block->parent_block) {
-            defining_depth =
-                function->signature->block->parent_block->depth;
-        }
-        else {
-            defining_depth = 0;
-        }
-    }
-
-    if (defining_depth >= scope->block->depth) {
-        for (; scope; scope = scope->parent_lexical_scope) {
-            if (defining_depth == scope->block->depth) {
-                break;
-            }
-        }
-        if (!scope) {
-            AFW_THROW_ERROR_Z(general,
-                "Internal error: scope not found", xctx);
-        }
-        result = afw_value_closure_binding_create(function, scope, xctx);
-    }
-    else {
-        result = &function->pub;
-    }
-
-    return result;
+    return afw_value_closure_binding_create_if_needed(
+        (const afw_value_t *)function, xctx);
 }
 
 
@@ -565,6 +530,10 @@ impl_assignment_target(
             symbol->type.data_type != afw_data_type_unevaluated)
         {
             value = afw_value_evaluate(value, p, xctx);
+        }
+        if (symbol->symbol_type != afw_value_block_symbol_type_function) {
+            value = afw_value_closure_binding_create_if_needed(
+                value, xctx);
         }
         afw_value_type_check_assignable(&symbol->type, value,
             "assignment", contextual, xctx);

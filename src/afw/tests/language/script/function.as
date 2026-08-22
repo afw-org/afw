@@ -151,8 +151,7 @@ return bar(o.f);
 
 /*
  * Companion to closures.as before2-pass-closure-as-argument. Named here so
- * #89 call-arg / convert paths stay covered without relying only on skipped
- * #2 lifetime cases.
+ * #89 call-arg / convert paths stay covered in this file too.
  */
 function apply(fn) {
     return fn();

@@ -5,8 +5,8 @@
 //? description: ...
 Compiled-value heap wrap and slot-protocol lifetime (issue #2 pool split).
 Inner evaluate(compile) clones onto the caller; eval-created objects/arrays
-and scalars must still be usable after the inner heap is released. Does not
-cover #35 throw-path scope rewind.
+and scalars must still be usable after the inner heap is released. Throw-path
+scope rewind and nested-eval closures: language/script/throw_rewind.as (#35).
 //? sourceType: script
 //?
 //? test: nested-eval-scalar

@@ -4,7 +4,7 @@
 
 **GitHub:** [#2 Memory management](https://github.com/afw-org/afw/issues/2).
 
-**Status:** Working story recorded 2026-08-20–21. Slot protocol **landed**. Pool split **landed** on `issue-2-pool-heap` (2026-08-22): general APR pool vs evaluation heap/tracker; `managed_p`; compiled_value evaluate creates a heap, clones the result, **releases** the heap. Heap/tracker are single-thread only. **Next session:** closures and throw-path scope rewind (**#35**). Fulldev + valgrind script suite + tests-extra soaks: 4178 passed (2026-08-22).
+**Status:** Working story recorded 2026-08-20–21. Slot protocol **landed**. Pool split **landed** (`issue-2-pool-heap`). Closures / throw-path rewind (**#35**): object/array literals bind a script function at store (same as assign/`return`); nested-block assign holds the **defining** scope, not the inner `if`; throw-path tests in `language/script/throw_rewind.as`. No let/const hoisting. P3 first-fit still parked. Heap/tracker are single-thread only.
 
 **This file is the campaign map.** Older notes, phase archaeology, and rejected experiments stay in [`memory-management.md`](memory-management.md). When that pad and this file disagree, **this file wins** until we change it on purpose.
 
@@ -248,14 +248,14 @@ This pass is specified with **`xctx->p` as the usual ancestor**. Adapter caches,
 
 ## Tweaks, not new models
 
-- Missed wrap on some C `create_unmanaged_object` returns (worry list). `create_array`, `clone()`, get/retrieve materialize use dual face / `as_value`. Object-literal `{ get: function()… }` is compile #35, not this protocol.
+- Missed wrap on some C `create_unmanaged_object` returns (worry list). `create_array`, `clone()`, get/retrieve materialize use dual face / `as_value`. Object-literal `{ get: function()… }` store-time bind landed with **#35**.
 - `.c` home for a dedicated script wrapper; retrieve still on the memory face until switch.
 - Forgotten C create until xctx destroy; unmanaged face pinning a scope (like closures).
 - Dead unmanaged faces in one long scope on overwrite (optional `free` later).
 - Get-local overlay vs look-through inside wrapper `set`.
 - Pool rewrite, size-class free lists, interned compile literals as true `permanent_*` infs. Discuss before step 5; start from wrap-APR `4ecc2b3c` on `main`, not current `afw_pool.c`.
 - Escape **past** one xctx (env, adapter cache, compiled units reused across requests) — same words, not this pass’s safety net.
-- `#35` closure trustworthiness still depends on this protocol being real.
+- `#35` store-time bind uses the slot protocol (defining scope hold, not hoisting).
 - Nested **`compile()`** assigned to a variable is **unevaluated** (the graph). It does not run and does not touch `script_result`. `evaluate()` of that value (and model-adapter `on*` compiled at model load, run later on a request) goes through `compiled_value` evaluate, which already save/restores `script_result` / active / written and pushes a NULL scope-stack sentinel. The donated-return list on xctx is **not** a second running result: pointer-matched hold transfer for a C return until `slot_store` takes it. Permanents are no-op holds if the same singleton is stored while a donate is pending. Model `current::useDefaultProcessing` is an **unmanaged null sentinel** (pointer identity, not `afw_value_null`); do not box unmanaged null.
 - Wrap-APR vs develop pool: request/object vs **script scope** (APR child per block/`for-of` clone is expensive). Parked until we design; may be our own bump/region for scopes. `create_unmanaged_object` / `_array` stay for scalars / data-type create.
 
@@ -269,7 +269,8 @@ Do **not** treat this as a commit plan. When we execute:
 2. **Scalar `add_reference`** — landed (box in `xctx->p`; no bindings rename; no first-fit free of boxes). Unmanaged **null** not boxed (`useDefaultProcessing`).
 3. **Object/array instance holds** — landed for memory arrays (`get_reference`/`release`, options, wrapper pin). `create_generic` unmanaged. `create_array` dual face.
 4. **Overlay `set`** — landed on **faces** and array elements. Generic objects store as-is. `as_value` is the instance→value door. `clone()` is a deep independent graph.
-5. **Pools** — **landed** on `issue-2-pool-heap`. Next: closures / throw rewind (**#35**).
+5. **Pools** — **landed** on `issue-2-pool-heap`.
+6. **Closures / throw rewind (#35)** — store-time bind; nested assign walks to defining depth; throw-path tests pin original error (not leftover scopes).
 
 Current pools the whole way through 1–4.
 
@@ -294,7 +295,7 @@ Current pools the whole way through 1–4.
 | S3 | Script literals = unmanaged faces in **eval/scope pool** (eval vs compile). Do not add a child pool per `{}`. Compiled unit **immutable**; holds on the base are no-ops. |
 | S4 | Overlay overwrite reuses via the **wrapper’s `set`**, not “objects own all properties.” |
 
-**Parked / later:** first-fit / prefixes; interned true-permanent compile literals; huge-string slice optimization; nested compile+evaluate reusing the outer heap. **Next:** closures and throw-path scope rewind (**#35**).
+**Parked / later:** first-fit / prefixes (P3); interned true-permanent compile literals; huge-string slice optimization; nested compile+evaluate reusing the outer heap.
 
 ---
 

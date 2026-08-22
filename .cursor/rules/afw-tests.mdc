@@ -50,7 +50,7 @@ agree:
 | **`FIXME:`** | Adaptive should fix or decide |
 | **`Never:`** | We do not plan to support this |
 
-Examples: `Never: no String.fromCharCode`; `FIXME: for-of const + closure (#35 / #2)`. Long `skipReason` (or any key): use `//? skipReason: ...` then body lines until the next `//?` for ~80-column editing. Full notes: `src/afw/tests/test262/README.md`.
+Examples: `Never: no String.fromCharCode`; `FIXME: produce-type false positive (runtime would pass)`. Long `skipReason` (or any key): use `//? skipReason: ...` then body lines until the next `//?` for ~80-column editing. Full notes: `src/afw/tests/test262/README.md`.
 
 Typical case skeleton:
 

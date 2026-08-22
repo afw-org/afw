@@ -2,7 +2,7 @@
 //?
 //? testScript: closures.as
 //? customPurpose: Part of language/script tests
-//? description: Closure checklist for issue #35 (escape/lifetime tied to #2)
+//? description: Closure checklist for issue #35 (store-time bind; no hoisting)
 //? sourceType: script
 //?
 //? test: nested-function-outer-let
@@ -560,20 +560,19 @@ assert(make().get() === 3);
 return 0;
 
 // ---------------------------------------------------------------------------
-// Could work on before #2 — one-shot failures / language gaps (not lifetime)
+// Literal / for-of store-time bind (was before2; runs)
 // ---------------------------------------------------------------------------
 
 //?
 //? test: before2-object-literal-method-closure
-//? description: Object-literal method closing over outer let (could fix before #2; #35)
-//? skip: true
+//? description: Object-literal method closing over outer let (#35 store-time bind)
+//? skip: false
 //? expect: 0
 //? source: ...
 
 /*
- * Currently: "Can not determine parent static scope for function" on bag.get().
- * Property assignment form works (see assign-property-then-call). ES authors
- * prefer { get: function()… }. Fix is call/binding path, not #2 memory.
+ * Property assignment form already worked (assign-property-then-call).
+ * Literal { get: function()… } binds the same way at store.
  */
 function factory() {
     let n = 7;
@@ -595,16 +594,32 @@ assert(bag.get() === 9, "see mutation via escaped closure");
 return 0;
 
 //?
+//? test: object-literal-method-no-hoist
+//? description: Object-literal method cannot see let declared after the literal (no hoisting)
+//? expect: error
+//? source: ...
+
+function factory() {
+    let o = {
+        get: function() {
+            return n;
+        }
+    };
+    let n = 7;
+    return o;
+}
+return factory().get();
+
+//?
 //? test: before2-list-literal-of-closures
-//? description: List literal of functions closing over outer lets (could fix before #2; #35)
-//? skip: true
+//? description: List literal of functions closing over outer lets (#35 store-time bind)
+//? skip: false
 //? expect: 0
 //? source: ...
 
 /*
- * Same parent-static-scope class of failure as object-literal methods when
- * calling fns[i](). Building via separate assigns may work; literal form is
- * the ES-comfortable shape.
+ * Same store-time bind as object-literal methods. Building via separate
+ * assigns already worked; literal form is the ES-comfortable shape.
  */
 function make() {
     let a = 1;
@@ -625,7 +640,7 @@ return 0;
 
 //?
 //? test: before2-for-of-let-per-iteration
-//? description: for-of let should be per-iteration like for-let (could fix before #2; #35)
+//? description: for-of let should be per-iteration like for-let (#35)
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -715,9 +730,8 @@ return 0;
 //? source: ...
 
 /*
- * Regression for function-as-value call args (issue #89). Lifetime/escape of
- * the closed-over binding under long-running use remains #2 (see after2-*).
- * Duplicate coverage lives in language/script/function.as.
+ * Regression for function-as-value call args (issue #89). Duplicate coverage
+ * lives in language/script/function.as.
  */
 function apply(fn) {
     return fn();
@@ -732,7 +746,7 @@ assert(apply(make()) === 5);
 return 0;
 
 // ---------------------------------------------------------------------------
-// After / while #2 — escaped lifetime, long-running; unskip under valgrind
+// Escaped lifetime (was after2; runs)
 // ---------------------------------------------------------------------------
 
 //?
@@ -742,7 +756,6 @@ return 0;
 //? expect: 0
 //? source: ...
 
-/* Unskip when #2 managed escape is solid; prove under valgrind / multi-request. */
 function build() {
     let out0;
     let out1;
@@ -914,8 +927,7 @@ return 0;
 //?
 //? test: after2-list-of-mutable-captures
 //? description: Several closures each with own mutable object after builder returns (#2)
-//? skip: true
-//? skipReason: FIXME: object literal + function in the same for-let body hits parent-static-scope (#35 compile), not remaining #2 hold protocol.
+//? skip: false
 //? expect: 0
 //? source: ...
 
@@ -923,8 +935,6 @@ function build() {
     let c0;
     let c1;
     for (let i = 0; i < 2; i = i + 1) {
-        /* Property assign, not `{ n: i }` — object-literal + function in
-         * the same for body still hits parent-static-scope (#35 compile). */
         let state = {};
         state.n = i;
         const tick = function() {
