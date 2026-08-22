@@ -230,19 +230,17 @@ This pass is specified with **`xctx->p` as the usual ancestor**. Adapter caches,
 
 ## What the tree does today (so we do not lie)
 
-| Area | Today | This story |
-|------|--------|------------|
-| Memory objects | Managed/unmanaged/`cede_p`; dual-face inf matches; create subpool | Keep; create at 0; assign holds |
-| Memory arrays | Options ignored; unmanaged face; `release` no-op | Match objects; `create_array` on-ramp (in progress on this branch) |
-| Value create object/array | Extra heap header (`create_unmanaged_*`) | Borrow dual face; `add_reference` on instance |
-| `wrap_literal_*` | Unmanaged memory face in `x->p` | Same shape; 0→1 holds base; compiled base permanent-like |
-| Adapter get/retrieve | `impl_script_face_object` → unmanaged memory face | Script-aware wrapper when we have it |
-| Assign | `impl_assign` stores pointer; `symbol_set_value` stores pointer | `release` old, `add_reference` new |
-| Scope last `release` | Pool + parent lexical; **no** slot walk | Walk slots then pool |
-| `script_result` | xctx pointer, save/restore | Hidden **frame** slot; assign to caller at block end **before** callee walk |
-| `for` clone | `memcpy` slot pointers; FIXME | Per-slot `add_reference` |
-| Scalar managed/unmanaged infs | Generated pair + slice | Product: permanent / temp / `xctx->p` box |
-| Pools | General APR + heap/tracker (`issue-2-pool-heap`) | Landed; first-fit later |
+| Area | Today (after #235) | Notes |
+|------|-------------------|--------|
+| Memory objects | Managed/unmanaged/`cede_p`; dual-face inf matches | Generic store-as-is; faces overlay-`slot_store` |
+| Memory arrays | Options honored; `get_reference`/`release`; script constructors are faces | Remaining-element walk is pool cleanup |
+| Value create object/array | Dual face preferred (`as_value`); extra header still exists | Unmanaged object/array values hold the instance |
+| `wrap_literal_*` | Unmanaged memory face | 0→1 holds base; overlay walk on pool cleanup |
+| Adapter get/retrieve | `impl_script_face_object` → unmanaged memory face | Memory face is the script-aware stand-in |
+| Assign | `slot_store` | Scope last-`release` walks slots then pool |
+| `script_result` | xctx pointer, save/restore | Still not a real frame slot |
+| `for` clone | Per-slot `add_reference` | C-style `for` clone can drop instance RC to 0 while live — do not walk overlay on that event |
+| Pools | General APR + heap/tracker | First-fit later |
 
 ---
 
