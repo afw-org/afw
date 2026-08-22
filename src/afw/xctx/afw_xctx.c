@@ -620,10 +620,10 @@ static void impl_scope_debug(
 
     if (scope) {
         printf(
-            ", pool number: " AFW_INTEGER_FMT
+            ", pool: " AFW_INTEGER_FMT
             ", scope number: " AFW_SIZE_T_FMT
             ", refs: " AFW_SIZE_T_FMT,
-            ((afw_pool_internal_self_t *)scope->p)->pool_number,
+            (afw_integer_t)(afw_size_t)scope->p,
             scope->scope_number,
             scope->reference_count);
     }

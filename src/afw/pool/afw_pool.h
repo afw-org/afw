@@ -23,10 +23,13 @@
  * See the @ref afw_pool group (defined in afw_doxygen.h) for the mental model.
  *
  * Key invariants:
- * - Allocations are from p or parent; subpools track for release.
- * - Thread specific pools must only be used from their thread.
+ * - General pools (afw_pool_create*): parent/child lifetime; optional
+ *   free is a no-op. Parent decides multithreaded vs thread-specific.
+ * - Heap / heap tracker: single-thread only. Create, use, and release on
+ *   the same thread (normally one compiled_value evaluate).
+ * - Thread-specific general pools must only be used from their thread.
  * - Use afw_pool_calloc_type for typed zeroed allocs.
- * - Cleanup functions are called on release.
+ * - Cleanup functions run before the pool is destroyed.
  */
 
 AFW_BEGIN_DECLARES
@@ -119,6 +122,12 @@ afw_pool_create_xctx_p(
  * @param parent of the heap (the p passed to compiled_value evaluate).
  * @param xctx of caller.
  * @return new heap. managed_p is self.
+ *
+ * Single-thread only. Create, use, and release on the same thread. The
+ * compiled_value evaluate wrap does that: one heap for one evaluate, then
+ * release. Do not share a heap across threads. A remaining hold (for
+ * example a closure still holding a scope) may keep it after that wrap
+ * returns; that is still the creating thread.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_heap_create(
@@ -131,6 +140,10 @@ afw_pool_heap_create(
  * @param parent heap from afw_pool_heap_create().
  * @param xctx of caller.
  * @return tracker. managed_p is the heap.
+ *
+ * Single-thread only, same thread as the parent heap. Used as scope->p.
+ * Create and destroy with the scope on that thread. Do not use from
+ * another thread.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_heap_tracker_create(

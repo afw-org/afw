@@ -6899,10 +6899,11 @@ struct afw_stream_inf_s {
  * @addtogroup afw_pool_interface afw_pool
  *
  * Hierarchical memory pool: fast allocate with bulk free on destroy or
- * release. Most AFW values, objects, and scopes allocate from pools.
- * Prefer afw_pool_create* / afw_pool_calloc helpers and call macros over
- * managing APR pools by hand. Do not free individual allocations unless
- * the pool supports it (free_memory path). See group afw_pool.
+ * release. General pools (afw_pool_create*) are destroy-is-lifetime;
+ * parent decides multithreaded vs thread-specific. Heap and heap
+ * tracker are single-thread only (one thread creates, uses, and
+ * releases them; normally one compiled_value evaluate). Prefer
+ * afw_pool_create* / afw_pool_calloc helpers. See group afw_pool.
  *
  * @{
  */

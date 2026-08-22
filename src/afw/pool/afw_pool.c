@@ -1,28 +1,53 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework pool implementation.
+ * General (APR-backed) pool implementation.
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_pool_apr.c
- * @brief Parked wrap-APR pool (not wired).
+ * @file afw_pool.c
+ * @brief General pool: destroy is lifetime, optional free is a no-op.
  *
- * Live allocations still use afw_pool.c (develop prefix/subpool). This
- * implementation is kept to design a hybrid later: wrap-APR for request /
- * managed object lifetime; something cheaper than an APR pool per script
- * scope. Do not call these create functions from production paths yet.
- *
- * Two infs, one struct. Destroy is apr_pool_destroy. Individual free is
- * a no-op. No prefixes, no first-fit, no create_subpool.
+ * Two infs (thread-specific and multithreaded), one struct. Destroy is
+ * apr_pool_destroy. Parent of create() may be this impl or a heap; APR
+ * parent is always parent->apr_p via afw_pool_get_apr_pool().
  */
 
 #include "afw_internal.h"
-#include "afw_pool_apr_internal.h"
 
 #include <stdio.h>
+
+typedef struct afw_pool_apr_self_s
+afw_pool_apr_self_t;
+
+struct afw_pool_apr_self_s {
+
+    afw_pool_t pub;
+
+    apr_pool_t *apr_p;
+
+    const afw_utf8_t *name;
+
+    afw_pool_apr_self_t *parent;
+    afw_pool_apr_self_t *first_child;
+    afw_pool_apr_self_t *prev_sibling;
+    afw_pool_apr_self_t *next_sibling;
+
+    /** AFW parent when it is not this impl (e.g. a heap). */
+    const afw_pool_t *afw_parent;
+
+    const afw_thread_t *thread;
+
+    afw_pool_cleanup_t *first_cleanup;
+
+    afw_integer_t reference_count;
+    afw_integer_t pool_number;
+    afw_size_t bytes_allocated;
+
+    afw_boolean_t destroying;
+};
 
 #define IMPL_MULTITHREADED_LOCK_BEGIN(xctx) \
 AFW_LOCK_BEGIN((xctx)->env->multithreaded_pool_lock)

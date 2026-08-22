@@ -62,20 +62,15 @@
  *
  * Adaptive Framework hierarchical memory pools.
  *
- * Pools provide fast, hierarchical allocation with bulk free semantics.
- * Most memory in AFW (values, objects, scopes, etc.) is allocated from pools.
- * Subpools allow scoped lifetime management while still returning memory
- * to the parent when released.
+ * General pools (afw_pool_create*) are destroy-is-lifetime; parent
+ * decides multithreaded vs thread-specific. Heap / heap tracker are
+ * single-thread only: create, use, and release on the same thread
+ * (normally one compiled_value evaluate). Trackers are scope->p and
+ * return memory to the heap.
  *
- * Key concepts:
- * - Parent/child relationship for lifetime control.
- * - Subpools for scoped allocation (e.g. per-xctx scope).
- * - Thread-specific vs multithreaded pools.
- * - No manual free for most allocations; bulk release on pool destroy.
- *
- * Key functions: afw_pool_create(), afw_pool_heap_create(),
- * afw_pool_heap_tracker_create(),
- * afw_pool_calloc(), afw_pool_malloc().
+ * Key functions: afw_pool_create(), afw_pool_create_as_managed_p(),
+ * afw_pool_create_xctx_p(), afw_pool_heap_create(),
+ * afw_pool_heap_tracker_create(), afw_pool_calloc(), afw_pool_malloc().
  *
  * @{
  */

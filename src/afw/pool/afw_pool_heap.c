@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Singlethreaded pool implementation.
+ * Evaluation heap and heap-tracker pool implementation.
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,28 +8,15 @@
 
 /**
  * @file afw_pool_heap.c
- * @brief Adaptive Framework pool implementations.
+ * @brief Heap and heap tracker: single-thread only.
  *
- * All implementations release all memory when the pool is destroyed.
- *
- * This c file implements the afw_pool interface for the following pool types:
- * - pool_inf                  - This is the basic implementation of pool that
- *                               is not thread-safe. Implementation
- *                               multithreaded wraps this implementation to make
- *                               it thread-safe.
- * - subpool_inf               - This is the basic implementation of subpool
- *                               that is not thread-safe. Implementation
- *                               multithreaded_subpool wraps this implementation
- *                               to make it thread-safe. Method free() adds the
- *                               free memory back to the parent pool. Any memory
- *                               in the subpool that is not explicitly freed
- *                               will be added back to parent pool when the
- *                               subpool is destroyed.
- * - multithreaded_inf         - This is a thread-safe version of pool.
- * - multithreaded_subpool_inf - This is a thread-safe version of subpool.
+ * Create, use, and release on the same thread. compiled_value evaluate
+ * creates a heap for one evaluate and releases it in finally. Trackers
+ * are scope->p and return memory to that heap.
  */
 
 #include "afw_internal.h"
+#include "afw_pool_heap_internal.h"
 
 /* multithreaded pool lock begin */
 #define IMPL_MULTITHREADED_LOCK_BEGIN(xctx) \
@@ -1414,9 +1401,8 @@ afw_pool_heap_create(
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
 
-    inf = xctx->thread
-        ? &impl_afw_pool_inf
-        : &impl_afw_pool_multithreaded_inf;
+    /* Always single-thread inf. One thread creates, uses, releases. */
+    inf = &impl_afw_pool_inf;
 
     self = impl_create(parent, inf, xctx);
     return &self->pub;
@@ -1436,9 +1422,8 @@ afw_pool_heap_tracker_create(
     }
 
     heap = (AFW_POOL_SELF_T *)parent;
-    inf = heap->thread
-        ? &impl_afw_pool_subpool_inf
-        : &impl_afw_pool_multithreaded_subpool_inf;
+    /* Same thread as the heap. */
+    inf = &impl_afw_pool_subpool_inf;
 
     self = impl_create_for_subpool(heap, inf, xctx);
     return &self->pub;

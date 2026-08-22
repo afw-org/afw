@@ -21219,6 +21219,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__5d70b280971e \
+    "Hierarchical memory pool: fast allocate with bulk free on destroy or\n      release. General pools (afw_pool_create*) are destroy-is-lifetime;\n      parent decides multithreaded vs thread-specific. Heap and heap\n      tracker are single-thread only (one thread creates, uses, and\n      releases them; normally one compiled_value evaluate). Prefer\n      afw_pool_create* / afw_pool_calloc helpers. See group afw_pool."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5d70b280971e */
+#define afw_s_zz__5d70b280971e \
+    (&afw_self_v_zz__5d70b280971e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5d70b280971e */
+#define afw_self_s_zz__5d70b280971e \
+    (afw_self_v_zz__5d70b280971e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5d70b280971e */
+extern const afw_value_string_t \
+    afw_self_v_zz__5d70b280971e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5d70b280971e */
+#define afw_z_zz__5d70b280971e \
+    (afw_self_v_zz__5d70b280971e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5d70b280971e */
+#define afw_v_zz__5d70b280971e \
+    (&afw_self_v_zz__5d70b280971e.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__5d7a29b18a22 \
     "function set_equals<base64Binary> (\n    array1: base64Binary[],\n    array2: base64Binary[]\n): boolean;\n"
 
@@ -129479,32 +129505,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__c7e36c8b1fd3 */
 #define afw_v_zz__c7e36c8b1fd3 \
     (&afw_self_v_zz__c7e36c8b1fd3.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__c7f13a32acc6 \
-    "Hierarchical memory pool: fast allocate with bulk free on destroy or\n      release. Most AFW values, objects, and scopes allocate from pools.\n      Prefer afw_pool_create* / afw_pool_calloc helpers and call macros over\n      managing APR pools by hand. Do not free individual allocations unless\n      the pool supports it (free_memory path). See group afw_pool."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c7f13a32acc6 */
-#define afw_s_zz__c7f13a32acc6 \
-    (&afw_self_v_zz__c7f13a32acc6.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c7f13a32acc6 */
-#define afw_self_s_zz__c7f13a32acc6 \
-    (afw_self_v_zz__c7f13a32acc6.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__c7f13a32acc6 */
-extern const afw_value_string_t \
-    afw_self_v_zz__c7f13a32acc6;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c7f13a32acc6 */
-#define afw_z_zz__c7f13a32acc6 \
-    (afw_self_v_zz__c7f13a32acc6.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__c7f13a32acc6 */
-#define afw_v_zz__c7f13a32acc6 \
-    (&afw_self_v_zz__c7f13a32acc6.pub)
 
 
 
