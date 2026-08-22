@@ -85,8 +85,8 @@ main(int argc, char **argv)
         afw_pool_release(p, xctx);
     }
     else if (strcmp(case_name, "overflow-subpool") == 0) {
-        p = afw_pool_create(xctx->p, xctx);
-        sub = afw_pool_create_subpool(p, xctx);
+        p = afw_pool_heap_create(xctx->p, xctx);
+        sub = afw_pool_heap_tracker_create(p, xctx);
         rc = impl_expect_overflow(sub, xctx, "overflow-subpool");
         afw_pool_release(sub, xctx);
         afw_pool_release(p, xctx);

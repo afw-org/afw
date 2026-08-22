@@ -23,10 +23,13 @@
  * See the @ref afw_pool group (defined in afw_doxygen.h) for the mental model.
  *
  * Key invariants:
- * - Allocations are from p or parent; subpools track for release.
- * - Thread specific pools must only be used from their thread.
+ * - General pools (afw_pool_create*): parent/child lifetime; optional
+ *   free is a no-op. Parent decides multithreaded vs thread-specific.
+ * - Heap / heap tracker: single-thread only. Create, use, and release on
+ *   the same thread (normally one compiled_value evaluate).
+ * - Thread-specific general pools must only be used from their thread.
  * - Use afw_pool_calloc_type for typed zeroed allocs.
- * - Cleanup functions are called on release.
+ * - Cleanup functions run before the pool is destroyed.
  */
 
 AFW_BEGIN_DECLARES
@@ -67,8 +70,8 @@ struct afw_pool_cleanup_s {
  * If any of the pool functions are called from other than the specific thread,
  * an error is thrown.
  *
- * The only way to create a thread specific pool is by calling the
- * afw_thread_create() function and accessing the thread struct's p member.
+ * A thread-specific pool is created by afw_pool_thread_create() (used from
+ * afw_thread_create()). Access it as the thread struct's p member.
  *
  * If the parent is a multithread pool, the created pool will also be a
  * multithreaded pool.
@@ -83,35 +86,68 @@ afw_pool_create(
 
 
 /**
- * @brief Create a subpool of a pool.
- * @param parent of new subpool.
+ * @brief Create a pool whose managed_p is itself.
+ * @param parent of new pool.
  * @param xctx of caller.
  * @return new pool.
  *
- * This creates a subpool of a parent pool.
- *
- * When memory is allocated from the subpool, it is allocated from the parent
- * pool. The memory is tracked in the subpool and when the subpool is destroyed
- * or subpool memory is freed, the memory is returned to the parent.
- *
- * When a subpool is destroyed, all of it's children pools are released. If
- * there are any children that remain after being released, their parent is
- * changed to the subpool's parent. This makes subpools useful for scopes where
- * the children pools might still be needed because variables accessing them are
- * still in scope. To be clear, all the children pools will be destroyed when
- * the subpool is destroyed unless they have a reference count greater than 1.
- *
- * Subpool's have a small amount of overhead per allocation as well as overhead
- * when the subpool is destroyed but they can be useful in situations where the
- * subpool will most often hold a small number of allocations that will usually
- * total less than 4k. Externally, subpool are used the same as a pool.
- *
- * This function is used by afw_xctx_scope_create() to create a unique subpool
- * for each xctx scope with a parent pool of xctx->p.
+ * Same as afw_pool_create() then p->managed_p = p. Use for factory/conf
+ * instance pools (adapter->p, server->p, …). Parent decides mt vs
+ * single-thread. For xctx->p use afw_pool_create_xctx_p().
  */
 AFW_DECLARE(const afw_pool_t *)
-afw_pool_create_subpool(
-    const afw_pool_t *parent, 
+afw_pool_create_as_managed_p(
+    const afw_pool_t *parent,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create xctx->p (managed_p = self, always single-threaded).
+ * @param parent of new pool (may be multithreaded env/base).
+ * @param xctx of caller.
+ * @return new pool.
+ *
+ * An xctx is one thread's work. This avoids the env pool lock on every
+ * alloc when afw creates a child xctx of base. Factory pools stay on
+ * afw_pool_create_as_managed_p().
+ */
+AFW_DECLARE(const afw_pool_t *)
+afw_pool_create_xctx_p(
+    const afw_pool_t *parent,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create an evaluation heap.
+ * @param parent of the heap (the p passed to compiled_value evaluate).
+ * @param xctx of caller.
+ * @return new heap. managed_p is self.
+ *
+ * Single-thread only. Create, use, and release on the same thread. The
+ * compiled_value evaluate wrap does that: one heap for one evaluate, then
+ * release. Do not share a heap across threads. A remaining hold (for
+ * example a closure still holding a scope) may keep it after that wrap
+ * returns; that is still the creating thread.
+ */
+AFW_DECLARE(const afw_pool_t *)
+afw_pool_heap_create(
+    const afw_pool_t *parent,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create a heap tracker (scope pool).
+ * @param parent heap from afw_pool_heap_create().
+ * @param xctx of caller.
+ * @return tracker. managed_p is the heap.
+ *
+ * Single-thread only, same thread as the parent heap. Used as scope->p.
+ * Create and destroy with the scope on that thread. Do not use from
+ * another thread.
+ */
+AFW_DECLARE(const afw_pool_t *)
+afw_pool_heap_tracker_create(
+    const afw_pool_t *parent,
     afw_xctx_t *xctx);
 
 
@@ -121,11 +157,12 @@ afw_pool_create_subpool(
  * @param xctx of caller.
  * @return new thread struct with p set.
  *
- * This function may be enhanced at a future time, but at this point it should
- * be considered internal and only called from afw_thread_create().
+ * Internal. Only called from afw_thread_create(). Does not start a
+ * pthread; it creates the thread-specific pool and the thread struct
+ * in that pool.
  */
 AFW_DECLARE(afw_thread_t *)
-afw_pool_create_thread(
+afw_pool_thread_create(
     afw_size_t size,
     afw_xctx_t *xctx);
 

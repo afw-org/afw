@@ -163,7 +163,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     object/afw_object_view.h
     os/afw_os.h
     pool/afw_pool.h
-    pool/afw_pool_apr.h
     query_criteria/afw_query_criteria.h
     request/afw_request.h
     request/afw_request_handler.h
@@ -404,7 +403,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     os/win/afw_os.c
     os/win/afw_os_log.c
     pool/afw_pool.c
-    pool/afw_pool_apr.c
+    pool/afw_pool_heap.c
     query_criteria/afw_query_criteria.c
     request/afw_request.c
     request/afw_request_handler.c

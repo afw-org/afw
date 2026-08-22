@@ -1,0 +1,45 @@
+# Opt-in soak for compiled-value heap wrap + slot overwrite under afwfcgi.
+# Not in default afwdev test -j.
+
+version: 1
+description: >
+  Firehose of object/array/nested-evaluate scripts to stress heap create,
+  clone-to-caller, and slot-protocol overwrite on one fcgi process.
+
+host: afwfcgi
+afwfcgi:
+  threads: 4
+timeout_s: 90
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: object-loop
+    sourceType: script
+    source: <<< tests/object_loop.as
+    expect: 39
+
+  - name: nested-eval
+    sourceType: script
+    source: <<< tests/nested_eval.as
+    expect: 2
+
+  - name: fn-return-object
+    sourceType: script
+    source: <<< tests/fn_return_object.as
+    expect: 2
+
+  - name: scalar
+    sourceType: script
+    source: |
+      return 1 + 2;
+    expect: 3
+
+schedule:
+  - firehose:
+      duration_s: 20
+      concurrency: 4
+      fromTests: [object-loop, nested-eval, fn-return-object, scalar]
+      seed: 7

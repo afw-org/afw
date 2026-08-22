@@ -141224,7 +141224,7 @@ impl_1378;
 static const afw_runtime_property_t
 impl_1378_property_description = {
     afw_v_description,
-    &afw_self_v_zz__152d0b6120db.pub
+    &afw_self_v_zz__5d70b280971e.pub
 };
 
 static const afw_runtime_property_t

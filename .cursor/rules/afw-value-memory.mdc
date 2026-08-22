@@ -8,14 +8,16 @@ alwaysApply: false
 
 Use when changing value lifetime, reference count, create/allocate APIs, data type bindings, const objects/strings, pools/scopes, or debugging leaks for **long-running scripts**.
 
-**Campaign map:** [`designs/issue-2-lifetime.md`](../../designs/issue-2-lifetime.md) (slot protocol landed on `issue-2-slot-protocol`; pool rewrite paused). This rule still describes **bindings + live develop pool**. When they disagree, the pad is where #2 is going.
+**Campaign map:** [`designs/issue-2-lifetime.md`](../../designs/issue-2-lifetime.md) (slot protocol landed; pool split on `issue-2-pool-heap`). When they disagree, the pad is where #2 is going.
 
 ## Pool and scope model
 
-- Hierarchical pools: base (multithreaded), thread-specific, and **subpools** (xctx, scopes). Subpool destroy returns tracked memory to the parent and **reparents survivors**.
-- `compiled_value` owns a dedicated pool; release destroys everything in it unless individually referenced/reparented.
-- Scope create/activate/deactivate: RC on scopes; `closure_binding` calls `afw_xctx_scope_get_reference` so enclosing symbols survive; scope release walks `symbol_values` and releases values.
-- Short scripts: pool + scope bulk free is enough (production-proven). **Long-running** needs correct managed escape paths (below).
+- **General pools** (`afw_pool_create*`): destroy-is-lifetime; parent decides multithreaded vs thread-specific. Base/env is mt. `xctx->p` from `afw_xctx_create` is ST even under base.
+- **Heap / heap tracker:** single-thread only. One compiled_value evaluate creates a heap, scopes use trackers, wrap **releases** the heap (a closure hold may keep it). **No reparent** on destroy; parent cascade destroys children.
+- `managed_p`: job pools and heap set self; others inherit. Managed object/array: `afw_pool_create(p->managed_p)`.
+- `compiled_value` owns a dedicated compile pool; evaluation scratch is the heap.
+- Scope create/activate/deactivate: reference count on scopes; `closure_binding` holds the scope; last-release walks `symbol_values`. **Next:** throw-path rewind (#35).
+- Short scripts: pool + scope bulk free is enough. **Long-running** needs correct managed escape paths (below).
 
 ## Lifetimes (inf chooses policy)
 
@@ -32,7 +34,7 @@ Do not invent new lifetime paths; match existing create_* patterns.
 
 - Implement/complete **optional_release** / **clone_or_reference** (or get_reference) on escaping values: objects, lists/arrays, closures, `compiled_value`, and other managed kinds that outlive a scope.
 - Evaluation temporaries and results that belong to the current activation should use **current `scope->p`** (not a longer-lived pool) unless they intentionally escape.
-- Subpool + RC already handle bulk release and escape reparenting — polish the value-inf hooks and call sites; do not replace the pool model.
+- Heap tracker + last-release walk handle bulk release. **No reparent** on destroy. Polish value-inf hooks; do not replace the pool kinds.
 - **Qualifier snapshots** (`qualifier()` / `qualifiers()`, issue **#9**) allocate **fresh, possibly large** memory objects (`environment::`, `request::`, nested `qualifiers()`). Prefer `qualifier::name` for normal work; treat repeated/retained snapshots as long-running stress — see **`afw-qualified-variables`**, `beta-backlog.md`.
 
 ## Shared mutables and defaults (issue #110 class)

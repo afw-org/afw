@@ -21,7 +21,7 @@ typedef struct impl_stack_self_s {
     afw_size_t initial_count;
     afw_size_t maximum_count;
     afw_size_t entry_size;
-    afw_boolean_t create_subpool_pool;
+    afw_boolean_t create_own_pool;
 } impl_stack_self_t;
 
 
@@ -100,13 +100,13 @@ afw_stack_create_impl(
     afw_size_t entry_size,
     afw_size_t initial_count,
     afw_size_t maximum_count,
-    afw_boolean_t create_subpool_pool,
+    afw_boolean_t create_own_pool,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     impl_stack_self_t *self;
 
-    if (create_subpool_pool) {
+    if (create_own_pool) {
         p = afw_pool_create(p, xctx);
     }
 
@@ -115,7 +115,7 @@ afw_stack_create_impl(
     self->initial_count = initial_count;
     self->entry_size = entry_size;
     self->maximum_count = maximum_count;
-    self->create_subpool_pool = create_subpool_pool;
+    self->create_own_pool = create_own_pool;
 
     self->pub.first = afw_pool_calloc(p, initial_count * entry_size, xctx);
     self->pub.top = (afw_octet_t *)self->pub.first - entry_size;
@@ -135,8 +135,8 @@ afw_stack_release_impl(
     impl_stack_self_t *self =
         (impl_stack_self_t *)instance;
 
-    /* If subpool was created, release it. */
-    if (self->create_subpool_pool) {
+    /* If this stack owns a child pool, release it. */
+    if (self->create_own_pool) {
         afw_pool_release(self->pub.p, xctx);
     }
 }

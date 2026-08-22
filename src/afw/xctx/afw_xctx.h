@@ -21,7 +21,7 @@
  * @brief Execution context (xctx): scopes, stack, and statement_flow helpers.
  *
  * See @ref afw_xctx. An `afw_xctx_t` is a unit of work (request, eval, …).
- * Scopes use subpools for automatic cleanup; statement_flow drives
+ * Scopes use heap trackers for automatic cleanup; statement_flow drives
  * break/continue/return/rethrow without C++ exceptions. Struct layout is
  * in `afw_common.h`; this header is the public helper surface.
  */

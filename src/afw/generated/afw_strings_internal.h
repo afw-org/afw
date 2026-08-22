@@ -5255,32 +5255,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__152d0b6120db \
-    "Hierarchical memory pool: fast allocate with bulk free on destroy or\n      release. Most AFW values, objects, and scopes allocate from pools;\n      subpools scope lifetime under a parent. Prefer afw_pool_create* /\n      afw_pool_calloc helpers and call macros over managing APR pools by\n      hand. Do not free individual allocations unless the pool supports it\n      (free_memory path). See group afw_pool."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__152d0b6120db */
-#define afw_s_zz__152d0b6120db \
-    (&afw_self_v_zz__152d0b6120db.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__152d0b6120db */
-#define afw_self_s_zz__152d0b6120db \
-    (afw_self_v_zz__152d0b6120db.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__152d0b6120db */
-extern const afw_value_string_t \
-    afw_self_v_zz__152d0b6120db;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__152d0b6120db */
-#define afw_z_zz__152d0b6120db \
-    (afw_self_v_zz__152d0b6120db.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__152d0b6120db */
-#define afw_v_zz__152d0b6120db \
-    (&afw_self_v_zz__152d0b6120db.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__154278d885a6 \
     "(arrays_1: time[], arrays_2: time[], ...arrays_rest: time[]): time[]"
 
@@ -21241,6 +21215,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__5d6a4869efdb */
 #define afw_v_zz__5d6a4869efdb \
     (&afw_self_v_zz__5d6a4869efdb.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__5d70b280971e \
+    "Hierarchical memory pool: fast allocate with bulk free on destroy or\n      release. General pools (afw_pool_create*) are destroy-is-lifetime;\n      parent decides multithreaded vs thread-specific. Heap and heap\n      tracker are single-thread only (one thread creates, uses, and\n      releases them; normally one compiled_value evaluate). Prefer\n      afw_pool_create* / afw_pool_calloc helpers. See group afw_pool."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5d70b280971e */
+#define afw_s_zz__5d70b280971e \
+    (&afw_self_v_zz__5d70b280971e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5d70b280971e */
+#define afw_self_s_zz__5d70b280971e \
+    (afw_self_v_zz__5d70b280971e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5d70b280971e */
+extern const afw_value_string_t \
+    afw_self_v_zz__5d70b280971e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5d70b280971e */
+#define afw_z_zz__5d70b280971e \
+    (afw_self_v_zz__5d70b280971e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5d70b280971e */
+#define afw_v_zz__5d70b280971e \
+    (&afw_self_v_zz__5d70b280971e.pub)
 
 
 

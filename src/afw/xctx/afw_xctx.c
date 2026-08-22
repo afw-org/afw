@@ -144,7 +144,7 @@ afw_xctx_create(
     afw_xctx_t *self;
 
     /* Create a new pool for xctx and initialize. */
-    p = afw_pool_create(xctx->p, xctx);
+    p = afw_pool_create_xctx_p(xctx->p, xctx);
     self = afw_xctx_internal_create_initialize(xctx->current_try,
         NULL, (afw_environment_internal_t *)xctx->env, p);
     if (!self) {
@@ -620,10 +620,10 @@ static void impl_scope_debug(
 
     if (scope) {
         printf(
-            ", pool number: " AFW_INTEGER_FMT
+            ", pool: " AFW_INTEGER_FMT
             ", scope number: " AFW_SIZE_T_FMT
             ", refs: " AFW_SIZE_T_FMT,
-            ((afw_pool_internal_self_t *)scope->p)->pool_number,
+            (afw_integer_t)(afw_size_t)scope->p,
             scope->scope_number,
             scope->reference_count);
     }
@@ -707,7 +707,10 @@ afw_xctx_scope_create(
             xctx);
     }
     
-    p = afw_pool_create_subpool(xctx->p, xctx);
+    if (!xctx->evaluation_heap) {
+        xctx->evaluation_heap = afw_pool_heap_create(xctx->p, xctx);
+    }
+    p = afw_pool_heap_tracker_create(xctx->evaluation_heap, xctx);
     scope = afw_pool_calloc(p,
         (
             sizeof(afw_xctx_scope_t) + // Size of struct.
