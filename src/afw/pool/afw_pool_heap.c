@@ -136,8 +136,8 @@ do { \
         fd = xctx->env->debug_fd; \
         fprintf(fd, \
             ">debug pool %s " AFW_INTEGER_FMT \
-            " bytes " AFW_SIZE_T_FMT \
-            " env " AFW_SIZE_T_FMT \
+            " in_use " AFW_SIZE_T_FMT \
+            " total " AFW_SIZE_T_FMT \
             " rss " AFW_SIZE_T_FMT " KB" \
             " refs " AFW_INTEGER_FMT \
             " parent " AFW_INTEGER_FMT \
@@ -145,7 +145,7 @@ do { \
             info_z, \
             self->pool_number, \
             self->bytes_allocated, \
-            (afw_size_t)xctx->env->pool_bytes_allocated, \
+            (afw_size_t)xctx->env->pool_bytes_in_use, \
             afw_os_get_rss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
@@ -165,8 +165,8 @@ do { \
         fd = xctx->env->debug_fd; \
         fprintf(fd, \
             ">debug pool " format_z " " AFW_INTEGER_FMT \
-            " bytes " AFW_SIZE_T_FMT \
-            " env " AFW_SIZE_T_FMT \
+            " in_use " AFW_SIZE_T_FMT \
+            " total " AFW_SIZE_T_FMT \
             " rss " AFW_SIZE_T_FMT " KB" \
             " refs " AFW_INTEGER_FMT \
             " parent " AFW_INTEGER_FMT \
@@ -174,7 +174,7 @@ do { \
             __VA_ARGS__, \
             self->pool_number, \
             self->bytes_allocated, \
-            (afw_size_t)xctx->env->pool_bytes_allocated, \
+            (afw_size_t)xctx->env->pool_bytes_in_use, \
             afw_os_get_rss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
@@ -198,7 +198,7 @@ impl_account_alloc(
 {
     self->bytes_allocated += consumed;
     if (xctx && xctx->env) {
-        ((afw_environment_t *)xctx->env)->pool_bytes_allocated += consumed;
+        ((afw_environment_t *)xctx->env)->pool_bytes_in_use += consumed;
     }
 }
 
@@ -209,7 +209,7 @@ impl_account_free(
 {
     self->bytes_allocated -= consumed;
     if (xctx && xctx->env) {
-        ((afw_environment_t *)xctx->env)->pool_bytes_allocated -= consumed;
+        ((afw_environment_t *)xctx->env)->pool_bytes_in_use -= consumed;
     }
 }
 
@@ -218,7 +218,7 @@ static void
 impl_account_destroy(afw_pool_internal_self_t *self, afw_xctx_t *xctx)
 {
     if (xctx && xctx->env) {
-        ((afw_environment_t *)xctx->env)->pool_bytes_allocated -=
+        ((afw_environment_t *)xctx->env)->pool_bytes_in_use -=
             self->bytes_allocated;
     }
     self->bytes_allocated = 0;
@@ -322,8 +322,7 @@ impl_create(
         afw_pool_get_reference(afw_parent, xctx);
     }
 
-    /* APR skeleton lives until this heap is destroyed. */
-    impl_account_alloc(self, size, xctx);
+    /* Header is APR; in_use starts at 0 until malloc/calloc. */
     IMPL_PRINT_DEBUG_INFO_FZ(minimal, "create " AFW_SIZE_T_FMT, size);
 
     return self;
@@ -391,11 +390,9 @@ impl_create_for_subpool(
     }
 
     /*
-     * Tracker header is apr_pcalloc on the parent heap's APR pool and is
-     * not returned on tracker destroy. Charge the parent so env->
-     * pool_bytes_allocated tracks that soak leak (empty `{ }` scopes).
+     * Header is apr_pcalloc on the parent APR pool and is not given
+     * back on tracker destroy. That is RSS, not in_use.
      */
-    impl_account_alloc(parent, size, xctx);
     IMPL_PRINT_DEBUG_INFO_FZ(minimal, "create " AFW_SIZE_T_FMT, size);
 
     /* Return new subpool. */
@@ -414,7 +411,7 @@ impl_create_for_subpool(
  * no block large enough, a new block of the requested size is allocated from
  * the apr pool.
  */
-static void
+static afw_boolean_t
 impl_alloc_memory(
     afw_byte_t **address,
     afw_size_t *actual_size,
@@ -426,6 +423,7 @@ impl_alloc_memory(
     afw_pool_internal_free_memory_t *curr;
     afw_pool_internal_free_memory_t *new_block;
     afw_size_t requested;
+    afw_boolean_t reused;
 
     requested = (size < sizeof(afw_pool_internal_free_memory_t))
         ? sizeof(afw_pool_internal_free_memory_t)
@@ -473,8 +471,10 @@ impl_alloc_memory(
         }
     }
 
+    reused = (curr != NULL);
+
     /* If no free memory block found, allocate from apr pool. */
-    else {
+    if (!reused) {
         curr = apr_palloc(self->apr_p, *actual_size);
         if (!curr) {
             AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
@@ -482,6 +482,7 @@ impl_alloc_memory(
     }
 
     *address = (afw_byte_t *)curr;
+    return reused;
 }
 
 
@@ -659,10 +660,7 @@ impl_afw_pool_malloc(
     afw_size_t size_with_prefix;
     afw_size_t actual_size;
     void *result;
-
-    IMPL_PRINT_DEBUG_INFO_FZ(detail,
-        "alloc " AFW_SIZE_T_FMT,
-        size);
+    afw_boolean_t reused;
 
     /* Don't allow allocate for a size of 0. */
     if (size == 0) {
@@ -681,7 +679,10 @@ impl_afw_pool_malloc(
 
     size_with_prefix = size + sizeof(afw_pool_internal_memory_prefix_t);
 
-    impl_alloc_memory(&mem, &actual_size, self, size_with_prefix, xctx);
+    reused = impl_alloc_memory(&mem, &actual_size, self,
+        size_with_prefix, xctx);
+    IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
+        reused ? "reuse" : "apr", size);
     result = mem + sizeof(afw_pool_internal_memory_prefix_t);
     block = (afw_pool_internal_memory_prefix_t *)mem;
     block->p = (const afw_pool_t *)self;
@@ -883,10 +884,7 @@ impl_subpool_afw_pool_malloc(
     afw_size_t size_with_prefix;
     afw_size_t actual_size;
     void *result;
-
-    IMPL_PRINT_DEBUG_INFO_FZ(detail,
-        "alloc " AFW_SIZE_T_FMT,
-        size);
+    afw_boolean_t reused;
 
     /* Don't allow allocate for a size of 0. */
     if (size == 0) {
@@ -906,7 +904,10 @@ impl_subpool_afw_pool_malloc(
     size_with_prefix =
         size + sizeof(afw_pool_internal_memory_prefix_with_links_t);
 
-    impl_alloc_memory(&mem, &actual_size, self, size_with_prefix, xctx);
+    reused = impl_alloc_memory(&mem, &actual_size, self,
+        size_with_prefix, xctx);
+    IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
+        reused ? "reuse" : "apr", size);
     result = mem + sizeof(afw_pool_internal_memory_prefix_with_links_t);
     block = (afw_pool_internal_memory_prefix_with_links_t *)mem;
     block->common.p = (const afw_pool_t *)self;

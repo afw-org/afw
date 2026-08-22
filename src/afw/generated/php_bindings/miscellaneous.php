@@ -330,6 +330,52 @@ class miscellaneous
     }
 
     /**
+     * pool_bytes_in_use()
+     *
+     * Return the environment running total of outstanding bytes AFW
+     * malloc/calloc asked for and has not yet given back (heap/tracker free,
+     * or pool destroy). Rounding and prefixes included. Not APR's private
+     * usage; see process_rss() for current process RSS.
+     *
+     *
+     * @return integer Sum of all pools' bytes_allocated.
+     */
+    public function pool_bytes_in_use()
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "pool_bytes_in_use");
+
+        /* pass along required parameters to the request payload */
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * process_rss()
+     *
+     * Return the current resident set size of this process in kilobytes
+     * (Linux /proc/self/statm). A hint at APR and OS usage; APR does not
+     * return pages to the OS. Compare with pool_bytes_in_use() for AFW
+     * asked-for vs process RSS.
+     *
+     *
+     * @return integer Current RSS in kilobytes, or 0 if unavailable.
+     */
+    public function process_rss()
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "process_rss");
+
+        /* pass along required parameters to the request payload */
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * trace()
      *
      * Write a value to a trace log.

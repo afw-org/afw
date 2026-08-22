@@ -1,0 +1,14 @@
+{
+    "brief": "Current process RSS in kilobytes",
+    "category": "miscellaneous",
+    "dataTypeMethod": false,
+    "description": "Return the current resident set size of this process in kilobytes (Linux /proc/self/statm). A hint at APR and OS usage; APR does not return pages to the OS. Compare with pool_bytes_in_use() for AFW asked-for vs process RSS.",
+    "functionId": "process_rss",
+    "functionLabel": "process_rss",
+    "parameters": [],
+    "pure": false,
+    "returns": {
+        "dataType": "integer",
+        "description": "Current RSS in kilobytes, or 0 if unavailable."
+    }
+}

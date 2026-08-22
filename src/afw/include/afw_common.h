@@ -48,7 +48,9 @@
  *   AFW_DEBUG_EVALUATION  evaluation stack push/pop
  *   AFW_DEBUG_LOCK        lock obtain/release
  *   AFW_DEBUG_POOL        pool alloc/free/create/destroy
- * Pool `rss` is current RSS KB (`afw_os_get_rss`).
+ * Pool `in_use` is this pool's outstanding malloc/calloc; `total` is
+ * env->pool_bytes_in_use (sum across pools). `rss` is current process
+ * RSS KB (`afw_os_get_rss`) — a hint at APR/OS, not AFW asked-for.
  * `afwdev build --cdev` and `--fulldev` define all three. Otherwise:
  *   afwdev build --define AFW_DEBUG_POOL
  */
@@ -1955,13 +1957,15 @@ struct afw_environment_s {
     AFW_ATOMIC afw_integer_t pool_number;
 
     /**
-     * @brief Sum of all pools' bytes_allocated (consumed size, including
-     *     rounding, prefix, and heap/tracker APR skeletons). Atomic.
-     *     Heap/tracker free decrements; general-pool free is a no-op;
-     *     destroy subtracts what is left. Tracker headers are charged to
-     *     the parent heap (not returned until that heap is destroyed).
+     * @brief Sum of every pool's bytes_allocated.
+     *
+     * Outstanding size AFW malloc/calloc asked for and has not yet
+     * given back: heap/tracker free decrements; general-pool free is a
+     * no-op; destroy subtracts what is left. Rounding and prefixes
+     * included. Not APR's private usage — process RSS is that hint.
+     * Atomic; multithreaded pools update it.
      */
-    AFW_ATOMIC afw_size_t pool_bytes_allocated;
+    AFW_ATOMIC afw_size_t pool_bytes_in_use;
 
     /** @brief Indicates that environment is terminating. */
     afw_boolean_t terminating;

@@ -305,6 +305,87 @@ afw_function_execute_now_utc(
 
 
 /*
+ * Adaptive function: pool_bytes_in_use
+ *
+ * afw_function_execute_pool_bytes_in_use
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the environment running total of outstanding bytes AFW malloc/calloc
+ * asked for and has not yet given back (heap/tracker free, or pool destroy).
+ * Rounding and prefixes included. Not APR's private usage; see process_rss()
+ * for current process RSS.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function pool_bytes_in_use(
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ * Returns:
+ *
+ *   (integer) Sum of all pools' bytes_allocated.
+ */
+const afw_value_t *
+afw_function_execute_pool_bytes_in_use(
+    afw_function_execute_t *x)
+{
+    afw_size_t n;
+
+    n = 0;
+    if (x->xctx && x->xctx->env) {
+        n = x->xctx->env->pool_bytes_in_use;
+    }
+    return afw_value_create_unmanaged_integer(
+        (afw_integer_t)n, x->p, x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: process_rss
+ *
+ * afw_function_execute_process_rss
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the current resident set size of this process in kilobytes (Linux
+ * /proc/self/statm). A hint at APR and OS usage; APR does not return pages to
+ * the OS. Compare with pool_bytes_in_use() for AFW asked-for vs process RSS.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function process_rss(
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ * Returns:
+ *
+ *   (integer) Current RSS in kilobytes, or 0 if unavailable.
+ */
+const afw_value_t *
+afw_function_execute_process_rss(
+    afw_function_execute_t *x)
+{
+    return afw_value_create_unmanaged_integer(
+        (afw_integer_t)afw_os_get_rss(), x->p, x->xctx);
+}
+
+
+
+/*
  * Adaptive function: parse_uri
  *
  * afw_function_execute_parse_uri

@@ -44,6 +44,7 @@ struct afw_pool_self_s {
 
     afw_integer_t reference_count;
     afw_integer_t pool_number;
+    /** Outstanding malloc/calloc. Free is a no-op; destroy zeros this. */
     afw_size_t bytes_allocated;
 
     afw_boolean_t destroying;
@@ -72,8 +73,8 @@ do { \
         fd = xctx->env->debug_fd; \
         fprintf(fd, \
             ">debug pool %s " AFW_INTEGER_FMT \
-            " bytes " AFW_SIZE_T_FMT \
-            " env " AFW_SIZE_T_FMT \
+            " in_use " AFW_SIZE_T_FMT \
+            " total " AFW_SIZE_T_FMT \
             " rss " AFW_SIZE_T_FMT " KB" \
             " refs " AFW_INTEGER_FMT \
             " parent " AFW_INTEGER_FMT \
@@ -81,7 +82,7 @@ do { \
             info_z, \
             self->pool_number, \
             self->bytes_allocated, \
-            (afw_size_t)xctx->env->pool_bytes_allocated, \
+            (afw_size_t)xctx->env->pool_bytes_in_use, \
             afw_os_get_rss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
@@ -101,8 +102,8 @@ do { \
         fd = xctx->env->debug_fd; \
         fprintf(fd, \
             ">debug pool " format_z " " AFW_INTEGER_FMT \
-            " bytes " AFW_SIZE_T_FMT \
-            " env " AFW_SIZE_T_FMT \
+            " in_use " AFW_SIZE_T_FMT \
+            " total " AFW_SIZE_T_FMT \
             " rss " AFW_SIZE_T_FMT " KB" \
             " refs " AFW_INTEGER_FMT \
             " parent " AFW_INTEGER_FMT \
@@ -110,7 +111,7 @@ do { \
             __VA_ARGS__, \
             self->pool_number, \
             self->bytes_allocated, \
-            (afw_size_t)xctx->env->pool_bytes_allocated, \
+            (afw_size_t)xctx->env->pool_bytes_in_use, \
             afw_os_get_rss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
@@ -134,7 +135,7 @@ impl_account_alloc(
 {
     self->bytes_allocated += consumed;
     if (xctx && xctx->env) {
-        ((afw_environment_t *)xctx->env)->pool_bytes_allocated += consumed;
+        ((afw_environment_t *)xctx->env)->pool_bytes_in_use += consumed;
     }
 }
 
@@ -143,7 +144,7 @@ static void
 impl_account_destroy(afw_pool_self_t *self, afw_xctx_t *xctx)
 {
     if (xctx && xctx->env) {
-        ((afw_environment_t *)xctx->env)->pool_bytes_allocated -=
+        ((afw_environment_t *)xctx->env)->pool_bytes_in_use -=
             self->bytes_allocated;
     }
     self->bytes_allocated = 0;
@@ -391,6 +392,7 @@ impl_afw_pool_calloc(
         AFW_THROW_ERROR_Z(memory, "Allocate memory error.", xctx);
     }
     impl_account_alloc(self, consumed, xctx);
+    IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc " AFW_SIZE_T_FMT, size);
     return result;
 }
 
@@ -424,6 +426,7 @@ impl_afw_pool_malloc(
         AFW_THROW_ERROR_Z(memory, "Allocate memory error.", xctx);
     }
     impl_account_alloc(self, consumed, xctx);
+    IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc " AFW_SIZE_T_FMT, size);
     return result;
 }
 

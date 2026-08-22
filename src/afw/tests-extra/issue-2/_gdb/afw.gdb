@@ -31,8 +31,8 @@ end
 
 define afw-help
   echo issue-2 gdb helpers:\n
-  echo   afw-rss              - /proc VmRSS plus env->pool_bytes_allocated\n
-  echo   afw-heap             - evaluation_heap bytes_allocated + env pool_bytes / VmRSS\n
+  echo   afw-rss              - /proc VmRSS plus env->pool_bytes_in_use\n
+  echo   afw-heap             - evaluation_heap bytes_allocated + env in_use / VmRSS\n
   echo   afw-bt               - backtrace\n
   echo   afw-breaks           - try useful breakpoints (slot_store, integer create, heap)\n
   echo   afw-watch [seconds]  - continue, interrupt every N s, print RSS+heap\n

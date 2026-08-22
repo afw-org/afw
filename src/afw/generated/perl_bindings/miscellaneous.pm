@@ -25,6 +25,8 @@ our @EXPORT_OK = qw(
     now_utc 
     parse_uri 
     perform 
+    pool_bytes_in_use 
+    process_rss 
     trace 
     variable_exists 
     variable_get 
@@ -190,6 +192,25 @@ Perform actions
     $request
 
 See /afw/_AdaptiveObjectType_/_AdaptiveActions_ for more information.
+
+=head3 pool_bytes_in_use
+
+Return the environment running total of outstanding bytes AFW malloc/calloc
+asked for and has not yet given back (heap/tracker free, or pool destroy).
+Rounding and prefixes included. Not APR's private usage; see process_rss() for
+current process RSS.
+Outstanding AFW pool malloc/calloc bytes
+
+=head4 Parameters
+
+=head3 process_rss
+
+Return the current resident set size of this process in kilobytes (Linux
+/proc/self/statm). A hint at APR and OS usage; APR does not return pages to
+the OS. Compare with pool_bytes_in_use() for AFW asked-for vs process RSS.
+Current process RSS in kilobytes
+
+=head4 Parameters
 
 =head3 trace
 
@@ -401,6 +422,26 @@ sub perform {
 
     $request->set("function" => "perform");
     $request->set("request", $request);
+
+    return $request->getResult();
+}
+
+sub pool_bytes_in_use {
+    my () = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "pool_bytes_in_use");
+
+    return $request->getResult();
+}
+
+sub process_rss {
+    my () = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "process_rss");
 
     return $request->getResult();
 }

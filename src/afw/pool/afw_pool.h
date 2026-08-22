@@ -144,8 +144,7 @@ afw_pool_heap_create(
  * Single-thread only, same thread as the parent heap. Used as scope->p.
  * Create and destroy with the scope on that thread. Do not use from
  * another thread. The tracker header is `apr_pcalloc` on the parent
- * heap’s APR pool and is charged to that heap until the heap is
- * destroyed (tracker destroy does not return the header).
+ * heap’s APR pool (RSS, not pool bytes_in_use).
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_heap_tracker_create(

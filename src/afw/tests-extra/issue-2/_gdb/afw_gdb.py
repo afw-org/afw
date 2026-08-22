@@ -90,11 +90,11 @@ def _env_pool_and_rss(xctx):
     bits = []
     try:
         env = xctx["env"]
-        n = int(env["pool_bytes_allocated"])
-        bits.append("env->pool_bytes_allocated=%s (%s MiB)" % (
+        n = int(env["pool_bytes_in_use"])
+        bits.append("env->pool_bytes_in_use=%s (%s MiB)" % (
             n, "%.2f" % (n / 1024.0 / 1024.0)))
     except Exception as e:
-        bits.append("env->pool_bytes_allocated unreadable: %s" % e)
+        bits.append("env->pool_bytes_in_use unreadable: %s" % e)
     # Prefer /proc: inferior-call of afw_os_get_rss() after SIGSTOP can
     # abort the process.
     try:
@@ -126,7 +126,7 @@ class AfwRss(gdb.Command):
 
 
 class AfwHeap(gdb.Command):
-    """Print evaluation_heap bytes_allocated plus env pool_bytes / VmRSS."""
+    """Print evaluation_heap bytes_allocated plus env in_use / VmRSS."""
 
     def __init__(self):
         super(AfwHeap, self).__init__("afw-heap", gdb.COMMAND_USER)
