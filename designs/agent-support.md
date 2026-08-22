@@ -88,7 +88,7 @@ Shape: **symptom → layer → probe → code / doc entry**.
 |-------|--------|
 | Symptom | Leak under long run; use-after-free; wrong lifetime; decompile mismatch; scope/closure surprise |
 | Layer | Pools, managed values, `compiled_value`, scope stack, `statement_flow`, value inf policy |
-| Probe | Narrow `.as` + valgrind; orchestrated multi-request leaves when process-scoped; don’t soak via default `test -j` |
+| Probe | Narrow `.as` + valgrind; orchestrated multi-request leaves when process-scoped; don’t soak via default `test -j`. Hard-loop RSS + gdb: `src/afw/tests-extra/issue-2/` (`afwdev test -T src/afw/tests-extra/issue-2 --show-all`) |
 | Entry | `afw-value-memory`, `afw-script-eval`, `afw-compile`, `afw-runtime-model`; **#2** / `memory-management.md`; philosophy pad; atlas §3–4 |
 | Status | **Filled (pointer-heavy)** — deep work stays in memory pad |
 

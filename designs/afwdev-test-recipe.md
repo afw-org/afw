@@ -24,6 +24,9 @@ afwdev test -T src/afw/tests-extra/adapter-lifecycle --show-all
 
 # 4) Optional load thrash (firehose leaf; not the default gate)
 afwdev test -T src/afw/tests-extra/07b-firehose-catalog-pool
+
+# 5) issue #2 hard-loop RSS lab (expected red until optional free)
+afwdev test -T src/afw/tests-extra/issue-2 --show-all
 ```
 
 ### Machine-readable summary (opt-in)

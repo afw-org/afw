@@ -112,6 +112,7 @@ src/afw/tests-extra/
 | **10-catalog-value-accessors** | Port of catalog-value-accessors |
 | **11-mixed-accept-json-and-x-afw** | Document feed + per-test Accept |
 | **adapter-lifecycle** | #149 stop/start disposable adapter (ex tests_special) |
+| **issue-2** | #2 hard-loop RSS lab + gdb helpers (optional `free` / reuse; expected red today) |
 
 **Gate smokes** (default `test -j`, not this tree):
 
