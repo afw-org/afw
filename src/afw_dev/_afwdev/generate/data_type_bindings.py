@@ -34,8 +34,9 @@
 #   unmanaged     Programmer-owned; usually pool-allocated and pool-lifetime.
 #                 Created via allocate/create_unmanaged_<dataType>().
 #                 Scalar clone_or_reference boxes a managed copy in xctx->p
-#                 (utf8/memory copy bytes). Object/array/function stay the
-#                 same instance until instance holds (issue #2).
+#                 (utf8/memory copy bytes). Object/array clone_or_reference
+#                 holds the instance (get_reference / release). Function
+#                 stays the same instance until a later slice.
 #
 # Create path depends on cType / directReturn (see designs/memory-management.md phase 0a):
 #   utf8/memory  — managed owns a byte copy after the header; slice available
@@ -727,6 +728,14 @@ def write_c_section(fd, prefix, obj):
         fd.write('    const afw_value_t *instance,\n')
         fd.write('    afw_xctx_t *xctx);\n')
         fd.write('\n')
+        if id in ('object', 'array'):
+            fd.write('/* Declaration for method optional_release for unmanaged '
+                     'value. */\n')
+            fd.write('AFW_DECLARE_STATIC(void)\n')
+            fd.write('impl_afw_value_unmanaged_optional_release(\n')
+            fd.write('    const afw_value_t *instance,\n')
+            fd.write('    afw_xctx_t *xctx);\n')
+            fd.write('\n')
         
         fd.write('\n')
         fd.write('/* Declaration for method get_reference for value. */\n')
@@ -793,15 +802,25 @@ def write_c_section(fd, prefix, obj):
     if not special:
 
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
-        fd.write('/* unmanaged ' + id + ': optional_release NULL; */\n')
-        if obj.get('scalar', False) == True:
-            fd.write('/* clone_or_reference boxes a managed copy in xctx->p. */\n')
+        if id in ('object', 'array'):
+            fd.write('/* unmanaged ' + id + ': optional_release holds the '
+                     'instance. */\n')
+            fd.write('/* clone_or_reference get_reference on the instance. */\n')
         else:
-            fd.write('/* clone_or_reference returns the same instance (pool lifetime). */\n')
+            fd.write('/* unmanaged ' + id + ': optional_release NULL; */\n')
+            if obj.get('scalar', False) == True:
+                fd.write('/* clone_or_reference boxes a managed copy in xctx->p. */\n')
+            else:
+                fd.write('/* clone_or_reference returns the same instance '
+                         '(pool lifetime). */\n')
         fd.write('#define AFW_IMPLEMENTATION_ID "' + id + '"\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_' + id + '_inf\n')
-        fd.write('#define impl_afw_value_optional_release NULL\n')
+        if id in ('object', 'array'):
+            fd.write('#define impl_afw_value_optional_release '
+                     'impl_afw_value_unmanaged_optional_release\n')
+        else:
+            fd.write('#define impl_afw_value_optional_release NULL\n')
         fd.write('#define impl_afw_value_clone_or_reference impl_afw_value_get_reference\n')
         fd.write('#define impl_afw_value_create_iterator NULL\n')
 
@@ -1601,6 +1620,31 @@ def write_c_section(fd, prefix, obj):
             fd.write('    }\n')
             fd.write('    self->reference_count--;\n')
         fd.write('}\n')
+
+        if id in ('object', 'array'):
+            fd.write('\n')
+            fd.write('/* Implementation of method optional_release for '
+                     'unmanaged value. */\n')
+            fd.write('AFW_DECLARE_STATIC(void)\n')
+            fd.write('impl_afw_value_unmanaged_optional_release(\n')
+            fd.write('    const afw_value_t *instance,\n')
+            fd.write('    afw_xctx_t *xctx)\n')
+            fd.write('{\n')
+            if id == 'object':
+                fd.write('    const afw_value_object_t *self =\n')
+                fd.write('        (const afw_value_object_t *)instance;\n')
+                fd.write('\n')
+                fd.write('    if (self->internal) {\n')
+                fd.write('        afw_object_release(self->internal, xctx);\n')
+                fd.write('    }\n')
+            else:
+                fd.write('    const afw_value_array_t *self =\n')
+                fd.write('        (const afw_value_array_t *)instance;\n')
+                fd.write('\n')
+                fd.write('    if (self->internal) {\n')
+                fd.write('        afw_array_release(self->internal, xctx);\n')
+                fd.write('    }\n')
+            fd.write('}\n')
         
         fd.write('\n')
         fd.write('/* Implementation of method get_reference for unmanaged value. */\n')
@@ -1629,11 +1673,34 @@ def write_c_section(fd, prefix, obj):
         else:
             if id == 'null':
                 fd.write('    /* Unmanaged null sentinels keep pointer identity. */\n')
+                fd.write('    (void)p;\n')
+                fd.write('    (void)xctx;\n')
+                fd.write('    return instance;\n')
+            elif id == 'object':
+                fd.write('    const afw_value_object_t *self =\n')
+                fd.write('        (const afw_value_object_t *)instance;\n')
+                fd.write('\n')
+                fd.write('    (void)p;\n')
+                fd.write('    if (self->internal) {\n')
+                fd.write('        afw_object_get_reference(self->internal, '
+                         'xctx);\n')
+                fd.write('    }\n')
+                fd.write('    return instance;\n')
+            elif id == 'array':
+                fd.write('    const afw_value_array_t *self =\n')
+                fd.write('        (const afw_value_array_t *)instance;\n')
+                fd.write('\n')
+                fd.write('    (void)p;\n')
+                fd.write('    if (self->internal) {\n')
+                fd.write('        afw_array_get_reference(self->internal, '
+                         'xctx);\n')
+                fd.write('    }\n')
+                fd.write('    return instance;\n')
             else:
-                fd.write('    /* Object/array/function: instance hold is a later slice. */\n')
-            fd.write('    (void)p;\n')
-            fd.write('    (void)xctx;\n')
-            fd.write('    return instance;\n')
+                fd.write('    /* Function: instance hold is a later slice. */\n')
+                fd.write('    (void)p;\n')
+                fd.write('    (void)xctx;\n')
+                fd.write('    return instance;\n')
         fd.write('}\n')
         fd.write('\n')
     

@@ -104,6 +104,18 @@ afw_array_create_wrapper_with_options(
 
 
 /**
+ * @brief Empty script-evaluation-aware array (face over an empty base).
+ * @param p pool for the face.
+ * @param xctx of caller.
+ * @return unmanaged memory wrapper; element store is overlay holds.
+ */
+AFW_DECLARE(const afw_array_t *)
+afw_array_create_script_wrapper(
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief True if array is a memory wrapper face (create_wrapper_*).
  * @param array to test (may be NULL).
  * @return true if create_wrapper_* produced this instance.

@@ -128,7 +128,7 @@ afw_function_execute_array(
     const afw_iterator_old_t *iterator;
 
     /* Construct a new array with elements passed as arguments. */
-    array = afw_array_create_generic(x->p, x->xctx);
+    array = afw_array_create_script_wrapper(x->p, x->xctx);
     for (n = 1, arg = &x->argv[1]; n <= x->argc; n++, arg++) {
         afw_xctx_evaluation_stack_push_parameter_number(n, x->xctx);
 
@@ -160,8 +160,8 @@ afw_function_execute_array(
         afw_xctx_evaluation_stack_pop_parameter_number(x->xctx);
     }
 
-    /* Return constructed array. */
-    return afw_value_create_unmanaged_array(array, x->p, x->xctx);
+    /* Dual face on the instance; no extra heap header. */
+    return array->value;
 }
 
 
@@ -301,7 +301,7 @@ afw_function_execute_create_array(
             AFW_CREATE_ARRAY_MAX_LENGTH);
     }
 
-    array = afw_array_create_generic(x->p, x->xctx);
+    array = afw_array_create_script_wrapper(x->p, x->xctx);
     for (i = 0; i < n; i++) {
         afw_array_push_value(array, afw_value_undefined, x->xctx);
     }

@@ -148,7 +148,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | **Day rules** | `afw-runtime-model` (always-on), `afw-value-memory` (**current tree**; campaign target is the lifetime pad), `afw-script-eval` |
 | **Deep pad** | [`issue-2-lifetime.md`](issue-2-lifetime.md) (**campaign map**); archaeology [`memory-management.md`](memory-management.md); philosophy core model; names-as-values [`issue-2-property-name-values.md`](issue-2-property-name-values.md); faces [`issue-17-mutable-object-faces.md`](issue-17-mutable-object-faces.md) |
 | **Probe** | Targeted `.as` + `afwdev test -j --env-mode valgrind`; orchestrated multi-request leaves; never “fix memory” without a metric/story |
-| **Open** | Umbrella **#2**. Slot protocol landed. Pool split landed (`issue-2-pool-heap`: general APR vs heap/tracker, `managed_p`). **Names as values** landed (PR **#220**). Closures / throw-path rewind (**#35**) store-time bind (literals + nested assign; no hoisting). Remaining: optional `free`, first-fit/P3. |
+| **Open** | Umbrella **#2**. Slot protocol landed. Pool split landed. **Names as values** landed (PR **#220**). Closures / throw-path rewind (**#35**) store-time bind. Script wrapper overlay holds + create-at-0 landed (`issue-2-script-wrapper-holds`). Remaining: optional `free`, first-fit/P3. |
 | **Gap** | Lifetime pad is the one-pager that was missing; keep `memory-management.md` as archaeology |
 
 ---
