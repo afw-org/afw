@@ -69,7 +69,7 @@ Examples:
 
 ```text
 //? skipReason: Never: no String.fromCharCode / ES String prototype APIs
-//? skipReason: FIXME: for-of const + per-iteration closure capture (#35 / #2)
+//? skipReason: FIXME: produce-type false positive (runtime would pass)
 
 // Long reason (any //? key can use this form):
 //? skipReason: ...

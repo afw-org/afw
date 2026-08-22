@@ -57,7 +57,7 @@ Complementary, not substitutes:
 | **#2** (this) | Lifetimes, refcount/pool ownership, value identity, OOM resilience story |
 | **#49** / maxObjects | Author-visible caps on materializing retrieves |
 | **#127** | Progressive release after stream/to_response write |
-| **#35** `after2-*` | Escaped closures trustworthiness (depends on #2) |
+| **#35** store-time bind | Object/array literals and nested assign hold the defining scope (depends on #2 slot protocol). `after2-*` in `closures.as` run. |
 | **#9** snapshots | Large fresh memory objects; stress #2 if retained |
 
 ---
@@ -294,7 +294,7 @@ _Many draft items below are superseded or refined by **Value Lifetime Model (tar
 - **`compiled_value` escaped** (script `compile` + return): pool RC / managed unit — design when we get there.
 - Hard error on missing `object->value` / `array->value` — when to flip?
 - Request memory limit: charge only request-session pool tree, or escaped managed too?
-- `#35` after2-* unskip bar vs step-by-step #2 — no fixed bar yet.
+- `#35` after2-* unskip bar — landed with store-time bind (see `closures.as` / `throw_rewind.as`).
 - Large managed string/memory + slice (cheap cross-scope assign).
 
 ### Non-goals (near term)

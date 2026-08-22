@@ -60,7 +60,7 @@ Supported surface we intend to keep. Prefer these when writing script that shoul
 - **`let` / `const`** (no `var`). Semicolons **required**. Bare expressions are not statements. One statement may declare several names (`let a = 1, b = 2` / `const a = 1, b = 2`; **#62**).
 - **`if` / `while` / `do` / `for` / `for-of` / `switch` / `try` / `throw` / `return` / `break` / `continue`**. C-style **`for` init** is one `let` / `const` (including `for (let i = 0, j = 1; …)`) or assignment(s); not `for (let i = 0, let j = 1; …)`. **Loop labels** (`outer: for` / `break outer` / `continue outer`) as in TS/JS; **not** on blocks or `if`. One label per loop.
 - **`for-of`** over **arrays** (by element) and **strings** (by Unicode **code point** / UTF-8 character). Objects: walk **`keys` / `values` / `entries`** (no `for-in`).
-- Nested **`function`** values and **closures** that capture enclosing bindings (runtime + `closures.as` — **25** pass; **11** skips are escape/lifetime under **#2**, not “no closures”). Issue **#35** left open for that residual bar. Handbook Features **Closure** section updated (no longer claims “no closures”).
+- Nested **`function`** values and **closures** that capture enclosing bindings (runtime + `closures.as` checklist green). Store-time bind for literals and nested assign is **#35** (no let/const hoisting). Handbook Features **Closure** section no longer claims Adaptive has no closures.
 
 ### Nullish and short-circuit forms
 
@@ -301,7 +301,7 @@ Many JS/TS keywords are reserved even when unimplemented (`class`, `async`, `awa
 | [`.cursor/rules/afw-adaptive-script.mdc`](.cursor/rules/afw-adaptive-script.mdc) | Authoring quirks |
 | [`.cursor/rules/afw-qualified-variables.mdc`](.cursor/rules/afw-qualified-variables.mdc) | Qualifier get vs snapshots |
 | GitHub **#22** | Jeremy’s ES differences **document** work (separate from this file) |
-| **#35** (open); **#28**, **#14**, **#18**, **#38**, **#55**, **#131**, **#140**, **#9**, **#110** (closed) | Closures residuals (#2 escape) vs landed types, helpers, exists, Patterns, snapshots, get defaults |
+| **#35** (open; store-time bind landed); **#28**, **#14**, **#18**, **#38**, **#55**, **#131**, **#140**, **#9**, **#110** (closed) | Closures (#2 / #35) vs landed types, helpers, exists, Patterns, snapshots, get defaults |
 
 ---
 

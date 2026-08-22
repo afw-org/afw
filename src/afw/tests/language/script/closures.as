@@ -2,7 +2,7 @@
 //?
 //? testScript: closures.as
 //? customPurpose: Part of language/script tests
-//? description: Closure checklist for issue #35 (escape/lifetime tied to #2)
+//? description: Closure checklist for issue #35 (store-time bind; no hoisting)
 //? sourceType: script
 //?
 //? test: nested-function-outer-let
@@ -560,12 +560,12 @@ assert(make().get() === 3);
 return 0;
 
 // ---------------------------------------------------------------------------
-// Could work on before #2 — one-shot failures / language gaps (not lifetime)
+// Literal / for-of store-time bind (was before2; runs)
 // ---------------------------------------------------------------------------
 
 //?
 //? test: before2-object-literal-method-closure
-//? description: Object-literal method closing over outer let (could fix before #2; #35)
+//? description: Object-literal method closing over outer let (#35 store-time bind)
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -612,7 +612,7 @@ return factory().get();
 
 //?
 //? test: before2-list-literal-of-closures
-//? description: List literal of functions closing over outer lets (could fix before #2; #35)
+//? description: List literal of functions closing over outer lets (#35 store-time bind)
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -640,7 +640,7 @@ return 0;
 
 //?
 //? test: before2-for-of-let-per-iteration
-//? description: for-of let should be per-iteration like for-let (could fix before #2; #35)
+//? description: for-of let should be per-iteration like for-let (#35)
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -730,9 +730,8 @@ return 0;
 //? source: ...
 
 /*
- * Regression for function-as-value call args (issue #89). Lifetime/escape of
- * the closed-over binding under long-running use remains #2 (see after2-*).
- * Duplicate coverage lives in language/script/function.as.
+ * Regression for function-as-value call args (issue #89). Duplicate coverage
+ * lives in language/script/function.as.
  */
 function apply(fn) {
     return fn();
@@ -747,7 +746,7 @@ assert(apply(make()) === 5);
 return 0;
 
 // ---------------------------------------------------------------------------
-// After / while #2 — escaped lifetime, long-running; unskip under valgrind
+// Escaped lifetime (was after2; runs)
 // ---------------------------------------------------------------------------
 
 //?
@@ -757,7 +756,6 @@ return 0;
 //? expect: 0
 //? source: ...
 
-/* Unskip when #2 managed escape is solid; prove under valgrind / multi-request. */
 function build() {
     let out0;
     let out1;

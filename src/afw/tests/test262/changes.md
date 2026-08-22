@@ -147,7 +147,7 @@ Rough time order: **[#55](https://github.com/afw-org/afw/issues/55) → [#140](h
 | [for-of `string-bmp` / `string-astral`](#for-of-string-code-points) | [→impl / →diff](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | C: UTF-8 code points; not UTF-16 units |
 | for-of `head-const-bound-names-fordecl-tdz` | [→fixme](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | No general TDZ (language-wide) |
 | for-of `let-array-with-newline` | [→fixme](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | ASI / let vs `[` after empty for-of |
-| [for-of const + closures](#for-of-const-and-closures) | [→fixme](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | [#35](https://github.com/afw-org/afw/issues/35) / [#2](https://github.com/afw-org/afw/issues/2) capture; expect desired 0 |
+| [for-of const + closures](#for-of-const-and-closures) | [→run](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | `head-const-fresh-binding-per-iteration` runs; store-time bind ([#35](https://github.com/afw-org/afw/issues/35) / [#2](https://github.com/afw-org/afw/issues/2)) |
 | [const reassignment](#const-reassignment) | [→impl](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/const/const.as) | C: clear `read_only` / reject assign |
 | [no temporal dead zone self-init](#no-temporal-dead-zone) | [→diff](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/let/let.as) | `let x = x` → undefined (Adaptive) |
 | for-of destructure head / body decls | [→run](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | Converted with [#39](https://github.com/afw-org/afw/issues/39) pass (Adaptive OK) |
@@ -384,11 +384,11 @@ index/array-face work — not required for these tests.
 
 **Case:** `head-const-fresh-binding-per-iteration`.
 
-Still **→fixme** with
-**[#35](https://github.com/afw-org/afw/issues/35) / [#2](https://github.com/afw-org/afw/issues/2)**.
-Desired expect kept honest (e.g. `0`);
-do not leave a green test that only asserts today’s broken capture, and do
-not use `expect: error` as a permanent stand-in for “closures wrong.”
+**→run.** Each `for (const x of …)` iteration binds a function that
+closes over that iteration’s `x`. Store-time bind
+([#35](https://github.com/afw-org/afw/issues/35) / [#2](https://github.com/afw-org/afw/issues/2)).
+The two remaining for-of skips in this file are **Never:** (no TDZ;
+ASI `let [` after an empty for-of), not capture.
 
 [↑ Index](#index)
 
