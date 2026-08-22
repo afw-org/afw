@@ -31,8 +31,8 @@ end
 
 define afw-help
   echo issue-2 gdb helpers:\n
-  echo   afw-rss              - print /proc/pid/status RSS\n
-  echo   afw-heap             - evaluation_heap bytes_allocated (if xctx in frame)\n
+  echo   afw-rss              - /proc RSS plus env->pool_bytes_allocated / maxrss\n
+  echo   afw-heap             - evaluation_heap bytes_allocated + env pool_bytes / maxrss\n
   echo   afw-bt               - backtrace\n
   echo   afw-breaks           - try useful breakpoints (slot_store, integer create, heap)\n
   echo   afw-watch [seconds]  - continue, interrupt every N s, print RSS+heap\n

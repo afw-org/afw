@@ -6,10 +6,23 @@ on [#2](https://github.com/afw-org/afw/issues/2).
 
 The directory is `issue-2`, not `#2` — `#` starts a shell comment.
 
-**Expected red on develop today.** Slot protocol and the eval heap wrap
-already landed; a tight `i = i + 1` still climbs ~hundreds of MiB/s because
-overwritten scalars are not recycled until the evaluate ends (it never
-does). These cases should go green when reuse is real.
+**Expected red on develop today.** Two different climbs (do not mix them):
+
+1. **Braces** — `while (true) {}` is a Block. Every iteration
+   `afw_xctx_scope_create` → heap tracker → `apr_pcalloc` on the eval
+   heap’s APR pool. Destroy does not recycle that header. RSS climbs.
+   Tracker skeletons are charged to the parent heap, so
+   `env->pool_bytes_allocated` should climb with RSS. `while (true);`
+   is flat.
+2. **Unbraced `i = i + 1`** — no extra scope. `slot_store` →
+   `create_managed_integer` via `afw_xctx_malloc` (**general** `xctx->p`,
+   not the eval heap). General-pool free is a no-op, so
+   `env->pool_bytes_allocated` tracks RSS. `evaluation_heap->bytes_allocated`
+   stays 0.
+
+The original workloads use braces, so they mostly measure (1). #242
+debug probes ([PR #243](https://github.com/afw-org/afw/pull/243)) name
+the call sites; they are **not** for soaks.
 
 Campaign map: [`designs/issue-2-lifetime.md`](../../../designs/issue-2-lifetime.md)
 (*Destroy is lifetime. Optional `free` is reuse.*).
@@ -99,17 +112,40 @@ src/afw/tests-extra/issue-2/_tools/gdb-attach.sh $!
 src/afw/tests-extra/issue-2/_tools/gdb-attach.sh
 ```
 
-Useful hunts after Ctrl-C:
+Useful hunts after Ctrl-C (**no debug flags** on a soak):
 
-1. `afw-bt` — should sit in integer add / slot store / pool malloc for the
-   scalar loop, overlay `set` for `o.x = i`.
-2. `afw-heap` — `evaluation_heap->bytes_allocated` (type
-   `afw_pool_internal_self_t`). If that number tracks RSS, the leak is the
-   eval heap, not APR `xctx->p`.
-3. Two interrupts 5s apart — if `bytes_allocated` only goes up, optional
-   `free` is not returning blocks.
-4. `afw-breaks` then `continue` on a **slow** script only. A hard loop
-   will crawl if you break every `slot_store`.
+1. `afw-bt` — braced empty sits in while / block / tracker create
+   (`apr_pcalloc`). Unbraced `i = i + 1` sits in
+   `create_managed_integer` / `slot_store`.
+2. `afw-heap` / `afw-rss` — print **three** numbers: current RSS
+   (VmRSS), `evaluation_heap->bytes_allocated`,
+   `env->pool_bytes_allocated`. Two interrupts 5s apart:
+   - RSS and env up, heap `bytes_allocated` also up by ~160 B per
+     `{ }` → tracker APR skeleton charged to the parent heap.
+   - RSS and env up, heap bytes 0 → general `xctx->p` (managed scalars).
+   - heap user mallocs (not just skeleton) → eval-heap reuse story.
+3. Do **not** `call afw_os_get_rss()` / `afw_os_get_maxrss()` from gdb
+   after SIGSTOP (can abort the inferior). `afw-rss` reads
+   `/proc/<pid>/status` VmRSS (current) and VmHWM/Peak. `>debug pool`
+   `rss` is current KB (`afw_os_get_rss`), not `ru_maxrss`.
+4. `afw-breaks` then `continue` on a **slow** script only.
+
+## #242 debug lines (`debug:pool`)
+
+Compile-time probes are on for `--cdev` / `--fulldev`; **runtime flags
+stay off** until `flag_set`. Do **not** `flag_set` `debug:pool` or
+`debug:evaluation` in soak workloads — I/O dominates RSS.
+
+Short finite loop, stderr to a file, then summarize (not the log):
+
+```bash
+# 50 iterations, debug:pool only (not :detail, not evaluation)
+afw -s script /tmp/fifty.as 2>/tmp/pool.log
+python3 src/afw/tests-extra/issue-2/_trace.py /tmp/pool.log
+```
+
+`flag_set` lasts the whole process. Isolation = separate `.as`.
+`debug:evaluation` on a tight loop is the worst of the three.
 
 If a symbol is missing (`nm` on this `libafw` may not export
 `afw_value_slot_store`), break by file:

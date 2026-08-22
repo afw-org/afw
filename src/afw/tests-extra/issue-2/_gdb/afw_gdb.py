@@ -32,7 +32,8 @@ def _read_rss_kib(pid):
     with open(path) as fd:
         for line in fd:
             if line.startswith("VmRSS:") or line.startswith("VmSize:") or \
-                    line.startswith("VmData:") or line.startswith("VmPeak:"):
+                    line.startswith("VmData:") or line.startswith("VmPeak:") or \
+                    line.startswith("VmHWM:"):
                 parts = line.split()
                 out[parts[0].rstrip(":")] = int(parts[1])
     return out
@@ -85,6 +86,26 @@ def _heap_bytes(xctx):
             heap, e)
 
 
+def _env_pool_and_maxrss(xctx):
+    bits = []
+    try:
+        env = xctx["env"]
+        n = int(env["pool_bytes_allocated"])
+        bits.append("env->pool_bytes_allocated=%s (%s MiB)" % (
+            n, "%.2f" % (n / 1024.0 / 1024.0)))
+    except Exception as e:
+        bits.append("env->pool_bytes_allocated unreadable: %s" % e)
+    # Prefer /proc: inferior-call of afw_os_get_rss() after SIGSTOP can
+    # abort the process. VmRSS is current; VmHWM/Peak is ru_maxrss.
+    try:
+        st = _read_rss_kib(_pid())
+        bits.append("VmRSS=%s kB  VmHWM/Peak=%s/%s kB" % (
+            st.get("VmRSS"), st.get("VmHWM"), st.get("VmPeak")))
+    except Exception as e:
+        bits.append("maxrss unreadable: %s" % e)
+    return "  ".join(bits)
+
+
 class AfwRss(gdb.Command):
     """Print /proc RSS for the afw inferior."""
 
@@ -99,10 +120,13 @@ class AfwRss(gdb.Command):
             % (pid, st.get("VmRSS"), st.get("VmData"),
                st.get("VmSize"), st.get("VmPeak"))
         )
+        xctx, _frame = _find_xctx()
+        if xctx is not None:
+            gdb.write(_env_pool_and_maxrss(xctx) + "\n")
 
 
 class AfwHeap(gdb.Command):
-    """Print evaluation_heap bytes_allocated if a frame has xctx."""
+    """Print evaluation_heap bytes_allocated plus env pool_bytes / maxrss."""
 
     def __init__(self):
         super(AfwHeap, self).__init__("afw-heap", gdb.COMMAND_USER)
@@ -114,6 +138,7 @@ class AfwHeap(gdb.Command):
                 "no xctx in the stack; interrupt during evaluate() first")
         gdb.write("frame %s\n" % frame.name())
         gdb.write(_heap_bytes(xctx) + "\n")
+        gdb.write(_env_pool_and_maxrss(xctx) + "\n")
 
 
 class AfwBt(gdb.Command):

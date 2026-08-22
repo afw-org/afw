@@ -48,6 +48,7 @@
  *   AFW_DEBUG_EVALUATION  evaluation stack push/pop
  *   AFW_DEBUG_LOCK        lock obtain/release
  *   AFW_DEBUG_POOL        pool alloc/free/create/destroy
+ * Pool `rss` is current RSS KB (`afw_os_get_rss`), not ru_maxrss.
  * `afwdev build --cdev` and `--fulldev` define all three. Otherwise:
  *   afwdev build --define AFW_DEBUG_POOL
  */
@@ -1955,7 +1956,10 @@ struct afw_environment_s {
 
     /**
      * @brief Sum of all pools' bytes_allocated (consumed size, including
-     *     rounding and block overhead). Atomic; multithreaded pools update it.
+     *     rounding, prefix, and heap/tracker APR skeletons). Atomic.
+     *     Heap/tracker free decrements; general-pool free is a no-op;
+     *     destroy subtracts what is left. Tracker headers are charged to
+     *     the parent heap (not returned until that heap is destroyed).
      */
     AFW_ATOMIC afw_size_t pool_bytes_allocated;
 

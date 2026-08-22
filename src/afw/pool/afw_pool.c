@@ -82,7 +82,7 @@ do { \
             self->pool_number, \
             self->bytes_allocated, \
             (afw_size_t)xctx->env->pool_bytes_allocated, \
-            afw_os_get_maxrss(), \
+            afw_os_get_rss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
                 ? self->parent->pool_number : 0), \
@@ -111,7 +111,7 @@ do { \
             self->pool_number, \
             self->bytes_allocated, \
             (afw_size_t)xctx->env->pool_bytes_allocated, \
-            afw_os_get_maxrss(), \
+            afw_os_get_rss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
                 ? self->parent->pool_number : 0), \

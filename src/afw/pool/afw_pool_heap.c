@@ -146,7 +146,7 @@ do { \
             self->pool_number, \
             self->bytes_allocated, \
             (afw_size_t)xctx->env->pool_bytes_allocated, \
-            afw_os_get_maxrss(), \
+            afw_os_get_rss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
                 ? self->parent->pool_number : 0), \
@@ -175,7 +175,7 @@ do { \
             self->pool_number, \
             self->bytes_allocated, \
             (afw_size_t)xctx->env->pool_bytes_allocated, \
-            afw_os_get_maxrss(), \
+            afw_os_get_rss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
                 ? self->parent->pool_number : 0), \
@@ -322,6 +322,10 @@ impl_create(
         afw_pool_get_reference(afw_parent, xctx);
     }
 
+    /* APR skeleton lives until this heap is destroyed. */
+    impl_account_alloc(self, size, xctx);
+    IMPL_PRINT_DEBUG_INFO_FZ(minimal, "create " AFW_SIZE_T_FMT, size);
+
     return self;
 }
 
@@ -385,6 +389,14 @@ impl_create_for_subpool(
             IMPL_MULTITHREADED_LOCK_END;
         }
     }
+
+    /*
+     * Tracker header is apr_pcalloc on the parent heap's APR pool and is
+     * not returned on tracker destroy. Charge the parent so env->
+     * pool_bytes_allocated tracks that soak leak (empty `{ }` scopes).
+     */
+    impl_account_alloc(parent, size, xctx);
+    IMPL_PRINT_DEBUG_INFO_FZ(minimal, "create " AFW_SIZE_T_FMT, size);
 
     /* Return new subpool. */
     return self;

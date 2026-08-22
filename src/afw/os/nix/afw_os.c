@@ -16,6 +16,7 @@
 #include <sys/utsname.h>
 #include <sys/time.h>
 #include <sys/resource.h>
+#include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <execinfo.h>
@@ -627,6 +628,55 @@ afw_os_environment_initialize(afw_xctx_t *xctx)
 AFW_DEFINE(afw_uint32_t) afw_os_get_pid()
 {
     return getpid();
+}
+
+
+/* Current RSS in kilobytes. Linux /proc; no heap allocation. */
+AFW_DEFINE(afw_size_t)
+afw_os_get_rss()
+{
+#ifdef __linux__
+    char buf[64];
+    char *p;
+    unsigned long resident_pages;
+    ssize_t n;
+    long page_kb;
+    int fd;
+
+    fd = open("/proc/self/statm", O_RDONLY);
+    if (fd < 0) {
+        return 0;
+    }
+    n = read(fd, buf, sizeof(buf) - 1);
+    close(fd);
+    if (n <= 0) {
+        return 0;
+    }
+    buf[n] = 0;
+
+    /* skip size; parse resident (pages). */
+    p = buf;
+    while (*p && *p != ' ') {
+        p++;
+    }
+    if (*p != ' ') {
+        return 0;
+    }
+    p++;
+    resident_pages = 0;
+    while (*p >= '0' && *p <= '9') {
+        resident_pages = resident_pages * 10UL +
+            (unsigned long)(*p - '0');
+        p++;
+    }
+    page_kb = sysconf(_SC_PAGESIZE) / 1024;
+    if (page_kb <= 0) {
+        return 0;
+    }
+    return (afw_size_t)resident_pages * (afw_size_t)page_kb;
+#else
+    return 0;
+#endif
 }
 
 
