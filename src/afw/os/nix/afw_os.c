@@ -630,6 +630,19 @@ AFW_DEFINE(afw_uint32_t) afw_os_get_pid()
 }
 
 
+/* Maximum resident set size for this process so far. */
+AFW_DEFINE(afw_size_t)
+afw_os_get_maxrss()
+{
+    struct rusage usage;
+
+    if (getrusage(RUSAGE_SELF, &usage) != 0) {
+        return 0;
+    }
+    return (afw_size_t)usage.ru_maxrss;
+}
+
+
 /* Return the suffix appended to dso file names for this system. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_os_get_dso_suffix()

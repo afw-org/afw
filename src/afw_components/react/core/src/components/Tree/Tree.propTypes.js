@@ -7,7 +7,7 @@ let Tree_Node;
 Tree_Node = {
     /**
      * Property: children
-     * Data Type: (list, object _AdaptiveLayoutComponentType_Tree_Node)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_Tree_Node)
      * 
      * The children of this Tree Node.
      */
@@ -48,7 +48,7 @@ Tree_Node = {
 export const propTypes = {
     /**
      * children
-     * Data Type: (list, object _AdaptiveLayoutComponentType_Tree_Node)
+     * Data Type: (array, object _AdaptiveLayoutComponentType_Tree_Node)
      * 
      * The children of this Tree.
      */
@@ -62,14 +62,14 @@ export const propTypes = {
     dense:                              PropTypes.bool,
     /**
      * expandedKeys
-     * Data Type: (list, string)
+     * Data Type: (array, string)
      * 
      * The keys of nodes in this tree that are expanded.
      */
     expandedKeys:                       PropTypes.arrayOf(PropTypes.string),
     /**
      * selectedKeys
-     * Data Type: (list, string)
+     * Data Type: (array, string)
      * 
      * The keys of nodes in this tree that are selected.
      */

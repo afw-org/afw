@@ -7,7 +7,7 @@ import * as React from "react";
 export interface IBreadcrumbProps {
     /**
      * items
-     * Data Type: (list, _AdaptiveLayoutComponentType_BreadcrumbItem)
+     * Data Type: (array, _AdaptiveLayoutComponentType_BreadcrumbItem)
      * 
      * Breadcrumb items
      * 

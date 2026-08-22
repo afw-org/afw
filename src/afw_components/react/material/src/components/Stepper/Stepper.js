@@ -56,7 +56,7 @@ Stepper.propTypes = {
     activeStep:                         PropTypes.number,
     /**
      * steps
-     * Data Type: (list, string)
+     * Data Type: (array, string)
      * 
      * The list of steps to be displayed for a the Stepper component.
      */

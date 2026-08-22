@@ -22,7 +22,7 @@ export const propTypes = {
     label:                              PropTypes.string,
     /**
      * options
-     * Data Type: (list, object)
+     * Data Type: (array, object)
      * 
      * The available options for the ToggleButtons component.
      */

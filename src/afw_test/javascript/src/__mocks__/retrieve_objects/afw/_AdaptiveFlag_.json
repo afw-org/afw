@@ -1103,7 +1103,6 @@
                 "trace",
                 "trace:adapter:detail",
                 "trace:authorizationHandler:detail",
-                "trace:evaluation:detail",
                 "trace:request:detail",
                 "trace:authorization:detail"
             ],
@@ -1118,7 +1117,6 @@
                 "trace:adapter",
                 "trace:authorizationHandler:detail",
                 "trace:authorizationHandler",
-                "trace:evaluation:detail",
                 "trace:request:detail",
                 "trace:request",
                 "trace:adapterType:afw_runtime:detail",
@@ -1596,23 +1594,6 @@
             "applicableFlags": [
                 "trace:adapterId:models:detail",
                 "trace:adapterId:models"
-            ]
-        },
-        {
-            "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3Aevaluation%3Adetail",
-                "objectId": "trace:evaluation:detail",
-                "objectType": "_AdaptiveFlag_"
-            },
-            "includedByFlags": [
-                "trace:detail"
-            ],
-            "flagIndex": 19,
-            "flagId": "trace:evaluation:detail",
-            "description": "This produces detail traces for adaptive value evaluations.",
-            "brief": "Detail trace for evaluations",
-            "applicableFlags": [
-                "trace:evaluation:detail"
             ]
         },
         {
