@@ -746,25 +746,28 @@ AFW_STACK_STRUCT(afw_xctx_evaluation_stack_s,
     afw_xctx_evaluation_stack_entry_t);
 
 
-#ifdef AFW_TRACE_EVALUATION
+#ifdef AFW_DEBUG_EVALUATION
 #include <stdio.h>
+#include "afw_utf8.h"
 
-#define AFW_XCTX_TRACE_EVALUATION_PRINT(xctx, short_name_z, extra_fmt_z, ...) \
+#define AFW_XCTX_DEBUG_EVALUATION_PRINT(xctx, op_z, extra_fmt_z, ...) \
 do { \
     if ((xctx) && (xctx)->env && (xctx)->env->debug_fd && \
         afw_flag_is_active( \
-            (xctx)->env->flag_index_trace_evaluation, (xctx))) \
+            (xctx)->env->flag_index_debug_evaluation, (xctx))) \
     { \
         if (afw_flag_is_active( \
-                (xctx)->env->flag_index_trace_evaluation_detail, (xctx))) \
+                (xctx)->env->flag_index_debug_evaluation_detail, (xctx))) \
         { \
             fprintf((xctx)->env->debug_fd, \
-                short_name_z " %s " extra_fmt_z "\n", \
-                AFW__FILE_LINE__, ##__VA_ARGS__); \
+                ">debug eval %s" extra_fmt_z " (%s)\n", \
+                op_z, ##__VA_ARGS__, \
+                afw_utf8_z_source_file(AFW__FILE_LINE__)); \
         } \
         else { \
             fprintf((xctx)->env->debug_fd, \
-                short_name_z " %s\n", AFW__FILE_LINE__); \
+                ">debug eval %s (%s)\n", \
+                op_z, afw_utf8_z_source_file(AFW__FILE_LINE__)); \
         } \
         fflush((xctx)->env->debug_fd); \
     } \
@@ -778,18 +781,27 @@ do { \
  * @param xctx of caller.
  * @return Don't use.
  */
-#ifdef AFW_TRACE_EVALUATION
+#ifdef AFW_DEBUG_EVALUATION
 #define afw_xctx_evaluation_stack_push_value(VALUE, xctx) \
 do { \
     const afw_value_t *_afw_eval_push_value = (VALUE); \
-    AFW_XCTX_TRACE_EVALUATION_PRINT((xctx), \
-        "evaluation_stack_push_value", \
-        "value %p inf " AFW_UTF8_FMT, \
+    const char *_afw_eval_inf_s = "-"; \
+    int _afw_eval_inf_len = 1; \
+    if (_afw_eval_push_value && _afw_eval_push_value->inf) { \
+        _afw_eval_inf_s = (const char *) \
+            _afw_eval_push_value->inf->rti.implementation_id.s; \
+        _afw_eval_inf_len = (int) \
+            _afw_eval_push_value->inf->rti.implementation_id.len; \
+        if (!_afw_eval_inf_s) { \
+            _afw_eval_inf_s = "-"; \
+            _afw_eval_inf_len = 1; \
+        } \
+    } \
+    AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
+        "push_value", \
+        " value %p inf " AFW_UTF8_FMT, \
         (const void *)_afw_eval_push_value, \
-        AFW_UTF8_FMT_OPTIONAL_ARG( \
-            (_afw_eval_push_value && _afw_eval_push_value->inf) \
-                ? &_afw_eval_push_value->inf->rti.implementation_id \
-                : NULL)); \
+        _afw_eval_inf_len, _afw_eval_inf_s); \
     afw_stack_push_direct((xctx)->evaluation_stack, (xctx)); \
     (xctx)->evaluation_stack->top->value = _afw_eval_push_value; \
 } while (0)
@@ -805,14 +817,14 @@ do { \
  * @param PARAMETER_NUMBER
  * @param xctx of caller.
  */
-#ifdef AFW_TRACE_EVALUATION
+#ifdef AFW_DEBUG_EVALUATION
 #define afw_xctx_evaluation_stack_push_parameter_number( \
     PARAMETER_NUMBER, xctx) \
 do { \
     afw_size_t _afw_eval_push_pn = (PARAMETER_NUMBER); \
-    AFW_XCTX_TRACE_EVALUATION_PRINT((xctx), \
-        "evaluation_stack_push_parameter_number", \
-        "n " AFW_SIZE_T_FMT, \
+    AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
+        "push_parameter_number", \
+        " n " AFW_SIZE_T_FMT, \
         _afw_eval_push_pn); \
     afw_stack_push_direct((xctx)->evaluation_stack, (xctx)); \
     (xctx)->evaluation_stack->top->parameter_number = _afw_eval_push_pn; \
@@ -833,11 +845,11 @@ do { \
  * @brief Pop top PARAMETER_NUMBER or VALUE off execution stack.
  * @param xctx of caller.
  */
-#ifdef AFW_TRACE_EVALUATION
+#ifdef AFW_DEBUG_EVALUATION
 #define afw_xctx_evaluation_stack_pop(xctx) \
 do { \
-    AFW_XCTX_TRACE_EVALUATION_PRINT((xctx), \
-        "evaluation_stack_pop", "%s", ""); \
+    AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
+        "pop", ""); \
     if ((xctx)->evaluation_stack->top->entry_id == afw_s_parameter_number) { \
         afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
     } \
@@ -858,11 +870,11 @@ afw_stack_pop(xctx->evaluation_stack, xctx)
  * 
  * Use only when you're positive top of stack is VALUE.
  */
-#ifdef AFW_TRACE_EVALUATION
+#ifdef AFW_DEBUG_EVALUATION
 #define afw_xctx_evaluation_stack_pop_value(xctx) \
 do { \
-    AFW_XCTX_TRACE_EVALUATION_PRINT((xctx), \
-        "evaluation_stack_pop_value", "%s", ""); \
+    AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
+        "pop_value", ""); \
     afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
 } while (0)
 #else
@@ -878,11 +890,11 @@ afw_stack_pop(xctx->evaluation_stack, xctx)
  *
  * Use only when you're positive top of stack is PARAMETER_NUMBER.
  */
-#ifdef AFW_TRACE_EVALUATION
+#ifdef AFW_DEBUG_EVALUATION
 #define afw_xctx_evaluation_stack_pop_parameter_number(xctx) \
 do { \
-    AFW_XCTX_TRACE_EVALUATION_PRINT((xctx), \
-        "evaluation_stack_pop_parameter_number", "%s", ""); \
+    AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
+        "pop_parameter_number", ""); \
     afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
     afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
 } while (0)
@@ -897,12 +909,12 @@ afw_stack_pop(xctx->evaluation_stack, xctx)
  * @brief Save top of stack.
  * @param xctx of caller.
  */
-#ifdef AFW_TRACE_EVALUATION
+#ifdef AFW_DEBUG_EVALUATION
 #define afw_xctx_evaluation_stack_save_top(xctx) \
 afw_xctx_evaluation_stack_entry_t *evaluation_stack_save_top = \
 (xctx)->evaluation_stack->top; \
-AFW_XCTX_TRACE_EVALUATION_PRINT((xctx), \
-    "evaluation_stack_save_top", "%s", "")
+AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
+    "save_top", "")
 #else
 #define afw_xctx_evaluation_stack_save_top(xctx) \
 afw_xctx_evaluation_stack_entry_t *evaluation_stack_save_top = \
@@ -914,11 +926,11 @@ xctx->evaluation_stack->top
  * @brief Restore top of stack.
  * @param xctx of caller.
  */
-#ifdef AFW_TRACE_EVALUATION
+#ifdef AFW_DEBUG_EVALUATION
 #define afw_xctx_evaluation_stack_restore_top(xctx) \
 do { \
-    AFW_XCTX_TRACE_EVALUATION_PRINT((xctx), \
-        "evaluation_stack_restore_top", "%s", ""); \
+    AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
+        "restore_top", ""); \
     (xctx)->evaluation_stack->top = evaluation_stack_save_top; \
 } while (0)
 #else

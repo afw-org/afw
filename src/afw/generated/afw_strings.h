@@ -11105,6 +11105,162 @@ afw_self_v_a_flag_debug_detail_description;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_evaluation \
+    "debug:evaluation"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_evaluation */
+#define afw_s_a_flag_debug_evaluation \
+    (&afw_self_v_a_flag_debug_evaluation.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_evaluation */
+#define afw_self_s_a_flag_debug_evaluation \
+    (afw_self_v_a_flag_debug_evaluation.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_evaluation */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_evaluation;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_evaluation */
+#define afw_z_a_flag_debug_evaluation \
+    (afw_self_v_a_flag_debug_evaluation.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_evaluation */
+#define afw_v_a_flag_debug_evaluation \
+    (&afw_self_v_a_flag_debug_evaluation.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_evaluation_brief \
+    "Basic debug for evaluations"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_evaluation_brief */
+#define afw_s_a_flag_debug_evaluation_brief \
+    (&afw_self_v_a_flag_debug_evaluation_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_evaluation_brief */
+#define afw_self_s_a_flag_debug_evaluation_brief \
+    (afw_self_v_a_flag_debug_evaluation_brief.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_evaluation_brief */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_evaluation_brief;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_evaluation_brief */
+#define afw_z_a_flag_debug_evaluation_brief \
+    (afw_self_v_a_flag_debug_evaluation_brief.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_evaluation_brief */
+#define afw_v_a_flag_debug_evaluation_brief \
+    (&afw_self_v_a_flag_debug_evaluation_brief.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_evaluation_description \
+    "This produces basic debug lines for evaluation stack push and pop."
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_evaluation_description */
+#define afw_s_a_flag_debug_evaluation_description \
+    (&afw_self_v_a_flag_debug_evaluation_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_evaluation_description */
+#define afw_self_s_a_flag_debug_evaluation_description \
+    (afw_self_v_a_flag_debug_evaluation_description.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_evaluation_description */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_evaluation_description;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_evaluation_description */
+#define afw_z_a_flag_debug_evaluation_description \
+    (afw_self_v_a_flag_debug_evaluation_description.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_evaluation_description */
+#define afw_v_a_flag_debug_evaluation_description \
+    (&afw_self_v_a_flag_debug_evaluation_description.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_evaluation_detail \
+    "debug:evaluation:detail"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_evaluation_detail */
+#define afw_s_a_flag_debug_evaluation_detail \
+    (&afw_self_v_a_flag_debug_evaluation_detail.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_evaluation_detail */
+#define afw_self_s_a_flag_debug_evaluation_detail \
+    (afw_self_v_a_flag_debug_evaluation_detail.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_evaluation_detail */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_evaluation_detail;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_evaluation_detail */
+#define afw_z_a_flag_debug_evaluation_detail \
+    (afw_self_v_a_flag_debug_evaluation_detail.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_evaluation_detail */
+#define afw_v_a_flag_debug_evaluation_detail \
+    (&afw_self_v_a_flag_debug_evaluation_detail.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_evaluation_detail_brief \
+    "Detail debug for evaluations"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_evaluation_detail_brief */
+#define afw_s_a_flag_debug_evaluation_detail_brief \
+    (&afw_self_v_a_flag_debug_evaluation_detail_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_evaluation_detail_brief */
+#define afw_self_s_a_flag_debug_evaluation_detail_brief \
+    (afw_self_v_a_flag_debug_evaluation_detail_brief.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_evaluation_detail_brief */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_evaluation_detail_brief;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_evaluation_detail_brief */
+#define afw_z_a_flag_debug_evaluation_detail_brief \
+    (afw_self_v_a_flag_debug_evaluation_detail_brief.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_evaluation_detail_brief */
+#define afw_v_a_flag_debug_evaluation_detail_brief \
+    (&afw_self_v_a_flag_debug_evaluation_detail_brief.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_evaluation_detail_description \
+    "This produces basic plus additional detail debug lines for evaluation stack push and pop."
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_evaluation_detail_description */
+#define afw_s_a_flag_debug_evaluation_detail_description \
+    (&afw_self_v_a_flag_debug_evaluation_detail_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_evaluation_detail_description */
+#define afw_self_s_a_flag_debug_evaluation_detail_description \
+    (afw_self_v_a_flag_debug_evaluation_detail_description.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_evaluation_detail_description */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_evaluation_detail_description;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_evaluation_detail_description */
+#define afw_z_a_flag_debug_evaluation_detail_description \
+    (afw_self_v_a_flag_debug_evaluation_detail_description.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_evaluation_detail_description */
+#define afw_v_a_flag_debug_evaluation_detail_description \
+    (&afw_self_v_a_flag_debug_evaluation_detail_description.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_a_flag_debug_function_active \
     "debug:function_active"
 
@@ -11257,6 +11413,318 @@ afw_self_v_a_flag_debug_function_active_detail_description;
 /** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_function_active_detail_description */
 #define afw_v_a_flag_debug_function_active_detail_description \
     (&afw_self_v_a_flag_debug_function_active_detail_description.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_lock \
+    "debug:lock"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_lock */
+#define afw_s_a_flag_debug_lock \
+    (&afw_self_v_a_flag_debug_lock.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_lock */
+#define afw_self_s_a_flag_debug_lock \
+    (afw_self_v_a_flag_debug_lock.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_lock */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_lock;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_lock */
+#define afw_z_a_flag_debug_lock \
+    (afw_self_v_a_flag_debug_lock.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_lock */
+#define afw_v_a_flag_debug_lock \
+    (&afw_self_v_a_flag_debug_lock.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_lock_brief \
+    "Basic debug for locks"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_lock_brief */
+#define afw_s_a_flag_debug_lock_brief \
+    (&afw_self_v_a_flag_debug_lock_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_lock_brief */
+#define afw_self_s_a_flag_debug_lock_brief \
+    (afw_self_v_a_flag_debug_lock_brief.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_lock_brief */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_lock_brief;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_lock_brief */
+#define afw_z_a_flag_debug_lock_brief \
+    (afw_self_v_a_flag_debug_lock_brief.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_lock_brief */
+#define afw_v_a_flag_debug_lock_brief \
+    (&afw_self_v_a_flag_debug_lock_brief.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_lock_description \
+    "This produces basic debug lines for lock obtain and release."
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_lock_description */
+#define afw_s_a_flag_debug_lock_description \
+    (&afw_self_v_a_flag_debug_lock_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_lock_description */
+#define afw_self_s_a_flag_debug_lock_description \
+    (afw_self_v_a_flag_debug_lock_description.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_lock_description */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_lock_description;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_lock_description */
+#define afw_z_a_flag_debug_lock_description \
+    (afw_self_v_a_flag_debug_lock_description.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_lock_description */
+#define afw_v_a_flag_debug_lock_description \
+    (&afw_self_v_a_flag_debug_lock_description.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_lock_detail \
+    "debug:lock:detail"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_lock_detail */
+#define afw_s_a_flag_debug_lock_detail \
+    (&afw_self_v_a_flag_debug_lock_detail.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_lock_detail */
+#define afw_self_s_a_flag_debug_lock_detail \
+    (afw_self_v_a_flag_debug_lock_detail.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_lock_detail */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_lock_detail;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_lock_detail */
+#define afw_z_a_flag_debug_lock_detail \
+    (afw_self_v_a_flag_debug_lock_detail.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_lock_detail */
+#define afw_v_a_flag_debug_lock_detail \
+    (&afw_self_v_a_flag_debug_lock_detail.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_lock_detail_brief \
+    "Detail debug for locks"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_lock_detail_brief */
+#define afw_s_a_flag_debug_lock_detail_brief \
+    (&afw_self_v_a_flag_debug_lock_detail_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_lock_detail_brief */
+#define afw_self_s_a_flag_debug_lock_detail_brief \
+    (afw_self_v_a_flag_debug_lock_detail_brief.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_lock_detail_brief */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_lock_detail_brief;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_lock_detail_brief */
+#define afw_z_a_flag_debug_lock_detail_brief \
+    (afw_self_v_a_flag_debug_lock_detail_brief.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_lock_detail_brief */
+#define afw_v_a_flag_debug_lock_detail_brief \
+    (&afw_self_v_a_flag_debug_lock_detail_brief.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_lock_detail_description \
+    "This produces basic plus additional detail debug lines for lock obtain and release."
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_lock_detail_description */
+#define afw_s_a_flag_debug_lock_detail_description \
+    (&afw_self_v_a_flag_debug_lock_detail_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_lock_detail_description */
+#define afw_self_s_a_flag_debug_lock_detail_description \
+    (afw_self_v_a_flag_debug_lock_detail_description.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_lock_detail_description */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_lock_detail_description;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_lock_detail_description */
+#define afw_z_a_flag_debug_lock_detail_description \
+    (afw_self_v_a_flag_debug_lock_detail_description.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_lock_detail_description */
+#define afw_v_a_flag_debug_lock_detail_description \
+    (&afw_self_v_a_flag_debug_lock_detail_description.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_pool \
+    "debug:pool"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool */
+#define afw_s_a_flag_debug_pool \
+    (&afw_self_v_a_flag_debug_pool.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool */
+#define afw_self_s_a_flag_debug_pool \
+    (afw_self_v_a_flag_debug_pool.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_pool */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_pool;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_pool */
+#define afw_z_a_flag_debug_pool \
+    (afw_self_v_a_flag_debug_pool.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_pool */
+#define afw_v_a_flag_debug_pool \
+    (&afw_self_v_a_flag_debug_pool.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_pool_brief \
+    "Basic debug for pools"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool_brief */
+#define afw_s_a_flag_debug_pool_brief \
+    (&afw_self_v_a_flag_debug_pool_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool_brief */
+#define afw_self_s_a_flag_debug_pool_brief \
+    (afw_self_v_a_flag_debug_pool_brief.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_pool_brief */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_pool_brief;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_pool_brief */
+#define afw_z_a_flag_debug_pool_brief \
+    (afw_self_v_a_flag_debug_pool_brief.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_pool_brief */
+#define afw_v_a_flag_debug_pool_brief \
+    (&afw_self_v_a_flag_debug_pool_brief.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_pool_description \
+    "This produces basic debug lines for pool create, release, and destroy."
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool_description */
+#define afw_s_a_flag_debug_pool_description \
+    (&afw_self_v_a_flag_debug_pool_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool_description */
+#define afw_self_s_a_flag_debug_pool_description \
+    (afw_self_v_a_flag_debug_pool_description.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_pool_description */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_pool_description;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_pool_description */
+#define afw_z_a_flag_debug_pool_description \
+    (afw_self_v_a_flag_debug_pool_description.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_pool_description */
+#define afw_v_a_flag_debug_pool_description \
+    (&afw_self_v_a_flag_debug_pool_description.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_pool_detail \
+    "debug:pool:detail"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool_detail */
+#define afw_s_a_flag_debug_pool_detail \
+    (&afw_self_v_a_flag_debug_pool_detail.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool_detail */
+#define afw_self_s_a_flag_debug_pool_detail \
+    (afw_self_v_a_flag_debug_pool_detail.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_pool_detail */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_pool_detail;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_pool_detail */
+#define afw_z_a_flag_debug_pool_detail \
+    (afw_self_v_a_flag_debug_pool_detail.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_pool_detail */
+#define afw_v_a_flag_debug_pool_detail \
+    (&afw_self_v_a_flag_debug_pool_detail.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_pool_detail_brief \
+    "Detail debug for pools"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool_detail_brief */
+#define afw_s_a_flag_debug_pool_detail_brief \
+    (&afw_self_v_a_flag_debug_pool_detail_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool_detail_brief */
+#define afw_self_s_a_flag_debug_pool_detail_brief \
+    (afw_self_v_a_flag_debug_pool_detail_brief.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_pool_detail_brief */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_pool_detail_brief;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_pool_detail_brief */
+#define afw_z_a_flag_debug_pool_detail_brief \
+    (afw_self_v_a_flag_debug_pool_detail_brief.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_pool_detail_brief */
+#define afw_v_a_flag_debug_pool_detail_brief \
+    (&afw_self_v_a_flag_debug_pool_detail_brief.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_debug_pool_detail_description \
+    "This produces basic plus additional detail debug lines for pool allocate and free."
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool_detail_description */
+#define afw_s_a_flag_debug_pool_detail_description \
+    (&afw_self_v_a_flag_debug_pool_detail_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool_detail_description */
+#define afw_self_s_a_flag_debug_pool_detail_description \
+    (afw_self_v_a_flag_debug_pool_detail_description.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_debug_pool_detail_description */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_debug_pool_detail_description;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_debug_pool_detail_description */
+#define afw_z_a_flag_debug_pool_detail_description \
+    (afw_self_v_a_flag_debug_pool_detail_description.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_debug_pool_detail_description */
+#define afw_v_a_flag_debug_pool_detail_description \
+    (&afw_self_v_a_flag_debug_pool_detail_description.pub)
 
 
 
@@ -13129,474 +13597,6 @@ afw_self_v_a_flag_trace_detail_description;
 /** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_detail_description */
 #define afw_v_a_flag_trace_detail_description \
     (&afw_self_v_a_flag_trace_detail_description.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_evaluation \
-    "trace:evaluation"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_evaluation */
-#define afw_s_a_flag_trace_evaluation \
-    (&afw_self_v_a_flag_trace_evaluation.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_evaluation */
-#define afw_self_s_a_flag_trace_evaluation \
-    (afw_self_v_a_flag_trace_evaluation.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_evaluation */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_evaluation;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_evaluation */
-#define afw_z_a_flag_trace_evaluation \
-    (afw_self_v_a_flag_trace_evaluation.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_evaluation */
-#define afw_v_a_flag_trace_evaluation \
-    (&afw_self_v_a_flag_trace_evaluation.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_evaluation_brief \
-    "Basic trace for evaluations"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_evaluation_brief */
-#define afw_s_a_flag_trace_evaluation_brief \
-    (&afw_self_v_a_flag_trace_evaluation_brief.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_evaluation_brief */
-#define afw_self_s_a_flag_trace_evaluation_brief \
-    (afw_self_v_a_flag_trace_evaluation_brief.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_evaluation_brief */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_evaluation_brief;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_evaluation_brief */
-#define afw_z_a_flag_trace_evaluation_brief \
-    (afw_self_v_a_flag_trace_evaluation_brief.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_evaluation_brief */
-#define afw_v_a_flag_trace_evaluation_brief \
-    (&afw_self_v_a_flag_trace_evaluation_brief.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_evaluation_description \
-    "This produces basic traces for evaluation stack push and pop."
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_evaluation_description */
-#define afw_s_a_flag_trace_evaluation_description \
-    (&afw_self_v_a_flag_trace_evaluation_description.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_evaluation_description */
-#define afw_self_s_a_flag_trace_evaluation_description \
-    (afw_self_v_a_flag_trace_evaluation_description.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_evaluation_description */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_evaluation_description;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_evaluation_description */
-#define afw_z_a_flag_trace_evaluation_description \
-    (afw_self_v_a_flag_trace_evaluation_description.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_evaluation_description */
-#define afw_v_a_flag_trace_evaluation_description \
-    (&afw_self_v_a_flag_trace_evaluation_description.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_evaluation_detail \
-    "trace:evaluation:detail"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_evaluation_detail */
-#define afw_s_a_flag_trace_evaluation_detail \
-    (&afw_self_v_a_flag_trace_evaluation_detail.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_evaluation_detail */
-#define afw_self_s_a_flag_trace_evaluation_detail \
-    (afw_self_v_a_flag_trace_evaluation_detail.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_evaluation_detail */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_evaluation_detail;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_evaluation_detail */
-#define afw_z_a_flag_trace_evaluation_detail \
-    (afw_self_v_a_flag_trace_evaluation_detail.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_evaluation_detail */
-#define afw_v_a_flag_trace_evaluation_detail \
-    (&afw_self_v_a_flag_trace_evaluation_detail.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_evaluation_detail_brief \
-    "Detail trace for evaluations"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_evaluation_detail_brief */
-#define afw_s_a_flag_trace_evaluation_detail_brief \
-    (&afw_self_v_a_flag_trace_evaluation_detail_brief.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_evaluation_detail_brief */
-#define afw_self_s_a_flag_trace_evaluation_detail_brief \
-    (afw_self_v_a_flag_trace_evaluation_detail_brief.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_evaluation_detail_brief */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_evaluation_detail_brief;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_evaluation_detail_brief */
-#define afw_z_a_flag_trace_evaluation_detail_brief \
-    (afw_self_v_a_flag_trace_evaluation_detail_brief.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_evaluation_detail_brief */
-#define afw_v_a_flag_trace_evaluation_detail_brief \
-    (&afw_self_v_a_flag_trace_evaluation_detail_brief.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_evaluation_detail_description \
-    "This produces basic plus additional detail traces for evaluation stack push and pop."
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_evaluation_detail_description */
-#define afw_s_a_flag_trace_evaluation_detail_description \
-    (&afw_self_v_a_flag_trace_evaluation_detail_description.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_evaluation_detail_description */
-#define afw_self_s_a_flag_trace_evaluation_detail_description \
-    (afw_self_v_a_flag_trace_evaluation_detail_description.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_evaluation_detail_description */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_evaluation_detail_description;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_evaluation_detail_description */
-#define afw_z_a_flag_trace_evaluation_detail_description \
-    (afw_self_v_a_flag_trace_evaluation_detail_description.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_evaluation_detail_description */
-#define afw_v_a_flag_trace_evaluation_detail_description \
-    (&afw_self_v_a_flag_trace_evaluation_detail_description.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_lock \
-    "trace:lock"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_lock */
-#define afw_s_a_flag_trace_lock \
-    (&afw_self_v_a_flag_trace_lock.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_lock */
-#define afw_self_s_a_flag_trace_lock \
-    (afw_self_v_a_flag_trace_lock.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_lock */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_lock;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_lock */
-#define afw_z_a_flag_trace_lock \
-    (afw_self_v_a_flag_trace_lock.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_lock */
-#define afw_v_a_flag_trace_lock \
-    (&afw_self_v_a_flag_trace_lock.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_lock_brief \
-    "Basic trace for locks"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_lock_brief */
-#define afw_s_a_flag_trace_lock_brief \
-    (&afw_self_v_a_flag_trace_lock_brief.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_lock_brief */
-#define afw_self_s_a_flag_trace_lock_brief \
-    (afw_self_v_a_flag_trace_lock_brief.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_lock_brief */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_lock_brief;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_lock_brief */
-#define afw_z_a_flag_trace_lock_brief \
-    (afw_self_v_a_flag_trace_lock_brief.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_lock_brief */
-#define afw_v_a_flag_trace_lock_brief \
-    (&afw_self_v_a_flag_trace_lock_brief.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_lock_description \
-    "This produces basic traces for lock obtain and release."
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_lock_description */
-#define afw_s_a_flag_trace_lock_description \
-    (&afw_self_v_a_flag_trace_lock_description.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_lock_description */
-#define afw_self_s_a_flag_trace_lock_description \
-    (afw_self_v_a_flag_trace_lock_description.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_lock_description */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_lock_description;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_lock_description */
-#define afw_z_a_flag_trace_lock_description \
-    (afw_self_v_a_flag_trace_lock_description.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_lock_description */
-#define afw_v_a_flag_trace_lock_description \
-    (&afw_self_v_a_flag_trace_lock_description.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_lock_detail \
-    "trace:lock:detail"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_lock_detail */
-#define afw_s_a_flag_trace_lock_detail \
-    (&afw_self_v_a_flag_trace_lock_detail.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_lock_detail */
-#define afw_self_s_a_flag_trace_lock_detail \
-    (afw_self_v_a_flag_trace_lock_detail.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_lock_detail */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_lock_detail;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_lock_detail */
-#define afw_z_a_flag_trace_lock_detail \
-    (afw_self_v_a_flag_trace_lock_detail.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_lock_detail */
-#define afw_v_a_flag_trace_lock_detail \
-    (&afw_self_v_a_flag_trace_lock_detail.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_lock_detail_brief \
-    "Detail trace for locks"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_lock_detail_brief */
-#define afw_s_a_flag_trace_lock_detail_brief \
-    (&afw_self_v_a_flag_trace_lock_detail_brief.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_lock_detail_brief */
-#define afw_self_s_a_flag_trace_lock_detail_brief \
-    (afw_self_v_a_flag_trace_lock_detail_brief.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_lock_detail_brief */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_lock_detail_brief;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_lock_detail_brief */
-#define afw_z_a_flag_trace_lock_detail_brief \
-    (afw_self_v_a_flag_trace_lock_detail_brief.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_lock_detail_brief */
-#define afw_v_a_flag_trace_lock_detail_brief \
-    (&afw_self_v_a_flag_trace_lock_detail_brief.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_lock_detail_description \
-    "This produces basic plus additional detail traces for lock obtain and release."
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_lock_detail_description */
-#define afw_s_a_flag_trace_lock_detail_description \
-    (&afw_self_v_a_flag_trace_lock_detail_description.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_lock_detail_description */
-#define afw_self_s_a_flag_trace_lock_detail_description \
-    (afw_self_v_a_flag_trace_lock_detail_description.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_lock_detail_description */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_lock_detail_description;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_lock_detail_description */
-#define afw_z_a_flag_trace_lock_detail_description \
-    (afw_self_v_a_flag_trace_lock_detail_description.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_lock_detail_description */
-#define afw_v_a_flag_trace_lock_detail_description \
-    (&afw_self_v_a_flag_trace_lock_detail_description.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_pool \
-    "trace:pool"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_pool */
-#define afw_s_a_flag_trace_pool \
-    (&afw_self_v_a_flag_trace_pool.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_pool */
-#define afw_self_s_a_flag_trace_pool \
-    (afw_self_v_a_flag_trace_pool.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_pool */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_pool;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_pool */
-#define afw_z_a_flag_trace_pool \
-    (afw_self_v_a_flag_trace_pool.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_pool */
-#define afw_v_a_flag_trace_pool \
-    (&afw_self_v_a_flag_trace_pool.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_pool_brief \
-    "Basic trace for pools"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_pool_brief */
-#define afw_s_a_flag_trace_pool_brief \
-    (&afw_self_v_a_flag_trace_pool_brief.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_pool_brief */
-#define afw_self_s_a_flag_trace_pool_brief \
-    (afw_self_v_a_flag_trace_pool_brief.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_pool_brief */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_pool_brief;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_pool_brief */
-#define afw_z_a_flag_trace_pool_brief \
-    (afw_self_v_a_flag_trace_pool_brief.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_pool_brief */
-#define afw_v_a_flag_trace_pool_brief \
-    (&afw_self_v_a_flag_trace_pool_brief.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_pool_description \
-    "This produces basic traces for pool create, release, and destroy."
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_pool_description */
-#define afw_s_a_flag_trace_pool_description \
-    (&afw_self_v_a_flag_trace_pool_description.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_pool_description */
-#define afw_self_s_a_flag_trace_pool_description \
-    (afw_self_v_a_flag_trace_pool_description.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_pool_description */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_pool_description;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_pool_description */
-#define afw_z_a_flag_trace_pool_description \
-    (afw_self_v_a_flag_trace_pool_description.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_pool_description */
-#define afw_v_a_flag_trace_pool_description \
-    (&afw_self_v_a_flag_trace_pool_description.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_pool_detail \
-    "trace:pool:detail"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_pool_detail */
-#define afw_s_a_flag_trace_pool_detail \
-    (&afw_self_v_a_flag_trace_pool_detail.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_pool_detail */
-#define afw_self_s_a_flag_trace_pool_detail \
-    (afw_self_v_a_flag_trace_pool_detail.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_pool_detail */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_pool_detail;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_pool_detail */
-#define afw_z_a_flag_trace_pool_detail \
-    (afw_self_v_a_flag_trace_pool_detail.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_pool_detail */
-#define afw_v_a_flag_trace_pool_detail \
-    (&afw_self_v_a_flag_trace_pool_detail.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_pool_detail_brief \
-    "Detail trace for pools"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_pool_detail_brief */
-#define afw_s_a_flag_trace_pool_detail_brief \
-    (&afw_self_v_a_flag_trace_pool_detail_brief.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_pool_detail_brief */
-#define afw_self_s_a_flag_trace_pool_detail_brief \
-    (afw_self_v_a_flag_trace_pool_detail_brief.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_pool_detail_brief */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_pool_detail_brief;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_pool_detail_brief */
-#define afw_z_a_flag_trace_pool_detail_brief \
-    (afw_self_v_a_flag_trace_pool_detail_brief.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_pool_detail_brief */
-#define afw_v_a_flag_trace_pool_detail_brief \
-    (&afw_self_v_a_flag_trace_pool_detail_brief.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_flag_trace_pool_detail_description \
-    "This produces basic plus additional detail traces for pool allocate and free."
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_pool_detail_description */
-#define afw_s_a_flag_trace_pool_detail_description \
-    (&afw_self_v_a_flag_trace_pool_detail_description.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_flag_trace_pool_detail_description */
-#define afw_self_s_a_flag_trace_pool_detail_description \
-    (afw_self_v_a_flag_trace_pool_detail_description.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_flag_trace_pool_detail_description */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_flag_trace_pool_detail_description;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_trace_pool_detail_description */
-#define afw_z_a_flag_trace_pool_detail_description \
-    (afw_self_v_a_flag_trace_pool_detail_description.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_flag_trace_pool_detail_description */
-#define afw_v_a_flag_trace_pool_detail_description \
-    (&afw_self_v_a_flag_trace_pool_detail_description.pub)
 
 
 
@@ -50547,6 +50547,58 @@ afw_self_v_debug;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_debugFlagId \
+    "debugFlagId"
+
+/** @brief 'afw_utf8_t' for AFW_Q_debugFlagId */
+#define afw_s_debugFlagId \
+    (&afw_self_v_debugFlagId.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_debugFlagId */
+#define afw_self_s_debugFlagId \
+    (afw_self_v_debugFlagId.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_debugFlagId */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_debugFlagId;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_debugFlagId */
+#define afw_z_debugFlagId \
+    (afw_self_v_debugFlagId.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_debugFlagId */
+#define afw_v_debugFlagId \
+    (&afw_self_v_debugFlagId.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_debugFlagIndex \
+    "debugFlagIndex"
+
+/** @brief 'afw_utf8_t' for AFW_Q_debugFlagIndex */
+#define afw_s_debugFlagIndex \
+    (&afw_self_v_debugFlagIndex.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_debugFlagIndex */
+#define afw_self_s_debugFlagIndex \
+    (afw_self_v_debugFlagIndex.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_debugFlagIndex */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_debugFlagIndex;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_debugFlagIndex */
+#define afw_z_debugFlagIndex \
+    (afw_self_v_debugFlagIndex.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_debugFlagIndex */
+#define afw_v_debugFlagIndex \
+    (&afw_self_v_debugFlagIndex.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_decision \
     "decision"
 
@@ -57515,28 +57567,28 @@ afw_self_v_flag_id;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_flag_id_trace \
-    "flag_id_trace"
+#define AFW_Q_flag_id_debug \
+    "flag_id_debug"
 
-/** @brief 'afw_utf8_t' for AFW_Q_flag_id_trace */
-#define afw_s_flag_id_trace \
-    (&afw_self_v_flag_id_trace.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_flag_id_debug */
+#define afw_s_flag_id_debug \
+    (&afw_self_v_flag_id_debug.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_flag_id_trace */
-#define afw_self_s_flag_id_trace \
-    (afw_self_v_flag_id_trace.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_flag_id_debug */
+#define afw_self_s_flag_id_debug \
+    (afw_self_v_flag_id_debug.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_flag_id_trace */
+/** @brief 'afw_value_string_t' for AFW_Q_flag_id_debug */
 AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_flag_id_trace;
+afw_self_v_flag_id_debug;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_flag_id_trace */
-#define afw_z_flag_id_trace \
-    (afw_self_v_flag_id_trace.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_flag_id_debug */
+#define afw_z_flag_id_debug \
+    (afw_self_v_flag_id_debug.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_flag_id_trace */
-#define afw_v_flag_id_trace \
-    (&afw_self_v_flag_id_trace.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_flag_id_debug */
+#define afw_v_flag_id_debug \
+    (&afw_self_v_flag_id_debug.pub)
 
 
 
@@ -57567,28 +57619,28 @@ afw_self_v_flag_index;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_flag_index_trace \
-    "flag_index_trace"
+#define AFW_Q_flag_index_debug \
+    "flag_index_debug"
 
-/** @brief 'afw_utf8_t' for AFW_Q_flag_index_trace */
-#define afw_s_flag_index_trace \
-    (&afw_self_v_flag_index_trace.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_flag_index_debug */
+#define afw_s_flag_index_debug \
+    (&afw_self_v_flag_index_debug.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_flag_index_trace */
-#define afw_self_s_flag_index_trace \
-    (afw_self_v_flag_index_trace.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_flag_index_debug */
+#define afw_self_s_flag_index_debug \
+    (afw_self_v_flag_index_debug.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_flag_index_trace */
+/** @brief 'afw_value_string_t' for AFW_Q_flag_index_debug */
 AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_flag_index_trace;
+afw_self_v_flag_index_debug;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_flag_index_trace */
-#define afw_z_flag_index_trace \
-    (afw_self_v_flag_index_trace.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_flag_index_debug */
+#define afw_z_flag_index_debug \
+    (afw_self_v_flag_index_debug.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_flag_index_trace */
-#define afw_v_flag_index_trace \
-    (&afw_self_v_flag_index_trace.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_flag_index_debug */
+#define afw_v_flag_index_debug \
+    (&afw_self_v_flag_index_debug.pub)
 
 
 
@@ -95471,58 +95523,6 @@ afw_self_v_trace8;
 /** @brief 'const afw_value_t *' for AFW_Q_trace8 */
 #define afw_v_trace8 \
     (&afw_self_v_trace8.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_traceFlagId \
-    "traceFlagId"
-
-/** @brief 'afw_utf8_t' for AFW_Q_traceFlagId */
-#define afw_s_traceFlagId \
-    (&afw_self_v_traceFlagId.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_traceFlagId */
-#define afw_self_s_traceFlagId \
-    (afw_self_v_traceFlagId.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_traceFlagId */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_traceFlagId;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_traceFlagId */
-#define afw_z_traceFlagId \
-    (afw_self_v_traceFlagId.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_traceFlagId */
-#define afw_v_traceFlagId \
-    (&afw_self_v_traceFlagId.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_traceFlagIndex \
-    "traceFlagIndex"
-
-/** @brief 'afw_utf8_t' for AFW_Q_traceFlagIndex */
-#define afw_s_traceFlagIndex \
-    (&afw_self_v_traceFlagIndex.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_traceFlagIndex */
-#define afw_self_s_traceFlagIndex \
-    (afw_self_v_traceFlagIndex.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_traceFlagIndex */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_traceFlagIndex;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_traceFlagIndex */
-#define afw_z_traceFlagIndex \
-    (afw_self_v_traceFlagIndex.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_traceFlagIndex */
-#define afw_v_traceFlagIndex \
-    (&afw_self_v_traceFlagIndex.pub)
 
 
 

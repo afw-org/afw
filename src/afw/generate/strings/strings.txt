@@ -173,6 +173,30 @@ a_flag_debug_detail=debug:detail
 a_flag_debug_detail_brief=Debug detail
 a_flag_debug_detail_description=This triggers all basic plus detail debugging.
 
+a_flag_debug_evaluation=debug:evaluation
+a_flag_debug_evaluation_brief=Basic debug for evaluations
+a_flag_debug_evaluation_description=This produces basic debug lines for evaluation stack push and pop.
+
+a_flag_debug_evaluation_detail=debug:evaluation:detail
+a_flag_debug_evaluation_detail_brief=Detail debug for evaluations
+a_flag_debug_evaluation_detail_description=This produces basic plus additional detail debug lines for evaluation stack push and pop.
+
+a_flag_debug_lock=debug:lock
+a_flag_debug_lock_brief=Basic debug for locks
+a_flag_debug_lock_description=This produces basic debug lines for lock obtain and release.
+
+a_flag_debug_lock_detail=debug:lock:detail
+a_flag_debug_lock_detail_brief=Detail debug for locks
+a_flag_debug_lock_detail_description=This produces basic plus additional detail debug lines for lock obtain and release.
+
+a_flag_debug_pool=debug:pool
+a_flag_debug_pool_brief=Basic debug for pools
+a_flag_debug_pool_description=This produces basic debug lines for pool create, release, and destroy.
+
+a_flag_debug_pool_detail=debug:pool:detail
+a_flag_debug_pool_detail_brief=Detail debug for pools
+a_flag_debug_pool_detail_description=This produces basic plus additional detail debug lines for pool allocate and free.
+
 a_flag_debug_function_active=debug:function_active
 a_flag_debug_function_active_brief=Print debug() if not detail calls
 a_flag_debug_function_active_description=This causes calls to the debug() adaptive function to print if the detail parameter is not true.  If off, debug() calls are ignored.
@@ -248,30 +272,6 @@ a_flag_trace_authorizationHandler_description=This produces basic traces for all
 a_flag_trace_authorizationHandler_detail=trace:authorizationHandler:detail
 a_flag_trace_authorizationHandler_detail_brief=Detail trace for all authorizationHandlers
 a_flag_trace_authorizationHandler_detail_description=This produces all basic plus additional detail traces for all authorizationHandlers.
-
-a_flag_trace_evaluation=trace:evaluation
-a_flag_trace_evaluation_brief=Basic trace for evaluations
-a_flag_trace_evaluation_description=This produces basic traces for evaluation stack push and pop.
-
-a_flag_trace_evaluation_detail=trace:evaluation:detail
-a_flag_trace_evaluation_detail_brief=Detail trace for evaluations
-a_flag_trace_evaluation_detail_description=This produces basic plus additional detail traces for evaluation stack push and pop.
-
-a_flag_trace_lock=trace:lock
-a_flag_trace_lock_brief=Basic trace for locks
-a_flag_trace_lock_description=This produces basic traces for lock obtain and release.
-
-a_flag_trace_lock_detail=trace:lock:detail
-a_flag_trace_lock_detail_brief=Detail trace for locks
-a_flag_trace_lock_detail_description=This produces basic plus additional detail traces for lock obtain and release.
-
-a_flag_trace_pool=trace:pool
-a_flag_trace_pool_brief=Basic trace for pools
-a_flag_trace_pool_description=This produces basic traces for pool create, release, and destroy.
-
-a_flag_trace_pool_detail=trace:pool:detail
-a_flag_trace_pool_detail_brief=Detail trace for pools
-a_flag_trace_pool_detail_description=This produces basic plus additional detail traces for pool allocate and free.
 
 a_flag_trace_request=trace:request
 a_flag_trace_request_brief=Basic trace for all requests

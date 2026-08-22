@@ -43,7 +43,7 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 ## Commands (package root)
 ```bash
 # C/Python day-to-day: generate + cmake + install core/extensions/afwdev (not JS/docs); includes -j
-# Also defines AFW_TRACE_EVALUATION, AFW_TRACE_LOCK, AFW_TRACE_POOL. Extra: --define NAME
+# Also defines AFW_DEBUG_EVALUATION, AFW_DEBUG_LOCK, AFW_DEBUG_POOL. Extra: --define NAME
 ./afwdev build --cdev
 
 # Script tests (use installed afwdev after --cdev)

@@ -15,7 +15,7 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 project(afw_package LANGUAGES C)
 
 # Preprocessor defines from `afwdev build --define` (and --cdev/--fulldev
-# AFW_TRACE_*). Semicolon-separated list of NAME or NAME=VALUE.
+# AFW_DEBUG_*). Semicolon-separated list of NAME or NAME=VALUE.
 if(DEFINED AFWDEV_C_DEFINES AND NOT AFWDEV_C_DEFINES STREQUAL "")
     add_compile_definitions(${AFWDEV_C_DEFINES})
 endif()

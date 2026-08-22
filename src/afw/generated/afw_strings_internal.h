@@ -49585,6 +49585,58 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Debug_Flag_Id \
+    "Debug Flag Id"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Debug_Flag_Id */
+#define afw_s_zz__Debug_Flag_Id \
+    (&afw_self_v_zz__Debug_Flag_Id.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Debug_Flag_Id */
+#define afw_self_s_zz__Debug_Flag_Id \
+    (afw_self_v_zz__Debug_Flag_Id.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Debug_Flag_Id */
+extern const afw_value_string_t \
+    afw_self_v_zz__Debug_Flag_Id;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Debug_Flag_Id */
+#define afw_z_zz__Debug_Flag_Id \
+    (afw_self_v_zz__Debug_Flag_Id.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Debug_Flag_Id */
+#define afw_v_zz__Debug_Flag_Id \
+    (&afw_self_v_zz__Debug_Flag_Id.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Debug_Flag_Index \
+    "Debug Flag Index"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Debug_Flag_Index */
+#define afw_s_zz__Debug_Flag_Index \
+    (&afw_self_v_zz__Debug_Flag_Index.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Debug_Flag_Index */
+#define afw_self_s_zz__Debug_Flag_Index \
+    (afw_self_v_zz__Debug_Flag_Index.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Debug_Flag_Index */
+extern const afw_value_string_t \
+    afw_self_v_zz__Debug_Flag_Index;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Debug_Flag_Index */
+#define afw_z_zz__Debug_Flag_Index \
+    (afw_self_v_zz__Debug_Flag_Index.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Debug_Flag_Index */
+#define afw_v_zz__Debug_Flag_Index \
+    (&afw_self_v_zz__Debug_Flag_Index.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Decision_Id \
     "Decision Id"
 
@@ -54057,54 +54109,54 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Flag_id_of_the_lock_s_trace_flag \
-    "Flag id of the lock's trace flag"
+#define AFW_Q_zz__Flag_id_of_the_lock_s_debug_flag \
+    "Flag id of the lock's debug flag"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Flag_id_of_the_lock_s_trace_flag */
-#define afw_s_zz__Flag_id_of_the_lock_s_trace_flag \
-    (&afw_self_v_zz__Flag_id_of_the_lock_s_trace_flag.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Flag_id_of_the_lock_s_debug_flag */
+#define afw_s_zz__Flag_id_of_the_lock_s_debug_flag \
+    (&afw_self_v_zz__Flag_id_of_the_lock_s_debug_flag.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Flag_id_of_the_lock_s_trace_flag */
-#define afw_self_s_zz__Flag_id_of_the_lock_s_trace_flag \
-    (afw_self_v_zz__Flag_id_of_the_lock_s_trace_flag.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Flag_id_of_the_lock_s_debug_flag */
+#define afw_self_s_zz__Flag_id_of_the_lock_s_debug_flag \
+    (afw_self_v_zz__Flag_id_of_the_lock_s_debug_flag.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Flag_id_of_the_lock_s_trace_flag */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Flag_id_of_the_lock_s_debug_flag */
 extern const afw_value_string_t \
-    afw_self_v_zz__Flag_id_of_the_lock_s_trace_flag;
+    afw_self_v_zz__Flag_id_of_the_lock_s_debug_flag;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Flag_id_of_the_lock_s_trace_flag */
-#define afw_z_zz__Flag_id_of_the_lock_s_trace_flag \
-    (afw_self_v_zz__Flag_id_of_the_lock_s_trace_flag.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Flag_id_of_the_lock_s_debug_flag */
+#define afw_z_zz__Flag_id_of_the_lock_s_debug_flag \
+    (afw_self_v_zz__Flag_id_of_the_lock_s_debug_flag.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Flag_id_of_the_lock_s_trace_flag */
-#define afw_v_zz__Flag_id_of_the_lock_s_trace_flag \
-    (&afw_self_v_zz__Flag_id_of_the_lock_s_trace_flag.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Flag_id_of_the_lock_s_debug_flag */
+#define afw_v_zz__Flag_id_of_the_lock_s_debug_flag \
+    (&afw_self_v_zz__Flag_id_of_the_lock_s_debug_flag.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Flag_id_of_the_lock_s_trace_flag_ \
-    "Flag id of the lock's trace flag."
+#define AFW_Q_zz__Flag_id_of_the_lock_s_debug_flag_ \
+    "Flag id of the lock's debug flag."
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Flag_id_of_the_lock_s_trace_flag_ */
-#define afw_s_zz__Flag_id_of_the_lock_s_trace_flag_ \
-    (&afw_self_v_zz__Flag_id_of_the_lock_s_trace_flag_.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Flag_id_of_the_lock_s_debug_flag_ */
+#define afw_s_zz__Flag_id_of_the_lock_s_debug_flag_ \
+    (&afw_self_v_zz__Flag_id_of_the_lock_s_debug_flag_.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Flag_id_of_the_lock_s_trace_flag_ */
-#define afw_self_s_zz__Flag_id_of_the_lock_s_trace_flag_ \
-    (afw_self_v_zz__Flag_id_of_the_lock_s_trace_flag_.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Flag_id_of_the_lock_s_debug_flag_ */
+#define afw_self_s_zz__Flag_id_of_the_lock_s_debug_flag_ \
+    (afw_self_v_zz__Flag_id_of_the_lock_s_debug_flag_.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Flag_id_of_the_lock_s_trace_flag_ */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Flag_id_of_the_lock_s_debug_flag_ */
 extern const afw_value_string_t \
-    afw_self_v_zz__Flag_id_of_the_lock_s_trace_flag_;
+    afw_self_v_zz__Flag_id_of_the_lock_s_debug_flag_;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Flag_id_of_the_lock_s_trace_flag_ */
-#define afw_z_zz__Flag_id_of_the_lock_s_trace_flag_ \
-    (afw_self_v_zz__Flag_id_of_the_lock_s_trace_flag_.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Flag_id_of_the_lock_s_debug_flag_ */
+#define afw_z_zz__Flag_id_of_the_lock_s_debug_flag_ \
+    (afw_self_v_zz__Flag_id_of_the_lock_s_debug_flag_.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Flag_id_of_the_lock_s_trace_flag_ */
-#define afw_v_zz__Flag_id_of_the_lock_s_trace_flag_ \
-    (&afw_self_v_zz__Flag_id_of_the_lock_s_trace_flag_.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Flag_id_of_the_lock_s_debug_flag_ */
+#define afw_v_zz__Flag_id_of_the_lock_s_debug_flag_ \
+    (&afw_self_v_zz__Flag_id_of_the_lock_s_debug_flag_.pub)
 
 
 
@@ -58087,54 +58139,54 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Index_of_the_lock_s_trace_flag \
-    "Index of the lock's trace flag"
+#define AFW_Q_zz__Index_of_the_lock_s_debug_flag \
+    "Index of the lock's debug flag"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Index_of_the_lock_s_trace_flag */
-#define afw_s_zz__Index_of_the_lock_s_trace_flag \
-    (&afw_self_v_zz__Index_of_the_lock_s_trace_flag.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Index_of_the_lock_s_debug_flag */
+#define afw_s_zz__Index_of_the_lock_s_debug_flag \
+    (&afw_self_v_zz__Index_of_the_lock_s_debug_flag.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Index_of_the_lock_s_trace_flag */
-#define afw_self_s_zz__Index_of_the_lock_s_trace_flag \
-    (afw_self_v_zz__Index_of_the_lock_s_trace_flag.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Index_of_the_lock_s_debug_flag */
+#define afw_self_s_zz__Index_of_the_lock_s_debug_flag \
+    (afw_self_v_zz__Index_of_the_lock_s_debug_flag.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Index_of_the_lock_s_trace_flag */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Index_of_the_lock_s_debug_flag */
 extern const afw_value_string_t \
-    afw_self_v_zz__Index_of_the_lock_s_trace_flag;
+    afw_self_v_zz__Index_of_the_lock_s_debug_flag;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Index_of_the_lock_s_trace_flag */
-#define afw_z_zz__Index_of_the_lock_s_trace_flag \
-    (afw_self_v_zz__Index_of_the_lock_s_trace_flag.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Index_of_the_lock_s_debug_flag */
+#define afw_z_zz__Index_of_the_lock_s_debug_flag \
+    (afw_self_v_zz__Index_of_the_lock_s_debug_flag.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Index_of_the_lock_s_trace_flag */
-#define afw_v_zz__Index_of_the_lock_s_trace_flag \
-    (&afw_self_v_zz__Index_of_the_lock_s_trace_flag.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Index_of_the_lock_s_debug_flag */
+#define afw_v_zz__Index_of_the_lock_s_debug_flag \
+    (&afw_self_v_zz__Index_of_the_lock_s_debug_flag.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Index_of_the_lock_s_trace_flag_ \
-    "Index of the lock's trace flag."
+#define AFW_Q_zz__Index_of_the_lock_s_debug_flag_ \
+    "Index of the lock's debug flag."
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Index_of_the_lock_s_trace_flag_ */
-#define afw_s_zz__Index_of_the_lock_s_trace_flag_ \
-    (&afw_self_v_zz__Index_of_the_lock_s_trace_flag_.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Index_of_the_lock_s_debug_flag_ */
+#define afw_s_zz__Index_of_the_lock_s_debug_flag_ \
+    (&afw_self_v_zz__Index_of_the_lock_s_debug_flag_.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Index_of_the_lock_s_trace_flag_ */
-#define afw_self_s_zz__Index_of_the_lock_s_trace_flag_ \
-    (afw_self_v_zz__Index_of_the_lock_s_trace_flag_.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Index_of_the_lock_s_debug_flag_ */
+#define afw_self_s_zz__Index_of_the_lock_s_debug_flag_ \
+    (afw_self_v_zz__Index_of_the_lock_s_debug_flag_.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Index_of_the_lock_s_trace_flag_ */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Index_of_the_lock_s_debug_flag_ */
 extern const afw_value_string_t \
-    afw_self_v_zz__Index_of_the_lock_s_trace_flag_;
+    afw_self_v_zz__Index_of_the_lock_s_debug_flag_;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Index_of_the_lock_s_trace_flag_ */
-#define afw_z_zz__Index_of_the_lock_s_trace_flag_ \
-    (afw_self_v_zz__Index_of_the_lock_s_trace_flag_.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Index_of_the_lock_s_debug_flag_ */
+#define afw_z_zz__Index_of_the_lock_s_debug_flag_ \
+    (afw_self_v_zz__Index_of_the_lock_s_debug_flag_.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Index_of_the_lock_s_trace_flag_ */
-#define afw_v_zz__Index_of_the_lock_s_trace_flag_ \
-    (&afw_self_v_zz__Index_of_the_lock_s_trace_flag_.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Index_of_the_lock_s_debug_flag_ */
+#define afw_v_zz__Index_of_the_lock_s_debug_flag_ \
+    (&afw_self_v_zz__Index_of_the_lock_s_debug_flag_.pub)
 
 
 
@@ -84187,58 +84239,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Title_of_this_context_type_ */
 #define afw_v_zz__Title_of_this_context_type_ \
     (&afw_self_v_zz__Title_of_this_context_type_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Trace_Flag_Id \
-    "Trace Flag Id"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Trace_Flag_Id */
-#define afw_s_zz__Trace_Flag_Id \
-    (&afw_self_v_zz__Trace_Flag_Id.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Trace_Flag_Id */
-#define afw_self_s_zz__Trace_Flag_Id \
-    (afw_self_v_zz__Trace_Flag_Id.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Trace_Flag_Id */
-extern const afw_value_string_t \
-    afw_self_v_zz__Trace_Flag_Id;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Trace_Flag_Id */
-#define afw_z_zz__Trace_Flag_Id \
-    (afw_self_v_zz__Trace_Flag_Id.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Trace_Flag_Id */
-#define afw_v_zz__Trace_Flag_Id \
-    (&afw_self_v_zz__Trace_Flag_Id.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Trace_Flag_Index \
-    "Trace Flag Index"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Trace_Flag_Index */
-#define afw_s_zz__Trace_Flag_Index \
-    (&afw_self_v_zz__Trace_Flag_Index.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Trace_Flag_Index */
-#define afw_self_s_zz__Trace_Flag_Index \
-    (afw_self_v_zz__Trace_Flag_Index.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Trace_Flag_Index */
-extern const afw_value_string_t \
-    afw_self_v_zz__Trace_Flag_Index;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Trace_Flag_Index */
-#define afw_z_zz__Trace_Flag_Index \
-    (afw_self_v_zz__Trace_Flag_Index.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Trace_Flag_Index */
-#define afw_v_zz__Trace_Flag_Index \
-    (&afw_self_v_zz__Trace_Flag_Index.pub)
 
 
 

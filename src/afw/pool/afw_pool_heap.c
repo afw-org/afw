@@ -121,10 +121,10 @@ impl_subpool_implementation_specific =
 
 /* --------------------------- internal macros ------------------------------ */
 
-#ifdef AFW_TRACE_POOL
+#ifdef AFW_DEBUG_POOL
 
-#define AFW_POOL_INTERNAL_DEBUG_LEVEL_detail  flag_index_trace_pool_detail
-#define AFW_POOL_INTERNAL_DEBUG_LEVEL_minimal flag_index_trace_pool
+#define AFW_POOL_INTERNAL_DEBUG_LEVEL_detail  flag_index_debug_pool_detail
+#define AFW_POOL_INTERNAL_DEBUG_LEVEL_minimal flag_index_debug_pool
 
 #define IMPL_PRINT_DEBUG_INFO_Z(level,info_z) \
 do { \
@@ -135,20 +135,22 @@ do { \
     { \
         fd = xctx->env->debug_fd; \
         fprintf(fd, \
-            info_z " %s pool " AFW_INTEGER_FMT \
+            ">debug pool %s " AFW_INTEGER_FMT \
             " bytes " AFW_SIZE_T_FMT \
             " env " AFW_SIZE_T_FMT \
             " rss " AFW_SIZE_T_FMT " KB" \
             " refs " AFW_INTEGER_FMT \
-            " parent " AFW_INTEGER_FMT "\n", \
-            AFW__FILE_LINE__, \
+            " parent " AFW_INTEGER_FMT \
+            " (%s)\n", \
+            info_z, \
             self->pool_number, \
             self->bytes_allocated, \
             (afw_size_t)xctx->env->pool_bytes_allocated, \
             afw_os_get_maxrss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
-                ? self->parent->pool_number : 0)); \
+                ? self->parent->pool_number : 0), \
+            afw_utf8_z_source_file(AFW__FILE_LINE__)); \
         fflush(fd); \
     } \
 } while (0)
@@ -162,21 +164,22 @@ do { \
     { \
         fd = xctx->env->debug_fd; \
         fprintf(fd, \
-            format_z " %s pool " AFW_INTEGER_FMT \
+            ">debug pool " format_z " " AFW_INTEGER_FMT \
             " bytes " AFW_SIZE_T_FMT \
             " env " AFW_SIZE_T_FMT \
             " rss " AFW_SIZE_T_FMT " KB" \
             " refs " AFW_INTEGER_FMT \
-            " parent " AFW_INTEGER_FMT "\n", \
+            " parent " AFW_INTEGER_FMT \
+            " (%s)\n", \
             __VA_ARGS__, \
-            AFW__FILE_LINE__, \
             self->pool_number, \
             self->bytes_allocated, \
             (afw_size_t)xctx->env->pool_bytes_allocated, \
             afw_os_get_maxrss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
-                ? self->parent->pool_number : 0)); \
+                ? self->parent->pool_number : 0), \
+            afw_utf8_z_source_file(AFW__FILE_LINE__)); \
         fflush(fd); \
     } \
 } while (0)
@@ -529,7 +532,7 @@ impl_afw_pool_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_release");
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "release");
 
     /* Decrement reference count and release pools resources if zero. */
     if (--(self->reference_count) == 0) {
@@ -548,7 +551,7 @@ impl_afw_pool_get_reference(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_get_reference");
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
 
     /* Decrement reference count. */
     self->reference_count++;
@@ -565,7 +568,7 @@ impl_afw_pool_destroy(
     afw_pool_internal_self_t *child;
     afw_pool_cleanup_t *e;
 
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_destroy");
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
 
     /*
      * Call all of the cleanup routines for this pool before releasing children.
@@ -646,7 +649,7 @@ impl_afw_pool_malloc(
     void *result;
 
     IMPL_PRINT_DEBUG_INFO_FZ(detail,
-        "afw_pool_*alloc " AFW_SIZE_T_FMT,
+        "alloc " AFW_SIZE_T_FMT,
         size);
 
     /* Don't allow allocate for a size of 0. */
@@ -688,12 +691,12 @@ impl_afw_pool_free_memory_internal(
     afw_pool_internal_memory_prefix_t *block;
 
     if (!address) {
-        IMPL_PRINT_DEBUG_INFO_Z(detail, "afw_pool_free NULL");
+        IMPL_PRINT_DEBUG_INFO_Z(detail, "free");
         return;
     }
     block = AFW_POOL_INTERNAL_MEMORY_PREFIX(address);
     IMPL_PRINT_DEBUG_INFO_FZ(
-        detail, "afw_pool_free %p " AFW_SIZE_T_FMT,
+        detail, "free %p " AFW_SIZE_T_FMT,
         address, block->size);
     impl_account_free(self, block->size, xctx);
     /* Make memory available for reuse. */
@@ -714,7 +717,7 @@ impl_afw_pool_register_cleanup_before(
     afw_pool_cleanup_t *e;
 
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
-        "afw_pool_register_cleanup_before %p %p",
+        "register_cleanup_before %p %p",
         data, cleanup);
 
     /* Allocate entry which will also make sure its ok to use pool. */
@@ -742,7 +745,7 @@ impl_afw_pool_deregister_cleanup(
     afw_pool_cleanup_t *e, *prev;
 
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
-        "afw_pool_deregister_cleanup %p %p",
+        "deregister_cleanup %p %p",
         data, cleanup);
 
     /* Search for entry and remove. */
@@ -771,7 +774,7 @@ impl_subpool_afw_pool_destroy(
     afw_pool_internal_self_t *child;
     afw_pool_cleanup_t *e;
 
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_destroy");
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
 
     /* Subpool always have a parent. (needed to suppress valgrind error) */
     if (!self->parent) {
@@ -870,7 +873,7 @@ impl_subpool_afw_pool_malloc(
     void *result;
 
     IMPL_PRINT_DEBUG_INFO_FZ(detail,
-        "afw_pool_*alloc " AFW_SIZE_T_FMT,
+        "alloc " AFW_SIZE_T_FMT,
         size);
 
     /* Don't allow allocate for a size of 0. */
@@ -917,12 +920,12 @@ impl_subpool_afw_pool_free_memory_internal(
     afw_pool_internal_memory_prefix_with_links_t *block;
 
     if (!address) {
-        IMPL_PRINT_DEBUG_INFO_Z(detail, "afw_pool_free NULL");
+        IMPL_PRINT_DEBUG_INFO_Z(detail, "free");
         return;
     }
     block = AFW_POOL_INTERNAL_MEMORY_PREFIX_WITH_LINKS(address);
     IMPL_PRINT_DEBUG_INFO_FZ(
-        detail, "afw_pool_free %p " AFW_SIZE_T_FMT,
+        detail, "free %p " AFW_SIZE_T_FMT,
         address, block->common.size);
 
     impl_account_free(self, block->common.size, xctx);

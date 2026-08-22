@@ -56951,8 +56951,14 @@ static const afw_runtime_const_object_instance_t
 impl_545;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/description/runtime
+ * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/debugFlagId/runtime
  */
+
+static const afw_runtime_property_t
+impl_545_property_memberName = {
+    afw_v_memberName,
+    &afw_self_v_flag_id_debug.pub
+};
 
 static const afw_runtime_property_t
 impl_545_property_valueAccessor = {
@@ -56962,6 +56968,7 @@ impl_545_property_valueAccessor = {
 
 static const afw_runtime_property_t *
 impl_545_properties[] = {
+    &impl_545_property_memberName,
     &impl_545_property_valueAccessor,
     NULL
 };
@@ -56988,7 +56995,7 @@ impl_545_meta_object__value = {
 
 static const afw_utf8_t
 impl_545_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/description/runtime");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/debugFlagId/runtime");
 
 static const afw_value_object_t
 impl_545__value;
@@ -57017,7 +57024,7 @@ impl_545__value = {
 };
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/description
+ * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/debugFlagId
  */
 
 static const afw_runtime_property_t
@@ -57029,7 +57036,7 @@ impl_544_property_allowQuery = {
 static const afw_runtime_property_t
 impl_544_property_brief = {
     afw_v_brief,
-    &afw_self_v_zz__Description_of_this_lock.pub
+    &afw_self_v_zz__Flag_id_of_the_lock_s_debug_flag.pub
 };
 
 static const afw_runtime_property_t
@@ -57039,21 +57046,15 @@ impl_544_property_dataType = {
 };
 
 static const afw_runtime_property_t
-impl_544_property_dataTypeParameter = {
-    afw_v_dataTypeParameter,
-    &afw_self_v_zz__text_plain.pub
-};
-
-static const afw_runtime_property_t
 impl_544_property_description = {
     afw_v_description,
-    &afw_self_v_zz__This_is_the_description_of_this_lock_.pub
+    &afw_self_v_zz__Flag_id_of_the_lock_s_debug_flag_.pub
 };
 
 static const afw_runtime_property_t
 impl_544_property_label = {
     afw_v_label,
-    &afw_self_v_Description.pub
+    &afw_self_v_zz__Debug_Flag_Id.pub
 };
 
 static const afw_value_object_t
@@ -57073,7 +57074,6 @@ impl_544_properties[] = {
     &impl_544_property_allowQuery,
     &impl_544_property_brief,
     &impl_544_property_dataType,
-    &impl_544_property_dataTypeParameter,
     &impl_544_property_description,
     &impl_544_property_label,
     &impl_544_property_runtime,
@@ -57102,7 +57102,7 @@ impl_544_meta_object__value = {
 
 static const afw_utf8_t
 impl_544_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/description");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/debugFlagId");
 
 static const afw_value_object_t
 impl_544__value;
@@ -57116,7 +57116,7 @@ impl_544 = {
         {
             (const afw_object_t *)&impl_544_meta_object,
             (const afw_object_t *)&impl_541,
-            &afw_self_s_description,
+            &afw_self_s_debugFlagId,
             &afw_self_s__AdaptiveValueMeta_,
             &impl_544_meta_path
         }
@@ -57137,19 +57137,19 @@ static const afw_runtime_const_object_instance_t
 impl_547;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/lockId/runtime
+ * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/debugFlagIndex/runtime
  */
 
 static const afw_runtime_property_t
 impl_547_property_memberName = {
     afw_v_memberName,
-    &afw_self_v_lock_id.pub
+    &afw_self_v_flag_index_debug.pub
 };
 
 static const afw_runtime_property_t
 impl_547_property_valueAccessor = {
     afw_v_valueAccessor,
-    &afw_self_v_indirect.pub
+    &afw_self_v_size.pub
 };
 
 static const afw_runtime_property_t *
@@ -57181,7 +57181,7 @@ impl_547_meta_object__value = {
 
 static const afw_utf8_t
 impl_547_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/lockId/runtime");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/debugFlagIndex/runtime");
 
 static const afw_value_object_t
 impl_547__value;
@@ -57210,7 +57210,7 @@ impl_547__value = {
 };
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/lockId
+ * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/debugFlagIndex
  */
 
 static const afw_runtime_property_t
@@ -57222,25 +57222,25 @@ impl_546_property_allowQuery = {
 static const afw_runtime_property_t
 impl_546_property_brief = {
     afw_v_brief,
-    &afw_self_v_zz__The_key_for_this_lock.pub
+    &afw_self_v_zz__Index_of_the_lock_s_debug_flag.pub
 };
 
 static const afw_runtime_property_t
 impl_546_property_dataType = {
     afw_v_dataType,
-    &afw_self_v_string.pub
+    &afw_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_546_property_description = {
     afw_v_description,
-    &afw_self_v_zz__62e8426a05d3.pub
+    &afw_self_v_zz__Index_of_the_lock_s_debug_flag_.pub
 };
 
 static const afw_runtime_property_t
 impl_546_property_label = {
     afw_v_label,
-    &afw_self_v_zz__Lock_Id.pub
+    &afw_self_v_zz__Debug_Flag_Index.pub
 };
 
 static const afw_value_object_t
@@ -57288,7 +57288,7 @@ impl_546_meta_object__value = {
 
 static const afw_utf8_t
 impl_546_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/lockId");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/debugFlagIndex");
 
 static const afw_value_object_t
 impl_546__value;
@@ -57302,7 +57302,7 @@ impl_546 = {
         {
             (const afw_object_t *)&impl_546_meta_object,
             (const afw_object_t *)&impl_541,
-            &afw_self_s_lockId,
+            &afw_self_s_debugFlagIndex,
             &afw_self_s__AdaptiveValueMeta_,
             &impl_546_meta_path
         }
@@ -57323,14 +57323,8 @@ static const afw_runtime_const_object_instance_t
 impl_549;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/traceFlagId/runtime
+ * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/description/runtime
  */
-
-static const afw_runtime_property_t
-impl_549_property_memberName = {
-    afw_v_memberName,
-    &afw_self_v_flag_id_trace.pub
-};
 
 static const afw_runtime_property_t
 impl_549_property_valueAccessor = {
@@ -57340,7 +57334,6 @@ impl_549_property_valueAccessor = {
 
 static const afw_runtime_property_t *
 impl_549_properties[] = {
-    &impl_549_property_memberName,
     &impl_549_property_valueAccessor,
     NULL
 };
@@ -57367,7 +57360,7 @@ impl_549_meta_object__value = {
 
 static const afw_utf8_t
 impl_549_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/traceFlagId/runtime");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/description/runtime");
 
 static const afw_value_object_t
 impl_549__value;
@@ -57396,7 +57389,7 @@ impl_549__value = {
 };
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/traceFlagId
+ * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/description
  */
 
 static const afw_runtime_property_t
@@ -57408,7 +57401,7 @@ impl_548_property_allowQuery = {
 static const afw_runtime_property_t
 impl_548_property_brief = {
     afw_v_brief,
-    &afw_self_v_zz__Flag_id_of_the_lock_s_trace_flag.pub
+    &afw_self_v_zz__Description_of_this_lock.pub
 };
 
 static const afw_runtime_property_t
@@ -57418,15 +57411,21 @@ impl_548_property_dataType = {
 };
 
 static const afw_runtime_property_t
+impl_548_property_dataTypeParameter = {
+    afw_v_dataTypeParameter,
+    &afw_self_v_zz__text_plain.pub
+};
+
+static const afw_runtime_property_t
 impl_548_property_description = {
     afw_v_description,
-    &afw_self_v_zz__Flag_id_of_the_lock_s_trace_flag_.pub
+    &afw_self_v_zz__This_is_the_description_of_this_lock_.pub
 };
 
 static const afw_runtime_property_t
 impl_548_property_label = {
     afw_v_label,
-    &afw_self_v_zz__Trace_Flag_Id.pub
+    &afw_self_v_Description.pub
 };
 
 static const afw_value_object_t
@@ -57446,6 +57445,7 @@ impl_548_properties[] = {
     &impl_548_property_allowQuery,
     &impl_548_property_brief,
     &impl_548_property_dataType,
+    &impl_548_property_dataTypeParameter,
     &impl_548_property_description,
     &impl_548_property_label,
     &impl_548_property_runtime,
@@ -57474,7 +57474,7 @@ impl_548_meta_object__value = {
 
 static const afw_utf8_t
 impl_548_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/traceFlagId");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/description");
 
 static const afw_value_object_t
 impl_548__value;
@@ -57488,7 +57488,7 @@ impl_548 = {
         {
             (const afw_object_t *)&impl_548_meta_object,
             (const afw_object_t *)&impl_541,
-            &afw_self_s_traceFlagId,
+            &afw_self_s_description,
             &afw_self_s__AdaptiveValueMeta_,
             &impl_548_meta_path
         }
@@ -57509,19 +57509,19 @@ static const afw_runtime_const_object_instance_t
 impl_551;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/traceFlagIndex/runtime
+ * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/lockId/runtime
  */
 
 static const afw_runtime_property_t
 impl_551_property_memberName = {
     afw_v_memberName,
-    &afw_self_v_flag_index_trace.pub
+    &afw_self_v_lock_id.pub
 };
 
 static const afw_runtime_property_t
 impl_551_property_valueAccessor = {
     afw_v_valueAccessor,
-    &afw_self_v_size.pub
+    &afw_self_v_indirect.pub
 };
 
 static const afw_runtime_property_t *
@@ -57553,7 +57553,7 @@ impl_551_meta_object__value = {
 
 static const afw_utf8_t
 impl_551_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/traceFlagIndex/runtime");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/lockId/runtime");
 
 static const afw_value_object_t
 impl_551__value;
@@ -57582,7 +57582,7 @@ impl_551__value = {
 };
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/traceFlagIndex
+ * /afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/lockId
  */
 
 static const afw_runtime_property_t
@@ -57594,25 +57594,25 @@ impl_550_property_allowQuery = {
 static const afw_runtime_property_t
 impl_550_property_brief = {
     afw_v_brief,
-    &afw_self_v_zz__Index_of_the_lock_s_trace_flag.pub
+    &afw_self_v_zz__The_key_for_this_lock.pub
 };
 
 static const afw_runtime_property_t
 impl_550_property_dataType = {
     afw_v_dataType,
-    &afw_self_v_integer.pub
+    &afw_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_550_property_description = {
     afw_v_description,
-    &afw_self_v_zz__Index_of_the_lock_s_trace_flag_.pub
+    &afw_self_v_zz__62e8426a05d3.pub
 };
 
 static const afw_runtime_property_t
 impl_550_property_label = {
     afw_v_label,
-    &afw_self_v_zz__Trace_Flag_Index.pub
+    &afw_self_v_zz__Lock_Id.pub
 };
 
 static const afw_value_object_t
@@ -57660,7 +57660,7 @@ impl_550_meta_object__value = {
 
 static const afw_utf8_t
 impl_550_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/traceFlagIndex");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLock_/propertyTypes/lockId");
 
 static const afw_value_object_t
 impl_550__value;
@@ -57674,7 +57674,7 @@ impl_550 = {
         {
             (const afw_object_t *)&impl_550_meta_object,
             (const afw_object_t *)&impl_541,
-            &afw_self_s_traceFlagIndex,
+            &afw_self_s_lockId,
             &afw_self_s__AdaptiveValueMeta_,
             &impl_550_meta_path
         }
@@ -57705,9 +57705,33 @@ impl_541_property_brief = {
 };
 
 static const afw_value_object_t
-impl_541_property_value_description = {
+impl_541_property_value_debugFlagId = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_544
+};
+
+static const afw_runtime_property_t
+impl_541_property_debugFlagId = {
+    afw_v_debugFlagId,
+    &impl_541_property_value_debugFlagId.pub
+};
+
+static const afw_value_object_t
+impl_541_property_value_debugFlagIndex = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_546
+};
+
+static const afw_runtime_property_t
+impl_541_property_debugFlagIndex = {
+    afw_v_debugFlagIndex,
+    &impl_541_property_value_debugFlagIndex.pub
+};
+
+static const afw_value_object_t
+impl_541_property_value_description = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_548
 };
 
 static const afw_runtime_property_t
@@ -57719,7 +57743,7 @@ impl_541_property_description = {
 static const afw_value_object_t
 impl_541_property_value_lockId = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_546
+    (const afw_object_t *)&impl_550
 };
 
 static const afw_runtime_property_t
@@ -57728,37 +57752,13 @@ impl_541_property_lockId = {
     &impl_541_property_value_lockId.pub
 };
 
-static const afw_value_object_t
-impl_541_property_value_traceFlagId = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_548
-};
-
-static const afw_runtime_property_t
-impl_541_property_traceFlagId = {
-    afw_v_traceFlagId,
-    &impl_541_property_value_traceFlagId.pub
-};
-
-static const afw_value_object_t
-impl_541_property_value_traceFlagIndex = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_550
-};
-
-static const afw_runtime_property_t
-impl_541_property_traceFlagIndex = {
-    afw_v_traceFlagIndex,
-    &impl_541_property_value_traceFlagIndex.pub
-};
-
 static const afw_runtime_property_t *
 impl_541_properties[] = {
     &impl_541_property_brief,
+    &impl_541_property_debugFlagId,
+    &impl_541_property_debugFlagIndex,
     &impl_541_property_description,
     &impl_541_property_lockId,
-    &impl_541_property_traceFlagId,
-    &impl_541_property_traceFlagIndex,
     NULL
 };
 

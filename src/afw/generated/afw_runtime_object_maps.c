@@ -2078,6 +2078,26 @@ impl_properties__AdaptiveLock_[] = {
         afw_runtime_value_accessor_indirect
     },
     {
+        afw_v_debugFlagId,
+        offsetof(afw_lock_t, flag_id_debug),
+        -1,
+        &afw_data_type_string_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_indirect,
+        afw_runtime_value_accessor_indirect
+    },
+    {
+        afw_v_debugFlagIndex,
+        offsetof(afw_lock_t, flag_index_debug),
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_size,
+        afw_runtime_value_accessor_size
+    },
+    {
         afw_v_description,
         offsetof(afw_lock_t, description),
         -1,
@@ -2096,26 +2116,6 @@ impl_properties__AdaptiveLock_[] = {
         NULL,
         &afw_self_s_indirect,
         afw_runtime_value_accessor_indirect
-    },
-    {
-        afw_v_traceFlagId,
-        offsetof(afw_lock_t, flag_id_trace),
-        -1,
-        &afw_data_type_string_direct,
-        AFW_UTF8_LITERAL(""),
-        NULL,
-        &afw_self_s_indirect,
-        afw_runtime_value_accessor_indirect
-    },
-    {
-        afw_v_traceFlagIndex,
-        offsetof(afw_lock_t, flag_index_trace),
-        -1,
-        &afw_data_type_integer_direct,
-        AFW_UTF8_LITERAL(""),
-        NULL,
-        &afw_self_s_size,
-        afw_runtime_value_accessor_size
     }
 };
 

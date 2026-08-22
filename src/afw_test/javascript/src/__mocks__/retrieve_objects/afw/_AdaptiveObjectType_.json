@@ -14472,7 +14472,7 @@
                     "brief": "Description of this lock",
                     "allowQuery": true
                 },
-                "traceFlagIndex": {
+                "debugFlagIndex": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
@@ -14481,15 +14481,15 @@
                             "objectType": "_AdaptiveRuntimeProperty_"
                         },
                         "valueAccessor": "size",
-                        "memberName": "flag_index_trace"
+                        "memberName": "flag_index_debug"
                     },
-                    "label": "Trace Flag Index",
-                    "description": "Index of the lock's trace flag.",
+                    "label": "Debug Flag Index",
+                    "description": "Index of the lock's debug flag.",
                     "dataType": "integer",
-                    "brief": "Index of the lock's trace flag",
+                    "brief": "Index of the lock's debug flag",
                     "allowQuery": true
                 },
-                "traceFlagId": {
+                "debugFlagId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
@@ -14498,12 +14498,12 @@
                             "objectType": "_AdaptiveRuntimeProperty_"
                         },
                         "valueAccessor": "indirect",
-                        "memberName": "flag_id_trace"
+                        "memberName": "flag_id_debug"
                     },
-                    "label": "Trace Flag Id",
-                    "description": "Flag id of the lock's trace flag.",
+                    "label": "Debug Flag Id",
+                    "description": "Flag id of the lock's debug flag.",
                     "dataType": "string",
-                    "brief": "Flag id of the lock's trace flag",
+                    "brief": "Flag id of the lock's debug flag",
                     "allowQuery": true
                 },
                 "brief": {

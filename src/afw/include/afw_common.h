@@ -43,12 +43,13 @@
  */
 
 /*
- * Compile-time traces (runtime flags still off unless set):
- *   AFW_TRACE_EVALUATION  evaluation stack push/pop
- *   AFW_TRACE_LOCK        lock obtain/release
- *   AFW_TRACE_POOL        pool alloc/free/create/destroy
+ * Compile-time debug probes (runtime flags still off unless set).
+ * Written to debug_fd as ">debug eval|lock|pool ...", not via afw_trace.
+ *   AFW_DEBUG_EVALUATION  evaluation stack push/pop
+ *   AFW_DEBUG_LOCK        lock obtain/release
+ *   AFW_DEBUG_POOL        pool alloc/free/create/destroy
  * `afwdev build --cdev` and `--fulldev` define all three. Otherwise:
- *   afwdev build --define AFW_TRACE_POOL
+ *   afwdev build --define AFW_DEBUG_POOL
  */
 
 /* Adaptive Framework uses Apache Portable Runtime. */
@@ -2046,17 +2047,23 @@ struct afw_environment_s {
     /** @brief Flag index of debug:function_active:detail. */
     afw_size_t flag_index_debug_function_active_detail;
 
-    /** @brief Flag index of trace:lock. */
-    afw_size_t flag_index_trace_lock;
+    /** @brief Flag index of debug:evaluation. */
+    afw_size_t flag_index_debug_evaluation;
 
-    /** @brief Flag index of trace:lock:detail. */
-    afw_size_t flag_index_trace_lock_detail;
+    /** @brief Flag index of debug:evaluation:detail. */
+    afw_size_t flag_index_debug_evaluation_detail;
 
-    /** @brief Flag index of trace:pool. */
-    afw_size_t flag_index_trace_pool;
+    /** @brief Flag index of debug:lock. */
+    afw_size_t flag_index_debug_lock;
 
-    /** @brief Flag index of trace:pool:detail. */
-    afw_size_t flag_index_trace_pool_detail;
+    /** @brief Flag index of debug:lock:detail. */
+    afw_size_t flag_index_debug_lock_detail;
+
+    /** @brief Flag index of debug:pool. */
+    afw_size_t flag_index_debug_pool;
+
+    /** @brief Flag index of debug:pool:detail. */
+    afw_size_t flag_index_debug_pool_detail;
 
     /** @brief Flag index of response:error:backtrace. */
     afw_size_t flag_index_response_error_backtrace;
@@ -2084,12 +2091,6 @@ struct afw_environment_s {
 
     /** @brief Flag index of trace:authorization:decision:detail. */
     afw_size_t flag_index_trace_authorization_decision_detail;
-
-    /** @brief Flag index of trace:evaluation. */
-    afw_size_t flag_index_trace_evaluation;
-
-    /** @brief Flag index of trace:evaluation:detail. */
-    afw_size_t flag_index_trace_evaluation_detail;
 
     /** @brief Flag index of trace:request. */
     afw_size_t flag_index_trace_request;

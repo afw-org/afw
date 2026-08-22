@@ -57,10 +57,10 @@ AFW_LOCK_END;
 
 #define AFW_POOL_SELF_T afw_pool_self_t
 
-#ifdef AFW_TRACE_POOL
+#ifdef AFW_DEBUG_POOL
 
-#define AFW_POOL_INTERNAL_DEBUG_LEVEL_detail  flag_index_trace_pool_detail
-#define AFW_POOL_INTERNAL_DEBUG_LEVEL_minimal flag_index_trace_pool
+#define AFW_POOL_INTERNAL_DEBUG_LEVEL_detail  flag_index_debug_pool_detail
+#define AFW_POOL_INTERNAL_DEBUG_LEVEL_minimal flag_index_debug_pool
 
 #define IMPL_PRINT_DEBUG_INFO_Z(level,info_z) \
 do { \
@@ -71,20 +71,22 @@ do { \
     { \
         fd = xctx->env->debug_fd; \
         fprintf(fd, \
-            info_z " %s pool " AFW_INTEGER_FMT \
+            ">debug pool %s " AFW_INTEGER_FMT \
             " bytes " AFW_SIZE_T_FMT \
             " env " AFW_SIZE_T_FMT \
             " rss " AFW_SIZE_T_FMT " KB" \
             " refs " AFW_INTEGER_FMT \
-            " parent " AFW_INTEGER_FMT "\n", \
-            AFW__FILE_LINE__, \
+            " parent " AFW_INTEGER_FMT \
+            " (%s)\n", \
+            info_z, \
             self->pool_number, \
             self->bytes_allocated, \
             (afw_size_t)xctx->env->pool_bytes_allocated, \
             afw_os_get_maxrss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
-                ? self->parent->pool_number : 0)); \
+                ? self->parent->pool_number : 0), \
+            afw_utf8_z_source_file(AFW__FILE_LINE__)); \
         fflush(fd); \
     } \
 } while (0)
@@ -98,21 +100,22 @@ do { \
     { \
         fd = xctx->env->debug_fd; \
         fprintf(fd, \
-            format_z " %s pool " AFW_INTEGER_FMT \
+            ">debug pool " format_z " " AFW_INTEGER_FMT \
             " bytes " AFW_SIZE_T_FMT \
             " env " AFW_SIZE_T_FMT \
             " rss " AFW_SIZE_T_FMT " KB" \
             " refs " AFW_INTEGER_FMT \
-            " parent " AFW_INTEGER_FMT "\n", \
+            " parent " AFW_INTEGER_FMT \
+            " (%s)\n", \
             __VA_ARGS__, \
-            AFW__FILE_LINE__, \
             self->pool_number, \
             self->bytes_allocated, \
             (afw_size_t)xctx->env->pool_bytes_allocated, \
             afw_os_get_maxrss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
-                ? self->parent->pool_number : 0)); \
+                ? self->parent->pool_number : 0), \
+            afw_utf8_z_source_file(AFW__FILE_LINE__)); \
         fflush(fd); \
     } \
 } while (0)
@@ -275,7 +278,7 @@ impl_afw_pool_release(
     afw_xctx_t *xctx)
 {
     impl_assert_thread(self, xctx);
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_release");
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "release");
 
     if (--(self->reference_count) == 0) {
         impl_afw_pool_destroy(self, xctx);
@@ -294,7 +297,7 @@ impl_afw_pool_get_reference(
     afw_xctx_t *xctx)
 {
     impl_assert_thread(self, xctx);
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_get_reference");
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
     self->reference_count++;
 }
 
@@ -316,7 +319,7 @@ impl_afw_pool_destroy(
         return;
     }
     impl_assert_thread(self, xctx);
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_destroy");
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
     self->destroying = true;
 
     for (e = self->first_cleanup; e; e = e->next_cleanup) {
@@ -787,7 +790,7 @@ afw_pool_thread_create(
     self->pub.managed_p = &self->pub;
 
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
-        "afw_pool_thread_create " AFW_SIZE_T_FMT,
+        "thread_create " AFW_SIZE_T_FMT,
         size);
 
     return thread;

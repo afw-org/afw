@@ -16,10 +16,10 @@ import re
 from _afwdev.common import msg, package
 
 _C_DEFINE_RE = re.compile(r'^[A-Za-z_][A-Za-z0-9_]*(?:=[A-Za-z0-9_]+)?$')
-_CDEV_TRACE_DEFINES = (
-    'AFW_TRACE_EVALUATION',
-    'AFW_TRACE_LOCK',
-    'AFW_TRACE_POOL',
+_CDEV_DEBUG_DEFINES = (
+    'AFW_DEBUG_EVALUATION',
+    'AFW_DEBUG_LOCK',
+    'AFW_DEBUG_POOL',
 )
 
 ##
@@ -46,7 +46,7 @@ def build(options):
                 ' (expected NAME or NAME=VALUE with letters, digits, underscore)')
         _c_defines.append(_d)
     if options.get('build_cdev') or options.get('build_fulldev'):
-        for _name in _CDEV_TRACE_DEFINES:
+        for _name in _CDEV_DEBUG_DEFINES:
             if not any(_d.split('=', 1)[0] == _name for _d in _c_defines):
                 _c_defines.append(_name)
     if _c_defines:

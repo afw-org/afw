@@ -45,8 +45,8 @@ struct afw_lock_s {
     const afw_utf8_t *lock_id;
     const afw_utf8_t *brief;
     const afw_utf8_t *description;
-    const afw_utf8_t *flag_id_trace;
-    afw_size_t flag_index_trace;
+    const afw_utf8_t *flag_id_debug;
+    afw_size_t flag_index_debug;
     union {
 
         /** @brief for type thread_mutex */
@@ -121,20 +121,20 @@ afw_lock_obtain(const afw_lock_t *instance, afw_xctx_t *xctx);
 
 
 /**
- * @brief Trace version of obtain lock.
+ * @brief Debug version of obtain lock.
  * @param instance of lock or NULL to ignore.
  * @param xctx of caller.
  * @param source_z file:line where function called.
  * @sa afw_lock_read()
  */
 AFW_DECLARE(void)
-afw_lock_obtain_trace(const afw_lock_t *instance,
+afw_lock_obtain_debug(const afw_lock_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z);
 
 
-#ifdef AFW_TRACE_LOCK
+#ifdef AFW_DEBUG_LOCK
 #define afw_lock_obtain(instance,xctx) \
-    afw_lock_obtain_trace(instance, xctx, AFW__FILE_LINE__)
+    afw_lock_obtain_debug(instance, xctx, AFW__FILE_LINE__)
 #endif
 
 
@@ -148,20 +148,20 @@ afw_lock_release(const afw_lock_t *instance, afw_xctx_t *xctx);
 
 
 /**
- * @brief Trace version of release lock.
+ * @brief Debug version of release lock.
  * @param instance of lock or NULL to ignore.
  * @param xctx of caller.
  * @param source_z file:line where function called.
  * @sa afw_lock_unlock_read()
  */
 AFW_DECLARE(void)
-afw_lock_release_trace(const afw_lock_t *instance,
+afw_lock_release_debug(const afw_lock_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z);
 
 
-#ifdef AFW_TRACE_LOCK
+#ifdef AFW_DEBUG_LOCK
 #define afw_lock_release(instance,xctx) \
-    afw_lock_release_trace(instance, xctx, AFW__FILE_LINE__)
+    afw_lock_release_debug(instance, xctx, AFW__FILE_LINE__)
 #endif
 
 
@@ -239,20 +239,20 @@ afw_lock_read_obtain(const afw_lock_rw_t *instance, afw_xctx_t *xctx);
 
 
 /**
- * @brief Trace version of obtain read lock.
+ * @brief Debug version of obtain read lock.
  * @param instance of read write lock or NULL to ignore.
  * @param xctx of caller.
  * @param source_z file:line where function called.
  * @sa afw_lock_read()
  */
 AFW_DECLARE(void)
-afw_lock_read_obtain_trace(const afw_lock_rw_t *instance,
+afw_lock_read_obtain_debug(const afw_lock_rw_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z);
 
 
-#ifdef AFW_TRACE_LOCK
+#ifdef AFW_DEBUG_LOCK
 #define afw_lock_read_obtain(instance,xctx) \
-    afw_lock_read_obtain_trace(instance, xctx, AFW__FILE_LINE__)
+    afw_lock_read_obtain_debug(instance, xctx, AFW__FILE_LINE__)
 #endif
 
 
@@ -266,20 +266,20 @@ afw_lock_read_release(const afw_lock_rw_t *instance, afw_xctx_t *xctx);
 
 
 /**
- * @brief Trace version of release read lock.
+ * @brief Debug version of release read lock.
  * @param instance of read write lock or NULL to ignore.
  * @param xctx of caller.
  * @param source_z file:line where function called.
  * @sa afw_lock_unlock_read()
  */
 AFW_DECLARE(void)
-afw_lock_read_release_trace(const afw_lock_rw_t *instance,
+afw_lock_read_release_debug(const afw_lock_rw_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z);
 
 
-#ifdef AFW_TRACE_LOCK
+#ifdef AFW_DEBUG_LOCK
 #define afw_lock_read_release(instance,xctx) \
-    afw_lock_read_release_trace(instance, xctx, AFW__FILE_LINE__)
+    afw_lock_read_release_debug(instance, xctx, AFW__FILE_LINE__)
 #endif
 
 
@@ -327,20 +327,20 @@ afw_lock_write_obtain(const afw_lock_rw_t *instance, afw_xctx_t *xctx);
 
 
 /**
- * @brief Trace version of obtain write lock.
+ * @brief Debug version of obtain write lock.
  * @param instance of read write lock or NULL to ignore.
  * @param xctx of caller.
  * @param source_z file:line where function called.
  * @sa afw_lock_write()
  */
 AFW_DECLARE(void)
-afw_lock_write_obtain_trace(const afw_lock_rw_t *instance,
+afw_lock_write_obtain_debug(const afw_lock_rw_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z);
 
 
-#ifdef AFW_TRACE_LOCK
+#ifdef AFW_DEBUG_LOCK
 #define afw_lock_write_obtain(instance,xctx) \
-    afw_lock_write_obtain_trace(instance, xctx, AFW__FILE_LINE__)
+    afw_lock_write_obtain_debug(instance, xctx, AFW__FILE_LINE__)
 #endif
 
 
@@ -357,20 +357,20 @@ afw_lock_write_release(const afw_lock_rw_t *instance, afw_xctx_t *xctx);
 
 
 /**
- * @brief Trace version of release write lock.
+ * @brief Debug version of release write lock.
  * @param instance of read write lock or NULL to ignore.
  * @param xctx of caller.
  * @param source_z file:line where function called.
  * @sa afw_lock_unlock_write()
  */
 AFW_DECLARE(void)
-afw_lock_write_release_trace(const afw_lock_rw_t *instance,
+afw_lock_write_release_debug(const afw_lock_rw_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z);
 
 
-#ifdef AFW_TRACE_LOCK
+#ifdef AFW_DEBUG_LOCK
 #define afw_lock_write_release(instance,xctx) \
-    afw_lock_write_release_trace(instance, xctx, AFW__FILE_LINE__)
+    afw_lock_write_release_debug(instance, xctx, AFW__FILE_LINE__)
 #endif
 
 

@@ -479,7 +479,7 @@ _info_build_cdev = {
     "default": False,
     "help": "C development shortcut: enables --generate, --clean, --install, "
         "and -j / parallel jobs (cmake context by default; not docs/JS/docker). "
-        "Also defines AFW_TRACE_EVALUATION, AFW_TRACE_LOCK, and AFW_TRACE_POOL "
+        "Also defines AFW_DEBUG_EVALUATION, AFW_DEBUG_LOCK, and AFW_DEBUG_POOL "
         "(runtime flags still off unless you set them). Explicit -j N still "
         "overrides. See also --fulldev and --define."
 }
@@ -490,7 +490,7 @@ _info_build_fulldev = {
     "action": "store_true",
     "default": False,
     "help": "Full package dev-install shortcut: enables --all, --generate, "
-        "--clean, --install, --scan, and -j / parallel jobs. Same AFW_TRACE_* "
+        "--clean, --install, --scan, and -j / parallel jobs. Same AFW_DEBUG_* "
         "defines as --cdev. Use when the whole tree (C, docs, JS, docker tags) "
         "should be rebuilt and installed. Explicit -j N still overrides."
 }
@@ -503,8 +503,8 @@ _info_build_define = {
     "noprompt": True,
     "help": "C preprocessor define for this cmake build, NAME or NAME=VALUE "
         "(repeatable). Applied with add_compile_definitions to C targets in "
-        "this package. --cdev and --fulldev already add AFW_TRACE_EVALUATION, "
-        "AFW_TRACE_LOCK, and AFW_TRACE_POOL."
+        "this package. --cdev and --fulldev already add AFW_DEBUG_EVALUATION, "
+        "AFW_DEBUG_LOCK, and AFW_DEBUG_POOL."
 }
 
 _info_build_generate = {
@@ -609,7 +609,7 @@ under. The --all selects all of those contexts (not generate/install).
 
 Convenience profiles: --cdev (C day-to-day generate/clean/install/-j) and
 --fulldev (all contexts plus generate/clean/install/scan/-j for a full dev install).
-Both define AFW_TRACE_EVALUATION, AFW_TRACE_LOCK, and AFW_TRACE_POOL. Pass extra
+Both define AFW_DEBUG_EVALUATION, AFW_DEBUG_LOCK, and AFW_DEBUG_POOL. Pass extra
 C preprocessor defines with --define NAME or --define NAME=VALUE.
 """,
     "thing": "build",
