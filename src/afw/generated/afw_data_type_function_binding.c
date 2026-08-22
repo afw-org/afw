@@ -419,7 +419,7 @@ impl_afw_value_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* Object/array/function: instance hold is a later slice. */
+    /* Function: instance hold is a later slice. */
     (void)p;
     (void)xctx;
     return instance;

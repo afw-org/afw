@@ -316,6 +316,24 @@ afw_function_execute_clone(
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
 
     result = afw_value_clone(value, x->p, x->xctx);
+    if (result && AFW_VALUE_IS_DATA_TYPE(result, object)) {
+        const afw_object_t *obj =
+            ((const afw_value_object_t *)result)->internal;
+        const afw_object_t *wrap;
+
+        /*
+         * Script-mutable clones without an entity path get a face so
+         * later sets are overlay holds. Entity clones keep path/meta
+         * for reconcile_object.
+         */
+        if (obj && !afw_object_is_memory_wrapper(obj) &&
+            !afw_object_meta_get_path(obj, x->xctx))
+        {
+            wrap = afw_object_create_wrapper_unmanaged(
+                obj, x->p, x->xctx);
+            result = afw_object_as_value(wrap, x->p, x->xctx);
+        }
+    }
 
     return result;
 }

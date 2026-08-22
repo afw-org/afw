@@ -32,6 +32,12 @@ impl_afw_value_managed_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx);
 
+/* Declaration for method optional_release for unmanaged value. */
+AFW_DECLARE_STATIC(void)
+impl_afw_value_unmanaged_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
 
 /* Declaration for method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
@@ -75,12 +81,12 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_array_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* unmanaged array: optional_release NULL; */
-/* clone_or_reference returns the same instance (pool lifetime). */
+/* unmanaged array: optional_release holds the instance. */
+/* clone_or_reference get_reference on the instance. */
 #define AFW_IMPLEMENTATION_ID "array"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_array_inf
-#define impl_afw_value_optional_release NULL
+#define impl_afw_value_optional_release impl_afw_value_unmanaged_optional_release
 #define impl_afw_value_clone_or_reference impl_afw_value_get_reference
 #define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
@@ -429,6 +435,20 @@ impl_afw_value_managed_optional_release(
     }
 }
 
+/* Implementation of method optional_release for unmanaged value. */
+AFW_DECLARE_STATIC(void)
+impl_afw_value_unmanaged_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    const afw_value_array_t *self =
+        (const afw_value_array_t *)instance;
+
+    if (self->internal) {
+        afw_array_release(self->internal, xctx);
+    }
+}
+
 /* Implementation of method get_reference for unmanaged value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
@@ -436,9 +456,13 @@ impl_afw_value_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* Object/array/function: instance hold is a later slice. */
+    const afw_value_array_t *self =
+        (const afw_value_array_t *)instance;
+
     (void)p;
-    (void)xctx;
+    if (self->internal) {
+        afw_array_get_reference(self->internal, xctx);
+    }
     return instance;
 }
 

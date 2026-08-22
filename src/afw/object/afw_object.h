@@ -845,7 +845,10 @@ afw_object_create_with_options(
  * Nested mutable objects and arrays are promoted to faces on get.
  *
  * Managed faces take one reference on @p wrapped at create and release it
- * when the face pool is destroyed. Unmanaged faces borrow @p wrapped only.
+ * when the face pool is destroyed. Unmanaged faces borrow at create; the
+ * first add_reference (0→1) holds wrapped, and last-release to 0 walks
+ * local overlay properties then releases wrapped. The instance is not
+ * destroyed at zero.
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_wrapper_with_options(
@@ -877,6 +880,21 @@ afw_object_create_wrapper_with_options(
 #define afw_object_create_wrapper_unmanaged(wrapped, p, xctx) \
     afw_object_create_wrapper_with_options( \
         AFW_OBJECT_MEMORY_OPTION_unmanaged, wrapped, p, xctx)
+
+
+/**
+ * @brief Empty script-evaluation-aware object (face over an empty base).
+ * @param p pool for the face (eval / scope pool is the usual).
+ * @param xctx of caller.
+ * @return unmanaged memory wrapper; local sets are overlay holds.
+ *
+ * Script-mutable creates use this so property store is a slot. Generic
+ * memory objects still do not own property values.
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_object_create_script_wrapper(
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 
 /**

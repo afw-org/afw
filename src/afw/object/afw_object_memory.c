@@ -28,6 +28,10 @@
 #include "afw_object_impl_declares.h"
 #include "afw_object_setter_impl_declares.h"
 
+static void
+impl_managed_face_overlay_cleanup(
+    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx);
+
 
 AFW_DEFINE(const afw_object_t *)
 afw_object_create_with_options(
@@ -93,6 +97,8 @@ afw_object_create_wrapper_with_options(
     if (!self->unmanaged) {
         afw_object_get_reference(wrapped, xctx);
     }
+    afw_pool_register_cleanup_before(self->pub.p, self, NULL,
+        impl_managed_face_overlay_cleanup, xctx);
     /*
      * Carry meta (path, objectId, reconcilable, …) onto the face so
      * meta(face) matches the adapter entity. Property gets still look
@@ -100,6 +106,19 @@ afw_object_create_wrapper_with_options(
      */
     afw_object_meta_clone_and_set((const afw_object_t *)self, wrapped, xctx);
     return (const afw_object_t *)self;
+}
+
+
+/* Empty face for script-mutable creates (overlay holds, not generic set). */
+AFW_DEFINE(const afw_object_t *)
+afw_object_create_script_wrapper(
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *base;
+
+    base = afw_object_create_unmanaged(p, xctx);
+    return afw_object_create_wrapper_unmanaged(base, p, xctx);
 }
 
 
@@ -203,6 +222,36 @@ afw_object_insure_embedded_exists(
 
 
 
+/* Release overlay values this face slot_store'd. Not look-through base. */
+static void
+impl_release_local_properties(
+    AFW_OBJECT_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    afw_object_internal_name_value_entry_t *e;
+
+    for (e = self->first_property; e; e = e->next) {
+        if (e->value) {
+            afw_value_release(e->value, xctx);
+            e->value = NULL;
+        }
+    }
+}
+
+
+/* Managed face: walk overlay while self is still in the pool. */
+static void
+impl_managed_face_overlay_cleanup(
+    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    AFW_OBJECT_SELF_T *self = (AFW_OBJECT_SELF_T *)data;
+
+    (void)data2;
+    (void)p;
+    impl_release_local_properties(self, xctx);
+}
+
+
 /*
  * Implementation of method release of interface afw_object.
  */
@@ -214,8 +263,34 @@ impl_afw_object_release(
     const afw_object_t *entity;
     const afw_object_t *wrapped;
 
-    /* If unmanaged, just return. */
+    /*
+     * Unmanaged generic: pointer bag, zero is not an event.
+     * Unmanaged face: extra holds; last extra hold walks overlay.
+     */
     if (self->unmanaged) {
+        if (!self->wrapped) {
+            return;
+        }
+        if (self->reference_count <= 0) {
+            return;
+        }
+        if (self->reference_count == 1) {
+            self->reference_count = 0;
+            /*
+             * Overlay walk is a pool cleanup. Do not walk here: C-style
+             * for clones the current scope and last-release of the
+             * previous clone can drop this instance to zero while the
+             * object is still in use.
+             */
+            wrapped = self->wrapped;
+            if (wrapped) {
+                afw_object_release(wrapped, xctx);
+            }
+            afw_pool_release(self->pub.p, xctx);
+            return;
+        }
+        self->reference_count--;
+        afw_pool_release(self->pub.p, xctx);
         return;
     }
 
@@ -231,7 +306,8 @@ impl_afw_object_release(
 
     /*
      * Save wrapped before pool release: if this call destroys the face pool,
-     * self is gone. Drop the create-time pin only when the pool is destroyed
+     * self is gone. Overlay walk is a pool cleanup for managed faces.
+     * Drop the create-time pin only when the pool is destroyed
      * (afw_pool_release returns NULL).
      */
     wrapped = self->wrapped;
@@ -251,8 +327,17 @@ impl_afw_object_get_reference(
 {
     const afw_object_t *entity;
 
-    /* If unmanaged, just return. */
-    if (self->unmanaged) return;
+    if (self->unmanaged) {
+        if (!self->wrapped) {
+            return;
+        }
+        self->reference_count++;
+        if (self->reference_count == 1) {
+            afw_object_get_reference(self->wrapped, xctx);
+        }
+        afw_pool_get_reference(self->pub.p, xctx);
+        return;
+    }
 
     /*
      * If embedded object managed by parent, call parent's get_reference

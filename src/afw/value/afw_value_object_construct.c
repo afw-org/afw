@@ -93,7 +93,7 @@ impl_afw_value_optional_evaluate(
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
 
-    to = afw_object_create_unmanaged(p, xctx);
+    to = afw_object_create_script_wrapper(p, xctx);
 
     for (e = self->entries; e; e = e->next) {
         if (e->type == afw_value_object_construct_entry_spread) {
@@ -134,7 +134,7 @@ impl_afw_value_optional_evaluate(
     }
 
     xctx->error->contextual = saved_contextual;
-    return afw_value_create_unmanaged_object(to, p, xctx);
+    return afw_object_as_value(to, p, xctx);
 }
 
 

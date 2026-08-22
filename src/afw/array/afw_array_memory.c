@@ -20,6 +20,10 @@
 #define impl_afw_array_get_next_entry_meta afw_array_impl_get_next_entry_meta
 #define impl_afw_array_initialize_iterator afw_array_impl_initialize_iterator
 
+static void
+impl_managed_array_elements_cleanup(
+    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx);
+
 /* Declares and rti/inf defines for interface afw_array */
 #define AFW_IMPLEMENTATION_ID "memory"
 typedef struct afw_memory_internal_array_s afw_memory_internal_array_t;
@@ -58,6 +62,11 @@ struct afw_memory_internal_array_s {
      * never write to wrapped. See afw_array_create_wrapper_with_options().
      */
     const afw_array_t *wrapped;
+    /*
+     * Unmanaged memory arrays: extra holds from add_reference. Zero is
+     * idle. Last extra hold walks remaining slot_store'd elements.
+     */
+    afw_integer_t reference_count;
     afw_boolean_t immutable;
     afw_boolean_t generic;
     afw_boolean_t unmanaged;
@@ -113,6 +122,11 @@ afw_array_create_with_options(
     self->count = 0; /* calloc already zeroed; explicit for clarity */
     self->setter.inf = &impl_afw_array_setter_inf;
     self->setter.array = (const afw_array_t *)self;
+
+    if (!self->unmanaged) {
+        afw_pool_register_cleanup_before(p, self, NULL,
+            impl_managed_array_elements_cleanup, xctx);
+    }
 
     return (const afw_array_t *)self;
 
@@ -194,6 +208,10 @@ afw_array_create_wrapper_with_options(
     if (!self->unmanaged) {
         afw_array_get_reference(wrapped, xctx);
     }
+    else {
+        afw_pool_register_cleanup_before(self->pub.p, self, NULL,
+            impl_managed_array_elements_cleanup, xctx);
+    }
 
     /*
      * Materialize entries onto the face so ring mutators only touch local
@@ -228,6 +246,18 @@ afw_array_is_memory_wrapper(const afw_array_t *array)
     }
     self = (const afw_memory_internal_array_t *)array;
     return self->wrapped != NULL;
+}
+
+
+AFW_DEFINE(const afw_array_t *)
+afw_array_create_script_wrapper(
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_array_t *base;
+
+    base = afw_array_create_generic(p, xctx);
+    return afw_array_create_wrapper_unmanaged(base, p, xctx);
 }
 
 
@@ -298,6 +328,40 @@ impl_promote_structured_entry(
 
 
 
+/* Release remaining elements this array slot_store'd (not pop/shift). */
+static void
+impl_release_remaining_elements(
+    AFW_ARRAY_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    afw_memory_internal_array_entry_t *ep;
+
+    if (!self->ring) {
+        return;
+    }
+    for (ep = APR_RING_FIRST(self->ring);
+        ep != APR_RING_SENTINEL(self->ring,
+            afw_memory_internal_array_entry_s, link);
+        ep = APR_RING_NEXT(ep, link))
+    {
+        if (ep->value) {
+            afw_value_release(ep->value, xctx);
+            ep->value = NULL;
+        }
+    }
+}
+
+
+static void
+impl_managed_array_elements_cleanup(
+    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+    impl_release_remaining_elements((AFW_ARRAY_SELF_T *)data, xctx);
+}
+
+
 /*
  * Implementation of method release of interface afw_array.
  */
@@ -309,6 +373,25 @@ impl_afw_array_release(
     const afw_array_t *wrapped;
 
     if (self->unmanaged) {
+        if (self->reference_count <= 0) {
+            return;
+        }
+        if (self->reference_count == 1) {
+            self->reference_count = 0;
+            /*
+             * Overlay walk is a pool cleanup (same as managed faces).
+             * Do not walk here: C-style for clones the current scope and
+             * last-release of the previous clone can drop this instance
+             * to zero while the array is still in use.
+             */
+            if (self->wrapped) {
+                afw_array_release(self->wrapped, xctx);
+            }
+            afw_pool_release(self->pub.p, xctx);
+            return;
+        }
+        self->reference_count--;
+        afw_pool_release(self->pub.p, xctx);
         return;
     }
 
@@ -328,6 +411,11 @@ impl_afw_array_get_reference(
     afw_xctx_t *xctx)
 {
     if (self->unmanaged) {
+        self->reference_count++;
+        if (self->reference_count == 1 && self->wrapped) {
+            afw_array_get_reference(self->wrapped, xctx);
+        }
+        afw_pool_get_reference(self->pub.p, xctx);
         return;
     }
     afw_pool_get_reference(self->pub.p, xctx);

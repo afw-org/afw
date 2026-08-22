@@ -66,7 +66,7 @@ impl_afw_value_optional_evaluate(
     const afw_value_t *property_name;
 
     from = ((const afw_value_object_expression_t *)&self->pub)->internal;
-    to = afw_object_create_unmanaged(p, xctx);
+    to = afw_object_create_script_wrapper(p, xctx);
 
     for (iterator = NULL;;) {
         v = afw_object_get_next_property(from, &iterator, &property_name,
@@ -79,7 +79,7 @@ impl_afw_value_optional_evaluate(
         afw_object_set_property(to, property_name, v, xctx);
     }
 
-    return afw_value_create_unmanaged_object(to, p, xctx);
+    return afw_object_as_value(to, p, xctx);
 }
 
 /*

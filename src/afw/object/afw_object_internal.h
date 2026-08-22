@@ -66,6 +66,13 @@ struct afw_object_internal_memory_object_s {
      */
     const afw_object_t *wrapped;
 
+    /*
+     * Unmanaged faces: extra holds from add_reference. Zero is idle
+     * (instance is not destroyed). Generic unmanaged objects leave this
+     * at 0 and keep a no-op get_reference/release.
+     */
+    afw_integer_t reference_count;
+
     afw_boolean_t immutable;
     /*
      * Residual: public clone_on_set memory option was never productized.

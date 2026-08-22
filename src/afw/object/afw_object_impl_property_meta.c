@@ -169,9 +169,9 @@ impl_afw_object_release(
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
+    /* Unmanaged grab-and-read; slot last-release may call this. */
+    (void)self;
+    (void)xctx;
 }
 
 

@@ -4,7 +4,7 @@
 
 **GitHub:** [#2 Memory management](https://github.com/afw-org/afw/issues/2).
 
-**Status:** Working story recorded 2026-08-20–21. Slot protocol **landed**. Pool split **landed** (`issue-2-pool-heap`). Closures / throw-path rewind (**#35**): object/array literals bind a script function at store (same as assign/`return`); nested-block assign holds the **defining** scope, not the inner `if`; throw-path tests in `language/script/throw_rewind.as`. No let/const hoisting. P3 first-fit still parked. Heap/tracker are single-thread only.
+**Status:** Working story recorded 2026-08-20–21. Slot protocol **landed**. Pool split **landed**. Closures / throw-path rewind (**#35**) store-time bind **landed**. Script-evaluation-aware wrapper holds **landed** on `issue-2-script-wrapper-holds`: overlay store is a slot; last-release walk is a pool cleanup (C-style `for` clone can drop instance RC to zero while the value is still in use); generic memory objects still do not own property values. Closure create-at-0 **landed**. No let/const hoisting. P3 first-fit still parked. Heap/tracker are single-thread only.
 
 **This file is the campaign map.** Older notes, phase archaeology, and rejected experiments stay in [`memory-management.md`](memory-management.md). When that pad and this file disagree, **this file wins** until we change it on purpose.
 
@@ -265,12 +265,13 @@ This pass is specified with **`xctx->p` as the usual ancestor**. Adapter caches,
 
 Do **not** treat this as a commit plan. When we execute:
 
-1. **Slot protocol** — landed. Closure create stays at 1 (create-at-0 would break `o.fn = function…` on generic objects).
+1. **Slot protocol** — landed.
 2. **Scalar `add_reference`** — landed (box in `xctx->p`; no bindings rename; no first-fit free of boxes). Unmanaged **null** not boxed (`useDefaultProcessing`).
-3. **Object/array instance holds** — landed for memory arrays (`get_reference`/`release`, options, wrapper pin). `create_generic` unmanaged. `create_array` dual face.
-4. **Overlay `set`** — landed on **faces** and array elements. Generic objects store as-is. `as_value` is the instance→value door. `clone()` is a deep independent graph.
+3. **Object/array instance holds** — landed for memory arrays (`get_reference`/`release`, options, wrapper pin). `create_generic` unmanaged. `create_array` dual face / script wrapper.
+4. **Overlay `set`** — landed on **faces** and array elements. Generic objects store as-is. `as_value` is the instance→value door. `clone()` is a deep independent graph; script clones without an entity path get a face.
 5. **Pools** — **landed** on `issue-2-pool-heap`.
 6. **Closures / throw rewind (#35)** — store-time bind; nested assign walks to defining depth; throw-path tests pin original error (not leftover scopes).
+7. **Wrapper teardown + create-at-0** — landed on `issue-2-script-wrapper-holds`. Script-mutable creates (`add_properties` no target, object construct/expression, `create_array`, `array()`) return a face. Unmanaged object/array values `add_reference`/`release` the instance. Overlay/element walk is pool cleanup. Closure create starts at 0; 0→1 pins the defining scope. Gate: `language/script/wrapper_property_holds.as`.
 
 Current pools the whole way through 1–4.
 
