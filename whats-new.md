@@ -781,13 +781,14 @@ Tests: `src/afw/tests/language/script/object_expression_names.as`.
 
 ## Value lifetime / memory management (issue [#2](https://github.com/afw-org/afw/issues/2)) — alpha/beta
 
-**Issue [#2](https://github.com/afw-org/afw/issues/2)** — campaign continues. Slot protocol and related verticals landed on `issue-2-slot-protocol`. **Not** a finished memory-management productization (α/β). Pool rewrite is **paused** (live pool is still develop; wrap-APR is parked as `afw_pool_apr_*`).
+**Issue [#2](https://github.com/afw-org/afw/issues/2)** — campaign continues. Slot protocol landed. Pool split landed on `issue-2-pool-heap` (general APR pool vs evaluation heap/tracker). **Not** a finished memory-management productization (α/β).
 
 ### What landed (high level)
 
 - Prefer **shared permanent Adaptive values** (`afw_v_*`) for known scalars where safe.
 - **Slot protocol:** assign / parameters `add_reference` the new value and `release` the old; scope last-`release` walks slots; C-style `for` and **`for-of` `let`/`const`** clone the loop-local scope per iteration (`for (x of …)` when `x` already exists is still one binding). No `var` hoist, no TDZ, no `for-in`.
-- **Scalars:** unmanaged `clone_or_reference` boxes a managed copy in `xctx->p` (utf8/memory copy octets). Unmanaged **null** is not boxed (model `useDefaultProcessing` pointer identity).
+- **Pools:** `afw_pool_create*` is destroy-is-lifetime (parent decides mt vs thread-specific). Script eval uses a **heap** + **heap trackers** (single-thread; one compiled_value evaluate). Job pools set `managed_p` to self; managed object/array own a child of `p->managed_p`.
+- **Scalars:** unmanaged `clone_or_reference` boxes a managed copy in `p->managed_p` (utf8/memory copy octets). Unmanaged **null** is not boxed (model `useDefaultProcessing` pointer identity).
 - **Objects/arrays:** dual face; C uses **`afw_object_as_value` / `afw_array_as_value`**. Memory arrays honor create options, `get_reference`/`release`, managed wrapper pin. Overlay **`set`** on look-through faces holds the local overlay pointer. **`clone()`** is a **deep independent graph** (nested objects/arrays too). Get/retrieve already return a **face** — do not `clone()` just to set properties.
 - **`afw_pool_release`**: returns the pool or **NULL** if that call destroyed it.
 - Campaign map: `designs/issue-2-lifetime.md` (not user docs).
@@ -796,9 +797,9 @@ Tests: `src/afw/tests/language/script/object_expression_names.as`.
 
 ### Not done yet (do not rely on)
 
-- Pool rewrite (request/object vs script-scope; optional `free` into dead headers). Live allocations still use develop’s prefix / `create_subpool`.
+- Closures and throw-path scope rewind (**#35**).
 - Object-literal methods `{ get: function()… }` (compile **#35**: wrap the function as a closure when the construct stores it — same as assign/`return`).
-- Renaming `clone_or_reference` → `add_reference`; dropping generated slice infs.
+- Renaming `clone_or_reference` → `add_reference`; dropping generated slice infs; optional `free` / first-fit tuning.
 
 [↑ Highlights](#highlights)
 

@@ -28,16 +28,16 @@ AFW_BEGIN_DECLARES
  * @param typedef_name (See AFW_STACK_STRUCT macro in afw_common.h)
  * @param initial_count
  * @param maximum_count or 0 if no limit
- * @param create_subpool_pool if true.
+ * @param create_own_pool if true, create a child general pool.
  * @param p for stack
  * @param xctx of caller
  * @return pointer to created stack of type typedef_name *.
  */
 #define afw_stack_create(typedef_name, \
-    initial_count, maximum_count, create_subpool_pool, p, xctx) \
+    initial_count, maximum_count, create_own_pool, p, xctx) \
 (typedef_name *)afw_stack_create_impl( \
     sizeof(*(((typedef_name *)0))->first), \
-    initial_count, maximum_count, create_subpool_pool, p, xctx);
+    initial_count, maximum_count, create_own_pool, p, xctx);
 
 
 
@@ -46,7 +46,7 @@ AFW_BEGIN_DECLARES
  * @param entry_size
  * @param initial_count
  * @param maximum_count or 0 for no limit.
- * @param create_subpool_pool if true.
+ * @param create_own_pool if true, create a child general pool.
  * @param p for stack.
  * @param xctx of caller.
  * @return stack
@@ -58,7 +58,7 @@ afw_stack_create_impl(
     afw_size_t entry_size,
     afw_size_t initial_count,
     afw_size_t maximum_count,
-    afw_boolean_t create_subpool_pool,
+    afw_boolean_t create_own_pool,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 

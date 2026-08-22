@@ -82,7 +82,7 @@ afw_array_create_with_options(
     afw_memory_internal_array_t *self;
     afw_memory_internal_array_ring_t *ring;
 
-    /* If managed, create subpool for array. */
+    /* If managed, own pool is a child of p->managed_p. */
     if (options == AFW_ARRAY_MEMORY_OPTION_managed) {
         p = afw_pool_create(p->managed_p, xctx);
     }
@@ -98,8 +98,8 @@ afw_array_create_with_options(
     self->pub.p = p;
     self->unmanaged = AFW_ARRAY_MEMORY_OPTION_IS(options, unmanaged);
     /*
-     * Dual face: inf matches array lifetime — managed when RC owns a
-     * subpool; unmanaged when options say unmanaged (pool bulk free).
+     * Dual face: inf matches array lifetime — managed when the array
+     * owns a child pool; unmanaged when options say unmanaged.
      */
     self->value.inf = self->unmanaged
         ? &afw_value_unmanaged_array_inf

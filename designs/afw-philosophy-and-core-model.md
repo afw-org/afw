@@ -122,7 +122,7 @@ Full working story: [`issue-2-lifetime.md`](issue-2-lifetime.md) (2026-08-21). A
 - **Unmanaged** = holds optional; count to zero does **not** destroy the instance; `add_reference` keeps **that instance’s pool**.
 - **Permanent** / **compiled unit** = immutable; holds are no-ops. **Everything in a compiled unit is immutable.** Script mutates a **face** over literals, not the compiled instance.
 - **`add_reference` / `release`** are not “GC for everything.” Classic example: `closure_binding` holding a **scope** so symbols survive `}`.
-- Current pool impl (prefixes, first-fit) can **host** this protocol. A simpler wrap-APR pool is a later swap, not a gate.
+- Pools: general APR (`afw_pool_create*`) plus evaluation heap/tracker (single-thread, one compiled_value wrap). See [`issue-2-lifetime.md`](issue-2-lifetime.md).
 
 Short scripts and request-scoped work were production-proven early because **destroying the request pool** papered over incomplete escape polish. Long-running processes need the full hold protocol — that is why **#2** remains a first-class campaign.
 

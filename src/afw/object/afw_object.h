@@ -781,9 +781,8 @@ afw_object_memory_associative_array_create(
 /**
  * @brief Default object behaviour.
  *
- * A subpool will be created of the p passed to create and be considered the
- * object's pool.  The lifetime of the object's pool will be controlled by
- * calls to the object's get_reference() and release() methods.
+ * Managed objects get their own general pool as a child of p->managed_p.
+ * Lifetime of that pool is get_reference() / release() on the object.
  */
 #define AFW_OBJECT_MEMORY_OPTION_managed              0
 
@@ -859,7 +858,7 @@ afw_object_create_wrapper_with_options(
 /**
  * @brief Create a managed memory wrapper over another object.
  * @param wrapped base object for property look-through.
- * @param p parent pool (a subpool is created for the wrapper).
+ * @param p parent pool (managed wrapper uses p->managed_p).
  * @param xctx of caller.
  * @return instance of new wrapper object.
  */
@@ -955,10 +954,8 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  * @param xctx of caller.
  * @return instance of new object.
  *
- * This function creates a subpool of the pool specified to hold the object and
- * it's properties.
- *
- * A call to afw_object_release() for this object will release this subpool.
+ * Creates a general pool as a child of p->managed_p to hold the object.
+ * afw_object_release() of the last hold destroys that pool.
  */
 #define afw_object_create(p, xctx) \
     afw_object_create_with_options( \

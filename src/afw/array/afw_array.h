@@ -31,7 +31,7 @@ AFW_THROW_ERROR_Z(read_only, "List immutable", xctx)
 
 /**
  * Memory array create options. Same bit values as
- * AFW_OBJECT_MEMORY_OPTION_*. 0 is managed (own subpool).
+ * AFW_OBJECT_MEMORY_OPTION_*. 0 is managed (own pool under p->managed_p).
  * create_generic stays unmanaged so existing C (compile, YAML, …)
  * keeps pool-bulk lifetime without a matching release.
  */
@@ -160,7 +160,7 @@ afw_array_as_value(
 
 
 /**
- * @brief Create a managed memory array (own subpool).
+ * @brief Create a managed memory array (own pool under p->managed_p).
  */
 #define afw_array_create(p, xctx) \
     afw_array_create_with_options( \

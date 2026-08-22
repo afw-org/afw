@@ -19,10 +19,10 @@
 
 #include <stdio.h>
 
-typedef struct afw_pool_apr_self_s
-afw_pool_apr_self_t;
+typedef struct afw_pool_self_s
+afw_pool_self_t;
 
-struct afw_pool_apr_self_s {
+struct afw_pool_self_s {
 
     afw_pool_t pub;
 
@@ -30,10 +30,10 @@ struct afw_pool_apr_self_s {
 
     const afw_utf8_t *name;
 
-    afw_pool_apr_self_t *parent;
-    afw_pool_apr_self_t *first_child;
-    afw_pool_apr_self_t *prev_sibling;
-    afw_pool_apr_self_t *next_sibling;
+    afw_pool_self_t *parent;
+    afw_pool_self_t *first_child;
+    afw_pool_self_t *prev_sibling;
+    afw_pool_self_t *next_sibling;
 
     /** AFW parent when it is not this impl (e.g. a heap). */
     const afw_pool_t *afw_parent;
@@ -55,7 +55,7 @@ AFW_LOCK_BEGIN((xctx)->env->multithreaded_pool_lock)
 #define IMPL_MULTITHREADED_LOCK_END \
 AFW_LOCK_END;
 
-#define AFW_POOL_SELF_T afw_pool_apr_self_t
+#define AFW_POOL_SELF_T afw_pool_self_t
 
 #define AFW_POOL_INTERNAL_DEBUG_LEVEL_detail  flag_index_debug_pool_detail
 #define AFW_POOL_INTERNAL_DEBUG_LEVEL_minimal flag_index_debug_pool
@@ -157,8 +157,8 @@ impl_assert_thread(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
  */
 static void
 impl_link_child(
-    afw_pool_apr_self_t *parent,
-    afw_pool_apr_self_t *child)
+    afw_pool_self_t *parent,
+    afw_pool_self_t *child)
 {
     child->parent = parent;
     child->prev_sibling = NULL;
@@ -172,8 +172,8 @@ impl_link_child(
 
 static void
 impl_unlink_child(
-    afw_pool_apr_self_t *parent,
-    afw_pool_apr_self_t *child)
+    afw_pool_self_t *parent,
+    afw_pool_self_t *child)
 {
     if (child->prev_sibling) {
         child->prev_sibling->next_sibling = child->next_sibling;
@@ -192,8 +192,8 @@ impl_unlink_child(
 
 static void
 impl_add_child(
-    afw_pool_apr_self_t *parent,
-    afw_pool_apr_self_t *child,
+    afw_pool_self_t *parent,
+    afw_pool_self_t *child,
     afw_xctx_t *xctx)
 {
     /* Core get_reference: caller holds the multi lock if parent is multi. */
@@ -202,20 +202,20 @@ impl_add_child(
 }
 
 
-static afw_pool_apr_self_t *
+static afw_pool_self_t *
 impl_create(
     apr_pool_t *parent_apr,
     const afw_pool_inf_t *inf,
     afw_xctx_t *xctx)
 {
     apr_pool_t *apr_p;
-    afw_pool_apr_self_t *self;
+    afw_pool_self_t *self;
 
     apr_pool_create(&apr_p, parent_apr);
     if (!apr_p) {
         AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
     }
-    self = apr_pcalloc(apr_p, sizeof(afw_pool_apr_self_t));
+    self = apr_pcalloc(apr_p, sizeof(afw_pool_self_t));
     if (!self) {
         AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
     }
@@ -280,7 +280,7 @@ impl_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_pool_apr_self_t *parent;
+    afw_pool_self_t *parent;
     const afw_pool_t *afw_parent;
     afw_boolean_t parent_destroying;
     afw_pool_cleanup_t *e;
@@ -771,7 +771,7 @@ afw_pool_internal_create_base_pool()
     if (!apr_p) {
         return NULL;
     }
-    self = apr_pcalloc(apr_p, sizeof(afw_pool_apr_self_t));
+    self = apr_pcalloc(apr_p, sizeof(afw_pool_self_t));
     if (!self) {
         return NULL;
     }
@@ -802,7 +802,7 @@ afw_pool_print_debug_info(
     afw_xctx_t *xctx)
 {
     const AFW_POOL_SELF_T *self = (const AFW_POOL_SELF_T *)pool;
-    const afw_pool_apr_self_t *child;
+    const afw_pool_self_t *child;
     int i;
 
     (void)xctx;

@@ -4,7 +4,7 @@
 
 **GitHub:** [#2 Memory management](https://github.com/afw-org/afw/issues/2).
 
-**Status:** Working story recorded 2026-08-20–21. **First verticals 1–4 landed** on branch `issue-2-slot-protocol` (slot protocol, scalar boxing, arrays matching objects, overlay `set` on faces, `as_value`, deep `clone()`, for-of `let`/`const` per-iteration). **Live pool is still develop** (prefix / first-fit / `create_subpool`). Wrap-APR is **parked** as `afw_pool_apr_*` (compiled, not wired). Fulldev + valgrind: 4167 passed (2026-08-21).
+**Status:** Working story recorded 2026-08-20–21. Slot protocol **landed**. Pool split **landed** on `issue-2-pool-heap` (2026-08-22): general APR pool vs evaluation heap/tracker; `managed_p`; compiled_value evaluate creates a heap, clones the result, **releases** the heap. Heap/tracker are single-thread only. **Next session:** closures and throw-path scope rewind (**#35**). Fulldev + valgrind script suite + tests-extra soaks: 4178 passed (2026-08-22).
 
 **This file is the campaign map.** Older notes, phase archaeology, and rejected experiments stay in [`memory-management.md`](memory-management.md). When that pad and this file disagree, **this file wins** until we change it on purpose.
 
@@ -26,9 +26,9 @@ Prefer **add_reference** / **release** / **reference count** in this pad. Do not
 
 **Destroy of a pool is lifetime. Optional `free` is reuse.** Forget a `release` and the **xctx** still **destroys** `xctx->p` when the request or `afw` command ends. That is the safety net.
 
-**Managed** means the value or instance is in the hold protocol: every `add_reference` is matched by a `release`. Managed objects and arrays have **their own pool** whose **parent is `xctx->p`** (or `cede_p` of a pool in that tree). All managed things hang under `xctx->p`.
+**Managed** means the value or instance is in the hold protocol: every `add_reference` is matched by a `release`. Managed objects and arrays have **their own general pool** whose parent is **`p->managed_p`** (heap during eval, xctx/adapter/env job pool otherwise).
 
-**Unmanaged** means you do **not** `release` unless you `add_reference`d. Count back to **zero does not destroy** the instance. `add_reference` also holds **that instance’s pool**, so the bytes can outlive the original owner of the pool. Unmanaged objects and arrays live in some pool in the xctx tree (`xctx->p` or a child / descendant, often a **scope pool**).
+**Unmanaged** means you do **not** `release` unless you `add_reference`d. Count back to **zero does not destroy** the instance. Unmanaged objects and arrays live **in** the `p` passed (often a **heap tracker** / scope pool during eval).
 
 **Permanent** (and **compiled-unit literals**, which should act the same): immutable; `add_reference` / `release` are no-ops; no pool on the value inf. Built-ins, `afw_v_*`, typed empty arrays, const objects. Everything **in a compiled unit** is immutable. Eval must not write it.
 
@@ -36,13 +36,13 @@ Prefer **add_reference** / **release** / **reference count** in this pad. Do not
 
 **Assign** in `afw_function_compiler_internal.c` is the script hold site: `release` the old slot if needed, `add_reference` the new. **Read** is a pointer copy. Scope **last `release`** (not `}`) walks the frame. Closures keep the scope.
 
-**Scalars** are not a managed/unmanaged inf pair. Temps live in whoever’s pool. `add_reference` on a temp makes (or, if already boxed, holds) a little **wrapper in `xctx->p`**, copying `s` / `ptr` for utf8/memory. After a variable holds that wrapper, other scopes use the same pointer. Generated **`managed_slice` can go away**. The method name we want is **`add_reference`** (today’s `clone_or_reference` was a memory-jog).
+**Scalars** are not a managed/unmanaged inf pair. Temps live in whoever’s pool. `add_reference` on a temp makes (or, if already boxed, holds) a little **wrapper in `p->managed_p`**. After a variable holds that wrapper, other scopes use the same pointer. Generated **`managed_slice` can go away**. The method name we want is **`add_reference`** (today’s `clone_or_reference` was a memory-jog).
 
 **Objects and arrays:** `add_reference` holds the **instance**, not a second value header in `xctx->p`. Generic memory objects **store and return** property pointers; they do not own those values. The value must **last at least as long as the object** (caller’s job). Script mutates a **script-evaluation-aware wrapper** (the faces from #17, possibly a dedicated impl). That wrapper **may** own **overlay** holds. Arrays grow the **same instance story as objects**. `create_array` is on the #2 on-ramp.
 
 **`return`** writes this frame’s **hidden result slot** and ends the block. Assign into the **caller** happens **when the block ends**, then the callee last-`release`s.
 
-**Pools we have can host this.** A simpler wrap-APR pool plus optional free list (combine adjacent first; size classes later, still inside the pool) is a **later swap**, not a gate.
+**Pools:** general `afw_pool_create*` (APR, destroy-is-lifetime) vs **heap** + **heap tracker** (script eval, single-thread, one compiled_value wrap). Job pools set `managed_p = self`. No reparent on destroy; parent cascade destroys children. Optional first-fit tuning is later.
 
 ---
 
@@ -242,7 +242,7 @@ This pass is specified with **`xctx->p` as the usual ancestor**. Adapter caches,
 | `script_result` | xctx pointer, save/restore | Hidden **frame** slot; assign to caller at block end **before** callee walk |
 | `for` clone | `memcpy` slot pointers; FIXME | Per-slot `add_reference` |
 | Scalar managed/unmanaged infs | Generated pair + slice | Product: permanent / temp / `xctx->p` box |
-| Pools | Prefix + first-fit subpools | Host the protocol now; simplify later |
+| Pools | General APR + heap/tracker (`issue-2-pool-heap`) | Landed; first-fit later |
 
 ---
 
@@ -269,7 +269,7 @@ Do **not** treat this as a commit plan. When we execute:
 2. **Scalar `add_reference`** — landed (box in `xctx->p`; no bindings rename; no first-fit free of boxes). Unmanaged **null** not boxed (`useDefaultProcessing`).
 3. **Object/array instance holds** — landed for memory arrays (`get_reference`/`release`, options, wrapper pin). `create_generic` unmanaged. `create_array` dual face.
 4. **Overlay `set`** — landed on **faces** and array elements. Generic objects store as-is. `as_value` is the instance→value door. `clone()` is a deep independent graph.
-5. **Pools** — **paused.** Live: develop `afw_pool.c`. Parked: `afw_pool_apr_*`. Next design: request/object vs script-scope (APR is poor per-block).
+5. **Pools** — **landed** on `issue-2-pool-heap`. Next: closures / throw rewind (**#35**).
 
 Current pools the whole way through 1–4.
 
@@ -289,12 +289,12 @@ Current pools the whole way through 1–4.
 | 8 | Read = pointer. Assign to a slot (variable, parameter, hidden result) = `add_reference`. `return` sets this frame’s hidden slot and leaves. Assign to **caller when the block ends**, then callee walk. |
 | 9 | Runtime/env: same protocol, often unmanaged grab-and-read. Threads = access. |
 | 10 | #17 is isolation; #2 is holds. Same face can do both. Script-aware wrapper allowed. |
-| S1 | Scalar wrapper always `xctx->p`. |
+| S1 | Scalar wrapper uses **`p->managed_p`** (heap during eval). |
 | S2 | `for` clone = per-slot `add_reference`. Hidden result not copied. |
 | S3 | Script literals = unmanaged faces in **eval/scope pool** (eval vs compile). Do not add a child pool per `{}`. Compiled unit **immutable**; holds on the base are no-ops. |
 | S4 | Overlay overwrite reuses via the **wrapper’s `set`**, not “objects own all properties.” |
 
-**Parked / later:** pool impl swap; interned true-permanent compile literals; size-class free lists; huge-string slice optimization.
+**Parked / later:** first-fit / prefixes; interned true-permanent compile literals; huge-string slice optimization; nested compile+evaluate reusing the outer heap. **Next:** closures and throw-path scope rewind (**#35**).
 
 ---
 

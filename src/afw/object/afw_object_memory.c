@@ -35,7 +35,7 @@ afw_object_create_with_options(
 {
     afw_object_internal_memory_object_t *self;
 
-    /* If managed, create subpool for object. */
+    /* If managed, own pool is a child of p->managed_p. */
     if (options == AFW_OBJECT_MEMORY_OPTION_managed)
     {
         p = afw_pool_create(p->managed_p, xctx);
@@ -48,8 +48,8 @@ afw_object_create_with_options(
     self->unmanaged = AFW_OBJECT_MEMORY_OPTION_IS(options, unmanaged);
     /*
      * Dual face: value.internal is this instance. Inf matches object
-     * lifetime — managed face when object RC owns a subpool; unmanaged
-     * when create options say unmanaged (pool bulk free only).
+     * lifetime — managed face when the object owns a child pool;
+     * unmanaged when create options say unmanaged (pool bulk free).
      */
     self->value.inf = self->unmanaged
         ? &afw_value_unmanaged_object_inf
