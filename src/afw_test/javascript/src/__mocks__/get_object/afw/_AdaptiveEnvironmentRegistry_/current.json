@@ -48107,97 +48107,97 @@
         "lock": {
             "adapter_id:'auth'": {
                 "brief": "Adapter id 'auth' read/write lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "Read/write lock used internally by adapter id 'auth' implementation",
                 "lockId": "adapter_id:'auth'"
             },
             "adapter_id:'files'": {
                 "brief": "Adapter id 'files' read/write lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "Read/write lock used internally by adapter id 'files' implementation",
                 "lockId": "adapter_id:'files'"
             },
             "environment:registry": {
                 "brief": "Environment registry lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "This lock is used internally by afw_environment.c when accessing environment registry memory.",
                 "lockId": "environment:registry"
             },
             "environment:authorization_handler_id": {
                 "brief": "Authorization handler id anchor lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "This lock is used internally when accessing authorization handler id anchor memory.",
                 "lockId": "environment:authorization_handler_id"
             },
             "environment:log_list": {
                 "brief": "Environment log list lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "This lock is used internally when accessing environment log list memory.",
                 "lockId": "environment:log_list"
             },
             "adapter_id:'afw'": {
                 "brief": "Adapter id 'afw' read/write lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "Read/write lock used internally by adapter id 'afw' implementation",
                 "lockId": "adapter_id:'afw'"
             },
             "adapter_id:'lmdb'": {
                 "brief": "Adapter id 'lmdb' read/write lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "Read/write lock used internally by adapter id 'lmdb' implementation",
                 "lockId": "adapter_id:'lmdb'"
             },
             "adapter_id:'dev'": {
                 "brief": "Adapter id 'dev' read/write lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "Read/write lock used internally by adapter id 'dev' implementation",
                 "lockId": "adapter_id:'dev'"
             },
             "environment:adapter_id_anchor": {
                 "brief": "Adapter id anchor lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "This lock is used internally when accessing adapter id anchor memory.",
                 "lockId": "environment:adapter_id_anchor"
             },
             "adapter_id:'models'": {
                 "brief": "Adapter id 'models' read/write lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "Read/write lock used internally by adapter id 'models' implementation",
                 "lockId": "adapter_id:'models'"
             },
             "adapter_id:'conf'": {
                 "brief": "Adapter id 'conf' read/write lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "Read/write lock used internally by adapter id 'conf' implementation",
                 "lockId": "adapter_id:'conf'"
             },
             "environment:flags": {
                 "brief": "Environment flags lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "This lock is used internally when accessing environment flags memory.",
                 "lockId": "environment:flags"
             },
             "adapter_id:'xyz'": {
                 "brief": "Adapter id 'xyz' read/write lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "Read/write lock used internally by adapter id 'xyz' implementation",
                 "lockId": "adapter_id:'xyz'"
             },
             "environment:file_journal_anchor": {
                 "brief": "File Journal anchor lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "This lock protects access to shared file journal entries.",
                 "lockId": "environment:file_journal_anchor"
             },
             "adapter_id:'vfs'": {
                 "brief": "Adapter id 'vfs' read/write lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "Read/write lock used internally by adapter id 'vfs' implementation",
                 "lockId": "adapter_id:'vfs'"
             },
             "adapter_id:'layouts'": {
                 "brief": "Adapter id 'layouts' read/write lock",
-                "debugFlagIndex": 0,
+                "traceFlagIndex": 0,
                 "description": "Read/write lock used internally by adapter id 'layouts' implementation",
                 "lockId": "adapter_id:'layouts'"
             }

@@ -46,6 +46,16 @@ afw_os_get_pid();
 
 
 /**
+ * @brief Maximum resident set size for this process so far.
+ * @return ru_maxrss from getrusage(RUSAGE_SELF), or 0 if unavailable.
+ *
+ * On Linux this is kilobytes. Must not allocate. Win stubs 0.
+ */
+AFW_DECLARE(afw_size_t)
+afw_os_get_maxrss();
+
+
+/**
  * @brief Return the suffix appended to dso file names for this system. 
  * @return suffix such as ".so" or ".dll".
  */

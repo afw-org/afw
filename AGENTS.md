@@ -157,7 +157,7 @@ afwdev test -j --env-mode valgrind   # much slower
 afwdev generate --srcdir-pattern '*'
 ```
 
-`--cdev` and `--fulldev` are convenience profiles (both include **`-j`** / parallel cmake unless you pass **`-j N`**). `--cdev` = generate/clean/install/-j for C work (default cmake context; no docs/JS/docker). `--fulldev` = `--all --generate --clean --install --scan` plus `-j` (version headers, Doxyfile `PROJECT_NUMBER`, handbook, JS, docker tags, clang scan). **`--all` alone does not generate or install.** CMake output lives under `build/cmake/`.
+`--cdev` and `--fulldev` are convenience profiles (both include **`-j`** / parallel cmake unless you pass **`-j N`**). `--cdev` = generate/clean/install/-j for C work (default cmake context; no docs/JS/docker). `--fulldev` = `--all --generate --clean --install --scan` plus `-j` (version headers, Doxyfile `PROJECT_NUMBER`, handbook, JS, docker tags, clang scan). **`--all` alone does not generate or install.** Both define `AFW_TRACE_EVALUATION`, `AFW_TRACE_LOCK`, and `AFW_TRACE_POOL` (runtime flags still off unless set). Extra C preprocessor defines: `afwdev build --define NAME` or `--define NAME=VALUE`. CMake output lives under `build/cmake/`.
 
 ## Documentation
 

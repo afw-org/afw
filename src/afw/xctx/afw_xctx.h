@@ -746,15 +746,58 @@ AFW_STACK_STRUCT(afw_xctx_evaluation_stack_s,
     afw_xctx_evaluation_stack_entry_t);
 
 
+#ifdef AFW_TRACE_EVALUATION
+#include <stdio.h>
+
+#define AFW_XCTX_TRACE_EVALUATION_PRINT(xctx, short_name_z, extra_fmt_z, ...) \
+do { \
+    if ((xctx) && (xctx)->env && (xctx)->env->debug_fd && \
+        afw_flag_is_active( \
+            (xctx)->env->flag_index_trace_evaluation, (xctx))) \
+    { \
+        if (afw_flag_is_active( \
+                (xctx)->env->flag_index_trace_evaluation_detail, (xctx))) \
+        { \
+            fprintf((xctx)->env->debug_fd, \
+                short_name_z " %s " extra_fmt_z "\n", \
+                AFW__FILE_LINE__, ##__VA_ARGS__); \
+        } \
+        else { \
+            fprintf((xctx)->env->debug_fd, \
+                short_name_z " %s\n", AFW__FILE_LINE__); \
+        } \
+        fflush((xctx)->env->debug_fd); \
+    } \
+} while (0)
+#endif
+
+
 /**
  * @brief Push VALUE onto execution stack.
  * @param VALUE
  * @param xctx of caller.
  * @return Don't use.
  */
+#ifdef AFW_TRACE_EVALUATION
+#define afw_xctx_evaluation_stack_push_value(VALUE, xctx) \
+do { \
+    const afw_value_t *_afw_eval_push_value = (VALUE); \
+    AFW_XCTX_TRACE_EVALUATION_PRINT((xctx), \
+        "evaluation_stack_push_value", \
+        "value %p inf " AFW_UTF8_FMT, \
+        (const void *)_afw_eval_push_value, \
+        AFW_UTF8_FMT_OPTIONAL_ARG( \
+            (_afw_eval_push_value && _afw_eval_push_value->inf) \
+                ? &_afw_eval_push_value->inf->rti.implementation_id \
+                : NULL)); \
+    afw_stack_push_direct((xctx)->evaluation_stack, (xctx)); \
+    (xctx)->evaluation_stack->top->value = _afw_eval_push_value; \
+} while (0)
+#else
 #define afw_xctx_evaluation_stack_push_value(VALUE, xctx) \
     afw_stack_push_direct(xctx->evaluation_stack, xctx); \
     (xctx)->evaluation_stack->top->value = VALUE
+#endif
 
 
 /**
@@ -762,23 +805,51 @@ AFW_STACK_STRUCT(afw_xctx_evaluation_stack_s,
  * @param PARAMETER_NUMBER
  * @param xctx of caller.
  */
+#ifdef AFW_TRACE_EVALUATION
+#define afw_xctx_evaluation_stack_push_parameter_number( \
+    PARAMETER_NUMBER, xctx) \
+do { \
+    afw_size_t _afw_eval_push_pn = (PARAMETER_NUMBER); \
+    AFW_XCTX_TRACE_EVALUATION_PRINT((xctx), \
+        "evaluation_stack_push_parameter_number", \
+        "n " AFW_SIZE_T_FMT, \
+        _afw_eval_push_pn); \
+    afw_stack_push_direct((xctx)->evaluation_stack, (xctx)); \
+    (xctx)->evaluation_stack->top->parameter_number = _afw_eval_push_pn; \
+    afw_stack_push_direct((xctx)->evaluation_stack, (xctx)); \
+    (xctx)->evaluation_stack->top->entry_id = afw_s_parameter_number; \
+} while (0)
+#else
 #define afw_xctx_evaluation_stack_push_parameter_number( \
     PARAMETER_NUMBER, xctx) \
     afw_stack_push_direct(xctx->evaluation_stack, xctx); \
     (xctx)->evaluation_stack->top->parameter_number =PARAMETER_NUMBER; \
     afw_stack_push_direct(xctx->evaluation_stack, xctx); \
     (xctx)->evaluation_stack->top->entry_id = afw_s_parameter_number
+#endif
 
 
 /**
  * @brief Pop top PARAMETER_NUMBER or VALUE off execution stack.
  * @param xctx of caller.
  */
+#ifdef AFW_TRACE_EVALUATION
+#define afw_xctx_evaluation_stack_pop(xctx) \
+do { \
+    AFW_XCTX_TRACE_EVALUATION_PRINT((xctx), \
+        "evaluation_stack_pop", "%s", ""); \
+    if ((xctx)->evaluation_stack->top->entry_id == afw_s_parameter_number) { \
+        afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
+    } \
+    afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
+} while (0)
+#else
 #define afw_xctx_evaluation_stack_pop(xctx) \
 if (xctx->evaluation_stack->top->entry_id == afw_s_parameter_number) { \
     afw_stack_pop(xctx->evaluation_stack, xctx); \
 } \
 afw_stack_pop(xctx->evaluation_stack, xctx)
+#endif
 
 
 /**
@@ -787,8 +858,17 @@ afw_stack_pop(xctx->evaluation_stack, xctx)
  * 
  * Use only when you're positive top of stack is VALUE.
  */
+#ifdef AFW_TRACE_EVALUATION
+#define afw_xctx_evaluation_stack_pop_value(xctx) \
+do { \
+    AFW_XCTX_TRACE_EVALUATION_PRINT((xctx), \
+        "evaluation_stack_pop_value", "%s", ""); \
+    afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
+} while (0)
+#else
 #define afw_xctx_evaluation_stack_pop_value(xctx) \
 afw_stack_pop(xctx->evaluation_stack, xctx)
+#endif
 
 
 
@@ -798,26 +878,53 @@ afw_stack_pop(xctx->evaluation_stack, xctx)
  *
  * Use only when you're positive top of stack is PARAMETER_NUMBER.
  */
+#ifdef AFW_TRACE_EVALUATION
+#define afw_xctx_evaluation_stack_pop_parameter_number(xctx) \
+do { \
+    AFW_XCTX_TRACE_EVALUATION_PRINT((xctx), \
+        "evaluation_stack_pop_parameter_number", "%s", ""); \
+    afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
+    afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
+} while (0)
+#else
 #define afw_xctx_evaluation_stack_pop_parameter_number(xctx) \
 afw_stack_pop(xctx->evaluation_stack, xctx); \
 afw_stack_pop(xctx->evaluation_stack, xctx)
+#endif
 
 
 /**
  * @brief Save top of stack.
  * @param xctx of caller.
  */
+#ifdef AFW_TRACE_EVALUATION
+#define afw_xctx_evaluation_stack_save_top(xctx) \
+afw_xctx_evaluation_stack_entry_t *evaluation_stack_save_top = \
+(xctx)->evaluation_stack->top; \
+AFW_XCTX_TRACE_EVALUATION_PRINT((xctx), \
+    "evaluation_stack_save_top", "%s", "")
+#else
 #define afw_xctx_evaluation_stack_save_top(xctx) \
 afw_xctx_evaluation_stack_entry_t *evaluation_stack_save_top = \
 xctx->evaluation_stack->top
+#endif
 
 
 /**
- * @brief Save top of stack.
+ * @brief Restore top of stack.
  * @param xctx of caller.
  */
+#ifdef AFW_TRACE_EVALUATION
+#define afw_xctx_evaluation_stack_restore_top(xctx) \
+do { \
+    AFW_XCTX_TRACE_EVALUATION_PRINT((xctx), \
+        "evaluation_stack_restore_top", "%s", ""); \
+    (xctx)->evaluation_stack->top = evaluation_stack_save_top; \
+} while (0)
+#else
 #define afw_xctx_evaluation_stack_restore_top(xctx) \
 xctx->evaluation_stack->top = evaluation_stack_save_top
+#endif
 
 
 /* ----------------------------------------------------------------------------

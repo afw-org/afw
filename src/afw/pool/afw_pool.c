@@ -57,67 +57,94 @@ AFW_LOCK_END;
 
 #define AFW_POOL_SELF_T afw_pool_self_t
 
-#define AFW_POOL_INTERNAL_DEBUG_LEVEL_detail  flag_index_debug_pool_detail
-#define AFW_POOL_INTERNAL_DEBUG_LEVEL_minimal flag_index_debug_pool
+#ifdef AFW_TRACE_POOL
+
+#define AFW_POOL_INTERNAL_DEBUG_LEVEL_detail  flag_index_trace_pool_detail
+#define AFW_POOL_INTERNAL_DEBUG_LEVEL_minimal flag_index_trace_pool
 
 #define IMPL_PRINT_DEBUG_INFO_Z(level,info_z) \
 do { \
-    const afw_utf8_t *trace; \
-    if (xctx && xctx->env && \
+    FILE *fd; \
+    if (xctx && xctx->env && xctx->env->debug_fd && \
         afw_flag_is_active( \
             xctx->env->AFW_POOL_INTERNAL_DEBUG_LEVEL_##level, xctx)) \
     { \
-        trace = afw_os_backtrace(0, -1, xctx); \
-        afw_debug_write_fz(NULL, AFW__FILE_LINE__, xctx, \
-            "pool " AFW_INTEGER_FMT " " \
-            info_z \
-            ": before " AFW_SIZE_T_FMT \
+        fd = xctx->env->debug_fd; \
+        fprintf(fd, \
+            info_z " %s pool " AFW_INTEGER_FMT \
+            " bytes " AFW_SIZE_T_FMT \
+            " env " AFW_SIZE_T_FMT \
+            " rss " AFW_SIZE_T_FMT " KB" \
             " refs " AFW_INTEGER_FMT \
-            " parent " AFW_INTEGER_FMT \
-            "%s" \
-            AFW_UTF8_FMT, \
+            " parent " AFW_INTEGER_FMT "\n", \
+            AFW__FILE_LINE__, \
             self->pool_number, \
-            (self->bytes_allocated), \
-            (self->reference_count), \
+            self->bytes_allocated, \
+            (afw_size_t)xctx->env->pool_bytes_allocated, \
+            afw_os_get_maxrss(), \
+            self->reference_count, \
             (afw_integer_t)((self->parent) \
-                ? self->parent->pool_number : \
-                0), \
-            (char *)((trace) ? "\n" : ""), \
-            (int)((trace) ? (int)trace->len : 0), \
-            (const char *)((trace) ? (const char *)trace->s : "") \
-            ); \
+                ? self->parent->pool_number : 0)); \
+        fflush(fd); \
     } \
 } while (0)
 
 #define IMPL_PRINT_DEBUG_INFO_FZ(level,format_z,...) \
 do { \
-    const afw_utf8_t *trace; \
-    if (xctx && xctx->env && \
+    FILE *fd; \
+    if (xctx && xctx->env && xctx->env->debug_fd && \
         afw_flag_is_active( \
             xctx->env->AFW_POOL_INTERNAL_DEBUG_LEVEL_##level, xctx)) \
     { \
-        trace = afw_os_backtrace(0, -1, xctx); \
-        afw_debug_write_fz(NULL, AFW__FILE_LINE__, xctx, \
-            "pool " AFW_INTEGER_FMT " " \
-            format_z \
-            ": before " AFW_SIZE_T_FMT \
+        fd = xctx->env->debug_fd; \
+        fprintf(fd, \
+            format_z " %s pool " AFW_INTEGER_FMT \
+            " bytes " AFW_SIZE_T_FMT \
+            " env " AFW_SIZE_T_FMT \
+            " rss " AFW_SIZE_T_FMT " KB" \
             " refs " AFW_INTEGER_FMT \
-            " parent " AFW_INTEGER_FMT \
-            "%s" \
-            AFW_UTF8_FMT, \
-            self->pool_number, \
+            " parent " AFW_INTEGER_FMT "\n", \
             __VA_ARGS__, \
-            (self->bytes_allocated), \
-            (self->reference_count), \
+            AFW__FILE_LINE__, \
+            self->pool_number, \
+            self->bytes_allocated, \
+            (afw_size_t)xctx->env->pool_bytes_allocated, \
+            afw_os_get_maxrss(), \
+            self->reference_count, \
             (afw_integer_t)((self->parent) \
-                ? self->parent->pool_number : \
-                0), \
-            (char *)((trace) ? "\n" : ""), \
-            (int)((trace) ? (int)trace->len : 0), \
-            (const char *)((trace) ? (const char *)trace->s : "") \
-            ); \
+                ? self->parent->pool_number : 0)); \
+        fflush(fd); \
     } \
 } while (0)
+
+#else
+
+#define IMPL_PRINT_DEBUG_INFO_Z(level,info_z)
+#define IMPL_PRINT_DEBUG_INFO_FZ(level,format_z,...)
+
+#endif
+
+
+static void
+impl_account_alloc(
+    afw_pool_self_t *self, afw_size_t consumed, afw_xctx_t *xctx)
+{
+    self->bytes_allocated += consumed;
+    if (xctx && xctx->env) {
+        ((afw_environment_t *)xctx->env)->pool_bytes_allocated += consumed;
+    }
+}
+
+
+static void
+impl_account_destroy(afw_pool_self_t *self, afw_xctx_t *xctx)
+{
+    if (xctx && xctx->env) {
+        ((afw_environment_t *)xctx->env)->pool_bytes_allocated -=
+            self->bytes_allocated;
+    }
+    self->bytes_allocated = 0;
+}
 
 
 /* Core methods: declared here so link/create can call them without
@@ -307,6 +334,8 @@ impl_afw_pool_destroy(
         impl_unlink_child(parent, self);
     }
 
+    impl_account_destroy(self, xctx);
+
     /* self is allocated in apr_p; do not use self after this. */
     apr_pool_destroy(self->apr_p);
 
@@ -340,6 +369,7 @@ impl_afw_pool_calloc(
     afw_xctx_t *xctx)
 {
     void *result;
+    afw_size_t consumed;
 
     impl_assert_thread(self, xctx);
     if (size == 0) {
@@ -347,7 +377,8 @@ impl_afw_pool_calloc(
             "Attempt to allocate memory for a size of 0",
             xctx);
     }
-    if (APR_ALIGN_DEFAULT(size) < size) {
+    consumed = APR_ALIGN_DEFAULT(size);
+    if (consumed < size) {
         AFW_THROW_ERROR_Z(memory,
             "Requested allocation size is too large",
             xctx);
@@ -356,7 +387,7 @@ impl_afw_pool_calloc(
     if (!result) {
         AFW_THROW_ERROR_Z(memory, "Allocate memory error.", xctx);
     }
-    self->bytes_allocated += size;
+    impl_account_alloc(self, consumed, xctx);
     return result;
 }
 
@@ -371,6 +402,7 @@ impl_afw_pool_malloc(
     afw_xctx_t *xctx)
 {
     void *result;
+    afw_size_t consumed;
 
     impl_assert_thread(self, xctx);
     if (size == 0) {
@@ -378,7 +410,8 @@ impl_afw_pool_malloc(
             "Attempt to allocate memory for a size of 0",
             xctx);
     }
-    if (APR_ALIGN_DEFAULT(size) < size) {
+    consumed = APR_ALIGN_DEFAULT(size);
+    if (consumed < size) {
         AFW_THROW_ERROR_Z(memory,
             "Requested allocation size is too large",
             xctx);
@@ -387,7 +420,7 @@ impl_afw_pool_malloc(
     if (!result) {
         AFW_THROW_ERROR_Z(memory, "Allocate memory error.", xctx);
     }
-    self->bytes_allocated += size;
+    impl_account_alloc(self, consumed, xctx);
     return result;
 }
 

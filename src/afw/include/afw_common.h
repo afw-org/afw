@@ -42,8 +42,14 @@
  * afw.h                   | Contains `#include`s for most core headers and will generally be included in all Adaptive Framework .c files.  
  */
 
-/* For pool debugging use  -D AFW_POOL_DEBUG */
-/* For lock debugging use -D AFW_LOCK_DEBUG */
+/*
+ * Compile-time traces (runtime flags still off unless set):
+ *   AFW_TRACE_EVALUATION  evaluation stack push/pop
+ *   AFW_TRACE_LOCK        lock obtain/release
+ *   AFW_TRACE_POOL        pool alloc/free/create/destroy
+ * `afwdev build --cdev` and `--fulldev` define all three. Otherwise:
+ *   afwdev build --define AFW_TRACE_POOL
+ */
 
 /* Adaptive Framework uses Apache Portable Runtime. */
 #include <apr_general.h>
@@ -1946,6 +1952,12 @@ struct afw_environment_s {
     /** @brief Used to give unique number for pool. */
     AFW_ATOMIC afw_integer_t pool_number;
 
+    /**
+     * @brief Sum of all pools' bytes_allocated (consumed size, including
+     *     rounding and block overhead). Atomic; multithreaded pools update it.
+     */
+    AFW_ATOMIC afw_size_t pool_bytes_allocated;
+
     /** @brief Indicates that environment is terminating. */
     afw_boolean_t terminating;
 
@@ -2034,11 +2046,17 @@ struct afw_environment_s {
     /** @brief Flag index of debug:function_active:detail. */
     afw_size_t flag_index_debug_function_active_detail;
 
-    /** @brief Flag index of debug:pool. */
-    afw_size_t flag_index_debug_pool;
+    /** @brief Flag index of trace:lock. */
+    afw_size_t flag_index_trace_lock;
 
-    /** @brief Flag index of debug:pool:detail. */
-    afw_size_t flag_index_debug_pool_detail;
+    /** @brief Flag index of trace:lock:detail. */
+    afw_size_t flag_index_trace_lock_detail;
+
+    /** @brief Flag index of trace:pool. */
+    afw_size_t flag_index_trace_pool;
+
+    /** @brief Flag index of trace:pool:detail. */
+    afw_size_t flag_index_trace_pool_detail;
 
     /** @brief Flag index of response:error:backtrace. */
     afw_size_t flag_index_response_error_backtrace;
@@ -2066,6 +2084,9 @@ struct afw_environment_s {
 
     /** @brief Flag index of trace:authorization:decision:detail. */
     afw_size_t flag_index_trace_authorization_decision_detail;
+
+    /** @brief Flag index of trace:evaluation. */
+    afw_size_t flag_index_trace_evaluation;
 
     /** @brief Flag index of trace:evaluation:detail. */
     afw_size_t flag_index_trace_evaluation_detail;

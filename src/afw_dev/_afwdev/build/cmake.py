@@ -12,7 +12,15 @@
 import subprocess
 import os
 import sys
+import re
 from _afwdev.common import msg, package
+
+_C_DEFINE_RE = re.compile(r'^[A-Za-z_][A-Za-z0-9_]*(?:=[A-Za-z0-9_]+)?$')
+_CDEV_TRACE_DEFINES = (
+    'AFW_TRACE_EVALUATION',
+    'AFW_TRACE_LOCK',
+    'AFW_TRACE_POOL',
+)
 
 ##
 # @brief The main entry point for the "cmake" build.
@@ -27,10 +35,23 @@ def build(options):
         stdout_capture = None
 
     _configure_command = ['cmake']
-    #FIXME MIght want to figure out something to pass flags cmake understands.
     # if msg.is_verbose:
     #     _configure_command.extend(['--verbose'])
     _configure_command.extend(['-S', '.', '-B', options['build_directory_rpath_cmake']])
+    _c_defines = []
+    for _d in options.get('build_define') or []:
+        if not _C_DEFINE_RE.fullmatch(_d):
+            msg.error_exit(
+                'Invalid --define ' + str(_d) +
+                ' (expected NAME or NAME=VALUE with letters, digits, underscore)')
+        _c_defines.append(_d)
+    if options.get('build_cdev') or options.get('build_fulldev'):
+        for _name in _CDEV_TRACE_DEFINES:
+            if not any(_d.split('=', 1)[0] == _name for _d in _c_defines):
+                _c_defines.append(_name)
+    if _c_defines:
+        # Semicolon list: add_compile_definitions in the root CMakeLists.
+        _configure_command.extend(['-DAFWDEV_C_DEFINES=' + ';'.join(_c_defines)])
     if options.get('build_prefix') is not None:
         _configure_command.extend(['-DCMAKE_INSTALL_PREFIX=' + options.get('build_prefix')])
     if options.get('build_package', False) and options.get('build_prefix') is not None:

@@ -14,7 +14,9 @@
 
 #include "afw_internal.h"
 
-#ifdef AFW_LOCK_DEBUG
+#include <stdio.h>
+
+#ifdef AFW_TRACE_LOCK
 #undef afw_lock_obtain
 #undef afw_lock_release
 #undef afw_lock_read_obtain
@@ -22,6 +24,28 @@
 #undef afw_lock_write_obtain
 #undef afw_lock_write_release
 #endif
+
+
+static void
+impl_lock_trace(
+    const afw_lock_t *instance,
+    const afw_utf8_z_t *source_z,
+    const char *op_z,
+    afw_xctx_t *xctx)
+{
+    FILE *fd;
+
+    if (!instance || !xctx || !xctx->env || !xctx->env->debug_fd) {
+        return;
+    }
+    if (!afw_flag_is_active(instance->flag_index_trace, xctx)) {
+        return;
+    }
+    fd = xctx->env->debug_fd;
+    fprintf(fd, "%s %s lock " AFW_UTF8_FMT_Q "\n",
+        op_z, source_z, AFW_UTF8_FMT_ARG(instance->lock_id));
+    fflush(fd);
+}
 
 
 static void
@@ -100,7 +124,7 @@ afw_lock_create(
     afw_lock_t *self;
     apr_status_t rv;
 
-#ifdef AFW_LOCK_DEBUG
+#ifdef AFW_TRACE_LOCK
     const afw_flag_t *flag;
 #endif
 
@@ -118,24 +142,24 @@ afw_lock_create(
     self->brief = brief;
     self->description = description;
 
-#ifdef AFW_LOCK_DEBUG
-    self->flag_id_debug = afw_utf8_printf(p, xctx,
-        "debug:lock:" AFW_UTF8_FMT_Q,
+#ifdef AFW_TRACE_LOCK
+    self->flag_id_trace = afw_utf8_printf(p, xctx,
+        "trace:lock:" AFW_UTF8_FMT_Q,
         AFW_UTF8_FMT_ARG(lock_id));
-    flag = afw_environment_get_flag(self->flag_id_debug, xctx);
+    flag = afw_environment_get_flag(self->flag_id_trace, xctx);
     if (!flag) {
         brief = afw_utf8_printf(p, xctx,
-            "Debug lock " AFW_UTF8_FMT_Q,
+            "Trace lock " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_ARG(lock_id));
         description = afw_utf8_printf(p, xctx,
-            "Debug lock " AFW_UTF8_FMT_Q ".",
+            "Trace lock " AFW_UTF8_FMT_Q ".",
             AFW_UTF8_FMT_ARG(lock_id));
         afw_environment_register_flag(
-            self->flag_id_debug, brief, description,
-            afw_s_a_flag_debug_lock, xctx);
-        flag = afw_environment_get_flag(self->flag_id_debug, xctx);
+            self->flag_id_trace, brief, description,
+            afw_s_a_flag_trace_lock, xctx);
+        flag = afw_environment_get_flag(self->flag_id_trace, xctx);
     }
-    self->flag_index_debug = flag->flag_index;
+    self->flag_index_trace = flag->flag_index;
 #endif
 
     rv = apr_thread_mutex_create(&self->mutex,
@@ -199,7 +223,7 @@ afw_lock_create_rw(
     afw_lock_rw_t *self;
     apr_status_t rv;
 
-#ifdef AFW_LOCK_DEBUG
+#ifdef AFW_TRACE_LOCK
     const afw_flag_t *flag;
 #endif
 
@@ -211,24 +235,24 @@ afw_lock_create_rw(
     self->lock.brief = brief;
     self->lock.description = description;
 
-#ifdef AFW_LOCK_DEBUG
-    self->lock.flag_id_debug = afw_utf8_printf(p, xctx,
-        "debug:lock:" AFW_UTF8_FMT_Q,
+#ifdef AFW_TRACE_LOCK
+    self->lock.flag_id_trace = afw_utf8_printf(p, xctx,
+        "trace:lock:" AFW_UTF8_FMT_Q,
         AFW_UTF8_FMT_ARG(lock_id));
-    flag = afw_environment_get_flag(self->lock.flag_id_debug, xctx);
+    flag = afw_environment_get_flag(self->lock.flag_id_trace, xctx);
     if (!flag) {
         brief = afw_utf8_printf(p, xctx,
-            "Debug lock " AFW_UTF8_FMT_Q,
+            "Trace lock " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_ARG(lock_id));
         description = afw_utf8_printf(p, xctx,
-            "Debug lock " AFW_UTF8_FMT_Q ".",
+            "Trace lock " AFW_UTF8_FMT_Q ".",
             AFW_UTF8_FMT_ARG(lock_id));
         afw_environment_register_flag(
-            self->lock.flag_id_debug, brief, description,
-            afw_s_a_flag_debug_lock, xctx);
-        flag = afw_environment_get_flag(self->lock.flag_id_debug, xctx);
+            self->lock.flag_id_trace, brief, description,
+            afw_s_a_flag_trace_lock, xctx);
+        flag = afw_environment_get_flag(self->lock.flag_id_trace, xctx);
     }
-    self->lock.flag_index_debug = flag->flag_index;
+    self->lock.flag_index_trace = flag->flag_index;
 #endif
 
     rv = apr_thread_rwlock_create(&self->lock.rwlock, afw_pool_get_apr_pool(p));
@@ -268,20 +292,14 @@ afw_lock_obtain(const afw_lock_t *instance, afw_xctx_t *xctx)
 }
 
 
-/* Debug version of obtain lock. */
+/* Trace version of obtain lock. */
 AFW_DEFINE(void)
-afw_lock_obtain_debug(const afw_lock_t *instance,
+afw_lock_obtain_trace(const afw_lock_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z)
 {
     if (!instance) return;
 
-    if (afw_flag_is_active(instance->flag_index_debug, xctx)) {
-        afw_debug_write_fz(NULL, source_z, xctx,
-            "lock " AFW_UTF8_FMT_Q ": afw_lock_obtain",
-            AFW_UTF8_FMT_ARG(instance->lock_id));
-    }
-
-    /* Call non-debug function. */
+    impl_lock_trace(instance, source_z, "lock_obtain", xctx);
     afw_lock_obtain(instance, xctx);
 }
 
@@ -305,20 +323,14 @@ afw_lock_release(const afw_lock_t *instance, afw_xctx_t *xctx)
 }
 
 
-/* Debug version of release lock. */
+/* Trace version of release lock. */
 AFW_DEFINE(void)
-afw_lock_release_debug(const afw_lock_t *instance,
+afw_lock_release_trace(const afw_lock_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z)
 {
     if (!instance) return;
 
-    if (afw_flag_is_active(instance->flag_index_debug, xctx)) {
-        afw_debug_write_fz(NULL, source_z, xctx,
-            "lock " AFW_UTF8_FMT_Q ": afw_lock_release",
-            AFW_UTF8_FMT_ARG(instance->lock_id));
-    }
-
-    /* Call non-debug function. */
+    impl_lock_trace(instance, source_z, "lock_release", xctx);
     afw_lock_release(instance, xctx);
 }
 
@@ -342,21 +354,14 @@ afw_lock_read_obtain(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
 }
 
 
-/* Debug version of obtain read lock. */
+/* Trace version of obtain read lock. */
 AFW_DEFINE(void)
-afw_lock_read_obtain_debug(const afw_lock_rw_t *instance,
+afw_lock_read_obtain_trace(const afw_lock_rw_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z)
 {
     if (!instance) return;
 
-    if (afw_flag_is_active(instance->lock.flag_index_debug, xctx))
-    {
-        afw_debug_write_fz(NULL, source_z, xctx,
-            "lock " AFW_UTF8_FMT_Q ": afw_lock_read_obtain",
-            AFW_UTF8_FMT_ARG(instance->lock.lock_id));
-    }
-
-    /* Call non-debug function. */
+    impl_lock_trace(&instance->lock, source_z, "lock_read_obtain", xctx);
     afw_lock_read_obtain(instance, xctx);
 }
 
@@ -380,20 +385,14 @@ afw_lock_read_release(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
 }
 
 
-/* Debug version of release read lock. */
+/* Trace version of release read lock. */
 AFW_DEFINE(void)
-afw_lock_read_release_debug(const afw_lock_rw_t *instance,
+afw_lock_read_release_trace(const afw_lock_rw_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z)
 {
     if (!instance) return;
 
-    if (afw_flag_is_active(instance->lock.flag_index_debug, xctx)) {
-        afw_debug_write_fz(NULL, source_z, xctx,
-            "lock " AFW_UTF8_FMT_Q ": afw_lock_read_release",
-            AFW_UTF8_FMT_ARG(instance->lock.lock_id));
-    }
-
-    /* Call non-debug function. */
+    impl_lock_trace(&instance->lock, source_z, "lock_read_release", xctx);
     afw_lock_read_release(instance, xctx);
 }
 
@@ -417,19 +416,14 @@ afw_lock_write_obtain(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
 }
 
 
-/* Debug version of obtain write lock. */
+/* Trace version of obtain write lock. */
 AFW_DEFINE(void)
-afw_lock_write_obtain_debug(const afw_lock_rw_t *instance,
+afw_lock_write_obtain_trace(const afw_lock_rw_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z)
 {
     if (!instance) return;
 
-    if (afw_flag_is_active(instance->lock.flag_index_debug, xctx)) {
-        afw_debug_write_fz(NULL, source_z, xctx,
-            "lock " AFW_UTF8_FMT_Q ": afw_lock_write_obtain",
-            AFW_UTF8_FMT_ARG(instance->lock.lock_id));
-    }
-
+    impl_lock_trace(&instance->lock, source_z, "lock_write_obtain", xctx);
     afw_lock_write_obtain(instance, xctx);
 }
 
@@ -452,18 +446,13 @@ afw_lock_write_release(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
 }
 
 
-/* Debug version of release write lock. */
+/* Trace version of release write lock. */
 AFW_DEFINE(void)
-afw_lock_write_release_debug(const afw_lock_rw_t *instance,
+afw_lock_write_release_trace(const afw_lock_rw_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z)
 {
     if (!instance) return;
 
-    if (afw_flag_is_active(instance->lock.flag_index_debug, xctx)) {
-        afw_debug_write_fz(NULL, source_z, xctx,
-            "lock " AFW_UTF8_FMT_Q ": afw_lock_write_release",
-            AFW_UTF8_FMT_ARG(instance->lock.lock_id));
-    }
-
+    impl_lock_trace(&instance->lock, source_z, "lock_write_release", xctx);
     afw_lock_write_release(instance, xctx);
 }

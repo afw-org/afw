@@ -19,25 +19,25 @@
                 "valueAccessor": "indirect"
             }
         },
-        "debugFlagId": {
+        "traceFlagId": {
             "allowQuery": true,
-            "brief": "Flag id of the lock's debug flag",
+            "brief": "Flag id of the lock's trace flag",
             "dataType": "string",
-            "description": "Flag id of the lock's debug flag.",
-            "label": "Debug Flag Id",
+            "description": "Flag id of the lock's trace flag.",
+            "label": "Trace Flag Id",
             "runtime": {
-                "memberName": "flag_id_debug",
+                "memberName": "flag_id_trace",
                 "valueAccessor": "indirect"
             }
         },
-        "debugFlagIndex": {
+        "traceFlagIndex": {
             "allowQuery": true,
-            "brief": "Index of the lock's debug flag",
+            "brief": "Index of the lock's trace flag",
             "dataType": "integer",
-            "description": "Index of the lock's debug flag.",
-            "label": "Debug Flag Index",
+            "description": "Index of the lock's trace flag.",
+            "label": "Trace Flag Index",
             "runtime": {
-                "memberName": "flag_index_debug",
+                "memberName": "flag_index_trace",
                 "valueAccessor": "size"
             }
         },

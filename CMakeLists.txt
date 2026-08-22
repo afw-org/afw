@@ -14,6 +14,12 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 # This is the afw base package
 project(afw_package LANGUAGES C)
 
+# Preprocessor defines from `afwdev build --define` (and --cdev/--fulldev
+# AFW_TRACE_*). Semicolon-separated list of NAME or NAME=VALUE.
+if(DEFINED AFWDEV_C_DEFINES AND NOT AFWDEV_C_DEFINES STREQUAL "")
+    add_compile_definitions(${AFWDEV_C_DEFINES})
+endif()
+
 # Core library afw is required by all Adaptive Framework commands and
 # extensions. Since it and its associated CMake Find*.cmake files are not
 # installed yet, src/afw/cmake is appended to the CMAKE_MODULE_PATH variable

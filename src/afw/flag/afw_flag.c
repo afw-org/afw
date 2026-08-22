@@ -324,46 +324,6 @@ afw_flag_internal_early_register_core(afw_xctx_t *xctx)
         afw_s_a_flag_debug_detail,
         xctx);
 
-#ifdef AFW_LOCK_DEBUG
-    /* Register flag debug:lock */
-    afw_flag_environment_register_flag(
-        afw_s_a_flag_debug_lock,
-        afw_s_a_flag_debug_lock_brief,
-        afw_s_a_flag_debug_lock_description,
-        afw_s_a_flag_debug,
-        xctx);
-#endif
-
-#ifdef AFW_POOL_DEBUG
-    /* Register flag debug:pool:detail */
-    afw_flag_environment_register_flag(
-        afw_s_a_flag_debug_pool_detail,
-        afw_s_a_flag_debug_pool_detail_brief,
-        afw_s_a_flag_debug_pool_detail_description,
-        afw_s_a_flag_debug_detail,
-        xctx);
-    env->flag_index_debug_pool_detail =
-        afw_environment_get_flag(
-            afw_s_a_flag_debug_pool_detail,
-            xctx)->flag_index;
-
-    /* Register flag debug:pool */
-    afw_flag_environment_register_flag(
-        afw_s_a_flag_debug_pool,
-        afw_s_a_flag_debug_pool_brief,
-        afw_s_a_flag_debug_pool_description,
-        afw_s_a_flag_debug,
-        xctx);
-    afw_flag_add_included_by(
-        afw_s_a_flag_debug_pool,
-        afw_s_a_flag_debug_detail,
-        xctx);
-    env->flag_index_debug_pool =
-        afw_environment_get_flag(
-            afw_s_a_flag_debug_pool,
-            xctx)->flag_index;
-#endif
-
     /* Register flag debug:print:detail */
     afw_flag_environment_register_flag(
         afw_s_a_flag_debug_function_active_detail,
@@ -533,6 +493,66 @@ afw_flag_internal_early_register_core(afw_xctx_t *xctx)
         afw_s_a_flag_trace_detail,
         xctx);
 
+#ifdef AFW_TRACE_LOCK
+    /* Register flag trace:lock:detail */
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_trace_lock_detail,
+        afw_s_a_flag_trace_lock_detail_brief,
+        afw_s_a_flag_trace_lock_detail_description,
+        afw_s_a_flag_trace_detail,
+        xctx);
+    env->flag_index_trace_lock_detail =
+        afw_environment_get_flag(
+            afw_s_a_flag_trace_lock_detail,
+            xctx)->flag_index;
+
+    /* Register flag trace:lock */
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_trace_lock,
+        afw_s_a_flag_trace_lock_brief,
+        afw_s_a_flag_trace_lock_description,
+        afw_s_a_flag_trace,
+        xctx);
+    afw_flag_add_included_by(
+        afw_s_a_flag_trace_lock,
+        afw_s_a_flag_trace_lock_detail,
+        xctx);
+    env->flag_index_trace_lock =
+        afw_environment_get_flag(
+            afw_s_a_flag_trace_lock,
+            xctx)->flag_index;
+#endif
+
+#ifdef AFW_TRACE_POOL
+    /* Register flag trace:pool:detail */
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_trace_pool_detail,
+        afw_s_a_flag_trace_pool_detail_brief,
+        afw_s_a_flag_trace_pool_detail_description,
+        afw_s_a_flag_trace_detail,
+        xctx);
+    env->flag_index_trace_pool_detail =
+        afw_environment_get_flag(
+            afw_s_a_flag_trace_pool_detail,
+            xctx)->flag_index;
+
+    /* Register flag trace:pool */
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_trace_pool,
+        afw_s_a_flag_trace_pool_brief,
+        afw_s_a_flag_trace_pool_description,
+        afw_s_a_flag_trace,
+        xctx);
+    afw_flag_add_included_by(
+        afw_s_a_flag_trace_pool,
+        afw_s_a_flag_trace_pool_detail,
+        xctx);
+    env->flag_index_trace_pool =
+        afw_environment_get_flag(
+            afw_s_a_flag_trace_pool,
+            xctx)->flag_index;
+#endif
+
     /* Register flag trace:adapter:detail */
     afw_flag_environment_register_flag(
         afw_s_a_flag_trace_adapter_detail,
@@ -583,6 +603,22 @@ afw_flag_internal_early_register_core(afw_xctx_t *xctx)
     env->flag_index_trace_evaluation_detail =
         afw_environment_get_flag(
             afw_s_a_flag_trace_evaluation_detail,
+            xctx)->flag_index;
+
+    /* Register flag trace:evaluation */
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_trace_evaluation,
+        afw_s_a_flag_trace_evaluation_brief,
+        afw_s_a_flag_trace_evaluation_description,
+        afw_s_a_flag_trace,
+        xctx);
+    afw_flag_add_included_by(
+        afw_s_a_flag_trace_evaluation,
+        afw_s_a_flag_trace_evaluation_detail,
+        xctx);
+    env->flag_index_trace_evaluation =
+        afw_environment_get_flag(
+            afw_s_a_flag_trace_evaluation,
             xctx)->flag_index;
 
     /* Register flag trace:request:detail */
