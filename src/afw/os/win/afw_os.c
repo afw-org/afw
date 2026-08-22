@@ -181,14 +181,6 @@ afw_os_get_rss()
 }
 
 
-/* Maximum resident set size for this process so far. */
-AFW_DEFINE(afw_size_t)
-afw_os_get_maxrss()
-{
-    return 0;
-}
-
-
 /* Return the suffix appended to dso file names for this system. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_os_get_dso_suffix()

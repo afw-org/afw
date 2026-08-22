@@ -124,10 +124,9 @@ Useful hunts after Ctrl-C (**no debug flags** on a soak):
      `{ }` → tracker APR skeleton charged to the parent heap.
    - RSS and env up, heap bytes 0 → general `xctx->p` (managed scalars).
    - heap user mallocs (not just skeleton) → eval-heap reuse story.
-3. Do **not** `call afw_os_get_rss()` / `afw_os_get_maxrss()` from gdb
-   after SIGSTOP (can abort the inferior). `afw-rss` reads
-   `/proc/<pid>/status` VmRSS (current) and VmHWM/Peak. `>debug pool`
-   `rss` is current KB (`afw_os_get_rss`), not `ru_maxrss`.
+3. Do **not** `call afw_os_get_rss()` from gdb after SIGSTOP (can
+   abort the inferior). `afw-rss` reads `/proc/<pid>/status` VmRSS.
+   `>debug pool` `rss` is current KB (`afw_os_get_rss`).
 4. `afw-breaks` then `continue` on a **slow** script only.
 
 ## #242 debug lines (`debug:pool`)

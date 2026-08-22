@@ -86,7 +86,7 @@ def _heap_bytes(xctx):
             heap, e)
 
 
-def _env_pool_and_maxrss(xctx):
+def _env_pool_and_rss(xctx):
     bits = []
     try:
         env = xctx["env"]
@@ -96,13 +96,13 @@ def _env_pool_and_maxrss(xctx):
     except Exception as e:
         bits.append("env->pool_bytes_allocated unreadable: %s" % e)
     # Prefer /proc: inferior-call of afw_os_get_rss() after SIGSTOP can
-    # abort the process. VmRSS is current; VmHWM/Peak is ru_maxrss.
+    # abort the process.
     try:
         st = _read_rss_kib(_pid())
         bits.append("VmRSS=%s kB  VmHWM/Peak=%s/%s kB" % (
             st.get("VmRSS"), st.get("VmHWM"), st.get("VmPeak")))
     except Exception as e:
-        bits.append("maxrss unreadable: %s" % e)
+        bits.append("rss unreadable: %s" % e)
     return "  ".join(bits)
 
 
@@ -122,11 +122,11 @@ class AfwRss(gdb.Command):
         )
         xctx, _frame = _find_xctx()
         if xctx is not None:
-            gdb.write(_env_pool_and_maxrss(xctx) + "\n")
+            gdb.write(_env_pool_and_rss(xctx) + "\n")
 
 
 class AfwHeap(gdb.Command):
-    """Print evaluation_heap bytes_allocated plus env pool_bytes / maxrss."""
+    """Print evaluation_heap bytes_allocated plus env pool_bytes / VmRSS."""
 
     def __init__(self):
         super(AfwHeap, self).__init__("afw-heap", gdb.COMMAND_USER)
@@ -138,7 +138,7 @@ class AfwHeap(gdb.Command):
                 "no xctx in the stack; interrupt during evaluate() first")
         gdb.write("frame %s\n" % frame.name())
         gdb.write(_heap_bytes(xctx) + "\n")
-        gdb.write(_env_pool_and_maxrss(xctx) + "\n")
+        gdb.write(_env_pool_and_rss(xctx) + "\n")
 
 
 class AfwBt(gdb.Command):

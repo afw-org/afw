@@ -48,7 +48,7 @@
  *   AFW_DEBUG_EVALUATION  evaluation stack push/pop
  *   AFW_DEBUG_LOCK        lock obtain/release
  *   AFW_DEBUG_POOL        pool alloc/free/create/destroy
- * Pool `rss` is current RSS KB (`afw_os_get_rss`), not ru_maxrss.
+ * Pool `rss` is current RSS KB (`afw_os_get_rss`).
  * `afwdev build --cdev` and `--fulldev` define all three. Otherwise:
  *   afwdev build --define AFW_DEBUG_POOL
  */
