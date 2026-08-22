@@ -105,7 +105,7 @@ const ObjectResponsive_embedded = {
 const ObjectResponsive_filterOptions = {
     /**
      * Property: filterCondAndProperties
-     * Data Type: (list, string)
+     * Data Type: (array, string)
      *
      * Specifies exclusive (AND) conditions for properties to display
      * (required, optional, valued, unvalued).
@@ -113,7 +113,7 @@ const ObjectResponsive_filterOptions = {
     filterCondAndProperties:            PropTypes.arrayOf(PropTypes.string),
     /**
      * Property: filterCondOrProperties
-     * Data Type: (list, string)
+     * Data Type: (array, string)
      *
      * Specifies inclusive (OR) conditions for properties to display
      * (required, optional, valued, unvalued).
@@ -128,14 +128,14 @@ const ObjectResponsive_filterOptions = {
     filterExcludeEmbeddedProperties:    PropTypes.bool,
     /**
      * Property: filterExcludeProperties
-     * Data Type: (list, string)
+     * Data Type: (array, string)
      *
      * Do not display the specified properties.
      */
     filterExcludeProperties:            PropTypes.arrayOf(PropTypes.string),
     /**
      * Property: filterProperties
-     * Data Type: (list, string)
+     * Data Type: (array, string)
      *
      * Display the specified properties.
      */
