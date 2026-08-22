@@ -479,7 +479,9 @@ _info_build_cdev = {
     "default": False,
     "help": "C development shortcut: enables --generate, --clean, --install, "
         "and -j / parallel jobs (cmake context by default; not docs/JS/docker). "
-        "Explicit -j N still overrides. See also --fulldev."
+        "Also defines AFW_DEBUG_EVALUATION, AFW_DEBUG_LOCK, and AFW_DEBUG_POOL "
+        "(runtime flags still off unless you set them). Explicit -j N still "
+        "overrides. See also --fulldev and --define."
 }
 
 _info_build_fulldev = {
@@ -488,9 +490,21 @@ _info_build_fulldev = {
     "action": "store_true",
     "default": False,
     "help": "Full package dev-install shortcut: enables --all, --generate, "
-        "--clean, --install, --scan, and -j / parallel jobs. Use when the "
-        "whole tree (C, docs, JS, docker tags) should be rebuilt and "
-        "installed. Explicit -j N still overrides."
+        "--clean, --install, --scan, and -j / parallel jobs. Same AFW_DEBUG_* "
+        "defines as --cdev. Use when the whole tree (C, docs, JS, docker tags) "
+        "should be rebuilt and installed. Explicit -j N still overrides."
+}
+
+_info_build_define = {
+    "optionName": "build_define",
+    "arg": "--define",
+    "action": "append",
+    "default": None,
+    "noprompt": True,
+    "help": "C preprocessor define for this cmake build, NAME or NAME=VALUE "
+        "(repeatable). Applied with add_compile_definitions to C targets in "
+        "this package. --cdev and --fulldev already add AFW_DEBUG_EVALUATION, "
+        "AFW_DEBUG_LOCK, and AFW_DEBUG_POOL."
 }
 
 _info_build_generate = {
@@ -595,12 +609,15 @@ under. The --all selects all of those contexts (not generate/install).
 
 Convenience profiles: --cdev (C day-to-day generate/clean/install/-j) and
 --fulldev (all contexts plus generate/clean/install/scan/-j for a full dev install).
+Both define AFW_DEBUG_EVALUATION, AFW_DEBUG_LOCK, and AFW_DEBUG_POOL. Pass extra
+C preprocessor defines with --define NAME or --define NAME=VALUE.
 """,
     "thing": "build",
     "args": [
         _info_build_all,
         _info_build_cdev,
         _info_build_fulldev,
+        _info_build_define,
         _info_build_clean,
         _info_build_cmake,
         _info_build_docker,

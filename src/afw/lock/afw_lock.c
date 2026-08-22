@@ -14,7 +14,9 @@
 
 #include "afw_internal.h"
 
-#ifdef AFW_LOCK_DEBUG
+#include <stdio.h>
+
+#ifdef AFW_DEBUG_LOCK
 #undef afw_lock_obtain
 #undef afw_lock_release
 #undef afw_lock_read_obtain
@@ -22,6 +24,30 @@
 #undef afw_lock_write_obtain
 #undef afw_lock_write_release
 #endif
+
+
+static void
+impl_lock_debug_write(
+    const afw_lock_t *instance,
+    const afw_utf8_z_t *source_z,
+    const char *op_z,
+    afw_xctx_t *xctx)
+{
+    FILE *fd;
+
+    if (!instance || !xctx || !xctx->env || !xctx->env->debug_fd) {
+        return;
+    }
+    if (!afw_flag_is_active(instance->flag_index_debug, xctx)) {
+        return;
+    }
+    fd = xctx->env->debug_fd;
+    fprintf(fd, ">debug lock %s " AFW_UTF8_FMT " (%s)\n",
+        op_z,
+        AFW_UTF8_FMT_ARG(instance->lock_id),
+        afw_utf8_z_source_file(source_z));
+    fflush(fd);
+}
 
 
 static void
@@ -100,7 +126,7 @@ afw_lock_create(
     afw_lock_t *self;
     apr_status_t rv;
 
-#ifdef AFW_LOCK_DEBUG
+#ifdef AFW_DEBUG_LOCK
     const afw_flag_t *flag;
 #endif
 
@@ -118,18 +144,18 @@ afw_lock_create(
     self->brief = brief;
     self->description = description;
 
-#ifdef AFW_LOCK_DEBUG
+#ifdef AFW_DEBUG_LOCK
     self->flag_id_debug = afw_utf8_printf(p, xctx,
         "debug:lock:" AFW_UTF8_FMT_Q,
-        AFW_UTF8_FMT_ARG(lock_id));
+        AFW_UTF8_FMT_ARG(self->lock_id));
     flag = afw_environment_get_flag(self->flag_id_debug, xctx);
     if (!flag) {
         brief = afw_utf8_printf(p, xctx,
             "Debug lock " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(lock_id));
+            AFW_UTF8_FMT_ARG(self->lock_id));
         description = afw_utf8_printf(p, xctx,
             "Debug lock " AFW_UTF8_FMT_Q ".",
-            AFW_UTF8_FMT_ARG(lock_id));
+            AFW_UTF8_FMT_ARG(self->lock_id));
         afw_environment_register_flag(
             self->flag_id_debug, brief, description,
             afw_s_a_flag_debug_lock, xctx);
@@ -199,7 +225,7 @@ afw_lock_create_rw(
     afw_lock_rw_t *self;
     apr_status_t rv;
 
-#ifdef AFW_LOCK_DEBUG
+#ifdef AFW_DEBUG_LOCK
     const afw_flag_t *flag;
 #endif
 
@@ -211,18 +237,18 @@ afw_lock_create_rw(
     self->lock.brief = brief;
     self->lock.description = description;
 
-#ifdef AFW_LOCK_DEBUG
+#ifdef AFW_DEBUG_LOCK
     self->lock.flag_id_debug = afw_utf8_printf(p, xctx,
         "debug:lock:" AFW_UTF8_FMT_Q,
-        AFW_UTF8_FMT_ARG(lock_id));
+        AFW_UTF8_FMT_ARG(self->lock.lock_id));
     flag = afw_environment_get_flag(self->lock.flag_id_debug, xctx);
     if (!flag) {
         brief = afw_utf8_printf(p, xctx,
             "Debug lock " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(lock_id));
+            AFW_UTF8_FMT_ARG(self->lock.lock_id));
         description = afw_utf8_printf(p, xctx,
             "Debug lock " AFW_UTF8_FMT_Q ".",
-            AFW_UTF8_FMT_ARG(lock_id));
+            AFW_UTF8_FMT_ARG(self->lock.lock_id));
         afw_environment_register_flag(
             self->lock.flag_id_debug, brief, description,
             afw_s_a_flag_debug_lock, xctx);
@@ -275,13 +301,7 @@ afw_lock_obtain_debug(const afw_lock_t *instance,
 {
     if (!instance) return;
 
-    if (afw_flag_is_active(instance->flag_index_debug, xctx)) {
-        afw_debug_write_fz(NULL, source_z, xctx,
-            "lock " AFW_UTF8_FMT_Q ": afw_lock_obtain",
-            AFW_UTF8_FMT_ARG(instance->lock_id));
-    }
-
-    /* Call non-debug function. */
+    impl_lock_debug_write(instance, source_z, "obtain", xctx);
     afw_lock_obtain(instance, xctx);
 }
 
@@ -312,13 +332,7 @@ afw_lock_release_debug(const afw_lock_t *instance,
 {
     if (!instance) return;
 
-    if (afw_flag_is_active(instance->flag_index_debug, xctx)) {
-        afw_debug_write_fz(NULL, source_z, xctx,
-            "lock " AFW_UTF8_FMT_Q ": afw_lock_release",
-            AFW_UTF8_FMT_ARG(instance->lock_id));
-    }
-
-    /* Call non-debug function. */
+    impl_lock_debug_write(instance, source_z, "release", xctx);
     afw_lock_release(instance, xctx);
 }
 
@@ -349,14 +363,7 @@ afw_lock_read_obtain_debug(const afw_lock_rw_t *instance,
 {
     if (!instance) return;
 
-    if (afw_flag_is_active(instance->lock.flag_index_debug, xctx))
-    {
-        afw_debug_write_fz(NULL, source_z, xctx,
-            "lock " AFW_UTF8_FMT_Q ": afw_lock_read_obtain",
-            AFW_UTF8_FMT_ARG(instance->lock.lock_id));
-    }
-
-    /* Call non-debug function. */
+    impl_lock_debug_write(&instance->lock, source_z, "read_obtain", xctx);
     afw_lock_read_obtain(instance, xctx);
 }
 
@@ -387,13 +394,7 @@ afw_lock_read_release_debug(const afw_lock_rw_t *instance,
 {
     if (!instance) return;
 
-    if (afw_flag_is_active(instance->lock.flag_index_debug, xctx)) {
-        afw_debug_write_fz(NULL, source_z, xctx,
-            "lock " AFW_UTF8_FMT_Q ": afw_lock_read_release",
-            AFW_UTF8_FMT_ARG(instance->lock.lock_id));
-    }
-
-    /* Call non-debug function. */
+    impl_lock_debug_write(&instance->lock, source_z, "read_release", xctx);
     afw_lock_read_release(instance, xctx);
 }
 
@@ -424,12 +425,7 @@ afw_lock_write_obtain_debug(const afw_lock_rw_t *instance,
 {
     if (!instance) return;
 
-    if (afw_flag_is_active(instance->lock.flag_index_debug, xctx)) {
-        afw_debug_write_fz(NULL, source_z, xctx,
-            "lock " AFW_UTF8_FMT_Q ": afw_lock_write_obtain",
-            AFW_UTF8_FMT_ARG(instance->lock.lock_id));
-    }
-
+    impl_lock_debug_write(&instance->lock, source_z, "write_obtain", xctx);
     afw_lock_write_obtain(instance, xctx);
 }
 
@@ -459,11 +455,6 @@ afw_lock_write_release_debug(const afw_lock_rw_t *instance,
 {
     if (!instance) return;
 
-    if (afw_flag_is_active(instance->lock.flag_index_debug, xctx)) {
-        afw_debug_write_fz(NULL, source_z, xctx,
-            "lock " AFW_UTF8_FMT_Q ": afw_lock_write_release",
-            AFW_UTF8_FMT_ARG(instance->lock.lock_id));
-    }
-
+    impl_lock_debug_write(&instance->lock, source_z, "write_release", xctx);
     afw_lock_write_release(instance, xctx);
 }

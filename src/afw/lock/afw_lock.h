@@ -132,7 +132,7 @@ afw_lock_obtain_debug(const afw_lock_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z);
 
 
-#ifdef AFW_LOCK_DEBUG
+#ifdef AFW_DEBUG_LOCK
 #define afw_lock_obtain(instance,xctx) \
     afw_lock_obtain_debug(instance, xctx, AFW__FILE_LINE__)
 #endif
@@ -159,7 +159,7 @@ afw_lock_release_debug(const afw_lock_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z);
 
 
-#ifdef AFW_LOCK_DEBUG
+#ifdef AFW_DEBUG_LOCK
 #define afw_lock_release(instance,xctx) \
     afw_lock_release_debug(instance, xctx, AFW__FILE_LINE__)
 #endif
@@ -250,7 +250,7 @@ afw_lock_read_obtain_debug(const afw_lock_rw_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z);
 
 
-#ifdef AFW_LOCK_DEBUG
+#ifdef AFW_DEBUG_LOCK
 #define afw_lock_read_obtain(instance,xctx) \
     afw_lock_read_obtain_debug(instance, xctx, AFW__FILE_LINE__)
 #endif
@@ -277,7 +277,7 @@ afw_lock_read_release_debug(const afw_lock_rw_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z);
 
 
-#ifdef AFW_LOCK_DEBUG
+#ifdef AFW_DEBUG_LOCK
 #define afw_lock_read_release(instance,xctx) \
     afw_lock_read_release_debug(instance, xctx, AFW__FILE_LINE__)
 #endif
@@ -338,7 +338,7 @@ afw_lock_write_obtain_debug(const afw_lock_rw_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z);
 
 
-#ifdef AFW_LOCK_DEBUG
+#ifdef AFW_DEBUG_LOCK
 #define afw_lock_write_obtain(instance,xctx) \
     afw_lock_write_obtain_debug(instance, xctx, AFW__FILE_LINE__)
 #endif
@@ -368,7 +368,7 @@ afw_lock_write_release_debug(const afw_lock_rw_t *instance,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z);
 
 
-#ifdef AFW_LOCK_DEBUG
+#ifdef AFW_DEBUG_LOCK
 #define afw_lock_write_release(instance,xctx) \
     afw_lock_write_release_debug(instance, xctx, AFW__FILE_LINE__)
 #endif

@@ -3024,7 +3024,6 @@
                     "trace:adapter",
                     "trace:authorizationHandler:detail",
                     "trace:authorizationHandler",
-                    "trace:evaluation:detail",
                     "trace:request:detail",
                     "trace:request",
                     "trace:adapterType:afw_runtime:detail",
@@ -3077,7 +3076,6 @@
                     "trace",
                     "trace:adapter:detail",
                     "trace:authorizationHandler:detail",
-                    "trace:evaluation:detail",
                     "trace:request:detail",
                     "trace:authorization:detail"
                 ]
@@ -3191,18 +3189,6 @@
                     "trace:adapterType:ldap",
                     "trace:adapterType:lmdb",
                     "trace:adapterType:vfs"
-                ]
-            },
-            "trace:evaluation:detail": {
-                "applicableFlags": [
-                    "trace:evaluation:detail"
-                ],
-                "brief": "Detail trace for evaluations",
-                "description": "This produces detail traces for adaptive value evaluations.",
-                "flagId": "trace:evaluation:detail",
-                "flagIndex": 28,
-                "includedByFlags": [
-                    "trace:detail"
                 ]
             },
             "trace:adapterId:afw": {
