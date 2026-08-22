@@ -20,6 +20,7 @@ import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WORKLOAD_DIR = os.path.join(HERE, "_workloads")
+GDB_IN_USE = os.path.join(HERE, "_gdb", "print_in_use.gdb")
 
 
 def workload_path(name):
@@ -52,6 +53,45 @@ def _read_status_kib(pid):
                 parts = line.split()
                 out[parts[0].rstrip(":")] = int(parts[1])
     return out
+
+
+def _gdb_pool_bytes_in_use(pid):
+    """Read env->pool_bytes_in_use from a live afw via gdb. None if unavailable."""
+    if not os.path.isfile(GDB_IN_USE):
+        return None
+    try:
+        os.kill(pid, signal.SIGSTOP)
+    except OSError:
+        return None
+    try:
+        p = subprocess.run(
+            [
+                "gdb", "-q", "-batch",
+                "-ex", "set pagination off",
+                "-p", str(pid),
+                "-x", GDB_IN_USE,
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=20,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        try:
+            os.kill(pid, signal.SIGCONT)
+        except OSError:
+            pass
+        return None
+    try:
+        os.kill(pid, signal.SIGCONT)
+    except OSError:
+        pass
+    out = (p.stdout or b"").decode("utf-8", errors="replace")
+    for line in out.splitlines():
+        if line.startswith("IN_USE "):
+            rest = line[7:].strip().split()
+            if rest and rest[0].isdigit():
+                return int(rest[0])
+    return None
 
 
 def _kill(proc):
@@ -106,6 +146,10 @@ def sample_afw_script(
             break
         time.sleep(0.05)
     t0 = time.time()
+    in_use_first = None
+    in_use_last = None
+    in_use_first_t = None
+    in_use_last_t = None
     try:
         deadline = t0 + float(duration_s)
         next_sample = t0
@@ -127,18 +171,25 @@ def sample_afw_script(
                     st = _read_status_kib(proc.pid)
                 except (IOError, OSError):
                     break
+                t_s = round(now - t0, 3)
                 samples.append({
-                    "t_s": round(now - t0, 3),
+                    "t_s": t_s,
                     "pid": proc.pid,
                     "VmRSS": st.get("VmRSS"),
                     "VmSize": st.get("VmSize"),
                     "VmData": st.get("VmData"),
                     "VmPeak": st.get("VmPeak"),
                 })
+                if t_s + 1e-9 >= float(warmup_s) and in_use_first is None:
+                    in_use_first = _gdb_pool_bytes_in_use(proc.pid)
+                    in_use_first_t = time.time() - t0
                 next_sample = now + float(interval_s)
             if now >= deadline:
                 break
             time.sleep(min(0.1, max(0.0, next_sample - time.time())))
+        if proc.poll() is None:
+            in_use_last = _gdb_pool_bytes_in_use(proc.pid)
+            in_use_last_t = time.time() - t0
     finally:
         _kill(proc)
         if proc.stderr:
@@ -157,6 +208,13 @@ def sample_afw_script(
         if dt > 0:
             slope = (window[-1]["VmRSS"] - window[0]["VmRSS"]) / dt
 
+    in_use_slope = None
+    if in_use_first is not None and in_use_last is not None and \
+            in_use_first_t is not None and in_use_last_t is not None:
+        dt = in_use_last_t - in_use_first_t
+        if dt > 0:
+            in_use_slope = (in_use_last - in_use_first) / dt
+
     return {
         "script": script_path,
         "pid": proc.pid,
@@ -165,6 +223,9 @@ def sample_afw_script(
         "duration_s": float(duration_s),
         "interval_s": float(interval_s),
         "slope_kib_s": slope,
+        "in_use_first": in_use_first,
+        "in_use_last": in_use_last,
+        "in_use_slope_b_s": in_use_slope,
         "died_early": died_early,
     }
 
@@ -174,7 +235,15 @@ def format_report(name, result):
     slope = result.get("slope_kib_s")
     slope_s = "n/a" if slope is None else "%.1f KiB/s (%.2f MiB/s)" % (
         slope, slope / 1024.0)
-    lines.append("%s  slope=%s" % (name, slope_s))
+    iu = result.get("in_use_slope_b_s")
+    if iu is None:
+        iu_s = "n/a"
+    else:
+        iu_s = "%.0f B/s (%.2f MiB/s)" % (iu, iu / 1024.0 / 1024.0)
+    lines.append(
+        "%s  rss_slope=%s  in_use_slope=%s  in_use %s -> %s"
+        % (name, slope_s, iu_s, result.get("in_use_first"),
+           result.get("in_use_last")))
     for s in result.get("samples") or []:
         rss = s.get("VmRSS")
         lines.append(

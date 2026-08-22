@@ -112,7 +112,7 @@ src/afw/tests-extra/
 | **10-catalog-value-accessors** | Port of catalog-value-accessors |
 | **11-mixed-accept-json-and-x-afw** | Document feed + per-test Accept |
 | **adapter-lifecycle** | #149 stop/start disposable adapter (ex tests_special) |
-| **issue-2** | #2 hard-loop RSS lab + gdb helpers (optional `free` / reuse; expected red today) |
+| **issue-2** | #2 hard-loop lab: RSS vs `pool_bytes_in_use` (APR tracker vs asked-for); gdb + `debug:pool` |
 
 **Gate smokes** (default `test -j`, not this tree):
 

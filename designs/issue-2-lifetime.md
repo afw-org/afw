@@ -8,7 +8,7 @@
 
 **This file is the campaign map.** Older notes, phase archaeology, and rejected experiments stay in [`memory-management.md`](memory-management.md). When that pad and this file disagree, **this file wins** until we change it on purpose.
 
-**Lab probes (opt-in, not `test -j`):** [`src/afw/tests-extra/issue-2/`](../src/afw/tests-extra/issue-2/) — hard-loop Adaptive Scripts (`i = i + 1`, `o.x = i`, …) with `/proc` RSS sampling and gdb helpers. Expected red until optional `free` / same-size reuse is real. `afwdev test -T src/afw/tests-extra/issue-2 --show-all`.
+**Lab probes (opt-in, not `test -j`):** [`src/afw/tests-extra/issue-2/`](../src/afw/tests-extra/issue-2/) — hard loops plus `pool_bytes_in_use()` / `process_rss()` / gdb. Braced `{ }` climbs RSS (APR tracker) with in_use flat; unbraced `i = i + 1` climbs both. `while (true);` is the flat control. `afwdev test -T src/afw/tests-extra/issue-2 --show-all`.
 
 **Whole-story framing** (why AFW is shaped this way): [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md). Isolation faces (look-through, landed): [`issue-17-mutable-object-faces.md`](issue-17-mutable-object-faces.md). Payloads (`afw_utf8_t` / `afw_memory_t`): [`c-naming-and-payloads.md`](c-naming-and-payloads.md).
 
@@ -312,4 +312,4 @@ Current pools the whole way through 1–4.
 | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | Env as runtime objects |
 | [`.cursor/rules/afw-value-memory.mdc`](../.cursor/rules/afw-value-memory.mdc) | **Current tree** work rule; campaign target is this pad |
 | Atlas §3 | [`knowledge-atlas.md`](knowledge-atlas.md) |
-| RSS / gdb lab | [`src/afw/tests-extra/issue-2/`](../src/afw/tests-extra/issue-2/) — opt-in hard loops for optional `free` |
+| RSS / gdb lab | [`src/afw/tests-extra/issue-2/`](../src/afw/tests-extra/issue-2/) — RSS vs `pool_bytes_in_use`; braced `{ }` vs unbraced assign |

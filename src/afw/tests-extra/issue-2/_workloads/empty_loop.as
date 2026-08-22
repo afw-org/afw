@@ -1,4 +1,5 @@
-/* #2 lab: empty hard loop. Baseline for while/block overhead with no assign.
+/* #2 lab: empty `{ }` body. Tracker apr_pcalloc every iteration.
+ * RSS climbs; pool_bytes_in_use stays near startup.
  */
 while (true) {
 }

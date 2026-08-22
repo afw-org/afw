@@ -1,5 +1,5 @@
-/* #2 lab: overwrite a scalar slot in a hard loop.
- * Optional free / same-size reuse should keep RSS flat after warmup.
+/* #2 lab: braced `i = i + 1`. Tracker APR (RSS) plus scalar boxing (in_use).
+ * Prefer integer_assign_no_brace for the scalar-only slice.
  */
 let i = 0;
 while (true) {

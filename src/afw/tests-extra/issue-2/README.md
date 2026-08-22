@@ -18,9 +18,10 @@ The directory is `issue-2`, not `#2` — `#` starts a shell comment.
    General-pool free is a no-op, so **`pool_bytes_in_use()` and RSS
    both climb**. Eval-heap `bytes_allocated` stays ~0.
 
-The original workloads use braces, so they mostly measure (1). Sample
-from script: `pool_bytes_in_use()` and `process_rss()`. #242 debug
-lines name call sites on a **short** run — not on soaks.
+`empty_stmt` / `*_no_brace` are the split. The Python judge uses `/proc`
+RSS plus gdb `env->pool_bytes_in_use`. Sample from script:
+`pool_bytes_in_use()` and `process_rss()`. `debug:pool` names call sites
+on a **short** run — not on soaks.
 
 Campaign map: [`designs/issue-2-lifetime.md`](../../../designs/issue-2-lifetime.md)
 (*Destroy is lifetime. Optional `free` is reuse.*).
@@ -68,21 +69,25 @@ python3 src/afw/tests-extra/issue-2/_rss.py integer_assign --duration 20 --inter
 Underscore dir on purpose: `afwdev test` must not evaluate these as tests
 (they do not return).
 
-| name | what | #2 slice |
-|------|------|----------|
-| `integer_assign` | `i = i + 1` | scalar slot overwrite |
-| `object_prop_assign` | `o.x = i` | overlay `set` (S4) |
-| `array_index_assign` | `a[0] = i` | array element overwrite |
-| `object_rebind` | `o = { n: i }` | unmanaged face; zero does not destroy |
-| `array_rebind` | `a = [i]` | same, array face |
-| `string_same_size` | `"x"` / `"y"` overwrite | same-size utf8 reuse |
-| `function_return` | `i = f()` temp integer | donate_return + slot_store |
-| `try_catch` | throw/catch each iter | rewind; error object |
-| `closure_rebind` | rebind a capturing function | closure/scope hold |
+| name | what | today (RSS / in_use) |
+|------|------|----------------------|
+| `empty_stmt` | `while (true);` | flat / flat (**pass**) |
+| `empty_loop` | `while (true) {}` | RSS up / in_use flat (APR tracker) |
+| `integer_assign_no_brace` | unbraced `i = i + 1` | both up (scalar boxing) |
+| `integer_assign` | braced `i = i + 1` | both up (tracker + scalar) |
+| `object_prop_assign_no_brace` | unbraced `o.x = i` | overlay set, no `{ }` |
+| `object_prop_assign` | braced `o.x = i` | overlay + tracker |
+| `array_index_assign_no_brace` | unbraced `a[0] = i` | element set, no `{ }` |
+| `array_index_assign` | braced `a[0] = i` | element + tracker |
+| `object_rebind` | `o = { n: i }` | unmanaged face |
+| `array_rebind` | `a = [i]` | unmanaged face |
+| `string_same_size` | `"x"` / `"y"` overwrite | same-size utf8 |
+| `function_return` | `i = f()` | donate_return + slot |
+| `try_catch` | throw/catch each iter | rewind |
+| `closure_rebind` | rebind capturing function | closure/scope |
 | `compile_once_eval` | compile once, `evaluate` loop | inner heap wrap |
-| `array_push_pop` | push then pop | capacity once, then reuse |
-| `empty_loop` | `while (true) {}` | while/block overhead — on develop this leaked *faster* than `integer_assign` (the loop itself allocates) |
-| `array_append` | unbounded `push` | **must grow** (harness control) |
+| `array_push_pop` | push then pop | capacity once |
+| `array_append` | unbounded `push` | **must grow** (harness) |
 
 ## gdb
 
