@@ -1001,7 +1001,7 @@ impl_afw_adapter_session_retrieve_objects(
         ctx.resource_id = afw_utf8_printf(p, xctx,
             "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&adapter->adapter_id),
-            AFW_UTF8_FMT_ARG(object_type_id));
+            AFW_UTF8_FMT_OPTIONAL_ARG(object_type_id));
     }
     ctx.action_id_value = afw_authorization_action_id_query;
 

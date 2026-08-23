@@ -1,5 +1,5 @@
 ---
-description: Adapter index interface (core helpers + LMDB) — definitions, current:: eval, create/txn residuals (#54, #57)
+description: Adapter index interface (core helpers + LMDB) — definitions, current:: eval, retroactive create/remove (#54, #57, #232)
 globs: src/afw/adapter/afw_adapter_impl_index*,src/afw/function/afw_function_indexes.c,src/afw/generate/objects/_AdaptiveFunctionGenerate_/index_*.json,src/afw_lmdb/afw_lmdb_index*,src/afw_lmdb/afw_lmdb_adapter_session.c,src/afw_lmdb/tests/adapter/**
 alwaysApply: false
 ---
@@ -51,12 +51,17 @@ Migration for old scripts: `object` / `variable_get("object")` → `current::obj
 
 CRUD + dump retrieve work with **empty** `indexDefinitions` (indexer walk is no-op). Tests under `tests/adapter/` / `tests/journal/` do **not** require indexes.
 
-## Known residuals (do not “fix” as #54 alone)
+## Retroactive create/remove — fixed residuals (#229, #232)
 
-- Session indexer often has **`txn == NULL`** → `update_index_definitions` / `save_config` can **EINVAL**.
-- **Retroactive** `index_create` (full retrieve under write txn) can **hang**.
-- Smoke `tests/adapter/index_current.as` is **skipped** until create path is fixed; track with **#57**.
-- Qualifier stack **requires** non-empty qualifier name on push (empty “unqualified qualifier” rejected).
+Three stacked bugs used to make retroactive `index_create` / filtered `index_remove` unusable; all are now fixed and `tests/adapter/index_current.as` runs (unskipped):
+
+- **Reentrant LMDB transactions** (#229): `AFW_LMDB_BEGIN_TRANSACTION`'s reentrant-reuse branch and `afw_lmdb_transaction_create` (session `begin_transaction()`) now correctly share/reuse an already-active session transaction instead of self-deadlocking or reusing a freed `MDB_txn` after commit/release.
+- **NULL `object_type_id` scan-all-types crash** (#232): the generic adapter wrapper (`afw_adapter_impl.c` `impl_afw_adapter_session_retrieve_objects`) built its diagnostic `resource_id` via `AFW_UTF8_FMT_ARG` on a possibly-NULL `object_type_id` — a real SIGSEGV, not a catchable error, hit by any `retrieve_objects(object_type_id: NULL)` call with no `impl_request` (retroactive `index_create`, and `index_remove`'s per-objectType drop loop, which was also passing a literal `NULL` instead of its loop variable). Fixed: `AFW_UTF8_FMT_OPTIONAL_ARG` + pass the loop variable.
+- **Session indexer's stale `self->txn`** (#232): `impl_afw_adapter_impl_index_add` / `_delete` / `_replace` / `_drop` / `update_index_definitions` in `afw_lmdb_index.c` read `self->txn`, which is hardcoded `NULL` for every session-backed indexer (only the one-off adapter-level indexer construction sets it) and is **never** refreshed — so any write during a live transaction (retroactive scan under `index_create`'s explicit `begin_transaction`, or a normal per-request implicit txn) passed a NULL `MDB_txn` to `mdb_put`/`mdb_del`/`mdb_drop`, failing with `EINVAL`. Fixed by falling back to the session's active transaction via the same reentrant-safe `AFW_LMDB_BEGIN_TRANSACTION`/`AFW_LMDB_GET_TRANSACTION` macros `impl_afw_adapter_impl_index_open` already used correctly — that function is the reference pattern for any *new* write path added to this file.
+
+Also found and fixed while unskipping the test: `current::object.get("propName")` is **not valid** AFW — objects have no `.get()` method. Use `property_get(current::object, "propName")`.
+
+Remaining, unrelated: qualifier stack **requires** non-empty qualifier name on push (empty “unqualified qualifier” rejected).
 
 ## Key files
 
@@ -69,4 +74,4 @@ CRUD + dump retrieve work with **empty** `indexDefinitions` (indexer walk is no-
 | `src/afw_lmdb/README.md` | Operator `index_create` example |
 | `beta-backlog.md` | Maintainer notes / beta residuals |
 
-Related: `afw-qualified-variables`, `afw-extensions` (lmdb), `afw-adaptive-script`, issue **#54** / **#57**.
+Related: `afw-qualified-variables`, `afw-extensions` (lmdb), `afw-adaptive-script`, issues **#54** / **#57** / **#229** / **#232**.
