@@ -1564,6 +1564,7 @@ afw_curl_internal_smtp_send(
     struct curl_slist * recipients = NULL;
     const afw_iterator_old_t * iterator;
     const afw_value_t * value;
+    afw_curl_internal_script_cb_t * reader = NULL;
 
     curl = curl_easy_init();
     AFW_TRY {
@@ -1595,11 +1596,15 @@ afw_curl_internal_smtp_send(
         if (res != CURLE_OK)
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
 
+        reader = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+        reader->contextual = contextual;
+
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
+        afw_curl_internal_options(curl, options, reader, NULL, NULL, pool, xctx);
 
         /* send the body of the email, using a callback */
-        afw_curl_internal_register_request_callbacks(curl, payload, NULL, pool, xctx);
+        afw_curl_internal_register_request_callbacks(curl, payload, reader, pool, xctx);
 
         /* Perform the request, res will get the return code */
         res = curl_easy_perform(curl);
