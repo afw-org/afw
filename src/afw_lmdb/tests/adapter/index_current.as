@@ -7,17 +7,9 @@
 //?
 //? test: index_current_object
 //? description: index_create value/filter scripts use current::object (issue #54)
-//? skip: true
-//? skipReason: FIXME: retroactive index_create's retrieve_objects(object_type_id=NULL) crashes in the generic adapter wrapper (afw_adapter_impl.c impl_afw_adapter_session_retrieve_objects, building ctx.resource_id via AFW_UTF8_FMT_ARG on a NULL object_type_id when impl_request is also NULL) -- core adapter bug, not LMDB-specific; unskip when that's fixed
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw
-
-/*
- * When unskipped: seed objects, index_create with value/filter using
- * current::object (and related), assert num_indexed >= 1, online add,
- * index_list contains key, cleanup.
- */
 
 const ot: string = "_AdaptiveObject_";
 
@@ -37,9 +29,9 @@ add_object("lmdb", ot, {
 const created: object = index_create(
     "lmdb",
     "surnameByDept",
-    "current::object.get(\"surname\")",
+    "property_get(current::object, \"surname\")",
     [ot],
-    "eq(current::object.get(\"department\"), \"ENG\")",
+    "eq(property_get(current::object, \"department\"), \"ENG\")",
     undefined,
     true,
     false

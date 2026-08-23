@@ -846,7 +846,8 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
                 ctx.mode = afw_adapter_impl_index_mode_delete;
 
                 /** @fixme xctx->p, session->p, or pool?  */
-                afw_adapter_session_retrieve_objects(session, NULL, NULL,
+                afw_adapter_session_retrieve_objects(session, NULL,
+                    object_type_id,
                     NULL, &ctx, afw_adapter_impl_index_cb, NULL,
                     /** @fixme is pool correct? */ pool, xctx);
             }

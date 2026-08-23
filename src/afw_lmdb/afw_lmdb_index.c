@@ -136,28 +136,61 @@ impl_afw_adapter_impl_index_update_index_definitions (
     const afw_object_t * indexDefinitions,
     afw_xctx_t *xctx)
 {
+    const afw_lmdb_adapter_t *adapter = self->adapter;
     const afw_lmdb_adapter_session_t *session = self->session;
-    const afw_adapter_t *adapter = (afw_adapter_t *)self->session->adapter;    
     const afw_pool_t *pool;
-    MDB_txn *txn = self->txn;
+    MDB_txn *txn;
 
     /* clone this object with our adapter's memory pool */
-    pool = adapter->p;
+    pool = adapter->pub.p;
 
-    /* lock the adapter */
-    AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(adapter) {
-        afw_object_set_property_as_object(
-            session->adapter->internalConfig, afw_lmdb_v_indexDefinitions, 
-            afw_object_create_clone(
-                indexDefinitions, pool, xctx),
-            xctx);
+    /*
+     * self->txn is only set for the one-off adapter-level indexer
+     * (afw_lmdb_adapter_impl_index_create() called with an explicit txn).
+     * A session-backed indexer's self->txn is always NULL -- the live
+     * transaction for this session lives on the session itself (either an
+     * explicit begin_transaction(), or the implicit per-request txn), so
+     * fall back to it via the same reentrant-safe macro impl_index_open
+     * uses, rather than passing a stale NULL txn to save_config.
+     */
+    if (self->txn == NULL) {
+        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
+            txn = AFW_LMDB_GET_TRANSACTION();
 
-        /* now write out our new config */
-        afw_lmdb_internal_save_config(session->adapter, 
-            session->adapter->internalConfig, txn, xctx);
+            /* lock the adapter */
+            AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(((afw_adapter_t *)adapter)) {
+                afw_object_set_property_as_object(
+                    session->adapter->internalConfig, afw_lmdb_v_indexDefinitions,
+                    afw_object_create_clone(
+                        indexDefinitions, pool, xctx),
+                    xctx);
+
+                /* now write out our new config */
+                afw_lmdb_internal_save_config(session->adapter,
+                    session->adapter->internalConfig, txn, xctx);
+            }
+            AFW_ADAPTER_IMPL_LOCK_WRITE_END;
+
+            AFW_LMDB_COMMIT_TRANSACTION();
+        }
+        AFW_LMDB_END_TRANSACTION();
+    } else {
+        txn = self->txn;
+
+        /* lock the adapter */
+        AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(((afw_adapter_t *)adapter)) {
+            afw_object_set_property_as_object(
+                session->adapter->internalConfig, afw_lmdb_v_indexDefinitions,
+                afw_object_create_clone(
+                    indexDefinitions, pool, xctx),
+                xctx);
+
+            /* now write out our new config */
+            afw_lmdb_internal_save_config(session->adapter,
+                session->adapter->internalConfig, txn, xctx);
+        }
+        AFW_ADAPTER_IMPL_LOCK_WRITE_END;
     }
-   
-    AFW_ADAPTER_IMPL_LOCK_WRITE_END;
 }
 
 /*
@@ -224,8 +257,9 @@ afw_rc_t impl_afw_adapter_impl_index_add(
     const afw_pool_t * pool,
     afw_xctx_t *xctx)
 {
+    const afw_lmdb_adapter_t *adapter = self->adapter;
     const afw_lmdb_adapter_session_t *session = self->session;
-    afw_rc_t rc;
+    afw_rc_t rc = 0;
     MDB_txn * txn;
     MDB_dbi dbi;
     MDB_val key, data;
@@ -235,7 +269,7 @@ afw_rc_t impl_afw_adapter_impl_index_add(
 
     /* we will get an error if we try to add a key of length 0 */
     /** @fixme this basically avoids indexing an empty string, so
-    we should determine if this is an error condition or not 
+    we should determine if this is an error condition or not
      */
     if (value->len == 0) {
         return 0;
@@ -244,37 +278,68 @@ afw_rc_t impl_afw_adapter_impl_index_add(
     database = afw_lmdb_index_database(
         object_type_id, indexKey, pool, xctx);
 
-    /* use the transaction on our session interface */
-    txn = self->txn;
-
-    dbi = afw_lmdb_internal_open_database(session->adapter, 
-        txn, database, MDB_DUPSORT|MDB_CREATE, pool, xctx);
-
     uuid = afw_uuid_from_utf8(object_id, pool, xctx);
 
-    afw_lmdb_internal_set_key(&raw, 
+    afw_lmdb_internal_set_key(&raw,
         object_type_id, uuid, pool, xctx);
-    
+
     key.mv_data = (void*)value->s;
     key.mv_size = value->len;
 
     data.mv_data = (void*)raw.ptr;
     data.mv_size = raw.size;
 
-    if (unique) {
-        rc = mdb_put(txn, dbi, &key, &data, MDB_NOOVERWRITE);
-        if (rc != 0) {
-            AFW_THROW_ERROR_RV_Z(general, lmdb, rc, 
-                "Unable to add unique index value.", xctx);
+    /*
+     * self->txn is only set for the one-off adapter-level indexer; a
+     * session-backed indexer's self->txn is always NULL, so fall back to
+     * the session's active transaction via the same reentrant-safe macro
+     * impl_index_open uses.
+     */
+    if (self->txn == NULL) {
+        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
+            txn = AFW_LMDB_GET_TRANSACTION();
+
+            dbi = afw_lmdb_internal_open_database(session->adapter,
+                txn, database, MDB_DUPSORT|MDB_CREATE, pool, xctx);
+
+            if (unique) {
+                rc = mdb_put(txn, dbi, &key, &data, MDB_NOOVERWRITE);
+                if (rc != 0) {
+                    AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+                        "Unable to add unique index value.", xctx);
+                }
+            } else {
+                rc = mdb_put(txn, dbi, &key, &data, MDB_NODUPDATA);
+                if (rc != 0 && rc != MDB_KEYEXIST) {
+                    AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+                        "Unable to add index value.", xctx);
+                }
+            }
+
+            AFW_LMDB_COMMIT_TRANSACTION();
         }
+        AFW_LMDB_END_TRANSACTION();
     } else {
-        rc = mdb_put(txn, dbi, &key, &data, MDB_NODUPDATA);
-        if (rc != 0 && rc != MDB_KEYEXIST) {
-            AFW_THROW_ERROR_RV_Z(general, lmdb, rc, 
-                "Unable to add index value.", xctx);
+        txn = self->txn;
+
+        dbi = afw_lmdb_internal_open_database(session->adapter,
+            txn, database, MDB_DUPSORT|MDB_CREATE, pool, xctx);
+
+        if (unique) {
+            rc = mdb_put(txn, dbi, &key, &data, MDB_NOOVERWRITE);
+            if (rc != 0) {
+                AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+                    "Unable to add unique index value.", xctx);
+            }
+        } else {
+            rc = mdb_put(txn, dbi, &key, &data, MDB_NODUPDATA);
+            if (rc != 0 && rc != MDB_KEYEXIST) {
+                AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+                    "Unable to add index value.", xctx);
+            }
         }
     }
- 
+
     return rc;
 }
 
@@ -290,18 +355,19 @@ afw_rc_t impl_afw_adapter_impl_index_delete(
     const afw_pool_t *pool,
     afw_xctx_t *xctx)
 {
+    const afw_lmdb_adapter_t *adapter = self->adapter;
     const afw_lmdb_adapter_session_t *session = self->session;
     MDB_val key, data;
     MDB_dbi dbi;
-    MDB_txn *txn = self->txn;
+    MDB_txn *txn;
     const afw_utf8_t *database;
     const afw_uuid_t *uuid;
-    afw_rc_t rc;
+    afw_rc_t rc = 0;
     afw_memory_t raw;
 
     /* we will get an error if we try to delete a key of length 0 */
     /** @fixme this basically avoids indexing an empty string, so
-    we should determine if this is an error condition or not 
+    we should determine if this is an error condition or not
      */
     if (value->len == 0) {
         return 0;
@@ -309,9 +375,6 @@ afw_rc_t impl_afw_adapter_impl_index_delete(
 
     database = afw_lmdb_index_database(
         object_type_id, indexKey, pool, xctx);
-   
-    dbi = afw_lmdb_internal_open_database(session->adapter, 
-        txn, database, MDB_DUPSORT, pool, xctx);
 
     uuid = afw_uuid_from_utf8(object_id, pool, xctx);
 
@@ -325,10 +388,39 @@ afw_rc_t impl_afw_adapter_impl_index_delete(
     data.mv_data = (void*)raw.ptr;
     data.mv_size = raw.size;
 
-    rc = mdb_del(txn, dbi, &key, &data);
-    if (rc != 0 && rc != MDB_NOTFOUND) {
-        AFW_THROW_ERROR_RV_Z(general, lmdb, rc, 
-            "Unable to delete index value.", xctx);
+    /*
+     * self->txn is only set for the one-off adapter-level indexer; a
+     * session-backed indexer's self->txn is always NULL, so fall back to
+     * the session's active transaction via the same reentrant-safe macro
+     * impl_index_open uses.
+     */
+    if (self->txn == NULL) {
+        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
+            txn = AFW_LMDB_GET_TRANSACTION();
+
+            dbi = afw_lmdb_internal_open_database(session->adapter,
+                txn, database, MDB_DUPSORT, pool, xctx);
+
+            rc = mdb_del(txn, dbi, &key, &data);
+            if (rc != 0 && rc != MDB_NOTFOUND) {
+                AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+                    "Unable to delete index value.", xctx);
+            }
+
+            AFW_LMDB_COMMIT_TRANSACTION();
+        }
+        AFW_LMDB_END_TRANSACTION();
+    } else {
+        txn = self->txn;
+
+        dbi = afw_lmdb_internal_open_database(session->adapter,
+            txn, database, MDB_DUPSORT, pool, xctx);
+
+        rc = mdb_del(txn, dbi, &key, &data);
+        if (rc != 0 && rc != MDB_NOTFOUND) {
+            AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+                "Unable to delete index value.", xctx);
+        }
     }
 
     return rc;
@@ -347,54 +439,109 @@ afw_rc_t impl_afw_adapter_impl_index_replace(
     const afw_pool_t *pool,
     afw_xctx_t *xctx)
 {
+    const afw_lmdb_adapter_t *adapter = self->adapter;
     const afw_lmdb_adapter_session_t *session = self->session;
     MDB_val key, data;
     MDB_dbi dbi;
-    MDB_txn *txn = self->txn;
+    MDB_txn *txn;
     const afw_utf8_t *database;
     const afw_uuid_t *uuid;
     afw_memory_t raw;
-    afw_rc_t rc;
+    afw_rc_t rc = 0;
 
     database = afw_lmdb_index_database(
         object_type_id, indexKey, pool, xctx);
-    
-    dbi = afw_lmdb_internal_open_database(session->adapter, 
-        txn, database, MDB_DUPSORT, pool, xctx);
 
-    memset(&key, 0, sizeof(MDB_val));
-    key.mv_data = (void *)old_value->s;
-    key.mv_size = old_value->len;
+    /*
+     * self->txn is only set for the one-off adapter-level indexer; a
+     * session-backed indexer's self->txn is always NULL, so fall back to
+     * the session's active transaction via the same reentrant-safe macro
+     * impl_index_open uses.
+     */
+    if (self->txn == NULL) {
+        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
+            txn = AFW_LMDB_GET_TRANSACTION();
 
-    memset(&data, 0, sizeof(MDB_val));
-    uuid = afw_uuid_from_utf8(object_id, pool, xctx);
+            dbi = afw_lmdb_internal_open_database(session->adapter,
+                txn, database, MDB_DUPSORT, pool, xctx);
 
-    afw_lmdb_internal_set_key(&raw, object_type_id, uuid, pool, xctx);
+            memset(&key, 0, sizeof(MDB_val));
+            key.mv_data = (void *)old_value->s;
+            key.mv_size = old_value->len;
 
-    data.mv_data = (void*)raw.ptr;
-    data.mv_size = raw.size;
+            memset(&data, 0, sizeof(MDB_val));
+            uuid = afw_uuid_from_utf8(object_id, pool, xctx);
 
-    /* remove the old value */
-    rc = mdb_del(txn, dbi, &key, &data);
-    if (rc != 0) {
-        AFW_THROW_ERROR_RV_Z(general, lmdb, rc, 
-            "Unable to remove old index value.", xctx);
+            afw_lmdb_internal_set_key(&raw, object_type_id, uuid, pool, xctx);
+
+            data.mv_data = (void*)raw.ptr;
+            data.mv_size = raw.size;
+
+            /* remove the old value */
+            rc = mdb_del(txn, dbi, &key, &data);
+            if (rc != 0) {
+                AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+                    "Unable to remove old index value.", xctx);
+            }
+
+            memset(&key, 0, sizeof(MDB_val));
+            key.mv_data = (void *)new_value->s;
+            key.mv_size = new_value->len;
+
+            memset(&data, 0, sizeof(MDB_val));
+            uuid = afw_uuid_from_utf8(object_id, pool, xctx);
+
+            afw_lmdb_internal_set_key(&raw, object_type_id, uuid, pool, xctx);
+
+            data.mv_data = (void*)raw.ptr;
+            data.mv_size = raw.size;
+
+            /* now write the new value */
+            rc = mdb_put(txn, dbi, &key, &data, MDB_NODUPDATA);
+
+            AFW_LMDB_COMMIT_TRANSACTION();
+        }
+        AFW_LMDB_END_TRANSACTION();
+    } else {
+        txn = self->txn;
+
+        dbi = afw_lmdb_internal_open_database(session->adapter,
+            txn, database, MDB_DUPSORT, pool, xctx);
+
+        memset(&key, 0, sizeof(MDB_val));
+        key.mv_data = (void *)old_value->s;
+        key.mv_size = old_value->len;
+
+        memset(&data, 0, sizeof(MDB_val));
+        uuid = afw_uuid_from_utf8(object_id, pool, xctx);
+
+        afw_lmdb_internal_set_key(&raw, object_type_id, uuid, pool, xctx);
+
+        data.mv_data = (void*)raw.ptr;
+        data.mv_size = raw.size;
+
+        /* remove the old value */
+        rc = mdb_del(txn, dbi, &key, &data);
+        if (rc != 0) {
+            AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+                "Unable to remove old index value.", xctx);
+        }
+
+        memset(&key, 0, sizeof(MDB_val));
+        key.mv_data = (void *)new_value->s;
+        key.mv_size = new_value->len;
+
+        memset(&data, 0, sizeof(MDB_val));
+        uuid = afw_uuid_from_utf8(object_id, pool, xctx);
+
+        afw_lmdb_internal_set_key(&raw, object_type_id, uuid, pool, xctx);
+
+        data.mv_data = (void*)raw.ptr;
+        data.mv_size = raw.size;
+
+        /* now write the new value */
+        rc = mdb_put(txn, dbi, &key, &data, MDB_NODUPDATA);
     }
-
-    memset(&key, 0, sizeof(MDB_val));
-    key.mv_data = (void *)new_value->s;
-    key.mv_size = new_value->len;
-
-    memset(&data, 0, sizeof(MDB_val));
-    uuid = afw_uuid_from_utf8(object_id, pool, xctx);
-
-    afw_lmdb_internal_set_key(&raw, object_type_id, uuid, pool, xctx);
-
-    data.mv_data = (void*)raw.ptr;
-    data.mv_size = raw.size;
-
-    /* now write the new value */
-    rc = mdb_put(txn, dbi, &key, &data, MDB_NODUPDATA);
 
     return rc;
 }
@@ -410,20 +557,44 @@ impl_afw_adapter_impl_index_drop (
     const afw_pool_t  * pool,
     afw_xctx_t       * xctx)
 {
+    const afw_lmdb_adapter_t *adapter = self->adapter;
     const afw_lmdb_adapter_session_t *session = self->session;
     const afw_utf8_t *database;
     MDB_dbi dbi;
-    MDB_txn *txn = self->txn;
-    afw_rc_t rc;
+    MDB_txn *txn;
+    afw_rc_t rc = 0;
 
     database = afw_lmdb_index_database(
         object_type_id, key, pool, xctx);
 
-    dbi = afw_lmdb_internal_open_database(session->adapter, 
-        txn, database, MDB_DUPSORT|MDB_CREATE, pool, xctx);
+    /*
+     * self->txn is only set for the one-off adapter-level indexer; a
+     * session-backed indexer's self->txn is always NULL, so fall back to
+     * the session's active transaction via the same reentrant-safe macro
+     * impl_index_open uses.
+     */
+    if (self->txn == NULL) {
+        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
+            txn = AFW_LMDB_GET_TRANSACTION();
 
-    /* (1) means delete it from the environment and close the DB handle */
-    rc = mdb_drop(txn, dbi, 1);
+            dbi = afw_lmdb_internal_open_database(session->adapter,
+                txn, database, MDB_DUPSORT|MDB_CREATE, pool, xctx);
+
+            /* (1) means delete it from the environment and close the DB handle */
+            rc = mdb_drop(txn, dbi, 1);
+
+            AFW_LMDB_COMMIT_TRANSACTION();
+        }
+        AFW_LMDB_END_TRANSACTION();
+    } else {
+        txn = self->txn;
+
+        dbi = afw_lmdb_internal_open_database(session->adapter,
+            txn, database, MDB_DUPSORT|MDB_CREATE, pool, xctx);
+
+        /* (1) means delete it from the environment and close the DB handle */
+        rc = mdb_drop(txn, dbi, 1);
+    }
 
     return rc;
 }
