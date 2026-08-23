@@ -356,8 +356,12 @@ impl_create_for_subpool(
     }
     self = (afw_pool_internal_self_t *)(mem +
         sizeof(afw_pool_internal_memory_prefix_with_links_t));
-    self->first_allocated_memory =
-        (afw_pool_internal_memory_prefix_with_links_t *)mem;
+    /*
+     * Header is apr_pcalloc on the parent APR pool (RSS, not in_use)
+     * and is not given back on tracker destroy. Do not treat it as a
+     * user block on the allocated list or the heap free list.
+     */
+    self->first_allocated_memory = NULL;
 
     block = AFW_POOL_INTERNAL_MEMORY_PREFIX(self);
     block->p = (const afw_pool_t *)self;
@@ -389,10 +393,6 @@ impl_create_for_subpool(
         }
     }
 
-    /*
-     * Header is apr_pcalloc on the parent APR pool and is not given
-     * back on tracker destroy. That is RSS, not in_use.
-     */
     IMPL_PRINT_DEBUG_INFO_FZ(minimal, "create " AFW_SIZE_T_FMT, size);
 
     /* Return new subpool. */
@@ -530,6 +530,11 @@ impl_free_memory(
         prev->size += freeing->size;
         prev->next = freeing->next;
      }
+
+    /*
+     * Non-adjacent fragments are not spliced onto the list. A naive
+     * else livelocks first-fit (P3). Adjacent-only is load-bearing.
+     */
 }
 
 
@@ -712,8 +717,8 @@ impl_afw_pool_free_memory_internal(
         detail, "free %p " AFW_SIZE_T_FMT,
         address, block->size);
     impl_account_free(self, block->size, xctx);
-    /* Make memory available for reuse. */
-    impl_free_memory(self, address, block->size, xctx);
+    /* Whole chunk (prefix + payload) goes on the free list. */
+    impl_free_memory(self, block, block->size, xctx);
 }
 
 /*
@@ -943,10 +948,21 @@ impl_subpool_afw_pool_free_memory_internal(
 
     impl_account_free(self, block->common.size, xctx);
 
-    /* Remove from alloc chain. */
+    /* Remove from alloc chain so destroy does not return it twice. */
+    if (block->prev) {
+        block->prev->next = block->next;
+    }
+    else {
+        self->first_allocated_memory = block->next;
+    }
+    if (block->next) {
+        block->next->prev = block->prev;
+    }
+    block->prev = NULL;
+    block->next = NULL;
 
-    /* Make memory available for reuse. */
-    impl_free_memory(self, address, block->common.size, xctx);
+    /* Whole WITH_LINKS chunk goes back to the heap free list. */
+    impl_free_memory(self, block, block->common.size, xctx);
 }
 
 
