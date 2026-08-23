@@ -16,8 +16,8 @@
  * @file pool_heap_probe.c
  * @brief C probe for heap and heap-tracker as pool implementations.
  *
- * Script cannot see prefixes, the tracker allocated list, or free-list
- * reuse. This boots a core environment and calls the C pool API.
+ * Script cannot see the allocated list or free-list reuse. This
+ * boots a core environment and calls the C pool API.
  *
  * Optional free is afw_pool_free_memory(p, address, xctx) on the pool
  * that allocated. General APR pools no-op.
@@ -105,7 +105,7 @@ impl_check_fill(
 }
 
 /*
- * Heap malloc/free: whole chunk (prefix + payload) returns to the free
+ * Heap malloc/free: whole chunk (header + payload) returns to the free
  * list; just-freed same-size reuse; in_use up then back.
  */
 static int
@@ -155,7 +155,7 @@ impl_heap_malloc_free(afw_xctx_t *xctx)
 }
 
 /*
- * Tracker malloc: prefix-with-links, block on that tracker's list,
+ * Tracker malloc: block on that tracker's allocated list,
  * in_use up. Allocation comes from the heap free list or heap APR.
  */
 static int
@@ -164,7 +164,7 @@ impl_tracker_malloc(afw_xctx_t *xctx)
     const afw_pool_t *heap;
     const afw_pool_t *tracker;
     afw_pool_internal_self_t *self;
-    afw_pool_internal_memory_prefix_with_links_t *block;
+    afw_pool_heap_chunk_t *block;
     void *a;
     afw_size_t before;
     afw_size_t after_alloc;
@@ -186,14 +186,10 @@ impl_tracker_malloc(afw_xctx_t *xctx)
             "in_use did not rise on malloc");
     }
 
-    block = AFW_POOL_INTERNAL_MEMORY_PREFIX_WITH_LINKS(a);
+    block = AFW_POOL_HEAP_CHUNK(a);
     if (self->first_allocated_memory != block) {
         return impl_fail("tracker_malloc",
             "block is not first on this tracker's allocated list");
-    }
-    if (block->common.p != tracker) {
-        return impl_fail("tracker_malloc",
-            "prefix p is not the tracker");
     }
     if (block->prev != NULL) {
         return impl_fail("tracker_malloc",
@@ -203,12 +199,11 @@ impl_tracker_malloc(afw_xctx_t *xctx)
         return impl_fail("tracker_malloc",
             "single allocated block next is not NULL");
     }
-    if (block->common.size <
-        IMPL_SIZE_MEDIUM +
-        sizeof(afw_pool_internal_memory_prefix_with_links_t))
+    if (block->size <
+        IMPL_SIZE_MEDIUM + sizeof(afw_pool_heap_chunk_t))
     {
         return impl_fail("tracker_malloc",
-            "prefix size is smaller than user + with-links prefix");
+            "chunk size is smaller than user + header");
     }
 
     memset(a, 0xb1, IMPL_SIZE_MEDIUM);
@@ -376,11 +371,7 @@ impl_mixed_sizes(afw_xctx_t *xctx)
     void *large_a;
     void *large_b;
 
-    /* Separate heaps so a leftover 32-byte free does not combine with
-     * the 200-byte chunk (adjacent-only first-fit). Each size is
-     * just-freed same-size reuse, which must work. Non-adjacent
-     * fragments are not required to land on the list (P3).
-     */
+    /* Separate heaps so leftover 32 does not combine with 200. */
     heap = afw_pool_heap_create(xctx->p, xctx);
     small_a = afw_pool_malloc(heap, IMPL_SIZE_SMALL, xctx);
     memset(small_a, 0x11, IMPL_SIZE_SMALL);
@@ -411,13 +402,13 @@ impl_mixed_sizes(afw_xctx_t *xctx)
  * small to keep. The recorded size must be that whole block, not
  * the requested size, or a later same-as-original alloc cannot reuse.
  *
- * Heap prefix 16: user 64 → 80, user 56 → 72, remainder 8 < 16.
+ * User 64 then 56: remainder is smaller than a chunk header.
  */
 static int
 impl_heap_whole_block(afw_xctx_t *xctx)
 {
     const afw_pool_t *heap;
-    afw_pool_internal_memory_prefix_t *block;
+    afw_pool_heap_chunk_t *block;
     void *a;
     void *b;
     void *c;
@@ -425,7 +416,7 @@ impl_heap_whole_block(afw_xctx_t *xctx)
 
     heap = afw_pool_heap_create(xctx->p, xctx);
     a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
-    block = AFW_POOL_INTERNAL_MEMORY_PREFIX(a);
+    block = AFW_POOL_HEAP_CHUNK(a);
     original_chunk = block->size;
     memset(a, 0x41, IMPL_SIZE_MEDIUM);
     afw_pool_free_memory(heap, a, xctx);
@@ -434,7 +425,7 @@ impl_heap_whole_block(afw_xctx_t *xctx)
     if (impl_expect_same_ptr(b, a, "heap_whole_block slight reuse")) {
         return 1;
     }
-    block = AFW_POOL_INTERNAL_MEMORY_PREFIX(b);
+    block = AFW_POOL_HEAP_CHUNK(b);
     if (block->size != original_chunk) {
         fprintf(stderr,
             "heap_whole_block: took whole block of " AFW_SIZE_T_FMT
@@ -622,7 +613,7 @@ impl_deregister_cleanup(afw_xctx_t *xctx)
             "cleanup entry not on allocated list");
     }
     entry = ((char *)self->first_allocated_memory) +
-        sizeof(afw_pool_internal_memory_prefix_with_links_t);
+        sizeof(afw_pool_heap_chunk_t);
 
     afw_pool_deregister_cleanup(tracker, &marker, NULL,
         impl_cleanup_nop, xctx);
@@ -638,6 +629,49 @@ impl_deregister_cleanup(afw_xctx_t *xctx)
     afw_pool_free_memory(tracker, again, xctx);
 
     afw_pool_release(tracker, xctx);
+    afw_pool_release(heap, xctx);
+    return 0;
+}
+
+/*
+ * Free A and C with B still live between them. Both must reuse.
+ */
+static int
+impl_nonadjacent_reuse(afw_xctx_t *xctx)
+{
+    const afw_pool_t *heap;
+    void *a;
+    void *b;
+    void *c;
+    void *d;
+    void *e;
+
+    heap = afw_pool_heap_create(xctx->p, xctx);
+    a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    b = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    c = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    memset(a, 0x51, IMPL_SIZE_MEDIUM);
+    memset(b, 0x52, IMPL_SIZE_MEDIUM);
+    memset(c, 0x53, IMPL_SIZE_MEDIUM);
+
+    afw_pool_free_memory(heap, a, xctx);
+    afw_pool_free_memory(heap, c, xctx);
+
+    d = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    e = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    if (!((d == a && e == c) || (d == c && e == a))) {
+        fprintf(stderr,
+            "nonadjacent_reuse: %p %p not reuse of %p and %p\n",
+            d, e, a, c);
+        return 1;
+    }
+    memset(d, 0x54, IMPL_SIZE_MEDIUM);
+    memset(e, 0x55, IMPL_SIZE_MEDIUM);
+    memset(b, 0x56, IMPL_SIZE_MEDIUM);
+
+    afw_pool_free_memory(heap, b, xctx);
+    afw_pool_free_memory(heap, d, xctx);
+    afw_pool_free_memory(heap, e, xctx);
     afw_pool_release(heap, xctx);
     return 0;
 }
@@ -693,12 +727,15 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "deregister_cleanup") == 0) {
         rc = impl_deregister_cleanup(xctx);
     }
+    else if (strcmp(case_name, "nonadjacent_reuse") == 0) {
+        rc = impl_nonadjacent_reuse(xctx);
+    }
     else {
         fprintf(stderr, "usage: pool_heap_probe "
             "heap_malloc_free|tracker_malloc|tracker_optional_free|"
             "tracker_last_release|tracker_header|mixed_sizes|"
             "heap_whole_block|general_free_noop|tracker_parent|"
-            "get_apr_pool|deregister_cleanup\n");
+            "get_apr_pool|deregister_cleanup|nonadjacent_reuse\n");
         rc = 2;
     }
 

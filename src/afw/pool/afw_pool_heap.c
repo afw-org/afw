@@ -282,12 +282,8 @@ impl_create(
     apr_pool_t *apr_p;
     apr_pool_t *parent_apr;
     afw_pool_internal_self_t *self;
-    afw_size_t size;
-    afw_byte_t *mem;
-    afw_pool_internal_memory_prefix_t *block;
+    afw_pool_internal_self_with_free_memory_head_t *mem;
 
-    size = sizeof(afw_pool_internal_self_with_free_memory_head_t) +
-        sizeof(afw_pool_internal_memory_prefix_t);
     /* Reservoir APR under the parent AFW pool's APR door. Heap still
      * runs in APR; this is not get_apr_pool() on the new heap. */
     parent_apr = afw_parent ? afw_pool_get_apr_pool(afw_parent) : NULL;
@@ -295,19 +291,14 @@ impl_create(
     if (!apr_p) {
         AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
     }
-    size = APR_ALIGN_DEFAULT(size);
 
-    mem = apr_pcalloc(apr_p, size);
+    mem = apr_pcalloc(apr_p,
+        sizeof(afw_pool_internal_self_with_free_memory_head_t));
     if (!mem) {
         AFW_THROW_ERROR_Z(memory,
                 "Unable to allocate memory for pool", xctx);
     }
-    self = (afw_pool_internal_self_t *)(mem +
-        sizeof(afw_pool_internal_memory_prefix_t));
-
-    block = AFW_POOL_INTERNAL_MEMORY_PREFIX(self);
-    block->p = (const afw_pool_t *)self;
-    block->size = size;
+    self = &mem->common;
     self->pub.inf = inf;
     self->pub.managed_p = &self->pub;
     self->apr_p = apr_p;
@@ -316,9 +307,7 @@ impl_create(
     self->pool_number = afw_atomic_integer_increment(
         &((afw_environment_t *)xctx->env)->pool_number);
     self->reference_count = 1;
-    self->free_memory_head =
-        &((afw_pool_internal_self_with_free_memory_head_t *)self)->
-        memory_for_free_memory_head;
+    self->free_memory_head = &mem->memory_for_free_memory_head;
     self->thread = xctx->thread;
 
     if (afw_parent) {
@@ -326,7 +315,7 @@ impl_create(
     }
 
     /* Header is APR; in_use starts at 0 until malloc/calloc. */
-    IMPL_PRINT_DEBUG_INFO_FZ(minimal, "create " AFW_SIZE_T_FMT, size);
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "create");
 
     return self;
 }
@@ -340,35 +329,23 @@ impl_create_for_subpool(
 {
     apr_pool_t *apr_p;
     afw_pool_internal_self_t *self;
-    afw_size_t size;
-    afw_byte_t *mem;
-    afw_pool_internal_memory_prefix_t *block;
 
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Parent required for subpool", xctx);
     }
-    size = sizeof(afw_pool_internal_self_t) +
-        sizeof(afw_pool_internal_memory_prefix_with_links_t);
     apr_p = parent->apr_p;
-    size = APR_ALIGN_DEFAULT(size);
 
-    mem = apr_pcalloc(apr_p, size);
-    if (!mem) {
+    self = apr_pcalloc(apr_p, sizeof(afw_pool_internal_self_t));
+    if (!self) {
         AFW_THROW_ERROR_Z(memory,
             "Unable to allocate memory for pool", xctx);
     }
-    self = (afw_pool_internal_self_t *)(mem +
-        sizeof(afw_pool_internal_memory_prefix_with_links_t));
     /*
      * Header is apr_pcalloc on the parent APR pool (RSS, not in_use)
      * and is not given back on tracker destroy. Do not treat it as a
      * user block on the allocated list or the heap free list.
      */
     self->first_allocated_memory = NULL;
-
-    block = AFW_POOL_INTERNAL_MEMORY_PREFIX(self);
-    block->p = (const afw_pool_t *)self;
-    block->size = size;
     self->pub.inf = inf;
     self->pub.managed_p = parent->pub.managed_p
         ? parent->pub.managed_p
@@ -396,24 +373,43 @@ impl_create_for_subpool(
         }
     }
 
-    IMPL_PRINT_DEBUG_INFO_FZ(minimal, "create " AFW_SIZE_T_FMT, size);
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "create");
 
     /* Return new subpool. */
     return self;
 }
 
+static void
+impl_free_memory(
+    AFW_POOL_SELF_T *self,
+    void *address,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
 /*
- * This finds the the first free memory block that is large enough to hold
- * the requested size.
- * 
- * The size is always rounded up using APR_ALIGN_DEFAULT and will always be
- * increased to at least the size of a afw_pool_internal_free_memory_t struct.
- *
- * If the block is larger than the requested size, the
- * block is split and the remainder remains on free memory chain. If there is
- * no block large enough, a new block of the requested size is allocated from
- * the apr pool.
+ * First-fit on an address-ordered doubly-linked free list. Always
+ * insert on free; coalesce with neighbors when adjacent. Remainder
+ * too small to hold a chunk is taken with the allocation.
  */
+static void
+impl_free_list_unlink(
+    AFW_POOL_SELF_T *self,
+    afw_pool_heap_chunk_t *chunk)
+{
+    if (chunk->prev) {
+        chunk->prev->next = chunk->next;
+    }
+    else {
+        self->free_memory_head->first = chunk->next;
+    }
+    if (chunk->next) {
+        chunk->next->prev = chunk->prev;
+    }
+    chunk->prev = NULL;
+    chunk->next = NULL;
+}
+
+
 static afw_boolean_t
 impl_alloc_memory(
     afw_byte_t **address,
@@ -422,14 +418,13 @@ impl_alloc_memory(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_free_memory_t *prev;
-    afw_pool_internal_free_memory_t *curr;
-    afw_pool_internal_free_memory_t *new_block;
+    afw_pool_heap_chunk_t *curr;
+    afw_pool_heap_chunk_t *rest;
     afw_size_t requested;
     afw_boolean_t reused;
 
-    requested = (size < sizeof(afw_pool_internal_free_memory_t))
-        ? sizeof(afw_pool_internal_free_memory_t)
+    requested = (size < sizeof(afw_pool_heap_chunk_t))
+        ? sizeof(afw_pool_heap_chunk_t)
         : size;
     *actual_size = APR_ALIGN_DEFAULT(requested);
     if (*actual_size < requested) {
@@ -438,46 +433,31 @@ impl_alloc_memory(
             xctx);
     }
 
-    /* Find the first free memory that fits. */
     curr = NULL;
-    prev = NULL;
     if (self->free_memory_head) {
         for (curr = self->free_memory_head->first;
             curr && curr->size < *actual_size;
-            prev = curr, curr = curr->next);
+            curr = curr->next);
     }
 
-    /* If a free memory block found, use all or some of it. */
     if (curr) {
-        if (curr->size - *actual_size < sizeof(afw_pool_internal_free_memory_t))
+        impl_free_list_unlink(self, curr);
+        if (curr->size - *actual_size >= sizeof(afw_pool_heap_chunk_t))
         {
-            /* Remainder too small to keep; take the whole block. */
-            *actual_size = curr->size;
-            if (!prev) {
-                self->free_memory_head->first = curr->next;
-            }
-            else {
-                prev->next = curr->next;
-            }
+            rest = (afw_pool_heap_chunk_t *)
+                (((char *)curr) + *actual_size);
+            rest->size = curr->size - *actual_size;
+            rest->prev = NULL;
+            rest->next = NULL;
+            impl_free_memory(self, rest, rest->size, xctx);
         }
         else {
-            /* Split the block. */
-            new_block = (afw_pool_internal_free_memory_t *)
-                (((char *)curr) + *actual_size);
-            new_block->size = curr->size - *actual_size;
-            new_block->next = curr->next;
-            if (!prev) {
-                self->free_memory_head->first = new_block;
-            }
-            else {
-                prev->next = new_block;
-            }
+            *actual_size = curr->size;
         }
     }
 
     reused = (curr != NULL);
 
-    /* If no free memory block found, allocate from apr pool. */
     if (!reused) {
         curr = apr_palloc(self->apr_p, *actual_size);
         if (!curr) {
@@ -497,48 +477,56 @@ impl_free_memory(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_free_memory_t *freeing;
-    afw_pool_internal_free_memory_t *prev;
-    afw_pool_internal_free_memory_t *curr;
+    afw_pool_heap_chunk_t *freeing;
+    afw_pool_heap_chunk_t *prev;
+    afw_pool_heap_chunk_t *curr;
 
-    freeing = (afw_pool_internal_free_memory_t *)address;
-    freeing->next = NULL;
+    (void)xctx;
+
+    freeing = (afw_pool_heap_chunk_t *)address;
     freeing->size = size;
+    freeing->prev = NULL;
+    freeing->next = NULL;
 
-    /* If this is first freed, set freeing as first and return. */
+    prev = NULL;
     curr = self->free_memory_head->first;
-    if (!curr) {
-        self->free_memory_head->first = freeing;
-        return;
+    while (curr && curr < freeing) {
+        prev = curr;
+        curr = curr->next;
     }
 
-    /* Find place in free chain with higher address. */
-    for (prev = NULL;
-        curr && curr < freeing;
-        prev = curr, curr = curr->next);
+    freeing->prev = prev;
+    freeing->next = curr;
+    if (prev) {
+        prev->next = freeing;
+    }
+    else {
+        self->free_memory_head->first = freeing;
+    }
+    if (curr) {
+        curr->prev = freeing;
+    }
 
-    /* If freeing adjacent to curr, combine. */
-    if (curr && ((char *)curr) == ((char *)freeing) + size) {
+    if (curr &&
+        ((char *)freeing) + freeing->size == (char *)curr)
+    {
         freeing->size += curr->size;
         freeing->next = curr->next;
-        if (prev) {
-            prev->next = freeing;
+        if (curr->next) {
+            curr->next->prev = freeing;
         }
-        else {
-            self->free_memory_head->first = freeing;
-        }
+        curr = freeing->next;
     }
 
-    /* If freeing adjacent to prev, combine. */
-    if (prev && ((char *)prev) + prev->size == ((char *)freeing)) {
+    if (prev &&
+        ((char *)prev) + prev->size == (char *)freeing)
+    {
         prev->size += freeing->size;
         prev->next = freeing->next;
-     }
-
-    /*
-     * Non-adjacent fragments are not spliced onto the list. A naive
-     * else livelocks first-fit (P3). Adjacent-only is load-bearing.
-     */
+        if (freeing->next) {
+            freeing->next->prev = prev;
+        }
+    }
 }
 
 
@@ -669,7 +657,7 @@ impl_afw_pool_malloc(
     afw_xctx_t *xctx)
 {
     afw_byte_t *mem;
-    afw_pool_internal_memory_prefix_t *block;
+    afw_pool_heap_chunk_t *block;
     afw_size_t size_with_prefix;
     afw_size_t actual_size;
     void *result;
@@ -682,24 +670,23 @@ impl_afw_pool_malloc(
             xctx);
     }
 
-    if (size > AFW_SIZE_T_MAX -
-        sizeof(afw_pool_internal_memory_prefix_t))
-    {
+    if (size > AFW_SIZE_T_MAX - sizeof(afw_pool_heap_chunk_t)) {
         AFW_THROW_ERROR_Z(memory,
             "Requested allocation size is too large",
             xctx);
     }
 
-    size_with_prefix = size + sizeof(afw_pool_internal_memory_prefix_t);
+    size_with_prefix = size + sizeof(afw_pool_heap_chunk_t);
 
     reused = impl_alloc_memory(&mem, &actual_size, self,
         size_with_prefix, xctx);
     IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
         reused ? "reuse" : "apr", size);
-    result = mem + sizeof(afw_pool_internal_memory_prefix_t);
-    block = (afw_pool_internal_memory_prefix_t *)mem;
-    block->p = (const afw_pool_t *)self;
+    result = mem + sizeof(afw_pool_heap_chunk_t);
+    block = (afw_pool_heap_chunk_t *)mem;
     block->size = actual_size;
+    block->prev = NULL;
+    block->next = NULL;
     impl_account_alloc(self, actual_size, xctx);
 
     return result;
@@ -714,18 +701,17 @@ impl_afw_pool_free_memory(
     void *address,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_memory_prefix_t *block;
+    afw_pool_heap_chunk_t *block;
 
     if (!address) {
         IMPL_PRINT_DEBUG_INFO_Z(detail, "free");
         return;
     }
-    block = AFW_POOL_INTERNAL_MEMORY_PREFIX(address);
+    block = AFW_POOL_HEAP_CHUNK(address);
     IMPL_PRINT_DEBUG_INFO_FZ(
         detail, "free %p " AFW_SIZE_T_FMT,
         address, block->size);
     impl_account_free(self, block->size, xctx);
-    /* Whole chunk (prefix + payload) goes on the free list. */
     impl_free_memory(self, block, block->size, xctx);
 }
 
@@ -795,8 +781,8 @@ impl_subpool_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_memory_prefix_with_links_t *memory;
-    afw_pool_internal_memory_prefix_with_links_t *next;
+    afw_pool_heap_chunk_t *memory;
+    afw_pool_heap_chunk_t *next;
     afw_pool_internal_self_t *child;
     afw_pool_cleanup_t *e;
 
@@ -838,7 +824,7 @@ impl_subpool_afw_pool_destroy(
         memory = next)
     {
         next = memory->next;
-        impl_free_memory(self, memory, memory->common.size, xctx);
+        impl_free_memory(self, memory, memory->size, xctx);
     }
 
     impl_account_destroy(self, xctx);
@@ -903,7 +889,7 @@ impl_subpool_afw_pool_malloc(
     afw_xctx_t *xctx)
 {
     afw_byte_t *mem;
-    afw_pool_internal_memory_prefix_with_links_t *block;
+    afw_pool_heap_chunk_t *block;
     afw_size_t size_with_prefix;
     afw_size_t actual_size;
     void *result;
@@ -916,25 +902,21 @@ impl_subpool_afw_pool_malloc(
             xctx);
     }
 
-    if (size > AFW_SIZE_T_MAX -
-        sizeof(afw_pool_internal_memory_prefix_with_links_t))
-    {
+    if (size > AFW_SIZE_T_MAX - sizeof(afw_pool_heap_chunk_t)) {
         AFW_THROW_ERROR_Z(memory,
             "Requested allocation size is too large",
             xctx);
     }
 
-    size_with_prefix =
-        size + sizeof(afw_pool_internal_memory_prefix_with_links_t);
+    size_with_prefix = size + sizeof(afw_pool_heap_chunk_t);
 
     reused = impl_alloc_memory(&mem, &actual_size, self,
         size_with_prefix, xctx);
     IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
         reused ? "reuse" : "apr", size);
-    result = mem + sizeof(afw_pool_internal_memory_prefix_with_links_t);
-    block = (afw_pool_internal_memory_prefix_with_links_t *)mem;
-    block->common.p = (const afw_pool_t *)self;
-    block->common.size = actual_size;
+    result = mem + sizeof(afw_pool_heap_chunk_t);
+    block = (afw_pool_heap_chunk_t *)mem;
+    block->size = actual_size;
     block->prev = NULL;
     block->next = self->first_allocated_memory;
     if (self->first_allocated_memory) {
@@ -953,18 +935,18 @@ impl_subpool_afw_pool_free_memory(
     void *address,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_memory_prefix_with_links_t *block;
+    afw_pool_heap_chunk_t *block;
 
     if (!address) {
         IMPL_PRINT_DEBUG_INFO_Z(detail, "free");
         return;
     }
-    block = AFW_POOL_INTERNAL_MEMORY_PREFIX_WITH_LINKS(address);
+    block = AFW_POOL_HEAP_CHUNK(address);
     IMPL_PRINT_DEBUG_INFO_FZ(
         detail, "free %p " AFW_SIZE_T_FMT,
-        address, block->common.size);
+        address, block->size);
 
-    impl_account_free(self, block->common.size, xctx);
+    impl_account_free(self, block->size, xctx);
 
     /* Remove from alloc chain so destroy does not return it twice. */
     if (block->prev) {
@@ -979,8 +961,7 @@ impl_subpool_afw_pool_free_memory(
     block->prev = NULL;
     block->next = NULL;
 
-    /* Whole WITH_LINKS chunk goes back to the heap free list. */
-    impl_free_memory(self, block, block->common.size, xctx);
+    impl_free_memory(self, block, block->size, xctx);
 }
 
 

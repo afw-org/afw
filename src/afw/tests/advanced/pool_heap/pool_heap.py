@@ -3,7 +3,7 @@
 """
 Heap and heap-tracker pool implementations.
 
-Script cannot see the allocated list, prefixes, or free-list reuse.
+Script cannot see the allocated list or free-list reuse.
 This probe calls the C pool API and, for list/header checks, includes
 afw_pool_heap_internal.h from the src tree.
 """
@@ -38,8 +38,8 @@ def run():
             ),
             (
                 "tracker_malloc",
-                "tracker malloc: prefix-with-links, block on that "
-                "tracker's allocated list",
+                "tracker malloc: block on that tracker's allocated "
+                "list",
             ),
             (
                 "tracker_optional_free",
@@ -82,6 +82,10 @@ def run():
                 "deregister_cleanup",
                 "deregister unlinks the entry and optional-frees it "
                 "on the tracker",
+            ),
+            (
+                "nonadjacent_reuse",
+                "non-adjacent frees land on the free list and reuse",
             ),
         ],
         extra_cflags=("-I", _pool_src()),
