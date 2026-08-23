@@ -521,7 +521,6 @@ impl_free_memory(
         if (curr->next) {
             curr->next->prev = freeing;
         }
-        curr = freeing->next;
     }
 
     if (prev &&
