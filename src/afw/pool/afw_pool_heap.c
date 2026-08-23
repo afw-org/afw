@@ -19,6 +19,7 @@
 #include "afw_pool_heap_internal.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 
 /* multithreaded pool lock begin */
 #define IMPL_MULTITHREADED_LOCK_BEGIN(xctx) \
@@ -865,8 +866,15 @@ impl_subpool_afw_pool_get_apr_pool(
         parent_apr_p = self->parent->apr_p;
         rv = apr_pool_create(&self->public_apr_p, parent_apr_p);
         if (rv != APR_SUCCESS) {
-            /** @fixme do something. */
-            //rv = 0/0;
+            /*
+             * No xctx to throw. If this fails, the heap reservoir is
+             * already gone or the process is out of memory. abort()
+             * so a debugger/core gets a stack; stderr says why.
+             */
+            fprintf(stderr,
+                "afw_pool_get_apr_pool: apr_pool_create failed "
+                "for heap tracker (rv=%d)\n", rv);
+            abort();
         }
     }
 
