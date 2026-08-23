@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <signal.h>
+#include <unistd.h>
 
 /**
  * @file pool_heap_probe.c
@@ -31,6 +33,9 @@
 #define IMPL_SIZE_MEDIUM ((afw_size_t)64)
 #define IMPL_SIZE_SLIGHT ((afw_size_t)56)
 #define IMPL_SIZE_LARGE  ((afw_size_t)200)
+#define IMPL_SIZE_SCOPE  ((afw_size_t)56)
+#define IMPL_CHURN_ITERS 2000
+#define IMPL_FREE_WALK_CAP 100000
 
 static afw_size_t
 impl_in_use(afw_xctx_t *xctx)
@@ -511,6 +516,51 @@ impl_tracker_parent(afw_xctx_t *xctx)
     return 0;
 }
 
+static int
+impl_double_free_throws(afw_xctx_t *xctx)
+{
+    const afw_pool_t *heap;
+    void *a;
+    int threw;
+    int unexpected;
+
+    heap = afw_pool_heap_create(xctx->p, xctx);
+    a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    memset(a, 0x77, IMPL_SIZE_MEDIUM);
+    afw_pool_free_memory(heap, a, xctx);
+
+    threw = 0;
+    unexpected = 0;
+    AFW_TRY {
+        afw_pool_free_memory(heap, a, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        if (AFW_ERROR_THROWN->code == afw_error_code_general &&
+            AFW_ERROR_THROWN->message_z &&
+            strstr(AFW_ERROR_THROWN->message_z, "already freed"))
+        {
+            threw = 1;
+        }
+        else {
+            unexpected = 1;
+            fprintf(stderr, "double_free_throws: threw %s\n",
+                AFW_ERROR_THROWN->message_z
+                    ? AFW_ERROR_THROWN->message_z : "?");
+        }
+    }
+    AFW_ENDTRY;
+
+    afw_pool_release(heap, xctx);
+
+    if (unexpected) {
+        return 1;
+    }
+    if (!threw) {
+        return impl_fail("double_free_throws", "did not throw");
+    }
+    return 0;
+}
+
 /*
  * get_apr_pool() is a door for leftover APR calls, not the heap store.
  * Heap returns its reservoir for now. Tracker creates a child of that
@@ -676,6 +726,126 @@ impl_nonadjacent_reuse(afw_xctx_t *xctx)
     return 0;
 }
 
+/*
+ * Walk the heap free list. A cycle or a walk that never ends is the
+ * first-fit livelock (tracker calloc of ~56 while many smaller
+ * fragments are on the list).
+ */
+static int
+impl_free_list_walk_ok(
+    afw_pool_internal_self_t *heap_self,
+    const char *label)
+{
+    afw_pool_heap_chunk_t *slow;
+    afw_pool_heap_chunk_t *fast;
+    afw_size_t steps;
+
+    if (!heap_self->free_memory_head) {
+        return 0;
+    }
+    slow = heap_self->free_memory_head->first;
+    fast = slow;
+    steps = 0;
+    while (slow) {
+        steps++;
+        if (steps > IMPL_FREE_WALK_CAP) {
+            fprintf(stderr,
+                "%s: free-list walk exceeded " AFW_SIZE_T_FMT
+                " nodes (cycle or unbounded)\n",
+                label, (afw_size_t)IMPL_FREE_WALK_CAP);
+            return 1;
+        }
+        if (fast) {
+            fast = fast->next;
+        }
+        if (fast) {
+            fast = fast->next;
+        }
+        if (fast && fast == slow) {
+            fprintf(stderr, "%s: free-list next cycle at %p\n",
+                label, (void *)slow);
+            return 1;
+        }
+        slow = slow->next;
+    }
+    return 0;
+}
+
+/*
+ * C-style for clone: new tracker, calloc ~56 (scope), mixed-size
+ * optional frees on the shared heap, last-release. Then another
+ * tracker calloc of 56 — the gdb hang from boxing.
+ *
+ * The hang is a cycle: a tracker-allocated chunk is returned to the
+ * heap free list (optional free with the heap as p) without unlinking
+ * from the tracker. Last-release then walks memory->next as if it
+ * were still the allocated list.
+ */
+static void
+impl_churn_alarm(int sig)
+{
+    (void)sig;
+    fprintf(stderr,
+        "for_clone_churn: timed out (free-list walk likely hung)\n");
+    _exit(1);
+}
+
+static int
+impl_for_clone_churn(afw_xctx_t *xctx)
+{
+    const afw_pool_t *heap;
+    const afw_pool_t *tracker;
+    afw_pool_internal_self_t *heap_self;
+    void *scope;
+    void *small;
+    afw_size_t i;
+    afw_size_t small_size;
+    static const afw_size_t small_sizes[] = { 16, 24, 32, 40, 48 };
+
+    heap = afw_pool_heap_create(xctx->p, xctx);
+    heap_self = impl_self(heap);
+    signal(SIGALRM, impl_churn_alarm);
+    alarm(15);
+
+    for (i = 0; i < IMPL_CHURN_ITERS; i++) {
+        if (impl_free_list_walk_ok(heap_self, "for_clone_churn before calloc"))
+        {
+            alarm(0);
+            return 1;
+        }
+        tracker = afw_pool_heap_tracker_create(heap, xctx);
+        scope = afw_pool_calloc(tracker, IMPL_SIZE_SCOPE, xctx);
+        memset(scope, 0xa5, IMPL_SIZE_SCOPE);
+
+        small_size = small_sizes[i % 5];
+        /* Allocate on the tracker, return the chunk on the heap free
+         * list without the tracker unlink. Last-release must not
+         * livelock (next is already a free-list link). */
+        small = afw_pool_malloc(tracker, small_size, xctx);
+        memset(small, 0x5a, small_size);
+        afw_pool_free_memory(heap, small, xctx);
+
+        afw_pool_release(tracker, xctx);
+
+        if (impl_free_list_walk_ok(heap_self, "for_clone_churn")) {
+            alarm(0);
+            return 1;
+        }
+    }
+
+    tracker = afw_pool_heap_tracker_create(heap, xctx);
+    scope = afw_pool_calloc(tracker, IMPL_SIZE_SCOPE, xctx);
+    memset(scope, 0xa5, IMPL_SIZE_SCOPE);
+    if (impl_free_list_walk_ok(heap_self, "for_clone_churn after calloc")) {
+        alarm(0);
+        return 1;
+    }
+    afw_pool_release(tracker, xctx);
+    afw_pool_release(heap, xctx);
+    alarm(0);
+    return 0;
+}
+
 int
 main(int argc, char **argv)
 {
@@ -730,12 +900,19 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "nonadjacent_reuse") == 0) {
         rc = impl_nonadjacent_reuse(xctx);
     }
+    else if (strcmp(case_name, "for_clone_churn") == 0) {
+        rc = impl_for_clone_churn(xctx);
+    }
+    else if (strcmp(case_name, "double_free_throws") == 0) {
+        rc = impl_double_free_throws(xctx);
+    }
     else {
         fprintf(stderr, "usage: pool_heap_probe "
             "heap_malloc_free|tracker_malloc|tracker_optional_free|"
             "tracker_last_release|tracker_header|mixed_sizes|"
             "heap_whole_block|general_free_noop|tracker_parent|"
-            "get_apr_pool|deregister_cleanup|nonadjacent_reuse\n");
+            "get_apr_pool|deregister_cleanup|nonadjacent_reuse|"
+            "for_clone_churn|double_free_throws\n");
         rc = 2;
     }
 
