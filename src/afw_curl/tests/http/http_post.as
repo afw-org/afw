@@ -31,37 +31,35 @@ http_post("http://xyz");
 http_post("http://xyz", "");
 
 //? test: http_post_http_cleartext
-//? description: Call http_post over cleartext
+//? description: Call http_post against the local HTTP stub (see config.py)
 //? expect: 200
 //? source: ...
 #!/usr/bin/env afw
 
-// only do live HTTP requests, if configured to do so
-if (environment::TEST_CURL_HTTPBIN === undefined) {
-    return 200;
-}
-
-const response = http_post("http://www.httpbin.org/post", "");
+const response = http_post(
+    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/post",
+    ""
+);
 
 return response.response_code;
 
 
 //? test: http_post_google_secure
-//? description: Call http_post with 200 rc
+//? description: Call http_post with 200 rc against a real TLS endpoint
 //? expect: 200
 //? source: ...
 #!/usr/bin/env afw
 
-// only do live HTTP requests, if configured to do so
+// requires a real TLS endpoint; only run if configured to do so
 if (environment::TEST_CURL_HTTPBIN === undefined) {
     return 200;
 }
 
-const response = http_post("https://www.httpbin.org/post", 
+const response = http_post("https://www.httpbin.org/post",
     "xyz",
     undefined,
-    { 
-        "sslVerifyPeer": true, 
+    {
+        "sslVerifyPeer": true,
         "sslVerifyHost": true
     });
 
@@ -69,15 +67,10 @@ return response.response_code;
 
 
 //? test: http_post_json
-//? description: Call http_post with json data
+//? description: Call http_post with json data against the local HTTP stub
 //? expect: 200
 //? source: ...
 #!/usr/bin/env afw
-
-// only do live HTTP requests, if configured to do so
-if (environment::TEST_CURL_HTTPBIN === undefined) {
-    return 200;
-}
 
 const postData = {
     "foo": "bar"
@@ -90,7 +83,7 @@ const postHeaders = [
 
 
 const response = http_post(
-    "http://www.httpbin.org/post", 
+    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/post",
     string(postData),
     postHeaders
 );
@@ -100,7 +93,6 @@ assert(length(response.response) > 0);
 
 const decoded = compile(json(decode_to_string(base64Binary(response.response))));
 
-// Note: response format from httpbin.org could change in the future
 assert(decoded.headers.Accept === "application/json");
 assert(decoded.json.foo === "bar");
 
@@ -108,18 +100,13 @@ return response.response_code;
 
 
 //? test: http_post_callbacks
-//? description: Call http_post with callbacks
+//? description: Call http_post with callbacks against the local HTTP stub
 //? expect: 200
 //? source: ...
 #!/usr/bin/env afw
 
-// only do live HTTP requests, if configured to do so
-if (environment::TEST_CURL_HTTPBIN === undefined) {
-    return 200;
-}
-
 // fixme: if I don't set the "payload" property first,
-// then I get a valgrind/memory error; need to 
+// then I get a valgrind/memory error; need to
 // check memory pools
 let userData = {
     "payload": "",
@@ -133,7 +120,7 @@ function writer(buffer, userData) {
     // here, we could read the string and do something
     if (userData.payload !== undefined)
         userData["payload"] += str;
-    else 
+    else
         userData["payload"] = str;
 
     return len;
@@ -166,9 +153,9 @@ const options = {
 };
 
 const response = http_post(
-    "http://www.httpbin.org/post", 
+    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/post",
     string(postData),
-    postHeaders,    
+    postHeaders,
     options
 );
 

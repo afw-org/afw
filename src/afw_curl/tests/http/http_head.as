@@ -24,16 +24,49 @@ http_head("http://xyz");
 
 
 //? test: http_head
-//? description: Call http_head with https://api.reqbin.com/
+//? description: Call http_head against the local HTTP stub (see config.py)
 //? expect: 200
 //? source: ...
 #!/usr/bin/env afw
 
-// only do live HTTP requests, if configured to do so
-if (environment::TEST_CURL_HTTPBIN === undefined) {
-    return 200;
+const response = http_head(
+    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/get"
+);
+
+return response.response_code;
+
+
+//? test: http_head_callbacks
+//? description: Call http_head with a headerFunction callback against the local HTTP stub
+//? expect: 200
+//? source: ...
+#!/usr/bin/env afw
+
+let userData = {
+    "headers": []
+};
+
+function headers(header, userData) {
+    const len = length(header);
+
+    if (len > 0) {
+        add_entries(userData.headers, header);
+    }
+
+    return len;
 }
 
-const response = http_head("http://wwww.httpbin.org/get");
+const options = {
+    "headerFunction": headers,
+    "headerUserData": userData,
+};
+
+const response = http_head(
+    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/get",
+    undefined,
+    options
+);
+
+assert(length(userData.headers) > 0);
 
 return response.response_code;

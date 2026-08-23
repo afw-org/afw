@@ -917,7 +917,7 @@ afw_curl_internal_http_delete(
         header->contextual = contextual;
 
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, header, NULL, writer, pool, xctx);
+        afw_curl_internal_options(curl, options, NULL, writer, header, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
@@ -928,8 +928,8 @@ afw_curl_internal_http_delete(
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
 
         /* setup our response callbacks to handle data send back from the server */
-        response = afw_curl_internal_register_response_callbacks(curl, 
-            NULL, NULL, pool, xctx);
+        response = afw_curl_internal_register_response_callbacks(curl,
+            header, writer, pool, xctx);
 
         /* Perform the request, res will get the return code */
         res = curl_easy_perform(curl);
@@ -1078,7 +1078,7 @@ afw_curl_internal_http_put(
 
         /* setup our response callbacks to handle data send back from the server */
         response = afw_curl_internal_register_response_callbacks(curl, 
-            NULL, NULL, pool, xctx);
+            header, writer, pool, xctx);
 
         /* Perform the request, res will get the return code */
         res = curl_easy_perform(curl);
@@ -1227,7 +1227,7 @@ afw_curl_internal_http_patch(
 
         /* setup our response callbacks to handle data send back from the server */
         response = afw_curl_internal_register_response_callbacks(curl, 
-            NULL, NULL, pool, xctx);
+            header, writer, pool, xctx);
 
         /* Perform the request, res will get the return code */
         res = curl_easy_perform(curl);
@@ -1346,7 +1346,7 @@ afw_curl_internal_http_head(
         header->contextual = contextual;
 
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, header, NULL, writer, pool, xctx);
+        afw_curl_internal_options(curl, options, NULL, writer, header, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
@@ -1358,7 +1358,7 @@ afw_curl_internal_http_head(
 
         /* setup our response callbacks to handle data send back from the server */
         response = afw_curl_internal_register_response_callbacks(curl, 
-            NULL, NULL, pool, xctx);
+            header, writer, pool, xctx);
 
         /* Perform the request, res will get the return code */
         res = curl_easy_perform(curl);
@@ -1479,7 +1479,7 @@ afw_curl_internal_http_options(
         header->contextual = contextual;
 
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, header, NULL, writer, pool, xctx);
+        afw_curl_internal_options(curl, options, NULL, writer, header, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
@@ -1491,7 +1491,7 @@ afw_curl_internal_http_options(
 
         /* setup our response callbacks to handle data send back from the server */
         response = afw_curl_internal_register_response_callbacks(curl, 
-            NULL, NULL, pool, xctx);
+            header, writer, pool, xctx);
 
         /* Perform the request, res will get the return code */
         res = curl_easy_perform(curl);
@@ -1564,6 +1564,7 @@ afw_curl_internal_smtp_send(
     struct curl_slist * recipients = NULL;
     const afw_iterator_old_t * iterator;
     const afw_value_t * value;
+    afw_curl_internal_script_cb_t * reader = NULL;
 
     curl = curl_easy_init();
     AFW_TRY {
@@ -1595,11 +1596,15 @@ afw_curl_internal_smtp_send(
         if (res != CURLE_OK)
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
 
+        reader = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+        reader->contextual = contextual;
+
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
+        afw_curl_internal_options(curl, options, reader, NULL, NULL, pool, xctx);
 
         /* send the body of the email, using a callback */
-        afw_curl_internal_register_request_callbacks(curl, payload, NULL, pool, xctx);
+        afw_curl_internal_register_request_callbacks(curl, payload, reader, pool, xctx);
 
         /* Perform the request, res will get the return code */
         res = curl_easy_perform(curl);

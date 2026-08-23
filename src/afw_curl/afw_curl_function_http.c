@@ -451,14 +451,14 @@ afw_curl_function_execute_http_head(
 
     /* Optional headers */
     headers = NULL;
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(headers, 3, array);
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(headers, 2, array);
     }
 
     /* Optional options */
     options = NULL;
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(options, 4, object);
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(options, 3, object);
     }
 
     /* use internal routine to do the HEAD */
@@ -524,14 +524,14 @@ afw_curl_function_execute_http_options(
 
     /* Optional headers */
     headers = NULL;
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(headers, 3, array);
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(headers, 2, array);
     }
 
     /* Optional options */
     options = NULL;
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(options, 4, object);
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(options, 3, object);
     }
 
     /* use internal routine to do the OPTIONS */

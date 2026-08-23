@@ -23,18 +23,14 @@ http_get();
 http_get("http://xyz");
 
 //? test: http_get
-//? description: Call http_get
+//? description: Call http_get against the local HTTP stub (see config.py)
 //? expect: 200
 //? source: ...
 #!/usr/bin/env afw
 
-
-// only do live HTTP requests, if configured to do so
-if (environment::TEST_CURL_HTTPBIN === undefined) {
-    return 200;
-}
-
-const response = http_get("http://www.httpbin.org/get");
+const response = http_get(
+    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/get"
+);
 
 /* make sure we get at least the 200 OK header back */
 assert(includes(response.headers, "HTTP/1.1 200 OK\r\n"));
@@ -43,20 +39,20 @@ return response.response_code;
 
 
 //? test: http_get_secure
-//? description: Call http_get secure
+//? description: Call http_get secure against a real TLS endpoint
 //? expect: 200
 //? source: ...
 #!/usr/bin/env afw
 
-// only do live HTTP requests, if configured to do so
+// requires a real TLS endpoint; only run if configured to do so
 if (environment::TEST_CURL_HTTPBIN === undefined) {
     return 200;
 }
 
-const response = http_get("https://www.httpbin.org/get", 
+const response = http_get("https://www.httpbin.org/get",
     undefined,
-    { 
-        "sslVerifyPeer": true, 
+    {
+        "sslVerifyPeer": true,
         "sslVerifyHost": true
     });
 
@@ -64,34 +60,26 @@ return response.response_code;
 
 
 //? test: http_get_400
-//? description: Call http_get secure
+//? description: Call http_get against the local HTTP stub, forcing a 400
 //? expect: 400
 //? source: ...
 #!/usr/bin/env afw
 
-// only do live HTTP requests, if configured to do so
-if (environment::TEST_CURL_HTTPBIN === undefined) {
-    return 400;
-}
-
-const response = http_get("https://www.httpbin.org/status/400");
+const response = http_get(
+    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/status/400"
+);
 
 return response.response_code;
 
 
 //? test: http_get_callbacks
-//? description: Call http_get with callbacks
+//? description: Call http_get with callbacks against the local HTTP stub
 //? expect: 200
 //? source: ...
 #!/usr/bin/env afw
 
-// only do live HTTP requests, if configured to do so
-if (environment::TEST_CURL_HTTPBIN === undefined) {
-    return 200;
-}
-
 // fixme: if I don't set the "payload" property first,
-// then I get a valgrind/memory error; need to 
+// then I get a valgrind/memory error; need to
 // check memory pools
 let userData = {
     "payload": "",
@@ -105,7 +93,7 @@ function writer(buffer, userData) {
     // here, we could read the string and do something
     if (userData.payload !== undefined)
         userData["payload"] += str;
-    else 
+    else
         userData["payload"] = str;
 
     return len;
@@ -129,7 +117,7 @@ const options = {
 };
 
 const response = http_get(
-    "http://www.httpbin.org/get", 
+    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/get",
     undefined,
     options
 );
