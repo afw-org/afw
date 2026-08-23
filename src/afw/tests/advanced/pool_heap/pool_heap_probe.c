@@ -521,6 +521,73 @@ impl_tracker_parent(afw_xctx_t *xctx)
     return 0;
 }
 
+/*
+ * get_apr_pool() is a door for leftover APR calls, not the heap store.
+ * Heap returns its reservoir for now. Tracker creates a child of that
+ * reservoir on first call, without opening the heap door.
+ */
+static int
+impl_get_apr_pool(afw_xctx_t *xctx)
+{
+    const afw_pool_t *heap;
+    const afw_pool_t *tracker;
+    afw_pool_internal_self_t *heap_self;
+    afw_pool_internal_self_t *tracker_self;
+    apr_pool_t *a;
+    apr_pool_t *b;
+    apr_pool_t *heap_door;
+
+    heap = afw_pool_heap_create(xctx->p, xctx);
+    tracker = afw_pool_heap_tracker_create(heap, xctx);
+    heap_self = impl_self(heap);
+    tracker_self = impl_self(tracker);
+
+    if (tracker_self->public_apr_p != NULL) {
+        return impl_fail("get_apr_pool",
+            "tracker public APR exists before first call");
+    }
+    if (heap_self->public_apr_p != NULL) {
+        return impl_fail("get_apr_pool",
+            "heap public door was already open");
+    }
+
+    a = afw_pool_get_apr_pool(tracker);
+    if (!a) {
+        return impl_fail("get_apr_pool", "tracker door returned NULL");
+    }
+    if (tracker_self->public_apr_p != a) {
+        return impl_fail("get_apr_pool",
+            "tracker public_apr_p is not the returned pool");
+    }
+    if (a == heap_self->apr_p) {
+        return impl_fail("get_apr_pool",
+            "tracker door returned the heap reservoir");
+    }
+    if (apr_pool_parent_get(a) != heap_self->apr_p) {
+        return impl_fail("get_apr_pool",
+            "tracker APR parent is not the heap reservoir");
+    }
+    if (heap_self->public_apr_p != NULL) {
+        return impl_fail("get_apr_pool",
+            "tracker door opened the heap public door");
+    }
+
+    b = afw_pool_get_apr_pool(tracker);
+    if (impl_expect_same_ptr(b, a, "get_apr_pool tracker second call")) {
+        return 1;
+    }
+
+    heap_door = afw_pool_get_apr_pool(heap);
+    if (heap_door != heap_self->apr_p) {
+        return impl_fail("get_apr_pool",
+            "heap door is not the reservoir (for now)");
+    }
+
+    afw_pool_release(tracker, xctx);
+    afw_pool_release(heap, xctx);
+    return 0;
+}
+
 int
 main(int argc, char **argv)
 {
@@ -566,11 +633,15 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "tracker_parent") == 0) {
         rc = impl_tracker_parent(xctx);
     }
+    else if (strcmp(case_name, "get_apr_pool") == 0) {
+        rc = impl_get_apr_pool(xctx);
+    }
     else {
         fprintf(stderr, "usage: pool_heap_probe "
             "heap_malloc_free|tracker_malloc|tracker_optional_free|"
             "tracker_last_release|tracker_header|mixed_sizes|"
-            "heap_whole_block|general_free_noop|tracker_parent\n");
+            "heap_whole_block|general_free_noop|tracker_parent|"
+            "get_apr_pool\n");
         rc = 2;
     }
 

@@ -27,6 +27,10 @@
  *   free is a no-op. Parent decides multithreaded vs thread-specific.
  * - Heap / heap tracker: single-thread only. Create, use, and release on
  *   the same thread (normally one compiled_value evaluate).
+ * - afw_pool_get_apr_pool() is a door for leftover APR function calls,
+ *   not the heap's store. Heap may return its current APR pool; a
+ *   tracker creates one on first call and destroys it with the tracker.
+ *   If nothing calls it on a tracker, there is no extra APR pool.
  * - Thread-specific general pools must only be used from their thread.
  * - Use afw_pool_calloc_type for typed zeroed allocs.
  * - Cleanup functions run before the pool is destroyed.

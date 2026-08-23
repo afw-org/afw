@@ -96,14 +96,22 @@ struct afw_pool_internal_self_s {
     /** @brief Unique number for pool. */
     afw_integer_t pool_number;
 
-    /** @brief Associated apr pool. Trackers share the heap's. */
+    /**
+     * @brief Heap reservoir APR pool (current impl). Trackers share it.
+     *
+     * This is how the heap holds memory today (first-fit, else
+     * apr_palloc). It is not the afw_pool_get_apr_pool() door. A
+     * future heap might not be APR-backed.
+     */
     apr_pool_t *apr_p;
 
     /**
-     * @brief Public apr pool or NULL if not exposed yet.
+     * @brief APR pool for afw_pool_get_apr_pool() callers, or NULL.
      *
-     * Set the first time afw_pool_get_apr_pool() is called. If this
-     * pool allocates from parent, a new pool is created if needed.
+     * Door for leftover APR function calls. NULL until first
+     * get_apr_pool(). Heap: for now aliases apr_p. Tracker: first call
+     * creates a child of the heap reservoir (not get_apr_pool(heap));
+     * tracker destroy releases it. Never created if nobody calls.
      */
     apr_pool_t *public_apr_p;
 

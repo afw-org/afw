@@ -7084,11 +7084,17 @@ struct afw_pool_inf_s {
 /**
  * @brief Call method `get_apr_pool` of interface `afw_pool`.
  *
- * This will return an apr pool that can be used for calling Apache APR
- * function. This apr pool will be created the first time this method is
- * called for this afw pool and destroyed when this afw pool is destroyed.
+ * Return an APR pool for leftover Apache APR function calls only.
  * 
- * Do not manually destroy this apr pool.
+ * This is a door for code that still calls APR, not the AFW pool's
+ * own store. Heap currently happens to run in an APR pool and may
+ * return that one; a future heap might not be APR-backed at all.
+ * On a heap tracker, nothing is created unless this is called; the
+ * first call makes an APR pool, later calls return the same
+ * pointer, and tracker destroy releases it.
+ * 
+ * Do not apr_pool_destroy the returned pool. Prefer AFW
+ * malloc/calloc; need for this door should shrink.
  * @param instance Pointer to this pool instance.
  * @return Value of type `apr_pool_t *`.
  * @relates afw_pool_t

@@ -287,6 +287,8 @@ impl_create(
 
     size = sizeof(afw_pool_internal_self_with_free_memory_head_t) +
         sizeof(afw_pool_internal_memory_prefix_t);
+    /* Reservoir APR under the parent AFW pool's APR door. Heap still
+     * runs in APR; this is not get_apr_pool() on the new heap. */
     parent_apr = afw_parent ? afw_pool_get_apr_pool(afw_parent) : NULL;
     apr_pool_create(&apr_p, parent_apr);
     if (!apr_p) {
@@ -629,6 +631,10 @@ apr_pool_t *
 impl_afw_pool_get_apr_pool(
     AFW_POOL_SELF_T * self)
 {
+    /*
+     * Door for leftover APR function calls, not a second store. Heap
+     * still runs in apr_p, so for now the public pool is that one.
+     */
     if (!self->public_apr_p) {
         self->public_apr_p = self->apr_p;
     }
@@ -820,7 +826,7 @@ impl_subpool_afw_pool_destroy(
         afw_pool_destroy(&self->first_child->pub, xctx);
     }
 
-    /* If public apr pool made for this subpool, destroy it. */
+    /* Lazy get_apr_pool() door, if anyone called it. Not the reservoir. */
     if (self->public_apr_p) {
         apr_pool_destroy(self->public_apr_p);
     }
@@ -849,11 +855,14 @@ impl_subpool_afw_pool_get_apr_pool(
     apr_pool_t *parent_apr_p;
 
     /*
-     * For subpools, the public apr_p is only created if accessed. Note that
-     * the private apr_p is the same as the parent's apr_p.
+     * Door for leftover APR function calls only. The reservoir is
+     * self->apr_p (the parent heap's). Create a child APR pool on first
+     * call, parented on the heap reservoir — not get_apr_pool(heap),
+     * which would open the heap door as a side effect. If nobody
+     * calls, none exists. Tracker destroy releases it.
      */
     if (!self->public_apr_p) {
-        parent_apr_p = afw_pool_get_apr_pool((const afw_pool_t *)self->parent);
+        parent_apr_p = self->parent->apr_p;
         rv = apr_pool_create(&self->public_apr_p, parent_apr_p);
         if (rv != APR_SUCCESS) {
             /** @fixme do something. */

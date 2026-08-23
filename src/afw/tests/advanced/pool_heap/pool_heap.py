@@ -73,6 +73,12 @@ def run():
                 "tracker_parent",
                 "heap_tracker_create parent must be a heap",
             ),
+            (
+                "get_apr_pool",
+                "tracker get_apr_pool is lazy, a child of the heap "
+                "reservoir, and dies with the tracker",
+            ),
         ],
         extra_cflags=("-I", _pool_src()),
+        extra_ldflags=("-lapr-1",),
     )
