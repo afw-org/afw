@@ -472,7 +472,27 @@
                 "description": "Adapter type for Lightweight Directory Access Protocol (LDAP)."
             }
         },
-        "authorization_handler_id": {},
+        "authorization_handler_id": {
+            "auth-script": {
+                "authorizationHandlerId": "auth-script",
+                "processingOrder": 1,
+                "properties": {
+                    "_meta_": {
+                        "path": "/afw/_AdaptiveConf_authorizationHandler_script/auth-script",
+                        "objectType": "_AdaptiveConf_authorizationHandler_script"
+                    },
+                    "authorizationHandlerId": "auth-script",
+                    "authorizationHandlerType": "script",
+                    "type": "authorizationHandler",
+                    "description": "Handles authorization using an adaptive script.",
+                    "sourceLocation": "/conf/_AdaptiveServiceConf_/authorizationHandler-auth-script/conf",
+                    "priority": 9999
+                },
+                "referenceCount": 1,
+                "serviceId": "authorizationHandler-auth-script",
+                "stopping": []
+            }
+        },
         "authorization_handler_type": {
             "script": {
                 "authorizationHandlerType": "script",
