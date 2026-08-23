@@ -106,22 +106,28 @@ impl_afw_adapter_session_retrieve_objects(
         /* if we don't have an object_type_id, we need to do a dump */
         if (object_type_id == NULL) {
             /* no object_type_id, or id is a meta properties, then we need to dump */
+            afw_trace_z(1, adapter->pub.trace_flag_index, NULL,
+                "retrieve_objects: full scan (no object_type_id)", xctx);
             afw_lmdb_adapter_session_dump_objects(self, txn, NULL, criteria,
                 callback, context, p, xctx);
         }
 
         /* determine if the filter criteria contains predicates that allow us to index */
-        else if (afw_adapter_impl_index_sargable(self->indexer, 
-            object_type_id, criteria, xctx)) 
+        else if (afw_adapter_impl_index_sargable(self->indexer,
+            object_type_id, criteria, xctx))
         {
-            afw_adapter_impl_index_query(self->indexer, object_type_id, 
+            afw_trace_z(1, adapter->pub.trace_flag_index, NULL,
+                "retrieve_objects: using index query", xctx);
+            afw_adapter_impl_index_query(self->indexer, object_type_id,
                 criteria, callback, context, p, xctx);
-        } 
+        }
 
         else {
             /* the search criteria cannot help us, so we need to scan the entire
                 database and filter, if necessary.  We use the object_type_id to
                 index over entries for this type */
+            afw_trace_z(1, adapter->pub.trace_flag_index, NULL,
+                "retrieve_objects: using full scan (not sargable)", xctx);
             afw_lmdb_adapter_session_dump_objects(self, txn, object_type_id,
                 criteria, callback, context, p, xctx);
         }
