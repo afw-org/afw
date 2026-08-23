@@ -2,7 +2,7 @@
 /*
  * Heap / heap-tracker pool internals.
  *
- * Copyright (c) 2010-2024 Clemson University
+ * Copyright (c) 2010-2026 Clemson University
  *
  */
 
@@ -26,64 +26,34 @@ typedef struct afw_pool_internal_inf_implementation_specific_s {
     afw_boolean_t is_subpool;
 } afw_pool_internal_inf_implementation_specific_t;
 
-typedef struct afw_pool_internal_memory_prefix_s
-afw_pool_internal_memory_prefix_t;
+typedef struct afw_pool_heap_chunk_s afw_pool_heap_chunk_t;
 
 /**
- * @brief Memory prefix
+ * @brief Heap/tracker allocation chunk
  *
- * Prefix before each address returned by calloc/malloc for heap
- * implementations that do not keep a chain of allocated memory.
+ * One header for heap and tracker. size is the whole chunk. prev/next
+ * are the tracker allocated list while live, or the heap free list
+ * when freed. Callers pass the pool to free_memory(); there is no
+ * pool pointer in the chunk.
  */
-struct afw_pool_internal_memory_prefix_s {
+struct afw_pool_heap_chunk_s {
     afw_size_t size;
-    const afw_pool_t *p;
-    /* Allocated/free memory starts here. */
+    afw_pool_heap_chunk_t *prev;
+    afw_pool_heap_chunk_t *next;
+    /* Payload starts here. */
 };
 
-#define AFW_POOL_INTERNAL_MEMORY_PREFIX(address) \
-    (afw_pool_internal_memory_prefix_t *) \
-    (((char *)address) - sizeof(afw_pool_internal_memory_prefix_t))
-
-typedef struct afw_pool_internal_memory_prefix_with_links_s
-afw_pool_internal_memory_prefix_with_links_t;
-
-/**
- * @brief Memory prefix with links
- *
- * Prefix for tracker allocations that keep a chain so destroy can
- * return remaining blocks to the heap.
- */
-struct afw_pool_internal_memory_prefix_with_links_s {
-    afw_pool_internal_memory_prefix_with_links_t *prev;
-    afw_pool_internal_memory_prefix_with_links_t *next;
-    /* Common prefix must always be at end. */
-    afw_pool_internal_memory_prefix_t common;
-    /* Allocated/free memory starts here. */
-};
-
-#define AFW_POOL_INTERNAL_MEMORY_PREFIX_WITH_LINKS(address) \
-    (afw_pool_internal_memory_prefix_with_links_t *) \
-    (((char *)address) - \
-        sizeof(afw_pool_internal_memory_prefix_with_links_t))
-
-
-typedef struct afw_pool_internal_free_memory_s
-afw_pool_internal_free_memory_t;
-
-struct afw_pool_internal_free_memory_s {
-    afw_pool_internal_free_memory_t *next;
-    afw_size_t size;
-    /* Free memory starts here. */
-};
+#define AFW_POOL_HEAP_CHUNK(address) \
+    ((afw_pool_heap_chunk_t *)((char *)(address) - \
+        sizeof(afw_pool_heap_chunk_t)))
 
 
 typedef struct afw_pool_internal_free_memory_head_s
 afw_pool_internal_free_memory_head_t;
 
-/** @brief Head of each free-memory list. */
+/** @brief Head of the heap free list. Trackers share the heap's. */
 struct afw_pool_internal_free_memory_head_s {
-    afw_pool_internal_free_memory_t *first; /* This will go away. */
+    afw_pool_heap_chunk_t *first;
 };
 
 typedef struct afw_pool_internal_self_s
@@ -96,14 +66,22 @@ struct afw_pool_internal_self_s {
     /** @brief Unique number for pool. */
     afw_integer_t pool_number;
 
-    /** @brief Associated apr pool. Trackers share the heap's. */
+    /**
+     * @brief Heap reservoir APR pool (current impl). Trackers share it.
+     *
+     * This is how the heap holds memory today (free list, else
+     * apr_palloc). It is not the afw_pool_get_apr_pool() door. A
+     * future heap might not be APR-backed.
+     */
     apr_pool_t *apr_p;
 
     /**
-     * @brief Public apr pool or NULL if not exposed yet.
+     * @brief APR pool for afw_pool_get_apr_pool() callers, or NULL.
      *
-     * Set the first time afw_pool_get_apr_pool() is called. If this
-     * pool allocates from parent, a new pool is created if needed.
+     * Door for leftover APR function calls. NULL until first
+     * get_apr_pool(). Heap: for now aliases apr_p. Tracker: first call
+     * creates a child of the heap reservoir (not get_apr_pool(heap));
+     * tracker destroy releases it. Never created if nobody calls.
      */
     apr_pool_t *public_apr_p;
 
@@ -146,11 +124,11 @@ struct afw_pool_internal_self_s {
     afw_size_t bytes_allocated;
 
     /**
-     * @brief First allocated memory.
+     * @brief First allocated chunk (tracker only).
      *
-     * NULL if this implementation does not keep a chain.
+     * NULL on the heap and when a tracker has no live mallocs.
      */
-    afw_pool_internal_memory_prefix_with_links_t *first_allocated_memory;
+    afw_pool_heap_chunk_t *first_allocated_memory;
 
     /**
      * @brief Free memory head.

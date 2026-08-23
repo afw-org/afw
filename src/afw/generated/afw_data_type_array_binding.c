@@ -427,11 +427,9 @@ impl_afw_value_managed_optional_release(
         afw_value_array_managed_t *managed =
             (afw_value_array_managed_t *)instance;
         if (managed->reference_count == 0) {
-            afw_pool_free_memory((void *)instance, xctx);
+            return;
         }
-        else {
-            managed->reference_count--;
-        }
+        managed->reference_count--;
     }
 }
 

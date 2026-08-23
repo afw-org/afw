@@ -91,10 +91,10 @@ impl_afw_pool_malloc(
 }
 
 /*
- * Implementation of method free_memory_internal for interface afw_pool.
+ * Implementation of method free_memory for interface afw_pool.
  */
 void
-impl_afw_pool_free_memory_internal(
+impl_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
     void * address,
     afw_xctx_t * xctx)

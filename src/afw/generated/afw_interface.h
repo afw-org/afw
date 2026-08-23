@@ -6970,9 +6970,9 @@ typedef void *
     afw_size_t size,
     afw_xctx_t * xctx);
 
-/** @sa afw_pool_free_memory_internal() */
+/** @sa afw_pool_free_memory() */
 typedef void
-(*afw_pool_free_memory_internal_t)(
+(*afw_pool_free_memory_t)(
     const afw_pool_t * instance,
     void * address,
     afw_xctx_t * xctx);
@@ -7009,7 +7009,7 @@ struct afw_pool_inf_s {
     afw_pool_get_apr_pool_t get_apr_pool;
     afw_pool_calloc_t calloc;
     afw_pool_malloc_t malloc;
-    afw_pool_free_memory_internal_t free_memory_internal;
+    afw_pool_free_memory_t free_memory;
     afw_pool_register_cleanup_before_t register_cleanup_before;
     afw_pool_deregister_cleanup_t deregister_cleanup;
 };
@@ -7084,11 +7084,17 @@ struct afw_pool_inf_s {
 /**
  * @brief Call method `get_apr_pool` of interface `afw_pool`.
  *
- * This will return an apr pool that can be used for calling Apache APR
- * function. This apr pool will be created the first time this method is
- * called for this afw pool and destroyed when this afw pool is destroyed.
+ * Return an APR pool for leftover Apache APR function calls only.
  * 
- * Do not manually destroy this apr pool.
+ * This is a door for code that still calls APR, not the AFW pool's
+ * own store. Heap currently happens to run in an APR pool and may
+ * return that one; a future heap might not be APR-backed at all.
+ * On a heap tracker, nothing is created unless this is called; the
+ * first call makes an APR pool, later calls return the same
+ * pointer, and tracker destroy releases it.
+ * 
+ * Do not apr_pool_destroy the returned pool. Prefer AFW
+ * malloc/calloc; need for this door should shrink.
  * @param instance Pointer to this pool instance.
  * @return Value of type `apr_pool_t *`.
  * @relates afw_pool_t
@@ -7146,27 +7152,24 @@ struct afw_pool_inf_s {
 )
 
 /**
- * @brief Call method `free_memory_internal` of interface `afw_pool`.
+ * @brief Call method `free_memory` of interface `afw_pool`.
  *
- * Free an allocated memory in pool. If the pool implementation does
- * not support freeing memory, the call does nothing.
- * 
- * Use afw_pool_free_memory() instead of calling this method directly since
- * it will call the free_memory_internal() method of the correct pool
- * instance given the address returned from afw_pool_calloc() or
- * afw_pool_malloc().
+ * Optionally free memory allocated from this pool. The caller
+ * passes the pool. If the implementation does not support
+ * optional free, the call does nothing (destroy is still
+ * lifetime). Heap and heap tracker return the chunk for reuse.
  * @param instance Pointer to this pool instance.
  * @param address Address of memory to free.
  * @param xctx This is the caller's xctx.
  * @relates afw_pool_t
  * @see @ref afw_pool_s "afw_pool_t"
  */
-#define afw_pool_free_memory_internal( \
+#define afw_pool_free_memory( \
     instance, \
     address, \
     xctx \
 ) \
-(instance)->inf->free_memory_internal( \
+(instance)->inf->free_memory( \
     (instance), \
     (address), \
     (xctx) \

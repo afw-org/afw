@@ -539,15 +539,11 @@ impl_afw_value_managed_slice_optional_release(
     afw_value_json_managed_t *containing =
         (afw_value_json_managed_t *)self->containing_value;
 
-    /* Create starts at 0; get_reference/slice increments. Free only at 0. */
-    if (containing->reference_count == 0) {
-        afw_pool_free_memory((void *)containing, xctx);
-    }
-    else {
+    /* Create starts at 0; get_reference/slice increments.
+     * Headers live until the allocating pool is destroyed. */
+    if (containing->reference_count != 0) {
         containing->reference_count--;
     }
-    /* Free the slice header itself. */
-    afw_pool_free_memory((void *)instance, xctx);
 }
 
 /* Implementation of method get_reference for managed slice. */

@@ -4,7 +4,7 @@
 
 **GitHub:** [#2 Memory management](https://github.com/afw-org/afw/issues/2).
 
-**Status:** Working story recorded 2026-08-20–21. Slot protocol **landed**. Pool split **landed**. Closures / throw-path rewind (**#35**) store-time bind **landed**. Script-evaluation-aware wrapper holds **landed** on `issue-2-script-wrapper-holds`: overlay store is a slot; last-release walk is a pool cleanup (C-style `for` clone can drop instance RC to zero while the value is still in use); generic memory objects still do not own property values. Closure create-at-0 **landed**. No let/const hoisting. P3 first-fit still parked. Heap/tracker are single-thread only.
+**Status:** Working story recorded 2026-08-20–21. Slot protocol **landed**. Pool split **landed**. Closures / throw-path rewind (**#35**) store-time bind **landed**. Script-evaluation-aware wrapper holds **landed** on `issue-2-script-wrapper-holds`: overlay store is a slot; last-release walk is a pool cleanup (C-style `for` clone can drop instance RC to zero while the value is still in use); generic memory objects still do not own property values. Closure create-at-0 **landed**. No let/const hoisting. Heap/tracker **pool impls honest** on `issue-2-heap-tracker-probe` (optional `free_memory(p, address)`, one chunk, address-ordered free list + coalesce). Heap/tracker are single-thread only. Non-APR heap later.
 
 **This file is the campaign map.** Older notes, phase archaeology, and rejected experiments stay in [`memory-management.md`](memory-management.md). When that pad and this file disagree, **this file wins** until we change it on purpose.
 
@@ -44,7 +44,7 @@ Prefer **add_reference** / **release** / **reference count** in this pad. Do not
 
 **`return`** writes this frame’s **hidden result slot** and ends the block. Assign into the **caller** happens **when the block ends**, then the callee last-`release`s.
 
-**Pools:** general `afw_pool_create*` (APR, destroy-is-lifetime) vs **heap** + **heap tracker** (script eval, single-thread, one compiled_value wrap). Job pools set `managed_p = self`. No reparent on destroy; parent cascade destroys children. Optional first-fit tuning is later.
+**Pools:** general `afw_pool_create*` (APR, destroy-is-lifetime, optional free is a no-op) vs **heap** + **heap tracker** (script eval, single-thread, one compiled_value wrap). Optional free is `afw_pool_free_memory(p, address)`: caller passes the pool; tracker unlinks then both return the chunk to the heap free list. Job pools set `managed_p = self`. No reparent on destroy; parent cascade destroys children.
 
 ---
 
@@ -84,11 +84,9 @@ Every pool we care about in this pass has a **parent**. The ultimate ancestor in
 
 `free` does not have to be called. If it is, the block can go on a **list of optionally freed memory** so a loop of little scalars can reuse same-sized blocks. If it is not, the block still dies with the pool.
 
-**First cut** (when we change pools): keep it simple; **combine adjacent** free blocks. **Later**, still only inside the pool: size-class lists for fixed-size scalars vs strings. Callers of allocate / optional `free` / destroy must not care.
+Heap/tracker: one chunk header (`size`, `prev`, `next`); address-ordered doubly-linked free list; always insert; coalesce neighbors. Callers pass the pool — there is no prefix-`p` dispatcher. General APR `free_memory` stays a no-op. **Later** (not this substrate): size-class lists, or a heap that is not APR-backed. Callers of allocate / optional `free` / destroy must not care.
 
-**Current pools can host the value protocol.** Prefixes, first-fit, P3 livelock — do not gate #2 values on rewriting that. Get **`add_reference` / assign / walks** right first. Then swap the pool impl behind the same surface if we still want wrap-APR (no prefixes on live allocations).
-
-**Do not** invent reuse policy by patching the current prefix `else` (P3). That livelocks first-fit.
+**Do not** reintroduce a naive free-list `else` splice. That livelocked the old first-fit (`comments.as`). The current list always inserts and coalesces.
 
 ### Object / array pools vs `xctx->p`
 
@@ -270,7 +268,7 @@ Do **not** treat this as a commit plan. When we execute:
 2. **Scalar `add_reference`** — landed (box in `xctx->p`; no bindings rename; no first-fit free of boxes). Unmanaged **null** not boxed (`useDefaultProcessing`).
 3. **Object/array instance holds** — landed for memory arrays (`get_reference`/`release`, options, wrapper pin). `create_generic` unmanaged. `create_array` dual face / script wrapper.
 4. **Overlay `set`** — landed on **faces** and array elements. Generic objects store as-is. `as_value` is the instance→value door. `clone()` is a deep independent graph; script clones without an entity path get a face.
-5. **Pools** — **landed** on `issue-2-pool-heap`.
+5. **Pools** — split **landed** on `issue-2-pool-heap`. Heap/tracker **impls honest** on `issue-2-heap-tracker-probe` (gate: `src/afw/tests/advanced/pool_heap/`).
 6. **Closures / throw rewind (#35)** — store-time bind; nested assign walks to defining depth; throw-path tests pin original error (not leftover scopes).
 7. **Wrapper teardown + create-at-0** — landed on `issue-2-script-wrapper-holds`. Script-mutable creates (`add_properties` no target, object construct/expression, `create_array`, `array()`) return a face. Unmanaged object/array values `add_reference`/`release` the instance. Overlay/element walk is pool cleanup. Closure create starts at 0; 0→1 pins the defining scope. Gate: `language/script/wrapper_property_holds.as`.
 8. **0-symbol `{ }` is not a scope** — on `issue-2-zero-symbol-scope`. Nested blocks with `symbol_count == 0` evaluate in the parent; the compiled_value sentinel still gets a depth-0 scope once. Enclosing walk is by block pointer through skipped frames. C-style `for` increment clones only the for-let/const wrapper (assign-for mutates in place). Judge: `empty_loop` matches `empty_stmt`. Do **not** mix with scalar boxing onto the eval heap (next vertical).
@@ -298,7 +296,7 @@ Current pools the whole way through 1–4.
 | S3 | Script literals = unmanaged faces in **eval/scope pool** (eval vs compile). Do not add a child pool per `{}`. Compiled unit **immutable**; holds on the base are no-ops. |
 | S4 | Overlay overwrite reuses via the **wrapper’s `set`**, not “objects own all properties.” |
 
-**Parked / later:** first-fit / prefixes (P3); interned true-permanent compile literals; huge-string slice optimization; nested compile+evaluate reusing the outer heap.
+**Parked / later:** interned true-permanent compile literals; huge-string slice optimization; nested compile+evaluate reusing the outer heap; heap that is not APR-backed. Scalar boxing onto the eval heap is a separate #2 vertical (`issue-2-managed-p`).
 
 ---
 
