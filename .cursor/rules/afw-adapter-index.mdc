@@ -1,6 +1,6 @@
 ---
 description: Adapter index interface (core helpers + LMDB) — definitions, current:: eval, retroactive create/remove (#54, #57, #232)
-globs: src/afw/adapter/afw_adapter_impl_index*,src/afw/function/afw_function_indexes.c,src/afw/generate/objects/_AdaptiveFunctionGenerate_/index_*.json,src/afw_lmdb/afw_lmdb_index*,src/afw_lmdb/afw_lmdb_adapter_session.c,src/afw_lmdb/tests/adapter/**
+globs: src/afw/adapter/afw_adapter_impl_index*,src/afw/function/afw_function_indexes.c,src/afw/generate/objects/_AdaptiveFunctionGenerate_/index_*.json,src/afw_lmdb/afw_lmdb_index*,src/afw_lmdb/afw_lmdb_adapter_session.c,src/afw_lmdb/tests/indexes/**
 alwaysApply: false
 ---
 
@@ -53,7 +53,7 @@ CRUD + dump retrieve work with **empty** `indexDefinitions` (indexer walk is no-
 
 ## Retroactive create/remove — fixed residuals (#229, #232)
 
-Three stacked bugs used to make retroactive `index_create` / filtered `index_remove` unusable; all are now fixed and `tests/adapter/index_current.as` runs (unskipped):
+Three stacked bugs used to make retroactive `index_create` / filtered `index_remove` unusable; all are now fixed and `tests/indexes/index_current.as` runs (unskipped):
 
 - **Reentrant LMDB transactions** (#229): `AFW_LMDB_BEGIN_TRANSACTION`'s reentrant-reuse branch and `afw_lmdb_transaction_create` (session `begin_transaction()`) now correctly share/reuse an already-active session transaction instead of self-deadlocking or reusing a freed `MDB_txn` after commit/release.
 - **NULL `object_type_id` scan-all-types crash** (#232): the generic adapter wrapper (`afw_adapter_impl.c` `impl_afw_adapter_session_retrieve_objects`) built its diagnostic `resource_id` via `AFW_UTF8_FMT_ARG` on a possibly-NULL `object_type_id` — a real SIGSEGV, not a catchable error, hit by any `retrieve_objects(object_type_id: NULL)` call with no `impl_request` (retroactive `index_create`, and `index_remove`'s per-objectType drop loop, which was also passing a literal `NULL` instead of its loop variable). Fixed: `AFW_UTF8_FMT_OPTIONAL_ARG` + pass the loop variable.
