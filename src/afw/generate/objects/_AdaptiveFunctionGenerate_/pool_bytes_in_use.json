@@ -1,0 +1,14 @@
+{
+    "brief": "Outstanding AFW pool malloc/calloc bytes",
+    "category": "miscellaneous",
+    "dataTypeMethod": false,
+    "description": "Return the environment running total of outstanding bytes AFW malloc/calloc asked for and has not yet given back (heap/tracker free, or pool destroy). Rounding and prefixes included. Not APR's private usage; see process_rss() for current process RSS.",
+    "functionId": "pool_bytes_in_use",
+    "functionLabel": "pool_bytes_in_use",
+    "parameters": [],
+    "pure": false,
+    "returns": {
+        "dataType": "integer",
+        "description": "Sum of all pools' bytes_allocated."
+    }
+}

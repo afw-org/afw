@@ -382,6 +382,62 @@ def perform(session, request):
 
     return response['actions'][0]['result']
 
+def pool_bytes_in_use(session):
+    """
+    Outstanding AFW pool malloc/calloc bytes
+
+    Return the environment running total of outstanding bytes AFW
+    malloc/calloc asked for and has not yet given back (heap/tracker free, or
+    pool destroy). Rounding and prefixes included. Not APR's private usage;
+    see process_rss() for current process RSS.
+
+    Args:
+    Returns:
+        int: Sum of all pools' bytes_allocated.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "pool_bytes_in_use"
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def process_rss(session):
+    """
+    Current process RSS in kilobytes
+
+    Return the current resident set size of this process in kilobytes (Linux
+    /proc/self/statm). A hint at APR and OS usage; APR does not return pages
+    to the OS. Compare with pool_bytes_in_use() for AFW asked-for vs process
+    RSS.
+
+    Args:
+    Returns:
+        int: Current RSS in kilobytes, or 0 if unavailable.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "process_rss"
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def trace(session, value, filter=None, number=None):
     """
     Write a value to the a trace log

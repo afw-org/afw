@@ -80245,6 +80245,232 @@ impl_object__perform__value = {
     (const afw_object_t *)&impl_object__perform
 };
 
+/* ---------- pool_bytes_in_use ---------- */
+
+static const afw_utf8_t
+impl_object_path__pool_bytes_in_use =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/pool_bytes_in_use");
+
+static const afw_value_object_t
+impl_object__pool_bytes_in_use__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__pool_bytes_in_use = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        (const afw_value_t *)&impl_object__pool_bytes_in_use__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_pool_bytes_in_use,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__pool_bytes_in_use
+        }
+    },
+    (void *)&afw_function_definition_pool_bytes_in_use
+};
+
+static const afw_value_object_t
+impl_pool_bytes_in_use_returns__value;
+
+static const afw_value_function_parameter_t
+impl_pool_bytes_in_use_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        (const afw_value_t *)&impl_pool_bytes_in_use_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__Sum_of_all_pools__bytes_allocated_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_pool_bytes_in_use_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_pool_bytes_in_use_returns
+};
+
+static const afw_value_function_parameter_t *
+impl_pool_bytes_in_use_parameters[] = {
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_pool_bytes_in_use = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__pool_bytes_in_use,
+    &afw_self_v_miscellaneous,
+    &afw_self_v_pool_bytes_in_use,
+    &afw_self_v_zz___afw__AdaptiveFunction__pool_bytes_in_use,
+    &afw_self_v_pool_bytes_in_use,
+    &afw_self_v_pool_bytes_in_use,
+    &afw_self_v_poolBytesInUse,
+    &afw_self_v_afwPoolBytesInUse,
+    &afw_self_v_zz__Outstanding_AFW_pool_malloc_calloc_bytes,
+    &afw_self_v_zz__cdea503f8b1b,
+    &afw_self_v_zz______integer,
+    &afw_self_v_zz__function_pool_bytes_in_use______integer__,
+    NULL,
+    afw_function_execute_pool_bytes_in_use,
+    afw_function_execute_pool_bytes_in_use,
+    NULL,
+    &afw_integer_self_v_zero,
+    &afw_integer_self_v_zero,
+    &impl_pool_bytes_in_use_parameters[0],
+    0,
+    &impl_pool_bytes_in_use_returns,
+    NULL,
+    NULL,
+    &afw_self_v_a_empty_string,
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__pool_bytes_in_use__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__pool_bytes_in_use
+};
+
+/* ---------- process_rss ---------- */
+
+static const afw_utf8_t
+impl_object_path__process_rss =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/process_rss");
+
+static const afw_value_object_t
+impl_object__process_rss__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__process_rss = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        (const afw_value_t *)&impl_object__process_rss__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_process_rss,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__process_rss
+        }
+    },
+    (void *)&afw_function_definition_process_rss
+};
+
+static const afw_value_object_t
+impl_process_rss_returns__value;
+
+static const afw_value_function_parameter_t
+impl_process_rss_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        (const afw_value_t *)&impl_process_rss_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__Current_RSS_in_kilobytes__or_0_if_unavailable_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_process_rss_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_process_rss_returns
+};
+
+static const afw_value_function_parameter_t *
+impl_process_rss_parameters[] = {
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_process_rss = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__process_rss,
+    &afw_self_v_miscellaneous,
+    &afw_self_v_process_rss,
+    &afw_self_v_zz___afw__AdaptiveFunction__process_rss,
+    &afw_self_v_process_rss,
+    &afw_self_v_process_rss,
+    &afw_self_v_processRss,
+    &afw_self_v_afwProcessRss,
+    &afw_self_v_zz__Current_process_RSS_in_kilobytes,
+    &afw_self_v_zz__eba9c2faa6e2,
+    &afw_self_v_zz______integer,
+    &afw_self_v_zz__function_process_rss______integer__,
+    NULL,
+    afw_function_execute_process_rss,
+    afw_function_execute_process_rss,
+    NULL,
+    &afw_integer_self_v_zero,
+    &afw_integer_self_v_zero,
+    &impl_process_rss_parameters[0],
+    0,
+    &impl_process_rss_returns,
+    NULL,
+    NULL,
+    &afw_self_v_a_empty_string,
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__process_rss__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__process_rss
+};
+
 /* ---------- trace ---------- */
 
 static const afw_utf8_t
@@ -149667,6 +149893,8 @@ impl_function_bindings[] = {
     &afw_function_definition_now_utc,
     &afw_function_definition_parse_uri,
     &afw_function_definition_perform,
+    &afw_function_definition_pool_bytes_in_use,
+    &afw_function_definition_process_rss,
     &afw_function_definition_trace,
     &afw_function_definition_variable_exists,
     &afw_function_definition_variable_get,

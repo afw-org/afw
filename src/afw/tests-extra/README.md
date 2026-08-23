@@ -112,6 +112,8 @@ src/afw/tests-extra/
 | **10-catalog-value-accessors** | Port of catalog-value-accessors |
 | **11-mixed-accept-json-and-x-afw** | Document feed + per-test Accept |
 | **adapter-lifecycle** | #149 stop/start disposable adapter (ex tests_special) |
+| **issue-2/01-rss-hard-loops** | #2 hard-loop lab: RSS vs `pool_bytes_in_use`; gdb + `debug:pool` |
+| **issue-2/02-pool-eval-soak** | #2 afwfcgi object/array/nested-eval soak (heap wrap) |
 
 **Gate smokes** (default `test -j`, not this tree):
 

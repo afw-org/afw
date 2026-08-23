@@ -142,7 +142,7 @@ struct afw_pool_internal_self_s {
      */
     afw_integer_t reference_count;
 
-    /** @brief Bytes allocated via malloc/calloc. */
+    /** @brief Outstanding malloc/calloc (minus free/destroy). */
     afw_size_t bytes_allocated;
 
     /**

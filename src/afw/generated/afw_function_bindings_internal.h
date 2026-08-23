@@ -17627,6 +17627,71 @@ const afw_value_t *
 afw_function_execute_perform(
     afw_function_execute_t *x);
 
+/** @brief Function definition pool_bytes_in_use */
+extern const afw_value_function_definition_t
+afw_function_definition_pool_bytes_in_use;
+
+/**
+ * @brief Adaptive Function `pool_bytes_in_use`
+ * @param x function execute parameter.
+ *
+ * Return the environment running total of outstanding bytes AFW malloc/calloc
+ * asked for and has not yet given back (heap/tracker free, or pool destroy).
+ * Rounding and prefixes included. Not APR's private usage; see process_rss()
+ * for current process RSS.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function pool_bytes_in_use(
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ * Returns:
+ *
+ *   (integer) Sum of all pools' bytes_allocated.
+ */
+const afw_value_t *
+afw_function_execute_pool_bytes_in_use(
+    afw_function_execute_t *x);
+
+/** @brief Function definition process_rss */
+extern const afw_value_function_definition_t
+afw_function_definition_process_rss;
+
+/**
+ * @brief Adaptive Function `process_rss`
+ * @param x function execute parameter.
+ *
+ * Return the current resident set size of this process in kilobytes (Linux
+ * /proc/self/statm). A hint at APR and OS usage; APR does not return pages to
+ * the OS. Compare with pool_bytes_in_use() for AFW asked-for vs process RSS.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function process_rss(
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ * Returns:
+ *
+ *   (integer) Current RSS in kilobytes, or 0 if unavailable.
+ */
+const afw_value_t *
+afw_function_execute_process_rss(
+    afw_function_execute_t *x);
+
 /** @brief Function definition trace */
 extern const afw_value_function_definition_t
 afw_function_definition_trace;

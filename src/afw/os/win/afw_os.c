@@ -173,9 +173,9 @@ afw_os_get_pid()
 }
 
 
-/* Maximum resident set size for this process so far. */
+/* Current RSS in kilobytes. */
 AFW_DEFINE(afw_size_t)
-afw_os_get_maxrss()
+afw_os_get_rss()
 {
     return 0;
 }

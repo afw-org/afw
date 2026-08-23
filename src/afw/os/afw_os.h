@@ -46,13 +46,18 @@ afw_os_get_pid();
 
 
 /**
- * @brief Maximum resident set size for this process so far.
- * @return ru_maxrss from getrusage(RUSAGE_SELF), or 0 if unavailable.
+ * @brief Current resident set size for this process.
+ * @return RSS in kilobytes, or 0 if unavailable.
  *
- * On Linux this is kilobytes. Must not allocate. Win stubs 0.
+ * Linux: `/proc/self/statm` resident pages (open/read/close, no alloc).
+ * Same KB units as Linux `ru_maxrss`, but this is **current** RSS, not
+ * peak. Used as the `rss` field on `>debug pool` lines. Win stubs 0.
+ *
+ * Do not call this from gdb after SIGSTOP — read `/proc/<pid>/status`
+ * VmRSS from the gdb process instead.
  */
 AFW_DECLARE(afw_size_t)
-afw_os_get_maxrss();
+afw_os_get_rss();
 
 
 /**

@@ -258,6 +258,39 @@ export function afwPerform(client : any, request : object) : any {
 }
 
 /**
+ * Return the environment running total of outstanding bytes AFW malloc/calloc
+ * asked for and has not yet given back (heap/tracker free, or pool destroy).
+ * Rounding and prefixes included. Not APR's private usage; see process_rss()
+ * for current process RSS.
+ * 
+ * @returns {integer} Sum of all pools' bytes_allocated.
+ */
+export function afwPoolBytesInUse(client : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "pool_bytes_in_use";
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the current resident set size of this process in kilobytes (Linux
+ * /proc/self/statm). A hint at APR and OS usage; APR does not return pages to
+ * the OS. Compare with pool_bytes_in_use() for AFW asked-for vs process RSS.
+ * 
+ * @returns {integer} Current RSS in kilobytes, or 0 if unavailable.
+ */
+export function afwProcessRss(client : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "process_rss";
+
+    return client.perform(_action);
+}
+
+/**
  * Write a value to a trace log.
  * 
  * @param {} value - This is the value that will be converted to its string

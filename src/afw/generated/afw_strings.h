@@ -11626,7 +11626,7 @@ afw_self_v_a_flag_debug_pool_brief;
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_debug_pool_description \
-    "This produces basic debug lines for pool create, release, and destroy."
+    "This produces basic debug lines for pool create, release, and destroy. Each line has this pool's in_use (outstanding malloc/calloc), total (env pool_bytes_in_use), and rss (current process RSS KB)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool_description */
 #define afw_s_a_flag_debug_pool_description \
@@ -11704,7 +11704,7 @@ afw_self_v_a_flag_debug_pool_detail_brief;
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_debug_pool_detail_description \
-    "This produces basic plus additional detail debug lines for pool allocate and free."
+    "This produces basic plus allocate/free lines. Heap alloc is 'alloc reuse' or 'alloc apr'."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool_detail_description */
 #define afw_s_a_flag_debug_pool_detail_description \
@@ -31983,6 +31983,32 @@ afw_self_v_afwPerform;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_afwPoolBytesInUse \
+    "afwPoolBytesInUse"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwPoolBytesInUse */
+#define afw_s_afwPoolBytesInUse \
+    (&afw_self_v_afwPoolBytesInUse.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwPoolBytesInUse */
+#define afw_self_s_afwPoolBytesInUse \
+    (afw_self_v_afwPoolBytesInUse.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwPoolBytesInUse */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwPoolBytesInUse;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwPoolBytesInUse */
+#define afw_z_afwPoolBytesInUse \
+    (afw_self_v_afwPoolBytesInUse.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwPoolBytesInUse */
+#define afw_v_afwPoolBytesInUse \
+    (&afw_self_v_afwPoolBytesInUse.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_afwPop \
     "afwPop"
 
@@ -32109,6 +32135,32 @@ afw_self_v_afwPrintln;
 /** @brief 'const afw_value_t *' for AFW_Q_afwPrintln */
 #define afw_v_afwPrintln \
     (&afw_self_v_afwPrintln.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwProcessRss \
+    "afwProcessRss"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwProcessRss */
+#define afw_s_afwProcessRss \
+    (&afw_self_v_afwProcessRss.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwProcessRss */
+#define afw_self_s_afwProcessRss \
+    (afw_self_v_afwProcessRss.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwProcessRss */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwProcessRss;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwProcessRss */
+#define afw_z_afwProcessRss \
+    (afw_self_v_afwProcessRss.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwProcessRss */
+#define afw_v_afwProcessRss \
+    (&afw_self_v_afwProcessRss.pub)
 
 
 
@@ -82007,6 +82059,58 @@ afw_self_v_polymorphicOverrides;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_poolBytesInUse \
+    "poolBytesInUse"
+
+/** @brief 'afw_utf8_t' for AFW_Q_poolBytesInUse */
+#define afw_s_poolBytesInUse \
+    (&afw_self_v_poolBytesInUse.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_poolBytesInUse */
+#define afw_self_s_poolBytesInUse \
+    (afw_self_v_poolBytesInUse.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_poolBytesInUse */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_poolBytesInUse;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_poolBytesInUse */
+#define afw_z_poolBytesInUse \
+    (afw_self_v_poolBytesInUse.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_poolBytesInUse */
+#define afw_v_poolBytesInUse \
+    (&afw_self_v_poolBytesInUse.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_pool_bytes_in_use \
+    "pool_bytes_in_use"
+
+/** @brief 'afw_utf8_t' for AFW_Q_pool_bytes_in_use */
+#define afw_s_pool_bytes_in_use \
+    (&afw_self_v_pool_bytes_in_use.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_pool_bytes_in_use */
+#define afw_self_s_pool_bytes_in_use \
+    (afw_self_v_pool_bytes_in_use.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_pool_bytes_in_use */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_pool_bytes_in_use;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_pool_bytes_in_use */
+#define afw_z_pool_bytes_in_use \
+    (afw_self_v_pool_bytes_in_use.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_pool_bytes_in_use */
+#define afw_v_pool_bytes_in_use \
+    (&afw_self_v_pool_bytes_in_use.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_pop \
     "pop"
 
@@ -82341,6 +82445,58 @@ afw_self_v_process;
 /** @brief 'const afw_value_t *' for AFW_Q_process */
 #define afw_v_process \
     (&afw_self_v_process.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_processRss \
+    "processRss"
+
+/** @brief 'afw_utf8_t' for AFW_Q_processRss */
+#define afw_s_processRss \
+    (&afw_self_v_processRss.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_processRss */
+#define afw_self_s_processRss \
+    (afw_self_v_processRss.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_processRss */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_processRss;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_processRss */
+#define afw_z_processRss \
+    (afw_self_v_processRss.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_processRss */
+#define afw_v_processRss \
+    (&afw_self_v_processRss.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_process_rss \
+    "process_rss"
+
+/** @brief 'afw_utf8_t' for AFW_Q_process_rss */
+#define afw_s_process_rss \
+    (&afw_self_v_process_rss.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_process_rss */
+#define afw_self_s_process_rss \
+    (afw_self_v_process_rss.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_process_rss */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_process_rss;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_process_rss */
+#define afw_z_process_rss \
+    (afw_self_v_process_rss.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_process_rss */
+#define afw_v_process_rss \
+    (&afw_self_v_process_rss.pub)
 
 
 
