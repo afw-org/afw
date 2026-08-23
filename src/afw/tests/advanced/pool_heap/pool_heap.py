@@ -61,6 +61,11 @@ def run():
                 "just-freed 32- and 200-byte blocks reuse independently",
             ),
             (
+                "heap_whole_block",
+                "taking a whole free block records that block's size, "
+                "so the original size can reuse",
+            ),
+            (
                 "general_free_noop",
                 "general APR pool optional free stays a no-op",
             ),

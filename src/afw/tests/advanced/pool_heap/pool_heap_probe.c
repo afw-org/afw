@@ -30,6 +30,7 @@
 
 #define IMPL_SIZE_SMALL  ((afw_size_t)32)
 #define IMPL_SIZE_MEDIUM ((afw_size_t)64)
+#define IMPL_SIZE_SLIGHT ((afw_size_t)56)
 #define IMPL_SIZE_LARGE  ((afw_size_t)200)
 
 static afw_size_t
@@ -407,6 +408,56 @@ impl_mixed_sizes(afw_xctx_t *xctx)
 }
 
 /*
+ * First-fit takes the whole free block when the remainder is too
+ * small to keep. The recorded size must be that whole block, not
+ * the requested size, or a later same-as-original alloc cannot reuse.
+ *
+ * Heap prefix 16: user 64 → 80, user 56 → 72, remainder 8 < 16.
+ */
+static int
+impl_heap_whole_block(afw_xctx_t *xctx)
+{
+    const afw_pool_t *heap;
+    afw_pool_internal_memory_prefix_t *block;
+    void *a;
+    void *b;
+    void *c;
+    afw_size_t original_chunk;
+
+    heap = afw_pool_heap_create(xctx->p, xctx);
+    a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    block = AFW_POOL_INTERNAL_MEMORY_PREFIX(a);
+    original_chunk = block->size;
+    memset(a, 0x41, IMPL_SIZE_MEDIUM);
+    afw_pool_free_memory_internal(heap, a, xctx);
+
+    b = afw_pool_malloc(heap, IMPL_SIZE_SLIGHT, xctx);
+    if (impl_expect_same_ptr(b, a, "heap_whole_block slight reuse")) {
+        return 1;
+    }
+    block = AFW_POOL_INTERNAL_MEMORY_PREFIX(b);
+    if (block->size != original_chunk) {
+        fprintf(stderr,
+            "heap_whole_block: took whole block of " AFW_SIZE_T_FMT
+            " but recorded " AFW_SIZE_T_FMT "\n",
+            original_chunk, block->size);
+        return 1;
+    }
+    memset(b, 0x42, IMPL_SIZE_SLIGHT);
+    afw_pool_free_memory_internal(heap, b, xctx);
+
+    c = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    if (impl_expect_same_ptr(c, a, "heap_whole_block original reuse")) {
+        return 1;
+    }
+    memset(c, 0x43, IMPL_SIZE_MEDIUM);
+    afw_pool_free_memory_internal(heap, c, xctx);
+
+    afw_pool_release(heap, xctx);
+    return 0;
+}
+
+/*
  * General APR pools stay destroy-is-lifetime; optional free is a no-op.
  */
 static int
@@ -506,6 +557,9 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "mixed_sizes") == 0) {
         rc = impl_mixed_sizes(xctx);
     }
+    else if (strcmp(case_name, "heap_whole_block") == 0) {
+        rc = impl_heap_whole_block(xctx);
+    }
     else if (strcmp(case_name, "general_free_noop") == 0) {
         rc = impl_general_free_noop(xctx);
     }
@@ -516,7 +570,7 @@ main(int argc, char **argv)
         fprintf(stderr, "usage: pool_heap_probe "
             "heap_malloc_free|tracker_malloc|tracker_optional_free|"
             "tracker_last_release|tracker_header|mixed_sizes|"
-            "general_free_noop|tracker_parent\n");
+            "heap_whole_block|general_free_noop|tracker_parent\n");
         rc = 2;
     }
 

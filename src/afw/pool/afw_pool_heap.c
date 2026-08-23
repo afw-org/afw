@@ -448,7 +448,8 @@ impl_alloc_memory(
     if (curr) {
         if (curr->size - *actual_size < sizeof(afw_pool_internal_free_memory_t))
         {
-            /* Just use the whole block. */
+            /* Remainder too small to keep; take the whole block. */
+            *actual_size = curr->size;
             if (!prev) {
                 self->free_memory_head->first = curr->next;
             }
