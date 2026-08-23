@@ -112,25 +112,6 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveDataType_/expression",
-                "objectId": "expression",
-                "objectType": "_AdaptiveDataType_"
-            },
-            "scalar": false,
-            "relationalCompares": false,
-            "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
-            "jsonPrimitive": "string",
-            "jsonImpliesDataType": false,
-            "evaluated": true,
-            "directReturn": false,
-            "description": "Data type expression holds the source for an adaptive expression.",
-            "dataTypeParameterType": "evaluatedDataType",
-            "dataType": "script",
-            "cType": "afw_utf8_t",
-            "brief": "An adaptive expression"
-        },
-        {
-            "_meta_": {
                 "path": "/afw/_AdaptiveDataType_/dayTimeDuration",
                 "objectId": "dayTimeDuration",
                 "objectType": "_AdaptiveDataType_"
@@ -417,24 +398,6 @@
             "dataType": "boolean",
             "cType": "afw_boolean_t",
             "brief": "A boolean value"
-        },
-        {
-            "_meta_": {
-                "path": "/afw/_AdaptiveDataType_/hybrid",
-                "objectId": "hybrid",
-                "objectType": "_AdaptiveDataType_"
-            },
-            "scalar": false,
-            "relationalCompares": false,
-            "jsonPrimitive": "varies",
-            "jsonImpliesDataType": false,
-            "evaluated": true,
-            "directReturn": true,
-            "description": "Data type hybrid can be a string containing the source for an adaptive expression tuple, an adaptive script, or an adaptive template.  It can also be a literal (evaluated value) such as boolean, double, integer, list, object, or string.\n\nIf the value is a string that begins with a square bracket ('['), the string is the source for an expressionTuple.  If the value is a string that begins with a shebang ('#!'), the string is the source for a script.  If not either of these, but the string contains a substitution ( ${...} ), the string is a source for a template.  In other cases, the string is a string literal.",
-            "dataTypeParameterType": "evaluatedDataType",
-            "dataType": "template",
-            "cType": "const afw_value_t *",
-            "brief": "A hybrid value"
         },
         {
             "_meta_": {

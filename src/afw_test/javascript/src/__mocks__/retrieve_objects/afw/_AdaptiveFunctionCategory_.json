@@ -23,17 +23,6 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFunctionCategory_/expression",
-                "objectId": "expression",
-                "objectType": "_AdaptiveFunctionCategory_"
-            },
-            "description": "These function are related to data type expression.\n\nThe \"<expression>\" in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.",
-            "dataTypeCategory": true,
-            "category": "expression",
-            "brief": "Data type expression related functions"
-        },
-        {
-            "_meta_": {
                 "path": "/afw/_AdaptiveFunctionCategory_/dayTimeDuration",
                 "objectId": "dayTimeDuration",
                 "objectType": "_AdaptiveFunctionCategory_"
