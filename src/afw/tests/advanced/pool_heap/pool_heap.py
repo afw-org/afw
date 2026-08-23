@@ -87,6 +87,15 @@ def run():
                 "nonadjacent_reuse",
                 "non-adjacent frees land on the free list and reuse",
             ),
+            (
+                "for_clone_churn",
+                "tracker calloc ~56 after mixed optional free and "
+                "tracker last-release does not hang",
+            ),
+            (
+                "double_free_throws",
+                "second free_memory throws on the running xctx",
+            ),
         ],
         extra_cflags=("-I", _pool_src()),
         extra_ldflags=("-lapr-1",),
