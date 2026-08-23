@@ -432,12 +432,12 @@ impl_afw_pool_malloc(
 
 
 /*
- * Implementation of method free_memory_internal for interface afw_pool.
+ * Implementation of method free_memory for interface afw_pool.
  *
- * No-op this pass. Optional reuse will not use a live-allocation prefix.
+ * Optional free is a no-op. Destroy is lifetime.
  */
 void
-impl_afw_pool_free_memory_internal(
+impl_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
     void *address,
     afw_xctx_t *xctx)
@@ -580,7 +580,7 @@ impl_mt_afw_pool_malloc(
 
 
 static void
-impl_mt_afw_pool_free_memory_internal(
+impl_mt_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
     void *address,
     afw_xctx_t *xctx)
@@ -633,8 +633,8 @@ impl_mt_afw_pool_deregister_cleanup(
     impl_mt_afw_pool_calloc
 #define impl_afw_pool_malloc \
     impl_mt_afw_pool_malloc
-#define impl_afw_pool_free_memory_internal \
-    impl_mt_afw_pool_free_memory_internal
+#define impl_afw_pool_free_memory \
+    impl_mt_afw_pool_free_memory
 #define impl_afw_pool_register_cleanup_before \
     impl_mt_afw_pool_register_cleanup_before
 #define impl_afw_pool_deregister_cleanup \
@@ -652,7 +652,7 @@ impl_mt_afw_pool_deregister_cleanup(
 #undef impl_afw_pool_destroy
 #undef impl_afw_pool_calloc
 #undef impl_afw_pool_malloc
-#undef impl_afw_pool_free_memory_internal
+#undef impl_afw_pool_free_memory
 #undef impl_afw_pool_register_cleanup_before
 #undef impl_afw_pool_deregister_cleanup
 
@@ -821,16 +821,6 @@ afw_pool_internal_create_base_pool()
     self->pool_number = 1;
     self->reference_count = 1;
     return &self->pub;
-}
-
-
-AFW_DEFINE(void)
-afw_pool_free_memory(
-    void *address,
-    afw_xctx_t *xctx)
-{
-    (void)address;
-    (void)xctx;
 }
 
 

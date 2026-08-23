@@ -19,9 +19,8 @@
  * Script cannot see prefixes, the tracker allocated list, or free-list
  * reuse. This boots a core environment and calls the C pool API.
  *
- * Optional free uses afw_pool_free_memory_internal() on the pool that
- * allocated. Public afw_pool_free_memory() is still a no-op (general
- * APR pools have no prefix; prefix-dispatch would be unsafe there).
+ * Optional free is afw_pool_free_memory(p, address, xctx) on the pool
+ * that allocated. General APR pools no-op.
  *
  * Same shape as tests/advanced/pool_alloc/pool_alloc_probe.c.
  *
@@ -129,7 +128,7 @@ impl_heap_malloc_free(afw_xctx_t *xctx)
     }
     memset(a, 0xa1, IMPL_SIZE_MEDIUM);
 
-    afw_pool_free_memory_internal(heap, a, xctx);
+    afw_pool_free_memory(heap, a, xctx);
     if (impl_expect_in_use(xctx, before, "heap_malloc_free after free")) {
         return 1;
     }
@@ -145,7 +144,7 @@ impl_heap_malloc_free(afw_xctx_t *xctx)
     }
     memset(b, 0xa2, IMPL_SIZE_MEDIUM);
 
-    afw_pool_free_memory_internal(heap, b, xctx);
+    afw_pool_free_memory(heap, b, xctx);
     if (impl_expect_in_use(xctx, before, "heap_malloc_free after second free"))
     {
         return 1;
@@ -241,7 +240,7 @@ impl_tracker_optional_free(afw_xctx_t *xctx)
 
     a = afw_pool_malloc(tracker, IMPL_SIZE_MEDIUM, xctx);
     memset(a, 0xc1, IMPL_SIZE_MEDIUM);
-    afw_pool_free_memory_internal(tracker, a, xctx);
+    afw_pool_free_memory(tracker, a, xctx);
 
     if (self->first_allocated_memory != NULL) {
         return impl_fail("tracker_optional_free",
@@ -256,7 +255,7 @@ impl_tracker_optional_free(afw_xctx_t *xctx)
         return 1;
     }
     memset(b, 0xc2, IMPL_SIZE_MEDIUM);
-    afw_pool_free_memory_internal(tracker, b, xctx);
+    afw_pool_free_memory(tracker, b, xctx);
 
     /* Last-release must not double-free the already-returned block. */
     afw_pool_release(tracker, xctx);
@@ -358,7 +357,7 @@ impl_tracker_header(afw_xctx_t *xctx)
 
     a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
     memset(a, 0xe1, IMPL_SIZE_MEDIUM);
-    afw_pool_free_memory_internal(heap, a, xctx);
+    afw_pool_free_memory(heap, a, xctx);
 
     afw_pool_release(heap, xctx);
     return 0;
@@ -385,24 +384,24 @@ impl_mixed_sizes(afw_xctx_t *xctx)
     heap = afw_pool_heap_create(xctx->p, xctx);
     small_a = afw_pool_malloc(heap, IMPL_SIZE_SMALL, xctx);
     memset(small_a, 0x11, IMPL_SIZE_SMALL);
-    afw_pool_free_memory_internal(heap, small_a, xctx);
+    afw_pool_free_memory(heap, small_a, xctx);
     small_b = afw_pool_malloc(heap, IMPL_SIZE_SMALL, xctx);
     if (impl_expect_same_ptr(small_b, small_a, "mixed_sizes small reuse")) {
         return 1;
     }
-    afw_pool_free_memory_internal(heap, small_b, xctx);
+    afw_pool_free_memory(heap, small_b, xctx);
     afw_pool_release(heap, xctx);
 
     heap = afw_pool_heap_create(xctx->p, xctx);
     large_a = afw_pool_malloc(heap, IMPL_SIZE_LARGE, xctx);
     memset(large_a, 0x22, IMPL_SIZE_LARGE);
-    afw_pool_free_memory_internal(heap, large_a, xctx);
+    afw_pool_free_memory(heap, large_a, xctx);
     large_b = afw_pool_malloc(heap, IMPL_SIZE_LARGE, xctx);
     if (impl_expect_same_ptr(large_b, large_a, "mixed_sizes large reuse")) {
         return 1;
     }
     memset(large_b, 0x33, IMPL_SIZE_LARGE);
-    afw_pool_free_memory_internal(heap, large_b, xctx);
+    afw_pool_free_memory(heap, large_b, xctx);
     afw_pool_release(heap, xctx);
     return 0;
 }
@@ -429,7 +428,7 @@ impl_heap_whole_block(afw_xctx_t *xctx)
     block = AFW_POOL_INTERNAL_MEMORY_PREFIX(a);
     original_chunk = block->size;
     memset(a, 0x41, IMPL_SIZE_MEDIUM);
-    afw_pool_free_memory_internal(heap, a, xctx);
+    afw_pool_free_memory(heap, a, xctx);
 
     b = afw_pool_malloc(heap, IMPL_SIZE_SLIGHT, xctx);
     if (impl_expect_same_ptr(b, a, "heap_whole_block slight reuse")) {
@@ -444,14 +443,14 @@ impl_heap_whole_block(afw_xctx_t *xctx)
         return 1;
     }
     memset(b, 0x42, IMPL_SIZE_SLIGHT);
-    afw_pool_free_memory_internal(heap, b, xctx);
+    afw_pool_free_memory(heap, b, xctx);
 
     c = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
     if (impl_expect_same_ptr(c, a, "heap_whole_block original reuse")) {
         return 1;
     }
     memset(c, 0x43, IMPL_SIZE_MEDIUM);
-    afw_pool_free_memory_internal(heap, c, xctx);
+    afw_pool_free_memory(heap, c, xctx);
 
     afw_pool_release(heap, xctx);
     return 0;
@@ -472,7 +471,7 @@ impl_general_free_noop(afw_xctx_t *xctx)
     after_alloc = impl_in_use(xctx);
     memset(a, 0xf1, IMPL_SIZE_MEDIUM);
 
-    afw_pool_free_memory_internal(p, a, xctx);
+    afw_pool_free_memory(p, a, xctx);
     if (impl_expect_in_use(xctx, after_alloc, "general_free_noop")) {
         return 1;
     }
@@ -588,6 +587,61 @@ impl_get_apr_pool(afw_xctx_t *xctx)
     return 0;
 }
 
+static void
+impl_cleanup_nop(
+    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data;
+    (void)data2;
+    (void)p;
+    (void)xctx;
+}
+
+static int
+impl_deregister_cleanup(afw_xctx_t *xctx)
+{
+    static int marker;
+    const afw_pool_t *heap;
+    const afw_pool_t *tracker;
+    afw_pool_internal_self_t *self;
+    void *entry;
+    void *again;
+
+    heap = afw_pool_heap_create(xctx->p, xctx);
+    tracker = afw_pool_heap_tracker_create(heap, xctx);
+    self = impl_self(tracker);
+
+    if (self->first_allocated_memory != NULL) {
+        return impl_fail("deregister_cleanup", "list not empty at start");
+    }
+
+    afw_pool_register_cleanup_before(tracker, &marker, NULL,
+        impl_cleanup_nop, xctx);
+    if (self->first_allocated_memory == NULL) {
+        return impl_fail("deregister_cleanup",
+            "cleanup entry not on allocated list");
+    }
+    entry = ((char *)self->first_allocated_memory) +
+        sizeof(afw_pool_internal_memory_prefix_with_links_t);
+
+    afw_pool_deregister_cleanup(tracker, &marker, NULL,
+        impl_cleanup_nop, xctx);
+    if (self->first_allocated_memory != NULL) {
+        return impl_fail("deregister_cleanup",
+            "cleanup entry still on allocated list");
+    }
+
+    again = afw_pool_malloc(tracker, sizeof(afw_pool_cleanup_t), xctx);
+    if (impl_expect_same_ptr(again, entry, "deregister_cleanup reuse")) {
+        return 1;
+    }
+    afw_pool_free_memory(tracker, again, xctx);
+
+    afw_pool_release(tracker, xctx);
+    afw_pool_release(heap, xctx);
+    return 0;
+}
+
 int
 main(int argc, char **argv)
 {
@@ -636,12 +690,15 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "get_apr_pool") == 0) {
         rc = impl_get_apr_pool(xctx);
     }
+    else if (strcmp(case_name, "deregister_cleanup") == 0) {
+        rc = impl_deregister_cleanup(xctx);
+    }
     else {
         fprintf(stderr, "usage: pool_heap_probe "
             "heap_malloc_free|tracker_malloc|tracker_optional_free|"
             "tracker_last_release|tracker_header|mixed_sizes|"
             "heap_whole_block|general_free_noop|tracker_parent|"
-            "get_apr_pool\n");
+            "get_apr_pool|deregister_cleanup\n");
         rc = 2;
     }
 

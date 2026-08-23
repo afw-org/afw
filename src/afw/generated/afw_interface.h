@@ -6970,9 +6970,9 @@ typedef void *
     afw_size_t size,
     afw_xctx_t * xctx);
 
-/** @sa afw_pool_free_memory_internal() */
+/** @sa afw_pool_free_memory() */
 typedef void
-(*afw_pool_free_memory_internal_t)(
+(*afw_pool_free_memory_t)(
     const afw_pool_t * instance,
     void * address,
     afw_xctx_t * xctx);
@@ -7009,7 +7009,7 @@ struct afw_pool_inf_s {
     afw_pool_get_apr_pool_t get_apr_pool;
     afw_pool_calloc_t calloc;
     afw_pool_malloc_t malloc;
-    afw_pool_free_memory_internal_t free_memory_internal;
+    afw_pool_free_memory_t free_memory;
     afw_pool_register_cleanup_before_t register_cleanup_before;
     afw_pool_deregister_cleanup_t deregister_cleanup;
 };
@@ -7152,27 +7152,24 @@ struct afw_pool_inf_s {
 )
 
 /**
- * @brief Call method `free_memory_internal` of interface `afw_pool`.
+ * @brief Call method `free_memory` of interface `afw_pool`.
  *
- * Free an allocated memory in pool. If the pool implementation does
- * not support freeing memory, the call does nothing.
- * 
- * Use afw_pool_free_memory() instead of calling this method directly since
- * it will call the free_memory_internal() method of the correct pool
- * instance given the address returned from afw_pool_calloc() or
- * afw_pool_malloc().
+ * Optionally free memory allocated from this pool. The caller
+ * passes the pool. If the implementation does not support
+ * optional free, the call does nothing (destroy is still
+ * lifetime). Heap and heap tracker return the chunk for reuse.
  * @param instance Pointer to this pool instance.
  * @param address Address of memory to free.
  * @param xctx This is the caller's xctx.
  * @relates afw_pool_t
  * @see @ref afw_pool_s "afw_pool_t"
  */
-#define afw_pool_free_memory_internal( \
+#define afw_pool_free_memory( \
     instance, \
     address, \
     xctx \
 ) \
-(instance)->inf->free_memory_internal( \
+(instance)->inf->free_memory( \
     (instance), \
     (address), \
     (xctx) \

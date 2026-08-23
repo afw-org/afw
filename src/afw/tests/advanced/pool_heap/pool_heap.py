@@ -78,6 +78,11 @@ def run():
                 "tracker get_apr_pool is lazy, a child of the heap "
                 "reservoir, and dies with the tracker",
             ),
+            (
+                "deregister_cleanup",
+                "deregister unlinks the entry and optional-frees it "
+                "on the tracker",
+            ),
         ],
         extra_cflags=("-I", _pool_src()),
         extra_ldflags=("-lapr-1",),

@@ -91,13 +91,13 @@ impl_subpool_afw_pool_malloc(
     impl_subpool_afw_pool_malloc
 
 static void
-impl_subpool_afw_pool_free_memory_internal(
+impl_subpool_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
     void *address,
     afw_xctx_t *xctx);
 
-#define impl_afw_pool_free_memory_internal \
-    impl_subpool_afw_pool_free_memory_internal
+#define impl_afw_pool_free_memory \
+    impl_subpool_afw_pool_free_memory
 
 static const afw_pool_internal_inf_implementation_specific_t
 impl_subpool_implementation_specific =
@@ -116,7 +116,7 @@ impl_subpool_implementation_specific =
 #undef impl_afw_pool_get_apr_pool
 #undef impl_afw_pool_calloc
 #undef impl_afw_pool_malloc
-#undef impl_afw_pool_free_memory_internal
+#undef impl_afw_pool_free_memory
 
 
 /* --------------------------- internal macros ------------------------------ */
@@ -705,10 +705,10 @@ impl_afw_pool_malloc(
 }
 
 /*
- * Implementation of method free_memory_internal for interface afw_pool.
+ * Implementation of method free_memory for interface afw_pool.
  */
 void
-impl_afw_pool_free_memory_internal(
+impl_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
     void *address,
     afw_xctx_t *xctx)
@@ -780,7 +780,7 @@ impl_afw_pool_deregister_cleanup(
     {
         if (e->data == data && e->data2 == data2 && e->cleanup == cleanup) {
             prev->next_cleanup = e->next_cleanup;
-            afw_pool_free_memory(e, xctx);
+            afw_pool_free_memory(&self->pub, e, xctx);
             break;
         }
     }
@@ -940,7 +940,7 @@ impl_subpool_afw_pool_malloc(
 
 
 static void
-impl_subpool_afw_pool_free_memory_internal(
+impl_subpool_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
     void *address,
     afw_xctx_t *xctx)

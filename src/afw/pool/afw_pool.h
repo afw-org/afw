@@ -31,6 +31,8 @@
  *   not the heap's store. Heap may return its current APR pool; a
  *   tracker creates one on first call and destroys it with the tracker.
  *   If nothing calls it on a tracker, there is no extra APR pool.
+ * - Optional free is afw_pool_free_memory(p, address, xctx). Caller
+ *   passes the pool. Heap/tracker reuse; general APR is a no-op.
  * - Thread-specific general pools must only be used from their thread.
  * - Use afw_pool_calloc_type for typed zeroed allocs.
  * - Cleanup functions run before the pool is destroyed.
@@ -200,20 +202,6 @@ afw_pool_thread_create(
  */
 #define afw_pool_malloc_type(instance, type, xctx) \
     (type *) afw_pool_malloc(instance, sizeof(type), xctx)
-
-
-/**
- * @brief Free memory in it's associated pool.
- * @param address of memory to free.
- * @param xctx of caller.
- *
- * The memory address must be one returned by a afw_pool_calloc() or
- * afw_pool_malloc() call.
- */
-AFW_DECLARE(void)
-afw_pool_free_memory(
-    void *address,
-    afw_xctx_t *xctx);
 
 
 AFW_END_DECLARES
