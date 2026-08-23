@@ -170,3 +170,31 @@ const src = "let a = 1, b = 2; return a + b;";
 const d1 = decompile(compile<script>(script(src)));
 assert(evaluate(compile<script>(script(d1))) === 3);
 return 0;
+
+//?
+//? test: extra-braces-inner-let
+//? description: `{ { let x } }` — outer 0-symbol `{ }` is not a scope
+//? expect: 0
+//? source: ...
+
+let outer = 1;
+{
+    {
+        let inner = 2;
+        assert(outer + inner === 3);
+    }
+}
+return 0;
+
+//?
+//? test: while-zero-symbol-assigns-outer
+//? description: braced while body with no let still assigns the outer name
+//? expect: 0
+//? source: ...
+
+let i = 0;
+while (i < 3) {
+    i = i + 1;
+}
+assert(i === 3);
+return 0;

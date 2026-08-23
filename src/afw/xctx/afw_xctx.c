@@ -685,13 +685,18 @@ afw_xctx_scope_create(
     }
 
     if (parent_lexical_scope) {
-        if (parent_lexical_scope->block->depth != block->depth - 1) {
+        /*
+         * Parent must be shallower, not always depth-1. Nested `{ }` with
+         * no symbols skip a scope, so a later block with symbols can sit
+         * more than one compile depth below the live parent.
+         */
+        if (parent_lexical_scope->block->depth >= block->depth) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "afw_xctx_scope_create(): parent_lexical_scope block depth must "
-                "be one less than block depth "
+                "afw_xctx_scope_create(): parent_lexical_scope block depth "
+                "must be less than block depth "
                 "(scope count: " AFW_SIZE_T_FMT
                 ", active scopes: %d"
-                ", parent scope number: " AFW_SIZE_T_FMT 
+                ", parent scope number: " AFW_SIZE_T_FMT
                 ", parent block depth: " AFW_SIZE_T_FMT
                 ", block depth: " AFW_SIZE_T_FMT ")",
                 xctx->scope_count, xctx->scope_stack->nelts,
@@ -747,6 +752,52 @@ afw_xctx_scope_create(
         block, scope, parent_lexical_scope, NULL, xctx);
 
     return scope;
+}
+
+
+
+/* Live scope for a compile-time block, walking skipped 0-symbol frames. */
+AFW_DEFINE(const afw_xctx_scope_t *)
+afw_xctx_scope_find_for_block(
+    const afw_value_block_t *block,
+    const afw_xctx_scope_t *from,
+    afw_xctx_t *xctx)
+{
+    const afw_value_block_t *b;
+    const afw_xctx_scope_t *scope;
+
+    (void)xctx;
+
+    if (!from) {
+        return NULL;
+    }
+
+    /* NULL block: compiled-value root (depth 0). */
+    if (!block) {
+        for (scope = from; scope; scope = scope->parent_lexical_scope) {
+            if (!scope->parent_lexical_scope) {
+                return scope;
+            }
+        }
+        return NULL;
+    }
+
+    /*
+     * 0-symbol nested `{ }` do not get a scope. Walk to the nearest
+     * ancestor that does (or the top block, which is created even when
+     * it has no symbols so the compiled_value sentinel is not current).
+     */
+    b = block;
+    while (b->symbol_count == 0 && b->parent_block) {
+        b = b->parent_block;
+    }
+
+    for (scope = from; scope; scope = scope->parent_lexical_scope) {
+        if (scope->block == b) {
+            return scope;
+        }
+    }
+    return NULL;
 }
 
 

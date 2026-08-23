@@ -374,6 +374,40 @@ assert(probe() === "in_if");
 return 0;
 
 //?
+//? test: if-block-zero-symbol-closes-outer
+//? description: 0-symbol if body is not a scope; closure still binds outer let
+//? skip: false
+//? expect: 0
+//? source: ...
+
+let x = "outer";
+let probe;
+if (true) {
+    probe = function() {
+        return x;
+    };
+}
+assert(probe() === "outer");
+return 0;
+
+//?
+//? test: if-block-zero-symbol-iife
+//? description: IIFE in a 0-symbol if body sees outer let (no closure store)
+//? skip: false
+//? expect: 0
+//? source: ...
+
+let n = 3;
+let r;
+if (true) {
+    r = (function() {
+        return n;
+    })();
+}
+assert(r === 3);
+return 0;
+
+//?
 //? test: nested-block-return-captures-both
 //? description: Returned closure from inner block sees outer and inner lets (issue #35)
 //? skip: false

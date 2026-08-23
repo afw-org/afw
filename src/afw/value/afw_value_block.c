@@ -95,6 +95,7 @@ afw_value_block_evaluate_block(
     afw_size_t i;
     const afw_xctx_scope_t *scope;
     afw_boolean_t use_running;
+    afw_boolean_t created_scope;
 
     /* Push value on evaluation stack. */
     afw_xctx_evaluation_stack_push_value(
@@ -107,8 +108,22 @@ afw_value_block_evaluate_block(
         : afw_value_undefined;
     last = result;
 
-    scope = afw_xctx_scope_create(self, afw_xctx_scope_current(xctx), xctx);
-    afw_xctx_scope_activate(scope, xctx);
+    /*
+     * Nested `{ }` with no symbols is not a scope. Creating one is an
+     * APR tracker header on the eval heap's parent that destroy does not
+     * recycle — `while (true) {}` climbed RSS with in_use flat. Always
+     * create when current is NULL (compiled_value sentinel) so depth 0
+     * exists once per evaluate. Bodies with `let` / `for` clone still
+     * get a scope.
+     */
+    scope = NULL;
+    created_scope = false;
+    if (self->symbol_count > 0 || !afw_xctx_scope_current(xctx)) {
+        scope = afw_xctx_scope_create(self,
+            afw_xctx_scope_current(xctx), xctx);
+        afw_xctx_scope_activate(scope, xctx);
+        created_scope = true;
+    }
     AFW_TRY{
         for (i = 0; i < self->statement_count; i++) {
             last = afw_value_block_evaluate_statement(
@@ -161,7 +176,9 @@ afw_value_block_evaluate_block(
         }
     }
     AFW_FINALLY{
-        afw_xctx_scope_deactivate(scope, xctx);
+        if (created_scope) {
+            afw_xctx_scope_deactivate(scope, xctx);
+        }
     }
     AFW_ENDTRY;
 

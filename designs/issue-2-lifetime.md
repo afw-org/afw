@@ -258,6 +258,7 @@ This pass is specified with **`xctx->p` as the usual ancestor**. Adapter caches,
 - `#35` store-time bind uses the slot protocol (defining scope hold, not hoisting).
 - Nested **`compile()`** assigned to a variable is **unevaluated** (the graph). It does not run and does not touch `script_result`. `evaluate()` of that value (and model-adapter `on*` compiled at model load, run later on a request) goes through `compiled_value` evaluate, which already save/restores `script_result` / active / written and pushes a NULL scope-stack sentinel. The donated-return list on xctx is **not** a second running result: pointer-matched hold transfer for a C return until `slot_store` takes it. Permanents are no-op holds if the same singleton is stored while a donate is pending. Model `current::useDefaultProcessing` is an **unmanaged null sentinel** (pointer identity, not `afw_value_null`); do not box unmanaged null.
 - Wrap-APR vs develop pool: request/object vs **script scope** (APR child per block/`for-of` clone is expensive). Parked until we design; may be our own bump/region for scopes. `create_unmanaged_object` / `_array` stay for scalars / data-type create.
+- **0-symbol `{ }`:** skip the tracker, do not recycle headers unless a body still needs a scope (`let` in a loop, `for` clone). Top compiled_value frame is still created when current is the NULL sentinel. Next independent vertical: box scalars on `p->managed_p` during evaluate with free-on-overwrite. Overlay `o.x = i`, unmanaged `o = { n: i }`, and general-pool optional `free` stay parked.
 
 ---
 
@@ -272,6 +273,7 @@ Do **not** treat this as a commit plan. When we execute:
 5. **Pools** — **landed** on `issue-2-pool-heap`.
 6. **Closures / throw rewind (#35)** — store-time bind; nested assign walks to defining depth; throw-path tests pin original error (not leftover scopes).
 7. **Wrapper teardown + create-at-0** — landed on `issue-2-script-wrapper-holds`. Script-mutable creates (`add_properties` no target, object construct/expression, `create_array`, `array()`) return a face. Unmanaged object/array values `add_reference`/`release` the instance. Overlay/element walk is pool cleanup. Closure create starts at 0; 0→1 pins the defining scope. Gate: `language/script/wrapper_property_holds.as`.
+8. **0-symbol `{ }` is not a scope** — on `issue-2-zero-symbol-scope`. Nested blocks with `symbol_count == 0` evaluate in the parent; the compiled_value sentinel still gets a depth-0 scope once. Enclosing walk is by block pointer through skipped frames. C-style `for` increment clones only the for-let/const wrapper (assign-for mutates in place). Judge: `empty_loop` matches `empty_stmt`. Do **not** mix with scalar boxing onto the eval heap (next vertical).
 
 Current pools the whole way through 1–4.
 

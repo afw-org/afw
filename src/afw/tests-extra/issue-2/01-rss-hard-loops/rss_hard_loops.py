@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 """Opt-in RSS / in_use soaks for issue #2 hard-loop Adaptive Scripts.
 
-Not in default `afwdev test -j`. Braced empty `{ }` fails RSS (APR tracker)
-with in_use flat; unbraced `i = i + 1` fails both until optional free.
-empty_stmt should pass today. Measure-only: AFW_ISSUE2_RSS_ASSERT=0.
+Not in default `afwdev test -j`. 0-symbol `{ }` is not a scope, so
+empty_loop should match empty_stmt (both flat). Unbraced `i = i + 1`
+still fails RSS and in_use until scalars box on the eval heap with
+free-on-overwrite. Measure-only: AFW_ISSUE2_RSS_ASSERT=0.
 
     afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-loops --show-all
     AFW_ISSUE2_WORKLOAD=empty_stmt,empty_loop,integer_assign_no_brace \\
@@ -41,7 +42,7 @@ WORKLOADS = [
     },
     {
         "name": "empty_loop",
-        "description": "while (true) {}  tracker APR; RSS up, in_use flat",
+        "description": "while (true) {}  0-symbol body; not a scope",
         "expect_rss_growth": False,
         "expect_in_use_growth": False,
     },
@@ -53,7 +54,7 @@ WORKLOADS = [
     },
     {
         "name": "integer_assign",
-        "description": "braced i = i + 1 (tracker RSS + scalar in_use)",
+        "description": "braced i = i + 1 (scalar in_use; no extra tracker)",
         "expect_rss_growth": False,
         "expect_in_use_growth": False,
     },
