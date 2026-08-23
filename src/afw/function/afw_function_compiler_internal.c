@@ -740,6 +740,37 @@ impl_evaluate_one_or_more_values(
 }
 
 
+/*
+ * for (let/const …) compile wraps the call in a one-statement block that
+ * holds the loop-local names. Assign-for has no such wrapper; do not clone
+ * the enclosing script/function scope.
+ */
+static afw_boolean_t
+impl_is_c_style_for_let_wrapper(const afw_xctx_scope_t *scope)
+{
+    const afw_value_t *stmt;
+    const afw_value_call_built_in_function_t *call;
+    const afw_utf8_t *id;
+
+    if (!scope || !scope->block ||
+        scope->block->symbol_count == 0 ||
+        scope->block->statement_count != 1)
+    {
+        return false;
+    }
+    stmt = scope->block->statements[0];
+    if (!stmt || !afw_value_is_call_built_in_function(stmt)) {
+        return false;
+    }
+    call = (const afw_value_call_built_in_function_t *)stmt;
+    if (!call->function || !call->function->functionId) {
+        return false;
+    }
+    id = &call->function->functionId->internal;
+    return afw_utf8_equal(id, afw_s_for);
+}
+
+
 /* for init/increment are assignment IR, not script assignment statements. */
 static void
 impl_evaluate_for_increment(
@@ -1111,9 +1142,12 @@ afw_function_execute_for(
     const afw_value_t *body;
 
     const afw_utf8_t *this_label;
+    afw_boolean_t clone_each;
 
     previous_iterator_scope = NULL;
     this_label = NULL;
+    clone_each = impl_is_c_style_for_let_wrapper(
+        afw_xctx_scope_current(xctx));
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(5);
@@ -1151,17 +1185,26 @@ afw_function_execute_for(
             }
 
             if (increment) {
-                //scope = previous_iterator_scope; // Get rid of warning.
-                if (previous_iterator_scope) {
-                    scope = afw_xctx_scope_clone(previous_iterator_scope, xctx);
-                    afw_xctx_scope_deactivate(previous_iterator_scope, xctx);
+                /*
+                 * Per-iteration clone is only for for-let/const (the
+                 * wrapper block that opened this call). Assign-for mutates
+                 * existing names; cloning that enclosing scope after a
+                 * skipped 0-symbol `{ }` body leaves the originals stale.
+                 */
+                if (clone_each) {
+                    if (previous_iterator_scope) {
+                        scope = afw_xctx_scope_clone(
+                            previous_iterator_scope, xctx);
+                        afw_xctx_scope_deactivate(
+                            previous_iterator_scope, xctx);
+                    }
+                    else {
+                        scope = afw_xctx_scope_clone(
+                            afw_xctx_scope_current(xctx), xctx);
+                    }
+                    previous_iterator_scope = scope;
+                    afw_xctx_scope_activate(scope, xctx);
                 }
-                else {
-                    scope = afw_xctx_scope_clone(
-                        afw_xctx_scope_current(xctx), xctx);
-                }
-                previous_iterator_scope = scope;
-                afw_xctx_scope_activate(scope, xctx);
                 impl_evaluate_for_increment(x, 3, increment, p, xctx);
             }
         }

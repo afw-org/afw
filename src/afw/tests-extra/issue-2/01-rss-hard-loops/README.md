@@ -6,17 +6,19 @@ on [#2](https://github.com/afw-org/afw/issues/2).
 
 The directory is `issue-2`, not `#2` — `#` starts a shell comment.
 
-**Expected red on develop today.** Two different climbs (do not mix them):
+Two different climbs (do not mix them):
 
-1. **Braces** — `while (true) {}` is a Block. Every iteration
-   `afw_xctx_scope_create` → heap tracker → `apr_pcalloc` on the eval
-   heap’s APR pool. Destroy does not recycle that header. **RSS climbs;
-   `pool_bytes_in_use()` stays near startup** (APR, not AFW malloc).
-   `while (true);` is flat.
+1. **Braces** — `while (true) {}` used to be a Block scope every
+   iteration (`afw_xctx_scope_create` → heap tracker → `apr_pcalloc` on
+   the eval heap’s APR pool; destroy did not recycle that header).
+   Nested `{ }` with **no symbols** now evaluate in the parent scope.
+   `empty_loop` should match `empty_stmt` (RSS and in_use flat).
+   `while (true) { let x = 1; }` still creates a scope per iteration.
 2. **Unbraced `i = i + 1`** — no extra scope. `slot_store` →
    `create_managed_integer` via `afw_xctx_malloc` (**general** `xctx->p`).
    General-pool free is a no-op, so **`pool_bytes_in_use()` and RSS
-   both climb**. Eval-heap `bytes_allocated` stays ~0.
+   both climb**. Eval-heap `bytes_allocated` stays ~0. That is
+   vertical 2 (scalars on the eval heap with free-on-overwrite).
 
 `empty_stmt` / `*_no_brace` are the split. The Python judge uses `/proc`
 RSS plus gdb `env->pool_bytes_in_use`. Sample from script:
@@ -72,13 +74,13 @@ Underscore dir on purpose: `afwdev test` must not evaluate these as tests
 | name | what | today (RSS / in_use) |
 |------|------|----------------------|
 | `empty_stmt` | `while (true);` | flat / flat (**pass**) |
-| `empty_loop` | `while (true) {}` | RSS up / in_use flat (APR tracker) |
+| `empty_loop` | `while (true) {}` | flat / flat (0-symbol `{ }` is not a scope) |
 | `integer_assign_no_brace` | unbraced `i = i + 1` | both up (scalar boxing) |
-| `integer_assign` | braced `i = i + 1` | both up (tracker + scalar) |
+| `integer_assign` | braced `i = i + 1` | in_use up (scalar; no extra tracker) |
 | `object_prop_assign_no_brace` | unbraced `o.x = i` | overlay set, no `{ }` |
-| `object_prop_assign` | braced `o.x = i` | overlay + tracker |
+| `object_prop_assign` | braced `o.x = i` | overlay (no extra tracker) |
 | `array_index_assign_no_brace` | unbraced `a[0] = i` | element set, no `{ }` |
-| `array_index_assign` | braced `a[0] = i` | element + tracker |
+| `array_index_assign` | braced `a[0] = i` | element (no extra tracker) |
 | `object_rebind` | `o = { n: i }` | unmanaged face |
 | `array_rebind` | `a = [i]` | unmanaged face |
 | `string_same_size` | `"x"` / `"y"` overwrite | same-size utf8 |
@@ -117,8 +119,8 @@ src/afw/tests-extra/issue-2/01-rss-hard-loops/_tools/gdb-attach.sh
 
 Useful hunts after Ctrl-C (**no debug flags** on a soak):
 
-1. `afw-bt` — braced empty sits in while / block / tracker create
-   (`apr_pcalloc`). Unbraced `i = i + 1` sits in
+1. `afw-bt` — braced empty `{ }` should sit in while / boolean, not
+   tracker create. Unbraced `i = i + 1` sits in
    `create_managed_integer` / `slot_store`.
 2. `afw-heap` / `afw-rss` — three numbers: VmRSS,
    `evaluation_heap->bytes_allocated`, `env->pool_bytes_in_use`.

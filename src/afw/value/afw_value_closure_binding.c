@@ -60,8 +60,8 @@ afw_value_closure_binding_create_if_needed(
     afw_xctx_t *xctx)
 {
     const afw_value_script_function_definition_t *function;
+    const afw_value_block_t *defining_block;
     const afw_xctx_scope_t *scope;
-    afw_size_t defining_depth;
 
     if (!value || !afw_value_is_script_function_definition(value)) {
         return value;
@@ -74,30 +74,42 @@ afw_value_closure_binding_create_if_needed(
     }
 
     /*
-     * Prefer signature param block's parent depth when present — same reason
-     * as call_script_function: script_function->depth can lag #block unwrap
-     * renumbering.
+     * Defining compile block, then the live scope for it:
+     * - param block's parent when the function opened a signature block
+     * - else brace-body's parent (`function() { … }` has no param block)
+     * - else compile-time depth (expression body, no param block)
+     *
+     * 0-symbol nested `{ }` skip a scope; match by block pointer through
+     * those parents. Bind that scope, not a nested block we happen to be
+     * in (e.g. `if { c0 = tick }` where tick was created in the enclosing
+     * body). Do not hoist names.
      */
-    defining_depth = function->depth;
+    defining_block = NULL;
     if (function->signature && function->signature->block) {
-        if (function->signature->block->parent_block) {
-            defining_depth =
-                function->signature->block->parent_block->depth;
-        }
-        else {
-            defining_depth = 0;
+        defining_block = function->signature->block->parent_block;
+        if (!defining_block) {
+            defining_block = function->signature->block;
         }
     }
+    else if (function->body && afw_value_is_block(function->body)) {
+        defining_block =
+            ((const afw_value_block_t *)function->body)->parent_block;
+    }
 
-    /*
-     * Bind the defining scope, not a nested block we happen to be in (e.g.
-     * `if { c0 = tick }` where tick was created in the enclosing body).
-     * Returning the raw definition here used to skip the hold and break
-     * later calls. Walk the lexical parent chain; do not hoist names.
-     */
-    for (; scope; scope = scope->parent_lexical_scope) {
-        if (defining_depth == scope->block->depth) {
-            break;
+    if (defining_block) {
+        scope = afw_xctx_scope_find_for_block(defining_block, scope, xctx);
+    }
+    else {
+        const afw_xctx_scope_t *from = scope;
+
+        scope = NULL;
+        for (; from; from = from->parent_lexical_scope) {
+            if (from->block &&
+                from->block->depth <= function->depth)
+            {
+                scope = from;
+                break;
+            }
         }
     }
     if (!scope) {

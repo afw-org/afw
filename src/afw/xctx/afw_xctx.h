@@ -287,8 +287,10 @@ struct afw_xctx_scope_s {
  * C NULL.
  *
  * If a parent_lexical_scope is specified, it's reference count will be
- * incremented. The block depth of the block supplied must be 1 more than the
- * block depth of the parent_lexical_scope's block depth.
+ * incremented. The block depth of the block supplied must be greater than
+ * the parent_lexical_scope's block depth. It is not always parent+1:
+ * nested `{ }` with no symbols do not get a scope, so a later block with
+ * symbols can skip those frames.
  *
  * If parent_lexical_scope is NULL, the block's depth must be 0.
  *
@@ -346,6 +348,26 @@ AFW_DECLARE(const afw_xctx_scope_t *)
 afw_xctx_scope_create(
     const afw_value_block_t *block,
     const afw_xctx_scope_t *parent_lexical_scope,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Find the live scope for a compile-time block.
+ * @param block whose scope to find, or NULL for the compiled-value root.
+ * @param from start of the lexical parent chain (usually current).
+ * @param xctx of caller.
+ * @return matching scope, or NULL if it is not on the chain.
+ *
+ * Nested `{ }` with no symbols skip `afw_xctx_scope_create`. Walk those
+ * compile-time parents until a block that has a live scope, then match
+ * that block pointer on `from`. Missing after that walk is the same
+ * "not on the stack" hole as a non-closure call after the defining
+ * function returned.
+ */
+AFW_DECLARE(const afw_xctx_scope_t *)
+afw_xctx_scope_find_for_block(
+    const afw_value_block_t *block,
+    const afw_xctx_scope_t *from,
     afw_xctx_t *xctx);
 
 

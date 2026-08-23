@@ -168,38 +168,59 @@ impl_afw_value_optional_evaluate(
     }
 
     /*
-     * If not closure, use the one at correct depth from caller scope chain.
-     * Prefer signature->block->parent_block->depth when a parameter block
-     * exists: that is the defining scope. It stays correct after StatementList
-     * #block unwrap renumbers depths (script->depth may still hold the
-     * pre-unwrap value from compile).
+     * If not closure, find the defining block on the caller lexical chain.
+     * Param block's parent when present; else brace-body's parent
+     * (`function() { … }` opens no param block). 0-symbol nested `{ }`
+     * skip a scope, so match by block pointer through those parents.
+     * Missing after that walk is still "not on the stack".
      */
     else {
-        afw_size_t defining_depth;
+        const afw_value_block_t *defining_block;
 
-        defining_depth = script->depth;
+        defining_block = NULL;
         if (script->signature && script->signature->block) {
-            if (script->signature->block->parent_block) {
-                defining_depth =
-                    script->signature->block->parent_block->depth;
-            }
-            else {
-                defining_depth = 0;
+            defining_block = script->signature->block->parent_block;
+            if (!defining_block) {
+                defining_block = script->signature->block;
             }
         }
+        else if (script->body && afw_value_is_block(script->body)) {
+            defining_block =
+                ((const afw_value_block_t *)script->body)->parent_block;
+        }
 
-        for (
-            enclosing_lexical_scope = caller_scope;
-            (
-                enclosing_lexical_scope &&
-                enclosing_lexical_scope->block->depth > defining_depth
-            );
-            enclosing_lexical_scope =
-                enclosing_lexical_scope->parent_lexical_scope
-        );
-        if (!enclosing_lexical_scope ||
-            caller_scope->block->depth < defining_depth)
-        {
+        if (defining_block) {
+            enclosing_lexical_scope = afw_xctx_scope_find_for_block(
+                defining_block, caller_scope, xctx);
+        }
+        else {
+            const afw_xctx_scope_t *from;
+
+            enclosing_lexical_scope = NULL;
+            for (from = caller_scope; from;
+                from = from->parent_lexical_scope)
+            {
+                if (from->block &&
+                    from->block->depth <= script->depth)
+                {
+                    enclosing_lexical_scope = from;
+                    break;
+                }
+            }
+            /*
+             * Depth-only path has no skipped-frame block to walk. If the
+             * caller is shallower than compile depth, this is the same
+             * hole as a non-closure call after the defining function
+             * returned.
+             */
+            if (enclosing_lexical_scope &&
+                caller_scope && caller_scope->block &&
+                caller_scope->block->depth < script->depth)
+            {
+                enclosing_lexical_scope = NULL;
+            }
+        }
+        if (!enclosing_lexical_scope) {
             AFW_THROW_ERROR_Z(general,
                 "Can not determine parent static scope for function",
                 xctx);
