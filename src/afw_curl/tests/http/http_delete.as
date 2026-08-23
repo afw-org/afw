@@ -24,67 +24,110 @@ http_delete("http://xyz");
 
 
 //? test: http_delete_http_cleartext
-//? description: Call http_delete with httpbin.org
+//? description: Call http_delete against the local HTTP stub (see config.py)
 //? expect: 200
 //? source: ...
 #!/usr/bin/env afw
 
-// only do live HTTP requests, if configured to do so
-if (environment::TEST_CURL_HTTPBIN === undefined) {
-    return 200;
-}
-
-const response = http_delete("http://www.httpbin.org/delete");
+const response = http_delete(
+    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/delete"
+);
 
 return response.response_code;
 
 
 //? test: http_delete_200
-//? description: Call http_delete with 200 rc
+//? description: Call http_delete with 200 rc against a real TLS endpoint
 //? expect: 200
 //? source: ...
 #!/usr/bin/env afw
 
-// only do live HTTP requests, if configured to do so
+// requires a real TLS endpoint; only run if configured to do so
 if (environment::TEST_CURL_HTTPBIN === undefined) {
     return 200;
 }
 
 const response = http_delete("https://www.httpbin.org/delete",,
-    { 
-        "sslVerifyPeer": true, 
+    {
+        "sslVerifyPeer": true,
         "sslVerifyHost": true
     });
 
 return response.response_code;
 
 //? test: http_delete_404
-//? description: Call http_delete with 404 rc
+//? description: Call http_delete against the local HTTP stub, forcing a 404
 //? expect: 404
 //? source: ...
 #!/usr/bin/env afw
 
-// only do live HTTP requests, if configured to do so
-if (environment::TEST_CURL_HTTPBIN === undefined) {
-    return 404;
-}
-
-const response = http_delete("https://www.httpbin.org/status/404");
+const response = http_delete(
+    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/status/404"
+);
 
 return response.response_code;
 
 
 //? test: http_delete_500
-//? description: Call http_delete with 500 rc
+//? description: Call http_delete against the local HTTP stub, forcing a 500
 //? expect: 500
 //? source: ...
 #!/usr/bin/env afw
 
-// only do live HTTP requests, if configured to do so
-if (environment::TEST_CURL_HTTPBIN === undefined) {
-    return 500;
+const response = http_delete(
+    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/status/500"
+);
+
+return response.response_code;
+
+
+//? test: http_delete_callbacks
+//? description: Call http_delete with callbacks against the local HTTP stub
+//? expect: 200
+//? source: ...
+#!/usr/bin/env afw
+
+let userData = {
+    "payload": "",
+    "headers": []
+};
+
+function writer(buffer, userData) {
+    const str = decode_to_string(buffer);
+    const len = length(str);
+
+    if (userData.payload !== undefined)
+        userData["payload"] += str;
+    else
+        userData["payload"] = str;
+
+    return len;
 }
 
-const response = http_delete("https://www.httpbin.org/status/500");
+function headers(header, userData) {
+    const len = length(header);
+
+    if (len > 0) {
+        add_entries(userData.headers, header);
+    }
+
+    return len;
+}
+
+const options = {
+    "headerFunction": headers,
+    "headerUserData": userData,
+    "writeFunction": writer,
+    "writeUserData": userData,
+};
+
+const response = http_delete(
+    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/delete",
+    undefined,
+    options
+);
+
+assert(length(userData.headers) > 0);
+assert(length(userData.payload) > 0);
 
 return response.response_code;
