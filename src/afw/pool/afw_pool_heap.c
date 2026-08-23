@@ -2,7 +2,7 @@
 /*
  * Evaluation heap and heap-tracker pool implementation.
  *
- * Copyright (c) 2010-2024 Clemson University
+ * Copyright (c) 2010-2026 Clemson University
  *
  */
 
@@ -12,7 +12,8 @@
  *
  * Create, use, and release on the same thread. compiled_value evaluate
  * creates a heap for one evaluate and releases it in finally. Trackers
- * are scope->p and return memory to that heap.
+ * are scope->p and return leftovers to that heap. Optional free is
+ * afw_pool_free_memory(p, address): address-ordered list, coalesce.
  */
 
 #include "afw_internal.h"
@@ -87,7 +88,7 @@ impl_subpool_afw_pool_malloc(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx);
-   
+
 #define impl_afw_pool_malloc \
     impl_subpool_afw_pool_malloc
 
@@ -379,28 +380,21 @@ impl_create_for_subpool(
     return self;
 }
 
-static void
-impl_free_memory(
-    AFW_POOL_SELF_T *self,
-    void *address,
-    afw_size_t size,
-    afw_xctx_t *xctx);
-
 /*
  * First-fit on an address-ordered doubly-linked free list. Always
  * insert on free; coalesce with neighbors when adjacent. Remainder
  * too small to hold a chunk is taken with the allocation.
  */
 static void
-impl_free_list_unlink(
-    AFW_POOL_SELF_T *self,
+impl_chunk_unlink(
+    afw_pool_heap_chunk_t **head,
     afw_pool_heap_chunk_t *chunk)
 {
     if (chunk->prev) {
         chunk->prev->next = chunk->next;
     }
     else {
-        self->free_memory_head->first = chunk->next;
+        *head = chunk->next;
     }
     if (chunk->next) {
         chunk->next->prev = chunk->prev;
@@ -419,6 +413,8 @@ impl_alloc_memory(
     afw_xctx_t *xctx)
 {
     afw_pool_heap_chunk_t *curr;
+    afw_pool_heap_chunk_t *prev;
+    afw_pool_heap_chunk_t *next;
     afw_pool_heap_chunk_t *rest;
     afw_size_t requested;
     afw_boolean_t reused;
@@ -441,15 +437,25 @@ impl_alloc_memory(
     }
 
     if (curr) {
-        impl_free_list_unlink(self, curr);
+        prev = curr->prev;
+        next = curr->next;
+        impl_chunk_unlink(&self->free_memory_head->first, curr);
         if (curr->size - *actual_size >= sizeof(afw_pool_heap_chunk_t))
         {
             rest = (afw_pool_heap_chunk_t *)
                 (((char *)curr) + *actual_size);
             rest->size = curr->size - *actual_size;
-            rest->prev = NULL;
-            rest->next = NULL;
-            impl_free_memory(self, rest, rest->size, xctx);
+            rest->prev = prev;
+            rest->next = next;
+            if (prev) {
+                prev->next = rest;
+            }
+            else {
+                self->free_memory_head->first = rest;
+            }
+            if (next) {
+                next->prev = rest;
+            }
         }
         else {
             *actual_size = curr->size;
@@ -530,6 +536,43 @@ impl_free_memory(
 }
 
 
+static void *
+impl_malloc_user(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    afw_byte_t *mem;
+    afw_pool_heap_chunk_t *block;
+    afw_size_t size_with_prefix;
+    afw_size_t actual_size;
+    afw_boolean_t reused;
+
+    if (size == 0) {
+        AFW_THROW_ERROR_Z(general,
+            "Attempt to allocate memory for a size of 0",
+            xctx);
+    }
+    if (size > AFW_SIZE_T_MAX - sizeof(afw_pool_heap_chunk_t)) {
+        AFW_THROW_ERROR_Z(memory,
+            "Requested allocation size is too large",
+            xctx);
+    }
+
+    size_with_prefix = size + sizeof(afw_pool_heap_chunk_t);
+    reused = impl_alloc_memory(&mem, &actual_size, self,
+        size_with_prefix, xctx);
+    IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
+        reused ? "reuse" : "apr", size);
+    block = (afw_pool_heap_chunk_t *)mem;
+    block->size = actual_size;
+    block->prev = NULL;
+    block->next = NULL;
+    impl_account_alloc(self, actual_size, xctx);
+    return mem + sizeof(afw_pool_heap_chunk_t);
+}
+
+
 /* --------------------------- pool implementations ------------------------- */
 
 /*
@@ -563,7 +606,7 @@ impl_afw_pool_get_reference(
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "get_reference");
 
-    /* Decrement reference count. */
+    /* Increment reference count. */
     self->reference_count++;
 }
 
@@ -656,40 +699,7 @@ impl_afw_pool_malloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_byte_t *mem;
-    afw_pool_heap_chunk_t *block;
-    afw_size_t size_with_prefix;
-    afw_size_t actual_size;
-    void *result;
-    afw_boolean_t reused;
-
-    /* Don't allow allocate for a size of 0. */
-    if (size == 0) {
-        AFW_THROW_ERROR_Z(general,
-            "Attempt to allocate memory for a size of 0",
-            xctx);
-    }
-
-    if (size > AFW_SIZE_T_MAX - sizeof(afw_pool_heap_chunk_t)) {
-        AFW_THROW_ERROR_Z(memory,
-            "Requested allocation size is too large",
-            xctx);
-    }
-
-    size_with_prefix = size + sizeof(afw_pool_heap_chunk_t);
-
-    reused = impl_alloc_memory(&mem, &actual_size, self,
-        size_with_prefix, xctx);
-    IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
-        reused ? "reuse" : "apr", size);
-    result = mem + sizeof(afw_pool_heap_chunk_t);
-    block = (afw_pool_heap_chunk_t *)mem;
-    block->size = actual_size;
-    block->prev = NULL;
-    block->next = NULL;
-    impl_account_alloc(self, actual_size, xctx);
-
-    return result;
+    return impl_malloc_user(self, size, xctx);
 }
 
 /*
@@ -888,43 +898,16 @@ impl_subpool_afw_pool_malloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_byte_t *mem;
-    afw_pool_heap_chunk_t *block;
-    afw_size_t size_with_prefix;
-    afw_size_t actual_size;
     void *result;
-    afw_boolean_t reused;
+    afw_pool_heap_chunk_t *block;
 
-    /* Don't allow allocate for a size of 0. */
-    if (size == 0) {
-        AFW_THROW_ERROR_Z(general,
-            "Attempt to allocate memory for a size of 0",
-            xctx);
-    }
-
-    if (size > AFW_SIZE_T_MAX - sizeof(afw_pool_heap_chunk_t)) {
-        AFW_THROW_ERROR_Z(memory,
-            "Requested allocation size is too large",
-            xctx);
-    }
-
-    size_with_prefix = size + sizeof(afw_pool_heap_chunk_t);
-
-    reused = impl_alloc_memory(&mem, &actual_size, self,
-        size_with_prefix, xctx);
-    IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
-        reused ? "reuse" : "apr", size);
-    result = mem + sizeof(afw_pool_heap_chunk_t);
-    block = (afw_pool_heap_chunk_t *)mem;
-    block->size = actual_size;
-    block->prev = NULL;
+    result = impl_malloc_user(self, size, xctx);
+    block = AFW_POOL_HEAP_CHUNK(result);
     block->next = self->first_allocated_memory;
     if (self->first_allocated_memory) {
         self->first_allocated_memory->prev = block;
     }
     self->first_allocated_memory = block;
-    impl_account_alloc(self, actual_size, xctx);
-
     return result;
 }
 
@@ -947,20 +930,7 @@ impl_subpool_afw_pool_free_memory(
         address, block->size);
 
     impl_account_free(self, block->size, xctx);
-
-    /* Remove from alloc chain so destroy does not return it twice. */
-    if (block->prev) {
-        block->prev->next = block->next;
-    }
-    else {
-        self->first_allocated_memory = block->next;
-    }
-    if (block->next) {
-        block->next->prev = block->prev;
-    }
-    block->prev = NULL;
-    block->next = NULL;
-
+    impl_chunk_unlink(&self->first_allocated_memory, block);
     impl_free_memory(self, block, block->size, xctx);
 }
 
