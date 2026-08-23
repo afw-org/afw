@@ -245,9 +245,6 @@ const TestArray = (wrapper) => {
                     
                 expect(onChanged).toHaveBeenLastCalledWith(expect.objectContaining({ eventId: "onChildChanged", value: testValues[0] }));
 
-                //if (dataType === "hybrid")
-                //    await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());   
-                
                 if (expectedReadonlyTestValues)
                     await waitFor(() => expect(screen.getAllByText(expectedReadonlyTestValues[0])).toHaveLength(1));
                 else
@@ -305,10 +302,7 @@ const TestArray = (wrapper) => {
         
                     expect(onChanged).toHaveBeenLastCalledWith(expect.objectContaining({ eventId: "onChildChanged", value: testValues[1] }));
                 }
-                
-                //if (dataType === "hybrid")
-                //    await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());                
-                
+
                 if (expectedReadonlyTestValues) {
                     await waitFor(() => expect(screen.getAllByText(expectedReadonlyTestValues[0])).toHaveLength(1));
                     if (expectedReadonlyTestValues.length > 1)
@@ -470,10 +464,7 @@ const Test = (wrapper) => {
                     { wrapper }
                 );   
 
-                //if (dataType === "hybrid")
-                //    await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
-    
-                await waitFor(() => expect(screen.getByLabelText(label)).toBeInTheDocument()); 
+                await waitFor(() => expect(screen.getByLabelText(label)).toBeInTheDocument());
             });
 
             test("Calls onChanged after input changes", async () => {
@@ -499,9 +490,6 @@ const Test = (wrapper) => {
                     { wrapper }
                 );   
 
-                //if (dataType === "hybrid")
-                //    await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
-    
                 const input = screen.getByLabelText(label);
                 await waitFor(() => expect(input).toBeInTheDocument());
                 await waitFor(() => expect(input.value).toBe(expectedTestValues[0]));
@@ -544,9 +532,6 @@ const Test = (wrapper) => {
                     );   
                 });
 
-                //if (dataType === "hybrid")
-                //    await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
-    
                 const input = screen.getByLabelText(label);
                 await waitFor(() => expect(input).toBeInTheDocument());
                 await waitFor(() => expect(input.value).toBe(expectedTestValues[0]));
