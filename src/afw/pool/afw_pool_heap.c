@@ -658,6 +658,7 @@ impl_malloc_user(
     size_with_prefix = size + sizeof(afw_pool_heap_chunk_t);
     reused = impl_alloc_memory(&mem, &actual_size, self,
         size_with_prefix, xctx);
+    (void)reused;
     IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
         reused ? "reuse" : "apr", size);
     block = (afw_pool_heap_chunk_t *)mem;

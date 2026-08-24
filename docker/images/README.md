@@ -10,13 +10,13 @@ and the `afw-org` prefix:
 
 | Folder | Image Name | Tag(s) |
 |------------|--------------------------------|------|
-| `afw-dev-base` | `ghcr.io/afw-org/afw-dev-base` | `latest`, `alpine`, `ubuntu`, `alpine3.16.6`, `ubuntu22.04` |
-| `afw-base`     | `ghcr.io/afw-org/afw-base`     | `latest`, `alpine`, `ubuntu`, `alpine3.16.6`, `ubuntu22.04` |
-| `afw-dev`      | `ghcr.io/afw-org/afw-dev`      | `latest`, `alpine3.16.6-0.9.0-0`, `ubuntu22.04-0.9.0-0`   |
+| `afw-dev-base` | `ghcr.io/afw-org/afw-dev-base` | `latest`, `alpine`, `ubuntu`, `alpine3.16.9`, `ubuntu22.04` |
+| `afw-base`     | `ghcr.io/afw-org/afw-base`     | `latest`, `alpine`, `ubuntu`, `alpine3.16.9`, `ubuntu22.04` |
+| `afw-dev`      | `ghcr.io/afw-org/afw-dev`      | `latest`, `alpine3.16.9-0.9.0-0`, `ubuntu22.04-0.9.0-0`   |
 | `afw-admin`    | `ghcr.io/afw-org/afw-admin`    | `latest`, `nginx1.23.1-0.9.0-0`                            |
-| `afw`      | `ghcr.io/afw-org/afw`          | `latest`, `alpine3.16.6-0.9.0-0`, `ubuntu22.04-0.9.0-0`   |
-| `afwfcgi`  | `ghcr.io/afw-org/afwfcgi`      | `latest`, `alpine3.16.6-0.9.0-0`, `ubuntu22.04-0.9.0-0`   |
-| `builder`  | `N/A`  | `alpine3.16.6-0.9.0-0`, `alpine`, `node-0.9.0-0`, `node`  |
+| `afw`      | `ghcr.io/afw-org/afw`          | `latest`, `alpine3.16.9-0.9.0-0`, `ubuntu22.04-0.9.0-0`   |
+| `afwfcgi`  | `ghcr.io/afw-org/afwfcgi`      | `latest`, `alpine3.16.9-0.9.0-0`, `ubuntu22.04-0.9.0-0`   |
+| `builder`  | `N/A`  | `alpine3.16.9-0.9.0-0`, `alpine`, `node-0.9.0-0`, `node`  |
 
 An example of one of the full image names, along with its description of tag parts:
 
@@ -25,7 +25,7 @@ ghcr.io/afw-org/<image-name>:<distribution><version>
 ```
 
 The `distribution` refers to the Docker base OS (`alpine`, `ubuntu`, `nginx`, 
-`node`) and `version` refers to the distribution version (`3.16.1`). The 
+`node`) and `version` refers to the distribution version (`3.16.9`). The 
 `version` may be omitted to indicate it's the "latest" tagged version for a 
 particular distribution. Furthermore, the `distribution` name may also be 
 omitted to indicate it's the default/preferred distribution for a particular 
@@ -93,102 +93,112 @@ attempt to store them with `--load` will result in the error message
 
 `ERROR: docker exporter does not currently support exporting manifest lists`.   
 
-As of January, 2023, however, Docker Desktop does have an experimental 
-`containerd` image storage feature to store manifests! It's not clear at the 
-moment how it'll be used and when it'll be fully functional.
+If your Docker Desktop engine supports `containerd` to store images, along with
+architecture manifests, then you can build for multi-platform locally without 
+having to push them to a remote repository.
 
 This is a basic walk-through for building all of the Docker images, using 
 Alpine Linux as the underlying distribution.  The tag name should be based on 
 the tag name of the distribution and afw version (in these examples, 
-`alpine3.16.6` and `0.9.0-0`).
+`alpine3.16.9` and `0.9.0-0`).
+
+0. Set some environment variables to aid with the code examples:
+
+  ```
+  # set env variables to use for commands  
+  export OS="alpine"
+  export OS_RELEASE="3.16.9"
+  export AFW_VERSION="0.9.0"
+  ```
 
 1. `afw-base` and `afw-dev-base`: These should be built first and in no order 
 in particular.
 
   ```  
-  docker build -f docker/images/afw-base/Dockerfile.alpine \
-    -t ghcr.io/afw-org/afw-base:alpine3.16.6 \
-    -t ghcr.io/afw-org/afw-base:alpine \
+  # build the afw-base image
+  docker build -f docker/images/afw-base/Dockerfile.${OS} \
+    -t ghcr.io/afw-org/afw-base:${OS}${OS_RELEASE} \
+    -t ghcr.io/afw-org/afw-base:${OS} \
     docker/images/afw-base
 
   # Alternatively, build multi-architecture support, pushing it at 
-  # build-time, which requires the Docker buildx plugin:
+  # build-time, which requires the Docker buildx:
   docker buildx build --platform linux/amd64,linux/arm64 \
-    -f docker/images/afw-base/Dockerfile.alpine \
-    -t ghcr.io/afw-org/afw-base:alpine3.16.6 \
-    -t ghcr.io/afw-org/afw-base:alpine \
+    -f docker/images/afw-base/Dockerfile.${OS} \
+    -t ghcr.io/afw-org/afw-base:${OS}${OS_RELEASE} \
+    -t ghcr.io/afw-org/afw-base:${OS} \
     --push docker/images/afw-base
   
-  docker build -f docker/images/afw-dev-base/Dockerfile.alpine \
-    -t ghcr.io/afw-org/afw-dev-base:alpine3.16.6 \
-    -t ghcr.io/afw-org/afw-dev-base:alpine \
+  # build the afw-dev-base image
+  docker build -f docker/images/afw-dev-base/Dockerfile.${OS} \
+    -t ghcr.io/afw-org/afw-dev-base:${OS}${OS_RELEASE} \
+    -t ghcr.io/afw-org/afw-dev-base:${OS} \
     .
 
   # Alternatively, build multi-architecture support, pushing it at 
-  # build-time, which requires the Docker buildx plugin:  
+  # build-time, which requires the Docker buildx:  
   docker buildx build --platform linux/amd64,linux/arm64 \
-    -f docker/images/afw-dev-base/Dockerfile.alpine \  
-    -t ghcr.io/afw-org/afw-dev-base:alpine3.16.6 \
-    -t ghcr.io/afw-org/afw-dev-base:alpine \
+    -f docker/images/afw-dev-base/Dockerfile.${OS} \  
+    -t ghcr.io/afw-org/afw-dev-base:${OS}${OS_RELEASE} \
+    -t ghcr.io/afw-org/afw-dev-base:${OS} \
     --push .
   ```
 
-2. Next, optionally use the `ghcr.io/afw-org/afw-dev-base:alpine` image you 
+2. Next, optionally use the `ghcr.io/afw-org/afw-dev-base:${OS}` image you 
 created in the previous step to build Adaptive Framework into a builder image, 
 if you wish to produce and distribute individual artifacts (RPM's/TAR's/etc). 
 If you do not need these, then skip to the next step. 
 This assumes that you are at the top-level source code. This step will actually 
-*copy* all of thecurrent source code into the `afw-builder` image and run the 
+*copy* all of the current source code into the `afw-builder` image and run the 
 full build. Make sure you do not have residual build directories already in your 
 source tree (node_modules, etc.). Otherwise, the image is much larger and slower 
 than it needs to be.
 
 ```
-  docker build -f docker/images/builder/Dockerfile.alpine -o type=local,dest=. .
+  docker build -f docker/images/builder/Dockerfile.${OS} -o type=local,dest=. .
 
-  # Alternatively, build multi-arch support, which requires the Docker buildx 
-  # plugin:  
+  # Alternatively, build multi-arch support, which requires the Docker buildx   
   docker buildx build --platform linux/amd64,linux/arm64 \
-    -f docker/images/builder/Dockerfile.alpine -o type=local,dest=. .
+    -f docker/images/builder/Dockerfile.${OS} -o type=local,dest=. .
 ```
 
 This will produce multiple folders, `linux_amd64`, `linux_arm64`, each 
 containing artifacts for that architecture. 
 
 3. From here, you can now build the `afw` image, 
-`ghcr.io/afw-org/afw:alpine3.16.6-0.9.0-0`:
+`ghcr.io/afw-org/afw:${OS}${OS_RELEASE}-${AFW_VERSION}`:
 
 ```  
   docker build \    
-    -t ghcr.io/afw-org/afw:alpine3.16.6-0.9.0-0 \
-    -t ghcr.io/afw-org/afw:alpine \
+    -t ghcr.io/afw-org/afw:${OS}${OS_RELEASE}-${AFW_VERSION} \
+    -t ghcr.io/afw-org/afw:${OS} \
     -t ghcr.io/afw-org/afw:latest \
-    -f docker/images/afw/Dockerfile.alpine .
+    -f docker/images/afw/Dockerfile.${OS} .
 
   # Alternatively, build multi-arch support, pushing it at build-time
-  # which requires the Docker buildx plugin:
+  # which requires the Docker buildx:
   docker buildx build --platform linux/amd64,linux/arm64 \  
-    -f docker/images/afw/Dockerfile.alpine \
-    -t ghcr.io/afw-org/afw:alpine3.16.6-0.9.0-0 \
-    -t ghcr.io/afw-org/afw:alpine \
+    -f docker/images/afw/Dockerfile.${OS} \
+    -t ghcr.io/afw-org/afw:${OS}${OS_RELEASE}-${AFW_VERSION} \
+    -t ghcr.io/afw-org/afw:${OS} \
     -t ghcr.io/afw-org/afw:latest --push .
 ```
 
-4. To build the `afw-dev` image, `ghcr.io/afw-org/afw-dev:alpine3.16.6-0.9.0-0`:
+4. To build the `afw-dev` image, `ghcr.io/afw-org/afw-dev:${OS}${OS_RELEASE}-${AFW_VERSION}`:
 
 ```
   docker build \    
-    -t ghcr.io/afw-org/afw-dev:alpine3.16.6-0.9.0-0 \
-    -t ghcr.io/afw-org/afw-dev:alpine \
-    -f docker/images/afw-dev/Dockerfile.alpine .
+    -t ghcr.io/afw-org/afw-dev:${OS}${OS_RELEASE}-${AFW_VERSION} \
+    -t ghcr.io/afw-org/afw-dev:${OS} \
+    -f docker/images/afw-dev/Dockerfile.${OS} .
 
   # Alternatively, build multi-arch support, pushing it at build-time
   # which requires the Docker buildx plugin:
   docker buildx build --platform linux/amd64,linux/arm64 \  
-    -f docker/images/afw-dev/Dockerfile.alpine \
-    -t ghcr.io/afw-org/afw-dev:alpine3.16.6-0.9.0-0 \
-    -t ghcr.io/afw-org/afw-dev:alpine --push .
+    -f docker/images/afw-dev/Dockerfile.${OS} \
+    -t ghcr.io/afw-org/afw-dev:${OS}${OS_RELEASE}-${AFW_VERSION} \
+    -t ghcr.io/afw-org/afw-dev:${OS} --push .
 ```
 
-4. The `afwfcgi` and `afw-admin` can be build in the same way as 
+5. The `afwfcgi` and `afw-admin` can be build in the same way as 
 `afw` in step 3.
