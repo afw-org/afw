@@ -226,6 +226,48 @@
                 "referenceCount": 3,
                 "serviceId": "adapter-dev"
             },
+            "lmdb": {
+                "adapterId": "lmdb",
+                "metrics": {
+                    "addObjectCount": 0,
+                    "deleteObjectCount": 0,
+                    "getObjectCount": 0,
+                    "modifyObjectCount": 0,
+                    "replaceObjectCount": 0,
+                    "retrieveObjectsCount": 0,
+                    "updateObjectCount": 0
+                },
+                "properties": {
+                    "_meta_": {
+                        "path": "/afw/_AdaptiveConf_adapter_lmdb/lmdb"
+                    },
+                    "checkIndividualObjectReadAccess": false,
+                    "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-lmdb/conf",
+                    "env": {
+                        "path": "/afw/lmdb",
+                        "mode": 384,
+                        "maxreaders": 126,
+                        "maxdbs": 128,
+                        "mapsize": 137438953472
+                    },
+                    "limits": {
+                        "size": {
+                            "soft": 500,
+                            "hard": 1000
+                        },
+                        "time": {
+                            "soft": 3600,
+                            "hard": 14400
+                        }
+                    },
+                    "description": "A LMDB (Lightning Memory-Mapped Database).",
+                    "type": "adapter",
+                    "adapterType": "lmdb",
+                    "adapterId": "lmdb"
+                },
+                "referenceCount": 3,
+                "serviceId": "adapter-lmdb"
+            },
             "vfs": {
                 "adapterId": "vfs",
                 "metrics": {
@@ -472,7 +514,27 @@
                 "description": "Adapter type for Lightweight Directory Access Protocol (LDAP)."
             }
         },
-        "authorization_handler_id": {},
+        "authorization_handler_id": {
+            "auth-script": {
+                "authorizationHandlerId": "auth-script",
+                "processingOrder": 1,
+                "properties": {
+                    "_meta_": {
+                        "path": "/afw/_AdaptiveConf_authorizationHandler_script/auth-script",
+                        "objectType": "_AdaptiveConf_authorizationHandler_script"
+                    },
+                    "authorizationHandlerId": "auth-script",
+                    "authorizationHandlerType": "script",
+                    "type": "authorizationHandler",
+                    "description": "Handles authorization using an adaptive script.",
+                    "sourceLocation": "/conf/_AdaptiveServiceConf_/authorizationHandler-auth-script/conf",
+                    "priority": 9999
+                },
+                "referenceCount": 1,
+                "serviceId": "authorizationHandler-auth-script",
+                "stopping": []
+            }
+        },
         "authorization_handler_type": {
             "script": {
                 "authorizationHandlerType": "script",

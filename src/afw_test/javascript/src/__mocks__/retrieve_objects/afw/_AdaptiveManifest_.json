@@ -118,6 +118,25 @@
         },
         {
             "_meta_": {
+                "path": "/afw/_AdaptiveManifest_/afw_vfs",
+                "objectId": "afw_vfs",
+                "objectType": "_AdaptiveManifest_"
+            },
+            "registers": [
+                "adapter_type/vfs"
+            ],
+            "providesObjects": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs",
+                "/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs"
+            ],
+            "modulePath": "libafwvfs",
+            "extensionId": "afw_vfs",
+            "description": "This extension provides an adapter for accessing local files through a Virtual File System interface.",
+            "brief": "Extension for VFS (Virtual File System)"
+        },
+        {
+            "_meta_": {
                 "path": "/afw/_AdaptiveManifest_/afw_authorization_policy",
                 "objectId": "afw_authorization_policy",
                 "objectType": "_AdaptiveManifest_"
