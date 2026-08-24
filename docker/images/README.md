@@ -10,7 +10,7 @@ and the `afw-org` prefix:
 
 | Folder | Image Name | Tag(s) |
 |------------|--------------------------------|------|
-| `afw-dev-base` | `ghcr.io/afw-org/afw-dev-base` | `latest`, `alpine`, `ubuntu`, `alpine${3.16.9}$`, `ubuntu22.04` |
+| `afw-dev-base` | `ghcr.io/afw-org/afw-dev-base` | `latest`, `alpine`, `ubuntu`, `alpine3.16.9`, `ubuntu22.04` |
 | `afw-base`     | `ghcr.io/afw-org/afw-base`     | `latest`, `alpine`, `ubuntu`, `alpine3.16.9`, `ubuntu22.04` |
 | `afw-dev`      | `ghcr.io/afw-org/afw-dev`      | `latest`, `alpine3.16.9-0.9.0-0`, `ubuntu22.04-0.9.0-0`   |
 | `afw-admin`    | `ghcr.io/afw-org/afw-admin`    | `latest`, `nginx1.23.1-0.9.0-0`                            |
@@ -117,7 +117,7 @@ in particular.
   ```  
   # build the afw-base image
   docker build -f docker/images/afw-base/Dockerfile.${OS} \
-    -t ghcr.io/afw-org/afw-base:${OS}${ALPINE_RELEASE} \
+    -t ghcr.io/afw-org/afw-base:${OS}${OS_RELEASE} \
     -t ghcr.io/afw-org/afw-base:${OS} \
     docker/images/afw-base
 
@@ -125,13 +125,13 @@ in particular.
   # build-time, which requires the Docker buildx:
   docker buildx build --platform linux/amd64,linux/arm64 \
     -f docker/images/afw-base/Dockerfile.${OS} \
-    -t ghcr.io/afw-org/afw-base:${OS}${ALPINE_RELEASE} \
+    -t ghcr.io/afw-org/afw-base:${OS}${OS_RELEASE} \
     -t ghcr.io/afw-org/afw-base:${OS} \
     --push docker/images/afw-base
   
   # build the afw-dev-base image
   docker build -f docker/images/afw-dev-base/Dockerfile.${OS} \
-    -t ghcr.io/afw-org/afw-dev-base:${OS}${ALPINE_RELEASE} \
+    -t ghcr.io/afw-org/afw-dev-base:${OS}${OS_RELEASE} \
     -t ghcr.io/afw-org/afw-dev-base:${OS} \
     .
 
@@ -139,7 +139,7 @@ in particular.
   # build-time, which requires the Docker buildx:  
   docker buildx build --platform linux/amd64,linux/arm64 \
     -f docker/images/afw-dev-base/Dockerfile.${OS} \  
-    -t ghcr.io/afw-org/afw-dev-base:${OS}${ALPINE_RELEASE} \
+    -t ghcr.io/afw-org/afw-dev-base:${OS}${OS_RELEASE} \
     -t ghcr.io/afw-org/afw-dev-base:${OS} \
     --push .
   ```
@@ -170,7 +170,7 @@ containing artifacts for that architecture.
 
 ```  
   docker build \    
-    -t ghcr.io/afw-org/afw:${OS}${ALPINE_RELEASE}-${AFW_RELEASE} \
+    -t ghcr.io/afw-org/afw:${OS}${OS_RELEASE}-${AFW_VERSION} \
     -t ghcr.io/afw-org/afw:${OS} \
     -t ghcr.io/afw-org/afw:latest \
     -f docker/images/afw/Dockerfile.${OS} .
@@ -179,7 +179,7 @@ containing artifacts for that architecture.
   # which requires the Docker buildx:
   docker buildx build --platform linux/amd64,linux/arm64 \  
     -f docker/images/afw/Dockerfile.${OS} \
-    -t ghcr.io/afw-org/afw:${OS}${ALPINE_RELEASE}-${AFW_RELEASE} \
+    -t ghcr.io/afw-org/afw:${OS}${OS_RELEASE}-${AFW_VERSION} \
     -t ghcr.io/afw-org/afw:${OS} \
     -t ghcr.io/afw-org/afw:latest --push .
 ```
@@ -200,5 +200,5 @@ containing artifacts for that architecture.
     -t ghcr.io/afw-org/afw-dev:${OS} --push .
 ```
 
-4. The `afwfcgi` and `afw-admin` can be build in the same way as 
+5. The `afwfcgi` and `afw-admin` can be build in the same way as 
 `afw` in step 3.
