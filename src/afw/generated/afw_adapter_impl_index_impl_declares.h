@@ -173,7 +173,7 @@ impl_afw_adapter_impl_index_delete(
 
 #ifndef impl_afw_adapter_impl_index_drop
 /* Declare method drop */
-AFW_DECLARE_STATIC(void)
+AFW_DECLARE_STATIC(afw_rc_t)
 impl_afw_adapter_impl_index_drop(
     AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t * object_type_id,

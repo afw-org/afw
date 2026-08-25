@@ -112,7 +112,7 @@ impl_afw_adapter_impl_index_delete(
 /*
  * Implementation of method drop for interface afw_adapter_impl_index.
  */
-void
+afw_rc_t
 impl_afw_adapter_impl_index_drop(
     AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t * object_type_id,

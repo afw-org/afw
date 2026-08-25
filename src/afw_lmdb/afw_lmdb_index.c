@@ -425,7 +425,7 @@ void impl_afw_adapter_impl_index_delete(
 /*
  * Implementation of method drop of interface afw_adapter_impl_index.
  */
-void
+afw_rc_t
 impl_afw_adapter_impl_index_drop (
     AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t  * object_type_id,
@@ -438,7 +438,7 @@ impl_afw_adapter_impl_index_drop (
     const afw_utf8_t *database;
     MDB_dbi dbi;
     MDB_txn *txn;
-    afw_rc_t rc;
+    afw_rc_t rc = 0;
 
     database = afw_lmdb_index_database(
         object_type_id, key, pool, xctx);
@@ -458,10 +458,6 @@ impl_afw_adapter_impl_index_drop (
 
             /* (1) means delete it from the environment and close the DB handle */
             rc = mdb_drop(txn, dbi, 1);
-            if (rc != 0) {
-                AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
-                    "Unable to drop index database.", xctx);
-            }
 
             AFW_LMDB_COMMIT_TRANSACTION();
         }
@@ -474,11 +470,9 @@ impl_afw_adapter_impl_index_drop (
 
         /* (1) means delete it from the environment and close the DB handle */
         rc = mdb_drop(txn, dbi, 1);
-        if (rc != 0) {
-            AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
-                "Unable to drop index database.", xctx);
-        }
     }
+
+    return rc;
 }
 
 /*

@@ -762,11 +762,13 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
 {
     const afw_adapter_session_t        * session;
     const afw_adapter_impl_index_t     * indexer;
+    impl_retrieve_objects_cb_context_t   ctx;
     const afw_object_t                 * indexDefinition;
     const afw_array_t                   * objectTypes;
     const afw_object_t                 * result;
     const afw_iterator_old_t               * object_type_iterator;
     const afw_utf8_t                   * object_type_id;
+    afw_rc_t                             rc;
 
     session = afw_adapter_session_get_cached(adapterId, true, xctx);
 
@@ -810,9 +812,23 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
             objectTypes, &object_type_iterator, xctx);
         do
         {
-            /* drop the underlying index database for this objectType */
-            afw_adapter_impl_index_drop(indexer,
+            /* try to drop it first, if possible */
+            rc = afw_adapter_impl_index_drop(indexer,
                 object_type_id, key, pool, xctx);
+            if (rc) {
+                ctx.instance = indexer;
+                ctx.key = key;
+                ctx.indexDefinition = indexDefinition;
+                ctx.num_indexed = 0;
+                ctx.num_processed = 0;
+                ctx.mode = afw_adapter_impl_index_mode_delete;
+
+                /** @fixme xctx->p, session->p, or pool?  */
+                afw_adapter_session_retrieve_objects(session, NULL,
+                    object_type_id,
+                    NULL, &ctx, afw_adapter_impl_index_cb, NULL,
+                    /** @fixme is pool correct? */ pool, xctx);
+            }
 
             if (object_type_id)
                 object_type_id = afw_array_of_string_get_next(
