@@ -171,20 +171,6 @@ impl_afw_adapter_impl_index_delete(
     afw_xctx_t * xctx);
 #endif
 
-#ifndef impl_afw_adapter_impl_index_replace
-/* Declare method replace */
-AFW_DECLARE_STATIC(afw_rc_t)
-impl_afw_adapter_impl_index_replace(
-    AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
-    const afw_utf8_t * object_type_id,
-    const afw_utf8_t * object_id,
-    const afw_utf8_t * key,
-    const afw_utf8_t* old_value,
-    const afw_utf8_t* new_value,
-    const afw_pool_t * pool,
-    afw_xctx_t * xctx);
-#endif
-
 #ifndef impl_afw_adapter_impl_index_drop
 /* Declare method drop */
 AFW_DECLARE_STATIC(afw_rc_t)
@@ -253,8 +239,6 @@ impl_afw_adapter_impl_index_inf = {
     impl_afw_adapter_impl_index_add,
     (afw_adapter_impl_index_delete_t)
     impl_afw_adapter_impl_index_delete,
-    (afw_adapter_impl_index_replace_t)
-    impl_afw_adapter_impl_index_replace,
     (afw_adapter_impl_index_drop_t)
     impl_afw_adapter_impl_index_drop,
     (afw_adapter_impl_index_open_cursor_t)

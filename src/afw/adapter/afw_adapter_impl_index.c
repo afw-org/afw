@@ -387,35 +387,13 @@ void afw_adapter_impl_index_apply(
     const int            operation,
     afw_xctx_t        * xctx)
 {
-    const afw_array_t  * options;
-    const afw_value_t * option;
-    const afw_iterator_old_t * option_iterator;
-    afw_boolean_t       case_sensitive = true;
-    afw_boolean_t       unique = false;
+    afw_boolean_t       case_sensitive;
+    afw_boolean_t       unique;
     const afw_utf8_t  * value_string;
 
-    options = afw_object_old_get_property_as_array(
-        indexDefinition, afw_v_options, xctx);
-
-    if (options) {
-        option_iterator = NULL;
-        option = afw_array_get_next_value(options, &option_iterator,
-            xctx->p, xctx);
-        while (option) {
-            if (afw_value_is_string(option)) {
-                const afw_utf8_t *option_str = afw_value_as_utf8(option,
-                    xctx->p, xctx);
-
-                if (afw_utf8_equal(option_str, afw_s_case_insensitive_string))
-                    case_sensitive = false;
-                else if (afw_utf8_equal(option_str, afw_s_unique))
-                    unique = true;
-            }
-
-            option = afw_array_get_next_value(
-                options, &option_iterator, xctx->p, xctx);
-        }
-    }
+    case_sensitive = !afw_adapter_impl_index_option_case_insensitive(
+        indexDefinition, xctx);
+    unique = afw_adapter_impl_index_option_unique(indexDefinition, xctx);
 
     /* Generate the utf8 value of the index; this will be used as the 
         index key in the underlying database. 
