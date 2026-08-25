@@ -865,6 +865,8 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
     const afw_object_t                 * indexDefinition;
     const afw_object_t                 * result;
     const afw_adapter_transaction_t    * transaction;
+    const afw_iterator_old_t           * object_type_iterator;
+    const afw_utf8_t                   * object_type_id;
 
     session = afw_adapter_session_get_cached(adapterId, false, xctx);
 
@@ -929,11 +931,34 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
 
     /* the callback routine does all of our work for us */
     if (retroactive) {
-        /* if we need to build indexes retroactively, go ahead and
-            scan for objects. */
-        /** @fixme should this be session->p, pool, or xctx->p? */
-        afw_adapter_session_retrieve_objects(session, NULL, NULL,
-            NULL, &ctx, afw_adapter_impl_index_cb, NULL, pool, xctx);
+        /*
+         * If this definition is scoped to specific objectTypes, scan only
+         * those types instead of paying for a full-table walk (mirrors the
+         * per-objectType loop afw_adapter_impl_index_remove() already uses).
+         * An omitted or empty objectType list means all types apply, so
+         * fall back to a single unscoped scan for that case.
+         */
+        object_type_iterator = NULL;
+        object_type_id = (objectType)
+            ? afw_array_of_string_get_next(
+                objectType, &object_type_iterator, xctx)
+            : NULL;
+
+        if (object_type_id) {
+            do {
+                /** @fixme should this be session->p, pool, or xctx->p? */
+                afw_adapter_session_retrieve_objects(session, NULL,
+                    object_type_id,
+                    NULL, &ctx, afw_adapter_impl_index_cb, NULL, pool, xctx);
+
+                object_type_id = afw_array_of_string_get_next(
+                    objectType, &object_type_iterator, xctx);
+            } while (object_type_id);
+        } else {
+            /** @fixme should this be session->p, pool, or xctx->p? */
+            afw_adapter_session_retrieve_objects(session, NULL, NULL,
+                NULL, &ctx, afw_adapter_impl_index_cb, NULL, pool, xctx);
+        }
     }
 
     /* now, tell the adapter to add the new indexDefinition for configuration */
