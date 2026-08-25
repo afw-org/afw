@@ -810,10 +810,10 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
 
         object_type_id = afw_array_of_string_get_next(
             objectTypes, &object_type_iterator, xctx);
-        do 
+        do
         {
             /* try to drop it first, if possible */
-            rc = afw_adapter_impl_index_drop(indexer, 
+            rc = afw_adapter_impl_index_drop(indexer,
                 object_type_id, key, pool, xctx);
             if (rc) {
                 ctx.instance = indexer;

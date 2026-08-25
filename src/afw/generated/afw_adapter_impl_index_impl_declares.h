@@ -146,7 +146,7 @@ impl_afw_adapter_impl_index_update_index_definitions(
 
 #ifndef impl_afw_adapter_impl_index_add
 /* Declare method add */
-AFW_DECLARE_STATIC(afw_rc_t)
+AFW_DECLARE_STATIC(void)
 impl_afw_adapter_impl_index_add(
     AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t * object_type_id,
@@ -160,7 +160,7 @@ impl_afw_adapter_impl_index_add(
 
 #ifndef impl_afw_adapter_impl_index_delete
 /* Declare method delete */
-AFW_DECLARE_STATIC(afw_rc_t)
+AFW_DECLARE_STATIC(void)
 impl_afw_adapter_impl_index_delete(
     AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t * object_type_id,
