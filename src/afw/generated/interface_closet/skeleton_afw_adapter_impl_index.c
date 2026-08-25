@@ -77,7 +77,7 @@ impl_afw_adapter_impl_index_update_index_definitions(
 /*
  * Implementation of method add for interface afw_adapter_impl_index.
  */
-afw_rc_t
+void
 impl_afw_adapter_impl_index_add(
     AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t * object_type_id,
@@ -95,7 +95,7 @@ impl_afw_adapter_impl_index_add(
 /*
  * Implementation of method delete for interface afw_adapter_impl_index.
  */
-afw_rc_t
+void
 impl_afw_adapter_impl_index_delete(
     AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t * object_type_id,
@@ -112,7 +112,7 @@ impl_afw_adapter_impl_index_delete(
 /*
  * Implementation of method drop for interface afw_adapter_impl_index.
  */
-afw_rc_t
+void
 impl_afw_adapter_impl_index_drop(
     AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t * object_type_id,

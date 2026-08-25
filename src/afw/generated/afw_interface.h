@@ -1685,7 +1685,7 @@ typedef void
     afw_xctx_t * xctx);
 
 /** @sa afw_adapter_impl_index_add() */
-typedef afw_rc_t
+typedef void
 (*afw_adapter_impl_index_add_t)(
     const afw_adapter_impl_index_t * instance,
     const afw_utf8_t * object_type_id,
@@ -1697,7 +1697,7 @@ typedef afw_rc_t
     afw_xctx_t * xctx);
 
 /** @sa afw_adapter_impl_index_delete() */
-typedef afw_rc_t
+typedef void
 (*afw_adapter_impl_index_delete_t)(
     const afw_adapter_impl_index_t * instance,
     const afw_utf8_t * object_type_id,
@@ -1708,7 +1708,7 @@ typedef afw_rc_t
     afw_xctx_t * xctx);
 
 /** @sa afw_adapter_impl_index_drop() */
-typedef afw_rc_t
+typedef void
 (*afw_adapter_impl_index_drop_t)(
     const afw_adapter_impl_index_t * instance,
     const afw_utf8_t * object_type_id,
@@ -1871,7 +1871,6 @@ struct afw_adapter_impl_index_inf_s {
  * @param unique Flag indicating that the index being added should be unique.
  * @param pool Caller's pool.
  * @param xctx This is the caller's xctx.
- * @return Value of type `afw_rc_t`.
  * @relates afw_adapter_impl_index_t
  * @see @ref afw_adapter_impl_index_s "afw_adapter_impl_index_t"
  */
@@ -1912,7 +1911,6 @@ struct afw_adapter_impl_index_inf_s {
  * should be used by the adapter as the key to the index entry.
  * @param pool Caller's pool.
  * @param xctx This is the caller's xctx.
- * @return Value of type `afw_rc_t`.
  * @relates afw_adapter_impl_index_t
  * @see @ref afw_adapter_impl_index_s "afw_adapter_impl_index_t"
  */
@@ -1938,9 +1936,8 @@ struct afw_adapter_impl_index_inf_s {
 /**
  * @brief Call method `drop` of interface `afw_adapter_impl_index`.
  *
- * Drop an in index. The underlying store may decide to drop an entire table or
- * database. Returns a boolean, determining whether the operation was
- * successful.
+ * Drop an index. The underlying store may decide to drop an entire table or
+ * database. Throws on failure.
  * @param instance Pointer to this adapter impl index instance.
  * @param object_type_id Object type id associated with the index. This may be
  * useful for the adapter to determine the target table or database for the
@@ -1948,7 +1945,6 @@ struct afw_adapter_impl_index_inf_s {
  * @param key Index key.
  * @param pool Caller's pool.
  * @param xctx This is the caller's xctx.
- * @return Value of type `afw_rc_t`.
  * @relates afw_adapter_impl_index_t
  * @see @ref afw_adapter_impl_index_s "afw_adapter_impl_index_t"
  */

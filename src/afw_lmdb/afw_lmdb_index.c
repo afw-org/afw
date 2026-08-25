@@ -247,7 +247,7 @@ impl_afw_adapter_impl_index_open(
 /*
  * Implementation of method add of interface afw_adapter_impl_index.
  */
-afw_rc_t impl_afw_adapter_impl_index_add(
+void impl_afw_adapter_impl_index_add(
     AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
@@ -259,7 +259,7 @@ afw_rc_t impl_afw_adapter_impl_index_add(
 {
     const afw_lmdb_adapter_t *adapter = self->adapter;
     const afw_lmdb_adapter_session_t *session = self->session;
-    afw_rc_t rc = 0;
+    afw_rc_t rc;
     MDB_txn * txn;
     MDB_dbi dbi;
     MDB_val key, data;
@@ -272,7 +272,7 @@ afw_rc_t impl_afw_adapter_impl_index_add(
     we should determine if this is an error condition or not
      */
     if (value->len == 0) {
-        return 0;
+        return;
     }
 
     database = afw_lmdb_index_database(
@@ -339,14 +339,12 @@ afw_rc_t impl_afw_adapter_impl_index_add(
             }
         }
     }
-
-    return rc;
 }
 
 /*
  * Implementation of method delete of interface afw_adapter_impl_index.
  */
-afw_rc_t impl_afw_adapter_impl_index_delete(
+void impl_afw_adapter_impl_index_delete(
     AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -362,7 +360,7 @@ afw_rc_t impl_afw_adapter_impl_index_delete(
     MDB_txn *txn;
     const afw_utf8_t *database;
     const afw_uuid_t *uuid;
-    afw_rc_t rc = 0;
+    afw_rc_t rc;
     afw_memory_t raw;
 
     /* we will get an error if we try to delete a key of length 0 */
@@ -370,7 +368,7 @@ afw_rc_t impl_afw_adapter_impl_index_delete(
     we should determine if this is an error condition or not
      */
     if (value->len == 0) {
-        return 0;
+        return;
     }
 
     database = afw_lmdb_index_database(
@@ -422,14 +420,12 @@ afw_rc_t impl_afw_adapter_impl_index_delete(
                 "Unable to delete index value.", xctx);
         }
     }
-
-    return rc;
 }
 
 /*
  * Implementation of method drop of interface afw_adapter_impl_index.
  */
-afw_rc_t
+void
 impl_afw_adapter_impl_index_drop (
     AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t  * object_type_id,
@@ -442,7 +438,7 @@ impl_afw_adapter_impl_index_drop (
     const afw_utf8_t *database;
     MDB_dbi dbi;
     MDB_txn *txn;
-    afw_rc_t rc = 0;
+    afw_rc_t rc;
 
     database = afw_lmdb_index_database(
         object_type_id, key, pool, xctx);
@@ -462,6 +458,10 @@ impl_afw_adapter_impl_index_drop (
 
             /* (1) means delete it from the environment and close the DB handle */
             rc = mdb_drop(txn, dbi, 1);
+            if (rc != 0) {
+                AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+                    "Unable to drop index database.", xctx);
+            }
 
             AFW_LMDB_COMMIT_TRANSACTION();
         }
@@ -474,9 +474,11 @@ impl_afw_adapter_impl_index_drop (
 
         /* (1) means delete it from the environment and close the DB handle */
         rc = mdb_drop(txn, dbi, 1);
+        if (rc != 0) {
+            AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+                "Unable to drop index database.", xctx);
+        }
     }
-
-    return rc;
 }
 
 /*

@@ -1495,7 +1495,7 @@ AFW_DEFINE(const afw_adapter_t *)
     <description>This is the caller's xctx.</description>
       </parameter>
 
-      <return type="afw_rc_t" />
+      <return type="void" />
 
     </method>
 
@@ -1533,14 +1533,14 @@ AFW_DEFINE(const afw_adapter_t *)
     <description>This is the caller's xctx.</description>
       </parameter>
 
-      <return type="afw_rc_t" />
+      <return type="void" />
 
     </method>
 
     <method name="drop">
 
       <description>
-        Drop an in index. The underlying store may decide to drop an entire table or database. Returns a boolean, determining whether the operation was successful.
+        Drop an index. The underlying store may decide to drop an entire table or database. Throws on failure.
       </description>
 
       <parameter name="instance" type="const afw_adapter_impl_index_t *">
@@ -1563,7 +1563,7 @@ AFW_DEFINE(const afw_adapter_t *)
     <description>This is the caller's xctx.</description>
       </parameter>
 
-      <return type="afw_rc_t" />
+      <return type="void" />
 
     </method>
 
