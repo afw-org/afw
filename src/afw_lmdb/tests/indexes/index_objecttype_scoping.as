@@ -28,6 +28,8 @@ add_object("lmdb", otB, { surname: "Smith" }, idB1);
 const created: object = index_create("lmdb", "surname", undefined, [otA], undefined, undefined, true, false);
 assert(created.num_indexed === 2,
     "retroactive index_create scoped to otA should only index otA's 2 objects, not otB's");
+assert(created.num_processed === 2,
+    "retroactive scan scoped to otA should only fetch otA's 2 objects -- num_processed === 3 would mean otB was scanned too (issue #252 item 2)");
 
 // A query against the scoped type still finds its match.
 const foundA: array = retrieve_objects("lmdb", otA,
