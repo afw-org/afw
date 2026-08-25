@@ -1707,18 +1707,6 @@ typedef afw_rc_t
     const afw_pool_t * pool,
     afw_xctx_t * xctx);
 
-/** @sa afw_adapter_impl_index_replace() */
-typedef afw_rc_t
-(*afw_adapter_impl_index_replace_t)(
-    const afw_adapter_impl_index_t * instance,
-    const afw_utf8_t * object_type_id,
-    const afw_utf8_t * object_id,
-    const afw_utf8_t * key,
-    const afw_utf8_t* old_value,
-    const afw_utf8_t* new_value,
-    const afw_pool_t * pool,
-    afw_xctx_t * xctx);
-
 /** @sa afw_adapter_impl_index_drop() */
 typedef afw_rc_t
 (*afw_adapter_impl_index_drop_t)(
@@ -1760,7 +1748,6 @@ struct afw_adapter_impl_index_inf_s {
     afw_adapter_impl_index_update_index_definitions_t update_index_definitions;
     afw_adapter_impl_index_add_t add;
     afw_adapter_impl_index_delete_t delete;
-    afw_adapter_impl_index_replace_t replace;
     afw_adapter_impl_index_drop_t drop;
     afw_adapter_impl_index_open_cursor_t open_cursor;
     afw_adapter_impl_index_get_session_t get_session;
@@ -1944,49 +1931,6 @@ struct afw_adapter_impl_index_inf_s {
     (object_id), \
     (key), \
     (value), \
-    (pool), \
-    (xctx) \
-)
-
-/**
- * @brief Call method `replace` of interface `afw_adapter_impl_index`.
- *
- * Replace an index in the adapter store
- * @param instance Pointer to this adapter impl index instance.
- * @param object_type_id Object type id associated with the property and value
- * that we are indexing. This may be useful for the adapter to determine the
- * target table or database to store the index.
- * @param object_id Object id for the object associated with the property and
- * value that we are indexing. This should be used by the adapter as a reference
- * to the primary entry.
- * @param key Index key associated with the index value we are replacing.
- * @param old_value Old index value associated with the index we are replacing.
- * This should be used by the adapter as the key to the index entry.
- * @param new_value New index value associated with the index we are replacing.
- * This should be used by the adapter as the key to the index entry.
- * @param pool Caller's pool.
- * @param xctx This is the caller's xctx.
- * @return Value of type `afw_rc_t`.
- * @relates afw_adapter_impl_index_t
- * @see @ref afw_adapter_impl_index_s "afw_adapter_impl_index_t"
- */
-#define afw_adapter_impl_index_replace( \
-    instance, \
-    object_type_id, \
-    object_id, \
-    key, \
-    old_value, \
-    new_value, \
-    pool, \
-    xctx \
-) \
-(instance)->inf->replace( \
-    (instance), \
-    (object_type_id), \
-    (object_id), \
-    (key), \
-    (old_value), \
-    (new_value), \
     (pool), \
     (xctx) \
 )

@@ -110,24 +110,6 @@ impl_afw_adapter_impl_index_delete(
 }
 
 /*
- * Implementation of method replace for interface afw_adapter_impl_index.
- */
-afw_rc_t
-impl_afw_adapter_impl_index_replace(
-    AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
-    const afw_utf8_t * object_type_id,
-    const afw_utf8_t * object_id,
-    const afw_utf8_t * key,
-    const afw_utf8_t* old_value,
-    const afw_utf8_t* new_value,
-    const afw_pool_t * pool,
-    afw_xctx_t * xctx)
-{
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-}
-
-/*
  * Implementation of method drop for interface afw_adapter_impl_index.
  */
 afw_rc_t

@@ -1537,48 +1537,6 @@ AFW_DEFINE(const afw_adapter_t *)
 
     </method>
 
-    <method name="replace">
-
-      <description>
-        Replace an index in the adapter store
-      </description>
-
-      <parameter name="instance" type="const afw_adapter_impl_index_t *">
-    <description>Pointer to this adapter impl index instance.</description>
-      </parameter>
-
-      <parameter name="object_type_id" type="const afw_utf8_t *">
-    <description>Object type id associated with the property and value that we are indexing. This may be useful for the adapter to determine the target table or database to store the index.</description>
-      </parameter>
-
-      <parameter name="object_id" type="const afw_utf8_t *">
-    <description>Object id for the object associated with the property and value that we are indexing. This should be used by the adapter as a reference to the primary entry.</description>
-      </parameter>
-
-      <parameter name="key" type="const afw_utf8_t *">
-    <description>Index key associated with the index value we are replacing.</description>
-      </parameter>
-
-      <parameter name="old_value" type="const afw_utf8_t*">
-    <description>Old index value associated with the index we are replacing. This should be used by the adapter as the key to the index entry.</description>
-      </parameter>
-
-      <parameter name="new_value" type="const afw_utf8_t*">
-    <description>New index value associated with the index we are replacing. This should be used by the adapter as the key to the index entry.</description>
-      </parameter>
-
-      <parameter name="pool" type="const afw_pool_t *">
-    <description>Caller's pool.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="afw_rc_t" />
-
-    </method>
-
     <method name="drop">
 
       <description>
