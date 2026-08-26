@@ -215,12 +215,12 @@ impl_afw_adapter_session_add_object(
         uuid_string = afw_uuid_to_utf8(uuid, xctx->p, xctx);
     }
 
-    AFW_LMDB_BEGIN_TRANSACTION(adapter, self, 0, false, xctx) {
+    AFW_LMDB_BEGIN_ATOMIC_TRANSACTION(adapter, self, xctx) {
 
         txn = AFW_LMDB_GET_TRANSACTION();
 
         /* open our primary database */
-        dbi = afw_lmdb_internal_open_database(adapter, 
+        dbi = afw_lmdb_internal_open_database(adapter,
             txn, afw_lmdb_s_Primary, MDB_CREATE, xctx->p, xctx);
 
         /* add the object to our primary database */
@@ -231,9 +231,9 @@ impl_afw_adapter_session_add_object(
         afw_adapter_impl_index_object(self->indexer, object_type_id,
             object, uuid_string, xctx);
 
-        AFW_LMDB_COMMIT_TRANSACTION();
+        AFW_LMDB_COMMIT_ATOMIC_TRANSACTION();
     }
-    AFW_LMDB_END_TRANSACTION();
+    AFW_LMDB_END_ATOMIC_TRANSACTION();
 
     return uuid_string;
 }
@@ -263,12 +263,12 @@ impl_afw_adapter_session_modify_object(
             "Missing id or object_type.", xctx);
     }
 
-    AFW_LMDB_BEGIN_TRANSACTION(adapter, self, 0, false, xctx) {
+    AFW_LMDB_BEGIN_ATOMIC_TRANSACTION(adapter, self, xctx) {
 
         txn = AFW_LMDB_GET_TRANSACTION(),
 
         /* open our primary database */
-        dbi = afw_lmdb_internal_open_database(adapter, 
+        dbi = afw_lmdb_internal_open_database(adapter,
             txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
         /* load our object into memory and apply the modifications */
@@ -281,16 +281,16 @@ impl_afw_adapter_session_modify_object(
             entry, new_object, xctx);
 
         /* Write updated object */
-        afw_lmdb_internal_replace_entry_from_object(self, object_type_id, 
+        afw_lmdb_internal_replace_entry_from_object(self, object_type_id,
             object_id, new_object, dbi, xctx);
 
         /* Re-index object, if necessary */
         afw_adapter_impl_index_reindex_object(self->indexer, object_type_id,
             object, new_object, object_id, xctx);
 
-        AFW_LMDB_COMMIT_TRANSACTION();
+        AFW_LMDB_COMMIT_ATOMIC_TRANSACTION();
     }
-    AFW_LMDB_END_TRANSACTION();
+    AFW_LMDB_END_ATOMIC_TRANSACTION();
 }
 
 
@@ -318,7 +318,7 @@ impl_afw_adapter_session_replace_object(
             "Missing id or object_type.", xctx);
     }
 
-    AFW_LMDB_BEGIN_TRANSACTION(adapter, self, 0, false, xctx) {
+    AFW_LMDB_BEGIN_ATOMIC_TRANSACTION(adapter, self, xctx) {
 
         txn = AFW_LMDB_GET_TRANSACTION();
 
@@ -327,7 +327,7 @@ impl_afw_adapter_session_replace_object(
             txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
         /* get the old object */
-        value = afw_lmdb_internal_create_value_from_entry(self, 
+        value = afw_lmdb_internal_create_value_from_entry(self,
                 object_type_id, object_id, dbi, xctx);
 
         if (value && !afw_value_is_object(value)) {
@@ -342,12 +342,12 @@ impl_afw_adapter_session_replace_object(
             object_type_id, object_id, replacement_object, dbi, xctx);
 
         /* Re-index object, if necessary */
-        afw_adapter_impl_index_reindex_object(self->indexer, object_type_id, 
+        afw_adapter_impl_index_reindex_object(self->indexer, object_type_id,
             old_object, replacement_object, object_id, xctx);
-    
-        AFW_LMDB_COMMIT_TRANSACTION();
+
+        AFW_LMDB_COMMIT_ATOMIC_TRANSACTION();
     }
-    AFW_LMDB_END_TRANSACTION();
+    AFW_LMDB_END_ATOMIC_TRANSACTION();
 }
 
 
@@ -374,7 +374,7 @@ impl_afw_adapter_session_delete_object(
     uuid = afw_uuid_from_utf8(object_id, xctx->p, xctx);
 
     /* open the transaction */
-    AFW_LMDB_BEGIN_TRANSACTION(adapter, self, 0, false, xctx) {
+    AFW_LMDB_BEGIN_ATOMIC_TRANSACTION(adapter, self, xctx) {
 
         txn = AFW_LMDB_GET_TRANSACTION();
 
@@ -415,9 +415,9 @@ impl_afw_adapter_session_delete_object(
         }
         AFW_ENDTRY;
 
-        AFW_LMDB_COMMIT_TRANSACTION();
+        AFW_LMDB_COMMIT_ATOMIC_TRANSACTION();
     }
-    AFW_LMDB_END_TRANSACTION();
+    AFW_LMDB_END_ATOMIC_TRANSACTION();
 }
 
 
