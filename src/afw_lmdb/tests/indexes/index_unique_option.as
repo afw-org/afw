@@ -30,17 +30,17 @@ const found: array = retrieve_objects("lmdb", ot,
     { "filter": { "op": "eq", "property": "email", "value": "a@example.com" } });
 assert(length(found) === 1, "only the original object should be reachable via the indexed value after the duplicate add was rejected");
 
-// KNOWN BUG (issue #249): the rejected duplicate's *primary* object is not
-// actually rolled back -- it leaks as an orphaned, unindexed record. This is
-// only reproducible when the failing add_object() is the second-or-later
-// add on the same session (a fresh session/process rolls back correctly),
-// which is exactly what this test file does. An unfiltered retrieve_objects
-// (bypassing the index) would show 2 objects here, not 1. Left disabled
-// until #249 is fixed -- uncomment to see it fail:
-//
-// const allObjects: array = retrieve_objects("lmdb", ot, undefined, undefined, undefined, 0);
-// assert(length(allObjects) === 1,
-//     "rejected duplicate add_object() should not leave its primary object persisted (issue #249)");
+// Regression for issue #249: a rejected duplicate's *primary* object used
+// to leak as an orphaned, unindexed record -- reproducible only when the
+// failing add_object() was the second-or-later add on the same session,
+// because the primary write and the index write shared the session's
+// implicit per-request transaction with no way to roll back just this
+// call. Fixed by giving add/modify/replace/delete_object their own nested
+// LMDB transaction (AFW_LMDB_BEGIN_ATOMIC_TRANSACTION) so a failure here
+// only discards this call's own writes.
+const allObjects: array = retrieve_objects("lmdb", ot, undefined, undefined, undefined, 0);
+assert(length(allObjects) === 1,
+    "rejected duplicate add_object() should not leave its primary object persisted (issue #249)");
 
 safe_evaluate(index_remove("lmdb", "email"), null);
 safe_evaluate(delete_object("lmdb", ot, id1), null);

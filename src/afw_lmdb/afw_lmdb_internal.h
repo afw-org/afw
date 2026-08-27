@@ -381,20 +381,27 @@ do { \
     afw_xctx_t * this_xctx = xctx; \
     int this_rc; \
     AFW_TRY { \
-        if (session && session->transaction) { \
-            ((afw_lmdb_adapter_session_t *)session)->currTxn = session->transaction->txn; \
-        } else if (session && session->currTxn) { \
+        if (session && session->currTxn) { \
             /* \
              * A transaction is already active for this session on this \
              * thread, e.g. this is a recursive/reentrant call (such as a \
              * mapped model property that triggers another retrieve while \
              * an outer retrieve for the same underlying adapter session \
-             * is still iterating). LMDB only allows a single read \
-             * transaction per thread, so reuse the active one instead of \
-             * calling mdb_txn_begin() again, which would fail with \
-             * MDB_BAD_RSLOT ("Invalid reuse of reader locktable slot"). \
+             * is still iterating), OR session->currTxn is a nested atomic \
+             * child begun by AFW_LMDB_BEGIN_ATOMIC_TRANSACTION for the \
+             * enclosing add/modify/replace/delete_object call. Either way, \
+             * currTxn -- not session->transaction, which may be an outer \
+             * ancestor of it -- is always the innermost transaction \
+             * currently active, so reuse it directly instead of calling \
+             * mdb_txn_begin() again, which would either fail with \
+             * MDB_BAD_RSLOT ("Invalid reuse of reader locktable slot") for \
+             * a read, or hand back a transaction LMDB will reject with \
+             * MDB_BAD_TXN once its child (this one) is left dangling. \
              */ \
             this_txn = session->currTxn; \
+        } else if (session && session->transaction) { \
+            ((afw_lmdb_adapter_session_t *)session)->currTxn = session->transaction->txn; \
+            this_txn = session->transaction->txn; \
         } else { \
             if (exclusive) { \
                 apr_thread_rwlock_wrlock(adapter->dbLock); \
@@ -479,6 +486,136 @@ do { \
             if (this_session) \
                 ((afw_lmdb_adapter_session_t *)this_session)->currTxn = NULL; \
             apr_thread_rwlock_unlock(this_adapter->dbLock); \
+        } \
+        AFW_ERROR_RETHROW; \
+    } \
+    AFW_ENDTRY; \
+} while(0)
+
+/**
+ * @brief Begin an LMDB transaction that is atomic for *this* call, even
+ * when a wider transaction (the implicit per-request transaction, or an
+ * explicit begin_transaction()) is already active on the session.
+ *
+ * Use this ONLY at the session's top-level mutators -- add_object,
+ * modify_object, replace_object, delete_object -- the boundary where a
+ * primary-database write and its associated index maintenance must
+ * succeed or fail together (issue #249). Every other LMDB call site
+ * (index maintenance helpers, retrieve/dump, open_database, and anything
+ * else invoked *from within* one of these four) must keep using plain
+ * AFW_LMDB_BEGIN_TRANSACTION, so it continues to reentrantly participate
+ * in whichever transaction -- this one, or an ancestor -- is current,
+ * rather than opening a boundary of its own.
+ *
+ * If no ambient transaction is active, this opens a real top-level owned
+ * transaction, same as AFW_LMDB_BEGIN_TRANSACTION's "new owner" branch.
+ * If an ambient transaction IS active, this opens a genuine LMDB *nested*
+ * transaction (mdb_txn_begin with parent = the ambient transaction).
+ * Committing it merges its writes into the parent (not durable until the
+ * outermost owner eventually commits); aborting it -- the normal outcome
+ * when a thrown error unwinds through this macro's FINALLY -- discards
+ * only this call's writes. The ambient transaction, and anything an
+ * earlier sibling call already committed into it, are left untouched.
+ *
+ * session->currTxn is pointed at this transaction (nested or not) for
+ * the duration of the call, so reentrant helpers keep working unchanged,
+ * then restored to whatever it was before (the parent, or NULL) once
+ * this transaction is committed or aborted.
+ */
+#define AFW_LMDB_BEGIN_ATOMIC_TRANSACTION( \
+    adapter,    \
+    session,    \
+    xctx)      \
+do { \
+    MDB_txn * this_txn = NULL; \
+    MDB_txn * this_ambient_txn = NULL; \
+    MDB_txn * this_saved_currTxn = NULL; \
+    bool this_txnHandled = false; \
+    bool this_txnOwner = false; \
+    bool this_txnNested = false; \
+    const afw_lmdb_adapter_t * this_adapter = adapter; \
+    const afw_lmdb_adapter_session_t * this_session = session; \
+    afw_xctx_t * this_xctx = xctx; \
+    int this_rc; \
+    AFW_TRY { \
+        if (session && !session->currTxn && session->transaction) { \
+            ((afw_lmdb_adapter_session_t *)session)->currTxn = session->transaction->txn; \
+        } \
+        this_saved_currTxn = (session) ? session->currTxn : NULL; \
+        this_ambient_txn = this_saved_currTxn; \
+        if (this_ambient_txn) { \
+            afw_trace_z(1, adapter->pub.trace_flag_index, \
+                NULL, "LMDB Begin nested write transaction", this_xctx); \
+            this_rc = mdb_txn_begin(adapter->dbEnv, this_ambient_txn, 0, &this_txn); \
+            if (this_rc) { \
+                afw_trace_fz(1, adapter->pub.trace_flag_index, \
+                    NULL, this_xctx, "LMDB nested transaction begin failed with error: " \
+                    AFW_INTEGER_FMT, this_rc); \
+                AFW_THROW_ERROR_RV_Z(general, lmdb, this_rc, \
+                    "Unable to begin nested transaction.", this_xctx); \
+            } \
+            this_txnOwner = true; \
+            this_txnNested = true; \
+            if (session) \
+                ((afw_lmdb_adapter_session_t *)session)->currTxn = this_txn; \
+        } else { \
+            apr_thread_rwlock_rdlock(adapter->dbLock); \
+            afw_trace_z(1, adapter->pub.trace_flag_index, \
+                NULL, "LMDB Begin write transaction", this_xctx); \
+            this_rc = mdb_txn_begin(adapter->dbEnv, NULL, 0, &this_txn); \
+            if (this_rc) { \
+                apr_thread_rwlock_unlock(adapter->dbLock); \
+                afw_trace_fz(1, adapter->pub.trace_flag_index, \
+                    NULL, this_xctx, "LMDB transaction begin failed with error: " \
+                    AFW_INTEGER_FMT, this_rc); \
+                AFW_THROW_ERROR_RV_Z(general, lmdb, this_rc, \
+                    "Unable to begin transaction.", this_xctx); \
+            } \
+            this_txnOwner = true; \
+            if (session) \
+                ((afw_lmdb_adapter_session_t *)session)->currTxn = this_txn; \
+        } \
+        do {
+
+/**
+ * @brief Commit an atomic transaction begun with
+ * AFW_LMDB_BEGIN_ATOMIC_TRANSACTION.
+ */
+#define AFW_LMDB_COMMIT_ATOMIC_TRANSACTION() \
+    if (this_txnOwner) { \
+        if (this_txn && !this_txnHandled) { \
+            this_rc = mdb_txn_commit(this_txn); \
+            this_txnHandled = true; \
+            if (this_session) \
+                ((afw_lmdb_adapter_session_t *)this_session)->currTxn = this_saved_currTxn; \
+            if (this_rc) { \
+                AFW_THROW_ERROR_RV_Z(general, lmdb_internal, this_rc, \
+                    "Unable to commit transaction.", this_xctx); \
+            } \
+            afw_trace_z(1, this_adapter->pub.trace_flag_index, \
+                NULL, "LMDB Transaction committed.", this_xctx); \
+        } \
+    }
+
+/**
+ * @brief End an atomic transaction begun with
+ * AFW_LMDB_BEGIN_ATOMIC_TRANSACTION.
+ */
+#define AFW_LMDB_END_ATOMIC_TRANSACTION() \
+        } while (0); \
+    } AFW_FINALLY { \
+        if (this_txnOwner) { \
+            if (this_txn && !this_txnHandled) { \
+                mdb_txn_abort(this_txn); \
+                this_txnHandled = true; \
+                afw_trace_z(1, this_adapter->pub.trace_flag_index, \
+                    NULL, "LMDB Transaction aborted.", this_xctx); \
+            } \
+            if (this_session) \
+                ((afw_lmdb_adapter_session_t *)this_session)->currTxn = this_saved_currTxn; \
+            if (!this_txnNested) { \
+                apr_thread_rwlock_unlock(this_adapter->dbLock); \
+            } \
         } \
         AFW_ERROR_RETHROW; \
     } \
