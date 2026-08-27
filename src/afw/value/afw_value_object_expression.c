@@ -15,7 +15,8 @@
 
 
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference NULL
+#define impl_afw_value_get_reference NULL
+#define impl_afw_value_get_assignable_value NULL
 
 #define impl_afw_value_get_evaluated_meta \
     afw_value_internal_get_evaluated_meta_for_object
@@ -75,7 +76,6 @@ impl_afw_value_optional_evaluate(
             break;
         }
         v = afw_value_evaluate(v, p, xctx);
-        v = afw_value_closure_binding_create_if_needed(v, xctx);
         afw_object_set_property(to, property_name, v, xctx);
     }
 

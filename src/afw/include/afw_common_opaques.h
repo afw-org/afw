@@ -827,6 +827,14 @@ typedef struct afw_value_closure_binding_s
 afw_value_closure_binding_t;
 
 /**
+ * @brief Opaque `afw_value_function_return_value_t`.
+ *
+ * See afw_value_internal.h for struct and more information.
+ */
+typedef struct afw_value_function_return_value_s
+afw_value_function_return_value_t;
+
+/**
  * @brief Opaque `afw_compile_policy_t`.
  *
  * Per-compile policy (flag defaults + #compile overrides). Full struct in

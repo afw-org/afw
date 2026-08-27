@@ -146,9 +146,9 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 |-------|---------|
 | **Settled map** | Values first. **Working story:** [`issue-2-lifetime.md`](issue-2-lifetime.md) — destroy is lifetime; optional `free` is reuse; managed = hold protocol under `xctx->p`; unmanaged = optional holds, zero does not destroy; compiled unit immutable; assign is the script hold site; scalar `add_reference` boxes in `xctx->p`; objects/arrays hold the instance; script mutates a face. Payloads (`afw_utf8_t` / `afw_memory_t`) have no pool; doors are `create`/`set`/`no_copy`/`forced_safe` — [`c-naming-and-payloads.md`](c-naming-and-payloads.md) |
 | **Day rules** | `afw-runtime-model` (always-on), `afw-value-memory` (**current tree**; campaign target is the lifetime pad), `afw-script-eval` |
-| **Deep pad** | [`issue-2-lifetime.md`](issue-2-lifetime.md) (**campaign map**); archaeology [`memory-management.md`](memory-management.md); philosophy core model; names-as-values [`issue-2-property-name-values.md`](issue-2-property-name-values.md); faces [`issue-17-mutable-object-faces.md`](issue-17-mutable-object-faces.md) |
+| **Deep pad** | [`issue-2-lifetime.md`](issue-2-lifetime.md) (**campaign map**); **rails** [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (return temps: `function_return_value`, park occupant); archaeology [`memory-management.md`](memory-management.md); philosophy core model; names-as-values [`issue-2-property-name-values.md`](issue-2-property-name-values.md); faces [`issue-17-mutable-object-faces.md`](issue-17-mutable-object-faces.md) |
 | **Probe** | Targeted `.as` + `afwdev test -j --env-mode valgrind`; orchestrated multi-request leaves; **#2 extra lab** `src/afw/tests-extra/issue-2/` (`01-rss-hard-loops`, `02-pool-eval-soak`; `afwdev test -T src/afw/tests-extra/issue-2 --show-all`); never “fix memory” without a metric/story |
-| **Open** | Umbrella **#2**. Slot protocol landed. Pool split landed. Heap/tracker **pool impls honest** (`issue-2-heap-tracker-probe`: `free_memory(p, address)`, one chunk, address-ordered free list + coalesce; C probe `src/afw/tests/advanced/pool_heap/`). **Names as values** landed (PR **#220**). Closures / throw-path rewind (**#35**) store-time bind. Script wrapper overlay holds + create-at-0 landed (`issue-2-script-wrapper-holds`). Remaining: scalar boxing onto the eval heap (`issue-2-managed-p`), not a second pool rewrite. Debug probes ([#242](https://github.com/afw-org/afw/issues/242)): `AFW_DEBUG_EVALUATION` / `LOCK` / `POOL` (`--cdev`/`--fulldev`); flags `debug:evaluation` / `debug:lock` / `debug:pool`; `env->pool_bytes_in_use` (sum of pool malloc/calloc not yet freed/destroyed — not APR); `>debug pool` `in_use` / `total` / `rss`; script `pool_bytes_in_use()` / `process_rss()`. Do not `flag_set` them on RSS soaks. |
+| **Open** | Umbrella **#2**. Slot protocol landed. Pool split landed. Heap/tracker honest. **Names as values** landed (PR **#220**). Closures / throw-path rewind (**#35**). Script wrapper overlay holds. **Return temps** on `issue-2-hold-in-inf` (`function_return_value`; `evaluate()` consumes; parameter slot parks occupant). Hold: smtp `hexBinary`/`null` if still red. Do not revive `issue-2-managed-p`. Debug probes ([#242](https://github.com/afw-org/afw/issues/242)): `AFW_DEBUG_EVALUATION` / `LOCK` / `POOL`. |
 | **Gap** | Lifetime pad is the one-pager that was missing; keep `memory-management.md` as archaeology |
 
 ---
@@ -244,12 +244,12 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | Qualifier stack get vs `qualifier()`/`qualifiers()` snapshots (#9); `current::` / `custom::`; includeUntrusted |
+| **Settled map** | Qualifier stack get vs `qualifier()`/`qualifiers()` snapshots (#9); `current::` / `custom::`; includeUntrusted. Script door: catalog qualifiers are **read-only** (C bag may still be writable). Snapshots are copies. `current::` name set is per context — model `current::object` is retrieve-like; auth/index is the resource/row. |
 | **Day rules** | `afw-qualified-variables`, environment-variables (process::) |
 | **Deep pad** | — |
 | **Probe** | `src/afw/tests/compiler/qualifier*.as` |
-| **Open** | Watch contribute_cb / untrusted edges |
-| **Gap** | Support one-liner only unless symptoms appear |
+| **Open** | Watch contribute_cb / untrusted edges. Live catalog writes (if ever) = function + execute access + authorization, not face SET. |
+| **Gap** | Thin; rails note in [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) locked design |
 
 ---
 

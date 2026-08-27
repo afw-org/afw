@@ -16,7 +16,8 @@
 
 
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference NULL
+#define impl_afw_value_get_reference NULL
+#define impl_afw_value_get_assignable_value NULL
 
 #define impl_afw_value_get_evaluated_meta \
     afw_value_internal_get_evaluated_meta_default
@@ -200,6 +201,12 @@ impl_afw_value_optional_evaluate(
             break;
         }
         test = afw_value_as_object(value, xctx);
+        /*
+         * Array GET may have promoted a face. Result flags belong on the
+         * test definition object so a later parent wrap/JSON look-through
+         * still sees them.
+         */
+        test = afw_object_memory_wrapper_base(test);
         source_type = afw_object_old_get_property_as_string(test,
             afw_v_sourceType, xctx);
         if (!source_type) {
@@ -257,12 +264,6 @@ impl_afw_value_optional_evaluate(
             continue;
         }
 
-        /*
-         * Drop leftover donated pointers from a prior case. Same xctx
-         * runs every case; a stale pointer can alias a new compile.
-         */
-        xctx->script_result_donated_count = 0;
-
         if (info->compile_type == afw_compile_type_error) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "source_type=" AFW_UTF8_FMT_Q " is invalid",
@@ -313,6 +314,8 @@ impl_afw_value_optional_evaluate(
                 compiled_value = afw_value_call_built_in_function(
                     contextual, info->compile_function, 1, argv, p, xctx);
                 expected_value = afw_value_evaluate(compiled_value, p, xctx);
+                expected_value = afw_value_function_return_value_consume(
+                    expected_value, p, xctx);
             }
 
             error_in = error_in_compile_source;
@@ -332,6 +335,8 @@ impl_afw_value_optional_evaluate(
             error_in = error_in_evaluate_source;
             (void)error_in; /* In catch. Avoid "not used" error. */
             evaluated_value = afw_value_evaluate(compiled_value, p, xctx);
+            evaluated_value = afw_value_function_return_value_consume(
+                evaluated_value, p, xctx);
             error_in = error_in_other;
             (void)error_in; /* In catch. Avoid "not used" error. */
 

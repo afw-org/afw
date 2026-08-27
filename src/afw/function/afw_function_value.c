@@ -53,8 +53,16 @@ afw_function_execute_meta(
 {
     const afw_value_t *result;
 
+    /*
+     * Do not evaluate argv[1] first: meta(o.greeting) uses the
+     * reference inf so key is the property name. get_evaluated_meta
+     * evaluates internally for dataType/value.
+     */
     result = afw_value_get_evaluated_meta(x->argv[1], x->p, x->xctx);
-
+    if (afw_value_is_object(result)) {
+        afw_object_set_immutable(
+            ((const afw_value_object_t *)result)->internal, x->xctx);
+    }
     return result;
 }
 
@@ -100,6 +108,10 @@ afw_function_execute_metas(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
 
     result = afw_value_get_evaluated_metas(value, x->p, x->xctx);
-
+    /* Array views of metas() are already get_setter NULL. */
+    if (afw_value_is_object(result)) {
+        afw_object_set_immutable(
+            ((const afw_value_object_t *)result)->internal, x->xctx);
+    }
     return result;
 }

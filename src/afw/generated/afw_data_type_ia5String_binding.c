@@ -90,18 +90,20 @@ impl_afw_value_permanent_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* unmanaged ia5String: optional_release NULL; */
-/* clone_or_reference boxes a managed copy in xctx->p. */
+/* clone_or_reference clones the whole value into p. */
 #define AFW_IMPLEMENTATION_ID "ia5String"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_ia5String_inf
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference impl_afw_value_get_reference
+#define impl_afw_value_get_reference impl_afw_value_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_get_reference
 #define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef impl_afw_value_optional_release
-#undef impl_afw_value_clone_or_reference
+#undef impl_afw_value_get_reference
+#undef impl_afw_value_get_assignable_value
 
 /* Declares and rti/inf defines for interface afw_value */
 /* managed ia5String: optional_release frees header at RC 0; */
@@ -109,13 +111,15 @@ impl_afw_value_permanent_get_reference(
 #define AFW_IMPLEMENTATION_ID "managed_ia5String"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_ia5String_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
-#define impl_afw_value_clone_or_reference impl_afw_value_managed_get_reference
+#define impl_afw_value_get_reference impl_afw_value_managed_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_managed_get_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef impl_afw_value_optional_release
-#undef impl_afw_value_clone_or_reference
+#undef impl_afw_value_get_reference
+#undef impl_afw_value_get_assignable_value
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
@@ -124,13 +128,15 @@ impl_afw_value_permanent_get_reference(
 #define AFW_IMPLEMENTATION_ID "managed_slice_ia5String"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_slice_ia5String_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_slice_optional_release
-#define impl_afw_value_clone_or_reference impl_afw_value_managed_slice_get_reference
+#define impl_afw_value_get_reference impl_afw_value_managed_slice_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_managed_slice_get_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef impl_afw_value_optional_release
-#undef impl_afw_value_clone_or_reference
+#undef impl_afw_value_get_reference
+#undef impl_afw_value_get_assignable_value
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
@@ -139,13 +145,15 @@ impl_afw_value_permanent_get_reference(
 #define AFW_IMPLEMENTATION_ID "permanent_ia5String"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_ia5String_inf
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference impl_afw_value_permanent_get_reference
+#define impl_afw_value_get_reference impl_afw_value_permanent_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_permanent_get_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef impl_afw_value_optional_release
-#undef impl_afw_value_clone_or_reference
+#undef impl_afw_value_get_reference
+#undef impl_afw_value_get_assignable_value
 #undef AFW_VALUE_INF_ONLY
 
 static const afw_value_string_t
@@ -267,7 +275,7 @@ afw_object_set_property_as_ia5String(
             xctx);
     }
 
-    v = afw_value_create_unmanaged_ia5String(internal, object->p, xctx);
+    v = afw_value_ia5String_create(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -298,7 +306,7 @@ afw_value_as_ia5String(const afw_value_t *value, afw_xctx_t *xctx)
 
 /* Allocate function for data type ia5String values. */
 AFW_DEFINE(afw_value_ia5String_t *)
-afw_value_allocate_unmanaged_ia5String(const afw_pool_t *p, afw_xctx_t *xctx)
+afw_value_ia5String_allocate(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_ia5String_t *result;
 
@@ -310,15 +318,24 @@ afw_value_allocate_unmanaged_ia5String(const afw_pool_t *p, afw_xctx_t *xctx)
 
 /* Create function for managed data type ia5String value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_ia5String(
+afw_value_ia5String_create_managed(
     const afw_utf8_t * internal,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_value_ia5String_managed_t *v;
+
+    if (!p) {
+        p = xctx->p;
+    }
+    if (!p) {
+        AFW_THROW_ERROR_Z(general,
+            "pool required", xctx);
+    }
     afw_size_t len;
 
     len = (internal) ? internal->len : 0;
-    v = afw_xctx_calloc(
+    v = afw_pool_calloc(p,
         sizeof(afw_value_ia5String_managed_t) + len, xctx);
     v->inf = &afw_value_managed_ia5String_inf;
     v->internal.len = len;
@@ -327,16 +344,19 @@ afw_value_create_managed_ia5String(
     if (internal && internal->s) {
         memcpy((void *)v->internal.s, internal->s, len);
     }
+    v->p = p;
+    v->reference_count = 1;
 
     return &v->pub;
 }
 
 /* Create function for managed data type ia5String slice value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_ia5String_slice(
+afw_value_ia5String_create_managed_slice(
     const afw_value_t *containing_value,
     afw_size_t offset,
     afw_size_t len,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_ia5String_managed_t *containing;
@@ -367,18 +387,27 @@ afw_value_create_managed_ia5String_slice(
         AFW_THROW_ERROR_Z(general,
             "managed slice offset/len out of range", xctx);
     }
-    v = afw_xctx_calloc(sizeof(afw_value_ia5String_managed_slice_t), xctx);
+    if (!p) {
+        p = xctx->p;
+    }
+    if (!p) {
+        AFW_THROW_ERROR_Z(general,
+            "pool required", xctx);
+    }
+    v = afw_pool_calloc(p, sizeof(afw_value_ia5String_managed_slice_t), xctx);
     v->inf = &afw_value_managed_slice_ia5String_inf;
     v->internal.s = base->s + offset;
     v->internal.len = len;
     v->containing_value = containing;
-    ((afw_value_ia5String_managed_t *)containing)->reference_count++;
+    v->reference_count = 1;
+    v->p = p;
+    afw_value_add_reference(&containing->pub, p, xctx);
     return &v->pub;
 }
 
 /* Create function for data type ia5String value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_unmanaged_ia5String(const afw_utf8_t * internal,
+afw_value_ia5String_create(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_ia5String_t *v;
@@ -484,13 +513,14 @@ impl_afw_value_managed_optional_release(
     afw_value_ia5String_managed_t *self =
         (afw_value_ia5String_managed_t *)instance;
 
-    /* Do not first-fit free into xctx->p while scope
-     * subpools still exist (prefix). Last hold leaks until
-     * xctx destroy; pool reuse is a later #2 slice. */
     if (self->reference_count == 0) {
         return;
     }
     self->reference_count--;
+    if (self->reference_count == 0 && self->p) {
+        afw_pool_free_memory(self->p, self,
+            sizeof(afw_value_ia5String_managed_t) + self->internal.len, xctx);
+    }
 }
 
 /* Implementation of method get_reference for unmanaged value. */
@@ -502,13 +532,12 @@ impl_afw_value_get_reference(
 {
     const afw_value_ia5String_t *self =
         (const afw_value_ia5String_t *)instance;
-    const afw_value_t *boxed;
 
-    (void)p;
-    boxed = afw_value_create_managed_ia5String(
-        &self->internal, xctx);
-    return afw_value_clone_or_reference(
-        boxed, xctx->p, xctx);
+    if (!p) {
+        p = xctx->p;
+    }
+    return afw_value_ia5String_create_managed(
+        &self->internal, p, xctx);
 }
 
 
@@ -522,7 +551,11 @@ impl_afw_value_managed_get_reference(
     afw_value_ia5String_managed_t *self =
         (afw_value_ia5String_managed_t *)instance;
 
-    /* Bump RC; return same instance (not a clone). */
+    /* Escape copy if dest pool is not this header's pool. */
+    if (p && self->p && p != self->p) {
+        return afw_value_ia5String_create_managed(
+            &self->internal, p, xctx);
+    }
     self->reference_count++;
     return instance;
 }
@@ -536,13 +569,19 @@ impl_afw_value_managed_slice_optional_release(
 {
     afw_value_ia5String_managed_slice_t *self =
         (afw_value_ia5String_managed_slice_t *)instance;
-    afw_value_ia5String_managed_t *containing =
-        (afw_value_ia5String_managed_t *)self->containing_value;
 
-    /* Create starts at 0; get_reference/slice increments.
-     * Headers live until the allocating pool is destroyed. */
-    if (containing->reference_count != 0) {
-        containing->reference_count--;
+    if (self->reference_count == 0) {
+        return;
+    }
+    self->reference_count--;
+    if (self->reference_count == 0) {
+        if (self->containing_value) {
+            afw_value_release(&self->containing_value->pub, xctx);
+        }
+        if (self->p) {
+            afw_pool_free_memory(self->p, self,
+                sizeof(afw_value_ia5String_managed_slice_t), xctx);
+        }
     }
 }
 
@@ -553,20 +592,13 @@ impl_afw_value_managed_slice_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_ia5String_managed_slice_t *self =
-        (const afw_value_ia5String_managed_slice_t *)instance;
-    afw_value_ia5String_managed_t *containing =
-        (afw_value_ia5String_managed_t *)self->containing_value;
-    afw_value_ia5String_managed_slice_t *v;
+    afw_value_ia5String_managed_slice_t *self =
+        (afw_value_ia5String_managed_slice_t *)instance;
 
-    /* New slice header sharing the same view; bump containing. */
-    v = afw_xctx_calloc(
-        sizeof(afw_value_ia5String_managed_slice_t), xctx);
-    v->inf = &afw_value_managed_slice_ia5String_inf;
-    v->internal = self->internal;
-    v->containing_value = containing;
-    containing->reference_count++;
-    return &v->pub;
+    (void)p;
+    (void)xctx;
+    self->reference_count++;
+    return instance;
 }
 
 
@@ -577,7 +609,9 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* Permanent: return same instance as-is. */
+    /* Permanent scalar: same instance as-is. */
+    (void)p;
+    (void)xctx;
     return instance;
 }
 

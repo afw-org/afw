@@ -95,14 +95,28 @@ afw_function_execute_convert(
     afw_function_execute_t *x)
 {
     const afw_value_t *result;
+    const afw_value_t *parked;
     afw_xctx_t *xctx = x->xctx;
 
-    result = afw_function_evaluate_required_parameter(x, 1, NULL);
-
+    /*
+     * One parameter pair covers evaluate and convert so a throw still
+     * has marker + number for backtrace.
+     */
+    result = (x->argc >= 1) ? x->argv[1] : NULL;
     afw_xctx_evaluation_stack_push_parameter_number(1, xctx);
+    afw_value_evaluate_for_parameter(&parked, &result, result, x->p, xctx);
+    if (!result) {
+        AFW_THROW_ERROR_Z(undefined_value,
+            "Parameter 1 is undefined value", xctx);
+    }
     result = afw_value_convert(result,
         x->function->returns->data_type, false, x->p, xctx);
-    afw_xctx_evaluation_stack_pop_parameter_number(xctx);
+    if (parked) {
+        afw_xctx_evaluation_stack_pop_parameter_number(parked, xctx);
+    }
+    else {
+        afw_xctx_evaluation_stack_pop(xctx);
+    }
 
     return result;
 }
@@ -124,7 +138,7 @@ afw_function_execute_requiresExecuteAccess_wrapper(
 
     AFW_TRY {
         /* Make an object to pass to authorization check. */
-        obj = afw_object_create(x->p, xctx);
+        obj = afw_object_and_pool_create(x->p, xctx);
 
         /*
          * Use the object's pool for a temporary copy of x and an evaluated
@@ -223,7 +237,7 @@ afw_function_evaluate_function_parameter(
     afw_utf8_t qualifier;
     afw_utf8_t name;
 
-    result = afw_value_evaluate(function_arg, p, xctx);
+    result = afw_value_evaluate_and_park(function_arg, 1, p, xctx);
 
     /* Strings are looked up dynamically. Note: this may become deprecated. */
     if (afw_value_is_string(result)) {
@@ -257,9 +271,6 @@ afw_function_evaluate_parameter(
     const afw_data_type_t *result_data_type;
     const afw_value_function_parameter_t *parameter;
 
-    /* Push parameter number on evaluation stack. */
-    afw_xctx_evaluation_stack_push_parameter_number(parameter_number, xctx);
-
     /* Formal metadata from Adaptive function definition. */
     parameter = x->function->parameters[
             (
@@ -273,14 +284,32 @@ afw_function_evaluate_parameter(
     /* Get possibly unevaluated result from argv. */
     result = ((parameter_number <= x->argc) ? x->argv[parameter_number] : NULL);
 
-    /* Evaluate result if needed. */
-    if (!afw_value_is_defined_and_evaluated(result)) {
-        result = afw_value_evaluate(result, x->p, xctx);
-        if (afw_value_is_compiled_value(result) &&
-            data_type != afw_data_type_unevaluated)
-        {
-            result = afw_value_evaluate(result, x->p, xctx);
+    /*
+     * Park occupant hold (if any) for pop_value; execute uses evaluated.
+     */
+    {
+        const afw_value_t *parked;
+
+        afw_xctx_evaluation_stack_push_parameter_number(
+            parameter_number, xctx);
+        afw_value_evaluate_for_parameter(
+            &parked, &result, result, x->p, xctx);
+        if (parked) {
+            afw_xctx_evaluation_stack_pop_parameter_number(parked, xctx);
         }
+        else {
+            afw_xctx_evaluation_stack_pop(xctx);
+        }
+    }
+
+    /*
+     * One extra evaluate of compiled_value unless the formal is unevaluated.
+     * Do not loop here — assignment to unevaluated stores the graph.
+     */
+    if (result && afw_value_is_compiled_value(result) &&
+        data_type != afw_data_type_unevaluated)
+    {
+        result = afw_value_evaluate(result, x->p, xctx);
     }
 
     /* If result is undefined, return NULL. Fuss if required. */
@@ -303,7 +332,6 @@ afw_function_evaluate_parameter(
                 parameter_number,
                 AFW_UTF8_FMT_ARG(&x->function->functionId->internal));
         }
-        afw_xctx_evaluation_stack_pop_parameter_number(xctx);
         return result;
     }
 
@@ -344,8 +372,6 @@ afw_function_evaluate_parameter(
         result = afw_value_convert(result, data_type, false, x->p, xctx);
     }
 
-    /* Pop parameter number from evaluation stack and return result. */
-    afw_xctx_evaluation_stack_pop_parameter_number(xctx);
     return result;
 }
 
@@ -371,7 +397,6 @@ afw_function_evaluate_required_parameter(
         AFW_THROW_ERROR_FZ(undefined_value, xctx,
             "Parameter " AFW_SIZE_T_FMT " is undefined value",
             parameter_number);
-        afw_xctx_evaluation_stack_pop_parameter_number(xctx);
     }
 
     /* Return result that will not be NULL. */

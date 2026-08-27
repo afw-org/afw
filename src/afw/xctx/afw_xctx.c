@@ -97,7 +97,7 @@ afw_xctx_internal_create_finishup(afw_xctx_t *xctx)
     xctx->uuid = afw_uuid_create_utf8(xctx->p, xctx);
 
     /* Create a properties object. */
-    xctx->properties = afw_object_create_unmanaged(
+    xctx->properties = afw_object_create_in_pool(
         xctx->p, xctx);
 
     /* Set times. */
@@ -296,7 +296,8 @@ afw_xctx_scope_symbol_set_value(
      * with undefined" is never confused with "not applicable" at the pointer
      * level (issue #131). let without initializer and nullish assigns land here.
      */
-    afw_value_slot_store(value_address, value, xctx->p, xctx);
+    afw_value_slot_store(value_address, value,
+        xctx->evaluation_heap ? xctx->evaluation_heap : xctx->p, xctx);
 }
 
 
@@ -320,7 +321,8 @@ afw_xctx_scope_symbol_set_value_by_name(
             AFW_UTF8_FMT_ARG(symbol_name));
     }
 
-    afw_value_slot_store(value_address, value, xctx->p, xctx);
+    afw_value_slot_store(value_address, value,
+        xctx->evaluation_heap ? xctx->evaluation_heap : xctx->p, xctx);
 }
 
 
@@ -964,6 +966,96 @@ afw_xctx_evaluation_result_set(
 }
 
 
+/*
+ * Parked parameter occupants are defined_and_evaluated (or a leftover
+ * return-temp wrapper). Call frames are graph infs and are not.
+ */
+AFW_DEFINE(afw_boolean_t)
+afw_xctx_evaluation_stack_is_parked_occupant(const afw_value_t *v)
+{
+    if (!v ||
+        ((afw_size_t)v <= 4096) ||
+        (((afw_size_t)v) & (sizeof(void *) - 1)) != 0)
+    {
+        return false;
+    }
+    if (afw_value_is_function_return_value(v)) {
+        return true;
+    }
+    /* Extra holds have optional_release. Graph calls on the stack do not. */
+    if (!v->inf || !v->inf->optional_release) {
+        return false;
+    }
+    return afw_value_is_defined_and_evaluated(v);
+}
+
+
+/*
+ * Pop a VALUE, releasing parked occupant holds. Skip leftover
+ * parameter-number pairs so a number slot is never used as a value
+ * pointer.
+ */
+AFW_DEFINE(void)
+afw_xctx_evaluation_stack_pop_value_impl(afw_xctx_t *xctx)
+{
+    afw_xctx_evaluation_stack_t *stack;
+    const afw_value_t *v;
+
+    stack = xctx->evaluation_stack;
+    while (!afw_stack_is_empty(stack)) {
+        if (stack->top->entry_id == afw_s_parameter_number) {
+            afw_stack_pop(stack, xctx);
+            if (!afw_stack_is_empty(stack)) {
+                afw_stack_pop(stack, xctx);
+            }
+            continue;
+        }
+        v = stack->top->value;
+        if (afw_xctx_evaluation_stack_is_parked_occupant(v)) {
+            afw_value_release(v, xctx);
+            afw_stack_pop(stack, xctx);
+            continue;
+        }
+        break;
+    }
+    if (!afw_stack_is_empty(stack)) {
+        afw_stack_pop(stack, xctx);
+    }
+}
+
+
+/*
+ * Rewind evaluation stack to saved_top. Release parked occupant holds.
+ * Skip parameter-number pairs without treating the number as a value
+ * pointer.
+ */
+AFW_DEFINE(void)
+afw_xctx_evaluation_stack_rewind(
+    afw_xctx_evaluation_stack_entry_t *saved_top,
+    afw_xctx_t *xctx)
+{
+    afw_xctx_evaluation_stack_t *stack;
+    const afw_value_t *v;
+
+    stack = xctx->evaluation_stack;
+    while (stack->top > saved_top && stack->top >= stack->first) {
+        if (stack->top->entry_id == afw_s_parameter_number) {
+            stack->top--;
+            if (stack->top > saved_top && stack->top >= stack->first) {
+                stack->top--;
+            }
+            continue;
+        }
+        v = stack->top->value;
+        if (afw_xctx_evaluation_stack_is_parked_occupant(v)) {
+            afw_value_release(v, xctx);
+        }
+        stack->top--;
+    }
+    stack->top = saved_top;
+}
+
+
 /* Assign into the current hidden result slot. */
 AFW_DEFINE(void)
 afw_xctx_script_result_set_value(
@@ -981,7 +1073,6 @@ afw_xctx_script_result_restore(
     const afw_value_t *saved,
     afw_boolean_t saved_active,
     afw_boolean_t saved_written,
-    afw_boolean_t donate,
     afw_xctx_t *xctx)
 {
     const afw_value_t *current;
@@ -989,18 +1080,8 @@ afw_xctx_script_result_restore(
     current = xctx->script_result;
     if (current && current != saved &&
         !afw_value_is_undefined(current) &&
-        !afw_value_is_void(current))
-    {
-        if (donate) {
-            afw_value_donate_return(current, xctx);
-        }
-        else {
-            afw_value_release(current, xctx);
-        }
-    }
-    else if (donate && current == saved && current &&
-        !afw_value_is_undefined(current) &&
-        xctx->script_result_written)
+        !afw_value_is_void(current) &&
+        !afw_value_is_function_return_value(current))
     {
         afw_value_release(current, xctx);
     }

@@ -130,11 +130,10 @@ afw_function_execute_array(
     /* Construct a new array with elements passed as arguments. */
     array = afw_array_create_script_wrapper(x->p, x->xctx);
     for (n = 1, arg = &x->argv[1]; n <= x->argc; n++, arg++) {
-        afw_xctx_evaluation_stack_push_parameter_number(n, x->xctx);
+        value = afw_value_evaluate_and_park(*arg, n, x->p, x->xctx);
 
         /* If array expression, add each element of array. */
         if (afw_value_is_array_expression(*arg)) {
-            value = afw_value_evaluate(*arg, x->p, x->xctx);
             if (value) {
                 l = afw_value_as_array(value, x->xctx);
                 for (iterator = NULL;;) {
@@ -143,7 +142,8 @@ afw_function_execute_array(
                     if (!entry) {
                         break;
                     }
-                    entry = afw_value_evaluate(entry, x->p, x->xctx);
+                    entry = afw_value_evaluate_and_park(
+                        entry, n, x->p, x->xctx);
                     afw_array_push_value(array, entry, x->xctx);
                 }
             }
@@ -151,13 +151,8 @@ afw_function_execute_array(
 
         /* If not an array expression, add evaluated argument as element. */
         else {
-            entry = afw_value_evaluate(*arg, x->p, x->xctx);
-            entry = afw_value_closure_binding_create_if_needed(
-                entry, x->xctx);
-            afw_array_push_value(array, entry, x->xctx);
+            afw_array_push_value(array, value, x->xctx);
         }
-
-        afw_xctx_evaluation_stack_pop_parameter_number(x->xctx);
     }
 
     /* Dual face on the instance; no extra heap header. */
@@ -552,7 +547,7 @@ afw_function_execute_slice(
     }
 
     /* Create and return an array with slice. */
-    result_array = afw_array_create_generic(x->p, x->xctx);
+    result_array = afw_array_create_in_pool(x->p, x->xctx);
     for (iterator = NULL, count = 0; count < end; count++) {
         value = afw_array_get_next_value(array->internal, &iterator,
             x->p, x->xctx);
@@ -846,11 +841,17 @@ afw_function_execute_splice(
         delete_count = count - start;
     }
 
-    removed = afw_array_create_generic(x->p, x->xctx);
+    removed = afw_array_create_in_pool(x->p, x->xctx);
     for (i = 0; i < delete_count; i++) {
         value = afw_array_get_entry_value(array->internal, start,
             x->p, x->xctx);
         if (value) {
+            /*
+             * Output is an unmanaged bag of slot copies. Hold the
+             * occupant before the source face drops it. Assign / FRV
+             * get_assignable_value of this bag mints the script face.
+             */
+            value = afw_value_add_reference(value, x->p, x->xctx);
             afw_array_push_value(removed, value, x->xctx);
         }
         afw_array_remove_value_by_index(array->internal, start, x->xctx);

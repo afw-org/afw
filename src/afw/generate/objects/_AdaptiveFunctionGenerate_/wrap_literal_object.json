@@ -1,13 +1,13 @@
 {
-    "brief": "Wrap an evaluated object in a memory look-through face",
+    "brief": "clone_or_reference an evaluated object (memory face)",
     "category": "compiler_internal",
-    "description": "Evaluate an object value, create a memory object wrapper (afw_object_create_wrapper_*) over its instance, and return that wrapper as an object value. Local property sets stay on the face; gets look through to the shared base. Intended for compile/runtime isolation of object literals (issue #17); not normal author surface syntax.",
+    "description": "Evaluate an object value and clone_or_reference it (object_hold: memory face over the instance). Remaining explicit wrap_literal_object() calls; the compiler no longer emits this. Not normal author surface.",
     "functionId": "wrap_literal_object",
     "functionLabel": "wrap_literal_object",
     "parameters": [
         {
             "dataType": "object",
-            "description": "Object to evaluate and wrap (typically a constant object literal once the compiler emits isolation).",
+            "description": "Object to evaluate and hold (typically a constant object literal).",
             "name": "object",
             "optional": false
         }
@@ -15,7 +15,7 @@
     "pure": false,
     "returns": {
         "dataType": "object",
-        "description": "A new memory-wrapper object face over the evaluated base."
+        "description": "A holdable memory-wrapper object face over the evaluated base."
     },
     "scriptSupport": true
 }

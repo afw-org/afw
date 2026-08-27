@@ -180,49 +180,19 @@ x*/
 // x
 // =
 // 1*/
-//? test: S7.4_A5
-//? description: //var " + xx + "yy = -1", insert instead of xx all Unicode characters
+//? test: S7.4_A5_beyond_bmp
+//? description: UTF-8 supplementary code point in a // comment
+//? differences: Adaptive Script stores UTF-8. BMP via ES \\uXXXX is comments-bmp-slash-*.as.
 //? expect: success
 //? source: ...
 
-let hex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
-for (let i1 = 0; i1 < 14; i1 = i1 + 1) {
-    for (let i2 = 0; i2 < 8; i2 = i2 + 1) {
-        for (let i3 = 0; i3 < 16; i3 = i3 + 1) {
-            for (let i4 = 0; i4 < 16; i4 = i4 + 1) {                
-                let uu = hex[i1] + hex[i2] + hex[i3] + hex[i4];                
-                let xx = eval<script>(script("\"\\u" + uu + "\""));
-                let LineTerminators = ((uu === "000A") || (uu === "000D") || (uu === "2028") || (uu === "2029"));                
-                
-                let strToEval = script("let yy = 0;\n//let " + xx + "yy = -1;");                  
-                let e = eval<script>(strToEval);                
-                if (LineTerminators) {
-                    assert(e === -1, "The value of 'e' is expected to equal -1");
-                } else {
-                    assert(e === undefined, "The value of 'e' is expected to equal undefined");
-                }                
-            }
-        }
-    }
-}
-//? test: S7.4_A6
-//? description: "\"var\"+ yy+ \"xx = 1\", insert instead of yy all Unicode characters"
+let e = eval<script>(script("let yy = 0;\n//let " + "😀" + "yy = -1;"));
+assert(e === undefined, "supplementary UTF-8 stays in // comment");
+//? test: S7.4_A6_beyond_bmp
+//? description: UTF-8 supplementary code point inside /* */
+//? differences: Adaptive Script stores UTF-8. BMP via ES \\uXXXX is comments-bmp-block-*.as.
 //? expect: success
 //? source: ...
 
-let hex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
-for (let i1 = 0; i1 < 14; i1 = i1 + 1) {
-    for (let i2 = 0; i2 < 8; i2 = i2 + 1) {
-        for (let i3 = 0; i3 < 16; i3 = i3 + 1) {
-            for (let i4 = 0; i4 < 16; i4 = i4 + 1) {                
-                let uu = hex[i1] + hex[i2] + hex[i3] + hex[i4];                
-                let xx = eval<script>(script("\"\\u" + uu + "\""));
-
-                let y = eval(script("/*let " + xx + "y = 1*/"));
-                if (y !== undefined) {
-                    throw "Expected y to be undefined";
-                }
-            }
-        }
-    }
-}
+let y = eval(script("/*let " + "😀" + "y = 1*/"));
+assert(y === undefined, "supplementary UTF-8 stays in block comment");

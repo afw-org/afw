@@ -61,7 +61,7 @@ impl_compile_custom(
     const afw_utf8_t *source_location;
     const afw_utf8_t *path;
 
-    result = afw_object_create(model->p, xctx);
+    result = afw_object_and_pool_create(model->p, xctx);
     path = afw_object_meta_get_path(custom, xctx);
 
     for (iterator = NULL;;) {
@@ -412,7 +412,7 @@ impl_harvest_object_type(
     afw_boolean_t found;
     const afw_value_t *value;
 
-    result = afw_object_create_unmanaged(p, xctx);
+    result = afw_object_create_in_pool(p, xctx);
     afw_object_meta_set_ids(result,
         adapter_id,
         afw_s__AdaptiveObjectType_,
@@ -432,7 +432,7 @@ impl_harvest_object_type(
         from_parent_paths = (const afw_value_array_t *)value;
         to_parent_paths = afw_value_allocate_unmanaged_array(p, xctx);
         to_parent_paths->internal =  
-            afw_array_of_create(afw_data_type_anyURI, p, xctx);
+            afw_array_create_in_pool_of(afw_data_type_anyURI, p, xctx);
         for (iterator = NULL;;) {
             path = afw_array_of_utf8_get_next(
                 from_parent_paths->internal, &iterator, xctx);

@@ -359,6 +359,11 @@ AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_closure_binding_inf;
 
 
+/** @brief Value function return (return-temp) inf. */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_function_return_value_inf;
+
+
 
 /** @brief Value list expression inf. */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
@@ -860,6 +865,18 @@ afw_value_is_fully_evaluated(
 )
 
 
+/**
+ * @brief Macro to determine if value is a function return temp.
+ * @param A_VALUE to test.
+ * @return boolean result.
+ */
+#define afw_value_is_function_return_value(A_VALUE) \
+( \
+    (A_VALUE) && \
+    (A_VALUE)->inf == &afw_value_function_return_value_inf \
+)
+
+
 
 /**
  * @brief Macro to determine if value is a qualified variable reference.
@@ -1146,15 +1163,21 @@ afw_value_contains(
  * @param value to evaluate.
  * @param p to use.
  * @param xctx of caller.
- * @return evaluated value.
+ * @return evaluated occupant. A function_return_value is consumed
+ *    (`get_assignable_value`: hold inner, release wrapper). Callers
+ *    do not release this result.
  *
- * If value is undefined or there is not a optional_evaluate(), the
- * value passed is returned asis.
+ * Parameter evaluation uses `afw_value_evaluate_for_parameter` so the
+ * occupant hold can be parked for `pop_parameter_number`.
  */
 #define afw_value_evaluate(value, p, xctx) \
-(((value) && (value)->inf->optional_evaluate) \
-    ? (value)->inf->optional_evaluate(value, p, xctx) \
-    : value)
+    afw_value_evaluate_impl(value, p, xctx)
+
+AFW_DECLARE(const afw_value_t *)
+afw_value_evaluate_impl(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 
 
@@ -1165,12 +1188,57 @@ afw_value_contains(
  * @param xctx of caller.
  * @return value, a clone, or NULL if value is NULL.
  *
- * Inf method still named `clone_or_reference`. Missing method, NULL, and
- * undefined are no-ops. Assign to a slot should use
- * `afw_value_slot_store()`.
+ * Inf method `get_reference`. Missing method, NULL, and undefined are
+ * no-ops. Assign to a slot should use `afw_value_slot_store()`.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_add_reference(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief NULL-safe `get_assignable_value`.
+ * @param value to make a slot occupant, or NULL.
+ * @param p pool if the inf must allocate.
+ * @param xctx of caller.
+ * @return assignable value, or NULL if value is NULL.
+ *
+ * Missing method is a no-op. Slot fill uses this (V2).
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_as_assignable(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/** Compatibility name. */
+#define afw_value_clone_or_reference(instance, p, xctx) \
+    afw_value_get_reference(instance, p, xctx)
+
+
+/**
+ * @brief `clone_or_reference` for an unmanaged or permanent object value.
+ *
+ * Already a memory face: hold the instance, return the same value.
+ * Otherwise wrap (mutable overlay) and hold the face. Isolation lives
+ * here, not compiler wrap_literal emit. See designs/issue-2-hold-in-inf.md.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_object_hold(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief `clone_or_reference` for an unmanaged array value.
+ * @see afw_value_object_hold()
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_array_hold(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -1198,30 +1266,13 @@ afw_value_release(
  * @param p pool for `add_reference`.
  * @param xctx of caller.
  *
- * Same pointer is a no-op. A donated return hold (callee hidden result)
- * is taken as this slot's hold instead of a second `add_reference`.
+ * Same pointer is a no-op. Incoming is stored via get_assignable_value.
  */
 AFW_DECLARE(void)
 afw_value_slot_store(
     const afw_value_t **slot,
     const afw_value_t *incoming,
     const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Park a callee hidden-result hold until the caller stores it.
- * @param value returned from a script activation, already held.
- * @param xctx of caller.
- *
- * Used when restoring the caller's `script_result` so the callee last
- * `release` can walk named slots first. `afw_value_slot_store()` takes
- * a matching pointer as the slot hold. No-op for NULL / undefined / void.
- */
-AFW_DECLARE(void)
-afw_value_donate_return(
-    const afw_value_t *value,
     afw_xctx_t *xctx);
 
 
@@ -1544,25 +1595,6 @@ afw_value_clone(
 
 
 /**
- * @brief Isolate a default value for script (issue #110 / #17).
- * @param value evaluated default (may be NULL / undefined).
- * @param p pool for any new face or clone.
- * @param xctx of caller.
- * @return value safe for the caller to mutate without sharing the base.
- *
- * Object/array: memory face (`create_wrapper_*`) over the default instance
- * when not already a face. Other types: `afw_value_clone`. Used by
- * `property_get` / `variable_get` when returning a default.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_isolate_mutable_default(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-
-/**
  * @brief Create assignment target value.
  * @param contextual information for assignment target.
  * @param assignment_target (see afw_compile_internal.h).
@@ -1699,6 +1731,74 @@ afw_value_closure_binding_create(
 AFW_DEFINE(const afw_value_t *)
 afw_value_closure_binding_create_if_needed(
     const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create a function return temp wrapping a returned value.
+ * @param return_value occupant being returned.
+ * @param p pool for the wrapper.
+ * @param xctx of caller.
+ * @return Created afw_value_t.
+ *
+ * Return-experiment wrapper. Last release of this value releases
+ * return_value and frees the wrapper. Count starts at 1 (may adjust).
+ */
+AFW_DEFINE(const afw_value_t *)
+afw_value_function_return_value_create(
+    const afw_value_t *return_value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Consume a function_return_value for a host (CLI / test_script).
+ * @param value maybe a return temp.
+ * @param p pool if assignable must allocate.
+ * @param xctx of caller.
+ * @return Inner assignable occupant; if value was an FRV it is released.
+ */
+AFW_DEFINE(const afw_value_t *)
+afw_value_function_return_value_consume(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Evaluate between push_parameter_number and pop_parameter_number.
+ * @param parked set to the occupant to pass to pop_parameter_number
+ *    (NULL means pop both parameter entries; no extra hold).
+ * @param evaluated set to the occupant execute_* should use.
+ * @param value maybe unevaluated (a call, …).
+ * @param p pool passed to evaluate.
+ * @param xctx of caller.
+ *
+ * Uses raw optional_evaluate so a return temp is not consumed before
+ * we can `get_assignable_value` (hold inner, release wrapper) and park
+ * that occupant. Caller must already have pushed a parameter-number pair.
+ */
+AFW_DECLARE(void)
+afw_value_evaluate_for_parameter(
+    const afw_value_t **parked,
+    const afw_value_t **evaluated,
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Evaluate and park via the parameter-number protocol.
+ * @param value maybe unevaluated.
+ * @param parameter_number 1-based stack/backtrace number.
+ * @param p pool passed to evaluate.
+ * @param xctx of caller.
+ * @return Occupant for the caller. Extra hold is parked for pop_value.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_evaluate_and_park(
+    const afw_value_t *value,
+    afw_size_t parameter_number,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 

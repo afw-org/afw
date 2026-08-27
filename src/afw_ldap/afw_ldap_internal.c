@@ -276,7 +276,7 @@ afw_ldap_internal_create_object_from_entry(
                 object_type_id->s, object_type_id->len);
     }
 
-    o = afw_object_create(p, xctx);
+    o = afw_object_and_pool_create(p, xctx);
     bv = NULL;
     a = NULL;
     be = NULL;

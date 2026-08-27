@@ -440,10 +440,12 @@ void
 impl_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
     void *address,
+    afw_size_t size,
     afw_xctx_t *xctx)
 {
     (void)self;
     (void)address;
+    (void)size;
     (void)xctx;
 }
 
@@ -583,10 +585,12 @@ static void
 impl_mt_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
     void *address,
+    afw_size_t size,
     afw_xctx_t *xctx)
 {
     (void)self;
     (void)address;
+    (void)size;
     (void)xctx;
 }
 
@@ -756,21 +760,15 @@ afw_pool_create_xctx_p(
     const afw_pool_t *parent,
     afw_xctx_t *xctx)
 {
-    AFW_POOL_SELF_T *self;
-
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
 
     /*
-     * Always single-threaded: an xctx is one thread's work, even when
-     * parent is env/base (afw command). Linking onto a mt parent still
-     * takes the env lock.
+     * Single-thread heap: xctx is one thread's work. Optional free
+     * recycles. Live chunk header remains until a later heap trim.
      */
-    self = impl_create_child(parent, &impl_afw_pool_inf,
-        xctx->thread, xctx);
-    self->pub.managed_p = &self->pub;
-    return &self->pub;
+    return afw_pool_heap_create(parent, xctx);
 }
 
 

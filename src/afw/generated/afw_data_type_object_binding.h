@@ -63,20 +63,27 @@ afw_data_type_object;
  * @brief Unmanaged evaluated value inf for data type object.
  *
  * Lifetime is the containing pool until clone_or_reference.
- * Scalar clone_or_reference boxes a managed copy in xctx->p.
- * Object/array/function return the same instance (no clone).
- * optional_release is NULL on the unmanaged inf.
+ * Scalar clone_or_reference creates a managed holdable in p.
+ * Object/array clone_or_reference holds a memory face.
+ * optional_release is NULL on unmanaged scalars.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_object_inf;
 
 /**
+ * @brief Assignable (script face) value inf for data type object.
+ *
+ * Minted by get_assignable_value of a memory bag. get_reference
+ * and get_assignable_value bump the instance.
+ */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_assignable_object_inf;
+
+/**
  * @brief Managed evaluated value inf for data type object.
  *
- * Header allocated in xctx->p; lifetime by reference_count on the
- * value header. Create starts at RC 0. optional_release frees the
- * header when RC is 0, else decrements. clone_or_reference bumps RC
- * and returns the same instance.
+ * Start-at-1 holdable clone in p (must release). clone_or_reference
+ * bumps. Last release frees via stored p.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_object_inf;
@@ -85,7 +92,8 @@ afw_value_managed_object_inf;
  * @brief Permanent (life of afw environment) value inf for data type object.
  *
  * Lifetime is the afw environment / static const storage. optional_release
- * is NULL; clone_or_reference returns the same instance as-is.
+ * is NULL. Scalar clone_or_reference is as-is. Object/array
+ * clone_or_reference holds a memory face (same as unmanaged).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_object_inf;
@@ -212,9 +220,10 @@ afw_value_as_object(
  * Caller fills internal after allocate.
  */
 AFW_DECLARE(afw_value_object_t *)
-afw_value_allocate_unmanaged_object(
+afw_value_object_allocate(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
+#define afw_value_allocate_unmanaged_object afw_value_object_allocate
 
 /**
  * @brief Create function for managed data type object value.
@@ -222,17 +231,17 @@ afw_value_allocate_unmanaged_object(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * Allocates a managed value header in xctx->p. reference_count starts
- * at 0: optional_release without a prior clone_or_reference frees the
- * header immediately. Release frees the value header only.
+ * Allocates in p. Starts at reference count 1 (must release).
+ * clone_or_reference bumps. Last release frees via stored p.
  * Stores the pointer as-is; does not clone or take a reference on the
  * referent. Caller must ensure the referent outlives this value (or
  * a future object/array path may special-case container RC).
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_object(
+afw_value_object_create_managed(
     const afw_object_t * internal,
     afw_xctx_t *xctx);
+#define afw_value_create_managed_object afw_value_object_create_managed
 
 /**
  * @brief Create function for unmanaged data type object value.
@@ -242,12 +251,13 @@ afw_value_create_managed_object(
  * @return Created const afw_value_t *.
  *
  * Allocates in pool p; lifetime is the pool (no value refcount).
- * clone_or_reference returns the same instance as-is.
+ * clone_or_reference holds a memory face.
  * Stores the pointer as-is; does not clone the referent.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_unmanaged_object(const afw_object_t * internal,
+afw_value_object_create(const afw_object_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
+#define afw_value_create_unmanaged_object afw_value_object_create
 
 /**
  * @brief Get property function for data type object value.

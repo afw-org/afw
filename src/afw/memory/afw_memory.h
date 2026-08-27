@@ -23,6 +23,8 @@
  *
  * Same dest/copy verbs as @ref afw_utf8 (`create` copies, `create_no_copy`
  * points) without NFC. See `designs/c-naming-and-payloads.md`.
+ * Pool alloc with `p, xctx` last: `afw_memory_malloc` / `calloc` / `free`
+ * below (same job as `afw_pool_*` with instance first).
  */
 
 AFW_BEGIN_DECLARES
@@ -46,6 +48,73 @@ memcpy((to), (from), sizeof(*(to)))
 #define afw_memory_clear(to) \
 memset((to), 0, sizeof(*(to)))
 
+
+/**
+ * @brief Allocate cleared memory. Pool last with xctx.
+ * @param size of memory to allocate.
+ * @param p pool.
+ * @param xctx of caller.
+ * @return Pointer to memory allocated.
+ *
+ * Same as afw_pool_calloc() with `p, xctx` at the end.
+ */
+#define afw_memory_calloc(size, p, xctx) \
+    afw_pool_calloc((p), (size), (xctx))
+
+
+/**
+ * @brief Allocate uncleared memory. Pool last with xctx.
+ * @param size of memory to allocate.
+ * @param p pool.
+ * @param xctx of caller.
+ * @return Pointer to memory allocated.
+ */
+#define afw_memory_malloc(size, p, xctx) \
+    afw_pool_malloc((p), (size), (xctx))
+
+
+/**
+ * @brief Allocate cleared memory for type. Pool last with xctx.
+ * @param type to allocate.
+ * @param p pool.
+ * @param xctx of caller.
+ * @return Pointer cast to type *.
+ */
+#define afw_memory_calloc_type(type, p, xctx) \
+    (type *) afw_pool_calloc((p), sizeof(type), (xctx))
+
+
+/**
+ * @brief Allocate uncleared memory for type. Pool last with xctx.
+ * @param type to allocate.
+ * @param p pool.
+ * @param xctx of caller.
+ * @return Pointer cast to type *.
+ */
+#define afw_memory_malloc_type(type, p, xctx) \
+    (type *) afw_pool_malloc((p), sizeof(type), (xctx))
+
+
+/**
+ * @brief Optionally free memory. Pool last with xctx.
+ * @param address returned by afw_memory_malloc/calloc.
+ * @param size passed to malloc/calloc.
+ * @param p pool.
+ * @param xctx of caller.
+ */
+#define afw_memory_free(address, size, p, xctx) \
+    afw_pool_free_memory((p), (address), (size), (xctx))
+
+
+/**
+ * @brief Optionally free a typed allocation. Pool last with xctx.
+ * @param address returned by afw_memory_malloc_type/calloc_type.
+ * @param type allocated.
+ * @param p pool.
+ * @param xctx of caller.
+ */
+#define afw_memory_free_type(address, type, p, xctx) \
+    afw_pool_free_memory((p), (address), sizeof(type), (xctx))
 
 
 /**

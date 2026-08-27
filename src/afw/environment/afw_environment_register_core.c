@@ -201,7 +201,7 @@ impl_create_environment_variables_object(
     const afw_value_t *value;
     afw_size_t name_len;
 
-    result = afw_object_create_unmanaged(xctx->p, xctx);
+    result = afw_object_create_in_pool(xctx->p, xctx);
     afw_object_meta_set_ids(result,
         afw_s_afw,
         afw_s__AdaptiveSystemInfo_,

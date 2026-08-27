@@ -382,7 +382,7 @@ afw_environment_create(
         int ai;
         apr_status_t rv;
 
-        process_object = afw_object_create_unmanaged(p, xctx);
+        process_object = afw_object_create_in_pool(p, xctx);
         afw_object_meta_set_ids(process_object, afw_s_afw,
             afw_s__AdaptiveProcess_, afw_s_current, xctx);
 
@@ -391,7 +391,7 @@ afw_environment_create(
             afw_v_programName, &env->pub.program_name, xctx);
 
         /* process::args — ECMAScript-style name (issue #74); use length() for count. */
-        args_array = afw_array_of_create(afw_data_type_string, p, xctx);
+        args_array = afw_array_create_in_pool_of(afw_data_type_string, p, xctx);
         for (ai = 0; ai < argc; ai++) {
             arg = afw_utf8_create(argv[ai], AFW_UTF8_Z_LEN, p, xctx);
             afw_array_push_internal(args_array, afw_data_type_string,
@@ -1107,7 +1107,7 @@ afw_environment_load_extension(
             if (!properties)
             {
                 extension_id = afw_utf8_clone(extension_id, p, xctx);
-                properties = afw_object_create(p, xctx);
+                properties = afw_object_and_pool_create(p, xctx);
                 afw_object_set_property_as_string(properties,
                     afw_v_extensionId, extension_id, xctx);
             }
@@ -1148,7 +1148,7 @@ afw_environment_load_extension(
             /* If there is not a properties object, make one. */
             if (!properties)
             {
-                properties = afw_object_create(p, xctx);
+                properties = afw_object_and_pool_create(p, xctx);
                 afw_object_set_property_as_string(properties,
                     afw_v_modulePath, module_path, xctx);                
             }

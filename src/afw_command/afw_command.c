@@ -562,6 +562,8 @@ impl_evaluate(
         /* If not check mode, evaluate expression and print or return result. */
         if (!self->check_mode) {
             evaluated_value = afw_value_evaluate(value, xctx->p, xctx);
+            evaluated_value = afw_value_function_return_value_consume(
+                evaluated_value, xctx->p, xctx);
 
             /* If requested, determine exit code. */
             if (exit_code) {

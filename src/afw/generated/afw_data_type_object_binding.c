@@ -80,20 +80,34 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_object_direct, \
     (const void *)&afw_data_type_object_direct
 
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_assignable_value(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_assignable_get_reference(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
 /* Declares and rti/inf defines for interface afw_value */
 /* unmanaged object: optional_release holds the instance. */
-/* clone_or_reference get_reference on the instance. */
+/* clone_or_reference is object_hold / array_hold. */
 #define AFW_IMPLEMENTATION_ID "object"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_object_inf
 #define impl_afw_value_optional_release impl_afw_value_unmanaged_optional_release
-#define impl_afw_value_clone_or_reference impl_afw_value_get_reference
+#define impl_afw_value_get_reference impl_afw_value_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_value
 #define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef impl_afw_value_optional_release
-#undef impl_afw_value_clone_or_reference
+#undef impl_afw_value_get_reference
+#undef impl_afw_value_get_assignable_value
 
 /* Declares and rti/inf defines for interface afw_value */
 /* managed object: optional_release frees header at RC 0; */
@@ -101,28 +115,48 @@ impl_afw_value_permanent_get_reference(
 #define AFW_IMPLEMENTATION_ID "managed_object"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_object_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
-#define impl_afw_value_clone_or_reference impl_afw_value_managed_get_reference
+#define impl_afw_value_get_reference impl_afw_value_managed_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_managed_get_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef impl_afw_value_optional_release
-#undef impl_afw_value_clone_or_reference
+#undef impl_afw_value_get_reference
+#undef impl_afw_value_get_assignable_value
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
 /* permanent object: optional_release NULL; */
-/* clone_or_reference returns the same instance as-is. */
+/* clone_or_reference holds a memory face. */
 #define AFW_IMPLEMENTATION_ID "permanent_object"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_object_inf
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference impl_afw_value_permanent_get_reference
+#define impl_afw_value_get_reference impl_afw_value_permanent_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_value
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef impl_afw_value_optional_release
-#undef impl_afw_value_clone_or_reference
+#undef impl_afw_value_get_reference
+#undef impl_afw_value_get_assignable_value
+#undef AFW_VALUE_INF_ONLY
+
+/* Declares and rti/inf defines for interface afw_value */
+/* assignable object: script face; bump instance. */
+#define AFW_IMPLEMENTATION_ID "assignable_object"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_assignable_object_inf
+#define impl_afw_value_optional_release impl_afw_value_unmanaged_optional_release
+#define impl_afw_value_get_reference impl_afw_value_assignable_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_assignable_get_reference
+#define AFW_VALUE_INF_ONLY 1
+#include "afw_value_impl_declares.h"
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef impl_afw_value_optional_release
+#undef impl_afw_value_get_reference
+#undef impl_afw_value_get_assignable_value
 #undef AFW_VALUE_INF_ONLY
 
 static const afw_value_string_t
@@ -244,7 +278,7 @@ afw_object_set_property_as_object(
             xctx);
     }
 
-    v = afw_value_create_unmanaged_object(internal, object->p, xctx);
+    v = afw_value_object_create(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -275,7 +309,7 @@ afw_value_as_object(const afw_value_t *value, afw_xctx_t *xctx)
 
 /* Allocate function for data type object values. */
 AFW_DEFINE(afw_value_object_t *)
-afw_value_allocate_unmanaged_object(const afw_pool_t *p, afw_xctx_t *xctx)
+afw_value_object_allocate(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_object_t *result;
 
@@ -287,7 +321,7 @@ afw_value_allocate_unmanaged_object(const afw_pool_t *p, afw_xctx_t *xctx)
 
 /* Create function for managed data type object value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_object(
+afw_value_object_create_managed(
     const afw_object_t * internal,
     afw_xctx_t *xctx)
 {
@@ -312,7 +346,7 @@ afw_value_create_managed_object(
 
 /* Create function for data type object value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_unmanaged_object(const afw_object_t * internal,
+afw_value_object_create(const afw_object_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_object_t *v;
@@ -468,6 +502,33 @@ impl_afw_value_get_reference(
     return instance;
 }
 
+/* Slot fill: mint an assignable face. */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_assignable_value(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    return afw_value_object_hold(instance, p, xctx);
+}
+
+/* Assignable face: bump instance. */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_assignable_get_reference(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_object_t *self =
+        (const afw_value_object_t *)instance;
+
+    (void)p;
+    if (self->internal) {
+        afw_object_get_reference(self->internal, xctx);
+    }
+    return instance;
+}
+
 
 /* Implementation of method get_reference for managed value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
@@ -503,7 +564,9 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* Permanent: return same instance as-is. */
+    /* Permanent bag: hold is self; isolate is get_assignable_value. */
+    (void)p;
+    (void)xctx;
     return instance;
 }
 

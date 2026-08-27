@@ -910,8 +910,8 @@ do {\
         AFW_ERROR_COPY(xctx->error, &this_THROWN_ERROR); \
         longjmp(xctx->current_try->throw_jmp_buf, this_THROWN_ERROR.code); \
     }\
-    xctx->evaluation_stack->top = xctx->evaluation_stack->first + \
-        this_TOP_OFFSET; \
+    afw_xctx_evaluation_stack_rewind( \
+        xctx->evaluation_stack->first + this_TOP_OFFSET, xctx); \
 } while (0)
 
 

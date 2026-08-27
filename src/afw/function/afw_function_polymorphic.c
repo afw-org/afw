@@ -210,7 +210,7 @@ afw_function_execute_bag(
         return x->data_type->empty_array_value;
     }
 
-    array = afw_array_of_create(x->data_type, x->p, x->xctx);
+    array = afw_array_create_in_pool_of(x->data_type, x->p, x->xctx);
 
     for (i = 1; i <= x->argc; i++) {
         value = afw_function_evaluate_required_parameter(x, i, x->data_type);
@@ -316,26 +316,7 @@ afw_function_execute_clone(
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
 
     result = afw_value_clone(value, x->p, x->xctx);
-    if (result && AFW_VALUE_IS_DATA_TYPE(result, object)) {
-        const afw_object_t *obj =
-            ((const afw_value_object_t *)result)->internal;
-        const afw_object_t *wrap;
-
-        /*
-         * Script-mutable clones without an entity path get a face so
-         * later sets are overlay holds. Entity clones keep path/meta
-         * for reconcile_object.
-         */
-        if (obj && !afw_object_is_memory_wrapper(obj) &&
-            !afw_object_meta_get_path(obj, x->xctx))
-        {
-            wrap = afw_object_create_wrapper_unmanaged(
-                obj, x->p, x->xctx);
-            result = afw_object_as_value(wrap, x->p, x->xctx);
-        }
-    }
-
-    return result;
+    return afw_value_as_assignable(result, x->p, x->xctx);
 }
 
 
@@ -1094,7 +1075,7 @@ afw_function_execute_intersection(
             "array1 and array2 must have a data type of the same type",
             x->xctx);
     }
-    array = afw_array_of_create(data_type, x->p, x->xctx);
+    array = afw_array_create_in_pool_of(data_type, x->p, x->xctx);
 
     for (iterator = NULL;;) {
         afw_array_get_next_internal(array1->internal, &iterator, NULL,
@@ -2702,7 +2683,7 @@ afw_function_execute_union(
             x->xctx);
     }
 
-    array = afw_array_of_create(data_type, x->p, x->xctx);
+    array = afw_array_create_in_pool_of(data_type, x->p, x->xctx);
     impl_add_nondups_to_array(data_type, array1->internal, array, x->xctx);
     for (i = 2; i <= x->argc; i++) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arrayn, i, array);
@@ -3175,6 +3156,13 @@ afw_function_execute_freeze(
         AFW_THROW_ERROR_Z(general,
             "freeze requires an object or array", x->xctx);
     }
+
+    /*
+     * Hold first (mutable overlay over a compiled/permanent base), then
+     * freeze that handle. Assign later bumps the frozen face instead of
+     * wrapping a raw immutable instance into a mutable overlay.
+     */
+    value = afw_value_as_assignable(value, x->p, x->xctx);
 
     if (afw_value_is_object(value)) {
         object = (const afw_value_object_t *)value;

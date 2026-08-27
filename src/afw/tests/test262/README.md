@@ -15,6 +15,11 @@ If a folder in test262 contained several tests, we usually collapsed them
 into one Adaptive `.as` file with multiple `//? test:` cases to keep the
 file count manageable.
 
+Comment BMP sweeps (`S7.4_A5` / `S7.4_A6`) stay as ES `\\uXXXX` over Jeremy's
+code-point grid (internally UTF-8). They are split into `comments-bmp-*.as`
+so valgrind can finish; `comments.as` keeps the other cases plus a
+supplementary-plane UTF-8 check.
+
 ## Why this suite exists
 
 Adaptive Script is **not** ECMAScript, but we intentionally share a lot of

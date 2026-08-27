@@ -166,6 +166,18 @@ afw_stack_extend_impl(
         AFW_THROW_ERROR_Z(general, "stack underflow", xctx); \
     } \
     ((instance)->top)--;
+
+
+/**
+ * @brief Pointer to the current top entry, without popping.
+ * @param instance
+ * @param xctx of caller (unused; for call-shape consistency).
+ * @return instance->top.
+ *
+ * Caller must not peek an empty stack (top < first).
+ */
+#define afw_stack_peek(instance, xctx) \
+    ((void)(xctx), (instance)->top)
  
   
 /**

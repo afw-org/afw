@@ -955,13 +955,13 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  *
  * ... allocate memory and register cleanup using new_p ...
  *
- * object = afw_object_create_cede_p(new_p, xctx);
+ * object = afw_object_and_pool_create_cede(new_p, xctx);
  *
  * ... set properties and use object ...
  *
  * afw_object_release(object, xctx);
  */
-#define afw_object_create_cede_p(p, xctx) \
+#define afw_object_and_pool_create_cede(p, xctx) \
     afw_object_create_with_options( \
         AFW_OBJECT_MEMORY_OPTION_managed_cede_p, p, xctx)
 
@@ -975,23 +975,31 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  * Creates a general pool as a child of p->managed_p to hold the object.
  * afw_object_release() of the last hold destroys that pool.
  */
-#define afw_object_create(p, xctx) \
+#define afw_object_and_pool_create(p, xctx) \
     afw_object_create_with_options( \
         AFW_OBJECT_MEMORY_OPTION_managed, p, xctx)
 
 
 /**
- * @brief Create an empty unmanaged object in memory.
+ * @brief Create an empty object that lives in pool p.
  * @param p to use for the object.
  * @param xctx of caller.
  * @return instance of new object.
  *
- * Reference counting is not done for an unmanaged object, so the lifetime of
- * the object will be controlled by the lifetime of the p specified.
+ * Start 0. Lifetime is p. No release unless you clone_or_reference.
  */
-#define afw_object_create_unmanaged(p, xctx) \
+#define afw_object_create_in_pool(p, xctx) \
     afw_object_create_with_options( \
         AFW_OBJECT_MEMORY_OPTION_unmanaged, p, xctx)
+
+
+/** Compatibility names. */
+#define afw_object_create_cede_p(p, xctx) \
+    afw_object_and_pool_create_cede(p, xctx)
+#define afw_object_create(p, xctx) \
+    afw_object_and_pool_create(p, xctx)
+#define afw_object_create_unmanaged(p, xctx) \
+    afw_object_create_in_pool(p, xctx)
 
 
 /**
@@ -1043,8 +1051,8 @@ afw_object_insure_embedded_exists(
  * @param entity_p to use for entity object.  Ignored for embedded object.
  * @param xctx of caller.
  *
- * This macro will call afw_object_create,
- * afw_object_create_cede_p() or
+ * This macro will call afw_object_and_pool_create,
+ * afw_object_and_pool_create_cede() or
  * afw_object_create_embedded() depending on whether embedding_object
  * is NULL and cede_p is true.
  *
@@ -1063,7 +1071,7 @@ afw_object_insure_embedded_exists(
         (property_name && \
         afw_value_equal((property_name), afw_v__meta_, xctx))) \
     { \
-        result = afw_object_create_unmanaged(entity_p, xctx); \
+        result = afw_object_create_in_pool(entity_p, xctx); \
     } \
     else if (embedding_object) { \
         result = afw_object_create_embedded( \

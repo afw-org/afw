@@ -64,6 +64,19 @@ Frame `secure` = how the entry was **pushed** (never push client context as trus
 - Model `on*` hooks document bags via generate OT **`contextType`** and short property descriptions (`afw-model-adapter`). Optional `qualifier("current")` is debug/tools only.
 - **custom::** multi-layer redesign still deferred (residual names under property-level `on*` risk) — see beta-backlog.
 
+## Script-facing: catalogs vs working objects
+
+C may fill a memory object and never `set_immutable`. That is not a script promise.
+
+| Door | Script should see |
+|------|-------------------|
+| Catalog qualifiers (`environment::`, `process::`, `request::`, `application::`, `adapter::` conf, `custom::` conf) | **Read-only.** SET throws. Do not mint a face over the live catalog. |
+| `qualifier()` / `qualifiers()` | **Copy** (#9). Mutating the copy is fine. |
+| Retrieve / `get_object` | Working copy (slot fill / view). Local sets; no store write-through. |
+| `current::object` | Depends on **which** `current::` frame: model hook ≈ retrieve; auth/index ≈ the resource/row (read). Not “`current::` is always mutable.” |
+
+Live catalog mutation, if ever: a function with execute access and authorization that actually changes the host — not property SET on a wrapper.
+
 ## `current::` vs `custom::` (product rule)
 
 | Qualifier | Role |

@@ -16,7 +16,8 @@
 
 
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference NULL
+#define impl_afw_value_get_reference NULL
+#define impl_afw_value_get_assignable_value NULL
 #define impl_afw_value_create_iterator NULL
 
 /* Inf specific is always data type. */

@@ -110,8 +110,9 @@ return 0;
 //?
 //? test: get_object-reconcilable-still-works
 //? description: ...
-reconcilable:true skips face so meta.reconcilable and path remain on the
-entity/view (issue #17 exception). Full reconcile covered in reconcile_object.as.
+reconcilable:true still wraps at slot fill (no skip-hold). Path and
+reconcilable meta remain on the face. Mutation stays local. Full
+reconcile covered in reconcile_object.as.
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -124,5 +125,11 @@ const o = get_object("file", "TestObjectType1", "Test1", {
 assert(meta(o).reconcilable !== undefined);
 assert(meta(o).path === anyURI("/file/TestObjectType1/Test1"));
 assert(meta(o).objectId === "Test1");
+o.TestString1 = "face-only on reconcilable get";
+const b = get_object("file", "TestObjectType1", "Test1", {
+    reconcilable: true
+});
+assert(b.TestString1 === "This is a test string.",
+    "reconcilable get is a face; store is not write-through");
 
 return 0;

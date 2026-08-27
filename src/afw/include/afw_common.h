@@ -2331,14 +2331,6 @@ struct afw_xctx_s {
      */
     afw_boolean_t script_result_written;
 
-    /**
-     * Callee hidden-result holds parked until a caller slot_store takes
-     * the matching pointer. Issue #2 slot protocol.
-     */
-    const afw_value_t **script_result_donated;
-    afw_size_t script_result_donated_count;
-    afw_size_t script_result_donated_alloc;
-
 };
 
 

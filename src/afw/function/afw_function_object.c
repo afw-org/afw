@@ -302,9 +302,6 @@ afw_function_execute_property_delete_by_reference(
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(1);
 
-    /* Push parameter number on evaluation stack. */
-    afw_xctx_evaluation_stack_push_parameter_number(1, x->xctx);
-
     /* Arg 1 must be a reference by key value. */
     value = AFW_FUNCTION_ARGV(1);
     if (!afw_value_is_reference_by_key(value)) {
@@ -314,8 +311,8 @@ afw_function_execute_property_delete_by_reference(
     reference = (const afw_value_reference_by_key_t *)value;
 
     /* The aggregate_value must be an object. */
-    object_value = afw_value_evaluate(reference->aggregate_value,
-        x->p, x->xctx);
+    object_value = afw_value_evaluate_and_park(
+        reference->aggregate_value, 1, x->p, x->xctx);
     if (!afw_value_is_object(object_value)) {
         AFW_THROW_ERROR_Z(general,
             "Expecting object reference", x->xctx);
@@ -323,15 +320,13 @@ afw_function_execute_property_delete_by_reference(
     object = (const afw_value_object_t *)object_value;
 
     /* The key must be a property name. */
-    key_value = afw_value_evaluate(reference->key, x->p, x->xctx);
+    key_value = afw_value_evaluate_and_park(
+        reference->key, 1, x->p, x->xctx);
     if (!afw_value_is_string(key_value)) {
         AFW_THROW_ERROR_Z(general,
             "Expecting property reference", x->xctx);
     }
     name = (const afw_value_string_t *)key_value;
-
-    /* Pop parameter number from evaluation stack and return result. */
-    afw_xctx_evaluation_stack_pop_parameter_number(x->xctx);
 
     /* If property exists, delete it and return true.*/
     has = afw_object_has_property(object->internal, &name->pub, x->xctx);
@@ -404,8 +399,8 @@ afw_function_execute_property_exists(
  *
  * Return the value of a property. Optional default applies only when the
  * property is missing — not when the value is undefined. If missing and no
- * default is given, the result is undefined. Object/array defaults get a
- * mutable memory face (issues #110 / #17); other defaults are cloned.
+ * default is given, the result is undefined. The default is the evaluated value
+ * at that moment (identity).
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -427,7 +422,7 @@ afw_function_execute_property_exists(
  *   name - (string) Property name.
  *
  *   defaultValue - (optional any) Value to return only if the property is
- *       missing. Isolated when used (object/array face; otherwise clone).
+ *       missing. The evaluated value at that moment (identity).
  *
  * Returns:
  *
@@ -450,7 +445,6 @@ afw_function_execute_property_get(
         result = afw_value_undefined;
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
             result = afw_value_evaluate(x->argv[3], x->p, x->xctx);
-            result = afw_value_isolate_mutable_default(result, x->p, x->xctx);
         }
     }
 
@@ -557,7 +551,7 @@ afw_function_execute_entries(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
-    result_array = afw_array_create_generic(x->p, x->xctx);
+    result_array = afw_array_create_in_pool(x->p, x->xctx);
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(
             object->internal, &iterator, &property_name, x->xctx);
@@ -565,7 +559,7 @@ afw_function_execute_entries(
             break;
         }
         name_value = property_name;
-        pair = afw_array_create_generic(x->p, x->xctx);
+        pair = afw_array_create_in_pool(x->p, x->xctx);
         afw_array_push_value(pair, name_value, x->xctx);
         afw_array_push_value(pair, value, x->xctx);
         afw_array_push_value(result_array,
@@ -619,7 +613,7 @@ afw_function_execute_keys(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
-    result_array = afw_array_create_generic(x->p, x->xctx);
+    result_array = afw_array_create_in_pool(x->p, x->xctx);
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(
             object->internal, &iterator, &property_name, x->xctx);
@@ -678,7 +672,7 @@ afw_function_execute_values(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
-    result_array = afw_array_create_generic(x->p, x->xctx);
+    result_array = afw_array_create_in_pool(x->p, x->xctx);
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(
             object->internal, &iterator, &property_name, x->xctx);

@@ -149,9 +149,9 @@ const def = bag<object>({ n: 0 });
 const a = property_get({}, "x", def);
 a[0].n = 99;
 assert(a[0].n === 99, "face sees local set");
-assert(def[0].n === 0, "default bag base must stay clean after index set");
+assert(def[0].n === 99, "default that is a variable is identity");
 const b = property_get({}, "x", def);
-assert(b[0].n === 0, "second property_get face must not see prior nested set");
+assert(b[0].n === 99, "second property_get shares the same occupant");
 
 return 0;
 
@@ -173,9 +173,9 @@ function poison() {
     }, a);
 }
 poison();
-assert(def[0].n === 0, "map must not mutate default bag base");
+assert(def[0].n === 99, "map mutates the occupant (identity default)");
 const b = property_get({}, "x", def);
-assert(b[0].n === 0, "second face after map must start clean");
+assert(b[0].n === 99, "second property_get shares the same occupant");
 
 return 0;
 
@@ -196,9 +196,9 @@ function poison() {
     }, a);
 }
 poison();
-assert(def[0].n === 0, "variable_get default bag base clean after map");
+assert(def[0].n === 99, "variable_get default that is a variable is identity");
 const b = variable_get("nope2", def);
-assert(b[0].n === 0, "second variable_get face clean after map");
+assert(b[0].n === 99, "second variable_get shares the same occupant");
 
 return 0;
 
@@ -217,8 +217,8 @@ const held = a[0];
 held.n = 7;
 assert(held.n === 7);
 const b = property_get({}, "x", def);
-assert(b[0].n === 0, "held nested face must not alias second array face entry");
-assert(def[0].n === 0, "base bag still clean");
+assert(b[0].n === 7, "held nested is the same occupant");
+assert(def[0].n === 7, "default that is a variable is identity");
 
 return 0;
 

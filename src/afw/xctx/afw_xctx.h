@@ -167,6 +167,28 @@ afw_xctx_environment_is_terminating(afw_xctx_t *xctx)
 
 
 /**
+ * @brief Optionally free memory allocated from xctx's lifetime pool.
+ * @param address returned by afw_xctx_malloc/calloc.
+ * @param size passed to malloc/calloc.
+ * @param xctx of caller.
+ *
+ * Same pool as afw_xctx_malloc (`xctx->p`).
+ */
+#define afw_xctx_free(address, size, xctx) \
+    afw_pool_free_memory((xctx)->p, (address), (size), (xctx))
+
+
+/**
+ * @brief Optionally free a typed allocation from xctx's lifetime pool.
+ * @param address returned by afw_xctx_malloc_type/calloc_type.
+ * @param type allocated.
+ * @param xctx of caller.
+ */
+#define afw_xctx_free_type(address, type, xctx) \
+    afw_pool_free_memory((xctx)->p, (address), sizeof(type), (xctx))
+
+
+/**
  * @brief Begin a section this can only use secure context variables.
  * @param xctx of caller.
  *
@@ -701,20 +723,15 @@ afw_xctx_script_result_set_value(
  * @param saved caller `script_result` pointer.
  * @param saved_active caller `script_result_active`.
  * @param saved_written caller `script_result_written`.
- * @param donate true to park the callee hold for the caller to store;
- *    false to `release` a nested write (for init/increment).
  * @param xctx of caller.
  *
- * Not an assign into the caller slot. Call/block last-`release` must
- * already have run so named slots are walked while the callee hidden
- * result still holds the return.
+ * Return temps hold the occupant; restore only rewinds the pointer.
  */
 AFW_DECLARE(void)
 afw_xctx_script_result_restore(
     const afw_value_t *saved,
     afw_boolean_t saved_active,
     afw_boolean_t saved_written,
-    afw_boolean_t donate,
     afw_xctx_t *xctx);
 
 
@@ -856,10 +873,12 @@ do { \
 #else
 #define afw_xctx_evaluation_stack_push_parameter_number( \
     PARAMETER_NUMBER, xctx) \
-    afw_stack_push_direct(xctx->evaluation_stack, xctx); \
-    (xctx)->evaluation_stack->top->parameter_number =PARAMETER_NUMBER; \
-    afw_stack_push_direct(xctx->evaluation_stack, xctx); \
-    (xctx)->evaluation_stack->top->entry_id = afw_s_parameter_number
+do { \
+    afw_stack_push_direct((xctx)->evaluation_stack, (xctx)); \
+    (xctx)->evaluation_stack->top->parameter_number = (PARAMETER_NUMBER); \
+    afw_stack_push_direct((xctx)->evaluation_stack, (xctx)); \
+    (xctx)->evaluation_stack->top->entry_id = afw_s_parameter_number; \
+} while (0)
 #endif
 
 
@@ -879,52 +898,88 @@ do { \
 } while (0)
 #else
 #define afw_xctx_evaluation_stack_pop(xctx) \
-if (xctx->evaluation_stack->top->entry_id == afw_s_parameter_number) { \
-    afw_stack_pop(xctx->evaluation_stack, xctx); \
-} \
-afw_stack_pop(xctx->evaluation_stack, xctx)
+do { \
+    if ((xctx)->evaluation_stack->top->entry_id == afw_s_parameter_number) { \
+        afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
+    } \
+    afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
+} while (0)
 #endif
 
 
 /**
  * @brief Pop top VALUE off execution stack.
  * @param xctx of caller.
- * 
- * Use only when you're positive top of stack is VALUE.
+ *
+ * Leftover function_return_value temps above the VALUE are released
+ * then popped. Leftover parameter-number pairs are skipped (same as
+ * rewind) so a number slot is never treated as a value pointer.
+ * Then the VALUE is popped.
  */
 #ifdef AFW_DEBUG_EVALUATION
 #define afw_xctx_evaluation_stack_pop_value(xctx) \
 do { \
     AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
         "pop_value", ""); \
-    afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
+    afw_xctx_evaluation_stack_pop_value_impl(xctx); \
 } while (0)
 #else
 #define afw_xctx_evaluation_stack_pop_value(xctx) \
-afw_stack_pop(xctx->evaluation_stack, xctx)
+    afw_xctx_evaluation_stack_pop_value_impl(xctx)
 #endif
 
 
 
 /**
  * @brief Pop top PARAMETER_NUMBER off execution stack.
+ * @param VALUE evaluated parameter, or NULL.
  * @param xctx of caller.
  *
- * Use only when you're positive top of stack is PARAMETER_NUMBER.
+ * Use only when top is the parameter-number marker. Pops the marker
+ * and writes VALUE into the number slot (call, then 0 or more returns).
+ * VALUE must be a real occupant (extra hold for pop_value). To take the
+ * pair off with nothing to keep, use afw_xctx_evaluation_stack_pop().
  */
 #ifdef AFW_DEBUG_EVALUATION
-#define afw_xctx_evaluation_stack_pop_parameter_number(xctx) \
+#define afw_xctx_evaluation_stack_pop_parameter_number(VALUE, xctx) \
 do { \
+    const afw_value_t *_afw_pop_pn_value = (VALUE); \
     AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
         "pop_parameter_number", ""); \
     afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
-    afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
+    (xctx)->evaluation_stack->top->value = _afw_pop_pn_value; \
 } while (0)
 #else
-#define afw_xctx_evaluation_stack_pop_parameter_number(xctx) \
-afw_stack_pop(xctx->evaluation_stack, xctx); \
-afw_stack_pop(xctx->evaluation_stack, xctx)
+#define afw_xctx_evaluation_stack_pop_parameter_number(VALUE, xctx) \
+do { \
+    afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
+    (xctx)->evaluation_stack->top->value = (VALUE); \
+} while (0)
 #endif
+
+
+/**
+ * @brief Rewind evaluation stack to saved_top, releasing function_return_value temps.
+ * @param saved_top stack pointer to restore to (inclusive).
+ * @param xctx of caller.
+ *
+ * Walks from current top down to saved_top. Releases each
+ * function_return_value. Other entries (call values, parameter-number
+ * pairs) are skipped. Then sets top to saved_top. Used by AFW_ENDTRY
+ * and restore_top so throw rewind does not leak return temps.
+ */
+AFW_DECLARE(void)
+afw_xctx_evaluation_stack_rewind(
+    afw_xctx_evaluation_stack_entry_t *saved_top,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE(void)
+afw_xctx_evaluation_stack_pop_value_impl(
+    afw_xctx_t *xctx);
+
+AFW_DECLARE(afw_boolean_t)
+afw_xctx_evaluation_stack_is_parked_occupant(
+    const afw_value_t *value);
 
 
 /**
@@ -953,11 +1008,12 @@ xctx->evaluation_stack->top
 do { \
     AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
         "restore_top", ""); \
-    (xctx)->evaluation_stack->top = evaluation_stack_save_top; \
+    afw_xctx_evaluation_stack_rewind( \
+        evaluation_stack_save_top, (xctx)); \
 } while (0)
 #else
 #define afw_xctx_evaluation_stack_restore_top(xctx) \
-xctx->evaluation_stack->top = evaluation_stack_save_top
+afw_xctx_evaluation_stack_rewind(evaluation_stack_save_top, xctx)
 #endif
 
 

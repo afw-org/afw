@@ -3,7 +3,7 @@
     "brief": "Get a bound variable value",
     "camelCaseFunctionLabel": "variableGet",
     "category": "miscellaneous",
-    "description": "Return the value of a bound variable. Optional default applies only when the name is not bound \u2014 not when the value is undefined. If unbound and no default is given, the result is undefined. Object/array defaults get a mutable memory face (issues #110 / #17); other defaults are cloned.",
+    "description": "Return the value of a bound variable. Optional default applies only when the name is not bound \u2014 not when the value is undefined. If unbound and no default is given, the result is undefined. The default is the evaluated value at that moment (identity).",
     "functionId": "variable_get",
     "functionLabel": "variable_get",
     "parameters": [
@@ -13,7 +13,7 @@
             "name": "name"
         },
         {
-            "description": "Value to return only if the name is not bound. Isolated when used (object/array face; otherwise clone).",
+            "description": "Value to return only if the name is not bound. The evaluated value at that moment (identity).",
             "name": "defaultValue",
             "optional": true
         }

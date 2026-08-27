@@ -46,6 +46,7 @@ impl_set_meta_object(
 {
     afw_object_meta_object_t *meta_self;
 
+    IMPL_ASSERT_META_MUTABLE(self, xctx);
     meta_self = afw_pool_calloc_type(self->p,
         afw_object_meta_object_t, xctx);
     meta_self->pub.p = self->p;
@@ -107,6 +108,32 @@ afw_object_meta_clone_and_set(
     afw_xctx_t *xctx)
 {
     afw_object_t *self = (afw_object_t *)instance;
+    const afw_utf8_t *path;
+    const afw_pool_t *p;
+
+    IMPL_ASSERT_META_MUTABLE(instance, xctx);
+    p = instance->p;
+
+    /* get_path() reads object_uri, not only the meta_object bag. */
+    if (!self->meta.object_uri) {
+        path = from->meta.object_uri;
+        if (!path) {
+            path = afw_object_meta_get_path(from, xctx);
+        }
+        if (path) {
+            self->meta.object_uri = (p && from->p)
+                ? afw_utf8_clone(path, p, xctx) : path;
+        }
+    }
+    if (!self->meta.id && from->meta.id) {
+        self->meta.id = (p && from->p)
+            ? afw_utf8_clone(from->meta.id, p, xctx) : from->meta.id;
+    }
+    if (!self->meta.object_type_uri && from->meta.object_type_uri) {
+        self->meta.object_type_uri = (p && from->p)
+            ? afw_utf8_clone(from->meta.object_type_uri, p, xctx)
+            : from->meta.object_type_uri;
+    }
 
     if (!from->meta.meta_object) {
         return;
@@ -166,7 +193,7 @@ afw_object_meta_add_parent_path(
             instance->p, xctx);
     }
     else {
-        parent_paths->internal = afw_array_of_create(
+        parent_paths->internal = afw_array_create_in_pool_of(
             afw_data_type_anyURI, instance->p, xctx);
     }
     
@@ -460,7 +487,7 @@ afw_object_meta_set_empty(
     /* Set meta in instance. */
     result = impl_set_meta_object(
         (afw_object_t *)instance,
-        afw_object_create_unmanaged(instance->p, xctx),
+        afw_object_create_in_pool(instance->p, xctx),
         xctx);
 
     return result;
@@ -641,7 +668,7 @@ afw_object_meta_add_error(
     meta = afw_object_meta_get_nonempty_delta(instance, xctx);
     errors = afw_object_old_get_property_as_array(meta, afw_v_errors, xctx);
     if (!errors) {
-        errors = afw_array_of_create(
+        errors = afw_array_create_in_pool_of(
             afw_data_type_string, instance->p, xctx);
         afw_object_set_property_as_array(meta,
             afw_v_errors, errors, xctx);
@@ -831,7 +858,7 @@ afw_object_meta_add_property_error(
     errors = afw_object_old_get_property_as_array(property_type,
         afw_v_errors, xctx);
     if (!errors) {
-        errors = afw_array_of_create(
+        errors = afw_array_create_in_pool_of(
             afw_data_type_string, instance->p, xctx);
         afw_object_set_property_as_array(property_type,
             afw_v_errors, errors, xctx);
@@ -1096,7 +1123,7 @@ impl_afw_object_setter_set_property(
 
     else {
         if (!object_meta_object_self->delta) {
-            object_meta_object_self->delta = afw_object_create_unmanaged(object_meta_object_self->pub.p, xctx);
+            object_meta_object_self->delta = afw_object_create_in_pool(object_meta_object_self->pub.p, xctx);
         }
         afw_object_set_property(object_meta_object_self->delta, property_name, value, xctx);
     }

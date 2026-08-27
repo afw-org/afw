@@ -89,14 +89,8 @@ afw_object_create_wrapper_with_options(
     self = (afw_object_internal_memory_object_t *)
         afw_object_create_with_options(options, p, xctx);
     self->wrapped = wrapped;
-    /*
-     * Managed face: one reference on wrapped for the face's life. Released
-     * when the face pool is destroyed (see impl_afw_object_release). Unmanaged
-     * faces borrow only; caller owns base lifetime.
-     */
-    if (!self->unmanaged) {
-        afw_object_get_reference(wrapped, xctx);
-    }
+    /* Face holds the bag the same way for in_pool / and_pool / permanent. */
+    afw_object_get_reference(wrapped, xctx);
     afw_pool_register_cleanup_before(self->pub.p, self, NULL,
         impl_managed_face_overlay_cleanup, xctx);
     /*
@@ -105,6 +99,7 @@ afw_object_create_wrapper_with_options(
      * through to wrapped for bag content.
      */
     afw_object_meta_clone_and_set((const afw_object_t *)self, wrapped, xctx);
+    self->value.inf = &afw_value_assignable_object_inf;
     return (const afw_object_t *)self;
 }
 
@@ -117,7 +112,7 @@ afw_object_create_script_wrapper(
 {
     const afw_object_t *base;
 
-    base = afw_object_create_unmanaged(p, xctx);
+    base = afw_object_create_in_pool(p, xctx);
     return afw_object_create_wrapper_unmanaged(base, p, xctx);
 }
 
@@ -264,11 +259,18 @@ impl_afw_object_release(
     const afw_object_t *wrapped;
 
     /*
-     * Unmanaged generic: pointer bag, zero is not an event.
-     * Unmanaged face: extra holds; last extra hold walks overlay.
+     * Unmanaged generic (in_pool bag): extra holds keep the pool/frame
+     * alive. Unmanaged face: extra holds; last extra hold walks overlay.
      */
     if (self->unmanaged) {
         if (!self->wrapped) {
+            if (self->reference_count <= 0) {
+                return;
+            }
+            self->reference_count--;
+            if (self->pub.p) {
+                afw_pool_release(self->pub.p, xctx);
+            }
             return;
         }
         if (self->reference_count <= 0) {
@@ -329,12 +331,13 @@ impl_afw_object_get_reference(
 
     if (self->unmanaged) {
         if (!self->wrapped) {
+            self->reference_count++;
+            if (self->pub.p) {
+                afw_pool_get_reference(self->pub.p, xctx);
+            }
             return;
         }
         self->reference_count++;
-        if (self->reference_count == 1) {
-            afw_object_get_reference(self->wrapped, xctx);
-        }
         afw_pool_get_reference(self->pub.p, xctx);
         return;
     }
@@ -410,54 +413,26 @@ impl_has_local_property_name(
 }
 
 
-/*
- * If value is object or array and this wrapper is mutable, create a *new*
- * nested face over the instance as given, shadow it on self, and return it.
- * Always re-face (even if value is already a face) so callers do not share
- * nested faces across parents — issue #17 nested hard edge. Do not peel to
- * ultimate base (array faces may hold content only on the face ring).
- */
+/* Overlay store is clone_or_reference (GET-cache on this face). */
 static const afw_value_t *
-impl_promote_structured_from_base(
+impl_hold_from_base(
     AFW_OBJECT_SELF_T *self,
     const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_object_t *nested_obj;
-    const afw_array_t *nested_arr;
-    const afw_object_t *wrap_obj;
-    const afw_array_t *wrap_arr;
+    afw_boolean_t found_local;
+    const afw_value_t *local;
 
     if (!value || self->immutable) {
         return value;
     }
 
-    if (afw_value_is_object(value)) {
-        nested_obj = ((const afw_value_object_t *)value)->internal;
-        if (!nested_obj) {
-            return value;
-        }
-        wrap_obj = afw_object_create_wrapper_unmanaged(nested_obj,
-            self->pub.p, xctx);
-        afw_object_set_property((const afw_object_t *)self, property_name,
-            wrap_obj->value, xctx);
-        return wrap_obj->value;
-    }
-
-    if (afw_value_is_array(value)) {
-        nested_arr = ((const afw_value_array_t *)value)->internal;
-        if (!nested_arr) {
-            return value;
-        }
-        wrap_arr = afw_array_create_wrapper_unmanaged(nested_arr,
-            self->pub.p, xctx);
-        afw_object_set_property((const afw_object_t *)self, property_name,
-            wrap_arr->value, xctx);
-        return wrap_arr->value;
-    }
-
-    return value;
+    /* Overlay slot_store is clone_or_reference. */
+    afw_object_set_property((const afw_object_t *)self, property_name,
+        value, xctx);
+    local = impl_get_local_property(self, property_name, &found_local, xctx);
+    return found_local && local ? local : value;
 }
 
 
@@ -489,9 +464,8 @@ impl_afw_object_get_property(
         return NULL;
     }
 
-    /* Promote mutable nested objects/arrays onto this wrapper. */
-    return impl_promote_structured_from_base(self, property_name, value,
-        xctx);
+    /* Hold looked-up value on this face (clone_or_reference via set). */
+    return impl_hold_from_base(self, property_name, value, xctx);
 }
 
 
@@ -593,7 +567,7 @@ impl_afw_object_get_next_property(
             continue;
         }
 
-        value = impl_promote_structured_from_base(self, name, value, xctx);
+        value = impl_hold_from_base(self, name, value, xctx);
         if (property_name) {
             *property_name = name;
         }
@@ -714,17 +688,24 @@ impl_afw_object_setter_set_property(
     e = afw_pool_calloc_type(self->object->p,
         afw_object_internal_name_value_entry_t, xctx);
     /*
-     * Unmanaged string names may be stack (AFW_VALUE_STRING_UNMANAGED) or
-     * another pool. Copy the header into this object pool so get-promote
-     * cannot keep a pointer below the caller's frame.
+     * Copy name octets into this object pool. create_unmanaged_string
+     * only copies the utf8 header; .s must not point at a parked
+     * managed return-temp that pop_value will free.
      */
     if (!property_name) {
         property_name = afw_v_a_empty_string;
     }
-    else if (property_name->inf == &afw_value_unmanaged_string_inf) {
-        property_name = afw_value_create_unmanaged_string(
-            &((const afw_value_string_t *)property_name)->internal,
+    else if (afw_value_is_string(property_name) &&
+        property_name != afw_v_a_empty_string)
+    {
+        const afw_utf8_t *copied;
+
+        copied = afw_utf8_create(
+            ((const afw_value_string_t *)property_name)->internal.s,
+            ((const afw_value_string_t *)property_name)->internal.len,
             self->object->p, xctx);
+        property_name = afw_value_create_unmanaged_string(
+            copied, self->object->p, xctx);
     }
     e->name = property_name;
     e->value = NULL;

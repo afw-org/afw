@@ -30,10 +30,23 @@ impl_afw_value_optional_release(
 }
 
 /*
- * Implementation of method clone_or_reference for interface afw_value.
+ * Implementation of method get_reference for interface afw_value.
  */
 const afw_value_t *
-impl_afw_value_clone_or_reference(
+impl_afw_value_get_reference(
+    AFW_VALUE_SELF_T *self,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method get_assignable_value for interface afw_value.
+ */
+const afw_value_t *
+impl_afw_value_get_assignable_value(
     AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t * xctx)

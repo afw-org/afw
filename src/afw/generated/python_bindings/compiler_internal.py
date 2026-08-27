@@ -670,20 +670,18 @@ def while_(session, condition, body, label=None):
 
 def wrap_literal_array(session, array):
     """
-    Wrap an evaluated array in a memory face
+    clone_or_reference an evaluated array (memory face)
 
-    Evaluate an array value, create a memory array wrapper
-    (afw_array_create_wrapper_*) over its instance, and return that wrapper as
-    an array value. Entry mutators stay on the face; nested objects/arrays are
-    promoted on get. Intended for compile/runtime isolation of array literals
-    (issue #17); not normal author surface syntax.
+    Evaluate an array value and clone_or_reference it (array_hold: memory face
+    over the instance). Remaining explicit wrap_literal_array() calls; the
+    compiler no longer emits this. Not normal author surface.
 
     Args:
-        array (list): Array to evaluate and wrap (typically a constant array
-        literal once the compiler emits isolation).
+        array (list): Array to evaluate and hold (typically a constant array
+        literal).
 
     Returns:
-        list: A new memory-wrapper array face over the evaluated base.
+        list: A holdable memory-wrapper array face over the evaluated base.
     """
 
     request = session.Request()
@@ -703,20 +701,18 @@ def wrap_literal_array(session, array):
 
 def wrap_literal_object(session, object):
     """
-    Wrap an evaluated object in a memory look-through face
+    clone_or_reference an evaluated object (memory face)
 
-    Evaluate an object value, create a memory object wrapper
-    (afw_object_create_wrapper_*) over its instance, and return that wrapper
-    as an object value. Local property sets stay on the face; gets look
-    through to the shared base. Intended for compile/runtime isolation of
-    object literals (issue #17); not normal author surface syntax.
+    Evaluate an object value and clone_or_reference it (object_hold: memory
+    face over the instance). Remaining explicit wrap_literal_object() calls;
+    the compiler no longer emits this. Not normal author surface.
 
     Args:
-        object (dict): Object to evaluate and wrap (typically a constant
-        object literal once the compiler emits isolation).
+        object (dict): Object to evaluate and hold (typically a constant
+        object literal).
 
     Returns:
-        dict: A new memory-wrapper object face over the evaluated base.
+        dict: A holdable memory-wrapper object face over the evaluated base.
     """
 
     request = session.Request()

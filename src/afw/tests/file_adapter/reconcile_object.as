@@ -63,3 +63,41 @@ assert(obj.TestString1 == "A new value", "reconcile_object failed");
 delete_object("file", "TestObjectType1", uuid);
 
 return 0;
+
+//?
+//? test: reconcile_object-mutate-face-no-clone
+//? description: ...
+Slot fill wraps a reconcilable get. Mutate the face and reconcile without
+clone(); overlay sets are the diff. Store is not write-through until
+reconcile.
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const uuid: string = generate_uuid();
+
+add_object(
+    "file",
+    "TestObjectType1",
+    { "TestString1": "face reconcile orig" },
+    uuid
+);
+
+let obj: object = get_object(
+    "file",
+    "TestObjectType1",
+    uuid,
+    { reconcilable: true }
+);
+obj.TestString1 = "face reconcile new";
+
+let result: object = reconcile_object(obj, false);
+assert(result->bag_size() !== 0, "face mutation must produce a reconcile diff");
+
+let again: object = get_object("file", "TestObjectType1", uuid);
+assert(again.TestString1 === "face reconcile new",
+    "reconcile of the face must persist overlay sets");
+
+delete_object("file", "TestObjectType1", uuid);
+
+return 0;

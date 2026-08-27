@@ -116,10 +116,19 @@ impl_afw_value_optional_release(
     afw_xctx_t * xctx);
 #endif
 
-#ifndef impl_afw_value_clone_or_reference
-/* Declare method clone_or_reference */
+#ifndef impl_afw_value_get_reference
+/* Declare method get_reference */
 AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_clone_or_reference(
+impl_afw_value_get_reference(
+    AFW_VALUE_SELF_T *self,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
+#endif
+
+#ifndef impl_afw_value_get_assignable_value
+/* Declare method get_assignable_value */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_assignable_value(
     AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
@@ -222,8 +231,10 @@ impl_afw_value_inf = {
     },
     (afw_value_optional_release_t)
     impl_afw_value_optional_release,
-    (afw_value_clone_or_reference_t)
-    impl_afw_value_clone_or_reference,
+    (afw_value_get_reference_t)
+    impl_afw_value_get_reference,
+    (afw_value_get_assignable_value_t)
+    impl_afw_value_get_assignable_value,
     (afw_value_create_iterator_t)
     impl_afw_value_create_iterator,
     (afw_value_optional_evaluate_t)

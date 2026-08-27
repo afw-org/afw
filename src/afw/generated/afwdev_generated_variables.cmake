@@ -440,6 +440,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     value/afw_value_decompile.c
     value/afw_value_evaluated.c
     value/afw_value_function_definition.c
+    value/afw_value_function_return_value.c
     value/afw_value_function_thunk.c
     value/afw_value_list_expression.c
     value/afw_value_meta.c

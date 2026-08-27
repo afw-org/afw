@@ -63,9 +63,9 @@ afw_data_type_double;
  * @brief Unmanaged evaluated value inf for data type double.
  *
  * Lifetime is the containing pool until clone_or_reference.
- * Scalar clone_or_reference boxes a managed copy in xctx->p.
- * Object/array/function return the same instance (no clone).
- * optional_release is NULL on the unmanaged inf.
+ * Scalar clone_or_reference creates a managed holdable in p.
+ * Object/array clone_or_reference holds a memory face.
+ * optional_release is NULL on unmanaged scalars.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_double_inf;
@@ -73,10 +73,8 @@ afw_value_unmanaged_double_inf;
 /**
  * @brief Managed evaluated value inf for data type double.
  *
- * Header allocated in xctx->p; lifetime by reference_count on the
- * value header. Create starts at RC 0. optional_release frees the
- * header when RC is 0, else decrements. clone_or_reference bumps RC
- * and returns the same instance.
+ * Start-at-1 holdable clone in p (must release). clone_or_reference
+ * bumps. Last release frees via stored p.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_double_inf;
@@ -85,7 +83,8 @@ afw_value_managed_double_inf;
  * @brief Permanent (life of afw environment) value inf for data type double.
  *
  * Lifetime is the afw environment / static const storage. optional_release
- * is NULL; clone_or_reference returns the same instance as-is.
+ * is NULL. Scalar clone_or_reference is as-is. Object/array
+ * clone_or_reference holds a memory face (same as unmanaged).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_double_inf;
@@ -190,6 +189,9 @@ struct afw_value_double_managed_s {
 
     /** @brief  Reference count for value. */
     afw_size_t reference_count;
+
+    /** @brief  Pool used to allocate this header (last release frees). */
+    const afw_pool_t *p;
 };
 
 /**
@@ -212,9 +214,10 @@ afw_value_as_double(
  * Caller fills internal after allocate.
  */
 AFW_DECLARE(afw_value_double_t *)
-afw_value_allocate_unmanaged_double(
+afw_value_double_allocate(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
+#define afw_value_allocate_unmanaged_double afw_value_double_allocate
 
 /**
  * @brief Create function for managed data type double value.
@@ -222,15 +225,16 @@ afw_value_allocate_unmanaged_double(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * Allocates a managed value header in xctx->p. reference_count starts
- * at 0: optional_release without a prior clone_or_reference frees the
- * header immediately. Release frees the value header only.
+ * Allocates in p. Starts at reference count 1 (must release).
+ * clone_or_reference bumps. Last release frees via stored p.
  * Stores internal by value in the header.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_double(
+afw_value_double_create_managed(
     double internal,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
+#define afw_value_create_managed_double afw_value_double_create_managed
 
 /**
  * @brief Create function for unmanaged data type double value.
@@ -240,11 +244,12 @@ afw_value_create_managed_double(
  * @return Created const afw_value_t *.
  *
  * Allocates in pool p; lifetime is the pool (no value refcount).
- * clone_or_reference returns the same instance as-is.
+ * clone_or_reference creates a managed holdable in p.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_unmanaged_double(double internal,
+afw_value_double_create(double internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
+#define afw_value_create_unmanaged_double afw_value_double_create
 
 /**
  * @brief Get property function for data type double value.

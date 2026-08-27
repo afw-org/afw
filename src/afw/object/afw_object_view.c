@@ -278,7 +278,7 @@ impl_make_value(
         data_type = afw_array_get_data_type(
             ((const afw_value_array_t *)original_value)->internal,
             xctx);
-        list = afw_array_of_create(data_type, p, xctx);
+        list = afw_array_create_in_pool_of(data_type, p, xctx);
         for (iterator = NULL;;) {
             original_entry_value = afw_array_get_next_value(
                 ((afw_value_array_t *)original_value)->internal,
@@ -670,7 +670,7 @@ impl_additional_object_option_processing(
     if (parent_paths) {
 
         resolved_parent_paths = afw_value_allocate_unmanaged_array(p, xctx);
-        resolved_parent_paths->internal = afw_array_of_create(
+        resolved_parent_paths->internal = afw_array_create_in_pool_of(
             afw_data_type_anyURI, p, xctx);
         for (iterator = NULL;;) {
             path = afw_array_of_utf8_get_next(parent_paths->internal,
@@ -1116,7 +1116,12 @@ impl_object_create(
         xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
-    self->value.inf = &afw_value_managed_object_inf;
+    /*
+     * Unmanaged: slot fill get_assignable_value is object_hold (mutable
+     * overlay). Managed assignable is bump, which would leave script with
+     * this immutable view (skip-hold on reconcilable/path).
+     */
+    self->value.inf = &afw_value_unmanaged_object_inf;
     self->value.internal = (const afw_object_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     self->view = view;
@@ -1380,7 +1385,7 @@ afw_object_view_create(
     view->adapter_id = &view->uri_parsed->path_parsed->adapter_id;
 
     /** @fixme Should probably come in as parameter. */
-    view->journal_entry = afw_object_create(p, xctx);
+    view->journal_entry = afw_object_and_pool_create(p, xctx);
 
     /* Create view object. */
     self = impl_object_create_entity(view, instance, view->uri_parsed, xctx);

@@ -32,7 +32,7 @@ AFW_THROW_ERROR_Z(read_only, "List immutable", xctx)
 /**
  * Memory array create options. Same bit values as
  * AFW_OBJECT_MEMORY_OPTION_*. 0 is managed (own pool under p->managed_p).
- * create_generic stays unmanaged so existing C (compile, YAML, …)
+ * create_in_pool stays unmanaged so existing C (compile, YAML, …)
  * keeps pool-bulk lifetime without a matching release.
  */
 #define AFW_ARRAY_MEMORY_OPTION_managed              0
@@ -127,6 +127,17 @@ afw_array_is_memory_wrapper(const afw_array_t *array);
 
 
 /**
+ * @brief True if array is a generic memory array (face or not).
+ * @param array to test (may be NULL).
+ *
+ * Custom infs (metas views, const arrays) are false. Used so clone_or_reference
+ * wraps compiled memory arrays (mutable overlay) but not immutable views.
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_array_is_memory(const afw_array_t *array);
+
+
+/**
  * @brief Base array under a memory face, or array itself if not a face.
  * @param array may be NULL.
  * @return wrapped base if create_wrapper_* face; else array; NULL if array NULL.
@@ -145,7 +156,7 @@ afw_array_memory_wrapper_base(const afw_array_t *array);
  *    wrapper. NULL if array is NULL.
  *
  * Use this whenever C has an instance and needs an Adaptive value.
- * Do not call create_unmanaged_array for that — it allocates a
+ * Do not call afw_value_array_create for that — it allocates a
  * second header whose optional_release does not hold the instance.
  */
 AFW_DECLARE(const afw_value_t *)
@@ -166,7 +177,7 @@ afw_array_as_value(
  * data type are added, afw_array_get_data_type() will return
  * that data type.
  */
-#define afw_array_of_create(data_type, p, xctx) \
+#define afw_array_create_in_pool_of(data_type, p, xctx) \
     afw_array_create_with_options( \
         AFW_ARRAY_MEMORY_OPTION_unmanaged, data_type, p, xctx)
 
@@ -174,27 +185,32 @@ afw_array_as_value(
 /**
  * @brief Create a managed memory array (own pool under p->managed_p).
  */
-#define afw_array_create(p, xctx) \
+#define afw_array_and_pool_create(p, xctx) \
     afw_array_create_with_options( \
         AFW_ARRAY_MEMORY_OPTION_managed, NULL, p, xctx)
 
 
 
 /**
- * @brief Create an value array in memory.
- * @param p to use for the object.
+ * @brief Create an array that lives in pool p.
+ * @param p to use for the array.
  * @param xctx of caller.
  * @return Pointer to interface pointer of new value array.
  *
- * Use this function to create a value array that is not associated with an
- * adapter.
- * 
- * If only values of a single evaluated data type are added,
- * afw_array_get_data_type() will return that data type.
+ * Start 0. Lifetime is p. No release unless you clone_or_reference.
  */
-#define afw_array_create_generic(p, xctx) \
+#define afw_array_create_in_pool(p, xctx) \
     afw_array_create_with_options( \
         AFW_ARRAY_MEMORY_OPTION_unmanaged, NULL, p, xctx)
+
+
+/** Compatibility names. */
+#define afw_array_of_create(data_type, p, xctx) \
+    afw_array_create_in_pool_of(data_type, p, xctx)
+#define afw_array_create(p, xctx) \
+    afw_array_and_pool_create(p, xctx)
+#define afw_array_create_generic(p, xctx) \
+    afw_array_create_in_pool(p, xctx)
 
 
 

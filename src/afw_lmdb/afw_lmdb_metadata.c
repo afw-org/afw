@@ -81,7 +81,7 @@ const afw_array_t * afw_lmdb_metadata_retrieve_objects(
     }
 
     /* If none of above, return empty array. */
-    return afw_array_create_generic(xctx->p, xctx);
+    return afw_array_create_in_pool(xctx->p, xctx);
 }
 
 /* Determine if afw_lmdb_metadata.c handles an ObjectType. */

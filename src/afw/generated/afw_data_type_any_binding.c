@@ -58,13 +58,15 @@ impl_afw_value_permanent_get_reference(
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_any_inf
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference impl_afw_value_permanent_get_reference
+#define impl_afw_value_get_reference impl_afw_value_permanent_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_permanent_get_reference
 #define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef impl_afw_value_optional_release
-#undef impl_afw_value_clone_or_reference
+#undef impl_afw_value_get_reference
+#undef impl_afw_value_get_assignable_value
 
 static const afw_value_string_t
 impl_data_type_any_id_value = {
@@ -157,7 +159,9 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* Permanent: return same instance as-is. */
+    /* Permanent scalar: same instance as-is. */
+    (void)p;
+    (void)xctx;
     return instance;
 }
 

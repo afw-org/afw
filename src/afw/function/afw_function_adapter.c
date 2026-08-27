@@ -24,7 +24,7 @@ impl_create_journal_entry(const afw_value_object_t *journal,
     const afw_value_t *value;
     const afw_value_t *property_name;
 
-    journal_entry = afw_object_create(p, xctx);
+    journal_entry = afw_object_and_pool_create(p, xctx);
     if (journal) {
         for (iterator = NULL;;) {
             value = afw_object_get_next_property(journal->internal,
@@ -38,31 +38,6 @@ impl_create_journal_entry(const afw_value_object_t *journal,
 
     return journal_entry;
 }
-
-
-
-/*
- * Mutable memory face for objects script will hold (issue #17).
- * Covers view / exotic / shared adapter impls so authors need not clone()
- * before set. Idempotent if already a face. Not used for stream/response
- * write paths or fresh journal-entry receipts.
- */
-static const afw_object_t *
-impl_script_face_object(
-    const afw_object_t *object,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    if (!object) {
-        return NULL;
-    }
-    if (afw_object_is_memory_wrapper(object)) {
-        return object;
-    }
-    return afw_object_create_wrapper_unmanaged(object, p, xctx);
-}
-
-
 
 
 
@@ -94,8 +69,6 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
 
     abort = false;
     if (object) {
-        const afw_object_t *face;
-
         p = (object->p) ? object->p : ctx->p;
         /*
          * Script hold paths (not progressive write). Issue #127:
@@ -109,11 +82,11 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
          * release on array free). Callback: face only — no release yet if
          * the script binds the argument; residual under #127 / #2.
          */
-        face = impl_script_face_object(object, ctx->p, xctx);
         if (ctx->array) {
             /*
              * Bound memory for materializing retrieve_objects /
              * retrieve_objects_with_uri only. Progressive paths leave array NULL.
+             * push slot_store clone_or_reference (object_hold).
              */
             ctx->object_count++;
             if (ctx->max_objects > 0 &&
@@ -123,13 +96,12 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
                     "Object retrieve limit exceeded.",
                     xctx);
             }
-            afw_object_get_reference(object, xctx);
             afw_array_push_value(ctx->array,
-                afw_object_as_value(face, ctx->p, xctx), xctx);
+                afw_object_as_value(object, ctx->p, xctx), xctx);
         }
         else {
             ctx->argv[0] = ctx->objectCallback;
-            ctx->argv[1] = afw_object_as_value(face, p, xctx);
+            ctx->argv[1] = afw_object_as_value(object, p, xctx);
             ctx->argv[2] = ctx->userData;
             if (!ctx->call) {
                 ctx->call = afw_value_call_create(ctx->contextual,
@@ -189,7 +161,7 @@ impl_retrieve_to_response_cb(
          * array hold) — see impl_retrieve_cb.
          */
         p = (object->p) ? object->p : ctx->p;
-        response_object = afw_object_create_unmanaged(p, xctx);
+        response_object = afw_object_create_in_pool(p, xctx);
         afw_object_set_property_as_boolean(response_object,
             afw_v_intermediate, true, xctx);
         afw_object_set_property_as_object(response_object,
@@ -559,7 +531,7 @@ afw_function_execute_convert_AdaptiveQueryCriteria_to_query_string(
             adapterId_value, 2, string);
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(
             objectType_value, 3, string);
-        journal_entry = afw_object_create(x->p, x->xctx);
+        journal_entry = afw_object_and_pool_create(x->p, x->xctx);
         object_type = afw_adapter_get_object_type(
             &adapterId_value->internal,
             &objectType_value->internal,
@@ -661,7 +633,7 @@ afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria(
             adapterId_value, 2, string);
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(
             objectType_value, 3, string);
-        journal_entry = afw_object_create(x->p, x->xctx);
+        journal_entry = afw_object_and_pool_create(x->p, x->xctx);
         object_type = afw_adapter_get_object_type(
             &adapterId_value->internal,
             &objectType_value->internal,
@@ -986,7 +958,7 @@ afw_function_execute_get_object(
             options->internal, x->p, x->xctx);
     }
 
-    journal_entry = afw_object_create(x->p, x->xctx);
+    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
     obj = afw_adapter_get_object(
         &adapterId->internal, &objectType->internal, &objectId->internal,
         object_options, NULL, journal_entry,
@@ -997,14 +969,7 @@ afw_function_execute_get_object(
         AFW_THROW_ERROR_Z(not_found, "Not found", x->xctx);
     }
 
-    /*
-     * Face for normal script mutate (issue #17). Skip when reconcilable:
-     * reconcile_object diffs against meta reconcilable and needs the
-     * adapter/view entity, not an empty look-through face.
-     */
-    if (!AFW_OBJECT_OPTION_IS(object_options, reconcilable)) {
-        obj = impl_script_face_object(obj, x->p, x->xctx);
-    }
+    /* Entity pointer; slot fill wraps. Reconcile looks through. */
     return afw_object_as_value(obj, x->p, x->xctx);
 }
 
@@ -1096,7 +1061,7 @@ afw_function_execute_get_object_with_uri(
             "Only local entity object paths are currently supported", x->xctx);
     }
     
-    journal_entry = afw_object_create(x->p, x->xctx);
+    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
     obj = afw_adapter_get_object(
         &parsed_uri->path_parsed->adapter_id,
         &parsed_uri->path_parsed->object_type_id,
@@ -1109,9 +1074,6 @@ afw_function_execute_get_object_with_uri(
         AFW_THROW_ERROR_Z(not_found, "Not found", x->xctx);
     }
 
-    if (!AFW_OBJECT_OPTION_IS(object_options, reconcilable)) {
-        obj = impl_script_face_object(obj, x->p, x->xctx);
-    }
     return afw_object_as_value(obj, x->p, x->xctx);
 }
 
@@ -1427,6 +1389,11 @@ afw_function_execute_reconcile_object(
             2, boolean);
     }
 
+    /*
+     * Use the occupant (face overlay if slot fill wrapped). Path and
+     * reconcilable meta are cloned onto the face. Do not peel
+     * wrapper_base — overlay sets would vanish from the diff.
+     */
     reconcilable = afw_object_meta_get_property_as_string(
         object->internal, afw_v_reconcilable, x->xctx);
     if (!reconcilable) {
@@ -1440,7 +1407,7 @@ afw_function_execute_reconcile_object(
     original = ((const afw_value_object_t *)reconcilable_value)->internal;
 
     /* Create journal entry including optional properties. */
-    journal_entry = afw_object_create(x->p, x->xctx);
+    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
 
     /* Make modify needed to reconcile. */
     afw_adapter_modify_needed_to_reconcile(
@@ -1778,7 +1745,7 @@ afw_function_execute_retrieve_objects(
     criteria = NULL;
     afw_memory_clear(&ctx);
     ctx.p = x->p;
-    ctx.array = afw_array_of_create(afw_data_type_object, x->p, x->xctx);
+    ctx.array = afw_array_create_in_pool_of(afw_data_type_object, x->p, x->xctx);
     /* Default max for materializing retrieve; 0 = unlimited. */
     ctx.max_objects = 100;
     criteria = NULL;
@@ -1803,7 +1770,7 @@ afw_function_execute_retrieve_objects(
         ctx.max_objects = maxObjects_arg->internal;
     }
 
-    journal_entry = afw_object_create(x->p, x->xctx);
+    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
 
     /* Optional query criteria. */
     if (queryCriteria) {
@@ -1942,7 +1909,7 @@ afw_function_execute_retrieve_objects_to_callback(
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(adapterTypeSpecific,
         7, object);
 
-    journal_entry = afw_object_create(x->p, x->xctx);
+    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
 
     /* Optional query criteria. */
     if (queryCriteria) {
@@ -2081,7 +2048,7 @@ afw_function_execute_retrieve_objects_to_response(
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(adapterTypeSpecific,
         5, object);
 
-    journal_entry = afw_object_create(x->p, x->xctx);
+    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
 
     /* Optional query criteria. */
     if (queryCriteria) {
@@ -2213,7 +2180,7 @@ afw_function_execute_retrieve_objects_to_stream(
         6, object);
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(contextType, 7, string);
 
-    journal_entry = afw_object_create(x->p, x->xctx);
+    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
 
     /* Stream. */
     ctx.stream = afw_stream_get_by_streamNumber(
@@ -2360,11 +2327,11 @@ afw_function_execute_retrieve_objects_with_uri(
 
     afw_memory_clear(&ctx);
     ctx.p = x->p;
-    ctx.array = afw_array_of_create(afw_data_type_object, x->p, x->xctx);
+    ctx.array = afw_array_create_in_pool_of(afw_data_type_object, x->p, x->xctx);
     /* Default max for materializing retrieve; 0 = unlimited. */
     ctx.max_objects = 100;
     criteria = NULL;
-    journal_entry = afw_object_create(x->p, x->xctx);
+    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(uri,
         1, anyURI);
@@ -2506,7 +2473,7 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
     impl_retrieve_cb_ctx_t ctx;
 
     afw_memory_clear(&ctx);
-    journal_entry = afw_object_create(x->p, x->xctx);
+    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
     criteria = NULL;
     afw_memory_clear(&ctx);
     ctx.p = x->p;
@@ -2657,7 +2624,7 @@ afw_function_execute_retrieve_objects_with_uri_to_response(
     ctx.p = x->p;
     ctx.response_content_type = x->xctx->request->response_content_type;
     criteria = NULL;
-    journal_entry = afw_object_create(x->p, x->xctx);
+    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(uri,
         1, anyURI);
@@ -2786,7 +2753,7 @@ afw_function_execute_retrieve_objects_with_uri_to_stream(
     afw_memory_clear(&ctx);
     ctx.p = x->p;
     criteria = NULL;
-    journal_entry = afw_object_create(x->p, x->xctx);
+    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(streamNumber,
         1, integer);

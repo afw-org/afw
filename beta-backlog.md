@@ -11,8 +11,9 @@ Dump **details, design thoughts, unfinished plans, and “don’t forget” item
 |----------|------|
 | **`beta-backlog.md`** (this file) | Working notes, plans, archaeology, half-decided design. Source of truth for “what we still need to remember.” |
 | **`designs/`** | Per-issue / per-theme design pads (not user docs). See [`designs/README.md`](designs/README.md). |
-| **`designs/issue-2-lifetime.md`** | **#2 working story** (2026-08-21, not coded) — holds, pools, assign, script faces. |
-| **`designs/memory-management.md`** | Umbrella **#2** archaeology / old phases (campaign map is `issue-2-lifetime.md`). |
+| **`designs/issue-2-hold-in-inf.md`** | **#2 rails** (2026-08-24) — hold in `clone_or_reference`; branch `issue-2-hold-in-inf`. |
+| **`designs/issue-2-lifetime.md`** | **#2 working story** (2026-08-21) — holds, pools, assign, script faces. |
+| **`designs/memory-management.md`** | Umbrella **#2** archaeology / old phases. |
 | **`whats-new.md`** | What **users** of AFW need to know about **`develop`** (behavior, APIs, migration). |
 | **GitHub issues** | Optional promotion when something needs discussion, an assignee, PR linkage, or is a real beta blocker. Prefer thematic umbrellas (e.g. language, memory) over one infinite meta-issue. |
 

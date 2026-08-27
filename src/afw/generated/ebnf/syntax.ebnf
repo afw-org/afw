@@ -143,6 +143,12 @@ CompilerInternalListExpression ::=
     '#list_expression' '(' Expression ')'
 
 /* From afw_compile_parse_compiler_internal.c                                 */
+/* Runtime return temp. One Expression is the occupant.                       */
+
+CompilerInternalFunctionReturnValue ::=
+    '#function_return_value' '(' Expression ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
 /* Parts are Expressions (string segments and nested #block expressions).     */
 /* At least one part is required.                                             */
 
@@ -225,6 +231,7 @@ CompilerInternalValue ::=
     CompilerInternalTemplateDefinition |
     CompilerInternalSwitchDefault |
     CompilerInternalStatements |
+    CompilerInternalFunctionReturnValue |
     CompilerLiteral
 
 /* From afw_compile_parse_expression.c                                        */

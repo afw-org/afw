@@ -481,7 +481,7 @@ impl_stringify_prepare_object(
     const afw_value_t *next;
     const afw_value_t *child;
 
-    out = afw_object_create_unmanaged(ctx->p, ctx->xctx);
+    out = afw_object_create_in_pool(ctx->p, ctx->xctx);
     iterator = NULL;
     for (;;) {
         next = afw_object_get_next_property(obj, &iterator, &property_name,
@@ -517,7 +517,7 @@ impl_stringify_prepare_array(
     const afw_utf8_t *index_s;
     afw_integer_t index;
 
-    out = afw_array_create_generic(ctx->p, ctx->xctx);
+    out = afw_array_create_in_pool(ctx->p, ctx->xctx);
     iterator = NULL;
     index = 0;
     for (;;) {
@@ -756,7 +756,7 @@ afw_function_execute_test_script(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(expression, 3, string);
     AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
-    result = afw_object_create(x->p, xctx);
+    result = afw_object_and_pool_create(x->p, xctx);
     afw_object_set_property(result, afw_v_passed, afw_boolean_v_true, xctx);
     afw_object_set_property_as_string(result,
         afw_v_id, &id->internal, xctx);
@@ -884,7 +884,7 @@ afw_function_execute_test_template(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(template, 3, string);
     AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
-    result = afw_object_create(x->p, xctx);
+    result = afw_object_and_pool_create(x->p, xctx);
     afw_object_set_property(result, afw_v_passed, afw_boolean_v_true, xctx);
     afw_object_set_property_as_string(result,
         afw_v_id, &id->internal, xctx);
@@ -1011,7 +1011,7 @@ afw_function_execute_test_value(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 3);
     AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
-    result = afw_object_create(x->p, xctx);
+    result = afw_object_and_pool_create(x->p, xctx);
     afw_object_set_property(result, afw_v_passed, afw_boolean_v_true, xctx);
     afw_object_set_property_as_string(result,
         afw_v_id, &id->internal, xctx);

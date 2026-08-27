@@ -6,7 +6,9 @@
 
 **Status:** Working story recorded 2026-08-20–21. Slot protocol **landed**. Pool split **landed**. Closures / throw-path rewind (**#35**) store-time bind **landed**. Script-evaluation-aware wrapper holds **landed** on `issue-2-script-wrapper-holds`: overlay store is a slot; last-release walk is a pool cleanup (C-style `for` clone can drop instance RC to zero while the value is still in use); generic memory objects still do not own property values. Closure create-at-0 **landed**. No let/const hoisting. Heap/tracker **pool impls honest** on `issue-2-heap-tracker-probe` (optional `free_memory(p, address)`, one chunk, address-ordered free list + coalesce). Heap/tracker are single-thread only. Non-APR heap later.
 
-**This file is the campaign map.** Older notes, phase archaeology, and rejected experiments stay in [`memory-management.md`](memory-management.md). When that pad and this file disagree, **this file wins** until we change it on purpose.
+**Revised rails (2026-08-24):** [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) — hold in `clone_or_reference` of the stored inf; branch `issue-2-hold-in-inf`. When that pad and this file disagree, **that pad wins**. This file is the 2026-08-21 story.
+
+**This file was the campaign map.** Older notes, phase archaeology, and rejected experiments stay in [`memory-management.md`](memory-management.md).
 
 **Lab probes (opt-in, not `test -j`):** [`src/afw/tests-extra/issue-2/`](../src/afw/tests-extra/issue-2/) — `01-rss-hard-loops` (RSS vs `pool_bytes_in_use`) and `02-pool-eval-soak` (fcgi heap wrap). `afwdev test -T src/afw/tests-extra/issue-2 --show-all`.
 
@@ -296,7 +298,7 @@ Current pools the whole way through 1–4.
 | S3 | Script literals = unmanaged faces in **eval/scope pool** (eval vs compile). Do not add a child pool per `{}`. Compiled unit **immutable**; holds on the base are no-ops. |
 | S4 | Overlay overwrite reuses via the **wrapper’s `set`**, not “objects own all properties.” |
 
-**Parked / later:** interned true-permanent compile literals; huge-string slice optimization; nested compile+evaluate reusing the outer heap; heap that is not APR-backed. Scalar boxing onto the eval heap is a separate #2 vertical (`issue-2-managed-p`).
+**Parked / later:** interned true-permanent compile literals; huge-string slice optimization; nested compile+evaluate reusing the outer heap; heap that is not APR-backed. Scalar boxing onto the eval heap is a separate #2 vertical (do not revive `issue-2-managed-p` C).
 
 ---
 
