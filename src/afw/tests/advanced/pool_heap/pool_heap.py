@@ -26,11 +26,34 @@ def _pool_src():
         d = parent
 
 
+def _lib_has_debug_pool():
+    """True if the cmake libafw build defined AFW_DEBUG_POOL.
+
+    Probe -D must match the installed lib layout. --cdev/--fulldev
+    define it; a production cmake does not. Same test -j file either
+    way: throw cases run only when the lib was built with the prefix.
+    """
+    root = os.path.abspath(os.path.join(_pool_src(), "..", "..", ".."))
+    cache = os.path.join(root, "build", "cmake", "CMakeCache.txt")
+    if os.path.isfile(cache):
+        with open(cache, encoding="utf-8", errors="replace") as f:
+            for line in f:
+                if "AFWDEV_C_DEFINES" in line and "AFW_DEBUG_POOL" in line:
+                    return True
+        return False
+    ccjson = os.path.join(root, "build", "cmake", "compile_commands.json")
+    if os.path.isfile(ccjson):
+        with open(ccjson, encoding="utf-8", errors="replace") as f:
+            return "AFW_DEBUG_POOL" in f.read()
+    return False
+
+
 def run():
-    result = run_c_probe(
-        "pool_heap_probe.c",
-        "Heap and heap-tracker pool implementations",
-        [
+    debug_pool = _lib_has_debug_pool()
+    extra = ["-I", _pool_src()]
+    if debug_pool:
+        extra.append("-DAFW_DEBUG_POOL")
+    cases = [
             (
                 "heap_malloc_free",
                 "heap malloc/free: whole chunk back on the free list, "
@@ -92,6 +115,9 @@ def run():
                 "tracker calloc ~56 after mixed optional free and "
                 "tracker last-release does not hang",
             ),
+    ]
+    if debug_pool:
+        cases.extend([
             (
                 "debug_free_wrong_size",
                 "AFW_DEBUG_POOL: free with the wrong size throws",
@@ -100,8 +126,12 @@ def run():
                 "debug_free_wrong_pool",
                 "AFW_DEBUG_POOL: free with a different pool throws",
             ),
-        ],
-        extra_cflags=("-I", _pool_src(), "-DAFW_DEBUG_POOL"),
+        ])
+    result = run_c_probe(
+        "pool_heap_probe.c",
+        "Heap and heap-tracker pool implementations",
+        cases,
+        extra_cflags=tuple(extra),
         extra_ldflags=("-lapr-1",),
     )
     tests = result.get("tests")
@@ -115,4 +145,19 @@ def run():
         "skip": True,
         "skipReason": "FIXME_GET_IT_WORKING",
     })
+    if not debug_pool:
+        tests.append({
+            "test": "debug_free_wrong_size",
+            "description": "AFW_DEBUG_POOL + debug:pool: free with the wrong size throws",
+            "passed": True,
+            "skip": True,
+            "skipReason": "libafw built without AFW_DEBUG_POOL",
+        })
+        tests.append({
+            "test": "debug_free_wrong_pool",
+            "description": "AFW_DEBUG_POOL + debug:pool: free with a different pool throws",
+            "passed": True,
+            "skip": True,
+            "skipReason": "libafw built without AFW_DEBUG_POOL",
+        })
     return result
