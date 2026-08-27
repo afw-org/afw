@@ -72,7 +72,9 @@
  * Key functions: afw_pool_create(), afw_pool_create_as_managed_p(),
  * afw_pool_create_xctx_p(), afw_pool_heap_create(),
  * afw_pool_heap_tracker_create(), afw_pool_calloc(), afw_pool_malloc(),
- * afw_pool_free_memory(), afw_pool_get_apr_pool().
+ * afw_pool_free_memory(), afw_xctx_malloc() / afw_xctx_free(),
+ * afw_pool_get_apr_pool(). `afw_memory_malloc` / `calloc` / `free`
+ * (`p, xctx` last) live in `afw_memory.h`.
  *
  * @{
  */

@@ -507,16 +507,15 @@ export function afwWhile(client : any, condition : boolean, body : any[], label?
 }
 
 /**
- * Evaluate an array value, create a memory array wrapper
- * (afw_array_create_wrapper_*) over its instance, and return that wrapper as
- * an array value. Entry mutators stay on the face; nested objects/arrays are
- * promoted on get. Intended for compile/runtime isolation of array literals
- * (issue #17); not normal author surface syntax.
+ * Evaluate an array value and clone_or_reference it (array_hold: memory face
+ * over the instance). Remaining explicit wrap_literal_array() calls; the
+ * compiler no longer emits this. Not normal author surface.
  * 
- * @param {array} array - Array to evaluate and wrap (typically a constant
- *     array literal once the compiler emits isolation).
+ * @param {array} array - Array to evaluate and hold (typically a constant
+ *     array literal).
  * 
- * @returns {array} A new memory-wrapper array face over the evaluated base.
+ * @returns {array} A holdable memory-wrapper array face over the evaluated
+ *     base.
  */
 export function afwWrapLiteralArray(client : any, array : any[]) : any {
 
@@ -529,16 +528,15 @@ export function afwWrapLiteralArray(client : any, array : any[]) : any {
 }
 
 /**
- * Evaluate an object value, create a memory object wrapper
- * (afw_object_create_wrapper_*) over its instance, and return that wrapper as
- * an object value. Local property sets stay on the face; gets look through to
- * the shared base. Intended for compile/runtime isolation of object literals
- * (issue #17); not normal author surface syntax.
+ * Evaluate an object value and clone_or_reference it (object_hold: memory
+ * face over the instance). Remaining explicit wrap_literal_object() calls;
+ * the compiler no longer emits this. Not normal author surface.
  * 
- * @param {object} object - Object to evaluate and wrap (typically a constant
- *     object literal once the compiler emits isolation).
+ * @param {object} object - Object to evaluate and hold (typically a constant
+ *     object literal).
  * 
- * @returns {object} A new memory-wrapper object face over the evaluated base.
+ * @returns {object} A holdable memory-wrapper object face over the evaluated
+ *     base.
  */
 export function afwWrapLiteralObject(client : any, object : object) : any {
 

@@ -1,5 +1,5 @@
 /* #2 lab: assign the result of a script function that returns a temp integer.
- * donate_return + slot_store should not grow the eval heap without bound.
+ * FRV + slot_store should recycle on the caller's evaluation heap.
  */
 let i = 0;
 function f() {

@@ -13,7 +13,8 @@
  * Create, use, and release on the same thread. compiled_value evaluate
  * creates a heap for one evaluate and releases it in finally. Trackers
  * are scope->p and return leftovers to that heap. Optional free is
- * afw_pool_free_memory(p, address): address-ordered list, coalesce.
+ * afw_pool_free_memory(p, address, size): address-ordered list, coalesce.
+ * Temporarily checks size against the live chunk header.
  */
 
 #include "afw_internal.h"
@@ -96,6 +97,7 @@ static void
 impl_subpool_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
     void *address,
+    afw_size_t size,
     afw_xctx_t *xctx);
 
 #define impl_afw_pool_free_memory \
@@ -336,17 +338,13 @@ impl_create_for_subpool(
     }
     apr_p = parent->apr_p;
 
-    self = apr_pcalloc(apr_p, sizeof(afw_pool_internal_self_t));
-    if (!self) {
-        AFW_THROW_ERROR_Z(memory,
-            "Unable to allocate memory for pool", xctx);
-    }
     /*
-     * Header is apr_pcalloc on the parent APR pool (RSS, not in_use)
-     * and is not given back on tracker destroy. Do not treat it as a
-     * user block on the allocated list or the heap free list.
+     * Header is a heap user block so destroy can free_memory it.
+     * apr_pcalloc on the reservoir was never returned. Not on this
+     * tracker’s allocated list.
      */
-    self->first_allocated_memory = NULL;
+    self = afw_pool_calloc(&parent->pub,
+        sizeof(afw_pool_internal_self_t), xctx);
     self->pub.inf = inf;
     self->pub.managed_p = parent->pub.managed_p
         ? parent->pub.managed_p
@@ -670,6 +668,44 @@ impl_malloc_user(
 }
 
 
+/*
+ * Temporary: caller size vs live chunk. Remainder too small to split
+ * keeps the whole chunk; that is not a size bug.
+ */
+static void
+impl_check_free_size(
+    const afw_pool_heap_chunk_t *block,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    afw_size_t with_prefix;
+    afw_size_t aligned;
+    afw_size_t chunk;
+
+    if (size > AFW_SIZE_T_MAX - sizeof(afw_pool_heap_chunk_t)) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_pool_free_memory: size too large", xctx);
+    }
+    with_prefix = size + sizeof(afw_pool_heap_chunk_t);
+    aligned = APR_ALIGN_DEFAULT(with_prefix);
+    chunk = impl_chunk_bytes(block);
+    if (chunk < aligned) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "afw_pool_free_memory: size " AFW_SIZE_T_FMT
+            " larger than chunk " AFW_SIZE_T_FMT,
+            size, chunk);
+    }
+    if (chunk > aligned &&
+        (chunk - aligned) >= sizeof(afw_pool_heap_chunk_t))
+    {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "afw_pool_free_memory: size " AFW_SIZE_T_FMT
+            " smaller than chunk " AFW_SIZE_T_FMT,
+            size, chunk);
+    }
+}
+
+
 /* --------------------------- pool implementations ------------------------- */
 
 /*
@@ -806,6 +842,7 @@ void
 impl_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
     void *address,
+    afw_size_t size,
     afw_xctx_t *xctx)
 {
     afw_pool_heap_chunk_t *block;
@@ -816,10 +853,18 @@ impl_afw_pool_free_memory(
     }
     block = AFW_POOL_HEAP_CHUNK(address);
     if (!impl_chunk_in_use(block)) {
+#ifndef FIXME_GET_IT_WORKING
+        (void)self;
+        (void)address;
+        (void)size;
+        (void)xctx;
+        return;
+#endif
         AFW_THROW_ERROR_Z(general,
             "afw_pool_free_memory: memory already freed",
             xctx);
     }
+    impl_check_free_size(block, size, xctx);
     IMPL_PRINT_DEBUG_INFO_FZ(
         detail, "free %p " AFW_SIZE_T_FMT,
         address, impl_chunk_bytes(block));
@@ -880,7 +925,8 @@ impl_afw_pool_deregister_cleanup(
     {
         if (e->data == data && e->data2 == data2 && e->cleanup == cleanup) {
             prev->next_cleanup = e->next_cleanup;
-            afw_pool_free_memory(&self->pub, e, xctx);
+            afw_pool_free_memory(&self->pub, e,
+                sizeof(afw_pool_cleanup_t), xctx);
             break;
         }
     }
@@ -896,6 +942,7 @@ impl_subpool_afw_pool_destroy(
 {
     afw_pool_heap_chunk_t *memory;
     afw_pool_internal_self_t *child;
+    afw_pool_internal_self_t *parent;
     afw_pool_cleanup_t *e;
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
@@ -904,6 +951,7 @@ impl_subpool_afw_pool_destroy(
     if (!self->parent) {
         AFW_THROW_ERROR_Z(general, "Subpool has no parent", xctx);
     }
+    parent = self->parent;
 
     /*
      * Call all of the cleanup routines for this pool before releasing children.
@@ -943,8 +991,10 @@ impl_subpool_afw_pool_destroy(
 
     impl_account_destroy(self, xctx);
 
-    /* Removed self as child of parent. */
-    impl_remove_as_child(self->parent, self, xctx);
+    /* Removed self as child of parent. Header was calloc’d from the heap. */
+    impl_remove_as_child(parent, self, xctx);
+    afw_pool_free_memory(&parent->pub, self,
+        sizeof(afw_pool_internal_self_t), xctx);
 }
 
 
@@ -1020,6 +1070,7 @@ static void
 impl_subpool_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
     void *address,
+    afw_size_t size,
     afw_xctx_t *xctx)
 {
     afw_pool_heap_chunk_t *block;
@@ -1034,6 +1085,7 @@ impl_subpool_afw_pool_free_memory(
             "afw_pool_free_memory: memory already freed",
             xctx);
     }
+    impl_check_free_size(block, size, xctx);
     IMPL_PRINT_DEBUG_INFO_FZ(
         detail, "free %p " AFW_SIZE_T_FMT,
         address, impl_chunk_bytes(block));

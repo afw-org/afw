@@ -854,7 +854,7 @@ impl_AdaptiveService_cb(
 
             p = original_object->p;
 
-            object = afw_object_create_unmanaged(p, xctx);
+            object = afw_object_create_in_pool(p, xctx);
 
             service_id = afw_object_old_get_property_as_string(
                 original_object,
@@ -946,7 +946,7 @@ impl_retrieve_from_registry_cb(
 
     is_complete = false;
     if (!ctx->service_ids || !apr_hash_get(ctx->service_ids, key_s, key_len)) {
-        object = afw_object_create(p, xctx);
+        object = afw_object_and_pool_create(p, xctx);
 
         impl_add_runtime_service_info_to_object(object, service,
             NULL, service->properties, &service->service_id,
@@ -1092,7 +1092,7 @@ afw_service_get_object(
         AFW_CATCH_UNHANDLED{
             result = ctx.last_object;
             if (!result) {
-                result = afw_object_create_unmanaged(p, xctx);
+                result = afw_object_create_in_pool(p, xctx);
             }
             afw_object_set_property_as_string(result,
                 afw_v_serviceId, service_id, xctx);
@@ -1125,7 +1125,7 @@ afw_service_get_object(
     /* If not available in services conf, return result based on registered service. */
     if (!result) {
         if (service) {
-            result = afw_object_create(p, xctx);
+            result = afw_object_and_pool_create(p, xctx);
             impl_add_runtime_service_info_to_object(result, 
                 service, NULL, service->properties,
                 service_id, service->type, service->conf_id,

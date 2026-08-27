@@ -173,6 +173,25 @@ assert(factory().get() === 6);
 return 0;
 
 //?
+//? test: clone-array-then-assign-function
+//? description: clone([]) then a[0] = function; call after factory returns
+//? skip: false
+//? expect: 0
+//? source: ...
+
+function factory() {
+    let n = 8;
+    let a = clone([]);
+    a[0] = function() {
+        return n;
+    };
+    return a;
+}
+
+assert(factory()[0]() === 8);
+return 0;
+
+//?
 //? test: nested-eval-escaped-property-closure
 //? description: evaluate(compile) factory returns object with closure
 //? skip: false

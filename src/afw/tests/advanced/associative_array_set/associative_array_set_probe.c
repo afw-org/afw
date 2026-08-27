@@ -29,7 +29,7 @@ impl_create_pinned(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_object_t *object;
 
-    object = afw_object_create(p, xctx);
+    object = afw_object_and_pool_create(p, xctx);
     afw_object_get_reference(object, xctx);
     return object;
 }

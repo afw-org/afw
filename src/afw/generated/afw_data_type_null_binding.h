@@ -63,9 +63,9 @@ afw_data_type_null;
  * @brief Unmanaged evaluated value inf for data type null.
  *
  * Lifetime is the containing pool until clone_or_reference.
- * Scalar clone_or_reference boxes a managed copy in xctx->p.
- * Object/array/function return the same instance (no clone).
- * optional_release is NULL on the unmanaged inf.
+ * Scalar clone_or_reference creates a managed holdable in p.
+ * Object/array clone_or_reference holds a memory face.
+ * optional_release is NULL on unmanaged scalars.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_null_inf;
@@ -73,10 +73,8 @@ afw_value_unmanaged_null_inf;
 /**
  * @brief Managed evaluated value inf for data type null.
  *
- * Header allocated in xctx->p; lifetime by reference_count on the
- * value header. Create starts at RC 0. optional_release frees the
- * header when RC is 0, else decrements. clone_or_reference bumps RC
- * and returns the same instance.
+ * Start-at-1 holdable clone in p (must release). clone_or_reference
+ * bumps. Last release frees via stored p.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_null_inf;
@@ -85,7 +83,8 @@ afw_value_managed_null_inf;
  * @brief Permanent (life of afw environment) value inf for data type null.
  *
  * Lifetime is the afw environment / static const storage. optional_release
- * is NULL; clone_or_reference returns the same instance as-is.
+ * is NULL. Scalar clone_or_reference is as-is. Object/array
+ * clone_or_reference holds a memory face (same as unmanaged).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_null_inf;
@@ -213,9 +212,10 @@ afw_value_as_null(
  * afw_value_null_t; that is not the permanent singleton.
  */
 AFW_DECLARE(afw_value_null_t *)
-afw_value_allocate_unmanaged_null(
+afw_value_null_allocate(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
+#define afw_value_allocate_unmanaged_null afw_value_null_allocate
 
 /**
  * @brief Create function for managed data type null value.
@@ -228,9 +228,10 @@ afw_value_allocate_unmanaged_null(
  * internal is ignored (null has no payload).
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_null(
+afw_value_null_create_managed(
     void * internal,
     afw_xctx_t *xctx);
+#define afw_value_create_managed_null afw_value_null_create_managed
 
 /**
  * @brief Create function for unmanaged data type null value.
@@ -244,8 +245,9 @@ afw_value_create_managed_null(
  * internal is ignored (null has no payload).
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_unmanaged_null(void * internal,
+afw_value_null_create(void * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
+#define afw_value_create_unmanaged_null afw_value_null_create
 
 /**
  * @brief Get property function for data type null value.

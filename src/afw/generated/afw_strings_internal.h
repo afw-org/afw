@@ -5281,6 +5281,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__155f6f65d107 \
+    "A holdable memory-wrapper object face over the evaluated base."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__155f6f65d107 */
+#define afw_s_zz__155f6f65d107 \
+    (&afw_self_v_zz__155f6f65d107.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__155f6f65d107 */
+#define afw_self_s_zz__155f6f65d107 \
+    (afw_self_v_zz__155f6f65d107.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__155f6f65d107 */
+extern const afw_value_string_t \
+    afw_self_v_zz__155f6f65d107;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__155f6f65d107 */
+#define afw_z_zz__155f6f65d107 \
+    (afw_self_v_zz__155f6f65d107.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__155f6f65d107 */
+#define afw_v_zz__155f6f65d107 \
+    (&afw_self_v_zz__155f6f65d107.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__15a209e5410f \
     "The id of the associated object's object type, within the object's adapter"
 
@@ -17241,6 +17267,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__4c55f30010da \
+    "A holdable memory-wrapper array face over the evaluated base."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__4c55f30010da */
+#define afw_s_zz__4c55f30010da \
+    (&afw_self_v_zz__4c55f30010da.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__4c55f30010da */
+#define afw_self_s_zz__4c55f30010da \
+    (afw_self_v_zz__4c55f30010da.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__4c55f30010da */
+extern const afw_value_string_t \
+    afw_self_v_zz__4c55f30010da;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__4c55f30010da */
+#define afw_z_zz__4c55f30010da \
+    (afw_self_v_zz__4c55f30010da.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__4c55f30010da */
+#define afw_v_zz__4c55f30010da \
+    (&afw_self_v_zz__4c55f30010da.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__4c5879d78b35 \
     "This function returns true if the result of calling predicate with any of the combination of values from array1 and array2 returns true."
 
@@ -19161,32 +19213,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__54c5eb277c29 */
 #define afw_v_zz__54c5eb277c29 \
     (&afw_self_v_zz__54c5eb277c29.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__5500694b82d7 \
-    "Evaluate an array value, create a memory array wrapper (afw_array_create_wrapper_*) over its instance, and return that wrapper as an array value. Entry mutators stay on the face; nested objects/arrays are promoted on get. Intended for compile/runtime isolation of array literals (issue #17); not normal author surface syntax."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5500694b82d7 */
-#define afw_s_zz__5500694b82d7 \
-    (&afw_self_v_zz__5500694b82d7.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5500694b82d7 */
-#define afw_self_s_zz__5500694b82d7 \
-    (afw_self_v_zz__5500694b82d7.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__5500694b82d7 */
-extern const afw_value_string_t \
-    afw_self_v_zz__5500694b82d7;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5500694b82d7 */
-#define afw_z_zz__5500694b82d7 \
-    (afw_self_v_zz__5500694b82d7.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__5500694b82d7 */
-#define afw_v_zz__5500694b82d7 \
-    (&afw_self_v_zz__5500694b82d7.pub)
 
 
 
@@ -26185,6 +26211,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__72ac3de301f1 \
+    "Evaluate an object value and clone_or_reference it (object_hold: memory face over the instance). Remaining explicit wrap_literal_object() calls; the compiler no longer emits this. Not normal author surface."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__72ac3de301f1 */
+#define afw_s_zz__72ac3de301f1 \
+    (&afw_self_v_zz__72ac3de301f1.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__72ac3de301f1 */
+#define afw_self_s_zz__72ac3de301f1 \
+    (afw_self_v_zz__72ac3de301f1.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__72ac3de301f1 */
+extern const afw_value_string_t \
+    afw_self_v_zz__72ac3de301f1;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__72ac3de301f1 */
+#define afw_z_zz__72ac3de301f1 \
+    (afw_self_v_zz__72ac3de301f1.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__72ac3de301f1 */
+#define afw_v_zz__72ac3de301f1 \
+    (&afw_self_v_zz__72ac3de301f1.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__72afd302003c \
     "function test_template (\n    id: string,\n    description: string,\n    template: string,\n    expected?: any,\n    additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_\n): object;\n"
 
@@ -27693,32 +27745,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__7a5b14bb3194 \
-    "Return the value of a property. Optional default applies only when the property is missing — not when the value is undefined. If missing and no default is given, the result is undefined. Object/array defaults get a mutable memory face (issues #110 / #17); other defaults are cloned."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7a5b14bb3194 */
-#define afw_s_zz__7a5b14bb3194 \
-    (&afw_self_v_zz__7a5b14bb3194.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7a5b14bb3194 */
-#define afw_self_s_zz__7a5b14bb3194 \
-    (afw_self_v_zz__7a5b14bb3194.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__7a5b14bb3194 */
-extern const afw_value_string_t \
-    afw_self_v_zz__7a5b14bb3194;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7a5b14bb3194 */
-#define afw_z_zz__7a5b14bb3194 \
-    (afw_self_v_zz__7a5b14bb3194.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__7a5b14bb3194 */
-#define afw_v_zz__7a5b14bb3194 \
-    (&afw_self_v_zz__7a5b14bb3194.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__7a5d084776ef \
     "function model_mapObject_signature (\n    object: object\n): object;\n"
 
@@ -28339,32 +28365,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__7cc78b78eff7 */
 #define afw_v_zz__7cc78b78eff7 \
     (&afw_self_v_zz__7cc78b78eff7.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__7d40c32c75dc \
-    "Array to evaluate and wrap (typically a constant array literal once the compiler emits isolation)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7d40c32c75dc */
-#define afw_s_zz__7d40c32c75dc \
-    (&afw_self_v_zz__7d40c32c75dc.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7d40c32c75dc */
-#define afw_self_s_zz__7d40c32c75dc \
-    (afw_self_v_zz__7d40c32c75dc.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__7d40c32c75dc */
-extern const afw_value_string_t \
-    afw_self_v_zz__7d40c32c75dc;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7d40c32c75dc */
-#define afw_z_zz__7d40c32c75dc \
-    (afw_self_v_zz__7d40c32c75dc.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__7d40c32c75dc */
-#define afw_v_zz__7d40c32c75dc \
-    (&afw_self_v_zz__7d40c32c75dc.pub)
 
 
 
@@ -32191,32 +32191,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__8c881e7e9205 \
-    "Value to return only if the name is not bound. Isolated when used (object/array face; otherwise clone)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8c881e7e9205 */
-#define afw_s_zz__8c881e7e9205 \
-    (&afw_self_v_zz__8c881e7e9205.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8c881e7e9205 */
-#define afw_self_s_zz__8c881e7e9205 \
-    (afw_self_v_zz__8c881e7e9205.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8c881e7e9205 */
-extern const afw_value_string_t \
-    afw_self_v_zz__8c881e7e9205;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8c881e7e9205 */
-#define afw_z_zz__8c881e7e9205 \
-    (afw_self_v_zz__8c881e7e9205.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8c881e7e9205 */
-#define afw_v_zz__8c881e7e9205 \
-    (&afw_self_v_zz__8c881e7e9205.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__8c92bdfb2283 \
     "function lt<dateTime> (\n    arg1: dateTime,\n    arg2: dateTime\n): boolean;\n"
 
@@ -33305,6 +33279,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__92551ac6821a */
 #define afw_v_zz__92551ac6821a \
     (&afw_self_v_zz__92551ac6821a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__9264f9d55155 \
+    "Value to return only if the property is missing. The evaluated value at that moment (identity)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9264f9d55155 */
+#define afw_s_zz__9264f9d55155 \
+    (&afw_self_v_zz__9264f9d55155.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9264f9d55155 */
+#define afw_self_s_zz__9264f9d55155 \
+    (afw_self_v_zz__9264f9d55155.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__9264f9d55155 */
+extern const afw_value_string_t \
+    afw_self_v_zz__9264f9d55155;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9264f9d55155 */
+#define afw_z_zz__9264f9d55155 \
+    (afw_self_v_zz__9264f9d55155.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__9264f9d55155 */
+#define afw_v_zz__9264f9d55155 \
+    (&afw_self_v_zz__9264f9d55155.pub)
 
 
 
@@ -34817,6 +34817,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__99a5853ce237 \
+    "Return the value of a property. Optional default applies only when the property is missing — not when the value is undefined. If missing and no default is given, the result is undefined. The default is the evaluated value at that moment (identity)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__99a5853ce237 */
+#define afw_s_zz__99a5853ce237 \
+    (&afw_self_v_zz__99a5853ce237.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__99a5853ce237 */
+#define afw_self_s_zz__99a5853ce237 \
+    (afw_self_v_zz__99a5853ce237.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__99a5853ce237 */
+extern const afw_value_string_t \
+    afw_self_v_zz__99a5853ce237;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__99a5853ce237 */
+#define afw_z_zz__99a5853ce237 \
+    (afw_self_v_zz__99a5853ce237.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__99a5853ce237 */
+#define afw_v_zz__99a5853ce237 \
+    (&afw_self_v_zz__99a5853ce237.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__99bf817631ef \
     "Remove zero or more values starting at an index from a mutable array and optionally insert new values at that index. Returns an array of the removed values. Negative startIndex counts from the end. If deleteCount is omitted, all values from startIndex to the end are removed."
 
@@ -35255,6 +35281,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__9c62d575caa9 */
 #define afw_v_zz__9c62d575caa9 \
     (&afw_self_v_zz__9c62d575caa9.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__9c63539906c1 \
+    "Object to evaluate and hold (typically a constant object literal)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9c63539906c1 */
+#define afw_s_zz__9c63539906c1 \
+    (&afw_self_v_zz__9c63539906c1.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9c63539906c1 */
+#define afw_self_s_zz__9c63539906c1 \
+    (afw_self_v_zz__9c63539906c1.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__9c63539906c1 */
+extern const afw_value_string_t \
+    afw_self_v_zz__9c63539906c1;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9c63539906c1 */
+#define afw_z_zz__9c63539906c1 \
+    (afw_self_v_zz__9c63539906c1.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__9c63539906c1 */
+#define afw_v_zz__9c63539906c1 \
+    (&afw_self_v_zz__9c63539906c1.pub)
 
 
 
@@ -37439,58 +37491,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__A_new_array_with_the_entries_of_array_in_sorted_order_ */
 #define afw_v_zz__A_new_array_with_the_entries_of_array_in_sorted_order_ \
     (&afw_self_v_zz__A_new_array_with_the_entries_of_array_in_sorted_order_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__A_new_memory_wrapper_array_face_over_the_evaluated_base_ \
-    "A new memory-wrapper array face over the evaluated base."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__A_new_memory_wrapper_array_face_over_the_evaluated_base_ */
-#define afw_s_zz__A_new_memory_wrapper_array_face_over_the_evaluated_base_ \
-    (&afw_self_v_zz__A_new_memory_wrapper_array_face_over_the_evaluated_base_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__A_new_memory_wrapper_array_face_over_the_evaluated_base_ */
-#define afw_self_s_zz__A_new_memory_wrapper_array_face_over_the_evaluated_base_ \
-    (afw_self_v_zz__A_new_memory_wrapper_array_face_over_the_evaluated_base_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__A_new_memory_wrapper_array_face_over_the_evaluated_base_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__A_new_memory_wrapper_array_face_over_the_evaluated_base_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__A_new_memory_wrapper_array_face_over_the_evaluated_base_ */
-#define afw_z_zz__A_new_memory_wrapper_array_face_over_the_evaluated_base_ \
-    (afw_self_v_zz__A_new_memory_wrapper_array_face_over_the_evaluated_base_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__A_new_memory_wrapper_array_face_over_the_evaluated_base_ */
-#define afw_v_zz__A_new_memory_wrapper_array_face_over_the_evaluated_base_ \
-    (&afw_self_v_zz__A_new_memory_wrapper_array_face_over_the_evaluated_base_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__A_new_memory_wrapper_object_face_over_the_evaluated_base_ \
-    "A new memory-wrapper object face over the evaluated base."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__A_new_memory_wrapper_object_face_over_the_evaluated_base_ */
-#define afw_s_zz__A_new_memory_wrapper_object_face_over_the_evaluated_base_ \
-    (&afw_self_v_zz__A_new_memory_wrapper_object_face_over_the_evaluated_base_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__A_new_memory_wrapper_object_face_over_the_evaluated_base_ */
-#define afw_self_s_zz__A_new_memory_wrapper_object_face_over_the_evaluated_base_ \
-    (afw_self_v_zz__A_new_memory_wrapper_object_face_over_the_evaluated_base_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__A_new_memory_wrapper_object_face_over_the_evaluated_base_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__A_new_memory_wrapper_object_face_over_the_evaluated_base_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__A_new_memory_wrapper_object_face_over_the_evaluated_base_ */
-#define afw_z_zz__A_new_memory_wrapper_object_face_over_the_evaluated_base_ \
-    (afw_self_v_zz__A_new_memory_wrapper_object_face_over_the_evaluated_base_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__A_new_memory_wrapper_object_face_over_the_evaluated_base_ */
-#define afw_v_zz__A_new_memory_wrapper_object_face_over_the_evaluated_base_ \
-    (&afw_self_v_zz__A_new_memory_wrapper_object_face_over_the_evaluated_base_.pub)
 
 
 
@@ -86791,58 +86791,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Wrap_an_evaluated_array_in_a_memory_face \
-    "Wrap an evaluated array in a memory face"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Wrap_an_evaluated_array_in_a_memory_face */
-#define afw_s_zz__Wrap_an_evaluated_array_in_a_memory_face \
-    (&afw_self_v_zz__Wrap_an_evaluated_array_in_a_memory_face.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Wrap_an_evaluated_array_in_a_memory_face */
-#define afw_self_s_zz__Wrap_an_evaluated_array_in_a_memory_face \
-    (afw_self_v_zz__Wrap_an_evaluated_array_in_a_memory_face.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Wrap_an_evaluated_array_in_a_memory_face */
-extern const afw_value_string_t \
-    afw_self_v_zz__Wrap_an_evaluated_array_in_a_memory_face;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Wrap_an_evaluated_array_in_a_memory_face */
-#define afw_z_zz__Wrap_an_evaluated_array_in_a_memory_face \
-    (afw_self_v_zz__Wrap_an_evaluated_array_in_a_memory_face.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Wrap_an_evaluated_array_in_a_memory_face */
-#define afw_v_zz__Wrap_an_evaluated_array_in_a_memory_face \
-    (&afw_self_v_zz__Wrap_an_evaluated_array_in_a_memory_face.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Wrap_an_evaluated_object_in_a_memory_look_through_face \
-    "Wrap an evaluated object in a memory look-through face"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Wrap_an_evaluated_object_in_a_memory_look_through_face */
-#define afw_s_zz__Wrap_an_evaluated_object_in_a_memory_look_through_face \
-    (&afw_self_v_zz__Wrap_an_evaluated_object_in_a_memory_look_through_face.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Wrap_an_evaluated_object_in_a_memory_look_through_face */
-#define afw_self_s_zz__Wrap_an_evaluated_object_in_a_memory_look_through_face \
-    (afw_self_v_zz__Wrap_an_evaluated_object_in_a_memory_look_through_face.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Wrap_an_evaluated_object_in_a_memory_look_through_face */
-extern const afw_value_string_t \
-    afw_self_v_zz__Wrap_an_evaluated_object_in_a_memory_look_through_face;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Wrap_an_evaluated_object_in_a_memory_look_through_face */
-#define afw_z_zz__Wrap_an_evaluated_object_in_a_memory_look_through_face \
-    (afw_self_v_zz__Wrap_an_evaluated_object_in_a_memory_look_through_face.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Wrap_an_evaluated_object_in_a_memory_look_through_face */
-#define afw_v_zz__Wrap_an_evaluated_object_in_a_memory_look_through_face \
-    (&afw_self_v_zz__Wrap_an_evaluated_object_in_a_memory_look_through_face.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Write_a_value_to_a_trace_log_ \
     "Write a value to a trace log."
 
@@ -121189,32 +121137,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__ab0569f957ce \
-    "Object to evaluate and wrap (typically a constant object literal once the compiler emits isolation)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ab0569f957ce */
-#define afw_s_zz__ab0569f957ce \
-    (&afw_self_v_zz__ab0569f957ce.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ab0569f957ce */
-#define afw_self_s_zz__ab0569f957ce \
-    (afw_self_v_zz__ab0569f957ce.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ab0569f957ce */
-extern const afw_value_string_t \
-    afw_self_v_zz__ab0569f957ce;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ab0569f957ce */
-#define afw_z_zz__ab0569f957ce \
-    (afw_self_v_zz__ab0569f957ce.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ab0569f957ce */
-#define afw_v_zz__ab0569f957ce \
-    (&afw_self_v_zz__ab0569f957ce.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__ab08957e83ba \
     "Indicates that objectId property should be included in the meta for entity objects."
 
@@ -123165,6 +123087,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__b138dd1e052d \
+    "Array to evaluate and hold (typically a constant array literal)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b138dd1e052d */
+#define afw_s_zz__b138dd1e052d \
+    (&afw_self_v_zz__b138dd1e052d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b138dd1e052d */
+#define afw_self_s_zz__b138dd1e052d \
+    (afw_self_v_zz__b138dd1e052d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b138dd1e052d */
+extern const afw_value_string_t \
+    afw_self_v_zz__b138dd1e052d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b138dd1e052d */
+#define afw_z_zz__b138dd1e052d \
+    (afw_self_v_zz__b138dd1e052d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b138dd1e052d */
+#define afw_v_zz__b138dd1e052d \
+    (&afw_self_v_zz__b138dd1e052d.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__b1b714360417 \
     "function eqx<regexp> (\n    arg1: regexp,\n    arg2: any\n): boolean;\n"
 
@@ -124253,32 +124201,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__b616f6f2868b */
 #define afw_v_zz__b616f6f2868b \
     (&afw_self_v_zz__b616f6f2868b.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__b61e9eb04ad3 \
-    "Value to return only if the property is missing. Isolated when used (object/array face; otherwise clone)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b61e9eb04ad3 */
-#define afw_s_zz__b61e9eb04ad3 \
-    (&afw_self_v_zz__b61e9eb04ad3.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b61e9eb04ad3 */
-#define afw_self_s_zz__b61e9eb04ad3 \
-    (afw_self_v_zz__b61e9eb04ad3.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__b61e9eb04ad3 */
-extern const afw_value_string_t \
-    afw_self_v_zz__b61e9eb04ad3;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b61e9eb04ad3 */
-#define afw_z_zz__b61e9eb04ad3 \
-    (afw_self_v_zz__b61e9eb04ad3.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__b61e9eb04ad3 */
-#define afw_v_zz__b61e9eb04ad3 \
-    (&afw_self_v_zz__b61e9eb04ad3.pub)
 
 
 
@@ -127997,6 +127919,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__c19f7d5af24a */
 #define afw_v_zz__c19f7d5af24a \
     (&afw_self_v_zz__c19f7d5af24a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__c1c3bcbe2e2b \
+    "Value to return only if the name is not bound. The evaluated value at that moment (identity)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c1c3bcbe2e2b */
+#define afw_s_zz__c1c3bcbe2e2b \
+    (&afw_self_v_zz__c1c3bcbe2e2b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c1c3bcbe2e2b */
+#define afw_self_s_zz__c1c3bcbe2e2b \
+    (afw_self_v_zz__c1c3bcbe2e2b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__c1c3bcbe2e2b */
+extern const afw_value_string_t \
+    afw_self_v_zz__c1c3bcbe2e2b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c1c3bcbe2e2b */
+#define afw_z_zz__c1c3bcbe2e2b \
+    (afw_self_v_zz__c1c3bcbe2e2b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__c1c3bcbe2e2b */
+#define afw_v_zz__c1c3bcbe2e2b \
+    (&afw_self_v_zz__c1c3bcbe2e2b.pub)
 
 
 
@@ -131745,6 +131693,58 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__clone_or_reference_an_evaluated_array__memory_face_ \
+    "clone_or_reference an evaluated array (memory face)"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__clone_or_reference_an_evaluated_array__memory_face_ */
+#define afw_s_zz__clone_or_reference_an_evaluated_array__memory_face_ \
+    (&afw_self_v_zz__clone_or_reference_an_evaluated_array__memory_face_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__clone_or_reference_an_evaluated_array__memory_face_ */
+#define afw_self_s_zz__clone_or_reference_an_evaluated_array__memory_face_ \
+    (afw_self_v_zz__clone_or_reference_an_evaluated_array__memory_face_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__clone_or_reference_an_evaluated_array__memory_face_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__clone_or_reference_an_evaluated_array__memory_face_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__clone_or_reference_an_evaluated_array__memory_face_ */
+#define afw_z_zz__clone_or_reference_an_evaluated_array__memory_face_ \
+    (afw_self_v_zz__clone_or_reference_an_evaluated_array__memory_face_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__clone_or_reference_an_evaluated_array__memory_face_ */
+#define afw_v_zz__clone_or_reference_an_evaluated_array__memory_face_ \
+    (&afw_self_v_zz__clone_or_reference_an_evaluated_array__memory_face_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__clone_or_reference_an_evaluated_object__memory_face_ \
+    "clone_or_reference an evaluated object (memory face)"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__clone_or_reference_an_evaluated_object__memory_face_ */
+#define afw_s_zz__clone_or_reference_an_evaluated_object__memory_face_ \
+    (&afw_self_v_zz__clone_or_reference_an_evaluated_object__memory_face_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__clone_or_reference_an_evaluated_object__memory_face_ */
+#define afw_self_s_zz__clone_or_reference_an_evaluated_object__memory_face_ \
+    (afw_self_v_zz__clone_or_reference_an_evaluated_object__memory_face_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__clone_or_reference_an_evaluated_object__memory_face_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__clone_or_reference_an_evaluated_object__memory_face_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__clone_or_reference_an_evaluated_object__memory_face_ */
+#define afw_z_zz__clone_or_reference_an_evaluated_object__memory_face_ \
+    (afw_self_v_zz__clone_or_reference_an_evaluated_object__memory_face_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__clone_or_reference_an_evaluated_object__memory_face_ */
+#define afw_v_zz__clone_or_reference_an_evaluated_object__memory_face_ \
+    (&afw_self_v_zz__clone_or_reference_an_evaluated_object__memory_face_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__compile_json_ \
     "compile<json>"
 
@@ -133279,32 +133279,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__d5766b50b122 \
-    "Return the value of a bound variable. Optional default applies only when the name is not bound — not when the value is undefined. If unbound and no default is given, the result is undefined. Object/array defaults get a mutable memory face (issues #110 / #17); other defaults are cloned."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__d5766b50b122 */
-#define afw_s_zz__d5766b50b122 \
-    (&afw_self_v_zz__d5766b50b122.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__d5766b50b122 */
-#define afw_self_s_zz__d5766b50b122 \
-    (afw_self_v_zz__d5766b50b122.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__d5766b50b122 */
-extern const afw_value_string_t \
-    afw_self_v_zz__d5766b50b122;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__d5766b50b122 */
-#define afw_z_zz__d5766b50b122 \
-    (afw_self_v_zz__d5766b50b122.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__d5766b50b122 */
-#define afw_v_zz__d5766b50b122 \
-    (&afw_self_v_zz__d5766b50b122.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__d57c1e83191e \
     "function ge<date> (\n    arg1: date,\n    arg2: date\n): boolean;\n"
 
@@ -133795,32 +133769,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__d8106007788c */
 #define afw_v_zz__d8106007788c \
     (&afw_self_v_zz__d8106007788c.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__d81266d477e4 \
-    "Evaluate an object value, create a memory object wrapper (afw_object_create_wrapper_*) over its instance, and return that wrapper as an object value. Local property sets stay on the face; gets look through to the shared base. Intended for compile/runtime isolation of object literals (issue #17); not normal author surface syntax."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__d81266d477e4 */
-#define afw_s_zz__d81266d477e4 \
-    (&afw_self_v_zz__d81266d477e4.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__d81266d477e4 */
-#define afw_self_s_zz__d81266d477e4 \
-    (afw_self_v_zz__d81266d477e4.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__d81266d477e4 */
-extern const afw_value_string_t \
-    afw_self_v_zz__d81266d477e4;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__d81266d477e4 */
-#define afw_z_zz__d81266d477e4 \
-    (afw_self_v_zz__d81266d477e4.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__d81266d477e4 */
-#define afw_v_zz__d81266d477e4 \
-    (&afw_self_v_zz__d81266d477e4.pub)
 
 
 
@@ -141391,6 +141339,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__f30298b1b019 \
+    "Return the value of a bound variable. Optional default applies only when the name is not bound — not when the value is undefined. If unbound and no default is given, the result is undefined. The default is the evaluated value at that moment (identity)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f30298b1b019 */
+#define afw_s_zz__f30298b1b019 \
+    (&afw_self_v_zz__f30298b1b019.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f30298b1b019 */
+#define afw_self_s_zz__f30298b1b019 \
+    (afw_self_v_zz__f30298b1b019.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__f30298b1b019 */
+extern const afw_value_string_t \
+    afw_self_v_zz__f30298b1b019;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f30298b1b019 */
+#define afw_z_zz__f30298b1b019 \
+    (afw_self_v_zz__f30298b1b019.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__f30298b1b019 */
+#define afw_v_zz__f30298b1b019 \
+    (&afw_self_v_zz__f30298b1b019.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__f3243a5d1990 \
     "function all_of (\n    predicate: (...values: any) => boolean,\n    values_1: any,\n    ...values_rest: any[]\n): boolean;\n"
 
@@ -143155,6 +143129,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__fa06b675bcc7 */
 #define afw_v_zz__fa06b675bcc7 \
     (&afw_self_v_zz__fa06b675bcc7.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__fa08ae8d53dd \
+    "Evaluate an array value and clone_or_reference it (array_hold: memory face over the instance). Remaining explicit wrap_literal_array() calls; the compiler no longer emits this. Not normal author surface."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__fa08ae8d53dd */
+#define afw_s_zz__fa08ae8d53dd \
+    (&afw_self_v_zz__fa08ae8d53dd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__fa08ae8d53dd */
+#define afw_self_s_zz__fa08ae8d53dd \
+    (afw_self_v_zz__fa08ae8d53dd.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__fa08ae8d53dd */
+extern const afw_value_string_t \
+    afw_self_v_zz__fa08ae8d53dd;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__fa08ae8d53dd */
+#define afw_z_zz__fa08ae8d53dd \
+    (afw_self_v_zz__fa08ae8d53dd.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__fa08ae8d53dd */
+#define afw_v_zz__fa08ae8d53dd \
+    (&afw_self_v_zz__fa08ae8d53dd.pub)
 
 
 

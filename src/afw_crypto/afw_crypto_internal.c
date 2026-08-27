@@ -283,7 +283,7 @@ afw_crypto_internal_default_usages(
     const afw_array_t *a;
     const afw_value_t *v;
 
-    a = afw_array_create_generic(p, xctx);
+    a = afw_array_create_in_pool(p, xctx);
     if (alg == afw_crypto_alg_hmac_sha256 ||
         alg == afw_crypto_alg_hmac_sha512) {
         v = afw_value_create_unmanaged_string(
@@ -356,7 +356,7 @@ impl_make_cryptokey_object(
     const afw_object_t *obj;
     const afw_utf8_t *alg_name;
 
-    obj = afw_object_create(p, xctx);
+    obj = afw_object_and_pool_create(p, xctx);
     afw_object_meta_set_object_type_id(obj,
         afw_crypto_s__AdaptiveCryptoKey_, xctx);
 

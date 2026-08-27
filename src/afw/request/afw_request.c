@@ -258,7 +258,7 @@ afw_request_write_error_to_response_body(
 
     response = instance->error_info;
     if (!response) {
-        response = afw_object_create(xctx->p, xctx);
+        response = afw_object_and_pool_create(xctx->p, xctx);
     }
     afw_object_set_property(response,
         afw_v_status, afw_v_error, xctx);
@@ -283,7 +283,7 @@ afw_request_write_success_response(
 
     /* If response is NULL, make empty one. */
     if (!response) {
-        response = afw_object_create(xctx->p, xctx);
+        response = afw_object_and_pool_create(xctx->p, xctx);
     }
 
     /* Default status to success. */

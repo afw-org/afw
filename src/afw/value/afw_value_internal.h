@@ -443,6 +443,25 @@ struct afw_value_closure_binding_s {
 };
 
 
+/**
+ * @brief Struct for function return value (return-temp experiment).
+ *
+ * Wraps a returned occupant. Last release of this wrapper releases the
+ * inner value and frees the wrapper.
+ */
+struct afw_value_function_return_value_s {
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    const afw_value_t *return_value;
+    const afw_pool_t *p;
+    afw_size_t reference_count;
+};
+
+
 
 /**
  * @brief Struct for compiled value value.
@@ -1059,6 +1078,19 @@ extern const afw_value_t *
 afw_value_block_evaluate_block(
     afw_function_execute_t *x,
     const afw_value_block_t *self,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx,
+    afw_boolean_t as_value);
+
+/*
+ * Statement-list last_return / UpdateEmpty. Caller owns the frame.
+ * Catch binds the error, then starts at the first real statement.
+ */
+extern const afw_value_t *
+afw_value_block_evaluate_statements(
+    afw_function_execute_t *x,
+    const afw_value_block_t *self,
+    afw_size_t start,
     const afw_pool_t *p,
     afw_xctx_t *xctx,
     afw_boolean_t as_value);

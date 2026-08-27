@@ -66,7 +66,8 @@ impl_over_array(
      * pass scalar string thresholds next to the bag.
      */
     for (e.n = 1; e.n <= functor_argc; e.n++) {
-        functor_argv[e.n] = afw_value_evaluate(x->argv[e.n + 1], e.p, e.xctx);
+        functor_argv[e.n] = afw_value_evaluate_and_park(
+            x->argv[e.n + 1], e.n + 1, e.p, e.xctx);
         if (!e.entry_arg_ptr && afw_value_is_array(functor_argv[e.n])) {
             e.entry_arg_ptr = &functor_argv[e.n];
             e.array = ((const afw_value_array_t *)*e.entry_arg_ptr)->internal;
@@ -144,6 +145,8 @@ impl_over_array(
             }
 
             e.entry_result = afw_value_evaluate(e.functor, e.p, e.xctx);
+            e.entry_result = afw_value_function_return_value_consume(
+                e.entry_result, e.p, e.xctx);
 
             if (!callback(&e))
             {
@@ -161,6 +164,8 @@ impl_over_array(
                 break;
             }
             e.entry_result = afw_value_evaluate(e.functor, e.p, e.xctx);
+            e.entry_result = afw_value_function_return_value_consume(
+                e.entry_result, e.p, e.xctx);
             if (!callback(&e))
             {
                 break;
@@ -288,6 +293,7 @@ impl_bag_of_bag(
             memcpy(e1, internal1, data_type_1->c_type_size);
             memcpy(e2, internal2, data_type_2->c_type_size);
             v = afw_value_evaluate(call, x->p, x->xctx);
+            v = afw_value_function_return_value_consume(v, x->p, x->xctx);
             if (!afw_value_is_boolean(v)) {
                 AFW_THROW_ERROR_Z(argument_error,
                     "First argument must be a boolean function", x->xctx);
@@ -766,7 +772,7 @@ impl_map_cb(impl_call_over_array_cb_e_t *e)
     const afw_value_t *to_push;
 
     if (!data->mapped_array) {
-        data->mapped_array = afw_array_create_generic(e->p, e->xctx);
+        data->mapped_array = afw_array_create_in_pool(e->p, e->xctx);
     }
 
     to_push = e->entry_result;
@@ -924,6 +930,8 @@ afw_function_execute_reduce(
         }
         f_argv[1] = accumulator;
         accumulator = afw_value_evaluate(call, x->p, x->xctx);
+        accumulator = afw_value_function_return_value_consume(
+            accumulator, x->p, x->xctx);
     }
 
     return accumulator;
@@ -963,6 +971,8 @@ impl_partition(
         memcpy(&(ctx->args[1]->internal), ctx->values[j], ctx->c_type_size);
         return_value = afw_value_evaluate(ctx->compareFunction,
             ctx->p, ctx->xctx);
+        return_value = afw_value_function_return_value_consume(
+            return_value, ctx->p, ctx->xctx);
         AFW_VALUE_ASSERT_IS_DATA_TYPE(return_value, boolean, ctx->xctx);
 
         /*

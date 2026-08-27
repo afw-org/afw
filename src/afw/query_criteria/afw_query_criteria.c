@@ -1330,7 +1330,7 @@ impl_parse_string_function(
 
         /* List value. */
         else {
-            list = afw_array_create_generic(parser->p, parser->xctx);
+            list = afw_array_create_in_pool(parser->p, parser->xctx);
             entry->value = afw_value_create_unmanaged_array(
                 list, parser->p, parser->xctx);
             for (;;) {
@@ -2225,13 +2225,13 @@ impl_criteria_filter_to_property_value(
         return NULL;
     }
 
-    filter = afw_object_create_unmanaged(p, xctx);
+    filter = afw_object_create_in_pool(p, xctx);
     afw_object_set_property_as_string(filter, afw_v_op, entry->op_name, xctx);
 
     if (entry->op_id == afw_query_criteria_filter_op_id_and ||
         entry->op_id == afw_query_criteria_filter_op_id_or)
     {
-        filters = afw_array_create_generic(p, xctx);
+        filters = afw_array_create_in_pool(p, xctx);
         afw_object_set_property_as_array(filter, afw_v_filters, filters, xctx);
         for (e = entry->first_conjunctive_child; e; e = e->next_conjunctive_sibling) {
             o = impl_criteria_filter_to_property_value(e, p, xctx);
@@ -2264,7 +2264,7 @@ impl_criteria_select_to_property_value(
         return NULL;
     }
 
-    result = afw_array_create_generic(p, xctx);
+    result = afw_array_create_in_pool(p, xctx);
 
     for (e = select; *e; e++) {
         v = afw_value_allocate_unmanaged_string(p, xctx);
@@ -2291,7 +2291,7 @@ impl_criteria_sort_to_property_value(
         return NULL;
     }
 
-    result = afw_array_create_generic(p, xctx);
+    result = afw_array_create_in_pool(p, xctx);
 
     for (e = sort_entry; e; e = e->next) {
         v = afw_value_allocate_unmanaged_string(p, xctx);
@@ -2320,7 +2320,7 @@ afw_query_criteria_to_AdaptiveQueryCriteria_object(
     const afw_array_t *sort;
 
     /* Create object for result. */
-    object = afw_object_create(p, xctx);
+    object = afw_object_and_pool_create(p, xctx);
     afw_object_meta_set_object_type_id(object, afw_s__AdaptiveQueryCriteria_,
         xctx);
 

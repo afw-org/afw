@@ -5814,9 +5814,11 @@ AFW_DEFINE(const afw_request_handler_t *)
 
       <description>
         Optionally free memory allocated from this pool. The caller
-        passes the pool. If the implementation does not support
-        optional free, the call does nothing (destroy is still
-        lifetime). Heap and heap tracker return the chunk for reuse.
+        passes the pool and the size used at malloc/calloc. If the
+        implementation does not support optional free, the call does
+        nothing (destroy is still lifetime). Heap and heap tracker
+        return the chunk for reuse. Heap temporarily checks size
+        against the live chunk header and throws if they disagree.
       </description>
 
       <parameter name="instance" type="const afw_pool_t *">
@@ -5825,6 +5827,10 @@ AFW_DEFINE(const afw_request_handler_t *)
 
       <parameter name="address" type="void *">
     <description>Address of memory to free.</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t">
+    <description>Size passed to malloc/calloc for this address.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
@@ -6105,25 +6111,12 @@ AFW_DEFINE(const afw_request_handler_t *)
 
     </method>
 
-    <method name="clone_or_reference">
+    <method name="get_reference">
 
       <description>
-        If this is a non-managed or permanent value the instance is returned
-        asis. Otherwise, this will return a clone of the instance or instance
-        with its reference count incremented.
-        
-        There are 3 possible results:
-        
-        1) If the value is managed and the value's internal value has an
-        get_reference() method, the result of calling the value's internal
-        get_reference() is returned.
-        
-        2) If the value is managed and the value's internal value does not have
-        an get_reference method, a clone of the value in the supplied pool (p)
-        is returned.
-
-        3) If the value is not managed or permanent, the instance is returned
-        asis.
+        Keep this value alive. Matching optional_release. Does not wrap
+        object/array bags. Missing method is a no-op (return instance).
+        See designs/issue-2-hold-in-inf.md.
       </description>
 
       <parameter name="instance" type="const afw_value_t *">
@@ -6134,7 +6127,7 @@ AFW_DEFINE(const afw_request_handler_t *)
 
       <parameter name="p" type="const afw_pool_t *">
     <description>
-          Pool for result.
+          Pool if the inf must allocate (unused for a bump).
         </description>
       </parameter>
 
@@ -6146,7 +6139,42 @@ AFW_DEFINE(const afw_request_handler_t *)
 
       <return type="const afw_value_t *">
     <description>
-          The result as described in the method description.
+          The held value (often the same instance).
+      </description>
+      </return>
+
+    </method>
+
+    <method name="get_assignable_value">
+
+      <description>
+        Occupant for a slot (assign, param, overlay, call result). Matching
+        optional_release. Default is get_reference. Object/array bags mint
+        an assignable face. Missing method is a no-op (return instance).
+        See designs/issue-2-hold-in-inf.md.
+      </description>
+
+      <parameter name="instance" type="const afw_value_t *">
+    <description>
+          Pointer to this adaptive value instance.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+    <description>
+          Pool if the inf must allocate (unused for a bump).
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+    <description>
+          This is the caller's xctx.
+        </description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+    <description>
+          A value that fully supports being stored in a slot.
       </description>
       </return>
 

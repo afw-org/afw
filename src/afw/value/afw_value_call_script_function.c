@@ -19,7 +19,8 @@
 
 
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference NULL
+#define impl_afw_value_get_reference NULL
+#define impl_afw_value_get_assignable_value NULL
 
 #define impl_afw_value_get_evaluated_meta \
     afw_value_internal_get_evaluated_meta_default
@@ -428,26 +429,26 @@ impl_afw_value_optional_evaluate(
         }
 
         /*
-         * Hold the C return in this frame's hidden result so callee
-         * last-release can walk named slots first.
+         * Return temp for a real occupant. void/undefined stay as-is so a
+         * : void procedure is the void singleton and does not write
+         * script_result.
          */
-        if (afw_value_is_void(result)) {
-            afw_value_slot_store(&xctx->script_result,
-                afw_value_undefined, xctx->p, xctx);
-        }
-        else if (result &&
+        if (result &&
             !afw_value_is_undefined(result) &&
-            xctx->script_result != result)
+            !afw_value_is_void(result) &&
+            !afw_value_is_function_return_value(result))
         {
-            afw_value_slot_store(&xctx->script_result, result,
-                xctx->p, xctx);
+            result = afw_value_function_return_value_create(
+                result,
+                xctx->evaluation_heap ? xctx->evaluation_heap : xctx->p,
+                xctx);
         }
-        if (!afw_value_is_void(result) &&
-            xctx->script_result &&
-            !afw_value_is_undefined(xctx->script_result) &&
-            !afw_value_is_void(xctx->script_result))
+        if (result &&
+            !afw_value_is_undefined(result) &&
+            !afw_value_is_void(result))
         {
-            result = xctx->script_result;
+            xctx->script_result = result;
+            xctx->script_result_written = true;
         }
     }
 
@@ -478,7 +479,7 @@ impl_afw_value_optional_evaluate(
             saved_script_result,
             saved_script_result_active,
             saved_script_result_written,
-            true, xctx);
+            xctx);
     }
 
     AFW_ENDTRY;

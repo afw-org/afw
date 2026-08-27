@@ -16,7 +16,8 @@
 
 
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference NULL
+#define impl_afw_value_get_reference NULL
+#define impl_afw_value_get_assignable_value NULL
 
 #define impl_afw_value_get_evaluated_meta \
     afw_value_internal_get_evaluated_meta_default
@@ -44,9 +45,11 @@ impl_afw_value_optional_evaluate(
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
+    const afw_value_t *occupant;
     const afw_value_t *saved_script_result;
     const afw_pool_t *heap;
     const afw_pool_t *saved_evaluation_heap;
+    const afw_pool_t *dest_p;
     afw_boolean_t saved_script_result_active;
     afw_boolean_t saved_script_result_written;
     int nelts;
@@ -88,10 +91,6 @@ impl_afw_value_optional_evaluate(
             result = afw_value_evaluate(self->root_value, p, xctx);
         }
 
-        if (result) {
-            result = afw_value_clone(result, p->managed_p, xctx);
-        }
-
     }
     AFW_FINALLY {
 
@@ -106,15 +105,15 @@ impl_afw_value_optional_evaluate(
         /* Pop off the NULL compiled value indicator on scope stack. */
         apr_array_pop(xctx->scope_stack);
 
-        if (xctx->script_result_active &&
-            result &&
-            !afw_value_is_undefined(result) &&
-            !afw_value_is_void(result) &&
-            xctx->script_result != result)
-        {
-            afw_value_slot_store(&xctx->script_result, result,
-                p->managed_p, xctx);
+        /*
+         * Escape the callee heap onto the caller's evaluation heap so
+         * overwrite can recycle (general xctx->p free is a no-op).
+         */
+        dest_p = saved_evaluation_heap;
+        if (!dest_p || dest_p == heap) {
+            dest_p = xctx->p;
         }
+
         if (xctx->script_result_active &&
             xctx->script_result &&
             !afw_value_is_undefined(xctx->script_result) &&
@@ -122,11 +121,28 @@ impl_afw_value_optional_evaluate(
         {
             result = xctx->script_result;
         }
+        if (result &&
+            !afw_value_is_undefined(result) &&
+            !afw_value_is_void(result) &&
+            !afw_value_is_function_return_value(result))
+        {
+            occupant = result;
+            result = afw_value_function_return_value_create(
+                occupant, dest_p, xctx);
+            /*
+             * FRV holds the occupant. Drop the running-result slot hold
+             * so restore does not need donate.
+             */
+            if (xctx->script_result == occupant) {
+                afw_value_release(occupant, xctx);
+                xctx->script_result = result;
+            }
+        }
         afw_xctx_script_result_restore(
             saved_script_result,
             saved_script_result_active,
             saved_script_result_written,
-            true, xctx);
+            xctx);
 
         xctx->evaluation_heap = saved_evaluation_heap;
         if (heap) {

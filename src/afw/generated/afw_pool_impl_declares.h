@@ -159,6 +159,7 @@ AFW_DECLARE_STATIC(void)
 impl_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
     void * address,
+    afw_size_t size,
     afw_xctx_t * xctx);
 #endif
 

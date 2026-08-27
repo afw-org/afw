@@ -15,7 +15,8 @@
 
 
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference NULL
+#define impl_afw_value_get_reference NULL
+#define impl_afw_value_get_assignable_value NULL
 
 #define impl_afw_value_get_evaluated_meta \
     afw_value_internal_get_evaluated_meta_for_object
@@ -92,12 +93,13 @@ impl_afw_value_optional_evaluate(
 
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
+    afw_xctx_evaluation_stack_push_value(&self->pub, xctx);
 
     to = afw_object_create_script_wrapper(p, xctx);
 
     for (e = self->entries; e; e = e->next) {
         if (e->type == afw_value_object_construct_entry_spread) {
-            v = afw_value_evaluate(e->spread_expr, p, xctx);
+            v = afw_value_evaluate_and_park(e->spread_expr, 1, p, xctx);
             if (!v || !afw_value_is_object(v)) {
                 AFW_THROW_ERROR_Z(argument_error,
                     "Object spread must evaluate to an object",
@@ -115,16 +117,14 @@ impl_afw_value_optional_evaluate(
             }
         }
         else if (e->type == afw_value_object_construct_entry_name_expr) {
-            name_v = afw_value_evaluate(e->name_expr, p, xctx);
+            name_v = afw_value_evaluate_and_park(e->name_expr, 1, p, xctx);
             property_name = impl_name_from_value(name_v, p, xctx);
-            v = afw_value_evaluate(e->value, p, xctx);
-            v = afw_value_closure_binding_create_if_needed(v, xctx);
+            v = afw_value_evaluate_and_park(e->value, 1, p, xctx);
             afw_object_set_property(to, property_name, v, xctx);
         }
         else {
             /* static */
-            v = afw_value_evaluate(e->value, p, xctx);
-            v = afw_value_closure_binding_create_if_needed(v, xctx);
+            v = afw_value_evaluate_and_park(e->value, 1, p, xctx);
             afw_object_set_property(to, e->static_name, v, xctx);
         }
     }
@@ -133,6 +133,7 @@ impl_afw_value_optional_evaluate(
         afw_object_meta_set_meta_object(to, self->meta, xctx);
     }
 
+    afw_xctx_evaluation_stack_pop_value(xctx);
     xctx->error->contextual = saved_contextual;
     return afw_object_as_value(to, p, xctx);
 }

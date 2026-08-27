@@ -6919,6 +6919,7 @@ typedef void
 (*afw_pool_free_memory_t)(
     const afw_pool_t * instance,
     void * address,
+    afw_size_t size,
     afw_xctx_t * xctx);
 
 /** @sa afw_pool_register_cleanup_before() */
@@ -7099,11 +7100,14 @@ struct afw_pool_inf_s {
  * @brief Call method `free_memory` of interface `afw_pool`.
  *
  * Optionally free memory allocated from this pool. The caller
- * passes the pool. If the implementation does not support
- * optional free, the call does nothing (destroy is still
- * lifetime). Heap and heap tracker return the chunk for reuse.
+ * passes the pool and the size used at malloc/calloc. If the
+ * implementation does not support optional free, the call does
+ * nothing (destroy is still lifetime). Heap and heap tracker
+ * return the chunk for reuse. Heap temporarily checks size
+ * against the live chunk header and throws if they disagree.
  * @param instance Pointer to this pool instance.
  * @param address Address of memory to free.
+ * @param size Size passed to malloc/calloc for this address.
  * @param xctx This is the caller's xctx.
  * @relates afw_pool_t
  * @see @ref afw_pool_s "afw_pool_t"
@@ -7111,11 +7115,13 @@ struct afw_pool_inf_s {
 #define afw_pool_free_memory( \
     instance, \
     address, \
+    size, \
     xctx \
 ) \
 (instance)->inf->free_memory( \
     (instance), \
     (address), \
+    (size), \
     (xctx) \
 )
 
@@ -7399,9 +7405,16 @@ typedef void
     const afw_value_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_value_clone_or_reference() */
+/** @sa afw_value_get_reference() */
 typedef const afw_value_t *
-(*afw_value_clone_or_reference_t)(
+(*afw_value_get_reference_t)(
+    const afw_value_t * instance,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
+
+/** @sa afw_value_get_assignable_value() */
+typedef const afw_value_t *
+(*afw_value_get_assignable_value_t)(
     const afw_value_t * instance,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
@@ -7471,7 +7484,8 @@ typedef void
 struct afw_value_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_value_optional_release_t optional_release;
-    afw_value_clone_or_reference_t clone_or_reference;
+    afw_value_get_reference_t get_reference;
+    afw_value_get_assignable_value_t get_assignable_value;
     afw_value_create_iterator_t create_iterator;
     afw_value_optional_evaluate_t optional_evaluate;
     afw_value_get_data_type_t get_data_type;
@@ -7523,37 +7537,49 @@ struct afw_value_inf_s {
 )
 
 /**
- * @brief Call method `clone_or_reference` of interface `afw_value`.
+ * @brief Call method `get_reference` of interface `afw_value`.
  *
- * If this is a non-managed or permanent value the instance is returned
- * asis. Otherwise, this will return a clone of the instance or instance
- * with its reference count incremented.
- * 
- * There are 3 possible results:
- * 
- * 1) If the value is managed and the value's internal value has an
- * get_reference() method, the result of calling the value's internal
- * get_reference() is returned.
- * 
- * 2) If the value is managed and the value's internal value does not have
- * an get_reference method, a clone of the value in the supplied pool (p)
- * is returned.
- * 
- * 3) If the value is not managed or permanent, the instance is returned
- * asis.
+ * Keep this value alive. Matching optional_release. Does not wrap
+ * object/array bags. Missing method is a no-op (return instance).
+ * See designs/issue-2-hold-in-inf.md.
  * @param instance Pointer to this adaptive value instance.
- * @param p Pool for result.
+ * @param p Pool if the inf must allocate (unused for a bump).
  * @param xctx This is the caller's xctx.
- * @return The result as described in the method description.
+ * @return The held value (often the same instance).
  * @relates afw_value_t
  * @see @ref afw_value_s "afw_value_t"
  */
-#define afw_value_clone_or_reference( \
+#define afw_value_get_reference( \
     instance, \
     p, \
     xctx \
 ) \
-(instance)->inf->clone_or_reference( \
+(instance)->inf->get_reference( \
+    (instance), \
+    (p), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `get_assignable_value` of interface `afw_value`.
+ *
+ * Occupant for a slot (assign, param, overlay, call result). Matching
+ * optional_release. Default is get_reference. Object/array bags mint
+ * an assignable face. Missing method is a no-op (return instance).
+ * See designs/issue-2-hold-in-inf.md.
+ * @param instance Pointer to this adaptive value instance.
+ * @param p Pool if the inf must allocate (unused for a bump).
+ * @param xctx This is the caller's xctx.
+ * @return A value that fully supports being stored in a slot.
+ * @relates afw_value_t
+ * @see @ref afw_value_s "afw_value_t"
+ */
+#define afw_value_get_assignable_value( \
+    instance, \
+    p, \
+    xctx \
+) \
+(instance)->inf->get_assignable_value( \
     (instance), \
     (p), \
     (xctx) \

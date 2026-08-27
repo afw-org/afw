@@ -924,7 +924,7 @@ afw_runtime_value_accessor_applicable_flags(
     const afw_flag_t *flag;
     afw_size_t i;
 
-    list = afw_array_create_generic(p, xctx);
+    list = afw_array_create_in_pool(p, xctx);
     for (i = 0; i < self->applicable_flags_count_allocated; i++) {
         if (self->applicable_flags[i]) {
             flag = afw_flag_get_by_index(i, xctx);
@@ -1077,12 +1077,12 @@ afw_runtime_value_accessor_null_terminated_array_of_utf8_z_key_value_pair_object
         return NULL;
     }
 
-    list = afw_array_create_generic(p, xctx);
+    list = afw_array_create_in_pool(p, xctx);
     result = afw_value_create_unmanaged_array(list, p, xctx);
 
     for (; *s_z; s_z++)
     {
-        object = afw_object_create_unmanaged(p, xctx);
+        object = afw_object_create_in_pool(p, xctx);
         for (; *s_z; s_z++) {
             property_name = afw_value_create_unmanaged_string(
                 afw_utf8_create(*s_z, AFW_UTF8_Z_LEN, p, xctx), p, xctx);

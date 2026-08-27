@@ -78,8 +78,6 @@ afw_compile_parse_List(
         return NULL;
     }
 
-    parser->array_literal_depth++;
-
     /* Create result list. */
     list = NULL;
     args = NULL;
@@ -196,7 +194,7 @@ afw_compile_parse_List(
         /* If all values so far are evaluated, add entry to list. */
         else {
             if (!list) {
-                list = afw_array_create_generic(parser->p, parser->xctx);
+                list = afw_array_create_in_pool(parser->p, parser->xctx);
             }
 
             afw_array_push_value(list, entry, parser->xctx);
@@ -213,7 +211,7 @@ afw_compile_parse_List(
 
     /* Else if no entries yet, result is empty array. */
     else if (!list) {
-        list = afw_array_create_generic(parser->p, parser->xctx);
+        list = afw_array_create_in_pool(parser->p, parser->xctx);
         afw_array_set_immutable(list, parser->xctx);
         result = afw_value_create_unmanaged_array(
             list, parser->p, parser->xctx);
@@ -225,38 +223,6 @@ afw_compile_parse_List(
         result = afw_value_create_unmanaged_array(
             list, parser->p, parser->xctx);
     }
-
-    /*
-     * Outermost constant array literal in script/template: emit
-     * wrap_literal_array so each evaluation gets a mutable face (issue #17).
-     * Nested array literals stay unwrapped so the outer constant bag can
-     * remain evaluated (nested promote-on-get). Nested under an object uses
-     * embedding_object (non-NULL) and is not wrapped here. JSON /
-     * relaxed_json stay unwrapped. Constructor calls (args path) are not
-     * wrapped here.
-     */
-    if (result &&
-        AFW_VALUE_IS_DATA_TYPE(result, array) &&
-        parser->array_literal_depth == 1 &&
-        !parser->embedding_object &&
-        !parser->suppress_array_literal_wrap &&
-        (parser->compile_type == afw_compile_type_script ||
-            parser->compile_type == afw_compile_type_test_script ||
-            parser->compile_type == afw_compile_type_template))
-    {
-        const afw_value_t **wrap_argv;
-
-        wrap_argv = afw_pool_calloc(parser->p,
-            sizeof(afw_value_t *) * 2, parser->xctx);
-        wrap_argv[0] =
-            &afw_function_definition_wrap_literal_array.pub;
-        wrap_argv[1] = result;
-        result = afw_value_call_built_in_function_create(
-            afw_compile_create_contextual_to_cursor(start_offset),
-            1, wrap_argv, true, parser->p, parser->xctx);
-    }
-
-    parser->array_literal_depth--;
 
     /* Return list value or call to add_entries. */
     return result;
@@ -656,7 +622,7 @@ afw_compile_parse_Object(
                  */
                 else if (!afw_value_is_object(v)) {
                     if (!obj) {
-                        obj = afw_object_create_unmanaged(
+                        obj = afw_object_create_in_pool(
                             parser->p, parser->xctx);
                         if (args) { /** @fixme Review how this can happen.*/
                             afw_compile_args_add_value(args,
@@ -725,31 +691,6 @@ afw_compile_parse_Object(
         afw_object_meta_set_meta_object(obj, _meta_, parser->xctx);
         result = afw_value_create_unmanaged_object(
             obj, parser->p, parser->xctx);
-
-        /*
-         * Top-level constant object literal in script/template: emit
-         * wrap_literal_object so each evaluation gets a mutable face over the
-         * shared compile-time bag (issue #17). Nested objects use embedding
-         * (saved embedding_object non-NULL) and are not wrapped here. JSON /
-         * relaxed_json stay unwrapped for conf and data documents.
-         */
-        if (!embedding_object &&
-            !parser->suppress_object_literal_wrap &&
-            (parser->compile_type == afw_compile_type_script ||
-                parser->compile_type == afw_compile_type_test_script ||
-                parser->compile_type == afw_compile_type_template))
-        {
-            const afw_value_t **wrap_argv;
-
-            wrap_argv = afw_pool_calloc(parser->p,
-                sizeof(afw_value_t *) * 2, parser->xctx);
-            wrap_argv[0] =
-                &afw_function_definition_wrap_literal_object.pub;
-            wrap_argv[1] = result;
-            result = afw_value_call_built_in_function_create(
-                afw_compile_create_contextual_to_cursor(start_offset),
-                1, wrap_argv, true, parser->p, parser->xctx);
-        }
     }
 
     /* Restore saved embedding object and property name. */

@@ -40,47 +40,31 @@ afw_value_undefined =
 { &impl_value_undefined.pub };
 
 
-/* Take a matching donated return hold, if any. */
-static afw_boolean_t
-impl_take_donated_return(
-    const afw_value_t *value,
-    afw_xctx_t *xctx)
-{
-    afw_size_t i;
-
-    if (!value || !xctx->script_result_donated_count) {
-        return false;
-    }
-    i = xctx->script_result_donated_count;
-    while (i > 0) {
-        i--;
-        if (xctx->script_result_donated[i] == value) {
-            xctx->script_result_donated_count--;
-            if (i < xctx->script_result_donated_count) {
-                xctx->script_result_donated[i] =
-                    xctx->script_result_donated[
-                        xctx->script_result_donated_count];
-            }
-            xctx->script_result_donated[
-                xctx->script_result_donated_count] = NULL;
-            return true;
-        }
-    }
-    return false;
-}
-
-
-/* NULL-safe clone_or_reference. */
+/* NULL-safe get_reference. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_add_reference(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    if (!value || !value->inf || !value->inf->clone_or_reference) {
+    if (!value || !value->inf || !value->inf->get_reference) {
         return value;
     }
-    return afw_value_clone_or_reference(value, p, xctx);
+    return afw_value_get_reference(value, p, xctx);
+}
+
+
+/* NULL-safe get_assignable_value. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_as_assignable(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!value || !value->inf || !value->inf->get_assignable_value) {
+        return value;
+    }
+    return afw_value_get_assignable_value(value, p, xctx);
 }
 
 
@@ -107,64 +91,16 @@ afw_value_slot_store(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_boolean_t taken;
-
     if (!incoming) {
         incoming = afw_value_undefined;
     }
-    taken = impl_take_donated_return(incoming, xctx);
     if (*slot == incoming) {
-        if (taken) {
-            afw_value_release(incoming, xctx);
-        }
         return;
     }
     afw_value_release(*slot, xctx);
-    if (taken) {
-        *slot = incoming;
-    }
-    else {
-        *slot = afw_value_add_reference(incoming, p, xctx);
-    }
+    *slot = afw_value_as_assignable(incoming, p, xctx);
 }
 
-
-/* Park callee hidden-result hold for the caller to store. */
-AFW_DEFINE(void)
-afw_value_donate_return(
-    const afw_value_t *value,
-    afw_xctx_t *xctx)
-{
-    afw_size_t n;
-    const afw_value_t **a;
-
-    if (!value || afw_value_is_undefined(value) ||
-        afw_value_is_void(value) ||
-        !value->inf || !value->inf->optional_release)
-    {
-        return;
-    }
-    if (xctx->script_result_donated_count >=
-        xctx->script_result_donated_alloc)
-    {
-        n = xctx->script_result_donated_alloc == 0
-            ? 8
-            : xctx->script_result_donated_alloc * 2;
-        a = afw_pool_calloc(xctx->p,
-            n * sizeof(const afw_value_t *), xctx);
-        if (xctx->script_result_donated &&
-            xctx->script_result_donated_count > 0)
-        {
-            memcpy(a, xctx->script_result_donated,
-                xctx->script_result_donated_count *
-                    sizeof(const afw_value_t *));
-        }
-        xctx->script_result_donated = a;
-        xctx->script_result_donated_alloc = n;
-    }
-    xctx->script_result_donated[
-        xctx->script_result_donated_count++] = value;
-}
 
 static const afw_value_void_t
 impl_value_void = {
@@ -537,47 +473,78 @@ afw_value_clone(const afw_value_t *value,
 
 
 
-/* Isolate default for property_get / variable_get (issues #110 / #17). */
+/* Unmanaged/permanent object clone_or_reference: face overlay, do not wrap a face. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_isolate_mutable_default(
+afw_value_object_hold(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_object_t *obj;
-    const afw_array_t *arr;
-    const afw_object_t *face_obj;
-    const afw_array_t *face_arr;
+    const afw_object_t *face;
 
-    if (!value || afw_value_is_undefined(value) || afw_value_is_nullish(value)) {
+    if (!value) {
         return value;
     }
-
-    if (AFW_VALUE_IS_DATA_TYPE(value, object)) {
-        obj = ((const afw_value_object_t *)value)->internal;
-        if (!obj) {
-            return value;
-        }
-        /* Always a *new* face over the base (even if value was already a face). */
-        obj = afw_object_memory_wrapper_base(obj);
-        face_obj = afw_object_create_wrapper_unmanaged(obj, p, xctx);
-        return afw_object_as_value(face_obj, p, xctx);
+    obj = ((const afw_value_object_t *)value)->internal;
+    if (!obj) {
+        return value;
     }
-
-    if (AFW_VALUE_IS_DATA_TYPE(value, array)) {
-        arr = ((const afw_value_array_t *)value)->internal;
-        if (!arr) {
-            return value;
-        }
-        arr = afw_array_memory_wrapper_base(arr);
-        face_arr = afw_array_create_wrapper_unmanaged(arr, p, xctx);
-        return afw_array_as_value(face_arr, p, xctx);
+    if (value->inf == &afw_value_assignable_object_inf ||
+        afw_object_is_memory_wrapper(obj))
+    {
+        afw_object_get_reference(obj, xctx);
+        return value;
     }
-
-    /* Scalars and other types: clone as before. */
-    return afw_value_clone(value, p, xctx);
+    if (!p) {
+        p = xctx->p;
+    }
+    face = afw_object_create_wrapper_unmanaged(obj, p, xctx);
+    afw_object_get_reference(face, xctx);
+    return afw_object_as_value(face, p, xctx);
 }
 
+
+/* Unmanaged/permanent array clone_or_reference: face overlay, do not wrap a face. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_array_hold(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_array_t *arr;
+    const afw_array_t *face;
+
+    if (!value) {
+        return value;
+    }
+    arr = ((const afw_value_array_t *)value)->internal;
+    if (!arr) {
+        return value;
+    }
+    if (value->inf == &afw_value_assignable_array_inf ||
+        afw_array_is_memory_wrapper(arr))
+    {
+        afw_array_get_reference(arr, xctx);
+        return value;
+    }
+    /*
+     * Custom immutable views (metas, const arrays): no setter and not a
+     * memory array. Wrapping would materialize a mutable overlay.
+     * Compiled memory arrays still wrap even when frozen on the base.
+     */
+    if (!afw_array_is_memory(arr) &&
+        !afw_array_get_setter(arr, xctx))
+    {
+        return value;
+    }
+    if (!p) {
+        p = xctx->p;
+    }
+    face = afw_array_create_wrapper_unmanaged(arr, p, xctx);
+    afw_array_get_reference(face, xctx);
+    return afw_array_as_value(face, p, xctx);
+}
 
 
 /* Convert value->internal to afw_utf8_z_t * */
@@ -1143,10 +1110,10 @@ afw_value_as_array_sequence(
     dt = value->inf->is_evaluated_of_data_type;
     element_dt = dt ? dt->iterator_return_data_type : NULL;
     if (element_dt) {
-        array = afw_array_of_create(element_dt, p, xctx);
+        array = afw_array_create_in_pool_of(element_dt, p, xctx);
     }
     else {
-        array = afw_array_create_generic(p, xctx);
+        array = afw_array_create_in_pool(p, xctx);
     }
 
     afw_value_initialize_iterator(value, &iterator, xctx);

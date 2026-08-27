@@ -473,15 +473,15 @@ export function afwPropertyExists(client : any, object : object, name : string) 
 /**
  * Return the value of a property. Optional default applies only when the
  * property is missing — not when the value is undefined. If missing and no
- * default is given, the result is undefined. Object/array defaults get a
- * mutable memory face (issues #110 / #17); other defaults are cloned.
+ * default is given, the result is undefined. The default is the evaluated
+ * value at that moment (identity).
  * 
  * @param {object} object - Object to get property from.
  * 
  * @param {string} name - Property name.
  * 
  * @param {} defaultValue - Value to return only if the property is missing.
- *     Isolated when used (object/array face; otherwise clone).
+ *     The evaluated value at that moment (identity).
  * 
  * @returns {} Property value, or default / undefined if missing.
  */

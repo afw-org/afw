@@ -137,7 +137,7 @@ afw_environment_create_environment_variables_object(
     self->pub.meta.object_uri = &impl_path;
 
     /* Empty memory object used as first-access cache. */
-    self->properties = afw_object_create_cede_p(p, xctx);
+    self->properties = afw_object_and_pool_create_cede(p, xctx);
 
     if (preload_variables) {
         impl_load_all_variables(self, xctx);

@@ -81,7 +81,7 @@ afw_xctx_qualifier_object_create(
             continue;
         }
         if (!object) {
-            object = afw_object_create_unmanaged(p, xctx);
+            object = afw_object_create_in_pool(p, xctx);
         }
         e_cur->contribute_cb(e_cur, object, include_untrusted, xctx);
     }
@@ -102,7 +102,7 @@ afw_xctx_qualifiers_object_create(
     const afw_object_t *qualifier_object;
     const afw_xctx_qualifier_stack_entry_t *c;
 
-    qualifiers = afw_object_create_unmanaged(p, xctx);
+    qualifiers = afw_object_create_in_pool(p, xctx);
     for (c = xctx->qualifier_stack->top;
         c >= xctx->qualifier_stack->first;
         c--)

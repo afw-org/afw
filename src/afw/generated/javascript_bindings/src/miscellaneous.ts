@@ -345,13 +345,13 @@ export function afwVariableExists(client : any, name : string) : any {
 /**
  * Return the value of a bound variable. Optional default applies only when
  * the name is not bound — not when the value is undefined. If unbound and no
- * default is given, the result is undefined. Object/array defaults get a
- * mutable memory face (issues #110 / #17); other defaults are cloned.
+ * default is given, the result is undefined. The default is the evaluated
+ * value at that moment (identity).
  * 
  * @param {string} name - Name of variable to get. Optionally qualifier::name.
  * 
- * @param {} defaultValue - Value to return only if the name is not bound.
- *     Isolated when used (object/array face; otherwise clone).
+ * @param {} defaultValue - Value to return only if the name is not bound. The
+ *     evaluated value at that moment (identity).
  * 
  * @returns {} Bound variable value, or default / undefined if unbound.
  */

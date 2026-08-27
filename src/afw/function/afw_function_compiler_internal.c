@@ -193,8 +193,12 @@ afw_function_script_evaluate_parameter_with_type(
         return value;
     }
 
-    afw_xctx_evaluation_stack_push_parameter_number(parameter_number, xctx);
-    result = afw_value_evaluate(value, p, xctx);
+    result = afw_value_evaluate_and_park(value, parameter_number, p, xctx);
+    if (result && afw_value_is_compiled_value(result) &&
+        want_dt != afw_data_type_unevaluated)
+    {
+        result = afw_value_evaluate(result, p, xctx);
+    }
 
     /* #153: materialize utf8 sequences before check/convert. */
     if (wants_array_sequence) {
@@ -211,7 +215,6 @@ afw_function_script_evaluate_parameter_with_type(
         result = afw_value_convert(result, want_dt, true, p, xctx);
     }
 
-    afw_xctx_evaluation_stack_pop_parameter_number(xctx);
     return result;
 }
 
@@ -226,28 +229,14 @@ afw_function_script_assign_pattern(
     afw_xctx_t *xctx)
 {
     /*
-     * Objects and arrays: no clone-on-bind — issue #17 faces
-     * (wrap_literal_object / wrap_literal_array) isolate shared literals.
+     * Store-time bind for script functions is clone_or_reference on the
+     * script_function inf (slot_store). Faces isolate object/array literals.
      */
     if (value && !afw_value_is_undefined(value)) {
-        value = afw_value_evaluate(value, p, xctx);
+        value = afw_value_evaluate_and_park(value, 1, p, xctx);
     }
     impl_assign_value(target, value, assignment_type, p, xctx);
 }
-
-
-static const afw_value_t *
-impl_create_closure_if_needed(
-    const afw_value_script_function_definition_t *function,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    (void)p;
-
-    return afw_value_closure_binding_create_if_needed(
-        (const afw_value_t *)function, xctx);
-}
-
 
 
 /*
@@ -265,7 +254,7 @@ impl_evaluate_pattern_default(
     if (!default_value) {
         return afw_value_undefined;
     }
-    return afw_value_evaluate(default_value, p, xctx);
+    return afw_value_evaluate_and_park(default_value, 1, p, xctx);
 }
 
 
@@ -336,13 +325,13 @@ impl_list_destructure(
                     break;
                 }
                 if (!rest) {
-                    rest = afw_array_create_generic(p, xctx);
+                    rest = afw_array_create_in_pool(p, xctx);
                 }
                 afw_array_push_value(rest, v, xctx);
             }
         }
         if (!rest) {
-            rest = afw_array_create_generic(p, xctx);
+            rest = afw_array_create_in_pool(p, xctx);
         }
         v = afw_value_create_unmanaged_array(rest, p, xctx);
         if (ld->rest_type) {
@@ -401,7 +390,8 @@ impl_object_destructure(
     {
         if (ap->is_rename) {
             if (ap->property_name_expr) {
-                name_v = afw_value_evaluate(ap->property_name_expr, p, xctx);
+                name_v = afw_value_evaluate_and_park(
+                    ap->property_name_expr, 1, p, xctx);
                 bound_name = afw_object_require_string_property_name(
                     name_v, xctx);
             }
@@ -448,7 +438,7 @@ impl_object_destructure(
 
     /* Add other properties to rest. */
     if (od->rest) {
-        rest = afw_object_create(p, xctx);
+        rest = afw_object_and_pool_create(p, xctx);
         for (iterator = NULL;;) {
             v = afw_object_get_next_property(object, &iterator, &property_name,
                 xctx);
@@ -529,11 +519,7 @@ impl_assignment_target(
         if (symbol->type.kind != afw_value_type_kind_data_type ||
             symbol->type.data_type != afw_data_type_unevaluated)
         {
-            value = afw_value_evaluate(value, p, xctx);
-        }
-        if (symbol->symbol_type != afw_value_block_symbol_type_function) {
-            value = afw_value_closure_binding_create_if_needed(
-                value, xctx);
+            value = afw_value_evaluate_and_park(value, 1, p, xctx);
         }
         afw_value_type_check_assignable(&symbol->type, value,
             "assignment", contextual, xctx);
@@ -561,7 +547,7 @@ impl_assign(
 {
     const afw_value_assignment_target_t *at;
 
-    value = afw_value_evaluate(value, p, xctx);
+    value = afw_value_evaluate_and_park(value, 1, p, xctx);
 
     if (assignment_type == afw_compile_assignment_type_use_assignment_targets)
     {
@@ -623,12 +609,6 @@ impl_assign_value(
                 "Cannot assign to const variable \"" AFW_UTF8_FMT "\"",
                 AFW_UTF8_FMT_ARG(t->symbol->name));
         }
-        if (t->symbol->symbol_type != afw_value_block_symbol_type_function &&
-            afw_value_is_script_function_definition(value))
-        {
-            value = impl_create_closure_if_needed(
-                (const afw_value_script_function_definition_t *)value, p, xctx);
-        }
         /*
          * Pattern leaves and object-destructure shorthand bind through bare
          * symbol_reference (not assignment_target). Enforce symbol->type here
@@ -651,17 +631,15 @@ impl_assign_value(
         const afw_value_t *key;
         const afw_value_t *aggregate_value;
 
-        if (afw_value_is_script_function_definition(value)) {
-            value = impl_create_closure_if_needed(
-                (const afw_value_script_function_definition_t *)value, p, xctx);
-        }
-
-        aggregate_value = afw_value_evaluate(t->aggregate_value, p, xctx);
-        key = afw_value_evaluate(t->key, p, xctx);
+        aggregate_value = afw_value_evaluate_and_park(
+            t->aggregate_value, 1, p, xctx);
+        key = afw_value_evaluate_and_park(t->key, 1, p, xctx);
+        aggregate_value = afw_value_as_assignable(aggregate_value, p, xctx);
 
         if (afw_value_is_object(aggregate_value)) {
             object = ((const afw_value_object_t *)aggregate_value)->internal;
             if (afw_object_is_immutable(object, xctx)) {
+                afw_value_release(aggregate_value, xctx);
                 AFW_THROW_ERROR_Z(general, "Target object is immutable", xctx);
             }
             key = afw_object_require_string_property_name(key, xctx);
@@ -672,10 +650,12 @@ impl_assign_value(
             list = ((const afw_value_array_t *)aggregate_value)->internal;
 
             if (afw_array_is_immutable(list, xctx)) {
+                afw_value_release(aggregate_value, xctx);
                 AFW_THROW_ERROR_Z(general, "Target array is immutable", xctx);
             }
 
             if (!afw_value_is_integer(key)) {
+                afw_value_release(aggregate_value, xctx);
                 AFW_THROW_ERROR_Z(general, "Array index must be integer", xctx);
             }
 
@@ -685,14 +665,17 @@ impl_assign_value(
         }
 
         else if (afw_value_has_iterator(aggregate_value)) {
+            afw_value_release(aggregate_value, xctx);
             /* Utf8 code-point sequences are immutable (#153). */
             AFW_THROW_ERROR_Z(general,
                 "Cannot assign into a utf8 code-point sequence", xctx);
         }
 
         else {
+            afw_value_release(aggregate_value, xctx);
             AFW_THROW_ERROR_Z(general, "Invalid assignment target", xctx);
         }
+        afw_value_release(aggregate_value, xctx);
 
     }
     
@@ -771,7 +754,7 @@ impl_is_c_style_for_let_wrapper(const afw_xctx_scope_t *scope)
 }
 
 
-/* for init/increment are assignment IR, not script assignment statements. */
+/* for init/increment are assignment IR, not statement-list last_return. */
 static void
 impl_evaluate_for_increment(
     afw_function_execute_t *x,
@@ -780,17 +763,7 @@ impl_evaluate_for_increment(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *saved_result;
-    afw_boolean_t saved_written;
-
-    saved_result = xctx->script_result;
-    saved_written = xctx->script_result_written;
     impl_evaluate_one_or_more_values(x, parameter_number, values, p, xctx);
-    afw_xctx_script_result_restore(
-        saved_result,
-        xctx->script_result_active,
-        saved_written,
-        false, xctx);
 }
 
 
@@ -838,11 +811,16 @@ afw_function_execute_assign(
     const afw_value_t *result;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(2);
-    result = impl_assign(x->argv[1], AFW_FUNCTION_ARGV(2),
-        afw_compile_assignment_type_assign_only,
-        p, xctx);
+    {
+        const afw_value_t *value;
 
-    afw_xctx_script_result_set(result, xctx);
+        AFW_FUNCTION_EVALUATE_PARAMETER(value, 2);
+        result = impl_assign(x->argv[1], value,
+            afw_compile_assignment_type_assign_only,
+            p, xctx);
+    }
+
+    /* last_return is the statement list, not assign() itself. */
     return result;
 }
 
@@ -1581,7 +1559,6 @@ afw_function_execute_return(
     afw_function_execute_t *x)
 {
     afw_xctx_t *xctx = x->xctx;
-    const afw_pool_t *p = x->p;
     const afw_value_t *result;
 
     result = afw_value_undefined;
@@ -1589,18 +1566,28 @@ afw_function_execute_return(
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(1)) {
         /* NULL (undefined) is okay here. */
         result = afw_function_evaluate_parameter(x, 1, NULL);
-        if (afw_value_is_script_function_definition(result)) {
-            result = impl_create_closure_if_needed(
-                (const afw_value_script_function_definition_t *)result,
-                p, xctx);
-        }
-
         /* return statement should not return NULL for undefined. */
-        else if (!result) {
+        if (!result) {
             result = afw_value_undefined;
         }
     }
-    afw_xctx_script_result_set(result, xctx);
+    /*
+     * Return temp, not a caller slot. #62 still points script_result at
+     * this wrapper (pointer, not slot_store).
+     */
+    result = afw_value_function_return_value_create(
+        result,
+        xctx->evaluation_heap ? xctx->evaluation_heap : x->p,
+        xctx);
+    if (xctx->script_result &&
+        xctx->script_result != result &&
+        !afw_value_is_undefined(xctx->script_result) &&
+        !afw_value_is_function_return_value(xctx->script_result))
+    {
+        afw_value_release(xctx->script_result, xctx);
+    }
+    xctx->script_result = result;
+    xctx->script_result_written = true;
     afw_xctx_statement_flow_set_type(return, xctx);
 
     return result;
@@ -1615,11 +1602,9 @@ afw_function_execute_return(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Evaluate an object value, create a memory object wrapper
- * (afw_object_create_wrapper_*) over its instance, and return that wrapper as
- * an object value. Local property sets stay on the face; gets look through to
- * the shared base. Intended for compile/runtime isolation of object literals
- * (issue #17); not normal author surface syntax.
+ * Evaluate an object value and clone_or_reference it (object_hold: memory face
+ * over the instance). Remaining explicit wrap_literal_object() calls; the
+ * compiler no longer emits this. Not normal author surface.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -1634,34 +1619,23 @@ afw_function_execute_return(
  *
  * Parameters:
  *
- *   object - (object) Object to evaluate and wrap (typically a constant object
- *       literal once the compiler emits isolation).
+ *   object - (object) Object to evaluate and hold (typically a constant object
+ *       literal).
  *
  * Returns:
  *
- *   (object) A new memory-wrapper object face over the evaluated base.
+ *   (object) A holdable memory-wrapper object face over the evaluated base.
  */
 const afw_value_t *
 afw_function_execute_wrap_literal_object(
     afw_function_execute_t *x)
 {
     const afw_value_object_t *object;
-    const afw_object_t *wrap;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(1);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
-    /*
-     * Idempotent: compiler is the normal producer of this call; double wrap
-     * (emit + explicit call, or nested call) returns the existing face.
-     * Cross-pool re-home is not required for that path.
-     */
-    if (afw_object_is_memory_wrapper(object->internal)) {
-        return (const afw_value_t *)object;
-    }
-
-    wrap = afw_object_create_wrapper_unmanaged(object->internal, x->p, x->xctx);
-    return wrap->value;
+    return afw_value_add_reference((const afw_value_t *)object, x->p, x->xctx);
 }
 
 
@@ -1673,11 +1647,9 @@ afw_function_execute_wrap_literal_object(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Evaluate an array value, create a memory array wrapper
- * (afw_array_create_wrapper_*) over its instance, and return that wrapper as an
- * array value. Entry mutators stay on the face; nested objects/arrays are
- * promoted on get. Intended for compile/runtime isolation of array literals
- * (issue #17); not normal author surface syntax.
+ * Evaluate an array value and clone_or_reference it (array_hold: memory face
+ * over the instance). Remaining explicit wrap_literal_array() calls; the
+ * compiler no longer emits this. Not normal author surface.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -1692,30 +1664,23 @@ afw_function_execute_wrap_literal_object(
  *
  * Parameters:
  *
- *   array - (array) Array to evaluate and wrap (typically a constant array
- *       literal once the compiler emits isolation).
+ *   array - (array) Array to evaluate and hold (typically a constant array
+ *       literal).
  *
  * Returns:
  *
- *   (array) A new memory-wrapper array face over the evaluated base.
+ *   (array) A holdable memory-wrapper array face over the evaluated base.
  */
 const afw_value_t *
 afw_function_execute_wrap_literal_array(
     afw_function_execute_t *x)
 {
     const afw_value_array_t *array;
-    const afw_array_t *wrap;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(1);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
 
-    /* Idempotent: already a face — return as-is. */
-    if (afw_array_is_memory_wrapper(array->internal)) {
-        return (const afw_value_t *)array;
-    }
-
-    wrap = afw_array_create_wrapper_unmanaged(array->internal, x->p, x->xctx);
-    return wrap->value;
+    return afw_value_add_reference((const afw_value_t *)array, x->p, x->xctx);
 }
 
 
@@ -1819,7 +1784,8 @@ afw_function_execute_switch(
             default_pair = pair;
             continue;
         }
-        result = afw_value_evaluate(functor, p, xctx);
+        result = afw_value_function_return_value_consume(
+            afw_value_evaluate(functor, p, xctx), p, xctx);
         if (!afw_value_is_boolean(result)) {
             AFW_THROW_ERROR_Z(general,
                 "Expecting functor to return a boolean value",
@@ -2090,22 +2056,26 @@ afw_function_execute_try(
                         "is present",
                         xctx);
                 }
-                error_object = afw_error_to_object(&this_THROWN_ERROR, p, xctx);
-                error_value = afw_value_create_unmanaged_object(
-                    error_object, p, xctx);
-                /// @fixme Assignment type is not correct when frames used
- // -------------------------------------------------------------------
- /// @fixme There needs to be a better way to do this. This is a copy of
- /// some of the code from afw_value_block_evaluate_block that had to be
- /// copied here so that the error object can be set in scope after the
- /// scope is created.
+                /*
+                 * Bind the error after the catch frame exists, then the
+                 * same statement-list last_return rules as evaluate_block.
+                 * Do not call evaluate_block: it would create the scope
+                 * again. Empty catch writes nothing (UpdateEmpty).
+                 */
                 const afw_xctx_scope_t *scope;
+                const afw_pool_t *eval_p;
+                const afw_error_t *caught_error = &this_THROWN_ERROR;
                 const afw_value_block_t *block =
                     (const afw_value_block_t *)x->argv[3];
                 scope = afw_xctx_scope_create(
                     block, afw_xctx_scope_current(xctx), xctx);
                 afw_xctx_scope_activate(scope, xctx);
+                eval_p = scope->p;
                 AFW_TRY{
+                    error_object = afw_error_to_object(
+                        caught_error, eval_p, xctx);
+                    error_value = afw_value_create_unmanaged_object(
+                        error_object, eval_p, xctx);
                     /*
                      * Error bind target resolution (issue #140 Patterns):
                      *
@@ -2120,7 +2090,7 @@ afw_function_execute_try(
                      *    as a normal statement.
                      */
                     const afw_value_t *err_target = NULL;
-                    int stmt_start = 0;
+                    afw_size_t stmt_start = 0;
 
                     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4) &&
                         afw_value_is_string(x->argv[4]))
@@ -2136,7 +2106,7 @@ afw_function_execute_try(
                                 err_target =
                                     (const afw_value_t *)
                                     afw_value_symbol_reference_create(
-                                        NULL, esym, p, xctx);
+                                        NULL, esym, eval_p, xctx);
                                 break;
                             }
                         }
@@ -2159,23 +2129,15 @@ afw_function_execute_try(
 
                     if (err_target) {
                         impl_assign_value(err_target, error_value,
-                            afw_compile_assignment_type_let, p, xctx);
+                            afw_compile_assignment_type_let, eval_p, xctx);
                     }
-                    this_result = afw_value_undefined;
-                    for (int i = stmt_start; i < block->statement_count; i++) {
-                        this_result = afw_value_block_evaluate_statement(
-                            x, block->statements[i], p, xctx);
-                        if (!afw_xctx_statement_flow_is_type(sequential, xctx))
-                        {
-                            break;
-                        }
-                    }
+                    this_result = afw_value_block_evaluate_statements(
+                        x, block, stmt_start, eval_p, xctx, false);
                 }
                 AFW_FINALLY{
                     afw_xctx_scope_deactivate(scope, xctx);
                 }
                 AFW_ENDTRY;
-// --------------------------------------------------------------------
             }
             else {
                 this_result = afw_value_block_evaluate_statement(

@@ -16,34 +16,15 @@
 
 
 /*
- * Mutable memory face for journal response objects script will hold
- * (issue #17). Same policy as adapter get/retrieve: wrap before return.
+ * Journal response object. Execute returns the entity; slot fill wraps.
  */
-static const afw_object_t *
-impl_script_face_object(
-    const afw_object_t *object,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    if (!object) {
-        return NULL;
-    }
-    if (afw_object_is_memory_wrapper(object)) {
-        return object;
-    }
-    return afw_object_create_wrapper_unmanaged(object, p, xctx);
-}
-
-
-
 static const afw_value_t *
 impl_return_faced_object(
     const afw_object_t *object,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    object = impl_script_face_object(object, p, xctx);
-    return afw_value_create_unmanaged_object(object, p, xctx);
+    return afw_object_as_value(object, p, xctx);
 }
 
 

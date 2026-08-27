@@ -31,8 +31,9 @@
  *   not the heap's store. Heap may return its current APR pool; a
  *   tracker creates one on first call and destroys it with the tracker.
  *   If nothing calls it on a tracker, there is no extra APR pool.
- * - Optional free is afw_pool_free_memory(p, address, xctx). Caller
- *   passes the pool. Heap/tracker reuse; general APR is a no-op.
+ * - Optional free is afw_pool_free_memory(p, address, size, xctx).
+ *   Caller passes the pool and the malloc/calloc size. Heap/tracker
+ *   reuse; general APR is a no-op.
  * - Thread-specific general pools must only be used from their thread.
  * - Use afw_pool_calloc_type for typed zeroed allocs.
  * - Cleanup functions run before the pool is destroyed.
@@ -113,9 +114,10 @@ afw_pool_create_as_managed_p(
  * @param xctx of caller.
  * @return new pool.
  *
- * An xctx is one thread's work. This avoids the env pool lock on every
- * alloc when afw creates a child xctx of base. Factory pools stay on
- * afw_pool_create_as_managed_p().
+ * An xctx is one thread's work. Child xctx->p is a heap so optional
+ * free can recycle. Extra live-chunk header until a later heap trim.
+ * Factory pools stay on afw_pool_create_as_managed_p(). Env/compile
+ * stay general APR.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create_xctx_p(
@@ -149,8 +151,8 @@ afw_pool_heap_create(
  *
  * Single-thread only, same thread as the parent heap. Used as scope->p.
  * Create and destroy with the scope on that thread. Do not use from
- * another thread. The tracker header is `apr_pcalloc` on the parent
- * heap’s APR pool (RSS, not pool bytes_in_use).
+ * another thread. The tracker header is a heap block (`free_memory` on
+ * destroy), not `apr_pcalloc`.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_heap_tracker_create(
@@ -202,6 +204,17 @@ afw_pool_thread_create(
  */
 #define afw_pool_malloc_type(instance, type, xctx) \
     (type *) afw_pool_malloc(instance, sizeof(type), xctx)
+
+
+/**
+ * @brief Optionally free a typed allocation from a pool.
+ * @param instance of pool.
+ * @param address returned by afw_pool_malloc/calloc.
+ * @param type allocated.
+ * @param xctx of caller.
+ */
+#define afw_pool_free_memory_type(instance, address, type, xctx) \
+    afw_pool_free_memory(instance, address, sizeof(type), xctx)
 
 
 AFW_END_DECLARES

@@ -162,7 +162,7 @@ const d = decompile(compile<script>(script(
     "const [a, b] = [1, 2];\nreturn a;"
 )));
 assert(d ==
-    "#block(const(#assignment_target(\"const\",[a,b]),wrap_literal_array([1,2]),undefined),return(a))");
+    "#block(const(#assignment_target(\"const\",[a,b]),[1,2],undefined),return(a))");
 assert(evaluate(compile<script>(script(d))) == 1);
 assert(decompile(compile<script>(script(d))) == d);
 return 0;
@@ -180,7 +180,7 @@ const d = decompile(compile<script>(script(
     "const {a, b} = {a: 1, b: 2};\nreturn b;"
 )));
 assert(d ==
-    "#block(const(#assignment_target(\"const\",{a,b}),wrap_literal_object({\"a\":1,\"b\":2}),undefined),return(b))");
+    "#block(const(#assignment_target(\"const\",{a,b}),{\"a\":1,\"b\":2},undefined),return(b))");
 assert(evaluate(compile<script>(script(d))) == 2);
 assert(decompile(compile<script>(script(d))) == d);
 return 0;
@@ -195,7 +195,7 @@ const d = decompile(compile<script>(script(
     "const [a, , c = 9, ...r] = [1, 2, 3, 4, 5];\nreturn [a, c, r];"
 )));
 assert(d ==
-    "#block(const(#assignment_target(\"const\",[a,,c=9,...r]),wrap_literal_array([1,2,3,4,5]),undefined),return(array(a,c,r)))");
+    "#block(const(#assignment_target(\"const\",[a,,c=9,...r]),[1,2,3,4,5],undefined),return(array(a,c,r)))");
 assert(evaluate(compile<script>(script(d))) == [1, 3, [4, 5]]);
 assert(decompile(compile<script>(script(d))) == d);
 return 0;
@@ -212,7 +212,7 @@ const d = decompile(compile<script>(script(
     "const {a: x, b = 3, ...r} = {a: 1, c: 4};\nreturn [x, b, r];"
 )));
 assert(d ==
-    "#block(const(#assignment_target(\"const\",{a:x,b=3,...r}),wrap_literal_object({\"a\":1,\"c\":4}),undefined),return(array(x,b,r)))");
+    "#block(const(#assignment_target(\"const\",{a:x,b=3,...r}),{\"a\":1,\"c\":4},undefined),return(array(x,b,r)))");
 assert(evaluate(compile<script>(script(d))) == [1, 3, {"c": 4}]);
 assert(decompile(compile<script>(script(d))) == d);
 return 0;
@@ -227,7 +227,7 @@ const d = decompile(compile<script>(script(
     "const [a, [b, c]] = [1, [2, 3]];\nreturn c;"
 )));
 assert(d ==
-    "#block(const(#assignment_target(\"const\",[a,[b,c]]),wrap_literal_array([1,[2,3]]),undefined),return(c))");
+    "#block(const(#assignment_target(\"const\",[a,[b,c]]),[1,[2,3]],undefined),return(c))");
 assert(evaluate(compile<script>(script(d))) == 3);
 assert(decompile(compile<script>(script(d))) == d);
 return 0;
@@ -283,7 +283,7 @@ const d = decompile(compile<script>(script(
     "const x: integer[] = [1, 2];\nreturn x;"
 )));
 assert(d ==
-    "#block(const(#assignment_target(\"const\",x:integer[]),wrap_literal_array([1,2]),undefined),return(x))");
+    "#block(const(#assignment_target(\"const\",x:integer[]),[1,2],undefined),return(x))");
 assert(evaluate(compile<script>(script(d))) == [1, 2]);
 assert(decompile(compile<script>(script(d))) == d);
 return 0;
@@ -298,7 +298,7 @@ const d = decompile(compile<script>(script(
     "const a = [1, 2];\nreturn [...a, 3];"
 )));
 assert(d ==
-    "#block(const(#assignment_target(\"const\",a),wrap_literal_array([1,2]),undefined),return(array(...a,3)))");
+    "#block(const(#assignment_target(\"const\",a),[1,2],undefined),return(array(...a,3)))");
 assert(evaluate(compile<script>(script(d))) == [1, 2, 3]);
 assert(decompile(compile<script>(script(d))) == d);
 return 0;

@@ -1927,7 +1927,7 @@ afw_uri_parsed_to_object(
     const afw_value_t *value;
     const afw_object_t *object;
 
-    result = afw_object_create(p, xctx);
+    result = afw_object_and_pool_create(p, xctx);
 
     if (parsed->original_uri) {
         afw_object_set_property_as_string(result,
@@ -1993,7 +1993,7 @@ afw_uri_parsed_to_object(
         afw_object_set_property_as_string(result, afw_v_path,
             afw_uri_decode(&parsed->original_path, p, xctx), xctx);
         afw_uri_parser_initialize(&parser, &parsed->original_path, p, xctx);
-        list = afw_array_of_create(
+        list = afw_array_create_in_pool_of(
             afw_data_type_string, p, xctx);
         for (;;) {
             afw_uri_parse_next_token(&parser, xctx);
@@ -2014,7 +2014,7 @@ afw_uri_parsed_to_object(
         afw_object_set_property_as_string(result, afw_v_query,
             afw_uri_decode(&parsed->original_query, p, xctx), xctx);
         afw_uri_parser_initialize(&parser, &parsed->original_query, p, xctx);
-        list = afw_array_of_create(
+        list = afw_array_create_in_pool_of(
             afw_data_type_string, p, xctx);
         for (;;) {
             afw_uri_parse_next_token(&parser, xctx);
@@ -2035,7 +2035,7 @@ afw_uri_parsed_to_object(
         afw_object_set_property_as_string(result, afw_v_fragment,
             afw_uri_decode(&parsed->original_fragment, p, xctx), xctx);
         afw_uri_parser_initialize(&parser, &parsed->original_fragment, p, xctx);
-        list = afw_array_of_create(
+        list = afw_array_create_in_pool_of(
             afw_data_type_string, p, xctx);
         for (;;) {
             afw_uri_parse_next_token(&parser, xctx);

@@ -16,7 +16,6 @@
 
 
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference NULL
 
 /* Inf specific is always data type. */
 #define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_function_direct
@@ -79,6 +78,43 @@ afw_value_script_function_definition_create(
     
     
     return &self->pub;
+}
+
+
+/*
+ * Keep the definition alive (compiled unit). Slot fill is
+ * get_assignable_value → closure_binding.
+ */
+const afw_value_t *
+impl_afw_value_get_reference(
+    AFW_VALUE_SELF_T *self,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    (void)p;
+    (void)xctx;
+    return &self->pub;
+}
+
+
+/*
+ * Store-time bind (#35): wrap as closure_binding and take the hold
+ * the caller (slot_store) will release.
+ */
+const afw_value_t *
+impl_afw_value_get_assignable_value(
+    AFW_VALUE_SELF_T *self,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *binding;
+
+    binding = afw_value_closure_binding_create_if_needed(
+        &self->pub, xctx);
+    if (binding == &self->pub) {
+        return &self->pub;
+    }
+    return afw_value_add_reference(binding, p, xctx);
 }
 
 

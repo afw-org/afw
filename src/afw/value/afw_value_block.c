@@ -16,7 +16,8 @@
 
 
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference NULL
+#define impl_afw_value_get_reference NULL
+#define impl_afw_value_get_assignable_value NULL
 
 #define impl_afw_value_get_evaluated_meta \
     afw_value_internal_get_evaluated_meta_default
@@ -82,6 +83,64 @@ impl_statement_is_control(const afw_value_t *statement)
 
 
 const afw_value_t *
+afw_value_block_evaluate_statements(
+    afw_function_execute_t *x,
+    const afw_value_block_t *self,
+    afw_size_t start,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx,
+    afw_boolean_t as_value)
+{
+    const afw_value_t *result;
+    const afw_value_t *last;
+    afw_size_t i;
+    afw_boolean_t use_running;
+
+    use_running = xctx->script_result_active && !as_value;
+    result = use_running
+        ? afw_xctx_script_result_get(xctx)
+        : afw_value_undefined;
+
+    for (i = start; i < self->statement_count; i++) {
+        last = afw_value_block_evaluate_statement(
+            x, self->statements[i], p, xctx);
+        if (use_running) {
+            if (afw_xctx_statement_flow_is_type(return, xctx)) {
+                afw_xctx_script_result_set(last, xctx);
+                result = last;
+                break;
+            }
+            if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
+                /* break / continue / rethrow: keep the running result. */
+                result = afw_xctx_script_result_get(xctx);
+                break;
+            }
+            /*
+             * ES ExpressionStatement (assignment already wrote; a
+             * non-void call writes). Control forms do not.
+             */
+            if (!afw_value_is_void(last) &&
+                !impl_statement_is_control(self->statements[i]))
+            {
+                afw_xctx_script_result_set(last, xctx);
+            }
+            result = afw_xctx_script_result_get(xctx);
+        }
+        else {
+            if (!afw_value_is_void(last)) {
+                result = last;
+            }
+            if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
+                break;
+            }
+        }
+    }
+
+    return result;
+}
+
+
+const afw_value_t *
 afw_value_block_evaluate_block(
     afw_function_execute_t *x,
     const afw_value_block_t *self,
@@ -90,11 +149,9 @@ afw_value_block_evaluate_block(
     afw_boolean_t as_value)
 {
     const afw_value_t *result;
-    const afw_value_t *last;
     const afw_compile_value_contextual_t *saved_contextual;
-    afw_size_t i;
+    const afw_pool_t *eval_p;
     const afw_xctx_scope_t *scope;
-    afw_boolean_t use_running;
     afw_boolean_t created_scope;
 
     /* Push value on evaluation stack. */
@@ -102,11 +159,7 @@ afw_value_block_evaluate_block(
         (const afw_value_t *)self, xctx);
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
-    use_running = xctx->script_result_active && !as_value;
-    result = use_running
-        ? afw_xctx_script_result_get(xctx)
-        : afw_value_undefined;
-    last = result;
+    result = afw_value_undefined;
 
     /*
      * Nested `{ }` with no symbols is not a scope. Creating one is an
@@ -124,56 +177,20 @@ afw_value_block_evaluate_block(
         afw_xctx_scope_activate(scope, xctx);
         created_scope = true;
     }
+    /*
+     * Existing frames: statement p is scope->p (x->p matches). last_return
+     * is already get_assignable onto xctx->p before deactivate. Zero-symbol
+     * `{ }` still uses caller p until every `{ }` gets a tracker.
+     * FIXME_GET_IT_WORKING: caller p. Rip the ifndef and keep the else.
+     */
+#ifndef FIXME_GET_IT_WORKING
+    eval_p = p;
+#else
+    eval_p = created_scope ? scope->p : p;
+#endif
     AFW_TRY{
-        for (i = 0; i < self->statement_count; i++) {
-            last = afw_value_block_evaluate_statement(
-                x, self->statements[i], p, xctx);
-            if (use_running) {
-                if (afw_xctx_statement_flow_is_type(return, xctx)) {
-                    afw_xctx_script_result_set(last, xctx);
-                    result = last;
-                    break;
-                }
-                if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
-                    /* break / continue / rethrow: keep the running result. */
-                    result = afw_xctx_script_result_get(xctx);
-                    break;
-                }
-                /*
-                 * ES ExpressionStatement (assignment already wrote; a
-                 * non-void call writes). Control forms do not.
-                 */
-                if (!afw_value_is_void(last) &&
-                    !impl_statement_is_control(self->statements[i]))
-                {
-                    afw_xctx_script_result_set(last, xctx);
-                }
-                result = afw_xctx_script_result_get(xctx);
-            }
-            else {
-                if (!afw_value_is_void(last)) {
-                    result = last;
-                }
-                if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
-                    break;
-                }
-            }
-        }
-        if (use_running &&
-            !xctx->script_result_written &&
-            self->statement_count == 1 &&
-            !afw_value_is_void(last))
-        {
-            result = last;
-        }
-        if (result &&
-            !afw_value_is_undefined(result) &&
-            !afw_value_is_void(result) &&
-            xctx->script_result != result)
-        {
-            afw_value_slot_store(&xctx->script_result, result,
-                xctx->p, xctx);
-        }
+        result = afw_value_block_evaluate_statements(
+            x, self, 0, eval_p, xctx, as_value);
     }
     AFW_FINALLY{
         if (created_scope) {

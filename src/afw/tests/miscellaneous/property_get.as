@@ -153,7 +153,7 @@ return 0;
 //?
 //? test: property_get-default-shared-constant-object
 //? description: ...
-Same constant object expression as default multiple times; each use isolated.
+Default that is a variable is identity (same occupant as def).
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -163,8 +163,9 @@ const a = property_get({}, "m", def);
 const b = property_get({}, "m", def);
 a.base = 2;
 a.local = true;
-assert(b.base === 1, "constant default base must not see face mutation");
-assert(is_nullish(property_get(b, "local", null)));
+assert(b.base === 2, "default that is a variable is identity");
+assert(property_get(b, "local", null) === true);
+assert(def.base === 2);
 
 return 0;
 

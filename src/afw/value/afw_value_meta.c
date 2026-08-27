@@ -349,7 +349,7 @@ impl_afw_object_setter_set_property(
     }
 
     if (!meta_object_self->additional) {
-        meta_object_self->additional = afw_object_create_unmanaged(meta_object_self->pub.p, xctx);
+        meta_object_self->additional = afw_object_create_in_pool(meta_object_self->pub.p, xctx);
     }
 
     afw_object_set_property(meta_object_self->additional, property_name, value, xctx);
@@ -377,6 +377,8 @@ afw_value_internal_create_meta_object_self(
     self->pub.value = (const afw_value_t *)&self->meta_object_value;
     self->setter.inf = &impl_afw_object_setter_inf;
     self->setter.object = (const afw_object_t *)self;
+    /* Script-facing: meta() is read-only. C uses afw_object_meta_set_*. */
+    self->immutable = true;
 
     /*? self->pub.meta */
 

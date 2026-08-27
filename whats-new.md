@@ -417,11 +417,12 @@ Under the hood a face is a **memory wrapper** (local sets; get falls through or 
 | Path | Notes |
 |------|--------|
 | **Object / array literals** (const/let, returns, multi-call) | Platform isolates shared compile-time bags |
-| **`get_object` / `get_object_with_uri`** | Mutable face over the adapter object (including views). **Exception:** `{ reconcilable: true }` keeps the entity/view for `reconcile_object` — use `clone()` if you also want a free-form mutable object. |
+| **`get_object` / `get_object_with_uri`** | Mutable face over the adapter object (including reconcilable views). `reconcile_object` sees overlay sets; the store is not write-through until you persist. |
 | **`retrieve_objects` / `retrieve_objects_with_uri`** | Each object in the result array is a face |
 | **`retrieve_objects_to_callback` / `_with_uri_to_callback`** | Object passed to the callback is a face |
 | **`property_get` / `variable_get` object or array defaults** | Missing/unbound default is a **face** |
 | **`journal_get_*`**, **consumer** gets, **after_cursor**, **advance** | Response objects are faces |
+| **Catalog qualifiers** (`environment::`, `process::`, `request::`, …) | **Read-only** in script (C may still write the bag). `qualifier()` / `qualifiers()` are copies. |
 
 Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` required for that mutate-on-face pattern.
 
@@ -432,11 +433,11 @@ Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` r
 | Tool | Meaning |
 |------|---------|
 | **Face (platform)** | Mutable local layer; base not poisoned; **not** a deep copy and **not** store write-through |
-| **`clone()`** | Explicit **deep** independent copy of a graph — nested objects/arrays are new instances too (or when you still need a free-form object over reconcilable/entity paths) |
+| **`clone()`** | Explicit **deep** independent copy of a graph — nested objects/arrays are new instances too |
 | **`freeze`** | Explicit **immutability** of a value graph (or as documented for that API) |
 | **`const`** | **Binding-level** only — the name cannot be reassigned; nested properties may still be mutable unless frozen |
 
-**Still use `clone()` when:** you want a true deep independent copy; you need a free-form mutable object while keeping reconcilable identity separate; or you need a full snapshot for other reasons.
+**Still use `clone()` when:** you want a true deep independent copy, or a full snapshot for other reasons.
 
 ### What this is *not*
 
@@ -1560,7 +1561,7 @@ If you edit Adaptive object JSON under `generate/objects/` (or rely on schema-ba
 
 ### Default values from `property_get` / `variable_get`
 
-Mutable defaults for `property_get` / `variable_get` (issue **[#110](https://github.com/afw-org/afw/issues/110)**) are isolated so later mutations do not poison other calls (important in long-running hosts and model `on*` handlers). On this branch, object/array defaults use a **memory face** (`afw_value_isolate_mutable_default`) rather than a full structural clone; scalars still clone. Regression tests in `property_get.as` / `variable_get.as` lock the isolation behavior.
+Mutable inline defaults for `property_get` / `variable_get` (issue **[#110](https://github.com/afw-org/afw/issues/110)**) are isolated because each `{}` / `[]` is still a raw bag when assignable runs, so later mutations do not poison other calls. A default that is already a variable is **identity** (same occupant). Regression tests in `property_get.as` / `variable_get.as` lock both behaviors.
 
 ### Type and pattern parse nesting
 

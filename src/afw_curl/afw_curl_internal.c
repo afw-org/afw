@@ -240,7 +240,10 @@ afw_curl_internal_request_cb(
                 appdata->pool, appdata->xctx);
 
             /* copy the bytes returned into buffer (null indicates end of data) */
-            if (afw_value_is_null(return_value)) {
+            if (!return_value ||
+                afw_value_is_null(return_value) ||
+                afw_value_is_undefined(return_value))
+            {
                 return 0;
             }
 
@@ -301,7 +304,7 @@ afw_curl_internal_register_response_callbacks(
         afw_pool_get_apr_pool(appdata->pool));
     appdata->response = apr_brigade_create(
         afw_pool_get_apr_pool(appdata->pool), appdata->allocator);
-    appdata->headers = afw_array_create_generic(pool, xctx);
+    appdata->headers = afw_array_create_in_pool(pool, xctx);
     appdata->header = header;
     appdata->writer = writer;
 
@@ -670,7 +673,7 @@ afw_curl_internal_http_post(
         }
     
         /* create a result object */ 
-        result = afw_object_create(pool, xctx);
+        result = afw_object_and_pool_create(pool, xctx);
 
         /* set the response code */
         res = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
@@ -805,7 +808,7 @@ afw_curl_internal_http_get(
         }
 
         /* create a result object */
-        result = afw_object_create(pool, xctx);
+        result = afw_object_and_pool_create(pool, xctx);
 
         /* set the response code */
         res = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
@@ -944,7 +947,7 @@ afw_curl_internal_http_delete(
         }
     
         /* create a result object */ 
-        result = afw_object_create(pool, xctx);
+        result = afw_object_and_pool_create(pool, xctx);
 
         /* set the response code */
         res = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
@@ -1093,7 +1096,7 @@ afw_curl_internal_http_put(
         }
     
         /* create a result object */ 
-        result = afw_object_create(pool, xctx);
+        result = afw_object_and_pool_create(pool, xctx);
 
         /* set the response code */
         res = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
@@ -1242,7 +1245,7 @@ afw_curl_internal_http_patch(
         }
     
         /* create a result object */ 
-        result = afw_object_create(pool, xctx);
+        result = afw_object_and_pool_create(pool, xctx);
 
         /* set the response code */
         res = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
@@ -1373,7 +1376,7 @@ afw_curl_internal_http_head(
         }
     
         /* create a result object */ 
-        result = afw_object_create(pool, xctx);
+        result = afw_object_and_pool_create(pool, xctx);
 
         /* set the response code */
         res = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
@@ -1506,7 +1509,7 @@ afw_curl_internal_http_options(
         }
     
         /* create a result object */ 
-        result = afw_object_create(pool, xctx);
+        result = afw_object_and_pool_create(pool, xctx);
 
         /* set the response code */
         res = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);

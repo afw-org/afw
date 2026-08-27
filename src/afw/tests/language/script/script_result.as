@@ -4,10 +4,10 @@
 //? customPurpose: Part of language/script tests
 //? description: ...
 Running script result (issue #62). Assignment, return, and non-void
-call statements write it (ES eval). let/const, if/for/while/try, and
-break do not. Nested assignment does write it. for init/increment do
-not write. A lone expression is the result. print() is void and does
-not write.
+call statements write it (ES eval / UpdateEmpty). let/const, if/for/while/try, and
+break do not. Inner `{ add(1,1) }` after let is 2; let after add keeps 2.
+Nested assignment does write it. for init/increment do not write. A
+lone expression is the result. print() is void and does not write.
 //? sourceType: script
 //?
 //? test: only-let
@@ -37,6 +37,52 @@ return 0;
 
 const r = evaluate(compile<script>(script("let x; x = 1; let y = 2;")));
 assert(r === 1);
+return 0;
+
+//?
+//? test: let-then-inner-block-add
+//? description: ...
+ES UpdateEmpty: let is void; inner block last is add(1,1). Outer last_return
+is 2. Jeremy-script follows ES here.
+//? expect: 0
+//? source: ...
+
+const r = evaluate(compile<script>(script(
+    "let x = 1; { add(1, 1); }")));
+assert(r === 2);
+return 0;
+
+//?
+//? test: add-then-let
+//? description: add(1,1) then let does not wipe last_return
+//? expect: 0
+//? source: ...
+
+const r = evaluate(compile<script>(script(
+    "add(1, 1); let x = 1;")));
+assert(r === 2);
+return 0;
+
+//?
+//? test: inner-block-then-let
+//? description: inner block value then let keeps the inner result
+//? expect: 0
+//? source: ...
+
+const r = evaluate(compile<script>(script(
+    "{ add(1, 1); } let x = 1;")));
+assert(r === 2);
+return 0;
+
+//?
+//? test: only-let-inner-block-let
+//? description: let then inner let-only block still does not write
+//? expect: 0
+//? source: ...
+
+const r = evaluate(compile<script>(script(
+    "let x = 1; { let y = 2; }")));
+assert(r === undefined);
 return 0;
 
 //?
@@ -200,4 +246,26 @@ return 0;
 const r = evaluate(compile<script>(script(
     "let x; let i; x = 1; for (i = 0; i < 3; i = i + 1) { }")));
 assert(r === 1);
+return 0;
+
+//?
+//? test: catch-empty-keeps-prior
+//? description: empty catch does not wipe last_return (UpdateEmpty)
+//? expect: 0
+//? source: ...
+
+const r = evaluate(compile<script>(script(
+    "let x; x = 1; try { throw \"e\"; } catch (err) { }")));
+assert(r === 1);
+return 0;
+
+//?
+//? test: catch-assign-writes
+//? description: assignment in catch writes last_return
+//? expect: 0
+//? source: ...
+
+const r = evaluate(compile<script>(script(
+    "let x; try { throw \"e\"; } catch (err) { x = 3; }")));
+assert(r === 3);
 return 0;

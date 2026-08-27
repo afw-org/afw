@@ -63,9 +63,9 @@ afw_data_type_xpathExpression;
  * @brief Unmanaged evaluated value inf for data type xpathExpression.
  *
  * Lifetime is the containing pool until clone_or_reference.
- * Scalar clone_or_reference boxes a managed copy in xctx->p.
- * Object/array/function return the same instance (no clone).
- * optional_release is NULL on the unmanaged inf.
+ * Scalar clone_or_reference creates a managed holdable in p.
+ * Object/array clone_or_reference holds a memory face.
+ * optional_release is NULL on unmanaged scalars.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_xpathExpression_inf;
@@ -73,10 +73,8 @@ afw_value_unmanaged_xpathExpression_inf;
 /**
  * @brief Managed evaluated value inf for data type xpathExpression.
  *
- * Header allocated in xctx->p; lifetime by reference_count on the
- * value header. Create starts at RC 0. optional_release frees the
- * header when RC is 0, else decrements. clone_or_reference bumps RC
- * and returns the same instance.
+ * Start-at-1 holdable clone in p (must release). clone_or_reference
+ * bumps. Last release frees via stored p.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_xpathExpression_inf;
@@ -84,9 +82,9 @@ afw_value_managed_xpathExpression_inf;
 /**
  * @brief Managed slice value inf for data type xpathExpression.
  *
- * View into a containing managed value; refcount is on the containing
- * value. Slice header is separate; release frees the slice header and
- * applies containing RC policy.
+ * Slice of a managed value: get_reference containing at create.
+ * Slice starts at 1. clone_or_reference bumps the slice. Last
+ * release of the slice releases containing and frees the slice.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_slice_xpathExpression_inf;
@@ -95,7 +93,8 @@ afw_value_managed_slice_xpathExpression_inf;
  * @brief Permanent (life of afw environment) value inf for data type xpathExpression.
  *
  * Lifetime is the afw environment / static const storage. optional_release
- * is NULL; clone_or_reference returns the same instance as-is.
+ * is NULL. Scalar clone_or_reference is as-is. Object/array
+ * clone_or_reference holds a memory face (same as unmanaged).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_xpathExpression_inf;
@@ -200,12 +199,14 @@ struct afw_value_xpathExpression_managed_s {
 
     /** @brief  Reference count for value. */
     afw_size_t reference_count;
+
+    /** @brief  Pool used to allocate this header (last release frees). */
+    const afw_pool_t *p;
 };
 
 /** @brief struct for managed slice data type xpathExpression values.
  *
- * A view into a containing managed value. The slice header is allocated
- * separately; reference counting applies to the containing managed value.
+ * A view into a containing managed value. Holds that value.
  */
 struct afw_value_xpathExpression_managed_slice_s {
     /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
@@ -219,6 +220,12 @@ struct afw_value_xpathExpression_managed_slice_s {
 
     /** @brief  Containing managed value that owns the buffer. */
     const afw_value_xpathExpression_managed_t *containing_value;
+
+    /** @brief  Reference count for this slice. */
+    afw_size_t reference_count;
+
+    /** @brief  Pool used to allocate this slice header. */
+    const afw_pool_t *p;
 };
 
 /**
@@ -241,9 +248,10 @@ afw_value_as_xpathExpression(
  * Caller fills internal after allocate.
  */
 AFW_DECLARE(afw_value_xpathExpression_t *)
-afw_value_allocate_unmanaged_xpathExpression(
+afw_value_xpathExpression_allocate(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
+#define afw_value_allocate_unmanaged_xpathExpression afw_value_xpathExpression_allocate
 
 /**
  * @brief Create function for managed data type xpathExpression value.
@@ -251,15 +259,16 @@ afw_value_allocate_unmanaged_xpathExpression(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * Allocates a managed value header in xctx->p. reference_count starts
- * at 0: optional_release without a prior clone_or_reference frees the
- * header immediately. Release frees the value header only.
+ * Allocates in p. Starts at reference count 1 (must release).
+ * clone_or_reference bumps. Last release frees via stored p.
  * Copies bytes into storage following the header (value owns them).
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_xpathExpression(
+afw_value_xpathExpression_create_managed(
     const afw_utf8_t * internal,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
+#define afw_value_create_managed_xpathExpression afw_value_xpathExpression_create_managed
 
 /**
  * @brief Create a managed slice of a managed data type xpathExpression value.
@@ -269,16 +278,17 @@ afw_value_create_managed_xpathExpression(
  * @param xctx of caller.
  * @return Created const afw_value_t * (managed_slice inf).
  *
- * Returns a view into containing_value without copying bytes. Increments
- * the containing managed value's reference count. The slice header is
- * allocated in xctx->p.
+ * View of a managed string. get_reference on containing. Slice starts
+ * at 1 (must release). Header allocated in p.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_xpathExpression_slice(
+afw_value_xpathExpression_create_managed_slice(
     const afw_value_t *containing_value,
     afw_size_t offset,
     afw_size_t len,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
+#define afw_value_create_managed_xpathExpression_slice afw_value_xpathExpression_create_managed_slice
 
 /**
  * @brief Create function for unmanaged data type xpathExpression value.
@@ -288,11 +298,13 @@ afw_value_create_managed_xpathExpression_slice(
  * @return Created const afw_value_t *.
  *
  * Allocates in pool p; lifetime is the pool (no value refcount).
- * clone_or_reference returns the same instance as-is.
+ * Copies the utf8/memory header only, not the octets.
+ * clone_or_reference creates a managed holdable in p.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_unmanaged_xpathExpression(const afw_utf8_t * internal,
+afw_value_xpathExpression_create(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
+#define afw_value_create_unmanaged_xpathExpression afw_value_xpathExpression_create
 
 /**
  * @brief Get property function for data type xpathExpression value.

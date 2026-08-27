@@ -378,7 +378,7 @@ afw_authorization_internal_set_control(
     }
 
     /* Set not_applicable_result */
-    not_applicable_object = afw_object_create_unmanaged(p, xctx);
+    not_applicable_object = afw_object_create_in_pool(p, xctx);
     afw_object_meta_set_object_type_id(not_applicable_object,
         afw_s__AdaptiveAuthorizationResult_, xctx);
     afw_object_set_property(not_applicable_object, afw_v_decisionId,
@@ -704,7 +704,7 @@ afw_authorization_check(
             xctx->env->flag_index_trace_authorization_check, 
             NULL, "Caught unhandled exception", xctx);
 
-        obj = afw_object_create_unmanaged(p, xctx);
+        obj = afw_object_create_in_pool(p, xctx);
         afw_object_meta_set_object_type_id(obj,
             afw_s__AdaptiveAuthorizationResult_, xctx);
         afw_object_set_property(obj, afw_v_decisionId,
@@ -764,7 +764,7 @@ afw_authorization_check(
 
     if (enforce) {
         if (!afw_utf8_equal(decision_id, afw_s_permit)) {
-            obj = afw_object_create_unmanaged(p, xctx);
+            obj = afw_object_create_in_pool(p, xctx);
             afw_object_set_property(obj, afw_v_actionId,
                 action_id_value, xctx);
             afw_object_set_property(obj, afw_v_resourceId,

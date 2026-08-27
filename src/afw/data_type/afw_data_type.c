@@ -1405,7 +1405,7 @@ impl_afw_data_type_array_clone_internal(
 
     from = *(const afw_array_t * *)from_internal;
     data_type = afw_array_get_data_type(from, xctx);
-    to = afw_array_of_create(data_type, p, xctx);
+    to = afw_array_create_in_pool_of(data_type, p, xctx);
     memcpy(to_internal, &to, sizeof(const afw_array_t *));
 
     for (iterator = NULL;;) {
@@ -1550,7 +1550,7 @@ impl_afw_data_type_object_clone_internal(
     const afw_object_t *to;
 
     from = *(const afw_object_t * *)from_internal;
-    to = afw_object_create_unmanaged(p, xctx);
+    to = afw_object_create_in_pool(p, xctx);
     memcpy(to_internal, &to, sizeof(const afw_object_t *));
     impl_object_clone_properties_and_meta(to, from, NULL, xctx);
 }
@@ -1567,7 +1567,7 @@ afw_data_type_object_create_clone_to_managed_object(
 {
     const afw_object_t *result;
 
-    result = afw_object_create(p, xctx);
+    result = afw_object_and_pool_create(p, xctx);
     impl_object_clone_properties_and_meta(result, object, NULL, xctx);
 
     return result;
@@ -2146,7 +2146,7 @@ impl_afw_data_type_evaluate_write_as_expression(
 
 /*
  * Implementation of method get_next for utf8 code-point iterator.
- * Returns managed string of one code point, or NULL when done.
+ * Returns unmanaged string of one code point, or NULL when done.
  */
 const afw_value_t *
 impl_afw_iterator_get_next(
@@ -2162,7 +2162,6 @@ impl_afw_iterator_get_next(
 
     AFW_ASSERT(self);
     AFW_ASSERT(self->impl);
-    (void)p; /* managed string uses xctx->p */
 
     s = (const afw_utf8_t *)self->impl;
     start = self->offset;
@@ -2177,7 +2176,7 @@ impl_afw_iterator_get_next(
     one.s = s->s + start;
     one.len = end - start;
     self->offset = end;
-    return afw_value_create_managed_string(&one, xctx);
+    return afw_value_create_unmanaged_string(&one, p, xctx);
 }
 
 /*
@@ -2200,7 +2199,6 @@ impl_afw_iterator_get_by_index(
 
     AFW_ASSERT(self);
     AFW_ASSERT(self->impl);
-    (void)p;
 
     if (index < 0) {
         return NULL;
@@ -2220,7 +2218,7 @@ impl_afw_iterator_get_by_index(
     }
     one.s = s->s + start;
     one.len = offset - start;
-    return afw_value_create_managed_string(&one, xctx);
+    return afw_value_create_unmanaged_string(&one, p, xctx);
 }
 
 /*
