@@ -192,10 +192,13 @@ static void convert_double_to_ubjson(
         high-precision    1-byte+      H       Yes     Yes (if non-empty)
      */
 
+    afw_c_types_t c_type;
+
     impl_putc(wa, AFW_UBJSON_MARKER_FLOAT64);
 
-    /** @fixme endian on a double? */
-    impl_write(wa, &d, sizeof(d));
+    c_type.float64 = d;
+    AFW_ENDIAN_NATIVE_TO_BIG(&c_type, 64);
+    impl_write(wa, &c_type, sizeof(d));
 }
 
 static void convert_object_to_ubjson(
