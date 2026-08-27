@@ -110,16 +110,11 @@ const ltZero: array = retrieve_objects("lmdb", ot,
 assert(length(ltZero) === 2, "lt 0.0 should return the 2 negative scores (-3.5, -1.25)");
 
 // -3.5 is more negative than -1.25, so it must sort first (lower), not by
-// naive text/magnitude comparison. Checked by count (not by reading back
-// the matched object's `score`): the LMDB adapter has a separate,
-// pre-existing bug that corrupts a `double` property's value on readback
-// (reproduces via plain get_object(), with no index involved -- unrelated
-// to issue #251 and not touched by this fix, since the index-accelerated
-// comparisons here run against the live in-memory value, never the
-// corrupted decoded one). Worth its own issue, not fixed here.
+// naive text/magnitude comparison.
 const ltNeg1_25: array = retrieve_objects("lmdb", ot,
     { "filter": { "op": "lt", "property": "score", "value": -1.25 } });
 assert(length(ltNeg1_25) === 1, "lt -1.25 should return only -3.5");
+assert(ltNeg1_25[0].score === -3.5, "lt -1.25 should return the object with score -3.5 (issue #263)");
 
 const leNeg1_25: array = retrieve_objects("lmdb", ot,
     { "filter": { "op": "le", "property": "score", "value": -1.25 } });
