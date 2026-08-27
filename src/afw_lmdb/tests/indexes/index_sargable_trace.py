@@ -89,6 +89,22 @@ def run():
             "retrieve_objects: using index query",
             "retrieve_objects: using full scan (not sargable)",
         ),
+        (
+            "sargable_range_op_after_index",
+            "A gt filter on an indexed integer property is sargable: retrieve_objects uses the index (issue #251)",
+            """
+            const ot = "TestSargableTraceRangeType";
+            add_object("lmdb", ot, { age: 9 }, generate_uuid());
+            add_object("lmdb", ot, { age: 20 }, generate_uuid());
+            index_create("lmdb", "age", undefined, [ot], undefined, undefined, true, false);
+            flag_set(["trace:adapterId:lmdb"], true);
+            retrieve_objects("lmdb", ot,
+                { "filter": { "op": "gt", "property": "age", "value": 9 } });
+            return 0;
+            """,
+            "retrieve_objects: using index query",
+            "retrieve_objects: using full scan (not sargable)",
+        ),
     ]
 
     for name, desc, body, must_contain, must_not_contain in cases:

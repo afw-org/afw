@@ -372,6 +372,98 @@ afw_boolean_t afw_adapter_impl_index_option_unique(
 }
 
 /*
+ * Encodes a signed 64-bit integer as a fixed-width (20-digit),
+ * zero-padded decimal string whose byte-lexicographic order matches
+ * numeric order.
+ *
+ * Index keys are stored/compared as plain text (see
+ * impl_index_value_as_key_utf8), so a naive decimal rendering sorts
+ * wrong ("100" < "9" as text). Flipping the sign bit maps the full
+ * afw_integer_t range onto 0..UINT64_MAX while preserving order (the
+ * standard two's-complement-to-offset-binary trick); zero-padding
+ * that to a fixed width then makes text comparison match numeric
+ * comparison (issue #251).
+ */
+static const afw_utf8_t *
+impl_index_integer_as_sortable_utf8(
+    afw_integer_t value, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_uint64_t offset;
+    char buf[20];
+    int i;
+
+    offset = (afw_uint64_t)value ^ ((afw_uint64_t)1 << 63);
+
+    for (i = 19; i >= 0; i--) {
+        buf[i] = (char)('0' + (offset % 10));
+        offset /= 10;
+    }
+
+    return afw_utf8_create(buf, sizeof(buf), p, xctx);
+}
+
+/*
+ * Encodes an IEEE 754 double as a fixed-width, zero-padded decimal
+ * string whose byte-lexicographic order matches numeric order.
+ *
+ * Same sortable-text goal as impl_index_integer_as_sortable_utf8, but
+ * doubles need the standard IEEE-754-bit-pattern trick instead of a
+ * sign-bit flip: for a non-negative double (sign bit 0), setting the
+ * sign bit pushes it above all negative doubles; for a negative
+ * double (sign bit 1), flipping every bit reverses its (otherwise
+ * backwards) magnitude order and pushes it below all non-negative
+ * doubles. The result is a uint64 whose unsigned order matches the
+ * double's numeric order, which is then zero-padded as text the same
+ * way (issue #251).
+ */
+static const afw_utf8_t *
+impl_index_double_as_sortable_utf8(
+    double value, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_uint64_t bits;
+    char buf[20];
+    int i;
+
+    memcpy(&bits, &value, sizeof(bits));
+    bits = (bits & ((afw_uint64_t)1 << 63))
+        ? ~bits
+        : (bits | ((afw_uint64_t)1 << 63));
+
+    for (i = 19; i >= 0; i--) {
+        buf[i] = (char)('0' + (bits % 10));
+        bits /= 10;
+    }
+
+    return afw_utf8_create(buf, sizeof(buf), p, xctx);
+}
+
+/*
+ * Returns the utf8 text used as an index key/comparison value for
+ * `value`. Integer and double values get the fixed-width sortable
+ * encoding above so lt/le/gt/ge walk keys in numeric order; LMDB (and
+ * afw_utf8_compare) order index text byte-lexicographically, which
+ * does not match numeric order for plain decimal text (issue #251).
+ * Other types keep the existing plain-text representation, which is
+ * already naturally sortable (e.g. zero-padded ISO 8601 dateTime).
+ */
+static const afw_utf8_t *
+impl_index_value_as_key_utf8(
+    const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    if (afw_value_is_integer(value)) {
+        return impl_index_integer_as_sortable_utf8(
+            afw_value_as_integer(value, xctx), p, xctx);
+    }
+
+    if (afw_value_is_double(value)) {
+        return impl_index_double_as_sortable_utf8(
+            afw_value_as_double(value, xctx), p, xctx);
+    }
+
+    return afw_value_as_utf8(value, p, xctx);
+}
+
+/*
  * When we need to add or remove an index value, this routine
  * will determine the appropriate way to do so, depending on
  * the indexDefinition options.
@@ -395,10 +487,10 @@ void afw_adapter_impl_index_apply(
         indexDefinition, xctx);
     unique = afw_adapter_impl_index_option_unique(indexDefinition, xctx);
 
-    /* Generate the utf8 value of the index; this will be used as the 
-        index key in the underlying database. 
+    /* Generate the utf8 value of the index; this will be used as the
+        index key in the underlying database.
      */
-    value_string = afw_value_as_utf8(value, object->p, xctx);
+    value_string = impl_index_value_as_key_utf8(value, object->p, xctx);
     if (!case_sensitive) {
         /* For case-insensitive indexes, lower-case it so we will always
             do case-insensitive comparisons */
@@ -1489,9 +1581,10 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list(
         return cursor_list;
     }
 
-    /* use the internal utf-8 string representation */
-    /** @fixme this may not help us with date or integer comparisons */
-    value_string = afw_value_as_utf8(entry->value, xctx->p, xctx);
+    /* use the internal utf-8 string representation; integer/double
+       get the sortable encoding so range ops walk keys in numeric
+       order (issue #251) */
+    value_string = impl_index_value_as_key_utf8(entry->value, xctx->p, xctx);
 
     /* Determine if this property is indexed */
     indexDefinition = afw_adapter_impl_index_get_index_definition(
@@ -1620,9 +1713,10 @@ static int afw_adapter_impl_index_compare(
     int i;
     const afw_utf8_t *property_value;
 
-    /* use the internal utf-8 string representation */
-    /** @fixme this may not help us with date or integer comparisons */
-    property_value = afw_value_as_utf8(entry->value, xctx->p, xctx);
+    /* use the internal utf-8 string representation; integer/double
+       get the sortable encoding so lt/le/gt/ge below compare
+       numerically, not lexicographically (issue #251) */
+    property_value = impl_index_value_as_key_utf8(entry->value, xctx->p, xctx);
 
     /* can't compare Objects */
     if (afw_value_is_object(value)) {
@@ -1635,16 +1729,16 @@ static int afw_adapter_impl_index_compare(
         values = afw_value_as_array_of_values(value, xctx->p, xctx);
         for (i = 0; values[i]; i++) {
             v = values[i];
-            string = afw_value_as_utf8(v, xctx->p, xctx);
+            string = impl_index_value_as_key_utf8(v, xctx->p, xctx);
 
             if (afw_utf8_equal(string, property_value))
                 return 0;
         }
-    } 
+    }
 
     else {
         /* scalars are easy */
-        string = afw_value_as_utf8(value, xctx->p, xctx);
+        string = impl_index_value_as_key_utf8(value, xctx->p, xctx);
         return afw_utf8_compare(string, property_value);
     }
 
