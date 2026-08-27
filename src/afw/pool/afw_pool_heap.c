@@ -15,6 +15,8 @@
  * are scope->p and return leftovers to that heap. Optional free is
  * afw_pool_free_memory(p, address, size): address-ordered list, coalesce.
  * Temporarily checks size against the live chunk header.
+ * AFW_DEBUG_POOL: pool/size prefix immediately before the user
+ * pointer (heap and tracker). Always checked on free.
  */
 
 #include "afw_internal.h"
@@ -630,6 +632,49 @@ impl_free_memory(
 }
 
 
+#ifdef AFW_DEBUG_POOL
+static void
+impl_debug_prefix_set(
+    AFW_POOL_SELF_T *self,
+    void *user,
+    afw_size_t size)
+{
+    afw_pool_debug_prefix_t *pre;
+
+    pre = (afw_pool_debug_prefix_t *)((char *)user -
+        sizeof(afw_pool_debug_prefix_t));
+    pre->pool = &self->pub;
+    pre->size = size;
+}
+
+static void
+impl_debug_check_prefix(
+    AFW_POOL_SELF_T *self,
+    void *address,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    afw_pool_debug_prefix_t *pre;
+
+    pre = (afw_pool_debug_prefix_t *)((char *)address -
+        sizeof(afw_pool_debug_prefix_t));
+    if (pre->pool != &self->pub) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_pool_free_memory: pool does not match allocation",
+            xctx);
+    }
+    if (pre->size != size) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_pool_free_memory: size does not match allocation",
+            xctx);
+    }
+}
+#else
+#define impl_debug_prefix_set(self, user, size) ((void)0)
+#define impl_debug_check_prefix(self, address, size, xctx) ((void)0)
+#endif
+
+
 static void *
 impl_malloc_user(
     AFW_POOL_SELF_T *self,
@@ -638,22 +683,25 @@ impl_malloc_user(
 {
     afw_byte_t *mem;
     afw_pool_heap_chunk_t *block;
+    afw_size_t overhead;
     afw_size_t size_with_prefix;
     afw_size_t actual_size;
     afw_boolean_t reused;
+    void *user;
 
     if (size == 0) {
         AFW_THROW_ERROR_Z(general,
             "Attempt to allocate memory for a size of 0",
             xctx);
     }
-    if (size > AFW_SIZE_T_MAX - sizeof(afw_pool_heap_chunk_t)) {
+    overhead = sizeof(afw_pool_heap_chunk_t) + AFW_POOL_DEBUG_PREFIX_BYTES;
+    if (size > AFW_SIZE_T_MAX - overhead) {
         AFW_THROW_ERROR_Z(memory,
             "Requested allocation size is too large",
             xctx);
     }
 
-    size_with_prefix = size + sizeof(afw_pool_heap_chunk_t);
+    size_with_prefix = size + overhead;
     reused = impl_alloc_memory(&mem, &actual_size, self,
         size_with_prefix, xctx);
     (void)reused;
@@ -664,7 +712,9 @@ impl_malloc_user(
     block->prev = NULL;
     block->next = NULL;
     impl_account_alloc(self, actual_size, xctx);
-    return mem + sizeof(afw_pool_heap_chunk_t);
+    user = mem + sizeof(afw_pool_heap_chunk_t) + AFW_POOL_DEBUG_PREFIX_BYTES;
+    impl_debug_prefix_set(self, user, size);
+    return user;
 }
 
 
@@ -682,11 +732,14 @@ impl_check_free_size(
     afw_size_t aligned;
     afw_size_t chunk;
 
-    if (size > AFW_SIZE_T_MAX - sizeof(afw_pool_heap_chunk_t)) {
+    if (size > AFW_SIZE_T_MAX - sizeof(afw_pool_heap_chunk_t) -
+        AFW_POOL_DEBUG_PREFIX_BYTES)
+    {
         AFW_THROW_ERROR_Z(general,
             "afw_pool_free_memory: size too large", xctx);
     }
-    with_prefix = size + sizeof(afw_pool_heap_chunk_t);
+    with_prefix = size + sizeof(afw_pool_heap_chunk_t) +
+        AFW_POOL_DEBUG_PREFIX_BYTES;
     aligned = APR_ALIGN_DEFAULT(with_prefix);
     chunk = impl_chunk_bytes(block);
     if (chunk < aligned) {
@@ -851,6 +904,7 @@ impl_afw_pool_free_memory(
         IMPL_PRINT_DEBUG_INFO_Z(detail, "free");
         return;
     }
+    impl_debug_check_prefix(self, address, size, xctx);
     block = AFW_POOL_HEAP_CHUNK(address);
     if (!impl_chunk_in_use(block)) {
 #ifndef FIXME_GET_IT_WORKING
@@ -1079,6 +1133,7 @@ impl_subpool_afw_pool_free_memory(
         IMPL_PRINT_DEBUG_INFO_Z(detail, "free");
         return;
     }
+    impl_debug_check_prefix(self, address, size, xctx);
     block = AFW_POOL_HEAP_CHUNK(address);
     if (!impl_chunk_in_use(block)) {
         AFW_THROW_ERROR_Z(general,

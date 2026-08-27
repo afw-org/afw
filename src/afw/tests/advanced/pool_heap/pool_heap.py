@@ -92,8 +92,16 @@ def run():
                 "tracker calloc ~56 after mixed optional free and "
                 "tracker last-release does not hang",
             ),
+            (
+                "debug_free_wrong_size",
+                "AFW_DEBUG_POOL: free with the wrong size throws",
+            ),
+            (
+                "debug_free_wrong_pool",
+                "AFW_DEBUG_POOL: free with a different pool throws",
+            ),
         ],
-        extra_cflags=("-I", _pool_src()),
+        extra_cflags=("-I", _pool_src(), "-DAFW_DEBUG_POOL"),
         extra_ldflags=("-lapr-1",),
     )
     tests = result.get("tests")

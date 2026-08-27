@@ -205,7 +205,8 @@ impl_tracker_malloc(afw_xctx_t *xctx)
             "single allocated block next is not NULL");
     }
     if (block->size <
-        IMPL_SIZE_MEDIUM + sizeof(afw_pool_heap_chunk_t))
+        IMPL_SIZE_MEDIUM + sizeof(afw_pool_heap_chunk_t) +
+        AFW_POOL_DEBUG_PREFIX_BYTES)
     {
         return impl_fail("tracker_malloc",
             "chunk size is smaller than user + header");
@@ -513,6 +514,94 @@ impl_tracker_parent(afw_xctx_t *xctx)
     return 0;
 }
 
+#ifdef AFW_DEBUG_POOL
+static int
+impl_debug_free_wrong_size(afw_xctx_t *xctx)
+{
+    const afw_pool_t *heap;
+    void *a;
+    int threw;
+    int unexpected;
+
+    heap = afw_pool_heap_create(xctx->p, xctx);
+    a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    threw = 0;
+    unexpected = 0;
+    AFW_TRY {
+        afw_pool_free_memory(heap, a, IMPL_SIZE_SMALL, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        if (AFW_ERROR_THROWN->code == afw_error_code_general &&
+            AFW_ERROR_THROWN->message_z &&
+            strstr(AFW_ERROR_THROWN->message_z, "size does not match"))
+        {
+            threw = 1;
+        }
+        else {
+            unexpected = 1;
+            fprintf(stderr, "debug_free_wrong_size: threw %s\n",
+                AFW_ERROR_THROWN->message_z
+                    ? AFW_ERROR_THROWN->message_z : "?");
+        }
+    }
+    AFW_ENDTRY;
+    afw_pool_free_memory(heap, a, IMPL_SIZE_MEDIUM, xctx);
+    afw_pool_release(heap, xctx);
+    if (unexpected) {
+        return 1;
+    }
+    if (!threw) {
+        return impl_fail("debug_free_wrong_size", "did not throw");
+    }
+    return 0;
+}
+
+static int
+impl_debug_free_wrong_pool(afw_xctx_t *xctx)
+{
+    const afw_pool_t *heap;
+    const afw_pool_t *tracker;
+    void *a;
+    int threw;
+    int unexpected;
+
+    heap = afw_pool_heap_create(xctx->p, xctx);
+    tracker = afw_pool_heap_tracker_create(heap, xctx);
+    a = afw_pool_malloc(tracker, IMPL_SIZE_MEDIUM, xctx);
+    threw = 0;
+    unexpected = 0;
+    AFW_TRY {
+        afw_pool_free_memory(heap, a, IMPL_SIZE_MEDIUM, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        if (AFW_ERROR_THROWN->code == afw_error_code_general &&
+            AFW_ERROR_THROWN->message_z &&
+            strstr(AFW_ERROR_THROWN->message_z, "pool does not match"))
+        {
+            threw = 1;
+        }
+        else {
+            unexpected = 1;
+            fprintf(stderr, "debug_free_wrong_pool: threw %s\n",
+                AFW_ERROR_THROWN->message_z
+                    ? AFW_ERROR_THROWN->message_z : "?");
+        }
+    }
+    AFW_ENDTRY;
+    afw_pool_free_memory(tracker, a, IMPL_SIZE_MEDIUM, xctx);
+    afw_pool_release(tracker, xctx);
+    afw_pool_release(heap, xctx);
+    if (unexpected) {
+        return 1;
+    }
+    if (!threw) {
+        return impl_fail("debug_free_wrong_pool", "did not throw");
+    }
+    return 0;
+}
+#endif
+
+
 static int
 impl_double_free_throws(afw_xctx_t *xctx)
 {
@@ -659,8 +748,7 @@ impl_deregister_cleanup(afw_xctx_t *xctx)
         return impl_fail("deregister_cleanup",
             "cleanup entry not on allocated list");
     }
-    entry = ((char *)self->first_allocated_memory) +
-        sizeof(afw_pool_heap_chunk_t);
+    entry = AFW_POOL_CHUNK_TO_USER(self->first_allocated_memory);
 
     afw_pool_deregister_cleanup(tracker, &marker, NULL,
         impl_cleanup_nop, xctx);
@@ -815,12 +903,11 @@ impl_for_clone_churn(afw_xctx_t *xctx)
         memset(scope, 0xa5, IMPL_SIZE_SCOPE);
 
         small_size = small_sizes[i % 5];
-        /* Allocate on the tracker, return the chunk on the heap free
-         * list without the tracker unlink. Last-release must not
-         * livelock (next is already a free-list link). */
+        /* Allocate on the tracker and free on the tracker (correct p).
+         * Last-release must not livelock. */
         small = afw_pool_malloc(tracker, small_size, xctx);
         memset(small, 0x5a, small_size);
-        afw_pool_free_memory(heap, small, small_size, xctx);
+        afw_pool_free_memory(tracker, small, small_size, xctx);
 
         afw_pool_release(tracker, xctx);
 
@@ -903,13 +990,25 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "double_free_throws") == 0) {
         rc = impl_double_free_throws(xctx);
     }
+#ifdef AFW_DEBUG_POOL
+    else if (strcmp(case_name, "debug_free_wrong_size") == 0) {
+        rc = impl_debug_free_wrong_size(xctx);
+    }
+    else if (strcmp(case_name, "debug_free_wrong_pool") == 0) {
+        rc = impl_debug_free_wrong_pool(xctx);
+    }
+#endif
     else {
         fprintf(stderr, "usage: pool_heap_probe "
             "heap_malloc_free|tracker_malloc|tracker_optional_free|"
             "tracker_last_release|tracker_header|mixed_sizes|"
             "heap_whole_block|general_free_noop|tracker_parent|"
             "get_apr_pool|deregister_cleanup|nonadjacent_reuse|"
-            "for_clone_churn|double_free_throws\n");
+            "for_clone_churn|double_free_throws"
+#ifdef AFW_DEBUG_POOL
+            "|debug_free_wrong_size|debug_free_wrong_pool"
+#endif
+            "\n");
         rc = 2;
     }
 

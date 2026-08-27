@@ -164,7 +164,7 @@ Done on this branch (still named `clone_or_reference` in code): scalar managed h
 
 **Pause (PR to develop):** `#ifndef FIXME_GET_IT_WORKING` — eval on caller `p` (not `scope->p`); heap `free_memory` returns on already-freed; skip `double_free_throws`. Rip those ifndefs when we return (keep the `#else` `eval_p = scope->p`). Do not spread `get_reference` in `execute_*`.
 
-**Next after pause:** pool debug / thinner heap headers, managed/unmanaged scalars, memory object/array + script faces. Then last_return-on-tracker and array store. Do not add `get_base` unless more than one product site type-switches for “entity.” Do not wrap catalog qualifiers.
+**Next after pause:** pool debug prefix first (`AFW_DEBUG_POOL`: `{pool,size}` immediately before the user pointer on heap and tracker; always checked on free; `debug:pool:detail` is the firehose). Then overlay free list / heap without live headers (tracker keeps links). Then `afw_pool_create()` = heap, `afw_pool_tracker_create()`. Do not rip `FIXME_GET_IT_WORKING` on this pass. Do not add `get_base` unless more than one product site type-switches for “entity.” Do not wrap catalog qualifiers.
 
 If a step gets clever, stop and ask.
 

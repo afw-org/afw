@@ -191,11 +191,11 @@ a_flag_debug_lock_detail_description=This produces basic plus additional detail 
 
 a_flag_debug_pool=debug:pool
 a_flag_debug_pool_brief=Basic debug for pools
-a_flag_debug_pool_description=This produces basic debug lines for pool create, release, and destroy. Each line has this pool's in_use (outstanding malloc/calloc), total (env pool_bytes_in_use), and rss (current process RSS KB).
+a_flag_debug_pool_description=When AFW_DEBUG_POOL is compiled in, heap and tracker allocations have a pool/size prefix immediately before the user pointer; free always checks it. This flag prints create, release, and destroy lines (in_use, total, rss).
 
 a_flag_debug_pool_detail=debug:pool:detail
 a_flag_debug_pool_detail_brief=Detail debug for pools
-a_flag_debug_pool_detail_description=This produces basic plus allocate/free lines. Heap alloc is 'alloc reuse' or 'alloc apr'.
+a_flag_debug_pool_detail_description=This produces basic plus every allocate/free line. Heap alloc is 'alloc reuse' or 'alloc apr'.
 
 a_flag_debug_function_active=debug:function_active
 a_flag_debug_function_active_brief=Print debug() if not detail calls

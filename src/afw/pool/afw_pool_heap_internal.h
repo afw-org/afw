@@ -43,9 +43,27 @@ struct afw_pool_heap_chunk_s {
     /* Payload starts here. */
 };
 
+#ifdef AFW_DEBUG_POOL
+/**
+ * Immediately before the user pointer on heap and tracker. Same
+ * place so free uses one check.
+ */
+typedef struct afw_pool_debug_prefix_s {
+    const afw_pool_t *pool;
+    afw_size_t size;
+} afw_pool_debug_prefix_t;
+#define AFW_POOL_DEBUG_PREFIX_BYTES sizeof(afw_pool_debug_prefix_t)
+#else
+#define AFW_POOL_DEBUG_PREFIX_BYTES ((afw_size_t)0)
+#endif
+
 #define AFW_POOL_HEAP_CHUNK(address) \
     ((afw_pool_heap_chunk_t *)((char *)(address) - \
-        sizeof(afw_pool_heap_chunk_t)))
+        AFW_POOL_DEBUG_PREFIX_BYTES - sizeof(afw_pool_heap_chunk_t)))
+
+#define AFW_POOL_CHUNK_TO_USER(block) \
+    ((void *)((char *)(block) + sizeof(afw_pool_heap_chunk_t) + \
+        AFW_POOL_DEBUG_PREFIX_BYTES))
 
 
 typedef struct afw_pool_internal_free_memory_head_s
