@@ -201,7 +201,6 @@ impl_afw_adapter_impl_index_open(
     AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * key,
-    afw_boolean_t integer,
     afw_boolean_t unique,
     afw_boolean_t reverse,
     const afw_pool_t * pool,
@@ -221,8 +220,6 @@ impl_afw_adapter_impl_index_open(
     if (!unique) flags |= MDB_DUPSORT;
 
     if (reverse) flags |= MDB_REVERSEKEY | MDB_REVERSEDUP;
-  
-    if (integer) flags |= MDB_INTEGERKEY;
 
     /* open up our exclusive transaction, if we haven't already */
     if (self->txn == NULL) {

@@ -1659,7 +1659,6 @@ typedef void
     const afw_adapter_impl_index_t * instance,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * key,
-    afw_boolean_t integer,
     afw_boolean_t unique,
     afw_boolean_t reverse,
     const afw_pool_t * pool,
@@ -1764,7 +1763,6 @@ struct afw_adapter_impl_index_inf_s {
  * target table or database to store the index. NULL means all objectTypes are
  * applicable.
  * @param key Index key associated with the index value we are creating.
- * @param integer Should index values be stored as integer values.
  * @param unique Should generated index values be unique.
  * @param reverse Should index values be stored in reverse order.
  * @param pool Caller's pool.
@@ -1776,7 +1774,6 @@ struct afw_adapter_impl_index_inf_s {
     instance, \
     object_type_id, \
     key, \
-    integer, \
     unique, \
     reverse, \
     pool, \
@@ -1786,7 +1783,6 @@ struct afw_adapter_impl_index_inf_s {
     (instance), \
     (object_type_id), \
     (key), \
-    (integer), \
     (unique), \
     (reverse), \
     (pool), \

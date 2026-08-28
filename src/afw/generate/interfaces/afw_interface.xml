@@ -1376,10 +1376,6 @@ AFW_DEFINE(const afw_adapter_t *)
     <description>Index key associated with the index value we are creating.</description>
       </parameter>
 
-      <parameter name="integer" type="afw_boolean_t">
-    <description>Should index values be stored as integer values.</description>
-      </parameter>
-
       <parameter name="unique" type="afw_boolean_t">
     <description>Should generated index values be unique.</description>
       </parameter>
