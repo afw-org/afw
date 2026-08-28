@@ -85,8 +85,8 @@ def run():
             ),
             (
                 "heap_whole_block",
-                "taking a whole free block records that block's size, "
-                "so the original size can reuse",
+                "remainder too small stays on the free list so the "
+                "original USER size can reuse",
             ),
             (
                 "general_free_noop",

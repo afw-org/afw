@@ -17,6 +17,15 @@
  *
  * Heap and heap tracker are single-thread only. Create, use, and
  * release on the same thread (normally one compiled_value evaluate).
+ *
+ * USER `size` is always the malloc/free_memory argument.
+ *
+ * Heap live: [USER] or, if AFW_DEBUG_POOL, [size][pool][USER].
+ * Tracker live: [prev][next][size][USER] or, if AFW_DEBUG_POOL,
+ * [prev][next][size][pool][USER]. With debug, [size][pool] is
+ * immediately before USER on both.
+ *
+ * Freed blocks overlay afw_pool_free_node_t at the block start.
  */
 
 AFW_BEGIN_DECLARES
@@ -26,52 +35,75 @@ typedef struct afw_pool_internal_inf_implementation_specific_s {
     afw_boolean_t is_subpool;
 } afw_pool_internal_inf_implementation_specific_t;
 
-typedef struct afw_pool_heap_chunk_s afw_pool_heap_chunk_t;
-
-/**
- * @brief Heap/tracker allocation chunk
- *
- * One header for heap and tracker. size is the whole chunk. prev/next
- * are the tracker allocated list while live, or the heap free list
- * when freed. Callers pass the pool to free_memory(); there is no
- * pool pointer in the chunk.
- */
-struct afw_pool_heap_chunk_s {
-    afw_size_t size;
-    afw_pool_heap_chunk_t *prev;
-    afw_pool_heap_chunk_t *next;
-    /* Payload starts here. */
-};
-
 #ifdef AFW_DEBUG_POOL
-/**
- * Immediately before the user pointer on heap and tracker. Same
- * place so free uses one check.
- */
+/** Immediately before USER on heap and tracker. */
 typedef struct afw_pool_debug_prefix_s {
-    const afw_pool_t *pool;
     afw_size_t size;
+    const afw_pool_t *pool;
 } afw_pool_debug_prefix_t;
 #define AFW_POOL_DEBUG_PREFIX_BYTES sizeof(afw_pool_debug_prefix_t)
 #else
 #define AFW_POOL_DEBUG_PREFIX_BYTES ((afw_size_t)0)
 #endif
 
-#define AFW_POOL_HEAP_CHUNK(address) \
-    ((afw_pool_heap_chunk_t *)((char *)(address) - \
-        AFW_POOL_DEBUG_PREFIX_BYTES - sizeof(afw_pool_heap_chunk_t)))
+typedef struct afw_pool_tracker_node_s afw_pool_tracker_node_t;
+struct afw_pool_tracker_node_s {
+    afw_pool_tracker_node_t *prev;
+    afw_pool_tracker_node_t *next;
+#ifdef AFW_DEBUG_POOL
+    afw_pool_debug_prefix_t debug;
+#else
+    afw_size_t size;
+#endif
+};
 
-#define AFW_POOL_CHUNK_TO_USER(block) \
-    ((void *)((char *)(block) + sizeof(afw_pool_heap_chunk_t) + \
-        AFW_POOL_DEBUG_PREFIX_BYTES))
+#define AFW_POOL_TRACKER_PREFIX_BYTES sizeof(afw_pool_tracker_node_t)
 
+#define AFW_POOL_TRACKER_NODE(user) \
+    ((afw_pool_tracker_node_t *)((char *)(user) - \
+        AFW_POOL_TRACKER_PREFIX_BYTES))
+
+#define AFW_POOL_TRACKER_TO_USER(node) \
+    ((void *)((char *)(node) + AFW_POOL_TRACKER_PREFIX_BYTES))
+
+#ifdef AFW_DEBUG_POOL
+#define AFW_POOL_TRACKER_USER_SIZE(node) ((node)->debug.size)
+#else
+#define AFW_POOL_TRACKER_USER_SIZE(node) ((node)->size)
+#endif
+
+#define AFW_POOL_HEAP_ALLOC_START(user) \
+    ((void *)((char *)(user) - AFW_POOL_HEAP_PREFIX_BYTES))
+
+#define AFW_POOL_HEAP_USER_FROM_START(start) \
+    ((void *)((char *)(start) + AFW_POOL_HEAP_PREFIX_BYTES))
+
+/** Free-list overlay at the start of a freed block. `total` is the whole block. */
+typedef struct afw_pool_free_node_s afw_pool_free_node_t;
+struct afw_pool_free_node_s {
+    afw_size_t total;
+    afw_pool_free_node_t *prev;
+    afw_pool_free_node_t *next;
+};
+
+/*
+ * Heap debug prefix is at least a free node so overlay on free does
+ * not touch USER. [size][pool] stay immediately before USER.
+ */
+#ifdef AFW_DEBUG_POOL
+#define AFW_POOL_HEAP_PREFIX_BYTES \
+    ((sizeof(afw_pool_debug_prefix_t) > sizeof(afw_pool_free_node_t)) \
+        ? sizeof(afw_pool_debug_prefix_t) \
+        : sizeof(afw_pool_free_node_t))
+#else
+#define AFW_POOL_HEAP_PREFIX_BYTES ((afw_size_t)0)
+#endif
 
 typedef struct afw_pool_internal_free_memory_head_s
 afw_pool_internal_free_memory_head_t;
 
-/** @brief Head of the heap free list. Trackers share the heap's. */
 struct afw_pool_internal_free_memory_head_s {
-    afw_pool_heap_chunk_t *first;
+    afw_pool_free_node_t *first;
 };
 
 typedef struct afw_pool_internal_self_s
@@ -142,11 +174,9 @@ struct afw_pool_internal_self_s {
     afw_size_t bytes_allocated;
 
     /**
-     * @brief First allocated chunk (tracker only).
-     *
-     * NULL on the heap and when a tracker has no live mallocs.
+     * @brief First live tracker allocation (tracker only).
      */
-    afw_pool_heap_chunk_t *first_allocated_memory;
+    afw_pool_tracker_node_t *first_allocated_memory;
 
     /**
      * @brief Free memory head.

@@ -14,9 +14,9 @@
  * creates a heap for one evaluate and releases it in finally. Trackers
  * are scope->p and return leftovers to that heap. Optional free is
  * afw_pool_free_memory(p, address, size): address-ordered list, coalesce.
- * Temporarily checks size against the live chunk header.
- * AFW_DEBUG_POOL: pool/size prefix immediately before the user
- * pointer (heap and tracker). Always checked on free.
+ * Heap live: no header, or [size][pool][USER] if AFW_DEBUG_POOL.
+ * Tracker live: [prev][next][size][USER], plus [pool] if debug.
+ * Freed blocks overlay a free node at the block start.
  */
 
 #include "afw_internal.h"
@@ -381,123 +381,101 @@ impl_create_for_subpool(
 }
 
 /*
- * First-fit on an address-ordered doubly-linked free list. Always
- * insert on free; coalesce with neighbors when adjacent. Remainder
- * too small to hold a chunk is taken with the allocation.
- *
- * Size is APR-aligned; the low bit is in-use. A second free of the
- * same chunk (heap free of a tracker alloc, then last-release) must
- * not insert again — that cycles next and livelocks first-fit.
+ * First-fit on an address-ordered free list. Overlay lives only on
+ * freed blocks. Remainder too small to hold a free node is left on
+ * the list so total is always recoverable as prefix + USER size.
  */
-#define AFW_POOL_HEAP_INUSE ((afw_size_t)1)
-
-static afw_size_t
-impl_chunk_bytes(const afw_pool_heap_chunk_t *chunk)
-{
-    return chunk->size & ~AFW_POOL_HEAP_INUSE;
-}
-
-static afw_boolean_t
-impl_chunk_in_use(const afw_pool_heap_chunk_t *chunk)
-{
-    return (chunk->size & AFW_POOL_HEAP_INUSE) ? true : false;
-}
-
 static void
-impl_chunk_mark_in_use(afw_pool_heap_chunk_t *chunk, afw_size_t bytes)
+impl_free_unlink(
+    afw_pool_free_node_t **head,
+    afw_pool_free_node_t *node)
 {
-    chunk->size = bytes | AFW_POOL_HEAP_INUSE;
-}
-
-static void
-impl_chunk_mark_free(afw_pool_heap_chunk_t *chunk, afw_size_t bytes)
-{
-    chunk->size = bytes & ~AFW_POOL_HEAP_INUSE;
-}
-
-static void
-impl_chunk_unlink(
-    afw_pool_heap_chunk_t **head,
-    afw_pool_heap_chunk_t *chunk)
-{
-    if (chunk->prev) {
-        chunk->prev->next = chunk->next;
+    if (node->prev) {
+        node->prev->next = node->next;
     }
     else {
-        *head = chunk->next;
+        *head = node->next;
     }
-    if (chunk->next) {
-        chunk->next->prev = chunk->prev;
+    if (node->next) {
+        node->next->prev = node->prev;
     }
-    chunk->prev = NULL;
-    chunk->next = NULL;
+    node->prev = NULL;
+    node->next = NULL;
 }
 
-/*
- * Heap free_memory(p=heap) of a tracker allocation does not go
- * through tracker free, so unlink from the owning tracker here.
- */
+
 static void
-impl_unlink_from_child_trackers(
-    AFW_POOL_SELF_T *heap,
-    afw_pool_heap_chunk_t *block)
+impl_tracker_unlink(
+    afw_pool_tracker_node_t **head,
+    afw_pool_tracker_node_t *node)
 {
-    afw_pool_internal_self_t *t;
-
-    if (block->prev) {
-        block->prev->next = block->next;
-        if (block->next) {
-            block->next->prev = block->prev;
-        }
-        block->prev = NULL;
-        block->next = NULL;
-        return;
+    if (node->prev) {
+        node->prev->next = node->next;
     }
-    for (t = heap->first_child; t; t = t->next_sibling) {
-        if (t->first_allocated_memory == block) {
-            impl_chunk_unlink(&t->first_allocated_memory, block);
-            return;
-        }
+    else {
+        *head = node->next;
     }
+    if (node->next) {
+        node->next->prev = node->prev;
+    }
+    node->prev = NULL;
+    node->next = NULL;
 }
 
 
-static afw_boolean_t
-impl_alloc_memory(
-    afw_byte_t **address,
-    afw_size_t *actual_size,
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
+static afw_size_t
+impl_block_bytes(
+    afw_size_t prefix_bytes,
+    afw_size_t user_size,
     afw_xctx_t *xctx)
 {
-    afw_pool_heap_chunk_t *curr;
-    afw_pool_heap_chunk_t *prev;
-    afw_pool_heap_chunk_t *next;
-    afw_pool_heap_chunk_t *rest;
-    afw_size_t requested;
-    afw_boolean_t reused;
+    afw_size_t need;
+    afw_size_t aligned;
 
-    requested = (size < sizeof(afw_pool_heap_chunk_t))
-        ? sizeof(afw_pool_heap_chunk_t)
-        : size;
-    *actual_size = APR_ALIGN_DEFAULT(requested);
-    if (*actual_size < requested) {
+    if (prefix_bytes > AFW_SIZE_T_MAX - user_size) {
         AFW_THROW_ERROR_Z(memory,
             "Requested allocation size is too large",
             xctx);
     }
+    need = prefix_bytes + user_size;
+    if (need < sizeof(afw_pool_free_node_t)) {
+        need = sizeof(afw_pool_free_node_t);
+    }
+    aligned = APR_ALIGN_DEFAULT(need);
+    if (aligned < need) {
+        AFW_THROW_ERROR_Z(memory,
+            "Requested allocation size is too large",
+            xctx);
+    }
+    return aligned;
+}
+
+
+static void *
+impl_take_from_free_list_or_apr(
+    AFW_POOL_SELF_T *self,
+    afw_size_t total,
+    afw_boolean_t *reused,
+    afw_xctx_t *xctx)
+{
+    afw_pool_free_node_t *curr;
+    afw_pool_free_node_t *prev;
+    afw_pool_free_node_t *next;
+    afw_pool_free_node_t *rest;
+    afw_pool_free_node_t *slow;
+    afw_pool_free_node_t *fast;
 
     curr = NULL;
     if (self->free_memory_head) {
-        afw_pool_heap_chunk_t *slow;
-        afw_pool_heap_chunk_t *fast;
-
         slow = self->free_memory_head->first;
         fast = slow;
-        for (curr = slow;
-            curr && impl_chunk_bytes(curr) < *actual_size;
-            curr = curr->next)
-        {
+        for (curr = slow; curr; curr = curr->next) {
+            if (curr->total >= total &&
+                (curr->total == total ||
+                    curr->total - total >= sizeof(afw_pool_free_node_t)))
+            {
+                break;
+            }
             if (fast) {
                 fast = fast->next;
             }
@@ -513,17 +491,12 @@ impl_alloc_memory(
     }
 
     if (curr) {
-        afw_size_t curr_bytes;
-
-        curr_bytes = impl_chunk_bytes(curr);
         prev = curr->prev;
         next = curr->next;
-        impl_chunk_unlink(&self->free_memory_head->first, curr);
-        if (curr_bytes - *actual_size >= sizeof(afw_pool_heap_chunk_t))
-        {
-            rest = (afw_pool_heap_chunk_t *)
-                (((char *)curr) + *actual_size);
-            impl_chunk_mark_free(rest, curr_bytes - *actual_size);
+        impl_free_unlink(&self->free_memory_head->first, curr);
+        if (curr->total - total >= sizeof(afw_pool_free_node_t)) {
+            rest = (afw_pool_free_node_t *)(((char *)curr) + total);
+            rest->total = curr->total - total;
             rest->prev = prev;
             if (prev) {
                 prev->next = rest;
@@ -532,10 +505,9 @@ impl_alloc_memory(
                 self->free_memory_head->first = rest;
             }
             if (next &&
-                ((char *)rest) + impl_chunk_bytes(rest) == (char *)next)
+                ((char *)rest) + rest->total == (char *)next)
             {
-                impl_chunk_mark_free(rest,
-                    impl_chunk_bytes(rest) + impl_chunk_bytes(next));
+                rest->total += next->total;
                 rest->next = next->next;
                 if (next->next) {
                     next->next->prev = rest;
@@ -548,44 +520,33 @@ impl_alloc_memory(
                 }
             }
         }
-        else {
-            *actual_size = curr_bytes;
-        }
+        *reused = true;
+        return curr;
     }
 
-    reused = (curr != NULL);
-
-    if (!reused) {
-        curr = apr_palloc(self->apr_p, *actual_size);
-        if (!curr) {
-            AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
-        }
+    *reused = false;
+    curr = apr_palloc(self->apr_p, total);
+    if (!curr) {
+        AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
     }
-
-    *address = (afw_byte_t *)curr;
-    return reused;
+    return curr;
 }
 
 
 static void
-impl_free_memory(
+impl_add_to_free_list(
     AFW_POOL_SELF_T *self,
-    void *address,
-    afw_size_t size,
+    void *start,
+    afw_size_t total,
     afw_xctx_t *xctx)
 {
-    afw_pool_heap_chunk_t *freeing;
-    afw_pool_heap_chunk_t *prev;
-    afw_pool_heap_chunk_t *curr;
+    afw_pool_free_node_t *freeing;
+    afw_pool_free_node_t *prev;
+    afw_pool_free_node_t *curr;
 
-    freeing = (afw_pool_heap_chunk_t *)address;
-    if (!impl_chunk_in_use(freeing)) {
-        /* Running xctx, not self: self may already be in teardown. */
-        AFW_THROW_ERROR_Z(general,
-            "afw_pool_free_memory: memory already freed",
-            xctx);
-    }
-    impl_chunk_mark_free(freeing, size);
+    (void)xctx;
+    freeing = (afw_pool_free_node_t *)start;
+    freeing->total = total;
     freeing->prev = NULL;
     freeing->next = NULL;
 
@@ -609,10 +570,9 @@ impl_free_memory(
     }
 
     if (curr &&
-        ((char *)freeing) + impl_chunk_bytes(freeing) == (char *)curr)
+        ((char *)freeing) + freeing->total == (char *)curr)
     {
-        impl_chunk_mark_free(freeing,
-            impl_chunk_bytes(freeing) + impl_chunk_bytes(curr));
+        freeing->total += curr->total;
         freeing->next = curr->next;
         if (curr->next) {
             curr->next->prev = freeing;
@@ -620,10 +580,9 @@ impl_free_memory(
     }
 
     if (prev &&
-        ((char *)prev) + impl_chunk_bytes(prev) == (char *)freeing)
+        ((char *)prev) + prev->total == (char *)freeing)
     {
-        impl_chunk_mark_free(prev,
-            impl_chunk_bytes(prev) + impl_chunk_bytes(freeing));
+        prev->total += freeing->total;
         prev->next = freeing->next;
         if (freeing->next) {
             freeing->next->prev = prev;
@@ -643,8 +602,8 @@ impl_debug_prefix_set(
 
     pre = (afw_pool_debug_prefix_t *)((char *)user -
         sizeof(afw_pool_debug_prefix_t));
-    pre->pool = &self->pub;
     pre->size = size;
+    pre->pool = &self->pub;
 }
 
 static void
@@ -676,86 +635,30 @@ impl_debug_check_prefix(
 
 
 static void *
-impl_malloc_user(
+impl_heap_malloc(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_byte_t *mem;
-    afw_pool_heap_chunk_t *block;
-    afw_size_t overhead;
-    afw_size_t size_with_prefix;
-    afw_size_t actual_size;
-    afw_boolean_t reused;
+    void *start;
     void *user;
+    afw_size_t total;
+    afw_boolean_t reused;
 
     if (size == 0) {
         AFW_THROW_ERROR_Z(general,
             "Attempt to allocate memory for a size of 0",
             xctx);
     }
-    overhead = sizeof(afw_pool_heap_chunk_t) + AFW_POOL_DEBUG_PREFIX_BYTES;
-    if (size > AFW_SIZE_T_MAX - overhead) {
-        AFW_THROW_ERROR_Z(memory,
-            "Requested allocation size is too large",
-            xctx);
-    }
 
-    size_with_prefix = size + overhead;
-    reused = impl_alloc_memory(&mem, &actual_size, self,
-        size_with_prefix, xctx);
-    (void)reused;
+    total = impl_block_bytes(AFW_POOL_HEAP_PREFIX_BYTES, size, xctx);
+    start = impl_take_from_free_list_or_apr(self, total, &reused, xctx);
     IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
         reused ? "reuse" : "apr", size);
-    block = (afw_pool_heap_chunk_t *)mem;
-    impl_chunk_mark_in_use(block, actual_size);
-    block->prev = NULL;
-    block->next = NULL;
-    impl_account_alloc(self, actual_size, xctx);
-    user = mem + sizeof(afw_pool_heap_chunk_t) + AFW_POOL_DEBUG_PREFIX_BYTES;
+    impl_account_alloc(self, total, xctx);
+    user = AFW_POOL_HEAP_USER_FROM_START(start);
     impl_debug_prefix_set(self, user, size);
     return user;
-}
-
-
-/*
- * Temporary: caller size vs live chunk. Remainder too small to split
- * keeps the whole chunk; that is not a size bug.
- */
-static void
-impl_check_free_size(
-    const afw_pool_heap_chunk_t *block,
-    afw_size_t size,
-    afw_xctx_t *xctx)
-{
-    afw_size_t with_prefix;
-    afw_size_t aligned;
-    afw_size_t chunk;
-
-    if (size > AFW_SIZE_T_MAX - sizeof(afw_pool_heap_chunk_t) -
-        AFW_POOL_DEBUG_PREFIX_BYTES)
-    {
-        AFW_THROW_ERROR_Z(general,
-            "afw_pool_free_memory: size too large", xctx);
-    }
-    with_prefix = size + sizeof(afw_pool_heap_chunk_t) +
-        AFW_POOL_DEBUG_PREFIX_BYTES;
-    aligned = APR_ALIGN_DEFAULT(with_prefix);
-    chunk = impl_chunk_bytes(block);
-    if (chunk < aligned) {
-        AFW_THROW_ERROR_FZ(general, xctx,
-            "afw_pool_free_memory: size " AFW_SIZE_T_FMT
-            " larger than chunk " AFW_SIZE_T_FMT,
-            size, chunk);
-    }
-    if (chunk > aligned &&
-        (chunk - aligned) >= sizeof(afw_pool_heap_chunk_t))
-    {
-        AFW_THROW_ERROR_FZ(general, xctx,
-            "afw_pool_free_memory: size " AFW_SIZE_T_FMT
-            " smaller than chunk " AFW_SIZE_T_FMT,
-            size, chunk);
-    }
 }
 
 
@@ -885,7 +788,7 @@ impl_afw_pool_malloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    return impl_malloc_user(self, size, xctx);
+    return impl_heap_malloc(self, size, xctx);
 }
 
 /*
@@ -898,33 +801,21 @@ impl_afw_pool_free_memory(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_pool_heap_chunk_t *block;
+    void *start;
+    afw_size_t total;
 
     if (!address) {
         IMPL_PRINT_DEBUG_INFO_Z(detail, "free");
         return;
     }
     impl_debug_check_prefix(self, address, size, xctx);
-    block = AFW_POOL_HEAP_CHUNK(address);
-    if (!impl_chunk_in_use(block)) {
-#ifndef FIXME_GET_IT_WORKING
-        (void)self;
-        (void)address;
-        (void)size;
-        (void)xctx;
-        return;
-#endif
-        AFW_THROW_ERROR_Z(general,
-            "afw_pool_free_memory: memory already freed",
-            xctx);
-    }
-    impl_check_free_size(block, size, xctx);
+    total = impl_block_bytes(AFW_POOL_HEAP_PREFIX_BYTES, size, xctx);
+    start = AFW_POOL_HEAP_ALLOC_START(address);
     IMPL_PRINT_DEBUG_INFO_FZ(
         detail, "free %p " AFW_SIZE_T_FMT,
-        address, impl_chunk_bytes(block));
-    impl_unlink_from_child_trackers(self, block);
-    impl_account_free(self, impl_chunk_bytes(block), xctx);
-    impl_free_memory(self, block, impl_chunk_bytes(block), xctx);
+        address, total);
+    impl_account_free(self, total, xctx);
+    impl_add_to_free_list(self, start, total, xctx);
 }
 
 /*
@@ -994,7 +885,7 @@ impl_subpool_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_pool_heap_chunk_t *memory;
+    afw_pool_tracker_node_t *memory;
     afw_pool_internal_self_t *child;
     afw_pool_internal_self_t *parent;
     afw_pool_cleanup_t *e;
@@ -1032,15 +923,15 @@ impl_subpool_afw_pool_destroy(
         apr_pool_destroy(self->public_apr_p);
     }
 
-    /* Return remaining in-use chunks. Unlink first so next is still
-     * the allocated-list link, not a free-list link. */
+    /* Return leftovers. Unlink first so next is still the allocated
+     * list, not a free-list overlay. */
     while (self->first_allocated_memory) {
         memory = self->first_allocated_memory;
-        impl_chunk_unlink(&self->first_allocated_memory, memory);
-        if (impl_chunk_in_use(memory)) {
-            impl_free_memory(self, memory, impl_chunk_bytes(memory),
-                xctx);
-        }
+        impl_tracker_unlink(&self->first_allocated_memory, memory);
+        impl_add_to_free_list(self, memory,
+            impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES,
+                AFW_POOL_TRACKER_USER_SIZE(memory), xctx),
+            xctx);
     }
 
     impl_account_destroy(self, xctx);
@@ -1106,17 +997,38 @@ impl_subpool_afw_pool_malloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    void *result;
-    afw_pool_heap_chunk_t *block;
+    void *start;
+    void *user;
+    afw_pool_tracker_node_t *node;
+    afw_size_t total;
+    afw_boolean_t reused;
 
-    result = impl_malloc_user(self, size, xctx);
-    block = AFW_POOL_HEAP_CHUNK(result);
-    block->next = self->first_allocated_memory;
-    if (self->first_allocated_memory) {
-        self->first_allocated_memory->prev = block;
+    if (size == 0) {
+        AFW_THROW_ERROR_Z(general,
+            "Attempt to allocate memory for a size of 0",
+            xctx);
     }
-    self->first_allocated_memory = block;
-    return result;
+
+    total = impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES, size, xctx);
+    start = impl_take_from_free_list_or_apr(self, total, &reused, xctx);
+    IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
+        reused ? "reuse" : "apr", size);
+    node = (afw_pool_tracker_node_t *)start;
+    node->prev = NULL;
+    node->next = self->first_allocated_memory;
+    if (self->first_allocated_memory) {
+        self->first_allocated_memory->prev = node;
+    }
+    self->first_allocated_memory = node;
+    user = AFW_POOL_TRACKER_TO_USER(node);
+#ifdef AFW_DEBUG_POOL
+    node->debug.size = size;
+    node->debug.pool = &self->pub;
+#else
+    node->size = size;
+#endif
+    impl_account_alloc(self, total, xctx);
+    return user;
 }
 
 
@@ -1127,27 +1039,22 @@ impl_subpool_afw_pool_free_memory(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_pool_heap_chunk_t *block;
+    afw_pool_tracker_node_t *node;
+    afw_size_t total;
 
     if (!address) {
         IMPL_PRINT_DEBUG_INFO_Z(detail, "free");
         return;
     }
     impl_debug_check_prefix(self, address, size, xctx);
-    block = AFW_POOL_HEAP_CHUNK(address);
-    if (!impl_chunk_in_use(block)) {
-        AFW_THROW_ERROR_Z(general,
-            "afw_pool_free_memory: memory already freed",
-            xctx);
-    }
-    impl_check_free_size(block, size, xctx);
+    node = AFW_POOL_TRACKER_NODE(address);
+    total = impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES, size, xctx);
     IMPL_PRINT_DEBUG_INFO_FZ(
         detail, "free %p " AFW_SIZE_T_FMT,
-        address, impl_chunk_bytes(block));
-
-    impl_account_free(self, impl_chunk_bytes(block), xctx);
-    impl_chunk_unlink(&self->first_allocated_memory, block);
-    impl_free_memory(self, block, impl_chunk_bytes(block), xctx);
+        address, total);
+    impl_account_free(self, total, xctx);
+    impl_tracker_unlink(&self->first_allocated_memory, node);
+    impl_add_to_free_list(self, node, total, xctx);
 }
 
 

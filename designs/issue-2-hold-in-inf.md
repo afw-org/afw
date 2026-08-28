@@ -164,7 +164,7 @@ Done on this branch (still named `clone_or_reference` in code): scalar managed h
 
 **Pause (PR to develop):** `#ifndef FIXME_GET_IT_WORKING` — eval on caller `p` (not `scope->p`); heap `free_memory` returns on already-freed; skip `double_free_throws`. Rip those ifndefs when we return (keep the `#else` `eval_p = scope->p`). Do not spread `get_reference` in `execute_*`.
 
-**Next after pause:** pool debug prefix first (`AFW_DEBUG_POOL`: `{pool,size}` immediately before the user pointer on heap and tracker; always checked on free; `debug:pool:detail` is the firehose). Then overlay free list / heap without live headers (tracker keeps links). Then `afw_pool_create()` = heap, `afw_pool_tracker_create()`. Do not rip `FIXME_GET_IT_WORKING` on this pass. Do not add `get_base` unless more than one product site type-switches for “entity.” Do not wrap catalog qualifiers.
+**Pool (in progress, `pool-debug-prefix`):** Heap and tracker are two layouts. Heap live: no header, or `[size][pool][USER]` if `AFW_DEBUG_POOL`. Tracker live: links then that pair. `[size][pool]` is immediately before USER on both. Freed blocks overlay a free node at the block start (`add_to_free_list(start, total)`). Heap debug prefix is at least a free node so overlay does not touch USER. Do not rip `FIXME_GET_IT_WORKING`. Wrong-pool throws on `if-block-zero-symbol-iife` / `let-from-call` / `chained-assignment-rhs-once` are last_return, not a pool swallow. Then `afw_pool_create()` = heap. Do not add `get_base` unless more than one product site type-switches for “entity.” Do not wrap catalog qualifiers.
 
 If a step gets clever, stop and ask.
 

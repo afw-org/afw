@@ -169,7 +169,7 @@ impl_tracker_malloc(afw_xctx_t *xctx)
     const afw_pool_t *heap;
     const afw_pool_t *tracker;
     afw_pool_internal_self_t *self;
-    afw_pool_heap_chunk_t *block;
+    afw_pool_tracker_node_t *node;
     void *a;
     afw_size_t before;
     afw_size_t after_alloc;
@@ -191,25 +191,22 @@ impl_tracker_malloc(afw_xctx_t *xctx)
             "in_use did not rise on malloc");
     }
 
-    block = AFW_POOL_HEAP_CHUNK(a);
-    if (self->first_allocated_memory != block) {
+    node = AFW_POOL_TRACKER_NODE(a);
+    if (self->first_allocated_memory != node) {
         return impl_fail("tracker_malloc",
             "block is not first on this tracker's allocated list");
     }
-    if (block->prev != NULL) {
+    if (node->prev != NULL) {
         return impl_fail("tracker_malloc",
             "first allocated block prev is not NULL");
     }
-    if (block->next != NULL) {
+    if (node->next != NULL) {
         return impl_fail("tracker_malloc",
             "single allocated block next is not NULL");
     }
-    if (block->size <
-        IMPL_SIZE_MEDIUM + sizeof(afw_pool_heap_chunk_t) +
-        AFW_POOL_DEBUG_PREFIX_BYTES)
-    {
+    if (AFW_POOL_TRACKER_USER_SIZE(node) != IMPL_SIZE_MEDIUM) {
         return impl_fail("tracker_malloc",
-            "chunk size is smaller than user + header");
+            "node size is not the USER size");
     }
 
     memset(a, 0xb1, IMPL_SIZE_MEDIUM);
@@ -401,41 +398,23 @@ impl_mixed_sizes(afw_xctx_t *xctx)
 }
 
 /*
- * First-fit takes the whole free block when the remainder is too
- * small to keep. The recorded size must be that whole block, not
- * the requested size, or a later same-as-original alloc cannot reuse.
- *
- * User 64 then 56: remainder is smaller than a chunk header.
+ * Remainder too small for a free node stays on the list, so the
+ * original USER size can reuse.
  */
 static int
 impl_heap_whole_block(afw_xctx_t *xctx)
 {
     const afw_pool_t *heap;
-    afw_pool_heap_chunk_t *block;
     void *a;
     void *b;
     void *c;
-    afw_size_t original_chunk;
 
     heap = afw_pool_heap_create(xctx->p, xctx);
     a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
-    block = AFW_POOL_HEAP_CHUNK(a);
-    original_chunk = block->size;
     memset(a, 0x41, IMPL_SIZE_MEDIUM);
     afw_pool_free_memory(heap, a, IMPL_SIZE_MEDIUM, xctx);
 
     b = afw_pool_malloc(heap, IMPL_SIZE_SLIGHT, xctx);
-    if (impl_expect_same_ptr(b, a, "heap_whole_block slight reuse")) {
-        return 1;
-    }
-    block = AFW_POOL_HEAP_CHUNK(b);
-    if (block->size != original_chunk) {
-        fprintf(stderr,
-            "heap_whole_block: took whole block of " AFW_SIZE_T_FMT
-            " but recorded " AFW_SIZE_T_FMT "\n",
-            original_chunk, block->size);
-        return 1;
-    }
     memset(b, 0x42, IMPL_SIZE_SLIGHT);
     afw_pool_free_memory(heap, b, IMPL_SIZE_SLIGHT, xctx);
 
@@ -748,7 +727,7 @@ impl_deregister_cleanup(afw_xctx_t *xctx)
         return impl_fail("deregister_cleanup",
             "cleanup entry not on allocated list");
     }
-    entry = AFW_POOL_CHUNK_TO_USER(self->first_allocated_memory);
+    entry = AFW_POOL_TRACKER_TO_USER(self->first_allocated_memory);
 
     afw_pool_deregister_cleanup(tracker, &marker, NULL,
         impl_cleanup_nop, xctx);
@@ -821,8 +800,8 @@ impl_free_list_walk_ok(
     afw_pool_internal_self_t *heap_self,
     const char *label)
 {
-    afw_pool_heap_chunk_t *slow;
-    afw_pool_heap_chunk_t *fast;
+    afw_pool_free_node_t *slow;
+    afw_pool_free_node_t *fast;
     afw_size_t steps;
 
     if (!heap_self->free_memory_head) {
