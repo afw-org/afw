@@ -189,11 +189,16 @@ impl_index_current_variables[] = {
  *  The "filter" property optionally determines if a given object is applicable for
  *      this index definition (script must return boolean).
  *
- *  The "options" property is a list of options for how the index needs to 
- *      be used.  Some options may possibly be:
+ *  The "options" property is a list of options for how the index needs to
+ *      be used.  Implemented options:
+ *
+ *          unique                  - reject/skip duplicate index values
+ *          sort-reverse            - store index values in reverse order
+ *          case-insensitive-string - fold string values for comparison
+ *
+ *      Aspirational (parsed nowhere / not yet implemented):
  *
  *          presence
- *          case-insensitive-string
  *          case-sensitive-string
  *          starts-with
  *          ends-with
@@ -670,7 +675,6 @@ void afw_adapter_impl_index_open_definition(
     const afw_utf8_t *object_type_id;
     afw_boolean_t unique  = false;
     afw_boolean_t reverse = false;
-    afw_boolean_t integer = false;
 
     options = afw_object_old_get_property_as_array(
         indexDefinition, afw_v_options, xctx);
@@ -685,8 +689,6 @@ void afw_adapter_impl_index_open_definition(
 
                 if (afw_utf8_equal(option_str, afw_s_sort_reverse))
                     reverse = true;
-                else if (afw_utf8_equal(option_str, afw_s_integer))
-                    integer = true;
                 else if (afw_utf8_equal(option_str, afw_s_unique))
                     unique = true;
             }
@@ -704,15 +706,15 @@ void afw_adapter_impl_index_open_definition(
         object_type_id = afw_array_of_string_get_next(
             objectType, &object_type_iterator, xctx);
         while (object_type_id) {
-            afw_adapter_impl_index_open(indexer, object_type_id, 
-                key, integer, unique, reverse, pool, xctx);
-            
+            afw_adapter_impl_index_open(indexer, object_type_id,
+                key, unique, reverse, pool, xctx);
+
             object_type_id = afw_array_of_string_get_next(
                 objectType, &object_type_iterator, xctx);
         }
     } else {
-        afw_adapter_impl_index_open(indexer, NULL, key, 
-            integer, unique, reverse, pool, xctx);
+        afw_adapter_impl_index_open(indexer, NULL, key,
+            unique, reverse, pool, xctx);
     }
 }
 
