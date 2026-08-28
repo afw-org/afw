@@ -48,40 +48,6 @@
     x = &modified_x
 
 
-/*
- * if/for/try/… can return a then-value (if is also ternary) but as
- * statements they do not complete like an ES ExpressionStatement.
- */
-static afw_boolean_t
-impl_statement_is_control(const afw_value_t *statement)
-{
-    const afw_value_call_built_in_function_t *call;
-    const afw_utf8_t *id;
-
-    if (!statement || !afw_value_is_call_built_in_function(statement)) {
-        return false;
-    }
-    call = (const afw_value_call_built_in_function_t *)statement;
-    if (!call->function || !call->function->functionId) {
-        return false;
-    }
-    id = &call->function->functionId->internal;
-    return
-        afw_utf8_equal(id, afw_s_if) ||
-        afw_utf8_equal(id, afw_s_for) ||
-        afw_utf8_equal(id, afw_s_for_of) ||
-        afw_utf8_equal(id, afw_s_while) ||
-        afw_utf8_equal(id, afw_s_do_while) ||
-        afw_utf8_equal(id, afw_s_switch) ||
-        afw_utf8_equal(id, afw_s_try) ||
-        afw_utf8_equal(id, afw_s_let) ||
-        afw_utf8_equal(id, afw_s_const) ||
-        afw_utf8_equal(id, afw_s_break) ||
-        afw_utf8_equal(id, afw_s_continue) ||
-        afw_utf8_equal(id, afw_s_throw);
-}
-
-
 const afw_value_t *
 afw_value_block_evaluate_statements(
     afw_function_execute_t *x,
@@ -97,34 +63,24 @@ afw_value_block_evaluate_statements(
     afw_boolean_t use_running;
 
     use_running = xctx->script_result_active && !as_value;
-    result = use_running
-        ? afw_xctx_script_result_get(xctx)
-        : afw_value_undefined;
+    result = NULL;
 
     for (i = start; i < self->statement_count; i++) {
         last = afw_value_block_evaluate_statement(
             x, self->statements[i], p, xctx);
         if (use_running) {
             if (afw_xctx_statement_flow_is_type(return, xctx)) {
-                afw_xctx_script_result_set(last, xctx);
                 result = last;
                 break;
             }
             if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
-                /* break / continue / rethrow: keep the running result. */
-                result = afw_xctx_script_result_get(xctx);
+                /* break / continue / rethrow: do not update last. */
                 break;
             }
-            /*
-             * ES ExpressionStatement (assignment already wrote; a
-             * non-void call writes). Control forms do not.
-             */
-            if (!afw_value_is_void(last) &&
-                !impl_statement_is_control(self->statements[i]))
-            {
-                afw_xctx_script_result_set(last, xctx);
+            /* Raw last if the statement completed (not void). */
+            if (!afw_value_is_void(last)) {
+                result = last;
             }
-            result = afw_xctx_script_result_get(xctx);
         }
         else {
             if (!afw_value_is_void(last)) {
@@ -153,13 +109,24 @@ afw_value_block_evaluate_block(
     const afw_pool_t *eval_p;
     const afw_xctx_scope_t *scope;
     afw_boolean_t created_scope;
+    afw_boolean_t use_running;
+    afw_boolean_t saved_script_result_active;
 
     /* Push value on evaluation stack. */
     afw_xctx_evaluation_stack_push_value(
         (const afw_value_t *)self, xctx);
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
-    result = afw_value_undefined;
+    result = NULL;
+    use_running = xctx->script_result_active && !as_value;
+    /*
+     * as_value (template substitution, block evaluate): do not treat
+     * inner `return` as this script's last_return.
+     */
+    saved_script_result_active = xctx->script_result_active;
+    if (as_value) {
+        xctx->script_result_active = false;
+    }
 
     /*
      * Nested `{ }` with no symbols is not a scope. Creating one is an
@@ -191,8 +158,21 @@ afw_value_block_evaluate_block(
     AFW_TRY{
         result = afw_value_block_evaluate_statements(
             x, self, 0, eval_p, xctx, as_value);
+        /*
+         * Frame (tracker) finish: one slot_store onto xctx->p before
+         * deactivate. Nested 0-symbol `{ }` returns raw last. Skip if
+         * return already boxed — do not overwrite with a stale last.
+         */
+        if (use_running && created_scope && result &&
+            !afw_value_is_void(result) &&
+            !(afw_xctx_statement_flow_is_type(return, xctx) &&
+                xctx->script_result_written))
+        {
+            afw_xctx_script_result_set(result, xctx);
+        }
     }
     AFW_FINALLY{
+        xctx->script_result_active = saved_script_result_active;
         if (created_scope) {
             afw_xctx_scope_deactivate(scope, xctx);
         }
@@ -203,7 +183,13 @@ afw_value_block_evaluate_block(
     afw_xctx_evaluation_stack_pop_value(xctx);
     xctx->error->contextual = saved_contextual;
 
-    return result;
+    if (use_running && created_scope) {
+        if (result && !afw_value_is_void(result)) {
+            return afw_xctx_script_result_get(xctx);
+        }
+        return afw_value_void;
+    }
+    return result ? result : afw_value_void;
 }
 
 

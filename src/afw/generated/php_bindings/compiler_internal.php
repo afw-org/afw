@@ -186,7 +186,7 @@ class compiler_internal
      * This creates a new structured block with a new nested variable scope.
      * 
      * This function loops while condition is true. If the condition is false
-     * for the first iteration, the loop returns a null value.
+     * for the first iteration, the loop does not complete (void).
      *
      * @param array $initial This is an array of values (statements) to
      *                       evaluate before the loop starts. The values will
@@ -243,8 +243,8 @@ class compiler_internal
      * This function will evaluate an array of values (statements) while a
      * condition is true with initial and increment values. The condition is
      * tested at the beginning of the loop. If the condition is false for the
-     * first iteration, the loop returns a null value. This supports for-of
-     * statement.
+     * first iteration, the loop does not complete (void). This supports
+     * for-of statement.
      *
      * @param array $name Variable name(s).
      * @param  $value Any array, object or single value.
@@ -293,12 +293,14 @@ class compiler_internal
      *                    how the body is processed.
      * @param array $else This is the body of a structured block that is
      *                    evaluated if 'condition' is false. If not specified
-     *                    and condition is false, a null value is returned.
-     *                    See the 'body' parameter of the 'block' function for
-     *                    information on how the body is processed.
+     *                    and condition is false, the if does not complete
+     *                    (void). See the 'body' parameter of the 'block'
+     *                    function for information on how the body is
+     *                    processed.
      *
      * @return  The result of evaluating 'then' or 'else'. Also the ternary
-     *          operator.
+     *          operator. If the condition is false and else is omitted, does
+     *          not complete (void).
      */
     public function if(, $condition, $then, $else = null)
     {
@@ -361,7 +363,8 @@ class compiler_internal
      * thrown.
      *
      *
-     * @return  This function rethrows the current error in a catch block.
+     * @return void Does not complete. Rethrows the current error in a catch
+     *              block.
      */
     public function rethrow()
     {
@@ -557,8 +560,8 @@ class compiler_internal
      * 
      * This function will evaluate an array of values (statements) while a
      * condition is true. The condition is tested at the beginning of the
-     * loop. If the condition is false for the first iteration, the loop
-     * returns a null value. See the related functions 'break', 'continue',
+     * loop. If the condition is false for the first iteration, the loop does
+     * not complete (void). See the related functions 'break', 'continue',
      * 'return' and 'throw'.
      *
      * @param boolean $condition While this condition is true, the loop will

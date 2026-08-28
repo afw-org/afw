@@ -150,6 +150,20 @@ try {
         <literal>...rest</literal> formals). See the Language Reference
         Function statement for examples.
     </paragraph>
+    <paragraph>
+        A script function may be declared
+        <literal>: void</literal>. ECMAScript has no function return type
+        for that: an empty function or a function with no
+        <literal>return</literal> yields <literal>undefined</literal>,
+        which is a value. Adaptive <literal>: void</literal> is a
+        procedure, like a built-in declared void
+        (<literal>print()</literal>). The call is the void singleton,
+        not <literal>undefined</literal> and not the body’s last
+        assignment, so <literal>f();</literal> as a statement does not
+        change the script result. An untyped script function that never
+        completes still yields <literal>undefined</literal> as the call
+        result, which does set the script result.
+    </paragraph>
     <header>Working with objects and arrays</header>
     <paragraph>
         Object and array behavior is provided by Adaptive functions in the

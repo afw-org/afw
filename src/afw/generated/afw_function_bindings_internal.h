@@ -6541,7 +6541,7 @@ afw_function_definition_for;
  * This creates a new structured block with a new nested variable scope.
  * 
  * This function loops while condition is true. If the condition is false for
- * the first iteration, the loop returns a null value.
+ * the first iteration, the loop does not complete (void).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6601,7 +6601,7 @@ afw_function_definition_for_of;
  * This function will evaluate an array of values (statements) while a condition
  * is true with initial and increment values. The condition is tested at the
  * beginning of the loop. If the condition is false for the first iteration, the
- * loop returns a null value. This supports for-of statement.
+ * loop does not complete (void). This supports for-of statement.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6674,12 +6674,14 @@ afw_function_definition_if;
  *
  *   else - (optional array) This is the body of a structured block that is
  *       evaluated if 'condition' is false. If not specified and condition is
- *       false, a null value is returned. See the 'body' parameter of the
+ *       false, the if does not complete (void). See the 'body' parameter of the
  *       'block' function for information on how the body is processed.
  *
  * Returns:
  *
  *   (any) The result of evaluating 'then' or 'else'. Also the ternary operator.
+ *       If the condition is false and else is omitted, does not complete
+ *       (void).
  */
 const afw_value_t *
 afw_function_execute_if(
@@ -6748,14 +6750,14 @@ afw_function_definition_rethrow;
  *
  * ```
  *   function rethrow(
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (any) This function rethrows the current error in a catch block.
+ *   (void) Does not complete. Rethrows the current error in a catch block.
  */
 const afw_value_t *
 afw_function_execute_rethrow(
@@ -6994,8 +6996,8 @@ afw_function_definition_while;
  * 
  * This function will evaluate an array of values (statements) while a condition
  * is true. The condition is tested at the beginning of the loop. If the
- * condition is false for the first iteration, the loop returns a null value.
- * See the related functions 'break', 'continue', 'return' and 'throw'.
+ * condition is false for the first iteration, the loop does not complete
+ * (void). See the related functions 'break', 'continue', 'return' and 'throw'.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

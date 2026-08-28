@@ -138,7 +138,7 @@ Optional loop label for break/continue Identifier (issue #62).
 This creates a new structured block with a new nested variable scope.
 
 This function loops while condition is true. If the condition is false for the
-first iteration, the loop returns a null value.
+first iteration, the loop does not complete (void).
 Evaluate an array of values (statements) while a condition is true with an array of initial and increment values
 
 =head4 Parameters
@@ -175,7 +175,7 @@ This creates a new structured block with a new nested variable scope.
 This function will evaluate an array of values (statements) while a condition
 is true with initial and increment values. The condition is tested at the
 beginning of the loop. If the condition is false for the first iteration, the
-loop returns a null value. This supports for-of statement.
+loop does not complete (void). This supports for-of statement.
 Evaluate an array of values (statements) while a condition is true with an array of initial and increment values
 
 =head4 Parameters
@@ -220,9 +220,9 @@ the body is processed.
     $else
 
 This is the body of a structured block that is evaluated if 'condition' is
-false. If not specified and condition is false, a null value is returned. See
-the 'body' parameter of the 'block' function for information on how the body
-is processed.
+false. If not specified and condition is false, the if does not complete
+(void). See the 'body' parameter of the 'block' function for information on
+how the body is processed.
 
 =head3 let
 
@@ -371,8 +371,8 @@ This creates a new structured block with a new nested variable scope.
 
 This function will evaluate an array of values (statements) while a condition
 is true. The condition is tested at the beginning of the loop. If the
-condition is false for the first iteration, the loop returns a null value. See
-the related functions 'break', 'continue', 'return' and 'throw'.
+condition is false for the first iteration, the loop does not complete (void).
+See the related functions 'break', 'continue', 'return' and 'throw'.
 Evaluate an array of values (statements) while a condition is true
 
 =head4 Parameters

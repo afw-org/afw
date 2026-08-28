@@ -205,7 +205,7 @@ def for_(session, initial=None, condition=None, increment=None, body=None, label
     This creates a new structured block with a new nested variable scope.
     
     This function loops while condition is true. If the condition is false for
-    the first iteration, the loop returns a null value.
+    the first iteration, the loop does not complete (void).
 
     Args:
         initial (list): This is an array of values (statements) to evaluate
@@ -270,7 +270,7 @@ def for_of(session, name, value, body=None, label=None):
     This function will evaluate an array of values (statements) while a
     condition is true with initial and increment values. The condition is
     tested at the beginning of the loop. If the condition is false for the
-    first iteration, the loop returns a null value. This supports for-of
+    first iteration, the loop does not complete (void). This supports for-of
     statement.
 
     Args:
@@ -328,13 +328,14 @@ def if_(session, condition, then, _else=None):
         function for information on how the body is processed.
 
         else (list): This is the body of a structured block that is evaluated
-        if 'condition' is false. If not specified and condition is false, a
-        null value is returned. See the 'body' parameter of the 'block'
+        if 'condition' is false. If not specified and condition is false, the
+        if does not complete (void). See the 'body' parameter of the 'block'
         function for information on how the body is processed.
 
     Returns:
         object: The result of evaluating 'then' or 'else'. Also the ternary
-        operator.
+        operator. If the condition is false and else is omitted, does not
+        complete (void).
     """
 
     request = session.Request()
@@ -409,7 +410,8 @@ def rethrow(session):
 
     Args:
     Returns:
-        object: This function rethrows the current error in a catch block.
+        object: Does not complete. Rethrows the current error in a catch
+        block.
     """
 
     request = session.Request()
@@ -628,9 +630,9 @@ def while_(session, condition, body, label=None):
     
     This function will evaluate an array of values (statements) while a
     condition is true. The condition is tested at the beginning of the loop.
-    If the condition is false for the first iteration, the loop returns a null
-    value. See the related functions 'break', 'continue', 'return' and
-    'throw'.
+    If the condition is false for the first iteration, the loop does not
+    complete (void). See the related functions 'break', 'continue', 'return'
+    and 'throw'.
 
     Args:
         condition (bool): While this condition is true, the loop will

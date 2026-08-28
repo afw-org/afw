@@ -121,6 +121,13 @@ impl_afw_value_optional_evaluate(
         {
             result = xctx->script_result;
         }
+        /*
+         * Script/unit door: empty (void) becomes undefined as the
+         * evaluate() result. Same as untyped empty function body.
+         */
+        if (!result || afw_value_is_void(result)) {
+            result = afw_value_undefined;
+        }
         if (result &&
             !afw_value_is_undefined(result) &&
             !afw_value_is_void(result) &&

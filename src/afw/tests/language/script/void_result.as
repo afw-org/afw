@@ -88,6 +88,10 @@ return 0;
 //?
 //? test: void-script-function-is-void
 //? description: Declared : void yields the void singleton, not the body assign
+//? differences: ...
+ES empty function is undefined (a value). Adaptive function f(): void
+is a procedure: the call is the void singleton (same as print()), not
+undefined and not the body assign, and does not write last_return.
 //? expect: 0
 //? source: ...
 

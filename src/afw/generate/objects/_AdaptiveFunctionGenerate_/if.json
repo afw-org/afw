@@ -18,13 +18,13 @@
         },
         {
             "dataType": "array",
-            "description": "This is the body of a structured block that is evaluated if 'condition' is false. If not specified and condition is false, a null value is returned. See the 'body' parameter of the 'block' function for information on how the body is processed.",
+            "description": "This is the body of a structured block that is evaluated if 'condition' is false. If not specified and condition is false, the if does not complete (void). See the 'body' parameter of the 'block' function for information on how the body is processed.",
             "name": "else",
             "optional": true
         }
     ],
     "returns": {
-        "description": "The result of evaluating 'then' or 'else'. Also the ternary operator."
+        "description": "The result of evaluating 'then' or 'else'. Also the ternary operator. If the condition is false and else is omitted, does not complete (void)."
     },
     "scriptSupport": true
 }
