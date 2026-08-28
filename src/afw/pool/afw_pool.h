@@ -2,7 +2,7 @@
 /*
  * Adaptive Framework memory pool support header.
  *
- * Copyright (c) 2010-2024 Clemson University
+ * Copyright (c) 2010-2026 Clemson University
  *
  */
 
@@ -65,25 +65,12 @@ struct afw_pool_cleanup_s {
  * @param xctx of caller.
  * @return new pool.
  *
- * A pool created with this function is either thread specific or a
- * multithreaded pool, depending on the parent.
+ * Heap if the parent is a heap (multithreaded lock wrappers if the
+ * parent is multithreaded). Tracker if the parent is a tracker.
  *
- * If the parent is a thread specific pool, the created pool will also be thread
- * specific. Thread specific pools are single threaded and are not thread safe.
- * If any of the pool functions are called from other than the specific thread,
- * an error is thrown.
- *
- * A thread-specific pool is created by afw_pool_thread_create() (used from
- * afw_thread_create()). Access it as the thread struct's p member.
- *
- * If the parent is a multithread pool, the created pool will also be a
- * multithreaded pool.
- *
- * The base pool (xctx->env->p) for the environment is created when the AFW
- * environment is created and is a multithreaded pool.
- *
- * If the parent is a heap, the child is a heap (mt if the parent is mt).
- * If the parent is a tracker, the child is a tracker.
+ * env->p is a multithreaded heap. xctx->p is always a single-thread
+ * heap (see afw_pool_create_xctx_p()). Thread-specific heaps are not
+ * safe from another thread.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create(

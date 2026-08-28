@@ -84,16 +84,16 @@ main(int argc, char **argv)
         rc = impl_expect_overflow(p, xctx, "overflow");
         afw_pool_release(p, xctx);
     }
-    else if (strcmp(case_name, "overflow-subpool") == 0) {
+    else if (strcmp(case_name, "overflow-tracker") == 0) {
         p = afw_pool_create_xctx_p(xctx->p, xctx);
         sub = afw_pool_tracker_create(p, xctx);
-        rc = impl_expect_overflow(sub, xctx, "overflow-subpool");
+        rc = impl_expect_overflow(sub, xctx, "overflow-tracker");
         afw_pool_release(sub, xctx);
         afw_pool_release(p, xctx);
     }
     else {
         fprintf(stderr, "usage: pool_alloc_probe "
-            "overflow|overflow-subpool\n");
+            "overflow|overflow-tracker\n");
         rc = 2;
     }
 

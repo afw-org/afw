@@ -19,8 +19,8 @@ def run():
                 "pool malloc of SIZE_MAX throws memory",
             ),
             (
-                "overflow-subpool",
-                "subpool malloc of SIZE_MAX throws memory",
+                "overflow-tracker",
+                "tracker malloc of SIZE_MAX throws memory",
             ),
         ],
     )

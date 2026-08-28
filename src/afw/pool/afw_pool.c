@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Evaluation heap and heap-tracker pool implementation.
+ * Heap and tracker pool implementation.
  *
  * Copyright (c) 2010-2026 Clemson University
  *
@@ -42,7 +42,7 @@ static const afw_pool_internal_inf_implementation_specific_t
 impl_pool_implementation_specific =
     {
         /* multithreaded */ false,
-        /* subpool */ false
+        /* tracker */ false
     };
 
 #define AFW_IMPLEMENTATION_SPECIFIC &impl_pool_implementation_specific
@@ -54,63 +54,63 @@ impl_pool_implementation_specific =
 #define AFW_POOL_INF_ONLY 1
 
 /*
- * Some of the subpool pool methods begin with 'impl_subpool_afw_pool_' but
- * the others are the same as the default.
+ * Some tracker methods begin with 'impl_tracker_afw_pool_'; the rest
+ * match the heap methods.
  */
 #define AFW_IMPLEMENTATION_ID "tracker"
-#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_subpool_inf
+#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_tracker_inf
 
 static void
-impl_subpool_afw_pool_destroy(
+impl_tracker_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx);
 
 #define impl_afw_pool_destroy \
-    impl_subpool_afw_pool_destroy
+    impl_tracker_afw_pool_destroy
 
 static apr_pool_t *
-impl_subpool_afw_pool_get_apr_pool(
+impl_tracker_afw_pool_get_apr_pool(
     AFW_POOL_SELF_T * self);
 
 #define impl_afw_pool_get_apr_pool \
-    impl_subpool_afw_pool_get_apr_pool
+    impl_tracker_afw_pool_get_apr_pool
 
 static void *
-impl_subpool_afw_pool_calloc(
+impl_tracker_afw_pool_calloc(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 #define impl_afw_pool_calloc \
-    impl_subpool_afw_pool_calloc
+    impl_tracker_afw_pool_calloc
 
 static void *
-impl_subpool_afw_pool_malloc(
+impl_tracker_afw_pool_malloc(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 #define impl_afw_pool_malloc \
-    impl_subpool_afw_pool_malloc
+    impl_tracker_afw_pool_malloc
 
 static void
-impl_subpool_afw_pool_free_memory(
+impl_tracker_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
     void *address,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 #define impl_afw_pool_free_memory \
-    impl_subpool_afw_pool_free_memory
+    impl_tracker_afw_pool_free_memory
 
 static const afw_pool_internal_inf_implementation_specific_t
-impl_subpool_implementation_specific =
+impl_tracker_implementation_specific =
     {
         /* multithreaded */ false,
-        /* subpool */ true
+        /* tracker */ true
     };
 
-#define AFW_IMPLEMENTATION_SPECIFIC &impl_subpool_implementation_specific
+#define AFW_IMPLEMENTATION_SPECIFIC &impl_tracker_implementation_specific
 
 #include "afw_pool_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -317,15 +317,15 @@ impl_create(
         afw_pool_get_reference(afw_parent, xctx);
     }
 
-    /* Header is APR; in_use starts at 0 until malloc/calloc. */
+    /* Reservoir is APR; in_use starts at 0 until malloc/calloc. */
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "create");
 
     return self;
 }
 
-/* Create skeleton pool struct for subpool. */
+/* Create skeleton pool struct for tracker. */
 static afw_pool_internal_self_t *
-impl_create_for_subpool(
+impl_create_for_tracker(
     afw_pool_internal_self_t *parent,
     const afw_pool_inf_t *inf,
     afw_xctx_t *xctx)
@@ -334,7 +334,7 @@ impl_create_for_subpool(
     afw_pool_internal_self_t *self;
 
     if (!parent) {
-        AFW_THROW_ERROR_Z(general, "Parent required for subpool", xctx);
+        AFW_THROW_ERROR_Z(general, "Parent required for tracker", xctx);
     }
     apr_p = parent->apr_p;
 
@@ -355,7 +355,7 @@ impl_create_for_subpool(
         &((afw_environment_t *)xctx->env)->pool_number);
     self->reference_count = 1;
 
-    /* Subpools allocate from parent. */
+    /* Trackers allocate from the parent heap free list. */
     self->free_memory_head = parent->free_memory_head;
 
     /* If parent, add this new child. */
@@ -374,7 +374,7 @@ impl_create_for_subpool(
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "create");
 
-    /* Return new subpool. */
+    /* Return new tracker. */
     return self;
 }
 
@@ -1005,7 +1005,7 @@ static const afw_pool_internal_inf_implementation_specific_t
 impl_pool_mt_implementation_specific =
     {
         /* multithreaded */ true,
-        /* subpool */ false
+        /* tracker */ false
     };
 
 #define AFW_IMPLEMENTATION_SPECIFIC &impl_pool_mt_implementation_specific
@@ -1025,10 +1025,10 @@ impl_pool_mt_implementation_specific =
 #undef impl_afw_pool_deregister_cleanup
 
 
-/* --------------------------- subpool implementations ---------------------- */
+/* --------------------------- tracker implementations ---------------------- */
 
 void
-impl_subpool_afw_pool_destroy(
+impl_tracker_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
@@ -1039,9 +1039,9 @@ impl_subpool_afw_pool_destroy(
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
 
-    /* Subpool always have a parent. (needed to suppress valgrind error) */
+    /* Tracker always has a parent. (needed to suppress valgrind error) */
     if (!self->parent) {
-        AFW_THROW_ERROR_Z(general, "Subpool has no parent", xctx);
+        AFW_THROW_ERROR_Z(general, "Tracker has no parent", xctx);
     }
     parent = self->parent;
 
@@ -1052,7 +1052,7 @@ impl_subpool_afw_pool_destroy(
         e->cleanup(e->data, e->data2, &self->pub, xctx);
     }
 
-    /* Release all of the children of this subpool. */
+    /* Release all of the children of this tracker. */
     for (child = self->first_child;
         child;
         child = self->first_child)
@@ -1091,7 +1091,7 @@ impl_subpool_afw_pool_destroy(
 
 
 apr_pool_t *
-impl_subpool_afw_pool_get_apr_pool(
+impl_tracker_afw_pool_get_apr_pool(
     AFW_POOL_SELF_T * self)
 {
     int rv;
@@ -1125,21 +1125,21 @@ impl_subpool_afw_pool_get_apr_pool(
 
 
 void *
-impl_subpool_afw_pool_calloc(
+impl_tracker_afw_pool_calloc(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
     void *result;
 
-    result = impl_subpool_afw_pool_malloc(self, size, xctx);
+    result = impl_tracker_afw_pool_malloc(self, size, xctx);
     memset(result, 0, size);
     return result;
 }
 
 
 static void *
-impl_subpool_afw_pool_malloc(
+impl_tracker_afw_pool_malloc(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx)
@@ -1180,7 +1180,7 @@ impl_subpool_afw_pool_malloc(
 
 
 static void
-impl_subpool_afw_pool_free_memory(
+impl_tracker_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
     void *address,
     afw_size_t size,
@@ -1226,7 +1226,7 @@ afw_pool_internal_is_heap_multithreaded(const afw_pool_t *p)
 AFW_DEFINE(afw_boolean_t)
 afw_pool_internal_is_tracker(const afw_pool_t *p)
 {
-    return p && p->inf == &impl_afw_pool_subpool_inf;
+    return p && p->inf == &impl_afw_pool_tracker_inf;
 }
 
 
@@ -1370,9 +1370,9 @@ afw_pool_tracker_create(
 
     heap = (AFW_POOL_SELF_T *)parent;
     /* Same thread as the heap. */
-    inf = &impl_afw_pool_subpool_inf;
+    inf = &impl_afw_pool_tracker_inf;
 
-    self = impl_create_for_subpool(heap, inf, xctx);
+    self = impl_create_for_tracker(heap, inf, xctx);
     return &self->pub;
 }
 

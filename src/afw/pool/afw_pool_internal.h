@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Heap / heap-tracker pool internals.
+ * Heap and tracker pool internals.
  *
  * Copyright (c) 2010-2026 Clemson University
  *
@@ -32,7 +32,7 @@ AFW_BEGIN_DECLARES
 
 typedef struct afw_pool_internal_inf_implementation_specific_s {
     afw_boolean_t is_multithreaded;
-    afw_boolean_t is_subpool;
+    afw_boolean_t is_tracker;
 } afw_pool_internal_inf_implementation_specific_t;
 
 #ifdef AFW_DEBUG_POOL
