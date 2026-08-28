@@ -67,7 +67,8 @@ struct afw_pool_cleanup_s {
  * @return new pool.
  *
  * Heap if the parent is a heap (multithreaded lock wrappers if the
- * parent is multithreaded). Tracker if the parent is a tracker.
+ * parent is multithreaded). Tracker if the parent is a tracker
+ * (extra rule; may revisit).
  *
  * env->p is a multithreaded heap. xctx->p is always a single-thread
  * heap (see afw_pool_create_xctx_p()). Thread-specific heaps are not

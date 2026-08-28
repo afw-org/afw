@@ -1417,6 +1417,10 @@ afw_pool_create(
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
 
+    /*
+     * Extra rule (ok for now): create() of a tracker is a tracker, so
+     * we do not make a heap under a tracker. May revisit.
+     */
     if (afw_pool_internal_is_tracker(parent)) {
         return afw_pool_tracker_create(parent, xctx);
     }
