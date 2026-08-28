@@ -15,8 +15,9 @@
  * @file afw_pool_internal.h
  * @brief Pool internals (heap and tracker).
  *
- * Heap and heap tracker are single-thread only. Create, use, and
- * release on the same thread (normally one compiled_value evaluate).
+ * A pool is a heap unless it is a tracker. A tracker gets memory
+ * from a heap, tracks live USER blocks, and returns them to the
+ * heap on free or tracker destroy. The heap owns the free list.
  *
  * USER `size` is always the malloc/free_memory argument.
  *
@@ -181,7 +182,7 @@ struct afw_pool_internal_self_s {
     /**
      * @brief Free memory head.
      *
-     * For trackers this is the same pointer as the parent heap.
+     * Heap-owned free list. Trackers share the parent heap's head.
      */
     afw_pool_internal_free_memory_head_t *free_memory_head;
 };

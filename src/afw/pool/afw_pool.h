@@ -23,9 +23,10 @@
  * See the @ref afw_pool group (defined in afw_doxygen.h) for the mental model.
  *
  * Key invariants:
- * - Two implementations: heap and tracker. Multithreaded heap is lock
- *   wrappers around the same methods. APR is the heap reservoir, not
- *   a third AFW pool kind.
+ * - A pool is a heap unless it is a tracker. A tracker gets memory
+ *   from a heap, tracks it, and returns it on free or tracker destroy.
+ *   Multithreaded heap is lock wrappers. APR is the heap reservoir,
+ *   not a third AFW pool kind.
  * - afw_pool_create() of a heap is a heap (mt if the parent is mt).
  *   Of a tracker, a tracker. xctx->p is always single-thread heap.
  * - afw_pool_get_apr_pool() is a door for leftover APR function calls,

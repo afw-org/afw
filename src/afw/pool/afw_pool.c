@@ -10,13 +10,13 @@
  * @file afw_pool.c
  * @brief Heap and tracker pool implementation.
  *
- * Create, use, and release on the same thread. compiled_value evaluate
- * creates a heap for one evaluate and releases it in finally. Trackers
- * are scope->p and return leftovers to that heap. Optional free is
- * afw_pool_free_memory(p, address, size): address-ordered list, coalesce.
- * Heap live: no header, or [size][pool][USER] if AFW_DEBUG_POOL.
+ * A pool is a heap unless it is a tracker. A tracker gets memory from
+ * a heap, tracks live USER blocks, and returns them to the heap on
+ * free or tracker destroy. The heap owns the free list (overlay on
+ * freed blocks; else apr_palloc). Single-thread heaps: create/use/
+ * release on one thread. Multithreaded heap is lock wrappers.
+ * Heap live: [USER] or [size][pool][USER] if AFW_DEBUG_POOL.
  * Tracker live: [prev][next][size][USER], plus [pool] if debug.
- * Freed blocks overlay a free node at the block start.
  */
 
 #include "afw_internal.h"
@@ -47,9 +47,47 @@ impl_pool_implementation_specific =
 
 #define AFW_IMPLEMENTATION_SPECIFIC &impl_pool_implementation_specific
 
+static void
+impl_heap_afw_pool_destroy(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx);
+#define impl_afw_pool_destroy impl_heap_afw_pool_destroy
+
+static apr_pool_t *
+impl_heap_afw_pool_get_apr_pool(
+    AFW_POOL_SELF_T *self);
+#define impl_afw_pool_get_apr_pool impl_heap_afw_pool_get_apr_pool
+
+static void *
+impl_heap_afw_pool_calloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+#define impl_afw_pool_calloc impl_heap_afw_pool_calloc
+
+static void *
+impl_heap_afw_pool_malloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+#define impl_afw_pool_malloc impl_heap_afw_pool_malloc
+
+static void
+impl_heap_afw_pool_free_memory(
+    AFW_POOL_SELF_T *self,
+    void *address,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+#define impl_afw_pool_free_memory impl_heap_afw_pool_free_memory
+
 #include "afw_pool_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_SPECIFIC
+#undef impl_afw_pool_destroy
+#undef impl_afw_pool_get_apr_pool
+#undef impl_afw_pool_calloc
+#undef impl_afw_pool_malloc
+#undef impl_afw_pool_free_memory
 
 #define AFW_POOL_INF_ONLY 1
 
@@ -277,7 +315,7 @@ impl_remove_as_child(
 
 /* Create skeleton heap struct. Parent is any AFW pool (usually APR). */
 static afw_pool_internal_self_t *
-impl_create(
+impl_heap_create(
     const afw_pool_t *afw_parent,
     const afw_pool_inf_t *inf,
     afw_xctx_t *xctx)
@@ -384,7 +422,7 @@ impl_create_for_tracker(
  * the list so total is always recoverable as prefix + USER size.
  */
 static void
-impl_free_unlink(
+impl_heap_free_unlink(
     afw_pool_free_node_t **head,
     afw_pool_free_node_t *node)
 {
@@ -450,7 +488,7 @@ impl_block_bytes(
 
 
 static void *
-impl_take_from_free_list_or_apr(
+impl_heap_take_from_free_list_or_apr(
     AFW_POOL_SELF_T *self,
     afw_size_t total,
     afw_boolean_t *reused,
@@ -491,7 +529,7 @@ impl_take_from_free_list_or_apr(
     if (curr) {
         prev = curr->prev;
         next = curr->next;
-        impl_free_unlink(&self->free_memory_head->first, curr);
+        impl_heap_free_unlink(&self->free_memory_head->first, curr);
         if (curr->total - total >= sizeof(afw_pool_free_node_t)) {
             rest = (afw_pool_free_node_t *)(((char *)curr) + total);
             rest->total = curr->total - total;
@@ -532,7 +570,7 @@ impl_take_from_free_list_or_apr(
 
 
 static void
-impl_add_to_free_list(
+impl_heap_add_to_free_list(
     AFW_POOL_SELF_T *self,
     void *start,
     afw_size_t total,
@@ -632,34 +670,6 @@ impl_debug_check_prefix(
 #endif
 
 
-static void *
-impl_heap_malloc(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx)
-{
-    void *start;
-    void *user;
-    afw_size_t total;
-    afw_boolean_t reused;
-
-    if (size == 0) {
-        AFW_THROW_ERROR_Z(general,
-            "Attempt to allocate memory for a size of 0",
-            xctx);
-    }
-
-    total = impl_block_bytes(AFW_POOL_HEAP_PREFIX_BYTES, size, xctx);
-    start = impl_take_from_free_list_or_apr(self, total, &reused, xctx);
-    IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
-        reused ? "reuse" : "apr", size);
-    impl_account_alloc(self, total, xctx);
-    user = AFW_POOL_HEAP_USER_FROM_START(start);
-    impl_debug_prefix_set(self, user, size);
-    return user;
-}
-
-
 /* --------------------------- pool implementations ------------------------- */
 
 /*
@@ -701,7 +711,7 @@ impl_afw_pool_get_reference(
  * Implementation of method destroy for interface afw_pool.
  */
 void
-impl_afw_pool_destroy(
+impl_heap_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
@@ -747,7 +757,7 @@ impl_afw_pool_destroy(
  * Implementation of method get_apr_pool for interface afw_pool.
  */
 apr_pool_t *
-impl_afw_pool_get_apr_pool(
+impl_heap_afw_pool_get_apr_pool(
     AFW_POOL_SELF_T * self)
 {
     /*
@@ -765,14 +775,14 @@ impl_afw_pool_get_apr_pool(
  * Implementation of method calloc for interface afw_pool.
  */
 void *
-impl_afw_pool_calloc(
+impl_heap_afw_pool_calloc(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
     void *result;
 
-    result = impl_afw_pool_malloc(self, size, xctx);
+    result = impl_heap_afw_pool_malloc(self, size, xctx);
     memset(result, 0, size);
     return result;
 }
@@ -781,19 +791,37 @@ impl_afw_pool_calloc(
  * Implementation of method malloc for interface afw_pool.
  */
 void *
-impl_afw_pool_malloc(
+impl_heap_afw_pool_malloc(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    return impl_heap_malloc(self, size, xctx);
+    void *start;
+    void *user;
+    afw_size_t total;
+    afw_boolean_t reused;
+
+    if (size == 0) {
+        AFW_THROW_ERROR_Z(general,
+            "Attempt to allocate memory for a size of 0",
+            xctx);
+    }
+
+    total = impl_block_bytes(AFW_POOL_HEAP_PREFIX_BYTES, size, xctx);
+    start = impl_heap_take_from_free_list_or_apr(self, total, &reused, xctx);
+    IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
+        reused ? "reuse" : "apr", size);
+    impl_account_alloc(self, total, xctx);
+    user = AFW_POOL_HEAP_USER_FROM_START(start);
+    impl_debug_prefix_set(self, user, size);
+    return user;
 }
 
 /*
  * Implementation of method free_memory for interface afw_pool.
  */
 void
-impl_afw_pool_free_memory(
+impl_heap_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
     void *address,
     afw_size_t size,
@@ -813,7 +841,7 @@ impl_afw_pool_free_memory(
         detail, "free %p " AFW_SIZE_T_FMT,
         address, total);
     impl_account_free(self, total, xctx);
-    impl_add_to_free_list(self, start, total, xctx);
+    impl_heap_add_to_free_list(self, start, total, xctx);
 }
 
 /*
@@ -909,7 +937,7 @@ impl_mt_afw_pool_destroy(
     afw_xctx_t *xctx)
 {
     IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        impl_afw_pool_destroy(self, xctx);
+        impl_heap_afw_pool_destroy(self, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
 }
@@ -923,7 +951,7 @@ impl_mt_afw_pool_calloc(
     void *result;
 
     IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        result = impl_afw_pool_calloc(self, size, xctx);
+        result = impl_heap_afw_pool_calloc(self, size, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
     return result;
@@ -938,7 +966,7 @@ impl_mt_afw_pool_malloc(
     void *result;
 
     IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        result = impl_afw_pool_malloc(self, size, xctx);
+        result = impl_heap_afw_pool_malloc(self, size, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
     return result;
@@ -952,7 +980,7 @@ impl_mt_afw_pool_free_memory(
     afw_xctx_t *xctx)
 {
     IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        impl_afw_pool_free_memory(self, address, size, xctx);
+        impl_heap_afw_pool_free_memory(self, address, size, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
 }
@@ -990,6 +1018,7 @@ impl_mt_afw_pool_deregister_cleanup(
 #define impl_afw_pool_release impl_mt_afw_pool_release
 #define impl_afw_pool_get_reference impl_mt_afw_pool_get_reference
 #define impl_afw_pool_destroy impl_mt_afw_pool_destroy
+#define impl_afw_pool_get_apr_pool impl_heap_afw_pool_get_apr_pool
 #define impl_afw_pool_calloc impl_mt_afw_pool_calloc
 #define impl_afw_pool_malloc impl_mt_afw_pool_malloc
 #define impl_afw_pool_free_memory impl_mt_afw_pool_free_memory
@@ -1018,6 +1047,7 @@ impl_pool_mt_implementation_specific =
 #undef impl_afw_pool_release
 #undef impl_afw_pool_get_reference
 #undef impl_afw_pool_destroy
+#undef impl_afw_pool_get_apr_pool
 #undef impl_afw_pool_calloc
 #undef impl_afw_pool_malloc
 #undef impl_afw_pool_free_memory
@@ -1075,7 +1105,7 @@ impl_tracker_afw_pool_destroy(
     while (self->first_allocated_memory) {
         memory = self->first_allocated_memory;
         impl_tracker_unlink(&self->first_allocated_memory, memory);
-        impl_add_to_free_list(self, memory,
+        impl_heap_add_to_free_list(self, memory,
             impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES,
                 AFW_POOL_TRACKER_USER_SIZE(memory), xctx),
             xctx);
@@ -1157,7 +1187,7 @@ impl_tracker_afw_pool_malloc(
     }
 
     total = impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES, size, xctx);
-    start = impl_take_from_free_list_or_apr(self, total, &reused, xctx);
+    start = impl_heap_take_from_free_list_or_apr(self, total, &reused, xctx);
     IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
         reused ? "reuse" : "apr", size);
     node = (afw_pool_tracker_node_t *)start;
@@ -1201,7 +1231,7 @@ impl_tracker_afw_pool_free_memory(
         address, total);
     impl_account_free(self, total, xctx);
     impl_tracker_unlink(&self->first_allocated_memory, node);
-    impl_add_to_free_list(self, node, total, xctx);
+    impl_heap_add_to_free_list(self, node, total, xctx);
 }
 
 
@@ -1246,7 +1276,7 @@ afw_pool_internal_heap_create(
     inf = multithreaded
         ? &impl_afw_pool_heap_multithreaded_inf
         : &impl_afw_pool_inf;
-    self = impl_create(parent, inf, xctx);
+    self = impl_heap_create(parent, inf, xctx);
     if (multithreaded) {
         self->thread = NULL;
     }
