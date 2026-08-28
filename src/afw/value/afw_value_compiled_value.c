@@ -60,7 +60,7 @@ impl_afw_value_optional_evaluate(
     saved_script_result_active = xctx->script_result_active;
     saved_script_result_written = xctx->script_result_written;
     saved_evaluation_heap = xctx->evaluation_heap;
-    heap = afw_pool_heap_create(p, xctx);
+    heap = afw_pool_create_xctx_p(p, xctx);
     xctx->evaluation_heap = heap;
     if (self->full_source_type &&
         afw_utf8_equal(self->full_source_type, afw_s_script))

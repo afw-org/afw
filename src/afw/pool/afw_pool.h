@@ -123,36 +123,16 @@ afw_pool_create_xctx_p(
 
 
 /**
- * @brief Create an evaluation heap.
- * @param parent of the heap (the p passed to compiled_value evaluate).
- * @param xctx of caller.
- * @return new heap. managed_p is self.
- *
- * Single-thread only. Create, use, and release on the same thread. The
- * compiled_value evaluate wrap does that: one heap for one evaluate, then
- * release. Do not share a heap across threads. A remaining hold (for
- * example a closure still holding a scope) may keep it after that wrap
- * returns; that is still the creating thread.
- */
-AFW_DECLARE(const afw_pool_t *)
-afw_pool_heap_create(
-    const afw_pool_t *parent,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Create a heap tracker (scope pool).
- * @param parent heap from afw_pool_heap_create().
+ * @brief Create a tracker (scope pool).
+ * @param parent heap or tracker.
  * @param xctx of caller.
  * @return tracker. managed_p is the heap.
  *
- * Single-thread only, same thread as the parent heap. Used as scope->p.
- * Create and destroy with the scope on that thread. Do not use from
- * another thread. The tracker header is a heap block (`free_memory` on
- * destroy), not `apr_pcalloc`.
+ * Single-thread only, same thread as the parent. Used as scope->p.
+ * The tracker header is a heap block (`free_memory` on destroy).
  */
 AFW_DECLARE(const afw_pool_t *)
-afw_pool_heap_tracker_create(
+afw_pool_tracker_create(
     const afw_pool_t *parent,
     afw_xctx_t *xctx);
 
