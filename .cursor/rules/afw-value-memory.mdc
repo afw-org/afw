@@ -12,8 +12,8 @@ Use when changing value lifetime, reference count, create/allocate APIs, data ty
 
 ## Pool and scope model
 
-- **General pools** (`afw_pool_create*`): destroy-is-lifetime; parent decides multithreaded vs thread-specific. Base/env is mt. `xctx->p` from `afw_xctx_create` is ST even under base.
-- **Heap / heap tracker:** single-thread only. One compiled_value evaluate creates a heap, scopes use trackers, wrap **releases** the heap (a closure hold may keep it). **No reparent** on destroy; parent cascade destroys children.
+- **Two impls:** heap and tracker (mt = lock wrappers on heap). APR is the reservoir. `create()` of a heap parent is a heap; of a tracker parent is a tracker (extra rule). Base/`env->p` is mt heap. `xctx->p` is ST heap (`create_xctx_p`).
+- **Heap / tracker:** single-thread heap for evaluation. One compiled_value evaluate creates a heap, scopes use trackers, wrap **releases** the heap (a closure hold may keep it). **No reparent** on destroy; parent cascade destroys children. Statement eval `p` is still caller `p` (`FIXME_GET_IT_WORKING`) until nested `for (let)` + many inner evals can live on `scope->p`.
 - `managed_p`: job pools and heap set self; others inherit. Managed object/array: `afw_pool_create(p->managed_p)`.
 - `compiled_value` owns a dedicated compile pool; evaluation scratch is the heap.
 - Scope create/activate/deactivate: reference count on scopes; `closure_binding` holds the scope; last-release walks `symbol_values`. Store-time bind for literals and nested assign is **#35**. Closure create-at-0; face overlay `set` is the hold for `o.fn = function…`.

@@ -3,7 +3,7 @@
 **Audience:** maintainers / assistants. **Not** handbook.
 
 **GitHub:** [#2](https://github.com/afw-org/afw/issues/2).  
-**Branch:** `issue-2-hold-in-inf` (from `develop`). `issue-2-managed-p` is gone (tests harvested; C on that branch is not the rails).
+**On `develop`:** pool two-impls + last_return frame-end store ([PR #267](https://github.com/afw-org/afw/pull/267)). `issue-2-managed-p` is gone (tests harvested; C on that branch is not the rails).
 
 **This pad is the rails.** The 2026-08-20–21 story and archaeology stay in [`issue-2-lifetime.md`](issue-2-lifetime.md). If that file and this one disagree, **this file wins**. If a leak tempts a helper *around* assign, operators, or the compiler — **stop and ask**. That is how we dug holes.
 
@@ -162,9 +162,9 @@ Large-string RC later is **private** to the string inf. Nothing else notices.
 
 Done on this branch (still named `clone_or_reference` in code): scalar managed holdables, object/array hold at unmanaged/permanent `clone_or_reference`, wrap emit gone, `script_function` → `closure_binding`, create names, harvest empty, **return temps** (`function_return_value` + park occupant).
 
-**Pause (PR to develop):** `#ifndef FIXME_GET_IT_WORKING` — eval on caller `p` (not `scope->p`); heap `free_memory` returns on already-freed; skip `double_free_throws`. Rip those ifndefs when we return (keep the `#else` `eval_p = scope->p`). Do not spread `get_reference` in `execute_*`.
+**On develop (PR [#267](https://github.com/afw-org/afw/pull/267), 2026-08-28):** Heap and tracker are the two pool impls (plus mt lock wrappers). APR is reservoir only. `afw_pool.c` / `afw_pool_internal.h`. Heap live: no header, or `[size][pool][USER]` if `AFW_DEBUG_POOL` (always checked on free). Tracker live: links then that pair. Size is USER size. `create()` of a heap parent is a heap; of a tracker parent is a tracker (extra rule). `xctx->p` is ST heap; `env->p` is mt heap. last_return is raw last through the list (skip **void** only); one `slot_store` at created-scope finish onto `xctx->p`. Empty if/block/loop/try/switch/`rethrow` return void. Script/function door: empty void → `undefined`. Declared `: void` stays void.
 
-**Pool (in progress, `pool-debug-prefix`):** Heap and tracker are two layouts. Heap live: no header, or `[size][pool][USER]` if `AFW_DEBUG_POOL`. Tracker live: links then that pair. `[size][pool]` is immediately before USER on both. Freed blocks overlay a free node at the block start (`add_to_free_list(start, total)`). Heap debug prefix is at least a free node so overlay does not touch USER. Tracker allocated list is doubly linked; forward-only + a later GC walk is enough and still tiny vs APR-per-scope — not now. Do not rip `FIXME_GET_IT_WORKING`. Wrong-pool throws on `if-block-zero-symbol-iife` / `let-from-call` / `chained-assignment-rhs-once` are last_return, not a pool swallow. Do not add `get_base` unless more than one product site type-switches for “entity.” Do not wrap catalog qualifiers.
+**Still parked (`FIXME_GET_IT_WORKING`):** eval `p` is caller `p`, not `scope->p`. Skip `double_free_throws`. Tried ripping eval `p`: `language/script` stayed green; `comments-bmp-slash-0.as` (~14k nested `for (let …)` + `eval<script>`) climbed CPU/RSS — discarded. Double-free today throws prefix “pool does not match allocation” after overlay, not “already freed.” Do not spread `get_reference` in `execute_*`. Tracker allocated list forward-only later. Do not wrap catalog qualifiers. Do not add `get_base` unless more than one product site type-switches for “entity.”
 
 If a step gets clever, stop and ask.
 
