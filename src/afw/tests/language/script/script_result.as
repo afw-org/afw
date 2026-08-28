@@ -152,6 +152,30 @@ assert(r === 1);
 return 0;
 
 //?
+//? test: undefined-call-writes
+//? description: a call that returns undefined writes last_return (not void)
+//? expect: 0
+//? source: ...
+
+const r = evaluate(compile<script>(script(
+    "function f() { return undefined; } let y; y = 1; f();")));
+assert(r === undefined);
+return 0;
+
+//?
+//? test: untyped-empty-function-call-writes
+//? description: ...
+Untyped function with only let is undefined as the call result and
+writes last_return. Declared : void does not (void-script-function).
+//? expect: 0
+//? source: ...
+
+const r = evaluate(compile<script>(script(
+    "function f() { let x; } let y; y = 1; f();")));
+assert(r === undefined);
+return 0;
+
+//?
 //? test: lone-call
 //? description: a script that is only a call yields the call value
 //? expect: 0

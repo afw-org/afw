@@ -153,7 +153,7 @@ export function afwDoWhile(client : any, condition : boolean, body : any[], labe
  * This creates a new structured block with a new nested variable scope.
  * 
  * This function loops while condition is true. If the condition is false for
- * the first iteration, the loop returns a null value.
+ * the first iteration, the loop does not complete (void).
  * 
  * @param {array} initial - This is an array of values (statements) to
  *     evaluate before the loop starts. The values will normally be a call to
@@ -207,7 +207,7 @@ export function afwFor(client : any, initial? : any[], condition? : boolean, inc
  * This function will evaluate an array of values (statements) while a
  * condition is true with initial and increment values. The condition is
  * tested at the beginning of the loop. If the condition is false for the
- * first iteration, the loop returns a null value. This supports for-of
+ * first iteration, the loop does not complete (void). This supports for-of
  * statement.
  * 
  * @param {array} name - Variable name(s).
@@ -254,11 +254,12 @@ export function afwForOf(client : any, name : any[], value : any, body? : any[],
  * 
  * @param {array} _else - This is the body of a structured block that is
  *     evaluated if 'condition' is false. If not specified and condition is
- *     false, a null value is returned. See the 'body' parameter of the
+ *     false, the if does not complete (void). See the 'body' parameter of the
  *     'block' function for information on how the body is processed.
  * 
  * @returns {} The result of evaluating 'then' or 'else'. Also the ternary
- *     operator.
+ *     operator. If the condition is false and else is omitted, does not
+ *     complete (void).
  */
 export function afwIf(client : any, condition : boolean, then : any[], _else? : any[]) : any {
 
@@ -311,7 +312,8 @@ export function afwLet(client : any, name : any[], value? : any, type? : object)
  * This is a special function that can be called to rethrow an error inside of
  * a catch block. If called outside of a catch body, an error is thrown.
  * 
- * @returns {} This function rethrows the current error in a catch block.
+ * @returns {void} Does not complete. Rethrows the current error in a catch
+ *     block.
  */
 export function afwRethrow(client : any) : any {
 
@@ -475,8 +477,9 @@ export function afwTry(client : any, body : any[], _finally? : any[], _catch? : 
  * 
  * This function will evaluate an array of values (statements) while a
  * condition is true. The condition is tested at the beginning of the loop. If
- * the condition is false for the first iteration, the loop returns a null
- * value. See the related functions 'break', 'continue', 'return' and 'throw'.
+ * the condition is false for the first iteration, the loop does not complete
+ * (void). See the related functions 'break', 'continue', 'return' and
+ * 'throw'.
  * 
  * @param {boolean} condition - While this condition is true, the loop will
  *     continue. This is evaluated in the loop's scope.

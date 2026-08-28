@@ -10273,32 +10273,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__2b1ba376d251 \
-    "This creates a new structured block with a new nested variable scope.\n\nThis function loops while condition is true. If the condition is false for the first iteration, the loop returns a null value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2b1ba376d251 */
-#define afw_s_zz__2b1ba376d251 \
-    (&afw_self_v_zz__2b1ba376d251.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2b1ba376d251 */
-#define afw_self_s_zz__2b1ba376d251 \
-    (afw_self_v_zz__2b1ba376d251.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2b1ba376d251 */
-extern const afw_value_string_t \
-    afw_self_v_zz__2b1ba376d251;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2b1ba376d251 */
-#define afw_z_zz__2b1ba376d251 \
-    (afw_self_v_zz__2b1ba376d251.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2b1ba376d251 */
-#define afw_v_zz__2b1ba376d251 \
-    (&afw_self_v_zz__2b1ba376d251.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__2b35d9c2b0a9 \
     "function to_x500Name<string> (\n    value: string\n): x500Name;\n"
 
@@ -12141,6 +12115,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__33f97ce39f9e */
 #define afw_v_zz__33f97ce39f9e \
     (&afw_self_v_zz__33f97ce39f9e.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__342d1b486fd0 \
+    "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) while a condition is true. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop does not complete (void). See the related functions 'break', 'continue', 'return' and 'throw'."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__342d1b486fd0 */
+#define afw_s_zz__342d1b486fd0 \
+    (&afw_self_v_zz__342d1b486fd0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__342d1b486fd0 */
+#define afw_self_s_zz__342d1b486fd0 \
+    (afw_self_v_zz__342d1b486fd0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__342d1b486fd0 */
+extern const afw_value_string_t \
+    afw_self_v_zz__342d1b486fd0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__342d1b486fd0 */
+#define afw_z_zz__342d1b486fd0 \
+    (afw_self_v_zz__342d1b486fd0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__342d1b486fd0 */
+#define afw_v_zz__342d1b486fd0 \
+    (&afw_self_v_zz__342d1b486fd0.pub)
 
 
 
@@ -16331,6 +16331,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__477d7370982b \
+    "This creates a new structured block with a new nested variable scope.\n\nThis function loops while condition is true. If the condition is false for the first iteration, the loop does not complete (void)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__477d7370982b */
+#define afw_s_zz__477d7370982b \
+    (&afw_self_v_zz__477d7370982b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__477d7370982b */
+#define afw_self_s_zz__477d7370982b \
+    (afw_self_v_zz__477d7370982b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__477d7370982b */
+extern const afw_value_string_t \
+    afw_self_v_zz__477d7370982b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__477d7370982b */
+#define afw_z_zz__477d7370982b \
+    (afw_self_v_zz__477d7370982b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__477d7370982b */
+#define afw_v_zz__477d7370982b \
+    (&afw_self_v_zz__477d7370982b.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__477dcea28df0 \
     "Checks whether value is dataType objectPath and return the boolean result."
 
@@ -17159,6 +17185,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__4b31610ad3bd */
 #define afw_v_zz__4b31610ad3bd \
     (&afw_self_v_zz__4b31610ad3bd.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__4b4e7446bd9a \
+    "The result of evaluating 'then' or 'else'. Also the ternary operator. If the condition is false and else is omitted, does not complete (void)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__4b4e7446bd9a */
+#define afw_s_zz__4b4e7446bd9a \
+    (&afw_self_v_zz__4b4e7446bd9a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__4b4e7446bd9a */
+#define afw_self_s_zz__4b4e7446bd9a \
+    (afw_self_v_zz__4b4e7446bd9a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__4b4e7446bd9a */
+extern const afw_value_string_t \
+    afw_self_v_zz__4b4e7446bd9a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__4b4e7446bd9a */
+#define afw_z_zz__4b4e7446bd9a \
+    (afw_self_v_zz__4b4e7446bd9a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__4b4e7446bd9a */
+#define afw_v_zz__4b4e7446bd9a \
+    (&afw_self_v_zz__4b4e7446bd9a.pub)
 
 
 
@@ -28915,32 +28967,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__7ffba49c6f5d \
-    "The result of evaluating 'then' or 'else'. Also the ternary operator."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7ffba49c6f5d */
-#define afw_s_zz__7ffba49c6f5d \
-    (&afw_self_v_zz__7ffba49c6f5d.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7ffba49c6f5d */
-#define afw_self_s_zz__7ffba49c6f5d \
-    (afw_self_v_zz__7ffba49c6f5d.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__7ffba49c6f5d */
-extern const afw_value_string_t \
-    afw_self_v_zz__7ffba49c6f5d;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7ffba49c6f5d */
-#define afw_z_zz__7ffba49c6f5d \
-    (afw_self_v_zz__7ffba49c6f5d.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__7ffba49c6f5d */
-#define afw_v_zz__7ffba49c6f5d \
-    (&afw_self_v_zz__7ffba49c6f5d.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__8006e1e64fa7 \
     "Checks for dateTime arg1 is less than or equal to dateTime arg2 and return the boolean result.\n\nIf a dateTime value does not include a time-zone value, then the local time-zone value will be assigned."
 
@@ -30605,6 +30631,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__870a779c9d2d \
+    "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) while a condition is true with initial and increment values. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop does not complete (void). This supports for-of statement."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__870a779c9d2d */
+#define afw_s_zz__870a779c9d2d \
+    (&afw_self_v_zz__870a779c9d2d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__870a779c9d2d */
+#define afw_self_s_zz__870a779c9d2d \
+    (afw_self_v_zz__870a779c9d2d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__870a779c9d2d */
+extern const afw_value_string_t \
+    afw_self_v_zz__870a779c9d2d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__870a779c9d2d */
+#define afw_z_zz__870a779c9d2d \
+    (afw_self_v_zz__870a779c9d2d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__870a779c9d2d */
+#define afw_v_zz__870a779c9d2d \
+    (&afw_self_v_zz__870a779c9d2d.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__871bb2fcfba3 \
     "The 'id' part of serviceId. This is the value of appropriate conf id property based on the conf type."
 
@@ -30627,32 +30679,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__871bb2fcfba3 */
 #define afw_v_zz__871bb2fcfba3 \
     (&afw_self_v_zz__871bb2fcfba3.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__87668cccf1fc \
-    "This is the body of a structured block that is evaluated if 'condition' is false. If not specified and condition is false, a null value is returned. See the 'body' parameter of the 'block' function for information on how the body is processed."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__87668cccf1fc */
-#define afw_s_zz__87668cccf1fc \
-    (&afw_self_v_zz__87668cccf1fc.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__87668cccf1fc */
-#define afw_self_s_zz__87668cccf1fc \
-    (afw_self_v_zz__87668cccf1fc.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__87668cccf1fc */
-extern const afw_value_string_t \
-    afw_self_v_zz__87668cccf1fc;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__87668cccf1fc */
-#define afw_z_zz__87668cccf1fc \
-    (afw_self_v_zz__87668cccf1fc.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__87668cccf1fc */
-#define afw_v_zz__87668cccf1fc \
-    (&afw_self_v_zz__87668cccf1fc.pub)
 
 
 
@@ -81643,32 +81669,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__This_function_rethrows_the_current_error_in_a_catch_block_ \
-    "This function rethrows the current error in a catch block."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__This_function_rethrows_the_current_error_in_a_catch_block_ */
-#define afw_s_zz__This_function_rethrows_the_current_error_in_a_catch_block_ \
-    (&afw_self_v_zz__This_function_rethrows_the_current_error_in_a_catch_block_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__This_function_rethrows_the_current_error_in_a_catch_block_ */
-#define afw_self_s_zz__This_function_rethrows_the_current_error_in_a_catch_block_ \
-    (afw_self_v_zz__This_function_rethrows_the_current_error_in_a_catch_block_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__This_function_rethrows_the_current_error_in_a_catch_block_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__This_function_rethrows_the_current_error_in_a_catch_block_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_function_rethrows_the_current_error_in_a_catch_block_ */
-#define afw_z_zz__This_function_rethrows_the_current_error_in_a_catch_block_ \
-    (afw_self_v_zz__This_function_rethrows_the_current_error_in_a_catch_block_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__This_function_rethrows_the_current_error_in_a_catch_block_ */
-#define afw_v_zz__This_function_rethrows_the_current_error_in_a_catch_block_ \
-    (&afw_self_v_zz__This_function_rethrows_the_current_error_in_a_catch_block_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__This_is_a_brief_description_of_this_repository_ \
     "This is a brief description of this repository."
 
@@ -87363,32 +87363,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz______any \
-    "(): any"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz______any */
-#define afw_s_zz______any \
-    (&afw_self_v_zz______any.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz______any */
-#define afw_self_s_zz______any \
-    (afw_self_v_zz______any.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz______any */
-extern const afw_value_string_t \
-    afw_self_v_zz______any;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz______any */
-#define afw_z_zz______any \
-    (afw_self_v_zz______any.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz______any */
-#define afw_v_zz______any \
-    (&afw_self_v_zz______any.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz______conditions__boolean_____boolean \
     "(...conditions: boolean[]): boolean"
 
@@ -88347,6 +88321,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz______values__yearMonthDuration_____yearMonthDuration__ */
 #define afw_v_zz______values__yearMonthDuration_____yearMonthDuration__ \
     (&afw_self_v_zz______values__yearMonthDuration_____yearMonthDuration__.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz______void \
+    "(): void"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz______void */
+#define afw_s_zz______void \
+    (&afw_self_v_zz______void.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz______void */
+#define afw_self_s_zz______void \
+    (afw_self_v_zz______void.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz______void */
+extern const afw_value_string_t \
+    afw_self_v_zz______void;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz______void */
+#define afw_z_zz______void \
+    (afw_self_v_zz______void.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz______void */
+#define afw_v_zz______void \
+    (&afw_self_v_zz______void.pub)
 
 
 
@@ -124127,6 +124127,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__b5acd6af96a5 \
+    "This is the body of a structured block that is evaluated if 'condition' is false. If not specified and condition is false, the if does not complete (void). See the 'body' parameter of the 'block' function for information on how the body is processed."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b5acd6af96a5 */
+#define afw_s_zz__b5acd6af96a5 \
+    (&afw_self_v_zz__b5acd6af96a5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b5acd6af96a5 */
+#define afw_self_s_zz__b5acd6af96a5 \
+    (afw_self_v_zz__b5acd6af96a5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b5acd6af96a5 */
+extern const afw_value_string_t \
+    afw_self_v_zz__b5acd6af96a5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b5acd6af96a5 */
+#define afw_z_zz__b5acd6af96a5 \
+    (afw_self_v_zz__b5acd6af96a5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b5acd6af96a5 */
+#define afw_v_zz__b5acd6af96a5 \
+    (&afw_self_v_zz__b5acd6af96a5.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__b5d09f2f901d \
     "Determine if template arg1 is equal to the value of arg2 converted to the data type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you want false to be returned if arg1 and arg2's data type don't match."
 
@@ -134501,32 +134527,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__db68d668de28 \
-    "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) while a condition is true. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value. See the related functions 'break', 'continue', 'return' and 'throw'."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__db68d668de28 */
-#define afw_s_zz__db68d668de28 \
-    (&afw_self_v_zz__db68d668de28.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__db68d668de28 */
-#define afw_self_s_zz__db68d668de28 \
-    (afw_self_v_zz__db68d668de28.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__db68d668de28 */
-extern const afw_value_string_t \
-    afw_self_v_zz__db68d668de28;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__db68d668de28 */
-#define afw_z_zz__db68d668de28 \
-    (afw_self_v_zz__db68d668de28.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__db68d668de28 */
-#define afw_v_zz__db68d668de28 \
-    (&afw_self_v_zz__db68d668de28.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__db99d9b7877b \
     "These function are related to data type rfc822Name.\n\nThe '<rfc822Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
@@ -135043,32 +135043,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__de5f1ed6fbfc */
 #define afw_v_zz__de5f1ed6fbfc \
     (&afw_self_v_zz__de5f1ed6fbfc.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__de704a90aebb \
-    "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) while a condition is true with initial and increment values. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value. This supports for-of statement."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__de704a90aebb */
-#define afw_s_zz__de704a90aebb \
-    (&afw_self_v_zz__de704a90aebb.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__de704a90aebb */
-#define afw_self_s_zz__de704a90aebb \
-    (afw_self_v_zz__de704a90aebb.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__de704a90aebb */
-extern const afw_value_string_t \
-    afw_self_v_zz__de704a90aebb;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__de704a90aebb */
-#define afw_z_zz__de704a90aebb \
-    (afw_self_v_zz__de704a90aebb.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__de704a90aebb */
-#define afw_v_zz__de704a90aebb \
-    (&afw_self_v_zz__de704a90aebb.pub)
 
 
 
@@ -136291,6 +136265,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__e2f2365bc54f */
 #define afw_v_zz__e2f2365bc54f \
     (&afw_self_v_zz__e2f2365bc54f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__e2f7b5457730 \
+    "Does not complete. Rethrows the current error in a catch block."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__e2f7b5457730 */
+#define afw_s_zz__e2f7b5457730 \
+    (&afw_self_v_zz__e2f7b5457730.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__e2f7b5457730 */
+#define afw_self_s_zz__e2f7b5457730 \
+    (afw_self_v_zz__e2f7b5457730.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__e2f7b5457730 */
+extern const afw_value_string_t \
+    afw_self_v_zz__e2f7b5457730;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e2f7b5457730 */
+#define afw_z_zz__e2f7b5457730 \
+    (afw_self_v_zz__e2f7b5457730.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__e2f7b5457730 */
+#define afw_v_zz__e2f7b5457730 \
+    (&afw_self_v_zz__e2f7b5457730.pub)
 
 
 
@@ -147605,28 +147605,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__function_rethrow______any__ \
-    "function rethrow (\n): any;\n"
+#define AFW_Q_zz__function_rethrow______void__ \
+    "function rethrow (\n): void;\n"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__function_rethrow______any__ */
-#define afw_s_zz__function_rethrow______any__ \
-    (&afw_self_v_zz__function_rethrow______any__.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_rethrow______void__ */
+#define afw_s_zz__function_rethrow______void__ \
+    (&afw_self_v_zz__function_rethrow______void__.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__function_rethrow______any__ */
-#define afw_self_s_zz__function_rethrow______any__ \
-    (afw_self_v_zz__function_rethrow______any__.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_rethrow______void__ */
+#define afw_self_s_zz__function_rethrow______void__ \
+    (afw_self_v_zz__function_rethrow______void__.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__function_rethrow______any__ */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__function_rethrow______void__ */
 extern const afw_value_string_t \
-    afw_self_v_zz__function_rethrow______any__;
+    afw_self_v_zz__function_rethrow______void__;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__function_rethrow______any__ */
-#define afw_z_zz__function_rethrow______any__ \
-    (afw_self_v_zz__function_rethrow______any__.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__function_rethrow______void__ */
+#define afw_z_zz__function_rethrow______void__ \
+    (afw_self_v_zz__function_rethrow______void__.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__function_rethrow______any__ */
-#define afw_v_zz__function_rethrow______any__ \
-    (&afw_self_v_zz__function_rethrow______any__.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__function_rethrow______void__ */
+#define afw_v_zz__function_rethrow______void__ \
+    (&afw_self_v_zz__function_rethrow______void__.pub)
 
 
 

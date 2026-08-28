@@ -47,10 +47,9 @@
  * Written to debug_fd as ">debug eval|lock|pool ...", not via afw_trace.
  *   AFW_DEBUG_EVALUATION  evaluation stack push/pop
  *   AFW_DEBUG_LOCK        lock obtain/release
- *   AFW_DEBUG_POOL        pool alloc/free/create/destroy
- * Pool `in_use` is this pool's outstanding malloc/calloc; `total` is
- * env->pool_bytes_in_use (sum across pools). `rss` is current process
- * RSS KB (`afw_os_get_rss`) — a hint at APR/OS, not AFW asked-for.
+ *   AFW_DEBUG_POOL        prefix {pool,size} before user pointer on
+ *                         heap/tracker; always checked on free.
+ *                         debug:pool:detail is the alloc/free firehose.
  * `afwdev build --cdev` and `--fulldev` define all three. Otherwise:
  *   afwdev build --define AFW_DEBUG_POOL
  */

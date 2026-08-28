@@ -2,7 +2,7 @@
 /*
  * Adaptive Framework memory pool support header.
  *
- * Copyright (c) 2010-2024 Clemson University
+ * Copyright (c) 2010-2026 Clemson University
  *
  */
 
@@ -23,18 +23,15 @@
  * See the @ref afw_pool group (defined in afw_doxygen.h) for the mental model.
  *
  * Key invariants:
- * - General pools (afw_pool_create*): parent/child lifetime; optional
- *   free is a no-op. Parent decides multithreaded vs thread-specific.
- * - Heap / heap tracker: single-thread only. Create, use, and release on
- *   the same thread (normally one compiled_value evaluate).
+ * - A pool is a heap unless it is a tracker. A tracker gets memory
+ *   from a heap, tracks it, and returns it on free or tracker destroy.
+ *   Multithreaded heap is lock wrappers. APR is the heap reservoir,
+ *   not a third AFW pool kind.
+ * - afw_pool_create() of a heap is a heap (mt if the parent is mt).
+ *   Of a tracker, a tracker. xctx->p is always single-thread heap.
  * - afw_pool_get_apr_pool() is a door for leftover APR function calls,
- *   not the heap's store. Heap may return its current APR pool; a
- *   tracker creates one on first call and destroys it with the tracker.
- *   If nothing calls it on a tracker, there is no extra APR pool.
+ *   not the heap's store.
  * - Optional free is afw_pool_free_memory(p, address, size, xctx).
- *   Caller passes the pool and the malloc/calloc size. Heap/tracker
- *   reuse; general APR is a no-op.
- * - Thread-specific general pools must only be used from their thread.
  * - Use afw_pool_calloc_type for typed zeroed allocs.
  * - Cleanup functions run before the pool is destroyed.
  */
@@ -69,22 +66,13 @@ struct afw_pool_cleanup_s {
  * @param xctx of caller.
  * @return new pool.
  *
- * A pool created with this function is either thread specific or a
- * multithreaded pool, depending on the parent.
+ * Heap if the parent is a heap (multithreaded lock wrappers if the
+ * parent is multithreaded). Tracker if the parent is a tracker
+ * (extra rule; may revisit).
  *
- * If the parent is a thread specific pool, the created pool will also be thread
- * specific. Thread specific pools are single threaded and are not thread safe.
- * If any of the pool functions are called from other than the specific thread,
- * an error is thrown.
- *
- * A thread-specific pool is created by afw_pool_thread_create() (used from
- * afw_thread_create()). Access it as the thread struct's p member.
- *
- * If the parent is a multithread pool, the created pool will also be a
- * multithreaded pool.
- *
- * The base pool (xctx->env->p) for the environment is created when the AFW
- * environment is created and is a multithreaded pool.
+ * env->p is a multithreaded heap. xctx->p is always a single-thread
+ * heap (see afw_pool_create_xctx_p()). Thread-specific heaps are not
+ * safe from another thread.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create(
@@ -115,9 +103,7 @@ afw_pool_create_as_managed_p(
  * @return new pool.
  *
  * An xctx is one thread's work. Child xctx->p is a heap so optional
- * free can recycle. Extra live-chunk header until a later heap trim.
- * Factory pools stay on afw_pool_create_as_managed_p(). Env/compile
- * stay general APR.
+ * free can recycle. afw_pool_create() of a heap parent is a heap.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create_xctx_p(
@@ -126,36 +112,16 @@ afw_pool_create_xctx_p(
 
 
 /**
- * @brief Create an evaluation heap.
- * @param parent of the heap (the p passed to compiled_value evaluate).
- * @param xctx of caller.
- * @return new heap. managed_p is self.
- *
- * Single-thread only. Create, use, and release on the same thread. The
- * compiled_value evaluate wrap does that: one heap for one evaluate, then
- * release. Do not share a heap across threads. A remaining hold (for
- * example a closure still holding a scope) may keep it after that wrap
- * returns; that is still the creating thread.
- */
-AFW_DECLARE(const afw_pool_t *)
-afw_pool_heap_create(
-    const afw_pool_t *parent,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Create a heap tracker (scope pool).
- * @param parent heap from afw_pool_heap_create().
+ * @brief Create a tracker (scope pool).
+ * @param parent heap or tracker.
  * @param xctx of caller.
  * @return tracker. managed_p is the heap.
  *
- * Single-thread only, same thread as the parent heap. Used as scope->p.
- * Create and destroy with the scope on that thread. Do not use from
- * another thread. The tracker header is a heap block (`free_memory` on
- * destroy), not `apr_pcalloc`.
+ * Single-thread only, same thread as the parent. Used as scope->p.
+ * The tracker header is a heap block (`free_memory` on destroy).
  */
 AFW_DECLARE(const afw_pool_t *)
-afw_pool_heap_tracker_create(
+afw_pool_tracker_create(
     const afw_pool_t *parent,
     afw_xctx_t *xctx);
 

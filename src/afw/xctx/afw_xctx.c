@@ -715,9 +715,9 @@ afw_xctx_scope_create(
     }
     
     if (!xctx->evaluation_heap) {
-        xctx->evaluation_heap = afw_pool_heap_create(xctx->p, xctx);
+        xctx->evaluation_heap = afw_pool_create_xctx_p(xctx->p, xctx);
     }
-    p = afw_pool_heap_tracker_create(xctx->evaluation_heap, xctx);
+    p = afw_pool_tracker_create(xctx->evaluation_heap, xctx);
     scope = afw_pool_calloc(p,
         (
             sizeof(afw_xctx_scope_t) + // Size of struct.

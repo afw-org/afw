@@ -221,6 +221,17 @@ for (a = 1, b = 2; a < 3; a = a + 1) {
             <literal>f(...array)</literal> to expand an array into separate
             arguments.
         </paragraph>
+        <paragraph>
+            Declare a return type with a colon after the parameter list
+            (<literal>function f(): integer { … }</literal>).
+            <literal>: void</literal> means the function is a procedure:
+            the call is the same void singleton as
+            <literal>print()</literal>, not
+            <literal>undefined</literal> and not a value assigned in the
+            body. A call to a <literal>: void</literal> function does not
+            change the script result. An untyped function that never
+            completes still yields <literal>undefined</literal>.
+        </paragraph>
         <section>
             <title>Example</title>
             <code><![CDATA[function func(a, b) {

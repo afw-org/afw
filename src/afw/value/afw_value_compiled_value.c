@@ -60,7 +60,7 @@ impl_afw_value_optional_evaluate(
     saved_script_result_active = xctx->script_result_active;
     saved_script_result_written = xctx->script_result_written;
     saved_evaluation_heap = xctx->evaluation_heap;
-    heap = afw_pool_heap_create(p, xctx);
+    heap = afw_pool_create_xctx_p(p, xctx);
     xctx->evaluation_heap = heap;
     if (self->full_source_type &&
         afw_utf8_equal(self->full_source_type, afw_s_script))
@@ -120,6 +120,13 @@ impl_afw_value_optional_evaluate(
             !afw_value_is_void(xctx->script_result))
         {
             result = xctx->script_result;
+        }
+        /*
+         * Script/unit door: empty (void) becomes undefined as the
+         * evaluate() result. Same as untyped empty function body.
+         */
+        if (!result || afw_value_is_void(result)) {
+            result = afw_value_undefined;
         }
         if (result &&
             !afw_value_is_undefined(result) &&

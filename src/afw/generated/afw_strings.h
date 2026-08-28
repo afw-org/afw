@@ -11626,7 +11626,7 @@ afw_self_v_a_flag_debug_pool_brief;
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_debug_pool_description \
-    "This produces basic debug lines for pool create, release, and destroy. Each line has this pool's in_use (outstanding malloc/calloc), total (env pool_bytes_in_use), and rss (current process RSS KB)."
+    "When AFW_DEBUG_POOL is compiled in, heap and tracker allocations have a pool/size prefix immediately before the user pointer; free always checks it (wrong pool or size throws). This flag prints create, release, and destroy lines (in_use, total, rss)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool_description */
 #define afw_s_a_flag_debug_pool_description \
@@ -11704,7 +11704,7 @@ afw_self_v_a_flag_debug_pool_detail_brief;
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_debug_pool_detail_description \
-    "This produces basic plus allocate/free lines. Heap alloc is 'alloc reuse' or 'alloc apr'."
+    "This produces basic plus every allocate/free line. Heap alloc is 'alloc reuse' or 'alloc apr'."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_debug_pool_detail_description */
 #define afw_s_a_flag_debug_pool_detail_description \

@@ -112,7 +112,25 @@ impl_loop_should_exit(const afw_utf8_t *this_label, afw_xctx_t *xctx)
 }
 
 
-/* Statement built-ins are void unless return/rethrow produced a value. */
+/* Keep previous if this iteration/body did not complete (void). */
+static inline const afw_value_t *
+impl_update_empty(
+    const afw_value_t *previous,
+    const afw_value_t *incoming)
+{
+    if (!incoming || afw_value_is_void(incoming)) {
+        return previous;
+    }
+    return incoming;
+}
+
+
+/*
+ * UpdateEmpty for statement built-ins (while/for/try/switch): the
+ * body's last non-void bubbles to the parent list, including
+ * undefined. Only void does not wipe. return/rethrow keep their
+ * value. if is ternary and already returns then/else directly.
+ */
 static inline const afw_value_t *
 impl_statement_result_or_void(
     const afw_value_t *result,
@@ -123,7 +141,10 @@ impl_statement_result_or_void(
     {
         return result;
     }
-    return afw_value_void;
+    if (!result || afw_value_is_void(result)) {
+        return afw_value_void;
+    }
+    return result;
 }
 
 
@@ -1035,8 +1056,10 @@ afw_function_execute_do_while(
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
     this_label = impl_optional_loop_label(x, 3);
+    result = afw_value_void;
     for (;;) {
-        result = afw_value_block_evaluate_statement(x, x->argv[2], p, xctx);
+        result = impl_update_empty(result,
+            afw_value_block_evaluate_statement(x, x->argv[2], p, xctx));
         if (impl_loop_should_exit(this_label, xctx)) {
             break;
         }
@@ -1063,7 +1086,7 @@ afw_function_execute_do_while(
  * This creates a new structured block with a new nested variable scope.
  * 
  * This function loops while condition is true. If the condition is false for
- * the first iteration, the loop returns a null value.
+ * the first iteration, the loop does not complete (void).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1145,7 +1168,7 @@ afw_function_execute_for(
             body = x->argv[4];
         }
 
-        for (result= afw_value_undefined;;) {
+        for (result = afw_value_void;;) {
 
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
                 AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition,
@@ -1156,7 +1179,8 @@ afw_function_execute_for(
             }
 
             if (body) {
-                result = afw_value_block_evaluate_statement(x, body, p, xctx);
+                result = impl_update_empty(result,
+                    afw_value_block_evaluate_statement(x, body, p, xctx));
                 if (impl_loop_should_exit(this_label, xctx)) {
                     break;
                 }
@@ -1215,7 +1239,7 @@ afw_function_execute_for(
  * This function will evaluate an array of values (statements) while a condition
  * is true with initial and increment values. The condition is tested at the
  * beginning of the loop. If the condition is false for the first iteration, the
- * loop returns a null value. This supports for-of statement.
+ * loop does not complete (void). This supports for-of statement.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1269,7 +1293,7 @@ afw_function_execute_for_of(
     afw_boolean_t clone_each;
     afw_boolean_t first;
 
-    result = afw_value_undefined;
+    result = afw_value_void;
     this_label = NULL;
     previous_iterator_scope = NULL;
     clone_each = false;
@@ -1329,8 +1353,9 @@ afw_function_execute_for_of(
                 assignment_type =
                     afw_compile_assignment_type_assign_only;
             }
-            result = afw_value_block_evaluate_statement(
-                x, x->argv[3], p, xctx);
+            result = impl_update_empty(result,
+                afw_value_block_evaluate_statement(
+                    x, x->argv[3], p, xctx));
             first = false;
             if (impl_loop_should_exit(this_label, xctx)) {
                 break;
@@ -1385,12 +1410,14 @@ afw_function_execute_for_of(
  *
  *   else - (optional array) This is the body of a structured block that is
  *       evaluated if 'condition' is false. If not specified and condition is
- *       false, a null value is returned. See the 'body' parameter of the
+ *       false, the if does not complete (void). See the 'body' parameter of the
  *       'block' function for information on how the body is processed.
  *
  * Returns:
  *
  *   (any) The result of evaluating 'then' or 'else'. Also the ternary operator.
+ *       If the condition is false and else is omitted, does not complete
+ *       (void).
  */
 const afw_value_t *
 afw_function_execute_if(
@@ -1405,7 +1432,7 @@ afw_function_execute_if(
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
 
     AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition, 1);
-    result = afw_value_undefined;
+    result = afw_value_void;
     if (condition->internal) {
         result = afw_value_block_evaluate_statement(x, x->argv[2], p, xctx);
     }
@@ -1414,8 +1441,8 @@ afw_function_execute_if(
     }
 
     /*
-     * if is also the ternary operator. Always return then/else. The
-     * statement-list running result ignores this and uses the slot.
+     * if is also the ternary operator. Return then/else. No else and
+     * false is void (does not complete).
      */
     return result;
 }
@@ -1498,14 +1525,14 @@ afw_function_execute_let(
  *
  * ```
  *   function rethrow(
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (any) This function rethrows the current error in a catch block.
+ *   (void) Does not complete. Rethrows the current error in a catch block.
  */
 const afw_value_t *
 afw_function_execute_rethrow(
@@ -1516,7 +1543,7 @@ afw_function_execute_rethrow(
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(0);
     afw_xctx_statement_flow_set_type(rethrow, xctx);
 
-    return afw_value_undefined;
+    return afw_value_void;
 }
 
 
@@ -1572,24 +1599,18 @@ afw_function_execute_return(
         }
     }
     /*
-     * Return temp, not a caller slot. #62 still points script_result at
-     * this wrapper (pointer, not slot_store).
+     * Box onto xctx->p so the occupant survives tracker deactivate.
+     * Slot-store only when this return is a statement last_return
+     * (script_result_active). Template / as_value evaluation clears
+     * that flag so `${return a}` vs `${return b}` do not release
+     * each other's occupant.
      */
-    result = afw_value_function_return_value_create(
-        result,
-        xctx->evaluation_heap ? xctx->evaluation_heap : x->p,
-        xctx);
-    if (xctx->script_result &&
-        xctx->script_result != result &&
-        !afw_value_is_undefined(xctx->script_result) &&
-        !afw_value_is_function_return_value(xctx->script_result))
-    {
-        afw_value_release(xctx->script_result, xctx);
+    result = afw_value_as_assignable(result, xctx->p, xctx);
+    if (xctx->script_result_active) {
+        afw_xctx_script_result_set(result, xctx);
+        result = afw_xctx_script_result_get(xctx);
     }
-    xctx->script_result = result;
-    xctx->script_result_written = true;
     afw_xctx_statement_flow_set_type(return, xctx);
-
     return result;
 }
 
@@ -1755,7 +1776,7 @@ afw_function_execute_switch(
     const afw_array_t *statement_list;
     const afw_iterator_old_t *iterator;
 
-    result = afw_value_undefined;
+    result = afw_value_void;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(4);
     if ((x->argc & 1) != 0) {
@@ -2024,7 +2045,7 @@ afw_function_execute_try(
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
 
-    result = afw_value_undefined;
+    result = afw_value_void;
     use_type = afw_xctx_statement_flow_get(xctx);
 
     scope_at_entry = afw_xctx_scope_current(xctx);
@@ -2133,6 +2154,20 @@ afw_function_execute_try(
                     }
                     this_result = afw_value_block_evaluate_statements(
                         x, block, stmt_start, eval_p, xctx, false);
+                    /*
+                     * Catch is a frame. Box last onto xctx->p before
+                     * tracker deactivate. Skip if return already wrote.
+                     */
+                    if (this_result &&
+                        !afw_value_is_void(this_result) &&
+                        !(afw_xctx_statement_flow_is_type(return, xctx) &&
+                            xctx->script_result_written))
+                    {
+                        afw_xctx_script_result_set(this_result, xctx);
+                    }
+                    if (xctx->script_result_written) {
+                        this_result = afw_xctx_script_result_get(xctx);
+                    }
                 }
                 AFW_FINALLY{
                     afw_xctx_scope_deactivate(scope, xctx);
@@ -2154,6 +2189,10 @@ afw_function_execute_try(
             }
             else if (afw_xctx_statement_flow_is_type(rethrow, xctx)) {
                 AFW_ERROR_RETHROW;
+            }
+            else {
+                /* Catch completed: last bubbles (UpdateEmpty). */
+                result = this_result;
             }
         }
         else {
@@ -2204,8 +2243,8 @@ afw_function_execute_try(
  * 
  * This function will evaluate an array of values (statements) while a condition
  * is true. The condition is tested at the beginning of the loop. If the
- * condition is false for the first iteration, the loop returns a null value.
- * See the related functions 'break', 'continue', 'return' and 'throw'.
+ * condition is false for the first iteration, the loop does not complete
+ * (void). See the related functions 'break', 'continue', 'return' and 'throw'.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2253,12 +2292,13 @@ afw_function_execute_while(
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
     this_label = impl_optional_loop_label(x, 3);
 
-    for (result = afw_value_undefined;;) {
+    for (result = afw_value_void;;) {
         AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition, 1);
         if (!condition->internal) {
             break;
         }
-        result = afw_value_block_evaluate_statement(x, x->argv[2], p, xctx);
+        result = impl_update_empty(result,
+            afw_value_block_evaluate_statement(x, x->argv[2], p, xctx));
         if (impl_loop_should_exit(this_label, xctx))
         {
             break;

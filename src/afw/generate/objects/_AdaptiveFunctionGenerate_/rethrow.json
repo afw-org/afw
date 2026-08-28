@@ -8,7 +8,8 @@
     "parameters": [
     ],
     "returns": {
-        "description": "This function rethrows the current error in a catch block."
+        "dataType": "void",
+        "description": "Does not complete. Rethrows the current error in a catch block."
     },
     "scriptSupport": true
 }
