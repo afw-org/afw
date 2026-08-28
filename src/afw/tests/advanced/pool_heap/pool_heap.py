@@ -90,11 +90,11 @@ def run():
             ),
             (
                 "general_free_noop",
-                "env->p (APR base) optional free stays a no-op",
+                "env->p is a multithreaded heap; optional free recycles",
             ),
             (
                 "tracker_parent",
-                "heap_tracker_create parent must be a heap or tracker",
+                "heap_tracker_create under env->p (multithreaded heap) works",
             ),
             (
                 "create_child_of_heap",

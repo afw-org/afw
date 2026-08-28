@@ -1265,6 +1265,90 @@ afw_pool_heap_create(
 
 
 AFW_DEFINE(const afw_pool_t *)
+afw_pool_internal_create_base_pool()
+{
+    apr_pool_t *apr_p;
+    afw_pool_internal_self_with_free_memory_head_t *mem;
+    afw_pool_internal_self_t *self;
+
+    apr_pool_create(&apr_p, NULL);
+    if (!apr_p) {
+        return NULL;
+    }
+    mem = apr_pcalloc(apr_p,
+        sizeof(afw_pool_internal_self_with_free_memory_head_t));
+    if (!mem) {
+        return NULL;
+    }
+    self = &mem->common;
+    self->pub.inf = &impl_afw_pool_heap_multithreaded_inf;
+    self->pub.managed_p = &self->pub;
+    self->apr_p = apr_p;
+    self->name = afw_s_base;
+    self->pool_number = 1;
+    self->reference_count = 1;
+    self->thread = NULL;
+    self->free_memory_head = &mem->memory_for_free_memory_head;
+    return &self->pub;
+}
+
+
+AFW_DEFINE(afw_thread_t *)
+afw_pool_thread_create(
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_t *p;
+    AFW_POOL_SELF_T *self;
+    afw_thread_t *thread;
+
+    if (size == (afw_size_t)-1 || size < sizeof(afw_thread_t)) {
+        size = sizeof(afw_thread_t);
+    }
+
+    p = afw_pool_heap_create(xctx->p, xctx);
+    self = (AFW_POOL_SELF_T *)p;
+    thread = afw_pool_calloc(p, size, xctx);
+    self->thread = thread;
+    thread->p = p;
+
+    IMPL_PRINT_DEBUG_INFO_FZ(minimal,
+        "thread_create " AFW_SIZE_T_FMT,
+        size);
+
+    return thread;
+}
+
+
+void
+afw_pool_print_debug_info(
+    int indent,
+    const afw_pool_t *pool,
+    afw_xctx_t *xctx)
+{
+    const AFW_POOL_SELF_T *self = (const AFW_POOL_SELF_T *)pool;
+    const afw_pool_internal_self_t *child;
+    int i;
+
+    (void)xctx;
+    for (i = 0; i < indent; i++) {
+        printf("  ");
+    }
+    printf(
+        "pool " AFW_INTEGER_FMT " " AFW_SIZE_T_FMT " refs " AFW_INTEGER_FMT
+        " parent " AFW_INTEGER_FMT "\n",
+        self->pool_number,
+        self->bytes_allocated,
+        self->reference_count,
+        self->parent ? self->parent->pool_number : (afw_integer_t)0);
+
+    for (child = self->first_child; child; child = child->next_sibling) {
+        afw_pool_print_debug_info(indent + 2, &child->pub, xctx);
+    }
+}
+
+
+AFW_DEFINE(const afw_pool_t *)
 afw_pool_heap_tracker_create(
     const afw_pool_t *parent, afw_xctx_t *xctx)
 {

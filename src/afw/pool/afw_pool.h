@@ -23,18 +23,14 @@
  * See the @ref afw_pool group (defined in afw_doxygen.h) for the mental model.
  *
  * Key invariants:
- * - General pools (afw_pool_create*): parent/child lifetime; optional
- *   free is a no-op. Parent decides multithreaded vs thread-specific.
- * - Heap / heap tracker: single-thread only. Create, use, and release on
- *   the same thread (normally one compiled_value evaluate).
+ * - Two implementations: heap and tracker. Multithreaded heap is lock
+ *   wrappers around the same methods. APR is the heap reservoir, not
+ *   a third AFW pool kind.
+ * - afw_pool_create() of a heap is a heap (mt if the parent is mt).
+ *   Of a tracker, a tracker. xctx->p is always single-thread heap.
  * - afw_pool_get_apr_pool() is a door for leftover APR function calls,
- *   not the heap's store. Heap may return its current APR pool; a
- *   tracker creates one on first call and destroys it with the tracker.
- *   If nothing calls it on a tracker, there is no extra APR pool.
+ *   not the heap's store.
  * - Optional free is afw_pool_free_memory(p, address, size, xctx).
- *   Caller passes the pool and the malloc/calloc size. Heap/tracker
- *   reuse; general APR is a no-op.
- * - Thread-specific general pools must only be used from their thread.
  * - Use afw_pool_calloc_type for typed zeroed allocs.
  * - Cleanup functions run before the pool is destroyed.
  */
@@ -86,9 +82,8 @@ struct afw_pool_cleanup_s {
  * The base pool (xctx->env->p) for the environment is created when the AFW
  * environment is created and is a multithreaded pool.
  *
- * If the parent is a heap, the child is a heap (optional free recycles).
- * If the parent is a tracker, the child is a tracker. APR parents also
- * produce a heap (multithreaded lock wrappers if the parent has no thread).
+ * If the parent is a heap, the child is a heap (mt if the parent is mt).
+ * If the parent is a tracker, the child is a tracker.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create(

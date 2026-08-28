@@ -431,63 +431,48 @@ impl_heap_whole_block(afw_xctx_t *xctx)
 }
 
 /*
- * General APR pools stay destroy-is-lifetime; optional free is a no-op.
+ * env->p is a multithreaded heap; optional free recycles.
  */
 static int
 impl_general_free_noop(afw_xctx_t *xctx)
 {
     const afw_pool_t *p;
     void *a;
-    afw_size_t after_alloc;
+    void *b;
+    afw_size_t before;
 
     p = xctx->env->p;
+    if (!afw_pool_internal_is_heap(p) ||
+        !afw_pool_internal_is_heap_multithreaded(p))
+    {
+        return impl_fail("general_free_noop",
+            "env->p is not a multithreaded heap");
+    }
+    before = impl_in_use(xctx);
     a = afw_pool_malloc(p, IMPL_SIZE_MEDIUM, xctx);
-    after_alloc = impl_in_use(xctx);
-    memset(a, 0xf1, IMPL_SIZE_MEDIUM);
-
     afw_pool_free_memory(p, a, IMPL_SIZE_MEDIUM, xctx);
-    if (impl_expect_in_use(xctx, after_alloc, "general_free_noop")) {
+    if (impl_expect_in_use(xctx, before, "general_free_noop after free")) {
         return 1;
     }
+    b = afw_pool_malloc(p, IMPL_SIZE_MEDIUM, xctx);
+    if (impl_expect_same_ptr(b, a, "general_free_noop reuse")) {
+        return 1;
+    }
+    afw_pool_free_memory(p, b, IMPL_SIZE_MEDIUM, xctx);
     return 0;
 }
 
 static int
 impl_tracker_parent(afw_xctx_t *xctx)
 {
-    const afw_pool_t *p;
-    int threw;
-    int unexpected;
+    const afw_pool_t *tracker;
 
-    p = xctx->env->p;
-    threw = 0;
-    unexpected = 0;
-    AFW_TRY {
-        (void)afw_pool_heap_tracker_create(p, xctx);
+    tracker = afw_pool_heap_tracker_create(xctx->env->p, xctx);
+    if (!afw_pool_internal_is_tracker(tracker)) {
+        return impl_fail("tracker_parent",
+            "tracker under env->p heap failed");
     }
-    AFW_CATCH_UNHANDLED {
-        if (AFW_ERROR_THROWN->code == afw_error_code_general &&
-            AFW_ERROR_THROWN->message_z &&
-            strstr(AFW_ERROR_THROWN->message_z,
-                "parent must be a heap or tracker"))
-        {
-            threw = 1;
-        }
-        else {
-            unexpected = 1;
-            fprintf(stderr, "tracker_parent: threw %s\n",
-                AFW_ERROR_THROWN->message_z
-                    ? AFW_ERROR_THROWN->message_z : "?");
-        }
-    }
-    AFW_ENDTRY;
-
-    if (unexpected) {
-        return 1;
-    }
-    if (!threw) {
-        return impl_fail("tracker_parent", "did not throw");
-    }
+    afw_pool_release(tracker, xctx);
     return 0;
 }
 
