@@ -94,7 +94,11 @@ def run():
             ),
             (
                 "tracker_parent",
-                "heap_tracker_create parent must be a heap",
+                "heap_tracker_create parent must be a heap or tracker",
+            ),
+            (
+                "create_child_of_heap",
+                "afw_pool_create of a heap parent is a heap; free recycles",
             ),
             (
                 "get_apr_pool",

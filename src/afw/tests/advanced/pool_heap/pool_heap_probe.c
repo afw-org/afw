@@ -7,6 +7,7 @@
  */
 
 #include "afw.h"
+#include "afw_pool_internal.h"
 #include "afw_pool_heap_internal.h"
 
 #include <stdio.h>
@@ -439,7 +440,7 @@ impl_general_free_noop(afw_xctx_t *xctx)
     void *a;
     afw_size_t after_alloc;
 
-    p = afw_pool_create(xctx->p, xctx);
+    p = afw_pool_create(xctx->env->p, xctx);
     a = afw_pool_malloc(p, IMPL_SIZE_MEDIUM, xctx);
     after_alloc = impl_in_use(xctx);
     memset(a, 0xf1, IMPL_SIZE_MEDIUM);
@@ -460,7 +461,7 @@ impl_tracker_parent(afw_xctx_t *xctx)
     int threw;
     int unexpected;
 
-    p = afw_pool_create(xctx->p, xctx);
+    p = afw_pool_create(xctx->env->p, xctx);
     threw = 0;
     unexpected = 0;
     AFW_TRY {
@@ -469,7 +470,8 @@ impl_tracker_parent(afw_xctx_t *xctx)
     AFW_CATCH_UNHANDLED {
         if (AFW_ERROR_THROWN->code == afw_error_code_general &&
             AFW_ERROR_THROWN->message_z &&
-            strstr(AFW_ERROR_THROWN->message_z, "parent must be a heap"))
+            strstr(AFW_ERROR_THROWN->message_z,
+                "parent must be a heap or tracker"))
         {
             threw = 1;
         }
@@ -490,6 +492,45 @@ impl_tracker_parent(afw_xctx_t *xctx)
     if (!threw) {
         return impl_fail("tracker_parent", "did not throw");
     }
+    return 0;
+}
+
+static int
+impl_create_child_of_heap(afw_xctx_t *xctx)
+{
+    const afw_pool_t *heap;
+    const afw_pool_t *child;
+    const afw_pool_t *tracker;
+    void *a;
+    void *b;
+    afw_size_t before;
+
+    heap = afw_pool_heap_create(xctx->p, xctx);
+    child = afw_pool_create(heap, xctx);
+    if (!afw_pool_internal_is_heap(child)) {
+        return impl_fail("create_child_of_heap",
+            "afw_pool_create of a heap parent is not a heap");
+    }
+    before = impl_in_use(xctx);
+    a = afw_pool_malloc(child, IMPL_SIZE_MEDIUM, xctx);
+    afw_pool_free_memory(child, a, IMPL_SIZE_MEDIUM, xctx);
+    if (impl_expect_in_use(xctx, before, "create_child_of_heap after free")) {
+        return 1;
+    }
+    b = afw_pool_malloc(child, IMPL_SIZE_MEDIUM, xctx);
+    if (impl_expect_same_ptr(b, a, "create_child_of_heap reuse")) {
+        return 1;
+    }
+    afw_pool_free_memory(child, b, IMPL_SIZE_MEDIUM, xctx);
+
+    tracker = afw_pool_heap_tracker_create(child, xctx);
+    if (!afw_pool_internal_is_tracker(tracker)) {
+        return impl_fail("create_child_of_heap",
+            "tracker under create() heap failed");
+    }
+    afw_pool_release(tracker, xctx);
+    afw_pool_release(child, xctx);
+    afw_pool_release(heap, xctx);
     return 0;
 }
 
@@ -954,6 +995,9 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "tracker_parent") == 0) {
         rc = impl_tracker_parent(xctx);
     }
+    else if (strcmp(case_name, "create_child_of_heap") == 0) {
+        rc = impl_create_child_of_heap(xctx);
+    }
     else if (strcmp(case_name, "get_apr_pool") == 0) {
         rc = impl_get_apr_pool(xctx);
     }
@@ -983,7 +1027,7 @@ main(int argc, char **argv)
             "tracker_last_release|tracker_header|mixed_sizes|"
             "heap_whole_block|general_free_noop|tracker_parent|"
             "get_apr_pool|deregister_cleanup|nonadjacent_reuse|"
-            "for_clone_churn|double_free_throws"
+            "for_clone_churn|create_child_of_heap|double_free_throws"
 #ifdef AFW_DEBUG_POOL
             "|debug_free_wrong_size|debug_free_wrong_pool"
 #endif

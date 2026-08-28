@@ -723,6 +723,13 @@ afw_pool_create(
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
 
+    if (afw_pool_internal_is_heap(parent)) {
+        return afw_pool_heap_create(parent, xctx);
+    }
+    if (afw_pool_internal_is_tracker(parent)) {
+        return afw_pool_heap_tracker_create(parent, xctx);
+    }
+
     if (impl_is_this_impl(parent)) {
         thread = ((AFW_POOL_SELF_T *)parent)->thread;
         inf = thread
@@ -766,7 +773,7 @@ afw_pool_create_xctx_p(
 
     /*
      * Single-thread heap: xctx is one thread's work. Optional free
-     * recycles. Live chunk header remains until a later heap trim.
+     * recycles.
      */
     return afw_pool_heap_create(parent, xctx);
 }

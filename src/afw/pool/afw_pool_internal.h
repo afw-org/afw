@@ -36,6 +36,12 @@ AFW_BEGIN_DECLARES
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_internal_create_base_pool();
 
+AFW_DECLARE(afw_boolean_t)
+afw_pool_internal_is_heap(const afw_pool_t *p);
+
+AFW_DECLARE(afw_boolean_t)
+afw_pool_internal_is_tracker(const afw_pool_t *p);
+
 
 extern void
 afw_pool_print_debug_info(

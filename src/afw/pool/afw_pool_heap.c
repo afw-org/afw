@@ -1061,6 +1061,20 @@ impl_subpool_afw_pool_free_memory(
 /* ---------------------------- extern functions ---------------------------- */
 
 
+AFW_DEFINE(afw_boolean_t)
+afw_pool_internal_is_heap(const afw_pool_t *p)
+{
+    return p && p->inf == &impl_afw_pool_inf;
+}
+
+
+AFW_DEFINE(afw_boolean_t)
+afw_pool_internal_is_tracker(const afw_pool_t *p)
+{
+    return p && p->inf == &impl_afw_pool_subpool_inf;
+}
+
+
 AFW_DEFINE(const afw_pool_t *)
 afw_pool_heap_create(
     const afw_pool_t *parent, afw_xctx_t *xctx)
@@ -1091,9 +1105,11 @@ afw_pool_heap_tracker_create(
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
-    if (parent->inf != &impl_afw_pool_inf) {
+    if (!afw_pool_internal_is_heap(parent) &&
+        !afw_pool_internal_is_tracker(parent))
+    {
         AFW_THROW_ERROR_Z(general,
-            "afw_pool_heap_tracker_create() parent must be a heap",
+            "afw_pool_heap_tracker_create() parent must be a heap or tracker",
             xctx);
     }
 

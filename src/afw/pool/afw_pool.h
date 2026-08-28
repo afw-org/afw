@@ -85,6 +85,9 @@ struct afw_pool_cleanup_s {
  *
  * The base pool (xctx->env->p) for the environment is created when the AFW
  * environment is created and is a multithreaded pool.
+ *
+ * If the parent is a heap, the child is a heap (optional free recycles).
+ * If the parent is a tracker, the child is a tracker.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create(
@@ -115,9 +118,7 @@ afw_pool_create_as_managed_p(
  * @return new pool.
  *
  * An xctx is one thread's work. Child xctx->p is a heap so optional
- * free can recycle. Extra live-chunk header until a later heap trim.
- * Factory pools stay on afw_pool_create_as_managed_p(). Env/compile
- * stay general APR.
+ * free can recycle. afw_pool_create() of a heap parent is a heap.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create_xctx_p(
