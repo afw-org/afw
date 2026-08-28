@@ -49,6 +49,8 @@ typedef struct afw_pool_debug_prefix_s {
 
 typedef struct afw_pool_tracker_node_s afw_pool_tracker_node_t;
 struct afw_pool_tracker_node_s {
+    /* Doubly linked for now. Forward-only + a later GC walk is enough;
+     * still tiny vs an APR pool per scope. Do not change now. */
     afw_pool_tracker_node_t *prev;
     afw_pool_tracker_node_t *next;
 #ifdef AFW_DEBUG_POOL
