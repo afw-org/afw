@@ -724,17 +724,23 @@ afw_pool_create(
     }
 
     if (afw_pool_internal_is_heap(parent)) {
-        return afw_pool_heap_create(parent, xctx);
+        return afw_pool_internal_heap_create(parent,
+            afw_pool_internal_is_heap_multithreaded(parent), xctx);
     }
     if (afw_pool_internal_is_tracker(parent)) {
         return afw_pool_heap_tracker_create(parent, xctx);
     }
 
+    /* APR multithreaded parent: heap with lock wrappers. */
+    if (impl_is_this_impl(parent) &&
+        !((AFW_POOL_SELF_T *)parent)->thread)
+    {
+        return afw_pool_internal_heap_create(parent, true, xctx);
+    }
+
     if (impl_is_this_impl(parent)) {
         thread = ((AFW_POOL_SELF_T *)parent)->thread;
-        inf = thread
-            ? &impl_afw_pool_inf
-            : &impl_afw_pool_multithreaded_inf;
+        inf = &impl_afw_pool_inf;
     }
     else {
         thread = xctx->thread;

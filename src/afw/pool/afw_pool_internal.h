@@ -40,7 +40,16 @@ AFW_DECLARE(afw_boolean_t)
 afw_pool_internal_is_heap(const afw_pool_t *p);
 
 AFW_DECLARE(afw_boolean_t)
+afw_pool_internal_is_heap_multithreaded(const afw_pool_t *p);
+
+AFW_DECLARE(afw_boolean_t)
 afw_pool_internal_is_tracker(const afw_pool_t *p);
+
+AFW_DECLARE(const afw_pool_t *)
+afw_pool_internal_heap_create(
+    const afw_pool_t *parent,
+    afw_boolean_t multithreaded,
+    afw_xctx_t *xctx);
 
 
 extern void

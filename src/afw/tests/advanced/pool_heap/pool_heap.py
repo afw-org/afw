@@ -90,7 +90,7 @@ def run():
             ),
             (
                 "general_free_noop",
-                "general APR pool optional free stays a no-op",
+                "env->p (APR base) optional free stays a no-op",
             ),
             (
                 "tracker_parent",

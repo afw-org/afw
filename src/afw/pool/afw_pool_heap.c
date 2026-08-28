@@ -878,6 +878,155 @@ impl_afw_pool_deregister_cleanup(
 }
 
 
+/* --- heap multithreaded wrappers (lock, then ST heap methods) --------- */
+
+static const afw_pool_t *
+impl_mt_afw_pool_release(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_t *result;
+
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        result = impl_afw_pool_release(self, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+    return result;
+}
+
+static void
+impl_mt_afw_pool_get_reference(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_afw_pool_get_reference(self, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+}
+
+static void
+impl_mt_afw_pool_destroy(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_afw_pool_destroy(self, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+}
+
+static void *
+impl_mt_afw_pool_calloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    void *result;
+
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        result = impl_afw_pool_calloc(self, size, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+    return result;
+}
+
+static void *
+impl_mt_afw_pool_malloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    void *result;
+
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        result = impl_afw_pool_malloc(self, size, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+    return result;
+}
+
+static void
+impl_mt_afw_pool_free_memory(
+    AFW_POOL_SELF_T *self,
+    void *address,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_afw_pool_free_memory(self, address, size, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+}
+
+static void
+impl_mt_afw_pool_register_cleanup_before(
+    AFW_POOL_SELF_T *self,
+    void *data,
+    void *data2,
+    afw_pool_cleanup_function_p_t cleanup,
+    afw_xctx_t *xctx)
+{
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_afw_pool_register_cleanup_before(
+            self, data, data2, cleanup, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+}
+
+static void
+impl_mt_afw_pool_deregister_cleanup(
+    AFW_POOL_SELF_T *self,
+    void *data,
+    void *data2,
+    afw_pool_cleanup_function_p_t cleanup,
+    afw_xctx_t *xctx)
+{
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_afw_pool_deregister_cleanup(
+            self, data, data2, cleanup, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+}
+
+#define impl_afw_pool_release impl_mt_afw_pool_release
+#define impl_afw_pool_get_reference impl_mt_afw_pool_get_reference
+#define impl_afw_pool_destroy impl_mt_afw_pool_destroy
+#define impl_afw_pool_calloc impl_mt_afw_pool_calloc
+#define impl_afw_pool_malloc impl_mt_afw_pool_malloc
+#define impl_afw_pool_free_memory impl_mt_afw_pool_free_memory
+#define impl_afw_pool_register_cleanup_before \
+    impl_mt_afw_pool_register_cleanup_before
+#define impl_afw_pool_deregister_cleanup impl_mt_afw_pool_deregister_cleanup
+
+#define AFW_IMPLEMENTATION_ID "heap_multithreaded"
+#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_heap_multithreaded_inf
+#define AFW_POOL_INF_ONLY 1
+
+static const afw_pool_internal_inf_implementation_specific_t
+impl_pool_mt_implementation_specific =
+    {
+        /* multithreaded */ true,
+        /* subpool */ false
+    };
+
+#define AFW_IMPLEMENTATION_SPECIFIC &impl_pool_mt_implementation_specific
+
+#include "afw_pool_impl_declares.h"
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef AFW_IMPLEMENTATION_SPECIFIC
+#undef AFW_POOL_INF_ONLY
+#undef impl_afw_pool_release
+#undef impl_afw_pool_get_reference
+#undef impl_afw_pool_destroy
+#undef impl_afw_pool_calloc
+#undef impl_afw_pool_malloc
+#undef impl_afw_pool_free_memory
+#undef impl_afw_pool_register_cleanup_before
+#undef impl_afw_pool_deregister_cleanup
+
+
 /* --------------------------- subpool implementations ---------------------- */
 
 void
@@ -1064,7 +1213,15 @@ impl_subpool_afw_pool_free_memory(
 AFW_DEFINE(afw_boolean_t)
 afw_pool_internal_is_heap(const afw_pool_t *p)
 {
-    return p && p->inf == &impl_afw_pool_inf;
+    return p && (p->inf == &impl_afw_pool_inf ||
+        p->inf == &impl_afw_pool_heap_multithreaded_inf);
+}
+
+
+AFW_DEFINE(afw_boolean_t)
+afw_pool_internal_is_heap_multithreaded(const afw_pool_t *p)
+{
+    return p && p->inf == &impl_afw_pool_heap_multithreaded_inf;
 }
 
 
@@ -1076,8 +1233,10 @@ afw_pool_internal_is_tracker(const afw_pool_t *p)
 
 
 AFW_DEFINE(const afw_pool_t *)
-afw_pool_heap_create(
-    const afw_pool_t *parent, afw_xctx_t *xctx)
+afw_pool_internal_heap_create(
+    const afw_pool_t *parent,
+    afw_boolean_t multithreaded,
+    afw_xctx_t *xctx)
 {
     AFW_POOL_SELF_T *self;
     const afw_pool_inf_t *inf;
@@ -1086,11 +1245,22 @@ afw_pool_heap_create(
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
 
-    /* Always single-thread inf. One thread creates, uses, releases. */
-    inf = &impl_afw_pool_inf;
-
+    inf = multithreaded
+        ? &impl_afw_pool_heap_multithreaded_inf
+        : &impl_afw_pool_inf;
     self = impl_create(parent, inf, xctx);
+    if (multithreaded) {
+        self->thread = NULL;
+    }
     return &self->pub;
+}
+
+
+AFW_DEFINE(const afw_pool_t *)
+afw_pool_heap_create(
+    const afw_pool_t *parent, afw_xctx_t *xctx)
+{
+    return afw_pool_internal_heap_create(parent, false, xctx);
 }
 
 

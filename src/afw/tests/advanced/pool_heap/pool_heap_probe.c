@@ -440,7 +440,7 @@ impl_general_free_noop(afw_xctx_t *xctx)
     void *a;
     afw_size_t after_alloc;
 
-    p = afw_pool_create(xctx->env->p, xctx);
+    p = xctx->env->p;
     a = afw_pool_malloc(p, IMPL_SIZE_MEDIUM, xctx);
     after_alloc = impl_in_use(xctx);
     memset(a, 0xf1, IMPL_SIZE_MEDIUM);
@@ -449,8 +449,6 @@ impl_general_free_noop(afw_xctx_t *xctx)
     if (impl_expect_in_use(xctx, after_alloc, "general_free_noop")) {
         return 1;
     }
-
-    afw_pool_release(p, xctx);
     return 0;
 }
 
@@ -461,7 +459,7 @@ impl_tracker_parent(afw_xctx_t *xctx)
     int threw;
     int unexpected;
 
-    p = afw_pool_create(xctx->env->p, xctx);
+    p = xctx->env->p;
     threw = 0;
     unexpected = 0;
     AFW_TRY {
@@ -483,8 +481,6 @@ impl_tracker_parent(afw_xctx_t *xctx)
         }
     }
     AFW_ENDTRY;
-
-    afw_pool_release(p, xctx);
 
     if (unexpected) {
         return 1;

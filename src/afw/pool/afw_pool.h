@@ -87,7 +87,8 @@ struct afw_pool_cleanup_s {
  * environment is created and is a multithreaded pool.
  *
  * If the parent is a heap, the child is a heap (optional free recycles).
- * If the parent is a tracker, the child is a tracker.
+ * If the parent is a tracker, the child is a tracker. APR parents also
+ * produce a heap (multithreaded lock wrappers if the parent has no thread).
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create(
