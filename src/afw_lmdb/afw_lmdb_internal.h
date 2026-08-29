@@ -336,6 +336,58 @@ void afw_lmdb_internal_get_key(
     afw_utf8_t * object_type_id,
     afw_uuid_t * uuid);
 
+/**
+ * @brief Resolve an object_id that may not be a UUID to the internal
+ * UUID-shaped id used as the Primary database's actual key.
+ *
+ * If object_id already parses as a UUID, it's returned unchanged (today's
+ * behavior, zero overhead). Otherwise it's looked up in the IdIndex
+ * database, which maps {object_type_id}{object_id} to an internally
+ * generated UUID -- the same dn2id-style split OpenLDAP's back-mdb uses
+ * (id2entry keyed by a fixed surrogate, dn2id resolving names to it), so
+ * the Primary database's key format never has to vary. If not found and
+ * create_if_missing is true, a new UUID is generated and the IdIndex
+ * entry is written (as part of the caller's current transaction) so
+ * future lookups resolve it too. If not found and create_if_missing is
+ * false, throws not_found.
+ */
+const afw_utf8_t * afw_lmdb_internal_resolve_object_id(
+    const afw_lmdb_adapter_session_t *self,
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *object_id,
+    afw_boolean_t create_if_missing,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Look up the human alias an internal {object_type_id}{uuid}
+ * identity was created with, for scans that only have the raw Primary
+ * key (never the alias) to work from.
+ * @return The alias, or NULL if this uuid was never given one (the
+ * common case -- a plain UUID object_id, nothing to look up).
+ */
+const afw_utf8_t * afw_lmdb_internal_lookup_alias(
+    const afw_lmdb_adapter_session_t *self,
+    const afw_utf8_t *object_type_id,
+    const afw_uuid_t *uuid,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Remove an object_id's IdIndex alias entry, if it has one.
+ *
+ * Safe to call for a UUID-shaped object_id (a no-op, since those never
+ * have an alias entry). uuid is the internal id object_id resolves to --
+ * only used when object_id turns out to be an alias, to also drop the
+ * reverse (IdIndexReverse) entry afw_lmdb_internal_lookup_alias() reads.
+ */
+void afw_lmdb_internal_delete_alias(
+    const afw_lmdb_adapter_session_t *self,
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *object_id,
+    const afw_uuid_t *uuid,
+    afw_xctx_t *xctx);
+
 afw_rc_t afw_lmdb_internal_delete_entry(
     MDB_txn *txn,
     MDB_dbi dbi,

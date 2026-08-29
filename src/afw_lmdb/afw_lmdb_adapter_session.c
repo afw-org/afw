@@ -155,6 +155,7 @@ impl_afw_adapter_session_get_object(
     MDB_dbi dbi;
     MDB_txn *txn;
     const afw_object_t *object;
+    const afw_utf8_t *internal_id;
 
     /*
      * If object_type_id is _AdaptiveObjectType_, return a generic object type for
@@ -173,14 +174,24 @@ impl_afw_adapter_session_get_object(
         txn = AFW_LMDB_GET_TRANSACTION();
 
         /* open our database */
-        dbi = afw_lmdb_internal_open_database(adapter, 
+        dbi = afw_lmdb_internal_open_database(adapter,
             txn, afw_lmdb_s_Primary, 0, p, xctx);
 
+        /* object_id may be a non-UUID alias resolved via the IdIndex */
+        internal_id = afw_lmdb_internal_resolve_object_id(self,
+            object_type_id, object_id, false, p, xctx);
+
+        object = afw_lmdb_internal_create_object_from_entry(self,
+            object_type_id, internal_id, dbi, xctx);
+
+        /* report the id the caller asked for, not the internal alias target */
+        if (internal_id != object_id) {
+            afw_object_meta_set_ids(object, &adapter->pub.adapter_id,
+                object_type_id, object_id, xctx);
+        }
+
         /* Callback with object. */
-        callback(
-            afw_lmdb_internal_create_object_from_entry(self,
-                object_type_id, object_id, dbi, xctx),
-            context, xctx);
+        callback(object, context, xctx);
     }
     AFW_LMDB_END_TRANSACTION();
 }
@@ -204,15 +215,17 @@ impl_afw_adapter_session_add_object(
     MDB_dbi dbi;
     MDB_txn *txn;
     const afw_uuid_t *uuid;
-    const afw_utf8_t *uuid_string;    
+    const afw_utf8_t *public_id;
+    const afw_utf8_t *internal_id;
 
     if (suggested_object_id) {
-        /* we were given an object_id, so use it */
-        uuid_string = suggested_object_id;
+        /* we were given an object_id, so use it -- as-is, even if it's
+           not UUID-shaped; that's what gets returned to the caller */
+        public_id = suggested_object_id;
     } else {
         /* generate a UUID for this new object */
         uuid = afw_uuid_create(xctx->p, xctx);
-        uuid_string = afw_uuid_to_utf8(uuid, xctx->p, xctx);
+        public_id = afw_uuid_to_utf8(uuid, xctx->p, xctx);
     }
 
     AFW_LMDB_BEGIN_ATOMIC_TRANSACTION(adapter, self, xctx) {
@@ -223,19 +236,27 @@ impl_afw_adapter_session_add_object(
         dbi = afw_lmdb_internal_open_database(adapter,
             txn, afw_lmdb_s_Primary, MDB_CREATE, xctx->p, xctx);
 
+        /*
+         * public_id itself if it's already UUID-shaped (unchanged fast
+         * path); otherwise a freshly generated UUID, with an IdIndex
+         * alias entry recorded so later lookups by public_id resolve here.
+         */
+        internal_id = afw_lmdb_internal_resolve_object_id(self,
+            object_type_id, public_id, true, xctx->p, xctx);
+
         /* add the object to our primary database */
         afw_lmdb_internal_create_entry_from_object(self,
-            object_type_id, uuid_string, object, dbi, xctx);
+            object_type_id, internal_id, object, dbi, xctx);
 
         /* create our indexes for this object */
         afw_adapter_impl_index_object(self->indexer, object_type_id,
-            object, uuid_string, xctx);
+            object, internal_id, xctx);
 
         AFW_LMDB_COMMIT_ATOMIC_TRANSACTION();
     }
     AFW_LMDB_END_ATOMIC_TRANSACTION();
 
-    return uuid_string;
+    return public_id;
 }
 
 
@@ -253,9 +274,10 @@ impl_afw_adapter_session_modify_object(
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;    
+    afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;
     const afw_object_t *object, *new_object;
-    MDB_dbi dbi;    
+    const afw_utf8_t *internal_id;
+    MDB_dbi dbi;
     MDB_txn *txn;
 
     if (!object_id || !object_type_id) {
@@ -271,9 +293,13 @@ impl_afw_adapter_session_modify_object(
         dbi = afw_lmdb_internal_open_database(adapter,
             txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
+        /* object being modified must already exist -- no alias creation */
+        internal_id = afw_lmdb_internal_resolve_object_id(self,
+            object_type_id, object_id, false, xctx->p, xctx);
+
         /* load our object into memory and apply the modifications */
         object = afw_lmdb_internal_create_object_from_entry(self,
-            object_type_id, object_id, dbi, xctx);
+            object_type_id, internal_id, dbi, xctx);
 
         /* call common routine to modify the object */
         new_object = afw_object_create_clone(object, xctx->p, xctx);
@@ -282,11 +308,11 @@ impl_afw_adapter_session_modify_object(
 
         /* Write updated object */
         afw_lmdb_internal_replace_entry_from_object(self, object_type_id,
-            object_id, new_object, dbi, xctx);
+            internal_id, new_object, dbi, xctx);
 
         /* Re-index object, if necessary */
         afw_adapter_impl_index_reindex_object(self->indexer, object_type_id,
-            object, new_object, object_id, xctx);
+            object, new_object, internal_id, xctx);
 
         AFW_LMDB_COMMIT_ATOMIC_TRANSACTION();
     }
@@ -307,10 +333,11 @@ impl_afw_adapter_session_replace_object(
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;    
+    afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;
     const afw_object_t *old_object;
     const afw_value_t *value;
-    MDB_dbi dbi;    
+    const afw_utf8_t *internal_id;
+    MDB_dbi dbi;
     MDB_txn *txn;
 
     if (!object_id || !object_type_id) {
@@ -326,9 +353,17 @@ impl_afw_adapter_session_replace_object(
         dbi = afw_lmdb_internal_open_database(adapter,
             txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
+        /*
+         * object being replaced must already exist -- create_value_from_
+         * entry below throws if it doesn't, so resolving with create=true
+         * here would just leave a dangling, never-written alias behind.
+         */
+        internal_id = afw_lmdb_internal_resolve_object_id(self,
+            object_type_id, object_id, false, xctx->p, xctx);
+
         /* get the old object */
         value = afw_lmdb_internal_create_value_from_entry(self,
-                object_type_id, object_id, dbi, xctx);
+                object_type_id, internal_id, dbi, xctx);
 
         if (value && !afw_value_is_object(value)) {
             AFW_THROW_ERROR_Z(bad_request,
@@ -339,11 +374,11 @@ impl_afw_adapter_session_replace_object(
 
         /* Write updated object */
         afw_lmdb_internal_replace_entry_from_object(self,
-            object_type_id, object_id, replacement_object, dbi, xctx);
+            object_type_id, internal_id, replacement_object, dbi, xctx);
 
         /* Re-index object, if necessary */
         afw_adapter_impl_index_reindex_object(self->indexer, object_type_id,
-            old_object, replacement_object, object_id, xctx);
+            old_object, replacement_object, internal_id, xctx);
 
         AFW_LMDB_COMMIT_ATOMIC_TRANSACTION();
     }
@@ -366,12 +401,11 @@ impl_afw_adapter_session_delete_object(
     afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;
     const afw_uuid_t *uuid;
     const afw_object_t *object;
+    const afw_utf8_t *internal_id;
     afw_memory_t raw_key;
     MDB_dbi dbi;
     MDB_txn *txn;
     int rc;
-
-    uuid = afw_uuid_from_utf8(object_id, xctx->p, xctx);
 
     /* open the transaction */
     AFW_LMDB_BEGIN_ATOMIC_TRANSACTION(adapter, self, xctx) {
@@ -381,8 +415,12 @@ impl_afw_adapter_session_delete_object(
         dbi = afw_lmdb_internal_open_database(adapter,
             txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
-        object = afw_lmdb_internal_create_object_from_entry(self, 
-            object_type_id, object_id, dbi, xctx);
+        internal_id = afw_lmdb_internal_resolve_object_id(self,
+            object_type_id, object_id, false, xctx->p, xctx);
+        uuid = afw_uuid_from_utf8(internal_id, xctx->p, xctx);
+
+        object = afw_lmdb_internal_create_object_from_entry(self,
+            object_type_id, internal_id, dbi, xctx);
         if (!object) {
             AFW_THROW_ERROR_FZ(not_found, xctx,
                 AFW_UTF8_FMT_Q " cannot be found.",
@@ -400,10 +438,13 @@ impl_afw_adapter_session_delete_object(
                 "Error deleting value from primary database.", xctx);
         }
 
+        /* clean up the IdIndex alias entry, if object_id was one */
+        afw_lmdb_internal_delete_alias(self, object_type_id, object_id, uuid, xctx);
+
         AFW_TRY {
             /* remove any indexes that still exist */
             afw_adapter_impl_index_unindex_object(self->indexer,
-                object_type_id, object, object_id, xctx);
+                object_type_id, object, internal_id, xctx);
         }
         AFW_CATCH(not_found) {
             /** @fixme This is ok, but we may want to log an internal message. */
@@ -524,6 +565,15 @@ void afw_lmdb_adapter_session_dump_objects(
 
         /* convert our uuid back into a utf8 string */
         object_id = afw_uuid_to_utf8(&uuid, obj_p, xctx);
+
+        /* report the human alias, if this object was created with one */
+        {
+            const afw_utf8_t *alias = afw_lmdb_internal_lookup_alias(
+                session, &object_type, &uuid, obj_p, xctx);
+            if (alias) {
+                object_id = alias;
+            }
+        }
 
         object = afw_content_type_raw_to_object(
             session->adapter->ubjson, &raw, NULL, &session->adapter->pub.adapter_id,
