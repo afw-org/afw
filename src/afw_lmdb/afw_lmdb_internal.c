@@ -407,8 +407,8 @@ const afw_utf8_t * afw_lmdb_internal_resolve_object_id(
 {
     const afw_uuid_t *uuid;
     MDB_txn *txn = self->currTxn;
-    MDB_dbi dbi;
-    afw_memory_t alias_key, raw_value;
+    MDB_dbi dbi, reverse_dbi;
+    afw_memory_t alias_key, reverse_key, raw_value;
     int rc;
 
     uuid = afw_lmdb_internal_try_uuid_from_utf8(object_id, p, xctx);
@@ -461,26 +461,20 @@ const afw_utf8_t * afw_lmdb_internal_resolve_object_id(
      * human alias instead of the internal uuid -- see
      * afw_lmdb_internal_lookup_alias().
      */
-    {
-        afw_memory_t reverse_key, reverse_value;
-        MDB_dbi reverse_dbi;
-        int reverse_rc;
+    reverse_dbi = afw_lmdb_internal_open_database(self->adapter,
+        txn, afw_lmdb_s_IdIndexReverse, MDB_CREATE, p, xctx);
 
-        reverse_dbi = afw_lmdb_internal_open_database(self->adapter,
-            txn, afw_lmdb_s_IdIndexReverse, MDB_CREATE, p, xctx);
+    afw_lmdb_internal_set_key(&reverse_key,
+        object_type_id, uuid, p, xctx);
 
-        afw_lmdb_internal_set_key(&reverse_key,
-            object_type_id, uuid, p, xctx);
+    raw_value.ptr = (const afw_byte_t *)object_id->s;
+    raw_value.size = object_id->len;
 
-        reverse_value.ptr = (const afw_byte_t *)object_id->s;
-        reverse_value.size = object_id->len;
-
-        reverse_rc = afw_lmdb_internal_create_entry(
-            txn, reverse_dbi, &reverse_key, &reverse_value, xctx);
-        if (reverse_rc) {
-            AFW_THROW_ERROR_RV_Z(general, lmdb, reverse_rc,
-                "Error writing IdIndexReverse entry.", xctx);
-        }
+    rc = afw_lmdb_internal_create_entry(
+        txn, reverse_dbi, &reverse_key, &raw_value, xctx);
+    if (rc) {
+        AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+            "Error writing IdIndexReverse entry.", xctx);
     }
 
     return afw_uuid_to_utf8(uuid, p, xctx);
@@ -1334,6 +1328,7 @@ impl_afw_adapter_impl_index_cursor_get_next_object (
     const afw_object_t *object = NULL;
     const afw_value_t *value;
     const afw_utf8_t *object_id;
+    const afw_utf8_t *alias;
     afw_utf8_t object_type;
     afw_memory_t from_raw;
     afw_memory_t rawKey;
@@ -1373,12 +1368,10 @@ impl_afw_adapter_impl_index_cursor_get_next_object (
         object_id = afw_uuid_to_utf8(&uuid, pool, xctx);
 
         /* report the human alias, if this object was created with one */
-        {
-            const afw_utf8_t *alias = afw_lmdb_internal_lookup_alias(
-                self->session, &object_type, &uuid, pool, xctx);
-            if (alias) {
-                object_id = alias;
-            }
+        alias = afw_lmdb_internal_lookup_alias(
+            self->session, &object_type, &uuid, pool, xctx);
+        if (alias) {
+            object_id = alias;
         }
 
         from_raw.ptr = data.mv_data;

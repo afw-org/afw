@@ -499,6 +499,7 @@ void afw_lmdb_adapter_session_dump_objects(
     afw_utf8_t object_type;
     const afw_pool_t *obj_p;
     const afw_utf8_t *object_id;
+    const afw_utf8_t *alias;
     afw_memory_t raw, rawKey;
     afw_uuid_t uuid;
     MDB_cursor *cursor;
@@ -567,12 +568,10 @@ void afw_lmdb_adapter_session_dump_objects(
         object_id = afw_uuid_to_utf8(&uuid, obj_p, xctx);
 
         /* report the human alias, if this object was created with one */
-        {
-            const afw_utf8_t *alias = afw_lmdb_internal_lookup_alias(
-                session, &object_type, &uuid, obj_p, xctx);
-            if (alias) {
-                object_id = alias;
-            }
+        alias = afw_lmdb_internal_lookup_alias(
+            session, &object_type, &uuid, obj_p, xctx);
+        if (alias) {
+            object_id = alias;
         }
 
         object = afw_content_type_raw_to_object(
