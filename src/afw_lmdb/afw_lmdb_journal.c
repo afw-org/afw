@@ -134,11 +134,19 @@ afw_lmdb_adapter_journal_get_peer_object(
     const afw_object_t *object = NULL;
     const afw_value_t *value;
     afw_memory_t raw;
+    afw_memory_t raw_key;
     MDB_val key, data;
 
     memset(&data, 0, sizeof(MDB_val));
-    key.mv_data = (void*)uuid;
-    key.mv_size = sizeof(afw_uuid_t);
+
+    /* Peer objects are stored in the Primary database under the
+       standard {object_type_id}{uuid} composite key, same as every
+       other object written via the generic add_object/modify_object
+       path. */
+    afw_lmdb_internal_set_key(&raw_key,
+        afw_s__AdaptiveProvisioningPeer_, uuid, xctx->p, xctx);
+    key.mv_data = (void *)raw_key.ptr;
+    key.mv_size = raw_key.size;
 
     if (mdb_get(txn, dbi, &key, &data) == 0) {
         raw.size = data.mv_size;
@@ -173,7 +181,7 @@ afw_lmdb_journal_update_peer(
     object_id = afw_uuid_to_utf8(uuid, xctx->p, xctx);
 
     afw_lmdb_internal_replace_entry_from_object(session,
-        afw_s__AdaptiveJournalEntry_, object_id, updated_object,
+        afw_s__AdaptiveProvisioningPeer_, object_id, updated_object,
         dbi, xctx);
 }
 
@@ -330,10 +338,10 @@ afw_lmdb_journal_get_next_for_consumer_after_cursor(
     const afw_dateTime_t *now;
     afw_size_t i;
     
-    /* In this routine, we can simply start with entry_cursor 
-        and work our way up until we find the next entry */
+    /* set our cursor to one after the entry_cursor, then work our
+        way up until we find the next applicable entry */
     cursor = apr_strtoi64(
-        afw_utf8_to_utf8_z(entry_cursor, xctx->p, xctx), NULL, 10);
+        afw_utf8_to_utf8_z(entry_cursor, xctx->p, xctx), NULL, 10) + 1;
 
     dbiConsumers = afw_lmdb_internal_open_database(session->adapter, 
         txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
@@ -777,6 +785,10 @@ impl_afw_adapter_journal_mark_entry_consumed(
 
         peer = afw_lmdb_adapter_journal_get_peer_object(
             self, session, adapter, dbiConsumers, txn, uuid, xctx);
+        if (peer == NULL) {
+            AFW_THROW_ERROR_Z(general,
+                "Error, provisioning peer not found.", xctx);
+        }
 
         consume_cursor = afw_object_old_get_property_as_string(peer,
             afw_v_consumeCursor, xctx);
