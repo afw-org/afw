@@ -69,7 +69,12 @@ afw_curl_function_execute_http_post(
     const afw_object_t           * result;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(url, 1, string);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(payload, 2, string);
+
+    /* Optional payload -- omitted when streaming via options.readFunction */
+    payload = NULL;
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(payload, 2, string);
+    }
 
     /* Optional headers */
     headers = NULL;
@@ -86,7 +91,7 @@ afw_curl_function_execute_http_post(
     /* use internal routine to do the POST */
     result = afw_curl_internal_http_post(
         &url->internal,
-        &payload->internal,
+        (payload ? &payload->internal : NULL),
         (headers ? headers->internal : NULL),
         (options ? options->internal : NULL),
         afw_function_execute_contextual(x),
@@ -294,7 +299,12 @@ afw_curl_function_execute_http_patch(
     const afw_object_t           * result;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(url, 1, string);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(payload, 2, string);
+
+    /* Optional payload -- omitted when streaming via options.readFunction */
+    payload = NULL;
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(payload, 2, string);
+    }
 
     /* Optional headers */
     headers = NULL;
@@ -311,7 +321,7 @@ afw_curl_function_execute_http_patch(
     /* use internal routine to do the PATCH */
     result = afw_curl_internal_http_patch(
         &url->internal,
-        &payload->internal,
+        (payload ? &payload->internal : NULL),
         (headers ? headers->internal : NULL),
         (options ? options->internal : NULL),
         afw_function_execute_contextual(x),
@@ -373,7 +383,12 @@ afw_curl_function_execute_http_put(
     const afw_object_t           * result;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(url, 1, string);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(payload, 2, string);
+
+    /* Optional payload -- omitted when streaming via options.readFunction */
+    payload = NULL;
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(payload, 2, string);
+    }
 
     /* Optional headers */
     headers = NULL;
@@ -390,7 +405,7 @@ afw_curl_function_execute_http_put(
     /* use internal routine to do the PUT */
     result = afw_curl_internal_http_put(
         &url->internal,
-        &payload->internal,
+        (payload ? &payload->internal : NULL),
         (headers ? headers->internal : NULL),
         (options ? options->internal : NULL),
         afw_function_execute_contextual(x),

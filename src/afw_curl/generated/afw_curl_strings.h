@@ -2863,6 +2863,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CURL_Q_readFunctionSize \
+    "readFunctionSize"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_readFunctionSize */
+#define afw_curl_s_readFunctionSize \
+    (&afw_curl_self_v_readFunctionSize.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_readFunctionSize */
+#define afw_curl_self_s_readFunctionSize \
+    (afw_curl_self_v_readFunctionSize.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_readFunctionSize */
+extern const afw_value_string_t \
+    afw_curl_self_v_readFunctionSize;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_readFunctionSize */
+#define afw_curl_z_readFunctionSize \
+    (afw_curl_self_v_readFunctionSize.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_readFunctionSize */
+#define afw_curl_v_readFunctionSize \
+    (&afw_curl_self_v_readFunctionSize.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CURL_Q_readUserData \
     "readUserData"
 
@@ -5385,6 +5411,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__Read_Function_Size \
+    "Read Function Size"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Read_Function_Size */
+#define afw_curl_s_zz__Read_Function_Size \
+    (&afw_curl_self_v_zz__Read_Function_Size.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Read_Function_Size */
+#define afw_curl_self_s_zz__Read_Function_Size \
+    (afw_curl_self_v_zz__Read_Function_Size.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__Read_Function_Size */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__Read_Function_Size;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__Read_Function_Size */
+#define afw_curl_z_zz__Read_Function_Size \
+    (afw_curl_self_v_zz__Read_Function_Size.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__Read_Function_Size */
+#define afw_curl_v_zz__Read_Function_Size \
+    (&afw_curl_self_v_zz__Read_Function_Size.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__Read_User_Data \
     "Read User Data"
 
@@ -6525,6 +6577,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__aef6f1892f16 */
 #define afw_curl_v_zz__aef6f1892f16 \
     (&afw_curl_self_v_zz__aef6f1892f16.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__b4b2c5e21559 \
+    "The total size, in bytes, of the data that readFunction will provide. When http_post/http_put/http_patch stream a request body via readFunction (payload omitted), supplying this lets libcurl send an accurate Content-Length instead of falling back to chunked transfer encoding."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__b4b2c5e21559 */
+#define afw_curl_s_zz__b4b2c5e21559 \
+    (&afw_curl_self_v_zz__b4b2c5e21559.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__b4b2c5e21559 */
+#define afw_curl_self_s_zz__b4b2c5e21559 \
+    (afw_curl_self_v_zz__b4b2c5e21559.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__b4b2c5e21559 */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__b4b2c5e21559;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__b4b2c5e21559 */
+#define afw_curl_z_zz__b4b2c5e21559 \
+    (afw_curl_self_v_zz__b4b2c5e21559.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__b4b2c5e21559 */
+#define afw_curl_v_zz__b4b2c5e21559 \
+    (&afw_curl_self_v_zz__b4b2c5e21559.pub)
 
 
 
