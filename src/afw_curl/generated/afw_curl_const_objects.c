@@ -2119,23 +2119,30 @@ static const afw_runtime_const_object_instance_t
 impl_27;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/readUserData
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/readFunctionSize
  */
+
+static const afw_runtime_property_t
+impl_27_property_dataType = {
+    afw_curl_v_dataType,
+    &afw_curl_self_v_integer.pub
+};
 
 static const afw_runtime_property_t
 impl_27_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__The_user_data_to_pass_to_the_read_callback_function_.pub
+    &afw_curl_self_v_zz__b4b2c5e21559.pub
 };
 
 static const afw_runtime_property_t
 impl_27_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__Read_User_Data.pub
+    &afw_curl_self_v_zz__Read_Function_Size.pub
 };
 
 static const afw_runtime_property_t *
 impl_27_properties[] = {
+    &impl_27_property_dataType,
     &impl_27_property_description,
     &impl_27_property_label,
     NULL
@@ -2163,7 +2170,7 @@ impl_27_meta_object__value = {
 
 static const afw_utf8_t
 impl_27_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/readUserData");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/readFunctionSize");
 
 static const afw_value_object_t
 impl_27__value;
@@ -2177,7 +2184,7 @@ impl_27 = {
         {
             (const afw_object_t *)&impl_27_meta_object,
             (const afw_object_t *)&impl_7,
-            &afw_curl_self_s_readUserData,
+            &afw_curl_self_s_readFunctionSize,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_27_meta_path
         }
@@ -2195,30 +2202,23 @@ static const afw_runtime_const_object_instance_t
 impl_28;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/serviceName
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/readUserData
  */
-
-static const afw_runtime_property_t
-impl_28_property_dataType = {
-    afw_curl_v_dataType,
-    &afw_curl_self_v_string.pub
-};
 
 static const afw_runtime_property_t
 impl_28_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__72e8352cf7ff.pub
+    &afw_curl_self_v_zz__The_user_data_to_pass_to_the_read_callback_function_.pub
 };
 
 static const afw_runtime_property_t
 impl_28_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__Service_Name.pub
+    &afw_curl_self_v_zz__Read_User_Data.pub
 };
 
 static const afw_runtime_property_t *
 impl_28_properties[] = {
-    &impl_28_property_dataType,
     &impl_28_property_description,
     &impl_28_property_label,
     NULL
@@ -2246,7 +2246,7 @@ impl_28_meta_object__value = {
 
 static const afw_utf8_t
 impl_28_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/serviceName");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/readUserData");
 
 static const afw_value_object_t
 impl_28__value;
@@ -2260,7 +2260,7 @@ impl_28 = {
         {
             (const afw_object_t *)&impl_28_meta_object,
             (const afw_object_t *)&impl_7,
-            &afw_curl_self_s_serviceName,
+            &afw_curl_self_s_readUserData,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_28_meta_path
         }
@@ -2278,25 +2278,25 @@ static const afw_runtime_const_object_instance_t
 impl_29;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVerifyHost
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/serviceName
  */
 
 static const afw_runtime_property_t
 impl_29_property_dataType = {
     afw_curl_v_dataType,
-    &afw_curl_self_v_boolean.pub
+    &afw_curl_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_29_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__Verify_the_host_name_in_the_SSL_certificate_.pub
+    &afw_curl_self_v_zz__72e8352cf7ff.pub
 };
 
 static const afw_runtime_property_t
 impl_29_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__SSL_Verify_Host.pub
+    &afw_curl_self_v_zz__Service_Name.pub
 };
 
 static const afw_runtime_property_t *
@@ -2329,7 +2329,7 @@ impl_29_meta_object__value = {
 
 static const afw_utf8_t
 impl_29_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVerifyHost");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/serviceName");
 
 static const afw_value_object_t
 impl_29__value;
@@ -2343,7 +2343,7 @@ impl_29 = {
         {
             (const afw_object_t *)&impl_29_meta_object,
             (const afw_object_t *)&impl_7,
-            &afw_curl_self_s_sslVerifyHost,
+            &afw_curl_self_s_serviceName,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_29_meta_path
         }
@@ -2361,7 +2361,7 @@ static const afw_runtime_const_object_instance_t
 impl_30;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVerifyPeer
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVerifyHost
  */
 
 static const afw_runtime_property_t
@@ -2373,13 +2373,13 @@ impl_30_property_dataType = {
 static const afw_runtime_property_t
 impl_30_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__Verify_the_SSL_certificate_.pub
+    &afw_curl_self_v_zz__Verify_the_host_name_in_the_SSL_certificate_.pub
 };
 
 static const afw_runtime_property_t
 impl_30_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__SSL_Verify_Peer.pub
+    &afw_curl_self_v_zz__SSL_Verify_Host.pub
 };
 
 static const afw_runtime_property_t *
@@ -2412,7 +2412,7 @@ impl_30_meta_object__value = {
 
 static const afw_utf8_t
 impl_30_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVerifyPeer");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVerifyHost");
 
 static const afw_value_object_t
 impl_30__value;
@@ -2426,7 +2426,7 @@ impl_30 = {
         {
             (const afw_object_t *)&impl_30_meta_object,
             (const afw_object_t *)&impl_7,
-            &afw_curl_self_s_sslVerifyPeer,
+            &afw_curl_self_s_sslVerifyHost,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_30_meta_path
         }
@@ -2444,7 +2444,7 @@ static const afw_runtime_const_object_instance_t
 impl_31;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVerifyStatus
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVerifyPeer
  */
 
 static const afw_runtime_property_t
@@ -2456,13 +2456,13 @@ impl_31_property_dataType = {
 static const afw_runtime_property_t
 impl_31_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__Verify_the_SSL_certificate_s_status_.pub
+    &afw_curl_self_v_zz__Verify_the_SSL_certificate_.pub
 };
 
 static const afw_runtime_property_t
 impl_31_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__SSL_Verify_Status.pub
+    &afw_curl_self_v_zz__SSL_Verify_Peer.pub
 };
 
 static const afw_runtime_property_t *
@@ -2495,7 +2495,7 @@ impl_31_meta_object__value = {
 
 static const afw_utf8_t
 impl_31_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVerifyStatus");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVerifyPeer");
 
 static const afw_value_object_t
 impl_31__value;
@@ -2509,7 +2509,7 @@ impl_31 = {
         {
             (const afw_object_t *)&impl_31_meta_object,
             (const afw_object_t *)&impl_7,
-            &afw_curl_self_s_sslVerifyStatus,
+            &afw_curl_self_s_sslVerifyPeer,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_31_meta_path
         }
@@ -2527,25 +2527,25 @@ static const afw_runtime_const_object_instance_t
 impl_32;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVersion
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVerifyStatus
  */
 
 static const afw_runtime_property_t
 impl_32_property_dataType = {
     afw_curl_v_dataType,
-    &afw_curl_self_v_string.pub
+    &afw_curl_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_32_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__SSL_Version_to_use_.pub
+    &afw_curl_self_v_zz__Verify_the_SSL_certificate_s_status_.pub
 };
 
 static const afw_runtime_property_t
 impl_32_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__SSL_Version.pub
+    &afw_curl_self_v_zz__SSL_Verify_Status.pub
 };
 
 static const afw_runtime_property_t *
@@ -2578,7 +2578,7 @@ impl_32_meta_object__value = {
 
 static const afw_utf8_t
 impl_32_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVersion");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVerifyStatus");
 
 static const afw_value_object_t
 impl_32__value;
@@ -2592,7 +2592,7 @@ impl_32 = {
         {
             (const afw_object_t *)&impl_32_meta_object,
             (const afw_object_t *)&impl_7,
-            &afw_curl_self_s_sslVersion,
+            &afw_curl_self_s_sslVerifyStatus,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_32_meta_path
         }
@@ -2610,25 +2610,25 @@ static const afw_runtime_const_object_instance_t
 impl_33;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/tcpNoDelay
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVersion
  */
 
 static const afw_runtime_property_t
 impl_33_property_dataType = {
     afw_curl_v_dataType,
-    &afw_curl_self_v_boolean.pub
+    &afw_curl_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_33_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__5de9a889850c.pub
+    &afw_curl_self_v_zz__SSL_Version_to_use_.pub
 };
 
 static const afw_runtime_property_t
 impl_33_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__TCP_No_Delay.pub
+    &afw_curl_self_v_zz__SSL_Version.pub
 };
 
 static const afw_runtime_property_t *
@@ -2661,7 +2661,7 @@ impl_33_meta_object__value = {
 
 static const afw_utf8_t
 impl_33_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/tcpNoDelay");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/sslVersion");
 
 static const afw_value_object_t
 impl_33__value;
@@ -2675,7 +2675,7 @@ impl_33 = {
         {
             (const afw_object_t *)&impl_33_meta_object,
             (const afw_object_t *)&impl_7,
-            &afw_curl_self_s_tcpNoDelay,
+            &afw_curl_self_s_sslVersion,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_33_meta_path
         }
@@ -2693,25 +2693,25 @@ static const afw_runtime_const_object_instance_t
 impl_34;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/timeout
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/tcpNoDelay
  */
 
 static const afw_runtime_property_t
 impl_34_property_dataType = {
     afw_curl_v_dataType,
-    &afw_curl_self_v_integer.pub
+    &afw_curl_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_34_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__Timeout__in_milliseconds__for_the_entire_request_.pub
+    &afw_curl_self_v_zz__5de9a889850c.pub
 };
 
 static const afw_runtime_property_t
 impl_34_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_Timeout.pub
+    &afw_curl_self_v_zz__TCP_No_Delay.pub
 };
 
 static const afw_runtime_property_t *
@@ -2744,7 +2744,7 @@ impl_34_meta_object__value = {
 
 static const afw_utf8_t
 impl_34_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/timeout");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/tcpNoDelay");
 
 static const afw_value_object_t
 impl_34__value;
@@ -2758,7 +2758,7 @@ impl_34 = {
         {
             (const afw_object_t *)&impl_34_meta_object,
             (const afw_object_t *)&impl_7,
-            &afw_curl_self_s_timeout,
+            &afw_curl_self_s_tcpNoDelay,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_34_meta_path
         }
@@ -2776,25 +2776,25 @@ static const afw_runtime_const_object_instance_t
 impl_35;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/userPassword
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/timeout
  */
 
 static const afw_runtime_property_t
 impl_35_property_dataType = {
     afw_curl_v_dataType,
-    &afw_curl_self_v_string.pub
+    &afw_curl_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_35_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__c3d9369403b0.pub
+    &afw_curl_self_v_zz__Timeout__in_milliseconds__for_the_entire_request_.pub
 };
 
 static const afw_runtime_property_t
 impl_35_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__User_Password.pub
+    &afw_curl_self_v_Timeout.pub
 };
 
 static const afw_runtime_property_t *
@@ -2827,7 +2827,7 @@ impl_35_meta_object__value = {
 
 static const afw_utf8_t
 impl_35_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/userPassword");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/timeout");
 
 static const afw_value_object_t
 impl_35__value;
@@ -2841,7 +2841,7 @@ impl_35 = {
         {
             (const afw_object_t *)&impl_35_meta_object,
             (const afw_object_t *)&impl_7,
-            &afw_curl_self_s_userPassword,
+            &afw_curl_self_s_timeout,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_35_meta_path
         }
@@ -2859,25 +2859,25 @@ static const afw_runtime_const_object_instance_t
 impl_36;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/verbose
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/userPassword
  */
 
 static const afw_runtime_property_t
 impl_36_property_dataType = {
     afw_curl_v_dataType,
-    &afw_curl_self_v_boolean.pub
+    &afw_curl_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__Display_verbose_information_.pub
+    &afw_curl_self_v_zz__c3d9369403b0.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_Verbose.pub
+    &afw_curl_self_v_zz__User_Password.pub
 };
 
 static const afw_runtime_property_t *
@@ -2910,7 +2910,7 @@ impl_36_meta_object__value = {
 
 static const afw_utf8_t
 impl_36_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/verbose");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/userPassword");
 
 static const afw_value_object_t
 impl_36__value;
@@ -2924,7 +2924,7 @@ impl_36 = {
         {
             (const afw_object_t *)&impl_36_meta_object,
             (const afw_object_t *)&impl_7,
-            &afw_curl_self_s_verbose,
+            &afw_curl_self_s_userPassword,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_36_meta_path
         }
@@ -2942,25 +2942,25 @@ static const afw_runtime_const_object_instance_t
 impl_37;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/writeFunction
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/verbose
  */
 
 static const afw_runtime_property_t
 impl_37_property_dataType = {
     afw_curl_v_dataType,
-    &afw_curl_self_v_function.pub
+    &afw_curl_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
 impl_37_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__58fc52e68733.pub
+    &afw_curl_self_v_zz__Display_verbose_information_.pub
 };
 
 static const afw_runtime_property_t
 impl_37_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__Write_Function.pub
+    &afw_curl_self_v_Verbose.pub
 };
 
 static const afw_runtime_property_t *
@@ -2993,7 +2993,7 @@ impl_37_meta_object__value = {
 
 static const afw_utf8_t
 impl_37_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/writeFunction");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/verbose");
 
 static const afw_value_object_t
 impl_37__value;
@@ -3007,7 +3007,7 @@ impl_37 = {
         {
             (const afw_object_t *)&impl_37_meta_object,
             (const afw_object_t *)&impl_7,
-            &afw_curl_self_s_writeFunction,
+            &afw_curl_self_s_verbose,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_37_meta_path
         }
@@ -3025,23 +3025,30 @@ static const afw_runtime_const_object_instance_t
 impl_38;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/writeUserData
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/writeFunction
  */
+
+static const afw_runtime_property_t
+impl_38_property_dataType = {
+    afw_curl_v_dataType,
+    &afw_curl_self_v_function.pub
+};
 
 static const afw_runtime_property_t
 impl_38_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__The_user_data_to_pass_to_the_write_callback_function_.pub
+    &afw_curl_self_v_zz__58fc52e68733.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__Write_User_Data.pub
+    &afw_curl_self_v_zz__Write_Function.pub
 };
 
 static const afw_runtime_property_t *
 impl_38_properties[] = {
+    &impl_38_property_dataType,
     &impl_38_property_description,
     &impl_38_property_label,
     NULL
@@ -3069,7 +3076,7 @@ impl_38_meta_object__value = {
 
 static const afw_utf8_t
 impl_38_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/writeUserData");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/writeFunction");
 
 static const afw_value_object_t
 impl_38__value;
@@ -3083,7 +3090,7 @@ impl_38 = {
         {
             (const afw_object_t *)&impl_38_meta_object,
             (const afw_object_t *)&impl_7,
-            &afw_curl_self_s_writeUserData,
+            &afw_curl_self_s_writeFunction,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_38_meta_path
         }
@@ -3095,6 +3102,82 @@ static const afw_value_object_t
 impl_38__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_38
+};
+
+static const afw_runtime_const_object_instance_t
+impl_39;
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/writeUserData
+ */
+
+static const afw_runtime_property_t
+impl_39_property_description = {
+    afw_curl_v_description,
+    &afw_curl_self_v_zz__The_user_data_to_pass_to_the_write_callback_function_.pub
+};
+
+static const afw_runtime_property_t
+impl_39_property_label = {
+    afw_curl_v_label,
+    &afw_curl_self_v_zz__Write_User_Data.pub
+};
+
+static const afw_runtime_property_t *
+impl_39_properties[] = {
+    &impl_39_property_description,
+    &impl_39_property_label,
+    NULL
+};
+
+static const afw_value_object_t
+impl_39_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_39_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_39_meta_object__value
+    },
+    &impl_39,
+    NULL
+};
+
+static const afw_value_object_t
+impl_39_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_39_meta_object
+};
+
+static const afw_utf8_t
+impl_39_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_/propertyTypes/writeUserData");
+
+static const afw_value_object_t
+impl_39__value;
+
+static const afw_runtime_const_object_instance_t
+impl_39 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_39__value,
+        {
+            (const afw_object_t *)&impl_39_meta_object,
+            (const afw_object_t *)&impl_7,
+            &afw_curl_self_s_writeUserData,
+            &afw_curl_self_s__AdaptiveValueMeta_,
+            &impl_39_meta_path
+        }
+    },
+    &impl_39_properties[0]
+};
+
+static const afw_value_object_t
+impl_39__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_39
 };
 
 /*
@@ -3330,9 +3413,21 @@ impl_7_property_readFunction = {
 };
 
 static const afw_value_object_t
-impl_7_property_value_readUserData = {
+impl_7_property_value_readFunctionSize = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_27
+};
+
+static const afw_runtime_property_t
+impl_7_property_readFunctionSize = {
+    afw_curl_v_readFunctionSize,
+    &impl_7_property_value_readFunctionSize.pub
+};
+
+static const afw_value_object_t
+impl_7_property_value_readUserData = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_28
 };
 
 static const afw_runtime_property_t
@@ -3344,7 +3439,7 @@ impl_7_property_readUserData = {
 static const afw_value_object_t
 impl_7_property_value_serviceName = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_28
+    (const afw_object_t *)&impl_29
 };
 
 static const afw_runtime_property_t
@@ -3356,7 +3451,7 @@ impl_7_property_serviceName = {
 static const afw_value_object_t
 impl_7_property_value_sslVerifyHost = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_29
+    (const afw_object_t *)&impl_30
 };
 
 static const afw_runtime_property_t
@@ -3368,7 +3463,7 @@ impl_7_property_sslVerifyHost = {
 static const afw_value_object_t
 impl_7_property_value_sslVerifyPeer = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_30
+    (const afw_object_t *)&impl_31
 };
 
 static const afw_runtime_property_t
@@ -3380,7 +3475,7 @@ impl_7_property_sslVerifyPeer = {
 static const afw_value_object_t
 impl_7_property_value_sslVerifyStatus = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_31
+    (const afw_object_t *)&impl_32
 };
 
 static const afw_runtime_property_t
@@ -3392,7 +3487,7 @@ impl_7_property_sslVerifyStatus = {
 static const afw_value_object_t
 impl_7_property_value_sslVersion = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_32
+    (const afw_object_t *)&impl_33
 };
 
 static const afw_runtime_property_t
@@ -3404,7 +3499,7 @@ impl_7_property_sslVersion = {
 static const afw_value_object_t
 impl_7_property_value_tcpNoDelay = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_33
+    (const afw_object_t *)&impl_34
 };
 
 static const afw_runtime_property_t
@@ -3416,7 +3511,7 @@ impl_7_property_tcpNoDelay = {
 static const afw_value_object_t
 impl_7_property_value_timeout = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_34
+    (const afw_object_t *)&impl_35
 };
 
 static const afw_runtime_property_t
@@ -3428,7 +3523,7 @@ impl_7_property_timeout = {
 static const afw_value_object_t
 impl_7_property_value_userPassword = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_35
+    (const afw_object_t *)&impl_36
 };
 
 static const afw_runtime_property_t
@@ -3440,7 +3535,7 @@ impl_7_property_userPassword = {
 static const afw_value_object_t
 impl_7_property_value_verbose = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_36
+    (const afw_object_t *)&impl_37
 };
 
 static const afw_runtime_property_t
@@ -3452,7 +3547,7 @@ impl_7_property_verbose = {
 static const afw_value_object_t
 impl_7_property_value_writeFunction = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_37
+    (const afw_object_t *)&impl_38
 };
 
 static const afw_runtime_property_t
@@ -3464,7 +3559,7 @@ impl_7_property_writeFunction = {
 static const afw_value_object_t
 impl_7_property_value_writeUserData = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_38
+    (const afw_object_t *)&impl_39
 };
 
 static const afw_runtime_property_t
@@ -3494,6 +3589,7 @@ impl_7_properties[] = {
     &impl_7_property_proxy,
     &impl_7_property_proxyServiceName,
     &impl_7_property_readFunction,
+    &impl_7_property_readFunctionSize,
     &impl_7_property_readUserData,
     &impl_7_property_serviceName,
     &impl_7_property_sslVerifyHost,
@@ -3713,92 +3809,16 @@ impl_6__value = {
 };
 
 static const afw_runtime_const_object_instance_t
-impl_39;
-
-static const afw_runtime_const_object_instance_t
 impl_40;
 
 static const afw_runtime_const_object_instance_t
 impl_41;
 
-/*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/age
- */
-
-static const afw_runtime_property_t
-impl_41_property_dataType = {
-    afw_curl_v_dataType,
-    &afw_curl_self_v_string.pub
-};
-
-static const afw_runtime_property_t
-impl_41_property_label = {
-    afw_curl_v_label,
-    &afw_curl_self_v_Age.pub
-};
-
-static const afw_runtime_property_t *
-impl_41_properties[] = {
-    &impl_41_property_dataType,
-    &impl_41_property_label,
-    NULL
-};
-
-static const afw_value_object_t
-impl_41_meta_object__value;
-
-static const afw_runtime_const_object_meta_object_t
-impl_41_meta_object = {
-    {
-        &afw_runtime_inf_const_meta_object_inf,
-        NULL,
-        (const afw_value_t *)&impl_41_meta_object__value
-    },
-    &impl_41,
-    NULL
-};
-
-static const afw_value_object_t
-impl_41_meta_object__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_41_meta_object
-};
-
-static const afw_utf8_t
-impl_41_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/age");
-
-static const afw_value_object_t
-impl_41__value;
-
-static const afw_runtime_const_object_instance_t
-impl_41 = {
-    {
-        &afw_runtime_inf_const_embedded_untyped_object,
-        NULL,
-        (const afw_value_t *)&impl_41__value,
-        {
-            (const afw_object_t *)&impl_41_meta_object,
-            (const afw_object_t *)&impl_40,
-            &afw_curl_self_s_age,
-            &afw_curl_self_s__AdaptiveValueMeta_,
-            &impl_41_meta_path
-        }
-    },
-    &impl_41_properties[0]
-};
-
-static const afw_value_object_t
-impl_41__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_41
-};
-
 static const afw_runtime_const_object_instance_t
 impl_42;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/brotli_version
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/age
  */
 
 static const afw_runtime_property_t
@@ -3810,7 +3830,7 @@ impl_42_property_dataType = {
 static const afw_runtime_property_t
 impl_42_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__Brotli_Version.pub
+    &afw_curl_self_v_Age.pub
 };
 
 static const afw_runtime_property_t *
@@ -3842,7 +3862,7 @@ impl_42_meta_object__value = {
 
 static const afw_utf8_t
 impl_42_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/brotli_version");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/age");
 
 static const afw_value_object_t
 impl_42__value;
@@ -3855,8 +3875,8 @@ impl_42 = {
         (const afw_value_t *)&impl_42__value,
         {
             (const afw_object_t *)&impl_42_meta_object,
-            (const afw_object_t *)&impl_40,
-            &afw_curl_self_s_brotli_version,
+            (const afw_object_t *)&impl_41,
+            &afw_curl_self_s_age,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_42_meta_path
         }
@@ -3874,31 +3894,24 @@ static const afw_runtime_const_object_instance_t
 impl_43;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/features
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/brotli_version
  */
 
 static const afw_runtime_property_t
 impl_43_property_dataType = {
     afw_curl_v_dataType,
-    &afw_curl_self_v_array.pub
-};
-
-static const afw_runtime_property_t
-impl_43_property_dataTypeParameter = {
-    afw_curl_v_dataTypeParameter,
     &afw_curl_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_43_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_Features.pub
+    &afw_curl_self_v_zz__Brotli_Version.pub
 };
 
 static const afw_runtime_property_t *
 impl_43_properties[] = {
     &impl_43_property_dataType,
-    &impl_43_property_dataTypeParameter,
     &impl_43_property_label,
     NULL
 };
@@ -3925,7 +3938,7 @@ impl_43_meta_object__value = {
 
 static const afw_utf8_t
 impl_43_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/features");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/brotli_version");
 
 static const afw_value_object_t
 impl_43__value;
@@ -3938,8 +3951,8 @@ impl_43 = {
         (const afw_value_t *)&impl_43__value,
         {
             (const afw_object_t *)&impl_43_meta_object,
-            (const afw_object_t *)&impl_40,
-            &afw_curl_self_s_features,
+            (const afw_object_t *)&impl_41,
+            &afw_curl_self_s_brotli_version,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_43_meta_path
         }
@@ -3957,24 +3970,31 @@ static const afw_runtime_const_object_instance_t
 impl_44;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/host
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/features
  */
 
 static const afw_runtime_property_t
 impl_44_property_dataType = {
     afw_curl_v_dataType,
+    &afw_curl_self_v_array.pub
+};
+
+static const afw_runtime_property_t
+impl_44_property_dataTypeParameter = {
+    afw_curl_v_dataTypeParameter,
     &afw_curl_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_44_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_Host.pub
+    &afw_curl_self_v_Features.pub
 };
 
 static const afw_runtime_property_t *
 impl_44_properties[] = {
     &impl_44_property_dataType,
+    &impl_44_property_dataTypeParameter,
     &impl_44_property_label,
     NULL
 };
@@ -4001,7 +4021,7 @@ impl_44_meta_object__value = {
 
 static const afw_utf8_t
 impl_44_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/host");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/features");
 
 static const afw_value_object_t
 impl_44__value;
@@ -4014,8 +4034,8 @@ impl_44 = {
         (const afw_value_t *)&impl_44__value,
         {
             (const afw_object_t *)&impl_44_meta_object,
-            (const afw_object_t *)&impl_40,
-            &afw_curl_self_s_host,
+            (const afw_object_t *)&impl_41,
+            &afw_curl_self_s_features,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_44_meta_path
         }
@@ -4033,7 +4053,7 @@ static const afw_runtime_const_object_instance_t
 impl_45;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/libssh_version
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/host
  */
 
 static const afw_runtime_property_t
@@ -4045,7 +4065,7 @@ impl_45_property_dataType = {
 static const afw_runtime_property_t
 impl_45_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__LibSSH_Version.pub
+    &afw_curl_self_v_Host.pub
 };
 
 static const afw_runtime_property_t *
@@ -4077,7 +4097,7 @@ impl_45_meta_object__value = {
 
 static const afw_utf8_t
 impl_45_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/libssh_version");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/host");
 
 static const afw_value_object_t
 impl_45__value;
@@ -4090,8 +4110,8 @@ impl_45 = {
         (const afw_value_t *)&impl_45__value,
         {
             (const afw_object_t *)&impl_45_meta_object,
-            (const afw_object_t *)&impl_40,
-            &afw_curl_self_s_libssh_version,
+            (const afw_object_t *)&impl_41,
+            &afw_curl_self_s_host,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_45_meta_path
         }
@@ -4109,7 +4129,7 @@ static const afw_runtime_const_object_instance_t
 impl_46;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/libz_version
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/libssh_version
  */
 
 static const afw_runtime_property_t
@@ -4121,7 +4141,7 @@ impl_46_property_dataType = {
 static const afw_runtime_property_t
 impl_46_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__LibZ_Version.pub
+    &afw_curl_self_v_zz__LibSSH_Version.pub
 };
 
 static const afw_runtime_property_t *
@@ -4153,7 +4173,7 @@ impl_46_meta_object__value = {
 
 static const afw_utf8_t
 impl_46_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/libz_version");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/libssh_version");
 
 static const afw_value_object_t
 impl_46__value;
@@ -4166,8 +4186,8 @@ impl_46 = {
         (const afw_value_t *)&impl_46__value,
         {
             (const afw_object_t *)&impl_46_meta_object,
-            (const afw_object_t *)&impl_40,
-            &afw_curl_self_s_libz_version,
+            (const afw_object_t *)&impl_41,
+            &afw_curl_self_s_libssh_version,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_46_meta_path
         }
@@ -4185,31 +4205,24 @@ static const afw_runtime_const_object_instance_t
 impl_47;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/protocols
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/libz_version
  */
 
 static const afw_runtime_property_t
 impl_47_property_dataType = {
     afw_curl_v_dataType,
-    &afw_curl_self_v_array.pub
-};
-
-static const afw_runtime_property_t
-impl_47_property_dataTypeParameter = {
-    afw_curl_v_dataTypeParameter,
     &afw_curl_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_47_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_Protocols.pub
+    &afw_curl_self_v_zz__LibZ_Version.pub
 };
 
 static const afw_runtime_property_t *
 impl_47_properties[] = {
     &impl_47_property_dataType,
-    &impl_47_property_dataTypeParameter,
     &impl_47_property_label,
     NULL
 };
@@ -4236,7 +4249,7 @@ impl_47_meta_object__value = {
 
 static const afw_utf8_t
 impl_47_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/protocols");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/libz_version");
 
 static const afw_value_object_t
 impl_47__value;
@@ -4249,8 +4262,8 @@ impl_47 = {
         (const afw_value_t *)&impl_47__value,
         {
             (const afw_object_t *)&impl_47_meta_object,
-            (const afw_object_t *)&impl_40,
-            &afw_curl_self_s_protocols,
+            (const afw_object_t *)&impl_41,
+            &afw_curl_self_s_libz_version,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_47_meta_path
         }
@@ -4268,24 +4281,31 @@ static const afw_runtime_const_object_instance_t
 impl_48;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/ssl_version
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/protocols
  */
 
 static const afw_runtime_property_t
 impl_48_property_dataType = {
     afw_curl_v_dataType,
+    &afw_curl_self_v_array.pub
+};
+
+static const afw_runtime_property_t
+impl_48_property_dataTypeParameter = {
+    afw_curl_v_dataTypeParameter,
     &afw_curl_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_48_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__SSL_Version.pub
+    &afw_curl_self_v_Protocols.pub
 };
 
 static const afw_runtime_property_t *
 impl_48_properties[] = {
     &impl_48_property_dataType,
+    &impl_48_property_dataTypeParameter,
     &impl_48_property_label,
     NULL
 };
@@ -4312,7 +4332,7 @@ impl_48_meta_object__value = {
 
 static const afw_utf8_t
 impl_48_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/ssl_version");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/protocols");
 
 static const afw_value_object_t
 impl_48__value;
@@ -4325,8 +4345,8 @@ impl_48 = {
         (const afw_value_t *)&impl_48__value,
         {
             (const afw_object_t *)&impl_48_meta_object,
-            (const afw_object_t *)&impl_40,
-            &afw_curl_self_s_ssl_version,
+            (const afw_object_t *)&impl_41,
+            &afw_curl_self_s_protocols,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_48_meta_path
         }
@@ -4344,19 +4364,19 @@ static const afw_runtime_const_object_instance_t
 impl_49;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/ssl_version_num
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/ssl_version
  */
 
 static const afw_runtime_property_t
 impl_49_property_dataType = {
     afw_curl_v_dataType,
-    &afw_curl_self_v_integer.pub
+    &afw_curl_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_49_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__SSL_Version_Number.pub
+    &afw_curl_self_v_zz__SSL_Version.pub
 };
 
 static const afw_runtime_property_t *
@@ -4388,7 +4408,7 @@ impl_49_meta_object__value = {
 
 static const afw_utf8_t
 impl_49_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/ssl_version_num");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/ssl_version");
 
 static const afw_value_object_t
 impl_49__value;
@@ -4401,8 +4421,8 @@ impl_49 = {
         (const afw_value_t *)&impl_49__value,
         {
             (const afw_object_t *)&impl_49_meta_object,
-            (const afw_object_t *)&impl_40,
-            &afw_curl_self_s_ssl_version_num,
+            (const afw_object_t *)&impl_41,
+            &afw_curl_self_s_ssl_version,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_49_meta_path
         }
@@ -4420,19 +4440,19 @@ static const afw_runtime_const_object_instance_t
 impl_50;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/version
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/ssl_version_num
  */
 
 static const afw_runtime_property_t
 impl_50_property_dataType = {
     afw_curl_v_dataType,
-    &afw_curl_self_v_string.pub
+    &afw_curl_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_50_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_Version.pub
+    &afw_curl_self_v_zz__SSL_Version_Number.pub
 };
 
 static const afw_runtime_property_t *
@@ -4464,7 +4484,7 @@ impl_50_meta_object__value = {
 
 static const afw_utf8_t
 impl_50_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/version");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/ssl_version_num");
 
 static const afw_value_object_t
 impl_50__value;
@@ -4477,8 +4497,8 @@ impl_50 = {
         (const afw_value_t *)&impl_50__value,
         {
             (const afw_object_t *)&impl_50_meta_object,
-            (const afw_object_t *)&impl_40,
-            &afw_curl_self_s_version,
+            (const afw_object_t *)&impl_41,
+            &afw_curl_self_s_ssl_version_num,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_50_meta_path
         }
@@ -4496,19 +4516,19 @@ static const afw_runtime_const_object_instance_t
 impl_51;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/version_num
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/version
  */
 
 static const afw_runtime_property_t
 impl_51_property_dataType = {
     afw_curl_v_dataType,
-    &afw_curl_self_v_integer.pub
+    &afw_curl_self_v_string.pub
 };
 
 static const afw_runtime_property_t
 impl_51_property_label = {
     afw_curl_v_label,
-    &afw_curl_self_v_zz__Version_Number.pub
+    &afw_curl_self_v_Version.pub
 };
 
 static const afw_runtime_property_t *
@@ -4540,7 +4560,7 @@ impl_51_meta_object__value = {
 
 static const afw_utf8_t
 impl_51_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/version_num");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/version");
 
 static const afw_value_object_t
 impl_51__value;
@@ -4553,8 +4573,8 @@ impl_51 = {
         (const afw_value_t *)&impl_51__value,
         {
             (const afw_object_t *)&impl_51_meta_object,
-            (const afw_object_t *)&impl_40,
-            &afw_curl_self_s_version_num,
+            (const afw_object_t *)&impl_41,
+            &afw_curl_self_s_version,
             &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_51_meta_path
         }
@@ -4568,391 +4588,29 @@ impl_51__value = {
     (const afw_object_t *)&impl_51
 };
 
-/*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes
- */
-
-static const afw_value_object_t
-impl_40_property_value_age = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_41
-};
-
-static const afw_runtime_property_t
-impl_40_property_age = {
-    afw_curl_v_age,
-    &impl_40_property_value_age.pub
-};
-
-static const afw_value_object_t
-impl_40_property_value_brotli_version = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_42
-};
-
-static const afw_runtime_property_t
-impl_40_property_brotli_version = {
-    afw_curl_v_brotli_version,
-    &impl_40_property_value_brotli_version.pub
-};
-
-static const afw_value_object_t
-impl_40_property_value_features = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_43
-};
-
-static const afw_runtime_property_t
-impl_40_property_features = {
-    afw_curl_v_features,
-    &impl_40_property_value_features.pub
-};
-
-static const afw_value_object_t
-impl_40_property_value_host = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_44
-};
-
-static const afw_runtime_property_t
-impl_40_property_host = {
-    afw_curl_v_host,
-    &impl_40_property_value_host.pub
-};
-
-static const afw_value_object_t
-impl_40_property_value_libssh_version = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_45
-};
-
-static const afw_runtime_property_t
-impl_40_property_libssh_version = {
-    afw_curl_v_libssh_version,
-    &impl_40_property_value_libssh_version.pub
-};
-
-static const afw_value_object_t
-impl_40_property_value_libz_version = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_46
-};
-
-static const afw_runtime_property_t
-impl_40_property_libz_version = {
-    afw_curl_v_libz_version,
-    &impl_40_property_value_libz_version.pub
-};
-
-static const afw_value_object_t
-impl_40_property_value_protocols = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_47
-};
-
-static const afw_runtime_property_t
-impl_40_property_protocols = {
-    afw_curl_v_protocols,
-    &impl_40_property_value_protocols.pub
-};
-
-static const afw_value_object_t
-impl_40_property_value_ssl_version = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_48
-};
-
-static const afw_runtime_property_t
-impl_40_property_ssl_version = {
-    afw_curl_v_ssl_version,
-    &impl_40_property_value_ssl_version.pub
-};
-
-static const afw_value_object_t
-impl_40_property_value_ssl_version_num = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_49
-};
-
-static const afw_runtime_property_t
-impl_40_property_ssl_version_num = {
-    afw_curl_v_ssl_version_num,
-    &impl_40_property_value_ssl_version_num.pub
-};
-
-static const afw_value_object_t
-impl_40_property_value_version = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_50
-};
-
-static const afw_runtime_property_t
-impl_40_property_version = {
-    afw_curl_v_version,
-    &impl_40_property_value_version.pub
-};
-
-static const afw_value_object_t
-impl_40_property_value_version_num = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_51
-};
-
-static const afw_runtime_property_t
-impl_40_property_version_num = {
-    afw_curl_v_version_num,
-    &impl_40_property_value_version_num.pub
-};
-
-static const afw_runtime_property_t *
-impl_40_properties[] = {
-    &impl_40_property_age,
-    &impl_40_property_brotli_version,
-    &impl_40_property_features,
-    &impl_40_property_host,
-    &impl_40_property_libssh_version,
-    &impl_40_property_libz_version,
-    &impl_40_property_protocols,
-    &impl_40_property_ssl_version,
-    &impl_40_property_ssl_version_num,
-    &impl_40_property_version,
-    &impl_40_property_version_num,
-    NULL
-};
-
-static const afw_value_object_t
-impl_40_meta_object__value;
-
-static const afw_runtime_const_object_meta_object_t
-impl_40_meta_object = {
-    {
-        &afw_runtime_inf_const_meta_object_inf,
-        NULL,
-        (const afw_value_t *)&impl_40_meta_object__value
-    },
-    &impl_40,
-    NULL
-};
-
-static const afw_value_object_t
-impl_40_meta_object__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_40_meta_object
-};
-
-static const afw_utf8_t
-impl_40_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes");
-
-static const afw_value_object_t
-impl_40__value;
-
-static const afw_runtime_const_object_instance_t
-impl_40 = {
-    {
-        &afw_runtime_inf_const_embedded_untyped_object,
-        NULL,
-        (const afw_value_t *)&impl_40__value,
-        {
-            (const afw_object_t *)&impl_40_meta_object,
-            (const afw_object_t *)&impl_39,
-            &afw_curl_self_s_propertyTypes,
-            &afw_curl_self_s__AdaptivePropertyTypes_,
-            &impl_40_meta_path
-        }
-    },
-    &impl_40_properties[0]
-};
-
-static const afw_value_object_t
-impl_40__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_40
-};
-
-/*
- * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_
- */
-
-static const afw_runtime_property_t
-impl_39_property_allowAdd = {
-    afw_curl_v_allowAdd,
-    &afw_curl_boolean_self_v_false.pub
-};
-
-static const afw_runtime_property_t
-impl_39_property_allowChange = {
-    afw_curl_v_allowChange,
-    &afw_curl_boolean_self_v_false.pub
-};
-
-static const afw_runtime_property_t
-impl_39_property_allowDelete = {
-    afw_curl_v_allowDelete,
-    &afw_curl_boolean_self_v_false.pub
-};
-
-static const afw_runtime_property_t
-impl_39_property_allowEntity = {
-    afw_curl_v_allowEntity,
-    &afw_curl_boolean_self_v_true.pub
-};
-
-static const afw_utf8_t
-impl_39_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/curl_extension")
-};
-
-static const afw_value_array_t
-impl_39_list_collectionURIs__value;
-
-static const afw_array_view_of_c_array_self_t
-impl_39_list_collectionURIs = {
-    {
-        &afw_array_view_of_c_array_inf,
-        NULL,
-        (const afw_value_t *)&impl_39_list_collectionURIs__value
-    },
-    &afw_data_type_string_direct,
-    sizeof(impl_39_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_39_array_collectionURIs
-};
-
-static const afw_value_array_t
-impl_39_list_collectionURIs__value = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_39_list_collectionURIs
-};
-
-static const afw_value_array_t
-impl_39_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_39_list_collectionURIs
-};
-
-static const afw_runtime_property_t
-impl_39_property_collectionURIs = {
-    afw_curl_v_collectionURIs,
-    &impl_39_property_value_collectionURIs.pub
-};
-
-static const afw_runtime_property_t
-impl_39_property_description = {
-    afw_curl_v_description,
-    &afw_curl_self_v_zz__Object_type_for_cURL_extension_version_info_object_.pub
-};
-
-static const afw_runtime_property_t
-impl_39_property_objectType = {
-    afw_curl_v_objectType,
-    &afw_curl_self_v__AdaptiveCurlVersionInfo_.pub
-};
-
-static const afw_value_object_t
-impl_39_property_value_propertyTypes = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_40
-};
-
-static const afw_runtime_property_t
-impl_39_property_propertyTypes = {
-    afw_curl_v_propertyTypes,
-    &impl_39_property_value_propertyTypes.pub
-};
-
-static const afw_runtime_property_t *
-impl_39_properties[] = {
-    &impl_39_property_allowAdd,
-    &impl_39_property_allowChange,
-    &impl_39_property_allowDelete,
-    &impl_39_property_allowEntity,
-    &impl_39_property_collectionURIs,
-    &impl_39_property_description,
-    &impl_39_property_objectType,
-    &impl_39_property_propertyTypes,
-    NULL
-};
-
-static const afw_value_object_t
-impl_39_meta_object__value;
-
-static const afw_runtime_const_object_meta_object_t
-impl_39_meta_object = {
-    {
-        &afw_runtime_inf_const_meta_object_inf,
-        NULL,
-        (const afw_value_t *)&impl_39_meta_object__value
-    },
-    &impl_39,
-    NULL
-};
-
-static const afw_value_object_t
-impl_39_meta_object__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_39_meta_object
-};
-
-static const afw_utf8_t
-impl_39_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_");
-
-static const afw_value_object_t
-impl_39__value;
-
-static const afw_runtime_const_object_instance_t
-impl_39 = {
-    {
-        &afw_runtime_inf__AdaptiveObjectType_,
-        NULL,
-        (const afw_value_t *)&impl_39__value,
-        {
-            (const afw_object_t *)&impl_39_meta_object,
-            NULL,
-            &afw_curl_self_s__AdaptiveCurlVersionInfo_,
-            &afw_curl_self_s__AdaptiveObjectType_,
-            &impl_39_meta_path
-        }
-    },
-    &impl_39_properties[0]
-};
-
-static const afw_value_object_t
-impl_39__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_39
-};
-
 static const afw_runtime_const_object_instance_t
 impl_52;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/curl
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/version_num
  */
 
 static const afw_runtime_property_t
-impl_52_property_brief = {
-    afw_curl_v_brief,
-    &afw_curl_self_v_zz__Functions_derived_from_cURL_library_.pub
+impl_52_property_dataType = {
+    afw_curl_v_dataType,
+    &afw_curl_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
-impl_52_property_category = {
-    afw_curl_v_category,
-    &afw_curl_self_v_curl.pub
-};
-
-static const afw_runtime_property_t
-impl_52_property_description = {
-    afw_curl_v_description,
-    &afw_curl_self_v_zz__bcaae6f8e80f.pub
+impl_52_property_label = {
+    afw_curl_v_label,
+    &afw_curl_self_v_zz__Version_Number.pub
 };
 
 static const afw_runtime_property_t *
 impl_52_properties[] = {
-    &impl_52_property_brief,
-    &impl_52_property_category,
-    &impl_52_property_description,
+    &impl_52_property_dataType,
+    &impl_52_property_label,
     NULL
 };
 
@@ -4978,7 +4636,7 @@ impl_52_meta_object__value = {
 
 static const afw_utf8_t
 impl_52_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/curl");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes/version_num");
 
 static const afw_value_object_t
 impl_52__value;
@@ -4986,14 +4644,14 @@ impl_52__value;
 static const afw_runtime_const_object_instance_t
 impl_52 = {
     {
-        &afw_runtime_inf__AdaptiveFunctionCategory_,
+        &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
         (const afw_value_t *)&impl_52__value,
         {
             (const afw_object_t *)&impl_52_meta_object,
-            NULL,
-            &afw_curl_self_s_curl,
-            &afw_curl_self_s__AdaptiveFunctionCategory_,
+            (const afw_object_t *)&impl_41,
+            &afw_curl_self_s_version_num,
+            &afw_curl_self_s__AdaptiveValueMeta_,
             &impl_52_meta_path
         }
     },
@@ -5006,29 +4664,384 @@ impl_52__value = {
     (const afw_object_t *)&impl_52
 };
 
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes
+ */
+
+static const afw_value_object_t
+impl_41_property_value_age = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_42
+};
+
+static const afw_runtime_property_t
+impl_41_property_age = {
+    afw_curl_v_age,
+    &impl_41_property_value_age.pub
+};
+
+static const afw_value_object_t
+impl_41_property_value_brotli_version = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_43
+};
+
+static const afw_runtime_property_t
+impl_41_property_brotli_version = {
+    afw_curl_v_brotli_version,
+    &impl_41_property_value_brotli_version.pub
+};
+
+static const afw_value_object_t
+impl_41_property_value_features = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_44
+};
+
+static const afw_runtime_property_t
+impl_41_property_features = {
+    afw_curl_v_features,
+    &impl_41_property_value_features.pub
+};
+
+static const afw_value_object_t
+impl_41_property_value_host = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_45
+};
+
+static const afw_runtime_property_t
+impl_41_property_host = {
+    afw_curl_v_host,
+    &impl_41_property_value_host.pub
+};
+
+static const afw_value_object_t
+impl_41_property_value_libssh_version = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_46
+};
+
+static const afw_runtime_property_t
+impl_41_property_libssh_version = {
+    afw_curl_v_libssh_version,
+    &impl_41_property_value_libssh_version.pub
+};
+
+static const afw_value_object_t
+impl_41_property_value_libz_version = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_47
+};
+
+static const afw_runtime_property_t
+impl_41_property_libz_version = {
+    afw_curl_v_libz_version,
+    &impl_41_property_value_libz_version.pub
+};
+
+static const afw_value_object_t
+impl_41_property_value_protocols = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_48
+};
+
+static const afw_runtime_property_t
+impl_41_property_protocols = {
+    afw_curl_v_protocols,
+    &impl_41_property_value_protocols.pub
+};
+
+static const afw_value_object_t
+impl_41_property_value_ssl_version = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_49
+};
+
+static const afw_runtime_property_t
+impl_41_property_ssl_version = {
+    afw_curl_v_ssl_version,
+    &impl_41_property_value_ssl_version.pub
+};
+
+static const afw_value_object_t
+impl_41_property_value_ssl_version_num = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_50
+};
+
+static const afw_runtime_property_t
+impl_41_property_ssl_version_num = {
+    afw_curl_v_ssl_version_num,
+    &impl_41_property_value_ssl_version_num.pub
+};
+
+static const afw_value_object_t
+impl_41_property_value_version = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_51
+};
+
+static const afw_runtime_property_t
+impl_41_property_version = {
+    afw_curl_v_version,
+    &impl_41_property_value_version.pub
+};
+
+static const afw_value_object_t
+impl_41_property_value_version_num = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_52
+};
+
+static const afw_runtime_property_t
+impl_41_property_version_num = {
+    afw_curl_v_version_num,
+    &impl_41_property_value_version_num.pub
+};
+
+static const afw_runtime_property_t *
+impl_41_properties[] = {
+    &impl_41_property_age,
+    &impl_41_property_brotli_version,
+    &impl_41_property_features,
+    &impl_41_property_host,
+    &impl_41_property_libssh_version,
+    &impl_41_property_libz_version,
+    &impl_41_property_protocols,
+    &impl_41_property_ssl_version,
+    &impl_41_property_ssl_version_num,
+    &impl_41_property_version,
+    &impl_41_property_version_num,
+    NULL
+};
+
+static const afw_value_object_t
+impl_41_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_41_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_41_meta_object__value
+    },
+    &impl_41,
+    NULL
+};
+
+static const afw_value_object_t
+impl_41_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_41_meta_object
+};
+
+static const afw_utf8_t
+impl_41_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_/propertyTypes");
+
+static const afw_value_object_t
+impl_41__value;
+
+static const afw_runtime_const_object_instance_t
+impl_41 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_41__value,
+        {
+            (const afw_object_t *)&impl_41_meta_object,
+            (const afw_object_t *)&impl_40,
+            &afw_curl_self_s_propertyTypes,
+            &afw_curl_self_s__AdaptivePropertyTypes_,
+            &impl_41_meta_path
+        }
+    },
+    &impl_41_properties[0]
+};
+
+static const afw_value_object_t
+impl_41__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_41
+};
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_
+ */
+
+static const afw_runtime_property_t
+impl_40_property_allowAdd = {
+    afw_curl_v_allowAdd,
+    &afw_curl_boolean_self_v_false.pub
+};
+
+static const afw_runtime_property_t
+impl_40_property_allowChange = {
+    afw_curl_v_allowChange,
+    &afw_curl_boolean_self_v_false.pub
+};
+
+static const afw_runtime_property_t
+impl_40_property_allowDelete = {
+    afw_curl_v_allowDelete,
+    &afw_curl_boolean_self_v_false.pub
+};
+
+static const afw_runtime_property_t
+impl_40_property_allowEntity = {
+    afw_curl_v_allowEntity,
+    &afw_curl_boolean_self_v_true.pub
+};
+
+static const afw_utf8_t
+impl_40_array_collectionURIs[] = {
+    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/curl_extension")
+};
+
+static const afw_value_array_t
+impl_40_list_collectionURIs__value;
+
+static const afw_array_view_of_c_array_self_t
+impl_40_list_collectionURIs = {
+    {
+        &afw_array_view_of_c_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_40_list_collectionURIs__value
+    },
+    &afw_data_type_string_direct,
+    sizeof(impl_40_array_collectionURIs) / sizeof(afw_utf8_t),
+    &impl_40_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_40_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_40_list_collectionURIs
+};
+
+static const afw_value_array_t
+impl_40_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_40_list_collectionURIs
+};
+
+static const afw_runtime_property_t
+impl_40_property_collectionURIs = {
+    afw_curl_v_collectionURIs,
+    &impl_40_property_value_collectionURIs.pub
+};
+
+static const afw_runtime_property_t
+impl_40_property_description = {
+    afw_curl_v_description,
+    &afw_curl_self_v_zz__Object_type_for_cURL_extension_version_info_object_.pub
+};
+
+static const afw_runtime_property_t
+impl_40_property_objectType = {
+    afw_curl_v_objectType,
+    &afw_curl_self_v__AdaptiveCurlVersionInfo_.pub
+};
+
+static const afw_value_object_t
+impl_40_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_41
+};
+
+static const afw_runtime_property_t
+impl_40_property_propertyTypes = {
+    afw_curl_v_propertyTypes,
+    &impl_40_property_value_propertyTypes.pub
+};
+
+static const afw_runtime_property_t *
+impl_40_properties[] = {
+    &impl_40_property_allowAdd,
+    &impl_40_property_allowChange,
+    &impl_40_property_allowDelete,
+    &impl_40_property_allowEntity,
+    &impl_40_property_collectionURIs,
+    &impl_40_property_description,
+    &impl_40_property_objectType,
+    &impl_40_property_propertyTypes,
+    NULL
+};
+
+static const afw_value_object_t
+impl_40_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_40_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_40_meta_object__value
+    },
+    &impl_40,
+    NULL
+};
+
+static const afw_value_object_t
+impl_40_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_40_meta_object
+};
+
+static const afw_utf8_t
+impl_40_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_");
+
+static const afw_value_object_t
+impl_40__value;
+
+static const afw_runtime_const_object_instance_t
+impl_40 = {
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_40__value,
+        {
+            (const afw_object_t *)&impl_40_meta_object,
+            NULL,
+            &afw_curl_self_s__AdaptiveCurlVersionInfo_,
+            &afw_curl_self_s__AdaptiveObjectType_,
+            &impl_40_meta_path
+        }
+    },
+    &impl_40_properties[0]
+};
+
+static const afw_value_object_t
+impl_40__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_40
+};
+
 static const afw_runtime_const_object_instance_t
 impl_53;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/http
+ * /afw/_AdaptiveFunctionCategory_/curl
  */
 
 static const afw_runtime_property_t
 impl_53_property_brief = {
     afw_curl_v_brief,
-    &afw_curl_self_v_zz__HTTP_Functions_derived_from_cURL_.pub
+    &afw_curl_self_v_zz__Functions_derived_from_cURL_library_.pub
 };
 
 static const afw_runtime_property_t
 impl_53_property_category = {
     afw_curl_v_category,
-    &afw_curl_self_v_http.pub
+    &afw_curl_self_v_curl.pub
 };
 
 static const afw_runtime_property_t
 impl_53_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__284a731dcf66.pub
+    &afw_curl_self_v_zz__bcaae6f8e80f.pub
 };
 
 static const afw_runtime_property_t *
@@ -5061,7 +5074,7 @@ impl_53_meta_object__value = {
 
 static const afw_utf8_t
 impl_53_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/http");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/curl");
 
 static const afw_value_object_t
 impl_53__value;
@@ -5075,7 +5088,7 @@ impl_53 = {
         {
             (const afw_object_t *)&impl_53_meta_object,
             NULL,
-            &afw_curl_self_s_http,
+            &afw_curl_self_s_curl,
             &afw_curl_self_s__AdaptiveFunctionCategory_,
             &impl_53_meta_path
         }
@@ -5093,25 +5106,25 @@ static const afw_runtime_const_object_instance_t
 impl_54;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/smtp
+ * /afw/_AdaptiveFunctionCategory_/http
  */
 
 static const afw_runtime_property_t
 impl_54_property_brief = {
     afw_curl_v_brief,
-    &afw_curl_self_v_zz__SMTP_Functions_derived_from_cURL_.pub
+    &afw_curl_self_v_zz__HTTP_Functions_derived_from_cURL_.pub
 };
 
 static const afw_runtime_property_t
 impl_54_property_category = {
     afw_curl_v_category,
-    &afw_curl_self_v_smtp.pub
+    &afw_curl_self_v_http.pub
 };
 
 static const afw_runtime_property_t
 impl_54_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__27fdf40947dd.pub
+    &afw_curl_self_v_zz__284a731dcf66.pub
 };
 
 static const afw_runtime_property_t *
@@ -5144,7 +5157,7 @@ impl_54_meta_object__value = {
 
 static const afw_utf8_t
 impl_54_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/smtp");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/http");
 
 static const afw_value_object_t
 impl_54__value;
@@ -5158,7 +5171,7 @@ impl_54 = {
         {
             (const afw_object_t *)&impl_54_meta_object,
             NULL,
-            &afw_curl_self_s_smtp,
+            &afw_curl_self_s_http,
             &afw_curl_self_s__AdaptiveFunctionCategory_,
             &impl_54_meta_path
         }
@@ -5172,15 +5185,98 @@ impl_54__value = {
     (const afw_object_t *)&impl_54
 };
 
+static const afw_runtime_const_object_instance_t
+impl_55;
+
+/*
+ * /afw/_AdaptiveFunctionCategory_/smtp
+ */
+
+static const afw_runtime_property_t
+impl_55_property_brief = {
+    afw_curl_v_brief,
+    &afw_curl_self_v_zz__SMTP_Functions_derived_from_cURL_.pub
+};
+
+static const afw_runtime_property_t
+impl_55_property_category = {
+    afw_curl_v_category,
+    &afw_curl_self_v_smtp.pub
+};
+
+static const afw_runtime_property_t
+impl_55_property_description = {
+    afw_curl_v_description,
+    &afw_curl_self_v_zz__27fdf40947dd.pub
+};
+
+static const afw_runtime_property_t *
+impl_55_properties[] = {
+    &impl_55_property_brief,
+    &impl_55_property_category,
+    &impl_55_property_description,
+    NULL
+};
+
+static const afw_value_object_t
+impl_55_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_55_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_55_meta_object__value
+    },
+    &impl_55,
+    NULL
+};
+
+static const afw_value_object_t
+impl_55_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_55_meta_object
+};
+
+static const afw_utf8_t
+impl_55_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/smtp");
+
+static const afw_value_object_t
+impl_55__value;
+
+static const afw_runtime_const_object_instance_t
+impl_55 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionCategory_,
+        NULL,
+        (const afw_value_t *)&impl_55__value,
+        {
+            (const afw_object_t *)&impl_55_meta_object,
+            NULL,
+            &afw_curl_self_s_smtp,
+            &afw_curl_self_s__AdaptiveFunctionCategory_,
+            &impl_55_meta_path
+        }
+    },
+    &impl_55_properties[0]
+};
+
+static const afw_value_object_t
+impl_55__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_55
+};
+
 /* NULL terminated list of objects. */
 static const afw_object_t *
 impl_const_objects[] = {
     (const afw_object_t *)&impl_1,
     (const afw_object_t *)&impl_6,
-    (const afw_object_t *)&impl_39,
-    (const afw_object_t *)&impl_52,
+    (const afw_object_t *)&impl_40,
     (const afw_object_t *)&impl_53,
     (const afw_object_t *)&impl_54,
+    (const afw_object_t *)&impl_55,
     NULL
 };
 

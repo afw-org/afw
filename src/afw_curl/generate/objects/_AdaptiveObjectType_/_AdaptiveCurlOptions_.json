@@ -103,6 +103,11 @@
             "description": "The optional callback function to read the request body.\nThis callback function gets called by libcurl as soon as it has data to send. The read callback is called repeatedly until it returns 0 or an error occurs. The read callback should return the number of bytes actually taken care of. If that amount differs from the amount passed to your callback function, it signals an error condition to the library. This causes the transfer to get aborted.",
             "label": "Read Function"
         },
+        "readFunctionSize": {
+            "dataType": "integer",
+            "description": "The total size, in bytes, of the data that readFunction will provide. When http_post/http_put/http_patch stream a request body via readFunction (payload omitted), supplying this lets libcurl send an accurate Content-Length instead of falling back to chunked transfer encoding.",
+            "label": "Read Function Size"
+        },
         "readUserData": {
             "description": "The user data to pass to the read callback function.",
             "label": "Read User Data"
