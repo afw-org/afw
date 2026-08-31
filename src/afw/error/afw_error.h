@@ -850,7 +850,7 @@ do {\
             while(0); \
             break; \
         } \
-        if (xctx->error->code == (afw_error_code_ ## __CODE_)) \
+        if (this_THROWN_ERROR.code == (afw_error_code_ ## __CODE_)) \
         { \
             this_ERROR_CAUGHT = true; \
             do
