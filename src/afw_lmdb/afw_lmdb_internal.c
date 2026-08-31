@@ -343,53 +343,26 @@ static void afw_lmdb_internal_set_alias_key(
 }
 
 /*
- * Standard UUID string form is 36 chars: 8-4-4-4-12 hex digits with
- * hyphens at fixed positions. Checked before calling afw_uuid_from_utf8(),
- * which throws (never returns NULL) on anything that doesn't parse --
- * callers here need to *try* parsing, falling back to the IdIndex
- * otherwise, without paying for a throw on the (common, for a non-UUID
- * alias) failure path.
- */
-static afw_boolean_t afw_lmdb_internal_is_uuid_shaped(
-    const afw_utf8_t *s)
-{
-    afw_size_t i;
-    afw_utf8_octet_t c;
-
-    if (s->len != 36) {
-        return false;
-    }
-
-    for (i = 0; i < 36; i++) {
-        c = s->s[i];
-        if (i == 8 || i == 13 || i == 18 || i == 23) {
-            if (c != '-') {
-                return false;
-            }
-        } else if (!((c >= '0' && c <= '9') ||
-            (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')))
-        {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-/*
- * See afw_lmdb_internal_is_uuid_shaped() -- avoids afw_uuid_from_utf8()'s
- * throw-on-failure for callers that need to try parsing and fall back.
+ * afw_uuid_from_utf8() throws (never returns NULL) on anything that
+ * doesn't parse -- callers here need to *try* parsing, falling back to
+ * the IdIndex otherwise, so this converts that throw to a NULL return.
  */
 static const afw_uuid_t * afw_lmdb_internal_try_uuid_from_utf8(
     const afw_utf8_t *object_id,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    if (!afw_lmdb_internal_is_uuid_shaped(object_id)) {
-        return NULL;
-    }
+    const afw_uuid_t *uuid = NULL;
 
-    return afw_uuid_from_utf8(object_id, p, xctx);
+    AFW_TRY {
+        uuid = afw_uuid_from_utf8(object_id, p, xctx);
+    }
+    AFW_CATCH(general) {
+        uuid = NULL;
+    }
+    AFW_ENDTRY;
+
+    return uuid;
 }
 
 /*
