@@ -135,3 +135,61 @@ assert(length(userData.headers) > 0);
 assert(length(userData.payload) > 0);
 
 return response.response_code;
+
+
+//? test: http_patch_upload_stream
+//? description: http_patch() with payload omitted streams the body from options.readFunction (issue #108) via CURLOPT_UPLOAD instead of buffering it all in memory via CURLOPT_POSTFIELDS. readFunctionSize is supplied so libcurl sends a real Content-Length -- the stub reads raw bytes off Content-Length and doesn't decode chunked transfer encoding.
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const bodyLen = 20000;
+let body = "A";
+while (length(body) < bodyLen) {
+    body += body;
+}
+body = substring(body, 0, bodyLen);
+
+let userData = {
+    "body": body,
+    "offset": 0,
+    "calls": 0
+};
+
+function reader(userData, size, nitems) {
+    if (userData.offset >= length(userData.body)) {
+        return null;
+    }
+
+    // return chunks bigger than libcurl's offered capacity (size * nitems),
+    // to exercise the pending_payload partial-drain path across calls
+    const chunkSize = 8000;
+    const remaining = length(userData.body) - userData.offset;
+    const n = (remaining < chunkSize) ? remaining : chunkSize;
+    const chunk = substring(userData.body, userData.offset, userData.offset + n);
+
+    userData["offset"] = userData.offset + n;
+    userData["calls"] = userData.calls + 1;
+
+    return encode_as_hexBinary(chunk);
+}
+
+const response = http_patch(
+    "http://127.0.0.1:" + string(integer(environment::AFW_CURL_TEST_HTTP_PORT)) + "/patch",
+    undefined,
+    undefined,
+    {
+        "readFunction": reader,
+        "readUserData": userData,
+        "readFunctionSize": bodyLen
+    }
+);
+
+assert(userData.calls > 1);
+assert(userData.offset === bodyLen);
+assert(response.response_code === 200);
+
+const decoded = compile(json(decode_to_string(base64Binary(response.response))));
+assert(length(decoded.data) === bodyLen);
+
+return 0;

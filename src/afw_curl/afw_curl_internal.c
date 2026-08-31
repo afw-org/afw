@@ -592,6 +592,8 @@ afw_curl_internal_http_post(
     afw_curl_internal_script_cb_t * header = NULL;
     afw_curl_internal_script_cb_t * writer = NULL;
     afw_curl_internal_script_cb_t * reader = NULL;
+    afw_boolean_t found;
+    afw_integer_t readFunctionSize;
     char *errbuf;
 
     curl = curl_easy_init();
@@ -605,17 +607,20 @@ afw_curl_internal_http_post(
         if (res != CURLE_OK)
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
 
-        res = curl_easy_setopt(curl, CURLOPT_POST, 1L);
-        if (res != CURLE_OK)
-            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
+        /* A literal payload is sent buffered, same as always. */
+        if (payload) {
+            res = curl_easy_setopt(curl, CURLOPT_POST, 1L);
+            if (res != CURLE_OK)
+                AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
 
-        res = curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, payload->len);
-        if (res != CURLE_OK)
-            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
+            res = curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, payload->len);
+            if (res != CURLE_OK)
+                AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
 
-        res = curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload->s);
-        if (res != CURLE_OK)
-            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
+            res = curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload->s);
+            if (res != CURLE_OK)
+                AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
+        }
 
         /* Now, send any optional headers across. */
         if (headers) {
@@ -648,6 +653,47 @@ afw_curl_internal_http_post(
         /* set any options, that may have been specified */
         afw_curl_internal_options(curl, options, reader, writer, header, pool, xctx);
 
+        /*
+         * No literal payload: stream it from options.readFunction (avoids
+         * buffering the whole body), or fall back to an empty POST body.
+         * CURLOPT_UPLOAD conflicts with CURLOPT_POST, so the verb has to be
+         * restated via CURLOPT_CUSTOMREQUEST.
+         */
+        if (!payload) {
+            if (reader->callback) {
+                res = curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
+                if (res != CURLE_OK)
+                    AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
+
+                res = curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "POST");
+                if (res != CURLE_OK)
+                    AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
+
+                readFunctionSize = afw_object_old_get_property_as_integer(
+                    options, afw_curl_v_readFunctionSize, &found, xctx);
+                if (found) {
+                    res = curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE,
+                        (curl_off_t)readFunctionSize);
+                    if (res != CURLE_OK)
+                        AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
+                }
+
+                afw_curl_internal_register_request_callbacks(curl, NULL, reader, pool, xctx);
+            } else {
+                res = curl_easy_setopt(curl, CURLOPT_POST, 1L);
+                if (res != CURLE_OK)
+                    AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
+
+                res = curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, 0L);
+                if (res != CURLE_OK)
+                    AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
+
+                res = curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "");
+                if (res != CURLE_OK)
+                    AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
+            }
+        }
+
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
 
@@ -657,7 +703,7 @@ afw_curl_internal_http_post(
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
 
         /* setup our response callbacks to handle data send back from the server */
-        response = afw_curl_internal_register_response_callbacks(curl, 
+        response = afw_curl_internal_register_response_callbacks(curl,
             header, writer, pool, xctx);
 
         /* Perform the request, res will get the return code */
@@ -671,13 +717,13 @@ afw_curl_internal_http_post(
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_perform()", xctx);
             }
         }
-    
-        /* create a result object */ 
+
+        /* create a result object */
         result = afw_object_and_pool_create(pool, xctx);
 
         /* set the response code */
         res = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
-        if (res != CURLE_OK) 
+        if (res != CURLE_OK)
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_getinfo()", xctx);
 
         afw_object_set_property_as_integer(result, afw_curl_v_response_code, response_code, xctx);
@@ -1015,6 +1061,8 @@ afw_curl_internal_http_put(
     afw_curl_internal_script_cb_t * header = NULL;
     afw_curl_internal_script_cb_t * writer = NULL;
     afw_curl_internal_script_cb_t * reader = NULL;
+    afw_boolean_t found;
+    afw_integer_t readFunctionSize;
     char *errbuf;
 
     curl = curl_easy_init();
@@ -1032,13 +1080,16 @@ afw_curl_internal_http_put(
         if (res != CURLE_OK)
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_CUSTOMREQUEST", xctx);
 
-        res = curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, payload->len);
-        if (res != CURLE_OK)
-            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_POSTFIELDSIZE", xctx);
+        /* A literal payload is sent buffered, same as always. */
+        if (payload) {
+            res = curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, payload->len);
+            if (res != CURLE_OK)
+                AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_POSTFIELDSIZE", xctx);
 
-        res = curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload->s);
-        if (res != CURLE_OK)
-            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_POSTFIELDS", xctx);
+            res = curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload->s);
+            if (res != CURLE_OK)
+                AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_POSTFIELDS", xctx);
+        }
 
         /* Now, send any optional headers across. */
         if (headers) {
@@ -1071,6 +1122,39 @@ afw_curl_internal_http_put(
         /* set any options, that may have been specified */
         afw_curl_internal_options(curl, options, reader, writer, header, pool, xctx);
 
+        /*
+         * No literal payload: stream it from options.readFunction (avoids
+         * buffering the whole body), or fall back to an empty PUT body.
+         * CURLOPT_CUSTOMREQUEST already names the verb, so CURLOPT_UPLOAD
+         * just switches the transfer direction, no conflict.
+         */
+        if (!payload) {
+            if (reader->callback) {
+                res = curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
+                if (res != CURLE_OK)
+                    AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_UPLOAD", xctx);
+
+                readFunctionSize = afw_object_old_get_property_as_integer(
+                    options, afw_curl_v_readFunctionSize, &found, xctx);
+                if (found) {
+                    res = curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE,
+                        (curl_off_t)readFunctionSize);
+                    if (res != CURLE_OK)
+                        AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_INFILESIZE_LARGE", xctx);
+                }
+
+                afw_curl_internal_register_request_callbacks(curl, NULL, reader, pool, xctx);
+            } else {
+                res = curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, 0L);
+                if (res != CURLE_OK)
+                    AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_POSTFIELDSIZE", xctx);
+
+                res = curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "");
+                if (res != CURLE_OK)
+                    AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_POSTFIELDS", xctx);
+            }
+        }
+
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
 
@@ -1080,7 +1164,7 @@ afw_curl_internal_http_put(
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_ERRORBUFFER", xctx);
 
         /* setup our response callbacks to handle data send back from the server */
-        response = afw_curl_internal_register_response_callbacks(curl, 
+        response = afw_curl_internal_register_response_callbacks(curl,
             header, writer, pool, xctx);
 
         /* Perform the request, res will get the return code */
@@ -1094,13 +1178,13 @@ afw_curl_internal_http_put(
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_perform()", xctx);
             }
         }
-    
-        /* create a result object */ 
+
+        /* create a result object */
         result = afw_object_and_pool_create(pool, xctx);
 
         /* set the response code */
         res = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
-        if (res != CURLE_OK) 
+        if (res != CURLE_OK)
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_getinfo()", xctx);
 
         afw_object_set_property_as_integer(result, afw_curl_v_response_code, response_code, xctx);
@@ -1164,6 +1248,8 @@ afw_curl_internal_http_patch(
     afw_curl_internal_script_cb_t * header = NULL;
     afw_curl_internal_script_cb_t * writer = NULL;
     afw_curl_internal_script_cb_t * reader = NULL;
+    afw_boolean_t found;
+    afw_integer_t readFunctionSize;
     char *errbuf;
 
     curl = curl_easy_init();
@@ -1181,13 +1267,16 @@ afw_curl_internal_http_patch(
         if (res != CURLE_OK)
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_CUSTOMREQUEST", xctx);
 
-        res = curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, payload->len);
-        if (res != CURLE_OK)
-            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_POSTFIELDSIZE", xctx);
+        /* A literal payload is sent buffered, same as always. */
+        if (payload) {
+            res = curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, payload->len);
+            if (res != CURLE_OK)
+                AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_POSTFIELDSIZE", xctx);
 
-        res = curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload->s);
-        if (res != CURLE_OK)
-            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_POSTFIELDS", xctx);
+            res = curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload->s);
+            if (res != CURLE_OK)
+                AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_POSTFIELDS", xctx);
+        }
 
         /* Now, send any optional headers across. */
         if (headers) {
@@ -1220,6 +1309,39 @@ afw_curl_internal_http_patch(
         /* set any options, that may have been specified */
         afw_curl_internal_options(curl, options, reader, writer, header, pool, xctx);
 
+        /*
+         * No literal payload: stream it from options.readFunction (avoids
+         * buffering the whole body), or fall back to an empty PATCH body.
+         * CURLOPT_CUSTOMREQUEST already names the verb, so CURLOPT_UPLOAD
+         * just switches the transfer direction, no conflict.
+         */
+        if (!payload) {
+            if (reader->callback) {
+                res = curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
+                if (res != CURLE_OK)
+                    AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_UPLOAD", xctx);
+
+                readFunctionSize = afw_object_old_get_property_as_integer(
+                    options, afw_curl_v_readFunctionSize, &found, xctx);
+                if (found) {
+                    res = curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE,
+                        (curl_off_t)readFunctionSize);
+                    if (res != CURLE_OK)
+                        AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_INFILESIZE_LARGE", xctx);
+                }
+
+                afw_curl_internal_register_request_callbacks(curl, NULL, reader, pool, xctx);
+            } else {
+                res = curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, 0L);
+                if (res != CURLE_OK)
+                    AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_POSTFIELDSIZE", xctx);
+
+                res = curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "");
+                if (res != CURLE_OK)
+                    AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_POSTFIELDS", xctx);
+            }
+        }
+
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
 
@@ -1229,7 +1351,7 @@ afw_curl_internal_http_patch(
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_ERRORBUFFER", xctx);
 
         /* setup our response callbacks to handle data send back from the server */
-        response = afw_curl_internal_register_response_callbacks(curl, 
+        response = afw_curl_internal_register_response_callbacks(curl,
             header, writer, pool, xctx);
 
         /* Perform the request, res will get the return code */
@@ -1243,13 +1365,13 @@ afw_curl_internal_http_patch(
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_perform()", xctx);
             }
         }
-    
-        /* create a result object */ 
+
+        /* create a result object */
         result = afw_object_and_pool_create(pool, xctx);
 
         /* set the response code */
         res = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
-        if (res != CURLE_OK) 
+        if (res != CURLE_OK)
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_getinfo()", xctx);
 
         afw_object_set_property_as_integer(result, afw_curl_v_response_code, response_code, xctx);
