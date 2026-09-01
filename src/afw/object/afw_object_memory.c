@@ -174,7 +174,9 @@ afw_object_create_embedded(
     self = afw_pool_calloc_type(p, afw_object_internal_memory_object_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
-    self->value.inf = &afw_value_managed_object_inf;
+    self->value.inf = embedder->unmanaged
+        ? &afw_value_unmanaged_object_inf
+        : &afw_value_managed_object_inf;
     self->value.internal = (const afw_object_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     self->pub.meta.embedding_object = embedding_object;
