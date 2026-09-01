@@ -12,6 +12,7 @@ alwaysApply: false
 - Environments: `tests/environments/<name>/` (`afw.conf`, seed objects); set `Environment = "<name>"` in `config.py`.
 - Hooks in `config.py`: `before_all`, `before_each`, `after_each`, `after_all` when needed.
 - Optional `Tags = ["..."]` in `config.py` for `afwdev test --tags`.
+- Fail extras: `--error-detail` (source / expect vs result / short backtrace). Valgrind `kind` + top frames are on the fail line without a flag. `--debug` is the firehose (JSON, full valgrind XML). `-j` prints each group as one block.
 
 ## Tests under `src/` are permanent regression assets
 

@@ -43,7 +43,12 @@
             <literal>./afwdev</literal> when the build needs to install a 
             new <literal>afwdev</literal>. After that, use 
             <literal>afwdev</literal> for <literal>test</literal>, 
-            <literal>validate</literal>, and similar commands.
+            <literal>validate</literal>, and similar commands. A failing 
+            test always prints a one-line reason (valgrind includes 
+            <literal>kind</literal> and top frames). Pass 
+            <literal>--error-detail</literal> for source, expected vs 
+            result, and a short backtrace. That is not 
+            <literal>--debug</literal>.
         </paragraph>
         <code><![CDATA[# From the package root, after source or generate changes
 ./afwdev build --cdev -j
@@ -53,6 +58,8 @@ afwdev test -j
 afwdev test --srcdir-pattern afw --test-pattern 'rql/.*'
 afwdev test --list --test-pattern smoke
 # A real --test-pattern shows passing cases (no --show-all needed)
+# Fail-only extras (source, expect/result, short backtrace); not --debug
+afwdev test --error-detail --test-pattern 'http_put' --env-mode valgrind -j
 ]]></code>
     </section>
     <section>

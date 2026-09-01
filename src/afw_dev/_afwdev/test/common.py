@@ -841,6 +841,13 @@ def print_test_failure(test, testCase):
             elif errorSourceLocation is not None:
                 msg.error("Test Failed at: {}".format(sourceLocationNav) + " (id=" + error.get("id") + ")")
 
+        if testCase.get("expect") is not None or testCase.get("result") is not None:
+            msg.error("    Expected: " + nfc.json_dumps(testCase.get("expect")))
+            if testCase.get("result") is not None:
+                msg.error("    Result:   " + nfc.json_dumps(testCase.get("result")) + "\n")
+            else:
+                msg.error("    Result:   undefined\n")
+
         _print_stream_expects()
         _print_error_backtrace(error)
 
