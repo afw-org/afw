@@ -59,8 +59,10 @@ def build(options):
         _configure_command.extend(['-DCPACK_INSTALL_PREFIX=' + options.get('build_prefix')])
         # the CPACK_PACKAGING_INSTALL_PREFIX is used to specify where files get located in the package (internally)
         _configure_command.extend(['-DCPACK_PACKAGING_INSTALL_PREFIX=' + options.get('build_prefix')])
-    if options.get('build_scan') is True:
-        _configure_command.extend(['-DCMAKE_EXPORT_COMPILE_COMMANDS=YES'])
+    # Always emit compile_commands.json so clangd (and other IDEs) can resolve
+    # Go to Definition. Previously this ran only for --scan / --fulldev, so a
+    # later --cdev --clean left a dangling compile_commands.json symlink.
+    _configure_command.extend(['-DCMAKE_EXPORT_COMPILE_COMMANDS=YES'])
     msg.highlighted_info('Running ' + str(" ".join(_configure_command)))
     rc = subprocess.run(_configure_command,
         cwd=options['afw_package_dir_path'],
