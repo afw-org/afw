@@ -38,6 +38,8 @@ path
 flags
 content_type
 Primary
+IdIndex
+IdIndexReverse
 Journal
 Index
 Extern

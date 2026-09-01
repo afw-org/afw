@@ -209,8 +209,20 @@ void afw_lmdb_adapter_open_databases(
         afw_lmdb_s_Primary, MDB_CREATE, pool, xctx);
 
     /* open the Journal database */
-    afw_lmdb_internal_open_database(self, txn, 
+    afw_lmdb_internal_open_database(self, txn,
         afw_lmdb_s_Journal, MDB_CREATE, pool, xctx);
+
+    /*
+     * Open the IdIndex/IdIndexReverse databases used to resolve a non-UUID
+     * suggested_object_id to/from its internal UUID key (#244). Pre-opened
+     * here for the same reason Primary/Journal are: get_object and
+     * retrieve_objects need to read them from a read-only transaction,
+     * which can't create a database that doesn't exist yet.
+     */
+    afw_lmdb_internal_open_database(self, txn,
+        afw_lmdb_s_IdIndex, MDB_CREATE, pool, xctx);
+    afw_lmdb_internal_open_database(self, txn,
+        afw_lmdb_s_IdIndexReverse, MDB_CREATE, pool, xctx);
 
     indexer = afw_lmdb_adapter_impl_index_create(NULL, self, txn, xctx);
 

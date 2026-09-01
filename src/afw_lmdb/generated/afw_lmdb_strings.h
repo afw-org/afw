@@ -133,6 +133,58 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_LMDB_Q_IdIndex \
+    "IdIndex"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_IdIndex */
+#define afw_lmdb_s_IdIndex \
+    (&afw_lmdb_self_v_IdIndex.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_IdIndex */
+#define afw_lmdb_self_s_IdIndex \
+    (afw_lmdb_self_v_IdIndex.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_IdIndex */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_IdIndex;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_IdIndex */
+#define afw_lmdb_z_IdIndex \
+    (afw_lmdb_self_v_IdIndex.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_IdIndex */
+#define afw_lmdb_v_IdIndex \
+    (&afw_lmdb_self_v_IdIndex.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_IdIndexReverse \
+    "IdIndexReverse"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_IdIndexReverse */
+#define afw_lmdb_s_IdIndexReverse \
+    (&afw_lmdb_self_v_IdIndexReverse.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_IdIndexReverse */
+#define afw_lmdb_self_s_IdIndexReverse \
+    (afw_lmdb_self_v_IdIndexReverse.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_IdIndexReverse */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_IdIndexReverse;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_IdIndexReverse */
+#define afw_lmdb_z_IdIndexReverse \
+    (afw_lmdb_self_v_IdIndexReverse.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_IdIndexReverse */
+#define afw_lmdb_v_IdIndexReverse \
+    (&afw_lmdb_self_v_IdIndexReverse.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_LMDB_Q_Index \
     "Index"
 
