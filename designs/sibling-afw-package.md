@@ -156,6 +156,7 @@ If `../afw` is missing, say so and work from this file plus the in-tree
 
 - Never hand-edit `generated/`.
 - Public core APIs only (`afw.h`, interface call macros). No `afw_internal.h`.
+- If this package installs headers into the same `include/afw` prefix as base, a base `--cdev`/`--fulldev` **does not** wipe your public headers. It **does** delete leftover `*_internal.h` and `*_declare_helpers.h` in that dir — reinstall this package if you still ship those names.
 - Keep each `src/<srcdir>/` as self-contained as practical.
 - Generate → this package’s documented build → tests. Do not assume
   today’s base `./afwdev build --cdev` until that package’s build against

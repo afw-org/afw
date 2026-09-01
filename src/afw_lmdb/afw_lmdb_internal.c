@@ -189,7 +189,7 @@ void afw_lmdb_internal_get_key(
  * afw_rc_t afw_lmdb_internal_create_entry()
  *
  * The foundational routine for storing a key/value entry
- * into LMDB.  All other methods/interfaces should handle 
+ * into LMDB.  All other methods/interfaces should handle
  * which database and transaction to use, along with how 
  * to serialize the data into a raw key and value.
  *
@@ -310,6 +310,234 @@ afw_rc_t afw_lmdb_internal_get_entry(
     }
 
     return rc;
+}
+
+/*
+ * Builds the IdIndex key for {object_type_id}{object_id}. A length prefix
+ * on object_type_id is required (not just concatenation) since both
+ * pieces are variable length -- without it, type="AB"/id="X" and
+ * type="A"/id="BX" would collide on the same raw bytes "ABX".
+ */
+static void afw_lmdb_internal_set_alias_key(
+    afw_memory_t *key,
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *object_id,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_uint32_t len_be;
+    afw_octet_t *ptr;
+
+    len_be = (afw_uint32_t)object_type_id->len;
+    len_be = ((len_be & 0xff) << 24) | (((len_be >> 8) & 0xff) << 16) |
+        (((len_be >> 16) & 0xff) << 8) | ((len_be >> 24) & 0xff);
+
+    key->size = sizeof(len_be) + object_type_id->len + object_id->len;
+    key->ptr = ptr = afw_pool_malloc(p, key->size, xctx);
+
+    memcpy(ptr, &len_be, sizeof(len_be));
+    ptr += sizeof(len_be);
+    memcpy(ptr, object_type_id->s, object_type_id->len);
+    ptr += object_type_id->len;
+    memcpy(ptr, object_id->s, object_id->len);
+}
+
+/*
+ * afw_uuid_from_utf8() throws (never returns NULL) on anything that
+ * doesn't parse -- callers here need to *try* parsing, falling back to
+ * the IdIndex otherwise, so this converts that throw to a NULL return.
+ */
+static const afw_uuid_t * afw_lmdb_internal_try_uuid_from_utf8(
+    const afw_utf8_t *object_id,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_uuid_t *uuid = NULL;
+
+    AFW_TRY {
+        uuid = afw_uuid_from_utf8(object_id, p, xctx);
+    }
+    AFW_CATCH(general) {
+        uuid = NULL;
+    }
+    AFW_ENDTRY;
+
+    return uuid;
+}
+
+/*
+ * const afw_utf8_t * afw_lmdb_internal_resolve_object_id()
+ *
+ * See afw_lmdb_internal.h for the dn2id-style rationale.
+ */
+const afw_utf8_t * afw_lmdb_internal_resolve_object_id(
+    const afw_lmdb_adapter_session_t *self,
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *object_id,
+    afw_boolean_t create_if_missing,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_uuid_t *uuid;
+    MDB_txn *txn = self->currTxn;
+    MDB_dbi dbi, reverse_dbi;
+    afw_memory_t alias_key, reverse_key, raw_value;
+    int rc;
+
+    uuid = afw_lmdb_internal_try_uuid_from_utf8(object_id, p, xctx);
+    if (uuid) {
+        return object_id;
+    }
+
+    /*
+     * IdIndex is pre-opened at adapter startup (afw_lmdb_adapter_open_
+     * databases()), same as Primary/Journal, specifically so reads here
+     * work from a read-only transaction (get_object) without needing
+     * MDB_CREATE, which LMDB refuses there.
+     */
+    dbi = afw_lmdb_internal_open_database(self->adapter,
+        txn, afw_lmdb_s_IdIndex, 0, p, xctx);
+
+    afw_lmdb_internal_set_alias_key(&alias_key,
+        object_type_id, object_id, p, xctx);
+
+    rc = afw_lmdb_internal_get_entry(txn, dbi, &alias_key, &raw_value, xctx);
+    if (rc == 0) {
+        if (raw_value.size != sizeof(afw_uuid_t)) {
+            AFW_THROW_ERROR_Z(general,
+                "Corrupt IdIndex entry.", xctx);
+        }
+        return afw_uuid_to_utf8(
+            (const afw_uuid_t *)raw_value.ptr, p, xctx);
+    }
+
+    if (!create_if_missing) {
+        AFW_THROW_ERROR_FZ(not_found, xctx,
+            AFW_UTF8_FMT_Q " cannot be found.",
+            AFW_UTF8_FMT_ARG(object_id));
+    }
+
+    uuid = afw_uuid_create(p, xctx);
+    raw_value.ptr = (void *)uuid;
+    raw_value.size = sizeof(afw_uuid_t);
+
+    rc = afw_lmdb_internal_create_entry(
+        txn, dbi, &alias_key, &raw_value, xctx);
+    if (rc) {
+        AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+            "Error writing IdIndex entry.", xctx);
+    }
+
+    /*
+     * Reverse entry so full-type scans (which only see {type}{uuid} raw
+     * Primary keys, never the alias) can report object_id back as the
+     * human alias instead of the internal uuid -- see
+     * afw_lmdb_internal_lookup_alias().
+     */
+    reverse_dbi = afw_lmdb_internal_open_database(self->adapter,
+        txn, afw_lmdb_s_IdIndexReverse, MDB_CREATE, p, xctx);
+
+    afw_lmdb_internal_set_key(&reverse_key,
+        object_type_id, uuid, p, xctx);
+
+    raw_value.ptr = (const afw_byte_t *)object_id->s;
+    raw_value.size = object_id->len;
+
+    rc = afw_lmdb_internal_create_entry(
+        txn, reverse_dbi, &reverse_key, &raw_value, xctx);
+    if (rc) {
+        AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+            "Error writing IdIndexReverse entry.", xctx);
+    }
+
+    return afw_uuid_to_utf8(uuid, p, xctx);
+}
+
+/*
+ * const afw_utf8_t * afw_lmdb_internal_lookup_alias()
+ *
+ * The reverse of afw_lmdb_internal_resolve_object_id(): given the raw
+ * {type}{uuid} identity read off a Primary key during a scan, returns the
+ * human alias it was created with, or NULL if it was never given one (the
+ * common case -- a plain UUID object_id).
+ */
+const afw_utf8_t * afw_lmdb_internal_lookup_alias(
+    const afw_lmdb_adapter_session_t *self,
+    const afw_utf8_t *object_type_id,
+    const afw_uuid_t *uuid,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    MDB_txn *txn = self->currTxn;
+    MDB_dbi dbi;
+    afw_memory_t key, raw_value;
+    int rc;
+
+    /*
+     * IdIndexReverse is pre-opened at adapter startup (afw_lmdb_adapter_
+     * open_databases()), same as Primary/Journal, specifically so reads
+     * here work from a read-only transaction (scans) without needing
+     * MDB_CREATE, which LMDB refuses there.
+     */
+    dbi = afw_lmdb_internal_open_database(self->adapter,
+        txn, afw_lmdb_s_IdIndexReverse, 0, p, xctx);
+
+    afw_lmdb_internal_set_key(&key, object_type_id, uuid, p, xctx);
+
+    rc = afw_lmdb_internal_get_entry(txn, dbi, &key, &raw_value, xctx);
+    if (rc != 0) {
+        return NULL;
+    }
+
+    return afw_utf8_create(
+        (const afw_utf8_octet_t *)raw_value.ptr, raw_value.size, p, xctx);
+}
+
+/*
+ * void afw_lmdb_internal_delete_alias()
+ *
+ * uuid is the internal id object_id resolved to (self->currTxn's caller
+ * already has it from afw_lmdb_internal_resolve_object_id) -- only used
+ * when object_id turns out to be an alias, to also drop the reverse entry.
+ */
+void afw_lmdb_internal_delete_alias(
+    const afw_lmdb_adapter_session_t *self,
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *object_id,
+    const afw_uuid_t *uuid,
+    afw_xctx_t *xctx)
+{
+    MDB_txn *txn = self->currTxn;
+    MDB_dbi dbi;
+    afw_memory_t alias_key;
+
+    if (afw_lmdb_internal_try_uuid_from_utf8(object_id, xctx->p, xctx)) {
+        /* object_id is already the real key -- no alias to remove */
+        return;
+    }
+
+    dbi = afw_lmdb_internal_open_database(self->adapter,
+        txn, afw_lmdb_s_IdIndex, MDB_CREATE, xctx->p, xctx);
+
+    afw_lmdb_internal_set_alias_key(&alias_key,
+        object_type_id, object_id, xctx->p, xctx);
+
+    /* if it's not there, there's nothing to clean up */
+    afw_lmdb_internal_delete_entry(txn, dbi, &alias_key, NULL, xctx);
+
+    {
+        afw_memory_t reverse_key;
+        MDB_dbi reverse_dbi;
+
+        reverse_dbi = afw_lmdb_internal_open_database(self->adapter,
+            txn, afw_lmdb_s_IdIndexReverse, MDB_CREATE, xctx->p, xctx);
+
+        afw_lmdb_internal_set_key(&reverse_key,
+            object_type_id, uuid, xctx->p, xctx);
+
+        afw_lmdb_internal_delete_entry(
+            txn, reverse_dbi, &reverse_key, NULL, xctx);
+    }
 }
 
 /*
@@ -1073,6 +1301,7 @@ impl_afw_adapter_impl_index_cursor_get_next_object (
     const afw_object_t *object = NULL;
     const afw_value_t *value;
     const afw_utf8_t *object_id;
+    const afw_utf8_t *alias;
     afw_utf8_t object_type;
     afw_memory_t from_raw;
     afw_memory_t rawKey;
@@ -1110,6 +1339,13 @@ impl_afw_adapter_impl_index_cursor_get_next_object (
 
         afw_lmdb_internal_get_key(&rawKey, &object_type, &uuid);
         object_id = afw_uuid_to_utf8(&uuid, pool, xctx);
+
+        /* report the human alias, if this object was created with one */
+        alias = afw_lmdb_internal_lookup_alias(
+            self->session, &object_type, &uuid, pool, xctx);
+        if (alias) {
+            object_id = alias;
+        }
 
         from_raw.ptr = data.mv_data;
         from_raw.size = data.mv_size; 
@@ -1162,6 +1398,8 @@ impl_afw_adapter_impl_index_cursor_contains_object (
     }
 
     object_id = afw_object_meta_get_object_id(object, xctx);
+    object_id = afw_lmdb_internal_resolve_object_id(self->session,
+        self->object_type_id, object_id, false, xctx->p, xctx);
     uuid = afw_uuid_from_utf8(object_id, xctx->p, xctx);
 
     afw_lmdb_internal_set_key(&index,

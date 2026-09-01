@@ -14,7 +14,11 @@ from _afwdev.test.c_probe import run_c_probe
 
 
 def _pool_src():
-    """src/afw/pool — afw_pool_internal.h is not an installed header."""
+    """src/afw/pool — afw_pool_internal.h is not an installed header.
+
+    run_c_probe() searches extra -I before the install include dir so a
+    leftover copy in the prefix cannot win.
+    """
     d = os.path.dirname(os.path.abspath(__file__))
     while True:
         cand = os.path.join(d, "pool")

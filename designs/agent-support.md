@@ -146,6 +146,8 @@ Shape: **symptom → layer → probe → code / doc entry**.
 
 **Throwing C probe + valgrind:** Start with `afwdev prime-test-c-probe <path>`. `run_c_probe()` (`_afwdev.test.c_probe`) compiles a checked-in `*_probe.c` and runs named cases. `afwdev test --env-mode valgrind` wraps those binaries with `valgrind.suppress` (libunwind noise in `afw_os_backtrace` on a throw is suppressed). Standalone valgrind without that file can still report the noise; that is not an overread. Judge the probe by exit code and by the helper wrap. Recipe: handbook **Writing Tests**, [`c-probes.md`](c-probes.md). Error-object `backtrace` is `forced_safe` then NFC ([#206](https://github.com/afw-org/afw/issues/206)).
 
+**C probe compile: `AFW_DECLARE_INTERNAL` / leftover `*_internal.h`:** Core no longer installs `*_internal.h` and no longer defines `AFW_DECLARE_INTERNAL`. cmake `PUBLIC_HEADER` install is additive, so leftovers in `/usr/local/include/afw/` used to survive `--fulldev`. `--cdev` and `--fulldev` both enable `--install`; afwdev then prunes a denylist (internals, CMakeLists excludes, old generated public names, package `*_declare_helpers.h`) — not a wipe of the include dir. Another package’s public headers stay; if it still installed `*_internal.h` or `*_declare_helpers.h` into `include/afw`, reinstall that package. Probes that need a source-tree internal header still pass extra `-I` first. Gates: `src/afw_dev/tests/c_probe/` (`extra-include-wins`), `src/afw_dev/tests/build_profiles.py`. User-facing: `whats-new.md` *Upgrade hygiene*.
+
 ---
 
 ### Live stack (`afwfcgi` + nginx) and stale binaries

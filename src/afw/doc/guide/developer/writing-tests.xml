@@ -152,7 +152,12 @@ def run():
             <literal>libraries=("afwldap", "afw")</literal>. Headers and 
             libraries come from the install prefix, or from 
             <literal>AFW_INCLUDE_DIR</literal> and 
-            <literal>AFW_LIB_DIR</literal>.
+            <literal>AFW_LIB_DIR</literal>. Pass extra 
+            <literal>-I</literal> in <literal>extra_cflags</literal> 
+            when the probe needs a core-internal header from the source 
+            tree. Those flags are searched before the install include 
+            directory so a leftover <literal>*_internal.h</literal> in 
+            the prefix cannot win.
         </paragraph>
         <paragraph>
             Live examples (after you have the closet copy): 

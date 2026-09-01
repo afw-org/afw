@@ -109,7 +109,7 @@ def start_afwfcgi(
         log_fd.close()
         raise AfwfcgiHostError(
             "afwfcgi not found on PATH (install with "
-            "./afwdev build --cdev or --fulldev --install): {}".format(e)
+            "./afwdev build --cdev or --fulldev): {}".format(e)
         ) from e
     except Exception as e:
         log_fd.close()

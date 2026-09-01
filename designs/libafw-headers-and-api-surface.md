@@ -45,6 +45,7 @@ afw_internal.h    ← libafw .c only
 - **Default install = public + implementer surface:** transitive needs of `afw.h` plus generated `*_impl_declares.h` (and related impl helpers such as `afw_adapter_impl_index.h` used by in-tree adapters).
 - **Do not install:** core `*_internal.h` / `afw_internal.h`, generated register/bindings/const-objects glue (`*_function_bindings_internal.h`, etc.), `afw_strings_internal.h`, deprecated leftovers (`log_deprecated*`, `model_location`, `array_template`, any residual `declare_helpers`).
 - Filters live in `src/afw/CMakeLists.txt` (and generators omit `*_internal.h` from the public list).
+- **cmake `--install` does not delete** files dropped from `PUBLIC_HEADER` (additive). `--cdev` and `--fulldev` both enable `--install`; after that cmake install, afwdev prunes a **denylist** in the prefix include dir: `*_internal.h`, CMakeLists denylist names (`declare_helpers`, `log_deprecated*`, `model_location`, `array_template`, `skeleton_*`), old generated public names (`afw_function_bindings.h`, `afw_const_objects.h`, `afw_generated.h`), and package `*_declare_helpers.h`. Not a wipe: another package’s public headers in `include/afw` stay; if they still installed `*_internal.h` or `*_declare_helpers.h` there, those two globs remove them (reinstall that package). C probes also put extra `-I` (source-tree internals) before the install include dir. Code: `prune_leftover_installed_headers()` in `_afwdev/build/cmake.py`. Gate: `src/afw_dev/tests/build_profiles.py`.
 - Optional later: “dev headers” install if someone asks.
 - Monorepo builds still see full source includes at **build** time; filter applies to **install**.
 
@@ -166,3 +167,4 @@ Plain C (undecorated). Core: via `afw_internal.h`. Packages: package-private inc
 | 2026-08-12 | Stricter install excludes; `afw_runtime_register_core_value_accessors` → `runtime/afw_runtime_internal.h`; package header briefs package-private; whats-new declare_helpers **deprecated**. |
 | 2026-08-12 | Victory note for branch; three senses of “internal”; deferred structs / declare_helpers removal / optional nits. |
 | 2026-08-14 | Package `*_declare_helpers.h` no longer generated (#172). |
+| 2026-09-01 | afwdev `--cdev`/`--fulldev` `--install` prunes leftover include-dir names (denylist, not wipe). C probes search extra `-I` before the install include dir. |
