@@ -34,6 +34,63 @@ from _afwdev.common import msg, package, resources
 from _afwdev.build import js, cmake, docker
 from _afwdev.build.docs import docs
 
+_BUILD_TYPE_CONTEXTS = (
+    'cmake',
+    'docker',
+    'docs',
+    'js',
+)
+
+# --cdev and --fulldev both turn these on. --all does not.
+_BUILD_CONVENIENCE_SWITCHES = (
+    'clean',
+    'generate',
+    'install',
+)
+
+
+def apply_build_profile_flags(options):
+    """Enable flags implied by --cdev / --fulldev / --all / default cmake.
+
+    Both --cdev and --fulldev set --install (and --generate, --clean, -j).
+    --all only selects build contexts.
+    """
+
+    def _ensure_parallel_jobs():
+        if options.get('build_make_jobs') is None:
+            options['build_make_jobs'] = 0
+
+    # --fulldev: full package dev install profile (sibling of --cdev).
+    # All contexts + generate + clean + install + clang scan + parallel jobs.
+    if options.get('build_fulldev', False):
+        options['build_all'] = True
+        for build_convenience_switch in _BUILD_CONVENIENCE_SWITCHES:
+            options['build_' + build_convenience_switch] = True
+        options['build_scan'] = True
+        _ensure_parallel_jobs()
+
+    # --all sets all build type contexts (does not enable generate/install).
+    if options.get('build_all', False):
+        for build_type_context in _BUILD_TYPE_CONTEXTS:
+            options['build_' + build_type_context] = True
+
+    # --cdev sets convenience switches for C/Python day-to-day work.
+    if options.get('build_cdev', False):
+        for build_convenience_switch in _BUILD_CONVENIENCE_SWITCHES:
+            options['build_' + build_convenience_switch] = True
+        _ensure_parallel_jobs()
+
+    # Default context switch is --cmake if no other build context switches
+    # are specified.
+    none_set = True
+    for build_type_context in _BUILD_TYPE_CONTEXTS:
+        if options.get('build_' + build_type_context, False):
+            none_set = False
+            break
+    if none_set:
+        options['build_cmake'] = True
+
+
 ##
 # @brief The main entry point for the "build" subcommand
 # @details This routine is called during "afwdev build" in order to build
@@ -49,61 +106,13 @@ def run(options):
     if msg.is_verbose_mode() or msg.is_debug_mode():
         stdout_capture = None
 
-    # Build type contexts.
-    build_type_contexts = [
-        'cmake',
-        'docker',
-        'docs',
-        'js'
-    ]
-
-    # Convenience switches (not build contexts).
-    build_convenience_switches = [
-        'clean',
-        'generate',
-        'install'
-    ]
-
-    # Bare -j / --jobs with no N → build_make_jobs 0 → cmake --parallel.
-    def _ensure_parallel_jobs():
-        if options.get('build_make_jobs') is None:
-            options['build_make_jobs'] = 0
-
-    # --fulldev: full package dev install profile (sibling of --cdev).
-    # All contexts + generate + clean + install + clang scan + parallel jobs.
-    if options.get('build_fulldev', False):
-        options['build_all'] = True
-        for build_convenience_switch in build_convenience_switches:
-            options['build_' + build_convenience_switch] = True
-        options['build_scan'] = True
-        _ensure_parallel_jobs()
-
-    # --all sets all build type contexts (does not enable generate/install).
-    if options.get('build_all', False):
-        for build_type_context in build_type_contexts:
-            options['build_' + build_type_context] = True
-
-    # --cdev sets convenience switches for C/Python day-to-day work.
-    if options.get('build_cdev', False):
-        for build_convenience_switch in build_convenience_switches:
-            options['build_' + build_convenience_switch] = True
-        _ensure_parallel_jobs()
-
-    # Default context switch is --cmake if no other build context switches
-    # are specified.
-    none_set = True
-    for build_type_context in build_type_contexts:
-        if options.get('build_' + build_type_context, False):
-            none_set = False
-            break
-    if none_set:
-        options['build_cmake'] = True
+    apply_build_profile_flags(options)
 
 
     # Set build directories:
     options['build_directory_rpath'] = 'build/'
     options['build_directory'] = options['afw_package_dir_path'] + 'build/'
-    for build_type_context in build_type_contexts:
+    for build_type_context in _BUILD_TYPE_CONTEXTS:
         options['build_directory_rpath_' + build_type_context] = \
             options['build_directory_rpath'] + build_type_context + '/'
         options['build_directory_' + build_type_context] = \
@@ -111,7 +120,7 @@ def run(options):
 
     # Remove build directories for all specified build contexts. 
     if options.get('build_clean', False):
-        for build_type_context in build_type_contexts:
+        for build_type_context in _BUILD_TYPE_CONTEXTS:
             if options.get('build_' + build_type_context, False):
                 _build_directory = options['build_directory_' + build_type_context]
                 if os.path.exists(_build_directory):

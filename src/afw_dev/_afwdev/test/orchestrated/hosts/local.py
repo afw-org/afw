@@ -191,7 +191,7 @@ def run_afw_local(
     except FileNotFoundError as e:
         raise AfwLocalHostError(
             "afw not found on PATH (install with "
-            "./afwdev build --cdev or --fulldev --install): {}".format(e)
+            "./afwdev build --cdev or --fulldev): {}".format(e)
         ) from e
     except subprocess.TimeoutExpired as e:
         raise AfwLocalHostError(

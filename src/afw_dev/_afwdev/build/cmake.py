@@ -22,6 +22,103 @@ _CDEV_DEBUG_DEFINES = (
     'AFW_DEBUG_POOL',
 )
 
+
+def _cmake_install_prefix(options):
+    if options.get('build_prefix'):
+        return options.get('build_prefix')
+    cache = os.path.join(
+        options.get('afw_package_dir_path') or '',
+        'build', 'cmake', 'CMakeCache.txt')
+    if os.path.isfile(cache):
+        try:
+            with open(cache, encoding='utf-8', errors='replace') as f:
+                for line in f:
+                    if line.startswith('CMAKE_INSTALL_PREFIX:'):
+                        return line.split('=', 1)[1].strip()
+        except OSError:
+            pass
+    return '/usr/local'
+
+
+def installed_include_dir(options):
+    """Prefix include dir cmake --install writes public headers into."""
+    prefix = _cmake_install_prefix(options)
+    subdir = 'afw'
+    try:
+        afw_package = package.get_afw_package(options)
+        subdir = afw_package.get('installPackageSubdir') or subdir
+    except Exception:
+        pass
+    if subdir:
+        return os.path.join(prefix, 'include', subdir)
+    return os.path.join(prefix, 'include')
+
+
+# Basenames cmake used to install that are no longer PUBLIC_HEADER.
+# Keep in sync with src/afw/CMakeLists.txt FILTER excludes and the old
+# generated names in whats-new.md (Upgrade hygiene).
+_LEFTOVER_HEADER_EXACT = frozenset((
+    'afw_declare_helpers.h',
+    'afw_model_location.h',
+    'afw_array_template.h',
+    # Renamed to *_internal.h; the old public names can still sit in the prefix.
+    'afw_function_bindings.h',
+    'afw_const_objects.h',
+    'afw_generated.h',
+))
+
+
+def is_leftover_installed_header(name):
+    """True if this basename should not remain in the install include dir."""
+    if not name or not name.endswith('.h'):
+        return False
+    if name.endswith('_internal.h'):
+        return True
+    if name in _LEFTOVER_HEADER_EXACT:
+        return True
+    if name.startswith('afw_log_deprecated'):
+        return True
+    if name.startswith('skeleton_'):
+        return True
+    if name.endswith('_declare_helpers.h'):
+        return True
+    return False
+
+
+def prune_leftover_installed_headers(include_dir, sudo=False):
+    """Remove leftover headers cmake install no longer ships.
+
+    PUBLIC_HEADER install is additive: files dropped from the public list
+    stay in the prefix. --cdev/--fulldev both --install; this makes that
+    install match the current public header set.
+    """
+    if not include_dir or not os.path.isdir(include_dir):
+        return []
+    try:
+        names = os.listdir(include_dir)
+    except OSError:
+        return []
+    removed = []
+    for name in names:
+        if not is_leftover_installed_header(name):
+            continue
+        path = os.path.join(include_dir, name)
+        msg.highlighted_info('Removing leftover installed header ' + path)
+        if sudo:
+            rc = subprocess.run(['sudo', 'rm', '-f', path])
+            if rc.returncode == 0:
+                removed.append(path)
+            else:
+                msg.error('Could not remove leftover ' + path)
+            continue
+        try:
+            os.remove(path)
+            removed.append(path)
+        except OSError as e:
+            msg.error('Could not remove leftover ' + path + ': ' + str(e))
+    return removed
+
+
 ##
 # @brief The main entry point for the "cmake" build.
 # @param options The options dictionary.
@@ -143,3 +240,6 @@ def build(options):
             msg.error(rc.stderr.decode(sys.stderr.encoding))
             msg.error("If the problem is a permission denied error and you can use sudo, try running with the --sudo parameter specified on afwdev. This will only use sudo for the install step.")
             msg.error_exit("CMake install failed " + str(rc))
+        prune_leftover_installed_headers(
+            installed_include_dir(options),
+            sudo=bool(options.get('build_sudo')))

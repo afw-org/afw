@@ -37,7 +37,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 
 | Change this | To |
 |-------------|----|
-| Old installed headers / mixed binaries | Rebuild once. Prune stale names under the include prefix (`afw_*_internal.h`, old `afw_function_bindings.h`, `afw_declare_helpers.h`, …). |
+| Leftover headers in `/usr/local/include/afw/` after a rebuild | `./afwdev build --cdev` or `--fulldev` (both **`--install`**). CMake does not delete dropped headers; afwdev then removes a leftover list (internals, old generated names, deprecated leftovers). Another package’s **public** headers in that dir stay. If that package still installed `*_internal.h` or `*_declare_helpers.h` there, reinstall **it**. [Upgrade hygiene](#upgrade-hygiene) |
 | `#include` of core internals or package `*_declare_helpers.h` | `#include "afw.h"`. Core **`AFW_DECLARE` / `AFW_DEFINE` / `AFW_BEGIN_DECLARES`** live in **`afw_common.h`**. Package `*_declare_helpers.h` is **not generated**. |
 | Type name `afw_iterator` as the old opaque cursor | That name is the new **keyless** iterator. Legacy cursor is **`afw_iterator_old`**. [#153](#utf-8-code-point-sequences-issue-153) |
 | `afw_utf8_create` / `create_copy` / `from_utf8_z` / `from_raw` | **`create` always copies** (old `create_copy`). Point without copy is **`create_no_copy`**. `from_utf8_z` → **`utf8_z_to_utf8`** (copy) or **`utf8_z_as_utf8`** (point). `from_raw` / `as_raw` → **`from_memory` / `as_memory`**. Env/request names that are not UTF-8 are **`^` + hex + `^`**, not `_NONUTF8_` + whole-name hex. [UTF-8 doors](#utf-8-create-set-and-forced_safe) |
@@ -865,7 +865,7 @@ Goal: move libafw toward a **release-ready supported C surface** — what you ma
 
 - Core export macros live in hand-written **`afw_common.h`** (via `afw.h` / `afw_minimal.h`). Core **no longer generates** `afw_declare_helpers.h`.
 - In-tree core uses **plain C** for former “internal declare” sites.
-- Per-package **`*_declare_helpers.h` is not generated**. Prefer ordinary C (`AFW_DECLARE` / `AFW_DEFINE` in `afw_common.h`). If an old install still has those headers, prune them.
+- Per-package **`*_declare_helpers.h` is not generated**. Prefer ordinary C (`AFW_DECLARE` / `AFW_DEFINE` in `afw_common.h`). `--cdev` / `--fulldev` remove leftover copies from the include prefix (see [Upgrade hygiene](#upgrade-hygiene)).
 
 ### Also on this rebuild line (ABI / headers)
 
@@ -880,7 +880,15 @@ These landed for product reasons too, but share the **same rebuild** for C consu
 
 ### Upgrade hygiene
 
-CMake install does **not** delete previously installed files. After upgrading, prune stale names under your include prefix (e.g. `/usr/local/include/afw/`) such as `afw_*_internal.h`, old `afw_function_bindings.h` / `afw_const_objects.h` / `afw_generated.h`, and `afw_declare_helpers.h` if present.
+`--cdev` and `--fulldev` both run **`--install`**. That refreshes **libafw**, **afwdev**, and the current **public** headers. It does **not** by itself delete a header that dropped off the public list — CMake `PUBLIC_HEADER` install is additive.
+
+After that cmake install, **afwdev** removes leftover names under the include prefix (usually `/usr/local/include/afw/`):
+
+- `*_internal.h`
+- old generated public names: `afw_function_bindings.h`, `afw_const_objects.h`, `afw_generated.h`
+- denylist leftovers: `afw_declare_helpers.h`, `afw_log_deprecated*`, `afw_model_location.h`, `afw_array_template.h`, `skeleton_*`, package `*_declare_helpers.h`
+
+That is a **denylist**, not a wipe of the include directory. A header from another repository that is **not** on the list stays. If that other package still shipped `*_internal.h` or `*_declare_helpers.h` into the same `include/afw` directory, those files are removed — reinstall **that** package if you still need them. DSOs are not touched; anything that **links** `libafw` still follows the [C rebuild rule](#c-programmers).
 
 In-tree monorepo builds still see full source includes at **build** time. Maintainer notes: [`designs/libafw-headers-and-api-surface.md`](designs/libafw-headers-and-api-surface.md). Related: [C builders / afwdev](#c-api-docs-and-full-package-builds-issue-1) ([#1](https://github.com/afw-org/afw/issues/1)).
 
