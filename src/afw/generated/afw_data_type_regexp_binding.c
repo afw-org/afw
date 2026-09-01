@@ -90,7 +90,7 @@ impl_afw_value_permanent_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* unmanaged regexp: optional_release NULL; */
-/* clone_or_reference clones the whole value into p. */
+/* clone_or_reference creates a managed holdable in xctx->p. */
 #define AFW_IMPLEMENTATION_ID "regexp"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_regexp_inf
@@ -123,8 +123,8 @@ impl_afw_value_permanent_get_reference(
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
-/* managed_slice regexp: RC on containing managed value; */
-/* release frees slice header and applies containing RC. */
+/* managed_slice regexp: own RC; holds containing; */
+/* last release frees slice header via xctx->p. */
 #define AFW_IMPLEMENTATION_ID "managed_slice_regexp"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_slice_regexp_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_slice_optional_release
@@ -346,7 +346,6 @@ afw_value_regexp_create_managed_slice(
     const afw_value_t *containing_value,
     afw_size_t offset,
     afw_size_t len,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_regexp_managed_t *containing;
@@ -377,21 +376,14 @@ afw_value_regexp_create_managed_slice(
         AFW_THROW_ERROR_Z(general,
             "managed slice offset/len out of range", xctx);
     }
-    if (!p) {
-        p = xctx->p;
-    }
-    if (!p) {
-        AFW_THROW_ERROR_Z(general,
-            "pool required", xctx);
-    }
-    v = afw_pool_calloc(p, sizeof(afw_value_regexp_managed_slice_t), xctx);
+    v = afw_pool_calloc(xctx->p, sizeof(afw_value_regexp_managed_slice_t), xctx);
     v->inf = &afw_value_managed_slice_regexp_inf;
     v->internal.s = base->s + offset;
     v->internal.len = len;
     v->containing_value = containing;
     v->reference_count = 1;
-    v->p = p;
-    afw_value_add_reference(&containing->pub, p, xctx);
+    afw_value_add_reference(&containing->pub, xctx->p,
+        xctx);
     return &v->pub;
 }
 
@@ -563,10 +555,8 @@ impl_afw_value_managed_slice_optional_release(
         if (self->containing_value) {
             afw_value_release(&self->containing_value->pub, xctx);
         }
-        if (self->p) {
-            afw_pool_free_memory(self->p, self,
-                sizeof(afw_value_regexp_managed_slice_t), xctx);
-        }
+        afw_pool_free_memory(xctx->p, self,
+            sizeof(afw_value_regexp_managed_slice_t), xctx);
     }
 }
 

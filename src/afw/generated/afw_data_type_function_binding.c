@@ -298,7 +298,6 @@ afw_value_function_create_managed(
     v->inf = &afw_value_managed_function_inf;
     v->internal = internal;
     v->reference_count = 1;
-    v->reference_count = 1;
 
     return &v->pub;
 }

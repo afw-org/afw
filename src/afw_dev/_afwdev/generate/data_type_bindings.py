@@ -29,9 +29,10 @@
 #                 xctx->p. Unmanaged scalar clone_or_reference calls
 #                 create_managed.
 #   managed_slice View into a containing managed utf8/memory value. Holds the
-#                 containing string (get_reference at create). Slice starts at
-#                 1; clone_or_reference bumps the slice; last release of the
-#                 slice releases the containing value and frees the slice.
+#                 containing string (get_reference at create). Header in
+#                 xctx->p. Slice starts at 1; get_reference bumps the
+#                 slice; last release of the slice releases containing
+#                 and free_memorys the slice header via xctx->p.
 #   unmanaged     Start-at-0 temp. No release unless clone_or_reference.
 #                 Object/array clone_or_reference holds a memory face.
 #
@@ -97,16 +98,6 @@ def _managed_free_size_expr(type_id, ctype, var='self'):
                 '_managed_t) + ' + var + '->internal.size')
     return 'sizeof(afw_value_' + type_id + '_managed_t)'
 
-
-def _write_require_p(fd):
-    """Fallback to xctx->p; throw if still NULL so clang scan sees a non-null p."""
-    fd.write('    if (!p) {\n')
-    fd.write('        p = xctx->p;\n')
-    fd.write('    }\n')
-    fd.write('    if (!p) {\n')
-    fd.write('        AFW_THROW_ERROR_Z(general,\n')
-    fd.write('            "pool required", xctx);\n')
-    fd.write('    }\n')
 
 def write_typedefs_h_section(fd, prefix, obj):
     id = obj['_meta_']['objectId']
@@ -231,8 +222,9 @@ def write_h_section(fd, prefix, obj):
             fd.write(' * @brief Managed slice value inf for data type ' + id + '.\n')
             fd.write(' *\n')
             fd.write(' * Slice of a managed value: get_reference containing at create.\n')
-            fd.write(' * Slice starts at 1. clone_or_reference bumps the slice. Last\n')
-            fd.write(' * release of the slice releases containing and frees the slice.\n')
+            fd.write(' * Header in xctx->p. Slice starts at 1. get_reference bumps\n')
+            fd.write(' * the slice. Last release of the slice releases containing\n')
+            fd.write(' * and free_memorys the slice header via xctx->p.\n')
             fd.write(' */\n')
             fd.write(declare_data + '(afw_value_inf_t)\n')
             fd.write('afw_value_managed_slice_' + id + '_inf;\n')
@@ -364,9 +356,6 @@ def write_h_section(fd, prefix, obj):
         fd.write('\n')
         fd.write('    /** @brief  Reference count for this slice. */\n')
         fd.write('    afw_size_t reference_count;\n')
-        fd.write('\n')
-        fd.write('    /** @brief  Pool used to allocate this slice header. */\n')
-        fd.write('    const afw_pool_t *p;\n')
         fd.write('};\n')
 
     if not special:
@@ -459,14 +448,13 @@ def write_h_section(fd, prefix, obj):
             fd.write(' * @return Created const afw_value_t * (managed_slice inf).\n')
             fd.write(' *\n')
             fd.write(' * View of a managed string. get_reference on containing. Slice starts\n')
-            fd.write(' * at 1 (must release). Header allocated in p.\n')
+            fd.write(' * at 1 (must release). Header allocated in xctx->p.\n')
             fd.write(' */\n')
             fd.write(declare + '(const afw_value_t *)\n')
             fd.write(_managed_slice_fn(id) + '(\n')
             fd.write('    const afw_value_t *containing_value,\n')
             fd.write('    afw_size_t offset,\n')
             fd.write('    afw_size_t len,\n')
-            fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx);\n')
             fd.write('#define afw_value_create_managed_' + id + '_slice ' +
                      _managed_slice_fn(id) + '\n')
@@ -480,14 +468,13 @@ def write_h_section(fd, prefix, obj):
             fd.write(' * @return Created const afw_value_t * (managed_slice inf).\n')
             fd.write(' *\n')
             fd.write(' * View of a managed memory value. get_reference on containing. Slice\n')
-            fd.write(' * starts at 1 (must release). Header allocated in p.\n')
+            fd.write(' * starts at 1 (must release). Header allocated in xctx->p.\n')
             fd.write(' */\n')
             fd.write(declare + '(const afw_value_t *)\n')
             fd.write(_managed_slice_fn(id) + '(\n')
             fd.write('    const afw_value_t *containing_value,\n')
             fd.write('    afw_size_t offset,\n')
             fd.write('    afw_size_t size,\n')
-            fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx);\n')
             fd.write('#define afw_value_create_managed_' + id + '_slice ' +
                      _managed_slice_fn(id) + '\n')
@@ -896,7 +883,7 @@ def write_c_section(fd, prefix, obj):
         else:
             fd.write('/* unmanaged ' + id + ': optional_release NULL; */\n')
             if obj.get('scalar', False) == True:
-                fd.write('/* clone_or_reference clones the whole value into p. */\n')
+                fd.write('/* clone_or_reference creates a managed holdable in xctx->p. */\n')
             else:
                 fd.write('/* clone_or_reference returns the same instance '
                          '(pool lifetime). */\n')
@@ -942,8 +929,8 @@ def write_c_section(fd, prefix, obj):
 
         if _supports_managed_slice(ctype):
             fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
-            fd.write('/* managed_slice ' + id + ': RC on containing managed value; */\n')
-            fd.write('/* release frees slice header and applies containing RC. */\n')
+            fd.write('/* managed_slice ' + id + ': own RC; holds containing; */\n')
+            fd.write('/* last release frees slice header via xctx->p. */\n')
             fd.write('#define AFW_IMPLEMENTATION_ID "managed_slice_' + id + '"\n')
             fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_slice_' + id + '_inf\n')
             fd.write('#define impl_afw_value_optional_release '
@@ -1382,8 +1369,6 @@ def write_c_section(fd, prefix, obj):
                 if id == 'object' or id == 'array':
                     fd.write('    /* Container hold is on object/array, not value RC. */\n')
                     fd.write('    v->reference_count = 0;\n')
-                else:
-                    fd.write('    v->reference_count = 1;\n')
             else:
                 fd.write('\n')
                 if _scalar_holdable_create(id):
@@ -1412,7 +1397,6 @@ def write_c_section(fd, prefix, obj):
             fd.write('    const afw_value_t *containing_value,\n')
             fd.write('    afw_size_t offset,\n')
             fd.write('    afw_size_t len,\n')
-            fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx)\n')
             fd.write('{\n')
             fd.write('    const afw_value_' + id + '_managed_t *containing;\n')
@@ -1443,16 +1427,15 @@ def write_c_section(fd, prefix, obj):
             fd.write('        AFW_THROW_ERROR_Z(general,\n')
             fd.write('            "managed slice offset/len out of range", xctx);\n')
             fd.write('    }\n')
-            _write_require_p(fd)
-            fd.write('    v = afw_pool_calloc(p, sizeof(afw_value_' + id +
+            fd.write('    v = afw_pool_calloc(xctx->p, sizeof(afw_value_' + id +
                      '_managed_slice_t), xctx);\n')
             fd.write('    v->inf = &afw_value_managed_slice_' + id + '_inf;\n')
             fd.write('    v->internal.s = base->s + offset;\n')
             fd.write('    v->internal.len = len;\n')
             fd.write('    v->containing_value = containing;\n')
             fd.write('    v->reference_count = 1;\n')
-            fd.write('    v->p = p;\n')
-            fd.write('    afw_value_add_reference(&containing->pub, p, xctx);\n')
+            fd.write('    afw_value_add_reference(&containing->pub, xctx->p,\n')
+            fd.write('        xctx);\n')
             fd.write('    return &v->pub;\n')
             fd.write('}\n')
         elif ctype == 'afw_memory_t':
@@ -1462,7 +1445,6 @@ def write_c_section(fd, prefix, obj):
             fd.write('    const afw_value_t *containing_value,\n')
             fd.write('    afw_size_t offset,\n')
             fd.write('    afw_size_t size,\n')
-            fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx)\n')
             fd.write('{\n')
             fd.write('    const afw_value_' + id + '_managed_t *containing;\n')
@@ -1493,16 +1475,15 @@ def write_c_section(fd, prefix, obj):
             fd.write('        AFW_THROW_ERROR_Z(general,\n')
             fd.write('            "managed slice offset/size out of range", xctx);\n')
             fd.write('    }\n')
-            _write_require_p(fd)
-            fd.write('    v = afw_pool_calloc(p, sizeof(afw_value_' + id +
+            fd.write('    v = afw_pool_calloc(xctx->p, sizeof(afw_value_' + id +
                      '_managed_slice_t), xctx);\n')
             fd.write('    v->inf = &afw_value_managed_slice_' + id + '_inf;\n')
             fd.write('    v->internal.ptr = base->ptr + offset;\n')
             fd.write('    v->internal.size = size;\n')
             fd.write('    v->containing_value = containing;\n')
             fd.write('    v->reference_count = 1;\n')
-            fd.write('    v->p = p;\n')
-            fd.write('    afw_value_add_reference(&containing->pub, p, xctx);\n')
+            fd.write('    afw_value_add_reference(&containing->pub, xctx->p,\n')
+            fd.write('        xctx);\n')
             fd.write('    return &v->pub;\n')
             fd.write('}\n')
 
@@ -1969,11 +1950,9 @@ def write_c_section(fd, prefix, obj):
             fd.write('        if (self->containing_value) {\n')
             fd.write('            afw_value_release(&self->containing_value->pub, xctx);\n')
             fd.write('        }\n')
-            fd.write('        if (self->p) {\n')
-            fd.write('            afw_pool_free_memory(self->p, self,\n')
-            fd.write('                sizeof(afw_value_' + id +
+            fd.write('        afw_pool_free_memory(xctx->p, self,\n')
+            fd.write('            sizeof(afw_value_' + id +
                      '_managed_slice_t), xctx);\n')
-            fd.write('        }\n')
             fd.write('    }\n')
             fd.write('}\n')
             fd.write('\n')

@@ -76,7 +76,7 @@ impl_afw_value_permanent_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* unmanaged double: optional_release NULL; */
-/* clone_or_reference clones the whole value into p. */
+/* clone_or_reference creates a managed holdable in xctx->p. */
 #define AFW_IMPLEMENTATION_ID "double"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_double_inf
@@ -297,7 +297,6 @@ afw_value_double_create_managed(
         sizeof(afw_value_double_managed_t), xctx);
     v->inf = &afw_value_managed_double_inf;
     v->internal = internal;
-    v->reference_count = 1;
     v->reference_count = 1;
 
     return &v->pub;

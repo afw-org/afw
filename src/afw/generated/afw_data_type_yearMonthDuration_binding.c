@@ -76,7 +76,7 @@ impl_afw_value_permanent_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* unmanaged yearMonthDuration: optional_release NULL; */
-/* clone_or_reference clones the whole value into p. */
+/* clone_or_reference creates a managed holdable in xctx->p. */
 #define AFW_IMPLEMENTATION_ID "yearMonthDuration"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_yearMonthDuration_inf

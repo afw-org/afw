@@ -83,8 +83,9 @@ afw_value_managed_template_inf;
  * @brief Managed slice value inf for data type template.
  *
  * Slice of a managed value: get_reference containing at create.
- * Slice starts at 1. clone_or_reference bumps the slice. Last
- * release of the slice releases containing and frees the slice.
+ * Header in xctx->p. Slice starts at 1. get_reference bumps
+ * the slice. Last release of the slice releases containing
+ * and free_memorys the slice header via xctx->p.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_slice_template_inf;
@@ -220,9 +221,6 @@ struct afw_value_template_managed_slice_s {
 
     /** @brief  Reference count for this slice. */
     afw_size_t reference_count;
-
-    /** @brief  Pool used to allocate this slice header. */
-    const afw_pool_t *p;
 };
 
 /**
@@ -275,14 +273,13 @@ afw_value_template_create_managed(
  * @return Created const afw_value_t * (managed_slice inf).
  *
  * View of a managed string. get_reference on containing. Slice starts
- * at 1 (must release). Header allocated in p.
+ * at 1 (must release). Header allocated in xctx->p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_template_create_managed_slice(
     const afw_value_t *containing_value,
     afw_size_t offset,
     afw_size_t len,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 #define afw_value_create_managed_template_slice afw_value_template_create_managed_slice
 
