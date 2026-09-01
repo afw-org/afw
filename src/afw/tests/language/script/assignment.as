@@ -193,3 +193,36 @@ const src = "let x; let y; x = y = 4; return x + y;";
 const d1 = decompile(compile<script>(script(src)));
 assert(evaluate(compile<script>(script(d1))) === 8);
 return 0;
+
+//?
+//? test: string-self-double
+//? description: s = s + s then substring onto self (issue #275 slot_store memcpy overlap)
+//? expect: 0
+//? source: ...
+
+const n = 50;
+let s = "A";
+while (length(s) < n) {
+    s += s;
+}
+s = substring(s, 0, n);
+assert(length(s) === n);
+assert(s === "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+return 0;
+
+//?
+//? test: string-self-double-large
+//? description: same assign onto self at 20000 bytes (curl upload_stream size)
+//? expect: 0
+//? source: ...
+
+const n = 20000;
+let s = "A";
+while (length(s) < n) {
+    s += s;
+}
+s = substring(s, 0, n);
+assert(length(s) === n);
+assert(s[0] === "A");
+assert(s[n - 1] === "A");
+return 0;

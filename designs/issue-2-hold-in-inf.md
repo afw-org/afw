@@ -53,7 +53,7 @@ No new **literal** inf. Constant `{a:1}` / `[1,2]` stay fully evaluated unmanage
 
 `property_get` / `variable_get` default is the evaluated occupant (**identity**). No `isolate_mutable_default` in the model. Inline `{ }` is isolated because it is still a raw bag when assignable runs.
 
-`slot_store` = `release` occupant + store `get_assignable_value(incoming)`. Same-pointer skip stays. `let y = x` shares the assignable face.
+`slot_store` = `get_assignable_value(incoming)` **then** `release` occupant **then** store. Same-pointer skip stays. Clone/hold first so incoming that still points at the occupant’s bytes (`s = s + s`, substring onto self) is not memcpy’d into a reused pool block (issue #275, valgrind `Overlap`). `let y = x` shares the assignable face.
 
 **Place (LHS) `reference_by_key`:** `get_assignable_value(evaluate(aggregate))`, set, `release`. `{}.x = 1` mints a throwaway assignable face, set, `release` tears it down.
 
