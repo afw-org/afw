@@ -20,6 +20,7 @@ import subprocess
 from _afwdev.common import msg, nfc, resources
 from _afwdev.common.errors import AfwdevProcessError, wrap_exception
 from _afwdev.test.common import format_abnormal_process_exit
+from _afwdev.test.valgrind_report import valgrind_error_message
 
 ##
 # @brief Runs the tests under the afw command line tool and valgrind.
@@ -115,6 +116,6 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
 
     # if the stderr stream reports valgrind errors, then wrap them
     if stderr != None and stderr.find("<error>") > -1:
-        error = AfwdevProcessError("Valgrind Error(s) detected.")
+        error = AfwdevProcessError(valgrind_error_message(stderr))
 
     return response, error, stderr

@@ -34,6 +34,7 @@ import subprocess
 import tempfile
 
 from _afwdev.test import context as test_context
+from _afwdev.test.valgrind_report import valgrind_error_message
 
 __invented_by__ = "Grok (xAI)"
 __invented_for__ = "https://github.com/afw-org/afw/issues/207"
@@ -200,7 +201,13 @@ def _run_probe_case(probe, name, timeout, work_dir, use_valgrind):
     if r.returncode != 0:
         return r.returncode, err or "exit {}".format(r.returncode)
     if use_valgrind and _valgrind_xml_has_error(xml_path):
-        return 1, "Valgrind Error(s) detected."
+        xml_text = ""
+        try:
+            with open(xml_path, "r", encoding="utf-8", errors="replace") as f:
+                xml_text = f.read()
+        except OSError:
+            xml_text = ""
+        return 1, valgrind_error_message(xml_text)
     return 0, None
 
 

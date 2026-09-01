@@ -27,7 +27,7 @@
 #
 # Test subcommand optionNames (see cli.info _info_test_*):
 #   test_tags, test_jobs, test-pattern (hyphenated historical key),
-#   errors, show_all, list, output, mode, watch, bail, javascript, tmpdir
+#   errors, show_all, error_detail, list, output, mode, watch, bail, javascript, tmpdir
 #   (mode == 'valgrind' is also read by _afwdev.test.c_probe)
 #
 # prime-test-c-probe optionNames: probe_path
