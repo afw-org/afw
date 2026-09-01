@@ -1440,3 +1440,29 @@ afw_pool_create_as_managed_p(
     ((afw_pool_t *)p)->managed_p = p;
     return p;
 }
+
+
+/* Release the value registered with afw_pool_release_value_at_cleanup(). */
+static void
+impl_release_value_at_cleanup(
+    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+    afw_value_release((const afw_value_t *)data, xctx);
+}
+
+
+/* Release a value when a pool is destroyed. */
+AFW_DEFINE(void)
+afw_pool_release_value_at_cleanup(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!value) {
+        return;
+    }
+    afw_pool_register_cleanup_before(p, (void *)value, NULL,
+        impl_release_value_at_cleanup, xctx);
+}
