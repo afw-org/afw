@@ -6,6 +6,7 @@ afwdev C-probe helper: compile, named cases, valgrind wrap.
 
 import os
 import shutil
+import tempfile
 
 from _afwdev.test.c_probe import run_c_probe
 
@@ -81,6 +82,43 @@ def run():
         "skip": False,
         "error": None if compile_one.get("passed") is False else (
             compile_one.get("error") or "expected compile to fail"),
+    })
+
+    extra_include = {"tests": []}
+    stale_dir = tempfile.mkdtemp(prefix="afw_c_probe_stale_")
+    good_dir = tempfile.mkdtemp(prefix="afw_c_probe_good_")
+    prev_include = os.environ.get("AFW_INCLUDE_DIR")
+    try:
+        with open(os.path.join(stale_dir, "override_marker.h"), "w",
+                  encoding="utf-8") as f:
+            f.write("#error stale installed header\n")
+        with open(os.path.join(good_dir, "override_marker.h"), "w",
+                  encoding="utf-8") as f:
+            f.write("#define MARKER 1\n")
+        os.environ["AFW_INCLUDE_DIR"] = stale_dir
+        extra_include = run_c_probe(
+            os.path.join(_FIXTURES, "extra_include_probe.c"),
+            "extra -I before install include",
+            [("ok", "source-tree -I wins over leftover install header")],
+            extra_cflags=("-I", good_dir),
+            libraries=(),
+            valgrind=False,
+        )
+    finally:
+        if prev_include is None:
+            os.environ.pop("AFW_INCLUDE_DIR", None)
+        else:
+            os.environ["AFW_INCLUDE_DIR"] = prev_include
+        shutil.rmtree(stale_dir, ignore_errors=True)
+        shutil.rmtree(good_dir, ignore_errors=True)
+    extra_one = (extra_include.get("tests") or [{}])[0]
+    tests.append({
+        "test": "extra-include-wins",
+        "description":
+            "extra -I is searched before the install include dir",
+        "passed": extra_one.get("passed") is True,
+        "skip": False,
+        "error": extra_one.get("error"),
     })
 
     missing_src = run_c_probe(

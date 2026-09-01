@@ -45,6 +45,7 @@ afw_internal.h    ← libafw .c only
 - **Default install = public + implementer surface:** transitive needs of `afw.h` plus generated `*_impl_declares.h` (and related impl helpers such as `afw_adapter_impl_index.h` used by in-tree adapters).
 - **Do not install:** core `*_internal.h` / `afw_internal.h`, generated register/bindings/const-objects glue (`*_function_bindings_internal.h`, etc.), `afw_strings_internal.h`, deprecated leftovers (`log_deprecated*`, `model_location`, `array_template`, any residual `declare_helpers`).
 - Filters live in `src/afw/CMakeLists.txt` (and generators omit `*_internal.h` from the public list).
+- **cmake install does not delete** a previously installed `*_internal.h`. A leftover in the prefix can still be picked up if that `-I` comes first. C probes put extra `-I` (source-tree internals) before the install include dir.
 - Optional later: “dev headers” install if someone asks.
 - Monorepo builds still see full source includes at **build** time; filter applies to **install**.
 

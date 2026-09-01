@@ -8,7 +8,6 @@
 
 #include "afw.h"
 #include "afw_pool_internal.h"
-#include "afw_pool_internal.h"
 
 #include <stdio.h>
 #include <string.h>

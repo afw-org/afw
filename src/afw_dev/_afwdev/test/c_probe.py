@@ -102,13 +102,15 @@ def compile_c_probe(
     """
     include_afw, libdir = _include_and_libdir()
     cc = os.environ.get("CC", "cc")
-    cmd = [
-        cc, "-O0", "-g",
-        "-I", include_afw,
-    ]
-    cmd.extend(_apr_includes())
+    cmd = [cc, "-O0", "-g"]
+    # Extra -I must precede the install include dir. Core no longer
+    # installs *_internal.h, but cmake install does not delete a leftover
+    # copy in the prefix. pool_heap and similar probes pass -I to the
+    # source-tree internal header; that path has to win.
     if extra_cflags:
         cmd.extend(list(extra_cflags))
+    cmd.extend(["-I", include_afw])
+    cmd.extend(_apr_includes())
     cmd.extend([
         "-o", dest, source,
         "-L", libdir, "-Wl,-rpath," + libdir,
@@ -220,7 +222,10 @@ def run_c_probe(
     @param cases Sequence of (name, description) pairs. Each name is
                  passed as argv[1]; exit 0 is pass.
     @param libraries Linker libraries, default ("afw",).
-    @param extra_cflags Optional extra compiler flags.
+    @param extra_cflags Optional extra compiler flags. Extra -I
+                        directories are searched before the install
+                        include dir so a leftover core *_internal.h in
+                        the prefix cannot win.
     @param extra_ldflags Optional extra linker flags.
     @param timeout Seconds per case. Default 60, or 300 under valgrind.
     @param valgrind True/False to force wrap. None follows --env-mode.

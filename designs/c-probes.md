@@ -31,7 +31,7 @@ def run():
     )
 ```
 
-Extra DSOs: `libraries=("afwldap", "afw")`. Paths: `AFW_INCLUDE_DIR` / `AFW_LIB_DIR`, else `/usr/local/include/afw` and `/usr/local/lib/afw`.
+Extra DSOs: `libraries=("afwldap", "afw")`. Paths: `AFW_INCLUDE_DIR` / `AFW_LIB_DIR`, else `/usr/local/include/afw` and `/usr/local/lib/afw`. Extra `-I` in `extra_cflags` is searched **before** that install include dir so a leftover core `*_internal.h` in the prefix (cmake install does not delete files that dropped off the public header list) cannot win over a source-tree internal header. `pool_heap` relies on this.
 
 Start with `afwdev prime-test-c-probe <path>` (cwd-relative or absolute, must be a leaf under `tests/` or `tests-extra/`). Closet source: [`src/afw_dev/_resources/closet/c_probe/`](../src/afw_dev/_resources/closet/c_probe/). Fill the marked blocks.
 
