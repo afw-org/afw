@@ -289,25 +289,15 @@ afw_value_double_allocate(const afw_pool_t *p, afw_xctx_t *xctx)
 AFW_DEFINE(const afw_value_t *)
 afw_value_double_create_managed(
     double internal,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_value_double_managed_t *v;
 
-    if (!p) {
-        p = xctx->p;
-    }
-    if (!p) {
-        AFW_THROW_ERROR_Z(general,
-            "pool required", xctx);
-    }
-
-    v = afw_pool_calloc(p,
+    v = afw_pool_calloc(xctx->p,
         sizeof(afw_value_double_managed_t), xctx);
     v->inf = &afw_value_managed_double_inf;
     v->internal = internal;
     v->reference_count = 1;
-    v->p = p;
     v->reference_count = 1;
 
     return &v->pub;
@@ -429,8 +419,8 @@ impl_afw_value_managed_optional_release(
         return;
     }
     self->reference_count--;
-    if (self->reference_count == 0 && self->p) {
-        afw_pool_free_memory(self->p, self,
+    if (self->reference_count == 0) {
+        afw_pool_free_memory(xctx->p, self,
             sizeof(afw_value_double_managed_t), xctx);
     }
 }
@@ -445,11 +435,9 @@ impl_afw_value_get_reference(
     const afw_value_double_t *self =
         (const afw_value_double_t *)instance;
 
-    if (!p) {
-        p = xctx->p;
-    }
+    (void)p;
     return afw_value_double_create_managed(
-        self->internal, p, xctx);
+        self->internal, xctx);
 }
 
 
@@ -463,11 +451,8 @@ impl_afw_value_managed_get_reference(
     afw_value_double_managed_t *self =
         (afw_value_double_managed_t *)instance;
 
-    /* Escape copy if dest pool is not this header's pool. */
-    if (p && self->p && p != self->p) {
-        return afw_value_double_create_managed(
-            self->internal, p, xctx);
-    }
+    (void)p;
+    (void)xctx;
     self->reference_count++;
     return instance;
 }

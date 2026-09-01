@@ -421,9 +421,6 @@ impl_afw_value_get_reference(
     const afw_value_boolean_t *self =
         (const afw_value_boolean_t *)instance;
 
-    if (!p) {
-        p = xctx->p;
-    }
     (void)p;
     return afw_value_for_boolean(self->internal);
 }
@@ -439,6 +436,8 @@ impl_afw_value_managed_get_reference(
     afw_value_boolean_managed_t *self =
         (afw_value_boolean_managed_t *)instance;
 
+    (void)p;
+    (void)xctx;
     self->reference_count++;
     return instance;
 }

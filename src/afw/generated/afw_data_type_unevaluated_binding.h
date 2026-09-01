@@ -63,7 +63,7 @@ afw_data_type_unevaluated;
  * @brief Unmanaged evaluated value inf for data type unevaluated.
  *
  * Lifetime is the containing pool until clone_or_reference.
- * Scalar clone_or_reference creates a managed holdable in p.
+ * Scalar clone_or_reference creates a managed holdable in xctx->p.
  * Object/array clone_or_reference holds a memory face.
  * optional_release is NULL on unmanaged scalars.
  */
@@ -73,8 +73,8 @@ afw_value_unmanaged_unevaluated_inf;
 /**
  * @brief Managed evaluated value inf for data type unevaluated.
  *
- * Start-at-1 holdable clone in p (must release). clone_or_reference
- * bumps. Last release frees via stored p.
+ * Start-at-1 holdable clone in xctx->p (must release).
+ * clone_or_reference bumps. Last release frees via xctx->p.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_unevaluated_inf;
@@ -189,9 +189,6 @@ struct afw_value_unevaluated_managed_s {
 
     /** @brief  Reference count for value. */
     afw_size_t reference_count;
-
-    /** @brief  Pool used to allocate this header (last release frees). */
-    const afw_pool_t *p;
 };
 
 /**
@@ -225,8 +222,8 @@ afw_value_unevaluated_allocate(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * Allocates in p. Starts at reference count 1 (must release).
- * clone_or_reference bumps. Last release frees via stored p.
+ * Allocates in xctx->p. Starts at reference count 1 (must release).
+ * clone_or_reference bumps. Last release frees via xctx->p.
  * Stores the pointer as-is; does not clone or take a reference on the
  * referent. Caller must ensure the referent outlives this value (or
  * a future object/array path may special-case container RC).
@@ -234,7 +231,6 @@ afw_value_unevaluated_allocate(
 AFW_DECLARE(const afw_value_t *)
 afw_value_unevaluated_create_managed(
     const afw_value_t * internal,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 #define afw_value_create_managed_unevaluated afw_value_unevaluated_create_managed
 
@@ -246,7 +242,7 @@ afw_value_unevaluated_create_managed(
  * @return Created const afw_value_t *.
  *
  * Allocates in pool p; lifetime is the pool (no value refcount).
- * clone_or_reference creates a managed holdable in p.
+ * clone_or_reference creates a managed holdable in xctx->p.
  * Stores the pointer as-is; does not clone the referent.
  */
 AFW_DECLARE(const afw_value_t *)

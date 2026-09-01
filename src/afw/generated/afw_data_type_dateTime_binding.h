@@ -63,7 +63,7 @@ afw_data_type_dateTime;
  * @brief Unmanaged evaluated value inf for data type dateTime.
  *
  * Lifetime is the containing pool until clone_or_reference.
- * Scalar clone_or_reference creates a managed holdable in p.
+ * Scalar clone_or_reference creates a managed holdable in xctx->p.
  * Object/array clone_or_reference holds a memory face.
  * optional_release is NULL on unmanaged scalars.
  */
@@ -73,8 +73,8 @@ afw_value_unmanaged_dateTime_inf;
 /**
  * @brief Managed evaluated value inf for data type dateTime.
  *
- * Start-at-1 holdable clone in p (must release). clone_or_reference
- * bumps. Last release frees via stored p.
+ * Start-at-1 holdable clone in xctx->p (must release).
+ * clone_or_reference bumps. Last release frees via xctx->p.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_dateTime_inf;
@@ -189,9 +189,6 @@ struct afw_value_dateTime_managed_s {
 
     /** @brief  Reference count for value. */
     afw_size_t reference_count;
-
-    /** @brief  Pool used to allocate this header (last release frees). */
-    const afw_pool_t *p;
 };
 
 /**
@@ -225,14 +222,13 @@ afw_value_dateTime_allocate(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * Allocates in p. Starts at reference count 1 (must release).
- * clone_or_reference bumps. Last release frees via stored p.
+ * Allocates in xctx->p. Starts at reference count 1 (must release).
+ * clone_or_reference bumps. Last release frees via xctx->p.
  * Copies *internal into the header when internal is non-NULL.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_dateTime_create_managed(
     const afw_dateTime_t * internal,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 #define afw_value_create_managed_dateTime afw_value_dateTime_create_managed
 
@@ -244,7 +240,7 @@ afw_value_dateTime_create_managed(
  * @return Created const afw_value_t *.
  *
  * Allocates in pool p; lifetime is the pool (no value refcount).
- * clone_or_reference creates a managed holdable in p.
+ * clone_or_reference creates a managed holdable in xctx->p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_dateTime_create(const afw_dateTime_t * internal,

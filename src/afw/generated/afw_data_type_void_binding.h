@@ -109,9 +109,6 @@ struct afw_value_void_managed_s {
 
     /** @brief  Reference count for value. */
     afw_size_t reference_count;
-
-    /** @brief  Pool used to allocate this header (last release frees). */
-    const afw_pool_t *p;
 };
 
 /**

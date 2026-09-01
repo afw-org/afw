@@ -431,6 +431,8 @@ impl_afw_value_managed_get_reference(
     afw_value_null_managed_t *self =
         (afw_value_null_managed_t *)instance;
 
+    (void)p;
+    (void)xctx;
     self->reference_count++;
     return instance;
 }

@@ -63,7 +63,7 @@ afw_data_type_null;
  * @brief Unmanaged evaluated value inf for data type null.
  *
  * Lifetime is the containing pool until clone_or_reference.
- * Scalar clone_or_reference creates a managed holdable in p.
+ * Scalar clone_or_reference creates a managed holdable in xctx->p.
  * Object/array clone_or_reference holds a memory face.
  * optional_release is NULL on unmanaged scalars.
  */
@@ -73,8 +73,8 @@ afw_value_unmanaged_null_inf;
 /**
  * @brief Managed evaluated value inf for data type null.
  *
- * Start-at-1 holdable clone in p (must release). clone_or_reference
- * bumps. Last release frees via stored p.
+ * Start-at-1 holdable clone in xctx->p (must release).
+ * clone_or_reference bumps. Last release frees via xctx->p.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_null_inf;
