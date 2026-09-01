@@ -1558,23 +1558,6 @@ impl_afw_data_type_object_clone_internal(
 
 
 
-/* Clone an object to a managed object. */
-AFW_DEFINE(const afw_object_t *)
-afw_data_type_object_create_clone_to_managed_object(
-    const afw_object_t * object,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_object_t *result;
-
-    result = afw_object_and_pool_create(p, xctx);
-    impl_object_clone_properties_and_meta(result, object, NULL, xctx);
-
-    return result;
-}
-
-
-
 /* ---- Value compiler listing -----------------------------------*/
 
 static void
