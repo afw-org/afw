@@ -26,6 +26,10 @@ Dest `p` is often this `xctx->p` or a tracker under it — then the result is un
 
 **Before this branch lands:** clone of **unevaluated** values (script_function, closure_binding, other graph nodes). `compiled_value` evaluate currently clones only when `is_evaluated_of_data_type` has `clone_value_unmanaged`; functions/closures pass through. That is a skip, not a story. Revisit before merge.
 
+**Also before land:** `while` / `do_while` / `for_of` still bubble the body’s last non-void (`impl_update_empty`). `for` is void now; same UAF class is possible on those loops. Nested assignment in a 0-symbol `{ }` still does not `slot_store` last_return.
+
+Do not put this experiment in `whats-new.md` until it lands on `develop`.
+
 ## Foreign heap (clone in or out)
 
 Clone when the bytes live in (or must live in) a heap that is **not this xctx’s heap or a child of it** — especially a **multithreaded** pool (`adapter->p`, `env->p`, `server->p`).
@@ -53,7 +57,11 @@ Eval-completion / foreign-heap **clone-out** is still the escape from this `xctx
 - Pool-owned dual-faces that were wrongly `managed_object_inf` (aggregate, const key/value, meta accessor; embedded follows embedder)
 - Per-type `clone_value_unmanaged` / `clone_value_managed` on `afw_data_type_t`; public `afw_value_clone_unmanaged` / `afw_value_clone_managed`
 - CLI print uses the eval `xctx` (`3967854c`)
-- **Managed object/array frames** (`memory_managed` inf, uncommitted as of this note): see below
+- **Managed object/array frames** (`memory_managed` inf): see below
+- Pool-world dual-faces stay unmanaged (`create_embedded`, env-vars object)
+- `compiled_value` evaluate: unmanaged clone into dest `p`; no FRV wrap; no child heap; nested `script_result` is a local pointer park
+- `AFW_DEBUG_POOL`: free fills USER with `0x0BADF00D0BADF00D` so a dangling `inf` faults on any vtable access
+- Blocks start last_return from `xctx->script_result`. `for` is void (only `return` / `rethrow` keep a value). Fixes `journal_tests_3` UAF: wrapper no longer `as_assignable`s the previous iteration’s cursor after `j3 = {}` last-released it.
 
 ## Three lifetimes (the click)
 

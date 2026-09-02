@@ -63,7 +63,11 @@ afw_value_block_evaluate_statements(
     afw_boolean_t use_running;
 
     use_running = xctx->script_result_active && !as_value;
+    /* Slot is the held last_return. Do not start from a raw C last. */
     result = NULL;
+    if (use_running && xctx->script_result) {
+        result = xctx->script_result;
+    }
 
     for (i = start; i < self->statement_count; i++) {
         last = afw_value_block_evaluate_statement(
@@ -117,8 +121,11 @@ afw_value_block_evaluate_block(
         (const afw_value_t *)self, xctx);
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
-    result = NULL;
     use_running = xctx->script_result_active && !as_value;
+    result = NULL;
+    if (use_running && xctx->script_result) {
+        result = xctx->script_result;
+    }
     /*
      * as_value (template substitution, block evaluate): do not treat
      * inner `return` as this script's last_return.

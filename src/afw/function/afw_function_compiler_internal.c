@@ -1179,9 +1179,18 @@ afw_function_execute_for(
             }
 
             if (body) {
-                result = impl_update_empty(result,
-                    afw_value_block_evaluate_statement(x, body, p, xctx));
+                const afw_value_t *body_result;
+
+                /* for is void. Nested assignment writes the slot, not
+                 * an unheld last that the next iteration can last-release. */
+                body_result = afw_value_block_evaluate_statement(
+                    x, body, p, xctx);
                 if (impl_loop_should_exit(this_label, xctx)) {
+                    if (afw_xctx_statement_flow_is_type(return, xctx) ||
+                        afw_xctx_statement_flow_is_type(rethrow, xctx))
+                    {
+                        result = body_result;
+                    }
                     break;
                 }
             }

@@ -49,6 +49,8 @@
  *   AFW_DEBUG_LOCK        lock obtain/release
  *   AFW_DEBUG_POOL        prefix {pool,size} before user pointer on
  *                         heap/tracker; always checked on free.
+ *                         Freed USER is filled so a dangling inf
+ *                         faults on any vtable access.
  *                         debug:pool:detail is the alloc/free firehose.
  * `afwdev build --cdev` and `--fulldev` define all three. Otherwise:
  *   afwdev build --define AFW_DEBUG_POOL
