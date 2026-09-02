@@ -270,7 +270,7 @@ const afw_array_t * afw_ubjson_parse_array(
             "Error: maximum nesting depth exceeded.", xctx);
     }
 
-    list = afw_array_create_in_pool(parser->p, xctx);
+    list = afw_array_create_unmanaged(parser->p, xctx);
 
     c = afw_ubjson_peek_byte(parser, xctx);
 

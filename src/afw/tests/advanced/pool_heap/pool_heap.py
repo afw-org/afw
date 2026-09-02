@@ -134,6 +134,10 @@ def run():
                 "debug_free_wrong_pool",
                 "AFW_DEBUG_POOL: free with a different pool throws",
             ),
+            (
+                "debug_free_poisons_user",
+                "AFW_DEBUG_POOL: free fills USER with poison inf",
+            ),
         ])
     result = run_c_probe(
         "pool_heap_probe.c",
@@ -164,6 +168,13 @@ def run():
         tests.append({
             "test": "debug_free_wrong_pool",
             "description": "AFW_DEBUG_POOL + debug:pool: free with a different pool throws",
+            "passed": True,
+            "skip": True,
+            "skipReason": "libafw built without AFW_DEBUG_POOL",
+        })
+        tests.append({
+            "test": "debug_free_poisons_user",
+            "description": "AFW_DEBUG_POOL: free fills USER with poison inf",
             "passed": True,
             "skip": True,
             "skipReason": "libafw built without AFW_DEBUG_POOL",

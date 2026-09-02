@@ -676,7 +676,7 @@ afw_function_execute_filter(
 {
     impl_filter_data_t data;
 
-    data.filtered_array = afw_array_create_with_options(0, NULL, x->p, x->xctx);
+    data.filtered_array = afw_array_create_unmanaged(x->p, x->xctx);
     impl_over_array(x, impl_filter_cb, (void *)&data);
 
     return afw_value_create_unmanaged_array(data.filtered_array, x->p, x->xctx);
@@ -772,7 +772,7 @@ impl_map_cb(impl_call_over_array_cb_e_t *e)
     const afw_value_t *to_push;
 
     if (!data->mapped_array) {
-        data->mapped_array = afw_array_create_in_pool(e->p, e->xctx);
+        data->mapped_array = afw_array_create_unmanaged(e->p, e->xctx);
     }
 
     to_push = e->entry_result;

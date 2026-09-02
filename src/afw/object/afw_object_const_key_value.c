@@ -48,7 +48,8 @@ afw_object_create_const_from_key_value_strings_z(
         afw_object_const_key_value_self_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
-    self->value.inf = &afw_value_managed_object_inf;
+    /* Pool-owned immutable wrapper; unmanaged dual-face. */
+    self->value.inf = &afw_value_unmanaged_object_inf;
     self->value.internal = (const afw_object_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
 

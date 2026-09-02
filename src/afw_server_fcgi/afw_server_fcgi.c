@@ -149,7 +149,7 @@ afw_server_fcgi_internal_create(const char *path,
     self = afw_xctx_calloc_type(afw_server_fcgi_internal_t, xctx);
     self->pub.inf = &impl_afw_server_inf;
     self->pub.xctx = xctx;
-    self->pub.properties = afw_object_and_pool_create(xctx->p, xctx);
+    self->pub.properties = afw_object_create_unmanaged_new_p(xctx->p, xctx);
     self->pub.thread_count = thread_count;
     self->pub.afw_version = afw_version_string();
     self->pub.afw_compiled_version = &impl_compiled_afw_version;

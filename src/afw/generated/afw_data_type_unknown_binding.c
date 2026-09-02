@@ -53,7 +53,7 @@ impl_afw_value_permanent_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* permanent unknown (special type): optional_release NULL; */
-/* clone_or_reference returns the same instance as-is. */
+/* get_reference / get_assignable_value as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_unknown"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_unknown_inf
@@ -111,11 +111,11 @@ impl_data_type_object_unknown__value = {
     (const afw_object_t *)&impl_data_type_object_unknown
 };
 
-/* Value for empty array of unknown. */
+/* Permanent empty array of unknown. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_unknown;
 
-/* Value for empty array of unknown. */
+/* Permanent empty array value of unknown. */
 const afw_value_array_t
 impl_value_empty_array_of_unknown;
 
@@ -134,6 +134,8 @@ afw_data_type_unknown_direct = {
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("const afw_value_t *"),
     sizeof(const afw_value_t *),
+    NULL,
+    NULL,
     NULL,
     NULL,
     NULL,

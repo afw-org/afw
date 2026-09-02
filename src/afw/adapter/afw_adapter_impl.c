@@ -579,7 +579,7 @@ afw_adapter_impl_generic_object_type_object_get(
 
     /** @fixme These can be cached off of impl. */
 
-    result = afw_object_and_pool_create(p, xctx);
+    result = afw_object_create_unmanaged_new_p(p, xctx);
     objectType = afw_utf8_clone(object_type_id, result->p, xctx);
     afw_object_meta_set_ids(result, &adapter->adapter_id,
         afw_s__AdaptiveObjectType_, objectType, xctx);

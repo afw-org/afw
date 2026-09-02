@@ -92,9 +92,15 @@ impl_afw_value_assignable_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+AFW_DECLARE_STATIC(void)
+impl_afw_value_assignable_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
 /* Declares and rti/inf defines for interface afw_value */
-/* unmanaged object: optional_release holds the instance. */
-/* clone_or_reference is object_hold / array_hold. */
+/* unmanaged object: get_reference/release throw; */
+/* get_assignable_value: managed dual-face, clone_managed,
+ * or object_hold / array_hold. */
 #define AFW_IMPLEMENTATION_ID "object"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_object_inf
@@ -110,8 +116,8 @@ impl_afw_value_assignable_get_reference(
 #undef impl_afw_value_get_assignable_value
 
 /* Declares and rti/inf defines for interface afw_value */
-/* managed object: optional_release frees header at RC 0; */
-/* clone_or_reference bumps RC and returns the same instance. */
+/* managed object: optional_release drops RC; */
+/* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_object"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_object_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
@@ -128,7 +134,7 @@ impl_afw_value_assignable_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* permanent object: optional_release NULL; */
-/* clone_or_reference holds a memory face. */
+/* get_reference as-is; get_assignable_value isolates. */
 #define AFW_IMPLEMENTATION_ID "permanent_object"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_object_inf
 #define impl_afw_value_optional_release NULL
@@ -144,10 +150,10 @@ impl_afw_value_assignable_get_reference(
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
-/* assignable object: script face; bump instance. */
+/* assignable object: script face; pin the bag. */
 #define AFW_IMPLEMENTATION_ID "assignable_object"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_assignable_object_inf
-#define impl_afw_value_optional_release impl_afw_value_unmanaged_optional_release
+#define impl_afw_value_optional_release impl_afw_value_assignable_optional_release
 #define impl_afw_value_get_reference impl_afw_value_assignable_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_assignable_get_reference
 #define AFW_VALUE_INF_ONLY 1
@@ -202,11 +208,11 @@ impl_data_type_object_object__value = {
     (const afw_object_t *)&impl_data_type_object_object
 };
 
-/* Value for empty array of object. */
+/* Permanent empty array of object. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_object;
 
-/* Value for empty array of object. */
+/* Permanent empty array value of object. */
 const afw_value_array_t
 impl_value_empty_array_of_object;
 
@@ -228,6 +234,8 @@ afw_data_type_object_direct = {
     (const afw_array_t *)&impl_empty_array_of_object,
     (const afw_value_t *)&impl_value_empty_array_of_object,
     &afw_value_unmanaged_object_inf,
+    afw_value_clone_object_unmanaged,
+    afw_value_clone_object_managed,
     afw_compile_type_error,
     true,
     false,
@@ -238,7 +246,7 @@ afw_data_type_object_direct = {
     NULL
 };
 
-/* Value for empty array of object. */
+/* Permanent empty array of object. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_object = {
     {
@@ -250,7 +258,7 @@ impl_empty_array_of_object = {
     0
 };
 
-/* Value for empty array of object. */
+/* Permanent empty array value of object. */
 const afw_value_array_t
 impl_value_empty_array_of_object = {
     {&afw_value_permanent_array_inf},
@@ -358,6 +366,48 @@ afw_value_object_create(const afw_object_t * internal,
     return &v->pub;
 }
 
+/* Deep clone evaluated object unmanaged into p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_object_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *from;
+    const afw_object_t *to = NULL;
+
+    if (value->inf == &afw_value_permanent_object_inf) {
+        return value;
+    }
+    from = ((const afw_value_object_t *)value)->internal;
+    afw_data_type_clone_internal(afw_data_type_object,
+        (void *)&to, &from, p, xctx);
+    return afw_value_object_create(to, p, xctx);
+}
+
+/* Clone evaluated object managed in xctx->p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_object_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    if (value->inf == &afw_value_permanent_object_inf) {
+        return value;
+    }
+    if (afw_utf8_starts_with_utf8_z(
+            &value->inf->rti.implementation_id, "managed_")) {
+        return afw_value_get_reference(value, xctx->p, xctx);
+    }
+    {
+        const afw_object_t *from;
+        const afw_object_t *to;
+
+        from = ((const afw_value_object_t *)value)->internal;
+        to = afw_object_create_managed_from(from, xctx);
+        return to->value;
+    }
+}
+
 /* Convert data type object string to const afw_object_t * *. */
 AFW_DEFINE(void)
 afw_data_type_object_to_internal(const afw_object_t * *to_internal,
@@ -456,7 +506,7 @@ impl_afw_value_managed_optional_release(
     embedded = (obj && obj->value == instance);
 
     if (obj) {
-        /* Paired with managed clone_or_reference. */
+        /* Paired with managed get_reference. */
         afw_object_release(obj, xctx);
     }
 
@@ -477,12 +527,9 @@ impl_afw_value_unmanaged_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    const afw_value_object_t *self =
-        (const afw_value_object_t *)instance;
-
-    if (self->internal) {
-        afw_object_release(self->internal, xctx);
-    }
+    (void)instance;
+    AFW_THROW_ERROR_Z(general,
+        "release of unmanaged object", xctx);
 }
 
 /* Implementation of method get_reference for unmanaged value. */
@@ -492,14 +539,10 @@ impl_afw_value_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_object_t *self =
-        (const afw_value_object_t *)instance;
-
+    (void)instance;
     (void)p;
-    if (self->internal) {
-        afw_object_get_reference(self->internal, xctx);
-    }
-    return instance;
+    AFW_THROW_ERROR_Z(general,
+        "get_reference of unmanaged object", xctx);
 }
 
 /* Slot fill: mint an assignable face. */
@@ -509,6 +552,26 @@ impl_afw_value_get_assignable_value(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    const afw_object_t *obj;
+
+    obj = ((const afw_value_object_t *)instance)->internal;
+    /* Typed map boxes the occupant in an unmanaged
+     * value. Return the managed dual-face so set hits
+     * the occupant, not a new overlay. */
+    if (afw_object_is_memory_managed(obj)) {
+        (void)p;
+        afw_object_get_reference(obj, xctx);
+        return obj->value;
+    }
+    /* Generic memory bags only. View/wrapper/meta: overlay. */
+    if (obj && obj->inf &&
+        afw_utf8_equal_utf8_z(&obj->inf->rti.implementation_id,
+            "memory") &&
+        !afw_object_is_memory_wrapper(obj))
+    {
+        (void)p;
+        return afw_value_clone_managed(instance, xctx);
+    }
     return afw_value_object_hold(instance, p, xctx);
 }
 
@@ -527,6 +590,20 @@ impl_afw_value_assignable_get_reference(
         afw_object_get_reference(self->internal, xctx);
     }
     return instance;
+}
+
+/* Assignable face: drop the bag pin. */
+AFW_DECLARE_STATIC(void)
+impl_afw_value_assignable_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    const afw_value_object_t *self =
+        (const afw_value_object_t *)instance;
+
+    if (self->internal) {
+        afw_object_release(self->internal, xctx);
+    }
 }
 
 

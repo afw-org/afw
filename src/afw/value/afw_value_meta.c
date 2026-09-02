@@ -349,7 +349,7 @@ impl_afw_object_setter_set_property(
     }
 
     if (!meta_object_self->additional) {
-        meta_object_self->additional = afw_object_create_in_pool(meta_object_self->pub.p, xctx);
+        meta_object_self->additional = afw_object_create_unmanaged(meta_object_self->pub.p, xctx);
     }
 
     afw_object_set_property(meta_object_self->additional, property_name, value, xctx);

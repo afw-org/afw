@@ -54,7 +54,7 @@ afw_curl_function_execute_curl_version_info(
 
     version_info = curl_version_info(CURLVERSION_NOW);
     if (version_info) {
-        object = afw_object_and_pool_create(x->p, xctx);
+        object = afw_object_create_unmanaged_new_p(x->p, xctx);
 
         afw_object_meta_set_object_type_id(
             object, afw_curl_s__AdaptiveCurlVersionInfo_, xctx);
@@ -129,7 +129,7 @@ afw_curl_function_execute_curl_easy_options(
     const afw_value_t *option_name;
     const struct curl_easyoption *opt;
 
-    result = afw_array_create_in_pool(x->p, x->xctx);
+    result = afw_array_create_unmanaged(x->p, x->xctx);
     opt = curl_easy_option_next(NULL);
     while(opt) {
         if (opt->name) {

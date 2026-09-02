@@ -148,6 +148,22 @@ impl_statement_result_or_void(
 }
 
 
+/* Loops/try are void. Keep a value only for return/rethrow. */
+static inline const afw_value_t *
+impl_keep_if_return(
+    const afw_value_t *result,
+    const afw_value_t *body_result,
+    afw_xctx_t *xctx)
+{
+    if (afw_xctx_statement_flow_is_type(return, xctx) ||
+        afw_xctx_statement_flow_is_type(rethrow, xctx))
+    {
+        return body_result;
+    }
+    return result;
+}
+
+
 /* Formal expects array of values: leaf array, T[], or tuple (#153). */
 static inline afw_boolean_t
 impl_script_formal_expects_array_sequence(const afw_value_type_t *type)
@@ -346,13 +362,13 @@ impl_list_destructure(
                     break;
                 }
                 if (!rest) {
-                    rest = afw_array_create_in_pool(p, xctx);
+                    rest = afw_array_create_unmanaged(p, xctx);
                 }
                 afw_array_push_value(rest, v, xctx);
             }
         }
         if (!rest) {
-            rest = afw_array_create_in_pool(p, xctx);
+            rest = afw_array_create_unmanaged(p, xctx);
         }
         v = afw_value_create_unmanaged_array(rest, p, xctx);
         if (ld->rest_type) {
@@ -459,7 +475,7 @@ impl_object_destructure(
 
     /* Add other properties to rest. */
     if (od->rest) {
-        rest = afw_object_and_pool_create(p, xctx);
+        rest = afw_object_create_unmanaged_new_p(p, xctx);
         for (iterator = NULL;;) {
             v = afw_object_get_next_property(object, &iterator, &property_name,
                 xctx);
@@ -841,7 +857,8 @@ afw_function_execute_assign(
             p, xctx);
     }
 
-    /* last_return is the statement list, not assign() itself. */
+    /* last_return is the statement list, not assign() itself
+     * (for init/increment must not write). */
     return result;
 }
 
@@ -1058,8 +1075,9 @@ afw_function_execute_do_while(
     this_label = impl_optional_loop_label(x, 3);
     result = afw_value_void;
     for (;;) {
-        result = impl_update_empty(result,
-            afw_value_block_evaluate_statement(x, x->argv[2], p, xctx));
+        result = impl_keep_if_return(result,
+            afw_value_block_evaluate_statement(x, x->argv[2], p, xctx),
+            xctx);
         if (impl_loop_should_exit(this_label, xctx)) {
             break;
         }
@@ -1179,8 +1197,10 @@ afw_function_execute_for(
             }
 
             if (body) {
-                result = impl_update_empty(result,
-                    afw_value_block_evaluate_statement(x, body, p, xctx));
+                /* for is void. Nested assignment writes the slot. */
+                result = impl_keep_if_return(result,
+                    afw_value_block_evaluate_statement(x, body, p, xctx),
+                    xctx);
                 if (impl_loop_should_exit(this_label, xctx)) {
                     break;
                 }
@@ -1353,9 +1373,10 @@ afw_function_execute_for_of(
                 assignment_type =
                     afw_compile_assignment_type_assign_only;
             }
-            result = impl_update_empty(result,
+            result = impl_keep_if_return(result,
                 afw_value_block_evaluate_statement(
-                    x, x->argv[3], p, xctx));
+                    x, x->argv[3], p, xctx),
+                xctx);
             first = false;
             if (impl_loop_should_exit(this_label, xctx)) {
                 break;
@@ -1656,7 +1677,7 @@ afw_function_execute_wrap_literal_object(
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(1);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
-    return afw_value_add_reference((const afw_value_t *)object, x->p, x->xctx);
+    return afw_value_object_hold((const afw_value_t *)object, x->p, x->xctx);
 }
 
 
@@ -1701,7 +1722,7 @@ afw_function_execute_wrap_literal_array(
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(1);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
 
-    return afw_value_add_reference((const afw_value_t *)array, x->p, x->xctx);
+    return afw_value_array_hold((const afw_value_t *)array, x->p, x->xctx);
 }
 
 
@@ -2050,8 +2071,10 @@ afw_function_execute_try(
 
     scope_at_entry = afw_xctx_scope_current(xctx);
     AFW_TRY {
-        result = afw_value_block_evaluate_statement(x, x->argv[1], p, xctx);
+        this_result = afw_value_block_evaluate_statement(
+            x, x->argv[1], p, xctx);
         use_type = afw_xctx_statement_flow_get(xctx);
+        result = impl_keep_if_return(result, this_result, xctx);
     }
 
     AFW_CATCH_UNHANDLED {
@@ -2153,12 +2176,14 @@ afw_function_execute_try(
                             afw_compile_assignment_type_let, eval_p, xctx);
                     }
                     this_result = afw_value_block_evaluate_statements(
-                        x, block, stmt_start, eval_p, xctx, false);
+                        x, block, stmt_start, eval_p, xctx, false,
+                        NULL);
                     /*
                      * Catch is a frame. Box last onto xctx->p before
                      * tracker deactivate. Skip if return already wrote.
                      */
                     if (this_result &&
+                        this_result != xctx->script_result &&
                         !afw_value_is_void(this_result) &&
                         !(afw_xctx_statement_flow_is_type(return, xctx) &&
                             xctx->script_result_written))
@@ -2191,8 +2216,7 @@ afw_function_execute_try(
                 AFW_ERROR_RETHROW;
             }
             else {
-                /* Catch completed: last bubbles (UpdateEmpty). */
-                result = this_result;
+                /* Catch completed: void. Nested assignment wrote the slot. */
             }
         }
         else {
@@ -2297,8 +2321,9 @@ afw_function_execute_while(
         if (!condition->internal) {
             break;
         }
-        result = impl_update_empty(result,
-            afw_value_block_evaluate_statement(x, x->argv[2], p, xctx));
+        result = impl_keep_if_return(result,
+            afw_value_block_evaluate_statement(x, x->argv[2], p, xctx),
+            xctx);
         if (impl_loop_should_exit(this_label, xctx))
         {
             break;

@@ -897,7 +897,7 @@ impl_parse_more_let_or_const_bindings(
     for (;;) {
         if (afw_compile_token_is(comma)) {
             if (!list) {
-                list = afw_array_create_in_pool(parser->p, parser->xctx);
+                list = afw_array_create_unmanaged(parser->p, parser->xctx);
             }
             afw_array_push_value(list, call, parser->xctx);
             afw_compile_save_cursor(binding_offset);
@@ -961,7 +961,7 @@ impl_for_init_as_statement_list(
     if (afw_value_is_array(init)) {
         return init;
     }
-    list = afw_array_create_in_pool(parser->p, parser->xctx);
+    list = afw_array_create_unmanaged(parser->p, parser->xctx);
     afw_array_push_value(list, init, parser->xctx);
     return afw_value_create_unmanaged_array(list, parser->p, parser->xctx);
 }
@@ -1331,7 +1331,7 @@ impl_parse_ForStatement(
             afw_compile_reuse_token();
             value = afw_compile_parse_AssignmentOperation(parser,
                 target, false, NULL);
-            list = afw_array_create_in_pool(parser->p, parser->xctx);
+            list = afw_array_create_unmanaged(parser->p, parser->xctx);
             afw_array_push_value(list, value, parser->xctx);
             afw_compile_get_token();
             while (afw_compile_token_is(comma)) {
@@ -1395,7 +1395,7 @@ impl_parse_ForStatement(
             for (;;) {
                 value = afw_compile_parse_Assignment(parser, NULL);
                 if (!list) {
-                    list = afw_array_create_in_pool(parser->p, parser->xctx);
+                    list = afw_array_create_unmanaged(parser->p, parser->xctx);
                 }
                 afw_array_push_value(list, value, parser->xctx);
                 afw_compile_get_token();
@@ -3175,8 +3175,8 @@ afw_compile_parse_TestScript(
         }
     }
 
-    test_script_object = afw_object_create_in_pool(parser->p, parser->xctx);
-    test_list = afw_array_create_in_pool_of(afw_data_type_object,
+    test_script_object = afw_object_create_unmanaged(parser->p, parser->xctx);
+    test_list = afw_array_create_unmanaged_of(afw_data_type_object,
         parser->p, parser->xctx);
     afw_object_set_property_as_array(test_script_object,
         afw_v_tests, test_list, parser->xctx);
@@ -3257,7 +3257,7 @@ afw_compile_parse_TestScript(
             if (!key) {
                 break;
             }
-            test_object = afw_object_create_in_pool(parser->p, parser->xctx);
+            test_object = afw_object_create_unmanaged(parser->p, parser->xctx);
             afw_array_push_value(test_list,
                 afw_value_create_unmanaged_object(
                     test_object, parser->p, parser->xctx),

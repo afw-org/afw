@@ -599,6 +599,28 @@ impl_debug_free_wrong_pool(afw_xctx_t *xctx)
     }
     return 0;
 }
+
+static int
+impl_debug_free_poisons_user(afw_xctx_t *xctx)
+{
+    const afw_pool_t *heap;
+    void *a;
+    afw_size_t i;
+
+    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
+    memset(a, 0x11, IMPL_SIZE_MEDIUM);
+    afw_pool_free_memory(heap, a, IMPL_SIZE_MEDIUM, xctx);
+    for (i = 0; i < IMPL_SIZE_MEDIUM / sizeof(afw_size_t); i++) {
+        if (((afw_size_t *)a)[i] != AFW_POOL_DEBUG_POISON) {
+            afw_pool_release(heap, xctx);
+            return impl_fail("debug_free_poisons_user",
+                "USER not filled with poison");
+        }
+    }
+    afw_pool_release(heap, xctx);
+    return 0;
+}
 #endif
 
 
@@ -1000,6 +1022,9 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "debug_free_wrong_pool") == 0) {
         rc = impl_debug_free_wrong_pool(xctx);
     }
+    else if (strcmp(case_name, "debug_free_poisons_user") == 0) {
+        rc = impl_debug_free_poisons_user(xctx);
+    }
 #endif
     else {
         fprintf(stderr, "usage: pool_heap_probe "
@@ -1010,6 +1035,7 @@ main(int argc, char **argv)
             "for_clone_churn|create_child_of_heap|double_free_throws"
 #ifdef AFW_DEBUG_POOL
             "|debug_free_wrong_size|debug_free_wrong_pool"
+            "|debug_free_poisons_user"
 #endif
             "\n");
         rc = 2;

@@ -183,6 +183,24 @@ afw_pool_thread_create(
     afw_pool_free_memory(instance, address, sizeof(type), xctx)
 
 
+/**
+ * @brief Release a value when a pool is destroyed.
+ * @param value to release at cleanup. NULL is a no-op.
+ * @param p pool whose destroy runs the release.
+ * @param xctx of caller.
+ *
+ * Registers `afw_pool_register_cleanup_before()` so
+ * `afw_value_release()` runs before `p` is destroyed. Does not add
+ * a reference; the caller already holds `value` (or otherwise owns
+ * a matching release).
+ */
+AFW_DECLARE(void)
+afw_pool_release_value_at_cleanup(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

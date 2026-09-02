@@ -42,7 +42,8 @@ afw_object_aggregate_external_create(
     self = afw_pool_calloc_type(p, afw_object_aggregate_external_self_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
-    self->value.inf = &afw_value_managed_object_inf;
+    /* Pool-owned; unmanaged dual-face (object release is a no-op). */
+    self->value.inf = &afw_value_unmanaged_object_inf;
     self->value.internal = (const afw_object_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     self->object_list = object_list;

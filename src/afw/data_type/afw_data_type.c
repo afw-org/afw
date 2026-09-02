@@ -1405,7 +1405,7 @@ impl_afw_data_type_array_clone_internal(
 
     from = *(const afw_array_t * *)from_internal;
     data_type = afw_array_get_data_type(from, xctx);
-    to = afw_array_create_in_pool_of(data_type, p, xctx);
+    to = afw_array_create_unmanaged_of(data_type, p, xctx);
     memcpy(to_internal, &to, sizeof(const afw_array_t *));
 
     for (iterator = NULL;;) {
@@ -1550,28 +1550,11 @@ impl_afw_data_type_object_clone_internal(
     const afw_object_t *to;
 
     from = *(const afw_object_t * *)from_internal;
-    to = afw_object_create_in_pool(p, xctx);
+    to = afw_object_create_unmanaged(p, xctx);
     memcpy(to_internal, &to, sizeof(const afw_object_t *));
     impl_object_clone_properties_and_meta(to, from, NULL, xctx);
 }
 
-
-
-
-/* Clone an object to a managed object. */
-AFW_DEFINE(const afw_object_t *)
-afw_data_type_object_create_clone_to_managed_object(
-    const afw_object_t * object,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_object_t *result;
-
-    result = afw_object_and_pool_create(p, xctx);
-    impl_object_clone_properties_and_meta(result, object, NULL, xctx);
-
-    return result;
-}
 
 
 

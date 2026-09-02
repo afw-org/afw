@@ -62,9 +62,11 @@ afw_data_type_undefined;
 /**
  * @brief Permanent (life of afw environment) value inf for data type undefined.
  *
- * Lifetime is the afw environment / static const storage. optional_release
- * is NULL. Scalar clone_or_reference is as-is. Object/array
- * clone_or_reference holds a memory face (same as unmanaged).
+ * Lifetime is the afw environment / static const storage.
+ * optional_release is NULL. Scalar get_reference /
+ * get_assignable_value are as-is. Object/array get_reference
+ * is as-is; get_assignable_value isolates (object_hold /
+ * array_hold) so slots do not share immortal bags.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_undefined_inf;
@@ -109,9 +111,6 @@ struct afw_value_undefined_managed_s {
 
     /** @brief  Reference count for value. */
     afw_size_t reference_count;
-
-    /** @brief  Pool used to allocate this header (last release frees). */
-    const afw_pool_t *p;
 };
 
 /**

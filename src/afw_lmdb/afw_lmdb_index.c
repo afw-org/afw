@@ -118,7 +118,7 @@ impl_afw_adapter_impl_index_get_index_definitions (
                 xctx->p, xctx);
         } else {
             /* if we don't have one, just create one in our own pool */
-            indexes = afw_object_and_pool_create(xctx->p, xctx);
+            indexes = afw_object_create_unmanaged_new_p(xctx->p, xctx);
         }
     }
     /* unlock, we have our own copy now */

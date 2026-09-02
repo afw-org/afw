@@ -210,7 +210,7 @@ afw_function_execute_bag(
         return x->data_type->empty_array_value;
     }
 
-    array = afw_array_create_in_pool_of(x->data_type, x->p, x->xctx);
+    array = afw_array_create_unmanaged_of(x->data_type, x->p, x->xctx);
 
     for (i = 1; i <= x->argc; i++) {
         value = afw_function_evaluate_required_parameter(x, i, x->data_type);
@@ -1075,7 +1075,7 @@ afw_function_execute_intersection(
             "array1 and array2 must have a data type of the same type",
             x->xctx);
     }
-    array = afw_array_create_in_pool_of(data_type, x->p, x->xctx);
+    array = afw_array_create_unmanaged_of(data_type, x->p, x->xctx);
 
     for (iterator = NULL;;) {
         afw_array_get_next_internal(array1->internal, &iterator, NULL,
@@ -2311,7 +2311,7 @@ afw_function_execute_split(
         limit = limit_value->internal;
     }
 
-    array = afw_array_create_with_options(0, afw_data_type_string,
+    array = afw_array_create_unmanaged_of(afw_data_type_string,
         x->p, x->xctx);
     result = afw_value_create_unmanaged_array(array, x->p, x->xctx);
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
@@ -2683,7 +2683,7 @@ afw_function_execute_union(
             x->xctx);
     }
 
-    array = afw_array_create_in_pool_of(data_type, x->p, x->xctx);
+    array = afw_array_create_unmanaged_of(data_type, x->p, x->xctx);
     impl_add_nondups_to_array(data_type, array1->internal, array, x->xctx);
     for (i = 2; i <= x->argc; i++) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arrayn, i, array);

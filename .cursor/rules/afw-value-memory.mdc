@@ -8,7 +8,7 @@ alwaysApply: false
 
 Use when changing value lifetime, reference count, create/allocate APIs, data type bindings, const objects/strings, pools/scopes, or debugging leaks for **long-running scripts**.
 
-**Campaign map:** [`designs/issue-2-lifetime.md`](../../designs/issue-2-lifetime.md) (slots, pool split, #35 store-time bind, wrapper overlay holds + create-at-0). When they disagree, the pad is where #2 is going.
+**Campaign map:** [`designs/issue-2-lifetime.md`](../../designs/issue-2-lifetime.md). **Two worlds:** [`designs/experiment-brainstorm.md`](../../designs/experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)). Rails: [`designs/issue-2-hold-in-inf.md`](../../designs/issue-2-hold-in-inf.md). When they disagree, those pads win over this rule.
 
 ## Pool and scope model
 
@@ -22,8 +22,8 @@ Use when changing value lifetime, reference count, create/allocate APIs, data ty
 ## Lifetimes (inf chooses policy)
 
 - **permanent** — built-in, or lasts for the life of an AFW environment. Usually `static const` with `afw_value_permanent_<dt>_inf`; env-lifetime values may use the same inf. No refcount; `clone_or_reference` returns as-is. No `create_permanent_*` API.
-- **managed** — lifetime by reference count, or cloned when necessary. `afw_value_create_managed_<dt>()`.
-- **managed_slice** — for `cType` `afw_utf8_t` / `afw_memory_t` only: a view (pointer + length/size) into a **containing managed** value; release/get_reference update the containing refcount; does not copy bytes. `afw_value_create_managed_<dt>_slice()`.
+- **managed** — start-at-1 holdable in `xctx->p`. Caller must release. Extra `get_reference` / `get_assignable_value` bump self. Last release `free_memory`s via `xctx->p`. `afw_value_create_managed_<dt>()`.
+- **managed_slice** — for `cType` `afw_utf8_t` / `afw_memory_t` only: a view (pointer + length/size) into a **containing managed** value. Header in `xctx->p` (no stored `p`). Create `get_reference`s containing; slice starts at 1; `get_reference` bumps the slice; last release releases containing and `free_memory`s the slice header via `xctx->p`. `afw_value_create_managed_<dt>_slice()`.
 - **unmanaged** — programmer-owned; usually created in a pool and lasting for that pool. `afw_value_create_unmanaged_<dt>()` / `allocate_unmanaged_*`.
 
 Do not invent new lifetime paths; match existing create_* patterns.

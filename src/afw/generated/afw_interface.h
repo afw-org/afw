@@ -2785,6 +2785,18 @@ struct afw_data_type_s {
     const afw_value_inf_t * evaluated_value_inf;
 
     /**
+     * Deep clone this evaluated value unmanaged into dest p (octets
+     * copied). Permanents as-is. NULL if this data type has no clone.
+     */
+    afw_data_type_clone_value_unmanaged_t clone_value_unmanaged;
+
+    /**
+     * Clone this evaluated value managed in xctx->p (bump if already
+     * managed). Permanents as-is. NULL if this data type has no clone.
+     */
+    afw_data_type_clone_value_managed_t clone_value_managed;
+
+    /**
      * This is the compile type for internal. If this data type can
      * not be compiled, this will be afw_compile_type_error(0).
      */

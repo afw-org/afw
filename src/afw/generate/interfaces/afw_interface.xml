@@ -2357,6 +2357,20 @@ const afw_content_type_t *
       </description>
     </variable>
 
+    <variable name="clone_value_unmanaged" type="afw_data_type_clone_value_unmanaged_t">
+      <description>
+        Deep clone this evaluated value unmanaged into dest p (octets
+        copied). Permanents as-is. NULL if this data type has no clone.
+      </description>
+    </variable>
+
+    <variable name="clone_value_managed" type="afw_data_type_clone_value_managed_t">
+      <description>
+        Clone this evaluated value managed in xctx-&gt;p (bump if already
+        managed). Permanents as-is. NULL if this data type has no clone.
+      </description>
+    </variable>
+
     <variable name="compile_type" type="afw_compile_type_t">
       <description>
         This is the compile type for internal. If this data type can

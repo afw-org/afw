@@ -62,10 +62,12 @@ afw_data_type_null;
 /**
  * @brief Unmanaged evaluated value inf for data type null.
  *
- * Lifetime is the containing pool until clone_or_reference.
- * Scalar clone_or_reference creates a managed holdable in p.
- * Object/array clone_or_reference holds a memory face.
- * optional_release is NULL on unmanaged scalars.
+ * Lifetime is the containing pool. get_reference and
+ * optional_release throw (scalar, object, array).
+ * Scalar get_assignable_value creates a managed holdable
+ * in xctx->p. Object/array get_assignable_value: managed
+ * occupant dual-face, generic memory bag clone_managed,
+ * else hold.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_null_inf;
@@ -73,8 +75,9 @@ afw_value_unmanaged_null_inf;
 /**
  * @brief Managed evaluated value inf for data type null.
  *
- * Start-at-1 holdable clone in p (must release). clone_or_reference
- * bumps. Last release frees via stored p.
+ * Start-at-1 holdable in xctx->p (caller must release).
+ * get_reference / get_assignable_value bump. Last-release
+ * drops RC; header leak until alloc-pool free is trusted.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_null_inf;
@@ -82,9 +85,11 @@ afw_value_managed_null_inf;
 /**
  * @brief Permanent (life of afw environment) value inf for data type null.
  *
- * Lifetime is the afw environment / static const storage. optional_release
- * is NULL. Scalar clone_or_reference is as-is. Object/array
- * clone_or_reference holds a memory face (same as unmanaged).
+ * Lifetime is the afw environment / static const storage.
+ * optional_release is NULL. Scalar get_reference /
+ * get_assignable_value are as-is. Object/array get_reference
+ * is as-is; get_assignable_value isolates (object_hold /
+ * array_hold) so slots do not share immortal bags.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_null_inf;
@@ -232,6 +237,34 @@ afw_value_null_create_managed(
     void * internal,
     afw_xctx_t *xctx);
 #define afw_value_create_managed_null afw_value_null_create_managed
+
+/**
+ * @brief Deep clone an evaluated null value unmanaged into p.
+ * @param value evaluated null.
+ * @param p dest pool.
+ * @param xctx of caller.
+ * @return unmanaged clone in p, or value if permanent.
+ *
+ * Copies utf8/memory octets into p. Does not release the source.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone_null_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Clone an evaluated null value managed in xctx->p.
+ * @param value evaluated null.
+ * @param xctx of caller.
+ * @return managed value (bump if already managed).
+ *
+ * Permanents as-is. Does not release the source. No dest p.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone_null_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Create function for unmanaged data type null value.

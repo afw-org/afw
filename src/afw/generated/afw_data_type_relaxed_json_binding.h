@@ -62,10 +62,12 @@ afw_data_type_relaxed_json;
 /**
  * @brief Unmanaged evaluated value inf for data type relaxed_json.
  *
- * Lifetime is the containing pool until clone_or_reference.
- * Scalar clone_or_reference creates a managed holdable in p.
- * Object/array clone_or_reference holds a memory face.
- * optional_release is NULL on unmanaged scalars.
+ * Lifetime is the containing pool. get_reference and
+ * optional_release throw (scalar, object, array).
+ * Scalar get_assignable_value creates a managed holdable
+ * in xctx->p. Object/array get_assignable_value: managed
+ * occupant dual-face, generic memory bag clone_managed,
+ * else hold.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_relaxed_json_inf;
@@ -73,8 +75,9 @@ afw_value_unmanaged_relaxed_json_inf;
 /**
  * @brief Managed evaluated value inf for data type relaxed_json.
  *
- * Start-at-1 holdable clone in p (must release). clone_or_reference
- * bumps. Last release frees via stored p.
+ * Start-at-1 holdable in xctx->p (caller must release).
+ * get_reference / get_assignable_value bump. Last-release
+ * drops RC; header leak until alloc-pool free is trusted.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_relaxed_json_inf;
@@ -83,8 +86,9 @@ afw_value_managed_relaxed_json_inf;
  * @brief Managed slice value inf for data type relaxed_json.
  *
  * Slice of a managed value: get_reference containing at create.
- * Slice starts at 1. clone_or_reference bumps the slice. Last
- * release of the slice releases containing and frees the slice.
+ * Header in xctx->p. Slice starts at 1. get_reference bumps
+ * the slice. Last release of the slice releases containing;
+ * slice header leak until alloc-pool free is trusted.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_slice_relaxed_json_inf;
@@ -92,9 +96,11 @@ afw_value_managed_slice_relaxed_json_inf;
 /**
  * @brief Permanent (life of afw environment) value inf for data type relaxed_json.
  *
- * Lifetime is the afw environment / static const storage. optional_release
- * is NULL. Scalar clone_or_reference is as-is. Object/array
- * clone_or_reference holds a memory face (same as unmanaged).
+ * Lifetime is the afw environment / static const storage.
+ * optional_release is NULL. Scalar get_reference /
+ * get_assignable_value are as-is. Object/array get_reference
+ * is as-is; get_assignable_value isolates (object_hold /
+ * array_hold) so slots do not share immortal bags.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_relaxed_json_inf;
@@ -199,9 +205,6 @@ struct afw_value_relaxed_json_managed_s {
 
     /** @brief  Reference count for value. */
     afw_size_t reference_count;
-
-    /** @brief  Pool used to allocate this header (last release frees). */
-    const afw_pool_t *p;
 };
 
 /** @brief struct for managed slice data type relaxed_json values.
@@ -223,9 +226,6 @@ struct afw_value_relaxed_json_managed_slice_s {
 
     /** @brief  Reference count for this slice. */
     afw_size_t reference_count;
-
-    /** @brief  Pool used to allocate this slice header. */
-    const afw_pool_t *p;
 };
 
 /**
@@ -259,16 +259,45 @@ afw_value_relaxed_json_allocate(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * Allocates in p. Starts at reference count 1 (must release).
- * clone_or_reference bumps. Last release frees via stored p.
+ * Allocates in xctx->p. Starts at reference count 1
+ * (caller must release). get_reference /
+ * get_assignable_value bump. Last-release drops RC;
+ * header leak until alloc-pool free is trusted.
  * Copies bytes into storage following the header (value owns them).
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_relaxed_json_create_managed(
     const afw_utf8_t * internal,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 #define afw_value_create_managed_relaxed_json afw_value_relaxed_json_create_managed
+
+/**
+ * @brief Deep clone an evaluated relaxed_json value unmanaged into p.
+ * @param value evaluated relaxed_json.
+ * @param p dest pool.
+ * @param xctx of caller.
+ * @return unmanaged clone in p, or value if permanent.
+ *
+ * Copies utf8/memory octets into p. Does not release the source.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone_relaxed_json_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Clone an evaluated relaxed_json value managed in xctx->p.
+ * @param value evaluated relaxed_json.
+ * @param xctx of caller.
+ * @return managed value (bump if already managed).
+ *
+ * Permanents as-is. Does not release the source. No dest p.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone_relaxed_json_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Create a managed slice of a managed data type relaxed_json value.
@@ -279,14 +308,13 @@ afw_value_relaxed_json_create_managed(
  * @return Created const afw_value_t * (managed_slice inf).
  *
  * View of a managed string. get_reference on containing. Slice starts
- * at 1 (must release). Header allocated in p.
+ * at 1 (caller must release). Header allocated in xctx->p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_relaxed_json_create_managed_slice(
     const afw_value_t *containing_value,
     afw_size_t offset,
     afw_size_t len,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 #define afw_value_create_managed_relaxed_json_slice afw_value_relaxed_json_create_managed_slice
 
@@ -299,7 +327,8 @@ afw_value_relaxed_json_create_managed_slice(
  *
  * Allocates in pool p; lifetime is the pool (no value refcount).
  * Copies the utf8/memory header only, not the octets.
- * clone_or_reference creates a managed holdable in p.
+ * get_reference / release throw. get_assignable_value
+ * creates a managed holdable in xctx->p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_relaxed_json_create(const afw_utf8_t * internal,

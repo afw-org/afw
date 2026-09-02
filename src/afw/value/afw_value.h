@@ -1220,6 +1220,38 @@ afw_value_as_assignable(
 
 
 /**
+ * @brief Deep clone an evaluated value unmanaged into dest p.
+ * @param value evaluated (has is_evaluated_of_data_type).
+ * @param p dest pool.
+ * @param xctx of caller.
+ * @return unmanaged clone in p, or value if permanent.
+ *
+ * Does not evaluate. Does not release the source. Throws if value is
+ * NULL, not evaluated, or has no clone.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Clone an evaluated value managed in xctx->p.
+ * @param value evaluated (has is_evaluated_of_data_type).
+ * @param xctx of caller.
+ * @return managed value (bump if already managed).
+ *
+ * Permanents as-is. No dest p. Does not release the source. Throws if
+ * value is NULL, not evaluated, or has no clone.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief `clone_or_reference` for an unmanaged or permanent object value.
  *
  * Already a memory face: hold the instance, return the same value.

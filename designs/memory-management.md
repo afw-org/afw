@@ -270,7 +270,7 @@ _Many draft items below are superseded or refined by **Value Lifetime Model (tar
 | 2026-08-06 | **`afw_pool_release` returns** `const afw_pool_t *` — pool if still alive, **NULL** if this call destroyed it | Callers can free side holds without reading internal RC; void callers still valid |
 | 2026-08-06 | **Managed object face** (`create_wrapper_*`): pin `wrapped` once at create; `release(wrapped)` only when face pool destroy (`pool_release` → NULL). Unmanaged face borrows | Object look-through needs base for face life; save `wrapped` before pool release |
 | 2026-08-06 | **Array faces** not the same bug today (pool-owned instance, noop `release`, materialize ring). When arrays get real managed RC, mirror object pin + other #2 array work | Do not invent array pin early |
-| 2026-08-16 | **`create_array(n)`** is a likely first script-facing constructor when #2 starts on arrays | Today: `afw_array_create_generic(x->p)` (`create_with_options` **ignores** `options`), push `undefined` n times, always `create_unmanaged_array` wrapper. Objects already have `AFW_OBJECT_MEMORY_OPTION_managed` / `unmanaged` / `managed_cede_p` (private subpool vs caller pool). Arrays do not. 1,000,000 cap is a resource policy, not the #2 create path. Discuss instance vs value first; then this constructor. Finding #8 (`read()` cap) is sibling policy only — do not treat current `create_array` as the finished alloc model. |
+| 2026-08-16 | **`create_array(n)`** is a likely first script-facing constructor when #2 starts on arrays | Today: `afw_array_create_unmanaged(x->p)` (`create_with_options` **ignores** `options`), push `undefined` n times, always `create_unmanaged_array` wrapper. Objects already have `AFW_OBJECT_MEMORY_OPTION_new_p` / `unmanaged` / `managed_cede_p` (private subpool vs caller pool). Arrays do not. 1,000,000 cap is a resource policy, not the #2 create path. Discuss instance vs value first; then this constructor. Finding #8 (`read()` cap) is sibling policy only — do not treat current `create_array` as the finished alloc model. |
 | 2026-08-06 | Removed unfinished **`create_composite`** / **`properties_callback`**; keep **`create_merged`**, **`aggregate_external`**, views / option composite | Faces are product look-through; multi-base aggregate is different |
 | 2026-08-17 | **Candidate (not decided):** back toward wrap-APR `afw_pool` (no prefixes on live allocs). Script objects/arrays in the script-start pool, managed; scalars clone; optional intrusive free list in dead values; first-fit now, better later | See **Candidate: back toward old afw_pool**. Current subpool+prefix code stays until #2 chooses. Optional free-list splice (triage **P3**) is **#2**, not a local `else`. |
 | 2026-08-20 | **Another #2 feature branch:** object **property names** are `const afw_value_t *`; implementations use `afw_value_equal`; store-as-is (clone of names is later #2). Script + JSON/YAML/UBJSON **string names only** (throw, no `as_utf8`). PR **#220** + wrap-cleanup (`issue-2-property-name-wrap-cleanup`): owners are `afw_value_string_t`; SET intern-once; get/has stack `UNMANAGED`; never store stack `&pub`. Pad: [`issue-2-property-name-values.md`](issue-2-property-name-values.md). | Not the first #2 branch and not the last. Values-first: names join the same world as property values. Generated `afw_v_*` already exist for the common call sites. |
@@ -996,12 +996,12 @@ Typical preamble:
 
 | Option / macro | Meaning |
 |----------------|---------|
-| **`AFW_OBJECT_MEMORY_OPTION_managed` (value `0`)** | **Default.** Subpool of `p`; object `get_reference` / `release` control that pool’s lifetime. |
+| **`AFW_OBJECT_MEMORY_OPTION_new_p` (value `0`)** | **Default.** Subpool of `p`; object `get_reference` / `release` control that pool’s lifetime. |
 | **`AFW_OBJECT_MEMORY_OPTION_unmanaged`** | No object-level RC / no release of associated pool via object methods. |
-| **`AFW_OBJECT_MEMORY_OPTION_managed_cede_p`** | Object takes ownership of passed `p` (not a new subpool); RC still via object release. |
+| **`AFW_OBJECT_MEMORY_OPTION_cede_p`** | Object takes ownership of passed `p` (not a new subpool); RC still via object release. |
 | **`afw_object_create(p,xctx)`** | → `create_with_options(**managed**, …)` |
 | **`afw_object_create_unmanaged`** | → unmanaged |
-| **`afw_object_create_cede_p`** | → managed_cede_p |
+| **`afw_object_create_unmanaged_cede_p`** | → managed_cede_p |
 | **`afw_object_create_embedded`** | Child in embedder’s pool / entity lifetime |
 
 Rough **hand C** call counts (exclude `generated/`; macros count as uses):
@@ -1011,7 +1011,7 @@ Rough **hand C** call counts (exclude `generated/`; macros count as uses):
 | `afw_object_create` | **~72** | **Managed object** (default option 0) |
 | `afw_object_create_unmanaged` | **~48** | Unmanaged object |
 | `afw_object_create_embedded` | **~36** | Embedded (entity-managed) |
-| `afw_object_create_cede_p` | **~4** | Managed, cede pool |
+| `afw_object_create_unmanaged_cede_p` | **~4** | Managed, cede pool |
 | `afw_object_create_with_options` direct | rare | explicit mask |
 
 So **managed memory objects are common** — they are **not** created via `afw_value_create_managed_object`.

@@ -438,17 +438,11 @@ impl_afw_value_optional_evaluate(
             !afw_value_is_void(result) &&
             !afw_value_is_function_return_value(result))
         {
+            const afw_pool_t *frv_p;
+
+            frv_p = xctx->evaluation_heap ? xctx->evaluation_heap : xctx->p;
             result = afw_value_function_return_value_create(
-                result,
-                xctx->evaluation_heap ? xctx->evaluation_heap : xctx->p,
-                xctx);
-        }
-        if (result &&
-            !afw_value_is_undefined(result) &&
-            !afw_value_is_void(result))
-        {
-            xctx->script_result = result;
-            xctx->script_result_written = true;
+                result, frv_p, xctx);
         }
     }
 
@@ -475,11 +469,16 @@ impl_afw_value_optional_evaluate(
         }
 
         afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
-        afw_xctx_script_result_restore(
-            saved_script_result,
-            saved_script_result_active,
-            saved_script_result_written,
-            xctx);
+        if (xctx->script_result &&
+            xctx->script_result != saved_script_result &&
+            !afw_value_is_undefined(xctx->script_result) &&
+            !afw_value_is_void(xctx->script_result))
+        {
+            afw_value_release(xctx->script_result, xctx);
+        }
+        xctx->script_result = saved_script_result;
+        xctx->script_result_active = saved_script_result_active;
+        xctx->script_result_written = saved_script_result_written;
     }
 
     AFW_ENDTRY;

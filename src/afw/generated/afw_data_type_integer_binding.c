@@ -32,6 +32,12 @@ impl_afw_value_managed_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx);
 
+/* Declaration for method optional_release for unmanaged value. */
+AFW_DECLARE_STATIC(void)
+impl_afw_value_unmanaged_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
 
 /* Declaration for method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
@@ -74,15 +80,21 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_integer_direct, \
     (const void *)&afw_data_type_integer_direct
 
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_assignable_value(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
 /* Declares and rti/inf defines for interface afw_value */
-/* unmanaged integer: optional_release NULL; */
-/* clone_or_reference clones the whole value into p. */
+/* unmanaged integer: get_reference/release throw; */
+/* get_assignable_value creates a managed holdable in xctx->p. */
 #define AFW_IMPLEMENTATION_ID "integer"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_integer_inf
-#define impl_afw_value_optional_release NULL
+#define impl_afw_value_optional_release impl_afw_value_unmanaged_optional_release
 #define impl_afw_value_get_reference impl_afw_value_get_reference
-#define impl_afw_value_get_assignable_value impl_afw_value_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_value
 #define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -92,8 +104,8 @@ impl_afw_value_permanent_get_reference(
 #undef impl_afw_value_get_assignable_value
 
 /* Declares and rti/inf defines for interface afw_value */
-/* managed integer: optional_release frees header at RC 0; */
-/* clone_or_reference bumps RC and returns the same instance. */
+/* managed integer: optional_release drops RC; */
+/* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_integer"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_integer_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
@@ -110,7 +122,7 @@ impl_afw_value_permanent_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* permanent integer: optional_release NULL; */
-/* clone_or_reference returns the same instance as-is. */
+/* get_reference / get_assignable_value as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_integer"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_integer_inf
 #define impl_afw_value_optional_release NULL
@@ -168,11 +180,11 @@ impl_data_type_object_integer__value = {
     (const afw_object_t *)&impl_data_type_object_integer
 };
 
-/* Value for empty array of integer. */
+/* Permanent empty array of integer. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_integer;
 
-/* Value for empty array of integer. */
+/* Permanent empty array value of integer. */
 const afw_value_array_t
 impl_value_empty_array_of_integer;
 
@@ -194,6 +206,8 @@ afw_data_type_integer_direct = {
     (const afw_array_t *)&impl_empty_array_of_integer,
     (const afw_value_t *)&impl_value_empty_array_of_integer,
     &afw_value_unmanaged_integer_inf,
+    afw_value_clone_integer_unmanaged,
+    afw_value_clone_integer_managed,
     afw_compile_type_error,
     true,
     false,
@@ -204,7 +218,7 @@ afw_data_type_integer_direct = {
     NULL
 };
 
-/* Value for empty array of integer. */
+/* Permanent empty array of integer. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_integer = {
     {
@@ -216,7 +230,7 @@ impl_empty_array_of_integer = {
     0
 };
 
-/* Value for empty array of integer. */
+/* Permanent empty array value of integer. */
 const afw_value_array_t
 impl_value_empty_array_of_integer = {
     {&afw_value_permanent_array_inf},
@@ -297,25 +311,14 @@ afw_value_integer_allocate(const afw_pool_t *p, afw_xctx_t *xctx)
 AFW_DEFINE(const afw_value_t *)
 afw_value_integer_create_managed(
     afw_integer_t internal,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_value_integer_managed_t *v;
 
-    if (!p) {
-        p = xctx->p;
-    }
-    if (!p) {
-        AFW_THROW_ERROR_Z(general,
-            "pool required", xctx);
-    }
-
-    v = afw_pool_calloc(p,
+    v = afw_pool_calloc(xctx->p,
         sizeof(afw_value_integer_managed_t), xctx);
     v->inf = &afw_value_managed_integer_inf;
     v->internal = internal;
-    v->reference_count = 1;
-    v->p = p;
     v->reference_count = 1;
 
     return &v->pub;
@@ -333,6 +336,45 @@ afw_value_integer_create(afw_integer_t internal,
     v->inf = &afw_value_unmanaged_integer_inf;
     v->internal = internal;
     return &v->pub;
+}
+
+/* Deep clone evaluated integer unmanaged into p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_integer_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_value_common_t *cloned;
+
+    if (value->inf == &afw_value_permanent_integer_inf) {
+        return value;
+    }
+    cloned = afw_value_common_allocate(
+        afw_data_type_integer, p, xctx);
+    afw_data_type_clone_internal(afw_data_type_integer,
+        (void *)&cloned->internal,
+        (const void *)&((const afw_value_integer_t *)value)->internal,
+        p, xctx);
+    return &cloned->pub;
+}
+
+/* Clone evaluated integer managed in xctx->p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_integer_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    if (value->inf == &afw_value_permanent_integer_inf) {
+        return value;
+    }
+    if (afw_utf8_starts_with_utf8_z(
+            &value->inf->rti.implementation_id, "managed_")) {
+        return afw_value_get_reference(value, xctx->p, xctx);
+    }
+    return afw_value_integer_create_managed(
+        ((const afw_value_integer_t *)value)->internal,
+        xctx);
 }
 
 /* Convert data type integer string to afw_integer_t *. */
@@ -437,10 +479,21 @@ impl_afw_value_managed_optional_release(
         return;
     }
     self->reference_count--;
-    if (self->reference_count == 0 && self->p) {
-        afw_pool_free_memory(self->p, self,
+    if (self->reference_count == 0) {
+        afw_pool_free_memory(xctx->p, self,
             sizeof(afw_value_integer_managed_t), xctx);
     }
+}
+
+/* Implementation of method optional_release for unmanaged value. */
+AFW_DECLARE_STATIC(void)
+impl_afw_value_unmanaged_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    AFW_THROW_ERROR_Z(general,
+        "release of unmanaged scalar", xctx);
 }
 
 /* Implementation of method get_reference for unmanaged value. */
@@ -450,14 +503,25 @@ impl_afw_value_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    (void)instance;
+    (void)p;
+    AFW_THROW_ERROR_Z(general,
+        "get_reference of unmanaged scalar", xctx);
+}
+
+/* Slot fill: promote to managed in xctx->p. */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_assignable_value(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
     const afw_value_integer_t *self =
         (const afw_value_integer_t *)instance;
 
-    if (!p) {
-        p = xctx->p;
-    }
+    (void)p;
     return afw_value_integer_create_managed(
-        self->internal, p, xctx);
+        self->internal, xctx);
 }
 
 
@@ -471,11 +535,8 @@ impl_afw_value_managed_get_reference(
     afw_value_integer_managed_t *self =
         (afw_value_integer_managed_t *)instance;
 
-    /* Escape copy if dest pool is not this header's pool. */
-    if (p && self->p && p != self->p) {
-        return afw_value_integer_create_managed(
-            self->internal, p, xctx);
-    }
+    (void)p;
+    (void)xctx;
     self->reference_count++;
     return instance;
 }

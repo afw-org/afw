@@ -45,30 +45,25 @@ impl_afw_value_optional_evaluate(
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
-    const afw_value_t *occupant;
     const afw_value_t *saved_script_result;
-    const afw_pool_t *heap;
-    const afw_pool_t *saved_evaluation_heap;
-    const afw_pool_t *dest_p;
     afw_boolean_t saved_script_result_active;
     afw_boolean_t saved_script_result_written;
     int nelts;
 
     result = NULL;
     nelts = xctx->scope_stack->nelts;
+
     saved_script_result = xctx->script_result;
     saved_script_result_active = xctx->script_result_active;
     saved_script_result_written = xctx->script_result_written;
-    saved_evaluation_heap = xctx->evaluation_heap;
-    heap = afw_pool_create_xctx_p(p, xctx);
-    xctx->evaluation_heap = heap;
+    xctx->script_result = afw_value_undefined;
+    xctx->script_result_written = false;
     if (self->full_source_type &&
         afw_utf8_equal(self->full_source_type, afw_s_script))
     {
-        xctx->script_result = afw_value_undefined;
         xctx->script_result_active = true;
-        xctx->script_result_written = false;
     }
+
     AFW_TRY {
 
         /* Push a NULL onto the scope stack to indicate new compiled value. */
@@ -105,15 +100,6 @@ impl_afw_value_optional_evaluate(
         /* Pop off the NULL compiled value indicator on scope stack. */
         apr_array_pop(xctx->scope_stack);
 
-        /*
-         * Escape the callee heap onto the caller's evaluation heap so
-         * overwrite can recycle (general xctx->p free is a no-op).
-         */
-        dest_p = saved_evaluation_heap;
-        if (!dest_p || dest_p == heap) {
-            dest_p = xctx->p;
-        }
-
         if (xctx->script_result_active &&
             xctx->script_result &&
             !afw_value_is_undefined(xctx->script_result) &&
@@ -121,48 +107,41 @@ impl_afw_value_optional_evaluate(
         {
             result = xctx->script_result;
         }
-        /*
-         * Script/unit door: empty (void) becomes undefined as the
-         * evaluate() result. Same as untyped empty function body.
-         */
         if (!result || afw_value_is_void(result)) {
             result = afw_value_undefined;
         }
         if (result &&
             !afw_value_is_undefined(result) &&
-            !afw_value_is_void(result) &&
-            !afw_value_is_function_return_value(result))
+            !afw_value_is_void(result))
         {
-            occupant = result;
-            result = afw_value_function_return_value_create(
-                occupant, dest_p, xctx);
-            /*
-             * FRV holds the occupant. Drop the running-result slot hold
-             * so restore does not need donate.
-             */
-            if (xctx->script_result == occupant) {
-                afw_value_release(occupant, xctx);
-                xctx->script_result = result;
+            const afw_data_type_t *dt;
+
+            dt = result->inf
+                ? result->inf->is_evaluated_of_data_type
+                : NULL;
+            if (dt && dt->clone_value_unmanaged) {
+                result = afw_value_clone_unmanaged(
+                    result, p, xctx);
             }
         }
-        afw_xctx_script_result_restore(
-            saved_script_result,
-            saved_script_result_active,
-            saved_script_result_written,
-            xctx);
 
-        xctx->evaluation_heap = saved_evaluation_heap;
-        if (heap) {
-            afw_pool_release(heap, xctx);
+        if (xctx->script_result &&
+            xctx->script_result != saved_script_result &&
+            !afw_value_is_undefined(xctx->script_result) &&
+            !afw_value_is_void(xctx->script_result))
+        {
+            afw_value_release(xctx->script_result, xctx);
         }
-        
+        xctx->script_result = saved_script_result;
+        xctx->script_result_active = saved_script_result_active;
+        xctx->script_result_written = saved_script_result_written;
+
     }
     AFW_ENDTRY;
 
     /* Always set execution flow back to sequential after compiled unit. */
     afw_xctx_statement_flow_set_type(sequential, xctx);
-    
-    /* Return the result of calling root value's evaluate(). */
+
     return result;
 }
 

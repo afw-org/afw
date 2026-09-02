@@ -51,7 +51,7 @@ afw_function_execute_flag_get_active(
     afw_size_t i, count;
     const afw_array_t *array;
 
-    array = afw_array_create_with_options(0, afw_data_type_string,
+    array = afw_array_create_unmanaged_of(afw_data_type_string,
         x->p, x->xctx);
 
     for (i = 0, count = x->xctx->flags_count;
@@ -103,7 +103,7 @@ afw_function_execute_flag_get_active_defaults(
     afw_size_t i, count;
     const afw_array_t *array;
 
-    array = afw_array_create_with_options(0, afw_data_type_string,
+    array = afw_array_create_unmanaged_of(afw_data_type_string,
         x->p, x->xctx);
 
     for (i = 0, count = x->xctx->env->flags_count_registered;
@@ -163,7 +163,7 @@ afw_function_execute_flag_get_defaults(
     const afw_utf8_t *s;
     afw_xctx_t *xctx = x->xctx;
 
-    array = afw_array_create_with_options(0, afw_data_type_string,
+    array = afw_array_create_unmanaged_of(afw_data_type_string,
         x->p, x->xctx);
 
     AFW_LOCK_BEGIN(xctx->env->flags_lock) {

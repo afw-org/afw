@@ -17,6 +17,7 @@
  * release on one thread. Multithreaded heap is lock wrappers.
  * Heap live: [USER] or [size][pool][USER] if AFW_DEBUG_POOL.
  * Tracker live: [prev][next][size][USER], plus [pool] if debug.
+ * Debug free fills USER with AFW_POOL_DEBUG_POISON (bad inf).
  */
 
 #include "afw_internal.h"
@@ -664,9 +665,39 @@ impl_debug_check_prefix(
             xctx);
     }
 }
+
+static void
+impl_debug_poison_user(void *user, afw_size_t size)
+{
+    afw_size_t i;
+    afw_size_t n;
+    afw_size_t *w;
+    unsigned char *b;
+    unsigned char *end;
+    afw_size_t poison;
+
+    if (!user || size == 0) {
+        return;
+    }
+    poison = AFW_POOL_DEBUG_POISON;
+    w = (afw_size_t *)user;
+    n = size / sizeof(afw_size_t);
+    for (i = 0; i < n; i++) {
+        w[i] = poison;
+    }
+    b = (unsigned char *)user + n * sizeof(afw_size_t);
+    end = (unsigned char *)user + size;
+    i = 0;
+    while (b < end) {
+        *b++ = (unsigned char)(poison >>
+            (8 * (i % sizeof(afw_size_t))));
+        i++;
+    }
+}
 #else
 #define impl_debug_prefix_set(self, user, size) ((void)0)
 #define impl_debug_check_prefix(self, address, size, xctx) ((void)0)
+#define impl_debug_poison_user(user, size) ((void)0)
 #endif
 
 
@@ -835,6 +866,7 @@ impl_heap_afw_pool_free_memory(
         return;
     }
     impl_debug_check_prefix(self, address, size, xctx);
+    impl_debug_poison_user(address, size);
     total = impl_block_bytes(AFW_POOL_HEAP_PREFIX_BYTES, size, xctx);
     start = AFW_POOL_HEAP_ALLOC_START(address);
     IMPL_PRINT_DEBUG_INFO_FZ(
@@ -1105,6 +1137,8 @@ impl_tracker_afw_pool_destroy(
     while (self->first_allocated_memory) {
         memory = self->first_allocated_memory;
         impl_tracker_unlink(&self->first_allocated_memory, memory);
+        impl_debug_poison_user(AFW_POOL_TRACKER_TO_USER(memory),
+            AFW_POOL_TRACKER_USER_SIZE(memory));
         impl_heap_add_to_free_list(self, memory,
             impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES,
                 AFW_POOL_TRACKER_USER_SIZE(memory), xctx),
@@ -1224,6 +1258,7 @@ impl_tracker_afw_pool_free_memory(
         return;
     }
     impl_debug_check_prefix(self, address, size, xctx);
+    impl_debug_poison_user(address, size);
     node = AFW_POOL_TRACKER_NODE(address);
     total = impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES, size, xctx);
     IMPL_PRINT_DEBUG_INFO_FZ(
@@ -1439,4 +1474,30 @@ afw_pool_create_as_managed_p(
     p = afw_pool_create(parent, xctx);
     ((afw_pool_t *)p)->managed_p = p;
     return p;
+}
+
+
+/* Release the value registered with afw_pool_release_value_at_cleanup(). */
+static void
+impl_release_value_at_cleanup(
+    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+    afw_value_release((const afw_value_t *)data, xctx);
+}
+
+
+/* Release a value when a pool is destroyed. */
+AFW_DEFINE(void)
+afw_pool_release_value_at_cleanup(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!value) {
+        return;
+    }
+    afw_pool_register_cleanup_before(p, (void *)value, NULL,
+        impl_release_value_at_cleanup, xctx);
 }

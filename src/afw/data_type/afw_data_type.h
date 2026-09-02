@@ -95,30 +95,13 @@ do { \
 
 
 /**
- * @brief Clone an object to a managed object.
- * @param object to clone.
- * @param p used for cloned object.
- * @param xctx of caller.
- * @return cloned object.
- *
- * This will use afw_object_and_pool_create() to create the
- * cloned object.
- */
-AFW_DECLARE(const afw_object_t *)
-afw_data_type_object_create_clone_to_managed_object(
-    const afw_object_t *object,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
  * @brief Directly call value_compiler_listing() for data type 'object'.
  * @param writer instance.
  * @param object_value of object.
  * @param scalar_only true if only scalar properties should be listed.
  * @param xctx of caller.
  *
- * This will use afw_object_and_pool_create() to create the
+ * This will use afw_object_create_unmanaged_new_p() to create the
  * cloned object.
  */
 AFW_DECLARE(void)

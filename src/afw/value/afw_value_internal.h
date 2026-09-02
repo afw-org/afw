@@ -1093,7 +1093,8 @@ afw_value_block_evaluate_statements(
     afw_size_t start,
     const afw_pool_t *p,
     afw_xctx_t *xctx,
-    afw_boolean_t as_value);
+    afw_boolean_t as_value,
+    afw_boolean_t *got_last);
 
 
 /**

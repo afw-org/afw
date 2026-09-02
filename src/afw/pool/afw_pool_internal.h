@@ -43,6 +43,16 @@ typedef struct afw_pool_debug_prefix_s {
     const afw_pool_t *pool;
 } afw_pool_debug_prefix_t;
 #define AFW_POOL_DEBUG_PREFIX_BYTES sizeof(afw_pool_debug_prefix_t)
+/*
+ * USER fill on free. First word is a value `inf` pointer: non-canonical
+ * on x86-64 so any `value->inf->…` faults, not only optional_release.
+ */
+#ifdef __LP64__
+#define AFW_POOL_DEBUG_POISON \
+    ((afw_size_t)0x0BADF00D0BADF00DULL)
+#else
+#define AFW_POOL_DEBUG_POISON ((afw_size_t)0x0BADF00Du)
+#endif
 #else
 #define AFW_POOL_DEBUG_PREFIX_BYTES ((afw_size_t)0)
 #endif

@@ -97,7 +97,7 @@ afw_xctx_internal_create_finishup(afw_xctx_t *xctx)
     xctx->uuid = afw_uuid_create_utf8(xctx->p, xctx);
 
     /* Create a properties object. */
-    xctx->properties = afw_object_create_in_pool(
+    xctx->properties = afw_object_create_unmanaged(
         xctx->p, xctx);
 
     /* Set times. */
@@ -956,16 +956,6 @@ afw_xctx_scope_release(
 }
 
 
-/* Set the xctx evaluation result. */
-AFW_DEFINE(void)
-afw_xctx_evaluation_result_set(
-    afw_xctx_t *xctx,
-    const afw_value_t *value)
-{
-    ((afw_xctx_t *)xctx)->evaluation_result = value;
-}
-
-
 /*
  * Parked parameter occupants are defined_and_evaluated (or a leftover
  * return-temp wrapper). Call frames are graph infs and are not.
@@ -1064,29 +1054,4 @@ afw_xctx_script_result_set_value(
 {
     afw_value_slot_store(&xctx->script_result, value, xctx->p, xctx);
     xctx->script_result_written = true;
-}
-
-
-/* Restore parked caller hidden result after a nested activation. */
-AFW_DEFINE(void)
-afw_xctx_script_result_restore(
-    const afw_value_t *saved,
-    afw_boolean_t saved_active,
-    afw_boolean_t saved_written,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *current;
-
-    current = xctx->script_result;
-    if (current && current != saved &&
-        !afw_value_is_undefined(current) &&
-        !afw_value_is_void(current) &&
-        !afw_value_is_function_return_value(current))
-    {
-        afw_value_release(current, xctx);
-    }
-
-    xctx->script_result = saved;
-    xctx->script_result_active = saved_active;
-    xctx->script_result_written = saved_written;
 }

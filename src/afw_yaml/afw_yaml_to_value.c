@@ -181,7 +181,7 @@ const afw_array_t * afw_yaml_parse_list(
 
     impl_yaml_parse_nesting_enter(parser, xctx);
 
-    list = afw_array_create_in_pool(parser->p, xctx);
+    list = afw_array_create_unmanaged(parser->p, xctx);
 
     do {
         value = afw_yaml_parse_value(parser, xctx);

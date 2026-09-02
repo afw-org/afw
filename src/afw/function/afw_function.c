@@ -138,7 +138,7 @@ afw_function_execute_requiresExecuteAccess_wrapper(
 
     AFW_TRY {
         /* Make an object to pass to authorization check. */
-        obj = afw_object_and_pool_create(x->p, xctx);
+        obj = afw_object_create_unmanaged_new_p(x->p, xctx);
 
         /*
          * Use the object's pool for a temporary copy of x and an evaluated

@@ -62,10 +62,12 @@ afw_data_type_object;
 /**
  * @brief Unmanaged evaluated value inf for data type object.
  *
- * Lifetime is the containing pool until clone_or_reference.
- * Scalar clone_or_reference creates a managed holdable in p.
- * Object/array clone_or_reference holds a memory face.
- * optional_release is NULL on unmanaged scalars.
+ * Lifetime is the containing pool. get_reference and
+ * optional_release throw (scalar, object, array).
+ * Scalar get_assignable_value creates a managed holdable
+ * in xctx->p. Object/array get_assignable_value: managed
+ * occupant dual-face, generic memory bag clone_managed,
+ * else hold.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_object_inf;
@@ -73,8 +75,9 @@ afw_value_unmanaged_object_inf;
 /**
  * @brief Assignable (script face) value inf for data type object.
  *
- * Minted by get_assignable_value of a memory bag. get_reference
- * and get_assignable_value bump the instance.
+ * Face overlay (view/wrapper hold). get_reference and
+ * get_assignable_value bump the instance. Generic memory
+ * bags clone_managed instead of this inf.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_assignable_object_inf;
@@ -82,8 +85,9 @@ afw_value_assignable_object_inf;
 /**
  * @brief Managed evaluated value inf for data type object.
  *
- * Start-at-1 holdable clone in p (must release). clone_or_reference
- * bumps. Last release frees via stored p.
+ * Start-at-1 holdable in xctx->p (caller must release).
+ * get_reference / get_assignable_value bump. Last-release
+ * drops RC; header leak until alloc-pool free is trusted.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_object_inf;
@@ -91,9 +95,11 @@ afw_value_managed_object_inf;
 /**
  * @brief Permanent (life of afw environment) value inf for data type object.
  *
- * Lifetime is the afw environment / static const storage. optional_release
- * is NULL. Scalar clone_or_reference is as-is. Object/array
- * clone_or_reference holds a memory face (same as unmanaged).
+ * Lifetime is the afw environment / static const storage.
+ * optional_release is NULL. Scalar get_reference /
+ * get_assignable_value are as-is. Object/array get_reference
+ * is as-is; get_assignable_value isolates (object_hold /
+ * array_hold) so slots do not share immortal bags.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_object_inf;
@@ -231,8 +237,8 @@ afw_value_object_allocate(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * Allocates in p. Starts at reference count 1 (must release).
- * clone_or_reference bumps. Last release frees via stored p.
+ * Value wrapper around an existing object/array.
+ * Container hold is on the instance, not this RC.
  * Stores the pointer as-is; does not clone or take a reference on the
  * referent. Caller must ensure the referent outlives this value (or
  * a future object/array path may special-case container RC).
@@ -244,6 +250,34 @@ afw_value_object_create_managed(
 #define afw_value_create_managed_object afw_value_object_create_managed
 
 /**
+ * @brief Deep clone an evaluated object value unmanaged into p.
+ * @param value evaluated object.
+ * @param p dest pool.
+ * @param xctx of caller.
+ * @return unmanaged clone in p, or value if permanent.
+ *
+ * Copies utf8/memory octets into p. Does not release the source.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone_object_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Clone an evaluated object value managed in xctx->p.
+ * @param value evaluated object.
+ * @param xctx of caller.
+ * @return managed value (bump if already managed).
+ *
+ * Permanents as-is. Does not release the source. No dest p.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone_object_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Create function for unmanaged data type object value.
  * @param internal.
  * @param p to use for returned value.
@@ -251,7 +285,8 @@ afw_value_object_create_managed(
  * @return Created const afw_value_t *.
  *
  * Allocates in pool p; lifetime is the pool (no value refcount).
- * clone_or_reference holds a memory face.
+ * get_reference / release throw. get_assignable_value
+ * clone_managed, hold, or managed dual-face.
  * Stores the pointer as-is; does not clone the referent.
  */
 AFW_DECLARE(const afw_value_t *)

@@ -551,7 +551,7 @@ afw_function_execute_entries(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
-    result_array = afw_array_create_in_pool(x->p, x->xctx);
+    result_array = afw_array_create_unmanaged(x->p, x->xctx);
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(
             object->internal, &iterator, &property_name, x->xctx);
@@ -559,7 +559,7 @@ afw_function_execute_entries(
             break;
         }
         name_value = property_name;
-        pair = afw_array_create_in_pool(x->p, x->xctx);
+        pair = afw_array_create_unmanaged(x->p, x->xctx);
         afw_array_push_value(pair, name_value, x->xctx);
         afw_array_push_value(pair, value, x->xctx);
         afw_array_push_value(result_array,
@@ -613,7 +613,7 @@ afw_function_execute_keys(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
-    result_array = afw_array_create_in_pool(x->p, x->xctx);
+    result_array = afw_array_create_unmanaged(x->p, x->xctx);
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(
             object->internal, &iterator, &property_name, x->xctx);
@@ -672,7 +672,7 @@ afw_function_execute_values(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
-    result_array = afw_array_create_in_pool(x->p, x->xctx);
+    result_array = afw_array_create_unmanaged(x->p, x->xctx);
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(
             object->internal, &iterator, &property_name, x->xctx);

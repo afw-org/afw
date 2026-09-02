@@ -3,7 +3,7 @@
 **Audience:** maintainers / assistants. **Not** handbook.
 
 **GitHub:** [#2](https://github.com/afw-org/afw/issues/2).  
-**On `develop`:** pool two-impls + last_return frame-end store ([PR #267](https://github.com/afw-org/afw/pull/267)). `issue-2-managed-p` is gone (tests harvested; C on that branch is not the rails).
+**On `develop`:** pool two-impls ([PR #267](https://github.com/afw-org/afw/pull/267)). Two worlds (unmanaged dest `p` / managed `xctx->p`) are [#277](https://github.com/afw-org/afw/issues/277) — pad [`experiment-brainstorm.md`](experiment-brainstorm.md). `issue-2-managed-p` is gone.
 
 **This pad is the rails.** The 2026-08-20–21 story and archaeology stay in [`issue-2-lifetime.md`](issue-2-lifetime.md). If that file and this one disagree, **this file wins**. If a leak tempts a helper *around* assign, operators, or the compiler — **stop and ask**. That is how we dug holes.
 
@@ -38,7 +38,7 @@ Default impl: `#define impl_afw_value_get_assignable_value impl_afw_value_get_re
 | Managed scalar | bump | same |
 | Permanent scalar | self | same |
 | Unmanaged scalar | managed copy | same |
-| Unmanaged/permanent object & array (**memory bag**) | self | mint **assignable** face |
+| Unmanaged/permanent object & array (**memory bag**) | **throw** (isolate with `get_assignable`) | mint **assignable** face or `clone_managed` / hold ([#277](https://github.com/afw-org/afw/issues/277)) |
 | **Assignable** object & array (new inf, like `closure_binding`) | bump | `get_reference(self)` |
 | `script_function` | self | `closure_binding` |
 | `closure_binding` | bump | `get_reference(self)` |
@@ -73,7 +73,7 @@ This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_
 
 **Frame vs block.** Frame deactivate is the pool story. Block, on a **normal** fall-out, writes **last_return**. Throw/break/rewind deactivates frames and does not invent a result. Frames are one-to-one with `{ }` in the model; today zero-symbol `{ }` may skip a frame and `for (let …)` clones an extra one of **names**.
 
-**last_return** (code today: `xctx->script_result`). Last non-void statement. Not every assign poking a slot. Walk the list with a **raw** last (skip **void** and break/continue/rethrow). **undefined is a value** and does replace. Empty if/block/loop/try/switch return void, not undefined. **One** `slot_store(&xctx->script_result, last, xctx->p)` when a **frame** (created scope) finishes, **before** tracker deactivate. Nested 0-symbol `{ }` returns that raw last to the parent list. `execute_return` boxes with `as_assignable` onto `xctx->p` and `slot_store`s when `script_result_active` (no FRV pointer-assign). as_value / template substitution clears that flag so `${return a}` vs `${return b}` do not share the slot. Skip the frame-end store if return already wrote. while/for/try/switch are UpdateEmpty: the body’s last non-void bubbles, including **across loop iterations** (empty break/continue does not wipe a prior iteration’s assign). for init/increment are not body statements. Dest for last_return is **`xctx->p`**. Dest for a frame name is **that frame’s `scope->p`**. If the incoming is void, **do not replace**. `{ let x = 1; { add(1,1) } }` last_return is `2`; `{ add(1,1); let x = 1 }` stays `2`. Empty `{ }` writes nothing. `let`/`const` are void; `x = 1` as a statement is not (completion is `1`). A call that returns undefined writes. Declared `: void` does not. Jeremy-script / ES — confirm if we ever disagree.
+**last_return** (code today: `xctx->script_result`, [#277](https://github.com/afw-org/afw/issues/277)). Assignment, `return`, and a non-void call write the **slot**. `let`/`const`, empty `{ }`, and `for`/`while`/`try` as statements do not. Nested assignment inside a loop **does**. Loops/`try` are void except `return`/`rethrow` (no unheld leftover last). **undefined is a value** and does replace. Tests: `script_result.as`. `execute_return` `slot_store`s when `script_result_active`. as_value / template substitution clears that flag. for init/increment are not body statements. `{ let x = 1; { add(1,1) } }` last_return is `2`; `{ add(1,1); let x = 1 }` stays `2`. A call that returns undefined writes. Declared `: void` does not.
 
 **`get_reference` pairs with `release`. Full stop.** Any non-permanent object/array inf honors both even if it starts at count 0. If you `get_reference`, you owe a `release`. in_pool instances still **die with their pool** if nobody extra-held them.
 
@@ -122,15 +122,15 @@ This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_
 
 | | Function | Meaning |
 |--|----------|---------|
-| Object | `afw_object_create_in_pool(p, xctx)` | Lives in `p`. Start 0. No `release` unless you `get_reference` / `get_assignable_value`. |
-| Object | `afw_object_and_pool_create(p, xctx)` | Thing is **object and pool**. Birth hold: last `release` drops the pool. |
-| Object | `afw_object_and_pool_create_cede(p, xctx)` | Same, using caller-built `p`. |
-| Array | `afw_array_create_in_pool` / `create_in_pool_of` / `and_pool_create` | Same pair. |
+| Object | `afw_object_create_unmanaged(p, xctx)` | Lives in `p`. Start 0. Value `get_reference` / `release` throw. |
+| Object | `afw_object_create_unmanaged_new_p(p, xctx)` | New child of `p->managed_p`. Object interface last `release` drops the pool. |
+| Object | `afw_object_create_unmanaged_cede_p(p, xctx)` | Same, using caller-built `p`. |
+| Array | `afw_array_create_unmanaged` / `create_unmanaged_of` / `create_unmanaged_new_p` | Same pair. |
 | Scalar | `afw_value_<dt>_create(…)` | Unmanaged. Header in `p`. utf8/memory: copy the struct only, not octets. |
 | Scalar | `afw_value_<dt>_create_managed(…)` | Start 1. utf8/memory copy octets. Must `release`. |
 | Scalar | `afw_value_<dt>_create_managed_slice(…)` | View of a managed utf8/memory value. Holds containing. |
 
-Old C names remain as macros (`afw_object_create_unmanaged`, `afw_value_create_unmanaged_string`, …). Dual face: the instance **is** the value.
+Dual face: the instance **is** the value. Pool-world object/array creates always have `unmanaged` / `unmanaged_new_p` / `unmanaged_cede_p` in the name; frames are `create_managed`.
 
 ---
 
@@ -162,7 +162,7 @@ Large-string RC later is **private** to the string inf. Nothing else notices.
 
 Done on this branch (still named `clone_or_reference` in code): scalar managed holdables, object/array hold at unmanaged/permanent `clone_or_reference`, wrap emit gone, `script_function` → `closure_binding`, create names, harvest empty, **return temps** (`function_return_value` + park occupant).
 
-**On develop (PR [#267](https://github.com/afw-org/afw/pull/267), 2026-08-28):** Heap and tracker are the two pool impls (plus mt lock wrappers). APR is reservoir only. `afw_pool.c` / `afw_pool_internal.h`. Heap live: no header, or `[size][pool][USER]` if `AFW_DEBUG_POOL` (always checked on free). Tracker live: links then that pair. Size is USER size. `create()` of a heap parent is a heap; of a tracker parent is a tracker (extra rule). `xctx->p` is ST heap; `env->p` is mt heap. last_return is raw last through the list (skip **void** only); one `slot_store` at created-scope finish onto `xctx->p`. Empty if/block/loop/try/switch/`rethrow` return void. Script/function door: empty void → `undefined`. Declared `: void` stays void.
+**On develop (PR [#267](https://github.com/afw-org/afw/pull/267), 2026-08-28):** Heap and tracker are the two pool impls (plus mt lock wrappers). APR is reservoir only. `AFW_DEBUG_POOL` prefix always checked on free; USER poison on free. `xctx->p` is ST heap; `env->p` is mt heap. last_return: [#277](https://github.com/afw-org/afw/issues/277) / `script_result.as`. Script/function door: empty void → `undefined`. Declared `: void` stays void.
 
 **Still parked (`FIXME_GET_IT_WORKING`):** eval `p` is caller `p`, not `scope->p`. Skip `double_free_throws`. Tried ripping eval `p`: `language/script` stayed green; `comments-bmp-slash-0.as` (~14k nested `for (let …)` + `eval<script>`) climbed CPU/RSS — discarded. Double-free today throws prefix “pool does not match allocation” after overlay, not “already freed.” Do not spread `get_reference` in `execute_*`. Tracker allocated list forward-only later. Do not wrap catalog qualifiers. Do not add `get_base` unless more than one product site type-switches for “entity.”
 
@@ -194,6 +194,6 @@ Code still uses `clone_or_reference` in places (stand-in until the split is full
 
 **Scalar managed (start 1):** in `xctx->p`, must `release` (`free_memory`). Unmanaged scalars: `release` no-op; die with the frame tracker. Frame **names** of this `{ }` live in `scope->p` (in_pool), not on `evaluation_heap`. Promote only when assigning **out** (`last_return` / outer frame / caller `p`).
 
-**Current code:** catalog / runtime objects (`environment::`, meta accessor, const key/value, aggregate external) stamp `managed_object_inf` so slot fill **bumps** (SET throws if no setter). That is the script-readonly door — not a leftover wrap. Views stamp **unmanaged** so retrieve slot fill wraps. `isolate_mutable_default` deleted; array materialize/GET is `slot_store`. Donate list is gone. Reconcile diffs the **face**.
+**Current code:** pool-world dual-faces (including env-vars object, `create_embedded`) use **unmanaged** inf. Views stamp **unmanaged** so retrieve slot fill wraps. `isolate_mutable_default` deleted; array materialize/GET is `slot_store`. Reconcile diffs the **face**.
 
 **Storeable infs with `clone_or_reference` NULL (need a method or stay graph-only):** `script_function` implements it (`closure_binding`). `reference_by_key` is a place, not stored. Graph: `block`, `call`, `compiled_value`, `symbol_reference`, … Data-type bindings have generated methods (managed / unmanaged / slice).

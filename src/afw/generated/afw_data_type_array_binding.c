@@ -92,9 +92,15 @@ impl_afw_value_assignable_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+AFW_DECLARE_STATIC(void)
+impl_afw_value_assignable_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
 /* Declares and rti/inf defines for interface afw_value */
-/* unmanaged array: optional_release holds the instance. */
-/* clone_or_reference is object_hold / array_hold. */
+/* unmanaged array: get_reference/release throw; */
+/* get_assignable_value: managed dual-face, clone_managed,
+ * or object_hold / array_hold. */
 #define AFW_IMPLEMENTATION_ID "array"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_array_inf
@@ -110,8 +116,8 @@ impl_afw_value_assignable_get_reference(
 #undef impl_afw_value_get_assignable_value
 
 /* Declares and rti/inf defines for interface afw_value */
-/* managed array: optional_release frees header at RC 0; */
-/* clone_or_reference bumps RC and returns the same instance. */
+/* managed array: optional_release drops RC; */
+/* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_array"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_array_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
@@ -128,7 +134,7 @@ impl_afw_value_assignable_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* permanent array: optional_release NULL; */
-/* clone_or_reference holds a memory face. */
+/* get_reference as-is; get_assignable_value isolates. */
 #define AFW_IMPLEMENTATION_ID "permanent_array"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_array_inf
 #define impl_afw_value_optional_release NULL
@@ -144,10 +150,10 @@ impl_afw_value_assignable_get_reference(
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
-/* assignable array: script face; bump instance. */
+/* assignable array: script face; pin the bag. */
 #define AFW_IMPLEMENTATION_ID "assignable_array"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_assignable_array_inf
-#define impl_afw_value_optional_release impl_afw_value_unmanaged_optional_release
+#define impl_afw_value_optional_release impl_afw_value_assignable_optional_release
 #define impl_afw_value_get_reference impl_afw_value_assignable_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_assignable_get_reference
 #define AFW_VALUE_INF_ONLY 1
@@ -202,11 +208,11 @@ impl_data_type_object_array__value = {
     (const afw_object_t *)&impl_data_type_object_array
 };
 
-/* Value for empty array of array. */
+/* Permanent empty array of array. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_array;
 
-/* Value for empty array of array. */
+/* Permanent empty array value of array. */
 const afw_value_array_t
 impl_value_empty_array_of_array;
 
@@ -228,6 +234,8 @@ afw_data_type_array_direct = {
     (const afw_array_t *)&impl_empty_array_of_array,
     (const afw_value_t *)&impl_value_empty_array_of_array,
     &afw_value_unmanaged_array_inf,
+    afw_value_clone_array_unmanaged,
+    afw_value_clone_array_managed,
     afw_compile_type_error,
     true,
     false,
@@ -238,7 +246,7 @@ afw_data_type_array_direct = {
     NULL
 };
 
-/* Value for empty array of array. */
+/* Permanent empty array of array. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_array = {
     {
@@ -250,7 +258,7 @@ impl_empty_array_of_array = {
     0
 };
 
-/* Value for empty array of array. */
+/* Permanent empty array value of array. */
 const afw_value_array_t
 impl_value_empty_array_of_array = {
     {&afw_value_permanent_array_inf},
@@ -355,6 +363,48 @@ afw_value_array_create(const afw_array_t * internal,
     v->inf = &afw_value_unmanaged_array_inf;
     v->internal = internal;
     return &v->pub;
+}
+
+/* Deep clone evaluated array unmanaged into p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_array_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_array_t *from;
+    const afw_array_t *to = NULL;
+
+    if (value->inf == &afw_value_permanent_array_inf) {
+        return value;
+    }
+    from = ((const afw_value_array_t *)value)->internal;
+    afw_data_type_clone_internal(afw_data_type_array,
+        (void *)&to, &from, p, xctx);
+    return afw_value_array_create(to, p, xctx);
+}
+
+/* Clone evaluated array managed in xctx->p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_array_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    if (value->inf == &afw_value_permanent_array_inf) {
+        return value;
+    }
+    if (afw_utf8_starts_with_utf8_z(
+            &value->inf->rti.implementation_id, "managed_")) {
+        return afw_value_get_reference(value, xctx->p, xctx);
+    }
+    {
+        const afw_array_t *from;
+        const afw_array_t *to;
+
+        from = ((const afw_value_array_t *)value)->internal;
+        to = afw_array_create_managed_from(from, xctx);
+        return to->value;
+    }
 }
 
 /* Convert data type array string to const afw_array_t * *. */
@@ -473,12 +523,9 @@ impl_afw_value_unmanaged_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    const afw_value_array_t *self =
-        (const afw_value_array_t *)instance;
-
-    if (self->internal) {
-        afw_array_release(self->internal, xctx);
-    }
+    (void)instance;
+    AFW_THROW_ERROR_Z(general,
+        "release of unmanaged array", xctx);
 }
 
 /* Implementation of method get_reference for unmanaged value. */
@@ -488,14 +535,10 @@ impl_afw_value_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_array_t *self =
-        (const afw_value_array_t *)instance;
-
+    (void)instance;
     (void)p;
-    if (self->internal) {
-        afw_array_get_reference(self->internal, xctx);
-    }
-    return instance;
+    AFW_THROW_ERROR_Z(general,
+        "get_reference of unmanaged array", xctx);
 }
 
 /* Slot fill: mint an assignable face. */
@@ -505,6 +548,24 @@ impl_afw_value_get_assignable_value(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    const afw_array_t *a;
+
+    a = ((const afw_value_array_t *)instance)->internal;
+    /* Same as object: typed map may box a managed
+     * occupant in an unmanaged value. */
+    if (afw_array_is_memory_managed(a)) {
+        (void)p;
+        afw_array_get_reference(a, xctx);
+        return a->value;
+    }
+    if (a && a->inf &&
+        afw_utf8_equal_utf8_z(&a->inf->rti.implementation_id,
+            "memory") &&
+        !afw_array_is_memory_wrapper(a))
+    {
+        (void)p;
+        return afw_value_clone_managed(instance, xctx);
+    }
     return afw_value_array_hold(instance, p, xctx);
 }
 
@@ -523,6 +584,20 @@ impl_afw_value_assignable_get_reference(
         afw_array_get_reference(self->internal, xctx);
     }
     return instance;
+}
+
+/* Assignable face: drop the bag pin. */
+AFW_DECLARE_STATIC(void)
+impl_afw_value_assignable_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    const afw_value_array_t *self =
+        (const afw_value_array_t *)instance;
+
+    if (self->internal) {
+        afw_array_release(self->internal, xctx);
+    }
 }
 
 

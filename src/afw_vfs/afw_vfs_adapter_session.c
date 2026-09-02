@@ -417,7 +417,7 @@ impl_read_file_object(
         }
 
         /* Process each file in directory. */
-        object = afw_object_and_pool_create_cede(p, xctx);
+        object = afw_object_create_unmanaged_cede_p(p, xctx);
         afw_object_meta_set_ids(object,
             &self->pub.adapter->adapter_id,
             afw_vfs_s__AdaptiveFile_vfs,
@@ -429,7 +429,7 @@ impl_read_file_object(
             &self->pub.adapter->adapter_id, object_id, p, xctx);
         afw_object_set_property_as_anyURI(object,
             afw_vfs_v_vfsPath, vfs_path, xctx);
-        filenames = afw_array_create_in_pool_of(afw_data_type_string, p, xctx);
+        filenames = afw_array_create_unmanaged_of(afw_data_type_string, p, xctx);
         afw_object_set_property_as_array(object,
             afw_vfs_v_data, filenames, xctx);
         for (;;) {
@@ -540,7 +540,7 @@ impl_read_file_object(
             }
         }
 
-        object = afw_object_and_pool_create_cede(p, xctx);
+        object = afw_object_create_unmanaged_cede_p(p, xctx);
         afw_object_meta_set_ids(object,
             &self->pub.adapter->adapter_id,
             afw_vfs_s__AdaptiveFile_vfs,
