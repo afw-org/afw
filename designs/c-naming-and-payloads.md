@@ -63,9 +63,9 @@ Env / FCGI names: only three `create_property_name` callers. Documented in objec
 - Header is immutable. Object/array `internal` points at an instance that can mutate.
 - **`compiled_value`** keeps one `full_source`. Children store a **contextual** window. Backtrace is the **evaluation stack**, not `parent`. Adaptive `compile()` at eval time uses `x->p` and `parent = NULL` so a compile-once script evaluated many times does not grow the script pool ([#212](https://github.com/afw-org/afw/issues/212)).
 
-Managed scalar headers in `xctx->p` only work if we actually `free` (including `AFW_TRY`). That will not last #2 as the *home* for those headers; assign should clone into the destination pool.
+Managed scalar headers live in `xctx->p` and last-release `free_memory`s them ([#277](https://github.com/afw-org/afw/issues/277)). Eval completion clones **evaluated** results unmanaged into dest `p`.
 
-Do **not** rename `afw_value_create_managed_<dt>` to `afw_value_create_<dt>` on this campaign. `afw_value_create_*` already means “new value” (graph nodes, `from_external`, `now_utc`). Most C uses `create_unmanaged_*`. Making managed the short name would freeze the `xctx->p` experiment as the default; #2 may drop managed scalars. Then the short value create can be the **pool** door (today’s unmanaged). `managed` stays extra words only where a hold is real (object/array instance, maybe large utf8).
+Do **not** rename `afw_value_create_managed_<dt>` to `afw_value_create_<dt>`. `afw_value_create_*` already means “new value” (graph nodes, `from_external`, `now_utc`). Most C uses `create_unmanaged_*`. Object/array: `create_unmanaged` / `_new_p` / `_cede_p` are pool-world; `create_managed` is a **frame** (no pool). `managed` stays extra words where a hold is real.
 
 **Gotcha:** a walker that treats `afw_utf8_t->s` as a C string needs a trailing `0`. Old `create` could point at a `z` buffer. New `create` copies **without** a `0`. The RQL origin string uses `create_no_copy` onto `afw_utf8_z_create` for that.
 

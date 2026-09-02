@@ -5,9 +5,9 @@
 **GitHub:** [#2](https://github.com/afw-org/afw/issues/2).  
 **On `develop`:** pool two-impls ([PR #267](https://github.com/afw-org/afw/pull/267)). Two worlds (unmanaged dest `p` / managed `xctx->p`) are [#277](https://github.com/afw-org/afw/issues/277) — pad [`experiment-brainstorm.md`](experiment-brainstorm.md). `issue-2-managed-p` is gone.
 
-**This pad is the rails.** The 2026-08-20–21 story and archaeology stay in [`issue-2-lifetime.md`](issue-2-lifetime.md). If that file and this one disagree, **this file wins**. If a leak tempts a helper *around* assign, operators, or the compiler — **stop and ask**. That is how we dug holes.
+**This pad is the rails for inf methods** (hold vs assignable, faces, MUST NOT). **Two worlds, create names, last_return slot, eval `p`:** [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)) **wins** if this file still talks about FRV-at-compiled_value, raw last, or `scope->p` as current eval `p`. The 2026-08-21 story is [`issue-2-lifetime.md`](issue-2-lifetime.md) (history). If a leak tempts a helper *around* assign, operators, or the compiler — **stop and ask**.
 
-Keep from `develop`: slot protocol, pool split, `#35` store-time bind (move *into* the inf), `#245` 0-symbol `{ }`, `#246`/`#247` honest heap/tracker.
+Keep from `develop`: slot protocol, pool split, two worlds **#277**, `#35` store-time bind, `#245` 0-symbol `{ }`, `#246`/`#247` honest heap/tracker.
 
 ---
 
@@ -69,13 +69,13 @@ Current code still names `clone_or_reference`. Treat it as the overloaded stand-
 
 This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_assignable`, not “keep objects off the tracker so last-release is safe.” Those got tests green and flattened `i = i + 1` by **not** putting the trip on the tracker. That work was thrown away. Do not put it back.
 
-**Evaluate `p` is the frame.** Statement-list `p` is `scope->p`. That is `x->p` in built-ins. Nested `evaluate` in that frame gets the same `p`. Temps (`1+1`, `{}`, `[]`, random mallocs) land here.
+**Evaluate `p` (current code):** still **caller `p`** (`FIXME_GET_IT_WORKING` in `afw_value_block.c`). The **target** is `scope->p` when the `{ }` has a frame. Last probe of that target hung `comments-bmp-slash-0.as`. Nested `evaluate` in a frame should get the same `p` as the frame. Temps (`1+1`, `{}`, `[]`) should land there once eval `p` moves.
 
 **Frame vs block.** Frame deactivate is the pool story. Block, on a **normal** fall-out, writes **last_return**. Throw/break/rewind deactivates frames and does not invent a result. Frames are one-to-one with `{ }` in the model; today zero-symbol `{ }` may skip a frame and `for (let …)` clones an extra one of **names**.
 
 **last_return** (code today: `xctx->script_result`, [#277](https://github.com/afw-org/afw/issues/277)). Assignment, `return`, and a non-void call write the **slot**. `let`/`const`, empty `{ }`, and `for`/`while`/`try` as statements do not. Nested assignment inside a loop **does**. Loops/`try` are void except `return`/`rethrow` (no unheld leftover last). **undefined is a value** and does replace. Tests: `script_result.as`. `execute_return` `slot_store`s when `script_result_active`. as_value / template substitution clears that flag. for init/increment are not body statements. `{ let x = 1; { add(1,1) } }` last_return is `2`; `{ add(1,1); let x = 1 }` stays `2`. A call that returns undefined writes. Declared `: void` does not.
 
-**`get_reference` pairs with `release`. Full stop.** Any non-permanent object/array inf honors both even if it starts at count 0. If you `get_reference`, you owe a `release`. in_pool instances still **die with their pool** if nobody extra-held them.
+**`get_reference` pairs with `release` where they exist.** Managed / assignable / wrappers: if you `get_reference`, you owe a `release`. Unmanaged object/array **value** infs **throw** on those methods ([#277](https://github.com/afw-org/afw/issues/277)); isolate with `get_assignable_value`. **Instance** `get_reference` / `release` still pin `object->p`. Unmanaged instances still **die with their pool** if nobody extra-held them.
 
 **Script sees values, not bags.** Value protocol is `get_reference` / `get_assignable_value` / `release`. `get_assignable_value` is what makes a temp into something that **has** those three methods (managed scalar in `xctx->p`, or a face that extra-holds). Wrappers `get_reference`/`release` the bag; they do not care in_pool vs and_pool vs permanent.
 
@@ -84,8 +84,8 @@ This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_
 | Kind | `release` | Where it lives | Assignable |
 |------|-----------|----------------|------------|
 | Permanent | no-op | forever | self |
-| **in_pool** object/array (old “unmanaged”) | no-op | caller’s `p` | `get_reference` — **including the frame/pool** so the frame lasts while referenced |
-| **and_pool** object/array | last `release` drops the pool | own pool | bump |
+| **unmanaged** object/array (live in `p`) | **value** `release` **throws** | caller’s `p` | `get_assignable` (clone_managed / hold). **Instance** `get_reference` pins `object->p` |
+| **unmanaged_new_p / cede_p** object/array | instance last `release` drops the pool | own pool | same isolate |
 | Unmanaged scalar | no-op | tracker / heap bump-alloc | managed copy in **`xctx->p`** |
 | Managed scalar | `free_memory` on `xctx->p` | always `xctx->p` | bump |
 
@@ -93,7 +93,7 @@ This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_
 
 **Natural lifetime:** allocate in the current frame; **assign** if it must outlive this frame; deactivate / last-release when the frame is unreferenced. Inner `{ i = i + 1 }` does not last-release outer `i` (different frame). Loop: replace last_return → previous in_pool hold drops → previous frame can die.
 
-**`compiled_value` evaluate:** save last_return; run on `xctx->p` + frames (script already has a root block). **One** `get_assignable_value` of the unit result onto the **caller `p`**; restore last_return; release this unit’s tracker(s). Nested `evaluate(compile())` is the same nest. That is the evaluate **contract** clone, not a per-statement ceremony.
+**`compiled_value` evaluate:** park `script_result` in a local; run the graph; **evaluated** results `clone_unmanaged` into dest `p`; put the pointer back. Not an FRV wrap. Functions/closures as the result are not cloned that way yet. Nested `evaluate(compile())` is the same nest.
 
 **Function return:** still consume last_return and wrap `function_return_value` so the callee frame can die. Caller `get_assignable_value` of the FRV. Parameter args are a **frame** (replace into param slots); rewind = deactivate that frame.
 
@@ -104,16 +104,16 @@ This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_
 ### Rejected (do not remember as the plan)
 
 - `afw_pool_assignable_p` / hopping dest inside `as_assignable` or object/array **create**. Create uses the `p` the caller passed. Properties stay in `object->p`.
-- `slot_store` on `script_result`, park/suppress/save-restore for increment, FINALLY `as_assignable` after the tracker is already dead.
+- Donate / poke FRV into `script_result`; extra-hold save/restore helpers; `as_assignable` of an unheld leftover last after the occupant was last-released.
 - Frame assign onto `evaluation_heap` so overwrite recycles — that kept names off the frame tracker. Names of **this** frame live in **this** `scope->p` (in_pool / unmanaged). Promote only on assign **out**.
 
 ### Watch
 
 - Unmanaged scalars die with the frame (`release` no-op). They become managed only via `get_assignable_value` (variable assign, last_return). `add(1,1)` as a temp is not promoted. If a loop of unassigned temps grows, revisit — do not hop create.
-- in_pool `get_reference` / `get_assignable_value` must hold the **frame/pool**, not only the object header.
+- Unmanaged **value** `get_reference` / `release` throw. Instance methods pin the pool. Isolate with `get_assignable_value`.
 - An in_pool last_return holds the **frame** until the next replace (leftovers of that trip stay). That is any in_pool value, not a special `{ }`. Empty **block** `{ }` has no last_return; tracker header already recycles. Empty **object** `{ }` is a real in_pool value. No special case; if something still special-cases empty object/block, find why and prefer inf methods. Tiny workaround OK only if we come back.
 - Rewind: do not leave last_return pointing into a tracker whose hold already hit 0. Either assignable already held the frame, or set undefined/void.
-- Catch last_return: bind the error after the catch frame exists, then `afw_value_block_evaluate_statements` (same UpdateEmpty as evaluate_block). Empty catch writes nothing. Do not copy that loop again. Inner `AFW_TRY` shadows `this_THROWN_ERROR` — save the caught error first.
+- Catch last_return: bind the error after the catch frame exists, then `afw_value_block_evaluate_statements`. Empty catch writes nothing (`try` is void except `return`/`rethrow`). Inner `AFW_TRY` shadows `this_THROWN_ERROR` — save the caught error first.
 - Object and array are responsible for the lifetime of values they store. Splice copy-out `get_reference` into an unmanaged bag, then source drop, may extra-hold when assign later mints a face and materialize `slot_store`s again — leak, not crash. Clone-into-`x->p` instead would get weird for nested object/array elements. Keep on the worry list; do not "fix" with wrap-at-execute.
 
 ---
@@ -188,9 +188,9 @@ Code still uses `clone_or_reference` in places (stand-in until the split is full
 
 **Compiler `wrap_literal_*` emit:** removed. Unmanaged **and permanent** object/array `clone_or_reference` is `afw_value_object_hold` / `afw_value_array_hold`. Permanent scalars stay as-is. LHS `reference_by_key` holds, sets, releases. Face GET/array materialize/retrieve/journal/`wrap_literal_*` call hold/`slot_store`. Donate list removed; `slot_store` is always `get_assignable_value`.
 
-**`compiled_value` evaluate:** no `afw_value_clone` of the result. Official `script_result` is already a hold (`return` stored it); otherwise one `clone_or_reference` onto a pool that is not the eval heap, then donate. Do not `add_reference` and `slot_store` the same pointer.
+**`compiled_value` evaluate:** `clone_unmanaged` of an **evaluated** result into dest `p`. Park `script_result` in a local; put it back. Not FRV at this door. `script_result` is **#62**.
 
-**Donate / extra slot:** removed. `slot_store` is always `get_assignable_value`. `compiled_value` wraps a running result as `function_return_value` and drops the old slot hold. `script_result` is **#62**.
+**Donate / extra slot:** removed. `slot_store` is `get_assignable_value` then release occupant.
 
 **Scalar managed (start 1):** in `xctx->p`, must `release` (`free_memory`). Unmanaged scalars: `release` no-op; die with the frame tracker. Frame **names** of this `{ }` live in `scope->p` (in_pool), not on `evaluation_heap`. Promote only when assigning **out** (`last_return` / outer frame / caller `p`).
 

@@ -3,7 +3,7 @@
 **Audience:** maintainers and assistants.  
 **Not user docs.** Related always-on runtime rules: [`.cursor/rules/afw-value-memory.mdc`](../.cursor/rules/afw-value-memory.mdc). Beta checklist pointer: [`beta-backlog.md`](../beta-backlog.md). GitHub: [#2 Memory management](https://github.com/afw-org/afw/issues/2).
 
-**Campaign map (2026-08-21):** [`issue-2-lifetime.md`](issue-2-lifetime.md) is the **working story** (holds, pools, assign, script faces). When this pad and that file disagree, **that file wins**. This file keeps archaeology, old phases, P3, and the wrap-APR candidate notes.
+**Current two worlds:** [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)). **08-21 story:** [`issue-2-lifetime.md`](issue-2-lifetime.md). Inf-method rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). This file is **archaeology**. Old “managed = owns a pool” / `create_unmanaged` meaning **do not** override #277.
 
 ## Purpose of this file
 

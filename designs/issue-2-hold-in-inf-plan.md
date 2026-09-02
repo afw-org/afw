@@ -1,5 +1,7 @@
 # Implementation plan: two methods + assignable inf
 
+**Dated plan** (assignable inf vertical). Current two worlds / create names / last_return: [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)). Inf-method rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md).
+
 Rails: [`designs/issue-2-hold-in-inf.md`](designs/issue-2-hold-in-inf.md) **Locked design**. This is **how**, not more architecture.
 
 Script and model authors keep the same behavior except `#110` identity (`property_get({}, "m", def)` shares `def`) and retrieve/`clone()` wrap at slot fill (reconcile looks through). C may change.
