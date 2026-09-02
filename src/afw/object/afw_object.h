@@ -782,9 +782,10 @@ afw_object_memory_associative_array_create(
  * Memory object create options. Pool-world only (not memory_managed
  * frames). 0 = live in p. Optional flags:
  *
- * new_p — new child of p->managed_p; object get_reference / release
- *   still control that pool.
- * cede_p — passed p is the object's pool; same RC-on-pool as new_p.
+ * new_p — new child of p->managed_p.
+ * cede_p — passed p is the object's pool.
+ * Instance get_reference / release pin that pool (not the value).
+ * Value get_reference / release throw.
  *
  * new_p | cede_p is invalid.
  */
@@ -794,8 +795,8 @@ afw_object_memory_associative_array_create(
 /**
  * @brief Object cedes control of the specified pool.
  *
- * The p passed to create is the object's pool. Object interface
- * get_reference / release still control that pool.
+ * The p passed to create is the object's pool. Instance get_reference
+ * / release pin p. Value get_reference / release throw.
  */
 #define AFW_OBJECT_MEMORY_OPTION_cede_p               (1 << 1)
 
@@ -1025,8 +1026,8 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  * @param xctx of caller.
  * @return instance of new object.
  *
- * Unmanaged bag (pool world). Object interface get_reference / release
- * of the last hold destroys that child pool.
+ * Unmanaged bag (pool world). Instance get_reference / release pin
+ * the child pool. Value get_reference / release throw.
  */
 #define afw_object_create_unmanaged_new_p(p, xctx) \
     afw_object_create_with_options( \

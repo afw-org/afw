@@ -64,7 +64,7 @@ Unmanaged bags are the pool world, two flavors:
 | Create | `create_unmanaged` | `create_unmanaged_new_p` / `create_unmanaged_cede_p` |
 | Death | that pool bulk-frees | object `get_reference` / `release` control **the pool** |
 
-Options: `0` = live in `p`; `new_p` and `cede_p` are the two flags. All three named creates are pool-world unmanaged bags. `new_p` / `cede_p` still own that pool via object interface RC until we drop that. `cede_p` is then the same as `create_unmanaged(p)`. Frames are `create_managed` (no pool).
+Options: `0` = live in `p`; `new_p` and `cede_p` are the two flags. All three named creates are pool-world unmanaged bags (unmanaged dual-face; value `get_reference` / `release` throw). Instance `get_reference` / `release` pin `object->p` / `array->p` regardless of those flags. Frames are `create_managed` (no pool).
 
 **Rename (no aliases):** `create_in_pool` → `create_unmanaged`; `and_pool_create` → `create_unmanaged_new_p`; `and_pool_create_cede` / `create_cede_p` → `create_unmanaged_cede_p`; `OPTION_managed` → `new_p`; `OPTION_managed_cede_p` → `cede_p`. Wrappers: `create_wrapper_unmanaged`, `_unmanaged_new_p`, `_unmanaged_cede_p`. Jeremy: same names on `experiment/brainstorm` if you still have the old macros.
 

@@ -33,7 +33,8 @@ AFW_THROW_ERROR_Z(read_only, "List immutable", xctx)
  * Memory array create options. Same bit values as
  * AFW_OBJECT_MEMORY_OPTION_*. Pool-world only. 0 = live in p.
  * new_p — new child of p->managed_p. cede_p — this p is the array's
- * pool. new_p | cede_p is invalid.
+ * pool. Instance get_reference / release pin that pool. Value
+ * get_reference / release throw. new_p | cede_p is invalid.
  */
 #define AFW_ARRAY_MEMORY_OPTION_new_p                (1 << 0)
 #define AFW_ARRAY_MEMORY_OPTION_cede_p               (1 << 1)

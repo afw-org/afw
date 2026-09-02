@@ -88,14 +88,8 @@ afw_object_create_with_options(
     self->unmanaged =
         !AFW_OBJECT_MEMORY_OPTION_IS(options, new_p) &&
         !AFW_OBJECT_MEMORY_OPTION_IS(options, cede_p);
-    /*
-     * Dual face: value.internal is this instance. Inf matches object
-     * lifetime — old managed_object inf when the object owns a child
-     * pool (new_p / cede_p); unmanaged when options say unmanaged.
-     */
-    self->value.inf = self->unmanaged
-        ? &afw_value_unmanaged_object_inf
-        : &afw_value_managed_object_inf;
+    /* Pool-world dual face is always unmanaged (value get_reference throws). */
+    self->value.inf = &afw_value_unmanaged_object_inf;
     self->value.internal = (const afw_object_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     /* clone_on_set: residual field; always false (no public option). */
@@ -635,10 +629,8 @@ impl_afw_object_release(
     }
 
     /*
-     * Save wrapped before pool release: if this call destroys the face pool,
-     * self is gone. Overlay walk is a pool cleanup for managed faces.
-     * Drop the create-time pin only when the pool is destroyed
-     * (afw_pool_release returns NULL).
+     * new_p / cede_p: instance release is pool_release of object->p.
+     * If the pool dies, drop the create-time pin on wrapped.
      */
     wrapped = self->wrapped;
     if (afw_pool_release(self->pub.p, xctx) == NULL && wrapped) {
@@ -680,7 +672,7 @@ impl_afw_object_get_reference(
         return;
     }
 
-    /* Increment reference count of pool holding this managed object.  */
+    /* new_p / cede_p: pin the pool. Value inf still throws. */
     afw_pool_get_reference(self->pub.p, xctx);
 }
 

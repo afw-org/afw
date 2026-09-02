@@ -186,12 +186,10 @@ afw_array_create_with_options(
         !AFW_ARRAY_MEMORY_OPTION_IS(options, new_p) &&
         !AFW_ARRAY_MEMORY_OPTION_IS(options, cede_p);
     /*
-     * Dual face: old managed_array inf when the array owns a child
-     * pool (new_p); unmanaged when options say unmanaged.
+     * Pool-world dual face is always unmanaged (value get_reference
+     * throws).
      */
-    self->value.inf = self->unmanaged
-        ? &afw_value_unmanaged_array_inf
-        : &afw_value_managed_array_inf;
+    self->value.inf = &afw_value_unmanaged_array_inf;
     self->value.internal = (const afw_array_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     self->data_type = data_type;
@@ -548,6 +546,7 @@ impl_afw_array_get_reference(
         afw_pool_get_reference(self->pub.p, xctx);
         return;
     }
+    /* new_p / cede_p: pin the pool. Value inf still throws. */
     afw_pool_get_reference(self->pub.p, xctx);
 }
 
