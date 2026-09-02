@@ -66,6 +66,12 @@ Unmanaged bags are the pool world, two flavors:
 
 The old option name **`managed` means “owns a pool.”** The new inf **`memory_managed` means “no pool; the bag is the manager.”** Do not mix them.
 
+Better names for the create options (not renamed yet): `OPTION_managed` ≈ **new child `p`**, `OPTION_managed_cede_p` ≈ **cede this `p`**. Hold is not in the option; it is the inf.
+
+**Value `get_reference` / `release`:** only permanent (as-is) and `memory_managed` (bump / last-release). Unmanaged object/array **value** infs throw, like scalars. Isolate with `get_assignable_value`. To drop an own-pool bag, `afw_pool_release` that pool. Object/array **interface** `get_reference` is still a pin for now (adapters, faces).
+
+Tripwire is in: `afwdev test -j` → **166 failed**, almost all `release of unmanaged object/array`. Cause: `object_hold` / wrapper `get_assignable` returns the **unmanaged dual-face**, so slots store an unmanaged value inf and later `optional_release` throws. Next: isolate must leave **assignable or managed** inf in the slot (not unmanaged). Eval clone-out is still later; this is the slot protocol. Better option names (`new_p` / `cede_p`) not renamed yet.
+
 ## Managed object/array frames
 
 Separate inf (`memory_managed`), alloc in `xctx->p`, RC 1. Unmanaged creates unchanged.
@@ -117,7 +123,7 @@ The leak (no optional free until the allocating heap is trusted) is accepted unt
 
 1. Managed scalars working (assign-to-slot, pin-on-scope; last-release must not throw). Leak on last-release still accepted until alloc-pool is trusted.
 2. Eval-completion / foreign-heap clone-out as the escape from this `xctx->p`. **Still open.**
-3. Managed object/array as frames — **in tree on this branch** (uncommitted with this note). Unmanaged object/array `get_reference` still **pins** the bag (different from the scalar tripwire). Unmanaged scalar `get_reference` / `release` throw.
+3. Managed object/array as frames. Unmanaged **value** `get_reference` / `release` throw for object/array too (same as scalars). Object/array **interface** `get_reference` still pins (next).
 
 Stay an experiment until this managed/unmanaged story is one we still believe. Do not merge as “the new #2 rails” on the strength of scalars alone.
 

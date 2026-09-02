@@ -93,7 +93,7 @@ impl_afw_value_assignable_get_reference(
     afw_xctx_t *xctx);
 
 /* Declares and rti/inf defines for interface afw_value */
-/* unmanaged array: optional_release holds the instance. */
+/* unmanaged array: get_reference/release throw; */
 /* get_assignable_value: managed dual-face, clone_managed,
  * or object_hold / array_hold. */
 #define AFW_IMPLEMENTATION_ID "array"
@@ -518,12 +518,9 @@ impl_afw_value_unmanaged_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    const afw_value_array_t *self =
-        (const afw_value_array_t *)instance;
-
-    if (self->internal) {
-        afw_array_release(self->internal, xctx);
-    }
+    (void)instance;
+    AFW_THROW_ERROR_Z(general,
+        "release of unmanaged array", xctx);
 }
 
 /* Implementation of method get_reference for unmanaged value. */
@@ -533,14 +530,10 @@ impl_afw_value_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_array_t *self =
-        (const afw_value_array_t *)instance;
-
+    (void)instance;
     (void)p;
-    if (self->internal) {
-        afw_array_get_reference(self->internal, xctx);
-    }
-    return instance;
+    AFW_THROW_ERROR_Z(general,
+        "get_reference of unmanaged array", xctx);
 }
 
 /* Slot fill: mint an assignable face. */

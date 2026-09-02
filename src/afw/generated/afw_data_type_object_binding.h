@@ -62,11 +62,12 @@ afw_data_type_object;
 /**
  * @brief Unmanaged evaluated value inf for data type object.
  *
- * Lifetime is the containing pool. Scalar get_reference and
- * optional_release throw. Scalar get_assignable_value creates
- * a managed holdable in xctx->p. Object/array get_reference
- * pins the bag. get_assignable_value: managed occupant
- * dual-face, generic memory bag clone_managed, else hold.
+ * Lifetime is the containing pool. get_reference and
+ * optional_release throw (scalar, object, array).
+ * Scalar get_assignable_value creates a managed holdable
+ * in xctx->p. Object/array get_assignable_value: managed
+ * occupant dual-face, generic memory bag clone_managed,
+ * else hold.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_object_inf;
@@ -284,7 +285,8 @@ afw_value_clone_object_managed(
  * @return Created const afw_value_t *.
  *
  * Allocates in pool p; lifetime is the pool (no value refcount).
- * get_reference pins the bag; get_assignable_value holds a face.
+ * get_reference / release throw. get_assignable_value
+ * clone_managed, hold, or managed dual-face.
  * Stores the pointer as-is; does not clone the referent.
  */
 AFW_DECLARE(const afw_value_t *)
