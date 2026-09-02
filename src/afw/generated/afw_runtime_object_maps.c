@@ -2983,7 +2983,7 @@ impl_properties__AdaptiveModelCurrentOnGetProperty_[] = {
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_object
+        afw_model_internal_get_current_mappedObject
     },
     {
         afw_v_mappedObjectId,

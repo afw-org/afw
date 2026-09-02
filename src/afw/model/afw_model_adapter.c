@@ -1362,6 +1362,7 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
     const afw_model_property_type_t *pt;
     const afw_model_property_type_t * const *pts;
     const afw_iterator_old_t *iterator;
+    int top;
 
     /* */
     result = afw_object_create_in_pool(p, xctx);
@@ -1392,8 +1393,19 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
             if (pt->onSetProperty) {
                 ctx->property_level.model_property_type = pt;
                 ctx->property_level.value = value;
-                mapped_value = afw_value_evaluate(
-                    pt->onSetProperty, p, xctx);
+                top = afw_xctx_qualifier_stack_top_get(xctx);
+                AFW_TRY {
+                    afw_model_internal_push_property_level_current(ctx,
+                        &ctx->session_self->adapter->
+                            instance_skeleton__AdaptiveModelCurrentOnSetProperty_,
+                        xctx);
+                    mapped_value = afw_value_evaluate(
+                        pt->onSetProperty, p, xctx);
+                }
+                AFW_FINALLY {
+                    afw_xctx_qualifier_stack_top_set(top, xctx);
+                }
+                AFW_ENDTRY;
                 if (mapped_value == ctx->useDefaultProcessing_value) {
                     mapped_value = value;
                 }
@@ -1443,18 +1455,28 @@ afw_model_internal_complete_ctx_default_add_object(
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
-    
+    int top;
+
     /* Create basic mapped object. */
     ctx->mapped_object =
         afw_model_internal_create_basic_to_adapter_mapped_object(ctx, xctx);
 
     /* If onGetInitialObjectId, evaluate it. */
     if (ctx->model_object_type->onGetInitialObjectId) {
-        ctx->current_variables =
-            &afw_model_internal_context_current_for_initial_object_id[0];
-        value = afw_value_evaluate(
-            ctx->model_object_type->onGetInitialObjectId,
-            xctx->p, xctx);
+        top = afw_xctx_qualifier_stack_top_get(xctx);
+        AFW_TRY {
+            afw_model_internal_push_property_level_current(ctx,
+                &ctx->session_self->adapter->
+                    instance_skeleton__AdaptiveModelCurrentOnGetInitialObjectId_,
+                xctx);
+            value = afw_value_evaluate(
+                ctx->model_object_type->onGetInitialObjectId,
+                xctx->p, xctx);
+        }
+        AFW_FINALLY {
+            afw_xctx_qualifier_stack_top_set(top, xctx);
+        }
+        AFW_ENDTRY;
         ctx->mapped_object_id = afw_value_as_utf8(value, ctx->p, xctx);
     }
 }
@@ -1568,6 +1590,7 @@ afw_model_internal_complete_ctx_default_modify_object(
     const afw_utf8_t *mapped_property_name;
     const afw_model_property_type_t *model_property_type;
     const afw_value_t *value;
+    int top;
 
     /* Make a mapped entries list (array of tuples). */
     ctx->mapped_entries = afw_array_create_with_options(
@@ -1619,9 +1642,20 @@ afw_model_internal_complete_ctx_default_modify_object(
                 ctx->property_level.model_property_type =
                     model_property_type;
                 ctx->property_level.value = value;
-                value = afw_value_evaluate(
-                    model_property_type->onSetProperty,
-                    ctx->p, xctx);
+                top = afw_xctx_qualifier_stack_top_get(xctx);
+                AFW_TRY {
+                    afw_model_internal_push_property_level_current(ctx,
+                        &ctx->session_self->adapter->
+                            instance_skeleton__AdaptiveModelCurrentOnSetProperty_,
+                        xctx);
+                    value = afw_value_evaluate(
+                        model_property_type->onSetProperty,
+                        ctx->p, xctx);
+                }
+                AFW_FINALLY {
+                    afw_xctx_qualifier_stack_top_set(top, xctx);
+                }
+                AFW_ENDTRY;
                 afw_memory_clear(&ctx->property_level);
             }
             afw_array_push_value(mapped_entry, value, xctx);

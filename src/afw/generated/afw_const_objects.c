@@ -74443,7 +74443,7 @@ impl_728;
 static const afw_runtime_property_t
 impl_728_property_onGetValueCFunctionName = {
     afw_v_onGetValueCFunctionName,
-    &afw_self_v_afw_model_internal_get_current_object.pub
+    &afw_self_v_afw_model_internal_get_current_mappedObject.pub
 };
 
 static const afw_runtime_property_t *
