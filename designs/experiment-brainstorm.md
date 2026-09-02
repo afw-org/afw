@@ -26,7 +26,7 @@ Dest `p` is often this `xctx->p` or a tracker under it — then the result is un
 
 **Before this branch lands:** clone of **unevaluated** values (script_function, closure_binding, other graph nodes). `compiled_value` evaluate currently clones only when `is_evaluated_of_data_type` has `clone_value_unmanaged`; functions/closures pass through. That is a skip, not a story. Revisit before merge.
 
-**Also before land:** `while` / `do_while` / `for_of` still bubble the body’s last non-void (`impl_update_empty`). `for` is void now; same UAF class is possible on those loops. Nested assignment in a 0-symbol `{ }` still does not `slot_store` last_return.
+**Also before land:** `for` / `while` / `do_while` / `for_of` / `try` are void (only `return` / `rethrow` keep a value). Nested assignment writes last_return via the statement list `slot_store` when the list produced a non-void last. `script_result.as` is the #62 contract.
 
 Do not put this experiment in `whats-new.md` until it lands on `develop`.
 

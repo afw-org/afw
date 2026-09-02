@@ -148,6 +148,22 @@ impl_statement_result_or_void(
 }
 
 
+/* Loops/try are void. Keep a value only for return/rethrow. */
+static inline const afw_value_t *
+impl_keep_if_return(
+    const afw_value_t *result,
+    const afw_value_t *body_result,
+    afw_xctx_t *xctx)
+{
+    if (afw_xctx_statement_flow_is_type(return, xctx) ||
+        afw_xctx_statement_flow_is_type(rethrow, xctx))
+    {
+        return body_result;
+    }
+    return result;
+}
+
+
 /* Formal expects array of values: leaf array, T[], or tuple (#153). */
 static inline afw_boolean_t
 impl_script_formal_expects_array_sequence(const afw_value_type_t *type)
@@ -841,7 +857,8 @@ afw_function_execute_assign(
             p, xctx);
     }
 
-    /* last_return is the statement list, not assign() itself. */
+    /* last_return is the statement list, not assign() itself
+     * (for init/increment must not write). */
     return result;
 }
 
@@ -1058,8 +1075,9 @@ afw_function_execute_do_while(
     this_label = impl_optional_loop_label(x, 3);
     result = afw_value_void;
     for (;;) {
-        result = impl_update_empty(result,
-            afw_value_block_evaluate_statement(x, x->argv[2], p, xctx));
+        result = impl_keep_if_return(result,
+            afw_value_block_evaluate_statement(x, x->argv[2], p, xctx),
+            xctx);
         if (impl_loop_should_exit(this_label, xctx)) {
             break;
         }
@@ -1179,18 +1197,11 @@ afw_function_execute_for(
             }
 
             if (body) {
-                const afw_value_t *body_result;
-
-                /* for is void. Nested assignment writes the slot, not
-                 * an unheld last that the next iteration can last-release. */
-                body_result = afw_value_block_evaluate_statement(
-                    x, body, p, xctx);
+                /* for is void. Nested assignment writes the slot. */
+                result = impl_keep_if_return(result,
+                    afw_value_block_evaluate_statement(x, body, p, xctx),
+                    xctx);
                 if (impl_loop_should_exit(this_label, xctx)) {
-                    if (afw_xctx_statement_flow_is_type(return, xctx) ||
-                        afw_xctx_statement_flow_is_type(rethrow, xctx))
-                    {
-                        result = body_result;
-                    }
                     break;
                 }
             }
@@ -1362,9 +1373,10 @@ afw_function_execute_for_of(
                 assignment_type =
                     afw_compile_assignment_type_assign_only;
             }
-            result = impl_update_empty(result,
+            result = impl_keep_if_return(result,
                 afw_value_block_evaluate_statement(
-                    x, x->argv[3], p, xctx));
+                    x, x->argv[3], p, xctx),
+                xctx);
             first = false;
             if (impl_loop_should_exit(this_label, xctx)) {
                 break;
@@ -2059,8 +2071,10 @@ afw_function_execute_try(
 
     scope_at_entry = afw_xctx_scope_current(xctx);
     AFW_TRY {
-        result = afw_value_block_evaluate_statement(x, x->argv[1], p, xctx);
+        this_result = afw_value_block_evaluate_statement(
+            x, x->argv[1], p, xctx);
         use_type = afw_xctx_statement_flow_get(xctx);
+        result = impl_keep_if_return(result, this_result, xctx);
     }
 
     AFW_CATCH_UNHANDLED {
@@ -2162,12 +2176,14 @@ afw_function_execute_try(
                             afw_compile_assignment_type_let, eval_p, xctx);
                     }
                     this_result = afw_value_block_evaluate_statements(
-                        x, block, stmt_start, eval_p, xctx, false);
+                        x, block, stmt_start, eval_p, xctx, false,
+                        NULL);
                     /*
                      * Catch is a frame. Box last onto xctx->p before
                      * tracker deactivate. Skip if return already wrote.
                      */
                     if (this_result &&
+                        this_result != xctx->script_result &&
                         !afw_value_is_void(this_result) &&
                         !(afw_xctx_statement_flow_is_type(return, xctx) &&
                             xctx->script_result_written))
@@ -2200,8 +2216,7 @@ afw_function_execute_try(
                 AFW_ERROR_RETHROW;
             }
             else {
-                /* Catch completed: last bubbles (UpdateEmpty). */
-                result = this_result;
+                /* Catch completed: void. Nested assignment wrote the slot. */
             }
         }
         else {
@@ -2306,8 +2321,9 @@ afw_function_execute_while(
         if (!condition->internal) {
             break;
         }
-        result = impl_update_empty(result,
-            afw_value_block_evaluate_statement(x, x->argv[2], p, xctx));
+        result = impl_keep_if_return(result,
+            afw_value_block_evaluate_statement(x, x->argv[2], p, xctx),
+            xctx);
         if (impl_loop_should_exit(this_label, xctx))
         {
             break;
