@@ -101,7 +101,7 @@ do { \
  * @param scalar_only true if only scalar properties should be listed.
  * @param xctx of caller.
  *
- * This will use afw_object_and_pool_create() to create the
+ * This will use afw_object_create_unmanaged_new_p() to create the
  * cloned object.
  */
 AFW_DECLARE(void)

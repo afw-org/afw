@@ -137,7 +137,7 @@ impl_get_directive_input(
     afw_utf8_t s;
 
     if (string->len == directive_len) {
-        return afw_object_and_pool_create(self->pub.xctx->p, self->pub.xctx);
+        return afw_object_create_unmanaged_new_p(self->pub.xctx->p, self->pub.xctx);
     }
 
     if (string->s[directive_len] != ':') {
@@ -338,7 +338,7 @@ impl_read_and_process_request(
              * break out of loop.
              */
             self->pub.request_count++;
-            self->this_request_properties = afw_object_create_in_pool(p, xctx);
+            self->this_request_properties = afw_object_create_unmanaged(p, xctx);
             switch (self->mode) {
 
             case afw_command_local_server_mode_action:
@@ -385,7 +385,7 @@ impl_read_and_process_request(
                 string = afw_utf8_create(
                     (const afw_utf8_octet_t *)input->ptr, input->size,
                     p, xctx);
-                action_object = afw_object_create_in_pool(p, xctx);
+                action_object = afw_object_create_unmanaged(p, xctx);
                 afw_object_set_property(action_object,
                     afw_v_function, afw_v_eval_script, xctx);
                 afw_object_set_property_as_string(action_object,
@@ -485,7 +485,7 @@ afw_command_local_server_create(
     self = afw_pool_calloc_type(p, afw_command_local_server_self_t, xctx);
     self->pub.inf = &impl_afw_server_inf;
     self->pub.xctx = xctx;
-    self->pub.properties = afw_object_and_pool_create(xctx->p, xctx);
+    self->pub.properties = afw_object_create_unmanaged_new_p(xctx->p, xctx);
     self->pub.afw_compiled_version = &impl_compiled_afw_version;
     self->pub.afw_version = afw_version_string();
     self->pub.concurrent = 1;
@@ -536,14 +536,14 @@ afw_command_local_server_create(
         p, xctx);
 
     /* Make aggregate request properties object. */
-    self->multi_request_mode_properties = afw_object_and_pool_create(p, xctx);
+    self->multi_request_mode_properties = afw_object_create_unmanaged_new_p(p, xctx);
     self->mode = afw_command_local_server_mode_evaluate_direct;
     if (self->multi_request_mode_properties) {
         afw_object_release(self->multi_request_mode_properties,
             self->pub.xctx);
     }
     self->multi_request_mode_properties =
-        afw_object_and_pool_create(self->pub.xctx->p, self->pub.xctx);
+        afw_object_create_unmanaged_new_p(self->pub.xctx->p, self->pub.xctx);
     self->request_properties = afw_object_aggregate_external_create(
         &self->properties_array[0], p, xctx);
     afw_object_meta_set_ids(self->request_properties,
@@ -603,7 +603,7 @@ afw_command_local_server_write_error(
     const afw_utf8_t *string;
     int rv;
 
-    response_object = afw_object_create_in_pool(xctx->p, xctx);
+    response_object = afw_object_create_unmanaged(xctx->p, xctx);
 
     status = (self->fatal_error) ? afw_s_fatal : afw_s_error;
     afw_object_set_property_as_string(response_object,

@@ -122,15 +122,15 @@ This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_
 
 | | Function | Meaning |
 |--|----------|---------|
-| Object | `afw_object_create_in_pool(p, xctx)` | Lives in `p`. Start 0. No `release` unless you `get_reference` / `get_assignable_value`. |
-| Object | `afw_object_and_pool_create(p, xctx)` | Thing is **object and pool**. Birth hold: last `release` drops the pool. |
-| Object | `afw_object_and_pool_create_cede(p, xctx)` | Same, using caller-built `p`. |
-| Array | `afw_array_create_in_pool` / `create_in_pool_of` / `and_pool_create` | Same pair. |
+| Object | `afw_object_create_unmanaged(p, xctx)` | Lives in `p`. Start 0. Value `get_reference` / `release` throw. |
+| Object | `afw_object_create_unmanaged_new_p(p, xctx)` | New child of `p->managed_p`. Object interface last `release` drops the pool. |
+| Object | `afw_object_create_unmanaged_cede_p(p, xctx)` | Same, using caller-built `p`. |
+| Array | `afw_array_create_unmanaged` / `create_unmanaged_of` / `create_unmanaged_new_p` | Same pair. |
 | Scalar | `afw_value_<dt>_create(…)` | Unmanaged. Header in `p`. utf8/memory: copy the struct only, not octets. |
 | Scalar | `afw_value_<dt>_create_managed(…)` | Start 1. utf8/memory copy octets. Must `release`. |
 | Scalar | `afw_value_<dt>_create_managed_slice(…)` | View of a managed utf8/memory value. Holds containing. |
 
-Old C names remain as macros (`afw_object_create_unmanaged`, `afw_value_create_unmanaged_string`, …). Dual face: the instance **is** the value.
+Dual face: the instance **is** the value. Pool-world object/array creates always have `unmanaged` / `unmanaged_new_p` / `unmanaged_cede_p` in the name; frames are `create_managed`.
 
 ---
 

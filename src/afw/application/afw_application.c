@@ -518,7 +518,7 @@ afw_application_internal_application_conf_type_create_cede_p(
             AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(source_location),
             AFW_UTF8_FMT_ARG(afw_s_rootFilePaths));
-        normalized_root_file_paths = afw_object_and_pool_create(p, xctx);
+        normalized_root_file_paths = afw_object_create_unmanaged_new_p(p, xctx);
         for (iterator = NULL;;) {
             value = afw_object_get_next_property(root_file_paths, &iterator,
                 &property_name, xctx);

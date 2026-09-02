@@ -162,7 +162,7 @@ impl_get_<objectId>_object_cb(
     const afw_object_t *result;
 
     /* Construct system specific object. */
-    result = afw_object_create_in_pool(p, xctx);
+    result = afw_object_create_unmanaged(p, xctx);
     afw_object_meta_set_ids(result,
         afw_s_afw,
         afw_s__AdaptiveSystemInfo_,
@@ -200,7 +200,7 @@ impl_get_resourceLimits_object_cb(
     int rc;
 
     /* Construct system specific object. */
-    result = afw_object_create_in_pool(p, xctx);
+    result = afw_object_create_unmanaged(p, xctx);
     afw_object_meta_set_ids(result,
         afw_s_afw,
         afw_s__AdaptiveSystemInfo_,
@@ -345,7 +345,7 @@ impl_get_resourceUsage_object_cb(
     int rc;
 
     /* Construct system specific object. */
-    result = afw_object_create_in_pool(p, xctx);
+    result = afw_object_create_unmanaged(p, xctx);
     afw_object_meta_set_ids(result,
         afw_s_afw,
         afw_s__AdaptiveSystemInfo_,
@@ -523,7 +523,7 @@ impl_create_general_object(afw_xctx_t *xctx)
     int rc;
 
     /* Construct system specific object. */
-    result = afw_object_create_in_pool(xctx->p, xctx);
+    result = afw_object_create_unmanaged(xctx->p, xctx);
     afw_object_meta_set_ids(result,
         afw_s_afw,
         afw_s__AdaptiveSystemInfo_,

@@ -168,8 +168,8 @@ afw_array_create_with_options(
     afw_memory_internal_array_t *self;
     afw_memory_internal_array_ring_t *ring;
 
-    /* If managed, own pool is a child of p->managed_p. */
-    if (options == AFW_ARRAY_MEMORY_OPTION_managed) {
+    /* If new_p, own pool is a child of p->managed_p. */
+    if (options == AFW_ARRAY_MEMORY_OPTION_new_p) {
         p = afw_pool_create(p->managed_p, xctx);
     }
 
@@ -184,8 +184,8 @@ afw_array_create_with_options(
     self->pub.p = p;
     self->unmanaged = AFW_ARRAY_MEMORY_OPTION_IS(options, unmanaged);
     /*
-     * Dual face: inf matches array lifetime — managed when the array
-     * owns a child pool; unmanaged when options say unmanaged.
+     * Dual face: old managed_array inf when the array owns a child
+     * pool (new_p); unmanaged when options say unmanaged.
      */
     self->value.inf = self->unmanaged
         ? &afw_value_unmanaged_array_inf
@@ -411,7 +411,7 @@ afw_array_create_script_wrapper(
 {
     const afw_array_t *base;
 
-    base = afw_array_create_in_pool(p, xctx);
+    base = afw_array_create_unmanaged(p, xctx);
     return afw_array_create_wrapper_unmanaged(base, p, xctx);
 }
 
@@ -1582,7 +1582,7 @@ afw_array_create_or_clone(
             AFW_THROW_ERROR_Z(general, "data_type does not match", xctx);
         }
     }
-    result = afw_array_create_in_pool_of(use_data_type, p, xctx);
+    result = afw_array_create_unmanaged_of(use_data_type, p, xctx);
     if (array) for (iterator = NULL;;)
     {
         value = afw_array_get_next_value(array, &iterator, p, xctx);
@@ -1602,7 +1602,7 @@ afw_array_create_or_clone(
 
 /* Create a typed array from a value. */
 AFW_DEFINE(const afw_array_t *)
-afw_array_of_create_from_value(
+afw_array_create_unmanaged_from_value(
     const afw_data_type_t *data_type,
     const afw_value_t *value,
     const afw_pool_t *p, afw_xctx_t *xctx)
@@ -1620,7 +1620,7 @@ afw_array_of_create_from_value(
         value_data_type = afw_array_get_data_type(value_array, xctx);
         if (value_data_type != data_type) {
             old_array = value_array;
-            value_array = afw_array_create_in_pool_of(data_type, p, xctx);
+            value_array = afw_array_create_unmanaged_of(data_type, p, xctx);
             for (iterator = NULL;;) {
                 v = afw_array_get_next_value(old_array, &iterator, p, xctx);
                 if (!v) {

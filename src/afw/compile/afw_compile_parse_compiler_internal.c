@@ -961,7 +961,7 @@ impl_parse_compiler_internal_statements(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z(
             "Expecting '(' after #statements");
     }
-    list = afw_array_create_in_pool(parser->p, parser->xctx);
+    list = afw_array_create_unmanaged(parser->p, parser->xctx);
     for (had_value = false;;) {
         afw_compile_get_token();
         if (afw_compile_token_is(close_parenthesis)) {

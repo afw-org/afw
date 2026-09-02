@@ -1021,7 +1021,7 @@ afw_error_to_object(
 {
     const afw_object_t *result;
 
-    result = afw_object_and_pool_create(p, xctx);
+    result = afw_object_create_unmanaged_new_p(p, xctx);
     afw_error_add_to_object(result, error, xctx);
 
     return result;

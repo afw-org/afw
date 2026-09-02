@@ -111,7 +111,7 @@ impl_flag_add_included_by(
     else {
         included_by->includes_value = (const afw_value_array_t *)
             afw_value_create_unmanaged_array(
-                afw_array_create_in_pool_of(
+                afw_array_create_unmanaged_of(
                     afw_data_type_string, p, xctx),
                 p, xctx);
     }
@@ -123,7 +123,7 @@ impl_flag_add_included_by(
         if (!flag->included_by_value) {
             flag->included_by_value = (const afw_value_array_t *)
                 afw_value_create_unmanaged_array(
-                    afw_array_create_in_pool_of(
+                    afw_array_create_unmanaged_of(
                         afw_data_type_string, p, xctx),
                     p, xctx);
         }

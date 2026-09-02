@@ -346,13 +346,13 @@ impl_list_destructure(
                     break;
                 }
                 if (!rest) {
-                    rest = afw_array_create_in_pool(p, xctx);
+                    rest = afw_array_create_unmanaged(p, xctx);
                 }
                 afw_array_push_value(rest, v, xctx);
             }
         }
         if (!rest) {
-            rest = afw_array_create_in_pool(p, xctx);
+            rest = afw_array_create_unmanaged(p, xctx);
         }
         v = afw_value_create_unmanaged_array(rest, p, xctx);
         if (ld->rest_type) {
@@ -459,7 +459,7 @@ impl_object_destructure(
 
     /* Add other properties to rest. */
     if (od->rest) {
-        rest = afw_object_and_pool_create(p, xctx);
+        rest = afw_object_create_unmanaged_new_p(p, xctx);
         for (iterator = NULL;;) {
             v = afw_object_get_next_property(object, &iterator, &property_name,
                 xctx);

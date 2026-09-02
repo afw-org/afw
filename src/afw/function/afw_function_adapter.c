@@ -24,7 +24,7 @@ impl_create_journal_entry(const afw_value_object_t *journal,
     const afw_value_t *value;
     const afw_value_t *property_name;
 
-    journal_entry = afw_object_and_pool_create(p, xctx);
+    journal_entry = afw_object_create_unmanaged_new_p(p, xctx);
     if (journal) {
         for (iterator = NULL;;) {
             value = afw_object_get_next_property(journal->internal,
@@ -161,7 +161,7 @@ impl_retrieve_to_response_cb(
          * array hold) — see impl_retrieve_cb.
          */
         p = (object->p) ? object->p : ctx->p;
-        response_object = afw_object_create_in_pool(p, xctx);
+        response_object = afw_object_create_unmanaged(p, xctx);
         afw_object_set_property_as_boolean(response_object,
             afw_v_intermediate, true, xctx);
         afw_object_set_property_as_object(response_object,
@@ -531,7 +531,7 @@ afw_function_execute_convert_AdaptiveQueryCriteria_to_query_string(
             adapterId_value, 2, string);
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(
             objectType_value, 3, string);
-        journal_entry = afw_object_and_pool_create(x->p, x->xctx);
+        journal_entry = afw_object_create_unmanaged_new_p(x->p, x->xctx);
         object_type = afw_adapter_get_object_type(
             &adapterId_value->internal,
             &objectType_value->internal,
@@ -633,7 +633,7 @@ afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria(
             adapterId_value, 2, string);
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(
             objectType_value, 3, string);
-        journal_entry = afw_object_and_pool_create(x->p, x->xctx);
+        journal_entry = afw_object_create_unmanaged_new_p(x->p, x->xctx);
         object_type = afw_adapter_get_object_type(
             &adapterId_value->internal,
             &objectType_value->internal,
@@ -958,7 +958,7 @@ afw_function_execute_get_object(
             options->internal, x->p, x->xctx);
     }
 
-    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
+    journal_entry = afw_object_create_unmanaged_new_p(x->p, x->xctx);
     obj = afw_adapter_get_object(
         &adapterId->internal, &objectType->internal, &objectId->internal,
         object_options, NULL, journal_entry,
@@ -1061,7 +1061,7 @@ afw_function_execute_get_object_with_uri(
             "Only local entity object paths are currently supported", x->xctx);
     }
     
-    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
+    journal_entry = afw_object_create_unmanaged_new_p(x->p, x->xctx);
     obj = afw_adapter_get_object(
         &parsed_uri->path_parsed->adapter_id,
         &parsed_uri->path_parsed->object_type_id,
@@ -1407,7 +1407,7 @@ afw_function_execute_reconcile_object(
     original = ((const afw_value_object_t *)reconcilable_value)->internal;
 
     /* Create journal entry including optional properties. */
-    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
+    journal_entry = afw_object_create_unmanaged_new_p(x->p, x->xctx);
 
     /* Make modify needed to reconcile. */
     afw_adapter_modify_needed_to_reconcile(
@@ -1745,7 +1745,7 @@ afw_function_execute_retrieve_objects(
     criteria = NULL;
     afw_memory_clear(&ctx);
     ctx.p = x->p;
-    ctx.array = afw_array_create_in_pool_of(afw_data_type_object, x->p, x->xctx);
+    ctx.array = afw_array_create_unmanaged_of(afw_data_type_object, x->p, x->xctx);
     /* Default max for materializing retrieve; 0 = unlimited. */
     ctx.max_objects = 100;
     criteria = NULL;
@@ -1770,7 +1770,7 @@ afw_function_execute_retrieve_objects(
         ctx.max_objects = maxObjects_arg->internal;
     }
 
-    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
+    journal_entry = afw_object_create_unmanaged_new_p(x->p, x->xctx);
 
     /* Optional query criteria. */
     if (queryCriteria) {
@@ -1909,7 +1909,7 @@ afw_function_execute_retrieve_objects_to_callback(
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(adapterTypeSpecific,
         7, object);
 
-    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
+    journal_entry = afw_object_create_unmanaged_new_p(x->p, x->xctx);
 
     /* Optional query criteria. */
     if (queryCriteria) {
@@ -2048,7 +2048,7 @@ afw_function_execute_retrieve_objects_to_response(
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(adapterTypeSpecific,
         5, object);
 
-    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
+    journal_entry = afw_object_create_unmanaged_new_p(x->p, x->xctx);
 
     /* Optional query criteria. */
     if (queryCriteria) {
@@ -2180,7 +2180,7 @@ afw_function_execute_retrieve_objects_to_stream(
         6, object);
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(contextType, 7, string);
 
-    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
+    journal_entry = afw_object_create_unmanaged_new_p(x->p, x->xctx);
 
     /* Stream. */
     ctx.stream = afw_stream_get_by_streamNumber(
@@ -2327,11 +2327,11 @@ afw_function_execute_retrieve_objects_with_uri(
 
     afw_memory_clear(&ctx);
     ctx.p = x->p;
-    ctx.array = afw_array_create_in_pool_of(afw_data_type_object, x->p, x->xctx);
+    ctx.array = afw_array_create_unmanaged_of(afw_data_type_object, x->p, x->xctx);
     /* Default max for materializing retrieve; 0 = unlimited. */
     ctx.max_objects = 100;
     criteria = NULL;
-    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
+    journal_entry = afw_object_create_unmanaged_new_p(x->p, x->xctx);
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(uri,
         1, anyURI);
@@ -2473,7 +2473,7 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
     impl_retrieve_cb_ctx_t ctx;
 
     afw_memory_clear(&ctx);
-    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
+    journal_entry = afw_object_create_unmanaged_new_p(x->p, x->xctx);
     criteria = NULL;
     afw_memory_clear(&ctx);
     ctx.p = x->p;
@@ -2624,7 +2624,7 @@ afw_function_execute_retrieve_objects_with_uri_to_response(
     ctx.p = x->p;
     ctx.response_content_type = x->xctx->request->response_content_type;
     criteria = NULL;
-    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
+    journal_entry = afw_object_create_unmanaged_new_p(x->p, x->xctx);
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(uri,
         1, anyURI);
@@ -2753,7 +2753,7 @@ afw_function_execute_retrieve_objects_with_uri_to_stream(
     afw_memory_clear(&ctx);
     ctx.p = x->p;
     criteria = NULL;
-    journal_entry = afw_object_and_pool_create(x->p, x->xctx);
+    journal_entry = afw_object_create_unmanaged_new_p(x->p, x->xctx);
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(streamNumber,
         1, integer);

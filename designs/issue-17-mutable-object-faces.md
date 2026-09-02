@@ -33,9 +33,9 @@ Callers often expect an object value to be **theirs to mutate**. AFW often hands
 
 ### 1. Memory faces
 
-- **Objects:** `afw_object_create_wrapper_*` — local props first, look-through base, sets stay on face.  
+- **Objects:** `afw_object_create_wrapper_unmanaged_new_p_*` — local props first, look-through base, sets stay on face.  
 - **Delete on a face:** `set_property(name, NULL)` with **no local entry** creates a NULL local tombstone so look-through does not revive the base. Getter/`has`/iterate already treat a NULL local as deleted (`afw_object_memory.c`). Residual of the original ship — landed on `develop` after PR **#150**.  
-- **Arrays:** `afw_array_create_wrapper_*` — local ring; nested structured values re-faced on materialize / promote.  
+- **Arrays:** `afw_array_create_wrapper_unmanaged_new_p_*` — local ring; nested structured values re-faced on materialize / promote.  
 - **Nested hard edge:** always put a **new** face over the nested **instance as given** (do **not** peel to ultimate base — preserves face-ring content, e.g. model `onGetProperty` `let l=[]; add_entries…`). Typed `map` uses `get_next_internal`, which promotes like `get_next_value`.
 
 ### 2. Isolation helpers + compiler emit

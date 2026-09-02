@@ -249,7 +249,7 @@ afw_action_perform(
 
     /* If existing response not passed, make a new one. */
     if (!response) {
-        response = afw_object_and_pool_create(p, xctx);
+        response = afw_object_create_unmanaged_new_p(p, xctx);
     }
 
     contextual = afw_pool_calloc_type(response->p,
@@ -305,7 +305,7 @@ afw_action_perform(
         /* Create list for action response entries if not application/x-afw. */
         action_response_entries = NULL;
         if (!afw_content_type_is_application_afw(response_content_type)) {
-            action_response_entries = afw_array_create_in_pool_of(
+            action_response_entries = afw_array_create_unmanaged_of(
                 afw_data_type_object, response->p, xctx);
             afw_object_set_property_as_array(response, afw_v_actions,
                 action_response_entries, xctx);
@@ -331,11 +331,11 @@ afw_action_perform(
 
             /* Create action result entry. */
             if (afw_content_type_is_application_afw(response_content_type)) {
-                action_response_entry = afw_object_and_pool_create(
+                action_response_entry = afw_object_create_unmanaged_new_p(
                     response->p, xctx);
             }
             else {
-                action_response_entry = afw_object_create_in_pool(
+                action_response_entry = afw_object_create_unmanaged(
                     response->p, xctx);
             }
             action_response_entry_value = afw_value_create_unmanaged_object(

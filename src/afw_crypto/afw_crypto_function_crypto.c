@@ -99,7 +99,7 @@ afw_crypto_function_execute_crypto_version_info(
     afw_xctx_t *xctx = x->xctx;
     const char *ossl;
 
-    object = afw_object_and_pool_create(p, xctx);
+    object = afw_object_create_unmanaged_new_p(p, xctx);
     afw_object_meta_set_object_type_id(object,
         afw_crypto_s__AdaptiveCryptoVersionInfo_, xctx);
 
@@ -109,7 +109,7 @@ afw_crypto_function_execute_crypto_version_info(
     afw_object_set_property_as_string_from_utf8_z(object,
         afw_crypto_v_extensionVersion, AFW_CRYPTO_VERSION_STRING, xctx);
 
-    algs = afw_array_create_in_pool(p, xctx);
+    algs = afw_array_create_unmanaged(p, xctx);
 #define PUSH_ALG(Z) \
     v = afw_value_create_unmanaged_string( \
         afw_utf8_create(Z, AFW_UTF8_Z_LEN, p, xctx), p, xctx); \
@@ -822,7 +822,7 @@ afw_crypto_function_execute_crypto_encrypt(
             AFW_THROW_ERROR_Z(general, "error:crypto: GET_TAG failed", xctx);
         }
 
-        result_obj = afw_object_and_pool_create(x->p, xctx);
+        result_obj = afw_object_create_unmanaged_new_p(x->p, xctx);
         afw_object_meta_set_object_type_id(result_obj,
             afw_crypto_s__AdaptiveCryptoEncryptResult_, xctx);
         afw_object_set_property_as_string_from_utf8_z(result_obj,
@@ -1349,7 +1349,7 @@ afw_crypto_function_execute_crypto_seal(
         }
         len += out_len;
 
-        result_obj = afw_object_and_pool_create(x->p, xctx);
+        result_obj = afw_object_create_unmanaged_new_p(x->p, xctx);
         afw_object_meta_set_object_type_id(result_obj,
             afw_crypto_s__AdaptiveCryptoEncryptResult_, xctx);
         afw_object_set_property_as_string_from_utf8_z(result_obj,

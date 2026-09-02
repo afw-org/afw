@@ -198,7 +198,7 @@ afw_object_meta_add_parent_path(
             instance->p, xctx);
     }
     else {
-        parent_paths->internal = afw_array_create_in_pool_of(
+        parent_paths->internal = afw_array_create_unmanaged_of(
             afw_data_type_anyURI, instance->p, xctx);
     }
     
@@ -425,7 +425,7 @@ afw_object_meta_set_meta_object(
     /* Make sure parentPaths is a list. */
     value = afw_object_get_property(meta, afw_v_parentPaths, xctx);
     if (value) {
-        parent_paths = afw_array_of_create_from_value(
+        parent_paths = afw_array_create_unmanaged_from_value(
             afw_data_type_anyURI, value, meta->p, xctx);
         afw_object_set_property_as_array(meta,
             afw_v_parentPaths, parent_paths, xctx);
@@ -492,7 +492,7 @@ afw_object_meta_set_empty(
     /* Set meta in instance. */
     result = impl_set_meta_object(
         (afw_object_t *)instance,
-        afw_object_create_in_pool(instance->p, xctx),
+        afw_object_create_unmanaged(instance->p, xctx),
         xctx);
 
     return result;
@@ -673,7 +673,7 @@ afw_object_meta_add_error(
     meta = afw_object_meta_get_nonempty_delta(instance, xctx);
     errors = afw_object_old_get_property_as_array(meta, afw_v_errors, xctx);
     if (!errors) {
-        errors = afw_array_create_in_pool_of(
+        errors = afw_array_create_unmanaged_of(
             afw_data_type_string, instance->p, xctx);
         afw_object_set_property_as_array(meta,
             afw_v_errors, errors, xctx);
@@ -863,7 +863,7 @@ afw_object_meta_add_property_error(
     errors = afw_object_old_get_property_as_array(property_type,
         afw_v_errors, xctx);
     if (!errors) {
-        errors = afw_array_create_in_pool_of(
+        errors = afw_array_create_unmanaged_of(
             afw_data_type_string, instance->p, xctx);
         afw_object_set_property_as_array(property_type,
             afw_v_errors, errors, xctx);
@@ -1128,7 +1128,7 @@ impl_afw_object_setter_set_property(
 
     else {
         if (!object_meta_object_self->delta) {
-            object_meta_object_self->delta = afw_object_create_in_pool(object_meta_object_self->pub.p, xctx);
+            object_meta_object_self->delta = afw_object_create_unmanaged(object_meta_object_self->pub.p, xctx);
         }
         afw_object_set_property(object_meta_object_self->delta, property_name, value, xctx);
     }

@@ -826,7 +826,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_list(
     result = instance->indexDefinitions;
 
     if (object_type_id) {
-        result = afw_object_and_pool_create(pool, xctx);
+        result = afw_object_create_unmanaged_new_p(pool, xctx);
 
         index_iterator = NULL;
         const afw_value_t *key;
@@ -873,7 +873,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
     }
 
     /* create our result object to be returned */
-    result = afw_object_and_pool_create(pool, xctx);
+    result = afw_object_create_unmanaged_new_p(pool, xctx);
 
     if (indexer->indexDefinitions == NULL) {
         AFW_THROW_ERROR_Z(general,
@@ -971,13 +971,13 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
     }
 
     /* create our result object to be returned */
-    result = afw_object_and_pool_create(pool, xctx);
+    result = afw_object_create_unmanaged_new_p(pool, xctx);
 
     indexDefinitions = indexer->indexDefinitions;
 
     /* if we don't have any index definitions, create a new object */
     if (indexDefinitions == NULL) {
-        indexDefinitions = afw_object_and_pool_create(pool, xctx);
+        indexDefinitions = afw_object_create_unmanaged_new_p(pool, xctx);
     }
 
     indexDefinition = afw_object_old_get_property_as_object(
@@ -991,7 +991,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
     }
 
     /* create a new indexDefinition */
-    indexDefinition = afw_object_and_pool_create(pool, xctx);
+    indexDefinition = afw_object_create_unmanaged_new_p(pool, xctx);
 
     if (value)
         afw_object_set_property_as_string(indexDefinition,

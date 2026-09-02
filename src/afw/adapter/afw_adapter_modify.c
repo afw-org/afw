@@ -285,13 +285,13 @@ afw_adapter_modify_entries_to_list(
     const afw_value_t *value;
 
     /* Create list for result. */
-    result = afw_array_create_in_pool_of(afw_data_type_array, p, xctx);
+    result = afw_array_create_unmanaged_of(afw_data_type_array, p, xctx);
 
     /* Process all modify entries. */
     for (e = entries; *e; e++) {
 
         /* Create a new list for tuple. */
-        tuple = afw_array_create_in_pool(p, xctx);
+        tuple = afw_array_create_unmanaged(p, xctx);
 
         /* Entry type. */
         value = afw_adapter_modify_entry_type_value((*e)->type);
@@ -302,7 +302,7 @@ afw_adapter_modify_entries_to_list(
 
         /* Property name or list of names. */
         if ((*e)->first_property_name_entry->next) {
-            name_list = afw_array_create_in_pool(p, xctx);
+            name_list = afw_array_create_unmanaged(p, xctx);
             for (property_name_entry = (*e)->first_property_name_entry;
                 property_name_entry;
                 property_name_entry = property_name_entry->next)
@@ -396,7 +396,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
                  * by converting values or indication properties in error.
                  */
                 else {
-                    list = afw_array_create_in_pool(object->p, xctx);
+                    list = afw_array_create_unmanaged(object->p, xctx);
                     afw_array_push_value(list, old_value, xctx);
                     afw_array_push_value(list, value, xctx);
                     value = afw_value_create_unmanaged_array(list,
@@ -526,7 +526,7 @@ impl_add_reconcile_property(
         //*/
     }
 
-    tuple = afw_array_create_in_pool(wa->p, wa->xctx);
+    tuple = afw_array_create_unmanaged(wa->p, wa->xctx);
 
     /* Entry type. */
     v = (const afw_value_t *)((value)
@@ -774,7 +774,7 @@ afw_adapter_modify_needed_to_reconcile(
             AFW_UTF8_FMT_ARG(*adapter_id));
     }
 
-    wa.entries = afw_array_create_in_pool_of(afw_data_type_array, p, xctx);
+    wa.entries = afw_array_create_unmanaged_of(afw_data_type_array, p, xctx);
     wa.p = p;
     wa.xctx = xctx;
 
@@ -898,13 +898,13 @@ afw_adapter_modify_using_update_object(
      */
 
     /* Convert update_object to list of modify entries. */
-    entries = afw_array_create_in_pool_of(afw_data_type_array, xctx->p, xctx);
+    entries = afw_array_create_unmanaged_of(afw_data_type_array, xctx->p, xctx);
     iterator = NULL;
     while ((value = afw_object_get_next_property(update_object,
         &iterator, &property_name, xctx)))
     {
         /* Add ["set_property", <property name>, value]. */
-        entry = afw_array_create_in_pool(xctx->p, xctx);
+        entry = afw_array_create_unmanaged(xctx->p, xctx);
         afw_array_push_value(entry,
             &impl_value_set_property.pub,
             xctx);

@@ -337,7 +337,7 @@ impl_object_path_parse(
             if (afw_utf8_equal(token, afw_s_a_semicolon)) {
                 state = impl_state_option_name;
                 parsed->options_object =
-                    afw_object_create_in_pool(p, xctx);
+                    afw_object_create_unmanaged(p, xctx);
                 break;
             }
 
@@ -741,7 +741,7 @@ afw_object_path_parsed_to_object(
     const afw_value_t *value;
     const afw_object_path_property_name_entry_t *name;
 
-    result = afw_object_and_pool_create(p, xctx);
+    result = afw_object_create_unmanaged_new_p(p, xctx);
 
     if (parsed->original_path.len > 0) {
         afw_object_set_property_as_string(result,
@@ -779,7 +779,7 @@ afw_object_path_parsed_to_object(
     }
 
     if (parsed->first_property_name) {
-        list = afw_array_create_in_pool_of(
+        list = afw_array_create_unmanaged_of(
             afw_data_type_string, p, xctx);
         for (name = parsed->first_property_name; name; name = name->next) {
             value = &name->property_name.pub;

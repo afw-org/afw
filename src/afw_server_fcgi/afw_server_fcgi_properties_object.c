@@ -121,7 +121,7 @@ afw_server_fcgi_internal_create_properties_object(
     self->request = request;
 
     /* Empty memory object used as first-access cache. */
-    self->properties = afw_object_create_in_pool(xctx->p, xctx);
+    self->properties = afw_object_create_unmanaged(xctx->p, xctx);
 
     return (const afw_object_t *)self;
 }

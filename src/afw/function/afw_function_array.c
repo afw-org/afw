@@ -547,7 +547,7 @@ afw_function_execute_slice(
     }
 
     /* Create and return an array with slice. */
-    result_array = afw_array_create_in_pool(x->p, x->xctx);
+    result_array = afw_array_create_unmanaged(x->p, x->xctx);
     for (iterator = NULL, count = 0; count < end; count++) {
         value = afw_array_get_next_value(array->internal, &iterator,
             x->p, x->xctx);
@@ -841,7 +841,7 @@ afw_function_execute_splice(
         delete_count = count - start;
     }
 
-    removed = afw_array_create_in_pool(x->p, x->xctx);
+    removed = afw_array_create_unmanaged(x->p, x->xctx);
     for (i = 0; i < delete_count; i++) {
         value = afw_array_get_entry_value(array->internal, start,
             x->p, x->xctx);

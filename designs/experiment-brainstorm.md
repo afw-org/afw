@@ -61,16 +61,16 @@ Unmanaged bags are the pool world, two flavors:
 
 | | Lives in a pool | Has its own pool |
 |---|---|---|
-| Create | `unmanaged` option (`create_in_pool`) | old `managed` / `managed_cede_p` (`and_pool_create`) |
+| Create | `create_unmanaged` | `create_unmanaged_new_p` / `create_unmanaged_cede_p` |
 | Death | that pool bulk-frees | object `get_reference` / `release` control **the pool** |
 
-The old option name **`managed` means “owns a pool.”** The new inf **`memory_managed` means “no pool; the bag is the manager.”** Do not mix them.
+Options: `unmanaged`, `new_p`, `cede_p`. Hold is not in the option; it is the inf. `memory_managed` frames are `create_managed` (no pool).
 
-Better names for the create options (not renamed yet): `OPTION_managed` ≈ **new child `p`**, `OPTION_managed_cede_p` ≈ **cede this `p`**. Hold is not in the option; it is the inf.
+**Rename (no aliases):** `create_in_pool` → `create_unmanaged`; `and_pool_create` → `create_unmanaged_new_p`; `and_pool_create_cede` / `create_cede_p` → `create_unmanaged_cede_p`; `OPTION_managed` → `new_p`; `OPTION_managed_cede_p` → `cede_p`. Wrappers: `create_wrapper_unmanaged`, `_unmanaged_new_p`, `_unmanaged_cede_p`. Jeremy: same names on `experiment/brainstorm` if you still have the old macros.
 
 **Value `get_reference` / `release`:** only permanent (as-is) and `memory_managed` (bump / last-release). Unmanaged object/array **value** infs throw, like scalars. Isolate with `get_assignable_value`. To drop an own-pool bag, `afw_pool_release` that pool. Object/array **interface** `get_reference` is still a pin for now (adapters, faces).
 
-Isolate must leave **assignable or managed** inf in the slot. Assignable `optional_release` pins/unpins the bag (not the unmanaged throw). `object_hold` / `array_hold` return managed dual-face, existing assignable dual-face, or a new wrapper’s assignable face. `wrap_literal_*` uses hold, not value `get_reference`. `afwdev test -j` green after that. Eval clone-out is still later. Better option names (`new_p` / `cede_p`) not renamed yet.
+Isolate must leave **assignable or managed** inf in the slot. Assignable `optional_release` pins/unpins the bag (not the unmanaged throw). `object_hold` / `array_hold` return managed dual-face, existing assignable dual-face, or a new wrapper’s assignable face. `wrap_literal_*` uses hold, not value `get_reference`. Eval clone-out is still later.
 
 ## Managed object/array frames
 

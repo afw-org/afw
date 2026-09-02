@@ -779,23 +779,22 @@ afw_object_memory_associative_array_create(
 
 
 /**
- * @brief Default object behaviour.
+ * Memory object create options. Pool-world flags, not memory_managed
+ * frames (`afw_object_create_managed`).
  *
- * Managed objects get their own general pool as a child of p->managed_p.
- * Lifetime of that pool is get_reference() / release() on the object.
+ * unmanaged — lives in p (bulk-free).
+ * new_p — new child of p->managed_p; object get_reference / release
+ *   still control that pool.
+ * cede_p — passed p is the object's pool; same RC-on-pool as new_p.
  */
-#define AFW_OBJECT_MEMORY_OPTION_managed              0
+#define AFW_OBJECT_MEMORY_OPTION_new_p                0
 
 
 /**
- * @brief Object should be unmanaged.
+ * @brief Object lives in p (no own pool).
  *
- * Calls to methods release() and get_reference() will not do reference
- * counting and the associated pool and will not call release() for the pool.
- *
- * Normally, managed entity objects and embedded object reside in a pool
- * who's lifetime is controlled by the reference count of the object.
- * Specifying this option disables this normal behaviour.
+ * Object interface get_reference / release do not own p. Lifetime is
+ * the pool. Value get_reference / release throw.
  */
 #define AFW_OBJECT_MEMORY_OPTION_unmanaged            (1 << 0)
 
@@ -803,11 +802,10 @@ afw_object_memory_associative_array_create(
 /**
  * @brief Object cedes control of the specified pool.
  *
- * The p passed to create will cede control to the object and be considered
- * the object's pool.  The lifetime of the object's pool will be controlled
- * by calls to the object's get_reference() and release() methods.
+ * The p passed to create is the object's pool. Object interface
+ * get_reference / release still control that pool.
  */
-#define AFW_OBJECT_MEMORY_OPTION_managed_cede_p               (1 << 1)
+#define AFW_OBJECT_MEMORY_OPTION_cede_p               (1 << 1)
 
 
 /** @brief Test memory object option mask option. */
@@ -914,15 +912,15 @@ afw_object_create_wrapper_with_options(
 
 
 /**
- * @brief Create a managed memory wrapper over another object.
+ * @brief Create a pool-world memory wrapper (new child of p->managed_p).
  * @param wrapped base object for property look-through.
- * @param p parent pool (managed wrapper uses p->managed_p).
+ * @param p parent pool.
  * @param xctx of caller.
  * @return instance of new wrapper object.
  */
-#define afw_object_create_wrapper(wrapped, p, xctx) \
+#define afw_object_create_wrapper_unmanaged_new_p(wrapped, p, xctx) \
     afw_object_create_wrapper_with_options( \
-        AFW_OBJECT_MEMORY_OPTION_managed, wrapped, p, xctx)
+        AFW_OBJECT_MEMORY_OPTION_new_p, wrapped, p, xctx)
 
 
 /**
@@ -953,15 +951,15 @@ afw_object_create_script_wrapper(
 
 
 /**
- * @brief Create a memory wrapper that cedes control of pool p.
+ * @brief Create a pool-world memory wrapper that cedes control of p.
  * @param wrapped base object for property look-through.
  * @param p pool ceded to the wrapper.
  * @param xctx of caller.
  * @return instance of new wrapper object.
  */
-#define afw_object_create_wrapper_cede_p(wrapped, p, xctx) \
+#define afw_object_create_wrapper_unmanaged_cede_p(wrapped, p, xctx) \
     afw_object_create_wrapper_with_options( \
-        AFW_OBJECT_MEMORY_OPTION_managed_cede_p, wrapped, p, xctx)
+        AFW_OBJECT_MEMORY_OPTION_cede_p, wrapped, p, xctx)
 
 
 /**
@@ -1018,29 +1016,29 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  *
  * ... allocate memory and register cleanup using new_p ...
  *
- * object = afw_object_and_pool_create_cede(new_p, xctx);
+ * object = afw_object_create_unmanaged_cede_p(new_p, xctx);
  *
  * ... set properties and use object ...
  *
  * afw_object_release(object, xctx);
  */
-#define afw_object_and_pool_create_cede(p, xctx) \
+#define afw_object_create_unmanaged_cede_p(p, xctx) \
     afw_object_create_with_options( \
-        AFW_OBJECT_MEMORY_OPTION_managed_cede_p, p, xctx)
+        AFW_OBJECT_MEMORY_OPTION_cede_p, p, xctx)
 
 
 /**
- * @brief Create an empty entity object in its own pool.
- * @param p to use for the object.
+ * @brief Create an empty entity object in a new child pool.
+ * @param p parent; the object gets a child of p->managed_p.
  * @param xctx of caller.
  * @return instance of new object.
  *
- * Creates a general pool as a child of p->managed_p to hold the object.
- * afw_object_release() of the last hold destroys that pool.
+ * Unmanaged bag (pool world). Object interface get_reference / release
+ * of the last hold destroys that child pool.
  */
-#define afw_object_and_pool_create(p, xctx) \
+#define afw_object_create_unmanaged_new_p(p, xctx) \
     afw_object_create_with_options( \
-        AFW_OBJECT_MEMORY_OPTION_managed, p, xctx)
+        AFW_OBJECT_MEMORY_OPTION_new_p, p, xctx)
 
 
 /**
@@ -1049,20 +1047,11 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  * @param xctx of caller.
  * @return instance of new object.
  *
- * Start 0. Lifetime is p. No release unless you clone_or_reference.
+ * Start 0. Lifetime is p. Value get_reference / release throw.
  */
-#define afw_object_create_in_pool(p, xctx) \
+#define afw_object_create_unmanaged(p, xctx) \
     afw_object_create_with_options( \
         AFW_OBJECT_MEMORY_OPTION_unmanaged, p, xctx)
-
-
-/** Compatibility names. */
-#define afw_object_create_cede_p(p, xctx) \
-    afw_object_and_pool_create_cede(p, xctx)
-#define afw_object_create(p, xctx) \
-    afw_object_and_pool_create(p, xctx)
-#define afw_object_create_unmanaged(p, xctx) \
-    afw_object_create_in_pool(p, xctx)
 
 
 /**
@@ -1114,9 +1103,9 @@ afw_object_insure_embedded_exists(
  * @param entity_p to use for entity object.  Ignored for embedded object.
  * @param xctx of caller.
  *
- * This macro will call afw_object_and_pool_create,
- * afw_object_and_pool_create_cede() or
- * afw_object_create_embedded() depending on whether embedding_object
+ * This macro will call afw_object_create_unmanaged_new_p,
+ * afw_object_create_unmanaged_cede_p, afw_object_create_unmanaged,
+ * or afw_object_create_embedded depending on whether embedding_object
  * is NULL and cede_p is true.
  *
  * Param cede_p should only be used to cede control of a pool to a single
@@ -1134,7 +1123,7 @@ afw_object_insure_embedded_exists(
         (property_name && \
         afw_value_equal((property_name), afw_v__meta_, xctx))) \
     { \
-        result = afw_object_create_in_pool(entity_p, xctx); \
+        result = afw_object_create_unmanaged(entity_p, xctx); \
     } \
     else if (embedding_object) { \
         result = afw_object_create_embedded( \
@@ -1143,8 +1132,8 @@ afw_object_insure_embedded_exists(
     else { \
         result = afw_object_create_with_options( \
             (cede_p) \
-            ? AFW_OBJECT_MEMORY_OPTION_managed_cede_p \
-            : AFW_OBJECT_MEMORY_OPTION_managed, \
+            ? AFW_OBJECT_MEMORY_OPTION_cede_p \
+            : AFW_OBJECT_MEMORY_OPTION_new_p, \
             entity_p, xctx); \
     } \
 

@@ -1180,10 +1180,10 @@ afw_value_as_array_sequence(
     dt = value->inf->is_evaluated_of_data_type;
     element_dt = dt ? dt->iterator_return_data_type : NULL;
     if (element_dt) {
-        array = afw_array_create_in_pool_of(element_dt, p, xctx);
+        array = afw_array_create_unmanaged_of(element_dt, p, xctx);
     }
     else {
-        array = afw_array_create_in_pool(p, xctx);
+        array = afw_array_create_unmanaged(p, xctx);
     }
 
     afw_value_initialize_iterator(value, &iterator, xctx);
