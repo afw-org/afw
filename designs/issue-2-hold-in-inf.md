@@ -3,7 +3,7 @@
 **Audience:** maintainers / assistants. **Not** handbook.
 
 **GitHub:** [#2](https://github.com/afw-org/afw/issues/2).  
-**On `develop`:** pool two-impls + last_return frame-end store ([PR #267](https://github.com/afw-org/afw/pull/267)). `issue-2-managed-p` is gone (tests harvested; C on that branch is not the rails).
+**On `develop`:** pool two-impls ([PR #267](https://github.com/afw-org/afw/pull/267)). Two worlds (unmanaged dest `p` / managed `xctx->p`) are [#277](https://github.com/afw-org/afw/issues/277) — pad [`experiment-brainstorm.md`](experiment-brainstorm.md). `issue-2-managed-p` is gone.
 
 **This pad is the rails.** The 2026-08-20–21 story and archaeology stay in [`issue-2-lifetime.md`](issue-2-lifetime.md). If that file and this one disagree, **this file wins**. If a leak tempts a helper *around* assign, operators, or the compiler — **stop and ask**. That is how we dug holes.
 
@@ -38,7 +38,7 @@ Default impl: `#define impl_afw_value_get_assignable_value impl_afw_value_get_re
 | Managed scalar | bump | same |
 | Permanent scalar | self | same |
 | Unmanaged scalar | managed copy | same |
-| Unmanaged/permanent object & array (**memory bag**) | self | mint **assignable** face |
+| Unmanaged/permanent object & array (**memory bag**) | **throw** (isolate with `get_assignable`) | mint **assignable** face or `clone_managed` / hold ([#277](https://github.com/afw-org/afw/issues/277)) |
 | **Assignable** object & array (new inf, like `closure_binding`) | bump | `get_reference(self)` |
 | `script_function` | self | `closure_binding` |
 | `closure_binding` | bump | `get_reference(self)` |

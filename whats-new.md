@@ -43,6 +43,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | `afw_utf8_create` / `create_copy` / `from_utf8_z` / `from_raw` | **`create` always copies** (old `create_copy`). Point without copy is **`create_no_copy`**. `from_utf8_z` → **`utf8_z_to_utf8`** (copy) or **`utf8_z_as_utf8`** (point). `from_raw` / `as_raw` → **`from_memory` / `as_memory`**. Env/request names that are not UTF-8 are **`^` + hex + `^`**, not `_NONUTF8_` + whole-name hex. [UTF-8 doors](#utf-8-create-set-and-forced_safe) |
 | `afw_utf8_printf` / `z_printf` to write a data file | Don't. Those formatters always **`forced_safe`** the result (viewable text, `^hex^` for bad runs). For octets, write `.s` + `.len` or **`as_memory`**. |
 | Object `property_name` as `const afw_utf8_t *` | **`const afw_value_t *`** on object get/set/has/remove, create_embedded, meta, `throw_property_*`. `afw_s_foo` → **`afw_v_foo`** (or your package `*_v_*`). See the [checklist](#object-property-names-as-values-issue-2) if you maintain another repo that links this libafw. |
+| Object/array create that “owns a pool” as `create_managed` | **`create_unmanaged`** (live in `p`), **`create_unmanaged_new_p`**, **`create_unmanaged_cede_p`**. **`create_managed`** is a **frame** (no pool, lives in this `xctx->p`). Isolate with **`get_assignable`**. Unmanaged object/array **value** `get_reference` / `release` **throw**. [Value lifetime](#value-lifetime--memory-management-issue-2--alphabeta) |
 
 **Details:** [libafw C API cleanup](#libafw-c-api-cleanup-release-ready-surface).
 
@@ -77,7 +78,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Templates**](#compile-time-template-substitutions-issue-97) ([#97](https://github.com/afw-org/afw/issues/97)) | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates |
 | [**Adapter index `current::`**](#adapter-index-filtervalue-current-issue-54--partial) ([#54](https://github.com/afw-org/afw/issues/54) partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
 | [**C builders / afwdev**](#c-api-docs-and-full-package-builds-issue-1) ([#1](https://github.com/afw-org/afw/issues/1)) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
-| [**Value / memory (α/β)**](#value-lifetime--memory-management-issue-2--alphabeta) ([#2](https://github.com/afw-org/afw/issues/2)) | Slot protocol; scalar boxing; overlay `set` on faces; wrapper teardown walk (pool cleanup); closure create-at-0; **`as_value`**; deep `clone()`; for-of `let`/`const` per-iteration; 0-symbol `{ }` is not a scope. Optional `free` / first-fit **paused** |
+| [**Value / memory (α/β)**](#value-lifetime--memory-management-issue-2--alphabeta) ([#2](https://github.com/afw-org/afw/issues/2), [#277](https://github.com/afw-org/afw/issues/277)) | Two worlds: **unmanaged** in dest `p` / tracker; **managed** in this `xctx->p`. Slot protocol; `create_unmanaged` / `_new_p` / `_cede_p`; frames `create_managed`; last_return is the slot ([#62](https://github.com/afw-org/afw/issues/62)) |
 | [**`stringify` / `decompile` / listing**](#stringify-decompile-compiler-listing-and-binary-text) ([#18](https://github.com/afw-org/afw/issues/18)) | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
 | [**UTF-8 create / set / forced_safe**](#utf-8-create-set-and-forced_safe) | C doors: short **`create`/`set` copy**; **`no_copy`** points; **`forced_safe`** encodes invalid runs as `^hex^`. Env/request names use that encode (not `_NONUTF8_` + whole-name hex). **`afw_utf8_printf`** is its own formatter: `AFW_UTF8_FMT` copies n bytes (interior `0` is data), then the whole result is **`forced_safe`** — viewable text, not a data-file writer |
 | [**UTF-8 in JSON / Fiddle**](#utf-8-in-json-results-and-python-local-mode) | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
@@ -782,25 +783,48 @@ Tests: `src/afw/tests/language/script/object_expression_names.as`.
 
 ## Value lifetime / memory management (issue [#2](https://github.com/afw-org/afw/issues/2)) — alpha/beta
 
-**Issue [#2](https://github.com/afw-org/afw/issues/2)** — campaign continues. Slot protocol landed. Pool split landed (general APR pool vs evaluation heap/tracker). Closures / throw-path rewind (**[#35](https://github.com/afw-org/afw/issues/35)**) bind at store. **Not** a finished memory-management productization (α/β).
+**Issue [#2](https://github.com/afw-org/afw/issues/2)** / **[#277](https://github.com/afw-org/afw/issues/277)** — campaign continues. Slot protocol landed. Pool split landed. Closures / throw-path rewind (**[#35](https://github.com/afw-org/afw/issues/35)**) bind at store. Two worlds (unmanaged vs managed) are how values live now. **Not** a finished memory-management productization (α/β).
 
-### What landed (high level)
+### Two worlds
+
+| | Unmanaged | Managed |
+|---|---|---|
+| Where | dest `p` / a tracker | this evaluation’s `xctx->p` |
+| Death | that pool is destroyed | last hold, then the header is freed |
+| Typical use | temps, compile unit, eval result clone | anything a variable / property / array slot **holds** |
+
+C object/array creates:
+
+- **`create_unmanaged`** — lives in `p`
+- **`create_unmanaged_new_p`** — new child pool
+- **`create_unmanaged_cede_p`** — you pass the pool
+- **`create_managed`** — **frame** (no pool; slots + refcount in this `xctx->p`)
+
+Unmanaged object/array **values** do not take `get_reference` / `release` (they throw). Use **`get_assignable`** to isolate into a slot. Instance `get_reference` on the object still pins its pool (adapters, faces). Rebuild out-of-tree C against this line ([C rebuild](#c-programmers)).
+
+When a script evaluation finishes, an **evaluated** result is copied into the caller’s pool as unmanaged. Adaptive **`clone()`** is still a deep independent copy (including nested objects).
+
+### Script running result ([#62](https://github.com/afw-org/afw/issues/62))
+
+Assignment, **`return`**, and a call that is not void set the script’s running result (`evaluate(compile<script>(…))`). **`let` / `const`**, an empty `{ }`, and **`for` / `while` / `try` as statements** do not. An assignment **inside** a loop still does. Tests: `src/afw/tests/language/script/script_result.as`.
+
+### What else landed (high level)
 
 - Prefer **shared permanent Adaptive values** (`afw_v_*`) for known scalars where safe.
-- **Slot protocol:** assign / parameters `add_reference` the new value and `release` the old; scope last-`release` walks slots; C-style `for` and **`for-of` `let`/`const`** clone the loop-local scope per iteration (`for (x of …)` when `x` already exists is still one binding). No `var` hoist, no TDZ, no `for-in`.
-- **Pools:** `afw_pool_create*` is destroy-is-lifetime (parent decides mt vs thread-specific). Script eval uses a **heap** + **heap trackers** (single-thread; one compiled_value evaluate). Job pools set `managed_p` to self; managed object/array own a child of `p->managed_p`.
-- **Scalars:** unmanaged `clone_or_reference` boxes a managed copy in `p->managed_p` (utf8/memory copy octets). Unmanaged **null** is not boxed (model `useDefaultProcessing` pointer identity).
-- **Objects/arrays:** dual face; C uses **`afw_object_as_value` / `afw_array_as_value`**. Memory arrays honor create options, `get_reference`/`release`, managed wrapper pin. Overlay **`set`** on look-through faces holds the local overlay pointer. **`clone()`** is a **deep independent graph** (nested objects/arrays too). Get/retrieve already return a **face** — do not `clone()` just to set properties.
+- **Slot protocol:** assign / parameters hold the new value and release the old; scope last-release walks slots; C-style `for` and **`for-of` `let`/`const`** clone the loop-local scope per iteration. No `var` hoist, no TDZ, no `for-in`.
+- **Pools:** destroy-is-lifetime. Script eval uses a **heap** + **trackers**.
+- **Objects/arrays:** dual face; C uses **`afw_object_as_value` / `afw_array_as_value`**. Overlay **`set`** on look-through faces holds the local overlay. Get/retrieve already return a **face** — do not `clone()` just to set properties.
 - **`afw_pool_release`**: returns the pool or **NULL** if that call destroyed it.
-- **Closures (#35):** object/array literals wrap a script function as a closure when the construct stores it (same as assign/`return`). Nested-block assign (`if { c0 = tick }`) holds the **defining** scope, not the inner block. No let/const hoisting. Throw-path tests: `src/afw/tests/language/script/throw_rewind.as`.
-- **Script faces:** overlay `set` holds the stored value; teardown walk is pool cleanup. `o.fn = function…` on a face is a slot. Closure create starts at 0. Generic memory objects still do not own property values.
-- **0-symbol `{ }`:** nested blocks with no `let`/`const` evaluate in the parent (no per-iteration tracker). `while (true) {}` RSS matches an empty statement. `while (true) { let x = 1; }` still opens a scope. C-style `for` increment clones only a `for (let/const …)` wrapper.
-- Campaign map: `designs/issue-2-lifetime.md` (not user docs).
+- **Closures (#35):** literals wrap a script function as a closure when stored (same as assign/`return`). Throw-path tests: `src/afw/tests/language/script/throw_rewind.as`.
+- **0-symbol `{ }`:** nested blocks with no `let`/`const` evaluate in the parent.
+- Maintainer map: `designs/experiment-brainstorm.md` (two worlds); campaign archaeology `designs/issue-2-lifetime.md`.
 
 **C note:** value/pool lifetime work is part of the [C API cleanup](#libafw-c-api-cleanup-release-ready-surface) line — same rebuild rule for out-of-tree linkers.
 
 ### Not done yet (do not rely on)
 
+- Statement evaluation `p` is still the caller pool (not each `{ }` tracker) — needed for large nested `eval` comment tests.
+- Adaptive `clone()` is not the C `clone_unmanaged` / `clone_managed` pair.
 - Renaming `clone_or_reference` → `add_reference`; dropping generated slice infs; optional `free` / first-fit tuning (P3).
 
 [↑ Highlights](#highlights)

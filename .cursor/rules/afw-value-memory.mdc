@@ -8,7 +8,7 @@ alwaysApply: false
 
 Use when changing value lifetime, reference count, create/allocate APIs, data type bindings, const objects/strings, pools/scopes, or debugging leaks for **long-running scripts**.
 
-**Campaign map:** [`designs/issue-2-lifetime.md`](../../designs/issue-2-lifetime.md) (slots, pool split, #35 store-time bind, wrapper overlay holds + create-at-0). When they disagree, the pad is where #2 is going.
+**Campaign map:** [`designs/issue-2-lifetime.md`](../../designs/issue-2-lifetime.md). **Two worlds:** [`designs/experiment-brainstorm.md`](../../designs/experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)). Rails: [`designs/issue-2-hold-in-inf.md`](../../designs/issue-2-hold-in-inf.md). When they disagree, those pads win over this rule.
 
 ## Pool and scope model
 
