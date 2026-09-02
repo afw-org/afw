@@ -71,7 +71,8 @@ static void
 impl_print_result(afw_command_self_t *self, const char *format, ...);
 
 static void
-impl_print_result_value(afw_command_self_t *self, const afw_value_t *value);
+impl_print_result_value(afw_command_self_t *self, const afw_value_t *value,
+    afw_xctx_t *xctx);
 
 static void
 impl_print_error(afw_command_self_t *self, 
@@ -579,7 +580,8 @@ impl_evaluate(
                             "Adaptive script run from shell must return "
                             "null or an integer between 0 and 255 but returned "
                             "this instead:\n");
-                        impl_print_result_value(self, evaluated_value);
+                        impl_print_result_value(self, evaluated_value,
+                            xctx);
                     }
                     else {
                         *exit_code = (int)
@@ -591,7 +593,7 @@ impl_evaluate(
 
             /* If not requesting exit code, print result. */
             else {               
-                impl_print_result_value(self, evaluated_value);
+                impl_print_result_value(self, evaluated_value, xctx);
             }
         }
     }
@@ -864,7 +866,8 @@ impl_print_result(afw_command_self_t *self, const char *format, ...)
 
 
 /* Print result value. */
-void impl_print_result_value(afw_command_self_t *self, const afw_value_t *value)
+void impl_print_result_value(afw_command_self_t *self, const afw_value_t *value,
+    afw_xctx_t *xctx)
 {
     const afw_memory_t *raw;
     const afw_utf8_t *string;
@@ -884,7 +887,7 @@ void impl_print_result_value(afw_command_self_t *self, const afw_value_t *value)
             self->content_type_out,
             value,
             &afw_object_options_whitespace,
-            self->xctx->p, self->xctx);
+            xctx->p, xctx);
         if (raw)
         {
             impl_print_result(self, "%.*s",
@@ -896,7 +899,7 @@ void impl_print_result_value(afw_command_self_t *self, const afw_value_t *value)
     else
     {
         string = afw_value_decompile_to_string(value, NULL,
-                                                self->xctx->p, self->xctx);
+                                                xctx->p, xctx);
         impl_print_result(self,
             "<unevaluated> " AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(string));
