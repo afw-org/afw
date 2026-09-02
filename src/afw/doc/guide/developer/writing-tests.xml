@@ -43,7 +43,12 @@
             <literal>./afwdev</literal> when the build needs to install a 
             new <literal>afwdev</literal>. After that, use 
             <literal>afwdev</literal> for <literal>test</literal>, 
-            <literal>validate</literal>, and similar commands.
+            <literal>validate</literal>, and similar commands. A failing 
+            test always prints a one-line reason (valgrind includes 
+            <literal>kind</literal> and top frames). Pass 
+            <literal>--error-detail</literal> for source, expected vs 
+            result, and a short backtrace. That is not 
+            <literal>--debug</literal>.
         </paragraph>
         <code><![CDATA[# From the package root, after source or generate changes
 ./afwdev build --cdev -j
@@ -53,6 +58,8 @@ afwdev test -j
 afwdev test --srcdir-pattern afw --test-pattern 'rql/.*'
 afwdev test --list --test-pattern smoke
 # A real --test-pattern shows passing cases (no --show-all needed)
+# Fail-only extras (source, expect/result, short backtrace); not --debug
+afwdev test --error-detail --test-pattern 'http_put' --env-mode valgrind -j
 ]]></code>
     </section>
     <section>
@@ -180,8 +187,14 @@ def run():
             standalone valgrind on the compiled probe, without that 
             file, can still report that noise. Judge a probe by its 
             exit code, and by the helper's valgrind wrap when you want 
-            memory checking. The UTF-8 and error-struct side of a throw 
-            is a separate issue from this recipe.
+            memory checking. A valgrind fail prints 
+            <literal>kind</literal> and the top stack frames. Pass 
+            <literal>--error-detail</literal> for source, expected vs 
+            result, and a short backtrace on any fail. Full valgrind 
+            XML stays <literal>--debug</literal>. 
+            <literal>-j</literal> keeps each group together. The UTF-8 and 
+            error-struct side of a throw is a separate issue from this 
+            recipe.
         </paragraph>
     </section>
     <section>
@@ -351,7 +364,7 @@ return 0;
                 </row>
                 <row>
                     <column><literal>valgrind</literal></column>
-                    <column>Runs <literal>.as</literal> files under valgrind. C probes compiled by <literal>run_c_probe()</literal> are also wrapped. Orchestrated tests wrap <literal>afwfcgi</literal> when that is supported.</column>
+                    <column>Runs <literal>.as</literal> files under valgrind. C probes compiled by <literal>run_c_probe()</literal> are also wrapped. Orchestrated tests wrap <literal>afwfcgi</literal> when that is supported. A fail prints valgrind <literal>kind</literal> and the top stack frames. <literal>--error-detail</literal> adds source/expect/backtrace. Full XML stays <literal>--debug</literal>. <literal>-j</literal> prints each test group as one block.</column>
                 </row>
                 <row>
                     <column><literal>afwfcgi</literal></column>

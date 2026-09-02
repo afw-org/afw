@@ -73,6 +73,19 @@ def errors_only_console(options):
     return options.get("errors", True) and not show_all_cases(options)
 
 
+def want_error_detail(options):
+    """Fail-only extras: source, expect/result, short backtrace.
+
+    --error-detail, --verbose, and --debug. Not a firehose: no passing
+    cases, no valgrind XML, no test-case JSON (those stay --debug).
+    """
+    if not options:
+        return False
+    if options.get("error_detail"):
+        return True
+    return msg.is_verbose_mode() or msg.is_debug_mode()
+
+
 ##
 # @brief Human-readable message for a process killed by a signal
 # @param returncode Subprocess return code (negative when killed by signal)
@@ -828,7 +841,15 @@ def print_test_failure(test, testCase):
             elif errorSourceLocation is not None:
                 msg.error("Test Failed at: {}".format(sourceLocationNav) + " (id=" + error.get("id") + ")")
 
+        if testCase.get("expect") is not None or testCase.get("result") is not None:
+            msg.error("    Expected: " + nfc.json_dumps(testCase.get("expect")))
+            if testCase.get("result") is not None:
+                msg.error("    Result:   " + nfc.json_dumps(testCase.get("result")) + "\n")
+            else:
+                msg.error("    Result:   undefined\n")
+
         _print_stream_expects()
+        _print_error_backtrace(error)
 
     else:
         # if there was no error object, look for expect/result and dump the source
@@ -846,6 +867,25 @@ def print_test_failure(test, testCase):
         _print_stream_expects()
 
         format_source_code(testCase.get("source"), "Test Failed at {}".format(sourceLocationNav))
+
+
+def _print_error_backtrace(error, max_frames=12):
+    """Print a clipped Adaptive error backtrace, if the object has one."""
+    if not error:
+        return
+    bt = error.get("backtrace")
+    if not bt:
+        return
+    if isinstance(bt, list):
+        lines = [str(x) for x in bt[:max_frames]]
+    else:
+        lines = str(bt).splitlines()[:max_frames]
+    if not lines:
+        return
+    msg.error("    backtrace:")
+    for line in lines:
+        msg.error("      " + line)
+
 
 ##
 # @brief This routine will print the results of a test run.
@@ -913,8 +953,8 @@ def print_test_response(options, test, response, hasFailures, allSuccess, allSki
                     print("\033[2m      {}\033[0m\n".format(tc_description))                
                 msg.debug(nfc.json_dumps(testCase, sort_keys=True, indent=4))
                 
-                # Full source navigation, if in verbose mode
-                if msg.is_verbose_mode():
+                # Source / expect / backtrace: --error-detail, --verbose, --debug
+                if want_error_detail(options):
                     print_test_failure(test, testCase)
 
 

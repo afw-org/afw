@@ -1260,13 +1260,15 @@ afw_value_release(
 
 
 /**
- * @brief Assign into a slot: `release` old, `add_reference` incoming.
+ * @brief Assign into a slot: make incoming assignable, then `release` old.
  * @param slot address of the stored pointer.
  * @param incoming value to store (NULL becomes undefined).
- * @param p pool for `add_reference`.
+ * @param p pool for `get_assignable_value`.
  * @param xctx of caller.
  *
- * Same pointer is a no-op. Incoming is stored via get_assignable_value.
+ * Same pointer is a no-op. Incoming is stored via get_assignable_value
+ * **before** the occupant is released, so `s = s + s` / substring onto
+ * self cannot memcpy into a reused block (issue #275).
  */
 AFW_DECLARE(void)
 afw_value_slot_store(

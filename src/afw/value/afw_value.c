@@ -91,14 +91,25 @@ afw_value_slot_store(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    const afw_value_t *assignable;
+
     if (!incoming) {
         incoming = afw_value_undefined;
     }
     if (*slot == incoming) {
         return;
     }
+    /* Clone/hold incoming before releasing the occupant. Incoming may
+     * still point at the occupant's bytes (s = s + s, substring onto
+     * self). Release-first lets the pool reuse that block, then
+     * create_managed memcpy is dest==src (issue #275).
+     */
+    assignable = afw_value_as_assignable(incoming, p, xctx);
+    if (*slot == assignable) {
+        return;
+    }
     afw_value_release(*slot, xctx);
-    *slot = afw_value_as_assignable(incoming, p, xctx);
+    *slot = assignable;
 }
 
 

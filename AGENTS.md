@@ -144,6 +144,7 @@ Committed `generated/` is for review/grep; **authoritative** output is the last 
 # After --cdev, installed afwdev is current
 afwdev test -j
 afwdev test --srcdir-pattern afw --test-pattern 'rql/.*'
+afwdev test --error-detail --env-mode valgrind --test-pattern 'http_put'
 afwdev validate --pattern 'src/afw/generate/objects/...'
 
 # Full package dev install (all contexts + generate + clean + install + scan + -j):

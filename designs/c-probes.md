@@ -39,7 +39,7 @@ Live examples: `src/afw/tests/advanced/pool_alloc/` (SIZE_MAX overflow), `pool_h
 
 ## Valgrind / libunwind
 
-`afwdev test --env-mode valgrind` still wraps `.as` via the `afw` CLI. The same mode wraps C probes: python mode pushes a run context; the helper runs each case under valgrind with `valgrind.suppress`.
+`afwdev test --env-mode valgrind` still wraps `.as` via the `afw` CLI. The same mode wraps C probes: python mode pushes a run context; the helper runs each case under valgrind with `valgrind.suppress`. A fail prints valgrind `kind` and top frames (not only “Valgrind Error(s) detected.”). `--error-detail` adds source/expect/backtrace for any fail. Full valgrind XML stays `--debug`. `-j` prints each test group as one block.
 
 A throw calls `afw_os_backtrace` (except memory errors). libunwind then trips Memcheck `Param` `write(buf)` / `msync(start)` under `_ULx86_64_step`. That is **not** the hole under test. The suite suppressions cover it, including portable `...` / `_ULx86_64_step` blocks so a new `.so` path does not reopen the noise.
 

@@ -907,6 +907,19 @@ _info_test_show_all = {
     "help": "Show all tests including passes (overrides default --errors)."
 }
 
+_info_test_error_detail = {
+    "optionName": "error_detail",
+    "arg": "--error-detail",
+    "action": "store_true",
+    "default": False,
+    "help":
+        "On failures, print the extra error material needed to debug "
+        "(source snippet, expected vs result, short Adaptive backtrace). "
+        "Valgrind kind and top frames are already on the fail line. "
+        "Does not dump passing tests, test-case JSON, or valgrind XML "
+        "(those are --debug). Safe with -j."
+}
+
 _info_test_list = {
     "optionName": "list",
     "arg": "--list",
@@ -1043,6 +1056,7 @@ _info_test = {
         _info_test_tags,
         _info_test_errors,
         _info_test_show_all,
+        _info_test_error_detail,
         _info_srcdir_pattern, 
         _info_tests_path,
         _info_test_capture_goldens,

@@ -9,9 +9,12 @@
 # @brief This file contains the main functions for running tests.
 # @details Runs discovered test groups sequentially or via multiprocessing.Pool.
 #          Parallelism is per group. Each group restores cwd and os.environ
-#          in a finally block.
+#          in a finally block. With -j, each worker buffers stdout/stderr and
+#          the parent prints one group at a time so FAIL blocks do not
+#          interleave.
 #
 
+import io
 import os
 import shutil
 import sys
@@ -71,16 +74,36 @@ def _failure_detail(error, response, numFailures):
     return "failed"
 
 
+def _with_buffered_stdio(fn):
+    """Run fn() with stdout/stderr captured. Returns (result, text)."""
+    buf = io.StringIO()
+    old_out, old_err = sys.stdout, sys.stderr
+    sys.stdout = sys.stderr = buf
+    try:
+        result = fn()
+    finally:
+        sys.stdout = old_out
+        sys.stderr = old_err
+    return result, buf.getvalue()
+
+
 ##
-# @brief This routine runs all tests that belong to a test group
-# @param testGroup The test group to run
-# @param options The options dictionary
-# @param testEnvironments The list of test environments
-# @param work_dir_prefix The prefix for the working directory
-# @return (testGroup, passed, skipped, failed, failures) where failures is a
-#         list of dicts for the end-of-run digest (empty when none failed)
+# @brief Run all tests that belong to a test group
+# @return (testGroup, passed, skipped, failed, failures, captured)
+#         captured is worker stdout/stderr when -j buffered, else "".
 #
 def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
+    if options.get('_buffer_group_output'):
+        result, captured = _with_buffered_stdio(
+            lambda: _run_test_group_body(
+                testGroup, options, testEnvironments, work_dir_prefix))
+        return result + (captured,)
+    result = _run_test_group_body(
+        testGroup, options, testEnvironments, work_dir_prefix)
+    return result + ("",)
+
+
+def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
 
     failed = 0
     skipped = 0
@@ -179,6 +202,8 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
                     msg.error("      cwd:   {}\n".format(
                         testEnvironment['work_dir']))
 
+            # Full valgrind XML stays under --debug (firehose). The fail
+            # line already has kind + top frames from valgrind_error_message.
             if not quiet_console and msg.is_debug_mode() and debug:
                 msg.debug(debug)
 
@@ -326,6 +351,9 @@ def run(options, srcdirs):
         test_jobs = test_jobs if test_jobs > 0 else None
 
         msg.highlighted_info("Running {} test groups in parallel with {} processes".format(len(allTestGroups), test_jobs if test_jobs else os.cpu_count()))
+
+        worker_options = dict(options)
+        worker_options['_buffer_group_output'] = True
         
         pool = multiprocessing.Pool(processes=test_jobs)                   
 
@@ -335,7 +363,7 @@ def run(options, srcdirs):
         
         pool_results = pool.imap_unordered(
             partial(run_test_group, 
-                options=options, 
+                options=worker_options, 
                 testEnvironments=testEnvironments, 
                 work_dir_prefix=work_dir_prefix
             ), allTestGroups
@@ -383,7 +411,12 @@ def run(options, srcdirs):
 
         pool.join()
         
-        for testGroup, passed, skipped, failed, group_failures in results:
+        for testGroup, passed, skipped, failed, group_failures, captured in results:
+            if captured:
+                sys.stdout.write(captured)
+                if not captured.endswith('\n'):
+                    sys.stdout.write('\n')
+                sys.stdout.flush()
             _srcdir = testGroup[0]
 
             if allTestResults.get(_srcdir):
@@ -399,7 +432,7 @@ def run(options, srcdirs):
         # run sequentially
         try:
             for testGroup in allTestGroups:
-                _, passed, skipped, failed, group_failures = run_test_group(
+                _, passed, skipped, failed, group_failures, _captured = run_test_group(
                     testGroup, 
                     options, 
                     testEnvironments, 
