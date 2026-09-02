@@ -238,6 +238,34 @@ afw_value_time_create_managed(
 #define afw_value_create_managed_time afw_value_time_create_managed
 
 /**
+ * @brief Deep clone an evaluated time value unmanaged into p.
+ * @param value evaluated time.
+ * @param p dest pool.
+ * @param xctx of caller.
+ * @return unmanaged clone in p, or value if permanent.
+ *
+ * Copies utf8/memory octets into p. Does not release the source.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone_time_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Clone an evaluated time value managed in xctx->p.
+ * @param value evaluated time.
+ * @param xctx of caller.
+ * @return managed value (bump if already managed).
+ *
+ * Permanents as-is. Does not release the source. No dest p.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone_time_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Create function for unmanaged data type time value.
  * @param internal.
  * @param p to use for returned value.

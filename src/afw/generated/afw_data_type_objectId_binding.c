@@ -237,6 +237,8 @@ afw_data_type_objectId_direct = {
     (const afw_array_t *)&impl_empty_array_of_objectId,
     (const afw_value_t *)&impl_value_empty_array_of_objectId,
     &afw_value_unmanaged_objectId_inf,
+    afw_value_clone_objectId_unmanaged,
+    afw_value_clone_objectId_managed,
     afw_compile_type_error,
     false,
     false,
@@ -413,6 +415,45 @@ afw_value_objectId_create(const afw_utf8_t * internal,
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }
     return &v->pub;
+}
+
+/* Deep clone evaluated objectId unmanaged into p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_objectId_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_value_common_t *cloned;
+
+    if (value->inf == &afw_value_permanent_objectId_inf) {
+        return value;
+    }
+    cloned = afw_value_common_allocate(
+        afw_data_type_objectId, p, xctx);
+    afw_data_type_clone_internal(afw_data_type_objectId,
+        (void *)&cloned->internal,
+        (const void *)&((const afw_value_objectId_t *)value)->internal,
+        p, xctx);
+    return &cloned->pub;
+}
+
+/* Clone evaluated objectId managed in xctx->p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_objectId_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    if (value->inf == &afw_value_permanent_objectId_inf) {
+        return value;
+    }
+    if (afw_utf8_starts_with_utf8_z(
+            &value->inf->rti.implementation_id, "managed_")) {
+        return afw_value_get_reference(value, xctx->p, xctx);
+    }
+    return afw_value_objectId_create_managed(
+        &((const afw_value_objectId_t *)value)->internal,
+        xctx);
 }
 
 /* Convert data type objectId string to afw_utf8_t *. */

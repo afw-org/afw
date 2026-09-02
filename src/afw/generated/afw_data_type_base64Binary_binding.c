@@ -237,6 +237,8 @@ afw_data_type_base64Binary_direct = {
     (const afw_array_t *)&impl_empty_array_of_base64Binary,
     (const afw_value_t *)&impl_value_empty_array_of_base64Binary,
     &afw_value_unmanaged_base64Binary_inf,
+    afw_value_clone_base64Binary_unmanaged,
+    afw_value_clone_base64Binary_managed,
     afw_compile_type_error,
     false,
     false,
@@ -413,6 +415,45 @@ afw_value_base64Binary_create(const afw_memory_t * internal,
         memcpy(&v->internal, internal, sizeof(afw_memory_t));
     }
     return &v->pub;
+}
+
+/* Deep clone evaluated base64Binary unmanaged into p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_base64Binary_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_value_common_t *cloned;
+
+    if (value->inf == &afw_value_permanent_base64Binary_inf) {
+        return value;
+    }
+    cloned = afw_value_common_allocate(
+        afw_data_type_base64Binary, p, xctx);
+    afw_data_type_clone_internal(afw_data_type_base64Binary,
+        (void *)&cloned->internal,
+        (const void *)&((const afw_value_base64Binary_t *)value)->internal,
+        p, xctx);
+    return &cloned->pub;
+}
+
+/* Clone evaluated base64Binary managed in xctx->p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_base64Binary_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    if (value->inf == &afw_value_permanent_base64Binary_inf) {
+        return value;
+    }
+    if (afw_utf8_starts_with_utf8_z(
+            &value->inf->rti.implementation_id, "managed_")) {
+        return afw_value_get_reference(value, xctx->p, xctx);
+    }
+    return afw_value_base64Binary_create_managed(
+        &((const afw_value_base64Binary_t *)value)->internal,
+        xctx);
 }
 
 /* Convert data type base64Binary string to afw_memory_t *. */

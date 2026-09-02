@@ -206,6 +206,8 @@ afw_data_type_boolean_direct = {
     (const afw_array_t *)&impl_empty_array_of_boolean,
     (const afw_value_t *)&impl_value_empty_array_of_boolean,
     &afw_value_unmanaged_boolean_inf,
+    afw_value_clone_boolean_unmanaged,
+    afw_value_clone_boolean_managed,
     afw_compile_type_error,
     true,
     false,
@@ -317,6 +319,44 @@ afw_value_boolean_create(afw_boolean_t internal,
     (void)p;
     (void)xctx;
     return afw_value_for_boolean(internal);
+}
+
+/* Deep clone evaluated boolean unmanaged into p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_boolean_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_value_common_t *cloned;
+
+    if (value->inf == &afw_value_permanent_boolean_inf) {
+        return value;
+    }
+    cloned = afw_value_common_allocate(
+        afw_data_type_boolean, p, xctx);
+    afw_data_type_clone_internal(afw_data_type_boolean,
+        (void *)&cloned->internal,
+        (const void *)&((const afw_value_boolean_t *)value)->internal,
+        p, xctx);
+    return &cloned->pub;
+}
+
+/* Clone evaluated boolean managed in xctx->p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_boolean_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    if (value->inf == &afw_value_permanent_boolean_inf) {
+        return value;
+    }
+    if (afw_utf8_starts_with_utf8_z(
+            &value->inf->rti.implementation_id, "managed_")) {
+        return afw_value_get_reference(value, xctx->p, xctx);
+    }
+    return afw_value_for_boolean(
+        ((const afw_value_boolean_t *)value)->internal);
 }
 
 /* Convert data type boolean string to afw_boolean_t *. */

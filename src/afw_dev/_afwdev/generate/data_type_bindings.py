@@ -89,6 +89,14 @@ def _managed_slice_fn(type_id):
     return 'afw_value_' + type_id + '_create_managed_slice'
 
 
+def _clone_unmanaged_fn(type_id):
+    return 'afw_value_clone_' + type_id + '_unmanaged'
+
+
+def _clone_managed_fn(type_id):
+    return 'afw_value_clone_' + type_id + '_managed'
+
+
 def _allocate_fn(type_id):
     return 'afw_value_' + type_id + '_allocate'
 
@@ -447,6 +455,34 @@ def write_h_section(fd, prefix, obj):
         fd.write('    afw_xctx_t *xctx);\n')
         fd.write('#define afw_value_create_managed_' + id + ' ' +
                  _managed_create_fn(id) + '\n')
+
+        fd.write('\n/**\n')
+        fd.write(' * @brief Deep clone an evaluated ' + id + ' value unmanaged into p.\n')
+        fd.write(' * @param value evaluated ' + id + '.\n')
+        fd.write(' * @param p dest pool.\n')
+        fd.write(' * @param xctx of caller.\n')
+        fd.write(' * @return unmanaged clone in p, or value if permanent.\n')
+        fd.write(' *\n')
+        fd.write(' * Copies utf8/memory octets into p. Does not release the source.\n')
+        fd.write(' */\n')
+        fd.write(declare + '(const afw_value_t *)\n')
+        fd.write(_clone_unmanaged_fn(id) + '(\n')
+        fd.write('    const afw_value_t *value,\n')
+        fd.write('    const afw_pool_t *p,\n')
+        fd.write('    afw_xctx_t *xctx);\n')
+
+        fd.write('\n/**\n')
+        fd.write(' * @brief Clone an evaluated ' + id + ' value managed in xctx->p.\n')
+        fd.write(' * @param value evaluated ' + id + '.\n')
+        fd.write(' * @param xctx of caller.\n')
+        fd.write(' * @return managed value (bump if already managed).\n')
+        fd.write(' *\n')
+        fd.write(' * Permanents as-is. Does not release the source. No dest p.\n')
+        fd.write(' */\n')
+        fd.write(declare + '(const afw_value_t *)\n')
+        fd.write(_clone_managed_fn(id) + '(\n')
+        fd.write('    const afw_value_t *value,\n')
+        fd.write('    afw_xctx_t *xctx);\n')
 
         if ctype == 'afw_utf8_t':
             fd.write('\n/**\n')
@@ -1128,6 +1164,8 @@ def write_c_section(fd, prefix, obj):
         fd.write('    NULL,\n')
         fd.write('    NULL,\n')
         fd.write('    NULL,\n')
+        fd.write('    NULL,\n')
+        fd.write('    NULL,\n')
     else:
         # empty_array
         fd.write('    (const afw_array_t *)&impl_empty_array_of_' + id +',\n')
@@ -1137,6 +1175,10 @@ def write_c_section(fd, prefix, obj):
 
         # evaluated_value_inf
         fd.write('    &afw_value_unmanaged_' + id + '_inf,\n')
+
+        # clone_value_unmanaged / clone_value_managed
+        fd.write('    ' + _clone_unmanaged_fn(id) + ',\n')
+        fd.write('    ' + _clone_managed_fn(id) + ',\n')
 
     # compile_type
     if obj.get('compileType'):
@@ -1530,6 +1572,90 @@ def write_c_section(fd, prefix, obj):
                 fd.write('    }\n')
             fd.write('    return &v->pub;\n')
             fd.write('}\n')
+
+        fd.write('\n/* Deep clone evaluated ' + id + ' unmanaged into p. */\n')
+        fd.write(define + '(const afw_value_t *)\n')
+        fd.write(_clone_unmanaged_fn(id) + '(\n')
+        fd.write('    const afw_value_t *value,\n')
+        fd.write('    const afw_pool_t *p,\n')
+        fd.write('    afw_xctx_t *xctx)\n')
+        fd.write('{\n')
+        if id == 'object' or id == 'array':
+            bag = 'object' if id == 'object' else 'array'
+            fd.write('    const afw_' + bag + '_t *from;\n')
+            fd.write('    const afw_' + bag + '_t *to = NULL;\n')
+            fd.write('\n')
+            fd.write('    if (value->inf == &afw_value_permanent_' + id + '_inf) {\n')
+            fd.write('        return value;\n')
+            fd.write('    }\n')
+            fd.write('    from = ((const afw_value_' + id + '_t *)value)->internal;\n')
+            fd.write('    afw_data_type_clone_internal(afw_data_type_' + id + ',\n')
+            fd.write('        (void *)&to, &from, p, xctx);\n')
+            if id == 'object':
+                fd.write('    return afw_value_object_create(to, p, xctx);\n')
+            else:
+                fd.write('    return afw_value_array_create(to, p, xctx);\n')
+        else:
+            fd.write('    afw_value_common_t *cloned;\n')
+            fd.write('\n')
+            fd.write('    if (value->inf == &afw_value_permanent_' + id + '_inf) {\n')
+            fd.write('        return value;\n')
+            fd.write('    }\n')
+            fd.write('    cloned = afw_value_common_allocate(\n')
+            fd.write('        afw_data_type_' + id + ', p, xctx);\n')
+            fd.write('    afw_data_type_clone_internal(afw_data_type_' + id + ',\n')
+            fd.write('        (void *)&cloned->internal,\n')
+            fd.write('        (const void *)&((const afw_value_' + id +
+                     '_t *)value)->internal,\n')
+            fd.write('        p, xctx);\n')
+            fd.write('    return &cloned->pub;\n')
+        fd.write('}\n')
+
+        fd.write('\n/* Clone evaluated ' + id + ' managed in xctx->p. */\n')
+        fd.write(define + '(const afw_value_t *)\n')
+        fd.write(_clone_managed_fn(id) + '(\n')
+        fd.write('    const afw_value_t *value,\n')
+        fd.write('    afw_xctx_t *xctx)\n')
+        fd.write('{\n')
+        fd.write('    if (value->inf == &afw_value_permanent_' + id + '_inf) {\n')
+        fd.write('        return value;\n')
+        fd.write('    }\n')
+        fd.write('    if (afw_utf8_starts_with_utf8_z(\n')
+        fd.write('            &value->inf->rti.implementation_id, "managed_")) {\n')
+        fd.write('        return afw_value_get_reference(value, xctx->p, xctx);\n')
+        fd.write('    }\n')
+        if id == 'object' or id == 'array':
+            bag = 'object' if id == 'object' else 'array'
+            fd.write('    {\n')
+            fd.write('        const afw_' + bag + '_t *from;\n')
+            fd.write('        const afw_' + bag + '_t *to = NULL;\n')
+            fd.write('\n')
+            fd.write('        from = ((const afw_value_' + id + '_t *)value)->internal;\n')
+            fd.write('        afw_data_type_clone_internal(afw_data_type_' + id + ',\n')
+            fd.write('            (void *)&to, &from, xctx->p, xctx);\n')
+            if id == 'object':
+                fd.write('        return afw_value_object_create_managed(to, xctx);\n')
+            else:
+                fd.write('        return afw_value_array_create_managed(to, xctx);\n')
+            fd.write('    }\n')
+        elif id == 'boolean':
+            fd.write('    return afw_value_for_boolean(\n')
+            fd.write('        ((const afw_value_boolean_t *)value)->internal);\n')
+        elif id == 'null':
+            fd.write('    return afw_value_null;\n')
+        elif ctype == 'afw_utf8_t' or ctype == 'afw_memory_t':
+            fd.write('    return ' + _managed_create_fn(id) + '(\n')
+            fd.write('        &((const afw_value_' + id + '_t *)value)->internal,\n')
+            fd.write('        xctx);\n')
+        elif direct_return:
+            fd.write('    return ' + _managed_create_fn(id) + '(\n')
+            fd.write('        ((const afw_value_' + id + '_t *)value)->internal,\n')
+            fd.write('        xctx);\n')
+        else:
+            fd.write('    return ' + _managed_create_fn(id) + '(\n')
+            fd.write('        &((const afw_value_' + id + '_t *)value)->internal,\n')
+            fd.write('        xctx);\n')
+        fd.write('}\n')
 
         fd.write('\n/* Convert data type ' + id + ' string to ' + ctype + ' *. */\n')
         fd.write(define + '(void)\nafw_data_type_' + id + '_to_internal(' + ctype + ' *to_internal,\n')

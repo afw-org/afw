@@ -206,6 +206,8 @@ afw_data_type_yearMonthDuration_direct = {
     (const afw_array_t *)&impl_empty_array_of_yearMonthDuration,
     (const afw_value_t *)&impl_value_empty_array_of_yearMonthDuration,
     &afw_value_unmanaged_yearMonthDuration_inf,
+    afw_value_clone_yearMonthDuration_unmanaged,
+    afw_value_clone_yearMonthDuration_managed,
     afw_compile_type_error,
     false,
     false,
@@ -330,6 +332,45 @@ afw_value_yearMonthDuration_create(const afw_yearMonthDuration_t * internal,
         memcpy(&v->internal, internal, sizeof(afw_yearMonthDuration_t));
     }
     return &v->pub;
+}
+
+/* Deep clone evaluated yearMonthDuration unmanaged into p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_yearMonthDuration_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_value_common_t *cloned;
+
+    if (value->inf == &afw_value_permanent_yearMonthDuration_inf) {
+        return value;
+    }
+    cloned = afw_value_common_allocate(
+        afw_data_type_yearMonthDuration, p, xctx);
+    afw_data_type_clone_internal(afw_data_type_yearMonthDuration,
+        (void *)&cloned->internal,
+        (const void *)&((const afw_value_yearMonthDuration_t *)value)->internal,
+        p, xctx);
+    return &cloned->pub;
+}
+
+/* Clone evaluated yearMonthDuration managed in xctx->p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_yearMonthDuration_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    if (value->inf == &afw_value_permanent_yearMonthDuration_inf) {
+        return value;
+    }
+    if (afw_utf8_starts_with_utf8_z(
+            &value->inf->rti.implementation_id, "managed_")) {
+        return afw_value_get_reference(value, xctx->p, xctx);
+    }
+    return afw_value_yearMonthDuration_create_managed(
+        &((const afw_value_yearMonthDuration_t *)value)->internal,
+        xctx);
 }
 
 /* Convert data type yearMonthDuration string to afw_yearMonthDuration_t *. */

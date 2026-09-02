@@ -240,6 +240,34 @@ afw_value_function_create_managed(
 #define afw_value_create_managed_function afw_value_function_create_managed
 
 /**
+ * @brief Deep clone an evaluated function value unmanaged into p.
+ * @param value evaluated function.
+ * @param p dest pool.
+ * @param xctx of caller.
+ * @return unmanaged clone in p, or value if permanent.
+ *
+ * Copies utf8/memory octets into p. Does not release the source.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone_function_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Clone an evaluated function value managed in xctx->p.
+ * @param value evaluated function.
+ * @param xctx of caller.
+ * @return managed value (bump if already managed).
+ *
+ * Permanents as-is. Does not release the source. No dest p.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone_function_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Create function for unmanaged data type function value.
  * @param internal.
  * @param p to use for returned value.

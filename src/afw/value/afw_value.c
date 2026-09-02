@@ -483,6 +483,41 @@ afw_value_clone(const afw_value_t *value,
 }
 
 
+/* Deep clone an evaluated value unmanaged into dest p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_data_type_t *dt;
+
+    dt = (value && value->inf) ? value->inf->is_evaluated_of_data_type : NULL;
+    if (!dt || !dt->clone_value_unmanaged) {
+        AFW_THROW_ERROR_Z(conversion_error,
+            "clone_unmanaged requires an evaluated value", xctx);
+    }
+    return dt->clone_value_unmanaged(value, p, xctx);
+}
+
+
+/* Clone an evaluated value managed in xctx->p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_data_type_t *dt;
+
+    dt = (value && value->inf) ? value->inf->is_evaluated_of_data_type : NULL;
+    if (!dt || !dt->clone_value_managed) {
+        AFW_THROW_ERROR_Z(conversion_error,
+            "clone_managed requires an evaluated value", xctx);
+    }
+    return dt->clone_value_managed(value, xctx);
+}
+
+
 
 /* Unmanaged/permanent object clone_or_reference: face overlay, do not wrap a face. */
 AFW_DEFINE(const afw_value_t *)

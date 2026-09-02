@@ -137,6 +137,8 @@ afw_data_type_undefined_direct = {
     NULL,
     NULL,
     NULL,
+    NULL,
+    NULL,
     afw_compile_type_error,
     true,
     false,

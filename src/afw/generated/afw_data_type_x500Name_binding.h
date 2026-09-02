@@ -270,6 +270,34 @@ afw_value_x500Name_create_managed(
 #define afw_value_create_managed_x500Name afw_value_x500Name_create_managed
 
 /**
+ * @brief Deep clone an evaluated x500Name value unmanaged into p.
+ * @param value evaluated x500Name.
+ * @param p dest pool.
+ * @param xctx of caller.
+ * @return unmanaged clone in p, or value if permanent.
+ *
+ * Copies utf8/memory octets into p. Does not release the source.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone_x500Name_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Clone an evaluated x500Name value managed in xctx->p.
+ * @param value evaluated x500Name.
+ * @param xctx of caller.
+ * @return managed value (bump if already managed).
+ *
+ * Permanents as-is. Does not release the source. No dest p.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_clone_x500Name_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Create a managed slice of a managed data type x500Name value.
  * @param containing_value managed (or managed_slice) value with cType afw_utf8_t.
  * @param offset into containing value's internal.

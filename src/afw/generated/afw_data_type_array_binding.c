@@ -228,6 +228,8 @@ afw_data_type_array_direct = {
     (const afw_array_t *)&impl_empty_array_of_array,
     (const afw_value_t *)&impl_value_empty_array_of_array,
     &afw_value_unmanaged_array_inf,
+    afw_value_clone_array_unmanaged,
+    afw_value_clone_array_managed,
     afw_compile_type_error,
     true,
     false,
@@ -355,6 +357,49 @@ afw_value_array_create(const afw_array_t * internal,
     v->inf = &afw_value_unmanaged_array_inf;
     v->internal = internal;
     return &v->pub;
+}
+
+/* Deep clone evaluated array unmanaged into p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_array_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_array_t *from;
+    const afw_array_t *to = NULL;
+
+    if (value->inf == &afw_value_permanent_array_inf) {
+        return value;
+    }
+    from = ((const afw_value_array_t *)value)->internal;
+    afw_data_type_clone_internal(afw_data_type_array,
+        (void *)&to, &from, p, xctx);
+    return afw_value_array_create(to, p, xctx);
+}
+
+/* Clone evaluated array managed in xctx->p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_array_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    if (value->inf == &afw_value_permanent_array_inf) {
+        return value;
+    }
+    if (afw_utf8_starts_with_utf8_z(
+            &value->inf->rti.implementation_id, "managed_")) {
+        return afw_value_get_reference(value, xctx->p, xctx);
+    }
+    {
+        const afw_array_t *from;
+        const afw_array_t *to = NULL;
+
+        from = ((const afw_value_array_t *)value)->internal;
+        afw_data_type_clone_internal(afw_data_type_array,
+            (void *)&to, &from, xctx->p, xctx);
+        return afw_value_array_create_managed(to, xctx);
+    }
 }
 
 /* Convert data type array string to const afw_array_t * *. */

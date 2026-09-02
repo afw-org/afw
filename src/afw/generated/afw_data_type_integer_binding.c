@@ -206,6 +206,8 @@ afw_data_type_integer_direct = {
     (const afw_array_t *)&impl_empty_array_of_integer,
     (const afw_value_t *)&impl_value_empty_array_of_integer,
     &afw_value_unmanaged_integer_inf,
+    afw_value_clone_integer_unmanaged,
+    afw_value_clone_integer_managed,
     afw_compile_type_error,
     true,
     false,
@@ -334,6 +336,45 @@ afw_value_integer_create(afw_integer_t internal,
     v->inf = &afw_value_unmanaged_integer_inf;
     v->internal = internal;
     return &v->pub;
+}
+
+/* Deep clone evaluated integer unmanaged into p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_integer_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_value_common_t *cloned;
+
+    if (value->inf == &afw_value_permanent_integer_inf) {
+        return value;
+    }
+    cloned = afw_value_common_allocate(
+        afw_data_type_integer, p, xctx);
+    afw_data_type_clone_internal(afw_data_type_integer,
+        (void *)&cloned->internal,
+        (const void *)&((const afw_value_integer_t *)value)->internal,
+        p, xctx);
+    return &cloned->pub;
+}
+
+/* Clone evaluated integer managed in xctx->p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_integer_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    if (value->inf == &afw_value_permanent_integer_inf) {
+        return value;
+    }
+    if (afw_utf8_starts_with_utf8_z(
+            &value->inf->rti.implementation_id, "managed_")) {
+        return afw_value_get_reference(value, xctx->p, xctx);
+    }
+    return afw_value_integer_create_managed(
+        ((const afw_value_integer_t *)value)->internal,
+        xctx);
 }
 
 /* Convert data type integer string to afw_integer_t *. */

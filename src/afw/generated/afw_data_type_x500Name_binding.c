@@ -237,6 +237,8 @@ afw_data_type_x500Name_direct = {
     (const afw_array_t *)&impl_empty_array_of_x500Name,
     (const afw_value_t *)&impl_value_empty_array_of_x500Name,
     &afw_value_unmanaged_x500Name_inf,
+    afw_value_clone_x500Name_unmanaged,
+    afw_value_clone_x500Name_managed,
     afw_compile_type_error,
     false,
     false,
@@ -413,6 +415,45 @@ afw_value_x500Name_create(const afw_utf8_t * internal,
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }
     return &v->pub;
+}
+
+/* Deep clone evaluated x500Name unmanaged into p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_x500Name_unmanaged(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_value_common_t *cloned;
+
+    if (value->inf == &afw_value_permanent_x500Name_inf) {
+        return value;
+    }
+    cloned = afw_value_common_allocate(
+        afw_data_type_x500Name, p, xctx);
+    afw_data_type_clone_internal(afw_data_type_x500Name,
+        (void *)&cloned->internal,
+        (const void *)&((const afw_value_x500Name_t *)value)->internal,
+        p, xctx);
+    return &cloned->pub;
+}
+
+/* Clone evaluated x500Name managed in xctx->p. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_clone_x500Name_managed(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    if (value->inf == &afw_value_permanent_x500Name_inf) {
+        return value;
+    }
+    if (afw_utf8_starts_with_utf8_z(
+            &value->inf->rti.implementation_id, "managed_")) {
+        return afw_value_get_reference(value, xctx->p, xctx);
+    }
+    return afw_value_x500Name_create_managed(
+        &((const afw_value_x500Name_t *)value)->internal,
+        xctx);
 }
 
 /* Convert data type x500Name string to afw_utf8_t *. */

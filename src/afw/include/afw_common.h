@@ -648,6 +648,31 @@ typedef enum afw_compile_type_e {
 
 
 /**
+ * @brief Data type instance: clone value unmanaged into dest p.
+ *
+ * Full payload copy (including utf8/memory octets). Permanents as-is.
+ * Do not release the source.
+ */
+typedef const afw_value_t *
+(*afw_data_type_clone_value_unmanaged_t)(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Data type instance: clone value managed in xctx->p.
+ *
+ * Already managed: get_reference. Unmanaged: create_managed.
+ * Permanents as-is. No dest p. Do not release the source.
+ */
+typedef const afw_value_t *
+(*afw_data_type_clone_value_managed_t)(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Struct for memory pointer and size.
  *
  * IMPORTANT:  This must match up with afw_utf8_t since it is accepted to
