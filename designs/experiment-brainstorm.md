@@ -24,6 +24,8 @@ When an **evaluation is done**, the value that *leaves* is an **unmanaged clone 
 
 Dest `p` is often this `xctx->p` or a tracker under it — then the result is unmanaged in a pool this xctx already owns; teardown is bulk-free.
 
+**Before this branch lands:** clone of **unevaluated** values (script_function, closure_binding, other graph nodes). `compiled_value` evaluate currently clones only when `is_evaluated_of_data_type` has `clone_value_unmanaged`; functions/closures pass through. That is a skip, not a story. Revisit before merge.
+
 ## Foreign heap (clone in or out)
 
 Clone when the bytes live in (or must live in) a heap that is **not this xctx’s heap or a child of it** — especially a **multithreaded** pool (`adapter->p`, `env->p`, `server->p`).

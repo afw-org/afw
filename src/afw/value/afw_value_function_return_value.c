@@ -232,8 +232,17 @@ impl_afw_value_get_assignable_value(
 {
     const afw_value_t *inner;
 
-    inner = afw_value_as_assignable(self->return_value, p, xctx);
-    afw_value_release(&self->pub, xctx);
+    inner = self->return_value;
+    if (self->reference_count <= 1) {
+        /* Unique wrapper: transfer occupant hold to caller. Header
+         * stays in self->p until that pool dies (do not free_memory
+         * here: dest_p may not be xctx->p). */
+        self->return_value = NULL;
+        self->reference_count = 0;
+        return inner;
+    }
+    inner = afw_value_as_assignable(inner, p, xctx);
+    self->reference_count--;
     return inner;
 }
 

@@ -710,28 +710,11 @@ afw_xctx_scope_symbol_set_value_by_name(
  * @param value to store (NULL becomes undefined).
  * @param xctx of caller.
  *
- * Same protocol as a named slot (`release` old, `add_reference` new).
+ * Same protocol as a named slot (`get_assignable` new, `release` old).
  */
 AFW_DECLARE(void)
 afw_xctx_script_result_set_value(
     const afw_value_t *value,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Restore a parked caller hidden result after a nested activation.
- * @param saved caller `script_result` pointer.
- * @param saved_active caller `script_result_active`.
- * @param saved_written caller `script_result_written`.
- * @param xctx of caller.
- *
- * Return temps hold the occupant; restore only rewinds the pointer.
- */
-AFW_DECLARE(void)
-afw_xctx_script_result_restore(
-    const afw_value_t *saved,
-    afw_boolean_t saved_active,
-    afw_boolean_t saved_written,
     afw_xctx_t *xctx);
 
 
@@ -741,26 +724,6 @@ afw_xctx_script_result_restore(
     Execution Context (xctx) Evaluation stack.
     
 ---------------------------------------------------------------------------- */
-
-
-/**
- * @brief Set the xctx evaluation result.
- * @param value to set.
- * @param xctx of caller.
- *
- * This is called while evaluating an adaptive script each time a result is
- * produced to set xctx->evaluation_result. Once evaluate of a script is
- * complete, this is the final return value.
- *
- * This function will call the afw_value_release() of the previous
- * xctx->evaluation_result. If you need to keep the previous evaluation_result,
- * call afw_value_clone_or_reference() to get a reference to it before calling this
- * function.
- */
-AFW_DECLARE(void)
-afw_xctx_evaluation_result_set(
-    afw_xctx_t *xctx,
-    const afw_value_t *value);
 
 
 /**

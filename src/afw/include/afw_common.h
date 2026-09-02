@@ -2250,16 +2250,8 @@ struct afw_xctx_s {
     apr_array_header_t *scope_stack;
 
     /**
-     * This is set each time a result is produced while evaluated an adaptive
-     * script. Once evaluate of a script is complete, this is the final
-     * return value.
-     */
-    const afw_value_t *evaluation_result;
-
-    /**
-     * Heap for the current compiled_value evaluate wrap, or NULL.
-     * Nested compiled_value evaluate save/restore this. Scopes make
-     * trackers of this heap.
+     * Heap scopes make trackers of. Created lazily (child of xctx->p).
+     * Not a tracker and not swapped by compiled_value evaluate.
      */
     const afw_pool_t *evaluation_heap;
 
@@ -2340,8 +2332,9 @@ struct afw_xctx_s {
     /**
      * Running Adaptive Script result for the current script or script
      * function. Assignment and return write it; let/const, calls, and
-     * most other statements do not. Nested script activations save and
-     * restore this. Issue #62. Used only when script_result_active.
+     * most other statements do not. Nested activations park the previous
+     * pointer in a local and put it back. Issue #62. Used only when
+     * script_result_active.
      */
     const afw_value_t *script_result;
 
