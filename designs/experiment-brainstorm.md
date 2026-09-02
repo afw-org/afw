@@ -60,4 +60,10 @@ The leak (no optional free until the allocating heap is trusted) is accepted unt
 
 1. Managed scalars working (assign-to-slot, pin-on-scope; last-release must not throw).
 2. Eval-completion / foreign-heap clone-out as the escape from this `xctx->p`.
-3. Managed object/array as frames.
+3. Managed object/array as frames. Unmanaged `get_reference` **throw** (only `get_assignable_value` promotes/holds a value) — scalars can take that tripwire now; object/array when we work them (`get_reference` today pins the bag, which is a different operation).
+
+Stay an experiment until this managed/unmanaged story is one we still believe. Do not merge as “the new #2 rails” on the strength of scalars alone.
+
+## Parked (other conversation / branch) — object/array meta
+
+Meta on objects/arrays is considered screwed up. A later pass may store **type with the property** (tuple closer to name / type / value) and give the object a pointer to an object-type struct. Do not freeze lifetime work on “property is only name+value” or on today’s meta dual-face / `_meta_` layout. Lifetime can still treat a property **value** as unmanaged-pointer vs slot-held; the tuple can grow a type without changing that.
