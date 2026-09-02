@@ -62,10 +62,10 @@ afw_data_type_boolean;
 /**
  * @brief Unmanaged evaluated value inf for data type boolean.
  *
- * Lifetime is the containing pool until clone_or_reference.
- * Scalar clone_or_reference creates a managed holdable in xctx->p.
- * Object/array clone_or_reference holds a memory face.
- * optional_release is NULL on unmanaged scalars.
+ * Lifetime is the containing pool. Scalar get_reference and
+ * optional_release throw. Scalar get_assignable_value creates
+ * a managed holdable in xctx->p. Object/array get_reference
+ * pins the bag; get_assignable_value is object_hold / array_hold.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_boolean_inf;
@@ -73,8 +73,9 @@ afw_value_unmanaged_boolean_inf;
 /**
  * @brief Managed evaluated value inf for data type boolean.
  *
- * Start-at-1 holdable clone in xctx->p (must release).
- * clone_or_reference bumps. Last release frees via xctx->p.
+ * Start-at-1 holdable in xctx->p (caller must release).
+ * get_reference / get_assignable_value bump. Last-release
+ * drops RC; header leak until alloc-pool free is trusted.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_boolean_inf;
@@ -82,9 +83,11 @@ afw_value_managed_boolean_inf;
 /**
  * @brief Permanent (life of afw environment) value inf for data type boolean.
  *
- * Lifetime is the afw environment / static const storage. optional_release
- * is NULL. Scalar clone_or_reference is as-is. Object/array
- * clone_or_reference holds a memory face (same as unmanaged).
+ * Lifetime is the afw environment / static const storage.
+ * optional_release is NULL. Scalar get_reference /
+ * get_assignable_value are as-is. Object/array get_reference
+ * is as-is; get_assignable_value isolates (object_hold /
+ * array_hold) so slots do not share immortal bags.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_boolean_inf;

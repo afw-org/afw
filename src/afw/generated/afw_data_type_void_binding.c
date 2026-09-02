@@ -53,7 +53,7 @@ impl_afw_value_permanent_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* permanent void (special type): optional_release NULL; */
-/* clone_or_reference returns the same instance as-is. */
+/* get_reference / get_assignable_value as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_void"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_void_inf
@@ -111,11 +111,11 @@ impl_data_type_object_void__value = {
     (const afw_object_t *)&impl_data_type_object_void
 };
 
-/* Value for empty array of void. */
+/* Permanent empty array of void. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_void;
 
-/* Value for empty array of void. */
+/* Permanent empty array value of void. */
 const afw_value_array_t
 impl_value_empty_array_of_void;
 

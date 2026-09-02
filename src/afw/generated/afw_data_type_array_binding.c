@@ -94,7 +94,7 @@ impl_afw_value_assignable_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* unmanaged array: optional_release holds the instance. */
-/* clone_or_reference is object_hold / array_hold. */
+/* get_assignable_value is object_hold / array_hold. */
 #define AFW_IMPLEMENTATION_ID "array"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_array_inf
@@ -110,8 +110,8 @@ impl_afw_value_assignable_get_reference(
 #undef impl_afw_value_get_assignable_value
 
 /* Declares and rti/inf defines for interface afw_value */
-/* managed array: optional_release frees header at RC 0; */
-/* clone_or_reference bumps RC and returns the same instance. */
+/* managed array: optional_release drops RC; */
+/* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_array"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_array_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
@@ -128,7 +128,7 @@ impl_afw_value_assignable_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* permanent array: optional_release NULL; */
-/* clone_or_reference holds a memory face. */
+/* get_reference as-is; get_assignable_value isolates. */
 #define AFW_IMPLEMENTATION_ID "permanent_array"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_array_inf
 #define impl_afw_value_optional_release NULL
@@ -202,11 +202,11 @@ impl_data_type_object_array__value = {
     (const afw_object_t *)&impl_data_type_object_array
 };
 
-/* Value for empty array of array. */
+/* Permanent empty array of array. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_array;
 
-/* Value for empty array of array. */
+/* Permanent empty array value of array. */
 const afw_value_array_t
 impl_value_empty_array_of_array;
 
@@ -238,7 +238,7 @@ afw_data_type_array_direct = {
     NULL
 };
 
-/* Value for empty array of array. */
+/* Permanent empty array of array. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_array = {
     {
@@ -250,7 +250,7 @@ impl_empty_array_of_array = {
     0
 };
 
-/* Value for empty array of array. */
+/* Permanent empty array value of array. */
 const afw_value_array_t
 impl_value_empty_array_of_array = {
     {&afw_value_permanent_array_inf},

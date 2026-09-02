@@ -32,6 +32,12 @@ impl_afw_value_managed_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx);
 
+/* Declaration for method optional_release for unmanaged value. */
+AFW_DECLARE_STATIC(void)
+impl_afw_value_unmanaged_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
 
 /* Declaration for method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
@@ -74,15 +80,21 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_boolean_direct, \
     (const void *)&afw_data_type_boolean_direct
 
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_assignable_value(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
 /* Declares and rti/inf defines for interface afw_value */
-/* unmanaged boolean: optional_release NULL; */
-/* clone_or_reference creates a managed holdable in xctx->p. */
+/* unmanaged boolean: get_reference/release throw; */
+/* get_assignable_value creates a managed holdable in xctx->p. */
 #define AFW_IMPLEMENTATION_ID "boolean"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_boolean_inf
-#define impl_afw_value_optional_release NULL
+#define impl_afw_value_optional_release impl_afw_value_unmanaged_optional_release
 #define impl_afw_value_get_reference impl_afw_value_get_reference
-#define impl_afw_value_get_assignable_value impl_afw_value_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_value
 #define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -92,8 +104,8 @@ impl_afw_value_permanent_get_reference(
 #undef impl_afw_value_get_assignable_value
 
 /* Declares and rti/inf defines for interface afw_value */
-/* managed boolean: optional_release frees header at RC 0; */
-/* clone_or_reference bumps RC and returns the same instance. */
+/* managed boolean: optional_release drops RC; */
+/* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_boolean"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_boolean_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
@@ -110,7 +122,7 @@ impl_afw_value_permanent_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* permanent boolean: optional_release NULL; */
-/* clone_or_reference returns the same instance as-is. */
+/* get_reference / get_assignable_value as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_boolean"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_boolean_inf
 #define impl_afw_value_optional_release NULL
@@ -168,11 +180,11 @@ impl_data_type_object_boolean__value = {
     (const afw_object_t *)&impl_data_type_object_boolean
 };
 
-/* Value for empty array of boolean. */
+/* Permanent empty array of boolean. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_boolean;
 
-/* Value for empty array of boolean. */
+/* Permanent empty array value of boolean. */
 const afw_value_array_t
 impl_value_empty_array_of_boolean;
 
@@ -204,7 +216,7 @@ afw_data_type_boolean_direct = {
     NULL
 };
 
-/* Value for empty array of boolean. */
+/* Permanent empty array of boolean. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_boolean = {
     {
@@ -216,7 +228,7 @@ impl_empty_array_of_boolean = {
     0
 };
 
-/* Value for empty array of boolean. */
+/* Permanent empty array value of boolean. */
 const afw_value_array_t
 impl_value_empty_array_of_boolean = {
     {&afw_value_permanent_array_inf},
@@ -411,9 +423,33 @@ impl_afw_value_managed_optional_release(
     self->reference_count--;
 }
 
+/* Implementation of method optional_release for unmanaged value. */
+AFW_DECLARE_STATIC(void)
+impl_afw_value_unmanaged_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    AFW_THROW_ERROR_Z(general,
+        "release of unmanaged scalar", xctx);
+}
+
 /* Implementation of method get_reference for unmanaged value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)p;
+    AFW_THROW_ERROR_Z(general,
+        "get_reference of unmanaged scalar", xctx);
+}
+
+/* Slot fill: promote to managed in xctx->p. */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_assignable_value(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx)

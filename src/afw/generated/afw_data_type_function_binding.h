@@ -62,10 +62,10 @@ afw_data_type_function;
 /**
  * @brief Unmanaged evaluated value inf for data type function.
  *
- * Lifetime is the containing pool until clone_or_reference.
- * Scalar clone_or_reference creates a managed holdable in xctx->p.
- * Object/array clone_or_reference holds a memory face.
- * optional_release is NULL on unmanaged scalars.
+ * Lifetime is the containing pool. Scalar get_reference and
+ * optional_release throw. Scalar get_assignable_value creates
+ * a managed holdable in xctx->p. Object/array get_reference
+ * pins the bag; get_assignable_value is object_hold / array_hold.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_function_inf;
@@ -73,8 +73,9 @@ afw_value_unmanaged_function_inf;
 /**
  * @brief Managed evaluated value inf for data type function.
  *
- * Start-at-1 holdable clone in xctx->p (must release).
- * clone_or_reference bumps. Last release frees via xctx->p.
+ * Start-at-1 holdable in xctx->p (caller must release).
+ * get_reference / get_assignable_value bump. Last-release
+ * drops RC; header leak until alloc-pool free is trusted.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_function_inf;
@@ -82,9 +83,11 @@ afw_value_managed_function_inf;
 /**
  * @brief Permanent (life of afw environment) value inf for data type function.
  *
- * Lifetime is the afw environment / static const storage. optional_release
- * is NULL. Scalar clone_or_reference is as-is. Object/array
- * clone_or_reference holds a memory face (same as unmanaged).
+ * Lifetime is the afw environment / static const storage.
+ * optional_release is NULL. Scalar get_reference /
+ * get_assignable_value are as-is. Object/array get_reference
+ * is as-is; get_assignable_value isolates (object_hold /
+ * array_hold) so slots do not share immortal bags.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_function_inf;
@@ -222,8 +225,10 @@ afw_value_function_allocate(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * Allocates in xctx->p. Starts at reference count 1 (must release).
- * clone_or_reference bumps. Last release frees via xctx->p.
+ * Allocates in xctx->p. Starts at reference count 1
+ * (caller must release). get_reference /
+ * get_assignable_value bump. Last-release drops RC;
+ * header leak until alloc-pool free is trusted.
  * Stores the pointer as-is; does not clone or take a reference on the
  * referent. Caller must ensure the referent outlives this value (or
  * a future object/array path may special-case container RC).
@@ -242,7 +247,8 @@ afw_value_function_create_managed(
  * @return Created const afw_value_t *.
  *
  * Allocates in pool p; lifetime is the pool (no value refcount).
- * clone_or_reference creates a managed holdable in xctx->p.
+ * get_reference / release throw. get_assignable_value
+ * creates a managed holdable in xctx->p.
  * Stores the pointer as-is; does not clone the referent.
  */
 AFW_DECLARE(const afw_value_t *)

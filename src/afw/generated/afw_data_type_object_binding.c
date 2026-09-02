@@ -94,7 +94,7 @@ impl_afw_value_assignable_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* unmanaged object: optional_release holds the instance. */
-/* clone_or_reference is object_hold / array_hold. */
+/* get_assignable_value is object_hold / array_hold. */
 #define AFW_IMPLEMENTATION_ID "object"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_object_inf
@@ -110,8 +110,8 @@ impl_afw_value_assignable_get_reference(
 #undef impl_afw_value_get_assignable_value
 
 /* Declares and rti/inf defines for interface afw_value */
-/* managed object: optional_release frees header at RC 0; */
-/* clone_or_reference bumps RC and returns the same instance. */
+/* managed object: optional_release drops RC; */
+/* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_object"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_object_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
@@ -128,7 +128,7 @@ impl_afw_value_assignable_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* permanent object: optional_release NULL; */
-/* clone_or_reference holds a memory face. */
+/* get_reference as-is; get_assignable_value isolates. */
 #define AFW_IMPLEMENTATION_ID "permanent_object"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_object_inf
 #define impl_afw_value_optional_release NULL
@@ -202,11 +202,11 @@ impl_data_type_object_object__value = {
     (const afw_object_t *)&impl_data_type_object_object
 };
 
-/* Value for empty array of object. */
+/* Permanent empty array of object. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_object;
 
-/* Value for empty array of object. */
+/* Permanent empty array value of object. */
 const afw_value_array_t
 impl_value_empty_array_of_object;
 
@@ -238,7 +238,7 @@ afw_data_type_object_direct = {
     NULL
 };
 
-/* Value for empty array of object. */
+/* Permanent empty array of object. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_object = {
     {
@@ -250,7 +250,7 @@ impl_empty_array_of_object = {
     0
 };
 
-/* Value for empty array of object. */
+/* Permanent empty array value of object. */
 const afw_value_array_t
 impl_value_empty_array_of_object = {
     {&afw_value_permanent_array_inf},
@@ -456,7 +456,7 @@ impl_afw_value_managed_optional_release(
     embedded = (obj && obj->value == instance);
 
     if (obj) {
-        /* Paired with managed clone_or_reference. */
+        /* Paired with managed get_reference. */
         afw_object_release(obj, xctx);
     }
 

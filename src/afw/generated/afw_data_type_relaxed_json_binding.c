@@ -32,6 +32,12 @@ impl_afw_value_managed_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx);
 
+/* Declaration for method optional_release for unmanaged value. */
+AFW_DECLARE_STATIC(void)
+impl_afw_value_unmanaged_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
 
 /* Declaration for method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
@@ -88,15 +94,21 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_relaxed_json_direct, \
     (const void *)&afw_data_type_relaxed_json_direct
 
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_assignable_value(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
 /* Declares and rti/inf defines for interface afw_value */
-/* unmanaged relaxed_json: optional_release NULL; */
-/* clone_or_reference creates a managed holdable in xctx->p. */
+/* unmanaged relaxed_json: get_reference/release throw; */
+/* get_assignable_value creates a managed holdable in xctx->p. */
 #define AFW_IMPLEMENTATION_ID "relaxed_json"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_relaxed_json_inf
-#define impl_afw_value_optional_release NULL
+#define impl_afw_value_optional_release impl_afw_value_unmanaged_optional_release
 #define impl_afw_value_get_reference impl_afw_value_get_reference
-#define impl_afw_value_get_assignable_value impl_afw_value_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_value
 #define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -106,8 +118,8 @@ impl_afw_value_permanent_get_reference(
 #undef impl_afw_value_get_assignable_value
 
 /* Declares and rti/inf defines for interface afw_value */
-/* managed relaxed_json: optional_release frees header at RC 0; */
-/* clone_or_reference bumps RC and returns the same instance. */
+/* managed relaxed_json: optional_release drops RC; */
+/* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_relaxed_json"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_relaxed_json_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
@@ -141,7 +153,7 @@ impl_afw_value_permanent_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* permanent relaxed_json: optional_release NULL; */
-/* clone_or_reference returns the same instance as-is. */
+/* get_reference / get_assignable_value as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_relaxed_json"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_relaxed_json_inf
 #define impl_afw_value_optional_release NULL
@@ -199,11 +211,11 @@ impl_data_type_object_relaxed_json__value = {
     (const afw_object_t *)&impl_data_type_object_relaxed_json
 };
 
-/* Value for empty array of relaxed_json. */
+/* Permanent empty array of relaxed_json. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_relaxed_json;
 
-/* Value for empty array of relaxed_json. */
+/* Permanent empty array value of relaxed_json. */
 const afw_value_array_t
 impl_value_empty_array_of_relaxed_json;
 
@@ -235,7 +247,7 @@ afw_data_type_relaxed_json_direct = {
     &afw_data_type_string_direct
 };
 
-/* Value for empty array of relaxed_json. */
+/* Permanent empty array of relaxed_json. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_relaxed_json = {
     {
@@ -247,7 +259,7 @@ impl_empty_array_of_relaxed_json = {
     0
 };
 
-/* Value for empty array of relaxed_json. */
+/* Permanent empty array value of relaxed_json. */
 const afw_value_array_t
 impl_value_empty_array_of_relaxed_json = {
     {&afw_value_permanent_array_inf},
@@ -499,15 +511,37 @@ impl_afw_value_managed_optional_release(
         return;
     }
     self->reference_count--;
-    if (self->reference_count == 0) {
-        afw_pool_free_memory(xctx->p, self,
-            sizeof(afw_value_relaxed_json_managed_t) + self->internal.len, xctx);
-    }
+    (void)xctx;
+    /* Leak header until alloc-pool free is trusted. */
+}
+
+/* Implementation of method optional_release for unmanaged value. */
+AFW_DECLARE_STATIC(void)
+impl_afw_value_unmanaged_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    AFW_THROW_ERROR_Z(general,
+        "release of unmanaged scalar", xctx);
 }
 
 /* Implementation of method get_reference for unmanaged value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    (void)instance;
+    (void)p;
+    AFW_THROW_ERROR_Z(general,
+        "get_reference of unmanaged scalar", xctx);
+}
+
+/* Slot fill: promote to managed in xctx->p. */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_assignable_value(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -555,8 +589,7 @@ impl_afw_value_managed_slice_optional_release(
         if (self->containing_value) {
             afw_value_release(&self->containing_value->pub, xctx);
         }
-        afw_pool_free_memory(xctx->p, self,
-            sizeof(afw_value_relaxed_json_managed_slice_t), xctx);
+        /* Leak slice header until alloc-pool free is trusted. */
     }
 }
 

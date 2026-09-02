@@ -75,8 +75,8 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_unevaluated_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* unmanaged unevaluated: optional_release NULL; */
-/* clone_or_reference returns the same instance (pool lifetime). */
+/* unmanaged unevaluated: get_reference/release throw; */
+/* get_reference returns the same instance (pool lifetime). */
 #define AFW_IMPLEMENTATION_ID "unevaluated"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_unevaluated_inf
@@ -92,8 +92,8 @@ impl_afw_value_permanent_get_reference(
 #undef impl_afw_value_get_assignable_value
 
 /* Declares and rti/inf defines for interface afw_value */
-/* managed unevaluated: optional_release frees header at RC 0; */
-/* clone_or_reference bumps RC and returns the same instance. */
+/* managed unevaluated: optional_release drops RC; */
+/* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_unevaluated"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_unevaluated_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
@@ -110,7 +110,7 @@ impl_afw_value_permanent_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* permanent unevaluated: optional_release NULL; */
-/* clone_or_reference returns the same instance as-is. */
+/* get_reference / get_assignable_value as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_unevaluated"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_unevaluated_inf
 #define impl_afw_value_optional_release NULL
@@ -168,11 +168,11 @@ impl_data_type_object_unevaluated__value = {
     (const afw_object_t *)&impl_data_type_object_unevaluated
 };
 
-/* Value for empty array of unevaluated. */
+/* Permanent empty array of unevaluated. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_unevaluated;
 
-/* Value for empty array of unevaluated. */
+/* Permanent empty array value of unevaluated. */
 const afw_value_array_t
 impl_value_empty_array_of_unevaluated;
 
@@ -204,7 +204,7 @@ afw_data_type_unevaluated_direct = {
     NULL
 };
 
-/* Value for empty array of unevaluated. */
+/* Permanent empty array of unevaluated. */
 const afw_array_view_of_c_array_self_t
 impl_empty_array_of_unevaluated = {
     {
@@ -216,7 +216,7 @@ impl_empty_array_of_unevaluated = {
     0
 };
 
-/* Value for empty array of unevaluated. */
+/* Permanent empty array value of unevaluated. */
 const afw_value_array_t
 impl_value_empty_array_of_unevaluated = {
     {&afw_value_permanent_array_inf},
@@ -412,10 +412,8 @@ impl_afw_value_managed_optional_release(
         return;
     }
     self->reference_count--;
-    if (self->reference_count == 0) {
-        afw_pool_free_memory(xctx->p, self,
-            sizeof(afw_value_unevaluated_managed_t), xctx);
-    }
+    (void)xctx;
+    /* Leak header until alloc-pool free is trusted. */
 }
 
 /* Implementation of method get_reference for unmanaged value. */

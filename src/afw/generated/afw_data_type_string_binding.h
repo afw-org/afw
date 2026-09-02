@@ -62,10 +62,10 @@ afw_data_type_string;
 /**
  * @brief Unmanaged evaluated value inf for data type string.
  *
- * Lifetime is the containing pool until clone_or_reference.
- * Scalar clone_or_reference creates a managed holdable in xctx->p.
- * Object/array clone_or_reference holds a memory face.
- * optional_release is NULL on unmanaged scalars.
+ * Lifetime is the containing pool. Scalar get_reference and
+ * optional_release throw. Scalar get_assignable_value creates
+ * a managed holdable in xctx->p. Object/array get_reference
+ * pins the bag; get_assignable_value is object_hold / array_hold.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_string_inf;
@@ -73,8 +73,9 @@ afw_value_unmanaged_string_inf;
 /**
  * @brief Managed evaluated value inf for data type string.
  *
- * Start-at-1 holdable clone in xctx->p (must release).
- * clone_or_reference bumps. Last release frees via xctx->p.
+ * Start-at-1 holdable in xctx->p (caller must release).
+ * get_reference / get_assignable_value bump. Last-release
+ * drops RC; header leak until alloc-pool free is trusted.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_string_inf;
@@ -84,8 +85,8 @@ afw_value_managed_string_inf;
  *
  * Slice of a managed value: get_reference containing at create.
  * Header in xctx->p. Slice starts at 1. get_reference bumps
- * the slice. Last release of the slice releases containing
- * and free_memorys the slice header via xctx->p.
+ * the slice. Last release of the slice releases containing;
+ * slice header leak until alloc-pool free is trusted.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_slice_string_inf;
@@ -93,9 +94,11 @@ afw_value_managed_slice_string_inf;
 /**
  * @brief Permanent (life of afw environment) value inf for data type string.
  *
- * Lifetime is the afw environment / static const storage. optional_release
- * is NULL. Scalar clone_or_reference is as-is. Object/array
- * clone_or_reference holds a memory face (same as unmanaged).
+ * Lifetime is the afw environment / static const storage.
+ * optional_release is NULL. Scalar get_reference /
+ * get_assignable_value are as-is. Object/array get_reference
+ * is as-is; get_assignable_value isolates (object_hold /
+ * array_hold) so slots do not share immortal bags.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_string_inf;
@@ -254,8 +257,10 @@ afw_value_string_allocate(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * Allocates in xctx->p. Starts at reference count 1 (must release).
- * clone_or_reference bumps. Last release frees via xctx->p.
+ * Allocates in xctx->p. Starts at reference count 1
+ * (caller must release). get_reference /
+ * get_assignable_value bump. Last-release drops RC;
+ * header leak until alloc-pool free is trusted.
  * Copies bytes into storage following the header (value owns them).
  */
 AFW_DECLARE(const afw_value_t *)
@@ -273,7 +278,7 @@ afw_value_string_create_managed(
  * @return Created const afw_value_t * (managed_slice inf).
  *
  * View of a managed string. get_reference on containing. Slice starts
- * at 1 (must release). Header allocated in xctx->p.
+ * at 1 (caller must release). Header allocated in xctx->p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_string_create_managed_slice(
@@ -292,7 +297,8 @@ afw_value_string_create_managed_slice(
  *
  * Allocates in pool p; lifetime is the pool (no value refcount).
  * Copies the utf8/memory header only, not the octets.
- * clone_or_reference creates a managed holdable in xctx->p.
+ * get_reference / release throw. get_assignable_value
+ * creates a managed holdable in xctx->p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_string_create(const afw_utf8_t * internal,

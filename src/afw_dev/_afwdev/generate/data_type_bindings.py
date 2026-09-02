@@ -19,22 +19,27 @@
 #
 # Lifetime policies (inf chooses policy):
 #
-#   permanent     Built-in or lasts for the life of an AFW environment. Usually
-#                 static const in the .so; env-lifetime values may also use the
-#                 permanent inf. No refcount. Scalar clone_or_reference is
-#                 as-is. Object/array clone_or_reference holds a memory face.
-#   managed       Start-at-1 holdable clone. Header + copied internals in
-#                 xctx->p, reference_count starts at 1 (must release).
-#                 clone_or_reference bumps. Last release frees via
-#                 xctx->p. Unmanaged scalar clone_or_reference calls
-#                 create_managed.
-#   managed_slice View into a containing managed utf8/memory value. Holds the
-#                 containing string (get_reference at create). Header in
-#                 xctx->p. Slice starts at 1; get_reference bumps the
-#                 slice; last release of the slice releases containing
-#                 and free_memorys the slice header via xctx->p.
-#   unmanaged     Start-at-0 temp. No release unless clone_or_reference.
-#                 Object/array clone_or_reference holds a memory face.
+#   permanent     Built-in or life of an AFW environment. Usually static
+#                 const in the .so. No refcount. Scalar get_reference /
+#                 get_assignable_value are as-is. Object/array
+#                 get_reference is as-is; get_assignable_value isolates
+#                 (object_hold / array_hold) so slots do not share
+#                 immortal bags (empty typed arrays, data type objects).
+#   managed       Start-at-1 holdable. Header + copied internals in
+#                 xctx->p, RC 1 (caller must release). get_reference /
+#                 get_assignable_value bump. Last-release currently
+#                 drops RC only (header leak until alloc-pool free is
+#                 trusted).
+#   managed_slice View into a containing managed utf8/memory value. Holds
+#                 containing at create. Header in xctx->p, RC 1.
+#                 get_reference bumps the slice. Last release of the
+#                 slice releases containing; slice header leak until
+#                 alloc-pool free is trusted.
+#   unmanaged     Pool lifetime (caller p / tracker). Scalar
+#                 get_reference and optional_release throw.
+#                 get_assignable_value promotes to managed in xctx->p.
+#                 Object/array get_reference pins the bag;
+#                 get_assignable_value is object_hold / array_hold.
 #
 # Create path depends on cType / directReturn (see designs/memory-management.md phase 0a):
 #   utf8/memory  — managed owns a byte copy after the header; slice available
@@ -189,10 +194,10 @@ def write_h_section(fd, prefix, obj):
         fd.write('\n/**\n')
         fd.write(' * @brief Unmanaged evaluated value inf for data type ' + id + '.\n')
         fd.write(' *\n')
-        fd.write(' * Lifetime is the containing pool until clone_or_reference.\n')
-        fd.write(' * Scalar clone_or_reference creates a managed holdable in xctx->p.\n')
-        fd.write(' * Object/array clone_or_reference holds a memory face.\n')
-        fd.write(' * optional_release is NULL on unmanaged scalars.\n')
+        fd.write(' * Lifetime is the containing pool. Scalar get_reference and\n')
+        fd.write(' * optional_release throw. Scalar get_assignable_value creates\n')
+        fd.write(' * a managed holdable in xctx->p. Object/array get_reference\n')
+        fd.write(' * pins the bag; get_assignable_value is object_hold / array_hold.\n')
         fd.write(' */\n')
         fd.write(declare_data + '(afw_value_inf_t)\n')
         fd.write('afw_value_unmanaged_' + id + '_inf;\n')
@@ -211,8 +216,9 @@ def write_h_section(fd, prefix, obj):
         fd.write('\n/**\n')
         fd.write(' * @brief Managed evaluated value inf for data type ' + id + '.\n')
         fd.write(' *\n')
-        fd.write(' * Start-at-1 holdable clone in xctx->p (must release).\n')
-        fd.write(' * clone_or_reference bumps. Last release frees via xctx->p.\n')
+        fd.write(' * Start-at-1 holdable in xctx->p (caller must release).\n')
+        fd.write(' * get_reference / get_assignable_value bump. Last-release\n')
+        fd.write(' * drops RC; header leak until alloc-pool free is trusted.\n')
         fd.write(' */\n')
         fd.write(declare_data + '(afw_value_inf_t)\n')
         fd.write('afw_value_managed_' + id + '_inf;\n')
@@ -223,8 +229,8 @@ def write_h_section(fd, prefix, obj):
             fd.write(' *\n')
             fd.write(' * Slice of a managed value: get_reference containing at create.\n')
             fd.write(' * Header in xctx->p. Slice starts at 1. get_reference bumps\n')
-            fd.write(' * the slice. Last release of the slice releases containing\n')
-            fd.write(' * and free_memorys the slice header via xctx->p.\n')
+            fd.write(' * the slice. Last release of the slice releases containing;\n')
+            fd.write(' * slice header leak until alloc-pool free is trusted.\n')
             fd.write(' */\n')
             fd.write(declare_data + '(afw_value_inf_t)\n')
             fd.write('afw_value_managed_slice_' + id + '_inf;\n')
@@ -232,9 +238,11 @@ def write_h_section(fd, prefix, obj):
     fd.write('\n/**\n')
     fd.write(' * @brief Permanent (life of afw environment) value inf for data type ' + id + '.\n')
     fd.write(' *\n')
-    fd.write(' * Lifetime is the afw environment / static const storage. optional_release\n')
-    fd.write(' * is NULL. Scalar clone_or_reference is as-is. Object/array\n')
-    fd.write(' * clone_or_reference holds a memory face (same as unmanaged).\n')
+    fd.write(' * Lifetime is the afw environment / static const storage.\n')
+    fd.write(' * optional_release is NULL. Scalar get_reference /\n')
+    fd.write(' * get_assignable_value are as-is. Object/array get_reference\n')
+    fd.write(' * is as-is; get_assignable_value isolates (object_hold /\n')
+    fd.write(' * array_hold) so slots do not share immortal bags.\n')
     fd.write(' */\n')
     fd.write(declare_data + '(afw_value_inf_t)\n')
     fd.write('afw_value_permanent_' + id + '_inf;\n')
@@ -406,11 +414,13 @@ def write_h_section(fd, prefix, obj):
             fd.write(' * Prefer afw_value_for_boolean / afw_boolean_v_* at call sites.\n')
         else:
             if _scalar_holdable_create(id):
-                fd.write(' * Allocates in xctx->p. Starts at reference count 1 (must release).\n')
-                fd.write(' * clone_or_reference bumps. Last release frees via xctx->p.\n')
+                fd.write(' * Allocates in xctx->p. Starts at reference count 1\n')
+                fd.write(' * (caller must release). get_reference /\n')
+                fd.write(' * get_assignable_value bump. Last-release drops RC;\n')
+                fd.write(' * header leak until alloc-pool free is trusted.\n')
             else:
-                fd.write(' * Allocates in p. Starts at reference count 1 (must release).\n')
-                fd.write(' * clone_or_reference bumps. Last release frees via stored p.\n')
+                fd.write(' * Value wrapper around an existing object/array.\n')
+                fd.write(' * Container hold is on the instance, not this RC.\n')
             if ctype in ('afw_utf8_t', 'afw_memory_t'):
                 fd.write(
                     ' * Copies bytes into storage following the header '
@@ -448,7 +458,7 @@ def write_h_section(fd, prefix, obj):
             fd.write(' * @return Created const afw_value_t * (managed_slice inf).\n')
             fd.write(' *\n')
             fd.write(' * View of a managed string. get_reference on containing. Slice starts\n')
-            fd.write(' * at 1 (must release). Header allocated in xctx->p.\n')
+            fd.write(' * at 1 (caller must release). Header allocated in xctx->p.\n')
             fd.write(' */\n')
             fd.write(declare + '(const afw_value_t *)\n')
             fd.write(_managed_slice_fn(id) + '(\n')
@@ -468,7 +478,7 @@ def write_h_section(fd, prefix, obj):
             fd.write(' * @return Created const afw_value_t * (managed_slice inf).\n')
             fd.write(' *\n')
             fd.write(' * View of a managed memory value. get_reference on containing. Slice\n')
-            fd.write(' * starts at 1 (must release). Header allocated in xctx->p.\n')
+            fd.write(' * starts at 1 (caller must release). Header allocated in xctx->p.\n')
             fd.write(' */\n')
             fd.write(declare + '(const afw_value_t *)\n')
             fd.write(_managed_slice_fn(id) + '(\n')
@@ -503,10 +513,12 @@ def write_h_section(fd, prefix, obj):
                     ' * Copies the utf8/memory header only, not the octets.\n')
             if id in ('object', 'array'):
                 fd.write(
-                    ' * clone_or_reference holds a memory face.\n')
+                    ' * get_reference pins the bag; get_assignable_value holds a face.\n')
             else:
                 fd.write(
-                    ' * clone_or_reference creates a managed holdable in xctx->p.\n')
+                    ' * get_reference / release throw. get_assignable_value\n')
+                fd.write(
+                    ' * creates a managed holdable in xctx->p.\n')
             if direct_return and ctype.rstrip().endswith('*'):
                 fd.write(
                     ' * Stores the pointer as-is; does not clone the '
@@ -790,7 +802,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('    const afw_value_t *instance,\n')
         fd.write('    afw_xctx_t *xctx);\n')
         fd.write('\n')
-        if id in ('object', 'array'):
+        if id in ('object', 'array') or obj.get('scalar', False):
             fd.write('/* Declaration for method optional_release for unmanaged '
                      'value. */\n')
             fd.write('AFW_DECLARE_STATIC(void)\n')
@@ -863,12 +875,13 @@ def write_c_section(fd, prefix, obj):
 
     if not special:
 
-        if id in ('object', 'array'):
+        if id in ('object', 'array') or obj.get('scalar', False):
             fd.write('\nAFW_DECLARE_STATIC(const afw_value_t *)\n')
             fd.write('impl_afw_value_get_assignable_value(\n')
             fd.write('    const afw_value_t *instance,\n')
             fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx);\n')
+        if id in ('object', 'array'):
             fd.write('\nAFW_DECLARE_STATIC(const afw_value_t *)\n')
             fd.write('impl_afw_value_assignable_get_reference(\n')
             fd.write('    const afw_value_t *instance,\n')
@@ -879,28 +892,29 @@ def write_c_section(fd, prefix, obj):
         if id in ('object', 'array'):
             fd.write('/* unmanaged ' + id + ': optional_release holds the '
                      'instance. */\n')
-            fd.write('/* clone_or_reference is object_hold / array_hold. */\n')
+            fd.write('/* get_assignable_value is object_hold / array_hold. */\n')
         else:
-            fd.write('/* unmanaged ' + id + ': optional_release NULL; */\n')
+            fd.write('/* unmanaged ' + id + ': get_reference/release throw; */\n')
             if obj.get('scalar', False) == True:
-                fd.write('/* clone_or_reference creates a managed holdable in xctx->p. */\n')
+                fd.write('/* get_assignable_value creates a managed holdable in xctx->p. */\n')
             else:
-                fd.write('/* clone_or_reference returns the same instance '
+                fd.write('/* get_reference returns the same instance '
                          '(pool lifetime). */\n')
         fd.write('#define AFW_IMPLEMENTATION_ID "' + id + '"\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_' + id + '_inf\n')
-        if id in ('object', 'array'):
+        if id in ('object', 'array') or obj.get('scalar', False):
             fd.write('#define impl_afw_value_optional_release '
                      'impl_afw_value_unmanaged_optional_release\n')
         else:
             fd.write('#define impl_afw_value_optional_release NULL\n')
         fd.write('#define impl_afw_value_get_reference impl_afw_value_get_reference\n')
-        if id in ('object', 'array'):
+        if id in ('object', 'array') or obj.get('scalar', False):
             fd.write('#define impl_afw_value_get_assignable_value '
                      'impl_afw_value_get_assignable_value\n')
         else:
-            fd.write('#define impl_afw_value_get_assignable_value impl_afw_value_get_reference\n')
+            fd.write('#define impl_afw_value_get_assignable_value '
+                     'impl_afw_value_get_reference\n')
         fd.write('#define impl_afw_value_create_iterator NULL\n')
 
         fd.write('#include "afw_value_impl_declares.h"\n')
@@ -911,8 +925,8 @@ def write_c_section(fd, prefix, obj):
         fd.write('#undef impl_afw_value_get_assignable_value\n')
 
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
-        fd.write('/* managed ' + id + ': optional_release frees header at RC 0; */\n')
-        fd.write('/* clone_or_reference bumps RC and returns the same instance. */\n')
+        fd.write('/* managed ' + id + ': optional_release drops RC; */\n')
+        fd.write('/* get_reference / get_assignable_value bump. */\n')
         fd.write('#define AFW_IMPLEMENTATION_ID "managed_' + id + '"\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_' + id + '_inf\n')
         fd.write('#define impl_afw_value_optional_release impl_afw_value_managed_optional_release\n')
@@ -951,9 +965,9 @@ def write_c_section(fd, prefix, obj):
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
         fd.write('/* permanent ' + id + ': optional_release NULL; */\n')
         if id in ('object', 'array'):
-            fd.write('/* clone_or_reference holds a memory face. */\n')
+            fd.write('/* get_reference as-is; get_assignable_value isolates. */\n')
         else:
-            fd.write('/* clone_or_reference returns the same instance as-is. */\n')
+            fd.write('/* get_reference / get_assignable_value as-is. */\n')
         fd.write('#define AFW_IMPLEMENTATION_ID "permanent_' + id + '"\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_' + id + '_inf\n')
         fd.write('#define impl_afw_value_optional_release NULL\n')
@@ -996,7 +1010,7 @@ def write_c_section(fd, prefix, obj):
     else:
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
         fd.write('/* permanent ' + id + ' (special type): optional_release NULL; */\n')
-        fd.write('/* clone_or_reference returns the same instance as-is. */\n')
+        fd.write('/* get_reference / get_assignable_value as-is. */\n')
         fd.write('#define AFW_IMPLEMENTATION_ID "permanent_' + id + '"\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_' + id + '_inf\n')
@@ -1055,13 +1069,10 @@ def write_c_section(fd, prefix, obj):
     fd.write('    (const afw_object_t *)&impl_data_type_object_' + id +'\n')
     fd.write('};\n')
 
-    # Declare for empty array of this data type
-    fd.write('\n/* Value for empty array of ' + id + '. */\n')
+    fd.write('\n/* Permanent empty array of ' + id + '. */\n')
     fd.write('const afw_array_view_of_c_array_self_t\n')
     fd.write('impl_empty_array_of_' + id + ';\n')
-    
-    # Declare for empty array value of this data type
-    fd.write('\n/* Value for empty array of ' + id + '. */\n')
+    fd.write('\n/* Permanent empty array value of ' + id + '. */\n')
     fd.write('const afw_value_array_t\n')
     fd.write('impl_value_empty_array_of_' + id + ';\n')
     
@@ -1180,8 +1191,8 @@ def write_c_section(fd, prefix, obj):
 
     if not special:
 
-        # Define for empty array of this data type
-        fd.write('\n/* Value for empty array of ' + id + '. */\n')
+        # Permanent empty typed array (process lifetime).
+        fd.write('\n/* Permanent empty array of ' + id + '. */\n')
         fd.write('const afw_array_view_of_c_array_self_t\n')
         fd.write('impl_empty_array_of_' + id + ' = {\n')
         fd.write('    {\n')
@@ -1193,8 +1204,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('    0\n')
         fd.write('};\n')
         
-        # Define for empty array of this data type
-        fd.write('\n/* Value for empty array of ' + id + '. */\n')
+        fd.write('\n/* Permanent empty array value of ' + id + '. */\n')
         fd.write('const afw_value_array_t\n')
         fd.write('impl_value_empty_array_of_' + id + ' = {\n')
         fd.write('    {&afw_value_permanent_array_inf},\n')
@@ -1699,7 +1709,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('    embedded = (obj && obj->value == instance);\n')
             fd.write('\n')
             fd.write('    if (obj) {\n')
-            fd.write('        /* Paired with managed clone_or_reference. */\n')
+            fd.write('        /* Paired with managed get_reference. */\n')
             fd.write('        afw_object_release(obj, xctx);\n')
             fd.write('    }\n')
             fd.write('\n')
@@ -1744,11 +1754,8 @@ def write_c_section(fd, prefix, obj):
             fd.write('    }\n')
             fd.write('    self->reference_count--;\n')
             if _scalar_holdable_create(id):
-                fd.write('    if (self->reference_count == 0) {\n')
-                fd.write('        afw_pool_free_memory(xctx->p, self,\n')
-                fd.write('            ' + _managed_free_size_expr(id, ctype) +
-                         ', xctx);\n')
-                fd.write('    }\n')
+                fd.write('    (void)xctx;\n')
+                fd.write('    /* Leak header until alloc-pool free is trusted. */\n')
         fd.write('}\n')
 
         if id in ('object', 'array'):
@@ -1775,6 +1782,19 @@ def write_c_section(fd, prefix, obj):
                 fd.write('        afw_array_release(self->internal, xctx);\n')
                 fd.write('    }\n')
             fd.write('}\n')
+        elif obj.get('scalar', False):
+            fd.write('\n')
+            fd.write('/* Implementation of method optional_release for '
+                     'unmanaged value. */\n')
+            fd.write('AFW_DECLARE_STATIC(void)\n')
+            fd.write('impl_afw_value_unmanaged_optional_release(\n')
+            fd.write('    const afw_value_t *instance,\n')
+            fd.write('    afw_xctx_t *xctx)\n')
+            fd.write('{\n')
+            fd.write('    (void)instance;\n')
+            fd.write('    AFW_THROW_ERROR_Z(general,\n')
+            fd.write('        "release of unmanaged scalar", xctx);\n')
+            fd.write('}\n')
         
         fd.write('\n')
         fd.write('/* Implementation of method get_reference for unmanaged value. */\n')
@@ -1784,53 +1804,34 @@ def write_c_section(fd, prefix, obj):
         fd.write('    const afw_pool_t *p,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        # Null sentinels (model useDefaultProcessing) are unmanaged null
-        # with pointer identity; boxing would collapse them to afw_value_null.
-        if obj.get('scalar', False) == True and id != 'null':
-            fd.write('    const afw_value_' + id + '_t *self =\n')
-            fd.write('        (const afw_value_' + id + '_t *)instance;\n')
+        if obj.get('scalar', False) == True:
+            fd.write('    (void)instance;\n')
+            fd.write('    (void)p;\n')
+            fd.write('    AFW_THROW_ERROR_Z(general,\n')
+            fd.write('        "get_reference of unmanaged scalar", xctx);\n')
+        elif id == 'object':
+            fd.write('    const afw_value_object_t *self =\n')
+            fd.write('        (const afw_value_object_t *)instance;\n')
             fd.write('\n')
             fd.write('    (void)p;\n')
-            if id == 'boolean':
-                fd.write('    return afw_value_for_boolean(self->internal);\n')
-            elif ctype == 'afw_utf8_t' or ctype == 'afw_memory_t':
-                fd.write('    return ' + _managed_create_fn(id) + '(\n')
-                fd.write('        &self->internal, xctx);\n')
-            elif direct_return:
-                fd.write('    return ' + _managed_create_fn(id) + '(\n')
-                fd.write('        self->internal, xctx);\n')
-            else:
-                fd.write('    return ' + _managed_create_fn(id) + '(\n')
-                fd.write('        &self->internal, xctx);\n')
+            fd.write('    if (self->internal) {\n')
+            fd.write('        afw_object_get_reference(self->internal, xctx);\n')
+            fd.write('    }\n')
+            fd.write('    return instance;\n')
+        elif id == 'array':
+            fd.write('    const afw_value_array_t *self =\n')
+            fd.write('        (const afw_value_array_t *)instance;\n')
+            fd.write('\n')
+            fd.write('    (void)p;\n')
+            fd.write('    if (self->internal) {\n')
+            fd.write('        afw_array_get_reference(self->internal, xctx);\n')
+            fd.write('    }\n')
+            fd.write('    return instance;\n')
         else:
-            if id == 'null':
-                fd.write('    /* Unmanaged null sentinels keep pointer identity. */\n')
-                fd.write('    (void)p;\n')
-                fd.write('    (void)xctx;\n')
-                fd.write('    return instance;\n')
-            elif id == 'object':
-                fd.write('    const afw_value_object_t *self =\n')
-                fd.write('        (const afw_value_object_t *)instance;\n')
-                fd.write('\n')
-                fd.write('    (void)p;\n')
-                fd.write('    if (self->internal) {\n')
-                fd.write('        afw_object_get_reference(self->internal, xctx);\n')
-                fd.write('    }\n')
-                fd.write('    return instance;\n')
-            elif id == 'array':
-                fd.write('    const afw_value_array_t *self =\n')
-                fd.write('        (const afw_value_array_t *)instance;\n')
-                fd.write('\n')
-                fd.write('    (void)p;\n')
-                fd.write('    if (self->internal) {\n')
-                fd.write('        afw_array_get_reference(self->internal, xctx);\n')
-                fd.write('    }\n')
-                fd.write('    return instance;\n')
-            else:
-                fd.write('    /* Function: instance hold is a later slice. */\n')
-                fd.write('    (void)p;\n')
-                fd.write('    (void)xctx;\n')
-                fd.write('    return instance;\n')
+            fd.write('    /* Function: instance hold is a later slice. */\n')
+            fd.write('    (void)p;\n')
+            fd.write('    (void)xctx;\n')
+            fd.write('    return instance;\n')
         fd.write('}\n')
         fd.write('\n')
 
@@ -1872,6 +1873,37 @@ def write_c_section(fd, prefix, obj):
                 fd.write('        afw_array_get_reference(self->internal, xctx);\n')
                 fd.write('    }\n')
             fd.write('    return instance;\n')
+            fd.write('}\n')
+            fd.write('\n')
+        elif obj.get('scalar', False):
+            fd.write('/* Slot fill: promote to managed in xctx->p. */\n')
+            fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
+            fd.write('impl_afw_value_get_assignable_value(\n')
+            fd.write('    const afw_value_t *instance,\n')
+            fd.write('    const afw_pool_t *p,\n')
+            fd.write('    afw_xctx_t *xctx)\n')
+            fd.write('{\n')
+            if id == 'null':
+                fd.write('    /* Unmanaged null sentinels keep pointer identity. */\n')
+                fd.write('    (void)p;\n')
+                fd.write('    (void)xctx;\n')
+                fd.write('    return instance;\n')
+            else:
+                fd.write('    const afw_value_' + id + '_t *self =\n')
+                fd.write('        (const afw_value_' + id + '_t *)instance;\n')
+                fd.write('\n')
+                fd.write('    (void)p;\n')
+                if id == 'boolean':
+                    fd.write('    return afw_value_for_boolean(self->internal);\n')
+                elif ctype == 'afw_utf8_t' or ctype == 'afw_memory_t':
+                    fd.write('    return ' + _managed_create_fn(id) + '(\n')
+                    fd.write('        &self->internal, xctx);\n')
+                elif direct_return:
+                    fd.write('    return ' + _managed_create_fn(id) + '(\n')
+                    fd.write('        self->internal, xctx);\n')
+                else:
+                    fd.write('    return ' + _managed_create_fn(id) + '(\n')
+                    fd.write('        &self->internal, xctx);\n')
             fd.write('}\n')
             fd.write('\n')
     
@@ -1950,9 +1982,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('        if (self->containing_value) {\n')
             fd.write('            afw_value_release(&self->containing_value->pub, xctx);\n')
             fd.write('        }\n')
-            fd.write('        afw_pool_free_memory(xctx->p, self,\n')
-            fd.write('            sizeof(afw_value_' + id +
-                     '_managed_slice_t), xctx);\n')
+            fd.write('        /* Leak slice header until alloc-pool free is trusted. */\n')
             fd.write('    }\n')
             fd.write('}\n')
             fd.write('\n')
