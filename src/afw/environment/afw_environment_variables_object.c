@@ -129,7 +129,7 @@ afw_environment_create_environment_variables_object(
     self = afw_pool_calloc_type(p, impl_self_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
-    self->value.inf = &afw_value_managed_object_inf;
+    self->value.inf = &afw_value_unmanaged_object_inf;
     self->value.internal = (const afw_object_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     self->pub.meta.id = afw_s_current;
