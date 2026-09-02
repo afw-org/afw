@@ -169,7 +169,7 @@ afw_array_create_with_options(
     afw_memory_internal_array_ring_t *ring;
 
     /* If new_p, own pool is a child of p->managed_p. */
-    if (options == AFW_ARRAY_MEMORY_OPTION_new_p) {
+    if (AFW_ARRAY_MEMORY_OPTION_IS(options, new_p)) {
         p = afw_pool_create(p->managed_p, xctx);
     }
 
@@ -182,7 +182,9 @@ afw_array_create_with_options(
     /* Initialize self. */
     self->pub.inf = &impl_afw_array_inf;
     self->pub.p = p;
-    self->unmanaged = AFW_ARRAY_MEMORY_OPTION_IS(options, unmanaged);
+    self->unmanaged =
+        !AFW_ARRAY_MEMORY_OPTION_IS(options, new_p) &&
+        !AFW_ARRAY_MEMORY_OPTION_IS(options, cede_p);
     /*
      * Dual face: old managed_array inf when the array owns a child
      * pool (new_p); unmanaged when options say unmanaged.

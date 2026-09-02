@@ -31,15 +31,11 @@ AFW_THROW_ERROR_Z(read_only, "List immutable", xctx)
 
 /**
  * Memory array create options. Same bit values as
- * AFW_OBJECT_MEMORY_OPTION_*. Pool-world flags, not memory_managed
- * frames (`afw_array_create_managed`).
- *
- * unmanaged — lives in p (bulk-free).
- * new_p — new child of p->managed_p.
- * cede_p — passed p is the array's pool.
+ * AFW_OBJECT_MEMORY_OPTION_*. Pool-world only. 0 = live in p.
+ * new_p — new child of p->managed_p. cede_p — this p is the array's
+ * pool. new_p | cede_p is invalid.
  */
-#define AFW_ARRAY_MEMORY_OPTION_new_p                0
-#define AFW_ARRAY_MEMORY_OPTION_unmanaged            (1 << 0)
+#define AFW_ARRAY_MEMORY_OPTION_new_p                (1 << 0)
 #define AFW_ARRAY_MEMORY_OPTION_cede_p               (1 << 1)
 #define AFW_ARRAY_MEMORY_OPTION_IS(options_mask, option) \
     ((((options_mask) & (AFW_ARRAY_MEMORY_OPTION_ ## option))) != 0)
@@ -141,7 +137,7 @@ afw_array_create_wrapper_with_options(
  */
 #define afw_array_create_wrapper_unmanaged(wrapped, p, xctx) \
     afw_array_create_wrapper_with_options( \
-        AFW_ARRAY_MEMORY_OPTION_unmanaged, wrapped, p, xctx)
+        0, wrapped, p, xctx)
 
 
 /**
@@ -220,7 +216,7 @@ afw_array_as_value(
  */
 #define afw_array_create_unmanaged_of(data_type, p, xctx) \
     afw_array_create_with_options( \
-        AFW_ARRAY_MEMORY_OPTION_unmanaged, data_type, p, xctx)
+        0, data_type, p, xctx)
 
 
 /**
@@ -240,8 +236,7 @@ afw_array_as_value(
  * Start 0. Lifetime is p. Value get_reference / release throw.
  */
 #define afw_array_create_unmanaged(p, xctx) \
-    afw_array_create_with_options( \
-        AFW_ARRAY_MEMORY_OPTION_unmanaged, NULL, p, xctx)
+    afw_array_create_with_options(0, NULL, p, xctx)
 
 
 

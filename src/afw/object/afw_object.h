@@ -779,24 +779,16 @@ afw_object_memory_associative_array_create(
 
 
 /**
- * Memory object create options. Pool-world flags, not memory_managed
- * frames (`afw_object_create_managed`).
+ * Memory object create options. Pool-world only (not memory_managed
+ * frames). 0 = live in p. Optional flags:
  *
- * unmanaged — lives in p (bulk-free).
  * new_p — new child of p->managed_p; object get_reference / release
  *   still control that pool.
  * cede_p — passed p is the object's pool; same RC-on-pool as new_p.
- */
-#define AFW_OBJECT_MEMORY_OPTION_new_p                0
-
-
-/**
- * @brief Object lives in p (no own pool).
  *
- * Object interface get_reference / release do not own p. Lifetime is
- * the pool. Value get_reference / release throw.
+ * new_p | cede_p is invalid.
  */
-#define AFW_OBJECT_MEMORY_OPTION_unmanaged            (1 << 0)
+#define AFW_OBJECT_MEMORY_OPTION_new_p                (1 << 0)
 
 
 /**
@@ -932,7 +924,7 @@ afw_object_create_wrapper_with_options(
  */
 #define afw_object_create_wrapper_unmanaged(wrapped, p, xctx) \
     afw_object_create_wrapper_with_options( \
-        AFW_OBJECT_MEMORY_OPTION_unmanaged, wrapped, p, xctx)
+        0, wrapped, p, xctx)
 
 
 /**
@@ -1050,8 +1042,7 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  * Start 0. Lifetime is p. Value get_reference / release throw.
  */
 #define afw_object_create_unmanaged(p, xctx) \
-    afw_object_create_with_options( \
-        AFW_OBJECT_MEMORY_OPTION_unmanaged, p, xctx)
+    afw_object_create_with_options(0, p, xctx)
 
 
 /**

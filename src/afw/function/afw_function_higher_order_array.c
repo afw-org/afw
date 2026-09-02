@@ -676,7 +676,7 @@ afw_function_execute_filter(
 {
     impl_filter_data_t data;
 
-    data.filtered_array = afw_array_create_with_options(0, NULL, x->p, x->xctx);
+    data.filtered_array = afw_array_create_unmanaged(x->p, x->xctx);
     impl_over_array(x, impl_filter_cb, (void *)&data);
 
     return afw_value_create_unmanaged_array(data.filtered_array, x->p, x->xctx);

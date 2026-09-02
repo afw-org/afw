@@ -2311,7 +2311,7 @@ afw_function_execute_split(
         limit = limit_value->internal;
     }
 
-    array = afw_array_create_with_options(0, afw_data_type_string,
+    array = afw_array_create_unmanaged_of(afw_data_type_string,
         x->p, x->xctx);
     result = afw_value_create_unmanaged_array(array, x->p, x->xctx);
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));

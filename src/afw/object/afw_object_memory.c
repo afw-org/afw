@@ -75,7 +75,7 @@ afw_object_create_with_options(
     afw_object_internal_memory_object_t *self;
 
     /* If new_p, own pool is a child of p->managed_p. */
-    if (options == AFW_OBJECT_MEMORY_OPTION_new_p)
+    if (AFW_OBJECT_MEMORY_OPTION_IS(options, new_p))
     {
         p = afw_pool_create(p->managed_p, xctx);
     }
@@ -84,7 +84,10 @@ afw_object_create_with_options(
     self = afw_pool_calloc_type(p, afw_object_internal_memory_object_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
-    self->unmanaged = AFW_OBJECT_MEMORY_OPTION_IS(options, unmanaged);
+    /* Live in p unless new_p or cede_p (object still owns that pool). */
+    self->unmanaged =
+        !AFW_OBJECT_MEMORY_OPTION_IS(options, new_p) &&
+        !AFW_OBJECT_MEMORY_OPTION_IS(options, cede_p);
     /*
      * Dual face: value.internal is this instance. Inf matches object
      * lifetime — old managed_object inf when the object owns a child
