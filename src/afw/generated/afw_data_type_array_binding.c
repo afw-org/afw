@@ -92,6 +92,11 @@ impl_afw_value_assignable_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+AFW_DECLARE_STATIC(void)
+impl_afw_value_assignable_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
 /* Declares and rti/inf defines for interface afw_value */
 /* unmanaged array: get_reference/release throw; */
 /* get_assignable_value: managed dual-face, clone_managed,
@@ -145,10 +150,10 @@ impl_afw_value_assignable_get_reference(
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
-/* assignable array: script face; bump instance. */
+/* assignable array: script face; pin the bag. */
 #define AFW_IMPLEMENTATION_ID "assignable_array"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_assignable_array_inf
-#define impl_afw_value_optional_release impl_afw_value_unmanaged_optional_release
+#define impl_afw_value_optional_release impl_afw_value_assignable_optional_release
 #define impl_afw_value_get_reference impl_afw_value_assignable_get_reference
 #define impl_afw_value_get_assignable_value impl_afw_value_assignable_get_reference
 #define AFW_VALUE_INF_ONLY 1
@@ -579,6 +584,20 @@ impl_afw_value_assignable_get_reference(
         afw_array_get_reference(self->internal, xctx);
     }
     return instance;
+}
+
+/* Assignable face: drop the bag pin. */
+AFW_DECLARE_STATIC(void)
+impl_afw_value_assignable_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    const afw_value_array_t *self =
+        (const afw_value_array_t *)instance;
+
+    if (self->internal) {
+        afw_array_release(self->internal, xctx);
+    }
 }
 
 

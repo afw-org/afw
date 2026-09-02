@@ -536,18 +536,28 @@ afw_value_object_hold(
     if (!obj) {
         return value;
     }
-    if (value->inf == &afw_value_assignable_object_inf ||
-        afw_object_is_memory_wrapper(obj))
-    {
+    /* Slot must not store unmanaged_* inf. Prefer managed dual-face
+     * or the bag's assignable dual-face (wrappers already have it). */
+    if (afw_object_is_memory_managed(obj)) {
+        afw_object_get_reference(obj, xctx);
+        return obj->value;
+    }
+    if (value->inf == &afw_value_assignable_object_inf) {
         afw_object_get_reference(obj, xctx);
         return value;
+    }
+    if (obj->value &&
+        obj->value->inf == &afw_value_assignable_object_inf)
+    {
+        afw_object_get_reference(obj, xctx);
+        return obj->value;
     }
     if (!p) {
         p = xctx->p;
     }
     face = afw_object_create_wrapper_unmanaged(obj, p, xctx);
     afw_object_get_reference(face, xctx);
-    return afw_object_as_value(face, p, xctx);
+    return face->value;
 }
 
 
@@ -568,28 +578,42 @@ afw_value_array_hold(
     if (!arr) {
         return value;
     }
-    if (value->inf == &afw_value_assignable_array_inf ||
-        afw_array_is_memory_wrapper(arr))
-    {
+    if (afw_array_is_memory_managed(arr)) {
+        afw_array_get_reference(arr, xctx);
+        return arr->value;
+    }
+    if (value->inf == &afw_value_assignable_array_inf) {
         afw_array_get_reference(arr, xctx);
         return value;
     }
-    /*
-     * Custom immutable views (metas, const arrays): no setter and not a
-     * memory array. Wrapping would materialize a mutable overlay.
-     * Compiled memory arrays still wrap even when frozen on the base.
-     */
-    if (!afw_array_is_memory(arr) &&
-        !afw_array_get_setter(arr, xctx))
+    if (arr->value &&
+        arr->value->inf == &afw_value_assignable_array_inf)
     {
-        return value;
+        afw_array_get_reference(arr, xctx);
+        return arr->value;
     }
     if (!p) {
         p = xctx->p;
     }
+    /*
+     * Custom immutable views (metas, const arrays): no setter and not a
+     * memory array. Wrapping would materialize a mutable overlay.
+     * Pin with assignable inf so a slot can release without throw.
+     */
+    if (!afw_array_is_memory(arr) &&
+        !afw_array_get_setter(arr, xctx))
+    {
+        afw_value_array_t *v;
+
+        v = afw_pool_calloc(p, sizeof(afw_value_array_t), xctx);
+        v->inf = &afw_value_assignable_array_inf;
+        v->internal = arr;
+        afw_array_get_reference(arr, xctx);
+        return &v->pub;
+    }
     face = afw_array_create_wrapper_unmanaged(arr, p, xctx);
     afw_array_get_reference(face, xctx);
-    return afw_array_as_value(face, p, xctx);
+    return face->value;
 }
 
 

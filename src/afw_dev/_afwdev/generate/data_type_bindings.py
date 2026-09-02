@@ -930,6 +930,10 @@ def write_c_section(fd, prefix, obj):
             fd.write('    const afw_value_t *instance,\n')
             fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx);\n')
+            fd.write('\nAFW_DECLARE_STATIC(void)\n')
+            fd.write('impl_afw_value_assignable_optional_release(\n')
+            fd.write('    const afw_value_t *instance,\n')
+            fd.write('    afw_xctx_t *xctx);\n')
 
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
         if id in ('object', 'array'):
@@ -1031,12 +1035,12 @@ def write_c_section(fd, prefix, obj):
 
         if id in ('object', 'array'):
             fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
-            fd.write('/* assignable ' + id + ': script face; bump instance. */\n')
+            fd.write('/* assignable ' + id + ': script face; pin the bag. */\n')
             fd.write('#define AFW_IMPLEMENTATION_ID "assignable_' + id + '"\n')
             fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_assignable_' +
                      id + '_inf\n')
             fd.write('#define impl_afw_value_optional_release '
-                     'impl_afw_value_unmanaged_optional_release\n')
+                     'impl_afw_value_assignable_optional_release\n')
             fd.write('#define impl_afw_value_get_reference '
                      'impl_afw_value_assignable_get_reference\n')
             fd.write('#define impl_afw_value_get_assignable_value '
@@ -2015,6 +2019,28 @@ def write_c_section(fd, prefix, obj):
                 fd.write('        afw_array_get_reference(self->internal, xctx);\n')
                 fd.write('    }\n')
             fd.write('    return instance;\n')
+            fd.write('}\n')
+            fd.write('\n')
+            fd.write('/* Assignable face: drop the bag pin. */\n')
+            fd.write('AFW_DECLARE_STATIC(void)\n')
+            fd.write('impl_afw_value_assignable_optional_release(\n')
+            fd.write('    const afw_value_t *instance,\n')
+            fd.write('    afw_xctx_t *xctx)\n')
+            fd.write('{\n')
+            if id == 'object':
+                fd.write('    const afw_value_object_t *self =\n')
+                fd.write('        (const afw_value_object_t *)instance;\n')
+                fd.write('\n')
+                fd.write('    if (self->internal) {\n')
+                fd.write('        afw_object_release(self->internal, xctx);\n')
+                fd.write('    }\n')
+            else:
+                fd.write('    const afw_value_array_t *self =\n')
+                fd.write('        (const afw_value_array_t *)instance;\n')
+                fd.write('\n')
+                fd.write('    if (self->internal) {\n')
+                fd.write('        afw_array_release(self->internal, xctx);\n')
+                fd.write('    }\n')
             fd.write('}\n')
             fd.write('\n')
         elif obj.get('scalar', False):

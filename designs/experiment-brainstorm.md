@@ -70,7 +70,7 @@ Better names for the create options (not renamed yet): `OPTION_managed` ≈ **ne
 
 **Value `get_reference` / `release`:** only permanent (as-is) and `memory_managed` (bump / last-release). Unmanaged object/array **value** infs throw, like scalars. Isolate with `get_assignable_value`. To drop an own-pool bag, `afw_pool_release` that pool. Object/array **interface** `get_reference` is still a pin for now (adapters, faces).
 
-Tripwire is in: `afwdev test -j` → **166 failed**, almost all `release of unmanaged object/array`. Cause: `object_hold` / wrapper `get_assignable` returns the **unmanaged dual-face**, so slots store an unmanaged value inf and later `optional_release` throws. Next: isolate must leave **assignable or managed** inf in the slot (not unmanaged). Eval clone-out is still later; this is the slot protocol. Better option names (`new_p` / `cede_p`) not renamed yet.
+Isolate must leave **assignable or managed** inf in the slot. Assignable `optional_release` pins/unpins the bag (not the unmanaged throw). `object_hold` / `array_hold` return managed dual-face, existing assignable dual-face, or a new wrapper’s assignable face. `wrap_literal_*` uses hold, not value `get_reference`. `afwdev test -j` green after that. Eval clone-out is still later. Better option names (`new_p` / `cede_p`) not renamed yet.
 
 ## Managed object/array frames
 

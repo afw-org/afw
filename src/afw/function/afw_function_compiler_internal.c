@@ -1656,7 +1656,7 @@ afw_function_execute_wrap_literal_object(
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(1);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
-    return afw_value_add_reference((const afw_value_t *)object, x->p, x->xctx);
+    return afw_value_object_hold((const afw_value_t *)object, x->p, x->xctx);
 }
 
 
@@ -1701,7 +1701,7 @@ afw_function_execute_wrap_literal_array(
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(1);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
 
-    return afw_value_add_reference((const afw_value_t *)array, x->p, x->xctx);
+    return afw_value_array_hold((const afw_value_t *)array, x->p, x->xctx);
 }
 
 
