@@ -28,10 +28,13 @@
 #define IMPL_INCLUDE_MASK_EITHER  3
 
 
-/* Can be returned by on* to do default processing */
+/*
+ * on* default-processing token. Permanent so release is a no-op and
+ * pointer identity stays distinct from afw_value_null.
+ */
 const afw_value_null_t
 impl_useDefaultProcessing = {
-    {&afw_value_unmanaged_null_inf}
+    {&afw_value_permanent_null_inf}
 };
 
 

@@ -1884,10 +1884,9 @@ def write_c_section(fd, prefix, obj):
             fd.write('    afw_xctx_t *xctx)\n')
             fd.write('{\n')
             if id == 'null':
-                fd.write('    /* Unmanaged null sentinels keep pointer identity. */\n')
                 fd.write('    (void)p;\n')
-                fd.write('    (void)xctx;\n')
-                fd.write('    return instance;\n')
+                fd.write('    (void)instance;\n')
+                fd.write('    return afw_value_null;\n')
             else:
                 fd.write('    const afw_value_' + id + '_t *self =\n')
                 fd.write('        (const afw_value_' + id + '_t *)instance;\n')

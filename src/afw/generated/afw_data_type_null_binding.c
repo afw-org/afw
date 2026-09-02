@@ -450,10 +450,9 @@ impl_afw_value_get_assignable_value(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* Unmanaged null sentinels keep pointer identity. */
     (void)p;
-    (void)xctx;
-    return instance;
+    (void)instance;
+    return afw_value_null;
 }
 
 
