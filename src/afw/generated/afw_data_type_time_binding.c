@@ -469,8 +469,10 @@ impl_afw_value_managed_optional_release(
         return;
     }
     self->reference_count--;
-    (void)xctx;
-    /* Leak header until alloc-pool free is trusted. */
+    if (self->reference_count == 0) {
+        afw_pool_free_memory(xctx->p, self,
+            sizeof(afw_value_time_managed_t), xctx);
+    }
 }
 
 /* Implementation of method optional_release for unmanaged value. */

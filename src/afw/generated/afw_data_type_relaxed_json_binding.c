@@ -552,8 +552,10 @@ impl_afw_value_managed_optional_release(
         return;
     }
     self->reference_count--;
-    (void)xctx;
-    /* Leak header until alloc-pool free is trusted. */
+    if (self->reference_count == 0) {
+        afw_pool_free_memory(xctx->p, self,
+            sizeof(afw_value_relaxed_json_managed_t) + self->internal.len, xctx);
+    }
 }
 
 /* Implementation of method optional_release for unmanaged value. */
@@ -630,7 +632,8 @@ impl_afw_value_managed_slice_optional_release(
         if (self->containing_value) {
             afw_value_release(&self->containing_value->pub, xctx);
         }
-        /* Leak slice header until alloc-pool free is trusted. */
+        afw_pool_free_memory(xctx->p, self,
+            sizeof(afw_value_relaxed_json_managed_slice_t), xctx);
     }
 }
 

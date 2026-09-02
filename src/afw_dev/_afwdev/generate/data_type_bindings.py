@@ -1895,8 +1895,11 @@ def write_c_section(fd, prefix, obj):
             fd.write('    }\n')
             fd.write('    self->reference_count--;\n')
             if _scalar_holdable_create(id):
-                fd.write('    (void)xctx;\n')
-                fd.write('    /* Leak header until alloc-pool free is trusted. */\n')
+                fd.write('    if (self->reference_count == 0) {\n')
+                fd.write('        afw_pool_free_memory(xctx->p, self,\n')
+                fd.write('            ' + _managed_free_size_expr(id, ctype) +
+                         ', xctx);\n')
+                fd.write('    }\n')
         fd.write('}\n')
 
         if id in ('object', 'array') or obj.get('scalar', False):
@@ -2149,7 +2152,9 @@ def write_c_section(fd, prefix, obj):
             fd.write('        if (self->containing_value) {\n')
             fd.write('            afw_value_release(&self->containing_value->pub, xctx);\n')
             fd.write('        }\n')
-            fd.write('        /* Leak slice header until alloc-pool free is trusted. */\n')
+            fd.write('        afw_pool_free_memory(xctx->p, self,\n')
+            fd.write('            sizeof(afw_value_' + id +
+                     '_managed_slice_t), xctx);\n')
             fd.write('    }\n')
             fd.write('}\n')
             fd.write('\n')

@@ -443,13 +443,11 @@ impl_afw_value_optional_evaluate(
                 xctx->evaluation_heap ? xctx->evaluation_heap : xctx->p,
                 xctx);
         }
-        if (result &&
-            !afw_value_is_undefined(result) &&
-            !afw_value_is_void(result))
-        {
-            xctx->script_result = result;
-            xctx->script_result_written = true;
-        }
+        /*
+         * Do not poke FRV (or the occupant) into script_result. The
+         * slot already holds the running result via set_value; restore
+         * drops that hold. Caller owns the returned FRV.
+         */
     }
 
     AFW_FINALLY{

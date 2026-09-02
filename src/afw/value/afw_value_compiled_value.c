@@ -45,7 +45,6 @@ impl_afw_value_optional_evaluate(
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
-    const afw_value_t *occupant;
     const afw_value_t *saved_script_result;
     const afw_pool_t *heap;
     const afw_pool_t *saved_evaluation_heap;
@@ -133,17 +132,13 @@ impl_afw_value_optional_evaluate(
             !afw_value_is_void(result) &&
             !afw_value_is_function_return_value(result))
         {
-            occupant = result;
-            result = afw_value_function_return_value_create(
-                occupant, dest_p, xctx);
             /*
-             * FRV holds the occupant. Drop the running-result slot hold
-             * so restore does not need donate.
+             * FRV holds the occupant. Leave the running-result slot
+             * as-is; restore releases it. Do not poke FRV into
+             * script_result or hand-release the occupant.
              */
-            if (xctx->script_result == occupant) {
-                afw_value_release(occupant, xctx);
-                xctx->script_result = result;
-            }
+            result = afw_value_function_return_value_create(
+                result, dest_p, xctx);
         }
         afw_xctx_script_result_restore(
             saved_script_result,
