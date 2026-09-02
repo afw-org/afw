@@ -94,7 +94,8 @@ impl_afw_value_assignable_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* unmanaged object: optional_release holds the instance. */
-/* get_assignable_value is object_hold / array_hold. */
+/* get_assignable_value: managed dual-face, clone_managed,
+ * or object_hold / array_hold. */
 #define AFW_IMPLEMENTATION_ID "object"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_object_inf
@@ -394,12 +395,11 @@ afw_value_clone_object_managed(
     }
     {
         const afw_object_t *from;
-        const afw_object_t *to = NULL;
+        const afw_object_t *to;
 
         from = ((const afw_value_object_t *)value)->internal;
-        afw_data_type_clone_internal(afw_data_type_object,
-            (void *)&to, &from, xctx->p, xctx);
-        return afw_value_object_create_managed(to, xctx);
+        to = afw_object_create_managed_from(from, xctx);
+        return to->value;
     }
 }
 
@@ -554,6 +554,26 @@ impl_afw_value_get_assignable_value(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    const afw_object_t *obj;
+
+    obj = ((const afw_value_object_t *)instance)->internal;
+    /* Typed map boxes the occupant in an unmanaged
+     * value. Return the managed dual-face so set hits
+     * the occupant, not a new overlay. */
+    if (afw_object_is_memory_managed(obj)) {
+        (void)p;
+        afw_object_get_reference(obj, xctx);
+        return obj->value;
+    }
+    /* Generic memory bags only. View/wrapper/meta: overlay. */
+    if (obj && obj->inf &&
+        afw_utf8_equal_utf8_z(&obj->inf->rti.implementation_id,
+            "memory") &&
+        !afw_object_is_memory_wrapper(obj))
+    {
+        (void)p;
+        return afw_value_clone_managed(instance, xctx);
+    }
     return afw_value_object_hold(instance, p, xctx);
 }
 

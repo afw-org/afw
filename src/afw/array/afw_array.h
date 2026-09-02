@@ -62,6 +62,44 @@ afw_array_create_with_options(
     afw_xctx_t *xctx);
 
 
+/**
+ * @brief Create a managed memory array in xctx->p.
+ * @param data_type if array only holds one data type or NULL.
+ * @param xctx of caller.
+ * @return instance (reference count 1).
+ *
+ * Slot protocol: push/set use get_assignable_value; replace/remove
+ * release the occupant. Last array release releases remaining
+ * elements then free_memorys the header. No dest p.
+ */
+AFW_DECLARE(const afw_array_t *)
+afw_array_create_managed(
+    const afw_data_type_t *data_type,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Managed clone of an existing array into xctx->p.
+ * @param from array to copy elements from.
+ * @param xctx of caller.
+ * @return managed array, or from if already this implementation.
+ *
+ * Deep clone: nested objects/arrays become managed clones; scalars
+ * promote via get_assignable_value. Already-managed source is held.
+ */
+AFW_DECLARE(const afw_array_t *)
+afw_array_create_managed_from(
+    const afw_array_t *from,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief True if array is the new managed memory bag (xctx->p, slots).
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_array_is_memory_managed(const afw_array_t *array);
+
+
 
 /**
  * @brief Create a memory array that wraps another array (mutable face).

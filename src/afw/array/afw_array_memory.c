@@ -31,6 +31,83 @@ typedef struct afw_memory_internal_array_s afw_memory_internal_array_t;
 #include "afw_array_impl_declares.h"
 #include "afw_array_setter_impl_declares.h"
 
+static void
+impl_afw_array_managed_release(
+    AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
+static void
+impl_afw_array_managed_get_reference(
+    AFW_ARRAY_SELF_T *self, afw_xctx_t *xctx);
+static void
+impl_afw_array_managed_setter_push_value(
+    const afw_array_setter_t *self,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+static void
+impl_afw_array_managed_setter_set_value(
+    const afw_array_setter_t *self,
+    afw_integer_t index,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+static void
+impl_afw_array_managed_setter_insert_value(
+    const afw_array_setter_t *self,
+    afw_integer_t index,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+static void
+impl_afw_array_managed_setter_remove_all_values(
+    const afw_array_setter_t *self,
+    afw_xctx_t *xctx);
+static void
+impl_afw_array_managed_setter_push_internal(
+    const afw_array_setter_t *self,
+    const afw_data_type_t *data_type,
+    const void *internal,
+    afw_xctx_t *xctx);
+static void
+impl_afw_array_managed_setter_insert_internal(
+    const afw_array_setter_t *self,
+    afw_integer_t index,
+    const afw_data_type_t *data_type,
+    const void *internal,
+    afw_xctx_t *xctx);
+
+#undef AFW_IMPLEMENTATION_ID
+#define AFW_IMPLEMENTATION_ID "memory_managed"
+#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_array_managed_inf
+#define AFW_ARRAY_INF_ONLY
+#define impl_afw_array_release impl_afw_array_managed_release
+#define impl_afw_array_get_reference impl_afw_array_managed_get_reference
+#include "afw_array_impl_declares.h"
+#undef AFW_ARRAY_INF_ONLY
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef impl_afw_array_release
+#undef impl_afw_array_get_reference
+#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_array_managed_setter_inf
+#define AFW_ARRAY_SETTER_INF_ONLY
+#define impl_afw_array_setter_push_value \
+    impl_afw_array_managed_setter_push_value
+#define impl_afw_array_setter_set_value \
+    impl_afw_array_managed_setter_set_value
+#define impl_afw_array_setter_insert_value \
+    impl_afw_array_managed_setter_insert_value
+#define impl_afw_array_setter_remove_all_values \
+    impl_afw_array_managed_setter_remove_all_values
+#define impl_afw_array_setter_push_internal \
+    impl_afw_array_managed_setter_push_internal
+#define impl_afw_array_setter_insert_internal \
+    impl_afw_array_managed_setter_insert_internal
+#include "afw_array_setter_impl_declares.h"
+#undef AFW_ARRAY_SETTER_INF_ONLY
+#undef impl_afw_array_setter_push_value
+#undef impl_afw_array_setter_set_value
+#undef impl_afw_array_setter_insert_value
+#undef impl_afw_array_setter_remove_all_values
+#undef impl_afw_array_setter_push_internal
+#undef impl_afw_array_setter_insert_internal
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef AFW_IMPLEMENTATION_ID
+
 typedef struct afw_memory_internal_array_s
 afw_memory_internal_array_t;
 
@@ -132,6 +209,127 @@ afw_array_create_with_options(
 
 }
 
+
+AFW_DEFINE(const afw_array_t *)
+afw_array_create_managed(
+    const afw_data_type_t *data_type,
+    afw_xctx_t *xctx)
+{
+    afw_memory_internal_array_t *self;
+    afw_memory_internal_array_ring_t *ring;
+    const afw_pool_t *p;
+
+    p = xctx->p;
+    self = afw_pool_calloc_type(p, afw_memory_internal_array_t, xctx);
+    ring = afw_pool_calloc_type(p, afw_memory_internal_array_ring_t, xctx);
+    self->pub.inf = &impl_afw_array_managed_inf;
+    self->pub.p = p;
+    self->value.inf = &afw_value_managed_array_inf;
+    self->value.internal = (const afw_array_t *)self;
+    self->pub.value = (const afw_value_t *)&self->value;
+    self->data_type = data_type;
+    self->generic = data_type == NULL;
+    APR_RING_INIT(ring, afw_memory_internal_array_entry_s, link);
+    self->ring = ring;
+    self->setter.inf = &impl_afw_array_managed_setter_inf;
+    self->setter.array = (const afw_array_t *)self;
+    self->reference_count = 1;
+    return (const afw_array_t *)self;
+}
+
+
+static void
+impl_push_cloned_into_managed(
+    const afw_array_t *to,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *obj;
+    const afw_array_t *arr;
+
+    if (!value) {
+        return;
+    }
+    if (afw_value_is_object(value)) {
+        obj = ((const afw_value_object_t *)value)->internal;
+        if (!obj) {
+            return;
+        }
+        obj = afw_object_create_managed_from(obj, xctx);
+        afw_array_push_value(to, obj->value, xctx);
+        afw_object_release(obj, xctx);
+        return;
+    }
+    if (afw_value_is_array(value)) {
+        arr = ((const afw_value_array_t *)value)->internal;
+        if (!arr) {
+            return;
+        }
+        arr = afw_array_create_managed_from(arr, xctx);
+        afw_array_push_value(to, arr->value, xctx);
+        afw_array_release(arr, xctx);
+        return;
+    }
+    afw_array_push_value(to, value, xctx);
+}
+
+
+AFW_DEFINE(const afw_array_t *)
+afw_array_create_managed_from(
+    const afw_array_t *from,
+    afw_xctx_t *xctx)
+{
+    const afw_array_t *to;
+    const afw_iterator_old_t *iterator;
+    const afw_value_t *value;
+    const afw_data_type_t *data_type;
+
+    if (!from) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_array_create_managed_from requires from",
+            xctx);
+    }
+    if (from->inf == &impl_afw_array_managed_inf) {
+        afw_array_get_reference(from, xctx);
+        return from;
+    }
+    data_type = afw_array_get_data_type(from, xctx);
+    to = afw_array_create_managed(data_type, xctx);
+    if (from->inf == &impl_afw_array_inf &&
+        !afw_array_is_memory_wrapper(from))
+    {
+        const afw_memory_internal_array_t *from_mem;
+        afw_memory_internal_array_entry_t *ep;
+
+        from_mem = (const afw_memory_internal_array_t *)from;
+        if (from_mem->ring) {
+            for (ep = APR_RING_FIRST(from_mem->ring);
+                ep != APR_RING_SENTINEL(from_mem->ring,
+                    afw_memory_internal_array_entry_s, link);
+                ep = APR_RING_NEXT(ep, link))
+            {
+                impl_push_cloned_into_managed(to, ep->value, xctx);
+            }
+        }
+        return to;
+    }
+    iterator = NULL;
+    for (;;) {
+        value = afw_array_get_next_value(from, &iterator, xctx->p, xctx);
+        if (!value) {
+            break;
+        }
+        impl_push_cloned_into_managed(to, value, xctx);
+    }
+    return to;
+}
+
+
+AFW_DEFINE(afw_boolean_t)
+afw_array_is_memory_managed(const afw_array_t *array)
+{
+    return array && array->inf == &impl_afw_array_managed_inf;
+}
 
 
 /* Create memory array face that wraps another array (issue #17). */
@@ -1165,6 +1363,201 @@ impl_afw_array_setter_remove_all_values(
     if (array_self->generic) {
         array_self->data_type = NULL;
     }
+}
+
+
+void
+impl_afw_array_managed_release(
+    AFW_ARRAY_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    afw_memory_internal_array_entry_t *ep;
+
+    if (self->reference_count <= 0) {
+        return;
+    }
+    self->reference_count--;
+    if (self->reference_count != 0) {
+        return;
+    }
+    if (self->ring) {
+        for (ep = APR_RING_FIRST(self->ring);
+            ep != APR_RING_SENTINEL(self->ring,
+                afw_memory_internal_array_entry_s, link);
+            ep = APR_RING_NEXT(ep, link))
+        {
+            if (ep->value) {
+                afw_value_release(ep->value, xctx);
+                ep->value = NULL;
+            }
+        }
+    }
+    afw_pool_free_memory(xctx->p, self,
+        sizeof(afw_memory_internal_array_t), xctx);
+}
+
+
+void
+impl_afw_array_managed_get_reference(
+    AFW_ARRAY_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    self->reference_count++;
+}
+
+
+void
+impl_afw_array_managed_setter_push_value(
+    const afw_array_setter_t *self,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
+    afw_memory_internal_array_entry_t *ep;
+    afw_boolean_t was_empty;
+
+    was_empty = (array_self->count == 0);
+    impl_note_value_data_type(array_self, value, was_empty, xctx);
+    ep = afw_pool_calloc_type(xctx->p,
+        afw_memory_internal_array_entry_t, xctx);
+    afw_value_slot_store(&ep->value, value, xctx->p, xctx);
+    APR_RING_INSERT_TAIL(array_self->ring, ep,
+        afw_memory_internal_array_entry_s, link);
+    array_self->count++;
+}
+
+
+void
+impl_afw_array_managed_setter_insert_value(
+    const afw_array_setter_t *self,
+    afw_integer_t index,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
+    afw_memory_internal_array_entry_t *lep;
+    afw_memory_internal_array_entry_t *nep;
+    afw_size_t count;
+    afw_size_t at;
+    afw_boolean_t was_empty;
+
+    was_empty = (array_self->count == 0);
+    impl_note_value_data_type(array_self, value, was_empty, xctx);
+    count = array_self->count;
+    at = impl_resolve_insert_index(index, count, xctx);
+    nep = afw_pool_calloc_type(xctx->p,
+        afw_memory_internal_array_entry_t, xctx);
+    afw_value_slot_store(&nep->value, value, xctx->p, xctx);
+    if (at == 0) {
+        APR_RING_INSERT_HEAD(array_self->ring, nep,
+            afw_memory_internal_array_entry_s, link);
+        array_self->count++;
+        return;
+    }
+    if (at >= count) {
+        APR_RING_INSERT_TAIL(array_self->ring, nep,
+            afw_memory_internal_array_entry_s, link);
+        array_self->count++;
+        return;
+    }
+    lep = impl_entry_at(array_self, at);
+    if (lep) {
+        APR_RING_INSERT_BEFORE(lep, nep, link);
+        array_self->count++;
+        return;
+    }
+    APR_RING_INSERT_TAIL(array_self->ring, nep,
+        afw_memory_internal_array_entry_s, link);
+    array_self->count++;
+}
+
+
+void
+impl_afw_array_managed_setter_set_value(
+    const afw_array_setter_t *self,
+    afw_integer_t index,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
+    afw_memory_internal_array_entry_t *lep;
+    afw_size_t at;
+
+    if (index >= 0 && (afw_size_t)index == array_self->count) {
+        impl_afw_array_managed_setter_insert_value(self, index,
+            value, xctx);
+        return;
+    }
+    at = impl_resolve_element_index(index, array_self->count, xctx);
+    impl_note_value_data_type(array_self, value, false, xctx);
+    lep = impl_entry_at(array_self, at);
+    if (!lep) {
+        AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
+    }
+    afw_value_slot_store(&lep->value, value, xctx->p, xctx);
+}
+
+
+void
+impl_afw_array_managed_setter_remove_all_values(
+    const afw_array_setter_t *self,
+    afw_xctx_t *xctx)
+{
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
+    afw_memory_internal_array_entry_t *ep;
+
+    if (array_self->ring) {
+        for (ep = APR_RING_FIRST(array_self->ring);
+            ep != APR_RING_SENTINEL(array_self->ring,
+                afw_memory_internal_array_entry_s, link);
+            ep = APR_RING_NEXT(ep, link))
+        {
+            if (ep->value) {
+                afw_value_release(ep->value, xctx);
+                ep->value = NULL;
+            }
+        }
+        APR_RING_INIT(array_self->ring, afw_memory_internal_array_entry_s,
+            link);
+    }
+    array_self->count = 0;
+    if (array_self->generic) {
+        array_self->data_type = NULL;
+    }
+}
+
+
+void
+impl_afw_array_managed_setter_push_internal(
+    const afw_array_setter_t *self,
+    const afw_data_type_t *data_type,
+    const void *internal,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *value;
+
+    value = afw_value_common_create(internal, data_type, xctx->p, xctx);
+    impl_afw_array_managed_setter_push_value(self, value, xctx);
+}
+
+
+void
+impl_afw_array_managed_setter_insert_internal(
+    const afw_array_setter_t *self,
+    afw_integer_t index,
+    const afw_data_type_t *data_type,
+    const void *internal,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *value;
+
+    value = afw_value_common_create(internal, data_type, xctx->p, xctx);
+    impl_afw_array_managed_setter_insert_value(self, index, value, xctx);
 }
 
 

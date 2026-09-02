@@ -112,6 +112,11 @@ afw_object_meta_clone_and_set(
     const afw_pool_t *p;
 
     IMPL_ASSERT_META_MUTABLE(instance, xctx);
+    if (afw_object_is_memory_managed(instance)) {
+        AFW_THROW_ERROR_Z(general,
+            "meta_clone_and_set is for unmanaged objects",
+            xctx);
+    }
     p = instance->p;
 
     /* get_path() reads object_uri, not only the meta_object bag. */

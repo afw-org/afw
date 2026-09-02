@@ -829,6 +829,61 @@ afw_object_create_with_options(
 
 
 /**
+ * @brief Create a managed memory object in xctx->p.
+ * @param xctx of caller.
+ * @return instance (reference count 1).
+ *
+ * Slot protocol: a new property name is get_assignable_value once
+ * (the name does not change later). The value is slot_store on set
+ * and replace. Last object release releases remaining names and
+ * values then free_memorys the header. No dest p. Unmanaged creates
+ * are unchanged.
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_object_create_managed(
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Managed clone of an existing object into xctx->p.
+ * @param from object to copy properties from.
+ * @param xctx of caller.
+ * @return managed object (reference count 1), or from if already
+ *     this managed implementation (get_reference).
+ *
+ * Deep clone into a managed memory bag. Nested objects become
+ * managed embedded (embedding_object + id so path composes). Nested
+ * arrays are afw_array_create_managed_from. A new property name is
+ * get_assignable_value (names do not change on replace). Sideband
+ * object_uri, id, and object_type_uri are utf8-cloned into xctx->p.
+ * Meta delta (parentPaths, reconcilable, …) copies onto a fresh
+ * delta — not afw_object_meta_clone_and_set. Already-managed source
+ * is held.
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_object_create_managed_from(
+    const afw_object_t *from,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create a managed embedded object in a managed parent.
+ * @param embedding_object managed parent.
+ * @param property_name of the embedded object.
+ * @param xctx of caller.
+ * @return nested managed object (slot on parent holds it).
+ *
+ * Sets embedding_object and id so view pathEmbedded / parentPaths
+ * compose. Does not copy properties.
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_object_create_managed_embedded(
+    const afw_object_t *embedding_object,
+    const afw_value_t *property_name,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Create a memory object that wraps another object (look-through).
  * @param options as defined by AFW_OBJECT_MEMORY_OPTION_* defines.
  * @param wrapped base object for property look-through. Required (non-NULL).
@@ -918,6 +973,14 @@ afw_object_create_script_wrapper(
  */
 AFW_DECLARE(afw_boolean_t)
 afw_object_is_memory_wrapper(const afw_object_t *object);
+
+
+/**
+ * @brief True if object is the new managed memory bag (xctx->p, slots).
+ * @param object to test (may be NULL).
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_object_is_memory_managed(const afw_object_t *object);
 
 
 /**

@@ -65,7 +65,8 @@ afw_data_type_dnsName;
  * Lifetime is the containing pool. Scalar get_reference and
  * optional_release throw. Scalar get_assignable_value creates
  * a managed holdable in xctx->p. Object/array get_reference
- * pins the bag; get_assignable_value is object_hold / array_hold.
+ * pins the bag. get_assignable_value: managed occupant
+ * dual-face, generic memory bag clone_managed, else hold.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_dnsName_inf;

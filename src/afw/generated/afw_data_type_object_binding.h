@@ -65,7 +65,8 @@ afw_data_type_object;
  * Lifetime is the containing pool. Scalar get_reference and
  * optional_release throw. Scalar get_assignable_value creates
  * a managed holdable in xctx->p. Object/array get_reference
- * pins the bag; get_assignable_value is object_hold / array_hold.
+ * pins the bag. get_assignable_value: managed occupant
+ * dual-face, generic memory bag clone_managed, else hold.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_object_inf;
@@ -73,8 +74,9 @@ afw_value_unmanaged_object_inf;
 /**
  * @brief Assignable (script face) value inf for data type object.
  *
- * Minted by get_assignable_value of a memory bag. get_reference
- * and get_assignable_value bump the instance.
+ * Face overlay (view/wrapper hold). get_reference and
+ * get_assignable_value bump the instance. Generic memory
+ * bags clone_managed instead of this inf.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_assignable_object_inf;

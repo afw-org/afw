@@ -94,7 +94,8 @@ impl_afw_value_assignable_get_reference(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* unmanaged array: optional_release holds the instance. */
-/* get_assignable_value is object_hold / array_hold. */
+/* get_assignable_value: managed dual-face, clone_managed,
+ * or object_hold / array_hold. */
 #define AFW_IMPLEMENTATION_ID "array"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_array_inf
@@ -393,12 +394,11 @@ afw_value_clone_array_managed(
     }
     {
         const afw_array_t *from;
-        const afw_array_t *to = NULL;
+        const afw_array_t *to;
 
         from = ((const afw_value_array_t *)value)->internal;
-        afw_data_type_clone_internal(afw_data_type_array,
-            (void *)&to, &from, xctx->p, xctx);
-        return afw_value_array_create_managed(to, xctx);
+        to = afw_array_create_managed_from(from, xctx);
+        return to->value;
     }
 }
 
@@ -550,6 +550,24 @@ impl_afw_value_get_assignable_value(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    const afw_array_t *a;
+
+    a = ((const afw_value_array_t *)instance)->internal;
+    /* Same as object: typed map may box a managed
+     * occupant in an unmanaged value. */
+    if (afw_array_is_memory_managed(a)) {
+        (void)p;
+        afw_array_get_reference(a, xctx);
+        return a->value;
+    }
+    if (a && a->inf &&
+        afw_utf8_equal_utf8_z(&a->inf->rti.implementation_id,
+            "memory") &&
+        !afw_array_is_memory_wrapper(a))
+    {
+        (void)p;
+        return afw_value_clone_managed(instance, xctx);
+    }
     return afw_value_array_hold(instance, p, xctx);
 }
 
