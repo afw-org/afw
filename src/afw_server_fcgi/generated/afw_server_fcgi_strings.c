@@ -168,3 +168,27 @@ afw_server_fcgi_self_v_zz__Adaptive_Framework_afw_server_fcgi_collection_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_zz__Adaptive_Framework_afw_server_fcgi_collection_)
 };
+
+static const afw_value_string_t * impl_string_literals[] = {
+    &afw_server_fcgi_self_v__AdaptiveCollection_,
+    &afw_server_fcgi_self_v__AdaptiveServer_,
+    &afw_server_fcgi_self_v_afw_server_fcgi,
+    &afw_server_fcgi_self_v_concurrent,
+    &afw_server_fcgi_self_v_default,
+    &afw_server_fcgi_self_v_description,
+    &afw_server_fcgi_self_v_indirect,
+    &afw_server_fcgi_self_v_integer,
+    &afw_server_fcgi_self_v_max_concurrent,
+    &afw_server_fcgi_self_v_objectId,
+    &afw_server_fcgi_self_v_request_count,
+    &afw_server_fcgi_self_v_single,
+    &afw_server_fcgi_self_v_thread_count,
+    &afw_server_fcgi_self_v_uint32,
+    NULL
+};
+
+const afw_value_string_t * const *
+afw_server_fcgi_string_literals_get(void)
+{
+    return impl_string_literals;
+}

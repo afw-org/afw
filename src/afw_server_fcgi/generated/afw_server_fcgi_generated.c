@@ -46,6 +46,10 @@ static const afw_utf8_t impl_version_info_path =
 void afw_server_fcgi_generated_register(afw_xctx_t *xctx)
 {
 
+    /* Register interned catalog strings. */
+    afw_environment_register_string_literals(
+        afw_server_fcgi_string_literals_get(), xctx);
+
     /* Register const runtime objects. */
     afw_server_fcgi_const_objects_register(xctx);
 

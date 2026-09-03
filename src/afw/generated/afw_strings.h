@@ -8401,6 +8401,32 @@ afw_self_v__AdaptiveSingleton_;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q__AdaptiveStringLiteral_ \
+    "_AdaptiveStringLiteral_"
+
+/** @brief 'afw_utf8_t' for AFW_Q__AdaptiveStringLiteral_ */
+#define afw_s__AdaptiveStringLiteral_ \
+    (&afw_self_v__AdaptiveStringLiteral_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q__AdaptiveStringLiteral_ */
+#define afw_self_s__AdaptiveStringLiteral_ \
+    (afw_self_v__AdaptiveStringLiteral_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q__AdaptiveStringLiteral_ */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v__AdaptiveStringLiteral_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q__AdaptiveStringLiteral_ */
+#define afw_z__AdaptiveStringLiteral_ \
+    (afw_self_v__AdaptiveStringLiteral_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q__AdaptiveStringLiteral_ */
+#define afw_v__AdaptiveStringLiteral_ \
+    (&afw_self_v__AdaptiveStringLiteral_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q__AdaptiveSystemInfo_ \
     "_AdaptiveSystemInfo_"
 
@@ -90223,6 +90249,58 @@ afw_self_v_string;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_stringLiteral \
+    "stringLiteral"
+
+/** @brief 'afw_utf8_t' for AFW_Q_stringLiteral */
+#define afw_s_stringLiteral \
+    (&afw_self_v_stringLiteral.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_stringLiteral */
+#define afw_self_s_stringLiteral \
+    (afw_self_v_stringLiteral.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_stringLiteral */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_stringLiteral;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_stringLiteral */
+#define afw_z_stringLiteral \
+    (afw_self_v_stringLiteral.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_stringLiteral */
+#define afw_v_stringLiteral \
+    (&afw_self_v_stringLiteral.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_string_literal \
+    "string_literal"
+
+/** @brief 'afw_utf8_t' for AFW_Q_string_literal */
+#define afw_s_string_literal \
+    (&afw_self_v_string_literal.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_string_literal */
+#define afw_self_s_string_literal \
+    (afw_self_v_string_literal.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_string_literal */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_string_literal;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_string_literal */
+#define afw_z_string_literal \
+    (afw_self_v_string_literal.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_string_literal */
+#define afw_v_string_literal \
+    (&afw_self_v_string_literal.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_stringify \
     "stringify"
 
@@ -99086,6 +99164,14 @@ afw_anyURI_self_v_example;
 #define afw_anyURI_v_example \
     (&afw_anyURI_self_v_example.pub)
 
+
+/**
+ * @brief NULL-terminated catalog of interned string values.
+ *
+ * For `afw_environment_register_string_literals()`.
+ */
+AFW_DECLARE(const afw_value_string_t * const *)
+afw_string_literals_get(void);
 
 
 #endif /* __AFW_STRINGS_H__ */

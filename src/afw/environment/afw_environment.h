@@ -238,6 +238,13 @@ AFW_BEGIN_DECLARES
         "_AdaptiveServiceType_",                                                \
         "The afw_service_type_t for a service_type_id.")                        \
                                                                                 \
+    XX(string_literal,                                                          \
+        impl_internal_additional_register_key_only,                             \
+        false,                                                                  \
+        "stringLiteral",                                                        \
+        "_AdaptiveStringLiteral_",                                              \
+        "The const afw_value_string_t for interned catalog string content.")    \
+                                                                                \
     XX(value_inf,                                                               \
         impl_internal_additional_register_key_only,                             \
         false,                                                                  \
@@ -1354,6 +1361,61 @@ AFW_DECLARE(void)
 afw_environment_register_functions(
     const afw_value_function_definition_t **functions,
     afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Register an interned catalog string value.
+ * @param string utf8 content (usually `&value->internal`).
+ * @param value catalog `afw_value_string_t` (permanent).
+ * @param xctx of caller.
+ */
+AFW_DEFINE_STATIC_INLINE(void)
+afw_environment_register_string_literal(
+    const afw_utf8_t *string,
+    const afw_value_string_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_string_literal,
+        string,
+        value,
+        xctx);
+}
+
+
+
+/**
+ * @brief Register a NULL terminated list of interned catalog strings.
+ * @param literals NULL terminated list of `const afw_value_string_t *`.
+ * @param xctx of caller.
+ *
+ * Skips empty strings and keys already registered (core, extensions, and
+ * commands can share spellings).
+ */
+AFW_DECLARE(void)
+afw_environment_register_string_literals(
+    const afw_value_string_t * const *literals,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Get the interned catalog string value for utf8 content.
+ * @param string content to look up.
+ * @param xctx of caller.
+ * @return Catalog `afw_value_string_t` or NULL if not found.
+ */
+AFW_DEFINE_STATIC_INLINE(const afw_value_string_t *)
+afw_environment_get_string_literal(
+    const afw_utf8_t *string,
+    afw_xctx_t *xctx)
+{
+    return (const afw_value_string_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_string_literal,
+        string,
+        xctx);
+}
 
 
 /**

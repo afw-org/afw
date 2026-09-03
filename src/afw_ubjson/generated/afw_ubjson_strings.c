@@ -36,3 +36,15 @@ afw_ubjson_self_v_indirect = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_UBJSON_Q_indirect)
 };
+
+static const afw_value_string_t * impl_string_literals[] = {
+    &afw_ubjson_self_v_default,
+    &afw_ubjson_self_v_indirect,
+    NULL
+};
+
+const afw_value_string_t * const *
+afw_ubjson_string_literals_get(void)
+{
+    return impl_string_literals;
+}

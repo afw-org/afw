@@ -651,5 +651,13 @@ extern const afw_value_string_t \
     (&afw_server_fcgi_self_v_zz__Adaptive_Framework_afw_server_fcgi_collection_.pub)
 
 
+/**
+ * @brief NULL-terminated catalog of interned string values.
+ *
+ * For `afw_environment_register_string_literals()`.
+ */
+extern const afw_value_string_t * const *
+afw_server_fcgi_string_literals_get(void);
+
 
 #endif /* __AFW_SERVER_FCGI_STRINGS_H__ */

@@ -37937,6 +37937,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__A_registry_type_string_literal_entry_ \
+    "A registry type string_literal entry."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__A_registry_type_string_literal_entry_ */
+#define afw_s_zz__A_registry_type_string_literal_entry_ \
+    (&afw_self_v_zz__A_registry_type_string_literal_entry_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__A_registry_type_string_literal_entry_ */
+#define afw_self_s_zz__A_registry_type_string_literal_entry_ \
+    (afw_self_v_zz__A_registry_type_string_literal_entry_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__A_registry_type_string_literal_entry_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__A_registry_type_string_literal_entry_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__A_registry_type_string_literal_entry_ */
+#define afw_z_zz__A_registry_type_string_literal_entry_ \
+    (afw_self_v_zz__A_registry_type_string_literal_entry_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__A_registry_type_string_literal_entry_ */
+#define afw_v_zz__A_registry_type_string_literal_entry_ \
+    (&afw_self_v_zz__A_registry_type_string_literal_entry_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__A_registry_type_value_inf_entry_ \
     "A registry type value_inf entry."
 

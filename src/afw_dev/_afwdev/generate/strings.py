@@ -176,6 +176,17 @@ def _is_generated_label(name):
     return name.startswith('zz__')
 
 
+def _is_parse_word_string(name, value):
+    """True if this catalog string is an identifier-like spelling parse may hit.
+
+    `strings.txt` `label=value` (and other aliases) have name != value.
+    zz__ invent-for-C names also differ from their text. Keep single words.
+    """
+    if name != value:
+        return False
+    return re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*', value) is not None
+
+
 def _write_string_decl(fd, prefix, dataType, name, value, decorate):
     """Write one string/const value declaration (macros + extern/self_v)."""
     use_prefix = prefix
@@ -235,7 +246,7 @@ def _write_string_decl(fd, prefix, dataType, name, value, decorate):
 
 def _write_strings_header(
         options, generated_by, prefix, generated_dir_path, filename,
-        title, brief, names_filter, decorate):
+        title, brief, names_filter, decorate, emit_get=False):
     """Write one strings header; names_filter(name) selects labels to emit."""
     afw_package = package.get_afw_package(options)
     copyright = afw_package.get('copyright')
@@ -254,6 +265,18 @@ def _write_strings_header(
                 _write_string_decl(
                     fd, prefix, dataType, name, value, decorate=decorate)
 
+        if emit_get:
+            fd.write('\n/**\n')
+            fd.write(' * @brief NULL-terminated catalog of interned string values.\n')
+            fd.write(' *\n')
+            fd.write(' * For `afw_environment_register_string_literals()`.\n')
+            fd.write(' */\n')
+            if decorate:
+                fd.write('AFW_DECLARE(const afw_value_string_t * const *)\n')
+            else:
+                fd.write('extern const afw_value_string_t * const *\n')
+            fd.write(prefix + 'string_literals_get(void);\n')
+
         c.write_h_epilogue(fd, filename)
 
 
@@ -271,7 +294,8 @@ def generate_h(options, generated_by, prefix, generated_dir_path):
             'Public generated string constants for prefix `' + prefix +
             '`. Stable labels only (not zz__* invent-for-C names).',
             lambda name: not _is_generated_label(name),
-            decorate=True)
+            decorate=True,
+            emit_get=True)
         _write_strings_header(
             options, generated_by, prefix, generated_dir_path,
             prefix + 'strings_internal.h',
@@ -287,7 +311,8 @@ def generate_h(options, generated_by, prefix, generated_dir_path):
             'Adaptive Framework (' + prefix + ') Strings Header',
             'Generated string constants header for prefix `' + prefix + '`.',
             lambda name: True,
-            decorate=False)
+            decorate=False,
+            emit_get=True)
 
 
 def generate_c(options, generated_by, prefix, generated_dir_path):
@@ -354,6 +379,28 @@ def generate_c(options, generated_by, prefix, generated_dir_path):
                         'Unsupported supported_dataTypes[\'' +
                         dataType +
                         '\']: ' + supported_dataTypes[dataType])
+
+        fd.write('\n')
+        fd.write('static const afw_value_string_t * impl_string_literals[] = {\n')
+        seen_values = set()
+        for name, value in sorted(options['const'].get('string', {}).items()):
+            if not _is_parse_word_string(name, value):
+                continue
+            if value in seen_values:
+                continue
+            seen_values.add(value)
+            fd.write('    &' + prefix + 'self_v_' + name + ',\n')
+        fd.write('    NULL\n')
+        fd.write('};\n')
+        fd.write('\n')
+        if core:
+            fd.write('AFW_DEFINE(const afw_value_string_t * const *)\n')
+        else:
+            fd.write('const afw_value_string_t * const *\n')
+        fd.write(prefix + 'string_literals_get(void)\n')
+        fd.write('{\n')
+        fd.write('    return impl_string_literals;\n')
+        fd.write('}\n')
 
 
 def add_object_strings(options, obj):

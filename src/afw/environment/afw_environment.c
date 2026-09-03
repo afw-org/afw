@@ -1703,6 +1703,27 @@ afw_environment_register_functions(
 }
 
 
+/* Register a NULL terminated list of interned catalog strings. */
+AFW_DEFINE(void)
+afw_environment_register_string_literals(
+    const afw_value_string_t * const *literals,
+    afw_xctx_t *xctx)
+{
+    const afw_value_string_t * const *e;
+
+    for (e = literals; *e; e++) {
+        if ((*e)->internal.len == 0) {
+            continue;
+        }
+        if (afw_environment_get_string_literal(&(*e)->internal, xctx)) {
+            continue;
+        }
+        afw_environment_register_string_literal(
+            &(*e)->internal, *e, xctx);
+    }
+}
+
+
 /* Register an adapter factory. */
 AFW_DEFINE(void)
 afw_environment_register_adapter_type(

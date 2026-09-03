@@ -1,0 +1,59 @@
+{
+    "$comment": "Generated from adaptive object type _AdaptiveStringLiteral_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
+    "$defs": {
+        "_AdaptiveStringLiteral_": {
+            "additionalProperties": false,
+            "description": "A registry type string_literal entry.",
+            "markdownDescription": "A registry type string_literal entry.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "key": {
+                    "description": "Key of entry.",
+                    "markdownDescription": "**Key**\n\nKey of entry.",
+                    "title": "Key",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveStringLiteral_",
+            "type": "object"
+        },
+        "_AdaptiveStringLiteral_.propertyTypes": {
+            "properties": {
+                "key": {
+                    "description": "Key of entry.",
+                    "markdownDescription": "**Key**\n\nKey of entry.",
+                    "title": "Key",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "description": "A registry type string_literal entry.",
+    "markdownDescription": "A registry type string_literal entry.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "key": {
+            "description": "Key of entry.",
+            "markdownDescription": "**Key**\n\nKey of entry.",
+            "title": "Key",
+            "type": "string"
+        }
+    },
+    "title": "_AdaptiveStringLiteral_",
+    "type": "object"
+}

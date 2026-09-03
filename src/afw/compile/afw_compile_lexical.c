@@ -2580,9 +2580,18 @@ afw_compile_get_string_literal(
 {
     const afw_value_string_t *result;
     const afw_utf8_t *utf8;
+    afw_utf8_t key;
 
     if (len == 0) {
         return &afw_self_v_a_empty_string;
+    }
+    if (parser->xctx && parser->xctx->env) {
+        key.s = s;
+        key.len = len;
+        result = afw_environment_get_string_literal(&key, parser->xctx);
+        if (result) {
+            return result;
+        }
     }
     result = apr_hash_get(parser->shared->string_literals, s, len);
     if (result) {
