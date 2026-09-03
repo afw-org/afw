@@ -420,6 +420,13 @@ afw_model_internal_create_skeleton_context(
     afw_xctx_t *xctx);
 
 
+extern void
+afw_model_internal_push_property_level_current(
+    afw_model_internal_context_t *ctx,
+    const afw_runtime_object_indirect_t *skeleton,
+    afw_xctx_t *xctx);
+
+
 extern afw_model_internal_context_t *
 afw_model_internal_create_to_adapter_skeleton_context(
     afw_model_internal_adapter_session_self_t *self,

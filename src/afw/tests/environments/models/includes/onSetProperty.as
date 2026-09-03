@@ -12,6 +12,7 @@ assert(current::objectId === 'abc');
 assert(variable_exists("current::objectType"));
 assert(current::objectType === 'TestPropertyQualifiedVariables');
 
-// fixme remove these or add in C code?
-//assert(variable_exists("current::propertyName"));
-//assert(variable_exists("current::value"));
+assert(variable_exists("current::propertyName"));
+assert(variable_exists("current::value"));
+
+return current::value;
