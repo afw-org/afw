@@ -46,7 +46,7 @@ static const afw_utf8_t impl_version_info_path =
 void afw_command_generated_register(afw_xctx_t *xctx)
 {
 
-    /* Register interned catalog strings. */
+    /* Register reusable interned strings. */
     afw_environment_register_string_literals(
         afw_command_string_literals_get(), xctx);
 

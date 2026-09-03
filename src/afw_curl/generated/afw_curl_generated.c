@@ -53,7 +53,7 @@ void afw_curl_generated_register(afw_xctx_t *xctx)
     /* Register object maps. */
     afw_curl_register_runtime_object_maps(xctx);
 
-    /* Register interned catalog strings. */
+    /* Register reusable interned strings. */
     afw_environment_register_string_literals(
         afw_curl_string_literals_get(), xctx);
 

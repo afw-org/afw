@@ -3,8 +3,8 @@
     "$defs": {
         "_AdaptiveStringLiteral_": {
             "additionalProperties": false,
-            "description": "A registry type string_literal entry.",
-            "markdownDescription": "A registry type string_literal entry.",
+            "description": "A reusable interned string value.",
+            "markdownDescription": "A reusable interned string value.",
             "properties": {
                 "_meta_": {
                     "additionalProperties": true,
@@ -37,8 +37,8 @@
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
-    "description": "A registry type string_literal entry.",
-    "markdownDescription": "A registry type string_literal entry.",
+    "description": "A reusable interned string value.",
+    "markdownDescription": "A reusable interned string value.",
     "properties": {
         "_meta_": {
             "additionalProperties": true,

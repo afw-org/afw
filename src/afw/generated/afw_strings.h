@@ -99166,7 +99166,7 @@ afw_anyURI_self_v_example;
 
 
 /**
- * @brief NULL-terminated catalog of interned string values.
+ * @brief NULL-terminated list of reusable interned string values.
  *
  * For `afw_environment_register_string_literals()`.
  */

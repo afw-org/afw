@@ -87,8 +87,7 @@ impl_create_loop_call(
     const afw_utf8_t *label)
 {
     if (label) {
-        argv[argc + 1] = afw_value_create_unmanaged_string(
-            label, parser->p, parser->xctx);
+        argv[argc + 1] = afw_compile_intern_utf8(label);
         argc++;
     }
     return afw_value_call_built_in_function_create(
@@ -235,7 +234,7 @@ impl_compile_check_object_pattern(
             continue;
         }
         pv = afw_object_get_property(obj,
-            afw_value_create_unmanaged_string(name, parser->p, parser->xctx),
+            afw_compile_intern_utf8(name),
             parser->xctx);
         if (!pv) {
             continue;
@@ -795,8 +794,7 @@ impl_parse_BreakStatement(afw_compile_parser_t *parser)
         argv = afw_pool_malloc(parser->p,
             sizeof(afw_value_t *) * 2, parser->xctx);
         argv[0] = impl_function_definition_break;
-        argv[1] = afw_value_create_unmanaged_string(
-            label, parser->p, parser->xctx);
+        argv[1] = afw_compile_intern_utf8(label);
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),
             argc, argv, true, parser->p, parser->xctx);
@@ -1172,8 +1170,7 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
         argv = afw_pool_malloc(parser->p,
             sizeof(afw_value_t *) * 2, parser->xctx);
         argv[0] = impl_function_definition_continue;
-        argv[1] = afw_value_create_unmanaged_string(
-            label, parser->p, parser->xctx);
+        argv[1] = afw_compile_intern_utf8(label);
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),
             argc, argv, true, parser->p, parser->xctx);
@@ -3199,8 +3196,7 @@ afw_compile_parse_TestScript(
         if (afw_utf8_equal(key, afw_s_skip)) {
             if (afw_utf8_equal(string, afw_s_true)) {
                 afw_object_set_property(test_script_object,
-                    afw_value_create_unmanaged_string(
-                        key, parser->p, parser->xctx),
+                    afw_compile_intern_utf8(key),
                     afw_boolean_v_true, parser->xctx);
             }
             else if (!afw_utf8_equal(string, afw_s_false)) {
@@ -3210,8 +3206,7 @@ afw_compile_parse_TestScript(
         }
         else {
             if (afw_object_has_property(test_script_object,
-                afw_value_create_unmanaged_string(
-                    key, parser->p, parser->xctx), parser->xctx))
+                afw_compile_intern_utf8(key), parser->xctx))
             {
                 AFW_COMPILE_THROW_ERROR_FZ(
                     AFW_UTF8_FMT_Q " already specified",
@@ -3221,8 +3216,7 @@ afw_compile_parse_TestScript(
                 global_source_type = string;
             }
             afw_object_set_property_as_string(test_script_object,
-                afw_value_create_unmanaged_string(
-                    key, parser->p, parser->xctx),
+                afw_compile_intern_utf8(key),
                 string, parser->xctx);
         }
     }
@@ -3270,8 +3264,7 @@ afw_compile_parse_TestScript(
                     AFW_COMPILE_THROW_ERROR_Z("'test:' missing");
                 }
                 afw_object_set_property(test_object,
-                    afw_value_create_unmanaged_string(
-                        key, parser->p, parser->xctx),
+                    afw_compile_intern_utf8(key),
                     afw_boolean_v_true, parser->xctx);
             }
             else if (!afw_utf8_equal(string, afw_s_false)) {
@@ -3288,15 +3281,13 @@ afw_compile_parse_TestScript(
 
         else {
             if (afw_object_has_property(test_object,
-                afw_value_create_unmanaged_string(
-                    key, parser->p, parser->xctx), parser->xctx)) {
+                afw_compile_intern_utf8(key), parser->xctx)) {
                 AFW_COMPILE_THROW_ERROR_FZ(
                     AFW_UTF8_FMT_Q " already specified",
                     AFW_UTF8_FMT_ARG(key));
             }
             afw_object_set_property_as_string(test_object,
-                afw_value_create_unmanaged_string(
-                    key, parser->p, parser->xctx),
+                afw_compile_intern_utf8(key),
                 string, parser->xctx);
         }
 

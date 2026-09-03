@@ -207,7 +207,7 @@ struct afw_compile_internal_shared_s {
     const afw_pool_t *temp_p;
 
     /*
-     * Interned string values (compile_literal or catalog permanent).
+     * Interned string values (compile_literal or reusable env strings).
      * Key is octets; value is const afw_value_string_t *. Use
      * afw_compile_get_string_literal().
      */
@@ -944,12 +944,17 @@ extern const afw_utf8_t *
 afw_compile_current_raw_token(
     afw_compile_parser_t *parser);
 
-/* Intern string value into shared->string_literals (compile_literal). */
+/* Intern string: env reusable value, else compile_literal in parser->p. */
 extern const afw_value_string_t *
 afw_compile_get_string_literal(
     afw_compile_parser_t *parser,
     const afw_utf8_octet_t *s,
     afw_size_t len);
+
+/* Intern utf8 as a string value (env hit or compile_literal). */
+#define afw_compile_intern_utf8(utf8) \
+    (&afw_compile_get_string_literal((parser), \
+        (utf8)->s, (utf8)->len)->pub)
 
 extern void
 afw_compile_get_token_impl(

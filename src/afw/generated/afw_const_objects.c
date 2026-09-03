@@ -123437,7 +123437,7 @@ impl_1204_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_1204_property_description = {
     afw_v_description,
-    &afw_self_v_zz__A_registry_type_string_literal_entry_.pub
+    &afw_self_v_zz__A_reusable_interned_string_value_.pub
 };
 
 static const afw_runtime_property_t

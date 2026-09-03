@@ -6,7 +6,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "A registry type string_literal entry.",
+    "description": "A reusable interned string value.",
     "objectType": "_AdaptiveStringLiteral_",
     "propertyTypes": {
         "key": {

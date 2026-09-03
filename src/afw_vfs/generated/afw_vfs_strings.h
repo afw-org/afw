@@ -2580,7 +2580,7 @@ extern const afw_value_integer_t \
 
 
 /**
- * @brief NULL-terminated catalog of interned string values.
+ * @brief NULL-terminated list of reusable interned string values.
  *
  * For `afw_environment_register_string_literals()`.
  */

@@ -1703,7 +1703,7 @@ afw_environment_register_functions(
 }
 
 
-/* Register a NULL terminated list of interned catalog strings. */
+/* Register a NULL terminated list of reusable interned strings. */
 AFW_DEFINE(void)
 afw_environment_register_string_literals(
     const afw_value_string_t * const *literals,

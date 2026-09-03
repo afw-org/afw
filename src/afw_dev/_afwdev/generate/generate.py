@@ -206,7 +206,7 @@ def generated_c(options):
             fd.write('    ' + options['prefix'] + 'register_runtime_object_maps(xctx);\n')
         if options['strings']:
             fd.write('\n')
-            fd.write('    /* Register interned catalog strings. */\n')
+            fd.write('    /* Register reusable interned strings. */\n')
             fd.write('    afw_environment_register_string_literals(\n')
             fd.write('        ' + options['prefix'] +
                      'string_literals_get(), xctx);\n')

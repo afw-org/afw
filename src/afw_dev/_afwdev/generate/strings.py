@@ -177,7 +177,7 @@ def _is_generated_label(name):
 
 
 def _is_parse_word_string(name, value):
-    """True if this catalog string is an identifier-like spelling parse may hit.
+    """True if this string is an identifier-like spelling parse may hit.
 
     `strings.txt` `label=value` (and other aliases) have name != value.
     zz__ invent-for-C names also differ from their text. Keep single words.
@@ -267,7 +267,7 @@ def _write_strings_header(
 
         if emit_get:
             fd.write('\n/**\n')
-            fd.write(' * @brief NULL-terminated catalog of interned string values.\n')
+            fd.write(' * @brief NULL-terminated list of reusable interned string values.\n')
             fd.write(' *\n')
             fd.write(' * For `afw_environment_register_string_literals()`.\n')
             fd.write(' */\n')

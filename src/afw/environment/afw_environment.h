@@ -243,7 +243,7 @@ AFW_BEGIN_DECLARES
         false,                                                                  \
         "stringLiteral",                                                        \
         "_AdaptiveStringLiteral_",                                              \
-        "The const afw_value_string_t for interned catalog string content.")    \
+        "Reusable string values (const afw_value_string_t), keyed by content.") \
                                                                                 \
     XX(value_inf,                                                               \
         impl_internal_additional_register_key_only,                             \
@@ -1365,9 +1365,9 @@ afw_environment_register_functions(
 
 
 /**
- * @brief Register an interned catalog string value.
+ * @brief Register a reusable interned string value.
  * @param string utf8 content (usually `&value->internal`).
- * @param value catalog `afw_value_string_t` (permanent).
+ * @param value `const afw_value_string_t` (often a generated permanent).
  * @param xctx of caller.
  */
 AFW_DEFINE_STATIC_INLINE(void)
@@ -1386,7 +1386,7 @@ afw_environment_register_string_literal(
 
 
 /**
- * @brief Register a NULL terminated list of interned catalog strings.
+ * @brief Register a NULL terminated list of reusable interned strings.
  * @param literals NULL terminated list of `const afw_value_string_t *`.
  * @param xctx of caller.
  *
@@ -1401,10 +1401,10 @@ afw_environment_register_string_literals(
 
 
 /**
- * @brief Get the interned catalog string value for utf8 content.
+ * @brief Get a reusable interned string value for utf8 content.
  * @param string content to look up.
  * @param xctx of caller.
- * @return Catalog `afw_value_string_t` or NULL if not found.
+ * @return `const afw_value_string_t` or NULL if not found.
  */
 AFW_DEFINE_STATIC_INLINE(const afw_value_string_t *)
 afw_environment_get_string_literal(

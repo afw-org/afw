@@ -31617,12 +31617,6 @@ afw_self_v_zz__A_registry_type_singleton_entry_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__A_registry_type_string_literal_entry_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__A_registry_type_string_literal_entry_)
-};
-
-const afw_value_string_t
 afw_self_v_zz__A_registry_type_value_inf_entry_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__A_registry_type_value_inf_entry_)
@@ -31632,6 +31626,12 @@ const afw_value_string_t
 afw_self_v_zz__A_regular_expression_to_use_for_search_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__A_regular_expression_to_use_for_search_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__A_reusable_interned_string_value_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__A_reusable_interned_string_value_)
 };
 
 const afw_value_string_t
