@@ -437,17 +437,20 @@ afw_adapter_impl_call_object_cb_from_list(
  * @param consumer object.
  * @param filter should be initialized to NULL on first call and anytime
  *   the filter has changed.  The value returned should be passed to
- *   subsequent calls.  This holds the evaluated expression from the
- *   consumer filter property.
+ *   subsequent calls.  This holds the compiled expression from the
+ *   consumer's consumeFilter property.
  * @param xctx of caller.
  * @return true if journal entry applies to consumer.
+ *
+ * While the consumeFilter expression is evaluated, the entry is exposed
+ * as current::entry.
  */
 AFW_DECLARE(afw_boolean_t)
 afw_adapter_impl_is_journal_entry_applicable(
     const afw_adapter_journal_t *instance,
     const afw_object_t * entry,
     const afw_object_t * consumer,
-    const afw_value_t * const * filter,
+    const afw_value_t ** filter,
     afw_xctx_t *xctx);
 
 #define AFW_ADAPTER_IMPL_ERROR_ADAPTER_IMMUTABLE \

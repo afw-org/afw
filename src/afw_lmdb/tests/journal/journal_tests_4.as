@@ -109,3 +109,50 @@ assert(
 );
 
 return 0;
+
+
+//? test: journal_get_next_for_consumer-consumeFilter
+//? description: consumeFilter must actually be evaluated (issue #240) - a filter matching only one of two new entries must skip the non-matching one and land on the match
+//? skip: false
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const peerUuid: string = generate_uuid();
+
+add_object("journal", "_AdaptiveProvisioningPeer_", {
+    peerId: "consumer5",
+    consumeFilter: "eq(property_get(property_get(property_get(current::entry, 'request', {}), 'object', {}), 'firstName', null), 'filterMatchMe')"
+}, peerUuid);
+
+add_object("lmdb", "_AdaptiveObject_", { firstName: "filterSkipMe" });
+add_object("lmdb", "_AdaptiveObject_", { firstName: "filterMatchMe" });
+
+const result: object = journal_get_next_for_consumer("journal", peerUuid, 20);
+assert(is_defined(result.entryCursor), "expected an entryCursor, consumeFilter should have found the matching entry");
+assert(result.entry.request.object.firstName == "filterMatchMe",
+    "consumeFilter must skip non-matching entries and land on the match, got " + string(result.entry.request.object.firstName));
+
+return 0;
+
+
+//? test: journal_get_next_for_consumer-consumeFilter-no-match
+//? description: a consumeFilter matching nothing must not fall back to returning an arbitrary entry
+//? skip: false
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const peerUuid: string = generate_uuid();
+
+add_object("journal", "_AdaptiveProvisioningPeer_", {
+    peerId: "consumer6",
+    consumeFilter: "eq(property_get(property_get(property_get(current::entry, 'request', {}), 'object', {}), 'firstName', null), 'thisValueNeverExists')"
+}, peerUuid);
+
+add_object("lmdb", "_AdaptiveObject_", { firstName: "irrelevant" });
+
+const result: object = journal_get_next_for_consumer("journal", peerUuid, 20);
+assert(is_nullish(result.entry), "consumeFilter matching nothing must not return an entry");
+
+return 0;

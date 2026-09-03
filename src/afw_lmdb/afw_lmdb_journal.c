@@ -358,8 +358,7 @@ afw_lmdb_journal_get_next_for_consumer_after_cursor(
 
     advance_cursor = afw_object_old_get_property_as_utf8(
         peer, afw_v_advanceCursor, xctx->p, xctx);
-    consumer_filter = afw_object_get_property(
-        peer, afw_v_consumeFilter, xctx);
+    consumer_filter = NULL;
 
     /* Scan our journal until we find an applicable entry, or hit our limit */
     for (i = 0; (limit == 0 || i < limit) && !found;  i++) {
@@ -466,8 +465,7 @@ impl_afw_adapter_journal_get_next_for_consumer(
         peer, afw_v_currentCursor, xctx->p, xctx);
     advance_cursor = afw_object_old_get_property_as_utf8(
         peer, afw_v_advanceCursor, xctx->p, xctx);
-    consumer_filter = afw_object_get_property(
-        peer, afw_v_consumeFilter, xctx);
+    consumer_filter = NULL;
     consume_cursor = afw_object_old_get_property_as_string(
         peer, afw_v_consumeCursor, xctx);
 
@@ -598,8 +596,7 @@ afw_lmdb_journal_advance_cursor_for_consumer(
         peer, afw_v_currentCursor, xctx->p, xctx);
     advance_cursor = afw_object_old_get_property_as_utf8(
         peer, afw_v_advanceCursor, xctx->p, xctx);
-    consumer_filter = afw_object_get_property(
-        peer, afw_v_consumeFilter, xctx);
+    consumer_filter = NULL;
     consume_cursor = afw_object_old_get_property_as_string(
         peer, afw_v_consumeCursor, xctx);
 

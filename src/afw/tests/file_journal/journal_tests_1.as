@@ -301,3 +301,52 @@ assert(j.entry !== undefined, "face-only must not hide entry");
 journal_mark_consumed("journal", "faceConsumerLook", cursor);
 
 return 0;
+
+
+//? test: journal_get_next_for_consumer-consumeFilter
+//? description: ...
+Issue #240: consumeFilter must actually be evaluated. A peer whose filter
+only matches one of two new entries must skip the non-matching one and
+land on the match.
+//? skip: false
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+add_object("file", "_AdaptiveObject_", { firstName: "filterSkipMe" });
+add_object("file", "_AdaptiveObject_", { firstName: "filterMatchMe" });
+
+add_object("journal", "_AdaptiveProvisioningPeer_", {
+    peerId: "filterConsumer",
+    consumeFilter: "eq(property_get(property_get(property_get(current::entry, 'request', {}), 'object', {}), 'firstName', null), 'filterMatchMe')"
+}, "filterConsumer");
+
+let j = journal_get_next_for_consumer("journal", "filterConsumer", 1000);
+assert(j.entry !== undefined, "consumeFilter should have found the matching entry");
+assert(j.entry.request.object.firstName === "filterMatchMe",
+    "consumeFilter must skip non-matching entries and land on the match, got " +
+    string(j.entry.request.object.firstName));
+
+journal_mark_consumed("journal", "filterConsumer", j.entryCursor);
+
+return 0;
+
+
+//? test: journal_get_next_for_consumer-consumeFilter-no-match
+//? description: ...
+Issue #240: a consumeFilter that matches nothing must not fall back to
+returning an arbitrary entry.
+//? skip: false
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+add_object("journal", "_AdaptiveProvisioningPeer_", {
+    peerId: "filterConsumerNoMatch",
+    consumeFilter: "eq(property_get(property_get(property_get(current::entry, 'request', {}), 'object', {}), 'firstName', null), 'thisValueNeverExists')"
+}, "filterConsumerNoMatch");
+
+let j = journal_get_next_for_consumer("journal", "filterConsumerNoMatch", 1000);
+assert(is_nullish(j.entry), "consumeFilter matching nothing must not return an entry");
+
+return 0;

@@ -455,18 +455,57 @@ afw_adapter_impl_call_object_cb_from_list(
 }
 
 
+/* current::entry callback for consumeFilter evaluation (see issue #240). */
+static const afw_value_t *
+impl_journal_current_entry_cb(
+    const afw_xctx_qualifier_stack_entry_t *qs_entry,
+    const afw_utf8_t *name,
+    afw_xctx_t *xctx)
+{
+    (void)name;
+    (void)xctx;
+    return qs_entry->data;
+}
+
+static const afw_context_cb_variable_meta_t
+impl_journal_current_meta_entry =
+{
+    afw_s_entry,
+    &afw_value_unmanaged_object_inf,
+    &afw_data_type_object_direct,
+    "Entry"
+};
+
+static const afw_context_cb_variable_t
+impl_journal_current_variable_entry = {
+    &impl_journal_current_meta_entry,
+    "The journal entry being tested against consumeFilter.",
+    impl_journal_current_entry_cb,
+    1
+};
+
+static const afw_context_cb_variable_t * const
+impl_journal_current_variables[] = {
+    &impl_journal_current_variable_entry,
+    NULL
+};
+
+
 /* Determine whether a journal entry is applicable to a consumer. */
 AFW_DEFINE(afw_boolean_t)
 afw_adapter_impl_is_journal_entry_applicable(
     const afw_adapter_journal_t *instance,
     const afw_object_t *entry,
     const afw_object_t *consumer,
-    const afw_value_t *const *filter,
+    const afw_value_t **filter,
     afw_xctx_t *xctx)
 {
     const afw_utf8_t *peerIdInEntry;
     const afw_utf8_t *peerIdInConsumer;
     afw_boolean_t is_applicable;
+    const afw_value_t *entry_value;
+    const afw_value_t *eval;
+    int top;
 
     is_applicable = true;
 
@@ -484,6 +523,38 @@ afw_adapter_impl_is_journal_entry_applicable(
         }
         /* Not applicable if loopback. */
         is_applicable = !afw_utf8_equal(peerIdInEntry, peerIdInConsumer);
+    }
+
+    /* If still applicable, apply the consumer's consumeFilter expression. */
+    if (is_applicable) {
+        if (!*filter) {
+            *filter = afw_object_old_get_property_as_compiled_script(
+                consumer, afw_v_consumeFilter, NULL, NULL, xctx->p, xctx);
+        }
+
+        if (*filter) {
+            entry_value = afw_value_create_unmanaged_object(
+                entry, xctx->p, xctx);
+
+            top = afw_xctx_qualifier_stack_top_get(xctx);
+            AFW_TRY{
+                afw_context_push_cb_variables(afw_s_current,
+                    impl_journal_current_variables,
+                    (void *)entry_value, xctx->p, xctx);
+
+                eval = afw_value_evaluate(*filter, xctx->p, xctx);
+                if (!afw_value_is_boolean(eval)) {
+                    AFW_THROW_ERROR_Z(general,
+                        "consumeFilter did not evaluate to a boolean result",
+                        xctx);
+                }
+                is_applicable = afw_value_as_boolean(eval, xctx);
+            }
+            AFW_FINALLY{
+                afw_xctx_qualifier_stack_top_set(top, xctx);
+            }
+            AFW_ENDTRY;
+        }
     }
 
     return is_applicable;
