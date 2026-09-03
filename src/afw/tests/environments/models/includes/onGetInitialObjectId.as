@@ -6,14 +6,6 @@ assert(current::mappedAdapterId === 'file');
 assert(variable_exists("current::mappedObject"));
 assert(current::mappedObject.x === true);
 
-/*
- * mappedObjectId resolves but is empty here: onGetInitialObjectId's job is
- * to produce the object id, so the basic mapped object built for this hook
- * has no id yet (issue #102).
- */
-assert(variable_exists("current::mappedObjectId"));
-assert(current::mappedObjectId === "");
-
 assert(variable_exists("current::adapterId"));
 assert(current::adapterId === 'model');
 

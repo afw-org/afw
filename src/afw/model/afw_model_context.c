@@ -1141,7 +1141,6 @@ const afw_context_cb_variable_t *
 afw_model_internal_context_current_for_initial_object_id[] = {
     &impl_current_variable_mappedAdapterId,
     &impl_current_variable_mappedObject,
-    &impl_current_variable_mappedObjectId,
     &impl_current_variable_mappedObjectType,
     &impl_current_variable_mappedPropertyName,
     &impl_current_variable_mappedValue,

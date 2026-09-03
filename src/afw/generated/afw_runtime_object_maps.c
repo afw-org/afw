@@ -2558,16 +2558,6 @@ impl_properties__AdaptiveModelCurrentOnGetInitialObjectId_[] = {
         afw_model_internal_get_current_mappedObject
     },
     {
-        afw_v_mappedObjectId,
-        -1,
-        -1,
-        &afw_data_type_objectId_direct,
-        AFW_UTF8_LITERAL(""),
-        NULL,
-        NULL,
-        afw_model_internal_get_current_mappedObjectId
-    },
-    {
         afw_v_mappedObjectType,
         -1,
         -1,
@@ -2662,7 +2652,7 @@ impl_properties__AdaptiveModelCurrentOnGetInitialObjectId_[] = {
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveModelCurrentOnGetInitialObjectId_ = {
     &afw_self_s__AdaptiveModelCurrentOnGetInitialObjectId_,
-    14,
+    13,
     &impl_properties__AdaptiveModelCurrentOnGetInitialObjectId_[0]
 };
 
