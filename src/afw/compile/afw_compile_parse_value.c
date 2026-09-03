@@ -14,6 +14,42 @@
 #include "afw_internal.h"
 
 
+/*
+ * Scalar tokens become compile-literal values in parser->p. 0/1 and ""
+ * stay process permanents. Eval temps still use unmanaged create.
+ */
+static const afw_value_t *
+impl_token_integer_value(afw_compile_parser_t *parser)
+{
+    if (parser->token->integer == 0) {
+        return afw_integer_v_zero;
+    }
+    if (parser->token->integer == 1) {
+        return afw_integer_v_one;
+    }
+    return afw_compile_literal_integer_create(
+        parser->token->integer, parser->p, parser->xctx);
+}
+
+
+static const afw_value_t *
+impl_token_double_value(afw_compile_parser_t *parser)
+{
+    return afw_compile_literal_double_create(
+        parser->token->number, parser->p, parser->xctx);
+}
+
+
+static const afw_value_t *
+impl_token_string_value(afw_compile_parser_t *parser)
+{
+    if (!parser->token->string || parser->token->string->len == 0) {
+        return afw_v_a_empty_string;
+    }
+    return afw_compile_literal_string_create(
+        parser->token->string, parser->p, parser->xctx);
+}
+
 
 /*ebnf>>>
  *
@@ -741,20 +777,15 @@ afw_compile_parse_Json(afw_compile_parser_t *parser)
         break;
 
     case afw_compile_token_type_integer:
-        value = afw_value_create_unmanaged_integer(
-            parser->token->integer,
-            parser->p, parser->xctx);
+        value = impl_token_integer_value(parser);
         break;
 
     case afw_compile_token_type_number:
-        value = afw_value_create_unmanaged_double(
-            parser->token->number,
-            parser->p, parser->xctx);
+        value = impl_token_double_value(parser);
         break;
 
     case afw_compile_token_type_utf8_string:
-        value = afw_value_create_unmanaged_string(parser->token->string,
-            parser->p, parser->xctx);
+        value = impl_token_string_value(parser);
         break;
 
     case afw_compile_token_type_null:
@@ -831,22 +862,17 @@ afw_compile_parse_Literal(
 
     case afw_compile_token_type_integer:
         matches_production = true;
-        value = afw_value_create_unmanaged_integer(
-            parser->token->integer,
-            parser->p, parser->xctx);
+        value = impl_token_integer_value(parser);
         break;
 
     case afw_compile_token_type_number:
         matches_production = true;
-        value = afw_value_create_unmanaged_double(
-            parser->token->number,
-            parser->p, parser->xctx);
+        value = impl_token_double_value(parser);
         break;
 
     case afw_compile_token_type_utf8_string:
         matches_production = true;
-        value = afw_value_create_unmanaged_string(parser->token->string,
-            parser->p, parser->xctx);
+        value = impl_token_string_value(parser);
         break;
 
     case afw_compile_token_type_null:

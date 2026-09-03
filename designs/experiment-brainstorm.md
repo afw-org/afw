@@ -15,7 +15,19 @@ This is `develop` truth once [#277](https://github.com/afw-org/afw/issues/277) l
 
 - Managed scalars: `get_reference` / `get_assignable_value` **bump self**.
 - Unmanaged scalar `get_assignable_value`: **promote** (`create_managed` in this `xctx->p`, RC 1).
+- Compile-unit scalar literals (integer / double / string): `compile_literal_*` inf — **as-is** in slots; `clone_*` **copies**. `true` / `null` / `undefined` / `0` / `1` / `""` stay process permanents. Eval temps stay unmanaged-promote. Compiler-only `afw_compile_literal_<dt>_create()`.
 - `afw_pool_release_value_at_cleanup`: extra pin that is not a slot.
+
+Same 14,336-iteration nest (`i1<7`, `i2<8`, `i3<16`, `i4<16`), one machine, three `afw` binaries. `concat` is `hex[i1]+hex[i2]+hex[i3]+hex[i4]`.
+
+| Body | Pre-#277 (`1271992b`) | develop (`ef57b8f7`) | This branch |
+|------|----------------------:|---------------------:|------------:|
+| `n = n + 1` only | 0.024s | 0.024s | 0.024s |
+| `let uu = "abcd"; n = n + 1` | 0.029s | 1.744s | 0.027s |
+| `let uu = concat; n = n + 1` | 0.042s | 2.904s | 2.902s |
+| original concat + `last` + `n` | 0.044s | 3.295s | 3.226s |
+
+Literal slot fill is back to pre-#277. Concat temps still promote.
 
 When **evaluation is done**, an **evaluated** result is an **unmanaged clone in dest `p`**. Functions/closures as the compile/eval result are not cloned that way yet (follow-up).
 
