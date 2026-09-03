@@ -29,6 +29,8 @@ Same 14,336-iteration nest (`i1<7`, `i2<8`, `i3<16`, `i4<16`), one machine, thre
 
 Literal slot fill is back to pre-#277. Concat temps still promote.
 
+**Later (not now):** unique managed concat string **and** unique managed integer last_return in the same loop body (~3s). Each alone is cheap. Heap free list is address-ordered insert + first-fit; mixed sizes may walk a growing list (~14k²). Tune how pool deals with free memory for different sizes. Empty `for` / `hex[i]` / concat-only are fine.
+
 When **evaluation is done**, an **evaluated** result is an **unmanaged clone in dest `p`**. Functions/closures as the compile/eval result are not cloned that way yet (follow-up).
 
 Dest `p` is often this `xctx->p` or a tracker under it — then the result is unmanaged in a pool this xctx already owns.
