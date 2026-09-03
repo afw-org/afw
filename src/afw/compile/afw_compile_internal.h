@@ -207,9 +207,9 @@ struct afw_compile_internal_shared_s {
     const afw_pool_t *temp_p;
 
     /*
-     * This is a hash table of string literals that can be reused.  The
-     * key is the string and the value is the string.  Use
-     * afw_compile_get_string_literal() to access;
+     * Interned string values (compile_literal or catalog permanent).
+     * Key is octets; value is const afw_value_string_t *. Use
+     * afw_compile_get_string_literal().
      */
     apr_hash_t *string_literals;
 
@@ -243,30 +243,31 @@ struct afw_compile_internal_token_s {
          * identifier always includes the leading '#'.
          */
         struct {
-            const afw_utf8_t *identifier;
-            const afw_utf8_t *identifier_name;
-            const afw_utf8_t *identifier_qualifier;
+            const afw_value_string_t *identifier;
+            const afw_value_string_t *identifier_name;
+            const afw_value_string_t *identifier_qualifier;
         };
 
-        /* If type is boolean, this is its boolean value. */
-        afw_boolean_t boolean;
+        /* If type is boolean, process permanent true/false. */
+        const afw_value_boolean_t *boolean;
 
-        /* If type is integer, this is its integer value. */
-        afw_integer_t integer;
+        /* If type is integer, permanent or compile_literal. */
+        const afw_value_integer_t *integer;
 
         /* If type is null, this is NULL. */
         void *null;
 
         /* If type is undefined, use identifier to hold 'undefined'. */
 
-        /* If type is number, this is the double value. */
-        afw_double_t number;
+        /* If type is number, permanent (Inf/NaN/-0) or compile_literal. */
+        const afw_value_double_t *number;
 
         /*
-         * If type is quoted string, this is the decoded string and quote
-         * character (single (') or double (") quote)*/
+         * If type is quoted string, interned compile_literal (or empty
+         * permanent) and quote character (single (') or double (")).
+         */
         struct {
-            const afw_utf8_t *string;
+            const afw_value_string_t *string;
             afw_utf8_octet_t string_quote_character;
         };
 
@@ -677,13 +678,55 @@ do { \
     (parser->token->type == afw_compile_token_type_identifier && \
     !parser->token->identifier_qualifier)
 
+#define afw_compile_token_identifier_name() \
+    (&(parser)->token->identifier_name->internal)
+
+#define afw_compile_token_identifier() \
+    ((parser)->token->identifier \
+        ? &(parser)->token->identifier->internal : NULL)
+
+#define afw_compile_token_identifier_qualifier() \
+    ((parser)->token->identifier_qualifier \
+        ? &(parser)->token->identifier_qualifier->internal : NULL)
+
+#define afw_compile_token_identifier_name_value() \
+    (&(parser)->token->identifier_name->pub)
+
+#define afw_compile_token_identifier_value() \
+    ((parser)->token->identifier \
+        ? &(parser)->token->identifier->pub : NULL)
+
+#define afw_compile_token_string() \
+    (&(parser)->token->string->internal)
+
+#define afw_compile_token_string_value() \
+    (&(parser)->token->string->pub)
+
+#define afw_compile_token_integer() \
+    ((parser)->token->integer->internal)
+
+#define afw_compile_token_integer_value() \
+    (&(parser)->token->integer->pub)
+
+#define afw_compile_token_number() \
+    ((parser)->token->number->internal)
+
+#define afw_compile_token_number_value() \
+    (&(parser)->token->number->pub)
+
+#define afw_compile_token_boolean() \
+    ((parser)->token->boolean->internal)
+
+#define afw_compile_token_boolean_value() \
+    (&(parser)->token->boolean->pub)
+
 #define afw_compile_token_is_name(string) \
     (afw_compile_token_is_unqualified_identifier() && \
-    afw_utf8_equal(parser->token->identifier_name, (string)))
+    afw_utf8_equal(afw_compile_token_identifier_name(), (string)))
 
 #define afw_compile_token_is_name_z(string_z) \
     (afw_compile_token_is_unqualified_identifier() && \
-    afw_utf8_equal_utf8_z(parser->token->identifier_name, (string_z)))
+    afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(), (string_z)))
 
 #define afw_compile_is_at_eof() \
     (parser->last_octet_eof)
@@ -901,8 +944,8 @@ extern const afw_utf8_t *
 afw_compile_current_raw_token(
     afw_compile_parser_t *parser);
 
-/* Intern string into shared->string_literals when possible. */
-extern const afw_utf8_t *
+/* Intern string value into shared->string_literals (compile_literal). */
+extern const afw_value_string_t *
 afw_compile_get_string_literal(
     afw_compile_parser_t *parser,
     const afw_utf8_octet_t *s,

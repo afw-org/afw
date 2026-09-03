@@ -150,7 +150,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
             /* First check to see if identifier is a variable symbol. */
             if (!parser->token->identifier_qualifier) {
                 symbol = afw_compile_parse_get_symbol_entry(parser,
-                    parser->token->identifier_name);
+                    afw_compile_token_identifier_name());
                 if (symbol) {
                     result = afw_value_symbol_reference_create(
                         afw_compile_create_contextual_to_cursor(start_offset),
@@ -161,10 +161,10 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
             /* Next check to see if this is a function. */
             if (!result) {
                 if (!parser->token->identifier_qualifier ||
-                    afw_utf8_equal(parser->token->identifier_qualifier,
+                    afw_utf8_equal(afw_compile_token_identifier_qualifier(),
                         afw_s_fn))
                 {
-                    untyped_function_id = parser->token->identifier_name;
+                    untyped_function_id = afw_compile_token_identifier_name();
                     function = afw_environment_get_qualified_function(
                             NULL,
                             untyped_function_id,
@@ -179,7 +179,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                             {
                                 AFW_COMPILE_THROW_ERROR_Z("Expecting dataType");
                             }
-                            type_id = parser->token->identifier;
+                            type_id = afw_compile_token_identifier();
                             afw_compile_get_token();
                             if (!afw_compile_token_is(close_angle_bracket)) {
                                 AFW_COMPILE_THROW_ERROR_Z("Expecting '>'");
@@ -211,13 +211,13 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                     if (!parser->token->identifier_qualifier) {
                         AFW_COMPILE_THROW_ERROR_FZ(
                             "Undeclared variable " AFW_UTF8_FMT_Q,
-                            AFW_UTF8_FMT_ARG(parser->token->identifier));
+                            AFW_UTF8_FMT_ARG(afw_compile_token_identifier()));
                     }
                     result =
                         afw_value_qualified_variable_reference_create(
                             afw_compile_create_contextual_to_cursor(start_offset),
-                            parser->token->identifier_qualifier,
-                            parser->token->identifier_name,
+                            afw_compile_token_identifier_qualifier(),
+                            afw_compile_token_identifier_name(),
                             parser->p, parser->xctx);
                 }
             }
@@ -345,9 +345,7 @@ afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
                     AFW_COMPILE_THROW_ERROR_Z(
                         "Qualifier not allowed");
                 }
-                key = afw_value_create_unmanaged_string(
-                    parser->token->identifier_name,
-                    parser->p, parser->xctx);
+                key = afw_compile_token_identifier_name_value();
                 result = afw_value_reference_by_key_create(
                     afw_compile_create_contextual_to_cursor(start_offset),
                     result, key, parser->p, parser->xctx);
@@ -485,7 +483,7 @@ afw_compile_parse_FunctionSignature(
     afw_compile_get_token();
     if (afw_compile_token_is_unqualified_identifier()) {
         if (afw_compile_is_reserved_word(parser,
-            parser->token->identifier_name))
+            afw_compile_token_identifier_name()))
         {
             AFW_COMPILE_THROW_ERROR_Z(
                 "Function name can not be a reserved word");
@@ -496,13 +494,12 @@ afw_compile_parse_FunctionSignature(
                 start_offset);
             signature->block = *block;
             function_symbol = afw_compile_parse_add_symbol_entry(parser,
-                parser->token->identifier_name);
+                afw_compile_token_identifier_name());
             function_symbol->symbol_type = afw_value_block_symbol_type_function;
             signature->function_name_symbol = function_symbol;
         }
         signature->function_name_value = (const afw_value_string_t *)
-            afw_value_create_unmanaged_string(parser->token->identifier_name,
-                parser->p, parser->xctx);
+            afw_compile_token_identifier_name_value();
         if (function_name_value) {
             *function_name_value = signature->function_name_value;
         }
@@ -576,7 +573,7 @@ afw_compile_parse_FunctionSignature(
                     AFW_COMPILE_THROW_ERROR_Z(
                         "Expecting parameter name or Pattern");
                 }
-                param->name = parser->token->identifier_name;
+                param->name = afw_compile_token_identifier_name();
                 if (afw_compile_is_reserved_word(parser, param->name)) {
                     AFW_COMPILE_THROW_ERROR_Z(
                         "Parameter name can not be a reserved word");
@@ -1198,10 +1195,10 @@ afw_compile_parse_ObjectTypeLiteral(afw_compile_parser_t *parser)
     if (!afw_compile_token_is(close_brace)) {
         for (;;) {
             if (afw_compile_token_is_unqualified_identifier()) {
-                prop_name = parser->token->identifier_name;
+                prop_name = afw_compile_token_identifier_name();
             }
             else if (afw_compile_token_is(utf8_string)) {
-                prop_name = parser->token->string;
+                prop_name = afw_compile_token_string();
             }
             else {
                 AFW_COMPILE_THROW_ERROR_Z(
@@ -1364,7 +1361,7 @@ afw_compile_parse_FunctionType(afw_compile_parser_t *parser)
              * Or bare Type (no name).
              */
             if (afw_compile_token_is_unqualified_identifier()) {
-                name = parser->token->identifier_name;
+                name = afw_compile_token_identifier_name();
                 afw_compile_get_token();
                 if (afw_compile_token_is(question_mark)) {
                     optional = true;
@@ -1521,7 +1518,7 @@ afw_compile_parse_ParenthesizedOrFunctionType(afw_compile_parser_t *parser)
     }
 
     if (afw_compile_token_is_unqualified_identifier()) {
-        name = parser->token->identifier_name;
+        name = afw_compile_token_identifier_name();
         afw_compile_get_token();
         /* Named / optional param, or a multi-parameter list. */
         if (afw_compile_token_is(question_mark) ||
@@ -1589,7 +1586,7 @@ afw_compile_parse_PrimaryType(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("Expecting Type");
     }
 
-    name = parser->token->identifier_name;
+    name = afw_compile_token_identifier_name();
 
     /* TypeName (includes data type id "array"; no Array<T> generic). */
     return impl_type_lookup_name(parser, name);
@@ -2313,7 +2310,7 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
 
     case afw_compile_token_type_identifier:
         if (!parser->token->identifier_qualifier) {
-            if (afw_utf8_equal(parser->token->identifier_name,
+            if (afw_utf8_equal(afw_compile_token_identifier_name(),
                 afw_s_void))
             {
                 argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 2,

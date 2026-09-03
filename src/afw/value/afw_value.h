@@ -497,6 +497,12 @@ AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_NaN;
 
 AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_zero;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_minus_zero;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_integer_max;
 
 AFW_DECLARE_CONST_DATA(afw_value_t *)

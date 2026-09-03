@@ -12,6 +12,7 @@
  */
 
 #include "afw_internal.h"
+#include <math.h>
 
 typedef void (*impl_lexical_cb_t) (afw_compile_parser_t *parser);
 
@@ -33,8 +34,14 @@ impl_get_HexDigit(afw_compile_parser_t *parser);
 static int
 impl_get_OctalDigit(afw_compile_parser_t *parser);
 
-static const afw_utf8_t *
+static const afw_value_string_t *
 impl_get_identifier(afw_compile_parser_t *parser);
+
+static const afw_value_integer_t *
+impl_integer_literal(afw_compile_parser_t *parser, afw_integer_t n);
+
+static const afw_value_double_t *
+impl_double_literal(afw_compile_parser_t *parser, afw_double_t d);
 
 static void
 impl_parse_String(afw_compile_parser_t *parser);
@@ -966,6 +973,7 @@ impl_parse_number(afw_compile_parser_t *parser)
     afw_size_t start_offset;
     const afw_utf8_octet_t *s;
     afw_integer_t negative;
+    afw_integer_t n;
     afw_boolean_t is_negative;
     afw_boolean_t is_integer;
     afw_boolean_t is_zero;
@@ -1000,13 +1008,15 @@ impl_parse_number(afw_compile_parser_t *parser)
                 impl_consume_matching_octets_z(parser, "INF"))
             {
                 parser->token->type = afw_compile_token_type_number;
-                parser->token->number = parser->xctx->env->minus_infinity;
+                parser->token->number =
+                    (const afw_value_double_t *)afw_value_minus_infinity;
                 goto reserved_identifier;
             }
 
             if (impl_consume_matching_octets_z(parser, "NaN")) {
                 parser->token->type = afw_compile_token_type_number;
-                parser->token->number = parser->xctx->env->NaN;
+                parser->token->number =
+                    (const afw_value_double_t *)afw_value_NaN;
                 goto reserved_identifier;
             }
         }
@@ -1090,29 +1100,29 @@ impl_parse_number(afw_compile_parser_t *parser)
             if (!parser->strict) {
                 if (o == 'b' || o == 'B') {
                     parser->token->type = afw_compile_token_type_integer;
-                    parser->token->integer =
-                        impl_parse_BinaryIntegerLiteral(parser);
+                    n = impl_parse_BinaryIntegerLiteral(parser);
                     if (is_negative) {
-                        parser->token->integer = -parser->token->integer;
+                        n = -n;
                     }
+                    parser->token->integer = impl_integer_literal(parser, n);
                     return true;
                 }
                 if (o == 'x' || o == 'X') {
                     parser->token->type = afw_compile_token_type_integer;
-                    parser->token->integer =
-                        impl_parse_HexIntegerLiteral(parser);
+                    n = impl_parse_HexIntegerLiteral(parser);
                     if (is_negative) {
-                        parser->token->integer = -parser->token->integer;
+                        n = -n;
                     }
+                    parser->token->integer = impl_integer_literal(parser, n);
                     return true;
                 }
                 if (o == 'o' || o == 'O') {
                     parser->token->type = afw_compile_token_type_integer;
-                    parser->token->integer =
-                        impl_parse_OctalIntegerLiteral(parser);
+                    n = impl_parse_OctalIntegerLiteral(parser);
                     if (is_negative) {
-                        parser->token->integer = -parser->token->integer;
+                        n = -n;
                     }
+                    parser->token->integer = impl_integer_literal(parser, n);
                     return true;
                 }
             }
@@ -1202,14 +1212,15 @@ impl_parse_number(afw_compile_parser_t *parser)
     if (is_integer) {
         parser->token->type = afw_compile_token_type_integer;
         if (is_negative) {
-            parser->token->integer = negative;
+            n = negative;
         }
         else if (negative != AFW_INTEGER_MIN) {
-            parser->token->integer = -negative;
+            n = -negative;
         }
         else {
             goto error;
         }
+        parser->token->integer = impl_integer_literal(parser, n);
         return true;
     }
 
@@ -1218,17 +1229,17 @@ impl_parse_number(afw_compile_parser_t *parser)
      * Not integer, create a double value. Use strtod to convert number if it
      * is not zero.
      */
-    if (is_negative)
-        parser->token->number = -0.0;
-    else
-        parser->token->number = 0;
     parser->token->type = afw_compile_token_type_number;
-    if (!is_zero) {
+    if (is_zero) {
+        parser->token->number = impl_double_literal(parser,
+            is_negative ? -0.0 : 0.0);
+    }
+    else {
         s = apr_pstrndup(parser->apr_p,
             parser->full_source->s + start_offset,
             parser->cursor - start_offset);
         errno = 0;
-        parser->token->number = strtod(s, NULL);
+        parser->token->number = impl_double_literal(parser, strtod(s, NULL));
         if (errno != 0) goto error;
     }
 
@@ -1246,13 +1257,52 @@ error:
     return false;
 }
 
-static const afw_utf8_t *
+static const afw_value_integer_t *
+impl_integer_literal(afw_compile_parser_t *parser, afw_integer_t n)
+{
+    switch (n) {
+    case 0: return (const afw_value_integer_t *)afw_integer_v_zero;
+    case 1: return (const afw_value_integer_t *)afw_integer_v_one;
+    case 2: return (const afw_value_integer_t *)afw_integer_v_2;
+    case 3: return (const afw_value_integer_t *)afw_integer_v_3;
+    case 4: return (const afw_value_integer_t *)afw_integer_v_4;
+    case 5: return (const afw_value_integer_t *)afw_integer_v_5;
+    case 6: return (const afw_value_integer_t *)afw_integer_v_6;
+    case 7: return (const afw_value_integer_t *)afw_integer_v_7;
+    case 8: return (const afw_value_integer_t *)afw_integer_v_8;
+    case 9999: return (const afw_value_integer_t *)afw_integer_v_9999;
+    default:
+        return (const afw_value_integer_t *)
+            afw_compile_literal_integer_create(n, parser->p, parser->xctx);
+    }
+}
+
+
+static const afw_value_double_t *
+impl_double_literal(afw_compile_parser_t *parser, afw_double_t d)
+{
+    if (isnan(d)) {
+        return (const afw_value_double_t *)afw_value_NaN;
+    }
+    if (isinf(d)) {
+        return (const afw_value_double_t *)((d > 0.0)
+            ? afw_value_infinity : afw_value_minus_infinity);
+    }
+    if (d == 0.0) {
+        return (const afw_value_double_t *)(signbit(d)
+            ? afw_value_minus_zero : afw_value_double_zero);
+    }
+    return (const afw_value_double_t *)
+        afw_compile_literal_double_create(d, parser->p, parser->xctx);
+}
+
+
+static const afw_value_string_t *
 impl_get_identifier(afw_compile_parser_t *parser)
 {
     afw_code_point_t cp;
     afw_size_t start_offset;
     afw_size_t save;
-    const afw_utf8_t *result;
 
     /* Scan for end of identifier. */
     afw_compile_save_cursor(start_offset);
@@ -1270,15 +1320,10 @@ impl_get_identifier(afw_compile_parser_t *parser)
         }
     }
 
-    /* Create string for identifier. */
-    result = afw_compile_get_string_literal(
+    return afw_compile_get_string_literal(
         parser,
         parser->full_source->s + start_offset,
         parser->cursor - start_offset);
-
-
-    /* Return result. */
-    return result;
 }
 
 
@@ -1351,44 +1396,54 @@ impl_parse_identifier(afw_compile_parser_t *parser)
     }
 
     /* Handle reserved identifier true. */
-    if (afw_utf8_equal_utf8_z(parser->token->identifier_name, "true")) {
+    if (afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(), "true")) {
         parser->token->type = afw_compile_token_type_boolean;
-        parser->token->boolean = true;
+        parser->token->boolean =
+            (const afw_value_boolean_t *)afw_boolean_v_true;
     }
 
     /* Handle reserved identifier false. */
-    else if (afw_utf8_equal_utf8_z(parser->token->identifier_name, "false")) {;
+    else if (afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(),
+        "false"))
+    {
         parser->token->type = afw_compile_token_type_boolean;
-        parser->token->boolean = false;
+        parser->token->boolean =
+            (const afw_value_boolean_t *)afw_boolean_v_false;
     }
 
     /* Handle reserved identifier null. */
-    else if (afw_utf8_equal_utf8_z(parser->token->identifier_name, "null")) {
+    else if (afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(),
+        "null"))
+    {
         parser->token->type = afw_compile_token_type_null;
         parser->token->null = NULL;
     }
 
     /* Handle reserved identifier undefined. */
-    else if (afw_utf8_equal_utf8_z(parser->token->identifier_name, "undefined"))
+    else if (afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(),
+        "undefined"))
     {
         parser->token->type = afw_compile_token_type_undefined;
     }
 
     /* Handle reserved identifier Infinity and INF (not in strict JSON). */
     else if (!parser->strict && (
-        afw_utf8_equal_utf8_z(parser->token->identifier_name, "Infinity") ||
-        afw_utf8_equal_utf8_z(parser->token->identifier_name, "INF")))
+        afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(),
+            "Infinity") ||
+        afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(), "INF")))
     {
         parser->token->type = afw_compile_token_type_number;
-        parser->token->number = parser->xctx->env->infinity;
+        parser->token->number =
+            (const afw_value_double_t *)afw_value_infinity;
     }
 
     /* Handle reserved identifier NaN (not in strict JSON). */
     else if (!parser->strict &&
-        afw_utf8_equal_utf8_z(parser->token->identifier_name, "NaN"))
+        afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(), "NaN"))
     {
         parser->token->type = afw_compile_token_type_number;
-        parser->token->number = parser->xctx->env->NaN;
+        parser->token->number =
+            (const afw_value_double_t *)afw_value_NaN;
     }
 }
 
@@ -2517,24 +2572,29 @@ afw_compile_lexical_parser_finish_and_release(
 
 
 
-const afw_utf8_t *
+const afw_value_string_t *
 afw_compile_get_string_literal(
     afw_compile_parser_t *parser,
     const afw_utf8_octet_t *s,
     afw_size_t len)
 {
-    const afw_utf8_t *result;
+    const afw_value_string_t *result;
+    const afw_utf8_t *utf8;
 
-    result = apr_hash_get(parser->shared->string_literals, s, len);
-    if (!result) {
-        result = afw_utf8_create(s, len,
-            parser->p, parser->xctx);
-        apr_hash_set(parser->shared->string_literals,
-            (const void *)result->s,
-            (apr_ssize_t)result->len,
-            (const void *)result);
+    if (len == 0) {
+        return &afw_self_v_a_empty_string;
     }
-
+    result = apr_hash_get(parser->shared->string_literals, s, len);
+    if (result) {
+        return result;
+    }
+    utf8 = afw_utf8_create(s, len, parser->p, parser->xctx);
+    result = (const afw_value_string_t *)
+        afw_compile_literal_string_create(utf8, parser->p, parser->xctx);
+    apr_hash_set(parser->shared->string_literals,
+        (const void *)utf8->s,
+        (apr_ssize_t)utf8->len,
+        (void *)result);
     return result;
 }
 
@@ -2543,7 +2603,10 @@ const afw_utf8_t*
 afw_compile_current_raw_token(
     afw_compile_parser_t* parser)
 {
-    return afw_compile_get_string_literal(parser,
+    const afw_value_string_t *v;
+
+    v = afw_compile_get_string_literal(parser,
         parser->full_source->s + parser->token->token_source_offset,
         parser->token->token_source_len);
+    return &v->internal;
 }

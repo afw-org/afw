@@ -85,8 +85,8 @@ impl_pragma_name_is(
     afw_compile_parser_t *parser,
     const afw_utf8_z_t *name_z)
 {
-    return parser->token->identifier_name &&
-        afw_utf8_equal_utf8_z(parser->token->identifier_name, name_z);
+    return afw_compile_token_identifier_name() &&
+        afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(), name_z);
 }
 
 

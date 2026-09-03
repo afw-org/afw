@@ -33,10 +33,8 @@ impl_function_definition_rethrow =
 static const afw_utf8_t *
 impl_copy_token_identifier(afw_compile_parser_t *parser)
 {
-    return afw_utf8_create(
-        parser->token->identifier_name->s,
-        parser->token->identifier_name->len,
-        parser->p, parser->xctx);
+    /* Interned compile-pool utf8; survives token reuse. */
+    return afw_compile_token_identifier_name();
 }
 
 
@@ -1025,7 +1023,7 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
     if (!afw_compile_token_is_unqualified_identifier()) {
         AFW_COMPILE_THROW_ERROR_Z("Expecting interface name");
     }
-    name = parser->token->identifier_name;
+    name = afw_compile_token_identifier_name();
     placeholder = afw_compile_script_type_reserve(parser, name);
 
     extends = NULL;
@@ -1114,7 +1112,7 @@ impl_parse_TypeStatement(afw_compile_parser_t *parser)
     if (!afw_compile_token_is_unqualified_identifier()) {
         AFW_COMPILE_THROW_ERROR_Z("Expecting type name");
     }
-    name = parser->token->identifier_name;
+    name = afw_compile_token_identifier_name();
     placeholder = afw_compile_script_type_reserve(parser, name);
 
     afw_compile_get_token();
@@ -1533,7 +1531,7 @@ impl_parse_IfStatement(afw_compile_parser_t *parser)
 
     afw_compile_get_token();
     if (afw_compile_token_is_unqualified_identifier()) {
-        if (afw_utf8_equal(parser->token->identifier_name, afw_s_else))
+        if (afw_utf8_equal(afw_compile_token_identifier_name(), afw_s_else))
         {
             otherwise = afw_compile_parse_Statement(parser, NULL);
         }
@@ -1974,7 +1972,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
                  * path; decompile of try expects argv[4] as symbol_reference).
                  */
                 cb.public.func = impl_parse_TryStatement_StatementList_cb;
-                cb.error_variable_name = parser->token->identifier_name;
+                cb.error_variable_name = afw_compile_token_identifier_name();
                 cb.contextual = afw_compile_create_contextual_to_cursor(
                     start_offset);
                 cb.symbol_reference = &argv[4];
@@ -2210,77 +2208,77 @@ afw_compile_parse_Statement(
     if (afw_compile_token_is(identifier) &&
         !parser->token->identifier_qualifier)
     {
-        if (afw_utf8_equal(parser->token->identifier_name,
+        if (afw_utf8_equal(afw_compile_token_identifier_name(),
             afw_s_let))
         {
             result = impl_parse_LetStatement(parser);
         }
-        else if (afw_utf8_equal(parser->token->identifier_name,
+        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
             afw_s_const))
         {
             result = impl_parse_ConstStatement(parser);
         }
-        else if (afw_utf8_equal(parser->token->identifier_name,
+        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
             afw_s_break))
         {
             result = impl_parse_BreakStatement(parser);
         }
-        else if (afw_utf8_equal(parser->token->identifier_name,
+        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
             afw_s_continue))
         {
             result = impl_parse_ContinueStatement(parser);
         }
-        else if (afw_utf8_equal(parser->token->identifier_name,
+        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
             afw_s_do))
         {
             result = impl_parse_DoWhileStatement(parser, NULL);
         }
-        else if (afw_utf8_equal(parser->token->identifier_name,
+        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
             afw_s_for))
         {
             result = impl_parse_ForStatement(parser, NULL);
         }
-        else if (afw_utf8_equal(parser->token->identifier_name,
+        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
             afw_s_if))
         {
             result = impl_parse_IfStatement(parser);
         }
-        else if (afw_utf8_equal(parser->token->identifier_name,
+        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
             afw_s_return))
         {
             result = impl_parse_ReturnStatement(parser);
         }
-        else if (afw_utf8_equal(parser->token->identifier_name,
+        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
             afw_s_switch))
         {
             result = impl_parse_SwitchStatement(parser);
         }
-        else if (afw_utf8_equal(parser->token->identifier_name,
+        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
             afw_s_throw))
         {
             result = impl_parse_ThrowStatement(parser);
         }
-        else if (afw_utf8_equal(parser->token->identifier_name,
+        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
             afw_s_try))
         {
             result = impl_parse_TryStatement(parser);
         }
-        else if (afw_utf8_equal(parser->token->identifier_name,
+        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
             afw_s_while))
         {
             result = impl_parse_WhileStatement(parser, NULL);
         }
-        else if (afw_utf8_equal(parser->token->identifier_name,
+        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
             afw_s_function))
         {
             result = impl_parse_FunctionStatement(parser);
         }
-        else if (afw_utf8_equal(parser->token->identifier_name,
+        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
             afw_s_interface))
         {
             result = impl_parse_InterfaceStatement(parser);
         }
-        else if (afw_utf8_equal(parser->token->identifier_name,
+        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
             afw_s_type))
         {
             result = impl_parse_TypeStatement(parser);

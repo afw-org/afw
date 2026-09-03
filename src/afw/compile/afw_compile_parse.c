@@ -130,7 +130,7 @@ afw_compile_parse_reference_create(
 
     result = NULL;
 
-    afw_compile_split_qualified_name(parser->token->string,
+    afw_compile_split_qualified_name(afw_compile_token_string(),
         &qualifier, &name, parser->xctx);
     if (qualifier.len == 0) {
         symbol = afw_compile_parse_get_symbol_entry(parser, &name);
