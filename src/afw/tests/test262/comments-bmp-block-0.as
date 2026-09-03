@@ -10,6 +10,11 @@
 //? differences: ...
 Adaptive Script stores UTF-8. This is Jeremy's BMP sweep via ES \\uXXXX
 (internally converted to UTF-8), split so valgrind can finish. i1 0..6.
+//? skip: true
+//? skipReason: ...
+FIXME: very slow after #277 (~14k nested eval<script> per file; the
+four files sequential made `afwdev test -j` ~6 min). Unskipped copy:
+src/afw/tests-extra/test262/ (`afwdev test -T src/afw/tests-extra/test262`).
 //? expect: success
 //? source: ...
 

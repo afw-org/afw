@@ -18,7 +18,10 @@ file count manageable.
 Comment BMP sweeps (`S7.4_A5` / `S7.4_A6`) stay as ES `\\uXXXX` over Jeremy's
 code-point grid (internally UTF-8). They are split into `comments-bmp-*.as`
 so valgrind can finish; `comments.as` keeps the other cases plus a
-supplementary-plane UTF-8 check.
+supplementary-plane UTF-8 check. Gate copies are **skipped** after #277
+(~14k nested `eval<script>` per file; four files sequential made
+`afwdev test -j` ~6 min). Unskipped copies:
+`src/afw/tests-extra/test262/` (`afwdev test -T src/afw/tests-extra/test262`).
 
 ## Why this suite exists
 
