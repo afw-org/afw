@@ -10,7 +10,6 @@
 #define __AFW_COMPILE_INTERNAL_H__
 
 #include "afw.h"
-#include <string.h>
 
 /**
  * @addtogroup afw_compile_internal
@@ -725,13 +724,6 @@ do { \
     (afw_compile_token_is_unqualified_identifier() && \
     (parser)->token->identifier_name == \
         (const afw_value_string_t *)(string_value))
-
-#define afw_compile_token_is_name_z(string_z) \
-    (afw_compile_token_is_unqualified_identifier() && \
-    (parser)->token->identifier_name == \
-        afw_compile_get_string_literal((parser), \
-            (const afw_utf8_octet_t *)(string_z), \
-            strlen(string_z)))
 
 #define afw_compile_is_at_eof() \
     (parser->last_octet_eof)
