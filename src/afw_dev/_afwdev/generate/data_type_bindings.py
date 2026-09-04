@@ -35,6 +35,11 @@
 #                 get_reference bumps the slice. Last release of the
 #                 slice releases containing; slice header leak until
 #                 alloc-pool free is trusted.
+#   compile_literal  Compile-pool scalar (integer/double/string
+#                 literals). get_reference / get_assignable_value
+#                 as-is. clone_unmanaged / clone_managed copy so a
+#                 result can outlive compiled_value. Compiler-only
+#                 create: afw_compile_literal_<id>_create().
 #   unmanaged     Pool lifetime (caller p / tracker). Scalar
 #                 get_reference and optional_release throw.
 #                 get_assignable_value promotes to managed in xctx->p.
@@ -101,6 +106,16 @@ def _clone_managed_fn(type_id):
 
 def _allocate_fn(type_id):
     return 'afw_value_' + type_id + '_allocate'
+
+
+def _wants_compile_literal(obj):
+    """Scalar literals the compiler mints (not process permanents)."""
+    return obj.get('_meta_', {}).get('objectId') in (
+        'integer', 'double', 'string')
+
+
+def _compile_literal_create_fn(type_id):
+    return 'afw_compile_literal_' + type_id + '_create'
 
 
 def _managed_free_size_expr(type_id, ctype, var='self'):
@@ -259,6 +274,18 @@ def write_h_section(fd, prefix, obj):
     fd.write(' */\n')
     fd.write(declare_data + '(afw_value_inf_t)\n')
     fd.write('afw_value_permanent_' + id + '_inf;\n')
+
+    if _wants_compile_literal(obj):
+        fd.write('\n/**\n')
+        fd.write(' * @brief Compile-unit literal inf for data type ' + id + '.\n')
+        fd.write(' *\n')
+        fd.write(' * Header lives in the compiled_value pool. get_reference /\n')
+        fd.write(' * get_assignable_value are as-is (no promote). clone copies\n')
+        fd.write(' * into dest p / xctx->p so a result can outlive the unit.\n')
+        fd.write(' * Compiler-only: ' + _compile_literal_create_fn(id) + '().\n')
+        fd.write(' */\n')
+        fd.write(declare_data + '(afw_value_inf_t)\n')
+        fd.write('afw_value_compile_literal_' + id + '_inf;\n')
 
     fd.write('\n/**\n')
     fd.write(' * @brief Macro to determine if data type is ' + id + '.\n')
@@ -572,6 +599,26 @@ def write_h_section(fd, prefix, obj):
         fd.write('    const afw_pool_t *p, afw_xctx_t *xctx);\n')
         fd.write('#define afw_value_create_unmanaged_' + id + ' ' +
                  _unmanaged_create_fn(id) + '\n')
+
+        if _wants_compile_literal(obj):
+            fd.write('\n/**\n')
+            fd.write(' * @brief Create a compile-unit ' + id +
+                     ' literal in p.\n')
+            fd.write(' * @param internal.\n')
+            fd.write(' * @param p compile pool (compiled_value).\n')
+            fd.write(' * @param xctx of caller.\n')
+            fd.write(' * @return compile_literal inf; as-is in slots; clone copies.\n')
+            fd.write(' *\n')
+            fd.write(' * Compiler-only. Do not use for eval temps (those stay\n')
+            fd.write(' * unmanaged and promote on get_assignable_value).\n')
+            if ctype in ('afw_utf8_t', 'afw_memory_t'):
+                fd.write(
+                    ' * Copies the utf8/memory header only, not the octets.\n')
+            fd.write(' */\n')
+            fd.write(declare + '(const afw_value_t *)\n')
+            fd.write(_compile_literal_create_fn(id) +
+                     '(' + return_type + ' internal,\n')
+            fd.write('    const afw_pool_t *p, afw_xctx_t *xctx);\n')
 
         fd.write('\n/**\n')
         fd.write(' * @brief Get property function for data type ' + id + ' value.\n')
@@ -1032,6 +1079,27 @@ def write_c_section(fd, prefix, obj):
         fd.write('#undef impl_afw_value_get_reference\n')
         fd.write('#undef impl_afw_value_get_assignable_value\n')
         fd.write('#undef AFW_VALUE_INF_ONLY\n')
+
+        if _wants_compile_literal(obj):
+            fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
+            fd.write('/* compile_literal ' + id + ': optional_release NULL; */\n')
+            fd.write('/* get_reference / get_assignable_value as-is; clone copies. */\n')
+            fd.write('#define AFW_IMPLEMENTATION_ID "compile_literal_' + id + '"\n')
+            fd.write('#define AFW_IMPLEMENTATION_INF_LABEL '
+                     'afw_value_compile_literal_' + id + '_inf\n')
+            fd.write('#define impl_afw_value_optional_release NULL\n')
+            fd.write('#define impl_afw_value_get_reference '
+                     'impl_afw_value_permanent_get_reference\n')
+            fd.write('#define impl_afw_value_get_assignable_value '
+                     'impl_afw_value_permanent_get_reference\n')
+            fd.write('#define AFW_VALUE_INF_ONLY 1\n')
+            fd.write('#include "afw_value_impl_declares.h"\n')
+            fd.write('#undef AFW_IMPLEMENTATION_ID\n')
+            fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')
+            fd.write('#undef impl_afw_value_optional_release\n')
+            fd.write('#undef impl_afw_value_get_reference\n')
+            fd.write('#undef impl_afw_value_get_assignable_value\n')
+            fd.write('#undef AFW_VALUE_INF_ONLY\n')
 
         if id in ('object', 'array'):
             fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
@@ -1574,6 +1642,31 @@ def write_c_section(fd, prefix, obj):
             fd.write('    v = afw_pool_calloc(p, sizeof(afw_value_' + id + '_t),\n')
             fd.write('        xctx);\n')
             fd.write('    v->inf = &afw_value_unmanaged_' + id + '_inf;\n')
+            if direct_return == True:
+                fd.write('    v->internal = internal;\n')
+            else:
+                fd.write('    if (internal) {\n')
+                fd.write('        memcpy(&v->internal, internal, '
+                         'sizeof(' + ctype + '));\n')
+                fd.write('    }\n')
+            fd.write('    return &v->pub;\n')
+            fd.write('}\n')
+
+        if _wants_compile_literal(obj):
+            fd.write('\n/* Compiler-only: compile-unit ' + id +
+                     ' literal in p. */\n')
+            fd.write(define + '(const afw_value_t *)\n')
+            fd.write(_compile_literal_create_fn(id) +
+                     '(' + return_type + ' internal,\n')
+            fd.write('    const afw_pool_t *p, afw_xctx_t *xctx)\n')
+            fd.write('{\n')
+            fd.write('    afw_value_' + id + '_t *v;\n')
+            fd.write('\n')
+            fd.write('    v = afw_pool_calloc(p, sizeof(afw_value_' + id +
+                     '_t),\n')
+            fd.write('        xctx);\n')
+            fd.write('    v->inf = &afw_value_compile_literal_' + id +
+                     '_inf;\n')
             if direct_return == True:
                 fd.write('    v->internal = internal;\n')
             else:

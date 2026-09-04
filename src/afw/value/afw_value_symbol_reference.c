@@ -112,7 +112,7 @@ impl_afw_value_get_evaluated_meta(
 
     meta = afw_value_internal_create_meta_object_self(
         &self->pub, p, xctx);
-    meta->key = self->symbol->name;
+    meta->key = &self->symbol->name->internal;
     if (afw_value_is_object(meta->evaluated_value)) {
         meta->additional =
             (((const afw_value_object_t *)meta->evaluated_value)->
@@ -140,7 +140,7 @@ impl_afw_value_produce_compiler_listing(
         xctx);
     afw_writer_write_z(writer, " ", xctx);
     afw_value_compiler_listing_name_and_type(writer,
-        self->symbol->name, &self->symbol->type, xctx);
+        &self->symbol->name->internal, &self->symbol->type, xctx);
     afw_writer_write_z(writer, " (block=", xctx);
     afw_writer_write_size(writer, self->symbol->parent_block->number, xctx);
     afw_writer_write_z(writer, " depth=", xctx);
@@ -162,7 +162,7 @@ impl_afw_value_decompile(
     afw_xctx_t *xctx)
 {
 
-    afw_writer_write_utf8(writer, self->symbol->name, xctx);
+    afw_writer_write_utf8(writer, &self->symbol->name->internal, xctx);
 }
 
 

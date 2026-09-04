@@ -37989,6 +37989,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__A_reusable_interned_string_value_ \
+    "A reusable interned string value."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__A_reusable_interned_string_value_ */
+#define afw_s_zz__A_reusable_interned_string_value_ \
+    (&afw_self_v_zz__A_reusable_interned_string_value_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__A_reusable_interned_string_value_ */
+#define afw_self_s_zz__A_reusable_interned_string_value_ \
+    (afw_self_v_zz__A_reusable_interned_string_value_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__A_reusable_interned_string_value_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__A_reusable_interned_string_value_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__A_reusable_interned_string_value_ */
+#define afw_z_zz__A_reusable_interned_string_value_ \
+    (afw_self_v_zz__A_reusable_interned_string_value_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__A_reusable_interned_string_value_ */
+#define afw_v_zz__A_reusable_interned_string_value_ \
+    (&afw_self_v_zz__A_reusable_interned_string_value_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__A_rfc822Name_value_ \
     "A rfc822Name value."
 

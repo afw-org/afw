@@ -106,6 +106,17 @@ AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_string_inf;
 
 /**
+ * @brief Compile-unit literal inf for data type string.
+ *
+ * Header lives in the compiled_value pool. get_reference /
+ * get_assignable_value are as-is (no promote). clone copies
+ * into dest p / xctx->p so a result can outlive the unit.
+ * Compiler-only: afw_compile_literal_string_create().
+ */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_compile_literal_string_inf;
+
+/**
  * @brief Macro to determine if data type is string.
  * @param A_DATA_TYPE to test.
  * @return boolean result.
@@ -334,6 +345,21 @@ AFW_DECLARE(const afw_value_t *)
 afw_value_string_create(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 #define afw_value_create_unmanaged_string afw_value_string_create
+
+/**
+ * @brief Create a compile-unit string literal in p.
+ * @param internal.
+ * @param p compile pool (compiled_value).
+ * @param xctx of caller.
+ * @return compile_literal inf; as-is in slots; clone copies.
+ *
+ * Compiler-only. Do not use for eval temps (those stay
+ * unmanaged and promote on get_assignable_value).
+ * Copies the utf8/memory header only, not the octets.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_compile_literal_string_create(const afw_utf8_t * internal,
+    const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
  * @brief Get property function for data type string value.

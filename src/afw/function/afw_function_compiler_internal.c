@@ -44,7 +44,7 @@ impl_assign_value(
     afw_xctx_t *xctx);
 
 
-static inline const afw_utf8_t *
+static inline const afw_value_t *
 impl_optional_loop_label(afw_function_execute_t *x, afw_size_t n)
 {
     const afw_value_t *v;
@@ -57,14 +57,14 @@ impl_optional_loop_label(afw_function_execute_t *x, afw_size_t n)
         v = afw_function_evaluate_required_parameter(x, n,
             afw_data_type_string);
     }
-    return &((const afw_value_string_t *)v)->internal;
+    return v;
 }
 
 
 static inline afw_boolean_t
-impl_loop_is_flow_target(const afw_utf8_t *this_label, afw_xctx_t *xctx)
+impl_loop_is_flow_target(const afw_value_t *this_label, afw_xctx_t *xctx)
 {
-    const afw_utf8_t *target;
+    const afw_value_t *target;
 
     if (!afw_xctx_statement_flow_is_type(break, xctx) &&
         !afw_xctx_statement_flow_is_type(continue, xctx))
@@ -75,12 +75,23 @@ impl_loop_is_flow_target(const afw_utf8_t *this_label, afw_xctx_t *xctx)
     if (!target) {
         return true;
     }
-    return this_label && afw_utf8_equal(this_label, target);
+    if (!this_label) {
+        return false;
+    }
+    if (this_label == target) {
+        return true;
+    }
+    if (afw_value_is_string(this_label) && afw_value_is_string(target)) {
+        return afw_utf8_equal(
+            &((const afw_value_string_t *)this_label)->internal,
+            &((const afw_value_string_t *)target)->internal);
+    }
+    return false;
 }
 
 
 static inline void
-impl_loop_consume_if_target(const afw_utf8_t *this_label, afw_xctx_t *xctx)
+impl_loop_consume_if_target(const afw_value_t *this_label, afw_xctx_t *xctx)
 {
     if (impl_loop_is_flow_target(this_label, xctx)) {
         afw_xctx_statement_flow_reset_break_and_continue(xctx);
@@ -90,7 +101,7 @@ impl_loop_consume_if_target(const afw_utf8_t *this_label, afw_xctx_t *xctx)
 
 /* True if this loop should stop iterating (propagate or consume break). */
 static inline afw_boolean_t
-impl_loop_should_exit(const afw_utf8_t *this_label, afw_xctx_t *xctx)
+impl_loop_should_exit(const afw_value_t *this_label, afw_xctx_t *xctx)
 {
     if (afw_xctx_statement_flow_is_type(return, xctx) ||
         afw_xctx_statement_flow_is_type(rethrow, xctx))
@@ -458,12 +469,10 @@ impl_object_destructure(
         else {
             if (resolved_names) {
                 resolved_names[i] =
-                    afw_value_create_unmanaged_string(
-                        ap->symbol_reference->symbol->name, p, xctx);
+                    &ap->symbol_reference->symbol->name->pub;
             }
             v = afw_object_get_property(object,
-                afw_value_create_unmanaged_string(
-                    ap->symbol_reference->symbol->name, p, xctx), xctx);
+                &ap->symbol_reference->symbol->name->pub, xctx);
             if (!v) {
                 v = impl_evaluate_pattern_default(
                     ap->default_value, p, xctx);
@@ -551,7 +560,7 @@ impl_assignment_target(
         {
             AFW_THROW_ERROR_FZ(read_only, xctx,
                 "Cannot assign to const variable \"" AFW_UTF8_FMT "\"",
-                AFW_UTF8_FMT_ARG(symbol->name));
+                AFW_UTF8_FMT_ARG(&symbol->name->internal));
         }
         if (symbol->type.kind != afw_value_type_kind_data_type ||
             symbol->type.data_type != afw_data_type_unevaluated)
@@ -644,7 +653,7 @@ impl_assign_value(
         {
             AFW_THROW_ERROR_FZ(read_only, xctx,
                 "Cannot assign to const variable \"" AFW_UTF8_FMT "\"",
-                AFW_UTF8_FMT_ARG(t->symbol->name));
+                AFW_UTF8_FMT_ARG(&t->symbol->name->internal));
         }
         /*
          * Pattern leaves and object-destructure shorthand bind through bare
@@ -1068,7 +1077,7 @@ afw_function_execute_do_while(
     const afw_value_t *result;
     const afw_value_boolean_t *condition;
 
-    const afw_utf8_t *this_label;
+    const afw_value_t *this_label;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
@@ -1160,7 +1169,7 @@ afw_function_execute_for(
     const afw_value_t *increment;
     const afw_value_t *body;
 
-    const afw_utf8_t *this_label;
+    const afw_value_t *this_label;
     afw_boolean_t clone_each;
 
     previous_iterator_scope = NULL;
@@ -1309,7 +1318,7 @@ afw_function_execute_for_of(
     afw_compile_internal_assignment_type_t assignment_type;
     afw_compile_internal_assignment_type_t head_type;
     afw_iterator_t iterator;
-    const afw_utf8_t *this_label;
+    const afw_value_t *this_label;
     afw_boolean_t clone_each;
     afw_boolean_t first;
 
@@ -2146,7 +2155,8 @@ afw_function_execute_try(
                         for (esym = block->first_entry; esym;
                             esym = esym->next_entry)
                         {
-                            if (afw_utf8_equal(esym->name, err_name)) {
+                            if (afw_utf8_equal(&esym->name->internal,
+                                err_name)) {
                                 err_target =
                                     (const afw_value_t *)
                                     afw_value_symbol_reference_create(
@@ -2310,7 +2320,7 @@ afw_function_execute_while(
     const afw_value_t *result;
     const afw_value_boolean_t *condition;
 
-    const afw_utf8_t *this_label;
+    const afw_value_t *this_label;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);

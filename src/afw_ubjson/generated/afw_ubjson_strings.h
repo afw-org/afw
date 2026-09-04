@@ -79,5 +79,13 @@ extern const afw_value_string_t \
     (&afw_ubjson_self_v_indirect.pub)
 
 
+/**
+ * @brief NULL-terminated list of reusable interned string values.
+ *
+ * For `afw_environment_register_string_literals()`.
+ */
+extern const afw_value_string_t * const *
+afw_ubjson_string_literals_get(void);
+
 
 #endif /* __AFW_UBJSON_STRINGS_H__ */

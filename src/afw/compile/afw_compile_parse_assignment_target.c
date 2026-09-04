@@ -197,8 +197,9 @@ afw_compile_parse_AssignmentProperty(
 {
     afw_compile_assignment_property_t *ap;
     const afw_compile_value_contextual_t *contextual;
-    const afw_utf8_t *identifier;
+    const afw_value_string_t *identifier;
     const afw_value_t *name_expr;
+    const afw_value_t *name_v;
 
     ap = afw_pool_calloc_type(parser->p,
         afw_compile_assignment_property_t, parser->xctx);
@@ -226,15 +227,14 @@ afw_compile_parse_AssignmentProperty(
 
     /* String property name: "name" : AssignmentElement */
     if (afw_compile_token_is(utf8_string)) {
-        identifier = parser->token->string;
+        name_v = afw_compile_token_string_value();
         afw_compile_get_token();
         if (!afw_compile_token_is(colon)) {
             AFW_COMPILE_THROW_ERROR_Z(
                 "String property name in destructure requires ':' binding");
         }
         ap->is_rename = true;
-        ap->property_name = afw_value_create_unmanaged_string(
-            identifier, parser->p, parser->xctx);
+        ap->property_name = name_v;
         ap->property_name_expr = NULL;
         ap->property_name_was_string = true;
         ap->assignment_element = afw_compile_parse_AssignmentElement(
@@ -247,13 +247,13 @@ afw_compile_parse_AssignmentProperty(
         AFW_COMPILE_THROW_ERROR_Z("Expecting PropertyName");
     }
     identifier = parser->token->identifier_name;
+    name_v = &identifier->pub;
 
     /* ( PropertyName ( ':' AssignmentElement )? ) */
     afw_compile_get_token();
     if (afw_compile_token_is(colon)) {
         ap->is_rename = true;
-        ap->property_name = afw_value_create_unmanaged_string(
-            identifier, parser->p, parser->xctx);
+        ap->property_name = name_v;
         ap->property_name_expr = NULL;
         ap->property_name_was_string = false;
         ap->assignment_element = afw_compile_parse_AssignmentElement(
@@ -357,7 +357,7 @@ afw_compile_parse_AssignmentBindingTarget(
             AFW_COMPILE_THROW_ERROR_Z("Expecting VariableName");
         }
 
-        variable_name = parser->token->identifier_name;
+        variable_name = afw_compile_token_identifier_name();
         if (afw_compile_is_reserved_word(parser, variable_name)) {
             AFW_COMPILE_THROW_ERROR_Z(
                 "Variable name can not be a reserved word");
@@ -373,7 +373,7 @@ afw_compile_parse_AssignmentBindingTarget(
         *value = (const afw_value_t *)
             afw_compile_parse_variable_reference_create(
                 parser, contextual, assignment_type,
-                variable_name, *type);
+                afw_compile_intern_utf8_string(variable_name), *type);
     }
 
     else {

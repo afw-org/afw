@@ -120,3 +120,22 @@ afw_command_self_v_indirect = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_indirect)
 };
+
+static const afw_value_string_t * impl_string_literals[] = {
+    &afw_command_self_v_METHOD,
+    &afw_command_self_v_SERVER_PROTOCOL,
+    &afw_command_self_v_URI,
+    &afw_command_self_v_afw_command,
+    &afw_command_self_v_afw_command_dash_x,
+    &afw_command_self_v_afw_command_interactive,
+    &afw_command_self_v_afw_command_local_mode,
+    &afw_command_self_v_default,
+    &afw_command_self_v_indirect,
+    NULL
+};
+
+const afw_value_string_t * const *
+afw_command_string_literals_get(void)
+{
+    return impl_string_literals;
+}

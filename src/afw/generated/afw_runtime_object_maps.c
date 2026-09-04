@@ -4499,6 +4499,42 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptiveSingleton_);
 
 
+/* Runtime object map properties for _AdaptiveStringLiteral_ objects. */
+
+static const afw_runtime_object_map_property_t
+impl_properties__AdaptiveStringLiteral_[] = {
+    {
+        afw_v_key,
+        offsetof(afw_environment_default_register_additional_t, key),
+        -1,
+        &afw_data_type_string_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_indirect,
+        afw_runtime_value_accessor_indirect
+    }
+};
+
+static const afw_runtime_object_map_t
+impl_runtime_object_map__AdaptiveStringLiteral_ = {
+    &afw_self_s__AdaptiveStringLiteral_,
+    1,
+    &impl_properties__AdaptiveStringLiteral_[0]
+};
+
+static const afw_runtime_object_type_meta_t
+impl_runtime_meta__AdaptiveStringLiteral_ = {
+    &afw_self_s__AdaptiveStringLiteral_,
+    &impl_runtime_object_map__AdaptiveStringLiteral_,
+    -1,
+    true,
+};
+
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveStringLiteral_, 
+    impl_runtime_meta__AdaptiveStringLiteral_);
+
+
 /* Runtime object map properties for _AdaptiveSystemInfo_ objects. */
 
 static const afw_runtime_object_type_meta_t
@@ -4782,6 +4818,7 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveServiceType_,
     &afw_runtime_inf__AdaptiveService_,
     &afw_runtime_inf__AdaptiveSingleton_,
+    &afw_runtime_inf__AdaptiveStringLiteral_,
     &afw_runtime_inf__AdaptiveSystemInfo_,
     &afw_runtime_inf__AdaptiveTag_,
     &afw_runtime_inf__AdaptiveTemplatePropertiesObjects_,

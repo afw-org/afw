@@ -78,3 +78,22 @@ afw_yaml_self_v_registers = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_YAML_Q_registers)
 };
+
+static const afw_value_string_t * impl_string_literals[] = {
+    &afw_yaml_self_v__AdaptiveManifest_,
+    &afw_yaml_self_v_afw_yaml,
+    &afw_yaml_self_v_brief,
+    &afw_yaml_self_v_default,
+    &afw_yaml_self_v_description,
+    &afw_yaml_self_v_extensionId,
+    &afw_yaml_self_v_indirect,
+    &afw_yaml_self_v_modulePath,
+    &afw_yaml_self_v_registers,
+    NULL
+};
+
+const afw_value_string_t * const *
+afw_yaml_string_literals_get(void)
+{
+    return impl_string_literals;
+}

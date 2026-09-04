@@ -261,5 +261,13 @@ extern const afw_value_string_t \
     (&afw_yaml_self_v_registers.pub)
 
 
+/**
+ * @brief NULL-terminated list of reusable interned string values.
+ *
+ * For `afw_environment_register_string_literals()`.
+ */
+extern const afw_value_string_t * const *
+afw_yaml_string_literals_get(void);
+
 
 #endif /* __AFW_YAML_STRINGS_H__ */

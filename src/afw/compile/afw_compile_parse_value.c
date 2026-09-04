@@ -14,7 +14,6 @@
 #include "afw_internal.h"
 
 
-
 /*ebnf>>>
  *
  *# Expression must produce a value of data type array.
@@ -423,21 +422,19 @@ afw_compile_parse_Object(
                 if (afw_compile_token_is(utf8_string) &&
                     parser->token->string_quote_character == '"')
                 {
-                    parser->property_name = afw_value_create_unmanaged_string(
-                        parser->token->string, parser->p, parser->xctx);
+                    parser->property_name = afw_compile_token_string_value();
                 }
             }
 
             else if (afw_compile_token_is(utf8_string)) {
-                parser->property_name = afw_value_create_unmanaged_string(
-                    parser->token->string, parser->p, parser->xctx);
+                parser->property_name = afw_compile_token_string_value();
             }
 
             else if (afw_compile_token_is(identifier) &&
                 !parser->token->identifier_qualifier)
             {
-                parser->property_name = afw_value_create_unmanaged_string(
-                    parser->token->identifier_name, parser->p, parser->xctx);
+                parser->property_name =
+                    afw_compile_token_identifier_name_value();
             }
 
             /*
@@ -735,26 +732,19 @@ afw_compile_parse_Json(afw_compile_parser_t *parser)
         break;
 
     case afw_compile_token_type_boolean:
-        value = (parser->token->boolean)
-            ? afw_boolean_v_true
-            : afw_boolean_v_false;
+        value = afw_compile_token_boolean_value();
         break;
 
     case afw_compile_token_type_integer:
-        value = afw_value_create_unmanaged_integer(
-            parser->token->integer,
-            parser->p, parser->xctx);
+        value = afw_compile_token_integer_value();
         break;
 
     case afw_compile_token_type_number:
-        value = afw_value_create_unmanaged_double(
-            parser->token->number,
-            parser->p, parser->xctx);
+        value = afw_compile_token_number_value();
         break;
 
     case afw_compile_token_type_utf8_string:
-        value = afw_value_create_unmanaged_string(parser->token->string,
-            parser->p, parser->xctx);
+        value = afw_compile_token_string_value();
         break;
 
     case afw_compile_token_type_null:
@@ -824,29 +814,22 @@ afw_compile_parse_Literal(
 
     case afw_compile_token_type_boolean:
         matches_production = true;
-        value = (parser->token->boolean)
-            ? afw_boolean_v_true
-            : afw_boolean_v_false;
+        value = afw_compile_token_boolean_value();
         break;
 
     case afw_compile_token_type_integer:
         matches_production = true;
-        value = afw_value_create_unmanaged_integer(
-            parser->token->integer,
-            parser->p, parser->xctx);
+        value = afw_compile_token_integer_value();
         break;
 
     case afw_compile_token_type_number:
         matches_production = true;
-        value = afw_value_create_unmanaged_double(
-            parser->token->number,
-            parser->p, parser->xctx);
+        value = afw_compile_token_number_value();
         break;
 
     case afw_compile_token_type_utf8_string:
         matches_production = true;
-        value = afw_value_create_unmanaged_string(parser->token->string,
-            parser->p, parser->xctx);
+        value = afw_compile_token_string_value();
         break;
 
     case afw_compile_token_type_null:

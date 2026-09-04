@@ -497,6 +497,12 @@ AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_NaN;
 
 AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_zero;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_minus_zero;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_integer_max;
 
 AFW_DECLARE_CONST_DATA(afw_value_t *)
@@ -1658,7 +1664,7 @@ afw_value_assignment_target_create(
 AFW_DECLARE(const afw_value_t *)
 afw_value_script_type_declaration_create(
     const afw_compile_value_contextual_t *contextual,
-    const afw_utf8_t *name,
+    const afw_value_string_t *name,
     const afw_value_type_t *type,
     afw_boolean_t is_interface,
     const afw_pool_t *p,

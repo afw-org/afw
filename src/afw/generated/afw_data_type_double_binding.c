@@ -137,6 +137,23 @@ impl_afw_value_get_assignable_value(
 #undef impl_afw_value_get_assignable_value
 #undef AFW_VALUE_INF_ONLY
 
+/* Declares and rti/inf defines for interface afw_value */
+/* compile_literal double: optional_release NULL; */
+/* get_reference / get_assignable_value as-is; clone copies. */
+#define AFW_IMPLEMENTATION_ID "compile_literal_double"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_compile_literal_double_inf
+#define impl_afw_value_optional_release NULL
+#define impl_afw_value_get_reference impl_afw_value_permanent_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_permanent_get_reference
+#define AFW_VALUE_INF_ONLY 1
+#include "afw_value_impl_declares.h"
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef impl_afw_value_optional_release
+#undef impl_afw_value_get_reference
+#undef impl_afw_value_get_assignable_value
+#undef AFW_VALUE_INF_ONLY
+
 static const afw_value_string_t
 impl_data_type_double_id_value = {
     {&afw_value_permanent_string_inf},
@@ -326,6 +343,20 @@ afw_value_double_create(double internal,
     v = afw_pool_calloc(p, sizeof(afw_value_double_t),
         xctx);
     v->inf = &afw_value_unmanaged_double_inf;
+    v->internal = internal;
+    return &v->pub;
+}
+
+/* Compiler-only: compile-unit double literal in p. */
+AFW_DEFINE(const afw_value_t *)
+afw_compile_literal_double_create(double internal,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_value_double_t *v;
+
+    v = afw_pool_calloc(p, sizeof(afw_value_double_t),
+        xctx);
+    v->inf = &afw_value_compile_literal_double_inf;
     v->internal = internal;
     return &v->pub;
 }

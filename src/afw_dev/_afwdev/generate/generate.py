@@ -204,6 +204,12 @@ def generated_c(options):
             fd.write('\n')
             fd.write('    /* Register object maps. */\n')
             fd.write('    ' + options['prefix'] + 'register_runtime_object_maps(xctx);\n')
+        if options['strings']:
+            fd.write('\n')
+            fd.write('    /* Register reusable interned strings. */\n')
+            fd.write('    afw_environment_register_string_literals(\n')
+            fd.write('        ' + options['prefix'] +
+                     'string_literals_get(), xctx);\n')
         if options['const_objects']:
             fd.write('\n')
             fd.write('    /* Register const runtime objects. */\n')

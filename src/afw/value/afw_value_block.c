@@ -392,7 +392,7 @@ impl_afw_value_produce_compiler_listing(
                 xctx);
             afw_writer_write_z(writer, " ", xctx);
             afw_value_compiler_listing_name_and_type(writer,
-                symbol->name, &symbol->type, xctx);
+                &symbol->name->internal, &symbol->type, xctx);
             afw_writer_write_eol(writer, xctx);
         }
         afw_writer_decrement_indent(writer, xctx);

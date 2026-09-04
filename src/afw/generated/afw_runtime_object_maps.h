@@ -693,6 +693,12 @@ AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveSingleton_;
 
 /**
+ * @brief Runtime object inf for object type _AdaptiveStringLiteral_
+ */
+AFW_DECLARE_CONST_DATA(afw_object_inf_t)
+afw_runtime_inf__AdaptiveStringLiteral_;
+
+/**
  * @brief Runtime object inf for object type _AdaptiveSystemInfo_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)

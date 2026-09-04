@@ -43,10 +43,10 @@ impl_compiler_internal_full_name(afw_compile_parser_t *parser)
             "Internal error: expecting pound_identifier");
     }
 
-    if (parser->token->identifier) {
-        return parser->token->identifier;
+    if (afw_compile_token_identifier()) {
+        return afw_compile_token_identifier();
     }
-    return parser->token->identifier_name;
+    return afw_compile_token_identifier_name();
 }
 
 
@@ -79,8 +79,8 @@ impl_compiler_internal_name_is(
     afw_compile_parser_t *parser,
     const afw_utf8_z_t *name_z)
 {
-    return parser->token->identifier_name &&
-        afw_utf8_equal_utf8_z(parser->token->identifier_name, name_z);
+    return afw_compile_token_identifier_name() &&
+        afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(), name_z);
 }
 
 
@@ -302,9 +302,10 @@ impl_parse_compiler_internal_assignment_target(afw_compile_parser_t *parser)
      */
     afw_compile_get_token();
     if (afw_compile_token_is(utf8_string)) {
-        variable_name = parser->token->string;
+        variable_name = afw_compile_token_string();
         symbol_reference = afw_compile_parse_variable_reference_create(
-            parser, contextual, assignment_type, variable_name, NULL);
+            parser, contextual, assignment_type,
+            afw_compile_intern_utf8_string(variable_name), NULL);
         target = afw_pool_calloc_type(parser->p,
             afw_compile_assignment_target_t, parser->xctx);
         target->assignment_type = assignment_type;
@@ -345,7 +346,6 @@ impl_parse_compiler_internal_type(afw_compile_parser_t *parser)
 {
     const afw_compile_value_contextual_t *contextual;
     const afw_value_t *name_value;
-    const afw_utf8_t *name;
     const afw_value_type_t *type;
     afw_value_type_t *placeholder;
     afw_size_t start_offset;
@@ -362,8 +362,8 @@ impl_parse_compiler_internal_type(afw_compile_parser_t *parser)
     if (!afw_value_is_string(name_value)) {
         AFW_COMPILE_THROW_ERROR_Z("#type name must be a string");
     }
-    name = &((const afw_value_string_t *)name_value)->internal;
-    placeholder = afw_compile_script_type_reserve(parser, name);
+    placeholder = afw_compile_script_type_reserve(parser,
+        (const afw_value_string_t *)name_value);
 
     afw_compile_get_token();
     if (!afw_compile_token_is(comma)) {
@@ -380,7 +380,8 @@ impl_parse_compiler_internal_type(afw_compile_parser_t *parser)
     }
 
     return afw_value_script_type_declaration_create(
-        contextual, name, type, false, parser->p, parser->xctx);
+        contextual, (const afw_value_string_t *)name_value, type, false,
+        parser->p, parser->xctx);
 }
 
 
@@ -422,7 +423,8 @@ impl_parse_compiler_internal_interface(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("#interface name must be a string");
     }
     name = &((const afw_value_string_t *)name_value)->internal;
-    placeholder = afw_compile_script_type_reserve(parser, name);
+    placeholder = afw_compile_script_type_reserve(parser,
+        (const afw_value_string_t *)name_value);
 
     afw_compile_get_token();
     if (!afw_compile_token_is(comma)) {
@@ -481,7 +483,8 @@ impl_parse_compiler_internal_interface(afw_compile_parser_t *parser)
     afw_compile_script_types_resolve(parser);
 
     return afw_value_script_type_declaration_create(
-        contextual, name, type, true, parser->p, parser->xctx);
+        contextual, (const afw_value_string_t *)name_value, type, true,
+        parser->p, parser->xctx);
 }
 
 
@@ -733,14 +736,14 @@ impl_parse_compiler_internal_script_function(afw_compile_parser_t *parser)
         if (is_identifier_name || afw_compile_token_is(utf8_string)) {
             arg_source_offset = parser->token->token_source_offset;
             if (is_identifier_name) {
-                param_name = parser->token->identifier_name;
+                param_name = afw_compile_token_identifier_name();
                 if (afw_compile_is_reserved_word(parser, param_name)) {
                     AFW_COMPILE_THROW_ERROR_Z(
                         "Parameter name can not be a reserved word");
                 }
             }
             else {
-                param_name = parser->token->string;
+                param_name = afw_compile_token_string();
             }
 
             /*
@@ -766,10 +769,10 @@ impl_parse_compiler_internal_script_function(afw_compile_parser_t *parser)
                 }
                 param = afw_pool_calloc_type(parser->p,
                     afw_value_script_function_parameter_t, parser->xctx);
-                param->name = param_name;
+                param->name = afw_compile_intern_utf8_string(param_name);
                 param->is_rest = is_rest;
                 symbol = afw_compile_parse_add_symbol_entry(parser,
-                    param_name);
+                    param->name);
                 symbol->symbol_type = afw_value_block_symbol_type_parameter;
                 param->symbol = symbol;
 

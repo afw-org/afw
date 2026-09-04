@@ -36805,5 +36805,13 @@ extern const afw_value_integer_t \
     (&afw_components_integer_self_v_zero.pub)
 
 
+/**
+ * @brief NULL-terminated list of reusable interned string values.
+ *
+ * For `afw_environment_register_string_literals()`.
+ */
+extern const afw_value_string_t * const *
+afw_components_string_literals_get(void);
+
 
 #endif /* __AFW_COMPONENTS_STRINGS_H__ */

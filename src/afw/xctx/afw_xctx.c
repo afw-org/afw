@@ -183,7 +183,7 @@ afw_xctx_scope_symbol_get_value_address(
         AFW_THROW_ERROR_FZ(general, xctx,
             "symbol " AFW_UTF8_FMT_Q
             " not found in current scope chain",
-            AFW_UTF8_FMT_ARG(symbol->name));
+            AFW_UTF8_FMT_ARG(&symbol->name->internal));
     }
 
     if (symbol->index >= scope->block->symbol_count) {
@@ -191,7 +191,7 @@ afw_xctx_scope_symbol_get_value_address(
             "symbol " AFW_UTF8_FMT_Q
             " index " AFW_SIZE_T_FMT
             " is out of range for scope",
-            AFW_UTF8_FMT_ARG(symbol->name), symbol->index);
+            AFW_UTF8_FMT_ARG(&symbol->name->internal), symbol->index);
     }
 
     return (const afw_value_t **)&scope->symbol_values[symbol->index];   
@@ -216,7 +216,7 @@ afw_xctx_scope_symbol_get_value_address_by_name(
              symbol;
              symbol = symbol->next_entry)
         {
-            if (afw_utf8_equal(symbol_name, symbol->name)) {
+            if (afw_utf8_equal(symbol_name, &symbol->name->internal)) {
                 return (const afw_value_t **)
                 &scope->symbol_values[symbol->index];
             }

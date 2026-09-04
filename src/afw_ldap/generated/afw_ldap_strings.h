@@ -3219,5 +3219,13 @@ extern const afw_value_boolean_t \
     (&afw_ldap_boolean_self_v_true.pub)
 
 
+/**
+ * @brief NULL-terminated list of reusable interned string values.
+ *
+ * For `afw_environment_register_string_literals()`.
+ */
+extern const afw_value_string_t * const *
+afw_ldap_string_literals_get(void);
+
 
 #endif /* __AFW_LDAP_STRINGS_H__ */

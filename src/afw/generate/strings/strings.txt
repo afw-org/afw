@@ -821,3 +821,17 @@ numeric
 args
 cwd
 platform
+
+# Environment registry type string_literal
+string_literal
+stringLiteral
+_AdaptiveStringLiteral_
+
+# Compile pragma identifiers (#pragma ...)
+noTypeCheck
+typeCheck
+typeCheckCompileOnly
+strict
+noImplicitAny
+strictNullChecks
+noOptimize

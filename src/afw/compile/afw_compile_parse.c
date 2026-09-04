@@ -130,10 +130,11 @@ afw_compile_parse_reference_create(
 
     result = NULL;
 
-    afw_compile_split_qualified_name(parser->token->string,
+    afw_compile_split_qualified_name(afw_compile_token_string(),
         &qualifier, &name, parser->xctx);
     if (qualifier.len == 0) {
-        symbol = afw_compile_parse_get_symbol_entry(parser, &name);
+        symbol = afw_compile_parse_get_symbol_entry(parser,
+            afw_compile_intern_utf8_string(&name));
         if (symbol) {
             result = afw_value_symbol_reference_create(
                 contextual, symbol, parser->p, parser->xctx);
@@ -260,7 +261,7 @@ afw_compile_parse_variable_reference_create(
     afw_compile_parser_t *parser,
     const afw_compile_value_contextual_t *contextual,
     afw_compile_internal_assignment_type_t assignment_type,
-    const afw_utf8_t *identifier,
+    const afw_value_string_t *identifier,
     const afw_value_type_t *type)
 {
     afw_value_block_symbol_t *symbol;
@@ -291,7 +292,7 @@ afw_compile_parse_variable_reference_create(
         if (!symbol) {
             AFW_COMPILE_THROW_ERROR_FZ(
                 "Variable " AFW_UTF8_FMT_Q " is not declared",
-                AFW_UTF8_FMT_ARG(identifier));
+                AFW_UTF8_FMT_ARG(&identifier->internal));
         }
     }
     else {
@@ -299,7 +300,7 @@ afw_compile_parse_variable_reference_create(
         if (!symbol) {
             AFW_COMPILE_THROW_ERROR_FZ(
                 "Variable " AFW_UTF8_FMT_Q " is not declared",
-                AFW_UTF8_FMT_ARG(identifier));
+                AFW_UTF8_FMT_ARG(&identifier->internal));
         }
     }
 
@@ -313,7 +314,7 @@ afw_compile_parse_variable_reference_create(
 afw_value_block_symbol_t *
 afw_compile_parse_get_symbol_entry(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *name)
+    const afw_value_string_t *name)
 {
     afw_value_block_t *block;
     afw_value_block_symbol_t *entry;
@@ -324,7 +325,9 @@ afw_compile_parse_get_symbol_entry(
     {
         for (entry = block->first_entry; entry; entry = entry->next_entry)
         {
-            if (afw_utf8_equal(entry->name, name)) {
+            if (entry->name == name ||
+                afw_utf8_equal(&entry->name->internal, &name->internal))
+            {
                 return entry;
             }
         }
@@ -338,7 +341,7 @@ afw_compile_parse_get_symbol_entry(
 afw_value_block_symbol_t *
 afw_compile_parse_get_local_symbol_entry(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *name)
+    const afw_value_string_t *name)
 {
     afw_value_block_symbol_t *entry;
 
@@ -346,7 +349,9 @@ afw_compile_parse_get_local_symbol_entry(
         entry;
         entry = entry->next_entry)
     {
-        if (afw_utf8_equal(entry->name, name)) {
+        if (entry->name == name ||
+            afw_utf8_equal(&entry->name->internal, &name->internal))
+        {
             return entry;
         }
     }
@@ -359,13 +364,13 @@ afw_compile_parse_get_local_symbol_entry(
 afw_value_block_symbol_t *
 afw_compile_parse_add_symbol_entry(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *name)
+    const afw_value_string_t *name)
 {
     afw_value_block_symbol_t *entry;
 
     if (afw_compile_parse_get_local_symbol_entry(parser, name)) {
         AFW_COMPILE_THROW_ERROR_FZ(AFW_UTF8_FMT_Q " already defined",
-            AFW_UTF8_FMT_ARG(name));
+            AFW_UTF8_FMT_ARG(&name->internal));
     }
 
     entry = afw_pool_calloc_type(parser->p,

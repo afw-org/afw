@@ -233,6 +233,28 @@ afw_value_NaN =
 { &impl_value_NaN.pub };
 
 
+static const afw_value_double_t
+impl_value_double_zero = {
+    { &afw_value_permanent_double_inf },
+    0.0
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_zero =
+{ &impl_value_double_zero.pub };
+
+
+static const afw_value_double_t
+impl_value_minus_zero = {
+    { &afw_value_permanent_double_inf },
+    -0.0
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_minus_zero =
+{ &impl_value_minus_zero.pub };
+
+
 static const afw_value_integer_t
 impl_value_integer_max = {
     { &afw_value_permanent_integer_inf },

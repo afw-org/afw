@@ -46,6 +46,10 @@ static const afw_utf8_t impl_version_info_path =
 void afw_yaml_generated_register(afw_xctx_t *xctx)
 {
 
+    /* Register reusable interned strings. */
+    afw_environment_register_string_literals(
+        afw_yaml_string_literals_get(), xctx);
+
     /* Register version info object. */
     afw_runtime_env_set_object(
         afw_object_create_const_from_key_value_strings_z(
