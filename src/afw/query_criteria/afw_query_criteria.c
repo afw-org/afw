@@ -51,6 +51,16 @@ typedef struct impl_string_parser_s {
 } impl_string_parser_t;
 
 static void
+impl_query_criteria_regexp_cleanup(
+    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+    (void)xctx;
+    xmlRegFreeRegexp((xmlRegexpPtr)data);
+}
+
+static void
 impl_parse_string_filter(
     impl_string_parser_t *parser,
     afw_query_criteria_filter_entry_t ** filter,
@@ -1037,6 +1047,9 @@ impl_parse_string_relation(
         if (entry->op_specific == NULL) {
             IMPL_STRING_THROW_ERROR_Z("regexp syntax error");
         }
+        afw_pool_register_cleanup_before(parser->p,
+            (void *)entry->op_specific, NULL,
+            impl_query_criteria_regexp_cleanup, parser->xctx);
     }
 
     /* Return entry. */
@@ -1418,6 +1431,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
     const afw_object_t *child_object;
     const afw_value_t *value;
     const afw_utf8_t *s;
+    const xmlChar *s_z;
 
     /* Get "op" property and get its corresponding operator. */
     s = afw_object_old_get_property_as_string(filter_object,
@@ -1528,6 +1542,26 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         entry->value = afw_object_get_property(
             filter_object, afw_v_value, parser->xctx);
         /** @fixme Make sure this is a single value/list. */
+
+        /* If match, compile expression. */
+        if (entry->op_id == afw_query_criteria_filter_op_id_match) {
+            if (!entry->value || !afw_value_is_string(entry->value)) {
+                AFW_THROW_ERROR_Z(general,
+                    "Value for match operator must be a string",
+                    parser->xctx);
+            }
+            s_z = BAD_CAST afw_utf8_to_utf8_z(
+                (const afw_utf8_t *)AFW_VALUE_INTERNAL(entry->value),
+                parser->p, parser->xctx);
+            entry->op_specific = xmlRegexpCompile(s_z);
+            if (entry->op_specific == NULL) {
+                AFW_THROW_ERROR_Z(general, "regexp syntax error",
+                    parser->xctx);
+            }
+            afw_pool_register_cleanup_before(parser->p,
+                (void *)entry->op_specific, NULL,
+                impl_query_criteria_regexp_cleanup, parser->xctx);
+        }
     }
 }
 
@@ -1630,6 +1664,9 @@ impl_compare_value(
     const afw_array_t *list, *entry_list;
     afw_array_view_of_c_array_self_t list_for_single_internal;
     const afw_value_t *entry_value_converted;
+    const afw_utf8_t *s2;
+    const xmlChar *s_z;
+    int rv;
 
     /*
      * If operator is not contains, match or in, and data type passed does not match,
@@ -1825,27 +1862,27 @@ impl_compare_value(
         break;
 
     case afw_query_criteria_filter_op_id_match:
-        AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
 
-        /** @fixme 
-        for (is_true = false;
-            count > 0 && !is_true;
-            count--, i2 += value->data_type->c_type_size)
-        {
-            s2 = afw_data_type_internal_to_utf8(value->data_type,
-                i2, p, xctx);
-            s_z = afw_utf8_to_utf8_z(s2, p, xctx);
-            rv = xmlRegexpExec((xmlRegexpPtr)entry->op_id_specific, s_z);
-            if (rv == 1) {
-                is_true = true;
+        for (is_true = false, iterator = NULL; !is_true;) {
+            afw_array_get_next_internal(list, &iterator,
+                &entry_data_type, &i2, xctx);
+            if (!i2) {
+                /* no more entries */
+                break;
             }
-            else if (rv < 0) {
+
+            s2 = afw_data_type_internal_to_utf8(entry_data_type,
+                i2, p, xctx);
+            s_z = BAD_CAST afw_utf8_to_utf8_z(s2, p, xctx);
+            rv = xmlRegexpExec((xmlRegexpPtr)entry->op_specific, s_z);
+            if (rv < 0) {
                 AFW_THROW_ERROR_Z(general,
                     "xmlRegexpExec() error", xctx);
             }
+            is_true = (rv == 1);
         }
+
         break;
-         */
 
     case afw_query_criteria_filter_op_id_contains:        
 
