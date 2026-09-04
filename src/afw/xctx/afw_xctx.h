@@ -268,15 +268,17 @@ struct afw_xctx_scope_s {
     afw_size_t reference_count;
     afw_size_t scope_number;
     /*
-     * Last-release walk can re-enter via a closure that holds this
-     * scope. Skip a nested release while tearing down.
+     * Last-release walk can re-enter via a closure that has a
+     * reference to this scope. Skip a nested release while tearing
+     * down.
      */
     afw_boolean_t destroying;
     /*
-     * When this struct is created by afw_xctx_scope_create(), it will be
-     * allocated large enough to hold block->symbol_count symbol_values.
-     */ 
-    const afw_value_t *symbol_values[1];
+     * Flexible array, length block->symbol_count. Indexed by
+     * afw_value_block_symbol_t.index. afw_xctx_scope_create()
+     * allocates the extra pointers.
+     */
+    const afw_value_t *frame_slots[1];
 };
 
 
@@ -302,7 +304,7 @@ struct afw_xctx_scope_s {
  * @return New xctx scope.
  *
  * Function afw_xctx_scope_create() is used to create a new scope for the
- * supplied block. Symbol value slots start as the permanent
+ * supplied block. Each frame_slots[] entry starts as the permanent
  * **afw_value_undefined** singleton (not C NULL) so a bound name always has a
  * value pointer; see afw_xctx_scope_symbol_exists_by_name and issue #131.
  * afw_xctx_scope_symbol_set_value() also stores that singleton when given
@@ -352,19 +354,16 @@ struct afw_xctx_scope_s {
  * will cause it's first scope to be lexical scope lexical depth 0.
  *
  * Symbols (variables, parameters, etc.) go in and out of scope. The scope
- * struct has a C array of values for the symbols in the scope. A symbol has a
- * lexical scope depth and index into the corresponding scope's symbol values
- * array, which is determined at compile time. The depth of the current scope's
- * block minus the lexical scope depth of a symbol determines how many times the
- * scope parent_lexical_scope pointer must be dereferenced to find the scope
- * containing the symbol's value.
+ * struct has frame_slots[], indexed by afw_value_block_symbol_t.index (compile
+ * time). A symbol also has a lexical block depth. The depth of the current
+ * scope's block minus that depth is how many times parent_lexical_scope is
+ * followed to find the scope with that symbol's frame_slots[] entry.
  *
  * When a closure binding is created, afw_xctx_scope_get_reference() is called
- * on its enclosing pool. When the closure binding goes out of scope, a
+ * on its enclosing scope. When the closure binding's last release runs, a
  * corresponding afw_xctx_scope_release() is called.
  *
- * The afw_xctx_scope_symbol_*() functions are used to get and set symbol
- * values.
+ * The afw_xctx_scope_symbol_*() functions get and set frame_slots[] entries.
  */
 AFW_DECLARE(const afw_xctx_scope_t *)
 afw_xctx_scope_create(
@@ -398,9 +397,9 @@ afw_xctx_scope_find_for_block(
  * @param original_scope to clone.
  * @param xctx of caller.
  *
- * This function calls afw_xctx_scope_create() and `add_reference`s each
- * original symbol into the new scope (same protocol as assign). The
- * hidden result is not on the scope and is not copied.
+ * This function calls afw_xctx_scope_create() and stores a reference to
+ * each original frame_slots[] occupant into the new scope (same protocol
+ * as assign). The hidden result is not on the scope and is not copied.
  *
  * This function was originally needed to support the incrementor of 'for'
  * statements since each increment needs its own copy of variables to support
@@ -463,8 +462,9 @@ afw_xctx_scope_deactivate(
  * @param scope must match afw_xctx_scope_current(xctx)
  * @param xctx of caller.
  * 
- * Decrement the reference count. On last release, walk slots (`release`
- * each), then the parent lexical scope, then this scope's pool.
+ * Decrement the reference count. On last release, walk frame_slots[]
+ * (`release` each), then the parent lexical scope, then this scope's
+ * pool.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_release(
@@ -498,9 +498,9 @@ afw_xctx_scope_unwind(
  * An error is thrown if the symbol's value location is not found. This most
  * likely is caused by a compile error.
  *
- * Non-NULL address means the symbol is bound. Slot contents are normally the
- * permanent undefined singleton until assigned (or an explicit value); C NULL
- * in a slot is legacy — treat with afw_value_is_undefined().
+ * Non-NULL address means the symbol is bound. The frame_slots[] entry is
+ * normally the permanent undefined singleton until assigned (or an explicit
+ * value); C NULL in a slot is legacy — treat with afw_value_is_undefined().
  */
 AFW_DECLARE(const afw_value_t **)
 afw_xctx_scope_symbol_get_value_address(
@@ -900,7 +900,7 @@ do { \
  *
  * Use only when top is the parameter-number marker. Pops the marker
  * and writes VALUE into the number slot (call, then 0 or more returns).
- * VALUE must be a real occupant (extra hold for pop_value). To take the
+ * VALUE must be a real occupant (extra reference for pop_value). To take the
  * pair off with nothing to keep, use afw_xctx_evaluation_stack_pop().
  */
 #ifdef AFW_DEBUG_EVALUATION

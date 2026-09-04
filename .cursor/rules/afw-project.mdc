@@ -19,6 +19,8 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 ## Terminology (do not invent “bag” for objects)
 - Prefer **object** + **properties** / **property name**; ordered collections are **array** (historical renames: XACML-style **bag** → **list** → **array** so non-bag ops and array semantics could land cleanly).
 - Do **not** call an adaptive object a “bag” or “property bag” in new rules, docs, designs, or chat. Residual comments/APIs may still say “bag” (old polymorphic names, decompile, “bag of paths”); that is **legacy**, not the object model.
+- Do **not** say **hold** for a value or scope lifetime. Say **reference** (`get_reference` / `release`, `afw_xctx_scope_get_reference`). Residual names may still say “hold” (`object_hold`, older pads); that is leftover wording, not a second protocol.
+- A scope’s frame is **`frame_slots[]`**, indexed by **`afw_value_block_symbol_t.index`**. Do not say `symbol_values[]`.
 - **Meta** is sideband (`object->meta` / meta APIs), not a normal property. Map content types may spell meta on the wire as `"_meta_"` — a serialization convention, not “meta is a bag property.”
 
 ## Prose and chat (plain language)

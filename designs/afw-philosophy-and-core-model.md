@@ -130,7 +130,7 @@ Short scripts and request-scoped work were production-proven early because **des
 
 Execution carries an **`afw_xctx_t`**: pool, scope stack, evaluation stack, qualifier stack, **statement_flow** (sequential / break / continue / return / rethrow-style control — structured leave paths rather than C++ exceptions for normal script control).
 
-Scopes (`afw_xctx_scope_t`) bind a pool, a block, lexical parent, and a **symbol value array** sized from the block. Resolution walks lexical depth and indexes symbols directly. Assignment (`let` / `const` / assign) is the script **`add_reference` site**; **read** is a pointer copy. Deactivate is one `release`; **last `release`** (not `}`) walks slots then lets the scope pool go. Closures keep the scope. **`return`** writes a hidden result slot and ends the block; assign into the **caller** happens when the block ends. Tree today: last `release` is still mostly pool-only — the walk is the #2 target.
+Scopes (`afw_xctx_scope_t`) bind a pool, a block, lexical parent, and **`frame_slots[]`** sized from the block, indexed by `afw_value_block_symbol_t.index`. Resolution walks lexical depth and indexes `frame_slots[]` directly. Assignment (`let` / `const` / assign) is the script **`add_reference` site**; **read** is a pointer copy. Deactivate is one `release`; **last `release`** (not `}`) walks `frame_slots[]` then lets the scope pool go. Closures keep a reference to the scope. **`return`** writes a hidden result slot and ends the block; assign into the **caller** happens when the block ends. Tree today: last `release` is still mostly pool-only — the walk is the #2 target.
 
 ### Compilation
 

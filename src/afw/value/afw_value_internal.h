@@ -276,7 +276,7 @@ struct afw_value_block_symbol_s {
     afw_value_block_symbol_t *next_entry;
     const afw_value_string_t *name;
     afw_value_type_t type;
-    afw_size_t index; /* Index in block entries. */
+    afw_size_t index; /* Index into activating scope frame_slots[]. */
     afw_value_block_symbol_type_t symbol_type;
     const afw_value_t *initial_value;
 };

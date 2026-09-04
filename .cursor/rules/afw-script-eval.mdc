@@ -31,7 +31,7 @@ afw_compile_to_value*
 - Scopes: `afw_xctx_scope_*` on `scope_stack`; symbols by lexical depth + index.
 - Control flow: `afw_xctx_statement_flow_*` (sequential / break / continue / return / rethrow).
 - Calls: `afw_value_call_create` specializes built-in vs script vs closure (`value/afw_value_call.c`).
-- Closures: `closure_binding` holds definition + scope ref (`get_reference` / release).
+- Closures: `closure_binding` keeps the definition and a reference to the scope (`get_reference` / `release`).
 
 ### Call create vs evaluate (do not mix)
 

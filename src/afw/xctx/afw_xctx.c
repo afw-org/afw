@@ -194,7 +194,7 @@ afw_xctx_scope_symbol_get_value_address(
             AFW_UTF8_FMT_ARG(&symbol->name->internal), symbol->index);
     }
 
-    return (const afw_value_t **)&scope->symbol_values[symbol->index];   
+    return (const afw_value_t **)&scope->frame_slots[symbol->index];
 }
 
 
@@ -218,7 +218,7 @@ afw_xctx_scope_symbol_get_value_address_by_name(
         {
             if (afw_utf8_equal(symbol_name, &symbol->name->internal)) {
                 return (const afw_value_t **)
-                &scope->symbol_values[symbol->index];
+                &scope->frame_slots[symbol->index];
             }
         }
     }
@@ -721,7 +721,7 @@ afw_xctx_scope_create(
     scope = afw_pool_calloc(p,
         (
             sizeof(afw_xctx_scope_t) + // Size of struct.
-            + (sizeof(afw_value_t *) * block->symbol_count ) // symbol_values[]
+            + (sizeof(afw_value_t *) * block->symbol_count ) // frame_slots[]
             - sizeof(afw_value_t *) // To account for the one in the struct.
         ),
         xctx);
@@ -732,14 +732,14 @@ afw_xctx_scope_create(
 
     /*
      * Bound symbols start as Adaptive undefined (singleton), not C NULL, so
-     * slot contents are never "not a value pointer" while the name is bound
-     * (issue #131). set_value also coerces NULL → undefined.
+     * a frame_slots[] entry is never "not a value pointer" while the name is
+     * bound (issue #131). set_value also coerces NULL → undefined.
      */
     {
         afw_size_t i;
 
         for (i = 0; i < block->symbol_count; i++) {
-            scope->symbol_values[i] = afw_value_undefined;
+            scope->frame_slots[i] = afw_value_undefined;
         }
     }
 
@@ -815,10 +815,10 @@ afw_xctx_scope_clone(
     scope = (afw_xctx_scope_t *)afw_xctx_scope_create(
         original_scope->block, original_scope->parent_lexical_scope, xctx);
 
-    /* Per-slot add_reference; hidden result is not on the scope. */
+    /* Reference each original frame_slots[]; hidden result is not copied. */
     for (afw_size_t i = 0; i < scope->block->symbol_count; i++) {
-        afw_value_slot_store(&scope->symbol_values[i],
-            original_scope->symbol_values[i], scope->p, xctx);
+        afw_value_slot_store(&scope->frame_slots[i],
+            original_scope->frame_slots[i], scope->p, xctx);
     }
 
     afw_xctx_scope_debug(
@@ -932,15 +932,16 @@ afw_xctx_scope_release(
     }
 
     /*
-     * Last release: walk slots, then parent lexical, then this pool.
-     * Closures in slots may re-enter; destroying skips that nested call.
+     * Last release: walk frame_slots[], then parent lexical, then this
+     * pool. Closures in a slot may re-enter; destroying skips that
+     * nested call.
      */
     if (scope->reference_count <= 1) {
         ((afw_xctx_scope_t *)scope)->destroying = true;
         if (scope->block) {
             for (afw_size_t i = 0; i < scope->block->symbol_count; i++) {
-                afw_value_release(scope->symbol_values[i], xctx);
-                ((afw_xctx_scope_t *)scope)->symbol_values[i] =
+                afw_value_release(scope->frame_slots[i], xctx);
+                ((afw_xctx_scope_t *)scope)->frame_slots[i] =
                     afw_value_undefined;
             }
         }
