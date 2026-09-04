@@ -16,20 +16,23 @@ This is `develop` truth once [#277](https://github.com/afw-org/afw/issues/277) l
 - Managed scalars: `get_reference` / `get_assignable_value` **bump self**.
 - Unmanaged scalar `get_assignable_value`: **promote** (`create_managed` in this `xctx->p`, RC 1).
 - Compile-unit scalar literals (integer / double / string): `compile_literal_*` inf — **as-is** in slots; `clone_*` **copies**. `true` / `null` / `undefined` / `0` / `1` / `""` stay process permanents. Eval temps stay unmanaged-promote. Compiler-only `afw_compile_literal_<dt>_create()`.
+- **#280 landed:** lexer mints token payloads as values; parse-word strings (`name == value`, identifier-like) register as environment registry type `string_literal` (key-only, `const afw_value_string_t *`). Say **environment registry**, not “catalog”. `get_string_literal` hits that first. Keywords pointer-compare interned `afw_v_*`. Symbol names, script function `param->name`, loop labels, type/interface declaration names are interned string values.
 - `afw_pool_release_value_at_cleanup`: extra pin that is not a slot.
 
-Same 14,336-iteration nest (`i1<7`, `i2<8`, `i3<16`, `i4<16`), one machine, three `afw` binaries. `concat` is `hex[i1]+hex[i2]+hex[i3]+hex[i4]`.
+Same 14,336-iteration nest (`i1<7`, `i2<8`, `i3<16`, `i4<16`). `concat` is `hex[i1]+hex[i2]+hex[i3]+hex[i4]`. After #280:
 
-| Body | Pre-#277 (`1271992b`) | develop (`ef57b8f7`) | This branch |
-|------|----------------------:|---------------------:|------------:|
-| `n = n + 1` only | 0.024s | 0.024s | 0.024s |
-| `let uu = "abcd"; n = n + 1` | 0.029s | 1.744s | 0.027s |
-| `let uu = concat; n = n + 1` | 0.042s | 2.904s | 2.902s |
-| original concat + `last` + `n` | 0.044s | 3.295s | 3.226s |
+| Body | Pre-#277 | develop before intern | After #280 |
+|------|----------:|----------------------:|-----------:|
+| `n = n + 1` only | ~0.03s | ~0.03s | ~0.03s |
+| `let uu = "abcd"; n = n + 1` | ~0.03s | ~1.6s | ~0.03s |
+| `let uu = concat; n = n + 1` | ~0.04s | ~2.9s | ~2.8s |
+| original concat + `last` + `n` | ~0.04s | ~3.3s | ~3.1s |
 
-Literal slot fill is back to pre-#277. Concat temps still promote.
+Literal slot fill is back to pre-#277. Concat temps still promote. Gate `afwdev test -j` ~33s (BMP comment sweeps skipped; unskipped copies in `src/afw/tests-extra/test262/`).
 
-**Later (not now):** unique managed concat string **and** unique managed integer last_return in the same loop body (~3s). Each alone is cheap. Heap free list is address-ordered insert + first-fit; mixed sizes may walk a growing list (~14k²). Tune how pool deals with free memory for different sizes. Empty `for` / `hex[i]` / concat-only are fine.
+**Later (not now):** unique managed concat string **and** unique managed integer last_return in the same loop body (~3s). Each alone is cheap. Heap free list is address-ordered insert + first-fit; mixed sizes may walk a growing list (~14k²). Tune how pool deals with free memory for different sizes. Empty `for` / `hex[i]` / concat-only are fine. Possible later registry MAP flag “include in big object”; do not special-case size now. `source_location` as interned string after compile splice settles. Type-graph names (`type_property`, `type_function_param`, `reference.name`) still utf8 views.
+
+**Next session (suggested):** heap free-list mixed sizes is the remaining eval win from the timings. Alternate: `source_location` after splice, or `FIXME_GET_IT_WORKING` eval `p` (BMP extra still the hang canary). Restart `afwfcgi` after install (stale mapped binary).
 
 When **evaluation is done**, an **evaluated** result is an **unmanaged clone in dest `p`**. Functions/closures as the compile/eval result are not cloned that way yet (follow-up).
 
