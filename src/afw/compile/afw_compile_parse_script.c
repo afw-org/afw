@@ -229,7 +229,7 @@ impl_compile_check_object_pattern(
             }
         }
         else if (ap->symbol_reference && ap->symbol_reference->symbol) {
-            name = ap->symbol_reference->symbol->name;
+            name = &ap->symbol_reference->symbol->name->internal;
             type = &ap->symbol_reference->symbol->type;
         }
         if (!name || !type || afw_value_type_is_any(type)) {
@@ -399,11 +399,11 @@ afw_compile_parse_OptionalDefineTarget(
 
     /* Determine assignment type. */
     afw_compile_get_token();
-    if (afw_compile_token_is_name(afw_s_let)) {
+    if (afw_compile_token_is_name(afw_v_let)) {
         assignment_type = afw_compile_assignment_type_let;
         *define_function = &afw_function_definition_let.pub;
     }
-    else if afw_compile_token_is_name(afw_s_const) {
+    else if (afw_compile_token_is_name(afw_v_const)) {
         assignment_type = afw_compile_assignment_type_const;
         *define_function = &afw_function_definition_const.pub;
     }
@@ -1006,7 +1006,7 @@ impl_parse_ConstStatement(afw_compile_parser_t *parser)
 static const afw_value_t *
 impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
 {
-    const afw_utf8_t *name;
+    const afw_value_string_t *name;
     const afw_value_type_t *body;
     const afw_value_type_t *base;
     afw_value_type_t *type;
@@ -1023,12 +1023,12 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
     if (!afw_compile_token_is_unqualified_identifier()) {
         AFW_COMPILE_THROW_ERROR_Z("Expecting interface name");
     }
-    name = afw_compile_token_identifier_name();
+    name = parser->token->identifier_name;
     placeholder = afw_compile_script_type_reserve(parser, name);
 
     extends = NULL;
     afw_compile_get_token();
-    if (afw_compile_token_is_name_z("extends")) {
+    if (afw_compile_token_is_name(afw_v_extends)) {
         extends = apr_array_make(parser->apr_p, 2,
             sizeof(const afw_value_type_t *));
         for (;;) {
@@ -1037,11 +1037,11 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
             if (base &&
                 base->kind == afw_value_type_kind_reference &&
                 base->reference.name &&
-                afw_utf8_equal(base->reference.name, name))
+                afw_utf8_equal(base->reference.name, &name->internal))
             {
                 AFW_COMPILE_THROW_ERROR_FZ(
                     "Interface " AFW_UTF8_FMT_Q " cannot extend itself",
-                    AFW_UTF8_FMT_ARG(name));
+                    AFW_UTF8_FMT_ARG(&name->internal));
             }
             APR_ARRAY_PUSH(extends, const afw_value_type_t *) = base;
             afw_compile_get_token();
@@ -1069,7 +1069,7 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
     type = afw_pool_calloc_type(parser->p, afw_value_type_t, parser->xctx);
     type->kind = afw_value_type_kind_object;
     type->object.properties = body->object.properties;
-    type->object.interface_name = name;
+    type->object.interface_name = &name->internal;
     if (extends && extends->nelts > 0) {
         type->object.extends_count = (afw_size_t)extends->nelts;
         list = afw_pool_malloc(parser->p,
@@ -1102,7 +1102,7 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
 static const afw_value_t *
 impl_parse_TypeStatement(afw_compile_parser_t *parser)
 {
-    const afw_utf8_t *name;
+    const afw_value_string_t *name;
     const afw_value_type_t *type;
     afw_value_type_t *placeholder;
     afw_size_t start_offset;
@@ -1112,7 +1112,7 @@ impl_parse_TypeStatement(afw_compile_parser_t *parser)
     if (!afw_compile_token_is_unqualified_identifier()) {
         AFW_COMPILE_THROW_ERROR_Z("Expecting type name");
     }
-    name = afw_compile_token_identifier_name();
+    name = parser->token->identifier_name;
     placeholder = afw_compile_script_type_reserve(parser, name);
 
     afw_compile_get_token();
@@ -1220,7 +1220,7 @@ impl_parse_DoWhileStatement(
     parser->continue_allowed = continue_allowed;
 
     afw_compile_get_token();
-    if (!afw_compile_token_is_name(afw_s_while)) {
+    if (!afw_compile_token_is_name(afw_v_while)) {
         AFW_COMPILE_THROW_ERROR_Z(
             "Expecting 'while'");
     }
@@ -1309,7 +1309,7 @@ impl_parse_ForStatement(
             &define_function, &block);
 
         afw_compile_get_token();
-        if (afw_compile_token_is_name(afw_s_of)) {
+        if (afw_compile_token_is_name(afw_v_of)) {
             is_for_of = true;
         }
         else if (define_function) {
@@ -1470,7 +1470,7 @@ impl_parse_FunctionStatement(afw_compile_parser_t *parser)
     argv[1] = NULL;
     if (function_name_value) {
         symbol = afw_compile_parse_add_symbol_entry(parser,
-            &function_name_value->internal);
+            function_name_value);
         symbol->symbol_type = afw_value_block_symbol_type_function;
         symbol->initial_value = argv[2];
         /*
@@ -1530,7 +1530,7 @@ impl_parse_IfStatement(afw_compile_parser_t *parser)
 
     afw_compile_get_token();
     if (afw_compile_token_is_unqualified_identifier()) {
-        if (afw_utf8_equal(afw_compile_token_identifier_name(), afw_s_else))
+        if (afw_compile_token_is_name(afw_v_else))
         {
             otherwise = afw_compile_parse_Statement(parser, NULL);
         }
@@ -1677,7 +1677,7 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
     /* Optional 'using' EntryFunctionLambdaOrVariableReference */
     predicate = &afw_function_definition_eqx.pub;
     afw_compile_get_token();
-    if (afw_compile_token_is_name(afw_s_using)) {
+    if (afw_compile_token_is_name(afw_v_using)) {
         predicate = afw_compile_parse_EntryFunctionLambdaOrVariableReference(
             parser);
         afw_compile_get_token();
@@ -1699,10 +1699,10 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
         if (afw_compile_token_is(close_brace)) {
             break;
         }
-        if (afw_compile_token_is_name(afw_s_case)) {
+        if (afw_compile_token_is_name(afw_v_case)) {
             case_expression = afw_compile_parse_Expression(parser);
         }
-        else if (afw_compile_token_is_name(afw_s_default)) {
+        else if (afw_compile_token_is_name(afw_v_default)) {
             if (default_encountered) {
                 AFW_COMPILE_THROW_ERROR_Z("Multiple 'default' clauses");
             }
@@ -1817,11 +1817,11 @@ impl_parse_ThrowStatement(afw_compile_parser_t *parser)
         if (afw_compile_token_is(semicolon)) {
             /* message only */
         }
-        else if (afw_compile_token_is_name(afw_s_data) ||
-            afw_compile_token_is_name(afw_s_id))
+        else if (afw_compile_token_is_name(afw_v_data) ||
+            afw_compile_token_is_name(afw_v_id))
         {
             for (;;) {
-                if (afw_compile_token_is_name(afw_s_data)) {
+                if (afw_compile_token_is_name(afw_v_data)) {
                     if (saw_data) {
                         AFW_COMPILE_THROW_ERROR_Z(
                             "data already specified on throw");
@@ -1829,7 +1829,7 @@ impl_parse_ThrowStatement(afw_compile_parser_t *parser)
                     saw_data = true;
                     data_value = afw_compile_parse_Expression(parser);
                 }
-                else if (afw_compile_token_is_name(afw_s_id)) {
+                else if (afw_compile_token_is_name(afw_v_id)) {
                     if (saw_id) {
                         AFW_COMPILE_THROW_ERROR_Z(
                             "id already specified on throw");
@@ -1870,7 +1870,7 @@ impl_parse_ThrowStatement(afw_compile_parser_t *parser)
 
 typedef struct {
     afw_compile_parse_StatementList_cb_t public;
-    const afw_utf8_t *error_variable_name;
+    const afw_value_string_t *error_variable_name;
     const afw_value_t **symbol_reference;
     const afw_compile_value_contextual_t *contextual;
 } impl_parse_TryStatement_StatementList_cb_t;
@@ -1932,7 +1932,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
 
     /* Catch */
     afw_compile_get_token();
-    if (afw_compile_token_is_name(afw_s_catch)) {
+    if (afw_compile_token_is_name(afw_v_catch)) {
         parser->rethrow_allowed = true;
         argc = 3;
         afw_compile_get_token();
@@ -1971,7 +1971,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
                  * path; decompile of try expects argv[4] as symbol_reference).
                  */
                 cb.public.func = impl_parse_TryStatement_StatementList_cb;
-                cb.error_variable_name = afw_compile_token_identifier_name();
+                cb.error_variable_name = parser->token->identifier_name;
                 cb.contextual = afw_compile_create_contextual_to_cursor(
                     start_offset);
                 cb.symbol_reference = &argv[4];
@@ -2009,7 +2009,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
 
     /* Finally */
     afw_compile_get_token();
-    if (afw_compile_token_is_name(afw_s_finally)) {
+    if (afw_compile_token_is_name(afw_v_finally)) {
         if (argc == 1) {
             argc = 2;
         }
@@ -2151,13 +2151,13 @@ impl_parse_LabeledStatement(
     impl_loop_label_push(parser, label);
 
     afw_compile_get_token();
-    if (afw_compile_token_is_name(afw_s_for)) {
+    if (afw_compile_token_is_name(afw_v_for)) {
         result = impl_parse_ForStatement(parser, label);
     }
-    else if (afw_compile_token_is_name(afw_s_while)) {
+    else if (afw_compile_token_is_name(afw_v_while)) {
         result = impl_parse_WhileStatement(parser, label);
     }
-    else if (afw_compile_token_is_name(afw_s_do)) {
+    else if (afw_compile_token_is_name(afw_v_do)) {
         result = impl_parse_DoWhileStatement(parser, label);
     }
     else if (afw_compile_token_is_unqualified_identifier() &&
@@ -2207,78 +2207,63 @@ afw_compile_parse_Statement(
     if (afw_compile_token_is(identifier) &&
         !parser->token->identifier_qualifier)
     {
-        if (afw_utf8_equal(afw_compile_token_identifier_name(),
-            afw_s_let))
+        if (afw_compile_token_is_name(afw_v_let))
         {
             result = impl_parse_LetStatement(parser);
         }
-        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
-            afw_s_const))
+        else if (afw_compile_token_is_name(afw_v_const))
         {
             result = impl_parse_ConstStatement(parser);
         }
-        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
-            afw_s_break))
+        else if (afw_compile_token_is_name(afw_v_break))
         {
             result = impl_parse_BreakStatement(parser);
         }
-        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
-            afw_s_continue))
+        else if (afw_compile_token_is_name(afw_v_continue))
         {
             result = impl_parse_ContinueStatement(parser);
         }
-        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
-            afw_s_do))
+        else if (afw_compile_token_is_name(afw_v_do))
         {
             result = impl_parse_DoWhileStatement(parser, NULL);
         }
-        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
-            afw_s_for))
+        else if (afw_compile_token_is_name(afw_v_for))
         {
             result = impl_parse_ForStatement(parser, NULL);
         }
-        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
-            afw_s_if))
+        else if (afw_compile_token_is_name(afw_v_if))
         {
             result = impl_parse_IfStatement(parser);
         }
-        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
-            afw_s_return))
+        else if (afw_compile_token_is_name(afw_v_return))
         {
             result = impl_parse_ReturnStatement(parser);
         }
-        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
-            afw_s_switch))
+        else if (afw_compile_token_is_name(afw_v_switch))
         {
             result = impl_parse_SwitchStatement(parser);
         }
-        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
-            afw_s_throw))
+        else if (afw_compile_token_is_name(afw_v_throw))
         {
             result = impl_parse_ThrowStatement(parser);
         }
-        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
-            afw_s_try))
+        else if (afw_compile_token_is_name(afw_v_try))
         {
             result = impl_parse_TryStatement(parser);
         }
-        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
-            afw_s_while))
+        else if (afw_compile_token_is_name(afw_v_while))
         {
             result = impl_parse_WhileStatement(parser, NULL);
         }
-        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
-            afw_s_function))
+        else if (afw_compile_token_is_name(afw_v_function))
         {
             result = impl_parse_FunctionStatement(parser);
         }
-        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
-            afw_s_interface))
+        else if (afw_compile_token_is_name(afw_v_interface))
         {
             result = impl_parse_InterfaceStatement(parser);
         }
-        else if (afw_utf8_equal(afw_compile_token_identifier_name(),
-            afw_s_type))
+        else if (afw_compile_token_is_name(afw_v_type))
         {
             result = impl_parse_TypeStatement(parser);
         }
@@ -2430,8 +2415,8 @@ afw_compile_parse_StatementList(
         afw_compile_get_token();
         if (end_is_close_brace_case_or_default) {
             if (afw_compile_token_is(close_brace) ||
-                afw_compile_token_is_name(afw_s_case) ||
-                afw_compile_token_is_name(afw_s_default))
+                afw_compile_token_is_name(afw_v_case) ||
+                afw_compile_token_is_name(afw_v_default))
             {
                 afw_compile_reuse_token();
                 break;

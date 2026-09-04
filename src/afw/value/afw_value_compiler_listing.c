@@ -361,7 +361,7 @@ impl_symbol_listing(
             xctx);
         afw_writer_write_z(writer, " ", xctx);
         afw_value_compiler_listing_name_and_type(writer,
-            e->name, &e->type, xctx);
+            &e->name->internal, &e->type, xctx);
         afw_writer_write_eol(writer, xctx);
     }
     afw_writer_write_z(writer, "]", xctx);

@@ -826,3 +826,12 @@ platform
 string_literal
 stringLiteral
 _AdaptiveStringLiteral_
+
+# Compile pragma identifiers (#pragma ...)
+noTypeCheck
+typeCheck
+typeCheckCompileOnly
+strict
+noImplicitAny
+strictNullChecks
+noOptimize

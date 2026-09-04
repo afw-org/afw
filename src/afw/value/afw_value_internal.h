@@ -76,7 +76,7 @@ struct afw_value_script_type_declaration_s {
     };
 
     const afw_compile_value_contextual_t *contextual;
-    const afw_utf8_t *name;
+    const afw_value_string_t *name;
     const afw_value_type_t *type;
     afw_boolean_t is_interface;
 };
@@ -274,7 +274,7 @@ typedef enum afw_value_block_symbol_type_e {
 struct afw_value_block_symbol_s {
     afw_value_block_t *parent_block;
     afw_value_block_symbol_t *next_entry;
-    const afw_utf8_t *name;
+    const afw_value_string_t *name;
     afw_value_type_t type;
     afw_size_t index; /* Index in block entries. */
     afw_value_block_symbol_type_t symbol_type;
@@ -737,7 +737,7 @@ struct afw_value_script_function_signature_s {
  */
 struct afw_value_script_function_parameter_s {
     const afw_value_block_symbol_t *symbol;
-    const afw_utf8_t *name;
+    const afw_value_string_t *name;
     const afw_value_type_t *type;
     const afw_value_t *default_value;
     /** Pattern bind target (list/object destructure), or NULL. */

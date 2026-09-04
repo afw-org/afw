@@ -197,7 +197,7 @@ afw_compile_parse_AssignmentProperty(
 {
     afw_compile_assignment_property_t *ap;
     const afw_compile_value_contextual_t *contextual;
-    const afw_utf8_t *identifier;
+    const afw_value_string_t *identifier;
     const afw_value_t *name_expr;
     const afw_value_t *name_v;
 
@@ -246,8 +246,8 @@ afw_compile_parse_AssignmentProperty(
     if (!afw_compile_token_is_unqualified_identifier()) {
         AFW_COMPILE_THROW_ERROR_Z("Expecting PropertyName");
     }
-    identifier = afw_compile_token_identifier_name();
-    name_v = afw_compile_token_identifier_name_value();
+    identifier = parser->token->identifier_name;
+    name_v = &identifier->pub;
 
     /* ( PropertyName ( ':' AssignmentElement )? ) */
     afw_compile_get_token();
@@ -373,7 +373,7 @@ afw_compile_parse_AssignmentBindingTarget(
         *value = (const afw_value_t *)
             afw_compile_parse_variable_reference_create(
                 parser, contextual, assignment_type,
-                variable_name, *type);
+                afw_compile_intern_utf8_string(variable_name), *type);
     }
 
     else {

@@ -10,6 +10,7 @@
 #define __AFW_COMPILE_INTERNAL_H__
 
 #include "afw.h"
+#include <string.h>
 
 /**
  * @addtogroup afw_compile_internal
@@ -720,13 +721,17 @@ do { \
 #define afw_compile_token_boolean_value() \
     (&(parser)->token->boolean->pub)
 
-#define afw_compile_token_is_name(string) \
+#define afw_compile_token_is_name(string_value) \
     (afw_compile_token_is_unqualified_identifier() && \
-    afw_utf8_equal(afw_compile_token_identifier_name(), (string)))
+    (parser)->token->identifier_name == \
+        (const afw_value_string_t *)(string_value))
 
 #define afw_compile_token_is_name_z(string_z) \
     (afw_compile_token_is_unqualified_identifier() && \
-    afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(), (string_z)))
+    (parser)->token->identifier_name == \
+        afw_compile_get_string_literal((parser), \
+            (const afw_utf8_octet_t *)(string_z), \
+            strlen(string_z)))
 
 #define afw_compile_is_at_eof() \
     (parser->last_octet_eof)
@@ -952,9 +957,11 @@ afw_compile_get_string_literal(
     afw_size_t len);
 
 /* Intern utf8 as a string value (env hit or compile_literal). */
+#define afw_compile_intern_utf8_string(utf8) \
+    (afw_compile_get_string_literal((parser), (utf8)->s, (utf8)->len))
+
 #define afw_compile_intern_utf8(utf8) \
-    (&afw_compile_get_string_literal((parser), \
-        (utf8)->s, (utf8)->len)->pub)
+    (&afw_compile_intern_utf8_string(utf8)->pub)
 
 extern void
 afw_compile_get_token_impl(
@@ -1006,17 +1013,17 @@ afw_compile_parse_set_error_fz(
 extern afw_value_block_symbol_t *
 afw_compile_parse_get_symbol_entry(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *name);
+    const afw_value_string_t *name);
 
 extern afw_value_block_symbol_t *
 afw_compile_parse_get_local_symbol_entry(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *name);
+    const afw_value_string_t *name);
 
 extern afw_value_block_symbol_t *
 afw_compile_parse_add_symbol_entry(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *name);
+    const afw_value_string_t *name);
 
 /* Push a new value block; pair with afw_compile_parse_pop_value_block. */
 extern const afw_value_block_t *
@@ -1048,7 +1055,7 @@ afw_compile_parse_variable_reference_create(
     afw_compile_parser_t *parser,
     const afw_compile_value_contextual_t *contextual,
     afw_compile_internal_assignment_type_t assignment_type,
-    const afw_utf8_t *identifier,
+    const afw_value_string_t *identifier,
     const afw_value_type_t *type);
 
 /* Skip white space and comments. */
@@ -1085,7 +1092,7 @@ afw_compile_lexical_parser_finish_and_release(
 extern void
 afw_compile_script_type_register(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *name,
+    const afw_value_string_t *name,
     const afw_value_type_t *type);
 
 /**
@@ -1098,7 +1105,7 @@ afw_compile_script_type_register(
 extern afw_value_type_t *
 afw_compile_script_type_reserve(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *name);
+    const afw_value_string_t *name);
 
 /**
  * @brief Reject unproductive `type` alias cycles in this compile unit.

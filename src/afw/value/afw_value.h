@@ -1664,7 +1664,7 @@ afw_value_assignment_target_create(
 AFW_DECLARE(const afw_value_t *)
 afw_value_script_type_declaration_create(
     const afw_compile_value_contextual_t *contextual,
-    const afw_utf8_t *name,
+    const afw_value_string_t *name,
     const afw_value_type_t *type,
     afw_boolean_t is_interface,
     const afw_pool_t *p,

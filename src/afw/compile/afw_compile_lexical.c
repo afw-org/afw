@@ -1396,15 +1396,17 @@ impl_parse_identifier(afw_compile_parser_t *parser)
     }
 
     /* Handle reserved identifier true. */
-    if (afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(), "true")) {
+    if (parser->token->identifier_name ==
+        (const afw_value_string_t *)afw_v_true)
+    {
         parser->token->type = afw_compile_token_type_boolean;
         parser->token->boolean =
             (const afw_value_boolean_t *)afw_boolean_v_true;
     }
 
     /* Handle reserved identifier false. */
-    else if (afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(),
-        "false"))
+    else if (parser->token->identifier_name ==
+        (const afw_value_string_t *)afw_v_false)
     {
         parser->token->type = afw_compile_token_type_boolean;
         parser->token->boolean =
@@ -1412,25 +1414,26 @@ impl_parse_identifier(afw_compile_parser_t *parser)
     }
 
     /* Handle reserved identifier null. */
-    else if (afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(),
-        "null"))
+    else if (parser->token->identifier_name ==
+        (const afw_value_string_t *)afw_v_null)
     {
         parser->token->type = afw_compile_token_type_null;
         parser->token->null = NULL;
     }
 
     /* Handle reserved identifier undefined. */
-    else if (afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(),
-        "undefined"))
+    else if (parser->token->identifier_name ==
+        (const afw_value_string_t *)afw_v_undefined)
     {
         parser->token->type = afw_compile_token_type_undefined;
     }
 
     /* Handle reserved identifier Infinity and INF (not in strict JSON). */
     else if (!parser->strict && (
-        afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(),
-            "Infinity") ||
-        afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(), "INF")))
+        parser->token->identifier_name ==
+            (const afw_value_string_t *)afw_v_Infinity ||
+        parser->token->identifier_name ==
+            (const afw_value_string_t *)afw_v_INF))
     {
         parser->token->type = afw_compile_token_type_number;
         parser->token->number =
@@ -1439,7 +1442,8 @@ impl_parse_identifier(afw_compile_parser_t *parser)
 
     /* Handle reserved identifier NaN (not in strict JSON). */
     else if (!parser->strict &&
-        afw_utf8_equal_utf8_z(afw_compile_token_identifier_name(), "NaN"))
+        parser->token->identifier_name ==
+            (const afw_value_string_t *)afw_v_NaN)
     {
         parser->token->type = afw_compile_token_type_number;
         parser->token->number =
@@ -1463,9 +1467,13 @@ afw_compile_is_reserved_word(
     afw_compile_parser_t *parser,
     const afw_utf8_t *s)
 {
+    const afw_value_string_t *v;
+
+    v = afw_compile_get_string_literal(parser, s->s, s->len);
+
     /*
-     * The 'if' is probably a good way to do this since there are so few but
-     * might should change to a binary search.
+     * Interned pointer compare to generated string values. Few keywords;
+     * intern is a hash hit for parse-word spellings.
      */
     if (
 
@@ -1476,13 +1484,13 @@ afw_compile_is_reserved_word(
  * 
  *<<<ebnf*/
 
-        afw_utf8_equal(s, afw_s_false)        ||
-        afw_utf8_equal(s, afw_s_INF)          ||
-        afw_utf8_equal(s, afw_s_Infinity)     ||
-        afw_utf8_equal(s, afw_s_NaN)          ||
-        afw_utf8_equal(s, afw_s_null)         ||
-        afw_utf8_equal(s, afw_s_true)         ||
-        afw_utf8_equal(s, afw_s_undefined)    ||
+        v == (const afw_value_string_t *)afw_v_false        ||
+        v == (const afw_value_string_t *)afw_v_INF          ||
+        v == (const afw_value_string_t *)afw_v_Infinity     ||
+        v == (const afw_value_string_t *)afw_v_NaN          ||
+        v == (const afw_value_string_t *)afw_v_null         ||
+        v == (const afw_value_string_t *)afw_v_true         ||
+        v == (const afw_value_string_t *)afw_v_undefined    ||
 
 /*ebnf>>>
  *
@@ -1496,28 +1504,28 @@ afw_compile_is_reserved_word(
  *
  *<<<ebnf*/
 
-        afw_utf8_equal(s, afw_s_break)        ||
-        afw_utf8_equal(s, afw_s_case)         ||
-        afw_utf8_equal(s, afw_s_catch)        ||
-        afw_utf8_equal(s, afw_s_const)        ||
-        afw_utf8_equal(s, afw_s_continue)     ||
-        afw_utf8_equal(s, afw_s_default)      ||
-        afw_utf8_equal(s, afw_s_do)           ||
-        afw_utf8_equal(s, afw_s_else)         ||
-        afw_utf8_equal(s, afw_s_extends)      ||
-        afw_utf8_equal(s, afw_s_finally)      ||
-        afw_utf8_equal(s, afw_s_for)          ||
-        afw_utf8_equal(s, afw_s_function)     ||
-        afw_utf8_equal(s, afw_s_if)           ||
-        afw_utf8_equal(s, afw_s_interface)    ||
-        afw_utf8_equal(s, afw_s_let)          ||
-        afw_utf8_equal(s, afw_s_return)       ||
-        afw_utf8_equal(s, afw_s_switch)       ||
-        afw_utf8_equal(s, afw_s_throw)        ||
-        afw_utf8_equal(s, afw_s_try)          ||
-        afw_utf8_equal(s, afw_s_type)         ||
-        afw_utf8_equal(s, afw_s_void)         ||
-        afw_utf8_equal(s, afw_s_while)        ||
+        v == (const afw_value_string_t *)afw_v_break        ||
+        v == (const afw_value_string_t *)afw_v_case         ||
+        v == (const afw_value_string_t *)afw_v_catch        ||
+        v == (const afw_value_string_t *)afw_v_const        ||
+        v == (const afw_value_string_t *)afw_v_continue     ||
+        v == (const afw_value_string_t *)afw_v_default      ||
+        v == (const afw_value_string_t *)afw_v_do           ||
+        v == (const afw_value_string_t *)afw_v_else         ||
+        v == (const afw_value_string_t *)afw_v_extends      ||
+        v == (const afw_value_string_t *)afw_v_finally      ||
+        v == (const afw_value_string_t *)afw_v_for          ||
+        v == (const afw_value_string_t *)afw_v_function     ||
+        v == (const afw_value_string_t *)afw_v_if           ||
+        v == (const afw_value_string_t *)afw_v_interface    ||
+        v == (const afw_value_string_t *)afw_v_let          ||
+        v == (const afw_value_string_t *)afw_v_return       ||
+        v == (const afw_value_string_t *)afw_v_switch       ||
+        v == (const afw_value_string_t *)afw_v_throw        ||
+        v == (const afw_value_string_t *)afw_v_try          ||
+        v == (const afw_value_string_t *)afw_v_type         ||
+        v == (const afw_value_string_t *)afw_v_void         ||
+        v == (const afw_value_string_t *)afw_v_while        ||
 
 /*ebnf>>>
  *
@@ -1541,21 +1549,21 @@ afw_compile_is_reserved_word(
  *
  *<<<ebnf*/
 
-        afw_utf8_equal(s, afw_s_as)           ||
-        afw_utf8_equal(s, afw_s_async)        ||
-        afw_utf8_equal(s, afw_s_await)        ||
-        afw_utf8_equal(s, afw_s_class)        ||
-        afw_utf8_equal(s, afw_s_delete)       ||
-        afw_utf8_equal(s, afw_s_export)       ||
-        afw_utf8_equal(s, afw_s_from)         ||
-        afw_utf8_equal(s, afw_s_import)       ||
-        afw_utf8_equal(s, afw_s_in)           ||
-        afw_utf8_equal(s, afw_s_instanceof)   ||
-        afw_utf8_equal(s, afw_s_super)        ||
-        afw_utf8_equal(s, afw_s_this)         ||
-        afw_utf8_equal(s, afw_s_typeof)       ||
-        afw_utf8_equal(s, afw_s_var)          ||
-        afw_utf8_equal(s, afw_s_with)         )
+        v == (const afw_value_string_t *)afw_v_as           ||
+        v == (const afw_value_string_t *)afw_v_async        ||
+        v == (const afw_value_string_t *)afw_v_await        ||
+        v == (const afw_value_string_t *)afw_v_class        ||
+        v == (const afw_value_string_t *)afw_v_delete       ||
+        v == (const afw_value_string_t *)afw_v_export       ||
+        v == (const afw_value_string_t *)afw_v_from         ||
+        v == (const afw_value_string_t *)afw_v_import       ||
+        v == (const afw_value_string_t *)afw_v_in           ||
+        v == (const afw_value_string_t *)afw_v_instanceof   ||
+        v == (const afw_value_string_t *)afw_v_super        ||
+        v == (const afw_value_string_t *)afw_v_this         ||
+        v == (const afw_value_string_t *)afw_v_typeof       ||
+        v == (const afw_value_string_t *)afw_v_var          ||
+        v == (const afw_value_string_t *)afw_v_with         )
     {
         return true;
     }

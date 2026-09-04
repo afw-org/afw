@@ -391,7 +391,7 @@ impl_afw_value_decompile(
             kind.internal = *fid;
             afw_value_decompile((const afw_value_t *)&kind, writer, xctx);
             afw_writer_write_z(writer, ",", xctx);
-            afw_writer_write_utf8(writer, sym->symbol->name, xctx);
+            afw_writer_write_utf8(writer, &sym->symbol->name->internal, xctx);
             afw_value_decompile_optional_type(&sym->symbol->type, writer,
                 xctx);
             afw_writer_write_z(writer, ")", xctx);
@@ -438,7 +438,7 @@ impl_afw_value_decompile(
                 kind.internal.len = 3;
                 afw_value_decompile((const afw_value_t *)&kind, writer, xctx);
                 afw_writer_write_z(writer, ",", xctx);
-                afw_writer_write_utf8(writer, sym->symbol->name, xctx);
+                afw_writer_write_utf8(writer, &sym->symbol->name->internal, xctx);
                 afw_writer_write_z(writer, ")", xctx);
             }
             else if (afw_value_is_string(err_bind)) {
@@ -485,7 +485,7 @@ impl_afw_value_decompile(
         {
             sym = (const afw_value_symbol_reference_t *)arg;
             kind.inf = &afw_value_unmanaged_string_inf;
-            kind.internal = *sym->symbol->name;
+            kind.internal = sym->symbol->name->internal;
             afw_value_decompile((const afw_value_t *)&kind, writer, xctx);
         }
         else {

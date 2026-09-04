@@ -18027,6 +18027,24 @@ afw_self_v_nex_yearMonthDuration = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_noImplicitAny = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_noImplicitAny)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_noOptimize = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_noOptimize)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_noTypeCheck = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_noTypeCheck)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nodeset = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nodeset)
@@ -20841,6 +20859,18 @@ afw_self_v_streamNumber = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_strict = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_strict)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_strictNullChecks = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_strictNullChecks)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_string)
@@ -22140,6 +22170,18 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_type)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_typeCheck = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_typeCheck)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_typeCheckCompileOnly = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_typeCheckCompileOnly)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -62636,6 +62678,9 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_nex_x500Name,
     &afw_self_v_nex_xpathExpression,
     &afw_self_v_nex_yearMonthDuration,
+    &afw_self_v_noImplicitAny,
+    &afw_self_v_noOptimize,
+    &afw_self_v_noTypeCheck,
     &afw_self_v_nodeset,
     &afw_self_v_nodeset2,
     &afw_self_v_none,
@@ -63104,6 +63149,8 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_stream,
     &afw_self_v_streamId,
     &afw_self_v_streamNumber,
+    &afw_self_v_strict,
+    &afw_self_v_strictNullChecks,
     &afw_self_v_string,
     &afw_self_v_stringLiteral,
     &afw_self_v_string_literal,
@@ -63321,6 +63368,8 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_true,
     &afw_self_v_try,
     &afw_self_v_type,
+    &afw_self_v_typeCheck,
+    &afw_self_v_typeCheckCompileOnly,
     &afw_self_v_typedValues,
     &afw_self_v_typedef,
     &afw_self_v_typeof,

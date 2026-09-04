@@ -165,7 +165,8 @@ impl_afw_value_produce_compiler_listing(
         }
         else {
             afw_value_compiler_listing_name_and_type(
-                writer, self->parameters[i]->name,
+                writer, self->parameters[i]->name
+                    ? &self->parameters[i]->name->internal : NULL,
                 self->parameters[i]->type, xctx);
         }
         if (self->parameters[i]->default_value) {
@@ -253,7 +254,7 @@ impl_afw_value_decompile(
         }
         else {
             /* Bare identifier (not a string) so Type annotations use ':'. */
-            afw_writer_write_utf8(writer, param->name, xctx);
+            afw_writer_write_utf8(writer, &param->name->internal, xctx);
             afw_value_decompile_optional_type(param->type, writer, xctx);
         }
         if (param->is_optional && !param->default_value) {

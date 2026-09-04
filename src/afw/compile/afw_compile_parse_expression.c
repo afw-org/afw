@@ -141,7 +141,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
              *     If this becomes an issue, call afw_compile_is_reserved_word()
              *     instead of testing for void, but that will take longer.
              */
-            if (afw_compile_token_is_name(afw_s_void))
+            if (afw_compile_token_is_name(afw_v_void))
             {
                 afw_compile_reuse_token();
                 return NULL;             
@@ -150,7 +150,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
             /* First check to see if identifier is a variable symbol. */
             if (!parser->token->identifier_qualifier) {
                 symbol = afw_compile_parse_get_symbol_entry(parser,
-                    afw_compile_token_identifier_name());
+                    parser->token->identifier_name);
                 if (symbol) {
                     result = afw_value_symbol_reference_create(
                         afw_compile_create_contextual_to_cursor(start_offset),
@@ -494,7 +494,7 @@ afw_compile_parse_FunctionSignature(
                 start_offset);
             signature->block = *block;
             function_symbol = afw_compile_parse_add_symbol_entry(parser,
-                afw_compile_token_identifier_name());
+                parser->token->identifier_name);
             function_symbol->symbol_type = afw_value_block_symbol_type_function;
             signature->function_name_symbol = function_symbol;
         }
@@ -573,8 +573,10 @@ afw_compile_parse_FunctionSignature(
                     AFW_COMPILE_THROW_ERROR_Z(
                         "Expecting parameter name or Pattern");
                 }
-                param->name = afw_compile_token_identifier_name();
-                if (afw_compile_is_reserved_word(parser, param->name)) {
+                param->name = parser->token->identifier_name;
+                if (afw_compile_is_reserved_word(parser,
+                    &param->name->internal))
+                {
                     AFW_COMPILE_THROW_ERROR_Z(
                         "Parameter name can not be a reserved word");
                 }
@@ -784,7 +786,7 @@ afw_compile_parse_Lambda(afw_compile_parser_t *parser)
         afw_compile_reuse_token();
         return NULL;
     }
-    if (afw_compile_token_is_name(afw_s_function)) {
+    if (afw_compile_token_is_name(afw_v_function)) {
         afw_compile_get_token();
         if (!afw_compile_token_is(open_parenthesis) &&
             !afw_compile_token_is(identifier))
@@ -962,26 +964,27 @@ impl_type_data_type(
 static const afw_value_type_t *
 impl_type_lookup_name(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *name)
+    const afw_value_string_t *name)
 {
     const afw_value_type_t *type;
     const afw_data_type_t *data_type;
 
     if (parser->script_type_names) {
-        type = apr_hash_get(parser->script_type_names, name->s, name->len);
+        type = apr_hash_get(parser->script_type_names,
+            name->internal.s, name->internal.len);
         if (type) {
             return type;
         }
     }
 
-    data_type = afw_environment_get_data_type(name, parser->xctx);
+    data_type = afw_environment_get_data_type(&name->internal, parser->xctx);
     if (data_type) {
         return impl_type_data_type(parser, data_type);
     }
 
     AFW_COMPILE_THROW_ERROR_FZ(
         "Unknown type " AFW_UTF8_FMT_Q,
-        AFW_UTF8_FMT_ARG(name));
+        AFW_UTF8_FMT_ARG(&name->internal));
     return NULL;
 }
 
@@ -990,18 +993,21 @@ impl_type_lookup_name(
 void
 afw_compile_script_type_register(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *name,
+    const afw_value_string_t *name,
     const afw_value_type_t *type)
 {
     if (!parser->script_type_names) {
         parser->script_type_names = apr_hash_make(parser->apr_p);
     }
-    if (apr_hash_get(parser->script_type_names, name->s, name->len)) {
+    if (apr_hash_get(parser->script_type_names,
+        name->internal.s, name->internal.len))
+    {
         AFW_COMPILE_THROW_ERROR_FZ(
             "Type or interface " AFW_UTF8_FMT_Q " is already defined",
-            AFW_UTF8_FMT_ARG(name));
+            AFW_UTF8_FMT_ARG(&name->internal));
     }
-    apr_hash_set(parser->script_type_names, name->s, name->len, type);
+    apr_hash_set(parser->script_type_names,
+        name->internal.s, name->internal.len, type);
 }
 
 
@@ -1009,24 +1015,26 @@ afw_compile_script_type_register(
 afw_value_type_t *
 afw_compile_script_type_reserve(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *name)
+    const afw_value_string_t *name)
 {
     afw_value_type_t *placeholder;
 
     if (!parser->script_type_names) {
         parser->script_type_names = apr_hash_make(parser->apr_p);
     }
-    if (apr_hash_get(parser->script_type_names, name->s, name->len)) {
+    if (apr_hash_get(parser->script_type_names,
+        name->internal.s, name->internal.len))
+    {
         AFW_COMPILE_THROW_ERROR_FZ(
             "Type or interface " AFW_UTF8_FMT_Q " is already defined",
-            AFW_UTF8_FMT_ARG(name));
+            AFW_UTF8_FMT_ARG(&name->internal));
     }
     placeholder = impl_type_alloc(parser);
     placeholder->kind = afw_value_type_kind_reference;
-    placeholder->reference.name = name;
+    placeholder->reference.name = &name->internal;
     placeholder->reference.resolved = NULL;
-    apr_hash_set(parser->script_type_names, name->s, name->len,
-        placeholder);
+    apr_hash_set(parser->script_type_names,
+        name->internal.s, name->internal.len, placeholder);
     return placeholder;
 }
 
@@ -1381,7 +1389,8 @@ afw_compile_parse_FunctionType(afw_compile_parser_t *parser)
                     param->name = NULL;
                     param->optional = false;
                     param->is_rest = is_rest;
-                    param->type = impl_type_lookup_name(parser, name);
+                    param->type = impl_type_lookup_name(parser,
+                        afw_compile_intern_utf8_string(name));
                     /* Apply postfix [] / union is wrong here — only primary.
                      * For bare type params without composition, OK for v1;
                      * full Type after bare name needs reuse. Simpler path:
@@ -1534,7 +1543,8 @@ afw_compile_parse_ParenthesizedOrFunctionType(afw_compile_parser_t *parser)
             }
             /* Parenthesized TypeName: (integer) */
             afw_compile_reuse_token();
-            return impl_type_lookup_name(parser, name);
+            return impl_type_lookup_name(parser,
+                afw_compile_intern_utf8_string(name));
         }
         /* Identifier continues as a Type: (T | U), (T[]), … */
         return impl_parse_paren_type_or_bare_function(parser, save_open);
@@ -1566,8 +1576,6 @@ afw_compile_parse_ParenthesizedOrFunctionType(afw_compile_parser_t *parser)
 const afw_value_type_t *
 afw_compile_parse_PrimaryType(afw_compile_parser_t *parser)
 {
-    const afw_utf8_t *name;
-
     afw_compile_get_token();
 
     if (afw_compile_token_is(open_brace)) {
@@ -1586,10 +1594,8 @@ afw_compile_parse_PrimaryType(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("Expecting Type");
     }
 
-    name = afw_compile_token_identifier_name();
-
     /* TypeName (includes data type id "array"; no Array<T> generic). */
-    return impl_type_lookup_name(parser, name);
+    return impl_type_lookup_name(parser, parser->token->identifier_name);
 }
 
 
@@ -2310,8 +2316,7 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
 
     case afw_compile_token_type_identifier:
         if (!parser->token->identifier_qualifier) {
-            if (afw_utf8_equal(afw_compile_token_identifier_name(),
-                afw_s_void))
+            if (afw_compile_token_is_name(afw_v_void))
             {
                 argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 2,
                     parser->xctx);

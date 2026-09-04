@@ -36,7 +36,7 @@
 AFW_DEFINE(const afw_value_t *)
 afw_value_script_type_declaration_create(
     const afw_compile_value_contextual_t *contextual,
-    const afw_utf8_t *name,
+    const afw_value_string_t *name,
     const afw_value_type_t *type,
     afw_boolean_t is_interface,
     const afw_pool_t *p,
@@ -98,7 +98,7 @@ impl_afw_value_produce_compiler_listing(
     afw_writer_write_z(writer, self->is_interface ? " interface " : " type ",
         xctx);
     if (self->name) {
-        afw_writer_write_utf8(writer, self->name, xctx);
+        afw_writer_write_utf8(writer, &self->name->internal, xctx);
     }
     afw_writer_write_eol(writer, xctx);
 }
@@ -123,16 +123,15 @@ impl_afw_value_decompile(
     }
     afw_writer_write_z(writer, "(", xctx);
 
-    name_string.inf = &afw_value_unmanaged_string_inf;
     if (self->name) {
-        name_string.internal.s = self->name->s;
-        name_string.internal.len = self->name->len;
+        afw_value_decompile(&self->name->pub, writer, xctx);
     }
     else {
+        name_string.inf = &afw_value_unmanaged_string_inf;
         name_string.internal.s = "";
         name_string.internal.len = 0;
+        afw_value_decompile((const afw_value_t *)&name_string, writer, xctx);
     }
-    afw_value_decompile((const afw_value_t *)&name_string, writer, xctx);
     afw_writer_write_z(writer, ",", xctx);
 
     if (self->is_interface) {

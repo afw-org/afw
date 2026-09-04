@@ -155,24 +155,24 @@ impl_parse_compile_pragma(afw_compile_parser_t *parser)
     while (afw_compile_token_is_unqualified_identifier()) {
         saw_operand = true;
 
-        if (afw_compile_token_is_name_z("noTypeCheck")) {
+        if (afw_compile_token_is_name(afw_v_noTypeCheck)) {
             mode = mode_noTypeCheck;
             set_no_implicit_any = false;
             set_strict_null = false;
             /* noOptimize is independent of type-check off. */
         }
-        else if (afw_compile_token_is_name_z("typeCheck")) {
+        else if (afw_compile_token_is_name(afw_v_typeCheck)) {
             mode = mode_typeCheck;
         }
-        else if (afw_compile_token_is_name_z("typeCheckCompileOnly")) {
+        else if (afw_compile_token_is_name(afw_v_typeCheckCompileOnly)) {
             mode = mode_typeCheckCompileOnly;
         }
-        else if (afw_compile_token_is_name_z("strict")) {
+        else if (afw_compile_token_is_name(afw_v_strict)) {
             mode = mode_strict;
             set_no_implicit_any = false;
             set_strict_null = false;
         }
-        else if (afw_compile_token_is_name_z("noImplicitAny")) {
+        else if (afw_compile_token_is_name(afw_v_noImplicitAny)) {
             if (mode == mode_noTypeCheck) {
                 mode = mode_none;
             }
@@ -182,7 +182,7 @@ impl_parse_compile_pragma(afw_compile_parser_t *parser)
             }
             set_no_implicit_any = true;
         }
-        else if (afw_compile_token_is_name_z("strictNullChecks")) {
+        else if (afw_compile_token_is_name(afw_v_strictNullChecks)) {
             if (mode == mode_noTypeCheck) {
                 mode = mode_none;
             }
@@ -191,7 +191,7 @@ impl_parse_compile_pragma(afw_compile_parser_t *parser)
             }
             set_strict_null = true;
         }
-        else if (afw_compile_token_is_name_z("noOptimize")) {
+        else if (afw_compile_token_is_name(afw_v_noOptimize)) {
             set_no_optimize = true;
         }
         else {

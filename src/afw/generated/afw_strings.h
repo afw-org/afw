@@ -78029,6 +78029,84 @@ afw_self_v_nex_yearMonthDuration;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_noImplicitAny \
+    "noImplicitAny"
+
+/** @brief 'afw_utf8_t' for AFW_Q_noImplicitAny */
+#define afw_s_noImplicitAny \
+    (&afw_self_v_noImplicitAny.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_noImplicitAny */
+#define afw_self_s_noImplicitAny \
+    (afw_self_v_noImplicitAny.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_noImplicitAny */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_noImplicitAny;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_noImplicitAny */
+#define afw_z_noImplicitAny \
+    (afw_self_v_noImplicitAny.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_noImplicitAny */
+#define afw_v_noImplicitAny \
+    (&afw_self_v_noImplicitAny.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_noOptimize \
+    "noOptimize"
+
+/** @brief 'afw_utf8_t' for AFW_Q_noOptimize */
+#define afw_s_noOptimize \
+    (&afw_self_v_noOptimize.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_noOptimize */
+#define afw_self_s_noOptimize \
+    (afw_self_v_noOptimize.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_noOptimize */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_noOptimize;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_noOptimize */
+#define afw_z_noOptimize \
+    (afw_self_v_noOptimize.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_noOptimize */
+#define afw_v_noOptimize \
+    (&afw_self_v_noOptimize.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_noTypeCheck \
+    "noTypeCheck"
+
+/** @brief 'afw_utf8_t' for AFW_Q_noTypeCheck */
+#define afw_s_noTypeCheck \
+    (&afw_self_v_noTypeCheck.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_noTypeCheck */
+#define afw_self_s_noTypeCheck \
+    (afw_self_v_noTypeCheck.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_noTypeCheck */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_noTypeCheck;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_noTypeCheck */
+#define afw_z_noTypeCheck \
+    (afw_self_v_noTypeCheck.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_noTypeCheck */
+#define afw_v_noTypeCheck \
+    (&afw_self_v_noTypeCheck.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_nodeset \
     "nodeset"
 
@@ -90223,6 +90301,58 @@ afw_self_v_streamNumber;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_strict \
+    "strict"
+
+/** @brief 'afw_utf8_t' for AFW_Q_strict */
+#define afw_s_strict \
+    (&afw_self_v_strict.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_strict */
+#define afw_self_s_strict \
+    (afw_self_v_strict.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_strict */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_strict;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_strict */
+#define afw_z_strict \
+    (afw_self_v_strict.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_strict */
+#define afw_v_strict \
+    (&afw_self_v_strict.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_strictNullChecks \
+    "strictNullChecks"
+
+/** @brief 'afw_utf8_t' for AFW_Q_strictNullChecks */
+#define afw_s_strictNullChecks \
+    (&afw_self_v_strictNullChecks.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_strictNullChecks */
+#define afw_self_s_strictNullChecks \
+    (afw_self_v_strictNullChecks.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_strictNullChecks */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_strictNullChecks;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_strictNullChecks */
+#define afw_z_strictNullChecks \
+    (afw_self_v_strictNullChecks.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_strictNullChecks */
+#define afw_v_strictNullChecks \
+    (&afw_self_v_strictNullChecks.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_string \
     "string"
 
@@ -95861,6 +95991,58 @@ afw_self_v_type;
 /** @brief 'const afw_value_t *' for AFW_Q_type */
 #define afw_v_type \
     (&afw_self_v_type.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_typeCheck \
+    "typeCheck"
+
+/** @brief 'afw_utf8_t' for AFW_Q_typeCheck */
+#define afw_s_typeCheck \
+    (&afw_self_v_typeCheck.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_typeCheck */
+#define afw_self_s_typeCheck \
+    (afw_self_v_typeCheck.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_typeCheck */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_typeCheck;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_typeCheck */
+#define afw_z_typeCheck \
+    (afw_self_v_typeCheck.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_typeCheck */
+#define afw_v_typeCheck \
+    (&afw_self_v_typeCheck.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_typeCheckCompileOnly \
+    "typeCheckCompileOnly"
+
+/** @brief 'afw_utf8_t' for AFW_Q_typeCheckCompileOnly */
+#define afw_s_typeCheckCompileOnly \
+    (&afw_self_v_typeCheckCompileOnly.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_typeCheckCompileOnly */
+#define afw_self_s_typeCheckCompileOnly \
+    (afw_self_v_typeCheckCompileOnly.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_typeCheckCompileOnly */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_typeCheckCompileOnly;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_typeCheckCompileOnly */
+#define afw_z_typeCheckCompileOnly \
+    (afw_self_v_typeCheckCompileOnly.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_typeCheckCompileOnly */
+#define afw_v_typeCheckCompileOnly \
+    (&afw_self_v_typeCheckCompileOnly.pub)
 
 
 

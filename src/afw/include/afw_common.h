@@ -2326,10 +2326,11 @@ struct afw_xctx_s {
     afw_xctx_statement_flow_t statement_flow;
 
     /**
-     * Target loop label for break/continue (issue #62). NULL if unlabeled.
-     * Cleared when the matching loop consumes the flow.
+     * Target loop label for break/continue (issue #62). Interned string
+     * value, or NULL if unlabeled. Cleared when the matching loop consumes
+     * the flow.
      */
-    const afw_utf8_t *statement_flow_label;
+    const afw_value_t *statement_flow_label;
 
     /**
      * Running Adaptive Script result for the current script or script
