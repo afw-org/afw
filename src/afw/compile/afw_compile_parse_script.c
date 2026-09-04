@@ -30,23 +30,25 @@ impl_function_definition_rethrow =
     &afw_function_definition_rethrow.pub;
 
 
-static const afw_utf8_t *
+static const afw_value_string_t *
 impl_copy_token_identifier(afw_compile_parser_t *parser)
 {
-    /* Interned compile-pool utf8; survives token reuse. */
-    return afw_compile_token_identifier_name();
+    /* Interned identifier value; survives token reuse. */
+    return parser->token->identifier_name;
 }
 
 
 static afw_boolean_t
 impl_loop_label_is_active(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *name)
+    const afw_value_string_t *name)
 {
     const afw_compile_loop_label_t *e;
 
     for (e = parser->loop_labels; e; e = e->next) {
-        if (afw_utf8_equal(e->name, name)) {
+        if (e->name == name ||
+            afw_utf8_equal(&e->name->internal, &name->internal))
+        {
             return true;
         }
     }
@@ -57,7 +59,7 @@ impl_loop_label_is_active(
 static void
 impl_loop_label_push(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *name)
+    const afw_value_string_t *name)
 {
     afw_compile_loop_label_t *e;
 
@@ -84,10 +86,10 @@ impl_create_loop_call(
     afw_size_t start_offset,
     afw_size_t argc,
     const afw_value_t **argv,
-    const afw_utf8_t *label)
+    const afw_value_string_t *label)
 {
     if (label) {
-        argv[argc + 1] = afw_compile_intern_utf8(label);
+        argv[argc + 1] = &label->pub;
         argc++;
     }
     return afw_value_call_built_in_function_create(
@@ -766,7 +768,7 @@ impl_parse_BreakStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
-    const afw_utf8_t *label;
+    const afw_value_string_t *label;
     afw_size_t start_offset;
     afw_size_t argc;
 
@@ -779,7 +781,7 @@ impl_parse_BreakStatement(afw_compile_parser_t *parser)
         if (!impl_loop_label_is_active(parser, label)) {
             AFW_COMPILE_THROW_ERROR_FZ(
                 "Unknown loop label " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(label));
+                AFW_UTF8_FMT_ARG(&label->internal));
         }
         argc = 1;
     }
@@ -794,7 +796,7 @@ impl_parse_BreakStatement(afw_compile_parser_t *parser)
         argv = afw_pool_malloc(parser->p,
             sizeof(afw_value_t *) * 2, parser->xctx);
         argv[0] = impl_function_definition_break;
-        argv[1] = afw_compile_intern_utf8(label);
+        argv[1] = &label->pub;
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),
             argc, argv, true, parser->p, parser->xctx);
@@ -1142,7 +1144,7 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
-    const afw_utf8_t *label;
+    const afw_value_string_t *label;
     afw_size_t start_offset;
     afw_size_t argc;
 
@@ -1155,7 +1157,7 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
         if (!impl_loop_label_is_active(parser, label)) {
             AFW_COMPILE_THROW_ERROR_FZ(
                 "Unknown loop label " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(label));
+                AFW_UTF8_FMT_ARG(&label->internal));
         }
         argc = 1;
     }
@@ -1170,7 +1172,7 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
         argv = afw_pool_malloc(parser->p,
             sizeof(afw_value_t *) * 2, parser->xctx);
         argv[0] = impl_function_definition_continue;
-        argv[1] = afw_compile_intern_utf8(label);
+        argv[1] = &label->pub;
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),
             argc, argv, true, parser->p, parser->xctx);
@@ -1196,7 +1198,7 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
 static const afw_value_t *
 impl_parse_DoWhileStatement(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *label)
+    const afw_value_string_t *label)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
@@ -1270,7 +1272,7 @@ impl_parse_DoWhileStatement(
 static const afw_value_t *
 impl_parse_ForStatement(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *label)
+    const afw_value_string_t *label)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
@@ -2047,7 +2049,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
 static const afw_value_t *
 impl_parse_WhileStatement(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *label)
+    const afw_value_string_t *label)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
@@ -2130,14 +2132,14 @@ impl_parse_WhileStatement(
 static const afw_value_t *
 impl_parse_LabeledStatement(
     afw_compile_parser_t *parser,
-    const afw_utf8_t *label)
+    const afw_value_string_t *label)
 {
     const afw_value_t *result;
 
     if (impl_loop_label_is_active(parser, label)) {
         AFW_COMPILE_THROW_ERROR_FZ(
             "Duplicate loop label " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(label));
+            AFW_UTF8_FMT_ARG(&label->internal));
     }
 
     /* Caller already saw Identifier. Next token is ':'. */
@@ -2306,7 +2308,7 @@ afw_compile_parse_Statement(
         afw_compile_token_is_unqualified_identifier() &&
         !parser->token->identifier_qualifier)
     {
-        const afw_utf8_t *maybe_label;
+        const afw_value_string_t *maybe_label;
 
         /*
          * Copy before peek: get_token() memsets the token, so a colon

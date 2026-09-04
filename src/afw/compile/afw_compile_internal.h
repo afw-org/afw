@@ -311,7 +311,7 @@ struct afw_compile_internal_value_contextual_s {
 
 /* Active loop labels while parsing (issue #62). Innermost first. */
 typedef struct afw_compile_loop_label_s {
-    const afw_utf8_t *name;
+    const afw_value_string_t *name;
     struct afw_compile_loop_label_s *next;
 } afw_compile_loop_label_t;
 
