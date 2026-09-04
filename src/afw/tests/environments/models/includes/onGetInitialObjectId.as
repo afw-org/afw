@@ -3,11 +3,8 @@
 assert(variable_exists("current::mappedAdapterId"));
 assert(current::mappedAdapterId === 'file');
 
-// fixme this may require getting some mapping adapter configs in place
-//assert(variable_exists("current::mappedObject"));
-
-// fixme this one may not be available ever
-//assert(variable_exists("current::mappedObjectId"));
+assert(variable_exists("current::mappedObject"));
+assert(current::mappedObject.x === true);
 
 assert(variable_exists("current::adapterId"));
 assert(current::adapterId === 'model');

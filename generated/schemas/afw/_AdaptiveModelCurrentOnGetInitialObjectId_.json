@@ -37,12 +37,6 @@
                     "title": "Mapped object id",
                     "type": "object"
                 },
-                "mappedObjectId": {
-                    "description": "This is mappedObjectId from model.",
-                    "markdownDescription": "**Mapped object id**\n\nThis is mappedObjectId from model.",
-                    "title": "Mapped object id",
-                    "type": "string"
-                },
                 "mappedObjectType": {
                     "description": "The object type of the object being converted to object.",
                     "markdownDescription": "**Mapped Object Type**\n\nThe object type of the object being converted to object.",
@@ -123,12 +117,6 @@
                     "markdownDescription": "**Mapped object id**\n\nThis is mappedObject from adapter.",
                     "title": "Mapped object id",
                     "type": "object"
-                },
-                "mappedObjectId": {
-                    "description": "This is mappedObjectId from model.",
-                    "markdownDescription": "**Mapped object id**\n\nThis is mappedObjectId from model.",
-                    "title": "Mapped object id",
-                    "type": "string"
                 },
                 "mappedObjectType": {
                     "description": "The object type of the object being converted to object.",
@@ -220,12 +208,6 @@
             "markdownDescription": "**Mapped object id**\n\nThis is mappedObject from adapter.",
             "title": "Mapped object id",
             "type": "object"
-        },
-        "mappedObjectId": {
-            "description": "This is mappedObjectId from model.",
-            "markdownDescription": "**Mapped object id**\n\nThis is mappedObjectId from model.",
-            "title": "Mapped object id",
-            "type": "string"
         },
         "mappedObjectType": {
             "description": "The object type of the object being converted to object.",

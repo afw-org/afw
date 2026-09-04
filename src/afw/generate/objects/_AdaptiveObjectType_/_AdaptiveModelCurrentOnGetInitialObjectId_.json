@@ -41,15 +41,6 @@
                 "onGetValueCFunctionName": "afw_model_internal_get_current_mappedObject"
             }
         },
-        "mappedObjectId": {
-            "brief": "Mapped Object Id",
-            "dataType": "objectId",
-            "description": "This is mappedObjectId from model.",
-            "label": "Mapped object id",
-            "runtime": {
-                "onGetValueCFunctionName": "afw_model_internal_get_current_mappedObjectId"
-            }
-        },
         "mappedObjectType": {
             "brief": "Mapped Object Type",
             "dataType": "string",

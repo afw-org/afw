@@ -1144,7 +1144,6 @@ const afw_context_cb_variable_t *
 afw_model_internal_context_current_for_initial_object_id[] = {
     &impl_current_variable_mappedAdapterId,
     &impl_current_variable_mappedObject,
-    &impl_current_variable_mappedObjectId,
     &impl_current_variable_mappedObjectType,
     &impl_current_variable_mappedPropertyName,
     &impl_current_variable_mappedValue,
@@ -1388,6 +1387,30 @@ afw_model_internal_create_skeleton_context(
 #endif
 
     return ctx;
+}
+
+
+
+/*
+ * Push a property-level current:: object on to the qualifier stack that
+ * shadows the object-level current:: already pushed for ctx, so property-
+ * level "on" functions (onGetInitialObjectId, onSetProperty) see the
+ * mapped-xxx/propertyName/value qualified variables appropriate for that
+ * hook. Caller must save/restore the qualifier stack top (see
+ * afw_xctx_qualifier_stack_top_get()/_set()) around the call.
+ */
+void
+afw_model_internal_push_property_level_current(
+    afw_model_internal_context_t *ctx,
+    const afw_runtime_object_indirect_t *skeleton,
+    afw_xctx_t *xctx)
+{
+    afw_memory_copy(&ctx->runtime_property_level, skeleton);
+    ctx->runtime_property_level.internal = ctx;
+    ctx->runtime_property_level.pub.p = ctx->p;
+    afw_xctx_qualifier_stack_qualifier_object_push(afw_s_current,
+        (const afw_object_t *)&ctx->runtime_property_level,
+        true, ctx->p, xctx);
 }
 
 

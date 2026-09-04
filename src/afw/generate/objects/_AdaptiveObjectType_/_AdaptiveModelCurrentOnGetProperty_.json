@@ -38,7 +38,7 @@
             "description": "This is the object from mapped adapter.",
             "label": "Object",
             "runtime": {
-                "onGetValueCFunctionName": "afw_model_internal_get_current_object"
+                "onGetValueCFunctionName": "afw_model_internal_get_current_mappedObject"
             }
         },
         "mappedObjectId": {
