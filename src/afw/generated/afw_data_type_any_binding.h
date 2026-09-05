@@ -65,8 +65,8 @@ afw_data_type_any;
  * Lifetime is the afw environment / static const storage.
  * optional_release is NULL. Scalar get_reference /
  * get_assignable_value are as-is. Object/array get_reference
- * is as-is; get_assignable_value isolates (object_hold /
- * array_hold) so slots do not share immortal bags.
+ * is as-is; get_assignable_value is a managed wrapper
+ * (object) or managed clone (array).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_any_inf;

@@ -836,6 +836,22 @@ afw_object_create_managed(
 
 
 /**
+ * @brief Managed look-through wrapper over another object.
+ * @param wrapped base (usually permanent). Required.
+ * @param xctx of caller.
+ * @return managed object (reference count 1).
+ *
+ * Gets look through to wrapped; sets only overlay on this instance.
+ * Last release releases overlay slots, then wrapped, then the header.
+ * Use for get_assignable_value of a permanent object.
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_object_create_wrapper_managed(
+    const afw_object_t *wrapped,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Managed clone of an existing object into xctx->p.
  * @param from object to copy properties from.
  * @param xctx of caller.

@@ -311,6 +311,7 @@ afw_array_create_managed_from(
                 impl_push_cloned_into_managed(to, ep->value, xctx);
             }
         }
+        /* Compile `[]` is immutable memory; clone stays mutable. */
         return to;
     }
     iterator = NULL;
@@ -320,6 +321,11 @@ afw_array_create_managed_from(
             break;
         }
         impl_push_cloned_into_managed(to, value, xctx);
+    }
+    if (!afw_array_is_memory(from) &&
+        !afw_array_get_setter(from, xctx))
+    {
+        afw_array_set_immutable(to, xctx);
     }
     return to;
 }

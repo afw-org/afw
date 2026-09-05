@@ -66,8 +66,7 @@ afw_data_type_ia5String;
  * optional_release throw (scalar, object, array).
  * Scalar get_assignable_value creates a managed holdable
  * in xctx->p. Object/array get_assignable_value: managed
- * occupant dual-face, generic memory bag clone_managed,
- * else hold.
+ * occupant dual-face, else clone_managed.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_ia5String_inf;
@@ -99,8 +98,8 @@ afw_value_managed_slice_ia5String_inf;
  * Lifetime is the afw environment / static const storage.
  * optional_release is NULL. Scalar get_reference /
  * get_assignable_value are as-is. Object/array get_reference
- * is as-is; get_assignable_value isolates (object_hold /
- * array_hold) so slots do not share immortal bags.
+ * is as-is; get_assignable_value is a managed wrapper
+ * (object) or managed clone (array).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_ia5String_inf;
