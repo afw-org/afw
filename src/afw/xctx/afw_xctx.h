@@ -325,23 +325,22 @@ struct afw_xctx_scope_s {
  * the xctx is destroyed. This scope stack is a stack of pointers to scope
  * structs of the currently active scopes in order of their activation.
  *
- * The current scope, which can be retrieve by calling afw_xctx_scope_current(),
- * is at the top of the scope stack.
+ * The current scope, which can be retrieved by calling
+ * afw_xctx_scope_current(), is at the top of the scope stack.
  *
- * The scope stack is maintained by calls to function afw_xctx_scope_activate(),
- * which pushes a scope onto the scope stack and increments its reference count,
- * paired with calls to afw_xctx_scope_deactivate() which pops a scope off the
- * scope stack and calls afw_xctx_stack_release() for it.
+ * The scope stack is maintained by afw_xctx_scope_activate(), which
+ * pushes a scope and takes a stack reference, paired with
+ * afw_xctx_scope_deactivate() which pops and releases that stack
+ * reference. The creator's reference is separate.
  *
- * Function afw_xctx_scope_rewind(), used in 'catch' and 'finally', calls
- * afw_xctx_scope_deactivate() on all of the scopes down to the current scope at
- * the time 'try' was entered.
+ * afw_xctx_scope_unwind(), used in catch, deactivates every current
+ * scope down to (not including) the scope at try entry.
  *
- * The evaluate for a compiled value always pushes a NULL on the scope stack
- * before evaluating its root value then makes sure the NULL is still there in
- * the same position and removes it when the evaluation is complete. This causes
- * the evaluation of the root value to begin with a current scope of NULL, which
- * will cause it's first scope to be lexical scope lexical depth 0.
+ * The evaluate for a compiled value always pushes a NULL on the scope
+ * stack before evaluating its root value, then makes sure the NULL is
+ * still there and removes it when evaluation is complete. The root
+ * value thus begins with current NULL, so its first frame is the top
+ * block (scope_depth 0).
  *
  * Symbols (variables, parameters, etc.) go in and out of scope. The scope
  * struct has frame_slots[], indexed by afw_value_block_symbol_t.index (compile

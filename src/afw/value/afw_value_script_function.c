@@ -47,7 +47,7 @@
 AFW_DEFINE(const afw_value_t *)
 afw_value_script_function_definition_create(
     const afw_compile_value_contextual_t *contextual,
-    afw_size_t depth,
+    const afw_value_block_t *enclosing_block,
     const afw_value_script_function_signature_t *signature,
     const afw_value_type_t *returns,
     afw_size_t count,
@@ -63,7 +63,8 @@ afw_value_script_function_definition_create(
     self = afw_pool_calloc_type(p, afw_value_script_function_definition_t, xctx);
     self->inf = &afw_value_script_function_definition_inf;
     self->contextual = contextual;
-    self->depth = depth;
+    self->enclosing_block = enclosing_block;
+    self->depth = enclosing_block ? enclosing_block->depth : 0;
     self->signature = signature;
     self->returns = returns;
     self->count = count;

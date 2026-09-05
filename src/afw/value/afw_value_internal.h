@@ -789,6 +789,12 @@ struct afw_value_script_function_definition_s {
     const afw_compile_value_contextual_t *contextual;
     const afw_value_script_function_signature_t *signature;
     const afw_value_type_t *returns;
+    /*
+     * Compile-time current_block when the function was parsed (the
+     * enclosing `{ }`, which may have no scope). find_for_block uses
+     * its frame. depth is that block's syntax nesting (listing).
+     */
+    const afw_value_block_t *enclosing_block;
     afw_size_t depth;
     /** Formal count (same as signature->count when signature is present). */
     afw_size_t count;
