@@ -183,6 +183,17 @@ struct afw_pool_internal_self_s {
      */
     afw_integer_t reference_count;
 
+    /**
+     * Next pool waiting while error_processing_count > 0.
+     */
+    afw_pool_internal_self_t *error_processing_next;
+
+    /** Already on xctx->error_processing_pools. */
+    afw_boolean_t error_processing_wait;
+
+    /** Flush should destroy, not release. */
+    afw_boolean_t error_processing_destroy;
+
     /** @brief Outstanding malloc/calloc (minus free/destroy). */
     afw_size_t bytes_allocated;
 
@@ -222,6 +233,9 @@ afw_pool_internal_is_heap_multithreaded(const afw_pool_t *p);
 
 AFW_DECLARE(afw_boolean_t)
 afw_pool_internal_is_tracker(const afw_pool_t *p);
+
+AFW_DECLARE(void)
+afw_pool_error_processing_finish(afw_xctx_t *xctx);
 
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_internal_heap_create(

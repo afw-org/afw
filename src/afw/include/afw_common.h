@@ -2231,6 +2231,18 @@ struct afw_xctx_s {
     afw_error_t *error;
 
     /**
+     * Nested throws still being processed. 0 is off. Last
+     * pool release/destroy waits until this is 0 again.
+     */
+    afw_size_t error_processing_count;
+
+    /**
+     * Pools whose last release/destroy waited. Head is most
+     * recent; tail is innermost. See afw_error_processing_handled().
+     */
+    const afw_pool_t *error_processing_pools;
+
+    /**
      * Current try.
      */
     afw_try_t * current_try;

@@ -750,16 +750,14 @@ do { \
 do { \
     afw_compile_parse_set_error_z(parser, \
         AFW__FILE_LINE__, message_z); \
-    longjmp(((parser->xctx)->current_try->throw_jmp_buf), \
-        (afw_error_code_syntax)); \
+    afw_error_processing_throw((parser)->xctx, afw_error_code_syntax); \
 } while (0)
 
 #define AFW_COMPILE_THROW_ERROR_FZ(format_z, ...) \
 do { \
     afw_compile_parse_set_error_fz(parser, \
         AFW__FILE_LINE__, format_z, __VA_ARGS__); \
-    longjmp(((parser->xctx)->current_try->throw_jmp_buf), \
-        (afw_error_code_syntax)); \
+    afw_error_processing_throw((parser)->xctx, afw_error_code_syntax); \
 } while (0)
 
 /*

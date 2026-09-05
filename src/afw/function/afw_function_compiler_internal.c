@@ -2022,8 +2022,8 @@ afw_function_execute_throw(
 
     afw_error_set_fz(code, AFW__FILE_LINE__, xctx,
         AFW_UTF8_FMT, AFW_UTF8_FMT_ARG(&message->internal));
-    xctx->error->data = data;
-    longjmp(((xctx)->current_try->throw_jmp_buf), code);
+    afw_error_set_data(data, xctx);
+    afw_error_processing_throw(xctx, code);
 
     return afw_value_void;
 }

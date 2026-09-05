@@ -48,12 +48,7 @@ After pointing parser `contextual.source_location` at the compile-unit clone (no
 
 `AFW_THROW_ERROR_WITH_DATA*` now `afw_error_set_data` → `as_assignable` before longjmp (block FINALLY would otherwise last-release the tracker under `error->data`). Auth `deny*.as` green.
 
-Gate now **4157 passed**, 75 skipped, **10 failed** (empty JSON, not SIGSEGV):
-
-- `type_check*.as` (3)
-- `afw_curl` HTTP `http_*.as` (7)
-
-Same class until proven otherwise: a value used after the frame tracker died. Not 10 splat fixes.
+**Try in:** `xctx->error_processing_count`. Throw increments; catching `ENDTRY` decrements and, at 0, runs waiting last `release`/`destroy` (deepest parent-chain first). Only **scope trackers** (tracker whose parent is a heap) wait; compile heaps and `create()` of a tracker do not. Gate **4300 passed**, 75 skipped, 0 failed. BMP extra 4/4.
 
 ## Candidate order (re-decide after each)
 
