@@ -19,27 +19,20 @@ def index_create(session, key, adapterId=None, value=None, objectType=None, filt
 
     Args:
         adapterId (str): Id of adapter.
-
         key (str): Name of the property index to be created.
-
         value (str): Adaptive script (expression-like; must return a value)
-        used to calculate the index value(s). While evaluating,
-        current::object, current::objectId, current::objectType, and
-        current::key are available (issue #54). If omitted, the property named
-        by key is indexed.
-
+            used to calculate the index value(s). While evaluating,
+            current::object, current::objectId, current::objectType, and
+            current::key are available (issue #54). If omitted, the property
+            named by key is indexed.
         objectType (list): Object type id(s) this index may apply to.
-
         filter (str): Adaptive script that must return a boolean to decide
-        whether this index applies to a particular object. Uses the same
-        current:: variables as value (issue #54). If omitted, the filter is
-        always true.
-
+            whether this index applies to a particular object. Uses the same
+            current:: variables as value (issue #54). If omitted, the filter
+            is always true.
         options (list): Indexing options.
-
         retroactive (bool): Retroactively generate indexes for existing
-        objects.
-
+            objects.
         test (bool): Test create (don't actually perform).
 
     Returns:
@@ -90,7 +83,6 @@ def index_list(session, adapterId=None, objectType=None):
 
     Args:
         adapterId (str): Id of adapter.
-
         objectType (str): Id of adaptive object type indexes
 
     Returns:
@@ -125,7 +117,6 @@ def index_remove(session, key, adapterId=None):
 
     Args:
         adapterId (str): Id of adapter.
-
         key (str): The index key to be removed.
 
     Returns:

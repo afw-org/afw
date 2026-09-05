@@ -21,7 +21,6 @@ def add_entries(session, target, source):
 
     Args:
         target (list): Target array. This array must not be immutable.
-
         source (list): Source array(s).
 
     Returns:
@@ -58,10 +57,10 @@ def array(session, values):
 
     Args:
         values (object): A value can refer to any adaptable value belonging to
-        any data type or an array expression. In the case of an array
-        expression, indicated by '...' followed by an expression that results
-        in an array, every element within that array is included in the newly
-        created array.
+            any data type or an array expression. In the case of an array
+            expression, indicated by '...' followed by an expression that
+            results in an array, every element within that array is included
+            in the newly created array.
 
     Returns:
         list: The constructed array.
@@ -93,7 +92,6 @@ def at(session, array, index):
 
     Args:
         array (list): Array to index.
-
         index (int): Zero-based index, or negative from the end.
 
     Returns:
@@ -214,7 +212,7 @@ def create_array(session, length):
 
     Args:
         length (int): Number of undefined elements (0 or more, up to the
-        maximum).
+            maximum).
 
     Returns:
         list: A new array of the requested length; each entry is undefined.
@@ -246,7 +244,6 @@ def eq_array(session, arg1, arg2):
 
     Args:
         arg1 (list):
-
         arg2 (object):
 
     Returns:
@@ -279,7 +276,6 @@ def eqx_array(session, arg1, arg2):
 
     Args:
         arg1 (list):
-
         arg2 (object):
 
     Returns:
@@ -340,7 +336,6 @@ def ge_array(session, arg1, arg2):
 
     Args:
         arg1 (list):
-
         arg2 (list):
 
     Returns:
@@ -372,7 +367,6 @@ def gt_array(session, arg1, arg2):
 
     Args:
         arg1 (list):
-
         arg2 (list):
 
     Returns:
@@ -403,9 +397,7 @@ def includes_array(session, array, searchElement, fromIndex=None):
 
     Args:
         array (list): The array to search.
-
         searchElement (object): Element to find.
-
         fromIndex (int): Index in the array to start search.
 
     Returns:
@@ -468,9 +460,8 @@ def join(session, value, separator=None):
 
     Args:
         value (list): An array of values (statements) of any data type.
-
         separator (str): The separator to use. If not specified, a comma (,)
-        is used.
+            is used.
 
     Returns:
         str: Joined array values.
@@ -503,7 +494,6 @@ def le_array(session, arg1, arg2):
 
     Args:
         arg1 (list):
-
         arg2 (object):
 
     Returns:
@@ -536,7 +526,7 @@ def length_array(session, value):
 
     Args:
         value (list): Returns the number of entries in an array or code points
-        in others.
+            in others.
 
     Returns:
         int:
@@ -566,7 +556,6 @@ def lt_array(session, arg1, arg2):
 
     Args:
         arg1 (list):
-
         arg2 (list):
 
     Returns:
@@ -600,7 +589,6 @@ def ne_array(session, arg1, arg2):
 
     Args:
         arg1 (list):
-
         arg2 (object):
 
     Returns:
@@ -633,7 +621,6 @@ def nex_array(session, arg1, arg2):
 
     Args:
         arg1 (list):
-
         arg2 (object):
 
     Returns:
@@ -695,7 +682,6 @@ def push(session, array, values=None):
 
     Args:
         array (list): Target array. Must not be immutable.
-
         values (object): Values to append in order.
 
     Returns:
@@ -786,15 +772,14 @@ def slice(session, array, startIndex=None, endIndex=None):
 
     Args:
         array (list): The array to slice.
-
         startIndex (int): This is the zero based starting index. Use negative
-        number to index from the end of the array. If not specified, an index
-        of 0 is assumed.
-
+            number to index from the end of the array. If not specified, an
+            index of 0 is assumed.
         endIndex (int): This is the zero based ending index. If positive, this
-        is one more than the index of the last value to include in the array.
-        If negative, the index is from the end of the array. If not specified,
-        the slice is from startIndex up to and including the end of the array.
+            is one more than the index of the last value to include in the
+            array. If negative, the index is from the end of the array. If not
+            specified, the slice is from startIndex up to and including the
+            end of the array.
 
     Returns:
         list: An array containing the selected values. If all of the values
@@ -833,12 +818,9 @@ def splice(session, array, startIndex, deleteCount=None, values=None):
 
     Args:
         array (list): Target array. Must not be immutable.
-
         startIndex (int): Zero-based start index, or negative from the end.
-
         deleteCount (int): Number of values to remove. If omitted, remove
-        through the end of the array. Negative is treated as zero.
-
+            through the end of the array. Negative is treated as zero.
         values (object): Values to insert at startIndex after removals.
 
     Returns:
@@ -905,7 +887,6 @@ def unshift(session, array, values=None):
 
     Args:
         array (list): Target array. Must not be immutable.
-
         values (object): Values to insert at the front, in order.
 
     Returns:

@@ -1,0 +1,113 @@
+/* TypeDoc's own style.css (inlined ahead of this file at build time) keys
+ * its --color-* custom properties off `@media (prefers-color-scheme)`,
+ * which tracks the OS preference - not the Adaptive Framework handbook's
+ * own dark mode, which is a `.dark` class on <html> (see afw.js). This
+ * remaps those variables onto the handbook's own toggle instead, reusing
+ * the --light-color-*/--dark-color-* values style.css already defines
+ * unconditionally at :root. See docs.py _wrap_typedoc_html().
+ */
+
+.afw-typedoc-content {
+    --color-background: var(--light-color-background);
+    --color-background-secondary: var(--light-color-background-secondary);
+    --color-background-warning: var(--light-color-background-warning);
+    --color-warning-text: var(--light-color-warning-text);
+    --color-icon-background: var(--light-color-icon-background);
+    --color-accent: var(--light-color-accent);
+    --color-active-menu-item: var(--light-color-active-menu-item);
+    --color-text: var(--light-color-text);
+    --color-text-aside: var(--light-color-text-aside);
+    --color-link: var(--light-color-link);
+
+    --color-ts-keyword: var(--light-color-ts-keyword);
+    --color-ts-module: var(--light-color-ts-module);
+    --color-ts-namespace: var(--light-color-ts-namespace);
+    --color-ts-enum: var(--light-color-ts-enum);
+    --color-ts-enum-member: var(--light-color-ts-enum-member);
+    --color-ts-variable: var(--light-color-ts-variable);
+    --color-ts-function: var(--light-color-ts-function);
+    --color-ts-class: var(--light-color-ts-class);
+    --color-ts-interface: var(--light-color-ts-interface);
+    --color-ts-constructor: var(--light-color-ts-constructor);
+    --color-ts-property: var(--light-color-ts-property);
+    --color-ts-method: var(--light-color-ts-method);
+    --color-ts-call-signature: var(--light-color-ts-call-signature);
+    --color-ts-index-signature: var(--light-color-ts-index-signature);
+    --color-ts-constructor-signature: var(--light-color-ts-constructor-signature);
+    --color-ts-parameter: var(--light-color-ts-parameter);
+    --color-ts-type-parameter: var(--light-color-ts-type-parameter);
+    --color-ts-accessor: var(--light-color-ts-accessor);
+    --color-ts-get-signature: var(--light-color-ts-get-signature);
+    --color-ts-set-signature: var(--light-color-ts-set-signature);
+    --color-ts-type-alias: var(--light-color-ts-type-alias);
+
+    --external-icon: var(--light-external-icon);
+    --color-scheme: var(--light-color-scheme);
+
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    background: transparent;
+    color: var(--color-text);
+}
+
+html.dark .afw-typedoc-content {
+    --color-background: var(--dark-color-background);
+    --color-background-secondary: var(--dark-color-background-secondary);
+    --color-background-warning: var(--dark-color-background-warning);
+    --color-warning-text: var(--dark-color-warning-text);
+    --color-icon-background: var(--dark-color-icon-background);
+    --color-accent: var(--dark-color-accent);
+    --color-active-menu-item: var(--dark-color-active-menu-item);
+    --color-text: var(--dark-color-text);
+    --color-text-aside: var(--dark-color-text-aside);
+    --color-link: var(--dark-color-link);
+
+    --color-ts-keyword: var(--dark-color-ts-keyword);
+    --color-ts-module: var(--dark-color-ts-module);
+    --color-ts-namespace: var(--dark-color-ts-namespace);
+    --color-ts-enum: var(--dark-color-ts-enum);
+    --color-ts-enum-member: var(--dark-color-ts-enum-member);
+    --color-ts-variable: var(--dark-color-ts-variable);
+    --color-ts-function: var(--dark-color-ts-function);
+    --color-ts-class: var(--dark-color-ts-class);
+    --color-ts-interface: var(--dark-color-ts-interface);
+    --color-ts-constructor: var(--dark-color-ts-constructor);
+    --color-ts-property: var(--dark-color-ts-property);
+    --color-ts-method: var(--dark-color-ts-method);
+    --color-ts-call-signature: var(--dark-color-ts-call-signature);
+    --color-ts-index-signature: var(--dark-color-ts-index-signature);
+    --color-ts-constructor-signature: var(--dark-color-ts-constructor-signature);
+    --color-ts-parameter: var(--dark-color-ts-parameter);
+    --color-ts-type-parameter: var(--dark-color-ts-type-parameter);
+    --color-ts-accessor: var(--dark-color-ts-accessor);
+    --color-ts-get-signature: var(--dark-color-ts-get-signature);
+    --color-ts-set-signature: var(--dark-color-ts-set-signature);
+    --color-ts-type-alias: var(--dark-color-ts-type-alias);
+
+    --external-icon: var(--dark-external-icon);
+    --color-scheme: var(--dark-color-scheme);
+}
+
+/* !important: style.css's `a { color: var(--color-link) }` has no
+ * :visited variant, so visited links fall back to the browser's default
+ * UA purple. Pin the color unconditionally instead of relying on
+ * specificity/order against style.css and the Tailwind CDN runtime
+ * script's own async-injected rules. */
+.afw-typedoc-content a,
+.afw-typedoc-content a:visited {
+    color: var(--color-link) !important;
+}
+
+.afw-typedoc-content .tsd-anchor-icon {
+    opacity: 0;
+}
+
+.afw-typedoc-content a:hover .tsd-anchor-icon,
+.afw-typedoc-content .tsd-anchor-link:hover .tsd-anchor-icon {
+    opacity: 1;
+}
+
+.afw-typedoc-content code,
+.afw-typedoc-content pre {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}

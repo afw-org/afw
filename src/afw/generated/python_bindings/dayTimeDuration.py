@@ -20,7 +20,6 @@ def at_least_one_member_of_dayTimeDuration(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -141,7 +140,6 @@ def eq_dayTimeDuration(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -174,7 +172,6 @@ def eqx_dayTimeDuration(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -206,7 +203,6 @@ def ge_dayTimeDuration(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -238,7 +234,6 @@ def gt_dayTimeDuration(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -270,7 +265,6 @@ def intersection_dayTimeDuration(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -331,7 +325,6 @@ def is_in_dayTimeDuration(session, value, array):
 
     Args:
         value (object):
-
         array (list):
 
     Returns:
@@ -363,7 +356,6 @@ def le_dayTimeDuration(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -395,7 +387,6 @@ def lt_dayTimeDuration(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -429,7 +420,6 @@ def ne_dayTimeDuration(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -462,7 +452,6 @@ def nex_dayTimeDuration(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -523,7 +512,6 @@ def set_equals_dayTimeDuration(session, array1, array2):
 
     Args:
         array1 (list):
-
         array2 (list):
 
     Returns:
@@ -555,7 +543,6 @@ def subset_dayTimeDuration(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:

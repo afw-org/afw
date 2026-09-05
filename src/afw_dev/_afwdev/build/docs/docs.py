@@ -795,6 +795,404 @@ def _doxygen_cache_bust_extra_css(doxygen_html_dir, mtime):
                 updated, version))
 
 
+def _build_python_bindings_docs(options, doc_output_dir, docsHtml):
+    """Build the Sphinx (autodoc + napoleon) reference for the generated
+    Python bindings (src/afw/generated/python_bindings/). Skipped if that
+    generated directory doesn't exist yet, or the output already exists
+    (same skip-if-present convention as the Doxygen step above; use
+    --docs --clean to force a refresh).
+
+    Sphinx's own theme is discarded and the extracted content is re-wrapped
+    in the handbook's own page shell (see _wrap_sphinx_html()) so these
+    pages read as part of the site rather than a bolted-on Sphinx site.
+    """
+
+    from _afwdev.common import resources
+
+    python_bindings_src = os.path.join(
+        options['generated_dir'], 'python_bindings')
+    if not os.path.isdir(python_bindings_src):
+        return
+
+    sphinx_output_dir = os.path.join(
+        doc_output_dir, 'afw', 'html', 'reference', 'bindings',
+        'python_bindings')
+    if os.path.exists(sphinx_output_dir):
+        return
+
+    sphinx_build_cmd = shutil.which('sphinx-build')
+    sphinx_apidoc_cmd = shutil.which('sphinx-apidoc')
+    if not sphinx_build_cmd or not sphinx_apidoc_cmd:
+        msg.warn(
+            'Sphinx not found (pip install -r python-requirements.txt); '
+            'skipping Python bindings doc build')
+        return
+
+    msg.highlighted_info("Running sphinx for Python bindings")
+
+    sphinx_scratch_dir = os.path.join(
+        options['build_directory'], 'sphinx', 'python_bindings')
+    if os.path.exists(sphinx_scratch_dir):
+        shutil.rmtree(sphinx_scratch_dir)
+
+    # Generated binding modules (json.py, random.py, ...) are copied into a
+    # package (named afw, merged with the real hand-written afw client
+    # package below) so their filenames can't shadow same-named standard
+    # library modules when autodoc imports them - see conf.py.
+    modules_pkg_dir = os.path.join(sphinx_scratch_dir, 'afw')
+    os.makedirs(modules_pkg_dir, exist_ok=True)
+    for filename in os.listdir(python_bindings_src):
+        if filename.endswith('.py'):
+            shutil.copy2(
+                os.path.join(python_bindings_src, filename), modules_pkg_dir)
+
+    # Merge in the real afw client package (session.py/request.py/
+    # exceptions.py/__init__.py) so the reference documents one unified afw
+    # package - afw.Session/afw.HttpRequest alongside afw.adapter/afw.json/
+    # etc - instead of a doc-only afw_bindings stand-in. None of these
+    # modules do anything beyond class definitions at import time.
+    afw_client_src = os.path.join(
+        options['afw_package_dir_path'], 'src', 'afw_client', 'python', 'afw')
+    for filename in os.listdir(afw_client_src):
+        if filename.endswith('.py'):
+            shutil.copy2(
+                os.path.join(afw_client_src, filename), modules_pkg_dir)
+
+    # Merge in any extension-generated Python bindings too (afw_curl,
+    # afw_lmdb, afw_crypto, ...) so they show up in the same unified afw
+    # package reference alongside the core bindings.
+    for srcdir in package.get_afw_package(options)['srcdirs']:
+        if srcdir == 'afw':
+            continue
+        ext_bindings_src = os.path.join(
+            options['afw_package_dir_path'], 'src', srcdir, 'generated',
+            'python_bindings')
+        if not os.path.isdir(ext_bindings_src):
+            continue
+        for filename in os.listdir(ext_bindings_src):
+            if not filename.endswith('.py'):
+                continue
+            dest = os.path.join(modules_pkg_dir, filename)
+            if os.path.exists(dest):
+                msg.warn(
+                    '{} from {} would overwrite an existing Python binding '
+                    'module of the same name; skipping'.format(
+                        filename, srcdir))
+                continue
+            shutil.copy2(os.path.join(ext_bindings_src, filename), dest)
+
+    resources.copy_resources(
+        options, 'sphinx/python_bindings/', todir=sphinx_scratch_dir,
+        recursive=True)
+
+    quiet = [] if msg.is_verbose_mode() else ['-q']
+
+    subprocess.call([
+        sphinx_apidoc_cmd, '-f', '--doc-project', 'Modules',
+        '-o', sphinx_scratch_dir, modules_pkg_dir] + quiet)
+
+    raw_html_dir = os.path.join(sphinx_scratch_dir, '_raw_html')
+    subprocess.call([
+        sphinx_build_cmd, '-b', 'html',
+        sphinx_scratch_dir, raw_html_dir] + quiet)
+
+    _wrap_sphinx_html(
+        docsHtml, sphinx_scratch_dir, raw_html_dir, sphinx_output_dir)
+
+
+def _wrap_sphinx_html(docsHtml, sphinx_scratch_dir, raw_html_dir, sphinx_output_dir):
+    """Strip Sphinx's own theme chrome from each raw output page (keeping
+    only the <div role="main"> content) and re-render it through the
+    handbook's own page() template - same header, breadcrumbs, sidenav,
+    afw.css/afw.js - so it looks like a page of the site instead of a
+    separate Sphinx site. See sphinx_theme_overrides.css for the color pass
+    applied to Sphinx's generated markup (dl.py signatures, field lists).
+    """
+
+    from lxml import html as lxml_html
+
+    # basic.css/pygments.css have bare unscoped selectors (a:visited,
+    # body, dl, pre, h1..h6, ...) that would otherwise leak past this
+    # page's own content and affect the shared site chrome (nav,
+    # breadcrumbs) - e.g. a:visited's browser-default purple showing up
+    # in the sidenav instead of just within our content. @scope confines
+    # them to descendants of .afw-sphinx-content. Sphinx's basic.css has
+    # no :root/custom-property block, so it can be scoped wholesale.
+    vendor_css = ''
+    for name in ('basic.css', 'pygments.css'):
+        css_path = os.path.join(raw_html_dir, '_static', name)
+        if os.path.isfile(css_path):
+            with nfc.open(css_path) as fp:
+                vendor_css += fp.read() + '\n'
+    override_css = '@scope (.afw-sphinx-content) {\n' + vendor_css + '\n}\n'
+    theme_css_path = os.path.join(sphinx_scratch_dir, 'sphinx_theme_overrides.css')
+    if os.path.isfile(theme_css_path):
+        with nfc.open(theme_css_path) as fp:
+            override_css += fp.read()
+
+    # Same sidenav entry ("Reference" > "Bindings" > "Python Bindings") the
+    # handwritten reference/bindings/python.xml page already uses, but with
+    # an absolute relative_root_path since these pages live at
+    # /docs/python_bindings/, not under /docs/afw/html/.
+    nav_items = generate_sidenav(
+        docsHtml, "/docs/afw/html/", "Reference", "Bindings", "Python Bindings")
+
+    index_href = "/docs/afw/html/reference/bindings/python_bindings/index.html"
+
+    os.makedirs(sphinx_output_dir, exist_ok=True)
+
+    for filename in sorted(os.listdir(raw_html_dir)):
+        if not filename.endswith('.html'):
+            continue
+
+        tree = lxml_html.parse(os.path.join(raw_html_dir, filename))
+        root = tree.getroot()
+
+        main = root.find('.//div[@role="main"]')
+        if main is None:
+            continue
+
+        inner = main.text or ''
+        for child in main:
+            inner += lxml_html.tostring(child, encoding='unicode')
+
+        h1 = main.find('.//h1')
+        page_title = h1.text_content().strip().rstrip('¶').strip() if h1 is not None else 'Python Bindings'
+
+        if filename == 'index.html':
+            breadcrumbs = docsHtml.breadcrumbs([
+                {"href": "/docs/index.html", "text": "Docs"},
+                {"href": "/docs/afw/html/reference/bindings/index.html", "text": "Bindings"},
+                {"text": "Python Bindings"}
+            ])
+        else:
+            breadcrumbs = docsHtml.breadcrumbs([
+                {"href": "/docs/index.html", "text": "Docs"},
+                {"href": "/docs/afw/html/reference/bindings/index.html", "text": "Bindings"},
+                {"href": index_href, "text": "Python Bindings"},
+                {"text": page_title}
+            ])
+
+        content = '<style>%s</style>\n<div class="afw-sphinx-content">%s</div>' % (
+            override_css, inner)
+
+        page_html = docsHtml.page("/docs", page_title, breadcrumbs, nav_items, content)
+
+        with nfc.open(os.path.join(sphinx_output_dir, filename), 'w') as fp:
+            fp.write(page_html)
+
+
+def _build_javascript_bindings_docs(options, doc_output_dir, docsHtml):
+    """Build the TypeDoc reference for the generated Javascript bindings
+    (src/afw/generated/javascript_bindings/, plus any extension's own
+    generated/javascript_bindings/). Skipped if the core one doesn't exist
+    yet, or the output already exists (same skip-if-present convention as
+    the Doxygen/Python steps above; use --docs --clean to force a refresh).
+
+    Unlike the Python client, the hand-written afw_client/javascript
+    classes (AfwClient, AfwStreams, the model/ tree) aren't merged in here:
+    they have real cross-file type dependencies (an event-target-style
+    mixin, a Node @types/node import) that aren't self-contained the way
+    the Python client's session/request/exceptions were, so pulling them in
+    surfaced type errors that would need separate work to sort out. Only
+    the generated function bindings - self-contained, one category per
+    file - are documented here.
+
+    TypeDoc's own theme is discarded the same way Sphinx's was: see
+    _wrap_typedoc_html().
+    """
+
+    from _afwdev.common import resources
+
+    javascript_bindings_src = os.path.join(
+        options['generated_dir'], 'javascript_bindings', 'src')
+    if not os.path.isdir(javascript_bindings_src):
+        return
+
+    typedoc_output_dir = os.path.join(
+        doc_output_dir, 'afw', 'html', 'reference', 'bindings',
+        'javascript_bindings')
+    if os.path.exists(typedoc_output_dir):
+        return
+
+    typedoc_cmd = os.path.join(
+        options['afw_package_dir_path'], 'node_modules', '.bin', 'typedoc')
+    if not os.path.isfile(typedoc_cmd):
+        msg.warn(
+            'typedoc not found (npm install); skipping Javascript '
+            'bindings doc build')
+        return
+
+    msg.highlighted_info("Running typedoc for Javascript bindings")
+
+    typedoc_scratch_dir = os.path.join(
+        options['build_directory'], 'typedoc', 'javascript_bindings')
+    if os.path.exists(typedoc_scratch_dir):
+        shutil.rmtree(typedoc_scratch_dir)
+
+    modules_src_dir = os.path.join(typedoc_scratch_dir, 'src')
+    os.makedirs(modules_src_dir, exist_ok=True)
+    for filename in os.listdir(javascript_bindings_src):
+        if filename.endswith('.ts') and filename != 'index.ts':
+            shutil.copy2(
+                os.path.join(javascript_bindings_src, filename),
+                modules_src_dir)
+
+    # Merge in any extension-generated Javascript bindings too (afw_curl,
+    # afw_lmdb, afw_crypto, ...) so they show up in the same reference
+    # alongside the core bindings, same as the Python side.
+    for srcdir in package.get_afw_package(options)['srcdirs']:
+        if srcdir == 'afw':
+            continue
+        ext_bindings_src = os.path.join(
+            options['afw_package_dir_path'], 'src', srcdir, 'generated',
+            'javascript_bindings', 'src')
+        if not os.path.isdir(ext_bindings_src):
+            continue
+        for filename in os.listdir(ext_bindings_src):
+            if not filename.endswith('.ts') or filename == 'index.ts':
+                continue
+            dest = os.path.join(modules_src_dir, filename)
+            if os.path.exists(dest):
+                msg.warn(
+                    '{} from {} would overwrite an existing Javascript '
+                    'binding module of the same name; skipping'.format(
+                        filename, srcdir))
+                continue
+            shutil.copy2(os.path.join(ext_bindings_src, filename), dest)
+
+    resources.copy_resources(
+        options, 'typedoc/javascript_bindings/', todir=typedoc_scratch_dir,
+        recursive=True)
+
+    log_level = [] if msg.is_verbose_mode() else ['--logLevel', 'Error']
+
+    raw_html_dir = os.path.join(typedoc_scratch_dir, '_raw_html')
+    subprocess.call([
+        typedoc_cmd,
+        '--entryPoints', modules_src_dir,
+        '--entryPointStrategy', 'expand',
+        '--tsconfig', os.path.join(typedoc_scratch_dir, 'tsconfig.json'),
+        '--name', 'Adaptive Framework Javascript Bindings',
+        # Without this, TypeDoc defaults to using the package's own
+        # README.md (found by walking up from cwd - the repo root's
+        # README.md, in this case) as index.html's content instead of a
+        # generated module index.
+        '--readme', 'none',
+        '--out', raw_html_dir] + log_level)
+
+    _wrap_typedoc_html(
+        docsHtml, typedoc_scratch_dir, raw_html_dir, typedoc_output_dir)
+
+
+def _wrap_typedoc_html(docsHtml, typedoc_scratch_dir, raw_html_dir, typedoc_output_dir):
+    """Strip TypeDoc's own theme chrome from each raw output page (keeping
+    only the <div class="col-content"> content) and re-render it through
+    the handbook's own page() template - same header, breadcrumbs, sidenav,
+    afw.css/afw.js - so it looks like a page of the site instead of a
+    separate TypeDoc site. See typedoc_theme_overrides.css for the color
+    pass applied to TypeDoc's generated markup.
+    """
+
+    from lxml import html as lxml_html
+
+    # style.css/highlight.css have bare unscoped selectors (a bare `body`
+    # rule among them) that would otherwise leak past this page's own
+    # content and affect the shared site chrome - see the matching
+    # comment in _wrap_sphinx_html. @scope confines them to descendants
+    # of .afw-typedoc-content. Unlike Sphinx, style.css opens with an
+    # unconditional `:root { --light-color-*, --dark-color-* }` block
+    # defining the raw palette typedoc_theme_overrides.css's --color-*
+    # remap reads via var() - :root only ever matches the actual
+    # document root, so scoping that block would silently break the
+    # whole remap (its rules would just never match). Keep it global
+    # (harmless: unused custom property definitions have no visual
+    # effect on their own) and scope everything else.
+    vendor_css = ''
+    for name in ('style.css', 'highlight.css'):
+        css_path = os.path.join(raw_html_dir, 'assets', name)
+        if os.path.isfile(css_path):
+            with nfc.open(css_path) as fp:
+                vendor_css += fp.read() + '\n'
+
+    root_block_match = re.match(r'(:root\s*\{[^}]*\})(.*)', vendor_css, re.DOTALL)
+    if root_block_match:
+        root_block, rest = root_block_match.group(1), root_block_match.group(2)
+    else:
+        root_block, rest = '', vendor_css
+
+    override_css = root_block + '\n@scope (.afw-typedoc-content) {\n' + rest + '\n}\n'
+    theme_css_path = os.path.join(
+        typedoc_scratch_dir, 'typedoc_theme_overrides.css')
+    if os.path.isfile(theme_css_path):
+        with nfc.open(theme_css_path) as fp:
+            override_css += fp.read()
+
+    # Same sidenav entry ("Reference" > "Bindings" > "Javascript Bindings")
+    # the handwritten reference/bindings/javascript.xml page already uses,
+    # but with an absolute relative_root_path since these pages live at
+    # /docs/javascript_bindings/, not under /docs/afw/html/.
+    nav_items = generate_sidenav(
+        docsHtml, "/docs/afw/html/", "Reference", "Bindings",
+        "Javascript Bindings")
+
+    index_href = "/docs/afw/html/reference/bindings/javascript_bindings/index.html"
+
+    os.makedirs(typedoc_output_dir, exist_ok=True)
+
+    assets_src = os.path.join(raw_html_dir, 'assets')
+    assets_dst = os.path.join(typedoc_output_dir, 'assets')
+    if os.path.isdir(assets_src):
+        shutil.copytree(assets_src, assets_dst)
+
+    for root, _dirs, files in os.walk(raw_html_dir):
+        rel_dir = os.path.relpath(root, raw_html_dir)
+
+        for filename in files:
+            if not filename.endswith('.html'):
+                continue
+
+            tree = lxml_html.parse(os.path.join(root, filename))
+            page_root = tree.getroot()
+
+            content_div = page_root.find('.//div[@class="col-content"]')
+            if content_div is None:
+                continue
+
+            inner = content_div.text or ''
+            for child in content_div:
+                inner += lxml_html.tostring(child, encoding='unicode')
+
+            h1 = content_div.find('.//h1')
+            page_title = h1.text_content().strip() if h1 is not None else 'Javascript Bindings'
+
+            rel_path = filename if rel_dir == '.' else os.path.join(rel_dir, filename)
+
+            if rel_path == 'index.html':
+                breadcrumbs = docsHtml.breadcrumbs([
+                    {"href": "/docs/index.html", "text": "Docs"},
+                    {"href": "/docs/afw/html/reference/bindings/index.html", "text": "Bindings"},
+                    {"text": "Javascript Bindings"}
+                ])
+            else:
+                breadcrumbs = docsHtml.breadcrumbs([
+                    {"href": "/docs/index.html", "text": "Docs"},
+                    {"href": "/docs/afw/html/reference/bindings/index.html", "text": "Bindings"},
+                    {"href": index_href, "text": "Javascript Bindings"},
+                    {"text": page_title}
+                ])
+
+            content = '<style>%s</style>\n<div class="afw-typedoc-content">%s</div>' % (
+                override_css, inner)
+
+            page_html = docsHtml.page("/docs", page_title, breadcrumbs, nav_items, content)
+
+            out_path = os.path.join(typedoc_output_dir, rel_path)
+            os.makedirs(os.path.dirname(out_path), exist_ok=True)
+            with nfc.open(out_path, 'w') as fp:
+                fp.write(page_html)
+
+
 def rmtree(options, path, ignore = []):
 
     build_directory_docs = options['build_directory_docs']
@@ -886,8 +1284,16 @@ def run(options):
     
     doc_output_srcdir = os.path.join(doc_output_dir, srcdir)
 
-    # delete everything under the doc_output_srcdir, except ebnf
-    rmtree(options, doc_output_srcdir, ['afw/html/reference/language/ebnf'])    
+    # delete everything under the doc_output_srcdir, except ebnf and the
+    # generated bindings references (Sphinx/TypeDoc output, preserved
+    # across rebuilds the same way - see _build_python_bindings_docs /
+    # _build_javascript_bindings_docs, which skip rebuilding when their
+    # output dir already exists)
+    rmtree(options, doc_output_srcdir, [
+        'afw/html/reference/language/ebnf',
+        'afw/html/reference/bindings/python_bindings',
+        'afw/html/reference/bindings/javascript_bindings',
+    ])
 
     # the 'afw' srcdir may do some special processing for now
     if options['is_core_afw_package']:        
@@ -925,7 +1331,7 @@ def run(options):
                     doxygen_html_dir, os.path.getmtime(extra_css_src))
 
 
-    # copy over any static resources        
+    # copy over any static resources
     css = docsHtml.get_html_template("afw.css")
     # write out css
     afw_css = os.path.join(doc_output_dir, "afw.css")        
@@ -949,6 +1355,10 @@ def run(options):
     # now process every doc
     msg.highlighted_info("    Building HTML resources")
     generate_html_docs(options, docsHtml)
+
+    if options['is_core_afw_package'] and options['srcdir'] == 'afw':
+        _build_python_bindings_docs(options, doc_output_dir, docsHtml)
+        _build_javascript_bindings_docs(options, doc_output_dir, docsHtml)
 
     # anything in the 'docs' directory should also be copied over
     # to the output directory

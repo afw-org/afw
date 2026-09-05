@@ -20,7 +20,6 @@ def at_least_one_member_of_boolean(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -140,7 +139,6 @@ def eq_boolean(session, arg1, arg2):
 
     Args:
         arg1 (bool):
-
         arg2 (object):
 
     Returns:
@@ -173,7 +171,6 @@ def eqx_boolean(session, arg1, arg2):
 
     Args:
         arg1 (bool):
-
         arg2 (object):
 
     Returns:
@@ -205,7 +202,6 @@ def ge_boolean(session, arg1, arg2):
 
     Args:
         arg1 (bool):
-
         arg2 (bool):
 
     Returns:
@@ -237,7 +233,6 @@ def gt_boolean(session, arg1, arg2):
 
     Args:
         arg1 (bool):
-
         arg2 (bool):
 
     Returns:
@@ -269,7 +264,6 @@ def intersection_boolean(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -329,7 +323,6 @@ def is_in_boolean(session, value, array):
 
     Args:
         value (bool):
-
         array (list):
 
     Returns:
@@ -361,7 +354,6 @@ def le_boolean(session, arg1, arg2):
 
     Args:
         arg1 (bool):
-
         arg2 (object):
 
     Returns:
@@ -393,7 +385,6 @@ def lt_boolean(session, arg1, arg2):
 
     Args:
         arg1 (bool):
-
         arg2 (bool):
 
     Returns:
@@ -427,7 +418,6 @@ def ne_boolean(session, arg1, arg2):
 
     Args:
         arg1 (bool):
-
         arg2 (object):
 
     Returns:
@@ -460,7 +450,6 @@ def nex_boolean(session, arg1, arg2):
 
     Args:
         arg1 (bool):
-
         arg2 (object):
 
     Returns:
@@ -521,7 +510,6 @@ def set_equals_boolean(session, array1, array2):
 
     Args:
         array1 (list):
-
         array2 (list):
 
     Returns:
@@ -553,7 +541,6 @@ def subset_boolean(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:

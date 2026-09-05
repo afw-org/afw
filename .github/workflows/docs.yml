@@ -22,6 +22,13 @@ jobs:
 
             - run: pip install -r python-requirements.txt
 
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: "20"
+
+            - name: Install npm packages (typedoc, for the Javascript bindings reference)
+              run: npm install
+
             - name: Install Doxygen
               run: sudo apt-get install -y doxygen
 

@@ -19,7 +19,6 @@ def add_yearMonthDuration_date(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -51,7 +50,6 @@ def at_least_one_member_of_date(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -170,7 +168,6 @@ def eq_date(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -203,7 +200,6 @@ def eqx_date(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -238,7 +234,6 @@ def ge_date(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -273,7 +268,6 @@ def gt_date(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -305,7 +299,6 @@ def intersection_date(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -365,7 +358,6 @@ def is_in_date(session, value, array):
 
     Args:
         value (object):
-
         array (list):
 
     Returns:
@@ -400,7 +392,6 @@ def le_date(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -434,7 +425,6 @@ def lt_date(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -530,7 +520,6 @@ def ne_date(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -563,7 +552,6 @@ def nex_date(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -624,7 +612,6 @@ def set_equals_date(session, array1, array2):
 
     Args:
         array1 (list):
-
         array2 (list):
 
     Returns:
@@ -656,7 +643,6 @@ def subset_date(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -687,7 +673,6 @@ def subtract_yearMonthDuration_date(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:

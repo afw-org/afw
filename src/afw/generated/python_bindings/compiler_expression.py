@@ -49,7 +49,6 @@ def optional_chaining(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -82,7 +81,7 @@ def void_operator(session, value):
 
     Args:
         value (object): This is the value to evaluate (including undefined).
-        Evaluated for side effects only.
+            Evaluated for side effects only.
 
     Returns:
         object: This always returns undefined.

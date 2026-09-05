@@ -20,23 +20,19 @@ def authorization_check(session, requestId, resourceId, actionId, object=None, e
 
     Args:
         requestId (str): This is a request id to associate with the
-        authorization request. Variable current::requestId can be used to
-        access this value in authorization policies.
-
+            authorization request. Variable current::requestId can be used to
+            access this value in authorization policies.
         resourceId (str): This is the URI of the resource being checked.
-        Variable current::resourceId can be used to access this value in
-        authorization policies.
-
+            Variable current::resourceId can be used to access this value in
+            authorization policies.
         actionId (str): This is the action that on the resource that's being
-        checked.  Variable current::actionId can be used to access this value
-        in authorization policies.
-
+            checked.  Variable current::actionId can be used to access this
+            value in authorization policies.
         object (dict): Variable current::object can be used to access this
-        value in authorization policies.
-
+            value in authorization policies.
         enforce (bool): This specifies whether an error is thrown if access is
-        denied. If false or not specified, an error is not thrown and the
-        decision can be checked in the returned object.
+            denied. If false or not specified, an error is not thrown and the
+            decision can be checked in the returned object.
 
     Returns:
         dict: The authorization result.

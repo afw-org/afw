@@ -22,12 +22,11 @@ def all_of(session, predicate, values):
 
     Args:
         predicate (object): This function is called for each value in the
-        first array in values or until false is returned. If no calls return
-        false, the result is true.
-
+            first array in values or until false is returned. If no calls
+            return false, the result is true.
         values (object): These are the parameters passed to predicate with the
-        exception that the first array is passed one value at a time. At least
-        one array is required.
+            exception that the first array is passed one value at a time. At
+            least one array is required.
 
     Returns:
         bool:
@@ -58,10 +57,8 @@ def all_of_all(session, predicate, array1, array2):
 
     Args:
         predicate (object): The predicate is passed two parameters, the first
-        is a value from array1 and the second is a value from array2.
-
+            is a value from array1 and the second is a value from array2.
         array1 (list):
-
         array2 (list):
 
     Returns:
@@ -95,10 +92,8 @@ def all_of_any(session, predicate, array1, array2):
 
     Args:
         predicate (object): The predicate is passed two parameters, the first
-        is a value from array1 and the second is a value from array2.
-
+            is a value from array1 and the second is a value from array2.
         array1 (list):
-
         array2 (list):
 
     Returns:
@@ -132,12 +127,11 @@ def any_of(session, predicate, values):
 
     Args:
         predicate (object): This function is called for each value in the
-        first array in values or until true is returned. If no calls return
-        true, the result is false.
-
+            first array in values or until true is returned. If no calls
+            return true, the result is false.
         values (object): These are the parameters passed to predicate with the
-        exception that the first array is passed one value at a time. At least
-        one array is required.
+            exception that the first array is passed one value at a time. At
+            least one array is required.
 
     Returns:
         bool:
@@ -169,10 +163,8 @@ def any_of_all(session, predicate, array1, array2):
 
     Args:
         predicate (object): The predicate is passed two parameters, the first
-        is a value from array1 and the second is a value from array2.
-
+            is a value from array1 and the second is a value from array2.
         array1 (list):
-
         array2 (list):
 
     Returns:
@@ -205,10 +197,8 @@ def any_of_any(session, predicate, array1, array2):
 
     Args:
         predicate (object): The predicate is passed two parameters, the first
-        is a value from array1 and the second is a value from array2.
-
+            is a value from array1 and the second is a value from array2.
         array1 (list):
-
         array2 (list):
 
     Returns:
@@ -242,10 +232,9 @@ def every(session, predicate, values):
 
     Args:
         predicate (object): Called for each value in the first array in values
-        or until false is returned.
-
+            or until false is returned.
         values (object): Parameters passed to predicate with the first array
-        passed one value at a time.
+            passed one value at a time.
 
     Returns:
         bool:
@@ -277,11 +266,11 @@ def filter(session, predicate, values):
 
     Args:
         predicate (object): This is a boolean function that is called to
-        determine if an array entry should be included in the returned array.
-
+            determine if an array entry should be included in the returned
+            array.
         values (object): These are the values passed to the predicate with the
-        exception that the first array is passed as the single current value
-        from the array. At least one array is required.
+            exception that the first array is passed as the single current
+            value from the array. At least one array is required.
 
     Returns:
         list: A new array of the entries that passed the test (possibly
@@ -316,11 +305,10 @@ def find(session, predicate, values):
 
     Args:
         predicate (object): This is a boolean function that is called to
-        determine if an array entry passes the test.
-
+            determine if an array entry passes the test.
         values (object): These are the values passed to the predicate with the
-        exception that the first array is passed as the single current value
-        from the array. At least one array is required.
+            exception that the first array is passed as the single current
+            value from the array. At least one array is required.
 
     Returns:
         object: The first matching entry, or undefined if none match.
@@ -355,10 +343,9 @@ def map(session, functor, values):
 
     Args:
         functor (object):
-
         values (object): The first array is walked one entry at a time as the
-        first argument to functor. Additional parameters are passed on every
-        call. At least one array is required.
+            first argument to functor. Additional parameters are passed on
+            every call. At least one array is required.
 
     Returns:
         list: A new array with one result per entry of the first array.
@@ -392,13 +379,11 @@ def reduce(session, functor, accumulator, array):
 
     Args:
         functor (object): This function is called for each value in an array.
-        The returned value is passed as the accumulator parameter on the next
-        call to functor().
-
+            The returned value is passed as the accumulator parameter on the
+            next call to functor().
         accumulator (object): This is an initial accumulator value passed to
-        functor(). Normally, the dataType of accumulator will be the data type
-        for the reduce() return value, but this is not required.
-
+            functor(). Normally, the dataType of accumulator will be the data
+            type for the reduce() return value, but this is not required.
         array (list): This is an array to be reduced.
 
     Returns:
@@ -433,10 +418,9 @@ def some(session, predicate, values):
 
     Args:
         predicate (object): Called for each value in the first array in values
-        or until true is returned.
-
+            or until true is returned.
         values (object): Parameters passed to predicate with the first array
-        passed one value at a time.
+            passed one value at a time.
 
     Returns:
         bool:
@@ -471,10 +455,9 @@ def sort(session, compareFunction, array):
 
     Args:
         compareFunction (object): Return true if value1 should be ordered
-        before value2.
-
+            before value2.
         array (list): Array to sort. Must be single-type (all entries the same
-        data type).
+            data type).
 
     Returns:
         list: A new array with the entries of array in sorted order.

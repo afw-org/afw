@@ -21,7 +21,7 @@ def extension_load(session, extension_id):
 
     Args:
         extension_id (str): This is the object id of a
-        /afw/_AdaptiveManifest_/ object.
+            /afw/_AdaptiveManifest_/ object.
 
     Returns:
         bool: If false the extension was already loaded. If true, the
@@ -54,8 +54,8 @@ def extension_load_by_module_path(session, module_path):
 
     Args:
         module_path (str): This is the path to the dso containing the
-        extension. If the extension is installed in the normal place, the
-        library name without a file extension (.so) will suffice.
+            extension. If the extension is installed in the normal place, the
+            library name without a file extension (.so) will suffice.
 
     Returns:
         str: The extension id of the extension loaded.
@@ -83,7 +83,6 @@ def flag_get_active(session):
     Get an array of of the flagId of flags that are set in the current
     execution context (xctx).
 
-    Args:
     Returns:
         list: This is an array of the flagId of flags that are set in the
         current execution context (xctx).
@@ -110,7 +109,6 @@ def flag_get_active_defaults(session):
     Get an array of the flagId of flags that are set by default when a new
     execution context (xctx) is created.
 
-    Args:
     Returns:
         list: This is an array of the flagId of flags that are set by default
         when a new execution context (xctx) is created.
@@ -140,7 +138,6 @@ def flag_get_defaults(session):
     Each of these flags and the flags they include are set as the active
     default flags.
 
-    Args:
     Returns:
         list: This is an array of the flagId of flags used to determine the
         default active flags.
@@ -177,9 +174,8 @@ def flag_modify_defaults(session, flagId, add=None):
 
     Args:
         flagId (list): The flagId of flags to be added or removed.
-
         add (bool): Specify true to add and false to remove flags. If not
-        specified, flags are added.
+            specified, flags are added.
 
     Returns:
         object:
@@ -220,7 +216,7 @@ def flag_replace_defaults(session, flagId):
 
     Args:
         flagId (list): The array of the flagId of flags used to determine the
-        default active flags.
+            default active flags.
 
     Returns:
         object:
@@ -249,9 +245,8 @@ def flag_set(session, flagId, setTo=None):
 
     Args:
         flagId (list): List of flagId of flags to set or unset.
-
         setTo (bool): Specify true to set and false to unset. If not
-        specified, flags are set.
+            specified, flags are set.
 
     Returns:
         object:
@@ -284,13 +279,11 @@ def registry_key_check(session, registryType, key, loadExtension=None):
 
     Args:
         registryType (str): This is the registry type, which is the object id
-        of a /afw/_AdaptiveEnvironmentRegistryType_/ object.
-
+            of a /afw/_AdaptiveEnvironmentRegistryType_/ object.
         key (str): This is a key to check for existence in the specified
-        registryType.
-
+            registryType.
         loadExtension (bool): Specifying true for this optional parameter will
-        cause the associated extension to be loaded if needed.
+            cause the associated extension to be loaded if needed.
 
     Returns:
         bool: If false the extension was already loaded. If true, the

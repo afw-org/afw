@@ -24,25 +24,21 @@ def model_default_add_object_action(session, objectType, object, adapterId=None,
 
     Args:
         adapterId (str): This is the adapterId of a model adapter. Variable
-        custom::adapterId can be used to access this value in model
-        expressions.
-
+            custom::adapterId can be used to access this value in model
+            expressions.
         objectType (str): This is the adaptive object type of object being
-        added. Variable custom::objectType can be used to access this value in
-        model expressions.
-
+            added. Variable custom::objectType can be used to access this
+            value in model expressions.
         object (dict): This is the object to add. Variable custom::object can
-        be used to access this value in model expressions.
-
+            be used to access this value in model expressions.
         objectId (str): This is the optional preferred objectId of object to
-        add. The adapter may ignore this. Variable custom::objectId can be
-        used to access this value in model expressions.
-
+            add. The adapter may ignore this. Variable custom::objectId can be
+            used to access this value in model expressions.
         modelId (str): This specifics a modelId of model to use for producing
-        results. If not specified, the adapter's current model will be used.
-
+            results. If not specified, the adapter's current model will be
+            used.
         context (dict): This specifies additional context information
-        available to model expressions.
+            available to model expressions.
 
     Returns:
         dict: The default action object.
@@ -89,21 +85,19 @@ def model_default_delete_object_action(session, objectType, objectId, adapterId=
 
     Args:
         adapterId (str): This is the adapterId of a model adapter. Variable
-        custom::adapterId can be used to access this value in model
-        expressions.
-
+            custom::adapterId can be used to access this value in model
+            expressions.
         objectType (str): This is the adaptive object type of object being
-        deleted. Variable custom::objectType can be used to access this value
-        in model expressions.
-
+            deleted. Variable custom::objectType can be used to access this
+            value in model expressions.
         objectId (str): This is the objectId of object to delete. Variable
-        custom::object can be used to access this value in model expressions.
-
+            custom::object can be used to access this value in model
+            expressions.
         modelId (str): This specifics a modelId of model to use for producing
-        results. If not specified, the adapter's current model will be used.
-
+            results. If not specified, the adapter's current model will be
+            used.
         context (dict): This specifies additional context information
-        available to model expressions.
+            available to model expressions.
 
     Returns:
         dict: The default action object.
@@ -147,38 +141,34 @@ def model_default_modify_object_action(session, objectType, objectId, entries, a
 
     Args:
         adapterId (str): This is the adapterId of a model adapter. Variable
-        custom::adapterId can be used to access this value in model
-        expressions.
-
+            custom::adapterId can be used to access this value in model
+            expressions.
         objectType (str): This is the adaptive object type of object being
-        modified. Variable custom::objectType can be used to access this value
-        in model expressions.
-
+            modified. Variable custom::objectType can be used to access this
+            value in model expressions.
         objectId (str): This is the objectId of object to modify. Variable
-        custom::objectId can be used to access this value in model
-        expressions.
-
+            custom::objectId can be used to access this value in model
+            expressions.
         entries (list): This is an array of modifications. Variable
-        custom::actions can be used to access this value in model expressions.
-        Entries are of the form:
+            custom::actions can be used to access this value in model
+            expressions. Entries are of the form:
         
-            [         'add_value',         'property name' or ['property
-        name', ... ],         value     ]
+                [         'add_value',         'property name' or ['property
+            name', ... ],         value     ]
         
-            [         'remove_property',         'property name' or ['property
-        name', ... ]     ]
+                [         'remove_property',         'property name' or
+            ['property name', ... ]     ]
         
-            [         'remove_value',         'property name' or ['property
-        name', ... ],         value     ]
+                [         'remove_value',         'property name' or
+            ['property name', ... ],         value     ]
         
-            [         'set_property',         'property name' or ['property
-        name', ... ],         value     ]
-
+                [         'set_property',         'property name' or
+            ['property name', ... ],         value     ]
         modelId (str): This specifics a modelId of model to use for producing
-        results. If not specified, the adapter's current model will be used.
-
+            results. If not specified, the adapter's current model will be
+            used.
         context (dict): This specifies additional context information
-        available to model expressions.
+            available to model expressions.
 
     Returns:
         dict: The default action object.
@@ -223,25 +213,21 @@ def model_default_replace_object_action(session, objectType, objectId, object, a
 
     Args:
         adapterId (str): This is the adapterId of a model adapter. Variable
-        custom::adapterId can be used to access this value in model
-        expressions.
-
+            custom::adapterId can be used to access this value in model
+            expressions.
         objectType (str): This is the adaptive object type of object being
-        replaced. Variable custom::objectType can be used to access this value
-        in model expressions.
-
+            replaced. Variable custom::objectType can be used to access this
+            value in model expressions.
         objectId (str): The objectId of object to replace. Variable
-        custom::objectId can be used to access this value in model
-        expressions.
-
+            custom::objectId can be used to access this value in model
+            expressions.
         object (dict): This is the object to replace. Variable custom::object
-        can be used to access this value in model expressions.
-
+            can be used to access this value in model expressions.
         modelId (str): This specifics a modelId of model to use for producing
-        results. If not specified, the adapter's current model will be used.
-
+            results. If not specified, the adapter's current model will be
+            used.
         context (dict): This specifies additional context information
-        available to model expressions.
+            available to model expressions.
 
     Returns:
         dict: The default action object.
@@ -343,10 +329,9 @@ def model_returnObject_signature(session, object, userData=None):
 
     Args:
         object (dict): This is the object to return.
-
         userData (bool): If this is present and true, the object will be
-        mapped its mapped adapter's object type to the model adapter's object
-        type.
+            mapped its mapped adapter's object type to the model adapter's
+            object type.
 
     Returns:
         bool: This will return true if no more objects can be returned for any

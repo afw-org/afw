@@ -124,13 +124,19 @@ def generate(generated_by, data_type_list, objects_dir_path, generated_dir_path,
                     fd.write('\n')
                     #fd.write('    ' + description + '\n')
                     c.write_wrapped(fd, 78, '    ', description, '', '', True)
-                    fd.write('\n')
-                    fd.write('    Args:')
 
-                    for param in obj.get('parameters'):
+                    # Google-style "Args:" field list entries must be
+                    # contiguous (no blank line between them) and any
+                    # wrapped continuation lines must be indented deeper
+                    # than the "name (type):" line, or Sphinx napoleon
+                    # will misparse continuations as bogus new fields.
+                    parameters = obj.get('parameters')
+                    if parameters:
                         fd.write('\n')
-                        paramDescription = param.get('name') + ' (' + get_data_type(param.get('dataType')) + '): ' + param.get('description', '')
-                        c.write_wrapped(fd, 78, '        ', paramDescription, '', '', True)                        
+                        fd.write('    Args:\n')
+                        for param in parameters:
+                            paramDescription = param.get('name') + ' (' + get_data_type(param.get('dataType')) + '): ' + param.get('description', '')
+                            c.write_wrapped(fd, 78, '        ', paramDescription, '    ', '', True)
 
                     fd.write('\n')
                     fd.write('    Returns:\n')

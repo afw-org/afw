@@ -38,13 +38,11 @@ def journal_advance_cursor_for_consumer(session, consumerId, adapterId=None, lim
 
     Args:
         adapterId (str): Id of adapter.
-
         consumerId (str): The consumerId property value of the associated
-        _AdaptiveProvisioningPeer_ object.
-
+            _AdaptiveProvisioningPeer_ object.
         limit (int): The maximum number of entries that will be scanned for an
-        entry where the consumerFilter expression in the associated
-        _AdaptiveProvisioningPeer_ object evaluates to true.
+            entry where the consumerFilter expression in the associated
+            _AdaptiveProvisioningPeer_ object evaluates to true.
 
     Returns:
         dict: Response object.
@@ -83,7 +81,6 @@ def journal_get_by_cursor(session, cursor, adapterId=None):
 
     Args:
         adapterId (str): Id of adapter.
-
         cursor (str): Journal entry cursor.
 
     Returns:
@@ -153,7 +150,6 @@ def journal_get_next_after_cursor(session, cursor, adapterId=None):
 
     Args:
         adapterId (str): Id of adapter.
-
         cursor (str): Journal entry cursor.
 
     Returns:
@@ -214,13 +210,11 @@ def journal_get_next_for_consumer(session, consumerId, adapterId=None, limit=Non
 
     Args:
         adapterId (str): Id of adapter.
-
         consumerId (str): The consumerId property value of the associated
-        _AdaptiveProvisioningPeer_ object.
-
+            _AdaptiveProvisioningPeer_ object.
         limit (int): The maximum number of entries that will be scanned for an
-        entry where the consumerFilter expression in the associated
-        _AdaptiveProvisioningPeer_ object evaluates to true.
+            entry where the consumerFilter expression in the associated
+            _AdaptiveProvisioningPeer_ object evaluates to true.
 
     Returns:
         dict: Response object.
@@ -270,15 +264,12 @@ def journal_get_next_for_consumer_after_cursor(session, consumerId, cursor, adap
 
     Args:
         adapterId (str): Id of adapter.
-
         consumerId (str): The consumerId property value of the associated
-        _AdaptiveProvisioningPeer_ object.
-
+            _AdaptiveProvisioningPeer_ object.
         cursor (str): Journal entry cursor.
-
         limit (int): The maximum number of entries that will be scanned for an
-        entry where the consumerFilter expression in the associated
-        _AdaptiveProvisioningPeer_ object evaluates to true.
+            entry where the consumerFilter expression in the associated
+            _AdaptiveProvisioningPeer_ object evaluates to true.
 
     Returns:
         dict: Response object.
@@ -314,10 +305,8 @@ def journal_mark_consumed(session, consumerId, cursor, adapterId=None):
 
     Args:
         adapterId (str): Id of adapter.
-
         consumerId (str): The consumerId property value of the associated
-        _AdaptiveProvisioningPeer_ object.
-
+            _AdaptiveProvisioningPeer_ object.
         cursor (str): Journal entry cursor.
 
     Returns:

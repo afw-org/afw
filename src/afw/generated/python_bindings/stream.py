@@ -77,28 +77,26 @@ def open_file(session, streamId, path, mode, autoFlush=None):
 
     Args:
         streamId (str): This is the streamId that will be associated with this
-        open file stream.
-
+            open file stream.
         path (str): Logical path resolved using rootFilePaths (longest
-        matching prefix; host path must remain under that root).
-
+            matching prefix; host path must remain under that root).
         mode (str): This is the access mode string. Values can be:   r - Open
-        an existing file text file for read.   w - Open a text file for
-        writing. If the file does not exist, it will be created.   a - Open a
-        text file for writing additional data to the end. If the file does not
-        exist, it will be created.   r+ - Open a text file for both reading
-        and writing.   w+ - Open a text file for both reading and writing. If
-        the file exists, it will be overwritten. If the file does not exist,
-        it will be created.   a+ - Open a text file for both reading and
-        writing. Reading will begin at the start of the file while writing
-        will be appended to the end.
+            an existing file text file for read.   w - Open a text file for
+            writing. If the file does not exist, it will be created.   a -
+            Open a text file for writing additional data to the end. If the
+            file does not exist, it will be created.   r+ - Open a text file
+            for both reading and writing.   w+ - Open a text file for both
+            reading and writing. If the file exists, it will be overwritten.
+            If the file does not exist, it will be created.   a+ - Open a text
+            file for both reading and writing. Reading will begin at the start
+            of the file while writing will be appended to the end.
         
-        All of these modes expect data type string. If you are using data type
-        base64Binary or hexBinary you can use corresponding binary modes,
-        'rb', 'wb', 'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and 'a+b'.
-
+            All of these modes expect data type string. If you are using data
+            type base64Binary or hexBinary you can use corresponding binary
+            modes, 'rb', 'wb', 'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and
+            'a+b'.
         autoFlush (bool): If specified and true, this will automatically flush
-        the stream's buffers after every write.
+            the stream's buffers after every write.
 
     Returns:
         int: The streamNumber for the streamId. Throws on error (invalid path,
@@ -194,9 +192,8 @@ def read(session, streamNumber, n):
 
     Args:
         streamNumber (int): Stream number
-
         n (object): The maximum number of octets to read (0 or more, up to
-        1,000,000).
+            1,000,000).
 
     Returns:
         str: The UTF-8 string read. Check the size of this value to determine
@@ -229,9 +226,8 @@ def read_to_base64Binary(session, streamNumber, n):
 
     Args:
         streamNumber (int): Stream number
-
         n (object): The maximum number of octets to read (0 or more, up to
-        1,000,000).
+            1,000,000).
 
     Returns:
         object: The base64Binary value read. Check the size of this value to
@@ -264,9 +260,8 @@ def read_to_hexBinary(session, streamNumber, n):
 
     Args:
         streamNumber (int): Stream number
-
         n (object): The maximum number of octets to read (0 or more, up to
-        1,000,000).
+            1,000,000).
 
     Returns:
         object: The hexBinary value read. Check the size of this value to
@@ -358,7 +353,6 @@ def write(session, streamNumber, value):
 
     Args:
         streamNumber (int): The streamNumber for the stream to write.
-
         value (object): Values to write as their string value.
 
     Returns:
@@ -390,9 +384,8 @@ def write_internal(session, streamNumber, value):
 
     Args:
         streamNumber (int): The streamNumber for the stream to write.
-
         value (object): The internal memory of this value is written (string,
-        hexBinary, or base64Binary).
+            hexBinary, or base64Binary).
 
     Returns:
         object:
@@ -424,7 +417,6 @@ def writeln(session, streamNumber, value):
 
     Args:
         streamNumber (int): The streamNumber for the stream to write.
-
         value (object): Values to write.
 
     Returns:

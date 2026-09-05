@@ -5,4 +5,5 @@ lxml
 marko
 PyYAML
 requests
+Sphinx
 watchdog

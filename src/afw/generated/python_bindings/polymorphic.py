@@ -77,7 +77,6 @@ def add_dayTimeDuration(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -109,7 +108,6 @@ def add_yearMonthDuration(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -141,7 +139,6 @@ def at_least_one_member_of(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -291,16 +288,15 @@ def compile(session, source, listing=None):
 
     Args:
         source (object): `<dataType>` string to compile
-
         listing (object): If specified, a human compiler listing is produced
-        instead of an unevaluated compiled value (tree + ---Symbols; not
-        recompilable). Use decompile() for Adaptive compiled-form text and
-        stringify() for pure JSON of evaluated data.
+            instead of an unevaluated compiled value (tree + ---Symbols; not
+            recompilable). Use decompile() for Adaptive compiled-form text and
+            stringify() for pure JSON of evaluated data.
         
-        This parameter can be an integer between 0 and 10 or a string that is
-        used for indentation. If 0 is specified, no whitespace is added to the
-        resulting string. If 1 through 10 is specified, that number of spaces
-        is used.
+            This parameter can be an integer between 0 and 10 or a string that
+            is used for indentation. If 0 is specified, no whitespace is added
+            to the resulting string. If 1 through 10 is specified, that number
+            of spaces is used.
 
     Returns:
         object:
@@ -362,7 +358,6 @@ def divide(session, dividend, divisor):
 
     Args:
         dividend (object):
-
         divisor (object):
 
     Returns:
@@ -452,7 +447,6 @@ def ends_with(session, value, subString):
 
     Args:
         value (object):
-
         subString (str):
 
     Returns:
@@ -486,7 +480,6 @@ def eq(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -518,7 +511,6 @@ def eq_ignore_case(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -551,7 +543,6 @@ def eqx(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -582,13 +573,13 @@ def eval(session, source, additionalUntrustedQualifiedVariables=None):
 
     Args:
         source (object): `<dataType>` to compile and evaluate
-
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during evaluation.
-        These variables will not be used by anything that needs to ensure its
-        qualified variables must come from a trusted source, such as
-        authorization. This parameter is intended to be used for testing only
-        and should not be used for anything running in production.
+            additional qualified variables that can be accessed during
+            evaluation. These variables will not be used by anything that
+            needs to ensure its qualified variables must come from a trusted
+            source, such as authorization. This parameter is intended to be
+            used for testing only and should not be used for anything running
+            in production.
 
     Returns:
         object:
@@ -679,7 +670,6 @@ def ge(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -711,7 +701,6 @@ def gt(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -747,9 +736,7 @@ def in_range(session, time, startTime, endTime):
 
     Args:
         time (object):
-
         startTime (object):
-
         endTime (object):
 
     Returns:
@@ -782,11 +769,9 @@ def includes(session, searchString, subString, position=None):
 
     Args:
         searchString (object): The `<dataType>` to search.
-
         subString (str): Substring to find.
-
         position (int): Zero-based position in the search string to start
-        search.
+            search.
 
     Returns:
         bool: Indicates if the substring is contained in the search string.
@@ -820,11 +805,9 @@ def index_of(session, value, subString, startIndex=None):
 
     Args:
         value (object): The `<dataType>` value to search.
-
         subString (str): Substring to search for.
-
         startIndex (int): Optional start index for search if different than
-        start of string.
+            start of string.
 
     Returns:
         int: Zero-based index of subString or -1 if not found.
@@ -858,7 +841,6 @@ def intersection(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -919,7 +901,6 @@ def is_in(session, value, array):
 
     Args:
         value (object):
-
         array (list):
 
     Returns:
@@ -951,11 +932,9 @@ def last_index_of(session, value, subString, startIndex=None):
 
     Args:
         value (object): The `<dataType>` value to search.
-
         subString (str): Substring to search for.
-
         startIndex (int): Optional start index for search if different than
-        start of string.
+            start of string.
 
     Returns:
         int: Zero-based index of subString or -1 if not found.
@@ -989,7 +968,6 @@ def le(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -1022,7 +1000,7 @@ def length(session, value):
 
     Args:
         value (object): Returns the number of entries in an array or code
-        points in others.
+            points in others.
 
     Returns:
         int:
@@ -1052,7 +1030,6 @@ def lt(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -1084,7 +1061,6 @@ def match(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (str):
 
     Returns:
@@ -1172,7 +1148,6 @@ def mod(session, dividend, divisor):
 
     Args:
         dividend (object):
-
         divisor (object):
 
     Returns:
@@ -1234,7 +1209,6 @@ def ne(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -1295,7 +1269,6 @@ def nex(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -1414,7 +1387,6 @@ def pow(session, base, exponent):
 
     Args:
         base (object): Base value.
-
         exponent (object): Exponent value.
 
     Returns:
@@ -1446,7 +1418,6 @@ def regexp_index_of(session, value, regexp):
 
     Args:
         value (object): The `<dataType>` value to search.
-
         regexp (str): A regular expression to use for search.
 
     Returns:
@@ -1478,7 +1449,6 @@ def regexp_match(session, value, regexp):
 
     Args:
         value (object):
-
         regexp (str):
 
     Returns:
@@ -1509,13 +1479,10 @@ def regexp_replace(session, value, regexp, replacement, limit=None):
 
     Args:
         value (object): The original `<dataType>` value.
-
         regexp (str): A regular expression to use for search.
-
         replacement (str): The replacement string.
-
         limit (int): This is the maximum times to replace. The default is 1.
-        Specify -1 to replace all occurrences.
+            Specify -1 to replace all occurrences.
 
     Returns:
         str: Result text as string (not re-typed as the input data type).
@@ -1549,7 +1516,6 @@ def repeat(session, value, times):
 
     Args:
         value (object): The `<dataType>` value to repeat.
-
         times (int): The number of times to repeat the value.
 
     Returns:
@@ -1583,14 +1549,11 @@ def replace(session, value, match, replacement, limit=None):
 
     Args:
         value (object): The original `<dataType>` value.
-
         match (str): The string to replace. An empty string matches at each
-        code-point boundary, including the start and the end.
-
+            code-point boundary, including the start and the end.
         replacement (str): The replacement string.
-
         limit (int): This is the maximum times to replace. The default is 1.
-        Specify -1 to replace all occurrences.
+            Specify -1 to replace all occurrences.
 
     Returns:
         str: Result text as string (not re-typed as the input data type).
@@ -1654,7 +1617,6 @@ def set_equals(session, array1, array2):
 
     Args:
         array1 (list):
-
         array2 (list):
 
     Returns:
@@ -1685,12 +1647,10 @@ def split(session, value, separator=None, limit=None):
 
     Args:
         value (object): The `<dataType>` value to split.
-
         separator (str): The separator to use. If this is an empty string or
-        separator is not specified, the value is split between characters.
-
+            separator is not specified, the value is split between characters.
         limit (int): This is the maximum number of splits. Any remaining part
-        of value is ignored.
+            of value is ignored.
 
     Returns:
         list: An array of strings.
@@ -1726,7 +1686,6 @@ def starts_with(session, value, subString):
 
     Args:
         value (object):
-
         subString (str):
 
     Returns:
@@ -1758,7 +1717,6 @@ def subset(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -1792,9 +1750,7 @@ def substring(session, string, startIndex, endIndex=None):
 
     Args:
         string (object):
-
         startIndex (int):
-
         endIndex (int):
 
     Returns:
@@ -1829,7 +1785,6 @@ def subtract(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -1861,7 +1816,6 @@ def subtract_dayTimeDuration(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -1893,7 +1847,6 @@ def subtract_yearMonthDuration(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -2346,7 +2299,7 @@ def url_encode(session, unencoded):
 
     Args:
         unencoded (object): URL encode a single value. See the url_encode
-        method for the data type of more details.
+            method for the data type of more details.
 
     Returns:
         str: URI encoded string.

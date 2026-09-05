@@ -19,10 +19,9 @@ def assert_(session, assertion, reason=None):
 
     Args:
         assertion (bool): This is the assertion to make. If not true, an
-        assertion_failed error is thrown.
-
+            assertion_failed error is thrown.
         reason (str): This is an optional reason to include in the
-        assertion_failed message.
+            assertion_failed message.
 
     Returns:
         object:
@@ -55,12 +54,11 @@ def compile_from_file(session, file, compileType=None):
 
     Args:
         file (str): The path of the file to include, resolved using
-        rootFilePaths (longest matching prefix; host path must remain under
-        that root).
-
+            rootFilePaths (longest matching prefix; host path must remain
+            under that root).
         compileType (str): The compile type, used by the parser to determine
-        how to compile the data. For example, 'json', 'relaxed_json',
-        'script', 'template'
+            how to compile the data. For example, 'json', 'relaxed_json',
+            'script', 'template'
 
     Returns:
         object:
@@ -100,13 +98,12 @@ def decompile(session, value, whitespace=None):
 
     Args:
         value (object): Value to decompile (may be unevaluated, such as a
-        compiled script root).
-
+            compiled script root).
         whitespace (object): Add whitespace for readability if present and not
-        0. This parameter can be an integer between 0 and 10 or a string that
-        is used for indentation. If 0 is specified, no whitespace is added to
-        the resulting string. If 1 through 10 is specified, that number of
-        spaces is used.
+            0. This parameter can be an integer between 0 and 10 or a string
+            that is used for indentation. If 0 is specified, no whitespace is
+            added to the resulting string. If 1 through 10 is specified, that
+            number of spaces is used.
 
     Returns:
         str: Adaptive text for the compiled form of the value.
@@ -139,12 +136,11 @@ def eval_from_file(session, file, compileType=None):
 
     Args:
         file (str): The path of the file to include, resolved using
-        rootFilePaths (longest matching prefix; host path must remain under
-        that root).
-
+            rootFilePaths (longest matching prefix; host path must remain
+            under that root).
         compileType (str): The compile type, used by the parser to determine
-        how to compile the data. For example, 'json', 'relaxed_json',
-        'script', 'template'
+            how to compile the data. For example, 'json', 'relaxed_json',
+            'script', 'template'
 
     Returns:
         object:
@@ -176,13 +172,13 @@ def evaluate(session, value, additionalUntrustedQualifiedVariables=None):
 
     Args:
         value (object):
-
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during evaluation.
-        These variables will not be used by anything that needs to ensure its
-        qualified variables must come from a trusted source, such as
-        authorization. This parameter is intended to be used for testing only
-        and should not be used for anything running in production.
+            additional qualified variables that can be accessed during
+            evaluation. These variables will not be used by anything that
+            needs to ensure its qualified variables must come from a trusted
+            source, such as authorization. This parameter is intended to be
+            used for testing only and should not be used for anything running
+            in production.
 
     Returns:
         object: Evaluated adaptive value.
@@ -214,7 +210,6 @@ def evaluate_with_retry(session, value, limit):
 
     Args:
         value (object): Value to evaluated
-
         limit (int): Maximum number to retry if an exception occurs.
 
     Returns:
@@ -266,17 +261,17 @@ def qualifier(session, qualifier, includeUntrusted=None):
 
     Args:
         qualifier (str): This is the qualifier whose variables are to be
-        accessed as properties of the returned object.
-
+            accessed as properties of the returned object.
         includeUntrusted (bool): Default false: snapshot matches what
-        qualifier::name can access in the current xctx (while secure,
-        untrusted stack frames with secure=false are omitted). Set true while
-        secure to use the same visibility as running less secure — trusted and
-        untrusted frames (not untrusted-only). When the xctx is not secure,
-        true and false are the same because :: already sees untrusted frames.
-        Does not change hot-path get; only this snapshot. Useful for debugging
-        secure evaluation and for building objects to re-inject as
-        evaluate()'s additionalUntrustedQualifiedVariables.
+            qualifier::name can access in the current xctx (while secure,
+            untrusted stack frames with secure=false are omitted). Set true
+            while secure to use the same visibility as running less secure —
+            trusted and untrusted frames (not untrusted-only). When the xctx
+            is not secure, true and false are the same because :: already sees
+            untrusted frames. Does not change hot-path get; only this
+            snapshot. Useful for debugging secure evaluation and for building
+            objects to re-inject as evaluate()'s
+            additionalUntrustedQualifiedVariables.
 
     Returns:
         object: When the qualifier has at least one matching visible stack
@@ -333,12 +328,12 @@ def qualifiers(session, includeUntrusted=None):
 
     Args:
         includeUntrusted (bool): Default false: only qualifiers/frames visible
-        to qualifier::name in the current xctx. Set true while secure to match
-        less-secure :: visibility (include untrusted frames). When not secure,
-        true and false are the same. Does not change hot-path get. The result
-        shape (qualifier → variables object) is suitable to pass as
-        evaluate()'s additionalUntrustedQualifiedVariables when that is the
-        intent.
+            to qualifier::name in the current xctx. Set true while secure to
+            match less-secure :: visibility (include untrusted frames). When
+            not secure, true and false are the same. Does not change hot-path
+            get. The result shape (qualifier → variables object) is suitable
+            to pass as evaluate()'s additionalUntrustedQualifiedVariables when
+            that is the intent.
 
     Returns:
         dict: Each property is an active qualifier name with a value that is a
@@ -372,9 +367,9 @@ def safe_evaluate(session, value, error):
 
     Args:
         value (object): Value to evaluated
-
         error (object): Value to evaluate and return if exception occurs. If
-        an error occurs evaluating this value, the exception will continue.
+            an error occurs evaluating this value, the exception will
+            continue.
 
     Returns:
         object: Evaluated adaptive value or error value.
@@ -412,18 +407,17 @@ def stringify(session, value, replacer=None, whitespace=None):
 
     Args:
         value (object): Evaluated value to serialize as JSON.
-
         replacer (object): Optional replacer: a function (key: string, value:
-        any): any called for the root (key is empty string) and each object
-        property or array element; return undefined to omit an object property
-        (array elements become null). Or an array of string property names to
-        keep when serializing objects. Omit or null for no replacer.
-
+            any): any called for the root (key is empty string) and each
+            object property or array element; return undefined to omit an
+            object property (array elements become null). Or an array of
+            string property names to keep when serializing objects. Omit or
+            null for no replacer.
         whitespace (object): Add whitespace for readability if present and not
-        0. This parameter can be an integer between 0 and 10 or a string that
-        is used for indentation. If 0 is specified, no whitespace is added to
-        the resulting string. If 1 through 10 is specified, that number of
-        spaces is used.
+            0. This parameter can be an integer between 0 and 10 or a string
+            that is used for indentation. If 0 is specified, no whitespace is
+            added to the resulting string. If 1 through 10 is specified, that
+            number of spaces is used.
 
     Returns:
         str: JSON text for the value.
@@ -459,19 +453,16 @@ def test_script(session, id, description, script, expected=None, additionalUntru
 
     Args:
         id (str): Id of test
-
         description (str): Description of test
-
         script (str): Script to compile and evaluate.
-
         expected (object): Expected result.
-
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during evaluation.
-        These variables will not be used by anything that needs to ensure its
-        qualified variables must come from a trusted source, such as
-        authorization. This parameter is intended to be used for testing only
-        and should not be used for anything running in production.
+            additional qualified variables that can be accessed during
+            evaluation. These variables will not be used by anything that
+            needs to ensure its qualified variables must come from a trusted
+            source, such as authorization. This parameter is intended to be
+            used for testing only and should not be used for anything running
+            in production.
 
     Returns:
         dict: Test results.
@@ -509,19 +500,16 @@ def test_template(session, id, description, template, expected=None, additionalU
 
     Args:
         id (str): Id of test
-
         description (str): Description of test
-
         template (str): Template to compile and evaluate.
-
         expected (object): Expected evaluated result.
-
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during evaluation.
-        These variables will not be used by anything that needs to ensure its
-        qualified variables must come from a trusted source, such as
-        authorization. This parameter is intended to be used for testing only
-        and should not be used for anything running in production.
+            additional qualified variables that can be accessed during
+            evaluation. These variables will not be used by anything that
+            needs to ensure its qualified variables must come from a trusted
+            source, such as authorization. This parameter is intended to be
+            used for testing only and should not be used for anything running
+            in production.
 
     Returns:
         dict: Test results.
@@ -559,19 +547,16 @@ def test_value(session, id, description, value, expected=None, additionalUntrust
 
     Args:
         id (str): Id of test
-
         description (str): Description of test
-
         value (str): Value to evaluate
-
         expected (object): Expected result.
-
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during evaluation.
-        These variables will not be used by anything that needs to ensure its
-        qualified variables must come from a trusted source, such as
-        authorization. This parameter is intended to be used for testing only
-        and should not be used for anything running in production.
+            additional qualified variables that can be accessed during
+            evaluation. These variables will not be used by anything that
+            needs to ensure its qualified variables must come from a trusted
+            source, such as authorization. This parameter is intended to be
+            used for testing only and should not be used for anything running
+            in production.
 
     Returns:
         dict: Test results.
