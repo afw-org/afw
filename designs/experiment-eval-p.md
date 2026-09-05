@@ -14,9 +14,11 @@ Nested `{ }` with **no symbols** is not a frame. It keeps caller `p`, which is a
 
 Catch already binds the error on `scope->p`. That is the same rule, not a special case.
 
-**Compile is not eval scratch.** A compile unit is an immutable bag with its **own heap**. `afw_pool_create(tracker)` (the extra rule) is the wrong shape for compile: a child tracker extra-holds the frame, so the frame never last-releases. Parent the compile heap at `evaluation_heap` / `xctx->p`, not `scope->p`. `compiled_value` already has `p`; `get_reference` / `release` should pin that pool (unmanaged_new_p style). `eval<script>` / friends: compile, evaluate (`clone_unmanaged` result into dest `p`), **release the unit**. That is consume.
+**Compile is not eval scratch.** A compile unit is an immutable bag with its **own heap**. `afw_pool_create(tracker)` (the extra rule) is the wrong shape for compile: a child tracker extra-holds the frame, so the frame never last-releases. Parent the compile heap at **`xctx->p`**, not dest `p` / `scope->p`. `compiled_value` already has `p`; `get_reference` / `release` should pin that pool (unmanaged_new_p style). `eval<script>` / friends: compile, evaluate (`clone_unmanaged` result into dest `p`), **release the unit**. That is consume.
 
 Do **not** `afw_pool_destroy` from `execute_eval_script` as the API. An earlier probe did that to prove lifetime-must-end; `shared->temp_p` extra-hold is why a single `release` is not enough today.
+
+**Throw / last_return must not point at a dead tracker.** Block FINALLY last-releases the frame, then the error or `script_result` clone still walks values that lived there. `AFW_DEBUG_POOL` poison `0x0BADF00D0BADF00D` on a string `.s` is that hole. One class: isolate at the boundary (error snapshot / `get_assignable` of the result) before the frame dies — not a splat at each failing test.
 
 ## What was parked
 
@@ -24,13 +26,46 @@ Do **not** `afw_pool_destroy` from `execute_eval_script` as the API. An earlier 
 
 Earlier probe of `scope->p` hung `comments-bmp-slash-0.as` (tracker extra-hold of compile units). A later probe SIGSEGV’d on auth deny and emptied curl JSON (escaped values still pointing into a released tracker).
 
+## This sitting (after #282)
+
+Ripped `FIXME_GET_IT_WORKING`. Compile units parent at `xctx->p` (`afw_compile_create_unit_pool`). Generic unmanaged object set still stores the pointer; `call_test_script` isolates `result` / `error` before store.
+
+### 03-eval-p after both flips (N as in the scripts)
+
+| probe | d_in_use | note |
+|-------|----------|------|
+| for_let_int / concat / script | ~600 | temps die with the frame |
+| compile_once_for_let | 472 | one unit |
+| while_eval / for_let_eval | ~510–590k | throwaway compile still lives until xctx |
+| for_let_eval_steps | linear ~1.8k/eval | not superlinear tracker tax |
+| mini_bmp | 863k / 0.023s | was 1.6MB as child tracker; parked-heap was ~1.2MB |
+
+Temps flatten. Compile leak is cheap linear heaps (consume still open).
+
+### Gate (`afwdev test -j`)
+
+3682 passed, 73 skipped, **21 failed** (all SIGSEGV). `language/script` 439 pass / 1 fail (`array_semantics.as`).
+
+Canary: `compile(json("[1,,2]"))` as a `test_script` expect-error SIGSEGVs; `create_array(-1)` expect-error is fine. Clone of `sourceLocation` during `get_assignable` of the result/error sees poison (`s=0x0BADF00D0BADF00D`, huge `len` → `apr_palloc` fail, then SIGSEGV in the error dump).
+
+Same class as the old auth-deny / empty curl JSON probe:
+
+- authorization `deny*.as` (3)
+- compiler error-path (`json_and_relaxed_json`, `compile_relaxed_json`, `type_check*`, `reject_forms`)
+- test262 `try` / `switch` / `for-of` / `numeric`
+- `array_semantics.as` (json elision expect-error)
+- `afw_curl` HTTP `http_*.as` (7)
+
+Do **not** patch those 21 call sites. Snapshot / isolate at throw and last_return **before** the frame tracker dies. `embellish_error` points `error->contextual` at `parser->contextual` and `parser_source` at `full_source`; `error_to_object` then copies `sourceLocation` from that. Parser work area is still `afw_xctx_calloc_type` (xctx heap); octets may still be a view into dest/`scope->p`.
+
 ## Candidate order (re-decide after each)
 
-1. **Eval `p` = `scope ? scope->p : p`.** Rip the ifdef. One site. Measure with 03-eval-p, then `language/script`, then a time/RSS-capped BMP extra.
-2. **Compile unit owns a heap** (not a child tracker of the frame). One site: parser create. Not a splat across `execute_*`.
-3. **`compiled_value` hold/release of its pool**, then `eval<script>` consume. Slot overwrite of `compile<script>(…)` can then end the previous unit. Parser work area (`afw_xctx_calloc_type` today) belongs in that pool or is freed in `parser_finish_and_release`.
-4. **Then** `./afwdev build --fulldev`, `afwdev test -j`, `afwdev test -j --env-mode valgrind`. BMP extra is a canary, not a reason to keep parking. Auth deny / curl JSON are the escaped-value canaries — fix the inf that should have isolated, not a caller special case.
-5. **Still not this branch unless the list of violators is one protocol hole:** `double_free_throws` skip; unevaluated clone-out of script_function / closure; Adaptive `clone()`; `qualifier("current")` snapshot tail.
+1. ~~**Eval `p` = `scope ? scope->p : p`.**~~ Done.
+2. ~~**Compile unit owns a heap** parented at `xctx->p`.~~ Done. Consume / hold-release still open.
+3. **Throw and last_return isolate before the frame dies.** One protocol, json-elision expect-error as the canary. Auth deny / curl should move with it.
+4. **`compiled_value` hold/release of its pool**, then `eval<script>` consume. Parser work area in that pool or freed in `parser_finish_and_release`.
+5. **Then** `./afwdev build --fulldev`, `afwdev test -j`, `afwdev test -j --env-mode valgrind`, BMP extra.
+6. **Still not this branch unless the list of violators is one protocol hole:** `double_free_throws` skip; unevaluated clone-out of script_function / closure; Adaptive `clone()`; `qualifier("current")` snapshot tail.
 
 ## MUST NOT
 

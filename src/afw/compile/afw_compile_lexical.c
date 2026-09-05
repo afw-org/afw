@@ -2476,19 +2476,17 @@ afw_compile_shared_create(
 /*
  * Compile units own a heap. Dest p may be a frame tracker;
  * afw_pool_create(tracker) extra-holds that frame so it never
- * last-releases. Parent at evaluation_heap / xctx->p instead.
+ * last-releases. Parent at this xctx->p (request heap), not
+ * evaluation_heap or dest p.
  */
 const afw_pool_t *
 afw_compile_create_unit_pool(afw_xctx_t *xctx)
 {
-    const afw_pool_t *parent;
-
-    parent = xctx->evaluation_heap ? xctx->evaluation_heap : xctx->p;
-    if (!parent) {
+    if (!xctx->p) {
         AFW_THROW_ERROR_Z(general,
             "compile unit pool parent required", xctx);
     }
-    return afw_pool_create(parent, xctx);
+    return afw_pool_create(xctx->p, xctx);
 }
 
 
