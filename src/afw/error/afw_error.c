@@ -793,16 +793,6 @@ return_rv:
 }
 
 
-/* Isolate error data so it outlives the throwing frame. */
-AFW_DEFINE(void)
-afw_error_set_data(const afw_value_t *data, afw_xctx_t *xctx)
-{
-    xctx->error->data = data
-        ? afw_value_as_assignable(data, xctx)
-        : NULL;
-}
-
-
 AFW_DEFINE(int)
 afw_error_print_with_xctx(
     FILE *fp,

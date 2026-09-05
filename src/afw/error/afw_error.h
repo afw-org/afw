@@ -134,17 +134,6 @@ struct afw_error_s {
 };
 
 /**
- * @brief Isolate error data so it outlives the throwing frame.
- * @param data adaptive value or NULL.
- * @param xctx of caller.
- *
- * WITH_DATA macros use this. Eval temps live on scope->p; the throw
- * longjmps through block FINALLY which last-releases that tracker.
- */
-AFW_DECLARE(void)
-afw_error_set_data(const afw_value_t *data, afw_xctx_t *xctx);
-
-/**
  * @brief CATCH finished: decrement error_processing_count, and if it
  *     is 0 run waiting last release/destroy (inner first).
  */
@@ -154,12 +143,14 @@ afw_error_processing_handled(afw_xctx_t *xctx);
 /**
  * Increment error_processing_count and longjmp. Catching AFW_ENDTRY
  * calls afw_error_processing_handled(). Rethrow does not.
+ *
+ * Not a do/while: that can shift the reported throw site depending on
+ * compile options and whether do/while makes a block. Caller's
+ * semicolon attaches to longjmp.
  */
 #define afw_error_processing_throw(xctx, code) \
-do { \
     (xctx)->error_processing_count++; \
-    longjmp((xctx)->current_try->throw_jmp_buf, (code)); \
-} while (0)
+    longjmp((xctx)->current_try->throw_jmp_buf, (code))
 
 /**
  * @name AFW error throw / try design (read before touching longjmp)
@@ -382,7 +373,7 @@ do { \
  */
 #define AFW_THROW_ERROR_WITH_DATA_Z(code, _data, message_z, xctx) \
 do { \
-    afw_error_set_data(_data, xctx); \
+    xctx->error->data = _data; \
     afw_error_set_z(afw_error_code_ ## code, \
         AFW__FILE_LINE__, message_z, xctx); \
     afw_error_processing_throw((xctx), afw_error_code_ ## code); \
@@ -422,7 +413,7 @@ do { \
 #define AFW_THROW_ERROR_WITH_DATA_RV_Z(code, _data, \
         rv_source_id, rv, message_z, xctx) \
 do { \
-    afw_error_set_data(_data, xctx); \
+    xctx->error->data = _data; \
     afw_error_rv_set_z(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         AFW__FILE_LINE__, message_z, xctx); \
@@ -459,7 +450,7 @@ do { \
  */
 #define AFW_THROW_ERROR_WITH_DATA_FZ(code, _data, xctx, format_z, ...) \
 do { \
-    afw_error_set_data(_data, xctx); \
+    xctx->error->data = _data; \
     afw_error_set_fz(afw_error_code_ ## code, \
         AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \
     afw_error_processing_throw((xctx), afw_error_code_ ## code); \
@@ -501,7 +492,7 @@ do { \
 #define AFW_THROW_ERROR_WITH_DATA_RV_FZ(code, _data, \
         rv_source_id, rv, xctx, format_z, ...) \
 do { \
-    afw_error_set_data(_data, xctx); \
+    xctx->error->data = _data; \
     afw_error_rv_set_fz(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \
@@ -538,7 +529,7 @@ do { \
  */
 #define AFW_THROW_ERROR_WITH_DATA_VZ(code, _data, format_z, ap, xctx) \
 do { \
-    afw_error_set_data(_data, xctx); \
+    xctx->error->data = _data; \
     afw_error_set_vz(afw_error_code_ ## code, \
         AFW__FILE_LINE__, format_z, ap, xctx); \
     afw_error_processing_throw((xctx), afw_error_code_ ## code); \
@@ -576,7 +567,7 @@ do { \
 #define AFW_THROW_ERROR_WITH_DATA_RV_VZ(code, _data, \
         rv_source_id, rv, format_z, ap, xctx) \
 do { \
-    afw_error_set_data(_data, xctx); \
+    xctx->error->data = _data; \
     afw_error_rv_set_vz(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         AFW__FILE_LINE__, format_z, ap, xctx); \

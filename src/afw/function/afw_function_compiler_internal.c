@@ -2022,7 +2022,7 @@ afw_function_execute_throw(
 
     afw_error_set_fz(code, AFW__FILE_LINE__, xctx,
         AFW_UTF8_FMT, AFW_UTF8_FMT_ARG(&message->internal));
-    afw_error_set_data(data, xctx);
+    xctx->error->data = data;
     afw_error_processing_throw(xctx, code);
 
     return afw_value_void;

@@ -46,9 +46,7 @@ Temps flatten. Compile leak is cheap linear heaps (consume still open).
 
 After pointing parser `contextual.source_location` at the compile-unit clone (not dest `p`): compile-error canary green. BMP extra 4/4 in ~2.4s.
 
-`AFW_THROW_ERROR_WITH_DATA*` now `afw_error_set_data` → `as_assignable` before longjmp (block FINALLY would otherwise last-release the tracker under `error->data`). Auth `deny*.as` green.
-
-**Try in:** `xctx->error_processing_count`. Throw increments; catching `ENDTRY` decrements and, at 0, runs waiting last `release`/`destroy` (deepest parent-chain first). Only **scope trackers** (tracker whose parent is a heap) wait; compile heaps and `create()` of a tracker do not. Gate **4300 passed**, 75 skipped, 0 failed. BMP extra 4/4.
+**Try in:** `xctx->error_processing_count`. Throw increments; catching `ENDTRY` decrements and, at 0, runs waiting last `release`/`destroy` (deepest parent-chain first). Only **scope trackers** (tracker whose parent is a heap) wait; compile heaps and `create()` of a tracker do not. CATCH runs before that flush, so `error->data` stays a raw pointer (`WITH_DATA` / Adaptive `throw` assign it; no throw-time `as_assignable` — that would be an extra hold with no matching release). Auth `deny*.as` green. Gate **4300 passed**, 75 skipped, 0 failed. BMP extra 4/4.
 
 ## Candidate order (re-decide after each)
 

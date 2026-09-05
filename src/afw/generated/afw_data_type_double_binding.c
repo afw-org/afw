@@ -451,7 +451,7 @@ afw_object_get_property_as_double_source(
             "Typesafe error: expecting 'double' but "
             "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
-        longjmp(((xctx)->current_try->throw_jmp_buf), afw_error_code_general);
+        afw_error_processing_throw((xctx), afw_error_code_general);
     }
     return (((const afw_value_double_t *)value)->internal);
 }
@@ -486,7 +486,7 @@ afw_object_get_next_property_as_double_source(
             "Typesafe error: expecting 'double' but "
             "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
-        longjmp(((xctx)->current_try->throw_jmp_buf), afw_error_code_general);
+        afw_error_processing_throw((xctx), afw_error_code_general);
     }
     return (((const afw_value_double_t *)value)->internal);
 }
@@ -665,7 +665,7 @@ afw_array_of_double_get_next_source(
             "Typesafe error: expecting 'double' but "
             "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
-        longjmp(((xctx)->current_try->throw_jmp_buf), afw_error_code_general);
+        afw_error_processing_throw((xctx), afw_error_code_general);
     }
     return *(double *)internal;
 }
