@@ -96,6 +96,45 @@ describe("Fiddle Tests", () => {
 
     });
 
+    test("Closing an inactive dirty tab targets that tab, not the active one (issue #114)", async () => {
+
+        render( <Fiddle /> );
+
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
+        await waitForSpinner();
+
+        await waitFor(() => expect(screen.getByTestId("admin-tools-fiddle")).toBeInTheDocument());
+
+        // open a first tab and leave it clean (as if it had just been saved)
+        await waitFor(() => expect(screen.getByLabelText("New Source Window")).toBeInTheDocument());
+        fireEvent.click(screen.getByLabelText("New Source Window"));
+        await waitFor(() => expect(screen.getByText("Untitled-1")).toBeInTheDocument());
+
+        // open a second tab and make unsaved changes to it
+        fireEvent.click(screen.getByLabelText("New Source Window"));
+        await waitFor(() => expect(screen.getByText("Untitled-2")).toBeInTheDocument());
+        fireEvent.change(screen.getByRole("textbox"), { target: { value: "1 + 1" } });
+        await waitFor(() => expect(screen.getByText("Untitled-2 *")).toBeInTheDocument());
+
+        // navigate back to the first (clean) tab, making it active
+        fireEvent.click(screen.getByText("Untitled-1"));
+
+        // close the inactive, dirty "Untitled-2" tab via its own close button
+        const closeButtons = screen.getAllByLabelText("Close Source Window");
+        expect(closeButtons).toHaveLength(2);
+        fireEvent.click(closeButtons[1]);
+
+        // the confirmation dialog must name the tab actually being closed, not the active one
+        await waitFor(() => expect(screen.getByText("Close Tab")).toBeInTheDocument());
+        expect(screen.getByText("You have unsaved work. Are you sure you wish to close \"Untitled-2\"?")).toBeInTheDocument();
+
+        // confirming must remove the tab that was actually clicked
+        fireEvent.click(screen.getByRole("button", { name: "Close" }));
+
+        await waitFor(() => expect(screen.queryByText("Untitled-2")).not.toBeInTheDocument());
+        expect(screen.getByText("Untitled-1")).toBeInTheDocument();
+    });
+
     test("Create new fiddle input, set trace flag, execute", async () => {
 
         render( <Fiddle /> );        

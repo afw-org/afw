@@ -345,16 +345,18 @@ const reducer = (state, action) => {
             activeTab: state.tabs.length,
         });
 
-    } case "TAB_CLOSE":        
+    } case "TAB_CLOSE":
         return ({
             ...state,
-            showConfirmClose: true,            
+            showConfirmClose: true,
+            tabIndexToClose: action.tabIndex,
         });
 
     case "DISMISS_CLOSE":
         return ({
             ...state,
             showConfirmClose: false,
+            tabIndexToClose: undefined,
         });
 
     case "CONFIRM_CLOSE":
@@ -363,6 +365,7 @@ const reducer = (state, action) => {
             tabs: action.updatedTabs,
             activeTab: action.newActiveTab,
             showConfirmClose: false,
+            tabIndexToClose: undefined,
             dirty: (action.updatedTabs.length === 0) ? false : state.dirty
         });
 
@@ -1167,12 +1170,12 @@ export const Fiddle = () => {
                 onDismiss={() => dispatch({ type: "DISMISS_DELETE" })}
                 onConfirm={onConfirmDelete}
             />      
-            <ConfirmCloseDialog 
+            <ConfirmCloseDialog
                 open={Boolean(state.showConfirmClose)}
-                label={activeTabLabel}
+                label={state.tabs[state.tabIndexToClose]?.label}
                 onDismiss={() => dispatch({ type: "DISMISS_CLOSE" })}
-                onConfirm={() => onTabCloseConfirm()}
-            />      
+                onConfirm={() => onTabCloseConfirm(state.tabIndexToClose)}
+            />
             <ConfirmCloseAllDialog 
                 open={Boolean(state.showConfirmCloseAll)}
                 onDismiss={() => dispatch({ type: "DISMISS_CLOSE_ALL" })}
