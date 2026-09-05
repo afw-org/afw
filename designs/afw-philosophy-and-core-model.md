@@ -130,11 +130,11 @@ Short scripts and request-scoped work were production-proven early because **des
 
 Execution carries an **`afw_xctx_t`**: pool, scope stack, evaluation stack, qualifier stack, **statement_flow** (sequential / break / continue / return / rethrow-style control — structured leave paths rather than C++ exceptions for normal script control).
 
-Scopes (`afw_xctx_scope_t`) bind a pool, a block, lexical parent, and **`frame_slots[]`** sized from the block, indexed by `afw_value_block_symbol_t.index`. Resolution walks lexical depth and indexes `frame_slots[]` directly. Assignment (`let` / `const` / assign) is the script **`add_reference` site**; **read** is a pointer copy. Deactivate is one `release`; **last `release`** (not `}`) walks `frame_slots[]` then lets the scope pool go. Closures keep a reference to the scope. **`return`** writes a hidden result slot and ends the block; assign into the **caller** happens when the block ends. Tree today: last `release` is still mostly pool-only — the walk is the #2 target.
+Scopes (`afw_xctx_scope_t`) bind a pool, a block, lexical parent, and **`frame_slots[]`** sized from the block, indexed by `afw_value_block_symbol_t.index`. Compile facts `parent_scope_block` / `scope_depth` (after the unit is complete) are the frame tree, not syntax `parent_block` / `depth`. Create/clone start at RC 1; the creator `release`s; `activate` / `deactivate` only push/pop. Resolution indexes `frame_slots[]` by `scope_depth` + index. Assignment (`let` / `const` / assign) is `slot_store` (`get_assignable_value` then `release` occupant); **read** is a pointer copy. Last `release` at 0 walks `frame_slots[]` then the parent then the pool. Closures keep a reference to the scope. **`return`** is `as_assignable` only; the statement list starts void; block finish stores a non-void last into `script_result` before deactivate.
 
 ### Compilation
 
-Parsers under `src/afw/compile/` build the value graph. Grammar fragments live in **`/*ebnf>>>` … `<<<ebnf*/`** comments and are harvested for docs/railroads — the compiler is the authority; EBNF is documentation-shaped, not a second implementation. Assignment can auto-wrap escaping script functions in **closure bindings** when depth requires. Destructuring and rest are part of the language surface.
+Parsers under `src/afw/compile/` build the value graph. Grammar fragments live in **`/*ebnf>>>` … `<<<ebnf*/`** comments and are harvested for docs/railroads — the compiler is the authority; EBNF is documentation-shaped, not a second implementation. Assignment can auto-wrap escaping script functions in **closure bindings** via the enclosing block (`find_for_block`). Destructuring and rest are part of the language surface.
 
 ### Functions
 

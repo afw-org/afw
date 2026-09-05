@@ -25,7 +25,7 @@
 #                 get_reference is as-is; get_assignable_value is a
 #                 managed wrapper (object) or managed clone (array) so
 #                 slots do not share immortal bags.
-#   managed       Start-at-1 holdable. Header + copied internals in
+#   managed       Start-at-1. Header + copied internals in
 #                 xctx->p, RC 1 (caller must release). get_reference /
 #                 get_assignable_value bump. Last-release currently
 #                 drops RC only (header leak until alloc-pool free is
@@ -45,7 +45,9 @@
 #                 get_assignable_value promotes to managed in xctx->p.
 #                 Object/array get_reference and optional_release throw
 #                 (same as scalars). get_assignable_value: already-
-#                 managed occupant → dual-face bump; else clone_managed.
+#                 managed occupant → dual-face bump; generic memory
+#                 bag → clone_managed; else managed look-through
+#                 wrapper.
 #
 # Create path depends on cType / directReturn (see designs/memory-management.md phase 0a):
 #   utf8/memory  — managed owns a byte copy after the header; slice available

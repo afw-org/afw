@@ -21,10 +21,12 @@ Use when changing value lifetime, reference count, create/allocate APIs, data ty
 
 ## Lifetimes (inf chooses policy)
 
-- **permanent** — built-in, or lasts for the life of an AFW environment. Usually `static const` with `afw_value_permanent_<dt>_inf`; env-lifetime values may use the same inf. No refcount; `clone_or_reference` returns as-is. No `create_permanent_*` API.
-- **managed** — start-at-1 holdable in `xctx->p`. Caller must release. Extra `get_reference` / `get_assignable_value` bump self. Last release `free_memory`s via `xctx->p`. `afw_value_create_managed_<dt>()`.
+- **permanent** — built-in, or lasts for the life of an AFW environment. Usually `static const` with `afw_value_permanent_<dt>_inf`; env-lifetime values may use the same inf. No refcount; `get_reference` returns as-is. Scalar `get_assignable_value` is as-is; object/array `get_assignable_value` is a managed wrapper/clone. No `create_permanent_*` API.
+- **managed** — start-at-1 in `xctx->p`. Caller must release. Extra `get_reference` / `get_assignable_value` bump self. Last release `free_memory`s via `xctx->p`. `afw_value_create_managed_<dt>()`.
 - **managed_slice** — for `cType` `afw_utf8_t` / `afw_memory_t` only: a view (pointer + length/size) into a **containing managed** value. Header in `xctx->p` (no stored `p`). Create `get_reference`s containing; slice starts at 1; `get_reference` bumps the slice; last release releases containing and `free_memory`s the slice header via `xctx->p`. `afw_value_create_managed_<dt>_slice()`.
-- **unmanaged** — programmer-owned; usually created in a pool and lasting for that pool. `afw_value_create_unmanaged_<dt>()` / `allocate_unmanaged_*`.
+- **unmanaged** — programmer-owned; usually created in a pool and lasting for that pool. Scalar and object/array **value** `get_reference` / `release` throw. `get_assignable_value` promotes or clones to managed in `xctx->p` (script `{}` / `[]` clone; runtime/adapter object is a managed look-through wrapper). `afw_value_create_unmanaged_<dt>()` / `allocate_unmanaged_*`.
+
+**Slot fill:** `slot_store` / `as_assignable` / `add_reference` take `xctx` only (no dest `p`). `get_reference` is a bump. `afw_value_clone_or_reference` is a compatibility name for `get_reference`. Clone into a pool is `clone_unmanaged` / `clone_managed`.
 
 Do not invent new lifetime paths; match existing create_* patterns.
 
@@ -32,8 +34,8 @@ Do not invent new lifetime paths; match existing create_* patterns.
 
 ## Active long-running focus
 
-- Implement/complete **optional_release** / **clone_or_reference** (or get_reference) on escaping values: objects, lists/arrays, closures, `compiled_value`, and other managed kinds that outlive a scope.
-- Evaluation temporaries and results that belong to the current activation should use **current `scope->p`** (not a longer-lived pool) unless they intentionally escape.
+- Implement/complete **optional_release** / **get_reference** on escaping values: objects, arrays, closures, `compiled_value`, and other managed kinds that outlive a scope.
+- Evaluation temporaries still use **caller `p`** (`FIXME_GET_IT_WORKING`). Target is current `scope->p` when the `{ }` has a frame — **next branch**, not this one.
 - Heap tracker + last-release walk handle bulk release. **No reparent** on destroy. Polish value-inf hooks; do not replace the pool kinds.
 - **Qualifier snapshots** (`qualifier()` / `qualifiers()`, issue **#9**) allocate **fresh, possibly large** memory objects (`environment::`, `request::`, nested `qualifiers()`). Prefer `qualifier::name` for normal work; treat repeated/retained snapshots as long-running stress — see **`afw-qualified-variables`**, `beta-backlog.md`.
 

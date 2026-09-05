@@ -9,6 +9,8 @@
 
 Keep from `develop`: slot protocol, pool split, two worlds **#277**, `#35` store-time bind, `#245` 0-symbol `{ }`, `#246`/`#247` honest heap/tracker.
 
+**Landed on `scope` (2026-09-05):** compile facts `parent_scope_block` / `scope_depth` after the unit is complete (`finalize_scope_tree`). Nested empty `{ }` has no scope; top always does. Scope create/clone start at RC 1; creator `release`s; `activate` / `deactivate` only push/pop. Bind script functions via `enclosing_block`, not syntax depth. `get_assignable_value` table (managed bump; unmanaged scalar promote; script `{}` / `[]` `clone_managed`; runtime/adapter object managed wrapper; permanent scalar as-is; permanent object/array wrapper/clone). Dest `p` ripped from `slot_store` / `as_assignable` / `get_assignable_value` / `get_reference` / `add_reference`. `get_reference` is a bump (`instance, xctx`) — leftover dest `p` was an abandoned plan to have it do `clone_or_reference`. `script_result`: `return` is `as_assignable` only; statement list starts void; block finish stores a non-void last before deactivate; nested eval save/restore. FRV keep as-is. Eval `p` stays caller `p` (next branch).
+
 ---
 
 ## Locked design
@@ -35,11 +37,12 @@ Default impl: `#define impl_afw_value_get_assignable_value impl_afw_value_get_re
 
 | Inf | `get_reference` | `get_assignable_value` |
 |-----|-----------------|------------------------|
-| Managed scalar | bump | same |
-| Permanent scalar | self | same |
-| Unmanaged scalar | managed copy | same |
-| Unmanaged/permanent object & array (**memory bag**) | **throw** (isolate with `get_assignable`) | mint **assignable** face or `clone_managed` / hold ([#277](https://github.com/afw-org/afw/issues/277)) |
-| **Assignable** object & array (new inf, like `closure_binding`) | bump | `get_reference(self)` |
+| Managed scalar | bump | bump |
+| Permanent scalar / compile literal | self | self |
+| Unmanaged scalar | **throw** | managed copy in `xctx->p` |
+| Unmanaged object & array | **throw** | already managed dual-face bump; generic `"memory"` not a wrapper → `clone_managed`; else managed look-through wrapper |
+| Permanent object & array | self | managed wrapper (object) or clone (array) |
+| Assignable object & array face | bump | bump |
 | `script_function` | self | `closure_binding` |
 | `closure_binding` | bump | `get_reference(self)` |
 | `metas` / const view | self | self |
@@ -61,7 +64,7 @@ Face GET: store `get_assignable_value` of the retrieved child locally. Face SET:
 
 `freeze()`: `get_assignable_value` then freeze **that** handle. Adaptive `clone()`: structural copy, then `get_assignable_value` (no path exception).
 
-Current code still names `clone_or_reference`. Treat it as the overloaded stand-in until the split is wired.
+`get_reference` is a bump. `clone_or_reference` is a compatibility name for that bump. Slot fill is `get_assignable_value`. Neither takes dest `p`.
 
 ---
 
@@ -73,7 +76,7 @@ This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_
 
 **Frame vs block.** Frame deactivate is the pool story. Block, on a **normal** fall-out, writes **last_return**. Throw/break/rewind deactivates frames and does not invent a result. Frames are one-to-one with `{ }` in the model; today zero-symbol `{ }` may skip a frame and `for (let …)` clones an extra one of **names**.
 
-**last_return** (code today: `xctx->script_result`, [#277](https://github.com/afw-org/afw/issues/277)). Assignment, `return`, and a non-void call write the **slot**. `let`/`const`, empty `{ }`, and `for`/`while`/`try` as statements do not. Nested assignment inside a loop **does**. Loops/`try` are void except `return`/`rethrow` (no unheld leftover last). **undefined is a value** and does replace. Tests: `script_result.as`. `execute_return` `slot_store`s when `script_result_active`. as_value / template substitution clears that flag. for init/increment are not body statements. `{ let x = 1; { add(1,1) } }` last_return is `2`; `{ add(1,1); let x = 1 }` stays `2`. A call that returns undefined writes. Declared `: void` does not.
+**last_return** (code today: `xctx->script_result`, [#62](https://github.com/afw-org/afw/issues/62) / [#277](https://github.com/afw-org/afw/issues/277)). `return` is `as_assignable` only (does not `slot_store`). Statement list starts void. Block finish `slot_store`s a non-void last before deactivate. Nested `compiled_value` / script call / block-as-value save and restore the pointer. `let`/`const` do not write it. Nested assignment inside a loop **does**. Loops keep a body last only if it is already `script_result`; `try` stays void except `return`/`rethrow`. **undefined is a value** and does replace. Tests: `script_result.as`. `{ let x = 1; { add(1,1) } }` last is `2`; `{ add(1,1); let x = 1 }` stays `2`. Declared `: void` does not write.
 
 **`get_reference` pairs with `release` where they exist.** Managed / assignable / wrappers: if you `get_reference`, you owe a `release`. Unmanaged object/array **value** infs **throw** on those methods ([#277](https://github.com/afw-org/afw/issues/277)); isolate with `get_assignable_value`. **Instance** `get_reference` / `release` still pin `object->p`. Unmanaged instances still **die with their pool** if nobody extra-held them.
 
@@ -83,10 +86,11 @@ This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_
 
 | Kind | `release` | Where it lives | Assignable |
 |------|-----------|----------------|------------|
-| Permanent | no-op | forever | self |
-| **unmanaged** object/array (live in `p`) | **value** `release` **throws** | caller’s `p` | `get_assignable` (clone_managed / hold). **Instance** `get_reference` pins `object->p` |
+| Permanent scalar | no-op | forever | self |
+| Permanent object/array | no-op | forever | managed wrapper/clone |
+| **unmanaged** object/array (live in `p`) | **value** `release` **throws** | caller’s `p` | `clone_managed` (script `{}` / `[]`) or managed wrapper (runtime/adapter). **Instance** `get_reference` pins `object->p` |
 | **unmanaged_new_p / cede_p** object/array | instance last `release` drops the pool | own pool | same isolate |
-| Unmanaged scalar | no-op | tracker / heap bump-alloc | managed copy in **`xctx->p`** |
+| Unmanaged scalar | **throw** | tracker / heap bump-alloc | managed copy in **`xctx->p`** |
 | Managed scalar | `free_memory` on `xctx->p` | always `xctx->p` | bump |
 
 **Managed never lives on a tracker.** Tracker last-release (when the **frame hold hits 0**) frees leftover **unmanaged and random** allocs. `release` of unmanaged/permanent is a no-op; the pool going away is what reclaims them.
@@ -105,6 +109,8 @@ This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_
 
 - `afw_pool_assignable_p` / hopping dest inside `as_assignable` or object/array **create**. Create uses the `p` the caller passed. Properties stay in `object->p`.
 - Donate / poke FRV into `script_result`; extra-hold save/restore helpers; `as_assignable` of an unheld leftover last after the occupant was last-released.
+- `get_reference` doing `clone_or_reference` (dest `p` on the bump). Abandoned; dest `p` ripped.
+- `create_and_activate`. Create RC 1; creator `release`s; activate is only push.
 - Frame assign onto `evaluation_heap` so overwrite recycles — that kept names off the frame tracker. Names of **this** frame live in **this** `scope->p` (in_pool / unmanaged). Promote only on assign **out**.
 
 ### Watch
@@ -160,11 +166,11 @@ Large-string RC later is **private** to the string inf. Nothing else notices.
 
 ## Order (re-decide after each)
 
-Done on this branch (still named `clone_or_reference` in code): scalar managed holdables, object/array hold at unmanaged/permanent `clone_or_reference`, wrap emit gone, `script_function` → `closure_binding`, create names, harvest empty, **return temps** (`function_return_value` + park occupant).
+Done on `scope`: compile facts + RC 1, enclosing_block bind, `get_assignable_value` table, dest `p` ripped, `script_result` simplify. FRV keep as-is.
 
 **On develop (PR [#267](https://github.com/afw-org/afw/pull/267), 2026-08-28):** Heap and tracker are the two pool impls (plus mt lock wrappers). APR is reservoir only. `AFW_DEBUG_POOL` prefix always checked on free; USER poison on free. `xctx->p` is ST heap; `env->p` is mt heap. last_return: [#277](https://github.com/afw-org/afw/issues/277) / `script_result.as`. Script/function door: empty void → `undefined`. Declared `: void` stays void.
 
-**Still parked (`FIXME_GET_IT_WORKING`):** eval `p` is caller `p`, not `scope->p`. Skip `double_free_throws`. Tried ripping eval `p`: `language/script` stayed green; `comments-bmp-slash-0.as` (~14k nested `for (let …)` + `eval<script>`) climbed CPU/RSS — discarded. Double-free today throws prefix “pool does not match allocation” after overlay, not “already freed.” Do not spread `get_reference` in `execute_*`. Tracker allocated list forward-only later. Do not wrap catalog qualifiers. Do not add `get_base` unless more than one product site type-switches for “entity.”
+**Still parked (`FIXME_GET_IT_WORKING`):** eval `p` is caller `p`, not `scope->p` — **next branch**. Earlier BMP comment loops hung; later probe of `scope->p` SIGSEGV’d on auth deny and emptied curl JSON. Skip `double_free_throws`. Adapter clones. Clone-of-unmanaged object meta. Double-free today throws prefix “pool does not match allocation” after overlay, not “already freed.” Do not spread `get_reference` in `execute_*`. Tracker allocated list forward-only later. Do not wrap catalog qualifiers. Do not add `get_base` unless more than one product site type-switches for “entity.”
 
 If a step gets clever, stop and ask.
 
@@ -172,9 +178,9 @@ If a step gets clever, stop and ask.
 
 ## Scatter (current code vs rails)
 
-Code still uses `clone_or_reference` in places (stand-in until the split is fully named). Donate list and `isolate_mutable_default` are gone. **Locked design** wins. Do not add helpers.
+`clone_or_reference` is a compatibility name for `get_reference`. Donate list and `isolate_mutable_default` are gone. **Locked design** wins. Do not add helpers.
 
-**Around-assign wrap (`create_if_needed`):** moved into `script_function` `clone_or_reference` (slot_store / face overlay `set` call it). Helper remains only as the inf’s wrap. Compiler assign/return/object/array sites no longer call it.
+**Around-assign wrap (`create_if_needed`):** moved into `script_function` `get_assignable_value` (slot_store / face overlay `set` call it). Helper remains only as the inf’s wrap. Compiler assign/return/object/array sites no longer call it.
 
 **Compiler / script-facing wrap (isolation, not the new wrapper inf):**
 
@@ -186,7 +192,7 @@ Code still uses `clone_or_reference` in places (stand-in until the split is full
 | `afw_function_adapter.c`, `afw_function_journal.c` | `impl_script_face_object` on retrieve/journal |
 | `afw_object_memory.c`, `afw_array_memory.c` | Face GET/array materialize `slot_store`; unmanaged bag store is a raw pointer (like object set) |
 
-**Compiler `wrap_literal_*` emit:** removed. Unmanaged **and permanent** object/array `clone_or_reference` is `afw_value_object_hold` / `afw_value_array_hold`. Permanent scalars stay as-is. LHS `reference_by_key` holds, sets, releases. Face GET/array materialize/retrieve/journal/`wrap_literal_*` call hold/`slot_store`. Donate list removed; `slot_store` is always `get_assignable_value`.
+**Compiler `wrap_literal_*` emit:** removed. Isolation is `get_assignable_value` (clone or wrapper). Permanent scalars stay as-is. LHS `reference_by_key` `get_assignable_value`s, sets, releases. Face GET/array materialize/retrieve/journal `slot_store`. Donate list removed.
 
 **`compiled_value` evaluate:** `clone_unmanaged` of an **evaluated** result into dest `p`. Park `script_result` in a local; put it back. Not FRV at this door. `script_result` is **#62**.
 
@@ -196,4 +202,4 @@ Code still uses `clone_or_reference` in places (stand-in until the split is full
 
 **Current code:** pool-world dual-faces (including env-vars object, `create_embedded`) use **unmanaged** inf. Views stamp **unmanaged** so retrieve slot fill wraps. `isolate_mutable_default` deleted; array materialize/GET is `slot_store`. Reconcile diffs the **face**.
 
-**Storeable infs with `clone_or_reference` NULL (need a method or stay graph-only):** `script_function` implements it (`closure_binding`). `reference_by_key` is a place, not stored. Graph: `block`, `call`, `compiled_value`, `symbol_reference`, … Data-type bindings have generated methods (managed / unmanaged / slice).
+**Storeable infs with `get_reference` NULL (need a method or stay graph-only):** `script_function` implements `get_assignable_value` (`closure_binding`). `reference_by_key` is a place, not stored. Graph: `block`, `call`, `compiled_value`, `symbol_reference`, … Data-type bindings have generated methods (managed / unmanaged / slice).
