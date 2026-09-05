@@ -1529,3 +1529,45 @@ sn = open_file("rpm", "data/rplus_mid.txt", "r");
 assert(read(sn, 20) === "0123ABCD89");
 close(sn);
 return 0;
+
+
+//? test: error-open-file-streamId-already-open
+//? description: open_file throws when streamId is already open
+//? expect: error:streamId 'dup_sid' is already open
+//? source: ...
+
+open_file("dup_sid", "data/dup1.txt", "w");
+return open_file("dup_sid", "data/dup2.txt", "w");
+
+
+//? test: error-write-internal-wrong-type
+//? description: write_internal throws for a value that is not string, hexBinary, or base64Binary
+//? expect: error:write_internal() requires string, hexBinary, or base64Binary
+//? source: ...
+
+let sn = open_file("wi_probe", "data/wi_probe.txt", "w");
+return write_internal(sn, integer(5));
+
+
+//? test: error-read-invalid-utf8
+//? description: read throws when the raw bytes read are not valid UTF-8
+//? expect: error:read() result is not valid UTF-8
+//? source: ...
+
+let sn = open_file("bad_utf8", "data/bad_utf8.bin", "w");
+write_internal(sn, hexBinary("FF"));
+close(sn);
+sn = open_file("bad_utf8", "data/bad_utf8.bin", "r");
+return read(sn, 10);
+
+
+//? test: error-readln-invalid-utf8
+//? description: readln throws when the raw bytes read are not valid UTF-8
+//? expect: error:readln() result is not valid UTF-8
+//? source: ...
+
+let sn = open_file("bad_utf8_ln", "data/bad_utf8_ln.bin", "w");
+write_internal(sn, hexBinary("FF0A"));
+close(sn);
+sn = open_file("bad_utf8_ln", "data/bad_utf8_ln.bin", "r");
+return readln(sn);

@@ -17,3 +17,14 @@ add(
     integer(2)
 )
 
+//?
+//? test: add-error-integer-overflow
+//? description: ADD throws when the integer sum overflows
+//? expect: error:Integer add overflow
+//? source: ...
+
+add(
+    integer(9223372036854775807),
+    integer(1)
+)
+

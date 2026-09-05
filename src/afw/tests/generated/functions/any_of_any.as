@@ -50,3 +50,15 @@ any_of_any(
     string("x")
 )
 
+//?
+//? test: any_of_any-error-untyped-arrays
+//? description: any_of_any throws when either array is not typed
+//? expect: error:array1 and array2 must both be typed
+//? source: ...
+
+any_of_any(
+    string("eq<string>"),
+    [],
+    []
+)
+
