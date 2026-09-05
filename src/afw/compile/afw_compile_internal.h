@@ -1058,6 +1058,14 @@ afw_compile_skip_ws(afw_compile_parser_t *parser);
 extern void
 afw_compile_check_for_residual(afw_compile_parser_t *parser);
 
+/*
+ * Heap for a new compile unit. Parent is evaluation_heap / xctx->p,
+ * never dest p when dest is a frame tracker. See
+ * designs/experiment-eval-p.md.
+ */
+extern const afw_pool_t *
+afw_compile_create_unit_pool(afw_xctx_t *xctx);
+
 /* Create / tear down a parser (public compile entry points use these). */
 extern afw_compile_parser_t *
 afw_compile_lexical_parser_create(
