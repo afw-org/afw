@@ -44,19 +44,17 @@ Temps flatten. Compile leak is cheap linear heaps (consume still open).
 
 ### Gate (`afwdev test -j`)
 
-3682 passed, 73 skipped, **21 failed** (all SIGSEGV). `language/script` 439 pass / 1 fail (`array_semantics.as`).
+After pointing parser `contextual.source_location` at the compile-unit clone (not dest `p`): **4154 passed**, 75 skipped, **13 failed**. BMP extra 4/4 in ~2.4s (`comments-bmp-slash-0` 0.70s).
 
-Canary: `compile(json("[1,,2]"))` as a `test_script` expect-error SIGSEGVs; `create_array(-1)` expect-error is fine. Clone of `sourceLocation` during `get_assignable` of the result/error sees poison (`s=0x0BADF00D0BADF00D`, huge `len` → `apr_palloc` fail, then SIGSEGV in the error dump).
+Compile-error canary is green: `compile(json("[1,,2]"))` expect-error, `array_semantics.as` 31/31, test262 try/switch/for-of/numeric, `json_and_relaxed_json`, `reject_forms`.
 
-Same class as the old auth-deny / empty curl JSON probe:
+Still failing (escaped values after a frame dies — not 13 splat fixes):
 
-- authorization `deny*.as` (3)
-- compiler error-path (`json_and_relaxed_json`, `compile_relaxed_json`, `type_check*`, `reject_forms`)
-- test262 `try` / `switch` / `for-of` / `numeric`
-- `array_semantics.as` (json elision expect-error)
-- `afw_curl` HTTP `http_*.as` (7)
+- authorization `deny*.as` (3, SIGSEGV)
+- `type_check*.as` (3, empty JSON)
+- `afw_curl` HTTP `http_*.as` (7, empty JSON)
 
-Do **not** patch those 21 call sites. Snapshot / isolate at throw and last_return **before** the frame tracker dies. `embellish_error` points `error->contextual` at `parser->contextual` and `parser_source` at `full_source`; `error_to_object` then copies `sourceLocation` from that. Parser work area is still `afw_xctx_calloc_type` (xctx heap); octets may still be a view into dest/`scope->p`.
+`AFW_FUNCTION_SOURCE_LOCATION` still mints in `x->p` (the frame tracker). Parser now clones it into the compile heap. Eval-time errors (auth deny, curl) never go through that clone.
 
 ## Candidate order (re-decide after each)
 

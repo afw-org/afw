@@ -2548,7 +2548,6 @@ afw_compile_lexical_parser_create(
     parser->strict = compile_type == afw_compile_type_json;
     parser->compile_type = compile_type;
     parser->residual_check = residual_check;
-    parser->contextual.source_location = source_location;
     parser->s = apr_array_make(parser->apr_p, 256,
         sizeof(afw_utf8_octet_t));
     parser->values = apr_array_make(parser->apr_p, 10,
@@ -2563,8 +2562,15 @@ afw_compile_lexical_parser_create(
     parser->compiled_value->inf = &afw_value_compiled_value_inf;
     parser->compiled_value->p = parser->p;
     if (source_location) {
+        /*
+         * Caller source_location may be in dest p (a frame tracker).
+         * Contextual and the unit must not point at that after the
+         * frame last-releases. Clone into the compile heap.
+         */
         parser->compiled_value->source_location =
             afw_utf8_clone(source_location, parser->p, xctx);
+        parser->contextual.source_location =
+            parser->compiled_value->source_location;
     }
     if (parent) {
         parser->compiled_value->parent = parent;
