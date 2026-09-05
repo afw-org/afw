@@ -16,7 +16,7 @@ Use when changing value lifetime, reference count, create/allocate APIs, data ty
 - **Heap / tracker:** single-thread heap for evaluation. One compiled_value evaluate creates a heap, scopes use trackers, wrap **releases** the heap (a closure's reference may keep it). **No reparent** on destroy; parent cascade destroys children. Statement eval `p` is still caller `p` (`FIXME_GET_IT_WORKING`) until nested `for (let)` + many inner evals can live on `scope->p`.
 - `managed_p`: job pools and heap set self; others inherit. Managed object/array: `afw_pool_create(p->managed_p)`.
 - `compiled_value` owns a dedicated compile pool; evaluation scratch is the heap.
-- Scope create/activate/deactivate: reference count on scopes; `closure_binding` keeps a reference to the scope; last-release walks `frame_slots[]`. Store-time bind for literals and nested assign is **#35**. Closure create-at-0; face overlay `set` takes the reference for `o.fn = function…`.
+- Scope create/clone start at RC 1 (creator `release`s). `activate` / `deactivate` are stack push/pop. `closure_binding` `get_reference` / `release`. Last `release` at 0 walks `frame_slots[]`. Store-time bind for literals and nested assign is **#35**. Closure create-at-0; face overlay `set` takes the reference for `o.fn = function…`.
 - Short scripts: pool + scope bulk free is enough. **Long-running** needs correct managed escape paths (below).
 
 ## Lifetimes (inf chooses policy)

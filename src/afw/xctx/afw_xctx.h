@@ -268,12 +268,6 @@ struct afw_xctx_scope_s {
     afw_size_t reference_count;
     afw_size_t scope_number;
     /*
-     * Last-release walk can re-enter via a closure that has a
-     * reference to this scope. Skip a nested release while tearing
-     * down.
-     */
-    afw_boolean_t destroying;
-    /*
      * Flexible array, length block->symbol_count. Indexed by
      * afw_value_block_symbol_t.index. afw_xctx_scope_create()
      * allocates the extra pointers.
@@ -311,23 +305,19 @@ struct afw_xctx_scope_s {
  * C NULL.
  *
  * If a parent_lexical_scope is specified, it's reference count will be
- * incremented. The block depth of the block supplied must be greater than
- * the parent_lexical_scope's block depth. It is not always parent+1:
- * nested `{ }` with no symbols do not get a scope, so a later block with
- * symbols can skip those frames.
+ * incremented. That scope's block must be this block's parent_scope_block
+ * (nearest ancestor that has a scope). Nested `{ }` with no symbols do
+ * not get a scope; scope_depth has no gaps.
  *
- * If parent_lexical_scope is NULL, the block's depth must be 0.
+ * If parent_lexical_scope is NULL, this must be the top frame
+ * (parent_scope_block NULL, scope_depth 0).
  *
- * This newly created scope has a reference count of 0 when first created. This
- * reference count is incremented by functions afw_xctx_scope_activate() and
- * afw_xctx_scope_get_reference(), as well as a call to afw_xctx_scope_create()
- * with this scope specified as its parent_lexical_scope.
- *
- * The reference count is decreased by calls to afw_xctx_scope_deactivate(),
- * afw_xctx_scope_release() and afw_xctx_scope_unwind(). When the reference
- * count reaches 0, or it is already 0 because it's never been referenced, this
- * scope's pool is released and afw_xctx_scope_release() is call for the
- * parent_lexical_scope, if there is one.
+ * Create starts at reference count 1 (the creator owns it). The creator
+ * must afw_xctx_scope_release() when done. activate / get_reference and
+ * create-with-this-as-parent increment. deactivate, release, and unwind
+ * decrement. When the count reaches 0, walk frame_slots[], release the
+ * parent lexical scope if any, and release this scope's pool. A closure
+ * can keep the scope alive after the creator's release.
  *
  * More detail on how scopes work:
  *
@@ -355,9 +345,9 @@ struct afw_xctx_scope_s {
  *
  * Symbols (variables, parameters, etc.) go in and out of scope. The scope
  * struct has frame_slots[], indexed by afw_value_block_symbol_t.index (compile
- * time). A symbol also has a lexical block depth. The depth of the current
- * scope's block minus that depth is how many times parent_lexical_scope is
- * followed to find the scope with that symbol's frame_slots[] entry.
+ * time). A symbol's block has a scope_depth. The current scope's scope_depth
+ * minus that is how many times parent_lexical_scope is followed to find
+ * the scope with that symbol's frame_slots[] entry.
  *
  * When a closure binding is created, afw_xctx_scope_get_reference() is called
  * on its enclosing scope. When the closure binding's last release runs, a
@@ -379,11 +369,9 @@ afw_xctx_scope_create(
  * @param xctx of caller.
  * @return matching scope, or NULL if it is not on the chain.
  *
- * Nested `{ }` with no symbols skip `afw_xctx_scope_create`. Walk those
- * compile-time parents until a block that has a live scope, then match
- * that block pointer on `from`. Missing after that walk is the same
- * "not on the stack" hole as a non-closure call after the defining
- * function returned.
+ * Match the live chain for this block's frame: the block itself if it
+ * has a scope, else parent_scope_block. Missing is the same "not on the
+ * stack" hole as a non-closure call after the defining function returned.
  */
 AFW_DECLARE(const afw_xctx_scope_t *)
 afw_xctx_scope_find_for_block(
@@ -417,8 +405,8 @@ afw_xctx_scope_clone(
  * @param scope to activate as the current scope.
  * @param xctx of caller.
  * 
- * Call this after afw_xctx_scope_create() or afw_xctx_scope_clone() and when
- * there is a need to switch to a different containing lexical scope.
+ * Push this scope as current and take a stack reference. Pair with
+ * deactivate. Same scope may be activated more than once.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_activate(
@@ -444,11 +432,8 @@ afw_xctx_scope_get_reference(
  * @param scope to deactivate that must be the current scope.
  * @param xctx of caller.
  *
- * Deactivate is done automatically when a afw_xctx_scope_release() is called
- * for a scope so only use this when afw_xctx_scope_activate() is called at
- * times other than paired after a afw_xctx_scope_create_and_activate(). One place this
- * happens is in call_script_function evaluate when there are no parameters but
- * there is a need to switch to the enclosing lexical scope.
+ * Pop this scope (must be current) and release the stack's reference.
+ * Pair with activate. Does not drop the creator's reference.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_deactivate(
@@ -458,13 +443,13 @@ afw_xctx_scope_deactivate(
 
 
 /**
- * @brief Release current scope.
- * @param scope must match afw_xctx_scope_current(xctx)
+ * @brief Release a reference to a scope.
+ * @param scope to release.
  * @param xctx of caller.
  * 
- * Decrement the reference count. On last release, walk frame_slots[]
- * (`release` each), then the parent lexical scope, then this scope's
- * pool.
+ * Decrement the reference count. On last release (count goes 0), walk
+ * frame_slots[] (`release` each), then the parent lexical scope, then
+ * this scope's pool. Re-entry while the count is already 0 is a no-op.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_release(

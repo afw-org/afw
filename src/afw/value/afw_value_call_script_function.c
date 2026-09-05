@@ -144,8 +144,6 @@ impl_afw_value_optional_evaluate(
     afw_size_t parameter_number;
     afw_size_t rest_argc;
     afw_size_t call_argc;
-    afw_boolean_t parameter_scope_activated;
-
     result = NULL;
     saved_script_result = xctx->script_result;
     saved_script_result_active = xctx->script_result_active;
@@ -155,7 +153,6 @@ impl_afw_value_optional_evaluate(
     xctx->script_result_written = false;
     caller_scope = afw_xctx_scope_current(xctx);
     parameter_scope = NULL;
-    parameter_scope_activated = false;
     script = self->script_function_definition;
 
     /* Expand call-site ...spreads into a flat argv before binding. */
@@ -319,7 +316,6 @@ impl_afw_value_optional_evaluate(
 
                 /* Pass 2: activate, defaults, store / Pattern (0-based i). */
                 afw_xctx_scope_activate(parameter_scope, xctx);
-                parameter_scope_activated = true;
 
                 for (i = 0, params = script->parameters;
                     i < script->count;
@@ -448,19 +444,13 @@ impl_afw_value_optional_evaluate(
 
     AFW_FINALLY{
 
-        /* If there was a parameters scope, ... */
+        /* Creator release; deactivate first if this frame is current. */
         if (parameter_scope)
         {
-            /* If parameter_scope activated, deactivate. */
-            if (parameter_scope_activated) {
+            if (afw_xctx_scope_current(xctx) == parameter_scope) {
                 afw_xctx_scope_deactivate(parameter_scope, xctx);
             }
-
-            /* If it didn't make it as far as activation, just release. */
-            else {
-                afw_xctx_scope_release(parameter_scope, xctx);
-            }
-
+            afw_xctx_scope_release(parameter_scope, xctx);
         }
 
         /* If no parameter scope, just deactivate enclosing scope. */

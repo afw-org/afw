@@ -103,21 +103,45 @@ struct afw_value_block_s {
         afw_value_t pub;
     };
 
-    const afw_compile_value_contextual_t *contextual;
+    const afw_compile_value_contextual_t *contextual; /* Source location. */
 
     afw_size_t statement_count;
-    const afw_value_t * const * statements;
+    const afw_value_t * const * statements; /* Set in finalize. */
 
-    afw_value_block_t *parent_block;
+    /* Syntax tree (every `{ }`, including 0-symbol). */
+    afw_value_block_t *parent_block; /* NULL if top. */
     afw_value_block_t *first_child_block;
     afw_value_block_t *final_child_block;
     afw_value_block_t *next_sibling_block;
-    afw_value_block_symbol_t *first_entry;
+    /*
+     * Nearest ancestor that has a scope (top or symbol_count != 0).
+     * NULL on the top block. Set by afw_value_block_assign_scope_facts
+     * after the compile unit is complete.
+     */
+    afw_value_block_t *parent_scope_block;
+
+    afw_value_block_symbol_t *first_entry; /* Bound names; NULL if none. */
     afw_value_block_symbol_t *final_entry;
-    afw_size_t number;
-    afw_size_t depth;
-    afw_size_t symbol_count;
+    afw_size_t number; /* Ordinal in the compiled value. */
+    afw_size_t depth; /* Syntax nesting (every `{ }`). */
+    afw_size_t scope_depth; /* Frame nesting; no 0-symbol gaps. */
+    afw_size_t symbol_count; /* first_entry length; frame_slots[] size. */
 };
+
+
+
+/*
+ * Nested `{ }` with no symbols has no scope. Top always does, even
+ * when symbol_count is 0 (compiled_value sentinel is not current).
+ */
+#define afw_value_block_has_scope(block) \
+    (!(block)->parent_block || (block)->symbol_count != 0)
+
+/* Frame block for this `{ }`: self if it has a scope, else parent. */
+#define afw_value_block_scope_block(block) \
+    (afw_value_block_has_scope(block) \
+        ? (block) \
+        : (block)->parent_scope_block)
 
 
 

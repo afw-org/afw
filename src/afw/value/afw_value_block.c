@@ -121,7 +121,6 @@ afw_value_block_evaluate_block(
     const afw_compile_value_contextual_t *saved_contextual;
     const afw_pool_t *eval_p;
     const afw_xctx_scope_t *scope;
-    afw_boolean_t created_scope;
     afw_boolean_t use_running;
     afw_boolean_t saved_script_result_active;
     afw_boolean_t produced;
@@ -147,20 +146,15 @@ afw_value_block_evaluate_block(
     }
 
     /*
-     * Nested `{ }` with no symbols is not a scope. Creating one is an
-     * APR tracker header on the eval heap's parent that destroy does not
-     * recycle — `while (true) {}` climbed RSS with in_use flat. Always
-     * create when current is NULL (compiled_value sentinel) so depth 0
-     * exists once per evaluate. Bodies with `let` / `for` clone still
-     * get a scope.
+     * Nested `{ }` with no symbols is not a scope. Top always is, even
+     * with no names, so the compiled_value sentinel is not current.
+     * Creating a tracker per empty `{ }` climbed RSS (`while (true) {}`).
      */
     scope = NULL;
-    created_scope = false;
-    if (self->symbol_count > 0 || !afw_xctx_scope_current(xctx)) {
+    if (afw_value_block_has_scope(self)) {
         scope = afw_xctx_scope_create(self,
             afw_xctx_scope_current(xctx), xctx);
         afw_xctx_scope_activate(scope, xctx);
-        created_scope = true;
     }
     /*
      * Existing frames: statement p is scope->p (x->p matches). last_return
@@ -171,7 +165,7 @@ afw_value_block_evaluate_block(
 #ifndef FIXME_GET_IT_WORKING
     eval_p = p;
 #else
-    eval_p = created_scope ? scope->p : p;
+    eval_p = scope ? scope->p : p;
 #endif
     AFW_TRY{
         result = afw_value_block_evaluate_statements(
@@ -194,8 +188,11 @@ afw_value_block_evaluate_block(
     }
     AFW_FINALLY{
         xctx->script_result_active = saved_script_result_active;
-        if (created_scope) {
-            afw_xctx_scope_deactivate(scope, xctx);
+        if (scope) {
+            if (afw_xctx_scope_current(xctx) == scope) {
+                afw_xctx_scope_deactivate(scope, xctx);
+            }
+            afw_xctx_scope_release(scope, xctx);
         }
     }
     AFW_ENDTRY;
@@ -206,7 +203,7 @@ afw_value_block_evaluate_block(
 
     if (use_running) {
         if (produced) {
-            if (created_scope) {
+            if (scope) {
                 return afw_xctx_script_result_get(xctx);
             }
             return result;
@@ -301,6 +298,59 @@ afw_value_block_allocated_and_link(
 
 
 
+static void
+impl_assign_scope_facts(afw_value_block_t *block)
+{
+    afw_value_block_t *parent;
+    afw_value_block_t *child;
+    const afw_value_block_t *parent_scope;
+
+    parent = block->parent_block;
+    if (!parent) {
+        block->parent_scope_block = NULL;
+        block->scope_depth = 0;
+    }
+    else {
+        parent_scope = afw_value_block_has_scope(parent)
+            ? parent : parent->parent_scope_block;
+        block->parent_scope_block =
+            (afw_value_block_t *)parent_scope;
+        if (afw_value_block_has_scope(block)) {
+            block->scope_depth = parent_scope
+                ? parent_scope->scope_depth + 1 : 0;
+        }
+        else {
+            block->scope_depth = parent_scope
+                ? parent_scope->scope_depth : 0;
+        }
+    }
+
+    for (child = block->first_child_block;
+        child;
+        child = child->next_sibling_block)
+    {
+        impl_assign_scope_facts(child);
+    }
+}
+
+
+
+/* Set parent_scope_block and scope_depth after the unit is complete. */
+AFW_DEFINE(void)
+afw_value_block_assign_scope_facts(
+    const afw_value_block_t *top_block,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+
+    if (!top_block) {
+        return;
+    }
+    impl_assign_scope_facts((afw_value_block_t *)top_block);
+}
+
+
+
 AFW_DEFINE(const afw_value_t *)
 afw_value_block_finalize(
     const afw_value_block_t *block,
@@ -372,6 +422,8 @@ impl_afw_value_produce_compiler_listing(
     afw_writer_write_size(writer, self->number, xctx);
     afw_writer_write_z(writer, " depth=", xctx);
     afw_writer_write_size(writer, self->depth, xctx);
+    afw_writer_write_z(writer, " scope_depth=", xctx);
+    afw_writer_write_size(writer, self->scope_depth, xctx);
     afw_writer_write_z(writer, " : [", xctx);
     afw_writer_write_eol(writer, xctx);
     afw_writer_increment_indent(writer, xctx);

@@ -238,6 +238,18 @@ afw_compile_to_value_with_callback(
                 afw_compile_parse_pop_value_block(parser);
             }
 
+            /*
+             * symbol_count is final, including on ancestors. Nested
+             * compile that shares a parent tree is skipped; the parent
+             * unit assigns.
+             */
+            if (parser->compiled_value->top_block &&
+                !parser->compiled_value->parent)
+            {
+                afw_value_block_assign_scope_facts(
+                    parser->compiled_value->top_block, xctx);
+            }
+
             /* Get clone of full source in correct pool. */
             if (parser->full_source)
             {

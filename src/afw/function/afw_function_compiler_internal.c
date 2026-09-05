@@ -1228,6 +1228,8 @@ afw_function_execute_for(
                             previous_iterator_scope, xctx);
                         afw_xctx_scope_deactivate(
                             previous_iterator_scope, xctx);
+                        afw_xctx_scope_release(
+                            previous_iterator_scope, xctx);
                     }
                     else {
                         scope = afw_xctx_scope_clone(
@@ -1244,10 +1246,16 @@ afw_function_execute_for(
 
         impl_loop_consume_if_target(this_label, xctx);
 
-        /* Release final increment scope. */
+        /* Creator release of the last clone; pop if still current. */
         if (previous_iterator_scope) {
-            afw_xctx_scope_deactivate(previous_iterator_scope, xctx);
-        }      
+            if (afw_xctx_scope_current(xctx) ==
+                previous_iterator_scope)
+            {
+                afw_xctx_scope_deactivate(
+                    previous_iterator_scope, xctx);
+            }
+            afw_xctx_scope_release(previous_iterator_scope, xctx);
+        }
     }
     AFW_ENDTRY;
 
@@ -1368,6 +1376,8 @@ afw_function_execute_for_of(
                         previous_iterator_scope, xctx);
                     afw_xctx_scope_deactivate(
                         previous_iterator_scope, xctx);
+                    afw_xctx_scope_release(
+                        previous_iterator_scope, xctx);
                 }
                 else {
                     scope = afw_xctx_scope_clone(
@@ -1396,7 +1406,13 @@ afw_function_execute_for_of(
 
         impl_loop_consume_if_target(this_label, xctx);
         if (previous_iterator_scope) {
-            afw_xctx_scope_deactivate(previous_iterator_scope, xctx);
+            if (afw_xctx_scope_current(xctx) ==
+                previous_iterator_scope)
+            {
+                afw_xctx_scope_deactivate(
+                    previous_iterator_scope, xctx);
+            }
+            afw_xctx_scope_release(previous_iterator_scope, xctx);
         }
 
     }
@@ -2120,11 +2136,12 @@ afw_function_execute_try(
                 const afw_error_t *caught_error = &this_THROWN_ERROR;
                 const afw_value_block_t *block =
                     (const afw_value_block_t *)x->argv[3];
-                scope = afw_xctx_scope_create(
-                    block, afw_xctx_scope_current(xctx), xctx);
-                afw_xctx_scope_activate(scope, xctx);
-                eval_p = scope->p;
+                scope = NULL;
                 AFW_TRY{
+                    scope = afw_xctx_scope_create(
+                        block, afw_xctx_scope_current(xctx), xctx);
+                    afw_xctx_scope_activate(scope, xctx);
+                    eval_p = scope->p;
                     error_object = afw_error_to_object(
                         caught_error, eval_p, xctx);
                     error_value = afw_value_create_unmanaged_object(
@@ -2205,7 +2222,12 @@ afw_function_execute_try(
                     }
                 }
                 AFW_FINALLY{
-                    afw_xctx_scope_deactivate(scope, xctx);
+                    if (scope) {
+                        if (afw_xctx_scope_current(xctx) == scope) {
+                            afw_xctx_scope_deactivate(scope, xctx);
+                        }
+                        afw_xctx_scope_release(scope, xctx);
+                    }
                 }
                 AFW_ENDTRY;
             }
