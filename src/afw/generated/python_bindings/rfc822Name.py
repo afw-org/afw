@@ -20,7 +20,6 @@ def at_least_one_member_of_rfc822Name(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -112,7 +111,6 @@ def eq_rfc822Name(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -145,7 +143,6 @@ def eqx_rfc822Name(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -177,7 +174,6 @@ def ge_rfc822Name(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -209,7 +205,6 @@ def gt_rfc822Name(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -241,7 +236,6 @@ def intersection_rfc822Name(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -273,7 +267,6 @@ def is_in_rfc822Name(session, value, array):
 
     Args:
         value (object):
-
         array (list):
 
     Returns:
@@ -333,7 +326,6 @@ def le_rfc822Name(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -365,7 +357,6 @@ def lt_rfc822Name(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -397,7 +388,6 @@ def match_rfc822Name(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (str):
 
     Returns:
@@ -431,7 +421,6 @@ def ne_rfc822Name(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -464,7 +453,6 @@ def nex_rfc822Name(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -525,7 +513,6 @@ def regexp_match_rfc822Name(session, value, regexp):
 
     Args:
         value (object):
-
         regexp (str):
 
     Returns:
@@ -585,7 +572,6 @@ def set_equals_rfc822Name(session, array1, array2):
 
     Args:
         array1 (list):
-
         array2 (list):
 
     Returns:
@@ -617,7 +603,6 @@ def subset_rfc822Name(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:

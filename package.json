@@ -113,6 +113,7 @@
     "msw": "^0.39.1",
     "react-is": "^17.0.1",
     "source-map-explorer": "^2.5.2",
+    "typedoc": "^0.25.0",
     "webpack-bundle-analyzer": "^4.3.0"
   },
   "jest": {

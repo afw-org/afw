@@ -1,0 +1,96 @@
+/* Recolors Sphinx's theme-agnostic basic.css output (inlined ahead of this
+ * file at build time) to match the Adaptive Framework handbook's slate /
+ * Tailwind palette and dark mode (html.dark), instead of shipping Sphinx's
+ * own theme CSS. See docs.py _wrap_sphinx_html().
+ */
+
+.afw-sphinx-content {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+}
+
+.afw-sphinx-content .headerlink {
+    opacity: 0;
+    margin-left: 0.35em;
+    text-decoration: none;
+    color: #94a3b8; /* slate-400 */
+}
+
+.afw-sphinx-content dt:hover .headerlink,
+.afw-sphinx-content h1:hover .headerlink,
+.afw-sphinx-content h2:hover .headerlink,
+.afw-sphinx-content h3:hover .headerlink {
+    opacity: 1;
+}
+
+.afw-sphinx-content .pre,
+.afw-sphinx-content code.docutils.literal {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.85em;
+}
+
+.afw-sphinx-content dl.py > dt {
+    background: #f8fafc; /* slate-50 */
+    border: 1px solid #e2e8f0; /* slate-200 */
+    border-radius: 0.5rem;
+    padding: 0.6rem 0.9rem;
+    font-weight: 600;
+    color: #0f172a; /* slate-900 */
+}
+
+html.dark .afw-sphinx-content dl.py > dt {
+    background: rgba(148, 163, 184, 0.08);
+    border-color: rgba(148, 163, 184, 0.2);
+    color: #e2e8f0; /* slate-200 */
+}
+
+.afw-sphinx-content dl.py > dd {
+    margin-left: 0.25rem;
+    padding-left: 0.75rem;
+    border-left: 1px solid #e2e8f0; /* slate-200 */
+}
+
+html.dark .afw-sphinx-content dl.py > dd {
+    border-color: rgba(148, 163, 184, 0.2);
+}
+
+.afw-sphinx-content .sig-name {
+    color: #0284c7; /* sky-600 */
+}
+
+html.dark .afw-sphinx-content .sig-name {
+    color: #38bdf8; /* sky-400 */
+}
+
+.afw-sphinx-content dl.field-list > dt {
+    font-weight: 600;
+    color: #334155; /* slate-700 */
+}
+
+html.dark .afw-sphinx-content dl.field-list > dt {
+    color: #cbd5e1; /* slate-300 */
+}
+
+.afw-sphinx-content .field-list ul.simple {
+    margin: 0;
+}
+
+/* !important: basic.css sets a bare `a:visited { color: #551A8B }`
+ * (browser-default purple); tied specificity with the plain selector
+ * below would normally resolve by source order, but that's fragile
+ * against reordering and against the Tailwind CDN runtime script's own
+ * async-injected rules, so pin the color unconditionally instead. */
+.afw-sphinx-content a,
+.afw-sphinx-content a:visited {
+    color: #0284c7 !important; /* sky-600 */
+    text-decoration: none;
+}
+
+.afw-sphinx-content a:hover {
+    text-decoration: underline;
+}
+
+html.dark .afw-sphinx-content a,
+html.dark .afw-sphinx-content a:visited {
+    color: #38bdf8 !important; /* sky-400 */
+}

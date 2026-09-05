@@ -52,7 +52,6 @@ def n_of(session, n, conditions):
 
     Args:
         n (int):
-
         conditions (bool):
 
     Returns:

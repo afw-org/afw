@@ -77,7 +77,6 @@ def at_least_one_member_of_integer(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -167,7 +166,6 @@ def divide_integer(session, dividend, divisor):
 
     Args:
         dividend (int):
-
         divisor (int):
 
     Returns:
@@ -201,7 +199,6 @@ def eq_integer(session, arg1, arg2):
 
     Args:
         arg1 (int):
-
         arg2 (object):
 
     Returns:
@@ -234,7 +231,6 @@ def eqx_integer(session, arg1, arg2):
 
     Args:
         arg1 (int):
-
         arg2 (object):
 
     Returns:
@@ -266,7 +262,6 @@ def ge_integer(session, arg1, arg2):
 
     Args:
         arg1 (int):
-
         arg2 (int):
 
     Returns:
@@ -298,7 +293,6 @@ def gt_integer(session, arg1, arg2):
 
     Args:
         arg1 (int):
-
         arg2 (int):
 
     Returns:
@@ -358,7 +352,6 @@ def intersection_integer(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -390,7 +383,6 @@ def is_in_integer(session, value, array):
 
     Args:
         value (int):
-
         array (list):
 
     Returns:
@@ -450,7 +442,6 @@ def le_integer(session, arg1, arg2):
 
     Args:
         arg1 (int):
-
         arg2 (object):
 
     Returns:
@@ -482,7 +473,6 @@ def lt_integer(session, arg1, arg2):
 
     Args:
         arg1 (int):
-
         arg2 (int):
 
     Returns:
@@ -570,7 +560,6 @@ def mod_integer(session, dividend, divisor):
 
     Args:
         dividend (int):
-
         divisor (int):
 
     Returns:
@@ -632,7 +621,6 @@ def ne_integer(session, arg1, arg2):
 
     Args:
         arg1 (int):
-
         arg2 (object):
 
     Returns:
@@ -693,7 +681,6 @@ def nex_integer(session, arg1, arg2):
 
     Args:
         arg1 (int):
-
         arg2 (object):
 
     Returns:
@@ -754,7 +741,6 @@ def set_equals_integer(session, array1, array2):
 
     Args:
         array1 (list):
-
         array2 (list):
 
     Returns:
@@ -786,7 +772,6 @@ def subset_integer(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -817,7 +802,6 @@ def subtract_integer(session, arg1, arg2):
 
     Args:
         arg1 (int):
-
         arg2 (int):
 
     Returns:

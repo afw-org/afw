@@ -19,20 +19,17 @@ def compare_uri(session, uri1, uri2, isValuePath=None, currentPath=None):
 
     Args:
         uri1 (str): First URI for compare. This URI can not contain an
-        asterisk ('*')
-
+            asterisk ('*')
         uri2 (str): Second URI for compare. This URI can contain asterisk
-        ('*') for substitution if isValuePath is true and currentPath2 is
-        specified.
-
+            ('*') for substitution if isValuePath is true and currentPath2 is
+            specified.
         isValuePath (bool): The URIs are adaptive value paths. If one of the
-        URIs begins with a single slash '/', both must, and each URI will be
-        parsed as an adaptive value path (example:
-        /adapterId/objectType/objectId.propertyNames).
-
+            URIs begins with a single slash '/', both must, and each URI will
+            be parsed as an adaptive value path (example:
+            /adapterId/objectType/objectId.propertyNames).
         currentPath (str): If isValuePath is true, this is the current path
-        that is used to resolve a relative path in the URIs. If isValuePath is
-        not true, this parameter is ignored.
+            that is used to resolve a relative path in the URIs. If
+            isValuePath is not true, this parameter is ignored.
 
     Returns:
         bool: Result of comparison.
@@ -69,12 +66,12 @@ def debug(session, value, detail=None):
 
     Args:
         value (object): This is the value that will be converted to its string
-        representation and written. An undefined value is represented by
-        'undefined'.
-
+            representation and written. An undefined value is represented by
+            'undefined'.
         detail (bool): If true, the string will only written if the
-        debug:function_active:detail flag is on. If false or not specified,
-        the string will only written if the debug:function_active flag is on.
+            debug:function_active:detail flag is on. If false or not
+            specified, the string will only written if the
+            debug:function_active flag is on.
 
     Returns:
         object:
@@ -105,7 +102,6 @@ def execution_start_time_local(session):
     Return local dateTime when the execution context was created. This will
     usually be the start of request time.
 
-    Args:
     Returns:
         object:
     """
@@ -131,7 +127,6 @@ def execution_start_time_utc(session):
     Return UTC dateTime when the execution context was created. This will
     usually be the start of request time.
 
-    Args:
     Returns:
         object:
     """
@@ -156,7 +151,6 @@ def generate_uuid(session):
 
     Generate a UUID.
 
-    Args:
     Returns:
         str:
     """
@@ -267,7 +261,6 @@ def now_local(session):
 
     Return current local dateTime.
 
-    Args:
     Returns:
         object:
     """
@@ -292,7 +285,6 @@ def now_utc(session):
 
     Return current UTC dateTime.
 
-    Args:
     Returns:
         object:
     """
@@ -319,14 +311,13 @@ def parse_uri(session, uri, isValuePath=None, currentPath=None):
 
     Args:
         uri (str): URI to parse
-
         isValuePath (bool): The URI is an adaptive value path. If the path
-        begins with a single slash '/', the URI will be parsed as an adaptive
-        value path (example: /adapterId/objectType/objectId.propertyNames)
-
+            begins with a single slash '/', the URI will be parsed as an
+            adaptive value path (example:
+            /adapterId/objectType/objectId.propertyNames)
         currentPath (str): If isValuePath is true, this is the current path
-        that is used to resolve relative paths. If isValuePath is not true,
-        this parameter is ignored.
+            that is used to resolve relative paths. If isValuePath is not
+            true, this parameter is ignored.
 
     Returns:
         dict: Object with results of parse.
@@ -361,7 +352,7 @@ def perform(session, request):
 
     Args:
         request (dict): See /afw/_AdaptiveObjectType_/_AdaptiveActions_ for
-        more information.
+            more information.
 
     Returns:
         dict: Response object.
@@ -391,7 +382,6 @@ def pool_bytes_in_use(session):
     pool destroy). Rounding and prefixes included. Not APR's private usage;
     see process_rss() for current process RSS.
 
-    Args:
     Returns:
         int: Sum of all pools' bytes_allocated.
     """
@@ -419,7 +409,6 @@ def process_rss(session):
     to the OS. Compare with pool_bytes_in_use() for AFW asked-for vs process
     RSS.
 
-    Args:
     Returns:
         int: Current RSS in kilobytes, or 0 if unavailable.
     """
@@ -446,14 +435,12 @@ def trace(session, value, filter=None, number=None):
 
     Args:
         value (object): This is the value that will be converted to its string
-        representation and written the trace log. An undefined value is
-        represented by 'undefined'.
-
+            representation and written the trace log. An undefined value is
+            represented by 'undefined'.
         filter (bool): If this optional filter is false, nothing will be
-        written to the trace log. The default is true.
-
+            written to the trace log. The default is true.
         number (int): This is an optional number between 1 and 8 that is
-        appended to 'trace' to identify the trace log. The default is 1.
+            appended to 'trace' to identify the trace log. The default is 1.
 
     Returns:
         object:
@@ -523,9 +510,8 @@ def variable_get(session, name, defaultValue=None):
 
     Args:
         name (str): Name of variable to get. Optionally qualifier::name.
-
         defaultValue (object): Value to return only if the name is not bound.
-        The evaluated value at that moment (identity).
+            The evaluated value at that moment (identity).
 
     Returns:
         object: Bound variable value, or default / undefined if unbound.

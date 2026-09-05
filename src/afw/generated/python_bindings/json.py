@@ -23,16 +23,15 @@ def compile_json(session, source, listing=None):
 
     Args:
         source (object): json string to compile
-
         listing (object): If specified, a human compiler listing is produced
-        instead of an unevaluated compiled value (tree + ---Symbols; not
-        recompilable). Use decompile() for Adaptive compiled-form text and
-        stringify() for pure JSON of evaluated data.
+            instead of an unevaluated compiled value (tree + ---Symbols; not
+            recompilable). Use decompile() for Adaptive compiled-form text and
+            stringify() for pure JSON of evaluated data.
         
-        This parameter can be an integer between 0 and 10 or a string that is
-        used for indentation. If 0 is specified, no whitespace is added to the
-        resulting string. If 1 through 10 is specified, that number of spaces
-        is used.
+            This parameter can be an integer between 0 and 10 or a string that
+            is used for indentation. If 0 is specified, no whitespace is added
+            to the resulting string. If 1 through 10 is specified, that number
+            of spaces is used.
 
     Returns:
         object:

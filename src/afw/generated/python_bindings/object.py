@@ -20,9 +20,8 @@ def add_properties(session, target, source):
 
     Args:
         target (dict): Target object or undefined if result will only contain
-        the properties of source objects. The object must be mutable, if
-        specified.
-
+            the properties of source objects. The object must be mutable, if
+            specified.
         source (dict): Source object(s).
 
     Returns:
@@ -53,10 +52,9 @@ def apply_object_options(session, object, options=None):
 
     Args:
         object (dict): Object used to produce result.
-
         options (dict): Object options. See
-        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
-        information.
+            /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
+            information.
 
     Returns:
         dict: This is an object with object options applied.
@@ -208,7 +206,6 @@ def eq_object(session, arg1, arg2):
 
     Args:
         arg1 (dict):
-
         arg2 (object):
 
     Returns:
@@ -241,7 +238,6 @@ def eqx_object(session, arg1, arg2):
 
     Args:
         arg1 (dict):
-
         arg2 (object):
 
     Returns:
@@ -302,7 +298,6 @@ def ge_object(session, arg1, arg2):
 
     Args:
         arg1 (dict):
-
         arg2 (dict):
 
     Returns:
@@ -334,7 +329,6 @@ def gt_object(session, arg1, arg2):
 
     Args:
         arg1 (dict):
-
         arg2 (dict):
 
     Returns:
@@ -424,7 +418,6 @@ def le_object(session, arg1, arg2):
 
     Args:
         arg1 (dict):
-
         arg2 (object):
 
     Returns:
@@ -456,11 +449,8 @@ def local_object_meta_set_ids(session, object, objectType, objectId, adapterId=N
 
     Args:
         object (dict): Object to set ids in.
-
         adapterId (str): Adapter id for object.
-
         objectType (str): Object type id for object.
-
         objectId (str): Object id for object.
 
     Returns:
@@ -496,7 +486,6 @@ def lt_object(session, arg1, arg2):
 
     Args:
         arg1 (dict):
-
         arg2 (dict):
 
     Returns:
@@ -530,7 +519,6 @@ def ne_object(session, arg1, arg2):
 
     Args:
         arg1 (dict):
-
         arg2 (object):
 
     Returns:
@@ -563,7 +551,6 @@ def nex_object(session, arg1, arg2):
 
     Args:
         arg1 (dict):
-
         arg2 (object):
 
     Returns:
@@ -625,7 +612,6 @@ def property_delete(session, object, name):
 
     Args:
         object (dict): This is the object to delete property from.
-
         name (str): This is a name of the property to delete.
 
     Returns:
@@ -656,7 +642,7 @@ def property_delete_by_reference(session, reference):
 
     Args:
         reference (object): This is a reference to the object property to
-        delete.
+            delete.
 
     Returns:
         bool: True if object had the property and it was deleted.
@@ -687,7 +673,6 @@ def property_exists(session, object, name):
 
     Args:
         object (dict): Object to check.
-
         name (str): Property name.
 
     Returns:
@@ -721,11 +706,9 @@ def property_get(session, object, name, defaultValue=None):
 
     Args:
         object (dict): Object to get property from.
-
         name (str): Property name.
-
         defaultValue (object): Value to return only if the property is
-        missing. The evaluated value at that moment (identity).
+            missing. The evaluated value at that moment (identity).
 
     Returns:
         object: Property value, or default / undefined if missing.
@@ -760,7 +743,6 @@ def property_is_not_null(session, object, name):
 
     Args:
         object (dict): Object to check.
-
         name (str): Property name.
 
     Returns:

@@ -20,7 +20,7 @@ def meta(session, value):
 
     Args:
         value (object): This is the adaptive value whose meta object is to be
-        returned.
+            returned.
 
     Returns:
         dict: An object containing the meta information for the adaptive

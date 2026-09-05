@@ -21,7 +21,7 @@ def random_base64Binary(session, numberOfOctets):
 
     Args:
         numberOfOctets (int): The number of random octets to generate (0 or
-        more, up to 1,000,000).
+            more, up to 1,000,000).
 
     Returns:
         object:
@@ -80,7 +80,7 @@ def random_hexBinary(session, numberOfOctets):
 
     Args:
         numberOfOctets (int): The number of random octets to generate (0 or
-        more, up to 1,000,000).
+            more, up to 1,000,000).
 
     Returns:
         object:
@@ -109,7 +109,6 @@ def random_integer(session, min, max):
 
     Args:
         min (int): Minimum integer inclusive.
-
         max (int): Maximum integer inclusive.
 
     Returns:
@@ -140,7 +139,6 @@ def random_number(session, min=None, max=None):
 
     Args:
         min (float): Minimum double inclusive. The default is 0.0.
-
         max (float): Maximum double exclusive. The default is 1.0.
 
     Returns:

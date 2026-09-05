@@ -108,7 +108,6 @@ def eq_dnsName(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -141,7 +140,6 @@ def eqx_dnsName(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -173,7 +171,6 @@ def ge_dnsName(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -205,7 +202,6 @@ def gt_dnsName(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -265,7 +261,6 @@ def is_in_dnsName(session, value, array):
 
     Args:
         value (object):
-
         array (list):
 
     Returns:
@@ -297,7 +292,6 @@ def le_dnsName(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -329,7 +323,6 @@ def lt_dnsName(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -363,7 +356,6 @@ def ne_dnsName(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -396,7 +388,6 @@ def nex_dnsName(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -457,7 +448,6 @@ def regexp_match_dnsName(session, value, regexp):
 
     Args:
         value (object):
-
         regexp (str):
 
     Returns:

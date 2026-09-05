@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <doc>
     <title>Javascript Bindings</title>
+    <paragraph>
+        Adaptive Functions are exposed to Javascript through generated
+        bindings that call the Adaptive Framework's HTTP interface. Each
+        function category (adapter, object, compiler, and so on) becomes a
+        module of exported functions that take a client as their first
+        parameter.
+    </paragraph>
     <section>
-        <link href="/docs/doxygen/html/group__afw__bindings__javascript.html" text="Doxygen Reference" />
+        <link href="/docs/afw/html/reference/bindings/javascript_bindings/index.html" text="Browse the Javascript Bindings Reference" />
     </section>
 </doc>

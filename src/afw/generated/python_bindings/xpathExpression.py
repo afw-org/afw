@@ -81,16 +81,15 @@ def compile_xpathExpression(session, source, listing=None):
 
     Args:
         source (object): xpathExpression string to compile
-
         listing (object): If specified, a human compiler listing is produced
-        instead of an unevaluated compiled value (tree + ---Symbols; not
-        recompilable). Use decompile() for Adaptive compiled-form text and
-        stringify() for pure JSON of evaluated data.
+            instead of an unevaluated compiled value (tree + ---Symbols; not
+            recompilable). Use decompile() for Adaptive compiled-form text and
+            stringify() for pure JSON of evaluated data.
         
-        This parameter can be an integer between 0 and 10 or a string that is
-        used for indentation. If 0 is specified, no whitespace is added to the
-        resulting string. If 1 through 10 is specified, that number of spaces
-        is used.
+            This parameter can be an integer between 0 and 10 or a string that
+            is used for indentation. If 0 is specified, no whitespace is added
+            to the resulting string. If 1 through 10 is specified, that number
+            of spaces is used.
 
     Returns:
         object:
@@ -125,7 +124,6 @@ def eq_xpathExpression(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -158,7 +156,6 @@ def eqx_xpathExpression(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -189,13 +186,13 @@ def eval_xpathExpression(session, source, additionalUntrustedQualifiedVariables=
 
     Args:
         source (object): xpathExpression to compile and evaluate
-
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during evaluation.
-        These variables will not be used by anything that needs to ensure its
-        qualified variables must come from a trusted source, such as
-        authorization. This parameter is intended to be used for testing only
-        and should not be used for anything running in production.
+            additional qualified variables that can be accessed during
+            evaluation. These variables will not be used by anything that
+            needs to ensure its qualified variables must come from a trusted
+            source, such as authorization. This parameter is intended to be
+            used for testing only and should not be used for anything running
+            in production.
 
     Returns:
         object:
@@ -228,7 +225,6 @@ def ge_xpathExpression(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -260,7 +256,6 @@ def gt_xpathExpression(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -321,7 +316,6 @@ def le_xpathExpression(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -353,7 +347,6 @@ def lt_xpathExpression(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -387,7 +380,6 @@ def ne_xpathExpression(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -420,7 +412,6 @@ def nex_xpathExpression(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -540,7 +531,6 @@ def xpath_node_eq(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -572,7 +562,6 @@ def xpath_node_match(session, nodeset2, arg2):
 
     Args:
         nodeset2 (object):
-
         arg2 (object):
 
     Returns:

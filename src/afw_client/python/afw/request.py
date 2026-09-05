@@ -22,44 +22,40 @@ class HttpRequest(object):
     def perform(self):
 
         """
-
-        def perform(self):
-
-        The fundamental AFW function is perform, which requires 
+        The fundamental AFW function is perform, which requires
         a POST payload to specify the function and arguments to
-        execute by the server.  It looks like:
+        execute by the server.  It looks like::
 
-        {
-            "adapterId": <adapterId>,
-            "actions": [
-                {
-                    "function": <function_to_execute>,
-                    "param1": <param1>,
-                    "param2": <param2>,
-                    ...
-                },
-                ...
-            ]
-        }
-
-        On success, this will return the following JSON:
-
-        {
-            "result": {
+            {
+                "adapterId": <adapterId>,
                 "actions": [
                     {
-                        "result": <result of action>
-                        "status": <status of action>
+                        "function": <function_to_execute>,
+                        "param1": <param1>,
+                        "param2": <param2>,
+                        ...
                     },
                     ...
-                ],
-                "status": <status of actions>,
-                "error": <optional error message>
-            },
-            "resultDataType": "object",
-            "status": "success"
-        }
+                ]
+            }
 
+        On success, this will return the following JSON::
+
+            {
+                "result": {
+                    "actions": [
+                        {
+                            "result": <result of action>,
+                            "status": <status of action>
+                        },
+                        ...
+                    ],
+                    "status": <status of actions>,
+                    "error": <optional error message>
+                },
+                "resultDataType": "object",
+                "status": "success"
+            }
         """
 
         r = self._session._httpSession.post(
@@ -114,20 +110,16 @@ class LocalRequest(object):
     def perform(self):        
 
         """
-
-        def perform(self):
-
-        The fundamental AFW function is perform, which requires 
+        The fundamental AFW function is perform, which requires
         a POST payload to specify the function and arguments to
-        execute by the server.  It looks like:
+        execute by the server.  It looks like::
 
-        function(arg1, arg2, ...)
+            function(arg1, arg2, ...)
 
-        On success, this will return the following JSON:
+        On success, this will return the following JSON::
 
-        <content-length>
-        content...
-
+            <content-length>
+            content...
         """
         
 

@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <doc>
     <title>Python Bindings</title>
+    <paragraph>
+        Adaptive Functions are exposed to Python through generated bindings
+        that call the Adaptive Framework's HTTP or local command-line
+        interface. Each function category (adapter, object, compiler, and
+        so on) becomes a module, and the afw package also provides the
+        Session and Request classes used to connect and issue calls.
+    </paragraph>
     <section>
-        <link href="/docs/doxygen/html/group__afw__bindings__python.html" text="Doxygen Reference" />
+        <link href="/docs/afw/html/reference/bindings/python_bindings/index.html" text="Browse the Python Bindings Reference" />
     </section>
 </doc>

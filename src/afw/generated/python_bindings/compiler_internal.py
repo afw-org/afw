@@ -22,7 +22,6 @@ def assign(session, name, value):
 
     Args:
         name (str): Variable name
-
         value (object): This is the value to assign to the variable.
 
     Returns:
@@ -55,7 +54,7 @@ def break_(session, label=None):
 
     Args:
         label (str): Optional loop label. If omitted, break the innermost loop
-        or switch.
+            or switch.
 
     Returns:
         object: Does not complete. Leaves the body of a loop or switch.
@@ -88,10 +87,8 @@ def const(session, name, value, type=None):
 
     Args:
         name (list): The name of one or more constants to defined in the
-        current block.
-
+            current block.
         value (object): This is the value of the constant(s).
-
         type (dict): The type of the constant(s).
 
     Returns:
@@ -129,7 +126,7 @@ def continue_(session, label=None):
 
     Args:
         label (str): Optional loop label. If omitted, continue the innermost
-        loop.
+            loop.
 
     Returns:
         object: Does not complete. Continues the enclosing loop.
@@ -164,15 +161,13 @@ def do_while(session, condition, body, label=None):
 
     Args:
         condition (bool): While this condition is true, the loop will
-        continue. This is evaluated in the loop's scope.
-
+            continue. This is evaluated in the loop's scope.
         body (list): This is an array of values (statements) that are
-        evaluated for each iteration of the loop. Each value in body is
-        evaluated in order until the end of the array or until a 'break',
-        'continue', 'return' or 'throw' function is encountered.
-
+            evaluated for each iteration of the loop. Each value in body is
+            evaluated in order until the end of the array or until a 'break',
+            'continue', 'return' or 'throw' function is encountered.
         label (str): Optional loop label for break/continue Identifier (issue
-        #62).
+            #62).
 
     Returns:
         object: Does not complete. Nested assignment still writes the running
@@ -209,23 +204,19 @@ def for_(session, initial=None, condition=None, increment=None, body=None, label
 
     Args:
         initial (list): This is an array of values (statements) to evaluate
-        before the loop starts. The values will normally be a call to the
-        'assign' function.
-
+            before the loop starts. The values will normally be a call to the
+            'assign' function.
         condition (bool): While this condition is true, the loop will
-        continue.
-
+            continue.
         increment (list): This is an array of values (statements) to evaluate
-        after each iteration of the loop. The values will normally be a call
-        to the 'assign' function.
-
+            after each iteration of the loop. The values will normally be a
+            call to the 'assign' function.
         body (list): This is an array of values (statements) that are
-        evaluated for each iteration of the loop. Each value in body is
-        evaluated in order until the end of the array or until a 'break',
-        'continue', 'return' or 'throw' function is encountered.
-
+            evaluated for each iteration of the loop. Each value in body is
+            evaluated in order until the end of the array or until a 'break',
+            'continue', 'return' or 'throw' function is encountered.
         label (str): Optional loop label for break/continue Identifier (issue
-        #62).
+            #62).
 
     Returns:
         object: Does not complete. Nested assignment still writes the running
@@ -275,16 +266,13 @@ def for_of(session, name, value, body=None, label=None):
 
     Args:
         name (list): Variable name(s).
-
         value (object): Any array, object or single value.
-
         body (list): This is an array of values (statements) that are
-        evaluated for each iteration of the loop. Each value in body is
-        evaluated in order until the end of the array or until a 'break',
-        'continue', 'return' or 'throw' function is encountered.
-
+            evaluated for each iteration of the loop. Each value in body is
+            evaluated in order until the end of the array or until a 'break',
+            'continue', 'return' or 'throw' function is encountered.
         label (str): Optional loop label for break/continue Identifier (issue
-        #62).
+            #62).
 
     Returns:
         object: Does not complete. Nested assignment still writes the running
@@ -321,16 +309,14 @@ def if_(session, condition, then, _else=None):
 
     Args:
         condition (bool): If true, parameter 'then' is evaluated for result.
-        If false, parameter 'else' is evaluated.
-
+            If false, parameter 'else' is evaluated.
         then (list): This is the body of a structured block that is evaluated
-        if 'condition' is true. See the 'body' parameter of the 'block'
-        function for information on how the body is processed.
-
+            if 'condition' is true. See the 'body' parameter of the 'block'
+            function for information on how the body is processed.
         else (list): This is the body of a structured block that is evaluated
-        if 'condition' is false. If not specified and condition is false, the
-        if does not complete (void). See the 'body' parameter of the 'block'
-        function for information on how the body is processed.
+            if 'condition' is false. If not specified and condition is false,
+            the if does not complete (void). See the 'body' parameter of the
+            'block' function for information on how the body is processed.
 
     Returns:
         object: The result of evaluating 'then' or 'else'. Also the ternary
@@ -368,11 +354,9 @@ def let(session, name, value=None, type=None):
 
     Args:
         name (list): The name of one or more variables to declared in the
-        current block.
-
+            current block.
         value (object): This is the initial value of the variable(s). If not
-        specified, the variable will have a value of undefined.
-
+            specified, the variable will have a value of undefined.
         type (dict): The type of the variable(s).
 
     Returns:
@@ -408,7 +392,6 @@ def rethrow(session):
     This is a special function that can be called to rethrow an error inside
     of a catch block. If called outside of a catch body, an error is thrown.
 
-    Args:
     Returns:
         object: Does not complete. Rethrows the current error in a catch
         block.
@@ -438,8 +421,8 @@ def return_(session, value=None):
 
     Args:
         value (object): The value to evaluate that the outermost block will
-        return. If not specified, the last evaluated value or a null value
-        will be returned.
+            return. If not specified, the last evaluated value or a null value
+            will be returned.
 
     Returns:
         object: This function returns from the outermost structured block with
@@ -471,24 +454,22 @@ def switch(session, predicate, value1, case_clause):
 
     Args:
         predicate (object): The predicate is passed two parameters and must
-        return a boolean. The first parameter passed is the evaluated value of
-        the value1 parameter and the second is the value2 from a case clause.
-        This predicate will often be 'eqx' to use the exactly equal function
-        but can also be any other function such as 'regexp_match' or a lambda
-        function.
-
+            return a boolean. The first parameter passed is the evaluated
+            value of the value1 parameter and the second is the value2 from a
+            case clause. This predicate will often be 'eqx' to use the exactly
+            equal function but can also be any other function such as
+            'regexp_match' or a lambda function.
         value1 (object): The first parameter passed to the predicate.
-
         case_clause (object): This is one or more case clauses which are pairs
-        of a value2 parameter followed by a statement list or undefined
-        parameter. One value2 can be undefined to indicate the default case
-        clause.
+            of a value2 parameter followed by a statement list or undefined
+            parameter. One value2 can be undefined to indicate the default
+            case clause.
         
-        For the first value2 that is undefined or calling the predicate
-        returns true, the statement list followed by any statement lists of
-        subsequent case clauses are executed until a break or return is
-        encountered. The predicate is called with value1 and the case clause's
-        value2.
+            For the first value2 that is undefined or calling the predicate
+            returns true, the statement list followed by any statement lists
+            of subsequent case clauses are executed until a break or return is
+            encountered. The predicate is called with value1 and the case
+            clause's value2.
 
     Returns:
         object: Does not complete. Nested assignment still writes the running
@@ -525,15 +506,14 @@ def throw(session, message, data=None, id=None):
 
     Args:
         message (str): This is the message that will be included in the
-        _AdaptiveError_ error object available in the catch block.
-
+            _AdaptiveError_ error object available in the catch block.
         data (object): Optional data that will be available as the 'data'
-        property of the _AdaptiveError_ object in the catch block.
-
+            property of the _AdaptiveError_ object in the catch block.
         id (str): Optional error id (mnemonic) to use instead of 'throw'. Must
-        be a name allowed on script throw (request-facing HTTP names such as
-        not_found, denied, gone, too_many_requests). Sets the id property of
-        the catch object and the HTTP status if the error is not caught.
+            be a name allowed on script throw (request-facing HTTP names such
+            as not_found, denied, gone, too_many_requests). Sets the id
+            property of the catch object and the HTTP status if the error is
+            not caught.
 
     Returns:
         object:
@@ -574,24 +554,22 @@ def try_(session, body, _finally=None, catch=None, error=None):
 
     Args:
         body (list): This is an array of values (statements) that are
-        evaluated. Each value in body is evaluated in order until the end of
-        the list or until a 'break', 'continue', 'return' or 'throw' function
-        is encountered.
-
+            evaluated. Each value in body is evaluated in order until the end
+            of the list or until a 'break', 'continue', 'return' or 'throw'
+            function is encountered.
         finally (list): This is an array of values (statements) that are
-        evaluated after the try and catch statements even if an error occurs.
-        Each value in body is evaluated in order until the end of the list or
-        until a 'break', 'continue', 'return' or 'throw' function is
-        encountered.
-
+            evaluated after the try and catch statements even if an error
+            occurs. Each value in body is evaluated in order until the end of
+            the list or until a 'break', 'continue', 'return' or 'throw'
+            function is encountered.
         catch (list): This is an array of values (statements) that are
-        evaluated when an error is thrown while evaluating the body. Each
-        value in body is evaluated in order until the end of the list or until
-        a 'break', 'continue', 'return' or 'throw' function is encountered.
-
+            evaluated when an error is thrown while evaluating the body. Each
+            value in body is evaluated in order until the end of the list or
+            until a 'break', 'continue', 'return' or 'throw' function is
+            encountered.
         error (dict): The error object thrown. This is only available in the
-        catch block. See adaptive object type _AdaptiveObjectType_ for
-        details.
+            catch block. See adaptive object type _AdaptiveObjectType_ for
+            details.
 
     Returns:
         object: Does not complete. Nested assignment still writes the running
@@ -636,15 +614,13 @@ def while_(session, condition, body, label=None):
 
     Args:
         condition (bool): While this condition is true, the loop will
-        continue. This is evaluated in the loop's scope.
-
+            continue. This is evaluated in the loop's scope.
         body (list): This is an array of values (statements) that are
-        evaluated for each iteration of the loop. Each value in body is
-        evaluated in order until the end of the list or until a 'break',
-        'continue', 'return' or 'throw' function is encountered.
-
+            evaluated for each iteration of the loop. Each value in body is
+            evaluated in order until the end of the list or until a 'break',
+            'continue', 'return' or 'throw' function is encountered.
         label (str): Optional loop label for break/continue Identifier (issue
-        #62).
+            #62).
 
     Returns:
         object: Does not complete. Nested assignment still writes the running
@@ -680,7 +656,7 @@ def wrap_literal_array(session, array):
 
     Args:
         array (list): Array to evaluate and hold (typically a constant array
-        literal).
+            literal).
 
     Returns:
         list: A holdable memory-wrapper array face over the evaluated base.
@@ -711,7 +687,7 @@ def wrap_literal_object(session, object):
 
     Args:
         object (dict): Object to evaluate and hold (typically a constant
-        object literal).
+            object literal).
 
     Returns:
         dict: A holdable memory-wrapper object face over the evaluated base.

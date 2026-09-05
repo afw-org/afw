@@ -19,9 +19,7 @@ def http_delete(session, url, headers=None, options=None):
 
     Args:
         url (str): HTTP Url.
-
         headers (list): HTTP Headers.
-
         options (dict): CURL Options
 
     Returns:
@@ -58,9 +56,7 @@ def http_get(session, url, headers=None, options=None):
 
     Args:
         url (str): HTTP Url.
-
         headers (list): HTTP Headers.
-
         options (dict): CURL Options
 
     Returns:
@@ -97,9 +93,7 @@ def http_head(session, url, headers=None, options=None):
 
     Args:
         url (str): HTTP Url.
-
         headers (list): HTTP Headers.
-
         options (dict): CURL Options
 
     Returns:
@@ -136,9 +130,7 @@ def http_options(session, url, headers=None, options=None):
 
     Args:
         url (str): HTTP Url.
-
         headers (list): HTTP Headers.
-
         options (dict): CURL Options
 
     Returns:
@@ -175,11 +167,8 @@ def http_patch(session, url, payload=None, headers=None, options=None):
 
     Args:
         url (str): HTTP Url.
-
         payload (str): Data payload for PATCH.
-
         headers (list): HTTP Headers.
-
         options (dict): CURL Options
 
     Returns:
@@ -219,11 +208,8 @@ def http_post(session, url, payload=None, headers=None, options=None):
 
     Args:
         url (str): HTTP Url.
-
         payload (str): Data payload to POST to the url.
-
         headers (list): HTTP Headers.
-
         options (dict): CURL Options
 
     Returns:
@@ -263,11 +249,8 @@ def http_put(session, url, payload=None, headers=None, options=None):
 
     Args:
         url (str): HTTP Url.
-
         payload (str): Data payload for PUT.
-
         headers (list): HTTP Headers.
-
         options (dict): CURL Options
 
     Returns:

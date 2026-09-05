@@ -18,7 +18,6 @@ def curl_easy_options(session):
     Returns option names that are available with the installed version of
     libcurl.
 
-    Args:
     Returns:
         list: Returns an array of strings containing the cURL option names
         that are available with the installed version of libcurl.
@@ -44,7 +43,6 @@ def curl_version_info(session):
 
     Returns run-time libcurl version info.
 
-    Args:
     Returns:
         dict: Returns an object describing the cURL version information.
     """

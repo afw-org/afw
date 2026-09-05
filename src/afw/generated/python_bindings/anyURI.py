@@ -48,7 +48,6 @@ def at_least_one_member_of_anyURI(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -138,7 +137,6 @@ def ends_with_anyURI(session, value, subString):
 
     Args:
         value (object):
-
         subString (str):
 
     Returns:
@@ -172,7 +170,6 @@ def eq_anyURI(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -205,7 +202,6 @@ def eqx_anyURI(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -237,7 +233,6 @@ def ge_anyURI(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -269,7 +264,6 @@ def gt_anyURI(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -301,11 +295,9 @@ def includes_anyURI(session, searchString, subString, position=None):
 
     Args:
         searchString (object): The anyURI to search.
-
         subString (str): Substring to find.
-
         position (int): Zero-based position in the search string to start
-        search.
+            search.
 
     Returns:
         bool: Indicates if the substring is contained in the search string.
@@ -339,11 +331,9 @@ def index_of_anyURI(session, value, subString, startIndex=None):
 
     Args:
         value (object): The anyURI value to search.
-
         subString (str): Substring to search for.
-
         startIndex (int): Optional start index for search if different than
-        start of string.
+            start of string.
 
     Returns:
         int: Zero-based index of subString or -1 if not found.
@@ -377,7 +367,6 @@ def intersection_anyURI(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -437,7 +426,6 @@ def is_in_anyURI(session, value, array):
 
     Args:
         value (object):
-
         array (list):
 
     Returns:
@@ -469,11 +457,9 @@ def last_index_of_anyURI(session, value, subString, startIndex=None):
 
     Args:
         value (object): The anyURI value to search.
-
         subString (str): Substring to search for.
-
         startIndex (int): Optional start index for search if different than
-        start of string.
+            start of string.
 
     Returns:
         int: Zero-based index of subString or -1 if not found.
@@ -507,7 +493,6 @@ def le_anyURI(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -540,7 +525,7 @@ def length_anyURI(session, value):
 
     Args:
         value (object): Returns the number of entries in an array or code
-        points in others.
+            points in others.
 
     Returns:
         int:
@@ -570,7 +555,6 @@ def lt_anyURI(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -604,7 +588,6 @@ def ne_anyURI(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -637,7 +620,6 @@ def nex_anyURI(session, arg1, arg2):
 
     Args:
         arg1 (object):
-
         arg2 (object):
 
     Returns:
@@ -698,7 +680,6 @@ def regexp_index_of_anyURI(session, value, regexp):
 
     Args:
         value (object): The anyURI value to search.
-
         regexp (str): A regular expression to use for search.
 
     Returns:
@@ -730,7 +711,6 @@ def regexp_match_anyURI(session, value, regexp):
 
     Args:
         value (object):
-
         regexp (str):
 
     Returns:
@@ -761,13 +741,10 @@ def regexp_replace_anyURI(session, value, regexp, replacement, limit=None):
 
     Args:
         value (object): The original anyURI value.
-
         regexp (str): A regular expression to use for search.
-
         replacement (str): The replacement string.
-
         limit (int): This is the maximum times to replace. The default is 1.
-        Specify -1 to replace all occurrences.
+            Specify -1 to replace all occurrences.
 
     Returns:
         str: Result text as string (not re-typed as the input data type).
@@ -801,7 +778,6 @@ def repeat_anyURI(session, value, times):
 
     Args:
         value (object): The anyURI value to repeat.
-
         times (int): The number of times to repeat the value.
 
     Returns:
@@ -835,14 +811,11 @@ def replace_anyURI(session, value, match, replacement, limit=None):
 
     Args:
         value (object): The original anyURI value.
-
         match (str): The string to replace. An empty string matches at each
-        code-point boundary, including the start and the end.
-
+            code-point boundary, including the start and the end.
         replacement (str): The replacement string.
-
         limit (int): This is the maximum times to replace. The default is 1.
-        Specify -1 to replace all occurrences.
+            Specify -1 to replace all occurrences.
 
     Returns:
         str: Result text as string (not re-typed as the input data type).
@@ -877,7 +850,6 @@ def set_equals_anyURI(session, array1, array2):
 
     Args:
         array1 (list):
-
         array2 (list):
 
     Returns:
@@ -908,12 +880,10 @@ def split_anyURI(session, value, separator=None, limit=None):
 
     Args:
         value (object): The anyURI value to split.
-
         separator (str): The separator to use. If this is an empty string or
-        separator is not specified, the value is split between characters.
-
+            separator is not specified, the value is split between characters.
         limit (int): This is the maximum number of splits. Any remaining part
-        of value is ignored.
+            of value is ignored.
 
     Returns:
         list: An array of strings.
@@ -949,7 +919,6 @@ def starts_with_anyURI(session, value, subString):
 
     Args:
         value (object):
-
         subString (str):
 
     Returns:
@@ -981,7 +950,6 @@ def subset_anyURI(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -1015,9 +983,7 @@ def substring_anyURI(session, string, startIndex, endIndex=None):
 
     Args:
         string (object):
-
         startIndex (int):
-
         endIndex (int):
 
     Returns:
@@ -1109,7 +1075,7 @@ def url_encode_anyURI(session, unencoded):
 
     Args:
         unencoded (object): URL encode a single value. See the url_encode
-        method for the data type of more details.
+            method for the data type of more details.
 
     Returns:
         str: URI encoded string.

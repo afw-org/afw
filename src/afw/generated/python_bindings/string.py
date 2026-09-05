@@ -20,7 +20,6 @@ def add_string(session, string, values):
 
     Args:
         string (str):
-
         values (object):
 
     Returns:
@@ -52,7 +51,6 @@ def at_least_one_member_of_string(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -230,7 +228,6 @@ def ends_with_string(session, value, subString):
 
     Args:
         value (str):
-
         subString (str):
 
     Returns:
@@ -262,7 +259,6 @@ def eq_ignore_case_string(session, arg1, arg2):
 
     Args:
         arg1 (str):
-
         arg2 (str):
 
     Returns:
@@ -296,7 +292,6 @@ def eq_string(session, arg1, arg2):
 
     Args:
         arg1 (str):
-
         arg2 (object):
 
     Returns:
@@ -329,7 +324,6 @@ def eqx_string(session, arg1, arg2):
 
     Args:
         arg1 (str):
-
         arg2 (object):
 
     Returns:
@@ -360,13 +354,13 @@ def eval_string(session, source, additionalUntrustedQualifiedVariables=None):
 
     Args:
         source (str): string to compile and evaluate
-
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during evaluation.
-        These variables will not be used by anything that needs to ensure its
-        qualified variables must come from a trusted source, such as
-        authorization. This parameter is intended to be used for testing only
-        and should not be used for anything running in production.
+            additional qualified variables that can be accessed during
+            evaluation. These variables will not be used by anything that
+            needs to ensure its qualified variables must come from a trusted
+            source, such as authorization. This parameter is intended to be
+            used for testing only and should not be used for anything running
+            in production.
 
     Returns:
         object:
@@ -399,7 +393,6 @@ def ge_string(session, arg1, arg2):
 
     Args:
         arg1 (str):
-
         arg2 (str):
 
     Returns:
@@ -431,7 +424,6 @@ def gt_string(session, arg1, arg2):
 
     Args:
         arg1 (str):
-
         arg2 (str):
 
     Returns:
@@ -463,11 +455,9 @@ def includes_string(session, searchString, subString, position=None):
 
     Args:
         searchString (str): The string to search.
-
         subString (str): Substring to find.
-
         position (int): Zero-based position in the search string to start
-        search.
+            search.
 
     Returns:
         bool: Indicates if the substring is contained in the search string.
@@ -501,11 +491,9 @@ def index_of_string(session, value, subString, startIndex=None):
 
     Args:
         value (str): The string value to search.
-
         subString (str): Substring to search for.
-
         startIndex (int): Optional start index for search if different than
-        start of string.
+            start of string.
 
     Returns:
         int: Zero-based index of subString or -1 if not found.
@@ -539,7 +527,6 @@ def intersection_string(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -571,7 +558,6 @@ def is_in_string(session, value, array):
 
     Args:
         value (str):
-
         array (list):
 
     Returns:
@@ -631,11 +617,9 @@ def last_index_of_string(session, value, subString, startIndex=None):
 
     Args:
         value (str): The string value to search.
-
         subString (str): Substring to search for.
-
         startIndex (int): Optional start index for search if different than
-        start of string.
+            start of string.
 
     Returns:
         int: Zero-based index of subString or -1 if not found.
@@ -669,7 +653,6 @@ def le_string(session, arg1, arg2):
 
     Args:
         arg1 (str):
-
         arg2 (object):
 
     Returns:
@@ -702,7 +685,7 @@ def length_string(session, value):
 
     Args:
         value (str): Returns the number of entries in an array or code points
-        in others.
+            in others.
 
     Returns:
         int:
@@ -732,7 +715,6 @@ def lt_string(session, arg1, arg2):
 
     Args:
         arg1 (str):
-
         arg2 (str):
 
     Returns:
@@ -822,7 +804,6 @@ def ne_string(session, arg1, arg2):
 
     Args:
         arg1 (str):
-
         arg2 (object):
 
     Returns:
@@ -855,7 +836,6 @@ def nex_string(session, arg1, arg2):
 
     Args:
         arg1 (str):
-
         arg2 (object):
 
     Returns:
@@ -972,7 +952,6 @@ def regexp_index_of_string(session, value, regexp):
 
     Args:
         value (str): The string value to search.
-
         regexp (str): A regular expression to use for search.
 
     Returns:
@@ -1004,7 +983,6 @@ def regexp_match_string(session, value, regexp):
 
     Args:
         value (str):
-
         regexp (str):
 
     Returns:
@@ -1035,13 +1013,10 @@ def regexp_replace_string(session, value, regexp, replacement, limit=None):
 
     Args:
         value (str): The original string value.
-
         regexp (str): A regular expression to use for search.
-
         replacement (str): The replacement string.
-
         limit (int): This is the maximum times to replace. The default is 1.
-        Specify -1 to replace all occurrences.
+            Specify -1 to replace all occurrences.
 
     Returns:
         str: Result text as string (not re-typed as the input data type).
@@ -1075,7 +1050,6 @@ def repeat_string(session, value, times):
 
     Args:
         value (str): The string value to repeat.
-
         times (int): The number of times to repeat the value.
 
     Returns:
@@ -1109,14 +1083,11 @@ def replace_string(session, value, match, replacement, limit=None):
 
     Args:
         value (str): The original string value.
-
         match (str): The string to replace. An empty string matches at each
-        code-point boundary, including the start and the end.
-
+            code-point boundary, including the start and the end.
         replacement (str): The replacement string.
-
         limit (int): This is the maximum times to replace. The default is 1.
-        Specify -1 to replace all occurrences.
+            Specify -1 to replace all occurrences.
 
     Returns:
         str: Result text as string (not re-typed as the input data type).
@@ -1151,7 +1122,6 @@ def set_equals_string(session, array1, array2):
 
     Args:
         array1 (list):
-
         array2 (list):
 
     Returns:
@@ -1182,12 +1152,10 @@ def split_string(session, value, separator=None, limit=None):
 
     Args:
         value (str): The string value to split.
-
         separator (str): The separator to use. If this is an empty string or
-        separator is not specified, the value is split between characters.
-
+            separator is not specified, the value is split between characters.
         limit (int): This is the maximum number of splits. Any remaining part
-        of value is ignored.
+            of value is ignored.
 
     Returns:
         list: An array of strings.
@@ -1223,7 +1191,6 @@ def starts_with_string(session, value, subString):
 
     Args:
         value (str):
-
         subString (str):
 
     Returns:
@@ -1287,7 +1254,6 @@ def subset_string(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -1321,9 +1287,7 @@ def substring_string(session, string, startIndex, endIndex=None):
 
     Args:
         string (str):
-
         startIndex (int):
-
         endIndex (int):
 
     Returns:
@@ -1807,7 +1771,7 @@ def url_encode_string(session, unencoded):
 
     Args:
         unencoded (str): URL encode a single value. See the url_encode method
-        for the data type of more details.
+            for the data type of more details.
 
     Returns:
         str: URI encoded string.

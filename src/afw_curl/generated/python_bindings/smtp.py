@@ -19,13 +19,9 @@ def smtp_send(session, url, mail_from, mail_recipients, payload, options=None):
 
     Args:
         url (str): SMTP Server Url.
-
         mail_from (str): From Address.
-
         mail_recipients (list): To Addresses.
-
         payload (str): Email Payload, or body of the message.
-
         options (dict): CURL Options
 
     Returns:

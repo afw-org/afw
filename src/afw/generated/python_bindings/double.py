@@ -77,7 +77,6 @@ def at_least_one_member_of_double(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -195,7 +194,6 @@ def divide_double(session, dividend, divisor):
 
     Args:
         dividend (float):
-
         divisor (float):
 
     Returns:
@@ -257,7 +255,6 @@ def eq_double(session, arg1, arg2):
 
     Args:
         arg1 (float):
-
         arg2 (object):
 
     Returns:
@@ -290,7 +287,6 @@ def eqx_double(session, arg1, arg2):
 
     Args:
         arg1 (float):
-
         arg2 (object):
 
     Returns:
@@ -351,7 +347,6 @@ def ge_double(session, arg1, arg2):
 
     Args:
         arg1 (float):
-
         arg2 (float):
 
     Returns:
@@ -383,7 +378,6 @@ def gt_double(session, arg1, arg2):
 
     Args:
         arg1 (float):
-
         arg2 (float):
 
     Returns:
@@ -415,7 +409,6 @@ def intersection_double(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -532,7 +525,6 @@ def is_in_double(session, value, array):
 
     Args:
         value (float):
-
         array (list):
 
     Returns:
@@ -564,7 +556,6 @@ def le_double(session, arg1, arg2):
 
     Args:
         arg1 (float):
-
         arg2 (object):
 
     Returns:
@@ -596,7 +587,6 @@ def lt_double(session, arg1, arg2):
 
     Args:
         arg1 (float):
-
         arg2 (float):
 
     Returns:
@@ -683,7 +673,6 @@ def mod_double(session, dividend, divisor):
 
     Args:
         dividend (float):
-
         divisor (float):
 
     Returns:
@@ -745,7 +734,6 @@ def ne_double(session, arg1, arg2):
 
     Args:
         arg1 (float):
-
         arg2 (object):
 
     Returns:
@@ -806,7 +794,6 @@ def nex_double(session, arg1, arg2):
 
     Args:
         arg1 (float):
-
         arg2 (object):
 
     Returns:
@@ -868,7 +855,6 @@ def pow_double(session, base, exponent):
 
     Args:
         base (float): Base value.
-
         exponent (float): Exponent value.
 
     Returns:
@@ -929,7 +915,6 @@ def set_equals_double(session, array1, array2):
 
     Args:
         array1 (list):
-
         array2 (list):
 
     Returns:
@@ -961,7 +946,6 @@ def subset_double(session, array1, array2):
 
     Args:
         array1 (list): The first array.
-
         array2 (list): The second array.
 
     Returns:
@@ -992,7 +976,6 @@ def subtract_double(session, arg1, arg2):
 
     Args:
         arg1 (float):
-
         arg2 (float):
 
     Returns:

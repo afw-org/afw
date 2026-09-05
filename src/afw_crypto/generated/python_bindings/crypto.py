@@ -21,9 +21,7 @@ def crypto_decrypt(session, algorithm, key, data):
 
     Args:
         algorithm (dict): AES-GCM parameters including required iv and tag.
-
         key (object): Key material, CryptoKey, or key reference.
-
         data (object): Ciphertext without tag (base64Binary or hexBinary).
 
     Returns:
@@ -59,12 +57,9 @@ def crypto_derive_key(session, algorithm, baseKey, usages=None, extractable=None
 
     Args:
         algorithm (dict): PBKDF2 parameters object.
-
         baseKey (object): Passphrase or key material (polymorphic; utf8
-        encoding allowed).
-
+            encoding allowed).
         usages (list): Default ["encrypt","decrypt"].
-
         extractable (bool): Default false.
 
     Returns:
@@ -132,7 +127,6 @@ def crypto_digest(session, algorithm, data):
 
     Args:
         algorithm (str): Digest algorithm name: SHA-256 or SHA-512.
-
         data (object): Data to hash (base64Binary or hexBinary).
 
     Returns:
@@ -165,9 +159,7 @@ def crypto_encrypt(session, algorithm, key, data):
 
     Args:
         algorithm (dict): AES-GCM parameters object.
-
         key (object): Key material, CryptoKey, or key reference.
-
         data (object): Plaintext (base64Binary or hexBinary).
 
     Returns:
@@ -229,11 +221,9 @@ def crypto_generate_key(session, algorithm, usages=None, extractable=None):
 
     Args:
         algorithm (object): Algorithm string or object { name, length? }.
-
         usages (list): Optional usages; defaults depend on algorithm family.
-
         extractable (bool): If true, crypto_export_key may export raw key.
-        Default false.
+            Default false.
 
     Returns:
         dict: Generated CryptoKey handle.
@@ -270,10 +260,8 @@ def crypto_hmac(session, algorithm, key, data):
 
     Args:
         algorithm (str): HMAC algorithm: HMAC-SHA-256 or HMAC-SHA-512.
-
         key (object): Key material, CryptoKey object, or key reference { from,
-        ... }.
-
+            ... }.
         data (object): Data to MAC (base64Binary or hexBinary).
 
     Returns:
@@ -306,11 +294,8 @@ def crypto_hmac_verify(session, algorithm, key, data, mac):
 
     Args:
         algorithm (str): HMAC algorithm: HMAC-SHA-256 or HMAC-SHA-512.
-
         key (object): Key material, CryptoKey object, or key reference.
-
         data (object): Data that was MAC'd (base64Binary or hexBinary).
-
         mac (object): Expected MAC (base64Binary or hexBinary).
 
     Returns:
@@ -346,14 +331,11 @@ def crypto_import_key(session, keySource, algorithm, usages=None, extractable=No
 
     Args:
         keySource (object): Raw binary key, or reference object { from:
-        environment|file|material, ... }.
-
+            environment|file|material, ... }.
         algorithm (object): Algorithm string or object { name, length? }.
-
         usages (list): Optional usages; defaults depend on algorithm family.
-
         extractable (bool): If true, crypto_export_key may export raw key.
-        Default false.
+            Default false.
 
     Returns:
         dict: Imported CryptoKey handle.
@@ -393,9 +375,8 @@ def crypto_seal(session, key, data):
 
     Args:
         key (object): Key material, CryptoKey, or key reference.
-
         data (object): Plaintext (base64Binary or hexBinary). Use
-        encode_as_base64Binary() for UTF-8 text.
+            encode_as_base64Binary() for UTF-8 text.
 
     Returns:
         dict: Sealed object with algorithm, keyLength, iv, tag, and
@@ -430,7 +411,6 @@ def crypto_unseal(session, key, sealed):
 
     Args:
         key (object): Key material, CryptoKey, or key reference.
-
         sealed (object): Sealed object or pure JSON string.
 
     Returns:
@@ -460,7 +440,6 @@ def crypto_version_info(session):
     Returns runtime OpenSSL and afw_crypto version information and the list of
     supported algorithm names.
 
-    Args:
     Returns:
         dict: Version and algorithm information.
     """
