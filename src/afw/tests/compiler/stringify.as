@@ -337,3 +337,19 @@ let obj = {};
 obj[str] = "c";
 
 return stringify(obj);
+
+
+//? test: stringify-error-replacer-not-function
+//? description: replacer that is neither an array of property names nor a resolvable function name throws
+//? expect: error:stringify replacer function is required when replacer is not an array of property names
+//? source: ...
+
+stringify({ "a": 1 }, "not_a_real_function_name_xyz")
+
+
+//? test: stringify-error-invalid-whitespace
+//? description: whitespace (indent) parameter must be a short string or an integer 0-10
+//? expect: error:parameter 3 must be a string no longer than 10 or an integer between 0 and 10
+//? source: ...
+
+stringify({ "a": 1 }, undefined, {})

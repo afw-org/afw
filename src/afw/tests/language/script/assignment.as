@@ -226,3 +226,53 @@ assert(length(s) === n);
 assert(s[0] === "A");
 assert(s[n - 1] === "A");
 return 0;
+
+//?
+//? test: assign-error-immutable-object
+//? description: assigning a property on a frozen object throws
+//? expect: error:Target object is immutable
+//? source: ...
+
+let o = freeze({});
+o.x = 1;
+return 0;
+
+//?
+//? test: assign-error-immutable-array
+//? description: assigning an element of a frozen array throws
+//? expect: error:Target array is immutable
+//? source: ...
+
+let a = freeze([1]);
+a[0] = 2;
+return 0;
+
+//?
+//? test: assign-error-array-index-not-integer
+//? description: assigning into an array with a non-integer key throws
+//? expect: error:Array index must be integer
+//? source: ...
+
+let a = [1, 2];
+a["x"] = 3;
+return 0;
+
+//?
+//? test: assign-error-into-utf8-sequence
+//? description: assigning into a string index throws; strings are immutable code-point sequences
+//? expect: error:Cannot assign into a utf8 code-point sequence
+//? source: ...
+
+let s = "abc";
+s[0] = "z";
+return 0;
+
+//?
+//? test: assign-error-invalid-target-scalar
+//? description: assigning into a non-object/array/iterable scalar throws
+//? expect: error:Invalid assignment target
+//? source: ...
+
+let n = 5;
+n[0] = 1;
+return 0;

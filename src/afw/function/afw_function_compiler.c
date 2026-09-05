@@ -1345,7 +1345,8 @@ afw_function_execute_compile_from_file(
             compile_type = afw_compile_type_template;
         else {
             AFW_THROW_ERROR_FZ(bad_request, xctx,
-                "Invalid compile type '%s'.", compile_type_string);
+                "Invalid compile type " AFW_UTF8_FMT_Q ".",
+                AFW_UTF8_FMT_ARG(compile_type_string));
         }
     }
 

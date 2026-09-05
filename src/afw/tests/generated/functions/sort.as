@@ -52,3 +52,14 @@ sort(
     )
 )
 
+//?
+//? test: sort-error-untyped-array
+//? description: sort throws when the array is not typed
+//? expect: error:sort() requires array to be typed
+//? source: ...
+
+sort(
+    string("le<integer>"),
+    []
+)
+
