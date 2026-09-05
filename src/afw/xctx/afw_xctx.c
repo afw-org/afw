@@ -1043,6 +1043,8 @@ afw_xctx_script_result_set_value(
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
+    if (!value || afw_value_is_void(value)) {
+        return;
+    }
     afw_value_slot_store(&xctx->script_result, value, xctx->p, xctx);
-    xctx->script_result_written = true;
 }

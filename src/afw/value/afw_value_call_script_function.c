@@ -130,8 +130,6 @@ impl_afw_value_optional_evaluate(
     const afw_value_script_function_definition_t *script;
     const afw_value_t *result;
     const afw_value_t *saved_script_result;
-    afw_boolean_t saved_script_result_active;
-    afw_boolean_t saved_script_result_written;
     const afw_xctx_scope_t *enclosing_lexical_scope;
     const afw_xctx_scope_t *parameter_scope;
     const afw_xctx_scope_t *caller_scope;
@@ -146,11 +144,7 @@ impl_afw_value_optional_evaluate(
     afw_size_t call_argc;
     result = NULL;
     saved_script_result = xctx->script_result;
-    saved_script_result_active = xctx->script_result_active;
-    saved_script_result_written = xctx->script_result_written;
     xctx->script_result = afw_value_undefined;
-    xctx->script_result_active = true;
-    xctx->script_result_written = false;
     caller_scope = afw_xctx_scope_current(xctx);
     parameter_scope = NULL;
     script = self->script_function_definition;
@@ -346,6 +340,10 @@ impl_afw_value_optional_evaluate(
         }
         else {
             result = afw_value_evaluate(script->body, p, xctx);
+            if (result && !afw_value_is_void(result)) {
+                afw_xctx_script_result_set(result, xctx);
+                result = afw_xctx_script_result_get(xctx);
+            }
         }
         /*
          * Declared : void is a procedure: discard the running result and
@@ -422,8 +420,6 @@ impl_afw_value_optional_evaluate(
             afw_value_release(xctx->script_result, xctx);
         }
         xctx->script_result = saved_script_result;
-        xctx->script_result_active = saved_script_result_active;
-        xctx->script_result_written = saved_script_result_written;
     }
 
     AFW_ENDTRY;

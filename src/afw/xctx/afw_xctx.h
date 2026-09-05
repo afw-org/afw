@@ -680,10 +680,12 @@ afw_xctx_scope_symbol_set_value_by_name(
 
 /**
  * @brief Set the running Adaptive Script result.
- * @param v result value (NULL is stored as undefined).
+ * @param v result value. Void and NULL are not stored.
  * @param xctx of caller.
  *
- * Assignment and return write this. Most other statements do not.
+ * Block finish writes a non-void last. Do not store void. Nested
+ * evaluate that must not change the caller's last saves and restores
+ * the pointer.
  */
 #define afw_xctx_script_result_set(v, xctx) \
     afw_xctx_script_result_set_value((v), (xctx))
@@ -691,7 +693,7 @@ afw_xctx_scope_symbol_set_value_by_name(
 
 /**
  * @brief Assign into the current hidden result slot.
- * @param value to store (NULL becomes undefined).
+ * @param value to store. Void and NULL are not stored.
  * @param xctx of caller.
  *
  * Same protocol as a named slot (`get_assignable` new, `release` old).

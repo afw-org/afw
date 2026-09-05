@@ -1113,8 +1113,9 @@ afw_value_block_evaluate_block(
     afw_boolean_t as_value);
 
 /*
- * Statement-list last_return / UpdateEmpty. Caller owns the frame.
- * Catch binds the error, then starts at the first real statement.
+ * Statement list. Starts at void; each non-void sequential statement
+ * overwrites. return ends the list with that value. Caller owns the
+ * frame. Catch binds the error, then starts at the first real statement.
  */
 extern const afw_value_t *
 afw_value_block_evaluate_statements(
@@ -1122,9 +1123,7 @@ afw_value_block_evaluate_statements(
     const afw_value_block_t *self,
     afw_size_t start,
     const afw_pool_t *p,
-    afw_xctx_t *xctx,
-    afw_boolean_t as_value,
-    afw_boolean_t *got_last);
+    afw_xctx_t *xctx);
 
 
 /**
