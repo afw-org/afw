@@ -115,8 +115,8 @@ struct afw_value_block_s {
     afw_value_block_t *next_sibling_block;
     /*
      * Nearest ancestor that has a scope (top or symbol_count != 0).
-     * NULL on the top block. Set by afw_value_block_assign_scope_facts
-     * after the compile unit is complete.
+     * NULL on the top block. Set by afw_value_block_finalize_scope_tree
+     * after every block in the unit is finalized.
      */
     afw_value_block_t *parent_scope_block;
 

@@ -1709,16 +1709,18 @@ afw_value_block_finalize(
 
 
 /**
- * @brief Set parent_scope_block and scope_depth on a block tree.
+ * @brief Finish scope links on a compile unit's block tree.
  * @param top_block root of the compile unit (parent_block NULL).
  * @param xctx of caller.
  *
- * Call after the unit is complete so symbol_count is final, including
- * on ancestors. Nested compile that shares a parent's tree should not
- * call this; the parent unit does.
+ * `afw_value_block_finalize()` finishes one block's statements.
+ * This walks the tree after every block is finalized so
+ * `parent_scope_block` and `scope_depth` see final `symbol_count`,
+ * including on ancestors. Nested compile that shares a parent's tree
+ * should not call this; the parent unit does.
  */
 AFW_DECLARE(void)
-afw_value_block_assign_scope_facts(
+afw_value_block_finalize_scope_tree(
     const afw_value_block_t *top_block,
     afw_xctx_t *xctx);
 

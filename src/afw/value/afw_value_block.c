@@ -299,7 +299,7 @@ afw_value_block_allocated_and_link(
 
 
 static void
-impl_assign_scope_facts(afw_value_block_t *block)
+impl_finalize_scope_tree(afw_value_block_t *block)
 {
     afw_value_block_t *parent;
     afw_value_block_t *child;
@@ -329,15 +329,18 @@ impl_assign_scope_facts(afw_value_block_t *block)
         child;
         child = child->next_sibling_block)
     {
-        impl_assign_scope_facts(child);
+        impl_finalize_scope_tree(child);
     }
 }
 
 
 
-/* Set parent_scope_block and scope_depth after the unit is complete. */
+/*
+ * After each block is finalized, walk the tree and set
+ * parent_scope_block / scope_depth.
+ */
 AFW_DEFINE(void)
-afw_value_block_assign_scope_facts(
+afw_value_block_finalize_scope_tree(
     const afw_value_block_t *top_block,
     afw_xctx_t *xctx)
 {
@@ -346,7 +349,7 @@ afw_value_block_assign_scope_facts(
     if (!top_block) {
         return;
     }
-    impl_assign_scope_facts((afw_value_block_t *)top_block);
+    impl_finalize_scope_tree((afw_value_block_t *)top_block);
 }
 
 

@@ -246,7 +246,7 @@ afw_compile_to_value_with_callback(
             if (parser->compiled_value->top_block &&
                 !parser->compiled_value->parent)
             {
-                afw_value_block_assign_scope_facts(
+                afw_value_block_finalize_scope_tree(
                     parser->compiled_value->top_block, xctx);
             }
 
