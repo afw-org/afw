@@ -14,9 +14,9 @@ Nested `{ }` with **no symbols** is not a frame. It keeps caller `p`, which is a
 
 Catch already binds the error on `scope->p`. That is the same rule, not a special case.
 
-**Compile is not eval scratch.** A compile unit is an immutable bag with its **own heap**. `afw_pool_create(tracker)` (the extra rule) is the wrong shape for compile: a child tracker extra-holds the frame, so the frame never last-releases. Parent the compile heap at **`xctx->p`**, not dest `p` / `scope->p`. `compiled_value` already has `p`; `get_reference` / `release` should pin that pool (unmanaged_new_p style). `eval<script>` / friends: compile, evaluate (`clone_unmanaged` result into dest `p`), **release the unit**. That is consume.
+**Compile is not eval scratch.** `afw_compile*()` is a C API: `shared->p`, else `parent->p`, else dest `p` (`cede_p` is dest `p` as the unit; otherwise `afw_pool_create(dest p)`). Callers pick the parent. Adaptive `compile()` / `eval<script>` pass **`xctx->p`** (a heap that outlives the frame). Do not veto dest `p` inside compile.
 
-Do **not** `afw_pool_destroy` from `execute_eval_script` as the API. An earlier probe did that to prove lifetime-must-end; `shared->temp_p` extra-hold is why a single `release` is not enough today.
+`afw_compile*()` returns unmanaged. `afw_value_release` of a `compiled_value` releases the unit pool. `get_assignable_value` extra-holds that pool and stamps the assignable face when the unit is a heap; it throws if dest `p` was a tracker. `eval<script>` compile, evaluate, `afw_value_release`.
 
 **Throw / last_return must not point at a dead tracker.** Block FINALLY last-releases the frame, then the error or `script_result` clone still walks values that lived there. `AFW_DEBUG_POOL` poison `0x0BADF00D0BADF00D` on a string `.s` is that hole. One class: isolate at the boundary (error snapshot / `get_assignable` of the result) before the frame dies — not a splat at each failing test.
 
@@ -28,7 +28,7 @@ Earlier probe of `scope->p` hung `comments-bmp-slash-0.as` (tracker extra-hold o
 
 ## This sitting (after #282)
 
-Ripped `FIXME_GET_IT_WORKING`. Compile units parent at `xctx->p` (`afw_compile_create_unit_pool`). Generic unmanaged object set still stores the pointer; `call_test_script` isolates `result` / `error` before store.
+Ripped `FIXME_GET_IT_WORKING`. Adaptive compile/eval pass `xctx->p` at the call; compile itself uses dest `p`. Generic unmanaged object set still stores the pointer; `call_test_script` isolates `result` / `error` before store.
 
 ### 03-eval-p after both flips (N as in the scripts)
 
@@ -51,9 +51,9 @@ After pointing parser `contextual.source_location` at the compile-unit clone (no
 ## Candidate order (re-decide after each)
 
 1. ~~**Eval `p` = `scope ? scope->p : p`.**~~ Done.
-2. ~~**Compile unit owns a heap** parented at `xctx->p`.~~ Done. Consume / hold-release still open.
+2. ~~**Compile uses dest `p`.** Adaptive compile/eval pass `xctx->p` at the call.~~ Done.
 3. **Throw and last_return isolate before the frame dies.** One protocol, json-elision expect-error as the canary. Auth deny / curl should move with it.
-4. **`compiled_value` hold/release of its pool**, then `eval<script>` consume. Parser work area in that pool or freed in `parser_finish_and_release`.
+4. ~~**`compiled_value` `get_assignable_value` is a counted occupant**; `eval<script>` consumes the unit.~~ Done. `shared->temp_p` extra-hold may still keep a released unit alive.
 5. **Then** `./afwdev build --fulldev`, `afwdev test -j`, `afwdev test -j --env-mode valgrind`, BMP extra.
 6. **Still not this branch unless the list of violators is one protocol hole:** `double_free_throws` skip; unevaluated clone-out of script_function / closure; Adaptive `clone()`; `qualifier("current")` snapshot tail.
 

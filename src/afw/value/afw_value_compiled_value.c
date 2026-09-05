@@ -15,10 +15,6 @@
 #include "afw_internal.h"
 
 
-#define impl_afw_value_optional_release NULL
-#define impl_afw_value_get_reference NULL
-#define impl_afw_value_get_assignable_value NULL
-
 #define impl_afw_value_get_evaluated_meta \
     afw_value_internal_get_evaluated_meta_default
 
@@ -33,6 +29,119 @@
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_compiled_value_inf
 #define AFW_VALUE_SELF_T afw_value_compiled_value_t
 #include "afw_value_impl_declares.h"
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_SPECIFIER
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef impl_afw_value_create_iterator
+#undef impl_afw_value_get_evaluated_meta
+#undef impl_afw_value_get_evaluated_metas
+
+
+static void
+impl_assignable_optional_release(
+    afw_value_compiled_value_t *self, afw_xctx_t *xctx);
+static const afw_value_t *
+impl_assignable_get_reference(
+    afw_value_compiled_value_t *self, afw_xctx_t *xctx);
+static const afw_value_t *
+impl_assignable_get_assignable_value(
+    afw_value_compiled_value_t *self, afw_xctx_t *xctx);
+
+#define AFW_IMPLEMENTATION_ID "compiled_value_assignable"
+#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_compiled_value_assignable_inf
+#define AFW_VALUE_INF_ONLY
+#define impl_afw_value_optional_release impl_assignable_optional_release
+#define impl_afw_value_get_reference impl_assignable_get_reference
+#define impl_afw_value_get_assignable_value \
+    impl_assignable_get_assignable_value
+#define impl_afw_value_create_iterator NULL
+#define impl_afw_value_get_evaluated_meta \
+    afw_value_internal_get_evaluated_meta_default
+#define impl_afw_value_get_evaluated_metas \
+    afw_value_internal_get_evaluated_metas_default
+#include "afw_value_impl_declares.h"
+#undef AFW_VALUE_INF_ONLY
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_SPECIFIER
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef impl_afw_value_optional_release
+#undef impl_afw_value_get_reference
+#undef impl_afw_value_get_assignable_value
+#undef impl_afw_value_create_iterator
+#undef impl_afw_value_get_evaluated_meta
+#undef impl_afw_value_get_evaluated_metas
+
+
+void
+impl_afw_value_optional_release(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    if (self->p) {
+        afw_pool_release(self->p, xctx);
+    }
+}
+
+
+const afw_value_t *
+impl_afw_value_get_reference(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    (void)self;
+    AFW_THROW_ERROR_Z(general,
+        "get_reference of unmanaged compiled_value", xctx);
+}
+
+
+const afw_value_t *
+impl_afw_value_get_assignable_value(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    if (!self->p || afw_pool_internal_is_tracker(self->p)) {
+        AFW_THROW_ERROR_Z(general,
+            "get_assignable_value of compiled_value requires "
+            "compile p to be a heap (Adaptive compile uses xctx->p)",
+            xctx);
+    }
+    afw_pool_get_reference(self->p, xctx);
+    self->inf = &afw_value_compiled_value_assignable_inf;
+    return &self->pub;
+}
+
+
+static void
+impl_assignable_optional_release(
+    afw_value_compiled_value_t *self,
+    afw_xctx_t *xctx)
+{
+    if (self->p) {
+        afw_pool_release(self->p, xctx);
+    }
+}
+
+
+static const afw_value_t *
+impl_assignable_get_reference(
+    afw_value_compiled_value_t *self,
+    afw_xctx_t *xctx)
+{
+    if (self->p) {
+        afw_pool_get_reference(self->p, xctx);
+    }
+    return &self->pub;
+}
+
+
+static const afw_value_t *
+impl_assignable_get_assignable_value(
+    afw_value_compiled_value_t *self,
+    afw_xctx_t *xctx)
+{
+    return impl_assignable_get_reference(self, xctx);
+}
 
 
 /*

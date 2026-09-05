@@ -75,7 +75,7 @@ afw_function_execute_compile_script(
     result = afw_compile_to_value(
         &script->internal, AFW_FUNCTION_SOURCE_LOCATION,
         afw_compile_type_script,
-        NULL, NULL, x->p, x->xctx);
+        NULL, NULL, x->xctx->p, x->xctx);
 
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         listing = afw_function_evaluate_whitespace_parameter(x, 2);
@@ -133,23 +133,33 @@ afw_function_execute_eval_script(
 {
     const afw_value_script_t *script;
     const afw_value_t *compiled;
-    const afw_value_t *value;
+    const afw_value_t *value = NULL;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(script, 1, script);
 
     compiled = afw_compile_to_value(
         &script->internal, AFW_FUNCTION_SOURCE_LOCATION,
         afw_compile_type_script,
-        NULL, NULL, x->p, x->xctx);
+        NULL, NULL, x->xctx->p, x->xctx);
 
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
-        value = afw_value_evaluate_with_additional_untrusted_qualified_variables(
-            compiled, x->argv[2], x->p, x->xctx);
+    {
+        afw_xctx_t *xctx = x->xctx;
+
+        AFW_TRY {
+            if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
+                value = afw_value_evaluate_with_additional_untrusted_qualified_variables(
+                    compiled, x->argv[2], x->p, xctx);
+            }
+            else {
+                value = afw_value_evaluate(compiled, x->p, xctx);
+            }
+        }
+        AFW_FINALLY {
+            afw_value_release(compiled, xctx);
+        }
+        AFW_ENDTRY;
     }
-    else {
-        value = afw_value_evaluate(compiled, x->p, x->xctx);
-    }
-    
+
     afw_xctx_statement_flow_reset_all_except_rethrow(x->xctx);
     return value;
 }

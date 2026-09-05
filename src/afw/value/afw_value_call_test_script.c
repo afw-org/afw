@@ -647,7 +647,7 @@ impl_afw_value_produce_compiler_listing(
                 AFW_UTF8_FMT_ARG(test_name));
             compiled_value = afw_compile_to_value(
                 source, source_location, info->compile_type, NULL, NULL,
-                p, xctx);
+                xctx->p, xctx);
             source_location = source_location;
             compiled_value = compiled_value;
             afw_value_produce_compiler_listing(

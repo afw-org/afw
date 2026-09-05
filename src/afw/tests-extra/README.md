@@ -114,7 +114,7 @@ src/afw/tests-extra/
 | **adapter-lifecycle** | #149 stop/start disposable adapter (ex tests_special) |
 | **issue-2/01-rss-hard-loops** | #2 hard-loop lab: RSS vs `pool_bytes_in_use`; gdb + `debug:pool` |
 | **issue-2/02-pool-eval-soak** | #2 afwfcgi object/array/nested-eval soak (heap wrap) |
-| **test262** | Unskipped BMP comment sweeps (`comments-bmp-*.as`); gate copies are skipped after #277 |
+| **test262** | Copies of BMP comment sweeps (`comments-bmp-*.as`); default `test -j` also runs `src/afw/tests/test262/comments-bmp-*.as` |
 
 **Gate smokes** (default `test -j`, not this tree):
 

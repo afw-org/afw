@@ -2473,24 +2473,6 @@ afw_compile_shared_create(
 }
 
 
-/*
- * Compile units own a heap. Dest p may be a frame tracker;
- * afw_pool_create(tracker) extra-holds that frame so it never
- * last-releases. Parent at this xctx->p (request heap), not
- * evaluation_heap or dest p.
- */
-const afw_pool_t *
-afw_compile_create_unit_pool(afw_xctx_t *xctx)
-{
-    if (!xctx->p) {
-        AFW_THROW_ERROR_Z(general,
-            "compile unit pool parent required", xctx);
-    }
-    return afw_pool_create(xctx->p, xctx);
-}
-
-
-
 /* Create a parser. */
 afw_compile_parser_t *
 afw_compile_lexical_parser_create(
@@ -2534,7 +2516,7 @@ afw_compile_lexical_parser_create(
             parser->p = p;
         }
         else {
-            parser->p = afw_compile_create_unit_pool(xctx);
+            parser->p = afw_pool_create(p, xctx);
         }
         parser->shared = afw_compile_shared_create(parser->p, xctx);
     }

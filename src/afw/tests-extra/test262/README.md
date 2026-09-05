@@ -1,11 +1,7 @@
 # test262 extra tests (opt-in)
 
-Unskipped copies of the BMP comment sweeps. Not in default
-`afwdev test -j`.
-
-The same files under `src/afw/tests/test262/comments-bmp-*.as` stay in
-the gate as **skipped** stubs (`FIXME:` after #277: ~14k nested
-`eval<script>` per file; four files in one group made `test -j` ~6 min).
+Copies of the BMP comment sweeps. The same files under
+`src/afw/tests/test262/comments-bmp-*.as` run in default `afwdev test -j`.
 
 ```bash
 afwdev test -T src/afw/tests-extra/test262 --show-all
