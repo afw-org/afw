@@ -297,8 +297,7 @@ afw_xctx_scope_symbol_set_value(
      * with undefined" is never confused with "not applicable" at the pointer
      * level (issue #131). let without initializer and nullish assigns land here.
      */
-    afw_value_slot_store(value_address, value,
-        xctx->evaluation_heap ? xctx->evaluation_heap : xctx->p, xctx);
+    afw_value_slot_store(value_address, value, xctx);
 }
 
 
@@ -322,8 +321,7 @@ afw_xctx_scope_symbol_set_value_by_name(
             AFW_UTF8_FMT_ARG(symbol_name));
     }
 
-    afw_value_slot_store(value_address, value,
-        xctx->evaluation_heap ? xctx->evaluation_heap : xctx->p, xctx);
+    afw_value_slot_store(value_address, value, xctx);
 }
 
 
@@ -813,7 +811,7 @@ afw_xctx_scope_clone(
     /* Reference each original frame_slots[]; hidden result is not copied. */
     for (afw_size_t i = 0; i < scope->block->symbol_count; i++) {
         afw_value_slot_store(&scope->frame_slots[i],
-            original_scope->frame_slots[i], scope->p, xctx);
+            original_scope->frame_slots[i], xctx);
     }
 
     afw_xctx_scope_debug(
@@ -1046,5 +1044,5 @@ afw_xctx_script_result_set_value(
     if (!value || afw_value_is_void(value)) {
         return;
     }
-    afw_value_slot_store(&xctx->script_result, value, xctx->p, xctx);
+    afw_value_slot_store(&xctx->script_result, value, xctx);
 }

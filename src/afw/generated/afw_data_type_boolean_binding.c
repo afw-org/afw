@@ -43,7 +43,6 @@ impl_afw_value_unmanaged_optional_release(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -51,7 +50,6 @@ impl_afw_value_get_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_managed_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -59,7 +57,12 @@ impl_afw_value_managed_get_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_permanent_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/* get_assignable_value with no dest p: bump via get_reference. */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_assignable_via_reference(
+    const afw_value_t *instance,
     afw_xctx_t *xctx);
 
 
@@ -83,7 +86,6 @@ impl_afw_value_permanent_get_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_value(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /* Declares and rti/inf defines for interface afw_value */
@@ -110,7 +112,7 @@ impl_afw_value_get_assignable_value(
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_boolean_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
 #define impl_afw_value_get_reference impl_afw_value_managed_get_reference
-#define impl_afw_value_get_assignable_value impl_afw_value_managed_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -127,7 +129,7 @@ impl_afw_value_get_assignable_value(
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_boolean_inf
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_get_reference impl_afw_value_permanent_get_reference
-#define impl_afw_value_get_assignable_value impl_afw_value_permanent_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -353,7 +355,7 @@ afw_value_clone_boolean_managed(
     }
     if (afw_utf8_starts_with_utf8_z(
             &value->inf->rti.implementation_id, "managed_")) {
-        return afw_value_get_reference(value, xctx->p, xctx);
+        return afw_value_get_reference(value, xctx);
     }
     return afw_value_for_boolean(
         ((const afw_value_boolean_t *)value)->internal);
@@ -478,11 +480,9 @@ impl_afw_value_unmanaged_optional_release(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     (void)instance;
-    (void)p;
     AFW_THROW_ERROR_Z(general,
         "get_reference of unmanaged scalar", xctx);
 }
@@ -491,13 +491,11 @@ impl_afw_value_get_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_value(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_boolean_t *self =
         (const afw_value_boolean_t *)instance;
 
-    (void)p;
     return afw_value_for_boolean(self->internal);
 }
 
@@ -506,13 +504,11 @@ impl_afw_value_get_assignable_value(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_managed_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_value_boolean_managed_t *self =
         (afw_value_boolean_managed_t *)instance;
 
-    (void)p;
     (void)xctx;
     self->reference_count++;
     return instance;
@@ -523,13 +519,20 @@ impl_afw_value_managed_get_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_permanent_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     /* Permanent scalar: same instance as-is. */
-    (void)p;
     (void)xctx;
     return instance;
+}
+
+/* get_assignable_value: no dest p; bump via inf get_reference. */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_assignable_via_reference(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    return afw_value_get_reference(instance, xctx);
 }
 
 /*

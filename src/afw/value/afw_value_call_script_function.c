@@ -309,7 +309,7 @@ impl_afw_value_optional_evaluate(
                         afw_value_slot_store(
                             afw_xctx_scope_symbol_get_value_address(
                                 (*params)->symbol, parameter_scope, xctx),
-                            value, p, xctx);
+                            value, xctx);
                     }
                 }
             }

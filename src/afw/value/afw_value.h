@@ -1188,11 +1188,10 @@ afw_value_evaluate_impl(
 
 
 /**
- * @brief Hold a value (NULL-safe `clone_or_reference`).
+ * @brief Hold a value (NULL-safe get_reference).
  * @param value to hold, or NULL.
- * @param p pool for a clone if the inf needs one (unused for a bump).
  * @param xctx of caller.
- * @return value, a clone, or NULL if value is NULL.
+ * @return value, or NULL if value is NULL.
  *
  * Inf method `get_reference`. Missing method, NULL, and undefined are
  * no-ops. Assign to a slot should use `afw_value_slot_store()`.
@@ -1200,29 +1199,26 @@ afw_value_evaluate_impl(
 AFW_DECLARE(const afw_value_t *)
 afw_value_add_reference(
     const afw_value_t *value,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
 /**
  * @brief NULL-safe `get_assignable_value`.
  * @param value to make a slot occupant, or NULL.
- * @param p pool if the inf must allocate.
  * @param xctx of caller.
  * @return assignable value, or NULL if value is NULL.
  *
- * Missing method is a no-op. Slot fill uses this (V2).
+ * Missing method is a no-op. Slot fill uses this.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_as_assignable(
     const afw_value_t *value,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
 /** Compatibility name. */
-#define afw_value_clone_or_reference(instance, p, xctx) \
-    afw_value_get_reference(instance, p, xctx)
+#define afw_value_clone_or_reference(instance, xctx) \
+    afw_value_get_reference(instance, xctx)
 
 
 /**
@@ -1301,7 +1297,6 @@ afw_value_release(
  * @brief Assign into a slot: make incoming assignable, then `release` old.
  * @param slot address of the stored pointer.
  * @param incoming value to store (NULL becomes undefined).
- * @param p pool for `get_assignable_value`.
  * @param xctx of caller.
  *
  * Same pointer is a no-op. Incoming is stored via get_assignable_value
@@ -1312,7 +1307,6 @@ AFW_DECLARE(void)
 afw_value_slot_store(
     const afw_value_t **slot,
     const afw_value_t *incoming,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 

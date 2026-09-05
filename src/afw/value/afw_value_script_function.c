@@ -89,10 +89,8 @@ afw_value_script_function_definition_create(
 const afw_value_t *
 impl_afw_value_get_reference(
     AFW_VALUE_SELF_T *self,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    (void)p;
     (void)xctx;
     return &self->pub;
 }
@@ -105,7 +103,6 @@ impl_afw_value_get_reference(
 const afw_value_t *
 impl_afw_value_get_assignable_value(
     AFW_VALUE_SELF_T *self,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *binding;
@@ -115,7 +112,7 @@ impl_afw_value_get_assignable_value(
     if (binding == &self->pub) {
         return &self->pub;
     }
-    return afw_value_add_reference(binding, p, xctx);
+    return afw_value_add_reference(binding, xctx);
 }
 
 

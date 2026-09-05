@@ -44,13 +44,12 @@ afw_value_undefined =
 AFW_DEFINE(const afw_value_t *)
 afw_value_add_reference(
     const afw_value_t *value,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     if (!value || !value->inf || !value->inf->get_reference) {
         return value;
     }
-    return afw_value_get_reference(value, p, xctx);
+    return afw_value_get_reference(value, xctx);
 }
 
 
@@ -58,13 +57,12 @@ afw_value_add_reference(
 AFW_DEFINE(const afw_value_t *)
 afw_value_as_assignable(
     const afw_value_t *value,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     if (!value || !value->inf || !value->inf->get_assignable_value) {
         return value;
     }
-    return afw_value_get_assignable_value(value, p, xctx);
+    return afw_value_get_assignable_value(value, xctx);
 }
 
 
@@ -88,7 +86,6 @@ AFW_DEFINE(void)
 afw_value_slot_store(
     const afw_value_t **slot,
     const afw_value_t *incoming,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *assignable;
@@ -99,12 +96,12 @@ afw_value_slot_store(
     if (*slot == incoming) {
         return;
     }
-    /* Clone/hold incoming before releasing the occupant. Incoming may
+    /* Isolate incoming before releasing the occupant. Incoming may
      * still point at the occupant's bytes (s = s + s, substring onto
      * self). Release-first lets the pool reuse that block, then
      * create_managed memcpy is dest==src (issue #275).
      */
-    assignable = afw_value_as_assignable(incoming, p, xctx);
+    assignable = afw_value_as_assignable(incoming, xctx);
     if (*slot == assignable) {
         return;
     }

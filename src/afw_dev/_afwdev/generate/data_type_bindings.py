@@ -904,7 +904,6 @@ def write_c_section(fd, prefix, obj):
         fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
         fd.write('impl_afw_value_get_reference(\n')
         fd.write('    const afw_value_t *instance,\n')
-        fd.write('    const afw_pool_t *p,\n')
         fd.write('    afw_xctx_t *xctx);\n')
         fd.write('\n')
     
@@ -913,7 +912,6 @@ def write_c_section(fd, prefix, obj):
         fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
         fd.write('impl_afw_value_managed_get_reference(\n')
         fd.write('    const afw_value_t *instance,\n')
-        fd.write('    const afw_pool_t *p,\n')
         fd.write('    afw_xctx_t *xctx);\n')
         fd.write('\n')
 
@@ -929,7 +927,6 @@ def write_c_section(fd, prefix, obj):
             fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
             fd.write('impl_afw_value_managed_slice_get_reference(\n')
             fd.write('    const afw_value_t *instance,\n')
-            fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx);\n')
             fd.write('\n')
 
@@ -938,7 +935,12 @@ def write_c_section(fd, prefix, obj):
     fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
     fd.write('impl_afw_value_permanent_get_reference(\n')
     fd.write('    const afw_value_t *instance,\n')
-    fd.write('    const afw_pool_t *p,\n')
+    fd.write('    afw_xctx_t *xctx);\n')
+    fd.write('\n')
+    fd.write('/* get_assignable_value with no dest p: bump via get_reference. */\n')
+    fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
+    fd.write('impl_afw_value_get_assignable_via_reference(\n')
+    fd.write('    const afw_value_t *instance,\n')
     fd.write('    afw_xctx_t *xctx);\n')
     fd.write('\n')
 
@@ -967,19 +969,16 @@ def write_c_section(fd, prefix, obj):
             fd.write('\nAFW_DECLARE_STATIC(const afw_value_t *)\n')
             fd.write('impl_afw_value_get_assignable_value(\n')
             fd.write('    const afw_value_t *instance,\n')
-            fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx);\n')
         if id in ('object', 'array'):
             fd.write('\nAFW_DECLARE_STATIC(const afw_value_t *)\n')
             fd.write('impl_afw_value_permanent_get_assignable_value(\n')
             fd.write('    const afw_value_t *instance,\n')
-            fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx);\n')
         if id in ('object', 'array'):
             fd.write('\nAFW_DECLARE_STATIC(const afw_value_t *)\n')
             fd.write('impl_afw_value_assignable_get_reference(\n')
             fd.write('    const afw_value_t *instance,\n')
-            fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx);\n')
             fd.write('\nAFW_DECLARE_STATIC(void)\n')
             fd.write('impl_afw_value_assignable_optional_release(\n')
@@ -1011,7 +1010,7 @@ def write_c_section(fd, prefix, obj):
                      'impl_afw_value_get_assignable_value\n')
         else:
             fd.write('#define impl_afw_value_get_assignable_value '
-                     'impl_afw_value_get_reference\n')
+                     'impl_afw_value_get_assignable_via_reference\n')
         fd.write('#define impl_afw_value_create_iterator NULL\n')
 
         fd.write('#include "afw_value_impl_declares.h"\n')
@@ -1028,7 +1027,8 @@ def write_c_section(fd, prefix, obj):
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_' + id + '_inf\n')
         fd.write('#define impl_afw_value_optional_release impl_afw_value_managed_optional_release\n')
         fd.write('#define impl_afw_value_get_reference impl_afw_value_managed_get_reference\n')
-        fd.write('#define impl_afw_value_get_assignable_value impl_afw_value_managed_get_reference\n')
+        fd.write('#define impl_afw_value_get_assignable_value '
+                 'impl_afw_value_get_assignable_via_reference\n')
         fd.write('#define AFW_VALUE_INF_ONLY 1\n')
         fd.write('#include "afw_value_impl_declares.h"\n')
         fd.write('#undef AFW_IMPLEMENTATION_ID\n')
@@ -1049,7 +1049,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('#define impl_afw_value_get_reference '
                      'impl_afw_value_managed_slice_get_reference\n')
             fd.write('#define impl_afw_value_get_assignable_value '
-                     'impl_afw_value_managed_slice_get_reference\n')
+                     'impl_afw_value_get_assignable_via_reference\n')
             fd.write('#define AFW_VALUE_INF_ONLY 1\n')
             fd.write('#include "afw_value_impl_declares.h"\n')
             fd.write('#undef AFW_IMPLEMENTATION_ID\n')
@@ -1073,7 +1073,8 @@ def write_c_section(fd, prefix, obj):
             fd.write('#define impl_afw_value_get_assignable_value '
                      'impl_afw_value_permanent_get_assignable_value\n')
         else:
-            fd.write('#define impl_afw_value_get_assignable_value impl_afw_value_permanent_get_reference\n')
+            fd.write('#define impl_afw_value_get_assignable_value '
+                     'impl_afw_value_get_assignable_via_reference\n')
         fd.write('#define AFW_VALUE_INF_ONLY 1\n')
         fd.write('#include "afw_value_impl_declares.h"\n')
         fd.write('#undef AFW_IMPLEMENTATION_ID\n')
@@ -1094,7 +1095,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('#define impl_afw_value_get_reference '
                      'impl_afw_value_permanent_get_reference\n')
             fd.write('#define impl_afw_value_get_assignable_value '
-                     'impl_afw_value_permanent_get_reference\n')
+                     'impl_afw_value_get_assignable_via_reference\n')
             fd.write('#define AFW_VALUE_INF_ONLY 1\n')
             fd.write('#include "afw_value_impl_declares.h"\n')
             fd.write('#undef AFW_IMPLEMENTATION_ID\n')
@@ -1115,7 +1116,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('#define impl_afw_value_get_reference '
                      'impl_afw_value_assignable_get_reference\n')
             fd.write('#define impl_afw_value_get_assignable_value '
-                     'impl_afw_value_assignable_get_reference\n')
+                     'impl_afw_value_get_assignable_via_reference\n')
             fd.write('#define AFW_VALUE_INF_ONLY 1\n')
             fd.write('#include "afw_value_impl_declares.h"\n')
             fd.write('#undef AFW_IMPLEMENTATION_ID\n')
@@ -1134,7 +1135,8 @@ def write_c_section(fd, prefix, obj):
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_' + id + '_inf\n')
         fd.write('#define impl_afw_value_optional_release NULL\n')
         fd.write('#define impl_afw_value_get_reference impl_afw_value_permanent_get_reference\n')
-        fd.write('#define impl_afw_value_get_assignable_value impl_afw_value_permanent_get_reference\n')
+        fd.write('#define impl_afw_value_get_assignable_value '
+                 'impl_afw_value_get_assignable_via_reference\n')
         fd.write('#define impl_afw_value_create_iterator NULL\n')
         fd.write('#include "afw_value_impl_declares.h"\n')
         fd.write('#undef AFW_IMPLEMENTATION_ID\n')
@@ -1568,8 +1570,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('    v->internal.len = len;\n')
             fd.write('    v->containing_value = containing;\n')
             fd.write('    v->reference_count = 1;\n')
-            fd.write('    afw_value_add_reference(&containing->pub, xctx->p,\n')
-            fd.write('        xctx);\n')
+            fd.write('    afw_value_add_reference(&containing->pub, xctx);\n')
             fd.write('    return &v->pub;\n')
             fd.write('}\n')
         elif ctype == 'afw_memory_t':
@@ -1616,8 +1617,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('    v->internal.size = size;\n')
             fd.write('    v->containing_value = containing;\n')
             fd.write('    v->reference_count = 1;\n')
-            fd.write('    afw_value_add_reference(&containing->pub, xctx->p,\n')
-            fd.write('        xctx);\n')
+            fd.write('    afw_value_add_reference(&containing->pub, xctx);\n')
             fd.write('    return &v->pub;\n')
             fd.write('}\n')
 
@@ -1729,7 +1729,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('    }\n')
         fd.write('    if (afw_utf8_starts_with_utf8_z(\n')
         fd.write('            &value->inf->rti.implementation_id, "managed_")) {\n')
-        fd.write('        return afw_value_get_reference(value, xctx->p, xctx);\n')
+        fd.write('        return afw_value_get_reference(value, xctx);\n')
         fd.write('    }\n')
         if id == 'object':
             fd.write('    {\n')
@@ -2021,7 +2021,6 @@ def write_c_section(fd, prefix, obj):
         fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
         fd.write('impl_afw_value_get_reference(\n')
         fd.write('    const afw_value_t *instance,\n')
-        fd.write('    const afw_pool_t *p,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
         if id in ('object', 'array') or obj.get('scalar', False) == True:
@@ -2030,13 +2029,11 @@ def write_c_section(fd, prefix, obj):
             else:
                 kind = 'scalar'
             fd.write('    (void)instance;\n')
-            fd.write('    (void)p;\n')
             fd.write('    AFW_THROW_ERROR_Z(general,\n')
             fd.write('        "get_reference of unmanaged ' + kind +
                      '", xctx);\n')
         else:
             fd.write('    /* Function: instance hold is a later slice. */\n')
-            fd.write('    (void)p;\n')
             fd.write('    (void)xctx;\n')
             fd.write('    return instance;\n')
         fd.write('}\n')
@@ -2047,7 +2044,6 @@ def write_c_section(fd, prefix, obj):
             fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
             fd.write('impl_afw_value_get_assignable_value(\n')
             fd.write('    const afw_value_t *instance,\n')
-            fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx)\n')
             fd.write('{\n')
             if id == 'object':
@@ -2056,7 +2052,6 @@ def write_c_section(fd, prefix, obj):
                 fd.write('\n')
                 fd.write('    obj = ((const afw_value_object_t *)instance)->internal;\n')
                 fd.write('    if (afw_object_is_memory_managed(obj)) {\n')
-                fd.write('        (void)p;\n')
                 fd.write('        afw_object_get_reference(obj, xctx);\n')
                 fd.write('        return obj->value;\n')
                 fd.write('    }\n')
@@ -2067,10 +2062,8 @@ def write_c_section(fd, prefix, obj):
                 fd.write('            "memory") &&\n')
                 fd.write('        !afw_object_is_memory_wrapper(obj))\n')
                 fd.write('    {\n')
-                fd.write('        (void)p;\n')
                 fd.write('        return afw_value_clone_managed(instance, xctx);\n')
                 fd.write('    }\n')
-                fd.write('    (void)p;\n')
                 fd.write('    w = afw_object_create_wrapper_managed(obj, xctx);\n')
                 fd.write('    return w->value;\n')
             else:
@@ -2078,11 +2071,9 @@ def write_c_section(fd, prefix, obj):
                 fd.write('\n')
                 fd.write('    a = ((const afw_value_array_t *)instance)->internal;\n')
                 fd.write('    if (afw_array_is_memory_managed(a)) {\n')
-                fd.write('        (void)p;\n')
                 fd.write('        afw_array_get_reference(a, xctx);\n')
                 fd.write('        return a->value;\n')
                 fd.write('    }\n')
-                fd.write('    (void)p;\n')
                 fd.write('    return afw_value_clone_managed(instance, xctx);\n')
             fd.write('}\n')
             fd.write('\n')
@@ -2090,14 +2081,12 @@ def write_c_section(fd, prefix, obj):
             fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
             fd.write('impl_afw_value_permanent_get_assignable_value(\n')
             fd.write('    const afw_value_t *instance,\n')
-            fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx)\n')
             fd.write('{\n')
             if id == 'object':
                 fd.write('    const afw_object_t *obj;\n')
                 fd.write('    const afw_object_t *w;\n')
                 fd.write('\n')
-                fd.write('    (void)p;\n')
                 fd.write('    obj = ((const afw_value_object_t *)instance)->internal;\n')
                 fd.write('    if (!obj) {\n')
                 fd.write('        return instance;\n')
@@ -2112,7 +2101,6 @@ def write_c_section(fd, prefix, obj):
                 fd.write('    const afw_array_t *a;\n')
                 fd.write('    const afw_array_t *to;\n')
                 fd.write('\n')
-                fd.write('    (void)p;\n')
                 fd.write('    a = ((const afw_value_array_t *)instance)->internal;\n')
                 fd.write('    if (!a) {\n')
                 fd.write('        return instance;\n')
@@ -2129,14 +2117,12 @@ def write_c_section(fd, prefix, obj):
             fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
             fd.write('impl_afw_value_assignable_get_reference(\n')
             fd.write('    const afw_value_t *instance,\n')
-            fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx)\n')
             fd.write('{\n')
             if id == 'object':
                 fd.write('    const afw_value_object_t *self =\n')
                 fd.write('        (const afw_value_object_t *)instance;\n')
                 fd.write('\n')
-                fd.write('    (void)p;\n')
                 fd.write('    if (self->internal) {\n')
                 fd.write('        afw_object_get_reference(self->internal, xctx);\n')
                 fd.write('    }\n')
@@ -2144,7 +2130,6 @@ def write_c_section(fd, prefix, obj):
                 fd.write('    const afw_value_array_t *self =\n')
                 fd.write('        (const afw_value_array_t *)instance;\n')
                 fd.write('\n')
-                fd.write('    (void)p;\n')
                 fd.write('    if (self->internal) {\n')
                 fd.write('        afw_array_get_reference(self->internal, xctx);\n')
                 fd.write('    }\n')
@@ -2178,18 +2163,16 @@ def write_c_section(fd, prefix, obj):
             fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
             fd.write('impl_afw_value_get_assignable_value(\n')
             fd.write('    const afw_value_t *instance,\n')
-            fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx)\n')
             fd.write('{\n')
             if id == 'null':
-                fd.write('    (void)p;\n')
                 fd.write('    (void)instance;\n')
+                fd.write('    (void)xctx;\n')
                 fd.write('    return afw_value_null;\n')
             else:
                 fd.write('    const afw_value_' + id + '_t *self =\n')
                 fd.write('        (const afw_value_' + id + '_t *)instance;\n')
                 fd.write('\n')
-                fd.write('    (void)p;\n')
                 if id == 'boolean':
                     fd.write('    return afw_value_for_boolean(self->internal);\n')
                 elif ctype == 'afw_utf8_t' or ctype == 'afw_memory_t':
@@ -2209,7 +2192,6 @@ def write_c_section(fd, prefix, obj):
         fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
         fd.write('impl_afw_value_managed_get_reference(\n')
         fd.write('    const afw_value_t *instance,\n')
-        fd.write('    const afw_pool_t *p,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
         if id == 'object':
@@ -2242,7 +2224,6 @@ def write_c_section(fd, prefix, obj):
             fd.write('    }\n')
             fd.write('\n')
             fd.write('    /* Heap wrappers: bump value RC so optional_release frees once. */\n')
-            fd.write('    (void)p;\n')
             fd.write('    embedded = (arr && arr->value == instance);\n')
             fd.write('    if (!embedded) {\n')
             fd.write('        ((afw_value_array_managed_t *)instance)->\n')
@@ -2253,7 +2234,6 @@ def write_c_section(fd, prefix, obj):
             fd.write('    afw_value_' + id + '_managed_t *self =\n')
             fd.write('        (afw_value_' + id + '_managed_t *)instance;\n')
             fd.write('\n')
-            fd.write('    (void)p;\n')
             fd.write('    (void)xctx;\n')
             fd.write('    self->reference_count++;\n')
             fd.write('    return instance;\n')
@@ -2289,13 +2269,11 @@ def write_c_section(fd, prefix, obj):
             fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
             fd.write('impl_afw_value_managed_slice_get_reference(\n')
             fd.write('    const afw_value_t *instance,\n')
-            fd.write('    const afw_pool_t *p,\n')
             fd.write('    afw_xctx_t *xctx)\n')
             fd.write('{\n')
             fd.write('    afw_value_' + id + '_managed_slice_t *self =\n')
             fd.write('        (afw_value_' + id + '_managed_slice_t *)instance;\n')
             fd.write('\n')
-            fd.write('    (void)p;\n')
             fd.write('    (void)xctx;\n')
             fd.write('    self->reference_count++;\n')
             fd.write('    return instance;\n')
@@ -2307,19 +2285,26 @@ def write_c_section(fd, prefix, obj):
     fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
     fd.write('impl_afw_value_permanent_get_reference(\n')
     fd.write('    const afw_value_t *instance,\n')
-    fd.write('    const afw_pool_t *p,\n')
     fd.write('    afw_xctx_t *xctx)\n')
     fd.write('{\n')
     if id in ('object', 'array'):
         fd.write('    /* Permanent bag: hold is self; isolate is get_assignable_value. */\n')
-        fd.write('    (void)p;\n')
         fd.write('    (void)xctx;\n')
         fd.write('    return instance;\n')
     else:
         fd.write('    /* Permanent scalar: same instance as-is. */\n')
-        fd.write('    (void)p;\n')
         fd.write('    (void)xctx;\n')
         fd.write('    return instance;\n')
+    fd.write('}\n')
+    fd.write('\n')
+
+    fd.write('/* get_assignable_value: no dest p; bump via inf get_reference. */\n')
+    fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
+    fd.write('impl_afw_value_get_assignable_via_reference(\n')
+    fd.write('    const afw_value_t *instance,\n')
+    fd.write('    afw_xctx_t *xctx)\n')
+    fd.write('{\n')
+    fd.write('    return afw_value_get_reference(instance, xctx);\n')
     fd.write('}\n')
     fd.write('\n')
 

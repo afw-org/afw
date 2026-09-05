@@ -59,7 +59,7 @@ afw_value_function_return_value_create(
     /* Birth hold of the wrapper. Occupant is assignable (return slot). */
     self->reference_count = 1;
     self->return_value = return_value
-        ? afw_value_as_assignable(return_value, p, xctx)
+        ? afw_value_as_assignable(return_value, xctx)
         : NULL;
     return &self->pub;
 }
@@ -75,7 +75,7 @@ afw_value_function_return_value_consume(
     if (!afw_value_is_function_return_value(value)) {
         return value;
     }
-    return afw_value_as_assignable(value, p, xctx);
+    return afw_value_as_assignable(value, xctx);
 }
 
 
@@ -103,7 +103,7 @@ afw_value_evaluate_impl(
 
     result = impl_raw_optional_evaluate(value, p, xctx);
     if (afw_value_is_function_return_value(result)) {
-        result = afw_value_as_assignable(result, p, xctx);
+        result = afw_value_as_assignable(result, xctx);
     }
     return result;
 }
@@ -136,7 +136,7 @@ afw_value_evaluate_for_parameter(
     }
 
     if (afw_value_is_function_return_value(value)) {
-        *evaluated = afw_value_as_assignable(value, p, xctx);
+        *evaluated = afw_value_as_assignable(value, xctx);
         *parked = *evaluated;
         return;
     }
@@ -154,7 +154,7 @@ afw_value_evaluate_for_parameter(
             "evaluate_for_parameter: evaluate produced a non-value", xctx);
     }
     if (afw_value_is_function_return_value(result)) {
-        *evaluated = afw_value_as_assignable(result, p, xctx);
+        *evaluated = afw_value_as_assignable(result, xctx);
         *parked = *evaluated;
         return;
     }
@@ -211,10 +211,8 @@ impl_afw_value_optional_release(
 const afw_value_t *
 impl_afw_value_get_reference(
     AFW_VALUE_SELF_T *self,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    (void)p;
     (void)xctx;
     self->reference_count++;
     return &self->pub;
@@ -227,21 +225,19 @@ impl_afw_value_get_reference(
 const afw_value_t *
 impl_afw_value_get_assignable_value(
     AFW_VALUE_SELF_T *self,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *inner;
 
     inner = self->return_value;
     if (self->reference_count <= 1) {
-        /* Unique wrapper: transfer occupant hold to caller. Header
-         * stays in self->p until that pool dies (do not free_memory
-         * here: dest_p may not be xctx->p). */
+        /* Unique wrapper: transfer occupant to caller. Header stays
+         * in self->p until that pool dies. */
         self->return_value = NULL;
         self->reference_count = 0;
         return inner;
     }
-    inner = afw_value_as_assignable(inner, p, xctx);
+    inner = afw_value_as_assignable(inner, xctx);
     self->reference_count--;
     return inner;
 }

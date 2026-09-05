@@ -43,7 +43,6 @@ impl_afw_value_unmanaged_optional_release(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -51,7 +50,6 @@ impl_afw_value_get_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_managed_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -59,7 +57,12 @@ impl_afw_value_managed_get_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_permanent_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/* get_assignable_value with no dest p: bump via get_reference. */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_assignable_via_reference(
+    const afw_value_t *instance,
     afw_xctx_t *xctx);
 
 
@@ -83,19 +86,16 @@ impl_afw_value_permanent_get_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_value(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_permanent_get_assignable_value(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_assignable_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 AFW_DECLARE_STATIC(void)
@@ -127,7 +127,7 @@ impl_afw_value_assignable_optional_release(
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_array_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
 #define impl_afw_value_get_reference impl_afw_value_managed_get_reference
-#define impl_afw_value_get_assignable_value impl_afw_value_managed_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -160,7 +160,7 @@ impl_afw_value_assignable_optional_release(
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_assignable_array_inf
 #define impl_afw_value_optional_release impl_afw_value_assignable_optional_release
 #define impl_afw_value_get_reference impl_afw_value_assignable_get_reference
-#define impl_afw_value_get_assignable_value impl_afw_value_assignable_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -400,7 +400,7 @@ afw_value_clone_array_managed(
     }
     if (afw_utf8_starts_with_utf8_z(
             &value->inf->rti.implementation_id, "managed_")) {
-        return afw_value_get_reference(value, xctx->p, xctx);
+        return afw_value_get_reference(value, xctx);
     }
     {
         const afw_array_t *from;
@@ -537,11 +537,9 @@ impl_afw_value_unmanaged_optional_release(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     (void)instance;
-    (void)p;
     AFW_THROW_ERROR_Z(general,
         "get_reference of unmanaged array", xctx);
 }
@@ -550,18 +548,15 @@ impl_afw_value_get_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_value(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_array_t *a;
 
     a = ((const afw_value_array_t *)instance)->internal;
     if (afw_array_is_memory_managed(a)) {
-        (void)p;
         afw_array_get_reference(a, xctx);
         return a->value;
     }
-    (void)p;
     return afw_value_clone_managed(instance, xctx);
 }
 
@@ -569,13 +564,11 @@ impl_afw_value_get_assignable_value(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_permanent_get_assignable_value(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_array_t *a;
     const afw_array_t *to;
 
-    (void)p;
     a = ((const afw_value_array_t *)instance)->internal;
     if (!a) {
         return instance;
@@ -592,13 +585,11 @@ impl_afw_value_permanent_get_assignable_value(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_assignable_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_array_t *self =
         (const afw_value_array_t *)instance;
 
-    (void)p;
     if (self->internal) {
         afw_array_get_reference(self->internal, xctx);
     }
@@ -624,7 +615,6 @@ impl_afw_value_assignable_optional_release(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_managed_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_array_t *self =
@@ -638,7 +628,6 @@ impl_afw_value_managed_get_reference(
     }
 
     /* Heap wrappers: bump value RC so optional_release frees once. */
-    (void)p;
     embedded = (arr && arr->value == instance);
     if (!embedded) {
         ((afw_value_array_managed_t *)instance)->
@@ -652,13 +641,20 @@ impl_afw_value_managed_get_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_permanent_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     /* Permanent bag: hold is self; isolate is get_assignable_value. */
-    (void)p;
     (void)xctx;
     return instance;
+}
+
+/* get_assignable_value: no dest p; bump via inf get_reference. */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_assignable_via_reference(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    return afw_value_get_reference(instance, xctx);
 }
 
 /*

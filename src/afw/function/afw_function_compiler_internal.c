@@ -702,7 +702,7 @@ impl_assign_value(
         aggregate_value = afw_value_evaluate_and_park(
             t->aggregate_value, 1, p, xctx);
         key = afw_value_evaluate_and_park(t->key, 1, p, xctx);
-        aggregate_value = afw_value_as_assignable(aggregate_value, p, xctx);
+        aggregate_value = afw_value_as_assignable(aggregate_value, xctx);
 
         if (afw_value_is_object(aggregate_value)) {
             object = ((const afw_value_object_t *)aggregate_value)->internal;
@@ -1666,7 +1666,7 @@ afw_function_execute_return(
             result = afw_value_undefined;
         }
     }
-    result = afw_value_as_assignable(result, xctx->p, xctx);
+    result = afw_value_as_assignable(result, xctx);
     afw_xctx_statement_flow_set_type(return, xctx);
     return result;
 }

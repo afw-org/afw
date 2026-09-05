@@ -1041,8 +1041,7 @@ impl_afw_object_setter_set_property(
                     e->value = NULL;
                 }
                 else {
-                    afw_value_slot_store(&e->value, value,
-                        xctx->p, xctx);
+                    afw_value_slot_store(&e->value, value, xctx);
                 }
             }
             else {
@@ -1085,7 +1084,7 @@ impl_afw_object_setter_set_property(
     e->value = NULL;
     if (value) {
         if (memory_object_self->wrapped) {
-            afw_value_slot_store(&e->value, value, xctx->p, xctx);
+            afw_value_slot_store(&e->value, value, xctx);
         }
         else {
             e->value = value;
@@ -1167,8 +1166,7 @@ impl_afw_object_managed_setter_set_property(
                 e->value = NULL;
             }
             else {
-                afw_value_slot_store(&e->value, value,
-                    xctx->p, xctx);
+                afw_value_slot_store(&e->value, value, xctx);
             }
             return;
         }
@@ -1182,8 +1180,8 @@ impl_afw_object_managed_setter_set_property(
         property_name = afw_v_a_empty_string;
     }
     /* New entry: name is isolated once. Replace never changes the name. */
-    e->name = afw_value_as_assignable(property_name, xctx->p, xctx);
-    afw_value_slot_store(&e->value, value, xctx->p, xctx);
+    e->name = afw_value_as_assignable(property_name, xctx);
+    afw_value_slot_store(&e->value, value, xctx);
     if (final_e) {
         final_e->next = e;
     }

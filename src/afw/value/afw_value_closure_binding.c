@@ -21,7 +21,6 @@
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_closure_binding_inf
 #define AFW_VALUE_SELF_T afw_value_closure_binding_t
 #define impl_afw_value_create_iterator NULL
-#define impl_afw_value_get_assignable_value impl_afw_value_get_reference
 #include "afw_value_impl_declares.h"
 
 
@@ -113,15 +112,24 @@ impl_afw_value_optional_release(
 const afw_value_t *
 impl_afw_value_get_reference(
     AFW_VALUE_SELF_T *self,
-    const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-    (void)p;
     self->reference_count++;
     if (self->reference_count == 1) {
         afw_xctx_scope_get_reference(self->enclosing_lexical_scope, xctx);
     }
     return &self->pub;
+}
+
+/*
+ * Implementation of method get_assignable_value for interface afw_value.
+ */
+const afw_value_t *
+impl_afw_value_get_assignable_value(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    return impl_afw_value_get_reference(self, xctx);
 }
 
 /*
