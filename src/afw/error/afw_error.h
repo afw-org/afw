@@ -134,6 +134,17 @@ struct afw_error_s {
 };
 
 /**
+ * @brief Isolate error data so it outlives the throwing frame.
+ * @param data adaptive value or NULL.
+ * @param xctx of caller.
+ *
+ * WITH_DATA macros use this. Eval temps live on scope->p; the throw
+ * longjmps through block FINALLY which last-releases that tracker.
+ */
+AFW_DECLARE(void)
+afw_error_set_data(const afw_value_t *data, afw_xctx_t *xctx);
+
+/**
  * @name AFW error throw / try design (read before touching longjmp)
  * @{
  *
@@ -352,7 +363,7 @@ do { \
  */
 #define AFW_THROW_ERROR_WITH_DATA_Z(code, _data, message_z, xctx) \
 do { \
-    xctx->error->data = _data; \
+    afw_error_set_data(_data, xctx); \
     afw_error_set_z(afw_error_code_ ## code, \
         AFW__FILE_LINE__, message_z, xctx); \
     longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
@@ -392,7 +403,7 @@ do { \
 #define AFW_THROW_ERROR_WITH_DATA_RV_Z(code, _data, \
         rv_source_id, rv, message_z, xctx) \
 do { \
-    xctx->error->data = _data; \
+    afw_error_set_data(_data, xctx); \
     afw_error_rv_set_z(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         AFW__FILE_LINE__, message_z, xctx); \
@@ -429,7 +440,7 @@ do { \
  */
 #define AFW_THROW_ERROR_WITH_DATA_FZ(code, _data, xctx, format_z, ...) \
 do { \
-    xctx->error->data = _data; \
+    afw_error_set_data(_data, xctx); \
     afw_error_set_fz(afw_error_code_ ## code, \
         AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \
     longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
@@ -471,7 +482,7 @@ do { \
 #define AFW_THROW_ERROR_WITH_DATA_RV_FZ(code, _data, \
         rv_source_id, rv, xctx, format_z, ...) \
 do { \
-    xctx->error->data = _data; \
+    afw_error_set_data(_data, xctx); \
     afw_error_rv_set_fz(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \
@@ -508,7 +519,7 @@ do { \
  */
 #define AFW_THROW_ERROR_WITH_DATA_VZ(code, _data, format_z, ap, xctx) \
 do { \
-    xctx->error->data = _data; \
+    afw_error_set_data(_data, xctx); \
     afw_error_set_vz(afw_error_code_ ## code, \
         AFW__FILE_LINE__, format_z, ap, xctx); \
     longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
@@ -546,7 +557,7 @@ do { \
 #define AFW_THROW_ERROR_WITH_DATA_RV_VZ(code, _data, \
         rv_source_id, rv, format_z, ap, xctx) \
 do { \
-    xctx->error->data = _data; \
+    afw_error_set_data(_data, xctx); \
     afw_error_rv_set_vz(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         AFW__FILE_LINE__, format_z, ap, xctx); \

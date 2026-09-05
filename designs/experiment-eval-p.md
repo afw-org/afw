@@ -44,17 +44,16 @@ Temps flatten. Compile leak is cheap linear heaps (consume still open).
 
 ### Gate (`afwdev test -j`)
 
-After pointing parser `contextual.source_location` at the compile-unit clone (not dest `p`): **4154 passed**, 75 skipped, **13 failed**. BMP extra 4/4 in ~2.4s (`comments-bmp-slash-0` 0.70s).
+After pointing parser `contextual.source_location` at the compile-unit clone (not dest `p`): compile-error canary green. BMP extra 4/4 in ~2.4s.
 
-Compile-error canary is green: `compile(json("[1,,2]"))` expect-error, `array_semantics.as` 31/31, test262 try/switch/for-of/numeric, `json_and_relaxed_json`, `reject_forms`.
+`AFW_THROW_ERROR_WITH_DATA*` now `afw_error_set_data` → `as_assignable` before longjmp (block FINALLY would otherwise last-release the tracker under `error->data`). Auth `deny*.as` green.
 
-Still failing (escaped values after a frame dies — not 13 splat fixes):
+Gate now **4157 passed**, 75 skipped, **10 failed** (empty JSON, not SIGSEGV):
 
-- authorization `deny*.as` (3, SIGSEGV)
-- `type_check*.as` (3, empty JSON)
-- `afw_curl` HTTP `http_*.as` (7, empty JSON)
+- `type_check*.as` (3)
+- `afw_curl` HTTP `http_*.as` (7)
 
-`AFW_FUNCTION_SOURCE_LOCATION` still mints in `x->p` (the frame tracker). Parser now clones it into the compile heap. Eval-time errors (auth deny, curl) never go through that clone.
+Same class until proven otherwise: a value used after the frame tracker died. Not 10 splat fixes.
 
 ## Candidate order (re-decide after each)
 
