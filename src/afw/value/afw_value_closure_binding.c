@@ -21,7 +21,6 @@
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_closure_binding_inf
 #define AFW_VALUE_SELF_T afw_value_closure_binding_t
 #define impl_afw_value_create_iterator NULL
-#define impl_afw_value_get_assignable_value impl_afw_value_get_reference
 #include "afw_value_impl_declares.h"
 
 
@@ -61,7 +60,6 @@ afw_value_closure_binding_create_if_needed(
     afw_xctx_t *xctx)
 {
     const afw_value_script_function_definition_t *function;
-    const afw_value_block_t *defining_block;
     const afw_xctx_scope_t *scope;
 
     if (!value || !afw_value_is_script_function_definition(value)) {
@@ -75,44 +73,12 @@ afw_value_closure_binding_create_if_needed(
     }
 
     /*
-     * Defining compile block, then the live scope for it:
-     * - param block's parent when the function opened a signature block
-     * - else brace-body's parent (`function() { … }` has no param block)
-     * - else compile-time depth (expression body, no param block)
-     *
-     * 0-symbol nested `{ }` skip a scope; match by block pointer through
-     * those parents. Bind that scope, not a nested block we happen to be
-     * in (e.g. `if { c0 = tick }` where tick was created in the enclosing
-     * body). Do not hoist names.
+     * Bind the compile-time enclosing `{ }`'s live frame, not a nested
+     * block we happen to be in (e.g. `if { c0 = tick }` where tick was
+     * created in the enclosing body). Do not hoist names.
      */
-    defining_block = NULL;
-    if (function->signature && function->signature->block) {
-        defining_block = function->signature->block->parent_block;
-        if (!defining_block) {
-            defining_block = function->signature->block;
-        }
-    }
-    else if (function->body && afw_value_is_block(function->body)) {
-        defining_block =
-            ((const afw_value_block_t *)function->body)->parent_block;
-    }
-
-    if (defining_block) {
-        scope = afw_xctx_scope_find_for_block(defining_block, scope, xctx);
-    }
-    else {
-        const afw_xctx_scope_t *from = scope;
-
-        scope = NULL;
-        for (; from; from = from->parent_lexical_scope) {
-            if (from->block &&
-                from->block->depth <= function->depth)
-            {
-                scope = from;
-                break;
-            }
-        }
-    }
+    scope = afw_xctx_scope_find_for_block(
+        function->enclosing_block, scope, xctx);
     if (!scope) {
         AFW_THROW_ERROR_Z(general,
             "Internal error: scope not found", xctx);
@@ -146,15 +112,24 @@ impl_afw_value_optional_release(
 const afw_value_t *
 impl_afw_value_get_reference(
     AFW_VALUE_SELF_T *self,
-    const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-    (void)p;
     self->reference_count++;
     if (self->reference_count == 1) {
         afw_xctx_scope_get_reference(self->enclosing_lexical_scope, xctx);
     }
     return &self->pub;
+}
+
+/*
+ * Implementation of method get_assignable_value for interface afw_value.
+ */
+const afw_value_t *
+impl_afw_value_get_assignable_value(
+    AFW_VALUE_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    return impl_afw_value_get_reference(self, xctx);
 }
 
 /*

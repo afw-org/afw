@@ -124,6 +124,45 @@ afw_object_create_managed(
 }
 
 
+AFW_DEFINE(const afw_object_t *)
+afw_object_create_wrapper_managed(
+    const afw_object_t *wrapped,
+    afw_xctx_t *xctx)
+{
+    afw_object_internal_memory_object_t *self;
+
+    if (!wrapped) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_object_create_wrapper_managed requires a wrapped object",
+            xctx);
+    }
+    if (afw_object_is_memory_managed(wrapped)) {
+        afw_object_get_reference(wrapped, xctx);
+        return wrapped;
+    }
+    self = (afw_object_internal_memory_object_t *)
+        afw_object_create_managed(xctx);
+    self->wrapped = wrapped;
+    afw_object_get_reference(wrapped, xctx);
+    if (wrapped->meta.meta_object) {
+        self->pub.meta.meta_object = wrapped->meta.meta_object;
+    }
+    if (wrapped->meta.object_uri) {
+        self->pub.meta.object_uri = afw_utf8_clone(
+            wrapped->meta.object_uri, xctx->p, xctx);
+    }
+    if (wrapped->meta.id) {
+        self->pub.meta.id = afw_utf8_clone(
+            wrapped->meta.id, xctx->p, xctx);
+    }
+    if (wrapped->meta.object_type_uri) {
+        self->pub.meta.object_type_uri = afw_utf8_clone(
+            wrapped->meta.object_type_uri, xctx->p, xctx);
+    }
+    return (const afw_object_t *)self;
+}
+
+
 static void
 impl_copy_into_managed(
     const afw_object_t *to,
@@ -288,7 +327,19 @@ impl_copy_into_managed(
         self->meta.object_type_uri = afw_utf8_clone(
             from->meta.object_type_uri, p, xctx);
     }
-    impl_copy_meta_delta_into_managed(to, from, xctx);
+    /*
+     * Runtime/const objects keep parentPaths on a non-memory
+     * meta_object. Share it so meta() still sees it. Mutable memory
+     * meta is copied into a delta instead.
+     */
+    if (from->meta.meta_object &&
+        from->meta.meta_object->inf != &impl_afw_object_inf)
+    {
+        self->meta.meta_object = from->meta.meta_object;
+    }
+    else {
+        impl_copy_meta_delta_into_managed(to, from, xctx);
+    }
 
     if (impl_is_memory_property_list(from)) {
         from_mem = (const afw_object_internal_memory_object_t *)from;
@@ -437,7 +488,10 @@ afw_object_is_memory_wrapper(const afw_object_t *object)
 {
     const afw_object_internal_memory_object_t *self;
 
-    if (!object || object->inf != &impl_afw_object_inf) {
+    if (!object ||
+        (object->inf != &impl_afw_object_inf &&
+            object->inf != &impl_afw_object_managed_inf))
+    {
         return false;
     }
     self = (const afw_object_internal_memory_object_t *)object;
@@ -462,7 +516,9 @@ afw_object_memory_wrapper_base(const afw_object_t *object)
     if (!object) {
         return NULL;
     }
-    if (object->inf != &impl_afw_object_inf) {
+    if (object->inf != &impl_afw_object_inf &&
+        object->inf != &impl_afw_object_managed_inf)
+    {
         return object;
     }
     self = (const afw_object_internal_memory_object_t *)object;
@@ -985,8 +1041,7 @@ impl_afw_object_setter_set_property(
                     e->value = NULL;
                 }
                 else {
-                    afw_value_slot_store(&e->value, value,
-                        xctx->p, xctx);
+                    afw_value_slot_store(&e->value, value, xctx);
                 }
             }
             else {
@@ -1029,7 +1084,7 @@ impl_afw_object_setter_set_property(
     e->value = NULL;
     if (value) {
         if (memory_object_self->wrapped) {
-            afw_value_slot_store(&e->value, value, xctx->p, xctx);
+            afw_value_slot_store(&e->value, value, xctx);
         }
         else {
             e->value = value;
@@ -1067,6 +1122,10 @@ impl_afw_object_managed_release(
             afw_value_release(e->name, xctx);
             e->name = NULL;
         }
+    }
+    if (self->wrapped) {
+        afw_object_release(self->wrapped, xctx);
+        self->wrapped = NULL;
     }
     afw_pool_free_memory(xctx->p, self,
         sizeof(afw_object_internal_memory_object_t), xctx);
@@ -1107,8 +1166,7 @@ impl_afw_object_managed_setter_set_property(
                 e->value = NULL;
             }
             else {
-                afw_value_slot_store(&e->value, value,
-                    xctx->p, xctx);
+                afw_value_slot_store(&e->value, value, xctx);
             }
             return;
         }
@@ -1122,8 +1180,8 @@ impl_afw_object_managed_setter_set_property(
         property_name = afw_v_a_empty_string;
     }
     /* New entry: name is isolated once. Replace never changes the name. */
-    e->name = afw_value_as_assignable(property_name, xctx->p, xctx);
-    afw_value_slot_store(&e->value, value, xctx->p, xctx);
+    e->name = afw_value_as_assignable(property_name, xctx);
+    afw_value_slot_store(&e->value, value, xctx);
     if (final_e) {
         final_e->next = e;
     }

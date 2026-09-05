@@ -316,7 +316,7 @@ afw_function_execute_clone(
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
 
     result = afw_value_clone(value, x->p, x->xctx);
-    return afw_value_as_assignable(result, x->p, x->xctx);
+    return afw_value_as_assignable(result, x->xctx);
 }
 
 
@@ -3162,7 +3162,7 @@ afw_function_execute_freeze(
      * freeze that handle. Assign later bumps the frozen face instead of
      * wrapping a raw immutable instance into a mutable overlay.
      */
-    value = afw_value_as_assignable(value, x->p, x->xctx);
+    value = afw_value_as_assignable(value, x->xctx);
 
     if (afw_value_is_object(value)) {
         object = (const afw_value_object_t *)value;

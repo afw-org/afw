@@ -174,11 +174,12 @@ afw_xctx_scope_symbol_get_value_address(
     afw_xctx_t *xctx)
 {
     for (;
-         scope && scope->block->depth > symbol->parent_block->depth;
+         scope &&
+         scope->block->scope_depth > symbol->parent_block->scope_depth;
          scope = scope->parent_lexical_scope);
 
     if (!scope ||
-        scope->block->depth != symbol->parent_block->depth)
+        scope->block->scope_depth != symbol->parent_block->scope_depth)
     {
         AFW_THROW_ERROR_FZ(general, xctx,
             "symbol " AFW_UTF8_FMT_Q
@@ -194,7 +195,7 @@ afw_xctx_scope_symbol_get_value_address(
             AFW_UTF8_FMT_ARG(&symbol->name->internal), symbol->index);
     }
 
-    return (const afw_value_t **)&scope->symbol_values[symbol->index];   
+    return (const afw_value_t **)&scope->frame_slots[symbol->index];
 }
 
 
@@ -218,7 +219,7 @@ afw_xctx_scope_symbol_get_value_address_by_name(
         {
             if (afw_utf8_equal(symbol_name, &symbol->name->internal)) {
                 return (const afw_value_t **)
-                &scope->symbol_values[symbol->index];
+                &scope->frame_slots[symbol->index];
             }
         }
     }
@@ -296,8 +297,7 @@ afw_xctx_scope_symbol_set_value(
      * with undefined" is never confused with "not applicable" at the pointer
      * level (issue #131). let without initializer and nullish assigns land here.
      */
-    afw_value_slot_store(value_address, value,
-        xctx->evaluation_heap ? xctx->evaluation_heap : xctx->p, xctx);
+    afw_value_slot_store(value_address, value, xctx);
 }
 
 
@@ -321,8 +321,7 @@ afw_xctx_scope_symbol_set_value_by_name(
             AFW_UTF8_FMT_ARG(symbol_name));
     }
 
-    afw_value_slot_store(value_address, value,
-        xctx->evaluation_heap ? xctx->evaluation_heap : xctx->p, xctx);
+    afw_value_slot_store(value_address, value, xctx);
 }
 
 
@@ -688,29 +687,28 @@ afw_xctx_scope_create(
 
     if (parent_lexical_scope) {
         /*
-         * Parent must be shallower, not always depth-1. Nested `{ }` with
-         * no symbols skip a scope, so a later block with symbols can sit
-         * more than one compile depth below the live parent.
+         * Live parent frame is parent_scope_block (0-symbol `{ }` skipped
+         * at compile). Clones share that block pointer.
          */
-        if (parent_lexical_scope->block->depth >= block->depth) {
+        if (parent_lexical_scope->block != block->parent_scope_block) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "afw_xctx_scope_create(): parent_lexical_scope block depth "
-                "must be less than block depth "
+                "afw_xctx_scope_create(): parent_lexical_scope block is "
+                "not parent_scope_block "
                 "(scope count: " AFW_SIZE_T_FMT
                 ", active scopes: %d"
                 ", parent scope number: " AFW_SIZE_T_FMT
-                ", parent block depth: " AFW_SIZE_T_FMT
-                ", block depth: " AFW_SIZE_T_FMT ")",
+                ", parent scope_depth: " AFW_SIZE_T_FMT
+                ", block scope_depth: " AFW_SIZE_T_FMT ")",
                 xctx->scope_count, xctx->scope_stack->nelts,
                 parent_lexical_scope->scope_number,
-                parent_lexical_scope->block->depth,
-                block->depth);
+                parent_lexical_scope->block->scope_depth,
+                block->scope_depth);
         }
     }
-    else if (block->depth != 0) {
+    else if (block->parent_scope_block || block->scope_depth != 0) {
         AFW_THROW_ERROR_Z(general,
-            "afw_xctx_scope_create(): block depth must be zero if "
-            "parent_lexical_scope is NULL",
+            "afw_xctx_scope_create(): parent_lexical_scope required "
+            "unless this is the top frame",
             xctx);
     }
     
@@ -721,25 +719,26 @@ afw_xctx_scope_create(
     scope = afw_pool_calloc(p,
         (
             sizeof(afw_xctx_scope_t) + // Size of struct.
-            + (sizeof(afw_value_t *) * block->symbol_count ) // symbol_values[]
+            + (sizeof(afw_value_t *) * block->symbol_count ) // frame_slots[]
             - sizeof(afw_value_t *) // To account for the one in the struct.
         ),
         xctx);
     scope->p = p;
     scope->block = block;
+    scope->reference_count = 1;
     xctx->scope_count++;
     scope->scope_number = xctx->scope_count;
 
     /*
      * Bound symbols start as Adaptive undefined (singleton), not C NULL, so
-     * slot contents are never "not a value pointer" while the name is bound
-     * (issue #131). set_value also coerces NULL → undefined.
+     * a frame_slots[] entry is never "not a value pointer" while the name is
+     * bound (issue #131). set_value also coerces NULL → undefined.
      */
     {
         afw_size_t i;
 
         for (i = 0; i < block->symbol_count; i++) {
-            scope->symbol_values[i] = afw_value_undefined;
+            scope->frame_slots[i] = afw_value_undefined;
         }
     }
 
@@ -758,14 +757,14 @@ afw_xctx_scope_create(
 
 
 
-/* Live scope for a compile-time block, walking skipped 0-symbol frames. */
+/* Live scope for this block's frame (parent_scope_block if none). */
 AFW_DEFINE(const afw_xctx_scope_t *)
 afw_xctx_scope_find_for_block(
     const afw_value_block_t *block,
     const afw_xctx_scope_t *from,
     afw_xctx_t *xctx)
 {
-    const afw_value_block_t *b;
+    const afw_value_block_t *frame;
     const afw_xctx_scope_t *scope;
 
     (void)xctx;
@@ -774,7 +773,7 @@ afw_xctx_scope_find_for_block(
         return NULL;
     }
 
-    /* NULL block: compiled-value root (depth 0). */
+    /* NULL block: compiled-value root. */
     if (!block) {
         for (scope = from; scope; scope = scope->parent_lexical_scope) {
             if (!scope->parent_lexical_scope) {
@@ -784,18 +783,12 @@ afw_xctx_scope_find_for_block(
         return NULL;
     }
 
-    /*
-     * 0-symbol nested `{ }` do not get a scope. Walk to the nearest
-     * ancestor that does (or the top block, which is created even when
-     * it has no symbols so the compiled_value sentinel is not current).
-     */
-    b = block;
-    while (b->symbol_count == 0 && b->parent_block) {
-        b = b->parent_block;
+    frame = afw_value_block_scope_block(block);
+    if (!frame) {
+        return NULL;
     }
-
     for (scope = from; scope; scope = scope->parent_lexical_scope) {
-        if (scope->block == b) {
+        if (scope->block == frame) {
             return scope;
         }
     }
@@ -815,10 +808,10 @@ afw_xctx_scope_clone(
     scope = (afw_xctx_scope_t *)afw_xctx_scope_create(
         original_scope->block, original_scope->parent_lexical_scope, xctx);
 
-    /* Per-slot add_reference; hidden result is not on the scope. */
+    /* Reference each original frame_slots[]; hidden result is not copied. */
     for (afw_size_t i = 0; i < scope->block->symbol_count; i++) {
-        afw_value_slot_store(&scope->symbol_values[i],
-            original_scope->symbol_values[i], scope->p, xctx);
+        afw_value_slot_store(&scope->frame_slots[i],
+            original_scope->frame_slots[i], xctx);
     }
 
     afw_xctx_scope_debug(
@@ -927,32 +920,28 @@ afw_xctx_scope_release(
         "-1 afw_xctx_scope_release() begin",
         scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
 
-    if (scope->destroying) {
+    /* Already gone (re-enter from a closure in frame_slots[]). */
+    if (scope->reference_count == 0) {
         return;
     }
 
-    /*
-     * Last release: walk slots, then parent lexical, then this pool.
-     * Closures in slots may re-enter; destroying skips that nested call.
-     */
-    if (scope->reference_count <= 1) {
-        ((afw_xctx_scope_t *)scope)->destroying = true;
-        if (scope->block) {
-            for (afw_size_t i = 0; i < scope->block->symbol_count; i++) {
-                afw_value_release(scope->symbol_values[i], xctx);
-                ((afw_xctx_scope_t *)scope)->symbol_values[i] =
-                    afw_value_undefined;
-            }
-        }
-        if (scope->parent_lexical_scope) {
-            afw_xctx_scope_release(scope->parent_lexical_scope, xctx);
-        }
-        afw_pool_release(scope->p, xctx);
-        return;
-    }
-
-    /* Otherwise, just decrement reference count. */
     ((afw_xctx_scope_t *)scope)->reference_count--;
+    if (scope->reference_count > 0) {
+        return;
+    }
+
+    /* Last release: walk frame_slots[], parent lexical, then this pool. */
+    if (scope->block) {
+        for (afw_size_t i = 0; i < scope->block->symbol_count; i++) {
+            afw_value_release(scope->frame_slots[i], xctx);
+            ((afw_xctx_scope_t *)scope)->frame_slots[i] =
+                afw_value_undefined;
+        }
+    }
+    if (scope->parent_lexical_scope) {
+        afw_xctx_scope_release(scope->parent_lexical_scope, xctx);
+    }
+    afw_pool_release(scope->p, xctx);
 }
 
 
@@ -1052,6 +1041,8 @@ afw_xctx_script_result_set_value(
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
-    afw_value_slot_store(&xctx->script_result, value, xctx->p, xctx);
-    xctx->script_result_written = true;
+    if (!value || afw_value_is_void(value)) {
+        return;
+    }
+    afw_value_slot_store(&xctx->script_result, value, xctx);
 }

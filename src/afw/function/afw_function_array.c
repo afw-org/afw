@@ -851,7 +851,7 @@ afw_function_execute_splice(
              * occupant before the source face drops it. Assign / FRV
              * get_assignable_value of this bag mints the script face.
              */
-            value = afw_value_add_reference(value, x->p, x->xctx);
+            value = afw_value_add_reference(value, x->xctx);
             afw_array_push_value(removed, value, x->xctx);
         }
         afw_array_remove_value_by_index(array->internal, start, x->xctx);

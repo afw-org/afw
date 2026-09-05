@@ -30,7 +30,12 @@
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_permanent_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/* get_assignable_value with no dest p: bump via get_reference. */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_assignable_via_reference(
+    const afw_value_t *instance,
     afw_xctx_t *xctx);
 
 
@@ -59,7 +64,7 @@ impl_afw_value_permanent_get_reference(
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_undefined_inf
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_get_reference impl_afw_value_permanent_get_reference
-#define impl_afw_value_get_assignable_value impl_afw_value_permanent_get_reference
+#define impl_afw_value_get_assignable_value impl_afw_value_get_assignable_via_reference
 #define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -158,13 +163,20 @@ afw_data_type_undefined =
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_permanent_get_reference(
     const afw_value_t *instance,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     /* Permanent scalar: same instance as-is. */
-    (void)p;
     (void)xctx;
     return instance;
+}
+
+/* get_assignable_value: no dest p; bump via inf get_reference. */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_get_assignable_via_reference(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    return afw_value_get_reference(instance, xctx);
 }
 
 /*

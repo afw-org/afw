@@ -268,15 +268,11 @@ struct afw_xctx_scope_s {
     afw_size_t reference_count;
     afw_size_t scope_number;
     /*
-     * Last-release walk can re-enter via a closure that holds this
-     * scope. Skip a nested release while tearing down.
+     * Flexible array, length block->symbol_count. Indexed by
+     * afw_value_block_symbol_t.index. afw_xctx_scope_create()
+     * allocates the extra pointers.
      */
-    afw_boolean_t destroying;
-    /*
-     * When this struct is created by afw_xctx_scope_create(), it will be
-     * allocated large enough to hold block->symbol_count symbol_values.
-     */ 
-    const afw_value_t *symbol_values[1];
+    const afw_value_t *frame_slots[1];
 };
 
 
@@ -302,30 +298,26 @@ struct afw_xctx_scope_s {
  * @return New xctx scope.
  *
  * Function afw_xctx_scope_create() is used to create a new scope for the
- * supplied block. Symbol value slots start as the permanent
+ * supplied block. Each frame_slots[] entry starts as the permanent
  * **afw_value_undefined** singleton (not C NULL) so a bound name always has a
  * value pointer; see afw_xctx_scope_symbol_exists_by_name and issue #131.
  * afw_xctx_scope_symbol_set_value() also stores that singleton when given
  * C NULL.
  *
  * If a parent_lexical_scope is specified, it's reference count will be
- * incremented. The block depth of the block supplied must be greater than
- * the parent_lexical_scope's block depth. It is not always parent+1:
- * nested `{ }` with no symbols do not get a scope, so a later block with
- * symbols can skip those frames.
+ * incremented. That scope's block must be this block's parent_scope_block
+ * (nearest ancestor that has a scope). Nested `{ }` with no symbols do
+ * not get a scope; scope_depth has no gaps.
  *
- * If parent_lexical_scope is NULL, the block's depth must be 0.
+ * If parent_lexical_scope is NULL, this must be the top frame
+ * (parent_scope_block NULL, scope_depth 0).
  *
- * This newly created scope has a reference count of 0 when first created. This
- * reference count is incremented by functions afw_xctx_scope_activate() and
- * afw_xctx_scope_get_reference(), as well as a call to afw_xctx_scope_create()
- * with this scope specified as its parent_lexical_scope.
- *
- * The reference count is decreased by calls to afw_xctx_scope_deactivate(),
- * afw_xctx_scope_release() and afw_xctx_scope_unwind(). When the reference
- * count reaches 0, or it is already 0 because it's never been referenced, this
- * scope's pool is released and afw_xctx_scope_release() is call for the
- * parent_lexical_scope, if there is one.
+ * Create starts at reference count 1 (the creator owns it). The creator
+ * must afw_xctx_scope_release() when done. activate / get_reference and
+ * create-with-this-as-parent increment. deactivate, release, and unwind
+ * decrement. When the count reaches 0, walk frame_slots[], release the
+ * parent lexical scope if any, and release this scope's pool. A closure
+ * can keep the scope alive after the creator's release.
  *
  * More detail on how scopes work:
  *
@@ -333,38 +325,34 @@ struct afw_xctx_scope_s {
  * the xctx is destroyed. This scope stack is a stack of pointers to scope
  * structs of the currently active scopes in order of their activation.
  *
- * The current scope, which can be retrieve by calling afw_xctx_scope_current(),
- * is at the top of the scope stack.
+ * The current scope, which can be retrieved by calling
+ * afw_xctx_scope_current(), is at the top of the scope stack.
  *
- * The scope stack is maintained by calls to function afw_xctx_scope_activate(),
- * which pushes a scope onto the scope stack and increments its reference count,
- * paired with calls to afw_xctx_scope_deactivate() which pops a scope off the
- * scope stack and calls afw_xctx_stack_release() for it.
+ * The scope stack is maintained by afw_xctx_scope_activate(), which
+ * pushes a scope and takes a stack reference, paired with
+ * afw_xctx_scope_deactivate() which pops and releases that stack
+ * reference. The creator's reference is separate.
  *
- * Function afw_xctx_scope_rewind(), used in 'catch' and 'finally', calls
- * afw_xctx_scope_deactivate() on all of the scopes down to the current scope at
- * the time 'try' was entered.
+ * afw_xctx_scope_unwind(), used in catch, deactivates every current
+ * scope down to (not including) the scope at try entry.
  *
- * The evaluate for a compiled value always pushes a NULL on the scope stack
- * before evaluating its root value then makes sure the NULL is still there in
- * the same position and removes it when the evaluation is complete. This causes
- * the evaluation of the root value to begin with a current scope of NULL, which
- * will cause it's first scope to be lexical scope lexical depth 0.
+ * The evaluate for a compiled value always pushes a NULL on the scope
+ * stack before evaluating its root value, then makes sure the NULL is
+ * still there and removes it when evaluation is complete. The root
+ * value thus begins with current NULL, so its first frame is the top
+ * block (scope_depth 0).
  *
  * Symbols (variables, parameters, etc.) go in and out of scope. The scope
- * struct has a C array of values for the symbols in the scope. A symbol has a
- * lexical scope depth and index into the corresponding scope's symbol values
- * array, which is determined at compile time. The depth of the current scope's
- * block minus the lexical scope depth of a symbol determines how many times the
- * scope parent_lexical_scope pointer must be dereferenced to find the scope
- * containing the symbol's value.
+ * struct has frame_slots[], indexed by afw_value_block_symbol_t.index (compile
+ * time). A symbol's block has a scope_depth. The current scope's scope_depth
+ * minus that is how many times parent_lexical_scope is followed to find
+ * the scope with that symbol's frame_slots[] entry.
  *
  * When a closure binding is created, afw_xctx_scope_get_reference() is called
- * on its enclosing pool. When the closure binding goes out of scope, a
+ * on its enclosing scope. When the closure binding's last release runs, a
  * corresponding afw_xctx_scope_release() is called.
  *
- * The afw_xctx_scope_symbol_*() functions are used to get and set symbol
- * values.
+ * The afw_xctx_scope_symbol_*() functions get and set frame_slots[] entries.
  */
 AFW_DECLARE(const afw_xctx_scope_t *)
 afw_xctx_scope_create(
@@ -380,11 +368,9 @@ afw_xctx_scope_create(
  * @param xctx of caller.
  * @return matching scope, or NULL if it is not on the chain.
  *
- * Nested `{ }` with no symbols skip `afw_xctx_scope_create`. Walk those
- * compile-time parents until a block that has a live scope, then match
- * that block pointer on `from`. Missing after that walk is the same
- * "not on the stack" hole as a non-closure call after the defining
- * function returned.
+ * Match the live chain for this block's frame: the block itself if it
+ * has a scope, else parent_scope_block. Missing is the same "not on the
+ * stack" hole as a non-closure call after the defining function returned.
  */
 AFW_DECLARE(const afw_xctx_scope_t *)
 afw_xctx_scope_find_for_block(
@@ -398,9 +384,9 @@ afw_xctx_scope_find_for_block(
  * @param original_scope to clone.
  * @param xctx of caller.
  *
- * This function calls afw_xctx_scope_create() and `add_reference`s each
- * original symbol into the new scope (same protocol as assign). The
- * hidden result is not on the scope and is not copied.
+ * This function calls afw_xctx_scope_create() and stores a reference to
+ * each original frame_slots[] occupant into the new scope (same protocol
+ * as assign). The hidden result is not on the scope and is not copied.
  *
  * This function was originally needed to support the incrementor of 'for'
  * statements since each increment needs its own copy of variables to support
@@ -418,8 +404,8 @@ afw_xctx_scope_clone(
  * @param scope to activate as the current scope.
  * @param xctx of caller.
  * 
- * Call this after afw_xctx_scope_create() or afw_xctx_scope_clone() and when
- * there is a need to switch to a different containing lexical scope.
+ * Push this scope as current and take a stack reference. Pair with
+ * deactivate. Same scope may be activated more than once.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_activate(
@@ -445,11 +431,8 @@ afw_xctx_scope_get_reference(
  * @param scope to deactivate that must be the current scope.
  * @param xctx of caller.
  *
- * Deactivate is done automatically when a afw_xctx_scope_release() is called
- * for a scope so only use this when afw_xctx_scope_activate() is called at
- * times other than paired after a afw_xctx_scope_create_and_activate(). One place this
- * happens is in call_script_function evaluate when there are no parameters but
- * there is a need to switch to the enclosing lexical scope.
+ * Pop this scope (must be current) and release the stack's reference.
+ * Pair with activate. Does not drop the creator's reference.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_deactivate(
@@ -459,12 +442,13 @@ afw_xctx_scope_deactivate(
 
 
 /**
- * @brief Release current scope.
- * @param scope must match afw_xctx_scope_current(xctx)
+ * @brief Release a reference to a scope.
+ * @param scope to release.
  * @param xctx of caller.
  * 
- * Decrement the reference count. On last release, walk slots (`release`
- * each), then the parent lexical scope, then this scope's pool.
+ * Decrement the reference count. On last release (count goes 0), walk
+ * frame_slots[] (`release` each), then the parent lexical scope, then
+ * this scope's pool. Re-entry while the count is already 0 is a no-op.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_release(
@@ -498,9 +482,9 @@ afw_xctx_scope_unwind(
  * An error is thrown if the symbol's value location is not found. This most
  * likely is caused by a compile error.
  *
- * Non-NULL address means the symbol is bound. Slot contents are normally the
- * permanent undefined singleton until assigned (or an explicit value); C NULL
- * in a slot is legacy — treat with afw_value_is_undefined().
+ * Non-NULL address means the symbol is bound. The frame_slots[] entry is
+ * normally the permanent undefined singleton until assigned (or an explicit
+ * value); C NULL in a slot is legacy — treat with afw_value_is_undefined().
  */
 AFW_DECLARE(const afw_value_t **)
 afw_xctx_scope_symbol_get_value_address(
@@ -696,10 +680,12 @@ afw_xctx_scope_symbol_set_value_by_name(
 
 /**
  * @brief Set the running Adaptive Script result.
- * @param v result value (NULL is stored as undefined).
+ * @param v result value. Void and NULL are not stored.
  * @param xctx of caller.
  *
- * Assignment and return write this. Most other statements do not.
+ * Block finish writes a non-void last. Do not store void. Nested
+ * evaluate that must not change the caller's last saves and restores
+ * the pointer.
  */
 #define afw_xctx_script_result_set(v, xctx) \
     afw_xctx_script_result_set_value((v), (xctx))
@@ -707,7 +693,7 @@ afw_xctx_scope_symbol_set_value_by_name(
 
 /**
  * @brief Assign into the current hidden result slot.
- * @param value to store (NULL becomes undefined).
+ * @param value to store. Void and NULL are not stored.
  * @param xctx of caller.
  *
  * Same protocol as a named slot (`get_assignable` new, `release` old).
@@ -900,7 +886,7 @@ do { \
  *
  * Use only when top is the parameter-number marker. Pops the marker
  * and writes VALUE into the number slot (call, then 0 or more returns).
- * VALUE must be a real occupant (extra hold for pop_value). To take the
+ * VALUE must be a real occupant (extra reference for pop_value). To take the
  * pair off with nothing to keep, use afw_xctx_evaluation_stack_pop().
  */
 #ifdef AFW_DEBUG_EVALUATION

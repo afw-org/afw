@@ -54,56 +54,26 @@ afw_value_block_evaluate_statements(
     const afw_value_block_t *self,
     afw_size_t start,
     const afw_pool_t *p,
-    afw_xctx_t *xctx,
-    afw_boolean_t as_value,
-    afw_boolean_t *got_last)
+    afw_xctx_t *xctx)
 {
     const afw_value_t *result;
     const afw_value_t *last;
     afw_size_t i;
-    afw_boolean_t use_running;
-    afw_boolean_t wrote;
 
-    use_running = xctx->script_result_active && !as_value;
-    wrote = false;
-    /* Slot is the held last_return. Do not start from a raw C last. */
-    result = NULL;
-    if (use_running && xctx->script_result) {
-        result = xctx->script_result;
-    }
-
+    result = afw_value_void;
     for (i = start; i < self->statement_count; i++) {
         last = afw_value_block_evaluate_statement(
             x, self->statements[i], p, xctx);
-        if (use_running) {
-            if (afw_xctx_statement_flow_is_type(return, xctx)) {
-                result = last;
-                wrote = true;
-                break;
-            }
-            if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
-                /* break / continue / rethrow: do not update last. */
-                break;
-            }
-            /* Non-void last, including undefined. */
-            if (!afw_value_is_void(last)) {
-                result = last;
-                wrote = true;
-            }
+        if (afw_xctx_statement_flow_is_type(return, xctx)) {
+            result = last ? last : afw_value_void;
+            break;
         }
-        else {
-            if (!afw_value_is_void(last)) {
-                result = last;
-                wrote = true;
-            }
-            if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
-                break;
-            }
+        if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
+            break;
         }
-    }
-
-    if (got_last) {
-        *got_last = wrote;
+        if (last && !afw_value_is_void(last)) {
+            result = last;
+        }
     }
     return result;
 }
@@ -118,102 +88,85 @@ afw_value_block_evaluate_block(
     afw_boolean_t as_value)
 {
     const afw_value_t *result;
+    const afw_value_t *saved_script_result;
     const afw_compile_value_contextual_t *saved_contextual;
     const afw_pool_t *eval_p;
     const afw_xctx_scope_t *scope;
-    afw_boolean_t created_scope;
-    afw_boolean_t use_running;
-    afw_boolean_t saved_script_result_active;
-    afw_boolean_t produced;
 
     /* Push value on evaluation stack. */
     afw_xctx_evaluation_stack_push_value(
         (const afw_value_t *)self, xctx);
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
-    use_running = xctx->script_result_active && !as_value;
-    result = NULL;
-    if (use_running && xctx->script_result) {
-        result = xctx->script_result;
-    }
-    produced = false;
+    result = afw_value_void;
+    saved_script_result = NULL;
     /*
-     * as_value (template substitution, block evaluate): do not treat
-     * inner `return` as this script's last_return.
+     * Evaluating a block as a value must not change the caller's last.
+     * Nested `{ }` statements still write the slot; park so they hit
+     * this activation, then restore.
      */
-    saved_script_result_active = xctx->script_result_active;
     if (as_value) {
-        xctx->script_result_active = false;
+        saved_script_result = xctx->script_result;
+        xctx->script_result = afw_value_undefined;
     }
 
     /*
-     * Nested `{ }` with no symbols is not a scope. Creating one is an
-     * APR tracker header on the eval heap's parent that destroy does not
-     * recycle — `while (true) {}` climbed RSS with in_use flat. Always
-     * create when current is NULL (compiled_value sentinel) so depth 0
-     * exists once per evaluate. Bodies with `let` / `for` clone still
-     * get a scope.
+     * Nested `{ }` with no symbols is not a scope. Top always is, even
+     * with no names, so the compiled_value sentinel is not current.
      */
     scope = NULL;
-    created_scope = false;
-    if (self->symbol_count > 0 || !afw_xctx_scope_current(xctx)) {
+    if (afw_value_block_has_scope(self)) {
         scope = afw_xctx_scope_create(self,
             afw_xctx_scope_current(xctx), xctx);
         afw_xctx_scope_activate(scope, xctx);
-        created_scope = true;
     }
-    /*
-     * Existing frames: statement p is scope->p (x->p matches). last_return
-     * is already get_assignable onto xctx->p before deactivate. Zero-symbol
-     * `{ }` still uses caller p until every `{ }` gets a tracker.
-     * FIXME_GET_IT_WORKING: caller p. Rip the ifndef and keep the else.
-     */
 #ifndef FIXME_GET_IT_WORKING
     eval_p = p;
 #else
-    eval_p = created_scope ? scope->p : p;
+    eval_p = scope ? scope->p : p;
 #endif
     AFW_TRY{
         result = afw_value_block_evaluate_statements(
-            x, self, 0, eval_p, xctx, as_value, &produced);
-        if (use_running) {
-            produced = produced && result &&
-                !afw_value_is_void(result);
-        }
-        else {
-            produced = false;
-        }
-        /*
-         * Frame finish: slot_store only a new last, not the starting
-         * slot (undefined) and not a leftover last from a void
-         * statement. Skip if return already wrote.
-         */
-        if (produced && !xctx->script_result_written) {
+            x, self, 0, eval_p, xctx);
+        if (!afw_value_is_void(result)) {
             afw_xctx_script_result_set(result, xctx);
         }
     }
     AFW_FINALLY{
-        xctx->script_result_active = saved_script_result_active;
-        if (created_scope) {
-            afw_xctx_scope_deactivate(scope, xctx);
+        if (scope) {
+            if (afw_xctx_scope_current(xctx) == scope) {
+                afw_xctx_scope_deactivate(scope, xctx);
+            }
+            afw_xctx_scope_release(scope, xctx);
         }
     }
     AFW_ENDTRY;
 
-    /* Pop value from evaluation stack and return result. */
     afw_xctx_evaluation_stack_pop_value(xctx);
     xctx->error->contextual = saved_contextual;
 
-    if (use_running) {
-        if (produced) {
-            if (created_scope) {
-                return afw_xctx_script_result_get(xctx);
-            }
-            return result;
-        }
-        return afw_value_void;
+    if (!afw_value_is_void(result)) {
+        result = afw_xctx_script_result_get(xctx);
     }
-    return result ? result : afw_value_void;
+    else {
+        result = afw_value_void;
+    }
+
+    if (as_value) {
+        const afw_value_t *inner;
+
+        inner = xctx->script_result;
+        xctx->script_result = saved_script_result;
+        if (inner &&
+            inner != saved_script_result &&
+            inner != result &&
+            !afw_value_is_undefined(inner) &&
+            !afw_value_is_void(inner))
+        {
+            afw_value_release(inner, xctx);
+        }
+    }
+    return result;
 }
 
 
@@ -301,6 +254,62 @@ afw_value_block_allocated_and_link(
 
 
 
+static void
+impl_finalize_scope_tree(afw_value_block_t *block)
+{
+    afw_value_block_t *parent;
+    afw_value_block_t *child;
+    const afw_value_block_t *parent_scope;
+
+    parent = block->parent_block;
+    if (!parent) {
+        block->parent_scope_block = NULL;
+        block->scope_depth = 0;
+    }
+    else {
+        parent_scope = afw_value_block_has_scope(parent)
+            ? parent : parent->parent_scope_block;
+        block->parent_scope_block =
+            (afw_value_block_t *)parent_scope;
+        if (afw_value_block_has_scope(block)) {
+            block->scope_depth = parent_scope
+                ? parent_scope->scope_depth + 1 : 0;
+        }
+        else {
+            block->scope_depth = parent_scope
+                ? parent_scope->scope_depth : 0;
+        }
+    }
+
+    for (child = block->first_child_block;
+        child;
+        child = child->next_sibling_block)
+    {
+        impl_finalize_scope_tree(child);
+    }
+}
+
+
+
+/*
+ * After each block is finalized, walk the tree and set
+ * parent_scope_block / scope_depth.
+ */
+AFW_DEFINE(void)
+afw_value_block_finalize_scope_tree(
+    const afw_value_block_t *top_block,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+
+    if (!top_block) {
+        return;
+    }
+    impl_finalize_scope_tree((afw_value_block_t *)top_block);
+}
+
+
+
 AFW_DEFINE(const afw_value_t *)
 afw_value_block_finalize(
     const afw_value_block_t *block,
@@ -372,6 +381,8 @@ impl_afw_value_produce_compiler_listing(
     afw_writer_write_size(writer, self->number, xctx);
     afw_writer_write_z(writer, " depth=", xctx);
     afw_writer_write_size(writer, self->depth, xctx);
+    afw_writer_write_z(writer, " scope_depth=", xctx);
+    afw_writer_write_size(writer, self->scope_depth, xctx);
     afw_writer_write_z(writer, " : [", xctx);
     afw_writer_write_eol(writer, xctx);
     afw_writer_increment_indent(writer, xctx);

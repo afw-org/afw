@@ -159,7 +159,7 @@ impl_statement_result_or_void(
 }
 
 
-/* Loops/try are void. Keep a value only for return/rethrow. */
+/* try: void except return/rethrow. Loops use impl_keep_loop_last. */
 static inline const afw_value_t *
 impl_keep_if_return(
     const afw_value_t *result,
@@ -168,6 +168,28 @@ impl_keep_if_return(
 {
     if (afw_xctx_statement_flow_is_type(return, xctx) ||
         afw_xctx_statement_flow_is_type(rethrow, xctx))
+    {
+        return body_result;
+    }
+    return result;
+}
+
+
+/* Loop body already slot_stored this last. */
+static inline const afw_value_t *
+impl_keep_loop_last(
+    const afw_value_t *result,
+    const afw_value_t *body_result,
+    afw_xctx_t *xctx)
+{
+    if (afw_xctx_statement_flow_is_type(return, xctx) ||
+        afw_xctx_statement_flow_is_type(rethrow, xctx))
+    {
+        return body_result;
+    }
+    if (body_result &&
+        body_result == xctx->script_result &&
+        !afw_value_is_void(body_result))
     {
         return body_result;
     }
@@ -680,7 +702,7 @@ impl_assign_value(
         aggregate_value = afw_value_evaluate_and_park(
             t->aggregate_value, 1, p, xctx);
         key = afw_value_evaluate_and_park(t->key, 1, p, xctx);
-        aggregate_value = afw_value_as_assignable(aggregate_value, p, xctx);
+        aggregate_value = afw_value_as_assignable(aggregate_value, xctx);
 
         if (afw_value_is_object(aggregate_value)) {
             object = ((const afw_value_object_t *)aggregate_value)->internal;
@@ -1084,7 +1106,7 @@ afw_function_execute_do_while(
     this_label = impl_optional_loop_label(x, 3);
     result = afw_value_void;
     for (;;) {
-        result = impl_keep_if_return(result,
+        result = impl_keep_loop_last(result,
             afw_value_block_evaluate_statement(x, x->argv[2], p, xctx),
             xctx);
         if (impl_loop_should_exit(this_label, xctx)) {
@@ -1207,7 +1229,7 @@ afw_function_execute_for(
 
             if (body) {
                 /* for is void. Nested assignment writes the slot. */
-                result = impl_keep_if_return(result,
+                result = impl_keep_loop_last(result,
                     afw_value_block_evaluate_statement(x, body, p, xctx),
                     xctx);
                 if (impl_loop_should_exit(this_label, xctx)) {
@@ -1228,6 +1250,8 @@ afw_function_execute_for(
                             previous_iterator_scope, xctx);
                         afw_xctx_scope_deactivate(
                             previous_iterator_scope, xctx);
+                        afw_xctx_scope_release(
+                            previous_iterator_scope, xctx);
                     }
                     else {
                         scope = afw_xctx_scope_clone(
@@ -1244,10 +1268,16 @@ afw_function_execute_for(
 
         impl_loop_consume_if_target(this_label, xctx);
 
-        /* Release final increment scope. */
+        /* Creator release of the last clone; pop if still current. */
         if (previous_iterator_scope) {
-            afw_xctx_scope_deactivate(previous_iterator_scope, xctx);
-        }      
+            if (afw_xctx_scope_current(xctx) ==
+                previous_iterator_scope)
+            {
+                afw_xctx_scope_deactivate(
+                    previous_iterator_scope, xctx);
+            }
+            afw_xctx_scope_release(previous_iterator_scope, xctx);
+        }
     }
     AFW_ENDTRY;
 
@@ -1368,6 +1398,8 @@ afw_function_execute_for_of(
                         previous_iterator_scope, xctx);
                     afw_xctx_scope_deactivate(
                         previous_iterator_scope, xctx);
+                    afw_xctx_scope_release(
+                        previous_iterator_scope, xctx);
                 }
                 else {
                     scope = afw_xctx_scope_clone(
@@ -1382,7 +1414,7 @@ afw_function_execute_for_of(
                 assignment_type =
                     afw_compile_assignment_type_assign_only;
             }
-            result = impl_keep_if_return(result,
+            result = impl_keep_loop_last(result,
                 afw_value_block_evaluate_statement(
                     x, x->argv[3], p, xctx),
                 xctx);
@@ -1396,7 +1428,13 @@ afw_function_execute_for_of(
 
         impl_loop_consume_if_target(this_label, xctx);
         if (previous_iterator_scope) {
-            afw_xctx_scope_deactivate(previous_iterator_scope, xctx);
+            if (afw_xctx_scope_current(xctx) ==
+                previous_iterator_scope)
+            {
+                afw_xctx_scope_deactivate(
+                    previous_iterator_scope, xctx);
+            }
+            afw_xctx_scope_release(previous_iterator_scope, xctx);
         }
 
     }
@@ -1628,18 +1666,7 @@ afw_function_execute_return(
             result = afw_value_undefined;
         }
     }
-    /*
-     * Box onto xctx->p so the occupant survives tracker deactivate.
-     * Slot-store only when this return is a statement last_return
-     * (script_result_active). Template / as_value evaluation clears
-     * that flag so `${return a}` vs `${return b}` do not release
-     * each other's occupant.
-     */
-    result = afw_value_as_assignable(result, xctx->p, xctx);
-    if (xctx->script_result_active) {
-        afw_xctx_script_result_set(result, xctx);
-        result = afw_xctx_script_result_get(xctx);
-    }
+    result = afw_value_as_assignable(result, xctx);
     afw_xctx_statement_flow_set_type(return, xctx);
     return result;
 }
@@ -2120,11 +2147,13 @@ afw_function_execute_try(
                 const afw_error_t *caught_error = &this_THROWN_ERROR;
                 const afw_value_block_t *block =
                     (const afw_value_block_t *)x->argv[3];
-                scope = afw_xctx_scope_create(
-                    block, afw_xctx_scope_current(xctx), xctx);
-                afw_xctx_scope_activate(scope, xctx);
-                eval_p = scope->p;
+                scope = NULL;
+                this_result = afw_value_void;
                 AFW_TRY{
+                    scope = afw_xctx_scope_create(
+                        block, afw_xctx_scope_current(xctx), xctx);
+                    afw_xctx_scope_activate(scope, xctx);
+                    eval_p = scope->p;
                     error_object = afw_error_to_object(
                         caught_error, eval_p, xctx);
                     error_value = afw_value_create_unmanaged_object(
@@ -2186,28 +2215,23 @@ afw_function_execute_try(
                             afw_compile_assignment_type_let, eval_p, xctx);
                     }
                     this_result = afw_value_block_evaluate_statements(
-                        x, block, stmt_start, eval_p, xctx, false,
-                        NULL);
-                    /*
-                     * Catch is a frame. Box last onto xctx->p before
-                     * tracker deactivate. Skip if return already wrote.
-                     */
-                    if (this_result &&
-                        this_result != xctx->script_result &&
-                        !afw_value_is_void(this_result) &&
-                        !(afw_xctx_statement_flow_is_type(return, xctx) &&
-                            xctx->script_result_written))
-                    {
+                        x, block, stmt_start, eval_p, xctx);
+                    if (!afw_value_is_void(this_result)) {
                         afw_xctx_script_result_set(this_result, xctx);
-                    }
-                    if (xctx->script_result_written) {
-                        this_result = afw_xctx_script_result_get(xctx);
                     }
                 }
                 AFW_FINALLY{
-                    afw_xctx_scope_deactivate(scope, xctx);
+                    if (scope) {
+                        if (afw_xctx_scope_current(xctx) == scope) {
+                            afw_xctx_scope_deactivate(scope, xctx);
+                        }
+                        afw_xctx_scope_release(scope, xctx);
+                    }
                 }
                 AFW_ENDTRY;
+                if (!afw_value_is_void(this_result)) {
+                    this_result = afw_xctx_script_result_get(xctx);
+                }
             }
             else {
                 this_result = afw_value_block_evaluate_statement(
@@ -2331,7 +2355,7 @@ afw_function_execute_while(
         if (!condition->internal) {
             break;
         }
-        result = impl_keep_if_return(result,
+        result = impl_keep_loop_last(result,
             afw_value_block_evaluate_statement(x, x->argv[2], p, xctx),
             xctx);
         if (impl_loop_should_exit(this_label, xctx))

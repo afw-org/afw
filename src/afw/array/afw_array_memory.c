@@ -311,6 +311,7 @@ afw_array_create_managed_from(
                 impl_push_cloned_into_managed(to, ep->value, xctx);
             }
         }
+        /* Compile `[]` is immutable memory; clone stays mutable. */
         return to;
     }
     iterator = NULL;
@@ -320,6 +321,11 @@ afw_array_create_managed_from(
             break;
         }
         impl_push_cloned_into_managed(to, value, xctx);
+    }
+    if (!afw_array_is_memory(from) &&
+        !afw_array_get_setter(from, xctx))
+    {
+        afw_array_set_immutable(to, xctx);
     }
     return to;
 }
@@ -875,7 +881,7 @@ impl_store_element(
     afw_xctx_t *xctx)
 {
     if (self->wrapped) {
-        afw_value_slot_store(slot, incoming, xctx->p, xctx);
+        afw_value_slot_store(slot, incoming, xctx);
     }
     else {
         *slot = incoming;
@@ -1423,7 +1429,7 @@ impl_afw_array_managed_setter_push_value(
     impl_note_value_data_type(array_self, value, was_empty, xctx);
     ep = afw_pool_calloc_type(xctx->p,
         afw_memory_internal_array_entry_t, xctx);
-    afw_value_slot_store(&ep->value, value, xctx->p, xctx);
+    afw_value_slot_store(&ep->value, value, xctx);
     APR_RING_INSERT_TAIL(array_self->ring, ep,
         afw_memory_internal_array_entry_s, link);
     array_self->count++;
@@ -1451,7 +1457,7 @@ impl_afw_array_managed_setter_insert_value(
     at = impl_resolve_insert_index(index, count, xctx);
     nep = afw_pool_calloc_type(xctx->p,
         afw_memory_internal_array_entry_t, xctx);
-    afw_value_slot_store(&nep->value, value, xctx->p, xctx);
+    afw_value_slot_store(&nep->value, value, xctx);
     if (at == 0) {
         APR_RING_INSERT_HEAD(array_self->ring, nep,
             afw_memory_internal_array_entry_s, link);
@@ -1499,7 +1505,7 @@ impl_afw_array_managed_setter_set_value(
     if (!lep) {
         AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
     }
-    afw_value_slot_store(&lep->value, value, xctx->p, xctx);
+    afw_value_slot_store(&lep->value, value, xctx);
 }
 
 

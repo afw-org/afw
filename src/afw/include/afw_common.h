@@ -2333,23 +2333,12 @@ struct afw_xctx_s {
     const afw_value_t *statement_flow_label;
 
     /**
-     * Running Adaptive Script result for the current script or script
-     * function. Assignment and return write it; let/const, calls, and
-     * most other statements do not. Nested activations park the previous
-     * pointer in a local and put it back. Issue #62. Used only when
-     * script_result_active.
+     * Last non-void result of the current script or script function.
+     * Block finish slot_stores a non-void last here. Nested evaluate
+     * (compiled_value, script call, block as_value) saves this pointer
+     * and restores it. Issue #62.
      */
     const afw_value_t *script_result;
-
-    /**
-     * True while evaluating Adaptive Script (not test_script / template).
-     */
-    afw_boolean_t script_result_active;
-
-    /**
-     * True if assignment or return wrote script_result in this activation.
-     */
-    afw_boolean_t script_result_written;
 
 };
 

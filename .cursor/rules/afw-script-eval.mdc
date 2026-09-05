@@ -28,10 +28,11 @@ afw_compile_to_value*
 ## Execute
 
 - Lazy: `inf->optional_evaluate` (`afw_value_evaluate` macro in `afw_value.h`).
-- Scopes: `afw_xctx_scope_*` on `scope_stack`; symbols by lexical depth + index.
+- Scopes: `afw_xctx_scope_*` on `scope_stack`. Frame tree is `parent_scope_block` / `scope_depth` (not syntax `parent_block` / `depth`). Slots by `scope_depth` + `symbol.index`.
 - Control flow: `afw_xctx_statement_flow_*` (sequential / break / continue / return / rethrow).
+- `script_result`: `return` is `as_assignable` only. Statement list starts void. Block finish `slot_store`s a non-void last before deactivate. Nested eval save/restore the pointer. Loops keep a body last only if it is already `script_result`; `try` stays void except `return`/`rethrow`.
 - Calls: `afw_value_call_create` specializes built-in vs script vs closure (`value/afw_value_call.c`).
-- Closures: `closure_binding` holds definition + scope ref (`get_reference` / release).
+- Closures: `closure_binding` keeps the definition and a reference to the scope (`get_reference` / `release`).
 
 ### Call create vs evaluate (do not mix)
 

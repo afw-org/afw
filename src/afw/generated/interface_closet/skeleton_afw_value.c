@@ -35,7 +35,6 @@ impl_afw_value_optional_release(
 const afw_value_t *
 impl_afw_value_get_reference(
     AFW_VALUE_SELF_T *self,
-    const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
     /** @todo Add code to implement method. */
@@ -48,7 +47,6 @@ impl_afw_value_get_reference(
 const afw_value_t *
 impl_afw_value_get_assignable_value(
     AFW_VALUE_SELF_T *self,
-    const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
     /** @todo Add code to implement method. */

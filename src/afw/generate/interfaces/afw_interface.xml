@@ -6135,12 +6135,6 @@ AFW_DEFINE(const afw_request_handler_t *)
         </description>
       </parameter>
 
-      <parameter name="p" type="const afw_pool_t *">
-    <description>
-          Pool if the inf must allocate (unused for a bump).
-        </description>
-      </parameter>
-
       <parameter name="xctx" type="afw_xctx_t *">
     <description>
           This is the caller's xctx.
@@ -6159,20 +6153,15 @@ AFW_DEFINE(const afw_request_handler_t *)
 
       <description>
         Occupant for a slot (assign, param, overlay, call result). Matching
-        optional_release. Default is get_reference. Object/array bags mint
-        an assignable face. Missing method is a no-op (return instance).
-        See designs/issue-2-hold-in-inf.md.
+        optional_release. Managed returns self (bump). Unmanaged promotes
+        or clones to managed in xctx->p. Permanent scalar is as-is;
+        permanent object/array is a managed wrapper/clone. Missing method
+        is a no-op (return instance).
       </description>
 
       <parameter name="instance" type="const afw_value_t *">
     <description>
           Pointer to this adaptive value instance.
-        </description>
-      </parameter>
-
-      <parameter name="p" type="const afw_pool_t *">
-    <description>
-          Pool if the inf must allocate (unused for a bump).
         </description>
       </parameter>
 

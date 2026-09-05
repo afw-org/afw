@@ -662,17 +662,15 @@ impl_parse_compiler_internal_script_function(afw_compile_parser_t *parser)
     afw_value_script_function_parameter_t *param;
     afw_value_block_symbol_t *symbol;
     apr_array_header_t *params;
+    const afw_value_block_t *enclosing_block;
     afw_size_t start_offset;
-    afw_size_t depth;
     afw_size_t arg_source_offset;
     afw_boolean_t have_body;
     afw_boolean_t is_rest;
     afw_boolean_t is_identifier_name;
 
     start_offset = parser->token->token_source_offset;
-    depth = (parser->compiled_value->current_block)
-        ? parser->compiled_value->current_block->depth
-        : 0;
+    enclosing_block = parser->compiled_value->current_block;
 
     signature = afw_pool_calloc_type(parser->p,
         afw_value_script_function_signature_t, parser->xctx);
@@ -911,7 +909,7 @@ impl_parse_compiler_internal_script_function(afw_compile_parser_t *parser)
 
     return afw_value_script_function_definition_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        depth, signature,
+        enclosing_block, signature,
         signature->returns, signature->count, signature->parameters,
         body, parser->p, parser->xctx);
 }

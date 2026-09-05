@@ -55,7 +55,7 @@ Clone: `afw_value_clone_unmanaged` (dest `p`) / `afw_value_clone_managed` (this 
 
 ## Last_return
 
-Assignment, `return`, and a non-void call write the running result. `let` / `const`, empty `{ }`, and `for` / `while` / `try` as statements do not. Nested assignment inside a loop **does** write it. Loops and `try` do not keep an unheld leftover last.
+`return` is `as_assignable` only (does not `slot_store`). Statement list starts void. Block finish stores a non-void last into `script_result` before deactivate. Nested eval save/restore the pointer. `let` / `const` do not write it. Nested assignment inside a loop **does**. Loops keep a body last only if it is already `script_result`; `try` stays void except `return` / `rethrow`.
 
 ## Managed frames
 
@@ -67,13 +67,16 @@ Separate inf (`memory_managed`), alloc in `xctx->p`, RC 1. Slots: new property n
 |---|---|
 | already `memory_managed` | bump; dual-face |
 | generic `"memory"` bag, not a wrapper | `clone_managed` |
-| view / wrapper / meta / other | `object_hold` / `array_hold` |
+| view / wrapper / runtime / adapter | managed look-through wrapper (preserves meta) |
 
-`wrap_literal_*` uses hold, not value `get_reference`. `afw_object_meta_clone_and_set` throws if the instance is `memory_managed`. Walk `first_property` only on a real memory bag.
+`get_reference` / `slot_store` / `as_assignable` take `xctx` only (no dest `p`). `wrap_literal_*` uses that isolate, not value `get_reference`. `afw_object_meta_clone_and_set` throws if the instance is `memory_managed`. Walk `first_property` only on a real memory bag. Full clone of unmanaged objects still drops some meta; fix later.
 
 ## Follow-ups
 
-- Eval `p` is still caller `p` (`FIXME_GET_IT_WORKING`). `scope->p` hangs `comments-bmp-slash-0.as`.
+- Eval `p` is still caller `p` (`FIXME_GET_IT_WORKING`) — **next branch**. `scope->p` hung `comments-bmp-slash-0.as`; later probe SIGSEGV’d on auth deny and emptied curl JSON.
+- Adapter clones (held).
+- Clone-of-unmanaged object meta.
+- FRV keep as-is unless special cases spread.
 - Unevaluated clone-out (script_function, closure).
 - Adaptive `clone()` still the old function.
 - `qualifier("current")` snapshot list tail.

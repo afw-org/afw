@@ -130,8 +130,6 @@ impl_afw_value_optional_evaluate(
     const afw_value_script_function_definition_t *script;
     const afw_value_t *result;
     const afw_value_t *saved_script_result;
-    afw_boolean_t saved_script_result_active;
-    afw_boolean_t saved_script_result_written;
     const afw_xctx_scope_t *enclosing_lexical_scope;
     const afw_xctx_scope_t *parameter_scope;
     const afw_xctx_scope_t *caller_scope;
@@ -144,18 +142,11 @@ impl_afw_value_optional_evaluate(
     afw_size_t parameter_number;
     afw_size_t rest_argc;
     afw_size_t call_argc;
-    afw_boolean_t parameter_scope_activated;
-
     result = NULL;
     saved_script_result = xctx->script_result;
-    saved_script_result_active = xctx->script_result_active;
-    saved_script_result_written = xctx->script_result_written;
     xctx->script_result = afw_value_undefined;
-    xctx->script_result_active = true;
-    xctx->script_result_written = false;
     caller_scope = afw_xctx_scope_current(xctx);
     parameter_scope = NULL;
-    parameter_scope_activated = false;
     script = self->script_function_definition;
 
     /* Expand call-site ...spreads into a flat argv before binding. */
@@ -169,58 +160,13 @@ impl_afw_value_optional_evaluate(
     }
 
     /*
-     * If not closure, find the defining block on the caller lexical chain.
-     * Param block's parent when present; else brace-body's parent
-     * (`function() { … }` opens no param block). 0-symbol nested `{ }`
-     * skip a scope, so match by block pointer through those parents.
-     * Missing after that walk is still "not on the stack".
+     * If not closure, find the compile-time enclosing `{ }` on the
+     * caller chain. find_for_block uses that block's frame (skips
+     * 0-symbol `{ }`). Missing is still "not on the stack".
      */
     else {
-        const afw_value_block_t *defining_block;
-
-        defining_block = NULL;
-        if (script->signature && script->signature->block) {
-            defining_block = script->signature->block->parent_block;
-            if (!defining_block) {
-                defining_block = script->signature->block;
-            }
-        }
-        else if (script->body && afw_value_is_block(script->body)) {
-            defining_block =
-                ((const afw_value_block_t *)script->body)->parent_block;
-        }
-
-        if (defining_block) {
-            enclosing_lexical_scope = afw_xctx_scope_find_for_block(
-                defining_block, caller_scope, xctx);
-        }
-        else {
-            const afw_xctx_scope_t *from;
-
-            enclosing_lexical_scope = NULL;
-            for (from = caller_scope; from;
-                from = from->parent_lexical_scope)
-            {
-                if (from->block &&
-                    from->block->depth <= script->depth)
-                {
-                    enclosing_lexical_scope = from;
-                    break;
-                }
-            }
-            /*
-             * Depth-only path has no skipped-frame block to walk. If the
-             * caller is shallower than compile depth, this is the same
-             * hole as a non-closure call after the defining function
-             * returned.
-             */
-            if (enclosing_lexical_scope &&
-                caller_scope && caller_scope->block &&
-                caller_scope->block->depth < script->depth)
-            {
-                enclosing_lexical_scope = NULL;
-            }
-        }
+        enclosing_lexical_scope = afw_xctx_scope_find_for_block(
+            script->enclosing_block, caller_scope, xctx);
         if (!enclosing_lexical_scope) {
             AFW_THROW_ERROR_Z(general,
                 "Can not determine parent static scope for function",
@@ -319,7 +265,6 @@ impl_afw_value_optional_evaluate(
 
                 /* Pass 2: activate, defaults, store / Pattern (0-based i). */
                 afw_xctx_scope_activate(parameter_scope, xctx);
-                parameter_scope_activated = true;
 
                 for (i = 0, params = script->parameters;
                     i < script->count;
@@ -364,7 +309,7 @@ impl_afw_value_optional_evaluate(
                         afw_value_slot_store(
                             afw_xctx_scope_symbol_get_value_address(
                                 (*params)->symbol, parameter_scope, xctx),
-                            value, p, xctx);
+                            value, xctx);
                     }
                 }
             }
@@ -395,6 +340,10 @@ impl_afw_value_optional_evaluate(
         }
         else {
             result = afw_value_evaluate(script->body, p, xctx);
+            if (result && !afw_value_is_void(result)) {
+                afw_xctx_script_result_set(result, xctx);
+                result = afw_xctx_script_result_get(xctx);
+            }
         }
         /*
          * Declared : void is a procedure: discard the running result and
@@ -448,19 +397,13 @@ impl_afw_value_optional_evaluate(
 
     AFW_FINALLY{
 
-        /* If there was a parameters scope, ... */
+        /* Creator release; deactivate first if this frame is current. */
         if (parameter_scope)
         {
-            /* If parameter_scope activated, deactivate. */
-            if (parameter_scope_activated) {
+            if (afw_xctx_scope_current(xctx) == parameter_scope) {
                 afw_xctx_scope_deactivate(parameter_scope, xctx);
             }
-
-            /* If it didn't make it as far as activation, just release. */
-            else {
-                afw_xctx_scope_release(parameter_scope, xctx);
-            }
-
+            afw_xctx_scope_release(parameter_scope, xctx);
         }
 
         /* If no parameter scope, just deactivate enclosing scope. */
@@ -477,8 +420,6 @@ impl_afw_value_optional_evaluate(
             afw_value_release(xctx->script_result, xctx);
         }
         xctx->script_result = saved_script_result;
-        xctx->script_result_active = saved_script_result_active;
-        xctx->script_result_written = saved_script_result_written;
     }
 
     AFW_ENDTRY;

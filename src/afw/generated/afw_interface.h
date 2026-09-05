@@ -7417,14 +7417,12 @@ typedef void
 typedef const afw_value_t *
 (*afw_value_get_reference_t)(
     const afw_value_t * instance,
-    const afw_pool_t * p,
     afw_xctx_t * xctx);
 
 /** @sa afw_value_get_assignable_value() */
 typedef const afw_value_t *
 (*afw_value_get_assignable_value_t)(
     const afw_value_t * instance,
-    const afw_pool_t * p,
     afw_xctx_t * xctx);
 
 /** @sa afw_value_create_iterator() */
@@ -7551,7 +7549,6 @@ struct afw_value_inf_s {
  * object/array bags. Missing method is a no-op (return instance).
  * See designs/issue-2-hold-in-inf.md.
  * @param instance Pointer to this adaptive value instance.
- * @param p Pool if the inf must allocate (unused for a bump).
  * @param xctx This is the caller's xctx.
  * @return The held value (often the same instance).
  * @relates afw_value_t
@@ -7559,12 +7556,10 @@ struct afw_value_inf_s {
  */
 #define afw_value_get_reference( \
     instance, \
-    p, \
     xctx \
 ) \
 (instance)->inf->get_reference( \
     (instance), \
-    (p), \
     (xctx) \
 )
 
@@ -7572,11 +7567,11 @@ struct afw_value_inf_s {
  * @brief Call method `get_assignable_value` of interface `afw_value`.
  *
  * Occupant for a slot (assign, param, overlay, call result). Matching
- * optional_release. Default is get_reference. Object/array bags mint
- * an assignable face. Missing method is a no-op (return instance).
- * See designs/issue-2-hold-in-inf.md.
+ * optional_release. Managed returns self (bump). Unmanaged promotes
+ * or clones to managed in xctx->p. Permanent scalar is as-is;
+ * permanent object/array is a managed wrapper/clone. Missing method
+ * is a no-op (return instance).
  * @param instance Pointer to this adaptive value instance.
- * @param p Pool if the inf must allocate (unused for a bump).
  * @param xctx This is the caller's xctx.
  * @return A value that fully supports being stored in a slot.
  * @relates afw_value_t
@@ -7584,12 +7579,10 @@ struct afw_value_inf_s {
  */
 #define afw_value_get_assignable_value( \
     instance, \
-    p, \
     xctx \
 ) \
 (instance)->inf->get_assignable_value( \
     (instance), \
-    (p), \
     (xctx) \
 )
 

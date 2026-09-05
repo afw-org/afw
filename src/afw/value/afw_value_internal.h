@@ -103,21 +103,45 @@ struct afw_value_block_s {
         afw_value_t pub;
     };
 
-    const afw_compile_value_contextual_t *contextual;
+    const afw_compile_value_contextual_t *contextual; /* Source location. */
 
     afw_size_t statement_count;
-    const afw_value_t * const * statements;
+    const afw_value_t * const * statements; /* Set in finalize. */
 
-    afw_value_block_t *parent_block;
+    /* Syntax tree (every `{ }`, including 0-symbol). */
+    afw_value_block_t *parent_block; /* NULL if top. */
     afw_value_block_t *first_child_block;
     afw_value_block_t *final_child_block;
     afw_value_block_t *next_sibling_block;
-    afw_value_block_symbol_t *first_entry;
+    /*
+     * Nearest ancestor that has a scope (top or symbol_count != 0).
+     * NULL on the top block. Set by afw_value_block_finalize_scope_tree
+     * after every block in the unit is finalized.
+     */
+    afw_value_block_t *parent_scope_block;
+
+    afw_value_block_symbol_t *first_entry; /* Bound names; NULL if none. */
     afw_value_block_symbol_t *final_entry;
-    afw_size_t number;
-    afw_size_t depth;
-    afw_size_t symbol_count;
+    afw_size_t number; /* Ordinal in the compiled value. */
+    afw_size_t depth; /* Syntax nesting (every `{ }`). */
+    afw_size_t scope_depth; /* Frame nesting; no 0-symbol gaps. */
+    afw_size_t symbol_count; /* first_entry length; frame_slots[] size. */
 };
+
+
+
+/*
+ * Nested `{ }` with no symbols has no scope. Top always does, even
+ * when symbol_count is 0 (compiled_value sentinel is not current).
+ */
+#define afw_value_block_has_scope(block) \
+    (!(block)->parent_block || (block)->symbol_count != 0)
+
+/* Frame block for this `{ }`: self if it has a scope, else parent. */
+#define afw_value_block_scope_block(block) \
+    (afw_value_block_has_scope(block) \
+        ? (block) \
+        : (block)->parent_scope_block)
 
 
 
@@ -276,7 +300,7 @@ struct afw_value_block_symbol_s {
     afw_value_block_symbol_t *next_entry;
     const afw_value_string_t *name;
     afw_value_type_t type;
-    afw_size_t index; /* Index in block entries. */
+    afw_size_t index; /* Index into activating scope frame_slots[]. */
     afw_value_block_symbol_type_t symbol_type;
     const afw_value_t *initial_value;
 };
@@ -765,6 +789,12 @@ struct afw_value_script_function_definition_s {
     const afw_compile_value_contextual_t *contextual;
     const afw_value_script_function_signature_t *signature;
     const afw_value_type_t *returns;
+    /*
+     * Compile-time current_block when the function was parsed (the
+     * enclosing `{ }`, which may have no scope). find_for_block uses
+     * its frame. depth is that block's syntax nesting (listing).
+     */
+    const afw_value_block_t *enclosing_block;
     afw_size_t depth;
     /** Formal count (same as signature->count when signature is present). */
     afw_size_t count;
@@ -1083,8 +1113,9 @@ afw_value_block_evaluate_block(
     afw_boolean_t as_value);
 
 /*
- * Statement-list last_return / UpdateEmpty. Caller owns the frame.
- * Catch binds the error, then starts at the first real statement.
+ * Statement list. Starts at void; each non-void sequential statement
+ * overwrites. return ends the list with that value. Caller owns the
+ * frame. Catch binds the error, then starts at the first real statement.
  */
 extern const afw_value_t *
 afw_value_block_evaluate_statements(
@@ -1092,9 +1123,7 @@ afw_value_block_evaluate_statements(
     const afw_value_block_t *self,
     afw_size_t start,
     const afw_pool_t *p,
-    afw_xctx_t *xctx,
-    afw_boolean_t as_value,
-    afw_boolean_t *got_last);
+    afw_xctx_t *xctx);
 
 
 /**

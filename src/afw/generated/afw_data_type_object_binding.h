@@ -66,8 +66,7 @@ afw_data_type_object;
  * optional_release throw (scalar, object, array).
  * Scalar get_assignable_value creates a managed holdable
  * in xctx->p. Object/array get_assignable_value: managed
- * occupant dual-face, generic memory bag clone_managed,
- * else hold.
+ * occupant dual-face, else clone_managed.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_object_inf;
@@ -98,8 +97,8 @@ afw_value_managed_object_inf;
  * Lifetime is the afw environment / static const storage.
  * optional_release is NULL. Scalar get_reference /
  * get_assignable_value are as-is. Object/array get_reference
- * is as-is; get_assignable_value isolates (object_hold /
- * array_hold) so slots do not share immortal bags.
+ * is as-is; get_assignable_value is a managed wrapper
+ * (object) or managed clone (array).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_object_inf;
@@ -286,7 +285,7 @@ afw_value_clone_object_managed(
  *
  * Allocates in pool p; lifetime is the pool (no value refcount).
  * get_reference / release throw. get_assignable_value
- * clone_managed, hold, or managed dual-face.
+ * is managed dual-face or clone_managed.
  * Stores the pointer as-is; does not clone the referent.
  */
 AFW_DECLARE(const afw_value_t *)
