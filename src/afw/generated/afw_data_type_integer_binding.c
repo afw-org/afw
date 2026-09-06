@@ -262,7 +262,7 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_integer =
     &afw_data_type_integer_direct;
 
-/* Set property from integer internal via setter. */
+/* Set property from integer internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_integer_internal(
     const afw_object_t *object,
@@ -270,15 +270,22 @@ afw_object_set_property_as_integer_internal(
     afw_integer_t internal,
     afw_xctx_t *xctx)
 {
-    const afw_object_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_object_get_setter(object, xctx);
-    if (!setter) {
-        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
+    if (internal == 0) {
+        v = afw_integer_v_zero;
     }
-    afw_object_setter_set_property_internal(setter,
-        property_name, afw_data_type_integer,
-        &internal, xctx);
+    else if (internal == 1) {
+        v = afw_integer_v_one;
+    }
+    else if (afw_object_is_memory_managed(object) ||
+        afw_object_is_memory_wrapper(object)) {
+        v = afw_value_integer_create_managed(internal, xctx);
+    }
+    else {
+        v = afw_value_integer_create(internal, object->p, xctx);
+    }
+    afw_object_set_property(object, property_name, v, xctx);
 }
 
 /* Typesafe cast to evaluated integer value. */
@@ -743,16 +750,22 @@ afw_array_of_integer_add_internal(
     const afw_integer_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_array_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_array_get_setter(instance, xctx);
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    if (*value == 0) {
+        v = afw_integer_v_zero;
     }
-
-    afw_array_setter_push_internal(setter, 
-        afw_data_type_integer,
-        (const void *)value, xctx);
+    else if (*value == 1) {
+        v = afw_integer_v_one;
+    }
+    else if (afw_array_is_memory_managed(instance) ||
+        afw_array_is_memory_wrapper(instance)) {
+        v = afw_value_integer_create_managed(*value, xctx);
+    }
+    else {
+        v = afw_value_integer_create(*value, instance->p, xctx);
+    }
+    afw_array_push_value(instance, v, xctx);
 }
 
 /* Remove a integer value from array of integer. */

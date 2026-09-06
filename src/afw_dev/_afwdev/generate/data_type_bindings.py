@@ -1413,7 +1413,7 @@ def write_c_section(fd, prefix, obj):
 
     if not special:
 
-        fd.write('\n/* Set property from ' + id + ' internal via setter. */\n')
+        fd.write('\n/* Set property from ' + id + ' internal. */\n')
         fd.write(define + '(void)\n')
         fd.write('afw_object_set_property_as_' + id + '_internal(\n')
         fd.write('    const afw_object_t *object,\n')
@@ -1421,18 +1421,49 @@ def write_c_section(fd, prefix, obj):
         fd.write('    ' + return_type + ' internal,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        fd.write('    const afw_object_setter_t *setter;\n')
+        fd.write('    const afw_value_t *v;\n')
         fd.write('\n')
-        fd.write('    setter = afw_object_get_setter(object, xctx);\n')
-        fd.write('    if (!setter) {\n')
-        fd.write('        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;\n')
-        fd.write('    }\n')
-        fd.write('    afw_object_setter_set_property_internal(setter,\n')
-        fd.write('        property_name, afw_data_type_' + id + ',\n')
-        if not direct_return and not ctype.endswith('*'):
-            fd.write('        internal, xctx);\n')
+        if id == 'boolean':
+            fd.write('    v = afw_value_for_boolean(internal);\n')
+        elif id == 'null':
+            fd.write('    v = afw_value_null;\n')
+        elif id == 'integer':
+            fd.write('    if (internal == 0) {\n')
+            fd.write('        v = afw_integer_v_zero;\n')
+            fd.write('    }\n')
+            fd.write('    else if (internal == 1) {\n')
+            fd.write('        v = afw_integer_v_one;\n')
+            fd.write('    }\n')
+            fd.write('    else if (afw_object_is_memory_managed(object) ||\n')
+            fd.write('        afw_object_is_memory_wrapper(object)) {\n')
+            fd.write('        v = ' + _managed_create_fn(id) +
+                     '(internal, xctx);\n')
+            fd.write('    }\n')
+            fd.write('    else {\n')
+            fd.write('        v = ' + _unmanaged_create_fn(id) +
+                     '(internal, object->p, xctx);\n')
+            fd.write('    }\n')
+        elif _scalar_holdable_create(id):
+            fd.write('    if (afw_object_is_memory_managed(object) ||\n')
+            fd.write('        afw_object_is_memory_wrapper(object)) {\n')
+            fd.write('        v = ' + _managed_create_fn(id) +
+                     '(internal, xctx);\n')
+            fd.write('    }\n')
+            fd.write('    else {\n')
+            fd.write('        v = ' + _unmanaged_create_fn(id) +
+                     '(internal, object->p, xctx);\n')
+            fd.write('    }\n')
         else:
-            fd.write('        &internal, xctx);\n')
+            fd.write('    if (afw_object_is_memory_managed(object) ||\n')
+            fd.write('        afw_object_is_memory_wrapper(object)) {\n')
+            fd.write('        v = ' + _unmanaged_create_fn(id) +
+                     '(internal, xctx->p, xctx);\n')
+            fd.write('    }\n')
+            fd.write('    else {\n')
+            fd.write('        v = ' + _unmanaged_create_fn(id) +
+                     '(internal, object->p, xctx);\n')
+            fd.write('    }\n')
+        fd.write('    afw_object_set_property(object, property_name, v, xctx);\n')
         fd.write('}\n')
 
         fd.write('\n/* Typesafe cast to evaluated ' + id + ' value. */\n')
@@ -2511,24 +2542,51 @@ def write_c_section(fd, prefix, obj):
         fd.write('    ' + parameter_ctype + 'value,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        fd.write('    const afw_array_setter_t *setter;\n')
-        if ctype.endswith('*'):
-            fd.write('    ' + parameter_ctype + 'internal;\n')
+        fd.write('    const afw_value_t *v;\n')
         fd.write('\n')
-        fd.write('    setter = afw_array_get_setter(instance, xctx);\n')
-        fd.write('    if (!setter) {\n')
-        fd.write('        AFW_LIST_ERROR_OBJECT_IMMUTABLE;\n')
-        fd.write('    }\n')
-        fd.write('\n')
-        if ctype.endswith('*'):
-            fd.write('    internal = value;\n')
-            fd.write('    afw_array_setter_push_internal(setter, \n')
-            fd.write('        afw_data_type_' + id + ',\n')
-            fd.write('        (const void *)&internal, xctx);\n')
+        if id == 'boolean':
+            fd.write('    v = afw_value_for_boolean(*value);\n')
+        elif id == 'null':
+            fd.write('    v = afw_value_null;\n')
+        elif id == 'integer':
+            fd.write('    if (*value == 0) {\n')
+            fd.write('        v = afw_integer_v_zero;\n')
+            fd.write('    }\n')
+            fd.write('    else if (*value == 1) {\n')
+            fd.write('        v = afw_integer_v_one;\n')
+            fd.write('    }\n')
+            fd.write('    else if (afw_array_is_memory_managed(instance) ||\n')
+            fd.write('        afw_array_is_memory_wrapper(instance)) {\n')
+            fd.write('        v = ' + _managed_create_fn(id) +
+                     '(*value, xctx);\n')
+            fd.write('    }\n')
+            fd.write('    else {\n')
+            fd.write('        v = ' + _unmanaged_create_fn(id) +
+                     '(*value, instance->p, xctx);\n')
+            fd.write('    }\n')
+        elif _scalar_holdable_create(id):
+            payload = '*value' if (
+                direct_return and not ctype.endswith('*')) else 'value'
+            fd.write('    if (afw_array_is_memory_managed(instance) ||\n')
+            fd.write('        afw_array_is_memory_wrapper(instance)) {\n')
+            fd.write('        v = ' + _managed_create_fn(id) +
+                     '(' + payload + ', xctx);\n')
+            fd.write('    }\n')
+            fd.write('    else {\n')
+            fd.write('        v = ' + _unmanaged_create_fn(id) +
+                     '(' + payload + ', instance->p, xctx);\n')
+            fd.write('    }\n')
         else:
-            fd.write('    afw_array_setter_push_internal(setter, \n')
-            fd.write('        afw_data_type_' + id + ',\n')
-            fd.write('        (const void *)value, xctx);\n')
+            fd.write('    if (afw_array_is_memory_managed(instance) ||\n')
+            fd.write('        afw_array_is_memory_wrapper(instance)) {\n')
+            fd.write('        v = ' + _unmanaged_create_fn(id) +
+                     '(value, xctx->p, xctx);\n')
+            fd.write('    }\n')
+            fd.write('    else {\n')
+            fd.write('        v = ' + _unmanaged_create_fn(id) +
+                     '(value, instance->p, xctx);\n')
+            fd.write('    }\n')
+        fd.write('    afw_array_push_value(instance, v, xctx);\n')
         fd.write('}\n')
 
         fd.write('\n/* Remove a ' + id + ' value from array of ' + id + '. */\n')

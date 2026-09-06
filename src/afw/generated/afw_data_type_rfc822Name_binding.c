@@ -275,7 +275,7 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_rfc822Name =
     &afw_data_type_rfc822Name_direct;
 
-/* Set property from rfc822Name internal via setter. */
+/* Set property from rfc822Name internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_rfc822Name_internal(
     const afw_object_t *object,
@@ -283,15 +283,16 @@ afw_object_set_property_as_rfc822Name_internal(
     const afw_utf8_t * internal,
     afw_xctx_t *xctx)
 {
-    const afw_object_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_object_get_setter(object, xctx);
-    if (!setter) {
-        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
+    if (afw_object_is_memory_managed(object) ||
+        afw_object_is_memory_wrapper(object)) {
+        v = afw_value_rfc822Name_create_managed(internal, xctx);
     }
-    afw_object_setter_set_property_internal(setter,
-        property_name, afw_data_type_rfc822Name,
-        internal, xctx);
+    else {
+        v = afw_value_rfc822Name_create(internal, object->p, xctx);
+    }
+    afw_object_set_property(object, property_name, v, xctx);
 }
 
 /* Typesafe cast to evaluated rfc822Name value. */
@@ -825,16 +826,16 @@ afw_array_of_rfc822Name_add_internal(
     const afw_utf8_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_array_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_array_get_setter(instance, xctx);
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    if (afw_array_is_memory_managed(instance) ||
+        afw_array_is_memory_wrapper(instance)) {
+        v = afw_value_rfc822Name_create_managed(value, xctx);
     }
-
-    afw_array_setter_push_internal(setter, 
-        afw_data_type_rfc822Name,
-        (const void *)value, xctx);
+    else {
+        v = afw_value_rfc822Name_create(value, instance->p, xctx);
+    }
+    afw_array_push_value(instance, v, xctx);
 }
 
 /* Remove a rfc822Name value from array of rfc822Name. */

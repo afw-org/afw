@@ -262,7 +262,7 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_double =
     &afw_data_type_double_direct;
 
-/* Set property from double internal via setter. */
+/* Set property from double internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_double_internal(
     const afw_object_t *object,
@@ -270,15 +270,16 @@ afw_object_set_property_as_double_internal(
     double internal,
     afw_xctx_t *xctx)
 {
-    const afw_object_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_object_get_setter(object, xctx);
-    if (!setter) {
-        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
+    if (afw_object_is_memory_managed(object) ||
+        afw_object_is_memory_wrapper(object)) {
+        v = afw_value_double_create_managed(internal, xctx);
     }
-    afw_object_setter_set_property_internal(setter,
-        property_name, afw_data_type_double,
-        &internal, xctx);
+    else {
+        v = afw_value_double_create(internal, object->p, xctx);
+    }
+    afw_object_set_property(object, property_name, v, xctx);
 }
 
 /* Typesafe cast to evaluated double value. */
@@ -743,16 +744,16 @@ afw_array_of_double_add_internal(
     const double *value,
     afw_xctx_t *xctx)
 {
-    const afw_array_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_array_get_setter(instance, xctx);
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    if (afw_array_is_memory_managed(instance) ||
+        afw_array_is_memory_wrapper(instance)) {
+        v = afw_value_double_create_managed(*value, xctx);
     }
-
-    afw_array_setter_push_internal(setter, 
-        afw_data_type_double,
-        (const void *)value, xctx);
+    else {
+        v = afw_value_double_create(*value, instance->p, xctx);
+    }
+    afw_array_push_value(instance, v, xctx);
 }
 
 /* Remove a double value from array of double. */

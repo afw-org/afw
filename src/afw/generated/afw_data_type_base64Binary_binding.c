@@ -275,7 +275,7 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_base64Binary =
     &afw_data_type_base64Binary_direct;
 
-/* Set property from base64Binary internal via setter. */
+/* Set property from base64Binary internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_base64Binary_internal(
     const afw_object_t *object,
@@ -283,15 +283,16 @@ afw_object_set_property_as_base64Binary_internal(
     const afw_memory_t * internal,
     afw_xctx_t *xctx)
 {
-    const afw_object_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_object_get_setter(object, xctx);
-    if (!setter) {
-        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
+    if (afw_object_is_memory_managed(object) ||
+        afw_object_is_memory_wrapper(object)) {
+        v = afw_value_base64Binary_create_managed(internal, xctx);
     }
-    afw_object_setter_set_property_internal(setter,
-        property_name, afw_data_type_base64Binary,
-        internal, xctx);
+    else {
+        v = afw_value_base64Binary_create(internal, object->p, xctx);
+    }
+    afw_object_set_property(object, property_name, v, xctx);
 }
 
 /* Typesafe cast to evaluated base64Binary value. */
@@ -825,16 +826,16 @@ afw_array_of_base64Binary_add_internal(
     const afw_memory_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_array_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_array_get_setter(instance, xctx);
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    if (afw_array_is_memory_managed(instance) ||
+        afw_array_is_memory_wrapper(instance)) {
+        v = afw_value_base64Binary_create_managed(value, xctx);
     }
-
-    afw_array_setter_push_internal(setter, 
-        afw_data_type_base64Binary,
-        (const void *)value, xctx);
+    else {
+        v = afw_value_base64Binary_create(value, instance->p, xctx);
+    }
+    afw_array_push_value(instance, v, xctx);
 }
 
 /* Remove a base64Binary value from array of base64Binary. */

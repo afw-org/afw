@@ -245,7 +245,7 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_null =
     &afw_data_type_null_direct;
 
-/* Set property from null internal via setter. */
+/* Set property from null internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_null_internal(
     const afw_object_t *object,
@@ -253,15 +253,10 @@ afw_object_set_property_as_null_internal(
     void * internal,
     afw_xctx_t *xctx)
 {
-    const afw_object_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_object_get_setter(object, xctx);
-    if (!setter) {
-        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
-    }
-    afw_object_setter_set_property_internal(setter,
-        property_name, afw_data_type_null,
-        &internal, xctx);
+    v = afw_value_null;
+    afw_object_set_property(object, property_name, v, xctx);
 }
 
 /* Typesafe cast to evaluated null value. */
@@ -688,18 +683,10 @@ afw_array_of_null_add_internal(
     const void *value,
     afw_xctx_t *xctx)
 {
-    const afw_array_setter_t *setter;
-    const void *internal;
+    const afw_value_t *v;
 
-    setter = afw_array_get_setter(instance, xctx);
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
-    }
-
-    internal = value;
-    afw_array_setter_push_internal(setter, 
-        afw_data_type_null,
-        (const void *)&internal, xctx);
+    v = afw_value_null;
+    afw_array_push_value(instance, v, xctx);
 }
 
 /* Remove a null value from array of null. */

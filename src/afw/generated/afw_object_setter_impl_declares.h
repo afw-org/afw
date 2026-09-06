@@ -122,17 +122,6 @@ impl_afw_object_setter_set_property(
     const afw_value_t * value,
     afw_xctx_t * xctx);
 #endif
-
-#ifndef impl_afw_object_setter_set_property_internal
-/* Declare method set_property_internal */
-AFW_DECLARE_STATIC(void)
-impl_afw_object_setter_set_property_internal(
-    AFW_OBJECT_SETTER_SELF_T *self,
-    const afw_value_t * property_name,
-    const afw_data_type_t * data_type,
-    const void * internal,
-    afw_xctx_t * xctx);
-#endif
 #endif
 
 /* inf for interface afw_object_setter */
@@ -160,9 +149,7 @@ impl_afw_object_setter_inf = {
     (afw_object_setter_set_immutable_t)
     impl_afw_object_setter_set_immutable,
     (afw_object_setter_set_property_t)
-    impl_afw_object_setter_set_property,
-    (afw_object_setter_set_property_internal_t)
-    impl_afw_object_setter_set_property_internal
+    impl_afw_object_setter_set_property
 };
 
 #undef _AFW_IMPLEMENTATION_ID_

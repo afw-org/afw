@@ -234,7 +234,7 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_function =
     &afw_data_type_function_direct;
 
-/* Set property from function internal via setter. */
+/* Set property from function internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_function_internal(
     const afw_object_t *object,
@@ -242,15 +242,16 @@ afw_object_set_property_as_function_internal(
     const afw_value_t * internal,
     afw_xctx_t *xctx)
 {
-    const afw_object_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_object_get_setter(object, xctx);
-    if (!setter) {
-        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
+    if (afw_object_is_memory_managed(object) ||
+        afw_object_is_memory_wrapper(object)) {
+        v = afw_value_function_create_managed(internal, xctx);
     }
-    afw_object_setter_set_property_internal(setter,
-        property_name, afw_data_type_function,
-        &internal, xctx);
+    else {
+        v = afw_value_function_create(internal, object->p, xctx);
+    }
+    afw_object_set_property(object, property_name, v, xctx);
 }
 
 /* Typesafe cast to evaluated function value. */
@@ -668,18 +669,16 @@ afw_array_of_function_add_internal(
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_array_setter_t *setter;
-    const afw_value_t *internal;
+    const afw_value_t *v;
 
-    setter = afw_array_get_setter(instance, xctx);
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    if (afw_array_is_memory_managed(instance) ||
+        afw_array_is_memory_wrapper(instance)) {
+        v = afw_value_function_create_managed(value, xctx);
     }
-
-    internal = value;
-    afw_array_setter_push_internal(setter, 
-        afw_data_type_function,
-        (const void *)&internal, xctx);
+    else {
+        v = afw_value_function_create(value, instance->p, xctx);
+    }
+    afw_array_push_value(instance, v, xctx);
 }
 
 /* Remove a function value from array of function. */

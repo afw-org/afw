@@ -245,7 +245,7 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_boolean =
     &afw_data_type_boolean_direct;
 
-/* Set property from boolean internal via setter. */
+/* Set property from boolean internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_boolean_internal(
     const afw_object_t *object,
@@ -253,15 +253,10 @@ afw_object_set_property_as_boolean_internal(
     afw_boolean_t internal,
     afw_xctx_t *xctx)
 {
-    const afw_object_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_object_get_setter(object, xctx);
-    if (!setter) {
-        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
-    }
-    afw_object_setter_set_property_internal(setter,
-        property_name, afw_data_type_boolean,
-        &internal, xctx);
+    v = afw_value_for_boolean(internal);
+    afw_object_set_property(object, property_name, v, xctx);
 }
 
 /* Typesafe cast to evaluated boolean value. */
@@ -697,16 +692,10 @@ afw_array_of_boolean_add_internal(
     const afw_boolean_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_array_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_array_get_setter(instance, xctx);
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
-    }
-
-    afw_array_setter_push_internal(setter, 
-        afw_data_type_boolean,
-        (const void *)value, xctx);
+    v = afw_value_for_boolean(*value);
+    afw_array_push_value(instance, v, xctx);
 }
 
 /* Remove a boolean value from array of boolean. */
