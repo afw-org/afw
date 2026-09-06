@@ -257,7 +257,7 @@ def log(session, value):
 
 def now_local(session):
     """
-    Local dataTime
+    Local dateTime
 
     Return current local dateTime.
 
@@ -281,7 +281,7 @@ def now_local(session):
 
 def now_utc(session):
     """
-    UTC dataTime
+    UTC dateTime
 
     Return current UTC dateTime.
 

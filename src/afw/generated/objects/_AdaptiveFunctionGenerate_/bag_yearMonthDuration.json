@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagYearMonthDuration",
     "category": "yearMonthDuration",
     "dataTypeMethod": true,
-    "description": "Takes any number of yearMonthDuration values and returns an array of array.",
+    "description": "Takes any number of yearMonthDuration values and returns an array of yearMonthDuration.",
     "functionId": "bag<yearMonthDuration>",
     "functionLabel": "bag_yearMonthDuration",
     "parameters": [

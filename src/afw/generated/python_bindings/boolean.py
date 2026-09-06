@@ -46,7 +46,7 @@ def bag_boolean(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of boolean values and returns an array of array.
+    Takes any number of boolean values and returns an array of boolean.
 
     Args:
         values (list):

@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagFunction",
     "category": "function",
     "dataTypeMethod": true,
-    "description": "Takes any number of function values and returns an array of array.",
+    "description": "Takes any number of function values and returns an array of function.",
     "functionId": "bag<function>",
     "functionLabel": "bag_function",
     "parameters": [

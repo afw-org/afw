@@ -74,7 +74,7 @@ def bag_time(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of time values and returns an array of array.
+    Takes any number of time values and returns an array of time.
 
     Args:
         values (list):

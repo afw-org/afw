@@ -38,6 +38,6 @@
     ],
     "returns": {
         "dataType": "object",
-        "description": "Object retrieved or NULL if not found."
+        "description": "Object retrieved. Throws not_found if the adapter or object is not found."
     }
 }

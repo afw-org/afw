@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagDayTimeDuration",
     "category": "dayTimeDuration",
     "dataTypeMethod": true,
-    "description": "Takes any number of dayTimeDuration values and returns an array of array.",
+    "description": "Takes any number of dayTimeDuration values and returns an array of dayTimeDuration.",
     "functionId": "bag<dayTimeDuration>",
     "functionLabel": "bag_dayTimeDuration",
     "parameters": [

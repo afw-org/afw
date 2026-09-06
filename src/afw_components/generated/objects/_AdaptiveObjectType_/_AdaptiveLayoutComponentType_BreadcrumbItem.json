@@ -26,8 +26,8 @@
             "allowWrite": true,
             "dataType": "string",
             "required": true,
-            "brief": "",
-            "description": "",
+            "brief": "Text to display",
+            "description": "The text to display for this breadcrumb item.",
             "label": "Text"
         }
     }

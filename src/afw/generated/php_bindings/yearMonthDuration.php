@@ -76,7 +76,7 @@ class yearMonthDuration
      * bag_yearMonthDuration()
      *
      * Takes any number of yearMonthDuration values and returns an array of
-     * array.
+     * yearMonthDuration.
      *
      * @param array $values
      *

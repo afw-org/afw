@@ -36,7 +36,7 @@ The following functions are exported by default
 
 =head3 bag_function
 
-Takes any number of function values and returns an array of array.
+Takes any number of function values and returns an array of function.
 Makes an array from values
 
 =head4 Parameters

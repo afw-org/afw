@@ -39,7 +39,7 @@ The following functions are exported by default
 
 =head3 bag_script
 
-Takes any number of script values and returns an array of array.
+Takes any number of script values and returns an array of script.
 Makes an array from values
 
 =head4 Parameters

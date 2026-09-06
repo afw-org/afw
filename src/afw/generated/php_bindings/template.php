@@ -50,7 +50,7 @@ class template
     /**
      * bag_template()
      *
-     * Takes any number of template values and returns an array of array.
+     * Takes any number of template values and returns an array of template.
      *
      * @param array $values
      *

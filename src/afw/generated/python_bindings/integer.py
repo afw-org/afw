@@ -103,7 +103,7 @@ def bag_integer(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of integer values and returns an array of array.
+    Takes any number of integer values and returns an array of integer.
 
     Args:
         values (list):

@@ -53,7 +53,8 @@ class base64Binary
     /**
      * bag_base64Binary()
      *
-     * Takes any number of base64Binary values and returns an array of array.
+     * Takes any number of base64Binary values and returns an array of
+     * base64Binary.
      *
      * @param array $values
      *

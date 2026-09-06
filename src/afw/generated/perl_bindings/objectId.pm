@@ -38,7 +38,7 @@ The following functions are exported by default
 
 =head3 bag_objectId
 
-Takes any number of objectId values and returns an array of array.
+Takes any number of objectId values and returns an array of objectId.
 Makes an array from values
 
 =head4 Parameters

@@ -18,7 +18,7 @@ interface IAnyObject {
 }
 
 /**
- * Takes any number of ipAddress values and returns an array of array.
+ * Takes any number of ipAddress values and returns an array of ipAddress.
  * 
  * @param {array} values -
  * 

@@ -2290,7 +2290,7 @@ impl_29_property_dataType = {
 static const afw_runtime_property_t
 impl_29_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__72e8352cf7ff.pub
+    &afw_curl_self_v_zz__c7be87678e31.pub
 };
 
 static const afw_runtime_property_t
@@ -5124,7 +5124,7 @@ impl_54_property_category = {
 static const afw_runtime_property_t
 impl_54_property_description = {
     afw_curl_v_description,
-    &afw_curl_self_v_zz__284a731dcf66.pub
+    &afw_curl_self_v_zz__8eeb339598c5.pub
 };
 
 static const afw_runtime_property_t *

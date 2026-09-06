@@ -53,7 +53,7 @@ class boolean
     /**
      * bag_boolean()
      *
-     * Takes any number of boolean values and returns an array of array.
+     * Takes any number of boolean values and returns an array of boolean.
      *
      * @param array $values
      *

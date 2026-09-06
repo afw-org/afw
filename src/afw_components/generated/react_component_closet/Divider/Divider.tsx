@@ -21,8 +21,8 @@ import {ctx} from "@afw/react";
  * 
  * A component that displays a Divider line to separate content.
  * 
- * A very simple way to divide content from the remaining content with the
- * user of an dividing line.
+ * A very simple way to divide content from the remaining content with the use
+ * of a dividing line.
  * 
  */
 export const Divider : React.FunctionComponent<IDividerProps> = (props) => {

@@ -38,7 +38,7 @@ The following functions are exported by default
 
 =head3 bag_objectPath
 
-Takes any number of objectPath values and returns an array of array.
+Takes any number of objectPath values and returns an array of objectPath.
 Makes an array from values
 
 =head4 Parameters

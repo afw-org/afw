@@ -8,7 +8,7 @@ This component encapsulates a wide range of Button features, including labels, i
 ## Props
 | Name | Type | Required | Default | Description |
 |:----------|:----------|:----|:------------|:------------|
-|color|string|false|null|Specifies an optional color for this Button (primary, secondary, error).|
+|color|string|false|null|Specifies an optional color for this Button (default, inherit, primary, secondary).|
 |disabled|boolean|false|null|Specifies whether this Button component is disabled.|
 |dropdown|boolean|false|null|Specifies an optional dropdown icon for this Button.|
 |icon|string|false|null|Specifies an optional icon for this Button.|

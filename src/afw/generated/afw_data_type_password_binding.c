@@ -227,7 +227,7 @@ afw_data_type_password_direct = {
     (const afw_object_t *)&impl_data_type_object_password,
     AFW_UTF8_LITERAL("password"),
     AFW_UTF8_LITERAL("A password"),
-    AFW_UTF8_LITERAL("Data type 'password' hold a secret series of characters that enables a user to access a file, computer, or program."),
+    AFW_UTF8_LITERAL("Data type 'password' holds a secret series of characters that enables a user to access a file, computer, or program."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_password,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.40{128}"),

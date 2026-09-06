@@ -44,7 +44,7 @@
         "expectCodepointLengthInTestScript": {
             "brief": "Length of test 'expect' in codepoints",
             "dataType": "integer",
-            "description": "This is the number of codepoints in the full source for the test script before this test's 'expect' begins.",
+            "description": "This is the number of codepoints in this test's 'expect' value in the full source for the test script.",
             "label": "Test Script Offset"
         },
         "expectCodepointOffsetInTestScript": {
@@ -75,7 +75,7 @@
         "expectUTF8OctetLengthInTestScript": {
             "brief": "Length of test 'expect' in UTF-8 octets",
             "dataType": "integer",
-            "description": "This is the number of UTF-8 octets in the full source for the test script before this test's 'expect' begins.",
+            "description": "This is the number of UTF-8 octets in this test's 'expect' value in the full source for the test script.",
             "label": "Test Script Offset"
         },
         "expectUTF8OctetOffsetInTestScript": {
@@ -112,7 +112,7 @@
         "sourceCodepointLengthInTestScript": {
             "brief": "Length of test 'source' in codepoints",
             "dataType": "integer",
-            "description": "This is the number of codepoints in the full source for the test script before this test's 'source' begins.",
+            "description": "This is the number of codepoints in this test's 'source' value in the full source for the test script.",
             "label": "Test Script Offset"
         },
         "sourceCodepointOffsetInTestScript": {
@@ -128,9 +128,9 @@
             "label": "Test Script Column"
         },
         "sourceLineNumberInTestScript": {
-            "brief": "Length of test 'source' in UTF-8 octets",
+            "brief": "Line number of test source",
             "dataType": "integer",
-            "description": "This is the number of UTF-8 octets in the full source for the test script before this test's 'source' begins.",
+            "description": "This is the line number in the full source for the test script where this test's 'source' begins.",
             "label": "Test Script Offset"
         },
         "sourceLocation": {
@@ -155,7 +155,7 @@
         "sourceUTF8OctetLengthInTestScript": {
             "brief": "Length of test source in UTF-8 octets",
             "dataType": "integer",
-            "description": "This is the number of UTF-8 octets in the full 'source' for the test script before this test's 'source' begins.",
+            "description": "This is the number of UTF-8 octets in this test's 'source' value in the full source for the test script.",
             "label": "Test Script Offset"
         },
         "test": {

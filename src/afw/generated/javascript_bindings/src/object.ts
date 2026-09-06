@@ -64,7 +64,7 @@ export function afwApplyObjectOptions(client : any, object : object, options? : 
 }
 
 /**
- * Takes any number of object values and returns an array of array.
+ * Takes any number of object values and returns an array of object.
  * 
  * @param {array} values -
  * 

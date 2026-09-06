@@ -107,7 +107,7 @@ def bag_dateTime(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of dateTime values and returns an array of array.
+    Takes any number of dateTime values and returns an array of dateTime.
 
     Args:
         values (list):

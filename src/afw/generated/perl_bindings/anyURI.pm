@@ -86,7 +86,7 @@ The second array.
 
 =head3 bag_anyURI
 
-Takes any number of anyURI values and returns an array of array.
+Takes any number of anyURI values and returns an array of anyURI.
 Makes an array from values
 
 =head4 Parameters
@@ -292,9 +292,8 @@ Checks for less than or equal
 
 =head3 length_anyURI
 
-This is a polymorphic function where anyURI can be any of the supported data
-types. Return the integer number of entries in datatype array or codepoints in
-others.
+Return the integer number of entries in a anyURI array or the number of
+codepoints in a anyURI anyURI or string.
 Returns number of codepoints or entries in value
 
 =head4 Parameters
@@ -562,15 +561,14 @@ Two or more arrays.
 
 =head3 url_encode_anyURI
 
-URL encode a value or bag of values.
+URL encode a anyURI value and return the string result.
 URI encode
 
 =head4 Parameters
 
     $unencoded
 
-URL encode a single value. See the url_encode method for the data type of more
-details.
+The anyURI value to URL encode.
 
 =cut
 

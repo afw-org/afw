@@ -39,7 +39,7 @@ export function afwAtLeastOneMemberOfHexBinary(client : any, array1 : any[], arr
 }
 
 /**
- * Takes any number of hexBinary values and returns an array of array.
+ * Takes any number of hexBinary values and returns an array of hexBinary.
  * 
  * @param {array} values -
  * 

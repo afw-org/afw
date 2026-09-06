@@ -157,9 +157,10 @@ export function afwEvaluate(client : any, value : any, additionalUntrustedQualif
 }
 
 /**
- * Evaluate a value and retry up to a limit if an exception occurs.
+ * Evaluate a value and retry up to a limit if an exception occurs. An error
+ * is thrown if the evaluated result is undefined.
  * 
- * @param {} value - Value to evaluated
+ * @param {} value - Value to evaluate
  * 
  * @param {integer} limit - Maximum number to retry if an exception occurs.
  * 
@@ -243,7 +244,7 @@ export function afwQualifier(client : any, qualifier : string, includeUntrusted?
  * Warning: the result can be very large. Each property is a full snapshot of
  * that qualifier (see qualifier()), so environment, request, application,
  * current, and others can all appear as nested objects with many properties.
- * Prefer qualifier::name or qualifier(name) when you need one bag; avoid
+ * Prefer qualifier::name or qualifier(name) when you need one object; avoid
  * repeated qualifiers() calls or retaining the result in long-running work.
  * 
  * Each nested variables object is the multi-entry snapshot for that name (all

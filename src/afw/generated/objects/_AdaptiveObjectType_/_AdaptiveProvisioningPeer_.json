@@ -10,14 +10,14 @@
             "allowQuery": true,
             "brief": "Internal cursor used by advance_cursor_for_consumer",
             "dataType": "string",
-            "description": "This property set by get_entry() option advance_cursor_for_consumer. If set, get_entry() option next_for_consumer will removed it and use it as the cursor to begin looking for the next applicable entry. The intent of cursorNext is to be set by a background process/thread that examines journal entries from the cursorNext/cursorCurrent forward looking for a entry that passes the consumer filter. Once cursorNext is used by get_entry() next_for_consumer, the property is removed.",
+            "description": "This property set by get_entry() option advance_cursor_for_consumer. If set, get_entry() option next_for_consumer will removed it and use it as the cursor to begin looking for the next applicable entry. The intent of advanceCursor is to be set by a background process/thread that examines journal entries from the advanceCursor/currentCursor forward looking for a entry that passes the consumer filter. Once advanceCursor is used by get_entry() next_for_consumer, the property is removed.",
             "label": "Advance Cursor"
         },
         "consumeCursor": {
             "allowQuery": true,
             "brief": "The current cursor being consumed",
             "dataType": "string",
-            "description": "This is the current cursor being consumed. This property only exists between a get_entry() option next_for_consumer and the corresponding mark_entry_consumed(). If this property exists, it should have exactly the same value as property cursorCurrent. Anything else is and error.",
+            "description": "This is the current cursor being consumed. This property only exists between a get_entry() option next_for_consumer and the corresponding mark_entry_consumed(). If this property exists, it should have exactly the same value as property currentCursor. Anything else is and error.",
             "label": "Consume Cursor"
         },
         "consumeFilter": {
@@ -32,7 +32,7 @@
             "allowQuery": true,
             "brief": "The time that get_entry() next_for_consumer began",
             "dataType": "dateTime",
-            "description": "The time that get_entry() next_for_consumer began. This property will only exist if cursorBeingConsumed property exists.",
+            "description": "The time that get_entry() next_for_consumer began. This property will only exist if consumeCursor property exists.",
             "label": "Consume Start Time"
         },
         "currentCursor": {

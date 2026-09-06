@@ -1,6 +1,6 @@
 {
     "afwCamelCaseFunctionLabel": "afwNowLocal",
-    "brief": "Local dataTime",
+    "brief": "Local dateTime",
     "camelCaseFunctionLabel": "nowLocal",
     "category": "miscellaneous",
     "dataTypeMethod": false,

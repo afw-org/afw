@@ -46,7 +46,7 @@ def bag_rfc822Name(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of rfc822Name values and returns an array of array.
+    Takes any number of rfc822Name values and returns an array of rfc822Name.
 
     Args:
         values (list):

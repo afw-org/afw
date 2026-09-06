@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagNull",
     "category": "null",
     "dataTypeMethod": true,
-    "description": "Takes any number of null values and returns an array of array.",
+    "description": "Takes any number of null values and returns an array of null.",
     "functionId": "bag<null>",
     "functionLabel": "bag_null",
     "parameters": [

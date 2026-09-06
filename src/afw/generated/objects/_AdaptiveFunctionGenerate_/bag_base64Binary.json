@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagBase64Binary",
     "category": "base64Binary",
     "dataTypeMethod": true,
-    "description": "Takes any number of base64Binary values and returns an array of array.",
+    "description": "Takes any number of base64Binary values and returns an array of base64Binary.",
     "functionId": "bag<base64Binary>",
     "functionLabel": "bag_base64Binary",
     "parameters": [

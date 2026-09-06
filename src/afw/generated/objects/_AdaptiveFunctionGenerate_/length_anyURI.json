@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "lengthAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "This is a polymorphic function where anyURI can be any of the supported data types. Return the integer number of entries in datatype array or codepoints in others.",
+    "description": "Return the integer number of entries in a anyURI array or the number of codepoints in a anyURI anyURI or string.",
     "functionId": "length<anyURI>",
     "functionLabel": "length_anyURI",
     "parameters": [

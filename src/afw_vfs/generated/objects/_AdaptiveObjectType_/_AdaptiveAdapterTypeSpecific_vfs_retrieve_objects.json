@@ -17,7 +17,7 @@
             "required": false
         },
         "includeHidden": {
-            "brief": "Include",
+            "brief": "Include hidden files",
             "dataType": "boolean",
             "description": "If true, filenames that begin with dot ('.') will be included.",
             "label": "Include Hidden",

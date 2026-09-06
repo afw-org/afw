@@ -272,7 +272,7 @@ the last evaluated value or a null value will be returned.
 =head3 switch
 
 Support for switch statement.
-All combinations true
+Switch statement
 
 =head4 Parameters
 

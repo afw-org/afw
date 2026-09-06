@@ -56,7 +56,8 @@ export function afwBagSizeYearMonthDuration(client : any, value : any[]) : any {
 }
 
 /**
- * Takes any number of yearMonthDuration values and returns an array of array.
+ * Takes any number of yearMonthDuration values and returns an array of
+ * yearMonthDuration.
  * 
  * @param {array} values -
  * 

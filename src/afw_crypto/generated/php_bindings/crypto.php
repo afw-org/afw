@@ -358,7 +358,8 @@ class crypto
      * be: (1) an object with iv, tag, and ciphertext as
      * base64Binary/hexBinary or as base64/hex strings; (2) a string of pure
      * JSON with those properties as base64 strings (e.g. after stringify of a
-     * JSON-friendly bag). Returns plaintext octets. Requires execute access.
+     * JSON-friendly object). Returns plaintext octets. Requires execute
+     * access.
      *
      * @param  $key Key material, CryptoKey, or key reference.
      * @param  $sealed Sealed object or pure JSON string.

@@ -3,8 +3,8 @@
     "$defs": {
         "_AdaptiveLock_": {
             "additionalProperties": false,
-            "description": "An adaptive flag.",
-            "markdownDescription": "An adaptive flag.",
+            "description": "Runtime information about a registered process lock (mutex or read/write lock).",
+            "markdownDescription": "Runtime information about a registered process lock (mutex or read/write lock).",
             "properties": {
                 "_meta_": {
                     "additionalProperties": true,
@@ -39,8 +39,8 @@
                     "type": "string"
                 },
                 "lockId": {
-                    "description": "This is the key for this lock in registry type flag and the objectId of its _AdaptiveLock_ runtime object.",
-                    "markdownDescription": "**Lock Id**\n\nThis is the key for this lock in registry type flag and the objectId of its _AdaptiveLock_ runtime object.",
+                    "description": "This is the key for this lock in registry type lock and the objectId of its _AdaptiveLock_ runtime object.",
+                    "markdownDescription": "**Lock Id**\n\nThis is the key for this lock in registry type lock and the objectId of its _AdaptiveLock_ runtime object.",
                     "title": "Lock Id",
                     "type": "string"
                 }
@@ -76,8 +76,8 @@
                     "type": "string"
                 },
                 "lockId": {
-                    "description": "This is the key for this lock in registry type flag and the objectId of its _AdaptiveLock_ runtime object.",
-                    "markdownDescription": "**Lock Id**\n\nThis is the key for this lock in registry type flag and the objectId of its _AdaptiveLock_ runtime object.",
+                    "description": "This is the key for this lock in registry type lock and the objectId of its _AdaptiveLock_ runtime object.",
+                    "markdownDescription": "**Lock Id**\n\nThis is the key for this lock in registry type lock and the objectId of its _AdaptiveLock_ runtime object.",
                     "title": "Lock Id",
                     "type": "string"
                 }
@@ -87,8 +87,8 @@
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
-    "description": "An adaptive flag.",
-    "markdownDescription": "An adaptive flag.",
+    "description": "Runtime information about a registered process lock (mutex or read/write lock).",
+    "markdownDescription": "Runtime information about a registered process lock (mutex or read/write lock).",
     "properties": {
         "_meta_": {
             "additionalProperties": true,
@@ -123,8 +123,8 @@
             "type": "string"
         },
         "lockId": {
-            "description": "This is the key for this lock in registry type flag and the objectId of its _AdaptiveLock_ runtime object.",
-            "markdownDescription": "**Lock Id**\n\nThis is the key for this lock in registry type flag and the objectId of its _AdaptiveLock_ runtime object.",
+            "description": "This is the key for this lock in registry type lock and the objectId of its _AdaptiveLock_ runtime object.",
+            "markdownDescription": "**Lock Id**\n\nThis is the key for this lock in registry type lock and the objectId of its _AdaptiveLock_ runtime object.",
             "title": "Lock Id",
             "type": "string"
         }

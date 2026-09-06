@@ -74,7 +74,7 @@ export function afwAtLeastOneMemberOfDouble(client : any, array1 : any[], array2
 }
 
 /**
- * Takes any number of double values and returns an array of array.
+ * Takes any number of double values and returns an array of double.
  * 
  * @param {array} values -
  * 

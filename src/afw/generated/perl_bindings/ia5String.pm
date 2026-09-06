@@ -38,7 +38,7 @@ The following functions are exported by default
 
 =head3 bag_ia5String
 
-Takes any number of ia5String values and returns an array of array.
+Takes any number of ia5String values and returns an array of ia5String.
 Makes an array from values
 
 =head4 Parameters

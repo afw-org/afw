@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagTemplate",
     "category": "template",
     "dataTypeMethod": true,
-    "description": "Takes any number of template values and returns an array of array.",
+    "description": "Takes any number of template values and returns an array of template.",
     "functionId": "bag<template>",
     "functionLabel": "bag_template",
     "parameters": [

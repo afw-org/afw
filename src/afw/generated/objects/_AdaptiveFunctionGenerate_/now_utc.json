@@ -1,6 +1,6 @@
 {
     "afwCamelCaseFunctionLabel": "afwNowUtc",
-    "brief": "UTC dataTime",
+    "brief": "UTC dateTime",
     "camelCaseFunctionLabel": "nowUtc",
     "category": "miscellaneous",
     "dataTypeMethod": false,

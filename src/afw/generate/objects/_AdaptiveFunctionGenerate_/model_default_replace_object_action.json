@@ -7,22 +7,22 @@
     "parameters": [
         {
             "dataType": "string",
-            "description": "This is the adapterId of a model adapter. Variable custom::adapterId can be used to access this value in model expressions.",
+            "description": "This is the adapterId of a model adapter. Variable current::adapterId can be used to access this value in model expressions.",
             "name": "adapterId"
         },
         {
             "dataType": "string",
-            "description": "This is the adaptive object type of object being replaced. Variable custom::objectType can be used to access this value in model expressions.",
+            "description": "This is the adaptive object type of object being replaced. Variable current::objectType can be used to access this value in model expressions.",
             "name": "objectType"
         },
         {
             "dataType": "string",
-            "description": "The objectId of object to replace. Variable custom::objectId can be used to access this value in model expressions.",
+            "description": "The objectId of object to replace. Variable current::objectId can be used to access this value in model expressions.",
             "name": "objectId"
         },
         {
             "dataType": "object",
-            "description": "This is the object to replace. Variable custom::object can be used to access this value in model expressions.",
+            "description": "This is the object to replace. Variable current::object can be used to access this value in model expressions.",
             "name": "object"
         },
         {

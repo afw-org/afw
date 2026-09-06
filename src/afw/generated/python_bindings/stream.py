@@ -346,7 +346,7 @@ def stream(session, streamId):
 
 def write(session, streamNumber, value):
     """
-    Write values to stream as sting
+    Write values to stream as string
 
     Evaluate and convert 0 or more values to its string value, then write them
     to stream. An value with an undefined value is represented by 'undefined'.

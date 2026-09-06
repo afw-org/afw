@@ -210,9 +210,10 @@ class compiler
     /**
      * evaluate_with_retry()
      *
-     * Evaluate a value and retry up to a limit if an exception occurs.
+     * Evaluate a value and retry up to a limit if an exception occurs. An
+     * error is thrown if the evaluated result is undefined.
      *
-     * @param  $value Value to evaluated
+     * @param  $value Value to evaluate
      * @param integer $limit Maximum number to retry if an exception occurs.
      *
      * @return  Evaluated value.
@@ -315,8 +316,8 @@ class compiler
      * of that qualifier (see qualifier()), so environment, request,
      * application, current, and others can all appear as nested objects with
      * many properties. Prefer qualifier::name or qualifier(name) when you
-     * need one bag; avoid repeated qualifiers() calls or retaining the result
-     * in long-running work.
+     * need one object; avoid repeated qualifiers() calls or retaining the
+     * result in long-running work.
      * 
      * Each nested variables object is the multi-entry snapshot for that name
      * (all matching visible stack entries contribute; most recent wins per

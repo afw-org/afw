@@ -406,7 +406,7 @@ def crypto_unseal(session, key, sealed):
     Decrypt a sealed value from crypto_seal / crypto_encrypt. sealed may be:
     (1) an object with iv, tag, and ciphertext as base64Binary/hexBinary or as
     base64/hex strings; (2) a string of pure JSON with those properties as
-    base64 strings (e.g. after stringify of a JSON-friendly bag). Returns
+    base64 strings (e.g. after stringify of a JSON-friendly object). Returns
     plaintext octets. Requires execute access.
 
     Args:

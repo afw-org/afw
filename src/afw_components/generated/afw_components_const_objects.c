@@ -1608,7 +1608,7 @@ impl_15_property_componentType = {
 static const afw_runtime_property_t
 impl_15_property_description = {
     afw_components_v_description,
-    &afw_components_self_v_zz__0df0dcc40f32.pub
+    &afw_components_self_v_zz__41abc4619106.pub
 };
 
 static const afw_runtime_property_t
@@ -2145,7 +2145,7 @@ impl_20;
 static const afw_runtime_property_t
 impl_20_property_brief = {
     afw_components_v_brief,
-    &afw_components_self_v_zz__51722a742de7.pub
+    &afw_components_self_v_zz__80dc950f6f00.pub
 };
 
 static const afw_runtime_property_t
@@ -3162,7 +3162,7 @@ impl_29_property_componentType = {
 static const afw_runtime_property_t
 impl_29_property_description = {
     afw_components_v_description,
-    &afw_components_self_v_zz__15337eab00e4.pub
+    &afw_components_self_v_zz__d1305f20d59a.pub
 };
 
 static const afw_runtime_property_t
@@ -3384,7 +3384,7 @@ impl_31_property_componentType = {
 static const afw_runtime_property_t
 impl_31_property_description = {
     afw_components_v_description,
-    &afw_components_self_v_zz__b8ed9d66dc91.pub
+    &afw_components_self_v_zz__bc6b2516ecb6.pub
 };
 
 static const afw_runtime_property_t
@@ -4143,7 +4143,7 @@ impl_38;
 static const afw_runtime_property_t
 impl_38_property_brief = {
     afw_components_v_brief,
-    &afw_components_self_v_zz__b747fcf8252f.pub
+    &afw_components_self_v_zz__7e14d5caa889.pub
 };
 
 static const afw_runtime_property_t
@@ -4161,7 +4161,7 @@ impl_38_property_componentType = {
 static const afw_runtime_property_t
 impl_38_property_description = {
     afw_components_v_description,
-    &afw_components_self_v_zz__b747fcf8252f.pub
+    &afw_components_self_v_zz__cfd8373518c2.pub
 };
 
 static const afw_runtime_property_t
@@ -5715,7 +5715,7 @@ impl_52_property_componentType = {
 static const afw_runtime_property_t
 impl_52_property_description = {
     afw_components_v_description,
-    &afw_components_self_v_zz__b89198502888.pub
+    &afw_components_self_v_zz__f19c355207af.pub
 };
 
 static const afw_runtime_property_t
@@ -10321,7 +10321,7 @@ impl_93_property_allowWrite = {
 static const afw_runtime_property_t
 impl_93_property_brief = {
     afw_components_v_brief,
-    &afw_components_self_v_zz__.pub
+    &afw_components_self_v_zz__Text_to_display.pub
 };
 
 static const afw_runtime_property_t
@@ -10333,7 +10333,7 @@ impl_93_property_dataType = {
 static const afw_runtime_property_t
 impl_93_property_description = {
     afw_components_v_description,
-    &afw_components_self_v_zz__.pub
+    &afw_components_self_v_zz__The_text_to_display_for_this_breadcrumb_item_.pub
 };
 
 static const afw_runtime_property_t
@@ -10694,7 +10694,7 @@ impl_96_property_dataType = {
 static const afw_runtime_property_t
 impl_96_property_description = {
     afw_components_v_description,
-    &afw_components_self_v_zz__659c54e59915.pub
+    &afw_components_self_v_zz__6bb6c0f4bdd2.pub
 };
 
 static const afw_runtime_property_t
@@ -11893,7 +11893,7 @@ impl_106_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_106_property_description = {
     afw_components_v_description,
-    &afw_components_self_v_zz__04c813fa6a8b.pub
+    &afw_components_self_v_zz__The_component_to_be_rendered_inside_the_Callout_.pub
 };
 
 static const afw_runtime_property_t
@@ -22848,7 +22848,7 @@ impl_204_property_dataType = {
 static const afw_runtime_property_t
 impl_204_property_description = {
     afw_components_v_description,
-    &afw_components_self_v_zz__The_description_for_this_dropdown_editor_.pub
+    &afw_components_self_v_zz__The_description_for_this_Dropdown_component_.pub
 };
 
 static const afw_runtime_property_t
@@ -22945,7 +22945,7 @@ impl_205_property_dataType = {
 static const afw_runtime_property_t
 impl_205_property_description = {
     afw_components_v_description,
-    &afw_components_self_v_zz__ff250b38197d.pub
+    &afw_components_self_v_zz__Whether_the_options_managed_by_this_Dropdown_are_editable_.pub
 };
 
 static const afw_runtime_property_t
@@ -32711,7 +32711,7 @@ impl_293_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_293_property_description = {
     afw_components_v_description,
-    &afw_components_self_v_zz__04c813fa6a8b.pub
+    &afw_components_self_v_zz__The_component_to_be_rendered_inside_the_Modal_.pub
 };
 
 static const afw_runtime_property_t
@@ -36131,7 +36131,7 @@ impl_319_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_319_property_description = {
     afw_components_v_description,
-    &afw_components_self_v_zz__Item_for_the_Nav_component.pub
+    &afw_components_self_v_zz__Item_for_the_Picker_component.pub
 };
 
 static const afw_runtime_property_t
@@ -63148,7 +63148,7 @@ impl_586_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_586_property_description = {
     afw_components_v_description,
-    &afw_components_self_v_zz__Adaptive_Layout_column_definition_for_the_Table_component_.pub
+    &afw_components_self_v_zz__Adaptive_Layout_row_definition_for_the_Table_component_.pub
 };
 
 static const afw_runtime_property_t
@@ -64146,7 +64146,7 @@ impl_592_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_592_property_description = {
     afw_components_v_description,
-    &afw_components_self_v_zz__Adaptive_Layout_definition_for_the_Tabs_component_.pub
+    &afw_components_self_v_zz__Adaptive_Layout_definition_for_a_Tabs_Tab_component_.pub
 };
 
 static const afw_runtime_property_t
@@ -77789,7 +77789,7 @@ impl_718_property_category = {
 static const afw_runtime_property_t
 impl_718_property_description = {
     afw_components_v_description,
-    &afw_components_self_v_zz__fefc04084cf5.pub
+    &afw_components_self_v_zz__73417b145f34.pub
 };
 
 static const afw_runtime_property_t

@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagRfc822Name",
     "category": "rfc822Name",
     "dataTypeMethod": true,
-    "description": "Takes any number of rfc822Name values and returns an array of array.",
+    "description": "Takes any number of rfc822Name values and returns an array of rfc822Name.",
     "functionId": "bag<rfc822Name>",
     "functionLabel": "bag_rfc822Name",
     "parameters": [

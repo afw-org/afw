@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagInteger",
     "category": "integer",
     "dataTypeMethod": true,
-    "description": "Takes any number of integer values and returns an array of array.",
+    "description": "Takes any number of integer values and returns an array of integer.",
     "functionId": "bag<integer>",
     "functionLabel": "bag_integer",
     "parameters": [

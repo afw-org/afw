@@ -282,9 +282,8 @@ Checks for less than or equal
 
 =head3 length_array
 
-This is a polymorphic function where array can be any of the supported data
-types. Return the integer number of entries in datatype array or codepoints in
-others.
+Return the integer number of entries in a array array or the number of
+codepoints in a array anyURI or string.
 Returns number of codepoints or entries in value
 
 =head4 Parameters

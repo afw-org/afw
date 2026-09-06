@@ -170,7 +170,7 @@ afw_function_execute_at_least_one_member_of(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Takes any number of `<dataType>` values and returns an array of array.
+ * Takes any number of `<dataType>` values and returns an array of `<dataType>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1243,9 +1243,8 @@ afw_function_execute_le(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * This is a polymorphic function where `<dataType>` can be any of the supported
- * data types. Return the integer number of entries in datatype array or
- * codepoints in others.
+ * Return the integer number of entries in a `<dataType>` array or the number of
+ * codepoints in a `<dataType>` anyURI or string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2906,7 +2905,7 @@ afw_function_execute_regexp_replace(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * URL encode a value or bag of values.
+ * URL encode a `<dataType>` value and return the string result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2925,8 +2924,7 @@ afw_function_execute_regexp_replace(
  *
  * Parameters:
  *
- *   unencoded - (``<Type>``) URL encode a single value. See the url_encode
- *       method for the data type of more details.
+ *   unencoded - (``<Type>``) The `<dataType>` value to URL encode.
  *
  * Returns:
  *

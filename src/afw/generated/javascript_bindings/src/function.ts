@@ -18,7 +18,7 @@ interface IAnyObject {
 }
 
 /**
- * Takes any number of function values and returns an array of array.
+ * Takes any number of function values and returns an array of function.
  * 
  * @param {array} values -
  * 

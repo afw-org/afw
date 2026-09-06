@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Takes any number of string values and returns an array of array.",
+    "description": "Takes any number of string values and returns an array of string.",
     "functionId": "bag<string>",
     "functionLabel": "bag_string",
     "parameters": [

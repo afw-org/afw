@@ -46,7 +46,8 @@ def bag_base64Binary(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of base64Binary values and returns an array of array.
+    Takes any number of base64Binary values and returns an array of
+    base64Binary.
 
     Args:
         values (list):

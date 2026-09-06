@@ -10,7 +10,7 @@ export default {
                 name: "string",
                 required: false,
             },
-            description: "Specifies an optional color for this Button (primary, secondary, error).",
+            description: "Specifies an optional color for this Button (default, inherit, primary, secondary).",
         },
         disabled: {
             name: "disabled",

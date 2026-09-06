@@ -15,7 +15,7 @@ def bag_script(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of script values and returns an array of array.
+    Takes any number of script values and returns an array of script.
 
     Args:
         values (list):

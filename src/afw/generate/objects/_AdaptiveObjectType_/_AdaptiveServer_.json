@@ -35,7 +35,7 @@
             "allowQuery": true,
             "brief": "Current number of concurrent threads",
             "dataType": "integer",
-            "description": "This is the number of threads that are currently being processed at the time of this request. It may change over time, and will not exceed the the number of threads that are available.",
+            "description": "This is the number of threads that are currently being processed at the time of this request. It may change over time, and will not exceed the number of threads that are available.",
             "label": "Concurrent",
             "required": true,
             "unique": false

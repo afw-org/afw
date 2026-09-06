@@ -123,7 +123,7 @@ Returns the number of values in a bag
 
 =head3 bag_string
 
-Takes any number of string values and returns an array of array.
+Takes any number of string values and returns an array of string.
 Makes an array from values
 
 =head4 Parameters
@@ -389,9 +389,8 @@ Checks for less than or equal
 
 =head3 length_string
 
-This is a polymorphic function where string can be any of the supported data
-types. Return the integer number of entries in datatype array or codepoints in
-others.
+Return the integer number of entries in a string array or the number of
+codepoints in a string anyURI or string.
 Returns number of codepoints or entries in value
 
 =head4 Parameters
@@ -844,26 +843,25 @@ Two or more arrays.
 
 =head3 url_decode
 
-URL decode a value or bag of values.
+URL decode a string.
 URL decode
 
 =head4 Parameters
 
     $encoded
 
-URL decode a single string or a bag of string.
+String to URL decode.
 
 =head3 url_encode_string
 
-URL encode a value or bag of values.
+URL encode a string value and return the string result.
 URI encode
 
 =head4 Parameters
 
     $unencoded
 
-URL encode a single value. See the url_encode method for the data type of more
-details.
+The string value to URL encode.
 
 =cut
 

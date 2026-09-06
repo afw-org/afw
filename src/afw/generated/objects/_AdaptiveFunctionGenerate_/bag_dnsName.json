@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagDnsName",
     "category": "dnsName",
     "dataTypeMethod": true,
-    "description": "Takes any number of dnsName values and returns an array of array.",
+    "description": "Takes any number of dnsName values and returns an array of dnsName.",
     "functionId": "bag<dnsName>",
     "functionLabel": "bag_dnsName",
     "parameters": [

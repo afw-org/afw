@@ -56,7 +56,7 @@ export function afwBagSizeX500Name(client : any, value : any[]) : any {
 }
 
 /**
- * Takes any number of x500Name values and returns an array of array.
+ * Takes any number of x500Name values and returns an array of x500Name.
  * 
  * @param {array} values -
  * 

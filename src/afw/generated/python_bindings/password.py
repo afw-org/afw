@@ -15,7 +15,7 @@ def bag_password(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of password values and returns an array of array.
+    Takes any number of password values and returns an array of password.
 
     Args:
         values (list):

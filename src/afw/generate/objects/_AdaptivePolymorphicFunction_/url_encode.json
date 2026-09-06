@@ -2,13 +2,13 @@
     "brief": "URI encode",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "URL encode a value or bag of values.",
+    "description": "URL encode a <dataType> value and return the string result.",
     "functionId": "url_encode",
     "functionLabel": "url_encode",
     "pure": true,
     "parameters": [
         {
-            "description": "URL encode a single value. See the url_encode method for the data type of more details.",
+            "description": "The <dataType> value to URL encode.",
             "name": "unencoded",
             "polymorphicDataType": true
         }

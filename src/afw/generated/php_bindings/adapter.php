@@ -449,7 +449,8 @@ class adapter
      *                                    where ${adapterType} is the adapter
      *                                    type id.
      *
-     * @return object Object retrieved or NULL if not found.
+     * @return object Object retrieved. Throws not_found if the adapter or
+     *                object is not found.
      */
     public function get_object_with_uri(, $uri, $options = null, $adapterTypeSpecific = null)
     {

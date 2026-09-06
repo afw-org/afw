@@ -3877,32 +3877,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_CURL_Q_zz__284a731dcf66 \
-    "These functions provide adaptive functions to that allow the user to access HTTP resources."
-
-/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__284a731dcf66 */
-#define afw_curl_s_zz__284a731dcf66 \
-    (&afw_curl_self_v_zz__284a731dcf66.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__284a731dcf66 */
-#define afw_curl_self_s_zz__284a731dcf66 \
-    (afw_curl_self_v_zz__284a731dcf66.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__284a731dcf66 */
-extern const afw_value_string_t \
-    afw_curl_self_v_zz__284a731dcf66;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__284a731dcf66 */
-#define afw_curl_z_zz__284a731dcf66 \
-    (afw_curl_self_v_zz__284a731dcf66.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__284a731dcf66 */
-#define afw_curl_v_zz__284a731dcf66 \
-    (&afw_curl_self_v_zz__284a731dcf66.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__333f1769f77d \
     "Returns an array of strings containing the cURL option names that are available with the installed version of libcurl."
 
@@ -4033,32 +4007,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_CURL_Q_zz__72e8352cf7ff \
-    "The name of teh service for DIGEST-MD5, SPNEGO and Kerberos 5 authentication mechanisms.  The default service names are 'ftp', 'HTTP', 'imap', 'pop' and 'smtp'."
-
-/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__72e8352cf7ff */
-#define afw_curl_s_zz__72e8352cf7ff \
-    (&afw_curl_self_v_zz__72e8352cf7ff.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__72e8352cf7ff */
-#define afw_curl_self_s_zz__72e8352cf7ff \
-    (afw_curl_self_v_zz__72e8352cf7ff.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__72e8352cf7ff */
-extern const afw_value_string_t \
-    afw_curl_self_v_zz__72e8352cf7ff;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__72e8352cf7ff */
-#define afw_curl_z_zz__72e8352cf7ff \
-    (afw_curl_self_v_zz__72e8352cf7ff.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__72e8352cf7ff */
-#define afw_curl_v_zz__72e8352cf7ff \
-    (&afw_curl_self_v_zz__72e8352cf7ff.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__89732eaa7fb5 \
     "Returns an object describing the response from the HTTP GET request."
 
@@ -4081,6 +4029,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__89732eaa7fb5 */
 #define afw_curl_v_zz__89732eaa7fb5 \
     (&afw_curl_self_v_zz__89732eaa7fb5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__8eeb339598c5 \
+    "These functions provide adaptive functions that allow the user to access HTTP resources."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__8eeb339598c5 */
+#define afw_curl_s_zz__8eeb339598c5 \
+    (&afw_curl_self_v_zz__8eeb339598c5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__8eeb339598c5 */
+#define afw_curl_self_s_zz__8eeb339598c5 \
+    (afw_curl_self_v_zz__8eeb339598c5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__8eeb339598c5 */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__8eeb339598c5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__8eeb339598c5 */
+#define afw_curl_z_zz__8eeb339598c5 \
+    (afw_curl_self_v_zz__8eeb339598c5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__8eeb339598c5 */
+#define afw_curl_v_zz__8eeb339598c5 \
+    (&afw_curl_self_v_zz__8eeb339598c5.pub)
 
 
 
@@ -6733,6 +6707,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__c3d9369403b0 */
 #define afw_curl_v_zz__c3d9369403b0 \
     (&afw_curl_self_v_zz__c3d9369403b0.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__c7be87678e31 \
+    "The name of the service for DIGEST-MD5, SPNEGO and Kerberos 5 authentication mechanisms.  The default service names are 'ftp', 'HTTP', 'imap', 'pop' and 'smtp'."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__c7be87678e31 */
+#define afw_curl_s_zz__c7be87678e31 \
+    (&afw_curl_self_v_zz__c7be87678e31.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__c7be87678e31 */
+#define afw_curl_self_s_zz__c7be87678e31 \
+    (afw_curl_self_v_zz__c7be87678e31.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__c7be87678e31 */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__c7be87678e31;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__c7be87678e31 */
+#define afw_curl_z_zz__c7be87678e31 \
+    (afw_curl_self_v_zz__c7be87678e31.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__c7be87678e31 */
+#define afw_curl_v_zz__c7be87678e31 \
+    (&afw_curl_self_v_zz__c7be87678e31.pub)
 
 
 

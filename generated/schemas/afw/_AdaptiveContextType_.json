@@ -32,8 +32,8 @@
                             "$ref": "#/$defs/_AdaptiveQualifierDefinitions_"
                         }
                     ],
-                    "description": "Qualifiers that can be used in log related expressions. An empty string qualifier is used for unqualified variable references.",
-                    "markdownDescription": "**Qualifiers**\n\nQualifiers that can be used in log related expressions. An empty string qualifier is used for unqualified variable references.",
+                    "description": "Qualifiers that can be used in expressions evaluated in this context type (for example log, application, process, model, or authorizationCheck contexts). An empty string qualifier is used for unqualified variable references.",
+                    "markdownDescription": "**Qualifiers**\n\nQualifiers that can be used in expressions evaluated in this context type (for example log, application, process, model, or authorizationCheck contexts). An empty string qualifier is used for unqualified variable references.",
                     "title": "Qualifiers",
                     "type": "object"
                 },
@@ -68,8 +68,8 @@
                             "$ref": "#/$defs/_AdaptiveQualifierDefinitions_"
                         }
                     ],
-                    "description": "Qualifiers that can be used in log related expressions. An empty string qualifier is used for unqualified variable references.",
-                    "markdownDescription": "**Qualifiers**\n\nQualifiers that can be used in log related expressions. An empty string qualifier is used for unqualified variable references.",
+                    "description": "Qualifiers that can be used in expressions evaluated in this context type (for example log, application, process, model, or authorizationCheck contexts). An empty string qualifier is used for unqualified variable references.",
+                    "markdownDescription": "**Qualifiers**\n\nQualifiers that can be used in expressions evaluated in this context type (for example log, application, process, model, or authorizationCheck contexts). An empty string qualifier is used for unqualified variable references.",
                     "title": "Qualifiers",
                     "type": "object"
                 },
@@ -147,8 +147,8 @@
                 "markdownDescription": "This object type used for qualifier definitions where each property is a _AdaptivePropertyTypes_ object with a qualifier id as a property name.",
                 "type": "object"
             },
-            "description": "Qualifiers that can be used in log related expressions. An empty string qualifier is used for unqualified variable references.",
-            "markdownDescription": "Qualifiers that can be used in log related expressions. An empty string qualifier is used for unqualified variable references.",
+            "description": "Qualifiers that can be used in expressions evaluated in this context type (for example log, application, process, model, or authorizationCheck contexts). An empty string qualifier is used for unqualified variable references.",
+            "markdownDescription": "Qualifiers that can be used in expressions evaluated in this context type (for example log, application, process, model, or authorizationCheck contexts). An empty string qualifier is used for unqualified variable references.",
             "properties": {
                 "_meta_": {
                     "additionalProperties": true,
@@ -683,8 +683,8 @@
                     "$ref": "#/$defs/_AdaptiveQualifierDefinitions_"
                 }
             ],
-            "description": "Qualifiers that can be used in log related expressions. An empty string qualifier is used for unqualified variable references.",
-            "markdownDescription": "**Qualifiers**\n\nQualifiers that can be used in log related expressions. An empty string qualifier is used for unqualified variable references.",
+            "description": "Qualifiers that can be used in expressions evaluated in this context type (for example log, application, process, model, or authorizationCheck contexts). An empty string qualifier is used for unqualified variable references.",
+            "markdownDescription": "**Qualifiers**\n\nQualifiers that can be used in expressions evaluated in this context type (for example log, application, process, model, or authorizationCheck contexts). An empty string qualifier is used for unqualified variable references.",
             "title": "Qualifiers",
             "type": "object"
         },

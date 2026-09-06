@@ -2,7 +2,7 @@
     "brief": "Returns number of codepoints or entries in value",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "This is a polymorphic function where <dataType> can be any of the supported data types. Return the integer number of entries in datatype array or codepoints in others.",
+    "description": "Return the integer number of entries in a <dataType> array or the number of codepoints in a <dataType> anyURI or string.",
     "functionId": "length",
     "functionLabel": "length",
     "pure": true,

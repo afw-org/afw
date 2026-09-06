@@ -118,7 +118,7 @@ impl_4;
 static const afw_runtime_property_t
 impl_4_property_brief = {
     afw_vfs_v_brief,
-    &afw_vfs_self_v_Include.pub
+    &afw_vfs_self_v_zz__Include_hidden_files.pub
 };
 
 static const afw_runtime_property_t

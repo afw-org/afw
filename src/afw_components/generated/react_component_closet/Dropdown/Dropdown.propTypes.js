@@ -26,14 +26,14 @@ export const propTypes = {
      * description
      * Data Type: (string)
      * 
-     * The description for this dropdown editor.
+     * The description for this Dropdown component.
      */
     description:                        PropTypes.string,
     /**
      * editable
      * Data Type: (boolean)
      * 
-     * Whether the options managed by this Dropdown Editor are editable.
+     * Whether the options managed by this Dropdown are editable.
      */
     editable:                           PropTypes.bool,
     /**

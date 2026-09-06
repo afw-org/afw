@@ -84,7 +84,7 @@ information.
 
 =head3 bag_object
 
-Takes any number of object values and returns an array of array.
+Takes any number of object values and returns an array of object.
 Makes an array from values
 
 =head4 Parameters

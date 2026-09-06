@@ -276,7 +276,8 @@ afw_function_execute_evaluate(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Evaluate a value and retry up to a limit if an exception occurs.
+ * Evaluate a value and retry up to a limit if an exception occurs. An error is
+ * thrown if the evaluated result is undefined.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -292,7 +293,7 @@ afw_function_execute_evaluate(
  *
  * Parameters:
  *
- *   value - (any) Value to evaluated.
+ *   value - (any) Value to evaluate.
  *
  *   limit - (integer) Maximum number to retry if an exception occurs.
  *
@@ -1196,7 +1197,7 @@ afw_function_execute_qualifier(
  * Warning: the result can be very large. Each property is a full snapshot of
  * that qualifier (see qualifier()), so environment, request, application,
  * current, and others can all appear as nested objects with many properties.
- * Prefer qualifier::name or qualifier(name) when you need one bag; avoid
+ * Prefer qualifier::name or qualifier(name) when you need one object; avoid
  * repeated qualifiers() calls or retaining the result in long-running work.
  * 
  * Each nested variables object is the multi-entry snapshot for that name (all

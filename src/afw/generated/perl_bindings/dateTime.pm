@@ -93,7 +93,7 @@ The second array.
 
 =head3 bag_dateTime
 
-Takes any number of dateTime values and returns an array of array.
+Takes any number of dateTime values and returns an array of dateTime.
 Makes an array from values
 
 =head4 Parameters

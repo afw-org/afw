@@ -41,7 +41,7 @@ The following functions are exported by default
 
 =head3 bag_dnsName
 
-Takes any number of dnsName values and returns an array of array.
+Takes any number of dnsName values and returns an array of dnsName.
 Makes an array from values
 
 =head4 Parameters

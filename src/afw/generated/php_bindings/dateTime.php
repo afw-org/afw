@@ -103,7 +103,7 @@ class dateTime
     /**
      * bag_dateTime()
      *
-     * Takes any number of dateTime values and returns an array of array.
+     * Takes any number of dateTime values and returns an array of dateTime.
      *
      * @param array $values
      *

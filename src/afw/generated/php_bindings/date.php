@@ -77,7 +77,7 @@ class date
     /**
      * bag_date()
      *
-     * Takes any number of date values and returns an array of array.
+     * Takes any number of date values and returns an array of date.
      *
      * @param array $values
      *
@@ -382,7 +382,7 @@ class date
     /**
      * max_date()
      *
-     * Return the date value that is greater than or equal to the others..
+     * Return the date value that is greater than or equal to the others.
      * 
      * If a date value does not include a time-zone value, then the local
      * time-zone value will be assigned.
@@ -407,7 +407,7 @@ class date
     /**
      * min_date()
      *
-     * Return the date value that is less than or equal to the others..
+     * Return the date value that is less than or equal to the others.
      * 
      * If a date value does not include a time-zone value, then the local
      * time-zone value will be assigned.

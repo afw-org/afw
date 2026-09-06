@@ -38,7 +38,7 @@ The following functions are exported by default
 
 =head3 bag_password
 
-Takes any number of password values and returns an array of array.
+Takes any number of password values and returns an array of password.
 Makes an array from values
 
 =head4 Parameters

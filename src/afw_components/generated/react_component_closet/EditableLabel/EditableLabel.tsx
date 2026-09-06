@@ -19,7 +19,7 @@ import {ctx} from "@afw/react";
  * Implementation Id : EditableLabel
  * Category          : editors
  * 
- * A component that renders an label, which can be edited when clicked.
+ * A component that renders a label, which can be edited when clicked.
  * 
  * This component provides a very quick way for a label to become 'editable'
  * simply by clicking on the text label. After clicking on the label, the

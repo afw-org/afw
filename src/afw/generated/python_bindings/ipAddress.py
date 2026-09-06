@@ -15,7 +15,7 @@ def bag_ipAddress(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of ipAddress values and returns an array of array.
+    Takes any number of ipAddress values and returns an array of ipAddress.
 
     Args:
         values (list):

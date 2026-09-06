@@ -17,10 +17,12 @@ def journal_advance_cursor_for_consumer(session, consumerId, adapterId=None, lim
 
     Update the advance cursor for a consumer referenced by the consumerId
     parameter. The limit parameter specifies the maximum number of entries to
-    scan for an applicable entry for consumer before returning. NULL is always
-    returned.
+    scan for an applicable entry for consumer before returning. A response
+    object is always returned.
     
-    There are no response properties set by this function.
+    This option will set response property 'entryCursor' if an applicable
+    entry is found (and 'reissue' if that entry is being reissued). If no
+    applicable entry is found, these response properties are not set.
     
     The properties of the _AdaptiveProvisioningPeer_ object associated with
     the consumer_id are used in the following way:
@@ -75,9 +77,9 @@ def journal_get_by_cursor(session, cursor, adapterId=None):
 
     Get journal entry specified by entry_cursor parameter.
     
-    This option will set response properties 'entry' and 'cursor' if there is
-    an entry to retrieve. If an entry with the supplied cursor does not exist,
-    a not_found error is thrown.
+    This option will set response properties 'entry' and 'entryCursor' if
+    there is an entry to retrieve. If an entry with the supplied cursor does
+    not exist, a not_found error is thrown.
 
     Args:
         adapterId (str): Id of adapter.
@@ -111,8 +113,8 @@ def journal_get_first(session, adapterId=None):
 
     Get first journal entry.
     
-    This option will set response properties 'entry' and 'cursor' if there is
-    a first entry to return.
+    This option will set response properties 'entry' and 'entryCursor' if
+    there is a first entry to return.
 
     Args:
         adapterId (str): Id of adapter.
@@ -145,8 +147,8 @@ def journal_get_next_after_cursor(session, cursor, adapterId=None):
     Get the next journal entry after the one specified by the entry_cursor
     parameter.
     
-    This option will set response properties 'entry' and 'cursor' if there is
-    a next entry to retrieve.
+    This option will set response properties 'entry' and 'entryCursor' if
+    there is a next entry to retrieve.
 
     Args:
         adapterId (str): Id of adapter.
@@ -250,7 +252,7 @@ def journal_get_next_for_consumer_after_cursor(session, consumerId, cursor, adap
     specifies the maximum number of entries to scan for an applicable entry
     for consumer before returning.
     
-    This option will set response properties 'entry' and 'cursor' if an
+    This option will set response properties 'entry' and 'entryCursor' if an
     applicable entry is retrieved.
     
     The properties of the _AdaptiveProvisioningPeer_ object associated with

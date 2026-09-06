@@ -8,8 +8,8 @@ export const propTypes = {
      * color
      * Data Type: (string)
      * 
-     * Specifies an optional color for this Button (primary, secondary,
-     * error).
+     * Specifies an optional color for this Button (default, inherit, primary,
+     * secondary).
      */
     color:                              PropTypes.oneOf(["default", "inherit", "primary", "secondary"]),
     /**

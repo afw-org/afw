@@ -227,7 +227,7 @@ afw_data_type_ia5String_direct = {
     (const afw_object_t *)&impl_data_type_object_ia5String,
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("An ASN.1 value"),
-    AFW_UTF8_LITERAL("Data type 'ia5String' holds a string restricted to the ASN.1 notation. It is used to represent ISO 646 (IA5) characters. which contains precisely 128 characters."),
+    AFW_UTF8_LITERAL("Data type 'ia5String' holds a string restricted to the ASN.1 notation. It is used to represent ISO 646 (IA5) characters, which contains precisely 128 characters."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_ia5String,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.26{64512}"),

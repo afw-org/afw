@@ -25,7 +25,7 @@
     "polymorphicExecuteFunction": "afw_function_execute_min",
     "polymorphicOverrides": {
         "date": {
-            "description": "Return the date value that is less than or equal to the others..\n\nIf a date value does not include a time-zone value, then the local time-zone value will be assigned."
+            "description": "Return the date value that is less than or equal to the others.\n\nIf a date value does not include a time-zone value, then the local time-zone value will be assigned."
         },
         "dateTime": {
             "description": "Return the dateTime value that is less than or equal to the others.\n\nIf a dateTime value does not include a time-zone value, then the local time-zone value will be assigned."

@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagDateTime",
     "category": "dateTime",
     "dataTypeMethod": true,
-    "description": "Takes any number of dateTime values and returns an array of array.",
+    "description": "Takes any number of dateTime values and returns an array of dateTime.",
     "functionId": "bag<dateTime>",
     "functionLabel": "bag_dateTime",
     "parameters": [

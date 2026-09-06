@@ -6,7 +6,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "An adaptive flag.",
+    "description": "Runtime information about a registered process lock (mutex or read/write lock).",
     "objectType": "_AdaptiveLock_",
     "propertyTypes": {
         "brief": {
@@ -56,7 +56,7 @@
             "allowQuery": true,
             "brief": "The key for this lock",
             "dataType": "string",
-            "description": "This is the key for this lock in registry type flag and the objectId of its _AdaptiveLock_ runtime object.",
+            "description": "This is the key for this lock in registry type lock and the objectId of its _AdaptiveLock_ runtime object.",
             "label": "Lock Id",
             "runtime": {
                 "memberName": "lock_id",

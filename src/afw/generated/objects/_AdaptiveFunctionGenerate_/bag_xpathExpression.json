@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagXpathExpression",
     "category": "xpathExpression",
     "dataTypeMethod": true,
-    "description": "Takes any number of xpathExpression values and returns an array of array.",
+    "description": "Takes any number of xpathExpression values and returns an array of xpathExpression.",
     "functionId": "bag<xpathExpression>",
     "functionLabel": "bag_xpathExpression",
     "parameters": [

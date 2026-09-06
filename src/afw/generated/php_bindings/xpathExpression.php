@@ -51,7 +51,7 @@ class xpathExpression
      * bag_xpathExpression()
      *
      * Takes any number of xpathExpression values and returns an array of
-     * array.
+     * xpathExpression.
      *
      * @param array $values
      *

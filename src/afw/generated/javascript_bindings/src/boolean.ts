@@ -39,7 +39,7 @@ export function afwAtLeastOneMemberOfBoolean(client : any, array1 : any[], array
 }
 
 /**
- * Takes any number of boolean values and returns an array of array.
+ * Takes any number of boolean values and returns an array of boolean.
  * 
  * @param {array} values -
  * 

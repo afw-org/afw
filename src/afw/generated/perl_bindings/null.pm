@@ -29,7 +29,7 @@ The following functions are exported by default
 
 =head3 bag_null
 
-Takes any number of null values and returns an array of array.
+Takes any number of null values and returns an array of null.
 Makes an array from values
 
 =head4 Parameters

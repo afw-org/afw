@@ -24,16 +24,16 @@ def model_default_add_object_action(session, objectType, object, adapterId=None,
 
     Args:
         adapterId (str): This is the adapterId of a model adapter. Variable
-            custom::adapterId can be used to access this value in model
+            current::adapterId can be used to access this value in model
             expressions.
         objectType (str): This is the adaptive object type of object being
-            added. Variable custom::objectType can be used to access this
+            added. Variable current::objectType can be used to access this
             value in model expressions.
-        object (dict): This is the object to add. Variable custom::object can
+        object (dict): This is the object to add. Variable current::object can
             be used to access this value in model expressions.
         objectId (str): This is the optional preferred objectId of object to
-            add. The adapter may ignore this. Variable custom::objectId can be
-            used to access this value in model expressions.
+            add. The adapter may ignore this. Variable current::objectId can
+            be used to access this value in model expressions.
         modelId (str): This specifics a modelId of model to use for producing
             results. If not specified, the adapter's current model will be
             used.
@@ -85,13 +85,13 @@ def model_default_delete_object_action(session, objectType, objectId, adapterId=
 
     Args:
         adapterId (str): This is the adapterId of a model adapter. Variable
-            custom::adapterId can be used to access this value in model
+            current::adapterId can be used to access this value in model
             expressions.
         objectType (str): This is the adaptive object type of object being
-            deleted. Variable custom::objectType can be used to access this
+            deleted. Variable current::objectType can be used to access this
             value in model expressions.
         objectId (str): This is the objectId of object to delete. Variable
-            custom::object can be used to access this value in model
+            current::objectId can be used to access this value in model
             expressions.
         modelId (str): This specifics a modelId of model to use for producing
             results. If not specified, the adapter's current model will be
@@ -141,16 +141,16 @@ def model_default_modify_object_action(session, objectType, objectId, entries, a
 
     Args:
         adapterId (str): This is the adapterId of a model adapter. Variable
-            custom::adapterId can be used to access this value in model
+            current::adapterId can be used to access this value in model
             expressions.
         objectType (str): This is the adaptive object type of object being
-            modified. Variable custom::objectType can be used to access this
+            modified. Variable current::objectType can be used to access this
             value in model expressions.
         objectId (str): This is the objectId of object to modify. Variable
-            custom::objectId can be used to access this value in model
+            current::objectId can be used to access this value in model
             expressions.
         entries (list): This is an array of modifications. Variable
-            custom::actions can be used to access this value in model
+            current::modifyEntries can be used to access this value in model
             expressions. Entries are of the form:
         
                 [         'add_value',         'property name' or ['property
@@ -213,15 +213,15 @@ def model_default_replace_object_action(session, objectType, objectId, object, a
 
     Args:
         adapterId (str): This is the adapterId of a model adapter. Variable
-            custom::adapterId can be used to access this value in model
+            current::adapterId can be used to access this value in model
             expressions.
         objectType (str): This is the adaptive object type of object being
-            replaced. Variable custom::objectType can be used to access this
+            replaced. Variable current::objectType can be used to access this
             value in model expressions.
         objectId (str): The objectId of object to replace. Variable
-            custom::objectId can be used to access this value in model
+            current::objectId can be used to access this value in model
             expressions.
-        object (dict): This is the object to replace. Variable custom::object
+        object (dict): This is the object to replace. Variable current::object
             can be used to access this value in model expressions.
         modelId (str): This specifics a modelId of model to use for producing
             results. If not specified, the adapter's current model will be

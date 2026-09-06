@@ -50,7 +50,7 @@ Returns the number of values in a bag
 
 =head3 bag_template
 
-Takes any number of template values and returns an array of array.
+Takes any number of template values and returns an array of template.
 Makes an array from values
 
 =head4 Parameters

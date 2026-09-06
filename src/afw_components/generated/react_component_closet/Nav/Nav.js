@@ -21,7 +21,7 @@ import {ctx} from "@afw/react";
  * A navigational component that displays a list of links.
  * 
  * This component, often referred to as a Side Nav, displays a list of
- * clickable links into a horizontal panel.
+ * clickable links into a vertical panel.
  * 
  */
 export const Nav = (props) => {

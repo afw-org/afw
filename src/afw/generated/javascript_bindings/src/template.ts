@@ -35,7 +35,7 @@ export function afwBagSizeTemplate(client : any, value : any[]) : any {
 }
 
 /**
- * Takes any number of template values and returns an array of array.
+ * Takes any number of template values and returns an array of template.
  * 
  * @param {array} values -
  * 

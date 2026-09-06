@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagObject",
     "category": "object",
     "dataTypeMethod": true,
-    "description": "Takes any number of object values and returns an array of array.",
+    "description": "Takes any number of object values and returns an array of object.",
     "functionId": "bag<object>",
     "functionLabel": "bag_object",
     "parameters": [

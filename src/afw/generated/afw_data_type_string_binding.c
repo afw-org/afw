@@ -244,7 +244,7 @@ afw_data_type_string_direct = {
     (const afw_object_t *)&impl_data_type_object_string,
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("A string"),
-    AFW_UTF8_LITERAL("Data type 'string' hold a sequence of Unicode code points as defined at http://www.unicode.org."),
+    AFW_UTF8_LITERAL("Data type 'string' holds a sequence of Unicode code points as defined at http://www.unicode.org."),
     AFW_UTF8_LITERAL("MediaType"),
     afw_data_type_number_string,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),

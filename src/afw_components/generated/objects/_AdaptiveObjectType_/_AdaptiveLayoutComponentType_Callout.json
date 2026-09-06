@@ -18,7 +18,7 @@
             "allowWrite": true,
             "dataType": "object",
             "dataTypeParameter": "_AdaptiveLayoutComponentType_",
-            "description": "Specifies the placeholder text displayed when no value is present.",
+            "description": "The component to be rendered inside the Callout.",
             "label": "Contains"
         },
         "gapSpace": {
