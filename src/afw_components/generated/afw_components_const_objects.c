@@ -6240,10 +6240,10 @@ impl_54_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_54_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_54_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_54_parentPaths
     },
@@ -6344,10 +6344,10 @@ impl_53_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_53_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_53_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_53_list_collectionURIs__value
     },
@@ -7344,10 +7344,10 @@ impl_60_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_60_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_60_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_60_parentPaths
     },
@@ -7448,10 +7448,10 @@ impl_59_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_59_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_59_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_59_list_collectionURIs__value
     },
@@ -7866,10 +7866,10 @@ impl_69_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_69_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_69_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_69_list_collectionURIs__value
     },
@@ -8022,10 +8022,10 @@ impl_75_list_allowedValues_values[] = {
 static const afw_value_array_t
 impl_75_list_allowedValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_75_list_allowedValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_75_list_allowedValues__value
     },
@@ -8162,10 +8162,10 @@ impl_76_list_allowedValues_values[] = {
 static const afw_value_array_t
 impl_76_list_allowedValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_76_list_allowedValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_76_list_allowedValues__value
     },
@@ -8406,10 +8406,10 @@ impl_78_list_allowedValues_values[] = {
 static const afw_value_array_t
 impl_78_list_allowedValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_78_list_allowedValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_78_list_allowedValues__value
     },
@@ -8552,10 +8552,10 @@ impl_79_list_allowedValues_values[] = {
 static const afw_value_array_t
 impl_79_list_allowedValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_79_list_allowedValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_79_list_allowedValues__value
     },
@@ -8691,10 +8691,10 @@ impl_80_list_allowedValues_values[] = {
 static const afw_value_array_t
 impl_80_list_allowedValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_80_list_allowedValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_80_list_allowedValues__value
     },
@@ -8902,10 +8902,10 @@ impl_74_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_74_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_74_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_74_parentPaths
     },
@@ -9006,10 +9006,10 @@ impl_73_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_73_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_73_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_73_list_collectionURIs__value
     },
@@ -9587,10 +9587,10 @@ impl_82_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_82_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_82_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_82_parentPaths
     },
@@ -9691,10 +9691,10 @@ impl_81_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_81_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_81_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_81_list_collectionURIs__value
     },
@@ -9949,10 +9949,10 @@ impl_88_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_88_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_88_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_88_parentPaths
     },
@@ -10053,10 +10053,10 @@ impl_87_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_87_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_87_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_87_list_collectionURIs__value
     },
@@ -10421,10 +10421,10 @@ impl_91_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_91_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_91_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_91_parentPaths
     },
@@ -10525,10 +10525,10 @@ impl_90_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_90_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_90_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_90_list_collectionURIs__value
     },
@@ -10684,10 +10684,10 @@ impl_96_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_96_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_96_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_96_list_possibleValues__value
     },
@@ -11266,10 +11266,10 @@ impl_102_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_102_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_102_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_102_list_possibleValues__value
     },
@@ -11392,10 +11392,10 @@ impl_103_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_103_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_103_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_103_list_possibleValues__value
     },
@@ -11597,10 +11597,10 @@ impl_95_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_95_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_95_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_95_parentPaths
     },
@@ -11701,10 +11701,10 @@ impl_94_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_94_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_94_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_94_list_collectionURIs__value
     },
@@ -12268,10 +12268,10 @@ impl_105_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_105_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_105_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_105_parentPaths
     },
@@ -12372,10 +12372,10 @@ impl_104_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_104_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_104_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_104_list_collectionURIs__value
     },
@@ -12925,10 +12925,10 @@ impl_111_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_111_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_111_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_111_parentPaths
     },
@@ -13029,10 +13029,10 @@ impl_110_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_110_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_110_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_110_list_collectionURIs__value
     },
@@ -13454,10 +13454,10 @@ impl_116_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_116_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_116_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_116_list_collectionURIs__value
     },
@@ -14124,10 +14124,10 @@ impl_121_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_121_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_121_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_121_parentPaths
     },
@@ -14228,10 +14228,10 @@ impl_120_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_120_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_120_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_120_list_collectionURIs__value
     },
@@ -14586,10 +14586,10 @@ impl_131_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_131_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_131_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_131_list_possibleValues__value
     },
@@ -14932,10 +14932,10 @@ impl_128_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_128_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_128_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_128_parentPaths
     },
@@ -15036,10 +15036,10 @@ impl_127_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_127_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_127_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_127_list_collectionURIs__value
     },
@@ -15633,10 +15633,10 @@ impl_134_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_134_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_134_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_134_list_collectionURIs__value
     },
@@ -16309,10 +16309,10 @@ impl_141_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_141_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_141_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_141_parentPaths
     },
@@ -16413,10 +16413,10 @@ impl_140_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_140_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_140_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_140_list_collectionURIs__value
     },
@@ -16994,10 +16994,10 @@ impl_148_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_148_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_148_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_148_parentPaths
     },
@@ -17098,10 +17098,10 @@ impl_147_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_147_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_147_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_147_list_collectionURIs__value
     },
@@ -17783,10 +17783,10 @@ impl_161_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_161_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_161_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_161_list_possibleValues__value
     },
@@ -18253,10 +18253,10 @@ impl_153_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_153_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_153_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_153_list_collectionURIs__value
     },
@@ -18929,10 +18929,10 @@ impl_165_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_165_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_165_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_165_parentPaths
     },
@@ -19033,10 +19033,10 @@ impl_164_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_164_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_164_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_164_list_collectionURIs__value
     },
@@ -19703,10 +19703,10 @@ impl_172_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_172_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_172_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_172_parentPaths
     },
@@ -19807,10 +19807,10 @@ impl_171_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_171_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_171_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_171_list_collectionURIs__value
     },
@@ -20354,10 +20354,10 @@ impl_184_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_184_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_184_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_184_list_possibleValues__value
     },
@@ -20939,10 +20939,10 @@ impl_179_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_179_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_179_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_179_parentPaths
     },
@@ -21043,10 +21043,10 @@ impl_178_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_178_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_178_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_178_list_collectionURIs__value
     },
@@ -21500,10 +21500,10 @@ impl_190_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_190_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_190_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_190_parentPaths
     },
@@ -21604,10 +21604,10 @@ impl_189_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_189_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_189_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_189_list_collectionURIs__value
     },
@@ -21745,10 +21745,10 @@ impl_195_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_195_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_195_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_195_parentPaths
     },
@@ -21849,10 +21849,10 @@ impl_194_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_194_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_194_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_194_list_collectionURIs__value
     },
@@ -21997,10 +21997,10 @@ impl_198_list_allowedValues_values[] = {
 static const afw_value_array_t
 impl_198_list_allowedValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_198_list_allowedValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_198_list_allowedValues__value
     },
@@ -22337,10 +22337,10 @@ impl_201_list_allowedValues_values[] = {
 static const afw_value_array_t
 impl_201_list_allowedValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_201_list_allowedValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_201_list_allowedValues__value
     },
@@ -22522,10 +22522,10 @@ impl_197_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_197_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_197_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_197_parentPaths
     },
@@ -22626,10 +22626,10 @@ impl_196_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_196_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_196_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_196_list_collectionURIs__value
     },
@@ -23406,10 +23406,10 @@ impl_203_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_203_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_203_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_203_parentPaths
     },
@@ -23510,10 +23510,10 @@ impl_202_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_202_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_202_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_202_list_collectionURIs__value
     },
@@ -24283,10 +24283,10 @@ impl_211_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_211_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_211_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_211_parentPaths
     },
@@ -24387,10 +24387,10 @@ impl_210_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_210_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_210_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_210_list_collectionURIs__value
     },
@@ -24881,10 +24881,10 @@ impl_218_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_218_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_218_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_218_list_collectionURIs__value
     },
@@ -25557,10 +25557,10 @@ impl_224_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_224_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_224_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_224_parentPaths
     },
@@ -25661,10 +25661,10 @@ impl_223_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_223_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_223_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_223_list_collectionURIs__value
     },
@@ -26125,10 +26125,10 @@ impl_231_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_231_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_231_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_231_parentPaths
     },
@@ -26229,10 +26229,10 @@ impl_230_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_230_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_230_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_230_list_collectionURIs__value
     },
@@ -27105,10 +27105,10 @@ impl_236_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_236_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_236_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_236_parentPaths
     },
@@ -27209,10 +27209,10 @@ impl_235_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_235_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_235_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_235_list_collectionURIs__value
     },
@@ -27453,10 +27453,10 @@ impl_245_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_245_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_245_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_245_parentPaths
     },
@@ -27557,10 +27557,10 @@ impl_244_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_244_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_244_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_244_list_collectionURIs__value
     },
@@ -27801,10 +27801,10 @@ impl_248_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_248_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_248_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_248_parentPaths
     },
@@ -27905,10 +27905,10 @@ impl_247_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_247_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_247_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_247_list_collectionURIs__value
     },
@@ -28362,10 +28362,10 @@ impl_251_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_251_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_251_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_251_parentPaths
     },
@@ -28466,10 +28466,10 @@ impl_250_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_250_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_250_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_250_list_collectionURIs__value
     },
@@ -28930,10 +28930,10 @@ impl_256_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_256_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_256_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_256_parentPaths
     },
@@ -29034,10 +29034,10 @@ impl_255_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_255_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_255_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_255_list_collectionURIs__value
     },
@@ -29388,10 +29388,10 @@ impl_261_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_261_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_261_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_261_parentPaths
     },
@@ -29492,10 +29492,10 @@ impl_260_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_260_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_260_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_260_list_collectionURIs__value
     },
@@ -29846,10 +29846,10 @@ impl_265_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_265_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_265_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_265_parentPaths
     },
@@ -29950,10 +29950,10 @@ impl_264_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_264_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_264_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_264_list_collectionURIs__value
     },
@@ -30375,10 +30375,10 @@ impl_268_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_268_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_268_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_268_list_collectionURIs__value
     },
@@ -30729,10 +30729,10 @@ impl_273_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_273_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_273_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_273_parentPaths
     },
@@ -30833,10 +30833,10 @@ impl_272_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_272_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_272_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_272_list_collectionURIs__value
     },
@@ -31663,10 +31663,10 @@ impl_276_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_276_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_276_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_276_list_collectionURIs__value
     },
@@ -32202,10 +32202,10 @@ impl_290_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_290_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_290_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_290_list_possibleValues__value
     },
@@ -32368,10 +32368,10 @@ impl_285_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_285_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_285_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_285_parentPaths
     },
@@ -32472,10 +32472,10 @@ impl_284_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_284_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_284_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_284_list_collectionURIs__value
     },
@@ -32929,10 +32929,10 @@ impl_292_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_292_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_292_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_292_parentPaths
     },
@@ -33033,10 +33033,10 @@ impl_291_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_291_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_291_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_291_list_collectionURIs__value
     },
@@ -33270,10 +33270,10 @@ impl_297_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_297_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_297_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_297_parentPaths
     },
@@ -33374,10 +33374,10 @@ impl_296_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_296_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_296_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_296_list_collectionURIs__value
     },
@@ -33618,10 +33618,10 @@ impl_300_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_300_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_300_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_300_parentPaths
     },
@@ -33722,10 +33722,10 @@ impl_299_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_299_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_299_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_299_list_collectionURIs__value
     },
@@ -34449,10 +34449,10 @@ impl_302_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_302_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_302_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_302_list_collectionURIs__value
     },
@@ -34913,10 +34913,10 @@ impl_310_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_310_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_310_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_310_parentPaths
     },
@@ -35017,10 +35017,10 @@ impl_309_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_309_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_309_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_309_list_collectionURIs__value
     },
@@ -35481,10 +35481,10 @@ impl_315_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_315_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_315_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_315_parentPaths
     },
@@ -35585,10 +35585,10 @@ impl_314_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_314_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_314_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_314_list_collectionURIs__value
     },
@@ -36003,10 +36003,10 @@ impl_319_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_319_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_319_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_319_list_collectionURIs__value
     },
@@ -36171,10 +36171,10 @@ impl_325_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_325_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_325_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_325_list_possibleValues__value
     },
@@ -36298,10 +36298,10 @@ impl_326_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_326_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_326_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_326_list_possibleValues__value
     },
@@ -36425,10 +36425,10 @@ impl_327_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_327_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_327_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_327_list_possibleValues__value
     },
@@ -36656,10 +36656,10 @@ impl_329_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_329_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_329_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_329_list_possibleValues__value
     },
@@ -36822,10 +36822,10 @@ impl_324_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_324_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_324_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_324_parentPaths
     },
@@ -36926,10 +36926,10 @@ impl_323_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_323_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_323_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_323_list_collectionURIs__value
     },
@@ -37365,10 +37365,10 @@ impl_330_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_330_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_330_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_330_list_collectionURIs__value
     },
@@ -37701,10 +37701,10 @@ impl_334_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_334_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_334_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_334_list_collectionURIs__value
     },
@@ -37875,10 +37875,10 @@ impl_339_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_339_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_339_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_339_list_possibleValues__value
     },
@@ -38009,10 +38009,10 @@ impl_340_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_340_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_340_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_340_list_possibleValues__value
     },
@@ -38143,10 +38143,10 @@ impl_341_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_341_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_341_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_341_list_possibleValues__value
     },
@@ -38277,10 +38277,10 @@ impl_342_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_342_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_342_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_342_list_possibleValues__value
     },
@@ -38411,10 +38411,10 @@ impl_343_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_343_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_343_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_343_list_possibleValues__value
     },
@@ -38545,10 +38545,10 @@ impl_344_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_344_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_344_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_344_list_possibleValues__value
     },
@@ -38802,10 +38802,10 @@ impl_337_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_337_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_337_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_337_list_collectionURIs__value
     },
@@ -39238,10 +39238,10 @@ impl_346_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_346_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_346_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_346_parentPaths
     },
@@ -39342,10 +39342,10 @@ impl_345_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_345_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_345_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_345_list_collectionURIs__value
     },
@@ -40335,10 +40335,10 @@ impl_351_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_351_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_351_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_351_parentPaths
     },
@@ -40439,10 +40439,10 @@ impl_350_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_350_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_350_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_350_list_collectionURIs__value
     },
@@ -40875,10 +40875,10 @@ impl_365_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_365_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_365_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_365_list_possibleValues__value
     },
@@ -41028,10 +41028,10 @@ impl_361_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_361_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_361_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_361_parentPaths
     },
@@ -41132,10 +41132,10 @@ impl_360_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_360_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_360_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_360_list_collectionURIs__value
     },
@@ -41919,10 +41919,10 @@ impl_367_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_367_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_367_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_367_parentPaths
     },
@@ -42023,10 +42023,10 @@ impl_366_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_366_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_366_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_366_list_collectionURIs__value
     },
@@ -42370,10 +42370,10 @@ impl_375_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_375_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_375_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_375_parentPaths
     },
@@ -42474,10 +42474,10 @@ impl_374_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_374_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_374_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_374_list_collectionURIs__value
     },
@@ -42821,10 +42821,10 @@ impl_379_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_379_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_379_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_379_parentPaths
     },
@@ -42925,10 +42925,10 @@ impl_378_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_378_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_378_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_378_list_collectionURIs__value
     },
@@ -60959,10 +60959,10 @@ impl_382_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_382_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_382_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_382_list_collectionURIs__value
     },
@@ -61642,10 +61642,10 @@ impl_571_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_571_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_571_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_571_parentPaths
     },
@@ -61746,10 +61746,10 @@ impl_570_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_570_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_570_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_570_list_collectionURIs__value
     },
@@ -62700,10 +62700,10 @@ impl_577_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_577_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_577_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_577_list_collectionURIs__value
     },
@@ -62926,10 +62926,10 @@ impl_586_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_586_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_586_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_586_list_collectionURIs__value
     },
@@ -63280,10 +63280,10 @@ impl_589_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_589_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_589_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_589_parentPaths
     },
@@ -63384,10 +63384,10 @@ impl_588_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_588_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_588_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_588_list_collectionURIs__value
     },
@@ -63919,10 +63919,10 @@ impl_592_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_592_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_592_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_592_list_collectionURIs__value
     },
@@ -64912,10 +64912,10 @@ impl_598_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_598_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_598_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_598_parentPaths
     },
@@ -65016,10 +65016,10 @@ impl_597_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_597_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_597_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_597_list_collectionURIs__value
     },
@@ -65789,10 +65789,10 @@ impl_608_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_608_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_608_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_608_parentPaths
     },
@@ -65893,10 +65893,10 @@ impl_607_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_607_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_607_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_607_list_collectionURIs__value
     },
@@ -66240,10 +66240,10 @@ impl_616_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_616_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_616_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_616_parentPaths
     },
@@ -66344,10 +66344,10 @@ impl_615_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_615_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_615_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_615_list_collectionURIs__value
     },
@@ -66698,10 +66698,10 @@ impl_620_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_620_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_620_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_620_parentPaths
     },
@@ -66802,10 +66802,10 @@ impl_619_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_619_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_619_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_619_list_collectionURIs__value
     },
@@ -67458,10 +67458,10 @@ impl_624_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_624_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_624_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_624_parentPaths
     },
@@ -67562,10 +67562,10 @@ impl_623_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_623_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_623_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_623_list_collectionURIs__value
     },
@@ -68129,10 +68129,10 @@ impl_631_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_631_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_631_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_631_parentPaths
     },
@@ -68233,10 +68233,10 @@ impl_630_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_630_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_630_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_630_list_collectionURIs__value
     },
@@ -68401,10 +68401,10 @@ impl_638_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_638_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_638_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_638_list_possibleValues__value
     },
@@ -68528,10 +68528,10 @@ impl_639_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_639_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_639_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_639_list_possibleValues__value
     },
@@ -68850,10 +68850,10 @@ impl_642_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_642_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_642_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_642_list_possibleValues__value
     },
@@ -68978,10 +68978,10 @@ impl_643_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_643_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_643_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_643_list_possibleValues__value
     },
@@ -69157,10 +69157,10 @@ impl_637_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_637_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_637_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_637_parentPaths
     },
@@ -69261,10 +69261,10 @@ impl_636_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_636_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_636_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_636_list_collectionURIs__value
     },
@@ -69821,10 +69821,10 @@ impl_645_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_645_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_645_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_645_parentPaths
     },
@@ -69925,10 +69925,10 @@ impl_644_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_644_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_644_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_644_list_collectionURIs__value
     },
@@ -70499,10 +70499,10 @@ impl_651_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_651_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_651_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_651_parentPaths
     },
@@ -70603,10 +70603,10 @@ impl_650_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_650_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_650_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_650_list_collectionURIs__value
     },
@@ -71358,10 +71358,10 @@ impl_656_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_656_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_656_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_656_list_collectionURIs__value
     },
@@ -71533,10 +71533,10 @@ impl_665_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_665_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_665_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_665_list_possibleValues__value
     },
@@ -71673,10 +71673,10 @@ impl_666_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_666_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_666_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_666_list_possibleValues__value
     },
@@ -71811,10 +71811,10 @@ impl_667_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_667_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_667_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_667_list_possibleValues__value
     },
@@ -72076,10 +72076,10 @@ impl_664_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_664_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_664_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_664_parentPaths
     },
@@ -72180,10 +72180,10 @@ impl_663_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_663_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_663_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_663_list_collectionURIs__value
     },
@@ -72733,10 +72733,10 @@ impl_675_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_675_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_675_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_675_list_possibleValues__value
     },
@@ -73221,10 +73221,10 @@ impl_680_list_allowedValues_values[] = {
 static const afw_value_array_t
 impl_680_list_allowedValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_680_list_allowedValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_680_list_allowedValues__value
     },
@@ -74013,10 +74013,10 @@ impl_670_parentPaths_list_values[] = {
 static const afw_value_array_t
 impl_670_parentPaths;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_670_parentPaths_list = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_670_parentPaths
     },
@@ -74117,10 +74117,10 @@ impl_669_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_669_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_669_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_669_list_collectionURIs__value
     },
@@ -74277,10 +74277,10 @@ impl_688_list_possibleValues_values[] = {
 static const afw_value_array_t
 impl_688_list_possibleValues__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_688_list_possibleValues = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_688_list_possibleValues__value
     },
@@ -74469,10 +74469,10 @@ impl_686_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_686_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_686_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_686_list_collectionURIs__value
     },
@@ -75540,10 +75540,10 @@ impl_689_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_689_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_689_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_689_list_collectionURIs__value
     },
@@ -76164,10 +76164,10 @@ impl_699_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_699_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_699_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_699_list_collectionURIs__value
     },
@@ -76802,10 +76802,10 @@ impl_705_list_collectionURIs_values[] = {
 static const afw_value_array_t
 impl_705_list_collectionURIs__value;
 
-static const afw_array_const_array_of_values_self_t
+static const afw_array_from_values_self_t
 impl_705_list_collectionURIs = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_705_list_collectionURIs__value
     },

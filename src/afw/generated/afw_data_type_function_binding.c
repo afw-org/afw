@@ -172,7 +172,7 @@ impl_data_type_object_function__value = {
 };
 
 /* Permanent empty array of function. */
-const afw_array_const_array_of_values_self_t
+const afw_array_from_values_self_t
 impl_empty_array_of_function;
 
 /* Permanent empty array value of function. */
@@ -210,10 +210,10 @@ afw_data_type_function_direct = {
 };
 
 /* Permanent empty array of function. */
-const afw_array_const_array_of_values_self_t
+const afw_array_from_values_self_t
 impl_empty_array_of_function = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_function
     },

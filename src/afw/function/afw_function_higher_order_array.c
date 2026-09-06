@@ -1124,7 +1124,7 @@ afw_function_execute_sort(
     }
 
     /* Return sorted array. */
-    result_array = afw_array_create_view_of_c_array(
+    result_array = afw_array_create_unmanaged_from_c_array(
         ctx.values, true, data_type, ctx.count, ctx.p, ctx.xctx);
     return afw_value_create_unmanaged_array(result_array, ctx.p, ctx.xctx);
 }

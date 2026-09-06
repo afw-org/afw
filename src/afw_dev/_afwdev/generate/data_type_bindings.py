@@ -1192,7 +1192,7 @@ def write_c_section(fd, prefix, obj):
     fd.write('};\n')
 
     fd.write('\n/* Permanent empty array of ' + id + '. */\n')
-    fd.write('const afw_array_const_array_of_values_self_t\n')
+    fd.write('const afw_array_from_values_self_t\n')
     fd.write('impl_empty_array_of_' + id + ';\n')
     fd.write('\n/* Permanent empty array value of ' + id + '. */\n')
     fd.write('const afw_value_array_t\n')
@@ -1321,10 +1321,10 @@ def write_c_section(fd, prefix, obj):
 
         # Permanent empty typed array (process lifetime).
         fd.write('\n/* Permanent empty array of ' + id + '. */\n')
-        fd.write('const afw_array_const_array_of_values_self_t\n')
+        fd.write('const afw_array_from_values_self_t\n')
         fd.write('impl_empty_array_of_' + id + ' = {\n')
         fd.write('    {\n')
-        fd.write('        &afw_array_const_array_of_values_inf,\n')
+        fd.write('        &afw_array_permanent_from_values_inf,\n')
         fd.write('        NULL,\n')
         fd.write('        (const afw_value_t *)&impl_value_empty_array_of_' + id + '\n')
         fd.write('    },\n')

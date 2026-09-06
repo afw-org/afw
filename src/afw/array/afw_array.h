@@ -105,8 +105,8 @@ afw_array_is_memory_managed(const afw_array_t *array);
  * @brief Create a memory array that wraps another array (mutable face).
  * @param options AFW_ARRAY_MEMORY_OPTION_* (unmanaged borrow vs managed pin).
  * @param wrapped base array for isolation. Required (non-NULL). Any
- *     afw_array implementation is allowed (memory, adapter-backed, const
- *     array of values, …).
+ *     afw_array implementation is allowed (memory, adapter-backed,
+ *     from_values, …).
  * @param p to use for the face.
  * @param xctx of caller.
  * @return instance of new wrapper array.
@@ -115,8 +115,8 @@ afw_array_is_memory_managed(const afw_array_t *array);
  * only touch the face. Nested mutable objects/arrays are promoted to nested
  * faces on get. Sets never write to @p wrapped (issue #17).
  *
- * Not the same as afw_array_create_view_of_c_array (typed const array
- * copied from C internals).
+ * Not the same as afw_array_create_unmanaged_from_c_array (typed
+ * from_values array copied from C internals).
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_wrapper_with_options(
@@ -169,8 +169,8 @@ afw_array_is_memory_wrapper(const afw_array_t *array);
  * @brief True if array is a generic memory array (face or not).
  * @param array to test (may be NULL).
  *
- * Custom infs (metas views, const arrays) are false. Used so clone_or_reference
- * wraps compiled memory arrays (mutable overlay) but not immutable views.
+ * Custom infs (metas views, from_values) are false. Used so clone_or_reference
+ * wraps compiled memory arrays (mutable overlay) but not immutable arrays.
  */
 AFW_DECLARE(afw_boolean_t)
 afw_array_is_memory(const afw_array_t *array);
@@ -243,7 +243,7 @@ afw_array_as_value(
 
 
 /**
- * @brief Create an immutable array from an array of objects.
+ * @brief Create an unmanaged from_values array from object pointers.
  * @param objects is address of first object in array.
  * @param count is number of objects.
  * @param p is pool for result.
@@ -251,7 +251,7 @@ afw_array_as_value(
  * @return array instance. get_data_type() is object.
  */
 AFW_DECLARE(const afw_array_t *)
-afw_array_const_create_array_of_objects(
+afw_array_create_unmanaged_from_objects(
     const afw_object_t *const *objects,
     afw_size_t count,
     const afw_pool_t *p,
@@ -260,20 +260,20 @@ afw_array_const_create_array_of_objects(
 
 
 /**
- * @brief Create an immutable array from an array of values.
+ * @brief Create an unmanaged from_values array from value pointers.
  * @param data_type if every element is that type, or NULL if mixed.
  * @param values is address of first value in array.
  * @param count is number for values.
  * @param p is pool for result.
  * @param xctx of caller.
- * @return array instance.
+ * @return array instance. Dual face is unmanaged_array.
  *
  * Elements are existing value pointers; get_entry_value() does not wrap.
- * Generated const objects and typed empty arrays use the public self
- * below with a non-NULL data_type.
+ * Not a permanent array. Generate uses the public self with
+ * afw_array_permanent_from_values_inf.
  */
 AFW_DECLARE(const afw_array_t *)
-afw_array_const_create_array_of_values(
+afw_array_create_unmanaged_from_values(
     const afw_data_type_t *data_type,
     const afw_value_t *const *values,
     afw_size_t count,
@@ -283,14 +283,14 @@ afw_array_const_create_array_of_values(
 
 
 /**
- * @brief Create an immutable array from NULL terminated array of objects.
+ * @brief Create an unmanaged from_values array from NULL-terminated objects.
  * @param objects is NULL terminated array of objects.
  * @param p is pool for result.
  * @param xctx of caller.
  * @return array instance. get_data_type() is object.
  */
 AFW_DECLARE(const afw_array_t *)
-afw_array_const_create_null_terminated_array_of_objects(
+afw_array_create_unmanaged_from_null_terminated_objects(
     const afw_object_t *const *objects,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -298,7 +298,7 @@ afw_array_const_create_null_terminated_array_of_objects(
 
 
 /**
- * @brief Create an immutable array from NULL terminated array of values.
+ * @brief Create an unmanaged from_values array from NULL-terminated values.
  * @param data_type if every element is that type, or NULL if mixed.
  * @param values is NULL terminated array of values.
  * @param p is pool for result.
@@ -306,7 +306,7 @@ afw_array_const_create_null_terminated_array_of_objects(
  * @return array instance.
  */
 AFW_DECLARE(const afw_array_t *)
-afw_array_const_create_null_terminated_array_of_values(
+afw_array_create_unmanaged_from_null_terminated_values(
     const afw_data_type_t *data_type,
     const afw_value_t *const *values,
     const afw_pool_t *p,
@@ -316,22 +316,31 @@ afw_array_const_create_null_terminated_array_of_values(
 /**
  * @brief Self for immutable array of value pointers.
  *
- * Generated const objects and typed empty arrays initialize this
- * statically. Runtime creates allocate it plus a dual value.
+ * Shared layout for unmanaged, managed (later), and permanent infs.
+ * Generate and typed empty arrays initialize this statically with
+ * afw_array_permanent_from_values_inf. Runtime creates allocate it
+ * plus a dual value.
  */
-typedef struct afw_array_const_array_of_values_self_s {
+typedef struct afw_array_from_values_self_s {
     afw_array_t pub;
     const afw_data_type_t *data_type;
     afw_size_t count;
     const afw_value_t *const *values;
-} afw_array_const_array_of_values_self_t;
+} afw_array_from_values_self_t;
 
 
 /**
- * @brief inf for afw_array_const_array_of_values implementation.
+ * @brief inf for unmanaged from_values arrays (runtime create).
  */
 AFW_DECLARE_CONST_DATA(afw_array_inf_t)
-afw_array_const_array_of_values_inf;
+afw_array_unmanaged_from_values_inf;
+
+
+/**
+ * @brief inf for permanent from_values arrays (generate / empty arrays).
+ */
+AFW_DECLARE_CONST_DATA(afw_array_inf_t)
+afw_array_permanent_from_values_inf;
 
 
 
@@ -386,14 +395,14 @@ afw_array_convert_to_array_of_strings(
 
 
 /**
- * @brief Create a typed const array by copying C internals into values.
+ * @brief Create an unmanaged from_values array by copying C internals.
  * @param array of internal values (or pointers to internals if indirect).
  * @param indirect if true, array is array of pointers to internal values.
  * @param data_type of each element. Required.
  * @param count of entries in array or -1 for NULL-terminated pointer list.
  * @param p is pool for result.
  * @param xctx of caller.
- * @return typed const array of values (afw_array_const_array_of_values).
+ * @return typed unmanaged from_values array.
  *
  * Copies each internal into a value in @p p at create. C storage need
  * only live until this call returns. Fill C storage before calling.
@@ -409,7 +418,7 @@ afw_array_convert_to_array_of_strings(
  * is true.
  */
 AFW_DECLARE(const afw_array_t *)
-afw_array_create_view_of_c_array(
+afw_array_create_unmanaged_from_c_array(
     const void *array,
     afw_boolean_t indirect,
     const afw_data_type_t *data_type,

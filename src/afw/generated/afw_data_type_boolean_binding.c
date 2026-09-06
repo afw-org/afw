@@ -183,7 +183,7 @@ impl_data_type_object_boolean__value = {
 };
 
 /* Permanent empty array of boolean. */
-const afw_array_const_array_of_values_self_t
+const afw_array_from_values_self_t
 impl_empty_array_of_boolean;
 
 /* Permanent empty array value of boolean. */
@@ -221,10 +221,10 @@ afw_data_type_boolean_direct = {
 };
 
 /* Permanent empty array of boolean. */
-const afw_array_const_array_of_values_self_t
+const afw_array_from_values_self_t
 impl_empty_array_of_boolean = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_boolean
     },

@@ -117,7 +117,7 @@ impl_data_type_object_undefined__value = {
 };
 
 /* Permanent empty array of undefined. */
-const afw_array_const_array_of_values_self_t
+const afw_array_from_values_self_t
 impl_empty_array_of_undefined;
 
 /* Permanent empty array value of undefined. */

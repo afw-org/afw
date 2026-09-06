@@ -942,7 +942,7 @@ impl_parse_string_list_value(impl_string_parser_t *parser)
     }
 
     /* Return list of strings. */
-    list = afw_array_create_view_of_c_array(
+    list = afw_array_create_unmanaged_from_c_array(
         values->elts, false, afw_data_type_string,
         values->nelts, parser->p, parser->xctx);
     result = afw_value_create_unmanaged_array(list, parser->p, parser->xctx);
@@ -1698,7 +1698,7 @@ impl_compare_value(
     }
     else {
         data_type = afw_value_get_data_type(value, xctx);
-        list = afw_array_create_view_of_c_array(
+        list = afw_array_create_unmanaged_from_c_array(
             &((afw_value_common_t *)value)->internal, false,
             data_type, 1, p, xctx);
     }

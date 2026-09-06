@@ -1,14 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework afw_array interface for const arrays
+ * Adaptive Framework afw_array from_values implementations
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_array_const_array.c
- * @brief Adaptive Framework afw_array interface for const arrays of values.
+ * @file afw_array_from_values.c
+ * @brief Immutable array of value pointers (unmanaged and permanent infs).
  */
 
 #include "afw_internal.h"
@@ -21,18 +21,29 @@
 
 
 /* Declares and rti/inf defines for interface afw_array */
-#define AFW_IMPLEMENTATION_ID "afw_array_const_array_of_values"
+#define AFW_IMPLEMENTATION_ID "unmanaged_from_values"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_array_const_array_of_values_inf
-#define AFW_ARRAY_SELF_T afw_array_const_array_of_values_self_t
+#define AFW_IMPLEMENTATION_INF_LABEL afw_array_unmanaged_from_values_inf
+#define AFW_ARRAY_SELF_T afw_array_from_values_self_t
 #include "afw_array_impl_declares.h"
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_SPECIFIER
+#undef AFW_IMPLEMENTATION_INF_LABEL
+
+#define AFW_IMPLEMENTATION_ID "permanent_from_values"
+#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
+#define AFW_IMPLEMENTATION_INF_LABEL afw_array_permanent_from_values_inf
+#define AFW_ARRAY_INF_ONLY
+#include "afw_array_impl_declares.h"
+#undef AFW_ARRAY_INF_ONLY
+#undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_SPECIFIER
 #undef AFW_IMPLEMENTATION_INF_LABEL
 
 
 /* Create an immutable array from an array of objects. */
 AFW_DEFINE(const afw_array_t *)
-afw_array_const_create_array_of_objects(
+afw_array_create_unmanaged_from_objects(
     const afw_object_t *const *objects,
     afw_size_t count,
     const afw_pool_t *p,
@@ -51,14 +62,14 @@ afw_array_const_create_array_of_objects(
         }
     }
 
-    return afw_array_const_create_array_of_values(
+    return afw_array_create_unmanaged_from_values(
         afw_data_type_object, values, count, p, xctx);
 }
 
 
 /* Create an array from NULL terminated array of objects. */
 AFW_DEFINE(const afw_array_t *)
-afw_array_const_create_null_terminated_array_of_objects(
+afw_array_create_unmanaged_from_null_terminated_objects(
     const afw_object_t * const *objects,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -71,31 +82,31 @@ afw_array_const_create_null_terminated_array_of_objects(
         for (o = objects; *o; count++, o++);
     }
 
-    return afw_array_const_create_array_of_objects(objects, count, p, xctx);
+    return afw_array_create_unmanaged_from_objects(objects, count, p, xctx);
 }
 
 
 
 /* Create an immutable array from an array of values. */
 AFW_DEFINE(const afw_array_t *)
-afw_array_const_create_array_of_values(
+afw_array_create_unmanaged_from_values(
     const afw_data_type_t *data_type,
     const afw_value_t *const *values,
     afw_size_t count,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_array_const_array_of_values_self_t *self;
+    afw_array_from_values_self_t *self;
     afw_value_array_t *value;
 
     self = afw_pool_calloc(p,
-        sizeof(afw_array_const_array_of_values_self_t) +
+        sizeof(afw_array_from_values_self_t) +
         sizeof(afw_value_array_t),
         xctx);
-    self->pub.inf = &afw_array_const_array_of_values_inf;
+    self->pub.inf = &afw_array_unmanaged_from_values_inf;
     self->pub.p = p;
     value = (afw_value_array_t *)
-        ((char *)self + sizeof(afw_array_const_array_of_values_self_t));
+        ((char *)self + sizeof(afw_array_from_values_self_t));
     self->pub.value = (const afw_value_t *)value;
     /* Pool-owned immutable wrapper; unmanaged value face. */
     value->inf = &afw_value_unmanaged_array_inf;
@@ -113,7 +124,7 @@ afw_array_const_create_array_of_values(
 
 /* Create an immutable array from NULL terminated array of values. */
 AFW_DEFINE(const afw_array_t *)
-afw_array_const_create_null_terminated_array_of_values(
+afw_array_create_unmanaged_from_null_terminated_values(
     const afw_data_type_t *data_type,
     const afw_value_t * const *values,
     const afw_pool_t *p,
@@ -127,7 +138,7 @@ afw_array_const_create_null_terminated_array_of_values(
         for (v = values; *v; count++, v++);
     }
 
-    return afw_array_const_create_array_of_values(
+    return afw_array_create_unmanaged_from_values(
         data_type, values, count, p, xctx);
 }
 
@@ -135,7 +146,7 @@ afw_array_const_create_null_terminated_array_of_values(
 
 /* Copy C internals into a typed const array of values. */
 AFW_DEFINE(const afw_array_t *)
-afw_array_create_view_of_c_array(
+afw_array_create_unmanaged_from_c_array(
     const void *internal,
     afw_boolean_t indirect,
     const afw_data_type_t *data_type,
@@ -151,7 +162,7 @@ afw_array_create_view_of_c_array(
 
     if (!data_type) {
         AFW_THROW_ERROR_Z(general,
-            "afw_array_create_view_of_c_array requires a data type",
+            "afw_array_create_unmanaged_from_c_array requires a data type",
             xctx);
     }
 
@@ -177,13 +188,13 @@ afw_array_create_view_of_c_array(
     }
 
     if (count == 0) {
-        return afw_array_const_create_array_of_values(
+        return afw_array_create_unmanaged_from_values(
             data_type, NULL, 0, p, xctx);
     }
 
     if (!internal) {
         AFW_THROW_ERROR_Z(general,
-            "afw_array_create_view_of_c_array requires internals",
+            "afw_array_create_unmanaged_from_c_array requires internals",
             xctx);
     }
 
@@ -196,7 +207,7 @@ afw_array_create_view_of_c_array(
         ptr += size;
     }
 
-    return afw_array_const_create_array_of_values(
+    return afw_array_create_unmanaged_from_values(
         data_type, values, count, p, xctx);
 }
 
@@ -247,7 +258,7 @@ afw_array_convert_to_array_of_strings(
             s, afw_data_type_string, p, xctx);
     }
 
-    return afw_array_const_create_array_of_values(
+    return afw_array_create_unmanaged_from_values(
         afw_data_type_string, values, i, p, xctx);
 }
 

@@ -213,7 +213,7 @@ impl_data_type_object_regexp__value = {
 };
 
 /* Permanent empty array of regexp. */
-const afw_array_const_array_of_values_self_t
+const afw_array_from_values_self_t
 impl_empty_array_of_regexp;
 
 /* Permanent empty array value of regexp. */
@@ -251,10 +251,10 @@ afw_data_type_regexp_direct = {
 };
 
 /* Permanent empty array of regexp. */
-const afw_array_const_array_of_values_self_t
+const afw_array_from_values_self_t
 impl_empty_array_of_regexp = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_regexp
     },

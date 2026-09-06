@@ -213,7 +213,7 @@ impl_data_type_object_rfc822Name__value = {
 };
 
 /* Permanent empty array of rfc822Name. */
-const afw_array_const_array_of_values_self_t
+const afw_array_from_values_self_t
 impl_empty_array_of_rfc822Name;
 
 /* Permanent empty array value of rfc822Name. */
@@ -251,10 +251,10 @@ afw_data_type_rfc822Name_direct = {
 };
 
 /* Permanent empty array of rfc822Name. */
-const afw_array_const_array_of_values_self_t
+const afw_array_from_values_self_t
 impl_empty_array_of_rfc822Name = {
     {
-        &afw_array_const_array_of_values_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_rfc822Name
     },

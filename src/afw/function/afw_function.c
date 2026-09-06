@@ -167,7 +167,7 @@ afw_function_execute_requiresExecuteAccess_wrapper(
         /* Set properties in object to be available in authorization check. */
         afw_object_set_property_as_object(
             obj, afw_v_function, x->function->object, xctx);
-        argv_array = afw_array_const_create_array_of_values(
+        argv_array = afw_array_create_unmanaged_from_values(
             NULL, &argv[1], x->argc, obj->p, xctx);
         afw_object_set_property_as_array(
             obj, afw_v_arguments, argv_array, xctx);
@@ -179,11 +179,11 @@ afw_function_execute_requiresExecuteAccess_wrapper(
                 (*parameter)->minArgs->internal != -1)
             {
                 if (argc <= x->argc) {
-                    argv_array = afw_array_const_create_array_of_values(
+                    argv_array = afw_array_create_unmanaged_from_values(
                         NULL, &argv[argc], x->argc - argc, obj->p, xctx);
                 }
                 else {
-                    argv_array = afw_array_const_create_array_of_values(
+                    argv_array = afw_array_create_unmanaged_from_values(
                         NULL, &argv[1], 0, obj->p, xctx);
                 }
                 afw_object_set_property_as_array(

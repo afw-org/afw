@@ -586,7 +586,7 @@ impl_syntax_handler_list_binary_to_value(
         e->ptr = afw_memory_dup((*bv)->bv_val, (*bv)->bv_len, p, xctx);
         e->size = (*bv)->bv_len;
     }
-    list = afw_array_create_view_of_c_array(
+    list = afw_array_create_unmanaged_from_c_array(
         base, false, afw_data_type_base64Binary, e - base, p, xctx);
     result = afw_value_create_unmanaged_array(list, p, xctx);
 
@@ -699,7 +699,7 @@ impl_syntax_handler_list_boolean_to_value(
             AFW_THROW_ERROR_Z(general, "Invalid ldap boolean value", xctx);
         }
     }
-    list = afw_array_create_view_of_c_array(
+    list = afw_array_create_unmanaged_from_c_array(
         base, false, afw_data_type_boolean, e - base, p, xctx);
     result = afw_value_create_unmanaged_array(list, p, xctx);
 
@@ -728,7 +728,7 @@ impl_syntax_handler_list_boolean_to_ber(
     }
     else {
         count = 1;
-        list = afw_array_create_view_of_c_array(
+        list = afw_array_create_unmanaged_from_c_array(
             AFW_VALUE_INTERNAL(value), false,
             afw_value_get_data_type(value, xctx),
             count, p, xctx);
@@ -785,7 +785,7 @@ impl_syntax_handler_list_generalized_time_to_value(
         afw_dataType_generalized_time_set_internal(
             &generalized_time, e, xctx);
     }
-    list = afw_array_create_view_of_c_array(
+    list = afw_array_create_unmanaged_from_c_array(
         (const void *)base, false, afw_data_type_dateTime,
         e - base, p, xctx);
     result = afw_value_create_unmanaged_array(list, p, xctx);
@@ -871,7 +871,7 @@ impl_syntax_handler_list_integer_to_value(
         s.len = (*bv)->bv_len;
         *e = afw_number_utf8_to_integer(&s, p, xctx);
     }
-    list = afw_array_create_view_of_c_array(
+    list = afw_array_create_unmanaged_from_c_array(
         base, false, afw_data_type_integer, e - base, p, xctx);
     result = afw_value_create_unmanaged_array(list, p, xctx);
 
@@ -915,7 +915,7 @@ impl_syntax_handler_list_string_to_value(
         e->s = s->s;
         e->len = s->len;
     }
-    list = afw_array_create_view_of_c_array(
+    list = afw_array_create_unmanaged_from_c_array(
         base, false, afw_data_type_string, e - base, p, xctx);
     result = afw_value_create_unmanaged_array(list, p, xctx);
 
@@ -945,7 +945,7 @@ impl_syntax_handler_list_string_to_ber(
     }
     else {
         data_type = afw_value_get_data_type(value, xctx);
-        list = afw_array_create_view_of_c_array(
+        list = afw_array_create_unmanaged_from_c_array(
             AFW_VALUE_INTERNAL(value), false, data_type, 1, p, xctx);
     }
 

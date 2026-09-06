@@ -13,9 +13,9 @@
 
 /**
  * @file array_view_index_probe.c
- * @brief C probe for create_view_of_c_array index === count.
+ * @brief C probe for create_unmanaged_from_c_array index === count.
  *
- * create_view_of_c_array copies C internals onto const_array_of_values.
+ * create_unmanaged_from_c_array copies C internals onto from_values.
  * A script test of a[length] does not hit this path, so this boots a
  * core environment and calls get_entry on a counted copy.
  *
@@ -97,7 +97,7 @@ impl_counted_direct(const afw_pool_t *p, afw_xctx_t *xctx)
     ints[0] = 10;
     ints[1] = 20;
     ints[2] = 999;
-    array = afw_array_create_view_of_c_array(
+    array = afw_array_create_unmanaged_from_c_array(
         ints, false, afw_data_type_integer, 2, p, xctx);
     rc = 0;
     rc |= impl_expect_integer(array, 0, 10, xctx, "direct");
@@ -115,7 +115,7 @@ impl_empty_with_storage(const afw_pool_t *p, afw_xctx_t *xctx)
     const afw_array_t *array;
 
     dummy = 99;
-    array = afw_array_create_view_of_c_array(
+    array = afw_array_create_unmanaged_from_c_array(
         &dummy, false, afw_data_type_integer, 0, p, xctx);
     return impl_expect_missing(array, 0, xctx, "empty");
 }
@@ -134,7 +134,7 @@ impl_counted_indirect(const afw_pool_t *p, afw_xctx_t *xctx)
     slots[0] = &ints[0];
     slots[1] = &ints[1];
     slots[2] = &ints[2];
-    array = afw_array_create_view_of_c_array(
+    array = afw_array_create_unmanaged_from_c_array(
         slots, true, afw_data_type_integer, 2, p, xctx);
     rc = 0;
     rc |= impl_expect_integer(array, 0, 10, xctx, "indirect");

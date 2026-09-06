@@ -44,7 +44,7 @@ def write_const_array_of_values(
         fd, options, instance_label, value_label, element_type, py_values):
     """Emit a static typed const array of interned value pointers.
 
-    instance_label names the afw_array_const_array_of_values_self_t.
+    instance_label names the afw_array_from_values_self_t.
     value_label names the dual afw_value_array_t (permanent).
     """
     values_label = instance_label + '_values'
@@ -64,10 +64,10 @@ def write_const_array_of_values(
     fd.write('\nstatic const afw_value_array_t\n')
     fd.write(value_label + ';\n')
 
-    fd.write('\nstatic const afw_array_const_array_of_values_self_t\n')
+    fd.write('\nstatic const afw_array_from_values_self_t\n')
     fd.write(instance_label + ' = {\n')
     fd.write('    {\n')
-    fd.write('        &afw_array_const_array_of_values_inf,\n')
+    fd.write('        &afw_array_permanent_from_values_inf,\n')
     fd.write('        NULL,\n')
     fd.write('        (const afw_value_t *)&' + value_label + '\n')
     fd.write('    },\n')
