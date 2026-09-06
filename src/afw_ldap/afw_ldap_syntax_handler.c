@@ -578,17 +578,17 @@ impl_syntax_handler_list_binary_to_value(
     const afw_value_t *result;
     const afw_array_t *list;
     afw_memory_t *e;
+    afw_memory_t *base;
 
     count = ldap_count_values_len(bv);
-    e = afw_pool_malloc(p, count * sizeof(afw_memory_t), xctx);
-    list = afw_array_create_view_of_c_array(
-        e, false, afw_data_type_base64Binary, count, p, xctx);
-    result = afw_value_create_unmanaged_array(list, p, xctx);
-
+    base = e = afw_pool_malloc(p, count * sizeof(afw_memory_t), xctx);
     for (; count > 0; count--, bv++, e++) {
         e->ptr = afw_memory_dup((*bv)->bv_val, (*bv)->bv_len, p, xctx);
         e->size = (*bv)->bv_len;
     }
+    list = afw_array_create_view_of_c_array(
+        base, false, afw_data_type_base64Binary, e - base, p, xctx);
+    result = afw_value_create_unmanaged_array(list, p, xctx);
 
     return result;
 }
@@ -682,17 +682,14 @@ impl_syntax_handler_list_boolean_to_value(
     const afw_value_t *result;
     const afw_array_t *list;
     afw_boolean_t *e;
+    afw_boolean_t *base;
 
     count = ldap_count_values_len(bv);
     if (count == 0) {
         return afw_data_type_boolean->empty_array_value;
     }
 
-    e = afw_pool_malloc(p, sizeof(afw_boolean_t) * count, xctx);
-    list = afw_array_create_view_of_c_array(
-        e, false, afw_data_type_boolean, count, p, xctx);
-    result = afw_value_create_unmanaged_array(list, p, xctx);
-
+    base = e = afw_pool_malloc(p, sizeof(afw_boolean_t) * count, xctx);
     for (; count > 0; count--, bv++, e++) {
         if ((*bv)->bv_len == 4 && memcmp((*bv)->bv_val, "TRUE", 4) == 0) {
             *e = true;
@@ -702,6 +699,9 @@ impl_syntax_handler_list_boolean_to_value(
             AFW_THROW_ERROR_Z(general, "Invalid ldap boolean value", xctx);
         }
     }
+    list = afw_array_create_view_of_c_array(
+        base, false, afw_data_type_boolean, e - base, p, xctx);
+    result = afw_value_create_unmanaged_array(list, p, xctx);
 
     return result;
 }
@@ -718,7 +718,6 @@ impl_syntax_handler_list_boolean_to_ber(
     afw_boolean_t b;
     afw_size_t count;
     const afw_data_type_t *data_type;
-    afw_array_view_of_c_array_self_t wrapper;
     const afw_array_t *list;
     const afw_iterator_old_t *iterator;
     const void *internal;
@@ -729,11 +728,10 @@ impl_syntax_handler_list_boolean_to_ber(
     }
     else {
         count = 1;
-        AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY_P(
-            &wrapper, AFW_VALUE_INTERNAL(value), false,
+        list = afw_array_create_view_of_c_array(
+            AFW_VALUE_INTERNAL(value), false,
             afw_value_get_data_type(value, xctx),
-            count, p);
-        list = (const afw_array_t *)&wrapper;
+            count, p, xctx);
     }
 
     result = afw_pool_malloc(p, sizeof(struct berval *) *
@@ -774,21 +772,23 @@ impl_syntax_handler_list_generalized_time_to_value(
     const afw_value_t *result;
     const afw_array_t *list;
     afw_dateTime_t *e;
+    afw_dateTime_t *base;
 
     count = ldap_count_values_len(bv);
     if (count == 0) {
         return afw_data_type_dateTime->empty_array_value;
     }
-    e = afw_pool_malloc(p, sizeof(afw_dateTime_t) * count, xctx);
-    list = afw_array_create_view_of_c_array(
-        (const void *)e, false, afw_data_type_dateTime, count, p, xctx);
-    result = afw_value_create_unmanaged_array(list, p, xctx);
+    base = e = afw_pool_malloc(p, sizeof(afw_dateTime_t) * count, xctx);
     for (; count > 0; count--, bv++, e++) {
         generalized_time.s = (*bv)->bv_val;
         generalized_time.len = (*bv)->bv_len;
         afw_dataType_generalized_time_set_internal(
             &generalized_time, e, xctx);
     }
+    list = afw_array_create_view_of_c_array(
+        (const void *)base, false, afw_data_type_dateTime,
+        e - base, p, xctx);
+    result = afw_value_create_unmanaged_array(list, p, xctx);
 
     return result;
 }
@@ -857,6 +857,7 @@ impl_syntax_handler_list_integer_to_value(
     const afw_value_t *result;
     const afw_array_t *list;
     afw_integer_t *e;
+    afw_integer_t *base;
     afw_utf8_t s;
     int count;
 
@@ -864,16 +865,15 @@ impl_syntax_handler_list_integer_to_value(
     if (count == 0) {
         return afw_data_type_integer->empty_array_value;
     }
-    e = afw_pool_malloc(p, sizeof(afw_integer_t) * count, xctx);
-    list = afw_array_create_view_of_c_array(
-        e, false, afw_data_type_integer, count, p, xctx);
-    result = afw_value_create_unmanaged_array(list, p, xctx);
-
+    base = e = afw_pool_malloc(p, sizeof(afw_integer_t) * count, xctx);
     for (; count > 0; count--, bv++, e++) {
         s.s = (*bv)->bv_val;
         s.len = (*bv)->bv_len;
         *e = afw_number_utf8_to_integer(&s, p, xctx);
     }
+    list = afw_array_create_view_of_c_array(
+        base, false, afw_data_type_integer, e - base, p, xctx);
+    result = afw_value_create_unmanaged_array(list, p, xctx);
 
     return result;
 }
@@ -901,6 +901,7 @@ impl_syntax_handler_list_string_to_value(
     const afw_value_t *result;
     const afw_array_t *list;
     afw_utf8_t *e;
+    afw_utf8_t *base;
     int count;
 
     count = ldap_count_values_len(bv);
@@ -908,16 +909,15 @@ impl_syntax_handler_list_string_to_value(
         return afw_data_type_string->empty_array_value;
     }
 
-    e = afw_pool_malloc(p, sizeof(afw_utf8_t) * count, xctx);
-    list = afw_array_create_view_of_c_array(
-        e, false, afw_data_type_string, count, p, xctx);
-    result = afw_value_create_unmanaged_array(list, p, xctx);
-
+    base = e = afw_pool_malloc(p, sizeof(afw_utf8_t) * count, xctx);
     for (; count > 0; count--, bv++, e++) {
         s = afw_utf8_create((*bv)->bv_val, (*bv)->bv_len, p, xctx);
         e->s = s->s;
         e->len = s->len;
     }
+    list = afw_array_create_view_of_c_array(
+        base, false, afw_data_type_string, e - base, p, xctx);
+    result = afw_value_create_unmanaged_array(list, p, xctx);
 
     return result;
 }

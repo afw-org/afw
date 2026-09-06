@@ -272,15 +272,16 @@ impl_get_value(impl_lexical_t *self)
 
         /* Allocate list to hold strings and populate it. */
         s = afw_pool_malloc(self->p, count * sizeof(afw_utf8_t), self->xctx);
-        list = afw_array_create_view_of_c_array(s, false,
-            afw_data_type_string, count, self->p, self->xctx);
-        val = afw_value_create_unmanaged_array(list, self->p, self->xctx);
         for (;;) {
             tkn = impl_get_token(self);
             if (afw_utf8_z_equal(tkn, ")")) break;
             if (afw_utf8_z_equal(tkn, "$")) continue;
             impl_set_string(self, s++);
         }
+        s -= count;
+        list = afw_array_create_view_of_c_array(s, false,
+            afw_data_type_string, count, self->p, self->xctx);
+        val = afw_value_create_unmanaged_array(list, self->p, self->xctx);
     }
 
     /* If not list, just return single value. */

@@ -13,11 +13,11 @@
 
 /**
  * @file array_view_index_probe.c
- * @brief C probe for array-view index === count.
+ * @brief C probe for create_view_of_c_array index === count.
  *
- * Script arrays use the memory impl (`>=`). The C-array view used `>`.
- * A script test of a[length] does not hit this impl, so this boots a
- * core environment and calls get_entry on a counted view.
+ * create_view_of_c_array copies C internals onto const_array_of_values.
+ * A script test of a[length] does not hit this path, so this boots a
+ * core environment and calls get_entry on a counted copy.
  *
  * Same shape as tests/advanced/pool_alloc/pool_alloc_probe.c.
  */

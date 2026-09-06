@@ -1660,7 +1660,6 @@ impl_compare_value(
     const afw_data_type_t *data_type;
     const afw_data_type_t *entry_data_type, *value_data_type;
     const afw_array_t *list, *entry_list;
-    afw_array_view_of_c_array_self_t list_for_single_internal;
     const afw_value_t *entry_value_converted;
     const afw_utf8_t *s2;
     const xmlChar *s_z;
@@ -1699,11 +1698,9 @@ impl_compare_value(
     }
     else {
         data_type = afw_value_get_data_type(value, xctx);
-        AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY(
-            &list_for_single_internal,
+        list = afw_array_create_view_of_c_array(
             &((afw_value_common_t *)value)->internal, false,
-            data_type, 1);
-        list = (afw_array_t *)&list_for_single_internal;
+            data_type, 1, p, xctx);
     }
 
     /* Process operation. */

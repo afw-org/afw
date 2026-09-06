@@ -133,6 +133,126 @@ afw_array_const_create_null_terminated_array_of_values(
 
 
 
+/* Copy C internals into a typed const array of values. */
+AFW_DEFINE(const afw_array_t *)
+afw_array_create_view_of_c_array(
+    const void *internal,
+    afw_boolean_t indirect,
+    const afw_data_type_t *data_type,
+    afw_size_t count,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t **values;
+    const afw_octet_t *ptr;
+    const void *e;
+    afw_size_t i;
+    afw_size_t size;
+
+    if (!data_type) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_array_create_view_of_c_array requires a data type",
+            xctx);
+    }
+
+    if (count == (afw_size_t)-1) {
+        if (!internal) {
+            count = 0;
+        }
+        else if (indirect) {
+            for (count = 0, ptr = (const afw_octet_t *)internal;
+                *(const void * const *)ptr;
+                count++, ptr += sizeof(void *));
+        }
+        else {
+            if (data_type->c_type_size < sizeof(const void * const *)) {
+                AFW_THROW_ERROR_Z(general,
+                    "count -1 is not supported for this data type",
+                    xctx);
+            }
+            for (count = 0, ptr = (const afw_octet_t *)internal;
+                *(const void * const *)ptr;
+                count++, ptr += data_type->c_type_size);
+        }
+    }
+
+    if (count == 0) {
+        return afw_array_const_create_array_of_values(
+            data_type, NULL, 0, p, xctx);
+    }
+
+    if (!internal) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_array_create_view_of_c_array requires internals",
+            xctx);
+    }
+
+    values = afw_pool_malloc(p, count * sizeof(const afw_value_t *), xctx);
+    size = indirect ? sizeof(void *) : data_type->c_type_size;
+    ptr = (const afw_octet_t *)internal;
+    for (i = 0; i < count; i++) {
+        e = indirect ? *(const void * const *)ptr : (const void *)ptr;
+        values[i] = afw_value_common_create(e, data_type, p, xctx);
+        ptr += size;
+    }
+
+    return afw_array_const_create_array_of_values(
+        data_type, values, count, p, xctx);
+}
+
+
+
+/* Convert an array to an array of strings. */
+AFW_DEFINE(const afw_array_t *)
+afw_array_convert_to_array_of_strings(
+    const afw_array_t *array,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t **values;
+    const afw_value_t *value;
+    const afw_data_type_t *data_type;
+    const afw_utf8_t *s;
+    const afw_iterator_old_t *iterator;
+    afw_size_t count;
+    afw_size_t i;
+
+    if (afw_array_get_data_type(array, xctx) == afw_data_type_string) {
+        return array;
+    }
+
+    count = afw_array_get_count(array, xctx);
+    if (count == 0) {
+        return afw_data_type_string->empty_array;
+    }
+
+    values = afw_pool_malloc(p, count * sizeof(const afw_value_t *), xctx);
+    i = 0;
+    for (iterator = NULL;;) {
+        value = afw_array_get_next_value(array, &iterator, p, xctx);
+        if (!value) {
+            break;
+        }
+        value = afw_value_evaluate(value, p, xctx);
+        data_type = afw_value_get_data_type(value, xctx);
+        if (!data_type) {
+            AFW_THROW_ERROR_Z(general,
+                "data type needed in afw_array_convert_to_array_of_strings()",
+                xctx);
+        }
+        s = afw_data_type_internal_to_utf8(
+            data_type, &((const afw_value_common_t *)value)->internal,
+            p, xctx);
+        values[i++] = afw_value_common_create(
+            s, afw_data_type_string, p, xctx);
+    }
+
+    return afw_array_const_create_array_of_values(
+        afw_data_type_string, values, i, p, xctx);
+}
+
+
+
 /*
  * Implementation of method release of interface afw_array.
  */

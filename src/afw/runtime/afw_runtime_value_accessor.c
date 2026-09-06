@@ -345,9 +345,6 @@ afw_runtime_value_accessor_stopping_adapter_instances(
         }
 
         entry = afw_pool_malloc(p, count * sizeof(afw_integer_t), xctx);
-        list = afw_array_create_view_of_c_array(entry, false,
-            afw_data_type_integer, count, p, xctx);
-        result = afw_value_create_unmanaged_array(list, p, xctx);
         for (
             stopping = anchor->stopping,
             count = 0;
@@ -358,6 +355,10 @@ afw_runtime_value_accessor_stopping_adapter_instances(
         {
             *entry = stopping->reference_count;
         }
+        entry -= count;
+        list = afw_array_create_view_of_c_array(entry, false,
+            afw_data_type_integer, count, p, xctx);
+        result = afw_value_create_unmanaged_array(list, p, xctx);
     }
 
     AFW_LOCK_END;
@@ -428,9 +429,6 @@ afw_runtime_value_accessor_stopping_authorization_handler_instances(
         }
 
         entry = afw_pool_malloc(p, count * sizeof(afw_integer_t), xctx);
-        list = afw_array_create_view_of_c_array(entry, false,
-            afw_data_type_integer, count, p, xctx);
-        result = afw_value_create_unmanaged_array(list, p, xctx);
         for (
             stopping = anchor->stopping,
             count = 0;
@@ -441,6 +439,10 @@ afw_runtime_value_accessor_stopping_authorization_handler_instances(
         {
             *entry = stopping->reference_count;
         }
+        entry -= count;
+        list = afw_array_create_view_of_c_array(entry, false,
+            afw_data_type_integer, count, p, xctx);
+        result = afw_value_create_unmanaged_array(list, p, xctx);
     }
 
     AFW_LOCK_WRITE_END;

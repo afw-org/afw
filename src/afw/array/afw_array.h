@@ -105,8 +105,8 @@ afw_array_is_memory_managed(const afw_array_t *array);
  * @brief Create a memory array that wraps another array (mutable face).
  * @param options AFW_ARRAY_MEMORY_OPTION_* (unmanaged borrow vs managed pin).
  * @param wrapped base array for isolation. Required (non-NULL). Any
- *     afw_array implementation is allowed (memory, adapter-backed, view of
- *     C array, …).
+ *     afw_array implementation is allowed (memory, adapter-backed, const
+ *     array of values, …).
  * @param p to use for the face.
  * @param xctx of caller.
  * @return instance of new wrapper array.
@@ -115,7 +115,8 @@ afw_array_is_memory_managed(const afw_array_t *array);
  * only touch the face. Nested mutable objects/arrays are promoted to nested
  * faces on get. Sets never write to @p wrapped (issue #17).
  *
- * Not the same as afw_array_create_view_of_c_array (immutable C storage view).
+ * Not the same as afw_array_create_view_of_c_array (typed const array
+ * copied from C internals).
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_wrapper_with_options(
@@ -385,18 +386,20 @@ afw_array_convert_to_array_of_strings(
 
 
 /**
- * @brief Create an immutable afw_array that views a C array of internals.
+ * @brief Create a typed const array by copying C internals into values.
  * @param array of internal values (or pointers to internals if indirect).
  * @param indirect if true, array is array of pointers to internal values.
- * @param data_type of each element.
+ * @param data_type of each element. Required.
  * @param count of entries in array or -1 for NULL-terminated pointer list.
  * @param p is pool for result.
  * @param xctx of caller.
- * @return array instance (immutable view; does not copy the C storage).
+ * @return typed const array of values (afw_array_const_array_of_values).
+ *
+ * Copies each internal into a value in @p p at create. C storage need
+ * only live until this call returns. Fill C storage before calling.
  *
  * This is **not** a mutable look-through face over another adaptive array
- * (reserved naming: create_wrapper_* for #17-style faces). It only exposes
- * existing C memory as an `afw_array_t`.
+ * (reserved naming: create_wrapper_* for #17-style faces).
  *
  * If indirect is false, array must be an array of data_type->cType.  If
  * indirect is true, array must be an array of data_type->cType *.
@@ -405,7 +408,7 @@ afw_array_convert_to_array_of_strings(
  * be because data_type->cType ends in an asterisk or the indirect parameter
  * is true.
  */
-AFW_DEFINE(const afw_array_t *)
+AFW_DECLARE(const afw_array_t *)
 afw_array_create_view_of_c_array(
     const void *array,
     afw_boolean_t indirect,
@@ -413,84 +416,6 @@ afw_array_create_view_of_c_array(
     afw_size_t count,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Self for immutable afw_array view of a C array.
- *
- * Can be defined and filled out in a local variable instead of calling
- * afw_array_create_view_of_c_array() if the instance is only needed
- * temporarily. Helper macro AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY_P() can be
- * used to do this.
- */
-typedef struct afw_array_view_of_c_array_self_s {
-    afw_array_t pub;
-    const afw_data_type_t *data_type;
-    afw_size_t count;
-    const void *internal;
-    afw_boolean_t indirect;
-} afw_array_view_of_c_array_self_t;
-
-
-
-/**
- * @brief inf for afw_array_view_of_c_array afw_array implementation.
- *
- * See AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY() macro.
- */
-AFW_DECLARE_CONST_DATA(afw_array_inf_t)
-afw_array_view_of_c_array_inf;
-
-
-
-/**
- * @brief Helper macro to fill out afw_array_view_of_c_array_self_t.
- * @param instance is pointer to afw_array_view_of_c_array_self_t.
- * @param _internal array of internal values.
- * @param _indirect if true array is array of pointers to internal value.
- * @param _data_type of array.
- * @param _count of entries in array or -1 for NULL terminated.
- *
- * If method afw_array_get_next_value() will be called, use helper macro
- * AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY_P() instead.  Calling
- * afw_array_get_next() will work fine since it does not allocate memory.
- *
- * Example:
- *
- *   afw_array_view_of_c_array_self_t view;
- *
- *   AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY(&view, array, data_type, count);
- */
-#define AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY( \
-instance, _internal, _indirect, _data_type, _count) \
-    (instance)->pub.inf = &afw_array_view_of_c_array_inf; \
-    (instance)->pub.p = NULL; \
-    (instance)->internal = _internal; \
-    (instance)->indirect = _indirect; \
-    (instance)->data_type = _data_type; \
-    (instance)->count = _count
-
-
-/**
- * @brief Helper macro to fill out afw_array_view_of_c_array_self_t.
- * @brief instance is pointer to afw_array_view_of_c_array_self_t.
- * @param _internal array of internal values.
- * @param _indirect if true array is array of pointers to internal value.
- * @param _data_type of array.
- * @param _count of entries in array or -1 for NULL terminated.
- * @param _p for use by method afw_array_get_next_value().
- *
- * If possible, use AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY() instead.
- */
-#define AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY_P(instance, \
-_internal, _indirect, _data_type, _count, _p) \
-    (instance)->pub.inf = &afw_array_view_of_c_array_inf; \
-    (instance)->pub.p = _p; \
-    (instance)->internal = _internal; \
-    (instance)->indirect = _indirect; \
-    (instance)->data_type = _data_type; \
-    (instance)->count = _count
 
 
 
