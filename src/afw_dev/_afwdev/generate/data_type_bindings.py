@@ -1413,7 +1413,7 @@ def write_c_section(fd, prefix, obj):
 
     if not special:
 
-        fd.write('\n/* Set property function for data type ' + id + ' values. */\n')
+        fd.write('\n/* Set property from ' + id + ' internal via setter. */\n')
         fd.write(define + '(void)\n')
         fd.write('afw_object_set_property_as_' + id + '_internal(\n')
         fd.write('    const afw_object_t *object,\n')
@@ -1421,36 +1421,18 @@ def write_c_section(fd, prefix, obj):
         fd.write('    ' + return_type + ' internal,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        fd.write('    const afw_value_t *v;\n')
+        fd.write('    const afw_object_setter_t *setter;\n')
         fd.write('\n')
-        fd.write('    if (!object->p) {\n')
-        fd.write('        AFW_THROW_ERROR_Z(general,\n')
-        fd.write('            "Object must have a pool",\n')
-        fd.write('            xctx);\n')
+        fd.write('    setter = afw_object_get_setter(object, xctx);\n')
+        fd.write('    if (!setter) {\n')
+        fd.write('        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;\n')
         fd.write('    }\n')
-        fd.write('\n')
-        if id == 'boolean':
-            # Permanent true/false — no per-call pool allocation.
-            fd.write('    v = afw_value_for_boolean(internal);\n')
-        elif id == 'integer':
-            # Permanent 0 and 1 from strings.txt integer::zero / integer::one.
-            fd.write('    if (internal == 0) {\n')
-            fd.write('        v = afw_integer_v_zero;\n')
-            fd.write('    }\n')
-            fd.write('    else if (internal == 1) {\n')
-            fd.write('        v = afw_integer_v_one;\n')
-            fd.write('    }\n')
-            fd.write('    else {\n')
-            fd.write('        v = ' + _unmanaged_create_fn(id) +
-                     '(internal, object->p, xctx);\n')
-            fd.write('    }\n')
-        elif id == 'null':
-            # Permanent singleton — preserve address identity.
-            fd.write('    v = afw_value_null;\n')
+        fd.write('    afw_object_setter_set_property_internal(setter,\n')
+        fd.write('        property_name, afw_data_type_' + id + ',\n')
+        if not direct_return and not ctype.endswith('*'):
+            fd.write('        internal, xctx);\n')
         else:
-            fd.write('    v = ' + _unmanaged_create_fn(id) +
-                     '(internal, object->p, xctx);\n')
-        fd.write('    afw_object_set_property(object, property_name, v, xctx);\n')
+            fd.write('        &internal, xctx);\n')
         fd.write('}\n')
 
         fd.write('\n/* Typesafe cast to evaluated ' + id + ' value. */\n')

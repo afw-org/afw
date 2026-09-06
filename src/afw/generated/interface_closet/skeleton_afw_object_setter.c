@@ -42,3 +42,19 @@ impl_afw_object_setter_set_property(
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
 }
+
+/*
+ * Implementation of method set_property_internal for interface
+ * afw_object_setter.
+ */
+void
+impl_afw_object_setter_set_property_internal(
+    AFW_OBJECT_SETTER_SELF_T *self,
+    const afw_value_t * property_name,
+    const afw_data_type_t * data_type,
+    const void * internal,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}

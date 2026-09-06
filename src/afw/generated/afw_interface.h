@@ -4482,6 +4482,15 @@ typedef void
     const afw_value_t * value,
     afw_xctx_t * xctx);
 
+/** @sa afw_object_setter_set_property_internal() */
+typedef void
+(*afw_object_setter_set_property_internal_t)(
+    const afw_object_setter_t * instance,
+    const afw_value_t * property_name,
+    const afw_data_type_t * data_type,
+    const void * internal,
+    afw_xctx_t * xctx);
+
 /**
  * @brief Method table (inf) for interface `afw_object_setter`.
  *
@@ -4492,6 +4501,7 @@ struct afw_object_setter_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_object_setter_set_immutable_t set_immutable;
     afw_object_setter_set_property_t set_property;
+    afw_object_setter_set_property_internal_t set_property_internal;
 };
 
 /**
@@ -4547,6 +4557,36 @@ struct afw_object_setter_inf_s {
     (instance), \
     (property_name), \
     (value), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `set_property_internal` of interface `afw_object_setter`.
+ *
+ * Set a property from a C internal of a single data type (typed
+ * set_property). Wrap happens in this setter so managed vs
+ * unmanaged lifetime matches the object. If internal is NULL, the
+ * property is removed, same as set_property with a NULL value.
+ * @param instance Pointer to this object setter instance.
+ * @param property_name Property name of property to set.
+ * @param data_type Data type of internal.
+ * @param internal Internal value of type data_type->cType, or NULL to remove.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_object_setter_t
+ * @see @ref afw_object_setter_s "afw_object_setter_t"
+ */
+#define afw_object_setter_set_property_internal( \
+    instance, \
+    property_name, \
+    data_type, \
+    internal, \
+    xctx \
+) \
+(instance)->inf->set_property_internal( \
+    (instance), \
+    (property_name), \
+    (data_type), \
+    (internal), \
     (xctx) \
 )
 

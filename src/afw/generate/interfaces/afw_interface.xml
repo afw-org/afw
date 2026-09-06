@@ -3886,6 +3886,42 @@ AFW_DEFINE(const afw_log_t *)
     </method>
 
 
+    <method name="set_property_internal">
+
+      <description>
+        Set a property from a C internal of a single data type (typed
+        set_property). Wrap happens in this setter so managed vs
+        unmanaged lifetime matches the object. If internal is NULL, the
+        property is removed, same as set_property with a NULL value.
+      </description>
+
+      <parameter name="instance" type="const afw_object_setter_t *">
+        <description>Pointer to this object setter instance.</description>
+      </parameter>
+
+      <parameter name="property_name" type="const afw_value_t *">
+        <description>Property name of property to set.</description>
+      </parameter>
+
+      <parameter name="data_type" type="const afw_data_type_t *">
+        <description>Data type of internal.</description>
+      </parameter>
+
+      <parameter name="internal" type="const void *">
+        <description>
+          Internal value of type data_type-&gt;cType, or NULL to remove.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
   </interface>
 
 

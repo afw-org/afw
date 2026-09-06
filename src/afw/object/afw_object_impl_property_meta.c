@@ -405,6 +405,34 @@ impl_afw_object_setter_set_property(
 }
 
 
+/*
+ * Implementation of method set_property_internal for interface
+ * afw_object_setter.
+ */
+void
+impl_afw_object_setter_set_property_internal(
+    const afw_object_setter_t *self,
+    const afw_value_t *property_name,
+    const afw_data_type_t *data_type,
+    const void *internal,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *value;
+    const afw_pool_t *p;
+
+    if (!internal) {
+        impl_afw_object_setter_set_property(self, property_name, NULL, xctx);
+        return;
+    }
+    p = self->object->p;
+    if (!p) {
+        p = xctx->p;
+    }
+    value = afw_value_common_create(internal, data_type, p, xctx);
+    impl_afw_object_setter_set_property(self, property_name, value, xctx);
+}
+
+
 
 /*
  * A general impl of method get_property_meta for interface afw_object

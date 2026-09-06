@@ -41,6 +41,13 @@ impl_afw_object_managed_setter_set_property(
     const afw_value_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx);
+static void
+impl_afw_object_managed_setter_set_property_internal(
+    const afw_object_setter_t *self,
+    const afw_value_t *property_name,
+    const afw_data_type_t *data_type,
+    const void *internal,
+    afw_xctx_t *xctx);
 
 #undef AFW_IMPLEMENTATION_ID
 #define AFW_IMPLEMENTATION_ID "memory_managed"
@@ -57,9 +64,12 @@ impl_afw_object_managed_setter_set_property(
 #define AFW_OBJECT_SETTER_INF_ONLY
 #define impl_afw_object_setter_set_property \
     impl_afw_object_managed_setter_set_property
+#define impl_afw_object_setter_set_property_internal \
+    impl_afw_object_managed_setter_set_property_internal
 #include "afw_object_setter_impl_declares.h"
 #undef AFW_OBJECT_SETTER_INF_ONLY
 #undef impl_afw_object_setter_set_property
+#undef impl_afw_object_setter_set_property_internal
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef AFW_IMPLEMENTATION_ID
 
@@ -1013,6 +1023,60 @@ impl_afw_object_setter_set_immutable (
 /*
  * Implementation of method set_property of interface afw_object_setter.
  */
+static const afw_value_t *
+impl_value_from_internal(
+    const afw_data_type_t *data_type,
+    const void *internal,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_integer_t n;
+
+    if (!internal) {
+        return NULL;
+    }
+    if (!data_type) {
+        AFW_THROW_ERROR_Z(general,
+            "set_property_internal requires a data type", xctx);
+    }
+    if (data_type == afw_data_type_boolean) {
+        return afw_value_for_boolean(*(const afw_boolean_t *)internal);
+    }
+    if (data_type == afw_data_type_integer) {
+        n = *(const afw_integer_t *)internal;
+        if (n == 0) {
+            return afw_integer_v_zero;
+        }
+        if (n == 1) {
+            return afw_integer_v_one;
+        }
+    }
+    if (data_type == afw_data_type_null) {
+        return afw_value_null;
+    }
+    if (!p) {
+        AFW_THROW_ERROR_Z(general, "Object must have a pool", xctx);
+    }
+    return afw_value_common_create(internal, data_type, p, xctx);
+}
+
+
+void
+impl_afw_object_setter_set_property_internal(
+    const afw_object_setter_t *self,
+    const afw_value_t *property_name,
+    const afw_data_type_t *data_type,
+    const void *internal,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *value;
+
+    value = impl_value_from_internal(data_type, internal,
+        self->object->p, xctx);
+    impl_afw_object_setter_set_property(self, property_name, value, xctx);
+}
+
+
 void
 impl_afw_object_setter_set_property(
     const afw_object_setter_t * self,
@@ -1188,4 +1252,20 @@ impl_afw_object_managed_setter_set_property(
     else {
         memory_object_self->first_property = e;
     }
+}
+
+
+void
+impl_afw_object_managed_setter_set_property_internal(
+    const afw_object_setter_t *self,
+    const afw_value_t *property_name,
+    const afw_data_type_t *data_type,
+    const void *internal,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *value;
+
+    value = impl_value_from_internal(data_type, internal, xctx->p, xctx);
+    impl_afw_object_managed_setter_set_property(self, property_name,
+        value, xctx);
 }

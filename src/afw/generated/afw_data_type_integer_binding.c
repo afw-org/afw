@@ -262,7 +262,7 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_integer =
     &afw_data_type_integer_direct;
 
-/* Set property function for data type integer values. */
+/* Set property from integer internal via setter. */
 AFW_DEFINE(void)
 afw_object_set_property_as_integer_internal(
     const afw_object_t *object,
@@ -270,24 +270,15 @@ afw_object_set_property_as_integer_internal(
     afw_integer_t internal,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *v;
+    const afw_object_setter_t *setter;
 
-    if (!object->p) {
-        AFW_THROW_ERROR_Z(general,
-            "Object must have a pool",
-            xctx);
+    setter = afw_object_get_setter(object, xctx);
+    if (!setter) {
+        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
     }
-
-    if (internal == 0) {
-        v = afw_integer_v_zero;
-    }
-    else if (internal == 1) {
-        v = afw_integer_v_one;
-    }
-    else {
-        v = afw_value_integer_create(internal, object->p, xctx);
-    }
-    afw_object_set_property(object, property_name, v, xctx);
+    afw_object_setter_set_property_internal(setter,
+        property_name, afw_data_type_integer,
+        &internal, xctx);
 }
 
 /* Typesafe cast to evaluated integer value. */

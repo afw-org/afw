@@ -275,7 +275,7 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_rfc822Name =
     &afw_data_type_rfc822Name_direct;
 
-/* Set property function for data type rfc822Name values. */
+/* Set property from rfc822Name internal via setter. */
 AFW_DEFINE(void)
 afw_object_set_property_as_rfc822Name_internal(
     const afw_object_t *object,
@@ -283,16 +283,15 @@ afw_object_set_property_as_rfc822Name_internal(
     const afw_utf8_t * internal,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *v;
+    const afw_object_setter_t *setter;
 
-    if (!object->p) {
-        AFW_THROW_ERROR_Z(general,
-            "Object must have a pool",
-            xctx);
+    setter = afw_object_get_setter(object, xctx);
+    if (!setter) {
+        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
     }
-
-    v = afw_value_rfc822Name_create(internal, object->p, xctx);
-    afw_object_set_property(object, property_name, v, xctx);
+    afw_object_setter_set_property_internal(setter,
+        property_name, afw_data_type_rfc822Name,
+        internal, xctx);
 }
 
 /* Typesafe cast to evaluated rfc822Name value. */
