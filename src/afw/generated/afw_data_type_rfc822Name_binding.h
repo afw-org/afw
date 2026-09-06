@@ -348,7 +348,36 @@ afw_value_rfc822Name_create(const afw_utf8_t * internal,
 #define afw_value_create_unmanaged_rfc822Name afw_value_rfc822Name_create
 
 /**
- * @brief Get property function for data type rfc822Name value.
+ * @brief Get property as rfc822Name value.
+ * @param object of property to get.
+ * @param property_name of property to get.
+ * @param xctx of caller.
+ * @return (const afw_value_rfc822Name_t *) or NULL if missing.
+ *
+ * Does not evaluate. Throws if present but not rfc822Name.
+ */
+#define afw_object_get_property_as_rfc822Name( \
+    object, property_name, xctx) \
+afw_object_get_property_as_rfc822Name_source( \
+    object, property_name, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get property as rfc822Name value.
+ * @param object of property to get.
+ * @param property_name of property to get.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_value_rfc822Name_t *) or NULL if missing.
+ */
+AFW_DECLARE(const afw_value_rfc822Name_t *)
+afw_object_get_property_as_rfc822Name_source(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Get property function for data type rfc822Name internal.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param xctx of caller.
@@ -375,7 +404,37 @@ afw_object_get_property_as_rfc822Name_internal_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next property function for data type rfc822Name value.
+ * @brief Get next property as rfc822Name value.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param xctx of caller.
+ * @return (const afw_value_rfc822Name_t *) or NULL if no more.
+ */
+#define afw_object_get_next_property_as_rfc822Name( \
+    object, iterator, property_name, xctx) \
+afw_object_get_next_property_as_rfc822Name_source( \
+    object, iterator, property_name, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get next property as rfc822Name value.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_value_rfc822Name_t *) or NULL if no more.
+ */
+AFW_DECLARE(const afw_value_rfc822Name_t *)
+afw_object_get_next_property_as_rfc822Name_source(
+    const afw_object_t *object,
+    const afw_iterator_old_t * *iterator,
+    const afw_value_t * *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Get next property function for data type rfc822Name internal.
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.

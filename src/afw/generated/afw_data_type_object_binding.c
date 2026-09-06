@@ -441,9 +441,9 @@ afw_data_type_object_to_utf8(const afw_object_t * internal,
         &internal, p, xctx);
 }
 
-/* Get property function for data type object values. */
-AFW_DEFINE(const afw_object_t *)
-afw_object_get_property_as_object_internal_source(
+/* Get property as object value. */
+AFW_DEFINE(const afw_value_object_t *)
+afw_object_get_property_as_object_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
@@ -455,9 +455,7 @@ afw_object_get_property_as_object_internal_source(
     if (!value) {
         return NULL;
     }
-
-    if (!AFW_VALUE_IS_DATA_TYPE(value, object))
-    {
+    if (!AFW_VALUE_IS_DATA_TYPE(value, object)) {
         const afw_utf8_t *data_type_id;
 
         data_type_id = afw_value_get_quick_data_type_id(value);
@@ -467,12 +465,29 @@ afw_object_get_property_as_object_internal_source(
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
-    return (((const afw_value_object_t *)value)->internal);
+    return (const afw_value_object_t *)value;
 }
 
-/* Get next property function for data type object values. */
+/* Get property function for data type object internal. */
 AFW_DEFINE(const afw_object_t *)
-afw_object_get_next_property_as_object_internal_source(
+afw_object_get_property_as_object_internal_source(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx)
+{
+    const afw_value_object_t *value;
+
+    value = afw_object_get_property_as_object_source(object, property_name, source_z, xctx);
+    if (!value) {
+        return NULL;
+    }
+    return value->internal;
+}
+
+/* Get next property as object value. */
+AFW_DEFINE(const afw_value_object_t *)
+afw_object_get_next_property_as_object_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,
@@ -485,9 +500,7 @@ afw_object_get_next_property_as_object_internal_source(
     if (!value) {
         return NULL;
     }
-
-    if (!AFW_VALUE_IS_DATA_TYPE(value, object))
-    {
+    if (!AFW_VALUE_IS_DATA_TYPE(value, object)) {
         const afw_utf8_t *data_type_id;
 
         data_type_id = afw_value_get_quick_data_type_id(value);
@@ -497,7 +510,25 @@ afw_object_get_next_property_as_object_internal_source(
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
-    return (((const afw_value_object_t *)value)->internal);
+    return (const afw_value_object_t *)value;
+}
+
+/* Get next property function for data type object internal. */
+AFW_DEFINE(const afw_object_t *)
+afw_object_get_next_property_as_object_internal_source(
+    const afw_object_t *object,
+    const afw_iterator_old_t * *iterator,
+    const afw_value_t * *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx)
+{
+    const afw_value_object_t *value;
+
+    value = afw_object_get_next_property_as_object_source(object, iterator, property_name, source_z, xctx);
+    if (!value) {
+        return NULL;
+    }
+    return value->internal;
 }
 
 /* Implementation of method optional_release for managed value. */

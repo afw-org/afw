@@ -348,7 +348,36 @@ afw_value_regexp_create(const afw_utf8_t * internal,
 #define afw_value_create_unmanaged_regexp afw_value_regexp_create
 
 /**
- * @brief Get property function for data type regexp value.
+ * @brief Get property as regexp value.
+ * @param object of property to get.
+ * @param property_name of property to get.
+ * @param xctx of caller.
+ * @return (const afw_value_regexp_t *) or NULL if missing.
+ *
+ * Does not evaluate. Throws if present but not regexp.
+ */
+#define afw_object_get_property_as_regexp( \
+    object, property_name, xctx) \
+afw_object_get_property_as_regexp_source( \
+    object, property_name, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get property as regexp value.
+ * @param object of property to get.
+ * @param property_name of property to get.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_value_regexp_t *) or NULL if missing.
+ */
+AFW_DECLARE(const afw_value_regexp_t *)
+afw_object_get_property_as_regexp_source(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Get property function for data type regexp internal.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param xctx of caller.
@@ -375,7 +404,37 @@ afw_object_get_property_as_regexp_internal_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next property function for data type regexp value.
+ * @brief Get next property as regexp value.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param xctx of caller.
+ * @return (const afw_value_regexp_t *) or NULL if no more.
+ */
+#define afw_object_get_next_property_as_regexp( \
+    object, iterator, property_name, xctx) \
+afw_object_get_next_property_as_regexp_source( \
+    object, iterator, property_name, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get next property as regexp value.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_value_regexp_t *) or NULL if no more.
+ */
+AFW_DECLARE(const afw_value_regexp_t *)
+afw_object_get_next_property_as_regexp_source(
+    const afw_object_t *object,
+    const afw_iterator_old_t * *iterator,
+    const afw_value_t * *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Get next property function for data type regexp internal.
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.
