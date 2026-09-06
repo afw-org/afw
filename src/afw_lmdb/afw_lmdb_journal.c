@@ -513,8 +513,8 @@ impl_afw_adapter_journal_get_next_for_consumer(
     if (found) {
         /* check to see if this is a re-issue */
         if (consume_cursor) {
-            afw_object_set_property_as_boolean_internal(response, afw_v_reissue,
-                true, xctx);
+            afw_object_set_property(response, afw_v_reissue,
+                afw_boolean_v_true, xctx);
         } else {
             /* not a re-issue, so set our consumption properties */
             afw_object_set_property_as_dateTime_internal(peer, 
@@ -644,8 +644,8 @@ afw_lmdb_journal_advance_cursor_for_consumer(
     if (found) {
         /* check to see if this is a re-issue */
         if (consume_cursor) {
-            afw_object_set_property_as_boolean_internal(response, afw_v_reissue,
-                true, xctx);
+            afw_object_set_property(response, afw_v_reissue,
+                afw_boolean_v_true, xctx);
         } else {
             /* not a re-issue, so set our consumption properties */
             afw_object_set_property_as_dateTime_internal(peer,

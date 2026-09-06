@@ -909,8 +909,8 @@ impl_afw_adapter_journal_get_entry_internal(
             /* If reissue, set reissue property and mark applicable. */
             if (reissue) {
                 applicable = true;
-                afw_object_set_property_as_boolean_internal(response, afw_v_reissue,
-                    true, xctx);
+                afw_object_set_property(response, afw_v_reissue,
+                    afw_boolean_v_true, xctx);
             }
 
             /* Else if check_filter, set applicable using filter. */
