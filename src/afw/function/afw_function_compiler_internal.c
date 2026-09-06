@@ -197,6 +197,17 @@ impl_keep_loop_last(
 }
 
 
+/* Per-iteration eval tracker so unmanaged temps die when the trip ends. */
+static const afw_pool_t *
+impl_loop_iteration_p(afw_xctx_t *xctx)
+{
+    if (!xctx->evaluation_heap) {
+        xctx->evaluation_heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    }
+    return afw_pool_tracker_create(xctx->evaluation_heap, xctx);
+}
+
+
 /* Formal expects array of values: leaf array, T[], or tuple (#153). */
 static inline afw_boolean_t
 impl_script_formal_expects_array_sequence(const afw_value_type_t *type)
@@ -1109,7 +1120,6 @@ afw_function_execute_do_while(
     afw_function_execute_t *x)
 {
     afw_xctx_t *xctx = x->xctx;
-    const afw_pool_t *p = x->p;
     const afw_value_t *result;
     const afw_value_boolean_t *condition;
 
@@ -1120,9 +1130,20 @@ afw_function_execute_do_while(
     this_label = impl_optional_loop_label(x, 3);
     result = afw_value_void;
     for (;;) {
-        result = impl_keep_loop_last(result,
-            afw_value_block_evaluate_statement(x, x->argv[2], p, xctx),
-            xctx);
+        {
+            const afw_pool_t *iter_p = impl_loop_iteration_p(xctx);
+
+            AFW_TRY {
+                result = impl_keep_loop_last(result,
+                    afw_value_block_evaluate_statement(
+                        x, x->argv[2], iter_p, xctx),
+                    xctx);
+            }
+            AFW_FINALLY {
+                afw_pool_release(iter_p, xctx);
+            }
+            AFW_ENDTRY;
+        }
         if (impl_loop_should_exit(this_label, xctx)) {
             break;
         }
@@ -2354,7 +2375,6 @@ afw_function_execute_while(
     afw_function_execute_t *x)
 {
     afw_xctx_t *xctx = x->xctx;
-    const afw_pool_t *p = x->p;
     const afw_value_t *result;
     const afw_value_boolean_t *condition;
 
@@ -2369,9 +2389,20 @@ afw_function_execute_while(
         if (!condition->internal) {
             break;
         }
-        result = impl_keep_loop_last(result,
-            afw_value_block_evaluate_statement(x, x->argv[2], p, xctx),
-            xctx);
+        {
+            const afw_pool_t *iter_p = impl_loop_iteration_p(xctx);
+
+            AFW_TRY {
+                result = impl_keep_loop_last(result,
+                    afw_value_block_evaluate_statement(
+                        x, x->argv[2], iter_p, xctx),
+                    xctx);
+            }
+            AFW_FINALLY {
+                afw_pool_release(iter_p, xctx);
+            }
+            AFW_ENDTRY;
+        }
         if (impl_loop_should_exit(this_label, xctx))
         {
             break;
