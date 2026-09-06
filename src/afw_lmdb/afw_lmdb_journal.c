@@ -466,8 +466,8 @@ impl_afw_adapter_journal_get_next_for_consumer(
     advance_cursor = afw_object_get_property_convert_to_utf8(
         peer, afw_v_advanceCursor, xctx->p, xctx);
     consumer_filter = NULL;
-    consume_cursor = afw_object_old_get_property_as_string_internal(
-        peer, afw_v_consumeCursor, xctx);
+    consume_cursor = afw_object_get_property_as_string_internal(
+        peer, afw_v_consumeCursor, xctx->p, xctx);
 
     /** @fixme: we'll have to consider the scenario where we get
         a consume_cursor (re-issue) and now it's removed from the
@@ -597,8 +597,8 @@ afw_lmdb_journal_advance_cursor_for_consumer(
     advance_cursor = afw_object_get_property_convert_to_utf8(
         peer, afw_v_advanceCursor, xctx->p, xctx);
     consumer_filter = NULL;
-    consume_cursor = afw_object_old_get_property_as_string_internal(
-        peer, afw_v_consumeCursor, xctx);
+    consume_cursor = afw_object_get_property_as_string_internal(
+        peer, afw_v_consumeCursor, xctx->p, xctx);
 
     /** @fixme: we'll have to consider the scenario where we get
         a consume_cursor (re-issue) and now it's removed from the
@@ -787,8 +787,8 @@ impl_afw_adapter_journal_mark_entry_consumed(
                 "Error, provisioning peer not found.", xctx);
         }
 
-        consume_cursor = afw_object_old_get_property_as_string_internal(peer,
-            afw_v_consumeCursor, xctx);
+        consume_cursor = afw_object_get_property_as_string_internal(peer,
+            afw_v_consumeCursor, xctx->p, xctx);
         if (!consume_cursor || !afw_utf8_equal(entry_cursor, consume_cursor)) {
             AFW_THROW_ERROR_Z(general,
                 "Object id supplied is not currently being consumed", xctx);

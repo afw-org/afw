@@ -65,8 +65,8 @@ impl_compile_custom(
     path = afw_object_meta_get_path(custom, xctx);
 
     for (iterator = NULL;;) {
-        s = afw_object_old_get_next_property_as_string_internal(custom,
-            &iterator, &property_name, xctx);
+        s = afw_object_get_next_property_as_string_internal(custom,
+            &iterator, &property_name, model->p, xctx);
         if (!s) break;
         source_location = afw_utf8_printf(model->p, xctx,
             AFW_UTF8_FMT "/custom/" AFW_UTF8_FMT,

@@ -1432,8 +1432,8 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
     const xmlChar *s_z;
 
     /* Get "op" property and get its corresponding operator. */
-    s = afw_object_old_get_property_as_string_internal(filter_object,
-        afw_v_op, parser->xctx);
+    s = afw_object_get_property_as_string_internal(filter_object,
+        afw_v_op, parser->p, parser->xctx);
     if (!s) {
         AFW_THROW_ERROR_Z(general, "Missing \"op\" property", parser->xctx);
     }
@@ -1464,8 +1464,8 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         entry->op_id == afw_query_criteria_filter_op_id_or)
     {
         impl_query_object_parse_nesting_enter(parser);
-        filters_list = afw_object_old_get_property_as_array_internal(filter_object,
-            afw_v_filters, parser->xctx);
+        filters_list = afw_object_get_property_as_array_internal(filter_object,
+            afw_v_filters, parser->p, parser->xctx);
         if (!filters_list) {
             AFW_THROW_ERROR_Z(general,
                 "Property \"filters\" for this op",
@@ -1524,8 +1524,8 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         entry->on_true = on_true;
         entry->on_false = on_false;
         *filter = entry;
-        entry->property_name = afw_object_old_get_property_as_string_internal(
-            filter_object, afw_v_property, parser->xctx);
+        entry->property_name = afw_object_get_property_as_string_internal(
+            filter_object, afw_v_property, parser->p, parser->xctx);
         if (parser->criteria->object_type && entry->property_name) {
             entry->pt = afw_object_type_property_type_get_extended(
                 parser->criteria->object_type,

@@ -111,8 +111,9 @@ impl_afw_adapter_impl_index_get_index_definitions (
 
     /* lock the adapter pool to fetch the indexes */
     AFW_ADAPTER_IMPL_LOCK_READ_BEGIN(adapter) {
-        indexes = afw_object_old_get_property_as_object_internal(
-            self->adapter->internalConfig, afw_lmdb_v_indexDefinitions, xctx);
+        indexes = afw_object_get_property_as_object_internal(
+            self->adapter->internalConfig, afw_lmdb_v_indexDefinitions,
+            xctx->p, xctx);
         if (indexes) {
             indexes = afw_object_create_clone(indexes,
                 xctx->p, xctx);
