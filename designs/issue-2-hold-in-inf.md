@@ -170,7 +170,7 @@ Large-string RC later is **private** to the string inf. Nothing else notices.
 
 **Parked / follow-up:** Skip `double_free_throws`. Adapter clones. Clone-of-unmanaged object meta. Adaptive `clone()` still the old function. Unevaluated clone-out. `qualifier("current")` snapshot tail. Double-free today throws prefix “pool does not match allocation” after overlay, not “already freed.” Do not spread `get_reference` in `execute_*`. Tracker allocated list forward-only later. Do not wrap catalog qualifiers. Do not add `get_base` unless more than one product site type-switches for “entity.”
 
-**Nominated next eval win:** heap free-list mixed sizes (concat string + integer last_return in one loop) — timings on [`experiment-brainstorm.md`](experiment-brainstorm.md). Re-measure on this `develop` before rewriting the pool.
+**Nominated next eval win (withdrawn):** heap free-list mixed sizes. Re-measured on `develop` after #287: concat + integer `last_return` in the 14k nest is ~0.05s (pre-#277). Timings: [`experiment-brainstorm.md`](experiment-brainstorm.md). Do not rewrite the pool for that loop.
 
 If a step gets clever, stop and ask.
 

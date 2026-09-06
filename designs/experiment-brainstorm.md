@@ -19,20 +19,23 @@ This is `develop` truth ([#277](https://github.com/afw-org/afw/issues/277) **clo
 - **#280 landed:** lexer mints token payloads as values; parse-word strings (`name == value`, identifier-like) register as environment registry type `string_literal` (key-only, `const afw_value_string_t *`). Say **environment registry**, not “catalog”. `get_string_literal` hits that first. Keywords pointer-compare interned `afw_v_*`. Symbol names, script function `param->name`, loop labels, type/interface declaration names are interned string values.
 - `afw_pool_release_value_at_cleanup`: extra pin that is not a slot.
 
-Same 14,336-iteration nest (`i1<7`, `i2<8`, `i3<16`, `i4<16`). `concat` is `hex[i1]+hex[i2]+hex[i3]+hex[i4]`. After #280:
+Same 14,336-iteration nest (`i1<7`, `i2<8`, `i3<16`, `i4<16`). `concat` is `hex[i1]+hex[i2]+hex[i3]+hex[i4]`. Wall time of `afw -s script` (median of 3) on `develop` `52d8efe3` after `--cdev` (post-#287):
 
-| Body | Pre-#277 | develop before intern | After #280 |
-|------|----------:|----------------------:|-----------:|
-| `n = n + 1` only | ~0.03s | ~0.03s | ~0.03s |
-| `let uu = "abcd"; n = n + 1` | ~0.03s | ~1.6s | ~0.03s |
-| `let uu = concat; n = n + 1` | ~0.04s | ~2.9s | ~2.8s |
-| original concat + `last` + `n` | ~0.04s | ~3.3s | ~3.1s |
+| Body | Pre-#277 | develop before intern | After #280 | After #287 |
+|------|----------:|----------------------:|-----------:|-----------:|
+| `n = n + 1` only | ~0.03s | ~0.03s | ~0.03s | 0.030s |
+| `let uu = "abcd"; n = n + 1` | ~0.03s | ~1.6s | ~0.03s | 0.036s |
+| `let uu = concat; n = n + 1` | ~0.04s | ~2.9s | ~2.8s | **0.051s** |
+| original concat + `last` + `n` | ~0.04s | ~3.3s | ~3.1s | **0.053s** |
+| concat-only (no `n`) | cheap | | | 0.046s |
+| concat + `last` (no `n`) | | | | 0.048s |
+| `let uu = hex[i1]; n = n + 1` | | | | 0.037s |
 
-Literal slot fill is back to pre-#277. Concat temps still promote. Default `afwdev test -j` ~33s. BMP comment sweeps are unskipped on [PR #287](https://github.com/afw-org/afw/pull/287).
+Literal slot fill stayed pre-#277 after intern. The mixed-size concat + integer `last_return` cost (~3s after #280) is **gone** with eval `p` = `scope->p`. Concat-only / integer-only were already cheap; together they are now cheap too (back to pre-#277). Isolation: temps die with the frame tracker, so `xctx->p` is not walking a growing mixed-size free list of 14k leftovers. Do **not** start a heap size-class rewrite for this loop. Default `afwdev test -j` ~33s. BMP comment sweeps are unskipped on [PR #287](https://github.com/afw-org/afw/pull/287).
 
-**Later (not now):** unique managed concat string **and** unique managed integer last_return in the same loop body (~3s). Each alone is cheap. Heap free list is address-ordered insert + first-fit; mixed sizes may walk a growing list (~14k²). Tune how pool deals with free memory for different sizes. Empty `for` / `hex[i]` / concat-only are fine. Possible later registry MAP flag “include in big object”; do not special-case size now. `source_location` as interned string after compile splice settles. Type-graph names (`type_property`, `type_function_param`, `reference.name`) still utf8 views.
+**Later (not this loop):** heap free-list mixed sizes if a *new* long-running pattern shows first-fit walking a growing list. Possible later registry MAP flag “include in big object”; do not special-case size now. `source_location` as interned string after compile splice settles. Type-graph names (`type_property`, `type_function_param`, `reference.name`) still utf8 views.
 
-**Next session (suggested):** heap free-list mixed sizes is the remaining eval win from the timings. Alternate: `source_location` after splice. Restart `afwfcgi` after install (stale mapped binary).
+**Next session (suggested):** parked **#277** residuals (Adaptive `clone()`, unevaluated clone-out, `qualifier("current")` snapshot, skip `double_free_throws`) or `source_location` after splice — not a pool rewrite. Restart `afwfcgi` after install (stale mapped binary).
 
 When **evaluation is done**, an **evaluated** result is an **unmanaged clone in dest `p`**. Functions/closures as the compile/eval result are not cloned that way yet (follow-up).
 
@@ -80,7 +83,7 @@ Separate inf (`memory_managed`), alloc in `xctx->p`, RC 1. Slots: new property n
 - Adaptive `clone()` still the old function.
 - `qualifier("current")` snapshot list tail.
 - `double_free_throws` still skipped (prefix overlay).
-- Heap free-list mixed sizes (nominated next eval win; timings above).
+- Heap free-list mixed sizes: **not** the remaining eval win. After #287 the 14k concat + `n` nest is ~0.05s (timings above). Revisit only if a new pattern shows first-fit walking a growing list.
 
 `AFW_DEBUG_POOL` fills freed USER with `0x0BADF00D0BADF00D` so a dangling `inf` faults on any vtable access.
 
