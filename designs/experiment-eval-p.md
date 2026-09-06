@@ -1,7 +1,7 @@
-# Discovery — eval `p` = `scope->p` / `FIXME_GET_IT_WORKING`
+# Eval `p` = `scope->p` (landed)
 
 **Audience:** maintainers / assistants. **Not** handbook.  
-**Landed:** [PR #287](https://github.com/afw-org/afw/pull/287) on `develop` (`6fd952b8`).  
+**Landed:** [PR #287](https://github.com/afw-org/afw/pull/287) on `develop` (`6fd952b8`; docs follow-up `0bdf1894`). GitHub [#277](https://github.com/afw-org/afw/issues/277) follow-ups still say eval `p` is caller `p` — that sentence is stale; this pad wins.  
 **Base:** `develop` after [#282](https://github.com/afw-org/afw/issues/282) (scope frames, compile facts, RC 1, dest `p` ripped).  
 **Rails:** [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). Two worlds: [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)).  
 **Probes:** [`src/afw/tests-extra/issue-2/03-eval-p/`](../src/afw/tests-extra/issue-2/03-eval-p/) (not default `test -j`).
@@ -30,7 +30,7 @@ Caller `p` owns `shared` (model `on*`, `compile_templates`). If this parser **cr
 
 Earlier `scope->p` hung BMP (compile units as child trackers extra-holding the frame). Later SIGSEGV on auth deny / curl JSON (escaped values still pointing into a released tracker).
 
-## Landed on this branch
+## Landed on `develop`
 
 Ripped `FIXME_GET_IT_WORKING`. Default `afwdev test -j`: **4304 passed**, 71 skipped, ~33s. Same suite `--env-mode valgrind`: **4304 passed**, ~394s. `comments-bmp-*.as` **unskipped** (~2.4s for the four files; no longer ~6 min).
 

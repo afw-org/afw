@@ -8,13 +8,13 @@ alwaysApply: false
 
 Use when changing value lifetime, reference count, create/allocate APIs, data type bindings, const objects/strings, pools/scopes, or debugging leaks for **long-running scripts**.
 
-**Campaign map:** [`designs/issue-2-lifetime.md`](../../designs/issue-2-lifetime.md). **Two worlds:** [`designs/experiment-brainstorm.md`](../../designs/experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)). Rails: [`designs/issue-2-hold-in-inf.md`](../../designs/issue-2-hold-in-inf.md). When they disagree, those pads win over this rule.
+**Live maps:** rails [`designs/issue-2-hold-in-inf.md`](../../designs/issue-2-hold-in-inf.md); two worlds [`designs/experiment-brainstorm.md`](../../designs/experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277) closed); eval `p` [`designs/experiment-eval-p.md`](../../designs/experiment-eval-p.md) (PR **#287**). 08-21 story [`designs/issue-2-lifetime.md`](../../designs/issue-2-lifetime.md) is history. When they disagree, those live pads win over this rule.
 
 ## Pool and scope model
 
 - **Two impls:** heap and tracker (mt = lock wrappers on heap). APR is the reservoir. `create()` of a heap parent is a heap; of a tracker parent is a tracker (extra rule). Base/`env->p` is mt heap. `xctx->p` is ST heap (`create_xctx_p`).
-- **Heap / tracker:** single-thread heap for evaluation. One compiled_value evaluate creates a heap, scopes use trackers, wrap **releases** the heap (a closure's reference may keep it). **No reparent** on destroy; parent cascade destroys children. Statement eval `p` is still caller `p` (`FIXME_GET_IT_WORKING`) until nested `for (let)` + many inner evals can live on `scope->p`.
-- `managed_p`: job pools and heap set self; others inherit. Managed object/array: `afw_pool_create(p->managed_p)`.
+- **Heap / tracker:** single-thread heap for evaluation. One compiled_value evaluate creates a heap, scopes use trackers, wrap **releases** the heap (a closure's reference may keep it). **No reparent** on destroy; parent cascade destroys children. Statement eval `p` is `scope->p` when `{ }` has a frame (PR **#287**). Nested empty `{ }` is not a frame.
+- `managed_p`: job pools and heap set self; others inherit. Pool-world object/array: `create_unmanaged` / `_new_p` / `_cede_p`. **`create_managed` is a frame** (no pool).
 - `compiled_value` owns a dedicated compile pool; evaluation scratch is the heap.
 - Scope create/clone start at RC 1 (creator `release`s). `activate` / `deactivate` are stack push/pop. `closure_binding` `get_reference` / `release`. Last `release` at 0 walks `frame_slots[]`. Store-time bind for literals and nested assign is **#35**. Closure create-at-0; face overlay `set` takes the reference for `o.fn = function…`.
 - Short scripts: pool + scope bulk free is enough. **Long-running** needs correct managed escape paths (below).
@@ -35,7 +35,7 @@ Do not invent new lifetime paths; match existing create_* patterns.
 ## Active long-running focus
 
 - Implement/complete **optional_release** / **get_reference** on escaping values: objects, arrays, closures, `compiled_value`, and other managed kinds that outlive a scope.
-- Evaluation temporaries still use **caller `p`** (`FIXME_GET_IT_WORKING`). Target is current `scope->p` when the `{ }` has a frame — **next branch**, not this one.
+- Evaluation temporaries use **`scope->p`** when `{ }` has a frame (PR **#287**). Nominated next eval win: heap free-list mixed sizes — [`designs/experiment-brainstorm.md`](../../designs/experiment-brainstorm.md).
 - Heap tracker + last-release walk handle bulk release. **No reparent** on destroy. Polish value-inf hooks; do not replace the pool kinds.
 - **Qualifier snapshots** (`qualifier()` / `qualifiers()`, issue **#9**) allocate **fresh, possibly large** memory objects (`environment::`, `request::`, nested `qualifiers()`). Prefer `qualifier::name` for normal work; treat repeated/retained snapshots as long-running stress — see **`afw-qualified-variables`**, `beta-backlog.md`.
 

@@ -164,5 +164,8 @@ This pad (and related maps) is also how long-standing **working habits** stay av
 | [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) | Core runtime model + design philosophy |
 | [`../AGENTS.md`](../AGENTS.md) | Mission, knowledge map, how we learn |
 | [`agent-support.md`](agent-support.md) | Support playbooks; capture checklist |
-| [`memory-management.md`](memory-management.md) | Values/pools/#2 depth |
+| [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) | **#2** inf-method rails |
+| [`experiment-brainstorm.md`](experiment-brainstorm.md) | **#2** two worlds |
+| [`experiment-eval-p.md`](experiment-eval-p.md) | **#2** eval `p` |
+| [`memory-management.md`](memory-management.md) | Values/pools/#2 archaeology |
 | [`.cursor/rules/afw-project.mdc`](../.cursor/rules/afw-project.mdc) | Always-on daily constraints |

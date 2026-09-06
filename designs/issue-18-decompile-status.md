@@ -83,7 +83,7 @@ Do not hand-edit `generated/`.
 
 ## Suggested next moves
 
-1. **PR** `issue-#18` → mgg-develop / develop if not already merged (after policy + fulldev/valgrind if multi-area PR).
-2. **Handbook** pages for the three print paths + optional advanced pragma note (see chat).
+1. **PR** already merged (`issue-#18` → `mgg-develop` via PR **#137**; now on `develop`). **#18 closed.**
+2. **Handbook** pages for the three print paths + optional advanced pragma note, if still thin.
 3. More fidelity coverage if gaps appear.
-4. Later: compile-time **optimize** (`compile-optimize-notes.md`); full **type-check** on Pattern annotations (#28). Param/catch Pattern sugar and call-site spread are landed under #140.
+4. Later: compile-time **optimize** (`compile-optimize-notes.md`). Type-check on Pattern annotations is **#28 closed**. Param/catch Pattern sugar and call-site spread are landed under #140.

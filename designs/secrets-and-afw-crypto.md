@@ -5,11 +5,11 @@
 | **Title** | Secrets-friendly Adaptive Script I/O and `afw_crypto` extension |
 | **Author** | TBD (design draft for maintainer review) |
 | **Date** | 2026-07-30 |
-| **Status** | Draft (accepted decisions for name, #74 stay-open, PBKDF2) |
-| **Tracking** | GitHub [issue #74](https://github.com/afw-org/afw/issues/74) (partially done; stays open until readpass); related notes in `whats-new.md`, `beta-backlog.md` |
+| **Status** | **#74 closed** (2026-09-03). `process::` and `afw_crypto` shipped. Interactive `readpass` never built (parked; not a living issue unless reopened). |
+| **Tracking** | GitHub [issue #74](https://github.com/afw-org/afw/issues/74) **closed**; related notes in `whats-new.md`, `beta-backlog.md` |
 | **Primary deliverable path** | Workspace: `designs/secrets-and-afw-crypto.md`. Long-term with extension: `src/afw_crypto/doc/design-secrets-and-crypto.md` plus a short pointer from `src/afw/doc/developer/extending.md` if useful. |
 | **Audience** | AFW maintainers and senior C/Python contributors familiar with extensions, function generate metadata, and Adaptive Script |
-| **Revision** | R4 — final product decisions: name `afw_crypto`/`libafwcrypto` confirmed; #74 remains open until readpass ships (crypto = partial progress); PBKDF2 default 600000 (pin at implement time) |
+| **Revision** | R5 — 2026-09-06: GitHub #74 closed; crypto + `process::` shipped; `readpass` parked. Body below still describes the original design (K17 “keep #74 open” is stale). |
 
 ---
 
@@ -19,7 +19,7 @@ Issue #74 asked for two Adaptive Script enhancements: (1) access to process `arg
 
 This design **reframes delivery priority** for the remaining #74 work around **composition** (see **K17**): secrets already live in files (`open_file` + `read_to_base64Binary`), process environment (live `getenv` for key refs), conf templates, and adapters/objects. What scripts lack is a small, correct **cryptographic primitive surface** so ciphertext can be stored “in plain sight” and decrypted at use time. That surface belongs in a new optional loadable extension **`afw_crypto`** / **`libafwcrypto`** (name **confirmed**), backed by **OpenSSL libcrypto** (OpenSSL 3.x on supported Ubuntu builds; headers/`libcrypto` via distro packages), independent of `afw_curl`.
 
-**#74 closure (final):** shipping crypto + key refs is **partial progress** on #74 and should be noted on the tracker, but **issue #74 stays open until interactive readpass also ships** (PR8) or is explicitly declined in a future decision. Crypto is not the sole exit criterion.
+**#74 on GitHub:** **closed** 2026-09-03. `process::` and `afw_crypto` shipped. Interactive `readpass` never built. The K17 “keep #74 open until readpass” decision below is **stale vs GitHub** — do not reopen from this pad unless maintainers ask.
 
 The design keeps **`password` as a presentation data type**, treats interactive non-echo input as a **required remaining #74 piece** (deprioritized for implementation order, not dropped from closure), and models keys in a **Web Crypto–inspired** way: opaque key handles, separate import, normative algorithm identifiers, and binary in/out via `base64Binary` and `hexBinary` (both accepted where documented).
 

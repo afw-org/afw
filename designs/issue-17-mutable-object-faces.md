@@ -5,7 +5,7 @@
 **Landed:** [PR #150](https://github.com/afw-org/afw/pull/150) → `mgg-develop` (2026-08-06, merge `dd318e4f`).  
 **User-facing framing:** [`whats-new.md`](../whats-new.md) — *Mutable object faces (issue #17)*.
 
-**#2 follow-on (not coded):** the face is also the script-evaluation-aware object/array for overlay holds. Isolation stays this pad. Lifetime: [`issue-2-lifetime.md`](issue-2-lifetime.md).
+**#2 follow-on:** overlay store is a slot (landed with script-evaluation-aware wrapper holds). Isolation stays this pad. Lifetime live maps: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md), [`experiment-brainstorm.md`](experiment-brainstorm.md).
 
 ---
 

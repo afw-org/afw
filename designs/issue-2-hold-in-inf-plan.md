@@ -1,8 +1,10 @@
 # Implementation plan: two methods + assignable inf
 
-**Dated plan** (assignable inf vertical). Current two worlds / create names / last_return: [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)). Inf-method rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md).
+**Dated plan — do not execute again.** V1–V7 already landed on `develop`. Current two worlds / create names / last_return: [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277) closed). Inf-method rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). Eval `p`: [`experiment-eval-p.md`](experiment-eval-p.md) ([PR #287](https://github.com/afw-org/afw/pull/287)).
 
-Rails: [`designs/issue-2-hold-in-inf.md`](designs/issue-2-hold-in-inf.md) **Locked design**. This is **how**, not more architecture.
+Present-tense “today `slot_store` → `add_reference`” below is the **before** state. V6’s Adaptive `clone()` line (structural copy then `get_assignable_value`) is **not** the tree: Adaptive `clone()` is still the old `afw_value_clone()`.
+
+Rails: [`designs/issue-2-hold-in-inf.md`](designs/issue-2-hold-in-inf.md) **Locked design**. This file is history of **how**, not a queue.
 
 Script and model authors keep the same behavior except `#110` identity (`property_get({}, "m", def)` shares `def`) and retrieve/`clone()` wrap at slot fill (reconcile looks through). C may change.
 

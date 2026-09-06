@@ -3,7 +3,7 @@
 **Audience:** maintainers / assistants. **Not** handbook.  
 **GitHub:** [#277](https://github.com/afw-org/afw/issues/277) (part of [#2](https://github.com/afw-org/afw/issues/2)). Last_return contract: [#62](https://github.com/afw-org/afw/issues/62) / `src/afw/tests/language/script/script_result.as`.
 
-This is `develop` truth once [#277](https://github.com/afw-org/afw/issues/277) lands. Rails for holds remain [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md).
+This is `develop` truth ([#277](https://github.com/afw-org/afw/issues/277) **closed**, PR **#278**). Rails for holds remain [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). Eval `p` = `scope->p` when `{ }` has a frame: [PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md). GitHub #277’s issue body still says eval `p` is caller `p` — that sentence is stale; this pad and the eval-p pad win.
 
 ## Two worlds
 
@@ -32,7 +32,7 @@ Literal slot fill is back to pre-#277. Concat temps still promote. Default `afwd
 
 **Later (not now):** unique managed concat string **and** unique managed integer last_return in the same loop body (~3s). Each alone is cheap. Heap free list is address-ordered insert + first-fit; mixed sizes may walk a growing list (~14k²). Tune how pool deals with free memory for different sizes. Empty `for` / `hex[i]` / concat-only are fine. Possible later registry MAP flag “include in big object”; do not special-case size now. `source_location` as interned string after compile splice settles. Type-graph names (`type_property`, `type_function_param`, `reference.name`) still utf8 views.
 
-**Next session (suggested):** heap free-list mixed sizes is the remaining eval win from the timings. Alternate: `source_location` after splice. Eval `p` = `scope->p` is [PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md). Restart `afwfcgi` after install (stale mapped binary).
+**Next session (suggested):** heap free-list mixed sizes is the remaining eval win from the timings. Alternate: `source_location` after splice. Restart `afwfcgi` after install (stale mapped binary).
 
 When **evaluation is done**, an **evaluated** result is an **unmanaged clone in dest `p`**. Functions/closures as the compile/eval result are not cloned that way yet (follow-up).
 
@@ -45,7 +45,7 @@ Dest `p` is often this `xctx->p` or a tracker under it — then the result is un
 | Create | `create_unmanaged` | `create_unmanaged_new_p` / `create_unmanaged_cede_p` |
 | Death | that pool bulk-frees | object `get_reference` / `release` control **the pool** |
 
-Options: `0` = live in `p`; `new_p` and `cede_p` are the two flags. All three named creates are pool-world unmanaged bags (unmanaged dual-face; **value** `get_reference` / `release` throw). Instance `get_reference` / `release` pin `object->p` / `array->p` regardless of those flags. Frames are `create_managed` (no pool).
+Options: `0` = live in `p`; `new_p` and `cede_p` are the two flags. All three named creates are pool-world unmanaged objects/arrays (unmanaged dual-face; **value** `get_reference` / `release` throw). Instance `get_reference` / `release` pin `object->p` / `array->p` regardless of those flags. Frames are `create_managed` (no pool).
 
 Wrappers: `create_wrapper_unmanaged`, `_unmanaged_new_p`, `_unmanaged_cede_p`.
 
@@ -59,21 +59,20 @@ Clone: `afw_value_clone_unmanaged` (dest `p`) / `afw_value_clone_managed` (this 
 
 ## Managed frames
 
-Separate inf (`memory_managed`), alloc in `xctx->p`, RC 1. Slots: new property name is `get_assignable_value` once; value is `slot_store`. Last bag release: remaining names/elements, then `free_memory` of the header.
+Separate inf (`memory_managed`), alloc in `xctx->p`, RC 1. Slots: new property name is `get_assignable_value` once; value is `slot_store`. Last frame release: remaining names/elements, then `free_memory` of the header.
 
 **Unmanaged `get_assignable_value` (object/array value)**
 
 | Internal | Result |
 |---|---|
 | already `memory_managed` | bump; dual-face |
-| generic `"memory"` bag, not a wrapper | `clone_managed` |
+| generic `"memory"` object/array, not a wrapper | `clone_managed` |
 | view / wrapper / runtime / adapter | managed look-through wrapper (preserves meta) |
 
-`get_reference` / `slot_store` / `as_assignable` take `xctx` only (no dest `p`). `wrap_literal_*` uses that isolate, not value `get_reference`. `afw_object_meta_clone_and_set` throws if the instance is `memory_managed`. Walk `first_property` only on a real memory bag. Full clone of unmanaged objects still drops some meta; fix later.
+`get_reference` / `slot_store` / `as_assignable` take `xctx` only (no dest `p`). `wrap_literal_*` uses that isolate, not value `get_reference`. `afw_object_meta_clone_and_set` throws if the instance is `memory_managed`. Walk `first_property` only on a real memory object. Full clone of unmanaged objects still drops some meta; fix later.
 
 ## Follow-ups
 
-- Eval `p` = `scope->p` when `{ }` has a frame: [PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md).
 - Adapter clones (held).
 - Clone-of-unmanaged object meta.
 - FRV keep as-is unless special cases spread.
@@ -81,9 +80,10 @@ Separate inf (`memory_managed`), alloc in `xctx->p`, RC 1. Slots: new property n
 - Adaptive `clone()` still the old function.
 - `qualifier("current")` snapshot list tail.
 - `double_free_throws` still skipped (prefix overlay).
+- Heap free-list mixed sizes (nominated next eval win; timings above).
 
 `AFW_DEBUG_POOL` fills freed USER with `0x0BADF00D0BADF00D` so a dangling `inf` faults on any vtable access.
 
 ## Verify
 
-`./afwdev build --fulldev`, `afwdev test -j`, `afwdev test -j --env-mode valgrind` (4297 passed, 71 skipped).
+`./afwdev build --fulldev`, `afwdev test -j`, `afwdev test -j --env-mode valgrind` (post-#287: 4304 passed, 71 skipped).

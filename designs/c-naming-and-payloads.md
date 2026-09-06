@@ -3,20 +3,20 @@
 **Audience:** maintainers and assistants.  
 **Not user docs.** User-facing rename map: [`whats-new.md`](../whats-new.md) (UTF-8 create / set / forced_safe).  
 **Code:** `src/afw/utf8/afw_utf8.h`, `src/afw/memory/afw_memory.h`, `src/afw/value/afw_value.h`, generated data-type bindings.  
-**#2** still owns value `managed` / `unmanaged` / `permanent` and `clone_or_reference` → someday `get_reference`.
+**#2** still owns value `managed` / `unmanaged` / `permanent`. The value methods are `get_reference` (bump) and `get_assignable_value` (slot occupant). `clone_or_reference` is a compatibility name for `get_reference`.
 
 ## Three layers (do not share adjectives)
 
 | Layer | What it is | Pool we can hold? |
 |-------|------------|-------------------|
 | **1. C payload** | `afw_utf8_t`, `afw_memory_t`, `afw_integer_t`, `afw_date_t` | **No.** Struct does not record a pool. |
-| **2. Adaptive value** | `const afw_value_t *` (`inf` + private payload) | Header lives in a pool. `optional_release` / `clone_or_reference` are on the **inf**. |
-| **3. Object / array instance** | `afw_object_t`, `afw_array_t` | **Yes** (or it will). `get_reference` / `release` hold `instance->p`. Const permanents have no pool; script gets a **wrapper**. |
+| **2. Adaptive value** | `const afw_value_t *` (`inf` + private payload) | Header lives in a pool. `get_reference` / `get_assignable_value` / `release` are on the **inf**. |
+| **3. Object / array instance** | `afw_object_t`, `afw_array_t` | **Yes** when it is pool-world (`create_unmanaged` / `_new_p` / `_cede_p`). Frames (`create_managed`) have **no pool**. `get_reference` / `release` hold `instance->p` where a pool exists. Const permanents have no pool; script gets a **wrapper**. |
 
-`managed` on an **object** means the instance has a pool you can hold.  
-`managed` on an **integer** today means “value header has an RC in `xctx->p`.” Those are not the same idea. Do not put `managed` / `unmanaged` on utf8/memory **payloads**.
+`managed` on an **object/array frame** means RC in this `xctx->p` (no pool).  
+`managed` on an **integer** means “value header has an RC in `xctx->p`.” Those are not the same idea as “owns a pool.” Do not put `managed` / `unmanaged` on utf8/memory **payloads**.
 
-**`clone_or_reference`** is the assign/escape door. The caller wants a value they can **keep**. The inf decides clone vs hold vs wrap. The name we actually want on the value interface is **`get_reference`**.
+**`get_assignable_value`** is the assign/escape door (slot occupant). **`get_reference`** is a bump. `clone_or_reference` is a compatibility name for that bump.
 
 ## Payloads: who owns the struct vs the bytes
 

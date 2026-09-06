@@ -3,13 +3,13 @@
 **Audience:** maintainers / assistants. **Not** handbook.
 
 **GitHub:** [#2](https://github.com/afw-org/afw/issues/2).  
-**On `develop`:** pool two-impls ([PR #267](https://github.com/afw-org/afw/pull/267)). Two worlds (unmanaged dest `p` / managed `xctx->p`) are [#277](https://github.com/afw-org/afw/issues/277) — pad [`experiment-brainstorm.md`](experiment-brainstorm.md). `issue-2-managed-p` is gone.
+**On `develop`:** pool two-impls ([PR #267](https://github.com/afw-org/afw/pull/267)). Two worlds (unmanaged dest `p` / managed `xctx->p`) **[#277](https://github.com/afw-org/afw/issues/277) closed** (PR **#278**) — pad [`experiment-brainstorm.md`](experiment-brainstorm.md). `issue-2-managed-p` is gone.
 
 **This pad is the rails for inf methods** (hold vs assignable, faces, MUST NOT). **Two worlds, create names, last_return slot:** [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)). **Eval `p`:** [`experiment-eval-p.md`](experiment-eval-p.md) ([PR #287](https://github.com/afw-org/afw/pull/287)). The 2026-08-21 story is [`issue-2-lifetime.md`](issue-2-lifetime.md) (history). If a leak tempts a helper *around* assign, operators, or the compiler — **stop and ask**.
 
 Keep from `develop`: slot protocol, pool split, two worlds **#277**, `#35` store-time bind, `#245` 0-symbol `{ }`, `#246`/`#247` honest heap/tracker.
 
-**Landed on `scope` (2026-09-05):** compile facts `parent_scope_block` / `scope_depth` after the unit is complete (`finalize_scope_tree`). Nested empty `{ }` has no scope; top always does. Scope create/clone start at RC 1; creator `release`s; `activate` / `deactivate` only push/pop. Bind script functions via `enclosing_block`, not syntax depth. `get_assignable_value` table (managed bump; unmanaged scalar promote; script `{}` / `[]` `clone_managed`; runtime/adapter object managed wrapper; permanent scalar as-is; permanent object/array wrapper/clone). Dest `p` ripped from `slot_store` / `as_assignable` / `get_assignable_value` / `get_reference` / `add_reference`. `get_reference` is a bump (`instance, xctx`) — leftover dest `p` was an abandoned plan to have it do `clone_or_reference`. `script_result`: `return` is `as_assignable` only; statement list starts void; block finish stores a non-void last before deactivate; nested eval save/restore. FRV keep as-is. Eval `p` = `scope->p` when `{ }` has a frame: [PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md).
+**Landed on `develop`:** compile facts `parent_scope_block` / `scope_depth` after the unit is complete (`finalize_scope_tree`). Nested empty `{ }` has no scope; top always does. Scope create/clone start at RC 1; creator `release`s; `activate` / `deactivate` only push/pop. Bind script functions via `enclosing_block`, not syntax depth. `get_assignable_value` table (managed bump; unmanaged scalar promote; script `{}` / `[]` `clone_managed`; runtime/adapter object managed wrapper; permanent scalar as-is; permanent object/array wrapper/clone). Dest `p` ripped from `slot_store` / `as_assignable` / `get_assignable_value` / `get_reference` / `add_reference`. `get_reference` is a bump (`instance, xctx`) — leftover dest `p` was an abandoned plan to have it do `clone_or_reference`. `script_result`: `return` is `as_assignable` only; statement list starts void; block finish stores a non-void last before deactivate; nested eval save/restore. FRV keep as-is. Eval `p` = `scope->p` when `{ }` has a frame: [PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md). Compile-literal inf + interned parse-word strings **#280**.
 
 ---
 
@@ -27,11 +27,11 @@ Callers:
 - **Operators / `+`** → pointer. Do not wrap at execute.
 - **Call / `return`:** `get_assignable_value` **before** the callee frame dies. Everyday `evaluate()` must not leave a return temp in the caller’s hands.
 
-**Return temp (`function_return_value`, this branch):** Script `return` / last expression wraps the occupant (`as_assignable` at create). `optional_evaluate` peeks. `get_assignable_value` is hold-inner + `release` wrapper. Public `evaluate()` consumes a temp so callers never `is_function_return_value`. Parameter window: `evaluate_for_parameter` (raw eval) then park the **occupant** in the parameter-number slot (`pop_parameter_number(VALUE)` replaces `#`). `pop_value` / rewind `release` parked occupants. One live marker pair per function while that parameter is being evaluated; after pop, `[call]` + 0 or more returns to top. Do **not** extra-push while a marker is on top. Do **not** hop `compiled_value` on assign to `unevaluated`. `meta()` does not evaluate argv first (property `key`). Script `meta()` snapshots are immutable. Array look-through: not a goal. Model mapped modify tuples: hold.
+**Return temp (`function_return_value`, on `develop`):** Script `return` / last expression wraps the occupant (`as_assignable` at create). `optional_evaluate` peeks. `get_assignable_value` is hold-inner + `release` wrapper. Public `evaluate()` consumes a temp so callers never `is_function_return_value`. Parameter window: `evaluate_for_parameter` (raw eval) then park the **occupant** in the parameter-number slot (`pop_parameter_number(VALUE)` replaces `#`). `pop_value` / rewind `release` parked occupants. One live marker pair per function while that parameter is being evaluated; after pop, `[call]` + 0 or more returns to top. Do **not** extra-push while a marker is on top. Do **not** hop `compiled_value` on assign to `unevaluated`. `meta()` does not evaluate argv first (property `key`). Script `meta()` snapshots are immutable. Array look-through: not a goal. Model mapped modify tuples: hold.
 
-Tests: `language/script/return_temps.as`. Full suite ~4245 pass; hold 3 model modify/reconcile tuple tests; smtp `hexBinary`/`null` looks unrelated.
+Tests: `language/script/return_temps.as`. Full suite ~4304 pass after #287; hold 3 model modify/reconcile tuple tests; smtp `hexBinary`/`null` looks unrelated.
 - **Retrieve / Adaptive `clone()`:** return the entity or structural clone. Slot fill wraps. Reconcile diffs the **face** (overlay sets); do not peel `wrapper_base`. No skip-hold. No `get_base` method until more than one product site type-switches for “entity.”
-- **Script door ≠ C bag.** Adapters/conf may leave a memory object writable. Script retrieve gets a working copy (slot fill / view with no setter). **Catalog qualifiers** (`environment::`, `process::`, `request::`, `application::`, `adapter::` conf, `custom::` conf) stay **read-only in script** — SET should throw, not mint a face, even if C never called `set_immutable`. `qualifier()` / `qualifiers()` are **copies** (#9); mutating a copy is fine. `current::` is a **name set per context**, not one object: `current::object` in a model hook is a working object (retrieve-like); in auth/index it is the resource/row (read). Live catalog writes, if ever, are a **function** with execute access and authorization that actually changes the host. Do not stamp catalog objects unmanaged “for consistency” with views.
+- **Script door ≠ C memory object.** Adapters/conf may leave a memory object writable. Script retrieve gets a working copy (slot fill / view with no setter). **Catalog qualifiers** (`environment::`, `process::`, `request::`, `application::`, `adapter::` conf, `custom::` conf) stay **read-only in script** — SET should throw, not mint a face, even if C never called `set_immutable`. `qualifier()` / `qualifiers()` are **copies** (#9); mutating a copy is fine. `current::` is a **name set per context**, not one object: `current::object` in a model hook is a working object (retrieve-like); in auth/index it is the resource/row (read). Live catalog writes, if ever, are a **function** with execute access and authorization that actually changes the host. Do not stamp catalog objects unmanaged “for consistency” with views.
 
 Default impl: `#define impl_afw_value_get_assignable_value impl_afw_value_get_reference` before `afw_value_impl_declares.h`. Graph infs NULL (evaluate first).
 
@@ -48,13 +48,13 @@ Default impl: `#define impl_afw_value_get_assignable_value impl_afw_value_get_re
 | `metas` / const view | self | self |
 | Graph (`call`, `block`, `symbol_reference`, `object_expression`, …) | NULL | NULL |
 
-No new **literal** inf. Constant `{a:1}` / `[1,2]` stay fully evaluated unmanaged (or permanent) bags. Isolation is assignable on that inf. Do not compile constants as `object_expression`. Do not promote them to permanent as the isolation fix.
+No new **object/array literal** inf (compile-literal infs for scalar integer/double/string **#280** are a different thing). Constant `{a:1}` / `[1,2]` stay fully evaluated unmanaged (or permanent) objects/arrays. Isolation is assignable on that inf. Do not compile constants as `object_expression`. Do not promote them to permanent as the isolation fix.
 
 `object_expression` / `object_construct` stay: evaluate mints an **assignable** face. Spread / mixed arrays often a `call` of `array(...)` / `add_properties(...)`.
 
 `create_wrapper_*` / `create_script_wrapper` are the **create** of the assignable inf, not a wrap protocol.
 
-`property_get` / `variable_get` default is the evaluated occupant (**identity**). No `isolate_mutable_default` in the model. Inline `{ }` is isolated because it is still a raw bag when assignable runs.
+`property_get` / `variable_get` default is the evaluated occupant (**identity**). No `isolate_mutable_default` in the model. Inline `{ }` is isolated because it is still a raw unmanaged object when assignable runs.
 
 `slot_store` = `get_assignable_value(incoming)` **then** `release` occupant **then** store. Same-pointer skip stays. Clone/hold first so incoming that still points at the occupant’s bytes (`s = s + s`, substring onto self) is not memcpy’d into a reused pool block (issue #275, valgrind `Overlap`). `let y = x` shares the assignable face.
 
@@ -80,7 +80,7 @@ This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_
 
 **`get_reference` pairs with `release` where they exist.** Managed / assignable / wrappers: if you `get_reference`, you owe a `release`. Unmanaged object/array **value** infs **throw** on those methods ([#277](https://github.com/afw-org/afw/issues/277)); isolate with `get_assignable_value`. **Instance** `get_reference` / `release` still pin `object->p`. Unmanaged instances still **die with their pool** if nobody extra-held them.
 
-**Script sees values, not bags.** Value protocol is `get_reference` / `get_assignable_value` / `release`. `get_assignable_value` is what makes a temp into something that **has** those three methods (managed scalar in `xctx->p`, or a face that extra-holds). Wrappers `get_reference`/`release` the bag; they do not care in_pool vs and_pool vs permanent.
+**Script sees values, not C instances.** Value protocol is `get_reference` / `get_assignable_value` / `release`. `get_assignable_value` is what makes a temp into something that **has** those three methods (managed scalar in `xctx->p`, or a face that extra-holds). Wrappers `get_reference`/`release` the instance; they do not care in_pool vs and_pool vs permanent.
 
 **`get_assignable_value` is the heavy lifter.** If the inf is wrong, fix **that inf**. Returns something that can be released, or that dies with a pool:
 
@@ -120,7 +120,7 @@ This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_
 - An in_pool last_return holds the **frame** until the next replace (leftovers of that trip stay). That is any in_pool value, not a special `{ }`. Empty **block** `{ }` has no last_return; tracker header already recycles. Empty **object** `{ }` is a real in_pool value. No special case; if something still special-cases empty object/block, find why and prefer inf methods. Tiny workaround OK only if we come back.
 - Rewind: do not leave last_return pointing into a tracker whose hold already hit 0. Either assignable already held the frame, or set undefined/void.
 - Catch last_return: bind the error after the catch frame exists, then `afw_value_block_evaluate_statements`. Empty catch writes nothing (`try` is void except `return`/`rethrow`). Inner `AFW_TRY` shadows `this_THROWN_ERROR` — save the caught error first.
-- Object and array are responsible for the lifetime of values they store. Splice copy-out `get_reference` into an unmanaged bag, then source drop, may extra-hold when assign later mints a face and materialize `slot_store`s again — leak, not crash. Clone-into-`x->p` instead would get weird for nested object/array elements. Keep on the worry list; do not "fix" with wrap-at-execute.
+- Object and array are responsible for the lifetime of values they store. Splice copy-out `get_reference` into an unmanaged object/array, then source drop, may extra-hold when assign later mints a face and materialize `slot_store`s again — leak, not crash. Clone-into-`x->p` instead would get weird for nested object/array elements. Keep on the worry list; do not "fix" with wrap-at-execute.
 
 ---
 
@@ -146,14 +146,14 @@ Dual face: the instance **is** the value. Pool-world object/array creates always
 - Helpers around assign (`create_if_needed`, donate list, silent dest hop / `assignable_p` on create).
 - Putting **managed** values on a **tracker**.
 - Last-release of a frame while last_return still points at that tracker without `get_assignable_value` (no frame hold).
-- Face vs in_pool **store fork**: face `slot_store`s; generic bag stores a raw pointer (compile literals must not wrap nested bags). Drop `release`s only if the array held (face), like object delete. Splice return is an unmanaged bag of slot copies: `get_reference` the occupant, then source drop. Assign / FRV `get_assignable_value` of that bag mints the script face (self if already a face). Do not wrap the return at execute. pop/shift transfer (no `release`).
+- Face vs in_pool **store fork**: face `slot_store`s; generic memory object stores a raw pointer (compile literals must not wrap nested objects/arrays). Drop `release`s only if the array held (face), like object delete. Splice return is an unmanaged object of slot copies: `get_reference` the occupant, then source drop. Assign / FRV `get_assignable_value` of that object mints the script face (self if already a face). Do not wrap the return at execute. pop/shift transfer (no `release`).
 - Compiler wrap emit as the isolation protocol.
 - Teach generic memory objects to own properties.
 - Put “always new overlay” on every face (`let y = x` is bump).
 - Promote compiled constants to the **permanent** inf as the isolation fix.
 - Add a literal inf or compile constants as `object_expression` for isolation.
 - Skip-hold at retrieve or `clone()` because of path/reconcilable.
-- Mint a mutable face over catalog qualifiers (`environment::`, `process::`, `request::`, …) because C left the bag writable.
+- Mint a mutable face over catalog qualifiers (`environment::`, `process::`, `request::`, …) because C left the memory object writable.
 - `if (is_memory_wrapper)` at call sites — that is the assignable inf.
 - Use infinite no-brace `i = i + 1` RSS as proof of wrap (temps die with the pool).
 - Mix `#62` `script_result` into this.
@@ -166,11 +166,11 @@ Large-string RC later is **private** to the string inf. Nothing else notices.
 
 ## Order (re-decide after each)
 
-Done on `scope`: compile facts + RC 1, enclosing_block bind, `get_assignable_value` table, dest `p` ripped, `script_result` simplify. FRV keep as-is.
+**Done on `develop`:** slot protocol; pool two-impls ([PR #267](https://github.com/afw-org/afw/pull/267)); two worlds **#277** closed; compile-literal + intern **#280**; compile facts + RC 1, enclosing_block bind, `get_assignable_value` table, dest `p` ripped, `script_result` simplify; eval `p` = `scope->p` ([PR #287](https://github.com/afw-org/afw/pull/287)). FRV keep as-is. Heap and tracker are the two pool impls (plus mt lock wrappers). APR is reservoir only. `AFW_DEBUG_POOL` prefix always checked on free; USER poison on free. `xctx->p` is ST heap; `env->p` is mt heap. last_return: [#277](https://github.com/afw-org/afw/issues/277) / `script_result.as`. Script/function door: empty void → `undefined`. Declared `: void` stays void.
 
-**On develop (PR [#267](https://github.com/afw-org/afw/pull/267), 2026-08-28):** Heap and tracker are the two pool impls (plus mt lock wrappers). APR is reservoir only. `AFW_DEBUG_POOL` prefix always checked on free; USER poison on free. `xctx->p` is ST heap; `env->p` is mt heap. last_return: [#277](https://github.com/afw-org/afw/issues/277) / `script_result.as`. Script/function door: empty void → `undefined`. Declared `: void` stays void.
+**Parked / follow-up:** Skip `double_free_throws`. Adapter clones. Clone-of-unmanaged object meta. Adaptive `clone()` still the old function. Unevaluated clone-out. `qualifier("current")` snapshot tail. Double-free today throws prefix “pool does not match allocation” after overlay, not “already freed.” Do not spread `get_reference` in `execute_*`. Tracker allocated list forward-only later. Do not wrap catalog qualifiers. Do not add `get_base` unless more than one product site type-switches for “entity.”
 
-**Still parked (not PR #287):** Skip `double_free_throws`. Adapter clones. Clone-of-unmanaged object meta. Double-free today throws prefix “pool does not match allocation” after overlay, not “already freed.” Do not spread `get_reference` in `execute_*`. Tracker allocated list forward-only later. Do not wrap catalog qualifiers. Do not add `get_base` unless more than one product site type-switches for “entity.”
+**Nominated next eval win:** heap free-list mixed sizes (concat string + integer last_return in one loop) — timings on [`experiment-brainstorm.md`](experiment-brainstorm.md). Re-measure on this `develop` before rewriting the pool.
 
 If a step gets clever, stop and ask.
 
@@ -182,17 +182,7 @@ If a step gets clever, stop and ask.
 
 **Around-assign wrap (`create_if_needed`):** moved into `script_function` `get_assignable_value` (slot_store / face overlay `set` call it). Helper remains only as the inf’s wrap. Compiler assign/return/object/array sites no longer call it.
 
-**Compiler / script-facing wrap (isolation, not the new wrapper inf):**
-
-| Site | What |
-|------|------|
-| `afw_compile_parse_value.c` | emit `wrap_literal_object` / `wrap_literal_array` |
-| `afw_function_compiler_internal.c` | `execute_wrap_literal_*` → `add_reference` |
-| `afw_compile_parse_script.c`, `afw_value_type_check.c` | unwrap wrap calls for type check |
-| `afw_function_adapter.c`, `afw_function_journal.c` | `impl_script_face_object` on retrieve/journal |
-| `afw_object_memory.c`, `afw_array_memory.c` | Face GET/array materialize `slot_store`; unmanaged bag store is a raw pointer (like object set) |
-
-**Compiler `wrap_literal_*` emit:** removed. Isolation is `get_assignable_value` (clone or wrapper). Permanent scalars stay as-is. LHS `reference_by_key` `get_assignable_value`s, sets, releases. Face GET/array materialize/retrieve/journal `slot_store`. Donate list removed.
+**Compiler `wrap_literal_*` emit:** removed. Isolation is `get_assignable_value` (clone or wrapper). Permanent scalars stay as-is. LHS `reference_by_key` `get_assignable_value`s, sets, releases. Face GET/array materialize/retrieve/journal `slot_store`. Donate list removed. Unmanaged memory object store is a raw pointer (like object set).
 
 **`compiled_value` evaluate:** `clone_unmanaged` of an **evaluated** result into dest `p`. Park `script_result` in a local; put it back. Not FRV at this door. `script_result` is **#62**.
 
