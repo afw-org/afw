@@ -1,10 +1,5 @@
 {
     "C_Cpp.intelliSenseEngine": "disabled",
-    "clangd.arguments": [
-        "--compile-commands-dir=${workspaceFolder}/build/cmake",
-        "--background-index",
-        "--header-insertion=never"
-    ],
     "cSpell.words": [
         "Accordian",
         "Promisable",
@@ -23,6 +18,11 @@
         "submenus",
         "testid",
         "textbox"
+    ],
+    "clangd.arguments": [
+        "--compile-commands-dir=${workspaceFolder}/build/cmake",
+        "--background-index",
+        "--header-insertion=never"
     ],
     "cmake.configureOnOpen": false,
     "cursorpyright.analysis.extraPaths": [
@@ -509,6 +509,12 @@
                 "/src/*/generate*/objects/_AdaptiveCryptoEncryptResult_/*.json"
             ],
             "url": "./generated/schemas/afw/_AdaptiveCryptoEncryptResult_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveStringLiteral_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveStringLiteral_.json"
         }
     ],
     "python.analysis.extraPaths": [
