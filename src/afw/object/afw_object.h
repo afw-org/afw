@@ -676,43 +676,6 @@ afw_object_old_get_property_compile_template(
 
 
 /**
- * @brief Get an object's property value as a boolean.
- * @param instance of object.
- * @param property_name Name of property to get.
- * @param xctx of caller.
- * @return value or false if not found.
- *
- * This accepts a boolean value of a case insensitive string value of "true",
- * "t", "false", "f", "0", or "1".
- */
-AFW_DECLARE(afw_boolean_t)
-afw_object_old_get_property_as_boolean_deprecated(
-    const afw_object_t *instance,
-    const afw_value_t *property_name,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Get an object's property value as an integer.
- * @param instance of object.
- * @param property_name Name of property to get.
- * @param found true if property exists.
- * @param xctx of caller.
- * @return value or false if not found.
- *
- * This is like afw_object_old_get_property_as_integer_internal() except the value
- * will be converted to integer if needed instead of throwing a type safe
- * error.
- */
-AFW_DECLARE(afw_integer_t)
-afw_object_old_get_property_as_integer_deprecated(
-    const afw_object_t *instance,
-    const afw_value_t *property_name,
-    afw_boolean_t *found,
-    afw_xctx_t *xctx);
-
-
-/**
  * @brief Get an object's property value as a string in specified pool.
  * @param instance of object.
  * @param property_name Name of property to get.

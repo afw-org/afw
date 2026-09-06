@@ -346,11 +346,23 @@ impl_parse_schema_entry(
             afw_utf8_z_equal(kwd, "ABSTRACT") ||
             afw_utf8_z_equal(kwd, "STRUCTURAL") ||
             afw_utf8_z_equal(kwd, "AUXILIARY") ||
-            afw_utf8_z_equal(kwd, "COLLECTIVE") ||
-            afw_utf8_z_equal(kwd, "NO-USER-MODIFICATION")
+            afw_utf8_z_equal(kwd, "NO-USER-MODIFICATION") ||
+            afw_utf8_z_equal(kwd, "X-NDS_HIDDEN") ||
+            afw_utf8_z_equal(kwd, "X-NDS_NONREMOVABLE") ||
+            afw_utf8_z_equal(kwd, "X-NDS_READ_FILTERED")
             )
         {
             val = afw_boolean_v_true;
+        }
+
+        /* Integer bounds in schema are quoted numbers. */
+        else if (
+            afw_utf8_z_equal(kwd, "X-NDS_LOWER_BOUND") ||
+            afw_utf8_z_equal(kwd, "X-NDS_UPPER_BOUND"))
+        {
+            val = impl_get_value(self);
+            val = afw_value_convert(val, afw_data_type_integer,
+                true, obj->p, xctx);
         }
 
         /* If any other keyword, get following value and set. */
@@ -569,43 +581,47 @@ impl_make_property_type_and_handler_hash_tables(
 
             /* X-NDS_LOWER_BOUND. */
             attribute_type->lower_bound =
-                afw_object_old_get_property_as_integer_deprecated(
+                afw_object_old_get_property_as_integer_internal(
                     attribute_type_object, afw_ldap_v_a_X_NDS_LOWER_BOUND,
                     &attribute_type->lower_bound_present, xctx);
 
             /* X-NDS_UPPER_BOUND if already be obtained by {} in syntax. */
             if (!attribute_type->upper_bound_present) {
                 attribute_type->upper_bound =
-                    afw_object_old_get_property_as_integer_deprecated(
+                    afw_object_old_get_property_as_integer_internal(
                         attribute_type_object, afw_ldap_v_a_X_NDS_UPPER_BOUND,
                         &attribute_type->upper_bound_present, xctx);
             }
 
             /* NO-USER-MODIFICATION - Never allow write. */
-            if (afw_object_old_get_property_as_boolean_deprecated(attribute_type_object,
-                afw_ldap_v_a_NO_USER_MODIFICATION, xctx))
+            if (afw_object_old_get_property_as_boolean_internal(
+                attribute_type_object, afw_ldap_v_a_NO_USER_MODIFICATION,
+                &found, xctx))
             {
                 attribute_type->never_allow_write = true;
             }
 
             /* X-NDS_HIDDEN - Never allow read or write. */
-            if (afw_object_old_get_property_as_boolean_deprecated(attribute_type_object,
-                afw_ldap_v_a_X_NDS_HIDDEN, xctx))
+            if (afw_object_old_get_property_as_boolean_internal(
+                attribute_type_object, afw_ldap_v_a_X_NDS_HIDDEN,
+                &found, xctx))
             {
                 attribute_type->never_allow_read = true;
                 attribute_type->never_allow_write = true;
             }
 
             /* X-NDS_NONREMOVABLE - Never remove. */
-            if (afw_object_old_get_property_as_boolean_deprecated(attribute_type_object,
-                afw_ldap_v_a_X_NDS_NONREMOVABLE, xctx))
+            if (afw_object_old_get_property_as_boolean_internal(
+                attribute_type_object, afw_ldap_v_a_X_NDS_NONREMOVABLE,
+                &found, xctx))
             {
                 attribute_type->never_allow_write = true;
             }
 
             /* X-NDS_READ_FILTERED - Operational. */
-            if (afw_object_old_get_property_as_boolean_deprecated(attribute_type_object,
-                afw_ldap_v_a_X_NDS_READ_FILTERED, xctx))
+            if (afw_object_old_get_property_as_boolean_internal(
+                attribute_type_object, afw_ldap_v_a_X_NDS_READ_FILTERED,
+                &found, xctx))
             {
                 attribute_type->operational = true;
                 attribute_type->never_allow_write = true;
@@ -881,6 +897,7 @@ impl_add_parents_and_property_types(
     afw_size_t count;
     afw_size_t count2;
     afw_size_t i;
+    afw_boolean_t found;
 
     /* Use metadata p. */
     p = metadata->p;
@@ -935,8 +952,8 @@ impl_add_parents_and_property_types(
             object_type_attribute->property_type_object =
                 property_types_object;
             object_type_attribute->is_required =
-                afw_object_old_get_property_as_boolean_deprecated(property_type_object,
-                    afw_v_required, xctx);
+                afw_object_old_get_property_as_boolean_internal(
+                    property_type_object, afw_v_required, &found, xctx);
         }
     }
 
@@ -1071,6 +1088,7 @@ impl_make_object_types(
     const afw_utf8_t *default_description;
     const afw_object_t *other_properties;
     const afw_pool_t *p;
+    afw_boolean_t found;
 
     /* Use metadata p. */
     p = metadata->p;
@@ -1094,8 +1112,8 @@ impl_make_object_types(
         afw_object_set_property_as_string_internal(object_type_object, afw_v_objectType,
             id, xctx);
         afw_object_set_property(object_type_object, afw_v_allowEntity,
-            (afw_object_old_get_property_as_boolean_deprecated(object_class_object,
-                afw_ldap_v_STRUCTURAL, xctx))
+            afw_object_old_get_property_as_boolean_internal(
+                object_class_object, afw_ldap_v_STRUCTURAL, &found, xctx)
             ? afw_boolean_v_true
             : afw_boolean_v_false,
             xctx);

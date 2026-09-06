@@ -694,12 +694,13 @@ afw_object_meta_has_errors(
     afw_xctx_t *xctx)
 {
     afw_boolean_t result;
+    afw_boolean_t found;
 
     result = false;
     if (instance->meta.meta_object) {
-        result = afw_object_old_get_property_as_boolean_deprecated(
+        result = afw_object_old_get_property_as_boolean_internal(
             afw_object_meta_object(instance),
-            afw_v_hasErrors, xctx);
+            afw_v_hasErrors, &found, xctx);
     }
 
     return result;

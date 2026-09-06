@@ -206,6 +206,7 @@ afw_adapter_impl_create_cede_p(
     const afw_utf8_t *s;
     const afw_authorization_handler_t *authorization_handler;
     afw_boolean_t b;
+    afw_boolean_t found;
 
     /* Allocate new adapter instance. */
     adapter = (afw_adapter_t *)afw_pool_calloc(p,
@@ -355,8 +356,8 @@ afw_adapter_impl_create_cede_p(
 
     /* checkIndividualObjectReadAccess property */
     impl->check_individual_object_read_access =
-        afw_object_old_get_property_as_boolean_deprecated(
-            properties, afw_v_checkIndividualObjectReadAccess, xctx);
+        afw_object_old_get_property_as_boolean_internal(
+            properties, afw_v_checkIndividualObjectReadAccess, &found, xctx);
 
     /** @fixme Reuse if already exists or reuse correct pool. */
     /* Create runtime metrics object and set in properties. */
@@ -375,8 +376,8 @@ afw_adapter_impl_create_cede_p(
     }
 
     /* If isModelLocation is true, provide appropriate object types. */
-    b = afw_object_old_get_property_as_boolean_deprecated(properties,
-        afw_v_isModelLocation, xctx);
+    b = afw_object_old_get_property_as_boolean_internal(properties,
+        afw_v_isModelLocation, &found, xctx);
     if (b) {
         impl->model_location = afw_model_location_create(adapter, p, xctx);
         afw_adapter_impl_set_supported_core_object_type(adapter,
@@ -395,8 +396,8 @@ afw_adapter_impl_create_cede_p(
 
     /** @fixme have way for extension to add these.
     If isPolicyLocation is true, provide appropriate object types.
-    b = afw_object_old_get_property_as_boolean_deprecated(properties,
-        afw_v_isPolicyLocation, xctx);
+    b = afw_object_old_get_property_as_boolean_internal(properties,
+        afw_v_isPolicyLocation, &found, xctx);
     if (b) {
         impl->policy_location = afw_authorization_policy_internal_location_create(
             adapter, p, xctx);

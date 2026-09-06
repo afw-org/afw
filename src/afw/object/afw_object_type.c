@@ -46,11 +46,11 @@ impl_create_property_type(
     self->allow_write = afw_object_old_get_property_as_boolean_internal(
         property_type_object, afw_v_allowWrite, &found, xctx) || !found;
 
-    self->allow_query = afw_object_old_get_property_as_boolean_deprecated(property_type_object,
-        afw_v_allowQuery, xctx);
+    self->allow_query = afw_object_old_get_property_as_boolean_internal(
+        property_type_object, afw_v_allowQuery, &found, xctx);
 
-    self->required = afw_object_old_get_property_as_boolean_deprecated(property_type_object,
-        afw_v_required, xctx);
+    self->required = afw_object_old_get_property_as_boolean_internal(
+        property_type_object, afw_v_required, &found, xctx);
 
     /** @fixme Normalize default_value, etc. */
 
