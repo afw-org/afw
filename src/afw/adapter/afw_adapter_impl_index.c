@@ -322,7 +322,7 @@ afw_boolean_t afw_adapter_impl_index_option_case_insensitive(
         while (option) {
             if (afw_value_is_string(option)) {
                 const afw_utf8_t *option_str =
-                    afw_value_as_utf8(option, xctx->p, xctx);
+                    afw_value_convert_to_utf8(option, xctx->p, xctx);
 
                 if (afw_utf8_equal(option_str, afw_s_case_insensitive_string))
                     return true;
@@ -360,7 +360,7 @@ afw_boolean_t afw_adapter_impl_index_option_unique(
             xctx->p, xctx);
         while (option) {
             if (afw_value_is_string(option)) {
-                const afw_utf8_t *option_str = afw_value_as_utf8(option,
+                const afw_utf8_t *option_str = afw_value_convert_to_utf8(option,
                     xctx->p, xctx);
 
                 if (afw_utf8_equal(option_str, afw_s_unique))
@@ -465,7 +465,7 @@ impl_index_value_as_key_utf8(
             afw_value_as_double(value, xctx), p, xctx);
     }
 
-    return afw_value_as_utf8(value, p, xctx);
+    return afw_value_convert_to_utf8(value, p, xctx);
 }
 
 /*
@@ -684,7 +684,7 @@ void afw_adapter_impl_index_open_definition(
             xctx->p, xctx);
         while (option) {
             if (afw_value_is_string(option)) {
-                const afw_utf8_t *option_str = afw_value_as_utf8(option,
+                const afw_utf8_t *option_str = afw_value_convert_to_utf8(option,
                     xctx->p, xctx);
 
                 if (afw_utf8_equal(option_str, afw_s_sort_reverse))

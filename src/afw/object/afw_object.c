@@ -544,7 +544,7 @@ afw_object_old_get_property_as_boolean_deprecated(
             result = ((const afw_value_boolean_t *)value)->internal;
         }
         else {
-            string = afw_value_as_utf8(value, xctx->p, xctx);
+            string = afw_value_convert_to_utf8(value, xctx->p, xctx);
 
             if (
                 afw_utf8_compare_ignore_case(string, afw_s_true, xctx) == 0 ||
@@ -635,7 +635,7 @@ afw_object_old_get_property_as_utf8(
     value = afw_object_get_property(instance, property_name, xctx);
     if (value) {
         value = afw_value_evaluate(value, p, xctx);
-        string = afw_value_as_utf8(value, p, xctx);
+        string = afw_value_convert_to_utf8(value, p, xctx);
     }
     return string;
 }
@@ -658,7 +658,7 @@ afw_object_old_get_property_as_utf8_z(
     utf8_z = NULL;
     value = afw_object_get_property(instance, property_name, xctx);
     if (value) {
-        utf8_z = afw_value_as_utf8_z(value, p, xctx);
+        utf8_z = afw_value_convert_to_utf8_z(value, p, xctx);
     }
     return utf8_z;
 }

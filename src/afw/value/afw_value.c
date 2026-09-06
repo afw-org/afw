@@ -647,16 +647,16 @@ afw_value_array_hold(
 }
 
 
-/* Convert value->internal to afw_utf8_z_t * */
+/* Convert any evaluated value to NUL-terminated utf8. */
 AFW_DEFINE(const afw_utf8_z_t *)
-afw_value_as_utf8_z(const afw_value_t *value,
+afw_value_convert_to_utf8_z(const afw_value_t *value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t *string;
     const afw_utf8_z_t *result;
 
     result = NULL;
-    string = afw_value_as_utf8(value, p, xctx);
+    string = afw_value_convert_to_utf8(value, p, xctx);
     if (string) {
         result = afw_utf8_z_create(string->s, string->len, p, xctx);
     }
@@ -666,9 +666,9 @@ afw_value_as_utf8_z(const afw_value_t *value,
 }
 
 
-/* Convert value to casted utf8 in specified pool. */
+/* Convert value to datatype("...") utf8 in specified pool. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_value_as_casted_utf8(
+afw_value_convert_to_casted_utf8(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t *result;
@@ -730,7 +730,7 @@ afw_value_as_casted_utf8(
         result = afw_utf8_concat(p, xctx,
             &data_type->data_type_id,
             afw_s_a_open_parenthesis, &impl_s_a_quote,
-            afw_value_as_utf8(value, p, xctx),
+            afw_value_convert_to_utf8(value, p, xctx),
             &impl_s_a_quote, afw_s_a_close_parenthesis,
             NULL);
     }
@@ -775,9 +775,9 @@ afw_value_one_and_only(
 }
 
 
-/* Return result of afw_value_one_and_only() as string. */
+/* Convert afw_value_one_and_only() to utf8. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_value_one_and_only_as_utf8(
+afw_value_one_and_only_convert_to_utf8(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_value_t *v;
@@ -785,14 +785,14 @@ afw_value_one_and_only_as_utf8(
 
     value = afw_value_evaluate(value, p, xctx);
     v = afw_value_one_and_only(value, p, xctx);
-    result = afw_value_as_utf8(v, p, xctx);
+    result = afw_value_convert_to_utf8(v, p, xctx);
     return result;
 }
 
 
-/* Convert value->internal to afw_utf8_t * */
+/* Convert any evaluated value to utf8. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_value_as_utf8(const afw_value_t *value,
+afw_value_convert_to_utf8(const afw_value_t *value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t *result;
@@ -1241,7 +1241,7 @@ afw_value_as_array_of_utf8(const afw_value_t * value,
     result = (const afw_utf8_t **)impl_value_as_array_of_values(value,
         p, xctx);
     for (e = result; *e; e++) {
-        *e = afw_value_as_utf8((const afw_value_t *)*e, p, xctx);
+        *e = afw_value_convert_to_utf8((const afw_value_t *)*e, p, xctx);
     }
 
     /* Return result. */

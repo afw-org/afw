@@ -243,7 +243,7 @@ void convert_string_to_yaml(
     const afw_utf8_t *string;
     const afw_utf8_octet_t *c, *end;
 
-    string = afw_value_as_utf8(value, wa->xctx->p, wa->xctx);
+    string = afw_value_convert_to_utf8(value, wa->xctx->p, wa->xctx);
     if (!string) {
         AFW_THROW_ERROR_Z(general, "Error converting string.", wa->xctx);
     }

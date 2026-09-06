@@ -767,7 +767,7 @@ afw_function_execute_test_script(
         afw_v_expression, &expression->internal, xctx);
     afw_object_set_property_as_string(result,
         afw_v_expected,
-        afw_value_as_casted_utf8(expected, x->p, xctx),
+        afw_value_convert_to_casted_utf8(expected, x->p, xctx),
         xctx);
 
     compiled = NULL;
@@ -787,7 +787,7 @@ afw_function_execute_test_script(
         }
 
         afw_object_set_property_as_string(result, afw_v_result,
-            afw_value_as_casted_utf8(evaluated, x->p, xctx),
+            afw_value_convert_to_casted_utf8(evaluated, x->p, xctx),
             xctx);
 
         if (!afw_value_equal(evaluated, expected, xctx)) {
@@ -902,7 +902,7 @@ afw_function_execute_test_template(
 
     afw_object_set_property_as_string(result,
         afw_v_expected, 
-        afw_value_as_casted_utf8(expected, x->p, xctx),
+        afw_value_convert_to_casted_utf8(expected, x->p, xctx),
         xctx);
 
     compiled = NULL;
@@ -921,7 +921,7 @@ afw_function_execute_test_template(
         }
 
         afw_object_set_property_as_string(result, afw_v_result,
-            afw_value_as_casted_utf8(evaluated, x->p, xctx),
+            afw_value_convert_to_casted_utf8(evaluated, x->p, xctx),
             xctx);
 
         if (!afw_value_equal(evaluated, expected, xctx)) {
@@ -1040,7 +1040,7 @@ afw_function_execute_test_value(
 
     afw_object_set_property_as_string(result,
         afw_v_expected, 
-        afw_value_as_casted_utf8(expected, x->p, xctx),
+        afw_value_convert_to_casted_utf8(expected, x->p, xctx),
         xctx);
 
     AFW_TRY {
@@ -1053,7 +1053,7 @@ afw_function_execute_test_value(
         }
 
         afw_object_set_property_as_string(result, afw_v_result,
-            afw_value_as_casted_utf8(value, x->p, xctx),
+            afw_value_convert_to_casted_utf8(value, x->p, xctx),
             xctx);
         
         if (!afw_value_equal(value, expected, xctx)) {

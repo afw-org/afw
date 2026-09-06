@@ -1518,13 +1518,16 @@ afw_value_convert_to_string(
 
 
 /**
- * Convert value->value to afw_utf8_z_t *.  Must be evaluated list with
- * exactly one entry or single value.  Value can not contain x'00' bytes.
+ * @brief Convert any evaluated value to NUL-terminated utf8.
+ * @param value to convert (not typesafe string-only).
+ * @param p pool for result.
+ * @param xctx of caller.
+ * @return utf8_z or NULL.
  *
- * Pool p will be used for result.
+ * Value can not contain x'00' bytes.
  */
 AFW_DECLARE(const afw_utf8_z_t *)
-afw_value_as_utf8_z(const afw_value_t *value,
+afw_value_convert_to_utf8_z(const afw_value_t *value,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 
@@ -1575,26 +1578,29 @@ afw_value_one_and_only(
 
 
 /**
- * @brief Return result of afw_value_one_and_only() as utf8.
+ * @brief Convert afw_value_one_and_only() to utf8.
  * @param value list or single value.
  * @param p  Pool for result.
  * @param xctx of caller.
- * @return string representation of value or undefined.
+ * @return utf8 of the single value, or NULL.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_value_one_and_only_as_utf8(
+afw_value_one_and_only_convert_to_utf8(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx);
 
 
 
 /**
- * Convert value->value to afw_utf8_t *.  Must be an evaluated value or
- * list with exactly one entry
+ * @brief Convert any evaluated value to utf8.
+ * @param value to convert (not typesafe string-only).
+ * @param p pool for result.
+ * @param xctx of caller.
+ * @return utf8 of the value's data-type string form.
  *
- * Pool p will be used for result.
+ * Uses data_type internal_to_utf8. Not afw_value_as_string.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_value_as_utf8(
+afw_value_convert_to_utf8(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx);
 
 
@@ -1616,7 +1622,7 @@ afw_value_as_utf8(
  * result of recursively calling this function, followed by ")".
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_value_as_casted_utf8(
+afw_value_convert_to_casted_utf8(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx);
 
 

@@ -2512,7 +2512,7 @@ impl_entry_to_query_string(
                         break;
                     }
                     afw_writer_write_z(w, ",", xctx);
-                    s = afw_value_as_utf8(value, p, xctx);
+                    s = afw_value_convert_to_utf8(value, p, xctx);
                     s = afw_uri_encode(s,
                         AFW_URI_OCTET_ENCODE_COMPONENT_VALUE, p, xctx);
                     afw_writer_write_utf8(w, s, xctx);
@@ -2520,7 +2520,7 @@ impl_entry_to_query_string(
             }
             else {
                 afw_writer_write_z(w, ",", xctx);
-                s = afw_value_as_utf8(entry->value, p, xctx);
+                s = afw_value_convert_to_utf8(entry->value, p, xctx);
                 s = afw_uri_encode(s,
                     AFW_URI_OCTET_ENCODE_COMPONENT_VALUE, p, xctx);
                 afw_writer_write_utf8(w, s, xctx);
@@ -2570,7 +2570,7 @@ impl_entry_to_query_string(
                     else {
                         afw_writer_write_z(w, ",", xctx);
                     }
-                    s = afw_value_as_utf8(value, p, xctx);
+                    s = afw_value_convert_to_utf8(value, p, xctx);
                     s = afw_uri_encode(s,
                         AFW_URI_OCTET_ENCODE_COMPONENT_VALUE, p, xctx);
                     afw_writer_write_utf8(w, s, xctx);
@@ -2578,7 +2578,7 @@ impl_entry_to_query_string(
                 }
             }
             else {
-                s = afw_value_as_utf8(entry->value, p, xctx);
+                s = afw_value_convert_to_utf8(entry->value, p, xctx);
                 s = afw_uri_encode(s,
                     AFW_URI_OCTET_ENCODE_COMPONENT_VALUE, p, xctx);
                 afw_writer_write_utf8(w, s, xctx);

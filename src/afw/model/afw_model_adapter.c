@@ -1477,7 +1477,7 @@ afw_model_internal_complete_ctx_default_add_object(
             afw_xctx_qualifier_stack_top_set(top, xctx);
         }
         AFW_ENDTRY;
-        ctx->mapped_object_id = afw_value_as_utf8(value, ctx->p, xctx);
+        ctx->mapped_object_id = afw_value_convert_to_utf8(value, ctx->p, xctx);
     }
 }
 

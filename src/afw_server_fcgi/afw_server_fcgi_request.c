@@ -86,7 +86,7 @@ afw_server_fcgi_internal_set_content_length(
     if (!value) {
         return;
     }
-    length_z = afw_value_as_utf8_z(value, xctx->p, xctx);
+    length_z = afw_value_convert_to_utf8_z(value, xctx->p, xctx);
     if (!impl_parse_content_length(length_z, &self->pub.content_length))
     {
         AFW_THROW_ERROR_Z(request_syntax,
@@ -149,7 +149,7 @@ afw_server_fcgi_internal_create_request(
         AFW_THROW_ERROR_Z(general,
             AFW_REQUEST_Q_PN_REQUEST_METHOD " property required.", xctx);
     }
-    self->pub.method = afw_value_as_utf8(value, xctx->p, xctx);
+    self->pub.method = afw_value_convert_to_utf8(value, xctx->p, xctx);
 
     /* Get request URI. */
     self->pub.uri = afw_object_old_get_property_as_utf8(self->pub.properties,
@@ -182,7 +182,7 @@ afw_server_fcgi_internal_create_request(
         AFW_THROW_ERROR_Z(general,
             AFW_REQUEST_Q_PN_QUERY_STRING " property required.", xctx);
     }
-    self->pub.query_string = afw_value_as_utf8(value, xctx->p, xctx);
+    self->pub.query_string = afw_value_convert_to_utf8(value, xctx->p, xctx);
 
     /* Get request content type. */
     self->pub.content_type = afw_object_old_get_property_as_utf8(
@@ -194,7 +194,7 @@ afw_server_fcgi_internal_create_request(
         AFW_REQUEST_v_PN_HTTP_ACCEPT, xctx);
     if (value) {
         self->pub.accept = afw_utf8_parse_csv(
-            afw_value_as_utf8(value, xctx->p, xctx),
+            afw_value_convert_to_utf8(value, xctx->p, xctx),
             xctx->p, xctx);
     }
 

@@ -102,7 +102,7 @@ On evaluate (into current pool):
 1. Create mutable unmanaged object.  
 2. For each entry left to right:  
    - static: `set_property(name, evaluate(value))`  
-   - expression name: evaluate name → string (same as assign path: string or `afw_value_as_utf8` / convert); evaluate value; `set_property`  
+   - expression name: evaluate name → string (same as assign path: string or `afw_value_convert_to_utf8` / convert); evaluate value; `set_property`  
    - spread: evaluate object; copy properties onto target (same semantics as `add_properties` source merge)  
 3. Last write wins on duplicate names.  
 4. Return object value.

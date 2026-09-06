@@ -630,7 +630,7 @@ afw_curl_internal_http_post(
             while (value) {
                 const afw_utf8_z_t *next_header;
 
-                next_header  = afw_value_as_utf8_z(value, pool, xctx);
+                next_header  = afw_value_convert_to_utf8_z(value, pool, xctx);
                 curl_headers = curl_slist_append(curl_headers, next_header);
                 value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
             }
@@ -806,7 +806,7 @@ afw_curl_internal_http_get(
             while (value) {
                 const afw_utf8_z_t *next_header;
 
-                next_header  = afw_value_as_utf8_z(value, pool, xctx);
+                next_header  = afw_value_convert_to_utf8_z(value, pool, xctx);
                 curl_headers = curl_slist_append(curl_headers, next_header);
                 value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
             }
@@ -948,7 +948,7 @@ afw_curl_internal_http_delete(
             while (value) {
                 const afw_utf8_z_t *next_header;
 
-                next_header  = afw_value_as_utf8_z(value, pool, xctx);
+                next_header  = afw_value_convert_to_utf8_z(value, pool, xctx);
                 curl_headers = curl_slist_append(curl_headers, next_header);
                 value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
             }
@@ -1099,7 +1099,7 @@ afw_curl_internal_http_put(
             while (value) {
                 const afw_utf8_z_t *next_header;
 
-                next_header  = afw_value_as_utf8_z(value, pool, xctx);
+                next_header  = afw_value_convert_to_utf8_z(value, pool, xctx);
                 curl_headers = curl_slist_append(curl_headers, next_header);
                 value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
             }
@@ -1286,7 +1286,7 @@ afw_curl_internal_http_patch(
             while (value) {
                 const afw_utf8_z_t *next_header;
 
-                next_header  = afw_value_as_utf8_z(value, pool, xctx);
+                next_header  = afw_value_convert_to_utf8_z(value, pool, xctx);
                 curl_headers = curl_slist_append(curl_headers, next_header);
                 value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
             }
@@ -1451,7 +1451,7 @@ afw_curl_internal_http_head(
             while (value) {
                 const afw_utf8_z_t *next_header;
 
-                next_header  = afw_value_as_utf8_z(value, pool, xctx);
+                next_header  = afw_value_convert_to_utf8_z(value, pool, xctx);
                 curl_headers = curl_slist_append(curl_headers, next_header);
                 value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
             }
@@ -1582,7 +1582,7 @@ afw_curl_internal_http_options(
             while (value) {
                 const afw_utf8_z_t *next_header;
 
-                next_header  = afw_value_as_utf8_z(value, pool, xctx);
+                next_header  = afw_value_convert_to_utf8_z(value, pool, xctx);
                 curl_headers = curl_slist_append(curl_headers, next_header);
                 value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
             }
@@ -1712,7 +1712,7 @@ afw_curl_internal_smtp_send(
         while (value) {
             const afw_utf8_z_t * recipient;
 
-            recipient = afw_value_as_utf8_z(value, pool, xctx);
+            recipient = afw_value_convert_to_utf8_z(value, pool, xctx);
             recipients = curl_slist_append(recipients, recipient);
             value = afw_array_get_next_value(mail_recipients, &iterator, pool, xctx);
         }

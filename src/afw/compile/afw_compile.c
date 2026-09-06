@@ -386,7 +386,7 @@ afw_compile_script(
     const afw_utf8_t *source;
     const afw_value_t *result;
     
-    source = afw_value_as_utf8(value, p, xctx);
+    source = afw_value_convert_to_utf8(value, p, xctx);
     result = afw_compile_script_source(source,
         source_location, parent, shared, p, xctx);
     return result;
@@ -412,7 +412,7 @@ afw_compile_template(
         return value;
     }
 
-    source = afw_value_as_utf8(value, p, xctx);
+    source = afw_value_convert_to_utf8(value, p, xctx);
     result = afw_compile_template_source(source,
         source_location, parent, shared, p, xctx);
     return result;

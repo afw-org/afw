@@ -464,7 +464,7 @@ impl_parse_definition(
             }
         }
         else {
-            id = afw_value_as_utf8(name_value, p, xctx);
+            id = afw_value_convert_to_utf8(name_value, p, xctx);
             if (!id) {
                 AFW_THROW_ERROR_Z(general, "Error parsing schema", xctx);
             }
@@ -798,7 +798,7 @@ impl_properties_to_object_type(
     }
     else if (afw_value_is_defined_and_evaluated(value)) {
         impl_a_property_to_object_type(required,
-            afw_value_one_and_only_as_utf8(value, metadata->p, xctx),
+            afw_value_one_and_only_convert_to_utf8(value, metadata->p, xctx),
             properties,
             metadata, xctx);
     }
@@ -1216,7 +1216,7 @@ afw_ldap_metadata_load(
         AFW_THROW_ERROR_Z(general, "subschemaSubentry not found.", xctx);
     }
     new_metadata->subschema_subentry =
-        afw_value_one_and_only_as_utf8(value, p, xctx);
+        afw_value_one_and_only_convert_to_utf8(value, p, xctx);
 
     /* Get schema and parse definitions. */
     new_metadata->schema_object =

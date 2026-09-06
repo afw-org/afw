@@ -270,7 +270,7 @@ afw_action_perform(
                     xctx);
             }
             else {
-                functionId = afw_value_as_utf8(value, response->p, xctx);
+                functionId = afw_value_convert_to_utf8(value, response->p, xctx);
 
                 /* Get function. */
                 function = afw_environment_get_function(functionId, xctx);
@@ -351,7 +351,7 @@ afw_action_perform(
             if (!value) {
                 value = afw_object_get_property(request, name, xctx);
             }
-            functionId = afw_value_as_utf8(value, action_response_entry->p, xctx);
+            functionId = afw_value_convert_to_utf8(value, action_response_entry->p, xctx);
             if (!functionId) {
                 AFW_THROW_ERROR_FZ(syntax, xctx,
                     "Property " AFW_UTF8_FMT_Q " of action " AFW_INTEGER_FMT
