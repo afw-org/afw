@@ -312,7 +312,7 @@ afw_file_adapter_create_cede_p(
     p = self->pub.p;
 
     /* Get content_type parameters. */
-    content_type = afw_object_old_get_property_as_utf8(properties,
+    content_type = afw_object_old_get_property_convert_to_utf8(properties,
         afw_v_contentType, p, xctx);
     self->content_type = afw_environment_get_content_type(content_type,
         xctx);
@@ -323,7 +323,7 @@ afw_file_adapter_create_cede_p(
     }
 
     /* Get optional filename extension */
-    self->filename_suffix = afw_object_old_get_property_as_utf8(
+    self->filename_suffix = afw_object_old_get_property_convert_to_utf8(
         properties, afw_v_filenameSuffix, p, xctx);
     if (!self->filename_suffix) {
         self->filename_suffix = afw_s_a_empty_string;

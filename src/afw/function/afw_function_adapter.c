@@ -162,9 +162,9 @@ impl_retrieve_to_response_cb(
          */
         p = (object->p) ? object->p : ctx->p;
         response_object = afw_object_create_unmanaged(p, xctx);
-        afw_object_set_property_as_boolean(response_object,
+        afw_object_set_property_as_boolean_internal(response_object,
             afw_v_intermediate, true, xctx);
-        afw_object_set_property_as_object(response_object,
+        afw_object_set_property_as_object_internal(response_object,
             afw_v_result, object, xctx);
         object_value = afw_value_create_unmanaged_object(
             response_object, p, xctx);

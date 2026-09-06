@@ -827,12 +827,12 @@ afw_crypto_function_execute_crypto_encrypt(
             afw_crypto_s__AdaptiveCryptoEncryptResult_, xctx);
         afw_object_set_property_as_string_from_utf8_z(result_obj,
             afw_crypto_v_algorithm, "AES-GCM", xctx);
-        afw_object_set_property_as_integer(result_obj, afw_crypto_v_keyLength,
+        afw_object_set_property_as_integer_internal(result_obj, afw_crypto_v_keyLength,
             key_bits, xctx);
 
         mem.ptr = out;
         mem.size = (afw_size_t)len;
-        afw_object_set_property_as_base64Binary(result_obj,
+        afw_object_set_property_as_base64Binary_internal(result_obj,
             afw_crypto_v_ciphertext, &mem, xctx);
 
         if (iv_in) {
@@ -845,14 +845,14 @@ afw_crypto_function_execute_crypto_encrypt(
             memcpy((void *)mem.ptr, iv_buf, AFW_CRYPTO_AES_GCM_IV_LEN);
             mem.size = AFW_CRYPTO_AES_GCM_IV_LEN;
         }
-        afw_object_set_property_as_base64Binary(result_obj, afw_crypto_v_iv,
+        afw_object_set_property_as_base64Binary_internal(result_obj, afw_crypto_v_iv,
             &mem, xctx);
 
         mem.ptr = afw_pool_malloc(x->p, AFW_CRYPTO_AES_GCM_TAG_LEN, xctx);
         memcpy((void *)mem.ptr, tag, AFW_CRYPTO_AES_GCM_TAG_LEN);
         mem.size = AFW_CRYPTO_AES_GCM_TAG_LEN;
         OPENSSL_cleanse(tag, sizeof(tag));
-        afw_object_set_property_as_base64Binary(result_obj, afw_crypto_v_tag,
+        afw_object_set_property_as_base64Binary_internal(result_obj, afw_crypto_v_tag,
             &mem, xctx);
 
         result = afw_value_create_unmanaged_object(result_obj, x->p, xctx);
@@ -1354,25 +1354,25 @@ afw_crypto_function_execute_crypto_seal(
             afw_crypto_s__AdaptiveCryptoEncryptResult_, xctx);
         afw_object_set_property_as_string_from_utf8_z(result_obj,
             afw_crypto_v_algorithm, "AES-GCM", xctx);
-        afw_object_set_property_as_integer(result_obj, afw_crypto_v_keyLength,
+        afw_object_set_property_as_integer_internal(result_obj, afw_crypto_v_keyLength,
             key_bits, xctx);
 
         mem.ptr = out;
         mem.size = (afw_size_t)len;
-        afw_object_set_property_as_base64Binary(result_obj,
+        afw_object_set_property_as_base64Binary_internal(result_obj,
             afw_crypto_v_ciphertext, &mem, xctx);
 
         mem.ptr = afw_pool_malloc(x->p, AFW_CRYPTO_AES_GCM_IV_LEN, xctx);
         memcpy((void *)mem.ptr, iv_buf, AFW_CRYPTO_AES_GCM_IV_LEN);
         mem.size = AFW_CRYPTO_AES_GCM_IV_LEN;
-        afw_object_set_property_as_base64Binary(result_obj, afw_crypto_v_iv,
+        afw_object_set_property_as_base64Binary_internal(result_obj, afw_crypto_v_iv,
             &mem, xctx);
 
         mem.ptr = afw_pool_malloc(x->p, AFW_CRYPTO_AES_GCM_TAG_LEN, xctx);
         memcpy((void *)mem.ptr, tag, AFW_CRYPTO_AES_GCM_TAG_LEN);
         mem.size = AFW_CRYPTO_AES_GCM_TAG_LEN;
         OPENSSL_cleanse(tag, sizeof(tag));
-        afw_object_set_property_as_base64Binary(result_obj, afw_crypto_v_tag,
+        afw_object_set_property_as_base64Binary_internal(result_obj, afw_crypto_v_tag,
             &mem, xctx);
 
         result = afw_value_create_unmanaged_object(result_obj, x->p, xctx);

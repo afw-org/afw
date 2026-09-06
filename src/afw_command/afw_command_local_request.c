@@ -280,7 +280,7 @@ afw_command_local_request_create(
         properties, afw_v_REQUEST_METHOD, xctx);
     if (!self->pub.method) {
         self->pub.method = afw_s_POST;
-        afw_object_set_property_as_string(
+        afw_object_set_property_as_string_internal(
             properties, afw_v_REQUEST_METHOD, self->pub.method, xctx);      
     }
 
@@ -289,7 +289,7 @@ afw_command_local_request_create(
         properties, afw_v_REQUEST_URI, xctx);
     if (!self->pub.uri) {
         self->pub.uri = afw_s_a_slash_afw;
-        afw_object_set_property_as_string(
+        afw_object_set_property_as_string_internal(
             properties, afw_v_REQUEST_URI, self->pub.uri, xctx);      
     }
 
@@ -302,7 +302,7 @@ afw_command_local_request_create(
         if (!self->pub.content_type) {
             self->pub.content_type = afw_s_a_application_json;
         }
-        afw_object_set_property_as_string(
+        afw_object_set_property_as_string_internal(
             properties, afw_v_CONTENT_TYPE, self->pub.content_type, xctx);      
     }
 
@@ -314,7 +314,7 @@ afw_command_local_request_create(
     value = afw_value_create_unmanaged_integer(
         (afw_integer_t)self->pub.content_length, p, xctx);
     s = afw_value_convert_to_utf8(value, p, xctx);
-    afw_object_set_property_as_string(
+    afw_object_set_property_as_string_internal(
         properties, afw_v_CONTENT_LENGTH, s, xctx);
 
     /* accept */
@@ -325,7 +325,7 @@ afw_command_local_request_create(
         if (!s) {
             s =  afw_s_a_application_json;
         }
-        afw_object_set_property_as_string(
+        afw_object_set_property_as_string_internal(
             properties, afw_v_ACCEPT, s, xctx);
     }
     self->pub.accept = afw_utf8_parse_csv(s, p, xctx);

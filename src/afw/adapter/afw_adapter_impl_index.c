@@ -625,7 +625,7 @@ afw_boolean_t afw_adapter_impl_index_try(
         /* if we have multiple values, then index each one */
         else if (afw_value_is_array(eval))
         {
-            index_values = afw_value_as_array_of_values(
+            index_values = afw_value_to_null_terminated_values(
                 eval, object->p, xctx);
             for (i = 0; index_values[i]; i++) {
                 index_value = index_values[i];
@@ -836,7 +836,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_list(
         while (indexDefinition) {
             if (afw_adapter_impl_index_object_type_applicable(
                 indexDefinition, object_type_id, xctx)) {
-                afw_object_set_property_as_object(result,
+                afw_object_set_property_as_object_internal(result,
                     key, indexDefinition, xctx);
             }
 
@@ -994,19 +994,19 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
     indexDefinition = afw_object_create_unmanaged_new_p(pool, xctx);
 
     if (value)
-        afw_object_set_property_as_string(indexDefinition,
+        afw_object_set_property_as_string_internal(indexDefinition,
             afw_v_value, value, xctx);
 
     if (objectType)
-        afw_object_set_property_as_array(indexDefinition,
+        afw_object_set_property_as_array_internal(indexDefinition,
             afw_v_objectType, objectType, xctx);
    
     if (filter)
-        afw_object_set_property_as_string(indexDefinition,
+        afw_object_set_property_as_string_internal(indexDefinition,
             afw_v_filter, filter, xctx);
    
     if (options)
-        afw_object_set_property_as_array(indexDefinition,
+        afw_object_set_property_as_array_internal(indexDefinition,
             afw_v_options, options, xctx);
 
     ctx.instance = indexer;
@@ -1056,7 +1056,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
     }
 
     /* now, tell the adapter to add the new indexDefinition for configuration */
-    afw_object_set_property_as_object(
+    afw_object_set_property_as_object_internal(
         indexDefinitions,
         afw_value_create_unmanaged_string(key, pool, xctx),
         indexDefinition, xctx);
@@ -1068,9 +1068,9 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
     afw_adapter_transaction_release(transaction, xctx);
 
     /* return metrics */
-    afw_object_set_property_as_integer(
+    afw_object_set_property_as_integer_internal(
         result, afw_v_num_indexed, ctx.num_indexed, xctx);
-    afw_object_set_property_as_integer(
+    afw_object_set_property_as_integer_internal(
         result, afw_v_num_processed, ctx.num_processed, xctx);
 
     return result;
@@ -1728,7 +1728,7 @@ static int afw_adapter_impl_index_compare(
 
     /* all we can do with Lists is check for equivalence */
     else if (afw_value_is_array(value)) {
-        values = afw_value_as_array_of_values(value, xctx->p, xctx);
+        values = afw_value_to_null_terminated_values(value, xctx->p, xctx);
         for (i = 0; values[i]; i++) {
             v = values[i];
             string = impl_index_value_as_key_utf8(v, xctx->p, xctx);

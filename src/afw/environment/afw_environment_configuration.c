@@ -35,11 +35,11 @@ afw_environment_configure_with_object(
     source_location = afw_utf8_clone(source_location, p, xctx);
 
     /* Added sourceLocation property to conf. */
-    afw_object_set_property_as_string(conf,
+    afw_object_set_property_as_string_internal(conf,
         afw_v_sourceLocation, source_location, xctx);
 
     /* Get type property. */
-    type = afw_object_old_get_property_as_utf8(conf, afw_v_type, p, xctx);
+    type = afw_object_old_get_property_convert_to_utf8(conf, afw_v_type, p, xctx);
     if (!type) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -120,7 +120,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
     const afw_value_t *value;
     const afw_utf8_t *detail_source_location;
 
-    extension_id = afw_object_old_get_property_as_utf8(entry,
+    extension_id = afw_object_old_get_property_convert_to_utf8(entry,
         afw_v_extensionId, p, xctx);
 
     if (!extension_id) {
@@ -288,7 +288,7 @@ afw_environment_prepare_conf_type_properties(
     /* If defaulting source location, make it path. */
     if (source_location == afw_s_a_empty_string) {
         source_location = path;
-        afw_object_set_property_as_string(properties,
+        afw_object_set_property_as_string_internal(properties,
             afw_v_sourceLocation, source_location, xctx);
     }
 

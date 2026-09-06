@@ -656,7 +656,7 @@ impl_make_property_type_and_handler_hash_tables(
                 if (attribute_type->lower_bound_present) {
                     string = afw_number_integer_to_utf8(
                         attribute_type->lower_bound, p, xctx);
-                    afw_object_set_property_as_string(
+                    afw_object_set_property_as_string_internal(
                         attribute_type->property_type_object,
                         afw_v_minValue, string, xctx);
 
@@ -666,7 +666,7 @@ impl_make_property_type_and_handler_hash_tables(
                 if (attribute_type->upper_bound_present) {
                     string = afw_number_integer_to_utf8(
                         attribute_type->upper_bound, p, xctx);
-                    afw_object_set_property_as_string(
+                    afw_object_set_property_as_string_internal(
                         attribute_type->property_type_object,
                         afw_v_maxValue, string, xctx);
                 }
@@ -1091,7 +1091,7 @@ impl_make_object_types(
         id = afw_object_meta_get_object_id(object_class_object, xctx);
         afw_object_meta_set_ids(object_type_object, adapter_id,
             afw_ldap_s__AdaptiveObjectType_, id, xctx);
-        afw_object_set_property_as_string(object_type_object, afw_v_objectType,
+        afw_object_set_property_as_string_internal(object_type_object, afw_v_objectType,
             id, xctx);
         afw_object_set_property(object_type_object, afw_v_allowEntity,
             (afw_object_old_get_property_as_boolean_deprecated(object_class_object,

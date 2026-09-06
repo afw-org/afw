@@ -264,7 +264,7 @@ afw_data_type_double =
 
 /* Set property function for data type double values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_double(
+afw_object_set_property_as_double_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     double internal,

@@ -247,7 +247,7 @@ afw_data_type_time =
 
 /* Set property function for data type time values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_time(
+afw_object_set_property_as_time_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_time_t * internal,

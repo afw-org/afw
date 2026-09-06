@@ -277,7 +277,7 @@ afw_data_type_hexBinary =
 
 /* Set property function for data type hexBinary values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_hexBinary(
+afw_object_set_property_as_hexBinary_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_memory_t * internal,

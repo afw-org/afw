@@ -264,7 +264,7 @@ afw_data_type_integer =
 
 /* Set property function for data type integer values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_integer(
+afw_object_set_property_as_integer_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     afw_integer_t internal,

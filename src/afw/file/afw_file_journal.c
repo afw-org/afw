@@ -909,7 +909,7 @@ impl_afw_adapter_journal_get_entry_internal(
             /* If reissue, set reissue property and mark applicable. */
             if (reissue) {
                 applicable = true;
-                afw_object_set_property_as_boolean(response, afw_v_reissue,
+                afw_object_set_property_as_boolean_internal(response, afw_v_reissue,
                     true, xctx);
             }
 
@@ -943,12 +943,12 @@ impl_afw_adapter_journal_get_entry_internal(
 
         /* Set peer lastContactTime to now. */
         now = afw_dateTime_now_utc(p, xctx);
-        afw_object_set_property_as_dateTime(peer,
+        afw_object_set_property_as_dateTime_internal(peer,
             afw_v_lastContactTime, now, xctx);
 
         /* If advance_consumer_cursor, set peer advanceCursor */
         if (advance_consumer_cursor) {
-            afw_object_set_property_as_string(peer,
+            afw_object_set_property_as_string_internal(peer,
                 afw_v_advanceCursor, entry_object_id, xctx);
         }
 
@@ -960,11 +960,11 @@ impl_afw_adapter_journal_get_entry_internal(
              * advanceCursor.
              */
             if (applicable) {
-                afw_object_set_property_as_string(peer,
+                afw_object_set_property_as_string_internal(peer,
                     afw_v_currentCursor, entry_object_id, xctx);
-                afw_object_set_property_as_string(peer,
+                afw_object_set_property_as_string_internal(peer,
                     afw_v_consumeCursor, entry_object_id, xctx);
-                afw_object_set_property_as_dateTime(peer,
+                afw_object_set_property_as_dateTime_internal(peer,
                     afw_v_consumeStartTime, now, xctx);
                 afw_object_remove_property(peer, afw_v_advanceCursor,
                     xctx);
@@ -972,7 +972,7 @@ impl_afw_adapter_journal_get_entry_internal(
 
             /* If not applicable, set advance cursor to to point to eof. */
             else {
-                afw_object_set_property_as_string(peer,
+                afw_object_set_property_as_string_internal(peer,
                     afw_v_advanceCursor, entry_object_id, xctx);
             }
 
@@ -985,7 +985,7 @@ impl_afw_adapter_journal_get_entry_internal(
     }
 
     /* Set entryCursor property. */
-    afw_object_set_property_as_string(response, afw_v_entryCursor,
+    afw_object_set_property_as_string_internal(response, afw_v_entryCursor,
         entry_object_id, xctx);
 
     /*
@@ -993,7 +993,7 @@ impl_afw_adapter_journal_get_entry_internal(
      * advance_consumer_cursor request.
      */
     if (applicable && !advance_consumer_cursor) {
-        afw_object_set_property_as_object(response, afw_v_entry, entry,
+        afw_object_set_property_as_object_internal(response, afw_v_entry, entry,
             xctx);
     }
     return;
@@ -1086,7 +1086,7 @@ impl_afw_adapter_journal_mark_entry_consumed(
 
     /* Update lastContactTime property. */
     now = afw_dateTime_now_utc(xctx->p, xctx);
-    afw_object_set_property_as_dateTime(peer, afw_v_lastContactTime,
+    afw_object_set_property_as_dateTime_internal(peer, afw_v_lastContactTime,
         now, xctx);
 
     /* Write peer object and close. */

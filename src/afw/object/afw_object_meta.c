@@ -92,7 +92,7 @@ afw_object_meta_add_needed_object_type(
             afw_v_objectTypes, xctx);
     }
     /* objectType id used as a key here; the id itself stays utf8. */
-    afw_object_set_property_as_object(objectTypes,
+    afw_object_set_property_as_object_internal(objectTypes,
         afw_value_create_unmanaged_string(
             object_type->meta.id, objectTypes->p, xctx),
         object_type, xctx);
@@ -347,7 +347,7 @@ afw_object_meta_get_property_type(
             property_types, instance->p, xctx);
         ((afw_object_t *)property_types)->meta.object_type_uri =
             afw_s__AdaptiveMetaPropertyTypes_;
-        afw_object_set_property_as_object(meta,
+        afw_object_set_property_as_object_internal(meta,
             afw_v_propertyTypes, property_types, xctx);
     }
 
@@ -360,7 +360,7 @@ afw_object_meta_get_property_type(
         if (property_type) {
             property_type = afw_object_create_clone(property_type,
                 instance->p, xctx);
-            afw_object_set_property_as_object(property_types,
+            afw_object_set_property_as_object_internal(property_types,
                 property_name, property_type, xctx);
         }
         else {
@@ -379,7 +379,7 @@ afw_object_meta_get_property_type(
             instance->p, xctx);
         ((afw_object_t *)property_type)->meta.object_type_uri =
             afw_s__AdaptiveMetaPropertyType_;
-        afw_object_set_property_as_object(property_types,
+        afw_object_set_property_as_object_internal(property_types,
             property_name, property_type, xctx);
     }
 
@@ -427,12 +427,12 @@ afw_object_meta_set_meta_object(
     if (value) {
         parent_paths = afw_array_create_unmanaged_from_value(
             afw_data_type_anyURI, value, meta->p, xctx);
-        afw_object_set_property_as_array(meta,
+        afw_object_set_property_as_array_internal(meta,
             afw_v_parentPaths, parent_paths, xctx);
     }
 
     /* If path in meta, remove it from meta and if entity, use it to set path. */
-    path = afw_object_old_get_property_as_utf8(meta, afw_v_path,
+    path = afw_object_old_get_property_convert_to_utf8(meta, afw_v_path,
         p, xctx);
     if (path) {
         parsed_path = afw_object_path_parse(path, NULL, NULL, p, xctx);
@@ -675,7 +675,7 @@ afw_object_meta_add_error(
     if (!errors) {
         errors = afw_array_create_unmanaged_of(
             afw_data_type_string, instance->p, xctx);
-        afw_object_set_property_as_array(meta,
+        afw_object_set_property_as_array_internal(meta,
             afw_v_errors, errors, xctx);
         afw_object_set_property(meta, afw_v_hasErrors, afw_boolean_v_true, xctx);
         afw_object_meta_set_property(afw_object_get_entity(instance, xctx),
@@ -865,7 +865,7 @@ afw_object_meta_add_property_error(
     if (!errors) {
         errors = afw_array_create_unmanaged_of(
             afw_data_type_string, instance->p, xctx);
-        afw_object_set_property_as_array(property_type,
+        afw_object_set_property_as_array_internal(property_type,
             afw_v_errors, errors, xctx);
         afw_object_meta_set_property(instance,
             afw_v_hasErrors, afw_boolean_v_true, xctx);

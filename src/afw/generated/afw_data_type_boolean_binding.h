@@ -408,7 +408,7 @@ afw_object_get_next_property_as_boolean_internal_source(
  *
  */
 AFW_DECLARE(void)
-afw_object_set_property_as_boolean(
+afw_object_set_property_as_boolean_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     afw_boolean_t internal,

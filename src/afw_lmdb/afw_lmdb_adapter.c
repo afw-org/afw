@@ -459,7 +459,7 @@ impl_afw_adapter_get_additional_metrics (
     Use afw_object_create_embedded() instead of
     afw_object_create_unmanaged_new_p() for the embedded ones. This creates the
     object and sets the property in the embedding object. So the
-    afw_object_set_property_as_object() for each at the end
+    afw_object_set_property_as_object_internal() for each at the end
     can be removed.
 
     When this is done and you access /afw/_AdaptiveAdapter_/... the

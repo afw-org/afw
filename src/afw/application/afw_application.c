@@ -348,7 +348,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     AFW_LOG_Z(info, "Application starting.", xctx);
 
     /* Get optional confAdapterId. */
-    conf_adapter_id = afw_object_old_get_property_as_utf8(
+    conf_adapter_id = afw_object_old_get_property_convert_to_utf8(
         entry, afw_v_confAdapterId, p, xctx);
 
     /* Get conf adapter.  It will not ever be released. */
@@ -367,11 +367,11 @@ afw_application_internal_application_conf_type_create_cede_p(
     }
 
     /* Get optional applicationId and default to "application". */
-    application_id = afw_object_old_get_property_as_utf8(entry,
+    application_id = afw_object_old_get_property_convert_to_utf8(entry,
         afw_v_applicationId, p, xctx);
     if (!application_id) {
         application_id = afw_s_Adaptive;
-        afw_object_set_property_as_string(entry,
+        afw_object_set_property_as_string_internal(entry,
             afw_v_applicationId, application_id, xctx);
     }
     ((afw_environment_t *)env)->application_id.len = application_id->len;
@@ -467,7 +467,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     value = afw_object_get_property(env->application_object,
         afw_v_extensions, xctx);
     if (value) {
-        for (extension_id = afw_value_as_array_of_utf8(value, p, xctx);
+        for (extension_id = afw_value_convert_to_null_terminated_utf8(value, p, xctx);
             *extension_id;
             extension_id++)
         {
@@ -483,7 +483,7 @@ afw_application_internal_application_conf_type_create_cede_p(
             AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(source_location),
             AFW_UTF8_FMT_ARG(afw_s_extensionModulePaths));
-        for (module_path_values = afw_value_as_array_of_values(value, p, xctx);
+        for (module_path_values = afw_value_to_null_terminated_values(value, p, xctx);
             *module_path_values;
             module_path_values++)
         {
@@ -541,7 +541,7 @@ afw_application_internal_application_conf_type_create_cede_p(
             full_path = afw_file_insure_full_path(
                 &((const afw_value_string_t *)evaluated)->internal,
                 p, xctx);
-            afw_object_set_property_as_string(normalized_root_file_paths,
+            afw_object_set_property_as_string_internal(normalized_root_file_paths,
                 property_name, full_path, xctx);
         }
         env->root_file_paths = normalized_root_file_paths;
@@ -578,7 +578,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     }
 
     /* Get optional layoutAdapterId. */
-    env->layout_adapter_id = afw_object_old_get_property_as_utf8(
+    env->layout_adapter_id = afw_object_old_get_property_convert_to_utf8(
         properties, afw_v_layoutsAdapterId, p, xctx);
 
     /* Set supported core object type in adapter. */

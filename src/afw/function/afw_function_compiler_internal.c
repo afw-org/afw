@@ -236,7 +236,7 @@ impl_script_formal_expects_array_sequence(const afw_value_type_t *type)
  * Otherwise: leaf data_type convert (legacy). Not used by Adaptive built-ins.
  *
  * Array-shaped formals accept utf8 code-point sequences via
- * afw_value_as_array_sequence (#153), same language rule as built-ins.
+ * afw_value_convert_to_array_sequence (#153), same language rule as built-ins.
  */
 const afw_value_t *
 afw_function_script_evaluate_parameter_with_type(
@@ -283,7 +283,7 @@ afw_function_script_evaluate_parameter_with_type(
 
     /* #153: materialize utf8 sequences before check/convert. */
     if (wants_array_sequence) {
-        result = afw_value_as_array_sequence(result, p, xctx);
+        result = afw_value_convert_to_array_sequence(result, p, xctx);
     }
 
     if (AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx)) {

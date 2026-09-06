@@ -165,11 +165,11 @@ afw_function_execute_requiresExecuteAccess_wrapper(
         }
 
         /* Set properties in object to be available in authorization check. */
-        afw_object_set_property_as_object(
+        afw_object_set_property_as_object_internal(
             obj, afw_v_function, x->function->object, xctx);
         argv_array = afw_array_create_unmanaged_from_values(
             NULL, &argv[1], x->argc, obj->p, xctx);
-        afw_object_set_property_as_array(
+        afw_object_set_property_as_array_internal(
             obj, afw_v_arguments, argv_array, xctx);
         for (argc = 1, parameter = x->function->parameters;
             argc <= x->function->parameters_count;
@@ -186,7 +186,7 @@ afw_function_execute_requiresExecuteAccess_wrapper(
                     argv_array = afw_array_create_unmanaged_from_values(
                         NULL, &argv[1], 0, obj->p, xctx);
                 }
-                afw_object_set_property_as_array(
+                afw_object_set_property_as_array_internal(
                     obj, &(*parameter)->name->pub, argv_array, xctx);
             }
             else {
@@ -343,7 +343,7 @@ afw_function_evaluate_parameter(
      * (XACML bag-of-one), not code-point sequences.
      */
     if (data_type == afw_data_type_array) {
-        result = afw_value_as_array_sequence(result, x->p, xctx);
+        result = afw_value_convert_to_array_sequence(result, x->p, xctx);
     }
 
     /* Get result's data type. */

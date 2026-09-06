@@ -128,7 +128,7 @@ impl_test_script_check_stream_expect(
     }
 
     /* Actual capture for harness / failure display. */
-    afw_object_set_property_as_string(test,
+    afw_object_set_property_as_string_internal(test,
         afw_value_create_unmanaged_string(streamId, p, xctx),
         actual_owned, xctx);
 
@@ -137,7 +137,7 @@ impl_test_script_check_stream_expect(
             afw_boolean_v_false, xctx);
         /* Keep compile/eval errorReason if already set. */
         if (!afw_object_has_property(test, afw_v_errorReason, xctx)) {
-            afw_object_set_property_as_string(test,
+            afw_object_set_property_as_string_internal(test,
                 afw_v_errorReason, mismatch_reason, xctx);
         }
     }
@@ -429,7 +429,7 @@ impl_afw_value_optional_evaluate(
                 errorReason = afw_s_a_other_error;
                 break;
             };
-            afw_object_set_property_as_string(test,
+            afw_object_set_property_as_string_internal(test,
                 afw_v_errorReason, errorReason, xctx);
 
             /* Set error property. Isolate: object is compile-unit. */

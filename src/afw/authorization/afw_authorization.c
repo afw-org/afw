@@ -361,12 +361,12 @@ afw_authorization_internal_set_control(
     /* Set control from config object if, present. */
     if (object) {
         self->core_authorization_check =
-            afw_object_old_get_property_as_compiled_script(object,
+            afw_object_old_get_property_compile_script(object,
                 afw_v_coreAuthorizationCheck,
                 afw_s_internal, NULL, p, xctx);
 
         self->initial_authorization_check =
-            afw_object_old_get_property_as_compiled_script(object,
+            afw_object_old_get_property_compile_script(object,
                 afw_v_initialAuthorizationCheck,
                 afw_s_internal, NULL, p, xctx);
 
@@ -393,7 +393,7 @@ afw_authorization_internal_set_control(
     list = afw_array_create_unmanaged_from_c_array(
         &impl_s_a_notApplicable_policy_id,
         false, afw_data_type_anyURI, 1, p, xctx);
-    afw_object_set_property_as_array(not_applicable_object,
+    afw_object_set_property_as_array_internal(not_applicable_object,
         afw_v_applicablePolicies, list, xctx);
     self->not_applicable_result = afw_value_create_unmanaged_object(
         not_applicable_object, p, xctx);
@@ -1340,7 +1340,7 @@ impl_afw_service_type_start_cede_p (
     const afw_authorization_handler_t *authorization_handler;
     const afw_utf8_t *authorization_handler_type;
 
-    authorization_handler_type = afw_object_old_get_property_as_utf8(
+    authorization_handler_type = afw_object_old_get_property_convert_to_utf8(
         properties, afw_v_authorizationHandlerType, p, xctx);
     if (!authorization_handler_type) {
         AFW_THROW_ERROR_Z(general,

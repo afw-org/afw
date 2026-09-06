@@ -174,7 +174,7 @@ impl_get_<objectId>_object_cb(
 
     /* Add in system specific info properties. */
     /** @fixme Replace with appropriate code. */
-    afw_object_set_property_as_string(result,
+    afw_object_set_property_as_string_internal(result,
         afw_value_create_unmanaged_string(&impl_s_os, xctx->p, xctx), &impl_s_linux, xctx);
     afw_object_meta_set_property_type_property_as(result,
         &impl_s_os, afw_s_label,
@@ -217,7 +217,7 @@ impl_get_resourceLimits_object_cb(
 
     rc = getrlimit(RLIMIT_CPU, limits);
     if (rc == 0) {
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_rl_cpu.pub, limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_rl_cpu.pub, afw_v_label, "CPU Time", xctx);
@@ -229,7 +229,7 @@ impl_get_resourceLimits_object_cb(
 
     rc = getrlimit(RLIMIT_FSIZE, limits);
     if (rc == 0) {
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_rl_fsize.pub, limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_rl_fsize.pub, afw_v_label, "File Size", xctx);
@@ -241,7 +241,7 @@ impl_get_resourceLimits_object_cb(
 
     rc = getrlimit(RLIMIT_STACK, limits);
     if (rc == 0) {
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_rl_stack.pub, limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_rl_stack.pub, afw_v_label, "Stack Size", xctx);
@@ -253,7 +253,7 @@ impl_get_resourceLimits_object_cb(
 
     rc = getrlimit(RLIMIT_CORE, limits);
     if (rc == 0) {
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             afw_v_core, limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             afw_v_core, afw_v_label, "Core Size", xctx);
@@ -265,7 +265,7 @@ impl_get_resourceLimits_object_cb(
 
     rc = getrlimit(RLIMIT_RSS, limits);
     if (rc == 0) {
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_rl_rss.pub, limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_rl_rss.pub, afw_v_label, "Physical Memory", xctx);
@@ -277,7 +277,7 @@ impl_get_resourceLimits_object_cb(
 
     rc = getrlimit(RLIMIT_MEMLOCK, limits);
     if (rc == 0) {
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_rl_memlock.pub, limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_rl_memlock.pub, afw_v_label, "Locked Physical Memory", xctx);
@@ -289,7 +289,7 @@ impl_get_resourceLimits_object_cb(
 
     rc = getrlimit(RLIMIT_NPROC, limits);
     if (rc == 0) {
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_rl_nproc.pub, limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_rl_nproc.pub, afw_v_label, "Processes", xctx);
@@ -305,7 +305,7 @@ impl_get_resourceLimits_object_cb(
     rc = getrlimit(RLIMIT_OFILE, limits);
 #endif
     if (rc == 0) {
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_rl_ofile.pub, limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_rl_ofile.pub, afw_v_label, "Open Files", xctx);
@@ -321,7 +321,7 @@ impl_get_resourceLimits_object_cb(
     rc = getrlimit(RLIMIT_AS, limits);
 #endif
     if (rc == 0) {
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             afw_v_as, limits->rlim_cur, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             afw_v_as, afw_v_label, "Total Memory", xctx);
@@ -383,7 +383,7 @@ impl_get_resourceUsage_object_cb(
             "Time spent in operating system code on behalf of this processes.",
             xctx);
 
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_ru_maxrss.pub, usage->ru_maxrss, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_ru_maxrss.pub, afw_v_label, "Max Resident Size", xctx);
@@ -392,7 +392,7 @@ impl_get_resourceUsage_object_cb(
             "The maximum resident set size used, in kilobytes. That is, the maximum number of kilobytes of physical memory that this process used simultaneously.", 
             xctx);
 
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_ru_ixrss.pub, usage->ru_ixrss, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_ru_ixrss.pub, afw_v_label, "Shared Memory Size", xctx);
@@ -401,7 +401,7 @@ impl_get_resourceUsage_object_cb(
             "An integral value expressed in kilobytes times ticks of execution, which indicates the amount of memory used by text that was shared with other processes.",
             xctx);
 
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_ru_idrss.pub, usage->ru_idrss, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_ru_idrss.pub, afw_v_label, "Unshared Data Size", xctx);
@@ -410,7 +410,7 @@ impl_get_resourceUsage_object_cb(
             "An integral value expressed the same way, which is the amount of unshared memory used for data.",
             xctx);
 
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_ru_isrss.pub, usage->ru_isrss, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_ru_isrss.pub, afw_v_label, "Unshared Stack Size", xctx);
@@ -419,7 +419,7 @@ impl_get_resourceUsage_object_cb(
             "An integral value expressed the same way, which is the amount of unshared memory used for stack space.",
             xctx);
 
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_ru_minflt.pub, usage->ru_minflt, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_ru_minflt.pub, afw_v_label, "Page Reclaims", xctx);
@@ -428,7 +428,7 @@ impl_get_resourceUsage_object_cb(
             "The number of page faults which were serviced without requiring any I/O.",
             xctx);
 
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_ru_majflt.pub, usage->ru_majflt, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_ru_majflt.pub, afw_v_label, "Page Faults", xctx);
@@ -437,7 +437,7 @@ impl_get_resourceUsage_object_cb(
             "The number of page faults which were serviced by doing I/O.",
             xctx);
 
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_ru_nswap.pub, usage->ru_nswap, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_ru_nswap.pub, afw_v_label, "Swaps", xctx);
@@ -446,7 +446,7 @@ impl_get_resourceUsage_object_cb(
             "The number of times this processes was swapped entirely out of main memory.",
             xctx);
 
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_ru_inblock.pub, usage->ru_inblock, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_ru_inblock.pub, afw_v_label, "Disk Reads", xctx);
@@ -455,7 +455,7 @@ impl_get_resourceUsage_object_cb(
             "The number of times the file system had to read from the disk on behalf of this processes.",
             xctx);
 
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_ru_oublock.pub, usage->ru_oublock, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_ru_oublock.pub, afw_v_label, "Disk Writes", xctx);
@@ -464,7 +464,7 @@ impl_get_resourceUsage_object_cb(
             "The number of times the file system had to write to the disk on behalf of this processes.",
             xctx);
 
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_ru_msgsnd.pub, usage->ru_msgsnd, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_ru_msgsnd.pub, afw_v_label, "Messages Sent", xctx);
@@ -473,7 +473,7 @@ impl_get_resourceUsage_object_cb(
             "Number of IPC messages sent.",
             xctx);
 
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_ru_msgrcv.pub, usage->ru_msgrcv, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_ru_msgrcv.pub, afw_v_label, "Messages Received", xctx);
@@ -482,7 +482,7 @@ impl_get_resourceUsage_object_cb(
             "Number of IPC messages received.",
             xctx);
 
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_ru_nsignals.pub, usage->ru_nsignals, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_ru_nsignals.pub, afw_v_label, "Signals Received", xctx);
@@ -491,7 +491,7 @@ impl_get_resourceUsage_object_cb(
             "Number of signals received.",
             xctx);
 
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_ru_nvcsw.pub, usage->ru_nvcsw, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_ru_nvcsw.pub, afw_v_label, "Voluntary Context Switches", xctx);
@@ -500,7 +500,7 @@ impl_get_resourceUsage_object_cb(
             "The number of times this processes voluntarily invoked a context switch (usually to wait for some service).",
             xctx);
 
-        afw_object_set_property_as_integer(result,
+        afw_object_set_property_as_integer_internal(result,
             &impl_v_ru_nivcsw.pub, usage->ru_nivcsw, xctx);
         afw_object_meta_set_property_type_property_from_utf8_z(result,
             &impl_v_ru_nivcsw.pub, afw_v_label, "Involuntary Context Switches", xctx);

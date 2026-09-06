@@ -236,7 +236,7 @@ afw_adapter_impl_create_cede_p(
     }
 
     /* Get adapter_id from parameters. */
-    s = afw_object_old_get_property_as_utf8(properties,
+    s = afw_object_old_get_property_convert_to_utf8(properties,
         afw_v_adapterId, p, xctx);
 
     if (!s) {
@@ -528,7 +528,7 @@ afw_adapter_impl_is_journal_entry_applicable(
     /* If still applicable, apply the consumer's consumeFilter expression. */
     if (is_applicable) {
         if (!*filter) {
-            *filter = afw_object_old_get_property_as_compiled_script(
+            *filter = afw_object_old_get_property_compile_script(
                 consumer, afw_v_consumeFilter, NULL, NULL, xctx->p, xctx);
         }
 
@@ -654,7 +654,7 @@ afw_adapter_impl_generic_object_type_object_get(
     objectType = afw_utf8_clone(object_type_id, result->p, xctx);
     afw_object_meta_set_ids(result, &adapter->adapter_id,
         afw_s__AdaptiveObjectType_, objectType, xctx);
-    afw_object_set_property_as_string(result, afw_v_objectType,
+    afw_object_set_property_as_string_internal(result, afw_v_objectType,
         objectType, xctx);
     afw_object_set_property(result,
         afw_v_allowAdd, afw_boolean_v_true, xctx);

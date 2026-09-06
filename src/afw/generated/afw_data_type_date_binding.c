@@ -247,7 +247,7 @@ afw_data_type_date =
 
 /* Set property function for data type date values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_date(
+afw_object_set_property_as_date_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_date_t * internal,

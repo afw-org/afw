@@ -247,7 +247,7 @@ afw_data_type_yearMonthDuration =
 
 /* Set property function for data type yearMonthDuration values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_yearMonthDuration(
+afw_object_set_property_as_yearMonthDuration_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_yearMonthDuration_t * internal,

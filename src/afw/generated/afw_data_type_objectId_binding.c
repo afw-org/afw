@@ -277,7 +277,7 @@ afw_data_type_objectId =
 
 /* Set property function for data type objectId values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_objectId(
+afw_object_set_property_as_objectId_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_t * internal,

@@ -761,7 +761,7 @@ def write_h_section(fd, prefix, obj):
         fd.write(' *\n')
         fd.write(' */\n')
         fd.write(declare + '(void)\n')
-        fd.write('afw_object_set_property_as_' + id + '(\n')
+        fd.write('afw_object_set_property_as_' + id + '_internal(\n')
         fd.write('    const afw_object_t *object,\n')
         fd.write('    const afw_value_t *property_name,\n')
         fd.write('    ' + return_type + ' internal,\n')
@@ -1348,7 +1348,7 @@ def write_c_section(fd, prefix, obj):
 
         fd.write('\n/* Set property function for data type ' + id + ' values. */\n')
         fd.write(define + '(void)\n')
-        fd.write('afw_object_set_property_as_' + id + '(\n')
+        fd.write('afw_object_set_property_as_' + id + '_internal(\n')
         fd.write('    const afw_object_t *object,\n')
         fd.write('    const afw_value_t *property_name,\n')
         fd.write('    ' + return_type + ' internal,\n')

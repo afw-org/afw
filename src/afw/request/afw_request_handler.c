@@ -44,9 +44,9 @@ void afw_request_handler_internal_conf_type_create_cede_p(
         entry, xctx);;
 
     /* Get uri_prefix and handler_type. */
-    e->uri_prefix = afw_object_old_get_property_as_utf8(entry,
+    e->uri_prefix = afw_object_old_get_property_convert_to_utf8(entry,
         afw_v_uriPrefix, p, xctx);
-    e->handler_type = afw_object_old_get_property_as_utf8(entry,
+    e->handler_type = afw_object_old_get_property_convert_to_utf8(entry,
         afw_v_requestHandlerType, p, xctx);
 
     /* Log request handler active. */

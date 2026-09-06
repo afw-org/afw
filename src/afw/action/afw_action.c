@@ -61,7 +61,7 @@ impl_call_function(
                     &(*a)->name->pub, xctx);
             }
             if (args) {
-                vargs = afw_value_as_array_of_values(args, p, xctx);
+                vargs = afw_value_to_null_terminated_values(args, p, xctx);
                 for (varg = vargs; *varg; varg++) {
                     argc++;
                 }
@@ -138,7 +138,7 @@ impl_call_function(
         value = afw_object_get_property(parent_request, afw_v__flags_, xctx);
     }
     if (value) {
-        flag_ids = afw_value_as_array_of_utf8(value, p, xctx);
+        flag_ids = afw_value_convert_to_null_terminated_utf8(value, p, xctx);
         afw_flag_set_to_defaults_plus_array(flag_ids, xctx);
     }
 
@@ -169,7 +169,7 @@ impl_call_function(
         /* Set resultDataType property in result. */
         data_type = afw_value_quick_data_type(result);
         if (data_type) {
-            afw_object_set_property_as_string(action_response_entry,
+            afw_object_set_property_as_string_internal(action_response_entry,
                 afw_v_resultDataType, &data_type->data_type_id, xctx);
         }
     }
@@ -191,7 +191,7 @@ impl_add_stream_properties(
         afw_utf8_stream_get_current_cached_string(
             afw_stream_standard(console, xctx),
             &string, xctx);
-        afw_object_set_property_as_string(response, afw_v_console,
+        afw_object_set_property_as_string_internal(response, afw_v_console,
             afw_utf8_clone(&string, p, xctx), xctx);
         afw_stream_standard_release(console, xctx);
     }
@@ -203,7 +203,7 @@ impl_add_stream_properties(
         afw_utf8_stream_get_current_cached_string(
             afw_stream_standard(stderr, xctx),
             &string, xctx);
-        afw_object_set_property_as_string(response, afw_v_stderr,
+        afw_object_set_property_as_string_internal(response, afw_v_stderr,
             afw_utf8_clone(&string, p, xctx), xctx);
         afw_stream_standard_release(stderr, xctx);
     }
@@ -215,7 +215,7 @@ impl_add_stream_properties(
         afw_utf8_stream_get_current_cached_string(
             afw_stream_standard(stdout, xctx),
             &string, xctx);
-        afw_object_set_property_as_string(response, afw_v_stdout,
+        afw_object_set_property_as_string_internal(response, afw_v_stdout,
             afw_utf8_clone(&string, p, xctx), xctx);
         afw_stream_standard_release(stdout, xctx);
     }
@@ -307,7 +307,7 @@ afw_action_perform(
         if (!afw_content_type_is_application_afw(response_content_type)) {
             action_response_entries = afw_array_create_unmanaged_of(
                 afw_data_type_object, response->p, xctx);
-            afw_object_set_property_as_array(response, afw_v_actions,
+            afw_object_set_property_as_array_internal(response, afw_v_actions,
                 action_response_entries, xctx);
         }
 
@@ -409,7 +409,7 @@ afw_action_perform(
 
         /* If multiple actions, add actionNumber to error. */
         if (action_number > 0) {
-            afw_object_set_property_as_integer(error,
+            afw_object_set_property_as_integer_internal(error,
                 afw_v_actionNumber, action_number, xctx);
         }
     }

@@ -485,19 +485,19 @@ afw_adapter_internal_journal_get_entry(
 
     /* Set entry consumerId property, if applicable. */
     if (consumer_id) {
-        afw_object_set_property_as_string(request, afw_v_consumerId,
+        afw_object_set_property_as_string_internal(request, afw_v_consumerId,
             consumer_id, xctx);
     }
 
     /* Set entry consumerId property, if applicable. */
     if (entry_cursor) {
-        afw_object_set_property_as_string(request, afw_v_entryCursor,
+        afw_object_set_property_as_string_internal(request, afw_v_entryCursor,
             entry_cursor, xctx);
     }
 
     /* Set entry limit property, if applicable. */
     if (limit_applies) {
-        afw_object_set_property_as_integer(request, afw_v_limit,
+        afw_object_set_property_as_integer_internal(request, afw_v_limit,
             limit, xctx);
     } else {
         limit = 1;

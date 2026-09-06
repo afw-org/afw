@@ -278,7 +278,7 @@ afw_data_type_array =
 
 /* Set property function for data type array values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_array(
+afw_object_set_property_as_array_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_array_t * internal,

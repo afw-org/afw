@@ -159,7 +159,7 @@ impl_afw_adapter_impl_index_update_index_definitions (
 
             /* lock the adapter */
             AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(((afw_adapter_t *)adapter)) {
-                afw_object_set_property_as_object(
+                afw_object_set_property_as_object_internal(
                     session->adapter->internalConfig, afw_lmdb_v_indexDefinitions,
                     afw_object_create_clone(
                         indexDefinitions, pool, xctx),
@@ -179,7 +179,7 @@ impl_afw_adapter_impl_index_update_index_definitions (
 
         /* lock the adapter */
         AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(((afw_adapter_t *)adapter)) {
-            afw_object_set_property_as_object(
+            afw_object_set_property_as_object_internal(
                 session->adapter->internalConfig, afw_lmdb_v_indexDefinitions,
                 afw_object_create_clone(
                     indexDefinitions, pool, xctx),

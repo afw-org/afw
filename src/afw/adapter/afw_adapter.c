@@ -771,7 +771,7 @@ impl_afw_service_type_start_cede_p (
     const afw_adapter_t *adapter;
     const afw_utf8_t *adapter_type;
 
-    adapter_type = afw_object_old_get_property_as_utf8(properties,
+    adapter_type = afw_object_old_get_property_convert_to_utf8(properties,
         afw_v_adapterType, p, xctx);
     if (!adapter_type) {
         AFW_THROW_ERROR_Z(general,

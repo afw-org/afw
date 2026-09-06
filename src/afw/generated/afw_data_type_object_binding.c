@@ -278,7 +278,7 @@ afw_data_type_object =
 
 /* Set property function for data type object values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_object(
+afw_object_set_property_as_object_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_object_t * internal,

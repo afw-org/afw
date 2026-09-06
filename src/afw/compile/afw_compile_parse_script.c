@@ -3160,7 +3160,7 @@ afw_compile_parse_TestScript(
     test_script_object = afw_object_create_unmanaged(parser->p, parser->xctx);
     test_list = afw_array_create_unmanaged_of(afw_data_type_object,
         parser->p, parser->xctx);
-    afw_object_set_property_as_array(test_script_object,
+    afw_object_set_property_as_array_internal(test_script_object,
         afw_v_tests, test_list, parser->xctx);
 
     /* Process TestScriptDefinition */
@@ -3202,17 +3202,17 @@ afw_compile_parse_TestScript(
             if (afw_utf8_equal(key, afw_s_sourceType)) {
                 global_source_type = string;
             }
-            afw_object_set_property_as_string(test_script_object,
+            afw_object_set_property_as_string_internal(test_script_object,
                 afw_compile_intern_utf8(key),
                 string, parser->xctx);
         }
     }
     if (!global_source_type) {
         global_source_type = afw_s_script;
-        afw_object_set_property_as_string(test_script_object,
+        afw_object_set_property_as_string_internal(test_script_object,
             afw_v_sourceType, global_source_type, parser->xctx);
     }
-    afw_object_set_property_as_integer(test_script_object,
+    afw_object_set_property_as_integer_internal(test_script_object,
         afw_v_upToTestsUTF8OctetOffsetInTestScript,
             afw_safe_cast_size_to_integer(up_to_tests_offset, parser->xctx),
             parser->xctx);
@@ -3241,7 +3241,7 @@ afw_compile_parse_TestScript(
                 afw_value_create_unmanaged_object(
                     test_object, parser->p, parser->xctx),
                 parser->xctx);
-            afw_object_set_property_as_string(test_object,
+            afw_object_set_property_as_string_internal(test_object,
                 afw_v_test, string, parser->xctx);
         }
 
@@ -3273,7 +3273,7 @@ afw_compile_parse_TestScript(
                     AFW_UTF8_FMT_Q " already specified",
                     AFW_UTF8_FMT_ARG(key));
             }
-            afw_object_set_property_as_string(test_object,
+            afw_object_set_property_as_string_internal(test_object,
                 afw_compile_intern_utf8(key),
                 string, parser->xctx);
         }
@@ -3289,29 +3289,29 @@ afw_compile_parse_TestScript(
                 "[" AFW_SIZE_T_FMT ":" AFW_SIZE_T_FMT "]",
                 AFW_UTF8_FMT_ARG(test_script_id),
                 string_offset, source_line, source_column);
-            afw_object_set_property_as_string(test_object,
+            afw_object_set_property_as_string_internal(test_object,
                 afw_v_expectLocation, expect_location, parser->xctx);
-            afw_object_set_property_as_integer(test_object,
+            afw_object_set_property_as_integer_internal(test_object,
                 afw_v_expectLineNumberInTestScript,
                     afw_safe_cast_size_to_integer(source_line, parser->xctx),
                     parser->xctx);
-            afw_object_set_property_as_integer(test_object,
+            afw_object_set_property_as_integer_internal(test_object,
                 afw_v_expectColumnNumberInTestScript,
                     afw_safe_cast_size_to_integer(source_column, parser->xctx),
                     parser->xctx);
-            afw_object_set_property_as_integer(test_object,
+            afw_object_set_property_as_integer_internal(test_object,
                 afw_v_expectCodepointOffsetInTestScript,
                     afw_safe_cast_size_to_integer(string_offset, parser->xctx),
                     parser->xctx);
-            afw_object_set_property_as_integer(test_object,
+            afw_object_set_property_as_integer_internal(test_object,
                 afw_v_expectCodepointLengthInTestScript,
                     afw_safe_cast_size_to_integer(string_length, parser->xctx),
                     parser->xctx);
-            afw_object_set_property_as_integer(test_object,
+            afw_object_set_property_as_integer_internal(test_object,
                 afw_v_expectUTF8OctetOffsetInTestScript,
                     afw_safe_cast_size_to_integer(string_offset, parser->xctx),
                     parser->xctx);
-            afw_object_set_property_as_integer(test_object,
+            afw_object_set_property_as_integer_internal(test_object,
                 afw_v_expectUTF8OctetLengthInTestScript,
                     afw_safe_cast_size_to_integer(string_length, parser->xctx),
                     parser->xctx);
@@ -3328,29 +3328,29 @@ afw_compile_parse_TestScript(
                 "[" AFW_SIZE_T_FMT ":" AFW_SIZE_T_FMT "]",
                 AFW_UTF8_FMT_ARG(test_script_id),
                 string_offset, source_line, source_column);
-            afw_object_set_property_as_string(test_object,
+            afw_object_set_property_as_string_internal(test_object,
                 afw_v_sourceLocation, source_location, parser->xctx);
-            afw_object_set_property_as_integer(test_object,
+            afw_object_set_property_as_integer_internal(test_object,
                 afw_v_sourceLineNumberInTestScript,
                     afw_safe_cast_size_to_integer(source_line, parser->xctx),
                     parser->xctx);
-            afw_object_set_property_as_integer(test_object,
+            afw_object_set_property_as_integer_internal(test_object,
                 afw_v_sourceColumnNumberInTestScript,
                     afw_safe_cast_size_to_integer(source_column, parser->xctx),
                     parser->xctx);
-            afw_object_set_property_as_integer(test_object,
+            afw_object_set_property_as_integer_internal(test_object,
                 afw_v_sourceCodepointOffsetInTestScript,
                     afw_safe_cast_size_to_integer(string_offset, parser->xctx),
                     parser->xctx);
-            afw_object_set_property_as_integer(test_object,
+            afw_object_set_property_as_integer_internal(test_object,
                 afw_v_sourceCodepointLengthInTestScript,
                     afw_safe_cast_size_to_integer(string_length, parser->xctx),
                     parser->xctx);
-            afw_object_set_property_as_integer(test_object,
+            afw_object_set_property_as_integer_internal(test_object,
                 afw_v_sourceUTF8OctetOffsetInTestScript,
                     afw_safe_cast_size_to_integer(string_offset, parser->xctx),
                     parser->xctx);
-            afw_object_set_property_as_integer(test_object,
+            afw_object_set_property_as_integer_internal(test_object,
                 afw_v_sourceUTF8OctetLengthInTestScript,
                     afw_safe_cast_size_to_integer(string_length, parser->xctx),
                     parser->xctx);
@@ -3363,7 +3363,7 @@ afw_compile_parse_TestScript(
     string = afw_utf8_create(
         parser->full_source->s, parser->full_source->len,
         parser->p, parser->xctx);
-    afw_object_set_property_as_string(test_script_object,
+    afw_object_set_property_as_string_internal(test_script_object,
         afw_v_source, string, parser->xctx);
 
     /* Result is a call_test_script value. */

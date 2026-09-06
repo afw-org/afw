@@ -277,7 +277,7 @@ afw_data_type_anyURI =
 
 /* Set property function for data type anyURI values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_anyURI(
+afw_object_set_property_as_anyURI_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_t * internal,

@@ -277,7 +277,7 @@ afw_data_type_relaxed_json =
 
 /* Set property function for data type relaxed_json values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_relaxed_json(
+afw_object_set_property_as_relaxed_json_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_t * internal,

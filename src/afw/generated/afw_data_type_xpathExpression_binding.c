@@ -277,7 +277,7 @@ afw_data_type_xpathExpression =
 
 /* Set property function for data type xpathExpression values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_xpathExpression(
+afw_object_set_property_as_xpathExpression_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_t * internal,

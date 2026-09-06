@@ -132,7 +132,7 @@ afw_command_local_parse_request(
             "Line " AFW_SIZE_T_FMT ": Expecting METHOD",
             x.line_number);
     }
-    afw_object_set_property_as_string(self->this_request_properties,
+    afw_object_set_property_as_string_internal(self->this_request_properties,
         afw_v_REQUEST_METHOD, x.string, xctx);
  
     /* URI */
@@ -142,7 +142,7 @@ afw_command_local_parse_request(
             "Line " AFW_SIZE_T_FMT ": Expecting URI",
             x.line_number);
     }
-    afw_object_set_property_as_string(self->this_request_properties,
+    afw_object_set_property_as_string_internal(self->this_request_properties,
         afw_v_REQUEST_URI, x.string, xctx);
  
     /* SERVER_PROTOCOL */
@@ -152,7 +152,7 @@ afw_command_local_parse_request(
             "Line " AFW_SIZE_T_FMT ": Expecting URI",
             x.line_number);
     }
-    afw_object_set_property_as_string(self->this_request_properties,
+    afw_object_set_property_as_string_internal(self->this_request_properties,
         afw_command_v_SERVER_PROTOCOL, x.string, xctx);
 
     /* End of line */
@@ -210,7 +210,7 @@ afw_command_local_parse_request(
         }
 
         /* Add header to properties. Intern name into the object pool. */
-        afw_object_set_property_as_string(self->this_request_properties,
+        afw_object_set_property_as_string_internal(self->this_request_properties,
             afw_value_create_unmanaged_string(name,
                 self->this_request_properties->p, xctx),
             x.string, xctx);

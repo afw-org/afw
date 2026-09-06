@@ -277,7 +277,7 @@ afw_data_type_template =
 
 /* Set property function for data type template values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_template(
+afw_object_set_property_as_template_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_t * internal,

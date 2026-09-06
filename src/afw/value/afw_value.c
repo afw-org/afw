@@ -686,7 +686,7 @@ afw_value_convert_to_casted_utf8(
 
     /** @fixme change from bag to list when tests are modified. */
     if (afw_value_is_array(value)) {
-        s = afw_value_as_array_of_utf8(value, p, xctx);
+        s = afw_value_convert_to_null_terminated_utf8(value, p, xctx);
         
         if (!s[0]) {
             len = 5; /* "bag()" */
@@ -1121,7 +1121,7 @@ afw_value_create_dateTime_now_local(
 
 
 static const afw_value_t **
-impl_value_as_array_of_values(
+impl_value_to_null_terminated_values(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_size_t count;
@@ -1177,10 +1177,10 @@ impl_value_as_array_of_values(
 
 /* Return a NULL terminated list of values in a specified pool. */
 AFW_DEFINE(const afw_value_t * const *)
-afw_value_as_array_of_values(const afw_value_t * value,
+afw_value_to_null_terminated_values(const afw_value_t * value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    return impl_value_as_array_of_values(value, p, xctx);
+    return impl_value_to_null_terminated_values(value, p, xctx);
 }
 
 
@@ -1189,7 +1189,7 @@ afw_value_as_array_of_values(const afw_value_t * value,
  * (utf8 code-point sequence) materializes to a temporary array (#153).
  */
 AFW_DEFINE(const afw_value_t *)
-afw_value_as_array_sequence(
+afw_value_convert_to_array_sequence(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -1228,7 +1228,7 @@ afw_value_as_array_sequence(
 
 /* Return a NULL terminated list of strings in a specified pool. */
 AFW_DEFINE(const afw_utf8_t * const *)
-afw_value_as_array_of_utf8(const afw_value_t * value,
+afw_value_convert_to_null_terminated_utf8(const afw_value_t * value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t **result;
@@ -1236,9 +1236,9 @@ afw_value_as_array_of_utf8(const afw_value_t * value,
 
     /*
      * Get NULL terminated array for value pointers and replace the pointers
-     * in place with the result of calling as_string() on the value. 
+     * in place with convert_to_utf8 of each value. 
      */
-    result = (const afw_utf8_t **)impl_value_as_array_of_values(value,
+    result = (const afw_utf8_t **)impl_value_to_null_terminated_values(value,
         p, xctx);
     for (e = result; *e; e++) {
         *e = afw_value_convert_to_utf8((const afw_value_t *)*e, p, xctx);

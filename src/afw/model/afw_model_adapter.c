@@ -825,7 +825,7 @@ afw_model_adapter_create_cede_p(
     //    afw_s__AdaptiveModelPropertyType_, false, false, xctx);
 
     /* Get modelLocationAdapterId.  It can not be the same as adapterId. */
-    self->model_location_adapter_id = afw_object_old_get_property_as_utf8(properties,
+    self->model_location_adapter_id = afw_object_old_get_property_convert_to_utf8(properties,
         afw_v_modelLocationAdapterId, p, xctx);
     if (afw_utf8_equal(self->model_location_adapter_id, &adapter->adapter_id)) {
         AFW_THROW_ERROR_FZ(general, xctx,
@@ -873,7 +873,7 @@ afw_model_adapter_create_cede_p(
         }
 
         /** @fixme Load modelId */
-        self->model_id = afw_object_old_get_property_as_utf8(properties,
+        self->model_id = afw_object_old_get_property_convert_to_utf8(properties,
             afw_v_modelId, p, xctx);
     }
 

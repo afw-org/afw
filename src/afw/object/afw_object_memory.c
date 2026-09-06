@@ -562,7 +562,7 @@ afw_object_create_embedded(
     self->clone_on_set = embedder->clone_on_set;
 
     /* Set embedded object as property of embedding object. */
-    afw_object_set_property_as_object(
+    afw_object_set_property_as_object_internal(
         embedding_object, property_name, (const afw_object_t *)self, xctx);
 
     /* Return new object. */

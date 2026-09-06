@@ -61,7 +61,7 @@ impl_over_array(
     /*
      * Evaluate argv[n+1] to the new argv[n]. Prefer a real array as the
      * walked sequence; only then fall back to materializing the first
-     * keyless-iterator value (utf8 code points) via as_array_sequence
+     * keyless-iterator value (utf8 code points) via convert_to_array_sequence
      * (#153). Do not materialize every string arg — filter/find/any_of
      * pass scalar string thresholds next to the bag.
      */
@@ -82,7 +82,7 @@ impl_over_array(
     if (!e.entry_arg_ptr) {
         for (e.n = 1; e.n <= functor_argc; e.n++) {
             if (afw_value_has_iterator(functor_argv[e.n])) {
-                functor_argv[e.n] = afw_value_as_array_sequence(
+                functor_argv[e.n] = afw_value_convert_to_array_sequence(
                     functor_argv[e.n], e.p, e.xctx);
                 if (afw_value_is_array(functor_argv[e.n])) {
                     e.entry_arg_ptr = &functor_argv[e.n];

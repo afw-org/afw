@@ -120,7 +120,7 @@ impl_entry_cb(
         property_name = afw_value_create_unmanaged_string(
             afw_object_meta_get_object_id(object, xctx),
             entries->p, xctx);
-        afw_object_set_property_as_object(entries, property_name,
+        afw_object_set_property_as_object_internal(entries, property_name,
             object, xctx);
     }
 

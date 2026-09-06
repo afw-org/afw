@@ -102,7 +102,7 @@ afw_function_execute_index_create(
                 NULL, NULL, xctx->p, xctx);
         } AFW_CATCH_UNHANDLED {
             result = afw_object_create_unmanaged_new_p(x->p, xctx);
-            afw_object_set_property_as_object(result, afw_v_error,
+            afw_object_set_property_as_object_internal(result, afw_v_error,
                 afw_error_to_object(AFW_ERROR_THROWN, x->p, xctx), xctx);
             return afw_value_create_unmanaged_object(result, x->p, xctx);
         }

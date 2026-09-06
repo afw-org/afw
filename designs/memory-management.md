@@ -2062,7 +2062,7 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 
 ### 2026-07-23 — step −1a executed
 
-- Replaced 19 `afw_object_set_property_as_string(..., afw_s_NAME)` with `afw_object_set_property(..., afw_v_NAME)` in action/request/adapter/environment/command.
+- Replaced 19 `afw_object_set_property_as_string_internal(..., afw_s_NAME)` with `afw_object_set_property(..., afw_v_NAME)` in action/request/adapter/environment/command.
 - Rewrapped those call sites to ~80 columns (maintainer preference).
 - **C line width ~80:** also recorded in `.cursor/rules/afw-c-runtime.mdc` so other sessions pick it up.
 

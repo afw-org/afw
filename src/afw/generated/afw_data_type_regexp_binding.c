@@ -277,7 +277,7 @@ afw_data_type_regexp =
 
 /* Set property function for data type regexp values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_regexp(
+afw_object_set_property_as_regexp_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_t * internal,

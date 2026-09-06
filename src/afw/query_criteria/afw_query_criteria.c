@@ -2258,13 +2258,13 @@ impl_criteria_filter_to_property_value(
     }
 
     filter = afw_object_create_unmanaged(p, xctx);
-    afw_object_set_property_as_string(filter, afw_v_op, entry->op_name, xctx);
+    afw_object_set_property_as_string_internal(filter, afw_v_op, entry->op_name, xctx);
 
     if (entry->op_id == afw_query_criteria_filter_op_id_and ||
         entry->op_id == afw_query_criteria_filter_op_id_or)
     {
         filters = afw_array_create_unmanaged(p, xctx);
-        afw_object_set_property_as_array(filter, afw_v_filters, filters, xctx);
+        afw_object_set_property_as_array_internal(filter, afw_v_filters, filters, xctx);
         for (e = entry->first_conjunctive_child; e; e = e->next_conjunctive_sibling) {
             o = impl_criteria_filter_to_property_value(e, p, xctx);
             v = afw_value_create_unmanaged_object(o, p, xctx);
@@ -2273,7 +2273,7 @@ impl_criteria_filter_to_property_value(
     }
 
     else {
-        afw_object_set_property_as_string(filter,
+        afw_object_set_property_as_string_internal(filter,
             afw_v_property, entry->property_name, xctx);
         afw_object_set_property(filter, afw_v_value, entry->value, xctx);
     }
@@ -2365,7 +2365,7 @@ afw_query_criteria_to_AdaptiveQueryCriteria_object(
     filter = impl_criteria_filter_to_property_value(
         criteria->tree, object->p, xctx);
     if (filter) {
-        afw_object_set_property_as_object(object,
+        afw_object_set_property_as_object_internal(object,
             afw_v_filter, filter, xctx);
     }
 
@@ -2373,7 +2373,7 @@ afw_query_criteria_to_AdaptiveQueryCriteria_object(
     if (criteria->select) {
         select = impl_criteria_select_to_property_value(
             criteria->select, object->p, xctx);
-        afw_object_set_property_as_array(object,
+        afw_object_set_property_as_array_internal(object,
             afw_v_select, select, xctx);
     }
 
@@ -2381,7 +2381,7 @@ afw_query_criteria_to_AdaptiveQueryCriteria_object(
     if (criteria->first_sort) {
         sort = impl_criteria_sort_to_property_value(
             criteria->first_sort, object->p, xctx);
-        afw_object_set_property_as_array(object,
+        afw_object_set_property_as_array_internal(object,
             afw_v_sort, sort, xctx);
     }
 

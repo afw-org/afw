@@ -236,7 +236,7 @@ afw_data_type_unevaluated =
 
 /* Set property function for data type unevaluated values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_unevaluated(
+afw_object_set_property_as_unevaluated_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_value_t * internal,

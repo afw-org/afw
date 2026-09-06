@@ -277,7 +277,7 @@ afw_data_type_rfc822Name =
 
 /* Set property function for data type rfc822Name values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_rfc822Name(
+afw_object_set_property_as_rfc822Name_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_t * internal,

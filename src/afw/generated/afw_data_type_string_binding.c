@@ -294,7 +294,7 @@ afw_data_type_string =
 
 /* Set property function for data type string values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_string(
+afw_object_set_property_as_string_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_t * internal,

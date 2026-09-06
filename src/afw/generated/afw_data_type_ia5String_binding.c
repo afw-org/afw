@@ -277,7 +277,7 @@ afw_data_type_ia5String =
 
 /* Set property function for data type ia5String values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_ia5String(
+afw_object_set_property_as_ia5String_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_t * internal,

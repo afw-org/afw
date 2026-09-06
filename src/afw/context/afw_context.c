@@ -130,7 +130,7 @@ afw_context_type_create(
     afw_object_meta_set_ids(result, afw_s_afw,
         afw_s__AdaptiveContextType_, context_type_id, xctx);
 
-    afw_object_set_property_as_string(result,
+    afw_object_set_property_as_string_internal(result,
         afw_v_contextTypeId, context_type_id, xctx);
 
     return result;
@@ -273,7 +273,7 @@ afw_context_variable_definition_add_z(
     value.inf = value_inf;
     data_type = (value_inf) ? afw_value_get_data_type(&value, xctx) : NULL;
     if (data_type) {
-        afw_object_set_property_as_string(definition, afw_v_dataType,
+        afw_object_set_property_as_string_internal(definition, afw_v_dataType,
             &data_type->data_type_id, xctx);
     }
     if (label_z) {
@@ -461,13 +461,13 @@ afw_context_variable_definitions_add_based_on_object(
         if (!pt) {
             pt = afw_object_create_unmanaged(p, xctx);
             if (value_data_type) {
-                afw_object_set_property_as_string(pt,
+                afw_object_set_property_as_string_internal(pt,
                     afw_v_dataType, &value_data_type->data_type_id, xctx);
             }
         }
 
         /* Add variable definition using this property name and pt. */
-        afw_object_set_property_as_object(variable_definitions,
+        afw_object_set_property_as_object_internal(variable_definitions,
             property_name, pt, xctx);
     }
 }
@@ -547,7 +547,7 @@ afw_context_variable_definitions_add_based_on_object_type_id(
             object_type_id->s, object_type_id->len, p, xctx);
 
         /* Add variable definition using this property name and pt. */
-        afw_object_set_property_as_object(variable_definitions,
+        afw_object_set_property_as_object_internal(variable_definitions,
             property_name, pt, xctx);
     }
 }

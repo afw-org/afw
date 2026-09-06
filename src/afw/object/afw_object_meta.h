@@ -605,7 +605,7 @@ afw_object_set_property_as_string_from_utf8_z( \
  */
 #define afw_object_meta_set_property_as(instance, property_name, \
     data_type, value, xctx) \
-afw_object_set_property_as_ ## data_type( \
+afw_object_set_property_as_ ## data_type ## _internal( \
     afw_object_meta_get_nonempty_delta(instance, xctx), \
     property_name, value, xctx)
 
@@ -657,7 +657,7 @@ afw_object_set_property_as_string_from_utf8_z( \
 #define afw_object_meta_set_property_type_property_as(instance, \
     property_name, property_type_property_name, \
     data_type, value, xctx) \
-afw_object_set_property_as_ ## data_type( \
+afw_object_set_property_as_ ## data_type ## _internal( \
     afw_object_meta_get_property_type(instance, property_name, xctx), \
     property_type_property_name, value, xctx)
 

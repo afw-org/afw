@@ -1558,7 +1558,7 @@ afw_value_convert_to_utf8_z(const afw_value_t *value,
  * mutation-reject matters. See `designs/utf8-code-point-sequences.md`.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_as_array_sequence(
+afw_value_convert_to_array_sequence(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -2269,7 +2269,7 @@ afw_value_create_dateTime_now_local(
  * @return NULL terminated list of values or undefined if value is undefined.
  */
 AFW_DECLARE(const afw_value_t * const *)
-afw_value_as_array_of_values(
+afw_value_to_null_terminated_values(
     const afw_value_t * value,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
@@ -2283,7 +2283,7 @@ afw_value_as_array_of_values(
  * @return NULL terminated list of strings or undefined if value is undefined.
  */
 AFW_DECLARE(const afw_utf8_t * const *)
-afw_value_as_array_of_utf8(
+afw_value_convert_to_null_terminated_utf8(
     const afw_value_t * value,
     const afw_pool_t *p, afw_xctx_t *xctx);
 

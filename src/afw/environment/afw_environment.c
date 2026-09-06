@@ -387,7 +387,7 @@ afw_environment_create(
             afw_s__AdaptiveProcess_, afw_s_current, xctx);
 
         /* programName — base name of args[0] (e.g. afw, afwfcgi). */
-        afw_object_set_property_as_string(process_object,
+        afw_object_set_property_as_string_internal(process_object,
             afw_v_programName, &env->pub.program_name, xctx);
 
         /* process::args — ECMAScript-style name (issue #74); use length() for count. */
@@ -397,25 +397,25 @@ afw_environment_create(
             afw_array_push_internal(args_array, afw_data_type_string,
                 arg, xctx);
         }
-        afw_object_set_property_as_array(process_object,
+        afw_object_set_property_as_array_internal(process_object,
             afw_v_args, args_array, xctx);
 
-        afw_object_set_property_as_integer(process_object,
+        afw_object_set_property_as_integer_internal(process_object,
             afw_v_pid, (afw_integer_t)afw_os_get_pid(), xctx);
 
         /* cwd snapshot at environment create (not live). */
         rv = apr_filepath_get(&cwd_z, 0, afw_pool_get_apr_pool(p));
         if (rv == APR_SUCCESS && cwd_z) {
             cwd = afw_utf8_create(cwd_z, AFW_UTF8_Z_LEN, p, xctx);
-            afw_object_set_property_as_string(process_object,
+            afw_object_set_property_as_string_internal(process_object,
                 afw_v_cwd, cwd, xctx);
         }
 
-        afw_object_set_property_as_string(process_object,
+        afw_object_set_property_as_string_internal(process_object,
             afw_v_afwVersion, afw_version_string(), xctx);
 
         afw_dateTime_set_now(&start_local, &start_utc, xctx);
-        afw_object_set_property_as_dateTime(process_object,
+        afw_object_set_property_as_dateTime_internal(process_object,
             afw_v_startTime, &start_local, xctx);
 
         env->pub.process_object = process_object;
@@ -1108,7 +1108,7 @@ afw_environment_load_extension(
             {
                 extension_id = afw_utf8_clone(extension_id, p, xctx);
                 properties = afw_object_create_unmanaged_new_p(p, xctx);
-                afw_object_set_property_as_string(properties,
+                afw_object_set_property_as_string_internal(properties,
                     afw_v_extensionId, extension_id, xctx);
             }
 
@@ -1128,7 +1128,7 @@ afw_environment_load_extension(
             }
 
             /* Insure modulePath property matches what was decided.
-            afw_object_set_property_as_string(properties,
+            afw_object_set_property_as_string_internal(properties,
                 afw_v_modulePath, module_path, xctx); */
 
             /* Prepare properties. Supply type=extension if needed. */
@@ -1149,7 +1149,7 @@ afw_environment_load_extension(
             if (!properties)
             {
                 properties = afw_object_create_unmanaged_new_p(p, xctx);
-                afw_object_set_property_as_string(properties,
+                afw_object_set_property_as_string_internal(properties,
                     afw_v_modulePath, module_path, xctx);                
             }
 
@@ -1237,7 +1237,7 @@ afw_environment_load_extension(
         extension_id = &extension->extension_id;
 
         /* Set extensionId in properties */
-        afw_object_set_property_as_string(properties,
+        afw_object_set_property_as_string_internal(properties,
             afw_v_extensionId, extension_id, xctx);
 
         /* Register extension. */

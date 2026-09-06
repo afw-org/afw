@@ -403,7 +403,7 @@ afw_object_get_next_property_as_unevaluated_internal_source(
  *
  */
 AFW_DECLARE(void)
-afw_object_set_property_as_unevaluated(
+afw_object_set_property_as_unevaluated_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_value_t * internal,

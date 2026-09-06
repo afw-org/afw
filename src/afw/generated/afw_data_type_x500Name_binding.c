@@ -277,7 +277,7 @@ afw_data_type_x500Name =
 
 /* Set property function for data type x500Name values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_x500Name(
+afw_object_set_property_as_x500Name_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_t * internal,

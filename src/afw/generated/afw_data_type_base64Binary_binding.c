@@ -277,7 +277,7 @@ afw_data_type_base64Binary =
 
 /* Set property function for data type base64Binary values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_base64Binary(
+afw_object_set_property_as_base64Binary_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_memory_t * internal,

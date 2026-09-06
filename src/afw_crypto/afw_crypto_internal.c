@@ -360,25 +360,25 @@ impl_make_cryptokey_object(
     afw_object_meta_set_object_type_id(obj,
         afw_crypto_s__AdaptiveCryptoKey_, xctx);
 
-    afw_object_set_property_as_integer(obj, afw_crypto_v_keyId,
+    afw_object_set_property_as_integer_internal(obj, afw_crypto_v_keyId,
         e->key_id, xctx);
 
     alg_name = afw_utf8_create(e->alg_name_z, AFW_UTF8_Z_LEN, p, xctx);
-    afw_object_set_property_as_string(obj, afw_crypto_v_algorithm,
+    afw_object_set_property_as_string_internal(obj, afw_crypto_v_algorithm,
         alg_name, xctx);
 
     afw_object_set_property(obj, afw_crypto_v_usages,
         afw_value_create_unmanaged_array(usages, p, xctx), xctx);
 
-    afw_object_set_property_as_boolean(obj, afw_crypto_v_extractable,
+    afw_object_set_property_as_boolean_internal(obj, afw_crypto_v_extractable,
         e->extractable, xctx);
 
     if (e->length_bits > 0) {
-        afw_object_set_property_as_integer(obj, afw_crypto_v_length,
+        afw_object_set_property_as_integer_internal(obj, afw_crypto_v_length,
             e->length_bits, xctx);
     }
 
-    afw_object_set_property_as_string(obj, afw_crypto_v_format,
+    afw_object_set_property_as_string_internal(obj, afw_crypto_v_format,
         afw_utf8_create("raw", AFW_UTF8_Z_LEN, p, xctx), xctx);
 
     return afw_value_create_unmanaged_object(obj, p, xctx);

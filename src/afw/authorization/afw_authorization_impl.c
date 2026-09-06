@@ -139,7 +139,7 @@ afw_authorization_handler_impl_create_cede_p(
     }
 
     /* Get authorization_handler_id from parameters. */
-    s = afw_object_old_get_property_as_utf8(properties,
+    s = afw_object_old_get_property_convert_to_utf8(properties,
         afw_v_authorizationHandlerId, p, xctx);
     if (!s) {
         AFW_THROW_ERROR_FZ(general, xctx,

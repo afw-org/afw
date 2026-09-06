@@ -247,7 +247,7 @@ afw_data_type_null =
 
 /* Set property function for data type null values. */
 AFW_DEFINE(void)
-afw_object_set_property_as_null(
+afw_object_set_property_as_null_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     void * internal,

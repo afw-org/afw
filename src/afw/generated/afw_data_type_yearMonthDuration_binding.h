@@ -400,7 +400,7 @@ afw_object_get_next_property_as_yearMonthDuration_internal_source(
  *
  */
 AFW_DECLARE(void)
-afw_object_set_property_as_yearMonthDuration(
+afw_object_set_property_as_yearMonthDuration_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_yearMonthDuration_t * internal,

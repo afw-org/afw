@@ -400,7 +400,7 @@ impl_object_path_parse(
                 goto error;
             }
 
-            afw_object_set_property_as_string(parsed->options_object,
+            afw_object_set_property_as_string_internal(parsed->options_object,
                 name, token, xctx);
 
             state = impl_state_after_option_value;
@@ -744,37 +744,37 @@ afw_object_path_parsed_to_object(
     result = afw_object_create_unmanaged_new_p(p, xctx);
 
     if (parsed->original_path.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_originalPath, &parsed->original_path, xctx);
     }
 
     if (parsed->normalized_path.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_normalizedPath, &parsed->normalized_path, xctx);
     }
 
     if (parsed->entity_path.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_entityPath, &parsed->entity_path, xctx);
     }
 
     if (parsed->adapter_id.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_adapterId, &parsed->adapter_id, xctx);
     }
 
     if (parsed->object_type_id.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_objectType, &parsed->object_type_id, xctx);
     }
 
     if (parsed->entity_object_id.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_entityObjectId, &parsed->entity_object_id, xctx);
     }
 
     if (parsed->undecoded_object_id.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_objectId, &parsed->undecoded_object_id, xctx);
     }
 
@@ -785,12 +785,12 @@ afw_object_path_parsed_to_object(
             value = &name->property_name.pub;
             afw_array_push_value(list, value, xctx);
         }
-        afw_object_set_property_as_array(result,
+        afw_object_set_property_as_array_internal(result,
             afw_v_propertyTypes, list, xctx);
     }
 
     if (parsed->options_object) {
-        afw_object_set_property_as_object(result,
+        afw_object_set_property_as_object_internal(result,
             afw_v_optionsObject, parsed->options_object, xctx);
     }
 
