@@ -743,11 +743,11 @@ impl_afw_adapter_journal_get_entry_internal(
 
         /* If using consumer cursors, set variables as appropriate. */
         if (use_consumer_cursors) {
-            currentCursor = afw_object_old_get_property_as_string(peer,
+            currentCursor = afw_object_old_get_property_as_string_internal(peer,
                 afw_v_currentCursor, xctx);
-            consumeCursor = afw_object_old_get_property_as_string(peer,
+            consumeCursor = afw_object_old_get_property_as_string_internal(peer,
                 afw_v_consumeCursor, xctx);
-            advanceCursor = afw_object_old_get_property_as_string(peer,
+            advanceCursor = afw_object_old_get_property_as_string_internal(peer,
                 afw_v_advanceCursor, xctx);
             if (consumeCursor) {
                 entry_object_id = consumeCursor;
@@ -774,9 +774,9 @@ impl_afw_adapter_journal_get_entry_internal(
          * NULL and get_entry fails with "get_first or entry_object_id required".
          */
         else if (advance_consumer_cursor) {
-            advanceCursor = afw_object_old_get_property_as_string(peer,
+            advanceCursor = afw_object_old_get_property_as_string_internal(peer,
                 afw_v_advanceCursor, xctx);
-            currentCursor = afw_object_old_get_property_as_string(peer,
+            currentCursor = afw_object_old_get_property_as_string_internal(peer,
                 afw_v_currentCursor, xctx);
             if (advanceCursor) {
                 entry_object_id = advanceCursor;
@@ -1073,7 +1073,7 @@ impl_afw_adapter_journal_mark_entry_consumed(
         consumer_id, &peer_f,
         &full_peer_path_z, xctx);
 
-    consume_cursor = afw_object_old_get_property_as_string(peer,
+    consume_cursor = afw_object_old_get_property_as_string_internal(peer,
         afw_v_consumeCursor, xctx);
     if (!consume_cursor || !afw_utf8_equal(entry_cursor, consume_cursor)) {
         AFW_THROW_ERROR_Z(general,

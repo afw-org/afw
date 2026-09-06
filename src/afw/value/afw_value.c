@@ -909,7 +909,7 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
         AFW_TRY {
 
             iterator = NULL;
-            while ((object = afw_object_old_get_next_property_as_object(
+            while ((object = afw_object_old_get_next_property_as_object_internal(
                 ((const afw_value_object_t *)untrusted_qualified_variables)->internal,
                 &iterator, &property_name, xctx)))
             {

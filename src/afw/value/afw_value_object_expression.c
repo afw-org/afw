@@ -97,7 +97,7 @@ impl_afw_value_get_data_type(
  * Implementation of method compiler_listing for interface afw_value.
  *
  * Walk unevaluated property values on the compile-time object. Do not use
- * afw_value_as_object() / data_type object listing here — that evaluates the
+ * afw_value_as_object_internal() / data_type object listing here — that evaluates the
  * expression (fails for free variables during compile listing).
  */
 void

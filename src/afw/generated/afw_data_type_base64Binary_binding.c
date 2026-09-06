@@ -295,9 +295,9 @@ afw_object_set_property_as_base64Binary(
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe cast of data type base64Binary. */
+/* Typesafe peel of data type base64Binary internal. */
 AFW_DEFINE(const afw_memory_t *)
-afw_value_as_base64Binary(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_base64Binary_internal(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, base64Binary))
@@ -479,7 +479,7 @@ afw_data_type_base64Binary_to_utf8(const afw_memory_t * internal,
 
 /* Get property function for data type base64Binary values. */
 AFW_DEFINE(const afw_memory_t *)
-afw_object_get_property_as_base64Binary_source(
+afw_object_get_property_as_base64Binary_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
@@ -510,7 +510,7 @@ afw_object_get_property_as_base64Binary_source(
 
 /* Get next property function for data type base64Binary values. */
 AFW_DEFINE(const afw_memory_t *)
-afw_object_get_next_property_as_base64Binary_source(
+afw_object_get_next_property_as_base64Binary_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,

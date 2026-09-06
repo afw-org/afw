@@ -1597,7 +1597,7 @@ afw_value_one_and_only_convert_to_utf8(
  * @param xctx of caller.
  * @return utf8 of the value's data-type string form.
  *
- * Uses data_type internal_to_utf8. Not afw_value_as_string.
+ * Uses data_type internal_to_utf8. Not afw_value_as_string_internal.
  */
 AFW_DECLARE(const afw_utf8_t *)
 afw_value_convert_to_utf8(

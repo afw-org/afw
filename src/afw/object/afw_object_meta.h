@@ -295,7 +295,7 @@ afw_object_meta_get_nonempty_delta(
 #define afw_object_meta_get_property_as_string(instance, \
     property_name, xctx) \
 (instance->meta.meta_object) \
-    ? afw_object_old_get_property_as_string( \
+    ? afw_object_old_get_property_as_string_internal( \
         afw_object_meta_object(instance), \
             property_name, xctx) \
     : NULL

@@ -1747,7 +1747,7 @@ afw_data_type_object_value_compiler_listing(
     const afw_value_t *pv;
     const afw_value_t *property_name;
  
-    object = afw_value_as_object(object_value, xctx);
+    object = afw_value_as_object_internal(object_value, xctx);
     afw_value_compiler_listing_begin_value(writer, object_value, NULL, xctx);
     afw_writer_write_z(writer, ": [", xctx);
     afw_writer_write_eol(writer, xctx);

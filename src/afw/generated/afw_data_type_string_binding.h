@@ -239,12 +239,12 @@ struct afw_value_string_managed_slice_s {
 };
 
 /**
- * @brief Typesafe cast of data type string.
+ * @brief Typesafe peel of data type string internal.
  * @param value (const afw_value_t *).
  * @return (const afw_utf8_t *)
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_value_as_string(
+afw_value_as_string_internal(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -374,9 +374,9 @@ afw_compile_literal_string_create(const afw_utf8_t * internal,
  * old code when possible.
  *
  */
-#define afw_object_old_get_property_as_string( \
+#define afw_object_old_get_property_as_string_internal( \
     object, property_name, xctx) \
-afw_object_get_property_as_string_source( \
+afw_object_get_property_as_string_internal_source( \
     object, property_name, AFW__FILE_LINE__, \
     ((object)->p ? (object)->p : (xctx)->p), (xctx))
 
@@ -388,9 +388,9 @@ afw_object_get_property_as_string_source( \
  * @param xctx of caller.
  * @return const afw_utf8_t *.
  */
-#define afw_object_get_property_as_string( \
+#define afw_object_get_property_as_string_internal( \
     object, property_name, p, xctx) \
-afw_object_get_property_as_string_source( \
+afw_object_get_property_as_string_internal_source( \
     object, property_name, AFW__FILE_LINE__, p, xctx)
 
 /**
@@ -403,7 +403,7 @@ afw_object_get_property_as_string_source( \
  * @return const afw_utf8_t *.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_object_get_property_as_string_source(
+afw_object_get_property_as_string_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
@@ -425,9 +425,9 @@ afw_object_get_property_as_string_source(
  * old code when possible.
  *
  */
-#define afw_object_old_get_next_property_as_string( \
+#define afw_object_old_get_next_property_as_string_internal( \
     object, iterator, property_name, xctx) \
-afw_object_get_next_property_as_string_source( \
+afw_object_get_next_property_as_string_internal_source( \
     object, iterator, property_name, AFW__FILE_LINE__, \
     ((object)->p ? (object)->p : (xctx)->p), (xctx))
 
@@ -440,9 +440,9 @@ afw_object_get_next_property_as_string_source( \
  * @param xctx of caller.
  * @return const afw_utf8_t *.
  */
-#define afw_object_get_next_property_as_string( \
+#define afw_object_get_next_property_as_string_internal( \
     object, iterator, property_name, p, xctx) \
-afw_object_get_next_property_as_string_source( \
+afw_object_get_next_property_as_string_internal_source( \
     object, iterator, property_name, AFW__FILE_LINE__, p, xctx)
 
 /**
@@ -456,7 +456,7 @@ afw_object_get_next_property_as_string_source( \
  * @return const afw_utf8_t *.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_object_get_next_property_as_string_source(
+afw_object_get_next_property_as_string_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,

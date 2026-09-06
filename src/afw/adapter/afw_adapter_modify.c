@@ -81,7 +81,7 @@ impl_find_object(
     for (entry = first_property_name_entry; entry->next; entry = entry->next)
     {
         *property_name = &entry->next->property_name.pub;
-        object = afw_object_old_get_property_as_object(result,
+        object = afw_object_old_get_property_as_object_internal(result,
             &entry->property_name.pub, xctx);
         if (!object) {
             if (create_if_necessary) {
@@ -383,7 +383,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
 
                 /* If old value is a list, just add new value to it. */
                 if (afw_value_is_array(old_value)) {
-                    list = afw_value_as_array(old_value, xctx);
+                    list = afw_value_as_array_internal(old_value, xctx);
                     afw_array_push_value(list, value, xctx);
                 }
 

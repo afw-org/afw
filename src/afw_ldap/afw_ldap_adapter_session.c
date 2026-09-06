@@ -119,7 +119,7 @@ impl_afw_adapter_session_retrieve_objects(
     /* Determine base_z using optional type specific parameter. */
     base_z = "";
     if (adapter_type_specific) {
-        s = afw_object_old_get_property_as_string(adapter_type_specific,
+        s = afw_object_old_get_property_as_string_internal(adapter_type_specific,
             afw_ldap_v_base, xctx);
         if (s) {
             base_z = (char *)afw_utf8_to_utf8_z(s, p, xctx);

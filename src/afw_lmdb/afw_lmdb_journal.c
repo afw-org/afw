@@ -156,7 +156,7 @@ afw_lmdb_adapter_journal_get_peer_object(
             xctx->p, xctx);
 
         if (value && afw_value_is_object(value)) {
-            object = afw_value_as_object(value, xctx);
+            object = afw_value_as_object_internal(value, xctx);
         }
     } else {
         /* no entry found */
@@ -215,7 +215,7 @@ afw_lmdb_adapter_journal_get_entry_object(
             xctx->p, xctx);
 
         if (value && afw_value_is_object(value)) {
-            object = afw_value_as_object(value, xctx);
+            object = afw_value_as_object_internal(value, xctx);
         }
     } else {
         /* no entry found */
@@ -466,7 +466,7 @@ impl_afw_adapter_journal_get_next_for_consumer(
     advance_cursor = afw_object_old_get_property_as_utf8(
         peer, afw_v_advanceCursor, xctx->p, xctx);
     consumer_filter = NULL;
-    consume_cursor = afw_object_old_get_property_as_string(
+    consume_cursor = afw_object_old_get_property_as_string_internal(
         peer, afw_v_consumeCursor, xctx);
 
     /** @fixme: we'll have to consider the scenario where we get
@@ -597,7 +597,7 @@ afw_lmdb_journal_advance_cursor_for_consumer(
     advance_cursor = afw_object_old_get_property_as_utf8(
         peer, afw_v_advanceCursor, xctx->p, xctx);
     consumer_filter = NULL;
-    consume_cursor = afw_object_old_get_property_as_string(
+    consume_cursor = afw_object_old_get_property_as_string_internal(
         peer, afw_v_consumeCursor, xctx);
 
     /** @fixme: we'll have to consider the scenario where we get
@@ -787,7 +787,7 @@ impl_afw_adapter_journal_mark_entry_consumed(
                 "Error, provisioning peer not found.", xctx);
         }
 
-        consume_cursor = afw_object_old_get_property_as_string(peer,
+        consume_cursor = afw_object_old_get_property_as_string_internal(peer,
             afw_v_consumeCursor, xctx);
         if (!consume_cursor || !afw_utf8_equal(entry_cursor, consume_cursor)) {
             AFW_THROW_ERROR_Z(general,

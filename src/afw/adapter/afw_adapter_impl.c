@@ -213,7 +213,7 @@ afw_adapter_impl_create_cede_p(
         xctx);
     adapter->inf = &impl_afw_adapter_inf;
     adapter->p = p;
-    adapter->adapter_type_id = afw_object_old_get_property_as_string(
+    adapter->adapter_type_id = afw_object_old_get_property_as_string_internal(
         properties, afw_v_adapterType, xctx);
     impl = afw_pool_calloc_type(p, afw_adapter_impl_t, xctx);
     adapter->impl = impl;
@@ -225,11 +225,11 @@ afw_adapter_impl_create_cede_p(
         properties, xctx);
 
     /* Get adapterType from properties. */
-    adapter->adapter_type_id = afw_object_old_get_property_as_string(
+    adapter->adapter_type_id = afw_object_old_get_property_as_string_internal(
         properties, afw_v_adapterType, xctx);
 
     /* Get source location.  Default it to adapter. */
-    impl->source_location = afw_object_old_get_property_as_string(
+    impl->source_location = afw_object_old_get_property_as_string_internal(
         properties, afw_v_sourceLocation, xctx);
     if (!impl->source_location) {
         impl->source_location = afw_s_adapter;
@@ -285,7 +285,7 @@ afw_adapter_impl_create_cede_p(
 
     /* Get optional authorizationHandlerId from parameters. */
     impl->authorization_handler_id =
-        afw_object_old_get_property_as_string(adapter->properties,
+        afw_object_old_get_property_as_string_internal(adapter->properties,
             afw_v_authorizationHandlerId, xctx);
     if (impl->authorization_handler_id)
     {
@@ -311,7 +311,7 @@ afw_adapter_impl_create_cede_p(
     }
 
     /* Get optional journalAdapterId from parameters. */
-    impl->journal_adapter_id = afw_object_old_get_property_as_string(
+    impl->journal_adapter_id = afw_object_old_get_property_as_string_internal(
         adapter->properties, afw_v_journalAdapterId, xctx);
     if (impl->journal_adapter_id) {
         AFW_LOG_FZ(debug, xctx,
@@ -509,10 +509,10 @@ afw_adapter_impl_is_journal_entry_applicable(
 
     is_applicable = true;
 
-    peerIdInEntry = afw_object_old_get_property_as_string(entry,
+    peerIdInEntry = afw_object_old_get_property_as_string_internal(entry,
         afw_v_peerId, xctx);
     if (peerIdInEntry) {
-        peerIdInConsumer = afw_object_old_get_property_as_string(consumer,
+        peerIdInConsumer = afw_object_old_get_property_as_string_internal(consumer,
             afw_v_peerId, xctx);
         if (!peerIdInConsumer) {
             AFW_THROW_ERROR_Z(general,
@@ -548,7 +548,7 @@ afw_adapter_impl_is_journal_entry_applicable(
                         "consumeFilter did not evaluate to a boolean result",
                         xctx);
                 }
-                is_applicable = afw_value_as_boolean(eval, xctx);
+                is_applicable = afw_value_as_boolean_internal(eval, xctx);
             }
             AFW_FINALLY{
                 afw_xctx_qualifier_stack_top_set(top, xctx);
@@ -940,16 +940,16 @@ impl_special_object_handling_cb(
             afw_object_meta_get_object_type_id(object, xctx),
             afw_s__AdaptiveServiceConf_))
         {
-            conf = afw_object_old_get_property_as_object(object,
+            conf = afw_object_old_get_property_as_object_internal(object,
                 afw_v_conf, xctx);
             if (conf) {
-                type = afw_object_old_get_property_as_string(conf,
+                type = afw_object_old_get_property_as_string_internal(conf,
                     afw_v_type, xctx);
                 if (type) {
                     service_type = afw_environment_get_service_type(
                         type, xctx);
                     if (service_type) {
-                        subtype = afw_object_old_get_property_as_string(
+                        subtype = afw_object_old_get_property_as_string_internal(
                             conf,
                             afw_value_create_unmanaged_string(
                                 service_type->conf_type->subtype_property_name,

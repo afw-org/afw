@@ -265,9 +265,9 @@ afw_object_set_property_as_null(
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe cast of data type null. */
+/* Typesafe peel of data type null internal. */
 AFW_DEFINE(void *)
-afw_value_as_null(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_null_internal(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, null))
@@ -385,7 +385,7 @@ afw_data_type_null_to_utf8(void * internal,
 
 /* Get property function for data type null values. */
 AFW_DEFINE(void *)
-afw_object_get_property_as_null_source(
+afw_object_get_property_as_null_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
@@ -416,7 +416,7 @@ afw_object_get_property_as_null_source(
 
 /* Get next property function for data type null values. */
 AFW_DEFINE(void *)
-afw_object_get_next_property_as_null_source(
+afw_object_get_next_property_as_null_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,

@@ -370,7 +370,7 @@ impl_afw_adapter_session_replace_object(
                 "Not a valid object.", xctx);
         }
 
-        old_object = afw_value_as_object(value, xctx);
+        old_object = afw_value_as_object_internal(value, xctx);
 
         /* Write updated object */
         afw_lmdb_internal_replace_entry_from_object(self,

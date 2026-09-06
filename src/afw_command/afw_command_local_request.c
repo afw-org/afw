@@ -276,7 +276,7 @@ afw_command_local_request_create(
     self->remaining_body = body->size;
 
     /* Method */
-    self->pub.method = afw_object_old_get_property_as_string(
+    self->pub.method = afw_object_old_get_property_as_string_internal(
         properties, afw_v_REQUEST_METHOD, xctx);
     if (!self->pub.method) {
         self->pub.method = afw_s_POST;
@@ -285,7 +285,7 @@ afw_command_local_request_create(
     }
 
     /* Request URI. */
-    self->pub.uri = afw_object_old_get_property_as_string(
+    self->pub.uri = afw_object_old_get_property_as_string_internal(
         properties, afw_v_REQUEST_URI, xctx);
     if (!self->pub.uri) {
         self->pub.uri = afw_s_a_slash_afw;
@@ -294,10 +294,10 @@ afw_command_local_request_create(
     }
 
     /* Content type. */
-    self->pub.content_type = afw_object_old_get_property_as_string(
+    self->pub.content_type = afw_object_old_get_property_as_string_internal(
         properties, afw_v_CONTENT_TYPE, xctx);
     if (!self->pub.content_type) {
-        self->pub.content_type = afw_object_old_get_property_as_string(
+        self->pub.content_type = afw_object_old_get_property_as_string_internal(
             properties, afw_v_CONTENT_TYPE, xctx);
         if (!self->pub.content_type) {
             self->pub.content_type = afw_s_a_application_json;
@@ -307,7 +307,7 @@ afw_command_local_request_create(
     }
 
     /* Query string */
-    self->pub.query_string = afw_object_old_get_property_as_string(
+    self->pub.query_string = afw_object_old_get_property_as_string_internal(
         properties, afw_v_QUERY_STRING, xctx);
 
     /* Overwrite CONTENT_LENGTH */
@@ -318,9 +318,9 @@ afw_command_local_request_create(
         properties, afw_v_CONTENT_LENGTH, s, xctx);
 
     /* accept */
-    s = afw_object_old_get_property_as_string(properties, afw_v_ACCEPT, xctx);
+    s = afw_object_old_get_property_as_string_internal(properties, afw_v_ACCEPT, xctx);
     if (!s) {
-        s =  afw_object_old_get_property_as_string(
+        s =  afw_object_old_get_property_as_string_internal(
             properties, afw_v_HTTP_ACCEPT, xctx);
         if (!s) {
             s =  afw_s_a_application_json;

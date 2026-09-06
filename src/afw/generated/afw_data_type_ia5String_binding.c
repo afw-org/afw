@@ -295,9 +295,9 @@ afw_object_set_property_as_ia5String(
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe cast of data type ia5String. */
+/* Typesafe peel of data type ia5String internal. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_value_as_ia5String(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_ia5String_internal(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, ia5String))
@@ -479,7 +479,7 @@ afw_data_type_ia5String_to_utf8(const afw_utf8_t * internal,
 
 /* Get property function for data type ia5String values. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_object_get_property_as_ia5String_source(
+afw_object_get_property_as_ia5String_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
@@ -510,7 +510,7 @@ afw_object_get_property_as_ia5String_source(
 
 /* Get next property function for data type ia5String values. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_object_get_next_property_as_ia5String_source(
+afw_object_get_next_property_as_ia5String_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,

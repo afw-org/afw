@@ -304,7 +304,7 @@ impl_initialize_and_start_service_using_conf(
     afw_object_set_property_as_string(service->properties,
         afw_v_sourceLocation, conf_source_location, xctx);
     /* type */
-    service->type = afw_object_old_get_property_as_string(
+    service->type = afw_object_old_get_property_as_string_internal(
         service->properties,
         afw_v_type, xctx);
     if (!service->type || service->type->len == 0) {
@@ -328,7 +328,7 @@ impl_initialize_and_start_service_using_conf(
     /* conf subtype */
     service->conf_subtype = NULL;
     if (service->service_type->conf_type->subtype_property_name) {
-        service->conf_subtype = afw_object_old_get_property_as_string(
+        service->conf_subtype = afw_object_old_get_property_as_string_internal(
             service->properties,
             afw_value_create_unmanaged_string(
                 service->service_type->conf_type->subtype_property_name,
@@ -348,7 +348,7 @@ impl_initialize_and_start_service_using_conf(
     service->conf_id = NULL;
     if (service->service_type->conf_type->id_property_name)
     {
-        service->conf_id = afw_object_old_get_property_as_string(
+        service->conf_id = afw_object_old_get_property_as_string_internal(
             service->properties,
             afw_value_create_unmanaged_string(
                 service->service_type->conf_type->id_property_name,
@@ -442,7 +442,7 @@ impl_start_cb(
          * Return if startup is not immediate or permanent, except when this
          * is a manual start and startup is manual.
          */
-        startup = afw_object_old_get_property_as_string(object,
+        startup = afw_object_old_get_property_as_string_internal(object,
             afw_v_startup, xctx);
         if (
             !startup ||
@@ -455,7 +455,7 @@ impl_start_cb(
         }
 
         /* Get serviceId.  Default to object id. */
-        service_id = afw_object_old_get_property_as_string(object,
+        service_id = afw_object_old_get_property_as_string_internal(object,
             afw_v_serviceId, xctx);
         if (!service_id) {
             service_id = afw_object_meta_get_object_id(object, xctx);
@@ -498,7 +498,7 @@ impl_start_cb(
                 xctx);
         }
 
-        conf = afw_object_old_get_property_as_object(object,
+        conf = afw_object_old_get_property_as_object_internal(object,
             afw_v_conf, xctx);
         if (!conf) {
             AFW_THROW_ERROR_FZ(general, xctx,
@@ -652,7 +652,7 @@ impl_add_runtime_service_info_to_object(
 
     subtype = NULL;
     if (service_type->conf_type->subtype_property_name) {
-        subtype = afw_object_old_get_property_as_string(conf_property,
+        subtype = afw_object_old_get_property_as_string_internal(conf_property,
             afw_value_create_unmanaged_string(
                 service_type->conf_type->subtype_property_name,
                 conf_property->p, xctx), xctx);
@@ -856,7 +856,7 @@ impl_AdaptiveService_cb(
 
             object = afw_object_create_unmanaged(p, xctx);
 
-            service_id = afw_object_old_get_property_as_string(
+            service_id = afw_object_old_get_property_as_string_internal(
                 original_object,
                 afw_v_serviceId, xctx);
             if (!service_id) {
@@ -869,7 +869,7 @@ impl_AdaptiveService_cb(
             afw_object_set_property_as_string(object,
                 afw_v_sourceLocation, s, xctx);
 
-            conf_property = afw_object_old_get_property_as_object(
+            conf_property = afw_object_old_get_property_as_object_internal(
                 original_object, afw_v_conf, xctx);
             if (!conf_property) {
                 AFW_THROW_ERROR_FZ(general, xctx,
@@ -1378,7 +1378,7 @@ impl_restart_get_cb(
          * Return if startup is not immediate or permanent, except when this
          * is a manual start and startup is manual.
          */
-        startup = afw_object_old_get_property_as_string(object,
+        startup = afw_object_old_get_property_as_string_internal(object,
             afw_v_startup, xctx);
         if (!startup ||
             (!afw_utf8_equal(startup, afw_s_immediate) &&
@@ -1388,7 +1388,7 @@ impl_restart_get_cb(
         }
 
         /* Get serviceId.  Default to object id. */
-        service_id = afw_object_old_get_property_as_string(object,
+        service_id = afw_object_old_get_property_as_string_internal(object,
             afw_v_serviceId, xctx);
         if (!service_id) {
             service_id = afw_object_meta_get_object_id(object, xctx);
@@ -1415,7 +1415,7 @@ impl_restart_get_cb(
         service->conf_source_location = afw_utf8_printf(
             p, xctx, AFW_UTF8_FMT "/conf",
             AFW_UTF8_FMT_ARG(source_location));
-        conf = afw_object_old_get_property_as_object(object,
+        conf = afw_object_old_get_property_as_object_internal(object,
             afw_v_conf, xctx);
         if (!conf) {
             AFW_THROW_ERROR_FZ(general, xctx,

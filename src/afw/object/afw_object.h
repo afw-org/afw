@@ -700,7 +700,7 @@ afw_object_old_get_property_as_boolean_deprecated(
  * @param xctx of caller.
  * @return value or false if not found.
  *
- * This is like afw_object_old_get_property_as_integer() except the value
+ * This is like afw_object_old_get_property_as_integer_internal() except the value
  * will be converted to integer if needed instead of throwing a type safe
  * error.
  */

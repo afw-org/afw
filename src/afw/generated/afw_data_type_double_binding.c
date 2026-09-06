@@ -282,9 +282,9 @@ afw_object_set_property_as_double(
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe cast of data type double. */
+/* Typesafe peel of data type double internal. */
 AFW_DEFINE(double)
-afw_value_as_double(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_double_internal(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, double))
@@ -425,7 +425,7 @@ afw_data_type_double_to_utf8(double internal,
 
 /* Get property function for data type double values. */
 AFW_DEFINE(double)
-afw_object_get_property_as_double_source(
+afw_object_get_property_as_double_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     afw_boolean_t *found,
@@ -459,7 +459,7 @@ afw_object_get_property_as_double_source(
 
 /* Get next property function for data type double values. */
 AFW_DEFINE(double)
-afw_object_get_next_property_as_double_source(
+afw_object_get_next_property_as_double_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,

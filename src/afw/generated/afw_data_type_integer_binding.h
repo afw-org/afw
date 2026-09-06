@@ -207,12 +207,12 @@ struct afw_value_integer_managed_s {
 };
 
 /**
- * @brief Typesafe cast of data type integer.
+ * @brief Typesafe peel of data type integer internal.
  * @param value (const afw_value_t *).
  * @return (afw_integer_t)
  */
 AFW_DECLARE(afw_integer_t)
-afw_value_as_integer(
+afw_value_as_integer_internal(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -322,9 +322,9 @@ afw_compile_literal_integer_create(afw_integer_t internal,
  * old code when possible.
  *
  */
-#define afw_object_old_get_property_as_integer( \
+#define afw_object_old_get_property_as_integer_internal( \
     object, property_name, found, xctx) \
-afw_object_get_property_as_integer_source( \
+afw_object_get_property_as_integer_internal_source( \
     object, property_name, found, AFW__FILE_LINE__, \
     ((object)->p ? (object)->p : (xctx)->p), (xctx))
 
@@ -337,9 +337,9 @@ afw_object_get_property_as_integer_source( \
  * @param xctx of caller.
  * @return afw_integer_t.
  */
-#define afw_object_get_property_as_integer( \
+#define afw_object_get_property_as_integer_internal( \
     object, property_name, found, p, xctx) \
-afw_object_get_property_as_integer_source( \
+afw_object_get_property_as_integer_internal_source( \
     object, property_name, found, AFW__FILE_LINE__, p, xctx)
 
 /**
@@ -353,7 +353,7 @@ afw_object_get_property_as_integer_source( \
  * @return afw_integer_t.
  */
 AFW_DECLARE(afw_integer_t)
-afw_object_get_property_as_integer_source(
+afw_object_get_property_as_integer_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     afw_boolean_t *found,
@@ -377,9 +377,9 @@ afw_object_get_property_as_integer_source(
  * old code when possible.
  *
  */
-#define afw_object_old_get_next_property_as_integer( \
+#define afw_object_old_get_next_property_as_integer_internal( \
     object, iterator, property_name, found, xctx) \
-afw_object_get_next_property_as_integer_source( \
+afw_object_get_next_property_as_integer_internal_source( \
     object, iterator, property_name, found, AFW__FILE_LINE__, \
     ((object)->p ? (object)->p : (xctx)->p), (xctx))
 
@@ -393,9 +393,9 @@ afw_object_get_next_property_as_integer_source( \
  * @param xctx of caller.
  * @return afw_integer_t.
  */
-#define afw_object_get_next_property_as_integer( \
+#define afw_object_get_next_property_as_integer_internal( \
     object, iterator, property_name, found, p, xctx) \
-afw_object_get_next_property_as_integer_source( \
+afw_object_get_next_property_as_integer_internal_source( \
     object, iterator, property_name, found, AFW__FILE_LINE__, p, xctx)
 
 /**
@@ -410,7 +410,7 @@ afw_object_get_next_property_as_integer_source( \
  * @return afw_integer_t.
  */
 AFW_DECLARE(afw_integer_t)
-afw_object_get_next_property_as_integer_source(
+afw_object_get_next_property_as_integer_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,

@@ -790,7 +790,7 @@ impl_check_manifest_cb(
             if (afw_utf8_equal(ctx->type, &registry_type_id) &&
                 afw_utf8_equal(ctx->key, &registry_key))
             {
-                extension_id = afw_object_old_get_property_as_string(object,
+                extension_id = afw_object_old_get_property_as_string_internal(object,
                     afw_v_extensionId, xctx);
                 module_path = impl_module_path_from_property(object,
                     NULL, xctx->p, xctx);
@@ -1051,7 +1051,7 @@ afw_environment_load_extension(
     extensionId = NULL;
     modulePath = NULL;
     if (properties) {
-        extensionId = afw_object_old_get_property_as_string(properties,
+        extensionId = afw_object_old_get_property_as_string_internal(properties,
             afw_v_extensionId, xctx);
         if (extensionId) {
             if (extension_id && !afw_utf8_equal(extension_id, extensionId)) {

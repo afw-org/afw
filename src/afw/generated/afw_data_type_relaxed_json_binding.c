@@ -295,9 +295,9 @@ afw_object_set_property_as_relaxed_json(
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe cast of data type relaxed_json. */
+/* Typesafe peel of data type relaxed_json internal. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_value_as_relaxed_json(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_relaxed_json_internal(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, relaxed_json))
@@ -479,7 +479,7 @@ afw_data_type_relaxed_json_to_utf8(const afw_utf8_t * internal,
 
 /* Get property function for data type relaxed_json values. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_object_get_property_as_relaxed_json_source(
+afw_object_get_property_as_relaxed_json_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
@@ -510,7 +510,7 @@ afw_object_get_property_as_relaxed_json_source(
 
 /* Get next property function for data type relaxed_json values. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_object_get_next_property_as_relaxed_json_source(
+afw_object_get_next_property_as_relaxed_json_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,

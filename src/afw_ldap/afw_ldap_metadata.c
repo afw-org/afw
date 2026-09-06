@@ -535,7 +535,7 @@ impl_make_property_type_and_handler_hash_tables(
          * Use syntax to determine datatype and handler.  Add handler to
          * ht_attribute_types.
          */
-        syntax = afw_object_old_get_property_as_string(attribute_type_object,
+        syntax = afw_object_old_get_property_as_string_internal(attribute_type_object,
             afw_ldap_v_SYNTAX, xctx);
         if (syntax) {
 
@@ -563,7 +563,7 @@ impl_make_property_type_and_handler_hash_tables(
 
             /* Determine if single. */
             attribute_type->is_single =
-                afw_object_old_get_property_as_boolean(
+                afw_object_old_get_property_as_boolean_internal(
                     attribute_type_object, afw_ldap_v_a_single_dash_value,
                     &found, xctx);
 
@@ -909,12 +909,12 @@ impl_add_parents_and_property_types(
     result = object_type_attribute;
 
     /* Make list of property types for this object type. */
-    property_types_object = afw_object_old_get_property_as_object(
+    property_types_object = afw_object_old_get_property_as_object_internal(
         object_type_object, afw_v_propertyTypes, xctx);
     if (property_types_object) {
         iterator = NULL;
         while ((property_type_object =
-            afw_object_old_get_next_property_as_object(
+            afw_object_old_get_next_property_as_object_internal(
                 property_types_object, &iterator, &property_name, xctx))
             )
         {

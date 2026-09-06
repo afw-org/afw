@@ -370,10 +370,10 @@ afw_authorization_internal_set_control(
                 afw_v_initialAuthorizationCheck,
                 afw_s_internal, NULL, p, xctx);
 
-        self->check_intermediate_mode = afw_object_old_get_property_as_boolean(
+        self->check_intermediate_mode = afw_object_old_get_property_as_boolean_internal(
             object, afw_v_checkIntermediateMode, &found, xctx);
 
-        deny_if_not_applicable = afw_object_old_get_property_as_boolean(
+        deny_if_not_applicable = afw_object_old_get_property_as_boolean_internal(
             object, afw_v_denyIfNotApplicable, &found, xctx);
     }
 
@@ -440,14 +440,14 @@ afw_authorization_check(
     }
 
     ctx.actionId = action_id_value;
-    action_id = afw_value_as_string(action_id_value, xctx);
-    request_id = afw_value_as_string(request_id_value, xctx);
+    action_id = afw_value_as_string_internal(action_id_value, xctx);
+    request_id = afw_value_as_string_internal(request_id_value, xctx);
     final_result = false;
     result = NULL;
     ctx.object = object_value;
     ctx.requestId = request_id_value;
     ctx.resourceId = resource_id_value;
-    resource_id = afw_value_as_string(resource_id_value, xctx);
+    resource_id = afw_value_as_string_internal(resource_id_value, xctx);
     current_decider = afw_s_none;
     final_decider = afw_s_none;
 
@@ -569,7 +569,7 @@ afw_authorization_check(
                         "applicationControl.%s must return an "
                         "_AdaptiveAuthorizationDecision_ object", property_name);
                 }
-                decision_id = afw_object_old_get_property_as_string(
+                decision_id = afw_object_old_get_property_as_string_internal(
                     ((const afw_value_object_t *)result)->internal,
                     afw_v_decisionId, xctx);
                 if (!decision_id) {
@@ -655,7 +655,7 @@ afw_authorization_check(
                     }
                     AFW_XCTX_AUTHORIZATION_MODE_END;
                     if (result2) {
-                        decision_id2 = afw_object_old_get_property_as_string(
+                        decision_id2 = afw_object_old_get_property_as_string_internal(
                             ((const afw_value_object_t *)result2)->internal,
                             afw_v_decisionId, xctx);
                         if (afw_utf8_equal(decision_id2, afw_s_permit) ||
@@ -771,8 +771,8 @@ afw_authorization_check(
                 request_id_value, xctx);
             result = afw_value_create_unmanaged_object(obj, p, xctx);
 
-            s = afw_value_as_string(action_id_value, xctx);
-            s2 = afw_value_as_string(resource_id_value, xctx);
+            s = afw_value_as_string_internal(action_id_value, xctx);
+            s2 = afw_value_as_string_internal(resource_id_value, xctx);
             AFW_THROW_ERROR_WITH_DATA_FZ(denied, result, xctx,
                 "Access " AFW_UTF8_FMT_Q
                 " to " AFW_UTF8_FMT_Q
@@ -1221,7 +1221,7 @@ impl_authorization_conf_type_create_cede_p(
     const afw_utf8_t *authorization_id;
 
     /* Get authorization_handler_id. */
-    authorization_id = afw_object_old_get_property_as_string(conf,
+    authorization_id = afw_object_old_get_property_as_string_internal(conf,
         afw_v_authorizationHandlerId, xctx);
     if (!authorization_id) {
         AFW_THROW_ERROR_FZ(general, xctx,

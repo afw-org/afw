@@ -196,12 +196,12 @@ struct afw_value_boolean_managed_s {
 };
 
 /**
- * @brief Typesafe cast of data type boolean.
+ * @brief Typesafe peel of data type boolean internal.
  * @param value (const afw_value_t *).
  * @return (afw_boolean_t)
  */
 AFW_DECLARE(afw_boolean_t)
-afw_value_as_boolean(
+afw_value_as_boolean_internal(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -296,9 +296,9 @@ afw_value_boolean_create(afw_boolean_t internal,
  * old code when possible.
  *
  */
-#define afw_object_old_get_property_as_boolean( \
+#define afw_object_old_get_property_as_boolean_internal( \
     object, property_name, found, xctx) \
-afw_object_get_property_as_boolean_source( \
+afw_object_get_property_as_boolean_internal_source( \
     object, property_name, found, AFW__FILE_LINE__, \
     ((object)->p ? (object)->p : (xctx)->p), (xctx))
 
@@ -311,9 +311,9 @@ afw_object_get_property_as_boolean_source( \
  * @param xctx of caller.
  * @return afw_boolean_t.
  */
-#define afw_object_get_property_as_boolean( \
+#define afw_object_get_property_as_boolean_internal( \
     object, property_name, found, p, xctx) \
-afw_object_get_property_as_boolean_source( \
+afw_object_get_property_as_boolean_internal_source( \
     object, property_name, found, AFW__FILE_LINE__, p, xctx)
 
 /**
@@ -327,7 +327,7 @@ afw_object_get_property_as_boolean_source( \
  * @return afw_boolean_t.
  */
 AFW_DECLARE(afw_boolean_t)
-afw_object_get_property_as_boolean_source(
+afw_object_get_property_as_boolean_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     afw_boolean_t *found,
@@ -351,9 +351,9 @@ afw_object_get_property_as_boolean_source(
  * old code when possible.
  *
  */
-#define afw_object_old_get_next_property_as_boolean( \
+#define afw_object_old_get_next_property_as_boolean_internal( \
     object, iterator, property_name, found, xctx) \
-afw_object_get_next_property_as_boolean_source( \
+afw_object_get_next_property_as_boolean_internal_source( \
     object, iterator, property_name, found, AFW__FILE_LINE__, \
     ((object)->p ? (object)->p : (xctx)->p), (xctx))
 
@@ -367,9 +367,9 @@ afw_object_get_next_property_as_boolean_source( \
  * @param xctx of caller.
  * @return afw_boolean_t.
  */
-#define afw_object_get_next_property_as_boolean( \
+#define afw_object_get_next_property_as_boolean_internal( \
     object, iterator, property_name, found, p, xctx) \
-afw_object_get_next_property_as_boolean_source( \
+afw_object_get_next_property_as_boolean_internal_source( \
     object, iterator, property_name, found, AFW__FILE_LINE__, p, xctx)
 
 /**
@@ -384,7 +384,7 @@ afw_object_get_next_property_as_boolean_source( \
  * @return afw_boolean_t.
  */
 AFW_DECLARE(afw_boolean_t)
-afw_object_get_next_property_as_boolean_source(
+afw_object_get_next_property_as_boolean_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,

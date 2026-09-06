@@ -64,7 +64,7 @@
 # Inf symbols: afw_value_{permanent,managed,managed_slice,unmanaged}_<dataType>_inf
 # (managed_slice only for utf8/memory cTypes; special types get permanent only).
 #
-# Also generated: type-check macros, afw_value_as_*, object/array helpers, and
+# Also generated: type-check macros, afw_value_as_*_internal, object/array helpers, and
 # afw_data_type_<dataType>_to_internal / to_utf8. Permanent const instances from
 # strings.py / const_objects.py / this module use permanent_*_inf; there is no
 # create_permanent_* API.
@@ -408,12 +408,12 @@ def write_h_section(fd, prefix, obj):
 
     if not special:
         fd.write('\n/**\n')
-        fd.write(' * @brief Typesafe cast of data type ' + id + '.\n')
+        fd.write(' * @brief Typesafe peel of data type ' + id + ' internal.\n')
         fd.write(' * @param value (const afw_value_t *).\n')
         fd.write(' * @return (' + return_type + ')\n')
         fd.write(' */\n')
         fd.write(declare + '(' + return_type + ')\n')
-        fd.write('afw_value_as_' + id + '(\n    const afw_value_t *value,\n    afw_xctx_t *xctx);\n')
+        fd.write('afw_value_as_' + id + '_internal(\n    const afw_value_t *value,\n    afw_xctx_t *xctx);\n')
 
         fd.write('\n/**\n')
         fd.write(' * @brief Allocate function for data type ' + id + ' value.\n')
@@ -636,9 +636,9 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * old code when possible.\n')
         fd.write(' *\n')
         fd.write(' */\n')
-        fd.write('#define afw_object_old_get_property_as_' + id + '( \\\n')
+        fd.write('#define afw_object_old_get_property_as_' + id + '_internal( \\\n')
         fd.write('    object, property_name, ' + needs_found_param + 'xctx) \\\n')
-        fd.write('afw_object_get_property_as_' + id + '_source( \\\n')
+        fd.write('afw_object_get_property_as_' + id + '_internal_source( \\\n')
         fd.write('    object, property_name, ' + needs_found_param + 'AFW__FILE_LINE__, \\\n')
         fd.write('    ((object)->p ? (object)->p : (xctx)->p), (xctx))\n')
 
@@ -652,9 +652,9 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @param xctx of caller.\n')
         fd.write(' * @return ' + return_type + '.\n')
         fd.write(' */\n')
-        fd.write('#define afw_object_get_property_as_' + id + '( \\\n')
+        fd.write('#define afw_object_get_property_as_' + id + '_internal( \\\n')
         fd.write('    object, property_name, ' + needs_found_param + 'p, xctx) \\\n')
-        fd.write('afw_object_get_property_as_' + id + '_source( \\\n')
+        fd.write('afw_object_get_property_as_' + id + '_internal_source( \\\n')
         fd.write('    object, property_name, ' + needs_found_param + 'AFW__FILE_LINE__, p, xctx)\n')
 
         fd.write('\n/**\n')
@@ -669,7 +669,7 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @return ' + return_type + '.\n')
         fd.write(' */\n')
         fd.write(declare + '(' + return_type + ')\n')
-        fd.write('afw_object_get_property_as_' + id + '_source(\n')
+        fd.write('afw_object_get_property_as_' + id + '_internal_source(\n')
         fd.write('    const afw_object_t *object,\n')
         fd.write('    const afw_value_t *property_name,\n')
         if needs_found:
@@ -695,9 +695,9 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * old code when possible.\n')
         fd.write(' *\n')
         fd.write(' */\n')
-        fd.write('#define afw_object_old_get_next_property_as_' + id + '( \\\n')
+        fd.write('#define afw_object_old_get_next_property_as_' + id + '_internal( \\\n')
         fd.write('    object, iterator, property_name, ' + needs_found_param + 'xctx) \\\n')
-        fd.write('afw_object_get_next_property_as_' + id + '_source( \\\n')
+        fd.write('afw_object_get_next_property_as_' + id + '_internal_source( \\\n')
         fd.write('    object, iterator, property_name, ' + needs_found_param + 'AFW__FILE_LINE__, \\\n')
         fd.write('    ((object)->p ? (object)->p : (xctx)->p), (xctx))\n')
 
@@ -712,9 +712,9 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @param xctx of caller.\n')
         fd.write(' * @return ' + return_type + '.\n')
         fd.write(' */\n')
-        fd.write('#define afw_object_get_next_property_as_' + id + '( \\\n')
+        fd.write('#define afw_object_get_next_property_as_' + id + '_internal( \\\n')
         fd.write('    object, iterator, property_name, ' + needs_found_param + 'p, xctx) \\\n')
-        fd.write('afw_object_get_next_property_as_' + id + '_source( \\\n')
+        fd.write('afw_object_get_next_property_as_' + id + '_internal_source( \\\n')
         fd.write('    object, iterator, property_name, ' + needs_found_param + 'AFW__FILE_LINE__, p, xctx)\n')
 
         fd.write('\n/**\n')
@@ -730,7 +730,7 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @return ' + return_type + '.\n')
         fd.write(' */\n')
         fd.write(declare + '(' + return_type + ')\n')
-        fd.write('afw_object_get_next_property_as_' + id + '_source(\n')
+        fd.write('afw_object_get_next_property_as_' + id + '_internal_source(\n')
         fd.write('    const afw_object_t *object,\n')
         fd.write('    const afw_iterator_old_t * *iterator,\n')
         fd.write('    const afw_value_t * *property_name,\n')
@@ -1386,9 +1386,9 @@ def write_c_section(fd, prefix, obj):
         fd.write('    afw_object_set_property(object, property_name, v, xctx);\n')
         fd.write('}\n')
 
-        fd.write('\n/* Typesafe cast of data type ' + id + '. */\n')
+        fd.write('\n/* Typesafe peel of data type ' + id + ' internal. */\n')
         fd.write(define + '(' + return_type + ')\n')
-        fd.write('afw_value_as_' + id + '(const afw_value_t *value, afw_xctx_t *xctx)\n')
+        fd.write('afw_value_as_' + id + '_internal(const afw_value_t *value, afw_xctx_t *xctx)\n')
         fd.write('{\n')
         fd.write('    value = afw_value_evaluate(value, xctx->p, xctx);\n')
         fd.write('    if (!AFW_VALUE_IS_DATA_TYPE(value, ' + id + '))\n')
@@ -1796,7 +1796,7 @@ def write_c_section(fd, prefix, obj):
         if needs_found:
             fd.write('\n/* Get property function for data type ' + id + ' values. */\n')
             fd.write(define + '(' + return_type + ')\n')
-            fd.write('afw_object_get_property_as_' + id + '_source(\n')
+            fd.write('afw_object_get_property_as_' + id + '_internal_source(\n')
             fd.write('    const afw_object_t *object,\n')
             fd.write('    const afw_value_t *property_name,\n')
             fd.write('    afw_boolean_t *found,\n')
@@ -1831,7 +1831,7 @@ def write_c_section(fd, prefix, obj):
         else:
             fd.write('\n/* Get property function for data type ' + id + ' values. */\n')
             fd.write(define + '(' + return_type + ')\n')
-            fd.write('afw_object_get_property_as_' + id + '_source(\n')
+            fd.write('afw_object_get_property_as_' + id + '_internal_source(\n')
             fd.write('    const afw_object_t *object,\n')
             fd.write('    const afw_value_t *property_name,\n')
             fd.write('    const afw_utf8_z_t *source_z,\n')
@@ -1863,7 +1863,7 @@ def write_c_section(fd, prefix, obj):
         if needs_found:
             fd.write('\n/* Get next property function for data type ' + id + ' values. */\n')
             fd.write(define + '(' + return_type + ')\n')
-            fd.write('afw_object_get_next_property_as_' + id + '_source(\n')
+            fd.write('afw_object_get_next_property_as_' + id + '_internal_source(\n')
             fd.write('    const afw_object_t *object,\n')
             fd.write('    const afw_iterator_old_t * *iterator,\n')
             fd.write('    const afw_value_t * *property_name,\n')
@@ -1899,7 +1899,7 @@ def write_c_section(fd, prefix, obj):
         else:
             fd.write('\n/* Get next property function for data type ' + id + ' values. */\n')
             fd.write(define + '(' + return_type + ')\n')
-            fd.write('afw_object_get_next_property_as_' + id + '_source(\n')
+            fd.write('afw_object_get_next_property_as_' + id + '_internal_source(\n')
             fd.write('    const afw_object_t *object,\n')
             fd.write('    const afw_iterator_old_t * *iterator,\n')
             fd.write('    const afw_value_t * *property_name,\n')

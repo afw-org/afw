@@ -290,9 +290,9 @@ afw_object_set_property_as_integer(
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe cast of data type integer. */
+/* Typesafe peel of data type integer internal. */
 AFW_DEFINE(afw_integer_t)
-afw_value_as_integer(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_integer_internal(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, integer))
@@ -433,7 +433,7 @@ afw_data_type_integer_to_utf8(afw_integer_t internal,
 
 /* Get property function for data type integer values. */
 AFW_DEFINE(afw_integer_t)
-afw_object_get_property_as_integer_source(
+afw_object_get_property_as_integer_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     afw_boolean_t *found,
@@ -467,7 +467,7 @@ afw_object_get_property_as_integer_source(
 
 /* Get next property function for data type integer values. */
 AFW_DEFINE(afw_integer_t)
-afw_object_get_next_property_as_integer_source(
+afw_object_get_next_property_as_integer_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,

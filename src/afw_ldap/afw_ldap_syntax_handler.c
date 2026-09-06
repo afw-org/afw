@@ -385,7 +385,7 @@ impl_syntax_handler_single_boolean_to_ber(
     const struct berval *ber;
     afw_boolean_t b;
 
-    b = afw_value_as_boolean(value, xctx);
+    b = afw_value_as_boolean_internal(value, xctx);
     ber = (b)
         ? &impl_ber_true
         : &impl_ber_false;
@@ -1304,7 +1304,7 @@ afw_ldap_internal_syntax_handler_assign(
     if (ldap_syntax_object) {
 
         /* If there is an X-NDS_SYNTAX, assign syntax_handler based on it. */
-        x_nds_syntax = afw_object_old_get_property_as_string(
+        x_nds_syntax = afw_object_old_get_property_as_string_internal(
             ldap_syntax_object,
             afw_ldap_v_a_X_NDS_SYNTAX, xctx);
         if (x_nds_syntax) {

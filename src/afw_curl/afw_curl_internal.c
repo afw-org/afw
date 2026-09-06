@@ -92,7 +92,7 @@ afw_curl_internal_write_response_headers_cb(
         return_value = afw_value_evaluate(header->call, 
             appdata->pool, appdata->xctx);
 
-        realsize = afw_value_as_integer(return_value, appdata->xctx);
+        realsize = afw_value_as_integer_internal(return_value, appdata->xctx);
     }
 
     else 
@@ -159,7 +159,7 @@ afw_curl_internal_response_cb(
         }
         return_value = afw_value_evaluate(writer->call, 
             appdata->pool, appdata->xctx);
-        realsize = afw_value_as_integer(return_value, appdata->xctx);
+        realsize = afw_value_as_integer_internal(return_value, appdata->xctx);
     }
 
     else 
@@ -247,7 +247,7 @@ afw_curl_internal_request_cb(
                 return 0;
             }
 
-            payload = afw_value_as_hexBinary(return_value, appdata->xctx);
+            payload = afw_value_as_hexBinary_internal(return_value, appdata->xctx);
             if (payload->size == 0) {
                 return 0;
             }
@@ -392,7 +392,7 @@ afw_curl_internal_options(
      * types. For now, we will just set the options that we know about.
      */
     if (options) {
-        verbose = afw_object_old_get_property_as_boolean(options, afw_curl_v_verbose, &found, xctx);
+        verbose = afw_object_old_get_property_as_boolean_internal(options, afw_curl_v_verbose, &found, xctx);
         if (found && verbose == AFW_TRUE) {
             res = curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
             if (res != CURLE_OK)
@@ -403,21 +403,21 @@ afw_curl_internal_options(
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting verbose.", xctx);
         }
 
-        sslVerifyPeer = afw_object_old_get_property_as_boolean(options, afw_curl_v_sslVerifyPeer, &found, xctx);
+        sslVerifyPeer = afw_object_old_get_property_as_boolean_internal(options, afw_curl_v_sslVerifyPeer, &found, xctx);
         if (found && sslVerifyPeer == AFW_FALSE) {
             res = curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting sslVerifyPeer.", xctx);
         }
 
-        sslVerifyHost = afw_object_old_get_property_as_boolean(options, afw_curl_v_sslVerifyHost, &found, xctx);
+        sslVerifyHost = afw_object_old_get_property_as_boolean_internal(options, afw_curl_v_sslVerifyHost, &found, xctx);
         if (found && sslVerifyHost == AFW_FALSE) {
             res = curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting sslVerifyHost.", xctx);
         }
 
-        sslVerifyStatus = afw_object_old_get_property_as_boolean(options, afw_curl_v_sslVerifyStatus, &found, xctx);
+        sslVerifyStatus = afw_object_old_get_property_as_boolean_internal(options, afw_curl_v_sslVerifyStatus, &found, xctx);
         if (found && sslVerifyStatus == AFW_FALSE) {
 #ifdef CURLOPT_SSL_VERIFYSTATUS
             res = curl_easy_setopt(curl, CURLOPT_SSL_VERIFYSTATUS, 0);
@@ -428,28 +428,28 @@ afw_curl_internal_options(
 #endif
         }
 
-        followLocation = afw_object_old_get_property_as_boolean(options, afw_curl_v_followLocation, &found, xctx);
+        followLocation = afw_object_old_get_property_as_boolean_internal(options, afw_curl_v_followLocation, &found, xctx);
         if (found && followLocation == AFW_TRUE) {
             res = curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting followLocation.", xctx);
         }
 
-        proxy = afw_object_old_get_property_as_string(options, afw_curl_v_proxy, xctx);
+        proxy = afw_object_old_get_property_as_string_internal(options, afw_curl_v_proxy, xctx);
         if (proxy) {
             res = curl_easy_setopt(curl, CURLOPT_PROXY, afw_utf8_to_utf8_z(proxy, xctx->p, xctx));
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting proxy.", xctx);
         }
 
-        userPassword = afw_object_old_get_property_as_string(options, afw_curl_v_userPassword, xctx);
+        userPassword = afw_object_old_get_property_as_string_internal(options, afw_curl_v_userPassword, xctx);
         if (userPassword) {
             res = curl_easy_setopt(curl, CURLOPT_USERPWD, afw_utf8_to_utf8_z(userPassword, xctx->p, xctx));
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting userPassword.", xctx);
         }
 
-        awsSigv4 = afw_object_old_get_property_as_string(options, afw_curl_v_awsSigv4, xctx);
+        awsSigv4 = afw_object_old_get_property_as_string_internal(options, afw_curl_v_awsSigv4, xctx);
         if (awsSigv4) {
 #ifdef CURLOPT_AWS_SIGV4
             res = curl_easy_setopt(curl, CURLOPT_AWS_SIGV4, afw_utf8_to_utf8_z(awsSigv4, xctx->p, xctx));
@@ -460,14 +460,14 @@ afw_curl_internal_options(
 #endif
         }
 
-        caInfo = afw_object_old_get_property_as_string(options, afw_curl_v_caInfo, xctx);
+        caInfo = afw_object_old_get_property_as_string_internal(options, afw_curl_v_caInfo, xctx);
         if (caInfo) {
             res = curl_easy_setopt(curl, CURLOPT_CAINFO, afw_utf8_to_utf8_z(caInfo, xctx->p, xctx));
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting caInfo.", xctx);
         }
 
-        caBlob = afw_object_old_get_property_as_string(options, afw_curl_v_caBlob, xctx);
+        caBlob = afw_object_old_get_property_as_string_internal(options, afw_curl_v_caBlob, xctx);
         if (caBlob) {
 #ifdef CURLOPT_CAINFO_BLOB
             struct curl_blob *blob;
@@ -485,7 +485,7 @@ afw_curl_internal_options(
 #endif
         }
 
-        caPath = afw_object_old_get_property_as_string(options, afw_curl_v_caPath, xctx);
+        caPath = afw_object_old_get_property_as_string_internal(options, afw_curl_v_caPath, xctx);
         if (caPath) {
             res = curl_easy_setopt(curl, CURLOPT_CAPATH, afw_utf8_to_utf8_z(caPath, xctx->p, xctx));
             if (res != CURLE_OK)
@@ -669,7 +669,7 @@ afw_curl_internal_http_post(
                 if (res != CURLE_OK)
                     AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
 
-                readFunctionSize = afw_object_old_get_property_as_integer(
+                readFunctionSize = afw_object_old_get_property_as_integer_internal(
                     options, afw_curl_v_readFunctionSize, &found, xctx);
                 if (found) {
                     res = curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE,
@@ -1134,7 +1134,7 @@ afw_curl_internal_http_put(
                 if (res != CURLE_OK)
                     AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_UPLOAD", xctx);
 
-                readFunctionSize = afw_object_old_get_property_as_integer(
+                readFunctionSize = afw_object_old_get_property_as_integer_internal(
                     options, afw_curl_v_readFunctionSize, &found, xctx);
                 if (found) {
                     res = curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE,
@@ -1321,7 +1321,7 @@ afw_curl_internal_http_patch(
                 if (res != CURLE_OK)
                     AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_UPLOAD", xctx);
 
-                readFunctionSize = afw_object_old_get_property_as_integer(
+                readFunctionSize = afw_object_old_get_property_as_integer_internal(
                     options, afw_curl_v_readFunctionSize, &found, xctx);
                 if (found) {
                     res = curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE,

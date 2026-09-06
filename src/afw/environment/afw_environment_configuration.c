@@ -208,14 +208,14 @@ afw_environment_prepare_conf_type_properties(
     p = properties->p;
 
     /* Get sourceLocation.  Default for now to empty string. */
-    source_location = afw_object_old_get_property_as_string(
+    source_location = afw_object_old_get_property_as_string_internal(
         properties, afw_v_sourceLocation, xctx);
     if (!source_location) {
         source_location = afw_s_a_empty_string;
     }
 
     /* Get type. */
-    type = afw_object_old_get_property_as_string(properties,
+    type = afw_object_old_get_property_as_string_internal(properties,
         afw_v_type, xctx);
     if (!type || type->len == 0) {
         AFW_THROW_ERROR_FZ(general, xctx,
@@ -238,7 +238,7 @@ afw_environment_prepare_conf_type_properties(
     /* If appropriate, get subtype. */
     subtype = NULL;
     if (conf_type->subtype_property_name) {
-        subtype = afw_object_old_get_property_as_string(
+        subtype = afw_object_old_get_property_as_string_internal(
             properties,
             afw_value_create_unmanaged_string(
                 conf_type->subtype_property_name, properties->p, xctx),
@@ -257,7 +257,7 @@ afw_environment_prepare_conf_type_properties(
     /* If appropriate, get id.  If not present, default to subtype. */
     id = afw_s_current;
     if (conf_type->id_property_name) {
-        id = afw_object_old_get_property_as_string(
+        id = afw_object_old_get_property_as_string_internal(
             properties,
             afw_value_create_unmanaged_string(
                 conf_type->id_property_name, properties->p, xctx),

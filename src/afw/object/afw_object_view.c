@@ -566,7 +566,7 @@ impl_object_type_related_object_option_processing(
                 {
                     s = NULL;
                     if (pt) {
-                        s = afw_object_old_get_property_as_string(
+                        s = afw_object_old_get_property_as_string_internal(
                             pt->property_type_object,
                             afw_v_dataTypeParameter,
                             xctx);
@@ -1037,7 +1037,7 @@ impl_get_object_by_uri(
     if (path_parsed) {
         for (name = path_parsed->first_property_name; name; name = name->next) {
             result = (afw_object_view_internal_object_self_t *)
-                afw_object_old_get_property_as_object(
+                afw_object_old_get_property_as_object_internal(
                 (const afw_object_t *)result,
                 &name->property_name.pub, xctx);
             if (!result) {

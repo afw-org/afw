@@ -298,7 +298,7 @@ impl_error_backtrace(const afw_pool_t *p, afw_xctx_t *xctx)
     AFW_CATCH_UNHANDLED {
         xctx->error->backtrace = &fake;
         obj = afw_error_to_object(xctx->error, p, xctx);
-        got = afw_object_get_property_as_string(
+        got = afw_object_get_property_as_string_internal(
             obj, afw_v_backtrace, p, xctx);
         if (!got || got->len != 6 ||
             memcmp(got->s, "x^FF^y", 6) != 0)

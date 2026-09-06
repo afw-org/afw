@@ -624,7 +624,7 @@ afw_adapter_internal_conf_type_create_cede_p(
     const afw_utf8_t *adapter_id;
 
     /* Get adapter_id. */
-    adapter_id = afw_object_old_get_property_as_string(conf,
+    adapter_id = afw_object_old_get_property_as_string_internal(conf,
         afw_v_adapterId, xctx);
     if (!adapter_id) {
         AFW_THROW_ERROR_FZ(general, xctx,

@@ -197,7 +197,7 @@ afw_file_path_resolve_rootFilePaths(
     best_prefix = NULL;
     best_host = NULL;
     iterator = NULL;
-    property_value = afw_object_get_next_property_as_string(roots,
+    property_value = afw_object_get_next_property_as_string_internal(roots,
         &iterator, &property_name, p, xctx);
     while (property_value) {
         const afw_utf8_t *name_utf8 =
@@ -208,7 +208,7 @@ afw_file_path_resolve_rootFilePaths(
                 best_host = property_value;
             }
         }
-        property_value = afw_object_get_next_property_as_string(roots,
+        property_value = afw_object_get_next_property_as_string_internal(roots,
             &iterator, &property_name, p, xctx);
     }
 

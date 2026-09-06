@@ -296,9 +296,9 @@ afw_object_set_property_as_object(
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe cast of data type object. */
+/* Typesafe peel of data type object internal. */
 AFW_DEFINE(const afw_object_t *)
-afw_value_as_object(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_object_internal(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, object))
@@ -436,7 +436,7 @@ afw_data_type_object_to_utf8(const afw_object_t * internal,
 
 /* Get property function for data type object values. */
 AFW_DEFINE(const afw_object_t *)
-afw_object_get_property_as_object_source(
+afw_object_get_property_as_object_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
@@ -467,7 +467,7 @@ afw_object_get_property_as_object_source(
 
 /* Get next property function for data type object values. */
 AFW_DEFINE(const afw_object_t *)
-afw_object_get_next_property_as_object_source(
+afw_object_get_next_property_as_object_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,

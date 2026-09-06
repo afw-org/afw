@@ -295,9 +295,9 @@ afw_object_set_property_as_hexBinary(
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe cast of data type hexBinary. */
+/* Typesafe peel of data type hexBinary internal. */
 AFW_DEFINE(const afw_memory_t *)
-afw_value_as_hexBinary(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_hexBinary_internal(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, hexBinary))
@@ -479,7 +479,7 @@ afw_data_type_hexBinary_to_utf8(const afw_memory_t * internal,
 
 /* Get property function for data type hexBinary values. */
 AFW_DEFINE(const afw_memory_t *)
-afw_object_get_property_as_hexBinary_source(
+afw_object_get_property_as_hexBinary_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
@@ -510,7 +510,7 @@ afw_object_get_property_as_hexBinary_source(
 
 /* Get next property function for data type hexBinary values. */
 AFW_DEFINE(const afw_memory_t *)
-afw_object_get_next_property_as_hexBinary_source(
+afw_object_get_next_property_as_hexBinary_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,

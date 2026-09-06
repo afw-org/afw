@@ -265,9 +265,9 @@ afw_object_set_property_as_dateTime(
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe cast of data type dateTime. */
+/* Typesafe peel of data type dateTime internal. */
 AFW_DEFINE(const afw_dateTime_t *)
-afw_value_as_dateTime(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_dateTime_internal(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, dateTime))
@@ -398,7 +398,7 @@ afw_data_type_dateTime_to_utf8(const afw_dateTime_t * internal,
 
 /* Get property function for data type dateTime values. */
 AFW_DEFINE(const afw_dateTime_t *)
-afw_object_get_property_as_dateTime_source(
+afw_object_get_property_as_dateTime_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
@@ -429,7 +429,7 @@ afw_object_get_property_as_dateTime_source(
 
 /* Get next property function for data type dateTime values. */
 AFW_DEFINE(const afw_dateTime_t *)
-afw_object_get_next_property_as_dateTime_source(
+afw_object_get_next_property_as_dateTime_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,

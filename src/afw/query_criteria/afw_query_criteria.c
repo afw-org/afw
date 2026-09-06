@@ -1432,7 +1432,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
     const xmlChar *s_z;
 
     /* Get "op" property and get its corresponding operator. */
-    s = afw_object_old_get_property_as_string(filter_object,
+    s = afw_object_old_get_property_as_string_internal(filter_object,
         afw_v_op, parser->xctx);
     if (!s) {
         AFW_THROW_ERROR_Z(general, "Missing \"op\" property", parser->xctx);
@@ -1464,7 +1464,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         entry->op_id == afw_query_criteria_filter_op_id_or)
     {
         impl_query_object_parse_nesting_enter(parser);
-        filters_list = afw_object_old_get_property_as_array(filter_object,
+        filters_list = afw_object_old_get_property_as_array_internal(filter_object,
             afw_v_filters, parser->xctx);
         if (!filters_list) {
             AFW_THROW_ERROR_Z(general,
@@ -1488,7 +1488,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
                     "Property \"filters\" array entries must be objects",
                     parser->xctx);
             }
-            child_object = afw_value_as_object(value, parser->xctx);
+            child_object = afw_value_as_object_internal(value, parser->xctx);
 
             impl_AdaptiveQueryCriteria_object_parse_filter(
                 parser, child_object,
@@ -1524,7 +1524,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         entry->on_true = on_true;
         entry->on_false = on_false;
         *filter = entry;
-        entry->property_name = afw_object_old_get_property_as_string(
+        entry->property_name = afw_object_old_get_property_as_string_internal(
             filter_object, afw_v_property, parser->xctx);
         if (parser->criteria->object_type && entry->property_name) {
             entry->pt = afw_object_type_property_type_get_extended(
@@ -1583,7 +1583,7 @@ impl_AdaptiveQueryCriteria_object_parse_select(
         if (!value) {
             break;
         }
-        name = afw_value_as_string(value, parser->xctx);
+        name = afw_value_as_string_internal(value, parser->xctx);
         afw_stack_push(names, parser->xctx) = name;
     }
     afw_stack_push(names, parser->xctx) = NULL;
@@ -1623,7 +1623,7 @@ impl_AdaptiveQueryCriteria_object_parse_sort(
         else {
             result = curr;
         }
-        name = afw_value_as_string(value, parser->xctx);
+        name = afw_value_as_string_internal(value, parser->xctx);
         if (name->len <= 2 ||
             (*name->s != '+' && *name->s != '-')
             )
@@ -2086,7 +2086,7 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
     impl_AdaptiveQueryCriteria_object_parser_t parser;
 
     /* If urlEncodedRQLString property present, process it and return result. */
-    url_encoded_rql_string = afw_object_old_get_property_as_string(
+    url_encoded_rql_string = afw_object_old_get_property_as_string_internal(
         query_object, afw_v_urlEncodedRQLString, xctx);
     if (url_encoded_rql_string) {
 
@@ -2133,7 +2133,7 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
 
         /* filter property */
         if (afw_value_equal(property_name, afw_v_filter, xctx)) {
-            filter_object = afw_value_as_object(value, xctx);
+            filter_object = afw_value_as_object_internal(value, xctx);
             impl_AdaptiveQueryCriteria_object_parse_filter(&parser,
                 filter_object, &criteria->filter, &criteria->tree,
                 AFW_QUERY_CRITERIA_TRUE, AFW_QUERY_CRITERIA_FALSE);
@@ -2141,14 +2141,14 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
 
         /* select property */
         else if (afw_value_equal(property_name, afw_v_select, xctx)) {
-            select = afw_value_as_array(value, xctx);
+            select = afw_value_as_array_internal(value, xctx);
             criteria->select = impl_AdaptiveQueryCriteria_object_parse_select(
                 &parser, select);
         }
 
         /* sort property */
         else if (afw_value_equal(property_name, afw_v_sort, xctx)) {
-            sort = afw_value_as_array(value, xctx);
+            sort = afw_value_as_array_internal(value, xctx);
             criteria->first_sort = impl_AdaptiveQueryCriteria_object_parse_sort(
                 &parser, sort);
         }
@@ -2505,7 +2505,7 @@ impl_entry_to_query_string(
             afw_writer_write_z(w, "(", xctx);
             afw_writer_write_utf8(w, property_name, xctx);
             if (rql_op->op->is_list) {
-                list = afw_value_as_array(entry->value, xctx);
+                list = afw_value_as_array_internal(entry->value, xctx);
                 for (iterator = NULL;;) {
                     value = afw_array_get_next_value(list, &iterator, p, xctx);
                     if (!value) {
@@ -2557,7 +2557,7 @@ impl_entry_to_query_string(
             }
 
             if (rql_op->op->is_list) {
-                list = afw_value_as_array(entry->value, xctx);
+                list = afw_value_as_array_internal(entry->value, xctx);
                 for (iterator = NULL, first_time = true;;) {
                     value = afw_array_get_next_value(list, &iterator, p, xctx);
                     if (!value) {

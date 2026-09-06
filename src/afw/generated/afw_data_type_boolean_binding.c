@@ -265,9 +265,9 @@ afw_object_set_property_as_boolean(
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe cast of data type boolean. */
+/* Typesafe peel of data type boolean internal. */
 AFW_DEFINE(afw_boolean_t)
-afw_value_as_boolean(const afw_value_t *value, afw_xctx_t *xctx)
+afw_value_as_boolean_internal(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, boolean))
@@ -384,7 +384,7 @@ afw_data_type_boolean_to_utf8(afw_boolean_t internal,
 
 /* Get property function for data type boolean values. */
 AFW_DEFINE(afw_boolean_t)
-afw_object_get_property_as_boolean_source(
+afw_object_get_property_as_boolean_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     afw_boolean_t *found,
@@ -418,7 +418,7 @@ afw_object_get_property_as_boolean_source(
 
 /* Get next property function for data type boolean values. */
 AFW_DEFINE(afw_boolean_t)
-afw_object_get_next_property_as_boolean_source(
+afw_object_get_next_property_as_boolean_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,

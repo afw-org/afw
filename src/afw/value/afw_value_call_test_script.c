@@ -188,9 +188,9 @@ impl_afw_value_optional_evaluate(
 
     afw_boolean_t found;
 
-    tests = afw_object_old_get_property_as_array(
+    tests = afw_object_old_get_property_as_array_internal(
         self->test_script_object_value->internal, afw_v_tests, xctx);
-    default_source_type = afw_object_old_get_property_as_string(
+    default_source_type = afw_object_old_get_property_as_string_internal(
         self->test_script_object_value->internal, afw_v_sourceType, xctx);
     if (!default_source_type) {
         default_source_type = afw_s_script;
@@ -200,21 +200,21 @@ impl_afw_value_optional_evaluate(
         if (!value) {
             break;
         }
-        test = afw_value_as_object(value, xctx);
+        test = afw_value_as_object_internal(value, xctx);
         /*
          * Array GET may have promoted a face. Result flags belong on the
          * test definition object so a later parent wrap/JSON look-through
          * still sees them.
          */
         test = afw_object_memory_wrapper_base(test);
-        source_type = afw_object_old_get_property_as_string(test,
+        source_type = afw_object_old_get_property_as_string_internal(test,
             afw_v_sourceType, xctx);
         if (!source_type) {
             source_type = default_source_type;
         }
         info = afw_compile_type_get_info_by_pneumonic(source_type, xctx);
 
-        expect = afw_object_old_get_property_as_string(test,
+        expect = afw_object_old_get_property_as_string_internal(test,
             afw_v_expect, xctx);
         if (!expect) {
             AFW_THROW_ERROR_Z(general, "expect required", xctx);
@@ -225,40 +225,40 @@ impl_afw_value_optional_evaluate(
          * Keys are "expect-stdout" / "expect-stderr" (hyphen; not Adaptive).
          * Absent key → do not assert that stream.
          */
-        expect_stdout = afw_object_old_get_property_as_string(test,
+        expect_stdout = afw_object_old_get_property_as_string_internal(test,
             afw_v_expect_stdout, xctx);
-        expect_stderr = afw_object_old_get_property_as_string(test,
+        expect_stderr = afw_object_old_get_property_as_string_internal(test,
             afw_v_expect_stderr, xctx);
 
-        expectUTF8OctetLengthInTestScript = afw_object_old_get_property_as_integer(
+        expectUTF8OctetLengthInTestScript = afw_object_old_get_property_as_integer_internal(
             test, afw_v_expectUTF8OctetLengthInTestScript, &found, xctx);
         if (!found) {
             AFW_THROW_ERROR_Z(coding_error, "Internal error", xctx);
         }
-        expectUTF8OctetOffsetInTestScript = afw_object_old_get_property_as_integer(
+        expectUTF8OctetOffsetInTestScript = afw_object_old_get_property_as_integer_internal(
             test, afw_v_expectUTF8OctetOffsetInTestScript, &found, xctx);
         if (!found) {
             AFW_THROW_ERROR_Z(coding_error, "Internal error", xctx);
         }
 
-        source = afw_object_old_get_property_as_string(test,
+        source = afw_object_old_get_property_as_string_internal(test,
             afw_v_source, xctx);
         if (!source) {
             AFW_THROW_ERROR_Z(general, "source required", xctx);
         }       
-        sourceUTF8OctetOffsetInTestScript = afw_object_old_get_property_as_integer(
+        sourceUTF8OctetOffsetInTestScript = afw_object_old_get_property_as_integer_internal(
             test, afw_v_sourceUTF8OctetOffsetInTestScript, &found, xctx);
         if (!found) {
             AFW_THROW_ERROR_Z(coding_error, "Internal error", xctx);
         }
-        sourceUTF8OctetLengthInTestScript = afw_object_old_get_property_as_integer(
+        sourceUTF8OctetLengthInTestScript = afw_object_old_get_property_as_integer_internal(
             test, afw_v_sourceUTF8OctetLengthInTestScript, &found, xctx);
         if (!found) {
             AFW_THROW_ERROR_Z(coding_error, "Internal error", xctx);
         }
 
         /* Skip processing test is requested. */
-        if (afw_object_old_get_property_as_boolean(test,
+        if (afw_object_old_get_property_as_boolean_internal(test,
             afw_v_skip, &found, xctx))
         {
             continue;
@@ -503,13 +503,13 @@ impl_afw_value_produce_compiler_listing(
 
     p = writer->p; // Use writer's pool.
     test_script_object = self->test_script_object_value->internal;
-    tests = afw_object_old_get_property_as_array(
+    tests = afw_object_old_get_property_as_array_internal(
         test_script_object, afw_v_tests, xctx);
 
     /* Make copy of contextual and prime offset up to first test. */
     afw_memory_copy(&contextual, self->contextual);
     upToTestsUTF8OctetOffsetInTestScript =
-        afw_object_old_get_property_as_integer(
+        afw_object_old_get_property_as_integer_internal(
             test_script_object, afw_v_upToTestsUTF8OctetOffsetInTestScript,
             &found, xctx);
     if (found) {
@@ -541,7 +541,7 @@ impl_afw_value_produce_compiler_listing(
 
     afw_writer_write_eol(writer, xctx);
 
-    default_source_type = afw_object_old_get_property_as_string(
+    default_source_type = afw_object_old_get_property_as_string_internal(
         self->test_script_object_value->internal, afw_v_sourceType, xctx);
     if (!default_source_type) {
         default_source_type = afw_s_script;
@@ -557,16 +557,16 @@ impl_afw_value_produce_compiler_listing(
         test_begin = false;
         AFW_TRY{
 
-            test = afw_value_as_object(test_object_value, xctx);
+            test = afw_value_as_object_internal(test_object_value, xctx);
 
-            test_name = afw_object_old_get_property_as_string(
+            test_name = afw_object_old_get_property_as_string_internal(
                 test, afw_v_test, xctx);
             if (!test_name) {
                 AFW_THROW_ERROR_Z(general, "test required", xctx);
             }
 
             sourceUTF8OctetOffsetInTestScript =
-                afw_object_old_get_property_as_integer(
+                afw_object_old_get_property_as_integer_internal(
                     test, afw_v_sourceUTF8OctetOffsetInTestScript,
                     &found, xctx);
             if (!found) {
@@ -578,7 +578,7 @@ impl_afw_value_produce_compiler_listing(
                 sourceUTF8OctetOffsetInTestScript, xctx);
 
             sourceUTF8OctetLengthInTestScript =
-                afw_object_old_get_property_as_integer(
+                afw_object_old_get_property_as_integer_internal(
                     test, afw_v_sourceUTF8OctetLengthInTestScript,
                     &found, xctx);
             if (!found) {
@@ -601,7 +601,7 @@ impl_afw_value_produce_compiler_listing(
                 test_object_value, writer, xctx);
 
             /* Skip processing test is requested. */
-            if (afw_object_old_get_property_as_boolean(test,
+            if (afw_object_old_get_property_as_boolean_internal(test,
                 afw_v_skip, &found, xctx))
             {
                 afw_writer_write_eol(writer, xctx);
@@ -612,7 +612,7 @@ impl_afw_value_produce_compiler_listing(
                 break;
             }
 
-            source_type = afw_object_old_get_property_as_string(test,
+            source_type = afw_object_old_get_property_as_string_internal(test,
                 afw_v_sourceType, xctx);
             if (!source_type) {
                 source_type = default_source_type;
@@ -620,7 +620,7 @@ impl_afw_value_produce_compiler_listing(
             info = afw_compile_type_get_info_by_pneumonic(
                 source_type, xctx);
 
-            source = afw_object_get_property_as_string(
+            source = afw_object_get_property_as_string_internal(
                 test, afw_v_source, p, xctx);
             if (!source) {
                 AFW_THROW_ERROR_Z(general, "source required", xctx);

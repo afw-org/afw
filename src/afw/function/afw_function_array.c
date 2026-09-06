@@ -135,7 +135,7 @@ afw_function_execute_array(
         /* If array expression, add each element of array. */
         if (afw_value_is_array_expression(*arg)) {
             if (value) {
-                l = afw_value_as_array(value, x->xctx);
+                l = afw_value_as_array_internal(value, x->xctx);
                 for (iterator = NULL;;) {
                     entry = afw_array_get_next_value(l, &iterator,
                         x->p, x->xctx);

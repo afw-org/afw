@@ -447,7 +447,7 @@ impl_object_destructure(
     afw_size_t nprops;
     afw_size_t i;
 
-    object = afw_value_as_object(value, xctx);
+    object = afw_value_as_object_internal(value, xctx);
 
     /*
      * Remember each bound name (evaluate computed keys once). The rest

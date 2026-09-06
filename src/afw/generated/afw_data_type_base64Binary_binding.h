@@ -228,12 +228,12 @@ struct afw_value_base64Binary_managed_slice_s {
 };
 
 /**
- * @brief Typesafe cast of data type base64Binary.
+ * @brief Typesafe peel of data type base64Binary internal.
  * @param value (const afw_value_t *).
  * @return (const afw_memory_t *)
  */
 AFW_DECLARE(const afw_memory_t *)
-afw_value_as_base64Binary(
+afw_value_as_base64Binary_internal(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -348,9 +348,9 @@ afw_value_base64Binary_create(const afw_memory_t * internal,
  * old code when possible.
  *
  */
-#define afw_object_old_get_property_as_base64Binary( \
+#define afw_object_old_get_property_as_base64Binary_internal( \
     object, property_name, xctx) \
-afw_object_get_property_as_base64Binary_source( \
+afw_object_get_property_as_base64Binary_internal_source( \
     object, property_name, AFW__FILE_LINE__, \
     ((object)->p ? (object)->p : (xctx)->p), (xctx))
 
@@ -362,9 +362,9 @@ afw_object_get_property_as_base64Binary_source( \
  * @param xctx of caller.
  * @return const afw_memory_t *.
  */
-#define afw_object_get_property_as_base64Binary( \
+#define afw_object_get_property_as_base64Binary_internal( \
     object, property_name, p, xctx) \
-afw_object_get_property_as_base64Binary_source( \
+afw_object_get_property_as_base64Binary_internal_source( \
     object, property_name, AFW__FILE_LINE__, p, xctx)
 
 /**
@@ -377,7 +377,7 @@ afw_object_get_property_as_base64Binary_source( \
  * @return const afw_memory_t *.
  */
 AFW_DECLARE(const afw_memory_t *)
-afw_object_get_property_as_base64Binary_source(
+afw_object_get_property_as_base64Binary_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
@@ -399,9 +399,9 @@ afw_object_get_property_as_base64Binary_source(
  * old code when possible.
  *
  */
-#define afw_object_old_get_next_property_as_base64Binary( \
+#define afw_object_old_get_next_property_as_base64Binary_internal( \
     object, iterator, property_name, xctx) \
-afw_object_get_next_property_as_base64Binary_source( \
+afw_object_get_next_property_as_base64Binary_internal_source( \
     object, iterator, property_name, AFW__FILE_LINE__, \
     ((object)->p ? (object)->p : (xctx)->p), (xctx))
 
@@ -414,9 +414,9 @@ afw_object_get_next_property_as_base64Binary_source( \
  * @param xctx of caller.
  * @return const afw_memory_t *.
  */
-#define afw_object_get_next_property_as_base64Binary( \
+#define afw_object_get_next_property_as_base64Binary_internal( \
     object, iterator, property_name, p, xctx) \
-afw_object_get_next_property_as_base64Binary_source( \
+afw_object_get_next_property_as_base64Binary_internal_source( \
     object, iterator, property_name, AFW__FILE_LINE__, p, xctx)
 
 /**
@@ -430,7 +430,7 @@ afw_object_get_next_property_as_base64Binary_source( \
  * @return const afw_memory_t *.
  */
 AFW_DECLARE(const afw_memory_t *)
-afw_object_get_next_property_as_base64Binary_source(
+afw_object_get_next_property_as_base64Binary_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,

@@ -510,7 +510,7 @@ afw_application_internal_application_conf_type_create_cede_p(
      * rootFilePaths: evaluate each host directory as a template and resolve
      * to a full path at application create (issue #15).
      */
-    root_file_paths = afw_object_old_get_property_as_object(
+    root_file_paths = afw_object_old_get_property_as_object_internal(
         env->application_object, afw_v_rootFilePaths, xctx);
     env->root_file_paths = NULL;
     if (root_file_paths) {
@@ -548,7 +548,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     }
 
     /* defaultFlags */
-    default_flags = afw_object_old_get_property_as_array(env->application_object,
+    default_flags = afw_object_old_get_property_as_array_internal(env->application_object,
         afw_v_defaultFlags, xctx);
     if (default_flags) {
         afw_flag_set_default_flag_ids(default_flags, xctx);
@@ -562,7 +562,7 @@ afw_application_internal_application_conf_type_create_cede_p(
         variable_definitions_object, env->application_object, xctx);
 
     /* qualifiedVariables definitions. */
-    env->application_qualified_variables = afw_object_old_get_property_as_object(
+    env->application_qualified_variables = afw_object_old_get_property_as_object_internal(
         env->application_object, afw_v_qualifiedVariables, xctx);
     if (env->application_qualified_variables) {
         detail_source_location = afw_utf8_printf(
@@ -596,7 +596,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     }
 
     /* Process authorizationControl*/
-    object = afw_object_old_get_property_as_object(properties,
+    object = afw_object_old_get_property_as_object_internal(properties,
         afw_v_authorizationControl, xctx);
     afw_authorization_internal_set_control(object, xctx);
 

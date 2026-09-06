@@ -428,7 +428,7 @@ afw_xctx_qualifier_stack_qualifiers_object_push(
     const afw_object_t *qualifier_object;
 
     for (iterator = NULL;
-        (qualifier_object = afw_object_old_get_next_property_as_object(
+        (qualifier_object = afw_object_old_get_next_property_as_object_internal(
             context_object, &iterator, &qualifier_name, xctx)); )
     {
         afw_xctx_qualifier_stack_qualifier_object_push(

@@ -196,12 +196,12 @@ struct afw_value_null_managed_s {
 };
 
 /**
- * @brief Typesafe cast of data type null.
+ * @brief Typesafe peel of data type null internal.
  * @param value (const afw_value_t *).
  * @return (void *)
  */
 AFW_DECLARE(void *)
-afw_value_as_null(
+afw_value_as_null_internal(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -295,9 +295,9 @@ afw_value_null_create(void * internal,
  * old code when possible.
  *
  */
-#define afw_object_old_get_property_as_null( \
+#define afw_object_old_get_property_as_null_internal( \
     object, property_name, xctx) \
-afw_object_get_property_as_null_source( \
+afw_object_get_property_as_null_internal_source( \
     object, property_name, AFW__FILE_LINE__, \
     ((object)->p ? (object)->p : (xctx)->p), (xctx))
 
@@ -309,9 +309,9 @@ afw_object_get_property_as_null_source( \
  * @param xctx of caller.
  * @return void *.
  */
-#define afw_object_get_property_as_null( \
+#define afw_object_get_property_as_null_internal( \
     object, property_name, p, xctx) \
-afw_object_get_property_as_null_source( \
+afw_object_get_property_as_null_internal_source( \
     object, property_name, AFW__FILE_LINE__, p, xctx)
 
 /**
@@ -324,7 +324,7 @@ afw_object_get_property_as_null_source( \
  * @return void *.
  */
 AFW_DECLARE(void *)
-afw_object_get_property_as_null_source(
+afw_object_get_property_as_null_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
@@ -346,9 +346,9 @@ afw_object_get_property_as_null_source(
  * old code when possible.
  *
  */
-#define afw_object_old_get_next_property_as_null( \
+#define afw_object_old_get_next_property_as_null_internal( \
     object, iterator, property_name, xctx) \
-afw_object_get_next_property_as_null_source( \
+afw_object_get_next_property_as_null_internal_source( \
     object, iterator, property_name, AFW__FILE_LINE__, \
     ((object)->p ? (object)->p : (xctx)->p), (xctx))
 
@@ -361,9 +361,9 @@ afw_object_get_next_property_as_null_source( \
  * @param xctx of caller.
  * @return void *.
  */
-#define afw_object_get_next_property_as_null( \
+#define afw_object_get_next_property_as_null_internal( \
     object, iterator, property_name, p, xctx) \
-afw_object_get_next_property_as_null_source( \
+afw_object_get_next_property_as_null_internal_source( \
     object, iterator, property_name, AFW__FILE_LINE__, p, xctx)
 
 /**
@@ -377,7 +377,7 @@ afw_object_get_next_property_as_null_source( \
  * @return void *.
  */
 AFW_DECLARE(void *)
-afw_object_get_next_property_as_null_source(
+afw_object_get_next_property_as_null_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,
