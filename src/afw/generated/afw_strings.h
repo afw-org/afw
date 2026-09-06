@@ -57229,32 +57229,6 @@ afw_self_v_failure;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_false \
-    "false"
-
-/** @brief 'afw_utf8_t' for AFW_Q_false */
-#define afw_s_false \
-    (&afw_self_v_false.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_false */
-#define afw_self_s_false \
-    (afw_self_v_false.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_false */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_false;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_false */
-#define afw_z_false \
-    (afw_self_v_false.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_false */
-#define afw_v_false \
-    (&afw_self_v_false.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_fatal \
     "fatal"
 
@@ -73761,6 +73735,58 @@ afw_self_v_miscellaneous;
 /** @brief 'const afw_value_t *' for AFW_Q_miscellaneous */
 #define afw_v_miscellaneous \
     (&afw_self_v_miscellaneous.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_mnemonic_false \
+    "false"
+
+/** @brief 'afw_utf8_t' for AFW_Q_mnemonic_false */
+#define afw_s_mnemonic_false \
+    (&afw_self_v_mnemonic_false.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_mnemonic_false */
+#define afw_self_s_mnemonic_false \
+    (afw_self_v_mnemonic_false.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_mnemonic_false */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_mnemonic_false;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_mnemonic_false */
+#define afw_z_mnemonic_false \
+    (afw_self_v_mnemonic_false.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_mnemonic_false */
+#define afw_v_mnemonic_false \
+    (&afw_self_v_mnemonic_false.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_mnemonic_true \
+    "true"
+
+/** @brief 'afw_utf8_t' for AFW_Q_mnemonic_true */
+#define afw_s_mnemonic_true \
+    (&afw_self_v_mnemonic_true.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_mnemonic_true */
+#define afw_self_s_mnemonic_true \
+    (afw_self_v_mnemonic_true.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_mnemonic_true */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_mnemonic_true;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_mnemonic_true */
+#define afw_z_mnemonic_true \
+    (afw_self_v_mnemonic_true.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_mnemonic_true */
+#define afw_v_mnemonic_true \
+    (&afw_self_v_mnemonic_true.pub)
 
 
 
@@ -96017,32 +96043,6 @@ afw_self_v_transitory;
 /** @brief 'const afw_value_t *' for AFW_Q_transitory */
 #define afw_v_transitory \
     (&afw_self_v_transitory.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_true \
-    "true"
-
-/** @brief 'afw_utf8_t' for AFW_Q_true */
-#define afw_s_true \
-    (&afw_self_v_true.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_true */
-#define afw_self_s_true \
-    (afw_self_v_true.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_true */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_true;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_true */
-#define afw_z_true \
-    (afw_self_v_true.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_true */
-#define afw_v_true \
-    (&afw_self_v_true.pub)
 
 
 

@@ -16,6 +16,9 @@
 #   sign up to the end of the line.  The value can contain valid c escape
 #   characters such as \n.  By convention, name should start with a_ to
 #   distinguish it from name where name and value are the same.
+#   Use mnemonic_<word>=<word> for keyword spellings that must intern
+#   (compile pointer-compare) without using the word as the C label
+#   (mnemonic_true=true vs boolean::true).
 #   If the name contains '::', what's before the '::' can be one of the 
 #   supported dataTypes and what's after is the name. The supported dataTypes
 #   are: boolean, double, integer, and any data type that has a "cType" equal
@@ -590,9 +593,9 @@ var
 origin
 expressions
 
-# true and false string.
-true
-false
+# Keyword spelling of true and false (not the boolean values).
+mnemonic_true=true
+mnemonic_false=false
 
 # special number identifiers
 Infinity
@@ -708,8 +711,6 @@ number
 string
 boolean
 null
-true
-false
   
 # qualifiers
 fn

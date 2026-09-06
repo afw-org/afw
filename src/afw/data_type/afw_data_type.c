@@ -450,7 +450,7 @@ impl_afw_data_type_boolean_internal_to_utf8(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    return (*(afw_boolean_t *)from_internal) ? afw_s_true : afw_s_false;
+    return (*(afw_boolean_t *)from_internal) ? afw_s_mnemonic_true : afw_s_mnemonic_false;
 }
 
 

@@ -547,7 +547,7 @@ afw_object_old_get_property_as_boolean_deprecated(
             string = afw_value_convert_to_utf8(value, xctx->p, xctx);
 
             if (
-                afw_utf8_compare_ignore_case(string, afw_s_true, xctx) == 0 ||
+                afw_utf8_compare_ignore_case(string, afw_s_mnemonic_true, xctx) == 0 ||
                 (string->len == 1 &&
                     (
                     *string->s == 't' ||
@@ -560,7 +560,7 @@ afw_object_old_get_property_as_boolean_deprecated(
             }
 
             else if (
-                afw_utf8_compare_ignore_case(string, afw_s_false, xctx)== 0 ||
+                afw_utf8_compare_ignore_case(string, afw_s_mnemonic_false, xctx)== 0 ||
                 (string->len == 1 &&
                     (
                     *string->s == 'f' ||

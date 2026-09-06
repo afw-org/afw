@@ -13227,12 +13227,6 @@ afw_self_v_failure = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
-afw_self_v_false = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_false)
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_fatal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_fatal)
@@ -17040,6 +17034,18 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_miscellaneous = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_miscellaneous)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_mnemonic_false = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_mnemonic_false)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_mnemonic_true = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_mnemonic_true)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -22176,12 +22182,6 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_transitory = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_transitory)
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_string_t)
-afw_self_v_true = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_true)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -63216,7 +63216,6 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_extensions,
     &afw_self_v_facility,
     &afw_self_v_failure,
-    &afw_self_v_false,
     &afw_self_v_fatal,
     &afw_self_v_file,
     &afw_self_v_filenameSuffix,
@@ -63852,6 +63851,8 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_min_string,
     &afw_self_v_min_time,
     &afw_self_v_miscellaneous,
+    &afw_self_v_mnemonic_false,
+    &afw_self_v_mnemonic_true,
     &afw_self_v_mod,
     &afw_self_v_modDouble,
     &afw_self_v_modInteger,
@@ -64707,7 +64708,6 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_trace7,
     &afw_self_v_trace8,
     &afw_self_v_transitory,
-    &afw_self_v_true,
     &afw_self_v_try,
     &afw_self_v_type,
     &afw_self_v_typeCheck,

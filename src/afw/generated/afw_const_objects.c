@@ -100890,7 +100890,7 @@ impl_991_property_dataType = {
 static const afw_runtime_property_t
 impl_991_property_defaultValue = {
     afw_v_defaultValue,
-    &afw_self_v_true.pub
+    &afw_self_v_mnemonic_true.pub
 };
 
 static const afw_runtime_property_t

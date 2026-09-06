@@ -3181,12 +3181,12 @@ afw_compile_parse_TestScript(
             break;
         }
         if (afw_utf8_equal(key, afw_s_skip)) {
-            if (afw_utf8_equal(string, afw_s_true)) {
+            if (afw_utf8_equal(string, afw_s_mnemonic_true)) {
                 afw_object_set_property(test_script_object,
                     afw_compile_intern_utf8(key),
                     afw_boolean_v_true, parser->xctx);
             }
-            else if (!afw_utf8_equal(string, afw_s_false)) {
+            else if (!afw_utf8_equal(string, afw_s_mnemonic_false)) {
                 AFW_COMPILE_THROW_ERROR_Z(
                     "'skip:' must be 'true' or 'false'");
             }
@@ -3246,7 +3246,7 @@ afw_compile_parse_TestScript(
         }
 
         else if (afw_utf8_equal(key, afw_s_skip)) {
-            if (afw_utf8_equal(string, afw_s_true)) {
+            if (afw_utf8_equal(string, afw_s_mnemonic_true)) {
                 if (!test_object) {
                     AFW_COMPILE_THROW_ERROR_Z("'test:' missing");
                 }
@@ -3254,7 +3254,7 @@ afw_compile_parse_TestScript(
                     afw_compile_intern_utf8(key),
                     afw_boolean_v_true, parser->xctx);
             }
-            else if (!afw_utf8_equal(string, afw_s_false)) {
+            else if (!afw_utf8_equal(string, afw_s_mnemonic_false)) {
                 AFW_COMPILE_THROW_ERROR_Z(
                     "skip: must be 'true' or 'false'");
             }

@@ -177,14 +177,16 @@ def _is_generated_label(name):
 
 
 def _is_parse_word_string(name, value):
-    """True if this string is an identifier-like spelling parse may hit.
+    """True if parse may intern this spelling as an identifier.
 
-    `strings.txt` `label=value` (and other aliases) have name != value.
-    zz__ invent-for-C names also differ from their text. Keep single words.
+    Compile pointer-compares identifier tokens to generated string
+    values. Intern is keyed by utf8. Include name==value parse words
+    and mnemonic_* aliases (mnemonic_true=true) whose value is an
+    identifier spelling.
     """
-    if name != value:
+    if not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*', value):
         return False
-    return re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*', value) is not None
+    return name == value or name.startswith('mnemonic_')
 
 
 def _write_string_decl(fd, prefix, dataType, name, value, decorate):

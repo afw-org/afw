@@ -40,8 +40,8 @@ extern "C" {
 #define AFW_JSON_S_PRIMITIVE_BOOLEAN afw_s_boolean
 #define AFW_JSON_Q_PRIMITIVE_NULL    AFW_Q_null
 #define AFW_JSON_S_PRIMITIVE_NULL    afw_s_null
-#define AFW_JSON_Q_PRIMITIVE_BOOLEAN_TRUE  AFW_Q_true
-#define AFW_JSON_Q_PRIMITIVE_BOOLEAN_FALSE AFW_Q_false
+#define AFW_JSON_Q_PRIMITIVE_BOOLEAN_TRUE  AFW_Q_mnemonic_true
+#define AFW_JSON_Q_PRIMITIVE_BOOLEAN_FALSE AFW_Q_mnemonic_false
 
 #define AFW_JSON_Q_INFINITY        "Infinity"
 #define AFW_JSON_Q_MINUS_INFINITY  "-Infinity"
