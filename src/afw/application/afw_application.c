@@ -510,8 +510,8 @@ afw_application_internal_application_conf_type_create_cede_p(
      * rootFilePaths: evaluate each host directory as a template and resolve
      * to a full path at application create (issue #15).
      */
-    root_file_paths = afw_object_old_get_property_as_object_internal(
-        env->application_object, afw_v_rootFilePaths, xctx);
+    root_file_paths = afw_object_get_property_as_object_internal(
+        env->application_object, afw_v_rootFilePaths, p, xctx);
     env->root_file_paths = NULL;
     if (root_file_paths) {
         detail_source_location = afw_utf8_printf(p, xctx,
@@ -548,8 +548,8 @@ afw_application_internal_application_conf_type_create_cede_p(
     }
 
     /* defaultFlags */
-    default_flags = afw_object_old_get_property_as_array_internal(env->application_object,
-        afw_v_defaultFlags, xctx);
+    default_flags = afw_object_get_property_as_array_internal(env->application_object,
+        afw_v_defaultFlags, p, xctx);
     if (default_flags) {
         afw_flag_set_default_flag_ids(default_flags, xctx);
     }
@@ -562,8 +562,8 @@ afw_application_internal_application_conf_type_create_cede_p(
         variable_definitions_object, env->application_object, xctx);
 
     /* qualifiedVariables definitions. */
-    env->application_qualified_variables = afw_object_old_get_property_as_object_internal(
-        env->application_object, afw_v_qualifiedVariables, xctx);
+    env->application_qualified_variables = afw_object_get_property_as_object_internal(
+        env->application_object, afw_v_qualifiedVariables, p, xctx);
     if (env->application_qualified_variables) {
         detail_source_location = afw_utf8_printf(
             env->application_qualified_variables->p, xctx,
@@ -596,8 +596,8 @@ afw_application_internal_application_conf_type_create_cede_p(
     }
 
     /* Process authorizationControl*/
-    object = afw_object_old_get_property_as_object_internal(properties,
-        afw_v_authorizationControl, xctx);
+    object = afw_object_get_property_as_object_internal(properties,
+        afw_v_authorizationControl, p, xctx);
     afw_authorization_internal_set_control(object, xctx);
 
     /* If conf adapter, start any services that are ready. */

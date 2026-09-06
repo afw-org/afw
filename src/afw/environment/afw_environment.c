@@ -1051,8 +1051,8 @@ afw_environment_load_extension(
     extensionId = NULL;
     modulePath = NULL;
     if (properties) {
-        extensionId = afw_object_old_get_property_as_string_internal(properties,
-            afw_v_extensionId, xctx);
+        extensionId = afw_object_get_property_as_string_internal(properties,
+            afw_v_extensionId, p, xctx);
         if (extensionId) {
             if (extension_id && !afw_utf8_equal(extension_id, extensionId)) {
                 AFW_THROW_ERROR_FZ(general, xctx,

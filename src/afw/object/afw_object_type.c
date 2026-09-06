@@ -28,29 +28,29 @@ impl_create_property_type(
     self = afw_pool_calloc_type(p, afw_object_type_property_type_t, xctx);
     self->property_type_object = property_type_object;
 
-    self->context_type_id = afw_object_old_get_property_as_string_internal(
-        property_type_object, afw_v_contextType, xctx);
+    self->context_type_id = afw_object_get_property_as_string_internal(
+        property_type_object, afw_v_contextType, p, xctx);
 
     self->default_value = afw_object_get_property(property_type_object,
         afw_v_defaultValue, xctx);
 
-    self->data_type_parameter = afw_object_old_get_property_as_string_internal(
-        property_type_object,  afw_v_dataTypeParameter, xctx);
+    self->data_type_parameter = afw_object_get_property_as_string_internal(
+        property_type_object,  afw_v_dataTypeParameter, p, xctx);
 
-    dataType = afw_object_old_get_property_as_string_internal(property_type_object,
-        afw_v_dataType, xctx);
+    dataType = afw_object_get_property_as_string_internal(property_type_object,
+        afw_v_dataType, p, xctx);
     if (dataType) {
         self->data_type = afw_environment_get_data_type(dataType, xctx);
     }
 
-    self->allow_write = afw_object_old_get_property_as_boolean_internal(
-        property_type_object, afw_v_allowWrite, &found, xctx) || !found;
+    self->allow_write = afw_object_get_property_as_boolean_internal(
+        property_type_object, afw_v_allowWrite, &found, p, xctx) || !found;
 
-    self->allow_query = afw_object_old_get_property_as_boolean_internal(
-        property_type_object, afw_v_allowQuery, &found, xctx);
+    self->allow_query = afw_object_get_property_as_boolean_internal(
+        property_type_object, afw_v_allowQuery, &found, p, xctx);
 
-    self->required = afw_object_old_get_property_as_boolean_internal(
-        property_type_object, afw_v_required, &found, xctx);
+    self->required = afw_object_get_property_as_boolean_internal(
+        property_type_object, afw_v_required, &found, p, xctx);
 
     /** @fixme Normalize default_value, etc. */
 
@@ -76,13 +76,13 @@ afw_object_type_internal_create(
     self->object_type_object = object_type_object;
     self->object_type_id = object_type_object->meta.id;
 
-    self->property_types_object = afw_object_old_get_property_as_object_internal(
-        object_type_object, afw_v_propertyTypes, xctx);
+    self->property_types_object = afw_object_get_property_as_object_internal(
+        object_type_object, afw_v_propertyTypes, p, xctx);
     if (self->property_types_object) {
         iterator = NULL;
         while ((property_type_object =
-            afw_object_old_get_next_property_as_object_internal(self->property_types_object,
-                &iterator, &property_name, xctx)))
+            afw_object_get_next_property_as_object_internal(self->property_types_object,
+                &iterator, &property_name, p, xctx)))
         {
             property_type = impl_create_property_type(
                 self->property_types_object, property_type_object, p, xctx);
@@ -92,8 +92,8 @@ afw_object_type_internal_create(
         }
     }
 
-    self->other_properties_object = afw_object_old_get_property_as_object_internal(
-        object_type_object, afw_v_otherProperties, xctx);
+    self->other_properties_object = afw_object_get_property_as_object_internal(
+        object_type_object, afw_v_otherProperties, p, xctx);
     if (self->other_properties_object) {
         self->other_properties =
             impl_create_property_type(
@@ -297,8 +297,8 @@ afw_object_type_property_type_normalize(
     if (afw_value_is_object(result)) {
         object = ((const afw_value_object_t *)result)->internal;
         embedded_object_type_id =
-            afw_object_old_get_property_as_string_internal(
-                pt->property_type_object, afw_v_dataTypeParameter, xctx);
+            afw_object_get_property_as_string_internal(
+                pt->property_type_object, afw_v_dataTypeParameter, p, xctx);
         if (embedded_object_type_id) {
             afw_object_meta_set_object_type_id(
                 object, embedded_object_type_id, xctx);

@@ -2086,8 +2086,8 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
     impl_AdaptiveQueryCriteria_object_parser_t parser;
 
     /* If urlEncodedRQLString property present, process it and return result. */
-    url_encoded_rql_string = afw_object_old_get_property_as_string_internal(
-        query_object, afw_v_urlEncodedRQLString, xctx);
+    url_encoded_rql_string = afw_object_get_property_as_string_internal(
+        query_object, afw_v_urlEncodedRQLString, p, xctx);
     if (url_encoded_rql_string) {
 
         /* Make sure only urlEncodedRQLString is specified. */

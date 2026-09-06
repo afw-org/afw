@@ -112,8 +112,8 @@ impl_compile_property_type(
         pt->property_type_path, p, xctx);
 
     /* dataType */
-    s = afw_object_old_get_property_as_string_internal(object,
-        afw_v_dataType, xctx);
+    s = afw_object_get_property_as_string_internal(object,
+        afw_v_dataType, p, xctx);
     if (s) {
         pt->data_type = afw_environment_get_data_type(s, xctx);
         if (!pt->data_type) {
@@ -128,46 +128,46 @@ impl_compile_property_type(
     /** @fixme*/
 
     /* custom */
-    custom = afw_object_old_get_property_as_object_internal(object,
-        afw_v_custom, xctx);
+    custom = afw_object_get_property_as_object_internal(object,
+        afw_v_custom, p, xctx);
     if (custom) {
         pt->custom_variables = impl_compile_custom(
             custom, model, xctx);
     }
 
     /* allowQuery - default false */
-    b = afw_object_old_get_property_as_boolean_internal(object,
-        afw_v_allowQuery, &found, xctx);
+    b = afw_object_get_property_as_boolean_internal(object,
+        afw_v_allowQuery, &found, p, xctx);
     pt->allow_query = found && b;
 
     /* allowRead - defaults to true */
-    b = afw_object_old_get_property_as_boolean_internal(object,
-        afw_v_allowRead, &found, xctx);
+    b = afw_object_get_property_as_boolean_internal(object,
+        afw_v_allowRead, &found, p, xctx);
     pt->allow_query = !found || b;
 
     /* allowWrite - default to true */
-    b = afw_object_old_get_property_as_boolean_internal(object,
-        afw_v_allowWrite, &found, xctx);
+    b = afw_object_get_property_as_boolean_internal(object,
+        afw_v_allowWrite, &found, p, xctx);
     pt->allow_write = !found || b;
 
     /* required - default false */
-    b = afw_object_old_get_property_as_boolean_internal(object,
-        afw_v_required, &found, xctx);
+    b = afw_object_get_property_as_boolean_internal(object,
+        afw_v_required, &found, p, xctx);
     pt->required = found && b;
 
     /* transitory - default false */
-    b = afw_object_old_get_property_as_boolean_internal(object,
-        afw_v_transitory, &found, xctx);
+    b = afw_object_get_property_as_boolean_internal(object,
+        afw_v_transitory, &found, p, xctx);
     pt->transitory = found && b;
 
     /* unique - default false */
-    b = afw_object_old_get_property_as_boolean_internal(object,
-        afw_v_unique, &found, xctx);
+    b = afw_object_get_property_as_boolean_internal(object,
+        afw_v_unique, &found, p, xctx);
     pt->unique = found && b;
 
     /* defaultValue */
-    s = afw_object_old_get_property_as_string_internal(object,
-        afw_v_defaultValue, xctx);
+    s = afw_object_get_property_as_string_internal(object,
+        afw_v_defaultValue, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/defaultValue",
@@ -177,8 +177,8 @@ impl_compile_property_type(
     }
 
     /* mappedPropertyName */
-    s = afw_object_old_get_property_as_string_internal(object,
-        afw_v_mappedPropertyName, xctx);
+    s = afw_object_get_property_as_string_internal(object,
+        afw_v_mappedPropertyName, p, xctx);
     if (s) {
         impl_name_from_utf8(&pt->mapped_property_name, s);
     }
@@ -187,8 +187,8 @@ impl_compile_property_type(
     }
 
     /* onGetProperty */
-    s = afw_object_old_get_property_as_string_internal(object,
-        afw_v_onGetProperty, xctx);
+    s = afw_object_get_property_as_string_internal(object,
+        afw_v_onGetProperty, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onGetProperty",
@@ -198,8 +198,8 @@ impl_compile_property_type(
     }
 
     /* onGetInitialValue */
-    s = afw_object_old_get_property_as_string_internal(object,
-        afw_v_onGetInitialValue, xctx);
+    s = afw_object_get_property_as_string_internal(object,
+        afw_v_onGetInitialValue, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onGetInitialValue",
@@ -209,8 +209,8 @@ impl_compile_property_type(
     }
 
     /* setProperty */
-    s = afw_object_old_get_property_as_string_internal(object,
-        afw_v_onSetProperty, xctx);
+    s = afw_object_get_property_as_string_internal(object,
+        afw_v_onSetProperty, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onSetProperty",
@@ -453,32 +453,32 @@ impl_harvest_object_type(
     }
 
     /* allowAdd */
-    flag = afw_object_old_get_property_as_boolean_internal(object,
-        afw_v_allowAdd, &found, xctx);
+    flag = afw_object_get_property_as_boolean_internal(object,
+        afw_v_allowAdd, &found, p, xctx);
     if (found) {
         afw_object_set_property(result,
             afw_v_allowAdd, afw_value_for_boolean(flag), xctx);
     }
 
     /* allowChange */
-    flag = afw_object_old_get_property_as_boolean_internal(object,
-        afw_v_allowChange, &found, xctx);
+    flag = afw_object_get_property_as_boolean_internal(object,
+        afw_v_allowChange, &found, p, xctx);
     if (found) {
         afw_object_set_property(result,
             afw_v_allowChange, afw_value_for_boolean(flag), xctx);
     }
 
     /* allowDelete */
-    flag = afw_object_old_get_property_as_boolean_internal(object,
-        afw_v_allowDelete, &found, xctx);
+    flag = afw_object_get_property_as_boolean_internal(object,
+        afw_v_allowDelete, &found, p, xctx);
     if (found) {
         afw_object_set_property(result,
             afw_v_allowDelete, afw_value_for_boolean(flag), xctx);
     }
 
     /* allowEntity */
-    flag = afw_object_old_get_property_as_boolean_internal(object,
-        afw_v_allowEntity, &found, xctx);
+    flag = afw_object_get_property_as_boolean_internal(object,
+        afw_v_allowEntity, &found, p, xctx);
     if (found) {
         afw_object_set_property(result,
             afw_v_allowEntity, afw_value_for_boolean(flag), xctx);
@@ -537,8 +537,8 @@ impl_harvest_object_type(
     }
 
     /* otherProperties. */
-    obj = afw_object_old_get_property_as_object_internal(object,
-        afw_v_otherProperties, xctx);
+    obj = afw_object_get_property_as_object_internal(object,
+        afw_v_otherProperties, p, xctx);
     if (obj) {
         impl_harvest_property_type(
             result, afw_v_otherProperties,
@@ -546,8 +546,8 @@ impl_harvest_object_type(
     }
 
     /* propertyTypes */
-    property_types = afw_object_old_get_property_as_object_internal(object,
-        afw_v_propertyTypes, xctx);
+    property_types = afw_object_get_property_as_object_internal(object,
+        afw_v_propertyTypes, p, xctx);
     if (property_types) {
 
         /* Make new propertyTypes object. */
@@ -566,8 +566,8 @@ impl_harvest_object_type(
 
         /* Add all properties that were not inherited. */
         for (iterator = NULL;;) {
-            obj = afw_object_old_get_next_property_as_object_internal(
-                property_types, &iterator, &property_name, xctx);
+            obj = afw_object_get_next_property_as_object_internal(
+                property_types, &iterator, &property_name, p, xctx);
             if (!obj) break;
             if (!impl_is_inherited(property_types, property_name, xctx)) {
                 impl_harvest_property_type(
@@ -628,8 +628,8 @@ impl_object_type_compile(
         ot->object_type_id, p, xctx);
 
     /* custom */
-    custom = afw_object_old_get_property_as_object_internal(object,
-        afw_v_custom, xctx);
+    custom = afw_object_get_property_as_object_internal(object,
+        afw_v_custom, p, xctx);
     if (custom) {
         ot->custom_variables = impl_compile_custom(
             custom, model, xctx);
@@ -679,13 +679,13 @@ impl_object_type_compile(
     }
 
     /* Count the number of properties. */
-    properties = afw_object_old_get_property_as_object_internal(object,
-        afw_v_propertyTypes, xctx);
+    properties = afw_object_get_property_as_object_internal(object,
+        afw_v_propertyTypes, p, xctx);
     count = 0;
     if (properties) {
         for (iterator = NULL;
-            (afw_object_old_get_next_property_as_object_internal(
-                properties, &iterator, &property_name, xctx));
+            (afw_object_get_next_property_as_object_internal(
+                properties, &iterator, &property_name, p, xctx));
             count++);
     }
 
@@ -697,8 +697,8 @@ impl_object_type_compile(
     if (properties) {
         for (iterator = NULL,
             pt = ot->property_type;
-            (pt_object = afw_object_old_get_next_property_as_object_internal(
-                properties, &iterator, &property_name, xctx));
+            (pt_object = afw_object_get_next_property_as_object_internal(
+                properties, &iterator, &property_name, p, xctx));
             pt++)
         {
             *pt = impl_compile_property_type(
@@ -773,8 +773,8 @@ impl_object_type_compile(
     }
 
     /* Compile otherProperties, if it exists. */
-    pt_object = afw_object_old_get_property_as_object_internal(object,
-        afw_v_otherProperties, xctx);
+    pt_object = afw_object_get_property_as_object_internal(object,
+        afw_v_otherProperties, p, xctx);
     if (pt_object) {
         ot->property_type_other =
             impl_compile_property_type(
@@ -823,16 +823,16 @@ afw_model_compile(
         AFW_UTF8_FMT "/objectTypes/", AFW_UTF8_FMT_ARG(path));
 
     /* custom */
-    model->custom_variables = afw_object_old_get_property_as_object_internal(object,
-        afw_v_custom, xctx);
+    model->custom_variables = afw_object_get_property_as_object_internal(object,
+        afw_v_custom, p, xctx);
     if (model->custom_variables) {
         model->custom_variables = impl_compile_custom(
             model->custom_variables, model, xctx);
     }
 
     /* Get objectTypes property from model. */
-    objectTypes = afw_object_old_get_property_as_object_internal(
-        model->model_object, afw_v_objectTypes, xctx);
+    objectTypes = afw_object_get_property_as_object_internal(
+        model->model_object, afw_v_objectTypes, p, xctx);
     if (!objectTypes) {
         AFW_THROW_ERROR_Z(general,
             "Object model must have objectTypes property", xctx);
@@ -840,8 +840,8 @@ afw_model_compile(
 
     /* Iterate compiling objectTypes and adding to object_types. */
     for (iterator = NULL;;) {
-        object_type = afw_object_old_get_next_property_as_object_internal(
-            objectTypes, &iterator, &property_name, xctx);
+        object_type = afw_object_get_next_property_as_object_internal(
+            objectTypes, &iterator, &property_name, p, xctx);
         if (!object_type) break;
         /* objectType ids are utf8 hash keys, not object property names. */
         property_name_utf8 = afw_object_string_property_name_as_utf8(

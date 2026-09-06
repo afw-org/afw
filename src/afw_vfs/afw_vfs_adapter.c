@@ -58,8 +58,8 @@ afw_vfs_adapter_internal_create_cede_p(
     self = (afw_vfs_adapter_internal_t *)adapter;
 
     /* Get vfsMap property. */
-    vfs_map = afw_object_old_get_property_as_array_internal(
-        adapter->properties, afw_vfs_v_vfsMap, xctx);
+    vfs_map = afw_object_get_property_as_array_internal(
+        adapter->properties, afw_vfs_v_vfsMap, p, xctx);
     count = 0;
     if (vfs_map) {
         count = afw_array_get_count(vfs_map, xctx);
@@ -212,8 +212,8 @@ afw_vfs_adapter_internal_create_cede_p(
     }
 
     /* Process markExecutable */
-    x_list = afw_object_old_get_property_as_array_internal(adapter->properties,
-        afw_vfs_v_markExecutable, xctx);
+    x_list = afw_object_get_property_as_array_internal(adapter->properties,
+        afw_vfs_v_markExecutable, p, xctx);
     count = 0;
     if (x_list) {
         count = afw_array_get_count(x_list, xctx);
@@ -248,8 +248,8 @@ afw_vfs_adapter_internal_create_cede_p(
         afw_boolean_t found;
         afw_integer_t max_read;
 
-        max_read = afw_object_old_get_property_as_integer_internal(
-            adapter->properties, afw_vfs_v_maxReadBytes, &found, xctx);
+        max_read = afw_object_get_property_as_integer_internal(
+            adapter->properties, afw_vfs_v_maxReadBytes, &found, p, xctx);
         if (!found) {
             self->max_read_bytes = AFW_VFS_DEFAULT_MAX_READ_BYTES;
         }

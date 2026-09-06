@@ -409,10 +409,10 @@ afw_context_variable_definitions_add_based_on_object(
     object_type_object = afw_object_view_create(object_type_object, NULL,
         &afw_object_options_composite, p, xctx);
 
-    property_types = afw_object_old_get_property_as_object_internal(
-        object_type_object, afw_v_propertyTypes, xctx);
-    other_properties = afw_object_old_get_property_as_object_internal(
-        object_type_object, afw_v_otherProperties, xctx);
+    property_types = afw_object_get_property_as_object_internal(
+        object_type_object, afw_v_propertyTypes, p, xctx);
+    other_properties = afw_object_get_property_as_object_internal(
+        object_type_object, afw_v_otherProperties, p, xctx);
     iterator = NULL;
     while ((value = afw_object_get_next_property(object,
         &iterator, &property_name, xctx)))
@@ -420,8 +420,8 @@ afw_context_variable_definitions_add_based_on_object(
         /* Determine property type for this property name. */
         pt = NULL;
         if (property_types) {
-            pt = afw_object_old_get_property_as_object_internal(property_types,
-                property_name, xctx);
+            pt = afw_object_get_property_as_object_internal(property_types,
+                property_name, p, xctx);
         }
         if (!pt) {
             pt = other_properties;
@@ -443,8 +443,8 @@ afw_context_variable_definitions_add_based_on_object(
          * If this is a compiled data type, ignore if not already compiled or
          * use relatedPropertyType for pt if it is.
          */
-        s = afw_object_old_get_property_as_string_internal(pt,
-            afw_v_dataType, xctx);
+        s = afw_object_get_property_as_string_internal(pt,
+            afw_v_dataType, p, xctx);
         if (s) {
             data_type = afw_environment_get_data_type(s, xctx);
             if (data_type && data_type->evaluated) {
@@ -452,8 +452,8 @@ afw_context_variable_definitions_add_based_on_object(
                     continue;
                 }
                 /** @fixme NOW relatedPropertyType no longer exists.
-                pt = afw_object_old_get_property_as_object_internal(pt,
-                    afw_v_relatedPropertyType, xctx);*/
+                pt = afw_object_get_property_as_object_internal(pt,
+                    afw_v_relatedPropertyType, p, xctx);*/
             }
         }
 
@@ -504,11 +504,11 @@ afw_context_variable_definitions_add_based_on_object_type_id(
     object_type_object = afw_object_view_create(object_type_object, NULL,
         &afw_object_options_composite, p, xctx);
 
-    property_types = afw_object_old_get_property_as_object_internal(
-        object_type_object, afw_v_propertyTypes, xctx);
+    property_types = afw_object_get_property_as_object_internal(
+        object_type_object, afw_v_propertyTypes, p, xctx);
     iterator = NULL;
-    while ((pt = afw_object_old_get_next_property_as_object_internal(
-        property_types, &iterator, &property_name, xctx)))
+    while ((pt = afw_object_get_next_property_as_object_internal(
+        property_types, &iterator, &property_name, p, xctx)))
     {
         /* Skip custom. */
         if (afw_value_equal(property_name, afw_v_custom, xctx)) {
@@ -516,8 +516,8 @@ afw_context_variable_definitions_add_based_on_object_type_id(
         }
 
         /* Get data type. */
-        data_type_id = afw_object_old_get_property_as_string_internal(pt,
-            afw_v_dataType, xctx);
+        data_type_id = afw_object_get_property_as_string_internal(pt,
+            afw_v_dataType, p, xctx);
         if (data_type_id) {
             data_type = afw_environment_get_data_type(data_type_id, xctx);
         }
@@ -530,8 +530,8 @@ afw_context_variable_definitions_add_based_on_object_type_id(
         /** @fixme NOW relatedPropertyType no longer exists.  Use dataTypeParameter. */
             /* Use relatedPropertyType for property type if available or skip. */
             /** @fixme NOW relatedPropertyType no longer exists.
-            related_pt = afw_object_old_get_property_as_object_internal(
-                pt, afw_v_relatedPropertyType, xctx);*/
+            related_pt = afw_object_get_property_as_object_internal(
+                pt, afw_v_relatedPropertyType, p, xctx);*/
             related_pt = NULL;
             if (!related_pt) {
                 continue;

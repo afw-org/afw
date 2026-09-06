@@ -909,9 +909,9 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
         AFW_TRY {
 
             iterator = NULL;
-            while ((object = afw_object_old_get_next_property_as_object_internal(
+            while ((object = afw_object_get_next_property_as_object_internal(
                 ((const afw_value_object_t *)untrusted_qualified_variables)->internal,
-                &iterator, &property_name, xctx)))
+                &iterator, &property_name, p, xctx)))
             {
                 qualifier_object = afw_compile_object_all_template_properties(
                     object, NULL, NULL, p, xctx);

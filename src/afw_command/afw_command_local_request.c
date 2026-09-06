@@ -276,8 +276,8 @@ afw_command_local_request_create(
     self->remaining_body = body->size;
 
     /* Method */
-    self->pub.method = afw_object_old_get_property_as_string_internal(
-        properties, afw_v_REQUEST_METHOD, xctx);
+    self->pub.method = afw_object_get_property_as_string_internal(
+        properties, afw_v_REQUEST_METHOD, p, xctx);
     if (!self->pub.method) {
         self->pub.method = afw_s_POST;
         afw_object_set_property_as_string_internal(
@@ -285,8 +285,8 @@ afw_command_local_request_create(
     }
 
     /* Request URI. */
-    self->pub.uri = afw_object_old_get_property_as_string_internal(
-        properties, afw_v_REQUEST_URI, xctx);
+    self->pub.uri = afw_object_get_property_as_string_internal(
+        properties, afw_v_REQUEST_URI, p, xctx);
     if (!self->pub.uri) {
         self->pub.uri = afw_s_a_slash_afw;
         afw_object_set_property_as_string_internal(
@@ -294,11 +294,11 @@ afw_command_local_request_create(
     }
 
     /* Content type. */
-    self->pub.content_type = afw_object_old_get_property_as_string_internal(
-        properties, afw_v_CONTENT_TYPE, xctx);
+    self->pub.content_type = afw_object_get_property_as_string_internal(
+        properties, afw_v_CONTENT_TYPE, p, xctx);
     if (!self->pub.content_type) {
-        self->pub.content_type = afw_object_old_get_property_as_string_internal(
-            properties, afw_v_CONTENT_TYPE, xctx);
+        self->pub.content_type = afw_object_get_property_as_string_internal(
+            properties, afw_v_CONTENT_TYPE, p, xctx);
         if (!self->pub.content_type) {
             self->pub.content_type = afw_s_a_application_json;
         }
@@ -307,8 +307,8 @@ afw_command_local_request_create(
     }
 
     /* Query string */
-    self->pub.query_string = afw_object_old_get_property_as_string_internal(
-        properties, afw_v_QUERY_STRING, xctx);
+    self->pub.query_string = afw_object_get_property_as_string_internal(
+        properties, afw_v_QUERY_STRING, p, xctx);
 
     /* Overwrite CONTENT_LENGTH */
     value = afw_value_create_unmanaged_integer(
@@ -318,10 +318,10 @@ afw_command_local_request_create(
         properties, afw_v_CONTENT_LENGTH, s, xctx);
 
     /* accept */
-    s = afw_object_old_get_property_as_string_internal(properties, afw_v_ACCEPT, xctx);
+    s = afw_object_get_property_as_string_internal(properties, afw_v_ACCEPT, p, xctx);
     if (!s) {
-        s =  afw_object_old_get_property_as_string_internal(
-            properties, afw_v_HTTP_ACCEPT, xctx);
+        s =  afw_object_get_property_as_string_internal(
+            properties, afw_v_HTTP_ACCEPT, p, xctx);
         if (!s) {
             s =  afw_s_a_application_json;
         }

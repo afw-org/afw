@@ -1037,9 +1037,9 @@ impl_get_object_by_uri(
     if (path_parsed) {
         for (name = path_parsed->first_property_name; name; name = name->next) {
             result = (afw_object_view_internal_object_self_t *)
-                afw_object_old_get_property_as_object_internal(
+                afw_object_get_property_as_object_internal(
                 (const afw_object_t *)result,
-                &name->property_name.pub, xctx);
+                &name->property_name.pub, p, xctx);
             if (!result) {
                 goto error;
             }

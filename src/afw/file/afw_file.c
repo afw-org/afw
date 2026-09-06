@@ -360,8 +360,8 @@ afw_file_adapter_create_cede_p(
     );
 
     /* If isDevelopmentInput is true, provide appropriate object types. */
-    b = afw_object_old_get_property_as_boolean_internal(properties,
-        afw_v_isDevelopmentInput, &found, xctx);
+    b = afw_object_get_property_as_boolean_internal(properties,
+        afw_v_isDevelopmentInput, &found, p, xctx);
     if (b) {
         afw_adapter_impl_set_supported_core_object_type(adapter,
             afw_s__AdaptiveCollection_, true, true, xctx);

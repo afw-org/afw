@@ -444,24 +444,24 @@ afw_object_meta_set_meta_object(
 
     /* Try to determine object type if path didn't set it. */
     if (!instance->meta.object_type_uri) {
-        object_type_id = afw_object_old_get_property_as_string_internal(meta,
-            afw_v_objectType, xctx);
+        object_type_id = afw_object_get_property_as_string_internal(meta,
+            afw_v_objectType, p, xctx);
         if (!object_type_id &&
             instance->meta.embedding_object &&
             instance->meta.embedding_object->meta.meta_object)
         {
-            property_types = afw_object_old_get_property_as_object_internal(
-                meta, afw_v_propertyTypes, xctx);
+            property_types = afw_object_get_property_as_object_internal(
+                meta, afw_v_propertyTypes, p, xctx);
             if (property_types) {
                 {
                     const afw_value_string_t id_value =
                         AFW_VALUE_STRING_UNMANAGED(instance->meta.id);
-                    property_type = afw_object_old_get_property_as_object_internal(
-                        property_types, &id_value.pub, xctx);
+                    property_type = afw_object_get_property_as_object_internal(
+                        property_types, &id_value.pub, p, xctx);
                 }
                 if (property_type) {
-                    object_type_id = afw_object_old_get_property_as_string_internal(
-                        property_type, afw_v_dataTypeParameter, xctx);
+                    object_type_id = afw_object_get_property_as_string_internal(
+                        property_type, afw_v_dataTypeParameter, p, xctx);
                 }
             }
         }
@@ -759,21 +759,21 @@ afw_object_meta_log_errors(
     p = instance->p;
 
     /* Log object level errors. */
-    errors = afw_object_old_get_property_as_array_internal(meta, afw_v_errors, xctx);
+    errors = afw_object_get_property_as_array_internal(meta, afw_v_errors, p, xctx);
     if (errors) {
         impl_log_errors(errors, source_location, xctx);
     }
 
     /* Log property level errors. */
-    property_types = afw_object_old_get_property_as_object_internal(meta,
-        afw_v_propertyTypes, xctx);
+    property_types = afw_object_get_property_as_object_internal(meta,
+        afw_v_propertyTypes, p, xctx);
     if (property_types) {
         iterator = NULL;
-        while ((property_type = afw_object_old_get_next_property_as_object_internal(
-            property_types, &iterator, &property_name, xctx)))
+        while ((property_type = afw_object_get_next_property_as_object_internal(
+            property_types, &iterator, &property_name, p, xctx)))
         {
-            errors = afw_object_old_get_property_as_array_internal(property_type,
-                afw_v_errors, xctx);
+            errors = afw_object_get_property_as_array_internal(property_type,
+                afw_v_errors, p, xctx);
             if (errors) {
                 property_source_location = afw_utf8_printf(p, xctx,
                     AFW_UTF8_FMT
