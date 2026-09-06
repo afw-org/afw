@@ -247,7 +247,7 @@ afw_array_as_value(
  * @param count is number of objects.
  * @param p is pool for result.
  * @param xctx of caller.
- * @return array instance.
+ * @return array instance. get_data_type() is object.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_const_create_array_of_objects(
@@ -260,14 +260,20 @@ afw_array_const_create_array_of_objects(
 
 /**
  * @brief Create an immutable array from an array of values.
+ * @param data_type if every element is that type, or NULL if mixed.
  * @param values is address of first value in array.
  * @param count is number for values.
  * @param p is pool for result.
  * @param xctx of caller.
  * @return array instance.
+ *
+ * Elements are existing value pointers; get_entry_value() does not wrap.
+ * Generated const objects and typed empty arrays use the public self
+ * below with a non-NULL data_type.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_const_create_array_of_values(
+    const afw_data_type_t *data_type,
     const afw_value_t *const *values,
     afw_size_t count,
     const afw_pool_t *p,
@@ -280,7 +286,7 @@ afw_array_const_create_array_of_values(
  * @param objects is NULL terminated array of objects.
  * @param p is pool for result.
  * @param xctx of caller.
- * @return array instance.
+ * @return array instance. get_data_type() is object.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_const_create_null_terminated_array_of_objects(
@@ -292,6 +298,7 @@ afw_array_const_create_null_terminated_array_of_objects(
 
 /**
  * @brief Create an immutable array from NULL terminated array of values.
+ * @param data_type if every element is that type, or NULL if mixed.
  * @param values is NULL terminated array of values.
  * @param p is pool for result.
  * @param xctx of caller.
@@ -299,9 +306,31 @@ afw_array_const_create_null_terminated_array_of_objects(
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_const_create_null_terminated_array_of_values(
+    const afw_data_type_t *data_type,
     const afw_value_t *const *values,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
+
+
+/**
+ * @brief Self for immutable array of value pointers.
+ *
+ * Generated const objects and typed empty arrays initialize this
+ * statically. Runtime creates allocate it plus a dual value.
+ */
+typedef struct afw_array_const_array_of_values_self_s {
+    afw_array_t pub;
+    const afw_data_type_t *data_type;
+    afw_size_t count;
+    const afw_value_t *const *values;
+} afw_array_const_array_of_values_self_t;
+
+
+/**
+ * @brief inf for afw_array_const_array_of_values implementation.
+ */
+AFW_DECLARE_CONST_DATA(afw_array_inf_t)
+afw_array_const_array_of_values_inf;
 
 
 

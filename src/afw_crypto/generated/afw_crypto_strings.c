@@ -1244,6 +1244,12 @@ afw_crypto_self_v_zz______object_____AdaptiveCryptoVersionInfo____ = {
 };
 
 const afw_value_string_t
+afw_crypto_self_v_zz___afw__AdaptiveCollection__core = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz___afw__AdaptiveCollection__core)
+};
+
+const afw_value_string_t
 afw_crypto_self_v_zz___afw__AdaptiveFunction__crypto_decrypt = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz___afw__AdaptiveFunction__crypto_decrypt)

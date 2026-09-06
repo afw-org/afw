@@ -2447,6 +2447,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz___afw__AdaptiveCollection__vfs_extension \
+    "/afw/_AdaptiveCollection_/vfs_extension"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz___afw__AdaptiveCollection__vfs_extension */
+#define afw_vfs_s_zz___afw__AdaptiveCollection__vfs_extension \
+    (&afw_vfs_self_v_zz___afw__AdaptiveCollection__vfs_extension.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz___afw__AdaptiveCollection__vfs_extension */
+#define afw_vfs_self_s_zz___afw__AdaptiveCollection__vfs_extension \
+    (afw_vfs_self_v_zz___afw__AdaptiveCollection__vfs_extension.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz___afw__AdaptiveCollection__vfs_extension */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz___afw__AdaptiveCollection__vfs_extension;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz___afw__AdaptiveCollection__vfs_extension */
+#define afw_vfs_z_zz___afw__AdaptiveCollection__vfs_extension \
+    (afw_vfs_self_v_zz___afw__AdaptiveCollection__vfs_extension.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz___afw__AdaptiveCollection__vfs_extension */
+#define afw_vfs_v_zz___afw__AdaptiveCollection__vfs_extension \
+    (&afw_vfs_self_v_zz___afw__AdaptiveCollection__vfs_extension.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__a9c70700d89b \
     "This is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries (names beginning with '.' are omitted unless includeHidden is requested). If this is not a directory and the data is valid utf-8, data is a string; otherwise it is hexBinary. When adding or replacing a regular file, if data is omitted it defaults to an empty string (0-byte file). This property is ignored when adding a directory. Directory delete is non-recursive: the directory must be empty."
 
@@ -2577,6 +2603,32 @@ extern const afw_value_integer_t \
 /** @brief 'const afw_value_t *' for integer 67108864 */
 #define afw_vfs_integer_v_67108864 \
     (&afw_vfs_integer_self_v_67108864.pub)
+
+
+
+/** @brief #define for anyURI in quotes */
+#define AFW_VFS_ANYURI_Q_zz__2b8c16b19a08 \
+    "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_ANYURI_Q_zz__2b8c16b19a08 */
+#define afw_vfs_anyURI_s_zz__2b8c16b19a08 \
+    (&afw_vfs_anyURI_self_v_zz__2b8c16b19a08.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_ANYURI_Q_zz__2b8c16b19a08 */
+#define afw_vfs_anyURI_self_s_zz__2b8c16b19a08 \
+    (afw_vfs_anyURI_self_v_zz__2b8c16b19a08.internal)
+
+/** @brief 'afw_value_anyURI_t' for AFW_VFS_ANYURI_Q_zz__2b8c16b19a08 */
+extern const afw_value_anyURI_t \
+    afw_vfs_anyURI_self_v_zz__2b8c16b19a08;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_ANYURI_Q_zz__2b8c16b19a08 */
+#define afw_vfs_anyURI_z_zz__2b8c16b19a08 \
+    (afw_vfs_anyURI_self_v_zz__2b8c16b19a08.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_ANYURI_Q_zz__2b8c16b19a08 */
+#define afw_vfs_anyURI_v_zz__2b8c16b19a08 \
+    (&afw_vfs_anyURI_self_v_zz__2b8c16b19a08.pub)
 
 
 /**

@@ -414,7 +414,8 @@ afw_value_internal_get_evaluated_metas_default(
     metas = afw_pool_malloc(p, sizeof(afw_value_t *) * 2, xctx);
     metas[0] = afw_value_get_evaluated_meta(value, p, xctx);
     metas[1] = NULL;
-    list = afw_array_const_create_null_terminated_array_of_values(metas, p, xctx);
+    list = afw_array_const_create_null_terminated_array_of_values(
+        NULL, metas, p, xctx);
 
     return afw_value_create_unmanaged_array(list, p, xctx);
 }

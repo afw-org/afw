@@ -3045,6 +3045,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_LDAP_Q_zz___afw__AdaptiveCollection__ldap_extension \
+    "/afw/_AdaptiveCollection_/ldap_extension"
+
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz___afw__AdaptiveCollection__ldap_extension */
+#define afw_ldap_s_zz___afw__AdaptiveCollection__ldap_extension \
+    (&afw_ldap_self_v_zz___afw__AdaptiveCollection__ldap_extension.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz___afw__AdaptiveCollection__ldap_extension */
+#define afw_ldap_self_s_zz___afw__AdaptiveCollection__ldap_extension \
+    (afw_ldap_self_v_zz___afw__AdaptiveCollection__ldap_extension.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz___afw__AdaptiveCollection__ldap_extension */
+extern const afw_value_string_t \
+    afw_ldap_self_v_zz___afw__AdaptiveCollection__ldap_extension;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz___afw__AdaptiveCollection__ldap_extension */
+#define afw_ldap_z_zz___afw__AdaptiveCollection__ldap_extension \
+    (afw_ldap_self_v_zz___afw__AdaptiveCollection__ldap_extension.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz___afw__AdaptiveCollection__ldap_extension */
+#define afw_ldap_v_zz___afw__AdaptiveCollection__ldap_extension \
+    (&afw_ldap_self_v_zz___afw__AdaptiveCollection__ldap_extension.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_LDAP_Q_zz__d0229f8dd302 \
     "Object type for type=adapter adapter_type=ldap synthetic matching rule use object."
 
@@ -3217,6 +3243,32 @@ extern const afw_value_boolean_t \
 /** @brief 'const afw_value_t *' for boolean true */
 #define afw_ldap_boolean_v_true \
     (&afw_ldap_boolean_self_v_true.pub)
+
+
+
+/** @brief #define for anyURI in quotes */
+#define AFW_LDAP_ANYURI_Q_zz__2b8c16b19a08 \
+    "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes"
+
+/** @brief 'afw_utf8_t' for AFW_LDAP_ANYURI_Q_zz__2b8c16b19a08 */
+#define afw_ldap_anyURI_s_zz__2b8c16b19a08 \
+    (&afw_ldap_anyURI_self_v_zz__2b8c16b19a08.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LDAP_ANYURI_Q_zz__2b8c16b19a08 */
+#define afw_ldap_anyURI_self_s_zz__2b8c16b19a08 \
+    (afw_ldap_anyURI_self_v_zz__2b8c16b19a08.internal)
+
+/** @brief 'afw_value_anyURI_t' for AFW_LDAP_ANYURI_Q_zz__2b8c16b19a08 */
+extern const afw_value_anyURI_t \
+    afw_ldap_anyURI_self_v_zz__2b8c16b19a08;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_ANYURI_Q_zz__2b8c16b19a08 */
+#define afw_ldap_anyURI_z_zz__2b8c16b19a08 \
+    (afw_ldap_anyURI_self_v_zz__2b8c16b19a08.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LDAP_ANYURI_Q_zz__2b8c16b19a08 */
+#define afw_ldap_anyURI_v_zz__2b8c16b19a08 \
+    (&afw_ldap_anyURI_self_v_zz__2b8c16b19a08.pub)
 
 
 /**

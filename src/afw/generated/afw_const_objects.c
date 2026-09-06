@@ -409,24 +409,24 @@ impl_1_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_1_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1_array_collectionURIs
+    1,
+    impl_1_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -435,16 +435,10 @@ impl_1_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -1032,24 +1026,24 @@ impl_6_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_6_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_6_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_6_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_6_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_6_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_6_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_6_array_collectionURIs
+    1,
+    impl_6_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -1058,16 +1052,10 @@ impl_6_list_collectionURIs__value = {
     (const afw_array_t *)&impl_6_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_6_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_6_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_6_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_6_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_6_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -3020,24 +3008,24 @@ impl_12_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_12_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_12_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_12_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_12_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_12_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_12_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_12_array_collectionURIs
+    1,
+    impl_12_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -3046,16 +3034,10 @@ impl_12_list_collectionURIs__value = {
     (const afw_array_t *)&impl_12_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_12_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_12_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_12_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_12_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_12_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -3800,24 +3782,24 @@ impl_32_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_32_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_32_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_32_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_32_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_32_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_32_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_32_array_collectionURIs
+    1,
+    impl_32_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -3826,16 +3808,10 @@ impl_32_list_collectionURIs__value = {
     (const afw_array_t *)&impl_32_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_32_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_32_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_32_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_32_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_32_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -5397,24 +5373,24 @@ impl_40_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_40_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_40_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_40_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_40_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_40_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_40_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_40_array_collectionURIs
+    1,
+    impl_40_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -5423,16 +5399,10 @@ impl_40_list_collectionURIs__value = {
     (const afw_array_t *)&impl_40_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_40_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_40_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_40_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_40_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_40_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -5985,24 +5955,24 @@ impl_56_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_56_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_56_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_56_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_56_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_56_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_56_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_56_array_collectionURIs
+    1,
+    impl_56_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -6011,16 +5981,10 @@ impl_56_list_collectionURIs__value = {
     (const afw_array_t *)&impl_56_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_56_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_56_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_56_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_56_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_56_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -6200,17 +6164,24 @@ impl_64_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_64_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_application/propertyTypes")
+static const afw_value_t *
+impl_64_parentPaths_list_values[] = {
+    afw_anyURI_v_zz__bc56caeb56fe
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_64_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_64_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_64_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_64_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_64_parentPaths_array
+    1,
+    impl_64_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -6297,24 +6268,24 @@ impl_62_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_62_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_62_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_62_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_62_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_62_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_62_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_62_array_collectionURIs
+    1,
+    impl_62_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -6323,16 +6294,10 @@ impl_62_list_collectionURIs__value = {
     (const afw_array_t *)&impl_62_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_62_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_62_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_62_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_62_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_62_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -7010,24 +6975,24 @@ impl_65_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_65_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_65_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_65_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_65_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_65_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_65_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_65_array_collectionURIs
+    1,
+    impl_65_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -7036,16 +7001,10 @@ impl_65_list_collectionURIs__value = {
     (const afw_array_t *)&impl_65_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_65_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_65_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_65_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_65_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_65_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -7696,24 +7655,24 @@ impl_71_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_71_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_71_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_71_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_71_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_71_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_71_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_71_array_collectionURIs
+    1,
+    impl_71_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -7722,16 +7681,10 @@ impl_71_list_collectionURIs__value = {
     (const afw_array_t *)&impl_71_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_71_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_71_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_71_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_71_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_71_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -8452,24 +8405,24 @@ impl_77_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_77_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_77_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_77_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_77_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_77_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_77_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_77_array_collectionURIs
+    1,
+    impl_77_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -8478,16 +8431,10 @@ impl_77_list_collectionURIs__value = {
     (const afw_array_t *)&impl_77_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_77_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_77_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_77_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_77_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_77_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -9932,24 +9879,24 @@ impl_85_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_85_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_85_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_85_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_85_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_85_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_85_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_85_array_collectionURIs
+    1,
+    impl_85_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -9958,16 +9905,10 @@ impl_85_list_collectionURIs__value = {
     (const afw_array_t *)&impl_85_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_85_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_85_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_85_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_85_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_85_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -10511,24 +10452,24 @@ impl_100_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_100_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_100_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_100_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_100_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_100_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_100_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_100_array_collectionURIs
+    1,
+    impl_100_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -10537,16 +10478,10 @@ impl_100_list_collectionURIs__value = {
     (const afw_array_t *)&impl_100_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_100_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_100_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_100_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_100_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_100_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -10874,27 +10809,27 @@ impl_109_property_label = {
     &afw_self_v_Decision.pub
 };
 
-static const afw_utf8_t
-impl_109_array_possibleValues[] = {
-    AFW_UTF8_LITERAL("deny"),
-    AFW_UTF8_LITERAL("indeterminate"),
-    AFW_UTF8_LITERAL("notApplicable"),
-    AFW_UTF8_LITERAL("permit")
+static const afw_value_t *
+impl_109_list_possibleValues_values[] = {
+    afw_v_deny,
+    afw_v_indeterminate,
+    afw_v_a_decision_not_applicable,
+    afw_v_permit
 };
 
 static const afw_value_array_t
 impl_109_list_possibleValues__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_109_list_possibleValues = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_109_list_possibleValues__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_109_array_possibleValues) / sizeof(afw_utf8_t),
-    &impl_109_array_possibleValues
+    4,
+    impl_109_list_possibleValues_values
 };
 
 static const afw_value_array_t
@@ -10903,16 +10838,10 @@ impl_109_list_possibleValues__value = {
     (const afw_array_t *)&impl_109_list_possibleValues
 };
 
-static const afw_value_array_t
-impl_109_property_value_possibleValues = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_109_list_possibleValues
-};
-
 static const afw_runtime_property_t
 impl_109_property_possibleValues = {
     afw_v_possibleValues,
-    &impl_109_property_value_possibleValues.pub
+    (const afw_value_t *)&impl_109_list_possibleValues__value
 };
 
 static const afw_runtime_property_t
@@ -11438,24 +11367,24 @@ impl_105_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_105_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_105_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_105_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_105_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_105_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_105_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_105_array_collectionURIs
+    1,
+    impl_105_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -11464,16 +11393,10 @@ impl_105_list_collectionURIs__value = {
     (const afw_array_t *)&impl_105_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_105_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_105_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_105_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_105_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_105_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -12064,24 +11987,24 @@ impl_113_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_113_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_113_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_113_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_113_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_113_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_113_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_113_array_collectionURIs
+    1,
+    impl_113_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -12090,16 +12013,10 @@ impl_113_list_collectionURIs__value = {
     (const afw_array_t *)&impl_113_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_113_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_113_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_113_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_113_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_113_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -14406,24 +14323,24 @@ impl_119_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_119_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_119_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_119_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_119_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_119_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_119_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_119_array_collectionURIs
+    1,
+    impl_119_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -14432,16 +14349,10 @@ impl_119_list_collectionURIs__value = {
     (const afw_array_t *)&impl_119_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_119_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_119_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_119_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_119_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_119_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -15073,24 +14984,24 @@ impl_143_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_143_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_143_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_143_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_143_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_143_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_143_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_143_array_collectionURIs
+    1,
+    impl_143_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -15099,16 +15010,10 @@ impl_143_list_collectionURIs__value = {
     (const afw_array_t *)&impl_143_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_143_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_143_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_143_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_143_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_143_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -15774,17 +15679,24 @@ impl_150_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_150_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_/propertyTypes")
+static const afw_value_t *
+impl_150_parentPaths_list_values[] = {
+    afw_anyURI_v_zz___afw__AdaptiveObjectType___AdaptiveConf__propertyTypes
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_150_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_150_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_150_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_150_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_150_parentPaths_array
+    1,
+    impl_150_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -15853,24 +15765,24 @@ impl_149_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_149_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_149_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_149_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_149_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_149_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_149_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_149_array_collectionURIs
+    1,
+    impl_149_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -15879,16 +15791,10 @@ impl_149_list_collectionURIs__value = {
     (const afw_array_t *)&impl_149_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_149_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_149_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_149_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_149_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_149_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -15990,17 +15896,24 @@ impl_157_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_157_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes")
+static const afw_value_t *
+impl_157_parentPaths_list_values[] = {
+    afw_anyURI_v_zz__2b8c16b19a08
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_157_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_157_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_157_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_157_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_157_parentPaths_array
+    1,
+    impl_157_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -16087,24 +16000,24 @@ impl_156_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_156_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_156_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_156_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_156_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_156_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_156_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_156_array_collectionURIs
+    1,
+    impl_156_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -16113,16 +16026,10 @@ impl_156_list_collectionURIs__value = {
     (const afw_array_t *)&impl_156_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_156_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_156_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_156_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_156_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_156_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -16908,17 +16815,24 @@ impl_159_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_159_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes")
+static const afw_value_t *
+impl_159_parentPaths_list_values[] = {
+    afw_anyURI_v_zz__2b8c16b19a08
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_159_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_159_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_159_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_159_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_159_parentPaths_array
+    1,
+    impl_159_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -16987,24 +16901,24 @@ impl_158_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_158_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_158_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_158_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_158_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_158_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_158_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_158_array_collectionURIs
+    1,
+    impl_158_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -17013,16 +16927,10 @@ impl_158_list_collectionURIs__value = {
     (const afw_array_t *)&impl_158_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_158_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_158_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_158_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_158_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_158_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -17585,17 +17493,24 @@ impl_167_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_167_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes")
+static const afw_value_t *
+impl_167_parentPaths_list_values[] = {
+    afw_anyURI_v_zz__2b8c16b19a08
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_167_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_167_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_167_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_167_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_167_parentPaths_array
+    1,
+    impl_167_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -17664,24 +17579,24 @@ impl_166_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_166_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_166_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_166_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_166_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_166_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_166_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_166_array_collectionURIs
+    1,
+    impl_166_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -17690,16 +17605,10 @@ impl_166_list_collectionURIs__value = {
     (const afw_array_t *)&impl_166_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_166_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_166_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_166_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_166_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_166_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -19460,17 +19369,24 @@ impl_173_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_173_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_/propertyTypes")
+static const afw_value_t *
+impl_173_parentPaths_list_values[] = {
+    afw_anyURI_v_zz___afw__AdaptiveObjectType___AdaptiveConf__propertyTypes
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_173_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_173_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_173_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_173_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_173_parentPaths_array
+    1,
+    impl_173_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -19539,24 +19455,24 @@ impl_172_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_172_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_172_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_172_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_172_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_172_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_172_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_172_array_collectionURIs
+    1,
+    impl_172_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -19565,16 +19481,10 @@ impl_172_list_collectionURIs__value = {
     (const afw_array_t *)&impl_172_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_172_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_172_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_172_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_172_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_172_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -20392,17 +20302,24 @@ impl_189_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_189_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_/propertyTypes")
+static const afw_value_t *
+impl_189_parentPaths_list_values[] = {
+    afw_anyURI_v_zz___afw__AdaptiveObjectType___AdaptiveConf__propertyTypes
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_189_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_189_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_189_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_189_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_189_parentPaths_array
+    1,
+    impl_189_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -20471,24 +20388,24 @@ impl_188_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_188_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_188_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_188_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_188_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_188_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_188_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_188_array_collectionURIs
+    1,
+    impl_188_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -20497,16 +20414,10 @@ impl_188_list_collectionURIs__value = {
     (const afw_array_t *)&impl_188_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_188_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_188_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_188_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_188_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_188_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -20849,17 +20760,24 @@ impl_197_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_197_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_authorizationHandler/propertyTypes")
+static const afw_value_t *
+impl_197_parentPaths_list_values[] = {
+    afw_anyURI_v_zz__24e8dca502e0
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_197_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_197_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_197_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_197_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_197_parentPaths_array
+    1,
+    impl_197_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -20928,24 +20846,24 @@ impl_196_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_196_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_196_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_196_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_196_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_196_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_196_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_196_array_collectionURIs
+    1,
+    impl_196_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -20954,16 +20872,10 @@ impl_196_list_collectionURIs__value = {
     (const afw_array_t *)&impl_196_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_196_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_196_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_196_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_196_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_196_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -21292,17 +21204,24 @@ impl_201_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_201_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_/propertyTypes")
+static const afw_value_t *
+impl_201_parentPaths_list_values[] = {
+    afw_anyURI_v_zz___afw__AdaptiveObjectType___AdaptiveConf__propertyTypes
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_201_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_201_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_201_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_201_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_201_parentPaths_array
+    1,
+    impl_201_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -21371,24 +21290,24 @@ impl_200_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_200_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_200_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_200_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_200_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_200_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_200_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_200_array_collectionURIs
+    1,
+    impl_200_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -21397,16 +21316,10 @@ impl_200_list_collectionURIs__value = {
     (const afw_array_t *)&impl_200_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_200_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_200_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_200_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_200_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_200_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -23860,17 +23773,24 @@ impl_205_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_205_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_/propertyTypes")
+static const afw_value_t *
+impl_205_parentPaths_list_values[] = {
+    afw_anyURI_v_zz___afw__AdaptiveObjectType___AdaptiveConf__propertyTypes
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_205_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_205_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_205_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_205_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_205_parentPaths_array
+    1,
+    impl_205_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -23939,24 +23859,24 @@ impl_204_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_204_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_204_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_204_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_204_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_204_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_204_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_204_array_collectionURIs
+    1,
+    impl_204_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -23965,16 +23885,10 @@ impl_204_list_collectionURIs__value = {
     (const afw_array_t *)&impl_204_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_204_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_204_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_204_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_204_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_204_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -24086,17 +24000,24 @@ impl_229_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_229_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes/filter")
+static const afw_value_t *
+impl_229_parentPaths_list_values[] = {
+    afw_anyURI_v_zz__8429404e8ff6
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_229_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_229_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_229_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_229_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_229_parentPaths_array
+    1,
+    impl_229_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -24174,17 +24095,24 @@ impl_230_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_230_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes/format")
+static const afw_value_t *
+impl_230_parentPaths_list_values[] = {
+    afw_anyURI_v_zz__5742bb474f7d
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_230_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_230_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_230_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_230_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_230_parentPaths_array
+    1,
+    impl_230_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -24278,17 +24206,24 @@ impl_228_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_228_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes")
+static const afw_value_t *
+impl_228_parentPaths_list_values[] = {
+    afw_anyURI_v_zz___afw__AdaptiveObjectType___AdaptiveConf_log_propertyTypes
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_228_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_228_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_228_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_228_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_228_parentPaths_array
+    1,
+    impl_228_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -24357,24 +24292,24 @@ impl_227_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_227_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_227_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_227_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_227_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_227_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_227_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_227_array_collectionURIs
+    1,
+    impl_227_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -24383,16 +24318,10 @@ impl_227_list_collectionURIs__value = {
     (const afw_array_t *)&impl_227_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_227_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_227_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_227_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_227_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_227_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -24504,17 +24433,24 @@ impl_233_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_233_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes/filter")
+static const afw_value_t *
+impl_233_parentPaths_list_values[] = {
+    afw_anyURI_v_zz__8429404e8ff6
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_233_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_233_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_233_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_233_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_233_parentPaths_array
+    1,
+    impl_233_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -24592,17 +24528,24 @@ impl_234_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_234_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes/format")
+static const afw_value_t *
+impl_234_parentPaths_list_values[] = {
+    afw_anyURI_v_zz__5742bb474f7d
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_234_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_234_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_234_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_234_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_234_parentPaths_array
+    1,
+    impl_234_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -24696,17 +24639,24 @@ impl_232_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_232_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes")
+static const afw_value_t *
+impl_232_parentPaths_list_values[] = {
+    afw_anyURI_v_zz___afw__AdaptiveObjectType___AdaptiveConf_log_propertyTypes
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_232_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_232_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_232_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_232_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_232_parentPaths_array
+    1,
+    impl_232_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -24775,24 +24725,24 @@ impl_231_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_231_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_231_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_231_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_231_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_231_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_231_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_231_array_collectionURIs
+    1,
+    impl_231_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -24801,16 +24751,10 @@ impl_231_list_collectionURIs__value = {
     (const afw_array_t *)&impl_231_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_231_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_231_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_231_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_231_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_231_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -25019,17 +24963,24 @@ impl_238_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_238_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes/filter")
+static const afw_value_t *
+impl_238_parentPaths_list_values[] = {
+    afw_anyURI_v_zz__8429404e8ff6
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_238_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_238_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_238_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_238_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_238_parentPaths_array
+    1,
+    impl_238_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -25107,17 +25058,24 @@ impl_239_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_239_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes/format")
+static const afw_value_t *
+impl_239_parentPaths_list_values[] = {
+    afw_anyURI_v_zz__5742bb474f7d
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_239_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_239_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_239_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_239_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_239_parentPaths_array
+    1,
+    impl_239_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -26001,17 +25959,24 @@ impl_236_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_236_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes")
+static const afw_value_t *
+impl_236_parentPaths_list_values[] = {
+    afw_anyURI_v_zz___afw__AdaptiveObjectType___AdaptiveConf_log_propertyTypes
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_236_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_236_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_236_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_236_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_236_parentPaths_array
+    1,
+    impl_236_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -26080,24 +26045,24 @@ impl_235_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_235_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_235_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_235_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_235_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_235_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_235_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_235_array_collectionURIs
+    1,
+    impl_235_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -26106,16 +26071,10 @@ impl_235_list_collectionURIs__value = {
     (const afw_array_t *)&impl_235_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_235_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_235_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_235_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_235_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_235_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -26444,17 +26403,24 @@ impl_248_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_248_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_/propertyTypes")
+static const afw_value_t *
+impl_248_parentPaths_list_values[] = {
+    afw_anyURI_v_zz___afw__AdaptiveObjectType___AdaptiveConf__propertyTypes
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_248_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_248_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_248_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_248_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_248_parentPaths_array
+    1,
+    impl_248_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -26523,24 +26489,24 @@ impl_247_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_247_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_247_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_247_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_247_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_247_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_247_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_247_array_collectionURIs
+    1,
+    impl_247_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -26549,16 +26515,10 @@ impl_247_list_collectionURIs__value = {
     (const afw_array_t *)&impl_247_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_247_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_247_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_247_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_247_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_247_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -26997,17 +26957,24 @@ impl_252_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_252_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_requestHandler/propertyTypes")
+static const afw_value_t *
+impl_252_parentPaths_list_values[] = {
+    afw_anyURI_v_zz__02703079e5f7
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_252_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_252_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_252_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_252_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_252_parentPaths_array
+    1,
+    impl_252_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -27076,24 +27043,24 @@ impl_251_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_251_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_251_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_251_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_251_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_251_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_251_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_251_array_collectionURIs
+    1,
+    impl_251_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -27102,16 +27069,10 @@ impl_251_list_collectionURIs__value = {
     (const afw_array_t *)&impl_251_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_251_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_251_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_251_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_251_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_251_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -27648,24 +27609,24 @@ impl_256_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_256_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_256_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_256_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_256_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_256_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_256_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_256_array_collectionURIs
+    1,
+    impl_256_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -27674,16 +27635,10 @@ impl_256_list_collectionURIs__value = {
     (const afw_array_t *)&impl_256_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_256_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_256_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_256_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_256_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_256_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -28333,24 +28288,24 @@ impl_262_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_262_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_262_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_262_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_262_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_262_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_262_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_262_array_collectionURIs
+    1,
+    impl_262_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -28359,16 +28314,10 @@ impl_262_list_collectionURIs__value = {
     (const afw_array_t *)&impl_262_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_262_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_262_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_262_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_262_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_262_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -28714,17 +28663,24 @@ impl_269_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_269_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveDataType_/propertyTypes")
+static const afw_value_t *
+impl_269_parentPaths_list_values[] = {
+    afw_anyURI_v_zz___afw__AdaptiveObjectType___AdaptiveDataType__propertyTypes
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_269_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_269_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_269_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_269_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_269_parentPaths_array
+    1,
+    impl_269_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -28811,24 +28767,24 @@ impl_268_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_268_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_268_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_268_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_268_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_268_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_268_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_268_array_collectionURIs
+    1,
+    impl_268_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -28837,16 +28793,10 @@ impl_268_list_collectionURIs__value = {
     (const afw_array_t *)&impl_268_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_268_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_268_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_268_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_268_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_268_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -29635,29 +29585,29 @@ impl_280_property_label = {
     &afw_self_v_zz__Parameter_Type.pub
 };
 
-static const afw_utf8_t
-impl_280_array_possibleValues[] = {
-    AFW_UTF8_LITERAL("ArrayOf"),
-    AFW_UTF8_LITERAL("FunctionSignature"),
-    AFW_UTF8_LITERAL("MediaType"),
-    AFW_UTF8_LITERAL("ObjectType"),
-    AFW_UTF8_LITERAL("SourceParameter"),
-    AFW_UTF8_LITERAL("Type")
+static const afw_value_t *
+impl_280_list_possibleValues_values[] = {
+    afw_v_ArrayOf,
+    afw_v_FunctionSignature,
+    afw_v_MediaType,
+    afw_v_ObjectType,
+    afw_v_SourceParameter,
+    afw_v_Type
 };
 
 static const afw_value_array_t
 impl_280_list_possibleValues__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_280_list_possibleValues = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_280_list_possibleValues__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_280_array_possibleValues) / sizeof(afw_utf8_t),
-    &impl_280_array_possibleValues
+    6,
+    impl_280_list_possibleValues_values
 };
 
 static const afw_value_array_t
@@ -29666,16 +29616,10 @@ impl_280_list_possibleValues__value = {
     (const afw_array_t *)&impl_280_list_possibleValues
 };
 
-static const afw_value_array_t
-impl_280_property_value_possibleValues = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_280_list_possibleValues
-};
-
 static const afw_runtime_property_t
 impl_280_property_possibleValues = {
     afw_v_possibleValues,
-    &impl_280_property_value_possibleValues.pub
+    (const afw_value_t *)&impl_280_list_possibleValues__value
 };
 
 static const afw_runtime_property_t
@@ -31506,24 +31450,24 @@ impl_272_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_272_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_272_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_272_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_272_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_272_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_272_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_272_array_collectionURIs
+    1,
+    impl_272_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -31532,16 +31476,10 @@ impl_272_list_collectionURIs__value = {
     (const afw_array_t *)&impl_272_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_272_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_272_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_272_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_272_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_272_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -32883,24 +32821,24 @@ impl_297_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_297_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_297_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_297_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_297_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_297_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_297_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_297_array_collectionURIs
+    1,
+    impl_297_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -32909,16 +32847,10 @@ impl_297_list_collectionURIs__value = {
     (const afw_array_t *)&impl_297_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_297_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_297_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_297_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_297_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_297_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -33121,24 +33053,24 @@ impl_311_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_311_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_311_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_311_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_311_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_311_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_311_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_311_array_collectionURIs
+    1,
+    impl_311_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -33147,16 +33079,10 @@ impl_311_list_collectionURIs__value = {
     (const afw_array_t *)&impl_311_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_311_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_311_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_311_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_311_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_311_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -33321,24 +33247,24 @@ impl_313_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_313_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_313_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_313_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_313_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_313_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_313_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_313_array_collectionURIs
+    1,
+    impl_313_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -33347,16 +33273,10 @@ impl_313_list_collectionURIs__value = {
     (const afw_array_t *)&impl_313_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_313_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_313_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_313_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_313_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_313_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -33893,24 +33813,24 @@ impl_315_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_315_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_315_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_315_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_315_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_315_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_315_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_315_array_collectionURIs
+    1,
+    impl_315_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -33919,16 +33839,10 @@ impl_315_list_collectionURIs__value = {
     (const afw_array_t *)&impl_315_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_315_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_315_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_315_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_315_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_315_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -36459,24 +36373,24 @@ impl_321_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_321_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_321_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_321_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_321_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_321_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_321_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_321_array_collectionURIs
+    1,
+    impl_321_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -36485,16 +36399,10 @@ impl_321_list_collectionURIs__value = {
     (const afw_array_t *)&impl_321_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_321_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_321_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_321_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_321_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_321_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -37424,24 +37332,24 @@ impl_346_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_346_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_346_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_346_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_346_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_346_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_346_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_346_array_collectionURIs
+    1,
+    impl_346_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -37450,16 +37358,10 @@ impl_346_list_collectionURIs__value = {
     (const afw_array_t *)&impl_346_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_346_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_346_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_346_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_346_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_346_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -39220,24 +39122,24 @@ impl_356_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_356_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_356_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_356_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_356_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_356_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_356_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_356_array_collectionURIs
+    1,
+    impl_356_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -39246,16 +39148,10 @@ impl_356_list_collectionURIs__value = {
     (const afw_array_t *)&impl_356_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_356_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_356_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_356_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_356_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_356_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -39901,24 +39797,24 @@ impl_374_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_374_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_374_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_374_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_374_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_374_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_374_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_374_array_collectionURIs
+    1,
+    impl_374_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -39927,16 +39823,10 @@ impl_374_list_collectionURIs__value = {
     (const afw_array_t *)&impl_374_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_374_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_374_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_374_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_374_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_374_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -41102,24 +40992,24 @@ impl_380_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_380_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_380_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_380_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_380_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_380_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_380_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_380_array_collectionURIs
+    1,
+    impl_380_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -41128,16 +41018,10 @@ impl_380_list_collectionURIs__value = {
     (const afw_array_t *)&impl_380_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_380_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_380_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_380_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_380_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_380_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -41540,24 +41424,24 @@ impl_391_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_391_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_391_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_391_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_391_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_391_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_391_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_391_array_collectionURIs
+    1,
+    impl_391_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -41566,16 +41450,10 @@ impl_391_list_collectionURIs__value = {
     (const afw_array_t *)&impl_391_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_391_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_391_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_391_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_391_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_391_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -44999,24 +44877,24 @@ impl_395_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_395_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_395_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_395_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_395_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_395_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_395_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_395_array_collectionURIs
+    1,
+    impl_395_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -45025,16 +44903,10 @@ impl_395_list_collectionURIs__value = {
     (const afw_array_t *)&impl_395_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_395_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_395_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_395_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_395_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_395_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -47302,24 +47174,24 @@ impl_425_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_425_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_425_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_425_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_425_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_425_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_425_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_425_array_collectionURIs
+    1,
+    impl_425_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -47328,16 +47200,10 @@ impl_425_list_collectionURIs__value = {
     (const afw_array_t *)&impl_425_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_425_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_425_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_425_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_425_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_425_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -53085,24 +52951,24 @@ impl_449_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_449_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_449_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_449_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_449_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_449_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_449_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_449_array_collectionURIs
+    1,
+    impl_449_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -53111,16 +52977,10 @@ impl_449_list_collectionURIs__value = {
     (const afw_array_t *)&impl_449_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_449_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_449_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_449_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_449_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_449_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -53536,24 +53396,24 @@ impl_507_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_507_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_507_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_507_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_507_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_507_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_507_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_507_array_collectionURIs
+    1,
+    impl_507_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -53562,16 +53422,10 @@ impl_507_list_collectionURIs__value = {
     (const afw_array_t *)&impl_507_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_507_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_507_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_507_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_507_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_507_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -53733,24 +53587,24 @@ impl_511_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_511_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_511_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_511_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_511_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_511_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_511_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_511_array_collectionURIs
+    1,
+    impl_511_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -53759,16 +53613,10 @@ impl_511_list_collectionURIs__value = {
     (const afw_array_t *)&impl_511_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_511_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_511_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_511_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_511_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_511_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -53923,24 +53771,24 @@ impl_513_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_513_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_513_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_513_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_513_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_513_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_513_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_513_array_collectionURIs
+    1,
+    impl_513_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -53949,16 +53797,10 @@ impl_513_list_collectionURIs__value = {
     (const afw_array_t *)&impl_513_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_513_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_513_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_513_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_513_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_513_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -54505,24 +54347,24 @@ impl_515_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_515_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_515_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_515_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_515_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_515_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_515_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_515_array_collectionURIs
+    1,
+    impl_515_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -54531,16 +54373,10 @@ impl_515_list_collectionURIs__value = {
     (const afw_array_t *)&impl_515_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_515_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_515_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_515_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_515_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_515_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -55059,24 +54895,24 @@ impl_521_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_521_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_521_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_521_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_521_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_521_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_521_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_521_array_collectionURIs
+    1,
+    impl_521_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -55085,16 +54921,10 @@ impl_521_list_collectionURIs__value = {
     (const afw_array_t *)&impl_521_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_521_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_521_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_521_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_521_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_521_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -56192,24 +56022,24 @@ impl_526_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_526_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_526_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_526_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_526_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_526_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_526_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_526_array_collectionURIs
+    1,
+    impl_526_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -56218,16 +56048,10 @@ impl_526_list_collectionURIs__value = {
     (const afw_array_t *)&impl_526_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_526_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_526_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_526_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_526_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_526_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -56630,24 +56454,24 @@ impl_536_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_536_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_536_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_536_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_536_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_536_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_536_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_536_array_collectionURIs
+    1,
+    impl_536_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -56656,16 +56480,10 @@ impl_536_list_collectionURIs__value = {
     (const afw_array_t *)&impl_536_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_536_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_536_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_536_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_536_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_536_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -57998,24 +57816,24 @@ impl_540_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_540_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_540_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_540_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_540_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_540_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_540_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_540_array_collectionURIs
+    1,
+    impl_540_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -58024,16 +57842,10 @@ impl_540_list_collectionURIs__value = {
     (const afw_array_t *)&impl_540_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_540_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_540_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_540_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_540_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_540_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -58778,24 +58590,24 @@ impl_554_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_554_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_554_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_554_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_554_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_554_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_554_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_554_array_collectionURIs
+    1,
+    impl_554_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -58804,16 +58616,10 @@ impl_554_list_collectionURIs__value = {
     (const afw_array_t *)&impl_554_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_554_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_554_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_554_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_554_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_554_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -59874,24 +59680,24 @@ impl_562_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_562_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_562_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_562_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_562_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_562_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_562_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_562_array_collectionURIs
+    1,
+    impl_562_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -59900,16 +59706,10 @@ impl_562_list_collectionURIs__value = {
     (const afw_array_t *)&impl_562_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_562_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_562_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_562_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_562_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_562_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -60775,24 +60575,24 @@ impl_573_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_573_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_573_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_573_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_573_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_573_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_573_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_573_array_collectionURIs
+    1,
+    impl_573_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -60801,16 +60601,10 @@ impl_573_list_collectionURIs__value = {
     (const afw_array_t *)&impl_573_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_573_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_573_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_573_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_573_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_573_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -61249,17 +61043,24 @@ impl_582_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_582_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveValueMeta_/propertyTypes")
+static const afw_value_t *
+impl_582_parentPaths_list_values[] = {
+    afw_anyURI_v_zz___afw__AdaptiveObjectType___AdaptiveValueMeta__propertyTypes
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_582_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_582_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_582_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_582_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_582_parentPaths_array
+    1,
+    impl_582_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -61328,24 +61129,24 @@ impl_581_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_581_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_581_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_581_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_581_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_581_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_581_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_581_array_collectionURIs
+    1,
+    impl_581_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -61354,16 +61155,10 @@ impl_581_list_collectionURIs__value = {
     (const afw_array_t *)&impl_581_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_581_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_581_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_581_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_581_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_581_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -61539,24 +61334,24 @@ impl_586_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_586_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_586_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_586_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_586_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_586_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_586_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_586_array_collectionURIs
+    1,
+    impl_586_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -61565,16 +61360,10 @@ impl_586_list_collectionURIs__value = {
     (const afw_array_t *)&impl_586_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_586_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_586_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_586_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_586_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_586_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -63188,17 +62977,24 @@ impl_589_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_589_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveObjectType_/propertyTypes")
+static const afw_value_t *
+impl_589_parentPaths_list_values[] = {
+    afw_anyURI_v_zz___afw__AdaptiveObjectType___AdaptiveObjectType__propertyTypes
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_589_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_589_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_589_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_589_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_589_parentPaths_array
+    1,
+    impl_589_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -63267,24 +63063,24 @@ impl_588_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_588_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_588_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_588_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_588_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_588_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_588_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_588_array_collectionURIs
+    1,
+    impl_588_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -63293,16 +63089,10 @@ impl_588_list_collectionURIs__value = {
     (const afw_array_t *)&impl_588_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_588_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_588_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_588_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_588_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_588_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -64993,24 +64783,24 @@ impl_622__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnAddObject_
  */
 
-static const afw_utf8_t
-impl_604_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_604_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_604_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_604_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_604_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_604_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_604_array_collectionURIs
+    1,
+    impl_604_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -65019,16 +64809,10 @@ impl_604_list_collectionURIs__value = {
     (const afw_array_t *)&impl_604_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_604_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_604_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_604_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_604_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_604_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -66546,24 +66330,24 @@ impl_639__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnDeleteObject_
  */
 
-static const afw_utf8_t
-impl_623_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_623_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_623_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_623_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_623_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_623_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_623_array_collectionURIs
+    1,
+    impl_623_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -66572,16 +66356,10 @@ impl_623_list_collectionURIs__value = {
     (const afw_array_t *)&impl_623_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_623_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_623_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_623_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_623_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_623_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -69195,24 +68973,24 @@ impl_668__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnGetInitialObjectId_
  */
 
-static const afw_utf8_t
-impl_640_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_640_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_640_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_640_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_640_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_640_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_640_array_collectionURIs
+    1,
+    impl_640_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -69221,16 +68999,10 @@ impl_640_list_collectionURIs__value = {
     (const afw_array_t *)&impl_640_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_640_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_640_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_640_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_640_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_640_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -71844,24 +71616,24 @@ impl_697__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnGetInitialValue_
  */
 
-static const afw_utf8_t
-impl_669_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_669_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_669_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_669_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_669_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_669_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_669_array_collectionURIs
+    1,
+    impl_669_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -71870,16 +71642,10 @@ impl_669_list_collectionURIs__value = {
     (const afw_array_t *)&impl_669_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_669_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_669_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_669_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_669_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_669_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -73589,24 +73355,24 @@ impl_716__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnGetObject_
  */
 
-static const afw_utf8_t
-impl_698_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_698_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_698_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_698_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_698_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_698_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_698_array_collectionURIs
+    1,
+    impl_698_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -73615,16 +73381,10 @@ impl_698_list_collectionURIs__value = {
     (const afw_array_t *)&impl_698_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_698_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_698_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_698_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_698_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_698_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -75690,24 +75450,24 @@ impl_739__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnGetProperty_
  */
 
-static const afw_utf8_t
-impl_717_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_717_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_717_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_717_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_717_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_717_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_717_array_collectionURIs
+    1,
+    impl_717_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -75716,16 +75476,10 @@ impl_717_list_collectionURIs__value = {
     (const afw_array_t *)&impl_717_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_717_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_717_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_717_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_717_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_717_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -77428,24 +77182,24 @@ impl_758__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnModifyObject_
  */
 
-static const afw_utf8_t
-impl_740_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_740_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_740_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_740_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_740_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_740_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_740_array_collectionURIs
+    1,
+    impl_740_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -77454,16 +77208,10 @@ impl_740_list_collectionURIs__value = {
     (const afw_array_t *)&impl_740_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_740_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_740_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_740_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_740_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_740_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -79166,24 +78914,24 @@ impl_777__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnReplaceObject_
  */
 
-static const afw_utf8_t
-impl_759_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_759_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_759_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_759_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_759_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_759_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_759_array_collectionURIs
+    1,
+    impl_759_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -79192,16 +78940,10 @@ impl_759_list_collectionURIs__value = {
     (const afw_array_t *)&impl_759_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_759_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_759_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_759_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_759_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_759_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -81110,24 +80852,24 @@ impl_798__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnRetrieveObjects_
  */
 
-static const afw_utf8_t
-impl_778_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_778_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_778_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_778_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_778_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_778_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_778_array_collectionURIs
+    1,
+    impl_778_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -81136,16 +80878,10 @@ impl_778_list_collectionURIs__value = {
     (const afw_array_t *)&impl_778_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_778_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_778_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_778_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_778_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_778_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -83211,24 +82947,24 @@ impl_821__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveModelCurrentOnSetProperty_
  */
 
-static const afw_utf8_t
-impl_799_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_799_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_799_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_799_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_799_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_799_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_799_array_collectionURIs
+    1,
+    impl_799_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -83237,16 +82973,10 @@ impl_799_list_collectionURIs__value = {
     (const afw_array_t *)&impl_799_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_799_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_799_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_799_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_799_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_799_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -84585,24 +84315,24 @@ impl_822_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_822_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_822_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_822_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_822_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_822_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_822_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_822_array_collectionURIs
+    1,
+    impl_822_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -84611,16 +84341,10 @@ impl_822_list_collectionURIs__value = {
     (const afw_array_t *)&impl_822_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_822_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_822_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_822_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_822_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_822_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -85919,17 +85643,24 @@ impl_838_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_838_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveObjectType_/propertyTypes")
+static const afw_value_t *
+impl_838_parentPaths_list_values[] = {
+    afw_anyURI_v_zz___afw__AdaptiveObjectType___AdaptiveObjectType__propertyTypes
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_838_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_838_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_838_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_838_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_838_parentPaths_array
+    1,
+    impl_838_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -85998,24 +85729,24 @@ impl_837_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_837_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_837_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_837_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_837_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_837_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_837_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_837_array_collectionURIs
+    1,
+    impl_837_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -86024,16 +85755,10 @@ impl_837_list_collectionURIs__value = {
     (const afw_array_t *)&impl_837_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_837_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_837_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_837_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_837_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_837_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -86223,24 +85948,24 @@ impl_849_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_849_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_849_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_849_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_849_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_849_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_849_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_849_array_collectionURIs
+    1,
+    impl_849_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -86249,16 +85974,10 @@ impl_849_list_collectionURIs__value = {
     (const afw_array_t *)&impl_849_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_849_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_849_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_849_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_849_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_849_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -87226,17 +86945,24 @@ impl_852_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_852_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveValueMeta_/propertyTypes")
+static const afw_value_t *
+impl_852_parentPaths_list_values[] = {
+    afw_anyURI_v_zz___afw__AdaptiveObjectType___AdaptiveValueMeta__propertyTypes
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_852_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_852_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_852_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_852_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_852_parentPaths_array
+    1,
+    impl_852_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -87299,24 +87025,24 @@ impl_852__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveModelPropertyType_
  */
 
-static const afw_utf8_t
-impl_851_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_851_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_851_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_851_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_851_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_851_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_851_array_collectionURIs
+    1,
+    impl_851_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -87325,16 +87051,10 @@ impl_851_list_collectionURIs__value = {
     (const afw_array_t *)&impl_851_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_851_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_851_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_851_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_851_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_851_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -87523,24 +87243,24 @@ impl_861_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_861_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_861_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_861_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_861_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_861_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_861_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_861_array_collectionURIs
+    1,
+    impl_861_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -87549,16 +87269,10 @@ impl_861_list_collectionURIs__value = {
     (const afw_array_t *)&impl_861_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_861_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_861_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_861_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_861_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_861_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -88539,24 +88253,24 @@ impl_863_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_863_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_863_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_863_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_863_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_863_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_863_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_863_array_collectionURIs
+    1,
+    impl_863_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -88565,16 +88279,10 @@ impl_863_list_collectionURIs__value = {
     (const afw_array_t *)&impl_863_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_863_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_863_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_863_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_863_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_863_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -90936,24 +90644,24 @@ impl_872_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_872_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_872_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_872_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_872_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_872_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_872_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_872_array_collectionURIs
+    1,
+    impl_872_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -90962,16 +90670,10 @@ impl_872_list_collectionURIs__value = {
     (const afw_array_t *)&impl_872_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_872_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_872_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_872_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_872_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_872_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -92949,24 +92651,24 @@ impl_894_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_894_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_894_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_894_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_894_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_894_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_894_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_894_array_collectionURIs
+    1,
+    impl_894_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -92975,16 +92677,10 @@ impl_894_list_collectionURIs__value = {
     (const afw_array_t *)&impl_894_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_894_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_894_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_894_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_894_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_894_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -93174,24 +92870,24 @@ impl_912_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_912_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_912_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_912_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_912_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_912_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_912_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_912_array_collectionURIs
+    1,
+    impl_912_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -93200,16 +92896,10 @@ impl_912_list_collectionURIs__value = {
     (const afw_array_t *)&impl_912_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_912_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_912_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_912_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_912_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_912_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -93371,24 +93061,24 @@ impl_914_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_914_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_914_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_914_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_914_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_914_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_914_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_914_array_collectionURIs
+    1,
+    impl_914_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -93397,16 +93087,10 @@ impl_914_list_collectionURIs__value = {
     (const afw_array_t *)&impl_914_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_914_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_914_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_914_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_914_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_914_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -93589,24 +93273,24 @@ impl_916_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_916_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_916_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_916_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_916_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_916_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_916_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_916_array_collectionURIs
+    1,
+    impl_916_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -93615,16 +93299,10 @@ impl_916_list_collectionURIs__value = {
     (const afw_array_t *)&impl_916_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_916_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_916_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_916_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_916_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_916_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -94827,24 +94505,24 @@ impl_918_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_918_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_918_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_918_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_918_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_918_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_918_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_918_array_collectionURIs
+    1,
+    impl_918_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -94853,16 +94531,10 @@ impl_918_list_collectionURIs__value = {
     (const afw_array_t *)&impl_918_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_918_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_918_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_918_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_918_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_918_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -95073,24 +94745,24 @@ impl_930_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_930_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_930_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_930_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_930_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_930_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_930_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_930_array_collectionURIs
+    1,
+    impl_930_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -95099,16 +94771,10 @@ impl_930_list_collectionURIs__value = {
     (const afw_array_t *)&impl_930_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_930_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_930_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_930_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_930_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_930_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -96644,24 +96310,24 @@ impl_932_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_932_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_932_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_932_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_932_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_932_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_932_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_932_array_collectionURIs
+    1,
+    impl_932_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -96670,16 +96336,10 @@ impl_932_list_collectionURIs__value = {
     (const afw_array_t *)&impl_932_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_932_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_932_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_932_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_932_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_932_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -99032,24 +98692,24 @@ impl_947_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_947_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_947_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_947_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_947_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_947_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_947_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_947_array_collectionURIs
+    1,
+    impl_947_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -99058,16 +98718,10 @@ impl_947_list_collectionURIs__value = {
     (const afw_array_t *)&impl_947_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_947_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_947_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_947_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_947_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_947_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -99722,17 +99376,24 @@ impl_971_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_971_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFunction_/propertyTypes")
+static const afw_value_t *
+impl_971_parentPaths_list_values[] = {
+    afw_anyURI_v_zz___afw__AdaptiveObjectType___AdaptiveFunction__propertyTypes
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_971_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_971_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_971_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_971_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_971_parentPaths_array
+    1,
+    impl_971_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -99801,24 +99462,24 @@ impl_970_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_970_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_970_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_970_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_970_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_970_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_970_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_970_array_collectionURIs
+    1,
+    impl_970_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -99827,16 +99488,10 @@ impl_970_list_collectionURIs__value = {
     (const afw_array_t *)&impl_970_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_970_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_970_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_970_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_970_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_970_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -100683,24 +100338,24 @@ impl_977_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_977_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_977_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_977_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_977_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_977_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_977_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_977_array_collectionURIs
+    1,
+    impl_977_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -100709,16 +100364,10 @@ impl_977_list_collectionURIs__value = {
     (const afw_array_t *)&impl_977_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_977_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_977_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_977_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_977_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_977_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -100897,24 +100546,24 @@ impl_985_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_985_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_985_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_985_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_985_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_985_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_985_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_985_array_collectionURIs
+    1,
+    impl_985_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -100923,16 +100572,10 @@ impl_985_list_collectionURIs__value = {
     (const afw_array_t *)&impl_985_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_985_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_985_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_985_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_985_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_985_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -101995,24 +101638,24 @@ impl_987_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_987_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_987_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_987_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_987_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_987_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_987_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_987_array_collectionURIs
+    1,
+    impl_987_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -102021,16 +101664,10 @@ impl_987_list_collectionURIs__value = {
     (const afw_array_t *)&impl_987_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_987_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_987_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_987_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_987_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_987_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -102206,24 +101843,24 @@ impl_997_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_997_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_997_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_997_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_997_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_997_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_997_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_997_array_collectionURIs
+    1,
+    impl_997_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -102232,16 +101869,10 @@ impl_997_list_collectionURIs__value = {
     (const afw_array_t *)&impl_997_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_997_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_997_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_997_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_997_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_997_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -102462,35 +102093,35 @@ impl_1002_property_label = {
     &afw_self_v_Operation.pub
 };
 
-static const afw_utf8_t
-impl_1002_array_possibleValues[] = {
-    AFW_UTF8_LITERAL("and"),
-    AFW_UTF8_LITERAL("contains"),
-    AFW_UTF8_LITERAL("eq"),
-    AFW_UTF8_LITERAL("ge"),
-    AFW_UTF8_LITERAL("gt"),
-    AFW_UTF8_LITERAL("in"),
-    AFW_UTF8_LITERAL("le"),
-    AFW_UTF8_LITERAL("lt"),
-    AFW_UTF8_LITERAL("lte"),
-    AFW_UTF8_LITERAL("match"),
-    AFW_UTF8_LITERAL("ne"),
-    AFW_UTF8_LITERAL("or")
+static const afw_value_t *
+impl_1002_list_possibleValues_values[] = {
+    afw_v_and,
+    afw_v_contains,
+    afw_v_eq,
+    afw_v_ge,
+    afw_v_gt,
+    afw_v_in,
+    afw_v_le,
+    afw_v_lt,
+    afw_v_lte,
+    afw_v_match,
+    afw_v_ne,
+    afw_v_or
 };
 
 static const afw_value_array_t
 impl_1002_list_possibleValues__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1002_list_possibleValues = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1002_list_possibleValues__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1002_array_possibleValues) / sizeof(afw_utf8_t),
-    &impl_1002_array_possibleValues
+    12,
+    impl_1002_list_possibleValues_values
 };
 
 static const afw_value_array_t
@@ -102499,16 +102130,10 @@ impl_1002_list_possibleValues__value = {
     (const afw_array_t *)&impl_1002_list_possibleValues
 };
 
-static const afw_value_array_t
-impl_1002_property_value_possibleValues = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1002_list_possibleValues
-};
-
 static const afw_runtime_property_t
 impl_1002_property_possibleValues = {
     afw_v_possibleValues,
-    &impl_1002_property_value_possibleValues.pub
+    (const afw_value_t *)&impl_1002_list_possibleValues__value
 };
 
 static const afw_runtime_property_t
@@ -102897,24 +102522,24 @@ impl_999_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_999_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_999_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_999_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_999_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_999_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_999_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_999_array_collectionURIs
+    1,
+    impl_999_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -102923,16 +102548,10 @@ impl_999_list_collectionURIs__value = {
     (const afw_array_t *)&impl_999_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_999_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_999_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_999_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_999_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_999_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -103555,24 +103174,24 @@ impl_1005_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_1005_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1005_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1005_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1005_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1005_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1005_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1005_array_collectionURIs
+    1,
+    impl_1005_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -103581,16 +103200,10 @@ impl_1005_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1005_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1005_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1005_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1005_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1005_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1005_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -103938,24 +103551,24 @@ impl_1011_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1011_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1011_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1011_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1011_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1011_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1011_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1011_array_collectionURIs
+    1,
+    impl_1011_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -103964,16 +103577,10 @@ impl_1011_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1011_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1011_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1011_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1011_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1011_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1011_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -104718,24 +104325,24 @@ impl_1015_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1015_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1015_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1015_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1015_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1015_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1015_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1015_array_collectionURIs
+    1,
+    impl_1015_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -104744,16 +104351,10 @@ impl_1015_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1015_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1015_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1015_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1015_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1015_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1015_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -104933,17 +104534,24 @@ impl_1025_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_1025_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_requestHandler/propertyTypes")
+static const afw_value_t *
+impl_1025_parentPaths_list_values[] = {
+    afw_anyURI_v_zz__02703079e5f7
 };
 
-static const afw_array_view_of_c_array_self_t
+static const afw_value_array_t
+impl_1025_parentPaths;
+
+static const afw_array_const_array_of_values_self_t
 impl_1025_parentPaths_list = {
-    { &afw_array_view_of_c_array_inf, NULL, NULL },
+    {
+        &afw_array_const_array_of_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_1025_parentPaths
+    },
     &afw_data_type_anyURI_direct,
-    sizeof(impl_1025_parentPaths_array) / sizeof(afw_utf8_t),
-    (const void *)&impl_1025_parentPaths_array
+    1,
+    impl_1025_parentPaths_list_values
 };
 
 static const afw_value_array_t
@@ -105030,24 +104638,24 @@ impl_1023_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1023_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1023_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1023_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1023_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1023_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1023_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1023_array_collectionURIs
+    1,
+    impl_1023_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -105056,16 +104664,10 @@ impl_1023_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1023_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1023_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1023_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1023_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1023_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1023_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -109625,24 +109227,24 @@ impl_1026_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1026_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1026_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1026_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1026_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1026_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1026_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1026_array_collectionURIs
+    1,
+    impl_1026_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -109651,16 +109253,10 @@ impl_1026_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1026_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1026_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1026_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1026_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1026_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1026_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -110320,24 +109916,24 @@ impl_1074_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_1074_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1074_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1074_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1074_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1074_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1074_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1074_array_collectionURIs
+    1,
+    impl_1074_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -110346,16 +109942,10 @@ impl_1074_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1074_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1074_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1074_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1074_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1074_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1074_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -111111,26 +110701,26 @@ impl_1090_property_label = {
     &afw_self_v_Status.pub
 };
 
-static const afw_utf8_t
-impl_1090_array_possibleValues[] = {
-    AFW_UTF8_LITERAL("error"),
-    AFW_UTF8_LITERAL("fatal"),
-    AFW_UTF8_LITERAL("success")
+static const afw_value_t *
+impl_1090_list_possibleValues_values[] = {
+    afw_v_error,
+    afw_v_fatal,
+    afw_v_success
 };
 
 static const afw_value_array_t
 impl_1090_list_possibleValues__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1090_list_possibleValues = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1090_list_possibleValues__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1090_array_possibleValues) / sizeof(afw_utf8_t),
-    &impl_1090_array_possibleValues
+    3,
+    impl_1090_list_possibleValues_values
 };
 
 static const afw_value_array_t
@@ -111139,16 +110729,10 @@ impl_1090_list_possibleValues__value = {
     (const afw_array_t *)&impl_1090_list_possibleValues
 };
 
-static const afw_value_array_t
-impl_1090_property_value_possibleValues = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1090_list_possibleValues
-};
-
 static const afw_runtime_property_t
 impl_1090_property_possibleValues = {
     afw_v_possibleValues,
-    &impl_1090_property_value_possibleValues.pub
+    (const afw_value_t *)&impl_1090_list_possibleValues__value
 };
 
 static const afw_runtime_property_t *
@@ -111595,24 +111179,24 @@ impl_1081_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1081_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1081_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1081_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1081_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1081_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1081_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1081_array_collectionURIs
+    1,
+    impl_1081_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -111621,16 +111205,10 @@ impl_1081_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1081_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1081_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1081_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1081_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1081_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1081_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -111822,24 +111400,24 @@ impl_1093_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_1093_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1093_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1093_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1093_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1093_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1093_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1093_array_collectionURIs
+    1,
+    impl_1093_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -111848,16 +111426,10 @@ impl_1093_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1093_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1093_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1093_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1093_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1093_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1093_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -112369,24 +111941,24 @@ impl_1095_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1095_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1095_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1095_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1095_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1095_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1095_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1095_array_collectionURIs
+    1,
+    impl_1095_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -112395,16 +111967,10 @@ impl_1095_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1095_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1095_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1095_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1095_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1095_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1095_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -112785,24 +112351,24 @@ impl_1101_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_1101_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1101_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1101_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1101_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1101_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1101_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1101_array_collectionURIs
+    1,
+    impl_1101_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -112811,16 +112377,10 @@ impl_1101_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1101_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1101_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1101_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1101_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1101_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1101_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -113357,24 +112917,24 @@ impl_1105_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_1105_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1105_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1105_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1105_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1105_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1105_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1105_array_collectionURIs
+    1,
+    impl_1105_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -113383,16 +112943,10 @@ impl_1105_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1105_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1105_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1105_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1105_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1105_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1105_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -113904,24 +113458,24 @@ impl_1111_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_1111_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1111_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1111_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1111_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1111_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1111_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1111_array_collectionURIs
+    1,
+    impl_1111_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -113930,16 +113484,10 @@ impl_1111_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1111_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1111_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1111_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1111_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1111_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1111_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -114534,24 +114082,24 @@ impl_1116_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_1116_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1116_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1116_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1116_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1116_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1116_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1116_array_collectionURIs
+    1,
+    impl_1116_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -114560,16 +114108,10 @@ impl_1116_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1116_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1116_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1116_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1116_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1116_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1116_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -115884,24 +115426,24 @@ impl_1122_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1122_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1122_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1122_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1122_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1122_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1122_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1122_array_collectionURIs
+    1,
+    impl_1122_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -115910,16 +115452,10 @@ impl_1122_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1122_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1122_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1122_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1122_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1122_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1122_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -118216,24 +117752,24 @@ impl_1136_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1136_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/afw_server_fcgi")
+static const afw_value_t *
+impl_1136_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__afw_server_fcgi
 };
 
 static const afw_value_array_t
 impl_1136_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1136_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1136_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1136_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1136_array_collectionURIs
+    1,
+    impl_1136_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -118242,16 +117778,10 @@ impl_1136_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1136_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1136_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1136_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1136_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1136_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1136_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -118777,24 +118307,24 @@ impl_1159_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1159_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1159_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1159_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1159_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1159_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1159_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1159_array_collectionURIs
+    1,
+    impl_1159_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -118803,16 +118333,10 @@ impl_1159_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1159_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1159_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1159_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1159_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1159_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1159_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -119942,24 +119466,24 @@ impl_1164_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1164_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1164_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1164_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1164_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1164_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1164_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1164_array_collectionURIs
+    1,
+    impl_1164_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -119968,16 +119492,10 @@ impl_1164_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1164_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1164_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1164_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1164_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1164_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1164_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -122041,24 +121559,24 @@ impl_1176_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1176_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1176_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1176_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1176_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1176_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1176_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1176_array_collectionURIs
+    1,
+    impl_1176_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -122067,16 +121585,10 @@ impl_1176_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1176_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1176_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1176_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1176_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1176_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1176_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -122623,24 +122135,24 @@ impl_1196_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1196_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1196_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1196_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1196_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1196_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1196_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1196_array_collectionURIs
+    1,
+    impl_1196_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -122649,16 +122161,10 @@ impl_1196_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1196_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1196_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1196_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1196_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1196_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1196_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -123211,24 +122717,24 @@ impl_1202_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1202_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1202_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1202_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1202_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1202_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1202_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1202_array_collectionURIs
+    1,
+    impl_1202_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -123237,16 +122743,10 @@ impl_1202_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1202_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1202_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1202_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1202_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1202_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1202_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -123424,24 +122924,24 @@ impl_1208_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1208_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1208_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1208_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1208_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1208_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1208_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1208_array_collectionURIs
+    1,
+    impl_1208_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -123450,16 +122950,10 @@ impl_1208_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1208_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1208_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1208_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1208_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1208_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1208_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -123958,24 +123452,24 @@ impl_1210_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1210_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1210_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1210_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1210_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1210_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1210_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1210_array_collectionURIs
+    1,
+    impl_1210_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -123984,16 +123478,10 @@ impl_1210_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1210_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1210_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1210_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1210_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1210_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1210_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -124176,24 +123664,24 @@ impl_1215_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_1215_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1215_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1215_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1215_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1215_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1215_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1215_array_collectionURIs
+    1,
+    impl_1215_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -124202,16 +123690,10 @@ impl_1215_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1215_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1215_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1215_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1215_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1215_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1215_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -124380,24 +123862,24 @@ impl_1217_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_1217_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1217_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1217_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1217_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1217_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1217_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1217_array_collectionURIs
+    1,
+    impl_1217_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -124406,16 +123888,10 @@ impl_1217_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1217_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1217_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1217_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1217_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1217_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1217_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -125306,24 +124782,24 @@ impl_1219_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_1219_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1219_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1219_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1219_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1219_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1219_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1219_array_collectionURIs
+    1,
+    impl_1219_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -125332,16 +124808,10 @@ impl_1219_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1219_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1219_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1219_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1219_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1219_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1219_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -128202,24 +127672,24 @@ impl_1228_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_1228_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1228_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1228_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1228_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1228_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1228_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1228_array_collectionURIs
+    1,
+    impl_1228_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -128228,16 +127698,10 @@ impl_1228_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1228_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1228_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1228_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1228_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1228_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1228_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -128787,24 +128251,24 @@ impl_1256_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1256_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1256_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1256_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1256_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1256_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1256_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1256_array_collectionURIs
+    1,
+    impl_1256_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -128813,16 +128277,10 @@ impl_1256_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1256_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1256_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1256_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1256_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1256_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1256_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -132204,24 +131662,24 @@ impl_1262_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_1262_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1262_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1262_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1262_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1262_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1262_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1262_array_collectionURIs
+    1,
+    impl_1262_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -132230,16 +131688,10 @@ impl_1262_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1262_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1262_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1262_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1262_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1262_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1262_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -134049,24 +133501,24 @@ impl_1293_property_allowEntity = {
     &afw_boolean_self_v_false.pub
 };
 
-static const afw_utf8_t
-impl_1293_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1293_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1293_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1293_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1293_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1293_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1293_array_collectionURIs
+    1,
+    impl_1293_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -134075,16 +133527,10 @@ impl_1293_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1293_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1293_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1293_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1293_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1293_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1293_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -135363,24 +134809,24 @@ impl_1311_property_allowEntity = {
     &afw_boolean_self_v_true.pub
 };
 
-static const afw_utf8_t
-impl_1311_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
+static const afw_value_t *
+impl_1311_list_collectionURIs_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__core
 };
 
 static const afw_value_array_t
 impl_1311_list_collectionURIs__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1311_list_collectionURIs = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1311_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1311_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_1311_array_collectionURIs
+    1,
+    impl_1311_list_collectionURIs_values
 };
 
 static const afw_value_array_t
@@ -135389,16 +134835,10 @@ impl_1311_list_collectionURIs__value = {
     (const afw_array_t *)&impl_1311_list_collectionURIs
 };
 
-static const afw_value_array_t
-impl_1311_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1311_list_collectionURIs
-};
-
 static const afw_runtime_property_t
 impl_1311_property_collectionURIs = {
     afw_v_collectionURIs,
-    &impl_1311_property_value_collectionURIs.pub
+    (const afw_value_t *)&impl_1311_list_collectionURIs__value
 };
 
 static const afw_runtime_property_t
@@ -135760,34 +135200,34 @@ impl_1328;
  * /afw/_AdaptivePackage_/afw/compileOptions
  */
 
-static const afw_utf8_t
-impl_1328_array_GNU[] = {
-    AFW_UTF8_LITERAL("-D_DEFAULT_SOURCE"),
-    AFW_UTF8_LITERAL("-Wall"),
-    AFW_UTF8_LITERAL("-Werror"),
-    AFW_UTF8_LITERAL("-Wextra"),
-    AFW_UTF8_LITERAL("-Wno-implicit-fallthrough"),
-    AFW_UTF8_LITERAL("-Wno-missing-field-initializers"),
-    AFW_UTF8_LITERAL("-Wno-sign-compare"),
-    AFW_UTF8_LITERAL("-Wno-unused-parameter"),
-    AFW_UTF8_LITERAL("-fsigned-char"),
-    AFW_UTF8_LITERAL("-g"),
-    AFW_UTF8_LITERAL("-std=c11")
+static const afw_value_t *
+impl_1328_list_GNU_values[] = {
+    afw_v_zz___D_DEFAULT_SOURCE,
+    afw_v_zz___Wall,
+    afw_v_zz___Werror,
+    afw_v_zz___Wextra,
+    afw_v_zz___Wno_implicit_fallthrough,
+    afw_v_zz___Wno_missing_field_initializers,
+    afw_v_zz___Wno_sign_compare,
+    afw_v_zz___Wno_unused_parameter,
+    afw_v_zz___fsigned_char,
+    afw_v_zz___g,
+    afw_v_zz___std_c11
 };
 
 static const afw_value_array_t
 impl_1328_list_GNU__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1328_list_GNU = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1328_list_GNU__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1328_array_GNU) / sizeof(afw_utf8_t),
-    &impl_1328_array_GNU
+    11,
+    impl_1328_list_GNU_values
 };
 
 static const afw_value_array_t
@@ -135796,16 +135236,10 @@ impl_1328_list_GNU__value = {
     (const afw_array_t *)&impl_1328_list_GNU
 };
 
-static const afw_value_array_t
-impl_1328_property_value_GNU = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1328_list_GNU
-};
-
 static const afw_runtime_property_t
 impl_1328_property_GNU = {
     afw_v_GNU,
-    &impl_1328_property_value_GNU.pub
+    (const afw_value_t *)&impl_1328_list_GNU__value
 };
 
 static const afw_runtime_property_t *
@@ -139662,161 +139096,161 @@ impl_1364_property_modulePath = {
     &afw_self_v_libafwcomponents.pub
 };
 
-static const afw_utf8_t
-impl_1364_array_providesObjects[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentTypeCategory_/containers"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentTypeCategory_/content"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentTypeCategory_/editors"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentTypeCategory_/inputs"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentTypeCategory_/navigation"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentTypeCategory_/pickers"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentTypeCategory_/structured"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentTypeCategory_/utilities"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Autocomplete"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Box"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Breadcrumb"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Button"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Callout"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Chart"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Checkbox"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/ChoiceGroup"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/CodeEditor"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Collapsible"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/DatePicker"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/DateTimePicker"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Dialog"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/DiffEditor"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Divider"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Drawer"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Dropdown"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/DropdownEditor"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/EditableCallout"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/EditableLabel"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Hidden"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Icon"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Image"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Link"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/List"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/ListEditor"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Menu"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Message"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Modal"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Native"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Nav"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Paper"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Picker"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Responsive"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Skeleton"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Slider"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Snackbar"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/SpinButton"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Spinner"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Stepper"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Table"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Tabs"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/TextField"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/TimeDuration"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/TimePicker"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/TimezonePicker"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Toggle"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/ToggleButtons"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Toolbar"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Tooltip"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Tree"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveLayoutComponentType_/Typography"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_AdaptiveProperty"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Autocomplete"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Autocomplete_Option"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Box"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_BoxItem"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Breadcrumb"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_BreadcrumbItem"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Button"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Callout"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Chart"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Chart_Data"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Checkbox"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_ChoiceGroup"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_ChoiceGroup_Option"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_CodeEditor"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Collapsible"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Common"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_DatePicker"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_DateTimePicker"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Dialog"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_DiffEditor"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Divider"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Drawer"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Dropdown"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_DropdownEditor"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Dropdown_Option"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_EditableCallout"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_EditableLabel"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Hidden"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Icon"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Image"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Label"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Link"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_List"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_ListEditor"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_ListEditor_Item"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Menu"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Menu_Item"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Message"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Modal"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Native"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Nav"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Nav_Item"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Paper"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Picker"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Picker_Item"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Responsive"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_ResponsiveCol"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_ResponsiveRow"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Responsive_Breakpoints"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Skeleton"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Slider"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Snackbar"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_SpinButton"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Spinner"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Stepper"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Style"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Table"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Table_Column"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Table_Row"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Tabs"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Tabs_Tab"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_TextField"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_TimeDuration"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_TimePicker"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_TimezonePicker"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Toggle"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_ToggleButtons"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Toolbar"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Tooltip"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Tree"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Tree_Node"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayoutComponentType_Typography"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayout_ObjectResponsive"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayout_ObjectResponsive_embedded"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayout_ObjectResponsive_filterOptions"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayout_ObjectResponsive_preferredComponent"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayout_ObjectResponsive_sortOptions")
+static const afw_value_t *
+impl_1364_list_providesObjects_values[] = {
+    afw_v_zz___afw__AdaptiveLayoutComponentTypeCategory__containers,
+    afw_v_zz___afw__AdaptiveLayoutComponentTypeCategory__content,
+    afw_v_zz___afw__AdaptiveLayoutComponentTypeCategory__editors,
+    afw_v_zz___afw__AdaptiveLayoutComponentTypeCategory__inputs,
+    afw_v_zz___afw__AdaptiveLayoutComponentTypeCategory__navigation,
+    afw_v_zz___afw__AdaptiveLayoutComponentTypeCategory__pickers,
+    afw_v_zz___afw__AdaptiveLayoutComponentTypeCategory__structured,
+    afw_v_zz___afw__AdaptiveLayoutComponentTypeCategory__utilities,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Autocomplete,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Box,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Breadcrumb,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Button,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Callout,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Chart,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Checkbox,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__ChoiceGroup,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__CodeEditor,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Collapsible,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__DatePicker,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__DateTimePicker,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Dialog,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__DiffEditor,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Divider,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Drawer,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Dropdown,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__DropdownEditor,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__EditableCallout,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__EditableLabel,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Hidden,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Icon,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Image,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Link,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__List,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__ListEditor,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Menu,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Message,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Modal,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Native,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Nav,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Paper,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Picker,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Responsive,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Skeleton,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Slider,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Snackbar,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__SpinButton,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Spinner,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Stepper,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Table,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Tabs,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__TextField,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__TimeDuration,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__TimePicker,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__TimezonePicker,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Toggle,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__ToggleButtons,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Toolbar,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Tooltip,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Tree,
+    afw_v_zz___afw__AdaptiveLayoutComponentType__Typography,
+    afw_v_zz__86b016b71899,
+    afw_v_zz__4e3f46a2a0de,
+    afw_v_zz__15bd2f6353c8,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayoutComponentType_Box,
+    afw_v_zz__8e8274550799,
+    afw_v_zz__c21c7b116a63,
+    afw_v_zz__8d1bd5fcfb61,
+    afw_v_zz__c05b5cf648a8,
+    afw_v_zz__4c59c5b81312,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayoutComponentType_Chart,
+    afw_v_zz__756ddbeaa7c4,
+    afw_v_zz__5384efca2954,
+    afw_v_zz__55f597d863b2,
+    afw_v_zz__123b9cc41f1d,
+    afw_v_zz__3d45d5252531,
+    afw_v_zz__506d1ec3e8fc,
+    afw_v_zz__55fc31af01af,
+    afw_v_zz__ae6add0de7b4,
+    afw_v_zz__b9a24a835952,
+    afw_v_zz__5369da21280f,
+    afw_v_zz__1d644fa40a44,
+    afw_v_zz__58a5717e1958,
+    afw_v_zz__a697cca13dca,
+    afw_v_zz__42ae83e3c69d,
+    afw_v_zz__2fc2483a71ec,
+    afw_v_zz__f3591654fc26,
+    afw_v_zz__880cafdc1197,
+    afw_v_zz__ff895f2ceccf,
+    afw_v_zz__d2bb9aa94677,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayoutComponentType_Icon,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayoutComponentType_Image,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayoutComponentType_Label,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayoutComponentType_Link,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayoutComponentType_List,
+    afw_v_zz__263ba34f1b55,
+    afw_v_zz__e3953fd8140b,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayoutComponentType_Menu,
+    afw_v_zz__494839bcfb45,
+    afw_v_zz__3168ac02ef80,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayoutComponentType_Modal,
+    afw_v_zz__a916b831027b,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayoutComponentType_Nav,
+    afw_v_zz__dd76ce8bba7a,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayoutComponentType_Paper,
+    afw_v_zz__5fa4cc1ae588,
+    afw_v_zz__d4d709e6f509,
+    afw_v_zz__892dac7010ec,
+    afw_v_zz__f438eedd2048,
+    afw_v_zz__6a5daf828925,
+    afw_v_zz__575d2e300389,
+    afw_v_zz__c7f48ad9b61c,
+    afw_v_zz__60aca70429f2,
+    afw_v_zz__bc13551d821b,
+    afw_v_zz__e364442fa874,
+    afw_v_zz__43ee6e161245,
+    afw_v_zz__98a49b8f7520,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayoutComponentType_Style,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayoutComponentType_Table,
+    afw_v_zz__dec97635a35f,
+    afw_v_zz__11fd8b0da26a,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayoutComponentType_Tabs,
+    afw_v_zz__9e7021ca0eb3,
+    afw_v_zz__6202b6faa458,
+    afw_v_zz__91fdc08906bb,
+    afw_v_zz__d42aa4b81bed,
+    afw_v_zz__3ac4a44d9f6a,
+    afw_v_zz__06574490a9ae,
+    afw_v_zz__1401ca2095cd,
+    afw_v_zz__eedda328a26e,
+    afw_v_zz__ad05d27d7f8a,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayoutComponentType_Tree,
+    afw_v_zz__4a0f797303ef,
+    afw_v_zz__603cda9bf1c8,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLayout_ObjectResponsive,
+    afw_v_zz__c5e2d785a9fe,
+    afw_v_zz__a6513e31c4f4,
+    afw_v_zz__a620388dd187,
+    afw_v_zz__86b3603451c7
 };
 
 static const afw_value_array_t
 impl_1364_list_providesObjects__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1364_list_providesObjects = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1364_list_providesObjects__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1364_array_providesObjects) / sizeof(afw_utf8_t),
-    &impl_1364_array_providesObjects
+    138,
+    impl_1364_list_providesObjects_values
 };
 
 static const afw_value_array_t
@@ -139825,25 +139259,19 @@ impl_1364_list_providesObjects__value = {
     (const afw_array_t *)&impl_1364_list_providesObjects
 };
 
-static const afw_value_array_t
-impl_1364_property_value_providesObjects = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1364_list_providesObjects
-};
-
 static const afw_runtime_property_t
 impl_1364_property_providesObjects = {
     afw_v_providesObjects,
-    &impl_1364_property_value_providesObjects.pub
+    (const afw_value_t *)&impl_1364_list_providesObjects__value
 };
 
 static const afw_value_array_t
 impl_1364_list_registers__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1364_list_registers = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1364_list_registers__value
     },
@@ -139858,16 +139286,10 @@ impl_1364_list_registers__value = {
     (const afw_array_t *)&impl_1364_list_registers
 };
 
-static const afw_value_array_t
-impl_1364_property_value_registers = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1364_list_registers
-};
-
 static const afw_runtime_property_t
 impl_1364_property_registers = {
     afw_v_registers,
-    &impl_1364_property_value_registers.pub
+    (const afw_value_t *)&impl_1364_list_registers__value
 };
 
 static const afw_runtime_property_t *
@@ -140190,27 +139612,27 @@ impl_1368_property_modulePath = {
     &afw_self_v_libafwcrypto.pub
 };
 
-static const afw_utf8_t
-impl_1368_array_providesObjects[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/crypto"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCryptoEncryptResult_"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCryptoKey_"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCryptoVersionInfo_")
+static const afw_value_t *
+impl_1368_list_providesObjects_values[] = {
+    afw_v_zz___afw__AdaptiveFunctionCategory__crypto,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveCryptoEncryptResult_,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveCryptoKey_,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveCryptoVersionInfo_
 };
 
 static const afw_value_array_t
 impl_1368_list_providesObjects__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1368_list_providesObjects = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1368_list_providesObjects__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1368_array_providesObjects) / sizeof(afw_utf8_t),
-    &impl_1368_array_providesObjects
+    4,
+    impl_1368_list_providesObjects_values
 };
 
 static const afw_value_array_t
@@ -140219,25 +139641,19 @@ impl_1368_list_providesObjects__value = {
     (const afw_array_t *)&impl_1368_list_providesObjects
 };
 
-static const afw_value_array_t
-impl_1368_property_value_providesObjects = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1368_list_providesObjects
-};
-
 static const afw_runtime_property_t
 impl_1368_property_providesObjects = {
     afw_v_providesObjects,
-    &impl_1368_property_value_providesObjects.pub
+    (const afw_value_t *)&impl_1368_list_providesObjects__value
 };
 
 static const afw_value_array_t
 impl_1368_list_registers__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1368_list_registers = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1368_list_registers__value
     },
@@ -140252,16 +139668,10 @@ impl_1368_list_registers__value = {
     (const afw_array_t *)&impl_1368_list_registers
 };
 
-static const afw_value_array_t
-impl_1368_property_value_registers = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1368_list_registers
-};
-
 static const afw_runtime_property_t
 impl_1368_property_registers = {
     afw_v_registers,
-    &impl_1368_property_value_registers.pub
+    (const afw_value_t *)&impl_1368_list_registers__value
 };
 
 static const afw_runtime_property_t *
@@ -140356,29 +139766,29 @@ impl_1369_property_modulePath = {
     &afw_self_v_libafwcurl.pub
 };
 
-static const afw_utf8_t
-impl_1369_array_providesObjects[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/curl"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/http"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/smtp"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlHttpResponse_"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_")
+static const afw_value_t *
+impl_1369_list_providesObjects_values[] = {
+    afw_v_zz___afw__AdaptiveFunctionCategory__curl,
+    afw_v_zz___afw__AdaptiveFunctionCategory__http,
+    afw_v_zz___afw__AdaptiveFunctionCategory__smtp,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveCurlHttpResponse_,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveCurlOptions_,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveCurlVersionInfo_
 };
 
 static const afw_value_array_t
 impl_1369_list_providesObjects__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1369_list_providesObjects = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1369_list_providesObjects__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1369_array_providesObjects) / sizeof(afw_utf8_t),
-    &impl_1369_array_providesObjects
+    6,
+    impl_1369_list_providesObjects_values
 };
 
 static const afw_value_array_t
@@ -140387,36 +139797,30 @@ impl_1369_list_providesObjects__value = {
     (const afw_array_t *)&impl_1369_list_providesObjects
 };
 
-static const afw_value_array_t
-impl_1369_property_value_providesObjects = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1369_list_providesObjects
-};
-
 static const afw_runtime_property_t
 impl_1369_property_providesObjects = {
     afw_v_providesObjects,
-    &impl_1369_property_value_providesObjects.pub
+    (const afw_value_t *)&impl_1369_list_providesObjects__value
 };
 
-static const afw_utf8_t
-impl_1369_array_registers[] = {
-    AFW_UTF8_LITERAL("error_rv_decoder/curl")
+static const afw_value_t *
+impl_1369_list_registers_values[] = {
+    afw_v_zz__error_rv_decoder_curl
 };
 
 static const afw_value_array_t
 impl_1369_list_registers__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1369_list_registers = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1369_list_registers__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1369_array_registers) / sizeof(afw_utf8_t),
-    &impl_1369_array_registers
+    1,
+    impl_1369_list_registers_values
 };
 
 static const afw_value_array_t
@@ -140425,16 +139829,10 @@ impl_1369_list_registers__value = {
     (const afw_array_t *)&impl_1369_list_registers
 };
 
-static const afw_value_array_t
-impl_1369_property_value_registers = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1369_list_registers
-};
-
 static const afw_runtime_property_t
 impl_1369_property_registers = {
     afw_v_registers,
-    &impl_1369_property_value_registers.pub
+    (const afw_value_t *)&impl_1369_list_registers__value
 };
 
 static const afw_runtime_property_t *
@@ -140909,34 +140307,34 @@ impl_1375_property_modulePath = {
     &afw_self_v_libafwldap.pub
 };
 
-static const afw_utf8_t
-impl_1375_array_providesObjects[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/ldap_extension"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_ldap_retrieve_objects"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap_bind"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRuleUse_"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRule_"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapRootDse_"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapSchema_"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapSyntax_")
+static const afw_value_t *
+impl_1375_list_providesObjects_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__ldap_extension,
+    afw_v_zz__613091031f0f,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_ldap,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_ldap_bind,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLdapAttributeType_,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLdapMatchingRuleUse_,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLdapMatchingRule_,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLdapObjectClass_,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLdapRootDse_,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLdapSchema_,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveLdapSyntax_
 };
 
 static const afw_value_array_t
 impl_1375_list_providesObjects__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1375_list_providesObjects = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1375_list_providesObjects__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1375_array_providesObjects) / sizeof(afw_utf8_t),
-    &impl_1375_array_providesObjects
+    11,
+    impl_1375_list_providesObjects_values
 };
 
 static const afw_value_array_t
@@ -140945,37 +140343,31 @@ impl_1375_list_providesObjects__value = {
     (const afw_array_t *)&impl_1375_list_providesObjects
 };
 
-static const afw_value_array_t
-impl_1375_property_value_providesObjects = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1375_list_providesObjects
-};
-
 static const afw_runtime_property_t
 impl_1375_property_providesObjects = {
     afw_v_providesObjects,
-    &impl_1375_property_value_providesObjects.pub
+    (const afw_value_t *)&impl_1375_list_providesObjects__value
 };
 
-static const afw_utf8_t
-impl_1375_array_registers[] = {
-    AFW_UTF8_LITERAL("adapter_type/ldap"),
-    AFW_UTF8_LITERAL("error_rv_decoder/ldap")
+static const afw_value_t *
+impl_1375_list_registers_values[] = {
+    afw_v_zz__adapter_type_ldap,
+    afw_v_zz__error_rv_decoder_ldap
 };
 
 static const afw_value_array_t
 impl_1375_list_registers__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1375_list_registers = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1375_list_registers__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1375_array_registers) / sizeof(afw_utf8_t),
-    &impl_1375_array_registers
+    2,
+    impl_1375_list_registers_values
 };
 
 static const afw_value_array_t
@@ -140984,16 +140376,10 @@ impl_1375_list_registers__value = {
     (const afw_array_t *)&impl_1375_list_registers
 };
 
-static const afw_value_array_t
-impl_1375_property_value_registers = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1375_list_registers
-};
-
 static const afw_runtime_property_t
 impl_1375_property_registers = {
     afw_v_registers,
-    &impl_1375_property_value_registers.pub
+    (const afw_value_t *)&impl_1375_list_registers__value
 };
 
 static const afw_runtime_property_t *
@@ -141088,35 +140474,35 @@ impl_1376_property_modulePath = {
     &afw_self_v_libafwlmdb.pub
 };
 
-static const afw_utf8_t
-impl_1376_array_providesObjects[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/lmdb"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_information"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_statistic"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_statistics"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_version"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time")
+static const afw_value_t *
+impl_1376_list_providesObjects_values[] = {
+    afw_v_zz___afw__AdaptiveCollection__lmdb_extension,
+    afw_v_zz___afw__AdaptiveFunctionCategory__lmdb,
+    afw_v_zz__e1c5c6645e5f,
+    afw_v_zz__a8d9c5929933,
+    afw_v_zz__0e0d2e5e6b9d,
+    afw_v_zz__6bb4876b53ba,
+    afw_v_zz__a79b611e7e1e,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_env,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_limits,
+    afw_v_zz__33eb0219e462,
+    afw_v_zz__d9795195cb0b
 };
 
 static const afw_value_array_t
 impl_1376_list_providesObjects__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1376_list_providesObjects = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1376_list_providesObjects__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1376_array_providesObjects) / sizeof(afw_utf8_t),
-    &impl_1376_array_providesObjects
+    12,
+    impl_1376_list_providesObjects_values
 };
 
 static const afw_value_array_t
@@ -141125,37 +140511,31 @@ impl_1376_list_providesObjects__value = {
     (const afw_array_t *)&impl_1376_list_providesObjects
 };
 
-static const afw_value_array_t
-impl_1376_property_value_providesObjects = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1376_list_providesObjects
-};
-
 static const afw_runtime_property_t
 impl_1376_property_providesObjects = {
     afw_v_providesObjects,
-    &impl_1376_property_value_providesObjects.pub
+    (const afw_value_t *)&impl_1376_list_providesObjects__value
 };
 
-static const afw_utf8_t
-impl_1376_array_registers[] = {
-    AFW_UTF8_LITERAL("adapter_type/lmdb"),
-    AFW_UTF8_LITERAL("error_rv_decoder/lmdb")
+static const afw_value_t *
+impl_1376_list_registers_values[] = {
+    afw_v_zz__adapter_type_lmdb,
+    afw_v_zz__error_rv_decoder_lmdb
 };
 
 static const afw_value_array_t
 impl_1376_list_registers__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1376_list_registers = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1376_list_registers__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1376_array_registers) / sizeof(afw_utf8_t),
-    &impl_1376_array_registers
+    2,
+    impl_1376_list_registers_values
 };
 
 static const afw_value_array_t
@@ -141164,16 +140544,10 @@ impl_1376_list_registers__value = {
     (const afw_array_t *)&impl_1376_list_registers
 };
 
-static const afw_value_array_t
-impl_1376_property_value_registers = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1376_list_registers
-};
-
 static const afw_runtime_property_t
 impl_1376_property_registers = {
     afw_v_registers,
-    &impl_1376_property_value_registers.pub
+    (const afw_value_t *)&impl_1376_list_registers__value
 };
 
 static const afw_runtime_property_t *
@@ -142180,24 +141554,24 @@ impl_1389_property_modulePath = {
     &afw_self_v_libafwubjson.pub
 };
 
-static const afw_utf8_t
-impl_1389_array_registers[] = {
-    AFW_UTF8_LITERAL("content_type/ubjson")
+static const afw_value_t *
+impl_1389_list_registers_values[] = {
+    afw_v_zz__content_type_ubjson
 };
 
 static const afw_value_array_t
 impl_1389_list_registers__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1389_list_registers = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1389_list_registers__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1389_array_registers) / sizeof(afw_utf8_t),
-    &impl_1389_array_registers
+    1,
+    impl_1389_list_registers_values
 };
 
 static const afw_value_array_t
@@ -142206,16 +141580,10 @@ impl_1389_list_registers__value = {
     (const afw_array_t *)&impl_1389_list_registers
 };
 
-static const afw_value_array_t
-impl_1389_property_value_registers = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1389_list_registers
-};
-
 static const afw_runtime_property_t
 impl_1389_property_registers = {
     afw_v_registers,
-    &impl_1389_property_value_registers.pub
+    (const afw_value_t *)&impl_1389_list_registers__value
 };
 
 static const afw_runtime_property_t *
@@ -142461,26 +141829,26 @@ impl_1392_property_modulePath = {
     &afw_self_v_libafwvfs.pub
 };
 
-static const afw_utf8_t
-impl_1392_array_providesObjects[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs"),
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs")
+static const afw_value_t *
+impl_1392_list_providesObjects_values[] = {
+    afw_v_zz__2f8d14bb5745,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_vfs,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveFile_vfs
 };
 
 static const afw_value_array_t
 impl_1392_list_providesObjects__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1392_list_providesObjects = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1392_list_providesObjects__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1392_array_providesObjects) / sizeof(afw_utf8_t),
-    &impl_1392_array_providesObjects
+    3,
+    impl_1392_list_providesObjects_values
 };
 
 static const afw_value_array_t
@@ -142489,36 +141857,30 @@ impl_1392_list_providesObjects__value = {
     (const afw_array_t *)&impl_1392_list_providesObjects
 };
 
-static const afw_value_array_t
-impl_1392_property_value_providesObjects = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1392_list_providesObjects
-};
-
 static const afw_runtime_property_t
 impl_1392_property_providesObjects = {
     afw_v_providesObjects,
-    &impl_1392_property_value_providesObjects.pub
+    (const afw_value_t *)&impl_1392_list_providesObjects__value
 };
 
-static const afw_utf8_t
-impl_1392_array_registers[] = {
-    AFW_UTF8_LITERAL("adapter_type/vfs")
+static const afw_value_t *
+impl_1392_list_registers_values[] = {
+    afw_v_zz__adapter_type_vfs
 };
 
 static const afw_value_array_t
 impl_1392_list_registers__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1392_list_registers = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1392_list_registers__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1392_array_registers) / sizeof(afw_utf8_t),
-    &impl_1392_array_registers
+    1,
+    impl_1392_list_registers_values
 };
 
 static const afw_value_array_t
@@ -142527,16 +141889,10 @@ impl_1392_list_registers__value = {
     (const afw_array_t *)&impl_1392_list_registers
 };
 
-static const afw_value_array_t
-impl_1392_property_value_registers = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1392_list_registers
-};
-
 static const afw_runtime_property_t
 impl_1392_property_registers = {
     afw_v_registers,
-    &impl_1392_property_value_registers.pub
+    (const afw_value_t *)&impl_1392_list_registers__value
 };
 
 static const afw_runtime_property_t *
@@ -142707,24 +142063,24 @@ impl_1394_property_modulePath = {
     &afw_self_v_libafwyaml.pub
 };
 
-static const afw_utf8_t
-impl_1394_array_providesObjects[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveManifest_/afw_yaml")
+static const afw_value_t *
+impl_1394_list_providesObjects_values[] = {
+    afw_v_zz___afw__AdaptiveManifest__afw_yaml
 };
 
 static const afw_value_array_t
 impl_1394_list_providesObjects__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1394_list_providesObjects = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1394_list_providesObjects__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1394_array_providesObjects) / sizeof(afw_utf8_t),
-    &impl_1394_array_providesObjects
+    1,
+    impl_1394_list_providesObjects_values
 };
 
 static const afw_value_array_t
@@ -142733,37 +142089,31 @@ impl_1394_list_providesObjects__value = {
     (const afw_array_t *)&impl_1394_list_providesObjects
 };
 
-static const afw_value_array_t
-impl_1394_property_value_providesObjects = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1394_list_providesObjects
-};
-
 static const afw_runtime_property_t
 impl_1394_property_providesObjects = {
     afw_v_providesObjects,
-    &impl_1394_property_value_providesObjects.pub
+    (const afw_value_t *)&impl_1394_list_providesObjects__value
 };
 
-static const afw_utf8_t
-impl_1394_array_registers[] = {
-    AFW_UTF8_LITERAL("content_type/x-yaml"),
-    AFW_UTF8_LITERAL("content_type/yaml")
+static const afw_value_t *
+impl_1394_list_registers_values[] = {
+    afw_v_zz__content_type_x_yaml,
+    afw_v_zz__content_type_yaml
 };
 
 static const afw_value_array_t
 impl_1394_list_registers__value;
 
-static const afw_array_view_of_c_array_self_t
+static const afw_array_const_array_of_values_self_t
 impl_1394_list_registers = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_1394_list_registers__value
     },
     &afw_data_type_string_direct,
-    sizeof(impl_1394_array_registers) / sizeof(afw_utf8_t),
-    &impl_1394_array_registers
+    2,
+    impl_1394_list_registers_values
 };
 
 static const afw_value_array_t
@@ -142772,16 +142122,10 @@ impl_1394_list_registers__value = {
     (const afw_array_t *)&impl_1394_list_registers
 };
 
-static const afw_value_array_t
-impl_1394_property_value_registers = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_1394_list_registers
-};
-
 static const afw_runtime_property_t
 impl_1394_property_registers = {
     afw_v_registers,
-    &impl_1394_property_value_registers.pub
+    (const afw_value_t *)&impl_1394_list_registers__value
 };
 
 static const afw_runtime_property_t *

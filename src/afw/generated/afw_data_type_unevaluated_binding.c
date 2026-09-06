@@ -172,7 +172,7 @@ impl_data_type_object_unevaluated__value = {
 };
 
 /* Permanent empty array of unevaluated. */
-const afw_array_view_of_c_array_self_t
+const afw_array_const_array_of_values_self_t
 impl_empty_array_of_unevaluated;
 
 /* Permanent empty array value of unevaluated. */
@@ -210,15 +210,16 @@ afw_data_type_unevaluated_direct = {
 };
 
 /* Permanent empty array of unevaluated. */
-const afw_array_view_of_c_array_self_t
+const afw_array_const_array_of_values_self_t
 impl_empty_array_of_unevaluated = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_unevaluated
     },
     &afw_data_type_unevaluated_direct,
-    0
+    0,
+    NULL
 };
 
 /* Permanent empty array value of unevaluated. */

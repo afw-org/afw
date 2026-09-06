@@ -1190,7 +1190,8 @@ afw_runtime_value_accessor_null_terminated_array_of_values(
     const afw_value_t * const *values =  (const afw_value_t * const *)internal;
     const afw_array_t *list;
 
-    list = afw_array_const_create_null_terminated_array_of_values(values, p, xctx);
+    list = afw_array_const_create_null_terminated_array_of_values(
+        NULL, values, p, xctx);
 
     return afw_value_create_unmanaged_array(list, p, xctx);
 }

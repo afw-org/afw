@@ -213,7 +213,7 @@ impl_data_type_object_xpathExpression__value = {
 };
 
 /* Permanent empty array of xpathExpression. */
-const afw_array_view_of_c_array_self_t
+const afw_array_const_array_of_values_self_t
 impl_empty_array_of_xpathExpression;
 
 /* Permanent empty array value of xpathExpression. */
@@ -251,15 +251,16 @@ afw_data_type_xpathExpression_direct = {
 };
 
 /* Permanent empty array of xpathExpression. */
-const afw_array_view_of_c_array_self_t
+const afw_array_const_array_of_values_self_t
 impl_empty_array_of_xpathExpression = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_const_array_of_values_inf,
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_xpathExpression
     },
     &afw_data_type_xpathExpression_direct,
-    0
+    0,
+    NULL
 };
 
 /* Permanent empty array value of xpathExpression. */

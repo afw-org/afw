@@ -244,7 +244,7 @@ impl_afw_value_optional_evaluate(
                             rest_argv = NULL;
                         }
                         rest_array = afw_array_const_create_array_of_values(
-                            rest_argv, rest_argc, p, xctx);
+                            NULL, rest_argv, rest_argc, p, xctx);
                         value = afw_value_create_unmanaged_array(
                             rest_array, p, xctx);
                     }

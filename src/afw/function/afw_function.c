@@ -168,7 +168,7 @@ afw_function_execute_requiresExecuteAccess_wrapper(
         afw_object_set_property_as_object(
             obj, afw_v_function, x->function->object, xctx);
         argv_array = afw_array_const_create_array_of_values(
-            &argv[1], x->argc, obj->p, xctx);
+            NULL, &argv[1], x->argc, obj->p, xctx);
         afw_object_set_property_as_array(
             obj, afw_v_arguments, argv_array, xctx);
         for (argc = 1, parameter = x->function->parameters;
@@ -180,11 +180,11 @@ afw_function_execute_requiresExecuteAccess_wrapper(
             {
                 if (argc <= x->argc) {
                     argv_array = afw_array_const_create_array_of_values(
-                        &argv[argc], x->argc - argc, obj->p, xctx);
+                        NULL, &argv[argc], x->argc - argc, obj->p, xctx);
                 }
                 else {
                     argv_array = afw_array_const_create_array_of_values(
-                        &argv[1], 0, obj->p, xctx);
+                        NULL, &argv[1], 0, obj->p, xctx);
                 }
                 afw_object_set_property_as_array(
                     obj, &(*parameter)->name->pub, argv_array, xctx);

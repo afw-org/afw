@@ -2482,7 +2482,7 @@ afw_compile_parse_StatementList(
     /* If building statement list, create an array of statements. */
     if (building_list_not_block) {
         array = afw_array_const_create_array_of_values(
-            argv, argc, parser->p, parser->xctx);
+            NULL, argv, argc, parser->p, parser->xctx);
         result = afw_value_create_unmanaged_array(
             array, parser->p, parser->xctx);
     }

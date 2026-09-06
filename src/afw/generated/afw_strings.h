@@ -445,6 +445,32 @@ afw_self_v_Arguments;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_ArrayOf \
+    "ArrayOf"
+
+/** @brief 'afw_utf8_t' for AFW_Q_ArrayOf */
+#define afw_s_ArrayOf \
+    (&afw_self_v_ArrayOf.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_ArrayOf */
+#define afw_self_s_ArrayOf \
+    (afw_self_v_ArrayOf.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_ArrayOf */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_ArrayOf;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_ArrayOf */
+#define afw_z_ArrayOf \
+    (afw_self_v_ArrayOf.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_ArrayOf */
+#define afw_v_ArrayOf \
+    (&afw_self_v_ArrayOf.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_Assertion \
     "Assertion"
 
@@ -1589,6 +1615,32 @@ afw_self_v_Function;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_FunctionSignature \
+    "FunctionSignature"
+
+/** @brief 'afw_utf8_t' for AFW_Q_FunctionSignature */
+#define afw_s_FunctionSignature \
+    (&afw_self_v_FunctionSignature.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_FunctionSignature */
+#define afw_self_s_FunctionSignature \
+    (afw_self_v_FunctionSignature.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_FunctionSignature */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_FunctionSignature;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_FunctionSignature */
+#define afw_z_FunctionSignature \
+    (afw_self_v_FunctionSignature.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_FunctionSignature */
+#define afw_v_FunctionSignature \
+    (&afw_self_v_FunctionSignature.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_GATEWAY_INTERFACE \
     "GATEWAY_INTERFACE"
 
@@ -2521,6 +2573,32 @@ afw_self_v_M;
 /** @brief 'const afw_value_t *' for AFW_Q_M */
 #define afw_v_M \
     (&afw_self_v_M.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_MediaType \
+    "MediaType"
+
+/** @brief 'afw_utf8_t' for AFW_Q_MediaType */
+#define afw_s_MediaType \
+    (&afw_self_v_MediaType.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_MediaType */
+#define afw_self_s_MediaType \
+    (afw_self_v_MediaType.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_MediaType */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_MediaType;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_MediaType */
+#define afw_z_MediaType \
+    (afw_self_v_MediaType.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_MediaType */
+#define afw_v_MediaType \
+    (&afw_self_v_MediaType.pub)
 
 
 
@@ -4809,6 +4887,32 @@ afw_self_v_Source;
 /** @brief 'const afw_value_t *' for AFW_Q_Source */
 #define afw_v_Source \
     (&afw_self_v_Source.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_SourceParameter \
+    "SourceParameter"
+
+/** @brief 'afw_utf8_t' for AFW_Q_SourceParameter */
+#define afw_s_SourceParameter \
+    (&afw_self_v_SourceParameter.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_SourceParameter */
+#define afw_self_s_SourceParameter \
+    (afw_self_v_SourceParameter.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_SourceParameter */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_SourceParameter;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_SourceParameter */
+#define afw_z_SourceParameter \
+    (afw_self_v_SourceParameter.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_SourceParameter */
+#define afw_v_SourceParameter \
+    (&afw_self_v_SourceParameter.pub)
 
 
 

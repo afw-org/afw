@@ -20,6 +20,72 @@ def new_label():
     return 'impl_' + str(label_counter)
 
 
+def _const_array_element_value_expr(options, element_type, value):
+    """C expression for an interned permanent value of one array element."""
+    if element_type == 'integer':
+        bag = str(value)
+        label_pref = None
+        if value == 0:
+            label_pref = 'zero'
+        elif value == 1:
+            label_pref = 'one'
+        return get_string_label(
+            options, bag, 'v', dataType='integer',
+            labelPreference=label_pref)
+    if element_type == 'boolean':
+        bag = 'true' if value else 'false'
+        return get_string_label(
+            options, bag, 'v', dataType='boolean')
+    return get_string_label(
+        options, value, 'v', dataType=element_type)
+
+
+def write_const_array_of_values(
+        fd, options, instance_label, value_label, element_type, py_values):
+    """Emit a static typed const array of interned value pointers.
+
+    instance_label names the afw_array_const_array_of_values_self_t.
+    value_label names the dual afw_value_array_t (permanent).
+    """
+    values_label = instance_label + '_values'
+    count = len(py_values) if py_values else 0
+
+    if count > 0:
+        fd.write('\nstatic const afw_value_t *\n')
+        fd.write(values_label + '[] = {\n')
+        comma = ''
+        for value in py_values:
+            fd.write(comma + '    ' +
+                     _const_array_element_value_expr(
+                         options, element_type, value))
+            comma = ',\n'
+        fd.write('\n};\n')
+
+    fd.write('\nstatic const afw_value_array_t\n')
+    fd.write(value_label + ';\n')
+
+    fd.write('\nstatic const afw_array_const_array_of_values_self_t\n')
+    fd.write(instance_label + ' = {\n')
+    fd.write('    {\n')
+    fd.write('        &afw_array_const_array_of_values_inf,\n')
+    fd.write('        NULL,\n')
+    fd.write('        (const afw_value_t *)&' + value_label + '\n')
+    fd.write('    },\n')
+    fd.write('    &afw_data_type_' + element_type + '_direct,\n')
+    fd.write('    ' + str(count) + ',\n')
+    if count > 0:
+        fd.write('    ' + values_label + '\n')
+    else:
+        fd.write('    NULL\n')
+    fd.write('};\n')
+
+    fd.write('\nstatic const afw_value_array_t\n')
+    fd.write(value_label + ' = {\n')
+    fd.write('    {&afw_value_permanent_array_inf},\n')
+    fd.write('    (const afw_array_t *)&' + instance_label + '\n')
+    fd.write('};\n')
+
+
 def sort_use_id_cb(obj):
     return obj['_meta_']['objectId']
 
@@ -73,10 +139,10 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
     for propname in sorted(propnames):
         prop = obj[propname]
         tag_propname = propname.replace('-', '_')
-        # Permanent scalar property values go through options['const'] via
-        # get_string_label so true/false/0/1 and repeated literals share one
-        # afw_*_self_v_* (see strings.seed_from_strings_dir / strings.txt).
-        # object/array still need per-instance permanent wrappers.
+        # Permanent scalar and typed array elements go through options['const']
+        # via get_string_label so true/false/0/1 and repeated literals share
+        # one afw_*_self_v_* (see strings.seed_from_strings_dir / strings.txt).
+        # object properties still need per-instance permanent wrappers.
         use_shared_scalar = False
         value_expr = None
 
@@ -120,63 +186,21 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
         elif isinstance(prop, list):
             dataType = 'array'
             elementType = 'string'
-            if len(prop) != 0:
-                if isinstance(prop[0], int):
+            py_values = list(prop)
+            if len(py_values) != 0:
+                if isinstance(py_values[0], bool):
+                    elementType = 'boolean'
+                elif isinstance(py_values[0], int):
                     elementType = 'integer'
-                    fd.write('\nstatic const afw_integer_t\n' +
-                    obj['_meta_']['_label_'] + '_array_' + tag_propname + '[] = {\n')
-                    comma = ''
-                    for value in sorted(prop):
-                        fd.write(comma + '    ' + str(value))
-                        comma = ',\n'
-                    fd.write('\n};\n')
+                    py_values = sorted(py_values)
                 else:
-                    fd.write('\nstatic const afw_utf8_t\n' +
-                    obj['_meta_']['_label_'] + '_array_' + tag_propname + '[] = {\n')
-                    comma = ''
-                    for value in sorted(prop):
-                        fd.write(comma + '    AFW_UTF8_LITERAL(' + c.make_quoted(value) + ')')
-                        comma = ',\n'
-                    fd.write('\n};\n')
-
+                    py_values = sorted(py_values)
             label = obj['_meta_']['_label_'] + '_list_' + tag_propname
             value_label = label + '__value'
-            fd.write('\nstatic const afw_value_array_t\n')
-            fd.write(value_label + ';\n')
-
-            fd.write('\nstatic const afw_array_view_of_c_array_self_t\n')
-            fd.write(label + ' = {\n')
-            fd.write('    {\n')
-            fd.write('        &afw_array_view_of_c_array_inf,\n')
-            fd.write('        NULL,\n')
-            fd.write('        (const afw_value_t *)&' + value_label +'\n')
-            fd.write('    },\n')
-            fd.write('    &afw_data_type_' + elementType + '_direct,\n')
-            if len(prop) != 0:
-                fd.write('    sizeof(' +  obj['_meta_']['_label_'] + '_array_' + tag_propname + ') / sizeof(')
-                if (elementType == 'integer'):
-                    fd.write('afw_integer_t')
-                else:
-                    fd.write('afw_utf8_t')
-                fd.write('),\n')
-                fd.write('    &' + obj['_meta_']['_label_'] + '_array_' + tag_propname + '\n')
-            else:
-                fd.write('    0,\n')
-                fd.write('    NULL\n')
-            fd.write('};\n')
-
-            fd.write('\nstatic const afw_value_array_t\n')
-            fd.write(value_label + ' = {\n')
-            fd.write('    {&afw_value_permanent_array_inf},\n')
-            fd.write('    (const afw_array_t *)&' + label +'\n')
-            fd.write('};\n')
-
-            value_expr = (
-                '&' + obj['_meta_']['_label_'] +
-                '_property_value_' + tag_propname + '.pub')
-            value = (
-                '(const afw_array_t *)&' + obj['_meta_']['_label_'] +
-                '_list_' + tag_propname)
+            write_const_array_of_values(
+                fd, options, label, value_label, elementType, py_values)
+            use_shared_scalar = True
+            value_expr = '(const afw_value_t *)&' + value_label
         elif isinstance(prop, dict):
             dataType = 'object'
             value_expr = (
@@ -217,27 +241,11 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
     if parentPaths is not None:
         if not isinstance(parentPaths, list):
             msg.error_exit('parentPaths must be a list')
-        fd.write('\nstatic const afw_utf8_t\n')
-        fd.write(meta.get('_label_') + '_parentPaths_array[] = {\n')
-        comma = ''
-        for value in parentPaths:
-            fd.write(comma + '    AFW_UTF8_LITERAL(' + c.make_quoted(value) + ')')
-            comma = ',\n'
-        fd.write('\n};\n')
-
-        fd.write('\nstatic const afw_array_view_of_c_array_self_t\n')
-        fd.write(meta.get('_label_') + '_parentPaths_list = {\n')
-        fd.write('    { &afw_array_view_of_c_array_inf, NULL, NULL },\n')
-        fd.write('    &afw_data_type_anyURI_direct,\n')
-        fd.write('    sizeof(' +  meta.get('_label_') + '_parentPaths_array) / sizeof(afw_utf8_t),\n')
-        fd.write('    (const void *)&' + meta.get('_label_') + '_parentPaths_array\n')
-        fd.write('};\n')
-
-        fd.write('\nstatic const afw_value_array_t\n')
-        fd.write(meta.get('_label_') + '_parentPaths = {\n')
-        fd.write('    {&afw_value_permanent_array_inf},\n')
-        fd.write('    (const afw_array_t *)&' + meta.get('_label_') + '_parentPaths_list\n')
-        fd.write('};\n')
+        write_const_array_of_values(
+            fd, options,
+            meta.get('_label_') + '_parentPaths_list',
+            meta.get('_label_') + '_parentPaths',
+            'anyURI', parentPaths)
 
         parentPathsList = '&' + meta.get('_label_') + '_parentPaths'
 

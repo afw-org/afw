@@ -4683,6 +4683,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz___afw__AdaptiveCollection__lmdb_extension \
+    "/afw/_AdaptiveCollection_/lmdb_extension"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz___afw__AdaptiveCollection__lmdb_extension */
+#define afw_lmdb_s_zz___afw__AdaptiveCollection__lmdb_extension \
+    (&afw_lmdb_self_v_zz___afw__AdaptiveCollection__lmdb_extension.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz___afw__AdaptiveCollection__lmdb_extension */
+#define afw_lmdb_self_s_zz___afw__AdaptiveCollection__lmdb_extension \
+    (afw_lmdb_self_v_zz___afw__AdaptiveCollection__lmdb_extension.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz___afw__AdaptiveCollection__lmdb_extension */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz___afw__AdaptiveCollection__lmdb_extension;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz___afw__AdaptiveCollection__lmdb_extension */
+#define afw_lmdb_z_zz___afw__AdaptiveCollection__lmdb_extension \
+    (afw_lmdb_self_v_zz___afw__AdaptiveCollection__lmdb_extension.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz___afw__AdaptiveCollection__lmdb_extension */
+#define afw_lmdb_v_zz___afw__AdaptiveCollection__lmdb_extension \
+    (&afw_lmdb_self_v_zz___afw__AdaptiveCollection__lmdb_extension.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_LMDB_Q_zz___afw__AdaptiveFunction__reader_check \
     "/afw/_AdaptiveFunction_/reader_check"
 
@@ -4953,6 +4979,32 @@ extern const afw_value_boolean_t \
 /** @brief 'const afw_value_t *' for boolean true */
 #define afw_lmdb_boolean_v_true \
     (&afw_lmdb_boolean_self_v_true.pub)
+
+
+
+/** @brief #define for anyURI in quotes */
+#define AFW_LMDB_ANYURI_Q_zz__2b8c16b19a08 \
+    "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_ANYURI_Q_zz__2b8c16b19a08 */
+#define afw_lmdb_anyURI_s_zz__2b8c16b19a08 \
+    (&afw_lmdb_anyURI_self_v_zz__2b8c16b19a08.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_ANYURI_Q_zz__2b8c16b19a08 */
+#define afw_lmdb_anyURI_self_s_zz__2b8c16b19a08 \
+    (afw_lmdb_anyURI_self_v_zz__2b8c16b19a08.internal)
+
+/** @brief 'afw_value_anyURI_t' for AFW_LMDB_ANYURI_Q_zz__2b8c16b19a08 */
+extern const afw_value_anyURI_t \
+    afw_lmdb_anyURI_self_v_zz__2b8c16b19a08;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_ANYURI_Q_zz__2b8c16b19a08 */
+#define afw_lmdb_anyURI_z_zz__2b8c16b19a08 \
+    (afw_lmdb_anyURI_self_v_zz__2b8c16b19a08.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_ANYURI_Q_zz__2b8c16b19a08 */
+#define afw_lmdb_anyURI_v_zz__2b8c16b19a08 \
+    (&afw_lmdb_anyURI_self_v_zz__2b8c16b19a08.pub)
 
 
 /**
