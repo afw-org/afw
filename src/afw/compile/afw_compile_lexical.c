@@ -2506,9 +2506,10 @@ afw_compile_lexical_parser_create(
     afw_xctx_t *xctx)
 {
     afw_compile_parser_t *parser;
+    const afw_pool_t *unit_p;
+    const afw_compile_shared_t *use_shared;
+    afw_boolean_t shared_created;
 
-    /* Initialize parser work area. */
-    parser = afw_xctx_calloc_type(afw_compile_parser_t, xctx);
     if (cede_p && ( shared || parent)) {
         AFW_THROW_ERROR_Z(general,
             "afw_compile_lexical_parser_create() parameter cede_p true when "
@@ -2521,27 +2522,34 @@ afw_compile_lexical_parser_create(
             "parent, shared or p must be non-NULL",
             xctx);
     }
+
+    shared_created = false;
     if (shared) {
-        parser->p = shared->p;
-        parser->shared = shared;
+        unit_p = shared->p;
+        use_shared = shared;
     }
     else if (parent && parent->shared) {
-        parser->p = parent->p;
-        parser->shared = parent->shared;
+        unit_p = parent->p;
+        use_shared = parent->shared;
     }
     else {
         if (parent) {
-            parser->p = parent->p;
+            unit_p = parent->p;
         }
         else if (cede_p) {
-            parser->p = p;
+            unit_p = p;
         }
         else {
-            parser->p = afw_pool_create(p, xctx);
+            unit_p = afw_pool_create(p, xctx);
         }
-        parser->shared = afw_compile_shared_create(parser->p, xctx);
-        parser->shared_created = true;
+        use_shared = afw_compile_shared_create(unit_p, xctx);
+        shared_created = true;
     }
+
+    parser = afw_pool_calloc_type(unit_p, afw_compile_parser_t, xctx);
+    parser->p = unit_p;
+    parser->shared = use_shared;
+    parser->shared_created = shared_created;
     if (parser->shared && !parser->shared->temp_p) {
         afw_compile_shared_t *s = (afw_compile_shared_t *)parser->shared;
         s->temp_p = afw_pool_create(s->p, xctx);
