@@ -73,7 +73,7 @@ Separate inf (`memory_managed`), alloc in `xctx->p`, RC 1. Slots: new property n
 
 ## Follow-ups
 
-- Eval `p` = `scope->p` when `{ }` has a frame: [PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md) (still caller `p` on `develop` until merge).
+- Eval `p` = `scope->p` when `{ }` has a frame: [PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md).
 - Adapter clones (held).
 - Clone-of-unmanaged object meta.
 - FRV keep as-is unless special cases spread.

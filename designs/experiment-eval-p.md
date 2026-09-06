@@ -1,7 +1,7 @@
 # Discovery — eval `p` = `scope->p` / `FIXME_GET_IT_WORKING`
 
 **Audience:** maintainers / assistants. **Not** handbook.  
-**Branch:** `experiment/eval-p-scope` ([PR #287](https://github.com/afw-org/afw/pull/287), tip `23a837df`).  
+**Landed:** [PR #287](https://github.com/afw-org/afw/pull/287) on `develop` (`6fd952b8`).  
 **Base:** `develop` after [#282](https://github.com/afw-org/afw/issues/282) (scope frames, compile facts, RC 1, dest `p` ripped).  
 **Rails:** [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). Two worlds: [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)).  
 **Probes:** [`src/afw/tests-extra/issue-2/03-eval-p/`](../src/afw/tests-extra/issue-2/03-eval-p/) (not default `test -j`).

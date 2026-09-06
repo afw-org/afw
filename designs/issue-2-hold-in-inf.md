@@ -9,7 +9,7 @@
 
 Keep from `develop`: slot protocol, pool split, two worlds **#277**, `#35` store-time bind, `#245` 0-symbol `{ }`, `#246`/`#247` honest heap/tracker.
 
-**Landed on `scope` (2026-09-05):** compile facts `parent_scope_block` / `scope_depth` after the unit is complete (`finalize_scope_tree`). Nested empty `{ }` has no scope; top always does. Scope create/clone start at RC 1; creator `release`s; `activate` / `deactivate` only push/pop. Bind script functions via `enclosing_block`, not syntax depth. `get_assignable_value` table (managed bump; unmanaged scalar promote; script `{}` / `[]` `clone_managed`; runtime/adapter object managed wrapper; permanent scalar as-is; permanent object/array wrapper/clone). Dest `p` ripped from `slot_store` / `as_assignable` / `get_assignable_value` / `get_reference` / `add_reference`. `get_reference` is a bump (`instance, xctx`) — leftover dest `p` was an abandoned plan to have it do `clone_or_reference`. `script_result`: `return` is `as_assignable` only; statement list starts void; block finish stores a non-void last before deactivate; nested eval save/restore. FRV keep as-is. Eval `p` = `scope->p` when `{ }` has a frame: [PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md) (still caller `p` on `develop` until that lands).
+**Landed on `scope` (2026-09-05):** compile facts `parent_scope_block` / `scope_depth` after the unit is complete (`finalize_scope_tree`). Nested empty `{ }` has no scope; top always does. Scope create/clone start at RC 1; creator `release`s; `activate` / `deactivate` only push/pop. Bind script functions via `enclosing_block`, not syntax depth. `get_assignable_value` table (managed bump; unmanaged scalar promote; script `{}` / `[]` `clone_managed`; runtime/adapter object managed wrapper; permanent scalar as-is; permanent object/array wrapper/clone). Dest `p` ripped from `slot_store` / `as_assignable` / `get_assignable_value` / `get_reference` / `add_reference`. `get_reference` is a bump (`instance, xctx`) — leftover dest `p` was an abandoned plan to have it do `clone_or_reference`. `script_result`: `return` is `as_assignable` only; statement list starts void; block finish stores a non-void last before deactivate; nested eval save/restore. FRV keep as-is. Eval `p` = `scope->p` when `{ }` has a frame: [PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md).
 
 ---
 
@@ -72,7 +72,7 @@ Face GET: store `get_assignable_value` of the retrieved child locally. Face SET:
 
 This is the path. Not `assignable_p` on create, not hopping dest `p` inside `as_assignable`, not “keep objects off the tracker so last-release is safe.” Those got tests green and flattened `i = i + 1` by **not** putting the trip on the tracker. That work was thrown away. Do not put it back.
 
-**Evaluate `p`:** `scope->p` when the `{ }` has a frame ([PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md)). Nested `evaluate` in a frame gets the same `p`. Temps (`1+1`, `{}`, `[]`) land there and die with last-release. Still caller `p` on `develop` until that PR lands.
+**Evaluate `p`:** `scope->p` when the `{ }` has a frame ([PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md)). Nested `evaluate` in a frame gets the same `p`. Temps (`1+1`, `{}`, `[]`) land there and die with last-release.
 
 **Frame vs block.** Frame deactivate is the pool story. Block, on a **normal** fall-out, writes **last_return**. Throw/break/rewind deactivates frames and does not invent a result. Frames are one-to-one with `{ }` in the model; today zero-symbol `{ }` may skip a frame and `for (let …)` clones an extra one of **names**.
 
@@ -170,7 +170,7 @@ Done on `scope`: compile facts + RC 1, enclosing_block bind, `get_assignable_val
 
 **On develop (PR [#267](https://github.com/afw-org/afw/pull/267), 2026-08-28):** Heap and tracker are the two pool impls (plus mt lock wrappers). APR is reservoir only. `AFW_DEBUG_POOL` prefix always checked on free; USER poison on free. `xctx->p` is ST heap; `env->p` is mt heap. last_return: [#277](https://github.com/afw-org/afw/issues/277) / `script_result.as`. Script/function door: empty void → `undefined`. Declared `: void` stays void.
 
-**Still parked (not PR #287):** Skip `double_free_throws`. Adapter clones. Clone-of-unmanaged object meta. Double-free today throws prefix “pool does not match allocation” after overlay, not “already freed.” Do not spread `get_reference` in `execute_*`. Tracker allocated list forward-only later. Do not wrap catalog qualifiers. Do not add `get_base` unless more than one product site type-switches for “entity.” Eval `p` = `scope->p` is [PR #287](https://github.com/afw-org/afw/pull/287), not `develop` until merge.
+**Still parked (not PR #287):** Skip `double_free_throws`. Adapter clones. Clone-of-unmanaged object meta. Double-free today throws prefix “pool does not match allocation” after overlay, not “already freed.” Do not spread `get_reference` in `execute_*`. Tracker allocated list forward-only later. Do not wrap catalog qualifiers. Do not add `get_base` unless more than one product site type-switches for “entity.”
 
 If a step gets clever, stop and ask.
 
