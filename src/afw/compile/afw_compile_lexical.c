@@ -2473,6 +2473,23 @@ afw_compile_shared_create(
 }
 
 
+void
+afw_compile_shared_release_temp(
+    const afw_compile_shared_t *shared,
+    afw_xctx_t *xctx)
+{
+    afw_compile_shared_t *self;
+
+    if (!shared || !shared->temp_p) {
+        return;
+    }
+    self = (afw_compile_shared_t *)shared;
+    afw_pool_release(self->temp_p, xctx);
+    self->temp_p = NULL;
+    self->string_literals = NULL;
+}
+
+
 /* Create a parser. */
 afw_compile_parser_t *
 afw_compile_lexical_parser_create(
@@ -2508,6 +2525,10 @@ afw_compile_lexical_parser_create(
         parser->p = shared->p;
         parser->shared = shared;
     }
+    else if (parent && parent->shared) {
+        parser->p = parent->p;
+        parser->shared = parent->shared;
+    }
     else {
         if (parent) {
             parser->p = parent->p;
@@ -2519,6 +2540,13 @@ afw_compile_lexical_parser_create(
             parser->p = afw_pool_create(p, xctx);
         }
         parser->shared = afw_compile_shared_create(parser->p, xctx);
+        parser->shared_created = true;
+    }
+    if (parser->shared && !parser->shared->temp_p) {
+        afw_compile_shared_t *s = (afw_compile_shared_t *)parser->shared;
+        s->temp_p = afw_pool_create(s->p, xctx);
+        s->string_literals = apr_hash_make(
+            afw_pool_get_apr_pool(s->temp_p));
     }
     parser->apr_p = afw_pool_get_apr_pool(parser->p);
     parser->xctx = xctx;
@@ -2543,6 +2571,7 @@ afw_compile_lexical_parser_create(
         afw_value_compiled_value_t, xctx);
     parser->compiled_value->inf = &afw_value_compiled_value_inf;
     parser->compiled_value->p = parser->p;
+    parser->compiled_value->shared = parser->shared;
     if (source_location) {
         /*
          * Caller source_location may be in dest p (a frame tracker).
@@ -2578,9 +2607,9 @@ afw_compile_lexical_parser_finish_and_release(
     afw_compile_parser_t *parser,
     afw_xctx_t *xctx)
 {
-    /* No ambient xctx compile policy to restore (unit policy is on compiled_value). */
-    (void)parser;
-    (void)xctx;
+    if (parser && parser->shared_created) {
+        afw_compile_shared_release_temp(parser->shared, xctx);
+    }
 }
 
 

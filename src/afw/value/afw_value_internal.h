@@ -514,6 +514,9 @@ struct afw_value_internal_compiled_value_s {
     /** @brief The parent compiled value or NULL. */
     const afw_value_compiled_value_t *parent;
 
+    /** @brief Shared compile resources, or NULL. */
+    const afw_compile_shared_t *shared;
+
     /** @brief The root value */
     const afw_value_t *root_value;
 

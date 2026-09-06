@@ -40,7 +40,11 @@ afw_compile_parse_CompileTimeSubstitution(afw_compile_parser_t *parser)
         /* Include '{' of '#{' in compile time substitution parse. */
         (parser->token->token_source_offset)--;
 
-        /* Parse '{' Script '}'. */
+        /*
+         * Same shared as the outer unit so the nested graph lives there.
+         * Result may be a function that still needs that unit (conf on*).
+         * Do not make a child unit.
+         */
         result = afw_compile_to_value_with_callback(
             NULL,
             impl_compile_time_template_get_cb,
@@ -51,7 +55,7 @@ afw_compile_parse_CompileTimeSubstitution(afw_compile_parser_t *parser)
             afw_compile_type_script,
             afw_compile_residual_check_to_close_brace,
             NULL,
-            NULL,
+            parser->shared,
             parser->p,
             parser->xctx);
     }
