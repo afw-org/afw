@@ -514,9 +514,9 @@ impl_check_manifest_cb(
         }
 
         /* If extension provides object, load extension and break. */
-        extension_id = afw_object_old_get_property_as_string_internal(object,
+        extension_id = afw_object_get_property_as_string_internal(object,
             afw_v_extensionId, xctx);
-        module_path = afw_object_old_get_property_as_string_internal(object,
+        module_path = afw_object_get_property_as_string_internal(object,
             afw_v_modulePath, xctx);
         if (extension_id && module_path) {
             afw_environment_load_extension(extension_id, module_path,

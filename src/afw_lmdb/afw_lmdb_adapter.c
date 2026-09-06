@@ -228,7 +228,7 @@ void afw_lmdb_adapter_open_databases(
 
     /* now open up any index databases we may have */
     indexDefinitions = afw_object_get_property_as_object_internal(
-        self->internalConfig, afw_lmdb_v_indexDefinitions, pool, xctx);
+        self->internalConfig, afw_lmdb_v_indexDefinitions, xctx);
     if (indexDefinitions) {
         afw_adapter_impl_index_open_definitions(indexer, 
             indexDefinitions, pool, xctx);

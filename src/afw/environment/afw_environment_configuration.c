@@ -209,14 +209,14 @@ afw_environment_prepare_conf_type_properties(
 
     /* Get sourceLocation.  Default for now to empty string. */
     source_location = afw_object_get_property_as_string_internal(
-        properties, afw_v_sourceLocation, p, xctx);
+        properties, afw_v_sourceLocation, xctx);
     if (!source_location) {
         source_location = afw_s_a_empty_string;
     }
 
     /* Get type. */
     type = afw_object_get_property_as_string_internal(properties,
-        afw_v_type, p, xctx);
+        afw_v_type, xctx);
     if (!type || type->len == 0) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -241,7 +241,7 @@ afw_environment_prepare_conf_type_properties(
         subtype = afw_object_get_property_as_string_internal(
             properties,
             afw_value_create_unmanaged_string(
-                conf_type->subtype_property_name, properties->p, xctx), p, xctx);
+                conf_type->subtype_property_name, properties->p, xctx), xctx);
         if (!subtype || subtype->len == 0) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -259,7 +259,7 @@ afw_environment_prepare_conf_type_properties(
         id = afw_object_get_property_as_string_internal(
             properties,
             afw_value_create_unmanaged_string(
-                conf_type->id_property_name, properties->p, xctx), p, xctx);
+                conf_type->id_property_name, properties->p, xctx), xctx);
         if (!id || id->len == 0) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT

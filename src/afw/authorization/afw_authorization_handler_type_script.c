@@ -118,7 +118,7 @@ afw_authorization_handler_type_script_create_cede_p(
 
     /* qualifiedVariables definitions. */
     self->qualified_variables = afw_object_get_property_as_object_internal(
-        self->pub.properties, afw_v_qualifiedVariables, p, xctx);
+        self->pub.properties, afw_v_qualifiedVariables, xctx);
     if (self->qualified_variables) {
         detail_source_location = afw_utf8_printf(
             self->qualified_variables->p, xctx,

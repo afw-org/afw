@@ -396,7 +396,6 @@ afw_object_get_property_as_boolean_internal_source(
     const afw_value_t *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
@@ -407,7 +406,6 @@ afw_object_get_property_as_boolean_internal_source(
         return 0;
     }
 
-    value = afw_value_evaluate(value, p, xctx);
     *found = true;
     if (!AFW_VALUE_IS_DATA_TYPE(value, boolean))
     {
@@ -431,7 +429,6 @@ afw_object_get_next_property_as_boolean_internal_source(
     const afw_value_t * *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
@@ -442,7 +439,6 @@ afw_object_get_next_property_as_boolean_internal_source(
         return 0;
     }
 
-    value = afw_value_evaluate(value, p, xctx);
     *found = true;
     if (!AFW_VALUE_IS_DATA_TYPE(value, boolean))
     {

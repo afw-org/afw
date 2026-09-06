@@ -580,7 +580,7 @@ afw_object_insure_embedded_exists(
 {
     const afw_object_t *result;
 
-    result = afw_object_old_get_property_as_object_internal(embedding_object,
+    result = afw_object_get_property_as_object_internal(embedding_object,
         property_name, xctx);
 
     if (!result) {

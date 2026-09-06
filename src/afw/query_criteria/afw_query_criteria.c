@@ -1433,7 +1433,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
 
     /* Get "op" property and get its corresponding operator. */
     s = afw_object_get_property_as_string_internal(filter_object,
-        afw_v_op, parser->p, parser->xctx);
+        afw_v_op, parser->xctx);
     if (!s) {
         AFW_THROW_ERROR_Z(general, "Missing \"op\" property", parser->xctx);
     }
@@ -1465,7 +1465,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
     {
         impl_query_object_parse_nesting_enter(parser);
         filters_list = afw_object_get_property_as_array_internal(filter_object,
-            afw_v_filters, parser->p, parser->xctx);
+            afw_v_filters, parser->xctx);
         if (!filters_list) {
             AFW_THROW_ERROR_Z(general,
                 "Property \"filters\" for this op",
@@ -1525,7 +1525,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         entry->on_false = on_false;
         *filter = entry;
         entry->property_name = afw_object_get_property_as_string_internal(
-            filter_object, afw_v_property, parser->p, parser->xctx);
+            filter_object, afw_v_property, parser->xctx);
         if (parser->criteria->object_type && entry->property_name) {
             entry->pt = afw_object_type_property_type_get_extended(
                 parser->criteria->object_type,
@@ -2087,7 +2087,7 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
 
     /* If urlEncodedRQLString property present, process it and return result. */
     url_encoded_rql_string = afw_object_get_property_as_string_internal(
-        query_object, afw_v_urlEncodedRQLString, p, xctx);
+        query_object, afw_v_urlEncodedRQLString, xctx);
     if (url_encoded_rql_string) {
 
         /* Make sure only urlEncodedRQLString is specified. */

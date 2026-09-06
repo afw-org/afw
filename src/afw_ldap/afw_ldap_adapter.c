@@ -73,7 +73,7 @@ afw_ldap_internal_adapter_create_cede_p(
 
     /* Get preventVerifyCert. */
     self->prevent_verify_cert = afw_object_get_property_as_boolean_internal(
-        properties, afw_ldap_v_preventVerifyCert, &found, p, xctx);
+        properties, afw_ldap_v_preventVerifyCert, &found, xctx);
 
     /** @fixme add parameter. */
     self->timeout.tv_sec = 30;

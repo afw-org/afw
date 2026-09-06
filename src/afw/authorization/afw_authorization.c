@@ -371,10 +371,10 @@ afw_authorization_internal_set_control(
                 afw_s_internal, NULL, p, xctx);
 
         self->check_intermediate_mode = afw_object_get_property_as_boolean_internal(
-            object, afw_v_checkIntermediateMode, &found, p, xctx);
+            object, afw_v_checkIntermediateMode, &found, xctx);
 
         deny_if_not_applicable = afw_object_get_property_as_boolean_internal(
-            object, afw_v_denyIfNotApplicable, &found, p, xctx);
+            object, afw_v_denyIfNotApplicable, &found, xctx);
     }
 
     /* Set not_applicable_result */
@@ -571,7 +571,7 @@ afw_authorization_check(
                 }
                 decision_id = afw_object_get_property_as_string_internal(
                     ((const afw_value_object_t *)result)->internal,
-                    afw_v_decisionId, p, xctx);
+                    afw_v_decisionId, xctx);
                 if (!decision_id) {
                     AFW_THROW_ERROR_FZ(general, xctx,
                         "applicationControl.%s returned an "
@@ -657,7 +657,7 @@ afw_authorization_check(
                     if (result2) {
                         decision_id2 = afw_object_get_property_as_string_internal(
                             ((const afw_value_object_t *)result2)->internal,
-                            afw_v_decisionId, p, xctx);
+                            afw_v_decisionId, xctx);
                         if (afw_utf8_equal(decision_id2, afw_s_permit) ||
                             afw_utf8_equal(decision_id2, afw_s_deny)) {
                             result = result2;
@@ -1222,7 +1222,7 @@ impl_authorization_conf_type_create_cede_p(
 
     /* Get authorization_handler_id. */
     authorization_id = afw_object_get_property_as_string_internal(conf,
-        afw_v_authorizationHandlerId, p, xctx);
+        afw_v_authorizationHandlerId, xctx);
     if (!authorization_id) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT

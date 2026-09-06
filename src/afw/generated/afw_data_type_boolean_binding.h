@@ -296,38 +296,16 @@ afw_value_boolean_create(afw_boolean_t internal,
 
 /**
  * @brief Get property function for data type boolean value.
- * @deprecated
  * @param object of property to get.
  * @param property_name of property to get.
  * @param found is place to return whether property is found.
- * @param xctx of caller.
- * @return afw_boolean_t.
- *
- * This is a deprecated function used to get around an exception that
- * was occurring when an object did not have a pool. Use the function
- * without an "_old" in the name for all new code and replace calls in
- * old code when possible.
- *
- */
-#define afw_object_old_get_property_as_boolean_internal( \
-    object, property_name, found, xctx) \
-afw_object_get_property_as_boolean_internal_source( \
-    object, property_name, found, AFW__FILE_LINE__, \
-    ((object)->p ? (object)->p : (xctx)->p), (xctx))
-
-/**
- * @brief Get property function for data type boolean value.
- * @param object of property to get.
- * @param property_name of property to get.
- * @param found is place to return whether property is found.
- * @param p to use for result if evaluation or conversion is required.
  * @param xctx of caller.
  * @return afw_boolean_t.
  */
 #define afw_object_get_property_as_boolean_internal( \
-    object, property_name, found, p, xctx) \
+    object, property_name, found, xctx) \
 afw_object_get_property_as_boolean_internal_source( \
-    object, property_name, found, AFW__FILE_LINE__, p, xctx)
+    object, property_name, found, AFW__FILE_LINE__, xctx)
 
 /**
  * @brief Get property function for data type boolean value.
@@ -335,7 +313,6 @@ afw_object_get_property_as_boolean_internal_source( \
  * @param property_name of property to get.
  * @param found is place to return whether property is found.
  * @param source_z file:line.
- * @param p to use for result if evaluation or conversion is required.
  * @param xctx of caller.
  * @return afw_boolean_t.
  */
@@ -345,54 +322,29 @@ afw_object_get_property_as_boolean_internal_source(
     const afw_value_t *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
  * @brief Get next property function for data type boolean value.
- * @deprecated
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.
  * @param found is place to return whether property is found.
- * @param xctx of caller.
- * @return afw_boolean_t.
- *
- * This is a deprecated function used to get around an exception that
- * was occurring when an object did not have a pool. Use the function
- * without an "_old" in the name for all new code and replace calls in
- * old code when possible.
- *
- */
-#define afw_object_old_get_next_property_as_boolean_internal( \
-    object, iterator, property_name, found, xctx) \
-afw_object_get_next_property_as_boolean_internal_source( \
-    object, iterator, property_name, found, AFW__FILE_LINE__, \
-    ((object)->p ? (object)->p : (xctx)->p), (xctx))
-
-/**
- * @brief Get next property function for data type boolean value.
- * @param object of property to get.
- * @param iterator pointer. Set to NULL before first call.
- * @param property_name is place to return pointer to property name.
- * @param found is place to return whether property is found.
- * @param p to use for result if evaluation or conversion is required.
  * @param xctx of caller.
  * @return afw_boolean_t.
  */
 #define afw_object_get_next_property_as_boolean_internal( \
-    object, iterator, property_name, found, p, xctx) \
+    object, iterator, property_name, found, xctx) \
 afw_object_get_next_property_as_boolean_internal_source( \
-    object, iterator, property_name, found, AFW__FILE_LINE__, p, xctx)
+    object, iterator, property_name, found, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get property function for data type boolean value.
+ * @brief Get next property function for data type boolean value.
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.
  * @param found is place to return whether property is found.
  * @param source_z file:line.
- * @param p to use for result if conversion is required.
  * @param xctx of caller.
  * @return afw_boolean_t.
  */
@@ -403,7 +355,6 @@ afw_object_get_next_property_as_boolean_internal_source(
     const afw_value_t * *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**

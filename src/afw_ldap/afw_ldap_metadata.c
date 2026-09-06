@@ -548,7 +548,7 @@ impl_make_property_type_and_handler_hash_tables(
          * ht_attribute_types.
          */
         syntax = afw_object_get_property_as_string_internal(attribute_type_object,
-            afw_ldap_v_SYNTAX, p, xctx);
+            afw_ldap_v_SYNTAX, xctx);
         if (syntax) {
 
             /* Get oid part of syntax. */
@@ -577,26 +577,26 @@ impl_make_property_type_and_handler_hash_tables(
             attribute_type->is_single =
                 afw_object_get_property_as_boolean_internal(
                     attribute_type_object, afw_ldap_v_a_single_dash_value,
-                    &found, p, xctx);
+                    &found, xctx);
 
             /* X-NDS_LOWER_BOUND. */
             attribute_type->lower_bound =
                 afw_object_get_property_as_integer_internal(
                     attribute_type_object, afw_ldap_v_a_X_NDS_LOWER_BOUND,
-                    &attribute_type->lower_bound_present, p, xctx);
+                    &attribute_type->lower_bound_present, xctx);
 
             /* X-NDS_UPPER_BOUND if already be obtained by {} in syntax. */
             if (!attribute_type->upper_bound_present) {
                 attribute_type->upper_bound =
                     afw_object_get_property_as_integer_internal(
                         attribute_type_object, afw_ldap_v_a_X_NDS_UPPER_BOUND,
-                        &attribute_type->upper_bound_present, p, xctx);
+                        &attribute_type->upper_bound_present, xctx);
             }
 
             /* NO-USER-MODIFICATION - Never allow write. */
             if (afw_object_get_property_as_boolean_internal(
                 attribute_type_object, afw_ldap_v_a_NO_USER_MODIFICATION,
-                &found, p, xctx))
+                &found, xctx))
             {
                 attribute_type->never_allow_write = true;
             }
@@ -604,7 +604,7 @@ impl_make_property_type_and_handler_hash_tables(
             /* X-NDS_HIDDEN - Never allow read or write. */
             if (afw_object_get_property_as_boolean_internal(
                 attribute_type_object, afw_ldap_v_a_X_NDS_HIDDEN,
-                &found, p, xctx))
+                &found, xctx))
             {
                 attribute_type->never_allow_read = true;
                 attribute_type->never_allow_write = true;
@@ -613,7 +613,7 @@ impl_make_property_type_and_handler_hash_tables(
             /* X-NDS_NONREMOVABLE - Never remove. */
             if (afw_object_get_property_as_boolean_internal(
                 attribute_type_object, afw_ldap_v_a_X_NDS_NONREMOVABLE,
-                &found, p, xctx))
+                &found, xctx))
             {
                 attribute_type->never_allow_write = true;
             }
@@ -621,7 +621,7 @@ impl_make_property_type_and_handler_hash_tables(
             /* X-NDS_READ_FILTERED - Operational. */
             if (afw_object_get_property_as_boolean_internal(
                 attribute_type_object, afw_ldap_v_a_X_NDS_READ_FILTERED,
-                &found, p, xctx))
+                &found, xctx))
             {
                 attribute_type->operational = true;
                 attribute_type->never_allow_write = true;
@@ -927,12 +927,12 @@ impl_add_parents_and_property_types(
 
     /* Make list of property types for this object type. */
     property_types_object = afw_object_get_property_as_object_internal(
-        object_type_object, afw_v_propertyTypes, p, xctx);
+        object_type_object, afw_v_propertyTypes, xctx);
     if (property_types_object) {
         iterator = NULL;
         while ((property_type_object =
             afw_object_get_next_property_as_object_internal(
-                property_types_object, &iterator, &property_name, p, xctx))
+                property_types_object, &iterator, &property_name, xctx))
             )
         {
             /* Attribute-type hash is utf8 (s, len), not a name value. */
@@ -953,7 +953,7 @@ impl_add_parents_and_property_types(
                 property_types_object;
             object_type_attribute->is_required =
                 afw_object_get_property_as_boolean_internal(
-                    property_type_object, afw_v_required, &found, p, xctx);
+                    property_type_object, afw_v_required, &found, xctx);
         }
     }
 
@@ -1113,7 +1113,7 @@ impl_make_object_types(
             id, xctx);
         afw_object_set_property(object_type_object, afw_v_allowEntity,
             afw_object_get_property_as_boolean_internal(
-                object_class_object, afw_ldap_v_STRUCTURAL, &found, p, xctx)
+                object_class_object, afw_ldap_v_STRUCTURAL, &found, xctx)
             ? afw_boolean_v_true
             : afw_boolean_v_false,
             xctx);

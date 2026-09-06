@@ -146,7 +146,7 @@ afw_context_type_insure_qualifier_definitions_object_exists(
 {
     const afw_object_t *result;
 
-    result = afw_object_old_get_property_as_object_internal(
+    result = afw_object_get_property_as_object_internal(
         context_type_object, afw_v_qualifierDefinitions, xctx);
     
     if (!result) {
@@ -175,7 +175,7 @@ afw_context_type_insure_variable_definitions_object_exists(
     qualifier_definitions =
         afw_context_type_insure_qualifier_definitions_object_exists(
             context_type_object, xctx);
-    result = afw_object_old_get_property_as_object_internal(qualifier_definitions,
+    result = afw_object_get_property_as_object_internal(qualifier_definitions,
         afw_value_create_unmanaged_string(qualifier_id,
             context_type_object->p, xctx), xctx);
     if (!result) {
@@ -357,7 +357,7 @@ afw_context_qualifier_definitions_merge(
         definitions_to_add, &iterator, &property_name, xctx)))
     {
         variable_definitions =
-            afw_object_old_get_property_as_object_internal(
+            afw_object_get_property_as_object_internal(
                 qualifier_definitions, property_name, xctx);
         if (variable_definitions)
         {
@@ -410,9 +410,9 @@ afw_context_variable_definitions_add_based_on_object(
         &afw_object_options_composite, p, xctx);
 
     property_types = afw_object_get_property_as_object_internal(
-        object_type_object, afw_v_propertyTypes, p, xctx);
+        object_type_object, afw_v_propertyTypes, xctx);
     other_properties = afw_object_get_property_as_object_internal(
-        object_type_object, afw_v_otherProperties, p, xctx);
+        object_type_object, afw_v_otherProperties, xctx);
     iterator = NULL;
     while ((value = afw_object_get_next_property(object,
         &iterator, &property_name, xctx)))
@@ -421,7 +421,7 @@ afw_context_variable_definitions_add_based_on_object(
         pt = NULL;
         if (property_types) {
             pt = afw_object_get_property_as_object_internal(property_types,
-                property_name, p, xctx);
+                property_name, xctx);
         }
         if (!pt) {
             pt = other_properties;
@@ -444,7 +444,7 @@ afw_context_variable_definitions_add_based_on_object(
          * use relatedPropertyType for pt if it is.
          */
         s = afw_object_get_property_as_string_internal(pt,
-            afw_v_dataType, p, xctx);
+            afw_v_dataType, xctx);
         if (s) {
             data_type = afw_environment_get_data_type(s, xctx);
             if (data_type && data_type->evaluated) {
@@ -453,7 +453,7 @@ afw_context_variable_definitions_add_based_on_object(
                 }
                 /** @fixme NOW relatedPropertyType no longer exists.
                 pt = afw_object_get_property_as_object_internal(pt,
-                    afw_v_relatedPropertyType, p, xctx);*/
+                    afw_v_relatedPropertyType, xctx);*/
             }
         }
 
@@ -505,10 +505,10 @@ afw_context_variable_definitions_add_based_on_object_type_id(
         &afw_object_options_composite, p, xctx);
 
     property_types = afw_object_get_property_as_object_internal(
-        object_type_object, afw_v_propertyTypes, p, xctx);
+        object_type_object, afw_v_propertyTypes, xctx);
     iterator = NULL;
     while ((pt = afw_object_get_next_property_as_object_internal(
-        property_types, &iterator, &property_name, p, xctx)))
+        property_types, &iterator, &property_name, xctx)))
     {
         /* Skip custom. */
         if (afw_value_equal(property_name, afw_v_custom, xctx)) {
@@ -517,7 +517,7 @@ afw_context_variable_definitions_add_based_on_object_type_id(
 
         /* Get data type. */
         data_type_id = afw_object_get_property_as_string_internal(pt,
-            afw_v_dataType, p, xctx);
+            afw_v_dataType, xctx);
         if (data_type_id) {
             data_type = afw_environment_get_data_type(data_type_id, xctx);
         }
@@ -531,7 +531,7 @@ afw_context_variable_definitions_add_based_on_object_type_id(
             /* Use relatedPropertyType for property type if available or skip. */
             /** @fixme NOW relatedPropertyType no longer exists.
             related_pt = afw_object_get_property_as_object_internal(
-                pt, afw_v_relatedPropertyType, p, xctx);*/
+                pt, afw_v_relatedPropertyType, xctx);*/
             related_pt = NULL;
             if (!related_pt) {
                 continue;
@@ -595,7 +595,7 @@ afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
     const afw_object_t *object;
 
     iterator = NULL;
-    while ((object = afw_object_old_get_next_property_as_object_internal(
+    while ((object = afw_object_get_next_property_as_object_internal(
         objects, &iterator, &qualifier_id, xctx)))
     {
         /* These APIs take utf8 qualifier ids, not object-key values. */

@@ -1306,7 +1306,7 @@ afw_ldap_internal_syntax_handler_assign(
         /* If there is an X-NDS_SYNTAX, assign syntax_handler based on it. */
         x_nds_syntax = afw_object_get_property_as_string_internal(
             ldap_syntax_object,
-            afw_ldap_v_a_X_NDS_SYNTAX, metadata->p, xctx);
+            afw_ldap_v_a_X_NDS_SYNTAX, xctx);
         if (x_nds_syntax) {
             impl_x_nds_syntax_handler(
                 &attribute_type->syntax_handler,

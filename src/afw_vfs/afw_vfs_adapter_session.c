@@ -867,11 +867,11 @@ impl_afw_adapter_session_retrieve_objects(
 
         /* includeHidden */
         ctx.includeHidden = afw_object_get_property_as_boolean_internal(
-            adapter_type_specific, afw_vfs_v_includeHidden, &found, p, xctx);
+            adapter_type_specific, afw_vfs_v_includeHidden, &found, xctx);
 
         /* subdirectory */
         subdirectory = afw_object_get_property_as_string_internal(
-            adapter_type_specific, afw_vfs_v_subdirectory, p, xctx);
+            adapter_type_specific, afw_vfs_v_subdirectory, xctx);
         if (subdirectory &&
             (
                 afw_utf8_starts_with(subdirectory, afw_s_a_slash) ||
@@ -889,11 +889,11 @@ impl_afw_adapter_session_retrieve_objects(
 
         /* suffix */
         ctx.suffix = afw_object_get_property_as_string_internal(
-            adapter_type_specific, afw_vfs_v_suffix, p, xctx);
+            adapter_type_specific, afw_vfs_v_suffix, xctx);
 
         /* recursive */
         ctx.recursive = afw_object_get_property_as_boolean_internal(
-            adapter_type_specific, afw_vfs_v_recursive, &found, p, xctx);
+            adapter_type_specific, afw_vfs_v_recursive, &found, xctx);
     }
 
     /*
@@ -997,7 +997,7 @@ impl_afw_adapter_session_get_object(
     include_hidden = false;
     if (adapter_type_specific) {
         include_hidden = afw_object_get_property_as_boolean_internal(
-            adapter_type_specific, afw_vfs_v_includeHidden, &found, p, xctx);
+            adapter_type_specific, afw_vfs_v_includeHidden, &found, xctx);
     }
 
     /* Get object or NULL and pass it to callback. */

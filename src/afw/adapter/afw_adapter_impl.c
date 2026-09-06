@@ -215,7 +215,7 @@ afw_adapter_impl_create_cede_p(
     adapter->inf = &impl_afw_adapter_inf;
     adapter->p = p;
     adapter->adapter_type_id = afw_object_get_property_as_string_internal(
-        properties, afw_v_adapterType, p, xctx);
+        properties, afw_v_adapterType, xctx);
     impl = afw_pool_calloc_type(p, afw_adapter_impl_t, xctx);
     adapter->impl = impl;
     impl->adapter = adapter;
@@ -227,11 +227,11 @@ afw_adapter_impl_create_cede_p(
 
     /* Get adapterType from properties. */
     adapter->adapter_type_id = afw_object_get_property_as_string_internal(
-        properties, afw_v_adapterType, p, xctx);
+        properties, afw_v_adapterType, xctx);
 
     /* Get source location.  Default it to adapter. */
     impl->source_location = afw_object_get_property_as_string_internal(
-        properties, afw_v_sourceLocation, p, xctx);
+        properties, afw_v_sourceLocation, xctx);
     if (!impl->source_location) {
         impl->source_location = afw_s_adapter;
     }
@@ -287,7 +287,7 @@ afw_adapter_impl_create_cede_p(
     /* Get optional authorizationHandlerId from parameters. */
     impl->authorization_handler_id =
         afw_object_get_property_as_string_internal(adapter->properties,
-            afw_v_authorizationHandlerId, p, xctx);
+            afw_v_authorizationHandlerId, xctx);
     if (impl->authorization_handler_id)
     {
         authorization_handler = NULL;
@@ -313,7 +313,7 @@ afw_adapter_impl_create_cede_p(
 
     /* Get optional journalAdapterId from parameters. */
     impl->journal_adapter_id = afw_object_get_property_as_string_internal(
-        adapter->properties, afw_v_journalAdapterId, p, xctx);
+        adapter->properties, afw_v_journalAdapterId, xctx);
     if (impl->journal_adapter_id) {
         AFW_LOG_FZ(debug, xctx,
             "Adapter " AFW_UTF8_FMT_Q
@@ -357,7 +357,7 @@ afw_adapter_impl_create_cede_p(
     /* checkIndividualObjectReadAccess property */
     impl->check_individual_object_read_access =
         afw_object_get_property_as_boolean_internal(
-            properties, afw_v_checkIndividualObjectReadAccess, &found, p, xctx);
+            properties, afw_v_checkIndividualObjectReadAccess, &found, xctx);
 
     /** @fixme Reuse if already exists or reuse correct pool. */
     /* Create runtime metrics object and set in properties. */
@@ -377,7 +377,7 @@ afw_adapter_impl_create_cede_p(
 
     /* If isModelLocation is true, provide appropriate object types. */
     b = afw_object_get_property_as_boolean_internal(properties,
-        afw_v_isModelLocation, &found, p, xctx);
+        afw_v_isModelLocation, &found, xctx);
     if (b) {
         impl->model_location = afw_model_location_create(adapter, p, xctx);
         afw_adapter_impl_set_supported_core_object_type(adapter,
@@ -397,7 +397,7 @@ afw_adapter_impl_create_cede_p(
     /** @fixme have way for extension to add these.
     If isPolicyLocation is true, provide appropriate object types.
     b = afw_object_get_property_as_boolean_internal(properties,
-        afw_v_isPolicyLocation, &found, p, xctx);
+        afw_v_isPolicyLocation, &found, xctx);
     if (b) {
         impl->policy_location = afw_authorization_policy_internal_location_create(
             adapter, p, xctx);
@@ -510,10 +510,10 @@ afw_adapter_impl_is_journal_entry_applicable(
 
     is_applicable = true;
 
-    peerIdInEntry = afw_object_old_get_property_as_string_internal(entry,
+    peerIdInEntry = afw_object_get_property_as_string_internal(entry,
         afw_v_peerId, xctx);
     if (peerIdInEntry) {
-        peerIdInConsumer = afw_object_old_get_property_as_string_internal(consumer,
+        peerIdInConsumer = afw_object_get_property_as_string_internal(consumer,
             afw_v_peerId, xctx);
         if (!peerIdInConsumer) {
             AFW_THROW_ERROR_Z(general,
@@ -941,16 +941,16 @@ impl_special_object_handling_cb(
             afw_object_meta_get_object_type_id(object, xctx),
             afw_s__AdaptiveServiceConf_))
         {
-            conf = afw_object_old_get_property_as_object_internal(object,
+            conf = afw_object_get_property_as_object_internal(object,
                 afw_v_conf, xctx);
             if (conf) {
-                type = afw_object_old_get_property_as_string_internal(conf,
+                type = afw_object_get_property_as_string_internal(conf,
                     afw_v_type, xctx);
                 if (type) {
                     service_type = afw_environment_get_service_type(
                         type, xctx);
                     if (service_type) {
-                        subtype = afw_object_old_get_property_as_string_internal(
+                        subtype = afw_object_get_property_as_string_internal(
                             conf,
                             afw_value_create_unmanaged_string(
                                 service_type->conf_type->subtype_property_name,

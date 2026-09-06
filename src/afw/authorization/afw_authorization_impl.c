@@ -129,11 +129,11 @@ afw_authorization_handler_impl_create_cede_p(
 
     /* Get authorizationHandlerType from properties. */
     self->authorization_handler_type_id = afw_object_get_property_as_string_internal(
-        properties, afw_v_authorizationHandlerType, p, xctx);
+        properties, afw_v_authorizationHandlerType, xctx);
 
     /* Get source location.  Default it to authorization handler. */
     self->source_location = afw_object_get_property_as_string_internal(
-        properties, afw_v_sourceLocation, p, xctx);
+        properties, afw_v_sourceLocation, xctx);
     if (!self->source_location) {
         self->source_location = afw_s_authorization_handler;
     }
@@ -172,18 +172,18 @@ afw_authorization_handler_impl_create_cede_p(
 
     /* priority default 9999 */
     self->priority = afw_object_get_property_as_integer_internal(properties,
-        afw_v_priority, &found, p, xctx);
+        afw_v_priority, &found, xctx);
     if (!found) {
         self->priority = 9999;
     }
 
     /* allow_* and required. */
     self->allow_deny_override = afw_object_get_property_as_boolean_internal(properties,
-        afw_v_allowDenyOverride, &found, p, xctx);
+        afw_v_allowDenyOverride, &found, xctx);
     self->allow_permit_override = afw_object_get_property_as_boolean_internal(properties,
-        afw_v_allowPermitOverride, &found, p, xctx);
+        afw_v_allowPermitOverride, &found, xctx);
     self->required = afw_object_get_property_as_boolean_internal(properties,
-        afw_v_required, &found, p, xctx);
+        afw_v_required, &found, xctx);
     
     /* Set trace fields */
     impl_set_trace_flag_fields(self, xctx);

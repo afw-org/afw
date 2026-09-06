@@ -467,7 +467,7 @@ impl_afw_adapter_journal_get_next_for_consumer(
         peer, afw_v_advanceCursor, xctx->p, xctx);
     consumer_filter = NULL;
     consume_cursor = afw_object_get_property_as_string_internal(
-        peer, afw_v_consumeCursor, xctx->p, xctx);
+        peer, afw_v_consumeCursor, xctx);
 
     /** @fixme: we'll have to consider the scenario where we get
         a consume_cursor (re-issue) and now it's removed from the
@@ -598,7 +598,7 @@ afw_lmdb_journal_advance_cursor_for_consumer(
         peer, afw_v_advanceCursor, xctx->p, xctx);
     consumer_filter = NULL;
     consume_cursor = afw_object_get_property_as_string_internal(
-        peer, afw_v_consumeCursor, xctx->p, xctx);
+        peer, afw_v_consumeCursor, xctx);
 
     /** @fixme: we'll have to consider the scenario where we get
         a consume_cursor (re-issue) and now it's removed from the
@@ -788,7 +788,7 @@ impl_afw_adapter_journal_mark_entry_consumed(
         }
 
         consume_cursor = afw_object_get_property_as_string_internal(peer,
-            afw_v_consumeCursor, xctx->p, xctx);
+            afw_v_consumeCursor, xctx);
         if (!consume_cursor || !afw_utf8_equal(entry_cursor, consume_cursor)) {
             AFW_THROW_ERROR_Z(general,
                 "Object id supplied is not currently being consumed", xctx);

@@ -81,7 +81,7 @@ impl_find_object(
     for (entry = first_property_name_entry; entry->next; entry = entry->next)
     {
         *property_name = &entry->next->property_name.pub;
-        object = afw_object_old_get_property_as_object_internal(result,
+        object = afw_object_get_property_as_object_internal(result,
             &entry->property_name.pub, xctx);
         if (!object) {
             if (create_if_necessary) {

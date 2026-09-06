@@ -836,7 +836,7 @@ afw_log_impl_create_cede_p(
 
     /* Get source location.  Default it to adapter. */
     self->source_location = afw_object_get_property_as_string_internal(
-        properties, afw_v_sourceLocation, p, xctx);
+        properties, afw_v_sourceLocation, xctx);
     if (!self->source_location) {
         self->source_location = afw_s_log;
     }
@@ -855,7 +855,7 @@ afw_log_impl_create_cede_p(
     for (e = afw_log_get_priority_id_map(); e->priority_id; e++) {
         b = afw_object_get_property_as_boolean_internal(properties,
             afw_value_create_unmanaged_string(e->priority_id, p, xctx),
-            &found, p, xctx);
+            &found, xctx);
         if (found) {
             afw_log_set_priority_in_mask(&impl->mask, e->priority, b);
         }

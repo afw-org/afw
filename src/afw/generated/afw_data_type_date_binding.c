@@ -409,7 +409,6 @@ afw_object_get_property_as_date_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
@@ -419,7 +418,6 @@ afw_object_get_property_as_date_internal_source(
         return NULL;
     }
 
-    value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, date))
     {
         const afw_utf8_t *data_type_id;
@@ -441,7 +439,6 @@ afw_object_get_next_property_as_date_internal_source(
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
@@ -451,7 +448,6 @@ afw_object_get_next_property_as_date_internal_source(
         return NULL;
     }
 
-    value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, date))
     {
         const afw_utf8_t *data_type_id;
