@@ -2237,10 +2237,10 @@ struct afw_xctx_s {
     afw_size_t error_processing_count;
 
     /**
-     * Pools whose last release/destroy waited. Head is most
+     * Pools whose last release/destroy is delayed. First is most
      * recent; tail is innermost. See afw_error_processing_handled().
      */
-    const afw_pool_t *error_processing_pools;
+    const afw_pool_t *error_delaying_release_first;
 
     /**
      * Current try.

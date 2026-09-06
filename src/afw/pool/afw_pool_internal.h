@@ -184,12 +184,13 @@ struct afw_pool_internal_self_s {
     afw_integer_t reference_count;
 
     /**
-     * Next pool waiting while error_processing_count > 0.
+     * Next pool delaying last release/destroy while
+     * error_processing_count > 0.
      */
-    afw_pool_internal_self_t *error_processing_next;
+    afw_pool_internal_self_t *error_delaying_release_next;
 
-    /** Already on xctx->error_processing_pools. */
-    afw_boolean_t error_processing_wait;
+    /** Already on xctx->error_delaying_release_first. */
+    afw_boolean_t error_delaying_release;
 
     /** Flush should destroy, not release. */
     afw_boolean_t error_processing_destroy;

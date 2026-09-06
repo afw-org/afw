@@ -709,7 +709,7 @@ impl_debug_poison_user(void *user, afw_size_t size)
  * Returns true if the caller should return without doing the work.
  */
 static afw_boolean_t
-impl_error_processing_wait(
+impl_error_delaying_release(
     AFW_POOL_SELF_T *self,
     afw_boolean_t is_destroy,
     afw_xctx_t *xctx)
@@ -730,18 +730,18 @@ impl_error_processing_wait(
     if (is_destroy) {
         self->error_processing_destroy = true;
     }
-    else if (self->error_processing_wait) {
+    else if (self->error_delaying_release) {
         return true;
     }
     else if (self->reference_count != 1) {
         return false;
     }
-    if (!self->error_processing_wait) {
-        self->error_processing_wait = true;
-        self->error_processing_next =
+    if (!self->error_delaying_release) {
+        self->error_delaying_release = true;
+        self->error_delaying_release_next =
             (afw_pool_internal_self_t *)(void *)
-                xctx->error_processing_pools;
-        xctx->error_processing_pools = &self->pub;
+                xctx->error_delaying_release_first;
+        xctx->error_delaying_release_first = &self->pub;
     }
     return true;
 }
@@ -772,8 +772,8 @@ afw_pool_error_processing_finish(afw_xctx_t *xctx)
     afw_boolean_t do_destroy;
 
     head = (afw_pool_internal_self_t *)(void *)
-        xctx->error_processing_pools;
-    xctx->error_processing_pools = NULL;
+        xctx->error_delaying_release_first;
+    xctx->error_delaying_release_first = NULL;
 
     while (head) {
         pick = NULL;
@@ -782,7 +782,7 @@ afw_pool_error_processing_finish(afw_xctx_t *xctx)
         pos = &head;
         curr = head;
         while (curr) {
-            if (curr->error_processing_wait) {
+            if (curr->error_delaying_release) {
                 depth = impl_pool_parent_depth(curr);
                 if (depth >= pick_depth) {
                     pick = curr;
@@ -790,15 +790,15 @@ afw_pool_error_processing_finish(afw_xctx_t *xctx)
                     pick_depth = depth;
                 }
             }
-            pos = &curr->error_processing_next;
-            curr = curr->error_processing_next;
+            pos = &curr->error_delaying_release_next;
+            curr = curr->error_delaying_release_next;
         }
         if (!pick) {
             break;
         }
-        *pick_pos = pick->error_processing_next;
-        pick->error_processing_next = NULL;
-        pick->error_processing_wait = false;
+        *pick_pos = pick->error_delaying_release_next;
+        pick->error_delaying_release_next = NULL;
+        pick->error_delaying_release = false;
         do_destroy = pick->error_processing_destroy;
         pick->error_processing_destroy = false;
         if (do_destroy) {
@@ -823,7 +823,7 @@ impl_afw_pool_release(
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "release");
 
-    if (impl_error_processing_wait(self, false, xctx)) {
+    if (impl_error_delaying_release(self, false, xctx)) {
         return &self->pub;
     }
 
@@ -863,10 +863,10 @@ impl_heap_afw_pool_destroy(
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
 
-    if (impl_error_processing_wait(self, true, xctx)) {
+    if (impl_error_delaying_release(self, true, xctx)) {
         return;
     }
-    self->error_processing_wait = false;
+    self->error_delaying_release = false;
 
     /*
      * Call all of the cleanup routines for this pool before releasing children.
@@ -1218,10 +1218,10 @@ impl_tracker_afw_pool_destroy(
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
 
-    if (impl_error_processing_wait(self, true, xctx)) {
+    if (impl_error_delaying_release(self, true, xctx)) {
         return;
     }
-    self->error_processing_wait = false;
+    self->error_delaying_release = false;
 
     /* Tracker always has a parent. (needed to suppress valgrind error) */
     if (!self->parent) {
