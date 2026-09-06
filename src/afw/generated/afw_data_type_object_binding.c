@@ -409,7 +409,7 @@ afw_value_clone_object_managed(
         const afw_object_t *to;
 
         from = ((const afw_value_object_t *)value)->internal;
-        to = afw_object_create_managed_from(from, xctx);
+        to = afw_object_create_managed_clone(from, xctx);
         return to->value;
     }
 }

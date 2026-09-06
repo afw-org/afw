@@ -290,7 +290,7 @@ impl_copy_property_into_managed(
         if (!from_array) {
             return;
         }
-        cloned_array = afw_array_create_managed_from(from_array, xctx);
+        cloned_array = afw_array_create_managed_clone(from_array, xctx);
         afw_object_set_property(to, name, cloned_array->value, xctx);
         afw_array_release(cloned_array, xctx);
         return;
@@ -372,7 +372,7 @@ impl_copy_into_managed(
 
 
 AFW_DEFINE(const afw_object_t *)
-afw_object_create_managed_from(
+afw_object_create_managed_clone(
     const afw_object_t *from,
     afw_xctx_t *xctx)
 {
@@ -380,7 +380,7 @@ afw_object_create_managed_from(
 
     if (!from) {
         AFW_THROW_ERROR_Z(general,
-            "afw_object_create_managed_from requires from",
+            "afw_object_create_managed_clone requires from",
             xctx);
     }
     if (from->inf == &impl_afw_object_managed_inf) {

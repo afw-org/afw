@@ -860,7 +860,7 @@ afw_object_create_wrapper_managed(
  *
  * Deep clone into a managed memory bag. Nested objects become
  * managed embedded (embedding_object + id so path composes). Nested
- * arrays are afw_array_create_managed_from. A new property name is
+ * arrays are afw_array_create_managed_clone. A new property name is
  * get_assignable_value (names do not change on replace). Sideband
  * object_uri, id, and object_type_uri are utf8-cloned into xctx->p.
  * Meta delta (parentPaths, reconcilable, …) copies onto a fresh
@@ -868,7 +868,7 @@ afw_object_create_wrapper_managed(
  * is held.
  */
 AFW_DECLARE(const afw_object_t *)
-afw_object_create_managed_from(
+afw_object_create_managed_clone(
     const afw_object_t *from,
     afw_xctx_t *xctx);
 

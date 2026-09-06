@@ -255,7 +255,7 @@ impl_push_cloned_into_managed(
         if (!obj) {
             return;
         }
-        obj = afw_object_create_managed_from(obj, xctx);
+        obj = afw_object_create_managed_clone(obj, xctx);
         afw_array_push_value(to, obj->value, xctx);
         afw_object_release(obj, xctx);
         return;
@@ -265,7 +265,7 @@ impl_push_cloned_into_managed(
         if (!arr) {
             return;
         }
-        arr = afw_array_create_managed_from(arr, xctx);
+        arr = afw_array_create_managed_clone(arr, xctx);
         afw_array_push_value(to, arr->value, xctx);
         afw_array_release(arr, xctx);
         return;
@@ -275,7 +275,7 @@ impl_push_cloned_into_managed(
 
 
 AFW_DEFINE(const afw_array_t *)
-afw_array_create_managed_from(
+afw_array_create_managed_clone(
     const afw_array_t *from,
     afw_xctx_t *xctx)
 {
@@ -286,7 +286,7 @@ afw_array_create_managed_from(
 
     if (!from) {
         AFW_THROW_ERROR_Z(general,
-            "afw_array_create_managed_from requires from",
+            "afw_array_create_managed_clone requires from",
             xctx);
     }
     if (from->inf == &impl_afw_array_managed_inf) {

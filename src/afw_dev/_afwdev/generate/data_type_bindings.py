@@ -1740,7 +1740,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('        const afw_object_t *to;\n')
             fd.write('\n')
             fd.write('        from = ((const afw_value_object_t *)value)->internal;\n')
-            fd.write('        to = afw_object_create_managed_from(from, xctx);\n')
+            fd.write('        to = afw_object_create_managed_clone(from, xctx);\n')
             fd.write('        return to->value;\n')
             fd.write('    }\n')
         elif id == 'array':
@@ -1749,7 +1749,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('        const afw_array_t *to;\n')
             fd.write('\n')
             fd.write('        from = ((const afw_value_array_t *)value)->internal;\n')
-            fd.write('        to = afw_array_create_managed_from(from, xctx);\n')
+            fd.write('        to = afw_array_create_managed_clone(from, xctx);\n')
             fd.write('        return to->value;\n')
             fd.write('    }\n')
         elif id == 'boolean':
@@ -2112,7 +2112,7 @@ def write_c_section(fd, prefix, obj):
                 fd.write('        afw_array_get_reference(a, xctx);\n')
                 fd.write('        return a->value;\n')
                 fd.write('    }\n')
-                fd.write('    to = afw_array_create_managed_from(a, xctx);\n')
+                fd.write('    to = afw_array_create_managed_clone(a, xctx);\n')
                 fd.write('    return to->value;\n')
             fd.write('}\n')
             fd.write('\n')

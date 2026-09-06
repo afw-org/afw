@@ -408,7 +408,7 @@ afw_value_clone_array_managed(
         const afw_array_t *to;
 
         from = ((const afw_value_array_t *)value)->internal;
-        to = afw_array_create_managed_from(from, xctx);
+        to = afw_array_create_managed_clone(from, xctx);
         return to->value;
     }
 }
@@ -578,7 +578,7 @@ impl_afw_value_permanent_get_assignable_value(
         afw_array_get_reference(a, xctx);
         return a->value;
     }
-    to = afw_array_create_managed_from(a, xctx);
+    to = afw_array_create_managed_clone(a, xctx);
     return to->value;
 }
 

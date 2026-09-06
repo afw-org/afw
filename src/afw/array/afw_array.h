@@ -88,7 +88,7 @@ afw_array_create_managed(
  * promote via get_assignable_value. Already-managed source is held.
  */
 AFW_DECLARE(const afw_array_t *)
-afw_array_create_managed_from(
+afw_array_create_managed_clone(
     const afw_array_t *from,
     afw_xctx_t *xctx);
 
