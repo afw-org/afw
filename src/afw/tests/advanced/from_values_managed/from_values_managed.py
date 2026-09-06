@@ -24,5 +24,9 @@ def run():
                 "empty",
                 "managed empty typed from_values",
             ),
+            (
+                "as_type",
+                "as_integer returns typed value pointer",
+            ),
         ],
     )

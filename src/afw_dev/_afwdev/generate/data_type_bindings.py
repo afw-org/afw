@@ -64,7 +64,8 @@
 # Inf symbols: afw_value_{permanent,managed,managed_slice,unmanaged}_<dataType>_inf
 # (managed_slice only for utf8/memory cTypes; special types get permanent only).
 #
-# Also generated: type-check macros, afw_value_as_*_internal, object/array helpers, and
+# Also generated: type-check macros, afw_value_as_* (typed value pointer),
+# afw_value_as_*_internal (C payload), object/array helpers, and
 # afw_data_type_<dataType>_to_internal / to_utf8. Permanent const instances from
 # strings.py / const_objects.py / this module use permanent_*_inf; there is no
 # create_permanent_* API.
@@ -407,6 +408,17 @@ def write_h_section(fd, prefix, obj):
         fd.write('};\n')
 
     if not special:
+        fd.write('\n/**\n')
+        fd.write(' * @brief Typesafe cast to evaluated ' + id + ' value.\n')
+        fd.write(' * @param value (const afw_value_t *). Evaluated if needed.\n')
+        fd.write(' * @return (const afw_value_' + id + '_t *)\n')
+        fd.write(' *\n')
+        fd.write(' * Throws if missing or wrong type. Use ->internal for the C\n')
+        fd.write(' * payload, or afw_value_as_' + id + '_internal().\n')
+        fd.write(' */\n')
+        fd.write(declare + '(const afw_value_' + id + '_t *)\n')
+        fd.write('afw_value_as_' + id + '(\n    const afw_value_t *value,\n    afw_xctx_t *xctx);\n')
+
         fd.write('\n/**\n')
         fd.write(' * @brief Typesafe peel of data type ' + id + ' internal.\n')
         fd.write(' * @param value (const afw_value_t *).\n')
@@ -1386,9 +1398,9 @@ def write_c_section(fd, prefix, obj):
         fd.write('    afw_object_set_property(object, property_name, v, xctx);\n')
         fd.write('}\n')
 
-        fd.write('\n/* Typesafe peel of data type ' + id + ' internal. */\n')
-        fd.write(define + '(' + return_type + ')\n')
-        fd.write('afw_value_as_' + id + '_internal(const afw_value_t *value, afw_xctx_t *xctx)\n')
+        fd.write('\n/* Typesafe cast to evaluated ' + id + ' value. */\n')
+        fd.write(define + '(const afw_value_' + id + '_t *)\n')
+        fd.write('afw_value_as_' + id + '(const afw_value_t *value, afw_xctx_t *xctx)\n')
         fd.write('{\n')
         fd.write('    value = afw_value_evaluate(value, xctx->p, xctx);\n')
         fd.write('    if (!AFW_VALUE_IS_DATA_TYPE(value, ' + id + '))\n')
@@ -1408,7 +1420,15 @@ def write_c_section(fd, prefix, obj):
         fd.write('            "encountered " AFW_UTF8_FMT_Q ,\n')
         fd.write('            AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));\n')
         fd.write('    }\n')
-        fd.write('    return ' + amp_if_needed + '(((const afw_value_' + id + '_t *)value)->internal);\n')
+        fd.write('    return (const afw_value_' + id + '_t *)value;\n')
+        fd.write('}\n')
+
+        fd.write('\n/* Typesafe peel of data type ' + id + ' internal. */\n')
+        fd.write(define + '(' + return_type + ')\n')
+        fd.write('afw_value_as_' + id + '_internal(const afw_value_t *value, afw_xctx_t *xctx)\n')
+        fd.write('{\n')
+        fd.write('    return ' + amp_if_needed +
+                 'afw_value_as_' + id + '(value, xctx)->internal;\n')
         fd.write('}\n')
 
         fd.write('\n/* Allocate function for data type ' + id + ' values. */\n')

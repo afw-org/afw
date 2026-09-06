@@ -228,6 +228,19 @@ struct afw_value_xpathExpression_managed_slice_s {
 };
 
 /**
+ * @brief Typesafe cast to evaluated xpathExpression value.
+ * @param value (const afw_value_t *). Evaluated if needed.
+ * @return (const afw_value_xpathExpression_t *)
+ *
+ * Throws if missing or wrong type. Use ->internal for the C
+ * payload, or afw_value_as_xpathExpression_internal().
+ */
+AFW_DECLARE(const afw_value_xpathExpression_t *)
+afw_value_as_xpathExpression(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Typesafe peel of data type xpathExpression internal.
  * @param value (const afw_value_t *).
  * @return (const afw_utf8_t *)

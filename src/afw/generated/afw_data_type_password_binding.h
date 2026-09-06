@@ -228,6 +228,19 @@ struct afw_value_password_managed_slice_s {
 };
 
 /**
+ * @brief Typesafe cast to evaluated password value.
+ * @param value (const afw_value_t *). Evaluated if needed.
+ * @return (const afw_value_password_t *)
+ *
+ * Throws if missing or wrong type. Use ->internal for the C
+ * payload, or afw_value_as_password_internal().
+ */
+AFW_DECLARE(const afw_value_password_t *)
+afw_value_as_password(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Typesafe peel of data type password internal.
  * @param value (const afw_value_t *).
  * @return (const afw_utf8_t *)

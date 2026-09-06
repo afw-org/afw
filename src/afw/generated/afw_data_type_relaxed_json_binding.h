@@ -228,6 +228,19 @@ struct afw_value_relaxed_json_managed_slice_s {
 };
 
 /**
+ * @brief Typesafe cast to evaluated relaxed_json value.
+ * @param value (const afw_value_t *). Evaluated if needed.
+ * @return (const afw_value_relaxed_json_t *)
+ *
+ * Throws if missing or wrong type. Use ->internal for the C
+ * payload, or afw_value_as_relaxed_json_internal().
+ */
+AFW_DECLARE(const afw_value_relaxed_json_t *)
+afw_value_as_relaxed_json(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Typesafe peel of data type relaxed_json internal.
  * @param value (const afw_value_t *).
  * @return (const afw_utf8_t *)

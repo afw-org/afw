@@ -196,6 +196,19 @@ struct afw_value_function_managed_s {
 };
 
 /**
+ * @brief Typesafe cast to evaluated function value.
+ * @param value (const afw_value_t *). Evaluated if needed.
+ * @return (const afw_value_function_t *)
+ *
+ * Throws if missing or wrong type. Use ->internal for the C
+ * payload, or afw_value_as_function_internal().
+ */
+AFW_DECLARE(const afw_value_function_t *)
+afw_value_as_function(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Typesafe peel of data type function internal.
  * @param value (const afw_value_t *).
  * @return (const afw_value_t *)

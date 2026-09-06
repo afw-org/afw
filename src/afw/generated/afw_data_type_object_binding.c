@@ -296,9 +296,9 @@ afw_object_set_property_as_object_internal(
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe peel of data type object internal. */
-AFW_DEFINE(const afw_object_t *)
-afw_value_as_object_internal(const afw_value_t *value, afw_xctx_t *xctx)
+/* Typesafe cast to evaluated object value. */
+AFW_DEFINE(const afw_value_object_t *)
+afw_value_as_object(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, object))
@@ -318,7 +318,14 @@ afw_value_as_object_internal(const afw_value_t *value, afw_xctx_t *xctx)
             "encountered " AFW_UTF8_FMT_Q ,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
     }
-    return (((const afw_value_object_t *)value)->internal);
+    return (const afw_value_object_t *)value;
+}
+
+/* Typesafe peel of data type object internal. */
+AFW_DEFINE(const afw_object_t *)
+afw_value_as_object_internal(const afw_value_t *value, afw_xctx_t *xctx)
+{
+    return afw_value_as_object(value, xctx)->internal;
 }
 
 /* Allocate function for data type object values. */

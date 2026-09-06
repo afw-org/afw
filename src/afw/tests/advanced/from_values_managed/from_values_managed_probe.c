@@ -111,6 +111,29 @@ impl_empty(afw_xctx_t *xctx)
     return 0;
 }
 
+static int
+impl_as_type(afw_xctx_t *xctx)
+{
+    const afw_value_t *v;
+    const afw_value_integer_t *typed;
+
+    v = afw_value_create_unmanaged_integer(7, xctx->p, xctx);
+    typed = afw_value_as_integer(v, xctx);
+    if (typed != (const afw_value_integer_t *)v) {
+        fprintf(stderr, "as_integer did not return same pointer\n");
+        return 1;
+    }
+    if (typed->internal != 7) {
+        fprintf(stderr, "as_integer internal\n");
+        return 1;
+    }
+    if (afw_value_as_integer_internal(v, xctx) != 7) {
+        fprintf(stderr, "as_integer_internal\n");
+        return 1;
+    }
+    return 0;
+}
+
 int
 main(int argc, char **argv)
 {
@@ -138,9 +161,12 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "empty") == 0) {
         rc = impl_empty(xctx);
     }
+    else if (strcmp(case_name, "as_type") == 0) {
+        rc = impl_as_type(xctx);
+    }
     else {
         fprintf(stderr, "usage: from_values_managed_probe "
-            "c_array|values|empty\n");
+            "c_array|values|empty|as_type\n");
         rc = 2;
     }
 

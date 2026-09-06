@@ -296,9 +296,9 @@ afw_object_set_property_as_array_internal(
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe peel of data type array internal. */
-AFW_DEFINE(const afw_array_t *)
-afw_value_as_array_internal(const afw_value_t *value, afw_xctx_t *xctx)
+/* Typesafe cast to evaluated array value. */
+AFW_DEFINE(const afw_value_array_t *)
+afw_value_as_array(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, array))
@@ -318,7 +318,14 @@ afw_value_as_array_internal(const afw_value_t *value, afw_xctx_t *xctx)
             "encountered " AFW_UTF8_FMT_Q ,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
     }
-    return (((const afw_value_array_t *)value)->internal);
+    return (const afw_value_array_t *)value;
+}
+
+/* Typesafe peel of data type array internal. */
+AFW_DEFINE(const afw_array_t *)
+afw_value_as_array_internal(const afw_value_t *value, afw_xctx_t *xctx)
+{
+    return afw_value_as_array(value, xctx)->internal;
 }
 
 /* Allocate function for data type array values. */

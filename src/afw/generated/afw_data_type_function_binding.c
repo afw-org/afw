@@ -254,9 +254,9 @@ afw_object_set_property_as_function_internal(
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe peel of data type function internal. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_as_function_internal(const afw_value_t *value, afw_xctx_t *xctx)
+/* Typesafe cast to evaluated function value. */
+AFW_DEFINE(const afw_value_function_t *)
+afw_value_as_function(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, function))
@@ -276,7 +276,14 @@ afw_value_as_function_internal(const afw_value_t *value, afw_xctx_t *xctx)
             "encountered " AFW_UTF8_FMT_Q ,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
     }
-    return (((const afw_value_function_t *)value)->internal);
+    return (const afw_value_function_t *)value;
+}
+
+/* Typesafe peel of data type function internal. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_as_function_internal(const afw_value_t *value, afw_xctx_t *xctx)
+{
+    return afw_value_as_function(value, xctx)->internal;
 }
 
 /* Allocate function for data type function values. */

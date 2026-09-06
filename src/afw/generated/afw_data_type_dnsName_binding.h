@@ -228,6 +228,19 @@ struct afw_value_dnsName_managed_slice_s {
 };
 
 /**
+ * @brief Typesafe cast to evaluated dnsName value.
+ * @param value (const afw_value_t *). Evaluated if needed.
+ * @return (const afw_value_dnsName_t *)
+ *
+ * Throws if missing or wrong type. Use ->internal for the C
+ * payload, or afw_value_as_dnsName_internal().
+ */
+AFW_DECLARE(const afw_value_dnsName_t *)
+afw_value_as_dnsName(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Typesafe peel of data type dnsName internal.
  * @param value (const afw_value_t *).
  * @return (const afw_utf8_t *)

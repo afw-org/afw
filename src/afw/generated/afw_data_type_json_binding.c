@@ -295,9 +295,9 @@ afw_object_set_property_as_json_internal(
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe peel of data type json internal. */
-AFW_DEFINE(const afw_utf8_t *)
-afw_value_as_json_internal(const afw_value_t *value, afw_xctx_t *xctx)
+/* Typesafe cast to evaluated json value. */
+AFW_DEFINE(const afw_value_json_t *)
+afw_value_as_json(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, json))
@@ -317,7 +317,14 @@ afw_value_as_json_internal(const afw_value_t *value, afw_xctx_t *xctx)
             "encountered " AFW_UTF8_FMT_Q ,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
     }
-    return &(((const afw_value_json_t *)value)->internal);
+    return (const afw_value_json_t *)value;
+}
+
+/* Typesafe peel of data type json internal. */
+AFW_DEFINE(const afw_utf8_t *)
+afw_value_as_json_internal(const afw_value_t *value, afw_xctx_t *xctx)
+{
+    return &afw_value_as_json(value, xctx)->internal;
 }
 
 /* Allocate function for data type json values. */

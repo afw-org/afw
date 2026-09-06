@@ -196,6 +196,19 @@ struct afw_value_null_managed_s {
 };
 
 /**
+ * @brief Typesafe cast to evaluated null value.
+ * @param value (const afw_value_t *). Evaluated if needed.
+ * @return (const afw_value_null_t *)
+ *
+ * Throws if missing or wrong type. Use ->internal for the C
+ * payload, or afw_value_as_null_internal().
+ */
+AFW_DECLARE(const afw_value_null_t *)
+afw_value_as_null(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Typesafe peel of data type null internal.
  * @param value (const afw_value_t *).
  * @return (void *)

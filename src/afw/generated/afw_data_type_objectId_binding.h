@@ -228,6 +228,19 @@ struct afw_value_objectId_managed_slice_s {
 };
 
 /**
+ * @brief Typesafe cast to evaluated objectId value.
+ * @param value (const afw_value_t *). Evaluated if needed.
+ * @return (const afw_value_objectId_t *)
+ *
+ * Throws if missing or wrong type. Use ->internal for the C
+ * payload, or afw_value_as_objectId_internal().
+ */
+AFW_DECLARE(const afw_value_objectId_t *)
+afw_value_as_objectId(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Typesafe peel of data type objectId internal.
  * @param value (const afw_value_t *).
  * @return (const afw_utf8_t *)
