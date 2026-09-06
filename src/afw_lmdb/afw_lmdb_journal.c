@@ -356,7 +356,7 @@ afw_lmdb_journal_get_next_for_consumer_after_cursor(
             "Error, provisioning peer not found.", xctx);
     }
 
-    advance_cursor = afw_object_old_get_property_convert_to_utf8(
+    advance_cursor = afw_object_get_property_convert_to_utf8(
         peer, afw_v_advanceCursor, xctx->p, xctx);
     consumer_filter = NULL;
 
@@ -461,9 +461,9 @@ impl_afw_adapter_journal_get_next_for_consumer(
             "Error, provisioning peer not found.", xctx);
     }
 
-    current_cursor = afw_object_old_get_property_convert_to_utf8(
+    current_cursor = afw_object_get_property_convert_to_utf8(
         peer, afw_v_currentCursor, xctx->p, xctx);
-    advance_cursor = afw_object_old_get_property_convert_to_utf8(
+    advance_cursor = afw_object_get_property_convert_to_utf8(
         peer, afw_v_advanceCursor, xctx->p, xctx);
     consumer_filter = NULL;
     consume_cursor = afw_object_old_get_property_as_string_internal(
@@ -592,9 +592,9 @@ afw_lmdb_journal_advance_cursor_for_consumer(
             "Error, provisioning peer not found.", xctx);
     }
 
-    current_cursor = afw_object_old_get_property_convert_to_utf8(
+    current_cursor = afw_object_get_property_convert_to_utf8(
         peer, afw_v_currentCursor, xctx->p, xctx);
-    advance_cursor = afw_object_old_get_property_convert_to_utf8(
+    advance_cursor = afw_object_get_property_convert_to_utf8(
         peer, afw_v_advanceCursor, xctx->p, xctx);
     consumer_filter = NULL;
     consume_cursor = afw_object_old_get_property_as_string_internal(

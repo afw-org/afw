@@ -348,7 +348,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     AFW_LOG_Z(info, "Application starting.", xctx);
 
     /* Get optional confAdapterId. */
-    conf_adapter_id = afw_object_old_get_property_convert_to_utf8(
+    conf_adapter_id = afw_object_get_property_convert_to_utf8(
         entry, afw_v_confAdapterId, p, xctx);
 
     /* Get conf adapter.  It will not ever be released. */
@@ -367,7 +367,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     }
 
     /* Get optional applicationId and default to "application". */
-    application_id = afw_object_old_get_property_convert_to_utf8(entry,
+    application_id = afw_object_get_property_convert_to_utf8(entry,
         afw_v_applicationId, p, xctx);
     if (!application_id) {
         application_id = afw_s_Adaptive;
@@ -578,7 +578,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     }
 
     /* Get optional layoutAdapterId. */
-    env->layout_adapter_id = afw_object_old_get_property_convert_to_utf8(
+    env->layout_adapter_id = afw_object_get_property_convert_to_utf8(
         properties, afw_v_layoutsAdapterId, p, xctx);
 
     /* Set supported core object type in adapter. */

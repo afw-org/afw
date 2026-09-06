@@ -237,7 +237,7 @@ afw_adapter_impl_create_cede_p(
     }
 
     /* Get adapter_id from parameters. */
-    s = afw_object_old_get_property_convert_to_utf8(properties,
+    s = afw_object_get_property_convert_to_utf8(properties,
         afw_v_adapterId, p, xctx);
 
     if (!s) {
@@ -529,7 +529,7 @@ afw_adapter_impl_is_journal_entry_applicable(
     /* If still applicable, apply the consumer's consumeFilter expression. */
     if (is_applicable) {
         if (!*filter) {
-            *filter = afw_object_old_get_property_compile_script(
+            *filter = afw_object_get_property_compile_script(
                 consumer, afw_v_consumeFilter, NULL, NULL, xctx->p, xctx);
         }
 

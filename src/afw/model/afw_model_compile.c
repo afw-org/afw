@@ -299,7 +299,7 @@ impl_harvest_property_type(
     }
 
     /* collectionURIs */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_collectionURIs, p, xctx);
     if (s) {
         afw_object_set_property_as_anyURI_internal(result,
@@ -307,7 +307,7 @@ impl_harvest_property_type(
     }
 
     /* contextType */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_contextType, p, xctx);
     if (s) {
         afw_object_set_property_as_string_internal(result,
@@ -315,7 +315,7 @@ impl_harvest_property_type(
     }
 
     /* dataType */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_dataType, p, xctx);
     if (s) {
         afw_object_set_property_as_string_internal(result,
@@ -323,7 +323,7 @@ impl_harvest_property_type(
     }
 
     /* dataTypeParameter */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_dataTypeParameter, p, xctx);
     if (s) {
         afw_object_set_property_as_string_internal(result,
@@ -331,7 +331,7 @@ impl_harvest_property_type(
     }
 
     /* description */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_description, p, xctx);
     if (s) {
         afw_object_set_property_as_string_internal(result,
@@ -339,7 +339,7 @@ impl_harvest_property_type(
     }
 
     /* label */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_label, p, xctx);
     if (s) {
         afw_object_set_property_as_string_internal(result,
@@ -347,7 +347,7 @@ impl_harvest_property_type(
     }
 
     /* originURI */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_originURI, p, xctx);
     if (s) {
         afw_object_set_property_as_anyURI_internal(result,
@@ -355,7 +355,7 @@ impl_harvest_property_type(
     }
 
     /* referenceURI */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_referenceURI, p, xctx);
     if (s) {
         afw_object_set_property_as_anyURI_internal(result,
@@ -371,7 +371,7 @@ impl_harvest_property_type(
     }
 
     /* testDataParameter */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_testDataParameter, p, xctx);
     if (s) {
         afw_object_set_property_as_string_internal(result,
@@ -485,7 +485,7 @@ impl_harvest_object_type(
     }
 
     /* collectionURIs */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_collectionURIs, p, xctx);
     if (s) {
         afw_object_set_property_as_anyURI_internal(result,
@@ -493,7 +493,7 @@ impl_harvest_object_type(
     }
 
     /* description */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_description, p, xctx);
     if (s) {
         afw_object_set_property_as_string_internal(result,
@@ -501,7 +501,7 @@ impl_harvest_object_type(
     }
 
     /* descriptionPropertyName */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_descriptionPropertyName, p, xctx);
     if (s) {
         afw_object_set_property_as_string_internal(result,
@@ -509,7 +509,7 @@ impl_harvest_object_type(
     }
 
     /* label */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_label, p, xctx);
     if (s) {
         afw_object_set_property_as_string_internal(result,
@@ -517,7 +517,7 @@ impl_harvest_object_type(
     }
 
     /* objectIdPropertyName */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_objectIdPropertyName, p, xctx);
     if (s) {
         afw_object_set_property_as_string_internal(result,
@@ -529,7 +529,7 @@ impl_harvest_object_type(
         afw_v_objectType, object_type_id, xctx);
 
     /* originURI */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_originURI, p, xctx);
     if (s) {
         afw_object_set_property_as_anyURI_internal(result,
@@ -578,7 +578,7 @@ impl_harvest_object_type(
     }
 
     /* referenceURI */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_referenceURI, p, xctx);
     if (s) {
         afw_object_set_property_as_anyURI_internal(result,
@@ -639,7 +639,7 @@ impl_object_type_compile(
     path = afw_object_meta_get_path(object, xctx);
 
     /* onGetInitialObjectId */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_onGetInitialObjectId, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
@@ -707,7 +707,7 @@ impl_object_type_compile(
     }
 
     /* onAddObject */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_onAddObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
@@ -718,7 +718,7 @@ impl_object_type_compile(
     }
 
     /* onDeleteObject */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_onDeleteObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
@@ -729,7 +729,7 @@ impl_object_type_compile(
     }
 
     /* onGetObject */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_onGetObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
@@ -740,7 +740,7 @@ impl_object_type_compile(
     }
 
     /* onModifyObject */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_onModifyObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
@@ -751,7 +751,7 @@ impl_object_type_compile(
     }
 
     /* onReplaceObject */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_onReplaceObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
@@ -762,7 +762,7 @@ impl_object_type_compile(
     }
 
     /* onRetrieveObjects */
-    s = afw_object_old_get_property_convert_to_utf8(object,
+    s = afw_object_get_property_convert_to_utf8(object,
         afw_v_onRetrieveObjects, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,

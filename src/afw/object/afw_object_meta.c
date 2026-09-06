@@ -432,7 +432,7 @@ afw_object_meta_set_meta_object(
     }
 
     /* If path in meta, remove it from meta and if entity, use it to set path. */
-    path = afw_object_old_get_property_convert_to_utf8(meta, afw_v_path,
+    path = afw_object_get_property_convert_to_utf8(meta, afw_v_path,
         p, xctx);
     if (path) {
         parsed_path = afw_object_path_parse(path, NULL, NULL, p, xctx);

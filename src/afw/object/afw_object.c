@@ -424,7 +424,7 @@ afw_object_get_property_extended(
  * specified pool.
  */
 AFW_DEFINE(const afw_value_t * const *)
-afw_object_old_get_property_to_null_terminated_values(
+afw_object_get_property_to_null_terminated_values(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_pool_t *p, afw_xctx_t *xctx)
@@ -442,7 +442,7 @@ afw_object_old_get_property_to_null_terminated_values(
  * specified pool.
  */
 AFW_DEFINE(const afw_utf8_t * const *)
-afw_object_old_get_property_convert_to_null_terminated_utf8(
+afw_object_get_property_convert_to_null_terminated_utf8(
     const afw_object_t *instance, const afw_value_t *property_name,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
@@ -457,7 +457,7 @@ afw_object_old_get_property_convert_to_null_terminated_utf8(
 
 /* Return a compiled template property value. */
 AFW_DEFINE(const afw_value_t *)
-afw_object_old_get_property_compile_script(
+afw_object_get_property_compile_script(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_utf8_t *source_location,
@@ -492,7 +492,7 @@ afw_object_old_get_property_compile_script(
 
 /* Return a compiled template property value. */
 AFW_DEFINE(const afw_value_t *)
-afw_object_old_get_property_compile_template(
+afw_object_get_property_compile_template(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_utf8_t *source_location,
@@ -530,7 +530,7 @@ afw_object_old_get_property_compile_template(
  * pool.
  */
 AFW_DEFINE(const afw_utf8_t *)
-afw_object_old_get_property_convert_to_utf8(
+afw_object_get_property_convert_to_utf8(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_pool_t *p,
@@ -554,7 +554,7 @@ afw_object_old_get_property_convert_to_utf8(
  * pool.
  */
 AFW_DEFINE(const afw_utf8_z_t *)
-afw_object_old_get_property_convert_to_utf8_z(
+afw_object_get_property_convert_to_utf8_z(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_pool_t *p,

@@ -361,12 +361,12 @@ afw_authorization_internal_set_control(
     /* Set control from config object if, present. */
     if (object) {
         self->core_authorization_check =
-            afw_object_old_get_property_compile_script(object,
+            afw_object_get_property_compile_script(object,
                 afw_v_coreAuthorizationCheck,
                 afw_s_internal, NULL, p, xctx);
 
         self->initial_authorization_check =
-            afw_object_old_get_property_compile_script(object,
+            afw_object_get_property_compile_script(object,
                 afw_v_initialAuthorizationCheck,
                 afw_s_internal, NULL, p, xctx);
 
@@ -1340,7 +1340,7 @@ impl_afw_service_type_start_cede_p (
     const afw_authorization_handler_t *authorization_handler;
     const afw_utf8_t *authorization_handler_type;
 
-    authorization_handler_type = afw_object_old_get_property_convert_to_utf8(
+    authorization_handler_type = afw_object_get_property_convert_to_utf8(
         properties, afw_v_authorizationHandlerType, p, xctx);
     if (!authorization_handler_type) {
         AFW_THROW_ERROR_Z(general,

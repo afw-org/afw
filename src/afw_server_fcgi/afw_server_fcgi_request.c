@@ -152,10 +152,10 @@ afw_server_fcgi_internal_create_request(
     self->pub.method = afw_value_convert_to_utf8(value, xctx->p, xctx);
 
     /* Get request URI. */
-    self->pub.uri = afw_object_old_get_property_convert_to_utf8(self->pub.properties,
+    self->pub.uri = afw_object_get_property_convert_to_utf8(self->pub.properties,
         AFW_REQUEST_v_PN_PATH_INFO, xctx->p, xctx);
     if (!self->pub.uri || self->pub.uri->len == 0) {
-        self->pub.uri = afw_object_old_get_property_convert_to_utf8(self->pub.properties,
+        self->pub.uri = afw_object_get_property_convert_to_utf8(self->pub.properties,
             AFW_REQUEST_v_PN_REQUEST_URI, xctx->p, xctx);
         if (self->pub.uri && self->pub.uri->len != 0) {
             for (c = self->pub.uri->s, len = self->pub.uri->len;
@@ -185,7 +185,7 @@ afw_server_fcgi_internal_create_request(
     self->pub.query_string = afw_value_convert_to_utf8(value, xctx->p, xctx);
 
     /* Get request content type. */
-    self->pub.content_type = afw_object_old_get_property_convert_to_utf8(
+    self->pub.content_type = afw_object_get_property_convert_to_utf8(
         self->pub.properties,
         AFW_REQUEST_v_PN_CONTENT_TYPE, xctx->p, xctx);
 

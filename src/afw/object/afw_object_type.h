@@ -109,7 +109,7 @@ afw_object_type_internal_create(
  */
 #define afw_object_type_get_property_convert_to_utf8(object_type_object, \
     property_name, xctx) \
-    afw_object_old_get_property_convert_to_utf8((object_type)->object_type_object, \
+    afw_object_get_property_convert_to_utf8((object_type)->object_type_object, \
         property_name, xctx)
 
 

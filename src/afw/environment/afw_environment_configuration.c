@@ -39,7 +39,7 @@ afw_environment_configure_with_object(
         afw_v_sourceLocation, source_location, xctx);
 
     /* Get type property. */
-    type = afw_object_old_get_property_convert_to_utf8(conf, afw_v_type, p, xctx);
+    type = afw_object_get_property_convert_to_utf8(conf, afw_v_type, p, xctx);
     if (!type) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -120,7 +120,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
     const afw_value_t *value;
     const afw_utf8_t *detail_source_location;
 
-    extension_id = afw_object_old_get_property_convert_to_utf8(entry,
+    extension_id = afw_object_get_property_convert_to_utf8(entry,
         afw_v_extensionId, p, xctx);
 
     if (!extension_id) {
