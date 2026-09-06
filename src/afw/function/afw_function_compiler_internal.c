@@ -1262,40 +1262,55 @@ afw_function_execute_for(
                 }
             }
 
-            if (body) {
-                /* for is void. Nested assignment writes the slot. */
-                result = impl_keep_loop_last(result,
-                    afw_value_block_evaluate_statement(x, body, p, xctx),
-                    xctx);
-                if (impl_loop_should_exit(this_label, xctx)) {
+            if (body || increment) {
+                const afw_pool_t *iter_p;
+                afw_boolean_t leave;
+
+                /*
+                 * for-let clones the wrapper; temps die with that
+                 * clone. Classic for mutates enclosing names — body
+                 * temps need a per-trip tracker like while.
+                 */
+                iter_p = clone_each ? p : impl_loop_iteration_p(xctx);
+                leave = false;
+                AFW_TRY {
+                    if (body) {
+                        result = impl_keep_loop_last(result,
+                            afw_value_block_evaluate_statement(
+                                x, body, iter_p, xctx),
+                            xctx);
+                        leave = impl_loop_should_exit(this_label, xctx);
+                    }
+                    if (!leave && increment) {
+                        if (clone_each) {
+                            if (previous_iterator_scope) {
+                                scope = afw_xctx_scope_clone(
+                                    previous_iterator_scope, xctx);
+                                afw_xctx_scope_deactivate(
+                                    previous_iterator_scope, xctx);
+                                afw_xctx_scope_release(
+                                    previous_iterator_scope, xctx);
+                            }
+                            else {
+                                scope = afw_xctx_scope_clone(
+                                    afw_xctx_scope_current(xctx), xctx);
+                            }
+                            previous_iterator_scope = scope;
+                            afw_xctx_scope_activate(scope, xctx);
+                        }
+                        impl_evaluate_for_increment(x, 3, increment,
+                            iter_p, xctx);
+                    }
+                }
+                AFW_FINALLY {
+                    if (!clone_each) {
+                        afw_pool_release(iter_p, xctx);
+                    }
+                }
+                AFW_ENDTRY;
+                if (leave) {
                     break;
                 }
-            }
-
-            if (increment) {
-                /*
-                 * Per-iteration clone is only for for-let/const (the
-                 * wrapper block that opened this call). Assign-for mutates
-                 * existing names; cloning that enclosing scope after a
-                 * skipped 0-symbol `{ }` body leaves the originals stale.
-                 */
-                if (clone_each) {
-                    if (previous_iterator_scope) {
-                        scope = afw_xctx_scope_clone(
-                            previous_iterator_scope, xctx);
-                        afw_xctx_scope_deactivate(
-                            previous_iterator_scope, xctx);
-                        afw_xctx_scope_release(
-                            previous_iterator_scope, xctx);
-                    }
-                    else {
-                        scope = afw_xctx_scope_clone(
-                            afw_xctx_scope_current(xctx), xctx);
-                    }
-                    previous_iterator_scope = scope;
-                    afw_xctx_scope_activate(scope, xctx);
-                }
-                impl_evaluate_for_increment(x, 3, increment, p, xctx);
             }
         }
     }
@@ -1449,13 +1464,29 @@ afw_function_execute_for_of(
                 assignment_type =
                     afw_compile_assignment_type_assign_only;
             }
-            result = impl_keep_loop_last(result,
-                afw_value_block_evaluate_statement(
-                    x, x->argv[3], p, xctx),
-                xctx);
-            first = false;
-            if (impl_loop_should_exit(this_label, xctx)) {
-                break;
+            {
+                const afw_pool_t *iter_p;
+                afw_boolean_t leave;
+
+                iter_p = clone_each ? p : impl_loop_iteration_p(xctx);
+                leave = false;
+                AFW_TRY {
+                    result = impl_keep_loop_last(result,
+                        afw_value_block_evaluate_statement(
+                            x, x->argv[3], iter_p, xctx),
+                        xctx);
+                    leave = impl_loop_should_exit(this_label, xctx);
+                }
+                AFW_FINALLY {
+                    if (!clone_each) {
+                        afw_pool_release(iter_p, xctx);
+                    }
+                }
+                AFW_ENDTRY;
+                first = false;
+                if (leave) {
+                    break;
+                }
             }
         }
     }
