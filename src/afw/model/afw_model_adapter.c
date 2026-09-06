@@ -1661,7 +1661,7 @@ afw_model_internal_complete_ctx_default_modify_object(
             afw_array_push_value(mapped_entry, value, xctx);
         }
 
-        afw_array_of_array_add(ctx->mapped_entries, mapped_entry, xctx);
+        afw_array_of_array_add_internal(ctx->mapped_entries, mapped_entry, xctx);
     }
 }
 

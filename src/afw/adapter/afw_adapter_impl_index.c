@@ -238,7 +238,7 @@ afw_boolean_t afw_adapter_impl_index_object_type_applicable(
         return true;
 
     object_type_iterator = NULL;
-    nextObjectType = afw_array_of_string_get_next(
+    nextObjectType = afw_array_of_string_get_next_internal(
         objectTypes, &object_type_iterator, xctx);
     if (nextObjectType == NULL)
         return true;
@@ -248,7 +248,7 @@ afw_boolean_t afw_adapter_impl_index_object_type_applicable(
         if (afw_utf8_equal(nextObjectType, object_type_id))
             return true;
  
-        nextObjectType = afw_array_of_string_get_next(
+        nextObjectType = afw_array_of_string_get_next_internal(
             objectTypes, &object_type_iterator, xctx);
     }
 
@@ -703,13 +703,13 @@ void afw_adapter_impl_index_open_definition(
 
     if (objectType) {
         object_type_iterator = NULL;
-        object_type_id = afw_array_of_string_get_next(
+        object_type_id = afw_array_of_string_get_next_internal(
             objectType, &object_type_iterator, xctx);
         while (object_type_id) {
             afw_adapter_impl_index_open(indexer, object_type_id,
                 key, unique, reverse, pool, xctx);
 
-            object_type_id = afw_array_of_string_get_next(
+            object_type_id = afw_array_of_string_get_next_internal(
                 objectType, &object_type_iterator, xctx);
         }
     } else {
@@ -902,7 +902,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
     if (objectTypes) {
         object_type_iterator = NULL;
 
-        object_type_id = afw_array_of_string_get_next(
+        object_type_id = afw_array_of_string_get_next_internal(
             objectTypes, &object_type_iterator, xctx);
         do
         {
@@ -925,7 +925,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
             }
 
             if (object_type_id)
-                object_type_id = afw_array_of_string_get_next(
+                object_type_id = afw_array_of_string_get_next_internal(
                     objectTypes, &object_type_iterator, xctx);
 
         } while (object_type_id);
@@ -1034,7 +1034,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
          */
         object_type_iterator = NULL;
         object_type_id = (objectType)
-            ? afw_array_of_string_get_next(
+            ? afw_array_of_string_get_next_internal(
                 objectType, &object_type_iterator, xctx)
             : NULL;
 
@@ -1045,7 +1045,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
                     object_type_id,
                     NULL, &ctx, afw_adapter_impl_index_cb, NULL, pool, xctx);
 
-                object_type_id = afw_array_of_string_get_next(
+                object_type_id = afw_array_of_string_get_next_internal(
                     objectType, &object_type_iterator, xctx);
             } while (object_type_id);
         } else {

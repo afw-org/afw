@@ -425,13 +425,12 @@ afw_object_set_property_as_relaxed_json_internal(
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next value from array of relaxed_json.
+ * @brief Get next relaxed_json value from array of relaxed_json.
  * @param instance of array.
  * @param iterator.
- * @param source_z file:line.
  * @param xctx of caller.
- * @return (const afw_utf8_t *) or NULL.
- * 
+ * @return (const afw_value_relaxed_json_t *) or NULL.
+ *
  * Set the iterator to NULL before the first call and anytime
  * you want to start from the first value again.
  */
@@ -441,17 +440,14 @@ afw_object_set_property_as_relaxed_json_internal(
     array, iterator, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get next value from array of relaxed_json.
+ * @brief Get next relaxed_json value from array of relaxed_json.
  * @param instance of array.
  * @param iterator.
  * @param source_z file:line.
  * @param xctx of caller.
- * @return (const afw_utf8_t *) or NULL.
- * 
- * Set the iterator to NULL before the first call and anytime
- * you want to start from the first value again.
+ * @return (const afw_value_relaxed_json_t *) or NULL.
  */
-AFW_DECLARE(const afw_utf8_t *)
+AFW_DECLARE(const afw_value_relaxed_json_t *)
 afw_array_of_relaxed_json_get_next_source(
     const afw_array_t *instance,
     const afw_iterator_old_t * *iterator,
@@ -459,7 +455,34 @@ afw_array_of_relaxed_json_get_next_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Add value from array of relaxed_json.
+ * @brief Get next relaxed_json internal from array of relaxed_json.
+ * @param instance of array.
+ * @param iterator.
+ * @param xctx of caller.
+ * @return (const afw_utf8_t *) or NULL.
+ */
+#define afw_array_of_relaxed_json_get_next_internal( \
+    array, iterator, xctx) \
+    afw_array_of_relaxed_json_get_next_internal_source( \
+    array, iterator, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get next relaxed_json internal from array of relaxed_json.
+ * @param instance of array.
+ * @param iterator.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_utf8_t *) or NULL.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_array_of_relaxed_json_get_next_internal_source(
+    const afw_array_t *instance,
+    const afw_iterator_old_t * *iterator,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Add a relaxed_json value to array of relaxed_json.
  * @param instance of array.
  * @param value to add.
  * @param xctx of caller.
@@ -467,17 +490,41 @@ afw_array_of_relaxed_json_get_next_source(
 AFW_DECLARE(void)
 afw_array_of_relaxed_json_add(
     const afw_array_t *instance,
+    const afw_value_relaxed_json_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Add a relaxed_json internal to array of relaxed_json.
+ * @param instance of array.
+ * @param value to add.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_of_relaxed_json_add_internal(
+    const afw_array_t *instance,
     const afw_utf8_t *value,
     afw_xctx_t *xctx);
 
 /**
- * @brief Remove value from array of relaxed_json.
+ * @brief Remove a relaxed_json value from array of relaxed_json.
  * @param instance of array.
  * @param value to remove.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
 afw_array_of_relaxed_json_remove(
+    const afw_array_t *instance,
+    const afw_value_relaxed_json_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Remove a relaxed_json internal from array of relaxed_json.
+ * @param instance of array.
+ * @param value to remove.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_of_relaxed_json_remove_internal(
     const afw_array_t *instance,
     const afw_utf8_t *value,
     afw_xctx_t *xctx);

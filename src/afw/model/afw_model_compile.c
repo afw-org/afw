@@ -442,10 +442,10 @@ impl_harvest_object_type(
                     "/*/_AdaptiveObjectType_/" AFW_UTF8_FMT,
                     (int)(path->len - model->objectType_path->len),
                     (char *)(path->s + model->objectType_path->len));
-                afw_array_of_anyURI_add(to_parent_paths->internal, s, xctx);
+                afw_array_of_anyURI_add_internal(to_parent_paths->internal, s, xctx);
             }
             else {
-                afw_array_of_anyURI_add(to_parent_paths->internal, path, xctx);
+                afw_array_of_anyURI_add_internal(to_parent_paths->internal, path, xctx);
             }
         }
         afw_object_meta_set_property(result,

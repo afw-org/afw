@@ -1014,7 +1014,7 @@ impl_add_parents_and_property_types(
 
             /* Set parent path. */
             s = afw_object_meta_get_path(parent, xctx);
-            afw_array_of_anyURI_add(parent_paths->internal, s, xctx);
+            afw_array_of_anyURI_add_internal(parent_paths->internal, s, xctx);
 
             /* Make sure parent is processed first. */
             parent_object_class_object =

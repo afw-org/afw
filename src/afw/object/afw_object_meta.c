@@ -202,7 +202,7 @@ afw_object_meta_add_parent_path(
             afw_data_type_anyURI, instance->p, xctx);
     }
     
-    afw_array_of_anyURI_add(parent_paths->internal, parent_path, xctx);
+    afw_array_of_anyURI_add_internal(parent_paths->internal, parent_path, xctx);
     meta = afw_object_meta_get_nonempty_delta(instance, xctx);
     afw_object_set_property(meta, afw_v_parentPaths, &parent_paths->pub, xctx);
 }
@@ -718,7 +718,7 @@ impl_log_errors(
     const afw_utf8_t *error;
 
     iterator = NULL;
-    while ((error = afw_array_of_string_get_next(errors,
+    while ((error = afw_array_of_string_get_next_internal(errors,
         &iterator, xctx)))
     {
         AFW_LOG_FZ(info, xctx,

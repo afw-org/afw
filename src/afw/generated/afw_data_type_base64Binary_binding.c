@@ -728,37 +728,69 @@ impl_afw_value_get_info(
 }
 
 
-/* Get next value from array of base64Binary. */
-AFW_DEFINE(const afw_memory_t *)
+/* Get next base64Binary value from array of base64Binary. */
+AFW_DEFINE(const afw_value_base64Binary_t *)
 afw_array_of_base64Binary_get_next_source(
     const afw_array_t *instance,
     const afw_iterator_old_t * *iterator,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx)
 {
-    const void *internal;
-    const afw_data_type_t *data_type;
+    const afw_value_t *value;
 
-    afw_array_get_next_internal(instance, iterator, &data_type, &internal, xctx);
-    if (!internal) {
+    value = afw_array_get_next_value(instance, iterator, NULL, xctx);
+    if (!value) {
         return NULL;
     }
-    if (data_type != afw_data_type_base64Binary) {
+    if (!AFW_VALUE_IS_DATA_TYPE(value, base64Binary)) {
         const afw_utf8_t *data_type_id;
 
-        data_type_id = &data_type->data_type_id;
+        data_type_id = afw_value_get_quick_data_type_id(value);
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
             "Typesafe error: expecting 'base64Binary' but "
             "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
-    return (const afw_memory_t *)internal;
+    return (const afw_value_base64Binary_t *)value;
 }
 
-/* Add value from array of base64Binary */
+/* Get next base64Binary internal from array of base64Binary. */
+AFW_DEFINE(const afw_memory_t *)
+afw_array_of_base64Binary_get_next_internal_source(
+    const afw_array_t *instance,
+    const afw_iterator_old_t * *iterator,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx)
+{
+    const afw_value_base64Binary_t *value;
+
+    value = afw_array_of_base64Binary_get_next_source(instance, iterator, source_z, xctx);
+    if (!value) {
+        return NULL;
+    }
+    return &value->internal;
+}
+
+/* Add a base64Binary value to array of base64Binary. */
 AFW_DEFINE(void)
 afw_array_of_base64Binary_add(
+    const afw_array_t *instance,
+    const afw_value_base64Binary_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_array_setter_t *setter;
+
+    setter = afw_array_get_setter(instance, xctx);
+    if (!setter) {
+        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    }
+    afw_array_setter_push_value(setter, &value->pub, xctx);
+}
+
+/* Add a base64Binary internal to array of base64Binary. */
+AFW_DEFINE(void)
+afw_array_of_base64Binary_add_internal(
     const afw_array_t *instance,
     const afw_memory_t *value,
     afw_xctx_t *xctx)
@@ -775,9 +807,19 @@ afw_array_of_base64Binary_add(
         (const void *)value, xctx);
 }
 
-/* Remove value from array of base64Binary */
+/* Remove a base64Binary value from array of base64Binary. */
 AFW_DEFINE(void)
 afw_array_of_base64Binary_remove(
+    const afw_array_t *instance,
+    const afw_value_base64Binary_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_array_of_base64Binary_remove_internal(instance, &value->internal, xctx);
+}
+
+/* Remove a base64Binary internal from array of base64Binary. */
+AFW_DEFINE(void)
+afw_array_of_base64Binary_remove_internal(
     const afw_array_t *instance,
     const afw_memory_t *value,
     afw_xctx_t *xctx)

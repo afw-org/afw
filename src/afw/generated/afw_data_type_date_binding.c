@@ -610,37 +610,69 @@ impl_afw_value_get_info(
 }
 
 
-/* Get next value from array of date. */
-AFW_DEFINE(const afw_date_t *)
+/* Get next date value from array of date. */
+AFW_DEFINE(const afw_value_date_t *)
 afw_array_of_date_get_next_source(
     const afw_array_t *instance,
     const afw_iterator_old_t * *iterator,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx)
 {
-    const void *internal;
-    const afw_data_type_t *data_type;
+    const afw_value_t *value;
 
-    afw_array_get_next_internal(instance, iterator, &data_type, &internal, xctx);
-    if (!internal) {
+    value = afw_array_get_next_value(instance, iterator, NULL, xctx);
+    if (!value) {
         return NULL;
     }
-    if (data_type != afw_data_type_date) {
+    if (!AFW_VALUE_IS_DATA_TYPE(value, date)) {
         const afw_utf8_t *data_type_id;
 
-        data_type_id = &data_type->data_type_id;
+        data_type_id = afw_value_get_quick_data_type_id(value);
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
             "Typesafe error: expecting 'date' but "
             "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
-    return (const afw_date_t *)internal;
+    return (const afw_value_date_t *)value;
 }
 
-/* Add value from array of date */
+/* Get next date internal from array of date. */
+AFW_DEFINE(const afw_date_t *)
+afw_array_of_date_get_next_internal_source(
+    const afw_array_t *instance,
+    const afw_iterator_old_t * *iterator,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx)
+{
+    const afw_value_date_t *value;
+
+    value = afw_array_of_date_get_next_source(instance, iterator, source_z, xctx);
+    if (!value) {
+        return NULL;
+    }
+    return &value->internal;
+}
+
+/* Add a date value to array of date. */
 AFW_DEFINE(void)
 afw_array_of_date_add(
+    const afw_array_t *instance,
+    const afw_value_date_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_array_setter_t *setter;
+
+    setter = afw_array_get_setter(instance, xctx);
+    if (!setter) {
+        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    }
+    afw_array_setter_push_value(setter, &value->pub, xctx);
+}
+
+/* Add a date internal to array of date. */
+AFW_DEFINE(void)
+afw_array_of_date_add_internal(
     const afw_array_t *instance,
     const afw_date_t *value,
     afw_xctx_t *xctx)
@@ -657,9 +689,19 @@ afw_array_of_date_add(
         (const void *)value, xctx);
 }
 
-/* Remove value from array of date */
+/* Remove a date value from array of date. */
 AFW_DEFINE(void)
 afw_array_of_date_remove(
+    const afw_array_t *instance,
+    const afw_value_date_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_array_of_date_remove_internal(instance, &value->internal, xctx);
+}
+
+/* Remove a date internal from array of date. */
+AFW_DEFINE(void)
+afw_array_of_date_remove_internal(
     const afw_array_t *instance,
     const afw_date_t *value,
     afw_xctx_t *xctx)

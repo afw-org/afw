@@ -379,36 +379,59 @@ afw_object_set_property_as_boolean_internal(
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next value from array of boolean.
+ * @brief Get next boolean value from array of boolean.
  * @param instance of array.
  * @param iterator.
- * @param found is place to return whether value is found.
- * @param source_z file:line.
  * @param xctx of caller.
- * @return (afw_boolean_t) or NULL.
- * 
+ * @return (const afw_value_boolean_t *) or NULL.
+ *
  * Set the iterator to NULL before the first call and anytime
  * you want to start from the first value again.
  */
 #define afw_array_of_boolean_get_next( \
-    array, iterator, found, xctx) \
+    array, iterator, xctx) \
     afw_array_of_boolean_get_next_source( \
+    array, iterator, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get next boolean value from array of boolean.
+ * @param instance of array.
+ * @param iterator.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_value_boolean_t *) or NULL.
+ */
+AFW_DECLARE(const afw_value_boolean_t *)
+afw_array_of_boolean_get_next_source(
+    const afw_array_t *instance,
+    const afw_iterator_old_t * *iterator,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Get next boolean internal from array of boolean.
+ * @param instance of array.
+ * @param iterator.
+ * @param found is place to return whether value is found.
+ * @param xctx of caller.
+ * @return (afw_boolean_t) or NULL.
+ */
+#define afw_array_of_boolean_get_next_internal( \
+    array, iterator, found, xctx) \
+    afw_array_of_boolean_get_next_internal_source( \
     array, iterator, found, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get next value from array of boolean.
+ * @brief Get next boolean internal from array of boolean.
  * @param instance of array.
  * @param iterator.
  * @param found is place to return whether value is found.
  * @param source_z file:line.
  * @param xctx of caller.
  * @return (afw_boolean_t) or NULL.
- * 
- * Set the iterator to NULL before the first call and anytime
- * you want to start from the first value again.
  */
 AFW_DECLARE(afw_boolean_t)
-afw_array_of_boolean_get_next_source(
+afw_array_of_boolean_get_next_internal_source(
     const afw_array_t *instance,
     const afw_iterator_old_t * *iterator,
     afw_boolean_t *found,
@@ -416,7 +439,7 @@ afw_array_of_boolean_get_next_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Add value from array of boolean.
+ * @brief Add a boolean value to array of boolean.
  * @param instance of array.
  * @param value to add.
  * @param xctx of caller.
@@ -424,17 +447,41 @@ afw_array_of_boolean_get_next_source(
 AFW_DECLARE(void)
 afw_array_of_boolean_add(
     const afw_array_t *instance,
+    const afw_value_boolean_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Add a boolean internal to array of boolean.
+ * @param instance of array.
+ * @param value to add.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_of_boolean_add_internal(
+    const afw_array_t *instance,
     const afw_boolean_t *value,
     afw_xctx_t *xctx);
 
 /**
- * @brief Remove value from array of boolean.
+ * @brief Remove a boolean value from array of boolean.
  * @param instance of array.
  * @param value to remove.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
 afw_array_of_boolean_remove(
+    const afw_array_t *instance,
+    const afw_value_boolean_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Remove a boolean internal from array of boolean.
+ * @param instance of array.
+ * @param value to remove.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_of_boolean_remove_internal(
     const afw_array_t *instance,
     const afw_boolean_t *value,
     afw_xctx_t *xctx);

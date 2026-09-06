@@ -363,7 +363,7 @@ afw_function_execute_join(
     array_of_string = afw_array_convert_to_array_of_strings(value->internal,
         x->p, x->xctx);
     for (iterator = NULL, len = 0;;) {
-        s = afw_array_of_string_get_next(array_of_string, &iterator, x->xctx);
+        s = afw_array_of_string_get_next_internal(array_of_string, &iterator, x->xctx);
         if (!s) {
             break;
         }
@@ -378,7 +378,7 @@ afw_function_execute_join(
         result->internal.len = len;
         result->internal.s = c;
         for (iterator = NULL;;) {
-            s = afw_array_of_string_get_next(
+            s = afw_array_of_string_get_next_internal(
                 array_of_string, &iterator, x->xctx);
             if (!s) {
                 break;

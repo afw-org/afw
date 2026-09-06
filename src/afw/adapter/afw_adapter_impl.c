@@ -445,7 +445,7 @@ afw_adapter_impl_call_object_cb_from_list(
 
     /* Call callback for each object in list. */
     for (iterator = NULL;;) {
-        obj = afw_array_of_object_get_next(
+        obj = afw_array_of_object_get_next_internal(
             list, &iterator, xctx);
         if (!obj) break;
         callback(obj, context, xctx);

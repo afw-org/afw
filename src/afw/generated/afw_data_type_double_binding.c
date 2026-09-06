@@ -643,40 +643,72 @@ impl_afw_value_get_info(
 }
 
 
-/* Get next value from array of double. */
-AFW_DEFINE(double)
+/* Get next double value from array of double. */
+AFW_DEFINE(const afw_value_double_t *)
 afw_array_of_double_get_next_source(
     const afw_array_t *instance,
     const afw_iterator_old_t * *iterator,
-    afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx)
 {
-    const void *internal;
-    const afw_data_type_t *data_type;
+    const afw_value_t *value;
 
-    afw_array_get_next_internal(instance, iterator, &data_type, &internal, xctx);
-    *found = true;
-    if (!internal) {
-        *found = false;
-        return 0;
+    value = afw_array_get_next_value(instance, iterator, NULL, xctx);
+    if (!value) {
+        return NULL;
     }
-    if (data_type != afw_data_type_double) {
+    if (!AFW_VALUE_IS_DATA_TYPE(value, double)) {
         const afw_utf8_t *data_type_id;
 
-        data_type_id = &data_type->data_type_id;
+        data_type_id = afw_value_get_quick_data_type_id(value);
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
             "Typesafe error: expecting 'double' but "
             "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
-    return *(double *)internal;
+    return (const afw_value_double_t *)value;
 }
 
-/* Add value from array of double */
+/* Get next double internal from array of double. */
+AFW_DEFINE(double)
+afw_array_of_double_get_next_internal_source(
+    const afw_array_t *instance,
+    const afw_iterator_old_t * *iterator,
+    afw_boolean_t *found,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx)
+{
+    const afw_value_double_t *value;
+
+    value = afw_array_of_double_get_next_source(instance, iterator, source_z, xctx);
+    if (!value) {
+        *found = false;
+        return 0;
+    }
+    *found = true;
+    return value->internal;
+}
+
+/* Add a double value to array of double. */
 AFW_DEFINE(void)
 afw_array_of_double_add(
+    const afw_array_t *instance,
+    const afw_value_double_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_array_setter_t *setter;
+
+    setter = afw_array_get_setter(instance, xctx);
+    if (!setter) {
+        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    }
+    afw_array_setter_push_value(setter, &value->pub, xctx);
+}
+
+/* Add a double internal to array of double. */
+AFW_DEFINE(void)
+afw_array_of_double_add_internal(
     const afw_array_t *instance,
     const double *value,
     afw_xctx_t *xctx)
@@ -693,9 +725,19 @@ afw_array_of_double_add(
         (const void *)value, xctx);
 }
 
-/* Remove value from array of double */
+/* Remove a double value from array of double. */
 AFW_DEFINE(void)
 afw_array_of_double_remove(
+    const afw_array_t *instance,
+    const afw_value_double_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_array_of_double_remove_internal(instance, &value->internal, xctx);
+}
+
+/* Remove a double internal from array of double. */
+AFW_DEFINE(void)
+afw_array_of_double_remove_internal(
     const afw_array_t *instance,
     const double *value,
     afw_xctx_t *xctx)

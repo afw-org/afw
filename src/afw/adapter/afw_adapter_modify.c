@@ -185,7 +185,7 @@ afw_adapter_modify_entries_from_list(
 
         /* Get next tuple.  Break out of loop if there are no more. */
         tuple_i = NULL;
-        tuple = afw_array_of_array_get_next(list, &entry_i, xctx);
+        tuple = afw_array_of_array_get_next_internal(list, &entry_i, xctx);
         if (!tuple) {
             break;
         }
@@ -194,7 +194,7 @@ afw_adapter_modify_entries_from_list(
         entry = afw_pool_calloc_type(p, afw_adapter_modify_entry_t, xctx);
 
         /* Entry type. */
-        s = afw_array_of_string_get_next(tuple, &tuple_i, xctx);
+        s = afw_array_of_string_get_next_internal(tuple, &tuple_i, xctx);
         if (!s) {
             goto error;
         }
@@ -216,7 +216,7 @@ afw_adapter_modify_entries_from_list(
         }
         else if (afw_value_is_array(value)) {
             for (names_i = NULL, prev_property_name_list = NULL;;) {
-                s = afw_array_of_string_get_next(
+                s = afw_array_of_string_get_next_internal(
                     ((const afw_value_array_t *)value)->internal,
                     &names_i, xctx);
                 if (!s) {
