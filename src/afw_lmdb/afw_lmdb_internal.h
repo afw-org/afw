@@ -48,12 +48,21 @@ typedef struct afw_lmdb_adapter_s {
     afw_adapter_t pub;
     const afw_content_type_t *ubjson;
     const afw_lmdb_limits_t *limits;
-    const afw_lmdb_env_t *env; 
+    const afw_lmdb_env_t *env;
     const afw_object_t *internalConfig;
     MDB_env *dbEnv;
     afw_lmdb_metadata_t *metadata;
     apr_hash_t *dbi_handles;
     apr_thread_rwlock_t *dbLock;
+    /*
+     * Bumped (under AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN) each time
+     * indexDefinitions is published to internalConfig. Lets any indexer
+     * instance cheaply tell whether its own cached copy is still current
+     * without cloning it on every check (issue #252 item 3: a session's
+     * indexer otherwise never notices index_create/index_remove done by
+     * another session).
+     */
+    apr_uint32_t indexDefinitionsGeneration;
 } afw_lmdb_adapter_t;
 
 typedef struct afw_lmdb_journal_s {
@@ -106,6 +115,9 @@ typedef struct afw_lmdb_adapter_impl_index_s {
     const afw_lmdb_adapter_session_t * session;
     const afw_lmdb_adapter_t * adapter;
     MDB_txn *txn;
+    /* Generation of adapter->indexDefinitionsGeneration that pub.
+       indexDefinitions currently reflects (issue #252 item 3). */
+    apr_uint32_t definitionsGeneration;
 } afw_lmdb_adapter_impl_index_t;
 
 typedef struct impl_afw_adapter_impl_index_cursor_self_s {
