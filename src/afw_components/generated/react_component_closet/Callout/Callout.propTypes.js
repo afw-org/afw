@@ -8,7 +8,7 @@ export const propTypes = {
      * contains
      * Data Type: (object, _AdaptiveLayoutComponentType_)
      * 
-     * Specifies the placeholder text displayed when no value is present.
+     * The component to be rendered inside the Callout.
      */
     contains:                           PropTypes.oneOfType([ PropTypes.element, PropTypes.object ]),
     /**

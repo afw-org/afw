@@ -63,7 +63,7 @@ The second array.
 
 =head3 bag_rfc822Name
 
-Takes any number of rfc822Name values and returns an array of array.
+Takes any number of rfc822Name values and returns an array of rfc822Name.
 Makes an array from values
 
 =head4 Parameters

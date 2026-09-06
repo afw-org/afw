@@ -54,7 +54,7 @@ class dayTimeDuration
      * bag_dayTimeDuration()
      *
      * Takes any number of dayTimeDuration values and returns an array of
-     * array.
+     * dayTimeDuration.
      *
      * @param array $values
      *

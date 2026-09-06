@@ -73,7 +73,7 @@ Returns the number of values in a bag
 
 =head3 bag_time
 
-Takes any number of time values and returns an array of array.
+Takes any number of time values and returns an array of time.
 Makes an array from values
 
 =head4 Parameters

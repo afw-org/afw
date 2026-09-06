@@ -391,7 +391,7 @@ afw_function_execute_string(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * URL decode a value or bag of values.
+ * URL decode a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -406,11 +406,11 @@ afw_function_execute_string(
  *
  * Parameters:
  *
- *   encoded - (string) URL decode a single string or a bag of string.
+ *   encoded - (string) String to URL decode.
  *
  * Returns:
  *
- *   (string) A string or bag of strings.
+ *   (string) The URL-decoded string.
  */
 const afw_value_t *
 afw_function_execute_url_decode(

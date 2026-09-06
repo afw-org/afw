@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bag",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Takes any number of <dataType> values and returns an array of array.",
+    "description": "Takes any number of <dataType> values and returns an array of <dataType>.",
     "functionId": "bag",
     "functionLabel": "bag",
     "parameters": [

@@ -46,7 +46,7 @@ def bag_hexBinary(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of hexBinary values and returns an array of array.
+    Takes any number of hexBinary values and returns an array of hexBinary.
 
     Args:
         values (list):

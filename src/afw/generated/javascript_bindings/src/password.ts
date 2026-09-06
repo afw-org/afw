@@ -18,7 +18,7 @@ interface IAnyObject {
 }
 
 /**
- * Takes any number of password values and returns an array of array.
+ * Takes any number of password values and returns an array of password.
  * 
  * @param {array} values -
  * 

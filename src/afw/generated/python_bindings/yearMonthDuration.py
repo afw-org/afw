@@ -75,7 +75,7 @@ def bag_yearMonthDuration(session, values=None):
     Makes an array from values
 
     Takes any number of yearMonthDuration values and returns an array of
-    array.
+    yearMonthDuration.
 
     Args:
         values (list):

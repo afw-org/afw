@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagX500Name",
     "category": "x500Name",
     "dataTypeMethod": true,
-    "description": "Takes any number of x500Name values and returns an array of array.",
+    "description": "Takes any number of x500Name values and returns an array of x500Name.",
     "functionId": "bag<x500Name>",
     "functionLabel": "bag_x500Name",
     "parameters": [

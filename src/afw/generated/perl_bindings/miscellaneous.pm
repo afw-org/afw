@@ -149,14 +149,14 @@ Value to log.
 =head3 now_local
 
 Return current local dateTime.
-Local dataTime
+Local dateTime
 
 =head4 Parameters
 
 =head3 now_utc
 
 Return current UTC dateTime.
-UTC dataTime
+UTC dateTime
 
 =head4 Parameters
 

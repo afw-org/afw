@@ -4,13 +4,13 @@
     "camelCaseFunctionLabel": "urlEncodeString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "URL encode a value or bag of values.",
+    "description": "URL encode a string value and return the string result.",
     "functionId": "url_encode<string>",
     "functionLabel": "url_encode_string",
     "parameters": [
         {
             "dataType": "string",
-            "description": "URL encode a single value. See the url_encode method for the data type of more details.",
+            "description": "The string value to URL encode.",
             "name": "unencoded"
         }
     ],

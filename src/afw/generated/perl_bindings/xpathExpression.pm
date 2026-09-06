@@ -53,7 +53,8 @@ Returns the number of values in a bag
 
 =head3 bag_xpathExpression
 
-Takes any number of xpathExpression values and returns an array of array.
+Takes any number of xpathExpression values and returns an array of
+xpathExpression.
 Makes an array from values
 
 =head4 Parameters

@@ -448,7 +448,7 @@ def return_(session, value=None):
 
 def switch(session, predicate, value1, case_clause):
     """
-    All combinations true
+    Switch statement
 
     Support for switch statement.
 

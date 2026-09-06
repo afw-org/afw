@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagBoolean",
     "category": "boolean",
     "dataTypeMethod": true,
-    "description": "Takes any number of boolean values and returns an array of array.",
+    "description": "Takes any number of boolean values and returns an array of boolean.",
     "functionId": "bag<boolean>",
     "functionLabel": "bag_boolean",
     "parameters": [

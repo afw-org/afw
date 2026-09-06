@@ -28,7 +28,7 @@ class script
     /**
      * bag_script()
      *
-     * Takes any number of script values and returns an array of array.
+     * Takes any number of script values and returns an array of script.
      *
      * @param array $values
      *

@@ -82,7 +82,7 @@ def bag_object(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of object values and returns an array of array.
+    Takes any number of object values and returns an array of object.
 
     Args:
         values (list):

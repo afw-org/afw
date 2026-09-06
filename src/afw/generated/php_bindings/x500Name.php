@@ -75,7 +75,7 @@ class x500Name
     /**
      * bag_x500Name()
      *
-     * Takes any number of x500Name values and returns an array of array.
+     * Takes any number of x500Name values and returns an array of x500Name.
      *
      * @param array $values
      *

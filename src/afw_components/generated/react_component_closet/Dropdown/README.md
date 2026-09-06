@@ -8,8 +8,8 @@ This component, given a set of options, provides the user with the ability to se
 ## Props
 | Name | Type | Required | Default | Description |
 |:----------|:----------|:----|:------------|:------------|
-|description|string|false|null|The description for this dropdown editor.|
-|editable|boolean|false|null|Whether the options managed by this Dropdown Editor are editable.|
+|description|string|false|null|The description for this Dropdown component.|
+|editable|boolean|false|null|Whether the options managed by this Dropdown are editable.|
 |label|string|false|null|The label for the Dropdown component.|
 |multiselect|boolean|false|null|Whether this Dropdown allows for multiple selections.|
 |options|array|false|null|Specifies the available options for the dropdown.|

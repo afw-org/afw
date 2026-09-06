@@ -7,17 +7,17 @@
     "parameters": [
         {
             "dataType": "string",
-            "description": "This is the adapterId of a model adapter. Variable custom::adapterId can be used to access this value in model expressions.",
+            "description": "This is the adapterId of a model adapter. Variable current::adapterId can be used to access this value in model expressions.",
             "name": "adapterId"
         },
         {
             "dataType": "string",
-            "description": "This is the adaptive object type of object being deleted. Variable custom::objectType can be used to access this value in model expressions.",
+            "description": "This is the adaptive object type of object being deleted. Variable current::objectType can be used to access this value in model expressions.",
             "name": "objectType"
         },
         {
             "dataType": "string",
-            "description": "This is the objectId of object to delete. Variable custom::object can be used to access this value in model expressions.",
+            "description": "This is the objectId of object to delete. Variable current::objectId can be used to access this value in model expressions.",
             "name": "objectId"
         },
         {

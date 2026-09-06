@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Takes any number of anyURI values and returns an array of array.",
+    "description": "Takes any number of anyURI values and returns an array of anyURI.",
     "functionId": "bag<anyURI>",
     "functionLabel": "bag_anyURI",
     "parameters": [

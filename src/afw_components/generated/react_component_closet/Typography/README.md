@@ -3,7 +3,7 @@
 A component that renders a text label.
 
 ## Description
-This component is a very simple one, which renders text into a static label with specified color, size or style..
+This component is a very simple one, which renders text into a static label with specified color, size or style.
 
 ## Props
 | Name | Type | Required | Default | Description |

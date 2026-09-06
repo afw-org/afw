@@ -27,10 +27,10 @@
         },
         "qualifierDefinitions": {
             "allowQuery": false,
-            "brief": "Qualifiers that can be used in log related expressions",
+            "brief": "Qualifiers that can be used in expressions evaluated in this context",
             "dataType": "object",
             "dataTypeParameter": "_AdaptiveQualifierDefinitions_",
-            "description": "Qualifiers that can be used in log related expressions. An empty string qualifier is used for unqualified variable references.",
+            "description": "Qualifiers that can be used in expressions evaluated in this context type (for example log, application, process, model, or authorizationCheck contexts). An empty string qualifier is used for unqualified variable references.",
             "label": "Qualifiers"
         },
         "title": {

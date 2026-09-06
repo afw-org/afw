@@ -74,7 +74,7 @@ def bag_x500Name(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of x500Name values and returns an array of array.
+    Takes any number of x500Name values and returns an array of x500Name.
 
     Args:
         values (list):

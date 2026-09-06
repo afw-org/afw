@@ -33,7 +33,7 @@
         "version_string": {
             "allowQuery": false,
             "dataType": "string",
-            "description": "Patch version string",
+            "description": "Full LMDB library version string.",
             "label": "Version String",
             "required": true,
             "unique": false

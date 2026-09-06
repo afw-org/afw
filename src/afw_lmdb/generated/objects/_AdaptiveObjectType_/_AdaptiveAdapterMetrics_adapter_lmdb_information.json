@@ -42,7 +42,7 @@
             "allowQuery": false,
             "allowWrite": false,
             "dataType": "integer",
-            "description": "Maximum number of reader slots in simultaneous use since the lock file was initialized.",
+            "description": "Maximum number of reader slots allocated for the environment. Equivalent to the value maxreaders specified by the first process opening the Environment.",
             "label": "Max Readers",
             "required": true,
             "unique": false
@@ -50,7 +50,7 @@
         "numreaders": {
             "allowQuery": false,
             "dataType": "integer",
-            "description": "Number of reader slots allocated in the lock file. Equivalent to the value maxreaders specified by the first process opening the Environment.",
+            "description": "Maximum number of reader slots that have been in simultaneous use since the environment was opened.",
             "label": "Number Readers",
             "required": true,
             "unique": false

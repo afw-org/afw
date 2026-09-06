@@ -1,5 +1,5 @@
 {
     "category": "http",
     "brief": "HTTP Functions derived from cURL.",
-    "description": "These functions provide adaptive functions to that allow the user to access HTTP resources."
+    "description": "These functions provide adaptive functions that allow the user to access HTTP resources."
 }

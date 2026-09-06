@@ -56,7 +56,7 @@ export function afwBagSizeTime(client : any, value : any[]) : any {
 }
 
 /**
- * Takes any number of time values and returns an array of array.
+ * Takes any number of time values and returns an array of time.
  * 
  * @param {array} values -
  * 

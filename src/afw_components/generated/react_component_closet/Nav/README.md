@@ -3,7 +3,7 @@
 A navigational component that displays a list of links.
 
 ## Description
-This component, often referred to as a Side Nav, displays a list of clickable links into a horizontal panel.
+This component, often referred to as a Side Nav, displays a list of clickable links into a vertical panel.
 
 ## Props
 | Name | Type | Required | Default | Description |

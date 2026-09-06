@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagTime",
     "category": "time",
     "dataTypeMethod": true,
-    "description": "Takes any number of time values and returns an array of array.",
+    "description": "Takes any number of time values and returns an array of time.",
     "functionId": "bag<time>",
     "functionLabel": "bag_time",
     "parameters": [

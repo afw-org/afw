@@ -100,7 +100,7 @@ class string
     /**
      * bag_string()
      *
-     * Takes any number of string values and returns an array of array.
+     * Takes any number of string values and returns an array of string.
      *
      * @param array $values
      *
@@ -584,9 +584,8 @@ class string
     /**
      * length_string()
      *
-     * This is a polymorphic function where string can be any of the supported
-     * data types. Return the integer number of entries in datatype array or
-     * codepoints in others.
+     * Return the integer number of entries in a string array or the number of
+     * codepoints in a string anyURI or string.
      *
      * @param string $value Returns the number of entries in an array or code
      *                      points in others.
@@ -1440,11 +1439,11 @@ class string
     /**
      * url_decode()
      *
-     * URL decode a value or bag of values.
+     * URL decode a string.
      *
-     * @param string $encoded URL decode a single string or a bag of string.
+     * @param string $encoded String to URL decode.
      *
-     * @return string A string or bag of strings.
+     * @return string The URL-decoded string.
      */
     public function url_decode(, $encoded)
     {
@@ -1462,10 +1461,9 @@ class string
     /**
      * url_encode_string()
      *
-     * URL encode a value or bag of values.
+     * URL encode a string value and return the string result.
      *
-     * @param string $unencoded URL encode a single value. See the url_encode
-     *                          method for the data type of more details.
+     * @param string $unencoded The string value to URL encode.
      *
      * @return string URI encoded string.
      */

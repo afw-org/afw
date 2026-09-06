@@ -6,7 +6,7 @@ export interface IModalProps {
      * contains
      * Data Type: (object, _AdaptiveLayoutComponentType_)
      * 
-     * Specifies the placeholder text displayed when no value is present.
+     * The component to be rendered inside the Modal.
      */
     contains?:                          any;
     /**

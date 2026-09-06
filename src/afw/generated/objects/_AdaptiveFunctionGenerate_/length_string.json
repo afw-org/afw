@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "lengthString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "This is a polymorphic function where string can be any of the supported data types. Return the integer number of entries in datatype array or codepoints in others.",
+    "description": "Return the integer number of entries in a string array or the number of codepoints in a string anyURI or string.",
     "functionId": "length<string>",
     "functionLabel": "length_string",
     "parameters": [

@@ -105,7 +105,7 @@ def bag_string(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of string values and returns an array of array.
+    Takes any number of string values and returns an array of string.
 
     Args:
         values (list):
@@ -679,9 +679,8 @@ def length_string(session, value):
     """
     Returns number of codepoints or entries in value
 
-    This is a polymorphic function where string can be any of the supported
-    data types. Return the integer number of entries in datatype array or
-    codepoints in others.
+    Return the integer number of entries in a string array or the number of
+    codepoints in a string anyURI or string.
 
     Args:
         value (str): Returns the number of entries in an array or code points
@@ -1739,13 +1738,13 @@ def url_decode(session, encoded):
     """
     URL decode
 
-    URL decode a value or bag of values.
+    URL decode a string.
 
     Args:
-        encoded (str): URL decode a single string or a bag of string.
+        encoded (str): String to URL decode.
 
     Returns:
-        str: A string or bag of strings.
+        str: The URL-decoded string.
     """
 
     request = session.Request()
@@ -1767,11 +1766,10 @@ def url_encode_string(session, unencoded):
     """
     URI encode
 
-    URL encode a value or bag of values.
+    URL encode a string value and return the string result.
 
     Args:
-        unencoded (str): URL encode a single value. See the url_encode method
-            for the data type of more details.
+        unencoded (str): The string value to URL encode.
 
     Returns:
         str: URI encoded string.

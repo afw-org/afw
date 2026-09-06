@@ -3,7 +3,7 @@
     "cType": "afw_utf8_t",
     "dataType": "x500Name",
     "iteratorReturnDataType": "string",
-    "description": "Data type 'x500Name' hold a X.500 distinguished name.",
+    "description": "Data type 'x500Name' holds a X.500 distinguished name.",
     "directReturn": false,
     "jsonPrimitive": "string",
     "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",

@@ -35,7 +35,8 @@ export function afwBagSizeXpathExpression(client : any, value : any[]) : any {
 }
 
 /**
- * Takes any number of xpathExpression values and returns an array of array.
+ * Takes any number of xpathExpression values and returns an array of
+ * xpathExpression.
  * 
  * @param {array} values -
  * 

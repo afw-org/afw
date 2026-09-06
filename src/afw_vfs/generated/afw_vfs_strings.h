@@ -55,32 +55,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_VFS_Q_Include \
-    "Include"
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_Include */
-#define afw_vfs_s_Include \
-    (&afw_vfs_self_v_Include.internal)
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_Include */
-#define afw_vfs_self_s_Include \
-    (afw_vfs_self_v_Include.internal)
-
-/** @brief 'afw_value_string_t' for AFW_VFS_Q_Include */
-extern const afw_value_string_t \
-    afw_vfs_self_v_Include;
-
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_Include */
-#define afw_vfs_z_Include \
-    (afw_vfs_self_v_Include.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_VFS_Q_Include */
-#define afw_vfs_v_Include \
-    (&afw_vfs_self_v_Include.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_VFS_Q_Recursive \
     "Recursive"
 
@@ -1923,6 +1897,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Include_Hidden */
 #define afw_vfs_v_zz__Include_Hidden \
     (&afw_vfs_self_v_zz__Include_Hidden.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Include_hidden_files \
+    "Include hidden files"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Include_hidden_files */
+#define afw_vfs_s_zz__Include_hidden_files \
+    (&afw_vfs_self_v_zz__Include_hidden_files.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Include_hidden_files */
+#define afw_vfs_self_s_zz__Include_hidden_files \
+    (afw_vfs_self_v_zz__Include_hidden_files.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Include_hidden_files */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Include_hidden_files;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Include_hidden_files */
+#define afw_vfs_z_zz__Include_hidden_files \
+    (afw_vfs_self_v_zz__Include_hidden_files.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Include_hidden_files */
+#define afw_vfs_v_zz__Include_hidden_files \
+    (&afw_vfs_self_v_zz__Include_hidden_files.pub)
 
 
 

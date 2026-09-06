@@ -77,7 +77,7 @@ The second array.
 
 =head3 bag_date
 
-Takes any number of date values and returns an array of array.
+Takes any number of date values and returns an array of date.
 Makes an array from values
 
 =head4 Parameters
@@ -245,7 +245,7 @@ Checks for less than
 
 =head3 max_date
 
-Return the date value that is greater than or equal to the others..
+Return the date value that is greater than or equal to the others.
 
 If a date value does not include a time-zone value, then the local time-zone
 value will be assigned.
@@ -258,7 +258,7 @@ Maximum value
 
 =head3 min_date
 
-Return the date value that is less than or equal to the others..
+Return the date value that is less than or equal to the others.
 
 If a date value does not include a time-zone value, then the local time-zone
 value will be assigned.

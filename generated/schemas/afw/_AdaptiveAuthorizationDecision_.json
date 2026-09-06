@@ -34,8 +34,8 @@
                 },
                 "intermediateOnly": {
                     "default": false,
-                    "description": "Intermediate decision only.",
-                    "markdownDescription": "**Intermediate Only**\n\nIntermediate decision only.",
+                    "description": "If true, this decisionId (indeterminateD, indeterminateP, or indeterminateDP) represents an extended indeterminate outcome and is never one of the final decisionId values (deny, indeterminate, notApplicable, permit) returned in the decision property of an _AdaptiveAuthorizationResult_.",
+                    "markdownDescription": "**Intermediate Only**\n\nIf true, this decisionId (indeterminateD, indeterminateP, or indeterminateDP) represents an extended indeterminate outcome and is never one of the final decisionId values (deny, indeterminate, notApplicable, permit) returned in the decision property of an _AdaptiveAuthorizationResult_.",
                     "title": "Intermediate Only",
                     "type": "boolean"
                 }
@@ -66,8 +66,8 @@
                 },
                 "intermediateOnly": {
                     "default": false,
-                    "description": "Intermediate decision only.",
-                    "markdownDescription": "**Intermediate Only**\n\nIntermediate decision only.",
+                    "description": "If true, this decisionId (indeterminateD, indeterminateP, or indeterminateDP) represents an extended indeterminate outcome and is never one of the final decisionId values (deny, indeterminate, notApplicable, permit) returned in the decision property of an _AdaptiveAuthorizationResult_.",
+                    "markdownDescription": "**Intermediate Only**\n\nIf true, this decisionId (indeterminateD, indeterminateP, or indeterminateDP) represents an extended indeterminate outcome and is never one of the final decisionId values (deny, indeterminate, notApplicable, permit) returned in the decision property of an _AdaptiveAuthorizationResult_.",
                     "title": "Intermediate Only",
                     "type": "boolean"
                 }
@@ -108,8 +108,8 @@
         },
         "intermediateOnly": {
             "default": false,
-            "description": "Intermediate decision only.",
-            "markdownDescription": "**Intermediate Only**\n\nIntermediate decision only.",
+            "description": "If true, this decisionId (indeterminateD, indeterminateP, or indeterminateDP) represents an extended indeterminate outcome and is never one of the final decisionId values (deny, indeterminate, notApplicable, permit) returned in the decision property of an _AdaptiveAuthorizationResult_.",
+            "markdownDescription": "**Intermediate Only**\n\nIf true, this decisionId (indeterminateD, indeterminateP, or indeterminateDP) represents an extended indeterminate outcome and is never one of the final decisionId values (deny, indeterminate, notApplicable, permit) returned in the decision property of an _AdaptiveAuthorizationResult_.",
             "title": "Intermediate Only",
             "type": "boolean"
         }

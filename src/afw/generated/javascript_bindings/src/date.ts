@@ -59,7 +59,7 @@ export function afwAtLeastOneMemberOfDate(client : any, array1 : any[], array2 :
 }
 
 /**
- * Takes any number of date values and returns an array of array.
+ * Takes any number of date values and returns an array of date.
  * 
  * @param {array} values -
  * 
@@ -310,7 +310,7 @@ export function afwLtDate(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Return the date value that is greater than or equal to the others..
+ * Return the date value that is greater than or equal to the others.
  * 
  * If a date value does not include a time-zone value, then the local
  * time-zone value will be assigned.
@@ -330,7 +330,7 @@ export function afwMaxDate(client : any, values : any) : any {
 }
 
 /**
- * Return the date value that is less than or equal to the others..
+ * Return the date value that is less than or equal to the others.
  * 
  * If a date value does not include a time-zone value, then the local
  * time-zone value will be assigned.

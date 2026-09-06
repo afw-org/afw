@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagHexBinary",
     "category": "hexBinary",
     "dataTypeMethod": true,
-    "description": "Takes any number of hexBinary values and returns an array of array.",
+    "description": "Takes any number of hexBinary values and returns an array of hexBinary.",
     "functionId": "bag<hexBinary>",
     "functionLabel": "bag_hexBinary",
     "parameters": [

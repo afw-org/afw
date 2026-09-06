@@ -1,5 +1,5 @@
 {
-    "brief": "UTC dataTime",
+    "brief": "UTC dateTime",
     "category": "miscellaneous",
     "dataTypeMethod": false,
     "description": "Return current UTC dateTime.",

@@ -48,18 +48,18 @@
  * Parameters:
  *
  *   adapterId - (string) This is the adapterId of a model adapter. Variable
- *       custom::adapterId can be used to access this value in model
+ *       current::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
- *       added. Variable custom::objectType can be used to access this value in
+ *       added. Variable current::objectType can be used to access this value in
  *       model expressions.
  *
- *   object - (object) This is the object to add. Variable custom::object can be
- *       used to access this value in model expressions.
+ *   object - (object) This is the object to add. Variable current::object can
+ *       be used to access this value in model expressions.
  *
  *   objectId - (optional string) This is the optional preferred objectId of
- *       object to add. The adapter may ignore this. Variable custom::objectId
+ *       object to add. The adapter may ignore this. Variable current::objectId
  *       can be used to access this value in model expressions.
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
@@ -115,15 +115,16 @@ afw_function_execute_model_default_add_object_action(
  * Parameters:
  *
  *   adapterId - (string) This is the adapterId of a model adapter. Variable
- *       custom::adapterId can be used to access this value in model
+ *       current::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
- *       deleted. Variable custom::objectType can be used to access this value
+ *       deleted. Variable current::objectType can be used to access this value
  *       in model expressions.
  *
  *   objectId - (string) This is the objectId of object to delete. Variable
- *       custom::object can be used to access this value in model expressions.
+ *       current::objectId can be used to access this value in model
+ *       expressions.
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
  *       producing results. If not specified, the adapter's current model will
@@ -179,19 +180,20 @@ afw_function_execute_model_default_delete_object_action(
  * Parameters:
  *
  *   adapterId - (string) This is the adapterId of a model adapter. Variable
- *       custom::adapterId can be used to access this value in model
+ *       current::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
- *       modified. Variable custom::objectType can be used to access this value
+ *       modified. Variable current::objectType can be used to access this value
  *       in model expressions.
  *
  *   objectId - (string) This is the objectId of object to modify. Variable
- *       custom::objectId can be used to access this value in model expressions.
+ *       current::objectId can be used to access this value in model
+ *       expressions.
  *
  *   entries - (array) This is an array of modifications. Variable
- *       custom::actions can be used to access this value in model expressions.
- *       Entries are of the form:
+ *       current::modifyEntries can be used to access this value in model
+ *       expressions. Entries are of the form:
  * 
  *           [
  *               'add_value',
@@ -270,17 +272,18 @@ afw_function_execute_model_default_modify_object_action(
  * Parameters:
  *
  *   adapterId - (string) This is the adapterId of a model adapter. Variable
- *       custom::adapterId can be used to access this value in model
+ *       current::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
- *       replaced. Variable custom::objectType can be used to access this value
+ *       replaced. Variable current::objectType can be used to access this value
  *       in model expressions.
  *
  *   objectId - (string) The objectId of object to replace. Variable
- *       custom::objectId can be used to access this value in model expressions.
+ *       current::objectId can be used to access this value in model
+ *       expressions.
  *
- *   object - (object) This is the object to replace. Variable custom::object
+ *   object - (object) This is the object to replace. Variable current::object
  *       can be used to access this value in model expressions.
  *
  *   modelId - (optional string) This specifics a modelId of model to use for

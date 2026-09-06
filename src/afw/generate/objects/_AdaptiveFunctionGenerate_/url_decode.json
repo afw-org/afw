@@ -2,19 +2,19 @@
     "brief": "URL decode",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "URL decode a value or bag of values.",
+    "description": "URL decode a string.",
     "functionId": "url_decode",
     "functionLabel": "url_decode",
     "pure": true,
     "parameters": [
         {
             "dataType": "string",
-            "description": "URL decode a single string or a bag of string.",
+            "description": "String to URL decode.",
             "name": "encoded"
         }
     ],
     "returns": {
         "dataType": "string",
-        "description": "A string or bag of strings."
+        "description": "The URL-decoded string."
     }
 }

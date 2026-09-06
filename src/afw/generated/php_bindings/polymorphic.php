@@ -148,7 +148,8 @@ class polymorphic
     /**
      * bag()
      *
-     * Takes any number of `<dataType>` values and returns an array of array.
+     * Takes any number of `<dataType>` values and returns an array of
+     * `<dataType>`.
      *
      * @param array $values
      *
@@ -841,9 +842,8 @@ class polymorphic
     /**
      * length()
      *
-     * This is a polymorphic function where `<dataType>` can be any of the
-     * supported data types. Return the integer number of entries in datatype
-     * array or codepoints in others.
+     * Return the integer number of entries in a `<dataType>` array or the
+     * number of codepoints in a `<dataType>` anyURI or string.
      *
      * @param  $value Returns the number of entries in an array or code points
      *                in others.
@@ -1895,10 +1895,9 @@ class polymorphic
     /**
      * url_encode()
      *
-     * URL encode a value or bag of values.
+     * URL encode a `<dataType>` value and return the string result.
      *
-     * @param  $unencoded URL encode a single value. See the url_encode method
-     *                    for the data type of more details.
+     * @param  $unencoded The `<dataType>` value to URL encode.
      *
      * @return string URI encoded string.
      */

@@ -13,7 +13,7 @@
             ]
         },
         "allowWrite": {
-            "brief": "This property is read-only",
+            "brief": "This property can be written, unless denied by authorization policy or by the adapter",
             "dataType": "boolean",
             "defaultValue": true,
             "description": "If false, this property is read only. If true, the property can be changed unless denied by authorization policy, constraint checking, or the adapter.",

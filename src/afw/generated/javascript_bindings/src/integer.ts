@@ -74,7 +74,7 @@ export function afwAtLeastOneMemberOfInteger(client : any, array1 : any[], array
 }
 
 /**
- * Takes any number of integer values and returns an array of array.
+ * Takes any number of integer values and returns an array of integer.
  * 
  * @param {array} values -
  * 

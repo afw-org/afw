@@ -6,7 +6,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "Adaptive Layout definition for the Tabs component.",
+    "description": "Adaptive Layout definition for a Tabs Tab component.",
     "label": "Tab",
     "objectIdPropertyName": "text",
     "objectType": "_AdaptiveLayoutComponentType_Tabs_Tab",

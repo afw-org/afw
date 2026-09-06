@@ -728,6 +728,12 @@ afw_lmdb_self_v_zz__0021c8dcd153 = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_zz__0b47f03acb45 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__0b47f03acb45)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_zz__1cc9e1fe02cc = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__1cc9e1fe02cc)
@@ -737,12 +743,6 @@ const afw_value_string_t
 afw_lmdb_self_v_zz__2fcf2b562f4d = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2fcf2b562f4d)
-};
-
-const afw_value_string_t
-afw_lmdb_self_v_zz__37c7bf64ea5c = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__37c7bf64ea5c)
 };
 
 const afw_value_string_t
@@ -821,6 +821,12 @@ const afw_value_string_t
 afw_lmdb_self_v_zz__Environment_settings_for_LMDB_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Environment_settings_for_LMDB_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Full_LMDB_library_version_string_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Full_LMDB_library_version_string_)
 };
 
 const afw_value_string_t
@@ -1004,12 +1010,6 @@ afw_lmdb_self_v_zz__Patch_version = {
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__Patch_version_string = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Patch_version_string)
-};
-
-const afw_value_string_t
 afw_lmdb_self_v_zz__Reader_entries_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Reader_entries_)
@@ -1112,15 +1112,15 @@ afw_lmdb_self_v_zz___afw__AdaptiveFunction__reader_list = {
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__aad59cc18225 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__aad59cc18225)
-};
-
-const afw_value_string_t
 afw_lmdb_self_v_zz__ab8ad429a208 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__ab8ad429a208)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__cb5da590247a = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__cb5da590247a)
 };
 
 const afw_value_string_t

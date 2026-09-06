@@ -18,7 +18,7 @@ interface IAnyObject {
 }
 
 /**
- * Takes any number of ia5String values and returns an array of array.
+ * Takes any number of ia5String values and returns an array of ia5String.
  * 
  * @param {array} values -
  * 

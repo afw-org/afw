@@ -18,7 +18,7 @@ interface IAnyObject {
 }
 
 /**
- * Takes any number of objectId values and returns an array of array.
+ * Takes any number of objectId values and returns an array of objectId.
  * 
  * @param {array} values -
  * 

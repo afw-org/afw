@@ -53,7 +53,8 @@ class rfc822Name
     /**
      * bag_rfc822Name()
      *
-     * Takes any number of rfc822Name values and returns an array of array.
+     * Takes any number of rfc822Name values and returns an array of
+     * rfc822Name.
      *
      * @param array $values
      *

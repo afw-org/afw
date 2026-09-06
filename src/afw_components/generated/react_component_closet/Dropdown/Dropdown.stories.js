@@ -10,7 +10,7 @@ export default {
                 name: "string",
                 required: false,
             },
-            description: "The description for this dropdown editor.",
+            description: "The description for this Dropdown component.",
         },
         editable: {
             name: "editable",
@@ -18,7 +18,7 @@ export default {
                 name: "boolean",
                 required: false,
             },
-            description: "Whether the options managed by this Dropdown Editor are editable.",
+            description: "Whether the options managed by this Dropdown are editable.",
         },
         label: {
             name: "label",

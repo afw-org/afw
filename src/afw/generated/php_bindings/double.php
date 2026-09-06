@@ -98,7 +98,7 @@ class double
     /**
      * bag_double()
      *
-     * Takes any number of double values and returns an array of array.
+     * Takes any number of double values and returns an array of double.
      *
      * @param array $values
      *

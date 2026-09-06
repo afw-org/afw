@@ -83,7 +83,7 @@ class object
     /**
      * bag_object()
      *
-     * Takes any number of object values and returns an array of array.
+     * Takes any number of object values and returns an array of object.
      *
      * @param array $values
      *

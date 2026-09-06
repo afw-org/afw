@@ -21,8 +21,9 @@ import {ctx} from "@afw/react";
  * 
  * A layout container that displays content inside a popup.
  * 
- * This component container is visible when a target element is clicked. It's
- * used to quickly show or grab input from the user in a popup area and can be
+ * This component container is visible when opened, displaying its content in
+ * a popup that's centered over the rest of the page. It can optionally be
+ * marked blocking, so the user must take an action before it can be
  * dismissed.
  * 
  */

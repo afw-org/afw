@@ -62,7 +62,7 @@ The second array.
 
 =head3 bag_hexBinary
 
-Takes any number of hexBinary values and returns an array of array.
+Takes any number of hexBinary values and returns an array of hexBinary.
 Makes an array from values
 
 =head4 Parameters

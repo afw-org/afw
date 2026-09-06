@@ -18,7 +18,7 @@ interface IAnyObject {
 }
 
 /**
- * Takes any number of dnsName values and returns an array of array.
+ * Takes any number of dnsName values and returns an array of dnsName.
  * 
  * @param {array} values -
  * 

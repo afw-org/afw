@@ -26,18 +26,18 @@ interface IAnyObject {
  * testing.
  * 
  * @param {string} adapterId - This is the adapterId of a model adapter.
- *     Variable custom::adapterId can be used to access this value in model
+ *     Variable current::adapterId can be used to access this value in model
  *     expressions.
  * 
  * @param {string} objectType - This is the adaptive object type of object
- *     being added. Variable custom::objectType can be used to access this
+ *     being added. Variable current::objectType can be used to access this
  *     value in model expressions.
  * 
- * @param {object} object - This is the object to add. Variable custom::object
- *     can be used to access this value in model expressions.
+ * @param {object} object - This is the object to add. Variable
+ *     current::object can be used to access this value in model expressions.
  * 
  * @param {string} objectId - This is the optional preferred objectId of
- *     object to add. The adapter may ignore this. Variable custom::objectId
+ *     object to add. The adapter may ignore this. Variable current::objectId
  *     can be used to access this value in model expressions.
  * 
  * @param {string} modelId - This specifics a modelId of model to use for
@@ -81,15 +81,15 @@ export function afwModelDefaultAddObjectAction(client : any, objectType : string
  * for testing.
  * 
  * @param {string} adapterId - This is the adapterId of a model adapter.
- *     Variable custom::adapterId can be used to access this value in model
+ *     Variable current::adapterId can be used to access this value in model
  *     expressions.
  * 
  * @param {string} objectType - This is the adaptive object type of object
- *     being deleted. Variable custom::objectType can be used to access this
+ *     being deleted. Variable current::objectType can be used to access this
  *     value in model expressions.
  * 
  * @param {string} objectId - This is the objectId of object to delete.
- *     Variable custom::object can be used to access this value in model
+ *     Variable current::objectId can be used to access this value in model
  *     expressions.
  * 
  * @param {string} modelId - This specifics a modelId of model to use for
@@ -130,20 +130,20 @@ export function afwModelDefaultDeleteObjectAction(client : any, objectType : str
  * for testing.
  * 
  * @param {string} adapterId - This is the adapterId of a model adapter.
- *     Variable custom::adapterId can be used to access this value in model
+ *     Variable current::adapterId can be used to access this value in model
  *     expressions.
  * 
  * @param {string} objectType - This is the adaptive object type of object
- *     being modified. Variable custom::objectType can be used to access this
+ *     being modified. Variable current::objectType can be used to access this
  *     value in model expressions.
  * 
  * @param {string} objectId - This is the objectId of object to modify.
- *     Variable custom::objectId can be used to access this value in model
+ *     Variable current::objectId can be used to access this value in model
  *     expressions.
  * 
  * @param {array} entries - This is an array of modifications. Variable
- *     custom::actions can be used to access this value in model expressions.
- *     Entries are of the form:
+ *     current::modifyEntries can be used to access this value in model
+ *     expressions. Entries are of the form:
  * 
  *         [         'add_value',         'property name' or ['property name',
  *     ... ],         value     ]
@@ -196,18 +196,19 @@ export function afwModelDefaultModifyObjectAction(client : any, objectType : str
  * for testing.
  * 
  * @param {string} adapterId - This is the adapterId of a model adapter.
- *     Variable custom::adapterId can be used to access this value in model
+ *     Variable current::adapterId can be used to access this value in model
  *     expressions.
  * 
  * @param {string} objectType - This is the adaptive object type of object
- *     being replaced. Variable custom::objectType can be used to access this
+ *     being replaced. Variable current::objectType can be used to access this
  *     value in model expressions.
  * 
  * @param {string} objectId - The objectId of object to replace. Variable
- *     custom::objectId can be used to access this value in model expressions.
+ *     current::objectId can be used to access this value in model
+ *     expressions.
  * 
  * @param {object} object - This is the object to replace. Variable
- *     custom::object can be used to access this value in model expressions.
+ *     current::object can be used to access this value in model expressions.
  * 
  * @param {string} modelId - This specifics a modelId of model to use for
  *     producing results. If not specified, the adapter's current model will

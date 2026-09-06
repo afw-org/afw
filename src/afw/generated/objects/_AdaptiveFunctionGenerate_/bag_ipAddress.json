@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagIpAddress",
     "category": "ipAddress",
     "dataTypeMethod": true,
-    "description": "Takes any number of ipAddress values and returns an array of array.",
+    "description": "Takes any number of ipAddress values and returns an array of ipAddress.",
     "functionId": "bag<ipAddress>",
     "functionLabel": "bag_ipAddress",
     "parameters": [

@@ -39,7 +39,8 @@ export function afwAtLeastOneMemberOfBase64Binary(client : any, array1 : any[], 
 }
 
 /**
- * Takes any number of base64Binary values and returns an array of array.
+ * Takes any number of base64Binary values and returns an array of
+ * base64Binary.
  * 
  * @param {array} values -
  * 

@@ -62,7 +62,7 @@ The second array.
 
 =head3 bag_base64Binary
 
-Takes any number of base64Binary values and returns an array of array.
+Takes any number of base64Binary values and returns an array of base64Binary.
 Makes an array from values
 
 =head4 Parameters

@@ -6,7 +6,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "Adaptive Layout column definition for the Table component.",
+    "description": "Adaptive Layout row definition for the Table component.",
     "label": "Table Layout Row",
     "objectType": "_AdaptiveLayoutComponentType_Table_Row",
     "otherProperties": {}

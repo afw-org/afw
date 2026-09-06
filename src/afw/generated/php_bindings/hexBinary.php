@@ -53,7 +53,7 @@ class hexBinary
     /**
      * bag_hexBinary()
      *
-     * Takes any number of hexBinary values and returns an array of array.
+     * Takes any number of hexBinary values and returns an array of hexBinary.
      *
      * @param array $values
      *

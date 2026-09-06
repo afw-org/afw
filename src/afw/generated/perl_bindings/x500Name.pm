@@ -73,7 +73,7 @@ Returns the number of values in a bag
 
 =head3 bag_x500Name
 
-Takes any number of x500Name values and returns an array of array.
+Takes any number of x500Name values and returns an array of x500Name.
 Makes an array from values
 
 =head4 Parameters

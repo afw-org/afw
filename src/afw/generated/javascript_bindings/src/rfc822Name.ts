@@ -39,7 +39,7 @@ export function afwAtLeastOneMemberOfRfc822Name(client : any, array1 : any[], ar
 }
 
 /**
- * Takes any number of rfc822Name values and returns an array of array.
+ * Takes any number of rfc822Name values and returns an array of rfc822Name.
  * 
  * @param {array} values -
  * 

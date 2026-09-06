@@ -103,7 +103,7 @@ def bag_double(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of double values and returns an array of array.
+    Takes any number of double values and returns an array of double.
 
     Args:
         values (list):

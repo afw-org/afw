@@ -438,7 +438,8 @@ def get_object_with_uri(session, uri, options=None, adapterTypeSpecific=None):
             where ${adapterType} is the adapter type id.
 
     Returns:
-        dict: Object retrieved or NULL if not found.
+        dict: Object retrieved. Throws not_found if the adapter or object is
+        not found.
     """
 
     request = session.Request()

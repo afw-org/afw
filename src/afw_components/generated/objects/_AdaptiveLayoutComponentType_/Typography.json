@@ -2,7 +2,7 @@
     "category": "content",
     "componentType": "Typography",
     "brief": "A component that renders a text label.",
-    "description": "This component is a very simple one, which renders text into a static label with specified color, size or style..",
+    "description": "This component is a very simple one, which renders text into a static label with specified color, size or style.",
     "implementationId": "Typography",
     "instanceObjectType": "_AdaptiveLayoutComponentType_Typography",
     "label": "Typography"

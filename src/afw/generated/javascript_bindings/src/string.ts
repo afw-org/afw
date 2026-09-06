@@ -77,7 +77,7 @@ export function afwBagSizeString(client : any, value : any[]) : any {
 }
 
 /**
- * Takes any number of string values and returns an array of array.
+ * Takes any number of string values and returns an array of string.
  * 
  * @param {array} values -
  * 
@@ -468,9 +468,8 @@ export function afwLeString(client : any, arg1 : string, arg2 : any) : any {
 }
 
 /**
- * This is a polymorphic function where string can be any of the supported
- * data types. Return the integer number of entries in datatype array or
- * codepoints in others.
+ * Return the integer number of entries in a string array or the number of
+ * codepoints in a string anyURI or string.
  * 
  * @param {string} value - Returns the number of entries in an array or code
  *     points in others.
@@ -1166,11 +1165,11 @@ export function afwUnionString(client : any, arrays : any[]) : any {
 }
 
 /**
- * URL decode a value or bag of values.
+ * URL decode a string.
  * 
- * @param {string} encoded - URL decode a single string or a bag of string.
+ * @param {string} encoded - String to URL decode.
  * 
- * @returns {string} A string or bag of strings.
+ * @returns {string} The URL-decoded string.
  */
 export function afwUrlDecode(client : any, encoded : string) : any {
 
@@ -1183,10 +1182,9 @@ export function afwUrlDecode(client : any, encoded : string) : any {
 }
 
 /**
- * URL encode a value or bag of values.
+ * URL encode a string value and return the string result.
  * 
- * @param {string} unencoded - URL encode a single value. See the url_encode
- *     method for the data type of more details.
+ * @param {string} unencoded - The string value to URL encode.
  * 
  * @returns {string} URI encoded string.
  */

@@ -18,11 +18,11 @@ import {ctx} from "@afw/react";
  * Implementation Id : SpinButton
  * Category          : inputs
  * 
- * A component that renders a numeric field that an be incremented or
+ * A component that renders a numeric field that can be incremented or
  * decremented.
  * 
- * A component that renders a numeric field that an be incremented or
- * decremented.
+ * This component renders a numeric field with buttons that allow the user to
+ * increment or decrement its value, in addition to entering a value manually.
  * 
  */
 export const SpinButton = (props) => {

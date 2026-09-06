@@ -71,7 +71,8 @@ Returns the number of values in a bag
 
 =head3 bag_yearMonthDuration
 
-Takes any number of yearMonthDuration values and returns an array of array.
+Takes any number of yearMonthDuration values and returns an array of
+yearMonthDuration.
 Makes an array from values
 
 =head4 Parameters

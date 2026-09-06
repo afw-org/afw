@@ -43,7 +43,8 @@ def bag_xpathExpression(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of xpathExpression values and returns an array of array.
+    Takes any number of xpathExpression values and returns an array of
+    xpathExpression.
 
     Args:
         values (list):

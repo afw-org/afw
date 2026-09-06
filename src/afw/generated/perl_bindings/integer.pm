@@ -91,7 +91,7 @@ The second array.
 
 =head3 bag_integer
 
-Takes any number of integer values and returns an array of array.
+Takes any number of integer values and returns an array of integer.
 Makes an array from values
 
 =head4 Parameters

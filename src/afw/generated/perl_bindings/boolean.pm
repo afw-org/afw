@@ -61,7 +61,7 @@ The second array.
 
 =head3 bag_boolean
 
-Takes any number of boolean values and returns an array of array.
+Takes any number of boolean values and returns an array of boolean.
 Makes an array from values
 
 =head4 Parameters

@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagScript",
     "category": "script",
     "dataTypeMethod": true,
-    "description": "Takes any number of script values and returns an array of array.",
+    "description": "Takes any number of script values and returns an array of script.",
     "functionId": "bag<script>",
     "functionLabel": "bag_script",
     "parameters": [

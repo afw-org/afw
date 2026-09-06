@@ -555,7 +555,8 @@ afw_function_execute_get_object(
  *
  * Returns:
  *
- *   (object) Object retrieved or NULL if not found.
+ *   (object) Object retrieved. Throws not_found if the adapter or object is not
+ *       found.
  *
  * Errors thrown:
  *

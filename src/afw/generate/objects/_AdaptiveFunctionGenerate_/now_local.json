@@ -1,5 +1,5 @@
 {
-    "brief": "Local dataTime",
+    "brief": "Local dateTime",
     "category": "miscellaneous",
     "dataTypeMethod": false,
     "description": "Return current local dateTime.",

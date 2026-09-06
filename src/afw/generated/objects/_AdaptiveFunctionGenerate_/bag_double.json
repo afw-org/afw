@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagDouble",
     "category": "double",
     "dataTypeMethod": true,
-    "description": "Takes any number of double values and returns an array of array.",
+    "description": "Takes any number of double values and returns an array of double.",
     "functionId": "bag<double>",
     "functionLabel": "bag_double",
     "parameters": [

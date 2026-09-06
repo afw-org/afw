@@ -204,7 +204,7 @@ The id of a stream.
 
 Evaluate and convert 0 or more values to its string value, then write them to
 stream. An value with an undefined value is represented by 'undefined'.
-Write values to stream as sting
+Write values to stream as string
 
 =head4 Parameters
 

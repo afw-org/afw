@@ -1045,7 +1045,7 @@ impl_12_property_dataType = {
 static const afw_runtime_property_t
 impl_12_property_description = {
     afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__37c7bf64ea5c.pub
+    &afw_lmdb_self_v_zz__cb5da590247a.pub
 };
 
 static const afw_runtime_property_t
@@ -1150,7 +1150,7 @@ impl_13_property_dataType = {
 static const afw_runtime_property_t
 impl_13_property_description = {
     afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__aad59cc18225.pub
+    &afw_lmdb_self_v_zz__0b47f03acb45.pub
 };
 
 static const afw_runtime_property_t
@@ -2958,7 +2958,7 @@ impl_29_property_dataType = {
 static const afw_runtime_property_t
 impl_29_property_description = {
     afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__Patch_version_string.pub
+    &afw_lmdb_self_v_zz__Full_LMDB_library_version_string_.pub
 };
 
 static const afw_runtime_property_t

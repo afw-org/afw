@@ -76,7 +76,7 @@ def bag_date(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of date values and returns an array of array.
+    Takes any number of date values and returns an array of date.
 
     Args:
         values (list):
@@ -451,7 +451,7 @@ def max_date(session, values):
     """
     Maximum value
 
-    Return the date value that is greater than or equal to the others..
+    Return the date value that is greater than or equal to the others.
     
     If a date value does not include a time-zone value, then the local
     time-zone value will be assigned.
@@ -482,7 +482,7 @@ def min_date(session, values):
     """
     Minimum value
 
-    Return the date value that is less than or equal to the others..
+    Return the date value that is less than or equal to the others.
     
     If a date value does not include a time-zone value, then the local
     time-zone value will be assigned.

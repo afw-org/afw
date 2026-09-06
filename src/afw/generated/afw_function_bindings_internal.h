@@ -556,7 +556,8 @@ afw_function_definition_get_object_with_uri;
  *
  * Returns:
  *
- *   (object) Object retrieved or NULL if not found.
+ *   (object) Object retrieved. Throws not_found if the adapter or object is not
+ *       found.
  *
  * Errors thrown:
  *
@@ -2242,7 +2243,7 @@ afw_function_definition_bag_anyURI;
  * @brief Adaptive Function `bag<anyURI>`
  * @param x function execute parameter.
  *
- * Takes any number of anyURI values and returns an array of array.
+ * Takes any number of anyURI values and returns an array of anyURI.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2779,9 +2780,8 @@ afw_function_definition_length_anyURI;
  * @brief Adaptive Function `length<anyURI>`
  * @param x function execute parameter.
  *
- * This is a polymorphic function where anyURI can be any of the supported data
- * types. Return the integer number of entries in datatype array or codepoints
- * in others.
+ * Return the integer number of entries in a anyURI array or the number of
+ * codepoints in a anyURI anyURI or string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3456,7 +3456,7 @@ afw_function_definition_url_encode_anyURI;
  * @brief Adaptive Function `url_encode<anyURI>`
  * @param x function execute parameter.
  *
- * URL encode a value or bag of values.
+ * URL encode a anyURI value and return the string result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3471,8 +3471,7 @@ afw_function_definition_url_encode_anyURI;
  *
  * Parameters:
  *
- *   unencoded - (anyURI) URL encode a single value. See the url_encode method
- *       for the data type of more details.
+ *   unencoded - (anyURI) The anyURI value to URL encode.
  *
  * Returns:
  *
@@ -4107,9 +4106,8 @@ afw_function_definition_length_array;
  * @brief Adaptive Function `length<array>`
  * @param x function execute parameter.
  *
- * This is a polymorphic function where array can be any of the supported data
- * types. Return the integer number of entries in datatype array or codepoints
- * in others.
+ * Return the integer number of entries in a array array or the number of
+ * codepoints in a array anyURI or string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4684,7 +4682,7 @@ afw_function_definition_bag_base64Binary;
  * @brief Adaptive Function `bag<base64Binary>`
  * @param x function execute parameter.
  *
- * Takes any number of base64Binary values and returns an array of array.
+ * Takes any number of base64Binary values and returns an array of base64Binary.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5486,7 +5484,7 @@ afw_function_definition_bag_boolean;
  * @brief Adaptive Function `bag<boolean>`
  * @param x function execute parameter.
  *
- * Takes any number of boolean values and returns an array of array.
+ * Takes any number of boolean values and returns an array of boolean.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -7348,7 +7346,8 @@ afw_function_definition_evaluate_with_retry;
  * @brief Adaptive Function `evaluate_with_retry`
  * @param x function execute parameter.
  *
- * Evaluate a value and retry up to a limit if an exception occurs.
+ * Evaluate a value and retry up to a limit if an exception occurs. An error is
+ * thrown if the evaluated result is undefined.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -7364,7 +7363,7 @@ afw_function_definition_evaluate_with_retry;
  *
  * Parameters:
  *
- *   value - (any) Value to evaluated.
+ *   value - (any) Value to evaluate.
  *
  *   limit - (integer) Maximum number to retry if an exception occurs.
  *
@@ -7464,7 +7463,7 @@ afw_function_definition_qualifiers;
  * Warning: the result can be very large. Each property is a full snapshot of
  * that qualifier (see qualifier()), so environment, request, application,
  * current, and others can all appear as nested objects with many properties.
- * Prefer qualifier::name or qualifier(name) when you need one bag; avoid
+ * Prefer qualifier::name or qualifier(name) when you need one object; avoid
  * repeated qualifiers() calls or retaining the result in long-running work.
  * 
  * Each nested variables object is the multi-entry snapshot for that name (all
@@ -7884,7 +7883,7 @@ afw_function_definition_bag_dateTime;
  * @brief Adaptive Function `bag<dateTime>`
  * @param x function execute parameter.
  *
- * Takes any number of dateTime values and returns an array of array.
+ * Takes any number of dateTime values and returns an array of dateTime.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8848,7 +8847,7 @@ afw_function_definition_bag_date;
  * @brief Adaptive Function `bag<date>`
  * @param x function execute parameter.
  *
- * Takes any number of date values and returns an array of array.
+ * Takes any number of date values and returns an array of date.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9308,7 +9307,7 @@ afw_function_definition_max_date;
  * @brief Adaptive Function `max<date>`
  * @param x function execute parameter.
  *
- * Return the date value that is greater than or equal to the others..
+ * Return the date value that is greater than or equal to the others.
  * 
  * If a date value does not include a time-zone value, then the local time-zone
  * value will be assigned.
@@ -9346,7 +9345,7 @@ afw_function_definition_min_date;
  * @brief Adaptive Function `min<date>`
  * @param x function execute parameter.
  *
- * Return the date value that is less than or equal to the others..
+ * Return the date value that is less than or equal to the others.
  * 
  * If a date value does not include a time-zone value, then the local time-zone
  * value will be assigned.
@@ -9737,7 +9736,8 @@ afw_function_definition_bag_dayTimeDuration;
  * @brief Adaptive Function `bag<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * Takes any number of dayTimeDuration values and returns an array of array.
+ * Takes any number of dayTimeDuration values and returns an array of
+ * dayTimeDuration.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10469,7 +10469,7 @@ afw_function_definition_bag_dnsName;
  * @brief Adaptive Function `bag<dnsName>`
  * @param x function execute parameter.
  *
- * Takes any number of dnsName values and returns an array of array.
+ * Takes any number of dnsName values and returns an array of dnsName.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11191,7 +11191,7 @@ afw_function_definition_bag_double;
  * @brief Adaptive Function `bag<double>`
  * @param x function execute parameter.
  *
- * Takes any number of double values and returns an array of array.
+ * Takes any number of double values and returns an array of double.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12406,7 +12406,7 @@ afw_function_definition_bag_function;
  * @brief Adaptive Function `bag<function>`
  * @param x function execute parameter.
  *
- * Takes any number of function values and returns an array of array.
+ * Takes any number of function values and returns an array of function.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12872,7 +12872,7 @@ afw_function_definition_bag_hexBinary;
  * @brief Adaptive Function `bag<hexBinary>`
  * @param x function execute parameter.
  *
- * Takes any number of hexBinary values and returns an array of array.
+ * Takes any number of hexBinary values and returns an array of hexBinary.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14205,7 +14205,7 @@ afw_function_definition_bag_ia5String;
  * @brief Adaptive Function `bag<ia5String>`
  * @param x function execute parameter.
  *
- * Takes any number of ia5String values and returns an array of array.
+ * Takes any number of ia5String values and returns an array of ia5String.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14964,7 +14964,7 @@ afw_function_definition_bag_integer;
  * @brief Adaptive Function `bag<integer>`
  * @param x function execute parameter.
  *
- * Takes any number of integer values and returns an array of array.
+ * Takes any number of integer values and returns an array of integer.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15977,7 +15977,7 @@ afw_function_definition_bag_ipAddress;
  * @brief Adaptive Function `bag<ipAddress>`
  * @param x function execute parameter.
  *
- * Takes any number of ipAddress values and returns an array of array.
+ * Takes any number of ipAddress values and returns an array of ipAddress.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -16596,10 +16596,12 @@ afw_function_definition_journal_advance_cursor_for_consumer;
  *
  * Update the advance cursor for a consumer referenced by the consumerId
  * parameter. The limit parameter specifies the maximum number of entries to
- * scan for an applicable entry for consumer before returning. NULL is always
- * returned.
+ * scan for an applicable entry for consumer before returning. A response object
+ * is always returned.
  * 
- * There are no response properties set by this function.
+ * This option will set response property 'entryCursor' if an applicable entry
+ * is found (and 'reissue' if that entry is being reissued). If no applicable
+ * entry is found, these response properties are not set.
  * 
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
@@ -16656,9 +16658,9 @@ afw_function_definition_journal_get_by_cursor;
  *
  * Get journal entry specified by entry_cursor parameter.
  * 
- * This option will set response properties 'entry' and 'cursor' if there is an
- * entry to retrieve. If an entry with the supplied cursor does not exist, a
- * not_found error is thrown.
+ * This option will set response properties 'entry' and 'entryCursor' if there
+ * is an entry to retrieve. If an entry with the supplied cursor does not exist,
+ * a not_found error is thrown.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -16701,8 +16703,8 @@ afw_function_definition_journal_get_first;
  *
  * Get first journal entry.
  * 
- * This option will set response properties 'entry' and 'cursor' if there is a
- * first entry to return.
+ * This option will set response properties 'entry' and 'entryCursor' if there
+ * is a first entry to return.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -16738,8 +16740,8 @@ afw_function_definition_journal_get_next_after_cursor;
  * Get the next journal entry after the one specified by the entry_cursor
  * parameter.
  * 
- * This option will set response properties 'entry' and 'cursor' if there is a
- * next entry to retrieve.
+ * This option will set response properties 'entry' and 'entryCursor' if there
+ * is a next entry to retrieve.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -16849,7 +16851,7 @@ afw_function_definition_journal_get_next_for_consumer_after_cursor;
  * specifies the maximum number of entries to scan for an applicable entry for
  * consumer before returning.
  * 
- * This option will set response properties 'entry' and 'cursor' if an
+ * This option will set response properties 'entry' and 'entryCursor' if an
  * applicable entry is retrieved.
  * 
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
@@ -17889,18 +17891,18 @@ afw_function_definition_model_default_add_object_action;
  * Parameters:
  *
  *   adapterId - (string) This is the adapterId of a model adapter. Variable
- *       custom::adapterId can be used to access this value in model
+ *       current::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
- *       added. Variable custom::objectType can be used to access this value in
+ *       added. Variable current::objectType can be used to access this value in
  *       model expressions.
  *
- *   object - (object) This is the object to add. Variable custom::object can be
- *       used to access this value in model expressions.
+ *   object - (object) This is the object to add. Variable current::object can
+ *       be used to access this value in model expressions.
  *
  *   objectId - (optional string) This is the optional preferred objectId of
- *       object to add. The adapter may ignore this. Variable custom::objectId
+ *       object to add. The adapter may ignore this. Variable current::objectId
  *       can be used to access this value in model expressions.
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
@@ -17951,15 +17953,16 @@ afw_function_definition_model_default_delete_object_action;
  * Parameters:
  *
  *   adapterId - (string) This is the adapterId of a model adapter. Variable
- *       custom::adapterId can be used to access this value in model
+ *       current::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
- *       deleted. Variable custom::objectType can be used to access this value
+ *       deleted. Variable current::objectType can be used to access this value
  *       in model expressions.
  *
  *   objectId - (string) This is the objectId of object to delete. Variable
- *       custom::object can be used to access this value in model expressions.
+ *       current::objectId can be used to access this value in model
+ *       expressions.
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
  *       producing results. If not specified, the adapter's current model will
@@ -18010,19 +18013,20 @@ afw_function_definition_model_default_modify_object_action;
  * Parameters:
  *
  *   adapterId - (string) This is the adapterId of a model adapter. Variable
- *       custom::adapterId can be used to access this value in model
+ *       current::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
- *       modified. Variable custom::objectType can be used to access this value
+ *       modified. Variable current::objectType can be used to access this value
  *       in model expressions.
  *
  *   objectId - (string) This is the objectId of object to modify. Variable
- *       custom::objectId can be used to access this value in model expressions.
+ *       current::objectId can be used to access this value in model
+ *       expressions.
  *
  *   entries - (array) This is an array of modifications. Variable
- *       custom::actions can be used to access this value in model expressions.
- *       Entries are of the form:
+ *       current::modifyEntries can be used to access this value in model
+ *       expressions. Entries are of the form:
  * 
  *           [
  *               'add_value',
@@ -18096,17 +18100,18 @@ afw_function_definition_model_default_replace_object_action;
  * Parameters:
  *
  *   adapterId - (string) This is the adapterId of a model adapter. Variable
- *       custom::adapterId can be used to access this value in model
+ *       current::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
- *       replaced. Variable custom::objectType can be used to access this value
+ *       replaced. Variable current::objectType can be used to access this value
  *       in model expressions.
  *
  *   objectId - (string) The objectId of object to replace. Variable
- *       custom::objectId can be used to access this value in model expressions.
+ *       current::objectId can be used to access this value in model
+ *       expressions.
  *
- *   object - (object) This is the object to replace. Variable custom::object
+ *   object - (object) This is the object to replace. Variable current::object
  *       can be used to access this value in model expressions.
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
@@ -18254,7 +18259,7 @@ afw_function_definition_bag_null;
  * @brief Adaptive Function `bag<null>`
  * @param x function execute parameter.
  *
- * Takes any number of null values and returns an array of array.
+ * Takes any number of null values and returns an array of null.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -18401,7 +18406,7 @@ afw_function_definition_bag_objectId;
  * @brief Adaptive Function `bag<objectId>`
  * @param x function execute parameter.
  *
- * Takes any number of objectId values and returns an array of array.
+ * Takes any number of objectId values and returns an array of objectId.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -18902,7 +18907,7 @@ afw_function_definition_bag_objectPath;
  * @brief Adaptive Function `bag<objectPath>`
  * @param x function execute parameter.
  *
- * Takes any number of objectPath values and returns an array of array.
+ * Takes any number of objectPath values and returns an array of objectPath.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19481,7 +19486,7 @@ afw_function_definition_bag_object;
  * @brief Adaptive Function `bag<object>`
  * @param x function execute parameter.
  *
- * Takes any number of object values and returns an array of array.
+ * Takes any number of object values and returns an array of object.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20389,7 +20394,7 @@ afw_function_definition_bag_password;
  * @brief Adaptive Function `bag<password>`
  * @param x function execute parameter.
  *
- * Takes any number of password values and returns an array of array.
+ * Takes any number of password values and returns an array of password.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21096,7 +21101,7 @@ afw_function_definition_bag;
  * @brief Adaptive Function `bag`
  * @param x function execute parameter.
  *
- * Takes any number of `<dataType>` values and returns an array of array.
+ * Takes any number of `<dataType>` values and returns an array of `<dataType>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22226,9 +22231,8 @@ afw_function_definition_length;
  * @brief Adaptive Function `length`
  * @param x function execute parameter.
  *
- * This is a polymorphic function where `<dataType>` can be any of the supported
- * data types. Return the integer number of entries in datatype array or
- * codepoints in others.
+ * Return the integer number of entries in a `<dataType>` array or the number of
+ * codepoints in a `<dataType>` anyURI or string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24055,7 +24059,7 @@ afw_function_definition_url_encode;
  * @brief Adaptive Function `url_encode`
  * @param x function execute parameter.
  *
- * URL encode a value or bag of values.
+ * URL encode a `<dataType>` value and return the string result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24074,8 +24078,7 @@ afw_function_definition_url_encode;
  *
  * Parameters:
  *
- *   unencoded - (``<Type>``) URL encode a single value. See the url_encode
- *       method for the data type of more details.
+ *   unencoded - (``<Type>``) The `<dataType>` value to URL encode.
  *
  * Returns:
  *
@@ -24856,7 +24859,7 @@ afw_function_definition_bag_rfc822Name;
  * @brief Adaptive Function `bag<rfc822Name>`
  * @param x function execute parameter.
  *
- * Takes any number of rfc822Name values and returns an array of array.
+ * Takes any number of rfc822Name values and returns an array of rfc822Name.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25661,7 +25664,7 @@ afw_function_definition_bag_script;
  * @brief Adaptive Function `bag<script>`
  * @param x function execute parameter.
  *
- * Takes any number of script values and returns an array of array.
+ * Takes any number of script values and returns an array of script.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26859,7 +26862,7 @@ afw_function_definition_bag_string;
  * @brief Adaptive Function `bag<string>`
  * @param x function execute parameter.
  *
- * Takes any number of string values and returns an array of array.
+ * Takes any number of string values and returns an array of string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27551,9 +27554,8 @@ afw_function_definition_length_string;
  * @brief Adaptive Function `length<string>`
  * @param x function execute parameter.
  *
- * This is a polymorphic function where string can be any of the supported data
- * types. Return the integer number of entries in datatype array or codepoints
- * in others.
+ * Return the integer number of entries in a string array or the number of
+ * codepoints in a string anyURI or string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -28896,7 +28898,7 @@ afw_function_definition_url_decode;
  * @brief Adaptive Function `url_decode`
  * @param x function execute parameter.
  *
- * URL decode a value or bag of values.
+ * URL decode a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -28911,11 +28913,11 @@ afw_function_definition_url_decode;
  *
  * Parameters:
  *
- *   encoded - (string) URL decode a single string or a bag of string.
+ *   encoded - (string) String to URL decode.
  *
  * Returns:
  *
- *   (string) A string or bag of strings.
+ *   (string) The URL-decoded string.
  */
 const afw_value_t *
 afw_function_execute_url_decode(
@@ -28929,7 +28931,7 @@ afw_function_definition_url_encode_string;
  * @brief Adaptive Function `url_encode<string>`
  * @param x function execute parameter.
  *
- * URL encode a value or bag of values.
+ * URL encode a string value and return the string result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -28944,8 +28946,7 @@ afw_function_definition_url_encode_string;
  *
  * Parameters:
  *
- *   unencoded - (string) URL encode a single value. See the url_encode method
- *       for the data type of more details.
+ *   unencoded - (string) The string value to URL encode.
  *
  * Returns:
  *
@@ -29008,7 +29009,7 @@ afw_function_definition_bag_template;
  * @brief Adaptive Function `bag<template>`
  * @param x function execute parameter.
  *
- * Takes any number of template values and returns an array of array.
+ * Takes any number of template values and returns an array of template.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29642,7 +29643,7 @@ afw_function_definition_bag_time;
  * @brief Adaptive Function `bag<time>`
  * @param x function execute parameter.
  *
- * Takes any number of time values and returns an array of array.
+ * Takes any number of time values and returns an array of time.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30664,7 +30665,7 @@ afw_function_definition_bag_x500Name;
  * @brief Adaptive Function `bag<x500Name>`
  * @param x function execute parameter.
  *
- * Takes any number of x500Name values and returns an array of array.
+ * Takes any number of x500Name values and returns an array of x500Name.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31468,7 +31469,8 @@ afw_function_definition_bag_xpathExpression;
  * @brief Adaptive Function `bag<xpathExpression>`
  * @param x function execute parameter.
  *
- * Takes any number of xpathExpression values and returns an array of array.
+ * Takes any number of xpathExpression values and returns an array of
+ * xpathExpression.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32213,7 +32215,8 @@ afw_function_definition_bag_yearMonthDuration;
  * @brief Adaptive Function `bag<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * Takes any number of yearMonthDuration values and returns an array of array.
+ * Takes any number of yearMonthDuration values and returns an array of
+ * yearMonthDuration.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

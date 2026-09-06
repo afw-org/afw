@@ -32,12 +32,6 @@ afw_vfs_self_v_Data = {
 };
 
 const afw_value_string_t
-afw_vfs_self_v_Include = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_Include)
-};
-
-const afw_value_string_t
 afw_vfs_self_v_Recursive = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_Recursive)
@@ -464,6 +458,12 @@ afw_vfs_self_v_zz__Include_Hidden = {
 };
 
 const afw_value_string_t
+afw_vfs_self_v_zz__Include_hidden_files = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Include_hidden_files)
+};
+
+const afw_value_string_t
 afw_vfs_self_v_zz__Is_Directory = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Is_Directory)
@@ -627,7 +627,6 @@ afw_vfs_integer_self_v_67108864 = {
 
 static const afw_value_string_t * impl_string_literals[] = {
     &afw_vfs_self_v_Data,
-    &afw_vfs_self_v_Include,
     &afw_vfs_self_v_Recursive,
     &afw_vfs_self_v_Subdirectory,
     &afw_vfs_self_v__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects,

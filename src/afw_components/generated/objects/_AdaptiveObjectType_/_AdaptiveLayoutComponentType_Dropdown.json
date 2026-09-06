@@ -25,14 +25,14 @@
         "description": {
             "allowWrite": true,
             "dataType": "string",
-            "description": "The description for this dropdown editor.",
+            "description": "The description for this Dropdown component.",
             "testDataParameter": "This is the description.",
             "label": "Description"
         },
         "editable": {
             "allowWrite": true,
             "dataType": "boolean",
-            "description": "Whether the options managed by this Dropdown Editor are editable.",
+            "description": "Whether the options managed by this Dropdown are editable.",
             "label": "Editable"
         },
         "multiselect": {

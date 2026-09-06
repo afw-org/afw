@@ -3,12 +3,12 @@
 A layout container that displays content inside a popup.
 
 ## Description
-This component container is visible when a target element is clicked. It's used to quickly show or grab input from the user in a popup area and can be dismissed.
+This component container is visible when opened, displaying its content in a popup that's centered over the rest of the page. It can optionally be marked blocking, so the user must take an action before it can be dismissed.
 
 ## Props
 | Name | Type | Required | Default | Description |
 |:----------|:----------|:----|:------------|:------------|
-|contains|object|false|null|Specifies the placeholder text displayed when no value is present.|
+|contains|object|false|null|The component to be rendered inside the Modal.|
 |isBlocking|boolean|false|null|Specifies whether this Modal component is blocking or can lightly be dismissed.|
 |open|boolean|true|null|Specifies whether this Modal component is open.|
 

@@ -44,23 +44,23 @@ Produce a default _AdaptiveAction_ object for an add object request to a model a
 
     $adapterId
 
-This is the adapterId of a model adapter. Variable custom::adapterId can be
+This is the adapterId of a model adapter. Variable current::adapterId can be
 used to access this value in model expressions.
 
     $objectType
 
 This is the adaptive object type of object being added. Variable
-custom::objectType can be used to access this value in model expressions.
+current::objectType can be used to access this value in model expressions.
 
     $object
 
-This is the object to add. Variable custom::object can be used to access this
+This is the object to add. Variable current::object can be used to access this
 value in model expressions.
 
     $objectId
 
 This is the optional preferred objectId of object to add. The adapter may
-ignore this. Variable custom::objectId can be used to access this value in
+ignore this. Variable current::objectId can be used to access this value in
 model expressions.
 
     $modelId
@@ -86,18 +86,18 @@ Produce a default _AdaptiveAction_ object for an delete object request to a mode
 
     $adapterId
 
-This is the adapterId of a model adapter. Variable custom::adapterId can be
+This is the adapterId of a model adapter. Variable current::adapterId can be
 used to access this value in model expressions.
 
     $objectType
 
 This is the adaptive object type of object being deleted. Variable
-custom::objectType can be used to access this value in model expressions.
+current::objectType can be used to access this value in model expressions.
 
     $objectId
 
-This is the objectId of object to delete. Variable custom::object can be used
-to access this value in model expressions.
+This is the objectId of object to delete. Variable current::objectId can be
+used to access this value in model expressions.
 
     $modelId
 
@@ -122,23 +122,23 @@ Produce a default _AdaptiveAction_ object for an modify object request to a mode
 
     $adapterId
 
-This is the adapterId of a model adapter. Variable custom::adapterId can be
+This is the adapterId of a model adapter. Variable current::adapterId can be
 used to access this value in model expressions.
 
     $objectType
 
 This is the adaptive object type of object being modified. Variable
-custom::objectType can be used to access this value in model expressions.
+current::objectType can be used to access this value in model expressions.
 
     $objectId
 
-This is the objectId of object to modify. Variable custom::objectId can be
+This is the objectId of object to modify. Variable current::objectId can be
 used to access this value in model expressions.
 
     $entries
 
-This is an array of modifications. Variable custom::actions can be used to
-access this value in model expressions. Entries are of the form:
+This is an array of modifications. Variable current::modifyEntries can be used
+to access this value in model expressions. Entries are of the form:
 
     [
         'add_value',
@@ -186,22 +186,22 @@ Produce a default _AdaptiveAction_ object for an replace object request to a mod
 
     $adapterId
 
-This is the adapterId of a model adapter. Variable custom::adapterId can be
+This is the adapterId of a model adapter. Variable current::adapterId can be
 used to access this value in model expressions.
 
     $objectType
 
 This is the adaptive object type of object being replaced. Variable
-custom::objectType can be used to access this value in model expressions.
+current::objectType can be used to access this value in model expressions.
 
     $objectId
 
-The objectId of object to replace. Variable custom::objectId can be used to
+The objectId of object to replace. Variable current::objectId can be used to
 access this value in model expressions.
 
     $object
 
-This is the object to replace. Variable custom::object can be used to access
+This is the object to replace. Variable current::object can be used to access
 this value in model expressions.
 
     $modelId

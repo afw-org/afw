@@ -15,7 +15,7 @@ def bag_objectId(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of objectId values and returns an array of array.
+    Takes any number of objectId values and returns an array of objectId.
 
     Args:
         values (list):

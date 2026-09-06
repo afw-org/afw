@@ -5827,6 +5827,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__a277878b60f1 \
+    "Decrypt a sealed value from crypto_seal / crypto_encrypt. sealed may be: (1) an object with iv, tag, and ciphertext as base64Binary/hexBinary or as base64/hex strings; (2) a string of pure JSON with those properties as base64 strings (e.g. after stringify of a JSON-friendly object). Returns plaintext octets. Requires execute access."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__a277878b60f1 */
+#define afw_crypto_s_zz__a277878b60f1 \
+    (&afw_crypto_self_v_zz__a277878b60f1.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__a277878b60f1 */
+#define afw_crypto_self_s_zz__a277878b60f1 \
+    (afw_crypto_self_v_zz__a277878b60f1.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__a277878b60f1 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__a277878b60f1;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__a277878b60f1 */
+#define afw_crypto_z_zz__a277878b60f1 \
+    (afw_crypto_self_v_zz__a277878b60f1.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__a277878b60f1 */
+#define afw_crypto_v_zz__a277878b60f1 \
+    (&afw_crypto_self_v_zz__a277878b60f1.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__afw_crypto_package_extension_version_string_ \
     "afw_crypto package/extension version string."
 
@@ -6109,32 +6135,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__d6aa02578bdd */
 #define afw_crypto_v_zz__d6aa02578bdd \
     (&afw_crypto_self_v_zz__d6aa02578bdd.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__dd55a20f0e3d \
-    "Decrypt a sealed value from crypto_seal / crypto_encrypt. sealed may be: (1) an object with iv, tag, and ciphertext as base64Binary/hexBinary or as base64/hex strings; (2) a string of pure JSON with those properties as base64 strings (e.g. after stringify of a JSON-friendly bag). Returns plaintext octets. Requires execute access."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__dd55a20f0e3d */
-#define afw_crypto_s_zz__dd55a20f0e3d \
-    (&afw_crypto_self_v_zz__dd55a20f0e3d.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__dd55a20f0e3d */
-#define afw_crypto_self_s_zz__dd55a20f0e3d \
-    (afw_crypto_self_v_zz__dd55a20f0e3d.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__dd55a20f0e3d */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__dd55a20f0e3d;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__dd55a20f0e3d */
-#define afw_crypto_z_zz__dd55a20f0e3d \
-    (afw_crypto_self_v_zz__dd55a20f0e3d.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__dd55a20f0e3d */
-#define afw_crypto_v_zz__dd55a20f0e3d \
-    (&afw_crypto_self_v_zz__dd55a20f0e3d.pub)
 
 
 

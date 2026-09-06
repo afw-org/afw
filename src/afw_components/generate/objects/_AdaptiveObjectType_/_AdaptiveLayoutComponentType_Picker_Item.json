@@ -6,7 +6,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "Item for the Nav component",
+    "description": "Item for the Picker component",
     "label": "Item",
     "objectType": "_AdaptiveLayoutComponentType_Picker_Item",
     "propertyTypes": {

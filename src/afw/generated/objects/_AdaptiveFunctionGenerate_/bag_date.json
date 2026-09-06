@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagDate",
     "category": "date",
     "dataTypeMethod": true,
-    "description": "Takes any number of date values and returns an array of array.",
+    "description": "Takes any number of date values and returns an array of date.",
     "functionId": "bag<date>",
     "functionLabel": "bag_date",
     "parameters": [

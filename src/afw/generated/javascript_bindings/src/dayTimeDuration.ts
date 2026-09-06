@@ -39,7 +39,8 @@ export function afwAtLeastOneMemberOfDayTimeDuration(client : any, array1 : any[
 }
 
 /**
- * Takes any number of dayTimeDuration values and returns an array of array.
+ * Takes any number of dayTimeDuration values and returns an array of
+ * dayTimeDuration.
  * 
  * @param {array} values -
  * 

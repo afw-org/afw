@@ -9,22 +9,22 @@
     "parameters": [
         {
             "dataType": "string",
-            "description": "This is the adapterId of a model adapter. Variable custom::adapterId can be used to access this value in model expressions.",
+            "description": "This is the adapterId of a model adapter. Variable current::adapterId can be used to access this value in model expressions.",
             "name": "adapterId"
         },
         {
             "dataType": "string",
-            "description": "This is the adaptive object type of object being added. Variable custom::objectType can be used to access this value in model expressions.",
+            "description": "This is the adaptive object type of object being added. Variable current::objectType can be used to access this value in model expressions.",
             "name": "objectType"
         },
         {
             "dataType": "object",
-            "description": "This is the object to add. Variable custom::object can be used to access this value in model expressions.",
+            "description": "This is the object to add. Variable current::object can be used to access this value in model expressions.",
             "name": "object"
         },
         {
             "dataType": "string",
-            "description": "This is the optional preferred objectId of object to add. The adapter may ignore this. Variable custom::objectId can be used to access this value in model expressions.",
+            "description": "This is the optional preferred objectId of object to add. The adapter may ignore this. Variable current::objectId can be used to access this value in model expressions.",
             "name": "objectId",
             "optional": true
         },

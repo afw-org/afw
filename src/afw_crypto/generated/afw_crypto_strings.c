@@ -1364,6 +1364,12 @@ afw_crypto_self_v_zz___key__any__sealed__any___base64Binary = {
 };
 
 const afw_value_string_t
+afw_crypto_self_v_zz__a277878b60f1 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__a277878b60f1)
+};
+
+const afw_value_string_t
 afw_crypto_self_v_zz__afw_crypto_package_extension_version_string_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__afw_crypto_package_extension_version_string_)
@@ -1427,12 +1433,6 @@ const afw_value_string_t
 afw_crypto_self_v_zz__d6aa02578bdd = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__d6aa02578bdd)
-};
-
-const afw_value_string_t
-afw_crypto_self_v_zz__dd55a20f0e3d = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__dd55a20f0e3d)
 };
 
 const afw_value_string_t

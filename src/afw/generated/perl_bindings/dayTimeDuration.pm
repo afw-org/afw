@@ -61,7 +61,8 @@ The second array.
 
 =head3 bag_dayTimeDuration
 
-Takes any number of dayTimeDuration values and returns an array of array.
+Takes any number of dayTimeDuration values and returns an array of
+dayTimeDuration.
 Makes an array from values
 
 =head4 Parameters

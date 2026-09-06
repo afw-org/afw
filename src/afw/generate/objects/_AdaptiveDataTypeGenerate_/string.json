@@ -4,7 +4,7 @@
     "dataType": "string",
     "dataTypeParameterType": "MediaType",
     "iteratorReturnDataType": "string",
-    "description": "Data type 'string' hold a sequence of Unicode code points as defined at http://www.unicode.org.",
+    "description": "Data type 'string' holds a sequence of Unicode code points as defined at http://www.unicode.org.",
     "directReturn": false,
     "jsonImpliesDataType": true,
     "jsonPrimitive": "string",

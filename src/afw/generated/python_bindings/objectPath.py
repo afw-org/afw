@@ -15,7 +15,7 @@ def bag_objectPath(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of objectPath values and returns an array of array.
+    Takes any number of objectPath values and returns an array of objectPath.
 
     Args:
         values (list):

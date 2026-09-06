@@ -8,7 +8,7 @@ This component container is visible when a target element is clicked. It's used 
 ## Props
 | Name | Type | Required | Default | Description |
 |:----------|:----------|:----|:------------|:------------|
-|contains|object|false|null|Specifies the placeholder text displayed when no value is present.|
+|contains|object|false|null|The component to be rendered inside the Callout.|
 |gapSpace|number|false|null|The gap space between target and the Callout component.|
 |open|boolean|true|null|Specifies whether this Callout component is open.|
 |targetPosition|object|false|null|Specifies the position of the callout, relative to the target component.|

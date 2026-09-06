@@ -46,7 +46,8 @@ def bag_dayTimeDuration(session, values=None):
     """
     Makes an array from values
 
-    Takes any number of dayTimeDuration values and returns an array of array.
+    Takes any number of dayTimeDuration values and returns an array of
+    dayTimeDuration.
 
     Args:
         values (list):

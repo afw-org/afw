@@ -28,7 +28,8 @@ class objectPath
     /**
      * bag_objectPath()
      *
-     * Takes any number of objectPath values and returns an array of array.
+     * Takes any number of objectPath values and returns an array of
+     * objectPath.
      *
      * @param array $values
      *
