@@ -1,7 +1,7 @@
 # Discovery — eval `p` = `scope->p` / `FIXME_GET_IT_WORKING`
 
 **Audience:** maintainers / assistants. **Not** handbook.  
-**Branch:** `experiment/eval-p-scope` (tip `c1ebe71f`).  
+**Branch:** `experiment/eval-p-scope` ([PR #287](https://github.com/afw-org/afw/pull/287), tip `23a837df`).  
 **Base:** `develop` after [#282](https://github.com/afw-org/afw/issues/282) (scope frames, compile facts, RC 1, dest `p` ripped).  
 **Rails:** [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). Two worlds: [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)).  
 **Probes:** [`src/afw/tests-extra/issue-2/03-eval-p/`](../src/afw/tests-extra/issue-2/03-eval-p/) (not default `test -j`).
@@ -32,7 +32,7 @@ Earlier `scope->p` hung BMP (compile units as child trackers extra-holding the f
 
 ## Landed on this branch
 
-Ripped `FIXME_GET_IT_WORKING`. Default `afwdev test -j`: **4304 passed**, 71 skipped. `comments-bmp-*.as` **unskipped** (~2.4s for the four files; no longer ~6 min). Valgrind suite has been green on this line.
+Ripped `FIXME_GET_IT_WORKING`. Default `afwdev test -j`: **4304 passed**, 71 skipped, ~33s. Same suite `--env-mode valgrind`: **4304 passed**, ~394s. `comments-bmp-*.as` **unskipped** (~2.4s for the four files; no longer ~6 min).
 
 ### 03-eval-p (after consume, parser-in-unit, loop scratch)
 

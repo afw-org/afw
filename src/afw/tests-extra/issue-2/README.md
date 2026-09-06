@@ -16,6 +16,6 @@ afwdev test -T src/afw/tests-extra/issue-2/02-pool-eval-soak
 |------|------|
 | **01-rss-hard-loops** | Hard-loop Adaptive Scripts; `/proc` RSS vs `pool_bytes_in_use`; gdb; `debug:pool` |
 | **02-pool-eval-soak** | `afwfcgi` firehose of object/array/nested-eval (heap wrap + slot overwrite) |
-| **03-eval-p** | Finite probes for eval `p` = `scope->p` / `FIXME_GET_IT_WORKING` ([`designs/experiment-eval-p.md`](../../../designs/experiment-eval-p.md)) |
+| **03-eval-p** | Finite probes for eval `p` = `scope->p` ([`designs/experiment-eval-p.md`](../../../designs/experiment-eval-p.md); [PR #287](https://github.com/afw-org/afw/pull/287)) |
 
 Campaign map: [`designs/issue-2-lifetime.md`](../../../designs/issue-2-lifetime.md).

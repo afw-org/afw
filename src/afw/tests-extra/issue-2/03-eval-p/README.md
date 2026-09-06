@@ -1,4 +1,4 @@
-# 03-eval-p — finite probes for `FIXME_GET_IT_WORKING`
+# 03-eval-p — finite probes for eval `p` = `scope->p`
 
 Not in `afwdev test -j`. Discovery sitting: [`designs/experiment-eval-p.md`](../../../../../designs/experiment-eval-p.md) (`experiment/eval-p-scope`).
 
