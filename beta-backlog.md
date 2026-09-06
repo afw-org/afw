@@ -11,8 +11,10 @@ Dump **details, design thoughts, unfinished plans, and “don’t forget” item
 |----------|------|
 | **`beta-backlog.md`** (this file) | Working notes, plans, archaeology, half-decided design. Source of truth for “what we still need to remember.” |
 | **`designs/`** | Per-issue / per-theme design pads (not user docs). See [`designs/README.md`](designs/README.md). |
-| **`designs/issue-2-hold-in-inf.md`** | **#2 rails** (2026-08-24) — hold in `clone_or_reference`; branch `issue-2-hold-in-inf`. |
-| **`designs/issue-2-lifetime.md`** | **#2 working story** (2026-08-21) — holds, pools, assign, script faces. |
+| **`designs/issue-2-hold-in-inf.md`** | **#2 rails** — `get_reference` / `get_assignable_value`; MUST NOT. |
+| **`designs/experiment-brainstorm.md`** | **#277 closed** — two worlds, create names, last_return. |
+| **`designs/experiment-eval-p.md`** | **#287 landed** — eval `p` = `scope->p` when `{ }` has a frame. |
+| **`designs/issue-2-lifetime.md`** | **#2 08-21 story** (history). |
 | **`designs/memory-management.md`** | Umbrella **#2** archaeology / old phases. |
 | **`whats-new.md`** | What **users** of AFW need to know about **`develop`** (behavior, APIs, migration). |
 | **GitHub issues** | Optional promotion when something needs discussion, an assignee, PR linkage, or is a real beta blocker. Prefer thematic umbrellas (e.g. language, memory) over one infinite meta-issue. |
@@ -295,7 +297,7 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 
 **Status:** pointer / **beta-relevant**
 
-- Umbrella **#2** (memory). **Working story:** [`designs/issue-2-lifetime.md`](designs/issue-2-lifetime.md) (2026-08-21, **not coded**). Archaeology: [`designs/memory-management.md`](designs/memory-management.md). Related: retrieve caps **#49**, progressive release **#127**, current-tree rules `.cursor/rules/afw-value-memory.mdc`.
+- Umbrella **#2** (memory). **Live maps:** rails [`designs/issue-2-hold-in-inf.md`](designs/issue-2-hold-in-inf.md); two worlds [`designs/experiment-brainstorm.md`](designs/experiment-brainstorm.md) (**#277** closed); eval `p` [`designs/experiment-eval-p.md`](designs/experiment-eval-p.md) (**#287**). 08-21 story (history): [`designs/issue-2-lifetime.md`](designs/issue-2-lifetime.md). Archaeology: [`designs/memory-management.md`](designs/memory-management.md). Related: retrieve caps **#49**, progressive release **#127**, current-tree rules `.cursor/rules/afw-value-memory.mdc`.
 - **#2** continues as **many feature branches** (request-lifetime MM retrofitted for script **scope** lifetimes). **Names as values** landed (PR **#220** + wrap-cleanup): object property names are `const afw_value_t *`; script/JSON string-only. Pad: [`designs/issue-2-property-name-values.md`](designs/issue-2-property-name-values.md). `eq` docs-vs-C is noted there as **not** that work.
 - **#149** (child of **#2**) — runtime / `afw` adapter **catalog lifetime** — **closed** 2026-08-09 (PRs #160–#162). Pads: [`runtime-objects-and-environment.md`](designs/runtime-objects-and-environment.md), [`runtime-catalog-lifetime.md`](designs/runtime-catalog-lifetime.md), [`runtime-value-accessors.md`](designs/runtime-value-accessors.md). Residual cost/memory under **#2**.
 - **#17 mutable object faces** — **done** on `mgg-develop` (PR **#150**, 2026-08-06). Literals + emit, no object/array clone-on-bind, nested hard edge, adapter get/retrieve/callback, #110 defaults, journal get/consumer/advance, YAML hygiene. Pad: [`designs/issue-17-mutable-object-faces.md`](designs/issue-17-mutable-object-faces.md). User: **`whats-new.md`**.

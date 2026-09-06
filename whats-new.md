@@ -817,15 +817,16 @@ Assignment, **`return`**, and a call that is not void set the script’s running
 - **`afw_pool_release`**: returns the pool or **NULL** if that call destroyed it.
 - **Closures (#35):** literals wrap a script function as a closure when stored (same as assign/`return`). Throw-path tests: `src/afw/tests/language/script/throw_rewind.as`.
 - **0-symbol `{ }`:** nested blocks with no `let`/`const` evaluate in the parent.
-- Maintainer map: `designs/experiment-brainstorm.md` (two worlds); campaign archaeology `designs/issue-2-lifetime.md`.
+- Maintainer map: `designs/experiment-brainstorm.md` (two worlds); eval `p` `designs/experiment-eval-p.md` (PR **#287**); rails `designs/issue-2-hold-in-inf.md`; archaeology `designs/issue-2-lifetime.md`.
 
 **C note:** value/pool lifetime work is part of the [C API cleanup](#libafw-c-api-cleanup-release-ready-surface) line — same rebuild rule for out-of-tree linkers.
 
 ### Not done yet (do not rely on)
 
-- Statement evaluation `p` is still the caller pool (not each `{ }` tracker) — needed for large nested `eval` comment tests.
 - Adaptive `clone()` is not the C `clone_unmanaged` / `clone_managed` pair.
-- Renaming `clone_or_reference` → `add_reference`; dropping generated slice infs; optional `free` / first-fit tuning (P3).
+- Renaming `clone_or_reference` → `get_reference` in user-facing C docs; dropping generated slice infs; heap free-list mixed-size tuning.
+
+Statement evaluation `p` **is** each `{ }` frame’s tracker when that `{ }` has a frame (PR **#287**). Nested empty `{ }` is not a frame. Large nested `eval` comment tests (`comments-bmp-*.as`) run in default `afwdev test -j`.
 
 [↑ Highlights](#highlights)
 

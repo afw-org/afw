@@ -6,9 +6,9 @@
 
 **Status:** Working story recorded 2026-08-20–21. Slot protocol **landed**. Pool split **landed**. Closures / throw-path rewind (**#35**) store-time bind **landed**. Script-evaluation-aware wrapper holds **landed** on `issue-2-script-wrapper-holds`: overlay store is a slot; last-release walk is a pool cleanup (C-style `for` clone can drop instance RC to zero while the value is still in use); generic memory objects still do not own property values. Closure create-at-0 **landed**. No let/const hoisting. Heap/tracker **pool impls honest** on `issue-2-heap-tracker-probe` (optional `free_memory(p, address)`, one chunk, address-ordered free list + coalesce). Heap/tracker are single-thread only. Non-APR heap later.
 
-**Current two worlds (2026-09-02):** [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277) / PR **#278**). Unmanaged = dest `p` / tracker; managed = this `xctx->p` + RC; frames `create_managed` (no pool). Inf-method rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). **This file is the 2026-08-21 story.** Where it says managed object/array **own a general pool**, or scalars are **not** a managed/unmanaged inf pair, **#277 wins**.
+**Current two worlds (2026-09):** [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277) closed / PR **#278**). Unmanaged = dest `p` / tracker; managed = this `xctx->p` + RC; frames `create_managed` (no pool). Eval `p` = `scope->p` when `{ }` has a frame: [`experiment-eval-p.md`](experiment-eval-p.md) ([PR #287](https://github.com/afw-org/afw/pull/287)). Compile-literal + intern **#280**. Inf-method rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). **This file is the 2026-08-21 story.** Where it says managed object/array **own a general pool**, or scalars are **not** a managed/unmanaged inf pair, **#277 wins**.
 
-**This file was the campaign map.** Older notes, phase archaeology, and rejected experiments stay in [`memory-management.md`](memory-management.md).
+**This file was the campaign map.** Live maps are rails + two worlds + eval-p. Older notes, phase archaeology, and rejected experiments stay in [`memory-management.md`](memory-management.md).
 
 **Lab probes (opt-in, not `test -j`):** [`src/afw/tests-extra/issue-2/`](../src/afw/tests-extra/issue-2/) — `01-rss-hard-loops` (RSS vs `pool_bytes_in_use`) and `02-pool-eval-soak` (fcgi heap wrap). `afwdev test -T src/afw/tests-extra/issue-2 --show-all`.
 
@@ -306,12 +306,12 @@ Current pools the whole way through 1–4.
 
 | Doc | Role |
 |-----|------|
-| [`memory-management.md`](memory-management.md) | Archaeology, old phases, P3, candidate wrap-APR notes. **Superseded as the campaign map by this file.** |
-| [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) | Whole-story framing; lifetime paragraph points here |
+| [`memory-management.md`](memory-management.md) | Archaeology, old phases, P3, candidate wrap-APR notes |
+| [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) | Whole-story framing; lifetime paragraph points at two worlds + rails + eval `p` |
 | [`issue-17-mutable-object-faces.md`](issue-17-mutable-object-faces.md) | Landed look-through faces |
 | [`issue-2-property-name-values.md`](issue-2-property-name-values.md) | Names as values (landed); different #2 slice |
 | [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | utf8/memory have no pool |
 | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | Env as runtime objects |
-| [`.cursor/rules/afw-value-memory.mdc`](../.cursor/rules/afw-value-memory.mdc) | **Current tree** work rule; campaign target is this pad |
+| [`.cursor/rules/afw-value-memory.mdc`](../.cursor/rules/afw-value-memory.mdc) | **Current tree** work rule; live maps win over this file |
 | Atlas §3 | [`knowledge-atlas.md`](knowledge-atlas.md) |
 | RSS / gdb lab | [`src/afw/tests-extra/issue-2/`](../src/afw/tests-extra/issue-2/) — `01-rss-hard-loops`, `02-pool-eval-soak` |

@@ -6,7 +6,7 @@
 
 **How to use this pad:** this is the **whole-story** framing (why AFW is shaped this way, and how the internal parts relate). For **where is X / probe**, use [`knowledge-atlas.md`](knowledge-atlas.md). For mantras, [`mantras-and-working-style.md`](mantras-and-working-style.md). For day-to-day implementation, rules, `AGENTS.md`, issue pads, and the tree. When this note and live code disagree, **code wins** — then **correct this pad**, do not delete a map because it feels long.
 
-**Provenance:** distilled (2026-08) from pairing sessions (including a pass over mgg-develop work) about Adaptive Framework’s design intent and core runtime, plus later maintainer work. **This pad lives in git** (`designs/afw-philosophy-and-core-model.md`) — not only in a container home directory. Some inventory details below were snapshots at the time; the **philosophy and structural model** are what we keep. Do not treat test counts, exact inf lists, or unfinished memory polish notes as current status. Lifetime campaign: [`issue-2-lifetime.md`](issue-2-lifetime.md) (the remaining unresolved part of this story as of 2026-08, now recorded).
+**Provenance:** distilled (2026-08) from pairing sessions (including a pass over mgg-develop work) about Adaptive Framework’s design intent and core runtime, plus later maintainer work on **`develop`**. **This pad lives in git** (`designs/afw-philosophy-and-core-model.md`) — not only in a container home directory. Some inventory details below were snapshots at the time; the **philosophy and structural model** are what we keep. Do not treat test counts, exact inf lists, or unfinished memory polish notes as current status. **#2 live maps:** rails [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md), two worlds [`experiment-brainstorm.md`](experiment-brainstorm.md) (**#277** closed), eval `p` [`experiment-eval-p.md`](experiment-eval-p.md) (**#287**). The 08-21 story [`issue-2-lifetime.md`](issue-2-lifetime.md) is history.
 
 ---
 
@@ -31,7 +31,7 @@ These are the sticky choices that explain a lot of surface oddity:
 | **Metadata as single source of truth** | Object types, functions, data types, and C **interfaces** are defined once (generate metadata / interface XML). Headers, bindings, registration, and much docs/tests follow from that. Prefer fixing the source of truth over hand-editing generated output. |
 | **Uniform models** | Capabilities show up the same way whether they came from core, an extension, or a host: environment registries, adaptive values, interface call macros. Prefer one pattern repeated over special snowflake stacks. |
 | **Immutability first** | The script/eval world is an **immutable value graph** evaluated lazily. Mutation is deliberate and constrained (objects/faces, assignment into scopes) — not the default mental model of “everything is a bag of mutable state.” |
-| **Pool-centric lifetime** | Memory is hierarchical pools (request/`xctx`/scope). **Destroy of a pool is lifetime; optional `free` is reuse.** Escaping uses `add_reference` / `release` so bulk free still works when a pool dies. Working story: [`issue-2-lifetime.md`](issue-2-lifetime.md). |
+| **Pool-centric lifetime** | Memory is hierarchical pools (request/`xctx`/scope). **Destroy of a pool is lifetime; optional `free` is reuse.** Two worlds: unmanaged in caller `p` / tracker; managed in this `xctx->p` + RC. Slot fill uses `get_assignable_value`. Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). |
 | **Small patterned pieces** | Prefer many small, named, interface-shaped pieces over one mega-framework. Extensions and packages stay as self-contained as practical against **public** core APIs. |
 | **Curated Adaptive Script** | Syntax borrows *some* familiarity from modern languages (lambdas, destructuring, optional types, etc.) without becoming TypeScript/JavaScript: no prototype chains, no loose “anything goes” object model, Adaptive types and values on Adaptive terms. |
 | **Production short path first** | Short-lived request/script work was the proven path (pool teardown cleans up). Long-running subscribers, shared compiled units, and process lifetime are the harder campaign — same model, stricter escape discipline. |
@@ -94,7 +94,7 @@ Hosts today include the **`afw` CLI** (including `--local`) and **`afwfcgi`**; b
 
 ### Values are the center
 
-This is the libafw side of the **Adaptive Value** concept above. Every significant script/eval entity is (or is reached through) an **`afw_value_t`**: an interface pointer (`inf`) plus payload. Evaluation is mostly **lazy** via `inf` methods (`optional_evaluate`, and for long-running correctness, `add_reference` / `release` — see value-memory rules, [`issue-2-lifetime.md`](issue-2-lifetime.md), and archaeology in [`memory-management.md`](memory-management.md)).
+This is the libafw side of the **Adaptive Value** concept above. Every significant script/eval entity is (or is reached through) an **`afw_value_t`**: an interface pointer (`inf`) plus payload. Evaluation is mostly **lazy** via `inf` methods (`optional_evaluate`, and for long-running correctness, `get_reference` / `get_assignable_value` / `release` — see value-memory rules, rails [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md), two worlds [`experiment-brainstorm.md`](experiment-brainstorm.md), and archaeology in [`memory-management.md`](memory-management.md)).
 
 Rough families of value kinds (names evolve; see `afw_value.h` / generated declares for truth):
 
@@ -115,14 +115,15 @@ Compile entry points (e.g. `afw_compile_to_value` and related) place the result 
 
 ### Pools and escape
 
-Full working story: [`issue-2-lifetime.md`](issue-2-lifetime.md) (2026-08-21). Archaeology: [`memory-management.md`](memory-management.md).
+Live maps: rails [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md), two worlds [`experiment-brainstorm.md`](experiment-brainstorm.md) (**#277**), eval `p` [`experiment-eval-p.md`](experiment-eval-p.md) (**#287**). 08-21 story (history): [`issue-2-lifetime.md`](issue-2-lifetime.md). Archaeology: [`memory-management.md`](memory-management.md).
 
 - **Destroy is lifetime. Optional `free` is reuse.** Hierarchical pools: process/base, request/`xctx->p`, **scope** children. Creating a child holds the parent. The xctx try/finally **destroys** `xctx->p` at request / `afw` command end — leftover holds do not keep the request alive.
-- **Managed** = in the hold protocol (`add_reference` / `release` match). Managed objects/arrays have **their own pool** under `xctx->p`. Scalar temps that escape become a **managed wrapper in `xctx->p`**.
-- **Unmanaged** = holds optional; count to zero does **not** destroy the instance; `add_reference` keeps **that instance’s pool**.
+- **Two worlds.** **Unmanaged** lives in caller `p` / `scope->p` (usually a tracker) and dies with that pool. **Managed** lives in this `xctx->p` (ST heap) and dies on last RC, then `free_memory` of the header. Unmanaged object/array **value** `get_reference` / `release` throw; isolate with `get_assignable_value`.
+- **Creates.** Pool-world object/array: `create_unmanaged` / `_new_p` / `_cede_p`. **`create_managed` is a frame** (no pool). Do not stamp `managed_*_inf` on a pool-world header.
 - **Permanent** / **compiled unit** = immutable; holds are no-ops. **Everything in a compiled unit is immutable.** Script mutates a **face** over literals, not the compiled instance.
-- **`add_reference` / `release`** are not “GC for everything.” Classic example: `closure_binding` holding a **scope** so symbols survive `}`.
-- Pools: general APR (`afw_pool_create*`) plus evaluation heap/tracker (single-thread, one compiled_value wrap). See [`issue-2-lifetime.md`](issue-2-lifetime.md).
+- **Eval `p`** is `scope->p` when `{ }` has a frame. Nested empty `{ }` is not a frame. Temps land on that tracker and die with last-release.
+- **`get_reference` / `release`** are not “GC for everything.” Classic example: `closure_binding` holding a **scope** so symbols survive `}`. Slot fill is `get_assignable_value`.
+- Pools: general APR (`afw_pool_create*`) plus evaluation heap/tracker (single-thread). No reparent on destroy.
 
 Short scripts and request-scoped work were production-proven early because **destroying the request pool** papered over incomplete escape polish. Long-running processes need the full hold protocol — that is why **#2** remains a first-class campaign.
 
@@ -174,7 +175,7 @@ From the earlier dump and early AI onboarding — useful archaeology, easy to mi
 | `list_expression` | C name heritage; product term is **array**. Do not revive “bag” for objects. |
 | “No exceptions” | Script control is **statement_flow** / structured leave; Adaptive still has error/throw paths and C error macros. |
 | “2730/2902 tests” | Point-in-time CI flavor only; ignore for progress math. |
-| “optional_release/clone only remaining polish” | Directionally right for long-running; the real work is **#2**. Working story: [`issue-2-lifetime.md`](issue-2-lifetime.md). |
+| “optional_release/clone only remaining polish” | Directionally right for long-running; the real work is **#2**. Live maps: rails + two worlds + eval `p`. |
 | “Use as permanent context for all future questions” | Superseded by this **thin pad** + live code/rules. Do not paste the raw dump into always-on rules. |
 
 ---
@@ -219,14 +220,14 @@ generate/ metadata + interface XML
 | **Metadata / generate** | Functions, data types, object types, C interfaces defined once | `afwdev` → headers, bindings, env register, docs |
 | **Environment** | Process-wide registries; discoverable on `adapterId=afw` | Extensions and hosts register the same way |
 | **Compile** | Syntax → value graph | `compiled_value` owns pool + `full_source`; nodes hold **contextual** windows (offset/size), not copies of source |
-| **Evaluate** | Walk the graph; `optional_evaluate` or already-a-result | New memory from the evaluate `p` or a **child** of `p` |
+| **Evaluate** | Walk the graph; `optional_evaluate` or already-a-result | New memory from eval `p` (`scope->p` when `{ }` has a frame) or a **child** of `p` |
 | **Values** | Public type is only `const afw_value_t *` (`inf` + private body) | Built-ins see **already evaluated** args (`AFW_FUNCTION_EVALUATE_*` → typed `arg->internal`) |
 | **Payloads** | `afw_utf8_t` / `afw_memory_t` / `afw_integer_t` | **No pool, no reference count.** Lifetime is whoever owns the bytes. Doors: `create`/`set`/`no_copy` — [`c-naming-and-payloads.md`](c-naming-and-payloads.md) |
 | **Objects / arrays** | Instances (maybe own pool); embedded `->value` is the Adaptive **name** | Script mutates a **face** (look-through + overlay). Dual `->value` ≠ face ≠ scalar box. Compiled literals stay immutable. |
 | **Code points** | Unicode properties (identifier, whitespace, Cc) | `src/afw/code_point/` — encoding-neutral. UTF-8 encode/NFC stays in `afw_utf8` |
 | **Hosts** | `afw`, `afwfcgi`, admin app | Same env. GET adapter CRUD ≠ POST `/afw` actions |
 
-**Lifetime (working story 2026-08-21):** almost everything dies with a **pool**. Request/`afw` command: **destroy `xctx->p`** is the safety net. Managed objects/arrays have their own child of `xctx->p`. Child pools hold their parent. Long-running scripts need **`add_reference` / `release`** on slots and on object/array instances — not “the request was long enough.” Assign uses **`add_reference`** (today’s `clone_or_reference` was a memory-jog). Scalars that escape become a **managed box in `xctx->p`** (copy utf8/memory bytes). Objects/arrays **`add_reference` the instance**. Script faces isolate compiled/adapter bases. Detail: [`issue-2-lifetime.md`](issue-2-lifetime.md).
+**Lifetime (two worlds, 2026-09):** almost everything dies with a **pool**. Request/`afw` command: **destroy `xctx->p`** is the safety net. Unmanaged temps live in caller `p` / `scope->p` (tracker). Managed values live in this `xctx->p` and last-release `free_memory`. Frames are `create_managed` (no pool). Child pools hold their parent; **no reparent** on destroy. Long-running scripts need **`get_reference` / `get_assignable_value` / `release`** on slots — not “the request was long enough.” Unmanaged object/array **value** methods throw; isolate with `get_assignable_value`. Eval `p` is `scope->p` when `{ }` has a frame. Script faces isolate compiled/adapter bases. Detail: [`experiment-brainstorm.md`](experiment-brainstorm.md), [`experiment-eval-p.md`](experiment-eval-p.md), [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md).
 
 **Compile vs evaluate of `compile()`:** a script is compiled **once** and may be evaluated many times. Adaptive `compile()` during an evaluation must live on **`x->p`**, not the containing script’s compile pool, or every eval leaks ([#212](https://github.com/afw-org/afw/issues/212)). `parent` on `compiled_value` is not the backtrace — the **evaluation stack** + per-unit `full_source` is. Lex intern is `shared`, not a walk of `parent`.
 
@@ -244,8 +245,11 @@ generate/ metadata + interface XML
 | [`knowledge-atlas.md`](knowledge-atlas.md) | Topic → rules / pad / probe (the index, not a second story) |
 | [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | Value vs utf8/memory doors; `forced_safe`; code_point |
 | [`mantras-and-working-style.md`](mantras-and-working-style.md) | Mantras, anti-patterns, partnership habits (reference) |
-| [`issue-2-lifetime.md`](issue-2-lifetime.md) | **#2 working story** (2026-08-21) — holds, pools, assign, faces |
-| [`memory-management.md`](memory-management.md) | #2 archaeology / old phases; superseded as the campaign map |
+| [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) | **#2 inf-method rails** — hold vs assignable, MUST NOT |
+| [`experiment-brainstorm.md`](experiment-brainstorm.md) | **#277** two worlds, create names, last_return |
+| [`experiment-eval-p.md`](experiment-eval-p.md) | **#287** eval `p` = `scope->p` |
+| [`issue-2-lifetime.md`](issue-2-lifetime.md) | **#2 08-21 story** (history) |
+| [`memory-management.md`](memory-management.md) | #2 archaeology / old phases |
 | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | Env registries as runtime objects |
 | [`lineage-and-library-floor.md`](lineage-and-library-floor.md) | Base vs private packages; ICU home |
 | [`agent-support.md`](agent-support.md) | Support playbook stubs; capture checklist |

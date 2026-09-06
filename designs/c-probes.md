@@ -1,7 +1,7 @@
 # C probes (`run_c_probe`)
 
 **Audience:** maintainers / assistants.  
-**Issue:** [#207](https://github.com/afw-org/afw/issues/207).  
+**Issue:** [#207](https://github.com/afw-org/afw/issues/207) **closed** (2026-08-19). Helper shipped.  
 **Not** [#206](https://github.com/afw-org/afw/issues/206) (named utf8 doors / ignore-case offsets / error-object backtrace).
 
 **Origin:** Grok (xAI) designed `run_c_probe()` for #207 in August 2026, pairing on AFW. The helper, the valgrind wrap, and the decision not to skip backtrace on a throw are that sitting. Signed in `_afwdev/test/c_probe.py` (`who()`).

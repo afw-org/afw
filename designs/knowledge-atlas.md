@@ -19,7 +19,7 @@
 
 ## How the C surface fits (one picture)
 
-Everything we paired on in the `mgg-develop` wave hangs off this. Use it when a symptom could be “any layer.”
+Everything we paired on in the `mgg-develop` wave (now on **`develop`**) hangs off this. Use it when a symptom could be “any layer.”
 
 ```text
 generate/  →  generated/  →  env registries (afw_environment_t)
@@ -49,7 +49,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 |------|----------|
 | Env / runtime catalog / accessors | #149 pads; atlas §5; metrics/properties pin until caller pool cleanup |
 | Hosts / stop | #158; atlas §6 |
-| Memory / faces / `create_array` | [`issue-2-lifetime.md`](issue-2-lifetime.md); names-as-values slice; #17 faces; atlas §3 |
+| Memory / faces / `create_array` | Two worlds [`experiment-brainstorm.md`](experiment-brainstorm.md) (**#277**); eval `p` [`experiment-eval-p.md`](experiment-eval-p.md) (**#287**); rails [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md); 08-21 history [`issue-2-lifetime.md`](issue-2-lifetime.md); names-as-values; #17 faces; atlas §3 |
 | Types | #28 pad + `typescript-differences.md`; #186 parse nesting; #188 names declared before use |
 | Script language | #62 pad; #33 errors; #172 must-change |
 | Compile / call / spread | `afw-script-eval`; #140 / #181; `compiler_internal` kind-check |
@@ -82,7 +82,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | [0. Orientation / product taste](#0-orientation--product-taste) | Yes (thin) | `ai-partner-lessons` + mantras + philosophy |
 | [1. Metadata, generate, packages](#1-metadata-generate-packages) | Yes | `afw-project`, generate rules |
 | [2. Core layout & C conventions](#2-core-layout--c-conventions) | Yes | `afw-core-layout`, `afw-c-runtime` |
-| [3. Values, pools, memory (#2)](#3-values-pools-memory-2) | Partial | value-memory + memory-management pad |
+| [3. Values, pools, memory (#2)](#3-values-pools-memory-2) | Partial (umbrella **#2** still open) | two worlds + eval-p + hold-in-inf rails |
 | [4. Compile, EBNF, eval, functions](#4-compile-ebnf-eval-functions) | Yes (core); residuals open | compile + script-eval + function |
 | [5. Environment & runtime objects](#5-environment--runtime-objects) | #149 closed | runtime-objects pad + environment rule |
 | [6. Hosts & process lifetime](#6-hosts--process-lifetime) | #158 closed | server-fcgi + command rules |
@@ -144,12 +144,12 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | Values first. **Two worlds [#277](https://github.com/afw-org/afw/issues/277):** [`experiment-brainstorm.md`](experiment-brainstorm.md) — unmanaged in caller `p` / tracker; managed in this `xctx->p` + RC; eval clone-out of evaluated results. Inf methods: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (`get_reference` bump; `get_assignable_value` isolates; no dest `p`). 08-21 story (history): [`issue-2-lifetime.md`](issue-2-lifetime.md). Payloads: [`c-naming-and-payloads.md`](c-naming-and-payloads.md) |
-| **Day rules** | `afw-runtime-model` (always-on), `afw-value-memory` (**current tree**; campaign target is the lifetime pad), `afw-script-eval` |
-| **Deep pad** | [`issue-2-lifetime.md`](issue-2-lifetime.md) (**campaign map**); **rails** [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md); **two worlds** [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)); archaeology [`memory-management.md`](memory-management.md); philosophy core model; names-as-values [`issue-2-property-name-values.md`](issue-2-property-name-values.md); faces [`issue-17-mutable-object-faces.md`](issue-17-mutable-object-faces.md) |
+| **Settled map** | Values first. **Two worlds [#277](https://github.com/afw-org/afw/issues/277) closed** (PR **#278**): [`experiment-brainstorm.md`](experiment-brainstorm.md) — unmanaged in caller `p` / tracker; managed in this `xctx->p` + RC; eval clone-out of evaluated results. **Eval `p` = `scope->p` when `{ }` has a frame** ([PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md)). Inf methods: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (`get_reference` bump; `get_assignable_value` isolates; no dest `p`). 08-21 story (history): [`issue-2-lifetime.md`](issue-2-lifetime.md). Payloads: [`c-naming-and-payloads.md`](c-naming-and-payloads.md) |
+| **Day rules** | `afw-runtime-model` (always-on), `afw-value-memory` (work rule; live maps win), `afw-script-eval` |
+| **Deep pad** | **Rails** [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md); **two worlds** [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)); **eval `p`** [`experiment-eval-p.md`](experiment-eval-p.md) ([PR #287](https://github.com/afw-org/afw/pull/287)); 08-21 history [`issue-2-lifetime.md`](issue-2-lifetime.md); archaeology [`memory-management.md`](memory-management.md); philosophy core model; names-as-values [`issue-2-property-name-values.md`](issue-2-property-name-values.md); faces [`issue-17-mutable-object-faces.md`](issue-17-mutable-object-faces.md) |
 | **Probe** | Targeted `.as` + `afwdev test -j --env-mode valgrind`; orchestrated multi-request leaves; **#2 extra lab** `src/afw/tests-extra/issue-2/` (`01-rss-hard-loops`, `02-pool-eval-soak`; `afwdev test -T src/afw/tests-extra/issue-2 --show-all`); BMP comment sweeps in default `test -j` on [PR #287](https://github.com/afw-org/afw/pull/287) (`src/afw/tests/test262/comments-bmp-*.as`); extra copies still under `src/afw/tests-extra/test262/`; `03-eval-p` probes; never “fix memory” without a metric/story |
-| **Open** | Umbrella **#2**. Slot protocol landed. Pool two-impls **landed**. Two worlds **#277** (`create_unmanaged` / `create_managed` frames). Scope RC 1 + compile `parent_scope_block` / `scope_depth`. `get_reference` bump; `get_assignable_value` isolates in `xctx->p` (no dest `p`). `script_result` ([#62](https://github.com/afw-org/afw/issues/62)): `return` as_assignable only; list starts void; finish stores non-void last. **Names as values** landed (PR **#220**). Compile-literal inf + interned parse-word strings **#280**. Closures / throw-path rewind (**#35**). Eval `p` = `scope->p` when `{ }` has a frame: [PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md). Skip `double_free_throws`. Adapter clones, clone-of-unmanaged meta, FRV-as-is until special cases spread. Debug probes ([#242](https://github.com/afw-org/afw/issues/242)): `AFW_DEBUG_EVALUATION` / `LOCK` / `POOL`. **Later:** heap free-list mixed sizes (concat string + integer last_return in one loop — [`experiment-brainstorm.md`](experiment-brainstorm.md) timings). |
-| **Gap** | Two-worlds pad is the current one-pager; keep `memory-management.md` as archaeology |
+| **Open** | Umbrella **#2** still open. **Landed on `develop`:** slot protocol; pool two-impls (**#267**); two worlds **#277** closed; compile-literal + intern **#280**; scope RC 1 + `parent_scope_block` / `scope_depth`; dest `p` ripped; `script_result` ([#62](https://github.com/afw-org/afw/issues/62) closed); names as values (PR **#220**); closures / throw-path rewind (**#35** closed); eval `p` **#287**. **Parked:** skip `double_free_throws`; adapter clones; clone-of-unmanaged meta; Adaptive `clone()` still the old function; unevaluated clone-out; `qualifier("current")` snapshot tail; FRV-as-is until special cases spread. Debug flags `AFW_DEBUG_EVALUATION` / `LOCK` / `POOL` (**#242** closed). **Nominated next eval win:** heap free-list mixed sizes (concat string + integer last_return in one loop — [`experiment-brainstorm.md`](experiment-brainstorm.md) timings). |
+| **Gap** | Live maps are rails + two worlds + eval-p; keep `memory-management.md` as archaeology |
 
 ---
 
@@ -244,7 +244,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | Qualifier stack get vs `qualifier()`/`qualifiers()` snapshots (#9); `current::` / `custom::`; includeUntrusted. Script door: catalog qualifiers are **read-only** (C bag may still be writable). Snapshots are copies. `current::` name set is per context — model `current::object` is retrieve-like; auth/index is the resource/row. |
+| **Settled map** | Qualifier stack get vs `qualifier()`/`qualifiers()` snapshots (#9); `current::` / `custom::`; includeUntrusted. Script door: catalog qualifiers are **read-only** (C memory object may still be writable). Snapshots are copies. `current::` name set is per context — model `current::object` is retrieve-like; auth/index is the resource/row. |
 | **Day rules** | `afw-qualified-variables`, environment-variables (process::) |
 | **Deep pad** | — |
 | **Probe** | `src/afw/tests/compiler/qualifier*.as` |
@@ -332,7 +332,7 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | Design in progress / #74 oriented |
+| **Settled map** | `process::` + `afw_crypto` shipped; GitHub **#74 closed** (2026-09-03). Interactive `readpass` never built (parked; not a living issue unless reopened). Pad is the crypto design novel |
 | **Day rules** | C TRY/FINALLY for OpenSSL in `afw-c-runtime` |
 | **Deep pad** | [`secrets-and-afw-crypto.md`](secrets-and-afw-crypto.md) (**large**) |
 | **Probe** | Crypto tests / functions when touching that tree |
@@ -348,7 +348,7 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 | Array semantics | `array-semantics.md` | Shipped (#39) |
 | Converts | `conversion-functions.md` | Shipped with #39 wave |
 | UTF-8 / memory C doors | [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | `create` copies; `no_copy` points; `forced_safe` `^hex^`; `src/afw/code_point/` |
-| UTF-8 code points (script) | `utf8-code-point-sequences.md` | #153 oriented; #190 empty-match `replace`; `to_lower` / ignore-case compare use bounded `U8_NEXT` / `U8_APPEND` and independent offsets ([#206](https://github.com/afw-org/afw/issues/206)) |
+| UTF-8 code points (script) | `utf8-code-point-sequences.md` | **#153 closed**; #190 empty-match `replace`; `to_lower` / ignore-case compare use bounded `U8_NEXT` / `U8_APPEND` and independent offsets ([#206](https://github.com/afw-org/afw/issues/206) closed) |
 | Mutable faces | `issue-17-mutable-object-faces.md` | Closed PR #150 |
 | Expression property names | `issue-38-…` | Closed |
 | Meta on wire | `issue-138-…` | Design/status in pad |
@@ -356,7 +356,7 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 | Types | `issue-28-…` | **#28 closed** (PR **#171** wrap-up) |
 | Pragma `#` | `pragma-hash-design.md` | Pattern B `#compile` (landed) |
 | Error codes / HTTP / `e.id` | `issue-33-error-codes.md` | **#33** closed (PR **#173**) — map in `afw_common.h`; script `throw` may set `id`; prefer `e.id` |
-| Script language syntax | `issue-62-script-language.md` | **#62** — multi `let`/`const`, `for` init, assignment chain, running result, loop labels landed |
+| Script language syntax | `issue-62-script-language.md` | **#62 closed** (PR **#174**) — multi `let`/`const`, `for` init, assignment chain, running result, loop labels |
 | Pattern params / catch / call-site `...` | `compile-optimize-notes.md` (#140) | Landed; `execute_try` still trusts parser unless kind-checked (`afw-function`) |
 | Evaluate spread once | `afw-script-eval` + whats-new | **#181** closed — do not mix with `x->function` harvest |
 | Deprecated throw / declare_helpers | `whats-new.md` Must change | **#172** — `throw` needs `data`; no package `*_declare_helpers.h` |
@@ -438,4 +438,5 @@ After a deep issue session:
 4. Do **not** grow this file into a dump of every PR.
 
 **First pass date:** 2026-08-09 · branch work on `feature-afw-support-agent`.  
-**Harvest pass:** 2026-08-16 — session interval notes (`/root/.grok/memory/…/sessions/`) walked into this atlas + `agent-support` (picture, live stack, actions/Fiddle, language leftover rows). Session files stay local; git is what other partners see.
+**Harvest pass:** 2026-08-16 — session interval notes (`/root/.grok/memory/…/sessions/`) walked into this atlas + `agent-support` (picture, live stack, actions/Fiddle, language leftover rows). Session files stay local; git is what other partners see.  
+**Align pass:** 2026-09-06 — living hubs retargeted to two worlds **#277**, eval `p` **#287**, and `develop` as the integration line. Archaeology pads left as dated history.

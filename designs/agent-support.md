@@ -18,7 +18,7 @@ Prefer thin, accurate units. After deep sessions use the capture checklist; prom
 - [ ] Optional one-sentence user/operator note (`whats-new.md` if shipping)
 - [ ] Atlas topic row touched if the map changed
 - [ ] If it is how the **parts relate** (values, compile, pools, payloads, env), correct [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) — do not leave it only in chat or MEMORY, and do not trim that pad to make it short
-- [ ] If it is **#2 lifetime** (holds, pools, assign, faces), correct [`issue-2-lifetime.md`](issue-2-lifetime.md) — that is the campaign map; `memory-management.md` is archaeology
+- [ ] If it is **#2 lifetime** (holds, pools, assign, faces, eval `p`), correct the **live maps**: rails [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md), two worlds [`experiment-brainstorm.md`](experiment-brainstorm.md), eval `p` [`experiment-eval-p.md`](experiment-eval-p.md). Touch [`issue-2-lifetime.md`](issue-2-lifetime.md) only if the 08-21 story was wrong; `memory-management.md` is archaeology
 
 ## Playbooks
 
@@ -89,14 +89,14 @@ Shape: **symptom → layer → probe → code / doc entry**.
 | Symptom | Leak under long run; use-after-free; wrong lifetime; decompile mismatch; scope/closure surprise |
 | Layer | Pools, managed values, `compiled_value`, scope stack, `statement_flow`, value inf policy |
 | Probe | Narrow `.as` + valgrind; orchestrated multi-request leaves when process-scoped; don’t soak via default `test -j`. Hard-loop RSS + gdb: `src/afw/tests-extra/issue-2/01-rss-hard-loops/` (`afwdev test -T src/afw/tests-extra/issue-2 --show-all`) |
-| Entry | `afw-value-memory`, `afw-script-eval`, `afw-compile`, `afw-runtime-model`; **#2** / `memory-management.md`; philosophy pad; atlas §3–4 |
-| Status | **Filled (pointer-heavy)** — deep work stays in memory pad |
+| Entry | `afw-value-memory`, `afw-script-eval`, `afw-compile`, `afw-runtime-model`; **#2** live maps: `issue-2-hold-in-inf.md`, `experiment-brainstorm.md`, `experiment-eval-p.md`; philosophy pad; atlas §3–4 |
+| Status | **Filled (pointer-heavy)** — deep work stays in the live #2 maps, not `memory-management.md` |
 
 **First questions**
 
 1. Is this **request-scoped** (pool teardown hides bugs) or **long-running** (escape must be correct)?  
-2. Is the value **permanent / managed / managed_slice / unmanaged**?  
-3. Did evaluation allocate into **`scope->p`** (or the intended pool)?  
+2. Is the value **permanent / managed / managed_slice / unmanaged** (two worlds: unmanaged in caller `p` / tracker; managed in this `xctx->p`)?  
+3. Did evaluation allocate into **`scope->p`** when the `{ }` has a frame (PR **#287**), or the intended pool?  
 4. Did a **closure** keep a scope alive (expected RC path)?
 
 **Shapes that keep coming back (learn these, not ticket lists)**

@@ -2,7 +2,7 @@
 
 **Issue:** [#153](https://github.com/afw-org/afw/issues/153)  
 **Assignee:** Mike  
-**Status:** **beta language story landed** on branch `issue-#153-utf8-code-point-sequences` (2026-08); merge to `mgg-develop` via PR.  
+**Status:** **#153 closed** (2026-08-07). Beta language story landed (branch `issue-#153-utf8-code-point-sequences`; merged via PR onto the `mgg-develop` line, now on `develop`).  
 **Audience:** maintainers.
 
 ## Product statement

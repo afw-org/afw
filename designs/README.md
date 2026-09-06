@@ -22,9 +22,10 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`knowledge-atlas.md`](knowledge-atlas.md) | **Topic atlas** — area → rules/pads/probes/gaps; **how the C surface fits**; admin/Fiddle §16. Start here for “where is X?” |
 | [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) | **Whole story** — why AFW is shaped this way, how parts relate (values, compile, pools, env, hosts). Keep and correct; do not trim maps. Not always-on rules |
 | [`mantras-and-working-style.md`](mantras-and-working-style.md) | Mike mantras + partnership habits (subset; grow when shared); philosophy/taste questions — **not** always-on |
-| [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) | **#2 inf-method rails** — hold vs assignable, faces, MUST NOT. Two worlds / eval `p` / last_return slot: **#277** pad wins if they disagree |
+| [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) | **#2 inf-method rails** — hold vs assignable, faces, MUST NOT. Two worlds / last_return: **#277** pad wins if they disagree. Eval `p`: [`experiment-eval-p.md`](experiment-eval-p.md) wins |
+| [`issue-2-hold-in-inf-plan.md`](issue-2-hold-in-inf-plan.md) | **Dated** assignable-inf verticals (V1–V7). Do not execute again; current maps are rails + two worlds + eval `p` |
 | [`issue-2-lifetime.md`](issue-2-lifetime.md) | **#2 08-21 story** — history; two worlds **#277** supersedes “managed owns a pool” / “scalars are not a pair” |
-| [`memory-management.md`](memory-management.md) | Umbrella **#2** archaeology / old phases (campaign map is `issue-2-lifetime.md`) |
+| [`memory-management.md`](memory-management.md) | Umbrella **#2** archaeology / old phases (live maps: rails + two worlds + eval `p`) |
 | [`issue-2-property-name-values.md`](issue-2-property-name-values.md) | **#2** — object property names as `const afw_value_t *` (landed PR **#220** + wrap-cleanup; script/JSON string-only) |
 | [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | Value vs utf8/memory payloads; `create` / `set` / `no_copy` / `forced_safe`; code_point dir |
 | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | **#149 closed** (PRs #160–#162) — architecture map: generate maps, OT `runtime`, accessors, env registration, checklist; keep for **#2** follow-on |
@@ -56,8 +57,8 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`libafw-headers-and-api-surface.md`](libafw-headers-and-api-surface.md) | libafw header layers (`afw.h` / internal / minimal / common), install public-only goal, Doxygen public vs internal |
 | [`lineage-and-library-floor.md`](lineage-and-library-floor.md) | Base vs private packages; Docker ICU/APR floor; ICU in `utf8/` + `code_point/` |
 | [`sibling-afw-package.md`](sibling-afw-package.md) | Another Git repo next to this base: layout, write wall, sandbox, prime kit |
-| [`experiment-brainstorm.md`](experiment-brainstorm.md) | **#277** — unmanaged / managed two worlds (`create_unmanaged` / frames `create_managed`; last_return slot) |
-| [`experiment-eval-p.md`](experiment-eval-p.md) | Discovery — eval `p` = `scope->p`; throwaway compile/eval loops flatten; BMP in default `test -j` |
+| [`experiment-brainstorm.md`](experiment-brainstorm.md) | **#277 closed** (PR **#278**) — unmanaged / managed two worlds (`create_unmanaged` / frames `create_managed`; last_return slot) |
+| [`experiment-eval-p.md`](experiment-eval-p.md) | **#287 landed** — eval `p` = `scope->p` when `{ }` has a frame; throwaway compile/eval loops flatten; BMP in default `test -j` |
 
 ## Conventions
 

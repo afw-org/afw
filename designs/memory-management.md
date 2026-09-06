@@ -3,11 +3,11 @@
 **Audience:** maintainers and assistants.  
 **Not user docs.** Related always-on runtime rules: [`.cursor/rules/afw-value-memory.mdc`](../.cursor/rules/afw-value-memory.mdc). Beta checklist pointer: [`beta-backlog.md`](../beta-backlog.md). GitHub: [#2 Memory management](https://github.com/afw-org/afw/issues/2).
 
-**Current two worlds:** [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)). **08-21 story:** [`issue-2-lifetime.md`](issue-2-lifetime.md). Inf-method rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). This file is **archaeology**. Old “managed = owns a pool” / `create_unmanaged` meaning **do not** override #277.
+**Current two worlds:** [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277) closed). **Eval `p`:** [`experiment-eval-p.md`](experiment-eval-p.md) ([PR #287](https://github.com/afw-org/afw/pull/287)). **08-21 story:** [`issue-2-lifetime.md`](issue-2-lifetime.md). Inf-method rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md). This file is **archaeology**. Old “managed = owns a pool” / `create_unmanaged` meaning **do not** override #277. The phased plan later in this file is **not** the work queue.
 
 ## Purpose of this file
 
-Living design / discussion notes for long-running AFW process memory: pools, value lifetimes, object/array ↔ value identity, escape (closures, retained results), and what we will implement later. **Current invariants** belong in [`issue-2-lifetime.md`](issue-2-lifetime.md).
+Living design / discussion notes for long-running AFW process memory: pools, value lifetimes, object/array ↔ value identity, escape (closures, retained results), and what we will implement later. **Current invariants** belong in [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md), [`experiment-brainstorm.md`](experiment-brainstorm.md), and [`experiment-eval-p.md`](experiment-eval-p.md).
 
 **End goal of the discussion:** a coherent **AFW memory-management story** — useful for implementing **#2** now, and as durable context for **humans and assistants** on later work (not only this issue). Prefer clear narrative and invariants over a pile of undigested archaeology.
 
