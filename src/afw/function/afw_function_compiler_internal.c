@@ -584,7 +584,24 @@ impl_assignment_target(
                 "Cannot assign to const variable \"" AFW_UTF8_FMT "\"",
                 AFW_UTF8_FMT_ARG(&symbol->name->internal));
         }
-        if (symbol->type.kind != afw_value_type_kind_data_type ||
+        /*
+         * compile() returns unevaluated. Store the unit for untyped /
+         * unevaluated symbols. Extra-evaluate only when the symbol is a
+         * concrete data type, then release a throwaway unit.
+         */
+        if (afw_value_is_compiled_value(value)) {
+            if (symbol->type.kind == afw_value_type_kind_data_type &&
+                symbol->type.data_type &&
+                symbol->type.data_type != afw_data_type_unevaluated)
+            {
+                const afw_value_t *unit = value;
+                value = afw_value_evaluate_and_park(value, 1, p, xctx);
+                if (unit->inf == &afw_value_compiled_value_inf) {
+                    afw_value_release(unit, xctx);
+                }
+            }
+        }
+        else if (symbol->type.kind != afw_value_type_kind_data_type ||
             symbol->type.data_type != afw_data_type_unevaluated)
         {
             value = afw_value_evaluate_and_park(value, 1, p, xctx);
@@ -879,14 +896,11 @@ afw_function_execute_assign(
     const afw_value_t *result;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(2);
-    {
-        const afw_value_t *value;
-
-        AFW_FUNCTION_EVALUATE_PARAMETER(value, 2);
-        result = impl_assign(x->argv[1], value,
-            afw_compile_assignment_type_assign_only,
-            p, xctx);
-    }
+    /* Same door as let/const: impl_assign evaluate_and_park's the RHS.
+     * EVALUATE_PARAMETER extra-evaluates compiled_value (formal any). */
+    result = impl_assign(x->argv[1], AFW_FUNCTION_ARGV(2),
+        afw_compile_assignment_type_assign_only,
+        p, xctx);
 
     /* last_return is the statement list, not assign() itself
      * (for init/increment must not write). */
