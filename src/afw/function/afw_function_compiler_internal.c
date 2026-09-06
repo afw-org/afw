@@ -197,6 +197,17 @@ impl_keep_loop_last(
 }
 
 
+/* Per-iteration eval tracker so unmanaged temps die when the trip ends. */
+static const afw_pool_t *
+impl_loop_iteration_p(afw_xctx_t *xctx)
+{
+    if (!xctx->evaluation_heap) {
+        xctx->evaluation_heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    }
+    return afw_pool_tracker_create(xctx->evaluation_heap, xctx);
+}
+
+
 /* Formal expects array of values: leaf array, T[], or tuple (#153). */
 static inline afw_boolean_t
 impl_script_formal_expects_array_sequence(const afw_value_type_t *type)
@@ -584,7 +595,24 @@ impl_assignment_target(
                 "Cannot assign to const variable \"" AFW_UTF8_FMT "\"",
                 AFW_UTF8_FMT_ARG(&symbol->name->internal));
         }
-        if (symbol->type.kind != afw_value_type_kind_data_type ||
+        /*
+         * compile() returns unevaluated. Store the unit for untyped /
+         * unevaluated symbols. Extra-evaluate only when the symbol is a
+         * concrete data type, then release a throwaway unit.
+         */
+        if (afw_value_is_compiled_value(value)) {
+            if (symbol->type.kind == afw_value_type_kind_data_type &&
+                symbol->type.data_type &&
+                symbol->type.data_type != afw_data_type_unevaluated)
+            {
+                const afw_value_t *unit = value;
+                value = afw_value_evaluate_and_park(value, 1, p, xctx);
+                if (unit->inf == &afw_value_compiled_value_inf) {
+                    afw_value_release(unit, xctx);
+                }
+            }
+        }
+        else if (symbol->type.kind != afw_value_type_kind_data_type ||
             symbol->type.data_type != afw_data_type_unevaluated)
         {
             value = afw_value_evaluate_and_park(value, 1, p, xctx);
@@ -879,14 +907,11 @@ afw_function_execute_assign(
     const afw_value_t *result;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(2);
-    {
-        const afw_value_t *value;
-
-        AFW_FUNCTION_EVALUATE_PARAMETER(value, 2);
-        result = impl_assign(x->argv[1], value,
-            afw_compile_assignment_type_assign_only,
-            p, xctx);
-    }
+    /* Same door as let/const: impl_assign evaluate_and_park's the RHS.
+     * EVALUATE_PARAMETER extra-evaluates compiled_value (formal any). */
+    result = impl_assign(x->argv[1], AFW_FUNCTION_ARGV(2),
+        afw_compile_assignment_type_assign_only,
+        p, xctx);
 
     /* last_return is the statement list, not assign() itself
      * (for init/increment must not write). */
@@ -1095,7 +1120,6 @@ afw_function_execute_do_while(
     afw_function_execute_t *x)
 {
     afw_xctx_t *xctx = x->xctx;
-    const afw_pool_t *p = x->p;
     const afw_value_t *result;
     const afw_value_boolean_t *condition;
 
@@ -1106,9 +1130,20 @@ afw_function_execute_do_while(
     this_label = impl_optional_loop_label(x, 3);
     result = afw_value_void;
     for (;;) {
-        result = impl_keep_loop_last(result,
-            afw_value_block_evaluate_statement(x, x->argv[2], p, xctx),
-            xctx);
+        {
+            const afw_pool_t *iter_p = impl_loop_iteration_p(xctx);
+
+            AFW_TRY {
+                result = impl_keep_loop_last(result,
+                    afw_value_block_evaluate_statement(
+                        x, x->argv[2], iter_p, xctx),
+                    xctx);
+            }
+            AFW_FINALLY {
+                afw_pool_release(iter_p, xctx);
+            }
+            AFW_ENDTRY;
+        }
         if (impl_loop_should_exit(this_label, xctx)) {
             break;
         }
@@ -1227,40 +1262,55 @@ afw_function_execute_for(
                 }
             }
 
-            if (body) {
-                /* for is void. Nested assignment writes the slot. */
-                result = impl_keep_loop_last(result,
-                    afw_value_block_evaluate_statement(x, body, p, xctx),
-                    xctx);
-                if (impl_loop_should_exit(this_label, xctx)) {
+            if (body || increment) {
+                const afw_pool_t *iter_p;
+                afw_boolean_t leave;
+
+                /*
+                 * for-let clones the wrapper; temps die with that
+                 * clone. Classic for mutates enclosing names — body
+                 * temps need a per-trip tracker like while.
+                 */
+                iter_p = clone_each ? p : impl_loop_iteration_p(xctx);
+                leave = false;
+                AFW_TRY {
+                    if (body) {
+                        result = impl_keep_loop_last(result,
+                            afw_value_block_evaluate_statement(
+                                x, body, iter_p, xctx),
+                            xctx);
+                        leave = impl_loop_should_exit(this_label, xctx);
+                    }
+                    if (!leave && increment) {
+                        if (clone_each) {
+                            if (previous_iterator_scope) {
+                                scope = afw_xctx_scope_clone(
+                                    previous_iterator_scope, xctx);
+                                afw_xctx_scope_deactivate(
+                                    previous_iterator_scope, xctx);
+                                afw_xctx_scope_release(
+                                    previous_iterator_scope, xctx);
+                            }
+                            else {
+                                scope = afw_xctx_scope_clone(
+                                    afw_xctx_scope_current(xctx), xctx);
+                            }
+                            previous_iterator_scope = scope;
+                            afw_xctx_scope_activate(scope, xctx);
+                        }
+                        impl_evaluate_for_increment(x, 3, increment,
+                            iter_p, xctx);
+                    }
+                }
+                AFW_FINALLY {
+                    if (!clone_each) {
+                        afw_pool_release(iter_p, xctx);
+                    }
+                }
+                AFW_ENDTRY;
+                if (leave) {
                     break;
                 }
-            }
-
-            if (increment) {
-                /*
-                 * Per-iteration clone is only for for-let/const (the
-                 * wrapper block that opened this call). Assign-for mutates
-                 * existing names; cloning that enclosing scope after a
-                 * skipped 0-symbol `{ }` body leaves the originals stale.
-                 */
-                if (clone_each) {
-                    if (previous_iterator_scope) {
-                        scope = afw_xctx_scope_clone(
-                            previous_iterator_scope, xctx);
-                        afw_xctx_scope_deactivate(
-                            previous_iterator_scope, xctx);
-                        afw_xctx_scope_release(
-                            previous_iterator_scope, xctx);
-                    }
-                    else {
-                        scope = afw_xctx_scope_clone(
-                            afw_xctx_scope_current(xctx), xctx);
-                    }
-                    previous_iterator_scope = scope;
-                    afw_xctx_scope_activate(scope, xctx);
-                }
-                impl_evaluate_for_increment(x, 3, increment, p, xctx);
             }
         }
     }
@@ -1414,13 +1464,29 @@ afw_function_execute_for_of(
                 assignment_type =
                     afw_compile_assignment_type_assign_only;
             }
-            result = impl_keep_loop_last(result,
-                afw_value_block_evaluate_statement(
-                    x, x->argv[3], p, xctx),
-                xctx);
-            first = false;
-            if (impl_loop_should_exit(this_label, xctx)) {
-                break;
+            {
+                const afw_pool_t *iter_p;
+                afw_boolean_t leave;
+
+                iter_p = clone_each ? p : impl_loop_iteration_p(xctx);
+                leave = false;
+                AFW_TRY {
+                    result = impl_keep_loop_last(result,
+                        afw_value_block_evaluate_statement(
+                            x, x->argv[3], iter_p, xctx),
+                        xctx);
+                    leave = impl_loop_should_exit(this_label, xctx);
+                }
+                AFW_FINALLY {
+                    if (!clone_each) {
+                        afw_pool_release(iter_p, xctx);
+                    }
+                }
+                AFW_ENDTRY;
+                first = false;
+                if (leave) {
+                    break;
+                }
             }
         }
     }
@@ -2023,7 +2089,7 @@ afw_function_execute_throw(
     afw_error_set_fz(code, AFW__FILE_LINE__, xctx,
         AFW_UTF8_FMT, AFW_UTF8_FMT_ARG(&message->internal));
     xctx->error->data = data;
-    longjmp(((xctx)->current_try->throw_jmp_buf), code);
+    afw_error_processing_throw(xctx, code);
 
     return afw_value_void;
 }
@@ -2340,7 +2406,6 @@ afw_function_execute_while(
     afw_function_execute_t *x)
 {
     afw_xctx_t *xctx = x->xctx;
-    const afw_pool_t *p = x->p;
     const afw_value_t *result;
     const afw_value_boolean_t *condition;
 
@@ -2355,9 +2420,20 @@ afw_function_execute_while(
         if (!condition->internal) {
             break;
         }
-        result = impl_keep_loop_last(result,
-            afw_value_block_evaluate_statement(x, x->argv[2], p, xctx),
-            xctx);
+        {
+            const afw_pool_t *iter_p = impl_loop_iteration_p(xctx);
+
+            AFW_TRY {
+                result = impl_keep_loop_last(result,
+                    afw_value_block_evaluate_statement(
+                        x, x->argv[2], iter_p, xctx),
+                    xctx);
+            }
+            AFW_FINALLY {
+                afw_pool_release(iter_p, xctx);
+            }
+            AFW_ENDTRY;
+        }
         if (impl_loop_should_exit(this_label, xctx))
         {
             break;

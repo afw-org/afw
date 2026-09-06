@@ -333,6 +333,9 @@ struct afw_compile_internal_parser_s {
     /* Shared resources. */
     const afw_compile_shared_t *shared;
 
+    /* True if this parser created shared (not caller-passed). */
+    afw_boolean_t shared_created;
+
     /* This is the value returned by the compiler. */
     afw_value_compiled_value_t *compiled_value;
 
@@ -750,16 +753,14 @@ do { \
 do { \
     afw_compile_parse_set_error_z(parser, \
         AFW__FILE_LINE__, message_z); \
-    longjmp(((parser->xctx)->current_try->throw_jmp_buf), \
-        (afw_error_code_syntax)); \
+    afw_error_processing_throw((parser)->xctx, afw_error_code_syntax); \
 } while (0)
 
 #define AFW_COMPILE_THROW_ERROR_FZ(format_z, ...) \
 do { \
     afw_compile_parse_set_error_fz(parser, \
         AFW__FILE_LINE__, format_z, __VA_ARGS__); \
-    longjmp(((parser->xctx)->current_try->throw_jmp_buf), \
-        (afw_error_code_syntax)); \
+    afw_error_processing_throw((parser)->xctx, afw_error_code_syntax); \
 } while (0)
 
 /*
@@ -1076,6 +1077,11 @@ afw_compile_lexical_parser_create(
 extern void
 afw_compile_lexical_parser_finish_and_release(
     afw_compile_parser_t *parser,
+    afw_xctx_t *xctx);
+
+extern void
+afw_compile_shared_release_temp(
+    const afw_compile_shared_t *shared,
     afw_xctx_t *xctx);
 
 /**

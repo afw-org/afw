@@ -28,11 +28,11 @@ Same 14,336-iteration nest (`i1<7`, `i2<8`, `i3<16`, `i4<16`). `concat` is `hex[
 | `let uu = concat; n = n + 1` | ~0.04s | ~2.9s | ~2.8s |
 | original concat + `last` + `n` | ~0.04s | ~3.3s | ~3.1s |
 
-Literal slot fill is back to pre-#277. Concat temps still promote. Gate `afwdev test -j` ~33s (BMP comment sweeps skipped; unskipped copies in `src/afw/tests-extra/test262/`).
+Literal slot fill is back to pre-#277. Concat temps still promote. Default `afwdev test -j` ~33s. BMP comment sweeps are unskipped on [PR #287](https://github.com/afw-org/afw/pull/287).
 
 **Later (not now):** unique managed concat string **and** unique managed integer last_return in the same loop body (~3s). Each alone is cheap. Heap free list is address-ordered insert + first-fit; mixed sizes may walk a growing list (~14k²). Tune how pool deals with free memory for different sizes. Empty `for` / `hex[i]` / concat-only are fine. Possible later registry MAP flag “include in big object”; do not special-case size now. `source_location` as interned string after compile splice settles. Type-graph names (`type_property`, `type_function_param`, `reference.name`) still utf8 views.
 
-**Next session (suggested):** heap free-list mixed sizes is the remaining eval win from the timings. Alternate: `source_location` after splice, or `FIXME_GET_IT_WORKING` eval `p` (BMP extra still the hang canary). Restart `afwfcgi` after install (stale mapped binary).
+**Next session (suggested):** heap free-list mixed sizes is the remaining eval win from the timings. Alternate: `source_location` after splice. Eval `p` = `scope->p` is [PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md). Restart `afwfcgi` after install (stale mapped binary).
 
 When **evaluation is done**, an **evaluated** result is an **unmanaged clone in dest `p`**. Functions/closures as the compile/eval result are not cloned that way yet (follow-up).
 
@@ -73,7 +73,7 @@ Separate inf (`memory_managed`), alloc in `xctx->p`, RC 1. Slots: new property n
 
 ## Follow-ups
 
-- Eval `p` is still caller `p` (`FIXME_GET_IT_WORKING`) — **next branch**. `scope->p` hung `comments-bmp-slash-0.as`; later probe SIGSEGV’d on auth deny and emptied curl JSON.
+- Eval `p` = `scope->p` when `{ }` has a frame: [PR #287](https://github.com/afw-org/afw/pull/287) / [`experiment-eval-p.md`](experiment-eval-p.md) (still caller `p` on `develop` until merge).
 - Adapter clones (held).
 - Clone-of-unmanaged object meta.
 - FRV keep as-is unless special cases spread.

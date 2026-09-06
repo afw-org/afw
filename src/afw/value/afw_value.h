@@ -336,6 +336,11 @@ AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_compiled_value_inf;
 
 
+/** @brief Assignable face of a compiled_value (pins the unit pool). */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_compiled_value_assignable_inf;
+
+
 
 /** @brief Value function inf. */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
@@ -775,7 +780,10 @@ afw_value_is_fully_evaluated(
 #define afw_value_is_compiled_value(A_VALUE) \
 ( \
     (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_compiled_value_inf \
+    ( \
+        (A_VALUE)->inf == &afw_value_compiled_value_inf || \
+        (A_VALUE)->inf == &afw_value_compiled_value_assignable_inf \
+    ) \
 )
 
 
@@ -1284,7 +1292,9 @@ afw_value_array_hold(
  * @param value to release, or NULL.
  * @param xctx of caller.
  *
- * Missing method, NULL, and undefined are no-ops.
+ * Missing method, NULL, and undefined are no-ops. Unmanaged
+ * compiled_value releases the unit pool (consume). Isolate first
+ * with get_assignable_value if the occupant must outlive that.
  */
 AFW_DECLARE(void)
 afw_value_release(

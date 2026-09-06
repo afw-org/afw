@@ -182,7 +182,7 @@ x*/
 // 1*/
 //? test: S7.4_A5_beyond_bmp
 //? description: UTF-8 supplementary code point in a // comment
-//? differences: Adaptive Script stores UTF-8. BMP via ES \\uXXXX is comments-bmp-slash-*.as (gate skipped; unskipped in tests-extra/test262/).
+//? differences: Adaptive Script stores UTF-8. BMP via ES \\uXXXX is comments-bmp-slash-*.as.
 //? expect: success
 //? source: ...
 
@@ -190,7 +190,7 @@ let e = eval<script>(script("let yy = 0;\n//let " + "😀" + "yy = -1;"));
 assert(e === undefined, "supplementary UTF-8 stays in // comment");
 //? test: S7.4_A6_beyond_bmp
 //? description: UTF-8 supplementary code point inside /* */
-//? differences: Adaptive Script stores UTF-8. BMP via ES \\uXXXX is comments-bmp-block-*.as (gate skipped; unskipped in tests-extra/test262/).
+//? differences: Adaptive Script stores UTF-8. BMP via ES \\uXXXX is comments-bmp-block-*.as.
 //? expect: success
 //? source: ...
 

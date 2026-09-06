@@ -349,8 +349,15 @@ impl_afw_value_optional_evaluate(
                     afw_boolean_v_true, xctx);
             }
             else {
+                /*
+                 * Test objects live in the compile unit. Eval temps
+                 * now land on the frame tracker; store the isolated
+                 * occupant so last_return clone does not walk a
+                 * freed string (0x0BADF00D).
+                 */
                 afw_object_set_property(test, afw_v_result,
-                    evaluated_value, xctx);
+                    afw_value_as_assignable(evaluated_value, xctx),
+                    xctx);
 
                 passed_value =
                     !afw_utf8_starts_with(expect, afw_s_error) &&
@@ -425,9 +432,14 @@ impl_afw_value_optional_evaluate(
             afw_object_set_property_as_string(test,
                 afw_v_errorReason, errorReason, xctx);
 
-            /* Set error property. */
-            afw_object_set_property_as_object(test, afw_v_error,
-                afw_error_to_object(AFW_ERROR_THROWN, p, xctx), xctx);
+            /* Set error property. Isolate: object is compile-unit. */
+            afw_object_set_property(test, afw_v_error,
+                afw_value_as_assignable(
+                    afw_value_create_unmanaged_object(
+                        afw_error_to_object(AFW_ERROR_THROWN, p, xctx),
+                        p, xctx),
+                    xctx),
+                xctx);
         }
 
         AFW_ENDTRY;
@@ -635,7 +647,7 @@ impl_afw_value_produce_compiler_listing(
                 AFW_UTF8_FMT_ARG(test_name));
             compiled_value = afw_compile_to_value(
                 source, source_location, info->compile_type, NULL, NULL,
-                p, xctx);
+                xctx->p, xctx);
             source_location = source_location;
             compiled_value = compiled_value;
             afw_value_produce_compiler_listing(

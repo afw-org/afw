@@ -120,11 +120,12 @@ afw_value_block_evaluate_block(
             afw_xctx_scope_current(xctx), xctx);
         afw_xctx_scope_activate(scope, xctx);
     }
-#ifndef FIXME_GET_IT_WORKING
-    eval_p = p;
-#else
+    /*
+     * Nested evaluate in a frame uses that frame's tracker. Zero-symbol
+     * `{ }` is not a frame, so it keeps caller p (already the enclosing
+     * tracker once this path is live). See designs/experiment-eval-p.md.
+     */
     eval_p = scope ? scope->p : p;
-#endif
     AFW_TRY{
         result = afw_value_block_evaluate_statements(
             x, self, 0, eval_p, xctx);

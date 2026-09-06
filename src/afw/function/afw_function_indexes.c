@@ -99,7 +99,7 @@ afw_function_execute_index_create(
             afw_compile_to_value(
                 &value->internal, AFW_FUNCTION_SOURCE_LOCATION,
                 afw_compile_type_script,
-                NULL, NULL, x->p, xctx);
+                NULL, NULL, xctx->p, xctx);
         } AFW_CATCH_UNHANDLED {
             result = afw_object_create_unmanaged_new_p(x->p, xctx);
             afw_object_set_property_as_object(result, afw_v_error,
@@ -125,7 +125,7 @@ afw_function_execute_index_create(
         parsedFilter = afw_compile_to_value(
             &filter->internal, AFW_FUNCTION_SOURCE_LOCATION, 
             afw_compile_type_script,
-            NULL, NULL, x->p, xctx);
+            NULL, NULL, xctx->p, xctx);
         if (parsedFilter == NULL) {
             AFW_THROW_ERROR_Z(general, "Error parsing filter expression.", xctx);
         }

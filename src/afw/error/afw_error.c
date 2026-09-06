@@ -14,6 +14,19 @@
 #include "afw_internal.h"
 
 
+AFW_DEFINE(void)
+afw_error_processing_handled(afw_xctx_t *xctx)
+{
+    if (xctx->error_processing_count == 0) {
+        return;
+    }
+    xctx->error_processing_count--;
+    if (xctx->error_processing_count == 0) {
+        afw_pool_error_processing_finish(xctx);
+    }
+}
+
+
 typedef struct impl_error_code_map_s {
     afw_utf8_t id;
     afw_boolean_t error_allow_in_response;

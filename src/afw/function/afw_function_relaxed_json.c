@@ -75,7 +75,7 @@ afw_function_execute_compile_relaxed_json(
     result = afw_compile_to_value(
         &json->internal, AFW_FUNCTION_SOURCE_LOCATION,
         afw_compile_type_relaxed_json,
-        NULL, NULL, x->p, x->xctx);
+        NULL, NULL, x->xctx->p, x->xctx);
 
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         listing = afw_function_evaluate_whitespace_parameter(x, 2);

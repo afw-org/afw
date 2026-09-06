@@ -106,6 +106,9 @@ afw_compile_shared_create(
 
 
 
+
+
+
 /**
  * @brief Compile and evaluate a string.
  * @param string to compile and evaluate.
@@ -159,6 +162,14 @@ afw_compile_and_evaluate(
  * Either shared, parent, or p must be specified.  The p used by the parser
  * is shared->p, parent->p, or p as available in that order.
  *
+ * For a new compiled_value unit, p is the parent of that unit heap.
+ * Adaptive compile() / eval<script> pass xctx->p. get_assignable_value
+ * of a compiled_value extra-holds the unit pool when that unit is a
+ * heap (dest p was a heap); it throws if dest p was a tracker (the
+ * graph cannot be cloned). afw_value_release of the unmanaged
+ * compiled_value releases the unit. JSON / object results use the
+ * existing object get_assignable_value (clone_managed).
+ *
  * Either string or callback must be non-NULL.  If both are non-NULL, the
  * string will be processed first.
  *
@@ -195,7 +206,8 @@ afw_compile_to_value_with_callback(
  * @return value
  *
  * Either shared, parent, or p must be specified.  The p used by the parser
- * is shared->p, parent->p, or p as available in that order.
+ * is shared->p, parent->p, or p as available in that order. See
+ * afw_compile_to_value_with_callback() for compile p / get_assignable_value.
  *
  * This function can be used for callbacks of type afw_utf8_to_value_t.
  *

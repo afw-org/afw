@@ -2473,6 +2473,22 @@ afw_compile_shared_create(
 }
 
 
+void
+afw_compile_shared_release_temp(
+    const afw_compile_shared_t *shared,
+    afw_xctx_t *xctx)
+{
+    afw_compile_shared_t *self;
+
+    if (!shared || !shared->temp_p) {
+        return;
+    }
+    self = (afw_compile_shared_t *)shared;
+    afw_pool_release(self->temp_p, xctx);
+    self->temp_p = NULL;
+    self->string_literals = NULL;
+}
+
 
 /* Create a parser. */
 afw_compile_parser_t *
@@ -2490,9 +2506,10 @@ afw_compile_lexical_parser_create(
     afw_xctx_t *xctx)
 {
     afw_compile_parser_t *parser;
+    const afw_pool_t *unit_p;
+    const afw_compile_shared_t *use_shared;
+    afw_boolean_t shared_created;
 
-    /* Initialize parser work area. */
-    parser = afw_xctx_calloc_type(afw_compile_parser_t, xctx);
     if (cede_p && ( shared || parent)) {
         AFW_THROW_ERROR_Z(general,
             "afw_compile_lexical_parser_create() parameter cede_p true when "
@@ -2505,21 +2522,39 @@ afw_compile_lexical_parser_create(
             "parent, shared or p must be non-NULL",
             xctx);
     }
+
+    shared_created = false;
     if (shared) {
-        parser->p = shared->p;
-        parser->shared = shared;
+        unit_p = shared->p;
+        use_shared = shared;
+    }
+    else if (parent && parent->shared) {
+        unit_p = parent->p;
+        use_shared = parent->shared;
     }
     else {
         if (parent) {
-            parser->p = parent->p;
+            unit_p = parent->p;
         }
         else if (cede_p) {
-            parser->p = p;
+            unit_p = p;
         }
         else {
-            parser->p = afw_pool_create(p, xctx);
+            unit_p = afw_pool_create(p, xctx);
         }
-        parser->shared = afw_compile_shared_create(parser->p, xctx);
+        use_shared = afw_compile_shared_create(unit_p, xctx);
+        shared_created = true;
+    }
+
+    parser = afw_pool_calloc_type(unit_p, afw_compile_parser_t, xctx);
+    parser->p = unit_p;
+    parser->shared = use_shared;
+    parser->shared_created = shared_created;
+    if (parser->shared && !parser->shared->temp_p) {
+        afw_compile_shared_t *s = (afw_compile_shared_t *)parser->shared;
+        s->temp_p = afw_pool_create(s->p, xctx);
+        s->string_literals = apr_hash_make(
+            afw_pool_get_apr_pool(s->temp_p));
     }
     parser->apr_p = afw_pool_get_apr_pool(parser->p);
     parser->xctx = xctx;
@@ -2531,7 +2566,6 @@ afw_compile_lexical_parser_create(
     parser->strict = compile_type == afw_compile_type_json;
     parser->compile_type = compile_type;
     parser->residual_check = residual_check;
-    parser->contextual.source_location = source_location;
     parser->s = apr_array_make(parser->apr_p, 256,
         sizeof(afw_utf8_octet_t));
     parser->values = apr_array_make(parser->apr_p, 10,
@@ -2545,9 +2579,17 @@ afw_compile_lexical_parser_create(
         afw_value_compiled_value_t, xctx);
     parser->compiled_value->inf = &afw_value_compiled_value_inf;
     parser->compiled_value->p = parser->p;
+    parser->compiled_value->shared = parser->shared;
     if (source_location) {
+        /*
+         * Caller source_location may be in dest p (a frame tracker).
+         * Contextual and the unit must not point at that after the
+         * frame last-releases. Clone into the compile heap.
+         */
         parser->compiled_value->source_location =
             afw_utf8_clone(source_location, parser->p, xctx);
+        parser->contextual.source_location =
+            parser->compiled_value->source_location;
     }
     if (parent) {
         parser->compiled_value->parent = parent;
@@ -2573,9 +2615,9 @@ afw_compile_lexical_parser_finish_and_release(
     afw_compile_parser_t *parser,
     afw_xctx_t *xctx)
 {
-    /* No ambient xctx compile policy to restore (unit policy is on compiled_value). */
-    (void)parser;
-    (void)xctx;
+    if (parser && parser->shared_created) {
+        afw_compile_shared_release_temp(parser->shared, xctx);
+    }
 }
 
 

@@ -70,7 +70,7 @@ afw_compile_and_evaluate(
     afw_xctx_t *xctx)
 {
     const afw_value_t *compiled_value;
-    const afw_value_t *result;
+    const afw_value_t *result = NULL;
 
     /** @todo more needs to be thought about for memory usage. Only
      * result needs to be saved, but anything "done" in the script
@@ -84,7 +84,17 @@ afw_compile_and_evaluate(
         afw_compile_residual_check_to_full, \
         NULL, NULL, p, xctx);
 
-    result = afw_value_evaluate(compiled_value, p, xctx);
+    AFW_TRY {
+        result = afw_value_evaluate(compiled_value, p, xctx);
+    }
+    AFW_FINALLY {
+        if (compiled_value &&
+            compiled_value->inf == &afw_value_compiled_value_inf)
+        {
+            afw_value_release(compiled_value, xctx);
+        }
+    }
+    AFW_ENDTRY;
 
     return result;
 }

@@ -704,6 +704,114 @@ impl_debug_poison_user(void *user, afw_size_t size)
 /* --------------------------- pool implementations ------------------------- */
 
 /*
+ * While error_processing_count > 0, last release/destroy is recorded
+ * and skipped. Catching ENDTRY runs them when the count is 0 again.
+ * Returns true if the caller should return without doing the work.
+ */
+static afw_boolean_t
+impl_error_delaying_release(
+    AFW_POOL_SELF_T *self,
+    afw_boolean_t is_destroy,
+    afw_xctx_t *xctx)
+{
+    if (!xctx || xctx->error_processing_count == 0) {
+        return false;
+    }
+    /* Scope trackers (child of a heap). Not compile heaps, not
+     * create() of a tracker. */
+    if (!afw_pool_internal_is_tracker(&self->pub)) {
+        return false;
+    }
+    if (self->parent &&
+        afw_pool_internal_is_tracker(&self->parent->pub))
+    {
+        return false;
+    }
+    if (is_destroy) {
+        self->error_processing_destroy = true;
+    }
+    else if (self->error_delaying_release) {
+        return true;
+    }
+    else if (self->reference_count != 1) {
+        return false;
+    }
+    if (!self->error_delaying_release) {
+        self->error_delaying_release = true;
+        self->error_delaying_release_next =
+            (afw_pool_internal_self_t *)(void *)
+                xctx->error_delaying_release_first;
+        xctx->error_delaying_release_first = &self->pub;
+    }
+    return true;
+}
+
+
+static int
+impl_pool_parent_depth(afw_pool_internal_self_t *p)
+{
+    int depth;
+
+    for (depth = 0; p; p = p->parent) {
+        depth++;
+    }
+    return depth;
+}
+
+
+AFW_DEFINE(void)
+afw_pool_error_processing_finish(afw_xctx_t *xctx)
+{
+    afw_pool_internal_self_t *head;
+    afw_pool_internal_self_t *curr;
+    afw_pool_internal_self_t *pick;
+    afw_pool_internal_self_t **pos;
+    afw_pool_internal_self_t **pick_pos;
+    int pick_depth;
+    int depth;
+    afw_boolean_t do_destroy;
+
+    head = (afw_pool_internal_self_t *)(void *)
+        xctx->error_delaying_release_first;
+    xctx->error_delaying_release_first = NULL;
+
+    while (head) {
+        pick = NULL;
+        pick_pos = &head;
+        pick_depth = -1;
+        pos = &head;
+        curr = head;
+        while (curr) {
+            if (curr->error_delaying_release) {
+                depth = impl_pool_parent_depth(curr);
+                if (depth >= pick_depth) {
+                    pick = curr;
+                    pick_pos = pos;
+                    pick_depth = depth;
+                }
+            }
+            pos = &curr->error_delaying_release_next;
+            curr = curr->error_delaying_release_next;
+        }
+        if (!pick) {
+            break;
+        }
+        *pick_pos = pick->error_delaying_release_next;
+        pick->error_delaying_release_next = NULL;
+        pick->error_delaying_release = false;
+        do_destroy = pick->error_processing_destroy;
+        pick->error_processing_destroy = false;
+        if (do_destroy) {
+            afw_pool_destroy(&pick->pub, xctx);
+        }
+        else {
+            afw_pool_release(&pick->pub, xctx);
+        }
+    }
+}
+
+
+/*
  * Implementation of method release for interface afw_pool.
  *
  * Returns the pool if it still exists, or NULL if this call destroyed it.
@@ -714,6 +822,10 @@ impl_afw_pool_release(
     afw_xctx_t *xctx)
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "release");
+
+    if (impl_error_delaying_release(self, false, xctx)) {
+        return &self->pub;
+    }
 
     /* Decrement reference count and release pools resources if zero. */
     if (--(self->reference_count) == 0) {
@@ -750,6 +862,11 @@ impl_heap_afw_pool_destroy(
     afw_pool_cleanup_t *e;
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
+
+    if (impl_error_delaying_release(self, true, xctx)) {
+        return;
+    }
+    self->error_delaying_release = false;
 
     /*
      * Call all of the cleanup routines for this pool before releasing children.
@@ -1100,6 +1217,11 @@ impl_tracker_afw_pool_destroy(
     afw_pool_cleanup_t *e;
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
+
+    if (impl_error_delaying_release(self, true, xctx)) {
+        return;
+    }
+    self->error_delaying_release = false;
 
     /* Tracker always has a parent. (needed to suppress valgrind error) */
     if (!self->parent) {

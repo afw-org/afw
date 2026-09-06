@@ -421,7 +421,7 @@ afw_object_get_property_as_date_source(
             "Typesafe error: expecting 'date' but "
             "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
-        longjmp(((xctx)->current_try->throw_jmp_buf), afw_error_code_general);
+        afw_error_processing_throw((xctx), afw_error_code_general);
     }
     return &(((const afw_value_date_t *)value)->internal);
 }
@@ -453,7 +453,7 @@ afw_object_get_next_property_as_date_source(
             "Typesafe error: expecting 'date' but "
             "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
-        longjmp(((xctx)->current_try->throw_jmp_buf), afw_error_code_general);
+        afw_error_processing_throw((xctx), afw_error_code_general);
     }
     return &(((const afw_value_date_t *)value)->internal);
 }
@@ -629,7 +629,7 @@ afw_array_of_date_get_next_source(
             "Typesafe error: expecting 'date' but "
             "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
-        longjmp(((xctx)->current_try->throw_jmp_buf), afw_error_code_general);
+        afw_error_processing_throw((xctx), afw_error_code_general);
     }
     return (const afw_date_t *)internal;
 }

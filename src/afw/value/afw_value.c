@@ -89,6 +89,7 @@ afw_value_slot_store(
     afw_xctx_t *xctx)
 {
     const afw_value_t *assignable;
+    afw_boolean_t unmanaged_compiled_value;
 
     if (!incoming) {
         incoming = afw_value_undefined;
@@ -101,9 +102,19 @@ afw_value_slot_store(
      * self). Release-first lets the pool reuse that block, then
      * create_managed memcpy is dest==src (issue #275).
      */
+    unmanaged_compiled_value =
+        incoming && incoming->inf == &afw_value_compiled_value_inf;
     assignable = afw_value_as_assignable(incoming, xctx);
     if (*slot == assignable) {
         return;
+    }
+    /*
+     * Unmanaged compiled_value get_assignable_value extra-holds the unit
+     * pool and stamps the assignable face (same pointer). Release the
+     * original to drop the birth hold.
+     */
+    if (unmanaged_compiled_value) {
+        afw_value_release(incoming, xctx);
     }
     afw_value_release(*slot, xctx);
     *slot = assignable;
@@ -1386,6 +1397,10 @@ afw_value_register_core_value_infs(afw_xctx_t *xctx)
     afw_environment_register_value_inf(
         &afw_value_compiled_value_inf.rti.implementation_id,
         &afw_value_compiled_value_inf, xctx);
+
+    afw_environment_register_value_inf(
+        &afw_value_compiled_value_assignable_inf.rti.implementation_id,
+        &afw_value_compiled_value_assignable_inf, xctx);
 
     afw_environment_register_value_inf(
         &afw_value_call_inf.rti.implementation_id,

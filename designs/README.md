@@ -57,6 +57,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`lineage-and-library-floor.md`](lineage-and-library-floor.md) | Base vs private packages; Docker ICU/APR floor; ICU in `utf8/` + `code_point/` |
 | [`sibling-afw-package.md`](sibling-afw-package.md) | Another Git repo next to this base: layout, write wall, sandbox, prime kit |
 | [`experiment-brainstorm.md`](experiment-brainstorm.md) | **#277** — unmanaged / managed two worlds (`create_unmanaged` / frames `create_managed`; last_return slot) |
+| [`experiment-eval-p.md`](experiment-eval-p.md) | Discovery — eval `p` = `scope->p`; throwaway compile/eval loops flatten; BMP in default `test -j` |
 
 ## Conventions
 

@@ -134,6 +134,25 @@ struct afw_error_s {
 };
 
 /**
+ * @brief CATCH finished: decrement error_processing_count, and if it
+ *     is 0 run waiting last release/destroy (inner first).
+ */
+AFW_DECLARE(void)
+afw_error_processing_handled(afw_xctx_t *xctx);
+
+/**
+ * Increment error_processing_count and longjmp. Catching AFW_ENDTRY
+ * calls afw_error_processing_handled(). Rethrow does not.
+ *
+ * Not a do/while: that can shift the reported throw site depending on
+ * compile options and whether do/while makes a block. Caller's
+ * semicolon attaches to longjmp.
+ */
+#define afw_error_processing_throw(xctx, code) \
+    (xctx)->error_processing_count++; \
+    longjmp((xctx)->current_try->throw_jmp_buf, (code))
+
+/**
  * @name AFW error throw / try design (read before touching longjmp)
  * @{
  *
@@ -159,8 +178,10 @@ struct afw_error_s {
  * AFW_ENDTRY always restores xctx->current_try to the outer frame. If the
  * error was not marked caught, ENDTRY copies the saved error back and
  * longjmps to the outer try (rethrow). If it was caught, execution continues
- * after ENDTRY. On the non-rethrow path, ENDTRY also restores the evaluation
- * stack top to the offset saved at AFW_TRY entry.
+ * after ENDTRY after afw_error_processing_handled() (count back to 0
+ * runs waiting last release/destroy). On the non-rethrow path, ENDTRY
+ * also restores the evaluation stack top to the offset saved at AFW_TRY
+ * entry.
  *
  * ## AFW_ERROR_RETHROW (flag, not an immediate rethrow)
  *
@@ -322,7 +343,7 @@ AFW_DECLARE(void
  * Always follow with a semicolon ( AFW_THROW(xctx); ).
  */
 #define AFW_THROW(xctx) \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (xctx)->error->code)
+    afw_error_processing_throw((xctx), (xctx)->error->code)
 
 
 /**
@@ -337,7 +358,7 @@ AFW_DECLARE(void
 do { \
     afw_error_set_z(afw_error_code_ ## code, \
         AFW__FILE_LINE__, message_z, xctx); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 
@@ -355,7 +376,7 @@ do { \
     xctx->error->data = _data; \
     afw_error_set_z(afw_error_code_ ## code, \
         AFW__FILE_LINE__, message_z, xctx); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 
@@ -374,7 +395,7 @@ do { \
     afw_error_rv_set_z(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         AFW__FILE_LINE__, message_z, xctx); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 
@@ -396,7 +417,7 @@ do { \
     afw_error_rv_set_z(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         AFW__FILE_LINE__, message_z, xctx); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 
@@ -413,7 +434,7 @@ do { \
 do { \
     afw_error_set_fz(afw_error_code_ ## code, \
         AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 
@@ -432,7 +453,7 @@ do { \
     xctx->error->data = _data; \
     afw_error_set_fz(afw_error_code_ ## code, \
         AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 
@@ -452,7 +473,7 @@ do { \
     afw_error_rv_set_fz(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 
@@ -475,7 +496,7 @@ do { \
     afw_error_rv_set_fz(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 
@@ -492,7 +513,7 @@ do { \
 do { \
     afw_error_set_vz(afw_error_code_ ## code, \
         AFW__FILE_LINE__, format_z, ap, xctx); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 
@@ -511,7 +532,7 @@ do { \
     xctx->error->data = _data; \
     afw_error_set_vz(afw_error_code_ ## code, \
         AFW__FILE_LINE__, format_z, ap, xctx); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 
@@ -529,7 +550,7 @@ do { \
     afw_error_rv_set_vz(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         AFW__FILE_LINE__, format_z, ap, xctx); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 
@@ -550,7 +571,7 @@ do { \
     afw_error_rv_set_vz(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         AFW__FILE_LINE__, format_z, ap, xctx); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 
@@ -567,7 +588,7 @@ do { \
 do { \
     afw_error_set_z(afw_error_code_ ## code, \
         footprint.source_z, message_z, xctx); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 
@@ -588,7 +609,7 @@ do { \
     afw_error_rv_set_z(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         footprint.source_z, message_z, xctx); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 
@@ -607,7 +628,7 @@ do { \
 do { \
     afw_error_set_fz(afw_error_code_ ## code, \
         footprint.source_z, xctx, format_z, __VA_ARGS__); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 
@@ -629,7 +650,7 @@ do { \
     afw_error_rv_set_fz(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         footprint.source_z, xctx, format_z, __VA_ARGS__); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 /**
@@ -647,7 +668,7 @@ do { \
 do { \
     afw_error_set_vz(afw_error_code_ ## code, \
         footprint.source_z, format_z, ap, xctx); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 /**
@@ -666,7 +687,7 @@ do { \
     afw_error_rv_set_vz(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         footprint.source_z, format_z, ap, xctx); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+    afw_error_processing_throw((xctx), afw_error_code_ ## code); \
 } while (0)
 
 /**
@@ -678,7 +699,7 @@ do { \
 do { \
     afw_error_set_z(afw_error_code_memory, \
         AFW__FILE_LINE__, "Memory error", xctx); \
-    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_memory)); \
+    afw_error_processing_throw((xctx), afw_error_code_memory); \
 } while (0)
 
 /**
@@ -909,9 +930,12 @@ do {\
     if (this_ERROR_OCCURRED && !this_ERROR_CAUGHT) { \
         AFW_ERROR_COPY(xctx->error, &this_THROWN_ERROR); \
         longjmp(xctx->current_try->throw_jmp_buf, this_THROWN_ERROR.code); \
-    }\
+    } \
     afw_xctx_evaluation_stack_rewind( \
         xctx->evaluation_stack->first + this_TOP_OFFSET, xctx); \
+    if (this_ERROR_OCCURRED && this_ERROR_CAUGHT) { \
+        afw_error_processing_handled(xctx); \
+    } \
 } while (0)
 
 

@@ -769,12 +769,13 @@ afw_function_execute_test_script(
         afw_value_as_casted_utf8(expected, x->p, xctx),
         xctx);
 
+    compiled = NULL;
     AFW_TRY{
 
         compiled = afw_compile_to_value(
             &expression->internal, AFW_FUNCTION_SOURCE_LOCATION,
             afw_compile_type_script,
-            NULL, NULL, x->p, xctx);
+            NULL, NULL, xctx->p, xctx);
 
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(5)) {
             evaluated = afw_value_evaluate_with_additional_untrusted_qualified_variables(
@@ -811,6 +812,11 @@ afw_function_execute_test_script(
                 afw_error_to_object(AFW_ERROR_THROWN, x->p, xctx), xctx);
     }
 
+    AFW_FINALLY {
+        if (afw_value_is_compiled_value(compiled)) {
+            afw_value_release(compiled, xctx);
+        }
+    }
     AFW_ENDTRY;
 
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
@@ -898,11 +904,12 @@ afw_function_execute_test_template(
         afw_value_as_casted_utf8(expected, x->p, xctx),
         xctx);
 
+    compiled = NULL;
     AFW_TRY {
         compiled = afw_compile_to_value(
             &template->internal, AFW_FUNCTION_SOURCE_LOCATION,
             afw_compile_type_template,
-            NULL, NULL, x->p, xctx);
+            NULL, NULL, xctx->p, xctx);
 
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(5)) {
             evaluated = afw_value_evaluate_with_additional_untrusted_qualified_variables(
@@ -939,6 +946,11 @@ afw_function_execute_test_template(
             afw_error_to_object(AFW_ERROR_THROWN, x->p, xctx), xctx);
     }
 
+    AFW_FINALLY {
+        if (afw_value_is_compiled_value(compiled)) {
+            afw_value_release(compiled, xctx);
+        }
+    }
     AFW_ENDTRY;
   
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
@@ -1369,7 +1381,7 @@ afw_function_execute_compile_from_file(
         result = afw_compile_to_value_with_callback(NULL,
             impl_octet_get_cb, self, file, compile_type, 
             afw_compile_residual_check_to_full,
-            NULL, NULL, x->p, xctx
+            NULL, NULL, xctx->p, xctx
         );
     }
     AFW_FINALLY {
