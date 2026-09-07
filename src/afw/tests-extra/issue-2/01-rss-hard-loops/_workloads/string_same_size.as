@@ -1,5 +1,5 @@
 /* #2 lab: overwrite a string slot with another same-length literal.
- * Bytes should reuse if optional free of same-size blocks works.
+ * Last-release of the previous managed string. Should stay flat.
  */
 let s = "x";
 while (true) {

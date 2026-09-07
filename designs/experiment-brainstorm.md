@@ -35,7 +35,7 @@ Literal slot fill stayed pre-#277 after intern. The mixed-size concat + integer 
 
 **Later (not this loop):** heap free-list mixed sizes if a *new* long-running pattern shows first-fit walking a growing list. Possible later registry MAP flag “include in big object”; do not special-case size now. `source_location` as interned string after compile splice settles. Type-graph names (`type_property`, `type_function_param`, `reference.name`) still utf8 views.
 
-**Next session (suggested):** parked **#277** residuals (Adaptive `clone()`, unevaluated clone-out, `qualifier("current")` snapshot, skip `double_free_throws`) or `source_location` after splice — not a pool rewrite. Restart `afwfcgi` after install (stale mapped binary).
+**Next session (suggested):** remaining RSS soaks (`function_return` FRV wrapper, `array_push_pop` managed entry) or parked **#277** residuals (Adaptive `clone()`, unevaluated clone-out, `qualifier("current")` snapshot, skip `double_free_throws`) — not a pool rewrite. Restart `afwfcgi` after install (stale mapped binary).
 
 When **evaluation is done**, an **evaluated** result is an **unmanaged clone in dest `p`**. Functions/closures as the compile/eval result are not cloned that way yet (follow-up).
 
@@ -78,7 +78,7 @@ Separate inf (`memory_managed`), alloc in `xctx->p`, RC 1. Slots: new property n
 
 - Adapter clones (held).
 - Clone-of-unmanaged object meta.
-- FRV keep as-is unless special cases spread.
+- FRV unique consume still leaves the wrapper header in `self->p` until that pool dies. Product `return_temps.as` is green; the `function_return` RSS soak (~150 MiB/s, 2026-09-07) is the leak. Do not paper over it with a helper around assign. Live table: [`src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md`](../src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md).
 - Unevaluated clone-out (script_function, closure).
 - Adaptive `clone()` still the old function.
 - `qualifier("current")` snapshot list tail.

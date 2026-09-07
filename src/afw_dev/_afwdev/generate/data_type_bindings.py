@@ -24,17 +24,18 @@
 #                 get_assignable_value are as-is. Object/array
 #                 get_reference is as-is; get_assignable_value is a
 #                 managed wrapper (object) or managed clone (array) so
-#                 slots do not share immortal bags.
+#                 slots do not share immortal objects/arrays.
 #   managed       Start-at-1. Header + copied internals in
 #                 xctx->p, RC 1 (caller must release). get_reference /
-#                 get_assignable_value bump. Last-release currently
-#                 drops RC only (header leak until alloc-pool free is
-#                 trusted).
+#                 get_assignable_value bump. Scalar last-release
+#                 free_memorys the header via xctx->p. Object/array:
+#                 instance last-release (embedded dual-face has no
+#                 extra header).
 #   managed_slice View into a containing managed utf8/memory value. Holds
 #                 containing at create. Header in xctx->p, RC 1.
 #                 get_reference bumps the slice. Last release of the
-#                 slice releases containing; slice header leak until
-#                 alloc-pool free is trusted.
+#                 slice releases containing and free_memorys the slice
+#                 header via xctx->p.
 #   compile_literal  Compile-pool scalar (integer/double/string
 #                 literals). Act like permanent: get_reference /
 #                 get_assignable_value as-is. clone_unmanaged copies
@@ -46,7 +47,7 @@
 #                 Object/array get_reference and optional_release throw
 #                 (same as scalars). get_assignable_value: already-
 #                 managed occupant → dual-face bump; generic memory
-#                 bag → clone_managed; else managed look-through
+#                 object/array → clone_managed; else managed look-through
 #                 wrapper.
 #
 # Create path depends on cType / directReturn (see designs/memory-management.md phase 0a):
@@ -246,8 +247,10 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @brief Managed evaluated value inf for data type ' + id + '.\n')
         fd.write(' *\n')
         fd.write(' * Start-at-1 holdable in xctx->p (caller must release).\n')
-        fd.write(' * get_reference / get_assignable_value bump. Last-release\n')
-        fd.write(' * drops RC; header leak until alloc-pool free is trusted.\n')
+        fd.write(' * get_reference / get_assignable_value bump. Scalar\n')
+        fd.write(' * last-release free_memorys the header via xctx->p.\n')
+        fd.write(' * Object/array: instance last-release (embedded dual-face\n')
+        fd.write(' * has no extra header).\n')
         fd.write(' */\n')
         fd.write(declare_data + '(afw_value_inf_t)\n')
         fd.write('afw_value_managed_' + id + '_inf;\n')
@@ -258,8 +261,8 @@ def write_h_section(fd, prefix, obj):
             fd.write(' *\n')
             fd.write(' * Slice of a managed value: get_reference containing at create.\n')
             fd.write(' * Header in xctx->p. Slice starts at 1. get_reference bumps\n')
-            fd.write(' * the slice. Last release of the slice releases containing;\n')
-            fd.write(' * slice header leak until alloc-pool free is trusted.\n')
+            fd.write(' * the slice. Last release of the slice releases containing\n')
+            fd.write(' * and free_memorys the slice header via xctx->p.\n')
             fd.write(' */\n')
             fd.write(declare_data + '(afw_value_inf_t)\n')
             fd.write('afw_value_managed_slice_' + id + '_inf;\n')
@@ -468,8 +471,8 @@ def write_h_section(fd, prefix, obj):
             if _scalar_holdable_create(id):
                 fd.write(' * Allocates in xctx->p. Starts at reference count 1\n')
                 fd.write(' * (caller must release). get_reference /\n')
-                fd.write(' * get_assignable_value bump. Last-release drops RC;\n')
-                fd.write(' * header leak until alloc-pool free is trusted.\n')
+                fd.write(' * get_assignable_value bump. Last-release\n')
+                fd.write(' * free_memorys the header via xctx->p.\n')
             else:
                 fd.write(' * Value wrapper around an existing object/array.\n')
                 fd.write(' * Container hold is on the instance, not this RC.\n')
@@ -1108,6 +1111,7 @@ def write_c_section(fd, prefix, obj):
 
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
         fd.write('/* managed ' + id + ': optional_release drops RC; */\n')
+        fd.write('/* scalar last-release free_memorys via xctx->p. */\n')
         fd.write('/* get_reference / get_assignable_value bump. */\n')
         fd.write('#define AFW_IMPLEMENTATION_ID "managed_' + id + '"\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_' + id + '_inf\n')

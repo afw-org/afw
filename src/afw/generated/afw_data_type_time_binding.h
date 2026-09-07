@@ -75,8 +75,10 @@ afw_value_unmanaged_time_inf;
  * @brief Managed evaluated value inf for data type time.
  *
  * Start-at-1 holdable in xctx->p (caller must release).
- * get_reference / get_assignable_value bump. Last-release
- * drops RC; header leak until alloc-pool free is trusted.
+ * get_reference / get_assignable_value bump. Scalar
+ * last-release free_memorys the header via xctx->p.
+ * Object/array: instance last-release (embedded dual-face
+ * has no extra header).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_time_inf;
@@ -241,8 +243,8 @@ afw_value_time_allocate(
  *
  * Allocates in xctx->p. Starts at reference count 1
  * (caller must release). get_reference /
- * get_assignable_value bump. Last-release drops RC;
- * header leak until alloc-pool free is trusted.
+ * get_assignable_value bump. Last-release
+ * free_memorys the header via xctx->p.
  * Copies *internal into the header when internal is non-NULL.
  */
 AFW_DECLARE(const afw_value_t *)

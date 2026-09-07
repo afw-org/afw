@@ -1,5 +1,5 @@
 /* #2 lab: `a = [i]` each iteration in one long scope.
- * Same unmanaged-face overwrite as object_rebind.
+ * Same isolate-on-assign as object_rebind. Should stay flat.
  */
 let i = 0;
 let a = [];

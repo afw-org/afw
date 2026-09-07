@@ -85,8 +85,10 @@ afw_value_assignable_array_inf;
  * @brief Managed evaluated value inf for data type array.
  *
  * Start-at-1 holdable in xctx->p (caller must release).
- * get_reference / get_assignable_value bump. Last-release
- * drops RC; header leak until alloc-pool free is trusted.
+ * get_reference / get_assignable_value bump. Scalar
+ * last-release free_memorys the header via xctx->p.
+ * Object/array: instance last-release (embedded dual-face
+ * has no extra header).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_array_inf;

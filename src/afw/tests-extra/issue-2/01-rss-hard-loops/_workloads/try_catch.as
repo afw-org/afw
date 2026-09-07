@@ -1,5 +1,5 @@
 /* #2 lab: throw and catch every iteration (rewind path).
- * Error objects and scope rewind must not accumulate on one evaluate.
+ * in_use should stay flat; a small RSS-only APR climb is under the fail bar.
  */
 let i = 0;
 while (true) {

@@ -26,6 +26,7 @@ afwdev test -T src/afw/tests-extra/adapter-lifecycle --show-all
 afwdev test -T src/afw/tests-extra/07b-firehose-catalog-pool
 
 # 5) issue #2 hard-loop RSS lab (opt-in; not the default gate)
+# Live table: src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md
 afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-loops --show-all
 ```
 

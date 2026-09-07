@@ -122,6 +122,7 @@ impl_afw_value_assignable_optional_release(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* managed object: optional_release drops RC; */
+/* scalar last-release free_memorys via xctx->p. */
 /* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_object"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_object_inf

@@ -1,5 +1,5 @@
-/* #2 lab: braced `i = i + 1`. Tracker APR (RSS) plus scalar boxing (in_use).
- * Prefer integer_assign_no_brace for the scalar-only slice.
+/* #2 lab: braced `i = i + 1`. Should stay flat (managed last-release
+ * free_memory via xctx->p; temps die with the frame tracker).
  */
 let i = 0;
 while (true) {

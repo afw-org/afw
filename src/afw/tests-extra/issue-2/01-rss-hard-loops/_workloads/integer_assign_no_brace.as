@@ -1,6 +1,5 @@
-/* #2 lab: unbraced scalar overwrite.
- * in_use climbs with RSS until optional free / eval-heap boxing.
- * No per-iteration tracker (that is empty_loop / braced scripts).
+/* #2 lab: unbraced scalar overwrite. No per-iteration `{ }`.
+ * Should stay flat (same last-release as braced integer_assign).
  */
 let i = 0;
 while (true)

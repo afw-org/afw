@@ -1,4 +1,5 @@
-/* #2 lab: unbraced overlay set (S4), no per-iteration `{ }`.
+/* #2 lab: unbraced overlay set, no per-iteration `{ }`.
+ * Should stay flat (same as braced object_prop_assign).
  */
 let o = { x: 0 };
 let i = 0;

@@ -1,5 +1,5 @@
 /* #2 lab: assign the result of a script function that returns a temp integer.
- * FRV + slot_store should recycle on the caller's evaluation heap.
+ * Unique FRV consume leaves the wrapper header in caller p — still climbs.
  */
 let i = 0;
 function f() {

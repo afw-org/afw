@@ -75,8 +75,10 @@ afw_value_unmanaged_anyURI_inf;
  * @brief Managed evaluated value inf for data type anyURI.
  *
  * Start-at-1 holdable in xctx->p (caller must release).
- * get_reference / get_assignable_value bump. Last-release
- * drops RC; header leak until alloc-pool free is trusted.
+ * get_reference / get_assignable_value bump. Scalar
+ * last-release free_memorys the header via xctx->p.
+ * Object/array: instance last-release (embedded dual-face
+ * has no extra header).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_anyURI_inf;
@@ -86,8 +88,8 @@ afw_value_managed_anyURI_inf;
  *
  * Slice of a managed value: get_reference containing at create.
  * Header in xctx->p. Slice starts at 1. get_reference bumps
- * the slice. Last release of the slice releases containing;
- * slice header leak until alloc-pool free is trusted.
+ * the slice. Last release of the slice releases containing
+ * and free_memorys the slice header via xctx->p.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_slice_anyURI_inf;
@@ -273,8 +275,8 @@ afw_value_anyURI_allocate(
  *
  * Allocates in xctx->p. Starts at reference count 1
  * (caller must release). get_reference /
- * get_assignable_value bump. Last-release drops RC;
- * header leak until alloc-pool free is trusted.
+ * get_assignable_value bump. Last-release
+ * free_memorys the header via xctx->p.
  * Copies bytes into storage following the header (value owns them).
  */
 AFW_DECLARE(const afw_value_t *)

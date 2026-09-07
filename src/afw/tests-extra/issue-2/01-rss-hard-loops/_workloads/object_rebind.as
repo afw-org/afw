@@ -1,5 +1,5 @@
 /* #2 lab: `o = { n: i }` each iteration in one long scope.
- * Unmanaged faces do not destroy at zero; optional free later if this grows.
+ * Slot fill isolates; previous occupant last-release. Should stay flat.
  */
 let i = 0;
 let o = {};

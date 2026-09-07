@@ -1,5 +1,5 @@
 /* #2 lab: array element overwrite `a[0] = i`.
- * Same reuse story as overlay set, on the array face.
+ * Face SET slot_stores; previous element last-release. Should stay flat.
  */
 let a = [0];
 let i = 0;

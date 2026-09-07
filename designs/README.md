@@ -22,9 +22,9 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`knowledge-atlas.md`](knowledge-atlas.md) | **Topic atlas** — area → rules/pads/probes/gaps; **how the C surface fits**; admin/Fiddle §16. Start here for “where is X?” |
 | [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) | **Whole story** — why AFW is shaped this way, how parts relate (values, compile, pools, env, hosts). Keep and correct; do not trim maps. Not always-on rules |
 | [`mantras-and-working-style.md`](mantras-and-working-style.md) | Mike mantras + partnership habits (subset; grow when shared); philosophy/taste questions — **not** always-on |
-| [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) | **#2 inf-method rails** — hold vs assignable, faces, MUST NOT. Two worlds / last_return: **#277** pad wins if they disagree. Eval `p`: [`experiment-eval-p.md`](experiment-eval-p.md) wins |
+| [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) | **#2 inf-method rails** — hold vs assignable, faces, MUST NOT. Two worlds / last_return: **#277** pad wins if they disagree. Eval `p`: [`experiment-eval-p.md`](experiment-eval-p.md) wins. Live leak table: `src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md` |
 | [`issue-2-hold-in-inf-plan.md`](issue-2-hold-in-inf-plan.md) | **Dated** assignable-inf verticals (V1–V7). Do not execute again; current maps are rails + two worlds + eval `p` |
-| [`issue-2-lifetime.md`](issue-2-lifetime.md) | **#2 08-21 story** — history; two worlds **#277** supersedes “managed owns a pool” / “scalars are not a pair” |
+| [`issue-2-lifetime.md`](issue-2-lifetime.md) | **#2 08-21 story** — history; two worlds **#277** supersedes “managed owns a pool” / “scalars are not a pair”. Live soaks are the lab README, not this pad’s “next vertical” list |
 | [`memory-management.md`](memory-management.md) | Umbrella **#2** archaeology / old phases (live maps: rails + two worlds + eval `p`) |
 | [`issue-2-property-name-values.md`](issue-2-property-name-values.md) | **#2** — object property names as `const afw_value_t *` (landed PR **#220** + wrap-cleanup; script/JSON string-only) |
 | [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | Value vs utf8/memory payloads; `create` / `set` / `no_copy` / `forced_safe`; code_point dir |

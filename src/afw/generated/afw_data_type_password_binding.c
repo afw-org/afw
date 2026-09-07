@@ -120,6 +120,7 @@ impl_afw_value_get_assignable_value(
 
 /* Declares and rti/inf defines for interface afw_value */
 /* managed password: optional_release drops RC; */
+/* scalar last-release free_memorys via xctx->p. */
 /* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_password"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_password_inf

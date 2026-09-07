@@ -1,5 +1,6 @@
 /* #2 lab: rebind a closure that captures a per-iteration let.
- * slot_store of the function value should release the previous closure/scope.
+ * slot_store of the function value last-releases the previous closure.
+ * Should stay flat.
  */
 let i = 0;
 let f;

@@ -35,7 +35,7 @@ Do not invent new lifetime paths; match existing create_* patterns.
 ## Active long-running focus
 
 - Implement/complete **optional_release** / **get_reference** on escaping values: objects, arrays, closures, `compiled_value`, and other managed kinds that outlive a scope.
-- Evaluation temporaries use **`scope->p`** when `{ }` has a frame (PR **#287**). Nominated next eval win: heap free-list mixed sizes — [`designs/experiment-brainstorm.md`](../../designs/experiment-brainstorm.md).
+- Evaluation temporaries use **`scope->p`** when `{ }` has a frame (PR **#287**). Heap free-list mixed sizes is **withdrawn** as the remaining eval win (re-measured after #287). Remaining long-running soaks: `function_return` (FRV wrapper left in caller `p`) and `array_push_pop` (managed ring entry in `xctx->p`) — live table [`src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md`](../../src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md).
 - Heap tracker + last-release walk handle bulk release. **No reparent** on destroy. Polish value-inf hooks; do not replace the pool kinds.
 - **Qualifier snapshots** (`qualifier()` / `qualifiers()`, issue **#9**) allocate **fresh, possibly large** memory objects (`environment::`, `request::`, nested `qualifiers()`). Prefer `qualifier::name` for normal work; treat repeated/retained snapshots as long-running stress — see **`afw-qualified-variables`**, `beta-backlog.md`.
 
@@ -49,7 +49,7 @@ Do not invent new lifetime paths; match existing create_* patterns.
 
 - Metadata: `generate/objects/_AdaptiveDataTypeGenerate_/*.json` (`cType`, `special`, `scalar`, `directReturn`, …).
 - Generator of infs + create APIs: `_afwdev/generate/data_type_bindings.py`.
-- **Type × lifetime matrix (phase 0a):** living table and generator decision tree in [`designs/memory-management.md`](../../designs/memory-management.md) under **Phase 0 — 0a** (35 types; families special / utf8 / memory / struct / small-direct / pointer-direct). Use that before changing create/release behavior. Campaign map: [`designs/issue-2-lifetime.md`](../../designs/issue-2-lifetime.md).
+- **Type × lifetime matrix (phase 0a):** living table and generator decision tree in [`designs/memory-management.md`](../../designs/memory-management.md) under **Phase 0 — 0a** (35 types; families special / utf8 / memory / struct / small-direct / pointer-direct). Use that before changing create/release behavior. Live maps: rails [`designs/issue-2-hold-in-inf.md`](../../designs/issue-2-hold-in-inf.md). 08-21 story is history: [`designs/issue-2-lifetime.md`](../../designs/issue-2-lifetime.md).
 - Const permanent instances: `strings.py` (scalar `self_v_*` for supported types), `const_objects.py` (objects + scalar/array props), bindings (ids/empty arrays), `function_bindings.py` (function object wrappers).
 - Runtime: core `.so` and extensions call generated `create_managed_*` / `create_unmanaged_*` and reuse permanent pointers (`afw_v_*`, null, empty arrays).
 - **Prefer static const Adaptive values over re-create:** use existing `afw_v_*` / `afw_boolean_v_*` / `afw_integer_v_zero|one` / `afw_value_null|undefined` (from `afw_strings.h`, `afw_value.h`, etc.) when the constant already exists. Do not `create_unmanaged_string(afw_s_foo)` or `set_property_as_string(..., afw_s_foo)` only to wrap one — use `afw_object_set_property(..., afw_v_foo, ...)`. `dataType::` lines in `strings.txt` produce typed static const values (`integer::zero` → `afw_integer_v_zero`), distinct from string `"zero"`.

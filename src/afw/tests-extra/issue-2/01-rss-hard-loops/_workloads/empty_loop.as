@@ -1,5 +1,5 @@
-/* #2 lab: empty `{ }` body. Tracker apr_pcalloc every iteration.
- * RSS climbs; pool_bytes_in_use stays near startup.
+/* #2 lab: empty `{ }` body. 0-symbol `{ }` is not a scope (#245).
+ * Should match empty_stmt (RSS and in_use flat).
  */
 while (true) {
 }

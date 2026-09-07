@@ -10,7 +10,7 @@
 
 **This file was the campaign map.** Live maps are rails + two worlds + eval-p. Older notes, phase archaeology, and rejected experiments stay in [`memory-management.md`](memory-management.md).
 
-**Lab probes (opt-in, not `test -j`):** [`src/afw/tests-extra/issue-2/`](../src/afw/tests-extra/issue-2/) — `01-rss-hard-loops` (RSS vs `pool_bytes_in_use`) and `02-pool-eval-soak` (fcgi heap wrap). `afwdev test -T src/afw/tests-extra/issue-2 --show-all`.
+**Lab probes (opt-in, not `test -j`):** [`src/afw/tests-extra/issue-2/`](../src/afw/tests-extra/issue-2/) — `01-rss-hard-loops` (RSS vs `pool_bytes_in_use`) and `02-pool-eval-soak` (fcgi heap wrap). `afwdev test -T src/afw/tests-extra/issue-2 --show-all`. **Live soak table** is the lab README (2026-09-07: assign/overlay/rebind/empty `{ }` flat; `function_return` and `array_push_pop` still climb). The 08-21 “next vertical: scalar boxing / overlay parked” list below is **history**, not current leak status.
 
 **Whole-story framing** (why AFW is shaped this way): [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md). Isolation faces (look-through, landed): [`issue-17-mutable-object-faces.md`](issue-17-mutable-object-faces.md). Payloads (`afw_utf8_t` / `afw_memory_t`): [`c-naming-and-payloads.md`](c-naming-and-payloads.md).
 
