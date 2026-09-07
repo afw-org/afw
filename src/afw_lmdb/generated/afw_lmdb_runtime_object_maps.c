@@ -132,6 +132,21 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptiveConf_adapter_lmdb_env);
 
 
+/* Runtime object map properties for _AdaptiveConf_adapter_lmdb_index objects. */
+
+static const afw_runtime_object_type_meta_t
+impl_runtime_meta__AdaptiveConf_adapter_lmdb_index = {
+    &afw_lmdb_self_s__AdaptiveConf_adapter_lmdb_index,
+    NULL,
+    offsetof(afw_runtime_const_object_instance_t, properties),
+    false,
+};
+
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveConf_adapter_lmdb_index, 
+    impl_runtime_meta__AdaptiveConf_adapter_lmdb_index);
+
+
 /* Runtime object map properties for _AdaptiveConf_adapter_lmdb_limits objects. */
 
 static const afw_runtime_object_type_meta_t
@@ -185,6 +200,7 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveAdapterMetrics_adapter_lmdb_version,
     &afw_runtime_inf__AdaptiveConf_adapter_lmdb,
     &afw_runtime_inf__AdaptiveConf_adapter_lmdb_env,
+    &afw_runtime_inf__AdaptiveConf_adapter_lmdb_index,
     &afw_runtime_inf__AdaptiveConf_adapter_lmdb_limits,
     &afw_runtime_inf__AdaptiveConf_adapter_lmdb_limits_size,
     &afw_runtime_inf__AdaptiveConf_adapter_lmdb_limits_time,

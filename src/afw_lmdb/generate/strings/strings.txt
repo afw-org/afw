@@ -23,6 +23,7 @@
 
 indexes
 indexDefinitions
+index
 equality
 limits
 size

@@ -48981,6 +48981,12 @@ afw_self_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_env = {
 };
 
 const afw_value_string_t
+afw_self_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index)
+};
+
+const afw_value_string_t
 afw_self_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_limits = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_limits)

@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
 """
-Proves the three limits.cardinalityStrategy conf values on
-_AdaptiveConf_adapter_lmdb_limits (issue #298):
+Proves the three index.cardinalityStrategy conf values on
+_AdaptiveConf_adapter_lmdb_index (issue #298; deliberately its own conf
+object, not under limits, which is a separate concern -- request/scan
+throttling, not adapter-index cursor behavior):
 
   - unset (default) behaves as "totalEntries": mdb_stat()'s O(1) total
     entry count for the index DB, no cursor movement.
   - "off": always reports cardinality as unknown (pre-#298 behavior).
   - an unrecognized value throws at adapter-creation time rather than
-    silently falling back to a default (afw_lmdb_adapter_parse_limits()
+    silently falling back to a default (afw_lmdb_adapter_parse_index_conf()
     in afw_lmdb_adapter.c).
 
 Unlike index_cardinality_probe_trace.py (which exercises the "probe"
 strategy via the shared lmdb-adapter test environment, pinned to "probe"
 specifically so that file's assertions stay meaningful), each case here
 builds its own isolated LMDB environment and afw.conf, since each needs
-a different limits.cardinalityStrategy value than the shared environment
+a different index.cardinalityStrategy value than the shared environment
 uses.
 """
 
@@ -30,8 +32,8 @@ _ENV_TEMPLATE = """[
         "adapterType": "lmdb",
         "limits": {{
             "time": {{ "hard": 14400, "soft": 3600 }},
-            "size": {{ "hard": 1000, "soft": 500 }}{strategy_clause}
-        }},
+            "size": {{ "hard": 1000, "soft": 500 }}
+        }}{index_clause},
         "env": {{
             "mapsize": 104857600,
             "maxdbs": 128,
@@ -62,14 +64,14 @@ return 0;
 
 def _run_case(strategy):
     """Run _SCRIPT in a fresh, isolated LMDB environment configured with
-    the given cardinalityStrategy (None to omit the property entirely,
-    exercising the default)."""
-    strategy_clause = (
-        ',\n            "cardinalityStrategy": "{}"'.format(strategy)
+    the given index.cardinalityStrategy (None to omit the "index" conf
+    object entirely, exercising the default)."""
+    index_clause = (
+        ',\n        "index": {{ "cardinalityStrategy": "{}" }}'.format(strategy)
         if strategy is not None
         else ""
     )
-    conf = _ENV_TEMPLATE.format(strategy_clause=strategy_clause)
+    conf = _ENV_TEMPLATE.format(index_clause=index_clause)
 
     with tempfile.TemporaryDirectory() as work_dir:
         with open(os.path.join(work_dir, "afw.conf"), "w") as f:
@@ -93,7 +95,7 @@ def _run_case(strategy):
 
 def run():
     description = (
-        "limits.cardinalityStrategy: default (totalEntries), \"off\", and "
+        "index.cardinalityStrategy: default (totalEntries), \"off\", and "
         "rejection of an unrecognized value (issue #298)"
     )
 

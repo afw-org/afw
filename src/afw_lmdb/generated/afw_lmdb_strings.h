@@ -705,6 +705,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_LMDB_Q__AdaptiveConf_adapter_lmdb_index \
+    "_AdaptiveConf_adapter_lmdb_index"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q__AdaptiveConf_adapter_lmdb_index */
+#define afw_lmdb_s__AdaptiveConf_adapter_lmdb_index \
+    (&afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_index.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q__AdaptiveConf_adapter_lmdb_index */
+#define afw_lmdb_self_s__AdaptiveConf_adapter_lmdb_index \
+    (afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_index.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q__AdaptiveConf_adapter_lmdb_index */
+extern const afw_value_string_t \
+    afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_index;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveConf_adapter_lmdb_index */
+#define afw_lmdb_z__AdaptiveConf_adapter_lmdb_index \
+    (afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_index.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveConf_adapter_lmdb_index */
+#define afw_lmdb_v__AdaptiveConf_adapter_lmdb_index \
+    (&afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_index.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_LMDB_Q__AdaptiveConf_adapter_lmdb_limits \
     "_AdaptiveConf_adapter_lmdb_limits"
 
@@ -1793,6 +1819,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_LMDB_Q_hard */
 #define afw_lmdb_v_hard \
     (&afw_lmdb_self_v_hard.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_index \
+    "index"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_index */
+#define afw_lmdb_s_index \
+    (&afw_lmdb_self_v_index.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_index */
+#define afw_lmdb_self_s_index \
+    (afw_lmdb_self_v_index.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_index */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_index;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_index */
+#define afw_lmdb_z_index \
+    (afw_lmdb_self_v_index.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_index */
+#define afw_lmdb_v_index \
+    (&afw_lmdb_self_v_index.pub)
 
 
 
@@ -3253,6 +3305,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__01d2d8286227 \
+    "How a non-eq (range or \"starts with\") adapter-index cursor estimates its cardinality for OR/AND cursor-merge ordering; never affects which objects are returned, only how efficiently. \"totalEntries\" (default): the index\'s total entry count (mdb_stat, O(1), no cursor movement) - cheap and safe, but the same coarse number for every non-eq cursor on that property regardless of how selective the actual range is. \"probe\": walk the cursor up to cardinalityProbeCap entries for an exact-or-capped estimate - a tighter number, at the cost of a real, memoized-per-cursor B-tree walk. \"off\": always report cardinality as unknown, matching pre-#298 behavior - zero cost, zero benefit."
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__01d2d8286227 */
+#define afw_lmdb_s_zz__01d2d8286227 \
+    (&afw_lmdb_self_v_zz__01d2d8286227.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__01d2d8286227 */
+#define afw_lmdb_self_s_zz__01d2d8286227 \
+    (afw_lmdb_self_v_zz__01d2d8286227.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__01d2d8286227 */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__01d2d8286227;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__01d2d8286227 */
+#define afw_lmdb_z_zz__01d2d8286227 \
+    (afw_lmdb_self_v_zz__01d2d8286227.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__01d2d8286227 */
+#define afw_lmdb_v_zz__01d2d8286227 \
+    (&afw_lmdb_self_v_zz__01d2d8286227.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_LMDB_Q_zz__0b47f03acb45 \
     "Maximum number of reader slots that have been in simultaneous use since the environment was opened."
 
@@ -3327,6 +3405,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2fcf2b562f4d */
 #define afw_lmdb_v_zz__2fcf2b562f4d \
     (&afw_lmdb_self_v_zz__2fcf2b562f4d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__3d15943ee4c7 \
+    "Object type for type=adapter adapter_type=lmdb adapter-index conf entries."
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__3d15943ee4c7 */
+#define afw_lmdb_s_zz__3d15943ee4c7 \
+    (&afw_lmdb_self_v_zz__3d15943ee4c7.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__3d15943ee4c7 */
+#define afw_lmdb_self_s_zz__3d15943ee4c7 \
+    (afw_lmdb_self_v_zz__3d15943ee4c7.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__3d15943ee4c7 */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__3d15943ee4c7;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__3d15943ee4c7 */
+#define afw_lmdb_z_zz__3d15943ee4c7 \
+    (afw_lmdb_self_v_zz__3d15943ee4c7.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__3d15943ee4c7 */
+#define afw_lmdb_v_zz__3d15943ee4c7 \
+    (&afw_lmdb_self_v_zz__3d15943ee4c7.pub)
 
 
 
@@ -3457,32 +3561,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__77b33a1f571a */
 #define afw_lmdb_v_zz__77b33a1f571a \
     (&afw_lmdb_self_v_zz__77b33a1f571a.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_LMDB_Q_zz__97a550deb703 \
-    "How a non-eq (range or \"starts with\") adapter-index cursor estimates its cardinality for OR/AND cursor-merge ordering; never affects which objects are returned, only how efficiently. \"totalEntries\" (default): the index\'s total entry count (mdb_stat, O(1), no cursor movement) - cheap and safe, but the same coarse number for every non-eq cursor on that property regardless of how selective the actual range is. \"probe\": walk the cursor up to cardinalityProbeCap entries for an exact-or-capped estimate - a tighter number, at the cost of a real, possibly-repeated (though now memoized per cursor) B-tree walk. \"off\": always report cardinality as unknown, matching pre-#298 behavior - zero cost, zero benefit."
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__97a550deb703 */
-#define afw_lmdb_s_zz__97a550deb703 \
-    (&afw_lmdb_self_v_zz__97a550deb703.internal)
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__97a550deb703 */
-#define afw_lmdb_self_s_zz__97a550deb703 \
-    (afw_lmdb_self_v_zz__97a550deb703.internal)
-
-/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__97a550deb703 */
-extern const afw_value_string_t \
-    afw_lmdb_self_v_zz__97a550deb703;
-
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__97a550deb703 */
-#define afw_lmdb_z_zz__97a550deb703 \
-    (afw_lmdb_self_v_zz__97a550deb703.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__97a550deb703 */
-#define afw_lmdb_v_zz__97a550deb703 \
-    (&afw_lmdb_self_v_zz__97a550deb703.pub)
 
 
 
@@ -5121,6 +5199,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__d02ea7eb5c7d */
 #define afw_lmdb_v_zz__d02ea7eb5c7d \
     (&afw_lmdb_self_v_zz__d02ea7eb5c7d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__d2205e3112d9 \
+    "Secondary (adapter-index) tuning for LMDB - how non-eq index cursors estimate their cardinality for OR/AND cursor-merge ordering. Unrelated to limits, which governs request/scan throttling."
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__d2205e3112d9 */
+#define afw_lmdb_s_zz__d2205e3112d9 \
+    (&afw_lmdb_self_v_zz__d2205e3112d9.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__d2205e3112d9 */
+#define afw_lmdb_self_s_zz__d2205e3112d9 \
+    (afw_lmdb_self_v_zz__d2205e3112d9.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__d2205e3112d9 */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__d2205e3112d9;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__d2205e3112d9 */
+#define afw_lmdb_z_zz__d2205e3112d9 \
+    (afw_lmdb_self_v_zz__d2205e3112d9.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__d2205e3112d9 */
+#define afw_lmdb_v_zz__d2205e3112d9 \
+    (&afw_lmdb_self_v_zz__d2205e3112d9.pub)
 
 
 

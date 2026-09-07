@@ -1535,7 +1535,7 @@ impl_afw_adapter_impl_index_cursor_inner_join (
  * API (seeking, mdb_stat, or stepping) can produce an exact count faster
  * than actually visiting that many entries. Three strategies trade off
  * cost vs. estimate quality (issue #298; see cardinalityStrategy on
- * _AdaptiveConf_adapter_lmdb_limits):
+ * _AdaptiveConf_adapter_lmdb_index):
  *
  *  - total_entries (default): mdb_stat()'s total entry count for the
  *    index DB. O(1), no cursor movement at all - same cost as the eq
@@ -1589,8 +1589,8 @@ impl_afw_adapter_impl_index_cursor_get_count(
         return true;
     }
 
-    strategy = (self->session->adapter->limits)
-        ? self->session->adapter->limits->cardinality_strategy
+    strategy = (self->session->adapter->index_conf)
+        ? self->session->adapter->index_conf->cardinality_strategy
         : AFW_LMDB_DEFAULT_CARDINALITY_STRATEGY;
 
     if (strategy == afw_lmdb_cardinality_strategy_off) {
@@ -1610,8 +1610,8 @@ impl_afw_adapter_impl_index_cursor_get_count(
     }
 
     else /* afw_lmdb_cardinality_strategy_probe */ {
-        cap = (self->session->adapter->limits)
-            ? self->session->adapter->limits->cardinality_probe_cap
+        cap = (self->session->adapter->index_conf)
+            ? self->session->adapter->index_conf->cardinality_probe_cap
             : AFW_LMDB_DEFAULT_CARDINALITY_PROBE_CAP;
 
         walked = 0;

@@ -37,10 +37,17 @@ typedef struct afw_lmdb_env_s {
     unsigned int flags;
 } afw_lmdb_env_t;
 
+typedef struct afw_lmdb_limits_s {
+    int size_soft;
+    int size_hard;
+    int time_soft;
+    int time_hard;
+} afw_lmdb_limits_t;
+
 /*
- * Default for afw_lmdb_limits_t.cardinality_probe_cap, also used directly
- * when an adapter has no "limits" conf property at all (self->limits is
- * NULL in that case - see afw_lmdb_adapter_t.limits).
+ * Default for afw_lmdb_index_conf_t.cardinality_probe_cap, also used
+ * directly when an adapter has no "index" conf property at all (self->
+ * index_conf is NULL in that case - see afw_lmdb_adapter_t.index_conf).
  */
 #define AFW_LMDB_DEFAULT_CARDINALITY_PROBE_CAP 100
 
@@ -48,7 +55,7 @@ typedef struct afw_lmdb_env_s {
  * How a non-eq (range or "starts with") adapter-index cursor estimates its
  * cardinality for OR/AND cursor-merge ordering (issue #298). See the
  * cardinalityStrategy conf property description
- * (_AdaptiveConf_adapter_lmdb_limits.json) for the tradeoffs of each.
+ * (_AdaptiveConf_adapter_lmdb_index.json) for the tradeoffs of each.
  */
 typedef enum afw_lmdb_cardinality_strategy_e {
     afw_lmdb_cardinality_strategy_total_entries,
@@ -59,19 +66,22 @@ typedef enum afw_lmdb_cardinality_strategy_e {
 #define AFW_LMDB_DEFAULT_CARDINALITY_STRATEGY \
     afw_lmdb_cardinality_strategy_total_entries
 
-typedef struct afw_lmdb_limits_s {
-    int size_soft;
-    int size_hard;
-    int time_soft;
-    int time_hard;
+/*
+ * Adapter-index tuning (issue #298) - deliberately its own conf object,
+ * not part of afw_lmdb_limits_t: limits governs request/scan throttling,
+ * this governs internal adapter-index cursor behavior, an unrelated
+ * concern.
+ */
+typedef struct afw_lmdb_index_conf_s {
     int cardinality_probe_cap;
     afw_lmdb_cardinality_strategy_t cardinality_strategy;
-} afw_lmdb_limits_t;
+} afw_lmdb_index_conf_t;
 
 typedef struct afw_lmdb_adapter_s {
     afw_adapter_t pub;
     const afw_content_type_t *ubjson;
     const afw_lmdb_limits_t *limits;
+    const afw_lmdb_index_conf_t *index_conf;
     const afw_lmdb_env_t *env;
     const afw_object_t *internalConfig;
     MDB_env *dbEnv;

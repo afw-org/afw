@@ -126,12 +126,11 @@ const afw_lmdb_env_t * afw_lmdb_adapter_parse_env(
 }
 
 const afw_lmdb_limits_t * afw_lmdb_adapter_parse_limits(
-    const afw_object_t *lim, afw_xctx_t *xctx) 
+    const afw_object_t *lim, afw_xctx_t *xctx)
 {
     afw_lmdb_limits_t *limits;
     const afw_object_t *obj;
     const afw_value_t *value;
-    const afw_utf8_t *strategy_str;
 
     limits = afw_xctx_calloc_type(afw_lmdb_limits_t, xctx);
 
@@ -169,32 +168,49 @@ const afw_lmdb_limits_t * afw_lmdb_adapter_parse_limits(
             limits->time_hard = 14400;
     }
 
-    value = afw_object_get_property(lim, afw_lmdb_v_cardinalityProbeCap, xctx);
-    if (value)
-        limits->cardinality_probe_cap = afw_safe_cast_integer_to_int(afw_value_as_integer_internal(value, xctx), xctx);
-    else
-        limits->cardinality_probe_cap = AFW_LMDB_DEFAULT_CARDINALITY_PROBE_CAP;
+    return limits;
+}
 
-    value = afw_object_get_property(lim, afw_lmdb_v_cardinalityStrategy, xctx);
+/*
+ * Adapter-index tuning (issue #298) - a separate conf object from limits
+ * on purpose: limits governs request/scan throttling, this governs
+ * internal adapter-index cursor behavior, an unrelated concern.
+ */
+const afw_lmdb_index_conf_t * afw_lmdb_adapter_parse_index_conf(
+    const afw_object_t *idx, afw_xctx_t *xctx)
+{
+    afw_lmdb_index_conf_t *index_conf;
+    const afw_value_t *value;
+    const afw_utf8_t *strategy_str;
+
+    index_conf = afw_xctx_calloc_type(afw_lmdb_index_conf_t, xctx);
+
+    value = afw_object_get_property(idx, afw_lmdb_v_cardinalityProbeCap, xctx);
+    if (value)
+        index_conf->cardinality_probe_cap = afw_safe_cast_integer_to_int(afw_value_as_integer_internal(value, xctx), xctx);
+    else
+        index_conf->cardinality_probe_cap = AFW_LMDB_DEFAULT_CARDINALITY_PROBE_CAP;
+
+    value = afw_object_get_property(idx, afw_lmdb_v_cardinalityStrategy, xctx);
     if (!value) {
-        limits->cardinality_strategy = AFW_LMDB_DEFAULT_CARDINALITY_STRATEGY;
+        index_conf->cardinality_strategy = AFW_LMDB_DEFAULT_CARDINALITY_STRATEGY;
     } else {
         strategy_str = afw_value_as_string_internal(value, xctx);
 
         if (afw_utf8_equal_utf8_z(strategy_str, "totalEntries"))
-            limits->cardinality_strategy = afw_lmdb_cardinality_strategy_total_entries;
+            index_conf->cardinality_strategy = afw_lmdb_cardinality_strategy_total_entries;
         else if (afw_utf8_equal_utf8_z(strategy_str, "probe"))
-            limits->cardinality_strategy = afw_lmdb_cardinality_strategy_probe;
+            index_conf->cardinality_strategy = afw_lmdb_cardinality_strategy_probe;
         else if (afw_utf8_equal_utf8_z(strategy_str, "off"))
-            limits->cardinality_strategy = afw_lmdb_cardinality_strategy_off;
+            index_conf->cardinality_strategy = afw_lmdb_cardinality_strategy_off;
         else
             AFW_THROW_ERROR_FZ(general, xctx,
-                "limits.cardinalityStrategy " AFW_UTF8_FMT_Q
+                "index.cardinalityStrategy " AFW_UTF8_FMT_Q
                 " is not one of \"totalEntries\", \"probe\", \"off\".",
                 AFW_UTF8_FMT_ARG(strategy_str));
     }
 
-    return limits;
+    return index_conf;
 }
 
 /*
@@ -281,6 +297,7 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
     const afw_value_t *value;
     const afw_object_t *env;
     const afw_object_t *limits;
+    const afw_object_t *index_conf_obj;
     int rc;
     int deadReaders;
 
@@ -365,6 +382,12 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
     if (value) {
         limits = afw_value_as_object_internal(value, xctx);
         self->limits = afw_lmdb_adapter_parse_limits(limits, xctx);
+    }
+
+    value = afw_object_get_property(properties, afw_lmdb_v_index, xctx);
+    if (value) {
+        index_conf_obj = afw_value_as_object_internal(value, xctx);
+        self->index_conf = afw_lmdb_adapter_parse_index_conf(index_conf_obj, xctx);
     }
 
     /* Load metadata. */

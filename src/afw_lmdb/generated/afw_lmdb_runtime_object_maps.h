@@ -69,6 +69,12 @@ AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveConf_adapter_lmdb_env;
 
 /**
+ * @brief Runtime object inf for object type _AdaptiveConf_adapter_lmdb_index
+ */
+AFW_DECLARE_CONST_DATA(afw_object_inf_t)
+afw_runtime_inf__AdaptiveConf_adapter_lmdb_index;
+
+/**
  * @brief Runtime object inf for object type _AdaptiveConf_adapter_lmdb_limits
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
