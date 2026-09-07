@@ -46,6 +46,21 @@ typedef enum afw_adapter_impl_index_mode_e {
     afw_adapter_impl_index_mode_repair
 } afw_adapter_impl_index_mode_t;
 
+/*
+ * Value passed as the "operator" parameter of
+ * afw_adapter_impl_index_open_cursor() for a match filter entry that
+ * afw_query_criteria_match_literal_prefix() reduced to a literal "starts
+ * with" prefix. Deliberately outside the range of
+ * afw_query_criteria_filter_op_id_t so an implementation's switch on
+ * query criteria op ids can add a case for this one without colliding.
+ *
+ * The cursor should seek exactly like a >= scan on the prefix value, but
+ * iteration must stop as soon as the key no longer starts with the
+ * prefix - unlike >=, "starts with" is not monotonic to the end of the
+ * index, so it cannot rely on end-of-database as its only stop condition.
+ */
+#define AFW_ADAPTER_IMPL_INDEX_OPERATOR_STARTS_WITH ((int)-1)
+
 /* context to hold data for our callback routine */
 typedef struct {
     const afw_adapter_impl_index_t * instance;
