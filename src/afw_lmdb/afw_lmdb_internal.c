@@ -13,6 +13,7 @@
 
 #include "afw.h"
 #include "afw_uuid.h"
+#include "afw_adapter_impl_index.h"
 #include "generated/afw_lmdb_generated_internal.h"
 #include "afw_lmdb_internal.h"
 
@@ -1092,6 +1093,36 @@ void afw_lmdb_internal_cursor_reset(
         self->key.mv_size = 0;
     }
 
+    /*
+     * "Starts with" (a match entry reduced to a literal prefix by
+     * afw_query_criteria_match_literal_prefix()) is not a real
+     * afw_query_criteria_filter_op_id_t value, so it's checked here
+     * rather than as a switch case (the enum's declared range is all
+     * that's valid inside the switch below). Seek exactly like >=, but
+     * unlike >=, matching keys aren't monotonic to the end of the index,
+     * so bound it: if the key we land on doesn't actually start with the
+     * prefix, there are no matches at all.
+     */
+    if (self->operator ==
+        (afw_query_criteria_filter_op_id_t)
+            AFW_ADAPTER_IMPL_INDEX_OPERATOR_STARTS_WITH)
+    {
+        rv = mdb_cursor_get(self->cursor, &self->key,
+            &self->data, MDB_SET_RANGE);
+        AFW_LMDB_CURSOR_CHECK_RV(rv);
+
+        if (self->data.mv_data != NULL && self->key_string &&
+            (self->key.mv_size < self->key_string->len ||
+             memcmp(self->key.mv_data, self->key_string->s,
+                 self->key_string->len) != 0))
+        {
+            /* nothing in the index has this prefix */
+            self->data.mv_data = NULL;
+        }
+
+        return;
+    }
+
     /* the filter entry operator helps us determine our start position */
     switch (self->operator) {
         case afw_query_criteria_filter_op_id_ne:
@@ -1236,6 +1267,31 @@ int afw_lmdb_internal_cursor_next(
     impl_afw_adapter_impl_index_cursor_self_t * self = 
         (impl_afw_adapter_impl_index_cursor_self_t *)instance;
     int rc = -1;
+
+    /*
+     * "Starts with" is not a real afw_query_criteria_filter_op_id_t value
+     * (see the matching check in afw_lmdb_internal_cursor_reset()), so it
+     * can't be a switch case below without the switch appearing to leave
+     * the enum's declared range.
+     */
+    if (self->operator ==
+        (afw_query_criteria_filter_op_id_t)
+            AFW_ADAPTER_IMPL_INDEX_OPERATOR_STARTS_WITH)
+    {
+        rc = mdb_cursor_get(self->cursor, &self->key,
+            &self->data, MDB_NEXT);
+
+        if (rc == 0 && self->key_string &&
+            (self->key.mv_size < self->key_string->len ||
+             memcmp(self->key.mv_data, self->key_string->s,
+                 self->key_string->len) != 0))
+        {
+            /* walked past the last key with this prefix */
+            rc = MDB_NOTFOUND;
+        }
+
+        return rc;
+    }
 
     /** @fixme check all cases for unique constraint */
     switch (self->operator) {

@@ -467,6 +467,70 @@ impl_index_value_as_key_utf8(
 }
 
 /*
+ * Get the literal starts-with prefix of a match entry, if any.
+ *
+ * Patterns compiled for the match operator use XML Schema Datatype regex
+ * (via libxml2), which is implicitly anchored to the whole string - there
+ * is no '^' or '$' anchor syntax. A "starts with" test is therefore
+ * written as `<literal>.*`, where `<literal>` contains no regex
+ * metacharacters. Recognizes exactly that shape; anything else - a bare
+ * ".*", a metacharacter in the literal part, or ".*" appearing anywhere
+ * but at the very end - returns NULL and is left to the general
+ * (non-sargable) full-scan regex evaluation in afw_query_criteria.c.
+ *
+ * This lets a match entry be sargable for adapter indexes without
+ * implementing a general regex-to-index-range translation; it is scoped
+ * to this adapter-index module rather than afw_query_criteria.c because
+ * it is an index/b-tree concern, not part of RQL semantics itself.
+ */
+static const afw_utf8_t *
+impl_index_match_literal_prefix(
+    const afw_query_criteria_filter_entry_t *entry,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *pattern;
+    afw_utf8_t *prefix;
+    afw_size_t prefix_len;
+    afw_size_t i;
+
+    if (entry->op_id != afw_query_criteria_filter_op_id_match ||
+        !entry->value || !afw_value_is_string(entry->value))
+    {
+        return NULL;
+    }
+
+    pattern = (const afw_utf8_t *)AFW_VALUE_INTERNAL(entry->value);
+
+    if (pattern->len < 3 ||
+        pattern->s[pattern->len - 2] != '.' ||
+        pattern->s[pattern->len - 1] != '*')
+    {
+        return NULL;
+    }
+
+    prefix_len = pattern->len - 2;
+
+    for (i = 0; i < prefix_len; i++) {
+        switch (pattern->s[i]) {
+            case '.': case '*': case '+': case '?':
+            case '(': case ')': case '[': case ']':
+            case '{': case '}': case '|':
+            case '^': case '$': case '\\':
+                return NULL;
+            default:
+                break;
+        }
+    }
+
+    prefix = afw_pool_calloc_type(p, afw_utf8_t, xctx);
+    prefix->s = pattern->s;
+    prefix->len = prefix_len;
+
+    return prefix;
+}
+
+/*
  * When we need to add or remove an index value, this routine
  * will determine the appropriate way to do so, depending on
  * the indexDefinition options.
@@ -1337,6 +1401,16 @@ AFW_DEFINE(afw_boolean_t) afw_adapter_impl_index_sargable_entry(
 {
     afw_boolean_t sargable;
     afw_boolean_t on_true, on_false;
+    afw_boolean_t is_starts_with;
+
+    /*
+     * A match entry is only sargable when it's the literal-prefix
+     * ("starts with") shape - see impl_index_match_literal_prefix().
+     * Any other match pattern (general regex) is not translatable to an
+     * index range scan and falls through to a full scan.
+     */
+    is_starts_with = entry->op_id == afw_query_criteria_filter_op_id_match &&
+        impl_index_match_literal_prefix(entry, xctx->p, xctx) != NULL;
 
     /* For now, we will only evaluate certain operations for sargability */
     if (! (
@@ -1344,7 +1418,8 @@ AFW_DEFINE(afw_boolean_t) afw_adapter_impl_index_sargable_entry(
             entry->op_id == afw_query_criteria_filter_op_id_lt  ||
             entry->op_id == afw_query_criteria_filter_op_id_le ||
             entry->op_id == afw_query_criteria_filter_op_id_gt  ||
-            entry->op_id == afw_query_criteria_filter_op_id_ge
+            entry->op_id == afw_query_criteria_filter_op_id_ge ||
+            is_starts_with
         )
         )
         return false;
@@ -1616,11 +1691,13 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list(
     apr_array_header_t *cursor_list, *next_list;
     const afw_object_t *indexDefinition;
     const afw_utf8_t *value_string;
+    const afw_utf8_t *literal_prefix = NULL;
+    int cursor_operator;
     afw_boolean_t unique;
 
     /* allocate our cursor_list that will contain a conjunction
         of cursors, representing this particular decision branch. */
-    cursor_list = apr_array_make(afw_pool_get_apr_pool(xctx->p), 8, 
+    cursor_list = apr_array_make(afw_pool_get_apr_pool(xctx->p), 8,
         sizeof(const afw_adapter_impl_index_cursor_t*));
 
     if (entry == NULL) {
@@ -1628,10 +1705,25 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list(
         return cursor_list;
     }
 
+    if (entry->op_id == afw_query_criteria_filter_op_id_match) {
+        literal_prefix = impl_index_match_literal_prefix(
+            entry, xctx->p, xctx);
+    }
+
     /* use the internal utf-8 string representation; integer/double
        get the sortable encoding so range ops walk keys in numeric
-       order (issue #251) */
-    value_string = impl_index_value_as_key_utf8(entry->value, xctx->p, xctx);
+       order (issue #251). A match entry that reduces to a literal
+       "starts with" prefix (see impl_index_match_literal_prefix())
+       seeks on that prefix instead of the raw regex pattern text; any
+       other match pattern is left as-is and will be rejected below by
+       the index implementation, same as it already is today. */
+    value_string = (literal_prefix)
+        ? literal_prefix
+        : impl_index_value_as_key_utf8(entry->value, xctx->p, xctx);
+
+    cursor_operator = (literal_prefix)
+        ? AFW_ADAPTER_IMPL_INDEX_OPERATOR_STARTS_WITH
+        : (int)entry->op_id;
 
     /* Determine if this property is indexed */
     indexDefinition = afw_adapter_impl_index_get_index_definition(
@@ -1651,10 +1743,10 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list(
         /* get this cursor and add it to our current cursor list */
         /** @fixme we need to register open cursors to be released, because we
             may not know exactly when to discard them */
-        cursor = afw_adapter_impl_index_open_cursor(instance, object_type_id, 
+        cursor = afw_adapter_impl_index_open_cursor(instance, object_type_id,
             entry->property_name,
-            entry->op_id, value_string, unique, xctx->p, xctx);
-    } 
+            cursor_operator, value_string, unique, xctx->p, xctx);
+    }
 
     if (cursor) {
         cursor->inner_join = true;
@@ -1815,6 +1907,8 @@ static afw_boolean_t afw_adapter_impl_index_applies(
     afw_boolean_t contains = false;
     const afw_query_criteria_filter_entry_t *entry = cursor->filter_entry;
     const afw_value_t *value;
+    const afw_utf8_t *literal_prefix;
+    const afw_utf8_t *property_value_string;
 
     value = afw_object_get_property(object,
         afw_value_create_unmanaged_string(
@@ -1856,6 +1950,29 @@ static afw_boolean_t afw_adapter_impl_index_applies(
                 break;
 
             case afw_query_criteria_filter_op_id_match:
+                /*
+                 * Only the literal "starts with" shape is supported (see
+                 * impl_index_match_literal_prefix()); any other
+                 * match pattern falls through to the same
+                 * query_too_complex throw as contains/in/etc below.
+                 */
+                literal_prefix = impl_index_match_literal_prefix(
+                    entry, xctx->p, xctx);
+                if (!literal_prefix) {
+                    AFW_THROW_ERROR_Z(query_too_complex,
+                        "Filter op not implemented", xctx);
+                }
+
+                property_value_string = impl_index_value_as_key_utf8(
+                    value, xctx->p, xctx);
+                if (property_value_string->len >= literal_prefix->len &&
+                    memcmp(property_value_string->s, literal_prefix->s,
+                        literal_prefix->len) == 0)
+                {
+                    return true;
+                }
+                break;
+
             case afw_query_criteria_filter_op_id_contains:
             case afw_query_criteria_filter_op_id_in:
             case afw_query_criteria_filter_op_id_differ:

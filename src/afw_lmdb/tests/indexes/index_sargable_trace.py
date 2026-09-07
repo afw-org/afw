@@ -105,6 +105,36 @@ def run():
             "retrieve_objects: using index query",
             "retrieve_objects: using full scan (not sargable)",
         ),
+        (
+            "sargable_match_starts_with_after_index",
+            "A match filter reduced to a literal 'starts with' prefix on an indexed property is sargable",
+            """
+            const ot = "TestSargableTraceMatchType";
+            add_object("lmdb", ot, { name: "apple" }, generate_uuid());
+            index_create("lmdb", "name", undefined, [ot], undefined, undefined, true, false);
+            flag_set(["trace:adapterId:lmdb"], true);
+            retrieve_objects("lmdb", ot,
+                { "filter": { "op": "match", "property": "name", "value": "app.*" } });
+            return 0;
+            """,
+            "retrieve_objects: using index query",
+            "retrieve_objects: using full scan (not sargable)",
+        ),
+        (
+            "not_sargable_match_arbitrary_pattern",
+            "A match filter that isn't the literal 'starts with' shape is not sargable, even on an indexed property",
+            """
+            const ot = "TestSargableTraceMatchType2";
+            add_object("lmdb", ot, { name: "apple" }, generate_uuid());
+            index_create("lmdb", "name", undefined, [ot], undefined, undefined, true, false);
+            flag_set(["trace:adapterId:lmdb"], true);
+            retrieve_objects("lmdb", ot,
+                { "filter": { "op": "match", "property": "name", "value": ".*apple" } });
+            return 0;
+            """,
+            "retrieve_objects: using full scan (not sargable)",
+            "retrieve_objects: using index query",
+        ),
     ]
 
     for name, desc, body, must_contain, must_not_contain in cases:
