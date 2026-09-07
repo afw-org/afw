@@ -1277,6 +1277,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_LMDB_Q_cardinalityStrategy \
+    "cardinalityStrategy"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_cardinalityStrategy */
+#define afw_lmdb_s_cardinalityStrategy \
+    (&afw_lmdb_self_v_cardinalityStrategy.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_cardinalityStrategy */
+#define afw_lmdb_self_s_cardinalityStrategy \
+    (afw_lmdb_self_v_cardinalityStrategy.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_cardinalityStrategy */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_cardinalityStrategy;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_cardinalityStrategy */
+#define afw_lmdb_z_cardinalityStrategy \
+    (afw_lmdb_self_v_cardinalityStrategy.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_cardinalityStrategy */
+#define afw_lmdb_v_cardinalityStrategy \
+    (&afw_lmdb_self_v_cardinalityStrategy.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_LMDB_Q_category \
     "category"
 
@@ -1481,6 +1507,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_LMDB_Q_default */
 #define afw_lmdb_v_default \
     (&afw_lmdb_self_v_default.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_defaultValue \
+    "defaultValue"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_defaultValue */
+#define afw_lmdb_s_defaultValue \
+    (&afw_lmdb_self_v_defaultValue.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_defaultValue */
+#define afw_lmdb_self_s_defaultValue \
+    (afw_lmdb_self_v_defaultValue.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_defaultValue */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_defaultValue;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_defaultValue */
+#define afw_lmdb_z_defaultValue \
+    (afw_lmdb_self_v_defaultValue.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_defaultValue */
+#define afw_lmdb_v_defaultValue \
+    (&afw_lmdb_self_v_defaultValue.pub)
 
 
 
@@ -2369,6 +2421,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_LMDB_Q_off \
+    "off"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_off */
+#define afw_lmdb_s_off \
+    (&afw_lmdb_self_v_off.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_off */
+#define afw_lmdb_self_s_off \
+    (afw_lmdb_self_v_off.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_off */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_off;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_off */
+#define afw_lmdb_z_off \
+    (afw_lmdb_self_v_off.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_off */
+#define afw_lmdb_v_off \
+    (&afw_lmdb_self_v_off.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_LMDB_Q_otherProperties \
     "otherProperties"
 
@@ -2521,6 +2599,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_LMDB_Q_path */
 #define afw_lmdb_v_path \
     (&afw_lmdb_self_v_path.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_possibleValues \
+    "possibleValues"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_possibleValues */
+#define afw_lmdb_s_possibleValues \
+    (&afw_lmdb_self_v_possibleValues.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_possibleValues */
+#define afw_lmdb_self_s_possibleValues \
+    (afw_lmdb_self_v_possibleValues.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_possibleValues */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_possibleValues;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_possibleValues */
+#define afw_lmdb_z_possibleValues \
+    (afw_lmdb_self_v_possibleValues.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_possibleValues */
+#define afw_lmdb_v_possibleValues \
+    (&afw_lmdb_self_v_possibleValues.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_probe \
+    "probe"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_probe */
+#define afw_lmdb_s_probe \
+    (&afw_lmdb_self_v_probe.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_probe */
+#define afw_lmdb_self_s_probe \
+    (afw_lmdb_self_v_probe.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_probe */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_probe;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_probe */
+#define afw_lmdb_z_probe \
+    (afw_lmdb_self_v_probe.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_probe */
+#define afw_lmdb_v_probe \
+    (&afw_lmdb_self_v_probe.pub)
 
 
 
@@ -2941,6 +3071,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_LMDB_Q_totalEntries \
+    "totalEntries"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_totalEntries */
+#define afw_lmdb_s_totalEntries \
+    (&afw_lmdb_self_v_totalEntries.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_totalEntries */
+#define afw_lmdb_self_s_totalEntries \
+    (afw_lmdb_self_v_totalEntries.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_totalEntries */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_totalEntries;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_totalEntries */
+#define afw_lmdb_z_totalEntries \
+    (afw_lmdb_self_v_totalEntries.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_totalEntries */
+#define afw_lmdb_v_totalEntries \
+    (&afw_lmdb_self_v_totalEntries.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_LMDB_Q_unique \
     "unique"
 
@@ -3175,6 +3331,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__442c2402967e \
+    "Only meaningful when cardinalityStrategy is \"probe\": maximum number of index entries a non-eq (range or \"starts with\") adapter-index cursor will walk when estimating its cardinality for OR/AND cursor-merge ordering. If the cursor\'s actual count is at or under this cap, the estimate is exact; otherwise it is reported as this cap, a lower bound rather than the true count. Cardinality is only ever used to order cursors relative to each other (fewer comparisons in the later duplicate-elimination pass); it never affects which objects are returned. Defaults to 100."
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__442c2402967e */
+#define afw_lmdb_s_zz__442c2402967e \
+    (&afw_lmdb_self_v_zz__442c2402967e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__442c2402967e */
+#define afw_lmdb_self_s_zz__442c2402967e \
+    (afw_lmdb_self_v_zz__442c2402967e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__442c2402967e */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__442c2402967e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__442c2402967e */
+#define afw_lmdb_z_zz__442c2402967e \
+    (afw_lmdb_self_v_zz__442c2402967e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__442c2402967e */
+#define afw_lmdb_v_zz__442c2402967e \
+    (&afw_lmdb_self_v_zz__442c2402967e.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_LMDB_Q_zz__49530148f31a \
     "Information about the LMDB environment, its collection of databases."
 
@@ -3197,32 +3379,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__49530148f31a */
 #define afw_lmdb_v_zz__49530148f31a \
     (&afw_lmdb_self_v_zz__49530148f31a.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_LMDB_Q_zz__4e37b04ae4de \
-    "Maximum number of index entries a non-eq (range or \"starts with\") adapter-index cursor will walk when estimating its cardinality for OR/AND cursor-merge ordering. If the cursor\'s actual count is at or under this cap, the estimate is exact; otherwise it is reported as this cap, a lower bound rather than the true count. Cardinality is only ever used to order cursors relative to each other (fewer comparisons in the later duplicate-elimination pass); it never affects which objects are returned. Defaults to 100."
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__4e37b04ae4de */
-#define afw_lmdb_s_zz__4e37b04ae4de \
-    (&afw_lmdb_self_v_zz__4e37b04ae4de.internal)
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__4e37b04ae4de */
-#define afw_lmdb_self_s_zz__4e37b04ae4de \
-    (afw_lmdb_self_v_zz__4e37b04ae4de.internal)
-
-/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__4e37b04ae4de */
-extern const afw_value_string_t \
-    afw_lmdb_self_v_zz__4e37b04ae4de;
-
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__4e37b04ae4de */
-#define afw_lmdb_z_zz__4e37b04ae4de \
-    (afw_lmdb_self_v_zz__4e37b04ae4de.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__4e37b04ae4de */
-#define afw_lmdb_v_zz__4e37b04ae4de \
-    (&afw_lmdb_self_v_zz__4e37b04ae4de.pub)
 
 
 
@@ -3301,6 +3457,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__77b33a1f571a */
 #define afw_lmdb_v_zz__77b33a1f571a \
     (&afw_lmdb_self_v_zz__77b33a1f571a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__97a550deb703 \
+    "How a non-eq (range or \"starts with\") adapter-index cursor estimates its cardinality for OR/AND cursor-merge ordering; never affects which objects are returned, only how efficiently. \"totalEntries\" (default): the index\'s total entry count (mdb_stat, O(1), no cursor movement) - cheap and safe, but the same coarse number for every non-eq cursor on that property regardless of how selective the actual range is. \"probe\": walk the cursor up to cardinalityProbeCap entries for an exact-or-capped estimate - a tighter number, at the cost of a real, possibly-repeated (though now memoized per cursor) B-tree walk. \"off\": always report cardinality as unknown, matching pre-#298 behavior - zero cost, zero benefit."
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__97a550deb703 */
+#define afw_lmdb_s_zz__97a550deb703 \
+    (&afw_lmdb_self_v_zz__97a550deb703.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__97a550deb703 */
+#define afw_lmdb_self_s_zz__97a550deb703 \
+    (afw_lmdb_self_v_zz__97a550deb703.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__97a550deb703 */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__97a550deb703;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__97a550deb703 */
+#define afw_lmdb_z_zz__97a550deb703 \
+    (afw_lmdb_self_v_zz__97a550deb703.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__97a550deb703 */
+#define afw_lmdb_v_zz__97a550deb703 \
+    (&afw_lmdb_self_v_zz__97a550deb703.pub)
 
 
 
@@ -3431,6 +3613,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__Cardinality_Probe_Cap */
 #define afw_lmdb_v_zz__Cardinality_Probe_Cap \
     (&afw_lmdb_self_v_zz__Cardinality_Probe_Cap.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__Cardinality_Strategy \
+    "Cardinality Strategy"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__Cardinality_Strategy */
+#define afw_lmdb_s_zz__Cardinality_Strategy \
+    (&afw_lmdb_self_v_zz__Cardinality_Strategy.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__Cardinality_Strategy */
+#define afw_lmdb_self_s_zz__Cardinality_Strategy \
+    (afw_lmdb_self_v_zz__Cardinality_Strategy.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__Cardinality_Strategy */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__Cardinality_Strategy;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__Cardinality_Strategy */
+#define afw_lmdb_z_zz__Cardinality_Strategy \
+    (afw_lmdb_self_v_zz__Cardinality_Strategy.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__Cardinality_Strategy */
+#define afw_lmdb_v_zz__Cardinality_Strategy \
+    (&afw_lmdb_self_v_zz__Cardinality_Strategy.pub)
 
 
 

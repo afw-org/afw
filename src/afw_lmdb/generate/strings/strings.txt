@@ -30,6 +30,7 @@ time
 hard
 soft
 cardinalityProbeCap
+cardinalityStrategy
 maxreaders
 maxdbs
 mapsize

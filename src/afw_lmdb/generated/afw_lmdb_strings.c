@@ -314,6 +314,12 @@ afw_lmdb_self_v_cardinalityProbeCap = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_cardinalityStrategy = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_cardinalityStrategy)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_category = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_category)
@@ -359,6 +365,12 @@ const afw_value_string_t
 afw_lmdb_self_v_default = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_default)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_defaultValue = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_defaultValue)
 };
 
 const afw_value_string_t
@@ -566,6 +578,12 @@ afw_lmdb_self_v_objectType = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_off = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_off)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_otherProperties = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_otherProperties)
@@ -599,6 +617,18 @@ const afw_value_string_t
 afw_lmdb_self_v_path = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_path)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_possibleValues = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_possibleValues)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_probe = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_probe)
 };
 
 const afw_value_string_t
@@ -698,6 +728,12 @@ afw_lmdb_self_v_time = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_totalEntries = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_totalEntries)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_unique = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_unique)
@@ -752,15 +788,15 @@ afw_lmdb_self_v_zz__2fcf2b562f4d = {
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__49530148f31a = {
+afw_lmdb_self_v_zz__442c2402967e = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__49530148f31a)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__442c2402967e)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__4e37b04ae4de = {
+afw_lmdb_self_v_zz__49530148f31a = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__4e37b04ae4de)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__49530148f31a)
 };
 
 const afw_value_string_t
@@ -779,6 +815,12 @@ const afw_value_string_t
 afw_lmdb_self_v_zz__77b33a1f571a = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__77b33a1f571a)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__97a550deb703 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__97a550deb703)
 };
 
 const afw_value_string_t
@@ -809,6 +851,12 @@ const afw_value_string_t
 afw_lmdb_self_v_zz__Cardinality_Probe_Cap = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Cardinality_Probe_Cap)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Cardinality_Strategy = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Cardinality_Strategy)
 };
 
 const afw_value_string_t
@@ -1256,6 +1304,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_lmdb_self_v_brief,
     &afw_lmdb_self_v_camelCaseFunctionLabel,
     &afw_lmdb_self_v_cardinalityProbeCap,
+    &afw_lmdb_self_v_cardinalityStrategy,
     &afw_lmdb_self_v_category,
     &afw_lmdb_self_v_collectionURIs,
     &afw_lmdb_self_v_content_type,
@@ -1264,6 +1313,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_lmdb_self_v_dataType,
     &afw_lmdb_self_v_dataTypeParameter,
     &afw_lmdb_self_v_default,
+    &afw_lmdb_self_v_defaultValue,
     &afw_lmdb_self_v_depth,
     &afw_lmdb_self_v_description,
     &afw_lmdb_self_v_entries,
@@ -1298,12 +1348,15 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_lmdb_self_v_object,
     &afw_lmdb_self_v_objectId,
     &afw_lmdb_self_v_objectType,
+    &afw_lmdb_self_v_off,
     &afw_lmdb_self_v_otherProperties,
     &afw_lmdb_self_v_overflow_pages,
     &afw_lmdb_self_v_parameters,
     &afw_lmdb_self_v_parentPaths,
     &afw_lmdb_self_v_patch,
     &afw_lmdb_self_v_path,
+    &afw_lmdb_self_v_possibleValues,
+    &afw_lmdb_self_v_probe,
     &afw_lmdb_self_v_process,
     &afw_lmdb_self_v_propertyTypes,
     &afw_lmdb_self_v_psize,
@@ -1320,6 +1373,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_lmdb_self_v_string,
     &afw_lmdb_self_v_template,
     &afw_lmdb_self_v_time,
+    &afw_lmdb_self_v_totalEntries,
     &afw_lmdb_self_v_unique,
     &afw_lmdb_self_v_updateTimeStamp,
     &afw_lmdb_self_v_version,

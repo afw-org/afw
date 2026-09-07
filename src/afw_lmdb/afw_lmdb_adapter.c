@@ -131,6 +131,7 @@ const afw_lmdb_limits_t * afw_lmdb_adapter_parse_limits(
     afw_lmdb_limits_t *limits;
     const afw_object_t *obj;
     const afw_value_t *value;
+    const afw_utf8_t *strategy_str;
 
     limits = afw_xctx_calloc_type(afw_lmdb_limits_t, xctx);
 
@@ -173,6 +174,25 @@ const afw_lmdb_limits_t * afw_lmdb_adapter_parse_limits(
         limits->cardinality_probe_cap = afw_safe_cast_integer_to_int(afw_value_as_integer_internal(value, xctx), xctx);
     else
         limits->cardinality_probe_cap = AFW_LMDB_DEFAULT_CARDINALITY_PROBE_CAP;
+
+    value = afw_object_get_property(lim, afw_lmdb_v_cardinalityStrategy, xctx);
+    if (!value) {
+        limits->cardinality_strategy = AFW_LMDB_DEFAULT_CARDINALITY_STRATEGY;
+    } else {
+        strategy_str = afw_value_as_string_internal(value, xctx);
+
+        if (afw_utf8_equal_utf8_z(strategy_str, "totalEntries"))
+            limits->cardinality_strategy = afw_lmdb_cardinality_strategy_total_entries;
+        else if (afw_utf8_equal_utf8_z(strategy_str, "probe"))
+            limits->cardinality_strategy = afw_lmdb_cardinality_strategy_probe;
+        else if (afw_utf8_equal_utf8_z(strategy_str, "off"))
+            limits->cardinality_strategy = afw_lmdb_cardinality_strategy_off;
+        else
+            AFW_THROW_ERROR_FZ(general, xctx,
+                "limits.cardinalityStrategy " AFW_UTF8_FMT_Q
+                " is not one of \"totalEntries\", \"probe\", \"off\".",
+                AFW_UTF8_FMT_ARG(strategy_str));
+    }
 
     return limits;
 }
