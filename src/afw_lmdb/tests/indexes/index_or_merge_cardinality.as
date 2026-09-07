@@ -2,11 +2,11 @@
 //?
 //? testScript: index_or_merge_cardinality.as
 //? customPurpose: Part of lmdb tests
-//? description: A genuine OR across two indexed properties builds two adapter-index cursors and merges them (afw_adapter_impl_index_cursor_list_merge). Issue #296. Two distinct, currently-FAILING defects, both in that function -- these tests are written to the correct/desired behavior and are expected to fail until the fix lands.
+//? description: A genuine OR across two indexed properties builds two adapter-index cursors and merges them (afw_adapter_impl_index_cursor_list_merge). Issue #296 fixed two distinct defects in that function: silently dropping a cursor's matches on a cardinality tie/loss, and throwing when either cursor's operator isn't eq.
 //? sourceType: script
 //?
 //? test: index_or_merge_drops_a_cursor_on_cardinality_tie_or_loss
-//? description: Issue #296 (currently FAILS, even with eq/eq): afw_adapter_impl_index_cursor_list_merge only pushes this_cursor into the merged list when its cardinality is strictly greater than a that_list entry it's compared against. When it never wins a single comparison (e.g. a tie), it is silently dropped from the merged list entirely -- that whole clause's matches vanish from the OR result, with no error.
+//? description: Issue #296, defect 1 (reproduces even with eq/eq): afw_adapter_impl_index_cursor_list_merge used to only push this_cursor into the merged list when its cardinality was strictly greater than a that_list entry it was compared against. When it never won a single comparison (e.g. a tie), it was silently dropped from the merged list entirely -- that whole clause's matches vanished from the OR result, with no error.
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw
@@ -14,9 +14,10 @@
 const ot: string = "TestIndexOrMergeDropType";
 
 // Distinct keys per test in this file (not just distinct object types) --
-// on this branch these tests are expected to fail, and a failed assert
-// skips this block's own index_remove cleanup below, so a later block
-// must not be able to inherit a stale definition under a reused key.
+// if a future regression makes one of these blocks fail its assert
+// again, that skips this block's own index_remove cleanup below, and a
+// later block must not be able to inherit a stale definition under a
+// reused key.
 index_create("lmdb", "kind_drop", undefined, [ot], undefined, undefined, false, false);
 index_create("lmdb", "status_drop", undefined, [ot], undefined, undefined, false, false);
 
@@ -43,7 +44,7 @@ return 0;
 
 
 //? test: index_or_range_and_eq_across_two_indexed_properties
-//? description: Issue #296 (currently FAILS): OR'ing a range clause (gt) on one indexed property with an eq clause on a different indexed property should return the union, but afw_adapter_impl_index_cursor_get_count() (called from cursor_list_merge) doesn't support gt, so the query throws instead.
+//? description: Issue #296, defect 2: OR'ing a range clause (gt) on one indexed property with an eq clause on a different indexed property returns the union. afw_adapter_impl_index_cursor_get_count() (called from cursor_list_merge) still doesn't support gt, but an unknown cardinality no longer aborts the merge -- it's just skipped as an ordering hint.
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw
@@ -74,7 +75,7 @@ return 0;
 
 
 //? test: index_or_two_range_ops_across_two_indexed_properties
-//? description: Issue #296 (currently FAILS): OR'ing two range clauses (gt, lt) on two different indexed properties should return the union with no duplicates, but afw_adapter_impl_index_cursor_get_count() doesn't support gt/lt, so the query throws instead.
+//? description: Issue #296, defect 2: OR'ing two range clauses (gt, lt) on two different indexed properties returns the union with no duplicates, even though afw_adapter_impl_index_cursor_get_count() still can't report either cursor's cardinality.
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw
