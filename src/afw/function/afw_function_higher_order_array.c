@@ -21,6 +21,7 @@ typedef struct {
     const afw_data_type_t *data_type;
     const afw_value_t * *entry_arg_ptr;
     const void *entry_internal;
+    const afw_value_t *entry_value;
     const afw_value_t *entry_result;
     void *data;
     const afw_pool_t *p;
@@ -126,6 +127,7 @@ impl_over_array(
                 break;
             }
 
+            e.entry_value = entry_value;
             if (afw_value_is_undefined(entry_value)) {
                 *e.entry_arg_ptr = entry_value;
                 e.entry_internal = NULL;
@@ -163,6 +165,7 @@ impl_over_array(
             if (!*e.entry_arg_ptr) {
                 break;
             }
+            e.entry_value = *e.entry_arg_ptr;
             e.entry_result = afw_value_evaluate(e.functor, e.p, e.xctx);
             e.entry_result = afw_value_function_return_value_consume(
                 e.entry_result, e.p, e.xctx);
@@ -616,16 +619,12 @@ impl_filter_cb(impl_call_over_array_cb_e_t *e)
 
     if (((const afw_value_boolean_t *)e->entry_result)->internal) {
         /*
-         * Typed matching elements use entry_internal. Undefined / mismatched
-         * entries are passed by value pointer (entry_internal is NULL).
+         * Push the original array entry, not the reusable typed slot the
+         * functor sees. That slot is overwritten each iteration.
          */
-        if (e->entry_internal && e->data_type) {
-            afw_array_push_internal(data->filtered_array,
-                e->data_type, e->entry_internal, e->xctx);
-        }
-        else if (e->entry_arg_ptr && *e->entry_arg_ptr) {
+        if (e->entry_value) {
             afw_array_push_value(data->filtered_array,
-                *e->entry_arg_ptr, e->xctx);
+                e->entry_value, e->xctx);
         }
     }
 

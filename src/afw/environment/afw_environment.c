@@ -394,8 +394,7 @@ afw_environment_create(
         args_array = afw_array_create_unmanaged_of(afw_data_type_string, p, xctx);
         for (ai = 0; ai < argc; ai++) {
             arg = afw_utf8_create(argv[ai], AFW_UTF8_Z_LEN, p, xctx);
-            afw_array_push_internal(args_array, afw_data_type_string,
-                arg, xctx);
+            afw_array_of_string_add_internal(args_array, arg, xctx);
         }
         afw_object_set_property_as_array_internal(process_object,
             afw_v_args, args_array, xctx);

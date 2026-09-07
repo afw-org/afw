@@ -2611,24 +2611,32 @@ def write_c_section(fd, prefix, obj):
         fd.write('    ' + parameter_ctype + 'value,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        if ctype.endswith('*'):
-            fd.write('    ' + parameter_ctype + 'internal;\n')
-        fd.write('    const afw_array_setter_t *setter;\n')
+        fd.write('    const afw_value_t *v;\n')
         fd.write('\n')
-        fd.write('    setter = afw_array_get_setter(instance, xctx);\n')
-        fd.write('    if (!setter) {\n')
-        fd.write('        AFW_LIST_ERROR_OBJECT_IMMUTABLE;\n')
-        fd.write('    }\n')
-        fd.write('\n')
-        if ctype.endswith('*'):
-            fd.write('    internal = value;\n')
-            fd.write('    afw_array_setter_remove_internal(setter, \n')
-            fd.write('        afw_data_type_' + id + ',\n')
-            fd.write('        (const void *)&internal, xctx);\n')
+        if id == 'boolean':
+            fd.write('    v = afw_value_for_boolean(*value);\n')
+        elif id == 'null':
+            fd.write('    v = afw_value_null;\n')
+        elif id == 'integer':
+            fd.write('    if (*value == 0) {\n')
+            fd.write('        v = afw_integer_v_zero;\n')
+            fd.write('    }\n')
+            fd.write('    else if (*value == 1) {\n')
+            fd.write('        v = afw_integer_v_one;\n')
+            fd.write('    }\n')
+            fd.write('    else {\n')
+            fd.write('        v = ' + _unmanaged_create_fn(id) +
+                     '(*value, xctx->p, xctx);\n')
+            fd.write('    }\n')
+        elif _scalar_holdable_create(id):
+            payload = '*value' if (
+                direct_return and not ctype.endswith('*')) else 'value'
+            fd.write('    v = ' + _unmanaged_create_fn(id) +
+                     '(' + payload + ', xctx->p, xctx);\n')
         else:
-            fd.write('    afw_array_setter_remove_internal(setter, \n')
-            fd.write('        afw_data_type_' + id + ',\n')
-            fd.write('        (const void *)value, xctx);\n')
+            fd.write('    v = ' + _unmanaged_create_fn(id) +
+                     '(value, xctx->p, xctx);\n')
+        fd.write('    afw_array_remove_value(instance, v, xctx);\n')
         fd.write('}\n')
 
 

@@ -109,26 +109,6 @@ afw_array_push_value(
 }
 
 
-/* push_internal */
-AFW_DEFINE(void)
-afw_array_push_internal(
-    const afw_array_t *instance,
-    const afw_data_type_t *data_type,
-    const void *internal,
-    afw_xctx_t *xctx)
-{
-    const afw_array_setter_t *setter;
-
-    setter = afw_array_get_setter(instance, xctx);
-
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
-    }
-
-    afw_array_setter_push_internal(setter, data_type, internal, xctx);
-}
-
-
 /* pop_value */
 AFW_DEFINE(const afw_value_t *)
 afw_array_pop_value(
@@ -242,26 +222,6 @@ afw_array_remove_value(
     }
 
     afw_array_setter_remove_value(setter, value, xctx);
-}
-
-
-/* remove_internal */
-AFW_DEFINE(void)
-afw_array_remove_internal(
-    const afw_array_t *instance,
-    const afw_data_type_t *data_type,
-    const void *internal,
-    afw_xctx_t *xctx)
-{
-    const afw_array_setter_t *setter;
-
-    setter = afw_array_get_setter(instance, xctx);
-
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
-    }
-
-    afw_array_setter_remove_internal(setter, data_type, internal, xctx);
 }
 
 

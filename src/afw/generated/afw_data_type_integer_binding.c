@@ -785,14 +785,16 @@ afw_array_of_integer_remove_internal(
     const afw_integer_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_array_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_array_get_setter(instance, xctx);
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    if (*value == 0) {
+        v = afw_integer_v_zero;
     }
-
-    afw_array_setter_remove_internal(setter, 
-        afw_data_type_integer,
-        (const void *)value, xctx);
+    else if (*value == 1) {
+        v = afw_integer_v_one;
+    }
+    else {
+        v = afw_value_integer_create(*value, xctx->p, xctx);
+    }
+    afw_array_remove_value(instance, v, xctx);
 }

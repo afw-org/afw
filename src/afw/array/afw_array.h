@@ -589,22 +589,6 @@ afw_array_push_value(
 
 
 /**
- * @brief Append internal value at end (typed push).
- * @param instance Pointer to this value array instance.
- * @param data_type of internal.
- * @param internal A value.
- * @param xctx of caller.
- */
-AFW_DECLARE(void)
-afw_array_push_internal(
-    const afw_array_t *instance,
-    const afw_data_type_t *data_type,
-    const void *internal,
-    afw_xctx_t *xctx);
-
-
-
-/**
  * @brief Remove and return last value (pop back).
  * @param instance Pointer to this value array instance.
  * @param found Optional; if non-NULL, true if an element was removed.
@@ -703,22 +687,6 @@ AFW_DECLARE(void)
 afw_array_remove_value(
     const afw_array_t *instance,
     const afw_value_t *value,
-    afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Remove first matching internal value (typed content remove).
- * @param instance Pointer to this value array instance.
- * @param data_type of internal.
- * @param internal A value.
- * @param xctx of caller.
- */
-AFW_DECLARE(void)
-afw_array_remove_internal(
-    const afw_array_t *instance,
-    const afw_data_type_t *data_type,
-    const void *internal,
     afw_xctx_t *xctx);
 
 

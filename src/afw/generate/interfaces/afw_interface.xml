@@ -2827,34 +2827,6 @@ const afw_content_type_t *
     </method>
 
 
-    <method name="push_internal">
-
-      <description>
-        Append an internal value of a single data type at the end of the
-        array (typed push_value).
-      </description>
-
-      <parameter name="instance" type="const afw_array_setter_t *">
-        <description>Pointer to this array setter instance.</description>
-      </parameter>
-
-      <parameter name="data_type" type="const afw_data_type_t *">
-        <description>Data type of internal.</description>
-      </parameter>
-
-      <parameter name="internal" type="const void *">
-        <description>Internal value of type data_type->cType.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
-
-
     <method name="pop_value">
 
       <description>
@@ -2994,42 +2966,6 @@ const afw_content_type_t *
     </method>
 
 
-    <method name="insert_internal">
-
-      <description>
-        Insert an internal value of a single data type before the given index
-        (typed insert_value). Index 0 is unshift; index equal to count is
-        append (same rules as insert_value).
-      </description>
-
-      <parameter name="instance" type="const afw_array_setter_t *">
-        <description>Pointer to this array setter instance.</description>
-      </parameter>
-
-      <parameter name="index" type="afw_integer_t">
-        <description>
-          Zero-based insert position, or negative from the end. See interface
-          description for index rules.
-        </description>
-      </parameter>
-
-      <parameter name="data_type" type="const afw_data_type_t *">
-        <description>Data type of internal.</description>
-      </parameter>
-
-      <parameter name="internal" type="const void *">
-        <description>Internal value of type data_type->cType.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
-
-
     <method name="set_value">
 
       <description>
@@ -3120,32 +3056,7 @@ const afw_content_type_t *
     </method>
 
 
-    <method name="remove_internal">
 
-      <description>
-        Remove the first entry whose internal value of the given data type
-        matches (typed content remove_value).
-      </description>
-
-      <parameter name="instance" type="const afw_array_setter_t *">
-        <description>Pointer to this array setter instance.</description>
-      </parameter>
-
-      <parameter name="data_type" type="const afw_data_type_t *">
-        <description>Data type of internal.</description>
-      </parameter>
-
-      <parameter name="internal" type="const void *">
-        <description>Internal value of type data_type->cType to match.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
 
 
     <method name="remove_all_values">

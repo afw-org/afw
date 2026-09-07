@@ -17,33 +17,19 @@
 
 static afw_boolean_t
 impl_is_in_array(
-    const afw_data_type_t *data_type,
-    const void *internal,
+    const afw_value_t *value,
     const afw_array_t *array,
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const void *entry_internal;
-    const afw_data_type_t *entry_data_type;
-
-    if (!data_type) {
-        AFW_THROW_ERROR_Z(argument_error,
-            "impl_is_in_array() called with NULL data_type",
-            xctx);
-    }
+    const afw_value_t *entry;
 
     for (iterator = NULL;;) {
-        afw_array_get_next_internal(array, &iterator,
-            &entry_data_type, &entry_internal, xctx);
-        if (!entry_internal) {
+        entry = afw_array_get_next_value(array, &iterator, NULL, xctx);
+        if (!entry) {
             return false;
         }
-        if (data_type != entry_data_type) {
-            continue;
-        }
-        if (afw_data_type_compare_internal(data_type,
-            internal, entry_internal, xctx) == 0)
-        {
+        if (afw_value_equal(value, entry, xctx)) {
             return true;
         }
     }
@@ -58,16 +44,14 @@ impl_is_subset_array(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const void *internal;
-    const afw_data_type_t *data_type;
+    const afw_value_t *value;
 
     for (iterator = NULL;;) {
-        afw_array_get_next_internal(array1, &iterator,
-            &data_type, &internal, xctx);
-        if (!internal) {
+        value = afw_array_get_next_value(array1, &iterator, NULL, xctx);
+        if (!value) {
             return true;
         }
-        if (!impl_is_in_array(data_type, internal, array2, xctx)) {
+        if (!impl_is_in_array(value, array2, xctx)) {
             return false;
         }
     }
@@ -83,16 +67,17 @@ impl_add_nondups_to_array(
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
-    const void *internal;
+    const afw_value_t *value;
+
+    (void)data_type;
 
     for (iterator = NULL;;) {
-        afw_array_get_next_internal(from, &iterator,
-            NULL, &internal, xctx);
-        if (!internal) {
+        value = afw_array_get_next_value(from, &iterator, NULL, xctx);
+        if (!value) {
             break;
         }
-        if (!impl_is_in_array(data_type, internal, to, xctx)) {
-            afw_array_push_internal(to, data_type, internal, xctx);
+        if (!impl_is_in_array(value, to, xctx)) {
+            afw_array_push_value(to, value, xctx);
         }
     }
 }
@@ -143,19 +128,18 @@ afw_function_execute_at_least_one_member_of(
     const afw_value_array_t *array1;
     const afw_value_array_t *array2;
     const afw_iterator_old_t *iterator;
-    const afw_data_type_t *data_type;
-    const void *internal;
+    const afw_value_t *value;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 1, array);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array2, 2, array);
 
     for (iterator = NULL;;) {
-        afw_array_get_next_internal(array1->internal, &iterator,
-            &data_type, &internal, x->xctx);
-        if (!internal) {
+        value = afw_array_get_next_value(array1->internal, &iterator,
+            NULL, x->xctx);
+        if (!value) {
             return afw_boolean_v_false;
         }
-        if (impl_is_in_array(data_type, internal, array2->internal, x->xctx)) {
+        if (impl_is_in_array(value, array2->internal, x->xctx)) {
             return afw_boolean_v_true;
         }
     }
@@ -214,8 +198,7 @@ afw_function_execute_bag(
 
     for (i = 1; i <= x->argc; i++) {
         value = afw_function_evaluate_required_parameter(x, i, x->data_type);
-        afw_array_push_internal(array, x->data_type,
-            AFW_VALUE_INTERNAL(value), x->xctx);
+        afw_array_push_value(array, value, x->xctx);
     }
 
     return afw_value_create_unmanaged_array(array, x->p, x->xctx);
@@ -1061,7 +1044,7 @@ afw_function_execute_intersection(
     const afw_value_array_t *array2;
     const afw_iterator_old_t *iterator;
     const afw_data_type_t *data_type;
-    const void *internal;
+    const afw_value_t *value;
     const afw_array_t *array;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 1, array);
@@ -1078,14 +1061,14 @@ afw_function_execute_intersection(
     array = afw_array_create_unmanaged_of(data_type, x->p, x->xctx);
 
     for (iterator = NULL;;) {
-        afw_array_get_next_internal(array1->internal, &iterator, NULL,
-            &internal, x->xctx);
-        if (!internal) {
+        value = afw_array_get_next_value(array1->internal, &iterator,
+            NULL, x->xctx);
+        if (!value) {
             break;
         }
-        if (impl_is_in_array(data_type, internal, array2->internal, x->xctx)) {
-            if (!impl_is_in_array(data_type, internal, array, x->xctx)) {
-                afw_array_push_internal(array, data_type, internal, x->xctx);
+        if (impl_is_in_array(value, array2->internal, x->xctx)) {
+            if (!impl_is_in_array(value, array, x->xctx)) {
+                afw_array_push_value(array, value, x->xctx);
             }
         }
     }
@@ -1151,8 +1134,7 @@ afw_function_execute_is_in(
             x->xctx);
     }
 
-    return impl_is_in_array(data_type, AFW_VALUE_INTERNAL(value),
-        array->internal, x->xctx)
+    return impl_is_in_array(value, array->internal, x->xctx)
         ? afw_boolean_v_true
         : afw_boolean_v_false;
 }
@@ -1748,9 +1730,8 @@ afw_function_execute_one_and_only(
     afw_function_execute_t *x)
 {
     const afw_value_array_t *array;
-    const afw_data_type_t *data_type;
-    const void *internal;
     const afw_iterator_old_t *iterator;
+    const afw_value_t *value;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
     if (afw_array_get_count(array->internal, x->xctx) != 1) {
@@ -1759,10 +1740,9 @@ afw_function_execute_one_and_only(
     }
 
     iterator = NULL;
-    afw_array_get_next_internal(array->internal,
-        &iterator, &data_type, &internal, x->xctx);
-
-    return afw_value_common_create(internal, data_type, x->p, x->xctx);
+    value = afw_array_get_next_value(array->internal, &iterator,
+        NULL, x->xctx);
+    return value;
 }
 
 
@@ -2345,8 +2325,7 @@ afw_function_execute_split(
                     remaining.len -= cp_len;
                 }
             }
-            afw_array_push_internal(array, afw_data_type_string,
-                (const void *)&split, x->xctx);
+            afw_array_of_string_add_internal(array, &split, x->xctx);
         }
     }
 
@@ -2371,8 +2350,7 @@ afw_function_execute_split(
             split.len = offset;
             remaining.s += offset;
             remaining.len -= offset;
-            afw_array_push_internal(array, afw_data_type_string,
-                (const void *)&split, x->xctx);
+            afw_array_of_string_add_internal(array, &split, x->xctx);
         }
     }
 

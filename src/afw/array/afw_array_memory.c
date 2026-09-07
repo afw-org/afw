@@ -58,19 +58,6 @@ static void
 impl_afw_array_managed_setter_remove_all_values(
     const afw_array_setter_t *self,
     afw_xctx_t *xctx);
-static void
-impl_afw_array_managed_setter_push_internal(
-    const afw_array_setter_t *self,
-    const afw_data_type_t *data_type,
-    const void *internal,
-    afw_xctx_t *xctx);
-static void
-impl_afw_array_managed_setter_insert_internal(
-    const afw_array_setter_t *self,
-    afw_integer_t index,
-    const afw_data_type_t *data_type,
-    const void *internal,
-    afw_xctx_t *xctx);
 
 #undef AFW_IMPLEMENTATION_ID
 #define AFW_IMPLEMENTATION_ID "memory_managed"
@@ -93,18 +80,12 @@ impl_afw_array_managed_setter_insert_internal(
     impl_afw_array_managed_setter_insert_value
 #define impl_afw_array_setter_remove_all_values \
     impl_afw_array_managed_setter_remove_all_values
-#define impl_afw_array_setter_push_internal \
-    impl_afw_array_managed_setter_push_internal
-#define impl_afw_array_setter_insert_internal \
-    impl_afw_array_managed_setter_insert_internal
 #include "afw_array_setter_impl_declares.h"
 #undef AFW_ARRAY_SETTER_INF_ONLY
 #undef impl_afw_array_setter_push_value
 #undef impl_afw_array_setter_set_value
 #undef impl_afw_array_setter_insert_value
 #undef impl_afw_array_setter_remove_all_values
-#undef impl_afw_array_setter_push_internal
-#undef impl_afw_array_setter_insert_internal
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef AFW_IMPLEMENTATION_ID
 
@@ -1043,26 +1024,6 @@ impl_afw_array_setter_push_value(
 
 
 /*
- * Implementation of method push_internal for interface afw_array_setter.
- */
-void
-impl_afw_array_setter_push_internal(
-    const afw_array_setter_t * self,
-    const afw_data_type_t *data_type,
-    const void * internal,
-    afw_xctx_t *xctx)
-{
-    afw_memory_internal_array_t *array_self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
-    const afw_value_t *value;
-
-    value = afw_value_common_create(internal, data_type, array_self->pub.p, xctx);
-    impl_afw_array_setter_push_value(self, value, xctx);
-}
-
-
-
-/*
  * Implementation of method pop_value for interface afw_array_setter.
  */
 const afw_value_t *
@@ -1191,28 +1152,6 @@ impl_afw_array_setter_insert_value(
 
 
 /*
- * Implementation of method insert_internal for interface afw_array_setter.
- */
-void
-impl_afw_array_setter_insert_internal(
-    const afw_array_setter_t * self,
-    afw_integer_t index,
-    const afw_data_type_t * data_type,
-    const void * internal,
-    afw_xctx_t *xctx)
-{
-    afw_memory_internal_array_t *array_self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
-    const afw_value_t *value;
-
-    value = afw_value_common_create(
-        internal, data_type, array_self->pub.p, xctx);
-    impl_afw_array_setter_insert_value(self, index, value, xctx);
-}
-
-
-
-/*
  * Implementation of method set_value for interface afw_array_setter.
  *
  * In-range replace, or append when index === count (grow by one). Never
@@ -1297,40 +1236,6 @@ impl_afw_array_setter_remove_value(
     APR_RING_FOREACH(ep, array_self->ring, afw_memory_internal_array_entry_s, link)
     {
         if (afw_value_equal(value, ep->value, xctx)) {
-            impl_drop_element(array_self, ep->value, xctx);
-            APR_RING_REMOVE(ep, link);
-            array_self->count--;
-            impl_maybe_clear_generic_data_type(array_self);
-            return;
-        }
-    }
-
-    AFW_THROW_ERROR_Z(general, "Value not in array", xctx);
-}
-
-
-
-/*
- * Implementation of method remove_internal for interface afw_array_setter.
- */
-void
-impl_afw_array_setter_remove_internal(
-    const afw_array_setter_t * self,
-    const afw_data_type_t *data_type,
-    const void * internal,
-    afw_xctx_t *xctx)
-{
-    afw_memory_internal_array_t *array_self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
-    afw_memory_internal_array_entry_t *ep;
-
-    APR_RING_FOREACH(ep, array_self->ring, afw_memory_internal_array_entry_s, link)
-    {
-        if (afw_value_get_data_type(ep->value, xctx) == data_type &&
-            memcmp(
-                &((const afw_value_common_t *)ep->value)->internal,
-                internal, data_type->c_type_size) == 0)
-        {
             impl_drop_element(array_self, ep->value, xctx);
             APR_RING_REMOVE(ep, link);
             array_self->count--;
@@ -1536,35 +1441,6 @@ impl_afw_array_managed_setter_remove_all_values(
     if (array_self->generic) {
         array_self->data_type = NULL;
     }
-}
-
-
-void
-impl_afw_array_managed_setter_push_internal(
-    const afw_array_setter_t *self,
-    const afw_data_type_t *data_type,
-    const void *internal,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *value;
-
-    value = afw_value_common_create(internal, data_type, xctx->p, xctx);
-    impl_afw_array_managed_setter_push_value(self, value, xctx);
-}
-
-
-void
-impl_afw_array_managed_setter_insert_internal(
-    const afw_array_setter_t *self,
-    afw_integer_t index,
-    const afw_data_type_t *data_type,
-    const void *internal,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *value;
-
-    value = afw_value_common_create(internal, data_type, xctx->p, xctx);
-    impl_afw_array_managed_setter_insert_value(self, index, value, xctx);
 }
 
 

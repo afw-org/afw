@@ -861,16 +861,8 @@ afw_array_of_object_remove_internal(
     const afw_object_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_object_t *internal;
-    const afw_array_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_array_get_setter(instance, xctx);
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
-    }
-
-    internal = value;
-    afw_array_setter_remove_internal(setter, 
-        afw_data_type_object,
-        (const void *)&internal, xctx);
+    v = afw_value_object_create(value, xctx->p, xctx);
+    afw_array_remove_value(instance, v, xctx);
 }
