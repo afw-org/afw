@@ -1591,11 +1591,24 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list_join(
 /*
  * afw_adapter_impl_index_cursor_list_merge()
  *
- * During a conjunction, we merge two lists together.
- * We like to have them sorted from highest 
- * cardinality to lowest to make the process of 
- * removing duplicates easier.
+ * During a disjunction (OR), we merge two cursor lists together so
+ * every cursor from both sides ends up in the result (the later dedup
+ * pass in afw_adapter_impl_index_query()/afw_adapter_impl_index_applies()
+ * handles objects that satisfy more than one cursor). We like to have
+ * them sorted from highest cardinality to lowest to make that dedup
+ * pass cheaper, but that ordering is only ever a hint: whether a
+ * cursor's cardinality is known, or how it compares, must never affect
+ * *whether* it ends up in the merged list, only *where*.
  *
+ * Issue #296: this used to get that wrong two ways --
+ *  - this_cursor was only inserted when it won a cardinality comparison
+ *    against some that_list entry; if it never won (a tie, or simply
+ *    the smaller side), it was silently dropped from the result -
+ *    reproduced even with two plain eq cursors on a cardinality tie.
+ *  - a cursor whose cardinality couldn't be determined (anything but eq
+ *    - see afw_adapter_impl_index_cursor_get_count()) made the whole
+ *    merge fail (return NULL or throw) instead of just skipping the
+ *    ordering comparison for that cursor.
  */
 apr_array_header_t * afw_adapter_impl_index_cursor_list_merge(
     const afw_adapter_impl_index_t * instance,
@@ -1608,7 +1621,8 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list_merge(
     const afw_adapter_impl_index_cursor_t *this_cursor;
     const afw_adapter_impl_index_cursor_t *that_cursor;
     size_t this_cardinality, that_cardinality;
-    afw_boolean_t rc;
+    afw_boolean_t have_this_cardinality, have_that_cardinality;
+    afw_boolean_t inserted;
     int merged_size;
     int i, j;
 
@@ -1624,30 +1638,38 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list_merge(
         this_cursor = ((const afw_adapter_impl_index_cursor_t **)
             this_list->elts)[i];
 
-        rc = afw_adapter_impl_index_cursor_get_count(
+        have_this_cardinality = afw_adapter_impl_index_cursor_get_count(
             this_cursor, &this_cardinality, xctx);
-        if (!rc) return NULL;
+        inserted = false;
 
         for (j = 0; j < temp->nelts; j++) {
             that_cursor = ((const afw_adapter_impl_index_cursor_t **)
                 temp->elts)[j];
 
-            rc = afw_adapter_impl_index_cursor_get_count(
+            have_that_cardinality = afw_adapter_impl_index_cursor_get_count(
                 that_cursor, &that_cardinality, xctx);
-            if (!rc) {
-                AFW_THROW_ERROR_FZ(general, xctx,
-                    "Error occurred obtaining cursor count, rc = %d", rc); 
-            }
 
-            if (this_cardinality > that_cardinality) {
+            if (!inserted && have_this_cardinality && have_that_cardinality &&
+                this_cardinality > that_cardinality)
+            {
                 *(const afw_adapter_impl_index_cursor_t**)
                     apr_array_push(merged_list) = this_cursor;
-                /* now allow the rest of that_list to be merged */
-                this_cardinality = 0;
+                inserted = true;
             }
 
             *(const afw_adapter_impl_index_cursor_t**)
                 apr_array_push(merged_list) = that_cursor;
+        }
+
+        /*
+         * this_cursor never outranked anything in temp -- either its
+         * cardinality (or a that_cursor's) couldn't be determined, or it
+         * genuinely is the smallest. It must still appear in the result
+         * exactly once (issue #296 defect 1).
+         */
+        if (!inserted) {
+            *(const afw_adapter_impl_index_cursor_t**)
+                apr_array_push(merged_list) = this_cursor;
         }
 
         temp = apr_array_copy(afw_pool_get_apr_pool(xctx->p), merged_list);
