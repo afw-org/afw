@@ -151,19 +151,12 @@ def model_default_modify_object_action(session, objectType, objectId, entries, a
             expressions.
         entries (list): This is an array of modifications. Variable
             current::modifyEntries can be used to access this value in model
-            expressions. Entries are of the form:
-        
-                [         'add_value',         'property name' or ['property
-            name', ... ],         value     ]
-        
-                [         'remove_property',         'property name' or
-            ['property name', ... ]     ]
-        
-                [         'remove_value',         'property name' or
-            ['property name', ... ],         value     ]
-        
-                [         'set_property',         'property name' or
-            ['property name', ... ],         value     ]
+            expressions. Entries are of the form: [ 'add_value', 'property
+            name' or ['property name', ... ], value ] [ 'remove_property',
+            'property name' or ['property name', ... ] ] [ 'remove_value',
+            'property name' or ['property name', ... ], value ] [
+            'set_property', 'property name' or ['property name', ... ], value
+            ]
         modelId (str): This specifics a modelId of model to use for producing
             results. If not specified, the adapter's current model will be
             used.

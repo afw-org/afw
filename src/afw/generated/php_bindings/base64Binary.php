@@ -102,7 +102,7 @@ class base64Binary
      *
      * Converts value to data type base64Binary returning base64Binary result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return base64Binary Converted value
      */
@@ -151,7 +151,7 @@ class base64Binary
      * data type don't match.
      *
      * @param base64Binary $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -177,7 +177,7 @@ class base64Binary
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param base64Binary $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -276,7 +276,7 @@ class base64Binary
      * Checks whether value is dataType base64Binary and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -325,7 +325,7 @@ class base64Binary
      * and return the boolean result.
      *
      * @param base64Binary $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -377,7 +377,7 @@ class base64Binary
      * arg2's data type don't match.
      *
      * @param base64Binary $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -404,7 +404,7 @@ class base64Binary
      * comparison.
      *
      * @param base64Binary $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */

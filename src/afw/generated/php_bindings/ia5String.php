@@ -80,7 +80,7 @@ class ia5String
      * don't match.
      *
      * @param ia5String $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -106,7 +106,7 @@ class ia5String
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param ia5String $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -179,7 +179,7 @@ class ia5String
      *
      * Converts value to data type ia5String returning ia5String result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return ia5String Converted value
      */
@@ -202,7 +202,7 @@ class ia5String
      * Checks whether value is dataType ia5String and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -226,7 +226,7 @@ class ia5String
      * return the boolean result.
      *
      * @param ia5String $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -278,7 +278,7 @@ class ia5String
      * type don't match.
      *
      * @param ia5String $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -304,7 +304,7 @@ class ia5String
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param ia5String $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */

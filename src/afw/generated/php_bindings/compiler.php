@@ -99,14 +99,14 @@ class compiler
      * (runtime-only / C-side). Optional whitespace matches stringify/listing
      * style (integer 0-10 or indent string).
      *
-     * @param  $value Value to decompile (may be unevaluated, such as a
+     * @param $value Value to decompile (may be unevaluated, such as a
      *                compiled script root).
-     * @param  $whitespace Add whitespace for readability if present and not
-     *                     0. This parameter can be an integer between 0 and
-     *                     10 or a string that is used for indentation. If 0
-     *                     is specified, no whitespace is added to the
-     *                     resulting string. If 1 through 10 is specified,
-     *                     that number of spaces is used.
+     * @param $whitespace Add whitespace for readability if present and not 0.
+     *                     This parameter can be an integer between 0 and 10
+     *                     or a string that is used for indentation. If 0 is
+     *                     specified, no whitespace is added to the resulting
+     *                     string. If 1 through 10 is specified, that number
+     *                     of spaces is used.
      *
      * @return string Adaptive text for the compiled form of the value.
      */
@@ -213,10 +213,10 @@ class compiler
      * Evaluate a value and retry up to a limit if an exception occurs. An
      * error is thrown if the evaluated result is undefined.
      *
-     * @param  $value Value to evaluate
+     * @param $value Value to evaluate
      * @param integer $limit Maximum number to retry if an exception occurs.
      *
-     * @return  Evaluated value.
+     * @return Evaluated value.
      */
     public function evaluate_with_retry(, $value, $limit)
     {
@@ -279,7 +279,7 @@ class compiler
      *                                  evaluate()'s
      *                                  additionalUntrustedQualifiedVariables.
      *
-     * @return  When the qualifier has at least one matching visible stack
+     * @return When the qualifier has at least one matching visible stack
      *          entry, each property is a variable name for that qualifier
      *          (values from contribute, most recent entry wins per name).
      *          Fresh object on every call (may be empty if nothing was
@@ -367,12 +367,12 @@ class compiler
      * Return the evaluated adaptive value. If an exception occurs, return
      * evaluated error instead.
      *
-     * @param  $value Value to evaluated
-     * @param  $error Value to evaluate and return if exception occurs. If an
+     * @param $value Value to evaluated
+     * @param $error Value to evaluate and return if exception occurs. If an
      *                error occurs evaluating this value, the exception will
      *                continue.
      *
-     * @return  Evaluated adaptive value or error value.
+     * @return Evaluated adaptive value or error value.
      */
     public function safe_evaluate(, $value, $error)
     {
@@ -401,20 +401,20 @@ class compiler
      * array of property names to include when serializing objects. Optional
      * whitespace matches decompile/listing style.
      *
-     * @param  $value Evaluated value to serialize as JSON.
-     * @param  $replacer Optional replacer: a function (key: string, value:
+     * @param $value Evaluated value to serialize as JSON.
+     * @param $replacer Optional replacer: a function (key: string, value:
      *                   any): any called for the root (key is empty string)
      *                   and each object property or array element; return
      *                   undefined to omit an object property (array elements
      *                   become null). Or an array of string property names to
      *                   keep when serializing objects. Omit or null for no
      *                   replacer.
-     * @param  $whitespace Add whitespace for readability if present and not
-     *                     0. This parameter can be an integer between 0 and
-     *                     10 or a string that is used for indentation. If 0
-     *                     is specified, no whitespace is added to the
-     *                     resulting string. If 1 through 10 is specified,
-     *                     that number of spaces is used.
+     * @param $whitespace Add whitespace for readability if present and not 0.
+     *                     This parameter can be an integer between 0 and 10
+     *                     or a string that is used for indentation. If 0 is
+     *                     specified, no whitespace is added to the resulting
+     *                     string. If 1 through 10 is specified, that number
+     *                     of spaces is used.
      *
      * @return string JSON text for the value.
      */
@@ -446,7 +446,7 @@ class compiler
      * @param string $id Id of test
      * @param string $description Description of test
      * @param string $script Script to compile and evaluate.
-     * @param  $expected Expected result.
+     * @param $expected Expected result.
      * @param object $additionalUntrustedQualifiedVariables This parameter
      *                                                      supplies
      *                                                      additional
@@ -504,7 +504,7 @@ class compiler
      * @param string $id Id of test
      * @param string $description Description of test
      * @param string $template Template to compile and evaluate.
-     * @param  $expected Expected evaluated result.
+     * @param $expected Expected evaluated result.
      * @param object $additionalUntrustedQualifiedVariables This parameter
      *                                                      supplies
      *                                                      additional
@@ -562,7 +562,7 @@ class compiler
      * @param string $id Id of test
      * @param string $description Description of test
      * @param string $value Value to evaluate
-     * @param  $expected Expected result.
+     * @param $expected Expected result.
      * @param object $additionalUntrustedQualifiedVariables This parameter
      *                                                      supplies
      *                                                      additional

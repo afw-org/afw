@@ -34,9 +34,9 @@ class compiler_internal
      * an array of values (statements) in a structured function.
      *
      * @param string $name Variable name
-     * @param  $value This is the value to assign to the variable.
+     * @param $value This is the value to assign to the variable.
      *
-     * @return  The value assigned.
+     * @return The value assigned.
      */
     public function assign(, $name, $value)
     {
@@ -89,7 +89,7 @@ class compiler_internal
      *
      * @param array $name The name of one or more constants to defined in the
      *                    current block.
-     * @param  $value This is the value of the constant(s).
+     * @param $value This is the value of the constant(s).
      * @param object $type The type of the constant(s).
      *
      * @return void Does not complete. A const statement does not override the
@@ -247,7 +247,7 @@ class compiler_internal
      * for-of statement.
      *
      * @param array $name Variable name(s).
-     * @param  $value Any array, object or single value.
+     * @param $value Any array, object or single value.
      * @param array $body This is an array of values (statements) that are
      *                    evaluated for each iteration of the loop. Each value
      *                    in body is evaluated in order until the end of the
@@ -298,7 +298,7 @@ class compiler_internal
      *                    function for information on how the body is
      *                    processed.
      *
-     * @return  The result of evaluating 'then' or 'else'. Also the ternary
+     * @return The result of evaluating 'then' or 'else'. Also the ternary
      *          operator. If the condition is false and else is omitted, does
      *          not complete (void).
      */
@@ -329,7 +329,7 @@ class compiler_internal
      *
      * @param array $name The name of one or more variables to declared in the
      *                    current block.
-     * @param  $value This is the initial value of the variable(s). If not
+     * @param $value This is the initial value of the variable(s). If not
      *                specified, the variable will have a value of undefined.
      * @param object $type The type of the variable(s).
      *
@@ -386,11 +386,11 @@ class compiler_internal
      * the lambda function. If called outside of a structured block, an error
      * is thrown.
      *
-     * @param  $value The value to evaluate that the outermost block will
+     * @param $value The value to evaluate that the outermost block will
      *                return. If not specified, the last evaluated value or a
      *                null value will be returned.
      *
-     * @return  This function returns from the outermost structured block with
+     * @return This function returns from the outermost structured block with
      *          the last evaluated value.
      */
     public function return(, $value = null)
@@ -421,11 +421,11 @@ class compiler_internal
      *                            'eqx' to use the exactly equal function but
      *                            can also be any other function such as
      *                            'regexp_match' or a lambda function.
-     * @param  $value1 The first parameter passed to the predicate.
-     * @param  $case_clause This is one or more case clauses which are pairs
-     *                      of a value2 parameter followed by a statement list
-     *                      or undefined parameter. One value2 can be
-     *                      undefined to indicate the default case clause.
+     * @param $value1 The first parameter passed to the predicate.
+     * @param $case_clause This is one or more case clauses which are pairs of
+     *                      a value2 parameter followed by a statement list or
+     *                      undefined parameter. One value2 can be undefined
+     *                      to indicate the default case clause.
      * 
      *                      For the first value2 that is undefined or calling
      *                      the predicate returns true, the statement list
@@ -465,7 +465,7 @@ class compiler_internal
      * @param string $message This is the message that will be included in the
      *                        _AdaptiveError_ error object available in the
      *                        catch block.
-     * @param  $data Optional data that will be available as the 'data'
+     * @param $data Optional data that will be available as the 'data'
      *               property of the _AdaptiveError_ object in the catch
      *               block.
      * @param string $id Optional error id (mnemonic) to use instead of

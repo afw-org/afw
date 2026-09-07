@@ -105,7 +105,7 @@ class time
      * don't match.
      *
      * @param time $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -131,7 +131,7 @@ class time
      * arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param time $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -292,7 +292,7 @@ class time
      *
      * Checks whether value is dataType time and return the boolean result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -320,7 +320,7 @@ class time
      * be used.
      *
      * @param time $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -428,7 +428,7 @@ class time
      * don't match.
      *
      * @param time $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -454,7 +454,7 @@ class time
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param time $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -550,7 +550,7 @@ class time
      *
      * Converts value to data type time returning time result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return time Converted value
      */

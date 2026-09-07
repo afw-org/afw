@@ -31,7 +31,7 @@ class polymorphic
      * Compute the absolute value of the `<dataType>` value and return the
      * `<dataType>` result.
      *
-     * @param  $value
+     * @param $value
      *
      * @return
      */
@@ -53,7 +53,7 @@ class polymorphic
      *
      * Add 2 or more `<dataType>` values and return the `<dataType>` result.
      *
-     * @param  $values
+     * @param $values
      *
      * @return
      */
@@ -76,7 +76,7 @@ class polymorphic
      * Add `<dataType>` arg1 to dayTimeDuration arg2 and return the
      * `<dataType>` result.
      *
-     * @param  $arg1
+     * @param $arg1
      * @param dayTimeDuration $arg2
      *
      * @return
@@ -101,7 +101,7 @@ class polymorphic
      * Add `<dataType>` arg1 to yearMonthDuration arg2 and return the
      * `<dataType>` result.
      *
-     * @param  $arg1
+     * @param $arg1
      * @param yearMonthDuration $arg2
      *
      * @return
@@ -198,7 +198,7 @@ class polymorphic
      * Determine the smallest integer that is greater then or equal to the
      * `<dataType>` value and return the `<dataType>` result.
      *
-     * @param  $value
+     * @param $value
      *
      * @return
      */
@@ -220,9 +220,9 @@ class polymorphic
      *
      * Deep clone a `<dataType>` value.
      *
-     * @param  $value The `<dataType>` value to clone.
+     * @param $value The `<dataType>` value to clone.
      *
-     * @return  The cloned `<dataType>` value.
+     * @return The cloned `<dataType>` value.
      */
     public function clone(, $value)
     {
@@ -246,8 +246,8 @@ class polymorphic
      * ---Symbols tables) for Fiddle and debugging — not pure JSON (use
      * stringify) and not Adaptive compiled-form text (use decompile).
      *
-     * @param  $source `<dataType>` string to compile
-     * @param  $listing If specified, a human compiler listing is produced
+     * @param $source `<dataType>` string to compile
+     * @param $listing If specified, a human compiler listing is produced
      *                  instead of an unevaluated compiled value (tree +
      *                  ---Symbols; not recompilable). Use decompile() for
      *                  Adaptive compiled-form text and stringify() for pure
@@ -283,7 +283,7 @@ class polymorphic
      * Decode `<dataType>` value to string. An error is thrown if decoded
      * value is not valid UTF-8.
      *
-     * @param  $value The `<dataType>` value to decode.
+     * @param $value The `<dataType>` value to decode.
      *
      * @return string The decoded string.
      */
@@ -306,8 +306,8 @@ class polymorphic
      * Divide `<dataType>` dividend by `<dataType>` divisor and return the
      * `<dataType>` quotient.
      *
-     * @param  $dividend
-     * @param  $divisor
+     * @param $dividend
+     * @param $divisor
      *
      * @return
      */
@@ -331,7 +331,7 @@ class polymorphic
      * Encode a value as a base64Binary. The effect is to create a
      * base64Binary value with an internal value of the value passed.
      *
-     * @param  $value The `<dataType>` value to encode.
+     * @param $value The `<dataType>` value to encode.
      *
      * @return base64Binary A base64Binary value.
      */
@@ -354,7 +354,7 @@ class polymorphic
      * Encode a value as a hexBinary. The effect is to create a hexBinary
      * value with an internal value of the value passed.
      *
-     * @param  $value The `<dataType>` value to encode.
+     * @param $value The `<dataType>` value to encode.
      *
      * @return hexBinary A hexBinary value.
      */
@@ -377,7 +377,7 @@ class polymorphic
      * Checks whether `<dataType>` value ends with a `<dataType>` and return
      * the boolean result.
      *
-     * @param  $value
+     * @param $value
      * @param string $subString
      *
      * @return boolean
@@ -404,8 +404,8 @@ class polymorphic
      * ('===') instead if you want false to be returned if arg1 and arg2's
      * data type don't match.
      *
-     * @param  $arg1
-     * @param  $arg2
+     * @param $arg1
+     * @param $arg2
      *
      * @return boolean
      */
@@ -429,8 +429,8 @@ class polymorphic
      * Checks for `<dataType>` arg1 is equal to `<dataType>` arg2 ignoring
      * case and return the boolean result.
      *
-     * @param  $arg1
-     * @param  $arg2
+     * @param $arg1
+     * @param $arg2
      *
      * @return boolean
      */
@@ -455,8 +455,8 @@ class polymorphic
      * of arg2 then return the boolean result. Use 'eq' ('==') instead if you
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
-     * @param  $arg1
-     * @param  $arg2
+     * @param $arg1
+     * @param $arg2
      *
      * @return boolean
      */
@@ -479,7 +479,7 @@ class polymorphic
      *
      * Compile and evaluate `<dataType>` value.
      *
-     * @param  $source `<dataType>` to compile and evaluate
+     * @param $source `<dataType>` to compile and evaluate
      * @param object $additionalUntrustedQualifiedVariables This parameter
      *                                                      supplies
      *                                                      additional
@@ -529,7 +529,7 @@ class polymorphic
      * Determine the largest integer that is smaller then or equal to the
      * `<dataType>` value and return the `<dataType>` result.
      *
-     * @param  $number
+     * @param $number
      *
      * @return
      */
@@ -552,9 +552,9 @@ class polymorphic
      * Set a `<dataType>` value immutable so further mutation throws. If
      * already immutable, has no effect. Returns the same value.
      *
-     * @param  $value The `<dataType>` value to freeze.
+     * @param $value The `<dataType>` value to freeze.
      *
-     * @return  The same value, now immutable.
+     * @return The same value, now immutable.
      */
     public function freeze(, $value)
     {
@@ -575,8 +575,8 @@ class polymorphic
      * Checks for `<dataType>` arg1 is greater than or equal to `<dataType>`
      * arg2 and return the boolean result.
      *
-     * @param  $arg1
-     * @param  $arg2
+     * @param $arg1
+     * @param $arg2
      *
      * @return boolean
      */
@@ -600,8 +600,8 @@ class polymorphic
      * Checks for `<dataType>` arg1 is greater than `<dataType>` arg2 and
      * return the boolean result.
      *
-     * @param  $arg1
-     * @param  $arg2
+     * @param $arg1
+     * @param $arg2
      *
      * @return boolean
      */
@@ -629,9 +629,9 @@ class polymorphic
      * If no `<dataType>` zone is specified for startTime or endTime, the
      * `<dataType>` zone of `<dataType>` is used.
      *
-     * @param  $time
-     * @param  $startTime
-     * @param  $endTime
+     * @param $time
+     * @param $startTime
+     * @param $endTime
      *
      * @return boolean
      */
@@ -656,7 +656,7 @@ class polymorphic
      * Checks whether the `<dataType>` value includes a string and return the
      * boolean result.
      *
-     * @param  $searchString The `<dataType>` to search.
+     * @param $searchString The `<dataType>` to search.
      * @param string $subString Substring to find.
      * @param integer $position Zero-based position in the search string to
      *                          start search.
@@ -687,7 +687,7 @@ class polymorphic
      * Returns the zero-based index into `<dataType>` value of subString. If
      * subString is not found, -1 is returned.
      *
-     * @param  $value The `<dataType>` value to search.
+     * @param $value The `<dataType>` value to search.
      * @param string $subString Substring to search for.
      * @param integer $startIndex Optional start index for search if different
      *                            than start of string.
@@ -742,7 +742,7 @@ class polymorphic
      * Checks whether value is dataType `<dataType>` and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -765,7 +765,7 @@ class polymorphic
      * Checks whether `<dataType>` value is in array of `<dataType>` array and
      * returns the boolean result.
      *
-     * @param  $value
+     * @param $value
      * @param array $array
      *
      * @return boolean
@@ -790,7 +790,7 @@ class polymorphic
      * Returns the zero-based index into `<dataType>` value of the last
      * occurrence of a subString. If subString is not found, -1 is returned.
      *
-     * @param  $value The `<dataType>` value to search.
+     * @param $value The `<dataType>` value to search.
      * @param string $subString Substring to search for.
      * @param integer $startIndex Optional start index for search if different
      *                            than start of string.
@@ -820,8 +820,8 @@ class polymorphic
      * Checks for `<dataType>` arg1 is less than or equal to `<dataType>` arg2
      * and return the boolean result.
      *
-     * @param  $arg1
-     * @param  $arg2
+     * @param $arg1
+     * @param $arg2
      *
      * @return boolean
      */
@@ -845,7 +845,7 @@ class polymorphic
      * Return the integer number of entries in a `<dataType>` array or the
      * number of codepoints in a `<dataType>` anyURI or string.
      *
-     * @param  $value Returns the number of entries in an array or code points
+     * @param $value Returns the number of entries in an array or code points
      *                in others.
      *
      * @return integer
@@ -869,8 +869,8 @@ class polymorphic
      * Checks for `<dataType>` arg1 is less that `<dataType>` arg2 and return
      * the boolean result.
      *
-     * @param  $arg1
-     * @param  $arg2
+     * @param $arg1
+     * @param $arg2
      *
      * @return boolean
      */
@@ -894,7 +894,7 @@ class polymorphic
      * Returns true if arg1 matches some terminal sequence of RDNs from arg2
      * when compared using `equal_<dataType>`.
      *
-     * @param  $arg1
+     * @param $arg1
      * @param string $arg2
      *
      * @return boolean
@@ -919,7 +919,7 @@ class polymorphic
      * Return the `<dataType>` value that is greater than or equal to the
      * others.
      *
-     * @param  $values
+     * @param $values
      *
      * @return
      */
@@ -941,7 +941,7 @@ class polymorphic
      *
      * Return the `<dataType>` value that is less than or equal to the others.
      *
-     * @param  $values
+     * @param $values
      *
      * @return
      */
@@ -964,8 +964,8 @@ class polymorphic
      * Divide `<dataType>` dividend by `<dataType>` divisor and return the
      * `<dataType>` remainder.
      *
-     * @param  $dividend
-     * @param  $divisor
+     * @param $dividend
+     * @param $divisor
      *
      * @return
      */
@@ -989,7 +989,7 @@ class polymorphic
      * Multiply 2 or more `<dataType>` values and return the `<dataType>`
      * result.
      *
-     * @param  $values
+     * @param $values
      *
      * @return
      */
@@ -1014,8 +1014,8 @@ class polymorphic
      * 'nex' ('!==') instead if you want true to be returned if arg1 and
      * arg2's data type don't match.
      *
-     * @param  $arg1
-     * @param  $arg2
+     * @param $arg1
+     * @param $arg2
      *
      * @return boolean
      */
@@ -1038,7 +1038,7 @@ class polymorphic
      *
      * Return negative of `<dataType>` value.
      *
-     * @param  $value
+     * @param $value
      *
      * @return
      */
@@ -1063,8 +1063,8 @@ class polymorphic
      * you want arg2 to be converted to the data type of arg1 before
      * comparison.
      *
-     * @param  $arg1
-     * @param  $arg2
+     * @param $arg1
+     * @param $arg2
      *
      * @return boolean
      */
@@ -1087,7 +1087,7 @@ class polymorphic
      *
      * Remove whitespace from the beginning and end of a `<dataType>` value.
      *
-     * @param  $string
+     * @param $string
      *
      * @return
      */
@@ -1110,7 +1110,7 @@ class polymorphic
      * Normalize `<dataType>` value to lower case and returns `<dataType>`
      * result.
      *
-     * @param  $string
+     * @param $string
      *
      * @return
      */
@@ -1157,10 +1157,10 @@ class polymorphic
      * can be specified to raise the previous exponent to the power of the
      * latter exponent.
      *
-     * @param  $base Base value.
-     * @param  $exponent Exponent value.
+     * @param $base Base value.
+     * @param $exponent Exponent value.
      *
-     * @return  Base raised to the power.
+     * @return Base raised to the power.
      */
     public function pow(, $base, $exponent)
     {
@@ -1182,7 +1182,7 @@ class polymorphic
      * Search `<dataType>` value for a regular expression and return index. If
      * not found, -1 is returned.
      *
-     * @param  $value The `<dataType>` value to search.
+     * @param $value The `<dataType>` value to search.
      * @param string $regexp A regular expression to use for search.
      *
      * @return integer Zero-based index of subString or -1 if not found.
@@ -1207,7 +1207,7 @@ class polymorphic
      * Checks whether `<dataType>` value matches the regular expression regexp
      * and return the boolean result.
      *
-     * @param  $value
+     * @param $value
      * @param string $regexp
      *
      * @return boolean
@@ -1232,7 +1232,7 @@ class polymorphic
      * Replace matched values for a regular expression in a `<dataType>`
      * value.
      *
-     * @param  $value The original `<dataType>` value.
+     * @param $value The original `<dataType>` value.
      * @param string $regexp A regular expression to use for search.
      * @param string $replacement The replacement string.
      * @param integer $limit This is the maximum times to replace. The default
@@ -1264,7 +1264,7 @@ class polymorphic
      *
      * Repeat a `<dataType>` value a specified number of times.
      *
-     * @param  $value The `<dataType>` value to repeat.
+     * @param $value The `<dataType>` value to repeat.
      * @param integer $times The number of times to repeat the value.
      *
      * @return string Repeated text as string (not re-typed as the input data
@@ -1292,7 +1292,7 @@ class polymorphic
      * start). Specify limit -1 to insert at every boundary, including the
      * start and the end.
      *
-     * @param  $value The original `<dataType>` value.
+     * @param $value The original `<dataType>` value.
      * @param string $match The string to replace. An empty string matches at
      *                      each code-point boundary, including the start and
      *                      the end.
@@ -1327,7 +1327,7 @@ class polymorphic
      * Determine the integer closest to `<dataType>` value and return the
      * `<dataType>` result.
      *
-     * @param  $number
+     * @param $number
      *
      * @return
      */
@@ -1374,7 +1374,7 @@ class polymorphic
      *
      * Split `<dataType>` value into an array of strings using a separator.
      *
-     * @param  $value The `<dataType>` value to split.
+     * @param $value The `<dataType>` value to split.
      * @param string $separator The separator to use. If this is an empty
      *                          string or separator is not specified, the
      *                          value is split between characters.
@@ -1408,7 +1408,7 @@ class polymorphic
      * Checks whether `<dataType>` value starts with a subString and return
      * the boolean result.
      *
-     * @param  $value
+     * @param $value
      * @param string $subString
      *
      * @return boolean
@@ -1460,7 +1460,7 @@ class polymorphic
      * Specify -1 or omit endIndex to return through the end of value. The
      * result is always string (a slice of anyURI is not an anyURI).
      *
-     * @param  $string
+     * @param $string
      * @param integer $startIndex
      * @param integer $endIndex
      *
@@ -1490,8 +1490,8 @@ class polymorphic
      * Subtract `<dataType>` arg2 from `<dataType>` arg1 and return the
      * `<dataType>` result.
      *
-     * @param  $arg1
-     * @param  $arg2
+     * @param $arg1
+     * @param $arg2
      *
      * @return
      */
@@ -1515,7 +1515,7 @@ class polymorphic
      * Subtract dayTimeDuration arg2 from `<dataType>` arg1 and return the
      * `<dataType>` result.
      *
-     * @param  $arg1
+     * @param $arg1
      * @param dayTimeDuration $arg2
      *
      * @return
@@ -1540,7 +1540,7 @@ class polymorphic
      * Subtract yearMonthDuration arg2 from `<dataType>` arg1 and return the
      * `<dataType>` result.
      *
-     * @param  $arg1
+     * @param $arg1
      * @param yearMonthDuration $arg2
      *
      * @return
@@ -1564,7 +1564,7 @@ class polymorphic
      *
      * Converts `<dataType>` value to anyURI.
      *
-     * @param  $value
+     * @param $value
      *
      * @return anyURI
      */
@@ -1586,7 +1586,7 @@ class polymorphic
      *
      * Converts `<dataType>` value to boolean.
      *
-     * @param  $value
+     * @param $value
      *
      * @return boolean
      */
@@ -1608,7 +1608,7 @@ class polymorphic
      *
      * Converts `<dataType>` value to date.
      *
-     * @param  $value
+     * @param $value
      *
      * @return date
      */
@@ -1630,7 +1630,7 @@ class polymorphic
      *
      * Converts `<dataType>` value to dateTime.
      *
-     * @param  $value
+     * @param $value
      *
      * @return dateTime
      */
@@ -1652,7 +1652,7 @@ class polymorphic
      *
      * Converts `<dataType>` value to dayTimeDuration.
      *
-     * @param  $value
+     * @param $value
      *
      * @return dayTimeDuration
      */
@@ -1674,7 +1674,7 @@ class polymorphic
      *
      * Converts `<dataType>` value to dnsName.
      *
-     * @param  $value
+     * @param $value
      *
      * @return dnsName
      */
@@ -1696,7 +1696,7 @@ class polymorphic
      *
      * Converts `<dataType>` value to double and returns double result.
      *
-     * @param  $value
+     * @param $value
      *
      * @return double
      */
@@ -1719,7 +1719,7 @@ class polymorphic
      * Truncate `<dataType>` value to a whole number and returns integer
      * result.
      *
-     * @param  $value
+     * @param $value
      *
      * @return integer
      */
@@ -1741,7 +1741,7 @@ class polymorphic
      *
      * Converts `<dataType>` value to ipAddress.
      *
-     * @param  $value
+     * @param $value
      *
      * @return ipAddress
      */
@@ -1763,7 +1763,7 @@ class polymorphic
      *
      * Converts `<dataType>` value to rfc822Name.
      *
-     * @param  $value
+     * @param $value
      *
      * @return rfc822Name
      */
@@ -1786,7 +1786,7 @@ class polymorphic
      * Converts `<dataType>` value to string. For array values, the
      * to_string() value for each entry is returned separated with commas.
      *
-     * @param  $value A `<dataType>` value.
+     * @param $value A `<dataType>` value.
      *
      * @return string The string representation of the value.
      */
@@ -1808,7 +1808,7 @@ class polymorphic
      *
      * Converts `<dataType>` value to time.
      *
-     * @param  $value
+     * @param $value
      *
      * @return time
      */
@@ -1830,7 +1830,7 @@ class polymorphic
      *
      * Converts `<dataType>` value to x500Name.
      *
-     * @param  $value
+     * @param $value
      *
      * @return x500Name
      */
@@ -1852,7 +1852,7 @@ class polymorphic
      *
      * Converts `<dataType>` value to yearMonthDuration.
      *
-     * @param  $value
+     * @param $value
      *
      * @return yearMonthDuration
      */
@@ -1897,7 +1897,7 @@ class polymorphic
      *
      * URL encode a `<dataType>` value and return the string result.
      *
-     * @param  $unencoded The `<dataType>` value to URL encode.
+     * @param $unencoded The `<dataType>` value to URL encode.
      *
      * @return string URI encoded string.
      */

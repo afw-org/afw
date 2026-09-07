@@ -80,7 +80,7 @@ class function
      * don't match.
      *
      * @param function $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -106,7 +106,7 @@ class function
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param function $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -180,7 +180,7 @@ class function
      * Checks whether value is dataType function and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -204,7 +204,7 @@ class function
      * return the boolean result.
      *
      * @param function $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -256,7 +256,7 @@ class function
      * type don't match.
      *
      * @param function $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -282,7 +282,7 @@ class function
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param function $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */

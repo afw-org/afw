@@ -30,7 +30,7 @@ class anyURI
      *
      * Converts value to data type anyURI returning anyURI result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return anyURI Converted value
      */
@@ -152,7 +152,7 @@ class anyURI
      * don't match.
      *
      * @param anyURI $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -178,7 +178,7 @@ class anyURI
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param anyURI $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -337,7 +337,7 @@ class anyURI
      *
      * Checks whether value is dataType anyURI and return the boolean result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -416,7 +416,7 @@ class anyURI
      * the boolean result.
      *
      * @param anyURI $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -492,7 +492,7 @@ class anyURI
      * don't match.
      *
      * @param anyURI $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -518,7 +518,7 @@ class anyURI
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param anyURI $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */

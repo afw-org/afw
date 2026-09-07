@@ -76,7 +76,7 @@ class null
      *
      * Checks whether value is dataType null and return the boolean result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */

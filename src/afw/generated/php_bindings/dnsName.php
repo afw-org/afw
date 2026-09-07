@@ -76,7 +76,7 @@ class dnsName
      *
      * Converts value to data type dnsName returning dnsName result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return dnsName Converted value
      */
@@ -102,7 +102,7 @@ class dnsName
      * don't match.
      *
      * @param dnsName $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -128,7 +128,7 @@ class dnsName
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param dnsName $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -201,7 +201,7 @@ class dnsName
      *
      * Checks whether value is dataType dnsName and return the boolean result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -250,7 +250,7 @@ class dnsName
      * return the boolean result.
      *
      * @param dnsName $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -302,7 +302,7 @@ class dnsName
      * type don't match.
      *
      * @param dnsName $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -328,7 +328,7 @@ class dnsName
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param dnsName $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */

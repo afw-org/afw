@@ -32,7 +32,7 @@ class string
      * converted to their string value and return the string result.
      *
      * @param string $string
-     * @param  $values
+     * @param $values
      *
      * @return string
      */
@@ -128,7 +128,7 @@ class string
      * concatenated result. A value with an undefined value is represented by
      * 'undefined'.
      *
-     * @param  $values Value to convert
+     * @param $values Value to convert
      *
      * @return string The concatenated string values.
      */
@@ -250,7 +250,7 @@ class string
      * don't match.
      *
      * @param string $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -276,7 +276,7 @@ class string
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param string $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -509,7 +509,7 @@ class string
      *
      * Checks whether value is dataType string and return the boolean result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -563,7 +563,7 @@ class string
      * the boolean result.
      *
      * @param string $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -683,7 +683,7 @@ class string
      * don't match.
      *
      * @param string $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -709,7 +709,7 @@ class string
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param string $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -1030,7 +1030,7 @@ class string
      * concatenated in order (no separator). A value with an undefined value
      * is represented by 'undefined'.
      *
-     * @param  $values Value to convert
+     * @param $values Value to convert
      *
      * @return string The concatenated string values.
      */

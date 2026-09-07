@@ -35,7 +35,7 @@ class json
      * compiled-form text (use decompile).
      *
      * @param json $source json string to compile
-     * @param  $listing If specified, a human compiler listing is produced
+     * @param $listing If specified, a human compiler listing is produced
      *                  instead of an unevaluated compiled value (tree +
      *                  ---Symbols; not recompilable). Use decompile() for
      *                  Adaptive compiled-form text and stringify() for pure
@@ -72,7 +72,7 @@ class json
      * source text as a json value (does not parse/compile). Use polymorphic
      * compile to compile the source.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return json Converted value
      */

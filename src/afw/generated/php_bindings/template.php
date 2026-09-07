@@ -81,7 +81,7 @@ class template
      * stringify) and not Adaptive compiled-form text (use decompile).
      *
      * @param template $source template string to compile
-     * @param  $listing If specified, a human compiler listing is produced
+     * @param $listing If specified, a human compiler listing is produced
      *                  instead of an unevaluated compiled value (tree +
      *                  ---Symbols; not recompilable). Use decompile() for
      *                  Adaptive compiled-form text and stringify() for pure
@@ -120,7 +120,7 @@ class template
      * don't match.
      *
      * @param template $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -146,7 +146,7 @@ class template
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param template $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -269,7 +269,7 @@ class template
      * Checks whether value is dataType template and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -293,7 +293,7 @@ class template
      * return the boolean result.
      *
      * @param template $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -345,7 +345,7 @@ class template
      * type don't match.
      *
      * @param template $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -371,7 +371,7 @@ class template
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param template $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -396,7 +396,7 @@ class template
      * template source text as a template value (does not compile). Use
      * polymorphic compile to compile the source.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return template Converted value
      */

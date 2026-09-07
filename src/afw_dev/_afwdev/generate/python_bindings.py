@@ -25,6 +25,17 @@ def sort_category_functionLabel_cb(obj):
     return category + '~' + obj.get('functionLabel')
 
 # returns the Python dataType from the Adaptive dataType
+def _python_docstring(s):
+    """Make metadata text safe inside a Python \"\"\" docstring for Sphinx.
+
+    A backslash-n in a normal docstring is a real newline. Leading spaces
+    on a wrapped paragraph look like an RST block quote.
+    """
+    if not s:
+        return ''
+    return s.replace('\\', '\\\\')
+
+
 def get_data_type(dataType):
 
     if dataType == 'boolean':
@@ -120,28 +131,41 @@ def generate(generated_by, data_type_list, objects_dir_path, generated_dir_path,
 
                     # write out docstrings comments
                     fd.write('    """\n')
-                    fd.write('    ' + brief + '\n')
+                    fd.write('    ' + _python_docstring(brief) + '\n')
                     fd.write('\n')
-                    #fd.write('    ' + description + '\n')
-                    c.write_wrapped(fd, 78, '    ', description, '', '', True)
+                    c.write_wrapped(fd, 78, '    ',
+                        _python_docstring(description), '', '', True)
 
                     # Google-style "Args:" field list entries must be
                     # contiguous (no blank line between them) and any
                     # wrapped continuation lines must be indented deeper
                     # than the "name (type):" line, or Sphinx napoleon
                     # will misparse continuations as bogus new fields.
+                    # Flatten each param to one paragraph so example
+                    # arrays in the description cannot change indent.
                     parameters = obj.get('parameters')
                     if parameters:
                         fd.write('\n')
                         fd.write('    Args:\n')
                         for param in parameters:
-                            paramDescription = param.get('name') + ' (' + get_data_type(param.get('dataType')) + '): ' + param.get('description', '')
-                            c.write_wrapped(fd, 78, '        ', paramDescription, '    ', '', True)
+                            paramDescription = (
+                                param.get('name') + ' (' +
+                                get_data_type(param.get('dataType')) +
+                                '): ' + param.get('description', ''))
+                            paramDescription = ' '.join(
+                                paramDescription.split())
+                            c.write_wrapped(fd, 78, '        ',
+                                _python_docstring(paramDescription),
+                                '    ', '', True)
 
                     fd.write('\n')
                     fd.write('    Returns:\n')
-                    returnDescription = get_data_type(returns.get('dataType')) + ': ' + returns.get('description', '')
-                    c.write_wrapped(fd, 78, '        ', returnDescription, '', '', True)
+                    returnDescription = (
+                        get_data_type(returns.get('dataType')) + ': ' +
+                        returns.get('description', ''))
+                    returnDescription = ' '.join(returnDescription.split())
+                    c.write_wrapped(fd, 78, '        ',
+                        _python_docstring(returnDescription), '', '', True)
                     fd.write('    """\n')
 
                     fd.write('\n')

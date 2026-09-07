@@ -482,20 +482,17 @@ class adapter
      * @param string $objectId Id of object to modify.
      * @param array $entries List of modifications. Entries are of the form:
      * 
-     *                           [         'add_value',         'property
-     *                       name' or ['property name', ... ],         value  
-     *                         ]
+     *                       [ 'add_value', 'property name' or ['property
+     *                       name', ... ], value ]
      * 
-     *                           [         'remove_property',        
-     *                       'property name' or ['property name', ... ]     ]
+     *                       [ 'remove_property', 'property name' or
+     *                       ['property name', ... ] ]
      * 
-     *                           [         'remove_value',         'property
-     *                       name' or ['property name', ... ],         value  
-     *                         ]
+     *                       [ 'remove_value', 'property name' or ['property
+     *                       name', ... ], value ]
      * 
-     *                           [         'set_property',         'property
-     *                       name' or ['property name', ... ],         value  
-     *                         ]
+     *                       [ 'set_property', 'property name' or ['property
+     *                       name', ... ], value ]
      * @param object $journal The properties of this object will be added to
      *                        the associated journal entry. Refer to
      *                        /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_
@@ -551,20 +548,17 @@ class adapter
      * @param array $entries List of asserts and modifications. Entries are of
      *                       the form:
      * 
-     *                           [         'add_value',         'property
-     *                       name' or ['property name', ... ],         value  
-     *                         ]
+     *                       [ 'add_value', 'property name' or ['property
+     *                       name', ... ], value ]
      * 
-     *                           [         'remove_property',        
-     *                       'property name' or ['property name', ... ]     ]
+     *                       [ 'remove_property', 'property name' or
+     *                       ['property name', ... ] ]
      * 
-     *                           [         'remove_value',         'property
-     *                       name' or ['property name', ... ],         value  
-     *                         ]
+     *                       [ 'remove_value', 'property name' or ['property
+     *                       name', ... ], value ]
      * 
-     *                           [         'set_property',         'property
-     *                       name' or ['property name', ... ],         value  
-     *                         ]
+     *                       [ 'set_property', 'property name' or ['property
+     *                       name', ... ], value ]
      * @param object $journal The properties of this object will be added to
      *                        the associated journal entry. Refer to
      *                        /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_
@@ -844,8 +838,8 @@ class adapter
      *                                 there are no more objects. This
      *                                 function should return true if it wants
      *                                 to abort the retrieve request.
-     * @param  $userData This value is passed to the objectCallback function
-     *                   in the userData parameter.
+     * @param $userData This value is passed to the objectCallback function in
+     *                   the userData parameter.
      * @param string $adapterId Id of adapter containing objects to retrieve.
      * @param string $objectType Id of adaptive object type of objects to
      *                           retrieve.

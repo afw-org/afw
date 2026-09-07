@@ -125,7 +125,7 @@ class date
      *
      * Converts value to data type date returning date result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return date Converted value
      */
@@ -151,7 +151,7 @@ class date
      * don't match.
      *
      * @param date $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -177,7 +177,7 @@ class date
      * arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param date $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -281,7 +281,7 @@ class date
      *
      * Checks whether value is dataType date and return the boolean result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -333,7 +333,7 @@ class date
      * time-zone value will be assigned.
      *
      * @param date $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -438,7 +438,7 @@ class date
      * don't match.
      *
      * @param date $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -464,7 +464,7 @@ class date
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param date $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */

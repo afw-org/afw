@@ -405,17 +405,13 @@ export function afwGetObjectWithUri(client : any, uri : any, options? : object, 
  * 
  * @param {array} entries - List of modifications. Entries are of the form:
  * 
- *         [         'add_value',         'property name' or ['property name',
- *     ... ],         value     ]
+ *     [ 'add_value', 'property name' or ['property name', ... ], value ]
  * 
- *         [         'remove_property',         'property name' or ['property
- *     name', ... ]     ]
+ *     [ 'remove_property', 'property name' or ['property name', ... ] ]
  * 
- *         [         'remove_value',         'property name' or ['property
- *     name', ... ],         value     ]
+ *     [ 'remove_value', 'property name' or ['property name', ... ], value ]
  * 
- *         [         'set_property',         'property name' or ['property
- *     name', ... ],         value     ]
+ *     [ 'set_property', 'property name' or ['property name', ... ], value ]
  * 
  * @param {object} journal - The properties of this object will be added to
  *     the associated journal entry. Refer to
@@ -463,17 +459,13 @@ export function afwModifyObject(client : any, objectType : string, objectId : st
  * @param {array} entries - List of asserts and modifications. Entries are of
  *     the form:
  * 
- *         [         'add_value',         'property name' or ['property name',
- *     ... ],         value     ]
+ *     [ 'add_value', 'property name' or ['property name', ... ], value ]
  * 
- *         [         'remove_property',         'property name' or ['property
- *     name', ... ]     ]
+ *     [ 'remove_property', 'property name' or ['property name', ... ] ]
  * 
- *         [         'remove_value',         'property name' or ['property
- *     name', ... ],         value     ]
+ *     [ 'remove_value', 'property name' or ['property name', ... ], value ]
  * 
- *         [         'set_property',         'property name' or ['property
- *     name', ... ],         value     ]
+ *     [ 'set_property', 'property name' or ['property name', ... ], value ]
  * 
  * @param {object} journal - The properties of this object will be added to
  *     the associated journal entry. Refer to

@@ -31,9 +31,9 @@ class compiler_expression
      * Returns the first value of values that is not null or undefined leaving
      * the remaining values unevaluated.
      *
-     * @param  $values
+     * @param $values
      *
-     * @return  The first value of values that is not null or undefined.
+     * @return The first value of values that is not null or undefined.
      */
     public function nullish_coalescing(, $values)
     {
@@ -54,10 +54,10 @@ class compiler_expression
      * Returns undefined if arg1 is null or undefined without evaluating arg2,
      * but otherwise returns evaluated value of arg2.
      *
-     * @param  $arg1
-     * @param  $arg2
+     * @param $arg1
+     * @param $arg2
      *
-     * @return  Undefined value if arg1 is null or undefined but otherwise
+     * @return Undefined value if arg1 is null or undefined but otherwise
      *          evaluated arg2.
      */
     public function optional_chaining(, $arg1, $arg2)
@@ -80,7 +80,7 @@ class compiler_expression
      * This is the support function for the void operator which evaluates
      * value and returns undefined.
      *
-     * @param  $value This is the value to evaluate (including undefined).
+     * @param $value This is the value to evaluate (including undefined).
      *                Evaluated for side effects only.
      *
      * @return undefined This always returns undefined.

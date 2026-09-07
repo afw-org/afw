@@ -73,7 +73,7 @@ class miscellaneous
      * Conditionally, based on the detail parameter, write a value as a string
      * to the debug file descriptor (usually stderr).
      *
-     * @param  $value This is the value that will be converted to its string
+     * @param $value This is the value that will be converted to its string
      *                representation and written. An undefined value is
      *                represented by 'undefined'.
      * @param boolean $detail If true, the string will only written if the
@@ -167,7 +167,7 @@ class miscellaneous
      * Return true if the value is not undefined. Does not check whether a
      * variable name is bound — use variable_exists for that. null is defined.
      *
-     * @param  $value Value to check.
+     * @param $value Value to check.
      *
      * @return boolean True if value is not undefined.
      */
@@ -190,7 +190,7 @@ class miscellaneous
      * Return true if the value is null or undefined. Does not check whether a
      * variable name is bound — use variable_exists for that.
      *
-     * @param  $value Value to check.
+     * @param $value Value to check.
      *
      * @return boolean True if value is null or undefined.
      */
@@ -212,7 +212,7 @@ class miscellaneous
      *
      * Evaluate and convert value to String and log it.
      *
-     * @param  $value Value to log.
+     * @param $value Value to log.
      *
      * @return void
      */
@@ -380,7 +380,7 @@ class miscellaneous
      *
      * Write a value to a trace log.
      *
-     * @param  $value This is the value that will be converted to its string
+     * @param $value This is the value that will be converted to its string
      *                representation and written the trace log. An undefined
      *                value is represented by 'undefined'.
      * @param boolean $filter If this optional filter is false, nothing will
@@ -448,10 +448,10 @@ class miscellaneous
      *
      * @param string $name Name of variable to get. Optionally
      *                     qualifier::name.
-     * @param  $defaultValue Value to return only if the name is not bound.
-     *                       The evaluated value at that moment (identity).
+     * @param $defaultValue Value to return only if the name is not bound. The
+     *                       evaluated value at that moment (identity).
      *
-     * @return  Bound variable value, or default / undefined if unbound.
+     * @return Bound variable value, or default / undefined if unbound.
      */
     public function variable_get(, $name, $defaultValue = null)
     {

@@ -82,7 +82,7 @@ class xpathExpression
      * stringify) and not Adaptive compiled-form text (use decompile).
      *
      * @param xpathExpression $source xpathExpression string to compile
-     * @param  $listing If specified, a human compiler listing is produced
+     * @param $listing If specified, a human compiler listing is produced
      *                  instead of an unevaluated compiled value (tree +
      *                  ---Symbols; not recompilable). Use decompile() for
      *                  Adaptive compiled-form text and stringify() for pure
@@ -121,7 +121,7 @@ class xpathExpression
      * arg2's data type don't match.
      *
      * @param xpathExpression $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -148,7 +148,7 @@ class xpathExpression
      * comparison.
      *
      * @param xpathExpression $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -271,7 +271,7 @@ class xpathExpression
      * Checks whether value is dataType xpathExpression and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -295,7 +295,7 @@ class xpathExpression
      * xpathExpression arg2 and return the boolean result.
      *
      * @param xpathExpression $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -347,7 +347,7 @@ class xpathExpression
      * arg2's data type don't match.
      *
      * @param xpathExpression $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -374,7 +374,7 @@ class xpathExpression
      * comparison.
      *
      * @param xpathExpression $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -423,7 +423,7 @@ class xpathExpression
      * value (does not evaluate). Use polymorphic compile when a compiled form
      * is required.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return xpathExpression Converted value
      */

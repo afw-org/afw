@@ -106,7 +106,7 @@ class rfc822Name
      * don't match.
      *
      * @param rfc822Name $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -132,7 +132,7 @@ class rfc822Name
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param rfc822Name $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -256,7 +256,7 @@ class rfc822Name
      * Checks whether value is dataType rfc822Name and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -280,7 +280,7 @@ class rfc822Name
      * return the boolean result.
      *
      * @param rfc822Name $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -357,7 +357,7 @@ class rfc822Name
      * arg2's data type don't match.
      *
      * @param rfc822Name $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -383,7 +383,7 @@ class rfc822Name
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param rfc822Name $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -454,7 +454,7 @@ class rfc822Name
      *
      * Converts value to data type rfc822Name returning rfc822Name result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return rfc822Name Converted value
      */

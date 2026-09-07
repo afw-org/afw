@@ -34,8 +34,8 @@ class crypto
      *
      * @param object $algorithm AES-GCM parameters including required iv and
      *                          tag.
-     * @param  $key Key material, CryptoKey, or key reference.
-     * @param  $data Ciphertext without tag (base64Binary or hexBinary).
+     * @param $key Key material, CryptoKey, or key reference.
+     * @param $data Ciphertext without tag (base64Binary or hexBinary).
      *
      * @return base64Binary Plaintext octets.
      */
@@ -64,7 +64,7 @@ class crypto
      * encoding for passphrases. Requires execute access.
      *
      * @param object $algorithm PBKDF2 parameters object.
-     * @param  $baseKey Passphrase or key material (polymorphic; utf8 encoding
+     * @param $baseKey Passphrase or key material (polymorphic; utf8 encoding
      *                  allowed).
      * @param array $usages Default ["encrypt","decrypt"].
      * @param boolean $extractable Default false.
@@ -98,7 +98,7 @@ class crypto
      * Remove a key from the process keystore and cleanse its material.
      * Requires execute access.
      *
-     * @param  $key CryptoKey object with keyId.
+     * @param $key CryptoKey object with keyId.
      *
      * @return null null
      */
@@ -122,7 +122,7 @@ class crypto
      * SHA-256 or SHA-512. Data may be base64Binary or hexBinary.
      *
      * @param string $algorithm Digest algorithm name: SHA-256 or SHA-512.
-     * @param  $data Data to hash (base64Binary or hexBinary).
+     * @param $data Data to hash (base64Binary or hexBinary).
      *
      * @return base64Binary Digest octets as base64Binary.
      */
@@ -149,8 +149,8 @@ class crypto
      * execute access.
      *
      * @param object $algorithm AES-GCM parameters object.
-     * @param  $key Key material, CryptoKey, or key reference.
-     * @param  $data Plaintext (base64Binary or hexBinary).
+     * @param $key Key material, CryptoKey, or key reference.
+     * @param $data Plaintext (base64Binary or hexBinary).
      *
      * @return object ciphertext, iv, tag, algorithm, keyLength.
      */
@@ -175,7 +175,7 @@ class crypto
      * Export raw key octets from a CryptoKey if extractable is true. Requires
      * execute access.
      *
-     * @param  $key CryptoKey object with keyId.
+     * @param $key CryptoKey object with keyId.
      *
      * @return base64Binary Raw key material.
      */
@@ -198,7 +198,7 @@ class crypto
      * Generate a random key in the process keystore. Algorithm string or
      * object. AES-GCM length defaults to 256 bits. Requires execute access.
      *
-     * @param  $algorithm Algorithm string or object { name, length? }.
+     * @param $algorithm Algorithm string or object { name, length? }.
      * @param array $usages Optional usages; defaults depend on algorithm
      *                      family.
      * @param boolean $extractable If true, crypto_export_key may export raw
@@ -233,9 +233,9 @@ class crypto
      * object). Requires execute access.
      *
      * @param string $algorithm HMAC algorithm: HMAC-SHA-256 or HMAC-SHA-512.
-     * @param  $key Key material, CryptoKey object, or key reference { from,
+     * @param $key Key material, CryptoKey object, or key reference { from,
      *              ... }.
-     * @param  $data Data to MAC (base64Binary or hexBinary).
+     * @param $data Data to MAC (base64Binary or hexBinary).
      *
      * @return base64Binary MAC octets as base64Binary.
      */
@@ -261,9 +261,9 @@ class crypto
      * HMAC-SHA-512. Requires execute access.
      *
      * @param string $algorithm HMAC algorithm: HMAC-SHA-256 or HMAC-SHA-512.
-     * @param  $key Key material, CryptoKey object, or key reference.
-     * @param  $data Data that was MAC'd (base64Binary or hexBinary).
-     * @param  $mac Expected MAC (base64Binary or hexBinary).
+     * @param $key Key material, CryptoKey object, or key reference.
+     * @param $data Data that was MAC'd (base64Binary or hexBinary).
+     * @param $mac Expected MAC (base64Binary or hexBinary).
      *
      * @return boolean true if MAC matches.
      */
@@ -291,9 +291,9 @@ class crypto
      * registry name or object with name (and optional length for AES-GCM).
      * Default extractable is false. Requires execute access.
      *
-     * @param  $keySource Raw binary key, or reference object { from:
+     * @param $keySource Raw binary key, or reference object { from:
      *                    environment|file|material, ... }.
-     * @param  $algorithm Algorithm string or object { name, length? }.
+     * @param $algorithm Algorithm string or object { name, length? }.
      * @param array $usages Optional usages; defaults depend on algorithm
      *                      family.
      * @param boolean $extractable If true, crypto_export_key may export raw
@@ -330,8 +330,8 @@ class crypto
      * auto-generated IV. Use stringify() (and optional pure-JSON field
      * mapping) to store the result. Requires execute access.
      *
-     * @param  $key Key material, CryptoKey, or key reference.
-     * @param  $data Plaintext (base64Binary or hexBinary). Use
+     * @param $key Key material, CryptoKey, or key reference.
+     * @param $data Plaintext (base64Binary or hexBinary). Use
      *               encode_as_base64Binary() for UTF-8 text.
      *
      * @return object Sealed object with algorithm, keyLength, iv, tag, and
@@ -361,8 +361,8 @@ class crypto
      * JSON-friendly object). Returns plaintext octets. Requires execute
      * access.
      *
-     * @param  $key Key material, CryptoKey, or key reference.
-     * @param  $sealed Sealed object or pure JSON string.
+     * @param $key Key material, CryptoKey, or key reference.
+     * @param $sealed Sealed object or pure JSON string.
      *
      * @return base64Binary Plaintext octets. Use decode_to_string() for UTF-8
      *                      text.

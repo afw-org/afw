@@ -128,7 +128,7 @@ class hexBinary
      * don't match.
      *
      * @param hexBinary $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -154,7 +154,7 @@ class hexBinary
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param hexBinary $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -227,7 +227,7 @@ class hexBinary
      *
      * Converts value to data type hexBinary returning hexBinary result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return hexBinary Converted value
      */
@@ -275,7 +275,7 @@ class hexBinary
      * Checks whether value is dataType hexBinary and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -324,7 +324,7 @@ class hexBinary
      * return the boolean result.
      *
      * @param hexBinary $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -376,7 +376,7 @@ class hexBinary
      * type don't match.
      *
      * @param hexBinary $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -402,7 +402,7 @@ class hexBinary
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param hexBinary $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */

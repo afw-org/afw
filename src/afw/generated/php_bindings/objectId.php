@@ -80,7 +80,7 @@ class objectId
      * don't match.
      *
      * @param objectId $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -106,7 +106,7 @@ class objectId
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param objectId $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -180,7 +180,7 @@ class objectId
      * Checks whether value is dataType objectId and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -204,7 +204,7 @@ class objectId
      * return the boolean result.
      *
      * @param objectId $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -256,7 +256,7 @@ class objectId
      * type don't match.
      *
      * @param objectId $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -282,7 +282,7 @@ class objectId
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param objectId $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -305,7 +305,7 @@ class objectId
      *
      * Converts value to data type objectId returning objectId result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return objectId Converted value
      */

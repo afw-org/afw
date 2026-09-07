@@ -182,7 +182,7 @@ class object
      * don't match.
      *
      * @param object $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -208,7 +208,7 @@ class object
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param object $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -304,7 +304,7 @@ class object
      *
      * Checks whether value is dataType object and return the boolean result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -352,7 +352,7 @@ class object
      * the boolean result.
      *
      * @param object $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -435,7 +435,7 @@ class object
      * don't match.
      *
      * @param object $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -461,7 +461,7 @@ class object
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param object $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -487,7 +487,7 @@ class object
      * left unchanged. This is not an object-literal constructor — use { ... }
      * for that.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return object Converted value
      */
@@ -533,8 +533,7 @@ class object
      *
      * Delete a property from an object by reference.
      *
-     * @param  $reference This is a reference to the object property to
-     *                    delete.
+     * @param $reference This is a reference to the object property to delete.
      *
      * @return boolean True if object had the property and it was deleted.
      */
@@ -587,10 +586,10 @@ class object
      *
      * @param object $object Object to get property from.
      * @param string $name Property name.
-     * @param  $defaultValue Value to return only if the property is missing.
+     * @param $defaultValue Value to return only if the property is missing.
      *                       The evaluated value at that moment (identity).
      *
-     * @return  Property value, or default / undefined if missing.
+     * @return Property value, or default / undefined if missing.
      */
     public function property_get(, $object, $name, $defaultValue = null)
     {

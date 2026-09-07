@@ -80,7 +80,7 @@ class password
      * don't match.
      *
      * @param password $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -106,7 +106,7 @@ class password
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param password $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -180,7 +180,7 @@ class password
      * Checks whether value is dataType password and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -204,7 +204,7 @@ class password
      * return the boolean result.
      *
      * @param password $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -256,7 +256,7 @@ class password
      * type don't match.
      *
      * @param password $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -282,7 +282,7 @@ class password
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param password $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -305,7 +305,7 @@ class password
      *
      * Converts value to data type password returning password result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return password Converted value
      */

@@ -194,7 +194,7 @@ class double
      *
      * Converts value to data type double returning double result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return double Converted value
      */
@@ -220,7 +220,7 @@ class double
      * don't match.
      *
      * @param double $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -246,7 +246,7 @@ class double
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param double $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -390,7 +390,7 @@ class double
      *
      * Checks whether value is dataType double and return the boolean result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -462,7 +462,7 @@ class double
      * the boolean result.
      *
      * @param double $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -605,7 +605,7 @@ class double
      * don't match.
      *
      * @param double $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -653,7 +653,7 @@ class double
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param double $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */

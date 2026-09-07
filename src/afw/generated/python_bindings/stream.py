@@ -80,21 +80,19 @@ def open_file(session, streamId, path, mode, autoFlush=None):
             open file stream.
         path (str): Logical path resolved using rootFilePaths (longest
             matching prefix; host path must remain under that root).
-        mode (str): This is the access mode string. Values can be:   r - Open
-            an existing file text file for read.   w - Open a text file for
-            writing. If the file does not exist, it will be created.   a -
-            Open a text file for writing additional data to the end. If the
-            file does not exist, it will be created.   r+ - Open a text file
-            for both reading and writing.   w+ - Open a text file for both
-            reading and writing. If the file exists, it will be overwritten.
-            If the file does not exist, it will be created.   a+ - Open a text
-            file for both reading and writing. Reading will begin at the start
-            of the file while writing will be appended to the end.
-        
-            All of these modes expect data type string. If you are using data
-            type base64Binary or hexBinary you can use corresponding binary
-            modes, 'rb', 'wb', 'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and
-            'a+b'.
+        mode (str): This is the access mode string. Values can be: r - Open an
+            existing file text file for read. w - Open a text file for
+            writing. If the file does not exist, it will be created. a - Open
+            a text file for writing additional data to the end. If the file
+            does not exist, it will be created. r+ - Open a text file for both
+            reading and writing. w+ - Open a text file for both reading and
+            writing. If the file exists, it will be overwritten. If the file
+            does not exist, it will be created. a+ - Open a text file for both
+            reading and writing. Reading will begin at the start of the file
+            while writing will be appended to the end. All of these modes
+            expect data type string. If you are using data type base64Binary
+            or hexBinary you can use corresponding binary modes, 'rb', 'wb',
+            'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and 'a+b'.
         autoFlush (bool): If specified and true, this will automatically flush
             the stream's buffers after every write.
 
@@ -154,10 +152,10 @@ def print(session, values):
 
 def println(session, value):
     """
-    Print value followed by '\n'
+    Print value followed by '\\n'
 
     Evaluate and convert 0 or more values to their string value, then write
-    them to stdout. A newline character ('\n') is written after the last
+    them to stdout. A newline character ('\\n') is written after the last
     value. An undefined value is represented by 'undefined'.
 
     Args:
@@ -409,10 +407,10 @@ def write_internal(session, streamNumber, value):
 
 def writeln(session, streamNumber, value):
     """
-    Write values to stream as string followed by '\n'
+    Write values to stream as string followed by '\\n'
 
     Evaluate and convert 0 or more values to its string value, then write them
-    to stream. A newline character ('\n') is written after the last value. An
+    to stream. A newline character ('\\n') is written after the last value. An
     undefined value is represented by 'undefined'.
 
     Args:

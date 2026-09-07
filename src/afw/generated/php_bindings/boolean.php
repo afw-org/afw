@@ -101,7 +101,7 @@ class boolean
      *
      * Converts value to data type boolean returning boolean result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return boolean Converted value
      */
@@ -127,7 +127,7 @@ class boolean
      * don't match.
      *
      * @param boolean $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -153,7 +153,7 @@ class boolean
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param boolean $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -251,7 +251,7 @@ class boolean
      *
      * Checks whether value is dataType boolean and return the boolean result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -300,7 +300,7 @@ class boolean
      * return the boolean result.
      *
      * @param boolean $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -352,7 +352,7 @@ class boolean
      * type don't match.
      *
      * @param boolean $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -378,7 +378,7 @@ class boolean
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param boolean $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */

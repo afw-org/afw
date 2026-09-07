@@ -81,7 +81,7 @@ class objectPath
      * don't match.
      *
      * @param objectPath $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -107,7 +107,7 @@ class objectPath
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param objectPath $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -181,7 +181,7 @@ class objectPath
      * Checks whether value is dataType objectPath and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -205,7 +205,7 @@ class objectPath
      * return the boolean result.
      *
      * @param objectPath $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -257,7 +257,7 @@ class objectPath
      * arg2's data type don't match.
      *
      * @param objectPath $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -283,7 +283,7 @@ class objectPath
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param objectPath $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -306,7 +306,7 @@ class objectPath
      *
      * Converts value to data type objectPath returning objectPath result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return objectPath Converted value
      */

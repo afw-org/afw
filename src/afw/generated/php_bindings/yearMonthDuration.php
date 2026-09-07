@@ -106,7 +106,7 @@ class yearMonthDuration
      * arg2's data type don't match.
      *
      * @param yearMonthDuration $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -133,7 +133,7 @@ class yearMonthDuration
      * comparison.
      *
      * @param yearMonthDuration $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -257,7 +257,7 @@ class yearMonthDuration
      * Checks whether value is dataType yearMonthDuration and return the
      * boolean result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -281,7 +281,7 @@ class yearMonthDuration
      * yearMonthDuration arg2 and return the boolean result.
      *
      * @param yearMonthDuration $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -333,7 +333,7 @@ class yearMonthDuration
      * arg2's data type don't match.
      *
      * @param yearMonthDuration $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -360,7 +360,7 @@ class yearMonthDuration
      * before comparison.
      *
      * @param yearMonthDuration $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -503,7 +503,7 @@ class yearMonthDuration
      * Converts value to data type yearMonthDuration returning
      * yearMonthDuration result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return yearMonthDuration Converted value
      */

@@ -176,7 +176,7 @@ class journal
      * specifies the maximum number of entries to scan for an applicable entry
      * for consumer before returning.
      * 
-     *  This option will set response properties 'entry' and 'entryCursor' if
+     * This option will set response properties 'entry' and 'entryCursor' if
      * an applicable entry is retrieved. Property 'reissue' will be set as
      * described below.
      * 

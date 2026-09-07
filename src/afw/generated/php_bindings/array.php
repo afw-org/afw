@@ -62,7 +62,7 @@ class array
      * is [[1,2]]); use spread or a list literal to flatten. For a length of
      * undefined slots use create_array(n).
      *
-     * @param  $values A value can refer to any adaptable value belonging to
+     * @param $values A value can refer to any adaptable value belonging to
      *                 any data type or an array expression. In the case of an
      *                 array expression, indicated by '...' followed by an
      *                 expression that results in an array, every element
@@ -95,7 +95,7 @@ class array
      * @param array $array Array to index.
      * @param integer $index Zero-based index, or negative from the end.
      *
-     * @return  The value at the index, or undefined if out of range.
+     * @return The value at the index, or undefined if out of range.
      */
     public function at(, $array, $index)
     {
@@ -216,7 +216,7 @@ class array
      * don't match.
      *
      * @param array $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -242,7 +242,7 @@ class array
      * arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param array $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -339,7 +339,7 @@ class array
      * Checks whether or not an array contains any value.
      *
      * @param array $array The array to search.
-     * @param  $searchElement Element to find.
+     * @param $searchElement Element to find.
      * @param integer $fromIndex Index in the array to start search.
      *
      * @return boolean Indicates if the element is found in array.
@@ -366,7 +366,7 @@ class array
      *
      * Checks whether value is dataType array and return the boolean result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -418,7 +418,7 @@ class array
      * the boolean result.
      *
      * @param array $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -494,7 +494,7 @@ class array
      * don't match.
      *
      * @param array $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -520,7 +520,7 @@ class array
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param array $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -546,7 +546,7 @@ class array
      *
      * @param array $array Target array. Must not be immutable.
      *
-     * @return  The removed value, or undefined if the array was empty.
+     * @return The removed value, or undefined if the array was empty.
      */
     public function pop(, $array)
     {
@@ -569,7 +569,7 @@ class array
      * example after freeze).
      *
      * @param array $array Target array. Must not be immutable.
-     * @param  $values Values to append in order.
+     * @param $values Values to append in order.
      *
      * @return array The modified array.
      */
@@ -620,7 +620,7 @@ class array
      *
      * @param array $array Target array. Must not be immutable.
      *
-     * @return  The removed value, or undefined if the array was empty.
+     * @return The removed value, or undefined if the array was empty.
      */
     public function shift(, $array)
     {
@@ -690,7 +690,7 @@ class array
      * @param integer $deleteCount Number of values to remove. If omitted,
      *                             remove through the end of the array.
      *                             Negative is treated as zero.
-     * @param  $values Values to insert at startIndex after removals.
+     * @param $values Values to insert at startIndex after removals.
      *
      * @return array Array of removed values, in original order.
      */
@@ -745,7 +745,7 @@ class array
      * modified array.
      *
      * @param array $array Target array. Must not be immutable.
-     * @param  $values Values to insert at the front, in order.
+     * @param $values Values to insert at the front, in order.
      *
      * @return array The modified array.
      */
