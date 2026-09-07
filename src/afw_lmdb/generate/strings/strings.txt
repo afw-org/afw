@@ -29,6 +29,7 @@ size
 time
 hard
 soft
+cardinalityProbeCap
 maxreaders
 maxdbs
 mapsize

@@ -308,6 +308,12 @@ afw_lmdb_self_v_camelCaseFunctionLabel = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_cardinalityProbeCap = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_cardinalityProbeCap)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_category = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_category)
@@ -752,6 +758,12 @@ afw_lmdb_self_v_zz__49530148f31a = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_zz__4e37b04ae4de = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__4e37b04ae4de)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_zz__55da2eab2841 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__55da2eab2841)
@@ -791,6 +803,12 @@ const afw_value_string_t
 afw_lmdb_self_v_zz__Branch_Pages = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Branch_Pages)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Cardinality_Probe_Cap = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Cardinality_Probe_Cap)
 };
 
 const afw_value_string_t
@@ -1237,6 +1255,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_lmdb_self_v_branch_pages,
     &afw_lmdb_self_v_brief,
     &afw_lmdb_self_v_camelCaseFunctionLabel,
+    &afw_lmdb_self_v_cardinalityProbeCap,
     &afw_lmdb_self_v_category,
     &afw_lmdb_self_v_collectionURIs,
     &afw_lmdb_self_v_content_type,

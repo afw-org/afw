@@ -6,6 +6,14 @@
     "description": "Object type for type=adapter adapter_type=lmdb limit conf entries.",
     "objectType": "_AdaptiveConf_adapter_lmdb_limits",
     "propertyTypes": {
+        "cardinalityProbeCap": {
+            "allowQuery": false,
+            "dataType": "integer",
+            "description": "Maximum number of index entries a non-eq (range or \"starts with\") adapter-index cursor will walk when estimating its cardinality for OR/AND cursor-merge ordering. If the cursor's actual count is at or under this cap, the estimate is exact; otherwise it is reported as this cap, a lower bound rather than the true count. Cardinality is only ever used to order cursors relative to each other (fewer comparisons in the later duplicate-elimination pass); it never affects which objects are returned. Defaults to 100.",
+            "label": "Cardinality Probe Cap",
+            "required": false,
+            "unique": false
+        },
         "size": {
             "allowQuery": true,
             "dataType": "object",

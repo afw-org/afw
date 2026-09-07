@@ -37,11 +37,19 @@ typedef struct afw_lmdb_env_s {
     unsigned int flags;
 } afw_lmdb_env_t;
 
+/*
+ * Default for afw_lmdb_limits_t.cardinality_probe_cap, also used directly
+ * when an adapter has no "limits" conf property at all (self->limits is
+ * NULL in that case - see afw_lmdb_adapter_t.limits).
+ */
+#define AFW_LMDB_DEFAULT_CARDINALITY_PROBE_CAP 100
+
 typedef struct afw_lmdb_limits_s {
     int size_soft;
     int size_hard;
     int time_soft;
     int time_hard;
+    int cardinality_probe_cap;
 } afw_lmdb_limits_t;
 
 typedef struct afw_lmdb_adapter_s {

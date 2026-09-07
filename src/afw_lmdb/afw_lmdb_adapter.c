@@ -168,6 +168,12 @@ const afw_lmdb_limits_t * afw_lmdb_adapter_parse_limits(
             limits->time_hard = 14400;
     }
 
+    value = afw_object_get_property(lim, afw_lmdb_v_cardinalityProbeCap, xctx);
+    if (value)
+        limits->cardinality_probe_cap = afw_safe_cast_integer_to_int(afw_value_as_integer_internal(value, xctx), xctx);
+    else
+        limits->cardinality_probe_cap = AFW_LMDB_DEFAULT_CARDINALITY_PROBE_CAP;
+
     return limits;
 }
 

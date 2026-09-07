@@ -1251,6 +1251,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_LMDB_Q_cardinalityProbeCap \
+    "cardinalityProbeCap"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_cardinalityProbeCap */
+#define afw_lmdb_s_cardinalityProbeCap \
+    (&afw_lmdb_self_v_cardinalityProbeCap.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_cardinalityProbeCap */
+#define afw_lmdb_self_s_cardinalityProbeCap \
+    (afw_lmdb_self_v_cardinalityProbeCap.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_cardinalityProbeCap */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_cardinalityProbeCap;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_cardinalityProbeCap */
+#define afw_lmdb_z_cardinalityProbeCap \
+    (afw_lmdb_self_v_cardinalityProbeCap.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_cardinalityProbeCap */
+#define afw_lmdb_v_cardinalityProbeCap \
+    (&afw_lmdb_self_v_cardinalityProbeCap.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_LMDB_Q_category \
     "category"
 
@@ -3175,6 +3201,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__4e37b04ae4de \
+    "Maximum number of index entries a non-eq (range or \"starts with\") adapter-index cursor will walk when estimating its cardinality for OR/AND cursor-merge ordering. If the cursor\'s actual count is at or under this cap, the estimate is exact; otherwise it is reported as this cap, a lower bound rather than the true count. Cardinality is only ever used to order cursors relative to each other (fewer comparisons in the later duplicate-elimination pass); it never affects which objects are returned. Defaults to 100."
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__4e37b04ae4de */
+#define afw_lmdb_s_zz__4e37b04ae4de \
+    (&afw_lmdb_self_v_zz__4e37b04ae4de.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__4e37b04ae4de */
+#define afw_lmdb_self_s_zz__4e37b04ae4de \
+    (afw_lmdb_self_v_zz__4e37b04ae4de.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__4e37b04ae4de */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__4e37b04ae4de;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__4e37b04ae4de */
+#define afw_lmdb_z_zz__4e37b04ae4de \
+    (afw_lmdb_self_v_zz__4e37b04ae4de.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__4e37b04ae4de */
+#define afw_lmdb_v_zz__4e37b04ae4de \
+    (&afw_lmdb_self_v_zz__4e37b04ae4de.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_LMDB_Q_zz__55da2eab2841 \
     "Object type for type=adapter adapter_type=lmdb time limit conf entries."
 
@@ -3353,6 +3405,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__Branch_Pages */
 #define afw_lmdb_v_zz__Branch_Pages \
     (&afw_lmdb_self_v_zz__Branch_Pages.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__Cardinality_Probe_Cap \
+    "Cardinality Probe Cap"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__Cardinality_Probe_Cap */
+#define afw_lmdb_s_zz__Cardinality_Probe_Cap \
+    (&afw_lmdb_self_v_zz__Cardinality_Probe_Cap.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__Cardinality_Probe_Cap */
+#define afw_lmdb_self_s_zz__Cardinality_Probe_Cap \
+    (afw_lmdb_self_v_zz__Cardinality_Probe_Cap.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__Cardinality_Probe_Cap */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__Cardinality_Probe_Cap;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__Cardinality_Probe_Cap */
+#define afw_lmdb_z_zz__Cardinality_Probe_Cap \
+    (afw_lmdb_self_v_zz__Cardinality_Probe_Cap.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__Cardinality_Probe_Cap */
+#define afw_lmdb_v_zz__Cardinality_Probe_Cap \
+    (&afw_lmdb_self_v_zz__Cardinality_Probe_Cap.pub)
 
 
 

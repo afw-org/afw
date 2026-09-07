@@ -1526,6 +1526,27 @@ impl_afw_adapter_impl_index_cursor_inner_join (
 
 /*
  * Implementation of method get_count of interface afw_adapter_impl_index_cursor.
+ *
+ * For eq, LMDB's mdb_cursor_count() directly answers this (duplicate
+ * entries at a single key). For any other operator (a range or a
+ * "starts with" prefix scan), there is no equivalent primitive - LMDB's
+ * B+tree does not track subtree sizes, so nothing built from its public
+ * API (seeking, mdb_stat, or stepping) can produce an exact count faster
+ * than actually visiting that many entries. So instead: walk the cursor
+ * forward, using its own advance semantics (afw_lmdb_internal_cursor_next,
+ * the same logic the real result-emitting walk will use later), up to
+ * the adapter's configured cardinality_probe_cap. If the range ends
+ * first, the count is exact; if the cap is hit first, *count is the cap
+ * itself - a lower bound, not the true count. Either way the cursor is
+ * reset back to its original position afterward (get_count() is called
+ * before the real walk begins, in cursor_list_merge()/cursor_list_join(),
+ * and must not consume it).
+ *
+ * Issue #298. This is only ever used to order cursors relative to each
+ * other for the later duplicate-elimination pass (fewer comparisons);
+ * see afw_adapter_impl_index_cursor_list_merge() - an unreportable or
+ * underestimated (capped) count never affects which objects come back,
+ * only how efficiently.
  */
 afw_boolean_t
 impl_afw_adapter_impl_index_cursor_get_count(
@@ -1534,16 +1555,40 @@ impl_afw_adapter_impl_index_cursor_get_count(
     afw_xctx_t *xctx)
 {
     int rc;
+    int cap;
+    size_t walked;
 
-    /* we can only calculate the count for duplicate data on a single key,
-        so this means only eq operators are supported. */
-    if (self->operator != afw_query_criteria_filter_op_id_eq) {
-        return false;
+    if (self->operator == afw_query_criteria_filter_op_id_eq) {
+        rc = mdb_cursor_count(self->cursor, count);
+        return (rc == 0) ? true : false;
     }
 
-    rc = mdb_cursor_count(self->cursor, count);
+    cap = (self->session->adapter->limits)
+        ? self->session->adapter->limits->cardinality_probe_cap
+        : AFW_LMDB_DEFAULT_CARDINALITY_PROBE_CAP;
 
-    return (rc == 0) ? true : false;
+    walked = 0;
+    if (self->data.mv_data != NULL) {
+        walked = 1;
+        while (walked < (size_t)cap) {
+            rc = afw_lmdb_internal_cursor_next(&self->pub, xctx);
+            if (rc) {
+                /* range ended - walked is the exact count */
+                break;
+            }
+            walked++;
+        }
+    }
+
+    /* put the cursor back where the real walk expects to find it */
+    afw_lmdb_internal_cursor_reset(self, xctx);
+
+    afw_trace_fz(1, self->session->adapter->pub.trace_flag_index, NULL, xctx,
+        "index cursor cardinality estimate: %d (cap %d)",
+        (int)walked, cap);
+
+    *count = walked;
+    return true;
 }
 
 /*
