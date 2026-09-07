@@ -35,6 +35,21 @@ If you maintain **anything that links AFW outside a full in-tree rebuild** — e
 
 In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afwdev build --cdev` / `--fulldev` install are fine.
 
+**Naming** (object, array, and value helpers). Arrays and objects store **values**, not C payloads.
+
+| Name | Means |
+|------|--------|
+| `_as_<type>` | Typed value pointer: `const afw_value_<type>_t *`. Does **not** convert. Does **not** peel. Getters do **not** evaluate. |
+| `_internal` | C payload of that type (`afw_utf8_t`, `afw_integer_t`, …). |
+| `convert_to_*` | Convert to another representation. |
+| `create_unmanaged` / `_new_p` / `_cede_p` | Lives in dest `p`. |
+| `create_managed` | Frame in this `xctx->p`. |
+| `get_assignable` | Isolate into a slot. |
+| `afw_v_foo` | Object **property name** (a value). `afw_s_foo` is still utf8 for type ids and other utf8 APIs. |
+| dest `p` | Evaluate, clone, or extra allocation (iterator / meta). **Not** on value getters. |
+
+Utf8 ingest is a **different** table: `create` / `to_` copy; `create_no_copy` / `z_as_utf8` point. Do not read `afw_utf8_z_as_utf8` as a typed value pointer. [UTF-8 doors](#utf-8-create-set-and-forced_safe). Detail for `_as_<type>`: [Typed values](#typed-value-pointers-vs-c-internals).
+
 | Change this | To |
 |-------------|----|
 | Leftover headers in `/usr/local/include/afw/` after a rebuild | `./afwdev build --cdev` or `--fulldev` (both **`--install`**). CMake does not delete dropped headers; afwdev then removes a leftover list (internals, old generated names, deprecated leftovers). Another package’s **public** headers in that dir stay. If that package still installed `*_internal.h` or `*_declare_helpers.h` there, reinstall **it**. [Upgrade hygiene](#upgrade-hygiene) |
