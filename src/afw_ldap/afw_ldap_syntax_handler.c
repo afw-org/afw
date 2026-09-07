@@ -608,6 +608,7 @@ impl_syntax_handler_list_binary_to_ber(
     const afw_utf8_t *s;
     const afw_iterator_old_t *iterator;
     const afw_data_type_t *data_type;
+    const afw_value_t *entry;
 
     if (afw_value_is_array(value)) {
         list = ((afw_value_array_t *)value)->internal;
@@ -617,11 +618,11 @@ impl_syntax_handler_list_binary_to_ber(
         data_type = afw_array_get_data_type(value, xctx);
         if (afw_utf8_equal(&data_type->cType, afw_s_afw_memory_t)) {
             for (iterator = NULL, bv = result; ;bv++) {
-                afw_array_get_next_internal(
-                    list, &iterator, NULL, (const void **)&raw, xctx);
-                if (!raw) {
+                entry = afw_array_get_next_value(list, &iterator, NULL, xctx);
+                if (!entry) {
                     break;
                 }
+                raw = (const afw_memory_t *)AFW_VALUE_INTERNAL(entry);
                 *bv = afw_pool_malloc_type(p, struct berval, xctx);
                 (*bv)->bv_len = (ber_len_t)raw->size;
                 (*bv)->bv_val = (char *)raw->ptr;
@@ -629,11 +630,11 @@ impl_syntax_handler_list_binary_to_ber(
         }
         else if (afw_utf8_equal(&data_type->cType, afw_s_afw_utf8_t)) {
             for (iterator = NULL, bv = result; ;bv++) {
-                afw_array_get_next_internal(
-                    list, &iterator, NULL, (const void **)&s, xctx);
-                if (!s) {
+                entry = afw_array_get_next_value(list, &iterator, NULL, xctx);
+                if (!entry) {
                     break;
                 }
+                s = (const afw_utf8_t *)AFW_VALUE_INTERNAL(entry);
                 *bv = afw_pool_malloc_type(p, struct berval, xctx);
                 (*bv)->bv_len = (ber_len_t)s->len;
                 (*bv)->bv_val = (char *)s->s;
@@ -720,7 +721,7 @@ impl_syntax_handler_list_boolean_to_ber(
     const afw_data_type_t *data_type;
     const afw_array_t *list;
     const afw_iterator_old_t *iterator;
-    const void *internal;
+    const afw_value_t *entry;
 
     if (afw_value_is_array(value)) {
         list = (const afw_array_t *)AFW_VALUE_INTERNAL(value);
@@ -739,17 +740,18 @@ impl_syntax_handler_list_boolean_to_ber(
     result[count] = NULL;
 
     for (iterator = NULL, bv = result; ;bv++) {
-        afw_array_get_next_internal(list,
-            &iterator, &data_type, &internal, xctx);
-        if (!internal) {
+        entry = afw_array_get_next_value(list, &iterator, NULL, xctx);
+        if (!entry) {
             break;
         }
+        data_type = afw_value_get_data_type(entry, xctx);
         if (data_type == afw_data_type_boolean) {
-            b = *(afw_boolean_t *)internal;
+            b = ((const afw_value_boolean_t *)entry)->internal;
         }
         else {
             afw_data_type_convert_internal(data_type,
-                &b, internal, afw_data_type_boolean, p, xctx);
+                &b, AFW_VALUE_INTERNAL(entry), afw_data_type_boolean,
+                p, xctx);
         }
         *bv = (struct berval *)
             ((b)
@@ -825,8 +827,8 @@ impl_syntax_handler_list_generalized_time_to_ber(
         result = afw_pool_calloc(p, sizeof(struct berval *) * (count + 1),
             xctx);
         for (iterator = NULL, bv = result; ;bv++) {
-            afw_array_get_next_internal(
-                list, &iterator, NULL, (const void **)&val, xctx);
+            val = afw_array_of_dateTime_get_next_internal(list, &iterator,
+                xctx);
             if (!val) {
                 break;
             }
@@ -935,7 +937,7 @@ impl_syntax_handler_list_string_to_ber(
     const afw_iterator_old_t *iterator;
     const afw_array_t *list;
     const afw_data_type_t *data_type;
-    const void *internal;
+    const afw_value_t *entry;
     afw_size_t count;
 
     /* Get the list of values. */
@@ -957,16 +959,15 @@ impl_syntax_handler_list_string_to_ber(
 
     /* Iterator setting berval. */
     for (iterator = NULL, bv = result; ;bv++) {
-        afw_array_get_next_internal(
-            list, &iterator, NULL, &internal, xctx);
-        if (!internal) {
+        entry = afw_array_get_next_value(list, &iterator, NULL, xctx);
+        if (!entry) {
             break;
         }
-        if (data_type == afw_data_type_string) {
-            s = (const afw_utf8_t *)internal;
+        if (afw_value_is_string(entry)) {
+            s = &((const afw_value_string_t *)entry)->internal;
         }
         else {
-            s = afw_data_type_internal_to_utf8(data_type, internal, p, xctx);
+            s = afw_value_convert_to_utf8(entry, p, xctx);
         }
         (*bv) = afw_pool_malloc_type(p, struct berval, xctx);
         (*bv)->bv_len = (ber_len_t)s->len;

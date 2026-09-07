@@ -957,8 +957,6 @@ afw_value_convert(
     afw_value_common_t *single;
     const afw_array_t *list;
     const afw_iterator_old_t *iterator;
-    const void *internal;
-    const afw_data_type_t *data_type;
     afw_size_t evaluate_count;
 
     /* Evaluate value. */
@@ -1010,21 +1008,16 @@ afw_value_convert(
                     xctx);
             }
             iterator = NULL;
-            afw_array_get_next_internal(list,
-                &iterator, &data_type, &internal, xctx);
-            single = afw_value_common_allocate(to_data_type, p, xctx);
-            if (data_type == to_data_type) {
-                memcpy(AFW_VALUE_INTERNAL(single), internal, data_type->c_type_size);
+            result = afw_array_get_next_value(list, &iterator, p, xctx);
+            if (!result) {
+                AFW_THROW_ERROR_Z(conversion_error,
+                    "Can't down convert an empty array",
+                    xctx);
             }
-            else {
-                afw_data_type_convert_internal(
-                    data_type,
-                    &single->internal,
-                    internal,
-                    to_data_type,
+            if (afw_value_get_data_type(result, xctx) != to_data_type) {
+                result = afw_value_convert(result, to_data_type, required,
                     p, xctx);
             }
-            result = &single->pub;
         }
 
         /* Not list. */

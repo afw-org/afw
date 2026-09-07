@@ -445,7 +445,7 @@ impl_parse_definition(
 
     /* Process each definition in list. */
     for (iterator = NULL;;) {
-        afw_array_get_next_internal(list, &iterator, NULL, (const void **)&e, xctx);
+        e = afw_array_of_string_get_next_internal(list, &iterator, xctx);
         if (!e) {
             break;
         }
@@ -465,9 +465,9 @@ impl_parse_definition(
         if (afw_value_is_array_of_string(name_value)) {
             for (iterator2 = NULL;;)
             {
-                afw_array_get_next_internal(
+                name = afw_array_of_string_get_next_internal(
                     ((const afw_value_array_t *)name_value)->internal,
-                    &iterator2, NULL, (const void **)&name, xctx);
+                    &iterator2, xctx);
                 if (!name) {
                     break;
                 }
@@ -803,8 +803,7 @@ impl_properties_to_object_type(
         list = ((const afw_value_array_t *)value)->internal;
         for (iterator = NULL;;)
         {
-            afw_array_get_next_internal(list,
-                &iterator, NULL, (const void **)&s, xctx);
+            s = afw_array_of_string_get_next_internal(list, &iterator, xctx);
             if (!s) {
                 break;
             }
@@ -976,8 +975,8 @@ impl_add_parents_and_property_types(
             ids = afw_pool_calloc(p, count * sizeof(afw_utf8_t), xctx);
             parent_id = ids;
             for (iterator = NULL;;) {
-                afw_array_get_next_internal(list, &iterator, NULL,
-                    (const void **)&s, xctx);
+                s = afw_array_of_string_get_next_internal(list, &iterator,
+                    xctx);
                 if (!s) {
                     break;
                 }

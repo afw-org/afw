@@ -1654,11 +1654,11 @@ impl_compare_value(
     afw_xctx_t *xctx)
 {
     afw_boolean_t is_true;
-    const void *i1, *i2;
     const afw_iterator_old_t *iterator, *iterator2;
     const afw_value_t *entry_value;
+    const afw_value_t *v1;
+    const afw_value_t *v2;
     const afw_data_type_t *data_type;
-    const afw_data_type_t *entry_data_type, *value_data_type;
     const afw_array_t *list, *entry_list;
     const afw_value_t *entry_value_converted;
     const afw_utf8_t *s2;
@@ -1707,18 +1707,17 @@ impl_compare_value(
     switch (entry->op_id) {
 
     case afw_query_criteria_filter_op_id_eq:
-        i1 = (const void *)&((const afw_value_common_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
-            afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
-            if (!i2) {
+            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            if (!v2) {
                 break;
             }
-            if (data_type != entry_data_type) {
+            if (data_type &&
+                afw_value_get_data_type(v2, xctx) != data_type)
+            {
                 AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
             }
-            is_true = afw_data_type_compare_internal(
-                afw_value_get_data_type(value, xctx),
-                i1, i2, xctx) == 0;
+            is_true = afw_value_equal(entry_value, v2, xctx);
             if (is_true) {
                 break;
             }
@@ -1726,18 +1725,17 @@ impl_compare_value(
         break;
 
     case afw_query_criteria_filter_op_id_ne:
-        i1 = (const void *)&((const afw_value_common_t *)entry_value)->internal;
         for (is_true = true, iterator = NULL;;) {
-            afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
-            if (!i2) {
+            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            if (!v2) {
                 break;
             }
-            if (data_type != entry_data_type) {
+            if (data_type &&
+                afw_value_get_data_type(v2, xctx) != data_type)
+            {
                 AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
             }
-            is_true = afw_data_type_compare_internal(
-                afw_value_get_data_type(value, xctx),
-                i1, i2, xctx) != 0;
+            is_true = !afw_value_equal(entry_value, v2, xctx);
             if (!is_true) {
                 break;
             }
@@ -1745,18 +1743,17 @@ impl_compare_value(
         break;
 
     case afw_query_criteria_filter_op_id_lt:
-        i1 = (const void *)&((const afw_value_common_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
-            afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
-            if (!i2) {
+            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            if (!v2) {
                 break;
             }
-            if (data_type != entry_data_type) {
+            if (data_type &&
+                afw_value_get_data_type(v2, xctx) != data_type)
+            {
                 AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
             }
-            is_true = afw_data_type_compare_internal(
-                afw_value_get_data_type(value, xctx),
-                i2, i1, xctx) < 0;
+            is_true = afw_value_compare(v2, entry_value, xctx) < 0;
             if (is_true) {
                 break;
             }
@@ -1764,18 +1761,17 @@ impl_compare_value(
         break;
 
     case afw_query_criteria_filter_op_id_le:
-        i1 = (const void *)&((const afw_value_common_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
-            afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
-            if (!i2) {
+            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            if (!v2) {
                 break;
             }
-            if (data_type != entry_data_type) {
+            if (data_type &&
+                afw_value_get_data_type(v2, xctx) != data_type)
+            {
                 AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
             }
-            is_true = afw_data_type_compare_internal(
-                afw_value_get_data_type(value, xctx),
-                i2, i1, xctx) <= 0;
+            is_true = afw_value_compare(v2, entry_value, xctx) <= 0;
             if (is_true) {
                 break;
             }
@@ -1783,18 +1779,17 @@ impl_compare_value(
         break;
 
     case afw_query_criteria_filter_op_id_gt:
-        i1 = (const void *)&((const afw_value_common_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
-            afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
-            if (!i2) {
+            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            if (!v2) {
                 break;
             }
-            if (data_type != entry_data_type) {
+            if (data_type &&
+                afw_value_get_data_type(v2, xctx) != data_type)
+            {
                 AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
             }
-            is_true = afw_data_type_compare_internal(
-                afw_value_get_data_type(value, xctx),
-                i2, i1, xctx) > 0;
+            is_true = afw_value_compare(v2, entry_value, xctx) > 0;
             if (is_true) {
                 break;
             }
@@ -1802,18 +1797,17 @@ impl_compare_value(
         break;
 
     case afw_query_criteria_filter_op_id_ge:
-        i1 = (const void *)&((const afw_value_common_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
-            afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
-            if (!i2) {
+            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            if (!v2) {
                 break;
             }
-            if (data_type != entry_data_type) {
+            if (data_type &&
+                afw_value_get_data_type(v2, xctx) != data_type)
+            {
                 AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
             }
-            is_true = afw_data_type_compare_internal(
-                afw_value_get_data_type(value, xctx),
-                i2, i1, xctx) >= 0;
+            is_true = afw_value_compare(v2, entry_value, xctx) >= 0;
             if (is_true) {
                 break;
             }
@@ -1828,26 +1822,29 @@ impl_compare_value(
         
         /* get our list of property values to compare */
         for (is_true = false, iterator = NULL; is_true == false;) {
-            afw_array_get_next_internal(list, &iterator, &entry_data_type, &i1, xctx);
-            if (!i1) {
+            v1 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            if (!v1) {
                 break;
             }
         
             /* get our list of query criteria entry values to compare */            
             entry_list = ((const afw_value_array_t *)entry_value)->internal;        
             for (is_true = false, iterator2 = NULL; !is_true;) {
-                afw_array_get_next_internal(entry_list, &iterator2, &value_data_type, &i2, xctx);
-                if (!i2) {
+                v2 = afw_array_get_next_value(entry_list, &iterator2,
+                    NULL, xctx);
+                if (!v2) {
                     /* no more values */                    
                     break;
                 }
 
                 /* make sure types match */
-                if (value_data_type != entry_data_type) {
+                if (afw_value_get_data_type(v1, xctx) !=
+                    afw_value_get_data_type(v2, xctx))
+                {
                     AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
                 }
                 
-                is_true = afw_data_type_compare_internal(entry_data_type, i1, i2, xctx) == 0;
+                is_true = afw_value_equal(v1, v2, xctx);
                 if (is_true) {
                     break;
                 }
@@ -1859,15 +1856,13 @@ impl_compare_value(
     case afw_query_criteria_filter_op_id_match:
 
         for (is_true = false, iterator = NULL; !is_true;) {
-            afw_array_get_next_internal(list, &iterator,
-                &entry_data_type, &i2, xctx);
-            if (!i2) {
+            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            if (!v2) {
                 /* no more entries */
                 break;
             }
 
-            s2 = afw_data_type_internal_to_utf8(entry_data_type,
-                i2, p, xctx);
+            s2 = afw_value_convert_to_utf8(v2, p, xctx);
             s_z = BAD_CAST afw_utf8_to_utf8_z(s2, p, xctx);
             rv = xmlRegexpExec((xmlRegexpPtr)entry->op_specific, s_z);
             if (rv < 0) {
@@ -1883,20 +1878,17 @@ impl_compare_value(
 
         /* run through the array of values, looking for at least one equality */
         for (is_true = false, iterator = NULL; !is_true;) {
-            afw_array_get_next_internal(list, &iterator,
-                &entry_data_type, &i2, xctx);
-            if (!i2) {
+            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            if (!v2) {
                 /* no more entries */
                 break;
             }
             /* convert the entry_value data_type to our array entry value data_type */
             entry_value_converted = afw_value_convert(entry_value,
-                entry_data_type, false,
-                p, xctx);        
-            i1 = (const void *)&((const afw_value_common_t *)entry_value_converted)->internal;                  
+                afw_value_get_data_type(v2, xctx), false,
+                p, xctx);
             /* now compare the list entry with our criteria entry */
-            if (afw_data_type_compare_internal(entry_data_type,
-                i1, i2, xctx) == 0) {
+            if (afw_value_equal(entry_value_converted, v2, xctx)) {
                 is_true = true;
             }
         }

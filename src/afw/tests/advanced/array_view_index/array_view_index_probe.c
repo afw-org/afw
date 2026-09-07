@@ -29,16 +29,10 @@ impl_expect_missing(
     afw_xctx_t *xctx,
     const char *label)
 {
-    const afw_data_type_t *data_type;
-    const void *internal;
-    afw_boolean_t found;
+    const afw_value_t *value;
 
-    data_type = NULL;
-    internal = (const void *)(afw_size_t)1;
-    found = afw_array_get_entry_internal(array, index,
-        &data_type, &internal, xctx);
-    if (found || internal != NULL ||
-        afw_array_get_entry_value(array, index, xctx->p, xctx) != NULL)
+    value = afw_array_get_entry_value(array, index, xctx->p, xctx);
+    if (value != NULL)
     {
         fprintf(stderr, "%s: index %d treated as found\n",
             label, (int)index);
@@ -55,22 +49,8 @@ impl_expect_integer(
     afw_xctx_t *xctx,
     const char *label)
 {
-    const afw_data_type_t *data_type;
-    const void *internal;
     const afw_value_t *value;
 
-    data_type = NULL;
-    internal = NULL;
-    if (!afw_array_get_entry_internal(array, index,
-            &data_type, &internal, xctx) ||
-        !internal ||
-        data_type != afw_data_type_integer ||
-        *(const afw_integer_t *)internal != expect)
-    {
-        fprintf(stderr, "%s: index %d missing or wrong internal\n",
-            label, (int)index);
-        return 1;
-    }
     value = afw_array_get_entry_value(array, index, xctx->p, xctx);
     if (!value ||
         !afw_value_is_integer(value) ||

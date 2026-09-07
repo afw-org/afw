@@ -39,20 +39,22 @@ afw_array_of_utf8_get_next(
     const afw_iterator_old_t * *iterator,
     afw_xctx_t *xctx)
 {
-    const void *internal;
+    const afw_value_t *value;
     const afw_data_type_t *data_type;
 
-    afw_array_get_next_internal(instance, iterator, &data_type, &internal, xctx);
-    if (!internal) {
+    value = afw_array_get_next_value(instance, iterator, NULL, xctx);
+    if (!value) {
         return NULL;
     }
 
-    if (!afw_utf8_equal(&data_type->cType, afw_s_afw_utf8_t))
+    data_type = afw_value_get_data_type(value, xctx);
+    if (!data_type ||
+        !afw_utf8_equal(&data_type->cType, afw_s_afw_utf8_t))
     {
         AFW_THROW_ERROR_Z(general,
             "cType of array data type is not afw_utf8_t", xctx);
     }
-    return (const afw_utf8_t *)internal;
+    return (const afw_utf8_t *)AFW_VALUE_INTERNAL(value);
 }
 
 

@@ -985,30 +985,30 @@ impl_afw_data_type_array_compare_internal(
     const afw_array_t *array2 = *(const afw_array_t * const *)value2;
     const afw_iterator_old_t *iterator1;
     const afw_iterator_old_t *iterator2;
-    const void *internal1;
-    const void *internal2;
+    const afw_value_t *v1;
+    const afw_value_t *v2;
     const afw_data_type_t *data_type1;
     const afw_data_type_t *data_type2;
     int result;
 
     for (iterator1 = NULL, iterator2 = NULL, result = 0; result == 0;) {
-        afw_array_get_next_internal(array1, &iterator1,
-            &data_type1, &internal1, xctx);
-        afw_array_get_next_internal(array2, &iterator2,
-            &data_type2, &internal2, xctx);
+        v1 = afw_array_get_next_value(array1, &iterator1, NULL, xctx);
+        v2 = afw_array_get_next_value(array2, &iterator2, NULL, xctx);
 
-        if (!internal1) {
-            if (internal2) {
+        if (!v1) {
+            if (v2) {
                 result = -1;
             }
             break;
         }
 
-        if (!internal2) {
+        if (!v2) {
             result = 1;
             break;
         }
 
+        data_type1 = afw_value_get_data_type(v1, xctx);
+        data_type2 = afw_value_get_data_type(v2, xctx);
         if (!data_type1) {
             AFW_THROW_ERROR_Z(general,
                 "array needs data type for compare",
@@ -1020,8 +1020,7 @@ impl_afw_data_type_array_compare_internal(
             break;
         }
 
-        result = afw_data_type_compare_internal(
-            data_type1, internal1, internal2, xctx);
+        result = afw_value_compare(v1, v2, xctx);
     }
 
     return result;

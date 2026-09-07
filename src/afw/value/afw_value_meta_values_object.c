@@ -92,36 +92,6 @@ impl_afw_array_get_data_type(
 
 
 /*
- * Implementation of method get_entry_internal for interface afw_array.
- */
-afw_boolean_t
-impl_afw_array_get_entry_internal(
-    AFW_ARRAY_SELF_T *self,
-    afw_integer_t index,
-    const afw_data_type_t **data_type,
-    const void **internal,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *value;
-
-    value = impl_afw_array_get_entry_value(self, index, self->pub.p, xctx);
-    if (value) {
-        *internal = AFW_VALUE_INTERNAL(value);
-        if (data_type) {
-            *data_type = afw_data_type_object;
-        }
-        return true;
-    }
-
-    *internal = NULL;
-    if (data_type) {
-        *data_type = NULL;
-    }
-    return false;
-}
-
-
-/*
  * Implementation of method get_entry_value for interface afw_array.
  */
 const afw_value_t *
@@ -185,36 +155,6 @@ impl_afw_array_get_entry_value(
         }
         i++;
     }
-}
-
-
-/*
- * Implementation of method get_next_internal for interface afw_array.
- */
-afw_boolean_t
-impl_afw_array_get_next_internal(
-    AFW_ARRAY_SELF_T *self,
-    const afw_iterator_old_t **iterator,
-    const afw_data_type_t **data_type,
-    const void **internal,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *value;
-
-    value = impl_afw_array_get_next_value(self, iterator, self->pub.p, xctx);
-    if (value) {
-        *internal = AFW_VALUE_INTERNAL(value);
-        if (data_type) {
-            *data_type = afw_data_type_object;
-        }
-        return true;
-    }
-
-    *internal = NULL;
-    if (data_type) {
-        *data_type = NULL;
-    }
-    return false;
 }
 
 

@@ -3687,15 +3687,6 @@ typedef const afw_value_t *
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 
-/** @sa afw_array_get_entry_internal() */
-typedef afw_boolean_t
-(*afw_array_get_entry_internal_t)(
-    const afw_array_t * instance,
-    afw_integer_t index,
-    const afw_data_type_t * * data_type,
-    const void * * internal,
-    afw_xctx_t * xctx);
-
 /** @sa afw_array_get_entry_value() */
 typedef const afw_value_t *
 (*afw_array_get_entry_value_t)(
@@ -3710,15 +3701,6 @@ typedef const afw_value_t *
     const afw_array_t * instance,
     const afw_iterator_old_t * * iterator,
     const afw_pool_t * p,
-    afw_xctx_t * xctx);
-
-/** @sa afw_array_get_next_internal() */
-typedef afw_boolean_t
-(*afw_array_get_next_internal_t)(
-    const afw_array_t * instance,
-    const afw_iterator_old_t * * iterator,
-    const afw_data_type_t * * data_type,
-    const void * * internal,
     afw_xctx_t * xctx);
 
 /** @sa afw_array_get_next_value() */
@@ -3755,10 +3737,8 @@ struct afw_array_inf_s {
     afw_array_get_count_t get_count;
     afw_array_get_data_type_t get_data_type;
     afw_array_get_entry_meta_t get_entry_meta;
-    afw_array_get_entry_internal_t get_entry_internal;
     afw_array_get_entry_value_t get_entry_value;
     afw_array_get_next_entry_meta_t get_next_entry_meta;
-    afw_array_get_next_internal_t get_next_internal;
     afw_array_get_next_value_t get_next_value;
     afw_array_initialize_iterator_t initialize_iterator;
     afw_array_get_setter_t get_setter;
@@ -3871,43 +3851,9 @@ struct afw_array_inf_s {
 )
 
 /**
- * @brief Call method `get_entry_internal` of interface `afw_array`.
- *
- * Get internal entry of array entry by index. See data_type to
- * determine how to interpret.
- * @param instance Pointer to this value array instance.
- * @param index Zero-based index of array entry to return.
- * @param data_type Place to put data type pointer or NULL.
- * @param internal Place to put data_type->cType pointer to the internal at the
- * specified index. This will be set to NULL if index is out of range.
- * @param xctx This is the caller's xctx.
- * @return Will be true if *internal is not NULL.
- * @relates afw_array_t
- * @see @ref afw_array_s "afw_array_t"
- */
-#define afw_array_get_entry_internal( \
-    instance, \
-    index, \
-    data_type, \
-    internal, \
-    xctx \
-) \
-(instance)->inf->get_entry_internal( \
-    (instance), \
-    (index), \
-    (data_type), \
-    (internal), \
-    (xctx) \
-)
-
-/**
  * @brief Call method `get_entry_value` of interface `afw_array`.
  *
  * Get value of array entry by index.
- * 
- * For some arrays, methods get_internal_by_index() is more efficient.
- * If the array implementation stores only the internal part of a value,
- * this function will create an adaptive value in the specified pool to return.
  * @param instance Pointer to this value array instance.
  * @param index Zero-based index of array entry to return.
  * @param p If necessary, this pool is used to create the return value.
@@ -3958,49 +3904,11 @@ struct afw_array_inf_s {
 )
 
 /**
- * @brief Call method `get_next_internal` of interface `afw_array`.
- *
- * Get next internal in array and update iterator. See data_type to
- * determine how to interpret.
- * 
- * Set the iterator to NULL before the first call of this method and
- * any time you want to start from the first value again.
- * @param instance Pointer to this value array instance.
- * @param iterator Address of iterator pointer.
- * @param data_type Place to put data type pointer or NULL.
- * @param internal Place to put data_type->cType pointer to next internal. This
- * will be set to NULL if there is no next internal.
- * @param xctx This is the caller's xctx.
- * @return Will be true if *internal is not NULL.
- * @relates afw_array_t
- * @see @ref afw_array_s "afw_array_t"
- */
-#define afw_array_get_next_internal( \
-    instance, \
-    iterator, \
-    data_type, \
-    internal, \
-    xctx \
-) \
-(instance)->inf->get_next_internal( \
-    (instance), \
-    (iterator), \
-    (data_type), \
-    (internal), \
-    (xctx) \
-)
-
-/**
  * @brief Call method `get_next_value` of interface `afw_array`.
  *
  * Get next value in array and update iterator. Set the iterator to NULL
  * before the first call of this method and any time you want to start
  * from the first value again.
- * 
- * For some arrays, methods get_next_internal() and
- * get_next_internal_and_data_type() are more efficient.
- * If the array implementation stores only the internal part of a value,
- * this function will create an adaptive value in the specified pool to return.
  * @param instance Pointer to this value array instance.
  * @param iterator Address of iterator pointer.
  * @param p If necessary, this pool is used to create the return value.

@@ -229,8 +229,6 @@ impl_bag_of_bag(
     const afw_value_array_t *array1, *array2, *arrayx;
     const afw_data_type_t *data_type_1, *data_type_2;
     const afw_iterator_old_t *iterator1, *iterator2;
-    const void *internal1, *internal2;
-    void *e1, *e2;
     const afw_value_t * f_argv[3];
     const afw_value_t *v;
     const afw_value_t *call;
@@ -267,34 +265,22 @@ impl_bag_of_bag(
             x->xctx);
     }
 
-    /* Allocate a single value to use for each bag1 entry. */
-    f_argv[1] = (afw_value_t *)afw_value_common_allocate(
-        data_type_1, x->p, x->xctx);
-    e1 = (void *)&((afw_value_common_t *)f_argv[1])->internal;
-
-    /* Allocate a single value to use for each bag2 entry. */
-    f_argv[2] = (afw_value_t *)afw_value_common_allocate(
-        data_type_2, x->p, x->xctx);
-    e2 = (void *)&((afw_value_common_t *)f_argv[2])->internal;
-
     /* Call function for each combination of bag1 and bag2 entries. */
     is_true = true;
 
     for (iterator1 = NULL;;) {
-        afw_array_get_next_internal(array1->internal,
-            &iterator1, NULL, &internal1, x->xctx);
-        if (!internal1) {
+        f_argv[1] = afw_array_get_next_value(array1->internal,
+            &iterator1, NULL, x->xctx);
+        if (!f_argv[1]) {
             break;
         }
         is_true = true;
         for (iterator2 = NULL;;) {
-            afw_array_get_next_internal(array2->internal,
-                &iterator2, NULL, &internal2, x->xctx);
-            if (!internal2) {
+            f_argv[2] = afw_array_get_next_value(array2->internal,
+                &iterator2, NULL, x->xctx);
+            if (!f_argv[2]) {
                 break;
             }
-            memcpy(e1, internal1, data_type_1->c_type_size);
-            memcpy(e2, internal2, data_type_2->c_type_size);
             v = afw_value_evaluate(call, x->p, x->xctx);
             v = afw_value_function_return_value_consume(v, x->p, x->xctx);
             if (!afw_value_is_boolean(v)) {
@@ -940,9 +926,8 @@ afw_function_execute_reduce(
 
 typedef struct {
     const afw_value_t *compareFunction;
-    afw_value_common_t *args[3];
-    const void **values;
-    afw_size_t c_type_size;
+    const afw_value_t *args[3];
+    const afw_value_t **values;
     afw_size_t count;
     const afw_pool_t *p;
     afw_xctx_t *xctx;
@@ -954,8 +939,8 @@ impl_partition(
     afw_size_t low,
     afw_size_t high) 
 { 
-    const void *pivot;
-    const void *value;
+    const afw_value_t *pivot;
+    const afw_value_t *value;
     const afw_value_t *return_value;
     afw_size_t i, j;
 
@@ -963,11 +948,11 @@ impl_partition(
     pivot = ctx->values[high];
 
     /* Put everything to right and left of pivot based on compare. */
-    memcpy(&(ctx->args[2]->internal), pivot, ctx->c_type_size);
+    ctx->args[2] = pivot;
     for (i = low, j = low; j <= high - 1; j++)
     {
         /* Call compareFunction with ctx->values[j] and pivot. */
-        memcpy(&(ctx->args[1]->internal), ctx->values[j], ctx->c_type_size);
+        ctx->args[1] = ctx->values[j];
         return_value = afw_value_evaluate(ctx->compareFunction,
             ctx->p, ctx->xctx);
         return_value = afw_value_function_return_value_consume(
@@ -1079,7 +1064,7 @@ afw_function_execute_sort(
     const afw_array_t *result_array;
     const afw_data_type_t *data_type;
     const afw_iterator_old_t *iterator;
-    const void **value;
+    const afw_value_t **value;
     impl_sort_ctx_t ctx;
 
     /* Initialize sort ctx. */
@@ -1088,7 +1073,7 @@ afw_function_execute_sort(
     ctx.xctx = x->xctx;
 
     /* The first arg is the function to call, and other 2 are typed arrays. */
-    ctx.args[0] = (afw_value_common_t *)
+    ctx.args[0] =
         afw_function_evaluate_function_parameter(x->argv[1], ctx.p, ctx.xctx);
     ctx.compareFunction = afw_value_call_create(afw_function_execute_contextual(x),
         2, (const afw_value_t * const *)&ctx.args[0], false, ctx.p, ctx.xctx);
@@ -1100,22 +1085,21 @@ afw_function_execute_sort(
         AFW_THROW_ERROR_Z(general,
             "sort() requires array to be typed", ctx.xctx);
     }
-    ctx.c_type_size = data_type->c_type_size;
     ctx.count = afw_array_get_count(array->internal, ctx.xctx);
     if (ctx.count == 0) {
         return data_type->empty_array_value;
     }
 
-    /* Allocate two values of the correct data type. */
-    ctx.args[1] = afw_value_common_allocate(data_type, ctx.p, ctx.xctx);
-    ctx.args[2] = afw_value_common_allocate(data_type, ctx.p, ctx.xctx);
-
-    /* Make array of pointers to internal values. */
-    ctx.values = afw_pool_malloc(ctx.p, sizeof(void *) * ctx.count, ctx.xctx);
-    for (iterator = NULL, value = ctx.values;
-        afw_array_get_next_internal(array->internal, &iterator,
-            NULL, value, ctx.xctx);
-        value++);
+    /* Make array of pointers to values. */
+    ctx.values = afw_pool_malloc(ctx.p,
+        sizeof(const afw_value_t *) * ctx.count, ctx.xctx);
+    for (iterator = NULL, value = ctx.values;; value++) {
+        *value = afw_array_get_next_value(array->internal, &iterator,
+            NULL, ctx.xctx);
+        if (!*value) {
+            break;
+        }
+    }
 
     /* Sort. */
     if (ctx.count > 0) {
@@ -1123,7 +1107,7 @@ afw_function_execute_sort(
     }
 
     /* Return sorted array. */
-    result_array = afw_array_create_unmanaged_from_c_array(
-        ctx.values, true, data_type, ctx.count, ctx.p, ctx.xctx);
+    result_array = afw_array_create_unmanaged_from_values(
+        data_type, ctx.values, ctx.count, ctx.p, ctx.xctx);
     return afw_value_create_unmanaged_array(result_array, ctx.p, ctx.xctx);
 }

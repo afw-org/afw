@@ -736,6 +736,7 @@ impl_check_manifest_cb(
     afw_xctx_t *xctx)
 {
     const afw_value_t *registers_value;
+    const afw_value_t *value;
     const afw_utf8_t *extension_id;
     const afw_utf8_t *module_path;
     afw_utf8_t registry_type_id;
@@ -764,11 +765,11 @@ impl_check_manifest_cb(
     list = ((const afw_value_array_t *)registers_value)->internal;
     for (iterator = NULL;;)
     {
-        afw_array_get_next_internal(list, &iterator, NULL,
-            (const void **)&entry, xctx);
-        if (!entry) {
+        value = afw_array_get_next_value(list, &iterator, NULL, xctx);
+        if (!value) {
             break;
         }
+        entry = (const afw_utf8_t *)AFW_VALUE_INTERNAL(value);
 
         /*
          * Separate <registry type id>/<registry key> from entry and load

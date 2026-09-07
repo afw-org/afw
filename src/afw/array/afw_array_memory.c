@@ -568,38 +568,6 @@ impl_afw_array_get_data_type(
 
 
 /*
- * Implementation of method get_entry_internal for interface afw_array.
- */
-afw_boolean_t
-impl_afw_array_get_entry_internal(
-    AFW_ARRAY_SELF_T *self,
-    afw_integer_t index,
-    const afw_data_type_t * * data_type,
-    const void * * internal,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *value;
-
-    value = impl_afw_array_get_entry_value(self, index, NULL, xctx);
-    if (value) {
-        *internal = AFW_VALUE_INTERNAL(value);
-        if (data_type) {
-            *data_type = afw_value_get_data_type(value, xctx);
-        }
-        return true;
-    }
-    else {
-        *internal = NULL;
-        if (data_type) {
-            *data_type = NULL;
-        }
-        return false;
-    }
-}
-
-
-
-/*
  * Implementation of method get_entry_value for interface afw_array.
  */
 const afw_value_t *
@@ -635,56 +603,6 @@ impl_afw_array_get_entry_value(
         return NULL;
     }
     return impl_promote_structured_entry(self, ep, ep->value, xctx);
-}
-
-
-
-/*
- * Implementation of method get_next_internal for interface afw_array.
- */
-afw_boolean_t
-impl_afw_array_get_next_internal(
-    AFW_ARRAY_SELF_T *self,
-    const afw_iterator_old_t * * iterator,
-    const afw_data_type_t * * data_type,
-    const void * * internal,
-    afw_xctx_t *xctx)
-{
-    afw_memory_internal_array_entry_t *ep;
-
-    /* If iterator is NULL, locate first else locate next. */
-    if (!*iterator) {
-        ep = APR_RING_FIRST(self->ring);
-    }
-    else {
-        ep = (afw_memory_internal_array_entry_t *)*iterator;
-        ep = APR_RING_NEXT(ep, link);
-    }
-
-    /* If sentinel, clear iterator (match get_next_value) and return !found. */
-    if (ep == APR_RING_SENTINEL(self->ring,
-        afw_memory_internal_array_entry_s, link))
-    {
-        *iterator = NULL;
-        *internal = NULL;
-        if (data_type) {
-            *data_type = NULL;
-        }
-        return false;
-    }
-
-    /* Promote nested faces on wrapper arrays (typed map / get_next_internal). */
-    *iterator = (afw_iterator_old_t *)ep;
-    {
-        const afw_value_t *value;
-
-        value = impl_promote_structured_entry(self, ep, ep->value, xctx);
-        *internal = AFW_VALUE_INTERNAL(value);
-        if (data_type) {
-            *data_type = afw_value_get_data_type(value, xctx);
-        }
-    }
-    return true;
 }
 
 

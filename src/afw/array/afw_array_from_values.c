@@ -555,43 +555,6 @@ impl_afw_array_get_data_type(
 
 
 /*
- * Implementation of method get_entry_internal for interface afw_array.
- */
-afw_boolean_t
-impl_afw_array_get_entry_internal(
-    AFW_ARRAY_SELF_T *self,
-    afw_integer_t index,
-    const afw_data_type_t * * data_type,
-    const void * * internal,
-    afw_xctx_t *xctx)
-{
-    afw_size_t i;
-    const afw_value_t *value;
-
-    i = afw_safe_cast_integer_to_size(index, xctx);
-    value = (i >= self->count || !self->values) ? NULL : self->values[i];
-
-    if (value) {
-        *internal = AFW_VALUE_INTERNAL(value);
-        if (data_type) {
-            *data_type = self->data_type
-                ? self->data_type
-                : afw_value_get_data_type(value, xctx);
-        }
-        return true;
-    }
-    else {
-        *internal = NULL;
-        if (data_type) {
-            *data_type = NULL;
-        }
-        return false;
-    }
-}
-
-
-
-/*
  * Implementation of method get_entry_value for interface afw_array.
  */
 const afw_value_t *
@@ -611,62 +574,6 @@ impl_afw_array_get_entry_value(
     }
 
     return self->values[i];
-}
-
-
-
-/*
- * Implementation of method get_next_internal for interface afw_array.
- */
-afw_boolean_t
-impl_afw_array_get_next_internal(
-    AFW_ARRAY_SELF_T *self,
-    const afw_iterator_old_t * * iterator,
-    const afw_data_type_t * * data_type,
-    const void * * internal,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *const *values;
-    const afw_value_t *const *end;
-
-    if (!self->values || self->count == 0) {
-        *internal = NULL;
-        *iterator = NULL;
-        if (data_type) {
-            *data_type = NULL;
-        }
-        return false;
-    }
-
-    end = self->values + self->count;
-
-    if (!*iterator) {
-        *iterator = (const afw_iterator_old_t *)self->values;
-    }
-    else {
-        *iterator = (const afw_iterator_old_t *)
-            ((*(const afw_value_t *const * const *)iterator) + 1);
-    }
-
-    values = *(const afw_value_t *const *const *)iterator;
-
-    if (!values || values >= end) {
-        *internal = NULL;
-        *iterator = NULL;
-        if (data_type) {
-            *data_type = NULL;
-        }
-        return false;
-    }
-    else {
-        *internal = AFW_VALUE_INTERNAL(*values);
-        if (data_type) {
-            *data_type = self->data_type
-                ? self->data_type
-                : afw_value_get_data_type(*values, xctx);
-        }
-        return true;
-    }
 }
 
 
