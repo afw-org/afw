@@ -337,7 +337,7 @@ void convert_list_to_yaml(
     const afw_value_t *next;
 
     list_iterator = NULL;
-    next = afw_array_get_next_value(list, &list_iterator, wa->p, wa->xctx);
+    next = afw_array_get_next_value(list, &list_iterator, wa->xctx);
 
     /* Empty array → flow []. */
     if (!next) {
@@ -350,8 +350,7 @@ void convert_list_to_yaml(
         (wa->indent)++;
         convert_value_to_yaml(wa, next);
         (wa->indent)--;
-        next = afw_array_get_next_value(list, &list_iterator,
-            wa->p, wa->xctx);
+        next = afw_array_get_next_value(list, &list_iterator, wa->xctx);
         if (next) {
             put_ws(wa);
         }
@@ -399,7 +398,7 @@ void convert_object_to_yaml(
         while (1) {
             (wa->indent)++;
             put_yaml_string(wa,
-                afw_object_string_property_name_as_utf8(
+                afw_object_string_property_name_internal(
                     property_name, wa->xctx));
 
             impl_puts(wa, ": ");

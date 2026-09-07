@@ -72,7 +72,7 @@ impl_module_path_from_property(
     else {
         detail_source_location = afw_s_modulePath;
     }
-    value = afw_value_compile_and_evaluate_as(value,
+    value = afw_value_compile_and_evaluate_using(value,
         detail_source_location, afw_compile_type_template, p, xctx);
     if (!afw_value_is_string(value)) {
         AFW_THROW_ERROR_FZ(general, xctx,
@@ -765,7 +765,7 @@ impl_check_manifest_cb(
     list = ((const afw_value_array_t *)registers_value)->internal;
     for (iterator = NULL;;)
     {
-        value = afw_array_get_next_value(list, &iterator, NULL, xctx);
+        value = afw_array_get_next_value(list, &iterator, xctx);
         if (!value) {
             break;
         }

@@ -282,7 +282,7 @@ impl_make_value(
         for (iterator = NULL;;) {
             original_entry_value = afw_array_get_next_value(
                 ((afw_value_array_t *)original_value)->internal,
-                &iterator, p, xctx);
+                &iterator, xctx);
             if (!original_entry_value) {
                 break;
             }
@@ -1126,7 +1126,7 @@ impl_object_create(
     self->pub.value = (const afw_value_t *)&self->value;
     self->view = view;
     self->pub.meta.embedding_object = (const afw_object_t *)embedding_object;
-    self->pub.meta.id = afw_object_string_property_name_as_utf8(
+    self->pub.meta.id = afw_object_string_property_name_internal(
         property_name, xctx);
     self->pub.meta.object_type_uri = origin->meta.object_type_uri;
     self->origin = origin;

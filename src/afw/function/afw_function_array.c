@@ -65,7 +65,7 @@ afw_function_execute_add_entries(
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(source, count, array);
         for (iterator = NULL;;) {
             value = afw_array_get_next_value(
-                source->internal, &iterator, x->p, x->xctx);
+                source->internal, &iterator, x->xctx);
             if (!value) {
                 break;
             }            
@@ -137,8 +137,7 @@ afw_function_execute_array(
             if (value) {
                 l = afw_value_as_array_internal(value, x->xctx);
                 for (iterator = NULL;;) {
-                    entry = afw_array_get_next_value(l, &iterator,
-                        x->p, x->xctx);
+                    entry = afw_array_get_next_value(l, &iterator, x->xctx);
                     if (!entry) {
                         break;
                     }
@@ -228,7 +227,7 @@ afw_function_execute_includes_array(
     }
 
     for ( ; index < len; index++) {
-        item = afw_array_get_entry_value(array->internal, index, x->p, xctx);
+        item = afw_array_get_entry_value(array->internal, index, xctx);
 
         if (afw_value_equal(item, searchElement, xctx)) {
             return afw_boolean_v_true;
@@ -451,8 +450,7 @@ afw_function_execute_reverse(
     result_array = afw_array_create_unmanaged_of(data_type, x->p, x->xctx);
     setter = afw_array_get_setter(result_array, x->xctx);
     for (iterator = NULL;;) {
-        value = afw_array_get_next_value(array->internal, &iterator,
-            x->p, x->xctx);
+        value = afw_array_get_next_value(array->internal, &iterator, x->xctx);
         if (!value) {
             break;
         }
@@ -549,8 +547,7 @@ afw_function_execute_slice(
     /* Create and return an array with slice. */
     result_array = afw_array_create_unmanaged(x->p, x->xctx);
     for (iterator = NULL, count = 0; count < end; count++) {
-        value = afw_array_get_next_value(array->internal, &iterator,
-            x->p, x->xctx);
+        value = afw_array_get_next_value(array->internal, &iterator, x->xctx);
         if (!value) {
             AFW_THROW_ERROR_Z(general, "Expecting a value", x->xctx);
         }
@@ -609,8 +606,7 @@ afw_function_execute_at(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(index, 2, integer);
 
-    value = afw_array_get_entry_value(array->internal, index->internal,
-        x->p, x->xctx);
+    value = afw_array_get_entry_value(array->internal, index->internal, x->xctx);
     return value ? value : afw_value_undefined;
 }
 
@@ -843,8 +839,7 @@ afw_function_execute_splice(
 
     removed = afw_array_create_unmanaged(x->p, x->xctx);
     for (i = 0; i < delete_count; i++) {
-        value = afw_array_get_entry_value(array->internal, start,
-            x->p, x->xctx);
+        value = afw_array_get_entry_value(array->internal, start, x->xctx);
         if (value) {
             /*
              * Output is an unmanaged bag of slot copies. Hold the

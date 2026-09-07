@@ -25,7 +25,7 @@ impl_is_in_array(
     const afw_value_t *entry;
 
     for (iterator = NULL;;) {
-        entry = afw_array_get_next_value(array, &iterator, NULL, xctx);
+        entry = afw_array_get_next_value(array, &iterator, xctx);
         if (!entry) {
             return false;
         }
@@ -47,7 +47,7 @@ impl_is_subset_array(
     const afw_value_t *value;
 
     for (iterator = NULL;;) {
-        value = afw_array_get_next_value(array1, &iterator, NULL, xctx);
+        value = afw_array_get_next_value(array1, &iterator, xctx);
         if (!value) {
             return true;
         }
@@ -72,7 +72,7 @@ impl_add_nondups_to_array(
     (void)data_type;
 
     for (iterator = NULL;;) {
-        value = afw_array_get_next_value(from, &iterator, NULL, xctx);
+        value = afw_array_get_next_value(from, &iterator, xctx);
         if (!value) {
             break;
         }
@@ -134,8 +134,7 @@ afw_function_execute_at_least_one_member_of(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array2, 2, array);
 
     for (iterator = NULL;;) {
-        value = afw_array_get_next_value(array1->internal, &iterator,
-            NULL, x->xctx);
+        value = afw_array_get_next_value(array1->internal, &iterator, x->xctx);
         if (!value) {
             return afw_boolean_v_false;
         }
@@ -299,7 +298,7 @@ afw_function_execute_clone(
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
 
     result = afw_value_clone(value, x->p, x->xctx);
-    return afw_value_as_assignable(result, x->xctx);
+    return afw_value_get_assignable(result, x->xctx);
 }
 
 
@@ -1061,8 +1060,7 @@ afw_function_execute_intersection(
     array = afw_array_create_unmanaged_of(data_type, x->p, x->xctx);
 
     for (iterator = NULL;;) {
-        value = afw_array_get_next_value(array1->internal, &iterator,
-            NULL, x->xctx);
+        value = afw_array_get_next_value(array1->internal, &iterator, x->xctx);
         if (!value) {
             break;
         }
@@ -1740,8 +1738,7 @@ afw_function_execute_one_and_only(
     }
 
     iterator = NULL;
-    value = afw_array_get_next_value(array->internal, &iterator,
-        NULL, x->xctx);
+    value = afw_array_get_next_value(array->internal, &iterator, x->xctx);
     return value;
 }
 
@@ -3138,7 +3135,7 @@ afw_function_execute_freeze(
      * freeze that handle. Assign later bumps the frozen face instead of
      * wrapping a raw immutable instance into a mutable overlay.
      */
-    value = afw_value_as_assignable(value, x->xctx);
+    value = afw_value_get_assignable(value, x->xctx);
 
     if (afw_value_is_object(value)) {
         object = (const afw_value_object_t *)value;

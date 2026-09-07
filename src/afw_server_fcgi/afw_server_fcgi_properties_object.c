@@ -206,7 +206,7 @@ impl_afw_object_get_property(
 
     /* Lazy FCGX_GetParam for UTF-8 property names; cache on first access. */
     value = NULL;
-    property_name_utf8 = afw_object_string_property_name_as_utf8(
+    property_name_utf8 = afw_object_string_property_name_internal(
         property_name, xctx);
     property_name_z = afw_utf8_z_create(
         property_name_utf8->s, property_name_utf8->len,

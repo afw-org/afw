@@ -31,7 +31,7 @@ impl_expect_missing(
 {
     const afw_value_t *value;
 
-    value = afw_array_get_entry_value(array, index, xctx->p, xctx);
+    value = afw_array_get_entry_value(array, index, xctx);
     if (value != NULL)
     {
         fprintf(stderr, "%s: index %d treated as found\n",
@@ -51,7 +51,7 @@ impl_expect_integer(
 {
     const afw_value_t *value;
 
-    value = afw_array_get_entry_value(array, index, xctx->p, xctx);
+    value = afw_array_get_entry_value(array, index, xctx);
     if (!value ||
         !afw_value_is_integer(value) ||
         ((const afw_value_integer_t *)value)->internal != expect)

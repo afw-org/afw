@@ -122,7 +122,7 @@ impl_over_array(
         typed_slot = *e.entry_arg_ptr;
         for (iterator = NULL;;) {
             entry_value = afw_array_get_next_value(
-                e.array, &iterator, NULL, e.xctx);
+                e.array, &iterator, e.xctx);
             if (!entry_value) {
                 break;
             }
@@ -161,7 +161,7 @@ impl_over_array(
     else {
         for (iterator = NULL;;) {
             *e.entry_arg_ptr = afw_array_get_next_value(
-                e.array, &iterator, NULL, e.xctx);
+                e.array, &iterator, e.xctx);
             if (!*e.entry_arg_ptr) {
                 break;
             }
@@ -270,14 +270,14 @@ impl_bag_of_bag(
 
     for (iterator1 = NULL;;) {
         f_argv[1] = afw_array_get_next_value(array1->internal,
-            &iterator1, NULL, x->xctx);
+            &iterator1, x->xctx);
         if (!f_argv[1]) {
             break;
         }
         is_true = true;
         for (iterator2 = NULL;;) {
             f_argv[2] = afw_array_get_next_value(array2->internal,
-                &iterator2, NULL, x->xctx);
+                &iterator2, x->xctx);
             if (!f_argv[2]) {
                 break;
             }
@@ -908,8 +908,7 @@ afw_function_execute_reduce(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 3, array);
 
     for (iterator = NULL;;) {
-        f_argv[2] = afw_array_get_next_value(array->internal, &iterator,
-            x->p, x->xctx);
+        f_argv[2] = afw_array_get_next_value(array->internal, &iterator, x->xctx);
         if (!f_argv[2]) {
             break;
         }
@@ -1094,8 +1093,7 @@ afw_function_execute_sort(
     ctx.values = afw_pool_malloc(ctx.p,
         sizeof(const afw_value_t *) * ctx.count, ctx.xctx);
     for (iterator = NULL, value = ctx.values;; value++) {
-        *value = afw_array_get_next_value(array->internal, &iterator,
-            NULL, ctx.xctx);
+        *value = afw_array_get_next_value(array->internal, &iterator, ctx.xctx);
         if (!*value) {
             break;
         }

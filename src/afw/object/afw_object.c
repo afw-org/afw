@@ -57,7 +57,7 @@ afw_object_property_name_display_utf8(
 
 /* Utf8 internals of a required string property name. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_object_string_property_name_as_utf8(
+afw_object_string_property_name_internal(
     const afw_value_t *name,
     afw_xctx_t *xctx)
 {
@@ -303,7 +303,7 @@ afw_object_get_property_compile_as(
 
 /* Compile and evaluate a property value using specified compile type. */
 AFW_DEFINE(const afw_value_t *)
-afw_object_get_property_compile_and_evaluate_as(
+afw_object_get_property_compile_and_evaluate_using(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_utf8_t *source_location,

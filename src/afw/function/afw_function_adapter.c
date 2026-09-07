@@ -1395,7 +1395,7 @@ afw_function_execute_reconcile_object(
      * reconcilable meta are cloned onto the face. Do not peel
      * wrapper_base — overlay sets would vanish from the diff.
      */
-    reconcilable = afw_object_meta_get_property_as_string(
+    reconcilable = afw_object_meta_get_property_as_string_internal(
         object->internal, afw_v_reconcilable, x->xctx);
     if (!reconcilable) {
         AFW_THROW_ERROR_Z(general,

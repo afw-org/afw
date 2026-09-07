@@ -47,7 +47,7 @@ afw_ldap_internal_adapter_create_cede_p(
     {
         const afw_value_t *url_value;
 
-        url_value = afw_object_get_property_compile_and_evaluate_as(
+        url_value = afw_object_get_property_compile_and_evaluate_using(
             properties, afw_ldap_v_url, adapter->source_location,
             afw_compile_type_template, p, xctx);
         if (!afw_value_is_string(url_value)) {

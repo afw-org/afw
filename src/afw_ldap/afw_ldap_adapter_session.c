@@ -379,7 +379,7 @@ impl_afw_adapter_session_add_object(
         &iterator, &property_name, xctx)))
     {
         /* LDAP lookup / mod_type take utf8, not a property-name value. */
-        property_name_utf8 = afw_object_string_property_name_as_utf8(
+        property_name_utf8 = afw_object_string_property_name_internal(
             property_name, xctx);
         attribute = afw_ldap_metadata_get_object_type_attribute(
             first_attribute, property_name_utf8);

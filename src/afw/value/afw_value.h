@@ -1219,7 +1219,7 @@ afw_value_add_reference(
  * Missing method is a no-op. Slot fill uses this.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_as_assignable(
+afw_value_get_assignable(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -1448,7 +1448,7 @@ afw_value_compile_and_evaluate(
  * @return result of compiling and evaluating the value.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_compile_and_evaluate_as(
+afw_value_compile_and_evaluate_using(
     const afw_value_t *value,
     const afw_utf8_t *source_location,
     afw_compile_type_t compile_type,

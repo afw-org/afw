@@ -103,7 +103,7 @@ impl_compile_property_type(
     /* Allocate and initialize property type struct. */
     pt = afw_pool_calloc_type(p, afw_model_property_type_t, xctx);
     impl_name_from_utf8(&pt->property_name,
-        afw_object_string_property_name_as_utf8(property_name, xctx));
+        afw_object_string_property_name_internal(property_name, xctx));
     pt->property_type_object = object;
     pt->property_type_object_value = afw_value_create_unmanaged_object(
         pt->property_type_object, p, xctx);
@@ -844,7 +844,7 @@ afw_model_compile(
             objectTypes, &iterator, &property_name, xctx);
         if (!object_type) break;
         /* objectType ids are utf8 hash keys, not object property names. */
-        property_name_utf8 = afw_object_string_property_name_as_utf8(
+        property_name_utf8 = afw_object_string_property_name_internal(
             property_name, xctx);
         model_object_type = impl_object_type_compile(model,
             adapter_id, property_name_utf8, object_type, xctx);

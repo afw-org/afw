@@ -3254,12 +3254,6 @@ const afw_content_type_t *
         </description>
       </parameter>
 
-      <parameter name="p" type="const afw_pool_t *">
-    <description>
-          If necessary, this pool is used to create the return value.
-        </description>
-      </parameter>
-
       <parameter name="xctx" type="afw_xctx_t *">
     <description>This is the caller's xctx.</description>
       </parameter>
@@ -3322,12 +3316,6 @@ const afw_content_type_t *
 
       <parameter name="iterator" type="const afw_iterator_old_t * *">
     <description>Address of iterator pointer.</description>
-      </parameter>
-
-      <parameter name="p" type="const afw_pool_t *">
-    <description>
-          If necessary, this pool is used to create the return value.
-        </description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">

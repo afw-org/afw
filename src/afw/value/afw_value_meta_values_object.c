@@ -98,7 +98,6 @@ const afw_value_t *
 impl_afw_array_get_entry_value(
     AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_iterator_old_t *iterator;
@@ -110,7 +109,7 @@ impl_afw_array_get_entry_value(
     afw_integer_t count;
     afw_integer_t i;
 
-    use_p = p ? p : self->pub.p;
+    use_p = self->pub.p ? self->pub.p : xctx->p;
 
     /* Resolve signed index against property count. */
     count = 0;
@@ -149,7 +148,7 @@ impl_afw_array_get_entry_value(
         if (i == resolved) {
             meta_self = afw_value_internal_create_meta_object_self(
                 property_value, use_p, xctx);
-            meta_self->key = afw_object_string_property_name_as_utf8(
+            meta_self->key = afw_object_string_property_name_internal(
                 property_name, xctx);
             return &meta_self->meta_object_value.pub;
         }
@@ -165,7 +164,6 @@ const afw_value_t *
 impl_afw_array_get_next_value(
     AFW_ARRAY_SELF_T *self,
     const afw_iterator_old_t **iterator,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *property_value;
@@ -174,10 +172,7 @@ impl_afw_array_get_next_value(
     const afw_pool_t *use_p;
     impl_meta_values_object_iterator_t *state;
 
-    use_p = p ? p : self->pub.p;
-    if (!use_p) {
-        use_p = xctx->p;
-    }
+    use_p = self->pub.p ? self->pub.p : xctx->p;
 
     if (!*iterator) {
         state = afw_pool_calloc_type(use_p,

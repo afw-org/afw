@@ -488,7 +488,7 @@ impl_check_manifest_cb(
     list = ((const afw_value_array_t *)providesObjects_value)->internal;
     for (iterator = NULL;;)
     {
-        value = afw_array_get_next_value(list, &iterator, NULL, xctx);
+        value = afw_array_get_next_value(list, &iterator, xctx);
         if (!value) {
             break;
         }

@@ -487,7 +487,7 @@ afw_application_internal_application_conf_type_create_cede_p(
             *module_path_values;
             module_path_values++)
         {
-            evaluated = afw_value_compile_and_evaluate_as(
+            evaluated = afw_value_compile_and_evaluate_using(
                 *module_path_values, detail_source_location,
                 afw_compile_type_template, p, xctx);
             if (!afw_value_is_string(evaluated)) {
@@ -525,7 +525,7 @@ afw_application_internal_application_conf_type_create_cede_p(
             if (!value) {
                 break;
             }
-            evaluated = afw_value_compile_and_evaluate_as(
+            evaluated = afw_value_compile_and_evaluate_using(
                 value, detail_source_location,
                 afw_compile_type_template, p, xctx);
             if (!afw_value_is_string(evaluated)) {

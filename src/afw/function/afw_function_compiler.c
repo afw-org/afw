@@ -436,8 +436,7 @@ impl_stringify_name_allowed(
         return true;
     }
     for (iterator = NULL;;) {
-        entry = afw_array_get_next_value(ctx->allow_names, &iterator,
-            ctx->p, ctx->xctx);
+        entry = afw_array_get_next_value(ctx->allow_names, &iterator, ctx->xctx);
         if (!entry) {
             return false;
         }
@@ -491,7 +490,7 @@ impl_stringify_prepare_object(
             break;
         }
         /* Replacer allow-list and callback take utf8, not a name value. */
-        property_name_utf8 = afw_object_string_property_name_as_utf8(
+        property_name_utf8 = afw_object_string_property_name_internal(
             property_name, ctx->xctx);
         if (!impl_stringify_name_allowed(ctx, property_name_utf8)) {
             continue;
@@ -522,7 +521,7 @@ impl_stringify_prepare_array(
     iterator = NULL;
     index = 0;
     for (;;) {
-        next = afw_array_get_next_value(list, &iterator, ctx->p, ctx->xctx);
+        next = afw_array_get_next_value(list, &iterator, ctx->xctx);
         if (!next) {
             break;
         }

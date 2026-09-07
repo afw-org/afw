@@ -315,8 +315,7 @@ afw_action_perform(
         for (iterator = NULL, action_number = 1; ; action_number++) {
 
             /* Get next action.  If there are not more, break. */
-            value = afw_array_get_next_value(actions, &iterator,
-                response->p, xctx);
+            value = afw_array_get_next_value(actions, &iterator, xctx);
             if (!value) {
                 break;
             }

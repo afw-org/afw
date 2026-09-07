@@ -1375,7 +1375,7 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
         impl_get_property_type_by_property_name(
             &pt, &mapped_property_name,
             ctx->model_object_type,
-            afw_object_string_property_name_as_utf8(property_name, xctx),
+            afw_object_string_property_name_internal(property_name, xctx),
             xctx);
 
         if (!pt) {

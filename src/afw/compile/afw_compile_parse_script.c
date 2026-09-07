@@ -153,7 +153,7 @@ impl_compile_check_list_pattern(
         {
             continue;
         }
-        elem = afw_array_get_entry_value(arr, i, parser->p, parser->xctx);
+        elem = afw_array_get_entry_value(arr, i, parser->xctx);
         if (!elem) {
             continue;
         }
@@ -222,7 +222,7 @@ impl_compile_check_object_pattern(
                 /* Dynamic name: cannot check at compile. */
                 continue;
             }
-            name = afw_object_string_property_name_as_utf8(
+            name = afw_object_string_property_name_internal(
                 ap->property_name, parser->xctx);
             if (ap->assignment_element) {
                 type = ap->assignment_element->type;
@@ -2463,7 +2463,7 @@ afw_compile_parse_StatementList(
                 for (;;) {
                     one = afw_array_get_next_value(
                         ((const afw_value_array_t *)statement)->internal,
-                        &iterator, parser->p, parser->xctx);
+                        &iterator, parser->xctx);
                     if (!one) {
                         break;
                     }

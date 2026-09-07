@@ -152,7 +152,6 @@ AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_array_get_entry_value(
     AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
-    const afw_pool_t * p,
     afw_xctx_t * xctx);
 #endif
 
@@ -172,7 +171,6 @@ AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_array_get_next_value(
     AFW_ARRAY_SELF_T *self,
     const afw_iterator_old_t * * iterator,
-    const afw_pool_t * p,
     afw_xctx_t * xctx);
 #endif
 

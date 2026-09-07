@@ -55,7 +55,7 @@ afw_value_add_reference(
 
 /* NULL-safe get_assignable_value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_as_assignable(
+afw_value_get_assignable(
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -104,7 +104,7 @@ afw_value_slot_store(
      */
     unmanaged_compiled_value =
         incoming && incoming->inf == &afw_value_compiled_value_inf;
-    assignable = afw_value_as_assignable(incoming, xctx);
+    assignable = afw_value_get_assignable(incoming, xctx);
     if (*slot == assignable) {
         return;
     }
@@ -378,7 +378,7 @@ afw_value_compile_and_evaluate(
 
 /* Compile and evaluate a value using specified compile type. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_compile_and_evaluate_as(
+afw_value_compile_and_evaluate_using(
     const afw_value_t *value,
     const afw_utf8_t *source_location,
     afw_compile_type_t compile_type,
@@ -435,7 +435,7 @@ afw_value_is_fully_evaluated(
         for (iterator = NULL;;) {
             v = afw_array_get_next_value(
                 ((const afw_value_array_t *)value)->internal,
-                &iterator, xctx->p, xctx);
+                &iterator, xctx);
             if (!v) {
                 break;
             }
@@ -759,9 +759,9 @@ afw_value_one_and_only(
     if (afw_value_is_array(value)) {
         iterator = NULL;
         list = ((const afw_value_array_t *)value)->internal;
-        result = afw_array_get_next_value(list, &iterator, p, xctx);
+        result = afw_array_get_next_value(list, &iterator, xctx);
         if (result) {
-            if (afw_array_get_next_value(list, &iterator, p, xctx)) {
+            if (afw_array_get_next_value(list, &iterator, xctx)) {
                 result = NULL;
             }
         }
@@ -916,7 +916,7 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
                 qualifier_object = afw_compile_object_all_template_properties(
                     object, NULL, NULL, p, xctx);
                 afw_xctx_qualifier_stack_qualifier_object_push(
-                    afw_object_string_property_name_as_utf8(
+                    afw_object_string_property_name_internal(
                         property_name, xctx),
                     qualifier_object,
                     false, p, xctx);
@@ -1008,7 +1008,7 @@ afw_value_convert(
                     xctx);
             }
             iterator = NULL;
-            result = afw_array_get_next_value(list, &iterator, p, xctx);
+            result = afw_array_get_next_value(list, &iterator, xctx);
             if (!result) {
                 AFW_THROW_ERROR_Z(conversion_error,
                     "Can't down convert an empty array",
@@ -1152,7 +1152,7 @@ impl_value_to_null_terminated_values(
         for (iterator = NULL; ; e++) {
             *e = afw_array_get_next_value(
                 ((const afw_value_array_t *)value)->internal,
-                &iterator, p, xctx);
+                &iterator, xctx);
             if (!*e) break;
         }
     }

@@ -196,7 +196,7 @@ impl_afw_value_optional_evaluate(
         default_source_type = afw_s_script;
     }
     for (iterator = NULL;;) {
-        value = afw_array_get_next_value(tests, &iterator, p, xctx);
+        value = afw_array_get_next_value(tests, &iterator, xctx);
         if (!value) {
             break;
         }
@@ -356,7 +356,7 @@ impl_afw_value_optional_evaluate(
                  * freed string (0x0BADF00D).
                  */
                 afw_object_set_property(test, afw_v_result,
-                    afw_value_as_assignable(evaluated_value, xctx),
+                    afw_value_get_assignable(evaluated_value, xctx),
                     xctx);
 
                 passed_value =
@@ -434,7 +434,7 @@ impl_afw_value_optional_evaluate(
 
             /* Set error property. Isolate: object is compile-unit. */
             afw_object_set_property(test, afw_v_error,
-                afw_value_as_assignable(
+                afw_value_get_assignable(
                     afw_value_create_unmanaged_object(
                         afw_error_to_object(AFW_ERROR_THROWN, p, xctx),
                         p, xctx),
@@ -549,7 +549,7 @@ impl_afw_value_produce_compiler_listing(
 
     /* Process each test. */
     if (tests) for (iterator = NULL;;) {
-        test_object_value = afw_array_get_next_value(tests, &iterator, p, xctx);
+        test_object_value = afw_array_get_next_value(tests, &iterator, xctx);
         if (!test_object_value) {
             break;
         }

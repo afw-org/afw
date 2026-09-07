@@ -935,7 +935,7 @@ impl_add_parents_and_property_types(
             )
         {
             /* Attribute-type hash is utf8 (s, len), not a name value. */
-            property_name_utf8 = afw_object_string_property_name_as_utf8(
+            property_name_utf8 = afw_object_string_property_name_internal(
                 property_name, xctx);
             attribute_type = apr_hash_get(metadata->attribute_types,
                 property_name_utf8->s,

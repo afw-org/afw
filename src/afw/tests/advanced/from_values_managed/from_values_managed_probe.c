@@ -26,7 +26,7 @@ impl_expect_integer(
 {
     const afw_value_t *value;
 
-    value = afw_array_get_entry_value(array, index, xctx->p, xctx);
+    value = afw_array_get_entry_value(array, index, xctx);
     if (!value ||
         !afw_value_is_integer(value) ||
         ((const afw_value_integer_t *)value)->internal != expect)
@@ -103,7 +103,7 @@ impl_empty(afw_xctx_t *xctx)
         fprintf(stderr, "empty: data type\n");
         return 1;
     }
-    if (afw_array_get_entry_value(array, 0, xctx->p, xctx) != NULL) {
+    if (afw_array_get_entry_value(array, 0, xctx) != NULL) {
         fprintf(stderr, "empty: index 0 found\n");
         return 1;
     }

@@ -204,7 +204,7 @@ afw_adapter_modify_entries_from_list(
         }
 
         /* Entry name/names. */
-        value = afw_array_get_next_value(tuple, &tuple_i, p, xctx);
+        value = afw_array_get_next_value(tuple, &tuple_i, xctx);
         if (!value) {
             goto error;
         }
@@ -241,7 +241,7 @@ afw_adapter_modify_entries_from_list(
         }
 
         /* Get value. */
-        entry->value = afw_array_get_next_value(tuple, &tuple_i, p, xctx);
+        entry->value = afw_array_get_next_value(tuple, &tuple_i, xctx);
         if ((entry->value && !entry_type_has_value[entry->type]) ||
             (!entry->value && entry_type_has_value[entry->type]))
         {
@@ -250,7 +250,7 @@ afw_adapter_modify_entries_from_list(
 
         /* It's an error if there is a 4th value in tuple. */
         if (entry->value) {
-            if (afw_array_get_next_value(tuple, &tuple_i, p, xctx)) {
+            if (afw_array_get_next_value(tuple, &tuple_i, xctx)) {
                 goto error;
             }
         }
@@ -680,7 +680,7 @@ impl_reconcile_object(
 
                 /* Reconcile the two objects. */
                 impl_reconcile_object(wa,
-                    pt, afw_object_string_property_name_as_utf8(
+                    pt, afw_object_string_property_name_internal(
                         property_name, wa->xctx),
                     property_object_type,
                     new_property_names,

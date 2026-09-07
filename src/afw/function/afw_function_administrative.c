@@ -248,7 +248,7 @@ afw_function_execute_flag_modify_defaults(
     for (iterator = NULL;;)
     {
         value = afw_array_get_next_value(
-            array_value->internal, &iterator, NULL, x->xctx);
+            array_value->internal, &iterator, x->xctx);
 
         if (!value) break;
 
@@ -380,7 +380,7 @@ afw_function_execute_flag_set(
     for (iterator = NULL;;)
     {
         value = afw_array_get_next_value(
-            array_value->internal, &iterator, NULL, x->xctx);
+            array_value->internal, &iterator, x->xctx);
 
         if (!value) break;
 

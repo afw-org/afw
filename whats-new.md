@@ -699,7 +699,7 @@ Compile errors look like: passing `const afw_utf8_t *` to get/set; `AFW_UTF8_FMT
 | A **utf8** you already hold, **set / embed** (object keeps the name) | `afw_value_create_unmanaged_string(utf8, object->p, xctx)` so the header lives with the object. Memory-object set also **interns** unmanaged string headers into `object->p` (promote-on-get must not keep a stack pointer). |
 | A **string name you own** for the life of the object | Embed `afw_value_string_t` on the owner (`&pub` at object APIs, `&internal` as utf8). Path entries already do this. |
 | `AFW_UTF8_FMT_ARG(property_name)` or `write_utf8` of a **value** name | `AFW_UTF8_FMT_ARG(afw_object_property_name_display_utf8(property_name, xctx))` |
-| Need the utf8 of a name you know is a string | `afw_object_string_property_name_as_utf8(name, xctx)` (throws if not a string) |
+| Need the utf8 of a name you know is a string | `afw_object_string_property_name_internal(name, xctx)` (throws if not a string) |
 | `get_next_property` / `old_get_next_property_as_*` | The name out-parameter is **`const afw_value_t **`**. Use that pointer at object APIs; take utf8 only when a utf8 API still wants it. |
 
 Grep in the other tree (not generated, not object-type ids):

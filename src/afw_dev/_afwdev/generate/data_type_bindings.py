@@ -2474,7 +2474,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('{\n')
         fd.write('    const afw_value_t *value;\n')
         fd.write('\n')
-        fd.write('    value = afw_array_get_next_value(instance, iterator, NULL, xctx);\n')
+        fd.write('    value = afw_array_get_next_value(instance, iterator, xctx);\n')
         fd.write('    if (!value) {\n')
         fd.write('        return NULL;\n')
         fd.write('    }\n')

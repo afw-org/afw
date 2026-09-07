@@ -241,7 +241,7 @@ impl_set_usages_on_entry(
 
     iterator = NULL;
     for (;;) {
-        v = afw_array_get_next_value(usages, &iterator, xctx->p, xctx);
+        v = afw_array_get_next_value(usages, &iterator, xctx);
         if (!v) {
             break;
         }

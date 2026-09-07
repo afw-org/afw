@@ -3692,7 +3692,6 @@ typedef const afw_value_t *
 (*afw_array_get_entry_value_t)(
     const afw_array_t * instance,
     afw_integer_t index,
-    const afw_pool_t * p,
     afw_xctx_t * xctx);
 
 /** @sa afw_array_get_next_entry_meta() */
@@ -3708,7 +3707,6 @@ typedef const afw_value_t *
 (*afw_array_get_next_value_t)(
     const afw_array_t * instance,
     const afw_iterator_old_t * * iterator,
-    const afw_pool_t * p,
     afw_xctx_t * xctx);
 
 /** @sa afw_array_initialize_iterator() */
@@ -3856,7 +3854,6 @@ struct afw_array_inf_s {
  * Get value of array entry by index.
  * @param instance Pointer to this value array instance.
  * @param index Zero-based index of array entry to return.
- * @param p If necessary, this pool is used to create the return value.
  * @param xctx This is the caller's xctx.
  * @return The value at the specified index or NULL if out of range.
  * @relates afw_array_t
@@ -3865,13 +3862,11 @@ struct afw_array_inf_s {
 #define afw_array_get_entry_value( \
     instance, \
     index, \
-    p, \
     xctx \
 ) \
 (instance)->inf->get_entry_value( \
     (instance), \
     (index), \
-    (p), \
     (xctx) \
 )
 
@@ -3911,7 +3906,6 @@ struct afw_array_inf_s {
  * from the first value again.
  * @param instance Pointer to this value array instance.
  * @param iterator Address of iterator pointer.
- * @param p If necessary, this pool is used to create the return value.
  * @param xctx This is the caller's xctx.
  * @return Pointer to next value or NULL if there are no more.
  * @relates afw_array_t
@@ -3920,13 +3914,11 @@ struct afw_array_inf_s {
 #define afw_array_get_next_value( \
     instance, \
     iterator, \
-    p, \
     xctx \
 ) \
 (instance)->inf->get_next_value( \
     (instance), \
     (iterator), \
-    (p), \
     (xctx) \
 )
 

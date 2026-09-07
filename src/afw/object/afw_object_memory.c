@@ -420,7 +420,7 @@ afw_object_create_managed_embedded(
     self->setter.inf = &impl_afw_object_managed_setter_inf;
     self->setter.object = (const afw_object_t *)self;
     self->pub.meta.embedding_object = embedding_object;
-    id = afw_object_string_property_name_as_utf8(property_name, xctx);
+    id = afw_object_string_property_name_internal(property_name, xctx);
     if (id) {
         self->pub.meta.id = afw_utf8_clone(id, xctx->p, xctx);
     }
@@ -554,7 +554,7 @@ afw_object_create_embedded(
     self->value.internal = (const afw_object_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     self->pub.meta.embedding_object = embedding_object;
-    self->pub.meta.id = afw_object_string_property_name_as_utf8(
+    self->pub.meta.id = afw_object_string_property_name_internal(
         property_name, xctx);
     self->managed_by_entity = true;
     self->setter.inf = &impl_afw_object_setter_inf;
@@ -1180,7 +1180,7 @@ impl_afw_object_managed_setter_set_property(
         property_name = afw_v_a_empty_string;
     }
     /* New entry: name is isolated once. Replace never changes the name. */
-    e->name = afw_value_as_assignable(property_name, xctx);
+    e->name = afw_value_get_assignable(property_name, xctx);
     afw_value_slot_store(&e->value, value, xctx);
     if (final_e) {
         final_e->next = e;

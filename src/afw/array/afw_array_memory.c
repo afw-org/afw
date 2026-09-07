@@ -297,7 +297,7 @@ afw_array_create_managed_clone(
     }
     iterator = NULL;
     for (;;) {
-        value = afw_array_get_next_value(from, &iterator, xctx->p, xctx);
+        value = afw_array_get_next_value(from, &iterator, xctx);
         if (!value) {
             break;
         }
@@ -356,7 +356,7 @@ afw_array_create_wrapper_with_options(
      * already-assignable child is bumped, not peeled.
      */
     for (iterator = NULL;;) {
-        value = afw_array_get_next_value(wrapped, &iterator, p, xctx);
+        value = afw_array_get_next_value(wrapped, &iterator, xctx);
         if (!value) {
             break;
         }
@@ -574,7 +574,6 @@ const afw_value_t *
 impl_afw_array_get_entry_value(
     AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
-    const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
     afw_memory_internal_array_entry_t *ep;
@@ -614,7 +613,6 @@ const afw_value_t *
 impl_afw_array_get_next_value(
     AFW_ARRAY_SELF_T *self,
     const afw_iterator_old_t * * iterator,
-    const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
     afw_memory_internal_array_entry_t *ep;
@@ -1386,7 +1384,7 @@ afw_array_create_or_clone(
     result = afw_array_create_unmanaged_of(use_data_type, p, xctx);
     if (array) for (iterator = NULL;;)
     {
-        value = afw_array_get_next_value(array, &iterator, p, xctx);
+        value = afw_array_get_next_value(array, &iterator, xctx);
         if (!value) {
             break;
         }
@@ -1423,7 +1421,7 @@ afw_array_create_unmanaged_from_value(
             old_array = value_array;
             value_array = afw_array_create_unmanaged_of(data_type, p, xctx);
             for (iterator = NULL;;) {
-                v = afw_array_get_next_value(old_array, &iterator, p, xctx);
+                v = afw_array_get_next_value(old_array, &iterator, xctx);
                 if (!v) {
                     break;
                 }

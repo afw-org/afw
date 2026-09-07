@@ -1478,8 +1478,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
             ;
             ; previous_entry = child_entry, previous_tree = child_tree)
         {
-            value = afw_array_get_next_value(filters_list, &iterator,
-                parser->p, parser->xctx);
+            value = afw_array_get_next_value(filters_list, &iterator, parser->xctx);
             if (!value) {
                 break;
             }
@@ -1578,8 +1577,7 @@ impl_AdaptiveQueryCriteria_object_parse_select(
     names = afw_stack_create(afw_const_utf8_a_stack_t, 20, 0, true,
         parser->p, parser->xctx);
     for (iterator = NULL;;) {
-        value = afw_array_get_next_value(select, &iterator,
-            parser->p, parser->xctx);
+        value = afw_array_get_next_value(select, &iterator, parser->xctx);
         if (!value) {
             break;
         }
@@ -1609,8 +1607,7 @@ impl_AdaptiveQueryCriteria_object_parse_sort(
 
     for (iterator = NULL, result = NULL, curr = NULL;;)
     {
-        value = afw_array_get_next_value(sort, &iterator,
-            parser->p, parser->xctx);
+        value = afw_array_get_next_value(sort, &iterator, parser->xctx);
         if (!value) {
             break;
         }
@@ -1708,7 +1705,7 @@ impl_compare_value(
 
     case afw_query_criteria_filter_op_id_eq:
         for (is_true = false, iterator = NULL;;) {
-            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            v2 = afw_array_get_next_value(list, &iterator, xctx);
             if (!v2) {
                 break;
             }
@@ -1726,7 +1723,7 @@ impl_compare_value(
 
     case afw_query_criteria_filter_op_id_ne:
         for (is_true = true, iterator = NULL;;) {
-            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            v2 = afw_array_get_next_value(list, &iterator, xctx);
             if (!v2) {
                 break;
             }
@@ -1744,7 +1741,7 @@ impl_compare_value(
 
     case afw_query_criteria_filter_op_id_lt:
         for (is_true = false, iterator = NULL;;) {
-            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            v2 = afw_array_get_next_value(list, &iterator, xctx);
             if (!v2) {
                 break;
             }
@@ -1762,7 +1759,7 @@ impl_compare_value(
 
     case afw_query_criteria_filter_op_id_le:
         for (is_true = false, iterator = NULL;;) {
-            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            v2 = afw_array_get_next_value(list, &iterator, xctx);
             if (!v2) {
                 break;
             }
@@ -1780,7 +1777,7 @@ impl_compare_value(
 
     case afw_query_criteria_filter_op_id_gt:
         for (is_true = false, iterator = NULL;;) {
-            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            v2 = afw_array_get_next_value(list, &iterator, xctx);
             if (!v2) {
                 break;
             }
@@ -1798,7 +1795,7 @@ impl_compare_value(
 
     case afw_query_criteria_filter_op_id_ge:
         for (is_true = false, iterator = NULL;;) {
-            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            v2 = afw_array_get_next_value(list, &iterator, xctx);
             if (!v2) {
                 break;
             }
@@ -1822,7 +1819,7 @@ impl_compare_value(
         
         /* get our list of property values to compare */
         for (is_true = false, iterator = NULL; is_true == false;) {
-            v1 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            v1 = afw_array_get_next_value(list, &iterator, xctx);
             if (!v1) {
                 break;
             }
@@ -1830,8 +1827,7 @@ impl_compare_value(
             /* get our list of query criteria entry values to compare */            
             entry_list = ((const afw_value_array_t *)entry_value)->internal;        
             for (is_true = false, iterator2 = NULL; !is_true;) {
-                v2 = afw_array_get_next_value(entry_list, &iterator2,
-                    NULL, xctx);
+                v2 = afw_array_get_next_value(entry_list, &iterator2, xctx);
                 if (!v2) {
                     /* no more values */                    
                     break;
@@ -1856,7 +1852,7 @@ impl_compare_value(
     case afw_query_criteria_filter_op_id_match:
 
         for (is_true = false, iterator = NULL; !is_true;) {
-            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            v2 = afw_array_get_next_value(list, &iterator, xctx);
             if (!v2) {
                 /* no more entries */
                 break;
@@ -1878,7 +1874,7 @@ impl_compare_value(
 
         /* run through the array of values, looking for at least one equality */
         for (is_true = false, iterator = NULL; !is_true;) {
-            v2 = afw_array_get_next_value(list, &iterator, NULL, xctx);
+            v2 = afw_array_get_next_value(list, &iterator, xctx);
             if (!v2) {
                 /* no more entries */
                 break;
@@ -2499,7 +2495,7 @@ impl_entry_to_query_string(
             if (rql_op->op->is_list) {
                 list = afw_value_as_array_internal(entry->value, xctx);
                 for (iterator = NULL;;) {
-                    value = afw_array_get_next_value(list, &iterator, p, xctx);
+                    value = afw_array_get_next_value(list, &iterator, xctx);
                     if (!value) {
                         break;
                     }
@@ -2551,7 +2547,7 @@ impl_entry_to_query_string(
             if (rql_op->op->is_list) {
                 list = afw_value_as_array_internal(entry->value, xctx);
                 for (iterator = NULL, first_time = true;;) {
-                    value = afw_array_get_next_value(list, &iterator, p, xctx);
+                    value = afw_array_get_next_value(list, &iterator, xctx);
                     if (!value) {
                         break;
                     }

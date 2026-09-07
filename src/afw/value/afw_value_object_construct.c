@@ -183,7 +183,7 @@ impl_afw_value_produce_compiler_listing(
         else {
             afw_writer_write_z(writer, "property ", xctx);
             afw_writer_write_utf8(writer,
-                afw_object_string_property_name_as_utf8(
+                afw_object_string_property_name_internal(
                     e->static_name, xctx), xctx);
             afw_writer_write_z(writer, " ", xctx);
             afw_value_compiler_listing_value(e->value, writer, xctx);

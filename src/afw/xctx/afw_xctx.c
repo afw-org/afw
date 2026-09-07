@@ -432,7 +432,7 @@ afw_xctx_qualifier_stack_qualifiers_object_push(
             context_object, &iterator, &qualifier_name, xctx)); )
     {
         afw_xctx_qualifier_stack_qualifier_object_push(
-            afw_object_string_property_name_as_utf8(qualifier_name, xctx),
+            afw_object_string_property_name_internal(qualifier_name, xctx),
             qualifier_object,
             secure, p, xctx);
     }

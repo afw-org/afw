@@ -220,13 +220,11 @@ impl_convert_list_to_json(
     (wa->indent)++;
 
     list_iterator = NULL;
-    next = afw_array_get_next_value(list, &list_iterator, 
-        wa->p, wa->xctx);
+    next = afw_array_get_next_value(list, &list_iterator, wa->xctx);
 
     while (next) {
         impl_convert_value_to_json(wa, next);
-        next = afw_array_get_next_value(list, &list_iterator,
-            wa->p, wa->xctx);
+        next = afw_array_get_next_value(list, &list_iterator, wa->xctx);
         if (next) {
             impl_putc(wa, ',');
         }
@@ -287,7 +285,7 @@ impl_convert_object_to_json(
             impl_put_ws(wa);
             wa->skip_next_ws = 1;
             impl_put_json_string(wa,
-                afw_object_string_property_name_as_utf8(
+                afw_object_string_property_name_internal(
                     property_name, wa->xctx));
 
             impl_putc(wa, ':');

@@ -599,7 +599,7 @@ afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
         objects, &iterator, &qualifier_id, xctx)))
     {
         /* These APIs take utf8 qualifier ids, not object-key values. */
-        qualifier_id_utf8 = afw_object_string_property_name_as_utf8(
+        qualifier_id_utf8 = afw_object_string_property_name_internal(
             qualifier_id, xctx);
         detail_source_location = afw_utf8_printf(
             object->p, xctx,

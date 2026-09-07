@@ -32,7 +32,7 @@ afw_array_impl_get_entry_meta(
     /*FIXME Meta should include array meta. */
 
     result = NULL;
-    entry_value = afw_array_get_entry_value(instance, index, p, xctx);
+    entry_value = afw_array_get_entry_value(instance, index, xctx);
     if (entry_value) {
         meta_self = afw_value_internal_create_meta_object_self(
             entry_value, p, xctx);
@@ -60,7 +60,7 @@ afw_array_impl_get_next_entry_meta(
 
     result = NULL;
     entry_value = afw_array_get_next_value(instance,
-        iterator, p, xctx);
+        iterator, xctx);
 
     if (entry_value) {
         meta_self = afw_value_internal_create_meta_object_self(
@@ -129,13 +129,14 @@ impl_afw_iterator_get_next(
     afw_size_t count;
     afw_size_t i;
 
+    (void)p;
     array = (const afw_array_t *)self->impl;
     count = afw_array_get_count(array, xctx);
     i = self->offset;
     if (i >= count) {
         return NULL; /* done */
     }
-    value = afw_array_get_entry_value(array, (afw_integer_t)i, p, xctx);
+    value = afw_array_get_entry_value(array, (afw_integer_t)i, xctx);
     self->offset = i + 1;
     return value;
 }
@@ -153,8 +154,9 @@ impl_afw_iterator_get_by_index(
 {
     const afw_array_t *array;
 
+    (void)p;
     array = (const afw_array_t *)self->impl;
-    return afw_array_get_entry_value(array, index, p, xctx);
+    return afw_array_get_entry_value(array, index, xctx);
 }
 
 

@@ -174,8 +174,7 @@ afw_compile_parse_List(
             /* Add previous list entries as args for constructor. */
             if (list) {
                 for (iterator = NULL;;) {
-                    value = afw_array_get_next_value(list, &iterator,
-                        parser->p, parser->xctx);
+                    value = afw_array_get_next_value(list, &iterator, parser->xctx);
                     if (!value) {
                         break;
                     }

@@ -371,7 +371,7 @@ impl_list_destructure(
         if (!eol) {
             v = afw_array_get_next_value(
                 ((const afw_value_array_t *)value)->internal,
-                &iterator, p, xctx);
+                &iterator, xctx);
             if (!v) {
                 eol = true;
             }
@@ -401,7 +401,7 @@ impl_list_destructure(
             for (;;) {
                 v = afw_array_get_next_value(
                     ((const afw_value_array_t *)value)->internal,
-                    &iterator, p, xctx);
+                    &iterator, xctx);
                 if (!v) {
                     break;
                 }
@@ -730,7 +730,7 @@ impl_assign_value(
         aggregate_value = afw_value_evaluate_and_park(
             t->aggregate_value, 1, p, xctx);
         key = afw_value_evaluate_and_park(t->key, 1, p, xctx);
-        aggregate_value = afw_value_as_assignable(aggregate_value, xctx);
+        aggregate_value = afw_value_get_assignable(aggregate_value, xctx);
 
         if (afw_value_is_object(aggregate_value)) {
             object = ((const afw_value_object_t *)aggregate_value)->internal;
@@ -803,7 +803,7 @@ impl_evaluate_one_or_more_values(
         for (;;) {
             value = afw_array_get_next_value(
                 ((const afw_value_array_t *)values)->internal,
-                &iterator, p, xctx);
+                &iterator, xctx);
             if (!value) {
                 break;
             }
@@ -1732,7 +1732,7 @@ afw_function_execute_return(
             result = afw_value_undefined;
         }
     }
-    result = afw_value_as_assignable(result, xctx);
+    result = afw_value_get_assignable(result, xctx);
     afw_xctx_statement_flow_set_type(return, xctx);
     return result;
 }
@@ -1962,7 +1962,7 @@ afw_function_execute_switch(
             statement_list = ((const afw_value_array_t *)pair[1])->internal;
             for (iterator = NULL;;) {
                 statement = afw_array_get_next_value(
-                    statement_list, &iterator, p, xctx);
+                    statement_list, &iterator, xctx);
                 if (!statement) {
                     break;
                 }

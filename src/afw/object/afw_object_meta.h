@@ -286,13 +286,13 @@ afw_object_meta_get_nonempty_delta(
 
 
 /**
- * @brief Get a meta property as single string.
+ * @brief Get a meta property as string internal.
  * @param instance of object.
  * @param property_name of meta property.  Can be dotted.
  * @param xctx of caller.
  * @return value of meta property.
  */
-#define afw_object_meta_get_property_as_string(instance, \
+#define afw_object_meta_get_property_as_string_internal(instance, \
     property_name, xctx) \
 (instance->meta.meta_object) \
     ? afw_object_get_property_as_string_internal( \

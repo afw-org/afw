@@ -82,8 +82,7 @@ afw_environment_configure_with_object_list(
     for (iterator = NULL, count = 1;; count++) {
 
         /* Get next configuration entry. */
-        value = afw_array_get_next_value(entry_list, &iterator,
-            xctx->p, xctx);
+        value = afw_array_get_next_value(entry_list, &iterator, xctx);
         if (!value) {
             break;
         }
@@ -138,7 +137,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
             AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(source_location),
             AFW_UTF8_FMT_ARG(afw_s_modulePath));
-        value = afw_value_compile_and_evaluate_as(value,
+        value = afw_value_compile_and_evaluate_using(value,
             detail_source_location, afw_compile_type_template, p, xctx);
         if (!afw_value_is_string(value)) {
             AFW_THROW_ERROR_FZ(general, xctx,
@@ -162,7 +161,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
                     AFW_UTF8_FMT_ARG(source_location),
                     AFW_UTF8_FMT_ARG(extension_id),
                     AFW_UTF8_FMT_ARG(afw_s_modulePath));
-                value = afw_value_compile_and_evaluate_as(value,
+                value = afw_value_compile_and_evaluate_using(value,
                     detail_source_location, afw_compile_type_template,
                     p, xctx);
                 if (!afw_value_is_string(value)) {

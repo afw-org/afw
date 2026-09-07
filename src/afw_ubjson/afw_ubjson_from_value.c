@@ -235,7 +235,7 @@ static void convert_object_to_ubjson(
         while (1) {
             /* property name */
             convert_string_to_ubjson(wa,
-                afw_object_string_property_name_as_utf8(
+                afw_object_string_property_name_internal(
                     property_name, wa->xctx), AFW_FALSE);
 
             /* property value */
@@ -356,13 +356,11 @@ static void convert_list_to_ubjson(
     }
 
     list_iterator = NULL;
-    next = afw_array_get_next_value(list, &list_iterator,
-        wa->p, wa->xctx);
+    next = afw_array_get_next_value(list, &list_iterator, wa->xctx);
     
     while (next) {
         convert_value_to_ubjson(wa, next);
-        next = afw_array_get_next_value(list, &list_iterator,
-            wa->p, wa->xctx);
+        next = afw_array_get_next_value(list, &list_iterator, wa->xctx);
     }
 
     if (!wa->optimized) {

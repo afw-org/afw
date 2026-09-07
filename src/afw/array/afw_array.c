@@ -42,7 +42,7 @@ afw_array_of_utf8_get_next(
     const afw_value_t *value;
     const afw_data_type_t *data_type;
 
-    value = afw_array_get_next_value(instance, iterator, NULL, xctx);
+    value = afw_array_get_next_value(instance, iterator, xctx);
     if (!value) {
         return NULL;
     }

@@ -317,8 +317,7 @@ afw_boolean_t afw_adapter_impl_index_option_case_insensitive(
    
     if (options) { 
         option_iterator = NULL;
-        option = afw_array_get_next_value(options, &option_iterator,
-            xctx->p, xctx);
+        option = afw_array_get_next_value(options, &option_iterator, xctx);
         while (option) {
             if (afw_value_is_string(option)) {
                 const afw_utf8_t *option_str =
@@ -329,7 +328,7 @@ afw_boolean_t afw_adapter_impl_index_option_case_insensitive(
             }
 
             option = afw_array_get_next_value(
-                options, &option_iterator, xctx->p, xctx);
+                options, &option_iterator, xctx);
         }
     }
 
@@ -356,8 +355,7 @@ afw_boolean_t afw_adapter_impl_index_option_unique(
   
     if (options) { 
         option_iterator = NULL;
-        option = afw_array_get_next_value(options, &option_iterator,
-            xctx->p, xctx);
+        option = afw_array_get_next_value(options, &option_iterator, xctx);
         while (option) {
             if (afw_value_is_string(option)) {
                 const afw_utf8_t *option_str = afw_value_convert_to_utf8(option,
@@ -368,7 +366,7 @@ afw_boolean_t afw_adapter_impl_index_option_unique(
             }
 
             option = afw_array_get_next_value(
-                options, &option_iterator, xctx->p, xctx);
+                options, &option_iterator, xctx);
         }
     }
 
@@ -680,8 +678,7 @@ void afw_adapter_impl_index_open_definition(
         indexDefinition, afw_v_options, xctx);
     if (options) {
         option_iterator = NULL;
-        option = afw_array_get_next_value(options, &option_iterator,
-            xctx->p, xctx);
+        option = afw_array_get_next_value(options, &option_iterator, xctx);
         while (option) {
             if (afw_value_is_string(option)) {
                 const afw_utf8_t *option_str = afw_value_convert_to_utf8(option,
@@ -694,7 +691,7 @@ void afw_adapter_impl_index_open_definition(
             }
 
             option = afw_array_get_next_value(
-                options, &option_iterator, xctx->p, xctx);
+                options, &option_iterator, xctx);
         }
     }
 
@@ -734,7 +731,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_open_definitions(
 
     while (indexDefinition) {
         afw_adapter_impl_index_open_definition(indexer,
-            afw_object_string_property_name_as_utf8(key, xctx), 
+            afw_object_string_property_name_internal(key, xctx), 
             indexDefinition, pool, xctx);
 
         indexDefinition = afw_object_get_next_property_as_object_internal(
@@ -1166,7 +1163,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_object(
             instance->indexDefinitions, &index_iterator, &index_name, xctx);
         while (indexDefinition) {
             afw_adapter_impl_index_try(instance,
-                afw_object_string_property_name_as_utf8(index_name, xctx),
+                afw_object_string_property_name_internal(index_name, xctx),
                 object, 
                 object_type_id, object_id, indexDefinition, 
                 afw_adapter_impl_index_mode_add, xctx);
@@ -1203,7 +1200,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_unindex_object(
             instance->indexDefinitions, &index_iterator, &index_name, xctx);
         while (indexDefinition) {
             afw_adapter_impl_index_try(instance,
-                afw_object_string_property_name_as_utf8(index_name, xctx),
+                afw_object_string_property_name_internal(index_name, xctx),
                 object, 
                 object_type_id, object_id, indexDefinition,
                 afw_adapter_impl_index_mode_delete, xctx);
@@ -1243,14 +1240,14 @@ AFW_DEFINE(void) afw_adapter_impl_index_reindex_object(
         while (indexDefinition) {
             /* remove indexes from the old object */
             afw_adapter_impl_index_try(instance,
-                afw_object_string_property_name_as_utf8(index_name, xctx),
+                afw_object_string_property_name_internal(index_name, xctx),
                 old_object,
                 object_type_id, object_id, indexDefinition,
                 afw_adapter_impl_index_mode_delete, xctx);
 
             /* now add back the new ones */
             afw_adapter_impl_index_try(instance,
-                afw_object_string_property_name_as_utf8(index_name, xctx),
+                afw_object_string_property_name_internal(index_name, xctx),
                 new_object,
                 object_type_id, object_id, indexDefinition, 
                 afw_adapter_impl_index_mode_add, xctx);

@@ -632,7 +632,7 @@ afw_array_of_boolean_get_next_source(
 {
     const afw_value_t *value;
 
-    value = afw_array_get_next_value(instance, iterator, NULL, xctx);
+    value = afw_array_get_next_value(instance, iterator, xctx);
     if (!value) {
         return NULL;
     }

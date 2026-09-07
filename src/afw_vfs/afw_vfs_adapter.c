@@ -79,11 +79,11 @@ afw_vfs_adapter_internal_create_cede_p(
     for (iterator = NULL;;entries++) {
 
         /* Get next entry, evaluate as template, then parse (issue #15). */
-        value = afw_array_get_next_value(vfs_map, &iterator, p, xctx);
+        value = afw_array_get_next_value(vfs_map, &iterator, xctx);
         if (!value) {
             break;
         }
-        value = afw_value_compile_and_evaluate_as(value,
+        value = afw_value_compile_and_evaluate_using(value,
             adapter->source_location, afw_compile_type_template, p, xctx);
         if (!afw_value_is_string(value)) {
             AFW_THROW_ERROR_Z(general,
@@ -224,7 +224,7 @@ afw_vfs_adapter_internal_create_cede_p(
         self->mark_executable = mark_executable;
 
         for (iterator = NULL;; mark_executable++) {
-            value = afw_array_get_next_value(x_list, &iterator, p, xctx);
+            value = afw_array_get_next_value(x_list, &iterator, xctx);
             if (!value) {
                 break;
             }

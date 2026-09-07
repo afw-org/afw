@@ -423,7 +423,7 @@ afw_value_call_args_expand_spreads(
             arr = ((const afw_value_array_t *)evaled)->internal;
             it = NULL;
             for (;;) {
-                elem = afw_array_get_next_value(arr, &it, p, xctx);
+                elem = afw_array_get_next_value(arr, &it, xctx);
                 if (!elem) {
                     break;
                 }

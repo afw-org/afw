@@ -86,16 +86,15 @@ const afw_value_t *
 impl_afw_array_get_entry_value(
     AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *entry_value;
     afw_value_meta_object_self_t *meta_self;
     const afw_pool_t *use_p;
 
-    use_p = p ? p : self->pub.p;
+    use_p = self->pub.p ? self->pub.p : xctx->p;
     entry_value = afw_array_get_entry_value(
-        self->associated_value->internal, index, use_p, xctx);
+        self->associated_value->internal, index, xctx);
     if (!entry_value) {
         return NULL;
     }
@@ -117,7 +116,6 @@ const afw_value_t *
 impl_afw_array_get_next_value(
     AFW_ARRAY_SELF_T *self,
     const afw_iterator_old_t **iterator,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *entry_value;
@@ -125,10 +123,7 @@ impl_afw_array_get_next_value(
     const afw_pool_t *use_p;
     impl_meta_values_list_iterator_t *state;
 
-    use_p = p ? p : self->pub.p;
-    if (!use_p) {
-        use_p = xctx->p;
-    }
+    use_p = self->pub.p ? self->pub.p : xctx->p;
 
     if (!*iterator) {
         state = afw_pool_calloc_type(use_p,
@@ -142,7 +137,7 @@ impl_afw_array_get_next_value(
     }
 
     entry_value = afw_array_get_next_value(
-        self->associated_value->internal, &state->inner, use_p, xctx);
+        self->associated_value->internal, &state->inner, xctx);
     if (!entry_value) {
         *iterator = NULL;
         return NULL;

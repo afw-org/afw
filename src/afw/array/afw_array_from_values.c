@@ -297,7 +297,7 @@ afw_array_create_managed_from_values(
         copied = afw_pool_malloc(p,
             count * sizeof(const afw_value_t *), xctx);
         for (i = 0; i < count; i++) {
-            copied[i] = afw_value_as_assignable(values[i], xctx);
+            copied[i] = afw_value_get_assignable(values[i], xctx);
         }
         self->values = copied;
     }
@@ -436,7 +436,7 @@ afw_array_convert_to_array_of_strings(
     values = afw_pool_malloc(p, count * sizeof(const afw_value_t *), xctx);
     i = 0;
     for (iterator = NULL;;) {
-        value = afw_array_get_next_value(array, &iterator, p, xctx);
+        value = afw_array_get_next_value(array, &iterator, xctx);
         if (!value) {
             break;
         }
@@ -561,12 +561,9 @@ const afw_value_t *
 impl_afw_array_get_entry_value(
     AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
-    const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
     afw_size_t i;
-
-    (void)p;
 
     i = afw_safe_cast_integer_to_size(index, xctx);
     if (i >= self->count || !self->values) {
@@ -585,13 +582,11 @@ const afw_value_t *
 impl_afw_array_get_next_value(
     AFW_ARRAY_SELF_T *self,
     const afw_iterator_old_t * * iterator,
-    const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *const *values;
     const afw_value_t *const *end;
 
-    (void)p;
     (void)xctx;
 
     if (!self->values || self->count == 0) {

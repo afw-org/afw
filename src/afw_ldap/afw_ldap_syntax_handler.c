@@ -618,7 +618,7 @@ impl_syntax_handler_list_binary_to_ber(
         data_type = afw_array_get_data_type(value, xctx);
         if (afw_utf8_equal(&data_type->cType, afw_s_afw_memory_t)) {
             for (iterator = NULL, bv = result; ;bv++) {
-                entry = afw_array_get_next_value(list, &iterator, NULL, xctx);
+                entry = afw_array_get_next_value(list, &iterator, xctx);
                 if (!entry) {
                     break;
                 }
@@ -630,7 +630,7 @@ impl_syntax_handler_list_binary_to_ber(
         }
         else if (afw_utf8_equal(&data_type->cType, afw_s_afw_utf8_t)) {
             for (iterator = NULL, bv = result; ;bv++) {
-                entry = afw_array_get_next_value(list, &iterator, NULL, xctx);
+                entry = afw_array_get_next_value(list, &iterator, xctx);
                 if (!entry) {
                     break;
                 }
@@ -740,7 +740,7 @@ impl_syntax_handler_list_boolean_to_ber(
     result[count] = NULL;
 
     for (iterator = NULL, bv = result; ;bv++) {
-        entry = afw_array_get_next_value(list, &iterator, NULL, xctx);
+        entry = afw_array_get_next_value(list, &iterator, xctx);
         if (!entry) {
             break;
         }
@@ -959,7 +959,7 @@ impl_syntax_handler_list_string_to_ber(
 
     /* Iterator setting berval. */
     for (iterator = NULL, bv = result; ;bv++) {
-        entry = afw_array_get_next_value(list, &iterator, NULL, xctx);
+        entry = afw_array_get_next_value(list, &iterator, xctx);
         if (!entry) {
             break;
         }

@@ -626,13 +626,13 @@ afw_curl_internal_http_post(
         if (headers) {
             /* iterate through each header in our list */
             header_iterator = NULL;
-            value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+            value = afw_array_get_next_value(headers, &header_iterator, xctx);
             while (value) {
                 const afw_utf8_z_t *next_header;
 
                 next_header  = afw_value_convert_to_utf8_z(value, pool, xctx);
                 curl_headers = curl_slist_append(curl_headers, next_header);
-                value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+                value = afw_array_get_next_value(headers, &header_iterator, xctx);
             }
 
             res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curl_headers);
@@ -802,13 +802,13 @@ afw_curl_internal_http_get(
         if (headers) {
             /* iterate through each header in our list */
             header_iterator = NULL;
-            value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+            value = afw_array_get_next_value(headers, &header_iterator, xctx);
             while (value) {
                 const afw_utf8_z_t *next_header;
 
                 next_header  = afw_value_convert_to_utf8_z(value, pool, xctx);
                 curl_headers = curl_slist_append(curl_headers, next_header);
-                value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+                value = afw_array_get_next_value(headers, &header_iterator, xctx);
             }
 
             res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curl_headers);
@@ -944,13 +944,13 @@ afw_curl_internal_http_delete(
         if (headers) {
             /* iterate through each header in our list */
             header_iterator = NULL;
-            value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+            value = afw_array_get_next_value(headers, &header_iterator, xctx);
             while (value) {
                 const afw_utf8_z_t *next_header;
 
                 next_header  = afw_value_convert_to_utf8_z(value, pool, xctx);
                 curl_headers = curl_slist_append(curl_headers, next_header);
-                value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+                value = afw_array_get_next_value(headers, &header_iterator, xctx);
             }
 
             res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curl_headers);
@@ -1095,13 +1095,13 @@ afw_curl_internal_http_put(
         if (headers) {
             /* iterate through each header in our list */
             header_iterator = NULL;
-            value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+            value = afw_array_get_next_value(headers, &header_iterator, xctx);
             while (value) {
                 const afw_utf8_z_t *next_header;
 
                 next_header  = afw_value_convert_to_utf8_z(value, pool, xctx);
                 curl_headers = curl_slist_append(curl_headers, next_header);
-                value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+                value = afw_array_get_next_value(headers, &header_iterator, xctx);
             }
 
             res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curl_headers);
@@ -1282,13 +1282,13 @@ afw_curl_internal_http_patch(
         if (headers) {
             /* iterate through each header in our list */
             header_iterator = NULL;
-            value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+            value = afw_array_get_next_value(headers, &header_iterator, xctx);
             while (value) {
                 const afw_utf8_z_t *next_header;
 
                 next_header  = afw_value_convert_to_utf8_z(value, pool, xctx);
                 curl_headers = curl_slist_append(curl_headers, next_header);
-                value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+                value = afw_array_get_next_value(headers, &header_iterator, xctx);
             }
 
             res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curl_headers);
@@ -1447,13 +1447,13 @@ afw_curl_internal_http_head(
         if (headers) {
             /* iterate through each header in our list */
             header_iterator = NULL;
-            value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+            value = afw_array_get_next_value(headers, &header_iterator, xctx);
             while (value) {
                 const afw_utf8_z_t *next_header;
 
                 next_header  = afw_value_convert_to_utf8_z(value, pool, xctx);
                 curl_headers = curl_slist_append(curl_headers, next_header);
-                value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+                value = afw_array_get_next_value(headers, &header_iterator, xctx);
             }
 
             res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curl_headers);
@@ -1578,13 +1578,13 @@ afw_curl_internal_http_options(
         if (headers) {
             /* iterate through each header in our list */
             header_iterator = NULL;
-            value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+            value = afw_array_get_next_value(headers, &header_iterator, xctx);
             while (value) {
                 const afw_utf8_z_t *next_header;
 
                 next_header  = afw_value_convert_to_utf8_z(value, pool, xctx);
                 curl_headers = curl_slist_append(curl_headers, next_header);
-                value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+                value = afw_array_get_next_value(headers, &header_iterator, xctx);
             }
 
             res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curl_headers);
@@ -1708,13 +1708,13 @@ afw_curl_internal_smtp_send(
 
         /* Add recipients (TO:, followed by CC:) */
         iterator = NULL;
-        value = afw_array_get_next_value(mail_recipients, &iterator, pool, xctx);
+        value = afw_array_get_next_value(mail_recipients, &iterator, xctx);
         while (value) {
             const afw_utf8_z_t * recipient;
 
             recipient = afw_value_convert_to_utf8_z(value, pool, xctx);
             recipients = curl_slist_append(recipients, recipient);
-            value = afw_array_get_next_value(mail_recipients, &iterator, pool, xctx);
+            value = afw_array_get_next_value(mail_recipients, &iterator, xctx);
         }
 
         res = curl_easy_setopt(curl, CURLOPT_MAIL_RCPT, recipients);

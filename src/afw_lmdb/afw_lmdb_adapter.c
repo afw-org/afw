@@ -83,7 +83,7 @@ const afw_lmdb_env_t * afw_lmdb_adapter_parse_env(
         AFW_THROW_ERROR_Z(general,
             "Property env.path required by LMDB adapter.", xctx);
     }
-    value = afw_value_compile_and_evaluate_as(value, NULL,
+    value = afw_value_compile_and_evaluate_using(value, NULL,
         afw_compile_type_template, p, xctx);
     if (!afw_value_is_string(value)) {
         AFW_THROW_ERROR_Z(general,
