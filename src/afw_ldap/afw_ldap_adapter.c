@@ -47,7 +47,7 @@ afw_ldap_internal_adapter_create_cede_p(
     {
         const afw_value_t *url_value;
 
-        url_value = afw_object_get_property_compile_and_evaluate_as(
+        url_value = afw_object_get_property_compile_and_evaluate_using(
             properties, afw_ldap_v_url, adapter->source_location,
             afw_compile_type_template, p, xctx);
         if (!afw_value_is_string(url_value)) {
@@ -67,12 +67,12 @@ afw_ldap_internal_adapter_create_cede_p(
     }
 
     /* Get compiled bindParameter. */
-    self->bind_parameters = afw_object_old_get_property_as_compiled_template(
+    self->bind_parameters = afw_object_get_property_compile_template(
         properties, afw_ldap_v_bindParameters,
         adapter->impl->source_location, NULL, adapter->p, xctx);
 
     /* Get preventVerifyCert. */
-    self->prevent_verify_cert = afw_object_old_get_property_as_boolean(
+    self->prevent_verify_cert = afw_object_get_property_as_boolean_internal(
         properties, afw_ldap_v_preventVerifyCert, &found, xctx);
 
     /** @fixme add parameter. */

@@ -85,14 +85,14 @@ afw_object_meta_add_needed_object_type(
 
     entity = afw_object_get_entity(instance, xctx);
     meta = afw_object_meta_get_nonempty_delta(entity, xctx);
-    objectTypes = afw_object_old_get_property_as_object(meta,
+    objectTypes = afw_object_get_property_as_object_internal(meta,
         afw_v_objectTypes, xctx);
     if (!objectTypes) {
         objectTypes = afw_object_create_embedded(meta,
             afw_v_objectTypes, xctx);
     }
     /* objectType id used as a key here; the id itself stays utf8. */
-    afw_object_set_property_as_object(objectTypes,
+    afw_object_set_property_as_object_internal(objectTypes,
         afw_value_create_unmanaged_string(
             object_type->meta.id, objectTypes->p, xctx),
         object_type, xctx);
@@ -202,7 +202,7 @@ afw_object_meta_add_parent_path(
             afw_data_type_anyURI, instance->p, xctx);
     }
     
-    afw_array_of_anyURI_add(parent_paths->internal, parent_path, xctx);
+    afw_array_of_anyURI_add_internal(parent_paths->internal, parent_path, xctx);
     meta = afw_object_meta_get_nonempty_delta(instance, xctx);
     afw_object_set_property(meta, afw_v_parentPaths, &parent_paths->pub, xctx);
 }
@@ -332,7 +332,7 @@ afw_object_meta_get_property_type(
 
     meta = afw_object_meta_get_nonempty_delta(instance, xctx);
 
-    property_types = afw_object_old_get_property_as_object(
+    property_types = afw_object_get_property_as_object_internal(
         instance->meta.meta_object,
         afw_v_propertyTypes, xctx);
     if (!property_types) {
@@ -347,20 +347,20 @@ afw_object_meta_get_property_type(
             property_types, instance->p, xctx);
         ((afw_object_t *)property_types)->meta.object_type_uri =
             afw_s__AdaptiveMetaPropertyTypes_;
-        afw_object_set_property_as_object(meta,
+        afw_object_set_property_as_object_internal(meta,
             afw_v_propertyTypes, property_types, xctx);
     }
 
-    property_type = afw_object_old_get_property_as_object(property_types,
+    property_type = afw_object_get_property_as_object_internal(property_types,
         property_name, xctx);
     if (!property_type) {
-        property_type = afw_object_old_get_property_as_object(
+        property_type = afw_object_get_property_as_object_internal(
             instance->meta.meta_object,
             afw_v_otherProperties, xctx);
         if (property_type) {
             property_type = afw_object_create_clone(property_type,
                 instance->p, xctx);
-            afw_object_set_property_as_object(property_types,
+            afw_object_set_property_as_object_internal(property_types,
                 property_name, property_type, xctx);
         }
         else {
@@ -379,7 +379,7 @@ afw_object_meta_get_property_type(
             instance->p, xctx);
         ((afw_object_t *)property_type)->meta.object_type_uri =
             afw_s__AdaptiveMetaPropertyType_;
-        afw_object_set_property_as_object(property_types,
+        afw_object_set_property_as_object_internal(property_types,
             property_name, property_type, xctx);
     }
 
@@ -427,12 +427,12 @@ afw_object_meta_set_meta_object(
     if (value) {
         parent_paths = afw_array_create_unmanaged_from_value(
             afw_data_type_anyURI, value, meta->p, xctx);
-        afw_object_set_property_as_array(meta,
+        afw_object_set_property_as_array_internal(meta,
             afw_v_parentPaths, parent_paths, xctx);
     }
 
     /* If path in meta, remove it from meta and if entity, use it to set path. */
-    path = afw_object_old_get_property_as_utf8(meta, afw_v_path,
+    path = afw_object_get_property_convert_to_utf8(meta, afw_v_path,
         p, xctx);
     if (path) {
         parsed_path = afw_object_path_parse(path, NULL, NULL, p, xctx);
@@ -444,23 +444,23 @@ afw_object_meta_set_meta_object(
 
     /* Try to determine object type if path didn't set it. */
     if (!instance->meta.object_type_uri) {
-        object_type_id = afw_object_old_get_property_as_string(meta,
+        object_type_id = afw_object_get_property_as_string_internal(meta,
             afw_v_objectType, xctx);
         if (!object_type_id &&
             instance->meta.embedding_object &&
             instance->meta.embedding_object->meta.meta_object)
         {
-            property_types = afw_object_old_get_property_as_object(
+            property_types = afw_object_get_property_as_object_internal(
                 meta, afw_v_propertyTypes, xctx);
             if (property_types) {
                 {
                     const afw_value_string_t id_value =
                         AFW_VALUE_STRING_UNMANAGED(instance->meta.id);
-                    property_type = afw_object_old_get_property_as_object(
+                    property_type = afw_object_get_property_as_object_internal(
                         property_types, &id_value.pub, xctx);
                 }
                 if (property_type) {
-                    object_type_id = afw_object_old_get_property_as_string(
+                    object_type_id = afw_object_get_property_as_string_internal(
                         property_type, afw_v_dataTypeParameter, xctx);
                 }
             }
@@ -671,11 +671,11 @@ afw_object_meta_add_error(
     const afw_array_t *errors;
 
     meta = afw_object_meta_get_nonempty_delta(instance, xctx);
-    errors = afw_object_old_get_property_as_array(meta, afw_v_errors, xctx);
+    errors = afw_object_get_property_as_array_internal(meta, afw_v_errors, xctx);
     if (!errors) {
         errors = afw_array_create_unmanaged_of(
             afw_data_type_string, instance->p, xctx);
-        afw_object_set_property_as_array(meta,
+        afw_object_set_property_as_array_internal(meta,
             afw_v_errors, errors, xctx);
         afw_object_set_property(meta, afw_v_hasErrors, afw_boolean_v_true, xctx);
         afw_object_meta_set_property(afw_object_get_entity(instance, xctx),
@@ -694,12 +694,13 @@ afw_object_meta_has_errors(
     afw_xctx_t *xctx)
 {
     afw_boolean_t result;
+    afw_boolean_t found;
 
     result = false;
     if (instance->meta.meta_object) {
-        result = afw_object_old_get_property_as_boolean_deprecated(
+        result = afw_object_get_property_as_boolean_internal(
             afw_object_meta_object(instance),
-            afw_v_hasErrors, xctx);
+            afw_v_hasErrors, &found, xctx);
     }
 
     return result;
@@ -717,7 +718,7 @@ impl_log_errors(
     const afw_utf8_t *error;
 
     iterator = NULL;
-    while ((error = afw_array_of_string_get_next(errors,
+    while ((error = afw_array_of_string_get_next_internal(errors,
         &iterator, xctx)))
     {
         AFW_LOG_FZ(info, xctx,
@@ -758,20 +759,20 @@ afw_object_meta_log_errors(
     p = instance->p;
 
     /* Log object level errors. */
-    errors = afw_object_old_get_property_as_array(meta, afw_v_errors, xctx);
+    errors = afw_object_get_property_as_array_internal(meta, afw_v_errors, xctx);
     if (errors) {
         impl_log_errors(errors, source_location, xctx);
     }
 
     /* Log property level errors. */
-    property_types = afw_object_old_get_property_as_object(meta,
+    property_types = afw_object_get_property_as_object_internal(meta,
         afw_v_propertyTypes, xctx);
     if (property_types) {
         iterator = NULL;
-        while ((property_type = afw_object_old_get_next_property_as_object(
+        while ((property_type = afw_object_get_next_property_as_object_internal(
             property_types, &iterator, &property_name, xctx)))
         {
-            errors = afw_object_old_get_property_as_array(property_type,
+            errors = afw_object_get_property_as_array_internal(property_type,
                 afw_v_errors, xctx);
             if (errors) {
                 property_source_location = afw_utf8_printf(p, xctx,
@@ -860,12 +861,12 @@ afw_object_meta_add_property_error(
         return;
     }
 
-    errors = afw_object_old_get_property_as_array(property_type,
+    errors = afw_object_get_property_as_array_internal(property_type,
         afw_v_errors, xctx);
     if (!errors) {
         errors = afw_array_create_unmanaged_of(
             afw_data_type_string, instance->p, xctx);
-        afw_object_set_property_as_array(property_type,
+        afw_object_set_property_as_array_internal(property_type,
             afw_v_errors, errors, xctx);
         afw_object_meta_set_property(instance,
             afw_v_hasErrors, afw_boolean_v_true, xctx);

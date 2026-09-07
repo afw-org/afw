@@ -6243,6 +6243,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz___afw__AdaptiveCollection__curl_extension \
+    "/afw/_AdaptiveCollection_/curl_extension"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz___afw__AdaptiveCollection__curl_extension */
+#define afw_curl_s_zz___afw__AdaptiveCollection__curl_extension \
+    (&afw_curl_self_v_zz___afw__AdaptiveCollection__curl_extension.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz___afw__AdaptiveCollection__curl_extension */
+#define afw_curl_self_s_zz___afw__AdaptiveCollection__curl_extension \
+    (afw_curl_self_v_zz___afw__AdaptiveCollection__curl_extension.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz___afw__AdaptiveCollection__curl_extension */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz___afw__AdaptiveCollection__curl_extension;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz___afw__AdaptiveCollection__curl_extension */
+#define afw_curl_z_zz___afw__AdaptiveCollection__curl_extension \
+    (afw_curl_self_v_zz___afw__AdaptiveCollection__curl_extension.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz___afw__AdaptiveCollection__curl_extension */
+#define afw_curl_v_zz___afw__AdaptiveCollection__curl_extension \
+    (&afw_curl_self_v_zz___afw__AdaptiveCollection__curl_extension.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz___afw__AdaptiveFunction__curl_easy_options \
     "/afw/_AdaptiveFunction_/curl_easy_options"
 

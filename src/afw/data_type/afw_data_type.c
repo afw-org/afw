@@ -450,7 +450,7 @@ impl_afw_data_type_boolean_internal_to_utf8(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    return (*(afw_boolean_t *)from_internal) ? afw_s_true : afw_s_false;
+    return (*(afw_boolean_t *)from_internal) ? afw_s_mnemonic_true : afw_s_mnemonic_false;
 }
 
 
@@ -985,30 +985,30 @@ impl_afw_data_type_array_compare_internal(
     const afw_array_t *array2 = *(const afw_array_t * const *)value2;
     const afw_iterator_old_t *iterator1;
     const afw_iterator_old_t *iterator2;
-    const void *internal1;
-    const void *internal2;
+    const afw_value_t *v1;
+    const afw_value_t *v2;
     const afw_data_type_t *data_type1;
     const afw_data_type_t *data_type2;
     int result;
 
     for (iterator1 = NULL, iterator2 = NULL, result = 0; result == 0;) {
-        afw_array_get_next_internal(array1, &iterator1,
-            &data_type1, &internal1, xctx);
-        afw_array_get_next_internal(array2, &iterator2,
-            &data_type2, &internal2, xctx);
+        v1 = afw_array_get_next_value(array1, &iterator1, xctx);
+        v2 = afw_array_get_next_value(array2, &iterator2, xctx);
 
-        if (!internal1) {
-            if (internal2) {
+        if (!v1) {
+            if (v2) {
                 result = -1;
             }
             break;
         }
 
-        if (!internal2) {
+        if (!v2) {
             result = 1;
             break;
         }
 
+        data_type1 = afw_value_get_data_type(v1, xctx);
+        data_type2 = afw_value_get_data_type(v2, xctx);
         if (!data_type1) {
             AFW_THROW_ERROR_Z(general,
                 "array needs data type for compare",
@@ -1020,8 +1020,7 @@ impl_afw_data_type_array_compare_internal(
             break;
         }
 
-        result = afw_data_type_compare_internal(
-            data_type1, internal1, internal2, xctx);
+        result = afw_value_compare(v1, v2, xctx);
     }
 
     return result;
@@ -1409,7 +1408,7 @@ impl_afw_data_type_array_clone_internal(
     memcpy(to_internal, &to, sizeof(const afw_array_t *));
 
     for (iterator = NULL;;) {
-        value = afw_array_get_next_value(from, &iterator, p, xctx);
+        value = afw_array_get_next_value(from, &iterator, xctx);
         if (!value) {
             break;
         }
@@ -1724,7 +1723,7 @@ impl_afw_data_type_array_value_compiler_listing(
 
     for (iterator = NULL;;)
     {
-        entry = afw_array_get_next_value(array, &iterator, writer->p, xctx);
+        entry = afw_array_get_next_value(array, &iterator, xctx);
         if (!entry) break;
         afw_value_compiler_listing_value(entry, writer, xctx);
     }
@@ -1747,7 +1746,7 @@ afw_data_type_object_value_compiler_listing(
     const afw_value_t *pv;
     const afw_value_t *property_name;
  
-    object = afw_value_as_object(object_value, xctx);
+    object = afw_value_as_object_internal(object_value, xctx);
     afw_value_compiler_listing_begin_value(writer, object_value, NULL, xctx);
     afw_writer_write_z(writer, ": [", xctx);
     afw_writer_write_eol(writer, xctx);
@@ -1765,7 +1764,7 @@ afw_data_type_object_value_compiler_listing(
         }
         afw_writer_write_z(writer, "property ", xctx);
         afw_writer_write_utf8(writer,
-            afw_object_string_property_name_as_utf8(property_name, xctx),
+            afw_object_string_property_name_internal(property_name, xctx),
             xctx);
         afw_writer_write_z(writer, " ", xctx);
         afw_value_compiler_listing_value(pv, writer, xctx);
@@ -1936,7 +1935,7 @@ impl_afw_data_type_array_write_as_expression(
      */
     all_evaluated = true;
     for (iterator = NULL;
-        (value = afw_array_get_next_value(array, &iterator, writer->p, xctx));
+        (value = afw_array_get_next_value(array, &iterator, xctx));
         )
     {
         if (!afw_value_is_defined_and_evaluated(value) &&
@@ -1959,7 +1958,7 @@ impl_afw_data_type_array_write_as_expression(
     }
 
     for (i = 0, iterator = NULL;
-        (value = afw_array_get_next_value(array, &iterator, writer->p, xctx));
+        (value = afw_array_get_next_value(array, &iterator, xctx));
         i++)
     {
         if (i != 0) {      
@@ -2017,7 +2016,7 @@ impl_afw_data_type_object_write_as_expression(
             afw_writer_write_eol(writer, xctx);
         }
         afw_json_write_encoded_string(
-            afw_object_string_property_name_as_utf8(property_name, xctx),
+            afw_object_string_property_name_internal(property_name, xctx),
             writer, xctx);
         if (writer->tab) {
             /* if there is any tab argument, use one space to separate property keys from values */

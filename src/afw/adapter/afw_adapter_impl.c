@@ -206,6 +206,7 @@ afw_adapter_impl_create_cede_p(
     const afw_utf8_t *s;
     const afw_authorization_handler_t *authorization_handler;
     afw_boolean_t b;
+    afw_boolean_t found;
 
     /* Allocate new adapter instance. */
     adapter = (afw_adapter_t *)afw_pool_calloc(p,
@@ -213,7 +214,7 @@ afw_adapter_impl_create_cede_p(
         xctx);
     adapter->inf = &impl_afw_adapter_inf;
     adapter->p = p;
-    adapter->adapter_type_id = afw_object_old_get_property_as_string(
+    adapter->adapter_type_id = afw_object_get_property_as_string_internal(
         properties, afw_v_adapterType, xctx);
     impl = afw_pool_calloc_type(p, afw_adapter_impl_t, xctx);
     adapter->impl = impl;
@@ -225,18 +226,18 @@ afw_adapter_impl_create_cede_p(
         properties, xctx);
 
     /* Get adapterType from properties. */
-    adapter->adapter_type_id = afw_object_old_get_property_as_string(
+    adapter->adapter_type_id = afw_object_get_property_as_string_internal(
         properties, afw_v_adapterType, xctx);
 
     /* Get source location.  Default it to adapter. */
-    impl->source_location = afw_object_old_get_property_as_string(
+    impl->source_location = afw_object_get_property_as_string_internal(
         properties, afw_v_sourceLocation, xctx);
     if (!impl->source_location) {
         impl->source_location = afw_s_adapter;
     }
 
     /* Get adapter_id from parameters. */
-    s = afw_object_old_get_property_as_utf8(properties,
+    s = afw_object_get_property_convert_to_utf8(properties,
         afw_v_adapterId, p, xctx);
 
     if (!s) {
@@ -285,7 +286,7 @@ afw_adapter_impl_create_cede_p(
 
     /* Get optional authorizationHandlerId from parameters. */
     impl->authorization_handler_id =
-        afw_object_old_get_property_as_string(adapter->properties,
+        afw_object_get_property_as_string_internal(adapter->properties,
             afw_v_authorizationHandlerId, xctx);
     if (impl->authorization_handler_id)
     {
@@ -311,7 +312,7 @@ afw_adapter_impl_create_cede_p(
     }
 
     /* Get optional journalAdapterId from parameters. */
-    impl->journal_adapter_id = afw_object_old_get_property_as_string(
+    impl->journal_adapter_id = afw_object_get_property_as_string_internal(
         adapter->properties, afw_v_journalAdapterId, xctx);
     if (impl->journal_adapter_id) {
         AFW_LOG_FZ(debug, xctx,
@@ -355,8 +356,8 @@ afw_adapter_impl_create_cede_p(
 
     /* checkIndividualObjectReadAccess property */
     impl->check_individual_object_read_access =
-        afw_object_old_get_property_as_boolean_deprecated(
-            properties, afw_v_checkIndividualObjectReadAccess, xctx);
+        afw_object_get_property_as_boolean_internal(
+            properties, afw_v_checkIndividualObjectReadAccess, &found, xctx);
 
     /** @fixme Reuse if already exists or reuse correct pool. */
     /* Create runtime metrics object and set in properties. */
@@ -375,8 +376,8 @@ afw_adapter_impl_create_cede_p(
     }
 
     /* If isModelLocation is true, provide appropriate object types. */
-    b = afw_object_old_get_property_as_boolean_deprecated(properties,
-        afw_v_isModelLocation, xctx);
+    b = afw_object_get_property_as_boolean_internal(properties,
+        afw_v_isModelLocation, &found, xctx);
     if (b) {
         impl->model_location = afw_model_location_create(adapter, p, xctx);
         afw_adapter_impl_set_supported_core_object_type(adapter,
@@ -395,8 +396,8 @@ afw_adapter_impl_create_cede_p(
 
     /** @fixme have way for extension to add these.
     If isPolicyLocation is true, provide appropriate object types.
-    b = afw_object_old_get_property_as_boolean_deprecated(properties,
-        afw_v_isPolicyLocation, xctx);
+    b = afw_object_get_property_as_boolean_internal(properties,
+        afw_v_isPolicyLocation, &found, xctx);
     if (b) {
         impl->policy_location = afw_authorization_policy_internal_location_create(
             adapter, p, xctx);
@@ -444,7 +445,7 @@ afw_adapter_impl_call_object_cb_from_list(
 
     /* Call callback for each object in list. */
     for (iterator = NULL;;) {
-        obj = afw_array_of_object_get_next(
+        obj = afw_array_of_object_get_next_internal(
             list, &iterator, xctx);
         if (!obj) break;
         callback(obj, context, xctx);
@@ -509,10 +510,10 @@ afw_adapter_impl_is_journal_entry_applicable(
 
     is_applicable = true;
 
-    peerIdInEntry = afw_object_old_get_property_as_string(entry,
+    peerIdInEntry = afw_object_get_property_as_string_internal(entry,
         afw_v_peerId, xctx);
     if (peerIdInEntry) {
-        peerIdInConsumer = afw_object_old_get_property_as_string(consumer,
+        peerIdInConsumer = afw_object_get_property_as_string_internal(consumer,
             afw_v_peerId, xctx);
         if (!peerIdInConsumer) {
             AFW_THROW_ERROR_Z(general,
@@ -528,7 +529,7 @@ afw_adapter_impl_is_journal_entry_applicable(
     /* If still applicable, apply the consumer's consumeFilter expression. */
     if (is_applicable) {
         if (!*filter) {
-            *filter = afw_object_old_get_property_as_compiled_script(
+            *filter = afw_object_get_property_compile_script(
                 consumer, afw_v_consumeFilter, NULL, NULL, xctx->p, xctx);
         }
 
@@ -548,7 +549,7 @@ afw_adapter_impl_is_journal_entry_applicable(
                         "consumeFilter did not evaluate to a boolean result",
                         xctx);
                 }
-                is_applicable = afw_value_as_boolean(eval, xctx);
+                is_applicable = afw_value_as_boolean_internal(eval, xctx);
             }
             AFW_FINALLY{
                 afw_xctx_qualifier_stack_top_set(top, xctx);
@@ -624,7 +625,7 @@ afw_adapter_impl_set_supported_core_object_type(
         afw_object_meta_set_ids(e->object, &adapter->adapter_id,
             afw_s__AdaptiveObjectType_, object_type_id, xctx);
         parent_paths = afw_value_allocate_unmanaged_array(p, xctx);
-        parent_paths->internal = afw_array_create_view_of_c_array(
+        parent_paths->internal = afw_array_create_unmanaged_from_c_array(
             (const void *)path, false, afw_data_type_anyURI, 1, p, xctx);
         afw_object_meta_set_parent_paths(e->object, parent_paths, xctx);
 
@@ -654,7 +655,7 @@ afw_adapter_impl_generic_object_type_object_get(
     objectType = afw_utf8_clone(object_type_id, result->p, xctx);
     afw_object_meta_set_ids(result, &adapter->adapter_id,
         afw_s__AdaptiveObjectType_, objectType, xctx);
-    afw_object_set_property_as_string(result, afw_v_objectType,
+    afw_object_set_property_as_string_internal(result, afw_v_objectType,
         objectType, xctx);
     afw_object_set_property(result,
         afw_v_allowAdd, afw_boolean_v_true, xctx);
@@ -940,16 +941,16 @@ impl_special_object_handling_cb(
             afw_object_meta_get_object_type_id(object, xctx),
             afw_s__AdaptiveServiceConf_))
         {
-            conf = afw_object_old_get_property_as_object(object,
+            conf = afw_object_get_property_as_object_internal(object,
                 afw_v_conf, xctx);
             if (conf) {
-                type = afw_object_old_get_property_as_string(conf,
+                type = afw_object_get_property_as_string_internal(conf,
                     afw_v_type, xctx);
                 if (type) {
                     service_type = afw_environment_get_service_type(
                         type, xctx);
                     if (service_type) {
-                        subtype = afw_object_old_get_property_as_string(
+                        subtype = afw_object_get_property_as_string_internal(
                             conf,
                             afw_value_create_unmanaged_string(
                                 service_type->conf_type->subtype_property_name,

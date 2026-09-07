@@ -584,6 +584,12 @@ afw_vfs_self_v_zz__VFS_to_operating_system_directory_map = {
 };
 
 const afw_value_string_t
+afw_vfs_self_v_zz___afw__AdaptiveCollection__vfs_extension = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz___afw__AdaptiveCollection__vfs_extension)
+};
+
+const afw_value_string_t
 afw_vfs_self_v_zz__a9c70700d89b = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_zz__a9c70700d89b)
@@ -623,6 +629,12 @@ const afw_value_integer_t
 afw_vfs_integer_self_v_67108864 = {
     {&afw_value_permanent_integer_inf},
     67108864
+};
+
+const afw_value_anyURI_t
+afw_vfs_anyURI_self_v_zz__2b8c16b19a08 = {
+    {&afw_value_permanent_anyURI_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_ANYURI_Q_zz__2b8c16b19a08)
 };
 
 static const afw_value_string_t * impl_string_literals[] = {

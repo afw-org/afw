@@ -616,7 +616,7 @@ impl_array_elements_assignable(
 
     count = afw_array_get_count(arr, xctx);
     for (i = 0; i < count; i++) {
-        elem = afw_array_get_entry_value(arr, i, xctx->p, xctx);
+        elem = afw_array_get_entry_value(arr, i, xctx);
         if (!impl_value_is_assignable(element_type, elem, contextual,
             depth + 1, xctx))
         {
@@ -648,7 +648,7 @@ impl_tuple_elements_assignable(
 
     for (i = 0; i < expected->tuple.count; i++) {
         et = expected->tuple.elements[i];
-        elem = afw_array_get_entry_value(arr, i, xctx->p, xctx);
+        elem = afw_array_get_entry_value(arr, i, xctx);
         if (et && !afw_value_type_is_any(et)) {
             if (!impl_value_is_assignable(et, elem, contextual, depth + 1,
                 xctx))
@@ -801,7 +801,7 @@ impl_mismatch_detail(
         {
             count = afw_array_get_count(arr, xctx);
             for (i = 0; i < count; i++) {
-                elem = afw_array_get_entry_value(arr, i, p, xctx);
+                elem = afw_array_get_entry_value(arr, i, xctx);
                 if (!afw_value_type_is_assignable(expected->array.element,
                     elem, contextual, xctx))
                 {
@@ -834,7 +834,7 @@ impl_mismatch_detail(
                     want_z);
             }
             for (i = 0; i < expected->tuple.count; i++) {
-                elem = afw_array_get_entry_value(arr, i, p, xctx);
+                elem = afw_array_get_entry_value(arr, i, xctx);
                 if (expected->tuple.elements[i] &&
                     !afw_value_type_is_any(expected->tuple.elements[i]) &&
                     !afw_value_type_is_assignable(
@@ -1306,7 +1306,7 @@ impl_foreach_object_literal_prop(
             if (e->type == afw_value_object_construct_entry_static &&
                 e->static_name)
             {
-                cb(afw_object_string_property_name_as_utf8(
+                cb(afw_object_string_property_name_internal(
                     e->static_name, xctx), e->value, data, xctx);
             }
         }
@@ -1329,7 +1329,7 @@ impl_foreach_object_literal_prop(
             break;
         }
         if (name) {
-            cb(afw_object_string_property_name_as_utf8(name, xctx),
+            cb(afw_object_string_property_name_internal(name, xctx),
                 pv, data, xctx);
         }
     }

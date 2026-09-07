@@ -139,7 +139,7 @@ impl_afw_value_optional_evaluate(
          * not an error (at() already used this nullish form).
          */
         result = afw_array_get_entry_value(list->internal,
-            ((const afw_value_integer_t *)key)->internal, p, xctx);
+            ((const afw_value_integer_t *)key)->internal, xctx);
         if (!result) {
             result = afw_value_undefined;
         }

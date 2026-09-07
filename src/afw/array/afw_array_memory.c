@@ -58,19 +58,6 @@ static void
 impl_afw_array_managed_setter_remove_all_values(
     const afw_array_setter_t *self,
     afw_xctx_t *xctx);
-static void
-impl_afw_array_managed_setter_push_internal(
-    const afw_array_setter_t *self,
-    const afw_data_type_t *data_type,
-    const void *internal,
-    afw_xctx_t *xctx);
-static void
-impl_afw_array_managed_setter_insert_internal(
-    const afw_array_setter_t *self,
-    afw_integer_t index,
-    const afw_data_type_t *data_type,
-    const void *internal,
-    afw_xctx_t *xctx);
 
 #undef AFW_IMPLEMENTATION_ID
 #define AFW_IMPLEMENTATION_ID "memory_managed"
@@ -93,18 +80,12 @@ impl_afw_array_managed_setter_insert_internal(
     impl_afw_array_managed_setter_insert_value
 #define impl_afw_array_setter_remove_all_values \
     impl_afw_array_managed_setter_remove_all_values
-#define impl_afw_array_setter_push_internal \
-    impl_afw_array_managed_setter_push_internal
-#define impl_afw_array_setter_insert_internal \
-    impl_afw_array_managed_setter_insert_internal
 #include "afw_array_setter_impl_declares.h"
 #undef AFW_ARRAY_SETTER_INF_ONLY
 #undef impl_afw_array_setter_push_value
 #undef impl_afw_array_setter_set_value
 #undef impl_afw_array_setter_insert_value
 #undef impl_afw_array_setter_remove_all_values
-#undef impl_afw_array_setter_push_internal
-#undef impl_afw_array_setter_insert_internal
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef AFW_IMPLEMENTATION_ID
 
@@ -255,7 +236,7 @@ impl_push_cloned_into_managed(
         if (!obj) {
             return;
         }
-        obj = afw_object_create_managed_from(obj, xctx);
+        obj = afw_object_create_managed_clone(obj, xctx);
         afw_array_push_value(to, obj->value, xctx);
         afw_object_release(obj, xctx);
         return;
@@ -265,7 +246,7 @@ impl_push_cloned_into_managed(
         if (!arr) {
             return;
         }
-        arr = afw_array_create_managed_from(arr, xctx);
+        arr = afw_array_create_managed_clone(arr, xctx);
         afw_array_push_value(to, arr->value, xctx);
         afw_array_release(arr, xctx);
         return;
@@ -275,7 +256,7 @@ impl_push_cloned_into_managed(
 
 
 AFW_DEFINE(const afw_array_t *)
-afw_array_create_managed_from(
+afw_array_create_managed_clone(
     const afw_array_t *from,
     afw_xctx_t *xctx)
 {
@@ -286,7 +267,7 @@ afw_array_create_managed_from(
 
     if (!from) {
         AFW_THROW_ERROR_Z(general,
-            "afw_array_create_managed_from requires from",
+            "afw_array_create_managed_clone requires from",
             xctx);
     }
     if (from->inf == &impl_afw_array_managed_inf) {
@@ -316,7 +297,7 @@ afw_array_create_managed_from(
     }
     iterator = NULL;
     for (;;) {
-        value = afw_array_get_next_value(from, &iterator, xctx->p, xctx);
+        value = afw_array_get_next_value(from, &iterator, xctx);
         if (!value) {
             break;
         }
@@ -375,7 +356,7 @@ afw_array_create_wrapper_with_options(
      * already-assignable child is bumped, not peeled.
      */
     for (iterator = NULL;;) {
-        value = afw_array_get_next_value(wrapped, &iterator, p, xctx);
+        value = afw_array_get_next_value(wrapped, &iterator, xctx);
         if (!value) {
             break;
         }
@@ -587,45 +568,12 @@ impl_afw_array_get_data_type(
 
 
 /*
- * Implementation of method get_entry_internal for interface afw_array.
- */
-afw_boolean_t
-impl_afw_array_get_entry_internal(
-    AFW_ARRAY_SELF_T *self,
-    afw_integer_t index,
-    const afw_data_type_t * * data_type,
-    const void * * internal,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *value;
-
-    value = impl_afw_array_get_entry_value(self, index, NULL, xctx);
-    if (value) {
-        *internal = AFW_VALUE_INTERNAL(value);
-        if (data_type) {
-            *data_type = afw_value_get_data_type(value, xctx);
-        }
-        return true;
-    }
-    else {
-        *internal = NULL;
-        if (data_type) {
-            *data_type = NULL;
-        }
-        return false;
-    }
-}
-
-
-
-/*
  * Implementation of method get_entry_value for interface afw_array.
  */
 const afw_value_t *
 impl_afw_array_get_entry_value(
     AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
-    const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
     afw_memory_internal_array_entry_t *ep;
@@ -659,63 +607,12 @@ impl_afw_array_get_entry_value(
 
 
 /*
- * Implementation of method get_next_internal for interface afw_array.
- */
-afw_boolean_t
-impl_afw_array_get_next_internal(
-    AFW_ARRAY_SELF_T *self,
-    const afw_iterator_old_t * * iterator,
-    const afw_data_type_t * * data_type,
-    const void * * internal,
-    afw_xctx_t *xctx)
-{
-    afw_memory_internal_array_entry_t *ep;
-
-    /* If iterator is NULL, locate first else locate next. */
-    if (!*iterator) {
-        ep = APR_RING_FIRST(self->ring);
-    }
-    else {
-        ep = (afw_memory_internal_array_entry_t *)*iterator;
-        ep = APR_RING_NEXT(ep, link);
-    }
-
-    /* If sentinel, clear iterator (match get_next_value) and return !found. */
-    if (ep == APR_RING_SENTINEL(self->ring,
-        afw_memory_internal_array_entry_s, link))
-    {
-        *iterator = NULL;
-        *internal = NULL;
-        if (data_type) {
-            *data_type = NULL;
-        }
-        return false;
-    }
-
-    /* Promote nested faces on wrapper arrays (typed map / get_next_internal). */
-    *iterator = (afw_iterator_old_t *)ep;
-    {
-        const afw_value_t *value;
-
-        value = impl_promote_structured_entry(self, ep, ep->value, xctx);
-        *internal = AFW_VALUE_INTERNAL(value);
-        if (data_type) {
-            *data_type = afw_value_get_data_type(value, xctx);
-        }
-    }
-    return true;
-}
-
-
-
-/*
  * Implementation of method get_next_value for interface afw_array.
  */
 const afw_value_t *
 impl_afw_array_get_next_value(
     AFW_ARRAY_SELF_T *self,
     const afw_iterator_old_t * * iterator,
-    const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
     afw_memory_internal_array_entry_t *ep;
@@ -1043,26 +940,6 @@ impl_afw_array_setter_push_value(
 
 
 /*
- * Implementation of method push_internal for interface afw_array_setter.
- */
-void
-impl_afw_array_setter_push_internal(
-    const afw_array_setter_t * self,
-    const afw_data_type_t *data_type,
-    const void * internal,
-    afw_xctx_t *xctx)
-{
-    afw_memory_internal_array_t *array_self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
-    const afw_value_t *value;
-
-    value = afw_value_common_create(internal, data_type, array_self->pub.p, xctx);
-    impl_afw_array_setter_push_value(self, value, xctx);
-}
-
-
-
-/*
  * Implementation of method pop_value for interface afw_array_setter.
  */
 const afw_value_t *
@@ -1191,28 +1068,6 @@ impl_afw_array_setter_insert_value(
 
 
 /*
- * Implementation of method insert_internal for interface afw_array_setter.
- */
-void
-impl_afw_array_setter_insert_internal(
-    const afw_array_setter_t * self,
-    afw_integer_t index,
-    const afw_data_type_t * data_type,
-    const void * internal,
-    afw_xctx_t *xctx)
-{
-    afw_memory_internal_array_t *array_self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
-    const afw_value_t *value;
-
-    value = afw_value_common_create(
-        internal, data_type, array_self->pub.p, xctx);
-    impl_afw_array_setter_insert_value(self, index, value, xctx);
-}
-
-
-
-/*
  * Implementation of method set_value for interface afw_array_setter.
  *
  * In-range replace, or append when index === count (grow by one). Never
@@ -1297,40 +1152,6 @@ impl_afw_array_setter_remove_value(
     APR_RING_FOREACH(ep, array_self->ring, afw_memory_internal_array_entry_s, link)
     {
         if (afw_value_equal(value, ep->value, xctx)) {
-            impl_drop_element(array_self, ep->value, xctx);
-            APR_RING_REMOVE(ep, link);
-            array_self->count--;
-            impl_maybe_clear_generic_data_type(array_self);
-            return;
-        }
-    }
-
-    AFW_THROW_ERROR_Z(general, "Value not in array", xctx);
-}
-
-
-
-/*
- * Implementation of method remove_internal for interface afw_array_setter.
- */
-void
-impl_afw_array_setter_remove_internal(
-    const afw_array_setter_t * self,
-    const afw_data_type_t *data_type,
-    const void * internal,
-    afw_xctx_t *xctx)
-{
-    afw_memory_internal_array_t *array_self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
-    afw_memory_internal_array_entry_t *ep;
-
-    APR_RING_FOREACH(ep, array_self->ring, afw_memory_internal_array_entry_s, link)
-    {
-        if (afw_value_get_data_type(ep->value, xctx) == data_type &&
-            memcmp(
-                &((const afw_value_common_t *)ep->value)->internal,
-                internal, data_type->c_type_size) == 0)
-        {
             impl_drop_element(array_self, ep->value, xctx);
             APR_RING_REMOVE(ep, link);
             array_self->count--;
@@ -1539,35 +1360,6 @@ impl_afw_array_managed_setter_remove_all_values(
 }
 
 
-void
-impl_afw_array_managed_setter_push_internal(
-    const afw_array_setter_t *self,
-    const afw_data_type_t *data_type,
-    const void *internal,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *value;
-
-    value = afw_value_common_create(internal, data_type, xctx->p, xctx);
-    impl_afw_array_managed_setter_push_value(self, value, xctx);
-}
-
-
-void
-impl_afw_array_managed_setter_insert_internal(
-    const afw_array_setter_t *self,
-    afw_integer_t index,
-    const afw_data_type_t *data_type,
-    const void *internal,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *value;
-
-    value = afw_value_common_create(internal, data_type, xctx->p, xctx);
-    impl_afw_array_managed_setter_insert_value(self, index, value, xctx);
-}
-
-
 /* Create or clone of an array. */
 AFW_DEFINE(const afw_array_t *)
 afw_array_create_or_clone(
@@ -1592,7 +1384,7 @@ afw_array_create_or_clone(
     result = afw_array_create_unmanaged_of(use_data_type, p, xctx);
     if (array) for (iterator = NULL;;)
     {
-        value = afw_array_get_next_value(array, &iterator, p, xctx);
+        value = afw_array_get_next_value(array, &iterator, xctx);
         if (!value) {
             break;
         }
@@ -1629,7 +1421,7 @@ afw_array_create_unmanaged_from_value(
             old_array = value_array;
             value_array = afw_array_create_unmanaged_of(data_type, p, xctx);
             for (iterator = NULL;;) {
-                v = afw_array_get_next_value(old_array, &iterator, p, xctx);
+                v = afw_array_get_next_value(old_array, &iterator, xctx);
                 if (!v) {
                     break;
                 }
@@ -1640,7 +1432,7 @@ afw_array_create_unmanaged_from_value(
     }
     else {
         v = afw_value_convert(value, data_type, true, p, xctx);
-        value_array = afw_array_create_view_of_c_array(
+        value_array = afw_array_create_unmanaged_from_c_array(
             AFW_VALUE_INTERNAL(v), false, data_type, 1, p, xctx);
     }
 

@@ -1219,7 +1219,7 @@ afw_value_add_reference(
  * Missing method is a no-op. Slot fill uses this.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_as_assignable(
+afw_value_get_assignable(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -1448,7 +1448,7 @@ afw_value_compile_and_evaluate(
  * @return result of compiling and evaluating the value.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_compile_and_evaluate_as(
+afw_value_compile_and_evaluate_using(
     const afw_value_t *value,
     const afw_utf8_t *source_location,
     afw_compile_type_t compile_type,
@@ -1518,13 +1518,16 @@ afw_value_convert_to_string(
 
 
 /**
- * Convert value->value to afw_utf8_z_t *.  Must be evaluated list with
- * exactly one entry or single value.  Value can not contain x'00' bytes.
+ * @brief Convert any evaluated value to NUL-terminated utf8.
+ * @param value to convert (not typesafe string-only).
+ * @param p pool for result.
+ * @param xctx of caller.
+ * @return utf8_z or NULL.
  *
- * Pool p will be used for result.
+ * Value can not contain x'00' bytes.
  */
 AFW_DECLARE(const afw_utf8_z_t *)
-afw_value_as_utf8_z(const afw_value_t *value,
+afw_value_convert_to_utf8_z(const afw_value_t *value,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 
@@ -1555,7 +1558,7 @@ afw_value_as_utf8_z(const afw_value_t *value,
  * mutation-reject matters. See `designs/utf8-code-point-sequences.md`.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_as_array_sequence(
+afw_value_convert_to_array_sequence(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -1575,26 +1578,29 @@ afw_value_one_and_only(
 
 
 /**
- * @brief Return result of afw_value_one_and_only() as utf8.
+ * @brief Convert afw_value_one_and_only() to utf8.
  * @param value list or single value.
  * @param p  Pool for result.
  * @param xctx of caller.
- * @return string representation of value or undefined.
+ * @return utf8 of the single value, or NULL.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_value_one_and_only_as_utf8(
+afw_value_one_and_only_convert_to_utf8(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx);
 
 
 
 /**
- * Convert value->value to afw_utf8_t *.  Must be an evaluated value or
- * list with exactly one entry
+ * @brief Convert any evaluated value to utf8.
+ * @param value to convert (not typesafe string-only).
+ * @param p pool for result.
+ * @param xctx of caller.
+ * @return utf8 of the value's data-type string form.
  *
- * Pool p will be used for result.
+ * Uses data_type internal_to_utf8. Not afw_value_as_string_internal.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_value_as_utf8(
+afw_value_convert_to_utf8(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx);
 
 
@@ -1616,7 +1622,7 @@ afw_value_as_utf8(
  * result of recursively calling this function, followed by ")".
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_value_as_casted_utf8(
+afw_value_convert_to_casted_utf8(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx);
 
 
@@ -2263,7 +2269,7 @@ afw_value_create_dateTime_now_local(
  * @return NULL terminated list of values or undefined if value is undefined.
  */
 AFW_DECLARE(const afw_value_t * const *)
-afw_value_as_array_of_values(
+afw_value_to_null_terminated_values(
     const afw_value_t * value,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
@@ -2277,7 +2283,7 @@ afw_value_as_array_of_values(
  * @return NULL terminated list of strings or undefined if value is undefined.
  */
 AFW_DECLARE(const afw_utf8_t * const *)
-afw_value_as_array_of_utf8(
+afw_value_convert_to_null_terminated_utf8(
     const afw_value_t * value,
     const afw_pool_t *p, afw_xctx_t *xctx);
 

@@ -196,12 +196,25 @@ struct afw_value_boolean_managed_s {
 };
 
 /**
- * @brief Typesafe cast of data type boolean.
+ * @brief Typesafe cast to evaluated boolean value.
+ * @param value (const afw_value_t *). Evaluated if needed.
+ * @return (const afw_value_boolean_t *)
+ *
+ * Throws if missing or wrong type. Use ->internal for the C
+ * payload, or afw_value_as_boolean_internal().
+ */
+AFW_DECLARE(const afw_value_boolean_t *)
+afw_value_as_boolean(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Typesafe peel of data type boolean internal.
  * @param value (const afw_value_t *).
  * @return (afw_boolean_t)
  */
 AFW_DECLARE(afw_boolean_t)
-afw_value_as_boolean(
+afw_value_as_boolean_internal(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -282,122 +295,148 @@ afw_value_boolean_create(afw_boolean_t internal,
 #define afw_value_create_unmanaged_boolean afw_value_boolean_create
 
 /**
- * @brief Get property function for data type boolean value.
- * @deprecated
+ * @brief Get property as boolean value.
  * @param object of property to get.
  * @param property_name of property to get.
- * @param found is place to return whether property is found.
  * @param xctx of caller.
- * @return afw_boolean_t.
+ * @return (const afw_value_boolean_t *) or NULL if missing.
  *
- * This is a deprecated function used to get around an exception that
- * was occurring when an object did not have a pool. Use the function
- * without an "_old" in the name for all new code and replace calls in
- * old code when possible.
- *
- */
-#define afw_object_old_get_property_as_boolean( \
-    object, property_name, found, xctx) \
-afw_object_get_property_as_boolean_source( \
-    object, property_name, found, AFW__FILE_LINE__, \
-    ((object)->p ? (object)->p : (xctx)->p), (xctx))
-
-/**
- * @brief Get property function for data type boolean value.
- * @param object of property to get.
- * @param property_name of property to get.
- * @param found is place to return whether property is found.
- * @param p to use for result if evaluation or conversion is required.
- * @param xctx of caller.
- * @return afw_boolean_t.
+ * Does not evaluate. Throws if present but not boolean.
  */
 #define afw_object_get_property_as_boolean( \
-    object, property_name, found, p, xctx) \
+    object, property_name, xctx) \
 afw_object_get_property_as_boolean_source( \
-    object, property_name, found, AFW__FILE_LINE__, p, xctx)
+    object, property_name, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get property function for data type boolean value.
+ * @brief Get property as boolean value.
+ * @param object of property to get.
+ * @param property_name of property to get.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_value_boolean_t *) or NULL if missing.
+ */
+AFW_DECLARE(const afw_value_boolean_t *)
+afw_object_get_property_as_boolean_source(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Get property as boolean internal.
+ * @param object of property to get.
+ * @param property_name of property to get.
+ * @param found is place to return whether property is found.
+ * @param xctx of caller.
+ * @return afw_boolean_t.
+ */
+#define afw_object_get_property_as_boolean_internal( \
+    object, property_name, found, xctx) \
+afw_object_get_property_as_boolean_internal_source( \
+    object, property_name, found, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get property as boolean internal.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param found is place to return whether property is found.
  * @param source_z file:line.
- * @param p to use for result if evaluation or conversion is required.
  * @param xctx of caller.
  * @return afw_boolean_t.
  */
 AFW_DECLARE(afw_boolean_t)
-afw_object_get_property_as_boolean_source(
+afw_object_get_property_as_boolean_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next property function for data type boolean value.
- * @deprecated
+ * @brief Get next property as boolean value.
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.
- * @param found is place to return whether property is found.
  * @param xctx of caller.
- * @return afw_boolean_t.
- *
- * This is a deprecated function used to get around an exception that
- * was occurring when an object did not have a pool. Use the function
- * without an "_old" in the name for all new code and replace calls in
- * old code when possible.
- *
- */
-#define afw_object_old_get_next_property_as_boolean( \
-    object, iterator, property_name, found, xctx) \
-afw_object_get_next_property_as_boolean_source( \
-    object, iterator, property_name, found, AFW__FILE_LINE__, \
-    ((object)->p ? (object)->p : (xctx)->p), (xctx))
-
-/**
- * @brief Get next property function for data type boolean value.
- * @param object of property to get.
- * @param iterator pointer. Set to NULL before first call.
- * @param property_name is place to return pointer to property name.
- * @param found is place to return whether property is found.
- * @param p to use for result if evaluation or conversion is required.
- * @param xctx of caller.
- * @return afw_boolean_t.
+ * @return (const afw_value_boolean_t *) or NULL if no more.
  */
 #define afw_object_get_next_property_as_boolean( \
-    object, iterator, property_name, found, p, xctx) \
+    object, iterator, property_name, xctx) \
 afw_object_get_next_property_as_boolean_source( \
-    object, iterator, property_name, found, AFW__FILE_LINE__, p, xctx)
+    object, iterator, property_name, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get property function for data type boolean value.
+ * @brief Get next property as boolean value.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_value_boolean_t *) or NULL if no more.
+ */
+AFW_DECLARE(const afw_value_boolean_t *)
+afw_object_get_next_property_as_boolean_source(
+    const afw_object_t *object,
+    const afw_iterator_old_t * *iterator,
+    const afw_value_t * *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Get next property as boolean internal.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param found is place to return whether property is found.
+ * @param xctx of caller.
+ * @return afw_boolean_t.
+ */
+#define afw_object_get_next_property_as_boolean_internal( \
+    object, iterator, property_name, found, xctx) \
+afw_object_get_next_property_as_boolean_internal_source( \
+    object, iterator, property_name, found, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get next property as boolean internal.
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.
  * @param found is place to return whether property is found.
  * @param source_z file:line.
- * @param p to use for result if conversion is required.
  * @param xctx of caller.
  * @return afw_boolean_t.
  */
 AFW_DECLARE(afw_boolean_t)
-afw_object_get_next_property_as_boolean_source(
+afw_object_get_next_property_as_boolean_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Set property function for data type boolean values.
+ * @brief Set property as boolean value.
  * @param object of property to set.
  * @param property_name of property to set.
- * @param value of value to set.
+ * @param value to set.
+ * @param xctx of caller.
+ *
+ * Compile-time type check for const afw_value_boolean_t *.
+ */
+AFW_DECLARE(void)
+afw_object_set_property_as_boolean(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_boolean_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Set property as boolean internal.
+ * @param object of property to set.
+ * @param property_name of property to set.
+ * @param internal of value to set.
  * @param xctx of caller.
  *
  * Uses permanent afw_boolean_v_true / afw_boolean_v_false
@@ -408,43 +447,66 @@ afw_object_get_next_property_as_boolean_source(
  *
  */
 AFW_DECLARE(void)
-afw_object_set_property_as_boolean(
+afw_object_set_property_as_boolean_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     afw_boolean_t internal,
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next value from array of boolean.
+ * @brief Get next boolean value from array of boolean.
  * @param instance of array.
  * @param iterator.
- * @param found is place to return whether value is found.
- * @param source_z file:line.
  * @param xctx of caller.
- * @return (afw_boolean_t) or NULL.
- * 
+ * @return (const afw_value_boolean_t *) or NULL.
+ *
  * Set the iterator to NULL before the first call and anytime
  * you want to start from the first value again.
  */
 #define afw_array_of_boolean_get_next( \
-    array, iterator, found, xctx) \
+    array, iterator, xctx) \
     afw_array_of_boolean_get_next_source( \
+    array, iterator, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get next boolean value from array of boolean.
+ * @param instance of array.
+ * @param iterator.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_value_boolean_t *) or NULL.
+ */
+AFW_DECLARE(const afw_value_boolean_t *)
+afw_array_of_boolean_get_next_source(
+    const afw_array_t *instance,
+    const afw_iterator_old_t * *iterator,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Get next boolean internal from array of boolean.
+ * @param instance of array.
+ * @param iterator.
+ * @param found is place to return whether value is found.
+ * @param xctx of caller.
+ * @return (afw_boolean_t) or NULL.
+ */
+#define afw_array_of_boolean_get_next_internal( \
+    array, iterator, found, xctx) \
+    afw_array_of_boolean_get_next_internal_source( \
     array, iterator, found, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get next value from array of boolean.
+ * @brief Get next boolean internal from array of boolean.
  * @param instance of array.
  * @param iterator.
  * @param found is place to return whether value is found.
  * @param source_z file:line.
  * @param xctx of caller.
  * @return (afw_boolean_t) or NULL.
- * 
- * Set the iterator to NULL before the first call and anytime
- * you want to start from the first value again.
  */
 AFW_DECLARE(afw_boolean_t)
-afw_array_of_boolean_get_next_source(
+afw_array_of_boolean_get_next_internal_source(
     const afw_array_t *instance,
     const afw_iterator_old_t * *iterator,
     afw_boolean_t *found,
@@ -452,7 +514,7 @@ afw_array_of_boolean_get_next_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Add value from array of boolean.
+ * @brief Add a boolean value to array of boolean.
  * @param instance of array.
  * @param value to add.
  * @param xctx of caller.
@@ -460,17 +522,41 @@ afw_array_of_boolean_get_next_source(
 AFW_DECLARE(void)
 afw_array_of_boolean_add(
     const afw_array_t *instance,
+    const afw_value_boolean_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Add a boolean internal to array of boolean.
+ * @param instance of array.
+ * @param value to add.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_of_boolean_add_internal(
+    const afw_array_t *instance,
     const afw_boolean_t *value,
     afw_xctx_t *xctx);
 
 /**
- * @brief Remove value from array of boolean.
+ * @brief Remove a boolean value from array of boolean.
  * @param instance of array.
  * @param value to remove.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
 afw_array_of_boolean_remove(
+    const afw_array_t *instance,
+    const afw_value_boolean_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Remove a boolean internal from array of boolean.
+ * @param instance of array.
+ * @param value to remove.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_of_boolean_remove_internal(
     const afw_array_t *instance,
     const afw_boolean_t *value,
     afw_xctx_t *xctx);

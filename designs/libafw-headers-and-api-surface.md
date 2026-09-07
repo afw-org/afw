@@ -70,7 +70,7 @@ The word **internal** is overloaded on purpose of history/context. When reading 
 | Sense | Examples | Public? |
 |-------|----------|---------|
 | **1. Core-private C surface** | `*_internal.h`, `afw_internal.h`, register/bindings glue, env bootstrap helpers | **No** — not on `afw.h`, not installed |
-| **2. C payload / representation** | `afw_value_string_t.internal`, `afw_data_type_*_to_internal`, array `push_internal` | **Yes** when on the supported path — “internal” ≈ native typed payload, not “libafw secret” |
+| **2. C payload / representation** | `afw_value_string_t.internal`, `afw_data_type_*_to_internal`, typed `array_of_<type>_add_internal` / `set_property_as_<type>_internal` | **Yes** when on the supported path — “internal” ≈ native typed payload, not “libafw secret” |
 | **3. Invent-for-generate labels** | `zz__*` string labels in `afw_strings_internal.h` | **No** — stable catalog stays in `afw_strings.h` |
 
 If unsure whether something is sense 1 vs 2, prefer **not promoting** to public install until an extension needs it.

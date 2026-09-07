@@ -57,7 +57,7 @@ afw_object_property_name_display_utf8(
 
 /* Utf8 internals of a required string property name. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_object_string_property_name_as_utf8(
+afw_object_string_property_name_internal(
     const afw_value_t *name,
     afw_xctx_t *xctx)
 {
@@ -303,7 +303,7 @@ afw_object_get_property_compile_as(
 
 /* Compile and evaluate a property value using specified compile type. */
 AFW_DEFINE(const afw_value_t *)
-afw_object_get_property_compile_and_evaluate_as(
+afw_object_get_property_compile_and_evaluate_using(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_utf8_t *source_location,
@@ -424,7 +424,7 @@ afw_object_get_property_extended(
  * specified pool.
  */
 AFW_DEFINE(const afw_value_t * const *)
-afw_object_old_get_property_as_array_of_values(
+afw_object_get_property_to_null_terminated_values(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_pool_t *p, afw_xctx_t *xctx)
@@ -433,7 +433,7 @@ afw_object_old_get_property_as_array_of_values(
 
     value = afw_object_get_property(instance, property_name, xctx);
 
-    return afw_value_as_array_of_values(value, p, xctx);
+    return afw_value_to_null_terminated_values(value, p, xctx);
 }
 
 
@@ -442,7 +442,7 @@ afw_object_old_get_property_as_array_of_values(
  * specified pool.
  */
 AFW_DEFINE(const afw_utf8_t * const *)
-afw_object_old_get_property_as_array_of_strings(
+afw_object_get_property_convert_to_null_terminated_utf8(
     const afw_object_t *instance, const afw_value_t *property_name,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
@@ -450,14 +450,14 @@ afw_object_old_get_property_as_array_of_strings(
 
     value = afw_object_get_property(instance, property_name, xctx);
 
-    return afw_value_as_array_of_utf8(value, p, xctx);;
+    return afw_value_convert_to_null_terminated_utf8(value, p, xctx);;
 }
 
 
 
 /* Return a compiled template property value. */
 AFW_DEFINE(const afw_value_t *)
-afw_object_old_get_property_as_compiled_script(
+afw_object_get_property_compile_script(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_utf8_t *source_location,
@@ -492,7 +492,7 @@ afw_object_old_get_property_as_compiled_script(
 
 /* Return a compiled template property value. */
 AFW_DEFINE(const afw_value_t *)
-afw_object_old_get_property_as_compiled_template(
+afw_object_get_property_compile_template(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_utf8_t *source_location,
@@ -525,104 +525,12 @@ afw_object_old_get_property_as_compiled_template(
 
 
 
-/* Get an object's property value including ancestors as a boolean. */
-AFW_DEFINE(afw_boolean_t)
-afw_object_old_get_property_as_boolean_deprecated(
-    const afw_object_t *instance,
-    const afw_value_t *property_name,
-    afw_xctx_t *xctx)
-{
-    const afw_utf8_t *string;
-    const afw_value_t *value;
-    afw_boolean_t result;
-
-    result = AFW_FALSE;
-    value = afw_object_get_property(instance, property_name, xctx);
-    if (value) {
-        value = afw_value_evaluate(value, xctx->p, xctx);
-        if (afw_value_is_boolean(value)) {
-            result = ((const afw_value_boolean_t *)value)->internal;
-        }
-        else {
-            string = afw_value_as_utf8(value, xctx->p, xctx);
-
-            if (
-                afw_utf8_compare_ignore_case(string, afw_s_true, xctx) == 0 ||
-                (string->len == 1 &&
-                    (
-                    *string->s == 't' ||
-                    *string->s == 'T' ||
-                    *string->s == '1')
-                    )
-                )
-            {
-                result = AFW_TRUE;
-            }
-
-            else if (
-                afw_utf8_compare_ignore_case(string, afw_s_false, xctx)== 0 ||
-                (string->len == 1 &&
-                    (
-                    *string->s == 'f' ||
-                    *string->s == 'F' ||
-                    *string->s == '0')
-                    )
-                )
-            {
-                result = AFW_FALSE;
-            }
-
-            else
-            {
-                AFW_THROW_ERROR_Z(general, "Boolean must be true or false",
-                    xctx);
-            }
-        }
-    }
-
-    return result;
-}
-
-
-/* Get an object's property value as an integer. */
-AFW_DEFINE(afw_integer_t)
-afw_object_old_get_property_as_integer_deprecated(
-    const afw_object_t *instance,
-    const afw_value_t *property_name,
-    afw_boolean_t *found,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *value;
-    afw_integer_t result = 0;
-
-    *found = false;
-    value = afw_object_get_property(instance, property_name, xctx);
-    if (value) {
-        if (afw_value_is_integer(value)) {
-            *found = true;
-            result = ((afw_value_integer_t *)value)->internal;
-        }
-        else {
-            value = afw_value_convert(value,
-                afw_data_type_integer, false, xctx->p, xctx);
-            if (value) {
-                result = ((afw_value_integer_t *)value)->internal;
-                *found = true;
-            }
-        }
-    }
-
-    return result;
-}
-
-
-
 /*
  * Get an object's property value including ancestors as a string in specified
  * pool.
  */
 AFW_DEFINE(const afw_utf8_t *)
-afw_object_old_get_property_as_utf8(
+afw_object_get_property_convert_to_utf8(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_pool_t *p,
@@ -635,7 +543,7 @@ afw_object_old_get_property_as_utf8(
     value = afw_object_get_property(instance, property_name, xctx);
     if (value) {
         value = afw_value_evaluate(value, p, xctx);
-        string = afw_value_as_utf8(value, p, xctx);
+        string = afw_value_convert_to_utf8(value, p, xctx);
     }
     return string;
 }
@@ -646,7 +554,7 @@ afw_object_old_get_property_as_utf8(
  * pool.
  */
 AFW_DEFINE(const afw_utf8_z_t *)
-afw_object_old_get_property_as_utf8_z(
+afw_object_get_property_convert_to_utf8_z(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_pool_t *p,
@@ -658,7 +566,7 @@ afw_object_old_get_property_as_utf8_z(
     utf8_z = NULL;
     value = afw_object_get_property(instance, property_name, xctx);
     if (value) {
-        utf8_z = afw_value_as_utf8_z(value, p, xctx);
+        utf8_z = afw_value_convert_to_utf8_z(value, p, xctx);
     }
     return utf8_z;
 }

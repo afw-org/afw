@@ -81,7 +81,7 @@ impl_find_object(
     for (entry = first_property_name_entry; entry->next; entry = entry->next)
     {
         *property_name = &entry->next->property_name.pub;
-        object = afw_object_old_get_property_as_object(result,
+        object = afw_object_get_property_as_object_internal(result,
             &entry->property_name.pub, xctx);
         if (!object) {
             if (create_if_necessary) {
@@ -185,7 +185,7 @@ afw_adapter_modify_entries_from_list(
 
         /* Get next tuple.  Break out of loop if there are no more. */
         tuple_i = NULL;
-        tuple = afw_array_of_array_get_next(list, &entry_i, xctx);
+        tuple = afw_array_of_array_get_next_internal(list, &entry_i, xctx);
         if (!tuple) {
             break;
         }
@@ -194,7 +194,7 @@ afw_adapter_modify_entries_from_list(
         entry = afw_pool_calloc_type(p, afw_adapter_modify_entry_t, xctx);
 
         /* Entry type. */
-        s = afw_array_of_string_get_next(tuple, &tuple_i, xctx);
+        s = afw_array_of_string_get_next_internal(tuple, &tuple_i, xctx);
         if (!s) {
             goto error;
         }
@@ -204,7 +204,7 @@ afw_adapter_modify_entries_from_list(
         }
 
         /* Entry name/names. */
-        value = afw_array_get_next_value(tuple, &tuple_i, p, xctx);
+        value = afw_array_get_next_value(tuple, &tuple_i, xctx);
         if (!value) {
             goto error;
         }
@@ -216,7 +216,7 @@ afw_adapter_modify_entries_from_list(
         }
         else if (afw_value_is_array(value)) {
             for (names_i = NULL, prev_property_name_list = NULL;;) {
-                s = afw_array_of_string_get_next(
+                s = afw_array_of_string_get_next_internal(
                     ((const afw_value_array_t *)value)->internal,
                     &names_i, xctx);
                 if (!s) {
@@ -241,7 +241,7 @@ afw_adapter_modify_entries_from_list(
         }
 
         /* Get value. */
-        entry->value = afw_array_get_next_value(tuple, &tuple_i, p, xctx);
+        entry->value = afw_array_get_next_value(tuple, &tuple_i, xctx);
         if ((entry->value && !entry_type_has_value[entry->type]) ||
             (!entry->value && entry_type_has_value[entry->type]))
         {
@@ -250,7 +250,7 @@ afw_adapter_modify_entries_from_list(
 
         /* It's an error if there is a 4th value in tuple. */
         if (entry->value) {
-            if (afw_array_get_next_value(tuple, &tuple_i, p, xctx)) {
+            if (afw_array_get_next_value(tuple, &tuple_i, xctx)) {
                 goto error;
             }
         }
@@ -383,7 +383,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
 
                 /* If old value is a list, just add new value to it. */
                 if (afw_value_is_array(old_value)) {
-                    list = afw_value_as_array(old_value, xctx);
+                    list = afw_value_as_array_internal(old_value, xctx);
                     afw_array_push_value(list, value, xctx);
                 }
 
@@ -680,7 +680,7 @@ impl_reconcile_object(
 
                 /* Reconcile the two objects. */
                 impl_reconcile_object(wa,
-                    pt, afw_object_string_property_name_as_utf8(
+                    pt, afw_object_string_property_name_internal(
                         property_name, wa->xctx),
                     property_object_type,
                     new_property_names,
@@ -816,17 +816,17 @@ afw_adapter_modify_object(
         AFW_UTF8_FMT_ARG(adapter_id),
         AFW_UTF8_FMT_ARG(object_type_id),
         AFW_UTF8_FMT_ARG(object_id));
-    afw_object_set_property_as_string(request,
+    afw_object_set_property_as_string_internal(request,
         afw_v_resourceId, impl_request.resource_id, xctx);
     afw_object_set_property(request,
         afw_v_function, afw_v_modify_object, xctx);
-    afw_object_set_property_as_string(request,
+    afw_object_set_property_as_string_internal(request,
         afw_v_adapterId, adapter_id, xctx);
-    afw_object_set_property_as_string(request,
+    afw_object_set_property_as_string_internal(request,
         afw_v_objectType, object_type_id, xctx);
-    afw_object_set_property_as_string(request,
+    afw_object_set_property_as_string_internal(request,
         afw_v_objectId, object_id, xctx);
-    afw_object_set_property_as_array(request,
+    afw_object_set_property_as_array_internal(request,
         afw_v_entries, entries, xctx);
 
     /* Parse entries. */

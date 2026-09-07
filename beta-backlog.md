@@ -343,7 +343,7 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 
 #### Array as vector / deque (C) — done on branch
 
-- **`afw_array_setter` reshaped:** seal; `push_value`/`push_internal`; `pop_value`/`shift_value` (+ optional `found`); `insert_*` / `set_value` / `remove_value_by_index` with **`afw_integer_t`** indexes; content `remove_*` / `remove_all_values`.
+- **`afw_array_setter` reshaped:** seal; `push_value`; `pop_value`/`shift_value` (+ optional `found`); `insert_value` / `set_value` / `remove_value_by_index` with **`afw_integer_t`** indexes; content `remove_value` / `remove_all_values`. C payloads go through typed `array_of_<type>_add_internal`, not a setter `void *` door.
 - **Indexes:** negatives from end; insert may land at count (append); set/remove require element. `insert_value(index, value)` order.
 - **Empty pop/shift:** NULL + optional `found` (not throw). Script wrappers can treat NULL as undefined.
 - **Memory array `get_count`:** maintained **`self->count`** O(1); mutators keep it in sync. `get_entry_value` supports from-end negatives like the setter.
@@ -367,7 +367,7 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 | **`afw_value_meta_values_list` / `_object`** | **Done** | Lazy immutable views; `metas()` for array/object. Tests: `miscellaneous/meta_values.as`. |
 | **`set_value` / discard slot release** | **Deferred to #2** | Commented-out helper + `@fixme #2` in `afw_array_memory.c` (match object store-as-is for now). When hold-on-store lands: `optional_release` on set/remove/remove_all; not on pop/shift. |
 | **Mid-array insert/remove O(n)** | **Improved** | Still O(n) ring, but index locate walks from **nearer end** (`impl_entry_at`). Ends (`push`/`pop`/`shift`/`insert 0`) stay O(1). Contiguous vector later only if hot. |
-| **`get_next_internal` iterator** | **Done** | Matches `get_next_value`: do not store sentinel in iterator; clear to NULL at end. |
+| **`get_next_internal` iterator** | **Gone** | Vtable method dropped. `get_next_value` still clears the iterator to NULL at end (do not store sentinel). |
 | **Stored C NULL vs empty on pop** | **Documented** | Optional `found`; interface + `afw_array.h` describe empty vs removed NULL. |
 | **No C vtable `unshift` name** | **Documented** | Intentional: `insert_value(…, 0, …)` / `afw_array_insert_value(a, 0, v, xctx)`. Script has `unshift`. |
 | **test262 `\fixme` / skips** | Parallel | Burn down over weeks/months; not #55 MVP. Differences doc #22 separate. |

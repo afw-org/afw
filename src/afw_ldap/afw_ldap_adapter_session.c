@@ -119,7 +119,7 @@ impl_afw_adapter_session_retrieve_objects(
     /* Determine base_z using optional type specific parameter. */
     base_z = "";
     if (adapter_type_specific) {
-        s = afw_object_old_get_property_as_string(adapter_type_specific,
+        s = afw_object_get_property_as_string_internal(adapter_type_specific,
             afw_ldap_v_base, xctx);
         if (s) {
             base_z = (char *)afw_utf8_to_utf8_z(s, p, xctx);
@@ -379,7 +379,7 @@ impl_afw_adapter_session_add_object(
         &iterator, &property_name, xctx)))
     {
         /* LDAP lookup / mod_type take utf8, not a property-name value. */
-        property_name_utf8 = afw_object_string_property_name_as_utf8(
+        property_name_utf8 = afw_object_string_property_name_internal(
             property_name, xctx);
         attribute = afw_ldap_metadata_get_object_type_attribute(
             first_attribute, property_name_utf8);

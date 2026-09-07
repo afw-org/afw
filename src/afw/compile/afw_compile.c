@@ -351,7 +351,7 @@ afw_compile_to_object(
         value = afw_compile_parse_Object(parser, false, false);
         afw_compile_check_for_residual(parser);
         if (value) {
-            result = afw_value_as_object(value, xctx);
+            result = afw_value_as_object_internal(value, xctx);
             if (adapter_id) {
                 afw_object_meta_set_ids(result,
                     adapter_id, object_type_id, object_id, xctx);
@@ -386,7 +386,7 @@ afw_compile_script(
     const afw_utf8_t *source;
     const afw_value_t *result;
     
-    source = afw_value_as_utf8(value, p, xctx);
+    source = afw_value_convert_to_utf8(value, p, xctx);
     result = afw_compile_script_source(source,
         source_location, parent, shared, p, xctx);
     return result;
@@ -412,7 +412,7 @@ afw_compile_template(
         return value;
     }
 
-    source = afw_value_as_utf8(value, p, xctx);
+    source = afw_value_convert_to_utf8(value, p, xctx);
     result = afw_compile_template_source(source,
         source_location, parent, shared, p, xctx);
     return result;

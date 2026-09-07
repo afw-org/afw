@@ -197,19 +197,19 @@ afw_file_path_resolve_rootFilePaths(
     best_prefix = NULL;
     best_host = NULL;
     iterator = NULL;
-    property_value = afw_object_get_next_property_as_string(roots,
-        &iterator, &property_name, p, xctx);
+    property_value = afw_object_get_next_property_as_string_internal(roots,
+        &iterator, &property_name, xctx);
     while (property_value) {
         const afw_utf8_t *name_utf8 =
-            afw_object_string_property_name_as_utf8(property_name, xctx);
+            afw_object_string_property_name_internal(property_name, xctx);
         if (impl_prefix_matches(logical_path, name_utf8)) {
             if (!best_prefix || name_utf8->len > best_prefix->len) {
                 best_prefix = name_utf8;
                 best_host = property_value;
             }
         }
-        property_value = afw_object_get_next_property_as_string(roots,
-            &iterator, &property_name, p, xctx);
+        property_value = afw_object_get_next_property_as_string_internal(roots,
+            &iterator, &property_name, xctx);
     }
 
     if (!best_prefix) {

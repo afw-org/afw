@@ -61,14 +61,14 @@ afw_curl_function_execute_curl_version_info(
 
         afw_object_set_property_as_string_from_utf8_z(object, 
             afw_curl_v_version, version_info->version, xctx);
-        afw_object_set_property_as_integer(object, 
+        afw_object_set_property_as_integer_internal(object, 
             afw_curl_v_version_num, version_info->version_num, xctx);
         afw_object_set_property_as_string_from_utf8_z(object, 
             afw_curl_v_host, version_info->host, xctx);
         afw_object_set_property_as_string_from_utf8_z(object, 
             afw_curl_v_ssl_version, version_info->ssl_version, xctx);
 
-        afw_object_set_property_as_integer(object, 
+        afw_object_set_property_as_integer_internal(object, 
             afw_curl_v_ssl_version_num, version_info->ssl_version_num, xctx);
 
         if (version_info->libz_version)

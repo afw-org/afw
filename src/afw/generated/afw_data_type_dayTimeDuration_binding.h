@@ -196,12 +196,25 @@ struct afw_value_dayTimeDuration_managed_s {
 };
 
 /**
- * @brief Typesafe cast of data type dayTimeDuration.
+ * @brief Typesafe cast to evaluated dayTimeDuration value.
+ * @param value (const afw_value_t *). Evaluated if needed.
+ * @return (const afw_value_dayTimeDuration_t *)
+ *
+ * Throws if missing or wrong type. Use ->internal for the C
+ * payload, or afw_value_as_dayTimeDuration_internal().
+ */
+AFW_DECLARE(const afw_value_dayTimeDuration_t *)
+afw_value_as_dayTimeDuration(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Typesafe peel of data type dayTimeDuration internal.
  * @param value (const afw_value_t *).
  * @return (const afw_dayTimeDuration_t *)
  */
 AFW_DECLARE(const afw_dayTimeDuration_t *)
-afw_value_as_dayTimeDuration(
+afw_value_as_dayTimeDuration_internal(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -283,114 +296,142 @@ afw_value_dayTimeDuration_create(const afw_dayTimeDuration_t * internal,
 #define afw_value_create_unmanaged_dayTimeDuration afw_value_dayTimeDuration_create
 
 /**
- * @brief Get property function for data type dayTimeDuration value.
- * @deprecated
+ * @brief Get property as dayTimeDuration value.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param xctx of caller.
- * @return const afw_dayTimeDuration_t *.
+ * @return (const afw_value_dayTimeDuration_t *) or NULL if missing.
  *
- * This is a deprecated function used to get around an exception that
- * was occurring when an object did not have a pool. Use the function
- * without an "_old" in the name for all new code and replace calls in
- * old code when possible.
- *
- */
-#define afw_object_old_get_property_as_dayTimeDuration( \
-    object, property_name, xctx) \
-afw_object_get_property_as_dayTimeDuration_source( \
-    object, property_name, AFW__FILE_LINE__, \
-    ((object)->p ? (object)->p : (xctx)->p), (xctx))
-
-/**
- * @brief Get property function for data type dayTimeDuration value.
- * @param object of property to get.
- * @param property_name of property to get.
- * @param p to use for result if evaluation or conversion is required.
- * @param xctx of caller.
- * @return const afw_dayTimeDuration_t *.
+ * Does not evaluate. Throws if present but not dayTimeDuration.
  */
 #define afw_object_get_property_as_dayTimeDuration( \
-    object, property_name, p, xctx) \
+    object, property_name, xctx) \
 afw_object_get_property_as_dayTimeDuration_source( \
-    object, property_name, AFW__FILE_LINE__, p, xctx)
+    object, property_name, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get property function for data type dayTimeDuration value.
+ * @brief Get property as dayTimeDuration value.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param source_z file:line.
- * @param p to use for result if evaluation or conversion is required.
  * @param xctx of caller.
- * @return const afw_dayTimeDuration_t *.
+ * @return (const afw_value_dayTimeDuration_t *) or NULL if missing.
  */
-AFW_DECLARE(const afw_dayTimeDuration_t *)
+AFW_DECLARE(const afw_value_dayTimeDuration_t *)
 afw_object_get_property_as_dayTimeDuration_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next property function for data type dayTimeDuration value.
- * @deprecated
+ * @brief Get property as dayTimeDuration internal.
  * @param object of property to get.
- * @param iterator pointer. Set to NULL before first call.
- * @param property_name is place to return pointer to property name.
- * @param xctx of caller.
- * @return const afw_dayTimeDuration_t *.
- *
- * This is a deprecated function used to get around an exception that
- * was occurring when an object did not have a pool. Use the function
- * without an "_old" in the name for all new code and replace calls in
- * old code when possible.
- *
- */
-#define afw_object_old_get_next_property_as_dayTimeDuration( \
-    object, iterator, property_name, xctx) \
-afw_object_get_next_property_as_dayTimeDuration_source( \
-    object, iterator, property_name, AFW__FILE_LINE__, \
-    ((object)->p ? (object)->p : (xctx)->p), (xctx))
-
-/**
- * @brief Get next property function for data type dayTimeDuration value.
- * @param object of property to get.
- * @param iterator pointer. Set to NULL before first call.
- * @param property_name is place to return pointer to property name.
- * @param p to use for result if evaluation or conversion is required.
+ * @param property_name of property to get.
  * @param xctx of caller.
  * @return const afw_dayTimeDuration_t *.
  */
-#define afw_object_get_next_property_as_dayTimeDuration( \
-    object, iterator, property_name, p, xctx) \
-afw_object_get_next_property_as_dayTimeDuration_source( \
-    object, iterator, property_name, AFW__FILE_LINE__, p, xctx)
+#define afw_object_get_property_as_dayTimeDuration_internal( \
+    object, property_name, xctx) \
+afw_object_get_property_as_dayTimeDuration_internal_source( \
+    object, property_name, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get property function for data type dayTimeDuration value.
+ * @brief Get property as dayTimeDuration internal.
  * @param object of property to get.
- * @param iterator pointer. Set to NULL before first call.
- * @param property_name is place to return pointer to property name.
+ * @param property_name of property to get.
  * @param source_z file:line.
- * @param p to use for result if conversion is required.
  * @param xctx of caller.
  * @return const afw_dayTimeDuration_t *.
  */
 AFW_DECLARE(const afw_dayTimeDuration_t *)
+afw_object_get_property_as_dayTimeDuration_internal_source(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Get next property as dayTimeDuration value.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param xctx of caller.
+ * @return (const afw_value_dayTimeDuration_t *) or NULL if no more.
+ */
+#define afw_object_get_next_property_as_dayTimeDuration( \
+    object, iterator, property_name, xctx) \
+afw_object_get_next_property_as_dayTimeDuration_source( \
+    object, iterator, property_name, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get next property as dayTimeDuration value.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_value_dayTimeDuration_t *) or NULL if no more.
+ */
+AFW_DECLARE(const afw_value_dayTimeDuration_t *)
 afw_object_get_next_property_as_dayTimeDuration_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Set property function for data type dayTimeDuration values.
+ * @brief Get next property as dayTimeDuration internal.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param xctx of caller.
+ * @return const afw_dayTimeDuration_t *.
+ */
+#define afw_object_get_next_property_as_dayTimeDuration_internal( \
+    object, iterator, property_name, xctx) \
+afw_object_get_next_property_as_dayTimeDuration_internal_source( \
+    object, iterator, property_name, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get next property as dayTimeDuration internal.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return const afw_dayTimeDuration_t *.
+ */
+AFW_DECLARE(const afw_dayTimeDuration_t *)
+afw_object_get_next_property_as_dayTimeDuration_internal_source(
+    const afw_object_t *object,
+    const afw_iterator_old_t * *iterator,
+    const afw_value_t * *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Set property as dayTimeDuration value.
  * @param object of property to set.
  * @param property_name of property to set.
- * @param value of value to set.
+ * @param value to set.
+ * @param xctx of caller.
+ *
+ * Compile-time type check for const afw_value_dayTimeDuration_t *.
+ */
+AFW_DECLARE(void)
+afw_object_set_property_as_dayTimeDuration(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_dayTimeDuration_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Set property as dayTimeDuration internal.
+ * @param object of property to set.
+ * @param property_name of property to set.
+ * @param internal of value to set.
  * @param xctx of caller.
  *
  * The value will be allocated in the object's pool.
@@ -400,20 +441,19 @@ afw_object_get_next_property_as_dayTimeDuration_source(
  *
  */
 AFW_DECLARE(void)
-afw_object_set_property_as_dayTimeDuration(
+afw_object_set_property_as_dayTimeDuration_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_dayTimeDuration_t * internal,
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next value from array of dayTimeDuration.
+ * @brief Get next dayTimeDuration value from array of dayTimeDuration.
  * @param instance of array.
  * @param iterator.
- * @param source_z file:line.
  * @param xctx of caller.
- * @return (const afw_dayTimeDuration_t *) or NULL.
- * 
+ * @return (const afw_value_dayTimeDuration_t *) or NULL.
+ *
  * Set the iterator to NULL before the first call and anytime
  * you want to start from the first value again.
  */
@@ -423,17 +463,14 @@ afw_object_set_property_as_dayTimeDuration(
     array, iterator, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get next value from array of dayTimeDuration.
+ * @brief Get next dayTimeDuration value from array of dayTimeDuration.
  * @param instance of array.
  * @param iterator.
  * @param source_z file:line.
  * @param xctx of caller.
- * @return (const afw_dayTimeDuration_t *) or NULL.
- * 
- * Set the iterator to NULL before the first call and anytime
- * you want to start from the first value again.
+ * @return (const afw_value_dayTimeDuration_t *) or NULL.
  */
-AFW_DECLARE(const afw_dayTimeDuration_t *)
+AFW_DECLARE(const afw_value_dayTimeDuration_t *)
 afw_array_of_dayTimeDuration_get_next_source(
     const afw_array_t *instance,
     const afw_iterator_old_t * *iterator,
@@ -441,7 +478,34 @@ afw_array_of_dayTimeDuration_get_next_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Add value from array of dayTimeDuration.
+ * @brief Get next dayTimeDuration internal from array of dayTimeDuration.
+ * @param instance of array.
+ * @param iterator.
+ * @param xctx of caller.
+ * @return (const afw_dayTimeDuration_t *) or NULL.
+ */
+#define afw_array_of_dayTimeDuration_get_next_internal( \
+    array, iterator, xctx) \
+    afw_array_of_dayTimeDuration_get_next_internal_source( \
+    array, iterator, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get next dayTimeDuration internal from array of dayTimeDuration.
+ * @param instance of array.
+ * @param iterator.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_dayTimeDuration_t *) or NULL.
+ */
+AFW_DECLARE(const afw_dayTimeDuration_t *)
+afw_array_of_dayTimeDuration_get_next_internal_source(
+    const afw_array_t *instance,
+    const afw_iterator_old_t * *iterator,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Add a dayTimeDuration value to array of dayTimeDuration.
  * @param instance of array.
  * @param value to add.
  * @param xctx of caller.
@@ -449,17 +513,41 @@ afw_array_of_dayTimeDuration_get_next_source(
 AFW_DECLARE(void)
 afw_array_of_dayTimeDuration_add(
     const afw_array_t *instance,
+    const afw_value_dayTimeDuration_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Add a dayTimeDuration internal to array of dayTimeDuration.
+ * @param instance of array.
+ * @param value to add.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_of_dayTimeDuration_add_internal(
+    const afw_array_t *instance,
     const afw_dayTimeDuration_t *value,
     afw_xctx_t *xctx);
 
 /**
- * @brief Remove value from array of dayTimeDuration.
+ * @brief Remove a dayTimeDuration value from array of dayTimeDuration.
  * @param instance of array.
  * @param value to remove.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
 afw_array_of_dayTimeDuration_remove(
+    const afw_array_t *instance,
+    const afw_value_dayTimeDuration_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Remove a dayTimeDuration internal from array of dayTimeDuration.
+ * @param instance of array.
+ * @param value to remove.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_of_dayTimeDuration_remove_internal(
     const afw_array_t *instance,
     const afw_dayTimeDuration_t *value,
     afw_xctx_t *xctx);

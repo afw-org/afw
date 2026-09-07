@@ -83,7 +83,7 @@ const afw_lmdb_env_t * afw_lmdb_adapter_parse_env(
         AFW_THROW_ERROR_Z(general,
             "Property env.path required by LMDB adapter.", xctx);
     }
-    value = afw_value_compile_and_evaluate_as(value, NULL,
+    value = afw_value_compile_and_evaluate_using(value, NULL,
         afw_compile_type_template, p, xctx);
     if (!afw_value_is_string(value)) {
         AFW_THROW_ERROR_Z(general,
@@ -99,25 +99,25 @@ const afw_lmdb_env_t * afw_lmdb_adapter_parse_env(
         AFW_THROW_ERROR_Z(general,
             "Property env.mode required by LMDB adapter.", xctx);
     }
-    env->mode = afw_safe_cast_integer_to_int(afw_value_as_integer(value, xctx), xctx);
+    env->mode = afw_safe_cast_integer_to_int(afw_value_as_integer_internal(value, xctx), xctx);
 
     value = afw_object_get_property(envObject, afw_lmdb_v_maxreaders, xctx);
     if (value) {
-        env->maxreaders = afw_safe_cast_integer_to_int(afw_value_as_integer(value, xctx), xctx);
+        env->maxreaders = afw_safe_cast_integer_to_int(afw_value_as_integer_internal(value, xctx), xctx);
     } else {
         env->maxreaders = 0;
     }
 
     value = afw_object_get_property(envObject, afw_lmdb_v_maxdbs, xctx);
     if (value) {
-        env->maxdbs = afw_safe_cast_integer_to_int(afw_value_as_integer(value, xctx), xctx);
+        env->maxdbs = afw_safe_cast_integer_to_int(afw_value_as_integer_internal(value, xctx), xctx);
     } else {
         env->maxdbs = 0;
     }
 
     value = afw_object_get_property(envObject, afw_lmdb_v_mapsize, xctx);
     if (value) {
-        env->mapsize = (size_t)afw_value_as_integer(value, xctx);
+        env->mapsize = (size_t)afw_value_as_integer_internal(value, xctx);
     } else {
         env->mapsize = 0;
     }
@@ -136,34 +136,34 @@ const afw_lmdb_limits_t * afw_lmdb_adapter_parse_limits(
 
     value = afw_object_get_property(lim, afw_lmdb_v_size, xctx);
     if (value) {
-        obj = afw_value_as_object(value, xctx);
+        obj = afw_value_as_object_internal(value, xctx);
 
         value = afw_object_get_property(obj, afw_lmdb_v_soft, xctx);
         if (value)
-            limits->size_soft = afw_safe_cast_integer_to_int(afw_value_as_integer(value, xctx), xctx);
+            limits->size_soft = afw_safe_cast_integer_to_int(afw_value_as_integer_internal(value, xctx), xctx);
         else
             limits->size_soft = 500;
 
         value = afw_object_get_property(obj, afw_lmdb_v_hard, xctx);
         if (value)
-            limits->size_hard = afw_safe_cast_integer_to_int(afw_value_as_integer(value, xctx), xctx);
+            limits->size_hard = afw_safe_cast_integer_to_int(afw_value_as_integer_internal(value, xctx), xctx);
         else
             limits->size_hard = 1000;
     }
 
     value = afw_object_get_property(lim, afw_lmdb_v_time, xctx);
     if (value) {
-        obj = afw_value_as_object(value, xctx);
+        obj = afw_value_as_object_internal(value, xctx);
 
         value = afw_object_get_property(obj, afw_lmdb_v_soft, xctx);
         if (value)
-            limits->time_soft = afw_safe_cast_integer_to_int(afw_value_as_integer(value, xctx), xctx);
+            limits->time_soft = afw_safe_cast_integer_to_int(afw_value_as_integer_internal(value, xctx), xctx);
         else
             limits->time_soft = 3600;
 
         value = afw_object_get_property(obj, afw_lmdb_v_hard, xctx);
         if (value)
-            limits->time_hard = afw_safe_cast_integer_to_int(afw_value_as_integer(value, xctx), xctx);
+            limits->time_hard = afw_safe_cast_integer_to_int(afw_value_as_integer_internal(value, xctx), xctx);
         else
             limits->time_hard = 14400;
     }
@@ -227,7 +227,7 @@ void afw_lmdb_adapter_open_databases(
     indexer = afw_lmdb_adapter_impl_index_create(NULL, self, txn, xctx);
 
     /* now open up any index databases we may have */
-    indexDefinitions = afw_object_old_get_property_as_object(
+    indexDefinitions = afw_object_get_property_as_object_internal(
         self->internalConfig, afw_lmdb_v_indexDefinitions, xctx);
     if (indexDefinitions) {
         afw_adapter_impl_index_open_definitions(indexer, 
@@ -280,7 +280,7 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
         AFW_THROW_ERROR_Z(general,
             "Property env required by LMDB adapter.", xctx);
     }
-    env = afw_value_as_object(value, xctx);
+    env = afw_value_as_object_internal(value, xctx);
 
     self->env = afw_lmdb_adapter_parse_env(env, p, xctx);
 
@@ -337,7 +337,7 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
 
     value = afw_object_get_property(properties, afw_lmdb_v_limits, xctx);
     if (value) {
-        limits = afw_value_as_object(value, xctx);
+        limits = afw_value_as_object_internal(value, xctx);
         self->limits = afw_lmdb_adapter_parse_limits(limits, xctx);
     }
 
@@ -459,7 +459,7 @@ impl_afw_adapter_get_additional_metrics (
     Use afw_object_create_embedded() instead of
     afw_object_create_unmanaged_new_p() for the embedded ones. This creates the
     object and sets the property in the embedding object. So the
-    afw_object_set_property_as_object() for each at the end
+    afw_object_set_property_as_object_internal() for each at the end
     can be removed.
 
     When this is done and you access /afw/_AdaptiveAdapter_/... the

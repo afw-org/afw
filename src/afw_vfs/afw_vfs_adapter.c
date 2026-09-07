@@ -58,7 +58,7 @@ afw_vfs_adapter_internal_create_cede_p(
     self = (afw_vfs_adapter_internal_t *)adapter;
 
     /* Get vfsMap property. */
-    vfs_map = afw_object_old_get_property_as_array(
+    vfs_map = afw_object_get_property_as_array_internal(
         adapter->properties, afw_vfs_v_vfsMap, xctx);
     count = 0;
     if (vfs_map) {
@@ -79,11 +79,11 @@ afw_vfs_adapter_internal_create_cede_p(
     for (iterator = NULL;;entries++) {
 
         /* Get next entry, evaluate as template, then parse (issue #15). */
-        value = afw_array_get_next_value(vfs_map, &iterator, p, xctx);
+        value = afw_array_get_next_value(vfs_map, &iterator, xctx);
         if (!value) {
             break;
         }
-        value = afw_value_compile_and_evaluate_as(value,
+        value = afw_value_compile_and_evaluate_using(value,
             adapter->source_location, afw_compile_type_template, p, xctx);
         if (!afw_value_is_string(value)) {
             AFW_THROW_ERROR_Z(general,
@@ -212,7 +212,7 @@ afw_vfs_adapter_internal_create_cede_p(
     }
 
     /* Process markExecutable */
-    x_list = afw_object_old_get_property_as_array(adapter->properties,
+    x_list = afw_object_get_property_as_array_internal(adapter->properties,
         afw_vfs_v_markExecutable, xctx);
     count = 0;
     if (x_list) {
@@ -224,7 +224,7 @@ afw_vfs_adapter_internal_create_cede_p(
         self->mark_executable = mark_executable;
 
         for (iterator = NULL;; mark_executable++) {
-            value = afw_array_get_next_value(x_list, &iterator, p, xctx);
+            value = afw_array_get_next_value(x_list, &iterator, xctx);
             if (!value) {
                 break;
             }
@@ -248,7 +248,7 @@ afw_vfs_adapter_internal_create_cede_p(
         afw_boolean_t found;
         afw_integer_t max_read;
 
-        max_read = afw_object_old_get_property_as_integer(
+        max_read = afw_object_get_property_as_integer_internal(
             adapter->properties, afw_vfs_v_maxReadBytes, &found, xctx);
         if (!found) {
             self->max_read_bytes = AFW_VFS_DEFAULT_MAX_READ_BYTES;

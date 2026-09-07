@@ -172,7 +172,7 @@ impl_data_type_object_function__value = {
 };
 
 /* Permanent empty array of function. */
-const afw_array_view_of_c_array_self_t
+const afw_array_from_values_self_t
 impl_empty_array_of_function;
 
 /* Permanent empty array value of function. */
@@ -210,15 +210,16 @@ afw_data_type_function_direct = {
 };
 
 /* Permanent empty array of function. */
-const afw_array_view_of_c_array_self_t
+const afw_array_from_values_self_t
 impl_empty_array_of_function = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_function
     },
     &afw_data_type_function_direct,
-    0
+    0,
+    NULL
 };
 
 /* Permanent empty array value of function. */
@@ -233,9 +234,21 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_function =
     &afw_data_type_function_direct;
 
-/* Set property function for data type function values. */
+/* Set property from function value. */
 AFW_DEFINE(void)
 afw_object_set_property_as_function(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_function_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_object_set_property(object, property_name,
+        &value->pub, xctx);
+}
+
+/* Set property from function internal. */
+AFW_DEFINE(void)
+afw_object_set_property_as_function_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_value_t * internal,
@@ -243,18 +256,18 @@ afw_object_set_property_as_function(
 {
     const afw_value_t *v;
 
-    if (!object->p) {
-        AFW_THROW_ERROR_Z(general,
-            "Object must have a pool",
-            xctx);
+    if (afw_object_is_memory_managed(object) ||
+        afw_object_is_memory_wrapper(object)) {
+        v = afw_value_function_create_managed(internal, xctx);
     }
-
-    v = afw_value_function_create(internal, object->p, xctx);
+    else {
+        v = afw_value_function_create(internal, object->p, xctx);
+    }
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe cast of data type function. */
-AFW_DEFINE(const afw_value_t *)
+/* Typesafe cast to evaluated function value. */
+AFW_DEFINE(const afw_value_function_t *)
 afw_value_as_function(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
@@ -275,7 +288,14 @@ afw_value_as_function(const afw_value_t *value, afw_xctx_t *xctx)
             "encountered " AFW_UTF8_FMT_Q ,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
     }
-    return (((const afw_value_function_t *)value)->internal);
+    return (const afw_value_function_t *)value;
+}
+
+/* Typesafe peel of data type function internal. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_as_function_internal(const afw_value_t *value, afw_xctx_t *xctx)
+{
+    return afw_value_as_function(value, xctx)->internal;
 }
 
 /* Allocate function for data type function values. */
@@ -380,13 +400,12 @@ afw_data_type_function_to_utf8(const afw_value_t * internal,
         &internal, p, xctx);
 }
 
-/* Get property function for data type function values. */
-AFW_DEFINE(const afw_value_t *)
+/* Get property as function value. */
+AFW_DEFINE(const afw_value_function_t *)
 afw_object_get_property_as_function_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
@@ -395,10 +414,7 @@ afw_object_get_property_as_function_source(
     if (!value) {
         return NULL;
     }
-
-    value = afw_value_evaluate(value, p, xctx);
-    if (!AFW_VALUE_IS_DATA_TYPE(value, function))
-    {
+    if (!AFW_VALUE_IS_DATA_TYPE(value, function)) {
         const afw_utf8_t *data_type_id;
 
         data_type_id = afw_value_get_quick_data_type_id(value);
@@ -408,17 +424,33 @@ afw_object_get_property_as_function_source(
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
-    return (((const afw_value_function_t *)value)->internal);
+    return (const afw_value_function_t *)value;
 }
 
-/* Get next property function for data type function values. */
+/* Get property as function internal. */
 AFW_DEFINE(const afw_value_t *)
+afw_object_get_property_as_function_internal_source(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx)
+{
+    const afw_value_function_t *value;
+
+    value = afw_object_get_property_as_function_source(object, property_name, source_z, xctx);
+    if (!value) {
+        return NULL;
+    }
+    return value->internal;
+}
+
+/* Get next property as function value. */
+AFW_DEFINE(const afw_value_function_t *)
 afw_object_get_next_property_as_function_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
@@ -427,10 +459,7 @@ afw_object_get_next_property_as_function_source(
     if (!value) {
         return NULL;
     }
-
-    value = afw_value_evaluate(value, p, xctx);
-    if (!AFW_VALUE_IS_DATA_TYPE(value, function))
-    {
+    if (!AFW_VALUE_IS_DATA_TYPE(value, function)) {
         const afw_utf8_t *data_type_id;
 
         data_type_id = afw_value_get_quick_data_type_id(value);
@@ -440,7 +469,25 @@ afw_object_get_next_property_as_function_source(
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
-    return (((const afw_value_function_t *)value)->internal);
+    return (const afw_value_function_t *)value;
+}
+
+/* Get next property as function internal. */
+AFW_DEFINE(const afw_value_t *)
+afw_object_get_next_property_as_function_internal_source(
+    const afw_object_t *object,
+    const afw_iterator_old_t * *iterator,
+    const afw_value_t * *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx)
+{
+    const afw_value_function_t *value;
+
+    value = afw_object_get_next_property_as_function_source(object, iterator, property_name, source_z, xctx);
+    if (!value) {
+        return NULL;
+    }
+    return value->internal;
 }
 
 /* Implementation of method optional_release for managed value. */
@@ -567,72 +614,104 @@ impl_afw_value_get_info(
 }
 
 
-/* Get next value from array of function. */
-AFW_DEFINE(const afw_value_t *)
+/* Get next function value from array of function. */
+AFW_DEFINE(const afw_value_function_t *)
 afw_array_of_function_get_next_source(
     const afw_array_t *instance,
     const afw_iterator_old_t * *iterator,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx)
 {
-    const void *internal;
-    const afw_data_type_t *data_type;
+    const afw_value_t *value;
 
-    afw_array_get_next_internal(instance, iterator, &data_type, &internal, xctx);
-    if (!internal) {
+    value = afw_array_get_next_value(instance, iterator, xctx);
+    if (!value) {
         return NULL;
     }
-    if (data_type != afw_data_type_function) {
+    if (!AFW_VALUE_IS_DATA_TYPE(value, function)) {
         const afw_utf8_t *data_type_id;
 
-        data_type_id = &data_type->data_type_id;
+        data_type_id = afw_value_get_quick_data_type_id(value);
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
             "Typesafe error: expecting 'function' but "
             "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
-    return *(const afw_value_t * *)internal;
+    return (const afw_value_function_t *)value;
 }
 
-/* Add value from array of function */
+/* Get next function internal from array of function. */
+AFW_DEFINE(const afw_value_t *)
+afw_array_of_function_get_next_internal_source(
+    const afw_array_t *instance,
+    const afw_iterator_old_t * *iterator,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx)
+{
+    const afw_value_function_t *value;
+
+    value = afw_array_of_function_get_next_source(instance, iterator, source_z, xctx);
+    if (!value) {
+        return NULL;
+    }
+    return value->internal;
+}
+
+/* Add a function value to array of function. */
 AFW_DEFINE(void)
 afw_array_of_function_add(
     const afw_array_t *instance,
-    const afw_value_t *value,
+    const afw_value_function_t *value,
     afw_xctx_t *xctx)
 {
     const afw_array_setter_t *setter;
-    const afw_value_t *internal;
 
     setter = afw_array_get_setter(instance, xctx);
     if (!setter) {
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
-
-    internal = value;
-    afw_array_setter_push_internal(setter, 
-        afw_data_type_function,
-        (const void *)&internal, xctx);
+    afw_array_setter_push_value(setter, &value->pub, xctx);
 }
 
-/* Remove value from array of function */
+/* Add a function internal to array of function. */
 AFW_DEFINE(void)
-afw_array_of_function_remove(
+afw_array_of_function_add_internal(
     const afw_array_t *instance,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *internal;
-    const afw_array_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_array_get_setter(instance, xctx);
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    if (afw_array_is_memory_managed(instance) ||
+        afw_array_is_memory_wrapper(instance)) {
+        v = afw_value_function_create_managed(value, xctx);
     }
+    else {
+        v = afw_value_function_create(value, instance->p, xctx);
+    }
+    afw_array_push_value(instance, v, xctx);
+}
 
-    internal = value;
-    afw_array_setter_remove_internal(setter, 
-        afw_data_type_function,
-        (const void *)&internal, xctx);
+/* Remove a function value from array of function. */
+AFW_DEFINE(void)
+afw_array_of_function_remove(
+    const afw_array_t *instance,
+    const afw_value_function_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_array_of_function_remove_internal(instance, value->internal, xctx);
+}
+
+/* Remove a function internal from array of function. */
+AFW_DEFINE(void)
+afw_array_of_function_remove_internal(
+    const afw_array_t *instance,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *v;
+
+    v = afw_value_function_create(value, xctx->p, xctx);
+    afw_array_remove_value(instance, v, xctx);
 }

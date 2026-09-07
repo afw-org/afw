@@ -345,9 +345,6 @@ afw_runtime_value_accessor_stopping_adapter_instances(
         }
 
         entry = afw_pool_malloc(p, count * sizeof(afw_integer_t), xctx);
-        list = afw_array_create_view_of_c_array(entry, false,
-            afw_data_type_integer, count, p, xctx);
-        result = afw_value_create_unmanaged_array(list, p, xctx);
         for (
             stopping = anchor->stopping,
             count = 0;
@@ -358,6 +355,10 @@ afw_runtime_value_accessor_stopping_adapter_instances(
         {
             *entry = stopping->reference_count;
         }
+        entry -= count;
+        list = afw_array_create_unmanaged_from_c_array(entry, false,
+            afw_data_type_integer, count, p, xctx);
+        result = afw_value_create_unmanaged_array(list, p, xctx);
     }
 
     AFW_LOCK_END;
@@ -428,9 +429,6 @@ afw_runtime_value_accessor_stopping_authorization_handler_instances(
         }
 
         entry = afw_pool_malloc(p, count * sizeof(afw_integer_t), xctx);
-        list = afw_array_create_view_of_c_array(entry, false,
-            afw_data_type_integer, count, p, xctx);
-        result = afw_value_create_unmanaged_array(list, p, xctx);
         for (
             stopping = anchor->stopping,
             count = 0;
@@ -441,6 +439,10 @@ afw_runtime_value_accessor_stopping_authorization_handler_instances(
         {
             *entry = stopping->reference_count;
         }
+        entry -= count;
+        list = afw_array_create_unmanaged_from_c_array(entry, false,
+            afw_data_type_integer, count, p, xctx);
+        result = afw_value_create_unmanaged_array(list, p, xctx);
     }
 
     AFW_LOCK_WRITE_END;
@@ -986,7 +988,7 @@ afw_runtime_value_accessor_null_terminated_array_of_internal(
     }
 
     /* Support for pointer to array of internals. */
-    list = afw_array_create_view_of_c_array(*((const void * const *)internal),
+    list = afw_array_create_unmanaged_from_c_array(*((const void * const *)internal),
         false, prop->data_type_parameter_data_type, -1, p, xctx);
     result = afw_value_create_unmanaged_array(list, p, xctx);
     result = afw_value_clone(result, p, xctx); /* Clone while locked. */
@@ -1027,7 +1029,7 @@ afw_runtime_value_accessor_null_terminated_array_of_objects(
         *(const afw_object_t * const * const *)internal;
     const afw_array_t *list;
 
-    list = afw_array_const_create_null_terminated_array_of_objects(objects,
+    list = afw_array_create_unmanaged_from_null_terminated_objects(objects,
         p, xctx);
 
     return afw_value_create_unmanaged_array(list, p, xctx);
@@ -1151,7 +1153,7 @@ afw_runtime_value_accessor_null_terminated_array_of_pointers(
     }
 
     /* Support for pointer to array of pointers. */
-    list = afw_array_create_view_of_c_array(*((const void * const *)internal),
+    list = afw_array_create_unmanaged_from_c_array(*((const void * const *)internal),
         true, prop->data_type_parameter_data_type, -1, p, xctx);
     result = afw_value_create_unmanaged_array(list, p, xctx);
     result = afw_value_clone(result, p, xctx); /* Clone while locked. */
@@ -1190,7 +1192,8 @@ afw_runtime_value_accessor_null_terminated_array_of_values(
     const afw_value_t * const *values =  (const afw_value_t * const *)internal;
     const afw_array_t *list;
 
-    list = afw_array_const_create_null_terminated_array_of_values(values, p, xctx);
+    list = afw_array_create_unmanaged_from_null_terminated_values(
+        NULL, values, p, xctx);
 
     return afw_value_create_unmanaged_array(list, p, xctx);
 }

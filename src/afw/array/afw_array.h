@@ -88,7 +88,7 @@ afw_array_create_managed(
  * promote via get_assignable_value. Already-managed source is held.
  */
 AFW_DECLARE(const afw_array_t *)
-afw_array_create_managed_from(
+afw_array_create_managed_clone(
     const afw_array_t *from,
     afw_xctx_t *xctx);
 
@@ -105,8 +105,8 @@ afw_array_is_memory_managed(const afw_array_t *array);
  * @brief Create a memory array that wraps another array (mutable face).
  * @param options AFW_ARRAY_MEMORY_OPTION_* (unmanaged borrow vs managed pin).
  * @param wrapped base array for isolation. Required (non-NULL). Any
- *     afw_array implementation is allowed (memory, adapter-backed, view of
- *     C array, …).
+ *     afw_array implementation is allowed (memory, adapter-backed,
+ *     from_values, …).
  * @param p to use for the face.
  * @param xctx of caller.
  * @return instance of new wrapper array.
@@ -115,7 +115,8 @@ afw_array_is_memory_managed(const afw_array_t *array);
  * only touch the face. Nested mutable objects/arrays are promoted to nested
  * faces on get. Sets never write to @p wrapped (issue #17).
  *
- * Not the same as afw_array_create_view_of_c_array (immutable C storage view).
+ * Not the same as afw_array_create_unmanaged_from_c_array (typed
+ * from_values array copied from C internals).
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_wrapper_with_options(
@@ -168,8 +169,8 @@ afw_array_is_memory_wrapper(const afw_array_t *array);
  * @brief True if array is a generic memory array (face or not).
  * @param array to test (may be NULL).
  *
- * Custom infs (metas views, const arrays) are false. Used so clone_or_reference
- * wraps compiled memory arrays (mutable overlay) but not immutable views.
+ * Custom infs (metas views, from_values) are false. Used so clone_or_reference
+ * wraps compiled memory arrays (mutable overlay) but not immutable arrays.
  */
 AFW_DECLARE(afw_boolean_t)
 afw_array_is_memory(const afw_array_t *array);
@@ -242,15 +243,15 @@ afw_array_as_value(
 
 
 /**
- * @brief Create an immutable array from an array of objects.
+ * @brief Create an unmanaged from_values array from object pointers.
  * @param objects is address of first object in array.
  * @param count is number of objects.
  * @param p is pool for result.
  * @param xctx of caller.
- * @return array instance.
+ * @return array instance. get_data_type() is object.
  */
 AFW_DECLARE(const afw_array_t *)
-afw_array_const_create_array_of_objects(
+afw_array_create_unmanaged_from_objects(
     const afw_object_t *const *objects,
     afw_size_t count,
     const afw_pool_t *p,
@@ -259,15 +260,21 @@ afw_array_const_create_array_of_objects(
 
 
 /**
- * @brief Create an immutable array from an array of values.
+ * @brief Create an unmanaged from_values array from value pointers.
+ * @param data_type if every element is that type, or NULL if mixed.
  * @param values is address of first value in array.
  * @param count is number for values.
  * @param p is pool for result.
  * @param xctx of caller.
- * @return array instance.
+ * @return array instance. Dual face is unmanaged_array.
+ *
+ * Elements are existing value pointers; get_entry_value() does not wrap.
+ * Not a permanent array. Generate uses the public self with
+ * afw_array_permanent_from_values_inf.
  */
 AFW_DECLARE(const afw_array_t *)
-afw_array_const_create_array_of_values(
+afw_array_create_unmanaged_from_values(
+    const afw_data_type_t *data_type,
     const afw_value_t *const *values,
     afw_size_t count,
     const afw_pool_t *p,
@@ -276,14 +283,14 @@ afw_array_const_create_array_of_values(
 
 
 /**
- * @brief Create an immutable array from NULL terminated array of objects.
+ * @brief Create an unmanaged from_values array from NULL-terminated objects.
  * @param objects is NULL terminated array of objects.
  * @param p is pool for result.
  * @param xctx of caller.
- * @return array instance.
+ * @return array instance. get_data_type() is object.
  */
 AFW_DECLARE(const afw_array_t *)
-afw_array_const_create_null_terminated_array_of_objects(
+afw_array_create_unmanaged_from_null_terminated_objects(
     const afw_object_t *const *objects,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -291,17 +298,58 @@ afw_array_const_create_null_terminated_array_of_objects(
 
 
 /**
- * @brief Create an immutable array from NULL terminated array of values.
+ * @brief Create an unmanaged from_values array from NULL-terminated values.
+ * @param data_type if every element is that type, or NULL if mixed.
  * @param values is NULL terminated array of values.
  * @param p is pool for result.
  * @param xctx of caller.
  * @return array instance.
  */
 AFW_DECLARE(const afw_array_t *)
-afw_array_const_create_null_terminated_array_of_values(
+afw_array_create_unmanaged_from_null_terminated_values(
+    const afw_data_type_t *data_type,
     const afw_value_t *const *values,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
+
+
+/**
+ * @brief Self for immutable array of value pointers.
+ *
+ * Shared layout for unmanaged, managed (later), and permanent infs.
+ * Generate and typed empty arrays initialize this statically with
+ * afw_array_permanent_from_values_inf. Runtime creates allocate it
+ * plus a dual value.
+ */
+typedef struct afw_array_from_values_self_s {
+    afw_array_t pub;
+    const afw_data_type_t *data_type;
+    afw_size_t count;
+    const afw_value_t *const *values;
+    /* Managed inf only. Permanent/unmanaged leave this 0. */
+    afw_size_t reference_count;
+} afw_array_from_values_self_t;
+
+
+/**
+ * @brief inf for unmanaged from_values arrays (runtime create).
+ */
+AFW_DECLARE_CONST_DATA(afw_array_inf_t)
+afw_array_unmanaged_from_values_inf;
+
+
+/**
+ * @brief inf for permanent from_values arrays (generate / empty arrays).
+ */
+AFW_DECLARE_CONST_DATA(afw_array_inf_t)
+afw_array_permanent_from_values_inf;
+
+
+/**
+ * @brief inf for managed from_values arrays (xctx->p, RC).
+ */
+AFW_DECLARE_CONST_DATA(afw_array_inf_t)
+afw_array_managed_from_values_inf;
 
 
 
@@ -356,18 +404,20 @@ afw_array_convert_to_array_of_strings(
 
 
 /**
- * @brief Create an immutable afw_array that views a C array of internals.
+ * @brief Create an unmanaged from_values array by copying C internals.
  * @param array of internal values (or pointers to internals if indirect).
  * @param indirect if true, array is array of pointers to internal values.
- * @param data_type of each element.
+ * @param data_type of each element. Required.
  * @param count of entries in array or -1 for NULL-terminated pointer list.
  * @param p is pool for result.
  * @param xctx of caller.
- * @return array instance (immutable view; does not copy the C storage).
+ * @return typed unmanaged from_values array.
+ *
+ * Copies each internal into a value in @p p at create. C storage need
+ * only live until this call returns. Fill C storage before calling.
  *
  * This is **not** a mutable look-through face over another adaptive array
- * (reserved naming: create_wrapper_* for #17-style faces). It only exposes
- * existing C memory as an `afw_array_t`.
+ * (reserved naming: create_wrapper_* for #17-style faces).
  *
  * If indirect is false, array must be an array of data_type->cType.  If
  * indirect is true, array must be an array of data_type->cType *.
@@ -376,8 +426,8 @@ afw_array_convert_to_array_of_strings(
  * be because data_type->cType ends in an asterisk or the indirect parameter
  * is true.
  */
-AFW_DEFINE(const afw_array_t *)
-afw_array_create_view_of_c_array(
+AFW_DECLARE(const afw_array_t *)
+afw_array_create_unmanaged_from_c_array(
     const void *array,
     afw_boolean_t indirect,
     const afw_data_type_t *data_type,
@@ -388,80 +438,85 @@ afw_array_create_view_of_c_array(
 
 
 /**
- * @brief Self for immutable afw_array view of a C array.
+ * @brief Create a managed from_values array from value pointers.
+ * @param data_type if every element is that type, or NULL if mixed.
+ * @param values is address of first value in array.
+ * @param count is number of values.
+ * @param xctx of caller.
+ * @return instance (reference count 1). Dual face is managed_array.
  *
- * Can be defined and filled out in a local variable instead of calling
- * afw_array_create_view_of_c_array() if the instance is only needed
- * temporarily. Helper macro AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY_P() can be
- * used to do this.
+ * Each element is stored via get_assignable_value. No dest p.
  */
-typedef struct afw_array_view_of_c_array_self_s {
-    afw_array_t pub;
-    const afw_data_type_t *data_type;
-    afw_size_t count;
-    const void *internal;
-    afw_boolean_t indirect;
-} afw_array_view_of_c_array_self_t;
+AFW_DECLARE(const afw_array_t *)
+afw_array_create_managed_from_values(
+    const afw_data_type_t *data_type,
+    const afw_value_t *const *values,
+    afw_size_t count,
+    afw_xctx_t *xctx);
 
 
 
 /**
- * @brief inf for afw_array_view_of_c_array afw_array implementation.
- *
- * See AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY() macro.
+ * @brief Create a managed from_values array from object pointers.
+ * @param objects is address of first object in array.
+ * @param count is number of objects.
+ * @param xctx of caller.
+ * @return instance (reference count 1). get_data_type() is object.
  */
-AFW_DECLARE_CONST_DATA(afw_array_inf_t)
-afw_array_view_of_c_array_inf;
+AFW_DECLARE(const afw_array_t *)
+afw_array_create_managed_from_objects(
+    const afw_object_t *const *objects,
+    afw_size_t count,
+    afw_xctx_t *xctx);
 
 
 
 /**
- * @brief Helper macro to fill out afw_array_view_of_c_array_self_t.
- * @param instance is pointer to afw_array_view_of_c_array_self_t.
- * @param _internal array of internal values.
- * @param _indirect if true array is array of pointers to internal value.
- * @param _data_type of array.
- * @param _count of entries in array or -1 for NULL terminated.
- *
- * If method afw_array_get_next_value() will be called, use helper macro
- * AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY_P() instead.  Calling
- * afw_array_get_next() will work fine since it does not allocate memory.
- *
- * Example:
- *
- *   afw_array_view_of_c_array_self_t view;
- *
- *   AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY(&view, array, data_type, count);
+ * @brief Create a managed from_values array from NULL-terminated values.
+ * @param data_type if every element is that type, or NULL if mixed.
+ * @param values is NULL terminated array of values.
+ * @param xctx of caller.
+ * @return instance (reference count 1).
  */
-#define AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY( \
-instance, _internal, _indirect, _data_type, _count) \
-    (instance)->pub.inf = &afw_array_view_of_c_array_inf; \
-    (instance)->pub.p = NULL; \
-    (instance)->internal = _internal; \
-    (instance)->indirect = _indirect; \
-    (instance)->data_type = _data_type; \
-    (instance)->count = _count
+AFW_DECLARE(const afw_array_t *)
+afw_array_create_managed_from_null_terminated_values(
+    const afw_data_type_t *data_type,
+    const afw_value_t *const *values,
+    afw_xctx_t *xctx);
+
 
 
 /**
- * @brief Helper macro to fill out afw_array_view_of_c_array_self_t.
- * @brief instance is pointer to afw_array_view_of_c_array_self_t.
- * @param _internal array of internal values.
- * @param _indirect if true array is array of pointers to internal value.
- * @param _data_type of array.
- * @param _count of entries in array or -1 for NULL terminated.
- * @param _p for use by method afw_array_get_next_value().
- *
- * If possible, use AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY() instead.
+ * @brief Create a managed from_values array from NULL-terminated objects.
+ * @param objects is NULL terminated array of objects.
+ * @param xctx of caller.
+ * @return instance (reference count 1). get_data_type() is object.
  */
-#define AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY_P(instance, \
-_internal, _indirect, _data_type, _count, _p) \
-    (instance)->pub.inf = &afw_array_view_of_c_array_inf; \
-    (instance)->pub.p = _p; \
-    (instance)->internal = _internal; \
-    (instance)->indirect = _indirect; \
-    (instance)->data_type = _data_type; \
-    (instance)->count = _count
+AFW_DECLARE(const afw_array_t *)
+afw_array_create_managed_from_null_terminated_objects(
+    const afw_object_t *const *objects,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Create a managed from_values array by copying C internals.
+ * @param array of internal values (or pointers to internals if indirect).
+ * @param indirect if true, array is array of pointers to internal values.
+ * @param data_type of each element. Required.
+ * @param count of entries in array or -1 for NULL-terminated pointer list.
+ * @param xctx of caller.
+ * @return instance (reference count 1).
+ *
+ * Copies each internal into a managed value in xctx->p at create.
+ */
+AFW_DECLARE(const afw_array_t *)
+afw_array_create_managed_from_c_array(
+    const void *array,
+    afw_boolean_t indirect,
+    const afw_data_type_t *data_type,
+    afw_size_t count,
+    afw_xctx_t *xctx);
 
 
 
@@ -529,22 +584,6 @@ AFW_DECLARE(void)
 afw_array_push_value(
     const afw_array_t *instance,
     const afw_value_t *value,
-    afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Append internal value at end (typed push).
- * @param instance Pointer to this value array instance.
- * @param data_type of internal.
- * @param internal A value.
- * @param xctx of caller.
- */
-AFW_DECLARE(void)
-afw_array_push_internal(
-    const afw_array_t *instance,
-    const afw_data_type_t *data_type,
-    const void *internal,
     afw_xctx_t *xctx);
 
 
@@ -648,22 +687,6 @@ AFW_DECLARE(void)
 afw_array_remove_value(
     const afw_array_t *instance,
     const afw_value_t *value,
-    afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Remove first matching internal value (typed content remove).
- * @param instance Pointer to this value array instance.
- * @param data_type of internal.
- * @param internal A value.
- * @param xctx of caller.
- */
-AFW_DECLARE(void)
-afw_array_remove_internal(
-    const afw_array_t *instance,
-    const afw_data_type_t *data_type,
-    const void *internal,
     afw_xctx_t *xctx);
 
 

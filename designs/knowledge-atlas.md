@@ -53,7 +53,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | Types | #28 pad + `typescript-differences.md`; #186 parse nesting; #188 names declared before use |
 | Script language | #62 pad; #33 errors; #172 must-change |
 | Compile / call / spread | `afw-script-eval`; #140 / #181; `compiler_internal` kind-check |
-| Arrays / converts / UTF-8 | #39, converts pad, #153; #190 empty-match `replace` |
+| Arrays / converts / UTF-8 | #39, converts pad, #153; #190 empty-match `replace`. C array/object vtables store **values**; `_as_<type>` vs `_internal`; meta getters still dest `p` |
 | Streams / VFS / retrieve | stream + vfs rules; #127; #49 |
 | afwdev / tests | recipe + tests-extra SCHEMA; #157; C probes #207 |
 | Crypto | #74 pad |

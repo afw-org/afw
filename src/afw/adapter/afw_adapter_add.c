@@ -47,19 +47,19 @@ afw_adapter_add_object(
         AFW_UTF8_FMT_ARG(adapter_id),
         AFW_UTF8_FMT_ARG(object_type_id),
         AFW_UTF8_FMT_OPTIONAL_ARG(suggested_object_id));
-    afw_object_set_property_as_string(request,
+    afw_object_set_property_as_string_internal(request,
         afw_v_resourceId, impl_request.resource_id, xctx);
     afw_object_set_property(request,
         afw_v_function, afw_v_add_object, xctx);
-    afw_object_set_property_as_string(request,
+    afw_object_set_property_as_string_internal(request,
         afw_v_adapterId, adapter_id, xctx);
-    afw_object_set_property_as_string(request,
+    afw_object_set_property_as_string_internal(request,
         afw_v_objectType, object_type_id, xctx);
     if (suggested_object_id) {
-        afw_object_set_property_as_string(request,
+        afw_object_set_property_as_string_internal(request,
             afw_v_suggestedObjectId, suggested_object_id, xctx);
     }
-    afw_object_set_property_as_object(request,
+    afw_object_set_property_as_object_internal(request,
         afw_v_object, object, xctx);
 
     /* Get an active session with adapter. */
@@ -97,11 +97,11 @@ afw_adapter_add_object(
     }
 
     /* Set info in journal entry. */
-    afw_object_set_property_as_string(journal_entry,
+    afw_object_set_property_as_string_internal(journal_entry,
         afw_v_objectId, object_id, xctx);
     path = afw_object_path_make(adapter_id, object_type_id, object_id,
         journal_entry->p, xctx);
-    afw_object_set_property_as_string(journal_entry,
+    afw_object_set_property_as_string_internal(journal_entry,
         afw_v_path, path, xctx);
 
     /* If requested, write to event journal. */

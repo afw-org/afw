@@ -75,16 +75,16 @@ afw_adapter_get_object(
         AFW_UTF8_FMT_ARG(adapter_id),
         AFW_UTF8_FMT_ARG(object_type_id),
         AFW_UTF8_FMT_ARG(object_id));
-    afw_object_set_property_as_string(request,
+    afw_object_set_property_as_string_internal(request,
         afw_v_resourceId, impl_request.resource_id, xctx);
     impl_request.options = options;
     afw_object_set_property(request,
         afw_v_function, afw_v_get_object, xctx);
-    afw_object_set_property_as_string(request,
+    afw_object_set_property_as_string_internal(request,
         afw_v_adapterId, adapter_id, xctx);
-    afw_object_set_property_as_string(request,
+    afw_object_set_property_as_string_internal(request,
         afw_v_objectType, object_type_id, xctx);
-    afw_object_set_property_as_string(request,
+    afw_object_set_property_as_string_internal(request,
         afw_v_objectId, object_id, xctx);
 
     /* Get an active session with adapter. */

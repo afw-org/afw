@@ -290,7 +290,7 @@ impl_copy_property_into_managed(
         if (!from_array) {
             return;
         }
-        cloned_array = afw_array_create_managed_from(from_array, xctx);
+        cloned_array = afw_array_create_managed_clone(from_array, xctx);
         afw_object_set_property(to, name, cloned_array->value, xctx);
         afw_array_release(cloned_array, xctx);
         return;
@@ -372,7 +372,7 @@ impl_copy_into_managed(
 
 
 AFW_DEFINE(const afw_object_t *)
-afw_object_create_managed_from(
+afw_object_create_managed_clone(
     const afw_object_t *from,
     afw_xctx_t *xctx)
 {
@@ -380,7 +380,7 @@ afw_object_create_managed_from(
 
     if (!from) {
         AFW_THROW_ERROR_Z(general,
-            "afw_object_create_managed_from requires from",
+            "afw_object_create_managed_clone requires from",
             xctx);
     }
     if (from->inf == &impl_afw_object_managed_inf) {
@@ -420,7 +420,7 @@ afw_object_create_managed_embedded(
     self->setter.inf = &impl_afw_object_managed_setter_inf;
     self->setter.object = (const afw_object_t *)self;
     self->pub.meta.embedding_object = embedding_object;
-    id = afw_object_string_property_name_as_utf8(property_name, xctx);
+    id = afw_object_string_property_name_internal(property_name, xctx);
     if (id) {
         self->pub.meta.id = afw_utf8_clone(id, xctx->p, xctx);
     }
@@ -554,7 +554,7 @@ afw_object_create_embedded(
     self->value.internal = (const afw_object_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     self->pub.meta.embedding_object = embedding_object;
-    self->pub.meta.id = afw_object_string_property_name_as_utf8(
+    self->pub.meta.id = afw_object_string_property_name_internal(
         property_name, xctx);
     self->managed_by_entity = true;
     self->setter.inf = &impl_afw_object_setter_inf;
@@ -562,7 +562,7 @@ afw_object_create_embedded(
     self->clone_on_set = embedder->clone_on_set;
 
     /* Set embedded object as property of embedding object. */
-    afw_object_set_property_as_object(
+    afw_object_set_property_as_object_internal(
         embedding_object, property_name, (const afw_object_t *)self, xctx);
 
     /* Return new object. */
@@ -580,7 +580,7 @@ afw_object_insure_embedded_exists(
 {
     const afw_object_t *result;
 
-    result = afw_object_old_get_property_as_object(embedding_object,
+    result = afw_object_get_property_as_object_internal(embedding_object,
         property_name, xctx);
 
     if (!result) {
@@ -1180,7 +1180,7 @@ impl_afw_object_managed_setter_set_property(
         property_name = afw_v_a_empty_string;
     }
     /* New entry: name is isolated once. Replace never changes the name. */
-    e->name = afw_value_as_assignable(property_name, xctx);
+    e->name = afw_value_get_assignable(property_name, xctx);
     afw_value_slot_store(&e->value, value, xctx);
     if (final_e) {
         final_e->next = e;

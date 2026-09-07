@@ -1930,67 +1930,67 @@ afw_uri_parsed_to_object(
     result = afw_object_create_unmanaged_new_p(p, xctx);
 
     if (parsed->original_uri) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_originalURI, parsed->original_uri, xctx);
     }
 
     if (parsed->normalized_uri.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_normalizedURI, &parsed->normalized_uri, xctx);
     }
 
     if (parsed->scheme.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_scheme, &parsed->scheme, xctx);
     }
 
     if (parsed->original_hier_part.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_originalHierPart, &parsed->original_hier_part, xctx);
     }
 
     if (parsed->original_authority.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_originalAuthority, &parsed->original_authority, xctx);
     }
 
     if (parsed->authority) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_authority, parsed->authority, xctx);
     }
 
     if (parsed->original_userinfo.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_originalUserinfo, &parsed->original_userinfo, xctx);
     }
 
     if (parsed->userinfo) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_userinfo, parsed->userinfo, xctx);
     }
 
     if (parsed->original_host.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_originalHost, &parsed->original_host, xctx);
     }
 
     if (parsed->host) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_host, parsed->host, xctx);
     }
 
     if (parsed->port.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_port, &parsed->port, xctx);
     }
 
     if (parsed->original_path.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_originalPath, &parsed->original_path, xctx);
     }
 
     if (parsed->original_path.len > 0) {
-        afw_object_set_property_as_string(result, afw_v_path,
+        afw_object_set_property_as_string_internal(result, afw_v_path,
             afw_uri_decode(&parsed->original_path, p, xctx), xctx);
         afw_uri_parser_initialize(&parser, &parsed->original_path, p, xctx);
         list = afw_array_create_unmanaged_of(
@@ -2001,17 +2001,17 @@ afw_uri_parsed_to_object(
             value = afw_value_create_unmanaged_string(&parser.token, p, xctx);
             afw_array_push_value(list, value, xctx);
         }
-        afw_object_set_property_as_array(result,
+        afw_object_set_property_as_array_internal(result,
             afw_v_pathTokens, list, xctx);
     }
 
     if (parsed->original_query.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_originalQuery, &parsed->original_query, xctx);
     }
 
     if (parsed->original_query.len > 0) {
-        afw_object_set_property_as_string(result, afw_v_query,
+        afw_object_set_property_as_string_internal(result, afw_v_query,
             afw_uri_decode(&parsed->original_query, p, xctx), xctx);
         afw_uri_parser_initialize(&parser, &parsed->original_query, p, xctx);
         list = afw_array_create_unmanaged_of(
@@ -2022,17 +2022,17 @@ afw_uri_parsed_to_object(
             value = afw_value_create_unmanaged_string(&parser.token, p, xctx);
             afw_array_push_value(list, value, xctx);
         }
-        afw_object_set_property_as_array(result,
+        afw_object_set_property_as_array_internal(result,
             afw_v_queryTokens, list, xctx);
     }
 
     if (parsed->original_fragment.len > 0) {
-        afw_object_set_property_as_string(result,
+        afw_object_set_property_as_string_internal(result,
             afw_v_originalFragment, &parsed->original_fragment, xctx);
     }
 
     if (parsed->original_fragment.len > 0) {
-        afw_object_set_property_as_string(result, afw_v_fragment,
+        afw_object_set_property_as_string_internal(result, afw_v_fragment,
             afw_uri_decode(&parsed->original_fragment, p, xctx), xctx);
         afw_uri_parser_initialize(&parser, &parsed->original_fragment, p, xctx);
         list = afw_array_create_unmanaged_of(
@@ -2043,14 +2043,14 @@ afw_uri_parsed_to_object(
             value = afw_value_create_unmanaged_string(&parser.token, p, xctx);
             afw_array_push_value(list, value, xctx);
         }
-        afw_object_set_property_as_array(result,
+        afw_object_set_property_as_array_internal(result,
             afw_v_fragmentTokens, list, xctx);
     }
 
     if (parsed->path_parsed) {
         object = afw_object_path_parsed_to_object(
             parsed->path_parsed, p, xctx);
-        afw_object_set_property_as_object(result,
+        afw_object_set_property_as_object_internal(result,
             afw_v_valuePath, object, xctx);
     }
 

@@ -2827,34 +2827,6 @@ const afw_content_type_t *
     </method>
 
 
-    <method name="push_internal">
-
-      <description>
-        Append an internal value of a single data type at the end of the
-        array (typed push_value).
-      </description>
-
-      <parameter name="instance" type="const afw_array_setter_t *">
-        <description>Pointer to this array setter instance.</description>
-      </parameter>
-
-      <parameter name="data_type" type="const afw_data_type_t *">
-        <description>Data type of internal.</description>
-      </parameter>
-
-      <parameter name="internal" type="const void *">
-        <description>Internal value of type data_type->cType.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
-
-
     <method name="pop_value">
 
       <description>
@@ -2994,42 +2966,6 @@ const afw_content_type_t *
     </method>
 
 
-    <method name="insert_internal">
-
-      <description>
-        Insert an internal value of a single data type before the given index
-        (typed insert_value). Index 0 is unshift; index equal to count is
-        append (same rules as insert_value).
-      </description>
-
-      <parameter name="instance" type="const afw_array_setter_t *">
-        <description>Pointer to this array setter instance.</description>
-      </parameter>
-
-      <parameter name="index" type="afw_integer_t">
-        <description>
-          Zero-based insert position, or negative from the end. See interface
-          description for index rules.
-        </description>
-      </parameter>
-
-      <parameter name="data_type" type="const afw_data_type_t *">
-        <description>Data type of internal.</description>
-      </parameter>
-
-      <parameter name="internal" type="const void *">
-        <description>Internal value of type data_type->cType.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
-
-
     <method name="set_value">
 
       <description>
@@ -3120,32 +3056,7 @@ const afw_content_type_t *
     </method>
 
 
-    <method name="remove_internal">
 
-      <description>
-        Remove the first entry whose internal value of the given data type
-        matches (typed content remove_value).
-      </description>
-
-      <parameter name="instance" type="const afw_array_setter_t *">
-        <description>Pointer to this array setter instance.</description>
-      </parameter>
-
-      <parameter name="data_type" type="const afw_data_type_t *">
-        <description>Data type of internal.</description>
-      </parameter>
-
-      <parameter name="internal" type="const void *">
-        <description>Internal value of type data_type->cType to match.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
 
 
     <method name="remove_all_values">
@@ -3309,7 +3220,7 @@ const afw_content_type_t *
 
       <parameter name="p" type="const afw_pool_t *">
     <description>
-          If necessary, this pool is used to create the return value.
+          Pool if extra allocation is needed (the meta object).
         </description>
       </parameter>
 
@@ -3325,57 +3236,10 @@ const afw_content_type_t *
     </method>
 
 
-    <method name="get_entry_internal">
-
-      <description>
-        Get internal entry of array entry by index. See data_type to
-        determine how to interpret.
-      </description>
-
-      <parameter name="instance" type="const afw_array_t *">
-    <description>
-          Pointer to this value array instance.
-        </description>
-      </parameter>
-
-      <parameter name="index" type="afw_integer_t">
-    <description>
-          Zero-based index of array entry to return.
-        </description>
-      </parameter>
-
-      <parameter name="data_type" type="const afw_data_type_t * *">
-    <description>
-          Place to put data type pointer or NULL.
-        </description>
-      </parameter>
-
-      <parameter name="internal" type="const void * *">
-    <description>
-          Place to put data_type->cType pointer to the internal at the specified index.
-          This will be set to NULL if index is out of range.
-        </description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="afw_boolean_t">
-    <description>Will be true if *internal is not NULL.</description>
-      </return>
-
-    </method>
-
-
     <method name="get_entry_value">
 
       <description>
         Get value of array entry by index.
-
-        For some arrays, methods get_internal_by_index() is more efficient.
-        If the array implementation stores only the internal part of a value,
-        this function will create an adaptive value in the specified pool to return.
       </description>
 
       <parameter name="instance" type="const afw_array_t *">
@@ -3387,12 +3251,6 @@ const afw_content_type_t *
       <parameter name="index" type="afw_integer_t">
     <description>
           Zero-based index of array entry to return.
-        </description>
-      </parameter>
-
-      <parameter name="p" type="const afw_pool_t *">
-    <description>
-          If necessary, this pool is used to create the return value.
         </description>
       </parameter>
 
@@ -3412,9 +3270,9 @@ const afw_content_type_t *
     <method name="get_next_entry_meta">
 
       <description>
-        Get next value in array and update iterator. Set the iterator to NULL
-        before the first call of this method and any time you want to start
-        from the first value again.
+        Get the meta object of the next array entry and update iterator.
+        Set the iterator to NULL before the first call and any time you want
+        to start from the first entry again.
       </description>
 
       <parameter name="instance" type="const afw_array_t *">
@@ -3427,7 +3285,7 @@ const afw_content_type_t *
 
       <parameter name="p" type="const afw_pool_t *">
     <description>
-          If necessary, this pool is used to create the return value.
+          Pool if extra allocation is needed (the meta object).
         </description>
       </parameter>
 
@@ -3444,63 +3302,12 @@ const afw_content_type_t *
     </method>
 
 
-    <method name="get_next_internal">
-
-      <description>
-        Get next internal in array and update iterator. See data_type to
-        determine how to interpret.
-
-        Set the iterator to NULL before the first call of this method and
-        any time you want to start from the first value again.
-      </description>
-
-      <parameter name="instance" type="const afw_array_t *">
-    <description>
-          Pointer to this value array instance.
-        </description>
-      </parameter>
-
-      <parameter name="iterator" type="const afw_iterator_old_t * *">
-    <description>
-          Address of iterator pointer.
-        </description>
-      </parameter>
-
-      <parameter name="data_type" type="const afw_data_type_t * *">
-    <description>
-          Place to put data type pointer or NULL.
-        </description>
-      </parameter>
-
-      <parameter name="internal" type="const void * *">
-    <description>
-          Place to put data_type->cType pointer to next internal.
-          This will be set to NULL if there is no next internal.
-        </description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="afw_boolean_t">
-    <description>Will be true if *internal is not NULL.</description>
-      </return>
-
-    </method>
-
-
     <method name="get_next_value">
 
       <description>
         Get next value in array and update iterator. Set the iterator to NULL
         before the first call of this method and any time you want to start
         from the first value again.
-
-        For some arrays, methods get_next_internal() and
-        get_next_internal_and_data_type() are more efficient.
-        If the array implementation stores only the internal part of a value,
-        this function will create an adaptive value in the specified pool to return.
       </description>
 
       <parameter name="instance" type="const afw_array_t *">
@@ -3509,12 +3316,6 @@ const afw_content_type_t *
 
       <parameter name="iterator" type="const afw_iterator_old_t * *">
     <description>Address of iterator pointer.</description>
-      </parameter>
-
-      <parameter name="p" type="const afw_pool_t *">
-    <description>
-          If necessary, this pool is used to create the return value.
-        </description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">

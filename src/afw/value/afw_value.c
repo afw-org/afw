@@ -55,7 +55,7 @@ afw_value_add_reference(
 
 /* NULL-safe get_assignable_value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_as_assignable(
+afw_value_get_assignable(
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -104,7 +104,7 @@ afw_value_slot_store(
      */
     unmanaged_compiled_value =
         incoming && incoming->inf == &afw_value_compiled_value_inf;
-    assignable = afw_value_as_assignable(incoming, xctx);
+    assignable = afw_value_get_assignable(incoming, xctx);
     if (*slot == assignable) {
         return;
     }
@@ -378,7 +378,7 @@ afw_value_compile_and_evaluate(
 
 /* Compile and evaluate a value using specified compile type. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_compile_and_evaluate_as(
+afw_value_compile_and_evaluate_using(
     const afw_value_t *value,
     const afw_utf8_t *source_location,
     afw_compile_type_t compile_type,
@@ -435,7 +435,7 @@ afw_value_is_fully_evaluated(
         for (iterator = NULL;;) {
             v = afw_array_get_next_value(
                 ((const afw_value_array_t *)value)->internal,
-                &iterator, xctx->p, xctx);
+                &iterator, xctx);
             if (!v) {
                 break;
             }
@@ -647,16 +647,16 @@ afw_value_array_hold(
 }
 
 
-/* Convert value->internal to afw_utf8_z_t * */
+/* Convert any evaluated value to NUL-terminated utf8. */
 AFW_DEFINE(const afw_utf8_z_t *)
-afw_value_as_utf8_z(const afw_value_t *value,
+afw_value_convert_to_utf8_z(const afw_value_t *value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t *string;
     const afw_utf8_z_t *result;
 
     result = NULL;
-    string = afw_value_as_utf8(value, p, xctx);
+    string = afw_value_convert_to_utf8(value, p, xctx);
     if (string) {
         result = afw_utf8_z_create(string->s, string->len, p, xctx);
     }
@@ -666,9 +666,9 @@ afw_value_as_utf8_z(const afw_value_t *value,
 }
 
 
-/* Convert value to casted utf8 in specified pool. */
+/* Convert value to datatype("...") utf8 in specified pool. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_value_as_casted_utf8(
+afw_value_convert_to_casted_utf8(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t *result;
@@ -686,7 +686,7 @@ afw_value_as_casted_utf8(
 
     /** @fixme change from bag to list when tests are modified. */
     if (afw_value_is_array(value)) {
-        s = afw_value_as_array_of_utf8(value, p, xctx);
+        s = afw_value_convert_to_null_terminated_utf8(value, p, xctx);
         
         if (!s[0]) {
             len = 5; /* "bag()" */
@@ -730,7 +730,7 @@ afw_value_as_casted_utf8(
         result = afw_utf8_concat(p, xctx,
             &data_type->data_type_id,
             afw_s_a_open_parenthesis, &impl_s_a_quote,
-            afw_value_as_utf8(value, p, xctx),
+            afw_value_convert_to_utf8(value, p, xctx),
             &impl_s_a_quote, afw_s_a_close_parenthesis,
             NULL);
     }
@@ -759,9 +759,9 @@ afw_value_one_and_only(
     if (afw_value_is_array(value)) {
         iterator = NULL;
         list = ((const afw_value_array_t *)value)->internal;
-        result = afw_array_get_next_value(list, &iterator, p, xctx);
+        result = afw_array_get_next_value(list, &iterator, xctx);
         if (result) {
-            if (afw_array_get_next_value(list, &iterator, p, xctx)) {
+            if (afw_array_get_next_value(list, &iterator, xctx)) {
                 result = NULL;
             }
         }
@@ -775,9 +775,9 @@ afw_value_one_and_only(
 }
 
 
-/* Return result of afw_value_one_and_only() as string. */
+/* Convert afw_value_one_and_only() to utf8. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_value_one_and_only_as_utf8(
+afw_value_one_and_only_convert_to_utf8(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_value_t *v;
@@ -785,14 +785,14 @@ afw_value_one_and_only_as_utf8(
 
     value = afw_value_evaluate(value, p, xctx);
     v = afw_value_one_and_only(value, p, xctx);
-    result = afw_value_as_utf8(v, p, xctx);
+    result = afw_value_convert_to_utf8(v, p, xctx);
     return result;
 }
 
 
-/* Convert value->internal to afw_utf8_t * */
+/* Convert any evaluated value to utf8. */
 AFW_DEFINE(const afw_utf8_t *)
-afw_value_as_utf8(const afw_value_t *value,
+afw_value_convert_to_utf8(const afw_value_t *value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t *result;
@@ -909,14 +909,14 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
         AFW_TRY {
 
             iterator = NULL;
-            while ((object = afw_object_old_get_next_property_as_object(
+            while ((object = afw_object_get_next_property_as_object_internal(
                 ((const afw_value_object_t *)untrusted_qualified_variables)->internal,
                 &iterator, &property_name, xctx)))
             {
                 qualifier_object = afw_compile_object_all_template_properties(
                     object, NULL, NULL, p, xctx);
                 afw_xctx_qualifier_stack_qualifier_object_push(
-                    afw_object_string_property_name_as_utf8(
+                    afw_object_string_property_name_internal(
                         property_name, xctx),
                     qualifier_object,
                     false, p, xctx);
@@ -957,8 +957,6 @@ afw_value_convert(
     afw_value_common_t *single;
     const afw_array_t *list;
     const afw_iterator_old_t *iterator;
-    const void *internal;
-    const afw_data_type_t *data_type;
     afw_size_t evaluate_count;
 
     /* Evaluate value. */
@@ -993,7 +991,7 @@ afw_value_convert(
 
         /* Upconvert to one entry list. */
         if (to_data_type == afw_data_type_array) {
-            list = afw_array_create_view_of_c_array(
+            list = afw_array_create_unmanaged_from_c_array(
                 &((afw_value_common_t *)result)->internal, false,
                 v_data_type, 1, p, xctx);
             result = afw_value_create_unmanaged_array(list, p, xctx);
@@ -1010,21 +1008,16 @@ afw_value_convert(
                     xctx);
             }
             iterator = NULL;
-            afw_array_get_next_internal(list,
-                &iterator, &data_type, &internal, xctx);
-            single = afw_value_common_allocate(to_data_type, p, xctx);
-            if (data_type == to_data_type) {
-                memcpy(AFW_VALUE_INTERNAL(single), internal, data_type->c_type_size);
+            result = afw_array_get_next_value(list, &iterator, xctx);
+            if (!result) {
+                AFW_THROW_ERROR_Z(conversion_error,
+                    "Can't down convert an empty array",
+                    xctx);
             }
-            else {
-                afw_data_type_convert_internal(
-                    data_type,
-                    &single->internal,
-                    internal,
-                    to_data_type,
+            if (afw_value_get_data_type(result, xctx) != to_data_type) {
+                result = afw_value_convert(result, to_data_type, required,
                     p, xctx);
             }
-            result = &single->pub;
         }
 
         /* Not list. */
@@ -1121,7 +1114,7 @@ afw_value_create_dateTime_now_local(
 
 
 static const afw_value_t **
-impl_value_as_array_of_values(
+impl_value_to_null_terminated_values(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_size_t count;
@@ -1159,7 +1152,7 @@ impl_value_as_array_of_values(
         for (iterator = NULL; ; e++) {
             *e = afw_array_get_next_value(
                 ((const afw_value_array_t *)value)->internal,
-                &iterator, p, xctx);
+                &iterator, xctx);
             if (!*e) break;
         }
     }
@@ -1177,10 +1170,10 @@ impl_value_as_array_of_values(
 
 /* Return a NULL terminated list of values in a specified pool. */
 AFW_DEFINE(const afw_value_t * const *)
-afw_value_as_array_of_values(const afw_value_t * value,
+afw_value_to_null_terminated_values(const afw_value_t * value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    return impl_value_as_array_of_values(value, p, xctx);
+    return impl_value_to_null_terminated_values(value, p, xctx);
 }
 
 
@@ -1189,7 +1182,7 @@ afw_value_as_array_of_values(const afw_value_t * value,
  * (utf8 code-point sequence) materializes to a temporary array (#153).
  */
 AFW_DEFINE(const afw_value_t *)
-afw_value_as_array_sequence(
+afw_value_convert_to_array_sequence(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -1228,7 +1221,7 @@ afw_value_as_array_sequence(
 
 /* Return a NULL terminated list of strings in a specified pool. */
 AFW_DEFINE(const afw_utf8_t * const *)
-afw_value_as_array_of_utf8(const afw_value_t * value,
+afw_value_convert_to_null_terminated_utf8(const afw_value_t * value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t **result;
@@ -1236,12 +1229,12 @@ afw_value_as_array_of_utf8(const afw_value_t * value,
 
     /*
      * Get NULL terminated array for value pointers and replace the pointers
-     * in place with the result of calling as_string() on the value. 
+     * in place with convert_to_utf8 of each value. 
      */
-    result = (const afw_utf8_t **)impl_value_as_array_of_values(value,
+    result = (const afw_utf8_t **)impl_value_to_null_terminated_values(value,
         p, xctx);
     for (e = result; *e; e++) {
-        *e = afw_value_as_utf8((const afw_value_t *)*e, p, xctx);
+        *e = afw_value_convert_to_utf8((const afw_value_t *)*e, p, xctx);
     }
 
     /* Return result. */

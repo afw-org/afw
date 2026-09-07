@@ -286,16 +286,16 @@ afw_object_meta_get_nonempty_delta(
 
 
 /**
- * @brief Get a meta property as single string.
+ * @brief Get a meta property as string internal.
  * @param instance of object.
  * @param property_name of meta property.  Can be dotted.
  * @param xctx of caller.
  * @return value of meta property.
  */
-#define afw_object_meta_get_property_as_string(instance, \
+#define afw_object_meta_get_property_as_string_internal(instance, \
     property_name, xctx) \
 (instance->meta.meta_object) \
-    ? afw_object_old_get_property_as_string( \
+    ? afw_object_get_property_as_string_internal( \
         afw_object_meta_object(instance), \
             property_name, xctx) \
     : NULL
@@ -605,7 +605,7 @@ afw_object_set_property_as_string_from_utf8_z( \
  */
 #define afw_object_meta_set_property_as(instance, property_name, \
     data_type, value, xctx) \
-afw_object_set_property_as_ ## data_type( \
+afw_object_set_property_as_ ## data_type ## _internal( \
     afw_object_meta_get_nonempty_delta(instance, xctx), \
     property_name, value, xctx)
 
@@ -657,7 +657,7 @@ afw_object_set_property_as_string_from_utf8_z( \
 #define afw_object_meta_set_property_type_property_as(instance, \
     property_name, property_type_property_name, \
     data_type, value, xctx) \
-afw_object_set_property_as_ ## data_type( \
+afw_object_set_property_as_ ## data_type ## _internal( \
     afw_object_meta_get_property_type(instance, property_name, xctx), \
     property_type_property_name, value, xctx)
 

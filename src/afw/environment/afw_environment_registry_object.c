@@ -120,7 +120,7 @@ impl_entry_cb(
         property_name = afw_value_create_unmanaged_string(
             afw_object_meta_get_object_id(object, xctx),
             entries->p, xctx);
-        afw_object_set_property_as_object(entries, property_name,
+        afw_object_set_property_as_object_internal(entries, property_name,
             object, xctx);
     }
 
@@ -158,7 +158,7 @@ impl_afw_object_get_property (
     const afw_environment_registry_type_t *type;
 
     type = afw_environment_get_registry_type(
-        afw_object_string_property_name_as_utf8(property_name, xctx), xctx);
+        afw_object_string_property_name_internal(property_name, xctx), xctx);
 
     return (type && type->object_type_id)
         ? impl_make_registry_type_value(type->object_type_id, xctx)

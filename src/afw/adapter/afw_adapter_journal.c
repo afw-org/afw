@@ -82,7 +82,7 @@ afw_adapter_journal_entry_consume(
     }
 
     /* Get consumed property from update object. */
-    consumed = afw_object_old_get_property_as_boolean(update_object,
+    consumed = afw_object_get_property_as_boolean_internal(update_object,
         afw_v_consumed, &found, xctx);
     if (!found || !consumed) {
         AFW_THROW_ERROR_Z(general,
@@ -91,7 +91,7 @@ afw_adapter_journal_entry_consume(
     }
 
     /* Get consumer_id from update object. */
-    consumer_id = afw_object_old_get_property_as_string(update_object,
+    consumer_id = afw_object_get_property_as_string_internal(update_object,
         afw_v_consumerId, xctx);
     if (!consumer_id) {
         AFW_THROW_ERROR_Z(general,
@@ -367,7 +367,7 @@ afw_adapter_internal_journal_get_entry(
      * Get request object.  Make one if necessary.  Additional properties
      * will be set for the get_object() properties.
      */
-    request = afw_object_old_get_property_as_object(journal_entry, afw_v_request,
+    request = afw_object_get_property_as_object_internal(journal_entry, afw_v_request,
         xctx);
     if (!request) {
         request = afw_object_create_embedded(
@@ -485,19 +485,19 @@ afw_adapter_internal_journal_get_entry(
 
     /* Set entry consumerId property, if applicable. */
     if (consumer_id) {
-        afw_object_set_property_as_string(request, afw_v_consumerId,
+        afw_object_set_property_as_string_internal(request, afw_v_consumerId,
             consumer_id, xctx);
     }
 
     /* Set entry consumerId property, if applicable. */
     if (entry_cursor) {
-        afw_object_set_property_as_string(request, afw_v_entryCursor,
+        afw_object_set_property_as_string_internal(request, afw_v_entryCursor,
             entry_cursor, xctx);
     }
 
     /* Set entry limit property, if applicable. */
     if (limit_applies) {
-        afw_object_set_property_as_integer(request, afw_v_limit,
+        afw_object_set_property_as_integer_internal(request, afw_v_limit,
             limit, xctx);
     } else {
         limit = 1;

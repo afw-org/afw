@@ -207,12 +207,25 @@ struct afw_value_integer_managed_s {
 };
 
 /**
- * @brief Typesafe cast of data type integer.
+ * @brief Typesafe cast to evaluated integer value.
+ * @param value (const afw_value_t *). Evaluated if needed.
+ * @return (const afw_value_integer_t *)
+ *
+ * Throws if missing or wrong type. Use ->internal for the C
+ * payload, or afw_value_as_integer_internal().
+ */
+AFW_DECLARE(const afw_value_integer_t *)
+afw_value_as_integer(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Typesafe peel of data type integer internal.
  * @param value (const afw_value_t *).
  * @return (afw_integer_t)
  */
 AFW_DECLARE(afw_integer_t)
-afw_value_as_integer(
+afw_value_as_integer_internal(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -308,122 +321,148 @@ afw_compile_literal_integer_create(afw_integer_t internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Get property function for data type integer value.
- * @deprecated
+ * @brief Get property as integer value.
  * @param object of property to get.
  * @param property_name of property to get.
- * @param found is place to return whether property is found.
  * @param xctx of caller.
- * @return afw_integer_t.
+ * @return (const afw_value_integer_t *) or NULL if missing.
  *
- * This is a deprecated function used to get around an exception that
- * was occurring when an object did not have a pool. Use the function
- * without an "_old" in the name for all new code and replace calls in
- * old code when possible.
- *
- */
-#define afw_object_old_get_property_as_integer( \
-    object, property_name, found, xctx) \
-afw_object_get_property_as_integer_source( \
-    object, property_name, found, AFW__FILE_LINE__, \
-    ((object)->p ? (object)->p : (xctx)->p), (xctx))
-
-/**
- * @brief Get property function for data type integer value.
- * @param object of property to get.
- * @param property_name of property to get.
- * @param found is place to return whether property is found.
- * @param p to use for result if evaluation or conversion is required.
- * @param xctx of caller.
- * @return afw_integer_t.
+ * Does not evaluate. Throws if present but not integer.
  */
 #define afw_object_get_property_as_integer( \
-    object, property_name, found, p, xctx) \
+    object, property_name, xctx) \
 afw_object_get_property_as_integer_source( \
-    object, property_name, found, AFW__FILE_LINE__, p, xctx)
+    object, property_name, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get property function for data type integer value.
+ * @brief Get property as integer value.
+ * @param object of property to get.
+ * @param property_name of property to get.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_value_integer_t *) or NULL if missing.
+ */
+AFW_DECLARE(const afw_value_integer_t *)
+afw_object_get_property_as_integer_source(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Get property as integer internal.
+ * @param object of property to get.
+ * @param property_name of property to get.
+ * @param found is place to return whether property is found.
+ * @param xctx of caller.
+ * @return afw_integer_t.
+ */
+#define afw_object_get_property_as_integer_internal( \
+    object, property_name, found, xctx) \
+afw_object_get_property_as_integer_internal_source( \
+    object, property_name, found, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get property as integer internal.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param found is place to return whether property is found.
  * @param source_z file:line.
- * @param p to use for result if evaluation or conversion is required.
  * @param xctx of caller.
  * @return afw_integer_t.
  */
 AFW_DECLARE(afw_integer_t)
-afw_object_get_property_as_integer_source(
+afw_object_get_property_as_integer_internal_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next property function for data type integer value.
- * @deprecated
+ * @brief Get next property as integer value.
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.
- * @param found is place to return whether property is found.
  * @param xctx of caller.
- * @return afw_integer_t.
- *
- * This is a deprecated function used to get around an exception that
- * was occurring when an object did not have a pool. Use the function
- * without an "_old" in the name for all new code and replace calls in
- * old code when possible.
- *
- */
-#define afw_object_old_get_next_property_as_integer( \
-    object, iterator, property_name, found, xctx) \
-afw_object_get_next_property_as_integer_source( \
-    object, iterator, property_name, found, AFW__FILE_LINE__, \
-    ((object)->p ? (object)->p : (xctx)->p), (xctx))
-
-/**
- * @brief Get next property function for data type integer value.
- * @param object of property to get.
- * @param iterator pointer. Set to NULL before first call.
- * @param property_name is place to return pointer to property name.
- * @param found is place to return whether property is found.
- * @param p to use for result if evaluation or conversion is required.
- * @param xctx of caller.
- * @return afw_integer_t.
+ * @return (const afw_value_integer_t *) or NULL if no more.
  */
 #define afw_object_get_next_property_as_integer( \
-    object, iterator, property_name, found, p, xctx) \
+    object, iterator, property_name, xctx) \
 afw_object_get_next_property_as_integer_source( \
-    object, iterator, property_name, found, AFW__FILE_LINE__, p, xctx)
+    object, iterator, property_name, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get property function for data type integer value.
+ * @brief Get next property as integer value.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_value_integer_t *) or NULL if no more.
+ */
+AFW_DECLARE(const afw_value_integer_t *)
+afw_object_get_next_property_as_integer_source(
+    const afw_object_t *object,
+    const afw_iterator_old_t * *iterator,
+    const afw_value_t * *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Get next property as integer internal.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param found is place to return whether property is found.
+ * @param xctx of caller.
+ * @return afw_integer_t.
+ */
+#define afw_object_get_next_property_as_integer_internal( \
+    object, iterator, property_name, found, xctx) \
+afw_object_get_next_property_as_integer_internal_source( \
+    object, iterator, property_name, found, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get next property as integer internal.
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.
  * @param found is place to return whether property is found.
  * @param source_z file:line.
- * @param p to use for result if conversion is required.
  * @param xctx of caller.
  * @return afw_integer_t.
  */
 AFW_DECLARE(afw_integer_t)
-afw_object_get_next_property_as_integer_source(
+afw_object_get_next_property_as_integer_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Set property function for data type integer values.
+ * @brief Set property as integer value.
  * @param object of property to set.
  * @param property_name of property to set.
- * @param value of value to set.
+ * @param value to set.
+ * @param xctx of caller.
+ *
+ * Compile-time type check for const afw_value_integer_t *.
+ */
+AFW_DECLARE(void)
+afw_object_set_property_as_integer(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_integer_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Set property as integer internal.
+ * @param object of property to set.
+ * @param property_name of property to set.
+ * @param internal of value to set.
  * @param xctx of caller.
  *
  * Uses permanent afw_integer_v_zero / afw_integer_v_one when
@@ -434,43 +473,66 @@ afw_object_get_next_property_as_integer_source(
  *
  */
 AFW_DECLARE(void)
-afw_object_set_property_as_integer(
+afw_object_set_property_as_integer_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     afw_integer_t internal,
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next value from array of integer.
+ * @brief Get next integer value from array of integer.
  * @param instance of array.
  * @param iterator.
- * @param found is place to return whether value is found.
- * @param source_z file:line.
  * @param xctx of caller.
- * @return (afw_integer_t) or NULL.
- * 
+ * @return (const afw_value_integer_t *) or NULL.
+ *
  * Set the iterator to NULL before the first call and anytime
  * you want to start from the first value again.
  */
 #define afw_array_of_integer_get_next( \
-    array, iterator, found, xctx) \
+    array, iterator, xctx) \
     afw_array_of_integer_get_next_source( \
+    array, iterator, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get next integer value from array of integer.
+ * @param instance of array.
+ * @param iterator.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_value_integer_t *) or NULL.
+ */
+AFW_DECLARE(const afw_value_integer_t *)
+afw_array_of_integer_get_next_source(
+    const afw_array_t *instance,
+    const afw_iterator_old_t * *iterator,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Get next integer internal from array of integer.
+ * @param instance of array.
+ * @param iterator.
+ * @param found is place to return whether value is found.
+ * @param xctx of caller.
+ * @return (afw_integer_t) or NULL.
+ */
+#define afw_array_of_integer_get_next_internal( \
+    array, iterator, found, xctx) \
+    afw_array_of_integer_get_next_internal_source( \
     array, iterator, found, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get next value from array of integer.
+ * @brief Get next integer internal from array of integer.
  * @param instance of array.
  * @param iterator.
  * @param found is place to return whether value is found.
  * @param source_z file:line.
  * @param xctx of caller.
  * @return (afw_integer_t) or NULL.
- * 
- * Set the iterator to NULL before the first call and anytime
- * you want to start from the first value again.
  */
 AFW_DECLARE(afw_integer_t)
-afw_array_of_integer_get_next_source(
+afw_array_of_integer_get_next_internal_source(
     const afw_array_t *instance,
     const afw_iterator_old_t * *iterator,
     afw_boolean_t *found,
@@ -478,7 +540,7 @@ afw_array_of_integer_get_next_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Add value from array of integer.
+ * @brief Add a integer value to array of integer.
  * @param instance of array.
  * @param value to add.
  * @param xctx of caller.
@@ -486,17 +548,41 @@ afw_array_of_integer_get_next_source(
 AFW_DECLARE(void)
 afw_array_of_integer_add(
     const afw_array_t *instance,
+    const afw_value_integer_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Add a integer internal to array of integer.
+ * @param instance of array.
+ * @param value to add.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_of_integer_add_internal(
+    const afw_array_t *instance,
     const afw_integer_t *value,
     afw_xctx_t *xctx);
 
 /**
- * @brief Remove value from array of integer.
+ * @brief Remove a integer value from array of integer.
  * @param instance of array.
  * @param value to remove.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
 afw_array_of_integer_remove(
+    const afw_array_t *instance,
+    const afw_value_integer_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Remove a integer internal from array of integer.
+ * @param instance of array.
+ * @param value to remove.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_of_integer_remove_internal(
     const afw_array_t *instance,
     const afw_integer_t *value,
     afw_xctx_t *xctx);

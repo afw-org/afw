@@ -51,7 +51,7 @@ afw_request_handler_adapter_create_cede_p(
     self->p = xctx->p;
     self->properties = properties;
     
-    options_object = afw_object_old_get_property_as_object(self->properties,
+    options_object = afw_object_get_property_as_object_internal(self->properties,
         afw_v_defaultOptions, xctx);
     if (options_object) {
         self->default_options = afw_object_options_set_from_object(

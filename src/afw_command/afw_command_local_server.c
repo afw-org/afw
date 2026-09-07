@@ -388,7 +388,7 @@ impl_read_and_process_request(
                 action_object = afw_object_create_unmanaged(p, xctx);
                 afw_object_set_property(action_object,
                     afw_v_function, afw_v_eval_script, xctx);
-                afw_object_set_property_as_string(action_object,
+                afw_object_set_property_as_string_internal(action_object,
                     afw_v_source, string, xctx);
                 response_object = afw_action_perform(
                     action_object, self->content_type, NULL, p, xctx);
@@ -606,11 +606,11 @@ afw_command_local_server_write_error(
     response_object = afw_object_create_unmanaged(xctx->p, xctx);
 
     status = (self->fatal_error) ? afw_s_fatal : afw_s_error;
-    afw_object_set_property_as_string(response_object,
+    afw_object_set_property_as_string_internal(response_object,
         afw_v_status, status, xctx);
 
     error_object = afw_error_to_object(error, xctx->p, xctx);
-    afw_object_set_property_as_object(response_object,
+    afw_object_set_property_as_object_internal(response_object,
         afw_v_error, error_object, xctx);
 
     string = afw_data_type_object_to_utf8(response_object, xctx->p, xctx);

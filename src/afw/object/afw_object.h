@@ -63,7 +63,7 @@ afw_object_property_name_display_utf8(
  * @brief Utf8 internals of a required string property name.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_object_string_property_name_as_utf8(
+afw_object_string_property_name_internal(
     const afw_value_t *name,
     afw_xctx_t *xctx);
 
@@ -557,7 +557,7 @@ afw_object_get_property_compile_as(
  * location when calling compile.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_object_get_property_compile_and_evaluate_as(
+afw_object_get_property_compile_and_evaluate_using(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_utf8_t *source_location,
@@ -599,10 +599,10 @@ afw_object_get_property_extended(
  * @param property_name of property.
  * @param p to use for returned value.
  * @param xctx of caller.
- * @return result of afw_value_as_array_of_values() on the property value.
+ * @return result of afw_value_to_null_terminated_values() on the property value.
  */
 AFW_DECLARE(const afw_value_t * const *)
-afw_object_old_get_property_as_array_of_values(
+afw_object_get_property_to_null_terminated_values(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_pool_t *p, afw_xctx_t *xctx);
@@ -621,7 +621,7 @@ afw_object_old_get_property_as_array_of_values(
  * The value can be a list, bag, or scalar.
  */
 AFW_DECLARE(const afw_utf8_t * const *)
-afw_object_old_get_property_as_array_of_strings(
+afw_object_get_property_convert_to_null_terminated_utf8(
     const afw_object_t *instance, const afw_value_t *property_name,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
@@ -642,7 +642,7 @@ afw_object_old_get_property_as_array_of_strings(
  * it's just returned.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_object_old_get_property_as_compiled_script(
+afw_object_get_property_compile_script(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_utf8_t *source_location,
@@ -666,50 +666,13 @@ afw_object_old_get_property_as_compiled_script(
  * it's just returned.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_object_old_get_property_as_compiled_template(
+afw_object_get_property_compile_template(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_utf8_t *source_location,
     const afw_compile_shared_t *shared,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
-
-
-/**
- * @brief Get an object's property value as a boolean.
- * @param instance of object.
- * @param property_name Name of property to get.
- * @param xctx of caller.
- * @return value or false if not found.
- *
- * This accepts a boolean value of a case insensitive string value of "true",
- * "t", "false", "f", "0", or "1".
- */
-AFW_DECLARE(afw_boolean_t)
-afw_object_old_get_property_as_boolean_deprecated(
-    const afw_object_t *instance,
-    const afw_value_t *property_name,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Get an object's property value as an integer.
- * @param instance of object.
- * @param property_name Name of property to get.
- * @param found true if property exists.
- * @param xctx of caller.
- * @return value or false if not found.
- *
- * This is like afw_object_old_get_property_as_integer() except the value
- * will be converted to integer if needed instead of throwing a type safe
- * error.
- */
-AFW_DECLARE(afw_integer_t)
-afw_object_old_get_property_as_integer_deprecated(
-    const afw_object_t *instance,
-    const afw_value_t *property_name,
-    afw_boolean_t *found,
-    afw_xctx_t *xctx);
 
 
 /**
@@ -721,7 +684,7 @@ afw_object_old_get_property_as_integer_deprecated(
  * @return value or NULL if not found;
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_object_old_get_property_as_utf8(
+afw_object_get_property_convert_to_utf8(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_pool_t *p,
@@ -741,7 +704,7 @@ afw_object_old_get_property_as_utf8(
  * Use with caution since strings can contain x'00' characters.
  */
 AFW_DECLARE(const afw_utf8_z_t *)
-afw_object_old_get_property_as_utf8_z(
+afw_object_get_property_convert_to_utf8_z(
     const afw_object_t *instance,
     const afw_value_t *property_name,
     const afw_pool_t *p,
@@ -860,7 +823,7 @@ afw_object_create_wrapper_managed(
  *
  * Deep clone into a managed memory bag. Nested objects become
  * managed embedded (embedding_object + id so path composes). Nested
- * arrays are afw_array_create_managed_from. A new property name is
+ * arrays are afw_array_create_managed_clone. A new property name is
  * get_assignable_value (names do not change on replace). Sideband
  * object_uri, id, and object_type_uri are utf8-cloned into xctx->p.
  * Meta delta (parentPaths, reconcilable, …) copies onto a fresh
@@ -868,7 +831,7 @@ afw_object_create_wrapper_managed(
  * is held.
  */
 AFW_DECLARE(const afw_object_t *)
-afw_object_create_managed_from(
+afw_object_create_managed_clone(
     const afw_object_t *from,
     afw_xctx_t *xctx);
 

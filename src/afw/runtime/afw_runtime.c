@@ -460,6 +460,7 @@ impl_check_manifest_cb(
     afw_xctx_t *xctx)
 {
     const afw_value_t *providesObjects_value;
+    const afw_value_t *value;
     const afw_utf8_t *extension_id;
     const afw_utf8_t *module_path;
     const afw_utf8_t *entry;
@@ -487,11 +488,11 @@ impl_check_manifest_cb(
     list = ((const afw_value_array_t *)providesObjects_value)->internal;
     for (iterator = NULL;;)
     {
-        afw_array_get_next_internal(list, &iterator, NULL,
-            (const void **)&entry, xctx);
-        if (!entry) {
+        value = afw_array_get_next_value(list, &iterator, xctx);
+        if (!value) {
             break;
         }
+        entry = (const afw_utf8_t *)AFW_VALUE_INTERNAL(value);
 
         /* Check for entry match. */
         if (!afw_utf8_starts_with_utf8_z(entry, "/afw/")) {
@@ -514,9 +515,9 @@ impl_check_manifest_cb(
         }
 
         /* If extension provides object, load extension and break. */
-        extension_id = afw_object_old_get_property_as_string(object,
+        extension_id = afw_object_get_property_as_string_internal(object,
             afw_v_extensionId, xctx);
-        module_path = afw_object_old_get_property_as_string(object,
+        module_path = afw_object_get_property_as_string_internal(object,
             afw_v_modulePath, xctx);
         if (extension_id && module_path) {
             afw_environment_load_extension(extension_id, module_path,

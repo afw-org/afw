@@ -34,8 +34,8 @@ See also `typescript-differences.md` (motivated differences).
 | for-of over strings | Keyless `afw_iterator` (utf8 + array) via `for_of` (#153) |
 | empty-separator `split` | Must be code points (octet step is a bug) |
 | `s[i]` on strings | Keyless `afw_iterator` `get_by_index` in `reference_by_key` (#153) |
-| HOFs / array formals with string | `afw_value_as_array_sequence` choke (#153) |
-| Immutable array face over utf8 | **Skipped for this branch** — eager materialize is the beta model; face is optional later (same choke body). C notes on `afw_value_as_array_sequence` in `afw_value.h`. |
+| HOFs / array formals with string | `afw_value_convert_to_array_sequence` choke (#153) |
+| Immutable array face over utf8 | **Skipped for this branch** — eager materialize is the beta model; face is optional later (same choke body). C notes on `afw_value_convert_to_array_sequence` in `afw_value.h`. |
 
 Specialized hot paths (e.g. **substring**) may stay hand-tuned; they must share the **same definition of index** (code point). Prefer thin shared `afw_utf8_*` helpers over copy-pasted loops (“get it right at most once”).
 
@@ -51,7 +51,7 @@ Specialized hot paths (e.g. **substring**) may stay hand-tuned; they must share 
 | **`replace`**, **split** (non-empty separator), **`afw_utf8_contains`** | **Fixed** — search advances by code point (still `memcmp` of full needle) |
 | Empty-match **`replace`** | **Fixed (#190)** — insert at each code-point boundary (including start and end); `limit = -1` must terminate |
 | **`to_lower` / `compare_ignore_case`** | **Bound (P4)** — `U8_NEXT` / `U8_APPEND`; throw on truncated. Compare walks each string with its own offset (mixed-width ignore-case, e.g. `"iX"` vs `"İX"`). [#206](https://github.com/afw-org/afw/issues/206). |
-| XACML bag formals | **Not** code-point expand (bag-of-one scalar); see `as_array_sequence` notes |
+| XACML bag formals | **Not** code-point expand (bag-of-one scalar); see `convert_to_array_sequence` notes |
 
 ## Goals
 
@@ -213,7 +213,7 @@ n = afw_iterator_get_count(&it, xctx);
 - **Consumers (this branch):** `for_of` and `reference_by_key` (`s[i]`) use
   `afw_value_has_iterator` / `initialize_iterator` / `get_next` /
   `get_by_index`. Tests: `language/script/string_code_points.as`.
-- **Array formals / HOFs:** `afw_value_as_array_sequence()` materializes a
+- **Array formals / HOFs:** `afw_value_convert_to_array_sequence()` materializes a
   temporary array of iterator elements when a built-in expects array (or
   HOF `impl_over_array` / `evaluate_parameter` with array). No syntax change.
   Mutation of the temp does not write back to the string.

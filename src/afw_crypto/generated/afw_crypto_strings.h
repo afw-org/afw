@@ -5307,6 +5307,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz___afw__AdaptiveCollection__core \
+    "/afw/_AdaptiveCollection_/core"
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz___afw__AdaptiveCollection__core */
+#define afw_crypto_s_zz___afw__AdaptiveCollection__core \
+    (&afw_crypto_self_v_zz___afw__AdaptiveCollection__core.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz___afw__AdaptiveCollection__core */
+#define afw_crypto_self_s_zz___afw__AdaptiveCollection__core \
+    (afw_crypto_self_v_zz___afw__AdaptiveCollection__core.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz___afw__AdaptiveCollection__core */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz___afw__AdaptiveCollection__core;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz___afw__AdaptiveCollection__core */
+#define afw_crypto_z_zz___afw__AdaptiveCollection__core \
+    (afw_crypto_self_v_zz___afw__AdaptiveCollection__core.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz___afw__AdaptiveCollection__core */
+#define afw_crypto_v_zz___afw__AdaptiveCollection__core \
+    (&afw_crypto_self_v_zz___afw__AdaptiveCollection__core.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz___afw__AdaptiveFunction__crypto_decrypt \
     "/afw/_AdaptiveFunction_/crypto_decrypt"
 

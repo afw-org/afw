@@ -183,7 +183,7 @@ impl_data_type_object_boolean__value = {
 };
 
 /* Permanent empty array of boolean. */
-const afw_array_view_of_c_array_self_t
+const afw_array_from_values_self_t
 impl_empty_array_of_boolean;
 
 /* Permanent empty array value of boolean. */
@@ -221,15 +221,16 @@ afw_data_type_boolean_direct = {
 };
 
 /* Permanent empty array of boolean. */
-const afw_array_view_of_c_array_self_t
+const afw_array_from_values_self_t
 impl_empty_array_of_boolean = {
     {
-        &afw_array_view_of_c_array_inf,
+        &afw_array_permanent_from_values_inf,
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_boolean
     },
     &afw_data_type_boolean_direct,
-    0
+    0,
+    NULL
 };
 
 /* Permanent empty array value of boolean. */
@@ -244,9 +245,21 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_boolean =
     &afw_data_type_boolean_direct;
 
-/* Set property function for data type boolean values. */
+/* Set property from boolean value. */
 AFW_DEFINE(void)
 afw_object_set_property_as_boolean(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_boolean_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_object_set_property(object, property_name,
+        &value->pub, xctx);
+}
+
+/* Set property from boolean internal. */
+AFW_DEFINE(void)
+afw_object_set_property_as_boolean_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     afw_boolean_t internal,
@@ -254,18 +267,12 @@ afw_object_set_property_as_boolean(
 {
     const afw_value_t *v;
 
-    if (!object->p) {
-        AFW_THROW_ERROR_Z(general,
-            "Object must have a pool",
-            xctx);
-    }
-
     v = afw_value_for_boolean(internal);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
-/* Typesafe cast of data type boolean. */
-AFW_DEFINE(afw_boolean_t)
+/* Typesafe cast to evaluated boolean value. */
+AFW_DEFINE(const afw_value_boolean_t *)
 afw_value_as_boolean(const afw_value_t *value, afw_xctx_t *xctx)
 {
     value = afw_value_evaluate(value, xctx->p, xctx);
@@ -286,7 +293,14 @@ afw_value_as_boolean(const afw_value_t *value, afw_xctx_t *xctx)
             "encountered " AFW_UTF8_FMT_Q ,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
     }
-    return (((const afw_value_boolean_t *)value)->internal);
+    return (const afw_value_boolean_t *)value;
+}
+
+/* Typesafe peel of data type boolean internal. */
+AFW_DEFINE(afw_boolean_t)
+afw_value_as_boolean_internal(const afw_value_t *value, afw_xctx_t *xctx)
+{
+    return afw_value_as_boolean(value, xctx)->internal;
 }
 
 /* Allocate function for data type boolean values. */
@@ -381,28 +395,21 @@ afw_data_type_boolean_to_utf8(afw_boolean_t internal,
         &internal, p, xctx);
 }
 
-/* Get property function for data type boolean values. */
-AFW_DEFINE(afw_boolean_t)
+/* Get property as boolean value. */
+AFW_DEFINE(const afw_value_boolean_t *)
 afw_object_get_property_as_boolean_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
-    afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
 
-    *found = false;
     value = afw_object_get_property(object, property_name, xctx);
     if (!value) {
-        return 0;
+        return NULL;
     }
-
-    value = afw_value_evaluate(value, p, xctx);
-    *found = true;
-    if (!AFW_VALUE_IS_DATA_TYPE(value, boolean))
-    {
+    if (!AFW_VALUE_IS_DATA_TYPE(value, boolean)) {
         const afw_utf8_t *data_type_id;
 
         data_type_id = afw_value_get_quick_data_type_id(value);
@@ -412,42 +419,76 @@ afw_object_get_property_as_boolean_source(
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
-    return (((const afw_value_boolean_t *)value)->internal);
+    return (const afw_value_boolean_t *)value;
 }
 
-/* Get next property function for data type boolean values. */
+/* Get property as boolean internal. */
 AFW_DEFINE(afw_boolean_t)
+afw_object_get_property_as_boolean_internal_source(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    afw_boolean_t *found,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx)
+{
+    const afw_value_boolean_t *value;
+
+    value = afw_object_get_property_as_boolean_source(object, property_name, source_z, xctx);
+    if (!value) {
+        *found = false;
+        return 0;
+    }
+    *found = true;
+    return value->internal;
+}
+
+/* Get next property as boolean value. */
+AFW_DEFINE(const afw_value_boolean_t *)
 afw_object_get_next_property_as_boolean_source(
+    const afw_object_t *object,
+    const afw_iterator_old_t * *iterator,
+    const afw_value_t * *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *value;
+
+    value = afw_object_get_next_property(object, iterator, property_name, xctx);
+    if (!value) {
+        return NULL;
+    }
+    if (!AFW_VALUE_IS_DATA_TYPE(value, boolean)) {
+        const afw_utf8_t *data_type_id;
+
+        data_type_id = afw_value_get_quick_data_type_id(value);
+        afw_error_set_fz(afw_error_code_general, source_z, xctx,
+            "Typesafe error: expecting 'boolean' but "
+            "encountered " AFW_UTF8_FMT_Q,
+            AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
+        afw_error_processing_throw((xctx), afw_error_code_general);
+    }
+    return (const afw_value_boolean_t *)value;
+}
+
+/* Get next property as boolean internal. */
+AFW_DEFINE(afw_boolean_t)
+afw_object_get_next_property_as_boolean_internal_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *value;
+    const afw_value_boolean_t *value;
 
-    *found = false;
-    value = afw_object_get_next_property(object, iterator, property_name, xctx);
+    value = afw_object_get_next_property_as_boolean_source(object, iterator, property_name, source_z, xctx);
     if (!value) {
+        *found = false;
         return 0;
     }
-
-    value = afw_value_evaluate(value, p, xctx);
     *found = true;
-    if (!AFW_VALUE_IS_DATA_TYPE(value, boolean))
-    {
-        const afw_utf8_t *data_type_id;
-
-        data_type_id = afw_value_get_quick_data_type_id(value);
-        afw_error_set_fz(afw_error_code_general, source_z, xctx,
-            "Typesafe error: expecting 'boolean' but "
-            "encountered " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
-        afw_error_processing_throw((xctx), afw_error_code_general);
-    }
-    return (((const afw_value_boolean_t *)value)->internal);
+    return value->internal;
 }
 
 /* Implementation of method optional_release for managed value. */
@@ -593,42 +634,58 @@ impl_afw_value_get_info(
 }
 
 
-/* Get next value from array of boolean. */
-AFW_DEFINE(afw_boolean_t)
+/* Get next boolean value from array of boolean. */
+AFW_DEFINE(const afw_value_boolean_t *)
 afw_array_of_boolean_get_next_source(
     const afw_array_t *instance,
     const afw_iterator_old_t * *iterator,
-    afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx)
 {
-    const void *internal;
-    const afw_data_type_t *data_type;
+    const afw_value_t *value;
 
-    afw_array_get_next_internal(instance, iterator, &data_type, &internal, xctx);
-    *found = true;
-    if (!internal) {
-        *found = false;
-        return 0;
+    value = afw_array_get_next_value(instance, iterator, xctx);
+    if (!value) {
+        return NULL;
     }
-    if (data_type != afw_data_type_boolean) {
+    if (!AFW_VALUE_IS_DATA_TYPE(value, boolean)) {
         const afw_utf8_t *data_type_id;
 
-        data_type_id = &data_type->data_type_id;
+        data_type_id = afw_value_get_quick_data_type_id(value);
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
             "Typesafe error: expecting 'boolean' but "
             "encountered " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
-    return *(afw_boolean_t *)internal;
+    return (const afw_value_boolean_t *)value;
 }
 
-/* Add value from array of boolean */
+/* Get next boolean internal from array of boolean. */
+AFW_DEFINE(afw_boolean_t)
+afw_array_of_boolean_get_next_internal_source(
+    const afw_array_t *instance,
+    const afw_iterator_old_t * *iterator,
+    afw_boolean_t *found,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx)
+{
+    const afw_value_boolean_t *value;
+
+    value = afw_array_of_boolean_get_next_source(instance, iterator, source_z, xctx);
+    if (!value) {
+        *found = false;
+        return 0;
+    }
+    *found = true;
+    return value->internal;
+}
+
+/* Add a boolean value to array of boolean. */
 AFW_DEFINE(void)
 afw_array_of_boolean_add(
     const afw_array_t *instance,
-    const afw_boolean_t *value,
+    const afw_value_boolean_t *value,
     afw_xctx_t *xctx)
 {
     const afw_array_setter_t *setter;
@@ -637,27 +694,41 @@ afw_array_of_boolean_add(
     if (!setter) {
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
-
-    afw_array_setter_push_internal(setter, 
-        afw_data_type_boolean,
-        (const void *)value, xctx);
+    afw_array_setter_push_value(setter, &value->pub, xctx);
 }
 
-/* Remove value from array of boolean */
+/* Add a boolean internal to array of boolean. */
 AFW_DEFINE(void)
-afw_array_of_boolean_remove(
+afw_array_of_boolean_add_internal(
     const afw_array_t *instance,
     const afw_boolean_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_array_setter_t *setter;
+    const afw_value_t *v;
 
-    setter = afw_array_get_setter(instance, xctx);
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
-    }
+    v = afw_value_for_boolean(*value);
+    afw_array_push_value(instance, v, xctx);
+}
 
-    afw_array_setter_remove_internal(setter, 
-        afw_data_type_boolean,
-        (const void *)value, xctx);
+/* Remove a boolean value from array of boolean. */
+AFW_DEFINE(void)
+afw_array_of_boolean_remove(
+    const afw_array_t *instance,
+    const afw_value_boolean_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_array_of_boolean_remove_internal(instance, &value->internal, xctx);
+}
+
+/* Remove a boolean internal from array of boolean. */
+AFW_DEFINE(void)
+afw_array_of_boolean_remove_internal(
+    const afw_array_t *instance,
+    const afw_boolean_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *v;
+
+    v = afw_value_for_boolean(*value);
+    afw_array_remove_value(instance, v, xctx);
 }

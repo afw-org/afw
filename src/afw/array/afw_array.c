@@ -39,20 +39,22 @@ afw_array_of_utf8_get_next(
     const afw_iterator_old_t * *iterator,
     afw_xctx_t *xctx)
 {
-    const void *internal;
+    const afw_value_t *value;
     const afw_data_type_t *data_type;
 
-    afw_array_get_next_internal(instance, iterator, &data_type, &internal, xctx);
-    if (!internal) {
+    value = afw_array_get_next_value(instance, iterator, xctx);
+    if (!value) {
         return NULL;
     }
 
-    if (!afw_utf8_equal(&data_type->cType, afw_s_afw_utf8_t))
+    data_type = afw_value_get_data_type(value, xctx);
+    if (!data_type ||
+        !afw_utf8_equal(&data_type->cType, afw_s_afw_utf8_t))
     {
         AFW_THROW_ERROR_Z(general,
             "cType of array data type is not afw_utf8_t", xctx);
     }
-    return (const afw_utf8_t *)internal;
+    return (const afw_utf8_t *)AFW_VALUE_INTERNAL(value);
 }
 
 
@@ -106,26 +108,6 @@ afw_array_push_value(
     }
 
     afw_array_setter_push_value(setter, value, xctx);
-}
-
-
-/* push_internal */
-AFW_DEFINE(void)
-afw_array_push_internal(
-    const afw_array_t *instance,
-    const afw_data_type_t *data_type,
-    const void *internal,
-    afw_xctx_t *xctx)
-{
-    const afw_array_setter_t *setter;
-
-    setter = afw_array_get_setter(instance, xctx);
-
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
-    }
-
-    afw_array_setter_push_internal(setter, data_type, internal, xctx);
 }
 
 
@@ -242,26 +224,6 @@ afw_array_remove_value(
     }
 
     afw_array_setter_remove_value(setter, value, xctx);
-}
-
-
-/* remove_internal */
-AFW_DEFINE(void)
-afw_array_remove_internal(
-    const afw_array_t *instance,
-    const afw_data_type_t *data_type,
-    const void *internal,
-    afw_xctx_t *xctx)
-{
-    const afw_array_setter_t *setter;
-
-    setter = afw_array_get_setter(instance, xctx);
-
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
-    }
-
-    afw_array_setter_remove_internal(setter, data_type, internal, xctx);
 }
 
 

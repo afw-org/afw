@@ -35,6 +35,21 @@ If you maintain **anything that links AFW outside a full in-tree rebuild** — e
 
 In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afwdev build --cdev` / `--fulldev` install are fine.
 
+**Naming** (object, array, and value helpers). Arrays and objects store **values**, not C payloads.
+
+| Name | Means |
+|------|--------|
+| `_as_<type>` | Typed value pointer: `const afw_value_<type>_t *`. Does **not** convert. Does **not** peel. Getters do **not** evaluate. |
+| `_internal` | C payload of that type (`afw_utf8_t`, `afw_integer_t`, …). |
+| `convert_to_*` | Convert to another representation. |
+| `create_unmanaged` / `_new_p` / `_cede_p` | Lives in dest `p`. |
+| `create_managed` | Frame in this `xctx->p`. |
+| `get_assignable` | Isolate into a slot. |
+| `afw_v_foo` | Object **property name** (a value). `afw_s_foo` is still utf8 for type ids and other utf8 APIs. |
+| dest `p` | Evaluate, clone, or extra allocation (iterator / meta). **Not** on value getters. |
+
+Utf8 ingest is a **different** table: `create` / `to_` copy; `create_no_copy` / `z_as_utf8` point. Do not read `afw_utf8_z_as_utf8` as a typed value pointer. [UTF-8 doors](#utf-8-create-set-and-forced_safe). Detail for `_as_<type>`: [Typed values](#typed-value-pointers-vs-c-internals).
+
 | Change this | To |
 |-------------|----|
 | Leftover headers in `/usr/local/include/afw/` after a rebuild | `./afwdev build --cdev` or `--fulldev` (both **`--install`**). CMake does not delete dropped headers; afwdev then removes a leftover list (internals, old generated names, deprecated leftovers). Another package’s **public** headers in that dir stay. If that package still installed `*_internal.h` or `*_declare_helpers.h` there, reinstall **it**. [Upgrade hygiene](#upgrade-hygiene) |
@@ -43,6 +58,9 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | `afw_utf8_create` / `create_copy` / `from_utf8_z` / `from_raw` | **`create` always copies** (old `create_copy`). Point without copy is **`create_no_copy`**. `from_utf8_z` → **`utf8_z_to_utf8`** (copy) or **`utf8_z_as_utf8`** (point). `from_raw` / `as_raw` → **`from_memory` / `as_memory`**. Env/request names that are not UTF-8 are **`^` + hex + `^`**, not `_NONUTF8_` + whole-name hex. [UTF-8 doors](#utf-8-create-set-and-forced_safe) |
 | `afw_utf8_printf` / `z_printf` to write a data file | Don't. Those formatters always **`forced_safe`** the result (viewable text, `^hex^` for bad runs). For octets, write `.s` + `.len` or **`as_memory`**. |
 | Object `property_name` as `const afw_utf8_t *` | **`const afw_value_t *`** on object get/set/has/remove, create_embedded, meta, `throw_property_*`. `afw_s_foo` → **`afw_v_foo`** (or your package `*_v_*`). See the [checklist](#object-property-names-as-values-issue-2) if you maintain another repo that links this libafw. |
+| `get_property_as_string` / `afw_value_as_string` as a utf8 peel; dest `p` on those getters | **`_as_<type>`** is a typed value pointer (`const afw_value_string_t *`). C payload is **`_internal`**. Convert is **`convert_to_*`**. Getters do **not** evaluate and do **not** take dest `p`. [Typed values](#typed-value-pointers-vs-c-internals) |
+| `afw_array_get_next_value(..., p, xctx)` / `push_internal` / `get_next_internal` | Drop dest `p` on `get_next_value` / `get_entry_value`. Gone: `push_internal`, `insert_internal`, `remove_internal`, `get_next_internal`, `get_entry_internal`. Use **`push_value`** / **`get_next_value`** or typed `array_of_<type>_add` / `_add_internal`. [Typed values](#typed-value-pointers-vs-c-internals) |
+| `afw_value_as_assignable` / `compile_and_evaluate_as` | **`afw_value_get_assignable`**. **`afw_value_compile_and_evaluate_using`**. [Typed values](#typed-value-pointers-vs-c-internals) |
 | Object/array create that “owns a pool” as `create_managed` | **`create_unmanaged`** (live in `p`), **`create_unmanaged_new_p`**, **`create_unmanaged_cede_p`**. **`create_managed`** is a **frame** (no pool, lives in this `xctx->p`). Isolate with **`get_assignable`**. Unmanaged object/array **value** `get_reference` / `release` **throw**. [Value lifetime](#value-lifetime--memory-management-issue-2--alphabeta) |
 
 **Details:** [libafw C API cleanup](#libafw-c-api-cleanup-release-ready-surface).
@@ -59,6 +77,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**libafw C API cleanup**](#libafw-c-api-cleanup-release-ready-surface) | Toward a **release-ready** supported C surface: public install + implementer headers; internals off install; declare helpers **removed**; **rebuild** out-of-tree C once against this line |
 | [**Object / array helpers**](#object-and-array-helpers-issue-55) ([#55](https://github.com/afw-org/afw/issues/55)) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` (C array-setter reshape covered by C API rebuild rule) |
 | [**Object property names as values**](#object-property-names-as-values-issue-2) ([#2](https://github.com/afw-org/afw/issues/2)) | C object APIs take **`const afw_value_t *` names**; script/JSON **string only**. Checklist for **other repos** that link this libafw |
+| [**Typed value pointers**](#typed-value-pointers-vs-c-internals) | **`_as_<type>`** is `const afw_value_<type>_t *`. C payload is **`_internal`**. Convert is **`convert_to_*`**. Array getters dropped dest `p`; array `_internal` vtable methods are gone |
 | [**Expression property names**](#expression-property-names-in-object-values-issue-38) ([#38](https://github.com/afw-org/afw/issues/38)) | Object values may use `{ [expression]: value }` (same idea as `obj[expr]` get/set) |
 | [**Qualifier snapshots**](#list-active-qualified-variables-issue-9) ([#9](https://github.com/afw-org/afw/issues/9)) | **`qualifier(name)`** / **`qualifiers()`** return **fresh listable objects** (not live proxies); optional **`includeUntrusted`**; missing name → **nullish**; can be **large** |
 | [**Multi-frame `::` get**](#multi-frame-get-aligned-with-snapshots) | Stacked same-name qualifiers: first **defining** frame wins (was “first matching frame only”); aligned with snapshot semantics (landed with [#15](https://github.com/afw-org/afw/issues/15) work) |
@@ -327,7 +346,7 @@ Adaptive values whose internal form is **`afw_utf8_t`** (`string`, `anyURI`, and
 
 Storage remains **valid NFC UTF-8**. The value’s **data type stays** `string` / `anyURI` / … — it is not retyped to `array`.
 
-**C / extensions:** keyless **`afw_iterator`** + data-type `optional_initialize_iterator`; value helpers `afw_value_has_iterator` / `initialize_iterator` / `as_array_sequence`. Legacy opaque cursor type renamed **`afw_iterator_old`** (part of the [C API cleanup](#libafw-c-api-cleanup-release-ready-surface) rebuild line). Maintainer pad: [`designs/utf8-code-point-sequences.md`](designs/utf8-code-point-sequences.md). Tests: `src/afw/tests/language/script/string_code_points.as`.
+**C / extensions:** keyless **`afw_iterator`** + data-type `optional_initialize_iterator`; value helpers `afw_value_has_iterator` / `initialize_iterator` / `convert_to_array_sequence`. Legacy opaque cursor type renamed **`afw_iterator_old`** (part of the [C API cleanup](#libafw-c-api-cleanup-release-ready-surface) rebuild line). Maintainer pad: [`designs/utf8-code-point-sequences.md`](designs/utf8-code-point-sequences.md). Tests: `src/afw/tests/language/script/string_code_points.as`.
 
 Residuals (not required for this language story): lazy array **face** over utf8; shared `afw_utf8_*` index helpers; produce-type percolation on call IR (see `designs/compile-optimize-notes.md` / [#28](https://github.com/afw-org/afw/issues/28)).
 
@@ -699,8 +718,8 @@ Compile errors look like: passing `const afw_utf8_t *` to get/set; `AFW_UTF8_FMT
 | A **utf8** you already hold, **set / embed** (object keeps the name) | `afw_value_create_unmanaged_string(utf8, object->p, xctx)` so the header lives with the object. Memory-object set also **interns** unmanaged string headers into `object->p` (promote-on-get must not keep a stack pointer). |
 | A **string name you own** for the life of the object | Embed `afw_value_string_t` on the owner (`&pub` at object APIs, `&internal` as utf8). Path entries already do this. |
 | `AFW_UTF8_FMT_ARG(property_name)` or `write_utf8` of a **value** name | `AFW_UTF8_FMT_ARG(afw_object_property_name_display_utf8(property_name, xctx))` |
-| Need the utf8 of a name you know is a string | `afw_object_string_property_name_as_utf8(name, xctx)` (throws if not a string) |
-| `get_next_property` / `old_get_next_property_as_*` | The name out-parameter is **`const afw_value_t **`**. Use that pointer at object APIs; take utf8 only when a utf8 API still wants it. |
+| Need the utf8 of a name you know is a string | `afw_object_string_property_name_internal(name, xctx)` (throws if not a string) |
+| `get_next_property` / `get_next_property_as_*` | The name out-parameter is **`const afw_value_t **`**. Use that pointer at object APIs; take utf8 only when a utf8 API still wants it (`get_next_property_as_string_internal`). |
 
 Grep in the other tree (not generated, not object-type ids):
 
@@ -744,6 +763,79 @@ afw_object_get_property(obj, &n.pub, xctx);  /* get/has only */
 ```
 
 `AFW_VALUE_STRING_LITERAL` is **permanent** inf (`.so` lifetime), same shape as generated `afw_self_v_*`. Unmanaged is a stack/pool header over existing utf8 bytes.
+
+[↑ Highlights](#highlights)
+
+---
+
+## Typed value pointers vs C internals
+
+This section is for **someone supporting another repository that uses this one**. After you rebuild that tree against this libafw, cmake will fail on old names and extra dest-`p` arguments. Same [C rebuild rule](#c-programmers).
+
+Arrays and objects **store values**, not C payloads. Helpers that take or return a C payload are named **`_internal`**. Helpers that take or return a typed Adaptive value pointer are named **`_as_<type>`** (no `_internal`). Conversion to another representation is **`convert_to_*`**, not `as_`.
+
+Getters **do not evaluate**. Dest `p` is only for evaluate, clone, or extra allocation (iterator / meta).
+
+### Names
+
+| You want | Name | Type |
+|----------|------|------|
+| Typed value pointer | `afw_object_get_property_as_string`, `afw_value_as_string`, `afw_array_of_string_add`, `afw_object_set_property_as_string` | `const afw_value_string_t *` |
+| C payload | same names with **`_internal`** | `const afw_utf8_t *` (or that type’s cType) |
+| Convert | `afw_value_convert_to_utf8`, `afw_object_get_property_convert_to_utf8` | utf8 (or the converted form) |
+
+Same pattern for every data type (`integer`, `object`, `array`, …). Boolean/integer `_internal` getters take a **`found`** out-parameter (zero is a valid payload).
+
+### Object get / set
+
+| In the other repo you have | Change to |
+|----------------------------|-----------|
+| `afw_object_get_property_as_string(obj, name, p, xctx)` returning utf8 | `afw_object_get_property_as_string(obj, name, xctx)` → `const afw_value_string_t *`. Utf8: `…_as_string_internal(obj, name, xctx)` or `&typed->internal` |
+| `afw_object_set_property_as_string(obj, name, utf8, xctx)` | **`set_property_as_string_internal`**. Typed value: **`set_property_as_string(obj, name, typed, xctx)`** |
+| `afw_object_string_property_name_as_utf8` | **`afw_object_string_property_name_internal`** |
+| `afw_object_get_property_compile_and_evaluate_as` | **`afw_object_get_property_compile_and_evaluate_using`** |
+
+### Array get / set
+
+| In the other repo you have | Change to |
+|----------------------------|-----------|
+| `afw_array_get_next_value(list, &it, p, xctx)` | Drop `p`: `afw_array_get_next_value(list, &it, xctx)` |
+| `afw_array_get_entry_value(list, i, p, xctx)` | Drop `p`: `afw_array_get_entry_value(list, i, xctx)` |
+| `afw_array_push_internal` / `insert_internal` / `remove_internal` | **`afw_array_push_value`** / **`remove_value`**, or typed `array_of_<type>_add` / `_add_internal` |
+| `afw_array_get_next_internal` / `get_entry_internal` | **`get_next_value`** / **`get_entry_value`**, or typed `array_of_<type>_get_next` / `_get_next_internal` |
+| `afw_array_create_view_of_c_array` / pointer-list creates | **`afw_array_create_unmanaged_from_c_array`** / **`from_values`**. Managed clone of an existing array is **`create_managed_clone`** |
+
+Iterator `get_next` / `get_by_index` and array **entry-meta** getters still take dest `p` (they may allocate extra). Do not drop those.
+
+### Value helpers
+
+| In the other repo you have | Change to |
+|----------------------------|-----------|
+| `afw_value_as_string(v, xctx)` as utf8 | **`afw_value_as_string`** → `const afw_value_string_t *`. Utf8 peel: **`as_string_internal`**. Convert: **`convert_to_utf8`** |
+| `afw_value_as_assignable` | **`afw_value_get_assignable`** |
+| `afw_value_compile_and_evaluate_as` | **`afw_value_compile_and_evaluate_using`** |
+
+`afw_utf8_z_as_utf8` is **not** this convention (utf8 ingest: point at an already-NFC C string). Leave it.
+
+### Compile errors look like
+
+Too many arguments to `get_next_value` / `get_entry_value` / `get_property_as_*`; unknown `push_internal` / `get_next_internal`; assigning a getter to `const afw_utf8_t *` (`incompatible pointer type`); unknown `as_assignable` / `compile_and_evaluate_as`.
+
+Grep in the other tree (not generated):
+
+```text
+get_property_as_
+set_property_as_
+afw_array_get_next_value
+afw_array_get_entry_value
+afw_array_push_internal
+afw_array_get_next_internal
+afw_value_as_
+as_assignable
+compile_and_evaluate_as
+string_property_name_as_utf8
+create_view_of_c_array
+```
 
 [↑ Highlights](#highlights)
 
@@ -901,6 +993,7 @@ These landed for product reasons too, but share the **same rebuild** for C consu
 | [Object / array helpers](#object-and-array-helpers-issue-55) ([#55](https://github.com/afw-org/afw/issues/55)) | `afw_array_setter` reshape |
 | [Value / memory](#value-lifetime--memory-management-issue-2--alphabeta) ([#2](https://github.com/afw-org/afw/issues/2)) | Pool/value lifetime and faces |
 | [UTF-8 code-point sequences](#utf-8-code-point-sequences-issue-153) ([#153](https://github.com/afw-org/afw/issues/153)) | Iterator redesign; legacy cursor → **`afw_iterator_old`** |
+| [Typed value pointers](#typed-value-pointers-vs-c-internals) | `_as_<type>` vs `_internal` vs `convert_to_*`; array dest `p` and `_internal` vtable methods |
 | [Mutable object faces](#mutable-object-faces-issue-17) ([#17](https://github.com/afw-org/afw/issues/17)) | Face/value paths if you link those APIs |
 
 ### Upgrade hygiene

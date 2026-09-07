@@ -88,7 +88,6 @@ impl_flag_add_included_by(
     const afw_pool_t *p = xctx->env->p;
     const afw_iterator_old_t *iterator;
     const afw_utf8_t *flag_id;
-    const afw_data_type_t *data_type;
     afw_boolean_t *new_applicable;
     afw_flag_t *parent;
     afw_size_t i;
@@ -98,8 +97,8 @@ impl_flag_add_included_by(
     /* Determined if flag id has already been added once. */
     already_included = false;
     if (included_by->includes_value) for (iterator = NULL;;) {
-        afw_array_get_next_internal(included_by->includes_value->internal,
-            &iterator, &data_type, (const void **)&flag_id, xctx);
+        flag_id = afw_array_of_string_get_next_internal(
+            included_by->includes_value->internal, &iterator, xctx);
         if (!flag_id) break;
         if (afw_utf8_equal(flag_id, flag->flag_id)) {
             already_included = true;
@@ -159,8 +158,8 @@ impl_flag_add_included_by(
 
     /* Add flag to this included_by and to all the flags it is included by. */
     if (included_by->included_by_value) for (iterator = NULL;;) {
-        afw_array_get_next_internal(included_by->included_by_value->internal,
-            &iterator, &data_type, (const void **)&flag_id, xctx);
+        flag_id = afw_array_of_string_get_next_internal(
+            included_by->included_by_value->internal, &iterator, xctx);
         if (!flag_id) break;
         parent = (afw_flag_t *)afw_environment_get_flag(flag_id, xctx);
         if (!parent) {
@@ -957,7 +956,6 @@ afw_flag_set_default_flag_ids(
     const afw_utf8_t **ids;
     const afw_utf8_t **id;
     const afw_utf8_t *s;
-    const afw_data_type_t *data_type;
     const afw_iterator_old_t *iterator;
 
     AFW_LOCK_BEGIN(xctx->env->flags_lock) {
@@ -968,13 +966,9 @@ afw_flag_set_default_flag_ids(
 
         iterator = NULL;
         for (id = ids;; id++) {
-            afw_array_get_next_internal(default_flag_ids,
-                &iterator, &data_type, (const void **)&s, xctx);
+            s = afw_array_of_string_get_next_internal(default_flag_ids,
+                &iterator, xctx);
             if (!s) break;
-            if (!afw_data_type_is_string(data_type)) {
-                AFW_THROW_ERROR_Z(general,
-                    "Default flagIds most all be strings", xctx);
-            }
             *id = afw_utf8_clone(s, p, xctx);
         }
 

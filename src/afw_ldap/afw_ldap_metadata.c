@@ -272,15 +272,16 @@ impl_get_value(impl_lexical_t *self)
 
         /* Allocate list to hold strings and populate it. */
         s = afw_pool_malloc(self->p, count * sizeof(afw_utf8_t), self->xctx);
-        list = afw_array_create_view_of_c_array(s, false,
-            afw_data_type_string, count, self->p, self->xctx);
-        val = afw_value_create_unmanaged_array(list, self->p, self->xctx);
         for (;;) {
             tkn = impl_get_token(self);
             if (afw_utf8_z_equal(tkn, ")")) break;
             if (afw_utf8_z_equal(tkn, "$")) continue;
             impl_set_string(self, s++);
         }
+        s -= count;
+        list = afw_array_create_unmanaged_from_c_array(s, false,
+            afw_data_type_string, count, self->p, self->xctx);
+        val = afw_value_create_unmanaged_array(list, self->p, self->xctx);
     }
 
     /* If not list, just return single value. */
@@ -345,11 +346,23 @@ impl_parse_schema_entry(
             afw_utf8_z_equal(kwd, "ABSTRACT") ||
             afw_utf8_z_equal(kwd, "STRUCTURAL") ||
             afw_utf8_z_equal(kwd, "AUXILIARY") ||
-            afw_utf8_z_equal(kwd, "COLLECTIVE") ||
-            afw_utf8_z_equal(kwd, "NO-USER-MODIFICATION")
+            afw_utf8_z_equal(kwd, "NO-USER-MODIFICATION") ||
+            afw_utf8_z_equal(kwd, "X-NDS_HIDDEN") ||
+            afw_utf8_z_equal(kwd, "X-NDS_NONREMOVABLE") ||
+            afw_utf8_z_equal(kwd, "X-NDS_READ_FILTERED")
             )
         {
             val = afw_boolean_v_true;
+        }
+
+        /* Integer bounds in schema are quoted numbers. */
+        else if (
+            afw_utf8_z_equal(kwd, "X-NDS_LOWER_BOUND") ||
+            afw_utf8_z_equal(kwd, "X-NDS_UPPER_BOUND"))
+        {
+            val = impl_get_value(self);
+            val = afw_value_convert(val, afw_data_type_integer,
+                true, obj->p, xctx);
         }
 
         /* If any other keyword, get following value and set. */
@@ -432,7 +445,7 @@ impl_parse_definition(
 
     /* Process each definition in list. */
     for (iterator = NULL;;) {
-        afw_array_get_next_internal(list, &iterator, NULL, (const void **)&e, xctx);
+        e = afw_array_of_string_get_next_internal(list, &iterator, xctx);
         if (!e) {
             break;
         }
@@ -452,9 +465,9 @@ impl_parse_definition(
         if (afw_value_is_array_of_string(name_value)) {
             for (iterator2 = NULL;;)
             {
-                afw_array_get_next_internal(
+                name = afw_array_of_string_get_next_internal(
                     ((const afw_value_array_t *)name_value)->internal,
-                    &iterator2, NULL, (const void **)&name, xctx);
+                    &iterator2, xctx);
                 if (!name) {
                     break;
                 }
@@ -463,7 +476,7 @@ impl_parse_definition(
             }
         }
         else {
-            id = afw_value_as_utf8(name_value, p, xctx);
+            id = afw_value_convert_to_utf8(name_value, p, xctx);
             if (!id) {
                 AFW_THROW_ERROR_Z(general, "Error parsing schema", xctx);
             }
@@ -534,7 +547,7 @@ impl_make_property_type_and_handler_hash_tables(
          * Use syntax to determine datatype and handler.  Add handler to
          * ht_attribute_types.
          */
-        syntax = afw_object_old_get_property_as_string(attribute_type_object,
+        syntax = afw_object_get_property_as_string_internal(attribute_type_object,
             afw_ldap_v_SYNTAX, xctx);
         if (syntax) {
 
@@ -562,49 +575,53 @@ impl_make_property_type_and_handler_hash_tables(
 
             /* Determine if single. */
             attribute_type->is_single =
-                afw_object_old_get_property_as_boolean(
+                afw_object_get_property_as_boolean_internal(
                     attribute_type_object, afw_ldap_v_a_single_dash_value,
                     &found, xctx);
 
             /* X-NDS_LOWER_BOUND. */
             attribute_type->lower_bound =
-                afw_object_old_get_property_as_integer_deprecated(
+                afw_object_get_property_as_integer_internal(
                     attribute_type_object, afw_ldap_v_a_X_NDS_LOWER_BOUND,
                     &attribute_type->lower_bound_present, xctx);
 
             /* X-NDS_UPPER_BOUND if already be obtained by {} in syntax. */
             if (!attribute_type->upper_bound_present) {
                 attribute_type->upper_bound =
-                    afw_object_old_get_property_as_integer_deprecated(
+                    afw_object_get_property_as_integer_internal(
                         attribute_type_object, afw_ldap_v_a_X_NDS_UPPER_BOUND,
                         &attribute_type->upper_bound_present, xctx);
             }
 
             /* NO-USER-MODIFICATION - Never allow write. */
-            if (afw_object_old_get_property_as_boolean_deprecated(attribute_type_object,
-                afw_ldap_v_a_NO_USER_MODIFICATION, xctx))
+            if (afw_object_get_property_as_boolean_internal(
+                attribute_type_object, afw_ldap_v_a_NO_USER_MODIFICATION,
+                &found, xctx))
             {
                 attribute_type->never_allow_write = true;
             }
 
             /* X-NDS_HIDDEN - Never allow read or write. */
-            if (afw_object_old_get_property_as_boolean_deprecated(attribute_type_object,
-                afw_ldap_v_a_X_NDS_HIDDEN, xctx))
+            if (afw_object_get_property_as_boolean_internal(
+                attribute_type_object, afw_ldap_v_a_X_NDS_HIDDEN,
+                &found, xctx))
             {
                 attribute_type->never_allow_read = true;
                 attribute_type->never_allow_write = true;
             }
 
             /* X-NDS_NONREMOVABLE - Never remove. */
-            if (afw_object_old_get_property_as_boolean_deprecated(attribute_type_object,
-                afw_ldap_v_a_X_NDS_NONREMOVABLE, xctx))
+            if (afw_object_get_property_as_boolean_internal(
+                attribute_type_object, afw_ldap_v_a_X_NDS_NONREMOVABLE,
+                &found, xctx))
             {
                 attribute_type->never_allow_write = true;
             }
 
             /* X-NDS_READ_FILTERED - Operational. */
-            if (afw_object_old_get_property_as_boolean_deprecated(attribute_type_object,
-                afw_ldap_v_a_X_NDS_READ_FILTERED, xctx))
+            if (afw_object_get_property_as_boolean_internal(
+                attribute_type_object, afw_ldap_v_a_X_NDS_READ_FILTERED,
+                &found, xctx))
             {
                 attribute_type->operational = true;
                 attribute_type->never_allow_write = true;
@@ -655,7 +672,7 @@ impl_make_property_type_and_handler_hash_tables(
                 if (attribute_type->lower_bound_present) {
                     string = afw_number_integer_to_utf8(
                         attribute_type->lower_bound, p, xctx);
-                    afw_object_set_property_as_string(
+                    afw_object_set_property_as_string_internal(
                         attribute_type->property_type_object,
                         afw_v_minValue, string, xctx);
 
@@ -665,7 +682,7 @@ impl_make_property_type_and_handler_hash_tables(
                 if (attribute_type->upper_bound_present) {
                     string = afw_number_integer_to_utf8(
                         attribute_type->upper_bound, p, xctx);
-                    afw_object_set_property_as_string(
+                    afw_object_set_property_as_string_internal(
                         attribute_type->property_type_object,
                         afw_v_maxValue, string, xctx);
                 }
@@ -745,7 +762,7 @@ impl_a_property_to_object_type(
     if (parent) {
         s = afw_object_meta_get_path(parent, xctx);
         parent_paths = afw_value_allocate_unmanaged_array(prop->p, xctx);
-        parent_paths->internal = afw_array_create_view_of_c_array(
+        parent_paths->internal = afw_array_create_unmanaged_from_c_array(
             (const void *)s, false, afw_data_type_anyURI, 1, prop->p, xctx);
         afw_object_meta_set_parent_paths(prop, parent_paths, xctx);
     }
@@ -786,8 +803,7 @@ impl_properties_to_object_type(
         list = ((const afw_value_array_t *)value)->internal;
         for (iterator = NULL;;)
         {
-            afw_array_get_next_internal(list,
-                &iterator, NULL, (const void **)&s, xctx);
+            s = afw_array_of_string_get_next_internal(list, &iterator, xctx);
             if (!s) {
                 break;
             }
@@ -797,7 +813,7 @@ impl_properties_to_object_type(
     }
     else if (afw_value_is_defined_and_evaluated(value)) {
         impl_a_property_to_object_type(required,
-            afw_value_one_and_only_as_utf8(value, metadata->p, xctx),
+            afw_value_one_and_only_convert_to_utf8(value, metadata->p, xctx),
             properties,
             metadata, xctx);
     }
@@ -880,6 +896,7 @@ impl_add_parents_and_property_types(
     afw_size_t count;
     afw_size_t count2;
     afw_size_t i;
+    afw_boolean_t found;
 
     /* Use metadata p. */
     p = metadata->p;
@@ -908,17 +925,17 @@ impl_add_parents_and_property_types(
     result = object_type_attribute;
 
     /* Make list of property types for this object type. */
-    property_types_object = afw_object_old_get_property_as_object(
+    property_types_object = afw_object_get_property_as_object_internal(
         object_type_object, afw_v_propertyTypes, xctx);
     if (property_types_object) {
         iterator = NULL;
         while ((property_type_object =
-            afw_object_old_get_next_property_as_object(
+            afw_object_get_next_property_as_object_internal(
                 property_types_object, &iterator, &property_name, xctx))
             )
         {
             /* Attribute-type hash is utf8 (s, len), not a name value. */
-            property_name_utf8 = afw_object_string_property_name_as_utf8(
+            property_name_utf8 = afw_object_string_property_name_internal(
                 property_name, xctx);
             attribute_type = apr_hash_get(metadata->attribute_types,
                 property_name_utf8->s,
@@ -934,8 +951,8 @@ impl_add_parents_and_property_types(
             object_type_attribute->property_type_object =
                 property_types_object;
             object_type_attribute->is_required =
-                afw_object_old_get_property_as_boolean_deprecated(property_type_object,
-                    afw_v_required, xctx);
+                afw_object_get_property_as_boolean_internal(
+                    property_type_object, afw_v_required, &found, xctx);
         }
     }
 
@@ -958,8 +975,8 @@ impl_add_parents_and_property_types(
             ids = afw_pool_calloc(p, count * sizeof(afw_utf8_t), xctx);
             parent_id = ids;
             for (iterator = NULL;;) {
-                afw_array_get_next_internal(list, &iterator, NULL,
-                    (const void **)&s, xctx);
+                s = afw_array_of_string_get_next_internal(list, &iterator,
+                    xctx);
                 if (!s) {
                     break;
                 }
@@ -996,7 +1013,7 @@ impl_add_parents_and_property_types(
 
             /* Set parent path. */
             s = afw_object_meta_get_path(parent, xctx);
-            afw_array_of_anyURI_add(parent_paths->internal, s, xctx);
+            afw_array_of_anyURI_add_internal(parent_paths->internal, s, xctx);
 
             /* Make sure parent is processed first. */
             parent_object_class_object =
@@ -1070,6 +1087,7 @@ impl_make_object_types(
     const afw_utf8_t *default_description;
     const afw_object_t *other_properties;
     const afw_pool_t *p;
+    afw_boolean_t found;
 
     /* Use metadata p. */
     p = metadata->p;
@@ -1090,11 +1108,11 @@ impl_make_object_types(
         id = afw_object_meta_get_object_id(object_class_object, xctx);
         afw_object_meta_set_ids(object_type_object, adapter_id,
             afw_ldap_s__AdaptiveObjectType_, id, xctx);
-        afw_object_set_property_as_string(object_type_object, afw_v_objectType,
+        afw_object_set_property_as_string_internal(object_type_object, afw_v_objectType,
             id, xctx);
         afw_object_set_property(object_type_object, afw_v_allowEntity,
-            (afw_object_old_get_property_as_boolean_deprecated(object_class_object,
-                afw_ldap_v_STRUCTURAL, xctx))
+            afw_object_get_property_as_boolean_internal(
+                object_class_object, afw_ldap_v_STRUCTURAL, &found, xctx)
             ? afw_boolean_v_true
             : afw_boolean_v_false,
             xctx);
@@ -1215,7 +1233,7 @@ afw_ldap_metadata_load(
         AFW_THROW_ERROR_Z(general, "subschemaSubentry not found.", xctx);
     }
     new_metadata->subschema_subentry =
-        afw_value_one_and_only_as_utf8(value, p, xctx);
+        afw_value_one_and_only_convert_to_utf8(value, p, xctx);
 
     /* Get schema and parse definitions. */
     new_metadata->schema_object =

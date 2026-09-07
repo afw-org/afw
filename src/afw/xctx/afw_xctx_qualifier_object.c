@@ -129,7 +129,7 @@ afw_xctx_qualifiers_object_create(
         if (!qualifier_object) {
             continue;
         }
-        afw_object_set_property_as_object(qualifiers,
+        afw_object_set_property_as_object_internal(qualifiers,
             afw_value_create_unmanaged_string(&c->qualifier,
                 qualifiers->p, xctx),
             qualifier_object, xctx);

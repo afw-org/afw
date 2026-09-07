@@ -825,7 +825,7 @@ afw_model_adapter_create_cede_p(
     //    afw_s__AdaptiveModelPropertyType_, false, false, xctx);
 
     /* Get modelLocationAdapterId.  It can not be the same as adapterId. */
-    self->model_location_adapter_id = afw_object_old_get_property_as_utf8(properties,
+    self->model_location_adapter_id = afw_object_get_property_convert_to_utf8(properties,
         afw_v_modelLocationAdapterId, p, xctx);
     if (afw_utf8_equal(self->model_location_adapter_id, &adapter->adapter_id)) {
         AFW_THROW_ERROR_FZ(general, xctx,
@@ -873,7 +873,7 @@ afw_model_adapter_create_cede_p(
         }
 
         /** @fixme Load modelId */
-        self->model_id = afw_object_old_get_property_as_utf8(properties,
+        self->model_id = afw_object_get_property_convert_to_utf8(properties,
             afw_v_modelId, p, xctx);
     }
 
@@ -1375,7 +1375,7 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
         impl_get_property_type_by_property_name(
             &pt, &mapped_property_name,
             ctx->model_object_type,
-            afw_object_string_property_name_as_utf8(property_name, xctx),
+            afw_object_string_property_name_internal(property_name, xctx),
             xctx);
 
         if (!pt) {
@@ -1477,7 +1477,7 @@ afw_model_internal_complete_ctx_default_add_object(
             afw_xctx_qualifier_stack_top_set(top, xctx);
         }
         AFW_ENDTRY;
-        ctx->mapped_object_id = afw_value_as_utf8(value, ctx->p, xctx);
+        ctx->mapped_object_id = afw_value_convert_to_utf8(value, ctx->p, xctx);
     }
 }
 
@@ -1661,7 +1661,7 @@ afw_model_internal_complete_ctx_default_modify_object(
             afw_array_push_value(mapped_entry, value, xctx);
         }
 
-        afw_array_of_array_add(ctx->mapped_entries, mapped_entry, xctx);
+        afw_array_of_array_add_internal(ctx->mapped_entries, mapped_entry, xctx);
     }
 }
 

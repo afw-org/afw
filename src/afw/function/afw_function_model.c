@@ -222,15 +222,15 @@ afw_function_execute_model_default_add_object_action(
     result = afw_object_create_unmanaged(x->p, xctx);
     afw_object_set_property(result, afw_v_function,
         &impl_value_add_object.pub, xctx);
-    afw_object_set_property_as_string(result, afw_v_adapterId,
+    afw_object_set_property_as_string_internal(result, afw_v_adapterId,
         self->adapter->mapped_adapter_id, xctx);
-    afw_object_set_property_as_string(result, afw_v_objectType,
+    afw_object_set_property_as_string_internal(result, afw_v_objectType,
         ctx->mapped_object_type_id, xctx);
     if (ctx->mapped_object_id) {
-        afw_object_set_property_as_string(result, afw_v_objectId,
+        afw_object_set_property_as_string_internal(result, afw_v_objectId,
             ctx->mapped_object_id, xctx);
     }
-    afw_object_set_property_as_object(result, afw_v_object,
+    afw_object_set_property_as_object_internal(result, afw_v_object,
         ctx->mapped_object, xctx);
 
     return afw_value_create_unmanaged_object(result, x->p, xctx);
@@ -369,11 +369,11 @@ afw_function_execute_model_default_delete_object_action(
     result = afw_object_create_unmanaged(x->p, xctx);
     afw_object_set_property(result, afw_v_function,
         &impl_value_delete_object.pub, xctx);
-    afw_object_set_property_as_string(result, afw_v_adapterId,
+    afw_object_set_property_as_string_internal(result, afw_v_adapterId,
         self->adapter->mapped_adapter_id, xctx);
-    afw_object_set_property_as_string(result, afw_v_objectType,
+    afw_object_set_property_as_string_internal(result, afw_v_objectType,
         ctx->mapped_object_type_id, xctx);
-    afw_object_set_property_as_string(result, afw_v_objectId,
+    afw_object_set_property_as_string_internal(result, afw_v_objectId,
             ctx->mapped_object_id, xctx);
 
     return afw_value_create_unmanaged_object(result, x->p, xctx);
@@ -544,13 +544,13 @@ afw_function_execute_model_default_modify_object_action(
     result = afw_object_create_unmanaged(x->p, xctx);
     afw_object_set_property(result, afw_v_function,
         &impl_value_modify_object.pub, xctx);
-    afw_object_set_property_as_string(result, afw_v_adapterId,
+    afw_object_set_property_as_string_internal(result, afw_v_adapterId,
         self->adapter->mapped_adapter_id, xctx);
-    afw_object_set_property_as_string(result, afw_v_objectType,
+    afw_object_set_property_as_string_internal(result, afw_v_objectType,
         ctx->mapped_object_type_id, xctx);
-    afw_object_set_property_as_string(result, afw_v_objectId,
+    afw_object_set_property_as_string_internal(result, afw_v_objectId,
             ctx->mapped_object_id, xctx);
-    afw_object_set_property_as_array(result, afw_v_entries,
+    afw_object_set_property_as_array_internal(result, afw_v_entries,
             ctx->mapped_entries, xctx);
 
     return afw_value_create_unmanaged_object(result, x->p, xctx);
@@ -697,13 +697,13 @@ afw_function_execute_model_default_replace_object_action(
     result = afw_object_create_unmanaged(x->p, xctx);
     afw_object_set_property(result, afw_v_function,
         &impl_value_replace_object.pub, xctx);
-    afw_object_set_property_as_string(result, afw_v_adapterId,
+    afw_object_set_property_as_string_internal(result, afw_v_adapterId,
         self->adapter->mapped_adapter_id, xctx);
-    afw_object_set_property_as_string(result, afw_v_objectType,
+    afw_object_set_property_as_string_internal(result, afw_v_objectType,
         ctx->mapped_object_type_id, xctx);
-    afw_object_set_property_as_string(result, afw_v_objectId,
+    afw_object_set_property_as_string_internal(result, afw_v_objectId,
             ctx->mapped_object_id, xctx);
-    afw_object_set_property_as_array(result, afw_v_entries,
+    afw_object_set_property_as_array_internal(result, afw_v_entries,
             ctx->mapped_entries, xctx);
 
     return afw_value_create_unmanaged_object(result, x->p, xctx);

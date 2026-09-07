@@ -59,7 +59,7 @@ afw_function_execute_flag_get_active(
         i++)
     {
         if (x->xctx->flags[i]) {
-            afw_array_push_internal(array, afw_data_type_string,
+            afw_array_of_string_add_internal(array,
                 x->xctx->env->flag_by_index[i]->flag_id, x->xctx);
         }
     }
@@ -111,7 +111,7 @@ afw_function_execute_flag_get_active_defaults(
         i++)
     {
         if (x->xctx->env->default_flags[i]) {
-            afw_array_push_internal(array, afw_data_type_string,
+            afw_array_of_string_add_internal(array,
                 x->xctx->env->flag_by_index[i]->flag_id, x->xctx);
         }
     }
@@ -171,7 +171,7 @@ afw_function_execute_flag_get_defaults(
             for (flag_id = env_internal->default_flag_ids; *flag_id; flag_id++)
             {
                 s = afw_utf8_clone(*flag_id, x->p, x->xctx);
-                afw_array_push_internal(array, afw_data_type_string, s, x->xctx);
+                afw_array_of_string_add_internal(array, s, x->xctx);
             }
         }
 
@@ -231,10 +231,9 @@ afw_function_execute_flag_modify_defaults(
 {
     const afw_value_array_t *array_value;
     const afw_value_boolean_t *set_to_value;
-    const afw_data_type_t *data_type;
     const afw_iterator_old_t *iterator;
     const afw_utf8_t *flag_id;
-    const void *internal;
+    const afw_value_t *value;
     afw_boolean_t add;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array_value, 1, array);
@@ -248,21 +247,16 @@ afw_function_execute_flag_modify_defaults(
 
     for (iterator = NULL;;)
     {
-        afw_array_get_next_internal(
-            array_value->internal,
-            &iterator,
-            &data_type,
-            &internal,
-            x->xctx);
+        value = afw_array_get_next_value(
+            array_value->internal, &iterator, x->xctx);
 
-        if (!internal) break;
+        if (!value) break;
 
-        if (afw_data_type_is_string(data_type)) {
-            flag_id = (const afw_utf8_t *)internal;
+        if (afw_value_is_string(value)) {
+            flag_id = &((const afw_value_string_t *)value)->internal;
         }
         else {
-            flag_id = afw_data_type_internal_to_utf8(data_type,
-                internal, x->p, x->xctx);
+            flag_id = afw_value_convert_to_utf8(value, x->p, x->xctx);
         }
         
         afw_flag_set_default(flag_id, add, x->xctx);
@@ -369,10 +363,9 @@ afw_function_execute_flag_set(
 {
     const afw_value_array_t *array_value;
     const afw_value_boolean_t *set_to_value;
-    const afw_data_type_t *data_type;
     const afw_iterator_old_t *iterator;
     const afw_utf8_t *flag_id;
-    const void *internal;
+    const afw_value_t *value;
     afw_boolean_t set_to;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array_value, 1, array);
@@ -386,21 +379,16 @@ afw_function_execute_flag_set(
 
     for (iterator = NULL;;)
     {
-        afw_array_get_next_internal(
-            array_value->internal,
-            &iterator,
-            &data_type,
-            &internal,
-            x->xctx);
+        value = afw_array_get_next_value(
+            array_value->internal, &iterator, x->xctx);
 
-        if (!internal) break;
+        if (!value) break;
 
-        if (afw_data_type_is_string(data_type)) {
-            flag_id = (const afw_utf8_t *)internal;
+        if (afw_value_is_string(value)) {
+            flag_id = &((const afw_value_string_t *)value)->internal;
         }
         else {
-            flag_id = afw_data_type_internal_to_utf8(data_type,
-                internal, x->p, x->xctx);
+            flag_id = afw_value_convert_to_utf8(value, x->p, x->xctx);
         }
         
         afw_flag_set(flag_id, set_to, x->xctx);

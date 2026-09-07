@@ -1460,6 +1460,12 @@ afw_curl_self_v_zz______string__ = {
 };
 
 const afw_value_string_t
+afw_curl_self_v_zz___afw__AdaptiveCollection__curl_extension = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz___afw__AdaptiveCollection__curl_extension)
+};
+
+const afw_value_string_t
 afw_curl_self_v_zz___afw__AdaptiveFunction__curl_easy_options = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CURL_Q_zz___afw__AdaptiveFunction__curl_easy_options)

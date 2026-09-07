@@ -696,7 +696,7 @@ impl_afw_service_type_start_cede_p (
     const afw_log_t *log;
     const afw_utf8_t *log_type;
 
-    log_type = afw_object_old_get_property_as_utf8(properties,
+    log_type = afw_object_get_property_convert_to_utf8(properties,
         afw_v_logType, p, xctx);
     if (!log_type) {
         AFW_THROW_ERROR_Z(general, "parameter logType missing", xctx);
@@ -835,14 +835,14 @@ afw_log_impl_create_cede_p(
         properties, xctx);
 
     /* Get source location.  Default it to adapter. */
-    self->source_location = afw_object_old_get_property_as_string(
+    self->source_location = afw_object_get_property_as_string_internal(
         properties, afw_v_sourceLocation, xctx);
     if (!self->source_location) {
         self->source_location = afw_s_log;
     }
 
     /* Get log_id from parameters. Default to log_type. */
-    s = afw_object_old_get_property_as_utf8(properties,
+    s = afw_object_get_property_convert_to_utf8(properties,
         afw_v_logId, p, xctx);
     memcpy(&self->log_id, s, sizeof(afw_utf8_t));
 
@@ -853,7 +853,7 @@ afw_log_impl_create_cede_p(
 
     /* Process <priority>, if they exists. */
     for (e = afw_log_get_priority_id_map(); e->priority_id; e++) {
-        b = afw_object_old_get_property_as_boolean(properties,
+        b = afw_object_get_property_as_boolean_internal(properties,
             afw_value_create_unmanaged_string(e->priority_id, p, xctx),
             &found, xctx);
         if (found) {
@@ -862,11 +862,11 @@ afw_log_impl_create_cede_p(
     }
 
     /* Compile filter, if it exists. */
-    impl->filter = afw_object_old_get_property_as_compiled_script(
+    impl->filter = afw_object_get_property_compile_script(
         properties, afw_v_filter, self->source_location, NULL, p, xctx); 
 
     /* Compile format, if it exists. */
-    impl->format = afw_object_old_get_property_as_compiled_template(
+    impl->format = afw_object_get_property_compile_template(
         properties, afw_v_format, self->source_location, NULL, p, xctx); 
 
     /* Return new log. */

@@ -146,24 +146,12 @@ impl_afw_array_get_entry_meta(
     afw_xctx_t * xctx);
 #endif
 
-#ifndef impl_afw_array_get_entry_internal
-/* Declare method get_entry_internal */
-AFW_DECLARE_STATIC(afw_boolean_t)
-impl_afw_array_get_entry_internal(
-    AFW_ARRAY_SELF_T *self,
-    afw_integer_t index,
-    const afw_data_type_t * * data_type,
-    const void * * internal,
-    afw_xctx_t * xctx);
-#endif
-
 #ifndef impl_afw_array_get_entry_value
 /* Declare method get_entry_value */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_array_get_entry_value(
     AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
-    const afw_pool_t * p,
     afw_xctx_t * xctx);
 #endif
 
@@ -177,24 +165,12 @@ impl_afw_array_get_next_entry_meta(
     afw_xctx_t * xctx);
 #endif
 
-#ifndef impl_afw_array_get_next_internal
-/* Declare method get_next_internal */
-AFW_DECLARE_STATIC(afw_boolean_t)
-impl_afw_array_get_next_internal(
-    AFW_ARRAY_SELF_T *self,
-    const afw_iterator_old_t * * iterator,
-    const afw_data_type_t * * data_type,
-    const void * * internal,
-    afw_xctx_t * xctx);
-#endif
-
 #ifndef impl_afw_array_get_next_value
 /* Declare method get_next_value */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_array_get_next_value(
     AFW_ARRAY_SELF_T *self,
     const afw_iterator_old_t * * iterator,
-    const afw_pool_t * p,
     afw_xctx_t * xctx);
 #endif
 
@@ -248,14 +224,10 @@ impl_afw_array_inf = {
     impl_afw_array_get_data_type,
     (afw_array_get_entry_meta_t)
     impl_afw_array_get_entry_meta,
-    (afw_array_get_entry_internal_t)
-    impl_afw_array_get_entry_internal,
     (afw_array_get_entry_value_t)
     impl_afw_array_get_entry_value,
     (afw_array_get_next_entry_meta_t)
     impl_afw_array_get_next_entry_meta,
-    (afw_array_get_next_internal_t)
-    impl_afw_array_get_next_internal,
     (afw_array_get_next_value_t)
     impl_afw_array_get_next_value,
     (afw_array_initialize_iterator_t)

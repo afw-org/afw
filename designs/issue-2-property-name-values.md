@@ -71,7 +71,7 @@ Old expression language (and early Adaptive Script) autoconverted. Built-in para
 
 | Site | Was | Now |
 |------|-----|-----|
-| `afw_value_reference_by_key.c` object path | not string → `afw_value_as_utf8` (`obj[1]` → `"1"`) | string or throw |
+| `afw_value_reference_by_key.c` object path | not string → `afw_value_convert_to_utf8` (`obj[1]` → `"1"`) | string or throw |
 | `afw_value_object_construct.c` `impl_name_from_value` | same (`{ [1]: x }`) | string or throw |
 | Assign through `reference_by_key` | same convert | string or throw |
 

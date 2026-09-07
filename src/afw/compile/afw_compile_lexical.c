@@ -1397,7 +1397,7 @@ impl_parse_identifier(afw_compile_parser_t *parser)
 
     /* Handle reserved identifier true. */
     if (parser->token->identifier_name ==
-        (const afw_value_string_t *)afw_v_true)
+        (const afw_value_string_t *)afw_v_mnemonic_true)
     {
         parser->token->type = afw_compile_token_type_boolean;
         parser->token->boolean =
@@ -1406,7 +1406,7 @@ impl_parse_identifier(afw_compile_parser_t *parser)
 
     /* Handle reserved identifier false. */
     else if (parser->token->identifier_name ==
-        (const afw_value_string_t *)afw_v_false)
+        (const afw_value_string_t *)afw_v_mnemonic_false)
     {
         parser->token->type = afw_compile_token_type_boolean;
         parser->token->boolean =
@@ -1484,12 +1484,12 @@ afw_compile_is_reserved_word(
  * 
  *<<<ebnf*/
 
-        v == (const afw_value_string_t *)afw_v_false        ||
+        v == (const afw_value_string_t *)afw_v_mnemonic_false        ||
         v == (const afw_value_string_t *)afw_v_INF          ||
         v == (const afw_value_string_t *)afw_v_Infinity     ||
         v == (const afw_value_string_t *)afw_v_NaN          ||
         v == (const afw_value_string_t *)afw_v_null         ||
-        v == (const afw_value_string_t *)afw_v_true         ||
+        v == (const afw_value_string_t *)afw_v_mnemonic_true         ||
         v == (const afw_value_string_t *)afw_v_undefined    ||
 
 /*ebnf>>>

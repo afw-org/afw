@@ -112,7 +112,7 @@ impl_afw_value_optional_evaluate(
             i++, v++, s++)
         {
             a_value = afw_value_evaluate(*v, p, xctx);
-            *s = afw_value_as_utf8(a_value, p, xctx);
+            *s = afw_value_convert_to_utf8(a_value, p, xctx);
             if (*s) {
                 len += (*s)->len;
             }

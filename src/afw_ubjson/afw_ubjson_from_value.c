@@ -235,7 +235,7 @@ static void convert_object_to_ubjson(
         while (1) {
             /* property name */
             convert_string_to_ubjson(wa,
-                afw_object_string_property_name_as_utf8(
+                afw_object_string_property_name_internal(
                     property_name, wa->xctx), AFW_FALSE);
 
             /* property value */
@@ -356,13 +356,11 @@ static void convert_list_to_ubjson(
     }
 
     list_iterator = NULL;
-    next = afw_array_get_next_value(list, &list_iterator,
-        wa->p, wa->xctx);
+    next = afw_array_get_next_value(list, &list_iterator, wa->xctx);
     
     while (next) {
         convert_value_to_ubjson(wa, next);
-        next = afw_array_get_next_value(list, &list_iterator,
-            wa->p, wa->xctx);
+        next = afw_array_get_next_value(list, &list_iterator, wa->xctx);
     }
 
     if (!wa->optimized) {
@@ -398,11 +396,11 @@ static void convert_value_to_ubjson(
     value_data_type = afw_value_get_data_type(value, wa->xctx);
 
     if (afw_value_is_array(value)) {
-        convert_list_to_ubjson(wa, afw_value_as_array(value, wa->xctx));
+        convert_list_to_ubjson(wa, afw_value_as_array_internal(value, wa->xctx));
     }
 
     else if (afw_value_is_object(value)) {
-        convert_object_to_ubjson(wa, afw_value_as_object(value, wa->xctx));
+        convert_object_to_ubjson(wa, afw_value_as_object_internal(value, wa->xctx));
     }
 
     else if (afw_value_is_defined_and_evaluated(value)) {
@@ -418,7 +416,7 @@ static void convert_value_to_ubjson(
         else if (afw_utf8_equal(&value_data_type->jsonPrimitive,
             AFW_JSON_S_PRIMITIVE_STRING)) 
         {
-            string = afw_value_as_utf8(value, wa->p, wa->xctx);
+            string = afw_value_convert_to_utf8(value, wa->p, wa->xctx);
             if (!string) {
                 AFW_THROW_ERROR_Z(general, "Error converting string.", wa->xctx);
             }
@@ -438,13 +436,13 @@ static void convert_value_to_ubjson(
         /* C type is an integer. */
         else if (afw_utf8_equal_utf8_z(&value_data_type->cType, AFW_DATA_TYPE_CTYPE_Q_integer))
         {
-            convert_integer_to_ubjson(wa, afw_value_as_integer(value, wa->xctx));
+            convert_integer_to_ubjson(wa, afw_value_as_integer_internal(value, wa->xctx));
         }
 
         /* C type is double. */
         else if (afw_utf8_equal_utf8_z(&value_data_type->cType, AFW_DATA_TYPE_CTYPE_Q_double))
         {
-            convert_double_to_ubjson(wa, afw_value_as_double(value, wa->xctx));
+            convert_double_to_ubjson(wa, afw_value_as_double_internal(value, wa->xctx));
         }
 
         else {

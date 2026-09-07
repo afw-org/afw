@@ -228,12 +228,25 @@ struct afw_value_script_managed_slice_s {
 };
 
 /**
- * @brief Typesafe cast of data type script.
+ * @brief Typesafe cast to evaluated script value.
+ * @param value (const afw_value_t *). Evaluated if needed.
+ * @return (const afw_value_script_t *)
+ *
+ * Throws if missing or wrong type. Use ->internal for the C
+ * payload, or afw_value_as_script_internal().
+ */
+AFW_DECLARE(const afw_value_script_t *)
+afw_value_as_script(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Typesafe peel of data type script internal.
  * @param value (const afw_value_t *).
  * @return (const afw_utf8_t *)
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_value_as_script(
+afw_value_as_script_internal(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -335,114 +348,142 @@ afw_value_script_create(const afw_utf8_t * internal,
 #define afw_value_create_unmanaged_script afw_value_script_create
 
 /**
- * @brief Get property function for data type script value.
- * @deprecated
+ * @brief Get property as script value.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param xctx of caller.
- * @return const afw_utf8_t *.
+ * @return (const afw_value_script_t *) or NULL if missing.
  *
- * This is a deprecated function used to get around an exception that
- * was occurring when an object did not have a pool. Use the function
- * without an "_old" in the name for all new code and replace calls in
- * old code when possible.
- *
- */
-#define afw_object_old_get_property_as_script( \
-    object, property_name, xctx) \
-afw_object_get_property_as_script_source( \
-    object, property_name, AFW__FILE_LINE__, \
-    ((object)->p ? (object)->p : (xctx)->p), (xctx))
-
-/**
- * @brief Get property function for data type script value.
- * @param object of property to get.
- * @param property_name of property to get.
- * @param p to use for result if evaluation or conversion is required.
- * @param xctx of caller.
- * @return const afw_utf8_t *.
+ * Does not evaluate. Throws if present but not script.
  */
 #define afw_object_get_property_as_script( \
-    object, property_name, p, xctx) \
+    object, property_name, xctx) \
 afw_object_get_property_as_script_source( \
-    object, property_name, AFW__FILE_LINE__, p, xctx)
+    object, property_name, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get property function for data type script value.
+ * @brief Get property as script value.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param source_z file:line.
- * @param p to use for result if evaluation or conversion is required.
  * @param xctx of caller.
- * @return const afw_utf8_t *.
+ * @return (const afw_value_script_t *) or NULL if missing.
  */
-AFW_DECLARE(const afw_utf8_t *)
+AFW_DECLARE(const afw_value_script_t *)
 afw_object_get_property_as_script_source(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next property function for data type script value.
- * @deprecated
+ * @brief Get property as script internal.
  * @param object of property to get.
- * @param iterator pointer. Set to NULL before first call.
- * @param property_name is place to return pointer to property name.
- * @param xctx of caller.
- * @return const afw_utf8_t *.
- *
- * This is a deprecated function used to get around an exception that
- * was occurring when an object did not have a pool. Use the function
- * without an "_old" in the name for all new code and replace calls in
- * old code when possible.
- *
- */
-#define afw_object_old_get_next_property_as_script( \
-    object, iterator, property_name, xctx) \
-afw_object_get_next_property_as_script_source( \
-    object, iterator, property_name, AFW__FILE_LINE__, \
-    ((object)->p ? (object)->p : (xctx)->p), (xctx))
-
-/**
- * @brief Get next property function for data type script value.
- * @param object of property to get.
- * @param iterator pointer. Set to NULL before first call.
- * @param property_name is place to return pointer to property name.
- * @param p to use for result if evaluation or conversion is required.
+ * @param property_name of property to get.
  * @param xctx of caller.
  * @return const afw_utf8_t *.
  */
-#define afw_object_get_next_property_as_script( \
-    object, iterator, property_name, p, xctx) \
-afw_object_get_next_property_as_script_source( \
-    object, iterator, property_name, AFW__FILE_LINE__, p, xctx)
+#define afw_object_get_property_as_script_internal( \
+    object, property_name, xctx) \
+afw_object_get_property_as_script_internal_source( \
+    object, property_name, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get property function for data type script value.
+ * @brief Get property as script internal.
  * @param object of property to get.
- * @param iterator pointer. Set to NULL before first call.
- * @param property_name is place to return pointer to property name.
+ * @param property_name of property to get.
  * @param source_z file:line.
- * @param p to use for result if conversion is required.
  * @param xctx of caller.
  * @return const afw_utf8_t *.
  */
 AFW_DECLARE(const afw_utf8_t *)
+afw_object_get_property_as_script_internal_source(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Get next property as script value.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param xctx of caller.
+ * @return (const afw_value_script_t *) or NULL if no more.
+ */
+#define afw_object_get_next_property_as_script( \
+    object, iterator, property_name, xctx) \
+afw_object_get_next_property_as_script_source( \
+    object, iterator, property_name, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get next property as script value.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_value_script_t *) or NULL if no more.
+ */
+AFW_DECLARE(const afw_value_script_t *)
 afw_object_get_next_property_as_script_source(
     const afw_object_t *object,
     const afw_iterator_old_t * *iterator,
     const afw_value_t * *property_name,
     const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Set property function for data type script values.
+ * @brief Get next property as script internal.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param xctx of caller.
+ * @return const afw_utf8_t *.
+ */
+#define afw_object_get_next_property_as_script_internal( \
+    object, iterator, property_name, xctx) \
+afw_object_get_next_property_as_script_internal_source( \
+    object, iterator, property_name, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get next property as script internal.
+ * @param object of property to get.
+ * @param iterator pointer. Set to NULL before first call.
+ * @param property_name is place to return pointer to property name.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return const afw_utf8_t *.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_object_get_next_property_as_script_internal_source(
+    const afw_object_t *object,
+    const afw_iterator_old_t * *iterator,
+    const afw_value_t * *property_name,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Set property as script value.
  * @param object of property to set.
  * @param property_name of property to set.
- * @param value of value to set.
+ * @param value to set.
+ * @param xctx of caller.
+ *
+ * Compile-time type check for const afw_value_script_t *.
+ */
+AFW_DECLARE(void)
+afw_object_set_property_as_script(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_script_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Set property as script internal.
+ * @param object of property to set.
+ * @param property_name of property to set.
+ * @param internal of value to set.
  * @param xctx of caller.
  *
  * The value will be allocated in the object's pool.
@@ -452,20 +493,19 @@ afw_object_get_next_property_as_script_source(
  *
  */
 AFW_DECLARE(void)
-afw_object_set_property_as_script(
+afw_object_set_property_as_script_internal(
     const afw_object_t *object,
     const afw_value_t *property_name,
     const afw_utf8_t * internal,
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next value from array of script.
+ * @brief Get next script value from array of script.
  * @param instance of array.
  * @param iterator.
- * @param source_z file:line.
  * @param xctx of caller.
- * @return (const afw_utf8_t *) or NULL.
- * 
+ * @return (const afw_value_script_t *) or NULL.
+ *
  * Set the iterator to NULL before the first call and anytime
  * you want to start from the first value again.
  */
@@ -475,17 +515,14 @@ afw_object_set_property_as_script(
     array, iterator, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get next value from array of script.
+ * @brief Get next script value from array of script.
  * @param instance of array.
  * @param iterator.
  * @param source_z file:line.
  * @param xctx of caller.
- * @return (const afw_utf8_t *) or NULL.
- * 
- * Set the iterator to NULL before the first call and anytime
- * you want to start from the first value again.
+ * @return (const afw_value_script_t *) or NULL.
  */
-AFW_DECLARE(const afw_utf8_t *)
+AFW_DECLARE(const afw_value_script_t *)
 afw_array_of_script_get_next_source(
     const afw_array_t *instance,
     const afw_iterator_old_t * *iterator,
@@ -493,7 +530,34 @@ afw_array_of_script_get_next_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Add value from array of script.
+ * @brief Get next script internal from array of script.
+ * @param instance of array.
+ * @param iterator.
+ * @param xctx of caller.
+ * @return (const afw_utf8_t *) or NULL.
+ */
+#define afw_array_of_script_get_next_internal( \
+    array, iterator, xctx) \
+    afw_array_of_script_get_next_internal_source( \
+    array, iterator, AFW__FILE_LINE__, xctx)
+
+/**
+ * @brief Get next script internal from array of script.
+ * @param instance of array.
+ * @param iterator.
+ * @param source_z file:line.
+ * @param xctx of caller.
+ * @return (const afw_utf8_t *) or NULL.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_array_of_script_get_next_internal_source(
+    const afw_array_t *instance,
+    const afw_iterator_old_t * *iterator,
+    const afw_utf8_z_t *source_z,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Add a script value to array of script.
  * @param instance of array.
  * @param value to add.
  * @param xctx of caller.
@@ -501,17 +565,41 @@ afw_array_of_script_get_next_source(
 AFW_DECLARE(void)
 afw_array_of_script_add(
     const afw_array_t *instance,
+    const afw_value_script_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Add a script internal to array of script.
+ * @param instance of array.
+ * @param value to add.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_of_script_add_internal(
+    const afw_array_t *instance,
     const afw_utf8_t *value,
     afw_xctx_t *xctx);
 
 /**
- * @brief Remove value from array of script.
+ * @brief Remove a script value from array of script.
  * @param instance of array.
  * @param value to remove.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
 afw_array_of_script_remove(
+    const afw_array_t *instance,
+    const afw_value_script_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Remove a script internal from array of script.
+ * @param instance of array.
+ * @param value to remove.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_of_script_remove_internal(
     const afw_array_t *instance,
     const afw_utf8_t *value,
     afw_xctx_t *xctx);

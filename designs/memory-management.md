@@ -1767,7 +1767,7 @@ const afw_value_anyURI_t afw_anyURI_self_v_example = {
 // anyURI also gets Q / s / z aliases like string (utf8 cType)
 ```
 
-Note: generate can still emit **string** `afw_v_true` (the characters `"true"`) **and** boolean `afw_boolean_v_true` (boolean permanent) — different values.
+Note: generate can still emit **string** `afw_v_mnemonic_true` (the characters `"true"`) **and** boolean `afw_boolean_v_true` (boolean permanent) — different values.
 
 All permanent ⇒ no pool, no `optional_release`.
 
@@ -1922,7 +1922,7 @@ Register at env bootstrap so paths like `/afw/_AdaptiveObjectType_/…` resolve 
 
 - `strings.txt` comments: `dataType::name=value` for boolean, double, integer, and utf8 cTypes.
 - Produces e.g. `afw_boolean_v_true`, `afw_integer_v_zero`, `afw_anyURI_v_example` with matching permanent_* inf — still no pool.
-- Distinct from string `"true"` (`afw_v_true`) vs boolean true (`afw_boolean_v_true`).
+- Distinct from string `"true"` (`afw_v_mnemonic_true`) vs boolean true (`afw_boolean_v_true`).
 
 ### 2026-07-23 — function generate → permanent function values
 
@@ -2038,7 +2038,7 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 | name = value when name must be valid C | `a_empty_string=` → value `""` | `afw_s_a_empty_string`, **`afw_v_a_empty_string`**, `afw_z_…` |
 | | `a_period=.` | `afw_s_a_period` / **`afw_v_a_period`** (value `"."`) |
 | `dataType::name=value` non-string | `integer::zero=0` | **`afw_integer_v_zero`** / `afw_integer_self_v_zero` (integer permanent, **not** string `"0"`) |
-| | `boolean::true=true` | **`afw_boolean_v_true`** (boolean) — distinct from string **`afw_v_true`** (`"true"`) |
+| | `boolean::true=true` | **`afw_boolean_v_true`** (boolean) — distinct from string **`afw_v_mnemonic_true`** (`"true"`) |
 | | `integer::one=1`, `double::1=1.0e1` | `afw_integer_v_one`, `afw_double_v_1` |
 
 `a_` prefix convention = C-safe label when value is empty, punctuation, or differs from the identifier. Step −1 must pick the **right type** of permanent value (boolean vs string `"true"`, integer zero vs string `"zero"`).
@@ -2062,7 +2062,7 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 
 ### 2026-07-23 — step −1a executed
 
-- Replaced 19 `afw_object_set_property_as_string(..., afw_s_NAME)` with `afw_object_set_property(..., afw_v_NAME)` in action/request/adapter/environment/command.
+- Replaced 19 `afw_object_set_property_as_string_internal(..., afw_s_NAME)` with `afw_object_set_property(..., afw_v_NAME)` in action/request/adapter/environment/command.
 - Rewrapped those call sites to ~80 columns (maintainer preference).
 - **C line width ~80:** also recorded in `.cursor/rules/afw-c-runtime.mdc` so other sessions pick it up.
 

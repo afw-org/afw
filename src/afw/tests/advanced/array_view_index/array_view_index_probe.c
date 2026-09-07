@@ -13,11 +13,11 @@
 
 /**
  * @file array_view_index_probe.c
- * @brief C probe for array-view index === count.
+ * @brief C probe for create_unmanaged_from_c_array index === count.
  *
- * Script arrays use the memory impl (`>=`). The C-array view used `>`.
- * A script test of a[length] does not hit this impl, so this boots a
- * core environment and calls get_entry on a counted view.
+ * create_unmanaged_from_c_array copies C internals onto from_values.
+ * A script test of a[length] does not hit this path, so this boots a
+ * core environment and calls get_entry on a counted copy.
  *
  * Same shape as tests/advanced/pool_alloc/pool_alloc_probe.c.
  */
@@ -29,16 +29,10 @@ impl_expect_missing(
     afw_xctx_t *xctx,
     const char *label)
 {
-    const afw_data_type_t *data_type;
-    const void *internal;
-    afw_boolean_t found;
+    const afw_value_t *value;
 
-    data_type = NULL;
-    internal = (const void *)(afw_size_t)1;
-    found = afw_array_get_entry_internal(array, index,
-        &data_type, &internal, xctx);
-    if (found || internal != NULL ||
-        afw_array_get_entry_value(array, index, xctx->p, xctx) != NULL)
+    value = afw_array_get_entry_value(array, index, xctx);
+    if (value != NULL)
     {
         fprintf(stderr, "%s: index %d treated as found\n",
             label, (int)index);
@@ -55,23 +49,9 @@ impl_expect_integer(
     afw_xctx_t *xctx,
     const char *label)
 {
-    const afw_data_type_t *data_type;
-    const void *internal;
     const afw_value_t *value;
 
-    data_type = NULL;
-    internal = NULL;
-    if (!afw_array_get_entry_internal(array, index,
-            &data_type, &internal, xctx) ||
-        !internal ||
-        data_type != afw_data_type_integer ||
-        *(const afw_integer_t *)internal != expect)
-    {
-        fprintf(stderr, "%s: index %d missing or wrong internal\n",
-            label, (int)index);
-        return 1;
-    }
-    value = afw_array_get_entry_value(array, index, xctx->p, xctx);
+    value = afw_array_get_entry_value(array, index, xctx);
     if (!value ||
         !afw_value_is_integer(value) ||
         ((const afw_value_integer_t *)value)->internal != expect)
@@ -97,7 +77,7 @@ impl_counted_direct(const afw_pool_t *p, afw_xctx_t *xctx)
     ints[0] = 10;
     ints[1] = 20;
     ints[2] = 999;
-    array = afw_array_create_view_of_c_array(
+    array = afw_array_create_unmanaged_from_c_array(
         ints, false, afw_data_type_integer, 2, p, xctx);
     rc = 0;
     rc |= impl_expect_integer(array, 0, 10, xctx, "direct");
@@ -115,7 +95,7 @@ impl_empty_with_storage(const afw_pool_t *p, afw_xctx_t *xctx)
     const afw_array_t *array;
 
     dummy = 99;
-    array = afw_array_create_view_of_c_array(
+    array = afw_array_create_unmanaged_from_c_array(
         &dummy, false, afw_data_type_integer, 0, p, xctx);
     return impl_expect_missing(array, 0, xctx, "empty");
 }
@@ -134,7 +114,7 @@ impl_counted_indirect(const afw_pool_t *p, afw_xctx_t *xctx)
     slots[0] = &ints[0];
     slots[1] = &ints[1];
     slots[2] = &ints[2];
-    array = afw_array_create_view_of_c_array(
+    array = afw_array_create_unmanaged_from_c_array(
         slots, true, afw_data_type_integer, 2, p, xctx);
     rc = 0;
     rc |= impl_expect_integer(array, 0, 10, xctx, "indirect");

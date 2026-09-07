@@ -72,7 +72,7 @@ impl_module_path_from_property(
     else {
         detail_source_location = afw_s_modulePath;
     }
-    value = afw_value_compile_and_evaluate_as(value,
+    value = afw_value_compile_and_evaluate_using(value,
         detail_source_location, afw_compile_type_template, p, xctx);
     if (!afw_value_is_string(value)) {
         AFW_THROW_ERROR_FZ(general, xctx,
@@ -387,35 +387,34 @@ afw_environment_create(
             afw_s__AdaptiveProcess_, afw_s_current, xctx);
 
         /* programName — base name of args[0] (e.g. afw, afwfcgi). */
-        afw_object_set_property_as_string(process_object,
+        afw_object_set_property_as_string_internal(process_object,
             afw_v_programName, &env->pub.program_name, xctx);
 
         /* process::args — ECMAScript-style name (issue #74); use length() for count. */
         args_array = afw_array_create_unmanaged_of(afw_data_type_string, p, xctx);
         for (ai = 0; ai < argc; ai++) {
             arg = afw_utf8_create(argv[ai], AFW_UTF8_Z_LEN, p, xctx);
-            afw_array_push_internal(args_array, afw_data_type_string,
-                arg, xctx);
+            afw_array_of_string_add_internal(args_array, arg, xctx);
         }
-        afw_object_set_property_as_array(process_object,
+        afw_object_set_property_as_array_internal(process_object,
             afw_v_args, args_array, xctx);
 
-        afw_object_set_property_as_integer(process_object,
+        afw_object_set_property_as_integer_internal(process_object,
             afw_v_pid, (afw_integer_t)afw_os_get_pid(), xctx);
 
         /* cwd snapshot at environment create (not live). */
         rv = apr_filepath_get(&cwd_z, 0, afw_pool_get_apr_pool(p));
         if (rv == APR_SUCCESS && cwd_z) {
             cwd = afw_utf8_create(cwd_z, AFW_UTF8_Z_LEN, p, xctx);
-            afw_object_set_property_as_string(process_object,
+            afw_object_set_property_as_string_internal(process_object,
                 afw_v_cwd, cwd, xctx);
         }
 
-        afw_object_set_property_as_string(process_object,
+        afw_object_set_property_as_string_internal(process_object,
             afw_v_afwVersion, afw_version_string(), xctx);
 
         afw_dateTime_set_now(&start_local, &start_utc, xctx);
-        afw_object_set_property_as_dateTime(process_object,
+        afw_object_set_property_as_dateTime_internal(process_object,
             afw_v_startTime, &start_local, xctx);
 
         env->pub.process_object = process_object;
@@ -737,6 +736,7 @@ impl_check_manifest_cb(
     afw_xctx_t *xctx)
 {
     const afw_value_t *registers_value;
+    const afw_value_t *value;
     const afw_utf8_t *extension_id;
     const afw_utf8_t *module_path;
     afw_utf8_t registry_type_id;
@@ -765,11 +765,11 @@ impl_check_manifest_cb(
     list = ((const afw_value_array_t *)registers_value)->internal;
     for (iterator = NULL;;)
     {
-        afw_array_get_next_internal(list, &iterator, NULL,
-            (const void **)&entry, xctx);
-        if (!entry) {
+        value = afw_array_get_next_value(list, &iterator, xctx);
+        if (!value) {
             break;
         }
+        entry = (const afw_utf8_t *)AFW_VALUE_INTERNAL(value);
 
         /*
          * Separate <registry type id>/<registry key> from entry and load
@@ -790,7 +790,7 @@ impl_check_manifest_cb(
             if (afw_utf8_equal(ctx->type, &registry_type_id) &&
                 afw_utf8_equal(ctx->key, &registry_key))
             {
-                extension_id = afw_object_old_get_property_as_string(object,
+                extension_id = afw_object_get_property_as_string_internal(object,
                     afw_v_extensionId, xctx);
                 module_path = impl_module_path_from_property(object,
                     NULL, xctx->p, xctx);
@@ -1051,7 +1051,7 @@ afw_environment_load_extension(
     extensionId = NULL;
     modulePath = NULL;
     if (properties) {
-        extensionId = afw_object_old_get_property_as_string(properties,
+        extensionId = afw_object_get_property_as_string_internal(properties,
             afw_v_extensionId, xctx);
         if (extensionId) {
             if (extension_id && !afw_utf8_equal(extension_id, extensionId)) {
@@ -1108,7 +1108,7 @@ afw_environment_load_extension(
             {
                 extension_id = afw_utf8_clone(extension_id, p, xctx);
                 properties = afw_object_create_unmanaged_new_p(p, xctx);
-                afw_object_set_property_as_string(properties,
+                afw_object_set_property_as_string_internal(properties,
                     afw_v_extensionId, extension_id, xctx);
             }
 
@@ -1128,7 +1128,7 @@ afw_environment_load_extension(
             }
 
             /* Insure modulePath property matches what was decided.
-            afw_object_set_property_as_string(properties,
+            afw_object_set_property_as_string_internal(properties,
                 afw_v_modulePath, module_path, xctx); */
 
             /* Prepare properties. Supply type=extension if needed. */
@@ -1149,7 +1149,7 @@ afw_environment_load_extension(
             if (!properties)
             {
                 properties = afw_object_create_unmanaged_new_p(p, xctx);
-                afw_object_set_property_as_string(properties,
+                afw_object_set_property_as_string_internal(properties,
                     afw_v_modulePath, module_path, xctx);                
             }
 
@@ -1237,7 +1237,7 @@ afw_environment_load_extension(
         extension_id = &extension->extension_id;
 
         /* Set extensionId in properties */
-        afw_object_set_property_as_string(properties,
+        afw_object_set_property_as_string_internal(properties,
             afw_v_extensionId, extension_id, xctx);
 
         /* Register extension. */

@@ -256,10 +256,9 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     adapter/afw_adapter_retrieve.c
     application/afw_application.c
     array/afw_array.c
-    array/afw_array_const_array.c
+    array/afw_array_from_values.c
     array/afw_array_impl.c
     array/afw_array_memory.c
-    array/afw_array_view_of_c_array.c
     ascii/afw_ascii.c
     associative_array/afw_associative_array.c
     authorization/afw_authorization.c
