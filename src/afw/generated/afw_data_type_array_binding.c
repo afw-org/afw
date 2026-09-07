@@ -479,7 +479,7 @@ afw_object_get_property_as_array_source(
     return (const afw_value_array_t *)value;
 }
 
-/* Get property function for data type array internal. */
+/* Get property as array internal. */
 AFW_DEFINE(const afw_array_t *)
 afw_object_get_property_as_array_internal_source(
     const afw_object_t *object,
@@ -524,7 +524,7 @@ afw_object_get_next_property_as_array_source(
     return (const afw_value_array_t *)value;
 }
 
-/* Get next property function for data type array internal. */
+/* Get next property as array internal. */
 AFW_DEFINE(const afw_array_t *)
 afw_object_get_next_property_as_array_internal_source(
     const afw_object_t *object,

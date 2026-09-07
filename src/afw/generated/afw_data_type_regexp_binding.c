@@ -523,7 +523,7 @@ afw_object_get_property_as_regexp_source(
     return (const afw_value_regexp_t *)value;
 }
 
-/* Get property function for data type regexp internal. */
+/* Get property as regexp internal. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_property_as_regexp_internal_source(
     const afw_object_t *object,
@@ -568,7 +568,7 @@ afw_object_get_next_property_as_regexp_source(
     return (const afw_value_regexp_t *)value;
 }
 
-/* Get next property function for data type regexp internal. */
+/* Get next property as regexp internal. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_next_property_as_regexp_internal_source(
     const afw_object_t *object,

@@ -422,7 +422,7 @@ afw_object_get_property_as_boolean_source(
     return (const afw_value_boolean_t *)value;
 }
 
-/* Get property function for data type boolean internal. */
+/* Get property as boolean internal. */
 AFW_DEFINE(afw_boolean_t)
 afw_object_get_property_as_boolean_internal_source(
     const afw_object_t *object,
@@ -470,7 +470,7 @@ afw_object_get_next_property_as_boolean_source(
     return (const afw_value_boolean_t *)value;
 }
 
-/* Get next property function for data type boolean internal. */
+/* Get next property as boolean internal. */
 AFW_DEFINE(afw_boolean_t)
 afw_object_get_next_property_as_boolean_internal_source(
     const afw_object_t *object,

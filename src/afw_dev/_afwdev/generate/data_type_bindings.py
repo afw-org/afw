@@ -662,7 +662,7 @@ def write_h_section(fd, prefix, obj):
         fd.write('    afw_xctx_t *xctx);\n')
 
         fd.write('\n/**\n')
-        fd.write(' * @brief Get property function for data type ' + id + ' internal.\n')
+        fd.write(' * @brief Get property as ' + id + ' internal.\n')
         fd.write(' * @param object of property to get.\n')
         fd.write(' * @param property_name of property to get.\n')
         if needs_found:
@@ -676,7 +676,7 @@ def write_h_section(fd, prefix, obj):
         fd.write('    object, property_name, ' + needs_found_param + 'AFW__FILE_LINE__, xctx)\n')
 
         fd.write('\n/**\n')
-        fd.write(' * @brief Get property function for data type ' + id + ' value.\n')
+        fd.write(' * @brief Get property as ' + id + ' internal.\n')
         fd.write(' * @param object of property to get.\n')
         fd.write(' * @param property_name of property to get.\n')
         if needs_found:
@@ -725,7 +725,7 @@ def write_h_section(fd, prefix, obj):
         fd.write('    afw_xctx_t *xctx);\n')
 
         fd.write('\n/**\n')
-        fd.write(' * @brief Get next property function for data type ' + id + ' internal.\n')
+        fd.write(' * @brief Get next property as ' + id + ' internal.\n')
         fd.write(' * @param object of property to get.\n')
         fd.write(' * @param iterator pointer. Set to NULL before first call.\n')
         fd.write(' * @param property_name is place to return pointer to property name.\n')
@@ -740,7 +740,7 @@ def write_h_section(fd, prefix, obj):
         fd.write('    object, iterator, property_name, ' + needs_found_param + 'AFW__FILE_LINE__, xctx)\n')
 
         fd.write('\n/**\n')
-        fd.write(' * @brief Get next property function for data type ' + id + ' value.\n')
+        fd.write(' * @brief Get next property as ' + id + ' internal.\n')
         fd.write(' * @param object of property to get.\n')
         fd.write(' * @param iterator pointer. Set to NULL before first call.\n')
         fd.write(' * @param property_name is place to return pointer to property name.\n')
@@ -1938,7 +1938,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('}\n')
 
         if needs_found:
-            fd.write('\n/* Get property function for data type ' + id + ' internal. */\n')
+            fd.write('\n/* Get property as ' + id + ' internal. */\n')
             fd.write(define + '(' + return_type + ')\n')
             fd.write('afw_object_get_property_as_' + id + '_internal_source(\n')
             fd.write('    const afw_object_t *object,\n')
@@ -1959,7 +1959,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('    return value->internal;\n')
             fd.write('}\n')
         else:
-            fd.write('\n/* Get property function for data type ' + id + ' internal. */\n')
+            fd.write('\n/* Get property as ' + id + ' internal. */\n')
             fd.write(define + '(' + return_type + ')\n')
             fd.write('afw_object_get_property_as_' + id + '_internal_source(\n')
             fd.write('    const afw_object_t *object,\n')
@@ -2006,7 +2006,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('}\n')
 
         if needs_found:
-            fd.write('\n/* Get next property function for data type ' + id + ' internal. */\n')
+            fd.write('\n/* Get next property as ' + id + ' internal. */\n')
             fd.write(define + '(' + return_type + ')\n')
             fd.write('afw_object_get_next_property_as_' + id + '_internal_source(\n')
             fd.write('    const afw_object_t *object,\n')
@@ -2028,7 +2028,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('    return value->internal;\n')
             fd.write('}\n')
         else:
-            fd.write('\n/* Get next property function for data type ' + id + ' internal. */\n')
+            fd.write('\n/* Get next property as ' + id + ' internal. */\n')
             fd.write(define + '(' + return_type + ')\n')
             fd.write('afw_object_get_next_property_as_' + id + '_internal_source(\n')
             fd.write('    const afw_object_t *object,\n')

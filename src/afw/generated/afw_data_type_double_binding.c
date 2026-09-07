@@ -469,7 +469,7 @@ afw_object_get_property_as_double_source(
     return (const afw_value_double_t *)value;
 }
 
-/* Get property function for data type double internal. */
+/* Get property as double internal. */
 AFW_DEFINE(double)
 afw_object_get_property_as_double_internal_source(
     const afw_object_t *object,
@@ -517,7 +517,7 @@ afw_object_get_next_property_as_double_source(
     return (const afw_value_double_t *)value;
 }
 
-/* Get next property function for data type double internal. */
+/* Get next property as double internal. */
 AFW_DEFINE(double)
 afw_object_get_next_property_as_double_internal_source(
     const afw_object_t *object,

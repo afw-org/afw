@@ -350,7 +350,7 @@ afw_object_get_property_as_integer_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Get property function for data type integer internal.
+ * @brief Get property as integer internal.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param found is place to return whether property is found.
@@ -363,7 +363,7 @@ afw_object_get_property_as_integer_internal_source( \
     object, property_name, found, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get property function for data type integer value.
+ * @brief Get property as integer internal.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param found is place to return whether property is found.
@@ -410,7 +410,7 @@ afw_object_get_next_property_as_integer_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next property function for data type integer internal.
+ * @brief Get next property as integer internal.
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.
@@ -424,7 +424,7 @@ afw_object_get_next_property_as_integer_internal_source( \
     object, iterator, property_name, found, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get next property function for data type integer value.
+ * @brief Get next property as integer internal.
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.

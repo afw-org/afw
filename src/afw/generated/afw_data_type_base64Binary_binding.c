@@ -523,7 +523,7 @@ afw_object_get_property_as_base64Binary_source(
     return (const afw_value_base64Binary_t *)value;
 }
 
-/* Get property function for data type base64Binary internal. */
+/* Get property as base64Binary internal. */
 AFW_DEFINE(const afw_memory_t *)
 afw_object_get_property_as_base64Binary_internal_source(
     const afw_object_t *object,
@@ -568,7 +568,7 @@ afw_object_get_next_property_as_base64Binary_source(
     return (const afw_value_base64Binary_t *)value;
 }
 
-/* Get next property function for data type base64Binary internal. */
+/* Get next property as base64Binary internal. */
 AFW_DEFINE(const afw_memory_t *)
 afw_object_get_next_property_as_base64Binary_internal_source(
     const afw_object_t *object,

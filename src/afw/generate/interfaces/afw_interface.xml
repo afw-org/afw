@@ -3220,7 +3220,7 @@ const afw_content_type_t *
 
       <parameter name="p" type="const afw_pool_t *">
     <description>
-          If necessary, this pool is used to create the return value.
+          Pool if extra allocation is needed (the meta object).
         </description>
       </parameter>
 
@@ -3270,9 +3270,9 @@ const afw_content_type_t *
     <method name="get_next_entry_meta">
 
       <description>
-        Get next value in array and update iterator. Set the iterator to NULL
-        before the first call of this method and any time you want to start
-        from the first value again.
+        Get the meta object of the next array entry and update iterator.
+        Set the iterator to NULL before the first call and any time you want
+        to start from the first entry again.
       </description>
 
       <parameter name="instance" type="const afw_array_t *">
@@ -3285,7 +3285,7 @@ const afw_content_type_t *
 
       <parameter name="p" type="const afw_pool_t *">
     <description>
-          If necessary, this pool is used to create the return value.
+          Pool if extra allocation is needed (the meta object).
         </description>
       </parameter>
 

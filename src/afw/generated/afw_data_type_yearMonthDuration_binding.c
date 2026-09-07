@@ -442,7 +442,7 @@ afw_object_get_property_as_yearMonthDuration_source(
     return (const afw_value_yearMonthDuration_t *)value;
 }
 
-/* Get property function for data type yearMonthDuration internal. */
+/* Get property as yearMonthDuration internal. */
 AFW_DEFINE(const afw_yearMonthDuration_t *)
 afw_object_get_property_as_yearMonthDuration_internal_source(
     const afw_object_t *object,
@@ -487,7 +487,7 @@ afw_object_get_next_property_as_yearMonthDuration_source(
     return (const afw_value_yearMonthDuration_t *)value;
 }
 
-/* Get next property function for data type yearMonthDuration internal. */
+/* Get next property as yearMonthDuration internal. */
 AFW_DEFINE(const afw_yearMonthDuration_t *)
 afw_object_get_next_property_as_yearMonthDuration_internal_source(
     const afw_object_t *object,

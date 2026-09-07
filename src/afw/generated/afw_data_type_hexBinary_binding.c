@@ -523,7 +523,7 @@ afw_object_get_property_as_hexBinary_source(
     return (const afw_value_hexBinary_t *)value;
 }
 
-/* Get property function for data type hexBinary internal. */
+/* Get property as hexBinary internal. */
 AFW_DEFINE(const afw_memory_t *)
 afw_object_get_property_as_hexBinary_internal_source(
     const afw_object_t *object,
@@ -568,7 +568,7 @@ afw_object_get_next_property_as_hexBinary_source(
     return (const afw_value_hexBinary_t *)value;
 }
 
-/* Get next property function for data type hexBinary internal. */
+/* Get next property as hexBinary internal. */
 AFW_DEFINE(const afw_memory_t *)
 afw_object_get_next_property_as_hexBinary_internal_source(
     const afw_object_t *object,

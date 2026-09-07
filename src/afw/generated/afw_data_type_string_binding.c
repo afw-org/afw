@@ -556,7 +556,7 @@ afw_object_get_property_as_string_source(
     return (const afw_value_string_t *)value;
 }
 
-/* Get property function for data type string internal. */
+/* Get property as string internal. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_property_as_string_internal_source(
     const afw_object_t *object,
@@ -601,7 +601,7 @@ afw_object_get_next_property_as_string_source(
     return (const afw_value_string_t *)value;
 }
 
-/* Get next property function for data type string internal. */
+/* Get next property as string internal. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_next_property_as_string_internal_source(
     const afw_object_t *object,

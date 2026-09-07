@@ -427,7 +427,7 @@ afw_object_get_property_as_unevaluated_source(
     return (const afw_value_unevaluated_t *)value;
 }
 
-/* Get property function for data type unevaluated internal. */
+/* Get property as unevaluated internal. */
 AFW_DEFINE(const afw_value_t *)
 afw_object_get_property_as_unevaluated_internal_source(
     const afw_object_t *object,
@@ -472,7 +472,7 @@ afw_object_get_next_property_as_unevaluated_source(
     return (const afw_value_unevaluated_t *)value;
 }
 
-/* Get next property function for data type unevaluated internal. */
+/* Get next property as unevaluated internal. */
 AFW_DEFINE(const afw_value_t *)
 afw_object_get_next_property_as_unevaluated_internal_source(
     const afw_object_t *object,

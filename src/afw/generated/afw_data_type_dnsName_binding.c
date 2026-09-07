@@ -523,7 +523,7 @@ afw_object_get_property_as_dnsName_source(
     return (const afw_value_dnsName_t *)value;
 }
 
-/* Get property function for data type dnsName internal. */
+/* Get property as dnsName internal. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_property_as_dnsName_internal_source(
     const afw_object_t *object,
@@ -568,7 +568,7 @@ afw_object_get_next_property_as_dnsName_source(
     return (const afw_value_dnsName_t *)value;
 }
 
-/* Get next property function for data type dnsName internal. */
+/* Get next property as dnsName internal. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_next_property_as_dnsName_internal_source(
     const afw_object_t *object,

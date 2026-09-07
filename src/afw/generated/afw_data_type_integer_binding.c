@@ -475,7 +475,7 @@ afw_object_get_property_as_integer_source(
     return (const afw_value_integer_t *)value;
 }
 
-/* Get property function for data type integer internal. */
+/* Get property as integer internal. */
 AFW_DEFINE(afw_integer_t)
 afw_object_get_property_as_integer_internal_source(
     const afw_object_t *object,
@@ -523,7 +523,7 @@ afw_object_get_next_property_as_integer_source(
     return (const afw_value_integer_t *)value;
 }
 
-/* Get next property function for data type integer internal. */
+/* Get next property as integer internal. */
 AFW_DEFINE(afw_integer_t)
 afw_object_get_next_property_as_integer_internal_source(
     const afw_object_t *object,

@@ -523,7 +523,7 @@ afw_object_get_property_as_x500Name_source(
     return (const afw_value_x500Name_t *)value;
 }
 
-/* Get property function for data type x500Name internal. */
+/* Get property as x500Name internal. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_property_as_x500Name_internal_source(
     const afw_object_t *object,
@@ -568,7 +568,7 @@ afw_object_get_next_property_as_x500Name_source(
     return (const afw_value_x500Name_t *)value;
 }
 
-/* Get next property function for data type x500Name internal. */
+/* Get next property as x500Name internal. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_next_property_as_x500Name_internal_source(
     const afw_object_t *object,

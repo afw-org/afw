@@ -442,7 +442,7 @@ afw_object_get_property_as_time_source(
     return (const afw_value_time_t *)value;
 }
 
-/* Get property function for data type time internal. */
+/* Get property as time internal. */
 AFW_DEFINE(const afw_time_t *)
 afw_object_get_property_as_time_internal_source(
     const afw_object_t *object,
@@ -487,7 +487,7 @@ afw_object_get_next_property_as_time_source(
     return (const afw_value_time_t *)value;
 }
 
-/* Get next property function for data type time internal. */
+/* Get next property as time internal. */
 AFW_DEFINE(const afw_time_t *)
 afw_object_get_next_property_as_time_internal_source(
     const afw_object_t *object,

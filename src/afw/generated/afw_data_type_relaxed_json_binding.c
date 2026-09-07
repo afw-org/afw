@@ -523,7 +523,7 @@ afw_object_get_property_as_relaxed_json_source(
     return (const afw_value_relaxed_json_t *)value;
 }
 
-/* Get property function for data type relaxed_json internal. */
+/* Get property as relaxed_json internal. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_property_as_relaxed_json_internal_source(
     const afw_object_t *object,
@@ -568,7 +568,7 @@ afw_object_get_next_property_as_relaxed_json_source(
     return (const afw_value_relaxed_json_t *)value;
 }
 
-/* Get next property function for data type relaxed_json internal. */
+/* Get next property as relaxed_json internal. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_next_property_as_relaxed_json_internal_source(
     const afw_object_t *object,

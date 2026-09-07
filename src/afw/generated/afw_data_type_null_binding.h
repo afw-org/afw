@@ -324,7 +324,7 @@ afw_object_get_property_as_null_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Get property function for data type null internal.
+ * @brief Get property as null internal.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param xctx of caller.
@@ -336,7 +336,7 @@ afw_object_get_property_as_null_internal_source( \
     object, property_name, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get property function for data type null value.
+ * @brief Get property as null internal.
  * @param object of property to get.
  * @param property_name of property to get.
  * @param source_z file:line.
@@ -381,7 +381,7 @@ afw_object_get_next_property_as_null_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Get next property function for data type null internal.
+ * @brief Get next property as null internal.
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.
@@ -394,7 +394,7 @@ afw_object_get_next_property_as_null_internal_source( \
     object, iterator, property_name, AFW__FILE_LINE__, xctx)
 
 /**
- * @brief Get next property function for data type null value.
+ * @brief Get next property as null internal.
  * @param object of property to get.
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.

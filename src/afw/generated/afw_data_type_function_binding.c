@@ -427,7 +427,7 @@ afw_object_get_property_as_function_source(
     return (const afw_value_function_t *)value;
 }
 
-/* Get property function for data type function internal. */
+/* Get property as function internal. */
 AFW_DEFINE(const afw_value_t *)
 afw_object_get_property_as_function_internal_source(
     const afw_object_t *object,
@@ -472,7 +472,7 @@ afw_object_get_next_property_as_function_source(
     return (const afw_value_function_t *)value;
 }
 
-/* Get next property function for data type function internal. */
+/* Get next property as function internal. */
 AFW_DEFINE(const afw_value_t *)
 afw_object_get_next_property_as_function_internal_source(
     const afw_object_t *object,

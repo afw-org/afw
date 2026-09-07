@@ -3828,7 +3828,7 @@ struct afw_array_inf_s {
  * Get the meta object of array entry by index.
  * @param instance Pointer to this value array instance.
  * @param index Zero-based index of array entry to return.
- * @param p If necessary, this pool is used to create the return value.
+ * @param p Pool if extra allocation is needed (the meta object).
  * @param xctx This is the caller's xctx.
  * @return The object value to access the meta of the entry or NULL if index is
  * out of range.
@@ -3873,12 +3873,12 @@ struct afw_array_inf_s {
 /**
  * @brief Call method `get_next_entry_meta` of interface `afw_array`.
  *
- * Get next value in array and update iterator. Set the iterator to NULL
- * before the first call of this method and any time you want to start
- * from the first value again.
+ * Get the meta object of the next array entry and update iterator.
+ * Set the iterator to NULL before the first call and any time you want
+ * to start from the first entry again.
  * @param instance Pointer to this value array instance.
  * @param iterator Address of iterator pointer.
- * @param p If necessary, this pool is used to create the return value.
+ * @param p Pool if extra allocation is needed (the meta object).
  * @param xctx This is the caller's xctx.
  * @return The object value to access the meta of the entry or NULL there are no
  * more.

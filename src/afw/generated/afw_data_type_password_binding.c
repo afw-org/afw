@@ -523,7 +523,7 @@ afw_object_get_property_as_password_source(
     return (const afw_value_password_t *)value;
 }
 
-/* Get property function for data type password internal. */
+/* Get property as password internal. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_property_as_password_internal_source(
     const afw_object_t *object,
@@ -568,7 +568,7 @@ afw_object_get_next_property_as_password_source(
     return (const afw_value_password_t *)value;
 }
 
-/* Get next property function for data type password internal. */
+/* Get next property as password internal. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_next_property_as_password_internal_source(
     const afw_object_t *object,

@@ -442,7 +442,7 @@ afw_object_get_property_as_dayTimeDuration_source(
     return (const afw_value_dayTimeDuration_t *)value;
 }
 
-/* Get property function for data type dayTimeDuration internal. */
+/* Get property as dayTimeDuration internal. */
 AFW_DEFINE(const afw_dayTimeDuration_t *)
 afw_object_get_property_as_dayTimeDuration_internal_source(
     const afw_object_t *object,
@@ -487,7 +487,7 @@ afw_object_get_next_property_as_dayTimeDuration_source(
     return (const afw_value_dayTimeDuration_t *)value;
 }
 
-/* Get next property function for data type dayTimeDuration internal. */
+/* Get next property as dayTimeDuration internal. */
 AFW_DEFINE(const afw_dayTimeDuration_t *)
 afw_object_get_next_property_as_dayTimeDuration_internal_source(
     const afw_object_t *object,

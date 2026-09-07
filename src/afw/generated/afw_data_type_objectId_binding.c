@@ -523,7 +523,7 @@ afw_object_get_property_as_objectId_source(
     return (const afw_value_objectId_t *)value;
 }
 
-/* Get property function for data type objectId internal. */
+/* Get property as objectId internal. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_property_as_objectId_internal_source(
     const afw_object_t *object,
@@ -568,7 +568,7 @@ afw_object_get_next_property_as_objectId_source(
     return (const afw_value_objectId_t *)value;
 }
 
-/* Get next property function for data type objectId internal. */
+/* Get next property as objectId internal. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_get_next_property_as_objectId_internal_source(
     const afw_object_t *object,

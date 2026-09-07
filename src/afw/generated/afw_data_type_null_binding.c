@@ -423,7 +423,7 @@ afw_object_get_property_as_null_source(
     return (const afw_value_null_t *)value;
 }
 
-/* Get property function for data type null internal. */
+/* Get property as null internal. */
 AFW_DEFINE(void *)
 afw_object_get_property_as_null_internal_source(
     const afw_object_t *object,
@@ -468,7 +468,7 @@ afw_object_get_next_property_as_null_source(
     return (const afw_value_null_t *)value;
 }
 
-/* Get next property function for data type null internal. */
+/* Get next property as null internal. */
 AFW_DEFINE(void *)
 afw_object_get_next_property_as_null_internal_source(
     const afw_object_t *object,

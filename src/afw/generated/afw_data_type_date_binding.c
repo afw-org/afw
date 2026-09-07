@@ -442,7 +442,7 @@ afw_object_get_property_as_date_source(
     return (const afw_value_date_t *)value;
 }
 
-/* Get property function for data type date internal. */
+/* Get property as date internal. */
 AFW_DEFINE(const afw_date_t *)
 afw_object_get_property_as_date_internal_source(
     const afw_object_t *object,
@@ -487,7 +487,7 @@ afw_object_get_next_property_as_date_source(
     return (const afw_value_date_t *)value;
 }
 
-/* Get next property function for data type date internal. */
+/* Get next property as date internal. */
 AFW_DEFINE(const afw_date_t *)
 afw_object_get_next_property_as_date_internal_source(
     const afw_object_t *object,

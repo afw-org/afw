@@ -442,7 +442,7 @@ afw_object_get_property_as_dateTime_source(
     return (const afw_value_dateTime_t *)value;
 }
 
-/* Get property function for data type dateTime internal. */
+/* Get property as dateTime internal. */
 AFW_DEFINE(const afw_dateTime_t *)
 afw_object_get_property_as_dateTime_internal_source(
     const afw_object_t *object,
@@ -487,7 +487,7 @@ afw_object_get_next_property_as_dateTime_source(
     return (const afw_value_dateTime_t *)value;
 }
 
-/* Get next property function for data type dateTime internal. */
+/* Get next property as dateTime internal. */
 AFW_DEFINE(const afw_dateTime_t *)
 afw_object_get_next_property_as_dateTime_internal_source(
     const afw_object_t *object,
