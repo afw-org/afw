@@ -31,7 +31,7 @@ class value
      * This function returns an object containing meta information for an
      * adaptive value.
      *
-     * @param  $value This is the adaptive value whose meta object is to be
+     * @param $value This is the adaptive value whose meta object is to be
      *                returned.
      *
      * @return object An object containing the meta information for the
@@ -57,7 +57,7 @@ class value
      * This function returns an array of the result of calling meta() for each
      * value in an array or object adaptive value.
      *
-     * @param  $value This is an adaptive array or object.
+     * @param $value This is an adaptive array or object.
      *
      * @return object An array containing the result of calling meta() of each
      *                value in array or object adaptive value.

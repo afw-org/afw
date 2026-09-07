@@ -463,13 +463,11 @@ def switch(session, predicate, value1, case_clause):
         case_clause (object): This is one or more case clauses which are pairs
             of a value2 parameter followed by a statement list or undefined
             parameter. One value2 can be undefined to indicate the default
-            case clause.
-        
-            For the first value2 that is undefined or calling the predicate
-            returns true, the statement list followed by any statement lists
-            of subsequent case clauses are executed until a break or return is
-            encountered. The predicate is called with value1 and the case
-            clause's value2.
+            case clause. For the first value2 that is undefined or calling the
+            predicate returns true, the statement list followed by any
+            statement lists of subsequent case clauses are executed until a
+            break or return is encountered. The predicate is called with
+            value1 and the case clause's value2.
 
     Returns:
         object: Does not complete. Nested assignment still writes the running

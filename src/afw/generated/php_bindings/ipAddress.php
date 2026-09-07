@@ -80,7 +80,7 @@ class ipAddress
      * don't match.
      *
      * @param ipAddress $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -106,7 +106,7 @@ class ipAddress
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param ipAddress $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -179,7 +179,7 @@ class ipAddress
      *
      * Converts value to data type ipAddress returning ipAddress result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return ipAddress Converted value
      */
@@ -227,7 +227,7 @@ class ipAddress
      * Checks whether value is dataType ipAddress and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -251,7 +251,7 @@ class ipAddress
      * return the boolean result.
      *
      * @param ipAddress $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -303,7 +303,7 @@ class ipAddress
      * type don't match.
      *
      * @param ipAddress $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -329,7 +329,7 @@ class ipAddress
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param ipAddress $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */

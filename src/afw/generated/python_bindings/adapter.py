@@ -70,10 +70,8 @@ def add_object(session, objectType, object, adapterId=None, objectId=None, journ
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_add_object
-        
-            where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_add_object where
+            ${adapterType} is the adapter type id.
 
     Returns:
         dict: Resulting journal entry. Property 'objectId' is the objectId
@@ -128,10 +126,8 @@ def add_object_with_uri(session, uri, object, journal=None, adapterTypeSpecific=
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_add_object
-        
-            Where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_add_object Where
+            ${adapterType} is the adapter type id.
 
     Returns:
         dict: Resulting journal entry. Property 'objectId' is the objectId
@@ -176,22 +172,16 @@ def convert_AdaptiveQueryCriteria_to_query_string(session, queryCriteria, adapte
             adapterId parameter. This parameter is only allowed and is
             required if the adapterId parameter is specified.
         style (int): The style of the query string produced. All of the styles
-            are appropriately url encoded.
-        
-            0 - 'name=op=value' where '=op=' will be '==', '!=', '=ge=', etc.
-            with conjunctions '&' (and) and '|' (or). Parentheses are placed
-            around each group of like conjunctions except for outer '&'.
-            (default)
-        
-            1 - the same as 1 with '=gte=' instead of '=ge=', '=lte=' instead
-            of '=le=', '=eq=' instead of '=', and '=ne=' instead of '!='.
-        
-            2 - similar to 1 with ';' for '&' and ',' for '|'.
-        
-            3 - comparisons 'op(name,value)' where 'op' will be 'eq', 'ne',
-            'ge', ..., plus conjunctions 'and(list)' and 'or(list)' where
-            'array' is a comma separated list of any comparison or
-            conjunction.
+            are appropriately url encoded. 0 - 'name=op=value' where '=op='
+            will be '==', '!=', '=ge=', etc. with conjunctions '&' (and) and
+            '|' (or). Parentheses are placed around each group of like
+            conjunctions except for outer '&'. (default) 1 - the same as 1
+            with '=gte=' instead of '=ge=', '=lte=' instead of '=le=', '=eq='
+            instead of '=', and '=ne=' instead of '!='. 2 - similar to 1 with
+            ';' for '&' and ',' for '|'. 3 - comparisons 'op(name,value)'
+            where 'op' will be 'eq', 'ne', 'ge', ..., plus conjunctions
+            'and(list)' and 'or(list)' where 'array' is a comma separated list
+            of any comparison or conjunction.
 
     Returns:
         str: Query string representation of the query criteria.
@@ -281,10 +271,8 @@ def delete_object(session, objectType, objectId, adapterId=None, journal=None, a
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_delete_object
-        
-            where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_delete_object where
+            ${adapterType} is the adapter type id.
 
     Returns:
         dict: Resulting journal entry.
@@ -332,10 +320,8 @@ def delete_object_with_uri(session, uri, journal=None, adapterTypeSpecific=None)
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_delete_object
-        
-            where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_delete_object where
+            ${adapterType} is the adapter type id.
 
     Returns:
         dict: Resulting journal entry.
@@ -381,10 +367,8 @@ def get_object(session, objectType, objectId, adapterId=None, options=None, adap
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_get_object
-        
-            Where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_get_object Where
+            ${adapterType} is the adapter type id.
 
     Returns:
         dict: Object retrieved. Throws not_found if the adapter or object is
@@ -432,10 +416,8 @@ def get_object_with_uri(session, uri, options=None, adapterTypeSpecific=None):
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_get_object
-        
-            where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_get_object where
+            ${adapterType} is the adapter type id.
 
     Returns:
         dict: Object retrieved. Throws not_found if the adapter or object is
@@ -473,19 +455,12 @@ def modify_object(session, objectType, objectId, entries, adapterId=None, journa
         adapterId (str): Id of adapter containing object to modify.
         objectType (str): Id of adaptive object type of object to modify.
         objectId (str): Id of object to modify.
-        entries (list): List of modifications. Entries are of the form:
-        
-                [         'add_value',         'property name' or ['property
-            name', ... ],         value     ]
-        
-                [         'remove_property',         'property name' or
-            ['property name', ... ]     ]
-        
-                [         'remove_value',         'property name' or
-            ['property name', ... ],         value     ]
-        
-                [         'set_property',         'property name' or
-            ['property name', ... ],         value     ]
+        entries (list): List of modifications. Entries are of the form: [
+            'add_value', 'property name' or ['property name', ... ], value ] [
+            'remove_property', 'property name' or ['property name', ... ] ] [
+            'remove_value', 'property name' or ['property name', ... ], value
+            ] [ 'set_property', 'property name' or ['property name', ... ],
+            value ]
         journal (dict): The properties of this object will be added to the
             associated journal entry. Refer to
             /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property
@@ -494,10 +469,8 @@ def modify_object(session, objectType, objectId, entries, adapterId=None, journa
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object
-        
-            Where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object Where
+            ${adapterType} is the adapter type id.
 
     Returns:
         dict: Resulting journal entry.
@@ -539,19 +512,11 @@ def modify_object_with_uri(session, uri, entries, journal=None, adapterTypeSpeci
         uri (object): URI of object to modify. If a URI begins with a single
             slash ('/'), it is the local object path.
         entries (list): List of asserts and modifications. Entries are of the
-            form:
-        
-                [         'add_value',         'property name' or ['property
-            name', ... ],         value     ]
-        
-                [         'remove_property',         'property name' or
-            ['property name', ... ]     ]
-        
-                [         'remove_value',         'property name' or
-            ['property name', ... ],         value     ]
-        
-                [         'set_property',         'property name' or
-            ['property name', ... ],         value     ]
+            form: [ 'add_value', 'property name' or ['property name', ... ],
+            value ] [ 'remove_property', 'property name' or ['property name',
+            ... ] ] [ 'remove_value', 'property name' or ['property name', ...
+            ], value ] [ 'set_property', 'property name' or ['property name',
+            ... ], value ]
         journal (dict): The properties of this object will be added to the
             associated journal entry. Refer to
             /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property
@@ -560,10 +525,8 @@ def modify_object_with_uri(session, uri, entries, journal=None, adapterTypeSpeci
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object
-        
-            Where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object Where
+            ${adapterType} is the adapter type id.
 
     Returns:
         dict: Resulting journal entry.
@@ -647,10 +610,8 @@ def replace_object(session, objectType, objectId, object, adapterId=None, journa
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_replace_object
-        
-            Where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_replace_object Where
+            ${adapterType} is the adapter type id.
 
     Returns:
         dict: Resulting journal entry.
@@ -700,10 +661,8 @@ def replace_object_with_uri(session, uri, object, journal=None, adapterTypeSpeci
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_replace_object
-        
-            Where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_replace_object Where
+            ${adapterType} is the adapter type id.
 
     Returns:
         dict: Resulting journal entry.
@@ -763,10 +722,8 @@ def retrieve_objects(session, objectType, adapterId=None, queryCriteria=None, op
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
-        
-            Where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects Where
+            ${adapterType} is the adapter type id.
         maxObjects (int): Maximum number of objects that may be collected into
             the returned array. Default is 100. Set to 0 for unlimited. When
             exceeded, the function fails with payload_too_large. This bounds
@@ -841,10 +798,7 @@ def retrieve_objects_to_callback(session, objectCallback, userData, objectType, 
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            
             _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects_to_callback
-        
             Where ${adapterType} is the adapter type id.
 
     Returns:
@@ -911,10 +865,8 @@ def retrieve_objects_to_response(session, objectType, adapterId=None, queryCrite
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
-        
-            Where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects Where
+            ${adapterType} is the adapter type id.
 
     Returns:
         object:
@@ -976,10 +928,8 @@ def retrieve_objects_to_stream(session, streamNumber, objectType, adapterId=None
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
-        
-            Where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects Where
+            ${adapterType} is the adapter type id.
 
     Returns:
         object:
@@ -1041,10 +991,8 @@ def retrieve_objects_with_uri(session, uri, options=None, adapterTypeSpecific=No
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
-        
-            Where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects Where
+            ${adapterType} is the adapter type id.
         maxObjects (int): Maximum number of objects that may be collected into
             the returned array. Default is 100. Set to 0 for unlimited. When
             exceeded, the function fails with payload_too_large. This bounds
@@ -1111,10 +1059,8 @@ def retrieve_objects_with_uri_to_callback(session, objectCallback, userData, uri
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
-        
-            Where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects Where
+            ${adapterType} is the adapter type id.
 
     Returns:
         object:
@@ -1172,10 +1118,8 @@ def retrieve_objects_with_uri_to_response(session, uri, options=None, adapterTyp
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
-        
-            Where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects Where
+            ${adapterType} is the adapter type id.
 
     Returns:
         object:
@@ -1229,10 +1173,8 @@ def retrieve_objects_with_uri_to_stream(session, streamNumber, uri, options=None
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
-        
-            Where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects Where
+            ${adapterType} is the adapter type id.
 
     Returns:
         object:
@@ -1282,10 +1224,8 @@ def update_object(session, objectType, objectId, object, adapterId=None, journal
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object
-        
-            Where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object Where
+            ${adapterType} is the adapter type id.
 
     Returns:
         dict: Resulting journal entry.
@@ -1338,10 +1278,8 @@ def update_object_with_uri(session, uri, object, journal=None, adapterTypeSpecif
             an objectType determined by the adapterType associated with the
             adapterId parameter. If the adapterType supports this parameter,
             adapter afw will have an adaptive object type with an id of:
-        
-            _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object
-        
-            Where ${adapterType} is the adapter type id.
+            _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object Where
+            ${adapterType} is the adapter type id.
 
     Returns:
         dict: Resulting journal entry.

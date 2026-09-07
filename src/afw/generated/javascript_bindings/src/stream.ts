@@ -62,14 +62,14 @@ export function afwFlush(client : any, streamNumber : number) : any {
  * @param {string} path - Logical path resolved using rootFilePaths (longest
  *     matching prefix; host path must remain under that root).
  * 
- * @param {string} mode - This is the access mode string. Values can be:   r -
- *     Open an existing file text file for read.   w - Open a text file for
- *     writing. If the file does not exist, it will be created.   a - Open a
+ * @param {string} mode - This is the access mode string. Values can be: r -
+ *     Open an existing file text file for read. w - Open a text file for
+ *     writing. If the file does not exist, it will be created. a - Open a
  *     text file for writing additional data to the end. If the file does not
- *     exist, it will be created.   r+ - Open a text file for both reading and
- *     writing.   w+ - Open a text file for both reading and writing. If the
+ *     exist, it will be created. r+ - Open a text file for both reading and
+ *     writing. w+ - Open a text file for both reading and writing. If the
  *     file exists, it will be overwritten. If the file does not exist, it
- *     will be created.   a+ - Open a text file for both reading and writing.
+ *     will be created. a+ - Open a text file for both reading and writing.
  *     Reading will begin at the start of the file while writing will be
  *     appended to the end.
  * 

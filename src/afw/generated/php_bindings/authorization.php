@@ -40,7 +40,7 @@ class authorization
      *                           used to access this value in authorization
      *                           policies.
      * @param string $actionId This is the action that on the resource that's
-     *                         being checked.  Variable current::actionId can
+     *                         being checked. Variable current::actionId can
      *                         be used to access this value in authorization
      *                         policies.
      * @param object $object Variable current::object can be used to access

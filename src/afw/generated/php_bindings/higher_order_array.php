@@ -37,7 +37,7 @@ class higher_order_array
      *                            the first array in values or until false is
      *                            returned. If no calls return false, the
      *                            result is true.
-     * @param  $values These are the parameters passed to predicate with the
+     * @param $values These are the parameters passed to predicate with the
      *                 exception that the first array is passed one value at a
      *                 time. At least one array is required.
      *
@@ -128,7 +128,7 @@ class higher_order_array
      *                            the first array in values or until true is
      *                            returned. If no calls return true, the
      *                            result is false.
-     * @param  $values These are the parameters passed to predicate with the
+     * @param $values These are the parameters passed to predicate with the
      *                 exception that the first array is passed one value at a
      *                 time. At least one array is required.
      *
@@ -216,7 +216,7 @@ class higher_order_array
      *
      * @param function $predicate Called for each value in the first array in
      *                            values or until false is returned.
-     * @param  $values Parameters passed to predicate with the first array
+     * @param $values Parameters passed to predicate with the first array
      *                 passed one value at a time.
      *
      * @return boolean
@@ -245,7 +245,7 @@ class higher_order_array
      * @param function $predicate This is a boolean function that is called to
      *                            determine if an array entry should be
      *                            included in the returned array.
-     * @param  $values These are the values passed to the predicate with the
+     * @param $values These are the values passed to the predicate with the
      *                 exception that the first array is passed as the single
      *                 current value from the array. At least one array is
      *                 required.
@@ -278,12 +278,12 @@ class higher_order_array
      *
      * @param function $predicate This is a boolean function that is called to
      *                            determine if an array entry passes the test.
-     * @param  $values These are the values passed to the predicate with the
+     * @param $values These are the values passed to the predicate with the
      *                 exception that the first array is passed as the single
      *                 current value from the array. At least one array is
      *                 required.
      *
-     * @return  The first matching entry, or undefined if none match.
+     * @return The first matching entry, or undefined if none match.
      */
     public function find(, $predicate, $values)
     {
@@ -310,7 +310,7 @@ class higher_order_array
      * parameters, if present, are passed through on every call.
      *
      * @param function $functor
-     * @param  $values The first array is walked one entry at a time as the
+     * @param $values The first array is walked one entry at a time as the
      *                 first argument to functor. Additional parameters are
      *                 passed on every call. At least one array is required.
      *
@@ -343,14 +343,14 @@ class higher_order_array
      *                          array. The returned value is passed as the
      *                          accumulator parameter on the next call to
      *                          functor().
-     * @param  $accumulator This is an initial accumulator value passed to
+     * @param $accumulator This is an initial accumulator value passed to
      *                      functor(). Normally, the dataType of accumulator
      *                      will be the data type for the reduce() return
      *                      value, but this is not required.
      * @param array $array This is an array to be reduced.
      *
-     * @return  The final value returned by functor, or the initial
-     *          accumulator if array is empty.
+     * @return The final value returned by functor, or the initial accumulator
+     *          if array is empty.
      */
     public function reduce(, $functor, $accumulator, $array)
     {
@@ -376,7 +376,7 @@ class higher_order_array
      *
      * @param function $predicate Called for each value in the first array in
      *                            values or until true is returned.
-     * @param  $values Parameters passed to predicate with the first array
+     * @param $values Parameters passed to predicate with the first array
      *                 passed one value at a time.
      *
      * @return boolean

@@ -175,7 +175,7 @@ class integer
      * don't match.
      *
      * @param integer $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -201,7 +201,7 @@ class integer
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param integer $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -274,7 +274,7 @@ class integer
      *
      * Converts value to data type integer returning integer result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return integer Converted value
      */
@@ -346,7 +346,7 @@ class integer
      *
      * Checks whether value is dataType integer and return the boolean result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -370,7 +370,7 @@ class integer
      * return the boolean result.
      *
      * @param integer $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -513,7 +513,7 @@ class integer
      * type don't match.
      *
      * @param integer $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -561,7 +561,7 @@ class integer
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param integer $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */

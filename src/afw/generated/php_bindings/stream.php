@@ -82,19 +82,19 @@ class stream
      * @param string $path Logical path resolved using rootFilePaths (longest
      *                     matching prefix; host path must remain under that
      *                     root).
-     * @param string $mode This is the access mode string. Values can be:   r
-     *                     - Open an existing file text file for read.   w -
-     *                     Open a text file for writing. If the file does not
-     *                     exist, it will be created.   a - Open a text file
-     *                     for writing additional data to the end. If the file
-     *                     does not exist, it will be created.   r+ - Open a
-     *                     text file for both reading and writing.   w+ - Open
-     *                     a text file for both reading and writing. If the
-     *                     file exists, it will be overwritten. If the file
-     *                     does not exist, it will be created.   a+ - Open a
-     *                     text file for both reading and writing. Reading
-     *                     will begin at the start of the file while writing
-     *                     will be appended to the end.
+     * @param string $mode This is the access mode string. Values can be: r -
+     *                     Open an existing file text file for read. w - Open
+     *                     a text file for writing. If the file does not
+     *                     exist, it will be created. a - Open a text file for
+     *                     writing additional data to the end. If the file
+     *                     does not exist, it will be created. r+ - Open a
+     *                     text file for both reading and writing. w+ - Open a
+     *                     text file for both reading and writing. If the file
+     *                     exists, it will be overwritten. If the file does
+     *                     not exist, it will be created. a+ - Open a text
+     *                     file for both reading and writing. Reading will
+     *                     begin at the start of the file while writing will
+     *                     be appended to the end.
      * 
      *                     All of these modes expect data type string. If you
      *                     are using data type base64Binary or hexBinary you
@@ -131,7 +131,7 @@ class stream
      * Evaluate and convert 0 or more values to its string value, then write
      * them to stdout. An undefined value is represented by 'undefined'.
      *
-     * @param  $values Values to print.
+     * @param $values Values to print.
      *
      * @return void
      */
@@ -155,7 +155,7 @@ class stream
      * them to stdout. A newline character ('\n') is written after the last
      * value. An undefined value is represented by 'undefined'.
      *
-     * @param  $value Values to print.
+     * @param $value Values to print.
      *
      * @return void
      */
@@ -180,7 +180,7 @@ class stream
      * non-negative integer and must not exceed 1,000,000.
      *
      * @param integer $streamNumber Stream number
-     * @param  $n The maximum number of octets to read (0 or more, up to
+     * @param $n The maximum number of octets to read (0 or more, up to
      *            1,000,000).
      *
      * @return string The UTF-8 string read. Check the size of this value to
@@ -208,7 +208,7 @@ class stream
      * integer and must not exceed 1,000,000.
      *
      * @param integer $streamNumber Stream number
-     * @param  $n The maximum number of octets to read (0 or more, up to
+     * @param $n The maximum number of octets to read (0 or more, up to
      *            1,000,000).
      *
      * @return base64Binary The base64Binary value read. Check the size of
@@ -237,7 +237,7 @@ class stream
      * integer and must not exceed 1,000,000.
      *
      * @param integer $streamNumber Stream number
-     * @param  $n The maximum number of octets to read (0 or more, up to
+     * @param $n The maximum number of octets to read (0 or more, up to
      *            1,000,000).
      *
      * @return hexBinary The hexBinary value read. Check the size of this
@@ -313,7 +313,7 @@ class stream
      * 'undefined'.
      *
      * @param integer $streamNumber The streamNumber for the stream to write.
-     * @param  $value Values to write as their string value.
+     * @param $value Values to write as their string value.
      *
      * @return void
      */
@@ -338,7 +338,7 @@ class stream
      * data type base64Binary and hexBinary.
      *
      * @param integer $streamNumber The streamNumber for the stream to write.
-     * @param  $value The internal memory of this value is written (string,
+     * @param $value The internal memory of this value is written (string,
      *                hexBinary, or base64Binary).
      *
      * @return void
@@ -365,7 +365,7 @@ class stream
      * value. An undefined value is represented by 'undefined'.
      *
      * @param integer $streamNumber The streamNumber for the stream to write.
-     * @param  $value Values to write.
+     * @param $value Values to write.
      *
      * @return void
      */

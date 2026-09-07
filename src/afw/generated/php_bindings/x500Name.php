@@ -105,7 +105,7 @@ class x500Name
      * don't match.
      *
      * @param x500Name $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -131,7 +131,7 @@ class x500Name
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param x500Name $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -255,7 +255,7 @@ class x500Name
      * Checks whether value is dataType x500Name and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -279,7 +279,7 @@ class x500Name
      * return the boolean result.
      *
      * @param x500Name $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -356,7 +356,7 @@ class x500Name
      * type don't match.
      *
      * @param x500Name $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -382,7 +382,7 @@ class x500Name
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param x500Name $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -549,7 +549,7 @@ class x500Name
      *
      * Converts value to data type x500Name returning x500Name result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return x500Name Converted value
      */

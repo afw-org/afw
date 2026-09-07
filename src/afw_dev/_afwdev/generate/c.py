@@ -129,7 +129,7 @@ def write_wrapped(fd, max, prefix, s, continue_indent='', last_char='', trim=Fal
             fd.write(paragraph_separator)
 
         if trim:
-            paragraph = paragraph.replace('\n', ' ')
+            paragraph = ' '.join(paragraph.split())
 
         lines = paragraph.split('\n')
         for line in lines:

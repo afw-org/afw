@@ -26,7 +26,7 @@ def authorization_check(session, requestId, resourceId, actionId, object=None, e
             Variable current::resourceId can be used to access this value in
             authorization policies.
         actionId (str): This is the action that on the resource that's being
-            checked.  Variable current::actionId can be used to access this
+            checked. Variable current::actionId can be used to access this
             value in authorization policies.
         object (dict): Variable current::object can be used to access this
             value in authorization policies.

@@ -81,7 +81,7 @@ class script
      * stringify) and not Adaptive compiled-form text (use decompile).
      *
      * @param script $source script string to compile
-     * @param  $listing If specified, a human compiler listing is produced
+     * @param $listing If specified, a human compiler listing is produced
      *                  instead of an unevaluated compiled value (tree +
      *                  ---Symbols; not recompilable). Use decompile() for
      *                  Adaptive compiled-form text and stringify() for pure
@@ -120,7 +120,7 @@ class script
      * don't match.
      *
      * @param script $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -146,7 +146,7 @@ class script
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param script $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -268,7 +268,7 @@ class script
      *
      * Checks whether value is dataType script and return the boolean result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -292,7 +292,7 @@ class script
      * the boolean result.
      *
      * @param script $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -344,7 +344,7 @@ class script
      * don't match.
      *
      * @param script $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -370,7 +370,7 @@ class script
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param script $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -395,7 +395,7 @@ class script
      * Adaptive Script source text as a script value (does not compile or
      * run). Use polymorphic compile to compile the source.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return script Converted value
      */

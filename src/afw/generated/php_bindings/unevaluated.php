@@ -31,7 +31,7 @@ class unevaluated
      * Checks whether value is dataType unevaluated and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */

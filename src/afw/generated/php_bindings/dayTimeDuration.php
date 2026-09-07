@@ -103,7 +103,7 @@ class dayTimeDuration
      * Converts value to data type dayTimeDuration returning dayTimeDuration
      * result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return dayTimeDuration Converted value
      */
@@ -129,7 +129,7 @@ class dayTimeDuration
      * arg2's data type don't match.
      *
      * @param dayTimeDuration $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -156,7 +156,7 @@ class dayTimeDuration
      * comparison.
      *
      * @param dayTimeDuration $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -255,7 +255,7 @@ class dayTimeDuration
      * Checks whether value is dataType dayTimeDuration and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -304,7 +304,7 @@ class dayTimeDuration
      * dayTimeDuration arg2 and return the boolean result.
      *
      * @param dayTimeDuration $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -356,7 +356,7 @@ class dayTimeDuration
      * arg2's data type don't match.
      *
      * @param dayTimeDuration $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -383,7 +383,7 @@ class dayTimeDuration
      * comparison.
      *
      * @param dayTimeDuration $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */

@@ -151,7 +151,7 @@ class dateTime
      *
      * Converts value to data type dateTime returning dateTime result.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return dateTime Converted value
      */
@@ -177,7 +177,7 @@ class dateTime
      * don't match.
      *
      * @param dateTime $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -203,7 +203,7 @@ class dateTime
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param dateTime $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -308,7 +308,7 @@ class dateTime
      * Checks whether value is dataType dateTime and return the boolean
      * result.
      *
-     * @param  $value Value to check
+     * @param $value Value to check
      *
      * @return boolean
      */
@@ -360,7 +360,7 @@ class dateTime
      * time-zone value will be assigned.
      *
      * @param dateTime $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -465,7 +465,7 @@ class dateTime
      * type don't match.
      *
      * @param dateTime $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -491,7 +491,7 @@ class dateTime
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param dateTime $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */

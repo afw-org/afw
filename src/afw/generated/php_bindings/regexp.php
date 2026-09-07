@@ -35,7 +35,7 @@ class regexp
      * stringify) and not Adaptive compiled-form text (use decompile).
      *
      * @param regexp $source regexp string to compile
-     * @param  $listing If specified, a human compiler listing is produced
+     * @param $listing If specified, a human compiler listing is produced
      *                  instead of an unevaluated compiled value (tree +
      *                  ---Symbols; not recompilable). Use decompile() for
      *                  Adaptive compiled-form text and stringify() for pure
@@ -74,7 +74,7 @@ class regexp
      * don't match.
      *
      * @param regexp $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -100,7 +100,7 @@ class regexp
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param regexp $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -175,7 +175,7 @@ class regexp
      * the boolean result.
      *
      * @param regexp $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -227,7 +227,7 @@ class regexp
      * don't match.
      *
      * @param regexp $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -253,7 +253,7 @@ class regexp
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param regexp $arg1
-     * @param  $arg2
+     * @param $arg2
      *
      * @return boolean
      */
@@ -279,7 +279,7 @@ class regexp
      * the pattern for matching by itself). Use polymorphic compile when a
      * compiled form is required.
      *
-     * @param  $value Value to convert
+     * @param $value Value to convert
      *
      * @return regexp Converted value
      */
