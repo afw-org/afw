@@ -275,6 +275,18 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_password =
     &afw_data_type_password_direct;
 
+/* Set property from password value. */
+AFW_DEFINE(void)
+afw_object_set_property_as_password(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_password_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_object_set_property(object, property_name,
+        &value->pub, xctx);
+}
+
 /* Set property from password internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_password_internal(

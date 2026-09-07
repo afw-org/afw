@@ -275,6 +275,18 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_regexp =
     &afw_data_type_regexp_direct;
 
+/* Set property from regexp value. */
+AFW_DEFINE(void)
+afw_object_set_property_as_regexp(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_regexp_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_object_set_property(object, property_name,
+        &value->pub, xctx);
+}
+
 /* Set property from regexp internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_regexp_internal(

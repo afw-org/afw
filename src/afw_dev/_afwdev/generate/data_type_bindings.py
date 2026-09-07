@@ -761,10 +761,27 @@ def write_h_section(fd, prefix, obj):
         fd.write('    afw_xctx_t *xctx);\n')
 
         fd.write('\n/**\n')
-        fd.write(' * @brief Set property function for data type ' + id + ' values.\n')
+        fd.write(' * @brief Set property as ' + id + ' value.\n')
         fd.write(' * @param object of property to set.\n')
         fd.write(' * @param property_name of property to set.\n')
-        fd.write(' * @param value of value to set.\n')
+        fd.write(' * @param value to set.\n')
+        fd.write(' * @param xctx of caller.\n')
+        fd.write(' *\n')
+        fd.write(' * Compile-time type check for const afw_value_' + id +
+                 '_t *.\n')
+        fd.write(' */\n')
+        fd.write(declare + '(void)\n')
+        fd.write('afw_object_set_property_as_' + id + '(\n')
+        fd.write('    const afw_object_t *object,\n')
+        fd.write('    const afw_value_t *property_name,\n')
+        fd.write('    const afw_value_' + id + '_t *value,\n')
+        fd.write('    afw_xctx_t *xctx);\n')
+
+        fd.write('\n/**\n')
+        fd.write(' * @brief Set property as ' + id + ' internal.\n')
+        fd.write(' * @param object of property to set.\n')
+        fd.write(' * @param property_name of property to set.\n')
+        fd.write(' * @param internal of value to set.\n')
         fd.write(' * @param xctx of caller.\n')
         fd.write(' *\n')
         if id == 'boolean':
@@ -1412,6 +1429,18 @@ def write_c_section(fd, prefix, obj):
     fd.write('afw_data_type_' + id + ' =\n    &afw_data_type_' + id + '_direct;\n')
 
     if not special:
+
+        fd.write('\n/* Set property from ' + id + ' value. */\n')
+        fd.write(define + '(void)\n')
+        fd.write('afw_object_set_property_as_' + id + '(\n')
+        fd.write('    const afw_object_t *object,\n')
+        fd.write('    const afw_value_t *property_name,\n')
+        fd.write('    const afw_value_' + id + '_t *value,\n')
+        fd.write('    afw_xctx_t *xctx)\n')
+        fd.write('{\n')
+        fd.write('    afw_object_set_property(object, property_name,\n')
+        fd.write('        &value->pub, xctx);\n')
+        fd.write('}\n')
 
         fd.write('\n/* Set property from ' + id + ' internal. */\n')
         fd.write(define + '(void)\n')

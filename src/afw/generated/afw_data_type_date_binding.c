@@ -245,6 +245,18 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_date =
     &afw_data_type_date_direct;
 
+/* Set property from date value. */
+AFW_DEFINE(void)
+afw_object_set_property_as_date(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_date_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_object_set_property(object, property_name,
+        &value->pub, xctx);
+}
+
 /* Set property from date internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_date_internal(

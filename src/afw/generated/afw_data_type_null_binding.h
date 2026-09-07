@@ -411,10 +411,26 @@ afw_object_get_next_property_as_null_internal_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Set property function for data type null values.
+ * @brief Set property as null value.
  * @param object of property to set.
  * @param property_name of property to set.
- * @param value of value to set.
+ * @param value to set.
+ * @param xctx of caller.
+ *
+ * Compile-time type check for const afw_value_null_t *.
+ */
+AFW_DECLARE(void)
+afw_object_set_property_as_null(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_null_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Set property as null internal.
+ * @param object of property to set.
+ * @param property_name of property to set.
+ * @param internal of value to set.
  * @param xctx of caller.
  *
  * The value will be allocated in the object's pool.

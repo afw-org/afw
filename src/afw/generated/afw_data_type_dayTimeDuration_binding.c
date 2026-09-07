@@ -245,6 +245,18 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_dayTimeDuration =
     &afw_data_type_dayTimeDuration_direct;
 
+/* Set property from dayTimeDuration value. */
+AFW_DEFINE(void)
+afw_object_set_property_as_dayTimeDuration(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_dayTimeDuration_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_object_set_property(object, property_name,
+        &value->pub, xctx);
+}
+
 /* Set property from dayTimeDuration internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_dayTimeDuration_internal(

@@ -276,6 +276,18 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_array =
     &afw_data_type_array_direct;
 
+/* Set property from array value. */
+AFW_DEFINE(void)
+afw_object_set_property_as_array(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_array_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_object_set_property(object, property_name,
+        &value->pub, xctx);
+}
+
 /* Set property from array internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_array_internal(

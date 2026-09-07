@@ -245,6 +245,18 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_boolean =
     &afw_data_type_boolean_direct;
 
+/* Set property from boolean value. */
+AFW_DEFINE(void)
+afw_object_set_property_as_boolean(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_boolean_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_object_set_property(object, property_name,
+        &value->pub, xctx);
+}
+
 /* Set property from boolean internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_boolean_internal(

@@ -275,6 +275,18 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_base64Binary =
     &afw_data_type_base64Binary_direct;
 
+/* Set property from base64Binary value. */
+AFW_DEFINE(void)
+afw_object_set_property_as_base64Binary(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_base64Binary_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_object_set_property(object, property_name,
+        &value->pub, xctx);
+}
+
 /* Set property from base64Binary internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_base64Binary_internal(

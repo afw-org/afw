@@ -275,6 +275,18 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_rfc822Name =
     &afw_data_type_rfc822Name_direct;
 
+/* Set property from rfc822Name value. */
+AFW_DEFINE(void)
+afw_object_set_property_as_rfc822Name(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_rfc822Name_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_object_set_property(object, property_name,
+        &value->pub, xctx);
+}
+
 /* Set property from rfc822Name internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_rfc822Name_internal(

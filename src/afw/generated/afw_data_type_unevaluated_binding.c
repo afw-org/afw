@@ -234,6 +234,18 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_unevaluated =
     &afw_data_type_unevaluated_direct;
 
+/* Set property from unevaluated value. */
+AFW_DEFINE(void)
+afw_object_set_property_as_unevaluated(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_unevaluated_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_object_set_property(object, property_name,
+        &value->pub, xctx);
+}
+
 /* Set property from unevaluated internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_unevaluated_internal(

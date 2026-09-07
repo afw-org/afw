@@ -234,6 +234,18 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_function =
     &afw_data_type_function_direct;
 
+/* Set property from function value. */
+AFW_DEFINE(void)
+afw_object_set_property_as_function(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_function_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_object_set_property(object, property_name,
+        &value->pub, xctx);
+}
+
 /* Set property from function internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_function_internal(

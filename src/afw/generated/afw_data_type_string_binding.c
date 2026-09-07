@@ -292,6 +292,18 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_string =
     &afw_data_type_string_direct;
 
+/* Set property from string value. */
+AFW_DEFINE(void)
+afw_object_set_property_as_string(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_string_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_object_set_property(object, property_name,
+        &value->pub, xctx);
+}
+
 /* Set property from string internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_string_internal(

@@ -936,19 +936,17 @@ impl_syntax_handler_list_string_to_ber(
     const afw_utf8_t *s;
     const afw_iterator_old_t *iterator;
     const afw_array_t *list;
-    const afw_data_type_t *data_type;
     const afw_value_t *entry;
     afw_size_t count;
 
     /* Get the list of values. */
     if (afw_value_is_array(value)) {
         list = ((const afw_value_array_t *)value)->internal;
-        data_type = afw_array_get_data_type(list, xctx);
     }
     else {
-        data_type = afw_value_get_data_type(value, xctx);
         list = afw_array_create_unmanaged_from_c_array(
-            AFW_VALUE_INTERNAL(value), false, data_type, 1, p, xctx);
+            AFW_VALUE_INTERNAL(value), false,
+            afw_value_get_data_type(value, xctx), 1, p, xctx);
     }
 
     /* Get memory for result. */

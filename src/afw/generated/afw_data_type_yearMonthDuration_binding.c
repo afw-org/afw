@@ -245,6 +245,18 @@ AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_yearMonthDuration =
     &afw_data_type_yearMonthDuration_direct;
 
+/* Set property from yearMonthDuration value. */
+AFW_DEFINE(void)
+afw_object_set_property_as_yearMonthDuration(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_yearMonthDuration_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_object_set_property(object, property_name,
+        &value->pub, xctx);
+}
+
 /* Set property from yearMonthDuration internal. */
 AFW_DEFINE(void)
 afw_object_set_property_as_yearMonthDuration_internal(

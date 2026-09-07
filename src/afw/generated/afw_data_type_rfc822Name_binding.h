@@ -464,10 +464,26 @@ afw_object_get_next_property_as_rfc822Name_internal_source(
     afw_xctx_t *xctx);
 
 /**
- * @brief Set property function for data type rfc822Name values.
+ * @brief Set property as rfc822Name value.
  * @param object of property to set.
  * @param property_name of property to set.
- * @param value of value to set.
+ * @param value to set.
+ * @param xctx of caller.
+ *
+ * Compile-time type check for const afw_value_rfc822Name_t *.
+ */
+AFW_DECLARE(void)
+afw_object_set_property_as_rfc822Name(
+    const afw_object_t *object,
+    const afw_value_t *property_name,
+    const afw_value_rfc822Name_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Set property as rfc822Name internal.
+ * @param object of property to set.
+ * @param property_name of property to set.
+ * @param internal of value to set.
  * @param xctx of caller.
  *
  * The value will be allocated in the object's pool.
