@@ -108,21 +108,53 @@ impl_afw_adapter_impl_index_get_index_definitions (
 {
     const afw_adapter_t *adapter = (afw_adapter_t *)self->adapter;
     const afw_object_t *indexes;
+    const afw_pool_t *pool;
+    apr_uint32_t generation;
 
-    /* lock the adapter pool to fetch the indexes */
+    /*
+     * Long-lived home for the cached copy: the session's own pool when
+     * session-backed, or the adapter's pool for the one-off adapter-level
+     * indexer (afw_lmdb_adapter_impl_index_create() called with an
+     * explicit txn and no session). Must NOT be the calling xctx's pool --
+     * this getter can now be called again, later, from a different and
+     * possibly shorter-lived xctx than the one that created this instance
+     * (issue #252 item 3), and the cached copy has to outlive that call.
+     */
+    pool = (self->session) ? self->session->pub.p : self->adapter->pub.p;
+
+    /* lock the adapter to check/fetch the indexes */
     AFW_ADAPTER_IMPL_LOCK_READ_BEGIN(adapter) {
-        indexes = afw_object_get_property_as_object_internal(
-            self->adapter->internalConfig, afw_lmdb_v_indexDefinitions, xctx);
-        if (indexes) {
-            indexes = afw_object_create_clone(indexes,
-                xctx->p, xctx);
-        } else {
-            /* if we don't have one, just create one in our own pool */
-            indexes = afw_object_create_unmanaged_new_p(xctx->p, xctx);
+        generation = self->adapter->indexDefinitionsGeneration;
+
+        /*
+         * Cheap common case (issue #252 item 3): nothing has changed
+         * adapter-wide (via update_index_definitions(), called by
+         * index_create/index_remove on any session) since we last cached
+         * indexDefinitions on this instance -- reuse it instead of
+         * cloning again on every call.
+         */
+        if (self->pub.indexDefinitions &&
+            generation == self->definitionsGeneration)
+        {
+            indexes = self->pub.indexDefinitions;
+        }
+        else {
+            indexes = afw_object_get_property_as_object_internal(
+                self->adapter->internalConfig, afw_lmdb_v_indexDefinitions,
+                xctx);
+            if (indexes) {
+                indexes = afw_object_create_clone(indexes, pool, xctx);
+            } else {
+                /* if we don't have one, just create one in our own pool */
+                indexes = afw_object_create_unmanaged_new_p(pool, xctx);
+            }
+            self->definitionsGeneration = generation;
         }
     }
     /* unlock, we have our own copy now */
     AFW_ADAPTER_IMPL_LOCK_READ_END;
+
+    self->pub.indexDefinitions = indexes;
 
     return indexes;
 }
@@ -168,6 +200,16 @@ impl_afw_adapter_impl_index_update_index_definitions (
                 /* now write out our new config */
                 afw_lmdb_internal_save_config(session->adapter,
                     session->adapter->internalConfig, txn, xctx);
+
+                /*
+                 * Bump so any other indexer instance's cached
+                 * indexDefinitions (this one's own field is already
+                 * current -- the caller mutated it in place before
+                 * calling us) is recognized as stale on its next check
+                 * (issue #252 item 3).
+                 */
+                self->definitionsGeneration =
+                    ++((afw_lmdb_adapter_t *)adapter)->indexDefinitionsGeneration;
             }
             AFW_ADAPTER_IMPL_LOCK_WRITE_END;
 
@@ -188,6 +230,9 @@ impl_afw_adapter_impl_index_update_index_definitions (
             /* now write out our new config */
             afw_lmdb_internal_save_config(session->adapter,
                 session->adapter->internalConfig, txn, xctx);
+
+            self->definitionsGeneration =
+                ++((afw_lmdb_adapter_t *)adapter)->indexDefinitionsGeneration;
         }
         AFW_ADAPTER_IMPL_LOCK_WRITE_END;
     }
