@@ -137,13 +137,13 @@ impl_afw_request_write_response_header(
     }
     self->state = afw_request_state_header_written;
 
-    /* Push name and value on response_headers array. */
+    /* Push name and value on response_headers. */
     if (!self->response_headers) {
-        self->response_headers = apr_array_make(
-            afw_pool_get_apr_pool(xctx->p), 5, sizeof(afw_utf8_t *));
+        self->response_headers = afw_vector_create(
+            afw_command_utf8_p_vector_t, 5, xctx->p, xctx);
     }
-    APR_ARRAY_PUSH(self->response_headers, const afw_utf8_t *) = name;
-    APR_ARRAY_PUSH(self->response_headers, const afw_utf8_t *) = value;
+    afw_vector_push(self->response_headers, xctx) = name;
+    afw_vector_push(self->response_headers, xctx) = value;
 }
 
 

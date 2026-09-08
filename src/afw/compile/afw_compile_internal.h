@@ -309,6 +309,23 @@ struct afw_compile_internal_value_contextual_s {
 };
 
 
+AFW_VECTOR_STRUCT(afw_compile_utf8_octet_vector_s, afw_utf8_octet_t);
+typedef struct afw_compile_utf8_octet_vector_s
+    afw_compile_utf8_octet_vector_t;
+
+AFW_VECTOR_STRUCT(afw_compile_value_p_vector_s, const afw_value_t *);
+typedef struct afw_compile_value_p_vector_s
+    afw_compile_value_p_vector_t;
+
+AFW_VECTOR_STRUCT(afw_compile_type_p_vector_s, const afw_value_type_t *);
+typedef struct afw_compile_type_p_vector_s
+    afw_compile_type_p_vector_t;
+
+AFW_VECTOR_STRUCT(afw_compile_param_p_vector_s,
+    afw_value_script_function_parameter_t *);
+typedef struct afw_compile_param_p_vector_s
+    afw_compile_param_p_vector_t;
+
 /* Active loop labels while parsing (issue #62). Innermost first. */
 typedef struct afw_compile_loop_label_s {
     const afw_value_string_t *name;
@@ -376,18 +393,18 @@ struct afw_compile_internal_parser_s {
      *
      * Only afw_compile_get_code_point_impl() should directly access this.
      */
-    apr_array_header_t *source_buffer;
+    afw_compile_utf8_octet_vector_t *source_buffer;
 
     /* Used for parsing strings. */
-    apr_array_header_t *s;
+    afw_compile_utf8_octet_vector_t *s;
 
     /*
-     * Temporary array used for building list of values.
+     * Temporary vector used for building list of values.
      *
-     * Each function that uses the array should reset nelts to entry
-     * value on return.
+     * Each function that uses the vector should clear count on
+     * return.
      */
-    apr_array_header_t *values;
+    afw_compile_value_p_vector_t *values;
 
     afw_size_t hybrid_start_offset;
 
@@ -642,8 +659,8 @@ typedef struct afw_compile_parse_StatementList_cb_s {
         afw_compile_args_t *statements);
 } afw_compile_parse_StatementList_cb_t;
 
-/* Work stack for building argument / statement lists while parsing. */
-AFW_STACK_STRUCT(afw_compile_internal_args_s, const afw_value_t *);
+/* Work vector for building argument / statement lists while parsing. */
+AFW_VECTOR_STRUCT(afw_compile_internal_args_s, const afw_value_t *);
 
 
 /*
@@ -891,14 +908,14 @@ do { \
 
 /* Temporary arg/statement list helpers (uses parser for pool/xctx). */
 #define afw_compile_args_create(parser) \
-afw_stack_create(afw_compile_args_t, 10, 0, true, \
+afw_vector_create(afw_compile_args_t, 10, \
     (parser)->p, (parser)->xctx)
 
 #define afw_compile_args_add_value(args, value) \
-afw_stack_push(args, (parser)->xctx) = value
+afw_vector_push(args, (parser)->xctx) = value
 
 #define afw_compile_args_finalize(args, argc, argv) \
-afw_stack_copy_and_release((args), (argc), (argv), \
+afw_vector_copy_entries_and_release((args), (argc), (argv), \
     (parser)->p, (parser)->xctx)
 
 

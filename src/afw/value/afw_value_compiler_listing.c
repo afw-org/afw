@@ -65,12 +65,8 @@ impl_afw_writer_write_raw_cb(
 {
     afw_value_compiler_listing_t *self =
         (afw_value_compiler_listing_t *)context;
-    afw_size_t i;
 
-    for (i = 0; i < size; i++) {
-        APR_ARRAY_PUSH(self->ary, char) =
-            ((const afw_octet_t *)buffer)[i];
-    }
+    afw_vector_append(self->ary, buffer, size, xctx);
     return size;
 }
 
@@ -122,7 +118,7 @@ impl_write_source_line(
     self->last_line_written++;
 
     if (!line_written && self->empty_line_between_switch) {
-        APR_ARRAY_PUSH(self->ary, char) = '\n';
+        afw_vector_push(self->ary, xctx) = '\n';
     }
 
     /* Write prefix */
@@ -136,7 +132,7 @@ impl_write_source_line(
         &impl_empty_prefix[0],
         self->last_line_written);
     for (i = 0; i < len; i++) {
-        APR_ARRAY_PUSH(self->ary, char) = buffer[i];
+        afw_vector_push(self->ary, xctx) = (afw_octet_t)buffer[i];
     }
 
     /* Write a line. */
@@ -148,7 +144,7 @@ impl_write_source_line(
     {
         /* If not at end, push char. If it's a new line, break. */
         if (s < end) {
-            APR_ARRAY_PUSH(self->ary, char) = *s;
+            afw_vector_push(self->ary, xctx) = (afw_octet_t)*s;
             if (*s == '\n') {
                 s++;
                 if (s == end) {
@@ -160,7 +156,7 @@ impl_write_source_line(
 
         /* If no trailing new line, add one and break. */
         else {
-            APR_ARRAY_PUSH(self->ary, char) = '\n';
+            afw_vector_push(self->ary, xctx) = '\n';
             self->source_eof = true;
             break;
         }
@@ -183,8 +179,7 @@ impl_afw_writer_write(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_size_t count, i;
-    const afw_octet_t *c;
+    afw_size_t count;
     afw_boolean_t line_written;
 
     if (size == 0) {
@@ -213,20 +208,18 @@ impl_afw_writer_write(
                 line_written = true;
             }
             if (self->empty_line_between_switch && line_written) {
-                APR_ARRAY_PUSH(self->ary, char) = '\n';
+                afw_vector_push(self->ary, xctx) = '\n';
             }
         }
         if (!self->current_prefix) {
             self->current_prefix = &self->empty_prefix;
         }
-        for (i = 0; i < self->current_prefix->len; i++) {
-            APR_ARRAY_PUSH(self->ary, char) = self->current_prefix->s[i];
-        }
+        afw_vector_append(self->ary, self->current_prefix->s,
+            self->current_prefix->len, xctx);
         self->current_prefix = NULL;
         for (count = 0; count < self->writer.indent; count++) {
-            for (i = 0; i < self->writer.tab->len; i++) {
-                APR_ARRAY_PUSH(self->ary, char) = self->writer.tab->s[i];
-            }
+            afw_vector_append(self->ary, self->writer.tab->s,
+                self->writer.tab->len, xctx);
         }
     }
 
@@ -238,10 +231,7 @@ impl_afw_writer_write(
 
     /* Always reset is_new_line and push buffer on to stack. */
     self->is_new_line = false;
-    c = (const afw_octet_t *)buffer;
-    for (count = 0; count < size; count++) {
-        APR_ARRAY_PUSH(self->ary, char) = *c++;
-    }
+    afw_vector_append(self->ary, buffer, size, xctx);
 }
 
 
@@ -255,7 +245,7 @@ impl_afw_writer_write_eol(
 {
 
     if (self->writer.tab) {
-        APR_ARRAY_PUSH(self->ary, char) = '\n';
+        afw_vector_push(self->ary, xctx) = '\n';
         self->is_new_line = true;
     }
 }
@@ -399,7 +389,7 @@ afw_value_compiler_listing_to_string_instance(
     self->writer.p = p;
     self->p = p;
     self->writer.write_raw_cb = impl_afw_writer_write_raw_cb;
-    self->ary = apr_array_make(afw_pool_get_apr_pool(p), 4000, 1);
+    self->ary = afw_vector_create(afw_octet_vector_t, 4000, p, xctx);
     self->writer.tab = tab;
     if (tab->len == 1 && *(tab->s) == '\t') {
         self->writer.tab = &impl_default_tab;
@@ -559,7 +549,7 @@ impl_total_buffer_needed(const afw_value_compiler_listing_t *self)
     afw_size_t result;
     const afw_value_compiler_listing_t *child;
 
-    result = self->ary->nelts;
+    result = self->ary->count;
     for (child = self->first_child; child; child = child->next_sibling) {
         result += impl_total_buffer_needed(child);
     }
@@ -575,8 +565,8 @@ impl_move_to_buffer(const afw_value_compiler_listing_t *self,
 {
     const afw_value_compiler_listing_t *child;
 
-    memcpy(*buffer, self->ary->elts, self->ary->nelts);
-    *buffer = *buffer + self->ary->nelts;
+    memcpy(*buffer, self->ary->entries, self->ary->count);
+    *buffer = *buffer + self->ary->count;
     for (child = self->first_child; child; child = child->next_sibling) {
         impl_move_to_buffer(child, buffer);
     }

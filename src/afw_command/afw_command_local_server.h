@@ -45,7 +45,7 @@ afw_command_local_server_self_s {
     afw_command_self_t *command_self;
     const afw_request_handler_t *director;
     
-    apr_array_header_t *input_buffer;
+    afw_octet_vector_t *input_buffer;
     const afw_content_type_t *content_type;
 
     const afw_utf8_t *evaluate_function_id;

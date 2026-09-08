@@ -41,7 +41,7 @@ afw_compile_to_value*
 - **`compile()` / `unevaluated`:** assigning that to a variable stores the graph; it does **not** run. `evaluate(variable)` (or a built-in formal that is not typed `unevaluated`) runs it. Do not evaluate on every symbol bind.
 - **Ordinary defaults** (`[a = make()]`) are not `compile()` results — evaluate once at bind, then store. Pattern leaves go through bare `symbol_reference` (store as-is), so the default must be evaluated first.
 - **Spread `#181`:** `expand_spreads` (internal) copies `argv` **only** when there is a `...`. Evaluate each spread once, stash arrays, then size/fill. Not a copy on every call. Not `x->function`.
-- **`afw_stack`:** general grow-then-`copy_and_release`. `afw_compile_args_*` is parser sugar over that (`parser->p` / `xctx`).
+- **`afw_compile_args_*`:** parser work vector then copy-out (`parser->p` / `xctx`).
 
 ## Key hand files
 

@@ -10,6 +10,7 @@
 #define __AFW_ADAPTER_INTERNAL_H__
 
 #include "afw_interface.h"
+#include "afw_vector.h"
 
 /**
  * @addtogroup afw_adapter_internal
@@ -41,9 +42,18 @@ struct afw_adapter_internal_session_cache_s {
 };
 
 
+typedef struct afw_adapter_internal_transaction_s
+    afw_adapter_internal_transaction_t;
+
+AFW_VECTOR_STRUCT(afw_adapter_internal_transaction_p_vector_s,
+    afw_adapter_internal_transaction_t *);
+typedef struct afw_adapter_internal_transaction_p_vector_s
+    afw_adapter_internal_transaction_p_vector_t;
+
+
 struct afw_adapter_internal_cache_s {
     apr_hash_t *session_cache;
-    apr_array_header_t *transactions;
+    afw_adapter_internal_transaction_p_vector_t *transactions;
     const afw_adapter_session_t *runtime_adapter_session;
 };
 
@@ -118,10 +128,10 @@ afw_adapter_internal_journal_epilogue(
 
     
 /** @brief Adapter id and associated transaction. */
-typedef struct afw_adapter_internal_transaction_s {
+struct afw_adapter_internal_transaction_s {
     const afw_utf8_t *adapter_id;
     const afw_adapter_transaction_t *transaction;
-} afw_adapter_internal_transaction_t;
+};
 
 
 

@@ -26,6 +26,39 @@ impl_suppress_libxml2_message(
 
 
 
+static void
+impl_set_qualifier_stack(afw_xctx_t *xctx)
+{
+    /*
+     * Fixed size: entry pointers stay valid. Early xctx create cannot
+     * use AFW_TRY / afw_pool_calloc().
+     */
+    xctx->qualifier_stack = afw_vector_create_fixed_unhandled(
+        afw_xctx_qualifier_stack_t, 100, xctx->p, xctx);
+}
+
+
+static void
+impl_set_evaluation_stack(afw_xctx_t *xctx)
+{
+    afw_size_t n;
+
+    /*
+     * Allocate the cap up front so the vector never grows (entry
+     * pointers stay valid). Early xctx create cannot use AFW_TRY.
+     */
+    n = xctx->env->evaluation_stack_maximum_count;
+    if (n == 0) {
+        n = xctx->env->evaluation_stack_initial_count;
+    }
+    if (n == 0) {
+        n = AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_MAXIMUM_COUNT;
+    }
+    xctx->evaluation_stack = afw_vector_create_fixed_unhandled(
+        afw_xctx_evaluation_stack_t, n, xctx->p, xctx);
+}
+
+
 AFW_DEFINE(afw_xctx_t *)
 afw_xctx_internal_create_initialize(
     afw_try_t *unhandled_error,
@@ -58,11 +91,19 @@ afw_xctx_internal_create_initialize(
     /*! \fixme stream_anchor may be too early??? */
     self->stream_anchor = afw_stream_internal_stream_anchor_create(self);
 
-    self->scope_stack = apr_array_make(afw_pool_get_apr_pool(p),
-        10, sizeof(afw_xctx_scope_t *));
-    if (!self->scope_stack) {
-        AFW_THROW_UNHANDLED_ERROR(unhandled_error, error, general, na, 0,
-            "apr_array_make() failed");
+    /*
+     * Fixed vector: xctx init cannot use AFW_TRY / afw_pool_calloc.
+     * Cap matches evaluation stack so nested scopes cannot outrun eval.
+     */
+    {
+        afw_size_t n;
+
+        n = env->pub.evaluation_stack_maximum_count;
+        if (n == 0) {
+            n = AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_MAXIMUM_COUNT;
+        }
+        self->scope_stack = afw_vector_create_fixed_unhandled(
+            afw_xctx_scope_p_vector_t, n, p, self);
     }
 
     /*
@@ -72,9 +113,9 @@ afw_xctx_internal_create_initialize(
     self->libxml2_error_func = (void *)impl_suppress_libxml2_message;
     initGenericErrorDefaultFunc((xmlGenericErrorFunc *)&self->libxml2_error_func);
 
-    /* Make qualifier and evaluation stack. */
-    afw_stack_internal_set_qualifier_stack(self);
-    afw_stack_internal_set_evaluation_stack(self);
+    /* Make qualifier and evaluation stacks (fixed vectors). */
+    impl_set_qualifier_stack(self);
+    impl_set_evaluation_stack(self);
 
     /* Return new xctx. */
     return self;
@@ -366,8 +407,11 @@ afw_xctx_get_optionally_qualified_variable(
      */
     for (
         result = NULL,
-        e_cur = xctx->qualifier_stack->top;
-        e_cur >= xctx->qualifier_stack->first;
+        e_cur = xctx->qualifier_stack->count
+            ? &xctx->qualifier_stack->entries[
+                xctx->qualifier_stack->count - 1]
+            : NULL;
+        e_cur && e_cur >= xctx->qualifier_stack->entries;
         e_cur--)
     {
         if (!e_cur->get_cb) {
@@ -399,7 +443,7 @@ AFW_DEFINE(int)
 afw_xctx_qualifier_stack_top_get(
     afw_xctx_t *xctx)
 {
-    return (int)(xctx->qualifier_stack->top - xctx->qualifier_stack->first);
+    return (int)xctx->qualifier_stack->count - 1;
 }
 
 
@@ -409,8 +453,8 @@ AFW_DEFINE(void)
 afw_xctx_qualifier_stack_top_set(
     int top, afw_xctx_t *xctx)
 {
-    ((afw_xctx_qualifier_stack_t *)xctx->qualifier_stack)->top =
-        xctx->qualifier_stack->first + top;
+    ((afw_xctx_qualifier_stack_t *)xctx->qualifier_stack)->count =
+        (afw_size_t)(top + 1);
 }
 
 
@@ -464,8 +508,11 @@ afw_xctx_qualifier_stack_qualifier_push(
         AFW_THROW_ERROR_Z(general, "contribute_cb required", xctx);
     }
 
-    afw_stack_push_and_get_entry(
-        (afw_xctx_qualifier_stack_t *)xctx->qualifier_stack, entry, xctx);
+    afw_vector_push_index_impl(
+        &((afw_xctx_qualifier_stack_t *)xctx->qualifier_stack)->internal,
+        xctx);
+    entry = &((afw_xctx_qualifier_stack_t *)xctx->qualifier_stack)->entries[
+        xctx->qualifier_stack->count - 1];
 
     memset(entry, 0, sizeof(afw_xctx_qualifier_stack_entry_t));
     entry->p = p;
@@ -548,8 +595,11 @@ afw_xctx_qualifier_stack_qualifier_object_push(
 
     afw_xctx_qualifier_stack_entry_t *entry;
 
-    afw_stack_push_and_get_entry(
-        (afw_xctx_qualifier_stack_t *)xctx->qualifier_stack, entry, xctx);
+    afw_vector_push_index_impl(
+        &((afw_xctx_qualifier_stack_t *)xctx->qualifier_stack)->internal,
+        xctx);
+    entry = &((afw_xctx_qualifier_stack_t *)xctx->qualifier_stack)->entries[
+        xctx->qualifier_stack->count - 1];
     afw_memory_clear(entry);
     entry->p = p;
     if (qualifier_name) {
@@ -652,8 +702,8 @@ static void impl_scope_debug(
 
     printf(
         ", total scope count: " AFW_SIZE_T_FMT
-        ", active scope count: %d",
-        xctx->scope_count, xctx->scope_stack->nelts);
+        ", active scope count: " AFW_SIZE_T_FMT,
+        xctx->scope_count, xctx->scope_stack->count);
 
     if (note) {
         printf(" %s", note);
@@ -695,11 +745,11 @@ afw_xctx_scope_create(
                 "afw_xctx_scope_create(): parent_lexical_scope block is "
                 "not parent_scope_block "
                 "(scope count: " AFW_SIZE_T_FMT
-                ", active scopes: %d"
+                ", active scopes: " AFW_SIZE_T_FMT
                 ", parent scope number: " AFW_SIZE_T_FMT
                 ", parent scope_depth: " AFW_SIZE_T_FMT
                 ", block scope_depth: " AFW_SIZE_T_FMT ")",
-                xctx->scope_count, xctx->scope_stack->nelts,
+                xctx->scope_count, xctx->scope_stack->count,
                 parent_lexical_scope->scope_number,
                 parent_lexical_scope->block->scope_depth,
                 block->scope_depth);
@@ -830,7 +880,7 @@ afw_xctx_scope_activate(
     afw_xctx_t *xctx)
 {
     ((afw_xctx_scope_t *)scope)->reference_count++;
-    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
+    afw_vector_push(xctx->scope_stack, xctx) = scope;
 
     afw_xctx_scope_debug(
         "-> afw_xctx_scope_activate()",
@@ -876,7 +926,7 @@ afw_xctx_scope_deactivate(
             xctx);
     }
 
-    apr_array_pop(xctx->scope_stack);
+    afw_vector_pop(xctx->scope_stack, xctx);
     afw_xctx_scope_release(scope, xctx);
 }
 
@@ -981,24 +1031,26 @@ afw_xctx_evaluation_stack_pop_value_impl(afw_xctx_t *xctx)
     const afw_value_t *v;
 
     stack = xctx->evaluation_stack;
-    while (!afw_stack_is_empty(stack)) {
-        if (stack->top->entry_id == afw_s_parameter_number) {
-            afw_stack_pop(stack, xctx);
-            if (!afw_stack_is_empty(stack)) {
-                afw_stack_pop(stack, xctx);
+    while (stack->count > 0) {
+        if (AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id ==
+            afw_s_parameter_number)
+        {
+            afw_vector_pop(stack, xctx);
+            if (stack->count > 0) {
+                afw_vector_pop(stack, xctx);
             }
             continue;
         }
-        v = stack->top->value;
+        v = AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value;
         if (afw_xctx_evaluation_stack_is_parked_occupant(v)) {
             afw_value_release(v, xctx);
-            afw_stack_pop(stack, xctx);
+            afw_vector_pop(stack, xctx);
             continue;
         }
         break;
     }
-    if (!afw_stack_is_empty(stack)) {
-        afw_stack_pop(stack, xctx);
+    if (stack->count > 0) {
+        afw_vector_pop(stack, xctx);
     }
 }
 
@@ -1010,28 +1062,29 @@ afw_xctx_evaluation_stack_pop_value_impl(afw_xctx_t *xctx)
  */
 AFW_DEFINE(void)
 afw_xctx_evaluation_stack_rewind(
-    afw_xctx_evaluation_stack_entry_t *saved_top,
+    afw_size_t save_count,
     afw_xctx_t *xctx)
 {
     afw_xctx_evaluation_stack_t *stack;
     const afw_value_t *v;
 
     stack = xctx->evaluation_stack;
-    while (stack->top > saved_top && stack->top >= stack->first) {
-        if (stack->top->entry_id == afw_s_parameter_number) {
-            stack->top--;
-            if (stack->top > saved_top && stack->top >= stack->first) {
-                stack->top--;
+    while (stack->count > save_count) {
+        if (AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id ==
+            afw_s_parameter_number)
+        {
+            stack->count--;
+            if (stack->count > save_count) {
+                stack->count--;
             }
             continue;
         }
-        v = stack->top->value;
+        v = AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value;
         if (afw_xctx_evaluation_stack_is_parked_occupant(v)) {
             afw_value_release(v, xctx);
         }
-        stack->top--;
+        stack->count--;
     }
-    stack->top = saved_top;
 }
 
 

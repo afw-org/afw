@@ -845,8 +845,7 @@ do {\
     afw_boolean_t this_ERROR_CAUGHT = false; \
     this_TRY.prev = xctx->current_try;\
     xctx->current_try = &this_TRY;\
-    this_TOP_OFFSET = xctx->evaluation_stack->top - \
-        xctx->evaluation_stack->first; \
+    this_TOP_OFFSET = xctx->evaluation_stack->count; \
     do { \
         if (setjmp(this_TRY.throw_jmp_buf) != 0) { \
             AFW_ERROR_COPY(&this_THROWN_ERROR, xctx->error); \
@@ -931,8 +930,7 @@ do {\
         AFW_ERROR_COPY(xctx->error, &this_THROWN_ERROR); \
         longjmp(xctx->current_try->throw_jmp_buf, this_THROWN_ERROR.code); \
     } \
-    afw_xctx_evaluation_stack_rewind( \
-        xctx->evaluation_stack->first + this_TOP_OFFSET, xctx); \
+    afw_xctx_evaluation_stack_rewind(this_TOP_OFFSET, xctx); \
     if (this_ERROR_OCCURRED && this_ERROR_CAUGHT) { \
         afw_error_processing_handled(xctx); \
     } \

@@ -1011,9 +1011,8 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
     const afw_value_type_t *base;
     afw_value_type_t *type;
     afw_value_type_t *placeholder;
-    apr_array_header_t *extends;
+    afw_compile_type_p_vector_t *extends;
     const afw_value_type_t **list;
-    afw_size_t i;
     afw_size_t brace_offset;
     afw_size_t start_offset;
 
@@ -1029,8 +1028,8 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
     extends = NULL;
     afw_compile_get_token();
     if (afw_compile_token_is_name(afw_v_extends)) {
-        extends = apr_array_make(parser->apr_p, 2,
-            sizeof(const afw_value_type_t *));
+        extends = afw_vector_create(afw_compile_type_p_vector_t, 2,
+            parser->p, parser->xctx);
         for (;;) {
             /* Each base: full Type starting at next token (name). */
             base = afw_compile_parse_Type(parser);
@@ -1043,7 +1042,7 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
                     "Interface " AFW_UTF8_FMT_Q " cannot extend itself",
                     AFW_UTF8_FMT_ARG(&name->internal));
             }
-            APR_ARRAY_PUSH(extends, const afw_value_type_t *) = base;
+            afw_vector_push(extends, parser->xctx) = base;
             afw_compile_get_token();
             if (!afw_compile_token_is(comma)) {
                 break;
@@ -1070,14 +1069,10 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
     type->kind = afw_value_type_kind_object;
     type->object.properties = body->object.properties;
     type->object.interface_name = &name->internal;
-    if (extends && extends->nelts > 0) {
-        type->object.extends_count = (afw_size_t)extends->nelts;
-        list = afw_pool_malloc(parser->p,
-            sizeof(afw_value_type_t *) * type->object.extends_count,
-            parser->xctx);
-        for (i = 0; i < type->object.extends_count; i++) {
-            list[i] = ((const afw_value_type_t **)extends->elts)[i];
-        }
+    if (extends && extends->count > 0) {
+        afw_vector_copy_entries_and_release(extends,
+            &type->object.extends_count, &list,
+            parser->p, parser->xctx);
         type->object.extends = list;
     }
 

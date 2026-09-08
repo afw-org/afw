@@ -59,6 +59,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`sibling-afw-package.md`](sibling-afw-package.md) | Another Git repo next to this base: layout, write wall, sandbox, prime kit |
 | [`experiment-brainstorm.md`](experiment-brainstorm.md) | **#277 closed** (PR **#278**) — unmanaged / managed two worlds (`create_unmanaged` / frames `create_managed`; last_return slot) |
 | [`experiment-eval-p.md`](experiment-eval-p.md) | **#287 landed** — eval `p` = `scope->p` when `{ }` has a frame; throwaway compile/eval loops flatten; BMP in default `test -j` |
+| [`afw-vector.md`](afw-vector.md) | C `apr_array` replacement (`afw_vector`); typesafe overlay; not Adaptive `afw_array` |
 
 ## Conventions
 

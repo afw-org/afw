@@ -155,10 +155,10 @@ impl_afw_value_optional_evaluate(
 {
     const afw_value_t *result;
     const afw_value_t *saved_script_result;
-    int nelts;
+    afw_size_t count;
 
     result = NULL;
-    nelts = xctx->scope_stack->nelts;
+    count = xctx->scope_stack->count;
 
     saved_script_result = xctx->script_result;
     xctx->script_result = afw_value_undefined;
@@ -166,7 +166,7 @@ impl_afw_value_optional_evaluate(
     AFW_TRY {
 
         /* Push a NULL onto the scope stack to indicate new compiled value. */
-        APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = NULL;
+        afw_vector_push(xctx->scope_stack, xctx) = NULL;
 
         /* Evaluate compiled value root value. */
         if (self->full_source_type &&
@@ -190,7 +190,7 @@ impl_afw_value_optional_evaluate(
     AFW_FINALLY {
 
         /* Make sure all scopes were released during evaluate. */
-        if (xctx->scope_stack->nelts != nelts + 1) {
+        if (xctx->scope_stack->count != count + 1) {
             AFW_THROW_ERROR_Z(general,
                 "Scope stack still has active scopes at end after computed "
                 "value is evaluated",
@@ -198,7 +198,7 @@ impl_afw_value_optional_evaluate(
         }
 
         /* Pop off the NULL compiled value indicator on scope stack. */
-        apr_array_pop(xctx->scope_stack);
+        afw_vector_pop(xctx->scope_stack, xctx);
 
         if (xctx->script_result &&
             !afw_value_is_undefined(xctx->script_result) &&

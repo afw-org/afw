@@ -10,6 +10,7 @@
 #define __AFW_XCTX_H__
 
 #include "afw_interface.h"
+#include "afw_vector.h"
 
 /**
  * @addtogroup afw_xctx
@@ -277,15 +278,16 @@ struct afw_xctx_scope_s {
 
 
 
+AFW_VECTOR_STRUCT(afw_xctx_scope_p_vector_s, const afw_xctx_scope_t *);
+
 /**
  * @brief Get current scope.
  * @param xctx of caller.
  * @return Current scope.
  */
 #define afw_xctx_scope_current(xctx) \
-    ((xctx->scope_stack->nelts > 0) \
-    ? ((const afw_xctx_scope_t **)xctx->scope_stack->elts) \
-        [xctx->scope_stack->nelts - 1] \
+    ((xctx->scope_stack->count > 0) \
+    ? xctx->scope_stack->entries[xctx->scope_stack->count - 1] \
     : NULL)
 
 
@@ -730,8 +732,12 @@ struct afw_xctx_evaluation_stack_entry_s {
 };
 
 
-AFW_STACK_STRUCT(afw_xctx_evaluation_stack_s,
+AFW_VECTOR_STRUCT(afw_xctx_evaluation_stack_s,
     afw_xctx_evaluation_stack_entry_t);
+
+#define AFW_XCTX_EVALUATION_STACK_LAST(xctx) \
+    (&(xctx)->evaluation_stack->entries[ \
+        (xctx)->evaluation_stack->count - 1])
 
 
 #ifdef AFW_DEBUG_EVALUATION
@@ -790,13 +796,18 @@ do { \
         " value %p inf " AFW_UTF8_FMT, \
         (const void *)_afw_eval_push_value, \
         _afw_eval_inf_len, _afw_eval_inf_s); \
-    afw_stack_push_direct((xctx)->evaluation_stack, (xctx)); \
-    (xctx)->evaluation_stack->top->value = _afw_eval_push_value; \
+    afw_vector_push_index_impl( \
+        &(xctx)->evaluation_stack->internal, (xctx)); \
+    AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value = \
+        _afw_eval_push_value; \
 } while (0)
 #else
 #define afw_xctx_evaluation_stack_push_value(VALUE, xctx) \
-    afw_stack_push_direct(xctx->evaluation_stack, xctx); \
-    (xctx)->evaluation_stack->top->value = VALUE
+    do { \
+        afw_vector_push_index_impl( \
+            &(xctx)->evaluation_stack->internal, (xctx)); \
+        AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value = (VALUE); \
+    } while (0)
 #endif
 
 
@@ -814,19 +825,27 @@ do { \
         "push_parameter_number", \
         " n " AFW_SIZE_T_FMT, \
         _afw_eval_push_pn); \
-    afw_stack_push_direct((xctx)->evaluation_stack, (xctx)); \
-    (xctx)->evaluation_stack->top->parameter_number = _afw_eval_push_pn; \
-    afw_stack_push_direct((xctx)->evaluation_stack, (xctx)); \
-    (xctx)->evaluation_stack->top->entry_id = afw_s_parameter_number; \
+    afw_vector_push_index_impl( \
+        &(xctx)->evaluation_stack->internal, (xctx)); \
+    AFW_XCTX_EVALUATION_STACK_LAST(xctx)->parameter_number = \
+        _afw_eval_push_pn; \
+    afw_vector_push_index_impl( \
+        &(xctx)->evaluation_stack->internal, (xctx)); \
+    AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id = \
+        afw_s_parameter_number; \
 } while (0)
 #else
 #define afw_xctx_evaluation_stack_push_parameter_number( \
     PARAMETER_NUMBER, xctx) \
 do { \
-    afw_stack_push_direct((xctx)->evaluation_stack, (xctx)); \
-    (xctx)->evaluation_stack->top->parameter_number = (PARAMETER_NUMBER); \
-    afw_stack_push_direct((xctx)->evaluation_stack, (xctx)); \
-    (xctx)->evaluation_stack->top->entry_id = afw_s_parameter_number; \
+    afw_vector_push_index_impl( \
+        &(xctx)->evaluation_stack->internal, (xctx)); \
+    AFW_XCTX_EVALUATION_STACK_LAST(xctx)->parameter_number = \
+        (PARAMETER_NUMBER); \
+    afw_vector_push_index_impl( \
+        &(xctx)->evaluation_stack->internal, (xctx)); \
+    AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id = \
+        afw_s_parameter_number; \
 } while (0)
 #endif
 
@@ -840,18 +859,20 @@ do { \
 do { \
     AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
         "pop", ""); \
-    if ((xctx)->evaluation_stack->top->entry_id == afw_s_parameter_number) { \
-        afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
+    if (AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id == \
+        afw_s_parameter_number) { \
+        afw_vector_pop((xctx)->evaluation_stack, (xctx)); \
     } \
-    afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
+    afw_vector_pop((xctx)->evaluation_stack, (xctx)); \
 } while (0)
 #else
 #define afw_xctx_evaluation_stack_pop(xctx) \
 do { \
-    if ((xctx)->evaluation_stack->top->entry_id == afw_s_parameter_number) { \
-        afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
+    if (AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id == \
+        afw_s_parameter_number) { \
+        afw_vector_pop((xctx)->evaluation_stack, (xctx)); \
     } \
-    afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
+    afw_vector_pop((xctx)->evaluation_stack, (xctx)); \
 } while (0)
 #endif
 
@@ -895,31 +916,31 @@ do { \
     const afw_value_t *_afw_pop_pn_value = (VALUE); \
     AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
         "pop_parameter_number", ""); \
-    afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
-    (xctx)->evaluation_stack->top->value = _afw_pop_pn_value; \
+    afw_vector_pop((xctx)->evaluation_stack, (xctx)); \
+    AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value = _afw_pop_pn_value; \
 } while (0)
 #else
 #define afw_xctx_evaluation_stack_pop_parameter_number(VALUE, xctx) \
 do { \
-    afw_stack_pop((xctx)->evaluation_stack, (xctx)); \
-    (xctx)->evaluation_stack->top->value = (VALUE); \
+    afw_vector_pop((xctx)->evaluation_stack, (xctx)); \
+    AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value = (VALUE); \
 } while (0)
 #endif
 
 
 /**
  * @brief Rewind evaluation stack to saved_top, releasing function_return_value temps.
- * @param saved_top stack pointer to restore to (inclusive).
+ * @param save_count entry count to restore to.
  * @param xctx of caller.
  *
- * Walks from current top down to saved_top. Releases each
+ * Walks from current count down to save_count. Releases each
  * function_return_value. Other entries (call values, parameter-number
- * pairs) are skipped. Then sets top to saved_top. Used by AFW_ENDTRY
+ * pairs) are skipped. Then sets count to save_count. Used by AFW_ENDTRY
  * and restore_top so throw rewind does not leak return temps.
  */
 AFW_DECLARE(void)
 afw_xctx_evaluation_stack_rewind(
-    afw_xctx_evaluation_stack_entry_t *saved_top,
+    afw_size_t save_count,
     afw_xctx_t *xctx);
 
 AFW_DECLARE(void)
@@ -937,14 +958,14 @@ afw_xctx_evaluation_stack_is_parked_occupant(
  */
 #ifdef AFW_DEBUG_EVALUATION
 #define afw_xctx_evaluation_stack_save_top(xctx) \
-afw_xctx_evaluation_stack_entry_t *evaluation_stack_save_top = \
-(xctx)->evaluation_stack->top; \
+afw_size_t evaluation_stack_save_top = \
+(xctx)->evaluation_stack->count; \
 AFW_XCTX_DEBUG_EVALUATION_PRINT((xctx), \
     "save_top", "")
 #else
 #define afw_xctx_evaluation_stack_save_top(xctx) \
-afw_xctx_evaluation_stack_entry_t *evaluation_stack_save_top = \
-xctx->evaluation_stack->top
+afw_size_t evaluation_stack_save_top = \
+(xctx)->evaluation_stack->count
 #endif
 
 

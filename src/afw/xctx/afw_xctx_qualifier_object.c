@@ -70,8 +70,11 @@ afw_xctx_qualifier_object_create(
     }
 
     for (
-        e_cur = xctx->qualifier_stack->top;
-        e_cur >= xctx->qualifier_stack->first;
+        e_cur = xctx->qualifier_stack->count
+            ? &xctx->qualifier_stack->entries[
+                xctx->qualifier_stack->count - 1]
+            : NULL;
+        e_cur && e_cur >= xctx->qualifier_stack->entries;
         e_cur--)
     {
         if (!afw_utf8_equal(qualifier, &e_cur->qualifier)) {
@@ -103,8 +106,11 @@ afw_xctx_qualifiers_object_create(
     const afw_xctx_qualifier_stack_entry_t *c;
 
     qualifiers = afw_object_create_unmanaged(p, xctx);
-    for (c = xctx->qualifier_stack->top;
-        c >= xctx->qualifier_stack->first;
+    for (c = xctx->qualifier_stack->count
+            ? &xctx->qualifier_stack->entries[
+                xctx->qualifier_stack->count - 1]
+            : NULL;
+        c && c >= xctx->qualifier_stack->entries;
         c--)
     {
         if (c->qualifier.len == 0) {

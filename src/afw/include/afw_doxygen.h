@@ -684,12 +684,15 @@
  */
 
 /**
- * @defgroup afw_stack Stack
+ * @defgroup afw_vector Vector
  *
- * Growable stacks used by the compiler and runtime (values, frames, etc.).
+ * C growable contiguous elements (apr_array replacement).
  *
- * Not a general application container; use adaptive arrays/objects for
- * script-visible data.
+ * Header stays put; entries points at the current chunk and may
+ * move on grow. Declare a typed overlay with AFW_VECTOR_STRUCT so
+ * push/index
+ * are type-checked. Not an Adaptive array: no values, no meta, no
+ * setter. Memory-array may sit on a vector later.
  */
 
 /**
@@ -830,13 +833,12 @@
 /** @} */
 
 /**
- * @defgroup afw_array Arrays / lists
+ * @defgroup afw_array Arrays
  *
- * Adaptive array (list) values and helpers.
+ * Adaptive array values and helpers.
  *
  * Prefer array create APIs and interface methods (via macros) for
- * script-visible lists. Templates and associative arrays are related
- * helpers for C-side structures.
+ * script-visible sequences. C growable storage is @ref afw_vector.
  *
  * @{
  */

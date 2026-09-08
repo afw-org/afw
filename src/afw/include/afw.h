@@ -73,16 +73,16 @@
 #include "afw_runtime_value_accessor.h"
 #include "afw_safe_cast.h"
 #include "afw_service.h"
-#include "afw_stack.h"
 #include "afw_stream.h"
 #include "afw_strings.h"
 #include "afw_thread.h"
 #include "afw_time.h"
 #include "afw_trace.h"
+#include "afw_uri.h"
 #include "afw_utf8.h"
 #include "afw_uuid.h"
-#include "afw_uri.h"
 #include "afw_value.h"
+#include "afw_vector.h"
 #include "afw_writer.h"
 
 #endif /* __AFW_H__ */

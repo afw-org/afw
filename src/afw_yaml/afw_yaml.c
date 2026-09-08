@@ -133,16 +133,21 @@ impl_afw_extension_release(
 {
 }
 
+AFW_VECTOR_STRUCT(impl_yaml_char_vector_s, afw_utf8_octet_t);
+typedef struct impl_yaml_char_vector_s impl_yaml_char_vector_t;
+
+
 static const afw_utf8_z_t * impl_u8z_to_yaml(
     const afw_utf8_z_t *s, afw_xctx_t *xctx)
 {
     const afw_utf8_z_t *c;
-    apr_array_header_t *a;
+    impl_yaml_char_vector_t *a;
+    afw_utf8_z_t *out;
     char *u;
 
     if (!s) return "null";
 
-    a = apr_array_make(afw_pool_get_apr_pool(xctx->p), 128, sizeof(char));
+    a = afw_vector_create(impl_yaml_char_vector_t, 128, xctx->p, xctx);
 
     /* Add characters to array with proper escaping. */
     for (c = s; *c; c++) {
@@ -155,7 +160,7 @@ static const afw_utf8_z_t * impl_u8z_to_yaml(
             u = apr_psprintf(afw_pool_get_apr_pool(xctx->p), "\\u%02x",
                 (unsigned char)*c);
             while (*u) {
-                APR_ARRAY_PUSH(a, char) = *u;
+                afw_vector_push(a, xctx) = *u;
                 u++;
             }
         }
@@ -164,15 +169,14 @@ static const afw_utf8_z_t * impl_u8z_to_yaml(
          * If not control char, add char to array (includes UTF-8 octets).
          */
         else {
-            APR_ARRAY_PUSH(a, char) = *c;
+            afw_vector_push(a, xctx) = *c;
         }
 
     }
 
-    /* Add starting quote and zero terminate. */
-    APR_ARRAY_PUSH(a, char) = 0;
-
-    return (const afw_utf8_z_t *)a->elts;
+    afw_vector_push(a, xctx) = 0;
+    afw_vector_copy_entries_and_release(a, NULL, &out, xctx->p, xctx);
+    return out;
 }
 
 const afw_utf8_t * afw_yaml_from_error(afw_xctx_t *xctx)

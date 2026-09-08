@@ -463,7 +463,7 @@ afw_compile_parse_FunctionSignature(
     const afw_value_string_t **function_name_value,
     const afw_value_type_t **return_type)
 {
-    apr_array_header_t *params;
+    afw_compile_param_p_vector_t *params;
     afw_value_script_function_parameter_t *param;
     afw_value_block_symbol_t *function_symbol;
     afw_value_block_symbol_t *symbol;
@@ -512,8 +512,8 @@ afw_compile_parse_FunctionSignature(
     }
 
     /* Parse parameters. */
-    params = apr_array_make(parser->apr_p, 5,
-        sizeof(afw_value_script_function_parameter_t *));
+    params = afw_vector_create(afw_compile_param_p_vector_t, 5,
+        parser->p, parser->xctx);
 
     afw_compile_get_token();
     if (!afw_compile_token_is(open_parenthesis)) {
@@ -613,9 +613,8 @@ afw_compile_parse_FunctionSignature(
                 afw_memory_copy(&symbol->type, param->type);
             }
 
-            /* Push param on stack. */
-            APR_ARRAY_PUSH(params, afw_value_script_function_parameter_t *) =
-                param;
+            /* Push param on work vector. */
+            afw_vector_push(params, parser->xctx) = param;
 
             /* Get next token. */
             afw_compile_get_token();
@@ -658,9 +657,8 @@ afw_compile_parse_FunctionSignature(
     if (function_symbol && signature->returns) {
         afw_memory_copy(&function_symbol->type, signature->returns);
     }
-    signature->count = params->nelts;
-    signature->parameters =
-        (const afw_value_script_function_parameter_t **)params->elts;
+    afw_vector_copy_entries_and_release(params, &signature->count,
+        &signature->parameters, parser->p, parser->xctx);
     if (return_type) {
         *return_type = signature->returns;        
     }
@@ -1267,18 +1265,17 @@ afw_compile_parse_ObjectTypeLiteral(afw_compile_parser_t *parser)
 const afw_value_type_t *
 afw_compile_parse_TupleType(afw_compile_parser_t *parser)
 {
-    apr_array_header_t *elems;
-    const afw_value_type_t **elements;
+    afw_compile_type_p_vector_t *elems;
     afw_value_type_t *type;
-    afw_size_t i;
 
     /* Current token is '['. Type / UnionType starts with get_token. */
-    elems = apr_array_make(parser->apr_p, 4, sizeof(const afw_value_type_t *));
+    elems = afw_vector_create(afw_compile_type_p_vector_t, 4,
+        parser->p, parser->xctx);
     afw_compile_get_token();
     if (!afw_compile_token_is(close_bracket)) {
         afw_compile_reuse_token();
         for (;;) {
-            APR_ARRAY_PUSH(elems, const afw_value_type_t *) =
+            afw_vector_push(elems, parser->xctx) =
                 afw_compile_parse_UnionType(parser);
             afw_compile_get_token();
             if (afw_compile_token_is(close_bracket)) {
@@ -1298,16 +1295,8 @@ afw_compile_parse_TupleType(afw_compile_parser_t *parser)
 
     type = impl_type_alloc(parser);
     type->kind = afw_value_type_kind_tuple;
-    type->tuple.count = (afw_size_t)elems->nelts;
-    if (type->tuple.count > 0) {
-        elements = afw_pool_malloc(parser->p,
-            sizeof(afw_value_type_t *) * type->tuple.count, parser->xctx);
-        for (i = 0; i < type->tuple.count; i++) {
-            elements[i] =
-                ((const afw_value_type_t **)elems->elts)[i];
-        }
-        type->tuple.elements = elements;
-    }
+    afw_vector_copy_entries_and_release(elems, &type->tuple.count,
+        &type->tuple.elements, parser->p, parser->xctx);
     return type;
 }
 
@@ -1639,11 +1628,9 @@ afw_compile_parse_ArrayType(afw_compile_parser_t *parser)
 const afw_value_type_t *
 afw_compile_parse_IntersectionType(afw_compile_parser_t *parser)
 {
-    apr_array_header_t *members;
+    afw_compile_type_p_vector_t *members;
     const afw_value_type_t *type;
-    const afw_value_type_t **list;
     afw_value_type_t *node;
-    afw_size_t i;
 
     type = afw_compile_parse_ArrayType(parser);
     afw_compile_get_token();
@@ -1652,10 +1639,11 @@ afw_compile_parse_IntersectionType(afw_compile_parser_t *parser)
         return type;
     }
 
-    members = apr_array_make(parser->apr_p, 4, sizeof(const afw_value_type_t *));
-    APR_ARRAY_PUSH(members, const afw_value_type_t *) = type;
+    members = afw_vector_create(afw_compile_type_p_vector_t, 4,
+        parser->p, parser->xctx);
+    afw_vector_push(members, parser->xctx) = type;
     while (afw_compile_token_is(ampersand)) {
-        APR_ARRAY_PUSH(members, const afw_value_type_t *) =
+        afw_vector_push(members, parser->xctx) =
             afw_compile_parse_ArrayType(parser);
         afw_compile_get_token();
     }
@@ -1663,13 +1651,8 @@ afw_compile_parse_IntersectionType(afw_compile_parser_t *parser)
 
     node = impl_type_alloc(parser);
     node->kind = afw_value_type_kind_intersection;
-    node->compound.count = (afw_size_t)members->nelts;
-    list = afw_pool_malloc(parser->p,
-        sizeof(afw_value_type_t *) * node->compound.count, parser->xctx);
-    for (i = 0; i < node->compound.count; i++) {
-        list[i] = ((const afw_value_type_t **)members->elts)[i];
-    }
-    node->compound.members = list;
+    afw_vector_copy_entries_and_release(members, &node->compound.count,
+        &node->compound.members, parser->p, parser->xctx);
     return node;
 }
 
@@ -1683,11 +1666,9 @@ afw_compile_parse_IntersectionType(afw_compile_parser_t *parser)
 const afw_value_type_t *
 afw_compile_parse_UnionType(afw_compile_parser_t *parser)
 {
-    apr_array_header_t *members;
+    afw_compile_type_p_vector_t *members;
     const afw_value_type_t *type;
-    const afw_value_type_t **list;
     afw_value_type_t *node;
-    afw_size_t i;
 
     afw_compile_parse_nesting_enter(parser);
     type = afw_compile_parse_IntersectionType(parser);
@@ -1698,10 +1679,11 @@ afw_compile_parse_UnionType(afw_compile_parser_t *parser)
         return type;
     }
 
-    members = apr_array_make(parser->apr_p, 4, sizeof(const afw_value_type_t *));
-    APR_ARRAY_PUSH(members, const afw_value_type_t *) = type;
+    members = afw_vector_create(afw_compile_type_p_vector_t, 4,
+        parser->p, parser->xctx);
+    afw_vector_push(members, parser->xctx) = type;
     while (afw_compile_token_is(vertical_bar)) {
-        APR_ARRAY_PUSH(members, const afw_value_type_t *) =
+        afw_vector_push(members, parser->xctx) =
             afw_compile_parse_IntersectionType(parser);
         afw_compile_get_token();
     }
@@ -1709,13 +1691,8 @@ afw_compile_parse_UnionType(afw_compile_parser_t *parser)
 
     node = impl_type_alloc(parser);
     node->kind = afw_value_type_kind_union;
-    node->compound.count = (afw_size_t)members->nelts;
-    list = afw_pool_malloc(parser->p,
-        sizeof(afw_value_type_t *) * node->compound.count, parser->xctx);
-    for (i = 0; i < node->compound.count; i++) {
-        list[i] = ((const afw_value_type_t **)members->elts)[i];
-    }
-    node->compound.members = list;
+    afw_vector_copy_entries_and_release(members, &node->compound.count,
+        &node->compound.members, parser->p, parser->xctx);
     afw_compile_parse_nesting_leave(parser);
     return node;
 }

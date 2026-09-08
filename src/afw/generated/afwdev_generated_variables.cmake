@@ -39,7 +39,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     adapter/afw_adapter_retrieve.h
     array/afw_array.h
     array/afw_array_impl.h
-    array_template/afw_array_template.h
     ascii/afw_ascii.h
     associative_array/afw_associative_array.h
     associative_array/afw_associative_array_template.h
@@ -171,7 +170,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     runtime/afw_runtime_value_accessor.h
     safe_cast/afw_safe_cast.h
     service/afw_service.h
-    stack/afw_stack.h
     stream/afw_stream.h
     thread/afw_thread.h
     time/afw_time.h
@@ -180,6 +178,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     utf8/afw_utf8.h
     uuid/afw_uuid.h
     value/afw_value.h
+    vector/afw_vector.h
     version/afw_version.h
     writer/afw_writer.h
     xctx/afw_xctx.h
@@ -192,7 +191,6 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/adapter
     ${CMAKE_CURRENT_SOURCE_DIR}/application
     ${CMAKE_CURRENT_SOURCE_DIR}/array
-    ${CMAKE_CURRENT_SOURCE_DIR}/array_template
     ${CMAKE_CURRENT_SOURCE_DIR}/ascii
     ${CMAKE_CURRENT_SOURCE_DIR}/associative_array
     ${CMAKE_CURRENT_SOURCE_DIR}/atomic
@@ -226,7 +224,6 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/runtime
     ${CMAKE_CURRENT_SOURCE_DIR}/safe_cast
     ${CMAKE_CURRENT_SOURCE_DIR}/service
-    ${CMAKE_CURRENT_SOURCE_DIR}/stack
     ${CMAKE_CURRENT_SOURCE_DIR}/stream
     ${CMAKE_CURRENT_SOURCE_DIR}/thread
     ${CMAKE_CURRENT_SOURCE_DIR}/time
@@ -235,6 +232,7 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/utf8
     ${CMAKE_CURRENT_SOURCE_DIR}/uuid
     ${CMAKE_CURRENT_SOURCE_DIR}/value
+    ${CMAKE_CURRENT_SOURCE_DIR}/vector
     ${CMAKE_CURRENT_SOURCE_DIR}/version
     ${CMAKE_CURRENT_SOURCE_DIR}/writer
     ${CMAKE_CURRENT_SOURCE_DIR}/xctx
@@ -414,7 +412,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     runtime/afw_runtime_value_accessor.c
     service/afw_service.c
     service/afw_service_context.c
-    stack/afw_stack.c
     stream/afw_stream.c
     stream/afw_stream_fd.c
     thread/afw_thread.c
@@ -453,6 +450,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     value/afw_value_symbol_reference.c
     value/afw_value_template_definition.c
     value/afw_value_type_check.c
+    vector/afw_vector.c
     version/afw_version.c
     writer/afw_writer.c
     xctx/afw_xctx.c
