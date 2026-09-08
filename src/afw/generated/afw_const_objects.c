@@ -140485,6 +140485,7 @@ impl_1376_list_providesObjects_values[] = {
     afw_v_zz__a79b611e7e1e,
     afw_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb,
     afw_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_env,
+    afw_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index,
     afw_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_limits,
     afw_v_zz__33eb0219e462,
     afw_v_zz__d9795195cb0b
@@ -140501,7 +140502,7 @@ impl_1376_list_providesObjects = {
         (const afw_value_t *)&impl_1376_list_providesObjects__value
     },
     &afw_data_type_string_direct,
-    12,
+    13,
     impl_1376_list_providesObjects_values
 };
 

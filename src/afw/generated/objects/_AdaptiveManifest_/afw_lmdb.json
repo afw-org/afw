@@ -13,6 +13,7 @@
         "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_version",
         "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb",
         "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env",
+        "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_index",
         "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits",
         "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size",
         "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time"

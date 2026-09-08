@@ -1218,8 +1218,9 @@ afw_adapter_impl_index_cursor_t * afw_lmdb_internal_cursor_create(
     self->unique = unique;
     self->operator = operator;
 
-    dbi = afw_lmdb_internal_open_database(self->session->adapter, 
+    dbi = afw_lmdb_internal_open_database(self->session->adapter,
         txn, database, 0, xctx->p, xctx);
+    self->dbi = dbi;
 
     self->cursor = afw_lmdb_internal_open_cursor(session, dbi, xctx);
     if (self->cursor == NULL) {
@@ -1526,6 +1527,40 @@ impl_afw_adapter_impl_index_cursor_inner_join (
 
 /*
  * Implementation of method get_count of interface afw_adapter_impl_index_cursor.
+ *
+ * For eq, LMDB's mdb_cursor_count() directly answers this (duplicate
+ * entries at a single key). For any other operator (a range or a
+ * "starts with" prefix scan), there is no equivalent primitive - LMDB's
+ * B+tree does not track subtree sizes, so nothing built from its public
+ * API (seeking, mdb_stat, or stepping) can produce an exact count faster
+ * than actually visiting that many entries. Three strategies trade off
+ * cost vs. estimate quality (issue #298; see cardinalityStrategy on
+ * _AdaptiveConf_adapter_lmdb_index):
+ *
+ *  - total_entries (default): mdb_stat()'s total entry count for the
+ *    index DB. O(1), no cursor movement at all - same cost as the eq
+ *    path, coarse (every non-eq cursor on a property reports the same
+ *    number regardless of how selective its actual range is).
+ *  - probe: walk the cursor forward, using its own advance semantics
+ *    (afw_lmdb_internal_cursor_next, the same logic the real
+ *    result-emitting walk will use later), up to cardinality_probe_cap.
+ *    Exact if the range ends first, the cap itself (a lower bound)
+ *    otherwise. Real, possibly nontrivial cost - see the memoization
+ *    below for why that cost must not be paid more than once per cursor.
+ *  - off: always report unknown, matching pre-#298 behavior.
+ *
+ * Whichever strategy applies, the result is memoized on the cursor:
+ * afw_adapter_impl_index_cursor_list_merge()'s outer loop re-scans an
+ * accumulating "temp" list, so the same cursor's get_count() can be
+ * called more than once in a single merge. Without memoization, "probe"
+ * would repeat its cursor walk every time - the concern that motivated
+ * making total_entries the default and "probe" opt-in in the first
+ * place. Computing it once per cursor per query closes that regardless
+ * of which strategy is configured.
+ *
+ * An unreportable, capped, or coarse count never affects which objects
+ * come back, only how efficiently - see
+ * afw_adapter_impl_index_cursor_list_merge()/_join().
  */
 afw_boolean_t
 impl_afw_adapter_impl_index_cursor_get_count(
@@ -1533,17 +1568,78 @@ impl_afw_adapter_impl_index_cursor_get_count(
     size_t * count,
     afw_xctx_t *xctx)
 {
+    afw_lmdb_cardinality_strategy_t strategy;
+    MDB_stat stat;
     int rc;
+    int cap;
+    size_t walked;
 
-    /* we can only calculate the count for duplicate data on a single key,
-        so this means only eq operators are supported. */
-    if (self->operator != afw_query_criteria_filter_op_id_eq) {
+    if (self->have_cardinality) {
+        *count = self->cardinality;
+        return true;
+    }
+
+    if (self->operator == afw_query_criteria_filter_op_id_eq) {
+        rc = mdb_cursor_count(self->cursor, count);
+        if (rc != 0) {
+            return false;
+        }
+        self->have_cardinality = true;
+        self->cardinality = *count;
+        return true;
+    }
+
+    strategy = (self->session->adapter->index_conf)
+        ? self->session->adapter->index_conf->cardinality_strategy
+        : AFW_LMDB_DEFAULT_CARDINALITY_STRATEGY;
+
+    if (strategy == afw_lmdb_cardinality_strategy_off) {
         return false;
     }
 
-    rc = mdb_cursor_count(self->cursor, count);
+    if (strategy == afw_lmdb_cardinality_strategy_total_entries) {
+        rc = mdb_stat(self->session->currTxn, self->dbi, &stat);
+        if (rc != 0) {
+            return false;
+        }
+        *count = (size_t)stat.ms_entries;
 
-    return (rc == 0) ? true : false;
+        afw_trace_fz(1, self->session->adapter->pub.trace_flag_index, NULL, xctx,
+            "index cursor cardinality estimate: %d (total entries)",
+            (int)*count);
+    }
+
+    else /* afw_lmdb_cardinality_strategy_probe */ {
+        cap = (self->session->adapter->index_conf)
+            ? self->session->adapter->index_conf->cardinality_probe_cap
+            : AFW_LMDB_DEFAULT_CARDINALITY_PROBE_CAP;
+
+        walked = 0;
+        if (self->data.mv_data != NULL) {
+            walked = 1;
+            while (walked < (size_t)cap) {
+                rc = afw_lmdb_internal_cursor_next(&self->pub, xctx);
+                if (rc) {
+                    /* range ended - walked is the exact count */
+                    break;
+                }
+                walked++;
+            }
+        }
+
+        /* put the cursor back where the real walk expects to find it */
+        afw_lmdb_internal_cursor_reset(self, xctx);
+
+        afw_trace_fz(1, self->session->adapter->pub.trace_flag_index, NULL, xctx,
+            "index cursor cardinality estimate: %d (cap %d)",
+            (int)walked, cap);
+
+        *count = walked;
+    }
+
+    self->have_cardinality = true;
+    self->cardinality = *count;
+    return true;
 }
 
 /*

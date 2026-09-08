@@ -20,6 +20,15 @@
             "required": true,
             "unique": false
         },
+        "index": {
+            "allowQuery": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveConf_adapter_lmdb_index",
+            "description": "Secondary (adapter-index) tuning for LMDB - how non-eq index cursors estimate their cardinality for OR/AND cursor-merge ordering. Unrelated to limits, which governs request/scan throttling.",
+            "label": "Index",
+            "required": false,
+            "unique": false
+        },
         "limits": {
             "allowQuery": true,
             "dataType": "object",

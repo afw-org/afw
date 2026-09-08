@@ -112895,6 +112895,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index \
+    "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_index"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index */
+#define afw_s_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index \
+    (&afw_self_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index */
+#define afw_self_s_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index \
+    (afw_self_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index */
+#define afw_z_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index \
+    (afw_self_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index */
+#define afw_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index \
+    (&afw_self_v_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_index.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz___afw__AdaptiveObjectType___AdaptiveConf_adapter_lmdb_limits \
     "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits"
 

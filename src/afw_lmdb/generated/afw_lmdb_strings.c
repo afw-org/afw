@@ -182,6 +182,12 @@ afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_env = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_index = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q__AdaptiveConf_adapter_lmdb_index)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q__AdaptiveConf_adapter_lmdb_limits)
@@ -308,6 +314,18 @@ afw_lmdb_self_v_camelCaseFunctionLabel = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_cardinalityProbeCap = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_cardinalityProbeCap)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_cardinalityStrategy = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_cardinalityStrategy)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_category = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_category)
@@ -353,6 +371,12 @@ const afw_value_string_t
 afw_lmdb_self_v_default = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_default)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_defaultValue = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_defaultValue)
 };
 
 const afw_value_string_t
@@ -413,6 +437,12 @@ const afw_value_string_t
 afw_lmdb_self_v_hard = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_hard)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_index = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_index)
 };
 
 const afw_value_string_t
@@ -560,6 +590,12 @@ afw_lmdb_self_v_objectType = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_off = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_off)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_otherProperties = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_otherProperties)
@@ -593,6 +629,18 @@ const afw_value_string_t
 afw_lmdb_self_v_path = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_path)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_possibleValues = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_possibleValues)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_probe = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_probe)
 };
 
 const afw_value_string_t
@@ -692,6 +740,12 @@ afw_lmdb_self_v_time = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_totalEntries = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_totalEntries)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_unique = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_unique)
@@ -728,6 +782,12 @@ afw_lmdb_self_v_zz__0021c8dcd153 = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_zz__01d2d8286227 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__01d2d8286227)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_zz__0b47f03acb45 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__0b47f03acb45)
@@ -743,6 +803,18 @@ const afw_value_string_t
 afw_lmdb_self_v_zz__2fcf2b562f4d = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2fcf2b562f4d)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__3d15943ee4c7 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__3d15943ee4c7)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__442c2402967e = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__442c2402967e)
 };
 
 const afw_value_string_t
@@ -791,6 +863,18 @@ const afw_value_string_t
 afw_lmdb_self_v_zz__Branch_Pages = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Branch_Pages)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Cardinality_Probe_Cap = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Cardinality_Probe_Cap)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Cardinality_Strategy = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Cardinality_Strategy)
 };
 
 const afw_value_string_t
@@ -1136,6 +1220,12 @@ afw_lmdb_self_v_zz__d02ea7eb5c7d = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_zz__d2205e3112d9 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__d2205e3112d9)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_zz__db0e5c95f7da = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__db0e5c95f7da)
@@ -1216,6 +1306,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_lmdb_self_v__AdaptiveCollection_,
     &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb,
     &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_env,
+    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_index,
     &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits,
     &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits_size,
     &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits_time,
@@ -1237,6 +1328,8 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_lmdb_self_v_branch_pages,
     &afw_lmdb_self_v_brief,
     &afw_lmdb_self_v_camelCaseFunctionLabel,
+    &afw_lmdb_self_v_cardinalityProbeCap,
+    &afw_lmdb_self_v_cardinalityStrategy,
     &afw_lmdb_self_v_category,
     &afw_lmdb_self_v_collectionURIs,
     &afw_lmdb_self_v_content_type,
@@ -1245,6 +1338,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_lmdb_self_v_dataType,
     &afw_lmdb_self_v_dataTypeParameter,
     &afw_lmdb_self_v_default,
+    &afw_lmdb_self_v_defaultValue,
     &afw_lmdb_self_v_depth,
     &afw_lmdb_self_v_description,
     &afw_lmdb_self_v_entries,
@@ -1255,6 +1349,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_lmdb_self_v_functionId,
     &afw_lmdb_self_v_functionLabel,
     &afw_lmdb_self_v_hard,
+    &afw_lmdb_self_v_index,
     &afw_lmdb_self_v_indexDefinitions,
     &afw_lmdb_self_v_indexes,
     &afw_lmdb_self_v_indirect,
@@ -1279,12 +1374,15 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_lmdb_self_v_object,
     &afw_lmdb_self_v_objectId,
     &afw_lmdb_self_v_objectType,
+    &afw_lmdb_self_v_off,
     &afw_lmdb_self_v_otherProperties,
     &afw_lmdb_self_v_overflow_pages,
     &afw_lmdb_self_v_parameters,
     &afw_lmdb_self_v_parentPaths,
     &afw_lmdb_self_v_patch,
     &afw_lmdb_self_v_path,
+    &afw_lmdb_self_v_possibleValues,
+    &afw_lmdb_self_v_probe,
     &afw_lmdb_self_v_process,
     &afw_lmdb_self_v_propertyTypes,
     &afw_lmdb_self_v_psize,
@@ -1301,6 +1399,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_lmdb_self_v_string,
     &afw_lmdb_self_v_template,
     &afw_lmdb_self_v_time,
+    &afw_lmdb_self_v_totalEntries,
     &afw_lmdb_self_v_unique,
     &afw_lmdb_self_v_updateTimeStamp,
     &afw_lmdb_self_v_version,

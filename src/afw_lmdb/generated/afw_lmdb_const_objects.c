@@ -3374,7 +3374,7 @@ static const afw_runtime_const_object_instance_t
 impl_33;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb/propertyTypes/limits
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb/propertyTypes/index
  */
 
 static const afw_runtime_property_t
@@ -3392,25 +3392,25 @@ impl_33_property_dataType = {
 static const afw_runtime_property_t
 impl_33_property_dataTypeParameter = {
     afw_lmdb_v_dataTypeParameter,
-    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits.pub
+    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_index.pub
 };
 
 static const afw_runtime_property_t
 impl_33_property_description = {
     afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__Database_limits_for_LMDB_.pub
+    &afw_lmdb_self_v_zz__d2205e3112d9.pub
 };
 
 static const afw_runtime_property_t
 impl_33_property_label = {
     afw_lmdb_v_label,
-    &afw_lmdb_self_v_Limits.pub
+    &afw_lmdb_self_v_Index.pub
 };
 
 static const afw_runtime_property_t
 impl_33_property_required = {
     afw_lmdb_v_required,
-    &afw_lmdb_boolean_self_v_true.pub
+    &afw_lmdb_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
@@ -3453,7 +3453,7 @@ impl_33_meta_object__value = {
 
 static const afw_utf8_t
 impl_33_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb/propertyTypes/limits");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb/propertyTypes/index");
 
 static const afw_value_object_t
 impl_33__value;
@@ -3467,7 +3467,7 @@ impl_33 = {
         {
             (const afw_object_t *)&impl_33_meta_object,
             (const afw_object_t *)&impl_31,
-            &afw_lmdb_self_s_limits,
+            &afw_lmdb_self_s_index,
             &afw_lmdb_self_s__AdaptiveValueMeta_,
             &impl_33_meta_path
         }
@@ -3479,6 +3479,117 @@ static const afw_value_object_t
 impl_33__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_33
+};
+
+static const afw_runtime_const_object_instance_t
+impl_34;
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb/propertyTypes/limits
+ */
+
+static const afw_runtime_property_t
+impl_34_property_allowQuery = {
+    afw_lmdb_v_allowQuery,
+    &afw_lmdb_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_34_property_dataType = {
+    afw_lmdb_v_dataType,
+    &afw_lmdb_self_v_object.pub
+};
+
+static const afw_runtime_property_t
+impl_34_property_dataTypeParameter = {
+    afw_lmdb_v_dataTypeParameter,
+    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits.pub
+};
+
+static const afw_runtime_property_t
+impl_34_property_description = {
+    afw_lmdb_v_description,
+    &afw_lmdb_self_v_zz__Database_limits_for_LMDB_.pub
+};
+
+static const afw_runtime_property_t
+impl_34_property_label = {
+    afw_lmdb_v_label,
+    &afw_lmdb_self_v_Limits.pub
+};
+
+static const afw_runtime_property_t
+impl_34_property_required = {
+    afw_lmdb_v_required,
+    &afw_lmdb_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_34_property_unique = {
+    afw_lmdb_v_unique,
+    &afw_lmdb_boolean_self_v_false.pub
+};
+
+static const afw_runtime_property_t *
+impl_34_properties[] = {
+    &impl_34_property_allowQuery,
+    &impl_34_property_dataType,
+    &impl_34_property_dataTypeParameter,
+    &impl_34_property_description,
+    &impl_34_property_label,
+    &impl_34_property_required,
+    &impl_34_property_unique,
+    NULL
+};
+
+static const afw_value_object_t
+impl_34_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_34_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_34_meta_object__value
+    },
+    &impl_34,
+    NULL
+};
+
+static const afw_value_object_t
+impl_34_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_34_meta_object
+};
+
+static const afw_utf8_t
+impl_34_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb/propertyTypes/limits");
+
+static const afw_value_object_t
+impl_34__value;
+
+static const afw_runtime_const_object_instance_t
+impl_34 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_34__value,
+        {
+            (const afw_object_t *)&impl_34_meta_object,
+            (const afw_object_t *)&impl_31,
+            &afw_lmdb_self_s_limits,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_34_meta_path
+        }
+    },
+    &impl_34_properties[0]
+};
+
+static const afw_value_object_t
+impl_34__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_34
 };
 
 /*
@@ -3498,9 +3609,21 @@ impl_31_property_env = {
 };
 
 static const afw_value_object_t
-impl_31_property_value_limits = {
+impl_31_property_value_index = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_33
+};
+
+static const afw_runtime_property_t
+impl_31_property_index = {
+    afw_lmdb_v_index,
+    &impl_31_property_value_index.pub
+};
+
+static const afw_value_object_t
+impl_31_property_value_limits = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_34
 };
 
 static const afw_runtime_property_t
@@ -3512,6 +3635,7 @@ impl_31_property_limits = {
 static const afw_runtime_property_t *
 impl_31_properties[] = {
     &impl_31_property_env,
+    &impl_31_property_index,
     &impl_31_property_limits,
     NULL
 };
@@ -3719,120 +3843,16 @@ impl_30__value = {
 };
 
 static const afw_runtime_const_object_instance_t
-impl_34;
-
-static const afw_runtime_const_object_instance_t
 impl_35;
 
 static const afw_runtime_const_object_instance_t
 impl_36;
 
-/*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/mapsize
- */
-
-static const afw_runtime_property_t
-impl_36_property_allowQuery = {
-    afw_lmdb_v_allowQuery,
-    &afw_lmdb_boolean_self_v_true.pub
-};
-
-static const afw_runtime_property_t
-impl_36_property_dataType = {
-    afw_lmdb_v_dataType,
-    &afw_lmdb_self_v_integer.pub
-};
-
-static const afw_runtime_property_t
-impl_36_property_description = {
-    afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__0021c8dcd153.pub
-};
-
-static const afw_runtime_property_t
-impl_36_property_label = {
-    afw_lmdb_v_label,
-    &afw_lmdb_self_v_zz__Map_Size.pub
-};
-
-static const afw_runtime_property_t
-impl_36_property_required = {
-    afw_lmdb_v_required,
-    &afw_lmdb_boolean_self_v_true.pub
-};
-
-static const afw_runtime_property_t
-impl_36_property_unique = {
-    afw_lmdb_v_unique,
-    &afw_lmdb_boolean_self_v_false.pub
-};
-
-static const afw_runtime_property_t *
-impl_36_properties[] = {
-    &impl_36_property_allowQuery,
-    &impl_36_property_dataType,
-    &impl_36_property_description,
-    &impl_36_property_label,
-    &impl_36_property_required,
-    &impl_36_property_unique,
-    NULL
-};
-
-static const afw_value_object_t
-impl_36_meta_object__value;
-
-static const afw_runtime_const_object_meta_object_t
-impl_36_meta_object = {
-    {
-        &afw_runtime_inf_const_meta_object_inf,
-        NULL,
-        (const afw_value_t *)&impl_36_meta_object__value
-    },
-    &impl_36,
-    NULL
-};
-
-static const afw_value_object_t
-impl_36_meta_object__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_36_meta_object
-};
-
-static const afw_utf8_t
-impl_36_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/mapsize");
-
-static const afw_value_object_t
-impl_36__value;
-
-static const afw_runtime_const_object_instance_t
-impl_36 = {
-    {
-        &afw_runtime_inf_const_embedded_untyped_object,
-        NULL,
-        (const afw_value_t *)&impl_36__value,
-        {
-            (const afw_object_t *)&impl_36_meta_object,
-            (const afw_object_t *)&impl_35,
-            &afw_lmdb_self_s_mapsize,
-            &afw_lmdb_self_s__AdaptiveValueMeta_,
-            &impl_36_meta_path
-        }
-    },
-    &impl_36_properties[0]
-};
-
-static const afw_value_object_t
-impl_36__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_36
-};
-
 static const afw_runtime_const_object_instance_t
 impl_37;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/maxdbs
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/mapsize
  */
 
 static const afw_runtime_property_t
@@ -3850,13 +3870,13 @@ impl_37_property_dataType = {
 static const afw_runtime_property_t
 impl_37_property_description = {
     afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__Maximum_number_of_named_databases_for_the_environment_.pub
+    &afw_lmdb_self_v_zz__0021c8dcd153.pub
 };
 
 static const afw_runtime_property_t
 impl_37_property_label = {
     afw_lmdb_v_label,
-    &afw_lmdb_self_v_zz__Max_Databases.pub
+    &afw_lmdb_self_v_zz__Map_Size.pub
 };
 
 static const afw_runtime_property_t
@@ -3904,7 +3924,7 @@ impl_37_meta_object__value = {
 
 static const afw_utf8_t
 impl_37_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/maxdbs");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/mapsize");
 
 static const afw_value_object_t
 impl_37__value;
@@ -3917,8 +3937,8 @@ impl_37 = {
         (const afw_value_t *)&impl_37__value,
         {
             (const afw_object_t *)&impl_37_meta_object,
-            (const afw_object_t *)&impl_35,
-            &afw_lmdb_self_s_maxdbs,
+            (const afw_object_t *)&impl_36,
+            &afw_lmdb_self_s_mapsize,
             &afw_lmdb_self_s__AdaptiveValueMeta_,
             &impl_37_meta_path
         }
@@ -3936,7 +3956,7 @@ static const afw_runtime_const_object_instance_t
 impl_38;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/maxreaders
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/maxdbs
  */
 
 static const afw_runtime_property_t
@@ -3954,13 +3974,13 @@ impl_38_property_dataType = {
 static const afw_runtime_property_t
 impl_38_property_description = {
     afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__Number_of_reader_slots_allocated_in_the_lock_file_.pub
+    &afw_lmdb_self_v_zz__Maximum_number_of_named_databases_for_the_environment_.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_label = {
     afw_lmdb_v_label,
-    &afw_lmdb_self_v_zz__Max_Readers.pub
+    &afw_lmdb_self_v_zz__Max_Databases.pub
 };
 
 static const afw_runtime_property_t
@@ -4008,7 +4028,7 @@ impl_38_meta_object__value = {
 
 static const afw_utf8_t
 impl_38_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/maxreaders");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/maxdbs");
 
 static const afw_value_object_t
 impl_38__value;
@@ -4021,8 +4041,8 @@ impl_38 = {
         (const afw_value_t *)&impl_38__value,
         {
             (const afw_object_t *)&impl_38_meta_object,
-            (const afw_object_t *)&impl_35,
-            &afw_lmdb_self_s_maxreaders,
+            (const afw_object_t *)&impl_36,
+            &afw_lmdb_self_s_maxdbs,
             &afw_lmdb_self_s__AdaptiveValueMeta_,
             &impl_38_meta_path
         }
@@ -4040,7 +4060,7 @@ static const afw_runtime_const_object_instance_t
 impl_39;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/mode
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/maxreaders
  */
 
 static const afw_runtime_property_t
@@ -4058,13 +4078,13 @@ impl_39_property_dataType = {
 static const afw_runtime_property_t
 impl_39_property_description = {
     afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__Database_file_mode__in_decimal__for_LMDB_.pub
+    &afw_lmdb_self_v_zz__Number_of_reader_slots_allocated_in_the_lock_file_.pub
 };
 
 static const afw_runtime_property_t
 impl_39_property_label = {
     afw_lmdb_v_label,
-    &afw_lmdb_self_v_Mode.pub
+    &afw_lmdb_self_v_zz__Max_Readers.pub
 };
 
 static const afw_runtime_property_t
@@ -4112,7 +4132,7 @@ impl_39_meta_object__value = {
 
 static const afw_utf8_t
 impl_39_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/mode");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/maxreaders");
 
 static const afw_value_object_t
 impl_39__value;
@@ -4125,8 +4145,8 @@ impl_39 = {
         (const afw_value_t *)&impl_39__value,
         {
             (const afw_object_t *)&impl_39_meta_object,
-            (const afw_object_t *)&impl_35,
-            &afw_lmdb_self_s_mode,
+            (const afw_object_t *)&impl_36,
+            &afw_lmdb_self_s_maxreaders,
             &afw_lmdb_self_s__AdaptiveValueMeta_,
             &impl_39_meta_path
         }
@@ -4144,7 +4164,7 @@ static const afw_runtime_const_object_instance_t
 impl_40;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/path
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/mode
  */
 
 static const afw_runtime_property_t
@@ -4154,27 +4174,21 @@ impl_40_property_allowQuery = {
 };
 
 static const afw_runtime_property_t
-impl_40_property_contextType = {
-    afw_lmdb_v_contextType,
-    &afw_lmdb_self_v_process.pub
-};
-
-static const afw_runtime_property_t
 impl_40_property_dataType = {
     afw_lmdb_v_dataType,
-    &afw_lmdb_self_v_template.pub
+    &afw_lmdb_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_description = {
     afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__1cc9e1fe02cc.pub
+    &afw_lmdb_self_v_zz__Database_file_mode__in_decimal__for_LMDB_.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_label = {
     afw_lmdb_v_label,
-    &afw_lmdb_self_v_Path.pub
+    &afw_lmdb_self_v_Mode.pub
 };
 
 static const afw_runtime_property_t
@@ -4192,7 +4206,6 @@ impl_40_property_unique = {
 static const afw_runtime_property_t *
 impl_40_properties[] = {
     &impl_40_property_allowQuery,
-    &impl_40_property_contextType,
     &impl_40_property_dataType,
     &impl_40_property_description,
     &impl_40_property_label,
@@ -4223,7 +4236,7 @@ impl_40_meta_object__value = {
 
 static const afw_utf8_t
 impl_40_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/path");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/mode");
 
 static const afw_value_object_t
 impl_40__value;
@@ -4236,8 +4249,8 @@ impl_40 = {
         (const afw_value_t *)&impl_40__value,
         {
             (const afw_object_t *)&impl_40_meta_object,
-            (const afw_object_t *)&impl_35,
-            &afw_lmdb_self_s_path,
+            (const afw_object_t *)&impl_36,
+            &afw_lmdb_self_s_mode,
             &afw_lmdb_self_s__AdaptiveValueMeta_,
             &impl_40_meta_path
         }
@@ -4251,77 +4264,314 @@ impl_40__value = {
     (const afw_object_t *)&impl_40
 };
 
+static const afw_runtime_const_object_instance_t
+impl_41;
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/path
+ */
+
+static const afw_runtime_property_t
+impl_41_property_allowQuery = {
+    afw_lmdb_v_allowQuery,
+    &afw_lmdb_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_41_property_contextType = {
+    afw_lmdb_v_contextType,
+    &afw_lmdb_self_v_process.pub
+};
+
+static const afw_runtime_property_t
+impl_41_property_dataType = {
+    afw_lmdb_v_dataType,
+    &afw_lmdb_self_v_template.pub
+};
+
+static const afw_runtime_property_t
+impl_41_property_description = {
+    afw_lmdb_v_description,
+    &afw_lmdb_self_v_zz__1cc9e1fe02cc.pub
+};
+
+static const afw_runtime_property_t
+impl_41_property_label = {
+    afw_lmdb_v_label,
+    &afw_lmdb_self_v_Path.pub
+};
+
+static const afw_runtime_property_t
+impl_41_property_required = {
+    afw_lmdb_v_required,
+    &afw_lmdb_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_41_property_unique = {
+    afw_lmdb_v_unique,
+    &afw_lmdb_boolean_self_v_false.pub
+};
+
+static const afw_runtime_property_t *
+impl_41_properties[] = {
+    &impl_41_property_allowQuery,
+    &impl_41_property_contextType,
+    &impl_41_property_dataType,
+    &impl_41_property_description,
+    &impl_41_property_label,
+    &impl_41_property_required,
+    &impl_41_property_unique,
+    NULL
+};
+
+static const afw_value_object_t
+impl_41_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_41_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_41_meta_object__value
+    },
+    &impl_41,
+    NULL
+};
+
+static const afw_value_object_t
+impl_41_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_41_meta_object
+};
+
+static const afw_utf8_t
+impl_41_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes/path");
+
+static const afw_value_object_t
+impl_41__value;
+
+static const afw_runtime_const_object_instance_t
+impl_41 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_41__value,
+        {
+            (const afw_object_t *)&impl_41_meta_object,
+            (const afw_object_t *)&impl_36,
+            &afw_lmdb_self_s_path,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_41_meta_path
+        }
+    },
+    &impl_41_properties[0]
+};
+
+static const afw_value_object_t
+impl_41__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_41
+};
+
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes
  */
 
 static const afw_value_object_t
-impl_35_property_value_mapsize = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_36
-};
-
-static const afw_runtime_property_t
-impl_35_property_mapsize = {
-    afw_lmdb_v_mapsize,
-    &impl_35_property_value_mapsize.pub
-};
-
-static const afw_value_object_t
-impl_35_property_value_maxdbs = {
+impl_36_property_value_mapsize = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_37
 };
 
 static const afw_runtime_property_t
-impl_35_property_maxdbs = {
-    afw_lmdb_v_maxdbs,
-    &impl_35_property_value_maxdbs.pub
+impl_36_property_mapsize = {
+    afw_lmdb_v_mapsize,
+    &impl_36_property_value_mapsize.pub
 };
 
 static const afw_value_object_t
-impl_35_property_value_maxreaders = {
+impl_36_property_value_maxdbs = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_38
 };
 
 static const afw_runtime_property_t
-impl_35_property_maxreaders = {
-    afw_lmdb_v_maxreaders,
-    &impl_35_property_value_maxreaders.pub
+impl_36_property_maxdbs = {
+    afw_lmdb_v_maxdbs,
+    &impl_36_property_value_maxdbs.pub
 };
 
 static const afw_value_object_t
-impl_35_property_value_mode = {
+impl_36_property_value_maxreaders = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_39
 };
 
 static const afw_runtime_property_t
-impl_35_property_mode = {
-    afw_lmdb_v_mode,
-    &impl_35_property_value_mode.pub
+impl_36_property_maxreaders = {
+    afw_lmdb_v_maxreaders,
+    &impl_36_property_value_maxreaders.pub
 };
 
 static const afw_value_object_t
-impl_35_property_value_path = {
+impl_36_property_value_mode = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_40
 };
 
 static const afw_runtime_property_t
-impl_35_property_path = {
+impl_36_property_mode = {
+    afw_lmdb_v_mode,
+    &impl_36_property_value_mode.pub
+};
+
+static const afw_value_object_t
+impl_36_property_value_path = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_41
+};
+
+static const afw_runtime_property_t
+impl_36_property_path = {
     afw_lmdb_v_path,
-    &impl_35_property_value_path.pub
+    &impl_36_property_value_path.pub
+};
+
+static const afw_runtime_property_t *
+impl_36_properties[] = {
+    &impl_36_property_mapsize,
+    &impl_36_property_maxdbs,
+    &impl_36_property_maxreaders,
+    &impl_36_property_mode,
+    &impl_36_property_path,
+    NULL
+};
+
+static const afw_value_object_t
+impl_36_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_36_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_36_meta_object__value
+    },
+    &impl_36,
+    NULL
+};
+
+static const afw_value_object_t
+impl_36_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_36_meta_object
+};
+
+static const afw_utf8_t
+impl_36_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes");
+
+static const afw_value_object_t
+impl_36__value;
+
+static const afw_runtime_const_object_instance_t
+impl_36 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_36__value,
+        {
+            (const afw_object_t *)&impl_36_meta_object,
+            (const afw_object_t *)&impl_35,
+            &afw_lmdb_self_s_propertyTypes,
+            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            &impl_36_meta_path
+        }
+    },
+    &impl_36_properties[0]
+};
+
+static const afw_value_object_t
+impl_36__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_36
+};
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env
+ */
+
+static const afw_runtime_property_t
+impl_35_property_allowEntity = {
+    afw_lmdb_v_allowEntity,
+    &afw_lmdb_boolean_self_v_false.pub
+};
+
+static const afw_value_t *
+impl_35_list_collectionURIs_values[] = {
+    afw_lmdb_v_zz___afw__AdaptiveCollection__lmdb_extension
+};
+
+static const afw_value_array_t
+impl_35_list_collectionURIs__value;
+
+static const afw_array_from_values_self_t
+impl_35_list_collectionURIs = {
+    {
+        &afw_array_permanent_from_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_35_list_collectionURIs__value
+    },
+    &afw_data_type_string_direct,
+    1,
+    impl_35_list_collectionURIs_values
+};
+
+static const afw_value_array_t
+impl_35_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_35_list_collectionURIs
+};
+
+static const afw_runtime_property_t
+impl_35_property_collectionURIs = {
+    afw_lmdb_v_collectionURIs,
+    (const afw_value_t *)&impl_35_list_collectionURIs__value
+};
+
+static const afw_runtime_property_t
+impl_35_property_description = {
+    afw_lmdb_v_description,
+    &afw_lmdb_self_v_zz__e983818d7896.pub
+};
+
+static const afw_runtime_property_t
+impl_35_property_objectType = {
+    afw_lmdb_v_objectType,
+    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_env.pub
+};
+
+static const afw_value_object_t
+impl_35_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_36
+};
+
+static const afw_runtime_property_t
+impl_35_property_propertyTypes = {
+    afw_lmdb_v_propertyTypes,
+    &impl_35_property_value_propertyTypes.pub
 };
 
 static const afw_runtime_property_t *
 impl_35_properties[] = {
-    &impl_35_property_mapsize,
-    &impl_35_property_maxdbs,
-    &impl_35_property_maxreaders,
-    &impl_35_property_mode,
-    &impl_35_property_path,
+    &impl_35_property_allowEntity,
+    &impl_35_property_collectionURIs,
+    &impl_35_property_description,
+    &impl_35_property_objectType,
+    &impl_35_property_propertyTypes,
     NULL
 };
 
@@ -4347,7 +4597,7 @@ impl_35_meta_object__value = {
 
 static const afw_utf8_t
 impl_35_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env/propertyTypes");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env");
 
 static const afw_value_object_t
 impl_35__value;
@@ -4355,14 +4605,14 @@ impl_35__value;
 static const afw_runtime_const_object_instance_t
 impl_35 = {
     {
-        &afw_runtime_inf_const_embedded_untyped_object,
+        &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
         (const afw_value_t *)&impl_35__value,
         {
             (const afw_object_t *)&impl_35_meta_object,
-            (const afw_object_t *)&impl_34,
-            &afw_lmdb_self_s_propertyTypes,
-            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            NULL,
+            &afw_lmdb_self_s__AdaptiveConf_adapter_lmdb_env,
+            &afw_lmdb_self_s__AdaptiveObjectType_,
             &impl_35_meta_path
         }
     },
@@ -4375,290 +4625,47 @@ impl_35__value = {
     (const afw_object_t *)&impl_35
 };
 
-/*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env
- */
-
-static const afw_runtime_property_t
-impl_34_property_allowEntity = {
-    afw_lmdb_v_allowEntity,
-    &afw_lmdb_boolean_self_v_false.pub
-};
-
-static const afw_value_t *
-impl_34_list_collectionURIs_values[] = {
-    afw_lmdb_v_zz___afw__AdaptiveCollection__lmdb_extension
-};
-
-static const afw_value_array_t
-impl_34_list_collectionURIs__value;
-
-static const afw_array_from_values_self_t
-impl_34_list_collectionURIs = {
-    {
-        &afw_array_permanent_from_values_inf,
-        NULL,
-        (const afw_value_t *)&impl_34_list_collectionURIs__value
-    },
-    &afw_data_type_string_direct,
-    1,
-    impl_34_list_collectionURIs_values
-};
-
-static const afw_value_array_t
-impl_34_list_collectionURIs__value = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_34_list_collectionURIs
-};
-
-static const afw_runtime_property_t
-impl_34_property_collectionURIs = {
-    afw_lmdb_v_collectionURIs,
-    (const afw_value_t *)&impl_34_list_collectionURIs__value
-};
-
-static const afw_runtime_property_t
-impl_34_property_description = {
-    afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__e983818d7896.pub
-};
-
-static const afw_runtime_property_t
-impl_34_property_objectType = {
-    afw_lmdb_v_objectType,
-    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_env.pub
-};
-
-static const afw_value_object_t
-impl_34_property_value_propertyTypes = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_35
-};
-
-static const afw_runtime_property_t
-impl_34_property_propertyTypes = {
-    afw_lmdb_v_propertyTypes,
-    &impl_34_property_value_propertyTypes.pub
-};
-
-static const afw_runtime_property_t *
-impl_34_properties[] = {
-    &impl_34_property_allowEntity,
-    &impl_34_property_collectionURIs,
-    &impl_34_property_description,
-    &impl_34_property_objectType,
-    &impl_34_property_propertyTypes,
-    NULL
-};
-
-static const afw_value_object_t
-impl_34_meta_object__value;
-
-static const afw_runtime_const_object_meta_object_t
-impl_34_meta_object = {
-    {
-        &afw_runtime_inf_const_meta_object_inf,
-        NULL,
-        (const afw_value_t *)&impl_34_meta_object__value
-    },
-    &impl_34,
-    NULL
-};
-
-static const afw_value_object_t
-impl_34_meta_object__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_34_meta_object
-};
-
-static const afw_utf8_t
-impl_34_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env");
-
-static const afw_value_object_t
-impl_34__value;
-
-static const afw_runtime_const_object_instance_t
-impl_34 = {
-    {
-        &afw_runtime_inf__AdaptiveObjectType_,
-        NULL,
-        (const afw_value_t *)&impl_34__value,
-        {
-            (const afw_object_t *)&impl_34_meta_object,
-            NULL,
-            &afw_lmdb_self_s__AdaptiveConf_adapter_lmdb_env,
-            &afw_lmdb_self_s__AdaptiveObjectType_,
-            &impl_34_meta_path
-        }
-    },
-    &impl_34_properties[0]
-};
-
-static const afw_value_object_t
-impl_34__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_34
-};
-
-static const afw_runtime_const_object_instance_t
-impl_41;
-
 static const afw_runtime_const_object_instance_t
 impl_42;
 
 static const afw_runtime_const_object_instance_t
 impl_43;
 
-/*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits/propertyTypes/size
- */
-
-static const afw_runtime_property_t
-impl_43_property_allowQuery = {
-    afw_lmdb_v_allowQuery,
-    &afw_lmdb_boolean_self_v_true.pub
-};
-
-static const afw_runtime_property_t
-impl_43_property_dataType = {
-    afw_lmdb_v_dataType,
-    &afw_lmdb_self_v_object.pub
-};
-
-static const afw_runtime_property_t
-impl_43_property_dataTypeParameter = {
-    afw_lmdb_v_dataTypeParameter,
-    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits_size.pub
-};
-
-static const afw_runtime_property_t
-impl_43_property_description = {
-    afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__Size_limits_for_requests_.pub
-};
-
-static const afw_runtime_property_t
-impl_43_property_label = {
-    afw_lmdb_v_label,
-    &afw_lmdb_self_v_zz__Size_Limits.pub
-};
-
-static const afw_runtime_property_t
-impl_43_property_required = {
-    afw_lmdb_v_required,
-    &afw_lmdb_boolean_self_v_true.pub
-};
-
-static const afw_runtime_property_t
-impl_43_property_unique = {
-    afw_lmdb_v_unique,
-    &afw_lmdb_boolean_self_v_false.pub
-};
-
-static const afw_runtime_property_t *
-impl_43_properties[] = {
-    &impl_43_property_allowQuery,
-    &impl_43_property_dataType,
-    &impl_43_property_dataTypeParameter,
-    &impl_43_property_description,
-    &impl_43_property_label,
-    &impl_43_property_required,
-    &impl_43_property_unique,
-    NULL
-};
-
-static const afw_value_object_t
-impl_43_meta_object__value;
-
-static const afw_runtime_const_object_meta_object_t
-impl_43_meta_object = {
-    {
-        &afw_runtime_inf_const_meta_object_inf,
-        NULL,
-        (const afw_value_t *)&impl_43_meta_object__value
-    },
-    &impl_43,
-    NULL
-};
-
-static const afw_value_object_t
-impl_43_meta_object__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_43_meta_object
-};
-
-static const afw_utf8_t
-impl_43_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits/propertyTypes/size");
-
-static const afw_value_object_t
-impl_43__value;
-
-static const afw_runtime_const_object_instance_t
-impl_43 = {
-    {
-        &afw_runtime_inf_const_embedded_untyped_object,
-        NULL,
-        (const afw_value_t *)&impl_43__value,
-        {
-            (const afw_object_t *)&impl_43_meta_object,
-            (const afw_object_t *)&impl_42,
-            &afw_lmdb_self_s_size,
-            &afw_lmdb_self_s__AdaptiveValueMeta_,
-            &impl_43_meta_path
-        }
-    },
-    &impl_43_properties[0]
-};
-
-static const afw_value_object_t
-impl_43__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_43
-};
-
 static const afw_runtime_const_object_instance_t
 impl_44;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits/propertyTypes/time
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_index/propertyTypes/cardinalityProbeCap
  */
 
 static const afw_runtime_property_t
 impl_44_property_allowQuery = {
     afw_lmdb_v_allowQuery,
-    &afw_lmdb_boolean_self_v_true.pub
+    &afw_lmdb_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_44_property_dataType = {
     afw_lmdb_v_dataType,
-    &afw_lmdb_self_v_object.pub
-};
-
-static const afw_runtime_property_t
-impl_44_property_dataTypeParameter = {
-    afw_lmdb_v_dataTypeParameter,
-    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits_time.pub
+    &afw_lmdb_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_44_property_description = {
     afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__Time_limits_for_requests_.pub
+    &afw_lmdb_self_v_zz__442c2402967e.pub
 };
 
 static const afw_runtime_property_t
 impl_44_property_label = {
     afw_lmdb_v_label,
-    &afw_lmdb_self_v_zz__Time_Limits.pub
+    &afw_lmdb_self_v_zz__Cardinality_Probe_Cap.pub
 };
 
 static const afw_runtime_property_t
 impl_44_property_required = {
     afw_lmdb_v_required,
-    &afw_lmdb_boolean_self_v_true.pub
+    &afw_lmdb_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
@@ -4671,7 +4678,6 @@ static const afw_runtime_property_t *
 impl_44_properties[] = {
     &impl_44_property_allowQuery,
     &impl_44_property_dataType,
-    &impl_44_property_dataTypeParameter,
     &impl_44_property_description,
     &impl_44_property_label,
     &impl_44_property_required,
@@ -4701,7 +4707,7 @@ impl_44_meta_object__value = {
 
 static const afw_utf8_t
 impl_44_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits/propertyTypes/time");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_index/propertyTypes/cardinalityProbeCap");
 
 static const afw_value_object_t
 impl_44__value;
@@ -4714,8 +4720,8 @@ impl_44 = {
         (const afw_value_t *)&impl_44__value,
         {
             (const afw_object_t *)&impl_44_meta_object,
-            (const afw_object_t *)&impl_42,
-            &afw_lmdb_self_s_time,
+            (const afw_object_t *)&impl_43,
+            &afw_lmdb_self_s_cardinalityProbeCap,
             &afw_lmdb_self_s__AdaptiveValueMeta_,
             &impl_44_meta_path
         }
@@ -4729,38 +4735,310 @@ impl_44__value = {
     (const afw_object_t *)&impl_44
 };
 
+static const afw_runtime_const_object_instance_t
+impl_45;
+
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits/propertyTypes
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_index/propertyTypes/cardinalityStrategy
  */
 
-static const afw_value_object_t
-impl_42_property_value_size = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_43
+static const afw_runtime_property_t
+impl_45_property_allowQuery = {
+    afw_lmdb_v_allowQuery,
+    &afw_lmdb_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
-impl_42_property_size = {
-    afw_lmdb_v_size,
-    &impl_42_property_value_size.pub
+impl_45_property_dataType = {
+    afw_lmdb_v_dataType,
+    &afw_lmdb_self_v_string.pub
+};
+
+static const afw_runtime_property_t
+impl_45_property_defaultValue = {
+    afw_lmdb_v_defaultValue,
+    &afw_lmdb_self_v_totalEntries.pub
+};
+
+static const afw_runtime_property_t
+impl_45_property_description = {
+    afw_lmdb_v_description,
+    &afw_lmdb_self_v_zz__01d2d8286227.pub
+};
+
+static const afw_runtime_property_t
+impl_45_property_label = {
+    afw_lmdb_v_label,
+    &afw_lmdb_self_v_zz__Cardinality_Strategy.pub
+};
+
+static const afw_value_t *
+impl_45_list_possibleValues_values[] = {
+    afw_lmdb_v_off,
+    afw_lmdb_v_probe,
+    afw_lmdb_v_totalEntries
+};
+
+static const afw_value_array_t
+impl_45_list_possibleValues__value;
+
+static const afw_array_from_values_self_t
+impl_45_list_possibleValues = {
+    {
+        &afw_array_permanent_from_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_45_list_possibleValues__value
+    },
+    &afw_data_type_string_direct,
+    3,
+    impl_45_list_possibleValues_values
+};
+
+static const afw_value_array_t
+impl_45_list_possibleValues__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_45_list_possibleValues
+};
+
+static const afw_runtime_property_t
+impl_45_property_possibleValues = {
+    afw_lmdb_v_possibleValues,
+    (const afw_value_t *)&impl_45_list_possibleValues__value
+};
+
+static const afw_runtime_property_t
+impl_45_property_required = {
+    afw_lmdb_v_required,
+    &afw_lmdb_boolean_self_v_false.pub
+};
+
+static const afw_runtime_property_t
+impl_45_property_unique = {
+    afw_lmdb_v_unique,
+    &afw_lmdb_boolean_self_v_false.pub
+};
+
+static const afw_runtime_property_t *
+impl_45_properties[] = {
+    &impl_45_property_allowQuery,
+    &impl_45_property_dataType,
+    &impl_45_property_defaultValue,
+    &impl_45_property_description,
+    &impl_45_property_label,
+    &impl_45_property_possibleValues,
+    &impl_45_property_required,
+    &impl_45_property_unique,
+    NULL
 };
 
 static const afw_value_object_t
-impl_42_property_value_time = {
+impl_45_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_45_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_45_meta_object__value
+    },
+    &impl_45,
+    NULL
+};
+
+static const afw_value_object_t
+impl_45_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_45_meta_object
+};
+
+static const afw_utf8_t
+impl_45_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_index/propertyTypes/cardinalityStrategy");
+
+static const afw_value_object_t
+impl_45__value;
+
+static const afw_runtime_const_object_instance_t
+impl_45 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_45__value,
+        {
+            (const afw_object_t *)&impl_45_meta_object,
+            (const afw_object_t *)&impl_43,
+            &afw_lmdb_self_s_cardinalityStrategy,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_45_meta_path
+        }
+    },
+    &impl_45_properties[0]
+};
+
+static const afw_value_object_t
+impl_45__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_45
+};
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_index/propertyTypes
+ */
+
+static const afw_value_object_t
+impl_43_property_value_cardinalityProbeCap = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_44
 };
 
 static const afw_runtime_property_t
-impl_42_property_time = {
-    afw_lmdb_v_time,
-    &impl_42_property_value_time.pub
+impl_43_property_cardinalityProbeCap = {
+    afw_lmdb_v_cardinalityProbeCap,
+    &impl_43_property_value_cardinalityProbeCap.pub
+};
+
+static const afw_value_object_t
+impl_43_property_value_cardinalityStrategy = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_45
+};
+
+static const afw_runtime_property_t
+impl_43_property_cardinalityStrategy = {
+    afw_lmdb_v_cardinalityStrategy,
+    &impl_43_property_value_cardinalityStrategy.pub
+};
+
+static const afw_runtime_property_t *
+impl_43_properties[] = {
+    &impl_43_property_cardinalityProbeCap,
+    &impl_43_property_cardinalityStrategy,
+    NULL
+};
+
+static const afw_value_object_t
+impl_43_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_43_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_43_meta_object__value
+    },
+    &impl_43,
+    NULL
+};
+
+static const afw_value_object_t
+impl_43_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_43_meta_object
+};
+
+static const afw_utf8_t
+impl_43_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_index/propertyTypes");
+
+static const afw_value_object_t
+impl_43__value;
+
+static const afw_runtime_const_object_instance_t
+impl_43 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_43__value,
+        {
+            (const afw_object_t *)&impl_43_meta_object,
+            (const afw_object_t *)&impl_42,
+            &afw_lmdb_self_s_propertyTypes,
+            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            &impl_43_meta_path
+        }
+    },
+    &impl_43_properties[0]
+};
+
+static const afw_value_object_t
+impl_43__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_43
+};
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_index
+ */
+
+static const afw_runtime_property_t
+impl_42_property_allowEntity = {
+    afw_lmdb_v_allowEntity,
+    &afw_lmdb_boolean_self_v_false.pub
+};
+
+static const afw_value_t *
+impl_42_list_collectionURIs_values[] = {
+    afw_lmdb_v_zz___afw__AdaptiveCollection__lmdb_extension
+};
+
+static const afw_value_array_t
+impl_42_list_collectionURIs__value;
+
+static const afw_array_from_values_self_t
+impl_42_list_collectionURIs = {
+    {
+        &afw_array_permanent_from_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_42_list_collectionURIs__value
+    },
+    &afw_data_type_string_direct,
+    1,
+    impl_42_list_collectionURIs_values
+};
+
+static const afw_value_array_t
+impl_42_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_42_list_collectionURIs
+};
+
+static const afw_runtime_property_t
+impl_42_property_collectionURIs = {
+    afw_lmdb_v_collectionURIs,
+    (const afw_value_t *)&impl_42_list_collectionURIs__value
+};
+
+static const afw_runtime_property_t
+impl_42_property_description = {
+    afw_lmdb_v_description,
+    &afw_lmdb_self_v_zz__3d15943ee4c7.pub
+};
+
+static const afw_runtime_property_t
+impl_42_property_objectType = {
+    afw_lmdb_v_objectType,
+    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_index.pub
+};
+
+static const afw_value_object_t
+impl_42_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_43
+};
+
+static const afw_runtime_property_t
+impl_42_property_propertyTypes = {
+    afw_lmdb_v_propertyTypes,
+    &impl_42_property_value_propertyTypes.pub
 };
 
 static const afw_runtime_property_t *
 impl_42_properties[] = {
-    &impl_42_property_size,
-    &impl_42_property_time,
+    &impl_42_property_allowEntity,
+    &impl_42_property_collectionURIs,
+    &impl_42_property_description,
+    &impl_42_property_objectType,
+    &impl_42_property_propertyTypes,
     NULL
 };
 
@@ -4786,7 +5064,7 @@ impl_42_meta_object__value = {
 
 static const afw_utf8_t
 impl_42_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits/propertyTypes");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_index");
 
 static const afw_value_object_t
 impl_42__value;
@@ -4794,14 +5072,14 @@ impl_42__value;
 static const afw_runtime_const_object_instance_t
 impl_42 = {
     {
-        &afw_runtime_inf_const_embedded_untyped_object,
+        &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
         (const afw_value_t *)&impl_42__value,
         {
             (const afw_object_t *)&impl_42_meta_object,
-            (const afw_object_t *)&impl_41,
-            &afw_lmdb_self_s_propertyTypes,
-            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            NULL,
+            &afw_lmdb_self_s__AdaptiveConf_adapter_lmdb_index,
+            &afw_lmdb_self_s__AdaptiveObjectType_,
             &impl_42_meta_path
         }
     },
@@ -4814,271 +5092,47 @@ impl_42__value = {
     (const afw_object_t *)&impl_42
 };
 
-/*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits
- */
-
-static const afw_runtime_property_t
-impl_41_property_allowEntity = {
-    afw_lmdb_v_allowEntity,
-    &afw_lmdb_boolean_self_v_false.pub
-};
-
-static const afw_value_t *
-impl_41_list_collectionURIs_values[] = {
-    afw_lmdb_v_zz___afw__AdaptiveCollection__lmdb_extension
-};
-
-static const afw_value_array_t
-impl_41_list_collectionURIs__value;
-
-static const afw_array_from_values_self_t
-impl_41_list_collectionURIs = {
-    {
-        &afw_array_permanent_from_values_inf,
-        NULL,
-        (const afw_value_t *)&impl_41_list_collectionURIs__value
-    },
-    &afw_data_type_string_direct,
-    1,
-    impl_41_list_collectionURIs_values
-};
-
-static const afw_value_array_t
-impl_41_list_collectionURIs__value = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_41_list_collectionURIs
-};
-
-static const afw_runtime_property_t
-impl_41_property_collectionURIs = {
-    afw_lmdb_v_collectionURIs,
-    (const afw_value_t *)&impl_41_list_collectionURIs__value
-};
-
-static const afw_runtime_property_t
-impl_41_property_description = {
-    afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__ab8ad429a208.pub
-};
-
-static const afw_runtime_property_t
-impl_41_property_objectType = {
-    afw_lmdb_v_objectType,
-    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits.pub
-};
-
-static const afw_value_object_t
-impl_41_property_value_propertyTypes = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_42
-};
-
-static const afw_runtime_property_t
-impl_41_property_propertyTypes = {
-    afw_lmdb_v_propertyTypes,
-    &impl_41_property_value_propertyTypes.pub
-};
-
-static const afw_runtime_property_t *
-impl_41_properties[] = {
-    &impl_41_property_allowEntity,
-    &impl_41_property_collectionURIs,
-    &impl_41_property_description,
-    &impl_41_property_objectType,
-    &impl_41_property_propertyTypes,
-    NULL
-};
-
-static const afw_value_object_t
-impl_41_meta_object__value;
-
-static const afw_runtime_const_object_meta_object_t
-impl_41_meta_object = {
-    {
-        &afw_runtime_inf_const_meta_object_inf,
-        NULL,
-        (const afw_value_t *)&impl_41_meta_object__value
-    },
-    &impl_41,
-    NULL
-};
-
-static const afw_value_object_t
-impl_41_meta_object__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_41_meta_object
-};
-
-static const afw_utf8_t
-impl_41_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits");
-
-static const afw_value_object_t
-impl_41__value;
-
-static const afw_runtime_const_object_instance_t
-impl_41 = {
-    {
-        &afw_runtime_inf__AdaptiveObjectType_,
-        NULL,
-        (const afw_value_t *)&impl_41__value,
-        {
-            (const afw_object_t *)&impl_41_meta_object,
-            NULL,
-            &afw_lmdb_self_s__AdaptiveConf_adapter_lmdb_limits,
-            &afw_lmdb_self_s__AdaptiveObjectType_,
-            &impl_41_meta_path
-        }
-    },
-    &impl_41_properties[0]
-};
-
-static const afw_value_object_t
-impl_41__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_41
-};
-
-static const afw_runtime_const_object_instance_t
-impl_45;
-
 static const afw_runtime_const_object_instance_t
 impl_46;
 
 static const afw_runtime_const_object_instance_t
 impl_47;
 
-/*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size/propertyTypes/hard
- */
-
-static const afw_runtime_property_t
-impl_47_property_allowQuery = {
-    afw_lmdb_v_allowQuery,
-    &afw_lmdb_boolean_self_v_false.pub
-};
-
-static const afw_runtime_property_t
-impl_47_property_dataType = {
-    afw_lmdb_v_dataType,
-    &afw_lmdb_self_v_integer.pub
-};
-
-static const afw_runtime_property_t
-impl_47_property_description = {
-    afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__Hard_size_limit_for_requests_.pub
-};
-
-static const afw_runtime_property_t
-impl_47_property_label = {
-    afw_lmdb_v_label,
-    &afw_lmdb_self_v_zz__Hard_Limit.pub
-};
-
-static const afw_runtime_property_t
-impl_47_property_required = {
-    afw_lmdb_v_required,
-    &afw_lmdb_boolean_self_v_true.pub
-};
-
-static const afw_runtime_property_t
-impl_47_property_unique = {
-    afw_lmdb_v_unique,
-    &afw_lmdb_boolean_self_v_false.pub
-};
-
-static const afw_runtime_property_t *
-impl_47_properties[] = {
-    &impl_47_property_allowQuery,
-    &impl_47_property_dataType,
-    &impl_47_property_description,
-    &impl_47_property_label,
-    &impl_47_property_required,
-    &impl_47_property_unique,
-    NULL
-};
-
-static const afw_value_object_t
-impl_47_meta_object__value;
-
-static const afw_runtime_const_object_meta_object_t
-impl_47_meta_object = {
-    {
-        &afw_runtime_inf_const_meta_object_inf,
-        NULL,
-        (const afw_value_t *)&impl_47_meta_object__value
-    },
-    &impl_47,
-    NULL
-};
-
-static const afw_value_object_t
-impl_47_meta_object__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_47_meta_object
-};
-
-static const afw_utf8_t
-impl_47_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size/propertyTypes/hard");
-
-static const afw_value_object_t
-impl_47__value;
-
-static const afw_runtime_const_object_instance_t
-impl_47 = {
-    {
-        &afw_runtime_inf_const_embedded_untyped_object,
-        NULL,
-        (const afw_value_t *)&impl_47__value,
-        {
-            (const afw_object_t *)&impl_47_meta_object,
-            (const afw_object_t *)&impl_46,
-            &afw_lmdb_self_s_hard,
-            &afw_lmdb_self_s__AdaptiveValueMeta_,
-            &impl_47_meta_path
-        }
-    },
-    &impl_47_properties[0]
-};
-
-static const afw_value_object_t
-impl_47__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_47
-};
-
 static const afw_runtime_const_object_instance_t
 impl_48;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size/propertyTypes/soft
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits/propertyTypes/size
  */
 
 static const afw_runtime_property_t
 impl_48_property_allowQuery = {
     afw_lmdb_v_allowQuery,
-    &afw_lmdb_boolean_self_v_false.pub
+    &afw_lmdb_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_48_property_dataType = {
     afw_lmdb_v_dataType,
-    &afw_lmdb_self_v_integer.pub
+    &afw_lmdb_self_v_object.pub
+};
+
+static const afw_runtime_property_t
+impl_48_property_dataTypeParameter = {
+    afw_lmdb_v_dataTypeParameter,
+    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits_size.pub
 };
 
 static const afw_runtime_property_t
 impl_48_property_description = {
     afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__Soft_size_limit_for_requests_.pub
+    &afw_lmdb_self_v_zz__Size_limits_for_requests_.pub
 };
 
 static const afw_runtime_property_t
 impl_48_property_label = {
     afw_lmdb_v_label,
-    &afw_lmdb_self_v_zz__Soft_Limit.pub
+    &afw_lmdb_self_v_zz__Size_Limits.pub
 };
 
 static const afw_runtime_property_t
@@ -5097,6 +5151,7 @@ static const afw_runtime_property_t *
 impl_48_properties[] = {
     &impl_48_property_allowQuery,
     &impl_48_property_dataType,
+    &impl_48_property_dataTypeParameter,
     &impl_48_property_description,
     &impl_48_property_label,
     &impl_48_property_required,
@@ -5126,7 +5181,7 @@ impl_48_meta_object__value = {
 
 static const afw_utf8_t
 impl_48_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size/propertyTypes/soft");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits/propertyTypes/size");
 
 static const afw_value_object_t
 impl_48__value;
@@ -5139,8 +5194,8 @@ impl_48 = {
         (const afw_value_t *)&impl_48__value,
         {
             (const afw_object_t *)&impl_48_meta_object,
-            (const afw_object_t *)&impl_46,
-            &afw_lmdb_self_s_soft,
+            (const afw_object_t *)&impl_47,
+            &afw_lmdb_self_s_size,
             &afw_lmdb_self_s__AdaptiveValueMeta_,
             &impl_48_meta_path
         }
@@ -5154,38 +5209,275 @@ impl_48__value = {
     (const afw_object_t *)&impl_48
 };
 
+static const afw_runtime_const_object_instance_t
+impl_49;
+
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size/propertyTypes
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits/propertyTypes/time
  */
 
-static const afw_value_object_t
-impl_46_property_value_hard = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_47
+static const afw_runtime_property_t
+impl_49_property_allowQuery = {
+    afw_lmdb_v_allowQuery,
+    &afw_lmdb_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
-impl_46_property_hard = {
-    afw_lmdb_v_hard,
-    &impl_46_property_value_hard.pub
+impl_49_property_dataType = {
+    afw_lmdb_v_dataType,
+    &afw_lmdb_self_v_object.pub
+};
+
+static const afw_runtime_property_t
+impl_49_property_dataTypeParameter = {
+    afw_lmdb_v_dataTypeParameter,
+    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits_time.pub
+};
+
+static const afw_runtime_property_t
+impl_49_property_description = {
+    afw_lmdb_v_description,
+    &afw_lmdb_self_v_zz__Time_limits_for_requests_.pub
+};
+
+static const afw_runtime_property_t
+impl_49_property_label = {
+    afw_lmdb_v_label,
+    &afw_lmdb_self_v_zz__Time_Limits.pub
+};
+
+static const afw_runtime_property_t
+impl_49_property_required = {
+    afw_lmdb_v_required,
+    &afw_lmdb_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_49_property_unique = {
+    afw_lmdb_v_unique,
+    &afw_lmdb_boolean_self_v_false.pub
+};
+
+static const afw_runtime_property_t *
+impl_49_properties[] = {
+    &impl_49_property_allowQuery,
+    &impl_49_property_dataType,
+    &impl_49_property_dataTypeParameter,
+    &impl_49_property_description,
+    &impl_49_property_label,
+    &impl_49_property_required,
+    &impl_49_property_unique,
+    NULL
 };
 
 static const afw_value_object_t
-impl_46_property_value_soft = {
+impl_49_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_49_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_49_meta_object__value
+    },
+    &impl_49,
+    NULL
+};
+
+static const afw_value_object_t
+impl_49_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_49_meta_object
+};
+
+static const afw_utf8_t
+impl_49_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits/propertyTypes/time");
+
+static const afw_value_object_t
+impl_49__value;
+
+static const afw_runtime_const_object_instance_t
+impl_49 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_49__value,
+        {
+            (const afw_object_t *)&impl_49_meta_object,
+            (const afw_object_t *)&impl_47,
+            &afw_lmdb_self_s_time,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_49_meta_path
+        }
+    },
+    &impl_49_properties[0]
+};
+
+static const afw_value_object_t
+impl_49__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_49
+};
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits/propertyTypes
+ */
+
+static const afw_value_object_t
+impl_47_property_value_size = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_48
 };
 
 static const afw_runtime_property_t
-impl_46_property_soft = {
-    afw_lmdb_v_soft,
-    &impl_46_property_value_soft.pub
+impl_47_property_size = {
+    afw_lmdb_v_size,
+    &impl_47_property_value_size.pub
+};
+
+static const afw_value_object_t
+impl_47_property_value_time = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_49
+};
+
+static const afw_runtime_property_t
+impl_47_property_time = {
+    afw_lmdb_v_time,
+    &impl_47_property_value_time.pub
+};
+
+static const afw_runtime_property_t *
+impl_47_properties[] = {
+    &impl_47_property_size,
+    &impl_47_property_time,
+    NULL
+};
+
+static const afw_value_object_t
+impl_47_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_47_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_47_meta_object__value
+    },
+    &impl_47,
+    NULL
+};
+
+static const afw_value_object_t
+impl_47_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_47_meta_object
+};
+
+static const afw_utf8_t
+impl_47_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits/propertyTypes");
+
+static const afw_value_object_t
+impl_47__value;
+
+static const afw_runtime_const_object_instance_t
+impl_47 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_47__value,
+        {
+            (const afw_object_t *)&impl_47_meta_object,
+            (const afw_object_t *)&impl_46,
+            &afw_lmdb_self_s_propertyTypes,
+            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            &impl_47_meta_path
+        }
+    },
+    &impl_47_properties[0]
+};
+
+static const afw_value_object_t
+impl_47__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_47
+};
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits
+ */
+
+static const afw_runtime_property_t
+impl_46_property_allowEntity = {
+    afw_lmdb_v_allowEntity,
+    &afw_lmdb_boolean_self_v_false.pub
+};
+
+static const afw_value_t *
+impl_46_list_collectionURIs_values[] = {
+    afw_lmdb_v_zz___afw__AdaptiveCollection__lmdb_extension
+};
+
+static const afw_value_array_t
+impl_46_list_collectionURIs__value;
+
+static const afw_array_from_values_self_t
+impl_46_list_collectionURIs = {
+    {
+        &afw_array_permanent_from_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_46_list_collectionURIs__value
+    },
+    &afw_data_type_string_direct,
+    1,
+    impl_46_list_collectionURIs_values
+};
+
+static const afw_value_array_t
+impl_46_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_46_list_collectionURIs
+};
+
+static const afw_runtime_property_t
+impl_46_property_collectionURIs = {
+    afw_lmdb_v_collectionURIs,
+    (const afw_value_t *)&impl_46_list_collectionURIs__value
+};
+
+static const afw_runtime_property_t
+impl_46_property_description = {
+    afw_lmdb_v_description,
+    &afw_lmdb_self_v_zz__ab8ad429a208.pub
+};
+
+static const afw_runtime_property_t
+impl_46_property_objectType = {
+    afw_lmdb_v_objectType,
+    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits.pub
+};
+
+static const afw_value_object_t
+impl_46_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_47
+};
+
+static const afw_runtime_property_t
+impl_46_property_propertyTypes = {
+    afw_lmdb_v_propertyTypes,
+    &impl_46_property_value_propertyTypes.pub
 };
 
 static const afw_runtime_property_t *
 impl_46_properties[] = {
-    &impl_46_property_hard,
-    &impl_46_property_soft,
+    &impl_46_property_allowEntity,
+    &impl_46_property_collectionURIs,
+    &impl_46_property_description,
+    &impl_46_property_objectType,
+    &impl_46_property_propertyTypes,
     NULL
 };
 
@@ -5211,7 +5503,7 @@ impl_46_meta_object__value = {
 
 static const afw_utf8_t
 impl_46_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size/propertyTypes");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits");
 
 static const afw_value_object_t
 impl_46__value;
@@ -5219,14 +5511,14 @@ impl_46__value;
 static const afw_runtime_const_object_instance_t
 impl_46 = {
     {
-        &afw_runtime_inf_const_embedded_untyped_object,
+        &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
         (const afw_value_t *)&impl_46__value,
         {
             (const afw_object_t *)&impl_46_meta_object,
-            (const afw_object_t *)&impl_45,
-            &afw_lmdb_self_s_propertyTypes,
-            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            NULL,
+            &afw_lmdb_self_s__AdaptiveConf_adapter_lmdb_limits,
+            &afw_lmdb_self_s__AdaptiveObjectType_,
             &impl_46_meta_path
         }
     },
@@ -5239,247 +5531,17 @@ impl_46__value = {
     (const afw_object_t *)&impl_46
 };
 
-/*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size
- */
-
-static const afw_runtime_property_t
-impl_45_property_allowEntity = {
-    afw_lmdb_v_allowEntity,
-    &afw_lmdb_boolean_self_v_false.pub
-};
-
-static const afw_value_t *
-impl_45_list_collectionURIs_values[] = {
-    afw_lmdb_v_zz___afw__AdaptiveCollection__lmdb_extension
-};
-
-static const afw_value_array_t
-impl_45_list_collectionURIs__value;
-
-static const afw_array_from_values_self_t
-impl_45_list_collectionURIs = {
-    {
-        &afw_array_permanent_from_values_inf,
-        NULL,
-        (const afw_value_t *)&impl_45_list_collectionURIs__value
-    },
-    &afw_data_type_string_direct,
-    1,
-    impl_45_list_collectionURIs_values
-};
-
-static const afw_value_array_t
-impl_45_list_collectionURIs__value = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_45_list_collectionURIs
-};
-
-static const afw_runtime_property_t
-impl_45_property_collectionURIs = {
-    afw_lmdb_v_collectionURIs,
-    (const afw_value_t *)&impl_45_list_collectionURIs__value
-};
-
-static const afw_runtime_property_t
-impl_45_property_description = {
-    afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__d02ea7eb5c7d.pub
-};
-
-static const afw_runtime_property_t
-impl_45_property_objectType = {
-    afw_lmdb_v_objectType,
-    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits_size.pub
-};
-
-static const afw_value_object_t
-impl_45_property_value_propertyTypes = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_46
-};
-
-static const afw_runtime_property_t
-impl_45_property_propertyTypes = {
-    afw_lmdb_v_propertyTypes,
-    &impl_45_property_value_propertyTypes.pub
-};
-
-static const afw_runtime_property_t *
-impl_45_properties[] = {
-    &impl_45_property_allowEntity,
-    &impl_45_property_collectionURIs,
-    &impl_45_property_description,
-    &impl_45_property_objectType,
-    &impl_45_property_propertyTypes,
-    NULL
-};
-
-static const afw_value_object_t
-impl_45_meta_object__value;
-
-static const afw_runtime_const_object_meta_object_t
-impl_45_meta_object = {
-    {
-        &afw_runtime_inf_const_meta_object_inf,
-        NULL,
-        (const afw_value_t *)&impl_45_meta_object__value
-    },
-    &impl_45,
-    NULL
-};
-
-static const afw_value_object_t
-impl_45_meta_object__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_45_meta_object
-};
-
-static const afw_utf8_t
-impl_45_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size");
-
-static const afw_value_object_t
-impl_45__value;
-
-static const afw_runtime_const_object_instance_t
-impl_45 = {
-    {
-        &afw_runtime_inf__AdaptiveObjectType_,
-        NULL,
-        (const afw_value_t *)&impl_45__value,
-        {
-            (const afw_object_t *)&impl_45_meta_object,
-            NULL,
-            &afw_lmdb_self_s__AdaptiveConf_adapter_lmdb_limits_size,
-            &afw_lmdb_self_s__AdaptiveObjectType_,
-            &impl_45_meta_path
-        }
-    },
-    &impl_45_properties[0]
-};
-
-static const afw_value_object_t
-impl_45__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_45
-};
-
-static const afw_runtime_const_object_instance_t
-impl_49;
-
 static const afw_runtime_const_object_instance_t
 impl_50;
 
 static const afw_runtime_const_object_instance_t
 impl_51;
 
-/*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time/propertyTypes/hard
- */
-
-static const afw_runtime_property_t
-impl_51_property_allowQuery = {
-    afw_lmdb_v_allowQuery,
-    &afw_lmdb_boolean_self_v_false.pub
-};
-
-static const afw_runtime_property_t
-impl_51_property_dataType = {
-    afw_lmdb_v_dataType,
-    &afw_lmdb_self_v_integer.pub
-};
-
-static const afw_runtime_property_t
-impl_51_property_description = {
-    afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__Hard_time_limit_for_requests_.pub
-};
-
-static const afw_runtime_property_t
-impl_51_property_label = {
-    afw_lmdb_v_label,
-    &afw_lmdb_self_v_zz__Hard_Limit.pub
-};
-
-static const afw_runtime_property_t
-impl_51_property_required = {
-    afw_lmdb_v_required,
-    &afw_lmdb_boolean_self_v_true.pub
-};
-
-static const afw_runtime_property_t
-impl_51_property_unique = {
-    afw_lmdb_v_unique,
-    &afw_lmdb_boolean_self_v_false.pub
-};
-
-static const afw_runtime_property_t *
-impl_51_properties[] = {
-    &impl_51_property_allowQuery,
-    &impl_51_property_dataType,
-    &impl_51_property_description,
-    &impl_51_property_label,
-    &impl_51_property_required,
-    &impl_51_property_unique,
-    NULL
-};
-
-static const afw_value_object_t
-impl_51_meta_object__value;
-
-static const afw_runtime_const_object_meta_object_t
-impl_51_meta_object = {
-    {
-        &afw_runtime_inf_const_meta_object_inf,
-        NULL,
-        (const afw_value_t *)&impl_51_meta_object__value
-    },
-    &impl_51,
-    NULL
-};
-
-static const afw_value_object_t
-impl_51_meta_object__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_51_meta_object
-};
-
-static const afw_utf8_t
-impl_51_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time/propertyTypes/hard");
-
-static const afw_value_object_t
-impl_51__value;
-
-static const afw_runtime_const_object_instance_t
-impl_51 = {
-    {
-        &afw_runtime_inf_const_embedded_untyped_object,
-        NULL,
-        (const afw_value_t *)&impl_51__value,
-        {
-            (const afw_object_t *)&impl_51_meta_object,
-            (const afw_object_t *)&impl_50,
-            &afw_lmdb_self_s_hard,
-            &afw_lmdb_self_s__AdaptiveValueMeta_,
-            &impl_51_meta_path
-        }
-    },
-    &impl_51_properties[0]
-};
-
-static const afw_value_object_t
-impl_51__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_51
-};
-
 static const afw_runtime_const_object_instance_t
 impl_52;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time/propertyTypes/soft
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size/propertyTypes/hard
  */
 
 static const afw_runtime_property_t
@@ -5497,13 +5559,13 @@ impl_52_property_dataType = {
 static const afw_runtime_property_t
 impl_52_property_description = {
     afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__Soft_time_limit_for_requests_.pub
+    &afw_lmdb_self_v_zz__Hard_size_limit_for_requests_.pub
 };
 
 static const afw_runtime_property_t
 impl_52_property_label = {
     afw_lmdb_v_label,
-    &afw_lmdb_self_v_zz__Soft_Limit.pub
+    &afw_lmdb_self_v_zz__Hard_Limit.pub
 };
 
 static const afw_runtime_property_t
@@ -5551,7 +5613,7 @@ impl_52_meta_object__value = {
 
 static const afw_utf8_t
 impl_52_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time/propertyTypes/soft");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size/propertyTypes/hard");
 
 static const afw_value_object_t
 impl_52__value;
@@ -5564,8 +5626,8 @@ impl_52 = {
         (const afw_value_t *)&impl_52__value,
         {
             (const afw_object_t *)&impl_52_meta_object,
-            (const afw_object_t *)&impl_50,
-            &afw_lmdb_self_s_soft,
+            (const afw_object_t *)&impl_51,
+            &afw_lmdb_self_s_hard,
             &afw_lmdb_self_s__AdaptiveValueMeta_,
             &impl_52_meta_path
         }
@@ -5579,247 +5641,57 @@ impl_52__value = {
     (const afw_object_t *)&impl_52
 };
 
-/*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time/propertyTypes
- */
-
-static const afw_value_object_t
-impl_50_property_value_hard = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_51
-};
-
-static const afw_runtime_property_t
-impl_50_property_hard = {
-    afw_lmdb_v_hard,
-    &impl_50_property_value_hard.pub
-};
-
-static const afw_value_object_t
-impl_50_property_value_soft = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_52
-};
-
-static const afw_runtime_property_t
-impl_50_property_soft = {
-    afw_lmdb_v_soft,
-    &impl_50_property_value_soft.pub
-};
-
-static const afw_runtime_property_t *
-impl_50_properties[] = {
-    &impl_50_property_hard,
-    &impl_50_property_soft,
-    NULL
-};
-
-static const afw_value_object_t
-impl_50_meta_object__value;
-
-static const afw_runtime_const_object_meta_object_t
-impl_50_meta_object = {
-    {
-        &afw_runtime_inf_const_meta_object_inf,
-        NULL,
-        (const afw_value_t *)&impl_50_meta_object__value
-    },
-    &impl_50,
-    NULL
-};
-
-static const afw_value_object_t
-impl_50_meta_object__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_50_meta_object
-};
-
-static const afw_utf8_t
-impl_50_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time/propertyTypes");
-
-static const afw_value_object_t
-impl_50__value;
-
-static const afw_runtime_const_object_instance_t
-impl_50 = {
-    {
-        &afw_runtime_inf_const_embedded_untyped_object,
-        NULL,
-        (const afw_value_t *)&impl_50__value,
-        {
-            (const afw_object_t *)&impl_50_meta_object,
-            (const afw_object_t *)&impl_49,
-            &afw_lmdb_self_s_propertyTypes,
-            &afw_lmdb_self_s__AdaptivePropertyTypes_,
-            &impl_50_meta_path
-        }
-    },
-    &impl_50_properties[0]
-};
-
-static const afw_value_object_t
-impl_50__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_50
-};
-
-/*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time
- */
-
-static const afw_runtime_property_t
-impl_49_property_allowEntity = {
-    afw_lmdb_v_allowEntity,
-    &afw_lmdb_boolean_self_v_false.pub
-};
-
-static const afw_value_t *
-impl_49_list_collectionURIs_values[] = {
-    afw_lmdb_v_zz___afw__AdaptiveCollection__lmdb_extension
-};
-
-static const afw_value_array_t
-impl_49_list_collectionURIs__value;
-
-static const afw_array_from_values_self_t
-impl_49_list_collectionURIs = {
-    {
-        &afw_array_permanent_from_values_inf,
-        NULL,
-        (const afw_value_t *)&impl_49_list_collectionURIs__value
-    },
-    &afw_data_type_string_direct,
-    1,
-    impl_49_list_collectionURIs_values
-};
-
-static const afw_value_array_t
-impl_49_list_collectionURIs__value = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_49_list_collectionURIs
-};
-
-static const afw_runtime_property_t
-impl_49_property_collectionURIs = {
-    afw_lmdb_v_collectionURIs,
-    (const afw_value_t *)&impl_49_list_collectionURIs__value
-};
-
-static const afw_runtime_property_t
-impl_49_property_description = {
-    afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__55da2eab2841.pub
-};
-
-static const afw_runtime_property_t
-impl_49_property_objectType = {
-    afw_lmdb_v_objectType,
-    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits_time.pub
-};
-
-static const afw_value_object_t
-impl_49_property_value_propertyTypes = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_50
-};
-
-static const afw_runtime_property_t
-impl_49_property_propertyTypes = {
-    afw_lmdb_v_propertyTypes,
-    &impl_49_property_value_propertyTypes.pub
-};
-
-static const afw_runtime_property_t *
-impl_49_properties[] = {
-    &impl_49_property_allowEntity,
-    &impl_49_property_collectionURIs,
-    &impl_49_property_description,
-    &impl_49_property_objectType,
-    &impl_49_property_propertyTypes,
-    NULL
-};
-
-static const afw_value_object_t
-impl_49_meta_object__value;
-
-static const afw_runtime_const_object_meta_object_t
-impl_49_meta_object = {
-    {
-        &afw_runtime_inf_const_meta_object_inf,
-        NULL,
-        (const afw_value_t *)&impl_49_meta_object__value
-    },
-    &impl_49,
-    NULL
-};
-
-static const afw_value_object_t
-impl_49_meta_object__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_49_meta_object
-};
-
-static const afw_utf8_t
-impl_49_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time");
-
-static const afw_value_object_t
-impl_49__value;
-
-static const afw_runtime_const_object_instance_t
-impl_49 = {
-    {
-        &afw_runtime_inf__AdaptiveObjectType_,
-        NULL,
-        (const afw_value_t *)&impl_49__value,
-        {
-            (const afw_object_t *)&impl_49_meta_object,
-            NULL,
-            &afw_lmdb_self_s__AdaptiveConf_adapter_lmdb_limits_time,
-            &afw_lmdb_self_s__AdaptiveObjectType_,
-            &impl_49_meta_path
-        }
-    },
-    &impl_49_properties[0]
-};
-
-static const afw_value_object_t
-impl_49__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_49
-};
-
 static const afw_runtime_const_object_instance_t
 impl_53;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/lmdb
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size/propertyTypes/soft
  */
 
 static const afw_runtime_property_t
-impl_53_property_brief = {
-    afw_lmdb_v_brief,
-    &afw_lmdb_self_v_zz__Lightning_Memory_Mapped_Database__LMDB__functions_.pub
+impl_53_property_allowQuery = {
+    afw_lmdb_v_allowQuery,
+    &afw_lmdb_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
-impl_53_property_category = {
-    afw_lmdb_v_category,
-    &afw_lmdb_self_v_lmdb.pub
+impl_53_property_dataType = {
+    afw_lmdb_v_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
 static const afw_runtime_property_t
 impl_53_property_description = {
     afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__2fcf2b562f4d.pub
+    &afw_lmdb_self_v_zz__Soft_size_limit_for_requests_.pub
+};
+
+static const afw_runtime_property_t
+impl_53_property_label = {
+    afw_lmdb_v_label,
+    &afw_lmdb_self_v_zz__Soft_Limit.pub
+};
+
+static const afw_runtime_property_t
+impl_53_property_required = {
+    afw_lmdb_v_required,
+    &afw_lmdb_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_53_property_unique = {
+    afw_lmdb_v_unique,
+    &afw_lmdb_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
 impl_53_properties[] = {
-    &impl_53_property_brief,
-    &impl_53_property_category,
+    &impl_53_property_allowQuery,
+    &impl_53_property_dataType,
     &impl_53_property_description,
+    &impl_53_property_label,
+    &impl_53_property_required,
+    &impl_53_property_unique,
     NULL
 };
 
@@ -5845,7 +5717,7 @@ impl_53_meta_object__value = {
 
 static const afw_utf8_t
 impl_53_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/lmdb");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size/propertyTypes/soft");
 
 static const afw_value_object_t
 impl_53__value;
@@ -5853,14 +5725,14 @@ impl_53__value;
 static const afw_runtime_const_object_instance_t
 impl_53 = {
     {
-        &afw_runtime_inf__AdaptiveFunctionCategory_,
+        &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
         (const afw_value_t *)&impl_53__value,
         {
             (const afw_object_t *)&impl_53_meta_object,
-            NULL,
-            &afw_lmdb_self_s_lmdb,
-            &afw_lmdb_self_s__AdaptiveFunctionCategory_,
+            (const afw_object_t *)&impl_51,
+            &afw_lmdb_self_s_soft,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
             &impl_53_meta_path
         }
     },
@@ -5873,29 +5745,589 @@ impl_53__value = {
     (const afw_object_t *)&impl_53
 };
 
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size/propertyTypes
+ */
+
+static const afw_value_object_t
+impl_51_property_value_hard = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_52
+};
+
+static const afw_runtime_property_t
+impl_51_property_hard = {
+    afw_lmdb_v_hard,
+    &impl_51_property_value_hard.pub
+};
+
+static const afw_value_object_t
+impl_51_property_value_soft = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_53
+};
+
+static const afw_runtime_property_t
+impl_51_property_soft = {
+    afw_lmdb_v_soft,
+    &impl_51_property_value_soft.pub
+};
+
+static const afw_runtime_property_t *
+impl_51_properties[] = {
+    &impl_51_property_hard,
+    &impl_51_property_soft,
+    NULL
+};
+
+static const afw_value_object_t
+impl_51_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_51_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_51_meta_object__value
+    },
+    &impl_51,
+    NULL
+};
+
+static const afw_value_object_t
+impl_51_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_51_meta_object
+};
+
+static const afw_utf8_t
+impl_51_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size/propertyTypes");
+
+static const afw_value_object_t
+impl_51__value;
+
+static const afw_runtime_const_object_instance_t
+impl_51 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_51__value,
+        {
+            (const afw_object_t *)&impl_51_meta_object,
+            (const afw_object_t *)&impl_50,
+            &afw_lmdb_self_s_propertyTypes,
+            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            &impl_51_meta_path
+        }
+    },
+    &impl_51_properties[0]
+};
+
+static const afw_value_object_t
+impl_51__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_51
+};
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size
+ */
+
+static const afw_runtime_property_t
+impl_50_property_allowEntity = {
+    afw_lmdb_v_allowEntity,
+    &afw_lmdb_boolean_self_v_false.pub
+};
+
+static const afw_value_t *
+impl_50_list_collectionURIs_values[] = {
+    afw_lmdb_v_zz___afw__AdaptiveCollection__lmdb_extension
+};
+
+static const afw_value_array_t
+impl_50_list_collectionURIs__value;
+
+static const afw_array_from_values_self_t
+impl_50_list_collectionURIs = {
+    {
+        &afw_array_permanent_from_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_50_list_collectionURIs__value
+    },
+    &afw_data_type_string_direct,
+    1,
+    impl_50_list_collectionURIs_values
+};
+
+static const afw_value_array_t
+impl_50_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_50_list_collectionURIs
+};
+
+static const afw_runtime_property_t
+impl_50_property_collectionURIs = {
+    afw_lmdb_v_collectionURIs,
+    (const afw_value_t *)&impl_50_list_collectionURIs__value
+};
+
+static const afw_runtime_property_t
+impl_50_property_description = {
+    afw_lmdb_v_description,
+    &afw_lmdb_self_v_zz__d02ea7eb5c7d.pub
+};
+
+static const afw_runtime_property_t
+impl_50_property_objectType = {
+    afw_lmdb_v_objectType,
+    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits_size.pub
+};
+
+static const afw_value_object_t
+impl_50_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_51
+};
+
+static const afw_runtime_property_t
+impl_50_property_propertyTypes = {
+    afw_lmdb_v_propertyTypes,
+    &impl_50_property_value_propertyTypes.pub
+};
+
+static const afw_runtime_property_t *
+impl_50_properties[] = {
+    &impl_50_property_allowEntity,
+    &impl_50_property_collectionURIs,
+    &impl_50_property_description,
+    &impl_50_property_objectType,
+    &impl_50_property_propertyTypes,
+    NULL
+};
+
+static const afw_value_object_t
+impl_50_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_50_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_50_meta_object__value
+    },
+    &impl_50,
+    NULL
+};
+
+static const afw_value_object_t
+impl_50_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_50_meta_object
+};
+
+static const afw_utf8_t
+impl_50_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size");
+
+static const afw_value_object_t
+impl_50__value;
+
+static const afw_runtime_const_object_instance_t
+impl_50 = {
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_50__value,
+        {
+            (const afw_object_t *)&impl_50_meta_object,
+            NULL,
+            &afw_lmdb_self_s__AdaptiveConf_adapter_lmdb_limits_size,
+            &afw_lmdb_self_s__AdaptiveObjectType_,
+            &impl_50_meta_path
+        }
+    },
+    &impl_50_properties[0]
+};
+
+static const afw_value_object_t
+impl_50__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_50
+};
+
 static const afw_runtime_const_object_instance_t
 impl_54;
 
+static const afw_runtime_const_object_instance_t
+impl_55;
+
+static const afw_runtime_const_object_instance_t
+impl_56;
+
 /*
- * /afw/_AdaptiveCollection_/lmdb_extension
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time/propertyTypes/hard
  */
+
+static const afw_runtime_property_t
+impl_56_property_allowQuery = {
+    afw_lmdb_v_allowQuery,
+    &afw_lmdb_boolean_self_v_false.pub
+};
+
+static const afw_runtime_property_t
+impl_56_property_dataType = {
+    afw_lmdb_v_dataType,
+    &afw_lmdb_self_v_integer.pub
+};
+
+static const afw_runtime_property_t
+impl_56_property_description = {
+    afw_lmdb_v_description,
+    &afw_lmdb_self_v_zz__Hard_time_limit_for_requests_.pub
+};
+
+static const afw_runtime_property_t
+impl_56_property_label = {
+    afw_lmdb_v_label,
+    &afw_lmdb_self_v_zz__Hard_Limit.pub
+};
+
+static const afw_runtime_property_t
+impl_56_property_required = {
+    afw_lmdb_v_required,
+    &afw_lmdb_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_56_property_unique = {
+    afw_lmdb_v_unique,
+    &afw_lmdb_boolean_self_v_false.pub
+};
+
+static const afw_runtime_property_t *
+impl_56_properties[] = {
+    &impl_56_property_allowQuery,
+    &impl_56_property_dataType,
+    &impl_56_property_description,
+    &impl_56_property_label,
+    &impl_56_property_required,
+    &impl_56_property_unique,
+    NULL
+};
+
+static const afw_value_object_t
+impl_56_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_56_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_56_meta_object__value
+    },
+    &impl_56,
+    NULL
+};
+
+static const afw_value_object_t
+impl_56_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_56_meta_object
+};
+
+static const afw_utf8_t
+impl_56_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time/propertyTypes/hard");
+
+static const afw_value_object_t
+impl_56__value;
+
+static const afw_runtime_const_object_instance_t
+impl_56 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_56__value,
+        {
+            (const afw_object_t *)&impl_56_meta_object,
+            (const afw_object_t *)&impl_55,
+            &afw_lmdb_self_s_hard,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_56_meta_path
+        }
+    },
+    &impl_56_properties[0]
+};
+
+static const afw_value_object_t
+impl_56__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_56
+};
+
+static const afw_runtime_const_object_instance_t
+impl_57;
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time/propertyTypes/soft
+ */
+
+static const afw_runtime_property_t
+impl_57_property_allowQuery = {
+    afw_lmdb_v_allowQuery,
+    &afw_lmdb_boolean_self_v_false.pub
+};
+
+static const afw_runtime_property_t
+impl_57_property_dataType = {
+    afw_lmdb_v_dataType,
+    &afw_lmdb_self_v_integer.pub
+};
+
+static const afw_runtime_property_t
+impl_57_property_description = {
+    afw_lmdb_v_description,
+    &afw_lmdb_self_v_zz__Soft_time_limit_for_requests_.pub
+};
+
+static const afw_runtime_property_t
+impl_57_property_label = {
+    afw_lmdb_v_label,
+    &afw_lmdb_self_v_zz__Soft_Limit.pub
+};
+
+static const afw_runtime_property_t
+impl_57_property_required = {
+    afw_lmdb_v_required,
+    &afw_lmdb_boolean_self_v_true.pub
+};
+
+static const afw_runtime_property_t
+impl_57_property_unique = {
+    afw_lmdb_v_unique,
+    &afw_lmdb_boolean_self_v_false.pub
+};
+
+static const afw_runtime_property_t *
+impl_57_properties[] = {
+    &impl_57_property_allowQuery,
+    &impl_57_property_dataType,
+    &impl_57_property_description,
+    &impl_57_property_label,
+    &impl_57_property_required,
+    &impl_57_property_unique,
+    NULL
+};
+
+static const afw_value_object_t
+impl_57_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_57_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_57_meta_object__value
+    },
+    &impl_57,
+    NULL
+};
+
+static const afw_value_object_t
+impl_57_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_57_meta_object
+};
+
+static const afw_utf8_t
+impl_57_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time/propertyTypes/soft");
+
+static const afw_value_object_t
+impl_57__value;
+
+static const afw_runtime_const_object_instance_t
+impl_57 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_57__value,
+        {
+            (const afw_object_t *)&impl_57_meta_object,
+            (const afw_object_t *)&impl_55,
+            &afw_lmdb_self_s_soft,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_57_meta_path
+        }
+    },
+    &impl_57_properties[0]
+};
+
+static const afw_value_object_t
+impl_57__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_57
+};
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time/propertyTypes
+ */
+
+static const afw_value_object_t
+impl_55_property_value_hard = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_56
+};
+
+static const afw_runtime_property_t
+impl_55_property_hard = {
+    afw_lmdb_v_hard,
+    &impl_55_property_value_hard.pub
+};
+
+static const afw_value_object_t
+impl_55_property_value_soft = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_57
+};
+
+static const afw_runtime_property_t
+impl_55_property_soft = {
+    afw_lmdb_v_soft,
+    &impl_55_property_value_soft.pub
+};
+
+static const afw_runtime_property_t *
+impl_55_properties[] = {
+    &impl_55_property_hard,
+    &impl_55_property_soft,
+    NULL
+};
+
+static const afw_value_object_t
+impl_55_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_55_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_55_meta_object__value
+    },
+    &impl_55,
+    NULL
+};
+
+static const afw_value_object_t
+impl_55_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_55_meta_object
+};
+
+static const afw_utf8_t
+impl_55_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time/propertyTypes");
+
+static const afw_value_object_t
+impl_55__value;
+
+static const afw_runtime_const_object_instance_t
+impl_55 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_55__value,
+        {
+            (const afw_object_t *)&impl_55_meta_object,
+            (const afw_object_t *)&impl_54,
+            &afw_lmdb_self_s_propertyTypes,
+            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            &impl_55_meta_path
+        }
+    },
+    &impl_55_properties[0]
+};
+
+static const afw_value_object_t
+impl_55__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_55
+};
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time
+ */
+
+static const afw_runtime_property_t
+impl_54_property_allowEntity = {
+    afw_lmdb_v_allowEntity,
+    &afw_lmdb_boolean_self_v_false.pub
+};
+
+static const afw_value_t *
+impl_54_list_collectionURIs_values[] = {
+    afw_lmdb_v_zz___afw__AdaptiveCollection__lmdb_extension
+};
+
+static const afw_value_array_t
+impl_54_list_collectionURIs__value;
+
+static const afw_array_from_values_self_t
+impl_54_list_collectionURIs = {
+    {
+        &afw_array_permanent_from_values_inf,
+        NULL,
+        (const afw_value_t *)&impl_54_list_collectionURIs__value
+    },
+    &afw_data_type_string_direct,
+    1,
+    impl_54_list_collectionURIs_values
+};
+
+static const afw_value_array_t
+impl_54_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_54_list_collectionURIs
+};
+
+static const afw_runtime_property_t
+impl_54_property_collectionURIs = {
+    afw_lmdb_v_collectionURIs,
+    (const afw_value_t *)&impl_54_list_collectionURIs__value
+};
 
 static const afw_runtime_property_t
 impl_54_property_description = {
     afw_lmdb_v_description,
-    &afw_lmdb_self_v_zz__Adaptive_Framework_LMDB_extension_collection_.pub
+    &afw_lmdb_self_v_zz__55da2eab2841.pub
 };
 
 static const afw_runtime_property_t
-impl_54_property_objectId = {
-    afw_lmdb_v_objectId,
-    &afw_lmdb_self_v_lmdb_extension.pub
+impl_54_property_objectType = {
+    afw_lmdb_v_objectType,
+    &afw_lmdb_self_v__AdaptiveConf_adapter_lmdb_limits_time.pub
+};
+
+static const afw_value_object_t
+impl_54_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_55
+};
+
+static const afw_runtime_property_t
+impl_54_property_propertyTypes = {
+    afw_lmdb_v_propertyTypes,
+    &impl_54_property_value_propertyTypes.pub
 };
 
 static const afw_runtime_property_t *
 impl_54_properties[] = {
+    &impl_54_property_allowEntity,
+    &impl_54_property_collectionURIs,
     &impl_54_property_description,
-    &impl_54_property_objectId,
+    &impl_54_property_objectType,
+    &impl_54_property_propertyTypes,
     NULL
 };
 
@@ -5921,7 +6353,7 @@ impl_54_meta_object__value = {
 
 static const afw_utf8_t
 impl_54_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time");
 
 static const afw_value_object_t
 impl_54__value;
@@ -5929,14 +6361,14 @@ impl_54__value;
 static const afw_runtime_const_object_instance_t
 impl_54 = {
     {
-        &afw_runtime_inf__AdaptiveCollection_,
+        &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
         (const afw_value_t *)&impl_54__value,
         {
             (const afw_object_t *)&impl_54_meta_object,
             NULL,
-            &afw_lmdb_self_s_lmdb_extension,
-            &afw_lmdb_self_s__AdaptiveCollection_,
+            &afw_lmdb_self_s__AdaptiveConf_adapter_lmdb_limits_time,
+            &afw_lmdb_self_s__AdaptiveObjectType_,
             &impl_54_meta_path
         }
     },
@@ -5949,6 +6381,165 @@ impl_54__value = {
     (const afw_object_t *)&impl_54
 };
 
+static const afw_runtime_const_object_instance_t
+impl_58;
+
+/*
+ * /afw/_AdaptiveFunctionCategory_/lmdb
+ */
+
+static const afw_runtime_property_t
+impl_58_property_brief = {
+    afw_lmdb_v_brief,
+    &afw_lmdb_self_v_zz__Lightning_Memory_Mapped_Database__LMDB__functions_.pub
+};
+
+static const afw_runtime_property_t
+impl_58_property_category = {
+    afw_lmdb_v_category,
+    &afw_lmdb_self_v_lmdb.pub
+};
+
+static const afw_runtime_property_t
+impl_58_property_description = {
+    afw_lmdb_v_description,
+    &afw_lmdb_self_v_zz__2fcf2b562f4d.pub
+};
+
+static const afw_runtime_property_t *
+impl_58_properties[] = {
+    &impl_58_property_brief,
+    &impl_58_property_category,
+    &impl_58_property_description,
+    NULL
+};
+
+static const afw_value_object_t
+impl_58_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_58_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_58_meta_object__value
+    },
+    &impl_58,
+    NULL
+};
+
+static const afw_value_object_t
+impl_58_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_58_meta_object
+};
+
+static const afw_utf8_t
+impl_58_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/lmdb");
+
+static const afw_value_object_t
+impl_58__value;
+
+static const afw_runtime_const_object_instance_t
+impl_58 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionCategory_,
+        NULL,
+        (const afw_value_t *)&impl_58__value,
+        {
+            (const afw_object_t *)&impl_58_meta_object,
+            NULL,
+            &afw_lmdb_self_s_lmdb,
+            &afw_lmdb_self_s__AdaptiveFunctionCategory_,
+            &impl_58_meta_path
+        }
+    },
+    &impl_58_properties[0]
+};
+
+static const afw_value_object_t
+impl_58__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_58
+};
+
+static const afw_runtime_const_object_instance_t
+impl_59;
+
+/*
+ * /afw/_AdaptiveCollection_/lmdb_extension
+ */
+
+static const afw_runtime_property_t
+impl_59_property_description = {
+    afw_lmdb_v_description,
+    &afw_lmdb_self_v_zz__Adaptive_Framework_LMDB_extension_collection_.pub
+};
+
+static const afw_runtime_property_t
+impl_59_property_objectId = {
+    afw_lmdb_v_objectId,
+    &afw_lmdb_self_v_lmdb_extension.pub
+};
+
+static const afw_runtime_property_t *
+impl_59_properties[] = {
+    &impl_59_property_description,
+    &impl_59_property_objectId,
+    NULL
+};
+
+static const afw_value_object_t
+impl_59_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_59_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_59_meta_object__value
+    },
+    &impl_59,
+    NULL
+};
+
+static const afw_value_object_t
+impl_59_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_59_meta_object
+};
+
+static const afw_utf8_t
+impl_59_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension");
+
+static const afw_value_object_t
+impl_59__value;
+
+static const afw_runtime_const_object_instance_t
+impl_59 = {
+    {
+        &afw_runtime_inf__AdaptiveCollection_,
+        NULL,
+        (const afw_value_t *)&impl_59__value,
+        {
+            (const afw_object_t *)&impl_59_meta_object,
+            NULL,
+            &afw_lmdb_self_s_lmdb_extension,
+            &afw_lmdb_self_s__AdaptiveCollection_,
+            &impl_59_meta_path
+        }
+    },
+    &impl_59_properties[0]
+};
+
+static const afw_value_object_t
+impl_59__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_59
+};
+
 /* NULL terminated list of objects. */
 static const afw_object_t *
 impl_const_objects[] = {
@@ -5958,12 +6549,13 @@ impl_const_objects[] = {
     (const afw_object_t *)&impl_22,
     (const afw_object_t *)&impl_24,
     (const afw_object_t *)&impl_30,
-    (const afw_object_t *)&impl_34,
-    (const afw_object_t *)&impl_41,
-    (const afw_object_t *)&impl_45,
-    (const afw_object_t *)&impl_49,
-    (const afw_object_t *)&impl_53,
+    (const afw_object_t *)&impl_35,
+    (const afw_object_t *)&impl_42,
+    (const afw_object_t *)&impl_46,
+    (const afw_object_t *)&impl_50,
     (const afw_object_t *)&impl_54,
+    (const afw_object_t *)&impl_58,
+    (const afw_object_t *)&impl_59,
     NULL
 };
 
