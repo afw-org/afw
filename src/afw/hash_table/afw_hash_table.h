@@ -126,8 +126,7 @@ afw_hash_table_create_impl(
 /**
  * @brief Get the value for key, or NULL.
  * @param internal untyped header.
- * @param key bytes (not copied; not retained beyond the call
- *    except as the stored key pointer on a later set).
+ * @param key bytes to match.
  * @param klen length of key in bytes.
  * @return stored pointer, or NULL if absent.
  */

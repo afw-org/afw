@@ -58,6 +58,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | afwdev / tests | recipe + tests-extra SCHEMA; #157; C probes #207 |
 | Crypto | #74 pad |
 | Admin / Fiddle | atlas §16 (contract only) |
+| C vector / hash table | [`afw-vector.md`](afw-vector.md); [`afw-hash-table.md`](afw-hash-table.md) (LMDB `dbi_handles` left while #299) |
 
 ---
 
@@ -133,7 +134,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 |-------|---------|
 | **Settled map** | One subdirectory ≈ one concern; includes hierarchy; pools/xctx/errors patterns |
 | **Day rules** | `afw-core-layout`, `afw-c-runtime`, `afw-headers` |
-| **Deep pad** | — |
+| **Deep pad** | C containers: [`afw-vector.md`](afw-vector.md), [`afw-hash-table.md`](afw-hash-table.md) |
 | **Probe** | Open matching `src/afw/<module>/`; public API via `afw.h` / generated interface headers |
 | **Open** | Line-length soft preference (~80); no mass reformat |
 | **Gap** | Non-pool cleanup mantra (NULL + TRY/FINALLY) lives in rules + workspace MEMORY — already in `afw-c-runtime` |
