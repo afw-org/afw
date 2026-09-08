@@ -10,6 +10,7 @@
 #define __AFW_ENVIRONMENT_H__
 
 #include "afw_interface.h"
+#include "afw_hash_table.h"
 
 /**
  * @addtogroup afw_environment
@@ -381,7 +382,7 @@ struct afw_environment_registry_type_s {
     afw_boolean_t auto_register_specified;
 
     /* Hash table used to hold keyed values for this type. */
-    apr_hash_t *ht;
+    afw_void_hash_table_t *ht;
 
     /* Function to call for auto register or NULL. */
     afw_environment_auto_register_cb_t auto_register;

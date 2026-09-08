@@ -18,7 +18,7 @@
 
 typedef struct afw_yaml_parser_s {
     yaml_parser_t parser;
-    apr_hash_t *anchors;
+    afw_void_hash_table_t *anchors;
     afw_boolean_t docStarted;
     const afw_object_t *embedding_object;
     const afw_value_t *property_name;
@@ -342,17 +342,29 @@ const afw_value_t * afw_yaml_parse_value(
             case YAML_ANCHOR_TOKEN:
                 /* an anchor defines a value that can be later referenced */
                 value = afw_yaml_parse_value(parser, xctx);
-                apr_hash_set(parser->anchors, 
-                    apr_pstrdup(afw_pool_get_apr_pool(xctx->p),
-                        (const char *)token->data.anchor.value), 
-                    APR_HASH_KEY_STRING, value);
+                {
+                    const char *anchor_z;
+                    afw_size_t anchor_len;
+
+                    anchor_z = (const char *)token->data.anchor.value;
+                    anchor_len = strlen(anchor_z);
+                    afw_hash_table_set(parser->anchors,
+                        afw_memory_dup(anchor_z, anchor_len + 1,
+                            xctx->p, xctx),
+                        anchor_len, value, xctx);
+                }
 
                 break;
 
             case YAML_ALIAS_TOKEN:
                 /* an alias references an anchor */
-                value = apr_hash_get(parser->anchors, token->data.alias.value,
-                    APR_HASH_KEY_STRING);
+                {
+                    const char *alias_z;
+
+                    alias_z = (const char *)token->data.alias.value;
+                    value = afw_hash_table_get(parser->anchors, alias_z,
+                        strlen(alias_z));
+                }
                 if (value == NULL) {
                     AFW_THROW_ERROR_RV_FZ(general, yaml_token_type,
                         token->type, xctx,
@@ -431,7 +443,8 @@ impl_yaml_to_value(
         }
         parser_initialized = true;
 
-        parser.anchors = apr_hash_make(afw_pool_get_apr_pool(xctx->p));
+        parser.anchors = afw_hash_table_create(
+            afw_void_hash_table_t, xctx->p, xctx);
 
         yaml_parser_set_input_string(&parser.parser, yaml->ptr, yaml->size);
 

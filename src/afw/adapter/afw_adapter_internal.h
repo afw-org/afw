@@ -11,6 +11,7 @@
 
 #include "afw_interface.h"
 #include "afw_vector.h"
+#include "afw_hash_table.h"
 
 /**
  * @addtogroup afw_adapter_internal
@@ -38,7 +39,7 @@ struct afw_adapter_xctx_internal_s {
 
 struct afw_adapter_internal_session_cache_s {
     const afw_adapter_session_t *session;
-    apr_hash_t *object_types_ht;
+    afw_void_hash_table_t *object_types_ht;
 };
 
 
@@ -52,7 +53,7 @@ typedef struct afw_adapter_internal_transaction_p_vector_s
 
 
 struct afw_adapter_internal_cache_s {
-    apr_hash_t *session_cache;
+    afw_void_hash_table_t *session_cache;
     afw_adapter_internal_transaction_p_vector_t *transactions;
     const afw_adapter_session_t *runtime_adapter_session;
 };

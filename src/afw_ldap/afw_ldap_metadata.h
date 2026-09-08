@@ -21,6 +21,7 @@
 #include "afw_ldap.h"
 #include "afw_ldap_internal.h"
 #include "afw_data_type_typedefs.h"
+#include "afw_hash_table.h"
 
 
 #ifdef __cplusplus
@@ -72,31 +73,31 @@ struct afw_ldap_metadata_s {
     const afw_object_t *schema_object;
 
     /* An object for each attribute type. */
-    apr_hash_t *attribute_type_objects;
+    afw_void_hash_table_t *attribute_type_objects;
 
     /* An object for each syntax. */
-    apr_hash_t *ldap_syntax_objects;
+    afw_void_hash_table_t *ldap_syntax_objects;
 
     /* An object for each matching rule. */
-    apr_hash_t *matching_rule_objects;
+    afw_void_hash_table_t *matching_rule_objects;
 
     /* An object for each matching rule use. */
-    apr_hash_t *matching_rule_use_objects;
+    afw_void_hash_table_t *matching_rule_use_objects;
 
     /* An object for each object class. */
-    apr_hash_t *object_class_objects;
+    afw_void_hash_table_t *object_class_objects;
 
     /* An object for each value meta object. */
-    apr_hash_t *value_meta_objects;
+    afw_void_hash_table_t *value_meta_objects;
 
     /* An object for each object type. */
-    apr_hash_t *object_type_objects;
+    afw_void_hash_table_t *object_type_objects;
 
     /* First afw_ldap_object_type_attribute_t * for each object type. */
-    apr_hash_t *object_type_attributes;
+    afw_void_hash_table_t *object_type_attributes;
 
     /* An afw_ldap_metadata_attribute_type_t for each attributeType. */
-    apr_hash_t *attribute_types;
+    afw_void_hash_table_t *attribute_types;
 
 };
 

@@ -211,7 +211,7 @@ struct afw_compile_internal_shared_s {
      * Key is octets; value is const afw_value_string_t *. Use
      * afw_compile_get_string_literal().
      */
-    apr_hash_t *string_literals;
+    afw_void_hash_table_t *string_literals;
 
 };
 
@@ -498,7 +498,7 @@ struct afw_compile_internal_parser_s {
      * (a reference placeholder; resolved is the body).
      * NULL until first type/interface statement.
      */
-    apr_hash_t *script_type_names;
+    afw_void_hash_table_t *script_type_names;
 
     /**
      * While parsing a function/lambda body: declared return type (may be

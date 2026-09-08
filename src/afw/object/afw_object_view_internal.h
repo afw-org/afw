@@ -11,6 +11,7 @@
 
 #include "afw_interface.h"
 #include "afw_utf8.h"
+#include "afw_hash_table.h"
 
 /**
  * @addtogroup afw_object_view_internal
@@ -154,10 +155,10 @@ struct afw_object_view_internal_view_s {
     const afw_object_t *journal_entry;
 
     /** @brief Shared string values. */
-    apr_hash_t *string_values;
+    afw_void_hash_table_t *string_values;
 
     /** @brief Shared path values. */
-    apr_hash_t *path_values;
+    afw_void_hash_table_t *path_values;
 };
 
 AFW_END_DECLARES

@@ -1297,7 +1297,7 @@ afw_ldap_internal_syntax_handler_assign(
     const afw_utf8_t *x_nds_syntax;
 
     /* Determine syntax_handler based on syntax. */
-    ldap_syntax_object = apr_hash_get(metadata->ldap_syntax_objects,
+    ldap_syntax_object = afw_hash_table_get(metadata->ldap_syntax_objects,
         attribute_type->syntax_oid->s,
         attribute_type->syntax_oid->len);
     if (ldap_syntax_object) {

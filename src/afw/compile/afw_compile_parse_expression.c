@@ -966,7 +966,7 @@ impl_type_lookup_name(
     const afw_data_type_t *data_type;
 
     if (parser->script_type_names) {
-        type = apr_hash_get(parser->script_type_names,
+        type = afw_hash_table_get(parser->script_type_names,
             name->internal.s, name->internal.len);
         if (type) {
             return type;
@@ -993,17 +993,19 @@ afw_compile_script_type_register(
     const afw_value_type_t *type)
 {
     if (!parser->script_type_names) {
-        parser->script_type_names = apr_hash_make(parser->apr_p);
+        parser->script_type_names = afw_hash_table_create(
+            afw_void_hash_table_t, parser->p, parser->xctx);
     }
-    if (apr_hash_get(parser->script_type_names,
+    if (afw_hash_table_get(parser->script_type_names,
         name->internal.s, name->internal.len))
     {
         AFW_COMPILE_THROW_ERROR_FZ(
             "Type or interface " AFW_UTF8_FMT_Q " is already defined",
             AFW_UTF8_FMT_ARG(&name->internal));
     }
-    apr_hash_set(parser->script_type_names,
-        name->internal.s, name->internal.len, type);
+    afw_hash_table_set(parser->script_type_names,
+        name->internal.s, name->internal.len, type,
+        parser->xctx);
 }
 
 
@@ -1016,9 +1018,10 @@ afw_compile_script_type_reserve(
     afw_value_type_t *placeholder;
 
     if (!parser->script_type_names) {
-        parser->script_type_names = apr_hash_make(parser->apr_p);
+        parser->script_type_names = afw_hash_table_create(
+            afw_void_hash_table_t, parser->p, parser->xctx);
     }
-    if (apr_hash_get(parser->script_type_names,
+    if (afw_hash_table_get(parser->script_type_names,
         name->internal.s, name->internal.len))
     {
         AFW_COMPILE_THROW_ERROR_FZ(
@@ -1029,8 +1032,9 @@ afw_compile_script_type_reserve(
     placeholder->kind = afw_value_type_kind_reference;
     placeholder->reference.name = &name->internal;
     placeholder->reference.resolved = NULL;
-    apr_hash_set(parser->script_type_names,
-        name->internal.s, name->internal.len, placeholder);
+    afw_hash_table_set(parser->script_type_names,
+        name->internal.s, name->internal.len, placeholder,
+        parser->xctx);
     return placeholder;
 }
 
@@ -1116,9 +1120,9 @@ afw_compile_script_types_resolve(
 {
     const afw_value_type_t *def;
     const afw_value_type_t *stack[64];
-    apr_hash_index_t *hi;
+    afw_hash_table_index_t hi;
     const void *key;
-    apr_ssize_t klen;
+    afw_size_t klen;
     void *val;
     const afw_utf8_t *name;
     afw_utf8_t name_buf;
@@ -1127,11 +1131,10 @@ afw_compile_script_types_resolve(
         return;
     }
 
-    for (hi = apr_hash_first(parser->apr_p, parser->script_type_names);
-        hi;
-        hi = apr_hash_next(hi))
+    for (afw_hash_table_first(parser->script_type_names, &hi);
+        afw_hash_table_this(&hi, &key, &klen, &val);
+        afw_hash_table_next(&hi))
     {
-        apr_hash_this(hi, &key, &klen, &val);
         def = (const afw_value_type_t *)val;
         if (!def ||
             def->kind != afw_value_type_kind_reference ||

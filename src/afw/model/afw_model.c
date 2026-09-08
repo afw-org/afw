@@ -21,6 +21,6 @@ AFW_DEFINE(const afw_model_object_type_t *)
 afw_model_get_object_type(const afw_model_t *model,
     const afw_utf8_t *object_type_id, afw_xctx_t *xctx)
 {
-    return apr_hash_get(model->model_object_types,
+    return afw_hash_table_get(model->model_object_types,
         object_type_id->s, object_type_id->len);
 }

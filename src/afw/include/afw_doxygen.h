@@ -686,13 +686,25 @@
 /**
  * @defgroup afw_vector Vector
  *
- * C growable contiguous elements (apr_array replacement).
+ * C growable contiguous elements.
  *
  * Header stays put; entries points at the current chunk and may
  * move on grow. Declare a typed overlay with AFW_VECTOR_STRUCT so
  * push/index
  * are type-checked. Not an Adaptive array: no values, no meta, no
  * setter. Memory-array may sit on a vector later.
+ */
+
+/**
+ * @defgroup afw_hash_table Hash table
+ *
+ * C byte-key to pointer map.
+ *
+ * Header stays put; buckets may move on grow. Keys are not copied
+ * (caller keeps key memory alive). Set value NULL deletes. Declare
+ * a typed overlay with AFW_HASH_TABLE_STRUCT; get returns void *
+ * (assign to a typed pointer). Not an Adaptive object: no values,
+ * no meta, no get_reference.
  */
 
 /**

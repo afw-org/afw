@@ -271,9 +271,9 @@ afw_ldap_internal_create_object_from_entry(
     if (self->adapter->metadata &&
         self->adapter->metadata->object_type_attributes)
     {
-        first_attribute = apr_hash_get
-            (self->adapter->metadata->object_type_attributes,
-                object_type_id->s, object_type_id->len);
+        first_attribute = afw_hash_table_get(
+            self->adapter->metadata->object_type_attributes,
+            object_type_id->s, object_type_id->len);
     }
 
     o = afw_object_create_unmanaged_new_p(p, xctx);

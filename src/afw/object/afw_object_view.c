@@ -169,16 +169,17 @@ impl_shared_string_value(
     afw_value_string_t *value;
 
     if (!view->string_values) {
-        view->string_values = apr_hash_make(afw_pool_get_apr_pool(view->p));
+        view->string_values = afw_hash_table_create(
+            afw_void_hash_table_t, view->p, xctx);
     }
 
-    value = apr_hash_get(view->string_values, string->s, string->len);
+    value = afw_hash_table_get(view->string_values, string->s, string->len);
     if (!value) {
         value = afw_value_allocate_unmanaged_string(view->p, xctx);
         value->internal.s = string->s;
         value->internal.len = string->len;
-        apr_hash_set(view->string_values,
-            value->internal.s, value->internal.len, value);
+        afw_hash_table_set(view->string_values,
+            value->internal.s, value->internal.len, value, xctx);
     }
 
     return &value->pub;
@@ -200,10 +201,11 @@ impl_shared_path_value(
     const afw_utf8_t *current_path;
 
     if (!view->path_values) {
-        view->path_values = apr_hash_make(afw_pool_get_apr_pool(p));
+        view->path_values = afw_hash_table_create(
+            afw_void_hash_table_t, p, xctx);
     }
 
-    value = apr_hash_get(view->path_values, path->s, path->len);
+    value = afw_hash_table_get(view->path_values, path->s, path->len);
     if (!value) {
         for (c = path->s, len = path->len; len > 0; c++, len--) {
             if (*c == '*') {
@@ -211,17 +213,18 @@ impl_shared_path_value(
                     (const afw_object_t *)self, xctx);
                 parsed = afw_uri_parse(path, true, current_path,
                     p, xctx);
-                value = apr_hash_get(view->path_values,
+                value = afw_hash_table_get(view->path_values,
                     parsed->normalized_uri.s, parsed->normalized_uri.len);
                 if (!value) {
                     value = afw_value_allocate_unmanaged_anyURI(p, xctx);
                     value->internal.s = parsed->normalized_uri.s;
                     value->internal.len = parsed->normalized_uri.len;
-                    apr_hash_set(view->path_values,
-                        value->internal.s, value->internal.len, value);
+                    afw_hash_table_set(view->path_values,
+                        value->internal.s, value->internal.len, value,
+                        xctx);
                 }
-                apr_hash_set(view->path_values,
-                        path->s, path->len, value);
+                afw_hash_table_set(view->path_values,
+                    path->s, path->len, value, xctx);
                 break;
             }
         }
@@ -231,8 +234,8 @@ impl_shared_path_value(
         value = afw_value_allocate_unmanaged_anyURI(p, xctx);
         value->internal.s = path->s;
         value->internal.len = path->len;
-        apr_hash_set(view->path_values,
-            path->s, path->len, value);
+        afw_hash_table_set(view->path_values,
+            path->s, path->len, value, xctx);
     }
 
     return &value->pub;

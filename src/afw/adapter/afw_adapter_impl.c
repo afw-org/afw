@@ -29,7 +29,7 @@
 
 
 typedef struct {
-    apr_hash_t *ht;
+    afw_void_hash_table_t *ht;
     void *original_context;
     afw_object_cb_t original_callback;
     void *impl_callback_context;
@@ -279,8 +279,8 @@ afw_adapter_impl_create_cede_p(
         AFW_UTF8_FMT_ARG(&adapter->adapter_id));
 
     /* As default, allow read _AdaptiveObjectType_/_AdaptiveObjectType_. */
-    impl->supported_core_object_types = apr_hash_make(
-        afw_pool_get_apr_pool(p));
+    impl->supported_core_object_types = afw_hash_table_create(
+        afw_void_hash_table_t, p, xctx);
     afw_adapter_impl_set_supported_core_object_type(adapter,
         afw_s__AdaptiveObjectType_, true, false, xctx);
 
@@ -592,7 +592,7 @@ afw_adapter_impl_set_supported_core_object_type(
     afw_xctx_t *xctx)
 {
     const afw_pool_t *p = adapter->p;
-    apr_hash_t *ht;
+    afw_void_hash_table_t *ht;
     afw_adapter_impl_core_object_type_t *e;
     const afw_utf8_t *path;
     afw_value_array_t *parent_paths;
@@ -604,7 +604,7 @@ afw_adapter_impl_set_supported_core_object_type(
 
     ht = adapter->impl->supported_core_object_types;
 
-    e = apr_hash_get(ht, object_type_id->s, object_type_id->len);
+    e = afw_hash_table_get(ht, object_type_id->s, object_type_id->len);
     if (e) {
         e->allow_entity = allow_entity;
         e->allow_write = allow_write;
@@ -631,7 +631,8 @@ afw_adapter_impl_set_supported_core_object_type(
 
         impl_update_allow(e->object, allow_entity, allow_write, xctx);
 
-        apr_hash_set(ht, e->object_type_id->s, e->object_type_id->len, e);
+        afw_hash_table_set(ht, e->object_type_id->s, e->object_type_id->len,
+            e, xctx);
     }
 }
 
@@ -727,7 +728,7 @@ impl_afw_adapter_object_type_cache_get(
     }
 
     AFW_ADAPTER_IMPL_LOCK_READ_BEGIN(adapter) {
-        result = apr_hash_get(adapter->impl->object_types_ht,
+        result = afw_hash_table_get(adapter->impl->object_types_ht,
             object_type_id->s, object_type_id->len);
     }
     AFW_ADAPTER_IMPL_LOCK_READ_END;
@@ -753,15 +754,15 @@ impl_afw_adapter_object_type_cache_set(
     impl = (afw_adapter_impl_t *)adapter->impl;
 
     if (!impl->object_types_ht) {
-        impl->object_types_ht = apr_hash_make(
-            afw_pool_get_apr_pool(adapter->p));
+        impl->object_types_ht = afw_hash_table_create(
+            afw_void_hash_table_t, adapter->p, xctx);
     }
 
     AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(adapter) {
-        apr_hash_set(impl->object_types_ht,
+        afw_hash_table_set(impl->object_types_ht,
             object_type->object_type_id->s,
             object_type->object_type_id->len,
-            object_type);
+            object_type, xctx);
     }
     AFW_ADAPTER_IMPL_LOCK_WRITE_END;
 }
@@ -991,7 +992,7 @@ impl_no_duplicate_object_type_cb(
     /* Skip object types that have already been provided. */
     if (object) {
         object_id = afw_object_meta_get_object_id(object, xctx);
-        e = apr_hash_get(ctx->ht, object_id->s, object_id->len);
+        e = afw_hash_table_get(ctx->ht, object_id->s, object_id->len);
         if (e) {
             return false;
         }
@@ -1051,8 +1052,8 @@ impl_afw_adapter_session_retrieve_objects(
 {
     const afw_adapter_t *adapter = self->pub.adapter;
     afw_adapter_impl_t *impl = (afw_adapter_impl_t *)adapter->impl;
-    apr_hash_t *ht;
-    apr_hash_index_t *hi;
+    afw_void_hash_table_t *ht;
+    afw_hash_table_index_t hi;
     afw_adapter_impl_core_object_type_t *e;
     afw_utf8_t object_id;
     impl_request_context_t ctx;
@@ -1108,14 +1109,12 @@ impl_afw_adapter_session_retrieve_objects(
         impl_setup_object_delivery_callbacks(&ctx, impl,
             callback, context,
             &callback_to_use_for_get, &context_to_use_for_get);
-        for (hi = apr_hash_first(afw_pool_get_apr_pool(p), ht);
-            hi;
-            hi = apr_hash_next(hi))
+        for (afw_hash_table_first(ht, &hi);
+            afw_hash_table_this(&hi,
+                (const void **)&object_id.s, &object_id.len, (void **)&e);
+            afw_hash_table_next(&hi))
         {
             AFW_XCTX_THROW_IF_TERMINATING(xctx);
-            apr_hash_this(hi,
-                (const void **)& object_id.s, (apr_ssize_t *)& object_id.len,
-                (void **)& e);
             if (afw_query_criteria_test_object(e->object, criteria, p, xctx))
             {
                 if (callback_to_use_for_get(
@@ -1237,7 +1236,8 @@ impl_afw_adapter_session_get_object(
         afw_utf8_starts_with(object_id, afw_s__Adaptive))
     {
         /* If object type might have different allows, return it. */
-        e = apr_hash_get(self->pub.adapter->impl->supported_core_object_types,
+        e = afw_hash_table_get(
+            self->pub.adapter->impl->supported_core_object_types,
             object_id->s, object_id->len);
         if (e) {
             impl_setup_object_delivery_callbacks(&ctx, impl,

@@ -10,6 +10,7 @@
 #define __AFW_ADAPTER_IMPL_H__
 
 #include "afw_interface.h"
+#include "afw_hash_table.h"
 
 /**
  * @addtogroup afw_adapter_impl
@@ -145,7 +146,7 @@ struct afw_adapter_impl_s {
     /**
      * @brief See afw_adapter_impl_core_object_type_t.
      */
-    apr_hash_t *supported_core_object_types;
+    afw_void_hash_table_t *supported_core_object_types;
 
     /**
      * @brief Adapter level authorization
@@ -195,7 +196,7 @@ struct afw_adapter_impl_s {
     /**
      * @brief If not NULL, object types that last for the life of the adapter.
      */
-    apr_hash_t *object_types_ht;
+    afw_void_hash_table_t *object_types_ht;
 
     /**
      * @brief Check individual object read access.

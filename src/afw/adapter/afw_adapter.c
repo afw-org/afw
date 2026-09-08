@@ -26,7 +26,8 @@ afw_adapter_internal_get_cache(afw_xctx_t *xctx)
 
     if (!xctx->cache) {
         cache = afw_xctx_calloc_type(afw_adapter_internal_cache_t, xctx);
-        cache->session_cache = apr_hash_make(afw_pool_get_apr_pool(xctx->p));
+        cache->session_cache = afw_hash_table_create(
+            afw_void_hash_table_t, xctx->p, xctx);
         cache->transactions = afw_vector_create(
             afw_adapter_internal_transaction_p_vector_t, 5,
             xctx->p, xctx);
@@ -300,11 +301,12 @@ afw_adapter_session_release(
     /* If session in cache, remove it. */
     cache = afw_adapter_internal_get_cache(xctx);
     if (cache) {
-        session_cache = apr_hash_get(cache->session_cache,
+        session_cache = afw_hash_table_get(cache->session_cache,
             adapter->adapter_id.s, adapter->adapter_id.len);
         if (session_cache && session == session_cache->session) {
-            apr_hash_set(cache->session_cache,
-                adapter->adapter_id.s, adapter->adapter_id.len, NULL);
+            afw_hash_table_set(cache->session_cache,
+                adapter->adapter_id.s, adapter->adapter_id.len, NULL,
+                xctx);
         }
     }
 
@@ -327,7 +329,7 @@ impl_get_adapter_session_cache(const afw_utf8_t *adapter_id,
 
     /* Get cached session. */
     cache = afw_adapter_internal_get_cache(xctx);
-    session_cache = apr_hash_get(cache->session_cache,
+    session_cache = afw_hash_table_get(cache->session_cache,
         adapter_id->s, adapter_id->len);
 
     /* If there is not already one, create one. */
@@ -336,8 +338,8 @@ impl_get_adapter_session_cache(const afw_utf8_t *adapter_id,
             afw_adapter_internal_session_cache_t, xctx);
         session_cache->session = afw_adapter_session_create(adapter_id, xctx);
         if (session_cache->session) {
-            apr_hash_set(cache->session_cache, adapter_id->s, adapter_id->len,
-                session_cache);
+            afw_hash_table_set(cache->session_cache,
+                adapter_id->s, adapter_id->len, session_cache, xctx);
         }
     }
 
@@ -400,9 +402,9 @@ afw_adapter_session_commit_and_release_cache(afw_boolean_t abort,
     const afw_adapter_internal_cache_t *cache;
     afw_adapter_internal_transaction_t *transaction;
     afw_adapter_internal_session_cache_t *session_cache;
-    apr_hash_index_t *hi;
+    afw_hash_table_index_t hi;
     const void * key;
-    apr_ssize_t klen;
+    afw_size_t klen;
     afw_size_t i;
 
     cache = xctx->cache;
@@ -420,10 +422,10 @@ afw_adapter_session_commit_and_release_cache(afw_boolean_t abort,
     }
 
     /* Release all active sessions in no particular order. */
-    for (hi = apr_hash_first(afw_pool_get_apr_pool(xctx->p), cache->session_cache);
-        hi; hi = apr_hash_next(hi))
+    for (afw_hash_table_first(cache->session_cache, &hi);
+        afw_hash_table_this(&hi, &key, &klen, (void **)&session_cache);
+        afw_hash_table_next(&hi))
     {
-        apr_hash_this(hi, &key, &klen, (void **)&session_cache);
         afw_adapter_session_release(session_cache->session, xctx);
     }
 
@@ -490,7 +492,7 @@ afw_adapter_get_object_type(
 
     /* Return object type if already cached for session. */
     else if (session_cache->object_types_ht) {
-        result = apr_hash_get(session_cache->object_types_ht,
+        result = afw_hash_table_get(session_cache->object_types_ht,
             object_type_id->s, object_type_id->len);
         if (result) {
             return result;
@@ -540,10 +542,10 @@ afw_adapter_get_object_type(
         else {
             if (!session_cache->object_types_ht) {
                 session_cache->object_types_ht =
-                    apr_hash_make(afw_pool_get_apr_pool(p));
+                    afw_hash_table_create(afw_void_hash_table_t, p, xctx);
             }
-            apr_hash_set(session_cache->object_types_ht,
-                object_type_id->s, object_type_id->len, result);
+            afw_hash_table_set(session_cache->object_types_ht,
+                object_type_id->s, object_type_id->len, result, xctx);
         }
 
         for (

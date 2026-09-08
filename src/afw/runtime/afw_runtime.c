@@ -63,13 +63,13 @@ impl_entry_to_object(
 
 static const afw_object_t *
 impl_get_object(
-    apr_hash_t *ht, const void *key, apr_ssize_t klen,
+    afw_void_hash_table_t *ht, const void *key, afw_size_t klen,
     afw_xctx_t *xctx)
 {
     const afw_object_t *result;
     const impl_ht_object_entry *entry;
 
-    entry =  apr_hash_get(ht, key, klen);
+    entry = afw_hash_table_get(ht, key, klen);
 
     result = impl_entry_to_object(entry, xctx);
 
@@ -91,7 +91,7 @@ AFW_RUNTIME_OBJECT_INF(
 
 
 struct afw_runtime_objects_s {
-    apr_hash_t *types_ht;
+    afw_void_hash_table_t *types_ht;
 };
 
 typedef struct impl_afw_adapter_self_s {
@@ -132,8 +132,8 @@ impl_set_entry(
     afw_xctx_t *xctx)
 {
     afw_runtime_objects_t *runtime_objects;
-    apr_hash_t *ht;
-    apr_hash_t *test_ht;
+    afw_void_hash_table_t *ht;
+    void *existing;
     const afw_pool_t *p;
     afw_xctx_t *env_xctx;
 
@@ -150,23 +150,24 @@ impl_set_entry(
     }
 
     if (!runtime_objects->types_ht) {
-        runtime_objects->types_ht = apr_hash_make(afw_pool_get_apr_pool(p));
+        runtime_objects->types_ht = afw_hash_table_create(
+            afw_void_hash_table_t, p, xctx);
     }
 
     else {
-        ht = apr_hash_get(runtime_objects->types_ht,
+        ht = afw_hash_table_get(runtime_objects->types_ht,
             object_type_id->s, object_type_id->len);
     }
 
     if (!ht) {
-        ht = apr_hash_make(afw_pool_get_apr_pool(p));
-        apr_hash_set(runtime_objects->types_ht,
-            object_type_id->s, object_type_id->len, ht);
+        ht = afw_hash_table_create(afw_void_hash_table_t, p, xctx);
+        afw_hash_table_set(runtime_objects->types_ht,
+            object_type_id->s, object_type_id->len, ht, xctx);
     }
 
     if (!overwrite) {
-        test_ht = apr_hash_get(ht, object_id->s, object_id->len);
-        if (test_ht) {
+        existing = afw_hash_table_get(ht, object_id->s, object_id->len);
+        if (existing) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Runtime object /afw/"
                 AFW_UTF8_FMT "/" AFW_UTF8_FMT " already set",
@@ -174,7 +175,7 @@ impl_set_entry(
                 AFW_UTF8_FMT_ARG(object_id));
         }
     }
-    apr_hash_set(ht, object_id->s, object_id->len, entry);
+    afw_hash_table_set(ht, object_id->s, object_id->len, entry, xctx);
 }
 
 
@@ -240,18 +241,19 @@ afw_runtime_remove_object(
 {
     const afw_object_t *object;
     const afw_xctx_t *c;
-    apr_hash_t *ht;
+    afw_void_hash_table_t *ht;
 
     object = NULL;
     for (c = xctx; c; c = c->parent) {
         if (c->runtime_objects && c->runtime_objects->types_ht) {
-            ht = apr_hash_get(c->runtime_objects->types_ht,
+            ht = afw_hash_table_get(c->runtime_objects->types_ht,
                 object_type_id->s, object_type_id->len);
             if (ht) {
                 object = impl_get_object(ht, object_id->s, object_id->len,
                     xctx);
                 if (object) {
-                    apr_hash_set(ht, object_id->s, object_id->len, NULL);
+                    afw_hash_table_set(ht, object_id->s, object_id->len,
+                        NULL, xctx);
                     afw_object_release(object, xctx);
                     break;
                 }
@@ -270,11 +272,9 @@ afw_runtime_xctx_set_object(
     const afw_utf8_t *id;
     const afw_utf8_t *type;
     afw_runtime_objects_t *runtime_objects;
-    apr_hash_t *ht;
-    apr_hash_t *test_ht;
-    apr_pool_t *p;
+    afw_void_hash_table_t *ht;
+    void *existing;
 
-    p = afw_pool_get_apr_pool(xctx->p);
     id = afw_object_meta_get_object_id(object, xctx);
     type = afw_object_meta_get_object_type_id(object, xctx);
 
@@ -287,21 +287,24 @@ afw_runtime_xctx_set_object(
     }
 
     if (!runtime_objects->types_ht) {
-        runtime_objects->types_ht = apr_hash_make(p);
+        runtime_objects->types_ht = afw_hash_table_create(
+            afw_void_hash_table_t, xctx->p, xctx);
     }
 
     else {
-        ht = apr_hash_get(runtime_objects->types_ht, type->s, type->len);
+        ht = afw_hash_table_get(runtime_objects->types_ht,
+            type->s, type->len);
     }
 
     if (!ht) {
-        ht = apr_hash_make(afw_pool_get_apr_pool(xctx->p));
-        apr_hash_set(runtime_objects->types_ht, type->s, type->len, ht);
+        ht = afw_hash_table_create(afw_void_hash_table_t, xctx->p, xctx);
+        afw_hash_table_set(runtime_objects->types_ht, type->s, type->len,
+            ht, xctx);
     }
 
     if (!overwrite) {
-        test_ht = apr_hash_get(ht, id->s, id->len);
-        if (test_ht) {
+        existing = afw_hash_table_get(ht, id->s, id->len);
+        if (existing) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Runtime object /afw/"
                 AFW_UTF8_FMT "/" AFW_UTF8_FMT " already set",
@@ -309,7 +312,7 @@ afw_runtime_xctx_set_object(
         }
     }
     afw_object_get_reference(object, xctx);
-    apr_hash_set(ht, id->s, id->len, object);
+    afw_hash_table_set(ht, id->s, id->len, object, xctx);
 }
 
 
@@ -540,14 +543,14 @@ afw_runtime_get_object(
 {
     const afw_object_t *result;
     const afw_xctx_t *c;
-    apr_hash_t *ht;
+    afw_void_hash_table_t *ht;
     impl_check_manifest_cb_context_t ctx;
 
     result = NULL;
 
     for (c = xctx; c; c = c->parent) {
         if (c->runtime_objects && c->runtime_objects->types_ht) {
-            ht = apr_hash_get(c->runtime_objects->types_ht,
+            ht = afw_hash_table_get(c->runtime_objects->types_ht,
                 object_type_id->s, object_type_id->len);
             if (ht) {
                 result = impl_get_object(ht, object_id->s, object_id->len,
@@ -564,7 +567,7 @@ afw_runtime_get_object(
             &ctx, impl_check_manifest_cb, xctx);
         for (c = xctx; c; c = c->parent) {
             if (c->runtime_objects && c->runtime_objects->types_ht) {
-                ht = apr_hash_get(c->runtime_objects->types_ht,
+                ht = afw_hash_table_get(c->runtime_objects->types_ht,
                     object_type_id->s, object_type_id->len);
                 if (ht) {
                     result = impl_get_object(ht, object_id->s, object_id->len,
@@ -724,9 +727,8 @@ impl_afw_adapter_session_retrieve_objects(
 {
     const afw_object_t *obj;
     const afw_xctx_t *c;
-    apr_hash_t *ht;
-    apr_pool_t *apr_p;
-    apr_hash_index_t *hi;
+    afw_void_hash_table_t *ht;
+    afw_hash_table_index_t hi;
     const afw_runtime_custom_t *custom;
     const impl_ht_object_entry *entry;
 
@@ -742,18 +744,17 @@ impl_afw_adapter_session_retrieve_objects(
     }
 
     /* Call callback with all applicable set runtime objects. */
-    apr_p = afw_pool_get_apr_pool(p);
     for (c = xctx; c; c = c->parent) {
         AFW_XCTX_THROW_IF_TERMINATING(xctx);
         if (c->runtime_objects && c->runtime_objects->types_ht) {
-            ht = apr_hash_get(c->runtime_objects->types_ht,
+            ht = afw_hash_table_get(c->runtime_objects->types_ht,
                 object_type_id->s, object_type_id->len);
             if (ht) {
-                for (hi = apr_hash_first(apr_p, ht); hi;
-                    hi = apr_hash_next(hi))
+                for (afw_hash_table_first(ht, &hi);
+                    afw_hash_table_this(&hi, NULL, NULL, (void **)&entry);
+                    afw_hash_table_next(&hi))
                 {
                     AFW_XCTX_THROW_IF_TERMINATING(xctx);
-                    apr_hash_this(hi, NULL, NULL, (void **)&entry);
                     obj = impl_entry_to_object(entry, xctx);
                     if (afw_query_criteria_test_object(obj,
                         criteria, p, xctx))

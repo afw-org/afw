@@ -13,7 +13,6 @@
 
 #include "afw_internal.h"
 #include "afw_config.h"
-#include <apr_hash.h>
 #include <apr_dso.h>
 #include <libxml/xmlversion.h>
 
@@ -102,7 +101,8 @@ impl_internal_additional_register_default(
     env = (afw_environment_internal_t *)xctx->env;
 
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
-        type = apr_hash_get(env->registry_names_ht, type_id->s, type_id->len);
+        type = afw_hash_table_get(env->registry_names_ht,
+            type_id->s, type_id->len);
         if (!type) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Invalid environment registry type " AFW_UTF8_FMT_Q,
@@ -163,7 +163,8 @@ impl_internal_additional_register_key_only(
     env = (afw_environment_internal_t *)xctx->env;
 
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
-        type = apr_hash_get(env->registry_names_ht, type_id->s, type_id->len);
+        type = afw_hash_table_get(env->registry_names_ht,
+            type_id->s, type_id->len);
         if (!type) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Invalid environment registry type " AFW_UTF8_FMT_Q,
@@ -202,7 +203,8 @@ impl_internal_additional_register_object(
     env = (afw_environment_internal_t *)xctx->env;
 
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
-        type = apr_hash_get(env->registry_names_ht, type_id->s, type_id->len);
+        type = afw_hash_table_get(env->registry_names_ht,
+            type_id->s, type_id->len);
         if (!type) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Invalid environment registry type " AFW_UTF8_FMT_Q,
@@ -334,7 +336,8 @@ afw_environment_create(
     /* >>>>>>>>> Errors can be thrown at this point. <<<<<<<<< */
 
     /* Create data type method number hash table. */
-    env->data_type_method_number_ht = apr_hash_make(afw_pool_get_apr_pool(p));
+    env->data_type_method_number_ht = afw_hash_table_create(
+        afw_void_hash_table_t, p, xctx);
 
     /* Create data type array for method arrays. */
     env->data_type_methods = apr_array_make(afw_pool_get_apr_pool(p),
@@ -425,8 +428,8 @@ afw_environment_create(
 
     env->pub.log = afw_log_internal_create_environment_log(xctx);
 
-    env->registry_names_ht = apr_hash_make(afw_pool_get_apr_pool(p));
-    if (!env->registry_names_ht) AFW_THROW_MEMORY_ERROR(xctx);
+    env->registry_names_ht = afw_hash_table_create(
+        afw_void_hash_table_t, p, xctx);
 
     env->registry_types =
         apr_array_make(afw_pool_get_apr_pool(p), 20,
@@ -447,10 +450,10 @@ afw_environment_create(
         type->register_additional = impl_initial_types[i].register_additional;
         type->allow_reregister = impl_initial_types[i].allow_reregister;
         type->auto_register = NULL;
-        type->ht = apr_hash_make(afw_pool_get_apr_pool(p));
-        if (!type->ht) AFW_THROW_MEMORY_ERROR(xctx);
-        apr_hash_set(env->registry_names_ht,
-            type->registry_type_id->s, type->registry_type_id->len, type);
+        type->ht = afw_hash_table_create(afw_void_hash_table_t, p, xctx);
+        afw_hash_table_set(env->registry_names_ht,
+            type->registry_type_id->s, type->registry_type_id->len,
+            type, xctx);
     }
 
     /* Register core with new xctx. */
@@ -570,8 +573,8 @@ afw_environment_create_registry_type(
     env = (afw_environment_internal_t *)xctx->env;
 
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
-        type = apr_hash_get(env->registry_names_ht, registry_type_id->s,
-            registry_type_id->len);
+        type = afw_hash_table_get(env->registry_names_ht,
+            registry_type_id->s, registry_type_id->len);
         if (type) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "registry_type " AFW_UTF8_FMT_Q " is already assigned",
@@ -592,14 +595,16 @@ afw_environment_create_registry_type(
             xctx->env->p, xctx);
         type->description = afw_utf8_clone(description, xctx->env->p, xctx);
         type->number = env->registry_types->nelts - 1;
-        type->ht = apr_hash_make(afw_pool_get_apr_pool(xctx->env->p));
+        type->ht = afw_hash_table_create(afw_void_hash_table_t,
+            xctx->env->p, xctx);
         type->allow_reregister = allow_reregister;
         type->auto_register = auto_register;
         type->auto_register_specified = auto_register != NULL;
         type->register_additional = register_additional;
         type->register_additional_param = register_additional_param;
-        apr_hash_set(env->registry_names_ht,
-            type->registry_type_id->s, type->registry_type_id->len, type);
+        afw_hash_table_set(env->registry_names_ht,
+            type->registry_type_id->s, type->registry_type_id->len,
+            type, xctx);
         afw_runtime_env_create_and_set_indirect_object_using_inf(
             &afw_runtime_inf__AdaptiveEnvironmentRegistryType_,
             type->registry_type_id, type, true, xctx);
@@ -627,7 +632,7 @@ afw_environment_get_registry_type_by_id(
     env = (afw_environment_internal_t *)xctx->env;
 
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
-        type = apr_hash_get(
+        type = afw_hash_table_get(
             env->registry_names_ht,
             registry_type_id->s,
             registry_type_id->len);
@@ -637,7 +642,7 @@ afw_environment_get_registry_type_by_id(
             ctx.key = registry_type_id;
             afw_runtime_foreach(afw_s__AdaptiveManifest_,
                 &ctx, impl_check_manifest_cb, xctx);
-            type = apr_hash_get(
+            type = afw_hash_table_get(
                 env->registry_names_ht,
                 registry_type_id->s,
                 registry_type_id->len);
@@ -700,7 +705,7 @@ afw_environment_registry_register(
             [type_number];
 
         use_key = key->s;
-        old_value = apr_hash_get(type->ht, key->s, key->len);
+        old_value = afw_hash_table_get(type->ht, key->s, key->len);
         if (old_value && !type->allow_reregister) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_FMT_Q " " AFW_UTF8_FMT_Q " is already registered",
@@ -715,7 +720,7 @@ afw_environment_registry_register(
             use_key = new_key;
         }
 
-        apr_hash_set(type->ht, use_key, key->len, value);
+        afw_hash_table_set(type->ht, use_key, key->len, value, xctx);
 
         if (type->register_additional) {
             type->register_additional(
@@ -834,7 +839,7 @@ afw_environment_registry_key_exists(
         type = ((afw_environment_registry_type_t **)env->registry_types->elts)
             [type_number];
 
-        result = (apr_hash_get(type->ht, key->s, key->len) != NULL);
+        result = (afw_hash_table_get(type->ht, key->s, key->len) != NULL);
     }
     AFW_LOCK_END;
 
@@ -869,7 +874,7 @@ afw_environment_registry_get(
         type = ((afw_environment_registry_type_t **)env->registry_types->elts)
             [type_number];
 
-        result = apr_hash_get(type->ht, key->s, key->len);
+        result = afw_hash_table_get(type->ht, key->s, key->len);
 
         /*
          * If no result yet, see if there is an extension manifest that provides
@@ -880,7 +885,7 @@ afw_environment_registry_get(
             ctx.key = key;
             afw_runtime_foreach(afw_s__AdaptiveManifest_,
                 &ctx, impl_check_manifest_cb, xctx);
-            result = apr_hash_get(type->ht, key->s, key->len);
+            result = afw_hash_table_get(type->ht, key->s, key->len);
         }
 
         /* If still no result and auto_register, do auto register. */
@@ -918,7 +923,7 @@ afw_environment_registry_get_xctxless(
     type = ((afw_environment_registry_type_t **)self->registry_types->elts)
         [type_number];
 
-    result = apr_hash_get(type->ht, key->s, key->len);
+    result = afw_hash_table_get(type->ht, key->s, key->len);
 
     return result;
 }
@@ -936,10 +941,10 @@ afw_environment_foreach(
 {
     afw_environment_registry_type_t *type;
     afw_environment_internal_t *env;
-    apr_hash_index_t *hi;
+    afw_hash_table_index_t hi;
     void *value;
     afw_utf8_octet_t *key_s;
-    apr_ssize_t key_len;
+    afw_size_t key_len;
 
     env = (afw_environment_internal_t *)xctx->env;
 
@@ -952,11 +957,11 @@ afw_environment_foreach(
         type = ((afw_environment_registry_type_t **)env->registry_types->elts)
             [type_number];
 
-        for (hi = apr_hash_first(afw_pool_get_apr_pool(p), type->ht);
-            hi;
-            hi = apr_hash_next(hi))
+        for (afw_hash_table_first(type->ht, &hi);
+            afw_hash_table_this(&hi, (const void **)&key_s,
+                &key_len, &value);
+            afw_hash_table_next(&hi))
         {
-            apr_hash_this(hi, (const void **)&key_s, &key_len, &value);
             if (callback(type_number, data, key_s, key_len, value, p, xctx)) {
                 break;
             }
@@ -1452,7 +1457,7 @@ afw_environment_register_function(
                     "dataTypeMethodNumber",
                     xctx);
             }
-            method_number = apr_hash_get(
+            method_number = afw_hash_table_get(
                 env->data_type_method_number_ht,
                 function->untypedFunctionId->internal.s,
                 function->untypedFunctionId->internal.len);
@@ -1460,12 +1465,12 @@ afw_environment_register_function(
                 f->dataTypeMethodNumber = *method_number;
             }
             else {
-                f->dataTypeMethodNumber = apr_hash_count(
-                    env->data_type_method_number_ht) + 1;
-                apr_hash_set(env->data_type_method_number_ht,
+                f->dataTypeMethodNumber =
+                    env->data_type_method_number_ht->count + 1;
+                afw_hash_table_set(env->data_type_method_number_ht,
                     function->untypedFunctionId->internal.s,
                     function->untypedFunctionId->internal.len,
-                    &function->dataTypeMethodNumber);
+                    &function->dataTypeMethodNumber, xctx);
             }
 
             /** @todo resolve parameters. */
@@ -1484,7 +1489,8 @@ afw_environment_register_function(
         /* Make sure data type method is in hash table. */
         if (function->data_type) {
 
-            method_number = apr_hash_get(env->data_type_method_number_ht,
+            method_number = afw_hash_table_get(
+                env->data_type_method_number_ht,
                 function->untypedFunctionId->internal.s,
                 function->untypedFunctionId->internal.len);
             if (method_number) {
@@ -1506,13 +1512,13 @@ afw_environment_register_function(
                             "dataTypeMethodNumber 0",
                             xctx);
                     }
-                    f->dataTypeMethodNumber = apr_hash_count(
-                        env->data_type_method_number_ht) + 1;
+                    f->dataTypeMethodNumber =
+                        env->data_type_method_number_ht->count + 1;
                 }
-                apr_hash_set(env->data_type_method_number_ht,
+                afw_hash_table_set(env->data_type_method_number_ht,
                     function->untypedFunctionId->internal.s,
                     function->untypedFunctionId->internal.len,
-                    &function->dataTypeMethodNumber);
+                    &function->dataTypeMethodNumber, xctx);
             }
         }
 
@@ -1608,7 +1614,8 @@ afw_environment_get_qualified_function(
             result = NULL;
             data_type = afw_environment_get_data_type(qualifier, xctx);
             if (data_type) {
-                method_number = apr_hash_get(env->data_type_method_number_ht,
+                method_number = afw_hash_table_get(
+                    env->data_type_method_number_ht,
                     name->s, name->len);
                 if (method_number) {
                     methods = ((apr_array_header_t **)

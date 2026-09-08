@@ -11,6 +11,7 @@
 
 #include "afw_interface.h"
 #include "afw_data_type_typedefs.h"
+#include "afw_hash_table.h"
 
 /**
  * @addtogroup afw_model_internal
@@ -156,7 +157,7 @@ struct afw_model_internal_s {
     const afw_model_t * AFW_ATOMIC next_model;
 
     /** @brief Immutable object types for this model. */
-    apr_hash_t *object_types_ht;
+    afw_void_hash_table_t *object_types_ht;
 
     /** @brief Model object */
     const afw_object_t *model_object;
@@ -165,7 +166,7 @@ struct afw_model_internal_s {
     const afw_utf8_t *objectType_path;
 
     /** @brief Hash table holding afw_model_object_type_t objects */
-    apr_hash_t *model_object_types;
+    afw_void_hash_table_t *model_object_types;
 
     /** @brief Custom variables. */
     const afw_object_t *custom_variables;
