@@ -169,7 +169,7 @@ afw_vector_create_fixed_unhandled_impl(
     self = apr_pcalloc(apr_p, sizeof(afw_vector_t));
     if (!self) {
         AFW_THROW_UNHANDLED_ERROR(xctx->current_try, xctx->error,
-            general, na, 0, "apr_pcalloc() failed");
+            general, na, 0, "allocation failed");
     }
     self->p = p;
     self->entry_size = entry_size;
@@ -186,7 +186,7 @@ afw_vector_create_fixed_unhandled_impl(
         self->entries = apr_pcalloc(apr_p, bytes);
         if (!self->entries) {
             AFW_THROW_UNHANDLED_ERROR(xctx->current_try, xctx->error,
-                general, na, 0, "apr_pcalloc() failed");
+                general, na, 0, "allocation failed");
         }
     }
 

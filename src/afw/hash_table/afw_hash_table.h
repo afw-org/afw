@@ -22,11 +22,10 @@
  *
  * See @ref afw_hash_table.
  *
- * C replacement for apr_hash: header stays put, buckets point at
- * the current array, growth copies chains to a larger array.
- * Callers hold the header. Keys are not copied; the caller keeps
- * key memory alive (same contract as apr_hash). Set value NULL
- * deletes. No get_reference.
+ * Header stays put; buckets point at the current array. Growth
+ * copies chains to a larger array. Callers hold the header.
+ * Keys are not copied; the caller keeps key memory alive. Set
+ * value NULL deletes. No get_reference.
  *
  * Declare a typed overlay, then use shared macros. Value type
  * lives on the variable. Get returns void * (assign to a typed
@@ -59,7 +58,7 @@ typedef struct afw_hash_table_s afw_hash_table_t;
  * first() positions at the first entry (or end). this() fills
  * key/klen/value and returns false at end. next() advances.
  * Deleting the current entry (set value NULL) is safe; the
- * iterator prefetches next like apr_hash.
+ * iterator prefetches next.
  */
 struct afw_hash_table_index_s {
     const afw_hash_table_t *ht;

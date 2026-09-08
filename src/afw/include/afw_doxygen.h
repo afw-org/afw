@@ -686,7 +686,7 @@
 /**
  * @defgroup afw_vector Vector
  *
- * C growable contiguous elements (apr_array replacement).
+ * C growable contiguous elements.
  *
  * Header stays put; entries points at the current chunk and may
  * move on grow. Declare a typed overlay with AFW_VECTOR_STRUCT so
@@ -698,7 +698,7 @@
 /**
  * @defgroup afw_hash_table Hash table
  *
- * C byte-key to pointer map (apr_hash replacement).
+ * C byte-key to pointer map.
  *
  * Header stays put; buckets may move on grow. Keys are not copied
  * (caller keeps key memory alive). Set value NULL deletes. Declare

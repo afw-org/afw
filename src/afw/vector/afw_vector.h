@@ -22,9 +22,9 @@
  *
  * See @ref afw_vector.
  *
- * C replacement for apr_array: header stays put, entries points at
- * the current chunk, growth copies to a larger chunk. Callers hold
- * the header. Pointers into entries are invalid after grow.
+ * Header stays put; entries points at the current chunk. Growth
+ * copies to a larger chunk. Callers hold the header. Pointers
+ * into entries are invalid after grow.
  *
  * Declare a typed overlay, then use shared macros. Element type lives
  * on the variable, not restated at each push.
@@ -151,7 +151,7 @@ afw_vector_create_impl(
     afw_xctx_t *xctx);
 
 /**
- * @brief Create a fixed vector with apr_pcalloc (xctx init).
+ * @brief Create a fixed vector during xctx init (no AFW_TRY).
  */
 AFW_DECLARE(afw_vector_t *)
 afw_vector_create_fixed_unhandled_impl(
