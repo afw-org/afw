@@ -41,6 +41,14 @@ def run():
                 "copy-out then release the work vector",
             ),
             (
+                "growth_add",
+                "positive growth adds a fixed step",
+            ),
+            (
+                "cannot_grow",
+                "fixed vector throws instead of growing",
+            ),
+            (
                 "underflow",
                 "pop of empty throws",
             ),

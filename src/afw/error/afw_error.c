@@ -284,7 +284,7 @@ impl_evaluation_backtrace(
     int line_cell_octets;
     int column_cell_octets;
 
-    if (afw_stack_is_empty(xctx->evaluation_stack) &&
+    if (xctx->evaluation_stack->count == 0 &&
         !error->parser_source)
     {
         return NULL;
@@ -312,25 +312,25 @@ impl_evaluation_backtrace(
     }
 
     for (entry_number = 0,
-        i = xctx->evaluation_stack->top - xctx->evaluation_stack->first,
+        i = (afw_integer_t)xctx->evaluation_stack->count - 1,
         parameter_number = 0,
         error_offset = 0;
         i >= 0;
         i--)
     {
 
-        if (!xctx->evaluation_stack->first[i].value) {
+        if (!xctx->evaluation_stack->entries[i].value) {
             afw_writer_write_utf8(w, afw_s_undefined, xctx);
             afw_writer_write_eol(w, xctx);
             continue;
         }
 
-        if (xctx->evaluation_stack->first[i].entry_id ==
+        if (xctx->evaluation_stack->entries[i].entry_id ==
             afw_s_parameter_number)
         {
             i--;
             parameter_number =
-                xctx->evaluation_stack->first[i].parameter_number;
+                xctx->evaluation_stack->entries[i].parameter_number;
             continue;
         }
 
@@ -339,14 +339,14 @@ impl_evaluation_backtrace(
          * Skip them so "(evaluating parameter N)" attaches to the call.
          */
         if (afw_xctx_evaluation_stack_is_parked_occupant(
-            xctx->evaluation_stack->first[i].value))
+            xctx->evaluation_stack->entries[i].value))
         {
             continue;
         }
 
 
         /* This should not need to be here, so just note to avoid crash. */
-        if (xctx->evaluation_stack->first[i].parameter_number < 100)
+        if (xctx->evaluation_stack->entries[i].parameter_number < 100)
         {
             afw_writer_write_z(w,
                 "--- Unexpected parameter number. "
@@ -354,11 +354,11 @@ impl_evaluation_backtrace(
                 xctx);
             afw_writer_write_eol(w, xctx);
             parameter_number =
-                xctx->evaluation_stack->first[i].parameter_number;
+                xctx->evaluation_stack->entries[i].parameter_number;
             continue;
         }
 
-        afw_value_get_info(xctx->evaluation_stack->first[i].value, &info,
+        afw_value_get_info(xctx->evaluation_stack->entries[i].value, &info,
             w->p, xctx);
 
         /* Source location and source */

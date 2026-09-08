@@ -11,6 +11,7 @@
 
 #include "afw_interface.h"
 #include "afw_environment_internal.h"
+#include "afw_vector.h"
 
 /**
  * @addtogroup afw_xctx_internal
@@ -25,7 +26,7 @@
 AFW_BEGIN_DECLARES
 
 /* Qualifier stack storage (entries defined in afw_xctx.h). */
-AFW_STACK_STRUCT(afw_xctx_internal_qualifier_stack_s,
+AFW_VECTOR_STRUCT(afw_xctx_internal_qualifier_stack_s,
     afw_xctx_qualifier_stack_entry_t);
 
 /**

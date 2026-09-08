@@ -48,17 +48,51 @@ impl_grow_to(
     if (min_allocated <= self->allocated) {
         return;
     }
-
-    new_allocated = self->allocated;
-    if (new_allocated == 0) {
-        new_allocated = 8;
+    if (self->growth == 0) {
+        AFW_THROW_ERROR_Z(general, "vector cannot grow", xctx);
     }
-    while (new_allocated < min_allocated) {
-        if (new_allocated > AFW_SIZE_T_MAX / 2) {
-            new_allocated = min_allocated;
-            break;
+
+    if (self->growth > 0) {
+        afw_size_t step;
+        afw_size_t need;
+        afw_size_t steps;
+
+        step = (afw_size_t)self->growth;
+        if (self->allocated == 0) {
+            new_allocated = ((min_allocated + step - 1) / step) *
+                step;
         }
-        new_allocated *= 2;
+        else {
+            need = min_allocated - self->allocated;
+            steps = (need + step - 1) / step;
+            if (steps > (AFW_SIZE_T_MAX - self->allocated) / step) {
+                new_allocated = min_allocated;
+            }
+            else {
+                new_allocated = self->allocated + steps * step;
+            }
+        }
+    }
+    else {
+        afw_size_t factor;
+
+        factor = (afw_size_t)(-self->growth);
+        new_allocated = self->allocated;
+        if (new_allocated == 0) {
+            new_allocated = 8;
+        }
+        if (factor < 2) {
+            new_allocated = min_allocated;
+        }
+        else {
+            while (new_allocated < min_allocated) {
+                if (new_allocated > AFW_SIZE_T_MAX / factor) {
+                    new_allocated = min_allocated;
+                    break;
+                }
+                new_allocated *= factor;
+            }
+        }
     }
     if (new_allocated < min_allocated) {
         new_allocated = min_allocated;
@@ -89,6 +123,7 @@ AFW_DEFINE(afw_vector_t *)
 afw_vector_create_impl(
     afw_size_t entry_size,
     afw_size_t initial_allocated,
+    afw_integer_t growth,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -106,10 +141,53 @@ afw_vector_create_impl(
     self->entry_size = entry_size;
     self->count = 0;
     self->allocated = initial_allocated;
+    self->growth = growth;
 
     if (initial_allocated > 0) {
         bytes = impl_bytes(entry_size, initial_allocated, xctx);
         self->entries = afw_pool_calloc(p, bytes, xctx);
+    }
+
+    return self;
+}
+
+
+
+/* Create a fixed vector during xctx init (no AFW_TRY). */
+AFW_DEFINE(afw_vector_t *)
+afw_vector_create_fixed_unhandled_impl(
+    afw_size_t entry_size,
+    afw_size_t initial_allocated,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_vector_t *self;
+    apr_pool_t *apr_p;
+    afw_size_t bytes;
+
+    apr_p = afw_pool_get_apr_pool(p);
+    self = apr_pcalloc(apr_p, sizeof(afw_vector_t));
+    if (!self) {
+        AFW_THROW_UNHANDLED_ERROR(xctx->current_try, xctx->error,
+            general, na, 0, "apr_pcalloc() failed");
+    }
+    self->p = p;
+    self->entry_size = entry_size;
+    self->count = 0;
+    self->allocated = initial_allocated;
+    self->growth = 0;
+
+    if (initial_allocated > 0) {
+        if (entry_size > AFW_SIZE_T_MAX / initial_allocated) {
+            AFW_THROW_UNHANDLED_ERROR(xctx->current_try, xctx->error,
+                general, na, 0, "vector allocation too large");
+        }
+        bytes = entry_size * initial_allocated;
+        self->entries = apr_pcalloc(apr_p, bytes);
+        if (!self->entries) {
+            AFW_THROW_UNHANDLED_ERROR(xctx->current_try, xctx->error,
+                general, na, 0, "apr_pcalloc() failed");
+        }
     }
 
     return self;
@@ -288,7 +366,7 @@ afw_vector_copy_impl(
     afw_size_t used_bytes;
 
     copy = afw_vector_create_impl(internal->entry_size,
-        internal->count, p, xctx);
+        internal->count, internal->growth, p, xctx);
     copy->count = internal->count;
     if (internal->count > 0) {
         used_bytes = impl_bytes(internal->entry_size,

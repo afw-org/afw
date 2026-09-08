@@ -46,6 +46,12 @@ struct afw_vector_s {
     afw_size_t count;
     afw_size_t allocated;
     void *entries;
+    /**
+     * Grow policy: 0 = cannot grow; >0 = add that many entries
+     * (at least min needed this grow); <0 = multiply current
+     * allocated by |n| (-2 = double).
+     */
+    afw_integer_t growth;
 };
 
 typedef struct afw_vector_s afw_vector_t;
@@ -69,6 +75,7 @@ struct struct_name { \
             afw_size_t count; \
             afw_size_t allocated; \
             entry_type *entries; \
+            afw_integer_t growth; \
         }; \
     }; \
 }
@@ -93,20 +100,61 @@ typedef struct afw_octet_vector_s afw_octet_vector_t;
     initial_allocated, p, xctx) \
 ((typedef_name *)afw_vector_create_impl( \
     sizeof(*(((typedef_name *)0)->entries)), \
+    initial_allocated, (afw_integer_t)-2, p, xctx))
+
+/**
+ * @brief Create a vector with an explicit growth policy.
+ * @param growth 0 cannot grow; >0 add that many; -2 double current.
+ */
+#define afw_vector_create_with_growth(typedef_name, \
+    initial_allocated, growth, p, xctx) \
+((typedef_name *)afw_vector_create_impl( \
+    sizeof(*(((typedef_name *)0)->entries)), \
+    initial_allocated, (growth), p, xctx))
+
+/**
+ * @brief Create a vector that cannot grow past initial_allocated.
+ */
+#define afw_vector_create_fixed(typedef_name, \
+    initial_allocated, p, xctx) \
+((typedef_name *)afw_vector_create_impl( \
+    sizeof(*(((typedef_name *)0)->entries)), \
+    initial_allocated, (afw_integer_t)0, p, xctx))
+
+/**
+ * @brief Create a fixed vector during xctx init (no AFW_TRY).
+ */
+#define afw_vector_create_fixed_unhandled(typedef_name, \
+    initial_allocated, p, xctx) \
+((typedef_name *)afw_vector_create_fixed_unhandled_impl( \
+    sizeof(*(((typedef_name *)0)->entries)), \
     initial_allocated, p, xctx))
 
 /**
  * @brief Create an untyped vector.
  * @param entry_size size of one entry. Must be > 0.
  * @param initial_allocated capacity. Count starts at 0.
+ * @param growth 0 cannot grow; >0 add that many; <0 multiply
+ *    current allocated by |growth| (-2 = double).
  * @param p pool for header and element storage.
  * @param xctx of caller.
  * @return vector header.
  *
- * Normally called by afw_vector_create().
+ * Normally called by afw_vector_create() / create_fixed().
  */
 AFW_DECLARE(afw_vector_t *)
 afw_vector_create_impl(
+    afw_size_t entry_size,
+    afw_size_t initial_allocated,
+    afw_integer_t growth,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Create a fixed vector with apr_pcalloc (xctx init).
+ */
+AFW_DECLARE(afw_vector_t *)
+afw_vector_create_fixed_unhandled_impl(
     afw_size_t entry_size,
     afw_size_t initial_allocated,
     const afw_pool_t *p,

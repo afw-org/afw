@@ -31,38 +31,12 @@ void
 afw_stack_internal_set_qualifier_stack(
     afw_xctx_t *xctx)
 {
-    impl_stack_self_t *self;
-
     /*
-     * This early in xctx creation requires that nothing be called that
-     * directly or indirectly uses AFW_TRY such as afw_pool_calloc().
+     * Fixed size: entry pointers stay valid. Early xctx create cannot
+     * use AFW_TRY / afw_pool_calloc().
      */
-    self = apr_pcalloc(afw_pool_get_apr_pool(xctx->p),
-        sizeof(impl_stack_self_t));
-    self->pub.p = xctx->p;
-    self->initial_count = 5;
-    self->entry_size = sizeof(afw_xctx_qualifier_stack_entry_t);
-    self->maximum_count = 0;
-
-    /**
-     * @fixme
-     *
-     * self->maximum_count should be able to be 0, but the entries are
-     * the full struct.  When an expand happens, all of these structs
-     * are copied to another area so they have different addresses.
-     *
-     * To allow this, all code must access these entries indirectly by
-     * using an index.
-     */
-    self->initial_count = 100;
-    self->maximum_count = 100;
-
-    self->pub.first = apr_pcalloc(afw_pool_get_apr_pool(xctx->p),
-        self->initial_count * self->entry_size);
-    self->pub.top = (afw_octet_t *)self->pub.first - self->entry_size;
-    self->pub.end = (afw_octet_t *)self->pub.first +
-        (self->entry_size * self->initial_count);
-    xctx->qualifier_stack = (afw_xctx_qualifier_stack_t *)self;
+    xctx->qualifier_stack = afw_vector_create_fixed_unhandled(
+        afw_xctx_qualifier_stack_t, 100, xctx->p, xctx);
 }
 
 
@@ -72,25 +46,21 @@ void
 afw_stack_internal_set_evaluation_stack(
     afw_xctx_t *xctx)
 {
-    impl_stack_self_t *self;
+    afw_size_t n;
 
     /*
-     * This early in xctx creation requires that nothing be called that directly
-     * or indirectly uses AFW_TRY such as afw_pool_calloc().
+     * Allocate the cap up front so the vector never grows (entry
+     * pointers stay valid). Early xctx create cannot use AFW_TRY.
      */
-    self = apr_pcalloc(afw_pool_get_apr_pool(xctx->p),
-        sizeof(impl_stack_self_t));
-    self->pub.p = xctx->p;
-    self->initial_count = xctx->env->evaluation_stack_initial_count;
-    self->entry_size = sizeof(afw_xctx_evaluation_stack_entry_t);
-    self->maximum_count = xctx->env->evaluation_stack_maximum_count;
-
-    self->pub.first = apr_pcalloc(afw_pool_get_apr_pool(xctx->p),
-        self->initial_count * self->entry_size);
-    self->pub.top = (afw_octet_t *)self->pub.first - self->entry_size;
-    self->pub.end = (afw_octet_t *)self->pub.first +
-        (self->entry_size * self->initial_count);
-    xctx->evaluation_stack = (afw_xctx_evaluation_stack_t *)self;
+    n = xctx->env->evaluation_stack_maximum_count;
+    if (n == 0) {
+        n = xctx->env->evaluation_stack_initial_count;
+    }
+    if (n == 0) {
+        n = AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_MAXIMUM_COUNT;
+    }
+    xctx->evaluation_stack = afw_vector_create_fixed_unhandled(
+        afw_xctx_evaluation_stack_t, n, xctx->p, xctx);
 }
 
 

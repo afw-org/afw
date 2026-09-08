@@ -366,8 +366,11 @@ afw_xctx_get_optionally_qualified_variable(
      */
     for (
         result = NULL,
-        e_cur = xctx->qualifier_stack->top;
-        e_cur >= xctx->qualifier_stack->first;
+        e_cur = xctx->qualifier_stack->count
+            ? &xctx->qualifier_stack->entries[
+                xctx->qualifier_stack->count - 1]
+            : NULL;
+        e_cur && e_cur >= xctx->qualifier_stack->entries;
         e_cur--)
     {
         if (!e_cur->get_cb) {
@@ -399,7 +402,7 @@ AFW_DEFINE(int)
 afw_xctx_qualifier_stack_top_get(
     afw_xctx_t *xctx)
 {
-    return (int)(xctx->qualifier_stack->top - xctx->qualifier_stack->first);
+    return (int)xctx->qualifier_stack->count - 1;
 }
 
 
@@ -409,8 +412,8 @@ AFW_DEFINE(void)
 afw_xctx_qualifier_stack_top_set(
     int top, afw_xctx_t *xctx)
 {
-    ((afw_xctx_qualifier_stack_t *)xctx->qualifier_stack)->top =
-        xctx->qualifier_stack->first + top;
+    ((afw_xctx_qualifier_stack_t *)xctx->qualifier_stack)->count =
+        (afw_size_t)(top + 1);
 }
 
 
@@ -464,8 +467,11 @@ afw_xctx_qualifier_stack_qualifier_push(
         AFW_THROW_ERROR_Z(general, "contribute_cb required", xctx);
     }
 
-    afw_stack_push_and_get_entry(
-        (afw_xctx_qualifier_stack_t *)xctx->qualifier_stack, entry, xctx);
+    afw_vector_push_index_impl(
+        &((afw_xctx_qualifier_stack_t *)xctx->qualifier_stack)->internal,
+        xctx);
+    entry = &((afw_xctx_qualifier_stack_t *)xctx->qualifier_stack)->entries[
+        xctx->qualifier_stack->count - 1];
 
     memset(entry, 0, sizeof(afw_xctx_qualifier_stack_entry_t));
     entry->p = p;
@@ -548,8 +554,11 @@ afw_xctx_qualifier_stack_qualifier_object_push(
 
     afw_xctx_qualifier_stack_entry_t *entry;
 
-    afw_stack_push_and_get_entry(
-        (afw_xctx_qualifier_stack_t *)xctx->qualifier_stack, entry, xctx);
+    afw_vector_push_index_impl(
+        &((afw_xctx_qualifier_stack_t *)xctx->qualifier_stack)->internal,
+        xctx);
+    entry = &((afw_xctx_qualifier_stack_t *)xctx->qualifier_stack)->entries[
+        xctx->qualifier_stack->count - 1];
     afw_memory_clear(entry);
     entry->p = p;
     if (qualifier_name) {
@@ -981,24 +990,26 @@ afw_xctx_evaluation_stack_pop_value_impl(afw_xctx_t *xctx)
     const afw_value_t *v;
 
     stack = xctx->evaluation_stack;
-    while (!afw_stack_is_empty(stack)) {
-        if (stack->top->entry_id == afw_s_parameter_number) {
-            afw_stack_pop(stack, xctx);
-            if (!afw_stack_is_empty(stack)) {
-                afw_stack_pop(stack, xctx);
+    while (stack->count > 0) {
+        if (AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id ==
+            afw_s_parameter_number)
+        {
+            afw_vector_pop(stack, xctx);
+            if (stack->count > 0) {
+                afw_vector_pop(stack, xctx);
             }
             continue;
         }
-        v = stack->top->value;
+        v = AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value;
         if (afw_xctx_evaluation_stack_is_parked_occupant(v)) {
             afw_value_release(v, xctx);
-            afw_stack_pop(stack, xctx);
+            afw_vector_pop(stack, xctx);
             continue;
         }
         break;
     }
-    if (!afw_stack_is_empty(stack)) {
-        afw_stack_pop(stack, xctx);
+    if (stack->count > 0) {
+        afw_vector_pop(stack, xctx);
     }
 }
 
@@ -1010,28 +1021,29 @@ afw_xctx_evaluation_stack_pop_value_impl(afw_xctx_t *xctx)
  */
 AFW_DEFINE(void)
 afw_xctx_evaluation_stack_rewind(
-    afw_xctx_evaluation_stack_entry_t *saved_top,
+    afw_size_t save_count,
     afw_xctx_t *xctx)
 {
     afw_xctx_evaluation_stack_t *stack;
     const afw_value_t *v;
 
     stack = xctx->evaluation_stack;
-    while (stack->top > saved_top && stack->top >= stack->first) {
-        if (stack->top->entry_id == afw_s_parameter_number) {
-            stack->top--;
-            if (stack->top > saved_top && stack->top >= stack->first) {
-                stack->top--;
+    while (stack->count > save_count) {
+        if (AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id ==
+            afw_s_parameter_number)
+        {
+            stack->count--;
+            if (stack->count > save_count) {
+                stack->count--;
             }
             continue;
         }
-        v = stack->top->value;
+        v = AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value;
         if (afw_xctx_evaluation_stack_is_parked_occupant(v)) {
             afw_value_release(v, xctx);
         }
-        stack->top--;
+        stack->count--;
     }
-    stack->top = saved_top;
 }
 
 

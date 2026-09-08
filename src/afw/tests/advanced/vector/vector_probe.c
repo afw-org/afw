@@ -257,6 +257,13 @@ impl_expect_throw(
 
 
 static void
+impl_push_one(impl_int_vector_t *v, afw_xctx_t *xctx)
+{
+    afw_vector_push(v, xctx) = 1;
+}
+
+
+static void
 impl_pop_empty(impl_int_vector_t *v, afw_xctx_t *xctx)
 {
     afw_vector_pop(v, xctx);
@@ -274,6 +281,41 @@ static void
 impl_remove_past(impl_int_vector_t *v, afw_xctx_t *xctx)
 {
     afw_vector_remove(v, 0, xctx);
+}
+
+
+static int
+impl_growth_add(afw_xctx_t *xctx)
+{
+    impl_int_vector_t *v;
+    afw_size_t i;
+
+    v = afw_vector_create_with_growth(impl_int_vector_t, 4, 4,
+        xctx->p, xctx);
+    for (i = 0; i < 9; i++) {
+        afw_vector_push(v, xctx) = (int)i;
+    }
+    if (v->count != 9) {
+        return impl_fail("growth_add", "count");
+    }
+    /* 4 + 4 + 4, not doubling 4, 8, 16. */
+    if (v->allocated != 12) {
+        return impl_fail("growth_add", "allocated");
+    }
+    return 0;
+}
+
+
+static int
+impl_cannot_grow(afw_xctx_t *xctx)
+{
+    impl_int_vector_t *v;
+
+    v = afw_vector_create_fixed(impl_int_vector_t, 2, xctx->p, xctx);
+    afw_vector_push(v, xctx) = 1;
+    afw_vector_push(v, xctx) = 2;
+    return impl_expect_throw("cannot_grow", afw_error_code_general,
+        impl_push_one, v, xctx);
 }
 
 
@@ -344,6 +386,12 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "copy_entries_and_release") == 0) {
         rc = impl_copy_entries_and_release(xctx);
     }
+    else if (strcmp(case_name, "growth_add") == 0) {
+        rc = impl_growth_add(xctx);
+    }
+    else if (strcmp(case_name, "cannot_grow") == 0) {
+        rc = impl_cannot_grow(xctx);
+    }
     else if (strcmp(case_name, "underflow") == 0) {
         rc = impl_underflow(xctx);
     }
@@ -354,7 +402,7 @@ main(int argc, char **argv)
         fprintf(stderr, "usage: vector_probe "
             "push_grow|insert_remove|pop_clear|copy|append|"
             "copy_entries|copy_entries_and_release|"
-            "underflow|bad_index\n");
+            "growth_add|cannot_grow|underflow|bad_index\n");
         rc = 2;
     }
 
