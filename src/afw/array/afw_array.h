@@ -111,7 +111,7 @@ afw_array_is_memory_managed(const afw_array_t *array);
  * @param xctx of caller.
  * @return instance of new wrapper array.
  *
- * The face materializes entry value pointers into a local ring so mutators
+ * The face materializes entry value pointers into a local vector so mutators
  * only touch the face. Nested mutable objects/arrays are promoted to nested
  * faces on get. Sets never write to @p wrapped (issue #17).
  *

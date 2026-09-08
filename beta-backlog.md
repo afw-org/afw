@@ -366,7 +366,7 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 |---------|--------|--------|
 | **`afw_value_meta_values_list` / `_object`** | **Done** | Lazy immutable views; `metas()` for array/object. Tests: `miscellaneous/meta_values.as`. |
 | **`set_value` / discard slot release** | **Deferred to #2** | Commented-out helper + `@fixme #2` in `afw_array_memory.c` (match object store-as-is for now). When hold-on-store lands: `optional_release` on set/remove/remove_all; not on pop/shift. |
-| **Mid-array insert/remove O(n)** | **Improved** | Still O(n) ring, but index locate walks from **nearer end** (`impl_entry_at`). Ends (`push`/`pop`/`shift`/`insert 0`) stay O(1). Contiguous vector later only if hot. |
+| **Mid-array insert/remove O(n)** | **Vector store** | Memory arrays sit on `afw_vector` of value pointers. Index locate is O(1); mid-array insert/remove still `memmove`. Ends (`push`/`pop`/`shift`/`insert 0`) stay O(1). |
 | **`get_next_internal` iterator** | **Gone** | Vtable method dropped. `get_next_value` still clears the iterator to NULL at end (do not store sentinel). |
 | **Stored C NULL vs empty on pop** | **Documented** | Optional `found`; interface + `afw_array.h` describe empty vs removed NULL. |
 | **No C vtable `unshift` name** | **Documented** | Intentional: `insert_value(…, 0, …)` / `afw_array_insert_value(a, 0, v, xctx)`. Script has `unshift`. |
