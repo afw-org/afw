@@ -967,7 +967,7 @@ Finish / PR-shaped verify is still: `./afwdev build --fulldev` then (when you wa
 
 | Type | Use |
 |------|-----|
-| **`afw_vector`** | Growable contiguous elements. Header stays put; `entries` may move on grow. Declare a typed overlay with **`AFW_VECTOR_STRUCT`**. |
+| **`afw_vector`** | Growable contiguous elements. Header stays put; `entries` may move on grow. Declare a typed overlay with **`AFW_VECTOR_STRUCT`**. The in-memory **`afw_array`** store is a vector of value pointers. |
 | **`afw_hash_table`** | Byte-key → pointer map. Keys are not copied (caller keeps key memory alive). Set value **`NULL`** deletes. Overlay **`AFW_HASH_TABLE_STRUCT`** / **`afw_void_hash_table_t`**. |
 
 Same [C rebuild rule](#c-programmers) if you link `libafw` out of tree. PRs **[#300](https://github.com/afw-org/afw/pull/300)** and **[#301](https://github.com/afw-org/afw/pull/301)**.
