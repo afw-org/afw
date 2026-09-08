@@ -97,6 +97,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Templates**](#compile-time-template-substitutions-issue-97) ([#97](https://github.com/afw-org/afw/issues/97)) | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates |
 | [**Adapter index `current::`**](#adapter-index-filtervalue-current-issue-54--partial) ([#54](https://github.com/afw-org/afw/issues/54) partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
 | [**C builders / afwdev**](#c-api-docs-and-full-package-builds-issue-1) ([#1](https://github.com/afw-org/afw/issues/1)) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
+| [**C vector / hash table**](#c-vector-and-hash-table) | **`afw_vector`** and **`afw_hash_table`** on `afw.h` for C growable lists and name→pointer maps (not Adaptive `afw_array`) |
 | [**Value / memory (α/β)**](#value-lifetime--memory-management-issue-2--alphabeta) ([#2](https://github.com/afw-org/afw/issues/2), [#277](https://github.com/afw-org/afw/issues/277)) | Two worlds: **unmanaged** in dest `p` / tracker; **managed** in this `xctx->p`. Slot protocol; `create_unmanaged` / `_new_p` / `_cede_p`; frames `create_managed`; last_return is the slot ([#62](https://github.com/afw-org/afw/issues/62)) |
 | [**`stringify` / `decompile` / listing**](#stringify-decompile-compiler-listing-and-binary-text) ([#18](https://github.com/afw-org/afw/issues/18)) | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
 | [**UTF-8 create / set / forced_safe**](#utf-8-create-set-and-forced_safe) | C doors: short **`create`/`set` copy**; **`no_copy`** points; **`forced_safe`** encodes invalid runs as `^hex^`. Env/request names use that encode (not `_NONUTF8_` + whole-name hex). **`afw_utf8_printf`** is its own formatter: `AFW_UTF8_FMT` copies n bytes (interior `0` is data), then the whole result is **`forced_safe`** — viewable text, not a data-file writer |
@@ -958,6 +959,23 @@ Finish / PR-shaped verify is still: `./afwdev build --fulldev` then (when you wa
 
 ---
 
+## C vector and hash table
+
+**C builders** — Adaptive Script-only readers can skip. Script **`array`** is unchanged.
+
+`afw.h` now includes two small C containers. They are **not** Adaptive `afw_array` or object: no values, no meta, no setter.
+
+| Type | Use |
+|------|-----|
+| **`afw_vector`** | Growable contiguous elements. Header stays put; `entries` may move on grow. Declare a typed overlay with **`AFW_VECTOR_STRUCT`**. |
+| **`afw_hash_table`** | Byte-key → pointer map. Keys are not copied (caller keeps key memory alive). Set value **`NULL`** deletes. Overlay **`AFW_HASH_TABLE_STRUCT`** / **`afw_void_hash_table_t`**. |
+
+Same [C rebuild rule](#c-programmers) if you link `libafw` out of tree. PRs **[#300](https://github.com/afw-org/afw/pull/300)** and **[#301](https://github.com/afw-org/afw/pull/301)**.
+
+[↑ Highlights](#highlights)
+
+---
+
 ## libafw C API cleanup (release-ready surface)
 
 **C builders / out-of-tree extensions and commands** — Adaptive Script-only readers can skip.
@@ -995,6 +1013,7 @@ These landed for product reasons too, but share the **same rebuild** for C consu
 | [UTF-8 code-point sequences](#utf-8-code-point-sequences-issue-153) ([#153](https://github.com/afw-org/afw/issues/153)) | Iterator redesign; legacy cursor → **`afw_iterator_old`** |
 | [Typed value pointers](#typed-value-pointers-vs-c-internals) | `_as_<type>` vs `_internal` vs `convert_to_*`; array dest `p` and `_internal` vtable methods |
 | [Mutable object faces](#mutable-object-faces-issue-17) ([#17](https://github.com/afw-org/afw/issues/17)) | Face/value paths if you link those APIs |
+| [C vector / hash table](#c-vector-and-hash-table) | New `afw_vector` / `afw_hash_table` on `afw.h` |
 
 ### Upgrade hygiene
 

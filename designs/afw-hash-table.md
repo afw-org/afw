@@ -1,7 +1,7 @@
 # afw_hash_table — C key → pointer map
 
 **Audience:** maintainers. **Not** handbook.  
-**Branch:** `feature/afw-hash-table`. Same campaign as [`afw-vector.md`](afw-vector.md).
+Landed on **`develop`** ([PR #301](https://github.com/afw-org/afw/pull/301)). Same campaign as [`afw-vector.md`](afw-vector.md).
 
 ## Why
 
@@ -17,7 +17,7 @@ Name→pointer tables allocated from an AFW pool.
 - Iterator is a **stack** `afw_hash_table_index_t` (no pool for `first()`). Prefetches next so deleting the current entry is safe.
 - Intern-then-id is a later lever, not a prerequisite.
 
-## Converted on this branch
+## Converted
 
 Env registries, compile intern / script type names, runtime catalog, adapter session and object-type caches, model object types, object-view intern, associative_array wrappers, service-id set, YAML anchors, LDAP schema name tables.
 
