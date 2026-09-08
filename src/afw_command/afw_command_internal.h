@@ -11,6 +11,7 @@
 
 #include "afw_doxygen.h"
 #include "afw_interface.h"
+#include "afw_vector.h"
 #include "generated/afw_command_generated_internal.h"
 #include "generated/afw_command_version_info.h"
 
@@ -87,7 +88,7 @@ typedef struct afw_command_self_s {
 
     const afw_server_t *local_server;
 
-    apr_array_header_t *input_buffer;
+    afw_octet_vector_t *input_buffer;
 
     afw_utf8_octet_get_cb_t callback;
 

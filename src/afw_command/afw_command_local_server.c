@@ -67,13 +67,13 @@ impl_local_get_input(
     }
 
     /* Read chunks into input buffer. */
-    apr_array_clear(self->input_buffer);
+    afw_vector_clear(self->input_buffer);
     for (;;) {
 
         /* First char must be a digit so a stealth skip cannot happen. */
         c = fgetc(self->fd_input);
         if (c == EOF) {
-            if (self->input_buffer->nelts != 0) {
+            if (self->input_buffer->count != 0) {
                 goto error;
             }
             return NULL;
@@ -110,14 +110,14 @@ impl_local_get_input(
             if (c < 0 || c > 255) {
                 goto error;
             }
-            APR_ARRAY_PUSH(self->input_buffer, unsigned char) = c;
+            afw_vector_push(self->input_buffer, xctx) = (afw_octet_t)c;
         }
     }
 
     /* Return result. */
     result = afw_xctx_malloc_type(afw_memory_t, xctx);
-    result->ptr = (const afw_byte_t *)self->input_buffer->elts;
-    result->size = self->input_buffer->nelts;
+    result->ptr = (const afw_byte_t *)self->input_buffer->entries;
+    result->size = self->input_buffer->count;
     return result;
 
 error:
@@ -497,7 +497,7 @@ afw_command_local_server_create(
     self->pub.server_version = &impl_compiled_afw_version;
 
     self->command_self = command_self;
-    self->input_buffer = apr_array_make(afw_pool_get_apr_pool(p), 2000, 1);
+    self->input_buffer = afw_vector_create(afw_octet_vector_t, 2000, p, xctx);
     self->fd_input = command_self->fd_input;
     self->fd_output = command_self->fd_output;
 

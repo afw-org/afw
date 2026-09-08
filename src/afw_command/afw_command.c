@@ -231,10 +231,8 @@ impl_input_buffer_append(
     const char *s,
     size_t len)
 {
-    size_t i;
-
-    for (i = 0; i < len; i++) {
-        APR_ARRAY_PUSH(self->input_buffer, unsigned char) = (unsigned char)s[i];
+    if (len > 0) {
+        afw_vector_append(self->input_buffer, s, len, self->xctx);
     }
 }
 
@@ -381,7 +379,7 @@ impl_get_input_libedit(afw_command_self_t *self, afw_xctx_t *xctx)
         }
 
         /* Enter complete logical line into history. */
-        if (self->editline_history && self->input_buffer->nelts > 0) {
+        if (self->editline_history && self->input_buffer->count > 0) {
             memset(&ev, 0, sizeof(ev));
             /*
              * history() expects a NUL-terminated C string. Use the just-read
@@ -392,10 +390,10 @@ impl_get_input_libedit(afw_command_self_t *self, afw_xctx_t *xctx)
                 history((History *)self->editline_history, &ev, H_ENTER, line);
             }
             else {
-                APR_ARRAY_PUSH(self->input_buffer, unsigned char) = 0;
+                afw_vector_push(self->input_buffer, xctx) = 0;
                 history((History *)self->editline_history, &ev, H_ENTER,
-                    self->input_buffer->elts);
-                apr_array_pop(self->input_buffer);
+                    (char *)self->input_buffer->entries);
+                afw_vector_pop(self->input_buffer, xctx);
             }
         }
         break;
@@ -403,10 +401,11 @@ impl_get_input_libedit(afw_command_self_t *self, afw_xctx_t *xctx)
 
     self->prompt_continuation = false;
 
-    return (self->input_buffer->nelts == 0)
+    return (self->input_buffer->count == 0)
         ? NULL
-        : (afw_utf8_t *)afw_utf8_create(self->input_buffer->elts,
-            self->input_buffer->nelts, xctx->p, xctx);
+        : (afw_utf8_t *)afw_utf8_create(
+            (const afw_utf8_octet_t *)self->input_buffer->entries,
+            self->input_buffer->count, xctx->p, xctx);
 }
 
 #else /* !AFW_COMMAND_HAVE_LIBEDIT */
@@ -439,12 +438,11 @@ impl_get_input(afw_command_self_t *self, afw_xctx_t *xctx)
 
     /* Allocate array for input. */
     if (!self->input_buffer) {
-        self->input_buffer = apr_array_make(
-            afw_pool_get_apr_pool(self->xctx->p),
-            2000, 1);
+        self->input_buffer = afw_vector_create(afw_octet_vector_t,
+            2000, self->xctx->p, xctx);
     }
 
-    apr_array_clear(self->input_buffer);
+    afw_vector_clear(self->input_buffer);
 
 #ifdef AFW_COMMAND_HAVE_LIBEDIT
     /* Interactive TTY: line editing and history via libedit. */
@@ -461,18 +459,19 @@ impl_get_input(afw_command_self_t *self, afw_xctx_t *xctx)
             break;
         }
         if (c == '\n' && prev_c == '\\') {
-            apr_array_pop(self->input_buffer);
+            afw_vector_pop(self->input_buffer, xctx);
             continue;
         }
-        APR_ARRAY_PUSH(self->input_buffer, unsigned char) = c;
+        afw_vector_push(self->input_buffer, xctx) = (afw_octet_t)c;
         if (c == '\n') break;
     }
 
     /* Return resulting string making sure it is NFC utf8. */
-    return (self->input_buffer->nelts == 0) 
-        ? NULL 
-        : (afw_utf8_t *)afw_utf8_create(self->input_buffer->elts,
-            self->input_buffer->nelts, xctx->p, xctx);
+    return (self->input_buffer->count == 0)
+        ? NULL
+        : (afw_utf8_t *)afw_utf8_create(
+            (const afw_utf8_octet_t *)self->input_buffer->entries,
+            self->input_buffer->count, xctx->p, xctx);
 }
 
 
