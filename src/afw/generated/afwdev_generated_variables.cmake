@@ -39,7 +39,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     adapter/afw_adapter_retrieve.h
     array/afw_array.h
     array/afw_array_impl.h
-    array_template/afw_array_template.h
     ascii/afw_ascii.h
     associative_array/afw_associative_array.h
     associative_array/afw_associative_array_template.h
@@ -192,7 +191,6 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/adapter
     ${CMAKE_CURRENT_SOURCE_DIR}/application
     ${CMAKE_CURRENT_SOURCE_DIR}/array
-    ${CMAKE_CURRENT_SOURCE_DIR}/array_template
     ${CMAKE_CURRENT_SOURCE_DIR}/ascii
     ${CMAKE_CURRENT_SOURCE_DIR}/associative_array
     ${CMAKE_CURRENT_SOURCE_DIR}/atomic

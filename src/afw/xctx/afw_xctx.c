@@ -91,11 +91,19 @@ afw_xctx_internal_create_initialize(
     /*! \fixme stream_anchor may be too early??? */
     self->stream_anchor = afw_stream_internal_stream_anchor_create(self);
 
-    self->scope_stack = apr_array_make(afw_pool_get_apr_pool(p),
-        10, sizeof(afw_xctx_scope_t *));
-    if (!self->scope_stack) {
-        AFW_THROW_UNHANDLED_ERROR(unhandled_error, error, general, na, 0,
-            "apr_array_make() failed");
+    /*
+     * Fixed vector: xctx init cannot use AFW_TRY / afw_pool_calloc.
+     * Cap matches evaluation stack so nested scopes cannot outrun eval.
+     */
+    {
+        afw_size_t n;
+
+        n = env->pub.evaluation_stack_maximum_count;
+        if (n == 0) {
+            n = AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_MAXIMUM_COUNT;
+        }
+        self->scope_stack = afw_vector_create_fixed_unhandled(
+            afw_xctx_scope_p_vector_t, n, p, self);
     }
 
     /*
@@ -694,8 +702,8 @@ static void impl_scope_debug(
 
     printf(
         ", total scope count: " AFW_SIZE_T_FMT
-        ", active scope count: %d",
-        xctx->scope_count, xctx->scope_stack->nelts);
+        ", active scope count: " AFW_SIZE_T_FMT,
+        xctx->scope_count, xctx->scope_stack->count);
 
     if (note) {
         printf(" %s", note);
@@ -737,11 +745,11 @@ afw_xctx_scope_create(
                 "afw_xctx_scope_create(): parent_lexical_scope block is "
                 "not parent_scope_block "
                 "(scope count: " AFW_SIZE_T_FMT
-                ", active scopes: %d"
+                ", active scopes: " AFW_SIZE_T_FMT
                 ", parent scope number: " AFW_SIZE_T_FMT
                 ", parent scope_depth: " AFW_SIZE_T_FMT
                 ", block scope_depth: " AFW_SIZE_T_FMT ")",
-                xctx->scope_count, xctx->scope_stack->nelts,
+                xctx->scope_count, xctx->scope_stack->count,
                 parent_lexical_scope->scope_number,
                 parent_lexical_scope->block->scope_depth,
                 block->scope_depth);
@@ -872,7 +880,7 @@ afw_xctx_scope_activate(
     afw_xctx_t *xctx)
 {
     ((afw_xctx_scope_t *)scope)->reference_count++;
-    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
+    afw_vector_push(xctx->scope_stack, xctx) = scope;
 
     afw_xctx_scope_debug(
         "-> afw_xctx_scope_activate()",
@@ -918,7 +926,7 @@ afw_xctx_scope_deactivate(
             xctx);
     }
 
-    apr_array_pop(xctx->scope_stack);
+    afw_vector_pop(xctx->scope_stack, xctx);
     afw_xctx_scope_release(scope, xctx);
 }
 

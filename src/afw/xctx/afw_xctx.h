@@ -278,15 +278,16 @@ struct afw_xctx_scope_s {
 
 
 
+AFW_VECTOR_STRUCT(afw_xctx_scope_p_vector_s, const afw_xctx_scope_t *);
+
 /**
  * @brief Get current scope.
  * @param xctx of caller.
  * @return Current scope.
  */
 #define afw_xctx_scope_current(xctx) \
-    ((xctx->scope_stack->nelts > 0) \
-    ? ((const afw_xctx_scope_t **)xctx->scope_stack->elts) \
-        [xctx->scope_stack->nelts - 1] \
+    ((xctx->scope_stack->count > 0) \
+    ? xctx->scope_stack->entries[xctx->scope_stack->count - 1] \
     : NULL)
 
 

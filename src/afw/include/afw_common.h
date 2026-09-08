@@ -2211,9 +2211,10 @@ struct afw_xctx_s {
 
     /**
      * The execution context (xctx) runtime scope stack. Entries are
-     * const afw_xctx_scope_t *.
+     * const afw_xctx_scope_t * (NULL sentinel around compiled_value
+     * evaluate).
      */
-    apr_array_header_t *scope_stack;
+    afw_xctx_scope_p_vector_t *scope_stack;
 
     /**
      * Heap scopes make trackers of. Created lazily (child of xctx->p).

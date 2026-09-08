@@ -990,6 +990,14 @@ typedef struct afw_value_symbol_reference_s
 afw_value_symbol_reference_t;
 
 /**
+ * @brief Vector of `const afw_xctx_scope_t *` (`xctx->scope_stack`).
+ *
+ * See afw_xctx.h.
+ */
+typedef struct afw_xctx_scope_p_vector_s
+afw_xctx_scope_p_vector_t;
+
+/**
  * @brief Execution context (`afw_xctx_t`): scopes, stack, statement_flow.
  *
  * Unit of work for evaluation and requests. See group afw_xctx and

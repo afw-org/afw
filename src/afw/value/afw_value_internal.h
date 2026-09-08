@@ -1041,7 +1041,6 @@ struct afw_value_compiler_listing_s {
     const afw_value_compiled_value_t *compiled_value;
     const afw_utf8_t *reference_id;
     afw_octet_vector_t *ary;
-    apr_array_header_t *child_compiler_listings;
     const afw_utf8_t *last_full_source;
     afw_size_t prefix_size;
     afw_size_t max_value_cursor;
