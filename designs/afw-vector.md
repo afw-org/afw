@@ -17,5 +17,6 @@
 
 ## Later
 
-- Remaining `apr_array`: env `registry_types` / `data_type_methods`, ldap mods, index (Jeremy #299). Hashes still use `parser->apr_p`.
+- Remaining `apr_array`: env `registry_types` / `data_type_methods`, ldap mods, index (Jeremy #299).
+- **`apr_hash`:** next C tool — [`afw-hash-table.md`](afw-hash-table.md).
 - Memory-array store. Align `afw_array` methods with Adaptive Script (`push`/`splice`/`for-of`) and journal-style cursors (`get_next` / `initialize_iterator`) once the C tool is in use.
