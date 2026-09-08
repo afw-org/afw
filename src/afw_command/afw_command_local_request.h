@@ -10,6 +10,7 @@
 #define __AFW_COMMAND_LOCAL_REQUEST_H__
 
 #include "afw_interface.h"
+#include "afw_vector.h"
 #include "afw_command_local_server.h"
 /**
  * @addtogroup afw_command_internal
@@ -26,6 +27,10 @@
 
 AFW_BEGIN_DECLARES
 
+AFW_VECTOR_STRUCT(afw_command_utf8_p_vector_s, const afw_utf8_t *);
+typedef struct afw_command_utf8_p_vector_s
+    afw_command_utf8_p_vector_t;
+
 /**
  * @brief Self typedef for afw_command_local implementation of afw_request.
  */
@@ -40,8 +45,8 @@ afw_command_local_request_self_s {
     /* Request state. */
     afw_request_state_t state;
 
-    /* These are pairs of const afw_utf8_t * for name and value or NULL. */
-    apr_array_header_t *response_headers;
+    /* These are pairs of const afw_utf8_t * for name and value. */
+    afw_command_utf8_p_vector_t *response_headers;
 
     /* Response status code and reason. */
     const afw_utf8_t *status_code;

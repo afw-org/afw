@@ -27,8 +27,9 @@ afw_adapter_internal_get_cache(afw_xctx_t *xctx)
     if (!xctx->cache) {
         cache = afw_xctx_calloc_type(afw_adapter_internal_cache_t, xctx);
         cache->session_cache = apr_hash_make(afw_pool_get_apr_pool(xctx->p));
-        cache->transactions = apr_array_make(afw_pool_get_apr_pool(xctx->p), 5,
-            sizeof(afw_adapter_internal_transaction_t *));
+        cache->transactions = afw_vector_create(
+            afw_adapter_internal_transaction_p_vector_t, 5,
+            xctx->p, xctx);
         xctx->cache = cache;
     }
 
@@ -342,15 +343,14 @@ impl_get_adapter_session_cache(const afw_utf8_t *adapter_id,
 
     /* If session and begin_transaction, make sure transactions is started. */
     if (session_cache->session && begin_transaction) {
-        for (i = 0; i < cache->transactions->nelts; i++) {
-            transaction = APR_ARRAY_IDX(cache->transactions, i,
-                afw_adapter_internal_transaction_t *);
+        for (i = 0; i < (int)cache->transactions->count; i++) {
+            transaction = cache->transactions->entries[i];
             if (afw_utf8_equal(transaction->adapter_id, adapter_id))
             {
                 break;
             }
         }
-        if (i >= cache->transactions->nelts) {
+        if (i >= (int)cache->transactions->count) {
             new_transaction = afw_adapter_session_begin_transaction(
                 session_cache->session,
                 xctx);
@@ -360,8 +360,7 @@ impl_get_adapter_session_cache(const afw_utf8_t *adapter_id,
                 transaction->adapter_id =
                     &session_cache->session->adapter->adapter_id;
                 transaction->transaction = new_transaction;
-                APR_ARRAY_PUSH(cache->transactions,
-                    const afw_adapter_internal_transaction_t *) = transaction;
+                afw_vector_push(cache->transactions, xctx) = transaction;
             }
         }
     }
@@ -399,25 +398,25 @@ afw_adapter_session_commit_and_release_cache(afw_boolean_t abort,
     afw_xctx_t *xctx)
 {
     const afw_adapter_internal_cache_t *cache;
-    const afw_adapter_internal_transaction_t **t0;
-    const afw_adapter_internal_transaction_t **t;
+    afw_adapter_internal_transaction_t *transaction;
     afw_adapter_internal_session_cache_t *session_cache;
     apr_hash_index_t *hi;
     const void * key;
     apr_ssize_t klen;
+    afw_size_t i;
 
     cache = xctx->cache;
     if (!cache) return;
 
     /* Call commit for all active transaction in reverse order of begin. */
-    for (t0 = (const afw_adapter_internal_transaction_t **)
-        cache->transactions->elts - 1,
-        t = t0 + cache->transactions->nelts; t > t0; t--)
-    {
+    i = cache->transactions->count;
+    while (i > 0) {
+        i--;
+        transaction = cache->transactions->entries[i];
         if (!abort) {
-            afw_adapter_transaction_commit((*t)->transaction, xctx);
+            afw_adapter_transaction_commit(transaction->transaction, xctx);
         }
-        afw_adapter_transaction_release((*t)->transaction, xctx);
+        afw_adapter_transaction_release(transaction->transaction, xctx);
     }
 
     /* Release all active sessions in no particular order. */

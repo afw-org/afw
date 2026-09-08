@@ -15,6 +15,6 @@
 
 ## Later (not this pass)
 
-- Remaining `apr_array`: xctx `scope_stack`, env registry/methods, adapter transactions, command response_headers, ldap mods, index (Jeremy #299). Hashes still use `parser->apr_p`.
+- Remaining `apr_array`: xctx `scope_stack`, env registry/methods, ldap mods, index (Jeremy #299). Hashes still use `parser->apr_p`.
 - Fold `afw_stack` onto vector if eval/qualifier stacks can live with relocating `entries` (today they cannot if callers hold entry pointers).
 - Memory-array store. Align `afw_array` methods with Adaptive Script (`push`/`splice`/`for-of`) and journal-style cursors (`get_next` / `initialize_iterator`) once the C tool is in use.
