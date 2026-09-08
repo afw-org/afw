@@ -10,8 +10,6 @@
 #define __AFW_OBJECT_INTERNAL_H__
 
 #include "afw_interface.h"
-#include <apr_ring.h>
-#include <apr_hash.h>
 
 /**
  * @addtogroup afw_object_internal
@@ -29,14 +27,14 @@ typedef struct afw_object_internal_memory_object_s
     afw_object_internal_memory_object_t;
 
 /**
- * @brief Typedef for name/value list entry.
+ * @brief Typedef for name/value property entry.
  */
 typedef struct afw_object_internal_name_value_entry_s
 afw_object_internal_name_value_entry_t;
 
 
 /**
- * @brief Struct for name/value list entry.
+ * @brief Struct for name/value property entry.
  */
 struct afw_object_internal_name_value_entry_s {
     afw_object_internal_name_value_entry_t *next;
@@ -50,14 +48,8 @@ struct afw_object_internal_memory_object_s {
     afw_value_object_t value;
     afw_object_setter_t setter;
 
-    /*
-     * Implementation supports both property list and property hash table.
-     * See boolean use_properties_ht to determine which is being used.
-     */
-    union {
-        afw_object_internal_name_value_entry_t *first_property;
-        apr_hash_t *properties_ht;
-    };
+    /** Singly-linked properties in insert order. */
+    afw_object_internal_name_value_entry_t *first_property;
 
     /*
      * Optional base for look-through gets (NULL for a normal memory object).

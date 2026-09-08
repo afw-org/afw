@@ -642,8 +642,8 @@ typedef struct afw_compile_parse_StatementList_cb_s {
         afw_compile_args_t *statements);
 } afw_compile_parse_StatementList_cb_t;
 
-/* Work stack for building argument / statement lists while parsing. */
-AFW_STACK_STRUCT(afw_compile_internal_args_s, const afw_value_t *);
+/* Work vector for building argument / statement lists while parsing. */
+AFW_VECTOR_STRUCT(afw_compile_internal_args_s, const afw_value_t *);
 
 
 /*
@@ -891,14 +891,14 @@ do { \
 
 /* Temporary arg/statement list helpers (uses parser for pool/xctx). */
 #define afw_compile_args_create(parser) \
-afw_stack_create(afw_compile_args_t, 10, 0, true, \
+afw_vector_create(afw_compile_args_t, 10, \
     (parser)->p, (parser)->xctx)
 
 #define afw_compile_args_add_value(args, value) \
-afw_stack_push(args, (parser)->xctx) = value
+afw_vector_push(args, (parser)->xctx) = value
 
 #define afw_compile_args_finalize(args, argc, argv) \
-afw_stack_copy_and_release((args), (argc), (argv), \
+afw_vector_copy_entries_and_release((args), (argc), (argv), \
     (parser)->p, (parser)->xctx)
 
 

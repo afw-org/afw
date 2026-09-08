@@ -13,6 +13,7 @@
  */
 
 #include "afw_internal.h"
+#include <apr_ring.h>
 
 
 

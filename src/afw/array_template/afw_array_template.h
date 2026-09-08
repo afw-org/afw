@@ -20,9 +20,8 @@
  * @file afw_array_template.h
  * @brief Adaptive Framework Array Template Header.
 *
- * mgg - I'm not real happy with this, so it may go away at some point.  Too
- *      much is obscured in macros.  But it does reduce the chance that errors
- *      will be made when using apr's array support.
+ * Prefer afw_vector (typed overlay, AFW pool, no apr_array). This
+ * template wraps apr_array and is unused; it may go away.
  */
 
 AFW_BEGIN_DECLARES

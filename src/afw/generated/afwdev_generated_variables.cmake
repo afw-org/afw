@@ -180,6 +180,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     utf8/afw_utf8.h
     uuid/afw_uuid.h
     value/afw_value.h
+    vector/afw_vector.h
     version/afw_version.h
     writer/afw_writer.h
     xctx/afw_xctx.h
@@ -235,6 +236,7 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/utf8
     ${CMAKE_CURRENT_SOURCE_DIR}/uuid
     ${CMAKE_CURRENT_SOURCE_DIR}/value
+    ${CMAKE_CURRENT_SOURCE_DIR}/vector
     ${CMAKE_CURRENT_SOURCE_DIR}/version
     ${CMAKE_CURRENT_SOURCE_DIR}/writer
     ${CMAKE_CURRENT_SOURCE_DIR}/xctx
@@ -453,6 +455,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     value/afw_value_symbol_reference.c
     value/afw_value_template_definition.c
     value/afw_value_type_check.c
+    vector/afw_vector.c
     version/afw_version.c
     writer/afw_writer.c
     xctx/afw_xctx.c
