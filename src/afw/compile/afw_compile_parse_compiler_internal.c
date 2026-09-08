@@ -405,9 +405,8 @@ impl_parse_compiler_internal_interface(afw_compile_parser_t *parser)
     const afw_value_type_t *base;
     afw_value_type_t *type;
     afw_value_type_t *placeholder;
-    apr_array_header_t *extends;
+    afw_compile_type_p_vector_t *extends;
     const afw_value_type_t **list;
-    afw_size_t i;
     afw_size_t start_offset;
 
     start_offset = parser->token->token_source_offset;
@@ -458,24 +457,20 @@ impl_parse_compiler_internal_interface(afw_compile_parser_t *parser)
                 AFW_UTF8_FMT_ARG(name));
         }
         if (!extends) {
-            extends = apr_array_make(parser->apr_p, 2,
-                sizeof(const afw_value_type_t *));
+            extends = afw_vector_create(afw_compile_type_p_vector_t, 2,
+                parser->p, parser->xctx);
         }
-        APR_ARRAY_PUSH(extends, const afw_value_type_t *) = base;
+        afw_vector_push(extends, parser->xctx) = base;
     }
 
     type = afw_pool_calloc_type(parser->p, afw_value_type_t, parser->xctx);
     type->kind = afw_value_type_kind_object;
     type->object.properties = body->object.properties;
     type->object.interface_name = name;
-    if (extends && extends->nelts > 0) {
-        type->object.extends_count = (afw_size_t)extends->nelts;
-        list = afw_pool_malloc(parser->p,
-            sizeof(afw_value_type_t *) * type->object.extends_count,
-            parser->xctx);
-        for (i = 0; i < type->object.extends_count; i++) {
-            list[i] = ((const afw_value_type_t **)extends->elts)[i];
-        }
+    if (extends && extends->count > 0) {
+        afw_vector_copy_entries_and_release(extends,
+            &type->object.extends_count, &list,
+            parser->p, parser->xctx);
         type->object.extends = list;
     }
 
@@ -661,7 +656,7 @@ impl_parse_compiler_internal_script_function(afw_compile_parser_t *parser)
     afw_value_script_function_signature_t *signature;
     afw_value_script_function_parameter_t *param;
     afw_value_block_symbol_t *symbol;
-    apr_array_header_t *params;
+    afw_compile_param_p_vector_t *params;
     const afw_value_block_t *enclosing_block;
     afw_size_t start_offset;
     afw_size_t arg_source_offset;
@@ -674,8 +669,8 @@ impl_parse_compiler_internal_script_function(afw_compile_parser_t *parser)
 
     signature = afw_pool_calloc_type(parser->p,
         afw_value_script_function_signature_t, parser->xctx);
-    params = apr_array_make(parser->apr_p, 4,
-        sizeof(afw_value_script_function_parameter_t *));
+    params = afw_vector_create(afw_compile_param_p_vector_t, 4,
+        parser->p, parser->xctx);
     body = NULL;
     have_body = false;
 
@@ -756,10 +751,9 @@ impl_parse_compiler_internal_script_function(afw_compile_parser_t *parser)
                 afw_compile_token_is(comma))
             {
                 /* Another parameter after rest is not allowed. */
-                if (params->nelts > 0) {
+                if (params->count > 0) {
                     afw_value_script_function_parameter_t *prev =
-                        ((afw_value_script_function_parameter_t **)
-                            params->elts)[params->nelts - 1];
+                        params->entries[params->count - 1];
                     if (prev->is_rest) {
                         AFW_COMPILE_THROW_ERROR_Z(
                             "Rest parameter must be last");
@@ -801,8 +795,7 @@ impl_parse_compiler_internal_script_function(afw_compile_parser_t *parser)
                      * Rest may be followed by ',' before the body Expression
                      * (rest is last *parameter*, not last argument).
                      */
-                    APR_ARRAY_PUSH(params,
-                        afw_value_script_function_parameter_t *) = param;
+                    afw_vector_push(params, parser->xctx) = param;
                     continue;
                 }
 
@@ -854,10 +847,9 @@ impl_parse_compiler_internal_script_function(afw_compile_parser_t *parser)
                     afw_compile_token_is(equal) ||
                     afw_compile_token_is(comma))
                 {
-                    if (params->nelts > 0) {
+                    if (params->count > 0) {
                         afw_value_script_function_parameter_t *prev =
-                            ((afw_value_script_function_parameter_t **)
-                                params->elts)[params->nelts - 1];
+                            params->entries[params->count - 1];
                         if (prev->is_rest) {
                             AFW_COMPILE_THROW_ERROR_Z(
                                 "Rest parameter must be last");
@@ -878,8 +870,7 @@ impl_parse_compiler_internal_script_function(afw_compile_parser_t *parser)
                         afw_compile_get_token();
                     }
                     if (afw_compile_token_is(comma)) {
-                        APR_ARRAY_PUSH(params,
-                            afw_value_script_function_parameter_t *) =
+                        afw_vector_push(params, parser->xctx) =
                             pparam;
                         continue;
                     }
@@ -903,9 +894,8 @@ impl_parse_compiler_internal_script_function(afw_compile_parser_t *parser)
 
     afw_compile_parse_pop_value_block(parser);
 
-    signature->count = (afw_size_t)params->nelts;
-    signature->parameters =
-        (const afw_value_script_function_parameter_t **)params->elts;
+    afw_vector_copy_entries_and_release(params, &signature->count,
+        &signature->parameters, parser->p, parser->xctx);
 
     return afw_value_script_function_definition_create(
         afw_compile_create_contextual_to_cursor(start_offset),

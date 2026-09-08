@@ -64,8 +64,6 @@ afw_octet_t
 afw_compile_get_octet(afw_compile_parser_t *parser)
 {
     afw_utf8_octet_t result;
-    const afw_utf8_octet_t *s;
-    afw_size_t len;
     int rv;
 
     /* If eof already, this is an error. */
@@ -93,32 +91,23 @@ afw_compile_get_octet(afw_compile_parser_t *parser)
          * If callback specified, make an array to hold source.  If passed
          * source is also specified, add it to array.
          *
-         * The s and len in parser->source will always be updated to contain
-         * source_buffer->elts and parser->source_buffer->nelts respectively.
+         * The s and len in parser->full_source are updated to
+         * source_buffer->entries and source_buffer->count.
          */
         if (parser->callback) {
-            /** @fixme
-             * For now this can be no larger than can fit in int because of
-             * apr_array*.
-             */
-            if (parser->estimated_size != (int)parser->estimated_size) {
-                AFW_THROW_ERROR_Z(general, "Limitation", parser->xctx);
+            parser->source_buffer = afw_vector_create(
+                afw_compile_utf8_octet_vector_t,
+                parser->estimated_size ? parser->estimated_size : 256,
+                parser->p, parser->xctx);
+            if (parser->passed_source &&
+                parser->passed_source->len > 0)
+            {
+                afw_vector_append(parser->source_buffer,
+                    parser->passed_source->s,
+                    parser->passed_source->len, parser->xctx);
             }
-            parser->source_buffer = apr_array_make(parser->apr_p,
-                (int)parser->estimated_size, sizeof(afw_utf8_octet_t));
-            if (parser->passed_source) {
-                for (s = parser->passed_source->s,
-                    len = parser->passed_source->len;
-                    len > 0;
-                    s++, len--)
-                {
-                    APR_ARRAY_PUSH(parser->source_buffer, afw_utf8_octet_t) =
-                        *s;
-                }
-            }
-            parser->full_source->s =
-                (const afw_utf8_octet_t *)parser->source_buffer->elts;
-            parser->full_source->len = parser->source_buffer->nelts;
+            parser->full_source->s = parser->source_buffer->entries;
+            parser->full_source->len = parser->source_buffer->count;
         }
     }
 
@@ -162,10 +151,10 @@ afw_compile_get_octet(afw_compile_parser_t *parser)
         }
 
         else {
-            APR_ARRAY_PUSH(parser->source_buffer, afw_utf8_octet_t) = result;
-            parser->full_source->s =
-                (const afw_utf8_octet_t *)parser->source_buffer->elts;
-            parser->full_source->len = parser->source_buffer->nelts;
+            afw_vector_push(parser->source_buffer, parser->xctx) =
+                result;
+            parser->full_source->s = parser->source_buffer->entries;
+            parser->full_source->len = parser->source_buffer->count;
             (parser->cursor)++;
         }
     }
@@ -322,7 +311,7 @@ afw_compile_internal_s_push_code_point(
     const afw_utf8_octet_t *c;
 
     if (cp < 127) {
-        APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = (afw_octet_t)cp;
+        afw_vector_push(parser->s, parser->xctx) = (afw_octet_t)cp;
         return;
     }
 
@@ -332,7 +321,7 @@ afw_compile_internal_s_push_code_point(
     }
     c = &utf8_z[0];
     do {
-        APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = *c;
+        afw_vector_push(parser->s, parser->xctx) = *c;
     } while (*++c);
 }
 
@@ -619,7 +608,7 @@ impl_parse_u(afw_compile_parser_t *parser)
     }
     c = &utf8_z[0];
     do {
-        APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = *c;
+        afw_vector_push(parser->s, parser->xctx) = *c;
     } while (*++c);
 
     /* Return. */
@@ -679,7 +668,7 @@ impl_parse_String(afw_compile_parser_t *parser)
     int hi, lo;
 
     /* Clear array used for building string. */
-    apr_array_clear(parser->s);
+    afw_vector_clear(parser->s);
 
     /* First octet is quote to use. */
     quot = afw_compile_get_octet(parser);
@@ -711,31 +700,31 @@ impl_parse_String(afw_compile_parser_t *parser)
             case '`':
             case '\\':
             case '/':
-                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = o;
+                afw_vector_push(parser->s, parser->xctx) = o;
                 break;
 
             case 'b':
-                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = AFW_ASCII_BS;
+                afw_vector_push(parser->s, parser->xctx) = AFW_ASCII_BS;
                 break;
 
             case 'f':
-                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = AFW_ASCII_FF;
+                afw_vector_push(parser->s, parser->xctx) = AFW_ASCII_FF;
                 break;
 
             case 'n':
-                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = AFW_ASCII_LF;
+                afw_vector_push(parser->s, parser->xctx) = AFW_ASCII_LF;
                 break;
 
             case 'r':
-                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = AFW_ASCII_CR;
+                afw_vector_push(parser->s, parser->xctx) = AFW_ASCII_CR;
                 break;
 
             case 't':
-                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = AFW_ASCII_HT;
+                afw_vector_push(parser->s, parser->xctx) = AFW_ASCII_HT;
                 break;
 
             case 'v':
-                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = AFW_ASCII_VT;
+                afw_vector_push(parser->s, parser->xctx) = AFW_ASCII_VT;
                 break;
 
             case '0':
@@ -749,7 +738,7 @@ impl_parse_String(afw_compile_parser_t *parser)
                     AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
                 }
                 afw_compile_restore_cursor(save_cursor);
-                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = 0;
+                afw_vector_push(parser->s, parser->xctx) = 0;
                 break;
 
             case 'x':
@@ -759,7 +748,7 @@ impl_parse_String(afw_compile_parser_t *parser)
                 if (hi < 0 || lo < 0) {
                     AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
                 }
-                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) =
+                afw_vector_push(parser->s, parser->xctx) =
                     (afw_utf8_octet_t)((hi << 4) | lo);
                 break;
 
@@ -811,14 +800,14 @@ impl_parse_String(afw_compile_parser_t *parser)
                 if (o >= '1' && o <= '9') {
                     AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
                 }
-                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = o;
+                afw_vector_push(parser->s, parser->xctx) = o;
                 break;
             }
         }
 
         /* If not '\', just copy character from input to output. */
         else {
-            APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = o;
+            afw_vector_push(parser->s, parser->xctx) = o;
         }
 
     }
@@ -831,8 +820,7 @@ impl_parse_String(afw_compile_parser_t *parser)
     /* Create token.string making sure it is NFC utf-8 normalized. */
     parser->token->string = afw_compile_get_string_literal(
         parser,
-        (const afw_utf8_octet_t *)parser->s->elts,
-        (afw_size_t)parser->s->nelts);
+        parser->s->entries, parser->s->count);
 }
 
 
@@ -2566,10 +2554,10 @@ afw_compile_lexical_parser_create(
     parser->strict = compile_type == afw_compile_type_json;
     parser->compile_type = compile_type;
     parser->residual_check = residual_check;
-    parser->s = apr_array_make(parser->apr_p, 256,
-        sizeof(afw_utf8_octet_t));
-    parser->values = apr_array_make(parser->apr_p, 10,
-        sizeof(afw_value_t *));
+    parser->s = afw_vector_create(afw_compile_utf8_octet_vector_t, 256,
+        parser->p, parser->xctx);
+    parser->values = afw_vector_create(
+        afw_compile_value_p_vector_t, 10, parser->p, parser->xctx);
 
     parser->estimated_size = 4096;
     parser->token = &parser->token_storage;

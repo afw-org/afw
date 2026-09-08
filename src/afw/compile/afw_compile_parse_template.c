@@ -150,7 +150,7 @@ const afw_value_t *
 afw_compile_parse_Template(afw_compile_parser_t *parser)
 {
     const afw_utf8_t *string;
-    apr_array_header_t *values;
+    afw_compile_value_p_vector_t *values;
     afw_size_t start_offset;
     afw_size_t string_cursor;
     afw_size_t previous_cursor;
@@ -159,7 +159,8 @@ afw_compile_parse_Template(afw_compile_parser_t *parser)
     afw_size_t len;
     afw_utf8_octet_t *s;
 
-    values = apr_array_make(parser->apr_p, 5, sizeof(afw_value_t *));
+    values = afw_vector_create(afw_compile_value_p_vector_t, 5,
+        parser->p, parser->xctx);
 
     /* Loop parsing template. */
     afw_compile_save_cursor(start_offset);
@@ -183,7 +184,7 @@ afw_compile_parse_Template(afw_compile_parser_t *parser)
                         len - 1);
                 }
                 string = afw_utf8_create(s, len, parser->p, parser->xctx);
-                APR_ARRAY_PUSH(values, const afw_value_t *) =
+                afw_vector_push(values, parser->xctx) =
                     afw_compile_intern_utf8(string);
                 afw_compile_save_cursor(string_cursor);
                 continue;
@@ -209,7 +210,7 @@ afw_compile_parse_Template(afw_compile_parser_t *parser)
                 afw_compile_source_buffer_at(string_cursor),
                 afw_compile_source_buffer_length_from(string_cursor),
                 parser->p, parser->xctx);
-            APR_ARRAY_PUSH(values, const afw_value_t *) =
+            afw_vector_push(values, parser->xctx) =
                 afw_compile_intern_utf8(string);
         }
 
@@ -218,7 +219,7 @@ afw_compile_parse_Template(afw_compile_parser_t *parser)
 
         /* If substitution, parse substitution and push value. */
         if (substitution) {
-            APR_ARRAY_PUSH(values, const afw_value_t *) =
+            afw_vector_push(values, parser->xctx) =
                 afw_compile_parse_Substitution(parser);
             substitution = false;
             afw_compile_save_cursor(string_cursor);
@@ -226,23 +227,31 @@ afw_compile_parse_Template(afw_compile_parser_t *parser)
     }
 
     /* If no elements, return empty string. */
-    if (values->nelts == 0) {
+    if (values->count == 0) {
+        afw_vector_release(values, parser->xctx);
         return afw_v_a_empty_string;
     }
 
     /* If only one element and it is a string, return string value. */
-    if (values->nelts == 1 &&
-        afw_value_is_string(*((afw_value_t * *)values->elts)))
+    if (values->count == 1 &&
+        afw_value_is_string(values->entries[0]))
     {
-        return *((afw_value_t * *)values->elts);
+        const afw_value_t *one = values->entries[0];
+        afw_vector_release(values, parser->xctx);
+        return one;
     }
 
-    /* Return template value. */
-    return afw_value_template_definition_create(
-        afw_compile_create_contextual_to_cursor(start_offset),
-        values->nelts,
-        (const afw_value_t * const *)values->elts,
-        parser->p, parser->xctx);
+    /* Return template value. create() dups the pointer list. */
+    {
+        const afw_value_t *result;
+
+        result = afw_value_template_definition_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            values->count, values->entries,
+            parser->p, parser->xctx);
+        afw_vector_release(values, parser->xctx);
+        return result;
+    }
 }
 
 
@@ -256,7 +265,7 @@ const afw_value_t *
 afw_compile_parse_TemplateString(afw_compile_parser_t *parser)
 {
     const afw_utf8_t *string;
-    apr_array_header_t *values;
+    afw_compile_value_p_vector_t *values;
     afw_size_t start_offset;
     afw_size_t previous_cursor;
     afw_size_t previous_cursor2;
@@ -269,10 +278,11 @@ afw_compile_parse_TemplateString(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("Expecting template string");
     }
 
-    values = apr_array_make(parser->apr_p, 5, sizeof(afw_value_t *));
+    values = afw_vector_create(afw_compile_value_p_vector_t, 5,
+        parser->p, parser->xctx);
 
     /* Clear array used for building string. */
-    apr_array_clear(parser->s);
+    afw_vector_clear(parser->s);
 
     /* Loop parsing template. */
     afw_compile_save_cursor(start_offset);
@@ -318,14 +328,14 @@ afw_compile_parse_TemplateString(afw_compile_parser_t *parser)
         }
 
         /* If substitution or end and string is not empty, push string value. */
-        if ((substitution || cp == '`') && parser->s->nelts > 0)
+        if ((substitution || cp == '`') && parser->s->count > 0)
         {
             string = afw_utf8_create(
-                (afw_utf8_octet_t *)parser->s->elts, parser->s->nelts,
+                parser->s->entries, parser->s->count,
                 parser->p, parser->xctx);
-            APR_ARRAY_PUSH(values, const afw_value_t *) =
+            afw_vector_push(values, parser->xctx) =
                 afw_compile_intern_utf8(string);
-            apr_array_clear(parser->s);
+            afw_vector_clear(parser->s);
         }
 
         /* Finished if grave symbol. */
@@ -335,29 +345,37 @@ afw_compile_parse_TemplateString(afw_compile_parser_t *parser)
 
         /* If substitution, parse substitution and push value. */
         if (substitution) {
-            APR_ARRAY_PUSH(values, const afw_value_t *) =
+            afw_vector_push(values, parser->xctx) =
                 afw_compile_parse_Substitution(parser);
             substitution = false;
-            apr_array_clear(parser->s);
+            afw_vector_clear(parser->s);
         }
     }
 
     /* If no elements, return empty string. */
-    if (values->nelts == 0) {
+    if (values->count == 0) {
+        afw_vector_release(values, parser->xctx);
         return afw_v_a_empty_string;
     }
 
     /* If only one element and it is a string, return string value. */
-    if (values->nelts == 1 &&
-        afw_value_is_string(*((afw_value_t * *)values->elts)))
+    if (values->count == 1 &&
+        afw_value_is_string(values->entries[0]))
     {
-        return *((afw_value_t * *)values->elts);
+        const afw_value_t *one = values->entries[0];
+        afw_vector_release(values, parser->xctx);
+        return one;
     }
 
-    /* Return template value. */
-    return afw_value_template_definition_create(
-        afw_compile_create_contextual_to_cursor(start_offset),
-        values->nelts,
-        (const afw_value_t * const *)values->elts,
-        parser->p, parser->xctx);
+    /* Return template value. create() dups the pointer list. */
+    {
+        const afw_value_t *result;
+
+        result = afw_value_template_definition_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            values->count, values->entries,
+            parser->p, parser->xctx);
+        afw_vector_release(values, parser->xctx);
+        return result;
+    }
 }

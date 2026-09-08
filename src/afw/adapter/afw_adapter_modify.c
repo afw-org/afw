@@ -14,6 +14,11 @@
 #include "afw_internal.h"
 
 
+AFW_VECTOR_STRUCT(impl_modify_entry_p_vector_s,
+    afw_adapter_modify_entry_t *);
+typedef struct impl_modify_entry_p_vector_s
+    impl_modify_entry_p_vector_t;
+
 
 static const afw_value_string_t
 impl_value_set_property = {
@@ -167,7 +172,8 @@ AFW_DEFINE(const afw_adapter_modify_entry_t * const *)
 afw_adapter_modify_entries_from_list(
     const afw_array_t *list, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    apr_array_header_t *ary;
+    impl_modify_entry_p_vector_t *ary;
+    const afw_adapter_modify_entry_t **entries;
     const afw_iterator_old_t *entry_i;
     const afw_iterator_old_t *tuple_i;
     const afw_iterator_old_t *names_i;
@@ -178,8 +184,7 @@ afw_adapter_modify_entries_from_list(
     afw_object_path_property_name_entry_t *property_name_entry;
     afw_object_path_property_name_entry_t *prev_property_name_list;
 
-    ary = apr_array_make(afw_pool_get_apr_pool(p),
-        5, sizeof(afw_adapter_modify_entry_t *));
+    ary = afw_vector_create(impl_modify_entry_p_vector_t, 5, p, xctx);
     entry_i = NULL;
     for (;;) {
 
@@ -256,17 +261,18 @@ afw_adapter_modify_entries_from_list(
         }
 
         /* Push entry on entry list. */
-        APR_ARRAY_PUSH(ary, afw_adapter_modify_entry_t *) = entry;
+        afw_vector_push(ary, xctx) = entry;
     }
 
-    /* NULL terminate entries list and return it. */
-    APR_ARRAY_PUSH(ary, afw_adapter_modify_entry_t *) = NULL;
-    return (const afw_adapter_modify_entry_t **)ary->elts;
+    /* NULL terminate entries list, copy-out, and free the work vector. */
+    afw_vector_push(ary, xctx) = NULL;
+    afw_vector_copy_entries_and_release(ary, NULL, &entries, p, xctx);
+    return entries;
 
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
         "Modify entry tuple number %d is invalid",
-        ary->nelts + 1);
+        (int)ary->count + 1);
 
 }
 
