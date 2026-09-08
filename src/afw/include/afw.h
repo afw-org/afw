@@ -73,7 +73,6 @@
 #include "afw_runtime_value_accessor.h"
 #include "afw_safe_cast.h"
 #include "afw_service.h"
-#include "afw_stack.h"
 #include "afw_stream.h"
 #include "afw_strings.h"
 #include "afw_thread.h"

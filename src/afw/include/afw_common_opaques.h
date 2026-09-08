@@ -295,22 +295,6 @@ typedef struct afw_compile_type_info_s
 afw_compile_type_info_t;
 
 /**
- * @brief Opaque `afw_const_utf8_stack_t`.
- *
- * See afw_common.h for AFW_STACK_STRUCT() and more information.
- */
-typedef struct afw_utf8_stack_s
-afw_utf8_stack_t;
-
-/**
- * @brief Opaque `afw_const_utf8_a_stack_t`.
- *
- * See afw_common.h for AFW_STACK_STRUCT() and more information.
- */
-typedef struct afw_const_utf8_a_stack_s
-afw_const_utf8_a_stack_t;
-
-/**
  * @brief Opaque `afw_context_t`.
  *
  * See afw_context.h for struct and more information.
@@ -511,13 +495,6 @@ typedef struct afw_model_location_s
 afw_model_location_t;
 
 /**
- * @brief Name/value stack.
- *
- * See afw_common.h for more information.
- */
-typedef struct afw_name_value_stack_s afw_name_value_stack_t;
-
-/**
  * @brief Object view options.
  *
  * See afw_object_view.h for more information.
@@ -692,13 +669,6 @@ typedef struct afw_xctx_qualifier_stack_entry_s
  */
 typedef struct afw_service_s
 afw_service_t;
-
-/**
- * @brief Opaque `afw_stack_t`.
- *
- * See afw_stack.h for struct and more information.
- */
-typedef struct afw_stack_s afw_stack_t;
 
 /**
  * @brief Typedef for stream anchor.

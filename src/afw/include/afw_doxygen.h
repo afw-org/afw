@@ -684,15 +684,6 @@
  */
 
 /**
- * @defgroup afw_stack Stack
- *
- * Growable stacks used by the compiler and runtime (values, frames, etc.).
- *
- * Not a general application container. C growable storage is @ref
- * afw_vector. Script-visible sequences are adaptive arrays.
- */
-
-/**
  * @defgroup afw_vector Vector
  *
  * C growable contiguous elements (apr_array replacement).

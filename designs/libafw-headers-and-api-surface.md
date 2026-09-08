@@ -127,14 +127,13 @@ same shot.
 ## Naming / placement convention (internal, libafw)
 
 - Prefer **`<module>_internal.h` next to the implementing `.c`** under the same subdirectory (`flag/afw_flag_internal.h` ↔ `flag/afw_flag.c`).
-- Symbol names should keep the **module prefix** (`afw_flag_*`, `afw_stack_*`, …). Avoid parking `afw_flag_*` decls only on `afw_environment_internal.h` unless the body lives in `environment/`.
+- Symbol names should keep the **module prefix** (`afw_flag_*`, `afw_vector_*`, …). Avoid parking `afw_flag_*` decls only on `afw_environment_internal.h` unless the body lives in `environment/`.
 - Renaming every historical `*_internal_*` for purity is optional; **header home matching the .c** matters more than perfect names.
 
 ## Re-homes done (content cleanup)
 
 | Symbol(s) | Public before | Internal home (with .c) |
 |-----------|---------------|-------------------------|
-| `afw_stack_internal_set_*` | `afw_stack.h` | `stack/afw_stack_internal.h` (`afw_stack.c`) |
 | `afw_stream_internal_*` | `afw_stream.h` | `stream/afw_stream_internal.h` (`afw_stream.c`) |
 | `afw_value_register_core_value_infs` | `afw_value.h` | `value/afw_value_internal.h` (`afw_value.c`) |
 | `afw_flag_internal_early_register_core` | `afw_flag.h` | `flag/afw_flag_internal.h` (`afw_flag.c`) |

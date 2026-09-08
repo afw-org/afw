@@ -769,9 +769,8 @@ afw_function_execute_readln(
 
     /*
      * @fixme #2: do not grow in x->p. Use afw_memory_create_writer
-     * (retrieve_and_release) or afw_stack like compile_args so scratch
-     * slabs die with a throwaway subpool. In-place free of the old
-     * slab waits on #2. A max line is a separate resource policy.
+     * (retrieve_and_release) or afw_vector like compile_args so scratch
+     * can copy-out and release. A max line is a separate resource policy.
      */
     capacity = 256;
     len = 0;

@@ -351,7 +351,7 @@ afw_vector_release_impl(
  * @brief Append one uninitialized slot. Lvalue of the entry type.
  *
  * instance->entries may move. Do not hold interior pointers
- * across this call. Use as a statement, like afw_stack_push:
+ * across this call. Use as a statement:
  *
  *     afw_vector_push(v, xctx) = value;
  *

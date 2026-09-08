@@ -17,5 +17,5 @@
 
 - **Growth:** `growth` 0 = cannot grow; >0 = add that many entries per grow (at least what this call needs); <0 = multiply current allocated by `|n|` (`-2` = double). Default create is `-2`. Qualifier/eval stacks use 0 (fixed; eval allocates `evaluation_stack_maximum_count` up front).
 - Remaining `apr_array`: xctx `scope_stack`, env registry/methods, ldap mods, index (Jeremy #299). Hashes still use `parser->apr_p`.
-- Fold `afw_stack` onto vector if eval/qualifier stacks can live with relocating `entries` (today they cannot if callers hold entry pointers).
+- `afw_stack` removed; qualifier/eval stacks are fixed vectors on xctx.
 - Memory-array store. Align `afw_array` methods with Adaptive Script (`push`/`splice`/`for-of`) and journal-style cursors (`get_next` / `initialize_iterator`) once the C tool is in use.

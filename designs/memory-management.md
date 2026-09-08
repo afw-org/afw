@@ -1613,11 +1613,11 @@ Parser allocates `compiled_value` and AST nodes into `parser->p`. Nested compile
 
 **Mechanism:**
 
-- Each xctx gets `xctx->evaluation_stack` from **`afw_stack_internal_set_evaluation_stack(xctx)`** during xctx create (early: uses APR on `xctx->p`, before AFW_TRY-heavy paths).
+- Each xctx gets `xctx->evaluation_stack` as a **fixed `afw_vector`** during xctx create (early: `apr_pcalloc` on `xctx->p`, before AFW_TRY-heavy paths).
 - Sizes from env: **`evaluation_stack_initial_count`** (default **100**), **`evaluation_stack_maximum_count`** (default **500**) — `AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_*` in `afw_common.h`.
 - Eval of calls, blocks, symbol refs, etc. **push/pop** entries (`afw_xctx_evaluation_stack_push_value` / `pop_value`, parameter numbers for backtrace).
 - **Parameter numbers are two slots**, not a tagged struct. The entry is a union (`value` / `parameter_number` / `entry_id`). Push writes the number, then a second slot whose `entry_id` is `afw_s_parameter_number`. Pop of a parameter number always takes both. The backtrace walker, top-down, sees the tag, steps back one, and uses that as the argument number. Do not flatten to one slot or treat those entries as Adaptive values. Header: `afw_xctx_evaluation_stack_entry_s` in `src/afw/xctx/afw_xctx.h`.
-- On extend past max: **`AFW_THROW_ERROR_Z(general, "Stack max_count exceeded", xctx)`** (`afw_stack_extend_impl`) — not silent growth forever.
+- Fixed capacity (`evaluation_stack_maximum_count` allocated up front). Push past that throws **`vector cannot grow`**.
 - Same max reused as a guard in places like decompile indent (`writer->indent > evaluation_stack_maximum_count`).
 - Error reporting walks the evaluation stack for Adaptive backtraces (`afw_error.c`). Note: some error paths have FIXMEs (e.g. rethrow vs stack restore).
 
@@ -1979,7 +1979,7 @@ Register at env bootstrap so paths like `/afw/_AdaptiveObjectType_/…` resolve 
 ### 2026-07-23 — hardening philosophy + evaluation_stack
 
 - Mainframe-style bounds/intercept culture vs unbounded C stacks; script-on-server-thread is hard.
-- `afw_stack_internal_set_evaluation_stack` on xctx create; env max default 500; push on eval; **Stack max_count exceeded** instead of runaway recursion forever.
+- Fixed eval vector on xctx create; env max default 500; push on eval; **vector cannot grow** instead of runaway recursion forever.
 - Complements pools/managed memory; not full OS abend model.
 
 ### 2026-07-23 — evaluation_stack as Adaptive backtrace

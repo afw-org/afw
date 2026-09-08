@@ -47,7 +47,6 @@
 #include "afw_request_handler_internal.h"
 #include "afw_runtime_internal.h"
 #include "afw_runtime_object_maps.h"
-#include "afw_stack_internal.h"
 #include "afw_stream_internal.h"
 #include "afw_xctx_internal.h"
 #include "afw_service_internal.h"

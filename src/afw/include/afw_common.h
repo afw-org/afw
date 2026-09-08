@@ -863,17 +863,6 @@ typedef int afw_rc_t;
 
 
 /**
- * @brief Struct for afw_stack_t typedef
- */
-struct afw_stack_s {
-    const afw_pool_t *p;
-    void *first;
-    void *top;
-    void *end;
-};
-
-
-/**
  * @brief Typedef for name/value pair.
  */
 typedef struct afw_name_value_s {
@@ -906,43 +895,6 @@ typedef struct afw_key_z_string_z_s {
         const afw_utf8_z_t *string_z;
     };
 } afw_key_z_string_z_t;
-
-
-/**
- * @brief Define a struct for a stack with the specified entry type.
- * @param struct_name of struct.
- * @param entry_type typedef name.
- *
- * The member variables must correspond to afw_stack_s, but with the specified
- * entry_type instead of void for the type of first, top, and end.
- */
-#define AFW_STACK_STRUCT(struct_name, entry_type) \
-struct struct_name { \
-    union { \
-        afw_stack_t pub; \
-        struct { \
-            const afw_pool_t *p; \
-            entry_type *first; \
-            entry_type *top; \
-            entry_type *end; \
-        }; \
-    }; \
-}
-
-/**
- * @brief afw_utf8_t stack struct.
- */
-AFW_STACK_STRUCT(afw_utf8_stack_s, afw_utf8_t);
-
-/**
- * @brief const afw_utf8_t * stack struct.
- */
-AFW_STACK_STRUCT(afw_const_utf8_a_stack_s, const afw_utf8_t *);
-
-/**
- * @brief const afw_utf8_t * stack struct.
- */
-AFW_STACK_STRUCT(afw_name_value_stack_s, afw_name_value_t);
 
 
 /**

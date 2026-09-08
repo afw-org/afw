@@ -26,6 +26,39 @@ impl_suppress_libxml2_message(
 
 
 
+static void
+impl_set_qualifier_stack(afw_xctx_t *xctx)
+{
+    /*
+     * Fixed size: entry pointers stay valid. Early xctx create cannot
+     * use AFW_TRY / afw_pool_calloc().
+     */
+    xctx->qualifier_stack = afw_vector_create_fixed_unhandled(
+        afw_xctx_qualifier_stack_t, 100, xctx->p, xctx);
+}
+
+
+static void
+impl_set_evaluation_stack(afw_xctx_t *xctx)
+{
+    afw_size_t n;
+
+    /*
+     * Allocate the cap up front so the vector never grows (entry
+     * pointers stay valid). Early xctx create cannot use AFW_TRY.
+     */
+    n = xctx->env->evaluation_stack_maximum_count;
+    if (n == 0) {
+        n = xctx->env->evaluation_stack_initial_count;
+    }
+    if (n == 0) {
+        n = AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_MAXIMUM_COUNT;
+    }
+    xctx->evaluation_stack = afw_vector_create_fixed_unhandled(
+        afw_xctx_evaluation_stack_t, n, xctx->p, xctx);
+}
+
+
 AFW_DEFINE(afw_xctx_t *)
 afw_xctx_internal_create_initialize(
     afw_try_t *unhandled_error,
@@ -72,9 +105,9 @@ afw_xctx_internal_create_initialize(
     self->libxml2_error_func = (void *)impl_suppress_libxml2_message;
     initGenericErrorDefaultFunc((xmlGenericErrorFunc *)&self->libxml2_error_func);
 
-    /* Make qualifier and evaluation stack. */
-    afw_stack_internal_set_qualifier_stack(self);
-    afw_stack_internal_set_evaluation_stack(self);
+    /* Make qualifier and evaluation stacks (fixed vectors). */
+    impl_set_qualifier_stack(self);
+    impl_set_evaluation_stack(self);
 
     /* Return new xctx. */
     return self;
