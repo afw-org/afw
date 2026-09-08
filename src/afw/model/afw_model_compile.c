@@ -817,7 +817,8 @@ afw_model_compile(
         p, xctx);
     model->model_object = object;
     model->model_id = afw_object_meta_get_object_id(model->model_object, xctx);
-    model->model_object_types = apr_hash_make(afw_pool_get_apr_pool(p));
+    model->model_object_types = afw_hash_table_create(
+        afw_void_hash_table_t, p, xctx);
     path = afw_object_meta_get_path(object, xctx);
     model->objectType_path = afw_utf8_printf(p, xctx,
         AFW_UTF8_FMT "/objectTypes/", AFW_UTF8_FMT_ARG(path));
@@ -848,9 +849,9 @@ afw_model_compile(
             property_name, xctx);
         model_object_type = impl_object_type_compile(model,
             adapter_id, property_name_utf8, object_type, xctx);
-        apr_hash_set(model->model_object_types,
+        afw_hash_table_set(model->model_object_types,
             property_name_utf8->s, property_name_utf8->len,
-            model_object_type);
+            model_object_type, xctx);
     }
 
     /* Return model. */

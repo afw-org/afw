@@ -696,6 +696,18 @@
  */
 
 /**
+ * @defgroup afw_hash_table Hash table
+ *
+ * C byte-key to pointer map (apr_hash replacement).
+ *
+ * Header stays put; buckets may move on grow. Keys are not copied
+ * (caller keeps key memory alive). Set value NULL deletes. Declare
+ * a typed overlay with AFW_HASH_TABLE_STRUCT; get returns void *
+ * (assign to a typed pointer). Not an Adaptive object: no values,
+ * no meta, no get_reference.
+ */
+
+/**
  * @defgroup afw_stream Stream
  *
  * Readable/writable streams (files, memory, response bodies, etc.).

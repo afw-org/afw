@@ -1,31 +1,30 @@
 # afw_hash_table — C map (apr_hash replacement)
 
 **Audience:** maintainers. **Not** handbook.  
-**Start:** discuss on a branch, same campaign as [`afw-vector.md`](afw-vector.md). No implementation in this pad.
+**Branch:** `feature/afw-hash-table`. Same campaign as [`afw-vector.md`](afw-vector.md).
 
 ## Why
 
 Drop `apr_hash` so leftover `get_apr_pool()` is not required for name→pointer tables. The pain is **APR**, not the idea of a hash table.
 
-## Settled in discussion (reduce-apr)
+## Settled
 
-- **Not a sorted vector / binary search.** Env function registry and compile intern **keep inserting** (extensions/commands load; literals intern). Insert-into-sorted-array is the wrong cost.
-- **In-memory btree-ish** (rotate on insert, log n compares, ordered walk) is a fair option for “load then find,” especially short names. Not required to replace `apr_hash`.
-- **Hash is the drop-in.** Keys are almost always `key->s` + `key->len` → pointer. Get/set/iterate, grow as you go. Generating the hash walks **every key byte** (APR `hash * 33 + *p++`) then `memcmp`s — that cost is real, but one AFW table still beats two containers.
-- Name it **`afw_hash_table`**, parallel to **`afw_vector`**: AFW pool, typed overlay if we want no cast at the call, `const … internal` like an interface instance, no `get_reference`.
+- **Not a sorted vector / binary search.** Env function registry and compile intern **keep inserting**. Insert-into-sorted-array is the wrong cost.
+- **In-memory btree-ish** is a later option for “load then find,” especially short names. Not required to replace `apr_hash`.
+- **Hash is the drop-in.** Keys are `key` + `klen` → pointer. Get/set/iterate, grow as you go. Hash is APR’s `hash * 33 + byte`, then `memcmp`.
+- Name it **`afw_hash_table`**, parallel to **`afw_vector`**: AFW pool, typed overlay (`AFW_HASH_TABLE_STRUCT` / `afw_void_hash_table_t`), `const … internal` like an interface instance, no `get_reference`.
+- Keys are **not copied**. Caller keeps key memory alive (same as APR). Set value **NULL** deletes.
+- Iterator is a **stack** `afw_hash_table_index_t` (no pool for `first()`).
 - Intern-then-id is a later lever, not a prerequisite.
 
-## Where `apr_hash_make` is today
+## Converted on this branch
 
-| Area | Use |
-|------|-----|
-| Env **registry** (`type->ht`, `registry_names_ht`, data-type method numbers) | Register at load; **lookup on every call** |
-| Compile **string intern** / `script_type_names` | Many insert+get per compile (`parser->apr_p`) |
-| Runtime catalog (type → id → object) | Admin/retrieve |
-| Adapter session / object-type cache | Per request |
-| Model object types, LDAP schema names | Load + get |
-| YAML anchors, object-view intern, `associative_array` | Local / generic wrapper |
-| LMDB `dbi_handles` | Leave while **#299** |
+Env registries, compile intern / script type names, runtime catalog, adapter session and object-type caches, model object types, object-view intern, associative_array wrappers, service-id set, YAML anchors, LDAP schema name tables.
+
+## Not converted
+
+- LMDB `dbi_handles` — leave while **#299**.
+- Remaining `apr_array` (env `registry_types` / `data_type_methods`, ldap mods, index).
 
 ## Later, not first
 

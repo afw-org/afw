@@ -11,6 +11,7 @@
 
 #include "afw_interface.h"
 #include "afw_environment.h"
+#include "afw_hash_table.h"
 #include <apr_dso.h>
 
 /**
@@ -39,7 +40,7 @@ typedef struct afw_environment_internal_s {
     const afw_array_t *configuration;
 
     /* Hash table of registry type name to registry type number. */
-    apr_hash_t *registry_names_ht;
+    afw_void_hash_table_t *registry_names_ht;
 
     /*
     * Array indexed by afw_environment_registry_type_enum_t used to hold
@@ -48,7 +49,7 @@ typedef struct afw_environment_internal_s {
     apr_array_header_t *registry_types;
 
     /* Hash table of data type method numbers. */
-    apr_hash_t * data_type_method_number_ht;
+    afw_void_hash_table_t *data_type_method_number_ht;
 
     /* Array indexed by data_type_number of pointers to array of methods. */
     apr_array_header_t * data_type_methods;

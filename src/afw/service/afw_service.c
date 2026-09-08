@@ -20,7 +20,7 @@ typedef struct {
     afw_object_cb_t original_callback;
     void *original_context;
     const afw_query_criteria_t * criteria;
-    apr_hash_t *service_ids;
+    afw_void_hash_table_t *service_ids;
     const afw_object_t *last_object;
 } impl_AdaptiveService_context_t;
 
@@ -911,8 +911,8 @@ impl_AdaptiveService_cb(
         }
 
         if (ctx->service_ids) {
-            apr_hash_set(ctx->service_ids, service_id->s, service_id->len,
-                service_id);
+            afw_hash_table_set(ctx->service_ids, service_id->s,
+                service_id->len, service_id, xctx);
         }
 
         if (meetsCriteria && ctx->original_callback) {
@@ -945,7 +945,9 @@ impl_retrieve_from_registry_cb(
     afw_boolean_t is_complete;
 
     is_complete = false;
-    if (!ctx->service_ids || !apr_hash_get(ctx->service_ids, key_s, key_len)) {
+    if (!ctx->service_ids ||
+        !afw_hash_table_get(ctx->service_ids, key_s, key_len))
+    {
         object = afw_object_create_unmanaged_new_p(p, xctx);
 
         impl_add_runtime_service_info_to_object(object, service,
@@ -995,7 +997,8 @@ afw_service_internal_AdaptiveService_retrieve_objects (
         session = afw_adapter_session_create(
             &xctx->env->conf_adapter->adapter_id, xctx);
         AFW_TRY {
-            ctx.service_ids = apr_hash_make(afw_pool_get_apr_pool(p));
+            ctx.service_ids = afw_hash_table_create(
+                afw_void_hash_table_t, p, xctx);
             afw_adapter_session_retrieve_objects(
                 session, NULL, afw_s__AdaptiveServiceConf_,
                 NULL /* Callback checks criteria. */,

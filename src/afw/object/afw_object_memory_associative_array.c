@@ -25,7 +25,7 @@ typedef struct impl_afw_object_associative_array_self_s {
     afw_object_associative_array_t pub;
 
     /* Hash table with key of key and value of object instance. */
-    apr_hash_t *objects;
+    afw_void_hash_table_t *objects;
 
     /* Reference_count starting at 1 on create. */
     AFW_ATOMIC afw_integer_t reference_count;
@@ -51,7 +51,7 @@ afw_object_memory_associative_array_create(
     self->pub.inf = &impl_afw_object_associative_array_inf;
     self->pub.p = new_p;
     self->reference_count = 1;
-    self->objects = apr_hash_make(afw_pool_get_apr_pool(new_p));
+    self->objects = afw_hash_table_create(afw_void_hash_table_t, new_p, xctx);
 
     /* Return new instance. */
     return (afw_object_associative_array_t *)self;
@@ -68,19 +68,17 @@ impl_afw_object_associative_array_release (
 {
     /* Assign &self->pub pointer to self. */
 
-    apr_hash_index_t *hi;
+    afw_hash_table_index_t hi;
     const void *key;
-    apr_ssize_t klen;
+    afw_size_t klen;
     const afw_object_t *object;
 
     /* Decrement reference count and release object and array's pool if zero. */
     if (afw_atomic_integer_decrement(&self->reference_count) == 0) {
-        for (hi = apr_hash_first(
-                afw_pool_get_apr_pool(self->pub.p), self->objects);
-            hi;
-            hi = apr_hash_next(hi))
+        for (afw_hash_table_first(self->objects, &hi);
+            afw_hash_table_this(&hi, &key, &klen, (void **)&object);
+            afw_hash_table_next(&hi))
         {
-            apr_hash_this(hi, &key, &klen, (void **)&object);
             afw_object_release(object, xctx);
         }
 
@@ -127,7 +125,7 @@ impl_afw_object_associative_array_get (
     const afw_object_t *object;
 
     /* Get object associated with key. */
-    object = apr_hash_get(self->objects, key->s, key->len);
+    object = afw_hash_table_get(self->objects, key->s, key->len);
 
     /*
      * If object found, add reference and register automatic release when
@@ -159,7 +157,7 @@ impl_afw_object_associative_array_get_associated_object_reference (
     const afw_object_t *object;
 
     /* Get object associated with key. */
-    object = apr_hash_get(self->objects, key->s, key->len);
+    object = afw_hash_table_get(self->objects, key->s, key->len);
 
     /* If object found, add reference. */
     if (object) {
@@ -204,7 +202,7 @@ impl_afw_object_associative_array_set (
     const afw_object_t *existing;
 
     /* If an object is associated with key, call its release(). */
-    existing = apr_hash_get(self->objects, key->s, key->len);
+    existing = afw_hash_table_get(self->objects, key->s, key->len);
     if (existing) {
         afw_object_release(existing, xctx);
     }
@@ -215,5 +213,5 @@ impl_afw_object_associative_array_set (
     }
 
     /* Set/remove association. */
-    apr_hash_set(self->objects, key->s, key->len, object);
+    afw_hash_table_set(self->objects, key->s, key->len, object, xctx);
 }

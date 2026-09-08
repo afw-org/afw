@@ -1102,7 +1102,7 @@ impl_afw_adapter_session_retrieve_objects(
         (afw_model_internal_adapter_self_t *)self->pub.adapter;
     afw_model_internal_context_t *ctx;
     afw_model_internal_object_cb_context_t cb_ctx;
-    apr_hash_index_t *hi;
+    afw_hash_table_index_t hi;
     afw_model_object_type_t *model_object_type;
     afw_utf8_t id;
     afw_boolean_t use_default_processing;
@@ -1120,14 +1120,11 @@ impl_afw_adapter_session_retrieve_objects(
         if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
 
             /* Process other object types and return. */
-            for (hi = apr_hash_first(afw_pool_get_apr_pool(p),
-                self->model->model_object_types);
-                hi;
-                hi = apr_hash_next(hi))
-            {
-                /** @todo make sure (apr_ssize_t *) doesn't cause loss of bits. */
-                apr_hash_this(hi, (const void **)&id.s, (apr_ssize_t *)&id.len,
+            for (afw_hash_table_first(self->model->model_object_types, &hi);
+                afw_hash_table_this(&hi, (const void **)&id.s, &id.len,
                     (void **)&model_object_type);
+                afw_hash_table_next(&hi))
+            {
                 impl_AdaptiveObjectType_cb(model_object_type, &cb_ctx, xctx);
             }
             callback(NULL, context, xctx);
@@ -2050,7 +2047,7 @@ impl_afw_adapter_object_type_cache_get(
 
     AFW_ADAPTER_IMPL_LOCK_READ_BEGIN(session->model_location_adapter)
     {
-        result = apr_hash_get(model->object_types_ht,
+        result = afw_hash_table_get(model->object_types_ht,
             object_type_id->s, object_type_id->len);
     }
     AFW_ADAPTER_IMPL_LOCK_READ_END;
@@ -2077,14 +2074,14 @@ impl_afw_adapter_object_type_cache_set(
     {
 
         if (!model->object_types_ht) {
-            model->object_types_ht = apr_hash_make(
-                afw_pool_get_apr_pool(session->adapter->pub.p));
+            model->object_types_ht = afw_hash_table_create(
+                afw_void_hash_table_t, session->adapter->pub.p, xctx);
         }
 
-        apr_hash_set(model->object_types_ht,
+        afw_hash_table_set(model->object_types_ht,
             object_type->object_type_id->s,
             object_type->object_type_id->len,
-            object_type);
+            object_type, xctx);
     }
     AFW_ADAPTER_IMPL_LOCK_WRITE_END;
 }

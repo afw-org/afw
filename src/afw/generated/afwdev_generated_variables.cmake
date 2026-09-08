@@ -137,6 +137,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_variable_handler_impl_declares.h
     generated/afw_version_info.h
     generated/afw_writer_impl_declares.h
+    hash_table/afw_hash_table.h
     include/afw.h
     include/afw_common.h
     include/afw_common_opaques.h
@@ -209,6 +210,7 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/flag
     ${CMAKE_CURRENT_SOURCE_DIR}/function
     ${CMAKE_CURRENT_SOURCE_DIR}/generated
+    ${CMAKE_CURRENT_SOURCE_DIR}/hash_table
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/json
     ${CMAKE_CURRENT_SOURCE_DIR}/lock
@@ -367,6 +369,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     generated/afw_generated.c
     generated/afw_runtime_object_maps.c
     generated/afw_strings.c
+    hash_table/afw_hash_table.c
     json/afw_json.c
     json/afw_json_from_value.c
     lock/afw_lock.c

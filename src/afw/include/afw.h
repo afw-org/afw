@@ -51,6 +51,7 @@
 #include "afw_file.h"
 #include "afw_flag.h"
 #include "afw_function.h"
+#include "afw_hash_table.h"
 #include "afw_environment.h"
 #include "afw_json.h"
 #include "afw_lock.h"

@@ -44,7 +44,7 @@ impl_parse_schema_entry(
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 
-static apr_hash_t *
+static afw_void_hash_table_t *
 impl_parse_definition(
     const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type_id,
@@ -56,7 +56,7 @@ impl_parse_definition(
 static void
 impl_retrieve_objects(
     afw_ldap_internal_adapter_session_t * self,
-    apr_hash_t *ht,
+    afw_void_hash_table_t *ht,
     const afw_query_criteria_t * criteria,
     void * context,
     afw_object_cb_t callback,
@@ -80,9 +80,9 @@ impl_make_object_types(
 
 const afw_object_t *
 impl_get(
-    apr_hash_t *ht, const afw_utf8_t *id)
+    afw_void_hash_table_t *ht, const afw_utf8_t *id)
 {
-    return apr_hash_get(ht, id->s, id->len);
+    return afw_hash_table_get(ht, id->s, id->len);
 }
 
 
@@ -385,7 +385,7 @@ impl_parse_schema_entry(
  
 static void
 impl_parse_definition_add(
-    apr_hash_t *ht,
+    afw_void_hash_table_t *ht,
     const afw_object_t *obj,
     const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type,
@@ -400,10 +400,10 @@ impl_parse_definition_add(
     afw_object_meta_set_ids(obj, adapter_id, object_type, object_id, xctx);
 
     /* Add object to hash table. */
-    apr_hash_set(ht, object_id->s, object_id->len, obj);    
+    afw_hash_table_set(ht, object_id->s, object_id->len, obj, xctx);    
 };
 
-apr_hash_t *
+afw_void_hash_table_t *
 impl_parse_definition(
     const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type_id,
@@ -415,7 +415,7 @@ impl_parse_definition(
     const afw_object_t *obj;
     const afw_value_t *value;
     const afw_value_t *name_value;
-    apr_hash_t *ht;
+    afw_void_hash_table_t *ht;
     const afw_utf8_t *id;
     const afw_utf8_t *e;
     const afw_utf8_t *name;
@@ -441,7 +441,7 @@ impl_parse_definition(
     list = ((const afw_value_array_t *)value)->internal;
 
     /* Create hash table. */
-    ht = apr_hash_make(afw_pool_get_apr_pool(p));
+    ht = afw_hash_table_create(afw_void_hash_table_t, p, xctx);
 
     /* Process each definition in list. */
     for (iterator = NULL;;) {
@@ -495,14 +495,14 @@ impl_make_property_type_and_handler_hash_tables(
     afw_ldap_metadata_t *metadata,
     afw_xctx_t *xctx)
 {
-    apr_hash_t *ht;
+    afw_void_hash_table_t *ht;
 
     const afw_value_t *value;
-    apr_hash_index_t *hi;
+    afw_hash_table_index_t hi;
     const afw_object_t *attribute_type_object;
     const afw_utf8_t *id;
     afw_utf8_t syntax_oid;
-    apr_hash_t *ht_attribute_types;
+    afw_void_hash_table_t *ht_attribute_types;
     const afw_utf8_t *syntax;
     const afw_utf8_t *error_id;
     const afw_utf8_t *string;
@@ -511,7 +511,7 @@ impl_make_property_type_and_handler_hash_tables(
     afw_utf8_t temp;
     afw_ldap_metadata_attribute_type_t *attribute_type;
     const void *key;
-    apr_ssize_t klen;
+    afw_size_t klen;
     afw_boolean_t found;
     const afw_pool_t *p;
 
@@ -519,19 +519,19 @@ impl_make_property_type_and_handler_hash_tables(
     p = metadata->p;
 
     /* Make value meta hash table. */
-    ht = apr_hash_make(afw_pool_get_apr_pool(p));
+    ht = afw_hash_table_create(afw_void_hash_table_t, p, xctx);
     metadata->value_meta_objects = ht;
 
     /* Make attribute types hash table. */
-    ht_attribute_types = apr_hash_make(afw_pool_get_apr_pool(p));
+    ht_attribute_types = afw_hash_table_create(afw_void_hash_table_t, p, xctx);
     metadata->attribute_types = ht_attribute_types;
 
     /* Create property type and object for each attribute type. */
-    for (hi = apr_hash_first(afw_pool_get_apr_pool(p),
-        metadata->attribute_type_objects);
-        hi; hi = apr_hash_next(hi))
+    for (afw_hash_table_first(metadata->attribute_type_objects, &hi);
+        afw_hash_table_this(&hi, &key, &klen,
+            (void **)&attribute_type_object);
+        afw_hash_table_next(&hi))
     {
-        apr_hash_this(hi, &key, &klen, (void **)&attribute_type_object);
         attribute_type = afw_pool_calloc_type(p,
             afw_ldap_metadata_attribute_type_t, xctx);
         attribute_type->attribute_type_object = attribute_type_object;
@@ -711,14 +711,15 @@ impl_make_property_type_and_handler_hash_tables(
                 }
 
                 /* Add property type object to propertyType hash table. */
-                apr_hash_set(ht, id->s, id->len,
-                    attribute_type->property_type_object);
+                afw_hash_table_set(ht, id->s, id->len,
+                    attribute_type->property_type_object, xctx);
 
             }
 
 
             /* Add attribute type to ht. */
-            apr_hash_set(ht_attribute_types, key, klen, attribute_type);
+            afw_hash_table_set(ht_attribute_types, key, klen,
+                attribute_type, xctx);
         }
 
     }
@@ -745,7 +746,7 @@ impl_a_property_to_object_type(
     afw_ldap_metadata_attribute_type_t *attribute_type;
 
     /* If property is a never read, don't add to object type. */
-    attribute_type = apr_hash_get(metadata->attribute_types,
+    attribute_type = afw_hash_table_get(metadata->attribute_types,
         name->s, name->len);
     if (!attribute_type || attribute_type->never_allow_read) {
         return;
@@ -757,7 +758,7 @@ impl_a_property_to_object_type(
         xctx);
 
     /* Set parent to corresponding value meta. */
-    parent = apr_hash_get(metadata->value_meta_objects,
+    parent = afw_hash_table_get(metadata->value_meta_objects,
         name->s, name->len);
     if (parent) {
         s = afw_object_meta_get_path(parent, xctx);
@@ -823,7 +824,7 @@ impl_properties_to_object_type(
 }
 
 static void
-impl_set_synthetic_object_type(apr_hash_t *ht,
+impl_set_synthetic_object_type(afw_void_hash_table_t *ht,
     const afw_utf8_t *object_type_id,
     afw_xctx_t *xctx)
 {
@@ -836,8 +837,8 @@ impl_set_synthetic_object_type(apr_hash_t *ht,
             "Missing object '/afw/_AdaptiveObjectType_/" AFW_UTF8_FMT "'",
             AFW_UTF8_FMT_ARG(object_type_id));
     }
-    apr_hash_set(ht, object_type_id->s, object_type_id->len,
-        object_type);
+    afw_hash_table_set(ht, object_type_id->s, object_type_id->len,
+        object_type, xctx);
 }
 
 
@@ -910,7 +911,7 @@ impl_add_parents_and_property_types(
     }
 
     /* If object_type_attribute already set for this object type id, return. */
-    result = apr_hash_get(metadata->object_type_attributes,
+    result = afw_hash_table_get(metadata->object_type_attributes,
         object_type_id->s, object_type_id->len);
     if (result) {
         return result;
@@ -919,9 +920,9 @@ impl_add_parents_and_property_types(
     /* Make and set initial object_type_attribute. */
     object_type_attribute = afw_pool_calloc_type(p,
         afw_ldap_object_type_attribute_t, xctx);
-    apr_hash_set(metadata->object_type_attributes,
+    afw_hash_table_set(metadata->object_type_attributes,
         object_type_id->s, object_type_id->len,
-        object_type_attribute);
+        object_type_attribute, xctx);
     result = object_type_attribute;
 
     /* Make list of property types for this object type. */
@@ -937,7 +938,7 @@ impl_add_parents_and_property_types(
             /* Attribute-type hash is utf8 (s, len), not a name value. */
             property_name_utf8 = afw_object_string_property_name_internal(
                 property_name, xctx);
-            attribute_type = apr_hash_get(metadata->attribute_types,
+            attribute_type = afw_hash_table_get(metadata->attribute_types,
                 property_name_utf8->s,
                 property_name_utf8->len);
             if (object_type_attribute->attribute_type) {
@@ -1058,7 +1059,7 @@ impl_add_parents_and_property_types(
                     afw_ldap_object_type_attribute_t,
                     xctx);
             object_type_attribute = object_type_attribute->next;
-            object_type_attribute->next = apr_hash_get(
+            object_type_attribute->next = afw_hash_table_get(
                 metadata->object_type_attributes,
                 parent_id->s, parent_id->len);
 
@@ -1079,7 +1080,7 @@ impl_make_object_types(
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
-    apr_hash_index_t *hi;
+    afw_hash_table_index_t hi;
     const afw_object_t *object_class_object;
     const afw_object_t *object_type_object;
     const afw_utf8_t *id;
@@ -1093,16 +1094,16 @@ impl_make_object_types(
     p = metadata->p;
 
     /* Make hash tables. */
-    metadata->object_type_objects = apr_hash_make(afw_pool_get_apr_pool(p));
-    metadata->object_type_attributes = apr_hash_make(afw_pool_get_apr_pool(p));
+    metadata->object_type_objects = afw_hash_table_create(
+        afw_void_hash_table_t, p, xctx);
+    metadata->object_type_attributes = afw_hash_table_create(
+        afw_void_hash_table_t, p, xctx);
 
     /* Loop though all ldap object classes. */
-    for (hi = apr_hash_first(afw_pool_get_apr_pool(p),
-        metadata->object_class_objects);
-        hi; hi = apr_hash_next(hi))
+    for (afw_hash_table_first(metadata->object_class_objects, &hi);
+        afw_hash_table_this(&hi, NULL, NULL, (void **)&object_class_object);
+        afw_hash_table_next(&hi))
     {
-        apr_hash_this(hi, NULL, NULL, (void **)&object_class_object);
-
         /* Create _AdaptiveObjectType_ and initialize. */
         object_type_object = afw_object_create_unmanaged(p, xctx);
         id = afw_object_meta_get_object_id(object_class_object, xctx);
@@ -1134,8 +1135,8 @@ impl_make_object_types(
             afw_v_allowWrite, afw_boolean_v_false, xctx);
 
         /* Add object type to object_type_objects ht. */
-        apr_hash_set(metadata->object_type_objects, id->s, id->len,
-            object_type_object);
+        afw_hash_table_set(metadata->object_type_objects, id->s, id->len,
+            object_type_object, xctx);
 
         /* If object class has a description, use it otherwise, make up one. */
         value = afw_object_get_property(object_class_object, afw_ldap_v_DESC,
@@ -1167,11 +1168,10 @@ impl_make_object_types(
     }
 
     /* Run back though setting parents and making composite property types. */
-    for (hi = apr_hash_first(afw_pool_get_apr_pool(p),
-        metadata->object_class_objects);
-        hi; hi = apr_hash_next(hi))
+    for (afw_hash_table_first(metadata->object_class_objects, &hi);
+        afw_hash_table_this(&hi, NULL, NULL, (void **)&object_class_object);
+        afw_hash_table_next(&hi))
     {
-        apr_hash_this(hi, NULL, NULL, (void **)&object_class_object);
         impl_add_parents_and_property_types(
             metadata, object_class_object, xctx);
     }
@@ -1302,20 +1302,19 @@ afw_ldap_metadata_load(
 void
 impl_retrieve_objects(
     afw_ldap_internal_adapter_session_t * self,
-    apr_hash_t *ht,
+    afw_void_hash_table_t *ht,
     const afw_query_criteria_t * criteria,
     void * context,
     afw_object_cb_t callback,
     afw_xctx_t *xctx)
 {
-    apr_hash_index_t *hi;
+    afw_hash_table_index_t hi;
     afw_object_t *obj;
 
-    for (hi = apr_hash_first(afw_pool_get_apr_pool(xctx->p), ht);
-        hi;
-        hi = apr_hash_next(hi))
+    for (afw_hash_table_first(ht, &hi);
+        afw_hash_table_this(&hi, NULL, NULL, (void **)&obj);
+        afw_hash_table_next(&hi))
     {
-        apr_hash_this(hi, NULL, NULL, (void **)&obj);
         if (afw_query_criteria_test_object(obj, criteria,
             xctx->p, xctx))
         {
@@ -1335,7 +1334,7 @@ afw_ldap_metadata_retrieve_objects(
     afw_object_cb_t callback,
     afw_xctx_t *xctx)
 {
-    apr_hash_t *ht;
+    afw_void_hash_table_t *ht;
     const afw_object_t *obj;
 
     ht = NULL;
@@ -1431,11 +1430,11 @@ afw_ldap_metadata_retrieve_objects(
 AFW_DEFINE_STATIC_INLINE(const afw_object_t *)
 impl_get_object(
     afw_ldap_internal_adapter_session_t * self,
-    apr_hash_t *ht,
+    afw_void_hash_table_t *ht,
     const afw_utf8_t * object_id,
     afw_xctx_t *xctx)
 {
-    return apr_hash_get(ht, object_id->s, object_id->len);
+    return afw_hash_table_get(ht, object_id->s, object_id->len);
 }
 
 
@@ -1582,7 +1581,7 @@ afw_ldap_metadata_value_to_bv(afw_ldap_internal_adapter_session_t *session,
 {
     const afw_ldap_metadata_attribute_type_t *attribute_type;
 
-    attribute_type = apr_hash_get(
+    attribute_type = afw_hash_table_get(
         session->adapter->metadata->attribute_types,
         attribute_name->s, attribute_name->len);
     if (!attribute_type) {

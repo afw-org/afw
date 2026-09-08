@@ -350,7 +350,7 @@ impl_afw_adapter_session_add_object(
     }
 
     /* Get first attribute for object type. */
-    first_attribute = apr_hash_get(metadata->object_type_attributes,
+    first_attribute = afw_hash_table_get(metadata->object_type_attributes,
         object_type_id->s, object_type_id->len);
     if (!first_attribute) {
         AFW_THROW_ERROR_FZ(not_found, xctx,
@@ -452,7 +452,7 @@ impl_afw_adapter_session_modify_object(
     }
 
     /* Get first attribute for object type. */
-    first_attribute = apr_hash_get(metadata->object_type_attributes,
+    first_attribute = afw_hash_table_get(metadata->object_type_attributes,
         object_type_id->s, object_type_id->len);
     if (!first_attribute) {
         AFW_THROW_ERROR_FZ(not_found, xctx,

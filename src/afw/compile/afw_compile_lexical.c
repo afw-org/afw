@@ -2454,8 +2454,8 @@ afw_compile_shared_create(
     shared = afw_pool_calloc_type(p, afw_compile_shared_t, xctx);
     shared->p = p;
     shared->temp_p = afw_pool_create(p, xctx);
-    shared->string_literals = apr_hash_make(
-        afw_pool_get_apr_pool(shared->temp_p));
+    shared->string_literals = afw_hash_table_create(
+        afw_void_hash_table_t, shared->temp_p, xctx);
 
     return shared;
 }
@@ -2541,8 +2541,8 @@ afw_compile_lexical_parser_create(
     if (parser->shared && !parser->shared->temp_p) {
         afw_compile_shared_t *s = (afw_compile_shared_t *)parser->shared;
         s->temp_p = afw_pool_create(s->p, xctx);
-        s->string_literals = apr_hash_make(
-            afw_pool_get_apr_pool(s->temp_p));
+        s->string_literals = afw_hash_table_create(
+            afw_void_hash_table_t, s->temp_p, xctx);
     }
     parser->apr_p = afw_pool_get_apr_pool(parser->p);
     parser->xctx = xctx;
@@ -2631,17 +2631,16 @@ afw_compile_get_string_literal(
             return result;
         }
     }
-    result = apr_hash_get(parser->shared->string_literals, s, len);
+    result = afw_hash_table_get(parser->shared->string_literals, s, len);
     if (result) {
         return result;
     }
     utf8 = afw_utf8_create(s, len, parser->p, parser->xctx);
     result = (const afw_value_string_t *)
         afw_compile_literal_string_create(utf8, parser->p, parser->xctx);
-    apr_hash_set(parser->shared->string_literals,
-        (const void *)utf8->s,
-        (apr_ssize_t)utf8->len,
-        (void *)result);
+    afw_hash_table_set(parser->shared->string_literals,
+        (const void *)utf8->s, utf8->len, (void *)result,
+        parser->xctx);
     return result;
 }
 

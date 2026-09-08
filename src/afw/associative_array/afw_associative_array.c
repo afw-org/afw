@@ -23,7 +23,7 @@ typedef struct impl_associative_array_s {
     afw_associative_array_release_value_cb release_value;
 
     /* Hash table with key of key and value of object instance. */
-    apr_hash_t *values;
+    afw_void_hash_table_t *values;
 
     /* Reference_count starting at 1 on create. */
     AFW_ATOMIC afw_integer_t reference_count;
@@ -51,7 +51,7 @@ afw_associative_array_create(
     self->reference_count = 1;
     self->get_reference_value = get_reference_value;
     self->release_value = release_value;
-    self->values = apr_hash_make(afw_pool_get_apr_pool(new_p));
+    self->values = afw_hash_table_create(afw_void_hash_table_t, new_p, xctx);
 
     /*
      * If either get_reference_value or release_value is specified,
@@ -78,9 +78,9 @@ afw_associative_array_release (
     afw_xctx_t *xctx)
 {
     impl_associative_array_t *self = (impl_associative_array_t *)instance;
-    apr_hash_index_t *hi;
+    afw_hash_table_index_t hi;
     const void *key;
-    apr_ssize_t klen;
+    afw_size_t klen;
     void *value;
 
     /* Decrement reference count and release value and array's pool if zero. */
@@ -88,12 +88,10 @@ afw_associative_array_release (
 
         /* If there is a release_value(), call it for each value. */
         if (self->release_value) {
-            for (hi = apr_hash_first(
-                    afw_pool_get_apr_pool(instance->p), self->values);
-                hi;
-                hi = apr_hash_next(hi))
+            for (afw_hash_table_first(self->values, &hi);
+                afw_hash_table_this(&hi, &key, &klen, &value);
+                afw_hash_table_next(&hi))
             {
-                apr_hash_this(hi, &key, &klen, (void **)&value);
                 self->release_value(value, xctx);
             }
         }
@@ -141,7 +139,7 @@ afw_associative_array_get (
     const void *value;
 
     /* Get value associated with key. */
-    value = apr_hash_get(self->values, key->s, key->len);
+    value = afw_hash_table_get(self->values, key->s, key->len);
 
     /*
      * If value found, add reference and register automatic release when
@@ -171,7 +169,7 @@ afw_associative_array_get_associated_object_reference(
     const void *value;
 
     /* Get value associated with key. */
-    value = apr_hash_get(self->values, key->s, key->len);
+    value = afw_hash_table_get(self->values, key->s, key->len);
 
     /* If value found, add reference. */
     if (value && self->get_reference_value) {
@@ -193,14 +191,13 @@ afw_associative_array_for_each(
     void *context, afw_value_cb_t callback, afw_xctx_t *xctx)
 {
     impl_associative_array_t *self = (impl_associative_array_t *)instance;
-    apr_hash_index_t *hi;
+    afw_hash_table_index_t hi;
     afw_object_t *value;
 
-    for (hi = apr_hash_first(afw_pool_get_apr_pool(xctx->p), self->values);
-        hi;
-        hi = apr_hash_next(hi))
+    for (afw_hash_table_first(self->values, &hi);
+        afw_hash_table_this(&hi, NULL, NULL, (void **)&value);
+        afw_hash_table_next(&hi))
     {
-        apr_hash_this(hi, NULL, NULL, (void **)&value);
         if (callback(value, context, xctx)) {
             return;
         }
@@ -223,7 +220,7 @@ afw_associative_array_set(
     const void *existing;
 
     /* If an value is associated with key, call its release(). */
-    existing = apr_hash_get(self->values, key->s, key->len);
+    existing = afw_hash_table_get(self->values, key->s, key->len);
     if (existing && self->release_value) {
         self->release_value(existing, xctx);
     }
@@ -234,5 +231,5 @@ afw_associative_array_set(
     }
 
     /* Set/remove association. */
-    apr_hash_set(self->values, key->s, key->len, value);
+    afw_hash_table_set(self->values, key->s, key->len, value, xctx);
 }
