@@ -74,6 +74,12 @@ struct struct_name { \
 }
 
 /**
+ * @brief Vector of octets (byte buffers, writers).
+ */
+AFW_VECTOR_STRUCT(afw_octet_vector_s, afw_octet_t);
+typedef struct afw_octet_vector_s afw_octet_vector_t;
+
+/**
  * @brief Create a vector for the specified typedef.
  * @param typedef_name from AFW_VECTOR_STRUCT plus typedef.
  * @param initial_allocated capacity (count starts at 0). 0 is ok.
@@ -118,6 +124,20 @@ AFW_DECLARE(void)
 afw_vector_ensure_impl(
     const afw_vector_t *internal,
     afw_size_t min_allocated,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Append n entries from src.
+ * @param internal untyped header.
+ * @param src bytes of n entries.
+ * @param n number of entries to append.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_vector_append_impl(
+    const afw_vector_t *internal,
+    const void *src,
+    afw_size_t n,
     afw_xctx_t *xctx);
 
 /**
@@ -271,6 +291,13 @@ afw_vector_release_impl(
 #define afw_vector_ensure(instance, min_allocated, xctx) \
     afw_vector_ensure_impl(&((instance)->internal), \
         (min_allocated), (xctx))
+
+/**
+ * @brief Append n entries from src. instance->entries may move.
+ */
+#define afw_vector_append(instance, src, n, xctx) \
+    afw_vector_append_impl(&((instance)->internal), \
+        (src), (n), (xctx))
 
 /**
  * @brief Append one uninitialized slot. Lvalue of the entry type.

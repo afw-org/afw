@@ -29,6 +29,10 @@ def run():
                 "copy has independent storage",
             ),
             (
+                "append",
+                "append copies n entries",
+            ),
+            (
                 "copy_entries",
                 "copy-out is an exact-sized block",
             ),

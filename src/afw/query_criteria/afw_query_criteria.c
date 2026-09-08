@@ -15,6 +15,13 @@
 #include <libxml/xmlregexp.h>
 
 
+AFW_VECTOR_STRUCT(impl_utf8_p_vector_s, const afw_utf8_t *);
+typedef struct impl_utf8_p_vector_s impl_utf8_p_vector_t;
+
+AFW_VECTOR_STRUCT(impl_utf8_vector_s, afw_utf8_t);
+typedef struct impl_utf8_vector_s impl_utf8_vector_t;
+
+
 
 /* ------------------------------------------------------------------------- */
 /* Internal parse URL encoded RQL string typedef and declares                */
@@ -840,12 +847,12 @@ impl_parse_string_sort(impl_string_parser_t *parser)
 static const afw_utf8_t * const *
 impl_parse_string_select(impl_string_parser_t *parser)
 {
-    afw_const_utf8_a_stack_t *names;
+    impl_utf8_p_vector_t *names;
     const afw_utf8_t *property_name;
     static const afw_utf8_t * const *result;
 
-    /* Make an array to hold zero terminated list of property names. */
-    names = afw_stack_create(afw_const_utf8_a_stack_t, 10, 0, true,
+    /* Work vector for a NULL-terminated list of property names. */
+    names = afw_vector_create(impl_utf8_p_vector_t, 10,
         parser->p, parser->xctx);
 
     /* Loop processing all select entries. */
@@ -860,7 +867,7 @@ impl_parse_string_select(impl_string_parser_t *parser)
         /* Get copy of property name from token and push pointer on array. */
         property_name = impl_decode_token(parser);
         /** @fixme check for valid. */
-        afw_stack_push(names, parser->xctx) = property_name;
+        afw_vector_push(names, parser->xctx) = property_name;
 
         /*
          * Get next token.  If it is ')', then finished.  If ',' or ' ',
@@ -873,10 +880,10 @@ impl_parse_string_select(impl_string_parser_t *parser)
     }
 
     /* Return NULL terminated list of select names. */
-    afw_stack_push(names, parser->xctx) = NULL;
+    afw_vector_push(names, parser->xctx) = NULL;
 
-    /* Get copy of stack, release instance, and return copy. */
-    afw_stack_copy_and_release(names, NULL, &result,
+    /* Copy-out exact list and free the work vector. */
+    afw_vector_copy_entries_and_release(names, NULL, &result,
         parser->p, parser->xctx);
     return result;
 }
@@ -887,15 +894,13 @@ static const afw_value_t *
 impl_parse_string_list_value(impl_string_parser_t *parser)
 {
     afw_utf8_t sign;
-    apr_array_header_t *values;
+    impl_utf8_vector_t *values;
     const afw_utf8_t *value;
     const afw_array_t *list;
     const afw_value_t *result;
 
-    /** @fixme Change to use new list create function. */
-    /* Make an array to hold zero terminated list of values. */
-    values = apr_array_make(afw_pool_get_apr_pool(parser->p),
-        10, sizeof(afw_utf8_t));
+    values = afw_vector_create(impl_utf8_vector_t, 10,
+        parser->p, parser->xctx);
 
     /* Loop though list values. */
     while (1) {
@@ -924,7 +929,7 @@ impl_parse_string_list_value(impl_string_parser_t *parser)
         if (sign.s) {
             value = afw_utf8_concat(parser->p, parser->xctx, &sign, value, NULL);
         }
-        memcpy(apr_array_push(values), value, sizeof(afw_utf8_t));
+        afw_vector_push(values, parser->xctx) = *value;
 
         /* Get next token. */
         impl_get_token(parser);
@@ -941,10 +946,11 @@ impl_parse_string_list_value(impl_string_parser_t *parser)
         }
     }
 
-    /* Return list of strings. */
+    /* Return list of strings. from_c_array copies internals. */
     list = afw_array_create_unmanaged_from_c_array(
-        values->elts, false, afw_data_type_string,
-        values->nelts, parser->p, parser->xctx);
+        values->entries, false, afw_data_type_string,
+        values->count, parser->p, parser->xctx);
+    afw_vector_release(values, parser->xctx);
     result = afw_value_create_unmanaged_array(list, parser->p, parser->xctx);
     return result;
 }
@@ -1568,13 +1574,13 @@ impl_AdaptiveQueryCriteria_object_parse_select(
     impl_AdaptiveQueryCriteria_object_parser_t *parser,
     const afw_array_t *select)
 {
-    afw_const_utf8_a_stack_t *names;
+    impl_utf8_p_vector_t *names;
     const afw_utf8_t *name;
     const afw_utf8_t * const *result;
     const afw_iterator_old_t *iterator;
     const afw_value_t *value;
 
-    names = afw_stack_create(afw_const_utf8_a_stack_t, 20, 0, true,
+    names = afw_vector_create(impl_utf8_p_vector_t, 20,
         parser->p, parser->xctx);
     for (iterator = NULL;;) {
         value = afw_array_get_next_value(select, &iterator, parser->xctx);
@@ -1582,12 +1588,11 @@ impl_AdaptiveQueryCriteria_object_parse_select(
             break;
         }
         name = afw_value_as_string_internal(value, parser->xctx);
-        afw_stack_push(names, parser->xctx) = name;
+        afw_vector_push(names, parser->xctx) = name;
     }
-    afw_stack_push(names, parser->xctx) = NULL;
+    afw_vector_push(names, parser->xctx) = NULL;
 
-    /* Get copy of stack, release instance, and return copy. */
-    afw_stack_copy_and_release(names, NULL, &result,
+    afw_vector_copy_entries_and_release(names, NULL, &result,
         parser->p, parser->xctx);
     return result;
 }

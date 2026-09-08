@@ -11,7 +11,7 @@
 - **Not Adaptive `afw_array`.** No `afw_value_t`, no meta, no setter. Indexes are `afw_size_t` (no negatives). Dense: insert/remove `memmove`.
 - **List / extra hash-on-object:** parked. Memory objects keep a single `next`. Do not add `afw_list`.
 - **Do not rewrite `afw_array` yet.** Swap leftover `apr_array` call sites onto vector first. Memory-array can sit on a vector of `const afw_value_t *` later.
-- **Copy-out:** `afw_vector_copy_entries` mallocs exact `count * entry_size` in dest `p`. `afw_vector_release` `free_memory`s the work header and chunk (no `get_reference`). Compile args use `copy_entries_and_release` in `parser->p` — no child pool per list.
+- **Copy-out:** `afw_vector_copy_entries` mallocs exact `count * entry_size` in dest `p`. `afw_vector_release` `free_memory`s the work header and chunk (no `get_reference`). Compile args use `copy_entries_and_release` in `parser->p` — no child pool per list. `afw_vector_append` copies n entries. First `apr_array` swaps after compile args: utf8 writer/stream, compiler listing, query-criteria select/list values.
 
 ## Later (not this pass)
 

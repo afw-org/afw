@@ -129,6 +129,37 @@ afw_vector_ensure_impl(
 
 
 
+/* Append n entries from src. */
+AFW_DEFINE(void)
+afw_vector_append_impl(
+    const afw_vector_t *internal,
+    const void *src,
+    afw_size_t n,
+    afw_xctx_t *xctx)
+{
+    afw_vector_t *self;
+    afw_size_t add_bytes;
+    afw_octet_t *dest;
+
+    if (n == 0) {
+        return;
+    }
+    if (!src) {
+        AFW_THROW_ERROR_Z(argument_error,
+            "vector append source is NULL", xctx);
+    }
+
+    self = IMPL_SELF(internal);
+    impl_grow_to(self, self->count + n, xctx);
+    add_bytes = impl_bytes(self->entry_size, n, xctx);
+    dest = (afw_octet_t *)self->entries +
+        impl_bytes(self->entry_size, self->count, xctx);
+    memcpy(dest, src, add_bytes);
+    self->count += n;
+}
+
+
+
 /* Grow capacity for push. */
 AFW_DEFINE(void)
 afw_vector_extend_impl(

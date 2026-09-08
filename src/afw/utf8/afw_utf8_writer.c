@@ -17,7 +17,7 @@
 
 typedef struct {
     afw_writer_t pub;
-    apr_array_header_t *ary;
+    afw_octet_vector_t *ary;
     afw_boolean_t needs_leading_white_space;
 } impl_utf8_writer_self_t;
 
@@ -38,12 +38,8 @@ impl_afw_writer_write_raw_cb(
     afw_xctx_t *xctx)
 {
     impl_utf8_writer_self_t *self = (impl_utf8_writer_self_t *)context;
-    afw_size_t i;
 
-    for (i = 0; i < size; i++) {
-        APR_ARRAY_PUSH(self->ary, char) =
-            ((const afw_octet_t *)buffer)[i];
-    }
+    afw_vector_append(self->ary, buffer, size, xctx);
     return size;
 }
 
@@ -65,7 +61,7 @@ afw_utf8_writer_create(
     self->pub.inf = &impl_afw_writer_inf;
     self->pub.p = p;
     self->pub.write_raw_cb = impl_afw_writer_write_raw_cb;
-    self->ary = apr_array_make(afw_pool_get_apr_pool(p), 4000, 1);
+    self->ary = afw_vector_create(afw_octet_vector_t, 4000, p, xctx);
     self->pub.tab = tab;
 
     /* Return new instance. */
@@ -88,8 +84,9 @@ afw_utf8_writer_current_string(
             "afw_utf8_writer_get_string() can only be called by writer "
             "created by afw_utf8_writer_create()", xctx);
     }
-    current_string->s = self->ary->elts;
-    current_string->len = self->ary->nelts;
+    current_string->s =
+        (const afw_utf8_octet_t *)self->ary->entries;
+    current_string->len = self->ary->count;
 }
 
 
@@ -127,8 +124,7 @@ impl_afw_writer_write(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_size_t count, i;
-    const afw_octet_t *c;
+    afw_size_t count;
 
     if (size == 0) {
         return;
@@ -136,17 +132,13 @@ impl_afw_writer_write(
 
     if (self->needs_leading_white_space) {
         for (count = 0; count < self->pub.indent; count++) {
-            for (i = 0; i < self->pub.tab->len; i++) {
-                APR_ARRAY_PUSH(self->ary, char) = self->pub.tab->s[i];
-            }
+            afw_vector_append(self->ary, self->pub.tab->s,
+                self->pub.tab->len, xctx);
         }
         self->needs_leading_white_space = false;
     }
 
-    c = (const afw_octet_t *)buffer;
-    for (count = 0; count < size; count++) {
-        APR_ARRAY_PUSH(self->ary, char) = *c++;
-    }
+    afw_vector_append(self->ary, buffer, size, xctx);
 }
 
 
@@ -160,7 +152,7 @@ impl_afw_writer_write_eol(
 {
 
     if (self->pub.tab) {
-        APR_ARRAY_PUSH(self->ary, char) = '\n';
+        afw_vector_push(self->ary, xctx) = '\n';
         self->needs_leading_white_space = true;
     }
 }

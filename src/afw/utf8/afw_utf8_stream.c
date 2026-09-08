@@ -17,7 +17,7 @@
 
 typedef struct {
     afw_stream_t pub;
-    apr_array_header_t *ary;
+    afw_octet_vector_t *ary;
     afw_boolean_t needs_leading_white_space;
 } impl_utf8_stream_self_t;
 
@@ -38,12 +38,8 @@ impl_afw_stream_write_cb(
     afw_xctx_t *xctx)
 {
     impl_utf8_stream_self_t *self = (impl_utf8_stream_self_t *)context;
-    afw_size_t i;
 
-    for (i = 0; i < size; i++) {
-        APR_ARRAY_PUSH(self->ary, char) =
-            ((const afw_octet_t *)buffer)[i];
-    }
+    afw_vector_append(self->ary, buffer, size, xctx);
     return size;
 }
 
@@ -66,7 +62,7 @@ afw_utf8_stream_create(
     self->pub.p = p;
     self->pub.streamId = streamId;
     self->pub.write_cb = impl_afw_stream_write_cb;
-    self->ary = apr_array_make(afw_pool_get_apr_pool(p), 4000, 1);
+    self->ary = afw_vector_create(afw_octet_vector_t, 4000, p, xctx);
 
     /* Return new instance. */
     return (const afw_stream_t *)self;
@@ -88,8 +84,9 @@ afw_utf8_stream_get_current_cached_string(
             "afw_utf8_stream_get_current_cached_string() can only be called "
             "by stream created by afw_utf8_stream_create()", xctx);
     }
-    current_cached_string->s = self->ary->elts;
-    current_cached_string->len = self->ary->nelts;
+    current_cached_string->s =
+        (const afw_utf8_octet_t *)self->ary->entries;
+    current_cached_string->len = self->ary->count;
 }
 
 
@@ -143,15 +140,9 @@ impl_afw_stream_write(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    const afw_octet_t *c;
-    afw_size_t count;
-
     if (size == 0) {
         return;
     }
 
-    c = (const afw_octet_t *)buffer;
-    for (count = 0; count < size; count++) {
-        APR_ARRAY_PUSH(self->ary, char) = *c++;
-    }
+    afw_vector_append(self->ary, buffer, size, xctx);
 }

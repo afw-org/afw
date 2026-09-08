@@ -133,6 +133,28 @@ impl_copy(afw_xctx_t *xctx)
 
 
 static int
+impl_append(afw_xctx_t *xctx)
+{
+    impl_int_vector_t *v;
+    int add[3];
+
+    v = afw_vector_create(impl_int_vector_t, 2, xctx->p, xctx);
+    afw_vector_push(v, xctx) = 1;
+    add[0] = 2;
+    add[1] = 3;
+    add[2] = 4;
+    afw_vector_append(v, add, 3, xctx);
+    if (v->count != 4 || v->entries[0] != 1 || v->entries[1] != 2 ||
+        v->entries[2] != 3 || v->entries[3] != 4)
+    {
+        return impl_fail("append", "values");
+    }
+    afw_vector_release(v, xctx);
+    return 0;
+}
+
+
+static int
 impl_copy_entries(afw_xctx_t *xctx)
 {
     impl_int_vector_t *v;
@@ -313,6 +335,9 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "copy") == 0) {
         rc = impl_copy(xctx);
     }
+    else if (strcmp(case_name, "append") == 0) {
+        rc = impl_append(xctx);
+    }
     else if (strcmp(case_name, "copy_entries") == 0) {
         rc = impl_copy_entries(xctx);
     }
@@ -327,7 +352,7 @@ main(int argc, char **argv)
     }
     else {
         fprintf(stderr, "usage: vector_probe "
-            "push_grow|insert_remove|pop_clear|copy|"
+            "push_grow|insert_remove|pop_clear|copy|append|"
             "copy_entries|copy_entries_and_release|"
             "underflow|bad_index\n");
         rc = 2;
