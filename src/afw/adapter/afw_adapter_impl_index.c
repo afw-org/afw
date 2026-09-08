@@ -1594,11 +1594,11 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list_join(
  * During a disjunction (OR), we merge two cursor lists together so
  * every cursor from both sides ends up in the result (the later dedup
  * pass in afw_adapter_impl_index_query()/afw_adapter_impl_index_applies()
- * handles objects that satisfy more than one cursor). We like to have
- * them sorted from highest cardinality to lowest to make that dedup
- * pass cheaper, but that ordering is only ever a hint: whether a
- * cursor's cardinality is known, or how it compares, must never affect
- * *whether* it ends up in the merged list, only *where*.
+ * handles objects that satisfy more than one cursor). We sort them
+ * lowest cardinality first to make that dedup pass cheaper, but that
+ * ordering is only ever a hint: whether a cursor's cardinality is
+ * known, or how it compares, must never affect *whether* it ends up in
+ * the merged list, only *where*.
  *
  * Issue #296: this used to get that wrong two ways --
  *  - this_cursor was only inserted when it won a cardinality comparison
@@ -1609,6 +1609,17 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list_join(
  *    - see afw_adapter_impl_index_cursor_get_count()) made the whole
  *    merge fail (return NULL or throw) instead of just skipping the
  *    ordering comparison for that cursor.
+ *
+ * Issue #303: it also sorted in the wrong direction. In
+ * afw_adapter_impl_index_query()'s dedup loop, a cursor at position i
+ * pays one cheap afw_adapter_impl_index_applies() check per object it
+ * yields for each of the (nelts - i - 1) cursors after it - the last
+ * position pays nothing. Total dedup-check cost is therefore
+ * sum(objects_at(i) * (nelts - i - 1)), which the rearrangement
+ * inequality minimizes by putting the *smallest* cursor first (many
+ * cheap per-object checks, but few objects) and the *largest* last
+ * (many objects, but zero checks each) - the opposite of "highest
+ * cardinality first."
  */
 apr_array_header_t * afw_adapter_impl_index_cursor_list_merge(
     const afw_adapter_impl_index_t * instance,
@@ -1650,7 +1661,7 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list_merge(
                 that_cursor, &that_cardinality, xctx);
 
             if (!inserted && have_this_cardinality && have_that_cardinality &&
-                this_cardinality > that_cardinality)
+                this_cardinality < that_cardinality)
             {
                 *(const afw_adapter_impl_index_cursor_t**)
                     apr_array_push(merged_list) = this_cursor;
@@ -1662,10 +1673,11 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list_merge(
         }
 
         /*
-         * this_cursor never outranked anything in temp -- either its
-         * cardinality (or a that_cursor's) couldn't be determined, or it
-         * genuinely is the smallest. It must still appear in the result
-         * exactly once (issue #296 defect 1).
+         * this_cursor was never smaller than anything in temp -- either
+         * its cardinality (or a that_cursor's) couldn't be determined,
+         * or it genuinely is the largest, which belongs at the end
+         * anyway (issue #303). It must still appear in the result
+         * exactly once regardless (issue #296 defect 1).
          */
         if (!inserted) {
             *(const afw_adapter_impl_index_cursor_t**)
@@ -2041,8 +2053,15 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
     apr_array_header_t *cursors;
     const afw_adapter_impl_index_cursor_t *current_cursor;
     const afw_adapter_impl_index_cursor_t *next_cursor;
+    const afw_adapter_session_t *session;
     const afw_object_t *object = NULL;
     const afw_pool_t *p;
+    /*
+     * Total afw_adapter_impl_index_applies() calls this query made -
+     * issue #303's dedup-cost model, made externally observable (there is
+     * no other way to see it) via a trace line when the query finishes.
+     */
+    size_t applies_calls = 0;
     int cursor_index = 0;
     int i;
 
@@ -2073,6 +2092,11 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
             cursor_index++;
             if (cursors->nelts == cursor_index) {
                 /* we're at the end of our cursors */
+                session = afw_adapter_impl_index_get_session(instance, xctx);
+                afw_trace_fz(1, session->adapter->trace_flag_index, NULL, xctx,
+                    "index query: %d applies() checks for dedup",
+                    (int)applies_calls);
+
                 callback(NULL, context, xctx);
 
                 afw_pool_release(p, xctx);
@@ -2114,6 +2138,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
                 cursor, along with the object's matching property value, 
                 and determine whether this cursor contains the object. 
              */
+            applies_calls++;
             if (afw_adapter_impl_index_applies(instance,
                 next_cursor, object, xctx)) {
                 /* we have a duplicate, which we skip for now and let the
