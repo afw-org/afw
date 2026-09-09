@@ -114,10 +114,10 @@ return `${outer}`;   /* → 42 */
             <literal>${…}</literal>. There is no third opener.
             Path-like conf properties (file roots, <literal>modulePath</literal>,
             <literal>vfsMap</literal>, …) are different: they are compiled
-            <emphasis>and</emphasis> evaluated when the conf entry is processed,
+            <italic>and</italic> evaluated when the conf entry is processed,
             so you get a finished string at configure time.
             Model <literal>on*</literal> hooks and log <literal>filter</literal>
-            are <emphasis>scripts</emphasis>, compiled at load and evaluated
+            are <italic>scripts</italic>, compiled at load and evaluated
             when the hook or log write runs — not templates.
         </paragraph>
     </section>

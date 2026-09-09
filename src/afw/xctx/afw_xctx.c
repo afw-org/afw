@@ -544,8 +544,15 @@ impl_get_object_variable_cb(
 
     result = afw_object_get_property(entry->qualifier_object,
         &name_value.pub, xctx);
-    /* Compiled templates run; finished values and missing (NULL) are identity. */
-    return afw_value_evaluate(result, xctx->p, xctx);
+    /*
+     * This get_cb is shared (app:: templates, current:: runtime objects,
+     * adapter:: conf, …). Only compiled units should run here. Evaluate of
+     * a runtime current:: property is not always identity.
+     */
+    if (afw_value_is_compiled_value(result)) {
+        result = afw_value_evaluate(result, xctx->p, xctx);
+    }
+    return result;
 }
 
 
@@ -581,9 +588,10 @@ impl_contribute_object_variables_cb(
         {
             continue;
         }
-        /* Match get_cb: compiled templates evaluate; finished values identity. */
-        afw_object_set_property(object, property_name,
-            afw_value_evaluate(value, xctx->p, xctx), xctx);
+        if (afw_value_is_compiled_value(value)) {
+            value = afw_value_evaluate(value, xctx->p, xctx);
+        }
+        afw_object_set_property(object, property_name, value, xctx);
     }
 }
 
