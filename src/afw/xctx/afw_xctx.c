@@ -750,8 +750,8 @@ afw_xctx_scope_create(
 
     if (parent_lexical_scope) {
         /*
-         * Live parent frame is parent_scope_block (0-symbol `{ }` skipped
-         * at compile). Clones share that block pointer.
+         * Live parent frame is parent_scope_block (enclosing `{ }`).
+         * Clones share that block pointer.
          */
         if (parent_lexical_scope->block != block->parent_scope_block) {
             AFW_THROW_ERROR_FZ(general, xctx,
@@ -820,7 +820,7 @@ afw_xctx_scope_create(
 
 
 
-/* Live scope for this block's frame (parent_scope_block if none). */
+/* Live scope whose block is this `{ }`. */
 AFW_DEFINE(const afw_xctx_scope_t *)
 afw_xctx_scope_find_for_block(
     const afw_value_block_t *block,

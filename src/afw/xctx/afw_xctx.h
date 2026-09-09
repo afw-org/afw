@@ -308,8 +308,7 @@ AFW_VECTOR_STRUCT(afw_xctx_scope_p_vector_s, const afw_xctx_scope_t *);
  *
  * If a parent_lexical_scope is specified, it's reference count will be
  * incremented. That scope's block must be this block's parent_scope_block
- * (nearest ancestor that has a scope). Nested `{ }` with no symbols do
- * not get a scope; scope_depth has no gaps.
+ * (the enclosing `{ }`). Every `{ }` is a frame.
  *
  * If parent_lexical_scope is NULL, this must be the top frame
  * (parent_scope_block NULL, scope_depth 0).

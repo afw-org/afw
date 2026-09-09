@@ -197,17 +197,6 @@ impl_keep_loop_last(
 }
 
 
-/* Per-iteration eval tracker so unmanaged temps die when the trip ends. */
-static const afw_pool_t *
-impl_loop_iteration_p(afw_xctx_t *xctx)
-{
-    if (!xctx->evaluation_heap) {
-        xctx->evaluation_heap = afw_pool_create_xctx_p(xctx->p, xctx);
-    }
-    return afw_pool_tracker_create(xctx->evaluation_heap, xctx);
-}
-
-
 /* Formal expects array of values: leaf array, T[], or tuple (#153). */
 static inline afw_boolean_t
 impl_script_formal_expects_array_sequence(const afw_value_type_t *type)
@@ -1107,20 +1096,10 @@ afw_function_execute_do_while(
     this_label = impl_optional_loop_label(x, 3);
     result = afw_value_void;
     for (;;) {
-        {
-            const afw_pool_t *iter_p = impl_loop_iteration_p(xctx);
-
-            AFW_TRY {
-                result = impl_keep_loop_last(result,
-                    afw_value_block_evaluate_statement(
-                        x, x->argv[2], iter_p, xctx),
-                    xctx);
-            }
-            AFW_FINALLY {
-                afw_pool_release(iter_p, xctx);
-            }
-            AFW_ENDTRY;
-        }
+        result = impl_keep_loop_last(result,
+            afw_value_block_evaluate_statement(
+                x, x->argv[2], x->p, xctx),
+            xctx);
         if (impl_loop_should_exit(this_label, xctx)) {
             break;
         }
@@ -1240,51 +1219,36 @@ afw_function_execute_for(
             }
 
             if (body || increment) {
-                const afw_pool_t *iter_p;
                 afw_boolean_t leave;
 
-                /*
-                 * for-let clones the wrapper; temps die with that
-                 * clone. Classic for mutates enclosing names — body
-                 * temps need a per-trip tracker like while.
-                 */
-                iter_p = clone_each ? p : impl_loop_iteration_p(xctx);
                 leave = false;
-                AFW_TRY {
-                    if (body) {
-                        result = impl_keep_loop_last(result,
-                            afw_value_block_evaluate_statement(
-                                x, body, iter_p, xctx),
-                            xctx);
-                        leave = impl_loop_should_exit(this_label, xctx);
-                    }
-                    if (!leave && increment) {
-                        if (clone_each) {
-                            if (previous_iterator_scope) {
-                                scope = afw_xctx_scope_clone(
-                                    previous_iterator_scope, xctx);
-                                afw_xctx_scope_deactivate(
-                                    previous_iterator_scope, xctx);
-                                afw_xctx_scope_release(
-                                    previous_iterator_scope, xctx);
-                            }
-                            else {
-                                scope = afw_xctx_scope_clone(
-                                    afw_xctx_scope_current(xctx), xctx);
-                            }
-                            previous_iterator_scope = scope;
-                            afw_xctx_scope_activate(scope, xctx);
+                if (body) {
+                    result = impl_keep_loop_last(result,
+                        afw_value_block_evaluate_statement(
+                            x, body, p, xctx),
+                        xctx);
+                    leave = impl_loop_should_exit(this_label, xctx);
+                }
+                if (!leave && increment) {
+                    if (clone_each) {
+                        if (previous_iterator_scope) {
+                            scope = afw_xctx_scope_clone(
+                                previous_iterator_scope, xctx);
+                            afw_xctx_scope_deactivate(
+                                previous_iterator_scope, xctx);
+                            afw_xctx_scope_release(
+                                previous_iterator_scope, xctx);
                         }
-                        impl_evaluate_for_increment(x, 3, increment,
-                            iter_p, xctx);
+                        else {
+                            scope = afw_xctx_scope_clone(
+                                afw_xctx_scope_current(xctx), xctx);
+                        }
+                        previous_iterator_scope = scope;
+                        afw_xctx_scope_activate(scope, xctx);
                     }
+                    impl_evaluate_for_increment(x, 3, increment,
+                        p, xctx);
                 }
-                AFW_FINALLY {
-                    if (!clone_each) {
-                        afw_pool_release(iter_p, xctx);
-                    }
-                }
-                AFW_ENDTRY;
                 if (leave) {
                     break;
                 }
@@ -1442,24 +1406,14 @@ afw_function_execute_for_of(
                     afw_compile_assignment_type_assign_only;
             }
             {
-                const afw_pool_t *iter_p;
                 afw_boolean_t leave;
 
-                iter_p = clone_each ? p : impl_loop_iteration_p(xctx);
                 leave = false;
-                AFW_TRY {
-                    result = impl_keep_loop_last(result,
-                        afw_value_block_evaluate_statement(
-                            x, x->argv[3], iter_p, xctx),
-                        xctx);
-                    leave = impl_loop_should_exit(this_label, xctx);
-                }
-                AFW_FINALLY {
-                    if (!clone_each) {
-                        afw_pool_release(iter_p, xctx);
-                    }
-                }
-                AFW_ENDTRY;
+                result = impl_keep_loop_last(result,
+                    afw_value_block_evaluate_statement(
+                        x, x->argv[3], p, xctx),
+                    xctx);
+                leave = impl_loop_should_exit(this_label, xctx);
                 first = false;
                 if (leave) {
                     break;
@@ -2397,20 +2351,10 @@ afw_function_execute_while(
         if (!condition->internal) {
             break;
         }
-        {
-            const afw_pool_t *iter_p = impl_loop_iteration_p(xctx);
-
-            AFW_TRY {
-                result = impl_keep_loop_last(result,
-                    afw_value_block_evaluate_statement(
-                        x, x->argv[2], iter_p, xctx),
-                    xctx);
-            }
-            AFW_FINALLY {
-                afw_pool_release(iter_p, xctx);
-            }
-            AFW_ENDTRY;
-        }
+        result = impl_keep_loop_last(result,
+            afw_value_block_evaluate_statement(
+                x, x->argv[2], x->p, xctx),
+            xctx);
         if (impl_loop_should_exit(this_label, xctx))
         {
             break;

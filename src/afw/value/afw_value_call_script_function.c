@@ -161,8 +161,7 @@ impl_afw_value_optional_evaluate(
 
     /*
      * If not closure, find the compile-time enclosing `{ }` on the
-     * caller chain. find_for_block uses that block's frame (skips
-     * 0-symbol `{ }`). Missing is still "not on the stack".
+     * caller chain. Missing is still "not on the stack".
      */
     else {
         enclosing_lexical_scope = afw_xctx_scope_find_for_block(

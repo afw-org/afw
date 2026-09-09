@@ -111,21 +111,13 @@ afw_value_block_evaluate_block(
     }
 
     /*
-     * Nested `{ }` with no symbols is not a scope. Top always is, even
-     * with no names, so the compiled_value sentinel is not current.
+     * Every `{ }` is a frame. Top still starts with current NULL
+     * (compiled_value sentinel).
      */
-    scope = NULL;
-    if (afw_value_block_has_scope(self)) {
-        scope = afw_xctx_scope_create(self,
-            afw_xctx_scope_current(xctx), xctx);
-        afw_xctx_scope_activate(scope, xctx);
-    }
-    /*
-     * Nested evaluate in a frame uses that frame's tracker. Zero-symbol
-     * `{ }` is not a frame, so it keeps caller p (already the enclosing
-     * tracker once this path is live). See designs/experiment-eval-p.md.
-     */
-    eval_p = scope ? scope->p : p;
+    scope = afw_xctx_scope_create(self,
+        afw_xctx_scope_current(xctx), xctx);
+    afw_xctx_scope_activate(scope, xctx);
+    eval_p = scope->p;
     AFW_TRY{
         result = afw_value_block_evaluate_statements(
             x, self, 0, eval_p, xctx);
@@ -134,12 +126,10 @@ afw_value_block_evaluate_block(
         }
     }
     AFW_FINALLY{
-        if (scope) {
-            if (afw_xctx_scope_current(xctx) == scope) {
-                afw_xctx_scope_deactivate(scope, xctx);
-            }
-            afw_xctx_scope_release(scope, xctx);
+        if (afw_xctx_scope_current(xctx) == scope) {
+            afw_xctx_scope_deactivate(scope, xctx);
         }
+        afw_xctx_scope_release(scope, xctx);
     }
     AFW_ENDTRY;
 
