@@ -540,9 +540,12 @@ impl_get_object_variable_cb(
      * afw_value_undefined (or other values), not omitted.
      */
     const afw_value_string_t name_value = AFW_VALUE_STRING_UNMANAGED(name);
+    const afw_value_t *result;
 
-    return afw_object_get_property(entry->qualifier_object,
+    result = afw_object_get_property(entry->qualifier_object,
         &name_value.pub, xctx);
+    /* Compiled templates run; finished values and missing (NULL) are identity. */
+    return afw_value_evaluate(result, xctx->p, xctx);
 }
 
 

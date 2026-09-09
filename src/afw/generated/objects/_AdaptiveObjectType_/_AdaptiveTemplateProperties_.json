@@ -3,7 +3,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "Each property is a template value.",
+    "description": "Each property is a template. Compiled when the containing conf or model is loaded. #{…} runs at that compile; ${…} runs when the qualified variable is accessed.",
     "objectType": "_AdaptiveTemplateProperties_",
     "otherProperties": {
         "dataType": "template"

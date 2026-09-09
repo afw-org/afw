@@ -27,10 +27,10 @@
         Application conf may define qualified variables under
         <literal>qualifiedVariables</literal> using template strings. Those
         templates are compiled when the application conf is loaded (or
-        reloaded). Compile-time substitutions (<literal>#{…}</literal>) run at
-        load time and freeze a value for that config; evaluation-time
-        substitutions (<literal>${…}</literal>) re-run each time the variable
-        is evaluated. See Templates and Expressions for details.
+        reloaded). Accessing <literal>qualifier::name</literal> evaluates the
+        compiled template: <literal>#{…}</literal> already ran at compile
+        (conf load); <literal>${…}</literal> runs on this access. A template
+        may mix both. See Templates and Expressions for details.
     </paragraph>
     <header>Listing active qualified variables</header>
     <paragraph>

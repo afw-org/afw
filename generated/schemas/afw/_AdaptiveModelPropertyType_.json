@@ -75,8 +75,8 @@
                             "$ref": "#/$defs/_AdaptiveTemplateProperties_"
                         }
                     ],
-                    "description": "Property type level qualifier custom:: variables available to model expressions.",
-                    "markdownDescription": "**Custom**\n\nProperty type level qualifier custom:: variables available to model expressions.",
+                    "description": "Property-type-level qualifier custom:: templates. Each property is a template, compiled with the model. Accessing custom::name evaluates that compiled template (#{\u2026} at compile, ${\u2026} on this access).",
+                    "markdownDescription": "**Custom**\n\nProperty-type-level qualifier custom:: templates. Each property is a template, compiled with the model. Accessing custom::name evaluates that compiled template (#{\u2026} at compile, ${\u2026} on this access).",
                     "title": "Custom",
                     "type": "object"
                 },
@@ -288,8 +288,8 @@
                             "$ref": "#/$defs/_AdaptiveTemplateProperties_"
                         }
                     ],
-                    "description": "Property type level qualifier custom:: variables available to model expressions.",
-                    "markdownDescription": "**Custom**\n\nProperty type level qualifier custom:: variables available to model expressions.",
+                    "description": "Property-type-level qualifier custom:: templates. Each property is a template, compiled with the model. Accessing custom::name evaluates that compiled template (#{\u2026} at compile, ${\u2026} on this access).",
+                    "markdownDescription": "**Custom**\n\nProperty-type-level qualifier custom:: templates. Each property is a template, compiled with the model. Accessing custom::name evaluates that compiled template (#{\u2026} at compile, ${\u2026} on this access).",
                     "title": "Custom",
                     "type": "object"
                 },
@@ -424,12 +424,12 @@
         },
         "_AdaptiveTemplateProperties_": {
             "additionalProperties": {
-                "description": "Each property is a template value.",
-                "markdownDescription": "Each property is a template value.",
+                "description": "Each property is a template. Compiled when the containing conf or model is loaded. #{\u2026} runs at that compile; ${\u2026} runs when the qualified variable is accessed.",
+                "markdownDescription": "Each property is a template. Compiled when the containing conf or model is loaded. #{\u2026} runs at that compile; ${\u2026} runs when the qualified variable is accessed.",
                 "type": "string"
             },
-            "description": "Property type level qualifier custom:: variables available to model expressions.",
-            "markdownDescription": "Property type level qualifier custom:: variables available to model expressions.",
+            "description": "Property-type-level qualifier custom:: templates. Each property is a template, compiled with the model. Accessing custom::name evaluates that compiled template (#{\u2026} at compile, ${\u2026} on this access).",
+            "markdownDescription": "Property-type-level qualifier custom:: templates. Each property is a template, compiled with the model. Accessing custom::name evaluates that compiled template (#{\u2026} at compile, ${\u2026} on this access).",
             "properties": {
                 "_meta_": {
                     "additionalProperties": true,
@@ -724,8 +724,8 @@
                     "$ref": "#/$defs/_AdaptiveTemplateProperties_"
                 }
             ],
-            "description": "Property type level qualifier custom:: variables available to model expressions.",
-            "markdownDescription": "**Custom**\n\nProperty type level qualifier custom:: variables available to model expressions.",
+            "description": "Property-type-level qualifier custom:: templates. Each property is a template, compiled with the model. Accessing custom::name evaluates that compiled template (#{\u2026} at compile, ${\u2026} on this access).",
+            "markdownDescription": "**Custom**\n\nProperty-type-level qualifier custom:: templates. Each property is a template, compiled with the model. Accessing custom::name evaluates that compiled template (#{\u2026} at compile, ${\u2026} on this access).",
             "title": "Custom",
             "type": "object"
         },

@@ -1282,7 +1282,8 @@ impl_custom_variable_get_cb(
             &name_value.pub, xctx);
     }
 
-    return result;
+    /* Same as object-backed qualifier get: compiled templates run here. */
+    return afw_value_evaluate(result, xctx->p, xctx);
 }
 
 

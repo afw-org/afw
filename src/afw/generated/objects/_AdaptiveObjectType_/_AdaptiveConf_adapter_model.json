@@ -17,7 +17,7 @@
             "brief": "Qualifier custom:: variables available to model expressions",
             "dataType": "object",
             "dataTypeParameter": "_AdaptiveTemplateProperties_",
-            "description": "Qualifier custom:: variables available to model expressions.",
+            "description": "Qualifier custom:: templates available to model on* scripts and other model expressions. Each property is a template, compiled when the model is compiled. Accessing custom::name evaluates that compiled template (#{…} at compile, ${…} on this access).",
             "label": "Custom"
         },
         "mappedAdapterId": {

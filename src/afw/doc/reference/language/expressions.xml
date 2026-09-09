@@ -95,16 +95,23 @@ return `${outer}`;   /* → 42 */
     <section>
         <header>Templates in application conf</header>
         <paragraph>
-            Application <literal>qualifiedVariables</literal> template strings
-            are compiled when the application conf is loaded (or reloaded).
-            <literal>#{…}</literal> runs then and embeds a static value for the
-            life of that compiled config.
-            <literal>${…}</literal> remains a template definition and re-runs
-            on each evaluation of that variable’s value. Use compile-time
-            substitution to freeze config (including one-shot values such as a
-            UUID or a function built once); use evaluation-time substitution
-            for values that must change per access (for example request-scoped
-            data).
+            Application <literal>qualifiedVariables</literal> (and the same
+            shape of qualifier bag on a script authorization handler) are
+            templates compiled when that conf is loaded.
+            Accessing <literal>app::name</literal> (or the handler’s
+            qualifier) evaluates the compiled template in the current
+            execution context.
+            <literal>#{…}</literal> already ran at that compile and embeds a
+            static value (including a function built once).
+            <literal>${…}</literal> runs on this access (request-scoped data,
+            time, and so on). A template may mix both.
+            Path-like conf properties (file roots, <literal>modulePath</literal>,
+            <literal>vfsMap</literal>, …) are different: they are compiled
+            <emphasis>and</emphasis> evaluated when the conf entry is processed,
+            so you get a finished string at configure time.
+            Model <literal>on*</literal> hooks and log <literal>filter</literal>
+            are <emphasis>scripts</emphasis>, compiled at load and evaluated
+            when the hook or log write runs — not templates.
         </paragraph>
     </section>
 

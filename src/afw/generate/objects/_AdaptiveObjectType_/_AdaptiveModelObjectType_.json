@@ -16,7 +16,7 @@
             "brief": "Custom variables accessed throughout this Object Type",
             "dataType": "object",
             "dataTypeParameter": "_AdaptiveTemplateProperties_",
-            "description": "Object type level qualifier custom:: variables available to model expressions.",
+            "description": "Object-type-level qualifier custom:: templates. Each property is a template, compiled with the model. Accessing custom::name evaluates that compiled template (#{…} at compile, ${…} on this access).",
             "label": "Custom"
         },
         "mappedObjectType": {

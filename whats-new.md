@@ -94,7 +94,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Process env**](#process-environment-variables-issue-71) ([#71](https://github.com/afw-org/afw/issues/71)) | One `current` on `_AdaptiveEnvironmentVariables_` retrieve; values string if valid UTF-8 else hexBinary |
 | [**`process::`**](#process-ambient-environment-and-process-issues-71--74) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Ambient `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime` at env create (with `environment::`) |
 | [**`afw_crypto`**](#crypto-extension-afw_crypto-issue-74-partial) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Optional extension: AES-GCM encrypt/decrypt/**seal**/**unseal**, digest/HMAC, keystore, key refs, PBKDF2; LDAP `bindParameters` recipe |
-| [**Templates**](#compile-time-template-substitutions-issue-97) ([#97](https://github.com/afw-org/afw/issues/97)) | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates |
+| [**Templates**](#compile-time-template-substitutions-issue-97) ([#97](https://github.com/afw-org/afw/issues/97)) | `#{…}` vs `${…}`; `app::` / `custom::` evaluate on get; path conf at configure; `on*` / log filter are scripts |
 | [**Adapter index `current::`**](#adapter-index-filtervalue-current-issue-54--partial) ([#54](https://github.com/afw-org/afw/issues/54) partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
 | [**C builders / afwdev**](#c-api-docs-and-full-package-builds-issue-1) ([#1](https://github.com/afw-org/afw/issues/1)) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
 | [**C vector / hash table**](#c-vector-and-hash-table) | **`afw_vector`** and **`afw_hash_table`** on `afw.h` for C growable lists and name→pointer maps (not Adaptive `afw_array`) |
@@ -1084,7 +1084,7 @@ const all = qualifiers();
 | **`includeUntrusted`** | Optional boolean, default **false**. **Default** matches normal `qualifier::name` visibility right now. While the xctx is **secure**, set **true** so the snapshot matches what you would see with `::` if you were **less secure** (trusted **and** untrusted frames—not untrusted-only). When already not secure, true and false are the same. |
 | **Can be large** | Snapshots copy variable bags into memory objects. `environment::` / `request::` (and similar) can be **big**; `qualifiers()` nests a full snapshot per active qualifier and multiplies cost. Prefer `qualifier::name` day to day; use list functions sparingly and do not retain or rebuild large snapshots in long-running scripts. |
 
-Object-backed qualifiers (`environment::`, `request::`, `application::`, model `current::` runtime bags, …) contribute by walking their objects. Callback-backed frames (app `current::`, model `custom::`, log, context tables) contribute their known variable sets.
+Object-backed qualifiers (`environment::`, `request::`, `application::`, model `current::` runtime bags, …) contribute by walking their objects. Callback-backed frames (app `current::`, model `custom::`, log `current::`, context tables) contribute their known variable sets.
 
 ### Multi-frame get aligned with snapshots
 
@@ -1206,6 +1206,21 @@ Bare `#{…}` is also a **Value** in a script (`return #{1 + 2};`). Bare `${…}
 
 Use compile-time substitution to freeze config (including one-shot values such as a UUID or a function built once at load). Use evaluation-time substitution when the value must change per access.
 
+### Conf templates vs scripts
+
+| Conf | Kind | When compiled | When evaluated |
+|------|------|----------------|----------------|
+| Application **`qualifiedVariables`** (`app::…`) | **template** | Application start | **On `app::name` get.** `#{…}` already ran at compile; `${…}` runs on this get. Mix both in one template. |
+| Authorization-handler **`qualifiedVariables`** | **template** | Handler start | Same: evaluate on qualifier get |
+| Model **`custom`** (`custom::…`) | **template** | Model compile | Evaluate on `custom::name` get |
+| Path-like properties (`rootFilePaths`, `modulePath`, `vfsMap`, LMDB `env.path`, …) | **template** | — | **Configure / adapter start** (compile **and** evaluate to a string). See [Conf path templates](#conf-path-templates-issue-15). |
+| Model **`on*`** | **script** | Model compile | When the hook runs |
+| Log **`filter`** | **script** | Log start | Each log write |
+| Log **`format`** | **template** | Log start | Each log write |
+| LDAP **`bindParameters`** | **template** | Adapter start | At bind |
+
+`compile()` in script still returns a **unit**. Store it; run it with Adaptive **`evaluate()`**. Qualifier get of a compiled template is the evaluate for `app::` / `custom::`. You do not extra-evaluate a unit on ordinary assign, call, or formals.
+
 ### Escaping openers
 
 The openers are the two-character sequences `#{` and `${`. A backslash before `#` or `$` emits a literal `#` or `$` so the opener is not formed:
@@ -1219,7 +1234,7 @@ This now works in **backtick template strings** the same way as in raw templates
 
 ### Documentation
 
-Language reference **Templates and Expressions** and a short note under **Qualified Variables** describe the two forms, isolation, conf lifecycle, and escapes. Full Syntax EBNF / railroad diagrams refresh on a docs build.
+Language reference **Templates and Expressions** (including **Templates in application conf**) and **Qualified Variables** describe the two forms, isolation, conf lifecycle, and escapes. Conf object types (`_AdaptiveConf_application` `qualifiedVariables`, `_AdaptiveTemplateProperties_`, model `custom`, log `filter`/`format`) carry the same split on the property. Full Syntax EBNF / railroad diagrams refresh on a docs build.
 
 [↑ Highlights](#highlights)
 
@@ -1273,7 +1288,7 @@ Hosts (`afw`, `afwfcgi`, …) no longer create their own process-env object. Con
 
 ### Log conf `format` / `filter` context types
 
-Specialized log conf object types (`_AdaptiveConf_log_standard`, `_syslog`, `_event_log`) set **`contextType`** on **`format`** and **`filter`** to the matching runtime context id (`logType-standard`, `logType-syslog`, `logType-event_log`). Those context types parent **application** (and thus **process**) and document log write bags (`current::message` / `source` / `xctxUUID`, `log::`, optional `custom::`). Property meta inherits the shared definitions from `_AdaptiveConf_log` via **`parentPaths`** (use object option **`composite: true`** to see full meta).
+Specialized log conf object types (`_AdaptiveConf_log_standard`, `_syslog`, `_event_log`) set **`contextType`** on **`format`** and **`filter`** to the matching runtime context id (`logType-standard`, `logType-syslog`, `logType-event_log`). Those context types parent **application** (and thus **process**) and document log write bags (`current::message` / `source` / `xctxUUID`, `log::`). Property meta inherits the shared definitions from `_AdaptiveConf_log` via **`parentPaths`** (use object option **`composite: true`** to see full meta). Log conf has no `custom` bag.
 
 [↑ Highlights](#highlights)
 
