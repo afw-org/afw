@@ -107,9 +107,6 @@ impl_afw_value_optional_evaluate(
     xctx->error->contextual = self->contextual;
 
     v = afw_value_evaluate_and_park(self->aggregate_value, 1, p, xctx);
-    if (afw_value_is_compiled_value(v)) {
-        v = afw_value_evaluate(v, p, xctx);
-    }
 
     /* If value is single object, index is property name. */
     if (afw_value_is_object(v)) {

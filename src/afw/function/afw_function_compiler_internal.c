@@ -275,11 +275,6 @@ afw_function_script_evaluate_parameter_with_type(
     }
 
     result = afw_value_evaluate_and_park(value, parameter_number, p, xctx);
-    if (result && afw_value_is_compiled_value(result) &&
-        want_dt != afw_data_type_unevaluated)
-    {
-        result = afw_value_evaluate(result, p, xctx);
-    }
 
     /* #153: materialize utf8 sequences before check/convert. */
     if (wants_array_sequence) {
@@ -567,17 +562,11 @@ impl_assignment_target(
 
     switch (at->target_type) {
     case afw_compile_assignment_target_type_list_destructure:
-        if (afw_value_is_compiled_value(value)) {
-            value = afw_value_evaluate(value, p, xctx);
-        }
         impl_list_destructure(at, at->list_destructure, value,
             assignment_type, contextual, p, xctx);
         break;
 
     case afw_compile_assignment_target_type_object_destructure:
-        if (afw_value_is_compiled_value(value)) {
-            value = afw_value_evaluate(value, p, xctx);
-        }
         impl_object_destructure(at, at->object_destructure, value,
             assignment_type, contextual, p, xctx);
         break;
@@ -596,24 +585,12 @@ impl_assignment_target(
                 AFW_UTF8_FMT_ARG(&symbol->name->internal));
         }
         /*
-         * compile() returns unevaluated. Store the unit for untyped /
-         * unevaluated symbols. Extra-evaluate only when the symbol is a
-         * concrete data type, then release a throwaway unit.
+         * compile() result is a unit. Store it. Evaluate of the unit
+         * is Adaptive evaluate() / C evaluate of the compiled_value.
          */
-        if (afw_value_is_compiled_value(value)) {
-            if (symbol->type.kind == afw_value_type_kind_data_type &&
-                symbol->type.data_type &&
-                symbol->type.data_type != afw_data_type_unevaluated)
-            {
-                const afw_value_t *unit = value;
-                value = afw_value_evaluate_and_park(value, 1, p, xctx);
-                if (unit->inf == &afw_value_compiled_value_inf) {
-                    afw_value_release(unit, xctx);
-                }
-            }
-        }
-        else if (symbol->type.kind != afw_value_type_kind_data_type ||
-            symbol->type.data_type != afw_data_type_unevaluated)
+        if (!afw_value_is_compiled_value(value) &&
+            (symbol->type.kind != afw_value_type_kind_data_type ||
+                symbol->type.data_type != afw_data_type_unevaluated))
         {
             value = afw_value_evaluate_and_park(value, 1, p, xctx);
         }

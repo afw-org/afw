@@ -193,9 +193,6 @@ impl_afw_value_optional_evaluate(
      */
     function_value = afw_value_evaluate_and_park(
         self->function_value, 1, p, xctx);
-    if (afw_value_is_compiled_value(function_value)) {
-        function_value = afw_value_evaluate(function_value, p, xctx);
-    }
 
     /*
      * This is most likely a script function call since built-ins are usually
@@ -396,9 +393,6 @@ afw_value_call_args_expand_spreads(
         arg = argv_in[i];
         if (arg && afw_value_is_array_expression(arg)) {
             evaled = afw_value_evaluate_and_park(arg, i, p, xctx);
-            if (afw_value_is_compiled_value(evaled)) {
-                evaled = afw_value_evaluate(evaled, p, xctx);
-            }
             if (!afw_value_is_array(evaled)) {
                 AFW_THROW_ERROR_Z(general,
                     "Call-site spread (...) requires an array", xctx);

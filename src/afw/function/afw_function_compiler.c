@@ -181,15 +181,7 @@ afw_function_execute_decompile(
     const afw_utf8_t *s;
     const afw_value_t *value;
 
-    /*
-     * Resolve the argument (symbol refs, compile<script>(...), etc.) but do
-     * not evaluate a compiled_value — that would run the script. Standard
-     * AFW_FUNCTION_EVALUATE_PARAMETER re-evaluates compiled_value.
-     */
-    value = (x->argc >= 1) ? x->argv[1] : NULL;
-    if (!afw_value_is_defined_and_evaluated(value)) {
-        value = afw_value_evaluate(value, x->p, x->xctx);
-    }
+    AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
 
     whitespace = NULL;
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
@@ -321,6 +313,9 @@ afw_function_execute_evaluate_with_retry(
 
         AFW_TRY {
             AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
+            if (afw_value_is_compiled_value(value)) {
+                value = afw_value_evaluate(value, x->p, xctx);
+            }
             success = true;
         }
 
@@ -388,10 +383,16 @@ afw_function_execute_safe_evaluate(
     value = NULL;
     AFW_TRY {
         AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
+        if (afw_value_is_compiled_value(value)) {
+            value = afw_value_evaluate(value, x->p, xctx);
+        }
     }
 
     AFW_CATCH_UNHANDLED{
         AFW_FUNCTION_EVALUATE_PARAMETER(value, 2);
+        if (afw_value_is_compiled_value(value)) {
+            value = afw_value_evaluate(value, x->p, xctx);
+        }
     }
 
     AFW_ENDTRY;
