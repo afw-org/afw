@@ -1173,6 +1173,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__04843baae708 \
+    "Object-type-level qualifier custom:: templates. Each property is a template, compiled with the model. Accessing custom::name evaluates that compiled template (#{…} at compile, ${…} on this access)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__04843baae708 */
+#define afw_s_zz__04843baae708 \
+    (&afw_self_v_zz__04843baae708.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__04843baae708 */
+#define afw_self_s_zz__04843baae708 \
+    (afw_self_v_zz__04843baae708.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__04843baae708 */
+extern const afw_value_string_t \
+    afw_self_v_zz__04843baae708;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__04843baae708 */
+#define afw_z_zz__04843baae708 \
+    (afw_self_v_zz__04843baae708.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__04843baae708 */
+#define afw_v_zz__04843baae708 \
+    (&afw_self_v_zz__04843baae708.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__04ca67312cfd \
     "This converts an array of x500Name values that contains one value to a single x500Name value."
 
@@ -3851,6 +3877,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__0fc873415afb \
+    "Log message format template, evaluated at write time. Specialized conf object types set contextType to the matching logType-* context (e.g. logType-standard) so the expression builder documents log current::, log::, and ambient process/application qualifiers."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__0fc873415afb */
+#define afw_s_zz__0fc873415afb \
+    (&afw_self_v_zz__0fc873415afb.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__0fc873415afb */
+#define afw_self_s_zz__0fc873415afb \
+    (afw_self_v_zz__0fc873415afb.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__0fc873415afb */
+extern const afw_value_string_t \
+    afw_self_v_zz__0fc873415afb;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0fc873415afb */
+#define afw_z_zz__0fc873415afb \
+    (afw_self_v_zz__0fc873415afb.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__0fc873415afb */
+#define afw_v_zz__0fc873415afb \
+    (&afw_self_v_zz__0fc873415afb.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__0fd8e14d34de \
     "(requestId: string, resourceId: string, actionId: string, object?: object, enforce?: boolean): object /* _AdaptiveAuthorizationResult_ */"
 
@@ -4211,32 +4263,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__1164fec716eb */
 #define afw_v_zz__1164fec716eb \
     (&afw_self_v_zz__1164fec716eb.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__11922f942ad0 \
-    "The name of each property in this object corresponds to a qualifier that is available in processing associated with this authorization handler. The qualifier can be an empty string for unqualified variables. The properties of these 'qualifier objects' are template values that are accessible as qualified variables while processing this authorization handler. These variables are evaluated once per authorization check as they are accessed.\n\nVariables specified here have precedence over duplicate application variables when this authorization handler is being processed.\n\nSome qualifiers are restricted."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__11922f942ad0 */
-#define afw_s_zz__11922f942ad0 \
-    (&afw_self_v_zz__11922f942ad0.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__11922f942ad0 */
-#define afw_self_s_zz__11922f942ad0 \
-    (afw_self_v_zz__11922f942ad0.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__11922f942ad0 */
-extern const afw_value_string_t \
-    afw_self_v_zz__11922f942ad0;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__11922f942ad0 */
-#define afw_z_zz__11922f942ad0 \
-    (afw_self_v_zz__11922f942ad0.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__11922f942ad0 */
-#define afw_v_zz__11922f942ad0 \
-    (&afw_self_v_zz__11922f942ad0.pub)
 
 
 
@@ -11911,32 +11937,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__3194d1a64761 \
-    "Filter script used to determine whether to log a particular message. Evaluated at write time with log-type context (see specialized conf object types for contextType, e.g. logType-standard): current::message/source/xctxUUID, log::, optional custom::, plus ambient application/process qualifiers."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3194d1a64761 */
-#define afw_s_zz__3194d1a64761 \
-    (&afw_self_v_zz__3194d1a64761.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3194d1a64761 */
-#define afw_self_s_zz__3194d1a64761 \
-    (afw_self_v_zz__3194d1a64761.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__3194d1a64761 */
-extern const afw_value_string_t \
-    afw_self_v_zz__3194d1a64761;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3194d1a64761 */
-#define afw_z_zz__3194d1a64761 \
-    (afw_self_v_zz__3194d1a64761.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__3194d1a64761 */
-#define afw_v_zz__3194d1a64761 \
-    (&afw_self_v_zz__3194d1a64761.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__31b3fc8deb93 \
     "This is the label in C source of the afw_value_get_evaluated_metas for this data type."
 
@@ -13493,6 +13493,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__3873a34e4c4c */
 #define afw_v_zz__3873a34e4c4c \
     (&afw_self_v_zz__3873a34e4c4c.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__387bed4b4fa1 \
+    "The name of each property in this object corresponds to a qualifier (for example app). The qualifier cannot be an empty string. Each property of those qualifier objects is a template, compiled when the application conf is loaded. Accessing qualifier::name evaluates that compiled template in the current execution context. That gives three times script can run: #{…} at compile (conf load) — freeze a string or build a function once; ${…} on this access — new value each get (request::, time, uuid); and if the template returns a function, that function's body runs when you call it (app::makeId()), which can still see request::. A template may mix #{…} and ${…}. Some qualifiers are restricted."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__387bed4b4fa1 */
+#define afw_s_zz__387bed4b4fa1 \
+    (&afw_self_v_zz__387bed4b4fa1.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__387bed4b4fa1 */
+#define afw_self_s_zz__387bed4b4fa1 \
+    (afw_self_v_zz__387bed4b4fa1.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__387bed4b4fa1 */
+extern const afw_value_string_t \
+    afw_self_v_zz__387bed4b4fa1;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__387bed4b4fa1 */
+#define afw_z_zz__387bed4b4fa1 \
+    (afw_self_v_zz__387bed4b4fa1.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__387bed4b4fa1 */
+#define afw_v_zz__387bed4b4fa1 \
+    (&afw_self_v_zz__387bed4b4fa1.pub)
 
 
 
@@ -19971,6 +19997,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__558a8676bc51 \
+    "Each property is a template. Compiled when the containing conf or model is loaded. #{…} runs at that compile (including building a function once); ${…} runs when the qualified variable is accessed; a function returned from the template runs when called."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__558a8676bc51 */
+#define afw_s_zz__558a8676bc51 \
+    (&afw_self_v_zz__558a8676bc51.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__558a8676bc51 */
+#define afw_self_s_zz__558a8676bc51 \
+    (afw_self_v_zz__558a8676bc51.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__558a8676bc51 */
+extern const afw_value_string_t \
+    afw_self_v_zz__558a8676bc51;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__558a8676bc51 */
+#define afw_z_zz__558a8676bc51 \
+    (afw_self_v_zz__558a8676bc51.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__558a8676bc51 */
+#define afw_v_zz__558a8676bc51 \
+    (&afw_self_v_zz__558a8676bc51.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__55ba49469fc1 \
     "Determine if string arg1 is equal to the value of arg2 converted to the data type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you want false to be returned if arg1 and arg2's data type don't match."
 
@@ -23481,32 +23533,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__632e9a1a8e9e \
-    "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__632e9a1a8e9e */
-#define afw_s_zz__632e9a1a8e9e \
-    (&afw_self_v_zz__632e9a1a8e9e.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__632e9a1a8e9e */
-#define afw_self_s_zz__632e9a1a8e9e \
-    (afw_self_v_zz__632e9a1a8e9e.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__632e9a1a8e9e */
-extern const afw_value_string_t \
-    afw_self_v_zz__632e9a1a8e9e;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__632e9a1a8e9e */
-#define afw_z_zz__632e9a1a8e9e \
-    (afw_self_v_zz__632e9a1a8e9e.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__632e9a1a8e9e */
-#define afw_v_zz__632e9a1a8e9e \
-    (&afw_self_v_zz__632e9a1a8e9e.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__633cef18fa18 \
     "Set a array value immutable so further mutation throws. If already immutable, has no effect. Returns the same value."
 
@@ -25531,6 +25557,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__6aff19dd5ff2 */
 #define afw_v_zz__6aff19dd5ff2 \
     (&afw_self_v_zz__6aff19dd5ff2.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__6b070d485684 \
+    "Model-level qualifier custom:: templates. Each property is a template, compiled with the model. Accessing custom::name evaluates that compiled template (#{…} at compile, ${…} on this access)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6b070d485684 */
+#define afw_s_zz__6b070d485684 \
+    (&afw_self_v_zz__6b070d485684.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6b070d485684 */
+#define afw_self_s_zz__6b070d485684 \
+    (afw_self_v_zz__6b070d485684.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__6b070d485684 */
+extern const afw_value_string_t \
+    afw_self_v_zz__6b070d485684;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__6b070d485684 */
+#define afw_z_zz__6b070d485684 \
+    (afw_self_v_zz__6b070d485684.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__6b070d485684 */
+#define afw_v_zz__6b070d485684 \
+    (&afw_self_v_zz__6b070d485684.pub)
 
 
 
@@ -28833,6 +28885,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__7a709279e4c1 */
 #define afw_v_zz__7a709279e4c1 \
     (&afw_self_v_zz__7a709279e4c1.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__7a75cfe53a7e \
+    "Qualifier custom:: templates available to model on* scripts and other model expressions. Each property is a template, compiled when the model is compiled. Accessing custom::name evaluates that compiled template (#{…} at compile, ${…} on this access)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7a75cfe53a7e */
+#define afw_s_zz__7a75cfe53a7e \
+    (&afw_self_v_zz__7a75cfe53a7e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7a75cfe53a7e */
+#define afw_self_s_zz__7a75cfe53a7e \
+    (afw_self_v_zz__7a75cfe53a7e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__7a75cfe53a7e */
+extern const afw_value_string_t \
+    afw_self_v_zz__7a75cfe53a7e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7a75cfe53a7e */
+#define afw_z_zz__7a75cfe53a7e \
+    (afw_self_v_zz__7a75cfe53a7e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__7a75cfe53a7e */
+#define afw_v_zz__7a75cfe53a7e \
+    (&afw_self_v_zz__7a75cfe53a7e.pub)
 
 
 
@@ -33075,6 +33153,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__8b84ae957352 \
+    "Filter script used to determine whether to log a particular message. Evaluated at write time with log-type context (see specialized conf object types for contextType, e.g. logType-standard): current::message/source/xctxUUID, log::, plus ambient application/process qualifiers."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8b84ae957352 */
+#define afw_s_zz__8b84ae957352 \
+    (&afw_self_v_zz__8b84ae957352.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8b84ae957352 */
+#define afw_self_s_zz__8b84ae957352 \
+    (afw_self_v_zz__8b84ae957352.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__8b84ae957352 */
+extern const afw_value_string_t \
+    afw_self_v_zz__8b84ae957352;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8b84ae957352 */
+#define afw_z_zz__8b84ae957352 \
+    (afw_self_v_zz__8b84ae957352.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__8b84ae957352 */
+#define afw_v_zz__8b84ae957352 \
+    (&afw_self_v_zz__8b84ae957352.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__8b98145286cf \
     "Determine if for boolean arg1 is equal to the value and data type of arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2 to be converted to the data type of arg1 before comparison."
 
@@ -34397,32 +34501,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__91532afb3e92 */
 #define afw_v_zz__91532afb3e92 \
     (&afw_self_v_zz__91532afb3e92.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__915a76dc0037 \
-    "Property type level qualifier custom:: variables available to model expressions."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__915a76dc0037 */
-#define afw_s_zz__915a76dc0037 \
-    (&afw_self_v_zz__915a76dc0037.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__915a76dc0037 */
-#define afw_self_s_zz__915a76dc0037 \
-    (afw_self_v_zz__915a76dc0037.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__915a76dc0037 */
-extern const afw_value_string_t \
-    afw_self_v_zz__915a76dc0037;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__915a76dc0037 */
-#define afw_z_zz__915a76dc0037 \
-    (afw_self_v_zz__915a76dc0037.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__915a76dc0037 */
-#define afw_v_zz__915a76dc0037 \
-    (&afw_self_v_zz__915a76dc0037.pub)
 
 
 
@@ -49819,32 +49897,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Custom_Variables_available_to_log_expressions \
-    "Custom Variables available to log expressions"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Custom_Variables_available_to_log_expressions */
-#define afw_s_zz__Custom_Variables_available_to_log_expressions \
-    (&afw_self_v_zz__Custom_Variables_available_to_log_expressions.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Custom_Variables_available_to_log_expressions */
-#define afw_self_s_zz__Custom_Variables_available_to_log_expressions \
-    (afw_self_v_zz__Custom_Variables_available_to_log_expressions.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Custom_Variables_available_to_log_expressions */
-extern const afw_value_string_t \
-    afw_self_v_zz__Custom_Variables_available_to_log_expressions;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Custom_Variables_available_to_log_expressions */
-#define afw_z_zz__Custom_Variables_available_to_log_expressions \
-    (afw_self_v_zz__Custom_Variables_available_to_log_expressions.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Custom_Variables_available_to_log_expressions */
-#define afw_v_zz__Custom_Variables_available_to_log_expressions \
-    (&afw_self_v_zz__Custom_Variables_available_to_log_expressions.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Custom_variables_accessed_throughout_this_Object_Type \
     "Custom variables accessed throughout this Object Type"
 
@@ -53767,32 +53819,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Each_property_is_a__AdaptiveTemplateProperties__object_ */
 #define afw_v_zz__Each_property_is_a__AdaptiveTemplateProperties__object_ \
     (&afw_self_v_zz__Each_property_is_a__AdaptiveTemplateProperties__object_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Each_property_is_a_template_value_ \
-    "Each property is a template value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Each_property_is_a_template_value_ */
-#define afw_s_zz__Each_property_is_a_template_value_ \
-    (&afw_self_v_zz__Each_property_is_a_template_value_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Each_property_is_a_template_value_ */
-#define afw_self_s_zz__Each_property_is_a_template_value_ \
-    (afw_self_v_zz__Each_property_is_a_template_value_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Each_property_is_a_template_value_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Each_property_is_a_template_value_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Each_property_is_a_template_value_ */
-#define afw_z_zz__Each_property_is_a_template_value_ \
-    (afw_self_v_zz__Each_property_is_a_template_value_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Each_property_is_a_template_value_ */
-#define afw_v_zz__Each_property_is_a_template_value_ \
-    (&afw_self_v_zz__Each_property_is_a_template_value_.pub)
 
 
 
@@ -69969,32 +69995,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Qualifier_custom___variables_available_in_log_expressions_ \
-    "Qualifier custom:: variables available in log expressions."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Qualifier_custom___variables_available_in_log_expressions_ */
-#define afw_s_zz__Qualifier_custom___variables_available_in_log_expressions_ \
-    (&afw_self_v_zz__Qualifier_custom___variables_available_in_log_expressions_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Qualifier_custom___variables_available_in_log_expressions_ */
-#define afw_self_s_zz__Qualifier_custom___variables_available_in_log_expressions_ \
-    (afw_self_v_zz__Qualifier_custom___variables_available_in_log_expressions_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Qualifier_custom___variables_available_in_log_expressions_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Qualifier_custom___variables_available_in_log_expressions_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Qualifier_custom___variables_available_in_log_expressions_ */
-#define afw_z_zz__Qualifier_custom___variables_available_in_log_expressions_ \
-    (afw_self_v_zz__Qualifier_custom___variables_available_in_log_expressions_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Qualifier_custom___variables_available_in_log_expressions_ */
-#define afw_v_zz__Qualifier_custom___variables_available_in_log_expressions_ \
-    (&afw_self_v_zz__Qualifier_custom___variables_available_in_log_expressions_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Qualifier_custom___variables_available_to_model_expressions \
     "Qualifier custom:: variables available to model expressions"
 
@@ -70017,32 +70017,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Qualifier_custom___variables_available_to_model_expressions */
 #define afw_v_zz__Qualifier_custom___variables_available_to_model_expressions \
     (&afw_self_v_zz__Qualifier_custom___variables_available_to_model_expressions.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Qualifier_custom___variables_available_to_model_expressions_ \
-    "Qualifier custom:: variables available to model expressions."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Qualifier_custom___variables_available_to_model_expressions_ */
-#define afw_s_zz__Qualifier_custom___variables_available_to_model_expressions_ \
-    (&afw_self_v_zz__Qualifier_custom___variables_available_to_model_expressions_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Qualifier_custom___variables_available_to_model_expressions_ */
-#define afw_self_s_zz__Qualifier_custom___variables_available_to_model_expressions_ \
-    (afw_self_v_zz__Qualifier_custom___variables_available_to_model_expressions_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Qualifier_custom___variables_available_to_model_expressions_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Qualifier_custom___variables_available_to_model_expressions_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Qualifier_custom___variables_available_to_model_expressions_ */
-#define afw_z_zz__Qualifier_custom___variables_available_to_model_expressions_ \
-    (afw_self_v_zz__Qualifier_custom___variables_available_to_model_expressions_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Qualifier_custom___variables_available_to_model_expressions_ */
-#define afw_v_zz__Qualifier_custom___variables_available_to_model_expressions_ \
-    (&afw_self_v_zz__Qualifier_custom___variables_available_to_model_expressions_.pub)
 
 
 
@@ -123893,6 +123867,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__a34921ab163a \
+    "The name of each property in this object corresponds to a qualifier available while this authorization handler runs. The qualifier can be an empty string for unqualified variables. Each property of those qualifier objects is a template, compiled when the handler conf is loaded. Accessing qualifier::name evaluates that compiled template: #{…} at compile, ${…} on this access, and a function returned from #{…} runs when called. These variables have precedence over duplicate application variables while this handler is processing. Some qualifiers are restricted."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a34921ab163a */
+#define afw_s_zz__a34921ab163a \
+    (&afw_self_v_zz__a34921ab163a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a34921ab163a */
+#define afw_self_s_zz__a34921ab163a \
+    (afw_self_v_zz__a34921ab163a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__a34921ab163a */
+extern const afw_value_string_t \
+    afw_self_v_zz__a34921ab163a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a34921ab163a */
+#define afw_z_zz__a34921ab163a \
+    (afw_self_v_zz__a34921ab163a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__a34921ab163a */
+#define afw_v_zz__a34921ab163a \
+    (&afw_self_v_zz__a34921ab163a.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__a3a1c46c1870 \
     "This is maximum normal length of the to_string() for this value.  If not specified, maxLength is used."
 
@@ -128703,32 +128703,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__b5652002936f \
-    "Log message format template, evaluated at write time. Specialized conf object types set contextType to the matching logType-* context (e.g. logType-standard) so the expression builder documents log current::, log::, custom::, and ambient process/application qualifiers."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b5652002936f */
-#define afw_s_zz__b5652002936f \
-    (&afw_self_v_zz__b5652002936f.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b5652002936f */
-#define afw_self_s_zz__b5652002936f \
-    (afw_self_v_zz__b5652002936f.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__b5652002936f */
-extern const afw_value_string_t \
-    afw_self_v_zz__b5652002936f;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b5652002936f */
-#define afw_z_zz__b5652002936f \
-    (afw_self_v_zz__b5652002936f.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__b5652002936f */
-#define afw_v_zz__b5652002936f \
-    (&afw_self_v_zz__b5652002936f.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__b5701fa0cad0 \
     "This is a URL encoded RQL string. This parameter is mutually exclusive with all other properties."
 
@@ -131403,32 +131377,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__bb59a14994f6 */
 #define afw_v_zz__bb59a14994f6 \
     (&afw_self_v_zz__bb59a14994f6.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__bb5e183e59c8 \
-    "Object type level qualifier custom:: variables available to model expressions."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__bb5e183e59c8 */
-#define afw_s_zz__bb5e183e59c8 \
-    (&afw_self_v_zz__bb5e183e59c8.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__bb5e183e59c8 */
-#define afw_self_s_zz__bb5e183e59c8 \
-    (afw_self_v_zz__bb5e183e59c8.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__bb5e183e59c8 */
-extern const afw_value_string_t \
-    afw_self_v_zz__bb5e183e59c8;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__bb5e183e59c8 */
-#define afw_z_zz__bb5e183e59c8 \
-    (afw_self_v_zz__bb5e183e59c8.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__bb5e183e59c8 */
-#define afw_v_zz__bb5e183e59c8 \
-    (&afw_self_v_zz__bb5e183e59c8.pub)
 
 
 
@@ -142115,6 +142063,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__e5d0247c84fb */
 #define afw_v_zz__e5d0247c84fb \
     (&afw_self_v_zz__e5d0247c84fb.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__e5d1ed423501 \
+    "Property-type-level qualifier custom:: templates. Each property is a template, compiled with the model. Accessing custom::name evaluates that compiled template (#{…} at compile, ${…} on this access)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__e5d1ed423501 */
+#define afw_s_zz__e5d1ed423501 \
+    (&afw_self_v_zz__e5d1ed423501.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__e5d1ed423501 */
+#define afw_self_s_zz__e5d1ed423501 \
+    (afw_self_v_zz__e5d1ed423501.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__e5d1ed423501 */
+extern const afw_value_string_t \
+    afw_self_v_zz__e5d1ed423501;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e5d1ed423501 */
+#define afw_z_zz__e5d1ed423501 \
+    (afw_self_v_zz__e5d1ed423501.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__e5d1ed423501 */
+#define afw_v_zz__e5d1ed423501 \
+    (&afw_self_v_zz__e5d1ed423501.pub)
 
 
 

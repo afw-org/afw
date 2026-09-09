@@ -540,9 +540,19 @@ impl_get_object_variable_cb(
      * afw_value_undefined (or other values), not omitted.
      */
     const afw_value_string_t name_value = AFW_VALUE_STRING_UNMANAGED(name);
+    const afw_value_t *result;
 
-    return afw_object_get_property(entry->qualifier_object,
+    result = afw_object_get_property(entry->qualifier_object,
         &name_value.pub, xctx);
+    /*
+     * This get_cb is shared (app:: templates, current:: runtime objects,
+     * adapter:: conf, …). Only compiled units should run here. Evaluate of
+     * a runtime current:: property is not always identity.
+     */
+    if (afw_value_is_compiled_value(result)) {
+        result = afw_value_evaluate(result, xctx->p, xctx);
+    }
+    return result;
 }
 
 
@@ -577,6 +587,9 @@ impl_contribute_object_variables_cb(
             afw_object_has_property(object, property_name, xctx))
         {
             continue;
+        }
+        if (afw_value_is_compiled_value(value)) {
+            value = afw_value_evaluate(value, xctx->p, xctx);
         }
         afw_object_set_property(object, property_name, value, xctx);
     }

@@ -19,7 +19,7 @@
             "brief": "Custom variables available to model expressions",
             "dataType": "object",
             "dataTypeParameter": "_AdaptiveTemplateProperties_",
-            "description": "Qualifier custom:: variables available to model expressions.",
+            "description": "Model-level qualifier custom:: templates. Each property is a template, compiled with the model. Accessing custom::name evaluates that compiled template (#{…} at compile, ${…} on this access).",
             "label": "Custom"
         },
         "description": {

@@ -300,25 +300,28 @@ return x == x;
 //?
 //? test: run_time_template_literal_4
 //? description: ...
-Show that a compiled template assigned to a variable with unevaluated
-data type does reevaluate each time accessed because that is the purpose
-of the unevaluated data type.
+compile() stores a unit. Accessing the variable does not run it.
+evaluate(x) runs the template each time (${ } uuid differs).
 //? expect: false
 //? source: ...
 
 const x:unevaluated = compile(template("${return generate_uuid();}"));
-return x == x;
+assert(meta(x).dataType === "unevaluated");
+return evaluate(x) == evaluate(x);
 
 //?
 //? test: run_time_template_literal_5
 //? description: ...
-Show that a compiled template assigned to a variable without unevaluated
-data type is evaluated at assignment time.
-//? expect: true
+Untyped assign of compile() also stores the unit. evaluate() runs it.
+To freeze a value: const x = evaluate(compile(...)).
+To get a new uuid per call, return a function from the template (see
+compile_template_returns_function).
+//? expect: false
 //? source: ...
 
 const x = compile(template("${return generate_uuid();}"));
-return x == x;
+assert(meta(x).dataType === "unevaluated");
+return evaluate(x) == evaluate(x);
 
 //?
 //? test: qualified_variable_compile_time_uuid_stored_unevaluated
@@ -334,9 +337,11 @@ return x == x;
 //?
 //? test: qualified_variable_eval_time_uuid_stored_unevaluated
 //? description: ...
-Show that runtime substitution in template of qualified variable doesn't
-evaluate when assigned to a variable with data type unevaluated
-//? expect: false
+app:: get already evaluates, so even :unevaluated holds the string from
+that get. Accessing x does not re-run the template. (Access app:: again
+or evaluate(compile(...)) for another ${ } result. For a new uuid per
+call, return a function from the template.)
+//? expect: true
 //? source: ...
 
 const x:unevaluated = app::uuidEvalTime;
@@ -353,6 +358,77 @@ is evaluated and assigned to variable does not reevaluate
 const x:unevaluated = evaluate(app::uuidEvalTime);
 
 return x == x;
+
+//?
+//? test: compile_template_returns_function
+//? description: ...
+A template can return a function so each call produces a new uuid
+//? expect: false
+//? source: ...
+
+const f = evaluate(compile(template(
+    "#{ return function () { return generate_uuid(); }; }"
+)));
+return f() == f();
+
+//?
+//? test: qualifier_app_matches_get
+//? description: qualifier("app") snapshot matches app:: get for a stable value
+//? expect: true
+//? source: ...
+
+const q = qualifier("app");
+return q.helloWorld === app::helloWorld;
+
+//?
+//? test: three_times_compile
+//? description: #{ } at conf compile — same uuid on every app:: get
+//? expect: 0
+//? source: ...
+
+assert(app::uuidCompileTime === app::uuidCompileTime);
+const a = app::uuidCompileTime;
+const b = app::uuidCompileTime;
+assert(a === b);
+return 0;
+
+//?
+//? test: three_times_eval
+//? description: ${ } on app:: get — new uuid each access
+//? expect: 0
+//? source: ...
+
+assert(app::uuidEvalTime !== app::uuidEvalTime);
+const a = app::uuidEvalTime;
+assert(a === a);
+assert(a !== app::uuidEvalTime);
+return 0;
+
+//?
+//? test: three_times_call
+//? description: function from #{ } is built once; body runs each call
+//? expect: 0
+//? source: ...
+
+const f = app::uuidMakeId;
+const g = app::uuidMakeId;
+assert(f === g);
+assert(f() !== f());
+assert(app::uuidMakeId() !== app::uuidMakeId());
+return 0;
+
+//?
+//? test: three_times_mixed
+//? description: one template mixes #{ } compile prefix with ${ } uuid on get
+//? expect: 0
+//? source: ...
+
+const a = app::mixedTimes;
+const b = app::mixedTimes;
+assert(a !== b);
+assert(substring(a, 0, 2) === "C-");
+assert(substring(b, 0, 2) === "C-");
+return 0;
 
 //?
 //? test: compile_time_outer_local_not_visible

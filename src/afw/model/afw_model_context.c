@@ -1282,7 +1282,36 @@ impl_custom_variable_get_cb(
             &name_value.pub, xctx);
     }
 
-    return result;
+    /* Same as object-backed qualifier get: compiled templates run here. */
+    return afw_value_evaluate(result, xctx->p, xctx);
+}
+
+
+static void
+impl_contribute_custom_bag(
+    const afw_object_t *bag,
+    const afw_object_t *object,
+    afw_xctx_t *xctx)
+{
+    const afw_iterator_old_t *iterator;
+    const afw_value_t *property_name;
+    const afw_value_t *value;
+
+    if (!bag) {
+        return;
+    }
+    iterator = NULL;
+    while ((value = afw_object_get_next_property(
+        bag, &iterator, &property_name, xctx)))
+    {
+        if (!property_name ||
+            afw_object_has_property(object, property_name, xctx))
+        {
+            continue;
+        }
+        afw_object_set_property(object, property_name,
+            afw_value_evaluate(value, xctx->p, xctx), xctx);
+    }
 }
 
 
@@ -1298,23 +1327,15 @@ impl_custom_variable_contribute_cb(
 
     (void)include_untrusted;
 
-    if (ctx->property_level.model_property_type &&
-        ctx->property_level.model_property_type->custom_variables)
-    {
-        afw_object_merge(object,
+    if (ctx->property_level.model_property_type) {
+        impl_contribute_custom_bag(
             ctx->property_level.model_property_type->custom_variables,
-            false, xctx);
+            object, xctx);
     }
-    if (ctx->model_object_type->custom_variables) {
-        afw_object_merge(object,
-            ctx->model_object_type->custom_variables,
-            false, xctx);
-    }
-    if (ctx->model_object_type->model->custom_variables) {
-        afw_object_merge(object,
-            ctx->model_object_type->model->custom_variables,
-            false, xctx);
-    }
+    impl_contribute_custom_bag(
+        ctx->model_object_type->custom_variables, object, xctx);
+    impl_contribute_custom_bag(
+        ctx->model_object_type->model->custom_variables, object, xctx);
 }
 
 

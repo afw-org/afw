@@ -36,10 +36,7 @@ struct afw_log_impl_s {
     
     /** brief Log specific log:: variables (compiled properties). */
     const afw_object_t *log_variables;
-    
-    /** brief Log specific custom:: variables (compiled properties). */
-    const afw_object_t *custom_variables;
-    
+
     /** brief Compiled filter or NULL if no filter. */
     const afw_value_t *filter;
     

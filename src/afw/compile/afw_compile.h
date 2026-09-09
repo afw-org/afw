@@ -366,13 +366,12 @@ afw_compile_to_object(
  * " property " followed by the property name will be appended to the
  * source_location when appropriate.
  *
- * All single data type template values in object will be replaced with the
+ * All single data type template values in object will be replaced with
  * their compiled value.
  *
- * The compiled value will be evaluated each time the property in the object is
- * accessed in the context of that access.
- *
- * This function is called for each conf and map object.
+ * Used for application and authorization-handler qualifiedVariables.
+ * Accessing those names via qualifier::name evaluates the compiled
+ * template (#{…} already ran here; ${…} runs on that get).
  */
 AFW_DECLARE(void)
 afw_compile_templates(

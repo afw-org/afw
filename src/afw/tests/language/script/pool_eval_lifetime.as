@@ -56,6 +56,17 @@ assert(evaluate(cv) === 5);
 return 0;
 
 //?
+//? test: compile-stores-unevaluated
+//? description: compile() result is a unit until evaluate()
+//? expect: 0
+//? source: ...
+
+const cv = compile<script>(script("return 7;"));
+assert(meta(cv).dataType === "unevaluated");
+assert(evaluate(cv) === 7);
+return 0;
+
+//?
 //? test: many-inner-evals
 //? description: loop of evaluate(compile) object results
 //? expect: 0

@@ -26,7 +26,7 @@ compile_from_file("no-such-file.as");
 //? expect: 0
 //? source: ...
 
-const {func1, func2} = compile_from_file("includes/good.as");
+const {func1, func2} = evaluate(compile_from_file("includes/good.as"));
 
 assert(func1());
 assert(!func2());

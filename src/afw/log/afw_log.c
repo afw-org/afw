@@ -496,11 +496,6 @@ impl_write_formatted_message(
                 impl_log_current_variable_get_cb,
                 impl_log_current_contribute_variables_cb,
                 (void *)wa, wa->p, xctx);
-            if (wa->e->log->impl->custom_variables) {
-                afw_xctx_qualifier_stack_qualifier_object_push(afw_s_custom,
-                    wa->e->log->impl->custom_variables,
-                    true, wa->p, xctx);
-            }
         }
 
         /* If filter and not true, skip write. */

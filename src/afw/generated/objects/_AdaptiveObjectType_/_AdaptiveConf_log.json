@@ -26,14 +26,6 @@
             "description": "Include crit priority.",
             "label": "Critical"
         },
-        "custom": {
-            "allowQuery": true,
-            "brief": "Custom Variables available to log expressions",
-            "dataType": "object",
-            "dataTypeParameter": "_AdaptiveTemplateProperties_",
-            "description": "Qualifier custom:: variables available in log expressions.",
-            "label": "Custom"
-        },
         "debug": {
             "allowQuery": true,
             "brief": "Include debug priority",
@@ -61,7 +53,7 @@
             "dataType": "script",
             "dataTypeParameter": "boolean",
             "defaultValue": true,
-            "description": "Filter script used to determine whether to log a particular message. Evaluated at write time with log-type context (see specialized conf object types for contextType, e.g. logType-standard): current::message/source/xctxUUID, log::, optional custom::, plus ambient application/process qualifiers.",
+            "description": "Filter script used to determine whether to log a particular message. Evaluated at write time with log-type context (see specialized conf object types for contextType, e.g. logType-standard): current::message/source/xctxUUID, log::, plus ambient application/process qualifiers.",
             "label": "Filter"
         },
         "format": {
@@ -69,7 +61,7 @@
             "brief": "Log format",
             "dataType": "template",
             "dataTypeParameter": "string",
-            "description": "Log message format template, evaluated at write time. Specialized conf object types set contextType to the matching logType-* context (e.g. logType-standard) so the expression builder documents log current::, log::, custom::, and ambient process/application qualifiers.",
+            "description": "Log message format template, evaluated at write time. Specialized conf object types set contextType to the matching logType-* context (e.g. logType-standard) so the expression builder documents log current::, log::, and ambient process/application qualifiers.",
             "label": "Format"
         },
         "info": {

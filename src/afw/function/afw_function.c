@@ -302,16 +302,6 @@ afw_function_evaluate_parameter(
         }
     }
 
-    /*
-     * One extra evaluate of compiled_value unless the formal is unevaluated.
-     * Do not loop here — assignment to unevaluated stores the graph.
-     */
-    if (result && afw_value_is_compiled_value(result) &&
-        data_type != afw_data_type_unevaluated)
-    {
-        result = afw_value_evaluate(result, x->p, xctx);
-    }
-
     /* If result is undefined, return NULL. Fuss if required. */
     if (afw_value_is_undefined(result)) {
         /*

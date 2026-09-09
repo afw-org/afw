@@ -28,6 +28,8 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | Function metadata `maximumNumberOfParameters` | **`maxNumberOfParameters`**. [Rename](#maxnumberofparameters-issue-125) |
 | `checkIndividualObjectReadAccess` policies that only handle `query` | Also handle action **`read`**. [Adapter auth](#adapter-getretrieve-authorization-issue-90) |
 | `clone(get_object(…))` / `clone(retrieve_…)` just to set properties | **Not needed.** Get/retrieve already return a **mutable face**. Keep **`clone()`** for a **deep independent copy** (including nested objects). [Faces](#mutable-object-faces-issue-17) |
+| `const x = compile(…)` then use `x` as a string/function | **`compile()` stores a unit.** Run it with **`evaluate(x)`** (or `evaluate(compile(…))`). **`app::name`** still evaluates on get (`#{…}` / `${…}` / call). [Templates](#compile-time-template-substitutions-issue-97) |
+| Log conf **`custom`** | **Gone** (it was never loaded). Use **`app::`** or log **`format`** / **`filter`**. Model **`custom::`** is unchanged. |
 
 ### C programmers
 
@@ -94,7 +96,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Process env**](#process-environment-variables-issue-71) ([#71](https://github.com/afw-org/afw/issues/71)) | One `current` on `_AdaptiveEnvironmentVariables_` retrieve; values string if valid UTF-8 else hexBinary |
 | [**`process::`**](#process-ambient-environment-and-process-issues-71--74) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Ambient `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime` at env create (with `environment::`) |
 | [**`afw_crypto`**](#crypto-extension-afw_crypto-issue-74-partial) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Optional extension: AES-GCM encrypt/decrypt/**seal**/**unseal**, digest/HMAC, keystore, key refs, PBKDF2; LDAP `bindParameters` recipe |
-| [**Templates**](#compile-time-template-substitutions-issue-97) ([#97](https://github.com/afw-org/afw/issues/97)) | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates |
+| [**Templates**](#compile-time-template-substitutions-issue-97) ([#97](https://github.com/afw-org/afw/issues/97)) | `#{…}` compile, `${…}` on get, function from `#{…}` on **call**; `compile()` is a unit; log conf **`custom`** removed; path conf at configure; `on*` / log filter are scripts |
 | [**Adapter index `current::`**](#adapter-index-filtervalue-current-issue-54--partial) ([#54](https://github.com/afw-org/afw/issues/54) partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
 | [**C builders / afwdev**](#c-api-docs-and-full-package-builds-issue-1) ([#1](https://github.com/afw-org/afw/issues/1)) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
 | [**C vector / hash table**](#c-vector-and-hash-table) | **`afw_vector`** and **`afw_hash_table`** on `afw.h` for C growable lists and name→pointer maps (not Adaptive `afw_array`) |
@@ -1084,7 +1086,7 @@ const all = qualifiers();
 | **`includeUntrusted`** | Optional boolean, default **false**. **Default** matches normal `qualifier::name` visibility right now. While the xctx is **secure**, set **true** so the snapshot matches what you would see with `::` if you were **less secure** (trusted **and** untrusted frames—not untrusted-only). When already not secure, true and false are the same. |
 | **Can be large** | Snapshots copy variable bags into memory objects. `environment::` / `request::` (and similar) can be **big**; `qualifiers()` nests a full snapshot per active qualifier and multiplies cost. Prefer `qualifier::name` day to day; use list functions sparingly and do not retain or rebuild large snapshots in long-running scripts. |
 
-Object-backed qualifiers (`environment::`, `request::`, `application::`, model `current::` runtime bags, …) contribute by walking their objects. Callback-backed frames (app `current::`, model `custom::`, log, context tables) contribute their known variable sets.
+Object-backed qualifiers (`environment::`, `request::`, `application::`, model `current::` runtime bags, …) contribute by walking their objects. Callback-backed frames (app `current::`, model `custom::`, log `current::`, context tables) contribute their known variable sets.
 
 ### Multi-frame get aligned with snapshots
 
@@ -1206,6 +1208,43 @@ Bare `#{…}` is also a **Value** in a script (`return #{1 + 2};`). Bare `${…}
 
 Use compile-time substitution to freeze config (including one-shot values such as a UUID or a function built once at load). Use evaluation-time substitution when the value must change per access.
 
+Returning a **function** from `#{…}` (or `${…}`) adds a third time: the function is built when that substitution runs; its **body** runs when you **call** it (`app::makeId()`). The body can still see `request::` and other runtime qualifiers.
+
+| When script runs | How | Example |
+|------------------|-----|---------|
+| Template **compile** (conf load for `app::`) | `#{…}` | Freeze a string, uuid, or **build a function once** |
+| Template **evaluate** (`app::name` get / `evaluate(unit)`) | `${…}` | New value each access (time, `request::`, uuid) |
+| **Call** | `f()` where `f` came from the template | Body runs now |
+
+```adaptive
+/* conf: app.greeting is a template */
+/* "#{ 'Hello' }"                    → compile-time string */
+/* "Hello ${request::user}"          → new string each get */
+/* "#{ return function () { return generate_uuid(); }; }"  → one function; each call a new uuid */
+
+return app::greeting;
+return app::makeId();
+```
+
+A template may mix `#{…}` and `${…}`. There is no third opener.
+
+### Conf templates vs scripts
+
+| Conf | Kind | When compiled | When evaluated |
+|------|------|----------------|----------------|
+| Application **`qualifiedVariables`** (`app::…`) | **template** | Application start | **On `app::name` get.** `#{…}` at compile; `${…}` on this get; a function from `#{…}` runs when **called**. Mix `#{…}` / `${…}` in one template. |
+| Authorization-handler **`qualifiedVariables`** | **template** | Handler start | Same: evaluate on qualifier get |
+| Model **`custom`** (`custom::…`) | **template** | Model compile | Evaluate on `custom::name` get |
+| Path-like properties (`rootFilePaths`, `modulePath`, `vfsMap`, LMDB `env.path`, …) | **template** | — | **Configure / adapter start** (compile **and** evaluate to a string). See [Conf path templates](#conf-path-templates-issue-15). |
+| Model **`on*`** | **script** | Model compile | When the hook runs |
+| Log **`filter`** | **script** | Log start | Each log write |
+| Log **`format`** | **template** | Log start | Each log write |
+| LDAP **`bindParameters`** | **template** | Adapter start | At bind |
+
+`compile()` in script still returns a **unit**. Store it; run it with Adaptive **`evaluate()`**. Qualifier get of a compiled template is the evaluate for `app::` / model **`custom::`**. You do not extra-evaluate a unit on ordinary assign, call, or formals.
+
+Log conf **`custom`** is **removed** (the property was never wired). Adapter had an unused `custom::` pointer; that is gone too. Model **`custom::`** templates still compile with the model and evaluate on `custom::name` get.
+
 ### Escaping openers
 
 The openers are the two-character sequences `#{` and `${`. A backslash before `#` or `$` emits a literal `#` or `$` so the opener is not formed:
@@ -1219,7 +1258,7 @@ This now works in **backtick template strings** the same way as in raw templates
 
 ### Documentation
 
-Language reference **Templates and Expressions** and a short note under **Qualified Variables** describe the two forms, isolation, conf lifecycle, and escapes. Full Syntax EBNF / railroad diagrams refresh on a docs build.
+Language reference **Templates and Expressions** (including **Templates in application conf**) and **Qualified Variables** describe the two forms, isolation, conf lifecycle, and escapes. Conf object types (`_AdaptiveConf_application` `qualifiedVariables`, `_AdaptiveTemplateProperties_`, model `custom`, log `filter`/`format`) carry the same split on the property. Full Syntax EBNF / railroad diagrams refresh on a docs build.
 
 [↑ Highlights](#highlights)
 
@@ -1273,7 +1312,7 @@ Hosts (`afw`, `afwfcgi`, …) no longer create their own process-env object. Con
 
 ### Log conf `format` / `filter` context types
 
-Specialized log conf object types (`_AdaptiveConf_log_standard`, `_syslog`, `_event_log`) set **`contextType`** on **`format`** and **`filter`** to the matching runtime context id (`logType-standard`, `logType-syslog`, `logType-event_log`). Those context types parent **application** (and thus **process**) and document log write bags (`current::message` / `source` / `xctxUUID`, `log::`, optional `custom::`). Property meta inherits the shared definitions from `_AdaptiveConf_log` via **`parentPaths`** (use object option **`composite: true`** to see full meta).
+Specialized log conf object types (`_AdaptiveConf_log_standard`, `_syslog`, `_event_log`) set **`contextType`** on **`format`** and **`filter`** to the matching runtime context id (`logType-standard`, `logType-syslog`, `logType-event_log`). Those context types parent **application** (and thus **process**) and document log write bags (`current::message` / `source` / `xctxUUID`, `log::`). Property meta inherits the shared definitions from `_AdaptiveConf_log` via **`parentPaths`** (use object option **`composite: true`** to see full meta). Log conf has no `custom` bag.
 
 [↑ Highlights](#highlights)
 
