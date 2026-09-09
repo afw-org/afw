@@ -581,7 +581,9 @@ impl_contribute_object_variables_cb(
         {
             continue;
         }
-        afw_object_set_property(object, property_name, value, xctx);
+        /* Match get_cb: compiled templates evaluate; finished values identity. */
+        afw_object_set_property(object, property_name,
+            afw_value_evaluate(value, xctx->p, xctx), xctx);
     }
 }
 

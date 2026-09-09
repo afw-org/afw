@@ -184,11 +184,6 @@ afw_adapter_impl_push_qualifiers(
     /* Object-push owns adapter:: (properties + fixed contribute_cb). */
     afw_xctx_qualifier_stack_qualifier_object_push(afw_s_adapter,
         adapter->properties, true, xctx->p, xctx);
-    if (adapter->impl->custom_variables) {
-        afw_xctx_qualifier_stack_qualifier_object_push(afw_s_custom,
-            adapter->impl->custom_variables, true,
-            xctx->p, xctx);
-    }
 }
 
 

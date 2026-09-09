@@ -29,8 +29,10 @@
         templates are compiled when the application conf is loaded (or
         reloaded). Accessing <literal>qualifier::name</literal> evaluates the
         compiled template: <literal>#{…}</literal> already ran at compile
-        (conf load); <literal>${…}</literal> runs on this access. A template
-        may mix both. See Templates and Expressions for details.
+        (conf load); <literal>${…}</literal> runs on this access; a function
+        returned from <literal>#{…}</literal> runs when you call it.
+        A template may mix both forms. See Templates and Expressions for
+        details.
     </paragraph>
     <header>Listing active qualified variables</header>
     <paragraph>

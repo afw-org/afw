@@ -18894,7 +18894,7 @@ impl_185_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_185_property_description = {
     afw_v_description,
-    &afw_self_v_zz__1da87ce69646.pub
+    &afw_self_v_zz__387bed4b4fa1.pub
 };
 
 static const afw_runtime_property_t
@@ -20656,7 +20656,7 @@ impl_199_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_199_property_description = {
     afw_v_description,
-    &afw_self_v_zz__e912df9c1c9c.pub
+    &afw_self_v_zz__a34921ab163a.pub
 };
 
 static const afw_runtime_property_t
@@ -123780,7 +123780,7 @@ impl_1216_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_1216_property_description = {
     afw_v_description,
-    &afw_self_v_zz__6736fd563a61.pub
+    &afw_self_v_zz__558a8676bc51.pub
 };
 
 static const afw_runtime_property_t

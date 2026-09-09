@@ -155,9 +155,6 @@ struct afw_adapter_impl_s {
      */
     const afw_value_t *authorization;
 
-    /** @brief Custom variables. */
-    const afw_object_t *custom_variables;
-
     /**
      * @brief retrieve_objects() count.
      */

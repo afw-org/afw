@@ -26,7 +26,7 @@
             "brief": "Qualified variables associated with this authorization handler",
             "dataType": "object",
             "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
-            "description": "The name of each property in this object corresponds to a qualifier available while this authorization handler runs. The qualifier can be an empty string for unqualified variables. Each property of those qualifier objects is a template, compiled when the handler conf is loaded. Accessing qualifier::name evaluates that compiled template: #{…} already ran at compile; ${…} runs on this access. These variables have precedence over duplicate application variables while this handler is processing. Some qualifiers are restricted.",
+            "description": "The name of each property in this object corresponds to a qualifier available while this authorization handler runs. The qualifier can be an empty string for unqualified variables. Each property of those qualifier objects is a template, compiled when the handler conf is loaded. Accessing qualifier::name evaluates that compiled template: #{…} at compile, ${…} on this access, and a function returned from #{…} runs when called. These variables have precedence over duplicate application variables while this handler is processing. Some qualifiers are restricted.",
             "label": "Qualified Variables"
         }
     }

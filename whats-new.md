@@ -94,7 +94,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Process env**](#process-environment-variables-issue-71) ([#71](https://github.com/afw-org/afw/issues/71)) | One `current` on `_AdaptiveEnvironmentVariables_` retrieve; values string if valid UTF-8 else hexBinary |
 | [**`process::`**](#process-ambient-environment-and-process-issues-71--74) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Ambient `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime` at env create (with `environment::`) |
 | [**`afw_crypto`**](#crypto-extension-afw_crypto-issue-74-partial) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Optional extension: AES-GCM encrypt/decrypt/**seal**/**unseal**, digest/HMAC, keystore, key refs, PBKDF2; LDAP `bindParameters` recipe |
-| [**Templates**](#compile-time-template-substitutions-issue-97) ([#97](https://github.com/afw-org/afw/issues/97)) | `#{…}` vs `${…}`; `app::` / `custom::` evaluate on get; path conf at configure; `on*` / log filter are scripts |
+| [**Templates**](#compile-time-template-substitutions-issue-97) ([#97](https://github.com/afw-org/afw/issues/97)) | `#{…}` compile, `${…}` on get, function from `#{…}` on **call**; path conf at configure; `on*` / log filter are scripts |
 | [**Adapter index `current::`**](#adapter-index-filtervalue-current-issue-54--partial) ([#54](https://github.com/afw-org/afw/issues/54) partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
 | [**C builders / afwdev**](#c-api-docs-and-full-package-builds-issue-1) ([#1](https://github.com/afw-org/afw/issues/1)) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
 | [**C vector / hash table**](#c-vector-and-hash-table) | **`afw_vector`** and **`afw_hash_table`** on `afw.h` for C growable lists and name→pointer maps (not Adaptive `afw_array`) |
@@ -1206,11 +1206,31 @@ Bare `#{…}` is also a **Value** in a script (`return #{1 + 2};`). Bare `${…}
 
 Use compile-time substitution to freeze config (including one-shot values such as a UUID or a function built once at load). Use evaluation-time substitution when the value must change per access.
 
+Returning a **function** from `#{…}` (or `${…}`) adds a third time: the function is built when that substitution runs; its **body** runs when you **call** it (`app::makeId()`). The body can still see `request::` and other runtime qualifiers.
+
+| When script runs | How | Example |
+|------------------|-----|---------|
+| Template **compile** (conf load for `app::`) | `#{…}` | Freeze a string, uuid, or **build a function once** |
+| Template **evaluate** (`app::name` get / `evaluate(unit)`) | `${…}` | New value each access (time, `request::`, uuid) |
+| **Call** | `f()` where `f` came from the template | Body runs now |
+
+```adaptive
+/* conf: app.greeting is a template */
+/* "#{ 'Hello' }"                    → compile-time string */
+/* "Hello ${request::user}"          → new string each get */
+/* "#{ return function () { return generate_uuid(); }; }"  → one function; each call a new uuid */
+
+return app::greeting;
+return app::makeId();
+```
+
+A template may mix `#{…}` and `${…}`. There is no third opener.
+
 ### Conf templates vs scripts
 
 | Conf | Kind | When compiled | When evaluated |
 |------|------|----------------|----------------|
-| Application **`qualifiedVariables`** (`app::…`) | **template** | Application start | **On `app::name` get.** `#{…}` already ran at compile; `${…}` runs on this get. Mix both in one template. |
+| Application **`qualifiedVariables`** (`app::…`) | **template** | Application start | **On `app::name` get.** `#{…}` at compile; `${…}` on this get; a function from `#{…}` runs when **called**. Mix `#{…}` / `${…}` in one template. |
 | Authorization-handler **`qualifiedVariables`** | **template** | Handler start | Same: evaluate on qualifier get |
 | Model **`custom`** (`custom::…`) | **template** | Model compile | Evaluate on `custom::name` get |
 | Path-like properties (`rootFilePaths`, `modulePath`, `vfsMap`, LMDB `env.path`, …) | **template** | — | **Configure / adapter start** (compile **and** evaluate to a string). See [Conf path templates](#conf-path-templates-issue-15). |

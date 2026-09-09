@@ -101,10 +101,17 @@ return `${outer}`;   /* → 42 */
             Accessing <literal>app::name</literal> (or the handler’s
             qualifier) evaluates the compiled template in the current
             execution context.
-            <literal>#{…}</literal> already ran at that compile and embeds a
-            static value (including a function built once).
+            That is three times script can run.
+            <literal>#{…}</literal> already ran at compile and embeds a
+            static value, or builds a function once.
             <literal>${…}</literal> runs on this access (request-scoped data,
-            time, and so on). A template may mix both.
+            time, and so on).
+            If the template returns a function, that function’s body runs
+            when you call it (for example
+            <literal>app::makeId()</literal>) and can still see
+            <literal>request::</literal>.
+            A template may mix <literal>#{…}</literal> and
+            <literal>${…}</literal>. There is no third opener.
             Path-like conf properties (file roots, <literal>modulePath</literal>,
             <literal>vfsMap</literal>, …) are different: they are compiled
             <emphasis>and</emphasis> evaluated when the conf entry is processed,
