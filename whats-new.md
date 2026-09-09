@@ -28,6 +28,8 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | Function metadata `maximumNumberOfParameters` | **`maxNumberOfParameters`**. [Rename](#maxnumberofparameters-issue-125) |
 | `checkIndividualObjectReadAccess` policies that only handle `query` | Also handle action **`read`**. [Adapter auth](#adapter-getretrieve-authorization-issue-90) |
 | `clone(get_object(…))` / `clone(retrieve_…)` just to set properties | **Not needed.** Get/retrieve already return a **mutable face**. Keep **`clone()`** for a **deep independent copy** (including nested objects). [Faces](#mutable-object-faces-issue-17) |
+| `const x = compile(…)` then use `x` as a string/function | **`compile()` stores a unit.** Run it with **`evaluate(x)`** (or `evaluate(compile(…))`). **`app::name`** still evaluates on get (`#{…}` / `${…}` / call). [Templates](#compile-time-template-substitutions-issue-97) |
+| Log conf **`custom`** | **Gone** (it was never loaded). Use **`app::`** or log **`format`** / **`filter`**. Model **`custom::`** is unchanged. |
 
 ### C programmers
 
@@ -94,7 +96,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Process env**](#process-environment-variables-issue-71) ([#71](https://github.com/afw-org/afw/issues/71)) | One `current` on `_AdaptiveEnvironmentVariables_` retrieve; values string if valid UTF-8 else hexBinary |
 | [**`process::`**](#process-ambient-environment-and-process-issues-71--74) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Ambient `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime` at env create (with `environment::`) |
 | [**`afw_crypto`**](#crypto-extension-afw_crypto-issue-74-partial) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Optional extension: AES-GCM encrypt/decrypt/**seal**/**unseal**, digest/HMAC, keystore, key refs, PBKDF2; LDAP `bindParameters` recipe |
-| [**Templates**](#compile-time-template-substitutions-issue-97) ([#97](https://github.com/afw-org/afw/issues/97)) | `#{…}` compile, `${…}` on get, function from `#{…}` on **call**; path conf at configure; `on*` / log filter are scripts |
+| [**Templates**](#compile-time-template-substitutions-issue-97) ([#97](https://github.com/afw-org/afw/issues/97)) | `#{…}` compile, `${…}` on get, function from `#{…}` on **call**; `compile()` is a unit; log conf **`custom`** removed; path conf at configure; `on*` / log filter are scripts |
 | [**Adapter index `current::`**](#adapter-index-filtervalue-current-issue-54--partial) ([#54](https://github.com/afw-org/afw/issues/54) partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
 | [**C builders / afwdev**](#c-api-docs-and-full-package-builds-issue-1) ([#1](https://github.com/afw-org/afw/issues/1)) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
 | [**C vector / hash table**](#c-vector-and-hash-table) | **`afw_vector`** and **`afw_hash_table`** on `afw.h` for C growable lists and name→pointer maps (not Adaptive `afw_array`) |
@@ -1239,7 +1241,9 @@ A template may mix `#{…}` and `${…}`. There is no third opener.
 | Log **`format`** | **template** | Log start | Each log write |
 | LDAP **`bindParameters`** | **template** | Adapter start | At bind |
 
-`compile()` in script still returns a **unit**. Store it; run it with Adaptive **`evaluate()`**. Qualifier get of a compiled template is the evaluate for `app::` / `custom::`. You do not extra-evaluate a unit on ordinary assign, call, or formals.
+`compile()` in script still returns a **unit**. Store it; run it with Adaptive **`evaluate()`**. Qualifier get of a compiled template is the evaluate for `app::` / model **`custom::`**. You do not extra-evaluate a unit on ordinary assign, call, or formals.
+
+Log conf **`custom`** is **removed** (the property was never wired). Adapter had an unused `custom::` pointer; that is gone too. Model **`custom::`** templates still compile with the model and evaluate on `custom::name` get.
 
 ### Escaping openers
 
