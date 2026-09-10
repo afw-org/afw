@@ -161,8 +161,7 @@ impl_afw_value_optional_evaluate(
 
     /*
      * If not closure, find the compile-time enclosing `{ }` on the
-     * caller chain. find_for_block uses that block's frame (skips
-     * 0-symbol `{ }`). Missing is still "not on the stack".
+     * caller chain. Missing is still "not on the stack".
      */
     else {
         enclosing_lexical_scope = afw_xctx_scope_find_for_block(
@@ -334,12 +333,14 @@ impl_afw_value_optional_evaluate(
             afw_memory_clear(&exec);
             exec.p = p;
             exec.xctx = xctx;
-            result = afw_value_block_evaluate_block(&exec,
+            afw_value_block_evaluate_block(&exec,
                 (const afw_value_block_t *)script->body, p, xctx,
                 false);
+            result = afw_xctx_script_result_get(xctx);
         }
         else {
             result = afw_value_evaluate(script->body, p, xctx);
+            afw_xctx_scope_set_last_result(result, xctx);
             if (result && !afw_value_is_void(result)) {
                 afw_xctx_script_result_set(result, xctx);
                 result = afw_xctx_script_result_get(xctx);

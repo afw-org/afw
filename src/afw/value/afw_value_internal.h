@@ -109,15 +109,15 @@ struct afw_value_block_s {
     afw_size_t statement_count;
     const afw_value_t * const * statements; /* Set in finalize. */
 
-    /* Syntax tree (every `{ }`, including 0-symbol). */
+    /* Syntax tree (every `{ }`). */
     afw_value_block_t *parent_block; /* NULL if top. */
     afw_value_block_t *first_child_block;
     afw_value_block_t *final_child_block;
     afw_value_block_t *next_sibling_block;
     /*
-     * Nearest ancestor that has a scope (top or symbol_count != 0).
-     * NULL on the top block. Set by afw_value_block_finalize_scope_tree
-     * after every block in the unit is finalized.
+     * Parent `{ }` (every block is a frame). NULL on the top block.
+     * Set by afw_value_block_finalize_scope_tree after every block
+     * in the unit is finalized.
      */
     afw_value_block_t *parent_scope_block;
 
@@ -125,24 +125,22 @@ struct afw_value_block_s {
     afw_value_block_symbol_t *final_entry;
     afw_size_t number; /* Ordinal in the compiled value. */
     afw_size_t depth; /* Syntax nesting (every `{ }`). */
-    afw_size_t scope_depth; /* Frame nesting; no 0-symbol gaps. */
+    afw_size_t scope_depth; /* Frame nesting (same as depth). */
     afw_size_t symbol_count; /* first_entry length; frame_slots[] size. */
 };
 
 
 
 /*
- * Nested `{ }` with no symbols has no scope. Top always does, even
- * when symbol_count is 0 (compiled_value sentinel is not current).
+ * Every `{ }` is a scope. Flattening a useless block into the
+ * enclosing statement list is compile-side only.
  */
 #define afw_value_block_has_scope(block) \
-    (!(block)->parent_block || (block)->symbol_count != 0)
+    ((void)(block), true)
 
-/* Frame block for this `{ }`: self if it has a scope, else parent. */
+/* Frame block for this `{ }`: always self. */
 #define afw_value_block_scope_block(block) \
-    (afw_value_block_has_scope(block) \
-        ? (block) \
-        : (block)->parent_scope_block)
+    (block)
 
 
 
