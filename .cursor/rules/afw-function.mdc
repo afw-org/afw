@@ -21,6 +21,21 @@ Metadata → generated bindings → env `function` registry → call nodes → `
 
 Caller context: `x->xctx`, allocate results in `x->p` or current `scope->p` (long-running: `afw-value-memory`).
 
+## Result lifetime ([PR #308](https://github.com/afw-org/afw/pull/308))
+
+Most execute bodies mint temps in `x->p`. Those die when the current scope’s pool is released. Do **not** wrap those at the return with `get_assignable_for_lifetime` (compiler `test_*` / `qualifier()` / `parse_uri` are this class).
+
+When the result must be an **assignable** that lives until the current scope ends:
+
+| Case | Do |
+|------|----|
+| Mutate an input instance (`push`, `unshift`, `add_entries`, `add_properties`, `freeze`, `splice` source) | `get_assignable_for_lifetime` **first**, write that `internal`, return that value. |
+| New array/object the script may keep (`bag`, `filter`, `map`, `sort`, `slice`, `reverse`, …) | `create_managed`, hold, fill **that** `internal`, return it. Stay **mutable** unless the function is `freeze`. |
+| Language constructors `array()` / `create_array()` | `create_script_wrapper` in `x->p`. `[i]` compiles to `array()`. Do **not** `create_managed` here (`array_rebind` climbed when we did). |
+| `pop` / `shift` | Return the occupant (or undefined). Do **not** extra-hold the occupant. |
+
+`afw_xctx_scope_get_assignable_for_lifetime` does **not** write `last_result`. `return()` and nested `{ }` adopt use `afw_xctx_scope_set_last_result_for_lifetime`. Pad: [`designs/compile-unit-and-frv-next.md`](../../designs/compile-unit-and-frv-next.md).
+
 ## Optional defaults and returned mutables
 
 When a built-in returns a **caller-supplied default** (or any value the script may mutate) because a property/variable/key was missing:

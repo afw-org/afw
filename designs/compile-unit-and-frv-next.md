@@ -1,13 +1,14 @@
-# Compile unit, leave, isolate-at-clone (landed); next: array_push_pop then FRV
+# Compile unit, leave, isolate-at-clone, builtin lifetime (landed); next: array_push_pop then FRV
 
-**Audience:** next session. Not user docs (`whats-new.md` has nothing for this slice).
+**Audience:** next session. Not user docs (`whats-new.md` notes `slice` / `map` stay mutable).
 
 **Landed on `develop`:**
 - [PR #305](https://github.com/afw-org/afw/pull/305) (`0fc0f2b8`, 2026-09-09) — `compile()` is a unit; `app::` get of compiled templates.
 - [PR #306](https://github.com/afw-org/afw/pull/306) (`5d5b0096`, 2026-09-10) — every `{ }` is a scope; `last_result` on the running frame; leave path.
 - [PR #307](https://github.com/afw-org/afw/pull/307) (`0c0816de`, 2026-09-10) — isolate last at `for (let)` clone; wrap unbraced loop bodies after parse in the current block.
+- [PR #308](https://github.com/afw-org/afw/pull/308) (`9a79eeb7`, 2026-09-10) — `get_assignable_for_lifetime` vs `set_last_result_for_lifetime`; mutating builtins hold the instance first; new array results `create_managed` then fill; `array()` / `create_array()` stay script wrappers.
 
-**Verify for #307:** `./afwdev build --fulldev` then `afwdev test -j` and `afwdev test -j --env-mode valgrind`: **4439 passed**, 71 skipped. RSS lab: 16 passed, 1 failed (`array_push_pop` ~50 MiB/s).
+**Verify for #308:** `afwdev test -j`: **4441 passed**, 71 skipped. RSS lab (same machine vs `develop` before this PR): 16 flat both sides; `array_push_pop` ~42 MiB/s here (~50 before). Not worse; not fixed.
 
 Do **not** start with “implement a fix” unless you share the plan. Open with “what do you think?”
 
@@ -39,7 +40,7 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 
 **Extra-hold** (`afw_xctx_scope_set_last_result_for_lifetime`): `get_assignable_for_lifetime` then store `last_result`. Use when an unmanaged occupant must survive a dying scope. Nested `{ }` adopt (child tracker already died) and `return()` (parameter can be an FRV leftover the eval stack would drop). Not at clone. Not a slot replace on every statement. `try`/`finally` extra-hold is a filtered `{ }` adopt, not the FRV door.
 
-**Built-in returns (this slice):** `afw_xctx_scope_get_assignable_for_lifetime` is `get_assignable` plus release on current `scope->p`. It does **not** write `last_result`. Mutating builtins (`push` / `unshift` / `add_entries` / `add_properties` / `freeze`): hold the **instance** first, write that `internal`, return that value. New array results (`bag` / `filter` / `map` / `sort` / `slice` / `reverse` / …): `create_managed`, hold, fill, return; stay **mutable**. Language constructors `array()` / `create_array()` stay `create_script_wrapper` in `x->p` (temps; `[i]` compiles to `array()`). `pop`/`shift` still return the occupant, not the array.
+**Built-in returns ([PR #308](https://github.com/afw-org/afw/pull/308)):** `afw_xctx_scope_get_assignable_for_lifetime` is `get_assignable` plus release on current `scope->p`. It does **not** write `last_result`. Mutating builtins (`push` / `unshift` / `add_entries` / `add_properties` / `freeze`): hold the **instance** first, write that `internal`, return that value. New array results (`bag` / `filter` / `map` / `sort` / `slice` / `reverse` / …): `create_managed`, hold, fill, return; stay **mutable**. Language constructors `array()` / `create_array()` stay `create_script_wrapper` in `x->p` (temps; `[i]` compiles to `array()`). `pop`/`shift` still return the occupant, not the array. Do not wrap unmanaged at the return of compiler `test_*` / `qualifier()` / `parse_uri` (those are temps in `x->p`).
 
 **`for` / `while` / `try` are void** except `return` / `rethrow`. Nested assignment writes last on the **running** scope. Do not C-return the loop’s last assignment.
 
@@ -60,7 +61,7 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 
 ## Next slices (agreed order)
 
-1. **`array_push_pop`** — `push` `slot_store`s `i` (extra hold on the managed integer in `xctx->p`). `pop`/`shift` transfer the pointer and do not `release`. After `i = i + 1` that transferred hold is leftover. Same family as the old integer leftover, in the array slot — not a calloc ring (store is `afw_vector`). Soak ~42 MiB/s on this branch (~50 on `develop`). Do **not** `create_managed` in `array()` / `create_array()` (`[i]` compiles to `array()`; that spiked `array_rebind`). Do **not** extra-hold the popped occupant in `execute_pop` (the function returns the occupant). Do not wrap-at-execute of unmanaged. Do not paper over with last-result extra-hold.
+1. **`array_push_pop`** — `push` `slot_store`s `i` (extra hold on the managed integer in `xctx->p`). `pop`/`shift` transfer the pointer and do not `release`. After `i = i + 1` that transferred hold is leftover. Same family as the old integer leftover, in the array slot — not a calloc ring (store is `afw_vector`). Soak ~42 MiB/s on `develop` after #308 (~50 before). Do **not** `create_managed` in `array()` / `create_array()` (`[i]` compiles to `array()`; that spiked `array_rebind`). Do **not** extra-hold the popped occupant in `execute_pop` (the function returns the occupant). Do not wrap-at-execute of unmanaged. Do not paper over with last-result extra-hold.
 2. **FRV as stack leftover** — `#function_return_value` is compile-time (parse/decompile). Intended inf: evaluate / `get_assignable` are of the **inner**; wrapper has its own RC; last release frees wrapper + inner extra-hold. Enclosing call `pop_value` releases leftovers. **Remove** `consume()` / `is_function_return_value` peels. Unique consume today **transfers occupant, RC 0, no `free_memory`**. Braced (and now unbraced-wrapped) `i = f()` soak is under the bar because leftover dies with the body `{ }`. Do not paper over with a helper around assign. Do not treat extra-hold at `return()` as that design.
 3. **Runtime call-result hold** — evaluate-only inf (like `closure_binding`: display decompile, not recompile) for **managed built-in returns** and transferred occupants (`pop`). Same leftover protocol. Identity **`push`** (return same array) stays unwrapped. Keep separate from compile-time FRV until they match.
 4. **Merge 2 and 3** only if the infs are actually the same.
@@ -78,6 +79,9 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 - `last_result` whose only extra-hold is the xctx `script_result` slot goes stale when the slot is replaced. Extra-hold on the **scope that points at it** (unmanaged that must survive that scope’s death). Not onto the clone.
 - `evaluate_statement` of a nested `{ }` adopts onto **current**. Loop `{ }` bodies `evaluate_block` so they do not extra-hold onto the clone/script. A normal finally must not adopt over a pending return.
 - Wrap unbraced loop bodies **after** parse in the current block. Opening the wrapper first hides `for (let x of []) let x`.
+- Do not `create_managed` in `array()` / `create_array()`. `[i]` compiles to `array()`; that spiked `array_rebind`.
+- Do not extra-hold the popped occupant in `execute_pop`. Do not wrap compiler `test_*` / `qualifier()` / `parse_uri` at return (temps in `x->p`).
+- Do not seal `slice` / `map` with `determine_data_type_and_set_immutable`. `freeze()` is the explicit door.
 
 ---
 

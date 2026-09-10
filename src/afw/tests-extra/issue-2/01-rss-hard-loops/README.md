@@ -101,7 +101,7 @@ on `afwdev test -j` does **not** catch these — request-end bulk-free hides the
 | `try_catch` | throw/catch each iter | under bar | under bar |
 | `closure_rebind` | rebind capturing function | **flat / flat** | **~77 MiB/s both** |
 | `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** | **~82 MiB/s both** |
-| `array_push_pop` | push then pop | **~50 MiB/s both** | ~2.2 MiB/s (later ~49) |
+| `array_push_pop` | push then pop | **~42 MiB/s both** (#308) | ~2.2 MiB/s (later ~49–50) |
 | `array_append` | unbounded `push` | **must grow** (harness) | must grow |
 
 `function_return`: unique FRV consume still leaves the wrapper in `self->p`.

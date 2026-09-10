@@ -47,6 +47,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | `create_unmanaged` / `_new_p` / `_cede_p` | Lives in dest `p`. |
 | `create_managed` | Frame in this `xctx->p`. |
 | `get_assignable` | Isolate into a slot. |
+| `afw_xctx_scope_get_assignable_for_lifetime` | `get_assignable` plus release when the current scope ends. Does **not** write `last_result`. Mutating builtins hold the instance first; new array results `create_managed` then fill. `array()` / `create_array()` stay unmanaged script wrappers in `x->p`. |
 | `afw_v_foo` | Object **property name** (a value). `afw_s_foo` is still utf8 for type ids and other utf8 APIs. |
 | dest `p` | Evaluate, clone, or extra allocation (iterator / meta). **Not** on value getters. |
 
@@ -77,7 +78,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | Area | What changed |
 |------|----------------|
 | [**libafw C API cleanup**](#libafw-c-api-cleanup-release-ready-surface) | Toward a **release-ready** supported C surface: public install + implementer headers; internals off install; declare helpers **removed**; **rebuild** out-of-tree C once against this line |
-| [**Object / array helpers**](#object-and-array-helpers-issue-55) ([#55](https://github.com/afw-org/afw/issues/55)) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` (C array-setter reshape covered by C API rebuild rule) |
+| [**Object / array helpers**](#object-and-array-helpers-issue-55) ([#55](https://github.com/afw-org/afw/issues/55)) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `slice` / `map` / `filter` (new arrays **mutable**), `freeze`, `every`/`some` (C array-setter reshape covered by C API rebuild rule) |
 | [**Object property names as values**](#object-property-names-as-values-issue-2) ([#2](https://github.com/afw-org/afw/issues/2)) | C object APIs take **`const afw_value_t *` names**; script/JSON **string only**. Checklist for **other repos** that link this libafw |
 | [**Typed value pointers**](#typed-value-pointers-vs-c-internals) | **`_as_<type>`** is `const afw_value_<type>_t *`. C payload is **`_internal`**. Convert is **`convert_to_*`**. Array getters dropped dest `p`; array `_internal` vtable methods are gone |
 | [**Expression property names**](#expression-property-names-in-object-values-issue-38) ([#38](https://github.com/afw-org/afw/issues/38)) | Object values may use `{ [expression]: value }` (same idea as `obj[expr]` get/set) |
@@ -648,14 +649,17 @@ Also available as methods when useful, e.g. `obj->keys()`, `obj->freeze()`.
 | **`shift(array)`** | Remove first; returns value or **undefined** if empty |
 | **`unshift(array, …values)`** | Insert at front (order preserved); returns the modified array |
 | **`splice(array, startIndex, deleteCount?, …values)`** | Remove and/or insert; returns array of removed values |
+| **`slice(array, startIndex?, endIndex?)`** | Consecutive copy; **mutable** (same type as the source when the source is typed) |
 | **`freeze(array)`** | Make the array immutable |
 
-`push` / `pop` support LIFO stacks; `push` / `shift` support FIFO queues. Mutable ops require a non-immutable array (frozen targets throw).
+`push` / `pop` support LIFO stacks; `push` / `shift` support FIFO queues. Mutable ops require a non-immutable array (frozen targets throw). **`slice`** and **`map`** return a new array you can `push` onto; they are not frozen. Use **`freeze`** when you want immutability.
 
 ### Higher-order (names aligned with everyday use)
 
 | Function | Role |
 |----------|------|
+| **`map(functor, array, …)`** | New array of functor results; **mutable** |
+| **`filter(predicate, array, …)`** | New array of entries that pass; **mutable** |
 | **`every(predicate, array, …)`** | Same behavior as **`all_of`** (all pass) |
 | **`some(predicate, array, …)`** | Same behavior as **`any_of`** (any passes) |
 
