@@ -268,6 +268,13 @@ struct afw_xctx_scope_s {
     const afw_xctx_scope_t *parent_lexical_scope;
     afw_size_t reference_count;
     afw_size_t scope_number;
+    /* Last non-void statement. Starts void. */
+    const afw_value_t *last_result;
+    /*
+     * Set when a sibling clone is taken. This frame is no longer
+     * the running iteration; deactivate does not script_result_set.
+     */
+    afw_boolean_t cloned;
     /*
      * Flexible array, length block->symbol_count. Indexed by
      * afw_value_block_symbol_t.index. afw_xctx_scope_create()
@@ -290,6 +297,36 @@ AFW_VECTOR_STRUCT(afw_xctx_scope_p_vector_s, const afw_xctx_scope_t *);
     ? xctx->scope_stack->entries[xctx->scope_stack->count - 1] \
     : NULL)
 
+/**
+ * @brief Store a non-void statement result on the current scope.
+ * @param value statement result.
+ * @param xctx of caller.
+ *
+ * Pointer only. Void, NULL, and no current scope are ignored. Last
+ * that does not live in this p uses
+ * afw_xctx_scope_hold_last_result() instead. Isolate out of this
+ * frame is script_result_set at deactivate.
+ */
+AFW_DECLARE(void)
+afw_xctx_scope_set_last_result(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Extra-hold a last that does not live in this scope's p.
+ * @param value to keep. Void and NULL are returned unchanged.
+ * @param xctx of caller.
+ * @return held value, or void/NULL unchanged.
+ *
+ * get_assignable plus pool-cleanup on current scope->p, then store
+ * last_result. Nested `{ }` adopt and return() use this.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_xctx_scope_hold_last_result(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
 
 
 /**
@@ -300,7 +337,8 @@ AFW_VECTOR_STRUCT(afw_xctx_scope_p_vector_s, const afw_xctx_scope_t *);
  * @return New xctx scope.
  *
  * Function afw_xctx_scope_create() is used to create a new scope for the
- * supplied block. Each frame_slots[] entry starts as the permanent
+ * supplied block. last_result starts as the void singleton. Each
+ * frame_slots[] entry starts as the permanent
  * **afw_value_undefined** singleton (not C NULL) so a bound name always has a
  * value pointer; see afw_xctx_scope_symbol_exists_by_name and issue #131.
  * afw_xctx_scope_symbol_set_value() also stores that singleton when given
@@ -387,11 +425,12 @@ afw_xctx_scope_find_for_block(
  *
  * This function calls afw_xctx_scope_create() and stores a reference to
  * each original frame_slots[] occupant into the new scope (same protocol
- * as assign). The hidden result is not on the scope and is not copied.
+ * as assign). last_result is not copied. Marks original cloned so its
+ * deactivate does not script_result_set (it is not the running
+ * iteration). The clone is a sibling (same parent_lexical_scope).
  *
- * This function was originally needed to support the incrementor of 'for'
- * statements since each increment needs its own copy of variables to support
- * closure semantics.
+ * for (let) clones so a closure from the body can hold that trip's
+ * names. Next trip copies slots then releases the previous clone.
  */
 AFW_DECLARE(const afw_xctx_scope_t *)
 afw_xctx_scope_clone(
@@ -432,8 +471,10 @@ afw_xctx_scope_get_reference(
  * @param scope to deactivate that must be the current scope.
  * @param xctx of caller.
  *
- * Pop this scope (must be current) and release the stack's reference.
- * Pair with activate. Does not drop the creator's reference.
+ * If this scope was not cloned, script_result_set(last_result).
+ * Then pop and release the stack's reference. Pair with activate.
+ * Does not drop the creator's reference. Return/break/continue only
+ * set statement_flow.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_deactivate(
@@ -684,7 +725,7 @@ afw_xctx_scope_symbol_set_value_by_name(
  * @param v result value. Void and NULL are not stored.
  * @param xctx of caller.
  *
- * Block finish writes a non-void last. Do not store void. Nested
+ * Scope deactivate writes last_result here (not void). Nested
  * evaluate that must not change the caller's last saves and restores
  * the pointer.
  */

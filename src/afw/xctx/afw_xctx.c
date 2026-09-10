@@ -789,6 +789,7 @@ afw_xctx_scope_create(
     scope->p = p;
     scope->block = block;
     scope->reference_count = 1;
+    scope->last_result = afw_value_void;
     xctx->scope_count++;
     scope->scope_number = xctx->scope_count;
 
@@ -871,11 +872,14 @@ afw_xctx_scope_clone(
     scope = (afw_xctx_scope_t *)afw_xctx_scope_create(
         original_scope->block, original_scope->parent_lexical_scope, xctx);
 
-    /* Reference each original frame_slots[]; hidden result is not copied. */
+    /* Copy frame_slots[]; last_result stays void from create. */
     for (afw_size_t i = 0; i < scope->block->symbol_count; i++) {
         afw_value_slot_store(&scope->frame_slots[i],
             original_scope->frame_slots[i], xctx);
     }
+
+    /* Original is no longer the running iteration. */
+    ((afw_xctx_scope_t *)original_scope)->cloned = true;
 
     afw_xctx_scope_debug(
         "*c afw_xctx_scope_clone()",
@@ -939,6 +943,9 @@ afw_xctx_scope_deactivate(
             xctx);
     }
 
+    if (!scope->cloned) {
+        afw_xctx_script_result_set(scope->last_result, xctx);
+    }
     afw_vector_pop(xctx->scope_stack, xctx);
     afw_xctx_scope_release(scope, xctx);
 }
@@ -1111,4 +1118,43 @@ afw_xctx_script_result_set_value(
         return;
     }
     afw_value_slot_store(&xctx->script_result, value, xctx);
+}
+
+
+/* Pointer-only last on current scope. */
+AFW_DEFINE(void)
+afw_xctx_scope_set_last_result(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_xctx_scope_t *scope;
+
+    if (!value || afw_value_is_void(value)) {
+        return;
+    }
+    scope = afw_xctx_scope_current(xctx);
+    if (scope) {
+        ((afw_xctx_scope_t *)scope)->last_result = value;
+    }
+}
+
+
+/* Extra-hold last on current scope->p; store last_result. */
+AFW_DEFINE(const afw_value_t *)
+afw_xctx_scope_hold_last_result(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_xctx_scope_t *scope;
+
+    if (!value || afw_value_is_void(value)) {
+        return value ? value : afw_value_void;
+    }
+    value = afw_value_get_assignable(value, xctx);
+    scope = afw_xctx_scope_current(xctx);
+    if (scope) {
+        afw_pool_release_value_at_cleanup(value, scope->p, xctx);
+        ((afw_xctx_scope_t *)scope)->last_result = value;
+    }
+    return value;
 }

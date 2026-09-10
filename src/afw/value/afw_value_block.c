@@ -64,8 +64,11 @@ afw_value_block_evaluate_statements(
     for (i = start; i < self->statement_count; i++) {
         last = afw_value_block_evaluate_statement(
             x, self->statements[i], p, xctx);
+        afw_xctx_scope_set_last_result(last, xctx);
         if (afw_xctx_statement_flow_is_type(return, xctx)) {
-            result = last ? last : afw_value_void;
+            result = (last && !afw_value_is_void(last))
+                ? last
+                : afw_xctx_script_result_get(xctx);
             break;
         }
         if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
@@ -87,7 +90,6 @@ afw_value_block_evaluate_block(
     afw_xctx_t *xctx,
     afw_boolean_t as_value)
 {
-    const afw_value_t *result;
     const afw_value_t *saved_script_result;
     const afw_compile_value_contextual_t *saved_contextual;
     const afw_pool_t *eval_p;
@@ -98,7 +100,6 @@ afw_value_block_evaluate_block(
         (const afw_value_t *)self, xctx);
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
-    result = afw_value_void;
     saved_script_result = NULL;
     /*
      * Evaluating a block as a value must not change the caller's last.
@@ -119,13 +120,16 @@ afw_value_block_evaluate_block(
     afw_xctx_scope_activate(scope, xctx);
     eval_p = scope->p;
     AFW_TRY{
-        result = afw_value_block_evaluate_statements(
+        afw_value_block_evaluate_statements(
             x, self, 0, eval_p, xctx);
-        if (!afw_value_is_void(result)) {
-            afw_xctx_script_result_set(result, xctx);
-        }
     }
     AFW_FINALLY{
+        /*
+         * return/break/continue only set flow. This FINALLY leaves
+         * the `{ }`: promote last_result, then pop. Labeled
+         * break/continue keep flowing until the matching loop
+         * consumes them; each enclosing `{ }` still deactivates here.
+         */
         if (afw_xctx_scope_current(xctx) == scope) {
             afw_xctx_scope_deactivate(scope, xctx);
         }
@@ -136,16 +140,11 @@ afw_value_block_evaluate_block(
     afw_xctx_evaluation_stack_pop_value(xctx);
     xctx->error->contextual = saved_contextual;
 
-    if (!afw_value_is_void(result)) {
-        result = afw_xctx_script_result_get(xctx);
-    }
-    else {
-        result = afw_value_void;
-    }
-
     if (as_value) {
+        const afw_value_t *result;
         const afw_value_t *inner;
 
+        result = afw_xctx_script_result_get(xctx);
         inner = xctx->script_result;
         xctx->script_result = saved_script_result;
         if (inner &&
@@ -156,8 +155,9 @@ afw_value_block_evaluate_block(
         {
             afw_value_release(inner, xctx);
         }
+        return result;
     }
-    return result;
+    return afw_value_void;
 }
 
 
@@ -176,9 +176,17 @@ afw_value_block_evaluate_statement(
 
     /* If statement is block, handle special. */
     if (afw_value_is_block(statement)) {
-        result = afw_value_block_evaluate_block(
+        const afw_value_t *saved_script_result;
+
+        saved_script_result = xctx->script_result;
+        afw_value_block_evaluate_block(
             x, (const afw_value_block_t *)statement, p, xctx,
             false);
+        if (xctx->script_result != saved_script_result) {
+            afw_xctx_scope_hold_last_result(
+                xctx->script_result, xctx);
+        }
+        return afw_value_void;
     }
 
     /* If not block, just evaluate. */

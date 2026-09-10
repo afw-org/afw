@@ -188,3 +188,16 @@ for (let [x] = [4]; s < 1; ) {
 }
 assert(s === 4);
 return 0;
+
+//?
+//? test: for-let-break-keeps-previous-last
+//? description: ...
+break before this trip's assignment keeps the previous iteration's
+last (not the first trip, and break does not wipe).
+//? expect: 0
+//? source: ...
+
+const r = evaluate(compile<script>(script(
+    "let x; for (let i = 0; i < 5; i = i + 1) { if (i === 2) break; x = i; }")));
+assert(r === 1);
+return 0;
