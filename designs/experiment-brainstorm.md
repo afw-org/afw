@@ -35,7 +35,7 @@ Literal slot fill stayed pre-#277 after intern. The mixed-size concat + integer 
 
 **Later (not this loop):** heap free-list mixed sizes if a *new* long-running pattern shows first-fit walking a growing list. Possible later registry MAP flag “include in big object”; do not special-case size now. `source_location` as interned string after compile splice settles. Type-graph names (`type_property`, `type_function_param`, `reference.name`) still utf8 views.
 
-**Next session (suggested):** `array_push_pop` (managed ring / `pop` transfer, ~50 MiB/s), then FRV leftover (`function_return` soak is under the bar). Parked **#277** residuals (Adaptive `clone()`, unevaluated clone-out, `qualifier("current")` snapshot, skip `double_free_throws`) — not a pool rewrite. Restart `afwfcgi` after install (stale mapped binary).
+**Next session (suggested):** `array_push_pop` (`slot_store` extra-hold + `pop` transfer, ~42 MiB/s), then FRV leftover (`function_return` soak is under the bar). Parked **#277** residuals (Adaptive `clone()`, unevaluated clone-out, `qualifier("current")` snapshot, skip `double_free_throws`) — not a pool rewrite. Restart `afwfcgi` after install (stale mapped binary).
 
 When **evaluation is done**, an **evaluated** result is an **unmanaged clone in dest `p`**. Functions/closures as the compile/eval result are not cloned that way yet (follow-up).
 

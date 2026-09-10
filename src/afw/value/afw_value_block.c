@@ -183,7 +183,7 @@ afw_value_block_evaluate_statement(
             x, (const afw_value_block_t *)statement, p, xctx,
             false);
         if (xctx->script_result != saved_script_result) {
-            afw_xctx_scope_hold_last_result(
+            afw_xctx_scope_set_last_result_for_lifetime(
                 xctx->script_result, xctx);
         }
         return afw_value_void;

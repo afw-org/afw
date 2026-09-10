@@ -185,7 +185,7 @@ const afw_value_t *
 afw_function_execute_bag(
     afw_function_execute_t *x)
 {
-    const afw_array_t *array;
+    const afw_value_array_t *array;
     const afw_value_t *value;
     afw_size_t i;
 
@@ -193,14 +193,17 @@ afw_function_execute_bag(
         return x->data_type->empty_array_value;
     }
 
-    array = afw_array_create_unmanaged_of(x->data_type, x->p, x->xctx);
+    array = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            afw_array_create_managed(x->data_type, x->xctx)->value,
+            x->xctx);
 
     for (i = 1; i <= x->argc; i++) {
         value = afw_function_evaluate_required_parameter(x, i, x->data_type);
-        afw_array_push_value(array, value, x->xctx);
+        afw_array_push_value(array->internal, value, x->xctx);
     }
 
-    return afw_value_create_unmanaged_array(array, x->p, x->xctx);
+    return &array->pub;
 }
 
 
@@ -298,7 +301,7 @@ afw_function_execute_clone(
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
 
     result = afw_value_clone(value, x->p, x->xctx);
-    return afw_value_get_assignable(result, x->xctx);
+    return afw_xctx_scope_get_assignable_for_lifetime(result, x->xctx);
 }
 
 
@@ -1044,7 +1047,7 @@ afw_function_execute_intersection(
     const afw_iterator_old_t *iterator;
     const afw_data_type_t *data_type;
     const afw_value_t *value;
-    const afw_array_t *array;
+    const afw_value_array_t *result;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 1, array);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array2, 2, array);
@@ -1057,7 +1060,10 @@ afw_function_execute_intersection(
             "array1 and array2 must have a data type of the same type",
             x->xctx);
     }
-    array = afw_array_create_unmanaged_of(data_type, x->p, x->xctx);
+    result = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            afw_array_create_managed(data_type, x->xctx)->value,
+            x->xctx);
 
     for (iterator = NULL;;) {
         value = afw_array_get_next_value(array1->internal, &iterator, x->xctx);
@@ -1065,13 +1071,13 @@ afw_function_execute_intersection(
             break;
         }
         if (impl_is_in_array(value, array2->internal, x->xctx)) {
-            if (!impl_is_in_array(value, array, x->xctx)) {
-                afw_array_push_value(array, value, x->xctx);
+            if (!impl_is_in_array(value, result->internal, x->xctx)) {
+                afw_array_push_value(result->internal, value, x->xctx);
             }
         }
     }
 
-    return afw_value_create_unmanaged_array(array, x->p, x->xctx);
+    return &result->pub;
 }
 
 
@@ -2287,9 +2293,10 @@ afw_function_execute_split(
         limit = limit_value->internal;
     }
 
-    array = afw_array_create_unmanaged_of(afw_data_type_string,
-        x->p, x->xctx);
-    result = afw_value_create_unmanaged_array(array, x->p, x->xctx);
+    result = afw_xctx_scope_get_assignable_for_lifetime(
+        afw_array_create_managed(afw_data_type_string, x->xctx)->value,
+        x->xctx);
+    array = ((const afw_value_array_t *)result)->internal;
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
 
     if (separator) {
@@ -2643,8 +2650,8 @@ afw_function_execute_union(
 {
     const afw_value_array_t *array1;
     const afw_value_array_t *arrayn;
+    const afw_value_array_t *result;
     const afw_data_type_t *data_type;
-    const afw_array_t *array;
     afw_size_t i;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 1, array);
@@ -2657,8 +2664,12 @@ afw_function_execute_union(
             x->xctx);
     }
 
-    array = afw_array_create_unmanaged_of(data_type, x->p, x->xctx);
-    impl_add_nondups_to_array(data_type, array1->internal, array, x->xctx);
+    result = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            afw_array_create_managed(data_type, x->xctx)->value,
+            x->xctx);
+    impl_add_nondups_to_array(data_type, array1->internal,
+        result->internal, x->xctx);
     for (i = 2; i <= x->argc; i++) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arrayn, i, array);
         if (afw_array_get_data_type(arrayn->internal, x->xctx) != data_type) {
@@ -2666,10 +2677,11 @@ afw_function_execute_union(
                 "all arrays must have the same data type",
                 x->xctx);
         }
-        impl_add_nondups_to_array(data_type, arrayn->internal, array, x->xctx);
+        impl_add_nondups_to_array(data_type, arrayn->internal,
+            result->internal, x->xctx);
     }
 
-    return afw_value_create_unmanaged_array(array, x->p, x->xctx);
+    return &result->pub;
 }
 
 
@@ -3135,7 +3147,7 @@ afw_function_execute_freeze(
      * freeze that handle. Assign later bumps the frozen face instead of
      * wrapping a raw immutable instance into a mutable overlay.
      */
-    value = afw_value_get_assignable(value, x->xctx);
+    value = afw_xctx_scope_get_assignable_for_lifetime(value, x->xctx);
 
     if (afw_value_is_object(value)) {
         object = (const afw_value_object_t *)value;

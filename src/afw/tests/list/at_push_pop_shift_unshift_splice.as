@@ -147,6 +147,24 @@ assert(shift(q) === "c", "fifo c");
 return 0;
 
 //?
+//? test: slice-typed-mutable
+//? description: slice of homogeneous values is that type and not frozen
+//? expect: 0
+//? source: ...
+
+let a = [1, 2, 3, 4];
+let s = slice(a, 1, 3);
+assert(s[0] === 2 && s[1] === 3, "contents");
+assert(length(s) === 2, "length");
+push(s, 9);
+assert(length(s) === 3 && s[2] === 9, "mutable");
+assert(length(a) === 4 && a[3] === 4, "source unchanged");
+assert(slice(bag<integer>(2, 9, 5, 0), 1, 3) === bag<integer>(9, 5),
+    "typed bag slice");
+
+return 0;
+
+//?
 //? test: splice-remove-only
 //? description: splice removes and returns deleted values
 //? expect: 0
