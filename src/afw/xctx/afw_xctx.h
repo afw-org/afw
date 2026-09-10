@@ -304,7 +304,7 @@ AFW_VECTOR_STRUCT(afw_xctx_scope_p_vector_s, const afw_xctx_scope_t *);
  *
  * Pointer only. Void, NULL, and no current scope are ignored. Last
  * that does not live in this p uses
- * afw_xctx_scope_hold_last_result() instead. Isolate out of this
+ * afw_xctx_scope_set_last_result_for_lifetime() instead. Isolate out of this
  * frame is script_result_set at deactivate, or at clone of this
  * frame.
  */
@@ -315,16 +315,33 @@ afw_xctx_scope_set_last_result(
 
 
 /**
- * @brief Extra-hold a last that does not live in this scope's p.
+ * @brief Get an assignable and keep it until the current scope ends.
+ * @param value to keep. Void and NULL are returned unchanged.
+ * @param xctx of caller.
+ * @return assignable value, or void/NULL unchanged.
+ *
+ * get_assignable plus pool-cleanup on current scope->p. Does not
+ * store last_result. Built-ins that return an input or a managed
+ * result use this.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_xctx_scope_get_assignable_for_lifetime(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Set last_result to an assignable held until this scope ends.
  * @param value to keep. Void and NULL are returned unchanged.
  * @param xctx of caller.
  * @return held value, or void/NULL unchanged.
  *
- * get_assignable plus pool-cleanup on current scope->p, then store
- * last_result. Nested `{ }` adopt and return() use this.
+ * afw_xctx_scope_get_assignable_for_lifetime() then
+ * afw_xctx_scope_set_last_result(). Nested `{ }` adopt and return()
+ * use this.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_xctx_scope_hold_last_result(
+afw_xctx_scope_set_last_result_for_lifetime(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 

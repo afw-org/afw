@@ -60,6 +60,9 @@ afw_function_execute_add_entries(
     afw_size_t count;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(target, 1, array);
+    target = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            &target->pub, x->xctx);
 
     for (count = 2; count <= x->argc; count++) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(source, count, array);
@@ -649,6 +652,9 @@ afw_function_execute_pop(
     const afw_value_t *value;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    array = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            &array->pub, x->xctx);
 
     value = afw_array_pop_value(array->internal, NULL, x->xctx);
     return value ? value : afw_value_undefined;
@@ -698,6 +704,9 @@ afw_function_execute_push(
     afw_size_t i;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    array = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            &array->pub, x->xctx);
 
     for (i = 2; i <= x->argc; i++) {
         AFW_FUNCTION_EVALUATE_PARAMETER(value, i);
@@ -746,6 +755,9 @@ afw_function_execute_shift(
     const afw_value_t *value;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    array = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            &array->pub, x->xctx);
 
     value = afw_array_shift_value(array->internal, NULL, x->xctx);
     return value ? value : afw_value_undefined;
@@ -809,6 +821,9 @@ afw_function_execute_splice(
     afw_size_t arg;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    array = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            &array->pub, x->xctx);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(integer, 2, integer);
 
     count = (afw_integer_t)afw_array_get_count(array->internal, x->xctx);
@@ -905,6 +920,9 @@ afw_function_execute_unshift(
     afw_integer_t insert_at;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    array = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            &array->pub, x->xctx);
 
     /* Insert in order at 0, 1, 2, ... so relative order is preserved. */
     insert_at = 0;

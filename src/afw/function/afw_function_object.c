@@ -69,6 +69,9 @@ afw_function_execute_add_properties(
         target = (const afw_value_object_t *)
             afw_object_as_value(created, x->p, x->xctx);
     }
+    target = (const afw_value_object_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            &target->pub, x->xctx);
 
     for (count = 2; count <= x->argc; count++)
     {

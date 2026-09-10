@@ -1147,9 +1147,9 @@ afw_xctx_scope_set_last_result(
 }
 
 
-/* Extra-hold last on current scope->p; store last_result. */
+/* Assignable held until current scope->p last-release. */
 AFW_DEFINE(const afw_value_t *)
-afw_xctx_scope_hold_last_result(
+afw_xctx_scope_get_assignable_for_lifetime(
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
@@ -1162,7 +1162,18 @@ afw_xctx_scope_hold_last_result(
     scope = afw_xctx_scope_current(xctx);
     if (scope) {
         afw_pool_release_value_at_cleanup(value, scope->p, xctx);
-        ((afw_xctx_scope_t *)scope)->last_result = value;
     }
+    return value;
+}
+
+
+/* Assignable last_result held until current scope->p last-release. */
+AFW_DEFINE(const afw_value_t *)
+afw_xctx_scope_set_last_result_for_lifetime(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    value = afw_xctx_scope_get_assignable_for_lifetime(value, xctx);
+    afw_xctx_scope_set_last_result(value, xctx);
     return value;
 }

@@ -1647,7 +1647,7 @@ afw_function_execute_return(
             result = afw_value_void;
         }
     }
-    result = afw_xctx_scope_hold_last_result(result, xctx);
+    result = afw_xctx_scope_set_last_result_for_lifetime(result, xctx);
     afw_xctx_statement_flow_set_type(return, xctx);
     return result;
 }
@@ -2284,7 +2284,7 @@ afw_function_execute_try(
                     this_result = afw_xctx_script_result_get(xctx);
                 }
                 result = this_result;
-                afw_xctx_scope_hold_last_result(result, xctx);
+                afw_xctx_scope_set_last_result_for_lifetime(result, xctx);
                 AFW_ERROR_MARK_CAUGHT;
             }
             else if (afw_xctx_statement_flow_is_type(rethrow, xctx))
@@ -2294,7 +2294,7 @@ afw_function_execute_try(
             else if (use_type != afw_xctx_statement_flow_return &&
                 xctx->script_result != saved_script_result)
             {
-                afw_xctx_scope_hold_last_result(
+                afw_xctx_scope_set_last_result_for_lifetime(
                     xctx->script_result, xctx);
             }
         }
