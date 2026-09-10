@@ -61,7 +61,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`experiment-eval-p.md`](experiment-eval-p.md) | **#287 landed** — eval `p` = `scope->p` when `{ }` has a frame; throwaway compile/eval loops flatten; BMP in default `test -j` |
 | [`afw-vector.md`](afw-vector.md) | C growable contiguous elements (`afw_vector`); typesafe overlay; not Adaptive `afw_array` |
 | [`afw-hash-table.md`](afw-hash-table.md) | C key→pointer map (`afw_hash_table`); typesafe overlay; **#301** on `develop` |
-| [`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md) | **PR #305 landed** — compile() is a unit; `app::` get of compiled templates. **Next session:** leave path, FRV stack leftover, runtime managed-return inf |
+| [`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md) | **PR #305** compile() is a unit; **PR #306** leave / `last_result`. **Next:** FRV stack leftover, runtime managed-return inf |
 
 ## Conventions
 

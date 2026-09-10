@@ -89,6 +89,8 @@ On this tree (after item 5): running result as in item 1. `x = y = 1;` works as 
 
 ## Item 1 (landed on this branch)
 
+After [PR #306](https://github.com/afw-org/afw/pull/306), each scope has **`last_result`**; `xctx->script_result` is the isolate at deactivate (unless cloned). Nested `{ }` is void (parent extra-holds). `for`/`while`/`try` are C-void except `return`/`rethrow`. A normal `finally` does not replace a pending return.
+
 `xctx->script_result` is the running result for the current **script** compile (not test_script / template). `assign` and `return` write it. `evaluate_block` of a script body uses that slot; `break` / `continue` keep the prior value. Nested `evaluate(compile<script>)` and script-function calls save and restore the slot so `f();` does not adopt `f`’s result. A **#block as a value** (decompile / `evaluate(b)`) still uses last-statement. A script that is only one call or `#block(add(1,2))` yields that value so decompile of `1+2` stays `#block(add(1,2))`. test262 `expect: undefined` cases that only `throw` on failure got a trailing `return;`. `try.as` `cptn-*` / `S12.14_A6` / `scope-catch-*` rewritten to Adaptive throw/data/Pattern (not ES `var` / assignment-in-default).
 
 ## Void singleton (in progress, leftover 1 mechanism)

@@ -173,6 +173,8 @@ Keep the clone: each increment needs its **own** bindings so a closure from the 
 
 **Clone = per-slot `add_reference`** into a new scope (same as assign). `undefined` is a no-op. Then deactivate the previous iterator scope as today. Do **not** only copy pointers (today’s FIXME). Do **not** reuse one frame (breaks closures). Do **not** copy the hidden result; the new clone starts `undefined`. Check `for_of` and friends when implementing.
 
+**Landed [PR #306](https://github.com/afw-org/afw/pull/306):** sibling clone, original marked `cloned` so deactivate does not `script_result_set`, first trip is the real for-let `{ }`. Live map: [`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md).
+
 ---
 
 ## Objects and arrays
