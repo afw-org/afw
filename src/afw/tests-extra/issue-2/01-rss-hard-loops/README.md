@@ -21,8 +21,8 @@ Do not mix these:
 4. **`function_return`** (`i = f()` **inside** `{ }`) is **under the bar**
    (~0.5 MiB/s). FRV leftover sits in the body tracker and dies with it.
    Unbraced `while (true) i = f();` is wrapped the same way now.
-5. **Still climbing** — `array_push_pop` (~50 MiB/s). Parked managed
-   ring / `pop` transfer, not last-result extra-hold. See the table.
+5. **Still climbing** — `array_push_pop` (~42 MiB/s). `slot_store`
+   extra-hold + `pop` transfer, not last-result extra-hold. See the table.
 
 `empty_stmt` / `*_no_brace` still split surface syntax. Unbraced loop
 bodies are `{ }` at compile. The Python judge uses
@@ -108,8 +108,10 @@ on `afwdev test -j` does **not** catch these — request-end bulk-free hides the
 The soak body is a `{ }` frame, so that pool dies each trip. Unbraced
 `i = f()` is wrapped the same way now.
 
-`array_push_pop`: managed `push` calloc’s a ring entry in `xctx->p`; `pop`
-transfers and does not `free_memory` the entry. Not last-result extra-hold.
+`array_push_pop`: `push` `slot_store`s `i` (extra hold on the managed
+integer in `xctx->p`); `pop` transfers and does not `release`. Same family
+as the old integer leftover. Not last-result extra-hold. Do not
+`create_managed` in `array()` (`[i]` compiles to it).
 
 Unbraced assign: compile wraps a 0-symbol `{ }`; temps die with the trip.
 
