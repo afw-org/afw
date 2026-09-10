@@ -159,6 +159,39 @@ impl_keep_if_return(
 
 
 /*
+ * Loop `{ }` body: evaluate_block so last is not extra-held on the
+ * enclosing clone/script. Child deactivate isolated last into
+ * script_result; point current last at that occupant (no hold).
+ * Clone isolates original last into the slot; the new clone's last
+ * stays void. Unbraced body is still evaluate_statement.
+ */
+static inline const afw_value_t *
+impl_evaluate_loop_body(
+    afw_function_execute_t *x,
+    const afw_value_t *body,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!body) {
+        return afw_value_void;
+    }
+    if (afw_value_is_block(body)) {
+        const afw_value_t *saved_script_result;
+
+        saved_script_result = xctx->script_result;
+        afw_value_block_evaluate_block(x,
+            (const afw_value_block_t *)body, p, xctx, false);
+        if (xctx->script_result != saved_script_result) {
+            afw_xctx_scope_set_last_result(
+                xctx->script_result, xctx);
+        }
+        return afw_value_void;
+    }
+    return afw_value_block_evaluate_statement(x, body, p, xctx);
+}
+
+
+/*
  * Next for-let trip: sibling clone of previous (or of the first `{ }`).
  * clone() marks the original; deactivate then skips script_result_set.
  * Release previous; it dies unless a closure holds it.
@@ -1086,8 +1119,7 @@ afw_function_execute_do_while(
     result = afw_value_void;
     for (;;) {
         result = impl_keep_if_return(result,
-            afw_value_block_evaluate_statement(
-                x, x->argv[2], x->p, xctx),
+            impl_evaluate_loop_body(x, x->argv[2], x->p, xctx),
             xctx);
         if (impl_loop_should_exit(this_label, xctx)) {
             break;
@@ -1212,8 +1244,7 @@ afw_function_execute_for(
                 leave = false;
                 if (body) {
                     result = impl_keep_if_return(result,
-                        afw_value_block_evaluate_statement(
-                            x, body, p, xctx),
+                        impl_evaluate_loop_body(x, body, p, xctx),
                         xctx);
                     leave = impl_loop_should_exit(this_label, xctx);
                 }
@@ -1369,8 +1400,7 @@ afw_function_execute_for_of(
                     afw_compile_assignment_type_assign_only;
             }
             result = impl_keep_if_return(result,
-                afw_value_block_evaluate_statement(
-                    x, x->argv[3], p, xctx),
+                impl_evaluate_loop_body(x, x->argv[3], p, xctx),
                 xctx);
             if (impl_loop_should_exit(this_label, xctx)) {
                 break;
@@ -2343,8 +2373,7 @@ afw_function_execute_while(
             break;
         }
         result = impl_keep_if_return(result,
-            afw_value_block_evaluate_statement(
-                x, x->argv[2], x->p, xctx),
+            impl_evaluate_loop_body(x, x->argv[2], x->p, xctx),
             xctx);
         if (impl_loop_should_exit(this_label, xctx))
         {

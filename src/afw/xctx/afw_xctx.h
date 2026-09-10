@@ -305,7 +305,8 @@ AFW_VECTOR_STRUCT(afw_xctx_scope_p_vector_s, const afw_xctx_scope_t *);
  * Pointer only. Void, NULL, and no current scope are ignored. Last
  * that does not live in this p uses
  * afw_xctx_scope_hold_last_result() instead. Isolate out of this
- * frame is script_result_set at deactivate.
+ * frame is script_result_set at deactivate, or at clone of this
+ * frame.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_set_last_result(
@@ -425,7 +426,8 @@ afw_xctx_scope_find_for_block(
  *
  * This function calls afw_xctx_scope_create() and stores a reference to
  * each original frame_slots[] occupant into the new scope (same protocol
- * as assign). last_result is not copied. Marks original cloned so its
+ * as assign). script_result_set(original last_result) then clone
+ * last_result stays void from create. Marks original cloned so its
  * deactivate does not script_result_set (it is not the running
  * iteration). The clone is a sibling (same parent_lexical_scope).
  *
