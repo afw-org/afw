@@ -1185,6 +1185,46 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
 }
 
 
+/*
+ * Loop body is always a `{ }` at compile. Unbraced Statement is
+ * wrapped so each trip has a frame (temps die with it). `if` is
+ * not wrapped. Surface syntax is still Statement.
+ *
+ * Parse in the current block so `for (let x of []) let x = 1`
+ * is still "already defined". Then wrap in a 0-symbol `{ }`.
+ */
+static const afw_value_t *
+impl_parse_loop_body(afw_compile_parser_t *parser)
+{
+    const afw_value_t *statement;
+    const afw_value_block_t *block;
+    const afw_value_t **argv;
+    afw_size_t start_offset;
+
+    afw_compile_save_cursor(start_offset);
+    afw_compile_get_token();
+    if (afw_compile_token_is(open_brace)) {
+        afw_compile_reuse_token();
+        return afw_compile_parse_Statement(parser, NULL);
+    }
+    afw_compile_reuse_token();
+
+    statement = afw_compile_parse_Statement(parser, NULL);
+    block = afw_compile_parse_link_new_value_block(parser, start_offset);
+    if (statement) {
+        argv = afw_pool_malloc(parser->p,
+            sizeof(afw_value_t *), parser->xctx);
+        argv[0] = statement;
+        afw_value_block_finalize(block, 1, argv, parser->xctx);
+    }
+    else {
+        afw_value_block_finalize(block, 0, NULL, parser->xctx);
+    }
+    afw_compile_parse_pop_value_block(parser);
+    return &block->pub;
+}
+
+
 /*ebnf>>>
  *
  * DoWhileStatement ::= 'do' Statement 'while' '(' Expression ')' ';'
@@ -1210,7 +1250,7 @@ impl_parse_DoWhileStatement(
     continue_allowed = parser->continue_allowed;
     parser->break_allowed = true;
     parser->continue_allowed = true;
-    argv[2] = afw_compile_parse_Statement(parser, NULL);
+    argv[2] = impl_parse_loop_body(parser);
     parser->break_allowed = break_allowed;
     parser->continue_allowed = continue_allowed;
 
@@ -1356,7 +1396,7 @@ impl_parse_ForStatement(
         continue_allowed = parser->continue_allowed;
         parser->break_allowed = true;
         parser->continue_allowed = true;
-        argv[3] = afw_compile_parse_Statement(parser, NULL);
+        argv[3] = impl_parse_loop_body(parser);
         parser->break_allowed = break_allowed;
         parser->continue_allowed = continue_allowed;
 
@@ -1410,7 +1450,7 @@ impl_parse_ForStatement(
         continue_allowed = parser->continue_allowed;
         parser->break_allowed = true;
         parser->continue_allowed = true;
-        argv[4] = afw_compile_parse_Statement(parser, NULL);
+        argv[4] = impl_parse_loop_body(parser);
         parser->break_allowed = break_allowed;
         parser->continue_allowed = continue_allowed;
 
@@ -2072,7 +2112,7 @@ impl_parse_WhileStatement(
     continue_allowed = parser->continue_allowed;
     parser->break_allowed = true;
     parser->continue_allowed = true;
-    argv[2] = afw_compile_parse_Statement(parser, NULL);
+    argv[2] = impl_parse_loop_body(parser);
     parser->break_allowed = break_allowed;
     parser->continue_allowed = continue_allowed;
 

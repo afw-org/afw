@@ -13,18 +13,19 @@ Do not mix these:
    `empty_loop` (`while (true) {}`) is still **flat** (tracker last-release).
    `while (true) { let x = 1; }` still creates a scope per iteration.
 2. **Braced assign** — `{ i = i + 1 }`, `{ o.x = i }`, `{ a[0] = i }` stay
-   under the fail bar (temps die with the body frame).
-3. **Unbraced assign** — no per-trip `{ }`. After #306 these **climb**
-   (~80–130 MiB/s). Temps land on the script frame and are not last-released.
-4. **`function_return`** (`i = f()` **inside** `{ }`) is now **under the bar**
+   **flat** (temps die with the body frame).
+3. **Unbraced assign** — compile wraps a 0-symbol `{ }` (parse Statement
+   in the current block first, so `for (let x of []) let x` still
+   clashes). Temps die with that frame. **Flat** (was ~80–131 MiB/s
+   after #306).
+4. **`function_return`** (`i = f()` **inside** `{ }`) is **under the bar**
    (~0.5 MiB/s). FRV leftover sits in the body tracker and dies with it.
-   Unbraced `while (true) i = f();` would still pile wrappers on the outer frame.
-5. **Still climbing** — unbraced assign; braced `object_rebind` /
-   `closure_rebind` / `compile_once_eval`; `array_push_pop` (~2.2 MiB/s,
-   was ~115). See the table.
+   Unbraced `while (true) i = f();` is wrapped the same way now.
+5. **Still climbing** — `array_push_pop` (~50 MiB/s). Parked managed
+   ring / `pop` transfer, not last-result extra-hold. See the table.
 
-`empty_stmt` / `*_no_brace` still split “no extra `{ }`” from a braced
-body. They are not a remaining scalar leak. The Python judge uses
+`empty_stmt` / `*_no_brace` still split surface syntax. Unbraced loop
+bodies are `{ }` at compile. The Python judge uses
 `/proc` RSS plus gdb `env->pool_bytes_in_use`. Sample from script:
 `pool_bytes_in_use()` and `process_rss()`. `debug:pool` names call sites
 on a **short** run — not on soaks.
@@ -77,40 +78,40 @@ python3 src/afw/tests-extra/issue-2/01-rss-hard-loops/_rss.py integer_assign --d
 Underscore dir on purpose: `afwdev test` must not evaluate these as tests
 (they do not return).
 
-Measured **2026-09-10** on `develop` after [PR #306](https://github.com/afw-org/afw/pull/306)
-(8 s soaks, 2 s warmup). Previous column is 2026-09-07 after #293.
+Measured **2026-09-10** on `feature/loop-save-last-at-top` after isolate-at-clone
+and wrap-unbraced-body (8 s soaks, 2 s warmup). Previous column is the same
+day on `develop` after [PR #306](https://github.com/afw-org/afw/pull/306).
 `in_use` is `env->pool_bytes_in_use` (AFW malloc not given back). Valgrind
 on `afwdev test -j` does **not** catch these — request-end bulk-free hides them.
 
-| name | what | RSS / in_use (2026-09-10) | was (09-07) |
-|------|------|---------------------------|-------------|
-| `empty_stmt` | `while (true);` | RSS flat; `in_use` sampler garbage (not a leak) | flat / flat |
-| `empty_loop` | `while (true) {}` | **flat / flat** (empty frame last-releases) | flat / flat |
-| `integer_assign_no_brace` | unbraced `i = i + 1` | **~131 MiB/s both** | flat / flat |
-| `integer_assign` | braced `i = i + 1` | ~1.6 MiB/s (under bar) | flat / flat |
-| `object_prop_assign_no_brace` | unbraced `o.x = i` | **~82 MiB/s both** | flat / flat |
-| `object_prop_assign` | braced `o.x = i` | under bar | flat / flat |
-| `array_index_assign_no_brace` | unbraced `a[0] = i` | **~80 MiB/s both** | flat / flat |
-| `array_index_assign` | braced `a[0] = i` | under bar | flat / flat |
-| `object_rebind` | `o = { n: i }` | **~51 MiB/s RSS** | flat / flat |
-| `array_rebind` | `a = [i]` | under bar | flat / flat |
-| `string_same_size` | `"x"` / `"y"` overwrite | under bar | flat / flat |
-| `function_return` | `i = f()` inside `{ }` | **~0.5 MiB/s both** (under bar) | **~150 MiB/s** |
-| `try_catch` | throw/catch each iter | under bar | ~0.3 MiB/s RSS |
-| `closure_rebind` | rebind capturing function | **~77 MiB/s both** | flat / flat |
-| `compile_once_eval` | compile once, `evaluate` loop | **~82 MiB/s both** | flat / flat |
-| `array_push_pop` | push then pop | **~2.2 MiB/s both** (just over 2 MiB/s bar) | **~115 MiB/s** |
+| name | what | RSS / in_use (now) | was (#306) |
+|------|------|--------------------|------------|
+| `empty_stmt` | `while (true);` | RSS flat (passed) | RSS flat; `in_use` sampler garbage |
+| `empty_loop` | `while (true) {}` | **flat / flat** | flat / flat |
+| `integer_assign_no_brace` | unbraced `i = i + 1` | **flat / flat** | **~131 MiB/s both** |
+| `integer_assign` | braced `i = i + 1` | **flat / flat** | ~1.6 MiB/s (under bar) |
+| `object_prop_assign_no_brace` | unbraced `o.x = i` | **flat / flat** | **~82 MiB/s both** |
+| `object_prop_assign` | braced `o.x = i` | under bar | under bar |
+| `array_index_assign_no_brace` | unbraced `a[0] = i` | **flat / flat** | **~80 MiB/s both** |
+| `array_index_assign` | braced `a[0] = i` | under bar | under bar |
+| `object_rebind` | `o = { n: i }` | **flat / flat** | **~51 MiB/s RSS** |
+| `array_rebind` | `a = [i]` | under bar | under bar |
+| `string_same_size` | `"x"` / `"y"` overwrite | under bar | under bar |
+| `function_return` | `i = f()` inside `{ }` | **~0.5 MiB/s both** (under bar) | ~0.5 MiB/s (under bar) |
+| `try_catch` | throw/catch each iter | under bar | under bar |
+| `closure_rebind` | rebind capturing function | **flat / flat** | **~77 MiB/s both** |
+| `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** | **~82 MiB/s both** |
+| `array_push_pop` | push then pop | **~50 MiB/s both** | ~2.2 MiB/s (later ~49) |
 | `array_append` | unbounded `push` | **must grow** (harness) | must grow |
 
 `function_return`: unique FRV consume still leaves the wrapper in `self->p`.
-The soak body is now a `{ }` frame, so that pool dies each trip. Unbraced
-`i = f()` would still climb.
+The soak body is a `{ }` frame, so that pool dies each trip. Unbraced
+`i = f()` is wrapped the same way now.
 
 `array_push_pop`: managed `push` calloc’s a ring entry in `xctx->p`; `pop`
-transfers and does not `free_memory` the entry. Much slower climb after #306
-(body frame last-release) but not zero.
+transfers and does not `free_memory` the entry. Not last-result extra-hold.
 
-Unbraced assign: no per-trip tracker; temps stay on the script frame.
+Unbraced assign: compile wraps a 0-symbol `{ }`; temps die with the trip.
 
 ## gdb
 

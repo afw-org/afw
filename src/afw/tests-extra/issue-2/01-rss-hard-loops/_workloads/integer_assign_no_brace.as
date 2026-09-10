@@ -1,5 +1,5 @@
-/* #2 lab: unbraced scalar overwrite. No per-iteration `{ }`.
- * Should stay flat (same last-release as braced integer_assign).
+/* #2 lab: unbraced scalar overwrite. Compile wraps a `{ }`.
+ * Should stay flat (temps die with the trip frame).
  */
 let i = 0;
 while (true)

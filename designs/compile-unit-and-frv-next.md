@@ -82,5 +82,5 @@ Parked on 1–2: array in-place mutate vs managed return (`array_push_pop` soak 
 - `afwdev test --test-pattern 'language/script/for.as'` (includes `for-let-break-keeps-previous-last`)
 - `afwdev test --test-pattern 'language/script/script_result.as'`
 - `afwdev test --test-pattern 'test262/statements/try.as'` (`completion-values-fn-finally-normal`)
-- `afwdev test -T src/afw/tests-extra/issue-2 --show-all` — live table in `01-rss-hard-loops/README.md`. After #306, braced `function_return` is under the bar (leftover dies with the body `{ }`); unbraced assign / `object_rebind` / `closure_rebind` / `compile_once_eval` climb; `array_push_pop` ~2 MiB/s. FRV leftover is still real — unbraced `i = f()` would show it.
+- `afwdev test -T src/afw/tests-extra/issue-2 --show-all` — live table in `01-rss-hard-loops/README.md`. Unbraced assign / rebind / `compile_once_eval` are **flat** after isolate-at-clone and wrap-unbraced-body. `function_return` stays under the bar. `array_push_pop` ~50 MiB/s (parked ring, not last-result). FRV leftover is still real in `self->p` until that `{ }` dies.
 - Full PR bar: `./afwdev build --fulldev && afwdev test -j && afwdev test -j --env-mode valgrind`

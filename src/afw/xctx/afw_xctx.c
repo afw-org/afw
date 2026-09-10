@@ -878,6 +878,14 @@ afw_xctx_scope_clone(
             original_scope->frame_slots[i], xctx);
     }
 
+    /*
+     * Isolate this trip's last now. Deactivate of the original skips
+     * script_result_set (it is not the running iteration). Clone last
+     * stays void so it will not override the slot until this iteration
+     * writes last.
+     */
+    afw_xctx_script_result_set(original_scope->last_result, xctx);
+
     /* Original is no longer the running iteration. */
     ((afw_xctx_scope_t *)original_scope)->cloned = true;
 

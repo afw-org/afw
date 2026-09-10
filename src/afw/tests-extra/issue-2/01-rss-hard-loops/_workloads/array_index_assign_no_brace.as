@@ -1,4 +1,4 @@
-/* #2 lab: unbraced array element overwrite, no per-iteration `{ }`.
+/* #2 lab: unbraced array element overwrite. Compile wraps a `{ }`.
  * Should stay flat (same as braced array_index_assign).
  */
 let a = [0];
