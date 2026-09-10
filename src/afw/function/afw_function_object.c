@@ -545,7 +545,7 @@ afw_function_execute_entries(
     afw_function_execute_t *x)
 {
     const afw_value_object_t *object;
-    const afw_array_t *result_array;
+    const afw_value_array_t *result;
     const afw_array_t *pair;
     const afw_iterator_old_t *iterator;
     const afw_value_t *property_name;
@@ -554,7 +554,10 @@ afw_function_execute_entries(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
-    result_array = afw_array_create_unmanaged(x->p, x->xctx);
+    result = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            afw_array_create_managed(NULL, x->xctx)->value,
+            x->xctx);
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(
             object->internal, &iterator, &property_name, x->xctx);
@@ -562,14 +565,16 @@ afw_function_execute_entries(
             break;
         }
         name_value = property_name;
-        pair = afw_array_create_unmanaged(x->p, x->xctx);
+        pair = ((const afw_value_array_t *)
+            afw_xctx_scope_get_assignable_for_lifetime(
+                afw_array_create_managed(NULL, x->xctx)->value,
+                x->xctx))->internal;
         afw_array_push_value(pair, name_value, x->xctx);
         afw_array_push_value(pair, value, x->xctx);
-        afw_array_push_value(result_array,
-            afw_value_create_unmanaged_array(pair, x->p, x->xctx), x->xctx);
+        afw_array_push_value(result->internal, pair->value, x->xctx);
     }
 
-    return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
+    return &result->pub;
 }
 
 
@@ -609,26 +614,29 @@ afw_function_execute_keys(
     afw_function_execute_t *x)
 {
     const afw_value_object_t *object;
-    const afw_array_t *result_array;
+    const afw_value_array_t *result;
     const afw_iterator_old_t *iterator;
     const afw_value_t *property_name;
     const afw_value_t *value;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
-    result_array = afw_array_create_unmanaged(x->p, x->xctx);
+    result = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            afw_array_create_managed(afw_data_type_string, x->xctx)->value,
+            x->xctx);
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(
             object->internal, &iterator, &property_name, x->xctx);
         if (!value) {
             break;
         }
-        afw_array_push_value(result_array,
+        afw_array_push_value(result->internal,
             property_name,
             x->xctx);
     }
 
-    return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
+    return &result->pub;
 }
 
 
@@ -668,22 +676,25 @@ afw_function_execute_values(
     afw_function_execute_t *x)
 {
     const afw_value_object_t *object;
-    const afw_array_t *result_array;
+    const afw_value_array_t *result;
     const afw_iterator_old_t *iterator;
     const afw_value_t *property_name;
     const afw_value_t *value;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
-    result_array = afw_array_create_unmanaged(x->p, x->xctx);
+    result = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            afw_array_create_managed(NULL, x->xctx)->value,
+            x->xctx);
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(
             object->internal, &iterator, &property_name, x->xctx);
         if (!value) {
             break;
         }
-        afw_array_push_value(result_array, value, x->xctx);
+        afw_array_push_value(result->internal, value, x->xctx);
     }
 
-    return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
+    return &result->pub;
 }

@@ -50,6 +50,22 @@ assert(out[0] === 2 && out[1] === 3 && out[2] === 4);
 return 0;
 
 //?
+//? test: map-filter-mutable
+//? description: map and filter results are not frozen
+//? expect: 0
+//? source: ...
+
+let m = map(function (v) { return v + 1; }, [1, 2]);
+push(m, 9);
+assert(length(m) === 3 && m[2] === 9, "map mutable");
+
+let f = filter(function (v) { return v > 1; }, [1, 2, 3]);
+push(f, 0);
+assert(length(f) === 3 && f[2] === 0, "filter mutable");
+
+return 0;
+
+//?
 //? test: map-undefined-and-elision
 //? description: map visits undefined and omitted elements
 //? expect: 0

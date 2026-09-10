@@ -441,7 +441,7 @@ afw_function_execute_reverse(
     afw_function_execute_t *x)
 {
     const afw_value_array_t *array;
-    const afw_array_t *result_array;
+    const afw_value_array_t *result;
     const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_array_setter_t *setter;
@@ -450,8 +450,11 @@ afw_function_execute_reverse(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
 
     data_type = afw_array_get_data_type(array->internal, x->xctx);
-    result_array = afw_array_create_unmanaged_of(data_type, x->p, x->xctx);
-    setter = afw_array_get_setter(result_array, x->xctx);
+    result = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            afw_array_create_managed(data_type, x->xctx)->value,
+            x->xctx);
+    setter = afw_array_get_setter(result->internal, x->xctx);
     for (iterator = NULL;;) {
         value = afw_array_get_next_value(array->internal, &iterator, x->xctx);
         if (!value) {
@@ -459,7 +462,7 @@ afw_function_execute_reverse(
         }
         afw_array_setter_insert_value(setter, 0, value, x->xctx);
     }
-    return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
+    return &result->pub;
 }
 
 
@@ -510,10 +513,11 @@ afw_function_execute_slice(
     afw_function_execute_t *x)
 {
     const afw_value_array_t *array;
-    const afw_array_t *result_array;
+    const afw_value_array_t *result;
     const afw_value_integer_t *integer;
     const afw_iterator_old_t *iterator;
     const afw_value_t *value;
+    const afw_data_type_t *data_type;
     afw_integer_t start;
     afw_integer_t end;
     afw_integer_t count;
@@ -547,19 +551,22 @@ afw_function_execute_slice(
         }
     }
 
-    /* Create and return an array with slice. */
-    result_array = afw_array_create_unmanaged(x->p, x->xctx);
+    /* Create and return an array with slice. Stay mutable. */
+    data_type = afw_array_get_data_type(array->internal, x->xctx);
+    result = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            afw_array_create_managed(data_type, x->xctx)->value,
+            x->xctx);
     for (iterator = NULL, count = 0; count < end; count++) {
         value = afw_array_get_next_value(array->internal, &iterator, x->xctx);
         if (!value) {
             AFW_THROW_ERROR_Z(general, "Expecting a value", x->xctx);
         }
         if (start <= count) {
-            afw_array_push_value(result_array, value, x->xctx);
+            afw_array_push_value(result->internal, value, x->xctx);
         }
     }
-    afw_array_determine_data_type_and_set_immutable(result_array, x->xctx);
-    return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
+    return &result->pub;
 }
 
 
@@ -852,16 +859,13 @@ afw_function_execute_splice(
         delete_count = count - start;
     }
 
-    removed = afw_array_create_unmanaged(x->p, x->xctx);
+    removed = ((const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            afw_array_create_managed(NULL, x->xctx)->value,
+            x->xctx))->internal;
     for (i = 0; i < delete_count; i++) {
         value = afw_array_get_entry_value(array->internal, start, x->xctx);
         if (value) {
-            /*
-             * Output is an unmanaged bag of slot copies. Hold the
-             * occupant before the source face drops it. Assign / FRV
-             * get_assignable_value of this bag mints the script face.
-             */
-            value = afw_value_add_reference(value, x->xctx);
             afw_array_push_value(removed, value, x->xctx);
         }
         afw_array_remove_value_by_index(array->internal, start, x->xctx);
@@ -873,7 +877,7 @@ afw_function_execute_splice(
             start + (afw_integer_t)(arg - 4), value, x->xctx);
     }
 
-    return afw_value_create_unmanaged_array(removed, x->p, x->xctx);
+    return removed->value;
 }
 
 

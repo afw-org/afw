@@ -660,11 +660,16 @@ afw_function_execute_filter(
     afw_function_execute_t *x)
 {
     impl_filter_data_t data;
+    const afw_value_array_t *result;
 
-    data.filtered_array = afw_array_create_unmanaged(x->p, x->xctx);
+    result = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            afw_array_create_managed(NULL, x->xctx)->value,
+            x->xctx);
+    data.filtered_array = result->internal;
     impl_over_array(x, impl_filter_cb, (void *)&data);
 
-    return afw_value_create_unmanaged_array(data.filtered_array, x->p, x->xctx);
+    return &result->pub;
 }
 
 
@@ -756,10 +761,6 @@ impl_map_cb(impl_call_over_array_cb_e_t *e)
     impl_map_data_t * data = (impl_map_data_t *)e->data;
     const afw_value_t *to_push;
 
-    if (!data->mapped_array) {
-        data->mapped_array = afw_array_create_unmanaged(e->p, e->xctx);
-    }
-
     to_push = e->entry_result;
     /*
      * The typed-array path reuses one value buffer for matching elements. If
@@ -825,24 +826,16 @@ afw_function_execute_map(
     afw_function_execute_t *x)
 {
     impl_map_data_t data;
-    const afw_data_type_t *data_type;
+    const afw_value_array_t *result;
 
-    afw_memory_clear(&data);
-    data_type = impl_over_array(x, impl_map_cb, (void *)&data);
+    result = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            afw_array_create_managed(NULL, x->xctx)->value,
+            x->xctx);
+    data.mapped_array = result->internal;
+    impl_over_array(x, impl_map_cb, (void *)&data);
 
-    if (!data.mapped_array) {
-        if (data_type)
-        {
-            return data_type->empty_array_value;
-        }
-        else {
-            return afw_data_type_null->empty_array_value;
-        }
-    }
-
-    afw_array_determine_data_type_and_set_immutable(data.mapped_array, x->xctx);
-    
-    return afw_value_create_unmanaged_array(data.mapped_array, x->p, x->xctx);
+    return &result->pub;
 }
 
 
@@ -1060,10 +1053,11 @@ afw_function_execute_sort(
     afw_function_execute_t *x)
 {
     const afw_value_array_t *array;
-    const afw_array_t *result_array;
+    const afw_value_array_t *result;
     const afw_data_type_t *data_type;
     const afw_iterator_old_t *iterator;
     const afw_value_t **value;
+    afw_size_t i;
     impl_sort_ctx_t ctx;
 
     /* Initialize sort ctx. */
@@ -1105,7 +1099,12 @@ afw_function_execute_sort(
     }
 
     /* Return sorted array. */
-    result_array = afw_array_create_unmanaged_from_values(
-        data_type, ctx.values, ctx.count, ctx.p, ctx.xctx);
-    return afw_value_create_unmanaged_array(result_array, ctx.p, ctx.xctx);
+    result = (const afw_value_array_t *)
+        afw_xctx_scope_get_assignable_for_lifetime(
+            afw_array_create_managed(data_type, ctx.xctx)->value,
+            ctx.xctx);
+    for (i = 0; i < ctx.count; i++) {
+        afw_array_push_value(result->internal, ctx.values[i], ctx.xctx);
+    }
+    return &result->pub;
 }
