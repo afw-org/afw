@@ -1,12 +1,13 @@
-# Compile unit (landed), leave path (landed), next: FRV
+# Compile unit, leave, isolate-at-clone (landed); next: array_push_pop then FRV
 
 **Audience:** next session. Not user docs (`whats-new.md` has nothing for this slice).
 
 **Landed on `develop`:**
 - [PR #305](https://github.com/afw-org/afw/pull/305) (`0fc0f2b8`, 2026-09-09) — `compile()` is a unit; `app::` get of compiled templates.
 - [PR #306](https://github.com/afw-org/afw/pull/306) (`5d5b0096`, 2026-09-10) — every `{ }` is a scope; `last_result` on the running frame; leave path.
+- [PR #307](https://github.com/afw-org/afw/pull/307) (`0c0816de`, 2026-09-10) — isolate last at `for (let)` clone; wrap unbraced loop bodies after parse in the current block.
 
-**Verify for #306:** `./afwdev build --fulldev` then `afwdev test -j` and `afwdev test -j --env-mode valgrind`: **4433 passed**, 71 skipped.
+**Verify for #307:** `./afwdev build --fulldev` then `afwdev test -j` and `afwdev test -j --env-mode valgrind`: **4439 passed**, 71 skipped. RSS lab: 16 passed, 1 failed (`array_push_pop` ~50 MiB/s).
 
 Do **not** start with “implement a fix” unless you share the plan. Open with “what do you think?”
 
@@ -36,30 +37,31 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 
 **Deactivate** `script_result_set`s `last_result` unless the scope was **cloned**. Isolate out of the frame is that slot_store. Nested `compiled_value` / script call / block-as-value still save/restore `script_result`.
 
-**Extra-hold** (`afw_xctx_scope_hold_last_result`): `get_assignable` + `afw_pool_release_value_at_cleanup` on **current** `scope->p`, then store `last_result`. Two doors only: nested `{ }` adopt (child tracker already died) and `return()`. Not at clone. Not a slot replace on every statement.
+**Extra-hold** (`afw_xctx_scope_hold_last_result`): `get_assignable` + `afw_pool_release_value_at_cleanup` on **current** `scope->p`, then store `last_result`. Use when an unmanaged occupant must survive a dying scope. Nested `{ }` adopt (child tracker already died) and `return()` (parameter can be an FRV leftover the eval stack would drop). Not at clone. Not a slot replace on every statement. `try`/`finally` extra-hold is a filtered `{ }` adopt, not the FRV door.
 
 **`for` / `while` / `try` are void** except `return` / `rethrow`. Nested assignment writes last on the **running** scope. Do not C-return the loop’s last assignment.
 
 **`for (let)` clone** is for closures, not a result stack:
 
 - First trip **is** the for-let `{ }` (not a template).
-- Next trip: sibling `scope_clone` (copy `frame_slots[]`, not last; same `parent_lexical_scope`). `clone()` marks the original **cloned**. Increment / for-of assign run on the clone so a closure still sees the old `i`. Creator-`release` the previous; it dies unless a closure `get_reference`s it.
+- Next trip: sibling `scope_clone` (copy `frame_slots[]`; same `parent_lexical_scope`). `clone()` `script_result_set`s original last, then clone last stays void from create. Marks original **cloned** so deactivate does not write the slot. Increment / for-of assign run on the clone so a closure still sees the old `i`. Creator-`release` the previous; it dies unless a closure `get_reference`s it.
+- Loop `{ }` bodies `evaluate_block` and only point last at the occupant already in `script_result` (no extra-hold on the clone). The slot is not rewritten until this clone is cloned or it deactivates.
+- Unbraced while / do / for / for-of bodies wrap as a 0-symbol `{ }` **after** parsing the Statement in the current block (`for (let x of []) let x` is still already defined). `if` is not wrapped.
 - Without closures, two frames: the `{ }` until `for` ends, plus the **current** clone.
-- How we know which iteration is last: the one that was **never cloned**. Do not pick a winner. Nested assignment already wrote `script_result` in loop order.
+- How we know which iteration is last: the one that was **never cloned**. Do not pick a winner.
 
 **Finally:** a **normal** finally `{ }` must not adopt last onto the parent (that overwrote `return 'try'` with `count.finally += 1`). Finally **return** still wins. Nested assignment in finally still writes last when try/catch did not return.
 
-**Rejected this wave:** dest `p` on deactivate; treating `last_result` like `frame_slots[]`; extra-hold “harder” on cloned-from last; `for` C-return of last; clone-first as a template; `iter_p`; isolating FRV at `return()` `get_assignable`/`slot_store` as the design (that is the next slice).
+**Rejected this wave:** dest `p` on deactivate; treating `last_result` like `frame_slots[]`; extra-hold “harder” on cloned-from last; extra-hold previous sibling last onto the clone (useless: isolate at clone, void last will not override the slot); wrap unbraced **before** parse (hides `let` clash); `for` C-return of last; clone-first as a template; `iter_p`; isolating FRV at `return()` `get_assignable`/`slot_store` as the design (that is a later slice).
 
 ---
 
 ## Next slices (agreed order)
 
-1. **FRV as stack leftover** — `#function_return_value` is compile-time (parse/decompile). Intended inf: evaluate / `get_assignable` are of the **inner**; wrapper has its own RC; last release frees wrapper + inner extra-hold. Enclosing call `pop_value` releases leftovers. **Remove** `consume()` / `is_function_return_value` peels. Unique consume today **transfers occupant, RC 0, no `free_memory`** → `function_return` soak. Do not paper over with a helper around assign. Do not treat extra-hold at `return()` as that design.
-2. **Runtime call-result hold** — second, evaluate-only inf (like `closure_binding`: display decompile, not recompile) for **managed built-in returns** and transferred occupants (`pop`). Same leftover protocol. Identity **`push`** (return same array) stays unwrapped. Keep separate from compile-time FRV until they match.
-3. **Merge 1 and 2** only if the infs are actually the same.
-
-Parked on 1–2: array in-place mutate vs managed return (`array_push_pop` soak is a separate inf/`push`/`pop` bug — do not wrap-at-execute of unmanaged).
+1. **`array_push_pop`** — managed `push` calloc’s a ring entry in `xctx->p`; `pop`/`shift` transfer (no `release`, no `free_memory` of the entry). Soak ~50 MiB/s. Separate inf/`push`/`pop` bug. Do not wrap-at-execute of unmanaged. Do not paper over with last-result extra-hold.
+2. **FRV as stack leftover** — `#function_return_value` is compile-time (parse/decompile). Intended inf: evaluate / `get_assignable` are of the **inner**; wrapper has its own RC; last release frees wrapper + inner extra-hold. Enclosing call `pop_value` releases leftovers. **Remove** `consume()` / `is_function_return_value` peels. Unique consume today **transfers occupant, RC 0, no `free_memory`**. Braced (and now unbraced-wrapped) `i = f()` soak is under the bar because leftover dies with the body `{ }`. Do not paper over with a helper around assign. Do not treat extra-hold at `return()` as that design.
+3. **Runtime call-result hold** — evaluate-only inf (like `closure_binding`: display decompile, not recompile) for **managed built-in returns** and transferred occupants (`pop`). Same leftover protocol. Identity **`push`** (return same array) stays unwrapped. Keep separate from compile-time FRV until they match.
+4. **Merge 2 and 3** only if the infs are actually the same.
 
 ---
 
@@ -70,9 +72,10 @@ Parked on 1–2: array in-place mutate vs managed return (`array_push_pop` soak 
 - Returning a function **from** `evaluate(compile(…))` skips clone-unmanaged (no evaluated-data-type clone). **Inside** a unit, `return function(){…}` is normal extra-hold → deactivate isolate.
 - Do not `git add -A` while `--fulldev --clean` is rewriting `src/afw/generated/`.
 - Handbook XML uses `<italic>`, not `<emphasis>` (Doxygen).
-- Cloned-from deactivate that still `script_result_set`s is LIFO: first-trip last wins (0 instead of 3).
-- `last_result` whose only extra-hold is the xctx `script_result` slot goes stale when the slot is replaced. Extra-hold on the **scope that points at it**.
-- `evaluate_statement` of a nested `{ }` adopts onto **current**. A normal finally must not do that over a pending return.
+- Cloned-from deactivate that still `script_result_set`s is LIFO: first-trip last wins (0 instead of 3). Isolate at clone instead; void last on the new clone will not override the slot.
+- `last_result` whose only extra-hold is the xctx `script_result` slot goes stale when the slot is replaced. Extra-hold on the **scope that points at it** (unmanaged that must survive that scope’s death). Not onto the clone.
+- `evaluate_statement` of a nested `{ }` adopts onto **current**. Loop `{ }` bodies `evaluate_block` so they do not extra-hold onto the clone/script. A normal finally must not adopt over a pending return.
+- Wrap unbraced loop bodies **after** parse in the current block. Opening the wrapper first hides `for (let x of []) let x`.
 
 ---
 
@@ -81,6 +84,7 @@ Parked on 1–2: array in-place mutate vs managed return (`array_push_pop` soak 
 - `afwdev test --test-pattern 'substitution.as'`
 - `afwdev test --test-pattern 'language/script/for.as'` (includes `for-let-break-keeps-previous-last`)
 - `afwdev test --test-pattern 'language/script/script_result.as'`
+- `afwdev test --test-pattern 'language/script/loop_unbraced_body.as'` (`for-of-unbraced-let-same-name`)
 - `afwdev test --test-pattern 'test262/statements/try.as'` (`completion-values-fn-finally-normal`)
 - `afwdev test -T src/afw/tests-extra/issue-2 --show-all` — live table in `01-rss-hard-loops/README.md`. Unbraced assign / rebind / `compile_once_eval` are **flat** after isolate-at-clone and wrap-unbraced-body. `function_return` stays under the bar. `array_push_pop` ~50 MiB/s (parked ring, not last-result). FRV leftover is still real in `self->p` until that `{ }` dies.
 - Full PR bar: `./afwdev build --fulldev && afwdev test -j && afwdev test -j --env-mode valgrind`
