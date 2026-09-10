@@ -2,12 +2,11 @@
 # -*- coding: utf-8 -*-
 """Opt-in RSS / in_use soaks for issue #2 hard-loop Adaptive Scripts.
 
-Not in default `afwdev test -j`. 0-symbol `{ }` is not a scope, so
-empty_loop should match empty_stmt (both flat). Assign / overlay /
-rebind soaks are flat on develop after eval `p` and managed last-release
-`free_memory`. Remaining climbs: function_return (FRV wrapper left in
-caller `p`) and array_push_pop (managed entry in `xctx->p` + pop
-transfer). Live table: README.md. Measure-only: AFW_ISSUE2_RSS_ASSERT=0.
+Not in default `afwdev test -j`. Assign / overlay / rebind / unbraced
+loop body soaks are flat after isolate-at-clone and wrap-unbraced-body.
+Remaining climb: array_push_pop (managed entry in `xctx->p` + pop
+transfer). function_return is under the 2 MiB/s bar. Live table:
+README.md. Measure-only: AFW_ISSUE2_RSS_ASSERT=0.
 
     afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-loops --show-all
     AFW_ISSUE2_WORKLOAD=empty_stmt,empty_loop,integer_assign_no_brace \\
@@ -28,8 +27,8 @@ from _rss import format_report, sample_afw_script, workload_path  # noqa: E402
 
 # After warmup, RSS above this rate is "still leaking".
 STABLE_MAX_KIB_S = 8 * 1024  # 8 MiB/s
-# in_use bytes/s. empty `{ }` / assign ~0; remaining climbs are
-# function_return and array_push_pop (~150 / ~115 MiB/s on 2026-09-07).
+# in_use bytes/s. empty `{ }` / assign ~0; remaining climb is
+# array_push_pop (~50 MiB/s).
 STABLE_MAX_IN_USE_B_S = 2 * 1024 * 1024  # 2 MiB/s
 
 GROWTH_MIN_KIB_S = 256  # harness RSS
@@ -45,7 +44,7 @@ WORKLOADS = [
     },
     {
         "name": "empty_loop",
-        "description": "while (true) {}  0-symbol body; not a scope",
+        "description": "while (true) {}  empty body frame last-releases",
         "expect_rss_growth": False,
         "expect_in_use_growth": False,
     },

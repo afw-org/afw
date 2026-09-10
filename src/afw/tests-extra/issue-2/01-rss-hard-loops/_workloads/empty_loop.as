@@ -1,5 +1,5 @@
-/* #2 lab: empty `{ }` body. 0-symbol `{ }` is not a scope (#245).
- * Should match empty_stmt (RSS and in_use flat).
+/* #2 lab: empty `{ }` body. Every `{ }` is a scope (#306).
+ * Empty frame last-releases. Should stay flat.
  */
 while (true) {
 }
