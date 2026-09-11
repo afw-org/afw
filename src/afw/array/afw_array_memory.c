@@ -58,6 +58,16 @@ static void
 impl_afw_array_managed_setter_remove_all_values(
     const afw_array_setter_t *self,
     afw_xctx_t *xctx);
+static const afw_value_t *
+impl_afw_array_managed_setter_pop_value(
+    const afw_array_setter_t *self,
+    afw_boolean_t *found,
+    afw_xctx_t *xctx);
+static const afw_value_t *
+impl_afw_array_managed_setter_shift_value(
+    const afw_array_setter_t *self,
+    afw_boolean_t *found,
+    afw_xctx_t *xctx);
 
 #undef AFW_IMPLEMENTATION_ID
 #define AFW_IMPLEMENTATION_ID "memory_managed"
@@ -80,12 +90,18 @@ impl_afw_array_managed_setter_remove_all_values(
     impl_afw_array_managed_setter_insert_value
 #define impl_afw_array_setter_remove_all_values \
     impl_afw_array_managed_setter_remove_all_values
+#define impl_afw_array_setter_pop_value \
+    impl_afw_array_managed_setter_pop_value
+#define impl_afw_array_setter_shift_value \
+    impl_afw_array_managed_setter_shift_value
 #include "afw_array_setter_impl_declares.h"
 #undef AFW_ARRAY_SETTER_INF_ONLY
 #undef impl_afw_array_setter_push_value
 #undef impl_afw_array_setter_set_value
 #undef impl_afw_array_setter_insert_value
 #undef impl_afw_array_setter_remove_all_values
+#undef impl_afw_array_setter_pop_value
+#undef impl_afw_array_setter_shift_value
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef AFW_IMPLEMENTATION_ID
 
@@ -185,6 +201,7 @@ afw_array_create_with_options(
 }
 
 
+/* Slot / get / pop lifetime: afw_array_create_managed in afw_array.h. */
 AFW_DEFINE(const afw_array_t *)
 afw_array_create_managed(
     const afw_data_type_t *data_type,
@@ -1235,6 +1252,80 @@ impl_afw_array_managed_setter_set_value(
         AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
     }
     afw_value_slot_store(slot, value, xctx);
+}
+
+
+/* Transferred extra-hold dies with the current scope, like a temp.
+ * See afw_array_create_managed. */
+static const afw_value_t *
+impl_register_transferred_temp(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_xctx_scope_t *scope;
+
+    if (!value) {
+        return NULL;
+    }
+    scope = afw_xctx_scope_current(xctx);
+    if (scope) {
+        afw_pool_release_value_at_cleanup(value, scope->p, xctx);
+    }
+    return value;
+}
+
+
+const afw_value_t *
+impl_afw_array_managed_setter_pop_value(
+    const afw_array_setter_t *self,
+    afw_boolean_t *found,
+    afw_xctx_t *xctx)
+{
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
+    const afw_value_t *value;
+
+    if (array_self->values->count == 0) {
+        if (found) {
+            *found = false;
+        }
+        return NULL;
+    }
+
+    if (found) {
+        *found = true;
+    }
+    value = afw_vector_last(array_self->values);
+    afw_vector_pop(array_self->values, xctx);
+    impl_maybe_clear_generic_data_type(array_self);
+    return impl_register_transferred_temp(value, xctx);
+}
+
+
+const afw_value_t *
+impl_afw_array_managed_setter_shift_value(
+    const afw_array_setter_t *self,
+    afw_boolean_t *found,
+    afw_xctx_t *xctx)
+{
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
+    const afw_value_t *value;
+
+    if (array_self->values->count == 0) {
+        if (found) {
+            *found = false;
+        }
+        return NULL;
+    }
+
+    if (found) {
+        *found = true;
+    }
+    value = array_self->values->entries[0];
+    afw_vector_remove(array_self->values, 0, xctx);
+    impl_maybe_clear_generic_data_type(array_self);
+    return impl_register_transferred_temp(value, xctx);
 }
 
 

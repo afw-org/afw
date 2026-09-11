@@ -1,4 +1,4 @@
-# Compile unit, leave, isolate-at-clone, builtin lifetime (landed); next: array_push_pop then FRV
+# Compile unit, leave, isolate-at-clone, builtin lifetime (landed); array_push_pop temp-on-scope (this branch); next: FRV
 
 **Audience:** next session. Not user docs (`whats-new.md` notes `slice` / `map` stay mutable).
 
@@ -61,9 +61,9 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 
 ## Next slices (agreed order)
 
-1. **`array_push_pop`** — `push` `slot_store`s `i` (extra hold on the managed integer in `xctx->p`). `pop`/`shift` transfer the pointer and do not `release`. After `i = i + 1` that transferred hold is leftover. Same family as the old integer leftover, in the array slot — not a calloc ring (store is `afw_vector`). Soak ~42 MiB/s on `develop` after #308 (~50 before). Do **not** `create_managed` in `array()` / `create_array()` (`[i]` compiles to `array()`; that spiked `array_rebind`). Do **not** extra-hold the popped occupant in `execute_pop` (the function returns the occupant). Do not wrap-at-execute of unmanaged. Do not paper over with last-result extra-hold.
+1. **`array_push_pop`** (this branch, uncommitted) — managed `pop`/`shift` transfer, then `afw_pool_release_value_at_cleanup` on the current scope so the extra-hold acts like a temp. Contract: `afw_array_create_managed`. Soak **flat**. Do **not** `create_managed` in `array()` / `create_array()`. Do **not** `get_assignable_for_lifetime` on the popped occupant (extra bump). Do not extra-hold in `execute_pop`.
 2. **FRV as stack leftover** — `#function_return_value` is compile-time (parse/decompile). Intended inf: evaluate / `get_assignable` are of the **inner**; wrapper has its own RC; last release frees wrapper + inner extra-hold. Enclosing call `pop_value` releases leftovers. **Remove** `consume()` / `is_function_return_value` peels. Unique consume today **transfers occupant, RC 0, no `free_memory`**. Braced (and now unbraced-wrapped) `i = f()` soak is under the bar because leftover dies with the body `{ }`. Do not paper over with a helper around assign. Do not treat extra-hold at `return()` as that design.
-3. **Runtime call-result hold** — evaluate-only inf (like `closure_binding`: display decompile, not recompile) for **managed built-in returns** and transferred occupants (`pop`). Same leftover protocol. Identity **`push`** (return same array) stays unwrapped. Keep separate from compile-time FRV until they match.
+3. **Runtime call-result hold** — evaluate-only inf (like `closure_binding`: display decompile, not recompile) for **managed built-in returns** if they still leftover. Identity **`push`** stays unwrapped. `pop`/`shift` are the scope-temp path, not this inf. Keep separate from compile-time FRV until they match.
 4. **Merge 2 and 3** only if the infs are actually the same.
 
 ---

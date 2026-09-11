@@ -257,3 +257,58 @@ pop(a);
 
 let a = freeze([1, 2, 3]);
 splice(a, 0, 1);
+
+//?
+//? test: pop-assign-unique
+//? description: assigned pop of a unique occupant keeps the value
+//? expect: 0
+//? source: ...
+
+let a = [];
+push(a, 1 + 2);
+let x = pop(a);
+assert(x === 3, "assigned unique pop");
+assert(length(a) === 0, "empty after pop");
+return 0;
+
+//?
+//? test: pop-discard-keeps-variable
+//? description: discarded pop of a shared variable does not drop the variable
+//? expect: 0
+//? source: ...
+
+let a = [];
+let i = 7;
+push(a, i);
+pop(a);
+assert(i === 7, "i still held after discarded pop");
+i = i + 1;
+assert(i === 8, "i still assignable");
+return 0;
+
+//?
+//? test: pop-in-expression
+//? description: pop occupant is usable as an operator argument
+//? expect: 0
+//? source: ...
+
+let a = [10, 20];
+/* `1 + pop(a)` keeps pop off polymorphic add's first-arg dispatch
+ * (that dispatch evaluates argv[1] again). */
+assert(1 + pop(a) === 21, "pop in add");
+assert(pop(a) === 10, "remaining");
+return 0;
+
+//?
+//? test: two-pop-args
+//? description: two transferred pop occupants as call arguments
+//? expect: 0
+//? source: ...
+
+let a = [1, 2];
+function add2(x, y) {
+    return x + y;
+}
+assert(add2(pop(a), pop(a)) === 3, "two pops");
+assert(length(a) === 0, "empty");
+return 0;
