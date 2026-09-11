@@ -23,7 +23,7 @@ Env registries, compile intern / script type names, runtime catalog, adapter ses
 
 ## Not converted
 
-- LMDB `dbi_handles` — leave while **#299**.
+- LMDB `dbi_handles` — last `apr_hash`. **#299** already landed; convert when wanted, not blocked on that PR.
 
 ## Later, not first
 

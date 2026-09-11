@@ -58,7 +58,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | afwdev / tests | recipe + tests-extra SCHEMA; #157; C probes #207 |
 | Crypto | #74 pad |
 | Admin / Fiddle | atlas §16 (contract only) |
-| C vector / hash table | [`afw-vector.md`](afw-vector.md); [`afw-hash-table.md`](afw-hash-table.md) (LMDB `dbi_handles` left while #299) |
+| C vector / hash table | [`afw-vector.md`](afw-vector.md) (last `apr_array` [PR #310](https://github.com/afw-org/afw/pull/310)); [`afw-hash-table.md`](afw-hash-table.md) (LMDB `dbi_handles` last `apr_hash`) |
 | Compile unit / leave / FRV | [PR #305](https://github.com/afw-org/afw/pull/305) unit; [PR #306](https://github.com/afw-org/afw/pull/306) leave/`last_result`; **next** FRV leftover [`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md) |
 
 ---
