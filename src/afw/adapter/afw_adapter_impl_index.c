@@ -14,6 +14,11 @@
 #include "afw_internal.h"
 #include "afw_adapter_impl_index.h"
 
+AFW_VECTOR_STRUCT(impl_index_cursor_p_vector_s,
+    const afw_adapter_impl_index_cursor_t *);
+typedef struct impl_index_cursor_p_vector_s
+    impl_index_cursor_p_vector_t;
+
 
 /* -------------------------------------------------------------------------
  * current:: variables for index filter/value evaluation (issue #54)
@@ -1508,7 +1513,7 @@ AFW_DEFINE(afw_boolean_t) afw_adapter_impl_index_sargable(
  */
 afw_boolean_t afw_adapter_impl_index_cursor_list_cardinality(
     const afw_adapter_impl_index_t * instance,
-    apr_array_header_t             * cursor_list,
+    impl_index_cursor_p_vector_t   * cursor_list,
     size_t                         * cardinality,
     afw_xctx_t                    * xctx)
 {
@@ -1518,13 +1523,12 @@ afw_boolean_t afw_adapter_impl_index_cursor_list_cardinality(
     int i;
 
     /* no cursors in the list indicates they were not sargable */
-    if (apr_is_empty_array(cursor_list))
+    if (!cursor_list || cursor_list->count == 0)
         return false;
   
     *cardinality = 0;
-    for (i = 0; i < cursor_list->nelts; i++) {
-        cursor = ((const afw_adapter_impl_index_cursor_t **)
-            cursor_list->elts)[i];
+    for (i = 0; i < (int)cursor_list->count; i++) {
+        cursor = cursor_list->entries[i];
 
         rc = afw_adapter_impl_index_cursor_get_count(
             cursor, &c, xctx);
@@ -1547,10 +1551,10 @@ afw_boolean_t afw_adapter_impl_index_cursor_list_cardinality(
  *
  * If cardinality cannot be computed, we simply choose one.
  */
-apr_array_header_t * afw_adapter_impl_index_cursor_list_join(
+impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list_join(
     const afw_adapter_impl_index_t * instance,
-    apr_array_header_t             * this_list,
-    apr_array_header_t             * that_list,
+    impl_index_cursor_p_vector_t   * this_list,
+    impl_index_cursor_p_vector_t   * that_list,
     afw_xctx_t                    * xctx)
 {
     size_t this_cardinality, that_cardinality;
@@ -1561,13 +1565,13 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list_join(
     /* unless we can do a real inner-join, we must indicate that
         the "joined" result list is not the result of an inner-join, but 
         a left or right outer join */
-    for (i = 0; i < this_list->nelts; i++) {
-        cursor = ((afw_adapter_impl_index_cursor_t**)this_list->elts)[i];
+    for (i = 0; i < (int)this_list->count; i++) {
+        cursor = (afw_adapter_impl_index_cursor_t *)this_list->entries[i];
         cursor->inner_join = false;
     }
 
-    for (i = 0; i < that_list->nelts; i++) {
-        cursor = ((afw_adapter_impl_index_cursor_t**)that_list->elts)[i];
+    for (i = 0; i < (int)that_list->count; i++) {
+        cursor = (afw_adapter_impl_index_cursor_t *)that_list->entries[i];
         cursor->inner_join = false;
     }
         
@@ -1613,49 +1617,47 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list_join(
  * Issue #303: it also sorted in the wrong direction. In
  * afw_adapter_impl_index_query()'s dedup loop, a cursor at position i
  * pays one cheap afw_adapter_impl_index_applies() check per object it
- * yields for each of the (nelts - i - 1) cursors after it - the last
+ * yields for each of the (count - i - 1) cursors after it - the last
  * position pays nothing. Total dedup-check cost is therefore
- * sum(objects_at(i) * (nelts - i - 1)), which the rearrangement
+ * sum(objects_at(i) * (count - i - 1)), which the rearrangement
  * inequality minimizes by putting the *smallest* cursor first (many
  * cheap per-object checks, but few objects) and the *largest* last
  * (many objects, but zero checks each) - the opposite of "highest
  * cardinality first."
  */
-apr_array_header_t * afw_adapter_impl_index_cursor_list_merge(
+impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list_merge(
     const afw_adapter_impl_index_t * instance,
-    apr_array_header_t             * this_list,
-    apr_array_header_t             * that_list,
+    impl_index_cursor_p_vector_t   * this_list,
+    impl_index_cursor_p_vector_t   * that_list,
     afw_xctx_t                    * xctx)
 {
-    apr_array_header_t *merged_list;
-    apr_array_header_t *temp;
+    impl_index_cursor_p_vector_t *merged_list;
+    impl_index_cursor_p_vector_t *temp;
     const afw_adapter_impl_index_cursor_t *this_cursor;
     const afw_adapter_impl_index_cursor_t *that_cursor;
     size_t this_cardinality, that_cardinality;
     afw_boolean_t have_this_cardinality, have_that_cardinality;
     afw_boolean_t inserted;
-    int merged_size;
+    afw_size_t merged_size;
     int i, j;
 
-    merged_size = this_list->nelts + that_list->nelts;
+    merged_size = this_list->count + that_list->count;
     merged_list = NULL;
     temp = that_list;
 
     /* walk through each item in this_list and merge it into a new one */
-    for (i = 0; i < this_list->nelts; i++) {
-        merged_list = apr_array_make(afw_pool_get_apr_pool(xctx->p),
-            merged_size, sizeof(const afw_adapter_impl_index_cursor_t *));
+    for (i = 0; i < (int)this_list->count; i++) {
+        merged_list = afw_vector_create(impl_index_cursor_p_vector_t,
+            merged_size, xctx->p, xctx);
 
-        this_cursor = ((const afw_adapter_impl_index_cursor_t **)
-            this_list->elts)[i];
+        this_cursor = this_list->entries[i];
 
         have_this_cardinality = afw_adapter_impl_index_cursor_get_count(
             this_cursor, &this_cardinality, xctx);
         inserted = false;
 
-        for (j = 0; j < temp->nelts; j++) {
-            that_cursor = ((const afw_adapter_impl_index_cursor_t **)
-                temp->elts)[j];
+        for (j = 0; j < (int)temp->count; j++) {
+            that_cursor = temp->entries[j];
 
             have_that_cardinality = afw_adapter_impl_index_cursor_get_count(
                 that_cursor, &that_cardinality, xctx);
@@ -1663,13 +1665,11 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list_merge(
             if (!inserted && have_this_cardinality && have_that_cardinality &&
                 this_cardinality < that_cardinality)
             {
-                *(const afw_adapter_impl_index_cursor_t**)
-                    apr_array_push(merged_list) = this_cursor;
+                afw_vector_push(merged_list, xctx) = this_cursor;
                 inserted = true;
             }
 
-            *(const afw_adapter_impl_index_cursor_t**)
-                apr_array_push(merged_list) = that_cursor;
+            afw_vector_push(merged_list, xctx) = that_cursor;
         }
 
         /*
@@ -1680,11 +1680,11 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list_merge(
          * exactly once regardless (issue #296 defect 1).
          */
         if (!inserted) {
-            *(const afw_adapter_impl_index_cursor_t**)
-                apr_array_push(merged_list) = this_cursor;
+            afw_vector_push(merged_list, xctx) = this_cursor;
         }
 
-        temp = apr_array_copy(afw_pool_get_apr_pool(xctx->p), merged_list);
+        temp = afw_vector_copy(impl_index_cursor_p_vector_t,
+            merged_list, xctx->p, xctx);
     }
 
     return merged_list;
@@ -1715,14 +1715,14 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list_merge(
  *      resulting conjunction.
  *
  */
-apr_array_header_t * afw_adapter_impl_index_cursor_list(
+impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
     const afw_adapter_impl_index_t          * instance,
     const afw_utf8_t                        * object_type_id,
     const afw_query_criteria_filter_entry_t * entry,
     afw_xctx_t                             * xctx)
 {  
     afw_adapter_impl_index_cursor_t *cursor = NULL;
-    apr_array_header_t *cursor_list, *next_list;
+    impl_index_cursor_p_vector_t *cursor_list, *next_list;
     const afw_object_t *indexDefinition;
     const afw_utf8_t *value_string;
     const afw_utf8_t *literal_prefix = NULL;
@@ -1731,8 +1731,8 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list(
 
     /* allocate our cursor_list that will contain a conjunction
         of cursors, representing this particular decision branch. */
-    cursor_list = apr_array_make(afw_pool_get_apr_pool(xctx->p), 8,
-        sizeof(const afw_adapter_impl_index_cursor_t*));
+    cursor_list = afw_vector_create(impl_index_cursor_p_vector_t,
+        8, xctx->p, xctx);
 
     if (entry == NULL) {
         /* No entry means empty cursor list */
@@ -1788,8 +1788,7 @@ apr_array_header_t * afw_adapter_impl_index_cursor_list(
         /* remember the afw_query_criteria_filter_entry for later */ 
         cursor->filter_entry = entry;
 
-        *(const afw_adapter_impl_index_cursor_t**)
-            apr_array_push(cursor_list) = cursor;
+        afw_vector_push(cursor_list, xctx) = cursor;
     }
 
     /* A bottom leaf of our query decision tree */
@@ -2050,7 +2049,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
     const afw_pool_t               * pool,
     afw_xctx_t                    * xctx)
 {
-    apr_array_header_t *cursors;
+    impl_index_cursor_p_vector_t *cursors;
     const afw_adapter_impl_index_cursor_t *current_cursor;
     const afw_adapter_impl_index_cursor_t *next_cursor;
     const afw_adapter_session_t *session;
@@ -2069,13 +2068,12 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
     cursors = afw_adapter_impl_index_cursor_list(instance,
         object_type_id, (criteria ? criteria->filter : NULL), xctx);
 
-    if (apr_is_empty_array(cursors)) {
+    if (!cursors || cursors->count == 0) {
         AFW_THROW_ERROR_Z(general,
             "Error: unable to parse filter into indexable cursors.", xctx);
     }
 
-    current_cursor = 
-        ((const afw_adapter_impl_index_cursor_t**)cursors->elts)[0];
+    current_cursor = cursors->entries[0];
 
     while (1)
     {
@@ -2090,7 +2088,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
             afw_adapter_impl_index_cursor_release(current_cursor, xctx);
 
             cursor_index++;
-            if (cursors->nelts == cursor_index) {
+            if ((int)cursors->count == cursor_index) {
                 /* we're at the end of our cursors */
                 session = afw_adapter_impl_index_get_session(instance, xctx);
                 afw_trace_fz(1, session->adapter->trace_flag_index, NULL, xctx,
@@ -2103,9 +2101,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
                 return;
             }
 
-            current_cursor =
-                ((const afw_adapter_impl_index_cursor_t**)
-                cursors->elts)[cursor_index];
+            current_cursor = cursors->entries[cursor_index];
 
             afw_pool_release(p, xctx);
             continue;
@@ -2130,9 +2126,8 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
          *  does require some additional CPU, but cuts down on memory.
          */
         afw_boolean_t duplicate = false;
-        for (i = cursor_index+1; i < cursors->nelts; i++) {
-            next_cursor = ((const afw_adapter_impl_index_cursor_t**)
-                cursors->elts)[i];
+        for (i = cursor_index+1; i < (int)cursors->count; i++) {
+            next_cursor = cursors->entries[i];
             /* 
                 The "applies" routine will check the filter entry for this
                 cursor, along with the object's matching property value, 

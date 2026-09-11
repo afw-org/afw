@@ -22,6 +22,9 @@
 #define AFW_ADAPTER_SESSION_SELF_T afw_ldap_internal_adapter_session_t
 #include "afw_adapter_session_impl_declares.h"
 
+AFW_VECTOR_STRUCT(impl_ldap_mod_p_vector_s, LDAPMod *);
+typedef struct impl_ldap_mod_p_vector_s impl_ldap_mod_p_vector_t;
+
 static const afw_utf8_t impl_s_objectclass_eq =
     AFW_UTF8_LITERAL("objectclass=");
 static const afw_utf8_t impl_s_structural_eq =
@@ -326,7 +329,7 @@ impl_afw_adapter_session_add_object(
     const afw_pool_t *p;
     afw_ldap_object_type_attribute_t *first_attribute;
     afw_ldap_object_type_attribute_t *attribute;
-    apr_array_header_t *mods;
+    impl_ldap_mod_p_vector_t *mods;
     const afw_value_t *value;
     const afw_value_t *property_name;
     const afw_utf8_t *property_name_utf8;
@@ -358,9 +361,9 @@ impl_afw_adapter_session_add_object(
             AFW_UTF8_FMT_ARG(object_type_id));
     }
 
-    /* Create mods array. */
+    /* Create mods vector. */
     p = afw_pool_create(self->pub.p, xctx);
-    mods = apr_array_make(afw_pool_get_apr_pool(p), 10, sizeof(LDAPMod *));
+    mods = afw_vector_create(impl_ldap_mod_p_vector_t, 10, p, xctx);
 
     /* Add objectClass. */
     mod = afw_pool_calloc_type(p, LDAPMod, xctx);
@@ -371,7 +374,7 @@ impl_afw_adapter_session_add_object(
     (*bvals)->bv_len = (ber_len_t)object_type_id->len;
     (*bvals)->bv_val = (char *)object_type_id->s;
     mod->mod_vals.modv_bvals = bvals;
-    APR_ARRAY_PUSH(mods, LDAPMod *) = mod;
+    afw_vector_push(mods, xctx) = mod;
 
     /* Loop adding properties. */
     iterator = NULL;
@@ -395,18 +398,18 @@ impl_afw_adapter_session_add_object(
             mod->mod_type = apr_pstrndup(afw_pool_get_apr_pool(p),
                 property_name_utf8->s, property_name_utf8->len);
             mod->mod_vals.modv_bvals = bvals;
-            APR_ARRAY_PUSH(mods, LDAPMod *) = mod;
+            afw_vector_push(mods, xctx) = mod;
         }
     }
 
     /* Mark end of mods with NULL. */
-    APR_ARRAY_PUSH(mods, LDAPMod *) = NULL;
+    afw_vector_push(mods, xctx) = NULL;
 
     /* Make null terminated dn. */
     dn_z = (char *)afw_utf8_to_utf8_z(suggested_object_id, p, xctx);
 
     /* Add object. */
-    rv = ldap_add_s(self->ld, dn_z, (LDAPMod * *)mods->elts);
+    rv = ldap_add_s(self->ld, dn_z, mods->entries);
     if (rv != LDAP_SUCCESS) {
         AFW_THROW_ERROR_RV_Z(general, ldap, rv, "ldap_add_s() failed.",
             xctx);
@@ -438,7 +441,7 @@ impl_afw_adapter_session_modify_object(
     const afw_pool_t *p;
     afw_ldap_object_type_attribute_t *first_attribute;
     afw_ldap_object_type_attribute_t *attribute;
-    apr_array_header_t *mods;
+    impl_ldap_mod_p_vector_t *mods;
     const afw_utf8_t *property_name;
     const afw_adapter_modify_entry_t * const * e;
     LDAPMod *mod;
@@ -462,7 +465,7 @@ impl_afw_adapter_session_modify_object(
 
     /* Create mods. */
     p = afw_pool_create(self->pub.p, xctx);
-    mods = apr_array_make(afw_pool_get_apr_pool(p), 10, sizeof(LDAPMod *));
+    mods = afw_vector_create(impl_ldap_mod_p_vector_t, 10, p, xctx);
     afw_memory_clear(&mod);
     for (e = entry; *e; e++) {
 
@@ -522,17 +525,17 @@ impl_afw_adapter_session_modify_object(
                 "Unsupported entry type %d", (*e)->type);
         }
 
-        APR_ARRAY_PUSH(mods, LDAPMod *) = mod;
+        afw_vector_push(mods, xctx) = mod;
     }
 
     /* Mark end of mods with NULL. */
-    APR_ARRAY_PUSH(mods, LDAPMod *) = NULL;
+    afw_vector_push(mods, xctx) = NULL;
 
     /* Make null terminated dn. */
     dn_z = (char *)afw_utf8_to_utf8_z(object_id, p, xctx);
 
     /* Modify object. */
-    rv = ldap_modify_s(self->ld, dn_z, (LDAPMod * *)mods->elts);
+    rv = ldap_modify_s(self->ld, dn_z, mods->entries);
     if (rv != LDAP_SUCCESS) {
         AFW_THROW_ERROR_RV_Z(general, ldap, rv, "ldap_modify_s() failed.",
             xctx);

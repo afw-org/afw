@@ -339,9 +339,9 @@ afw_environment_create(
     env->data_type_method_number_ht = afw_hash_table_create(
         afw_void_hash_table_t, p, xctx);
 
-    /* Create data type array for method arrays. */
-    env->data_type_methods = apr_array_make(afw_pool_get_apr_pool(p),
-        40, sizeof(apr_array_header_t *));
+    /* Create data type vector for method vectors. */
+    env->data_type_methods = afw_vector_create(
+        afw_environment_data_type_methods_vector_t, 40, p, xctx);
 
     /* Set xctx name to program name or default. */
     if (argc > 0) {
@@ -431,17 +431,14 @@ afw_environment_create(
     env->registry_names_ht = afw_hash_table_create(
         afw_void_hash_table_t, p, xctx);
 
-    env->registry_types =
-        apr_array_make(afw_pool_get_apr_pool(p), 20,
-            sizeof(afw_environment_registry_type_t *));
-    if (!env->registry_types) AFW_THROW_MEMORY_ERROR(xctx);
+    env->registry_types = afw_vector_create(
+        afw_environment_registry_type_p_vector_t, 20, p, xctx);
 
     /* Create core registry types. */
     for (i = 0; i < afw_environemnt_registry_type_max_core_type; i++) {
         type = afw_pool_calloc_type(p,
             afw_environment_registry_type_t, xctx);
-        APR_ARRAY_PUSH(env->registry_types,
-            afw_environment_registry_type_t *) = type;
+        afw_vector_push(env->registry_types, xctx) = type;
         type->registry_type_id = &impl_initial_types[i].registry_type_id;
         type->property_name = &impl_initial_types[i].property_name;
         type->object_type_id = &impl_initial_types[i].object_type_id;
@@ -469,9 +466,8 @@ afw_environment_create(
     }
 
     /* Register registry type objects and property names. */
-    for (i = 0; i < env->registry_types->nelts; i++) {
-        type = APR_ARRAY_IDX(env->registry_types, i,
-            afw_environment_registry_type_t *);
+    for (i = 0; i < (int)env->registry_types->count; i++) {
+        type = env->registry_types->entries[i];
         afw_runtime_env_create_and_set_indirect_object_using_inf(
             &afw_runtime_inf__AdaptiveEnvironmentRegistryType_,
             type->registry_type_id, type, true, xctx);
@@ -585,8 +581,7 @@ afw_environment_create_registry_type(
         /* Create new registry type. */
         type = afw_pool_calloc_type(xctx->env->p,
             afw_environment_registry_type_t, xctx);
-        APR_ARRAY_PUSH(env->registry_types,
-            afw_environment_registry_type_t *) = type;
+        afw_vector_push(env->registry_types, xctx) = type;
         type->registry_type_id = afw_utf8_clone(registry_type_id,
             xctx->env->p, xctx);
         type->property_name = afw_utf8_clone(property_name,
@@ -594,7 +589,7 @@ afw_environment_create_registry_type(
         type->object_type_id = afw_utf8_clone(object_type_id,
             xctx->env->p, xctx);
         type->description = afw_utf8_clone(description, xctx->env->p, xctx);
-        type->number = env->registry_types->nelts - 1;
+        type->number = (int)env->registry_types->count - 1;
         type->ht = afw_hash_table_create(afw_void_hash_table_t,
             xctx->env->p, xctx);
         type->allow_reregister = allow_reregister;
@@ -665,13 +660,12 @@ afw_environment_get_registry_type_by_number(
 
     env = (afw_environment_internal_t *)xctx->env;
 
-    if (registry_type_number >= env->registry_types->nelts) {
+    if (registry_type_number >= (int)env->registry_types->count) {
         return NULL;
     }
 
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
-        type = ((afw_environment_registry_type_t **)env->registry_types->elts)
-            [registry_type_number];
+        type = env->registry_types->entries[registry_type_number];
     }
     AFW_LOCK_END;
 
@@ -697,12 +691,11 @@ afw_environment_registry_register(
 
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
 
-        if (type_number >= env->registry_types->nelts) {
+        if (type_number >= (int)env->registry_types->count) {
             AFW_THROW_ERROR_FZ(general, xctx, "Invalid type_number %d.",
                 type_number);
         }
-        type = ((afw_environment_registry_type_t **)env->registry_types->elts)
-            [type_number];
+        type = env->registry_types->entries[type_number];
 
         use_key = key->s;
         old_value = afw_hash_table_get(type->ht, key->s, key->len);
@@ -830,14 +823,13 @@ afw_environment_registry_key_exists(
 
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
         if (type_number < 0 ||
-            type_number >= env->registry_types->nelts)
+            type_number >= (int)env->registry_types->count)
         {
             AFW_THROW_ERROR_FZ(general, xctx, "Invalid type_number.",
                 type_number);
         }
 
-        type = ((afw_environment_registry_type_t **)env->registry_types->elts)
-            [type_number];
+        type = env->registry_types->entries[type_number];
 
         result = (afw_hash_table_get(type->ht, key->s, key->len) != NULL);
     }
@@ -865,14 +857,13 @@ afw_environment_registry_get(
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
 
         if (type_number < 0 ||
-            type_number >= env->registry_types->nelts)
+            type_number >= (int)env->registry_types->count)
         {
             AFW_THROW_ERROR_FZ(general, xctx, "Invalid type_number.",
                 type_number);
         }
 
-        type = ((afw_environment_registry_type_t **)env->registry_types->elts)
-            [type_number];
+        type = env->registry_types->entries[type_number];
 
         result = afw_hash_table_get(type->ht, key->s, key->len);
 
@@ -915,13 +906,12 @@ afw_environment_registry_get_xctxless(
     self = (afw_environment_internal_t *)env;
 
     if (type_number < 0 ||
-        type_number >= self->registry_types->nelts)
+        type_number >= (int)self->registry_types->count)
     {
         return NULL;
     }
 
-    type = ((afw_environment_registry_type_t **)self->registry_types->elts)
-        [type_number];
+    type = self->registry_types->entries[type_number];
 
     result = afw_hash_table_get(type->ht, key->s, key->len);
 
@@ -948,14 +938,13 @@ afw_environment_foreach(
 
     env = (afw_environment_internal_t *)xctx->env;
 
-    if (type_number >= env->registry_types->nelts) {
+    if (type_number >= (int)env->registry_types->count) {
         AFW_THROW_ERROR_FZ(general, xctx, "Invalid type_number.",
             type_number);
     }
 
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
-        type = ((afw_environment_registry_type_t **)env->registry_types->elts)
-            [type_number];
+        type = env->registry_types->entries[type_number];
 
         for (afw_hash_table_first(type->ht, &hi);
             afw_hash_table_this(&hi, (const void **)&key_s,
@@ -1270,7 +1259,7 @@ afw_environment_register_data_type(
 {
     afw_data_type_t *dt;
     afw_environment_internal_t *env;
-    apr_array_header_t **h;
+    afw_environment_data_type_method_p_vector_t **h;
 
     env = (afw_environment_internal_t *)xctx->env;
 
@@ -1287,7 +1276,7 @@ afw_environment_register_data_type(
         if (data_type->data_type_number == 0) {
             dt = afw_xctx_calloc(sizeof(afw_data_type_t), xctx);
             memcpy(dt, data_type, sizeof(afw_data_type_t));
-            dt->data_type_number = env->data_type_methods->nelts;
+            dt->data_type_number = (int)env->data_type_methods->count;
             data_type = dt;
         }
 
@@ -1298,19 +1287,22 @@ afw_environment_register_data_type(
                 xctx);
         }
 
-        /* Assign empty array to data type's position. */
-        while (env->data_type_methods->nelts < data_type->data_type_number) {
-            APR_ARRAY_PUSH(env->data_type_methods, apr_array_header_t *) = NULL;
+        /* Assign empty method vector to data type's position. */
+        while ((int)env->data_type_methods->count <
+            data_type->data_type_number)
+        {
+            afw_vector_push(env->data_type_methods, xctx) = NULL;
         }
-        h = &((apr_array_header_t **)env->data_type_methods->elts)
-            [data_type->data_type_number - 1];
+        h = &env->data_type_methods->entries[
+            data_type->data_type_number - 1];
         if (*h) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Data type number %d is already registered.",
                 data_type->data_type_number);
         }
-        *h = apr_array_make(afw_pool_get_apr_pool(xctx->p),
-            30, sizeof(apr_array_header_t *));
+        *h = afw_vector_create(
+            afw_environment_data_type_method_p_vector_t,
+            30, xctx->p, xctx);
 
         /* Register data type. */
         afw_environment_registry_register(
@@ -1417,7 +1409,7 @@ afw_environment_register_function(
 {
     afw_value_function_definition_t *f;
     int *method_number;
-    apr_array_header_t *methods;
+    afw_environment_data_type_method_p_vector_t *methods;
     afw_environment_internal_t *env;
 
     if (!function->inf) {
@@ -1577,14 +1569,15 @@ afw_environment_register_function(
 
         /* If there was a data type id, set method. */
         if (function->dataType && function->dataType->internal.len > 0) {
-            methods = ((apr_array_header_t **)env->data_type_methods->elts)
-                [function->data_type->data_type_number - 1];
-            while (methods->nelts < function->dataTypeMethodNumber) {
-                APR_ARRAY_PUSH(methods, const afw_value_function_definition_t *) =
-                    NULL;
+            methods = env->data_type_methods->entries[
+                function->data_type->data_type_number - 1];
+            while ((afw_integer_t)methods->count <
+                function->dataTypeMethodNumber)
+            {
+                afw_vector_push(methods, xctx) = NULL;
             }
-            ((const afw_value_function_definition_t **)methods->elts)
-                [function->dataTypeMethodNumber - 1] = function;
+            methods->entries[function->dataTypeMethodNumber - 1] =
+                function;
         }
 
         /* Add function object to runtime. */
@@ -1605,7 +1598,7 @@ afw_environment_get_qualified_function(
     int *method_number;
     afw_environment_internal_t *env;
     const afw_data_type_t *data_type;
-    apr_array_header_t *methods;
+    afw_environment_data_type_method_p_vector_t *methods;
 
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
 
@@ -1618,12 +1611,10 @@ afw_environment_get_qualified_function(
                     env->data_type_method_number_ht,
                     name->s, name->len);
                 if (method_number) {
-                    methods = ((apr_array_header_t **)
-                        env->data_type_methods->elts)
-                        [data_type->data_type_number - 1];
-                    if (*method_number <= methods->nelts) {
-                        result = ((const afw_value_function_definition_t **)
-                            methods->elts)[(*method_number) - 1];
+                    methods = env->data_type_methods->entries[
+                        data_type->data_type_number - 1];
+                    if (*method_number <= (int)methods->count) {
+                        result = methods->entries[(*method_number) - 1];
                     }
                 }
             }
@@ -1649,7 +1640,7 @@ afw_environment_registry_get_data_type_method(
     afw_xctx_t *xctx)
 {
     const afw_value_function_definition_t *result;
-    apr_array_header_t *d;
+    afw_environment_data_type_method_p_vector_t *d;
     afw_environment_internal_t *env;
 
     env = (afw_environment_internal_t *)xctx->env;
@@ -1661,15 +1652,16 @@ afw_environment_registry_get_data_type_method(
 
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
 
-        if (data_type->data_type_number > env->data_type_methods->nelts) {
+        if (data_type->data_type_number >
+            (int)env->data_type_methods->count)
+        {
             AFW_THROW_ERROR_Z(general, "Data type number out of range", xctx);
         }
 
-        d = ((apr_array_header_t **)env->data_type_methods->elts)
-            [data_type->data_type_number - 1];
-        if (dataTypeMethodNumber <= d->nelts) {
-            result = ((const afw_value_function_definition_t **)d->elts)
-                [dataTypeMethodNumber - 1];
+        d = env->data_type_methods->entries[
+            data_type->data_type_number - 1];
+        if (dataTypeMethodNumber <= (afw_integer_t)d->count) {
+            result = d->entries[dataTypeMethodNumber - 1];
         }
 
     }
