@@ -92,6 +92,10 @@ If unsure whether something is sense 1 vs 2, prefer **not promoting** to public 
 - `AFW_DECLARE_INTERNAL` / `AFW_DEFINE_INTERNAL` = not external API (no export declspec). Prefer those symbols in `*_internal.h`, not on the `afw.h` surface. If an extension/command legitimately needs a helper, promote to `AFW_DECLARE` and document under impl/public.
 - `afw_runtime_object_maps.h` stays public: extensions reference exported core `afw_runtime_inf_*` symbols.
 
+## Generated file banners (soon — not done yet)
+
+Hand-written headers: no generated banner. Generated `.h`/`.c`: **by** `afwdev generate` (or the rare other emitter) and **from** the `generate/` input(s), plus “do not edit.” Today `c.get_generated_by` only stamps the command + srcdir. Tracked as soon in [`beta-backlog.md`](../beta-backlog.md) Inbox.
+
 ## Extension / command headers (planned cleanup — not done yet)
 
 **Policy:** Only **libafw** has a real public C API (`afw.h` / install). Extension and
