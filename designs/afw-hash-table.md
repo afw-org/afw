@@ -24,7 +24,6 @@ Env registries, compile intern / script type names, runtime catalog, adapter ses
 ## Not converted
 
 - LMDB `dbi_handles` — leave while **#299**.
-- Env `registry_types` / `data_type_methods`, ldap mods, index — still growable arrays, not this table.
 
 ## Later, not first
 

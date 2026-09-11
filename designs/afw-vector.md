@@ -13,9 +13,9 @@
 - **Copy-out:** `afw_vector_copy_entries` mallocs exact `count * entry_size` in dest `p`. `afw_vector_release` `free_memory`s the work header and chunk (no `get_reference`). Compile args use `copy_entries_and_release` in `parser->p` — no child pool per list. `afw_vector_append` copies n entries.
 - **Growth:** `growth` 0 = cannot grow; >0 = add that many entries per grow (at least what this call needs); <0 = multiply current allocated by `|n|` (`-2` = double). Default create is `-2`. Qualifier/eval stacks use 0 (fixed; eval allocates `evaluation_stack_maximum_count` up front).
 - **`afw_stack` and `array_template` removed.** Qualifier/eval stacks and `scope_stack` are vectors on xctx. Scope stack is `create_fixed_unhandled` sized to `evaluation_stack_maximum_count` (xctx init still cannot use `AFW_TRY`).
+- Remaining in-tree **`apr_array`** call sites converted: env `registry_types` / `data_type_methods`, LDAP mods, adapter index cursor lists.
 
 ## Later
 
-- Align memory-array methods with Script `push`/`splice`/`for-of` and journal-style cursors. Faces / wrapper / managed vs unmanaged stay; the store is already a vector of `const afw_value_t *`. Stay off **#299**.
-- Env `registry_types` / `data_type_methods`, ldap mods, index (Jeremy #299) still need a growable array pass.
+- Align memory-array methods with Script `push`/`splice`/`for-of` and journal-style cursors. Faces / wrapper / managed vs unmanaged stay; the store is already a vector of `const afw_value_t *`.
 - **Hash table:** [`afw-hash-table.md`](afw-hash-table.md) landed on `develop` ([PR #301](https://github.com/afw-org/afw/pull/301)); LMDB `dbi_handles` left while #299.
