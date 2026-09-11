@@ -690,9 +690,9 @@
  *
  * Header stays put; entries points at the current chunk and may
  * move on grow. Declare a typed overlay with AFW_VECTOR_STRUCT so
- * push/index
- * are type-checked. Not an Adaptive array: no values, no meta, no
- * setter. Memory-array may sit on a vector later.
+ * push/index are type-checked. Not an Adaptive array: no values,
+ * no meta, no setter. The in-memory array store is a vector of
+ * value pointers. Usage example: afw_vector.h.
  */
 
 /**
@@ -704,7 +704,7 @@
  * (caller keeps key memory alive). Set value NULL deletes. Declare
  * a typed overlay with AFW_HASH_TABLE_STRUCT; get returns void *
  * (assign to a typed pointer). Not an Adaptive object: no values,
- * no meta, no get_reference.
+ * no meta, no get_reference. Usage example: afw_hash_table.h.
  */
 
 /**

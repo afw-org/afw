@@ -29,7 +29,29 @@
  *
  * Declare a typed overlay, then use shared macros. Value type
  * lives on the variable. Get returns void * (assign to a typed
- * pointer).
+ * pointer). The usual drop-in is afw_void_hash_table_t.
+ *
+ * Example:
+ *
+ *     afw_void_hash_table_t *ht;
+ *     afw_hash_table_index_t hi;  // stack iterator; not across grow
+ *     const afw_utf8_t *name;     // key bytes must outlive the table
+ *     const void *key;
+ *     afw_size_t klen;
+ *     void *value, *found;
+ *
+ *     // Usual drop-in: void * values, 16 buckets, doubles on load.
+ *     ht = afw_hash_table_create(afw_void_hash_table_t, p, xctx);
+ *     afw_hash_table_set(ht, name->s, name->len, value, xctx);
+ *     value = afw_hash_table_get(ht, name->s, name->len);
+ *     value = afw_hash_table_get_utf8(ht, name);  // same, from utf8
+ *     for (afw_hash_table_first(ht, &hi);
+ *         afw_hash_table_this(&hi, &key, &klen, &value);
+ *         afw_hash_table_next(&hi))
+ *     {
+ *         found = value;  // assign to a typed pointer at the call
+ *     }
+ *     afw_hash_table_set_utf8(ht, name, NULL, xctx);  // NULL deletes
  */
 
 AFW_BEGIN_DECLARES
@@ -76,7 +98,19 @@ typedef struct afw_hash_table_index_s afw_hash_table_index_t;
  * @param value_type stored value type (documentation / typed fields).
  *
  * Fields must match afw_hash_table_s. internal is the untyped
- * impl view (const, like an interface instance).
+ * impl view (const, like an interface instance). Most call sites
+ * use afw_void_hash_table_t instead of a new overlay.
+ *
+ * Example:
+ *
+ *     // Optional typed overlay; most sites use afw_void_hash_table_t.
+ *     AFW_HASH_TABLE_STRUCT(impl_type_hash_table_s, void *);
+ *     typedef struct impl_type_hash_table_s impl_type_hash_table_t;
+ *     impl_type_hash_table_t *ht;
+ *
+ *     ht = afw_hash_table_create(impl_type_hash_table_t, p, xctx);
+ *     afw_hash_table_set_utf8(ht, name, value, xctx);  // key not copied
+ *     value = afw_hash_table_get_utf8(ht, name);       // NULL if absent
  */
 #define AFW_HASH_TABLE_STRUCT(struct_name, value_type) \
 struct struct_name { \
@@ -256,6 +290,8 @@ afw_hash_table_release_impl(
  *     const void *key;
  *     afw_size_t klen;
  *     void *value;
+ *
+ *     // Safe to set the current value to NULL (delete) in the body.
  *     for (afw_hash_table_first(ht, &hi);
  *         afw_hash_table_this(&hi, &key, &klen, &value);
  *         afw_hash_table_next(&hi))

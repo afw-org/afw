@@ -28,6 +28,29 @@
  *
  * Declare a typed overlay, then use shared macros. Element type lives
  * on the variable, not restated at each push.
+ *
+ * Example:
+ *
+ *     // Typed overlay: entries is const afw_utf8_t **.
+ *     AFW_VECTOR_STRUCT(impl_name_p_vector_s, const afw_utf8_t *);
+ *     typedef struct impl_name_p_vector_s impl_name_p_vector_t;
+ *
+ *     impl_name_p_vector_t *v;
+ *     const afw_utf8_t *name;
+ *     const afw_utf8_t **out;
+ *     afw_size_t i, n;
+ *
+ *     // 8 slots to start; count is 0; grows by doubling.
+ *     v = afw_vector_create(impl_name_p_vector_t, 8, p, xctx);
+ *     afw_vector_push(v, xctx) = name;       // append
+ *     afw_vector_insert(v, 0, xctx) = name;  // hole at 0; rest move up
+ *     for (i = 0; i < v->count; i++) {
+ *         name = v->entries[i];  // invalid after the next grow
+ *     }
+ *     name = afw_vector_last(v);  // peek; do not pop empty
+ *     afw_vector_pop(v, xctx);    // drop last; does not yield it
+ *     // Exact-sized copy in p, then free the work vector.
+ *     afw_vector_copy_entries_and_release(v, &n, &out, p, xctx);
  */
 
 AFW_BEGIN_DECLARES
@@ -64,6 +87,16 @@ typedef struct afw_vector_s afw_vector_t;
  * Fields must match afw_vector_s, with entries typed. internal is
  * the untyped impl view (const, like an interface instance).
  * Writes go through the typed fields or the impl cast.
+ *
+ * Example:
+ *
+ *     // entries is int *; push is an lvalue of that type.
+ *     AFW_VECTOR_STRUCT(impl_int_vector_s, int);
+ *     typedef struct impl_int_vector_s impl_int_vector_t;
+ *     impl_int_vector_t *v;
+ *
+ *     v = afw_vector_create(impl_int_vector_t, 4, p, xctx);
+ *     afw_vector_push(v, xctx) = 1;
  */
 #define AFW_VECTOR_STRUCT(struct_name, entry_type) \
 struct struct_name { \
@@ -310,9 +343,8 @@ afw_vector_release_impl(
 /**
  * @brief Copy used entries to an exact-sized typed block.
  *
+ *     // out is entry_type *; n is used count. Does not release v.
  *     afw_vector_copy_entries(v, &n, &out, p, xctx);
- *
- * out is entry_type *.
  */
 #define afw_vector_copy_entries(instance, count, ptr, p, xctx) \
     afw_vector_copy_entries_impl(&((instance)->internal), \
@@ -353,7 +385,7 @@ afw_vector_release_impl(
  * instance->entries may move. Do not hold interior pointers
  * across this call. Use as a statement:
  *
- *     afw_vector_push(v, xctx) = value;
+ *     afw_vector_push(v, xctx) = value;  // lvalue; grow first
  *
  * The impl call is a full statement so grow finishes before
  * entries is used.
@@ -374,8 +406,8 @@ afw_vector_release_impl(
  *
  * Does not yield the value. Peek first:
  *
- *     value = afw_vector_last(v);
- *     afw_vector_pop(v, xctx);
+ *     value = afw_vector_last(v);  // copy before pop
+ *     afw_vector_pop(v, xctx);     // throws if empty
  *
  * The popped slot remains in the buffer until overwritten.
  */
@@ -388,7 +420,7 @@ afw_vector_release_impl(
  * index equal to count appends. index must not have side
  * effects (evaluated more than once). Use as a statement:
  *
- *     afw_vector_insert(v, i, xctx) = value;
+ *     afw_vector_insert(v, i, xctx) = value;  // hole; rest move up
  */
 #define afw_vector_insert(instance, index, xctx) \
     afw_vector_insert_impl( \
