@@ -11,7 +11,10 @@
  * @file afw_value_function_return_value.c
  * @brief Implementation of afw_value interface for function return temps
  *
- * Return-experiment wrapper. May be adjusted or thrown away.
+ * Create: RC 1, occupant stored via get_assignable_value. Evaluate peeks
+ * the occupant. Last release of the wrapper releases the occupant and
+ * frees the header. Leftover wrappers live on the evaluation stack until
+ * the call that received them pops.
  */
 
 #include "afw_internal.h"
@@ -52,135 +55,12 @@ afw_value_function_return_value_create(
     if (!p) {
         p = xctx->p;
     }
-    /* Caller already chose dest_p (usually the caller's evaluation heap). */
     self = afw_pool_calloc_type(p, AFW_VALUE_SELF_T, xctx);
     self->inf = &afw_value_function_return_value_inf;
     self->p = p;
-    /* Birth hold of the wrapper. Occupant is assignable (return slot). */
     self->reference_count = 1;
-    self->return_value = return_value
-        ? afw_value_get_assignable(return_value, xctx)
-        : NULL;
+    self->return_value = afw_value_get_assignable(return_value, xctx);
     return &self->pub;
-}
-
-
-/* Host consume: same as get_assignable_value of a return temp. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_function_return_value_consume(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    if (!afw_value_is_function_return_value(value)) {
-        return value;
-    }
-    return afw_value_get_assignable(value, xctx);
-}
-
-
-static const afw_value_t *
-impl_raw_optional_evaluate(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    if (!value || !value->inf || !value->inf->optional_evaluate) {
-        return value;
-    }
-    return value->inf->optional_evaluate(value, p, xctx);
-}
-
-
-/* Everyday evaluate: consume a return temp so callers see the occupant. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_evaluate_impl(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *result;
-
-    result = impl_raw_optional_evaluate(value, p, xctx);
-    if (afw_value_is_function_return_value(result)) {
-        result = afw_value_get_assignable(result, xctx);
-    }
-    return result;
-}
-
-
-/*
- * Parameter window: raw evaluate so we still see a return temp, then
- * get_assignable_value (hold inner, release wrapper) and park occupant.
- */
-AFW_DEFINE(void)
-afw_value_evaluate_for_parameter(
-    const afw_value_t **parked,
-    const afw_value_t **evaluated,
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *result;
-
-    *parked = NULL;
-    *evaluated = value;
-
-    if (value &&
-        (!value->inf ||
-            ((afw_size_t)value->inf <= 4096) ||
-            (((afw_size_t)value->inf) & (sizeof(void *) - 1)) != 0))
-    {
-        AFW_THROW_ERROR_Z(general,
-            "evaluate_for_parameter: value inf is not a pointer", xctx);
-    }
-
-    if (afw_value_is_function_return_value(value)) {
-        *evaluated = afw_value_get_assignable(value, xctx);
-        *parked = *evaluated;
-        return;
-    }
-    if (afw_value_is_defined_and_evaluated(value)) {
-        return;
-    }
-
-    result = impl_raw_optional_evaluate(value, p, xctx);
-    if (result &&
-        (!result->inf ||
-            ((afw_size_t)result->inf <= 4096) ||
-            (((afw_size_t)result->inf) & (sizeof(void *) - 1)) != 0))
-    {
-        AFW_THROW_ERROR_Z(general,
-            "evaluate_for_parameter: evaluate produced a non-value", xctx);
-    }
-    if (afw_value_is_function_return_value(result)) {
-        *evaluated = afw_value_get_assignable(result, xctx);
-        *parked = *evaluated;
-        return;
-    }
-    *evaluated = result;
-}
-
-
-AFW_DEFINE(const afw_value_t *)
-afw_value_evaluate_and_park(
-    const afw_value_t *value,
-    afw_size_t parameter_number,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *parked;
-    const afw_value_t *evaluated;
-
-    afw_xctx_evaluation_stack_push_parameter_number(parameter_number, xctx);
-    afw_value_evaluate_for_parameter(&parked, &evaluated, value, p, xctx);
-    if (parked) {
-        afw_xctx_evaluation_stack_pop_parameter_number(parked, xctx);
-    }
-    else {
-        afw_xctx_evaluation_stack_pop(xctx);
-    }
-    return evaluated;
 }
 
 
@@ -227,19 +107,7 @@ impl_afw_value_get_assignable_value(
     AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *inner;
-
-    inner = self->return_value;
-    if (self->reference_count <= 1) {
-        /* Unique wrapper: transfer occupant to caller. Header stays
-         * in self->p until that pool dies. */
-        self->return_value = NULL;
-        self->reference_count = 0;
-        return inner;
-    }
-    inner = afw_value_get_assignable(inner, xctx);
-    self->reference_count--;
-    return inner;
+    return afw_value_get_assignable(self->return_value, xctx);
 }
 
 
@@ -253,8 +121,7 @@ impl_afw_value_optional_evaluate(
     afw_xctx_t *xctx)
 {
     (void)p;
-    (void)xctx;
-    /* Peek only. Consume is get_assignable_value. */
+    afw_xctx_evaluation_stack_push_value(&self->pub, xctx);
     return self->return_value;
 }
 

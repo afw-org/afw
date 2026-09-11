@@ -95,30 +95,16 @@ afw_function_execute_convert(
     afw_function_execute_t *x)
 {
     const afw_value_t *result;
-    const afw_value_t *parked;
     afw_xctx_t *xctx = x->xctx;
 
-    /*
-     * One parameter pair covers evaluate and convert so a throw still
-     * has marker + number for backtrace.
-     */
     result = (x->argc >= 1) ? x->argv[1] : NULL;
-    afw_xctx_evaluation_stack_push_parameter_number(1, xctx);
-    afw_value_evaluate_for_parameter(&parked, &result, result, x->p, xctx);
+    result = afw_value_evaluate_and_park(result, 1, x->p, xctx);
     if (!result) {
         AFW_THROW_ERROR_Z(undefined_value,
             "Parameter 1 is undefined value", xctx);
     }
-    result = afw_value_convert(result,
+    return afw_value_convert(result,
         x->function->returns->data_type, false, x->p, xctx);
-    if (parked) {
-        afw_xctx_evaluation_stack_pop_parameter_number(parked, xctx);
-    }
-    else {
-        afw_xctx_evaluation_stack_pop(xctx);
-    }
-
-    return result;
 }
 
 
@@ -284,23 +270,8 @@ afw_function_evaluate_parameter(
     /* Get possibly unevaluated result from argv. */
     result = ((parameter_number <= x->argc) ? x->argv[parameter_number] : NULL);
 
-    /*
-     * Park occupant hold (if any) for pop_value; execute uses evaluated.
-     */
-    {
-        const afw_value_t *parked;
-
-        afw_xctx_evaluation_stack_push_parameter_number(
-            parameter_number, xctx);
-        afw_value_evaluate_for_parameter(
-            &parked, &result, result, x->p, xctx);
-        if (parked) {
-            afw_xctx_evaluation_stack_pop_parameter_number(parked, xctx);
-        }
-        else {
-            afw_xctx_evaluation_stack_pop(xctx);
-        }
-    }
+    result = afw_value_evaluate_and_park(result, parameter_number,
+        x->p, xctx);
 
     /* If result is undefined, return NULL. Fuss if required. */
     if (afw_value_is_undefined(result)) {

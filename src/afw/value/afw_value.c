@@ -40,6 +40,59 @@ afw_value_undefined =
 { &impl_value_undefined.pub };
 
 
+static const afw_value_t *
+impl_optional_evaluate(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!value || !value->inf || !value->inf->optional_evaluate) {
+        return value;
+    }
+    return value->inf->optional_evaluate(value, p, xctx);
+}
+
+
+AFW_DEFINE(const afw_value_t *)
+afw_value_evaluate_impl(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *result;
+
+    result = impl_optional_evaluate(value, p, xctx);
+    if (afw_value_is_function_return_value(result)) {
+        result = impl_optional_evaluate(result, p, xctx);
+    }
+    return result;
+}
+
+
+AFW_DEFINE(const afw_value_t *)
+afw_value_evaluate_and_park(
+    const afw_value_t *value,
+    afw_size_t parameter_number,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *result;
+
+    afw_xctx_evaluation_stack_push_parameter_number(parameter_number, xctx);
+    if (afw_value_is_defined_and_evaluated(value)) {
+        result = value;
+    }
+    else {
+        result = impl_optional_evaluate(value, p, xctx);
+    }
+    afw_xctx_evaluation_stack_pop(xctx);
+    if (afw_value_is_function_return_value(result)) {
+        result = impl_optional_evaluate(result, p, xctx);
+    }
+    return result;
+}
+
+
 /* NULL-safe get_reference. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_add_reference(

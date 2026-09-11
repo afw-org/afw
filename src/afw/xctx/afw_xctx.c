@@ -1024,8 +1024,8 @@ afw_xctx_scope_release(
 
 
 /*
- * Parked parameter occupants are defined_and_evaluated (or a leftover
- * return-temp wrapper). Call frames are graph infs and are not.
+ * Leftover return wrappers parked for the enclosing call's pop_value.
+ * Call frames are graph infs and are not.
  */
 AFW_DEFINE(afw_boolean_t)
 afw_xctx_evaluation_stack_is_parked_occupant(const afw_value_t *v)
@@ -1036,29 +1036,26 @@ afw_xctx_evaluation_stack_is_parked_occupant(const afw_value_t *v)
     {
         return false;
     }
-    if (afw_value_is_function_return_value(v)) {
-        return true;
-    }
-    /* Extra holds have optional_release. Graph calls on the stack do not. */
-    if (!v->inf || !v->inf->optional_release) {
-        return false;
-    }
-    return afw_value_is_defined_and_evaluated(v);
+    return afw_value_is_function_return_value(v);
 }
 
 
 /*
- * Pop a VALUE, releasing parked occupant holds. Skip leftover
+ * Release leftover return wrappers on top of the stack. Skip leftover
  * parameter-number pairs so a number slot is never used as a value
  * pointer.
  */
 AFW_DEFINE(void)
-afw_xctx_evaluation_stack_pop_value_impl(afw_xctx_t *xctx)
+afw_xctx_evaluation_stack_release_leftovers(
+    afw_xctx_t *xctx)
 {
     afw_xctx_evaluation_stack_t *stack;
     const afw_value_t *v;
 
     stack = xctx->evaluation_stack;
+    if (!stack) {
+        return;
+    }
     while (stack->count > 0) {
         if (AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id ==
             afw_s_parameter_number)
@@ -1077,16 +1074,26 @@ afw_xctx_evaluation_stack_pop_value_impl(afw_xctx_t *xctx)
         }
         break;
     }
-    if (stack->count > 0) {
-        afw_vector_pop(stack, xctx);
+}
+
+
+/*
+ * Pop a VALUE, releasing leftover return wrappers first.
+ */
+AFW_DEFINE(void)
+afw_xctx_evaluation_stack_pop_value_impl(afw_xctx_t *xctx)
+{
+    afw_xctx_evaluation_stack_release_leftovers(xctx);
+    if (xctx->evaluation_stack && xctx->evaluation_stack->count > 0) {
+        afw_vector_pop(xctx->evaluation_stack, xctx);
     }
 }
 
 
 /*
- * Rewind evaluation stack to saved_top. Release parked occupant holds.
- * Skip parameter-number pairs without treating the number as a value
- * pointer.
+ * Rewind evaluation stack to saved_top. Release leftover return
+ * wrappers. Skip parameter-number pairs without treating the number
+ * as a value pointer.
  */
 AFW_DEFINE(void)
 afw_xctx_evaluation_stack_rewind(

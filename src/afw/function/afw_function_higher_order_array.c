@@ -147,13 +147,12 @@ impl_over_array(
             }
 
             e.entry_result = afw_value_evaluate(e.functor, e.p, e.xctx);
-            e.entry_result = afw_value_function_return_value_consume(
-                e.entry_result, e.p, e.xctx);
-
             if (!callback(&e))
             {
+                afw_xctx_evaluation_stack_release_leftovers(e.xctx);
                 break;
             }
+            afw_xctx_evaluation_stack_release_leftovers(e.xctx);
         }
     }
 
@@ -167,12 +166,12 @@ impl_over_array(
             }
             e.entry_value = *e.entry_arg_ptr;
             e.entry_result = afw_value_evaluate(e.functor, e.p, e.xctx);
-            e.entry_result = afw_value_function_return_value_consume(
-                e.entry_result, e.p, e.xctx);
             if (!callback(&e))
             {
+                afw_xctx_evaluation_stack_release_leftovers(e.xctx);
                 break;
             }
+            afw_xctx_evaluation_stack_release_leftovers(e.xctx);
         }
     }
 
@@ -282,21 +281,20 @@ impl_bag_of_bag(
                 break;
             }
             v = afw_value_evaluate(call, x->p, x->xctx);
-            v = afw_value_function_return_value_consume(v, x->p, x->xctx);
             if (!afw_value_is_boolean(v)) {
                 AFW_THROW_ERROR_Z(argument_error,
                     "First argument must be a boolean function", x->xctx);
             }
+            is_true = ((const afw_value_boolean_t *)v)->internal;
+            afw_xctx_evaluation_stack_release_leftovers(x->xctx);
 
             /* If true, indicate and break if any_2 enough. */
-            if (((const afw_value_boolean_t *)v)->internal) {
-                is_true = true;
+            if (is_true) {
                 if (any_2) break;
             }
 
             /* If false, indicate and break if all must be true. */
             else {
-                is_true = false;
                 if (!any_2) break;
             }
         }
@@ -746,7 +744,11 @@ afw_function_execute_find(
     afw_memory_clear(&data);
     impl_over_array(x, impl_find_cb, (void *)&data);
 
-    return (data.found_value) ? data.found_value : afw_value_undefined;
+    if (!data.found_value) {
+        return afw_value_undefined;
+    }
+    return afw_xctx_scope_get_assignable_for_lifetime(
+        data.found_value, x->xctx);
 }
 
 
@@ -907,11 +909,9 @@ afw_function_execute_reduce(
         }
         f_argv[1] = accumulator;
         accumulator = afw_value_evaluate(call, x->p, x->xctx);
-        accumulator = afw_value_function_return_value_consume(
-            accumulator, x->p, x->xctx);
     }
 
-    return accumulator;
+    return afw_xctx_scope_get_assignable_for_lifetime(accumulator, x->xctx);
 }
 
 
@@ -935,6 +935,7 @@ impl_partition(
     const afw_value_t *value;
     const afw_value_t *return_value;
     afw_size_t i, j;
+    afw_boolean_t is_less;
 
     /* Start pivot from high. */
     pivot = ctx->values[high];
@@ -947,15 +948,15 @@ impl_partition(
         ctx->args[1] = ctx->values[j];
         return_value = afw_value_evaluate(ctx->compareFunction,
             ctx->p, ctx->xctx);
-        return_value = afw_value_function_return_value_consume(
-            return_value, ctx->p, ctx->xctx);
         AFW_VALUE_ASSERT_IS_DATA_TYPE(return_value, boolean, ctx->xctx);
+        is_less = ((const afw_value_boolean_t *)return_value)->internal;
+        afw_xctx_evaluation_stack_release_leftovers(ctx->xctx);
 
         /*
          * if compareFunction(values[j], pivot) is true, swap values[i] and
          * value[j] then increment i
          */
-        if (((const afw_value_boolean_t *)return_value)->internal)
+        if (is_less)
         {
             value = ctx->values[i];
             ctx->values[i] = ctx->values[j];

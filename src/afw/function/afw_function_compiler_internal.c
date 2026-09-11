@@ -1843,8 +1843,7 @@ afw_function_execute_switch(
             default_pair = pair;
             continue;
         }
-        result = afw_value_function_return_value_consume(
-            afw_value_evaluate(functor, p, xctx), p, xctx);
+        result = afw_value_evaluate(functor, p, xctx);
         if (!afw_value_is_boolean(result)) {
             AFW_THROW_ERROR_Z(general,
                 "Expecting functor to return a boolean value",

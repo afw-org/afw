@@ -940,8 +940,9 @@ do { \
  * @brief Pop top VALUE off execution stack.
  * @param xctx of caller.
  *
- * Leftover function_return_value temps above the VALUE are released
- * then popped. Leftover parameter-number pairs are skipped (same as
+ * Leftover function_return_value wrappers above the VALUE are
+ * released then popped (after the function that received them as
+ * parameters). Leftover parameter-number pairs are skipped (same as
  * rewind) so a number slot is never treated as a value pointer.
  * Then the VALUE is popped.
  */
@@ -965,9 +966,10 @@ do { \
  * @param xctx of caller.
  *
  * Use only when top is the parameter-number marker. Pops the marker
- * and writes VALUE into the number slot (call, then 0 or more returns).
- * VALUE must be a real occupant (extra reference for pop_value). To take the
- * pair off with nothing to keep, use afw_xctx_evaluation_stack_pop().
+ * and writes VALUE into the number slot (call, then 0 or more
+ * leftover wrappers). VALUE is the leftover function_return_value
+ * for pop_value. To take the pair off with nothing to keep, use
+ * afw_xctx_evaluation_stack_pop().
  */
 #ifdef AFW_DEBUG_EVALUATION
 #define afw_xctx_evaluation_stack_pop_parameter_number(VALUE, xctx) \
@@ -993,9 +995,10 @@ do { \
  * @param xctx of caller.
  *
  * Walks from current count down to save_count. Releases each
- * function_return_value. Other entries (call values, parameter-number
- * pairs) are skipped. Then sets count to save_count. Used by AFW_ENDTRY
- * and restore_top so throw rewind does not leak return temps.
+ * leftover function_return_value. Other entries (call values,
+ * parameter-number pairs) are skipped. Then sets count to
+ * save_count. Used by AFW_ENDTRY and restore_top so throw rewind
+ * does not leak return wrappers.
  */
 AFW_DECLARE(void)
 afw_xctx_evaluation_stack_rewind(
@@ -1004,6 +1007,18 @@ afw_xctx_evaluation_stack_rewind(
 
 AFW_DECLARE(void)
 afw_xctx_evaluation_stack_pop_value_impl(
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Release leftover function_return_value wrappers on top of the stack.
+ * @param xctx of caller.
+ *
+ * Same leftover walk as pop_value, without popping the call VALUE.
+ * Hosts use this after evaluate() when there is no enclosing Adaptive
+ * call to pop_value.
+ */
+AFW_DECLARE(void)
+afw_xctx_evaluation_stack_release_leftovers(
     afw_xctx_t *xctx);
 
 AFW_DECLARE(afw_boolean_t)

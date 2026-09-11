@@ -1177,12 +1177,9 @@ afw_value_contains(
  * @param value to evaluate.
  * @param p to use.
  * @param xctx of caller.
- * @return evaluated occupant. A function_return_value is consumed
- *    (`get_assignable_value`: hold inner, release wrapper). Callers
- *    do not release this result.
- *
- * Parameter evaluation uses `afw_value_evaluate_for_parameter` so the
- * occupant hold can be parked for `pop_parameter_number`.
+ * @return evaluated occupant. A function_return_value is pushed on
+ *    the eval stack and the inner assignable occupant is returned.
+ *    The enclosing call's pop_value releases the wrapper.
  */
 #define afw_value_evaluate(value, p, xctx) \
     afw_value_evaluate_impl(value, p, xctx)
@@ -1809,8 +1806,9 @@ afw_value_closure_binding_create_if_needed(
  * @param xctx of caller.
  * @return Created afw_value_t.
  *
- * Return-experiment wrapper. Last release of this value releases
- * return_value and frees the wrapper. Count starts at 1 (may adjust).
+ * Wrapper RC starts at 1. Occupant is stored via
+ * get_assignable_value. Last release of the wrapper releases the
+ * occupant and frees the header.
  */
 AFW_DEFINE(const afw_value_t *)
 afw_value_function_return_value_create(
@@ -1820,47 +1818,13 @@ afw_value_function_return_value_create(
 
 
 /**
- * @brief Consume a function_return_value for a host (CLI / test_script).
- * @param value maybe a return temp.
- * @param p pool if assignable must allocate.
- * @param xctx of caller.
- * @return Inner assignable occupant; if value was an FRV it is released.
- */
-AFW_DEFINE(const afw_value_t *)
-afw_value_function_return_value_consume(
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Evaluate between push_parameter_number and pop_parameter_number.
- * @param parked set to the occupant to pass to pop_parameter_number
- *    (NULL means pop both parameter entries; no extra hold).
- * @param evaluated set to the occupant execute_* should use.
- * @param value maybe unevaluated (a call, …).
- * @param p pool passed to evaluate.
- * @param xctx of caller.
- *
- * Uses raw optional_evaluate so a return temp is not consumed before
- * we can `get_assignable_value` (hold inner, release wrapper) and park
- * that occupant. Caller must already have pushed a parameter-number pair.
- */
-AFW_DECLARE(void)
-afw_value_evaluate_for_parameter(
-    const afw_value_t **parked,
-    const afw_value_t **evaluated,
-    const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-/**
- * @brief Evaluate and park via the parameter-number protocol.
+ * @brief Evaluate a parameter with backtrace number, leave leftover FRV.
  * @param value maybe unevaluated.
  * @param parameter_number 1-based stack/backtrace number.
  * @param p pool passed to evaluate.
  * @param xctx of caller.
- * @return Occupant for the caller. Extra hold is parked for pop_value.
+ * @return Occupant. If the result was a function_return_value, that
+ *    wrapper is on the eval stack for the enclosing call's pop_value.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_evaluate_and_park(
