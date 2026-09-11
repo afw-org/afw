@@ -1,4 +1,4 @@
-# Compile unit, leave, isolate-at-clone, builtin lifetime (landed); array_push_pop temp-on-scope (this branch); next: FRV
+# Compile unit, leave, isolate-at-clone, builtin lifetime, pop temp-on-scope (landed); next: FRV
 
 **Audience:** next session. Not user docs (`whats-new.md` notes `slice` / `map` stay mutable).
 
@@ -7,8 +7,9 @@
 - [PR #306](https://github.com/afw-org/afw/pull/306) (`5d5b0096`, 2026-09-10) — every `{ }` is a scope; `last_result` on the running frame; leave path.
 - [PR #307](https://github.com/afw-org/afw/pull/307) (`0c0816de`, 2026-09-10) — isolate last at `for (let)` clone; wrap unbraced loop bodies after parse in the current block.
 - [PR #308](https://github.com/afw-org/afw/pull/308) (`9a79eeb7`, 2026-09-10) — `get_assignable_for_lifetime` vs `set_last_result_for_lifetime`; mutating builtins hold the instance first; new array results `create_managed` then fill; `array()` / `create_array()` stay script wrappers.
+- [PR #309](https://github.com/afw-org/afw/pull/309) (`b484813f`, 2026-09-11) — managed `pop`/`shift` transfer, then `afw_pool_release_value_at_cleanup` on the current scope (temp). Contract: `afw_array_create_managed`. Soak **flat**. Do not `get_assignable_for_lifetime` on the pop result.
 
-**Verify for #308:** `afwdev test -j`: **4441 passed**, 71 skipped. RSS lab (same machine vs `develop` before this PR): 16 flat both sides; `array_push_pop` ~42 MiB/s here (~50 before). Not worse; not fixed.
+**Verify for #309:** `./afwdev build --fulldev`, `afwdev test -j`, and `afwdev test -j --env-mode valgrind`: **4449 passed**, 71 skipped.
 
 Do **not** start with “implement a fix” unless you share the plan. Open with “what do you think?”
 
@@ -61,10 +62,44 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 
 ## Next slices (agreed order)
 
-1. **`array_push_pop`** (this branch, uncommitted) — managed `pop`/`shift` transfer, then `afw_pool_release_value_at_cleanup` on the current scope so the extra-hold acts like a temp. Contract: `afw_array_create_managed`. Soak **flat**. Do **not** `create_managed` in `array()` / `create_array()`. Do **not** `get_assignable_for_lifetime` on the popped occupant (extra bump). Do not extra-hold in `execute_pop`.
-2. **FRV as stack leftover** — `#function_return_value` is compile-time (parse/decompile). Intended inf: evaluate / `get_assignable` are of the **inner**; wrapper has its own RC; last release frees wrapper + inner extra-hold. Enclosing call `pop_value` releases leftovers. **Remove** `consume()` / `is_function_return_value` peels. Unique consume today **transfers occupant, RC 0, no `free_memory`**. Braced (and now unbraced-wrapped) `i = f()` soak is under the bar because leftover dies with the body `{ }`. Do not paper over with a helper around assign. Do not treat extra-hold at `return()` as that design.
-3. **Runtime call-result hold** — evaluate-only inf (like `closure_binding`: display decompile, not recompile) for **managed built-in returns** if they still leftover. Identity **`push`** stays unwrapped. `pop`/`shift` are the scope-temp path, not this inf. Keep separate from compile-time FRV until they match.
-4. **Merge 2 and 3** only if the infs are actually the same.
+1. **FRV as stack leftover** — last of the leave/FRV wave. Two lifetimes (occupant vs wrapper). Unique consume mashed them. Sitting brief below. Open with “what do you think?”
+2. **Runtime call-result hold** — evaluate-only inf (like `closure_binding`: display decompile, not recompile) for **managed built-in returns** if they still leftover. Identity **`push`** stays unwrapped. `pop`/`shift` are the scope-temp path ([PR #309](https://github.com/afw-org/afw/pull/309)), not this inf. Keep separate from compile-time FRV until they match.
+3. **Merge 1 and 2** only if the infs are actually the same.
+
+---
+
+## FRV next sitting (2026-09-11)
+
+Sept 8 talk + 2026-09-11 recall. **Do not start with implement.**
+
+**Two lifetimes, mashed today.** The **occupant** is the returned value (`return` already `as_assignable`s into `script_result`; wrap extra-holds it so it outlives the next `script_result` replace and the dying callee frame). The **wrapper** is only the token “this just returned.” Wrapper RC is `get_reference` / `release`. At 0, `optional_release` already `release`s the inner and `free_memory`s the header.
+
+What landed instead: unique `get_assignable_value` **transfers the occupant, sets wrapper RC 0, and does not `free_memory`**. Public `evaluate()` peels so callers never see FRV. `consume()` is the same peel at the host. Occupant lifetime and wrapper lifetime are one path. That is the mush.
+
+**The simple hole:** last `optional_release` already does the right RC-0 work. Unique consume abandons the empty header in `self->p`. Before every `{ }` was a scope, that was `evaluation_heap` (request-lived) and `function_return` climbed ~150 MiB/s. After [PR #306](https://github.com/afw-org/afw/pull/306) leftover dies with the body tracker, so the soak is **under the bar**. Leftover is still real. This sitting is protocol, not flattening 42 MiB/s.
+
+**Intended inf (not unique consume):**
+- `optional_evaluate` = evaluate / return the **inner** (peek, not consume).
+- `get_reference` / `optional_release` move **wrapper** RC only.
+- At wrapper RC 0: `release` inner and `free_memory` the header (already what last `optional_release` does).
+- `get_assignable_value` = assignable / extra-hold of the **inner**. Wrapper stays. Do **not** unique-consume (do not transfer-and-RC-0 the wrapper).
+- Enclosing call `pop_value` `release`s leftover FRVs above that call (`i = f()` is `assign` as that call: slot gets the occupant, then `assign` pop drops the wrapper). `add2(a(), b())` is two FRVs above `add2`.
+- **Remove** `afw_value_is_function_return_value()` peels and `afw_value_function_return_value_consume()`.
+
+**`xctx->script_result` is not function-return.** It is the running latest script result (blocks can change it with no `return()`). Wrap-in-the-dying-callee glues nested-eval hygiene onto FRV because `call_script_function` currently does both in one FINALLY. Wrap belongs to the **use** of a call result (almost always a parameter of an enclosing call), not callee exit. Save/restore of `script_result` around a nested eval is only so `f();` does not adopt `f`’s last.
+
+**Do not:**
+- Paper over with a helper around assign.
+- Treat extra-hold at `return()` as this design.
+- Unique-consume **and** leave the same pointer on the eval stack (UAF if unique consume `free_memory`s). Unique consume and “still on the stack” cannot both be true of the same pointer.
+- `create_managed` in `array()` / `create_array()`. Extra-hold popped occupant in `execute_pop` (that is #309, done).
+
+**Open (not decided):**
+- Who pushes the FRV — callee just before return, or the caller once it has the wrapper.
+- Should `xctx->script_result` go back to a raw pointer with no `slot_store`.
+- Hosts (CLI, `test_script`) have no enclosing Adaptive call: `get_assignable` of the occupant, then `release` the wrapper — not a named `consume()` in `execute_*`.
+
+**Probes:** `language/script/return_temps.as`; RSS `function_return`; `script_result.as`. Code: `afw_value_function_return_value.c` (unique consume vs last `optional_release`); wrap site in script-function execute.
 
 ---
 
@@ -92,5 +127,5 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 - `afwdev test --test-pattern 'language/script/script_result.as'`
 - `afwdev test --test-pattern 'language/script/loop_unbraced_body.as'` (`for-of-unbraced-let-same-name`)
 - `afwdev test --test-pattern 'test262/statements/try.as'` (`completion-values-fn-finally-normal`)
-- `afwdev test -T src/afw/tests-extra/issue-2 --show-all` — live table in `01-rss-hard-loops/README.md`. Unbraced assign / rebind / `compile_once_eval` are **flat**. `function_return` stays under the bar. `array_push_pop` ~42 MiB/s (slot_store extra-hold + pop transfer, not last-result). FRV leftover is still real in `self->p` until that `{ }` dies.
+- `afwdev test -T src/afw/tests-extra/issue-2 --show-all` — live table in `01-rss-hard-loops/README.md`. Unbraced assign / rebind / `compile_once_eval` / `array_push_pop` are **flat**. `function_return` stays under the bar. FRV leftover is still real in `self->p` until that `{ }` dies.
 - Full PR bar: `./afwdev build --fulldev && afwdev test -j && afwdev test -j --env-mode valgrind`
