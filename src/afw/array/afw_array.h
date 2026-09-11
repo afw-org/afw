@@ -68,9 +68,21 @@ afw_array_create_with_options(
  * @param xctx of caller.
  * @return instance (reference count 1).
  *
- * Slot protocol: push/set use get_assignable_value; replace/remove
- * release the occupant. Last array release releases remaining
- * elements then free_memorys the header. No dest p.
+ * The array owns stored values. Push/set/insert `slot_store`
+ * (`get_assignable_value`). Replace, remove, and last array release
+ * `release` occupants, then last-release `free_memory`s the header.
+ * No dest p.
+ *
+ * Get / `at` peek: the array still holds, so the occupant only has to
+ * last for this scope's evaluation. `get_assignable_value` if keeping
+ * it past that.
+ *
+ * `pop` / `shift` give the extra-hold away (array no longer holds).
+ * The transferred occupant is registered on the current scope pool
+ * (`afw_pool_release_value_at_cleanup`) so it acts like a temp: it
+ * dies with that `{ }` unless a slot `get_assignable_value`s it.
+ * Do not `get_assignable_for_lifetime` on the pop result — that
+ * extra-bumps on top of the transfer.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed(
@@ -597,6 +609,9 @@ afw_array_push_value(
  *
  * Pass found=NULL when empty vs removed-NULL need not be distinguished.
  * Empty is found==false; a removed NULL/undefined slot is found==true.
+ *
+ * Managed arrays: see `afw_array_create_managed`. Transfer, then the
+ * extra-hold is a temp on the current scope pool. Not a get/peek.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_array_pop_value(
@@ -615,6 +630,9 @@ afw_array_pop_value(
  *
  * Pass found=NULL when empty vs removed-NULL need not be distinguished.
  * Empty is found==false; a removed NULL/undefined slot is found==true.
+ *
+ * Managed arrays: same lifetime as `afw_array_pop_value` /
+ * `afw_array_create_managed`.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_array_shift_value(

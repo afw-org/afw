@@ -21,8 +21,9 @@ Do not mix these:
 4. **`function_return`** (`i = f()` **inside** `{ }`) is **under the bar**
    (~0.5 MiB/s). FRV leftover sits in the body tracker and dies with it.
    Unbraced `while (true) i = f();` is wrapped the same way now.
-5. **Still climbing** — `array_push_pop` (~42 MiB/s). `slot_store`
-   extra-hold + `pop` transfer, not last-result extra-hold. See the table.
+5. **`array_push_pop`** is **flat** on this branch: managed `pop`/`shift`
+   register the transferred extra-hold on the current scope (temp).
+   `function_return` stays under the bar. See the table.
 
 `empty_stmt` / `*_no_brace` still split surface syntax. Unbraced loop
 bodies are `{ }` at compile. The Python judge uses
@@ -101,17 +102,18 @@ on `afwdev test -j` does **not** catch these — request-end bulk-free hides the
 | `try_catch` | throw/catch each iter | under bar | under bar |
 | `closure_rebind` | rebind capturing function | **flat / flat** | **~77 MiB/s both** |
 | `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** | **~82 MiB/s both** |
-| `array_push_pop` | push then pop | **~42 MiB/s both** (#308) | ~2.2 MiB/s (later ~49–50) |
+| `array_push_pop` | push then pop | **flat / ~0** (temp on scope) | **~42 MiB/s both** (#308) |
 | `array_append` | unbounded `push` | **must grow** (harness) | must grow |
 
 `function_return`: unique FRV consume still leaves the wrapper in `self->p`.
 The soak body is a `{ }` frame, so that pool dies each trip. Unbraced
 `i = f()` is wrapped the same way now.
 
-`array_push_pop`: `push` `slot_store`s `i` (extra hold on the managed
-integer in `xctx->p`); `pop` transfers and does not `release`. Same family
-as the old integer leftover. Not last-result extra-hold. Do not
-`create_managed` in `array()` (`[i]` compiles to it).
+`array_push_pop`: `push` `slot_store`s; `pop`/`shift` transfer then
+`afw_pool_release_value_at_cleanup` on the current scope (see
+`afw_array_create_managed`). Do not `create_managed` in `array()`
+(`[i]` compiles to it). Do not `get_assignable_for_lifetime` on the
+pop result.
 
 Unbraced assign: compile wraps a 0-symbol `{ }`; temps die with the trip.
 
@@ -199,9 +201,9 @@ If a symbol is missing (`nm` on this `libafw` may not export
 
 ## What “fixed” looks like
 
-Assign / overlay / rebind / empty `{ }` are already at allocator noise
-(0 KiB/s RSS, ~0 `in_use` on 2026-09-07). Remaining red:
-`function_return` and `array_push_pop`. `array_append` should still grow.
+Assign / overlay / rebind / empty `{ }` / `array_push_pop` are at
+allocator noise on this branch. Remaining red: `function_return` (FRV
+wrapper leftover, under the bar). `array_append` should still grow.
 `try_catch` may show a small RSS-only APR climb; that is not `in_use`.
 
 Do not put these loops in the default gate. Correctness of assign/faces

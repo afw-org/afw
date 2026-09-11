@@ -1,5 +1,5 @@
-/* #2 lab: push then pop the same slot. Still climbs: slot_store extra-hold
- * on the managed integer; pop transfers and does not release.
+/* #2 lab: push then pop the same slot. Managed pop registers the
+ * transferred extra-hold on the current scope (temp). Should stay flat.
  */
 let a = [0];
 let i = 0;
