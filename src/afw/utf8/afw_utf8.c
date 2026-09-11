@@ -20,8 +20,14 @@
 #include <unicode/utypes.h>
 #include <string.h>
 #include <stddef.h>
+#include <stdio.h>
+#include <stdarg.h>
 
 static const afw_utf8_z_t * impl_z_empty = "";
+
+static void
+impl_throw_if_embedded_nul(
+    const afw_utf8_octet_t *s, afw_size_t len, afw_xctx_t *xctx);
 
 /* afw_utf8_t with 0 len and null s. */
 static const afw_utf8_t impl_utf8_null = { NULL, 0 };
@@ -828,37 +834,213 @@ AFW_DEFINE(const afw_utf8_t *) afw_utf8_concat_v(
 
 
 /*
- * AFW_UTF8_FMT is "%.*s". libc %.*s stops at an interior 0. Copy n
- * bytes, then forced_safe the assembled buffer (length, not strlen).
- * Viewable text (logs, errors, traces), not a data-file writer.
- *
- * va_arg lives in this function. Do not pass ap to apr_pvsprintf
- * mid-walk (the list is then indeterminate).
+ * Printf dest: write up to cap content octets; needed is would-be
+ * content length. dest NULL = count only.
  */
-#define IMPL_PSPRINTF(val) \
-    ((star_width && star_prec) \
-        ? apr_psprintf(apr_p, spec, aw, aprec, (val)) \
-        : star_width \
-            ? apr_psprintf(apr_p, spec, aw, (val)) \
-            : star_prec \
-                ? apr_psprintf(apr_p, spec, aprec, (val)) \
-                : apr_psprintf(apr_p, spec, (val)))
+typedef struct {
+    afw_utf8_octet_t *dest;
+    afw_size_t cap;
+    afw_size_t needed;
+} impl_fmt_out_t;
+
 
 static void
-impl_format_to_writer(
-    const afw_writer_t *w,
-    const afw_utf8_z_t *format_z,
+impl_out_bytes(
+    impl_fmt_out_t *o, const void *s, afw_size_t n)
+{
+    if (n == 0 || !s) {
+        return;
+    }
+    if (o->dest && o->needed < o->cap) {
+        afw_size_t room = o->cap - o->needed;
+        afw_size_t w = (n < room) ? n : room;
+        memcpy(o->dest + o->needed, s, w);
+    }
+    o->needed += n;
+}
+
+
+static void
+impl_out_byte(impl_fmt_out_t *o, afw_utf8_octet_t b)
+{
+    if (o->dest && o->needed < o->cap) {
+        o->dest[o->needed] = b;
+    }
+    o->needed++;
+}
+
+
+static void
+impl_out_forced_safe(
+    impl_fmt_out_t *o,
+    const afw_utf8_octet_t *s,
+    afw_size_t len)
+{
+    afw_size_t i;
+    afw_size_t end;
+    afw_size_t b;
+    afw_boolean_t in_hex;
+    impl_enc_kind_t kind;
+
+    if (!s || len == 0) {
+        return;
+    }
+    in_hex = false;
+    for (i = 0; i < len; i = end) {
+        kind = impl_forced_safe_kind(s, len, i, &end);
+        if (kind == impl_enc_hex) {
+            if (!in_hex) {
+                impl_out_byte(o, IMPL_FORCED_SAFE_ESC);
+                in_hex = true;
+            }
+            for (b = i; b < end; b++) {
+                impl_out_byte(o,
+                    impl_hex_digit[(s[b] >> 4) & 0x0f]);
+                impl_out_byte(o, impl_hex_digit[s[b] & 0x0f]);
+            }
+        }
+        else {
+            if (in_hex) {
+                impl_out_byte(o, IMPL_FORCED_SAFE_ESC);
+                in_hex = false;
+            }
+            if (kind == impl_enc_caret) {
+                impl_out_byte(o, IMPL_FORCED_SAFE_ESC);
+                impl_out_byte(o, IMPL_FORCED_SAFE_ESC);
+            }
+            else {
+                impl_out_bytes(o, s + i, end - i);
+            }
+        }
+    }
+    if (in_hex) {
+        impl_out_byte(o, IMPL_FORCED_SAFE_ESC);
+    }
+}
+
+
+static void
+impl_out_hex_memory(
+    impl_fmt_out_t *o, const afw_memory_t *m)
+{
+    afw_size_t i;
+
+    if (!m || !m->ptr || m->size == 0) {
+        return;
+    }
+    for (i = 0; i < m->size; i++) {
+        impl_out_byte(o, impl_hex_digit[(m->ptr[i] >> 4) & 0x0f]);
+        impl_out_byte(o, impl_hex_digit[m->ptr[i] & 0x0f]);
+    }
+}
+
+
+/*
+ * libc vsnprintf of one conversion into dest. Count pass uses
+ * vsnprintf(NULL, 0). Write uses a stack scratch or pool if larger.
+ *
+ * `ap` is what libc wants after the spec: optional width/precision
+ * from `*`, then the value. Do not pass the format-walk va_list.
+ */
+static void
+impl_out_vsnprintf(
+    impl_fmt_out_t *o,
+    afw_xctx_t *xctx,
+    const char *spec,
+    va_list ap)
+{
+    va_list ap2;
+    int n;
+    char scratch[256];
+    char *b;
+    afw_size_t sz;
+
+    va_copy(ap2, ap);
+    n = vsnprintf(NULL, 0, spec, ap2);
+    va_end(ap2);
+    if (n < 0) {
+        AFW_THROW_ERROR_Z(general, "snprintf failed", xctx);
+    }
+    if (n == 0) {
+        return;
+    }
+    if (!o->dest) {
+        o->needed += (afw_size_t)n;
+        return;
+    }
+    sz = (afw_size_t)n + 1;
+    if (sz <= sizeof(scratch)) {
+        b = scratch;
+    }
+    else {
+        b = afw_pool_malloc(xctx->p, sz, xctx);
+    }
+    vsnprintf(b, sz, spec, ap);
+    impl_out_bytes(o, b, (afw_size_t)n);
+}
+
+
+static void
+impl_out_libc(
+    impl_fmt_out_t *o,
+    afw_xctx_t *xctx,
+    const char *spec, ...)
+{
+    va_list ap;
+
+    va_start(ap, spec);
+    impl_out_vsnprintf(o, xctx, spec, ap);
+    va_end(ap);
+}
+
+
+/* Star width/precision sit in `spec` as `*`; pass those ints then val. */
+#define IMPL_SNPRINTF(val) do { \
+    if (star_width && star_prec) { \
+        impl_out_libc(&o, xctx, spec, aw, aprec, (val)); \
+    } \
+    else if (star_width) { \
+        impl_out_libc(&o, xctx, spec, aw, (val)); \
+    } \
+    else if (star_prec) { \
+        impl_out_libc(&o, xctx, spec, aprec, (val)); \
+    } \
+    else { \
+        impl_out_libc(&o, xctx, spec, (val)); \
+    } \
+} while (0)
+
+
+static afw_size_t
+impl_format_content(
+    afw_utf8_octet_t *dest,
+    afw_size_t cap,
+    const afw_utf8_octet_t *format_s,
+    afw_size_t format_len,
     va_list ap,
-    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    apr_pool_t *apr_p;
-    const afw_utf8_z_t *f;
-    const afw_utf8_z_t *start;
-    const afw_utf8_z_t *piece;
+    impl_fmt_out_t o;
+    const afw_utf8_octet_t *f;
+    const afw_utf8_octet_t *end;
+    const afw_utf8_octet_t *start;
+    const afw_utf8_t *u;
+    const afw_memory_t *m;
     const char *s;
+    void *pv;
+    long long ll;
+    long l;
+    ptrdiff_t pd;
+    int i_val;
+    unsigned long long ull;
+    unsigned long ul;
+    afw_size_t uz;
+    unsigned un;
+    long double ld;
+    double d;
     char spec[64];
     char conv;
+    char kind;
     char lenmod;
     int star_width;
     int star_prec;
@@ -866,29 +1048,51 @@ impl_format_to_writer(
     int aprec;
     int n;
     afw_size_t spec_len;
+    afw_boolean_t did_k;
 
-    apr_p = afw_pool_get_apr_pool(p);
-    f = format_z;
-    while (*f) {
+    if (format_len == AFW_UTF8_Z_LEN) {
+        format_len = format_s
+            ? strlen((const char *)format_s) : 0;
+    }
+    if (!format_s) {
+        format_s = (const afw_utf8_octet_t *)"";
+        format_len = 0;
+    }
+    if (format_len > 0 &&
+        !afw_utf8_is_valid(format_s, format_len, xctx))
+    {
+        AFW_THROW_ERROR_Z(general,
+            "Printf format is not valid UTF-8", xctx);
+    }
+
+    o.dest = dest;
+    o.cap = dest ? cap : 0;
+    o.needed = 0;
+    f = format_s;
+    end = format_s + format_len;
+
+    while (f < end) {
         if (*f != '%') {
             start = f;
-            while (*f && *f != '%') {
+            while (f < end && *f != '%') {
                 f++;
             }
-            afw_writer_write(w, start, (afw_size_t)(f - start), xctx);
+            impl_out_bytes(&o, start, (afw_size_t)(f - start));
             continue;
         }
-        if (f[1] == '%') {
-            afw_writer_write(w, "%", 1, xctx);
+        if (f + 1 < end && f[1] == '%') {
+            impl_out_byte(&o, '%');
             f += 2;
             continue;
         }
         /* AFW_UTF8_FMT: copy n bytes, including interior 0. */
-        if (f[1] == '.' && f[2] == '*' && f[3] == 's') {
+        if (f + 3 < end &&
+            f[1] == '.' && f[2] == '*' && f[3] == 's')
+        {
             n = va_arg(ap, int);
             s = va_arg(ap, const char *);
             if (n > 0 && s) {
-                afw_writer_write(w, s, (afw_size_t)n, xctx);
+                impl_out_bytes(&o, s, (afw_size_t)n);
             }
             f += 4;
             continue;
@@ -898,57 +1102,99 @@ impl_format_to_writer(
         star_width = 0;
         star_prec = 0;
         lenmod = 0;
-        while (*f && strchr("-+ #0'", *f)) {
+        while (f < end && strchr("-+ #0'", *f)) {
             f++;
         }
-        if (*f == '*') {
+        if (f < end && *f == '*') {
             star_width = 1;
             f++;
         }
         else {
-            while (*f >= '0' && *f <= '9') {
+            while (f < end && *f >= '0' && *f <= '9') {
                 f++;
             }
         }
-        if (*f == '.') {
+        if (f < end && *f == '.') {
             f++;
-            if (*f == '*') {
+            if (f < end && *f == '*') {
                 star_prec = 1;
                 f++;
             }
             else {
-                while (*f >= '0' && *f <= '9') {
+                while (f < end && *f >= '0' && *f <= '9') {
                     f++;
                 }
             }
         }
-        if (*f == 'h') {
+        if (f < end && *f == 'h') {
             lenmod = 'h';
             f++;
-            if (*f == 'h') {
+            if (f < end && *f == 'h') {
                 f++;
             }
         }
-        else if (*f == 'l') {
+        else if (f < end && *f == 'l') {
             lenmod = 'l';
             f++;
-            if (*f == 'l') {
+            if (f < end && *f == 'l') {
                 lenmod = 'L';
                 f++;
             }
         }
-        else if (*f && strchr("Lztjq", *f)) {
+        else if (f < end && strchr("Lztjq", *f)) {
             lenmod = *f;
             f++;
         }
-        if (!*f) {
-            afw_writer_write(w, start, (afw_size_t)(f - start), xctx);
+        if (f >= end) {
+            impl_out_bytes(&o, start, (afw_size_t)(f - start));
             break;
         }
-        conv = *f++;
+        conv = (char)*f++;
+        did_k = false;
+        if (conv == 'k') {
+            if (f >= end) {
+                AFW_THROW_ERROR_Z(general,
+                    "%k alone is not a conversion", xctx);
+            }
+            kind = (char)*f++;
+            aw = 0;
+            aprec = 0;
+            if (star_width) {
+                aw = va_arg(ap, int);
+            }
+            if (star_prec) {
+                aprec = va_arg(ap, int);
+            }
+            (void)aw;
+            (void)aprec;
+            if (kind == 'u') {
+                u = va_arg(ap, const afw_utf8_t *);
+                if (u && u->s && u->len) {
+                    impl_out_bytes(&o, u->s, u->len);
+                }
+            }
+            else if (kind == 'm') {
+                m = va_arg(ap, const afw_memory_t *);
+                impl_out_hex_memory(&o, m);
+            }
+            else if (kind == 's') {
+                s = va_arg(ap, const char *);
+                impl_out_forced_safe(&o,
+                    (const afw_utf8_octet_t *)s,
+                    s ? strlen(s) : 0);
+            }
+            else {
+                AFW_THROW_ERROR_Z(general,
+                    "Unknown %k conversion kind", xctx);
+            }
+            did_k = true;
+        }
+        if (did_k) {
+            continue;
+        }
         spec_len = (afw_size_t)(f - start);
         if (spec_len == 0 || spec_len >= sizeof(spec)) {
-            afw_writer_write(w, start, spec_len, xctx);
+            impl_out_bytes(&o, start, spec_len);
             continue;
         }
         memcpy(spec, start, spec_len);
@@ -961,109 +1207,294 @@ impl_format_to_writer(
         if (star_prec) {
             aprec = va_arg(ap, int);
         }
-        piece = NULL;
+        if (conv == 'n' || conv == 'S' || conv == 'C' ||
+            conv == 'm')
+        {
+            AFW_THROW_ERROR_Z(general,
+                "Unsupported printf conversion", xctx);
+        }
         if (conv == 's') {
             s = va_arg(ap, const char *);
-            piece = IMPL_PSPRINTF(s);
+            if (!s) {
+                s = "";
+            }
+            if (!afw_utf8_is_valid(
+                (const afw_utf8_octet_t *)s,
+                strlen(s), xctx))
+            {
+                AFW_THROW_ERROR_Z(general,
+                    "%s is not valid UTF-8", xctx);
+            }
+            IMPL_SNPRINTF(s);
         }
         else if (conv == 'c') {
             n = va_arg(ap, int);
-            piece = IMPL_PSPRINTF(n);
+            IMPL_SNPRINTF(n);
         }
         else if (conv == 'p') {
-            piece = IMPL_PSPRINTF(va_arg(ap, void *));
+            pv = va_arg(ap, void *);
+            IMPL_SNPRINTF(pv);
         }
         else if (strchr("di", conv)) {
-            if (lenmod == 'L' || lenmod == 'j' || lenmod == 'q') {
-                piece = IMPL_PSPRINTF(va_arg(ap, long long));
+            if (lenmod == 'L' || lenmod == 'j' ||
+                lenmod == 'q')
+            {
+                ll = va_arg(ap, long long);
+                IMPL_SNPRINTF(ll);
             }
             else if (lenmod == 'l') {
-                piece = IMPL_PSPRINTF(va_arg(ap, long));
+                l = va_arg(ap, long);
+                IMPL_SNPRINTF(l);
             }
             else if (lenmod == 'z' || lenmod == 't') {
-                piece = IMPL_PSPRINTF(va_arg(ap, ptrdiff_t));
+                pd = va_arg(ap, ptrdiff_t);
+                IMPL_SNPRINTF(pd);
             }
             else {
-                piece = IMPL_PSPRINTF(va_arg(ap, int));
+                i_val = va_arg(ap, int);
+                IMPL_SNPRINTF(i_val);
             }
         }
         else if (strchr("uoxX", conv)) {
-            if (lenmod == 'L' || lenmod == 'j' || lenmod == 'q') {
-                piece = IMPL_PSPRINTF(va_arg(ap, unsigned long long));
+            if (lenmod == 'L' || lenmod == 'j' ||
+                lenmod == 'q')
+            {
+                ull = va_arg(ap, unsigned long long);
+                IMPL_SNPRINTF(ull);
             }
             else if (lenmod == 'l') {
-                piece = IMPL_PSPRINTF(va_arg(ap, unsigned long));
+                ul = va_arg(ap, unsigned long);
+                IMPL_SNPRINTF(ul);
             }
             else if (lenmod == 'z' || lenmod == 't') {
-                piece = IMPL_PSPRINTF(va_arg(ap, afw_size_t));
+                uz = va_arg(ap, afw_size_t);
+                IMPL_SNPRINTF(uz);
             }
             else {
-                piece = IMPL_PSPRINTF(va_arg(ap, unsigned));
+                un = va_arg(ap, unsigned);
+                IMPL_SNPRINTF(un);
             }
         }
         else if (strchr("fFeEgGaA", conv)) {
             if (lenmod == 'L') {
-                piece = IMPL_PSPRINTF(va_arg(ap, long double));
+                ld = va_arg(ap, long double);
+                IMPL_SNPRINTF(ld);
             }
             else {
-                piece = IMPL_PSPRINTF(va_arg(ap, double));
+                d = va_arg(ap, double);
+                IMPL_SNPRINTF(d);
             }
         }
-        if (piece) {
-            afw_writer_write_z(w, piece, xctx);
-        }
         else {
-            afw_writer_write(w, start, spec_len, xctx);
+            impl_out_bytes(&o, start, spec_len);
         }
     }
+
+    return o.needed;
 }
 
-#undef IMPL_PSPRINTF
+#undef IMPL_SNPRINTF
 
 
-static const afw_utf8_t *
-impl_printf_forced_safe(
-    const afw_utf8_z_t *format_z,
-    va_list ap,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
+AFW_DEFINE(const afw_utf8_t *)
+afw_utf8_printf_vas(
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
+    const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_writer_t *w;
-    afw_utf8_t assembled;
-    const afw_utf8_t *safe;
+    va_list ap2;
+    afw_size_t n;
+    afw_utf8_octet_t *dest;
 
-    w = afw_utf8_writer_create(NULL, p, xctx);
-    impl_format_to_writer(w, format_z, ap, p, xctx);
-    afw_utf8_writer_current_string(w, &assembled, xctx);
-    safe = afw_utf8_create_forced_safe(
-        assembled.s, assembled.len, p, xctx);
-    afw_writer_release(w, xctx);
-    return safe;
+    va_copy(ap2, ap);
+    n = impl_format_content(NULL, 0, format_s, format_len, ap2, xctx);
+    va_end(ap2);
+    if (n == 0) {
+        return afw_s_a_empty_string;
+    }
+    dest = afw_pool_malloc(p, n, xctx);
+    impl_format_content(dest, n, format_s, format_len, ap, xctx);
+    return afw_utf8_nfc(dest, n,
+        afw_utf8_nfc_option_create, p, xctx);
 }
 
 
-/* Create a string using a c format string. */
 AFW_DEFINE_ELLIPSIS(const afw_utf8_t *)
-afw_utf8_printf(
-    const afw_pool_t *p, afw_xctx_t *xctx, const afw_utf8_z_t *format, ...)
+afw_utf8_printf_as(
+    const afw_pool_t *p, afw_xctx_t *xctx,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, ...)
 {
-    va_list arg;
+    va_list ap;
     const afw_utf8_t *result;
 
-    va_start(arg, format);
-    result = impl_printf_forced_safe(format, arg, p, xctx);
-    va_end(arg);
+    va_start(ap, format_len);
+    result = afw_utf8_printf_vas(
+        format_s, format_len, ap, p, xctx);
+    va_end(ap);
     return result;
 }
 
 
-/* Create a string using a c format string. */
-AFW_DEFINE(const afw_utf8_t *)
-afw_utf8_printf_v(
-    const afw_utf8_z_t *format, va_list arg,
+AFW_DEFINE(afw_size_t)
+afw_utf8_printf_len_vas(
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
+    afw_xctx_t *xctx)
+{
+    return impl_format_content(
+        NULL, 0, format_s, format_len, ap, xctx);
+}
+
+
+AFW_DEFINE_ELLIPSIS(afw_size_t)
+afw_utf8_printf_len_as(
+    afw_xctx_t *xctx,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, ...)
+{
+    va_list ap;
+    afw_size_t n;
+
+    va_start(ap, format_len);
+    n = afw_utf8_printf_len_vas(format_s, format_len, ap, xctx);
+    va_end(ap);
+    return n;
+}
+
+
+AFW_DEFINE(afw_size_t)
+afw_utf8_snprintf_vas(
+    afw_utf8_octet_t *dest, afw_size_t size,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
+    afw_xctx_t *xctx)
+{
+    afw_size_t needed;
+
+    needed = impl_format_content(
+        dest, size, format_s, format_len, ap, xctx);
+    if (size == 0 || !dest) {
+        return 0;
+    }
+    return (needed < size) ? needed : size;
+}
+
+
+AFW_DEFINE_ELLIPSIS(afw_size_t)
+afw_utf8_snprintf_as(
+    afw_utf8_octet_t *dest, afw_size_t size, afw_xctx_t *xctx,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, ...)
+{
+    va_list ap;
+    afw_size_t n;
+
+    va_start(ap, format_len);
+    n = afw_utf8_snprintf_vas(
+        dest, size, format_s, format_len, ap, xctx);
+    va_end(ap);
+    return n;
+}
+
+
+AFW_DEFINE(const afw_utf8_z_t *)
+afw_utf8_z_printf_vas(
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    return impl_printf_forced_safe(format, arg, p, xctx);
+    va_list ap2;
+    afw_size_t n;
+    afw_utf8_octet_t *dest;
+
+    va_copy(ap2, ap);
+    n = impl_format_content(NULL, 0, format_s, format_len, ap2, xctx);
+    va_end(ap2);
+    if (n == 0) {
+        return impl_z_empty;
+    }
+    dest = afw_pool_malloc(p, n + 1, xctx);
+    impl_format_content(dest, n, format_s, format_len, ap, xctx);
+    dest[n] = 0;
+    impl_throw_if_embedded_nul(dest, n, xctx);
+    return afw_utf8_z_create(dest, n, p, xctx);
+}
+
+
+AFW_DEFINE_ELLIPSIS(const afw_utf8_z_t *)
+afw_utf8_z_printf_as(
+    const afw_pool_t *p, afw_xctx_t *xctx,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, ...)
+{
+    va_list ap;
+    const afw_utf8_z_t *result;
+
+    va_start(ap, format_len);
+    result = afw_utf8_z_printf_vas(
+        format_s, format_len, ap, p, xctx);
+    va_end(ap);
+    return result;
+}
+
+
+AFW_DEFINE(afw_size_t)
+afw_utf8_z_printf_len_vas(
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
+    afw_xctx_t *xctx)
+{
+    return impl_format_content(
+        NULL, 0, format_s, format_len, ap, xctx) + 1;
+}
+
+
+AFW_DEFINE_ELLIPSIS(afw_size_t)
+afw_utf8_z_printf_len_as(
+    afw_xctx_t *xctx,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, ...)
+{
+    va_list ap;
+    afw_size_t n;
+
+    va_start(ap, format_len);
+    n = afw_utf8_z_printf_len_vas(
+        format_s, format_len, ap, xctx);
+    va_end(ap);
+    return n;
+}
+
+
+AFW_DEFINE(afw_size_t)
+afw_utf8_z_snprintf_vas(
+    afw_utf8_z_t *dest, afw_size_t size,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
+    afw_xctx_t *xctx)
+{
+    afw_size_t needed;
+    afw_size_t produced;
+    afw_size_t cap;
+
+    cap = (size > 0) ? size - 1 : 0;
+    needed = impl_format_content(
+        dest, cap, format_s, format_len, ap, xctx);
+    if (size == 0 || !dest) {
+        return 0;
+    }
+    produced = needed + 1;
+    if (produced > size) {
+        produced = size;
+    }
+    dest[produced - 1] = 0;
+    return produced;
+}
+
+
+AFW_DEFINE_ELLIPSIS(afw_size_t)
+afw_utf8_z_snprintf_as(
+    afw_utf8_z_t *dest, afw_size_t size, afw_xctx_t *xctx,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, ...)
+{
+    va_list ap;
+    afw_size_t n;
+
+    va_start(ap, format_len);
+    n = afw_utf8_z_snprintf_vas(
+        dest, size, format_s, format_len, ap, xctx);
+    va_end(ap);
+    return n;
 }
 
 
@@ -1561,43 +1992,6 @@ AFW_DEFINE_ELLIPSIS(const afw_utf8_z_t *) afw_utf8_z_concat(
     return result;
 }
 
-
-/* Create a utf8_z string using a c format string and va_list in specified pool. */
-AFW_DEFINE(const afw_utf8_z_t *)
-afw_utf8_z_printf_v(
-    const afw_utf8_z_t *format_z, va_list ap,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_utf8_t *safe;
-    afw_utf8_z_t *z;
-    afw_size_t n;
-
-    safe = impl_printf_forced_safe(format_z, ap, p, xctx);
-    n = safe->len;
-    z = afw_pool_malloc(p, n + 1, xctx);
-    if (n > 0) {
-        memcpy(z, safe->s, n);
-    }
-    z[n] = 0;
-    return z;
-}
-
-
-/* Create a utf8_z string using a c format string in specified pool. */
-AFW_DEFINE_ELLIPSIS(const afw_utf8_z_t *)
-afw_utf8_z_printf(
-    const afw_pool_t *p, afw_xctx_t *xctx, const afw_utf8_z_t *format_z, ...)
-{
-    va_list ap;
-    const afw_utf8_z_t *result;
-
-    va_start(ap, format_z);
-    result = afw_utf8_z_printf_v(format_z, ap, p, xctx);
-    va_end(ap);
-
-    return result;
-}
 
 /* Clone a pointer array of utf-8 to specified pool. */
 AFW_DEFINE(const afw_utf8_t * const *)

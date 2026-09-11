@@ -224,6 +224,17 @@ impl_property_name(const afw_pool_t *p, afw_xctx_t *xctx)
     return 0;
 }
 
+static void
+impl_printf_bad_s(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    char bad[4];
+
+    bad[0] = 'x';
+    bad[1] = (char)0xff;
+    bad[2] = 0;
+    (void)afw_utf8_printf(p, xctx, "n=%s", bad);
+}
+
 static int
 impl_printf_safe(const afw_pool_t *p, afw_xctx_t *xctx)
 {
@@ -233,11 +244,29 @@ impl_printf_safe(const afw_pool_t *p, afw_xctx_t *xctx)
     bad[0] = 'x';
     bad[1] = (char)0xff;
     bad[2] = 0;
-    c = afw_utf8_printf(p, xctx, "n=%s", bad);
-    if (impl_eq(c, "n=x^FF^", 7, "printf forced_safe")) {
+    if (impl_threw_nfc(impl_printf_bad_s, p, xctx, "printf %s throw")) {
+        return 1;
+    }
+    c = afw_utf8_printf(p, xctx, "n=%ks", bad);
+    if (impl_eq(c, "n=x^FF^", 7, "printf %ks")) {
         return 1;
     }
     return 0;
+}
+
+static void
+impl_z_printf_nul(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_utf8_t s;
+    char in[3];
+
+    in[0] = 'a';
+    in[1] = 0;
+    in[2] = 'b';
+    s.s = (const afw_utf8_octet_t *)in;
+    s.len = 3;
+    (void)afw_utf8_z_printf(p, xctx, "x=" AFW_UTF8_FMT,
+        AFW_UTF8_FMT_ARG(&s));
 }
 
 static int
@@ -246,29 +275,94 @@ impl_printf_nul(const afw_pool_t *p, afw_xctx_t *xctx)
     const afw_utf8_t *c;
     afw_utf8_t s;
     char in[3];
-    const afw_utf8_z_t *z;
+    char expect[8];
 
     in[0] = 'a';
     in[1] = 0;
     in[2] = 'b';
     s.s = (const afw_utf8_octet_t *)in;
     s.len = 3;
+    expect[0] = 'x';
+    expect[1] = '=';
+    expect[2] = 'a';
+    expect[3] = 0;
+    expect[4] = 'b';
     c = afw_utf8_printf(p, xctx, "x=" AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(&s));
-    if (impl_eq(c, "x=a^00^b", 8, "printf nul")) {
+    if (impl_eq(c, expect, 5, "printf nul")) {
         return 1;
     }
 
-    c = afw_utf8_printf(p, xctx, "n=%d x=" AFW_UTF8_FMT, 3,
-        AFW_UTF8_FMT_ARG(&s));
-    if (impl_eq(c, "n=3 x=a^00^b", 12, "printf mixed")) {
+    c = afw_utf8_printf_u(p, xctx, &s);
+    if (impl_eq(c, in, 3, "printf_u")) {
         return 1;
     }
 
-    z = afw_utf8_z_printf(p, xctx, "x=" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(&s));
-    if (!z || strcmp((const char *)z, "x=a^00^b") != 0) {
-        fprintf(stderr, "z_printf nul: got %s\n", z ? (const char *)z : "?");
+    if (impl_threw_nfc(impl_z_printf_nul, p, xctx, "z_printf nul")) {
+        return 1;
+    }
+    return 0;
+}
+
+static int
+impl_printf_k(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_utf8_t hello = AFW_UTF8_LITERAL("hello");
+    const afw_utf8_t *c;
+    afw_memory_t mem;
+    afw_utf8_octet_t buf[16];
+    afw_utf8_z_t zbuf[16];
+    afw_size_t n;
+    unsigned char raw[2];
+
+    c = afw_utf8_printf(p, xctx, "\\u%04x", 5u);
+    if (impl_eq(c, "\\u0005", 6, "printf %04x")) {
+        return 1;
+    }
+    c = afw_utf8_printf(p, xctx, "n=%d", 3);
+    if (impl_eq(c, "n=3", 3, "printf %d")) {
+        return 1;
+    }
+
+    c = afw_utf8_printf(p, xctx, "x=%ku", &hello);
+    if (impl_eq(c, "x=hello", 7, "printf %ku")) {
+        return 1;
+    }
+
+    raw[0] = 0x00;
+    raw[1] = 0xff;
+    mem.ptr = (const afw_byte_t *)raw;
+    mem.size = 2;
+    c = afw_utf8_printf(p, xctx, "%km", &mem);
+    if (impl_eq(c, "00FF", 4, "printf %km")) {
+        return 1;
+    }
+
+    n = afw_utf8_printf_len(xctx, "x=%ku", &hello);
+    if (n != 7) {
+        fprintf(stderr, "printf_len: got %lu\n", (unsigned long)n);
+        return 1;
+    }
+    n = afw_utf8_z_printf_len(xctx, "x=%ku", &hello);
+    if (n != 8) {
+        fprintf(stderr, "z_printf_len: got %lu\n", (unsigned long)n);
+        return 1;
+    }
+
+    n = afw_utf8_snprintf(buf, sizeof(buf), xctx, "x=%ku", &hello);
+    if (n != 7 || memcmp(buf, "x=hello", 7) != 0) {
+        fprintf(stderr, "snprintf: n=%lu\n", (unsigned long)n);
+        return 1;
+    }
+    n = afw_utf8_z_snprintf(zbuf, sizeof(zbuf), xctx, "x=%ku", &hello);
+    if (n != 8 || strcmp((const char *)zbuf, "x=hello") != 0) {
+        fprintf(stderr, "z_snprintf: n=%lu %s\n",
+            (unsigned long)n, (const char *)zbuf);
+        return 1;
+    }
+    n = afw_utf8_snprintf(buf, 3, xctx, "x=%ku", &hello);
+    if (n != 3 || memcmp(buf, "x=h", 3) != 0) {
+        fprintf(stderr, "snprintf trunc: n=%lu\n", (unsigned long)n);
         return 1;
     }
     return 0;
@@ -385,6 +479,9 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "printf-nul") == 0) {
         rc = impl_printf_nul(p, xctx);
     }
+    else if (strcmp(case_name, "printf-k") == 0) {
+        rc = impl_printf_k(p, xctx);
+    }
     else if (strcmp(case_name, "error-backtrace") == 0) {
         rc = impl_error_backtrace(p, xctx);
     }
@@ -397,8 +494,8 @@ main(int argc, char **argv)
     else {
         fprintf(stderr, "usage: utf8_named_doors_probe "
             "create-set-copy|no-copy|forced-safe|property-name|"
-            "printf-safe|printf-nul|error-backtrace|icu-error-name|"
-            "from-memory\n");
+            "printf-safe|printf-nul|printf-k|error-backtrace|"
+            "icu-error-name|from-memory\n");
         rc = 2;
     }
 

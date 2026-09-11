@@ -31,11 +31,15 @@ def run():
             ),
             (
                 "printf-safe",
-                "printf uses forced_safe",
+                "%s throws on invalid UTF-8; %ks is forced_safe",
             ),
             (
                 "printf-nul",
                 "AFW_UTF8_FMT copies n bytes including interior 0",
+            ),
+            (
+                "printf-k",
+                "%ku / %km, printf_len, snprintf dest size",
             ),
             (
                 "error-backtrace",
