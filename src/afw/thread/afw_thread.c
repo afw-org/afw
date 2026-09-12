@@ -57,7 +57,7 @@ afw_thread_create(
     self->thread_number = thread_number;
     self->xctx = afw_xctx_internal_create_thread_xctx(self, xctx);
 
-    /* Joinable; thread_attr is currently unused (POSIX default). */
+    /* Joinable POSIX default; thread_attr is stored but unused. */
     self->os_thread = afw_os_thread_create(
         impl_thread_start, self, self->p, xctx);
 

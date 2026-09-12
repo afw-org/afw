@@ -11,7 +11,10 @@
  * @brief pthreads mutex, rwlock, and thread behind afw_os_*.
  *
  * Lifetime is the afw_pool passed at create (cleanup destroys the
- * pthread object). Nested mutexes are PTHREAD_MUTEX_RECURSIVE.
+ * pthread object). Nested is PTHREAD_MUTEX_RECURSIVE; unnested is
+ * ERRORCHECK. Threads are joinable; join is the caller's job.
+ *
+ * pthread_* return the errno value, not -1 with errno set.
  */
 
 #include "afw.h"
@@ -277,7 +280,7 @@ afw_os_thread_join(afw_os_thread_t *thread, afw_xctx_t *xctx)
     void *retval;
 
     if (!thread || !thread->created) {
-        return;
+        return; /* already joined or never started */
     }
     err = pthread_join(thread->tid, &retval);
     if (err != 0) {

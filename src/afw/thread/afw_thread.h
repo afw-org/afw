@@ -30,12 +30,13 @@ AFW_BEGIN_DECLARES
 /** @brief Platform default mutex (non-recursive on nix). */
 #define AFW_THREAD_MUTEX_DEFAULT  AFW_OS_MUTEX_DEFAULT
 
-/** @brief Recursive mutex (APR NESTED). */
+/** @brief Recursive mutex (was APR_THREAD_MUTEX_NESTED). */
 #define AFW_THREAD_MUTEX_NESTED   AFW_OS_MUTEX_NESTED
 
-/** @brief Non-recursive mutex (APR UNNESTED). */
+/** @brief Non-recursive mutex (was APR_THREAD_MUTEX_UNNESTED). */
 #define AFW_THREAD_MUTEX_UNNESTED AFW_OS_MUTEX_UNNESTED
 
+/** @brief Mutex/rwlock are `afw_os_*` on `afw_pool` (see afw_os.h). */
 #define afw_thread_mutex_create  afw_os_mutex_create
 #define afw_thread_mutex_lock    afw_os_mutex_lock
 #define afw_thread_mutex_trylock afw_os_mutex_trylock
@@ -76,10 +77,13 @@ struct afw_thread_s {
 
 
 /**
- * @brief Create a thread attr
+ * @brief Create a thread attr.
  * @param p to use.
  * @param xctx of caller.
  * @return new thread attr.
+ *
+ * Currently unused by create (joinable POSIX default). Kept so
+ * callers can pass one; do not assume detach.
  */
 AFW_DECLARE(afw_thread_attr_t *)
 afw_thread_attr_create(
@@ -87,15 +91,14 @@ afw_thread_attr_create(
 
 
 /**
- * @brief Create a thread
- * @param thread_attr to use.
- * @param start_function to call when thread starts.
+ * @brief Create a joinable thread.
+ * @param thread_attr currently unused (joinable default).
+ * @param start_function to call when the thread starts.
  * @param start_function_arg to pass to start function.
  * @param name to be associated with thread.
  * @param thread_number to be associated with thread.
- * @param p to use.
  * @param xctx of caller.
- * @return new threadr.
+ * @return new thread.
  */
 AFW_DECLARE(const afw_thread_t *)
 afw_thread_create(
@@ -120,11 +123,12 @@ afw_thread_join(
 
 /**
  * @brief Macro to begin a mutex lock section.
- * @param xctx of caller.
+ * @param mutex to lock.
+ * @param xctx of caller (must be named xctx).
  *
  * Usage:
  *
- * AFW_THREAD_MUTEX_LOCK(xctx) {
+ * AFW_THREAD_MUTEX_LOCK(mutex, xctx) {
  *    ... a very small amount of code that doesn't call anything
  * }
  * AFW_THREAD_MUTEX_UNLOCK();

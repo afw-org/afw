@@ -388,7 +388,7 @@ impl_afw_server_run(
         (afw_size_t)server->pub.thread_count,
         xctx);
 
-    /* The default thread attribute: detachable */
+    /* Joinable (default). thread_attr is currently unused. */
     thread_attr = afw_thread_attr_create(xctx->p, xctx);
 
 

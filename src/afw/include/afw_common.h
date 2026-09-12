@@ -1552,7 +1552,7 @@ typedef enum afw_service_status_e {
 
 
 /** @brief Thread start calling convention (empty on POSIX). */
-#define AFW_THREAD_FUNCTION
+#define AFW_THREAD_FUNCTION /* empty */
 
 /** @brief Typedef for thread start function. */
 typedef void

@@ -250,6 +250,13 @@ AFW_DECLARE(void)
 afw_os_dso_unload(afw_os_dso_t *dso);
 
 
+/**
+ * Mutex, rwlock, and native thread. Create allocates in p; pool
+ * cleanup destroys the OS object. Threads are joinable — join is
+ * the caller's job, not pool destroy. Public AFW names are
+ * afw_thread_mutex_* / afw_thread_rwlock_* (see afw_thread.h).
+ */
+
 /** @brief Mutex allocated from an afw_pool; destroyed with that pool. */
 typedef struct afw_os_mutex_s afw_os_mutex_t;
 
@@ -262,15 +269,18 @@ typedef struct afw_os_thread_s afw_os_thread_t;
 /** @brief Platform default mutex (non-recursive on nix). */
 #define AFW_OS_MUTEX_DEFAULT  0
 
-/** @brief Recursive mutex (APR NESTED). */
+/** @brief Recursive mutex (was APR_THREAD_MUTEX_NESTED). */
 #define AFW_OS_MUTEX_NESTED   1
 
-/** @brief Non-recursive mutex (APR UNNESTED). */
+/** @brief Non-recursive mutex (was APR_THREAD_MUTEX_UNNESTED). */
 #define AFW_OS_MUTEX_UNNESTED 2
 
 /**
  * @brief Create a mutex in p. Destroyed when p is destroyed.
  * @param flags AFW_OS_MUTEX_DEFAULT, NESTED, or UNNESTED.
+ *
+ * Nested is recursive. Unnested is errorcheck (relock throws).
+ * pthread functions return the errno value (not -1 + errno).
  */
 AFW_DECLARE(afw_os_mutex_t *)
 afw_os_mutex_create(
@@ -288,7 +298,7 @@ afw_os_mutex_trylock(afw_os_mutex_t *mutex, afw_xctx_t *xctx);
 AFW_DECLARE(void)
 afw_os_mutex_unlock(afw_os_mutex_t *mutex, afw_xctx_t *xctx);
 
-/** @brief Idempotent. Pool cleanup also calls this. */
+/** @brief Idempotent. Optional; pool cleanup also calls this. */
 AFW_DECLARE(void)
 afw_os_mutex_destroy(afw_os_mutex_t *mutex);
 
@@ -309,7 +319,7 @@ afw_os_rwlock_wrlock(afw_os_rwlock_t *rwlock, afw_xctx_t *xctx);
 AFW_DECLARE(void)
 afw_os_rwlock_unlock(afw_os_rwlock_t *rwlock, afw_xctx_t *xctx);
 
-/** @brief Idempotent. Pool cleanup also calls this. */
+/** @brief Idempotent. Optional; pool cleanup also calls this. */
 AFW_DECLARE(void)
 afw_os_rwlock_destroy(afw_os_rwlock_t *rwlock);
 
