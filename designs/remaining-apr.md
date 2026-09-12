@@ -18,7 +18,7 @@ Containers, strings, files, threads, getopt, curl body, LDAP setup, and the pool
 | Type aliases | LMDB `apr_uint32_t` / `apr_uint64_t` → `afw_uint*`; FCGI `apr_size_t` → `afw_size_t` |
 | Windows `apr_atomic_*` | `InterlockedIncrement` / `Decrement` |
 
-`afw_environment_release` still does not destroy the process base pool (`@fixme`). Process-lifetime chunks stay reachable via a static root.
+`afw_environment_release` still does not destroy the process base pool (`@fixme`). Process-lifetime chunks stay reachable via a static root, so valgrind should report them as **still reachable**, not definitely lost. Definitely-lost posix_memalign from `impl_chunk_malloc` is a real leak.
 
 Tune later: mmap, chunk size, per-chunk free lists.
 

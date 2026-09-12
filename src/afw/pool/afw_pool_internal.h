@@ -244,13 +244,6 @@ struct afw_pool_internal_self_with_free_memory_head_s {
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_internal_create_base_pool();
 
-/**
- * Destroy the process base pool. Process teardown is one thread; do
- * not take the multithreaded lock (it lives in this pool).
- */
-AFW_DECLARE(void)
-afw_pool_internal_destroy_base_pool(afw_xctx_t *xctx);
-
 AFW_DECLARE(afw_boolean_t)
 afw_pool_internal_is_heap(const afw_pool_t *p);
 

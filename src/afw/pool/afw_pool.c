@@ -391,7 +391,11 @@ impl_heap_allocate_self(const afw_pool_inf_t *inf)
 }
 
 
-/* Process base pool. Keeps the 4k chunks reachable until exit. */
+/*
+ * Process base pool. environment_release does not destroy it (the MT
+ * lock lives in this pool). Keep this pointer so valgrind sees the
+ * 4k chunks as still-reachable, not definitely lost.
+ */
 static afw_pool_internal_self_t *impl_base_pool_self;
 
 
@@ -628,16 +632,23 @@ impl_heap_take_from_free_list_or_chunk(
     afw_xctx_t *xctx,
     afw_boolean_t unhandled)
 {
+    afw_pool_internal_self_t *heap;
+    afw_pool_internal_free_memory_head_t *head;
     afw_pool_free_node_t *curr;
     afw_pool_free_node_t *prev;
     afw_pool_free_node_t *next;
     afw_pool_free_node_t *rest;
     afw_pool_free_node_t *slow;
     afw_pool_free_node_t *fast;
+    afw_pool_chunk_t *chunk;
+    char *end;
+    void *start;
 
+    heap = impl_reservoir_heap(self);
+    head = heap->free_memory_head;
     curr = NULL;
-    if (self->free_memory_head) {
-        slow = self->free_memory_head->first;
+    if (head) {
+        slow = head->first;
         fast = slow;
         for (curr = slow; curr; curr = curr->next) {
             if (curr->total >= total &&
@@ -666,7 +677,7 @@ impl_heap_take_from_free_list_or_chunk(
     if (curr) {
         prev = curr->prev;
         next = curr->next;
-        impl_heap_free_unlink(&self->free_memory_head->first, curr);
+        impl_heap_free_unlink(&head->first, curr);
         if (curr->total - total >= sizeof(afw_pool_free_node_t)) {
             rest = (afw_pool_free_node_t *)(((char *)curr) + total);
             rest->total = curr->total - total;
@@ -675,10 +686,11 @@ impl_heap_take_from_free_list_or_chunk(
                 prev->next = rest;
             }
             else {
-                self->free_memory_head->first = rest;
+                head->first = rest;
             }
             if (next &&
-                ((char *)rest) + rest->total == (char *)next)
+                ((char *)rest) + rest->total == (char *)next &&
+                impl_same_chunk(heap, rest, next))
             {
                 rest->total += next->total;
                 rest->next = next->next;
@@ -698,53 +710,45 @@ impl_heap_take_from_free_list_or_chunk(
     }
 
     *reused = false;
-    {
-        afw_pool_internal_self_t *heap;
-        afw_pool_chunk_t *chunk;
-        char *end;
-        void *start;
-
-        heap = impl_reservoir_heap(self);
-        if (heap->remaining >= total) {
-            start = heap->bump;
-            heap->bump += total;
-            heap->remaining -= total;
-            return start;
-        }
-
-        if (heap->current_chunk &&
-            heap->remaining >= sizeof(afw_pool_free_node_t))
-        {
-            impl_heap_add_to_free_list(self, heap->bump,
-                heap->remaining, xctx);
-        }
-        heap->bump = NULL;
-        heap->remaining = 0;
-
-        chunk = impl_chunk_malloc(total);
-        if (!chunk) {
-            if (unhandled) {
-                return NULL;
-            }
-            AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
-        }
-        chunk->next = heap->first_chunk;
-        heap->first_chunk = chunk;
-        heap->current_chunk = chunk;
-        heap->bump = impl_chunk_usable(chunk);
-        end = impl_chunk_end(chunk);
-        heap->remaining = (afw_size_t)(end - heap->bump);
-        if (heap->remaining < total) {
-            if (unhandled) {
-                return NULL;
-            }
-            AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
-        }
+    if (heap->remaining >= total) {
         start = heap->bump;
         heap->bump += total;
         heap->remaining -= total;
         return start;
     }
+
+    if (heap->current_chunk &&
+        heap->remaining >= sizeof(afw_pool_free_node_t))
+    {
+        impl_heap_add_to_free_list(self, heap->bump,
+            heap->remaining, xctx);
+    }
+    heap->bump = NULL;
+    heap->remaining = 0;
+
+    chunk = impl_chunk_malloc(total);
+    if (!chunk) {
+        if (unhandled) {
+            return NULL;
+        }
+        AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
+    }
+    chunk->next = heap->first_chunk;
+    heap->first_chunk = chunk;
+    heap->current_chunk = chunk;
+    heap->bump = impl_chunk_usable(chunk);
+    end = impl_chunk_end(chunk);
+    heap->remaining = (afw_size_t)(end - heap->bump);
+    if (heap->remaining < total) {
+        if (unhandled) {
+            return NULL;
+        }
+        AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
+    }
+    start = heap->bump;
+    heap->bump += total;
+    heap->remaining -= total;
+    return start;
 }
 
 
@@ -1709,20 +1713,6 @@ afw_pool_internal_create_base_pool()
     self->thread = NULL;
     impl_base_pool_self = self;
     return &self->pub;
-}
-
-
-AFW_DEFINE(void)
-afw_pool_internal_destroy_base_pool(afw_xctx_t *xctx)
-{
-    afw_pool_internal_self_t *self;
-
-    if (!xctx || !xctx->env || !xctx->env->p) {
-        return;
-    }
-    self = (afw_pool_internal_self_t *)xctx->env->p;
-    /* Skip the MT wrapper: that lock is allocated from this pool. */
-    impl_heap_afw_pool_destroy(self, xctx);
 }
 
 
