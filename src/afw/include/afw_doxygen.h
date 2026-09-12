@@ -698,6 +698,16 @@
  */
 
 /**
+ * @defgroup afw_getopt Getopt
+ *
+ * Table-driven argv options for commands (`afw`, command skeleton).
+ *
+ * One row per flag (long name, short character, has-arg, description).
+ * Parse and `--help` walk the same table. No APR pool. `afwfcgi` still
+ * uses a strcmp loop. Usage example: afw_getopt.h.
+ */
+
+/**
  * @defgroup afw_hash_table Hash table
  *
  * C byte-key to pointer map.

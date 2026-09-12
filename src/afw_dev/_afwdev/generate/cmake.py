@@ -79,7 +79,8 @@ def _root_generate_afw_package_variables(options, afw_package):
 #
 # AFW_PACKAGE_INSTALL_CMAKEDIR and AFW_PACKAGE_INSTALL_FULL_CMAKEDIR are also
 # set with the path where cmake related files for this particular afw package
-# are installed.
+# are installed (versioned cmake/<id>-<version>). CMAKEDIR_UNVERSIONED is
+# cmake/<id>, overwritten on each install.
 #
 
 """)
@@ -112,7 +113,9 @@ set(AFW_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 # information.
 #
 # Also, AFW_PACKAGE_INSTALL_CMAKEDIR and AFW_PACKAGE_INSTALL_FULL_CMAKEDIR are
-# set with path of LIBDIR subdirectory cmake/${PROJECT_NAME}-${PROJECT_VERSION}
+# set with path of LIBDIR subdirectory cmake/${PROJECT_NAME}-${PROJECT_VERSION}.
+# AFW_PACKAGE_INSTALL_CMAKEDIR_UNVERSIONED is cmake/${PROJECT_NAME} (overwritten
+# on each install so find_package without a version can see current).
 #
 # These variables are used exclusively by afwdev generated cmake instead of
 # their 'CMAKE_INSTALL_' counterparts.
@@ -161,6 +164,9 @@ set(AFW_PACKAGE_INSTALL_DOCDIR
 set(AFW_PACKAGE_INSTALL_CMAKEDIR
     ${CMAKE_INSTALL_LIBDIR}/cmake/${afw_package_afwPackageId}-${afw_package_version}
 )
+set(AFW_PACKAGE_INSTALL_CMAKEDIR_UNVERSIONED
+    ${CMAKE_INSTALL_LIBDIR}/cmake/${afw_package_afwPackageId}
+)
 
 # Repeat for CMAKE_INSTALL_FULL_<dir>
 
@@ -203,6 +209,9 @@ set(AFW_PACKAGE_INSTALL_FULL_DOCDIR
 
 set(AFW_PACKAGE_INSTALL_FULL_CMAKEDIR
     ${CMAKE_INSTALL_FULL_LIBDIR}/cmake/${afw_package_afwPackageId}-${afw_package_version}
+)
+set(AFW_PACKAGE_INSTALL_FULL_CMAKEDIR_UNVERSIONED
+    ${CMAKE_INSTALL_FULL_LIBDIR}/cmake/${afw_package_afwPackageId}
 )
 """)
 
