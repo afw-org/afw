@@ -13,6 +13,8 @@
 
 #include "afw_internal.h"
 #include <float.h>
+#include <string.h>
+#include <errno.h>
 
 /* Convert a double to utf8 in specified pool. */
 AFW_DEFINE(const afw_utf8_t *)
@@ -206,7 +208,6 @@ afw_number_parse(
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_octet_t *c;
-    const afw_utf8_octet_t *s;
     afw_boolean_t zero;
     afw_boolean_t is_integer;
     afw_boolean_t is_negative;
@@ -409,9 +410,14 @@ afw_number_parse(
     if (!d) return -1;
     number = 0;
     if (!zero) {
-        s = apr_pstrndup(afw_pool_get_apr_pool(p), cursor, c - cursor);
+        afw_size_t n = (afw_size_t)(c - cursor);
+        char *scratch;
+
+        scratch = afw_pool_malloc(p, n + 1, xctx);
+        memcpy(scratch, cursor, n);
+        scratch[n] = 0;
         errno = 0;
-        number = strtod(s, NULL);
+        number = strtod(scratch, NULL);
         if (errno != 0) {
             return -1;
         }

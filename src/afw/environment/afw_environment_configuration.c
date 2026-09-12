@@ -44,7 +44,7 @@ afw_environment_configure_with_object(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "missing type property",
-            AFW_UTF8_FMT_ARG(source_location));
+            source_location);
     }
 
     /* Get conf_type and call create function. */
@@ -52,9 +52,9 @@ afw_environment_configure_with_object(
     if (!conf_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
-            "invalid type " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(source_location),
-            AFW_UTF8_FMT_ARG(type));
+            "invalid type '%ku'",
+            source_location,
+            type);
     }
     conf_type->create(type, conf, source_location, p, xctx);
 }
@@ -89,14 +89,14 @@ afw_environment_configure_with_object_list(
 
         /* Source location will include entry number. */
         detail_source_location = afw_utf8_printf(xctx->env->p, xctx,
-            AFW_UTF8_FMT " entry %d",
-            AFW_UTF8_FMT_ARG(source_location), count);
+            "%ku entry %d",
+            source_location, count);
 
         if (!afw_value_is_object(value)) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "is not an object",
-                AFW_UTF8_FMT_ARG(detail_source_location));
+                detail_source_location);
         }
         entry = ((const afw_value_object_t *)value)->internal;
 
@@ -126,7 +126,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "\"extension_id\" required.",
-            AFW_UTF8_FMT_ARG(source_location));
+            source_location);
     }
 
     /* modulePath is a template evaluated at extension conf create (#15). */
@@ -134,16 +134,16 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
     value = afw_object_get_property(entry, afw_v_modulePath, xctx);
     if (value) {
         detail_source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(source_location),
-            AFW_UTF8_FMT_ARG(afw_s_modulePath));
+            "%ku/%ku",
+            source_location,
+            afw_s_modulePath);
         value = afw_value_compile_and_evaluate_using(value,
             detail_source_location, afw_compile_type_template, p, xctx);
         if (!afw_value_is_string(value)) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "modulePath must evaluate to string",
-                AFW_UTF8_FMT_ARG(detail_source_location));
+                detail_source_location);
         }
         module_path = &((const afw_value_string_t *)value)->internal;
     }
@@ -156,11 +156,10 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
             value = afw_object_get_property(manifest, afw_v_modulePath, xctx);
             if (value) {
                 detail_source_location = afw_utf8_printf(p, xctx,
-                    AFW_UTF8_FMT "/_AdaptiveManifest_/" AFW_UTF8_FMT
-                    "/" AFW_UTF8_FMT,
-                    AFW_UTF8_FMT_ARG(source_location),
-                    AFW_UTF8_FMT_ARG(extension_id),
-                    AFW_UTF8_FMT_ARG(afw_s_modulePath));
+                    "%ku/_AdaptiveManifest_/%ku/%ku",
+                    source_location,
+                    extension_id,
+                    afw_s_modulePath);
                 value = afw_value_compile_and_evaluate_using(value,
                     detail_source_location, afw_compile_type_template,
                     p, xctx);
@@ -168,7 +167,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
                     AFW_THROW_ERROR_FZ(general, xctx,
                         AFW_UTF8_CONTEXTUAL_LABEL_FMT
                         "modulePath must evaluate to string",
-                        AFW_UTF8_FMT_ARG(detail_source_location));
+                        detail_source_location);
                 }
                 module_path =
                     &((const afw_value_string_t *)value)->internal;
@@ -178,9 +177,9 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
     if (!module_path) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
-            "\"modulePath\" needed for \"extension\" " AFW_UTF8_FMT ".",
-            AFW_UTF8_FMT_ARG(source_location), 
-            AFW_UTF8_FMT_ARG(extension_id));
+            "\"modulePath\" needed for \"extension\" %ku.",
+            source_location, 
+            extension_id);
     }
 
     afw_environment_load_extension(extension_id, module_path,
@@ -220,7 +219,7 @@ afw_environment_prepare_conf_type_properties(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             " missing type",
-            AFW_UTF8_FMT_ARG(source_location));
+            source_location);
     }
 
     /* Get conf_type for type. */
@@ -228,10 +227,9 @@ afw_environment_prepare_conf_type_properties(
     if (!conf_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
-            "type " AFW_UTF8_FMT_Q
-            " is not valid",
-            AFW_UTF8_FMT_ARG(source_location),
-            AFW_UTF8_FMT_ARG(type));
+            "type '%ku' is not valid",
+            source_location,
+            type);
     }
 
     /* If appropriate, get subtype. */
@@ -244,11 +242,10 @@ afw_environment_prepare_conf_type_properties(
         if (!subtype || subtype->len == 0) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
-                AFW_UTF8_FMT_Q
-                " property required for conf type " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(source_location),
-                AFW_UTF8_FMT_ARG(conf_type->subtype_property_name),
-                AFW_UTF8_FMT_ARG(type));
+                "'%ku' property required for conf type '%ku'",
+                source_location,
+                conf_type->subtype_property_name,
+                type);
         }
     }
 
@@ -262,24 +259,20 @@ afw_environment_prepare_conf_type_properties(
         if (!id || id->len == 0) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
-                " " AFW_UTF8_FMT_Q
-                " property required for conf type " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(source_location),
-                AFW_UTF8_FMT_ARG(conf_type->id_property_name),
-                AFW_UTF8_FMT_ARG(type));
+                " '%ku' property required for conf type '%ku'",
+                source_location,
+                conf_type->id_property_name,
+                type);
         }
     }
 
     /* Construct path. */
     path = afw_utf8_printf(p, xctx,
-        "/afw/_AdaptiveConf_" AFW_UTF8_FMT
-        "%s" AFW_UTF8_FMT
-        "/" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(type),
-        (const char *)((subtype) ? "_" : ""),
-        (int)((subtype) ? (int)subtype->len : 0),
-        (const char *)((subtype) ? (const char *)subtype->s : ""),
-        AFW_UTF8_FMT_ARG(id));
+        "/afw/_AdaptiveConf_%ku%s%ku/%ku",
+        type,
+        (subtype) ? "_" : "",
+        subtype,
+        id);
 
 
     /* If defaulting source location, make it path. */
@@ -303,7 +296,7 @@ afw_environment_prepare_conf_type_properties(
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 " configuration error(s) logged",
-                AFW_UTF8_FMT_ARG(source_location));
+                source_location);
         }
     }
     

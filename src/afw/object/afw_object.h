@@ -238,9 +238,8 @@ while (0)
 
 #define AFW_OBJECT_ERROR_PROPERTY_IMMUTABLE(property_name) \
 AFW_THROW_ERROR_FZ(read_only, xctx, \
-    "Object property " AFW_UTF8_FMT_Q " is immutable", \
-    AFW_UTF8_FMT_ARG( \
-        afw_object_property_name_display_utf8((property_name), xctx)))
+    "Object property '%ku' is immutable", \
+    afw_object_property_name_display_utf8((property_name), xctx))
 
 /**
  * @brief Set an object to immutable if it is not already.
@@ -513,8 +512,8 @@ afw_object_resolve_instance(
     if (object) return object;
     if (!path) return NULL;
     /* Will not happen if objects retrieved using afw_cache_* */
-    AFW_THROW_ERROR_FZ(coding_error, xctx, AFW_UTF8_FMT_Q,
-        AFW_UTF8_FMT_ARG(path));
+    AFW_THROW_ERROR_FZ(coding_error, xctx, "'%ku'",
+        path);
 };
 
 

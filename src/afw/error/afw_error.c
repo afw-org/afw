@@ -14,6 +14,20 @@
 #include "afw_internal.h"
 
 
+static void
+impl_error_format_message(
+    afw_xctx_t *xctx,
+    const afw_utf8_z_t *format_z,
+    va_list ap)
+{
+    /* Size includes the trailing 0 (z dest). */
+    afw_utf8_z_snprintf_v(
+        &xctx->error->message_wa[0],
+        sizeof(xctx->error->message_wa),
+        format_z, ap, xctx);
+}
+
+
 AFW_DEFINE(void)
 afw_error_processing_handled(afw_xctx_t *xctx)
 {
@@ -126,9 +140,7 @@ afw_error_rv_set_fz(
     va_list ap;
 
     va_start(ap, format_z);
-    vsnprintf((char *)&(xctx->error->message_wa[0]),
-        sizeof(xctx->error->message_wa),
-        (const char *)format_z, ap);
+    impl_error_format_message(xctx, format_z, ap);
     afw_error_rv_set_z(code, rv_source_id_z, rv, source_z,
         &xctx->error->message_wa[0], xctx);
     va_end(ap);
@@ -144,9 +156,7 @@ afw_error_set_fz(
     va_list ap;
 
     va_start(ap, format_z);
-    vsnprintf((char *)&(xctx->error->message_wa[0]),
-        sizeof(xctx->error->message_wa),
-        (const char *)format_z, ap);
+    impl_error_format_message(xctx, format_z, ap);
     afw_error_rv_set_z(code, NULL, 0, source_z,
         &xctx->error->message_wa[0], xctx);
     va_end(ap);
@@ -162,9 +172,7 @@ afw_error_rv_set_vz(
     const afw_utf8_z_t * format_z, va_list ap,
     afw_xctx_t *xctx)
 {
-    vsnprintf((char *)&(xctx->error->message_wa[0]),
-        sizeof(xctx->error->message_wa),
-        (const char *)format_z, ap);
+    impl_error_format_message(xctx, format_z, ap);
     afw_error_rv_set_z(code, rv_source_id_z, rv, source_z,
         &xctx->error->message_wa[0], xctx);
 }
@@ -177,9 +185,7 @@ afw_error_set_vz(
     const afw_utf8_z_t * format_z, va_list ap,
     afw_xctx_t *xctx)
 {
-    vsnprintf((char *)&(xctx->error->message_wa[0]),
-        sizeof(xctx->error->message_wa),
-        (const char *)format_z, ap);
+    impl_error_format_message(xctx, format_z, ap);
     afw_error_rv_set_z(code, NULL, 0, source_z,
         &xctx->error->message_wa[0], xctx);
 }
@@ -596,14 +602,14 @@ afw_error_to_utf8(
         " [code=%s(%d)"                /* code-decoded */
         " rv=%s%s%d%s%s"               /* source:rv-decoded */
 
-        "%s" AFW_UTF8_FMT "%s"         /* source location */
+        "%s%ku%s"         /* source location */
         "%.0" AFW_SIZE_T_FMT_NO_PERCENT
 
         "]"
 
-        "%s" AFW_UTF8_FMT              /* evaluation backtrace */
+        "%s%ku"              /* evaluation backtrace */
 
-        "%s" AFW_UTF8_FMT,             /* code backtrace */
+        "%s%ku",             /* code backtrace */
 
         /* message. */
         error->message_z,
@@ -623,9 +629,7 @@ afw_error_to_utf8(
         (do_contextual && error->contextual && error->contextual->source_location)
             ? " source_location=" : "",
         (do_contextual && error->contextual && error->contextual->source_location)
-            ? error->contextual->source_location->len : 0,
-        (do_contextual && error->contextual && error->contextual->source_location)
-            ? (char *)error->contextual->source_location->s : "",
+            ? error->contextual->source_location : NULL,
         (do_contextual && error->contextual && error->contextual->value_offset != 0)
             ? " +" : "",
         (do_contextual && error->contextual && error->contextual->value_offset != 0)
@@ -636,14 +640,11 @@ afw_error_to_utf8(
         (do_evaluation_backtrace && evaluation_backtrace)
             ? "\n\nEvaluation backtrace:\n" : "",
         (do_evaluation_backtrace && evaluation_backtrace)
-            ? evaluation_backtrace->len : 0,
-        (do_evaluation_backtrace && evaluation_backtrace)
-            ? (char *)evaluation_backtrace->s : "",
+            ? evaluation_backtrace : NULL,
 
         /* code backtrace */
         (do_code_backtrace && error->backtrace) ? "\nCode backtrace:\n" : "",
-        (do_code_backtrace && error->backtrace) ? error->backtrace->len : 0,
-        (do_code_backtrace && error->backtrace) ? (char *)error->backtrace->s : ""
+        (do_code_backtrace && error->backtrace) ? error->backtrace : NULL
     );
 
     return result;
@@ -663,9 +664,9 @@ afw_error_write_log(afw_log_priority_t priority,
             priority,
             afw_error_source_file(error),
             xctx,
-            "%s [" AFW_UTF8_FMT "%s%0d]",
+            "%s [%ku%s%0d]",
             error->message_z,
-            AFW_UTF8_FMT_ARG(error->contextual->source_location),
+            error->contextual->source_location,
             (error->contextual && error->contextual->value_offset != 0) ? " +" : "",
             (error->contextual && error->contextual->value_offset != 0)
                 ? error->contextual->value_offset
@@ -1045,10 +1046,8 @@ AFW_DEFINE(const afw_utf8_z_t *)
 afw_error_message_vz(
     const afw_utf8_z_t *format, va_list ap, afw_xctx_t *xctx)
 {
-    vsnprintf((char *)&(xctx->error->message_wa[0]),
-        sizeof(xctx->error->message_wa), (const char *)format, ap);
-
-    return &(xctx->error->message_wa[0]);
+    impl_error_format_message(xctx, format, ap);
+    return &xctx->error->message_wa[0];
 }
 
 
@@ -1059,13 +1058,10 @@ afw_error_message(
     va_list ap;
 
     va_start(ap, format);
-
-    vsnprintf((char *)&(xctx->error->message_wa[0]),
-        sizeof(xctx->error->message_wa), (const char *)format, ap);
-
+    impl_error_format_message(xctx, format, ap);
     va_end(ap);
 
-    return &(xctx->error->message_wa[0]);
+    return &xctx->error->message_wa[0];
 }
 
 

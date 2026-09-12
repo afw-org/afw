@@ -58,8 +58,6 @@
 
 /* Adaptive Framework uses Apache Portable Runtime. */
 #include <apr_general.h>
-#include <apr_tables.h>
-#include <apr_strings.h>
 #include <apr_time.h>
 #include <apr_hash.h>
 #include <apr_buckets.h>
@@ -773,26 +771,22 @@ typedef struct afw_utf8_array_s {
 
 
 /**
- * @brief Format string specifier used for afw_utf8_t.
+ * @brief Format string specifier used for afw_utf8_t with libc.
  *
- * With libc printf this is `%.*s` and still stops at an interior 0.
- * `afw_utf8_printf` / `z_printf` copy n bytes, then `forced_safe`.
+ * libc `%.*s` (int len, char *). Stops at an interior 0. Use with
+ * `fprintf` and `AFW_UTF8_FMT_ARG`. AFW printf uses `%ku` (one
+ * `const afw_utf8_t *`; NULL is empty).
  */
 #define AFW_UTF8_FMT "%.*s"
 
 /**
- * @brief Format quoted string specifier used for afw_utf8_t.
+ * @brief Quoted libc format specifier for afw_utf8_t.
  */
 #define AFW_UTF8_FMT_Q "'%.*s'"
 
 
-/** @brief Format string used for source location separator. */
-#define AFW_UTF8_CONTEXTUAL_LABEL_FMT_SEP "> "
-
-
-/** @brief Format string used for source location. */
-#define AFW_UTF8_CONTEXTUAL_LABEL_FMT \
-AFW_UTF8_FMT AFW_UTF8_CONTEXTUAL_LABEL_FMT_SEP
+/** @brief Format string used for source location (AFW printf). */
+#define AFW_UTF8_CONTEXTUAL_LABEL_FMT "%ku> "
 
 /**
  * @brief Convenience Macro for use with AFW_UTF8_FMT to specify arg.
@@ -803,30 +797,6 @@ AFW_UTF8_FMT AFW_UTF8_CONTEXTUAL_LABEL_FMT_SEP
  */
 #define AFW_UTF8_FMT_ARG(A_STRING) \
     (int)(A_STRING)->len, (const char *)(A_STRING)->s
-
-
-/**
- * @brief Convenience Macro for use with AFW_UTF8_FMT to specify optional arg.
- * @param A_STRING a (const afw_utf8_t *) string or NULL.
- *
- * The argument for " AFW_UTF8_FMT " is an int length (not size_t) followed by
- * a comma and const char *.  
- */
-#define AFW_UTF8_FMT_OPTIONAL_ARG(A_STRING) \
-    (A_STRING) ? (int)(A_STRING)->len : 0, \
-    (A_STRING) ? (const char *)(A_STRING)->s : ""
-
-
-/**
- * @brief Convenience Macro for use with AFW_UTF8_FMT to specify optional arg.
- * @param A_STRING a (const afw_utf8_t *) string or undefined.
- *
- * The argument for " AFW_UTF8_FMT " is an int length (not size_t) followed by
- * a comma and const char *.  If NULL, `undefined` is supplied.
- */
-#define AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(A_STRING) \
-    (A_STRING) ? (int)(A_STRING)->len : 0, \
-    (A_STRING) ? (const char *)(A_STRING)->s : "undefined"
 
 
 /**

@@ -51,8 +51,8 @@ impl_throw_stdio(
         err = EIO;
     }
     AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
-        "streamId " AFW_UTF8_FMT_Q " %s failed: %s",
-        AFW_UTF8_FMT_ARG(streamId), op_z, strerror(err));
+        "streamId '%ku' %s failed: %s",
+        streamId, op_z, strerror(err));
 }
 
 
@@ -262,12 +262,12 @@ afw_stream_fd_open_and_create(
         }
         if (err == ENOENT) {
             AFW_THROW_ERROR_RV_FZ(not_found, errno, err, xctx,
-                "streamId " AFW_UTF8_FMT_Q " failed to open %s: %s",
-                AFW_UTF8_FMT_ARG(streamId), path_z, strerror(err));
+                "streamId '%ku' failed to open %s: %s",
+                streamId, path_z, strerror(err));
         }
         AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
-            "streamId " AFW_UTF8_FMT_Q " failed to open %s: %s",
-            AFW_UTF8_FMT_ARG(streamId), path_z, strerror(err));
+            "streamId '%ku' failed to open %s: %s",
+            streamId, path_z, strerror(err));
     }
 
     allow_read = false;

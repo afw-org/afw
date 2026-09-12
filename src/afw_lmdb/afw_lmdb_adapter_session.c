@@ -423,8 +423,8 @@ impl_afw_adapter_session_delete_object(
             object_type_id, internal_id, dbi, xctx);
         if (!object) {
             AFW_THROW_ERROR_FZ(not_found, xctx,
-                AFW_UTF8_FMT_Q " cannot be found.",
-                AFW_UTF8_FMT_ARG(object_id));
+                "'%ku' cannot be found.",
+                object_id);
         }
 
         /* remove the actual entry from the primary database */

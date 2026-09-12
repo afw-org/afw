@@ -307,9 +307,8 @@ impl_resolve_host_path(
 
     if (!impl_path_is_under_root(merged_z, root_z)) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "object_id " AFW_UTF8_FMT_Q
-            " resolves outside vfsMap host root %s",
-            AFW_UTF8_FMT_OPTIONAL_ARG(object_id),
+            "object_id '%ku' resolves outside vfsMap host root %s",
+            object_id,
             root_z);
     }
 
@@ -1069,15 +1068,15 @@ impl_determine_path_for_object_id(
     if (expect_exists) {
         if (!exists) {
             AFW_THROW_ERROR_FZ(not_found, xctx,
-                "object_id " AFW_UTF8_FMT_Q " doesn't exist",
-                AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
+                "object_id '%ku' doesn't exist",
+                object_id);
         }
     }
     else {
         if (exists) {
             AFW_THROW_ERROR_FZ(conflict, xctx,
-                "object_id " AFW_UTF8_FMT_Q " already exists",
-                AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
+                "object_id '%ku' already exists",
+                object_id);
         }
     }
 
@@ -1086,24 +1085,21 @@ impl_determine_path_for_object_id(
         if (finfo.filetype == APR_DIR) {
             if (!*is_directory) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "object_id " AFW_UTF8_FMT_Q
-                    " is directory so must end with '/'",
-                    AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
+                    "object_id '%ku' is directory so must end with '/'",
+                    object_id);
             }
         }
         else if (finfo.filetype == APR_REG) {
             if (*is_directory) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "object_id " AFW_UTF8_FMT_Q
-                    " is a regular file so must not end with '/'",
-                    AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
+                    "object_id '%ku' is a regular file so must not end with '/'",
+                    object_id);
             }
         }
         else {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "object_id " AFW_UTF8_FMT_Q
-                " filetype is not allowed",
-                AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
+                "object_id '%ku' filetype is not allowed",
+                object_id);
         }
     }
 }

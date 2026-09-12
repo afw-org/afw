@@ -51,12 +51,11 @@ afw_debug_write_fz(
     ...)
 {
     va_list ap;
-    afw_utf8_t message;
+    const afw_utf8_t *message;
 
     va_start(ap, format_z);
-    message.s = apr_pvsprintf(afw_pool_get_apr_pool(xctx->p), format_z, ap);
-    message.len = strlen(message.s);
-    afw_debug_write(rti, source_z, &message, xctx);
+    message = afw_utf8_printf_v(format_z, ap, xctx->p, xctx);
+    afw_debug_write(rti, source_z, message, xctx);
     va_end(ap);
 }
 

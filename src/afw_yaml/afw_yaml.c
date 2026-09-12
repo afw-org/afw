@@ -15,6 +15,9 @@
 #include "afw_yaml.h"
 #include "afw_content_type_impl.h"
 #include "generated/afw_yaml_version_info.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 /* Declares and rti/inf defines for interface afw_extension */
@@ -157,11 +160,11 @@ static const afw_utf8_z_t * impl_u8z_to_yaml(
          * not misclassified when char is signed.
          */
         if ((unsigned char)*c < 32) {
-            u = apr_psprintf(afw_pool_get_apr_pool(xctx->p), "\\u%02x",
-                (unsigned char)*c);
-            while (*u) {
+            char u8[8];
+
+            snprintf(u8, sizeof(u8), "\\u%02x", (unsigned char)*c);
+            for (u = u8; *u; u++) {
                 afw_vector_push(a, xctx) = *u;
-                u++;
             }
         }
 
@@ -182,6 +185,16 @@ static const afw_utf8_z_t * impl_u8z_to_yaml(
 const afw_utf8_t * afw_yaml_from_error(afw_xctx_t *xctx)
 {
     afw_error_t *error = xctx->error;
+    const afw_utf8_z_t *colon;
+    int line_number;
+
+    line_number = 0;
+    if (error->source_z) {
+        colon = strrchr((const char *)error->source_z, ':');
+        if (colon) {
+            line_number = atoi(colon + 1);
+        }
+    }
 
     return afw_utf8_printf(xctx->p, xctx,
         "\"status\": \"error\",\n"
@@ -198,6 +211,7 @@ const afw_utf8_t * afw_yaml_from_error(afw_xctx_t *xctx)
         afw_error_code_id_z(error),
         impl_u8z_to_yaml(afw_error_source_file(error), xctx),
         error->source_z,
+        line_number,
         impl_u8z_to_yaml(error->rv_source_id_z, xctx),
         error->rv,
         impl_u8z_to_yaml(error->rv_decoded_z, xctx),

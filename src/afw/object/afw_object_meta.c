@@ -723,9 +723,9 @@ impl_log_errors(
     {
         AFW_LOG_FZ(info, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
-            AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(source_location),
-            AFW_UTF8_FMT_ARG(error));
+            "%ku",
+            source_location,
+            error);
     }
 }
 
@@ -776,12 +776,10 @@ afw_object_meta_log_errors(
                 afw_v_errors, xctx);
             if (errors) {
                 property_source_location = afw_utf8_printf(p, xctx,
-                    AFW_UTF8_FMT
-                    "." AFW_UTF8_FMT,
-                    AFW_UTF8_FMT_ARG(source_location),
-                    AFW_UTF8_FMT_ARG(
-                        afw_object_property_name_display_utf8(
-                            property_name, xctx)));
+                    "%ku.%ku",
+                    source_location,
+                    afw_object_property_name_display_utf8(
+                            property_name, xctx));
                 impl_log_errors(errors, property_source_location, xctx);
             }
         }
@@ -798,12 +796,10 @@ afw_object_meta_log_errors(
         embedded = ((afw_value_object_t *)value)->internal;
         if (afw_object_meta_has_errors(embedded, xctx)) {
             property_source_location = afw_utf8_printf(p, xctx,
-                AFW_UTF8_FMT
-                "." AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(source_location),
-                AFW_UTF8_FMT_ARG(
-                    afw_object_property_name_display_utf8(
-                        property_name, xctx)));
+                "%ku.%ku",
+                source_location,
+                afw_object_property_name_display_utf8(
+                        property_name, xctx));
             afw_object_meta_log_errors(embedded,
                 property_source_location, xctx);
         }
@@ -904,9 +900,9 @@ afw_object_meta_add_thrown_property_error(
         message = afw_error_to_utf8(error, instance->p, xctx);
         if (index >= 0) {
             message = afw_utf8_printf(instance->p, xctx,
-                "[" AFW_INTEGER_FMT "] " AFW_UTF8_FMT,
+                "[" AFW_INTEGER_FMT "] %ku",
                 index,
-                AFW_UTF8_FMT_ARG(message));
+                message);
         }
     }
 

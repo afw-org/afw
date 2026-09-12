@@ -457,11 +457,10 @@ afw_compile_templates(
         /* If this is a template value, compile it. */
        if (afw_value_is_template(value)) {
             detail_source_location = afw_utf8_printf(object->p, xctx,
-                AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(source_location),
-                AFW_UTF8_FMT_ARG(
-                    afw_object_property_name_display_utf8(
-                        property_name, xctx)));
+                "%ku/%ku",
+                source_location,
+                afw_object_property_name_display_utf8(
+                        property_name, xctx));
             value = afw_compile_to_value(
                 &((afw_value_template_t *)value)->internal,
                 detail_source_location,
@@ -473,11 +472,10 @@ afw_compile_templates(
         /* Recursively process objects. */
         else if (recursive && afw_value_is_object(value)) {
             detail_source_location = afw_utf8_printf(object->p, xctx,
-                AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(source_location),
-                AFW_UTF8_FMT_ARG(
-                    afw_object_property_name_display_utf8(
-                        property_name, xctx)));
+                "%ku/%ku",
+                source_location,
+                afw_object_property_name_display_utf8(
+                        property_name, xctx));
             afw_compile_templates(
                 ((const afw_value_object_t *)value)->internal,
                 detail_source_location, true, shared, xctx);
@@ -517,18 +515,17 @@ afw_compile_object_all_template_properties(
         object, &iterator, &property_name, xctx)))
     {
         detail_source_location = afw_utf8_printf(object->p, xctx,
-                AFW_UTF8_FMT " property " AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(source_location),
-                AFW_UTF8_FMT_ARG(
-                    afw_object_property_name_display_utf8(
-                        property_name, xctx)));
+                "%ku property %ku",
+                source_location,
+                afw_object_property_name_display_utf8(
+                        property_name, xctx));
         value_data_type = afw_value_get_data_type(value, xctx);
         if (!value_data_type ||
             !afw_utf8_equal(&value_data_type->cType, afw_s_afw_utf8_t))
         {
             AFW_THROW_ERROR_FZ(general, xctx,
-                AFW_UTF8_FMT " is not a template",
-                AFW_UTF8_FMT_ARG(detail_source_location));
+                "%ku is not a template",
+                detail_source_location);
         }
         compiled_value = afw_compile_template_source(
             &((const afw_value_string_t *)value)->internal,
@@ -591,11 +588,10 @@ afw_compile_source_location_of_value(
                 info.contextual->value_offset,
                 4, xctx);
             result = afw_utf8_printf(p, xctx,
-                AFW_UTF8_FMT
-                "+" AFW_SIZE_T_FMT
+                "%ku+" AFW_SIZE_T_FMT
                 "(" AFW_SIZE_T_FMT
                 ":" AFW_SIZE_T_FMT ")",
-                AFW_UTF8_FMT_ARG(info.contextual->source_location),
+                info.contextual->source_location,
                 info.contextual->value_offset,
                 line_number, column_number);
         }
@@ -603,14 +599,13 @@ afw_compile_source_location_of_value(
         {
             if (info.contextual->value_offset == 0) {
                 result = afw_utf8_printf(p, xctx,
-                    AFW_UTF8_FMT,
-                    AFW_UTF8_FMT_ARG(info.contextual->source_location));
+                    "%ku",
+                    info.contextual->source_location);
             }
             else {
                 result = afw_utf8_printf(p, xctx,
-                    AFW_UTF8_FMT
-                    "%s+" AFW_SIZE_T_FMT,
-                    AFW_UTF8_FMT_ARG(info.contextual->source_location),
+                    "%ku+" AFW_SIZE_T_FMT,
+                    info.contextual->source_location,
                     info.contextual->value_offset);
             }
         }

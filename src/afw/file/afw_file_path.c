@@ -13,7 +13,6 @@
 
 #include "afw_internal.h"
 #include <apr_file_info.h>
-#include <apr_strings.h>
 
 
 /*
@@ -100,9 +99,8 @@ impl_canonicalize_root_dir_z(
     }
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(not_found, apr, rv, xctx,
-            "rootFilePaths host directory " AFW_UTF8_FMT_Q
-            " could not be resolved (must exist as a directory)",
-            AFW_UTF8_FMT_ARG(host_root));
+            "rootFilePaths host directory '%ku' could not be resolved (must exist as a directory)",
+            host_root);
     }
 
     real_z = merged_z;
@@ -250,7 +248,13 @@ afw_file_path_resolve_rootFilePaths(
         return afw_utf8_create(root_z, AFW_UTF8_Z_LEN, p, xctx);
     }
 
-    addpath_z = apr_pstrndup(apr_p, (const char *)rem_s, rem_len);
+    {
+        afw_utf8_t rem;
+
+        rem.s = rem_s;
+        rem.len = rem_len;
+        addpath_z = (char *)afw_utf8_to_utf8_z(&rem, p, xctx);
+    }
 
     /*
      * Merge under root with SECUREROOT so ".." and absolute addpath cannot

@@ -286,10 +286,9 @@ afw_object_get_property_compile_as(
         use_source_location = source_location;
     }
     use_source_location = afw_utf8_printf(p, xctx,
-        AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(use_source_location),
-        AFW_UTF8_FMT_ARG(
-            afw_object_property_name_display_utf8(property_name, xctx)));
+        "%ku/%ku",
+        use_source_location,
+        afw_object_property_name_display_utf8(property_name, xctx));
 
     value = afw_object_get_property(instance, property_name, xctx);
 
@@ -475,11 +474,9 @@ afw_object_get_property_compile_script(
     /* Only evaluated values are supported. */
     if (!afw_value_is_defined_and_evaluated(result)) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            AFW_UTF8_FMT " " AFW_UTF8_FMT_Q
-            " is not an evaluated value",
-            AFW_UTF8_FMT_OPTIONAL_ARG(source_location),
-            AFW_UTF8_FMT_ARG(
-                afw_object_property_name_display_utf8(property_name, xctx)));
+            "%ku '%ku' is not an evaluated value",
+            source_location,
+            afw_object_property_name_display_utf8(property_name, xctx));
     }
 
     result = afw_compile_script(result,
@@ -510,11 +507,9 @@ afw_object_get_property_compile_template(
     /* Only evaluated values are supported. */
     if (!afw_value_is_defined_and_evaluated(result)) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            AFW_UTF8_FMT " " AFW_UTF8_FMT_Q
-            " is not an evaluated value",
-            AFW_UTF8_FMT_OPTIONAL_ARG(source_location),
-            AFW_UTF8_FMT_ARG(
-                afw_object_property_name_display_utf8(property_name, xctx)));
+            "%ku '%ku' is not an evaluated value",
+            source_location,
+            afw_object_property_name_display_utf8(property_name, xctx));
     }
 
     result = afw_compile_template(result,

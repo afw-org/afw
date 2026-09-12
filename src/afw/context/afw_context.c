@@ -429,10 +429,9 @@ afw_context_variable_definitions_add_based_on_object(
         if (!pt) {
             continue; /** @fixme How should this be handled? */
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Missing property type for " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(
-                    afw_object_property_name_display_utf8(
-                        property_name, xctx)));
+                "Missing property type for '%ku'",
+                afw_object_property_name_display_utf8(
+                        property_name, xctx));
         }
 
         value_data_type = afw_value_get_data_type(value, xctx);
@@ -567,9 +566,9 @@ afw_context_variable_definitions_compile_and_add_based_on_object(
     const afw_object_t *variable_definitions_object;
 
     detail_source_location = afw_utf8_printf(object->p, xctx,
-        AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(source_location),
-        AFW_UTF8_FMT_ARG(qualifier_id));
+        "%ku/%ku",
+        source_location,
+        qualifier_id);
     afw_compile_templates(object,
         detail_source_location, false, NULL, xctx);
     variable_definitions_object =
@@ -603,9 +602,9 @@ afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
             qualifier_id, xctx);
         detail_source_location = afw_utf8_printf(
             object->p, xctx,
-            AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(source_location),
-            AFW_UTF8_FMT_ARG(qualifier_id_utf8));
+            "%ku/%ku",
+            source_location,
+            qualifier_id_utf8);
         afw_context_variable_definitions_compile_and_add_based_on_object(
             context_type_object, object, qualifier_id_utf8,
             detail_source_location, xctx);

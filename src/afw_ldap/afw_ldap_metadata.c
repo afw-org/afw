@@ -727,8 +727,8 @@ impl_make_property_type_and_handler_hash_tables(
     return;
     
 error:
-    AFW_THROW_ERROR_FZ(general, xctx, "Internal " AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(error_id));
+    AFW_THROW_ERROR_FZ(general, xctx, "Internal %ku",
+        error_id);
 }
 
 static void
@@ -834,8 +834,8 @@ impl_set_synthetic_object_type(afw_void_hash_table_t *ht,
         afw_s__AdaptiveObjectType_, object_type_id, xctx);
     if (!object_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Missing object '/afw/_AdaptiveObjectType_/" AFW_UTF8_FMT "'",
-            AFW_UTF8_FMT_ARG(object_type_id));
+            "Missing object '/afw/_AdaptiveObjectType_/%ku'",
+            object_type_id);
     }
     afw_hash_table_set(ht, object_type_id->s, object_type_id->len,
         object_type, xctx);
@@ -1144,8 +1144,8 @@ impl_make_object_types(
         if (!value) {
             default_description = afw_utf8_printf(metadata->p, xctx,
                 "_AdaptiveObjectType representation of LDAP object"
-                "class " AFW_UTF8_FMT_Q ".",
-                AFW_UTF8_FMT_ARG(id));
+                "class " "'%ku'.",
+                id);
             value = afw_value_create_unmanaged_string(
                 default_description, p, xctx);
         }
@@ -1586,8 +1586,8 @@ afw_ldap_metadata_value_to_bv(afw_ldap_internal_adapter_session_t *session,
         attribute_name->s, attribute_name->len);
     if (!attribute_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Unknown attribute type " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(attribute_name));
+            "Unknown attribute type '%ku'",
+            attribute_name);
     }
     if (!value) {
         AFW_THROW_ERROR_Z(general,

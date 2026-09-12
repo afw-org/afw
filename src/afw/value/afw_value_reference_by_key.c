@@ -55,8 +55,8 @@ afw_value_reference_by_key_create(
     if (afw_value_is_string(key)) {
         self->backtrace_detail = afw_utf8_printf(
             p, xctx,
-            "[string " AFW_UTF8_FMT "]",
-            AFW_UTF8_FMT_ARG(&((const afw_value_string_t *)key)->internal));
+            "[string %ku]",
+            &((const afw_value_string_t *)key)->internal);
     }
     else if (afw_value_is_integer(key)) {
         self->backtrace_detail = afw_utf8_printf(

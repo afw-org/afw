@@ -357,8 +357,8 @@ impl_afw_adapter_session_add_object(
         object_type_id->s, object_type_id->len);
     if (!first_attribute) {
         AFW_THROW_ERROR_FZ(not_found, xctx,
-            "Object type " AFW_UTF8_FMT_Q " not found",
-            AFW_UTF8_FMT_ARG(object_type_id));
+            "Object type '%ku' not found",
+            object_type_id);
     }
 
     /* Create mods vector. */
@@ -395,8 +395,8 @@ impl_afw_adapter_session_add_object(
         if (bvals) {
             mod = afw_pool_calloc_type(p, LDAPMod, xctx);
             mod->mod_op = LDAP_MOD_ADD | LDAP_MOD_BVALUES;
-            mod->mod_type = apr_pstrndup(afw_pool_get_apr_pool(p),
-                property_name_utf8->s, property_name_utf8->len);
+            mod->mod_type = (char *)afw_utf8_to_utf8_z(
+                property_name_utf8, p, xctx);
             mod->mod_vals.modv_bvals = bvals;
             afw_vector_push(mods, xctx) = mod;
         }
@@ -459,8 +459,8 @@ impl_afw_adapter_session_modify_object(
         object_type_id->s, object_type_id->len);
     if (!first_attribute) {
         AFW_THROW_ERROR_FZ(not_found, xctx,
-            "Object type " AFW_UTF8_FMT_Q " not found",
-            AFW_UTF8_FMT_ARG(object_type_id));
+            "Object type '%ku' not found",
+            object_type_id);
     }
 
     /* Create mods. */
@@ -486,15 +486,15 @@ impl_afw_adapter_session_modify_object(
         if (!attribute || attribute->attribute_type->never_allow_write)
         {
             AFW_THROW_ERROR_FZ(read_only, xctx,
-                "Property " AFW_UTF8_FMT_Q " can not be modified",
-                AFW_UTF8_FMT_ARG(property_name)
+                "Property '%ku' can not be modified",
+                property_name
             );
         }
 
         /* Create and initialize mod. */
         mod = afw_pool_calloc_type(p, LDAPMod, xctx);
-        mod->mod_type = apr_pstrndup(afw_pool_get_apr_pool(p),
-            property_name->s, property_name->len);
+        mod->mod_type = (char *)afw_utf8_to_utf8_z(
+            property_name, p, xctx);
 
         switch ((*e)->type) {
 

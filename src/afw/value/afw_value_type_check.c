@@ -769,18 +769,16 @@ impl_mismatch_detail(
                 &has_open_props, xctx);
             if ((!pv || afw_value_is_undefined(pv)) && !has_open_props) {
                 return afw_utf8_z_printf(p, xctx,
-                    "missing required property " AFW_UTF8_FMT_Q
-                    " for type %s",
-                    AFW_UTF8_FMT_ARG(prop->name), want_z);
+                    "missing required property '%ku' for type %s",
+                    prop->name, want_z);
             }
             if (pv && prop->type &&
                 !afw_value_type_is_any(prop->type) &&
                 !afw_value_type_is_assignable(prop->type, pv, contextual, xctx))
             {
                 return afw_utf8_z_printf(p, xctx,
-                    "property " AFW_UTF8_FMT_Q
-                    ": expected %s but got %s",
-                    AFW_UTF8_FMT_ARG(prop->name),
+                    "property '%ku': expected %s but got %s",
+                    prop->name,
                     impl_type_to_z(prop->type, p, xctx),
                     impl_value_type_to_z(pv, p, xctx));
             }
@@ -1359,17 +1357,15 @@ impl_excess_prop_cb(
     if (!impl_object_type_declares_name(ctx->expected, name, xctx)) {
         if (ctx->as_syntax_error) {
             AFW_THROW_ERROR_FZ(syntax, xctx,
-                "Type error in %s: excess property " AFW_UTF8_FMT_Q
-                " is not declared on type %s",
+                "Type error in %s: excess property '%ku' is not declared on type %s",
                 ctx->what ? ctx->what : "assignment",
-                AFW_UTF8_FMT_ARG(name),
+                name,
                 impl_type_to_z(ctx->expected, xctx->p, xctx));
         }
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Type error in %s: excess property " AFW_UTF8_FMT_Q
-            " is not declared on type %s",
+            "Type error in %s: excess property '%ku' is not declared on type %s",
             ctx->what ? ctx->what : "assignment",
-            AFW_UTF8_FMT_ARG(name),
+            name,
             impl_type_to_z(ctx->expected, xctx->p, xctx));
     }
 
@@ -1695,10 +1691,9 @@ impl_specialize_polymorphic(
     }
     if (!specialized) {
         AFW_THROW_ERROR_FZ(syntax, xctx,
-            "Type error: data type " AFW_UTF8_FMT_Q
-            " is not supported for function " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(&dt->data_type_id),
-            AFW_UTF8_FMT_ARG(&function->functionId->internal));
+            "Type error: data type '%ku' is not supported for function '%ku'",
+            &dt->data_type_id,
+            &function->functionId->internal);
     }
     return specialized;
 }

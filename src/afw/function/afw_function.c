@@ -317,10 +317,9 @@ afw_function_evaluate_parameter(
         {
             AFW_THROW_ERROR_FZ(undefined_value, xctx,
                 "Parameter " AFW_SIZE_T_FMT
-                " of function " AFW_UTF8_FMT_Q
-                " can not be undefined",
+                " of function '%ku' can not be undefined",
                 parameter_number,
-                AFW_UTF8_FMT_ARG(&x->function->functionId->internal));
+                &x->function->functionId->internal);
         }
         return result;
     }
@@ -346,13 +345,11 @@ afw_function_evaluate_parameter(
         {
             AFW_THROW_ERROR_FZ(argument_error, xctx,
                 "Parameter " AFW_SIZE_T_FMT
-                " of function " AFW_UTF8_FMT_Q
-                " must evaluate to data type " AFW_UTF8_FMT_Q
-                " but evaluated to be " AFW_UTF8_FMT_Q,
+                " of function '%ku' must evaluate to data type '%ku' but evaluated to be '%ku'",
                 parameter_number,
-                AFW_UTF8_FMT_ARG(&x->function->functionId->internal),
-                AFW_UTF8_FMT_ARG(&parameter->data_type->data_type_id),
-                AFW_UTF8_FMT_ARG(&result_data_type->data_type_id));
+                &x->function->functionId->internal,
+                &parameter->data_type->data_type_id,
+                &result_data_type->data_type_id);
         }
     }
 

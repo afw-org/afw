@@ -665,41 +665,237 @@ afw_utf8_line_count_and_max_column(
 
 
 /**
- * @brief Create a utf-8 string using a c format string in specified pool.
- * @param p pool used for result.
- * @param xctx of caller.
- * @param format_z string.
- * @param ... arguments for format_z.
- * @return utf8 string.
- *
- * Assembles with AFW's formatter, then create_forced_safe so a bad %s
- * does not throw. `AFW_UTF8_FMT` (`%.*s`) copies n bytes, including an
- * interior 0; libc printf still stops at 0.
- *
- * Viewable text (logs, errors, traces). Not a data-file writer: do not
- * use this to round-trip octets. Write `.s` + `.len` or `as_memory`.
+ * @brief Real function for afw_utf8_printf (format `s` + `len`).
+ * @see afw_utf8_printf
  */
 AFW_DECLARE_ELLIPSIS(const afw_utf8_t *)
-afw_utf8_printf(
-    const afw_pool_t *p, afw_xctx_t *xctx, const afw_utf8_z_t *format_z,
-    ...);
+afw_utf8_printf_as(
+    const afw_pool_t *p, afw_xctx_t *xctx,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, ...);
 
+AFW_DECLARE(const afw_utf8_t *)
+afw_utf8_printf_vas(
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+AFW_DECLARE_ELLIPSIS(afw_size_t)
+afw_utf8_printf_len_as(
+    afw_xctx_t *xctx,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, ...);
+
+AFW_DECLARE(afw_size_t)
+afw_utf8_printf_len_vas(
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE_ELLIPSIS(afw_size_t)
+afw_utf8_snprintf_as(
+    afw_utf8_octet_t *dest, afw_size_t size, afw_xctx_t *xctx,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, ...);
+
+AFW_DECLARE(afw_size_t)
+afw_utf8_snprintf_vas(
+    afw_utf8_octet_t *dest, afw_size_t size,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE_ELLIPSIS(const afw_utf8_z_t *)
+afw_utf8_z_printf_as(
+    const afw_pool_t *p, afw_xctx_t *xctx,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, ...);
+
+AFW_DECLARE(const afw_utf8_z_t *)
+afw_utf8_z_printf_vas(
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+AFW_DECLARE_ELLIPSIS(afw_size_t)
+afw_utf8_z_printf_len_as(
+    afw_xctx_t *xctx,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, ...);
+
+AFW_DECLARE(afw_size_t)
+afw_utf8_z_printf_len_vas(
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE_ELLIPSIS(afw_size_t)
+afw_utf8_z_snprintf_as(
+    afw_utf8_z_t *dest, afw_size_t size, afw_xctx_t *xctx,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, ...);
+
+AFW_DECLARE(afw_size_t)
+afw_utf8_z_snprintf_vas(
+    afw_utf8_z_t *dest, afw_size_t size,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
+    afw_xctx_t *xctx);
 
 /**
- * @brief Create a utf-8 string using a c format string in specified pool.
- * @param format_z string.
- * @param arg arguments for format_z.
+ * @brief AFW printf (viewable text, not a data-file writer).
  * @param p pool used for result.
  * @param xctx of caller.
- * @return utf8 string.
+ * @param format_z C format string (`utf8_z`).
+ * @param ... arguments for @a format_z.
+ * @return utf8 in @a p.
  *
- * Same as afw_utf8_printf: assemble, then forced_safe. Viewable text,
- * not a data-file writer.
+ * Assemble, then **`create`** (NFC / throw). Do not `forced_safe` the
+ * whole buffer. For octets or round-trip, write `.s` + `.len` /
+ * `as_memory`.
+ *
+ * Prefix `afw_utf8_` vs `afw_utf8_z_` is the **result**. Suffix is the
+ * **format**. `_as` / `_vas` are the real functions (`s` + `len`, create
+ * order; `len == AFW_UTF8_Z_LEN` means the format is already `utf8_z`).
+ * The others are macros.
+ *
+ * | Suffix | Format | Args |
+ * |--------|--------|------|
+ * | (none) | `utf8_z` | `...` |
+ * | `_v` | `utf8_z` | `va_list` |
+ * | `_u` | `const afw_utf8_t *` | `...` |
+ * | `_vu` | `const afw_utf8_t *` | `va_list` |
+ * | `_as` | `s` + `len` | `...` |
+ * | `_vas` | `s` + `len` | `va_list` |
+ *
+ * Format octets must be valid UTF-8 (throw). Walk by remaining length.
+ *
+ * **C conversions** (via libc `snprintf`): `diouxX`, `fFeEgGaA`, `c`,
+ * `s`, `p`, doubled percent, flags, width, precision, `*`, length
+ * `hh`/`h`/`l`/`ll`/`j`/`z`/`t`/`L`. Throw: `%%n`, glibc `%%m`, wide
+ * `%%ls`/`%%lc`/`%%S`/`%%C`, positional `$`, `%%w`, unknown or
+ * incomplete spec. Do not add `format(printf)` — `%%k` is not a libc
+ * conversion.
+ *
+ * **`%%k` kinds** (lowercase; `%%k` alone is an error):
+ *
+ * | Spec | Parameter | Behavior |
+ * |------|-----------|----------|
+ * | `%%ku` | `const afw_utf8_t *` | Trusted UTF-8: copy `.s` for `.len` (interior `0` is data). |
+ * | `%%km` | `const afw_memory_t *` | Always hex of the octets (uppercase pairs, no `0x`). |
+ * | `%%ks` | `utf8_z` | Like `%%s`, but **`forced_safe`** on invalid UTF-8. |
+ *
+ * `%%s` is `utf8_z` and **throws** if not valid UTF-8. `%%ks` is the
+ * only dirty substitution. NULL `%%ku` / `%%km` is empty (zero width;
+ * no dummy pointer). On `%%k`, `-` / width / precision / `*` are like
+ * `%%s` (precision = max **input** bytes). Other flags and length
+ * modifiers throw.
+ *
+ * **Size** is the buffer needed to hold that result type (not C
+ * `snprintf`): utf8 payload only (no trailing `0`); z includes the `0`.
+ * `printf_len` / `z_printf_len` return that need. `snprintf` /
+ * `z_snprintf` take it as dest `size` and return produced. `z_printf` of
+ * interior `0` throws.
+ *
+ * Prefer `%%ku` in AFW printf format strings. `AFW_UTF8_FMT` plus
+ * `FMT_ARG` is for **libc** (`fprintf`, FCGX, syslog). On the AFW walk,
+ * that specifier copies n bytes including interior `0`; libc still
+ * stops at `0`. `AFW_UTF8_CONTEXTUAL_LABEL_FMT` is `%%ku` then `> `.
+ *
+ * `afwdev build --scan` checks these calls (count and types) via
+ * libclang. gcc `-Wformat` only knows libc printf.
  */
-AFW_DECLARE(const afw_utf8_t *)
-afw_utf8_printf_v(
-    const afw_utf8_z_t *format, va_list arg,
-    const afw_pool_t *p, afw_xctx_t *xctx);
+#define afw_utf8_printf(p, xctx, format_z, ...) \
+    afw_utf8_printf_as((p), (xctx), \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        ##__VA_ARGS__)
+
+#define afw_utf8_printf_v(format_z, ap, p, xctx) \
+    afw_utf8_printf_vas( \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        (ap), (p), (xctx))
+
+#define afw_utf8_printf_u(p, xctx, format, ...) \
+    afw_utf8_printf_as((p), (xctx), \
+        (format)->s, (format)->len, ##__VA_ARGS__)
+
+#define afw_utf8_printf_vu(format, ap, p, xctx) \
+    afw_utf8_printf_vas((format)->s, (format)->len, (ap), (p), (xctx))
+
+#define afw_utf8_printf_len(xctx, format_z, ...) \
+    afw_utf8_printf_len_as((xctx), \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        ##__VA_ARGS__)
+
+#define afw_utf8_printf_len_v(format_z, ap, xctx) \
+    afw_utf8_printf_len_vas( \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        (ap), (xctx))
+
+#define afw_utf8_printf_len_u(xctx, format, ...) \
+    afw_utf8_printf_len_as((xctx), \
+        (format)->s, (format)->len, ##__VA_ARGS__)
+
+#define afw_utf8_printf_len_vu(format, ap, xctx) \
+    afw_utf8_printf_len_vas((format)->s, (format)->len, (ap), (xctx))
+
+#define afw_utf8_snprintf(dest, size, xctx, format_z, ...) \
+    afw_utf8_snprintf_as((dest), (size), (xctx), \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        ##__VA_ARGS__)
+
+#define afw_utf8_snprintf_v(dest, size, format_z, ap, xctx) \
+    afw_utf8_snprintf_vas((dest), (size), \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        (ap), (xctx))
+
+#define afw_utf8_snprintf_u(dest, size, xctx, format, ...) \
+    afw_utf8_snprintf_as((dest), (size), (xctx), \
+        (format)->s, (format)->len, ##__VA_ARGS__)
+
+#define afw_utf8_snprintf_vu(dest, size, format, ap, xctx) \
+    afw_utf8_snprintf_vas((dest), (size), \
+        (format)->s, (format)->len, (ap), (xctx))
+
+#define afw_utf8_z_printf(p, xctx, format_z, ...) \
+    afw_utf8_z_printf_as((p), (xctx), \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        ##__VA_ARGS__)
+
+#define afw_utf8_z_printf_v(format_z, ap, p, xctx) \
+    afw_utf8_z_printf_vas( \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        (ap), (p), (xctx))
+
+#define afw_utf8_z_printf_u(p, xctx, format, ...) \
+    afw_utf8_z_printf_as((p), (xctx), \
+        (format)->s, (format)->len, ##__VA_ARGS__)
+
+#define afw_utf8_z_printf_vu(format, ap, p, xctx) \
+    afw_utf8_z_printf_vas((format)->s, (format)->len, (ap), (p), (xctx))
+
+#define afw_utf8_z_printf_len(xctx, format_z, ...) \
+    afw_utf8_z_printf_len_as((xctx), \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        ##__VA_ARGS__)
+
+#define afw_utf8_z_printf_len_v(format_z, ap, xctx) \
+    afw_utf8_z_printf_len_vas( \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        (ap), (xctx))
+
+#define afw_utf8_z_printf_len_u(xctx, format, ...) \
+    afw_utf8_z_printf_len_as((xctx), \
+        (format)->s, (format)->len, ##__VA_ARGS__)
+
+#define afw_utf8_z_printf_len_vu(format, ap, xctx) \
+    afw_utf8_z_printf_len_vas((format)->s, (format)->len, (ap), (xctx))
+
+#define afw_utf8_z_snprintf(dest, size, xctx, format_z, ...) \
+    afw_utf8_z_snprintf_as((dest), (size), (xctx), \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        ##__VA_ARGS__)
+
+#define afw_utf8_z_snprintf_v(dest, size, format_z, ap, xctx) \
+    afw_utf8_z_snprintf_vas((dest), (size), \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        (ap), (xctx))
+
+#define afw_utf8_z_snprintf_u(dest, size, xctx, format, ...) \
+    afw_utf8_z_snprintf_as((dest), (size), (xctx), \
+        (format)->s, (format)->len, ##__VA_ARGS__)
+
+#define afw_utf8_z_snprintf_vu(dest, size, format, ap, xctx) \
+    afw_utf8_z_snprintf_vas((dest), (size), \
+        (format)->s, (format)->len, (ap), (xctx))
 
 
 /**
@@ -715,7 +911,8 @@ afw_utf8_printf_v(
  *
  * The input is assumed to already be valid utf-8. Throws if the
  * length-prefixed bytes contain a 0. A C string cannot represent that
- * value. `forced_safe` / `z_printf` still encode U+0000.
+ * value. `forced_safe` still encodes U+0000 as `^00^`. `z_printf` of
+ * interior `0` throws.
  */
 AFW_DECLARE(const afw_utf8_z_t *)
 afw_utf8_to_utf8_z(
@@ -981,29 +1178,6 @@ afw_utf8_z_concat(
 AFW_DECLARE(const afw_object_t *)
 afw_utf8_z_query_string_to_object(
     const afw_utf8_z_t *s, afw_xctx_t *xctx);
-
-
-/**
- * Create a utf8_z string using a c format string and va_list in specified pool.
- *
- * Same formatter as afw_utf8_printf, then forced_safe, then a trailing 0.
- * Viewable text, not a data-file writer.
- */
-AFW_DECLARE(const afw_utf8_z_t *)
-afw_utf8_z_printf_v(
-    const afw_utf8_z_t *format_z, va_list ap,
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
-
-/**
- * Create a utf8_z string using a c format string in specified pool.
- *
- * Same as afw_utf8_z_printf_v. Viewable text, not a data-file writer.
- */
-AFW_DECLARE_ELLIPSIS(const afw_utf8_z_t *)
-afw_utf8_z_printf(
-    const afw_pool_t *p, afw_xctx_t *xctx, const afw_utf8_z_t *format_z, ...);
-
 
 
 /**

@@ -37,13 +37,10 @@ afw_adapter_replace_object(
     impl_request.p = request->p;
     impl_request.journal_entry = journal_entry;
     impl_request.resource_id = afw_utf8_printf(impl_request.p, xctx,
-        "/"
-        AFW_UTF8_FMT "/"
-        AFW_UTF8_FMT "/"
-        AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(adapter_id),
-        AFW_UTF8_FMT_ARG(object_type_id),
-        AFW_UTF8_FMT_ARG(object_id));
+        "/%ku/%ku/%ku",
+        adapter_id,
+        object_type_id,
+        object_id);
     afw_object_set_property_as_string_internal(request,
         afw_v_resourceId, impl_request.resource_id, xctx);
     afw_object_set_property(request,

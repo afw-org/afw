@@ -13,6 +13,8 @@
 
 #include "afw_internal.h"
 #include <math.h>
+#include <string.h>
+#include <errno.h>
 
 typedef void (*impl_lexical_cb_t) (afw_compile_parser_t *parser);
 
@@ -959,7 +961,6 @@ static afw_boolean_t
 impl_parse_number(afw_compile_parser_t *parser)
 {
     afw_size_t start_offset;
-    const afw_utf8_octet_t *s;
     afw_integer_t negative;
     afw_integer_t n;
     afw_boolean_t is_negative;
@@ -1223,11 +1224,17 @@ impl_parse_number(afw_compile_parser_t *parser)
             is_negative ? -0.0 : 0.0);
     }
     else {
-        s = apr_pstrndup(parser->apr_p,
-            parser->full_source->s + start_offset,
-            parser->cursor - start_offset);
-        errno = 0;
-        parser->token->number = impl_double_literal(parser, strtod(s, NULL));
+        {
+            afw_size_t n = parser->cursor - start_offset;
+            char *scratch;
+
+            scratch = afw_pool_malloc(parser->p, n + 1, parser->xctx);
+            memcpy(scratch, parser->full_source->s + start_offset, n);
+            scratch[n] = 0;
+            errno = 0;
+            parser->token->number = impl_double_literal(parser,
+                strtod(scratch, NULL));
+        }
         if (errno != 0) goto error;
     }
 

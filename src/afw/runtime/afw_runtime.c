@@ -169,10 +169,9 @@ impl_set_entry(
         existing = afw_hash_table_get(ht, object_id->s, object_id->len);
         if (existing) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Runtime object /afw/"
-                AFW_UTF8_FMT "/" AFW_UTF8_FMT " already set",
-                AFW_UTF8_FMT_ARG(object_type_id),
-                AFW_UTF8_FMT_ARG(object_id));
+                "Runtime object /afw/%ku/%ku already set",
+                object_type_id,
+                object_id);
         }
     }
     afw_hash_table_set(ht, object_id->s, object_id->len, entry, xctx);
@@ -306,9 +305,8 @@ afw_runtime_xctx_set_object(
         existing = afw_hash_table_get(ht, id->s, id->len);
         if (existing) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Runtime object /afw/"
-                AFW_UTF8_FMT "/" AFW_UTF8_FMT " already set",
-                AFW_UTF8_FMT_ARG(type), AFW_UTF8_FMT_ARG(id));
+                "Runtime object /afw/%ku/%ku already set",
+                type, id);
         }
     }
     afw_object_get_reference(object, xctx);
@@ -398,8 +396,8 @@ afw_runtime_object_create_indirect(
         object_type_id, xctx);
     if (!inf) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Runtime object map " AFW_UTF8_FMT_Q " is not registered",
-            AFW_UTF8_FMT_ARG(object_type_id));
+            "Runtime object map '%ku' is not registered",
+            object_type_id);
     }
 
     return afw_runtime_object_create_indirect_using_inf(inf,

@@ -12,7 +12,7 @@
  */
 
 #include "afw_internal.h"
-#include <apr_strings.h>
+#include <stdio.h>
 
 
 
@@ -243,18 +243,18 @@ impl_open_and_retrieve_peer_object(
 
 error_peer:
     AFW_THROW_ERROR_FOOTPRINT_FZ(general, xctx,
-        "Error detected processing adapter " AFW_UTF8_FMT_Q " "
+        "Error detected processing adapter '%ku' "
         AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER
         " file %s - %s",
-        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
+        &adapter->pub.adapter_id,
         *full_peer_path_z, footprint.z);
 
 error_peer_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adapter " AFW_UTF8_FMT_Q " "
+        "Error detected processing adapter '%ku' "
         AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER
         " file %s - %s",
-        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
+        &adapter->pub.adapter_id,
         *full_peer_path_z, footprint.z);
 }
 
@@ -311,10 +311,10 @@ impl_write_and_close_peer_object(
 
 error_peer_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adapter " AFW_UTF8_FMT_Q " "
+        "Error detected processing adapter '%ku' "
         AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER
         " file %s - %s",
-        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
+        &adapter->pub.adapter_id,
         full_peer_path_z, footprint.z);
 }
 
@@ -431,7 +431,7 @@ impl_afw_adapter_journal_add_entry_internal(
     {
         char ymdh[32];
 
-        apr_snprintf(ymdh, sizeof(ymdh),
+        snprintf(ymdh, sizeof(ymdh),
             "y%02d%02d/m%02d/d%02d/h%02d",
             lock.century, lock.year, lock.month, lock.day,
             lock.hour);
@@ -461,7 +461,7 @@ impl_afw_adapter_journal_add_entry_internal(
     if (old_full_entry_path_z || first_entry) {
         char ymd[24];
 
-        apr_snprintf(ymd, sizeof(ymd), "y%02d%02d/m%02d/d%02d/",
+        snprintf(ymd, sizeof(ymd), "y%02d%02d/m%02d/d%02d/",
             lock.century, lock.year, lock.month, lock.day);
         full_entry_dir_path_z = impl_journal_path_z(
             adapter->root, ymd, p, xctx);
@@ -566,30 +566,27 @@ impl_afw_adapter_journal_add_entry_internal(
 
 error_lock_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adapter " AFW_UTF8_FMT_Q
-        " journal lock file '%s' - %s",
-        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
+        "Error detected processing adapter '%ku' journal lock file '%s' - %s",
+        &adapter->pub.adapter_id,
         adapter->journal_lock_file_path_z, footprint.z);
 
 error_lock:
     AFW_THROW_ERROR_FOOTPRINT_FZ(general, xctx,
         "Error detected while processing  "
-        "adapter " AFW_UTF8_FMT_Q " journal lock file '%s' - %s",
-        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
+        "adapter " "'%ku' journal lock file '%s' - %s",
+        &adapter->pub.adapter_id,
         adapter->journal_lock_file_path_z, footprint.z);
 
 error_journal_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adapter " AFW_UTF8_FMT_Q
-        " journal file '%s' - %s",
-        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
+        "Error detected processing adapter '%ku' journal file '%s' - %s",
+        &adapter->pub.adapter_id,
         full_entry_path_z, footprint.z);
 
 error_old_journal_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adapter " AFW_UTF8_FMT_Q
-        " journal file '%s' - %s",
-        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
+        "Error detected processing adapter '%ku' journal file '%s' - %s",
+        &adapter->pub.adapter_id,
         old_full_entry_path_z, footprint.z);
 }
 
@@ -826,8 +823,8 @@ impl_afw_adapter_journal_get_entry_internal(
             entry_object_id, relative_entry_path_wa_z, &offset, xctx);
         if (!relative_entry_path_z) {
             AFW_THROW_ERROR_FZ(syntax, xctx,
-                "Invalid journal cursor " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(entry_object_id));
+                "Invalid journal cursor '%ku'",
+                entry_object_id);
         }
     }
 
@@ -1000,16 +997,15 @@ impl_afw_adapter_journal_get_entry_internal(
 
 error_journal_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adapter " AFW_UTF8_FMT_Q
-            " journal file '%s' - %s",
-        adapter->pub.adapter_id.len, adapter->pub.adapter_id.s,
+        "Error detected processing adapter '%ku' journal file '%s' - %s",
+        &adapter->pub.adapter_id,
         full_entry_path_z, footprint.z);
 
 error_journal:
     AFW_THROW_ERROR_FOOTPRINT_FZ(general, xctx,
         "Error detected while processing  "
-        "adapter " AFW_UTF8_FMT_Q " journal file '%s' - %s",
-        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
+        "adapter " "'%ku' journal file '%s' - %s",
+        &adapter->pub.adapter_id,
         full_entry_path_z, footprint.z);
 
 }

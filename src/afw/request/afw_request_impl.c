@@ -31,20 +31,24 @@ afw_request_impl_trace_begin(
             xctx->p, xctx);
         afw_trace_fz(1, xctx->env->flag_index_trace_request,
             instance, xctx,
-            "RequestProperties=" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(s)
+            "RequestProperties=%ku",
+            s
         );
     }
     else if (afw_flag_is_active(xctx->env->flag_index_trace_request,
         xctx))
     {
-        afw_trace_fz(1, xctx->env->flag_index_trace_request, 
+        const afw_utf8_t *method;
+        const afw_utf8_t *uri;
+        const afw_utf8_t *query_string;
+
+        /* Deref instance here, not in afw_trace_fz __VA_ARGS__. */
+        method = instance->method;
+        uri = instance->uri;
+        query_string = instance->query_string;
+        afw_trace_fz(1, xctx->env->flag_index_trace_request,
             instance, xctx,
-            "Method=" AFW_UTF8_FMT
-            " uri=" AFW_UTF8_FMT
-            " query_string=" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_OPTIONAL_ARG(instance->method),
-            AFW_UTF8_FMT_OPTIONAL_ARG(instance->uri),
-            AFW_UTF8_FMT_OPTIONAL_ARG(instance->query_string));
+            "Method=%ku uri=%ku query_string=%ku",
+            method, uri, query_string);
     }
 }

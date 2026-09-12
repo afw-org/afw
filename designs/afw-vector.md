@@ -19,5 +19,5 @@
 
 - Align memory-array methods with Script `push`/`splice`/`for-of` and journal-style cursors. Faces / wrapper / managed vs unmanaged stay; the store is already a vector of `const afw_value_t *`.
 - **Hash table:** [`afw-hash-table.md`](afw-hash-table.md) landed ([PR #301](https://github.com/afw-org/afw/pull/301)). Last container is LMDB `dbi_handles` (`apr_hash`; **#299** already landed — not a blocker).
-- Cheap APR leftovers (not a new container type): `apr_pstrdup` / `apr_pstrndup` / `apr_psprintf` / `apr_pvsprintf` / `apr_snprintf`; unused includes `apr_tables.h` (`afw_common.h`, no `apr_table_*`) and `apr_base64.h` (`afw_data_type.c`, no `apr_base64_*`).
-- Portability layer (not a drop-in like vector): pools (`apr_pool_*`, `apr_palloc` / `apr_pcalloc`), files/dirs, `apr_filepath_*` / `apr_fnmatch`, threads/locks, time, UUID/random/atomics, DSO, getopt/signal, LDAP apr-util, curl brigades, `apr_strtoi64`. `apr_log_deprecated` still talks APR files/pools directly.
+- Cheap APR **string** leftovers from [#314](https://github.com/afw-org/afw/issues/314) landed (`issue-314-printf`). Leave with APR: filepath, fnmatch, `log_deprecated` (`apr_pstrdup` / `pvsprintf`), `strerror`. Unused `apr_tables.h` / `apr_base64.h` includes dropped.
+- Portability layer (not a drop-in like vector): pools (`apr_pool_*`, `apr_palloc` / `apr_pcalloc`), files/dirs, `apr_filepath_*` / `apr_fnmatch`, threads/locks, time, UUID/random/atomics, DSO, getopt/signal, LDAP apr-util, curl brigades. `apr_log_deprecated` still talks APR files/pools directly.

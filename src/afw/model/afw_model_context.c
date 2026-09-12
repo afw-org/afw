@@ -1453,8 +1453,8 @@ afw_model_internal_create_to_adapter_skeleton_context(
         object_type_id, xctx);
     if (!model_object_type) {
         AFW_THROW_ERROR_FZ(not_found, xctx,
-            "Object type " AFW_UTF8_FMT_Q " not found",
-            AFW_UTF8_FMT_ARG(object_type_id));
+            "Object type '%ku' not found",
+            object_type_id);
     }
 
     ctx = afw_model_internal_create_skeleton_context(

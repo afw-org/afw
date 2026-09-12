@@ -24,6 +24,7 @@
 #include <signal.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <string.h>
 
 /* Declares and rti/inf defines for interface afw_server */
 #define AFW_IMPLEMENTATION_ID "fcgi"
@@ -174,8 +175,8 @@ afw_server_fcgi_internal_create(const char *path,
      * ":<port>" (or empty default); libfcgi treats those as inet.
      */
     if (path && path[0] != '\0' && path[0] != ':') {
-        self->unix_socket_path_z = apr_pstrdup(
-            afw_pool_get_apr_pool(xctx->p), path);
+        self->unix_socket_path_z = afw_utf8_z_create(
+            (const afw_utf8_octet_t *)path, strlen(path), xctx->p, xctx);
     }
 
     /* Make sure this is not a CGI.

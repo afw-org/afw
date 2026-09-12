@@ -111,8 +111,8 @@ impl_call_function(
             /* If arg is NULL and not optional, throw error. */
             else if (!afw_value_is_boolean_true((*a)->optional)) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "Missing parameter " AFW_UTF8_FMT_Q,
-                    AFW_UTF8_FMT_ARG(&(*a)->name->internal));
+                    "Missing parameter '%ku'",
+                    &(*a)->name->internal);
             }
         }
 
@@ -153,12 +153,10 @@ impl_call_function(
         if (!afw_value_is_fully_evaluated(result, xctx)) {
             afw_value_get_info(result, &info, p, xctx);
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Function " AFW_UTF8_FMT_Q
-                " returned a value that is not evaluated. ("
-                AFW_UTF8_FMT " " AFW_UTF8_FMT ")",
-                AFW_UTF8_FMT_ARG(&function->functionId->internal),
-                AFW_UTF8_FMT_ARG(info.value_inf_id),
-                AFW_UTF8_FMT_OPTIONAL_ARG(info.detail)
+                "Function '%ku' returned a value that is not evaluated. (%ku %ku)",
+                &function->functionId->internal,
+                info.value_inf_id,
+                info.detail
             );
         }
 
@@ -276,8 +274,8 @@ afw_action_perform(
                 function = afw_environment_get_function(functionId, xctx);
                 if (!function) {
                     AFW_THROW_ERROR_FZ(syntax, xctx,
-                        "Unknown function " AFW_UTF8_FMT_Q,
-                        AFW_UTF8_FMT_ARG(functionId));
+                        "Unknown function '%ku'",
+                        functionId);
                 }
 
                 /* Call function. */
@@ -296,9 +294,8 @@ afw_action_perform(
         /* Make sure actions property is multiple actions list. */
         if (!afw_value_is_array(value)) {
             AFW_THROW_ERROR_FZ(syntax, xctx,
-                "Property " AFW_UTF8_FMT_Q " of actions is missing or invalid",
-                AFW_UTF8_FMT_ARG(
-                    afw_object_property_name_display_utf8(name, xctx)));
+                "Property '%ku' of actions is missing or invalid",
+                afw_object_property_name_display_utf8(name, xctx));
         }
         actions = ((const afw_value_array_t *)value)->internal;
 
@@ -353,10 +350,9 @@ afw_action_perform(
             functionId = afw_value_convert_to_utf8(value, action_response_entry->p, xctx);
             if (!functionId) {
                 AFW_THROW_ERROR_FZ(syntax, xctx,
-                    "Property " AFW_UTF8_FMT_Q " of action " AFW_INTEGER_FMT
+                    "Property '%ku' of action " AFW_INTEGER_FMT
                     " is missing or invalid",
-                    AFW_UTF8_FMT_ARG(
-                        afw_object_property_name_display_utf8(name, xctx)),
+                    afw_object_property_name_display_utf8(name, xctx),
                     action_number);
             }
 
@@ -364,9 +360,8 @@ afw_action_perform(
             function = afw_environment_get_function(functionId, xctx);
             if (!function) {
                 AFW_THROW_ERROR_FZ(syntax, xctx,
-                    "Unknown function " AFW_UTF8_FMT_Q
-                    " in action " AFW_INTEGER_FMT,
-                    AFW_UTF8_FMT_ARG(functionId), action_number);
+                    "Unknown function '%ku' in action " AFW_INTEGER_FMT,
+                    functionId, action_number);
             }
 
             /* Call function. */

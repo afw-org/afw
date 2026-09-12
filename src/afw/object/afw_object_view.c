@@ -435,9 +435,8 @@ impl_object_type_related_object_option_processing(
         object_type_id, view->journal_entry, xctx);
     if (!object_type) {
         afw_object_meta_add_error_fz(instance, xctx,
-            "objectType " AFW_UTF8_FMT_Q
-            " needed for normalize object option is not found",
-            AFW_UTF8_FMT_ARG(object_type_id));
+            "objectType '%ku' needed for normalize object option is not found",
+            (object_type_id));
         return;
     }
     if (AFW_OBJECT_OPTION_IS(options, metaFull)) {
@@ -708,11 +707,9 @@ impl_additional_object_option_processing(
                 path = afw_object_meta_get_path(prop->origin, xctx);
                 if (!path) {
                     AFW_THROW_ERROR_FZ(general, xctx,
-                        "Property " AFW_UTF8_FMT_Q
-                            " is missing path for inheritedFrom",
-                        AFW_UTF8_FMT_ARG(
-                            afw_object_property_name_display_utf8(
-                                prop->name, xctx)));
+                        "Property '%ku' is missing path for inheritedFrom",
+                        afw_object_property_name_display_utf8(
+                                prop->name, xctx));
                 }
                 v = impl_shared_path_value(self, path, xctx);
                 impl_meta_set_property_type_property(self,
@@ -880,7 +877,7 @@ impl_add_inherited_properties(
 #ifdef __AFW_OBJECT_VIEW_DEBUG__
         path = afw_object_meta_get_path((const afw_object_t *)self, xctx);
         AFW_LOG_FZ(debug, xctx,
-        "Properties already added   - " AFW_UTF8_FMT_Q, AFW_UTF8_FMT_ARG(path));
+        "Properties already added   - '%ku'", path);
 #endif
 
         return;
@@ -889,15 +886,15 @@ impl_add_inherited_properties(
 #ifdef __AFW_OBJECT_VIEW_DEBUG__
     path = afw_object_meta_get_path((const afw_object_t *)self, xctx);
     AFW_LOG_FZ(debug, xctx,
-        "Starting to add properties - " AFW_UTF8_FMT_Q, AFW_UTF8_FMT_ARG(path));
+        "Starting to add properties - '%ku'", path);
 #endif
 
     /* Check for recursion loop. */
     if (self->inherited_properties_being_added) {
         path = afw_object_meta_get_path((const afw_object_t *)self, xctx);
         AFW_THROW_ERROR_FZ(general, xctx,
-            "parentPaths recursion loop while processing " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(path));
+            "parentPaths recursion loop while processing '%ku'",
+            path);
     }
     self->inherited_properties_being_added = true;
 
@@ -927,7 +924,7 @@ impl_add_inherited_properties(
 
 #ifdef __AFW_OBJECT_VIEW_DEBUG__
     AFW_LOG_FZ(debug, xctx,
-        "Finished adding properties - " AFW_UTF8_FMT_Q, AFW_UTF8_FMT_ARG(path));
+        "Finished adding properties - '%ku'", path);
 #endif
 }
 
@@ -1053,9 +1050,8 @@ impl_get_object_by_uri(
     return result;
 
 error:
-    AFW_THROW_ERROR_FZ(general, xctx, AFW_UTF8_FMT_Q
-        " not found or invalid",
-        AFW_UTF8_FMT_ARG(uri));
+    AFW_THROW_ERROR_FZ(general, xctx, "'%ku' not found or invalid",
+        uri);
 }
 
 
@@ -1078,8 +1074,8 @@ impl_object_create_entity(
 #ifdef __AFW_OBJECT_VIEW_DEBUG__
         path = afw_object_meta_get_path((const afw_object_t *)self, xctx);
         AFW_LOG_FZ(debug, xctx,
-            "Starting composite view    - " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(path));
+            "Starting composite view    - '%ku'",
+            path);
 #endif
 
         impl_add_inherited_properties(self, xctx);
@@ -1087,8 +1083,8 @@ impl_object_create_entity(
 #ifdef __AFW_OBJECT_VIEW_DEBUG__
         path = afw_object_meta_get_path((const afw_object_t *)self, xctx);
         AFW_LOG_FZ(debug, xctx,
-            "Finished composite view    - " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(path));
+            "Finished composite view    - '%ku'",
+            path);
 #endif
 
     }

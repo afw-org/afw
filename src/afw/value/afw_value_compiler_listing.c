@@ -650,8 +650,8 @@ afw_value_compiler_listing_begin_value(
         /* Pad with remaining empty_prefix (spaces and trailing " + "). */
         if (current_prefix->len < self->empty_prefix.len) {
             current_prefix = afw_utf8_printf(writer->p, xctx,
-                AFW_UTF8_FMT "%.*s",
-                AFW_UTF8_FMT_ARG(current_prefix),
+                "%ku%.*s",
+                current_prefix,
                 (int)(self->empty_prefix.len - current_prefix->len),
                 self->empty_prefix.s + current_prefix->len);
         }
