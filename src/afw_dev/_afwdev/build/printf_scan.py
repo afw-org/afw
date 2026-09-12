@@ -559,7 +559,14 @@ def run_printf_scan(options):
         _load_libclang()
     except OSError:
         msg.error_exit(
-            "printf scan needs libclang (e.g. libclang-14.so.1)")
+            "AFW printf scan needs the libclang shared library "
+            "(loaded via ctypes; no Python clang module). "
+            "analyze-build already needs Clang, so this is usually "
+            "already installed with clang-tools. "
+            "Debian/Ubuntu: libclang1-14 or clang-tools. "
+            "Fedora/RHEL: clang-libs or clang-analyzer. "
+            "Alpine: clang. "
+            "Look for libclang.so.1 or libclang-14.so.1.")
     msg.highlighted_info("Running AFW printf format/argument scan")
     issues, nfiles, dt = scan_compile_commands(cdb, pkg)
     msg.info("printf scan: %d translation units in %.1fs" % (nfiles, dt))
