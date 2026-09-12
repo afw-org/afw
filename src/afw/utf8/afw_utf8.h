@@ -665,11 +665,16 @@ afw_utf8_line_count_and_max_column(
 
 
 /**
- * @brief AFW printf family.
+ * @brief AFW printf family (viewable text, not a data-file writer).
+ *
+ * Assemble, then **`create`** (NFC / throw). Do not `forced_safe` the
+ * whole buffer. For octets or round-trip, write `.s` + `.len` /
+ * `as_memory`.
  *
  * Prefix `afw_utf8_` vs `afw_utf8_z_` is the **result**. Suffix is the
- * **format**. `_as` / `_vas` are the real functions (format `s` + `len`,
- * create order). The others are macros over those.
+ * **format**. `_as` / `_vas` are the real functions (`s` + `len`, create
+ * order; `len == AFW_UTF8_Z_LEN` means the format is already `utf8_z`).
+ * The others are macros.
  *
  * | Suffix | Format | Args |
  * |--------|--------|------|
@@ -680,26 +685,44 @@ afw_utf8_line_count_and_max_column(
  * | `_as` | `s` + `len` | `...` |
  * | `_vas` | `s` + `len` | `va_list` |
  *
- * `len == AFW_UTF8_Z_LEN` means the format is already `utf8_z`. Format
- * octets must be valid UTF-8 (throw). Standard C conversions go through
- * libc (`diouxX`, `fFeEgGaA`, `c`, `s`, `p`, `%%`, flags, width,
- * precision, `*`, length `hh`/`h`/`l`/`ll`/`j`/`z`/`t`/`L`). Throw:
- * `%n`, glibc `%m`, wide `%ls`/`%lc`/`%S`/`%C`, positional `$`, `%w`,
- * unknown conversion, incomplete spec.
+ * Format octets must be valid UTF-8 (throw). Walk by remaining length.
  *
- * `%ks` is the only dirty substitution (`forced_safe`). `%s` throws if
- * not valid UTF-8. `%ku` is trusted `afw_utf8_t *`. `%km` is hex of
- * `afw_memory_t *`. On `%k`, `-` / width / precision / `*` are like
- * `%s` (precision = max **input** bytes). Other flags and length
- * modifiers throw.
+ * **C conversions** (via libc `snprintf`): `diouxX`, `fFeEgGaA`, `c`,
+ * `s`, `p`, `%%`, flags, width, precision, `*`, length `hh`/`h`/`l`/
+ * `ll`/`j`/`z`/`t`/`L`. Throw: `%n`, glibc `%m`, wide `%ls`/`%lc`/
+ * `%S`/`%C`, positional `$`, `%w`, unknown or incomplete spec. Do not
+ * add `format(printf)` — `%k` is not a libc conversion.
  *
- * **Size** is the buffer needed to hold that result type: utf8 payload
- * only (no trailing `0`); z includes the trailing `0`. `printf` then
- * `create` (NFC / throw). Not a data-file writer.
+ * **`%k` kinds** (lowercase; `%k` alone is an error):
  *
- * Prefer `%ku` for AFW printf (`const afw_utf8_t *`; NULL is empty).
- * `AFW_UTF8_FMT` (`%.*s`) copies n bytes, including an interior 0
- * (AFW, not libc). Other `%s` forms (`%.2s`, `%*s`) are C.
+ * | Spec | Parameter | Behavior |
+ * |------|-----------|----------|
+ * | `%ku` | `const afw_utf8_t *` | Trusted UTF-8: copy `.s` for `.len` (interior `0` is data). |
+ * | `%km` | `const afw_memory_t *` | Always hex of the octets (uppercase pairs, no `0x`). |
+ * | `%ks` | `utf8_z` | Like `%s`, but **`forced_safe`** on invalid UTF-8. |
+ *
+ * `%s` is `utf8_z` and **throws** if not valid UTF-8. `%ks` is the only
+ * dirty substitution. NULL `%ku` / `%km` is empty (zero width; no dummy
+ * pointer). On `%k`, `-` / width / precision / `*` are like `%s`
+ * (precision = max **input** bytes). Other flags and length modifiers
+ * throw.
+ *
+ * **Size** is the buffer needed to hold that result type (not C
+ * `snprintf`): utf8 payload only (no trailing `0`); z includes the `0`.
+ * `printf_len` / `z_printf_len` return that need. `snprintf` /
+ * `z_snprintf` take it as dest `size` and return produced. `z_printf` of
+ * interior `0` throws.
+ *
+ * Prefer `%ku` in AFW printf format strings (example:
+ * `"Adapter '%ku' is not available"`). `AFW_UTF8_FMT` (`%.*s` +
+ * `FMT_ARG`) is for **libc**
+ * (`fprintf`, FCGX, syslog). On the AFW walk, exact `%.*s` copies n
+ * bytes including interior `0`; libc still stops at `0`. Other `%s`
+ * forms (`%.2s`, `%*s`) are C. `AFW_UTF8_CONTEXTUAL_LABEL_FMT` is
+ * `"%ku> "`.
+ *
+ * `afwdev build --scan` checks these calls (count and types) via
+ * libclang. gcc `-Wformat` only knows libc printf.
  */
 
 AFW_DECLARE_ELLIPSIS(const afw_utf8_t *)
