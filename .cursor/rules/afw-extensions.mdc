@@ -69,7 +69,7 @@ Eager vs lazy: Adaptive **functions** / most metadata register inside `generated
 |-----|-----|----------|----------|-------|
 | **curl** | `libafwcurl` | Functions: HTTP verbs, SMTP, curl meta; `error_rv_decoder/curl` | libcurl | `tests/{http,curl}/` |
 | **crypto** | `libafwcrypto` | Functions: digest/HMAC/AES-GCM encrypt·decrypt·seal·unseal, keystore, key refs, PBKDF2 (#74) | OpenSSL libcrypto | `tests/crypto/` — README at **srcdir root** (`src/afw_crypto/README.md`) |
-| **ldap** | `libafwldap` | `adapter_type/ldap` (+ session); `error_rv_decoder/ldap`; LDAP schema object types | OpenLDAP (APR) | — |
+| **ldap** | `libafwldap` | `adapter_type/ldap` (+ session); `error_rv_decoder/ldap`; LDAP schema object types | OpenLDAP | — |
 | **lmdb** | `libafwlmdb` | `adapter_type/lmdb` (txn, KV, journal, indexes); `reader_*` functions; `error_rv_decoder/lmdb` | LMDB | `tests/{adapter,journal}/` |
 | **ubjson** | `libafwubjson` | `content_type/ubjson` | — | — (used by LMDB) |
 | **vfs** | `libafwvfs` | `adapter_type/vfs` (local FS via `vfsMap`) | — | `tests/vfs_*.as` (see **`afw-vfs`**) |

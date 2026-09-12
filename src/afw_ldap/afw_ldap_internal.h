@@ -18,10 +18,12 @@
 
 #include "afw_minimal.h"
 #include "generated/afw_ldap_generated_internal.h"
-#include <apr_ldap.h>
-#if APR_HAS_MICROSOFT_LDAPSDK == 1
-#include <winber.h>
+/* OpenLDAP hides ldap_search_s / ldap_simple_bind_s / ldap_unbind unless
+ * this is set. apr_ldap.h used to pull those in. */
+#ifndef LDAP_DEPRECATED
+#define LDAP_DEPRECATED 1
 #endif
+#include <ldap.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -75,11 +77,13 @@ extern const afw_adapter_factory_t afw_ldap_adapter_factory;
 typedef struct afw_ldap_internal_adapter_s {
     afw_adapter_t pub;
     const afw_utf8_z_t *url_z;
+    /* ldap://host:port or ldaps://host:port for ldap_initialize(). */
+    const afw_utf8_z_t *initialize_url_z;
     const afw_value_t *bind_parameters;
-    apr_ldap_url_desc_t *lud;
     afw_ldap_metadata_t *metadata;
     AFW_LDAP_TIMEVAL timeout;
     afw_boolean_t prevent_verify_cert;
+    afw_boolean_t use_ldaps;
 } afw_ldap_internal_adapter_t;
 
 typedef struct afw_ldap_internal_adapter_session_s {

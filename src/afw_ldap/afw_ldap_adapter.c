@@ -31,8 +31,13 @@ afw_ldap_internal_adapter_create_cede_p(
 {
     afw_ldap_internal_adapter_t *self;
     afw_adapter_t *adapter;
-    apr_ldap_err_t *err;
-    apr_status_t rv;
+    LDAPURLDesc *lud;
+    char initialize_url[512];
+    const char *scheme;
+    const char *host;
+    int port;
+    int n;
+    int rv;
     afw_boolean_t found;
 
 
@@ -57,14 +62,53 @@ afw_ldap_internal_adapter_create_cede_p(
         self->url_z = afw_utf8_to_utf8_z(
             &((const afw_value_string_t *)url_value)->internal, p, xctx);
     }
-    rv = apr_ldap_url_parse(
-        afw_pool_get_apr_pool(self->pub.p),
-        self->url_z,
-        &(self->lud), &err);
-    if (rv != APR_SUCCESS) {
+    lud = NULL;
+    rv = ldap_url_parse(self->url_z, &lud);
+    if (rv != LDAP_URL_SUCCESS || lud == NULL) {
+        if (lud) {
+            ldap_free_urldesc(lud);
+        }
+        afw_adapter_impl_throw_property_invalid(adapter,
+            afw_ldap_v_url, xctx);
+        return NULL;
+    }
+    scheme = lud->lud_scheme;
+    if (scheme == NULL) {
+        ldap_free_urldesc(lud);
+        afw_adapter_impl_throw_property_invalid(adapter,
+            afw_ldap_v_url, xctx);
+        return NULL;
+    }
+    if (strcmp(scheme, "ldaps") == 0) {
+        self->use_ldaps = true;
+    }
+    else if (strcmp(scheme, "ldap") != 0) {
+        ldap_free_urldesc(lud);
+        afw_adapter_impl_throw_property_invalid(adapter,
+            afw_ldap_v_url, xctx);
+        return NULL;
+    }
+    scheme = self->use_ldaps ? "ldaps" : "ldap";
+    host = lud->lud_host ? lud->lud_host : "";
+    port = lud->lud_port;
+    if (port == 0) {
+        port = self->use_ldaps ? LDAPS_PORT : LDAP_PORT;
+    }
+    if (strchr(host, ':')) {
+        n = snprintf(initialize_url, sizeof initialize_url,
+            "%s://[%s]:%d", scheme, host, port);
+    }
+    else {
+        n = snprintf(initialize_url, sizeof initialize_url,
+            "%s://%s:%d", scheme, host, port);
+    }
+    ldap_free_urldesc(lud);
+    if (n < 0 || n >= (int)sizeof initialize_url) {
         afw_adapter_impl_throw_property_invalid(adapter,
             afw_ldap_v_url, xctx);
     }
+    self->initialize_url_z = afw_utf8_z_create(
+        initialize_url, AFW_UTF8_Z_LEN, p, xctx);
 
     /* Get compiled bindParameter. */
     self->bind_parameters = afw_object_get_property_compile_template(

@@ -19,8 +19,6 @@
 
 char * afw_ldap_internal_allattrs[] = { "+", "*", NULL };
 
-static const int impl_zero = 0;
-
 static const afw_utf8_t impl_s_eq = AFW_UTF8_LITERAL("=");
 static const afw_utf8_t impl_s_lt = AFW_UTF8_LITERAL("<");
 static const afw_utf8_t impl_s_le = AFW_UTF8_LITERAL("<=");
@@ -104,17 +102,6 @@ afw_ldap_internal_get_object_id(
 }
 
 
-/* Used on windows to support preventVerifyCert. */
-#if defined(_WIN32) || defined(WIN32)
-BOOLEAN impl_prevent_verify_server_cert(
-    PLDAP Connection,
-    PCCERT_CONTEXT *pServerCert
-)
-{
-    return TRUE;
-}
-#endif
-
 void
 afw_ldap_internal_session_begin(
     afw_ldap_internal_adapter_session_t *self,
@@ -126,70 +113,37 @@ afw_ldap_internal_session_begin(
     const afw_value_t *bind_parameters_value;
     const afw_object_t *bind_parameters;
     int rv = 0;
-    apr_ldap_err_t *err = NULL;
     int version = LDAP_VERSION3;
-    int secure;
 
-    /* check to see if we're already initialized
-    if (obj->ldap_initialized) {
-    return rc;
-    }*/
-
-    /* Create an LDAP handle */
-    if (self->adapter->lud->lud_scheme && 
-        strcmp(self->adapter->lud->lud_scheme, "ldaps") == 0) 
-    {
-        secure = APR_LDAP_SSL;
-    } else
-        secure = APR_LDAP_NONE;
-
-    rv = apr_ldap_init(afw_pool_get_apr_pool(p), &(self->ld),
-        self->adapter->lud->lud_host, self->adapter->lud->lud_port,
-        secure, &err);
+    rv = ldap_initialize(&self->ld, adapter->initialize_url_z);
     if (rv != LDAP_SUCCESS) {
         AFW_THROW_ERROR_RV_Z(general, ldap, rv,
-            (err && err->msg)?err->msg:"Unknown error.", xctx);
+            "ldap_initialize() failed.", xctx);
     }
 
     /* Set version to 3 as required by OpenLDAP and supported by others. */
-    rv = apr_ldap_set_option(afw_pool_get_apr_pool(p), self->ld,
-        LDAP_OPT_PROTOCOL_VERSION,
-        (void*)&version,
-        &err);
-    if (rv != LDAP_SUCCESS) {
-        AFW_THROW_ERROR_RV_Z(general, ldap, rv, err->msg, xctx);
+    rv = ldap_set_option(self->ld, LDAP_OPT_PROTOCOL_VERSION, &version);
+    if (rv != LDAP_OPT_SUCCESS) {
+        AFW_THROW_ERROR_RV_Z(general, ldap, rv,
+            "ldap_set_option(LDAP_OPT_PROTOCOL_VERSION) failed.", xctx);
     }
 
-    /* Set prevent verify cert if requested.*/
     if (adapter->prevent_verify_cert) {
-        /*
-         * apr_ldap_set_option() doesn't support APR_LDAP_OPT_VERIFY_CERT for
-         * windows.
-         */
-#if defined(_WIN32) || defined(WIN32)
-        rv = ldap_set_option(self->ld, LDAP_OPT_SERVER_CERTIFICATE,
-            impl_prevent_verify_server_cert);
-#else
-        rv = apr_ldap_set_option(afw_pool_get_apr_pool(p), self->ld,
-            APR_LDAP_OPT_VERIFY_CERT,
-            &impl_zero,
-            &err);
-#endif
-    }
+        int reqcert = LDAP_OPT_X_TLS_NEVER;
+        int newctx = 0;
 
-    if (rv != LDAP_SUCCESS) {
-        AFW_THROW_ERROR_RV_Z(general, ldap, rv, err->msg, xctx);
+        rv = ldap_set_option(self->ld, LDAP_OPT_X_TLS_REQUIRE_CERT, &reqcert);
+        if (rv != LDAP_OPT_SUCCESS) {
+            AFW_THROW_ERROR_RV_Z(general, ldap, rv,
+                "ldap_set_option(LDAP_OPT_X_TLS_REQUIRE_CERT) failed.",
+                xctx);
+        }
+        rv = ldap_set_option(self->ld, LDAP_OPT_X_TLS_NEWCTX, &newctx);
+        if (rv != LDAP_OPT_SUCCESS) {
+            AFW_THROW_ERROR_RV_Z(general, ldap, rv,
+                "ldap_set_option(LDAP_OPT_X_TLS_NEWCTX) failed.", xctx);
+        }
     }
-
-    /* Set to use referral.
-    rv = apr_ldap_set_option(xctx->p, self->ld,
-        APR_LDAP_OPT_REFERRALS,
-        (void*)&one,
-        &err);
-    if (rv != LDAP_SUCCESS) {
-        AFW_THROW_ERROR_RV_Z(general, ldap, rv, err->msg, xctx);
-    }
-     */
 
     /* Get bind dn and password */
     bind_parameters_value = afw_value_evaluate(

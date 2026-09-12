@@ -6,6 +6,7 @@ endif()
 # Check if the LDAP library is available
 find_path(LDAP_INCLUDE_DIR ldap.h)
 find_library(LDAP_LIBRARY NAMES ldap ldap_r)
+find_library(LBER_LIBRARY NAMES lber)
 
 # Check if the LDAP library is available on Windows
 if(WIN32)
@@ -16,6 +17,9 @@ endif()
 set(LDAP_FOUND TRUE)
 set(LDAP_INCLUDE_DIRS ${LDAP_INCLUDE_DIR})
 set(LDAP_LIBRARIES ${LDAP_LIBRARY})
+if(LBER_LIBRARY)
+  list(APPEND LDAP_LIBRARIES ${LBER_LIBRARY})
+endif()
 
 # Add the Windows LDAP library if it was found
 if(WIN32 AND WLDAP32_LIBRARY)
