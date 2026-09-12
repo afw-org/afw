@@ -1042,6 +1042,32 @@ impl_afw_pool_get_reference(
     self->reference_count++;
 }
 
+static void
+impl_heap_abandon_chunks(afw_pool_internal_self_t *self)
+{
+    afw_pool_internal_self_t *child;
+    afw_pool_internal_self_t *next_child;
+    afw_pool_chunk_t *chunk;
+    afw_pool_chunk_t *next_chunk;
+
+    child = self->first_child;
+    self->first_child = NULL;
+    while (child) {
+        next_child = child->next_sibling;
+        if (afw_pool_internal_is_heap(&child->pub)) {
+            impl_heap_abandon_chunks(child);
+        }
+        child = next_child;
+    }
+    chunk = self->first_chunk;
+    self->first_chunk = NULL;
+    while (chunk) {
+        next_chunk = chunk->next;
+        free(chunk);
+        chunk = next_chunk;
+    }
+}
+
 /*
  * Implementation of method destroy for interface afw_pool.
  */
@@ -1072,6 +1098,8 @@ impl_heap_afw_pool_destroy(
      * Release children.
      *
      * Release of child sets self->first_child to its next sibling.
+     * Child heaps (evaluation_heap) are destroyed in afw_xctx_release
+     * before this pool; leftover extra-held trackers must not spin.
      */
     for (child = self->first_child;
         child;
@@ -1102,6 +1130,36 @@ impl_heap_afw_pool_destroy(
     }
 
     impl_account_destroy(self, xctx);
+
+    /*
+     * Leftover child heaps (evaluation_heap, object-option pools) have
+     * their own posix_memalign chunks. APR freed those when this heap's
+     * APR pool died. Recursively unlink and free chunks; do not run AFW
+     * destroy (extra-held trackers live in those chunks).
+     */
+    {
+        afw_pool_internal_self_t *prev;
+        afw_pool_internal_self_t *next_child;
+
+        prev = NULL;
+        child = self->first_child;
+        while (child) {
+            next_child = child->next_sibling;
+            if (afw_pool_internal_is_heap(&child->pub)) {
+                if (!prev) {
+                    self->first_child = next_child;
+                }
+                else {
+                    prev->next_sibling = next_child;
+                }
+                impl_heap_abandon_chunks(child);
+            }
+            else {
+                prev = child;
+            }
+            child = next_child;
+        }
+    }
 
     /* Walk chunks last: the heap self lives in the first chunk. */
     {
