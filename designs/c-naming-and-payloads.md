@@ -50,7 +50,7 @@ Most scalars are one chunk (`afw_integer_t`). Objects/arrays are a `const` point
 | **`forced_safe`** | `^` + uppercase hex + `^` (runs); `^^` = caret | **No** | **No** |
 | **`create_property_name`** | Same encode | Then NFC | **Yes** — a name |
 
-Valid UTF-8 text passes through encode. Unicode **Cc** (`afw_code_point_is_control`) and invalid UTF-8 bytes are hex. **Whitespace/EOL** (`afw_code_point_is_whitespace_or_eol`) stays text. `forced_safe` always **copies**. `printf` / `z_printf` always run the assembled result through it — **viewable text**, not a data-file writer.
+Valid UTF-8 text passes through encode. Unicode **Cc** (`afw_code_point_is_control`) and invalid UTF-8 bytes are hex. **Whitespace/EOL** (`afw_code_point_is_whitespace_or_eol`) stays text. `forced_safe` always **copies**. `printf` / `z_printf` assemble then **`create`** (throw). `%ks` is the only `forced_safe` conversion. Authority: `src/afw/utf8/afw_utf8.h`.
 
 Env / FCGI names: only three `create_property_name` callers. Documented in object types + `whats-new`.
 
@@ -69,7 +69,7 @@ Do **not** rename `afw_value_create_managed_<dt>` to `afw_value_create_<dt>`. `a
 
 **Gotcha:** a walker that treats `afw_utf8_t->s` as a C string needs a trailing `0`. Old `create` could point at a `z` buffer. New `create` copies **without** a `0`. The RQL origin string uses `create_no_copy` onto `afw_utf8_z_create` for that.
 
-**External C string:** `afw_utf8_to_utf8_z`, `afw_utf8_z_create`, and `afw_utf8_array_to_utf8_z_with_separator` throw if the length-prefixed bytes contain a `0` (pieces and separator). `afw_utf8_z_array_with_separator` checks the separator the same way. A C string cannot hold that value. Length-prefixed concat (`array_to_utf8_with_separator`) stays internal and does not throw. Do not ban `\0`/`\x00` in the lexer. `forced_safe` / `z_printf` still encode U+0000 as `^00^`. File logical paths already rejected an embedded NUL (`afw_file_path.c`).
+**External C string:** `afw_utf8_to_utf8_z`, `afw_utf8_z_create`, and `afw_utf8_array_to_utf8_z_with_separator` throw if the length-prefixed bytes contain a `0` (pieces and separator). `afw_utf8_z_array_with_separator` checks the separator the same way. A C string cannot hold that value. Length-prefixed concat (`array_to_utf8_with_separator`) stays internal and does not throw. Do not ban `\0`/`\x00` in the lexer. `forced_safe` still encodes U+0000 as `^00^`. `%ku` keeps interior `0` as data. `z_printf` of interior `0` throws. File logical paths already rejected an embedded NUL (`afw_file_path.c`).
 
 ## Code points vs UTF-8
 
@@ -77,7 +77,7 @@ Unicode **code-point** tests (identifier, whitespace, Cc) live in **`src/afw/cod
 
 ICU: `afw_utf8.c` (NFC, to_lower, `afw_utf8_icu_error_name_z`) and `afw_code_point.c` (properties). Env decoder uses that wrap.
 
-`afw_utf8_printf` / `z_printf`: own formatter; `AFW_UTF8_FMT` (`%.*s`) copies n bytes (interior `0` is data), then `forced_safe` the assembled buffer. libc `printf` with the same specifier still stops at `0`. Do not use these to write data files or round-trip octets — `.s` + `.len` / `as_memory`.
+`afw_utf8_printf` / `z_printf`: own formatter. Prefer `%ku` (`const afw_utf8_t *`; NULL is empty). `AFW_UTF8_FMT` (`%.*s`) is libc and copies n bytes on the AFW walk (interior `0` is data). libc `printf` with `%.*s` still stops at `0`. Assemble then **`create`**. Do not use these to write data files or round-trip octets — `.s` + `.len` / `as_memory`.
 
 LDAP filters, file-adapter paths (dir open, journal, object files), and VFS host-path joins: **concat `.len`**, then **`to_utf8_z`**. Do not glue those with `AFW_UTF8_FMT` / `apr_psprintf`.
 

@@ -78,4 +78,7 @@ def run():
         "%ks accepts char *",
         type_ok("cstr", "const char *")))
 
-    return tests
+    return {
+        "description": "AFW printf format slot parse and type matching",
+        "tests": tests,
+    }

@@ -13,8 +13,6 @@
  */
 
 #include "afw_internal.h"
-#include "apr_base64.h"
-
 
 
 static void
