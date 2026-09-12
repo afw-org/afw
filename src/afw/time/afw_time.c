@@ -319,35 +319,6 @@ afw_dateTime_set_from_os_time(
 }
 
 
-/* Set afw_dateTime_t from apr_time. */
-AFW_DEFINE(void)
-afw_dateTime_set_from_apr_time(
-    afw_dateTime_t *dateTime,
-    apr_time_t apr_time,
-    afw_xctx_t *xctx)
-{
-    afw_dateTime_set_from_os_time(dateTime,
-        (afw_os_time_t)apr_time, xctx);
-}
-
-
-
-/* Create afw_dateTime_t from apr time.*/
-AFW_DECLARE(const afw_dateTime_t *)
-afw_dateTime_create_from_apr_time(
-    apr_time_t apr_time,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    afw_dateTime_t *result;
-
-    result = afw_pool_calloc_type(p, afw_dateTime_t, xctx);
-    afw_dateTime_set_from_apr_time(result, apr_time, xctx);
-    return result;
-}
-
-
-
 /* Set afw_dayTimeDuration_t from parts. */
 AFW_DEFINE(void)
 afw_dayTimeDuration_set_from_parts(
@@ -717,7 +688,7 @@ impl_set_internal_to_utf8_time(
     afw_utf8_octet_t *to, afw_xctx_t *xctx)
 {
     afw_utf8_octet_t *c;
-    apr_int32_t x;
+    afw_int32_t x;
 
     c = to;
     *c++ = time->hour % 100 / 10 + '0';

@@ -100,35 +100,6 @@ afw_dateTime_set_from_os_time(
 
 
 /**
- * @brief Set afw_dateTime_t from apr_time.
- * @param dateTime is pointer to preallocated afw_dateTime_t.
- * @param apr_time
- * @param xctx of caller.
- */
-AFW_DECLARE(void)
-afw_dateTime_set_from_apr_time(
-    afw_dateTime_t *dateTime,
-    apr_time_t apr_time,
-    afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Create afw_dateTime_t from apr time.
- * @param apr_time
- * @param p to use for result.
- * @param xctx of caller.
- * @return afw_dateTime_t struct.
- */
-AFW_DECLARE(const afw_dateTime_t *)
-afw_dateTime_create_from_apr_time(
-    apr_time_t apr_time,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-
-/**
  * @brief Set afw_dateTime_t from parts.
  * @param dateTime is pointer to preallocated afw_dateTime_t.
  * @param year including century. Negative is BC. No 0.
