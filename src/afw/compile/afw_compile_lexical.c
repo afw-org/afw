@@ -2551,7 +2551,6 @@ afw_compile_lexical_parser_create(
         s->string_literals = afw_hash_table_create(
             afw_void_hash_table_t, s->temp_p, xctx);
     }
-    parser->apr_p = afw_pool_get_apr_pool(parser->p);
     parser->xctx = xctx;
     parser->cede_p = cede_p;
     parser->error = xctx->error;

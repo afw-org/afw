@@ -56,9 +56,8 @@
  *   afwdev build --define AFW_DEBUG_POOL
  */
 
-/* Adaptive Framework uses Apache Portable Runtime. */
+/* Adaptive Framework still uses APR for pool backing (get_apr_pool door). */
 #include <apr_general.h>
-#include <apr_time.h>
 
 
 /* Common standard headers. */

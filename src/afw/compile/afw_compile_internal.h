@@ -341,9 +341,6 @@ struct afw_compile_internal_parser_s {
     /* Pool used for everything returned. */
     const afw_pool_t *p;
 
-    /* Some things still use apr pools. */
-    apr_pool_t *apr_p;
-
     /* The execution context (xctx) of caller to parser. */
     afw_xctx_t *xctx;
 
