@@ -69,9 +69,9 @@ afw_adapter_get_object(
     impl_request.journal_entry = journal_entry;
     impl_request.resource_id = afw_utf8_printf(impl_request.p, xctx,
         "/%ku/%ku/%ku",
-        (adapter_id),
-        (object_type_id),
-        (object_id));
+        adapter_id,
+        object_type_id,
+        object_id);
     afw_object_set_property_as_string_internal(request,
         afw_v_resourceId, impl_request.resource_id, xctx);
     impl_request.options = options;

@@ -84,7 +84,7 @@ afw_lock_create_environment_nested_lock(
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
             "'%ku' apr_thread_mutex_create() failed",
-            (self->lock_id));
+            self->lock_id);
     }
 
     /* Return new instance. */
@@ -146,15 +146,15 @@ afw_lock_create(
 #ifdef AFW_DEBUG_LOCK
     self->flag_id_debug = afw_utf8_printf(p, xctx,
         "debug:lock:'%ku'",
-        (self->lock_id));
+        self->lock_id);
     flag = afw_environment_get_flag(self->flag_id_debug, xctx);
     if (!flag) {
         brief = afw_utf8_printf(p, xctx,
             "Debug lock '%ku'",
-            (self->lock_id));
+            self->lock_id);
         description = afw_utf8_printf(p, xctx,
             "Debug lock '%ku'.",
-            (self->lock_id));
+            self->lock_id);
         afw_environment_register_flag(
             self->flag_id_debug, brief, description,
             afw_s_a_flag_debug_lock, xctx);
@@ -171,7 +171,7 @@ afw_lock_create(
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
             "'%ku' apr_thread_mutex_create() failed",
-            (self->lock_id));
+            self->lock_id);
     }
 
     /* Destroy instance before pool is destroyed. */
@@ -238,15 +238,15 @@ afw_lock_create_rw(
 #ifdef AFW_DEBUG_LOCK
     self->lock.flag_id_debug = afw_utf8_printf(p, xctx,
         "debug:lock:'%ku'",
-        (self->lock.lock_id));
+        self->lock.lock_id);
     flag = afw_environment_get_flag(self->lock.flag_id_debug, xctx);
     if (!flag) {
         brief = afw_utf8_printf(p, xctx,
             "Debug lock '%ku'",
-            (self->lock.lock_id));
+            self->lock.lock_id);
         description = afw_utf8_printf(p, xctx,
             "Debug lock '%ku'.",
-            (self->lock.lock_id));
+            self->lock.lock_id);
         afw_environment_register_flag(
             self->lock.flag_id_debug, brief, description,
             afw_s_a_flag_debug_lock, xctx);
@@ -259,7 +259,7 @@ afw_lock_create_rw(
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
             "'%ku' apr_thread_rwlock_create() failed",
-            (self->lock.lock_id));
+            self->lock.lock_id);
     }
 
     /* Destroy instance before pool is destroyed. */
@@ -285,7 +285,7 @@ afw_lock_obtain(const afw_lock_t *instance, afw_xctx_t *xctx)
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
             "'%ku' apr_thread_mutex_lock() failed",
-            (self->lock_id));
+            self->lock_id);
     }
 }
 
@@ -315,7 +315,7 @@ afw_lock_release(const afw_lock_t *instance, afw_xctx_t *xctx)
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
             "'%ku' apr_thread_mutex_unlock() failed",
-            (self->lock_id));
+            self->lock_id);
     }
 }
 
@@ -345,7 +345,7 @@ afw_lock_read_obtain(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
             "'%ku' apr_thread_rwlock_rdlock() failed",
-            (self->lock.lock_id));
+            self->lock.lock_id);
     }
 }
 
@@ -375,7 +375,7 @@ afw_lock_read_release(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
             "'%ku' apr_thread_rwlock_unlock() failed",
-            (self->lock.lock_id));
+            self->lock.lock_id);
     }
 }
 
@@ -405,7 +405,7 @@ afw_lock_write_obtain(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
             "'%ku' apr_thread_rwlock_wrlock() failed",
-            (self->lock.lock_id));
+            self->lock.lock_id);
     }
 }
 
@@ -434,7 +434,7 @@ afw_lock_write_release(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
             "'%ku' apr_thread_rwlock_unlock() failed",
-            (self->lock.lock_id));
+            self->lock.lock_id);
     }
 }
 

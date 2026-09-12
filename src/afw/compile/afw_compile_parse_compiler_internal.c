@@ -65,7 +65,7 @@ impl_compiler_internal_unknown(
     full = impl_compiler_internal_full_name(parser);
     if (full) {
         AFW_COMPILE_THROW_ERROR_FZ(with_name_format_z,
-            (full));
+            full);
     }
     else {
         AFW_COMPILE_THROW_ERROR_Z(without_name_z);
@@ -228,7 +228,7 @@ impl_assignment_type_from_utf8(
 
     AFW_COMPILE_THROW_ERROR_FZ(
         "Invalid assignment type '%ku' in #assignment_target",
-        (s));
+        s);
 }
 
 
@@ -454,7 +454,7 @@ impl_parse_compiler_internal_interface(afw_compile_parser_t *parser)
         {
             AFW_COMPILE_THROW_ERROR_FZ(
                 "Interface '%ku' cannot extend itself",
-                (name));
+                name);
         }
         if (!extends) {
             extends = afw_vector_create(afw_compile_type_p_vector_t, 2,

@@ -112,7 +112,7 @@ impl_call_function(
             else if (!afw_value_is_boolean_true((*a)->optional)) {
                 AFW_THROW_ERROR_FZ(general, xctx,
                     "Missing parameter '%ku'",
-                    (&(*a)->name->internal));
+                    &(*a)->name->internal);
             }
         }
 
@@ -154,9 +154,9 @@ impl_call_function(
             afw_value_get_info(result, &info, p, xctx);
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Function '%ku' returned a value that is not evaluated. (%ku %ku)",
-                (&function->functionId->internal),
-                (info.value_inf_id),
-                (info.detail)
+                &function->functionId->internal,
+                info.value_inf_id,
+                info.detail
             );
         }
 
@@ -275,7 +275,7 @@ afw_action_perform(
                 if (!function) {
                     AFW_THROW_ERROR_FZ(syntax, xctx,
                         "Unknown function '%ku'",
-                        (functionId));
+                        functionId);
                 }
 
                 /* Call function. */
@@ -295,7 +295,7 @@ afw_action_perform(
         if (!afw_value_is_array(value)) {
             AFW_THROW_ERROR_FZ(syntax, xctx,
                 "Property '%ku' of actions is missing or invalid",
-                (afw_object_property_name_display_utf8(name, xctx)));
+                afw_object_property_name_display_utf8(name, xctx));
         }
         actions = ((const afw_value_array_t *)value)->internal;
 
@@ -352,7 +352,7 @@ afw_action_perform(
                 AFW_THROW_ERROR_FZ(syntax, xctx,
                     "Property '%ku' of action " AFW_INTEGER_FMT
                     " is missing or invalid",
-                    (afw_object_property_name_display_utf8(name, xctx)),
+                    afw_object_property_name_display_utf8(name, xctx),
                     action_number);
             }
 
@@ -361,7 +361,7 @@ afw_action_perform(
             if (!function) {
                 AFW_THROW_ERROR_FZ(syntax, xctx,
                     "Unknown function '%ku' in action " AFW_INTEGER_FMT,
-                    (functionId), action_number);
+                    functionId, action_number);
             }
 
             /* Call function. */

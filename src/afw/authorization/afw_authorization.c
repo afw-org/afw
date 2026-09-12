@@ -463,10 +463,10 @@ afw_authorization_check(
         afw_trace_fz(1, xctx->env->flag_index_trace_authorization_check_bypass,
             NULL, xctx,
             "[Authorization check requestId '%ku' mode '%ku' actionId '%ku' resourceId '%ku'] call bypassed because there is no authorizationControl",
-            (request_id),
-            (&((const afw_value_string_t *)xctx->mode)->internal),
-            (action_id),
-            (resource_id));
+            request_id,
+            &((const afw_value_string_t *)xctx->mode)->internal,
+            action_id,
+            resource_id);
         return NULL;
     }
 
@@ -476,10 +476,10 @@ afw_authorization_check(
         afw_trace_fz(1, xctx->env->flag_index_trace_authorization_check_bypass,
             NULL, xctx,
             "[Authorization check requestId '%ku' mode '%ku' actionId '%ku' resourceId '%ku'] call bypassed because mode is core and there is no coreAuthorizationCheck",
-            (request_id),
-            (&((const afw_value_string_t *)xctx->mode)->internal),
-            (action_id),
-            (resource_id));
+            request_id,
+            &((const afw_value_string_t *)xctx->mode)->internal,
+            action_id,
+            resource_id);
         return NULL;
     }
 
@@ -489,10 +489,10 @@ afw_authorization_check(
         afw_trace_fz(1, xctx->env->flag_index_trace_authorization_check_bypass,
             NULL, xctx,
             "[Authorization check requestId '%ku' mode '%ku' actionId '%ku' resourceId '%ku'] call bypassed because mode is intermediate and checkIntermediateMode is false",
-            (request_id),
-            (&((const afw_value_string_t *)xctx->mode)->internal),
-            (action_id),
-            (resource_id));
+            request_id,
+            &((const afw_value_string_t *)xctx->mode)->internal,
+            action_id,
+            resource_id);
         return NULL;
     }
 
@@ -506,10 +506,10 @@ afw_authorization_check(
         afw_trace_fz(1, xctx->env->flag_index_trace_authorization_check,
             NULL, xctx,
             "[Authorization check requestId '%ku' mode '%ku' actionId '%ku' resourceId '%ku'] called",
-            (request_id),
-            (&((const afw_value_string_t *)xctx->mode)->internal),
-            (action_id),
-            (resource_id));
+            request_id,
+            &((const afw_value_string_t *)xctx->mode)->internal,
+            action_id,
+            resource_id);
 
         if (afw_flag_is_active(
             xctx->env->flag_index_trace_authorization_check_detail, xctx))
@@ -576,7 +576,7 @@ afw_authorization_check(
                     "applicationControl.%s returned an "
                     "_AdaptiveAuthorizationDecision_ object with invalid "
                     "decisionId '%ku'",
-                    property_name, (decision_id));
+                    property_name, decision_id);
             }
         }        
 
@@ -597,11 +597,11 @@ afw_authorization_check(
                             afw_trace_fz(1, ah->trace_flag_index,
                                 NULL, xctx,
                                 "[Authorization check requestId '%ku' mode '%ku' actionId '%ku' resourceId '%ku' authorizationHandler '%ku'] skipped because of a previous permit decision",
-                                (request_id),
-                                (&((const afw_value_string_t *)xctx->mode)->internal),
-                                (action_id),
-                                (resource_id),
-                                (&ah->authorization_handler_id));
+                                request_id,
+                                &((const afw_value_string_t *)xctx->mode)->internal,
+                                action_id,
+                                resource_id,
+                                &ah->authorization_handler_id);
                             continue;
                         }
                     }
@@ -610,11 +610,11 @@ afw_authorization_check(
                             afw_trace_fz(1, ah->trace_flag_index,
                                 NULL, xctx,
                                 "[Authorization check requestId '%ku' mode '%ku' actionId '%ku' resourceId '%ku' authorizationHandler '%ku'] skipped because of a previous deny decision",
-                                (request_id),
-                                (&((const afw_value_string_t *)xctx->mode)->internal),
-                                (action_id),
-                                (resource_id),
-                                (&ah->authorization_handler_id));
+                                request_id,
+                                &((const afw_value_string_t *)xctx->mode)->internal,
+                                action_id,
+                                resource_id,
+                                &ah->authorization_handler_id);
                             continue;
                         }
                     }
@@ -638,12 +638,12 @@ afw_authorization_check(
                         afw_trace_fz(1, ah->trace_flag_index,
                             NULL, xctx,
                             "[Authorization check requestId '%ku' mode '%ku' actionId '%ku' resourceId '%ku' authorizationHandler '%ku'] handler decision is '%ku'",
-                            (request_id),
-                            (&((const afw_value_string_t *)xctx->mode)->internal),
-                            (action_id),
-                            (resource_id),
-                            (&ah->authorization_handler_id),
-                            (decision_id));
+                            request_id,
+                            &((const afw_value_string_t *)xctx->mode)->internal,
+                            action_id,
+                            resource_id,
+                            &ah->authorization_handler_id,
+                            decision_id);
 
                         /** @fixme What to do about indeterminate? */
                     }
@@ -685,12 +685,12 @@ afw_authorization_check(
             afw_trace_fz(1, xctx->env->flag_index_trace_authorization_decision_detail,
                 NULL, xctx,
                 "[Authorization check requestId '%ku' mode '%ku' actionId '%ku' resourceId '%ku'] detail for indeterminate produced by '%ku':\n\n%ku",
-                (request_id),
-                (&((const afw_value_string_t *)xctx->mode)->internal),
-                (action_id),
-                (resource_id),
-                (current_decider),
-                (s));
+                request_id,
+                &((const afw_value_string_t *)xctx->mode)->internal,
+                action_id,
+                resource_id,
+                current_decider,
+                s);
         }
     }
     AFW_FINALLY{
@@ -701,12 +701,12 @@ afw_authorization_check(
     afw_trace_fz(1, xctx->env->flag_index_trace_authorization_decision,
         NULL, xctx,
         "[Authorization check requestId '%ku' mode '%ku' actionId '%ku' resourceId '%ku'] final decision is '%ku' made by '%ku'",
-        (request_id),
-        (&((const afw_value_string_t *)xctx->mode)->internal),
-        (action_id),
-        (resource_id),
-        (decision_id),
-        (final_decider));
+        request_id,
+        &((const afw_value_string_t *)xctx->mode)->internal,
+        action_id,
+        resource_id,
+        decision_id,
+        final_decider);
 
     if (afw_flag_is_active(
         xctx->env->flag_index_trace_authorization_decision_detail, xctx))
@@ -727,7 +727,7 @@ afw_authorization_check(
             s2 = afw_value_as_string_internal(resource_id_value, xctx);
             AFW_THROW_ERROR_WITH_DATA_FZ(denied, result, xctx,
                 "Access '%ku' to '%ku' is not permitted",
-                (s), (s2));
+                s, s2);
         }
     }
 
@@ -1105,7 +1105,7 @@ afw_authorization_handler_get_reference(
         if (!instance) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Authorization Handler '%ku' is not available",
-                (authorization_handler_id));
+                authorization_handler_id);
         }
     }
 
@@ -1176,7 +1176,7 @@ impl_authorization_conf_type_create_cede_p(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "authorizationId properties is required",
-            (source_location));
+            source_location);
     }
 
     /* See if authorizationHandler id already used. */
@@ -1184,8 +1184,8 @@ impl_authorization_conf_type_create_cede_p(
     if (anchor) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "%ku authorizationHandlerId '%ku' is already running",
-            (source_location),
-            (authorization_id));
+            source_location,
+            authorization_id);
     }
 
     /* Start authorizationHandler. */
@@ -1301,7 +1301,7 @@ impl_afw_service_type_start_cede_p (
     if (!factory) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "authorizationHandlerType '%ku' is not a registered authorizationHandler type",
-            (authorization_handler_type));
+            authorization_handler_type);
     }
    
     /* Create authorization handler. */

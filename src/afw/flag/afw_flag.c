@@ -64,7 +64,7 @@ impl_set_applicable_flags(
         }
         AFW_THROW_ERROR_FZ(general, xctx,
             "Flag '%ku' is not registered",
-            (flag_id));
+            flag_id);
     }
 
     for (i = 0;
@@ -677,7 +677,7 @@ afw_flag_get_index(
     if (!flag) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "'%ku' is not a registered flagId",
-            (flag_id));
+            flag_id);
     }
     return flag->flag_index;
 }
@@ -722,7 +722,7 @@ afw_flag_environment_register_flag(
         if (afw_environment_get_flag(flag_id, xctx)) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Flag '%ku' is already registered",
-                (flag_id));
+                flag_id);
         }
 
         self = afw_pool_calloc_type(p, afw_flag_t, xctx);
@@ -792,8 +792,8 @@ afw_flag_environment_register_flag(
             if (!included_by) {
                 AFW_THROW_ERROR_FZ(general, xctx,
                     "included_by_flag_id '%ku' not found for flag_id '%ku'",
-                    (included_by_flag_id),
-                    (flag_id));
+                    included_by_flag_id,
+                    flag_id);
             }
             impl_flag_add_included_by(self, included_by, xctx);
         }

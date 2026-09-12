@@ -52,7 +52,7 @@ impl_throw_stdio(
     }
     AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
         "streamId '%ku' %s failed: %s",
-        (streamId), op_z, strerror(err));
+        streamId, op_z, strerror(err));
 }
 
 
@@ -263,11 +263,11 @@ afw_stream_fd_open_and_create(
         if (err == ENOENT) {
             AFW_THROW_ERROR_RV_FZ(not_found, errno, err, xctx,
                 "streamId '%ku' failed to open %s: %s",
-                (streamId), path_z, strerror(err));
+                streamId, path_z, strerror(err));
         }
         AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
             "streamId '%ku' failed to open %s: %s",
-            (streamId), path_z, strerror(err));
+            streamId, path_z, strerror(err));
     }
 
     allow_read = false;

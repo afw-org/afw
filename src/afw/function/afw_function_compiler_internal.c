@@ -593,7 +593,7 @@ impl_assignment_target(
         {
             AFW_THROW_ERROR_FZ(read_only, xctx,
                 "Cannot assign to const variable \"%ku\"",
-                (&symbol->name->internal));
+                &symbol->name->internal);
         }
         /*
          * compile() result is a unit. Store it. Evaluate of the unit
@@ -691,7 +691,7 @@ impl_assign_value(
         {
             AFW_THROW_ERROR_FZ(read_only, xctx,
                 "Cannot assign to const variable \"%ku\"",
-                (&t->symbol->name->internal));
+                &t->symbol->name->internal);
         }
         /*
          * Pattern leaves and object-destructure shorthand bind through bare
@@ -1998,7 +1998,7 @@ afw_function_execute_throw(
         {
             AFW_THROW_ERROR_FZ(argument_error, xctx,
                 "id '%ku' is not allowed on throw",
-                (&id_value->internal));
+                &id_value->internal);
         }
     }
 
@@ -2183,7 +2183,7 @@ afw_function_execute_try(
                         if (!err_target) {
                             AFW_THROW_ERROR_FZ(general, xctx,
                                 "try catch: error variable '%ku' not found in catch block",
-                                (err_name));
+                                err_name);
                         }
                     }
                     else if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {

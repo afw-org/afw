@@ -319,7 +319,7 @@ afw_function_evaluate_parameter(
                 "Parameter " AFW_SIZE_T_FMT
                 " of function '%ku' can not be undefined",
                 parameter_number,
-                (&x->function->functionId->internal));
+                &x->function->functionId->internal);
         }
         return result;
     }
@@ -347,9 +347,9 @@ afw_function_evaluate_parameter(
                 "Parameter " AFW_SIZE_T_FMT
                 " of function '%ku' must evaluate to data type '%ku' but evaluated to be '%ku'",
                 parameter_number,
-                (&x->function->functionId->internal),
-                (&parameter->data_type->data_type_id),
-                (&result_data_type->data_type_id));
+                &x->function->functionId->internal,
+                &parameter->data_type->data_type_id,
+                &result_data_type->data_type_id);
         }
     }
 

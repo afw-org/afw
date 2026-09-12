@@ -206,7 +206,7 @@ const afw_lmdb_index_conf_t * afw_lmdb_adapter_parse_index_conf(
         else
             AFW_THROW_ERROR_FZ(general, xctx,
                 "index.cardinalityStrategy '%ku' is not one of \"totalEntries\", \"probe\", \"off\".",
-                (strategy_str));
+                strategy_str);
     }
 
     return index_conf;

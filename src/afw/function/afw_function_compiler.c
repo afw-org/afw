@@ -71,7 +71,7 @@ afw_function_execute_assert(
         if (reason) {
             AFW_THROW_ERROR_FZ(assertion_failed, x->xctx,
                 "Assertion failed: %ku",
-                (&reason->internal));
+                &reason->internal);
         }
         else {
             AFW_THROW_ERROR_Z(assertion_failed, "Assertion failed", x->xctx);
@@ -1359,7 +1359,7 @@ afw_function_execute_compile_from_file(
         else {
             AFW_THROW_ERROR_FZ(bad_request, xctx,
                 "Invalid compile type '%ku'.",
-                (compile_type_string));
+                compile_type_string);
         }
     }
 

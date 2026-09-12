@@ -103,5 +103,5 @@ impl_afw_request_handler_process(
 
     AFW_THROW_ERROR_FZ(not_found, xctx,
         "Prefix '%ku' not found",
-        (request->uri));
+        request->uri);
 }

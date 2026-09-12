@@ -770,7 +770,7 @@ impl_mismatch_detail(
             if ((!pv || afw_value_is_undefined(pv)) && !has_open_props) {
                 return afw_utf8_z_printf(p, xctx,
                     "missing required property '%ku' for type %s",
-                    (prop->name), want_z);
+                    prop->name, want_z);
             }
             if (pv && prop->type &&
                 !afw_value_type_is_any(prop->type) &&
@@ -778,7 +778,7 @@ impl_mismatch_detail(
             {
                 return afw_utf8_z_printf(p, xctx,
                     "property '%ku': expected %s but got %s",
-                    (prop->name),
+                    prop->name,
                     impl_type_to_z(prop->type, p, xctx),
                     impl_value_type_to_z(pv, p, xctx));
             }
@@ -1359,13 +1359,13 @@ impl_excess_prop_cb(
             AFW_THROW_ERROR_FZ(syntax, xctx,
                 "Type error in %s: excess property '%ku' is not declared on type %s",
                 ctx->what ? ctx->what : "assignment",
-                (name),
+                name,
                 impl_type_to_z(ctx->expected, xctx->p, xctx));
         }
         AFW_THROW_ERROR_FZ(general, xctx,
             "Type error in %s: excess property '%ku' is not declared on type %s",
             ctx->what ? ctx->what : "assignment",
-            (name),
+            name,
             impl_type_to_z(ctx->expected, xctx->p, xctx));
     }
 
@@ -1692,8 +1692,8 @@ impl_specialize_polymorphic(
     if (!specialized) {
         AFW_THROW_ERROR_FZ(syntax, xctx,
             "Type error: data type '%ku' is not supported for function '%ku'",
-            (&dt->data_type_id),
-            (&function->functionId->internal));
+            &dt->data_type_id,
+            &function->functionId->internal);
     }
     return specialized;
 }

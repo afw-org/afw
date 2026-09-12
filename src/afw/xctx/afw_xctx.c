@@ -224,14 +224,14 @@ afw_xctx_scope_symbol_get_value_address(
     {
         AFW_THROW_ERROR_FZ(general, xctx,
             "symbol '%ku' not found in current scope chain",
-            (&symbol->name->internal));
+            &symbol->name->internal);
     }
 
     if (symbol->index >= scope->block->symbol_count) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "symbol '%ku' index " AFW_SIZE_T_FMT
             " is out of range for scope",
-            (&symbol->name->internal), symbol->index);
+            &symbol->name->internal, symbol->index);
     }
 
     return (const afw_value_t **)&scope->frame_slots[symbol->index];
@@ -299,7 +299,7 @@ afw_xctx_scope_symbol_get_value_by_name(
     if (!value_address) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "symbol name '%ku' not found in current scope chain",
-            (symbol_name));
+            symbol_name);
     }
 
     return *value_address;
@@ -355,7 +355,7 @@ afw_xctx_scope_symbol_set_value_by_name(
     if (!value_address) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "symbol name '%ku' not found in current scope chain",
-            (symbol_name));
+            symbol_name);
     }
 
     afw_value_slot_store(value_address, value, xctx);

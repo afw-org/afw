@@ -311,7 +311,7 @@ impl_initialize_and_start_service_using_conf(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "missing conf/type property",
-            (conf_source_location));
+            conf_source_location);
     }
 
     /* service type */
@@ -321,8 +321,8 @@ impl_initialize_and_start_service_using_conf(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "invalid service type '%ku'",
-            (source_location),
-            (service->type));
+            source_location,
+            service->type);
     }
 
     /* conf subtype */
@@ -338,9 +338,9 @@ impl_initialize_and_start_service_using_conf(
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "missing 'conf/%ku' property",
-                (source_location),
-                (service->service_type->conf_type->
-                    subtype_property_name));
+                source_location,
+                service->service_type->conf_type->
+                    subtype_property_name);
         }
     }
 
@@ -358,8 +358,8 @@ impl_initialize_and_start_service_using_conf(
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "missing '%ku' property",
-                (conf_source_location),
-                (service->service_type->conf_type->id_property_name)
+                conf_source_location,
+                service->service_type->conf_type->id_property_name
             );
         }
     }
@@ -368,15 +368,15 @@ impl_initialize_and_start_service_using_conf(
     object_id = (service->conf_id) ? service->conf_id : afw_s_current;
     s = afw_utf8_printf(p, xctx,
         "%ku-%ku",
-        (service->type),
-        (object_id));
+        service->type,
+        object_id);
     if (service->service_id.len > 0) {
         if (!afw_utf8_equal(&service->service_id, s)) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "serviceId '%ku' is not appropriate for this conf",
-                (source_location),
-                (s));
+                source_location,
+                s);
         }
     }
     service->service_id.len = s->len;
@@ -385,9 +385,9 @@ impl_initialize_and_start_service_using_conf(
     /* conf objectType */
     s = afw_utf8_printf(p, xctx,
         "_AdaptiveConf_%ku%s%ku",
-        (service->type),
+        service->type,
         (service->conf_subtype) ? "_" : "",
-        (service->conf_subtype));
+        service->conf_subtype);
     afw_object_meta_set_object_type_id(service->properties, s, xctx);
 
     rv = apr_thread_mutex_create(
@@ -460,7 +460,7 @@ impl_start_cb(
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "serviceId can not be determined",
-                (source_location));
+                source_location);
         }
 
         /*
@@ -500,12 +500,12 @@ impl_start_cb(
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "missing conf property",
-                (source_location));
+                source_location);
         }
         conf = afw_object_create_clone(conf, p, xctx);
         service->conf_source_location = afw_utf8_printf(
             p, xctx, "%ku/conf",
-            (source_location));
+            source_location);
 
         /* Start service and release existing service if there is one. */
         impl_initialize_and_start_service_using_conf(service,
@@ -526,7 +526,7 @@ impl_start_cb(
         }
         afw_error_write_log(afw_log_priority_err, AFW_ERROR_THROWN, xctx);
         AFW_LOG_FZ(err, xctx, "Service '%ku' failed to start.",
-                (service_id));
+                service_id);
 
         /** @fixme Deal with error_service not NULL. */
     }
@@ -626,7 +626,7 @@ impl_add_runtime_service_info_to_object(
         if (len <= 0 || w_id.len < 1) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Invalid serviceId '%ku'",
-                (service_id));
+                service_id);
         }
         type = &w_type;
         id = &w_id;
@@ -636,7 +636,7 @@ impl_add_runtime_service_info_to_object(
     if (!service_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "Invalid type in serviceId '%ku'",
-            (service_id));
+            service_id);
     }
 
     afw_object_set_property_as_string_internal(object,
@@ -655,8 +655,8 @@ impl_add_runtime_service_info_to_object(
         if (!subtype) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "missing 'conf/%ku' property in serviceId '%ku'",
-                (service_type->conf_type->subtype_property_name),
-                (service_id));
+                service_type->conf_type->subtype_property_name,
+                service_id);
         }
         afw_object_set_property_as_string_internal(object,
             afw_v_confSubtype, subtype, xctx);
@@ -665,9 +665,9 @@ impl_add_runtime_service_info_to_object(
     if (service_type->conf_type->id_runtime_object_type_id) {
         s = afw_utf8_printf(p, xctx,
             "/afw/%ku/%ku",
-            (service_type->conf_type->
-                id_runtime_object_type_id),
-            (id));
+            service_type->conf_type->
+                id_runtime_object_type_id,
+            id);
         afw_object_set_property_as_string_internal(object,
             afw_v_uriRelated, s, xctx);
     }
@@ -675,12 +675,12 @@ impl_add_runtime_service_info_to_object(
     if (subtype) {
         conf_object_type_id = afw_utf8_printf(p, xctx,
             "_AdaptiveConf_%ku.%ku",
-            (type), (subtype));
+            type, subtype);
 
     } else {
         conf_object_type_id = afw_utf8_printf(p, xctx,
             "_AdaptiveConf_%ku",
-            (type));
+            type);
     }
 
     afw_object_set_property_as_string_internal(object,
@@ -866,7 +866,7 @@ impl_AdaptiveService_cb(
             if (!conf_property) {
                 AFW_THROW_ERROR_FZ(general, xctx,
                     "missing conf property in serviceId '%ku'",
-                    (service_id));
+                    service_id);
             }
 
             service = afw_environment_get_service(service_id, xctx);
@@ -1171,7 +1171,7 @@ impl_start_service(
         afw_environment_register_service(&service->service_id, service,
             xctx);
         AFW_LOG_FZ(debug, xctx, "Service '%ku' starting.",
-            (&service->service_id));
+            &service->service_id);
         afw_service_type_start_cede_p(service->service_type,
             service->properties, service->p, xctx);
         service->status = afw_service_status_running;
@@ -1179,7 +1179,7 @@ impl_start_service(
             /** @fixme Release pool. */
         }
         AFW_LOG_FZ(info, xctx, "Service '%ku' successfully started.",
-            (&service->service_id));
+            &service->service_id);
     }
     AFW_THREAD_MUTEX_UNLOCK();
 }
@@ -1214,15 +1214,15 @@ afw_service_start(
         description = afw_service_status_description(service->status);
         AFW_THROW_ERROR_FZ(general, xctx,
             "Service '%ku' can not be started.  %ku",
-            (service_id),
-            (description));
+            service_id,
+            description);
     }
 
     /* Should not get this condition, but fuss anyways. */
     if (!xctx->env->conf_adapter) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "Can not start service '%ku'",
-            (service_id));
+            service_id);
     }
 
     /* If there is a conf adapter, try to start. */
@@ -1263,7 +1263,7 @@ afw_service_stop(
     if (!service) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "Service '%ku' is not running",
-            (service_id));
+            service_id);
     }
 
     AFW_THREAD_MUTEX_LOCK(service->mutex, xctx)
@@ -1273,12 +1273,12 @@ afw_service_stop(
             AFW_TRY {
                     service->status = afw_service_status_stopping;
                     AFW_LOG_FZ(debug, xctx, "Service '%ku' stopping.",
-                        (&service->service_id));
+                        &service->service_id);
                     service->status = afw_service_status_stopping;
                     afw_service_type_stop(service->service_type,
                         service->conf_id, xctx);
                     AFW_LOG_FZ(info, xctx, "Service '%ku' successfully stopped.",
-                        (&service->service_id));
+                        &service->service_id);
                     service->status = afw_service_status_stopped;
             }
 
@@ -1298,8 +1298,8 @@ afw_service_stop(
             description = afw_service_status_description(service->status);
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Service '%ku' can not be stopped.  %ku",
-                (&service->service_id),
-                (description));
+                &service->service_id,
+                description);
 
         }
     }
@@ -1324,7 +1324,7 @@ impl_restart_service(
         existing_service = afw_environment_get_service(
             &service->service_id, xctx);
         AFW_LOG_FZ(debug, xctx, "Service '%ku' restarting.",
-            (&service->service_id));
+            &service->service_id);
         afw_service_type_restart_cede_p(service->service_type,
             service->properties, service->p, xctx);
         service->status = afw_service_status_running;
@@ -1332,7 +1332,7 @@ impl_restart_service(
             /** @fixme Release pool. */
         }
         AFW_LOG_FZ(info, xctx, "Service '%ku' successfully restarted.",
-            (&service->service_id));
+            &service->service_id);
     }
     AFW_THREAD_MUTEX_UNLOCK();
 }
@@ -1386,7 +1386,7 @@ impl_restart_get_cb(
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "serviceId can not be determined",
-                (source_location));
+                source_location);
         }
 
         /* Allocate and initialize new service instance. */
@@ -1403,14 +1403,14 @@ impl_restart_get_cb(
 
         service->conf_source_location = afw_utf8_printf(
             p, xctx, "%ku/conf",
-            (source_location));
+            source_location);
         conf = afw_object_get_property_as_object_internal(object,
             afw_v_conf, xctx);
         if (!conf) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "missing conf property",
-                (source_location));
+                source_location);
         }
 
         /* Start service and release existing service if there is one. */
@@ -1429,7 +1429,7 @@ impl_restart_get_cb(
         }
         afw_error_write_log(afw_log_priority_err, AFW_ERROR_THROWN, xctx);
         AFW_LOG_FZ(err, xctx, "Service '%ku' failed to start.",
-                (service_id));
+                service_id);
 
         /** @fixme Deal with error_service not NULL. */
     }
@@ -1467,7 +1467,7 @@ afw_service_restart(
     {
         AFW_THROW_ERROR_FZ(general, xctx,
             "Service '%ku' cannot be restarted.  It is not running",
-            (service_id));
+            service_id);
     }
 
     /* If there is a conf adapter, try to start. */
@@ -1502,5 +1502,5 @@ afw_service_restart(
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
         "Error starting service '%ku'",
-        (service_id));
+        service_id);
 }

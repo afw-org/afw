@@ -141,7 +141,7 @@ impl_set_error_immutable(
 {
     AFW_THROW_ERROR_FZ(general, xctx,
         "Property '%ku' immutable",
-        (afw_object_property_name_display_utf8(property_name, xctx)));
+        afw_object_property_name_display_utf8(property_name, xctx));
 }
 
 

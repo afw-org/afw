@@ -262,9 +262,9 @@ impl_afw_stream_flush(
             " %ku%s%ku\n",
             ++(xctx->write_sequence),
             size,
-            (self->pub.streamId),
+            self->pub.streamId,
             (self->info && self->info->len > 0) ? " " : "",
-            (self->info) );
+            self->info );
 
         afw_writer_write_utf8(self->response_writer, header, xctx);
         afw_memory_writer_retrieve_using_callback_and_release(

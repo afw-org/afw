@@ -123,7 +123,7 @@ afw_file_to_memory(
         if (to_memory->size < 1) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Error reading '%ku'.", 
-                (file_path));
+                file_path);
         }
 
     }

@@ -494,7 +494,7 @@ afw_function_execute_open_file(
     if (number != (afw_size_t)-1) {
         AFW_THROW_ERROR_FZ(general, x->xctx,
             "streamId '%ku' is already open",
-            (&streamId->internal));
+            &streamId->internal);
     }
 
     resolved_path = afw_file_path_resolve_rootFilePaths(
@@ -516,7 +516,7 @@ afw_function_execute_open_file(
         afw_stream_release(stream, x->xctx);
         AFW_THROW_ERROR_FZ(general, x->xctx,
             "streamId '%ku' could not be set",
-            (&streamId->internal));
+            &streamId->internal);
     }
 
     return afw_value_create_unmanaged_integer(
@@ -855,7 +855,7 @@ afw_function_execute_stream(
     if (number == (afw_size_t)-1) {
         AFW_THROW_ERROR_FZ(general, x->xctx,
             "streamId '%ku' is not open",
-            (&streamId->internal));
+            &streamId->internal);
     }
 
     return afw_value_create_unmanaged_integer(

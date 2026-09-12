@@ -199,7 +199,7 @@ afw_request_body_to_value(
     if (!content_type) {
         AFW_THROW_ERROR_FZ(unsupported_content, xctx,
             "Unsupported content-type '%ku'.",
-            (instance->content_type));
+            instance->content_type);
     }
 
     return afw_content_type_raw_to_value(content_type, 

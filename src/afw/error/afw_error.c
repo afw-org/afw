@@ -666,7 +666,7 @@ afw_error_write_log(afw_log_priority_t priority,
             xctx,
             "%s [%ku%s%0d]",
             error->message_z,
-            (error->contextual->source_location),
+            error->contextual->source_location,
             (error->contextual && error->contextual->value_offset != 0) ? " +" : "",
             (error->contextual && error->contextual->value_offset != 0)
                 ? error->contextual->value_offset

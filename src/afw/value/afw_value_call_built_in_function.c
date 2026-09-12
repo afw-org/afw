@@ -197,7 +197,7 @@ impl_afw_value_optional_evaluate(
     if (x.argc < x.function->numberOfRequiredParameters->internal) {
         AFW_THROW_ERROR_FZ(argument_error, xctx,
             "'%ku' expects " AFW_SIZE_T_FMT " required parameters",
-            (&x.function->functionId->internal),
+            &x.function->functionId->internal,
             x.function->numberOfRequiredParameters->internal);
     }
 
@@ -207,7 +207,7 @@ impl_afw_value_optional_evaluate(
     {
         AFW_THROW_ERROR_FZ(argument_error, xctx,
             "'%ku' expects no more than " AFW_SIZE_T_FMT " parameters",
-            (&x.function->functionId->internal),
+            &x.function->functionId->internal,
             x.function->maxNumberOfParameters->internal);
     }
 
@@ -226,7 +226,7 @@ impl_afw_value_optional_evaluate(
         if (!x.first_arg) {
             AFW_THROW_ERROR_FZ(argument_error, xctx,
                 "Polymorphic function '%ku' requires first parameter not be undefined",
-                (&self->function->functionId->internal));
+                &self->function->functionId->internal);
         }
         x.data_type = afw_value_get_data_type(x.first_arg, xctx);
         x.function = afw_environment_registry_get_data_type_method(
@@ -234,8 +234,8 @@ impl_afw_value_optional_evaluate(
         if (!x.function) {
             AFW_THROW_ERROR_FZ(argument_error, xctx,
                 "'%ku' is not a method of data type '%ku'",
-                (&self->function->functionId->internal),
-                (&x.data_type->data_type_id));
+                &self->function->functionId->internal,
+                &x.data_type->data_type_id);
         }
     }
 

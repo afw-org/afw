@@ -77,7 +77,7 @@ afw_adapter_journal_entry_consume(
     if (!journal) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "adapter_id '%ku' session get_journal() returned NULL",
-            (&session->adapter->adapter_id));
+            &session->adapter->adapter_id);
     }
 
     /* Get consumed property from update object. */
@@ -122,7 +122,7 @@ impl_get_journal_interface(const afw_utf8_t *adapter_id,
 error:
     AFW_THROW_ERROR_FZ(method_not_supported, xctx,
         "Adapter '%ku' does not support journal",
-        (adapter_id));
+        adapter_id);
 }
 
 

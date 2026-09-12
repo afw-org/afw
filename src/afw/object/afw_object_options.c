@@ -260,7 +260,7 @@ afw_object_options_set_from_object(
         else {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Invalid view option '%ku'",
-                (afw_object_property_name_display_utf8(name, xctx)));
+                afw_object_property_name_display_utf8(name, xctx));
         }
     }
 

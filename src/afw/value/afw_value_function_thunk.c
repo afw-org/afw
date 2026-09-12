@@ -68,7 +68,7 @@ afw_value_function_thunk_create_impl(
     self->ctx = ctx;
     self->detail = afw_utf8_printf(p, xctx,
         "Thunk '%ku' created at %s",
-        (name), source_z);
+        name, source_z);
 
     return &self->pub;
 }

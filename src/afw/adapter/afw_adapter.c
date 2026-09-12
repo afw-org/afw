@@ -167,7 +167,7 @@ afw_adapter_get_reference(
         if (!instance) {
             AFW_THROW_ERROR_FZ(not_found, xctx,
                 "Adapter '%ku' is not available",
-                (adapter_id));
+                adapter_id);
         }
     }
 
@@ -370,7 +370,7 @@ impl_get_adapter_session_cache(const afw_utf8_t *adapter_id,
     if (!session_cache->session) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "Unable to start session for adapter id '%ku'",
-            (adapter_id));
+            adapter_id);
     }
 
     /* Return result. */
@@ -630,7 +630,7 @@ afw_adapter_internal_conf_type_create_cede_p(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "adapterId properties is required",
-            (source_location));
+            source_location);
     }
 
     /* See if adapter id already used. */
@@ -642,7 +642,7 @@ afw_adapter_internal_conf_type_create_cede_p(
             AFW_LOG_FZ(warning, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "adapter id afw is automatically defined.  Entry ignored.",
-                (source_location));
+                source_location);
             return;
         }
 
@@ -650,8 +650,8 @@ afw_adapter_internal_conf_type_create_cede_p(
         else {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "%ku adapter '%ku' is already running",
-                (source_location),
-                (adapter_id));
+                source_location,
+                adapter_id);
         }
     }
 
@@ -783,7 +783,7 @@ impl_afw_service_type_start_cede_p (
     if (!factory) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "adapterType '%ku' is not a registered adapter type",
-            (adapter_type));
+            adapter_type);
     }
    
     /* Create adapter. */

@@ -424,7 +424,7 @@ impl_afw_adapter_session_delete_object(
         if (!object) {
             AFW_THROW_ERROR_FZ(not_found, xctx,
                 "'%ku' cannot be found.",
-                (object_id));
+                object_id);
         }
 
         /* remove the actual entry from the primary database */

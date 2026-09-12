@@ -244,7 +244,7 @@ impl_afw_request_handler_process(
                 if (!value) {
                     AFW_THROW_ERROR_FZ(not_found, xctx,
                         "'%ku' Not found.",
-                        (request->uri));
+                        request->uri);
                 }
 
                 /* Write value to response body. */

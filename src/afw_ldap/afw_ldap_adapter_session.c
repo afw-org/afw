@@ -358,7 +358,7 @@ impl_afw_adapter_session_add_object(
     if (!first_attribute) {
         AFW_THROW_ERROR_FZ(not_found, xctx,
             "Object type '%ku' not found",
-            (object_type_id));
+            object_type_id);
     }
 
     /* Create mods vector. */
@@ -460,7 +460,7 @@ impl_afw_adapter_session_modify_object(
     if (!first_attribute) {
         AFW_THROW_ERROR_FZ(not_found, xctx,
             "Object type '%ku' not found",
-            (object_type_id));
+            object_type_id);
     }
 
     /* Create mods. */
@@ -487,7 +487,7 @@ impl_afw_adapter_session_modify_object(
         {
             AFW_THROW_ERROR_FZ(read_only, xctx,
                 "Property '%ku' can not be modified",
-                (property_name)
+                property_name
             );
         }
 

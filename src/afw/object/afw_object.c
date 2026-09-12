@@ -287,8 +287,8 @@ afw_object_get_property_compile_as(
     }
     use_source_location = afw_utf8_printf(p, xctx,
         "%ku/%ku",
-        (use_source_location),
-        (afw_object_property_name_display_utf8(property_name, xctx)));
+        use_source_location,
+        afw_object_property_name_display_utf8(property_name, xctx));
 
     value = afw_object_get_property(instance, property_name, xctx);
 
@@ -475,8 +475,8 @@ afw_object_get_property_compile_script(
     if (!afw_value_is_defined_and_evaluated(result)) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "%ku '%ku' is not an evaluated value",
-            (source_location),
-            (afw_object_property_name_display_utf8(property_name, xctx)));
+            source_location,
+            afw_object_property_name_display_utf8(property_name, xctx));
     }
 
     result = afw_compile_script(result,
@@ -508,8 +508,8 @@ afw_object_get_property_compile_template(
     if (!afw_value_is_defined_and_evaluated(result)) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "%ku '%ku' is not an evaluated value",
-            (source_location),
-            (afw_object_property_name_display_utf8(property_name, xctx)));
+            source_location,
+            afw_object_property_name_display_utf8(property_name, xctx));
     }
 
     result = afw_compile_template(result,

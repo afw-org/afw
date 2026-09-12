@@ -343,8 +343,8 @@ impl_convert_value_to_json(
         AFW_THROW_ERROR_FZ(general, wa->xctx,
             "Unevaluated value encountered producing json "
             "(%ku %ku)",
-            (info.value_inf_id),
-            (info.detail)
+            info.value_inf_id,
+            info.detail
         );
     }
 
@@ -443,7 +443,7 @@ impl_convert_value_to_json(
                 if (afw_object_meta_get_object_type_id(object, xctx)) {
                     s = afw_utf8_printf(wa->p, wa->xctx,
                         "object:%ku",
-                        (afw_object_meta_get_object_type_id(object, xctx))
+                        afw_object_meta_get_object_type_id(object, xctx)
                     );
                 }
                 impl_put_json_string(wa, s);

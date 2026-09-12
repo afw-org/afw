@@ -438,8 +438,8 @@ void convert_value_to_yaml(
         AFW_THROW_ERROR_FZ(general, wa->xctx,
             "Unevaluated value encountered producing yaml "
             "(%ku %ku)",
-            (info.value_inf_id),
-            (info.detail)
+            info.value_inf_id,
+            info.detail
         );
     }
 
@@ -508,7 +508,7 @@ void convert_value_to_yaml(
             AFW_THROW_ERROR_FZ(general, wa->xctx,
                 "Value data type is not supported for YAML "
                 "(%ku)",
-                (&value_data_type->data_type_id));
+                &value_data_type->data_type_id);
         }
     }
 

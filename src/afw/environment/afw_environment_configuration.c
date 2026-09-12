@@ -44,7 +44,7 @@ afw_environment_configure_with_object(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "missing type property",
-            (source_location));
+            source_location);
     }
 
     /* Get conf_type and call create function. */
@@ -53,8 +53,8 @@ afw_environment_configure_with_object(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "invalid type '%ku'",
-            (source_location),
-            (type));
+            source_location,
+            type);
     }
     conf_type->create(type, conf, source_location, p, xctx);
 }
@@ -90,13 +90,13 @@ afw_environment_configure_with_object_list(
         /* Source location will include entry number. */
         detail_source_location = afw_utf8_printf(xctx->env->p, xctx,
             "%ku entry %d",
-            (source_location), count);
+            source_location, count);
 
         if (!afw_value_is_object(value)) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "is not an object",
-                (detail_source_location));
+                detail_source_location);
         }
         entry = ((const afw_value_object_t *)value)->internal;
 
@@ -126,7 +126,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "\"extension_id\" required.",
-            (source_location));
+            source_location);
     }
 
     /* modulePath is a template evaluated at extension conf create (#15). */
@@ -135,15 +135,15 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
     if (value) {
         detail_source_location = afw_utf8_printf(p, xctx,
             "%ku/%ku",
-            (source_location),
-            (afw_s_modulePath));
+            source_location,
+            afw_s_modulePath);
         value = afw_value_compile_and_evaluate_using(value,
             detail_source_location, afw_compile_type_template, p, xctx);
         if (!afw_value_is_string(value)) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "modulePath must evaluate to string",
-                (detail_source_location));
+                detail_source_location);
         }
         module_path = &((const afw_value_string_t *)value)->internal;
     }
@@ -157,9 +157,9 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
             if (value) {
                 detail_source_location = afw_utf8_printf(p, xctx,
                     "%ku/_AdaptiveManifest_/%ku/%ku",
-                    (source_location),
-                    (extension_id),
-                    (afw_s_modulePath));
+                    source_location,
+                    extension_id,
+                    afw_s_modulePath);
                 value = afw_value_compile_and_evaluate_using(value,
                     detail_source_location, afw_compile_type_template,
                     p, xctx);
@@ -167,7 +167,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
                     AFW_THROW_ERROR_FZ(general, xctx,
                         AFW_UTF8_CONTEXTUAL_LABEL_FMT
                         "modulePath must evaluate to string",
-                        (detail_source_location));
+                        detail_source_location);
                 }
                 module_path =
                     &((const afw_value_string_t *)value)->internal;
@@ -178,8 +178,8 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "\"modulePath\" needed for \"extension\" %ku.",
-            (source_location), 
-            (extension_id));
+            source_location, 
+            extension_id);
     }
 
     afw_environment_load_extension(extension_id, module_path,
@@ -219,7 +219,7 @@ afw_environment_prepare_conf_type_properties(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             " missing type",
-            (source_location));
+            source_location);
     }
 
     /* Get conf_type for type. */
@@ -228,8 +228,8 @@ afw_environment_prepare_conf_type_properties(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "type '%ku' is not valid",
-            (source_location),
-            (type));
+            source_location,
+            type);
     }
 
     /* If appropriate, get subtype. */
@@ -243,9 +243,9 @@ afw_environment_prepare_conf_type_properties(
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "'%ku' property required for conf type '%ku'",
-                (source_location),
-                (conf_type->subtype_property_name),
-                (type));
+                source_location,
+                conf_type->subtype_property_name,
+                type);
         }
     }
 
@@ -260,19 +260,19 @@ afw_environment_prepare_conf_type_properties(
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 " '%ku' property required for conf type '%ku'",
-                (source_location),
-                (conf_type->id_property_name),
-                (type));
+                source_location,
+                conf_type->id_property_name,
+                type);
         }
     }
 
     /* Construct path. */
     path = afw_utf8_printf(p, xctx,
         "/afw/_AdaptiveConf_%ku%s%ku/%ku",
-        (type),
+        type,
         (subtype) ? "_" : "",
-        (subtype),
-        (id));
+        subtype,
+        id);
 
 
     /* If defaulting source location, make it path. */
@@ -296,7 +296,7 @@ afw_environment_prepare_conf_type_properties(
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 " configuration error(s) logged",
-                (source_location));
+                source_location);
         }
     }
     

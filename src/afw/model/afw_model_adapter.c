@@ -88,7 +88,7 @@ afw_model_internal_require_mapped_adapter(
 
     AFW_THROW_ERROR_FZ(general, xctx,
         "Model adapter '%ku' has no mappedAdapterId; default processing for %s is not available. Implement the corresponding on* hook on the model object type, or configure mappedAdapterId.",
-        (&adapter->pub.adapter_id),
+        &adapter->pub.adapter_id,
         operation);
 }
 
@@ -392,7 +392,7 @@ afw_model_internal_convert_property(
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
         "Invalid property '%ku'",
-        (from_property_name));
+        from_property_name);
 }
 
 
@@ -441,7 +441,7 @@ afw_model_internal_convert_property_name(
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
         "Invalid property '%ku'",
-        (from_property_name));
+        from_property_name);
 
 }
 
@@ -644,7 +644,7 @@ impl_execute_mapBackObject_thunk(
     if (!mapped_object) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "'%ku' expects 1 object parameter",
-            (thunk->name));
+            thunk->name);
     }
 
     object = impl_adapt_object_from_adapter(
@@ -707,7 +707,7 @@ impl_execute_returnObject_thunk(
     if (x->argc > 2) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "'%ku' expects at most 2 parameters",
-            (thunk->name));
+            thunk->name);
     }
 
     if (x->argc >= 1) {
@@ -719,7 +719,7 @@ impl_execute_returnObject_thunk(
     if (!object) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "'%ku' expects 1 object parameter",
-            (thunk->name));
+            thunk->name);
     }
 
     /* If second parameter is specified and true, mapback object. */
@@ -729,7 +729,7 @@ impl_execute_returnObject_thunk(
             if (!afw_value_is_boolean(mapback_value)) {
                 AFW_THROW_ERROR_FZ(general, xctx,
                     "'%ku' expects parameter 2 to be boolean",
-                    (thunk->name));
+                    thunk->name);
             }
             if (((afw_value_boolean_t *)mapback_value)->internal) {
                 object = impl_adapt_object_from_adapter(
@@ -828,7 +828,7 @@ afw_model_adapter_create_cede_p(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "modelLocationAdapterId can not be the same as adapterId",
-            (source_location));
+            source_location);
     }
 
     /* Prime on* instance skeletons */
@@ -854,16 +854,16 @@ afw_model_adapter_create_cede_p(
     AFW_TRY {
         AFW_LOG_FZ(debug, xctx,
             "Adapter '%ku' specified modelLocationAdapterId '%ku'.",
-            (&adapter->adapter_id),
-            (self->model_location_adapter_id));
+            &adapter->adapter_id,
+            self->model_location_adapter_id);
         model_location_adapter = afw_adapter_get_reference(
             self->model_location_adapter_id, xctx);
         if (!model_location_adapter->impl || !model_location_adapter->impl->model_location) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "the specified modelLocationAdapterId '%ku' does not hold _AdaptiveModel_ objects",
-                (source_location),
-                (self->model_location_adapter_id));
+                source_location,
+                self->model_location_adapter_id);
         }
 
         /** @fixme Load modelId */
@@ -958,15 +958,15 @@ impl_afw_adapter_create_adapter_session (
     if (!session->model_location_adapter) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "Model adapter '%ku' is not available",
-            (self->model_location_adapter_id));
+            self->model_location_adapter_id);
     }
     session->model = afw_model_location_get_model(
         session->model_location_adapter, self->model_id, xctx);
     if (!session->model) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "Model adapter '%ku' model '%ku' not found",
-            (self->model_location_adapter_id),
-            (self->model_id));
+            self->model_location_adapter_id,
+            self->model_id);
     }
 
     return (const afw_adapter_session_t *)session;
@@ -1616,7 +1616,7 @@ afw_model_internal_complete_ctx_default_modify_object(
         if (!model_property_type) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Property name '%ku' invalid",
-                (&(*entry)->first_property_name_entry->property_name.internal));
+                &(*entry)->first_property_name_entry->property_name.internal);
         }
         afw_array_push_value(mapped_entry,
             &model_property_type->mapped_property_name.pub, xctx);

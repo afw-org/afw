@@ -708,8 +708,8 @@ impl_additional_object_option_processing(
                 if (!path) {
                     AFW_THROW_ERROR_FZ(general, xctx,
                         "Property '%ku' is missing path for inheritedFrom",
-                        (afw_object_property_name_display_utf8(
-                                prop->name, xctx)));
+                        afw_object_property_name_display_utf8(
+                                prop->name, xctx));
                 }
                 v = impl_shared_path_value(self, path, xctx);
                 impl_meta_set_property_type_property(self,
@@ -877,7 +877,7 @@ impl_add_inherited_properties(
 #ifdef __AFW_OBJECT_VIEW_DEBUG__
         path = afw_object_meta_get_path((const afw_object_t *)self, xctx);
         AFW_LOG_FZ(debug, xctx,
-        "Properties already added   - '%ku'", (path));
+        "Properties already added   - '%ku'", path);
 #endif
 
         return;
@@ -886,7 +886,7 @@ impl_add_inherited_properties(
 #ifdef __AFW_OBJECT_VIEW_DEBUG__
     path = afw_object_meta_get_path((const afw_object_t *)self, xctx);
     AFW_LOG_FZ(debug, xctx,
-        "Starting to add properties - '%ku'", (path));
+        "Starting to add properties - '%ku'", path);
 #endif
 
     /* Check for recursion loop. */
@@ -894,7 +894,7 @@ impl_add_inherited_properties(
         path = afw_object_meta_get_path((const afw_object_t *)self, xctx);
         AFW_THROW_ERROR_FZ(general, xctx,
             "parentPaths recursion loop while processing '%ku'",
-            (path));
+            path);
     }
     self->inherited_properties_being_added = true;
 
@@ -924,7 +924,7 @@ impl_add_inherited_properties(
 
 #ifdef __AFW_OBJECT_VIEW_DEBUG__
     AFW_LOG_FZ(debug, xctx,
-        "Finished adding properties - '%ku'", (path));
+        "Finished adding properties - '%ku'", path);
 #endif
 }
 
@@ -1051,7 +1051,7 @@ impl_get_object_by_uri(
 
 error:
     AFW_THROW_ERROR_FZ(general, xctx, "'%ku' not found or invalid",
-        (uri));
+        uri);
 }
 
 
@@ -1075,7 +1075,7 @@ impl_object_create_entity(
         path = afw_object_meta_get_path((const afw_object_t *)self, xctx);
         AFW_LOG_FZ(debug, xctx,
             "Starting composite view    - '%ku'",
-            (path));
+            path);
 #endif
 
         impl_add_inherited_properties(self, xctx);
@@ -1084,7 +1084,7 @@ impl_object_create_entity(
         path = afw_object_meta_get_path((const afw_object_t *)self, xctx);
         AFW_LOG_FZ(debug, xctx,
             "Finished composite view    - '%ku'",
-            (path));
+            path);
 #endif
 
     }

@@ -1447,7 +1447,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
     if (!rql_op) {
         AFW_THROW_ERROR_FZ(general, parser->xctx,
             "Property \"op\" value is not valid: '%ku'",
-            (s));
+            s);
     }
 
     /* Allocate and initialize new filter entry. */
@@ -1538,7 +1538,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
             if (!entry->pt || !entry->pt->allow_query) {
                 AFW_THROW_ERROR_FZ(general, parser->xctx,
                     "Property '%ku' cannot be queried",
-                    (entry->property_name));
+                    entry->property_name);
             }
         }
 
@@ -2150,8 +2150,8 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
         else {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Unknown query criteria property '%ku'",
-                (afw_object_property_name_display_utf8(
-                        property_name, xctx)));
+                afw_object_property_name_display_utf8(
+                        property_name, xctx));
         }
     }
 
@@ -2487,7 +2487,7 @@ impl_entry_to_query_string(
         if (!rql_op || !rql_op->can_be_property) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Invalid op name '%ku'",
-                (entry->op_name));
+                entry->op_name);
         }
         property_name = afw_uri_encode(entry->property_name,
             AFW_URI_OCTET_UNRESERVED, p, xctx);

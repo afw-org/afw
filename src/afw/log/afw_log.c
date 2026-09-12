@@ -210,9 +210,9 @@ void afw_log_internal_register_logType_context_type(
     const afw_object_t *variable_definitions;
 
     context_type_id = afw_utf8_printf(xctx->env->p, xctx,
-        "logType-%ku", (log_type_id));
+        "logType-%ku", log_type_id);
     conf_object_type_id = afw_utf8_printf(xctx->env->p, xctx,
-        "_AdaptiveConf_log_%ku", (log_type_id));
+        "_AdaptiveConf_log_%ku", log_type_id);
     context_type_object = afw_context_type_create(
         context_type_id, xctx->env->p, xctx);
     qualifier_definitions =
@@ -528,9 +528,9 @@ impl_write_formatted_message(
             /* No time or program name[pid] */
             wa->formatted_message = afw_utf8_printf(wa->p, xctx,
                 "[%ku %ku] %ku",
-                (&xctx->env->application_id),
-                (xctx->uuid),
-                (wa->message));
+                &xctx->env->application_id,
+                xctx->uuid,
+                wa->message);
         }
 
         /* Write message.  If no log started yet, just write to stderr. */
@@ -699,7 +699,7 @@ impl_afw_service_type_start_cede_p (
     if (!factory) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "logType '%ku' is not a registered log type.",
-            (log_type));
+            log_type);
     }
    
     /* Create log. */
@@ -778,8 +778,8 @@ afw_log_impl_throw_property_invalid(
 {
     AFW_THROW_ERROR_FZ(general, xctx,
         "Configuration type=log, logId='%ku' property name '%ku' is not valid.",
-        (&log->log_id),
-        (afw_object_property_name_display_utf8(property_name, xctx)));
+        &log->log_id,
+        afw_object_property_name_display_utf8(property_name, xctx));
 }
 
 
@@ -791,8 +791,8 @@ afw_log_impl_throw_property_required(
 {
     AFW_THROW_ERROR_FZ(general, xctx,
         "Configuration type=log, logId='%ku' property name '%ku' is required.",
-        (&log->log_id),
-        (afw_object_property_name_display_utf8(property_name, xctx)));
+        &log->log_id,
+        afw_object_property_name_display_utf8(property_name, xctx));
 }
 
 
@@ -838,7 +838,7 @@ afw_log_impl_create_cede_p(
     /* Service id. */
     self->service_id = afw_utf8_printf(p, xctx,
         "log-%ku",
-        (&self->log_id));
+        &self->log_id);
 
     /* Process <priority>, if they exists. */
     for (e = afw_log_get_priority_id_map(); e->priority_id; e++) {

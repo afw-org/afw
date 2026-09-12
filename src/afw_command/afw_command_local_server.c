@@ -258,14 +258,14 @@ impl_process_directive(
         if (string->len <= 30) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Invalid directive: '%ku'",
-                (string));
+                string);
         }
         else {
             partial.s = string->s;
             partial.len = 30;
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Invalid directive beginning: '%ku'",
-                (&partial));
+                &partial);
         }
     }
 }
@@ -371,8 +371,8 @@ impl_read_and_process_request(
                     "    \"function\": \"%ku\",\n"
                     "    \"source\": %ku\n"
                     "}\n",
-                (self->evaluate_function_id),
-                (string)
+                self->evaluate_function_id,
+                string
                 );
                 xctx->request = afw_command_local_request_create(self,
                     (const afw_memory_t *)input, self->request_properties,

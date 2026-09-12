@@ -101,13 +101,13 @@ afw_compile_create_source_location_impl(
     if (has_nl) {
         result = afw_utf8_printf(parser->p, parser->xctx,
             "%ku[" AFW_SIZE_T_FMT ":" AFW_SIZE_T_FMT "]",
-            (parser->contextual.source_location),
+            parser->contextual.source_location,
             line, column);
     }
     else {
         result = afw_utf8_printf(parser->p, parser->xctx,
             "%ku+" AFW_SIZE_T_FMT,
-            (parser->contextual.source_location),
+            parser->contextual.source_location,
             start_offset);
     }
 
@@ -149,12 +149,12 @@ afw_compile_parse_reference_create(
             if (qualifier.len == 0) {
                 AFW_COMPILE_THROW_ERROR_FZ(
                     "Undeclared variable '%ku'",
-                    (&name));
+                    &name);
             }
             if (afw_utf8_equal(&qualifier, afw_s_fn)) {
                 AFW_COMPILE_THROW_ERROR_FZ(
                     "Unknown built-in function '%ku'",
-                    (&name));
+                    &name);
             }
             result =
                 afw_value_qualified_variable_reference_create(
@@ -292,7 +292,7 @@ afw_compile_parse_variable_reference_create(
         if (!symbol) {
             AFW_COMPILE_THROW_ERROR_FZ(
                 "Variable '%ku' is not declared",
-                (&identifier->internal));
+                &identifier->internal);
         }
     }
     else {
@@ -300,7 +300,7 @@ afw_compile_parse_variable_reference_create(
         if (!symbol) {
             AFW_COMPILE_THROW_ERROR_FZ(
                 "Variable '%ku' is not declared",
-                (&identifier->internal));
+                &identifier->internal);
         }
     }
 
@@ -370,7 +370,7 @@ afw_compile_parse_add_symbol_entry(
 
     if (afw_compile_parse_get_local_symbol_entry(parser, name)) {
         AFW_COMPILE_THROW_ERROR_FZ("'%ku' already defined",
-            (&name->internal));
+            &name->internal);
     }
 
     entry = afw_pool_calloc_type(parser->p,

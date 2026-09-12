@@ -92,8 +92,8 @@ impl_AdaptiveLayoutComponentType_retrieve_cb(
             {
                 AFW_LOG_FZ(info, xctx,
                     "/%ku/_AdaptiveLayoutComponentType_/%ku ignored because AFW core or an extension supplies it",
-                    (xctx->env->layout_adapter_id),
-                    (object->meta.id));
+                    xctx->env->layout_adapter_id,
+                    object->meta.id);
                 return false;
             }
         }

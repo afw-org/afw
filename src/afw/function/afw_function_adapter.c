@@ -539,8 +539,8 @@ afw_function_execute_convert_AdaptiveQueryCriteria_to_query_string(
         if (!object_type) {
             AFW_THROW_ERROR_FZ(general, x->xctx,
                 "adapterId '%ku' objectType '%ku' is not found or invalid",
-                (&adapterId_value->internal),
-                (&objectType_value->internal));
+                &adapterId_value->internal,
+                &objectType_value->internal);
         }
     }
     else if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
@@ -639,8 +639,8 @@ afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria(
         if (!object_type) {
             AFW_THROW_ERROR_FZ(general, x->xctx,
                 "adapterId '%ku' objectType '%ku' is not found or invalid",
-                (&adapterId_value->internal),
-                (&objectType_value->internal));
+                &adapterId_value->internal,
+                &objectType_value->internal);
         }
     }
     else if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
@@ -2215,7 +2215,7 @@ afw_function_execute_retrieve_objects_to_stream(
         if (!ctx.response_content_type) {
             AFW_THROW_ERROR_FZ(general, x->xctx,
                 "Unknown contentType '%ku'",
-                (&contextType->internal));
+                &contextType->internal);
         }
     }
     else if (x->xctx->request && x->xctx->request->response_content_type)

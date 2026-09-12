@@ -31,9 +31,9 @@ afw_trace_write(
     if (rti) {
         msg = afw_utf8_printf(xctx->p, xctx,
             "Trace[%ku:%ku] %ku",
-            (&rti->interface_name),
-            (&rti->implementation_id),
-            (message));
+            &rti->interface_name,
+            &rti->implementation_id,
+            message);
     }
     afw_log_write(xctx->env->log, priority,
         source_z, msg, xctx);

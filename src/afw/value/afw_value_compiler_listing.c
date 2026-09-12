@@ -651,7 +651,7 @@ afw_value_compiler_listing_begin_value(
         if (current_prefix->len < self->empty_prefix.len) {
             current_prefix = afw_utf8_printf(writer->p, xctx,
                 "%ku%.*s",
-                (current_prefix),
+                current_prefix,
                 (int)(self->empty_prefix.len - current_prefix->len),
                 self->empty_prefix.s + current_prefix->len);
         }

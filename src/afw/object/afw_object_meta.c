@@ -724,8 +724,8 @@ impl_log_errors(
         AFW_LOG_FZ(info, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "%ku",
-            (source_location),
-            (error));
+            source_location,
+            error);
     }
 }
 
@@ -777,9 +777,9 @@ afw_object_meta_log_errors(
             if (errors) {
                 property_source_location = afw_utf8_printf(p, xctx,
                     "%ku.%ku",
-                    (source_location),
-                    (afw_object_property_name_display_utf8(
-                            property_name, xctx)));
+                    source_location,
+                    afw_object_property_name_display_utf8(
+                            property_name, xctx));
                 impl_log_errors(errors, property_source_location, xctx);
             }
         }
@@ -797,9 +797,9 @@ afw_object_meta_log_errors(
         if (afw_object_meta_has_errors(embedded, xctx)) {
             property_source_location = afw_utf8_printf(p, xctx,
                 "%ku.%ku",
-                (source_location),
-                (afw_object_property_name_display_utf8(
-                        property_name, xctx)));
+                source_location,
+                afw_object_property_name_display_utf8(
+                        property_name, xctx));
             afw_object_meta_log_errors(embedded,
                 property_source_location, xctx);
         }
@@ -902,7 +902,7 @@ afw_object_meta_add_thrown_property_error(
             message = afw_utf8_printf(instance->p, xctx,
                 "[" AFW_INTEGER_FMT "] %ku",
                 index,
-                (message));
+                message);
         }
     }
 

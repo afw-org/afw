@@ -100,7 +100,7 @@ impl_canonicalize_root_dir_z(
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(not_found, apr, rv, xctx,
             "rootFilePaths host directory '%ku' could not be resolved (must exist as a directory)",
-            (host_root));
+            host_root);
     }
 
     real_z = merged_z;

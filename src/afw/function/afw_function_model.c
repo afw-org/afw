@@ -66,7 +66,7 @@ impl_get_self_and_model(
     {
         AFW_THROW_ERROR_FZ(general, xctx,
             "'%ku' is not a model adapter",
-            (&adapterId_value->internal));
+            &adapterId_value->internal);
     }
 
     *model = (*self)->model;

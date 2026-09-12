@@ -189,8 +189,8 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                             if (!function) {
                                 AFW_COMPILE_THROW_ERROR_FZ(
                                     "Unknown built-in function '%ku<%ku>'",
-                                    (untyped_function_id),
-                                    (type_id));
+                                    untyped_function_id,
+                                    type_id);
                             }
                         }
                         else {
@@ -200,7 +200,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                     if (!function) {
                         AFW_COMPILE_THROW_ERROR_FZ(
                             "Unknown built-in function '%ku'",
-                            (untyped_function_id));                        
+                            untyped_function_id);                        
                     }
                     result = &function->pub;
                 }
@@ -210,7 +210,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                     if (!parser->token->identifier_qualifier) {
                         AFW_COMPILE_THROW_ERROR_FZ(
                             "Undeclared variable '%ku'",
-                            (afw_compile_token_identifier()));
+                            afw_compile_token_identifier());
                     }
                     result =
                         afw_value_qualified_variable_reference_create(
@@ -979,7 +979,7 @@ impl_type_lookup_name(
 
     AFW_COMPILE_THROW_ERROR_FZ(
         "Unknown type '%ku'",
-        (&name->internal));
+        &name->internal);
     return NULL;
 }
 
@@ -1000,7 +1000,7 @@ afw_compile_script_type_register(
     {
         AFW_COMPILE_THROW_ERROR_FZ(
             "Type or interface '%ku' is already defined",
-            (&name->internal));
+            &name->internal);
     }
     afw_hash_table_set(parser->script_type_names,
         name->internal.s, name->internal.len, type,
@@ -1025,7 +1025,7 @@ afw_compile_script_type_reserve(
     {
         AFW_COMPILE_THROW_ERROR_FZ(
             "Type or interface '%ku' is already defined",
-            (&name->internal));
+            &name->internal);
     }
     placeholder = impl_type_alloc(parser);
     placeholder->kind = afw_value_type_kind_reference;
@@ -1155,7 +1155,7 @@ afw_compile_script_types_resolve(
         {
             AFW_COMPILE_THROW_ERROR_FZ(
                 "Type '%ku' circularly references itself",
-                (name));
+                name);
         }
     }
 }

@@ -35,7 +35,7 @@ void afw_request_handler_internal_conf_type_create_cede_p(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "request handler head missing.",
-            (source_location));
+            source_location);
     }
 
     /* Allocate new entry. */
@@ -51,7 +51,7 @@ void afw_request_handler_internal_conf_type_create_cede_p(
 
     /* Log request handler active. */
     AFW_LOG_FZ(info, xctx, "Request handler for URI prefix '%ku' starting.",
-        (e->uri_prefix));
+        e->uri_prefix);
 
     /* Use request handler factory for handler id. */
     e->factory = afw_environment_get_request_handler_type(
@@ -60,8 +60,8 @@ void afw_request_handler_internal_conf_type_create_cede_p(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "invalid handler_type '%ku'.",
-            (source_location),
-            (e->handler_type));
+            source_location,
+            e->handler_type);
     }
 
     /* Create handler. */
@@ -86,5 +86,5 @@ void afw_request_handler_internal_conf_type_create_cede_p(
 
     /* Log request handler active. */
     AFW_LOG_FZ(info, xctx, "Request handler for URI prefix '%ku' successfully started.",
-        (head->last_handler->uri_prefix));
+        head->last_handler->uri_prefix);
 }

@@ -1280,7 +1280,7 @@ afw_uri_parse_next_token(
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
         "Error parsing URI '%ku' at offset %d",
-        (self->uri),
+        self->uri,
         (int)(self->c - (const afw_octet_t *)self->uri->s));
 }
 
@@ -1910,7 +1910,7 @@ afw_uri_parse(
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
         "Error parsing URI '%ku' at offset %d",
-        (uri), (int)(c - (const afw_octet_t *)uri->s));
+        uri, (int)(c - (const afw_octet_t *)uri->s));
 }
 
 

@@ -62,13 +62,13 @@ impl_set_trace_flag_fields(
     adapter->trace_flag_id =
         afw_utf8_printf(p, xctx,
             "trace:adapterId:%ku",
-            (&adapter->adapter_id));
+            &adapter->adapter_id);
 
     /* adapter_id_detail_flag_id */
     adapter->detail_flag_id =
         afw_utf8_printf(p, xctx,
             "trace:adapterId:%ku:detail",
-            (&adapter->adapter_id));
+            &adapter->adapter_id);
 
     /* adapter_id_detail_flag_index */
     flag = afw_environment_get_flag(
@@ -80,16 +80,16 @@ impl_set_trace_flag_fields(
 
         brief = afw_utf8_printf(env_p, xctx,
             "Detail trace of adapter id '%ku'",
-            (&adapter->adapter_id));
+            &adapter->adapter_id);
 
         description = afw_utf8_printf(env_p, xctx,
             "This produces a basic plus detail trace "
             "of adapter id " "'%ku'.",
-            (&adapter->adapter_id));
+            &adapter->adapter_id);
 
         included_by_flag_id = afw_utf8_printf(env_p, xctx,
             "trace:adapterType:%ku:detail",
-            (adapter->adapter_type_id));
+            adapter->adapter_type_id);
 
         afw_environment_register_flag(flag_id, brief, description,
             included_by_flag_id, xctx);
@@ -110,15 +110,15 @@ impl_set_trace_flag_fields(
 
         brief = afw_utf8_printf(env_p, xctx,
             "Trace adapter id '%ku'",
-            (&adapter->adapter_id));
+            &adapter->adapter_id);
 
         description = afw_utf8_printf(env_p, xctx,
             "This produces a basic trace of adapter id '%ku'.",
-            (&adapter->adapter_id));
+            &adapter->adapter_id);
 
         included_by_flag_id = afw_utf8_printf(env_p, xctx,
             "trace:adapterType:%ku",
-            (adapter->adapter_type_id));
+            adapter->adapter_type_id);
 
         afw_environment_register_flag(flag_id, brief, description,
             included_by_flag_id, xctx);
@@ -143,9 +143,9 @@ afw_adapter_impl_throw_property_invalid(
 {
     AFW_THROW_ERROR_FZ(general, xctx,
         "%kuConfiguration type='adapter', adapterType='%ku' property name '%ku' is not valid.",
-        (adapter->impl->source_location),
-        (&adapter->adapter_id),
-        (afw_object_property_name_display_utf8(property_name, xctx)));
+        adapter->impl->source_location,
+        &adapter->adapter_id,
+        afw_object_property_name_display_utf8(property_name, xctx));
 }
 
 
@@ -158,9 +158,9 @@ afw_adapter_impl_throw_property_required(
 {
     AFW_THROW_ERROR_FZ(general, xctx,
         "%ku Configuration type='adapter', adapterType='%ku' property name '%ku' is required.",
-        (adapter->impl->source_location),
-        (&adapter->adapter_id),
-        (afw_object_property_name_display_utf8(property_name, xctx)));
+        adapter->impl->source_location,
+        &adapter->adapter_id,
+        afw_object_property_name_display_utf8(property_name, xctx));
 }
 
 
@@ -228,7 +228,7 @@ afw_adapter_impl_create_cede_p(
     if (!s) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "%ku requires 'id' property.",
-            (impl->source_location));
+            impl->source_location);
     }
     afw_memory_copy(&adapter->adapter_id, s);
     impl->adapter_id = &adapter->adapter_id;
@@ -236,23 +236,23 @@ afw_adapter_impl_create_cede_p(
     /* Create lock. */
     s = afw_utf8_printf(p, xctx,
         "adapter_id:'%ku'",
-        (impl->adapter_id));
+        impl->adapter_id);
     if (!afw_environment_get_lock(s, xctx)) {
         impl->adapter_lock_rw = afw_lock_create_rw_and_register(
             afw_utf8_clone(s, xctx->env->p, xctx),
             afw_utf8_printf(xctx->env->p, xctx,
                 "Adapter id '%ku' read/write lock",
-                (impl->adapter_id)),
+                impl->adapter_id),
             afw_utf8_printf(xctx->env->p, xctx,
                 "Read/write lock used internally by adapter id '%ku' implementation",
-                (impl->adapter_id)),
+                impl->adapter_id),
             xctx);
     }
 
     /* Service id. */
     adapter->service_id = afw_utf8_printf(p, xctx,
         "adapter-%ku",
-        (impl->adapter_id));
+        impl->adapter_id);
 
     /* Set trace fields */
     impl_set_trace_flag_fields(adapter, xctx);
@@ -260,7 +260,7 @@ afw_adapter_impl_create_cede_p(
     /* Trace create */
     afw_trace_fz(1, adapter->trace_flag_index, adapter, xctx,
         "adapterId '%ku' is being created",
-        (&adapter->adapter_id));
+        &adapter->adapter_id);
 
     /* As default, allow read _AdaptiveObjectType_/_AdaptiveObjectType_. */
     impl->supported_core_object_types = afw_hash_table_create(
@@ -288,8 +288,8 @@ afw_adapter_impl_create_cede_p(
         if (!authorization_handler) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "%ku authorizationHandlerId  '%ku' is not startable",
-                (impl->source_location),
-                (impl->authorization_handler_id));
+                impl->source_location,
+                impl->authorization_handler_id);
         }
     }
 
@@ -299,8 +299,8 @@ afw_adapter_impl_create_cede_p(
     if (impl->journal_adapter_id) {
         AFW_LOG_FZ(debug, xctx,
             "Adapter '%ku' specified journalAdapterId '%ku'.",
-            (&adapter->adapter_id),
-            (impl->journal_adapter_id));
+            &adapter->adapter_id,
+            impl->journal_adapter_id);
     }
 
     if (impl->journal_adapter_id &&
@@ -315,8 +315,8 @@ afw_adapter_impl_create_cede_p(
             {
                 AFW_THROW_ERROR_FZ(general, xctx,
                     "%ku Adapter id '%ku' specified in journalAdapterId property is not startable or does not support journaling.",
-                    (impl->source_location),
-                    (impl->journal_adapter_id));
+                    impl->source_location,
+                    impl->journal_adapter_id);
             }
         }
         AFW_FINALLY{
@@ -938,8 +938,8 @@ impl_special_object_handling_cb(
                             object_type_id = afw_utf8_printf(
                                 object->p, xctx,
                                 "_AdaptiveConf_%ku_%ku",
-                                (type),
-                                (subtype));
+                                type,
+                                subtype);
                             afw_object_meta_set_object_type_id(conf,
                                 object_type_id, xctx);
                         }
@@ -1049,15 +1049,15 @@ impl_afw_adapter_session_retrieve_objects(
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(p, xctx,
             "/%ku/%ku",
-            (&adapter->adapter_id),
-            (object_type_id));
+            &adapter->adapter_id,
+            object_type_id);
     }
     ctx.action_id_value = afw_authorization_action_id_query;
 
     /* Trace begin */
     afw_trace_fz(1, adapter->trace_flag_index, self->wrapped_session, xctx,
         "begin retrieve_objects '%ku'",
-        (ctx.resource_id));
+        ctx.resource_id);
 
     /* Do not start a large retrieve if the server is shutting down. */
     AFW_XCTX_THROW_IF_TERMINATING(xctx);
@@ -1143,7 +1143,7 @@ end_retrieve_trace:
     /* Trace end */
     afw_trace_fz(1, adapter->trace_flag_index, self->wrapped_session, xctx,
         "end retrieve_objects '%ku'",
-        (ctx.resource_id));
+        ctx.resource_id);
 }
 
 
@@ -1184,16 +1184,16 @@ impl_afw_adapter_session_get_object(
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(p, xctx,
             "/%ku/%ku/%ku",
-            (&adapter->adapter_id),
-            (object_type_id),
-            (object_id));
+            &adapter->adapter_id,
+            object_type_id,
+            object_id);
     }
     ctx.action_id_value = afw_authorization_action_id_query;
 
     /* Trace begin */
     afw_trace_fz(1, adapter->trace_flag_index, self->wrapped_session, xctx,
         "begin get_object '%ku'",
-        (ctx.resource_id));
+        ctx.resource_id);
 
     /* Do not start get if the server is shutting down. */
     AFW_XCTX_THROW_IF_TERMINATING(xctx);
@@ -1277,7 +1277,7 @@ end_trace:
     /* Trace end */
     afw_trace_fz(1, adapter->trace_flag_index, self->wrapped_session, xctx,
         "end get_object '%ku'",
-        (ctx.resource_id));
+        ctx.resource_id);
 }
 
 
@@ -1311,16 +1311,16 @@ impl_afw_adapter_session_add_object(
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
             "/%ku/%ku/%ku",
-            (&adapter->adapter_id),
-            (object_type_id),
-            (suggested_object_id));
+            &adapter->adapter_id,
+            object_type_id,
+            suggested_object_id);
     }
     ctx.action_id_value = afw_authorization_action_id_create;
 
     /* Trace begin */
     afw_trace_fz(1, adapter->trace_flag_index, self->wrapped_session, xctx,
         "begin add_object '%ku'",
-        (ctx.resource_id));
+        ctx.resource_id);
 
     /** @fixme Add common prologue code. */
     afw_atomic_integer_increment(&impl->add_object_count);
@@ -1339,7 +1339,7 @@ impl_afw_adapter_session_add_object(
     /* Trace end */
     afw_trace_fz(1, adapter->trace_flag_index, self->wrapped_session, xctx,
         "end add_object '%ku'",
-        (ctx.resource_id));
+        ctx.resource_id);
 
     /* Return result. */
     return result;
@@ -1375,16 +1375,16 @@ impl_afw_adapter_session_modify_object(
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
             "/%ku/%ku/%ku",
-            (&adapter->adapter_id),
-            (object_type_id),
-            (object_id));
+            &adapter->adapter_id,
+            object_type_id,
+            object_id);
     }
     ctx.action_id_value = afw_authorization_action_id_modify;
 
     /* Trace begin */
     afw_trace_fz(1, adapter->trace_flag_index, self->wrapped_session, xctx,
         "begin modify_object '%ku'",
-        (ctx.resource_id));
+        ctx.resource_id);
 
     /** @fixme Add common prologue code. */
     afw_atomic_integer_increment(&impl->modify_object_count);
@@ -1403,7 +1403,7 @@ impl_afw_adapter_session_modify_object(
     /* Trace end */
     afw_trace_fz(1, adapter->trace_flag_index, self->wrapped_session, xctx,
         "end modify_object '%ku'",
-        (ctx.resource_id));
+        ctx.resource_id);
 }
 
 
@@ -1436,16 +1436,16 @@ impl_afw_adapter_session_replace_object(
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
             "/%ku/%ku/%ku",
-            (&adapter->adapter_id),
-            (object_type_id),
-            (object_id));
+            &adapter->adapter_id,
+            object_type_id,
+            object_id);
     }
     ctx.action_id_value = afw_authorization_action_id_modify;
 
     /* Trace begin */
     afw_trace_fz(1, adapter->trace_flag_index, self->wrapped_session, xctx,
         "begin replace_object '%ku'",
-        (ctx.resource_id));
+        ctx.resource_id);
 
     /** @fixme Add common prologue code. */
     afw_atomic_integer_increment(&impl->replace_object_count);
@@ -1464,7 +1464,7 @@ impl_afw_adapter_session_replace_object(
     /* Trace end */
     afw_trace_fz(1, adapter->trace_flag_index, self->wrapped_session, xctx,
         "end replace_object '%ku'",
-        (ctx.resource_id));
+        ctx.resource_id);
 }
 
 
@@ -1496,16 +1496,16 @@ impl_afw_adapter_session_delete_object(
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
             "/%ku/%ku/%ku",
-            (&adapter->adapter_id),
-            (object_type_id),
-            (object_id));
+            &adapter->adapter_id,
+            object_type_id,
+            object_id);
     }
     ctx.action_id_value = afw_authorization_action_id_delete;
 
     /* Trace begin */
     afw_trace_fz(1, adapter->trace_flag_index, self->wrapped_session, xctx,
         "begin delete_object '%ku'",
-        (ctx.resource_id));
+        ctx.resource_id);
 
     /** @fixme Add common prologue code. */
     afw_atomic_integer_increment(&impl->delete_object_count);
@@ -1523,7 +1523,7 @@ impl_afw_adapter_session_delete_object(
     /* Trace end */
     afw_trace_fz(1, adapter->trace_flag_index, self->wrapped_session, xctx,
         "end delete_object '%ku'",
-        (ctx.resource_id));
+        ctx.resource_id);
 }
 
 

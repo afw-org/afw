@@ -458,9 +458,9 @@ afw_compile_templates(
        if (afw_value_is_template(value)) {
             detail_source_location = afw_utf8_printf(object->p, xctx,
                 "%ku/%ku",
-                (source_location),
-                (afw_object_property_name_display_utf8(
-                        property_name, xctx)));
+                source_location,
+                afw_object_property_name_display_utf8(
+                        property_name, xctx));
             value = afw_compile_to_value(
                 &((afw_value_template_t *)value)->internal,
                 detail_source_location,
@@ -473,9 +473,9 @@ afw_compile_templates(
         else if (recursive && afw_value_is_object(value)) {
             detail_source_location = afw_utf8_printf(object->p, xctx,
                 "%ku/%ku",
-                (source_location),
-                (afw_object_property_name_display_utf8(
-                        property_name, xctx)));
+                source_location,
+                afw_object_property_name_display_utf8(
+                        property_name, xctx));
             afw_compile_templates(
                 ((const afw_value_object_t *)value)->internal,
                 detail_source_location, true, shared, xctx);
@@ -516,16 +516,16 @@ afw_compile_object_all_template_properties(
     {
         detail_source_location = afw_utf8_printf(object->p, xctx,
                 "%ku property %ku",
-                (source_location),
-                (afw_object_property_name_display_utf8(
-                        property_name, xctx)));
+                source_location,
+                afw_object_property_name_display_utf8(
+                        property_name, xctx));
         value_data_type = afw_value_get_data_type(value, xctx);
         if (!value_data_type ||
             !afw_utf8_equal(&value_data_type->cType, afw_s_afw_utf8_t))
         {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "%ku is not a template",
-                (detail_source_location));
+                detail_source_location);
         }
         compiled_value = afw_compile_template_source(
             &((const afw_value_string_t *)value)->internal,
@@ -591,7 +591,7 @@ afw_compile_source_location_of_value(
                 "%ku+" AFW_SIZE_T_FMT
                 "(" AFW_SIZE_T_FMT
                 ":" AFW_SIZE_T_FMT ")",
-                (info.contextual->source_location),
+                info.contextual->source_location,
                 info.contextual->value_offset,
                 line_number, column_number);
         }
@@ -600,12 +600,12 @@ afw_compile_source_location_of_value(
             if (info.contextual->value_offset == 0) {
                 result = afw_utf8_printf(p, xctx,
                     "%ku",
-                    (info.contextual->source_location));
+                    info.contextual->source_location);
             }
             else {
                 result = afw_utf8_printf(p, xctx,
                     "%ku+" AFW_SIZE_T_FMT,
-                    (info.contextual->source_location),
+                    info.contextual->source_location,
                     info.contextual->value_offset);
             }
         }
