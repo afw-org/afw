@@ -16,10 +16,9 @@
  */
 
 #include "afw_minimal.h"
+#include "afw_memory.h"
 #include "afw_curl.h"
 #include "generated/afw_curl_generated_internal.h"
-
-#include <apr_buckets.h>
 
 
 #ifdef __cplusplus
@@ -38,8 +37,8 @@ typedef struct afw_curl_internal_script_cb_s {
 
 /* callback structs for writing responses and reading requests */
 typedef struct afw_curl_internal_write_cb_s {
-    apr_bucket_alloc_t              * allocator;
-    apr_bucket_brigade              * response;
+    /* Default body sink; NULL when a script writeFunction is set. */
+    const afw_memory_writer_t       * memory_writer;
     const afw_array_t               * headers;
     afw_curl_internal_script_cb_t   * header;
     afw_curl_internal_script_cb_t   * writer;
