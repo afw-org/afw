@@ -293,7 +293,7 @@ export function afwIsAnyURI(client : any, value : any) : any {
 
 /**
  * Checks whether anyURI value is in array of anyURI array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  * 
  * @param {anyURI} value -
  * 

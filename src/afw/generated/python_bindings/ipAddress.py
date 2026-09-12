@@ -229,7 +229,7 @@ def is_in_ipAddress(session, value, array):
     Checks whether a value is in an array
 
     Checks whether ipAddress value is in array of ipAddress array and returns
-    the boolean result.
+    the boolean result. Empty array yields false.
 
     Args:
         value (object):

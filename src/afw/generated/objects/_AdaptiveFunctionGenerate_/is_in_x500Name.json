@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "isInX500Name",
     "category": "x500Name",
     "dataTypeMethod": true,
-    "description": "Checks whether x500Name value is in array of x500Name array and returns the boolean result.",
+    "description": "Checks whether x500Name value is in array of x500Name array and returns the boolean result. Empty array yields false.",
     "functionId": "is_in<x500Name>",
     "functionLabel": "is_in_x500Name",
     "parameters": [

@@ -302,7 +302,7 @@ class date
      * is_in_date()
      *
      * Checks whether date value is in array of date array and returns the
-     * boolean result.
+     * boolean result. Empty array yields false.
      *
      * @param date $value
      * @param array $array

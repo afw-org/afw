@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "isInInteger",
     "category": "integer",
     "dataTypeMethod": true,
-    "description": "Checks whether integer value is in array of integer array and returns the boolean result.",
+    "description": "Checks whether integer value is in array of integer array and returns the boolean result. Empty array yields false.",
     "functionId": "is_in<integer>",
     "functionLabel": "is_in_integer",
     "parameters": [

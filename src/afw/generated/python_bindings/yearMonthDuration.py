@@ -264,7 +264,7 @@ def is_in_yearMonthDuration(session, value, array):
     Checks whether a value is in an array
 
     Checks whether yearMonthDuration value is in array of yearMonthDuration
-    array and returns the boolean result.
+    array and returns the boolean result. Empty array yields false.
 
     Args:
         value (object):

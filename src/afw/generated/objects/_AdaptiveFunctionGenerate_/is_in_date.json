@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "isInDate",
     "category": "date",
     "dataTypeMethod": true,
-    "description": "Checks whether date value is in array of date array and returns the boolean result.",
+    "description": "Checks whether date value is in array of date array and returns the boolean result. Empty array yields false.",
     "functionId": "is_in<date>",
     "functionLabel": "is_in_date",
     "parameters": [

@@ -1090,7 +1090,7 @@ afw_function_execute_intersection(
  * See afw_function_bindings_internal.h for more information.
  *
  * Checks whether `<dataType>` value is in array of `<dataType>` array and
- * returns the boolean result.
+ * returns the boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1131,10 +1131,10 @@ afw_function_execute_is_in(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 2, array);
 
-    data_type = afw_array_get_data_type(array->internal, x->xctx);
-    if (!data_type || afw_value_get_data_type(value, x->xctx) != data_type) {
+    data_type = afw_value_get_data_type(value, x->xctx);
+    if (!data_type) {
         AFW_THROW_ERROR_Z(argument_error,
-            "array must be array of value's data type",
+            "value must have a data type",
             x->xctx);
     }
 

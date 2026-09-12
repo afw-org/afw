@@ -199,7 +199,7 @@ Value to check
 =head3 is_in_date
 
 Checks whether date value is in array of date array and returns the boolean
-result.
+result. Empty array yields false.
 Checks whether a value is in an array
 
 =head4 Parameters

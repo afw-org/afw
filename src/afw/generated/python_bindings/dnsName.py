@@ -257,7 +257,7 @@ def is_in_dnsName(session, value, array):
     Checks whether a value is in an array
 
     Checks whether dnsName value is in array of dnsName array and returns the
-    boolean result.
+    boolean result. Empty array yields false.
 
     Args:
         value (object):

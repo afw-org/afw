@@ -483,7 +483,7 @@ class string
      * is_in_string()
      *
      * Checks whether string value is in array of string array and returns the
-     * boolean result.
+     * boolean result. Empty array yields false.
      *
      * @param string $value
      * @param array $array

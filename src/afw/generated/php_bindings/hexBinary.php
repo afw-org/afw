@@ -296,7 +296,7 @@ class hexBinary
      * is_in_hexBinary()
      *
      * Checks whether hexBinary value is in array of hexBinary array and
-     * returns the boolean result.
+     * returns the boolean result. Empty array yields false.
      *
      * @param hexBinary $value
      * @param array $array

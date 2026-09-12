@@ -329,7 +329,7 @@ class dateTime
      * is_in_dateTime()
      *
      * Checks whether dateTime value is in array of dateTime array and returns
-     * the boolean result.
+     * the boolean result. Empty array yields false.
      *
      * @param dateTime $value
      * @param array $array

@@ -354,7 +354,7 @@ def is_in_date(session, value, array):
     Checks whether a value is in an array
 
     Checks whether date value is in array of date array and returns the
-    boolean result.
+    boolean result. Empty array yields false.
 
     Args:
         value (object):

@@ -191,7 +191,7 @@ Value to check
 =head3 is_in_hexBinary
 
 Checks whether hexBinary value is in array of hexBinary array and returns the
-boolean result.
+boolean result. Empty array yields false.
 Checks whether a value is in an array
 
 =head4 Parameters

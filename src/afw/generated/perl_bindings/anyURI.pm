@@ -245,7 +245,7 @@ Value to check
 =head3 is_in_anyURI
 
 Checks whether anyURI value is in array of anyURI array and returns the
-boolean result.
+boolean result. Empty array yields false.
 Checks whether a value is in an array
 
 =head4 Parameters

@@ -210,7 +210,7 @@ The second array.
 =head3 is_in_integer
 
 Checks whether integer value is in array of integer array and returns the
-boolean result.
+boolean result. Empty array yields false.
 Checks whether a value is in an array
 
 =head4 Parameters

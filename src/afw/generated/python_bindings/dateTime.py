@@ -386,7 +386,7 @@ def is_in_dateTime(session, value, array):
     Checks whether a value is in an array
 
     Checks whether dateTime value is in array of dateTime array and returns
-    the boolean result.
+    the boolean result. Empty array yields false.
 
     Args:
         value (object):

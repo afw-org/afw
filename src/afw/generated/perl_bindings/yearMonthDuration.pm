@@ -158,7 +158,7 @@ The second array.
 =head3 is_in_yearMonthDuration
 
 Checks whether yearMonthDuration value is in array of yearMonthDuration array
-and returns the boolean result.
+and returns the boolean result. Empty array yields false.
 Checks whether a value is in an array
 
 =head4 Parameters

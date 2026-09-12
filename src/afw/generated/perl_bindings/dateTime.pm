@@ -216,7 +216,7 @@ Value to check
 =head3 is_in_dateTime
 
 Checks whether dateTime value is in array of dateTime array and returns the
-boolean result.
+boolean result. Empty array yields false.
 Checks whether a value is in an array
 
 =head4 Parameters

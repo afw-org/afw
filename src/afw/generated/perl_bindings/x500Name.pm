@@ -158,7 +158,7 @@ The second array.
 =head3 is_in_x500Name
 
 Checks whether x500Name value is in array of x500Name array and returns the
-boolean result.
+boolean result. Empty array yields false.
 Checks whether a value is in an array
 
 =head4 Parameters
