@@ -12,7 +12,6 @@
  */
 
 #include "afw_internal.h"
-#include <apr_buckets.h>
 
 typedef struct from_value_wa_s {
     afw_xctx_t *xctx;

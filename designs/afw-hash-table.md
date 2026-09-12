@@ -19,11 +19,7 @@ Name→pointer tables allocated from an AFW pool.
 
 ## Converted
 
-Env registries, compile intern / script type names, runtime catalog, adapter session and object-type caches, model object types, object-view intern, associative_array wrappers, service-id set, YAML anchors, LDAP schema name tables.
-
-## Not converted
-
-- LMDB `dbi_handles` — last `apr_hash`. **#299** already landed; convert when wanted, not blocked on that PR.
+Env registries, compile intern / script type names, runtime catalog, adapter session and object-type caches, model object types, object-view intern, associative_array wrappers, service-id set, YAML anchors, LDAP schema name tables, LMDB `dbi_handles` (keys cloned into adapter `p` — same as `apr_hash` store-as-is; clone is the on-the-fly name lifetime, not a hash difference. Call out for Jeremy on the PR).
 
 ## Later, not first
 

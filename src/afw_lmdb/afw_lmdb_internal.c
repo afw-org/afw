@@ -84,7 +84,7 @@ MDB_dbi afw_lmdb_internal_open_database(
     adapter_p = ((afw_adapter_t *)adapter)->p;
 
     /* first check our adapter's dbi_handles */
-    dbi_p = apr_hash_get(adapter->dbi_handles, database->s, database->len);
+    dbi_p = afw_hash_table_get_utf8(adapter->dbi_handles, database);
 
     /* if we got a database handle, use it */
     if (dbi_p) {
@@ -94,12 +94,19 @@ MDB_dbi afw_lmdb_internal_open_database(
     /* if it's not found from our pre-loaded databases, then try to open it */
     rc = mdb_dbi_open(txn, afw_utf8_to_utf8_z(database, p, xctx), flags, &dbi);
     if (rc == 0) {
+        const afw_utf8_t *name;
+
         dbi_p = afw_lmdb_internal_dbi_handle(
             adapter->dbEnv, dbi, adapter_p, xctx);
 
-        /* add it to our handle list, so we can access it later */
-        apr_hash_set(adapter->dbi_handles, database->s,
-            database->len, dbi_p);
+        /*
+         * afw_hash_table stores the key pointer, same as apr_hash.
+         * Clone into adapter_p so request-scoped names (index create)
+         * outlive the request. Not a hash-API difference.
+         */
+        name = afw_utf8_clone(database, adapter_p, xctx);
+        afw_hash_table_set_utf8(adapter->dbi_handles,
+            name, dbi_p, xctx);
     } else if (rc == MDB_NOTFOUND) {
         AFW_THROW_ERROR_RV_FZ(not_found, lmdb, rc, xctx,
             "Unable to open database: '%ku'.", 

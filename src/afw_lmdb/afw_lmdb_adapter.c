@@ -400,7 +400,8 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
     apr_thread_rwlock_create(&self->dbLock, afw_pool_get_apr_pool(p));
 
     /* create our dbi_handles */
-    self->dbi_handles = apr_hash_make(afw_pool_get_apr_pool(p));
+    self->dbi_handles = afw_hash_table_create(
+        afw_void_hash_table_t, p, xctx);
 
     /* load our internal configuration object */
     afw_lmdb_adapter_load_configuration(self, p, xctx);
@@ -422,15 +423,14 @@ impl_afw_adapter_destroy(
     AFW_ADAPTER_SELF_T *self,
     afw_xctx_t *xctx)
 {  
-    apr_hash_index_t *hi;
+    afw_hash_table_index_t hi;
+    afw_lmdb_dbi_t *v;
 
     /* close any open databases */
-    for (hi = apr_hash_first(NULL, self->dbi_handles); 
-        hi; hi = apr_hash_next(hi)) {
-        const char *k;
-        afw_lmdb_dbi_t *v;
-
-        apr_hash_this(hi, (const void **)&k, NULL, (void**)&v);
+    for (afw_hash_table_first(self->dbi_handles, &hi);
+        afw_hash_table_this(&hi, NULL, NULL, (void **)&v);
+        afw_hash_table_next(&hi))
+    {
         mdb_dbi_close(self->dbEnv, v->dbi);
     }
 

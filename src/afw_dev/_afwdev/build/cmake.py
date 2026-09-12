@@ -58,7 +58,8 @@ def installed_include_dir(options):
 
 # Basenames cmake used to install that are no longer PUBLIC_HEADER.
 # Keep in sync with src/afw/CMakeLists.txt FILTER excludes and the old
-# generated names in whats-new.md (Upgrade hygiene).
+# generated names in whats-new.md (Upgrade hygiene). log_deprecated* is
+# gone from the tree; still pruned from leftover prefix installs.
 _LEFTOVER_HEADER_EXACT = frozenset((
     'afw_declare_helpers.h',
     'afw_model_location.h',

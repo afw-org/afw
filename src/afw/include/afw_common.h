@@ -59,8 +59,6 @@
 /* Adaptive Framework uses Apache Portable Runtime. */
 #include <apr_general.h>
 #include <apr_time.h>
-#include <apr_hash.h>
-#include <apr_buckets.h>
 #include <apr_atomic.h>
 #include <apr_thread_proc.h>
 #include <apr_thread_rwlock.h>
