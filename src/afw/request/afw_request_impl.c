@@ -38,11 +38,17 @@ afw_request_impl_trace_begin(
     else if (afw_flag_is_active(xctx->env->flag_index_trace_request,
         xctx))
     {
-        afw_trace_fz(1, xctx->env->flag_index_trace_request, 
+        const afw_utf8_t *method;
+        const afw_utf8_t *uri;
+        const afw_utf8_t *query_string;
+
+        /* Deref instance here, not in afw_trace_fz __VA_ARGS__. */
+        method = instance->method;
+        uri = instance->uri;
+        query_string = instance->query_string;
+        afw_trace_fz(1, xctx->env->flag_index_trace_request,
             instance, xctx,
             "Method=%ku uri=%ku query_string=%ku",
-            instance->method,
-            instance->uri,
-            instance->query_string);
+            method, uri, query_string);
     }
 }
