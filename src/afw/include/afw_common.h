@@ -813,18 +813,6 @@ typedef struct afw_utf8_array_s {
 
 
 /**
- * @brief Convenience Macro for use with AFW_UTF8_FMT to specify optional arg.
- * @param A_STRING a (const afw_utf8_t *) string or undefined.
- *
- * The argument for " AFW_UTF8_FMT " is an int length (not size_t) followed by
- * a comma and const char *.  If NULL, `undefined` is supplied.
- */
-#define AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(A_STRING) \
-    (A_STRING) ? (int)(A_STRING)->len : 0, \
-    (A_STRING) ? (const char *)(A_STRING)->s : "undefined"
-
-
-/**
  * @brief Macro to produce prefix for AFW messages.
  */
 #define AFW_MESSAGE_PREFIX __FILE__ ":" AFW_STRINGIFY(__LINE__) " "

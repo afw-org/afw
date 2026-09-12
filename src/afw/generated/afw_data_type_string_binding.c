@@ -344,8 +344,8 @@ afw_value_as_string(const afw_value_t *value, afw_xctx_t *xctx)
         data_type_id = afw_value_get_quick_data_type_id(value);
         AFW_THROW_ERROR_FZ(general, xctx,
             "Typesafe error: expecting 'string' but "
-            "encountered " AFW_UTF8_FMT_Q ,
-            AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
+            "encountered '%ku'",
+            data_type_id);
     }
     return (const afw_value_string_t *)value;
 }
@@ -550,8 +550,8 @@ afw_object_get_property_as_string_source(
         data_type_id = afw_value_get_quick_data_type_id(value);
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
             "Typesafe error: expecting 'string' but "
-            "encountered " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
+            "encountered '%ku'",
+            data_type_id);
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
     return (const afw_value_string_t *)value;
@@ -595,8 +595,8 @@ afw_object_get_next_property_as_string_source(
         data_type_id = afw_value_get_quick_data_type_id(value);
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
             "Typesafe error: expecting 'string' but "
-            "encountered " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
+            "encountered '%ku'",
+            data_type_id);
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
     return (const afw_value_string_t *)value;
@@ -825,8 +825,8 @@ afw_array_of_string_get_next_source(
         data_type_id = afw_value_get_quick_data_type_id(value);
         afw_error_set_fz(afw_error_code_general, source_z, xctx,
             "Typesafe error: expecting 'string' but "
-            "encountered " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
+            "encountered '%ku'",
+            data_type_id);
         afw_error_processing_throw((xctx), afw_error_code_general);
     }
     return (const afw_value_string_t *)value;
