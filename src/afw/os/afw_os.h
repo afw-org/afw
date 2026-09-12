@@ -120,6 +120,24 @@ afw_os_getcwd(const afw_pool_t *p, afw_xctx_t *xctx);
 
 
 /**
+ * @brief Absolute real path of path (follows symlinks).
+ * @param path 0-terminated host path (absolute or relative to CWD).
+ * @param p pool for the returned path.
+ * @param xctx of caller.
+ * @return pool-allocated path, or NULL if it cannot be resolved
+ *     (does not exist, permission, etc.). Does not throw on ENOENT.
+ *
+ * On failure errno is the libc/OS error from the resolve. Callers that
+ * want that code in an AFW throw must save errno before the next call.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_os_realpath(
+    const afw_utf8_z_t *path,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Fill buf with cryptographically strong random bytes.
  * @param buf destination.
  * @param len number of bytes.

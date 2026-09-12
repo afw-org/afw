@@ -2658,8 +2658,7 @@ impl_test_script_load_file_value(
     afw_utf8_z_t *joined_z;
     afw_size_t base_dir_len;
     afw_size_t i;
-    apr_status_t rv;
-    apr_finfo_t finfo;
+    afw_file_info_t info;
     FILE *in;
     afw_byte_t *buff;
     const afw_utf8_t *result;
@@ -2741,9 +2740,8 @@ impl_test_script_load_file_value(
         const afw_utf8_z_t *abs_z =
             afw_utf8_to_utf8_z(abs_path, parser->p, parser->xctx);
 
-        rv = apr_stat(&finfo, abs_z, APR_FINFO_SIZE,
-            afw_pool_get_apr_pool(parser->p));
-        if (rv != APR_SUCCESS) {
+        afw_file_stat(abs_z, &info, parser->xctx);
+        if (info.type == afw_file_type_missing) {
             AFW_COMPILE_THROW_ERROR_FZ(
                 "Failed to open '<<<' file '%ku' (relative path '%ku')",
                 abs_path,
@@ -2751,7 +2749,7 @@ impl_test_script_load_file_value(
         }
 
         /* Empty file is a valid empty string value. */
-        if (finfo.size == 0) {
+        if (info.size == 0) {
             return afw_utf8_create((const afw_utf8_octet_t *)"", 0,
                 parser->p, parser->xctx);
         }
@@ -2763,9 +2761,9 @@ impl_test_script_load_file_value(
                 abs_path);
         }
 
-        buff = afw_pool_malloc(parser->p, (afw_size_t)finfo.size,
+        buff = afw_pool_malloc(parser->p, (afw_size_t)info.size,
             parser->xctx);
-        if (fread(buff, 1, (size_t)finfo.size, in) != (size_t)finfo.size) {
+        if (fread(buff, 1, (size_t)info.size, in) != (size_t)info.size) {
             fclose(in);
             AFW_COMPILE_THROW_ERROR_FZ(
                 "Failed to read '<<<' file '%ku'",
@@ -2774,7 +2772,7 @@ impl_test_script_load_file_value(
         fclose(in);
 
         if (!afw_utf8_is_valid((const afw_utf8_octet_t *)buff,
-            (afw_size_t)finfo.size, parser->xctx))
+            (afw_size_t)info.size, parser->xctx))
         {
             AFW_COMPILE_THROW_ERROR_FZ(
                 "'<<<' file '%ku' is not valid UTF-8",
@@ -2782,7 +2780,7 @@ impl_test_script_load_file_value(
         }
 
         result = afw_utf8_create((const afw_utf8_octet_t *)buff,
-            (afw_size_t)finfo.size, parser->p, parser->xctx);
+            (afw_size_t)info.size, parser->p, parser->xctx);
     }
 
     return result;

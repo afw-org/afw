@@ -41,7 +41,8 @@ alwaysApply: false
 | `content_type/` | Serialize values ↔ bytes |
 | `json/` | JSON ↔ value/object |
 | `query_criteria/` | Retrieve filters |
-| `file/`, `stream/`, `writer/`, `utf8/` | I/O and strings |
+| `file/` | Host path (`afw_file_path_*`), POSIX I/O (`afw_file_io.c`), file adapter (`afw_file_adapter.c`) |
+| `stream/`, `writer/`, `utf8/` | Streams, writers, UTF-8 |
 
 ## Process / policy / hosting
 | Dir | Role |

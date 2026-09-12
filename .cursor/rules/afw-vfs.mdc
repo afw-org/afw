@@ -36,12 +36,12 @@ Issue **#79**: empty-file read must not call `afw_pool_malloc` with size 0; full
 3. **Whole-file I/O:** get loads entire file into memory (respect `maxReadBytes`). Write uses temp file + rename (full replace, including empty/shorter content).
 4. **Empty files (#79):** size 0 → skip pool malloc; return empty string `data`.
 5. **`vfsMap` match:** longest matching prefix with path boundary (empty prefix matches all). Prefer explicit best-of scan, not “first sorted hit” alone as the mental model.
-6. **Resolve:** canonicalize host roots at adapter create; merge under root with SECUREROOT-style discipline; reject objectId segments `.` / `..` / `\` / empty middle segments; final path must stay under host root.
+6. **Resolve:** canonicalize host roots at adapter create; merge under root with `afw_file_path_join_under_root` (same containment as rootFilePaths); reject objectId segments `.` / `..` / `\` / empty middle segments; final path must stay under host root.
 7. **Retrieve `subdirectory`:** only map entries whose prefix matches the subdirectory path; remainder after prefix goes under that host dir — **do not** append the map key twice onto the host path.
 8. **Hidden:** names starting with `.` omitted from dir listing and retrieve unless `includeHidden` (also on `get_object` adapter-specific for directories).
 9. **`isDirectory`:** `true` dirs, `false` files; allowQuery true for retrieve filters.
 10. **Delete:** non-recursive for directories (must be empty). Missing get/delete → `not_found` where applicable.
-11. **Not a security boundary:** symlinks under a trusted map root may be followed; document rather than over-promise.
+11. **Symlinks:** a target whose realpath stays under the map root is followed (sibling files). A target that realpath's outside the map root is rejected at resolve (same helper as rootFilePaths). Still not a full sandbox against hostile host content (races after adapter create, etc.).
 
 ## Streams vs VFS
 
@@ -51,7 +51,7 @@ Issue **#79**: empty-file read must not call `afw_pool_malloc` with size 0; full
 | API | stream numbers, read/write chunks | adapter object CRUD, whole `data` |
 | Shared ideas | longest prefix, no `..` escape, under-root | same for map keys/hosts |
 
-Do not implement VFS I/O by calling `open_file`; keep adapter session on APR file APIs.
+Do not implement VFS I/O by calling `open_file`; keep adapter session on `afw_file_*` host I/O (not stream `open_file`).
 
 ## Hand vs generated
 

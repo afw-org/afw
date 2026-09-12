@@ -961,6 +961,30 @@ afw_os_getcwd(const afw_pool_t *p, afw_xctx_t *xctx)
 }
 
 
+/* Absolute real path (follows symlinks). NULL if unresolved. */
+AFW_DEFINE(const afw_utf8_t *)
+afw_os_realpath(
+    const afw_utf8_z_t *path,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    char *z;
+    const afw_utf8_t *result;
+
+    if (!path || !*path) {
+        errno = EINVAL;
+        return NULL;
+    }
+    z = realpath(path, NULL);
+    if (!z) {
+        return NULL;
+    }
+    result = afw_utf8_create(z, AFW_UTF8_Z_LEN, p, xctx);
+    free(z);
+    return result;
+}
+
+
 /* Cryptographically strong random bytes. */
 AFW_DEFINE(void)
 afw_os_random_bytes(void *buf, afw_size_t len, afw_xctx_t *xctx)
