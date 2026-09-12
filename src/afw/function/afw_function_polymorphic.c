@@ -1131,10 +1131,14 @@ afw_function_execute_is_in(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 2, array);
 
-    data_type = afw_value_get_data_type(value, x->xctx);
-    if (!data_type) {
+    if (afw_array_get_count(array->internal, x->xctx) == 0) {
+        return afw_boolean_v_false;
+    }
+
+    data_type = afw_array_get_data_type(array->internal, x->xctx);
+    if (!data_type || afw_value_get_data_type(value, x->xctx) != data_type) {
         AFW_THROW_ERROR_Z(argument_error,
-            "value must have a data type",
+            "array must be array of value's data type",
             x->xctx);
     }
 

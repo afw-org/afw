@@ -5,14 +5,9 @@
 //? description: Edge-case tests for the is_in polymorphic function. Happy-path coverage lives in the per-dataType files (e.g. integer_is_in.as).
 //? sourceType: script
 //?
-//? test: is_in-mismatched-types-false
-//? description: ...
-
-		is_in no longer requires the array's aggregate data type to match
-		value's data type (#286). A mismatched, per-entry comparison simply
-		returns false instead of throwing.
-
-//? expect: boolean(false)
+//? test: is_in-error-mismatched-types
+//? description: is_in still throws when a non-empty array's data type does not match value's data type
+//? expect: error:array must be array of value's data type
 //? source: ...
 
 is_in<integer>(
