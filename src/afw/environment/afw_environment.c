@@ -288,8 +288,8 @@ afw_environment_create(
     p = afw_pool_internal_create_base_pool();
     if (!p) goto early_error;
 
-    /* Allocate cleared afw_error_t. */
-    error = apr_pcalloc(afw_pool_get_apr_pool(p), sizeof(afw_error_t));
+    /* Allocate cleared afw_error_t. No xctx/TRY yet. */
+    error = afw_pool_calloc_unhandled(p, sizeof(afw_error_t), NULL);
     if (!error) {
         *environment_create_error = &impl_early_error;
         goto early_error;
@@ -309,12 +309,12 @@ afw_environment_create(
         AFW_THROW_UNHANDLED_ERROR(&unhandled_error, error, general, na, 0, s);
     }
 
-    /* Allocate memory for env. */
-    env = apr_pcalloc(afw_pool_get_apr_pool(p),
-        sizeof(afw_environment_internal_t));
+    /* Allocate memory for env. Still before xctx exists. */
+    env = afw_pool_calloc_unhandled(p,
+        sizeof(afw_environment_internal_t), NULL);
     if (!env) {
         AFW_THROW_UNHANDLED_ERROR(&unhandled_error, error, general, na, 0,
-            "apr_pcalloc() failed");
+            "afw_pool_calloc_unhandled() failed");
     };
     env->pub.p = p;
     env->pub.pool_number = 1; /* see afw_pool_internal_create_base_pool() */

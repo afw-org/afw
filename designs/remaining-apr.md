@@ -16,15 +16,17 @@ Containers, strings, files, threads, getopt, curl body, LDAP setup are **off APR
 | `apr_strerror` | `afw_environment_register_core.c` | Keep while any APR `rv` remains (init, `apr_pool_create` fail). |
 | Public include | `afw_common.h` | `<apr_general.h>` for `apr_pool_t` / status. `<apr_time.h>` **gone** ([PR #322](https://github.com/afw-org/afw/pull/322)). |
 
-## `get_apr_pool` callers (not the reservoir)
+## `get_apr_pool` door (not the reservoir)
 
-These still `apr_palloc` / `apr_pcalloc` through the door. Several are **xctx-init / unhandled** (no `AFW_TRY` yet) — that is why they did not become `afw_pool_calloc` in a prior sitting.
+Production leftover `apr_palloc` / `apr_pcalloc` through the door is **gone**. Those sites use `afw_pool_malloc_unhandled` / `calloc_unhandled` (NULL on failure, no throw, no MT lock).
 
-- `src/afw/environment/afw_environment.c` — env / early error
-- `src/afw/xctx/afw_xctx.c` — xctx / error struct
-- `src/afw/stream/afw_stream.c` — stream anchor
-- `src/afw/vector/afw_vector.c` — `afw_vector_create_fixed_unhandled`
-- `src/afw/os/nix/afw_os.c` (and win stub) — backtrace buffer
+- Env / xctx create before `current_try` + `evaluation_stack`
+- Stream anchor and `afw_vector_create_fixed_unhandled` (same window)
+- OS backtrace (error path; cannot throw)
+
+The door remains for the **reservoir** (child heap `apr_pool_create` parents on `get_apr_pool(parent)`) and the pool_heap probe. Shrink then rip from XML when the reservoir is gone.
+
+`afw_environment_create` arms its **own** jmp buf (`AFW_ERROR_INTERNAL_ON_UNHANDLED`). The host does **not** pass one. After `xctx_internal_create_initialize`, `xctx->current_try` is that buf, so throwing `afw_pool_calloc` works for the rest of create. The caller's `AFW_TRY` (`afwfcgi` / `afw`) is after create returns. Create is **one thread** until workers start — unhandled skips the MT lock (`AFW_LOCK_BEGIN` is `AFW_TRY`).
 
 Windows-only `apr_atomic_*` in `afw_atomic.h` is not a Linux drop-`apr-1` blocker (`afw_common.h` already `#error`s Windows). Type aliases (`apr_uint64_t` LMDB, `apr_size_t` FCGI) are cheap after the reservoir is gone.
 
@@ -47,9 +49,10 @@ Windows-only `apr_atomic_*` in `afw_atomic.h` is not a Linux drop-`apr-1` blocke
 ## Pool sitting rails (discuss first)
 
 - Heap/tracker **kinds stay**. APR is the reservoir, not a third pool kind (`afw_pool.h`).
-- Goal: own backing (malloc/mmap region) so AFW can account bytes and fail a request instead of APR abort-on-OOM. That is the #2 parked “non-APR heap later.”
-- `get_apr_pool` can stay **lazy** until the last leftover APR API is gone, then drop from the interface.
-- Unhandled xctx-init allocs: either a non-throwing AFW alloc or keep a tiny bootstrap until `AFW_TRY` exists.
+- **Unhandled alloc landed** (`afw_pool_malloc_unhandled` / `calloc_unhandled`). Next is the reservoir.
+- Goal: own backing so AFW can account bytes and fail a request instead of APR abort-on-OOM. That is the #2 parked “non-APR heap later.”
+- **Reservoir next:** heap owns a list of **4k+ chunks**. Destroy (xctx end, any heap, including the catch around the host `AFW_TRY`) walks that list and frees every chunk. All memory that came from the heap dies with it. Optional free / tracker return-to-heap stay.
+- `get_apr_pool` can stay **lazy** until the reservoir is gone, then drop from the interface.
 - Do **not** start this in the same sitting as FRV leftover.
 
 CMake/`afw.pc.in` still `Requires: apr, apr-util` until the reservoir and init are gone.

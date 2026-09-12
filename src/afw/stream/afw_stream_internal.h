@@ -29,6 +29,7 @@ AFW_BEGIN_DECLARES
 /**
  * @brief Create xctx->stream_anchor (libafw only).
  * @param xctx being created.
+ * @return anchor, or NULL if unhandled alloc failed.
  */
 extern const afw_stream_anchor_t *
 afw_stream_internal_stream_anchor_create(afw_xctx_t *xctx);

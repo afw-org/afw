@@ -31,7 +31,7 @@ impl_set_qualifier_stack(afw_xctx_t *xctx)
 {
     /*
      * Fixed size: entry pointers stay valid. Early xctx create cannot
-     * use AFW_TRY / afw_pool_calloc().
+     * use AFW_TRY / throwing afw_pool_calloc().
      */
     xctx->qualifier_stack = afw_vector_create_fixed_unhandled(
         afw_xctx_qualifier_stack_t, 100, xctx->p, xctx);
@@ -69,15 +69,18 @@ afw_xctx_internal_create_initialize(
     afw_xctx_t *self;
 
     if (!error) {
-        /* Allocate cleared afw_error_t. */
-        error = apr_pcalloc(afw_pool_get_apr_pool(p), sizeof(afw_error_t));
+        /* No xctx yet; cannot AFW_THROW. */
+        error = afw_pool_calloc_unhandled(p, sizeof(afw_error_t), NULL);
+        if (!error) {
+            return NULL;
+        }
     }
 
-    /* Initialize self. */
-    self = apr_pcalloc(afw_pool_get_apr_pool(p), sizeof(afw_xctx_t));
+    /* Initialize self. evaluation_stack is not ready; no AFW_TRY. */
+    self = afw_pool_calloc_unhandled(p, sizeof(afw_xctx_t), NULL);
     if (!self) {
         AFW_THROW_UNHANDLED_ERROR(unhandled_error, error, general,
-            na, 0, "apr_pcalloc() failed");
+            na, 0, "afw_pool_calloc_unhandled() failed");
     }
     self->p = p;
     self->script_result = afw_value_undefined;
@@ -90,9 +93,13 @@ afw_xctx_internal_create_initialize(
     self->flags = (afw_boolean_t *)env->pub.default_flags;
     /*! \fixme stream_anchor may be too early??? */
     self->stream_anchor = afw_stream_internal_stream_anchor_create(self);
+    if (!self->stream_anchor) {
+        AFW_THROW_UNHANDLED_ERROR(unhandled_error, error, memory,
+            na, 0, "allocation failed");
+    }
 
     /*
-     * Fixed vector: xctx init cannot use AFW_TRY / afw_pool_calloc.
+     * Fixed vector: xctx init cannot use AFW_TRY / throwing calloc.
      * Cap matches evaluation stack so nested scopes cannot outrun eval.
      */
     {

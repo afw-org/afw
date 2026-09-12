@@ -745,9 +745,9 @@ afw_os_backtrace(
      * be 100 plus 10 extra lines for other error info.
      */
     len = (max + 10) * 100;
-    s = apr_palloc(afw_pool_get_apr_pool(xctx->p), len);
+    s = afw_pool_malloc_unhandled(xctx->p, len, xctx);
     if (!s) return &impl_s_no_memory_for_backtrace;
-    trace = apr_palloc(afw_pool_get_apr_pool(xctx->p), sizeof(afw_utf8_t));
+    trace = afw_pool_malloc_unhandled(xctx->p, sizeof(afw_utf8_t), xctx);
     if (!trace) return &impl_s_no_memory_for_backtrace;
     trace->s = s;
     *s++ = '\n';
@@ -823,9 +823,9 @@ afw_os_backtrace(
      * be 100 plus 10 extra lines for other error info.
      */
     len = (max + 10) * 100;
-    s = apr_palloc(afw_pool_get_apr_pool(xctx->p), len);
+    s = afw_pool_malloc_unhandled(xctx->p, len, xctx);
     if (!s) return &impl_s_no_memory_for_backtrace;
-    trace = apr_palloc(afw_pool_get_apr_pool(xctx->p), sizeof(afw_utf8_t));
+    trace = afw_pool_malloc_unhandled(xctx->p, sizeof(afw_utf8_t), xctx);
     if (!trace) return &impl_s_no_memory_for_backtrace;
     trace->s = s;
     *s++ = '\n';

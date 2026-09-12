@@ -670,6 +670,58 @@ impl_double_free_throws(afw_xctx_t *xctx)
 }
 
 /*
+ * calloc/malloc_unhandled never throw. With xctx, in_use moves like
+ * throwing calloc. With NULL xctx (env create before xctx), in_use
+ * does not change; the block still dies with the heap.
+ */
+static int
+impl_unhandled_alloc(afw_xctx_t *xctx)
+{
+    const afw_pool_t *heap;
+    void *a;
+    void *b;
+    afw_size_t before;
+    afw_size_t after_alloc;
+
+    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    before = impl_in_use(xctx);
+
+    a = afw_pool_calloc_unhandled(heap, IMPL_SIZE_MEDIUM, xctx);
+    if (!a) {
+        return impl_fail("unhandled_alloc", "calloc_unhandled returned NULL");
+    }
+    if (impl_check_fill(a, IMPL_SIZE_MEDIUM, 0,
+        "unhandled_alloc zero"))
+    {
+        return 1;
+    }
+    after_alloc = impl_in_use(xctx);
+    if (after_alloc <= before) {
+        return impl_fail("unhandled_alloc", "in_use did not increase");
+    }
+    if (afw_pool_malloc_unhandled(heap, 0, xctx) != NULL) {
+        return impl_fail("unhandled_alloc", "size 0 did not return NULL");
+    }
+
+    b = afw_pool_malloc_unhandled(heap, IMPL_SIZE_SMALL, NULL);
+    if (!b) {
+        return impl_fail("unhandled_alloc",
+            "NULL xctx malloc returned NULL");
+    }
+    if (impl_in_use(xctx) != after_alloc) {
+        return impl_fail("unhandled_alloc",
+            "NULL xctx malloc changed in_use");
+    }
+
+    afw_pool_free_memory(heap, a, IMPL_SIZE_MEDIUM, xctx);
+    afw_pool_release(heap, xctx);
+    if (impl_expect_in_use(xctx, before, "unhandled_alloc after release")) {
+        return 1;
+    }
+    return 0;
+}
+
+/*
  * get_apr_pool() is a door for leftover APR calls, not the heap store.
  * Heap returns its reservoir for now. Tracker creates a child of that
  * reservoir on first call, without opening the heap door.
@@ -1000,6 +1052,9 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "create_child_of_heap") == 0) {
         rc = impl_create_child_of_heap(xctx);
     }
+    else if (strcmp(case_name, "unhandled_alloc") == 0) {
+        rc = impl_unhandled_alloc(xctx);
+    }
     else if (strcmp(case_name, "get_apr_pool") == 0) {
         rc = impl_get_apr_pool(xctx);
     }
@@ -1031,7 +1086,8 @@ main(int argc, char **argv)
             "heap_malloc_free|tracker_malloc|tracker_optional_free|"
             "tracker_last_release|tracker_header|mixed_sizes|"
             "heap_whole_block|general_free_noop|tracker_parent|"
-            "get_apr_pool|deregister_cleanup|nonadjacent_reuse|"
+            "unhandled_alloc|get_apr_pool|deregister_cleanup|"
+            "nonadjacent_reuse|"
             "for_clone_churn|create_child_of_heap|double_free_throws"
 #ifdef AFW_DEBUG_POOL
             "|debug_free_wrong_size|debug_free_wrong_pool"

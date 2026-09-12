@@ -331,11 +331,18 @@ afw_stream_internal_stream_anchor_create(afw_xctx_t *xctx)
 {
     afw_stream_anchor_t *stream_anchor;
 
-    stream_anchor = apr_pcalloc(afw_pool_get_apr_pool(xctx->p),
-        sizeof(afw_stream_anchor_t));
+    stream_anchor = afw_pool_calloc_unhandled(xctx->p,
+        sizeof(afw_stream_anchor_t), xctx);
+    if (!stream_anchor) {
+        return NULL;
+    }
     stream_anchor->maximum_number_of_streams = afw_stream_number_count + 20;
-    stream_anchor->streams = apr_pcalloc(afw_pool_get_apr_pool(xctx->p),
-        stream_anchor->maximum_number_of_streams * sizeof(afw_stream_t *));
+    stream_anchor->streams = afw_pool_calloc_unhandled(xctx->p,
+        stream_anchor->maximum_number_of_streams * sizeof(afw_stream_t *),
+        xctx);
+    if (!stream_anchor->streams) {
+        return NULL;
+    }
 
     return stream_anchor;
 }

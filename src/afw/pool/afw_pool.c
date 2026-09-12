@@ -464,12 +464,16 @@ static afw_size_t
 impl_block_bytes(
     afw_size_t prefix_bytes,
     afw_size_t user_size,
-    afw_xctx_t *xctx)
+    afw_xctx_t *xctx,
+    afw_boolean_t unhandled)
 {
     afw_size_t need;
     afw_size_t aligned;
 
     if (prefix_bytes > AFW_SIZE_T_MAX - user_size) {
+        if (unhandled) {
+            return 0;
+        }
         AFW_THROW_ERROR_Z(memory,
             "Requested allocation size is too large",
             xctx);
@@ -480,6 +484,9 @@ impl_block_bytes(
     }
     aligned = APR_ALIGN_DEFAULT(need);
     if (aligned < need) {
+        if (unhandled) {
+            return 0;
+        }
         AFW_THROW_ERROR_Z(memory,
             "Requested allocation size is too large",
             xctx);
@@ -493,7 +500,8 @@ impl_heap_take_from_free_list_or_apr(
     AFW_POOL_SELF_T *self,
     afw_size_t total,
     afw_boolean_t *reused,
-    afw_xctx_t *xctx)
+    afw_xctx_t *xctx,
+    afw_boolean_t unhandled)
 {
     afw_pool_free_node_t *curr;
     afw_pool_free_node_t *prev;
@@ -520,6 +528,9 @@ impl_heap_take_from_free_list_or_apr(
                 fast = fast->next;
             }
             if (fast && fast == curr) {
+                if (unhandled) {
+                    return NULL;
+                }
                 AFW_THROW_ERROR_Z(general,
                     "heap free-list cycle",
                     xctx);
@@ -564,6 +575,9 @@ impl_heap_take_from_free_list_or_apr(
     *reused = false;
     curr = apr_palloc(self->apr_p, total);
     if (!curr) {
+        if (unhandled) {
+            return NULL;
+        }
         AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
     }
     return curr;
@@ -919,6 +933,48 @@ impl_heap_afw_pool_get_apr_pool(
     return self->public_apr_p;
 }
 
+static void *
+impl_heap_malloc_internal(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx,
+    afw_boolean_t unhandled)
+{
+    void *start;
+    void *user;
+    afw_size_t total;
+    afw_boolean_t reused;
+
+    if (size == 0) {
+        if (unhandled) {
+            return NULL;
+        }
+        AFW_THROW_ERROR_Z(general,
+            "Attempt to allocate memory for a size of 0",
+            xctx);
+    }
+
+    total = impl_block_bytes(AFW_POOL_HEAP_PREFIX_BYTES, size,
+        xctx, unhandled);
+    if (unhandled && total == 0) {
+        return NULL;
+    }
+
+    start = impl_heap_take_from_free_list_or_apr(self, total, &reused,
+        xctx, unhandled);
+    if (!start) {
+        return NULL;
+    }
+    IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
+        reused ? "reuse" : "apr", size);
+    if (xctx) {
+        impl_account_alloc(self, total, xctx);
+    }
+    user = AFW_POOL_HEAP_USER_FROM_START(start);
+    impl_debug_prefix_set(self, user, size);
+    return user;
+}
+
 /*
  * Implementation of method calloc for interface afw_pool.
  */
@@ -930,7 +986,7 @@ impl_heap_afw_pool_calloc(
 {
     void *result;
 
-    result = impl_heap_afw_pool_malloc(self, size, xctx);
+    result = impl_heap_malloc_internal(self, size, xctx, false);
     memset(result, 0, size);
     return result;
 }
@@ -944,25 +1000,7 @@ impl_heap_afw_pool_malloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    void *start;
-    void *user;
-    afw_size_t total;
-    afw_boolean_t reused;
-
-    if (size == 0) {
-        AFW_THROW_ERROR_Z(general,
-            "Attempt to allocate memory for a size of 0",
-            xctx);
-    }
-
-    total = impl_block_bytes(AFW_POOL_HEAP_PREFIX_BYTES, size, xctx);
-    start = impl_heap_take_from_free_list_or_apr(self, total, &reused, xctx);
-    IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
-        reused ? "reuse" : "apr", size);
-    impl_account_alloc(self, total, xctx);
-    user = AFW_POOL_HEAP_USER_FROM_START(start);
-    impl_debug_prefix_set(self, user, size);
-    return user;
+    return impl_heap_malloc_internal(self, size, xctx, false);
 }
 
 /*
@@ -984,7 +1022,8 @@ impl_heap_afw_pool_free_memory(
     }
     impl_debug_check_prefix(self, address, size, xctx);
     impl_debug_poison_user(address, size);
-    total = impl_block_bytes(AFW_POOL_HEAP_PREFIX_BYTES, size, xctx);
+    total = impl_block_bytes(AFW_POOL_HEAP_PREFIX_BYTES, size,
+        xctx, false);
     start = AFW_POOL_HEAP_ALLOC_START(address);
     IMPL_PRINT_DEBUG_INFO_FZ(
         detail, "free %p " AFW_SIZE_T_FMT,
@@ -1263,7 +1302,7 @@ impl_tracker_afw_pool_destroy(
             AFW_POOL_TRACKER_USER_SIZE(memory));
         impl_heap_add_to_free_list(self, memory,
             impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES,
-                AFW_POOL_TRACKER_USER_SIZE(memory), xctx),
+                AFW_POOL_TRACKER_USER_SIZE(memory), xctx, false),
             xctx);
     }
 
@@ -1310,25 +1349,12 @@ impl_tracker_afw_pool_get_apr_pool(
 }
 
 
-void *
-impl_tracker_afw_pool_calloc(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx)
-{
-    void *result;
-
-    result = impl_tracker_afw_pool_malloc(self, size, xctx);
-    memset(result, 0, size);
-    return result;
-}
-
-
 static void *
-impl_tracker_afw_pool_malloc(
+impl_tracker_malloc_internal(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
-    afw_xctx_t *xctx)
+    afw_xctx_t *xctx,
+    afw_boolean_t unhandled)
 {
     void *start;
     void *user;
@@ -1337,13 +1363,25 @@ impl_tracker_afw_pool_malloc(
     afw_boolean_t reused;
 
     if (size == 0) {
+        if (unhandled) {
+            return NULL;
+        }
         AFW_THROW_ERROR_Z(general,
             "Attempt to allocate memory for a size of 0",
             xctx);
     }
 
-    total = impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES, size, xctx);
-    start = impl_heap_take_from_free_list_or_apr(self, total, &reused, xctx);
+    total = impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES, size,
+        xctx, unhandled);
+    if (unhandled && total == 0) {
+        return NULL;
+    }
+
+    start = impl_heap_take_from_free_list_or_apr(self, total, &reused,
+        xctx, unhandled);
+    if (!start) {
+        return NULL;
+    }
     IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
         reused ? "reuse" : "apr", size);
     node = (afw_pool_tracker_node_t *)start;
@@ -1360,8 +1398,34 @@ impl_tracker_afw_pool_malloc(
 #else
     node->size = size;
 #endif
-    impl_account_alloc(self, total, xctx);
+    if (xctx) {
+        impl_account_alloc(self, total, xctx);
+    }
     return user;
+}
+
+
+void *
+impl_tracker_afw_pool_calloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    void *result;
+
+    result = impl_tracker_malloc_internal(self, size, xctx, false);
+    memset(result, 0, size);
+    return result;
+}
+
+
+static void *
+impl_tracker_afw_pool_malloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    return impl_tracker_malloc_internal(self, size, xctx, false);
 }
 
 
@@ -1382,7 +1446,8 @@ impl_tracker_afw_pool_free_memory(
     impl_debug_check_prefix(self, address, size, xctx);
     impl_debug_poison_user(address, size);
     node = AFW_POOL_TRACKER_NODE(address);
-    total = impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES, size, xctx);
+    total = impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES, size,
+        xctx, false);
     IMPL_PRINT_DEBUG_INFO_FZ(
         detail, "free %p " AFW_SIZE_T_FMT,
         address, total);
@@ -1449,6 +1514,41 @@ afw_pool_create_xctx_p(
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
     return afw_pool_internal_heap_create(parent, false, xctx);
+}
+
+
+AFW_DEFINE(void *)
+afw_pool_malloc_unhandled(
+    const afw_pool_t *instance,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    AFW_POOL_SELF_T *self;
+
+    if (!instance) {
+        return NULL;
+    }
+    self = (AFW_POOL_SELF_T *)instance;
+    if (afw_pool_internal_is_tracker(instance)) {
+        return impl_tracker_malloc_internal(self, size, xctx, true);
+    }
+    return impl_heap_malloc_internal(self, size, xctx, true);
+}
+
+
+AFW_DEFINE(void *)
+afw_pool_calloc_unhandled(
+    const afw_pool_t *instance,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    void *result;
+
+    result = afw_pool_malloc_unhandled(instance, size, xctx);
+    if (result) {
+        memset(result, 0, size);
+    }
+    return result;
 }
 
 

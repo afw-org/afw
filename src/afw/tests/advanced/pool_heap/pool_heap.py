@@ -105,6 +105,11 @@ def run():
                 "afw_pool_create of a heap parent is a heap; free recycles",
             ),
             (
+                "unhandled_alloc",
+                "calloc_unhandled never throws; NULL xctx does not "
+                "move in_use; block still dies with the heap",
+            ),
+            (
                 "get_apr_pool",
                 "tracker get_apr_pool is lazy, a child of the heap "
                 "reservoir, and dies with the tracker",

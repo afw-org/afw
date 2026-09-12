@@ -162,11 +162,9 @@ afw_vector_create_fixed_unhandled_impl(
     afw_xctx_t *xctx)
 {
     afw_vector_t *self;
-    apr_pool_t *apr_p;
     afw_size_t bytes;
 
-    apr_p = afw_pool_get_apr_pool(p);
-    self = apr_pcalloc(apr_p, sizeof(afw_vector_t));
+    self = afw_pool_calloc_unhandled(p, sizeof(afw_vector_t), xctx);
     if (!self) {
         AFW_THROW_UNHANDLED_ERROR(xctx->current_try, xctx->error,
             general, na, 0, "allocation failed");
@@ -183,7 +181,7 @@ afw_vector_create_fixed_unhandled_impl(
                 general, na, 0, "vector allocation too large");
         }
         bytes = entry_size * initial_allocated;
-        self->entries = apr_pcalloc(apr_p, bytes);
+        self->entries = afw_pool_calloc_unhandled(p, bytes, xctx);
         if (!self->entries) {
             AFW_THROW_UNHANDLED_ERROR(xctx->current_try, xctx->error,
                 general, na, 0, "allocation failed");
