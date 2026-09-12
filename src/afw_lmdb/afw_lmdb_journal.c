@@ -24,6 +24,20 @@
 #define AFW_ADAPTER_JOURNAL_SELF_T afw_lmdb_journal_t
 #include "afw_adapter_journal_impl_declares.h"
 
+
+static apr_uint64_t
+impl_cursor_from_utf8(const afw_utf8_t *s, afw_xctx_t *xctx)
+{
+    afw_integer_t i;
+
+    i = afw_number_utf8_to_integer(s, xctx->p, xctx);
+    if (i < 0) {
+        AFW_THROW_ERROR_Z(general, "Invalid journal cursor", xctx);
+    }
+    return (apr_uint64_t)i;
+}
+
+
 afw_lmdb_journal_t *
 afw_lmdb_journal_create(
     afw_lmdb_adapter_session_t * session,
@@ -267,8 +281,7 @@ afw_lmdb_journal_get_by_cursor(
     const afw_object_t *entry;
     apr_uint64_t cursor;
 
-    cursor = apr_strtoi64(
-        afw_utf8_to_utf8_z(entry_cursor, xctx->p, xctx), NULL, 10);
+    cursor = impl_cursor_from_utf8(entry_cursor, xctx);
 
     entry = afw_lmdb_adapter_journal_get_entry_object(
         self, session, adapter, dbiJournal, txn, cursor, xctx);
@@ -298,8 +311,7 @@ afw_lmdb_journal_get_next_after_cursor(
     apr_uint64_t cursor;
 
     /* set our cursor to one after the entry_cursor */
-    cursor = apr_strtoi64(
-        afw_utf8_to_utf8_z(entry_cursor, xctx->p, xctx), NULL, 10) + 1;
+    cursor = impl_cursor_from_utf8(entry_cursor, xctx) + 1;
 
     entry = afw_lmdb_adapter_journal_get_entry_object(
         self, session, adapter, dbiJournal, txn, cursor, xctx);
@@ -340,8 +352,7 @@ afw_lmdb_journal_get_next_for_consumer_after_cursor(
     
     /* set our cursor to one after the entry_cursor, then work our
         way up until we find the next applicable entry */
-    cursor = apr_strtoi64(
-        afw_utf8_to_utf8_z(entry_cursor, xctx->p, xctx), NULL, 10) + 1;
+    cursor = impl_cursor_from_utf8(entry_cursor, xctx) + 1;
 
     dbiConsumers = afw_lmdb_internal_open_database(session->adapter, 
         txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
@@ -474,14 +485,11 @@ impl_afw_adapter_journal_get_next_for_consumer(
         journal */
 
     if (consume_cursor)
-        cursor = apr_strtoi64(
-            afw_utf8_to_utf8_z(consume_cursor, xctx->p, xctx), NULL, 10);
+        cursor = impl_cursor_from_utf8(consume_cursor, xctx);
     else if (advance_cursor)
-        cursor = apr_strtoi64(
-            afw_utf8_to_utf8_z(advance_cursor, xctx->p, xctx), NULL, 10);
+        cursor = impl_cursor_from_utf8(advance_cursor, xctx);
     else if (current_cursor)
-        cursor = apr_strtoi64(
-            afw_utf8_to_utf8_z(current_cursor, xctx->p, xctx), NULL, 10) + 1;
+        cursor = impl_cursor_from_utf8(current_cursor, xctx) + 1;
     else /* start at the beginning */
         cursor = 1;
 
@@ -605,14 +613,11 @@ afw_lmdb_journal_advance_cursor_for_consumer(
         journal */
 
     if (consume_cursor)
-        cursor = apr_strtoi64(
-            afw_utf8_to_utf8_z(consume_cursor, xctx->p, xctx), NULL, 10);
+        cursor = impl_cursor_from_utf8(consume_cursor, xctx);
     else if (advance_cursor)
-        cursor = apr_strtoi64(
-            afw_utf8_to_utf8_z(advance_cursor, xctx->p, xctx), NULL, 10);
+        cursor = impl_cursor_from_utf8(advance_cursor, xctx);
     else if (current_cursor)
-        cursor = apr_strtoi64(
-            afw_utf8_to_utf8_z(current_cursor, xctx->p, xctx), NULL, 10) + 1;
+        cursor = impl_cursor_from_utf8(current_cursor, xctx) + 1;
     else /* start at the beginning */
         cursor = 1;
 

@@ -15,6 +15,7 @@
 #include "afw_yaml.h"
 #include "afw_content_type_impl.h"
 #include "generated/afw_yaml_version_info.h"
+#include <stdio.h>
 
 
 /* Declares and rti/inf defines for interface afw_extension */
@@ -157,11 +158,11 @@ static const afw_utf8_z_t * impl_u8z_to_yaml(
          * not misclassified when char is signed.
          */
         if ((unsigned char)*c < 32) {
-            u = apr_psprintf(afw_pool_get_apr_pool(xctx->p), "\\u%02x",
-                (unsigned char)*c);
-            while (*u) {
+            char u8[8];
+
+            snprintf(u8, sizeof(u8), "\\u%02x", (unsigned char)*c);
+            for (u = u8; *u; u++) {
                 afw_vector_push(a, xctx) = *u;
-                u++;
             }
         }
 

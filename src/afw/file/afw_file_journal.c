@@ -12,7 +12,7 @@
  */
 
 #include "afw_internal.h"
-#include <apr_strings.h>
+#include <stdio.h>
 
 
 
@@ -431,7 +431,7 @@ impl_afw_adapter_journal_add_entry_internal(
     {
         char ymdh[32];
 
-        apr_snprintf(ymdh, sizeof(ymdh),
+        snprintf(ymdh, sizeof(ymdh),
             "y%02d%02d/m%02d/d%02d/h%02d",
             lock.century, lock.year, lock.month, lock.day,
             lock.hour);
@@ -461,7 +461,7 @@ impl_afw_adapter_journal_add_entry_internal(
     if (old_full_entry_path_z || first_entry) {
         char ymd[24];
 
-        apr_snprintf(ymd, sizeof(ymd), "y%02d%02d/m%02d/d%02d/",
+        snprintf(ymd, sizeof(ymd), "y%02d%02d/m%02d/d%02d/",
             lock.century, lock.year, lock.month, lock.day);
         full_entry_dir_path_z = impl_journal_path_z(
             adapter->root, ymd, p, xctx);

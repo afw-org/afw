@@ -14,6 +14,7 @@
 
 #define _AFW_LOGIMPL
 #include "afw_log_deprecated.h"
+#include <apr_strings.h>
 
 static void log_release(
     afw_log_deprecated_t *log

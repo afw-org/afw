@@ -13,7 +13,6 @@
 
 #include "afw_internal.h"
 #include <apr_file_info.h>
-#include <apr_strings.h>
 
 
 /*
@@ -250,7 +249,13 @@ afw_file_path_resolve_rootFilePaths(
         return afw_utf8_create(root_z, AFW_UTF8_Z_LEN, p, xctx);
     }
 
-    addpath_z = apr_pstrndup(apr_p, (const char *)rem_s, rem_len);
+    {
+        afw_utf8_t rem;
+
+        rem.s = rem_s;
+        rem.len = rem_len;
+        addpath_z = (char *)afw_utf8_to_utf8_z(&rem, p, xctx);
+    }
 
     /*
      * Merge under root with SECUREROOT so ".." and absolute addpath cannot

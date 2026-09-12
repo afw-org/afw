@@ -13,7 +13,6 @@
 
 #include "afw_internal.h"
 #include <apr_buckets.h>
-#include <apr_strings.h>
 
 
 /* Declares and rti/inf defines for interface afw_adapter_factory */

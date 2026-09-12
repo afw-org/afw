@@ -395,8 +395,8 @@ impl_afw_adapter_session_add_object(
         if (bvals) {
             mod = afw_pool_calloc_type(p, LDAPMod, xctx);
             mod->mod_op = LDAP_MOD_ADD | LDAP_MOD_BVALUES;
-            mod->mod_type = apr_pstrndup(afw_pool_get_apr_pool(p),
-                property_name_utf8->s, property_name_utf8->len);
+            mod->mod_type = (char *)afw_utf8_to_utf8_z(
+                property_name_utf8, p, xctx);
             mod->mod_vals.modv_bvals = bvals;
             afw_vector_push(mods, xctx) = mod;
         }
@@ -493,8 +493,8 @@ impl_afw_adapter_session_modify_object(
 
         /* Create and initialize mod. */
         mod = afw_pool_calloc_type(p, LDAPMod, xctx);
-        mod->mod_type = apr_pstrndup(afw_pool_get_apr_pool(p),
-            property_name->s, property_name->len);
+        mod->mod_type = (char *)afw_utf8_to_utf8_z(
+            property_name, p, xctx);
 
         switch ((*e)->type) {
 
