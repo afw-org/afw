@@ -59,6 +59,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`sibling-afw-package.md`](sibling-afw-package.md) | Another Git repo next to this base: layout, write wall, sandbox, prime kit |
 | [`experiment-brainstorm.md`](experiment-brainstorm.md) | **#277 closed** (PR **#278**) — unmanaged / managed two worlds (`create_unmanaged` / frames `create_managed`; last_return slot) |
 | [`experiment-eval-p.md`](experiment-eval-p.md) | **#287 landed** — eval `p` = `scope->p` when `{ }` has a frame; throwaway compile/eval loops flatten; BMP in default `test -j` |
+| [`remaining-apr.md`](remaining-apr.md) | **Next APR sitting: pools** — reservoir, `get_apr_pool` door, what is already off APR |
 | [`afw-vector.md`](afw-vector.md) | C growable contiguous elements (`afw_vector`); typesafe overlay; not Adaptive `afw_array` |
 | [`afw-hash-table.md`](afw-hash-table.md) | C key→pointer map (`afw_hash_table`); typesafe overlay; **#301** on `develop` |
 | [`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md) | **PR #305** compile() is a unit; **PR #306** leave / `last_result`; **PR #307** isolate-at-clone + wrap unbraced; **PR #308** builtin lifetime hold. **Next:** `array_push_pop` leftover, then FRV |
