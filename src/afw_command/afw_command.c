@@ -9,7 +9,6 @@
 #include "afw.h"
 #include "afw_command_internal.h"
 #include "afw_command_local_server.h"
-#include <apr_file_io.h>
 #include <apr_getopt.h>
 #include <stdio.h>
 #include <signal.h>

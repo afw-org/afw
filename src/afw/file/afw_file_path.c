@@ -227,6 +227,51 @@ afw_file_path_canonicalize(
 }
 
 
+/* Absolute path without requiring the target to exist. */
+AFW_DEFINE(const afw_utf8_t *)
+afw_file_path_absolutize(
+    const afw_utf8_t *path,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_z_t *path_z;
+    const afw_utf8_t *cwd;
+    const afw_utf8_z_t *cwd_z;
+    char *combined;
+    char *joined;
+    afw_size_t cwd_len;
+    afw_size_t path_len;
+    const char *add;
+
+    path_z = afw_utf8_to_utf8_z(path, p, xctx);
+    if (path_z[0] != '/') {
+        cwd = afw_os_getcwd(p, xctx);
+        if (!cwd) {
+            AFW_THROW_ERROR_Z(general,
+                "getcwd failed while absolutizing path", xctx);
+        }
+        cwd_z = afw_utf8_to_utf8_z(cwd, p, xctx);
+        cwd_len = strlen(cwd_z);
+        path_len = strlen(path_z);
+        combined = afw_pool_malloc(p, cwd_len + 1 + path_len + 1, xctx);
+        memcpy(combined, cwd_z, cwd_len);
+        combined[cwd_len] = '/';
+        memcpy(combined + cwd_len + 1, path_z, path_len + 1);
+        path_z = combined;
+    }
+    add = path_z;
+    if (*add == '/') {
+        add++;
+    }
+    joined = impl_join_lexical("/", add, p, xctx);
+    if (!joined) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "Unresolvable path %s", path_z);
+    }
+    return afw_utf8_create(joined, AFW_UTF8_Z_LEN, p, xctx);
+}
+
+
 
 /* Join addpath under root; result stays under root. */
 AFW_DEFINE(const afw_utf8_t *)

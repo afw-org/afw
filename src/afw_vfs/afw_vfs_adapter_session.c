@@ -16,7 +16,7 @@
 #include "afw.h"
 #include "afw_adapter_impl.h"
 #include "afw_vfs_adapter_internal.h"
-#include <apr_file_info.h>
+#include <fcntl.h>
 #include <string.h>
 
 
@@ -24,28 +24,6 @@
 #define AFW_IMPLEMENTATION_ID "vfs"
 #define AFW_ADAPTER_SESSION_SELF_T afw_vfs_adapter_internal_session_t
 #include "afw_adapter_session_impl_declares.h"
-
-
-/*
- * APR end-of-directory: ENOENT. Some Windows APR builds surface
- * ERROR_NO_MORE_FILES as a packed status (historically seen as 720018).
- */
-static afw_boolean_t
-impl_dir_read_done(apr_status_t rv)
-{
-    if (rv == APR_SUCCESS) {
-        return false;
-    }
-    if (APR_STATUS_IS_ENOENT(rv)) {
-        return true;
-    }
-#if defined(_WIN32) || defined(WIN32)
-    if (rv == 720018 || rv == APR_FROM_OS_ERROR(18)) {
-        return true;
-    }
-#endif
-    return false;
-}
 
 
 static const afw_utf8_t impl_s_afw_tmp = AFW_UTF8_LITERAL(".afw-tmp");
@@ -270,48 +248,32 @@ impl_read_file_object(
     const afw_utf8_t *vfs_path;
     const afw_array_t *filenames;
     afw_value_dateTime_t *dateTime;
-    apr_file_t *fd;
+    afw_file_info_t info;
+    afw_file_dir_t *dir;
+    afw_file_dirent_t ent;
     afw_byte_t *buff;
-    apr_dir_t *dir;
     afw_size_t size;
-    apr_size_t size_read;
-    apr_finfo_t finfo;
-    apr_status_t rv;
+    afw_size_t size_read;
+    int fd;
 
     (void)impl_request;
 
     adapter = (const afw_vfs_adapter_internal_t *)self->pub.adapter;
     object = NULL;
     file_path_z = impl_resolve_host_path(vfs_entry, object_id, p, xctx);
-    rv = apr_stat(&finfo, file_path_z, APR_FINFO_MIN, afw_pool_get_apr_pool(p));
-    if (rv != APR_SUCCESS) {
-        /* If not found, return with NULL. */
-        if (APR_STATUS_IS_ENOENT(rv)) {
-            return NULL;
-        }
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "apr_stat() error for %s", file_path_z);
+    afw_file_stat(file_path_z, &info, xctx);
+    if (info.type == afw_file_type_missing) {
+        return NULL;
     }
 
     /* File type directory. */
-    if (finfo.filetype == APR_DIR) {
+    if (info.type == afw_file_type_directory) {
 
-        /* Open directory. */
-        rv = apr_dir_open(&dir, file_path_z, afw_pool_get_apr_pool(p));
-
-        /* If not found, return no objects. */
-        if (APR_STATUS_IS_ENOENT(rv)) {
+        dir = afw_file_dir_open(file_path_z, p, xctx);
+        if (!dir) {
             return NULL;
         }
 
-        /* If there is another problem, throw error. */
-        if (rv != APR_SUCCESS) {
-            AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-                "apr_dir_open() %s failed.",
-                file_path_z);
-        }
-
-        /* Process each file in directory. */
         object = afw_object_create_unmanaged_cede_p(p, xctx);
         afw_object_meta_set_ids(object,
             &self->pub.adapter->adapter_id,
@@ -327,75 +289,59 @@ impl_read_file_object(
         filenames = afw_array_create_unmanaged_of(afw_data_type_string, p, xctx);
         afw_object_set_property_as_array_internal(object,
             afw_vfs_v_data, filenames, xctx);
-        for (;;) {
 
-            /* Read next directory entry until there are no more.*/
-            rv = apr_dir_read(&finfo, APR_FINFO_NAME | APR_FINFO_TYPE, dir);
-            if (impl_dir_read_done(rv)) {
-                break;
-            }
-            if (rv != APR_SUCCESS) {
-                apr_dir_close(dir);
-                AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-                    "apr_dir_read() failed for %s", file_path_z);
-            }
+        AFW_TRY {
+            while (afw_file_dir_read(dir, &ent, xctx)) {
 
-            /* Skip ./ and ../ always; skip other dot-names unless requested. */
-            if (finfo.name[0] == '.') {
-                if (strcmp(finfo.name, ".") == 0 ||
-                    strcmp(finfo.name, "..") == 0)
-                {
-                    continue;
+                if (ent.name_z[0] == '.') {
+                    if (strcmp(ent.name_z, ".") == 0 ||
+                        strcmp(ent.name_z, "..") == 0)
+                    {
+                        continue;
+                    }
+                    if (!include_hidden) {
+                        continue;
+                    }
                 }
-                if (!include_hidden) {
-                    continue;
+
+                if (ent.type == afw_file_type_directory) {
+                    size = strlen(ent.name_z) + 1;
+                    buff = afw_pool_malloc(p, size, xctx);
+                    buff[size - 1] = '/';
+                    memcpy(buff, ent.name_z, size - 1);
+                    data_string = afw_utf8_create(
+                        (const afw_utf8_octet_t *)buff, size, p, xctx);
+                    afw_array_push_value(filenames,
+                        afw_value_create_unmanaged_string(
+                            data_string, p, xctx),
+                        xctx);
+                }
+                else if (ent.type == afw_file_type_file) {
+                    size = strlen(ent.name_z);
+                    if (size == 0) {
+                        continue;
+                    }
+                    buff = afw_pool_malloc(p, size, xctx);
+                    memcpy(buff, ent.name_z, size);
+                    data_string = afw_utf8_create(
+                        (const afw_utf8_octet_t *)buff, size, p, xctx);
+                    afw_array_push_value(filenames,
+                        afw_value_create_unmanaged_string(
+                            data_string, p, xctx),
+                        xctx);
                 }
             }
-
-            /* Directory. */
-            if (finfo.filetype == APR_DIR) {
-                size = strlen(finfo.name) + 1;
-                buff = afw_pool_malloc(p, size, xctx);
-                buff[size - 1] = '/';
-                memcpy(buff, finfo.name, size - 1);
-                data_string = afw_utf8_create(
-                    (const afw_utf8_octet_t *)buff, size, p, xctx);
-                afw_array_push_value(filenames,
-                    afw_value_create_unmanaged_string(data_string, p, xctx),
-                    xctx);
-            }
-
-            /* Regular file. */
-            else if (finfo.filetype == APR_REG) {
-                size = strlen(finfo.name);
-                if (size == 0) {
-                    continue;
-                }
-                buff = afw_pool_malloc(p, size, xctx);
-                memcpy(buff, finfo.name, size);
-                data_string = afw_utf8_create(
-                    (const afw_utf8_octet_t *)buff, size, p, xctx);
-                afw_array_push_value(filenames,
-                    afw_value_create_unmanaged_string(data_string, p, xctx),
-                    xctx);
-            }
-
-            /* Ignore other filetypes. */
         }
-
-        /* Close ObjectType's directory. */
-        rv = apr_dir_close(dir);
-        if (rv != APR_SUCCESS) {
-            AFW_THROW_ERROR_RV_Z(general, apr, rv, "apr_dir_close() failed.",
-                xctx);
+        AFW_FINALLY {
+            afw_file_dir_close(dir, xctx);
         }
+        AFW_ENDTRY;
     }
 
     /* File type regular file. */
-    else if (finfo.filetype == APR_REG) {
-        size = (afw_size_t)finfo.size;
+    else if (info.type == afw_file_type_file) {
+        size = (afw_size_t)info.size;
 
-        /* Enforce maxReadBytes (0 = unlimited). */
         if (adapter->max_read_bytes != 0 &&
             size > adapter->max_read_bytes)
         {
@@ -412,26 +358,21 @@ impl_read_file_object(
         buff = NULL;
         size_read = 0;
         if (size != 0) {
-            rv = apr_file_open(&fd, file_path_z,
-                APR_FOPEN_READ | APR_FOPEN_BINARY,
-                APR_FPROT_OS_DEFAULT, afw_pool_get_apr_pool(p));
-            if (rv != APR_SUCCESS) {
-                AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-                    "apr_file_open() failed for %s", file_path_z);
+            fd = -1;
+            AFW_TRY {
+                fd = afw_file_open(file_path_z, O_RDONLY, xctx);
+                buff = afw_pool_malloc(p, size, xctx);
+                size_read = afw_file_read(fd, buff, size, xctx);
             }
-            buff = afw_pool_malloc(p, size, xctx);
-            size_read = (apr_size_t)size;
-            rv = apr_file_read_full(fd, buff, size_read, &size_read);
-            apr_file_close(fd);
-            if (rv != APR_SUCCESS && rv != APR_EOF) {
-                AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-                    "Error reading %s", file_path_z);
+            AFW_FINALLY {
+                afw_file_close(fd, xctx);
             }
-            if ((afw_size_t)size_read != size) {
+            AFW_ENDTRY;
+            if (size_read != size) {
                 AFW_THROW_ERROR_FZ(general, xctx,
                     "Short read of %s: expected " AFW_SIZE_T_FMT
                     " bytes, got " AFW_SIZE_T_FMT,
-                    file_path_z, size, (afw_size_t)size_read);
+                    file_path_z, size, size_read);
             }
         }
 
@@ -460,39 +401,33 @@ impl_read_file_object(
         }
     }
 
-    /* If file type wasn't ignore, add time properties to object. */
     if (object &&
-        (finfo.filetype == APR_DIR || finfo.filetype == APR_REG))
+        (info.type == afw_file_type_directory ||
+            info.type == afw_file_type_file))
     {
-        /** The time the file was last accessed. */
-        if (finfo.atime != 0) {
+        if (info.atime != 0) {
             dateTime = afw_value_allocate_unmanaged_dateTime(object->p, xctx);
-            afw_dateTime_set_from_apr_time(&dateTime->internal,
-                finfo.atime, xctx);
+            afw_dateTime_set_from_os_time(&dateTime->internal,
+                info.atime, xctx);
             afw_object_set_property(
                 object, afw_vfs_v_timeAccessed, &dateTime->pub, xctx);
         }
-
-        /** The time the file was created. */
-        if (finfo.ctime != 0) {
+        if (info.ctime != 0) {
             dateTime = afw_value_allocate_unmanaged_dateTime(object->p, xctx);
-            afw_dateTime_set_from_apr_time(&dateTime->internal,
-                finfo.ctime, xctx);
+            afw_dateTime_set_from_os_time(&dateTime->internal,
+                info.ctime, xctx);
             afw_object_set_property(
                 object, afw_vfs_v_timeCreated, &dateTime->pub, xctx);
         }
-
-        /** The time the file was last modified. */
-        if (finfo.mtime != 0) {
+        if (info.mtime != 0) {
             dateTime = afw_value_allocate_unmanaged_dateTime(object->p, xctx);
-            afw_dateTime_set_from_apr_time(&dateTime->internal,
-                finfo.mtime, xctx);
+            afw_dateTime_set_from_os_time(&dateTime->internal,
+                info.mtime, xctx);
             afw_object_set_property(
                 object, afw_vfs_v_timeModified, &dateTime->pub, xctx);
         }
     }
 
-    /* Return object. */
     return object;
 }
 
@@ -509,145 +444,107 @@ impl_process_directory(
     const afw_object_t *object;
     const afw_utf8_t *object_id;
     afw_key_z_string_z_t subdirectory_vfs_entry;
-    apr_finfo_t finfo;
-    apr_dir_t *dir;
-    apr_status_t rv;
+    afw_file_dir_t *dir;
+    afw_file_dirent_t ent;
     afw_boolean_t shortcut;
 
     shortcut = false;
 
-    /* Open directory. */
-    rv = apr_dir_open(&dir, vfs_entry->string_z, afw_pool_get_apr_pool(ctx->p));
-
-    /* If not found, return no objects. */
-    if (APR_STATUS_IS_ENOENT(rv)) {
+    dir = afw_file_dir_open(vfs_entry->string_z, ctx->p, xctx);
+    if (!dir) {
         return shortcut;
     }
 
-    /* If there is another problem, throw error. */
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "apr_dir_open() %s failed.",
-            vfs_entry->string_z);
-    }
+    AFW_TRY {
+        while (!shortcut && afw_file_dir_read(dir, &ent, xctx)) {
+            object = NULL;
+            object_p = NULL;
 
-    /* Process each file in directory. */
-    for (;;) {
-        object = NULL;
-        object_p = NULL;
-
-        /* Read next directory entry until there are no more.*/
-        afw_memory_clear(&finfo);
-        rv = apr_dir_read(&finfo, APR_FINFO_NAME | APR_FINFO_TYPE, dir);
-        if (impl_dir_read_done(rv)) {
-            break;
-        }
-        if (rv != APR_SUCCESS) {
-            AFW_THROW_ERROR_RV_Z(general, apr, rv, "apr_dir_read() failed.",
-                xctx);
-        }
-
-        /* Always skip ./ and ../ plus hidden files unless requested. */
-        if (*(finfo.name) == '.') {
-            if (strcmp(finfo.name, ".") == 0 ||
-                strcmp(finfo.name, "..") == 0)
-            {
-                continue;
-            }
-            if (!ctx->includeHidden) {
-                continue;
-            }
-        }
-
-        /* If this is a directory and recursive is specified, traverse. */
-        if (ctx->recursive && finfo.filetype == APR_DIR) {
-            afw_utf8_t name;
-            const afw_utf8_t *joined;
-
-            afw_memory_clear(&subdirectory_vfs_entry);
-            impl_utf8_from_z(&name, finfo.name);
-            joined = afw_utf8_concat(ctx->p, xctx,
-                &vfs_entry->key, &name, afw_s_a_slash, NULL);
-            subdirectory_vfs_entry.key_z = impl_to_z(
-                joined, ctx->p, xctx);
-            subdirectory_vfs_entry.key.len = joined->len;
-            joined = afw_utf8_concat(ctx->p, xctx,
-                &vfs_entry->string, &name, afw_s_a_slash, NULL);
-            subdirectory_vfs_entry.string_z = impl_to_z(
-                joined, ctx->p, xctx);
-            subdirectory_vfs_entry.string.len = joined->len;
-            shortcut = impl_process_directory(self,
-                ctx, &subdirectory_vfs_entry, xctx);
-            if (shortcut) {
-                return shortcut;
-            }
-        }
-
-        /* Otherwise ... */
-        else {
-
-            /* If regular file that doesn't have correct suffix, skip it. */
-            if (finfo.filetype == APR_REG && ctx->suffix) {
-                if (strlen(finfo.name) < ctx->suffix->len ||
-                    memcmp(
-                        finfo.name +
-                        strlen(finfo.name) -
-                        ctx->suffix->len,
-                        ctx->suffix->s,
-                        ctx->suffix->len
-                    ) != 0)
+            if (ent.name_z[0] == '.') {
+                if (strcmp(ent.name_z, ".") == 0 ||
+                    strcmp(ent.name_z, "..") == 0)
                 {
+                    continue;
+                }
+                if (!ctx->includeHidden) {
                     continue;
                 }
             }
 
-            /* Read file object.  Object has its own pool. */
-            object_p = afw_pool_create(ctx->p, xctx);
+            if (ctx->recursive &&
+                ent.type == afw_file_type_directory)
             {
                 afw_utf8_t name;
+                const afw_utf8_t *joined;
 
-                impl_utf8_from_z(&name, finfo.name);
-                if (finfo.filetype == APR_DIR) {
-                    object_id = afw_utf8_concat(object_p, xctx,
-                        &vfs_entry->key, &name, afw_s_a_slash, NULL);
-                }
-                else {
-                    object_id = afw_utf8_concat(object_p, xctx,
-                        &vfs_entry->key, &name, NULL);
+                afw_memory_clear(&subdirectory_vfs_entry);
+                impl_utf8_from_z(&name, ent.name_z);
+                joined = afw_utf8_concat(ctx->p, xctx,
+                    &vfs_entry->key, &name, afw_s_a_slash, NULL);
+                subdirectory_vfs_entry.key_z = impl_to_z(
+                    joined, ctx->p, xctx);
+                subdirectory_vfs_entry.key.len = joined->len;
+                joined = afw_utf8_concat(ctx->p, xctx,
+                    &vfs_entry->string, &name, afw_s_a_slash, NULL);
+                subdirectory_vfs_entry.string_z = impl_to_z(
+                    joined, ctx->p, xctx);
+                subdirectory_vfs_entry.string.len = joined->len;
+                shortcut = impl_process_directory(self,
+                    ctx, &subdirectory_vfs_entry, xctx);
+                if (shortcut) {
+                    break;
                 }
             }
-            object = impl_read_file_object(self, ctx->impl_request, vfs_entry,
-                object_id, ctx->includeHidden, object_p, xctx);
-        }
+            else {
+                if (ent.type == afw_file_type_file && ctx->suffix) {
+                    if (strlen(ent.name_z) < ctx->suffix->len ||
+                        memcmp(
+                            ent.name_z +
+                            strlen(ent.name_z) -
+                            ctx->suffix->len,
+                            ctx->suffix->s,
+                            ctx->suffix->len
+                        ) != 0)
+                    {
+                        continue;
+                    }
+                }
 
-        /*
-         * If query criteria met, callback with object.  Callback will
-         * release object. If callback returns true, prematurely stop
-         * retrieving.
-         */
-        if (object &&
-            afw_query_criteria_test_object(object, ctx->criteria,
-                ctx->p, xctx))
-        {
-            shortcut = ctx->original_callback(object,
-                ctx->original_context, xctx);
-            if (shortcut) {
-                break;
+                object_p = afw_pool_create(ctx->p, xctx);
+                {
+                    afw_utf8_t name;
+
+                    impl_utf8_from_z(&name, ent.name_z);
+                    if (ent.type == afw_file_type_directory) {
+                        object_id = afw_utf8_concat(object_p, xctx,
+                            &vfs_entry->key, &name, afw_s_a_slash, NULL);
+                    }
+                    else {
+                        object_id = afw_utf8_concat(object_p, xctx,
+                            &vfs_entry->key, &name, NULL);
+                    }
+                }
+                object = impl_read_file_object(self, ctx->impl_request,
+                    vfs_entry, object_id, ctx->includeHidden,
+                    object_p, xctx);
+            }
+
+            if (object &&
+                afw_query_criteria_test_object(object, ctx->criteria,
+                    ctx->p, xctx))
+            {
+                shortcut = ctx->original_callback(object,
+                    ctx->original_context, xctx);
+            }
+            else if (object_p) {
+                afw_pool_release(object_p, xctx);
             }
         }
-
-        /* If query criteria not met, release pool. */
-        else if (object_p) {
-            afw_pool_release(object_p, xctx);
-        }
     }
-
-    /* Close ObjectType's directory. */
-    rv = apr_dir_close(dir);
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_Z(general, apr, rv, "apr_dir_close() failed.",
-            xctx);
+    AFW_FINALLY {
+        afw_file_dir_close(dir, xctx);
     }
+    AFW_ENDTRY;
 
     return shortcut;
 }
@@ -922,9 +819,8 @@ impl_determine_path_for_object_id(
     afw_xctx_t *xctx)
 {
     const afw_key_z_string_z_t *vfs_entry;
-    apr_finfo_t finfo;
+    afw_file_info_t info;
     afw_boolean_t exists;
-    apr_status_t rv;
 
     /* Initialize return parameters. */
     path->s.s = NULL;
@@ -950,15 +846,8 @@ impl_determine_path_for_object_id(
     path->s.s = path->s_z;
 
     /* Get if path exists and make sure is_directory is correct. */
-    rv = apr_stat(&finfo, path->s_z, APR_FINFO_TYPE, afw_pool_get_apr_pool(p));
-    exists = true;
-    if (APR_STATUS_IS_ENOENT(rv)) {
-        exists = false;
-    }
-    else if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "apr_stat() error for %s", path->s_z);
-    }
+    afw_file_stat(path->s_z, &info, xctx);
+    exists = (info.type != afw_file_type_missing);
 
     /* Check expect_exists */
     if (expect_exists) {
@@ -978,14 +867,14 @@ impl_determine_path_for_object_id(
 
     /* If exists, make sure filetype acceptable. */
     if (exists) {
-        if (finfo.filetype == APR_DIR) {
+        if (info.type == afw_file_type_directory) {
             if (!*is_directory) {
                 AFW_THROW_ERROR_FZ(general, xctx,
                     "object_id '%ku' is directory so must end with '/'",
                     object_id);
             }
         }
-        else if (finfo.filetype == APR_REG) {
+        else if (info.type == afw_file_type_file) {
             if (*is_directory) {
                 AFW_THROW_ERROR_FZ(general, xctx,
                     "object_id '%ku' is a regular file so must not end with '/'",
@@ -1017,12 +906,9 @@ impl_write_data_to_file(
     const afw_utf8_z_t *vfs_path_z;
     const afw_utf8_z_t *tmp_path_z;
     const void *buf;
-    apr_size_t nbytes;
-    apr_size_t bytes_written;
-    apr_file_t *fd;
-    apr_int32_t flag;
-    apr_status_t rv;
-    apr_pool_t *apr_p;
+    afw_size_t nbytes;
+    int fd;
+    int flags;
 
     /* Omitted data defaults to empty string (matches object type default). */
     if (!data) {
@@ -1038,19 +924,17 @@ impl_write_data_to_file(
 
     if (afw_value_is_string(data)) {
         buf = (const void *)((const afw_value_string_t *)data)->internal.s;
-        nbytes = (apr_size_t)((const afw_value_string_t *)data)->internal.len;
+        nbytes = ((const afw_value_string_t *)data)->internal.len;
     }
     else {
         buf = (const void *)((const afw_value_hexBinary_t *)data)->internal.ptr;
-        nbytes = (apr_size_t)((const afw_value_hexBinary_t *)data)->internal.size;
+        nbytes = ((const afw_value_hexBinary_t *)data)->internal.size;
         if (nbytes > 0 && !buf) {
             AFW_THROW_ERROR_Z(general,
                 "hexBinary data pointer is NULL",
                 xctx);
         }
     }
-
-    apr_p = afw_pool_get_apr_pool(xctx->p);
 
     /*
      * Atomic full-file write: write to a temp sibling, then rename into place
@@ -1064,28 +948,21 @@ impl_write_data_to_file(
             afw_utf8_concat(xctx->p, xctx, &path, &impl_s_afw_tmp, NULL),
             xctx->p, xctx);
     }
-    flag = APR_FOPEN_WRITE | APR_FOPEN_CREATE | APR_FOPEN_TRUNCATE |
-        APR_FOPEN_BINARY | APR_FOPEN_EXCL;
-    rv = apr_file_open(&fd, tmp_path_z, flag, APR_FPROT_OS_DEFAULT, apr_p);
-    if (rv != APR_SUCCESS) {
-        /* Retry without EXCL if a prior temp was left behind. */
-        apr_file_remove(tmp_path_z, apr_p);
-        flag = APR_FOPEN_WRITE | APR_FOPEN_CREATE | APR_FOPEN_TRUNCATE |
-            APR_FOPEN_BINARY;
-        rv = apr_file_open(&fd, tmp_path_z, flag, APR_FPROT_OS_DEFAULT, apr_p);
+    flags = O_WRONLY | O_CREAT | O_TRUNC;
+    fd = -1;
+    afw_file_unlink_if_exists(tmp_path_z, xctx);
+    AFW_TRY {
+        fd = afw_file_open(tmp_path_z, flags, xctx);
+        afw_file_write_full(fd, buf ? buf : "", nbytes, xctx);
     }
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "apr_file_open() error for temp %s", tmp_path_z);
+    AFW_CATCH_UNHANDLED {
+        afw_file_unlink_if_exists(tmp_path_z, xctx);
+        AFW_ERROR_RETHROW;
     }
-
-    rv = apr_file_write_full(fd, buf ? buf : "", nbytes, &bytes_written);
-    apr_file_close(fd);
-    if (rv != APR_SUCCESS) {
-        apr_file_remove(tmp_path_z, apr_p);
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "apr_file_write_full() error for %s", tmp_path_z);
+    AFW_FINALLY {
+        afw_file_close(fd, xctx);
     }
+    AFW_ENDTRY;
 
     /*
      * On Windows, rename fails if the destination exists; remove first when
@@ -1093,28 +970,26 @@ impl_write_data_to_file(
      */
     if (!is_create) {
 #if defined(_WIN32) || defined(WIN32)
-        apr_file_remove(path_z, apr_p);
+        afw_file_unlink_if_exists(path_z, xctx);
 #endif
     }
-    rv = apr_file_rename(tmp_path_z, path_z, apr_p);
-    if (rv != APR_SUCCESS) {
+    AFW_TRY {
+        afw_file_rename(tmp_path_z, path_z, xctx);
+    }
+    AFW_CATCH_UNHANDLED {
 #if !defined(_WIN32) && !defined(WIN32)
-        /* If create raced, fail without clobbering. */
         if (is_create) {
-            apr_file_remove(tmp_path_z, apr_p);
-            AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-                "apr_file_rename() error creating %s", path_z);
+            afw_file_unlink_if_exists(tmp_path_z, xctx);
+            AFW_ERROR_RETHROW;
         }
-        /* Replace: try remove+rename if needed. */
-        apr_file_remove(path_z, apr_p);
-        rv = apr_file_rename(tmp_path_z, path_z, apr_p);
+        afw_file_unlink_if_exists(path_z, xctx);
+        afw_file_rename(tmp_path_z, path_z, xctx);
+#else
+        afw_file_unlink_if_exists(tmp_path_z, xctx);
+        AFW_ERROR_RETHROW;
 #endif
-        if (rv != APR_SUCCESS) {
-            apr_file_remove(tmp_path_z, apr_p);
-            AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-                "apr_file_rename() error for %s", path_z);
-        }
     }
+    AFW_ENDTRY;
 
     /* Make file executable if match in adapter->mark_executable. */
     if (adapter->mark_executable) {
@@ -1125,13 +1000,7 @@ impl_write_data_to_file(
         for (pattern = adapter->mark_executable; pattern->s_z; pattern++) {
             if (afw_os_fnmatch(pattern->s_z, vfs_path_z))
             {
-                rv = apr_file_attrs_set(path_z,
-                    APR_FILE_ATTR_EXECUTABLE, APR_FILE_ATTR_EXECUTABLE,
-                    apr_p);
-                if (rv != APR_SUCCESS && rv != APR_ENOTIMPL) {
-                    AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-                        "apr_file_attrs_set() error for %s", path_z);
-                }
+                afw_file_add_execute_bit(path_z, xctx);
                 break;
             }
         }
@@ -1155,7 +1024,6 @@ impl_afw_adapter_session_add_object(
 {
     afw_utf8_utf8_z_t path;
     const afw_value_t *data;
-    apr_status_t rv;
     afw_boolean_t is_directory;
 
     (void)impl_request;
@@ -1178,13 +1046,7 @@ impl_afw_adapter_session_add_object(
     /* If directory, make it recursively. Property data is ignored. */
     if (is_directory) {
 
-        /* Make directory.*/
-        rv = apr_dir_make_recursive(path.s_z, APR_FPROT_OS_DEFAULT,
-            afw_pool_get_apr_pool(xctx->p));
-        if (rv != APR_SUCCESS) {
-            AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-                "apr_dir_make_recursive() error for %s", path.s_z);
-        }
+        afw_file_mkdir_p(path.s_z, xctx);
     }
 
     /* If regular file, get data property and write to file. */
@@ -1338,7 +1200,6 @@ impl_afw_adapter_session_delete_object(
     afw_xctx_t *xctx)
 {
     afw_utf8_utf8_z_t path;
-    apr_status_t rv;
     afw_boolean_t is_directory;
 
     (void)impl_request;
@@ -1359,21 +1220,12 @@ impl_afw_adapter_session_delete_object(
 
     /* If directory, remove it (non-recursive; must be empty). */
     if (is_directory) {
-        rv = apr_dir_remove(path.s_z, afw_pool_get_apr_pool(xctx->p));
-        if (rv != APR_SUCCESS) {
-            AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-                "apr_dir_remove() error for %s (directory must be empty)",
-                path.s_z);
-        }
+        afw_file_rmdir(path.s_z, xctx);
     }
 
     /* If regular file, remove it. */
     else {
-        rv = apr_file_remove(path.s_z, afw_pool_get_apr_pool(xctx->p));
-        if (rv != APR_SUCCESS) {
-            AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-                "apr_file_remove() error for %s", path.s_z);
-        }
+        afw_file_unlink(path.s_z, xctx);
     }
 }
 

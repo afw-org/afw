@@ -87,6 +87,19 @@ afw_date_create_from_parts(
 
 
 /**
+ * @brief Set afw_dateTime_t from afw_os_time_t (microseconds since epoch).
+ * @param dateTime is pointer to preallocated afw_dateTime_t.
+ * @param t microseconds since the Unix epoch.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_dateTime_set_from_os_time(
+    afw_dateTime_t *dateTime,
+    afw_os_time_t t,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Set afw_dateTime_t from apr_time.
  * @param dateTime is pointer to preallocated afw_dateTime_t.
  * @param apr_time

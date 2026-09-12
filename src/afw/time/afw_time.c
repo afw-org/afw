@@ -305,17 +305,29 @@ afw_dateTime_create_from_parts(
 
 
 
+/* Set afw_dateTime_t from os time (microseconds since epoch). */
+AFW_DEFINE(void)
+afw_dateTime_set_from_os_time(
+    afw_dateTime_t *dateTime,
+    afw_os_time_t t,
+    afw_xctx_t *xctx)
+{
+    afw_os_time_exploded_t tm;
+
+    afw_os_time_explode_local(&tm, t, xctx);
+    impl_dateTime_exploded_set(dateTime, &tm, xctx);
+}
+
+
 /* Set afw_dateTime_t from apr_time. */
-AFW_DECLARE(void)
+AFW_DEFINE(void)
 afw_dateTime_set_from_apr_time(
     afw_dateTime_t *dateTime,
     apr_time_t apr_time,
     afw_xctx_t *xctx)
 {
-    afw_os_time_exploded_t tm;
-
-    afw_os_time_explode_local(&tm, (afw_os_time_t)apr_time, xctx);
-    impl_dateTime_exploded_set(dateTime, &tm, xctx);
+    afw_dateTime_set_from_os_time(dateTime,
+        (afw_os_time_t)apr_time, xctx);
 }
 
 

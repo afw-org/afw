@@ -17,7 +17,6 @@
 #include "afw.h"
 #include "afw_adapter_impl.h"
 #include "afw_vfs_adapter_internal.h"
-#include <apr_file_info.h>
 
 
 /* Declares and rti/inf defines for interface afw_adapter */
@@ -46,8 +45,7 @@ afw_vfs_adapter_internal_create_cede_p(
     const afw_utf8_octet_t *c;
     const afw_utf8_octet_t *end_c;
     afw_size_t count;
-    apr_finfo_t finfo;
-    apr_status_t rv;
+    afw_file_info_t info;
 
     /* Create adapter and process common properties.  */
     adapter = afw_adapter_impl_create_cede_p(
@@ -138,9 +136,8 @@ afw_vfs_adapter_internal_create_cede_p(
         }
 
         /* Make sure <host file system directory path> is existing directory. */
-        rv = apr_stat(&finfo,
-            entries->string_z, APR_FINFO_TYPE, afw_pool_get_apr_pool(p));
-        if (rv != APR_SUCCESS || finfo.filetype != APR_DIR) {
+        afw_file_stat(entries->string_z, &info, xctx);
+        if (info.type != afw_file_type_directory) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "%s in vfsMap entry <host file system directory path> is not "
                 "a directory",

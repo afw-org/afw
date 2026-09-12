@@ -51,7 +51,7 @@ Issue **#79**: empty-file read must not call `afw_pool_malloc` with size 0; full
 | API | stream numbers, read/write chunks | adapter object CRUD, whole `data` |
 | Shared ideas | longest prefix, no `..` escape, under-root | same for map keys/hosts |
 
-Do not implement VFS I/O by calling `open_file`; keep adapter session on APR file APIs.
+Do not implement VFS I/O by calling `open_file`; keep adapter session on `afw_file_*` host I/O (not stream `open_file`).
 
 ## Hand vs generated
 

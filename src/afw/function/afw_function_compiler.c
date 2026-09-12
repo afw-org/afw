@@ -12,6 +12,8 @@
  */
 
 #include "afw_internal.h"
+#include <errno.h>
+#include <stdio.h>
 
 
 
@@ -1257,27 +1259,21 @@ afw_function_execute_qualifiers(
 /* holds context data for the callback routine */
 typedef struct {
     const char *file_z;
-    apr_file_t *f;
-    apr_finfo_t finfo;
+    FILE *f;
 } afw_include_self_t;
 
 /* callback routine for the parser to read the file octet by octet */
 int impl_octet_get_cb(afw_utf8_octet_t *octet, void *data, afw_xctx_t *xctx)
 {
     afw_include_self_t *self = (afw_include_self_t *)data;
-    char c;
-    apr_size_t len = 1;
-    int rv;
+    int c;
 
-    /* Get an octet. */
-    rv = apr_file_read(self->f, &c, &len);
-    
-    /* if error return -1 */
-    if (rv != APR_SUCCESS) {
+    (void)xctx;
+    c = fgetc(self->f);
+    if (c == EOF) {
         *octet = 0;
         return -1;
     }
-
     *octet = (afw_utf8_octet_t)c;
     return 0;
 }
@@ -1337,8 +1333,6 @@ afw_function_execute_compile_from_file(
     const afw_utf8_t *file;
     const afw_utf8_t *compile_type_string;
     afw_include_self_t *self;
-    apr_pool_t *apr_p = afw_pool_get_apr_pool(xctx->p);
-    apr_status_t rv;
     const afw_utf8_t *resolved_path;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(file_value, 1, string);
@@ -1370,10 +1364,10 @@ afw_function_execute_compile_from_file(
     self->file_z = afw_utf8_to_utf8_z(resolved_path, p, xctx);
 
     /* now open the file */
-    rv = apr_file_open(&self->f, self->file_z, 
-        APR_FOPEN_READ | APR_BUFFERED, APR_OS_DEFAULT, apr_p);
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(not_found, apr, rv, xctx,
+    self->f = fopen(self->file_z, "rb");
+    if (!self->f) {
+        int err = errno;
+        AFW_THROW_ERROR_RV_FZ(not_found, errno, err, xctx,
             "Failed to open file '%s'.", self->file_z);
     }
 
@@ -1386,7 +1380,10 @@ afw_function_execute_compile_from_file(
         );
     }
     AFW_FINALLY {
-        apr_file_close(self->f);
+        if (self->f) {
+            fclose(self->f);
+            self->f = NULL;
+        }
     }
     AFW_ENDTRY;
 

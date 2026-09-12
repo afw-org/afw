@@ -286,6 +286,8 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     environment/afw_environment_variables_object.c
     error/afw_error.c
     file/afw_file.c
+    file/afw_file_adapter.c
+    file/afw_file_io.c
     file/afw_file_journal.c
     file/afw_file_path.c
     flag/afw_flag.c

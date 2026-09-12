@@ -12,7 +12,11 @@
  */
 
 #include "afw_internal.h"
+#include <errno.h>
+#include <fcntl.h>
 #include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 
 
 
@@ -138,7 +142,7 @@ impl_object_id_to_relative_entry_path(
         }
         digit = (unsigned int)(*i++ - '0');
         /*
-         * Offset is a signed afw_off_t fed to apr_file_seek, and later
+         * Offset is a signed afw_off_t fed to afw_file_seek, and later
          * printed as afw_integer_t. Bound to the smaller of those.
          */
         if (sizeof(afw_off_t) < sizeof(afw_integer_t)) {
@@ -185,7 +189,7 @@ static const afw_object_t *
 impl_open_and_retrieve_peer_object(
     const afw_adapter_journal_t *journal,
     const afw_utf8_t *consumer_id,
-    apr_file_t * *peer_f,
+    int *peer_fd,
     const afw_utf8_z_t * *full_peer_path_z,
     afw_xctx_t *xctx)
 {
@@ -193,13 +197,11 @@ impl_open_and_retrieve_peer_object(
         (afw_file_internal_adapter_session_t *)journal->session;
     afw_file_internal_adapter_t *adapter = session->adapter;
     const afw_pool_t *p = xctx->p;
-    apr_pool_t * apr_p = afw_pool_get_apr_pool(p);
     void *memory;
     afw_memory_t buffer;
-    apr_finfo_t finfo;
+    afw_file_info_t info;
     const afw_value_t *value;
     afw_error_footprint_t footprint;
-    apr_status_t rv;
     afw_size_t len;
 
     *full_peer_path_z = afw_utf8_to_utf8_z(
@@ -213,25 +215,23 @@ impl_open_and_retrieve_peer_object(
             NULL),
         p, xctx);
 
-    AFW_ERROR_FOOTPRINT("apr_stat()");
-    rv = apr_stat(&finfo, *full_peer_path_z, APR_FINFO_SIZE,
-        afw_pool_get_apr_pool(xctx->p));
-    if (rv != APR_SUCCESS) goto error_peer_apr;
+    *peer_fd = -1;
+    AFW_ERROR_FOOTPRINT("stat()");
+    afw_file_stat(*full_peer_path_z, &info, xctx);
+    if (info.type == afw_file_type_missing) {
+        goto error_peer;
+    }
 
-    AFW_ERROR_FOOTPRINT("apr_file_open()");
-    rv = apr_file_open(peer_f, *full_peer_path_z,
-        APR_FOPEN_READ + APR_FOPEN_WRITE + APR_FOPEN_BINARY,
-        APR_FPROT_OS_DEFAULT, apr_p);
-    if (rv != APR_SUCCESS) goto error_peer_apr;
+    AFW_ERROR_FOOTPRINT("open()");
+    *peer_fd = afw_file_open(*full_peer_path_z, O_RDWR, xctx);
 
-    AFW_ERROR_FOOTPRINT("apr_file_read()");
-    buffer.size = afw_safe_cast_off_to_size(finfo.size, xctx);
+    AFW_ERROR_FOOTPRINT("read()");
+    buffer.size = afw_safe_cast_off_to_size(info.size, xctx);
     len = buffer.size;
     memory = afw_xctx_calloc(len, xctx);
     buffer.ptr = memory;
-    rv = apr_file_read(*peer_f, memory, &len);
-    if (rv != APR_SUCCESS) goto error_peer;
-    if (len != finfo.size) goto error_peer;
+    len = afw_file_read(*peer_fd, memory, buffer.size, xctx);
+    if (len != (afw_size_t)info.size) goto error_peer;
 
     AFW_ERROR_FOOTPRINT("afw_content_type_raw_to_value()");
     value = afw_content_type_raw_to_value(adapter->content_type, &buffer,
@@ -242,15 +242,9 @@ impl_open_and_retrieve_peer_object(
     return ((const afw_value_object_t *)value)->internal;
 
 error_peer:
+    afw_file_close(*peer_fd, xctx);
+    *peer_fd = -1;
     AFW_THROW_ERROR_FOOTPRINT_FZ(general, xctx,
-        "Error detected processing adapter '%ku' "
-        AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER
-        " file %s - %s",
-        &adapter->pub.adapter_id,
-        *full_peer_path_z, footprint.z);
-
-error_peer_apr:
-    AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
         "Error detected processing adapter '%ku' "
         AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER
         " file %s - %s",
@@ -263,59 +257,28 @@ static void
 impl_write_and_close_peer_object(
     const afw_adapter_journal_t *journal,
     const afw_object_t * peer,
-    apr_file_t *peer_f,
+    int peer_fd,
     const afw_utf8_z_t *full_peer_path_z,
     afw_xctx_t *xctx)
 {
     afw_file_internal_adapter_session_t * session =
         (afw_file_internal_adapter_session_t *)journal->session;
     afw_file_internal_adapter_t *adapter = session->adapter;
-    afw_error_footprint_t footprint;
-    apr_status_t rv;
     const afw_memory_t *encoded;
-    afw_size_t len;
-    apr_off_t offset;
 
-    /* Encode peer object. */
+    (void)full_peer_path_z;
     encoded = afw_content_type_object_to_raw(
         adapter->content_type, peer, NULL, xctx->p, xctx);
 
-    /* Seek to start of peer file. */
-    AFW_ERROR_FOOTPRINT("apr_file_seek()");
-    offset = 0;
-    rv = apr_file_seek(peer_f, APR_SET, &offset);
-    if (rv != APR_SUCCESS) goto error_peer_apr;
-
-    /* Write to store. */
-    AFW_ERROR_FOOTPRINT("apr_file_write()");
-    len = encoded->size;
-    rv = apr_file_write(peer_f, encoded->ptr, &len);
-    if (rv != APR_SUCCESS) goto error_peer_apr;
-    if (len != encoded->size) {
-        AFW_ERROR_FOOTPRINT("apr_file_write() wrong len");
-        goto error_peer_apr;
+    AFW_TRY {
+        afw_file_seek(peer_fd, 0, SEEK_SET, xctx);
+        afw_file_write_full(peer_fd, encoded->ptr, encoded->size, xctx);
+        afw_file_trunc(peer_fd, (afw_off_t)encoded->size, xctx);
     }
-
-    /* Truncate file to length written. */
-    AFW_ERROR_FOOTPRINT("apr_file_trunc()");
-    rv = apr_file_trunc(peer_f, encoded->size);
-    if (rv != APR_SUCCESS) goto error_peer_apr;
-
-    /* Close peer object. */
-    AFW_ERROR_FOOTPRINT("apr_file_close()");
-    rv = apr_file_close(peer_f);
-    if (rv != APR_SUCCESS) goto error_peer_apr;
-
-    /* Return. */
-    return;
-
-error_peer_apr:
-    AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adapter '%ku' "
-        AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER
-        " file %s - %s",
-        &adapter->pub.adapter_id,
-        full_peer_path_z, footprint.z);
+    AFW_FINALLY {
+        afw_file_close(peer_fd, xctx);
+    }
+    AFW_ENDTRY;
 }
 
 
@@ -334,7 +297,6 @@ impl_afw_adapter_journal_add_entry_internal(
     afw_file_internal_adapter_t *adapter = session->adapter;
     const afw_memory_t *encoded;
     afw_memory_t temp_raw;
-    apr_status_t rv;
     afw_os_time_exploded_t exploded;
     const afw_utf8_z_t *relative_entry_path_z;
     const afw_utf8_z_t *full_entry_path_z;
@@ -342,16 +304,14 @@ impl_afw_adapter_journal_add_entry_internal(
     const afw_utf8_z_t *old_full_entry_path_z;
     const afw_utf8_t *first_entry_save_path;
     const afw_utf8_t *cursor;
-    apr_file_t *lock_f;
-    apr_file_t *entry_f;
+    int lock_fd;
+    int entry_fd;
     afw_adapter_journal_lock_t lock;
-    apr_size_t lock_len;
-    apr_off_t offset;
+    afw_size_t lock_len;
+    afw_off_t offset;
     afw_endian_big_uint64_t encoded_len_be;
     const afw_pool_t *p = xctx->p;
-    apr_pool_t *apr_p = afw_pool_get_apr_pool(p);
     afw_boolean_t first_entry;
-    apr_size_t len;
     afw_error_footprint_t footprint;
 
     /** @fixme add in registers for cleanup. */
@@ -369,34 +329,28 @@ impl_afw_adapter_journal_add_entry_internal(
         exploded.year, exploded.month, exploded.day, exploded.hour);
 
     /* Open lock file creating it if needed. */
-    AFW_ERROR_FOOTPRINT("apr_file_open()");
-    rv = apr_file_open(&lock_f, adapter->journal_lock_file_path_z,
-        APR_FOPEN_READ + APR_FOPEN_CREATE + APR_FOPEN_WRITE + 
-        APR_FOPEN_BINARY,  APR_FPROT_OS_DEFAULT, apr_p);
-    if (APR_STATUS_IS_ENOENT(rv)) {
-        /* Create parent directories and try again. */
-        AFW_ERROR_FOOTPRINT("apr_dir_make_recursive()");
-        rv = apr_dir_make_recursive(adapter->journal_dir_path_z,
-            APR_FPROT_OS_DEFAULT, apr_p);
-        if (rv == APR_SUCCESS) {
-            /* Try again. */
-            AFW_ERROR_FOOTPRINT("apr_file_open()");
-            rv = apr_file_open(&lock_f, adapter->journal_lock_file_path_z,
-                APR_FOPEN_READ + APR_FOPEN_CREATE + APR_FOPEN_WRITE +
-                APR_FOPEN_BINARY, APR_FPROT_OS_DEFAULT, apr_p);
-        }
+    entry_fd = -1;
+    AFW_ERROR_FOOTPRINT("open()");
+    lock_fd = open(adapter->journal_lock_file_path_z,
+        O_RDWR | O_CREAT, 0666);
+    if (lock_fd < 0 && errno == ENOENT) {
+        AFW_ERROR_FOOTPRINT("mkdir_p()");
+        afw_file_mkdir_p(adapter->journal_dir_path_z, xctx);
+        lock_fd = afw_file_open(adapter->journal_lock_file_path_z,
+            O_RDWR | O_CREAT, xctx);
     }
-    if (rv != APR_SUCCESS) goto error_lock_apr;
+    else if (lock_fd < 0) {
+        goto error_lock;
+    }
 
     /*
      * Read lock record and determine if new lock file.  If it is new,
      * save the first relative_entry_path in path_to_first_entry.
      */
-    AFW_ERROR_FOOTPRINT("apr_file_read()");
-    lock_len = sizeof(afw_adapter_journal_lock_t);
-    rv = apr_file_read(lock_f, &lock, &lock_len);
-    first_entry = rv == APR_EOF;
-    if (!first_entry && rv != APR_SUCCESS) goto error_lock_apr;
+    AFW_ERROR_FOOTPRINT("read()");
+    lock_len = afw_file_read(lock_fd, &lock,
+        sizeof(afw_adapter_journal_lock_t), xctx);
+    first_entry = (lock_len == 0);
     if (first_entry) {
         first_entry_save_path = afw_utf8_concat(xctx->p, xctx,
             adapter->root, &impl_s_path_to_first, NULL);
@@ -405,11 +359,14 @@ impl_afw_adapter_journal_add_entry_internal(
         afw_file_from_memory(first_entry_save_path, &temp_raw,
             afw_file_mode_write, xctx);
     }
-    
+
     /* Make sure lock record was completely read. */
     AFW_ERROR_FOOTPRINT("check lock record");
-    if (rv == APR_SUCCESS && lock_len != sizeof(afw_adapter_journal_lock_t))
+    if (!first_entry &&
+        lock_len != sizeof(afw_adapter_journal_lock_t))
+    {
         goto error_lock;
+    }
 
     /*
      * If year, mon, day, and hour are not the same as last time, need to
@@ -461,48 +418,29 @@ impl_afw_adapter_journal_add_entry_internal(
             lock.century, lock.year, lock.month, lock.day);
         full_entry_dir_path_z = impl_journal_path_z(
             adapter->root, ymd, p, xctx);
-        AFW_ERROR_FOOTPRINT("apr_dir_make_recursive()");
-        rv = apr_dir_make_recursive(full_entry_dir_path_z,
-            APR_FPROT_OS_DEFAULT, apr_p);
-        if (rv != APR_SUCCESS) goto error_journal_apr;
+        AFW_ERROR_FOOTPRINT("mkdir_p()");
+        afw_file_mkdir_p(full_entry_dir_path_z, xctx);
     }
 
     /* Open journal entry file. */
-    AFW_ERROR_FOOTPRINT("apr_file_open()");
-    rv = apr_file_open(&entry_f, full_entry_path_z,
-        APR_FOPEN_CREATE +
-        APR_FOPEN_WRITE +
-        APR_FOPEN_BINARY +
-        APR_FOPEN_APPEND,
-        APR_FPROT_OS_DEFAULT, apr_p);
-    if (rv != APR_SUCCESS) goto error_journal_apr;
+    AFW_ERROR_FOOTPRINT("open()");
+    entry_fd = afw_file_open(full_entry_path_z,
+        O_WRONLY | O_CREAT | O_APPEND, xctx);
 
     /* Determine cursor of entry. */
-    AFW_ERROR_FOOTPRINT("apr_file_seek()");
-    offset = 0;
-    rv = apr_file_seek(entry_f, APR_CUR, &offset);
-    if (rv != APR_SUCCESS) goto error_journal_apr;
+    AFW_ERROR_FOOTPRINT("seek()");
+    offset = afw_file_seek(entry_fd, 0, SEEK_CUR, xctx);
     cursor = afw_utf8_printf(xctx->p, xctx,
         "%02d%02d%02d%02d%02d_" AFW_INTEGER_FMT,
         lock.century, lock.year, lock.month, lock.day, lock.hour,
         (afw_integer_t)offset);
 
-    /* Write entry prefix (length). */
-    AFW_ERROR_FOOTPRINT("apr_file_write()");
-    len = sizeof(encoded_len_be);
-    rv = apr_file_write(entry_f, &encoded_len_be, &len);
-    if (rv != APR_SUCCESS) goto error_journal_apr;
-
-    /* Write entry . */
-    AFW_ERROR_FOOTPRINT("apr_file_write()");
-    len = encoded->size;
-    rv = apr_file_write(entry_f, encoded->ptr, &len);
-    if (rv != APR_SUCCESS) goto error_journal_apr;
-
-    /* Close journal. */
-    AFW_ERROR_FOOTPRINT("apr_file_close()");
-    rv = apr_file_close(entry_f);
-    if (rv != APR_SUCCESS) goto error_journal_apr;
+    AFW_ERROR_FOOTPRINT("write()");
+    afw_file_write_full(entry_fd, &encoded_len_be,
+        sizeof(encoded_len_be), xctx);
+    afw_file_write_full(entry_fd, encoded->ptr, encoded->size, xctx);
+    AFW_ERROR_FOOTPRINT("close()");
+    afw_file_close(entry_fd, xctx);
 
     /*
      * If a switch occurred, write last record of old file with
@@ -510,80 +448,37 @@ impl_afw_adapter_journal_add_entry_internal(
      * of the now new current file.
      */
     if (old_full_entry_path_z) {
-        /* Open old journal. */
-        AFW_ERROR_FOOTPRINT("apr_file_open()");
-        rv = apr_file_open(&entry_f, old_full_entry_path_z,
-            APR_FOPEN_WRITE +
-            APR_FOPEN_BINARY +
-            APR_FOPEN_APPEND,
-            APR_FPROT_OS_DEFAULT, apr_p);
-        if (rv != APR_SUCCESS) goto error_old_journal_apr;
-
-        /* Write 0 to old journal prefix (length). */
-        AFW_ERROR_FOOTPRINT("apr_file_write()");
-        len = sizeof(encoded_len_be);
+        AFW_ERROR_FOOTPRINT("open()");
+        entry_fd = afw_file_open(old_full_entry_path_z,
+            O_WRONLY | O_APPEND, xctx);
         encoded_len_be.i = 0;
-        rv = apr_file_write(entry_f, &encoded_len_be, &len);
-        if (rv != APR_SUCCESS) goto error_old_journal_apr;
-
-        /* Write relative path to new journal. */
-        AFW_ERROR_FOOTPRINT("apr_file_write()");
-        len = strlen(relative_entry_path_z);
-        rv = apr_file_write(entry_f, relative_entry_path_z, &len);
-        if (rv != APR_SUCCESS) goto error_old_journal_apr;
-
-        /* Close old journal. */
-        AFW_ERROR_FOOTPRINT("apr_file_close()");
-        rv = apr_file_close(entry_f);
-        if (rv != APR_SUCCESS) goto error_old_journal_apr;
+        AFW_ERROR_FOOTPRINT("write()");
+        afw_file_write_full(entry_fd, &encoded_len_be,
+            sizeof(encoded_len_be), xctx);
+        afw_file_write_full(entry_fd, relative_entry_path_z,
+            strlen(relative_entry_path_z), xctx);
+        AFW_ERROR_FOOTPRINT("close()");
+        afw_file_close(entry_fd, xctx);
     }
 
     /* Write the new lock struct and close so lock is released. */
+    AFW_ERROR_FOOTPRINT("seek()");
+    afw_file_seek(lock_fd, 0, SEEK_SET, xctx);
+    AFW_ERROR_FOOTPRINT("write()");
+    afw_file_write_full(lock_fd, &lock, sizeof(lock), xctx);
+    AFW_ERROR_FOOTPRINT("close()");
+    afw_file_close(lock_fd, xctx);
 
-    /* Seek to start of lock file. */
-    AFW_ERROR_FOOTPRINT("apr_file_seek()");
-    offset = 0;
-    rv = apr_file_seek(lock_f, APR_SET, &offset);
-    if (rv != APR_SUCCESS) goto error_lock_apr;
-
-    /* Replace lock. */
-    AFW_ERROR_FOOTPRINT("apr_file_write()");
-    len = sizeof(lock);
-    rv = apr_file_write(lock_f, &lock, &len);
-    if (rv != APR_SUCCESS) goto error_lock_apr;
-
-    /* Close lock file which unblocks new journal entry adds. */
-    AFW_ERROR_FOOTPRINT("apr_file_close()");
-    rv = apr_file_close(lock_f);
-    if (rv != APR_SUCCESS) goto error_lock_apr;
-
-    /* Return cursor. */
     return cursor;
 
-error_lock_apr:
-    AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adapter '%ku' journal lock file '%s' - %s",
-        &adapter->pub.adapter_id,
-        adapter->journal_lock_file_path_z, footprint.z);
-
 error_lock:
+    afw_file_close(lock_fd, xctx);
+    afw_file_close(entry_fd, xctx);
     AFW_THROW_ERROR_FOOTPRINT_FZ(general, xctx,
         "Error detected while processing  "
         "adapter " "'%ku' journal lock file '%s' - %s",
         &adapter->pub.adapter_id,
         adapter->journal_lock_file_path_z, footprint.z);
-
-error_journal_apr:
-    AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adapter '%ku' journal file '%s' - %s",
-        &adapter->pub.adapter_id,
-        full_entry_path_z, footprint.z);
-
-error_old_journal_apr:
-    AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adapter '%ku' journal file '%s' - %s",
-        &adapter->pub.adapter_id,
-        old_full_entry_path_z, footprint.z);
 }
 
 /*
@@ -632,11 +527,10 @@ impl_afw_adapter_journal_get_entry_internal(
         (afw_file_internal_adapter_session_t *)self->session;
     afw_file_internal_adapter_t *adapter = session->adapter;
     const afw_pool_t *p = xctx->p;
-    apr_pool_t *apr_p = afw_pool_get_apr_pool(p);
 
     afw_error_footprint_t footprint;
-    apr_file_t *entry_f;
-    apr_file_t *peer_f;
+    int entry_fd;
+    int peer_fd;
     const afw_utf8_t *entry_object_id;
     const afw_object_t *peer;
     const afw_object_t *entry;
@@ -660,7 +554,6 @@ impl_afw_adapter_journal_get_entry_internal(
     const afw_utf8_z_t *full_peer_path_z;
     afw_off_t offset;
     afw_size_t len;
-    apr_status_t rv;
     afw_endian_big_uint64_t encoded_len_be;
     afw_size_t encoded_len;
     void *memory;
@@ -679,11 +572,11 @@ impl_afw_adapter_journal_get_entry_internal(
     applicable = false;
     entry_object_id = NULL;
     filter = NULL;
-    peer_f = NULL;
+    peer_fd = -1;
     peer = NULL;
     full_peer_path_z = NULL;
     full_entry_path_z = NULL;
-    entry_f = NULL;
+    entry_fd = -1;
     entry = NULL;
 
     /* Set variables based on options */
@@ -732,7 +625,7 @@ impl_afw_adapter_journal_get_entry_internal(
         
         /* Get peer object. */
         peer = impl_open_and_retrieve_peer_object(self, consumer_id,
-            &peer_f, &full_peer_path_z, xctx);
+            &peer_fd, &full_peer_path_z, xctx);
 
         /* If using consumer cursors, set variables as appropriate. */
         if (use_consumer_cursors) {
@@ -788,22 +681,18 @@ impl_afw_adapter_journal_get_entry_internal(
     /* If get_first, get path to first journal file. */
     if (get_first) {
         const afw_utf8_z_t *first_entry_save_path_z;
-        apr_finfo_t first_finfo;
+        afw_file_info_t first_info;
 
         first_entry_save_path = afw_utf8_concat(xctx->p, xctx,
             adapter->root, &impl_s_path_to_first, NULL);
         first_entry_save_path_z = afw_utf8_to_utf8_z(
             first_entry_save_path, p, xctx);
-        AFW_ERROR_FOOTPRINT("apr_stat()");
-        rv = apr_stat(&first_finfo, first_entry_save_path_z,
-            APR_FINFO_TYPE, apr_p);
+        AFW_ERROR_FOOTPRINT("stat()");
+        afw_file_stat(first_entry_save_path_z, &first_info, xctx);
         /* No pointer file yet: empty journal, not an error. */
-        if (APR_STATUS_IS_ENOENT(rv)) {
+        if (first_info.type == afw_file_type_missing) {
+            afw_file_close(peer_fd, xctx);
             return;
-        }
-        if (rv != APR_SUCCESS) {
-            AFW_THROW_ERROR_RV_Z(general, apr, rv,
-                "apr_stat() failed.", xctx);
         }
         relative_entry_path_z = afw_utf8_to_utf8_z(
             afw_utf8_from_memory(
@@ -844,22 +733,17 @@ impl_afw_adapter_journal_get_entry_internal(
             full_entry_path_z = afw_utf8_z_concat(p, xctx,
                 adapter->journal_dir_path_z,
                 relative_entry_path_z, NULL);
-            AFW_ERROR_FOOTPRINT("apr_file_open()");
-            rv = apr_file_open(&entry_f, full_entry_path_z,
-                APR_FOPEN_READ + APR_FOPEN_BINARY, APR_FPROT_OS_DEFAULT,
-                apr_p);
-            if (rv != APR_SUCCESS) goto error_journal_apr;
+            AFW_ERROR_FOOTPRINT("open()");
+            entry_fd = afw_file_open(full_entry_path_z, O_RDONLY, xctx);
         }
 
         /* Position to offset and read length. */
-        AFW_ERROR_FOOTPRINT("apr_file_seek()");
-        rv = apr_file_seek(entry_f, APR_SET, &offset);
-        if (rv != APR_SUCCESS) goto error_journal_apr;
-        len = sizeof(encoded_len_be);
-        AFW_ERROR_FOOTPRINT("apr_file_read()");
-        rv = apr_file_read(entry_f, &encoded_len_be, &len);
-        if (APR_STATUS_IS_EOF(rv)) break;  /* Nothing applicable. */
-        if (rv != APR_SUCCESS)  goto error_journal_apr;
+        AFW_ERROR_FOOTPRINT("seek()");
+        afw_file_seek(entry_fd, offset, SEEK_SET, xctx);
+        AFW_ERROR_FOOTPRINT("read()");
+        len = afw_file_read(entry_fd, &encoded_len_be,
+            sizeof(encoded_len_be), xctx);
+        if (len == 0) break;  /* Nothing applicable. */
         AFW_ERROR_FOOTPRINT("check if encoded_len_be truncated");
         if (len != sizeof(encoded_len_be)) goto error_journal;
         encoded_len = afw_endian_safe_big_uint64_to_native_size_t(
@@ -868,14 +752,13 @@ impl_afw_adapter_journal_get_entry_internal(
 
         /* If length is 0, switch to next journal file. */
         if (len == 0) {
-            AFW_ERROR_FOOTPRINT("apr_file_read()");
-            len = sizeof(relative_entry_path_wa_z);
-            rv = apr_file_read(entry_f, &relative_entry_path_wa_z[0], &len);
-            if (rv != APR_SUCCESS) goto error_journal_apr;
+            AFW_ERROR_FOOTPRINT("read()");
+            len = afw_file_read(entry_fd, &relative_entry_path_wa_z[0],
+                sizeof(relative_entry_path_wa_z) - 1, xctx);
+            relative_entry_path_wa_z[len] = 0;
             relative_entry_path_z = &relative_entry_path_wa_z[0];
-            AFW_ERROR_FOOTPRINT("apr_file_close()");
-            rv = apr_file_close(entry_f);
-            if (rv != APR_SUCCESS) goto error_journal_apr;
+            AFW_ERROR_FOOTPRINT("close()");
+            afw_file_close(entry_fd, xctx);
             offset = 0;
             open_journal = true;
             continue;
@@ -888,9 +771,8 @@ impl_afw_adapter_journal_get_entry_internal(
             memory = afw_xctx_calloc(len, xctx);
             buffer.size = len;
             buffer.ptr = memory;
-            AFW_ERROR_FOOTPRINT("apr_file_read()");
-            rv = apr_file_read(entry_f, memory, &len);
-            if (rv != APR_SUCCESS) goto error_journal_apr;
+            AFW_ERROR_FOOTPRINT("read()");
+            len = afw_file_read(entry_fd, memory, buffer.size, xctx);
             AFW_ERROR_FOOTPRINT("check that all of encoded entry read");
             if (len != buffer.size) goto error_journal;
             value = afw_content_type_raw_to_value(adapter->content_type, &buffer,
@@ -926,9 +808,8 @@ impl_afw_adapter_journal_get_entry_internal(
         offset = encoded_len + offset + sizeof(encoded_len_be);
     };
 
-    AFW_ERROR_FOOTPRINT("apr_file_close()");
-    rv = apr_file_close(entry_f);
-    if (rv != APR_SUCCESS) goto error_journal_apr;
+    AFW_ERROR_FOOTPRINT("close()");
+    afw_file_close(entry_fd, xctx);
 
 
     /* If use_consumer, finishup. */
@@ -972,8 +853,9 @@ impl_afw_adapter_journal_get_entry_internal(
         }
 
         /* Replace peer object and close. */
-        impl_write_and_close_peer_object(self, peer, peer_f,
+        impl_write_and_close_peer_object(self, peer, peer_fd,
             full_peer_path_z, xctx);
+        peer_fd = -1;
  
     }
 
@@ -991,13 +873,8 @@ impl_afw_adapter_journal_get_entry_internal(
     }
     return;
 
-error_journal_apr:
-    AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adapter '%ku' journal file '%s' - %s",
-        &adapter->pub.adapter_id,
-        full_entry_path_z, footprint.z);
-
 error_journal:
+    afw_file_close(entry_fd, xctx);
     AFW_THROW_ERROR_FOOTPRINT_FZ(general, xctx,
         "Error detected while processing  "
         "adapter " "'%ku' journal file '%s' - %s",
@@ -1055,14 +932,14 @@ impl_afw_adapter_journal_mark_entry_consumed(
     afw_xctx_t *xctx)
 {
     const afw_object_t *peer;
-    apr_file_t *peer_f;
+    int peer_fd;
     const afw_utf8_z_t *full_peer_path_z;
     const afw_utf8_t *consume_cursor;
     const afw_dateTime_t *now;
 
 
     peer = impl_open_and_retrieve_peer_object(self,
-        consumer_id, &peer_f,
+        consumer_id, &peer_fd,
         &full_peer_path_z, xctx);
 
     consume_cursor = afw_object_get_property_as_string_internal(peer,
@@ -1082,6 +959,6 @@ impl_afw_adapter_journal_mark_entry_consumed(
         now, xctx);
 
     /* Write peer object and close. */
-    impl_write_and_close_peer_object(self, peer, peer_f, full_peer_path_z,
+    impl_write_and_close_peer_object(self, peer, peer_fd, full_peer_path_z,
         xctx);
 }

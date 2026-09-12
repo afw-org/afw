@@ -48,8 +48,11 @@ result = add_object(
 assert((result.objectId !== uuid), "objectId was created with uuid");
 assert((result.objectId === "TestObject3"), "objectId was not created with onAddObject");
 
-// delete it to clean up
-delete_object("model", "MyObjectType3", "TestObject3");
+/*
+ * onAddObject stored the object on the mapped file adapter as
+ * TestObjectType1/TestObject3 (not MyObjectType3/...). Clean up that file.
+ */
+delete_object("file", "TestObjectType1", "TestObject3");
 
 return 0;
 
