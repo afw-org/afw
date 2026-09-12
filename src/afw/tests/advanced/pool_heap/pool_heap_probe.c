@@ -722,9 +722,73 @@ impl_unhandled_alloc(afw_xctx_t *xctx)
 }
 
 /*
- * get_apr_pool() is a door for leftover APR calls, not the heap store.
- * Heap returns its reservoir for now. Tracker creates a child of that
- * reservoir on first call, without opening the heap door.
+ * Heap create uses at least one 4k-aligned chunk. A request larger
+ * than the remainder (and 4k) adds another chunk. Release walks the
+ * list.
+ */
+static int
+impl_heap_chunks(afw_xctx_t *xctx)
+{
+    const afw_pool_t *heap;
+    afw_pool_internal_self_t *heap_self;
+    afw_pool_chunk_t *chunk;
+    void *a;
+    void *b;
+    afw_size_t n;
+    afw_size_t before;
+
+    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap_self = impl_self(heap);
+    n = 0;
+    for (chunk = heap_self->first_chunk; chunk; chunk = chunk->next) {
+        n++;
+        if (chunk->size < AFW_POOL_CHUNK_MIN) {
+            return impl_fail("heap_chunks", "chunk smaller than 4k");
+        }
+        if ((chunk->size & (AFW_POOL_CHUNK_MIN - 1)) != 0) {
+            return impl_fail("heap_chunks", "chunk size not a 4k multiple");
+        }
+        if (((afw_size_t)(uintptr_t)chunk &
+            (AFW_POOL_CHUNK_MIN - 1)) != 0)
+        {
+            return impl_fail("heap_chunks", "chunk not 4k-aligned");
+        }
+    }
+    if (n < 1) {
+        return impl_fail("heap_chunks", "heap has no chunks");
+    }
+
+    before = impl_in_use(xctx);
+    a = afw_pool_malloc(heap, AFW_POOL_CHUNK_MIN, xctx);
+    if (!a) {
+        return impl_fail("heap_chunks", "4k malloc returned NULL");
+    }
+    n = 0;
+    for (chunk = heap_self->first_chunk; chunk; chunk = chunk->next) {
+        n++;
+    }
+    if (n < 2) {
+        return impl_fail("heap_chunks", "large malloc did not add a chunk");
+    }
+
+    b = afw_pool_malloc(heap, AFW_POOL_CHUNK_MIN * 2, xctx);
+    if (!b) {
+        return impl_fail("heap_chunks", "8k malloc returned NULL");
+    }
+
+    afw_pool_free_memory(heap, a, AFW_POOL_CHUNK_MIN, xctx);
+    afw_pool_free_memory(heap, b, AFW_POOL_CHUNK_MIN * 2, xctx);
+    afw_pool_release(heap, xctx);
+    if (impl_expect_in_use(xctx, before, "heap_chunks after release")) {
+        return 1;
+    }
+    return 0;
+}
+
+/*
+ * get_apr_pool() is a lazy door, not the chunk store. Tracker and heap
+ * doors are independent; opening the tracker door does not open the
+ * heap door.
  */
 static int
 impl_get_apr_pool(afw_xctx_t *xctx)
@@ -742,6 +806,9 @@ impl_get_apr_pool(afw_xctx_t *xctx)
     heap_self = impl_self(heap);
     tracker_self = impl_self(tracker);
 
+    if (heap_self->first_chunk == NULL) {
+        return impl_fail("get_apr_pool", "heap has no chunks");
+    }
     if (tracker_self->public_apr_p != NULL) {
         return impl_fail("get_apr_pool",
             "tracker public APR exists before first call");
@@ -759,14 +826,6 @@ impl_get_apr_pool(afw_xctx_t *xctx)
         return impl_fail("get_apr_pool",
             "tracker public_apr_p is not the returned pool");
     }
-    if (a == heap_self->apr_p) {
-        return impl_fail("get_apr_pool",
-            "tracker door returned the heap reservoir");
-    }
-    if (apr_pool_parent_get(a) != heap_self->apr_p) {
-        return impl_fail("get_apr_pool",
-            "tracker APR parent is not the heap reservoir");
-    }
     if (heap_self->public_apr_p != NULL) {
         return impl_fail("get_apr_pool",
             "tracker door opened the heap public door");
@@ -778,9 +837,16 @@ impl_get_apr_pool(afw_xctx_t *xctx)
     }
 
     heap_door = afw_pool_get_apr_pool(heap);
-    if (heap_door != heap_self->apr_p) {
+    if (!heap_door) {
+        return impl_fail("get_apr_pool", "heap door returned NULL");
+    }
+    if (heap_door == a) {
         return impl_fail("get_apr_pool",
-            "heap door is not the reservoir (for now)");
+            "heap door is the tracker door");
+    }
+    if (heap_self->public_apr_p != heap_door) {
+        return impl_fail("get_apr_pool",
+            "heap public_apr_p is not the returned pool");
     }
 
     afw_pool_release(tracker, xctx);
@@ -1055,6 +1121,9 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "unhandled_alloc") == 0) {
         rc = impl_unhandled_alloc(xctx);
     }
+    else if (strcmp(case_name, "heap_chunks") == 0) {
+        rc = impl_heap_chunks(xctx);
+    }
     else if (strcmp(case_name, "get_apr_pool") == 0) {
         rc = impl_get_apr_pool(xctx);
     }
@@ -1086,7 +1155,8 @@ main(int argc, char **argv)
             "heap_malloc_free|tracker_malloc|tracker_optional_free|"
             "tracker_last_release|tracker_header|mixed_sizes|"
             "heap_whole_block|general_free_noop|tracker_parent|"
-            "unhandled_alloc|get_apr_pool|deregister_cleanup|"
+            "unhandled_alloc|heap_chunks|get_apr_pool|"
+            "deregister_cleanup|"
             "nonadjacent_reuse|"
             "for_clone_churn|create_child_of_heap|double_free_throws"
 #ifdef AFW_DEBUG_POOL

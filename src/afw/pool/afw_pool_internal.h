@@ -17,7 +17,9 @@
  *
  * A pool is a heap unless it is a tracker. A tracker gets memory
  * from a heap, tracks live USER blocks, and returns them to the
- * heap on free or tracker destroy. The heap owns the free list.
+ * heap on free or tracker destroy. The heap owns the free list and
+ * a list of 4k-aligned posix_memalign chunks. Destroy free()s every
+ * chunk.
  *
  * USER `size` is always the malloc/free_memory argument.
  *
@@ -99,6 +101,18 @@ struct afw_pool_free_node_s {
     afw_pool_free_node_t *next;
 };
 
+/** Heap 4k-aligned region. Destroy walks first_chunk and free()s each. */
+typedef struct afw_pool_chunk_s afw_pool_chunk_t;
+struct afw_pool_chunk_s {
+    afw_pool_chunk_t *next;
+    afw_size_t size;
+};
+
+#define AFW_POOL_ALIGN ((afw_size_t)16)
+#define AFW_POOL_ALIGN_UP(n) \
+    (((n) + (AFW_POOL_ALIGN - 1)) & ~(AFW_POOL_ALIGN - 1))
+#define AFW_POOL_CHUNK_MIN ((afw_size_t)4096)
+
 /*
  * Heap debug prefix is at least a free node so overlay on free does
  * not touch USER. [size][pool] stay immediately before USER.
@@ -130,21 +144,34 @@ struct afw_pool_internal_self_s {
     afw_integer_t pool_number;
 
     /**
-     * @brief Heap reservoir APR pool (current impl). Trackers share it.
+     * @brief First malloc chunk (heap only). Trackers leave this NULL.
      *
-     * This is how the heap holds memory today (free list, else
-     * apr_palloc). It is not the afw_pool_get_apr_pool() door. A
-     * future heap might not be APR-backed.
+     * Destroy walks this list and free()s every chunk. The heap self
+     * lives in the first allocated chunk.
      */
-    apr_pool_t *apr_p;
+    afw_pool_chunk_t *first_chunk;
+
+    /**
+     * @brief Chunk currently used for bump allocation (heap only).
+     */
+    afw_pool_chunk_t *current_chunk;
+
+    /**
+     * @brief Next unused byte in current_chunk (heap only).
+     */
+    char *bump;
+
+    /**
+     * @brief Bytes left at bump in current_chunk (heap only).
+     */
+    afw_size_t remaining;
 
     /**
      * @brief APR pool for afw_pool_get_apr_pool() callers, or NULL.
      *
      * Door for leftover APR function calls. NULL until first
-     * get_apr_pool(). Heap: for now aliases apr_p. Tracker: first call
-     * creates a child of the heap reservoir (not get_apr_pool(heap));
-     * tracker destroy releases it. Never created if nobody calls.
+     * get_apr_pool(). Independent of the chunk store. Tracker destroy
+     * releases it. Never created if nobody calls.
      */
     apr_pool_t *public_apr_p;
 
@@ -225,6 +252,13 @@ struct afw_pool_internal_self_with_free_memory_head_s {
 
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_internal_create_base_pool();
+
+/**
+ * Destroy the process base pool. Process teardown is one thread; do
+ * not take the multithreaded lock (it lives in this pool).
+ */
+AFW_DECLARE(void)
+afw_pool_internal_destroy_base_pool(afw_xctx_t *xctx);
 
 AFW_DECLARE(afw_boolean_t)
 afw_pool_internal_is_heap(const afw_pool_t *p);

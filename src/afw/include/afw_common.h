@@ -56,7 +56,7 @@
  *   afwdev build --define AFW_DEBUG_POOL
  */
 
-/* Adaptive Framework still uses APR for pool backing (get_apr_pool door). */
+/* Adaptive Framework still uses APR for get_apr_pool() and apr_initialize. */
 #include <apr_general.h>
 
 

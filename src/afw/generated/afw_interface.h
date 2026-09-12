@@ -6832,11 +6832,10 @@ struct afw_pool_inf_s {
  * Return an APR pool for leftover Apache APR function calls only.
  * 
  * This is a door for code that still calls APR, not the AFW pool's
- * own store. Heap currently happens to run in an APR pool and may
- * return that one; a future heap might not be APR-backed at all.
- * On a heap tracker, nothing is created unless this is called; the
- * first call makes an APR pool, later calls return the same
- * pointer, and tracker destroy releases it.
+ * own store. The heap store is AFW chunks, not this pool. Nothing
+ * is created unless this is called; the first call makes an APR
+ * pool, later calls return the same pointer, and destroy releases
+ * it. On a tracker, this does not open the heap door.
  * 
  * Do not apr_pool_destroy the returned pool. Prefer AFW
  * malloc/calloc; need for this door should shrink.

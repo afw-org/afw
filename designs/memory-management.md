@@ -1185,7 +1185,7 @@ Current full/subpool impls do implement free (return to free list / untrack). Th
 
 **Possible future (not committed):** change the **afw_pool** implementation so **primary allocation does not go through APR at all**. An **`apr_pool_t` would be created only if something calls `get_apr_pool`** (lazy public APR pool for APR APIs that still need one). That would make AFW free to track sizes, free lists, and limits without APR’s pool model.
 
-**Non-pool APR is gone** (vector, hash, strings, files, threads, getopt, curl body, LDAP setup). What remains **is** the pool reservoir + `get_apr_pool` door + `apr_initialize`. Live map: [`remaining-apr.md`](remaining-apr.md). `get_apr_pool` on demand only matters until those leftover `apr_palloc` sites (xctx/stream/vector-unhandled/backtrace) move off the door.
+**Non-pool APR is gone** (vector, hash, strings, files, threads, getopt, curl body, LDAP setup). Heap store is 4k-aligned posix_memalign chunks. What remains is the `get_apr_pool` door + `apr_initialize`. Live map: [`remaining-apr.md`](remaining-apr.md).
 
 **Why bring this up (OOM / graceful kill):** want enough visibility to know **how much memory an xctx / thread / request** is using so a host can **fail or kill that request** instead of taking down the server. That needs AFW-owned accounting (bytes_allocated already exists on pool self — incomplete story for process-wide limits). Classic **APR on allocation failure** was harsh: intentional hard failure (e.g. segfault / abort style “we have big problems”) rather than a clean Adaptive error — exact APR version behavior may have changed; AFW’s wrapper path tries `AFW_THROW_ERROR_Z(memory, …)` if `apr_palloc` returns NULL, but that may never run if APR aborts first.
 

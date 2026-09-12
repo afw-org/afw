@@ -110,9 +110,14 @@ def run():
                 "move in_use; block still dies with the heap",
             ),
             (
+                "heap_chunks",
+                "heap store is 4k-aligned posix_memalign chunks; "
+                "large alloc adds a chunk; release walks the list",
+            ),
+            (
                 "get_apr_pool",
-                "tracker get_apr_pool is lazy, a child of the heap "
-                "reservoir, and dies with the tracker",
+                "get_apr_pool is a lazy door, not the chunk store; "
+                "tracker door does not open the heap door",
             ),
             (
                 "deregister_cleanup",

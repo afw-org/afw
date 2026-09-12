@@ -66,7 +66,8 @@
  * decides multithreaded vs thread-specific. Heap / heap tracker are
  * single-thread only: create, use, and release on the same thread
  * (normally one compiled_value evaluate). Trackers are scope->p and
- * return memory to the heap. afw_pool_get_apr_pool() is a door for
+ * return memory to the heap. The heap store is 4k-aligned chunks;
+ * destroy free()s the list. afw_pool_get_apr_pool() is a door for
  * leftover APR function calls, not the heap's store.
  *
  * Key functions: afw_pool_create(), afw_pool_create_as_managed_p(),

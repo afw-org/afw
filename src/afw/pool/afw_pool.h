@@ -25,8 +25,8 @@
  * Key invariants:
  * - A pool is a heap unless it is a tracker. A tracker gets memory
  *   from a heap, tracks it, and returns it on free or tracker destroy.
- *   Multithreaded heap is lock wrappers. APR is the heap reservoir,
- *   not a third AFW pool kind.
+ *   Multithreaded heap is lock wrappers. The heap owns 4k-aligned
+ *   posix_memalign chunks (not APR). Not a third AFW pool kind.
  * - afw_pool_create() of a heap is a heap (mt if the parent is mt).
  *   Of a tracker, a tracker. xctx->p is always single-thread heap.
  * - afw_pool_get_apr_pool() is a door for leftover APR function calls,

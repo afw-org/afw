@@ -544,6 +544,7 @@ afw_environment_release(afw_xctx_t *xctx)
     //! @fixme Causing exception because some things not cleaned up properly
     //! @fixme afw_pool_destroy(xctx->env->p, xctx);
     //! @fixme apr_terminate();
+    (void)xctx;
 }
 
 /* Create a new registry type. */
