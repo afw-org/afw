@@ -128,6 +128,26 @@ open_file("x", "no-such-root/file.txt", "r");
 open_file("x", "data/../include_root/x.txt", "r");
 
 
+//? test: open_file-symlink-sibling
+//? description: symlink to a sibling under the root is followed
+//? expect: 0
+//? source: ...
+
+const sn = open_file("ok-link", "data/ok_link", "r");
+const s = read(sn, 100);
+close(sn);
+assert(s === "from-include\n" || s === "from-include");
+return 0;
+
+
+//? test: open_file-symlink-escape
+//? description: symlink whose target is outside the root is rejected
+//? expect: error
+//? source: ...
+
+open_file("esc", "data/escape_link/secret.txt", "r");
+
+
 //? test: open_file-longest-prefix
 //? description: includes beats include for includes/...
 //? expect: 0

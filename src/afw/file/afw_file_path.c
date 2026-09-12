@@ -12,7 +12,8 @@
  */
 
 #include "afw_internal.h"
-#include <apr_file_info.h>
+#include <errno.h>
+#include <string.h>
 
 
 /*
@@ -71,44 +72,6 @@ impl_remainder_has_dotdot(const afw_utf8_t *remainder)
 
 
 
-/* Resolve host root directory to an absolute real path (must exist). */
-static const char *
-impl_canonicalize_root_dir_z(
-    const afw_utf8_t *host_root,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const char *host_root_z;
-    char *merged_z;
-    char *real_z;
-    apr_status_t rv;
-    apr_pool_t *apr_p;
-
-    apr_p = afw_pool_get_apr_pool(p);
-    host_root_z = afw_utf8_to_utf8_z(host_root, p, xctx);
-
-    /* Absolutize relative roots against CWD; TRUENAME requires existence. */
-    rv = apr_filepath_merge(&merged_z, NULL, host_root_z,
-        APR_FILEPATH_TRUENAME | APR_FILEPATH_NOTRELATIVE,
-        apr_p);
-    if (rv != APR_SUCCESS) {
-        /* Retry without NOTRELATIVE for relative roots that need CWD. */
-        rv = apr_filepath_merge(&merged_z, NULL, host_root_z,
-            APR_FILEPATH_TRUENAME,
-            apr_p);
-    }
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(not_found, apr, rv, xctx,
-            "rootFilePaths host directory '%ku' could not be resolved (must exist as a directory)",
-            host_root);
-    }
-
-    real_z = merged_z;
-    return real_z;
-}
-
-
-
 /* True if candidate is equal to root or strictly under root + '/'. */
 static afw_boolean_t
 impl_path_is_under_root(
@@ -118,6 +81,9 @@ impl_path_is_under_root(
     size_t root_len;
     size_t cand_len;
 
+    if (!candidate_z || !root_z) {
+        return false;
+    }
     root_len = strlen(root_z);
     cand_len = strlen(candidate_z);
 
@@ -127,7 +93,13 @@ impl_path_is_under_root(
      * prefix/boundary check so '/tmp/data/' still matches
      * '/tmp/data/file.txt'.
      */
-    while (root_len > 1 && root_z[root_len - 1] == '/') {
+    while (root_len > 1 &&
+        (root_z[root_len - 1] == '/'
+#if defined(_WIN32) || defined(WIN32)
+            || root_z[root_len - 1] == '\\'
+#endif
+            ))
+    {
         root_len--;
     }
 
@@ -141,7 +113,179 @@ impl_path_is_under_root(
         return true;
     }
     /* Boundary: next char must be separator (avoid /tmp/afw vs /tmp/afw-evil). */
-    return candidate_z[root_len] == '/';
+    return candidate_z[root_len] == '/'
+#if defined(_WIN32) || defined(WIN32)
+        || candidate_z[root_len] == '\\'
+#endif
+        ;
+}
+
+
+
+/*
+ * Join addpath under root lexically. Collapse extra slashes and '.' .
+ * '..' pops a segment but will not leave root. Returns pool-allocated
+ * 0-terminated path, or NULL on escape.
+ */
+static char *
+impl_join_lexical(
+    const char *root_z,
+    const char *addpath_z,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    char *dst;
+    afw_size_t cap;
+    afw_size_t root_len;
+    afw_size_t add_len;
+    afw_size_t jail;
+    afw_size_t n;
+    const char *s;
+    const char *seg;
+    afw_size_t seglen;
+
+    root_len = strlen(root_z);
+    add_len = addpath_z ? strlen(addpath_z) : 0;
+    cap = root_len + add_len + 2;
+    dst = afw_pool_malloc(p, cap, xctx);
+
+    memcpy(dst, root_z, root_len);
+    n = root_len;
+    while (n > 1 && dst[n - 1] == '/') {
+        n--;
+    }
+    jail = n;
+    dst[n] = 0;
+
+    if (!addpath_z || add_len == 0) {
+        return dst;
+    }
+
+    s = addpath_z;
+    while (*s) {
+        while (*s == '/') {
+            s++;
+        }
+        if (!*s) {
+            break;
+        }
+        seg = s;
+        while (*s && *s != '/') {
+            s++;
+        }
+        seglen = (afw_size_t)(s - seg);
+
+        if (seglen == 1 && seg[0] == '.') {
+            continue;
+        }
+        if (seglen == 2 && seg[0] == '.' && seg[1] == '.') {
+            if (n <= jail) {
+                return NULL;
+            }
+            while (n > jail && dst[n - 1] != '/') {
+                n--;
+            }
+            if (n > jail) {
+                n--; /* drop slash */
+            }
+            dst[n] = 0;
+            continue;
+        }
+
+        if (n == 0 || dst[n - 1] != '/') {
+            dst[n++] = '/';
+        }
+        memcpy(dst + n, seg, seglen);
+        n += seglen;
+        dst[n] = 0;
+    }
+
+    return dst;
+}
+
+
+
+/* Canonicalize path to an absolute real path (must exist). */
+AFW_DEFINE(const afw_utf8_t *)
+afw_file_path_canonicalize(
+    const afw_utf8_t *path,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_z_t *path_z;
+    const afw_utf8_t *real;
+    int err;
+
+    path_z = afw_utf8_to_utf8_z(path, p, xctx);
+    real = afw_os_realpath(path_z, p, xctx);
+    if (!real) {
+        err = errno;
+        AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
+            "Unresolvable path %s", path_z);
+    }
+    return real;
+}
+
+
+
+/* Join addpath under root; result stays under root. */
+AFW_DEFINE(const afw_utf8_t *)
+afw_file_path_join_under_root(
+    const afw_utf8_t *root,
+    const afw_utf8_t *addpath,
+    afw_boolean_t trailing_slash,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_z_t *root_z;
+    const afw_utf8_z_t *add_z;
+    char *joined_z;
+    const afw_utf8_t *real;
+    const afw_utf8_t *result;
+    const afw_utf8_z_t *check_z;
+
+    if (!root || root->len == 0) {
+        AFW_THROW_ERROR_Z(bad_request,
+            "join under root: empty root", xctx);
+    }
+
+    root_z = afw_utf8_to_utf8_z(root, p, xctx);
+    if (!addpath || addpath->len == 0) {
+        add_z = "";
+    }
+    else {
+        add_z = afw_utf8_to_utf8_z(addpath, p, xctx);
+    }
+
+    joined_z = impl_join_lexical(root_z, add_z, p, xctx);
+    if (!joined_z) {
+        AFW_THROW_ERROR_FZ(bad_request, xctx,
+            "path escapes root '%s'", root_z);
+    }
+
+    real = afw_os_realpath(joined_z, p, xctx);
+    if (real) {
+        check_z = afw_utf8_to_utf8_z(real, p, xctx);
+        if (!impl_path_is_under_root(check_z, root_z)) {
+            AFW_THROW_ERROR_FZ(bad_request, xctx,
+                "path escapes root '%s'", root_z);
+        }
+        result = real;
+    }
+    else {
+        if (!impl_path_is_under_root(joined_z, root_z)) {
+            AFW_THROW_ERROR_FZ(bad_request, xctx,
+                "path escapes root '%s'", root_z);
+        }
+        result = afw_utf8_create(joined_z, AFW_UTF8_Z_LEN, p, xctx);
+    }
+
+    if (trailing_slash &&
+        (result->len == 0 || result->s[result->len - 1] != '/'))
+    {
+        result = afw_utf8_concat(p, xctx, result, afw_s_a_slash, NULL);
+    }
+    return result;
 }
 
 
@@ -164,11 +308,7 @@ afw_file_path_resolve_rootFilePaths(
     const afw_utf8_t *best_prefix;
     const afw_utf8_t *best_host;
     afw_utf8_t remainder;
-    const char *root_z;
-    char *merged_z;
-    char *addpath_z;
-    apr_status_t rv;
-    apr_pool_t *apr_p;
+    const afw_utf8_t *root;
     const afw_utf8_octet_t *rem_s;
     afw_size_t rem_len;
 
@@ -225,10 +365,6 @@ afw_file_path_resolve_rootFilePaths(
             (int)logical_path->len, logical_path->s);
     }
 
-    /*
-     * Remainder after a proper prefix match is either empty or starts with '/'.
-     * Strip leading '/' for apr_filepath_merge relative addpath.
-     */
     rem_s = remainder.s;
     rem_len = remainder.len;
     while (rem_len > 0 && *rem_s == '/') {
@@ -236,51 +372,14 @@ afw_file_path_resolve_rootFilePaths(
         rem_len--;
     }
 
-    apr_p = afw_pool_get_apr_pool(p);
-    root_z = impl_canonicalize_root_dir_z(best_host, p, xctx);
+    root = afw_file_path_canonicalize(best_host, p, xctx);
 
     if (rem_len == 0) {
-        /* Logical path was exactly the root key — host root directory. */
-        if (!impl_path_is_under_root(root_z, root_z)) {
-            AFW_THROW_ERROR_Z(general,
-                "Internal error resolving rootFilePaths.", xctx);
-        }
-        return afw_utf8_create(root_z, AFW_UTF8_Z_LEN, p, xctx);
+        return root;
     }
 
-    {
-        afw_utf8_t rem;
-
-        rem.s = rem_s;
-        rem.len = rem_len;
-        addpath_z = (char *)afw_utf8_to_utf8_z(&rem, p, xctx);
-    }
-
-    /*
-     * Merge under root with SECUREROOT so ".." and absolute addpath cannot
-     * escape. TRUENAME when possible; if the leaf does not exist yet (create
-     * modes), merge without TRUENAME then re-check containment of parent.
-     */
-    rv = apr_filepath_merge(&merged_z, root_z, addpath_z,
-        APR_FILEPATH_SECUREROOT | APR_FILEPATH_TRUENAME,
-        apr_p);
-    if (rv != APR_SUCCESS) {
-        rv = apr_filepath_merge(&merged_z, root_z, addpath_z,
-            APR_FILEPATH_SECUREROOT,
-            apr_p);
-    }
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(bad_request, apr, rv, xctx,
-            "Failed to resolve file location '%.*s' under rootFilePaths.",
-            (int)logical_path->len, logical_path->s);
-    }
-
-    if (!impl_path_is_under_root(merged_z, root_z)) {
-        AFW_THROW_ERROR_FZ(bad_request, xctx,
-            "Failed to resolve file location '%.*s': "
-            "path escapes rootFilePaths root.",
-            (int)logical_path->len, logical_path->s);
-    }
-
-    return afw_utf8_create(merged_z, AFW_UTF8_Z_LEN, p, xctx);
+    remainder.s = rem_s;
+    remainder.len = rem_len;
+    return afw_file_path_join_under_root(root, &remainder,
+        false, p, xctx);
 }

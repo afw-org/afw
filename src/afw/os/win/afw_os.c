@@ -19,6 +19,7 @@
 #include "afw.h"
 #include "Dbghelp.h"
 #include <direct.h>
+#include <errno.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -320,6 +321,25 @@ afw_os_getcwd(const afw_pool_t *p, afw_xctx_t *xctx)
     char buf[4096];
 
     if (!_getcwd(buf, sizeof(buf))) {
+        return NULL;
+    }
+    return afw_utf8_create(buf, AFW_UTF8_Z_LEN, p, xctx);
+}
+
+
+AFW_DEFINE(const afw_utf8_t *)
+afw_os_realpath(
+    const afw_utf8_z_t *path,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    char buf[4096];
+
+    if (!path || !*path) {
+        errno = EINVAL;
+        return NULL;
+    }
+    if (!_fullpath(buf, path, sizeof(buf))) {
         return NULL;
     }
     return afw_utf8_create(buf, AFW_UTF8_Z_LEN, p, xctx);

@@ -149,46 +149,17 @@ afw_vfs_adapter_internal_create_cede_p(
 
         /*
          * Canonicalize host directory (absolute real path) so later
-         * SECUREROOT merges match rootFilePaths behavior (issue #103 / #120).
+         * join-under-root matches rootFilePaths (issue #103 / #120).
          */
         {
-            char *merged_z;
-            apr_pool_t *apr_p;
-            afw_size_t mlen;
+            afw_utf8_t host;
+            const afw_utf8_t *full;
 
-            apr_p = afw_pool_get_apr_pool(p);
-            rv = apr_filepath_merge(&merged_z, NULL, entries->string_z,
-                APR_FILEPATH_TRUENAME, apr_p);
-            if (rv != APR_SUCCESS) {
-                rv = apr_filepath_merge(&merged_z, NULL, entries->string_z,
-                    0, apr_p);
-            }
-            if (rv == APR_SUCCESS && merged_z && *merged_z) {
-                mlen = strlen(merged_z);
-                if (merged_z[mlen - 1] == '/'
-#if defined(_WIN32) || defined(WIN32)
-                    || merged_z[mlen - 1] == '\\'
-#endif
-                    )
-                {
-                    entries->string_z = afw_utf8_z_create(
-                        merged_z, mlen, p, xctx);
-                    entries->string.len = mlen;
-                }
-                else {
-                    {
-                        afw_utf8_t base;
-
-                        base.s = (const afw_utf8_octet_t *)merged_z;
-                        base.len = mlen;
-                        entries->string_z = afw_utf8_to_utf8_z(
-                            afw_utf8_concat(p, xctx,
-                                &base, afw_s_a_slash, NULL),
-                            p, xctx);
-                        entries->string.len = mlen + 1;
-                    }
-                }
-            }
+            host.s = (const afw_utf8_octet_t *)entries->string_z;
+            host.len = entries->string.len;
+            full = afw_file_insure_full_path(&host, p, xctx);
+            entries->string_z = afw_utf8_to_utf8_z(full, p, xctx);
+            entries->string.len = full->len;
         }
 
         /* Move new entry to its ordered place. */

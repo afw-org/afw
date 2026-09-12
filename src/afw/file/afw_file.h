@@ -49,6 +49,49 @@ afw_file_insure_full_path(const afw_utf8_t *path,
 
 
 /**
+ * @brief Canonicalize path to an absolute real path.
+ * @param path full or relative host path.
+ * @param p pool for the returned path.
+ * @param xctx of caller.
+ * @return absolute real path (pool-allocated).
+ *
+ * The path must exist. Relative paths are resolved against CWD.
+ * Follows symlinks. Does not add a trailing slash.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_file_path_canonicalize(
+    const afw_utf8_t *path,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Join addpath under root with containment.
+ * @param root canonical host directory (absolute real path).
+ * @param addpath remainder relative to root; leading slashes ignored.
+ * @param trailing_slash if true, insure the result ends with '/'.
+ * @param p pool for the returned path.
+ * @param xctx of caller.
+ * @return absolute host path under root (pool-allocated).
+ *
+ * Extra slashes and '.' segments are collapsed. '..' that would leave
+ * root is rejected. If the joined path exists, it is realpath'd so a
+ * symlink whose target is outside root fails. If it does not exist
+ * (create of a missing leaf), the lexical join is used and must still
+ * stay under root by separator-boundary.
+ *
+ * Used by rootFilePaths resolve and vfsMap host-path resolve.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_file_path_join_under_root(
+    const afw_utf8_t *root,
+    const afw_utf8_t *addpath,
+    afw_boolean_t trailing_slash,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Resolve a logical path using application rootFilePaths.
  * @param logical_path path as used by open_file / compile_from_file /
  *     eval_from_file (must start with a configured rootFilePaths property

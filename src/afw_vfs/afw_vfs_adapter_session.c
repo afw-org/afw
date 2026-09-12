@@ -69,21 +69,6 @@ impl_to_z(
 }
 
 
-static const afw_utf8_z_t *
-impl_z_trailing_slash(
-    const afw_utf8_z_t *s_z,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    afw_utf8_t base;
-
-    impl_utf8_from_z(&base, s_z);
-    return impl_to_z(
-        afw_utf8_concat(p, xctx, &base, afw_s_a_slash, NULL),
-        p, xctx);
-}
-
-
 static const afw_utf8_t *
 impl_vfs_path(
     const afw_utf8_t *adapter_id,
@@ -185,54 +170,10 @@ impl_prefix_matches(
 
 
 
-/* True if candidate is equal to root or strictly under root + '/'. */
-static afw_boolean_t
-impl_path_is_under_root(
-    const char *candidate_z,
-    const char *root_z)
-{
-    size_t root_len;
-    size_t cand_len;
-
-    if (!candidate_z || !root_z) {
-        return false;
-    }
-    root_len = strlen(root_z);
-    cand_len = strlen(candidate_z);
-    /*
-     * Compare without a trailing slash on root so root "/tmp/afw/" and
-     * candidate "/tmp/afw/temp/x" share prefix "/tmp/afw" with boundary '/'.
-     */
-    while (root_len > 1 &&
-        (root_z[root_len - 1] == '/'
-#if defined(_WIN32) || defined(WIN32)
-            || root_z[root_len - 1] == '\\'
-#endif
-            ))
-    {
-        root_len--;
-    }
-    if (cand_len < root_len) {
-        return false;
-    }
-    if (strncmp(candidate_z, root_z, root_len) != 0) {
-        return false;
-    }
-    if (cand_len == root_len) {
-        return true;
-    }
-    return candidate_z[root_len] == '/'
-#if defined(_WIN32) || defined(WIN32)
-        || candidate_z[root_len] == '\\'
-#endif
-        ;
-}
-
-
-
 /*
- * Build host path under vfs_entry root using APR SECUREROOT (aligned with
- * rootFilePaths resolution). Host roots are canonicalized at adapter create.
+ * Build host path under vfs_entry root using shared join-under-root
+ * (same containment as rootFilePaths). Host roots are canonicalized
+ * at adapter create.
  */
 static const afw_utf8_z_t *
 impl_resolve_host_path(
@@ -242,84 +183,40 @@ impl_resolve_host_path(
     afw_xctx_t *xctx)
 {
     afw_utf8_t adjusted;
-    const afw_utf8_z_t *addpath_z;
-    const afw_utf8_z_t *root_z;
-    char *merged_z;
-    apr_pool_t *apr_p;
-    apr_status_t rv;
+    afw_utf8_t root;
+    const afw_utf8_t *joined;
     afw_size_t add_len;
     afw_boolean_t want_trailing_slash;
 
     impl_validate_object_id(object_id, xctx);
 
-    root_z = vfs_entry->string_z;
     want_trailing_slash = afw_utf8_ends_with(object_id, afw_s_a_slash);
 
     adjusted.s = object_id->s + vfs_entry->key.len;
     adjusted.len = object_id->len - vfs_entry->key.len;
     if (adjusted.len == 0) {
-        return root_z;
+        return vfs_entry->string_z;
     }
 
     add_len = adjusted.len;
-    /* apr_filepath_merge prefers relative addpath without leading slash. */
     if (add_len > 0 && adjusted.s[0] == '/') {
         adjusted.s++;
         add_len--;
     }
-    /* Drop trailing slash for merge; restore for directories after. */
+    /* Drop trailing slash; join restores it for directories. */
     if (add_len > 0 && adjusted.s[add_len - 1] == '/') {
         add_len--;
     }
-
-    apr_p = afw_pool_get_apr_pool(p);
     if (add_len == 0) {
-        return root_z;
+        return vfs_entry->string_z;
     }
+    adjusted.len = add_len;
 
-    addpath_z = afw_utf8_z_create(adjusted.s, add_len, p, xctx);
-
-    /*
-     * Merge under root with SECUREROOT so ".." and absolute addpath cannot
-     * escape. TRUENAME when the leaf exists; without TRUENAME for create.
-     */
-    rv = apr_filepath_merge(&merged_z, root_z, addpath_z,
-        APR_FILEPATH_SECUREROOT | APR_FILEPATH_TRUENAME,
-        apr_p);
-    if (rv != APR_SUCCESS) {
-        rv = apr_filepath_merge(&merged_z, root_z, addpath_z,
-            APR_FILEPATH_SECUREROOT,
-            apr_p);
-    }
-    if (rv != APR_SUCCESS) {
-        /*
-         * Last resort for unusual roots: concat after segment validation.
-         * Prefer failing closed when containment cannot be proven later.
-         */
-        adjusted.s = object_id->s + vfs_entry->key.len;
-        adjusted.len = object_id->len - vfs_entry->key.len;
-        merged_z = (char *)impl_to_z(
-            afw_utf8_concat(p, xctx,
-                &vfs_entry->string, &adjusted, NULL),
-            p, xctx);
-    }
-
-    if (!impl_path_is_under_root(merged_z, root_z)) {
-        AFW_THROW_ERROR_FZ(general, xctx,
-            "object_id '%ku' resolves outside vfsMap host root %s",
-            object_id,
-            root_z);
-    }
-
-    /* If object_id was a directory, ensure trailing slash on host path. */
-    if (want_trailing_slash) {
-        afw_size_t mlen = strlen(merged_z);
-        if (mlen == 0 || merged_z[mlen - 1] != '/') {
-            return (char *)impl_z_trailing_slash(merged_z, p, xctx);
-        }
-    }
-
-    return merged_z;
+    root.s = (const afw_utf8_octet_t *)vfs_entry->string_z;
+    root.len = vfs_entry->string.len;
+    joined = afw_file_path_join_under_root(&root, &adjusted,
+        want_trailing_slash, p, xctx);
+    return afw_utf8_to_utf8_z(joined, p, xctx);
 }
 
 

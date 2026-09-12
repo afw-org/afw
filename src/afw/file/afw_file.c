@@ -46,32 +46,15 @@ afw_file_insure_full_path(const afw_utf8_t *path,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t *full_path;
-    const char *path_z;
-    char *full_path_z;
-    size_t len;
-    apr_status_t rv;
-    
-    path_z = afw_utf8_to_utf8_z(path, p, xctx);
-    rv = apr_filepath_merge(
-        &full_path_z, NULL, path_z,
-        APR_FILEPATH_TRUENAME,
-        afw_pool_get_apr_pool(p));
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "Unresolvable path %s", path_z);
-    }
-    len = strlen(full_path_z);
-    if (len > 0 && full_path_z[len - 1] != '/') {
-        afw_utf8_t base;
 
-        base.s = (const afw_utf8_octet_t *)full_path_z;
-        base.len = len;
-        full_path = afw_utf8_concat(p, xctx, &base, afw_s_a_slash, NULL);
+    full_path = afw_file_path_canonicalize(path, p, xctx);
+    if (full_path->len == 0 ||
+        full_path->s[full_path->len - 1] != '/')
+    {
+        full_path = afw_utf8_concat(p, xctx,
+            full_path, afw_s_a_slash, NULL);
     }
-    else {
-        full_path = afw_utf8_create(full_path_z, AFW_UTF8_Z_LEN, p, xctx);
-    }
-    return full_path;  
+    return full_path;
 }
 
 

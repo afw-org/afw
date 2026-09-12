@@ -54,7 +54,7 @@ Core stream/file code must not special-case FCGI. See **`afw-server`**, **`afw-s
 - Application conf: `rootFilePaths` map **prefix → host directory**
 - **Longest matching prefix** with path-boundary: match only if path equals prefix or continues with `/` (so `include` does not match `includes/...`)
 - Absolute and relative host roots; relative roots absolutized at resolve time; production prefers absolute host roots
-- **Traversal hardening:** reject `..` segments in remainder; final path under canonical root (`apr_filepath_merge` + SECUREROOT / separator-boundary containment). Symlinks that escape fail
+- **Traversal hardening:** reject `..` segments in remainder; final path under canonical root (`afw_file_path_join_under_root` / separator-boundary containment). Symlinks that escape fail
 - No open without a matching root; empty path fails
 - **Related:** adapter-style whole-file FS access uses **`vfsMap`** on `adapterType=vfs` (extension **`afw_vfs`**), not `rootFilePaths` — see **`afw-vfs`** (same longest-prefix / under-root ideas)
 - `requiresExecuteAccess` on `open_file`
