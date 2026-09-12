@@ -39,7 +39,11 @@ def run():
             ),
             (
                 "printf-k",
-                "%ku / %km, printf_len, snprintf dest size",
+                "%ku / %km, width/precision, C %d/%s, dest size",
+            ),
+            (
+                "printf-throws",
+                "%k rejects other flags/length; %n throws",
             ),
             (
                 "error-backtrace",

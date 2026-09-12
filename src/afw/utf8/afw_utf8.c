@@ -22,6 +22,8 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <limits.h>
+#include <stdint.h>
 
 static const afw_utf8_z_t * impl_z_empty = "";
 
@@ -920,18 +922,76 @@ impl_out_forced_safe(
 
 
 static void
-impl_out_hex_memory(
-    impl_fmt_out_t *o, const afw_memory_t *m)
+impl_out_hex(
+    impl_fmt_out_t *o, const afw_byte_t *p, afw_size_t n)
 {
     afw_size_t i;
 
-    if (!m || !m->ptr || m->size == 0) {
+    if (!p || n == 0) {
         return;
     }
-    for (i = 0; i < m->size; i++) {
-        impl_out_byte(o, impl_hex_digit[(m->ptr[i] >> 4) & 0x0f]);
-        impl_out_byte(o, impl_hex_digit[m->ptr[i] & 0x0f]);
+    for (i = 0; i < n; i++) {
+        impl_out_byte(o, impl_hex_digit[(p[i] >> 4) & 0x0f]);
+        impl_out_byte(o, impl_hex_digit[p[i] & 0x0f]);
     }
+}
+
+
+static void
+impl_out_spaces(impl_fmt_out_t *o, afw_size_t n)
+{
+    while (n > 0) {
+        impl_out_byte(o, ' ');
+        n--;
+    }
+}
+
+
+static afw_size_t
+impl_forced_safe_len(
+    const afw_utf8_octet_t *s, afw_size_t len)
+{
+    impl_fmt_out_t c;
+
+    c.dest = NULL;
+    c.cap = 0;
+    c.needed = 0;
+    impl_out_forced_safe(&c, s, len);
+    return c.needed;
+}
+
+
+static afw_size_t
+impl_prec_cap(afw_size_t len, int have_prec, int prec)
+{
+    if (have_prec && prec >= 0 && (afw_size_t)prec < len) {
+        return (afw_size_t)prec;
+    }
+    return len;
+}
+
+
+static int
+impl_parse_nonneg_int(
+    const afw_utf8_octet_t **f,
+    const afw_utf8_octet_t *end,
+    afw_xctx_t *xctx)
+{
+    unsigned long acc;
+
+    acc = 0;
+    if (*f >= end || **f < '0' || **f > '9') {
+        return 0;
+    }
+    while (*f < end && **f >= '0' && **f <= '9') {
+        acc = acc * 10ul + (unsigned long)(**f - '0');
+        if (acc > (unsigned long)INT_MAX) {
+            AFW_THROW_ERROR_Z(general,
+                "Printf width or precision is too large", xctx);
+        }
+        (*f)++;
+    }
+    return (int)acc;
 }
 
 
@@ -1026,15 +1086,18 @@ impl_format_content(
     const afw_utf8_octet_t *start;
     const afw_utf8_t *u;
     const afw_memory_t *m;
+    const afw_byte_t *mp;
     const char *s;
     void *pv;
     long long ll;
     long l;
     ptrdiff_t pd;
+    intmax_t im;
     int i_val;
     unsigned long long ull;
     unsigned long ul;
     afw_size_t uz;
+    uintmax_t um;
     unsigned un;
     long double ld;
     double d;
@@ -1042,13 +1105,20 @@ impl_format_content(
     char conv;
     char kind;
     char lenmod;
+    int flags;
     int star_width;
     int star_prec;
+    int have_prec;
+    int width;
+    int prec;
     int aw;
     int aprec;
     int n;
+    int minus;
     afw_size_t spec_len;
-    afw_boolean_t did_k;
+    afw_size_t in_len;
+    afw_size_t out_len;
+    afw_size_t pad;
 
     if (format_len == AFW_UTF8_Z_LEN) {
         format_len = format_s
@@ -1099,10 +1169,37 @@ impl_format_content(
         }
         start = f;
         f++;
+        flags = 0;
         star_width = 0;
         star_prec = 0;
+        have_prec = 0;
+        width = 0;
+        prec = 0;
         lenmod = 0;
-        while (f < end && strchr("-+ #0'", *f)) {
+        minus = 0;
+        while (f < end) {
+            if (*f == '-') {
+                flags |= 1;
+                minus = 1;
+            }
+            else if (*f == '+') {
+                flags |= 2;
+            }
+            else if (*f == ' ') {
+                flags |= 4;
+            }
+            else if (*f == '#') {
+                flags |= 8;
+            }
+            else if (*f == '0') {
+                flags |= 16;
+            }
+            else if (*f == '\'') {
+                flags |= 32;
+            }
+            else {
+                break;
+            }
             f++;
         }
         if (f < end && *f == '*') {
@@ -1110,26 +1207,29 @@ impl_format_content(
             f++;
         }
         else {
-            while (f < end && *f >= '0' && *f <= '9') {
-                f++;
-            }
+            width = impl_parse_nonneg_int(&f, end, xctx);
         }
         if (f < end && *f == '.') {
+            have_prec = 1;
             f++;
             if (f < end && *f == '*') {
                 star_prec = 1;
                 f++;
             }
             else {
-                while (f < end && *f >= '0' && *f <= '9') {
-                    f++;
-                }
+                prec = impl_parse_nonneg_int(&f, end, xctx);
             }
+        }
+        if (f < end && *f == '$') {
+            AFW_THROW_ERROR_Z(general,
+                "Positional printf parameters are not supported",
+                xctx);
         }
         if (f < end && *f == 'h') {
             lenmod = 'h';
             f++;
             if (f < end && *f == 'h') {
+                lenmod = 'H';
                 f++;
             }
         }
@@ -1137,81 +1237,157 @@ impl_format_content(
             lenmod = 'l';
             f++;
             if (f < end && *f == 'l') {
-                lenmod = 'L';
+                lenmod = 'q';
                 f++;
             }
         }
-        else if (f < end && strchr("Lztjq", *f)) {
-            lenmod = *f;
+        else if (f < end && *f == 'L') {
+            lenmod = 'L';
             f++;
         }
+        else if (f < end && strchr("ztjq", *f)) {
+            lenmod = (char)*f;
+            f++;
+        }
+        else if (f < end && *f == 'w') {
+            AFW_THROW_ERROR_Z(general,
+                "Printf %w length modifiers are not supported",
+                xctx);
+        }
+        if (f < end && *f == '$') {
+            AFW_THROW_ERROR_Z(general,
+                "Positional printf parameters are not supported",
+                xctx);
+        }
         if (f >= end) {
-            impl_out_bytes(&o, start, (afw_size_t)(f - start));
-            break;
+            AFW_THROW_ERROR_Z(general,
+                "Incomplete printf conversion", xctx);
         }
         conv = (char)*f++;
-        did_k = false;
+        if (star_width) {
+            aw = va_arg(ap, int);
+            if (aw < 0) {
+                minus = 1;
+                flags |= 1;
+                if (aw == INT_MIN) {
+                    AFW_THROW_ERROR_Z(general,
+                        "Printf width is too large", xctx);
+                }
+                width = -aw;
+            }
+            else {
+                width = aw;
+            }
+        }
+        if (star_prec) {
+            aprec = va_arg(ap, int);
+            if (aprec < 0) {
+                have_prec = 0;
+                prec = 0;
+            }
+            else {
+                prec = aprec;
+            }
+        }
         if (conv == 'k') {
             if (f >= end) {
                 AFW_THROW_ERROR_Z(general,
                     "%k alone is not a conversion", xctx);
             }
             kind = (char)*f++;
-            aw = 0;
-            aprec = 0;
-            if (star_width) {
-                aw = va_arg(ap, int);
+            if (lenmod != 0) {
+                AFW_THROW_ERROR_Z(general,
+                    "%k does not take a length modifier", xctx);
             }
-            if (star_prec) {
-                aprec = va_arg(ap, int);
+            if (flags & ~1) {
+                AFW_THROW_ERROR_Z(general,
+                    "%k allows only the '-' flag", xctx);
             }
-            (void)aw;
-            (void)aprec;
-            if (kind == 'u') {
-                u = va_arg(ap, const afw_utf8_t *);
-                if (u && u->s && u->len) {
-                    impl_out_bytes(&o, u->s, u->len);
-                }
-            }
-            else if (kind == 'm') {
-                m = va_arg(ap, const afw_memory_t *);
-                impl_out_hex_memory(&o, m);
-            }
-            else if (kind == 's') {
-                s = va_arg(ap, const char *);
-                impl_out_forced_safe(&o,
-                    (const afw_utf8_octet_t *)s,
-                    s ? strlen(s) : 0);
-            }
-            else {
+            if (kind != 'u' && kind != 'm' && kind != 's') {
                 AFW_THROW_ERROR_Z(general,
                     "Unknown %k conversion kind", xctx);
             }
-            did_k = true;
-        }
-        if (did_k) {
+            u = NULL;
+            m = NULL;
+            s = NULL;
+            in_len = 0;
+            mp = NULL;
+            if (kind == 'u') {
+                u = va_arg(ap, const afw_utf8_t *);
+                if (u && u->s && u->len) {
+                    in_len = impl_prec_cap(u->len, have_prec, prec);
+                }
+                out_len = in_len;
+            }
+            else if (kind == 'm') {
+                m = va_arg(ap, const afw_memory_t *);
+                if (m && m->ptr && m->size) {
+                    in_len = impl_prec_cap(m->size, have_prec, prec);
+                    mp = m->ptr;
+                }
+                out_len = in_len * 2;
+            }
+            else {
+                s = va_arg(ap, const char *);
+                in_len = s ? strlen(s) : 0;
+                in_len = impl_prec_cap(in_len, have_prec, prec);
+                out_len = impl_forced_safe_len(
+                    (const afw_utf8_octet_t *)s, in_len);
+            }
+            pad = 0;
+            if (width > 0 && (afw_size_t)width > out_len) {
+                pad = (afw_size_t)width - out_len;
+            }
+            if (!minus) {
+                impl_out_spaces(&o, pad);
+            }
+            if (kind == 'u' && u && u->s && in_len) {
+                impl_out_bytes(&o, u->s, in_len);
+            }
+            else if (kind == 'm') {
+                impl_out_hex(&o, mp, in_len);
+            }
+            else if (kind == 's') {
+                impl_out_forced_safe(&o,
+                    (const afw_utf8_octet_t *)s, in_len);
+            }
+            if (minus) {
+                impl_out_spaces(&o, pad);
+            }
             continue;
         }
         spec_len = (afw_size_t)(f - start);
         if (spec_len == 0 || spec_len >= sizeof(spec)) {
-            impl_out_bytes(&o, start, spec_len);
-            continue;
+            AFW_THROW_ERROR_Z(general,
+                "Printf conversion is too long", xctx);
         }
         memcpy(spec, start, spec_len);
         spec[spec_len] = 0;
-        aw = 0;
-        aprec = 0;
-        if (star_width) {
-            aw = va_arg(ap, int);
-        }
-        if (star_prec) {
-            aprec = va_arg(ap, int);
-        }
         if (conv == 'n' || conv == 'S' || conv == 'C' ||
             conv == 'm')
         {
             AFW_THROW_ERROR_Z(general,
                 "Unsupported printf conversion", xctx);
+        }
+        if ((conv == 's' || conv == 'c') && lenmod == 'l') {
+            AFW_THROW_ERROR_Z(general,
+                "Printf %ls/%lc (wchar) is not supported", xctx);
+        }
+        if (conv == 'p' && lenmod != 0) {
+            AFW_THROW_ERROR_Z(general,
+                "%p does not take a length modifier", xctx);
+        }
+        if (strchr("diouxX", conv) && lenmod == 'L') {
+            AFW_THROW_ERROR_Z(general,
+                "L length modifier is only for floating conversions",
+                xctx);
+        }
+        if (strchr("fFeEgGaA", conv) &&
+            lenmod != 0 && lenmod != 'l' && lenmod != 'L')
+        {
+            AFW_THROW_ERROR_Z(general,
+                "Invalid length modifier for floating conversion",
+                xctx);
         }
         if (conv == 's') {
             s = va_arg(ap, const char *);
@@ -1236,11 +1412,15 @@ impl_format_content(
             IMPL_SNPRINTF(pv);
         }
         else if (strchr("di", conv)) {
-            if (lenmod == 'L' || lenmod == 'j' ||
-                lenmod == 'q')
-            {
-                ll = va_arg(ap, long long);
-                IMPL_SNPRINTF(ll);
+            if (lenmod == 'q' || lenmod == 'j') {
+                if (lenmod == 'j') {
+                    im = va_arg(ap, intmax_t);
+                    IMPL_SNPRINTF(im);
+                }
+                else {
+                    ll = va_arg(ap, long long);
+                    IMPL_SNPRINTF(ll);
+                }
             }
             else if (lenmod == 'l') {
                 l = va_arg(ap, long);
@@ -1256,11 +1436,15 @@ impl_format_content(
             }
         }
         else if (strchr("uoxX", conv)) {
-            if (lenmod == 'L' || lenmod == 'j' ||
-                lenmod == 'q')
-            {
-                ull = va_arg(ap, unsigned long long);
-                IMPL_SNPRINTF(ull);
+            if (lenmod == 'q' || lenmod == 'j') {
+                if (lenmod == 'j') {
+                    um = va_arg(ap, uintmax_t);
+                    IMPL_SNPRINTF(um);
+                }
+                else {
+                    ull = va_arg(ap, unsigned long long);
+                    IMPL_SNPRINTF(ull);
+                }
             }
             else if (lenmod == 'l') {
                 ul = va_arg(ap, unsigned long);
@@ -1286,7 +1470,8 @@ impl_format_content(
             }
         }
         else {
-            impl_out_bytes(&o, start, spec_len);
+            AFW_THROW_ERROR_FZ(general, xctx,
+                "Unknown printf conversion \"%s\"", spec);
         }
     }
 

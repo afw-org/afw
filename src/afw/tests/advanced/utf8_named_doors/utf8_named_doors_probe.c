@@ -365,6 +365,79 @@ impl_printf_k(const afw_pool_t *p, afw_xctx_t *xctx)
         fprintf(stderr, "snprintf trunc: n=%lu\n", (unsigned long)n);
         return 1;
     }
+
+    c = afw_utf8_printf(p, xctx, "%8ku", &hello);
+    if (impl_eq(c, "   hello", 8, "%8ku")) {
+        return 1;
+    }
+    c = afw_utf8_printf(p, xctx, "%-8ku", &hello);
+    if (impl_eq(c, "hello   ", 8, "%-8ku")) {
+        return 1;
+    }
+    c = afw_utf8_printf(p, xctx, "%.2ku", &hello);
+    if (impl_eq(c, "he", 2, "%.2ku")) {
+        return 1;
+    }
+    c = afw_utf8_printf(p, xctx, "%*ku", 8, &hello);
+    if (impl_eq(c, "   hello", 8, "%*ku")) {
+        return 1;
+    }
+    c = afw_utf8_printf(p, xctx, "%.1km", &mem);
+    if (impl_eq(c, "00", 2, "%.1km")) {
+        return 1;
+    }
+    c = afw_utf8_printf(p, xctx, "%5d", 3);
+    if (impl_eq(c, "    3", 5, "%5d")) {
+        return 1;
+    }
+    c = afw_utf8_printf(p, xctx, "%*d", 5, 3);
+    if (impl_eq(c, "    3", 5, "%*d")) {
+        return 1;
+    }
+    c = afw_utf8_printf(p, xctx, "%.2s", "hello");
+    if (impl_eq(c, "he", 2, "%.2s")) {
+        return 1;
+    }
+    return 0;
+}
+
+static void
+impl_printf_plus_k(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_utf8_t hello = AFW_UTF8_LITERAL("hello");
+
+    (void)afw_utf8_printf(p, xctx, "%+ku", &hello);
+}
+
+static void
+impl_printf_l_k(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_utf8_t hello = AFW_UTF8_LITERAL("hello");
+
+    (void)afw_utf8_printf(p, xctx, "%lku", &hello);
+}
+
+static void
+impl_printf_n(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    int written;
+
+    written = 0;
+    (void)afw_utf8_printf(p, xctx, "%n", &written);
+}
+
+static int
+impl_printf_throws(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    if (impl_threw_nfc(impl_printf_plus_k, p, xctx, "%+ku")) {
+        return 1;
+    }
+    if (impl_threw_nfc(impl_printf_l_k, p, xctx, "%lku")) {
+        return 1;
+    }
+    if (impl_threw_nfc(impl_printf_n, p, xctx, "%n")) {
+        return 1;
+    }
     return 0;
 }
 
@@ -482,6 +555,9 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "printf-k") == 0) {
         rc = impl_printf_k(p, xctx);
     }
+    else if (strcmp(case_name, "printf-throws") == 0) {
+        rc = impl_printf_throws(p, xctx);
+    }
     else if (strcmp(case_name, "error-backtrace") == 0) {
         rc = impl_error_backtrace(p, xctx);
     }
@@ -494,8 +570,8 @@ main(int argc, char **argv)
     else {
         fprintf(stderr, "usage: utf8_named_doors_probe "
             "create-set-copy|no-copy|forced-safe|property-name|"
-            "printf-safe|printf-nul|printf-k|error-backtrace|"
-            "icu-error-name|from-memory\n");
+            "printf-safe|printf-nul|printf-k|printf-throws|"
+            "error-backtrace|icu-error-name|from-memory\n");
         rc = 2;
     }
 
