@@ -665,66 +665,9 @@ afw_utf8_line_count_and_max_column(
 
 
 /**
- * @brief AFW printf family (viewable text, not a data-file writer).
- *
- * Assemble, then **`create`** (NFC / throw). Do not `forced_safe` the
- * whole buffer. For octets or round-trip, write `.s` + `.len` /
- * `as_memory`.
- *
- * Prefix `afw_utf8_` vs `afw_utf8_z_` is the **result**. Suffix is the
- * **format**. `_as` / `_vas` are the real functions (`s` + `len`, create
- * order; `len == AFW_UTF8_Z_LEN` means the format is already `utf8_z`).
- * The others are macros.
- *
- * | Suffix | Format | Args |
- * |--------|--------|------|
- * | (none) | `utf8_z` | `...` |
- * | `_v` | `utf8_z` | `va_list` |
- * | `_u` | `const afw_utf8_t *` | `...` |
- * | `_vu` | `const afw_utf8_t *` | `va_list` |
- * | `_as` | `s` + `len` | `...` |
- * | `_vas` | `s` + `len` | `va_list` |
- *
- * Format octets must be valid UTF-8 (throw). Walk by remaining length.
- *
- * **C conversions** (via libc `snprintf`): `diouxX`, `fFeEgGaA`, `c`,
- * `s`, `p`, `%%`, flags, width, precision, `*`, length `hh`/`h`/`l`/
- * `ll`/`j`/`z`/`t`/`L`. Throw: `%n`, glibc `%m`, wide `%ls`/`%lc`/
- * `%S`/`%C`, positional `$`, `%w`, unknown or incomplete spec. Do not
- * add `format(printf)` — `%k` is not a libc conversion.
- *
- * **`%k` kinds** (lowercase; `%k` alone is an error):
- *
- * | Spec | Parameter | Behavior |
- * |------|-----------|----------|
- * | `%ku` | `const afw_utf8_t *` | Trusted UTF-8: copy `.s` for `.len` (interior `0` is data). |
- * | `%km` | `const afw_memory_t *` | Always hex of the octets (uppercase pairs, no `0x`). |
- * | `%ks` | `utf8_z` | Like `%s`, but **`forced_safe`** on invalid UTF-8. |
- *
- * `%s` is `utf8_z` and **throws** if not valid UTF-8. `%ks` is the only
- * dirty substitution. NULL `%ku` / `%km` is empty (zero width; no dummy
- * pointer). On `%k`, `-` / width / precision / `*` are like `%s`
- * (precision = max **input** bytes). Other flags and length modifiers
- * throw.
- *
- * **Size** is the buffer needed to hold that result type (not C
- * `snprintf`): utf8 payload only (no trailing `0`); z includes the `0`.
- * `printf_len` / `z_printf_len` return that need. `snprintf` /
- * `z_snprintf` take it as dest `size` and return produced. `z_printf` of
- * interior `0` throws.
- *
- * Prefer `%ku` in AFW printf format strings (example:
- * `"Adapter '%ku' is not available"`). `AFW_UTF8_FMT` (`%.*s` +
- * `FMT_ARG`) is for **libc**
- * (`fprintf`, FCGX, syslog). On the AFW walk, exact `%.*s` copies n
- * bytes including interior `0`; libc still stops at `0`. Other `%s`
- * forms (`%.2s`, `%*s`) are C. `AFW_UTF8_CONTEXTUAL_LABEL_FMT` is
- * `"%ku> "`.
- *
- * `afwdev build --scan` checks these calls (count and types) via
- * libclang. gcc `-Wformat` only knows libc printf.
+ * @brief Real function for afw_utf8_printf (format `s` + `len`).
+ * @see afw_utf8_printf
  */
-
 AFW_DECLARE_ELLIPSIS(const afw_utf8_t *)
 afw_utf8_printf_as(
     const afw_pool_t *p, afw_xctx_t *xctx,
@@ -787,6 +730,69 @@ afw_utf8_z_snprintf_vas(
     const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
     afw_xctx_t *xctx);
 
+/**
+ * @brief AFW printf (viewable text, not a data-file writer).
+ * @param p pool used for result.
+ * @param xctx of caller.
+ * @param format_z C format string (`utf8_z`).
+ * @param ... arguments for @a format_z.
+ * @return utf8 in @a p.
+ *
+ * Assemble, then **`create`** (NFC / throw). Do not `forced_safe` the
+ * whole buffer. For octets or round-trip, write `.s` + `.len` /
+ * `as_memory`.
+ *
+ * Prefix `afw_utf8_` vs `afw_utf8_z_` is the **result**. Suffix is the
+ * **format**. `_as` / `_vas` are the real functions (`s` + `len`, create
+ * order; `len == AFW_UTF8_Z_LEN` means the format is already `utf8_z`).
+ * The others are macros.
+ *
+ * | Suffix | Format | Args |
+ * |--------|--------|------|
+ * | (none) | `utf8_z` | `...` |
+ * | `_v` | `utf8_z` | `va_list` |
+ * | `_u` | `const afw_utf8_t *` | `...` |
+ * | `_vu` | `const afw_utf8_t *` | `va_list` |
+ * | `_as` | `s` + `len` | `...` |
+ * | `_vas` | `s` + `len` | `va_list` |
+ *
+ * Format octets must be valid UTF-8 (throw). Walk by remaining length.
+ *
+ * **C conversions** (via libc `snprintf`): `diouxX`, `fFeEgGaA`, `c`,
+ * `s`, `p`, doubled percent, flags, width, precision, `*`, length
+ * `hh`/`h`/`l`/`ll`/`j`/`z`/`t`/`L`. Throw: `%%n`, glibc `%%m`, wide
+ * `%%ls`/`%%lc`/`%%S`/`%%C`, positional `$`, `%%w`, unknown or
+ * incomplete spec. Do not add `format(printf)` — `%%k` is not a libc
+ * conversion.
+ *
+ * **`%%k` kinds** (lowercase; `%%k` alone is an error):
+ *
+ * | Spec | Parameter | Behavior |
+ * |------|-----------|----------|
+ * | `%%ku` | `const afw_utf8_t *` | Trusted UTF-8: copy `.s` for `.len` (interior `0` is data). |
+ * | `%%km` | `const afw_memory_t *` | Always hex of the octets (uppercase pairs, no `0x`). |
+ * | `%%ks` | `utf8_z` | Like `%%s`, but **`forced_safe`** on invalid UTF-8. |
+ *
+ * `%%s` is `utf8_z` and **throws** if not valid UTF-8. `%%ks` is the
+ * only dirty substitution. NULL `%%ku` / `%%km` is empty (zero width;
+ * no dummy pointer). On `%%k`, `-` / width / precision / `*` are like
+ * `%%s` (precision = max **input** bytes). Other flags and length
+ * modifiers throw.
+ *
+ * **Size** is the buffer needed to hold that result type (not C
+ * `snprintf`): utf8 payload only (no trailing `0`); z includes the `0`.
+ * `printf_len` / `z_printf_len` return that need. `snprintf` /
+ * `z_snprintf` take it as dest `size` and return produced. `z_printf` of
+ * interior `0` throws.
+ *
+ * Prefer `%%ku` in AFW printf format strings. `AFW_UTF8_FMT` plus
+ * `FMT_ARG` is for **libc** (`fprintf`, FCGX, syslog). On the AFW walk,
+ * that specifier copies n bytes including interior `0`; libc still
+ * stops at `0`. `AFW_UTF8_CONTEXTUAL_LABEL_FMT` is `%%ku` then `> `.
+ *
+ * `afwdev build --scan` checks these calls (count and types) via
+ * libclang. gcc `-Wformat` only knows libc printf.
+ */
 #define afw_utf8_printf(p, xctx, format_z, ...) \
     afw_utf8_printf_as((p), (xctx), \
         (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \

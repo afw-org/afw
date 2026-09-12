@@ -2140,7 +2140,8 @@ PREDEFINED             = "AFW_DEFINE_STATIC_INLINE(x)=x" \
                          AFW_XACML_DECLARE_DATA \
                          AFW_BEGIN_DECLARES \
                          AFW_END_DECLARES \
-                         AFW_DECLARE_ELLIPSIS
+                         "AFW_DECLARE_ELLIPSIS(x)=x" \
+                         "AFW_DEFINE_ELLIPSIS(x)=x"
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
 # tag can be used to specify a list of macro names that should be expanded. The
