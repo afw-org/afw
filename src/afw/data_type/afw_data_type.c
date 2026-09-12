@@ -512,7 +512,7 @@ impl_afw_data_type_boolean_utf8_to_internal(
 error:
     AFW_THROW_ERROR_FZ(conversion_error, xctx,
         "Not a valid boolean value '%ku'.",
-        (int)len, s);
+        from_utf8);
 }
 
 

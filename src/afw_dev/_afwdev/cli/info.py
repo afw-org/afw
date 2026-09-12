@@ -575,7 +575,9 @@ _info_build_scan = {
     "arg": "--scan",     
     "action": "store_true",    
     "default": False,
-    "help": "Use clang analyze-build to analyze C source after compilation. Errors will cause the build to fail."
+    "help": "After the C build: AFW printf format/argument scan "
+        "(libclang types for %ku/%km/%ks and standard conversions), "
+        "then clang analyze-build. Errors fail the build."
 }
 
 _info_build_web_root = {

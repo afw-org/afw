@@ -824,8 +824,8 @@ afw_environment_registry_key_exists(
         if (type_number < 0 ||
             type_number >= (int)env->registry_types->count)
         {
-            AFW_THROW_ERROR_FZ(general, xctx, "Invalid type_number.",
-                type_number);
+            AFW_THROW_ERROR_FZ(general, xctx,
+                "Invalid type_number %d.", type_number);
         }
 
         type = env->registry_types->entries[type_number];
@@ -858,8 +858,8 @@ afw_environment_registry_get(
         if (type_number < 0 ||
             type_number >= (int)env->registry_types->count)
         {
-            AFW_THROW_ERROR_FZ(general, xctx, "Invalid type_number.",
-                type_number);
+            AFW_THROW_ERROR_FZ(general, xctx,
+                "Invalid type_number %d.", type_number);
         }
 
         type = env->registry_types->entries[type_number];
@@ -938,8 +938,8 @@ afw_environment_foreach(
     env = (afw_environment_internal_t *)xctx->env;
 
     if (type_number >= (int)env->registry_types->count) {
-        AFW_THROW_ERROR_FZ(general, xctx, "Invalid type_number.",
-            type_number);
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "Invalid type_number %d.", type_number);
     }
 
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {

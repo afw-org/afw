@@ -6,7 +6,8 @@
 # @brief This file contains the main entry point for the "cmake" build.
 # @details The "cmake" build builds all C-related source code into their 
 #          appropriate binary libraries and executables. Order is configure,
-#          build, then optional cpack, analyze-build, and install.
+#          build, then optional cpack, AFW printf scan + analyze-build
+#          (--scan), and install.
 #
 
 import subprocess
@@ -14,6 +15,7 @@ import os
 import sys
 import re
 from _afwdev.common import msg, package
+from _afwdev.build import printf_scan
 
 _C_DEFINE_RE = re.compile(r'^[A-Za-z_][A-Za-z0-9_]*(?:=[A-Za-z0-9_]+)?$')
 _CDEV_DEBUG_DEFINES = (
@@ -199,7 +201,10 @@ def build(options):
             msg.error_exit("cpack failed " + str(rc))
         
 
-    # if --scan was specified, run analyze-build
+    # if --scan was specified, typed AFW printf check then analyze-build
+    if options.get('build_scan') is True:
+        printf_scan.run_printf_scan(options)
+
     if options.get('build_scan') is True:
         # on Ubuntu, the analyze-build symlink is broken, so
         # we need to check if analyze-build-14 exists first
