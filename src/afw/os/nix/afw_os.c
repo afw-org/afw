@@ -19,6 +19,15 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
+#include <errno.h>
+#include <time.h>
+#include <signal.h>
+#include <dlfcn.h>
+#include <fnmatch.h>
+#ifdef __linux__
+#include <sys/random.h>
+#endif
 #include <execinfo.h>
 
 #ifndef __MACH__
@@ -891,3 +900,276 @@ afw_os_backtrace(
     return trace;
 }
 #endif
+
+
+struct afw_os_dso_s {
+    void *handle;
+};
+
+static _Thread_local char impl_dso_error[256];
+
+static void
+impl_set_dso_error(const char *msg)
+{
+    if (!msg) {
+        impl_dso_error[0] = 0;
+        return;
+    }
+    strncpy(impl_dso_error, msg, sizeof(impl_dso_error) - 1);
+    impl_dso_error[sizeof(impl_dso_error) - 1] = 0;
+}
+
+static void
+impl_dso_cleanup(
+    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+    (void)xctx;
+    afw_os_dso_unload((afw_os_dso_t *)data);
+}
+
+static void
+impl_explode_tm(
+    afw_os_time_exploded_t *out, const struct tm *tm, int microsecond)
+{
+    out->year = tm->tm_year + 1900;
+    out->month = tm->tm_mon + 1;
+    out->day = tm->tm_mday;
+    out->hour = tm->tm_hour;
+    out->minute = tm->tm_min;
+    out->second = tm->tm_sec;
+    out->microsecond = microsecond;
+    out->gmtoff = (int)tm->tm_gmtoff;
+}
+
+
+/* Current working directory. */
+AFW_DEFINE(const afw_utf8_t *)
+afw_os_getcwd(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    char *z;
+    const afw_utf8_t *result;
+
+    z = getcwd(NULL, 0);
+    if (!z) {
+        return NULL;
+    }
+    result = afw_utf8_create(z, AFW_UTF8_Z_LEN, p, xctx);
+    free(z);
+    return result;
+}
+
+
+/* Cryptographically strong random bytes. */
+AFW_DEFINE(void)
+afw_os_random_bytes(void *buf, afw_size_t len, afw_xctx_t *xctx)
+{
+    unsigned char *out;
+    afw_size_t remain;
+
+    if (len == 0) {
+        return;
+    }
+    out = (unsigned char *)buf;
+    remain = len;
+#ifdef __linux__
+    while (remain > 0) {
+        ssize_t n;
+
+        n = getrandom(out, remain, 0);
+        if (n < 0) {
+            if (errno == EINTR) {
+                continue;
+            }
+            AFW_THROW_ERROR_Z(general, "getrandom() failed", xctx);
+        }
+        out += (afw_size_t)n;
+        remain -= (afw_size_t)n;
+    }
+#else
+    {
+        int fd;
+        ssize_t n;
+
+        fd = open("/dev/urandom", O_RDONLY);
+        if (fd < 0) {
+            AFW_THROW_ERROR_Z(general,
+                "open(/dev/urandom) failed", xctx);
+        }
+        while (remain > 0) {
+            n = read(fd, out, remain);
+            if (n < 0) {
+                if (errno == EINTR) {
+                    continue;
+                }
+                close(fd);
+                AFW_THROW_ERROR_Z(general,
+                    "read(/dev/urandom) failed", xctx);
+            }
+            if (n == 0) {
+                close(fd);
+                AFW_THROW_ERROR_Z(general,
+                    "read(/dev/urandom) EOF", xctx);
+            }
+            out += (afw_size_t)n;
+            remain -= (afw_size_t)n;
+        }
+        close(fd);
+    }
+#endif
+}
+
+
+/* Glob match, flags 0. */
+AFW_DEFINE(afw_boolean_t)
+afw_os_fnmatch(
+    const afw_utf8_z_t *pattern,
+    const afw_utf8_z_t *name)
+{
+    return fnmatch(pattern, name, 0) == 0;
+}
+
+
+/* Process signal handler. */
+AFW_DEFINE(void)
+afw_os_signal(int signo, afw_os_signal_handler_t handler)
+{
+    struct sigaction sa;
+
+    memset(&sa, 0, sizeof(sa));
+    sa.sa_handler = handler;
+    sigemptyset(&sa.sa_mask);
+    (void)sigaction(signo, &sa, NULL);
+}
+
+
+/* Microseconds since epoch. */
+AFW_DEFINE(afw_os_time_t)
+afw_os_time_now(void)
+{
+    struct timespec ts;
+
+    if (clock_gettime(CLOCK_REALTIME, &ts) != 0) {
+        return 0;
+    }
+    return (afw_os_time_t)ts.tv_sec * 1000000 +
+        (afw_os_time_t)(ts.tv_nsec / 1000);
+}
+
+
+/* Explode as local time. */
+AFW_DEFINE(void)
+afw_os_time_explode_local(
+    afw_os_time_exploded_t *out,
+    afw_os_time_t t,
+    afw_xctx_t *xctx)
+{
+    time_t sec;
+    struct tm tm;
+    int usec;
+
+    sec = (time_t)(t / 1000000);
+    usec = (int)(t % 1000000);
+    if (usec < 0) {
+        usec += 1000000;
+        sec -= 1;
+    }
+    if (localtime_r(&sec, &tm) == NULL) {
+        AFW_THROW_ERROR_Z(general, "localtime_r() failed", xctx);
+    }
+    impl_explode_tm(out, &tm, usec);
+}
+
+
+/* Explode as UTC. */
+AFW_DEFINE(void)
+afw_os_time_explode_utc(
+    afw_os_time_exploded_t *out,
+    afw_os_time_t t,
+    afw_xctx_t *xctx)
+{
+    time_t sec;
+    struct tm tm;
+    int usec;
+
+    sec = (time_t)(t / 1000000);
+    usec = (int)(t % 1000000);
+    if (usec < 0) {
+        usec += 1000000;
+        sec -= 1;
+    }
+    if (gmtime_r(&sec, &tm) == NULL) {
+        AFW_THROW_ERROR_Z(general, "gmtime_r() failed", xctx);
+    }
+    impl_explode_tm(out, &tm, usec);
+    out->gmtoff = 0;
+}
+
+
+/* Load a DSO. */
+AFW_DEFINE(afw_os_dso_t *)
+afw_os_dso_load(
+    const afw_utf8_z_t *path,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_os_dso_t *dso;
+    void *handle;
+
+    handle = dlopen(path, RTLD_NOW | RTLD_GLOBAL);
+    if (!handle) {
+        impl_set_dso_error(dlerror());
+        return NULL;
+    }
+    impl_set_dso_error(NULL);
+    dso = afw_pool_calloc_type(p, afw_os_dso_t, xctx);
+    dso->handle = handle;
+    afw_pool_register_cleanup_before(p, dso, NULL,
+        impl_dso_cleanup, xctx);
+    return dso;
+}
+
+
+/* Last DSO error. */
+AFW_DEFINE(const afw_utf8_z_t *)
+afw_os_dso_error(void)
+{
+    return impl_dso_error;
+}
+
+
+/* Resolve a DSO symbol. */
+AFW_DEFINE(void *)
+afw_os_dso_sym(
+    afw_os_dso_t *dso,
+    const afw_utf8_z_t *name,
+    afw_xctx_t *xctx)
+{
+    void *sym;
+
+    (void)xctx;
+    if (!dso || !dso->handle) {
+        impl_set_dso_error("DSO is not loaded");
+        return NULL;
+    }
+    dlerror();
+    sym = dlsym(dso->handle, name);
+    if (!sym) {
+        impl_set_dso_error(dlerror());
+        return NULL;
+    }
+    impl_set_dso_error(NULL);
+    return sym;
+}
+
+
+/* Unload a DSO. */
+AFW_DEFINE(void)
+afw_os_dso_unload(afw_os_dso_t *dso)
+{
+    if (dso && dso->handle) {
+        (void)dlclose(dso->handle);
+        dso->handle = NULL;
+    }
+}

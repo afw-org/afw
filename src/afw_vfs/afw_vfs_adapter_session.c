@@ -16,7 +16,6 @@
 #include "afw.h"
 #include "afw_adapter_impl.h"
 #include "afw_vfs_adapter_internal.h"
-#include <apr_fnmatch.h>
 #include <apr_file_info.h>
 #include <string.h>
 
@@ -1227,8 +1226,7 @@ impl_write_data_to_file(
                 self->pub.p, xctx),
             self->pub.p, xctx);
         for (pattern = adapter->mark_executable; pattern->s_z; pattern++) {
-            if (apr_fnmatch(pattern->s_z, vfs_path_z, 0) ==
-                APR_SUCCESS)
+            if (afw_os_fnmatch(pattern->s_z, vfs_path_z))
             {
                 rv = apr_file_attrs_set(path_z,
                     APR_FILE_ATTR_EXECUTABLE, APR_FILE_ATTR_EXECUTABLE,

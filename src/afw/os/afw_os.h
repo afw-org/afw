@@ -111,6 +111,127 @@ afw_os_backtrace(
     afw_xctx_t *xctx);
 
 
+/**
+ * @brief Current working directory, allocated in p.
+ * @return directory or NULL if unavailable.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_os_getcwd(const afw_pool_t *p, afw_xctx_t *xctx);
+
+
+/**
+ * @brief Fill buf with cryptographically strong random bytes.
+ * @param buf destination.
+ * @param len number of bytes.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_os_random_bytes(void *buf, afw_size_t len, afw_xctx_t *xctx);
+
+
+/**
+ * @brief POSIX-style glob match (flags 0).
+ * @return true if name matches pattern.
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_os_fnmatch(
+    const afw_utf8_z_t *pattern,
+    const afw_utf8_z_t *name);
+
+
+/** @brief Signal handler passed to afw_os_signal(). */
+typedef void (*afw_os_signal_handler_t)(int);
+
+/**
+ * @brief Install a process signal handler (sigaction on nix).
+ */
+AFW_DECLARE(void)
+afw_os_signal(int signo, afw_os_signal_handler_t handler);
+
+
+/**
+ * @brief Microseconds since the Unix epoch.
+ */
+typedef afw_integer_t afw_os_time_t;
+
+/**
+ * @brief Broken-down time (civil calendar).
+ *
+ * year is the full year; month is 1-12; gmtoff is seconds east of UTC.
+ */
+typedef struct afw_os_time_exploded_s {
+    int year;
+    int month;
+    int day;
+    int hour;
+    int minute;
+    int second;
+    int microsecond;
+    int gmtoff;
+} afw_os_time_exploded_t;
+
+/**
+ * @brief Current time in microseconds since the Unix epoch.
+ */
+AFW_DECLARE(afw_os_time_t)
+afw_os_time_now(void);
+
+/**
+ * @brief Explode microseconds since epoch as local time.
+ */
+AFW_DECLARE(void)
+afw_os_time_explode_local(
+    afw_os_time_exploded_t *out,
+    afw_os_time_t t,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Explode microseconds since epoch as UTC.
+ */
+AFW_DECLARE(void)
+afw_os_time_explode_utc(
+    afw_os_time_exploded_t *out,
+    afw_os_time_t t,
+    afw_xctx_t *xctx);
+
+
+/** @brief Opaque loaded DSO handle. */
+typedef struct afw_os_dso_s afw_os_dso_t;
+
+/**
+ * @brief Load a shared library. NULL on failure.
+ *
+ * The handle is closed when p is destroyed, or by afw_os_dso_unload().
+ * After a failed load, afw_os_dso_error() is the last error text.
+ */
+AFW_DECLARE(afw_os_dso_t *)
+afw_os_dso_load(
+    const afw_utf8_z_t *path,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Last DSO load/sym error (thread-local; may be empty).
+ */
+AFW_DECLARE(const afw_utf8_z_t *)
+afw_os_dso_error(void);
+
+/**
+ * @brief Resolve a symbol. NULL on failure.
+ */
+AFW_DECLARE(void *)
+afw_os_dso_sym(
+    afw_os_dso_t *dso,
+    const afw_utf8_z_t *name,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Unload. Safe if already unloaded or NULL.
+ */
+AFW_DECLARE(void)
+afw_os_dso_unload(afw_os_dso_t *dso);
+
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

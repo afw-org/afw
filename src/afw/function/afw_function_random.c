@@ -89,8 +89,8 @@ afw_function_execute_random_base64Binary(
     }
     result->internal.ptr = afw_pool_malloc(x->p,
         result->internal.size, x->xctx);
-    apr_generate_random_bytes((unsigned char *)result->internal.ptr,
-        result->internal.size);
+    afw_os_random_bytes((void *)result->internal.ptr,
+        result->internal.size, x->xctx);
 
     return &result->pub;
 }
@@ -146,7 +146,7 @@ afw_function_execute_random_digits(
     result = afw_value_allocate_unmanaged_string(x->p, x->xctx);
     result->internal.len = (afw_size_t)numberOfDigits->internal;
     result->internal.s = afw_pool_malloc(x->p, result->internal.len, x->xctx);
-    apr_generate_random_bytes((unsigned char *)&n, sizeof(n));
+    afw_os_random_bytes(&n, sizeof(n), x->xctx);
 
     for (count = (int)numberOfDigits->internal,
         c = (char *)result->internal.s;
@@ -214,8 +214,8 @@ afw_function_execute_random_hexBinary(
     }
     result->internal.ptr = afw_pool_malloc(x->p,
         result->internal.size, x->xctx);
-    apr_generate_random_bytes((unsigned char *)result->internal.ptr,
-        result->internal.size);
+    afw_os_random_bytes((void *)result->internal.ptr,
+        result->internal.size, x->xctx);
 
     return &result->pub;
 }
@@ -273,8 +273,8 @@ afw_function_execute_random_integer(
     }
 
     result = afw_value_allocate_unmanaged_integer(x->p, x->xctx);
-    apr_generate_random_bytes((unsigned char*)&result->internal,
-        sizeof(afw_integer_t));
+    afw_os_random_bytes(&result->internal,
+        sizeof(afw_integer_t), x->xctx);
     if (result->internal < 0) {
         if (result->internal == AFW_INTEGER_MIN) {
             result->internal = 0;
@@ -352,7 +352,7 @@ afw_function_execute_random_number(
             x->xctx);
     }
 
-    apr_generate_random_bytes((unsigned char*)&random, sizeof(random));
+    afw_os_random_bytes(&random, sizeof(random), x->xctx);
     if (random < 0) {
         if (random == AFW_INTEGER_MIN) {
             random = 0;

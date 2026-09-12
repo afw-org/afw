@@ -221,7 +221,7 @@ afw_memory_set_no_copy(
  */
 AFW_DEFINE_STATIC_INLINE(void *)
 afw_memory_dup(const void *from,
-    apr_size_t size, const afw_pool_t *p, afw_xctx_t *xctx)
+    afw_size_t size, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     void *result;
     

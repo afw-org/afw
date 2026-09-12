@@ -59,7 +59,6 @@
 /* Adaptive Framework uses Apache Portable Runtime. */
 #include <apr_general.h>
 #include <apr_time.h>
-#include <apr_atomic.h>
 #include <apr_thread_proc.h>
 #include <apr_thread_rwlock.h>
 
@@ -69,6 +68,7 @@
 #include <limits.h>
 #include <setjmp.h>
 #include <string.h>
+#include <stddef.h>
 #include <stdint.h>
 #include <stdarg.h>
 #include <ctype.h>
@@ -76,6 +76,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <inttypes.h>
+#if !defined(_WIN32) && !defined(WIN32)
+#include <sys/types.h>
+#endif
 
  
 /*
@@ -223,8 +226,8 @@ AFW_CALLING_CONVENTION_ELLIPSIS
 #define AFW_HAS_INLINE 0
 #define AFW_INLINE
 #else
-#define AFW_HAS_INLINE APR_HAS_INLINE
-#define AFW_INLINE APR_INLINE
+#define AFW_HAS_INLINE 1
+#define AFW_INLINE inline
 #endif
 
 /** AFW Inline. */
@@ -308,19 +311,23 @@ AFW_BEGIN_DECLARES
 #define AFW__FILE_LINE__ __FILE__ ":" AFW_STRINGIFY(__LINE__)
 
 /** @brief size_t. */
-typedef apr_size_t afw_size_t;
+typedef size_t afw_size_t;
 
 /** @brief off_t. */
-typedef apr_off_t afw_off_t;
+#ifdef AFW_WINDOWS
+typedef long long afw_off_t;
+#else
+typedef off_t afw_off_t;
+#endif
 
 /** @brief 8-bit signed integer. */
 typedef int8_t afw_int8_t;
 
 /** @brief 16-bit signed integer. */
-typedef apr_int16_t afw_int16_t;
+typedef int16_t afw_int16_t;
 
 /** @brief 32-bit signed integer. */
-typedef apr_int32_t afw_int32_t;
+typedef int32_t afw_int32_t;
 
 /** @brief Min int32. */
 #define AFW_INT32_MIN -2147483647 - 1
@@ -329,25 +336,25 @@ typedef apr_int32_t afw_int32_t;
 #define AFW_INT32_MAX 2147483647
 
 /** @brief 64-bit signed integer. */
-typedef apr_int64_t afw_int64_t;
+typedef int64_t afw_int64_t;
 
 /** @brief 8-bit unsigned integer. */
 typedef uint8_t afw_uint8_t;
 
 /** @brief 16-bit unsigned integer. */
-typedef apr_uint16_t afw_uint16_t;
+typedef uint16_t afw_uint16_t;
 
 /** @brief Max uint32. */
 #define AFW_UINT16_MAX 65536
 
 /** @brief 32-bit unsigned integer. */
-typedef apr_uint32_t afw_uint32_t;
+typedef uint32_t afw_uint32_t;
 
 /** @brief Max uint32. */
 #define AFW_UINT32_MAX 4294967296
 
 /** @brief 64-bit unsigned integer. */
-typedef apr_uint64_t afw_uint64_t;
+typedef uint64_t afw_uint64_t;
 
 /** @brief 32-bit float. */
 typedef float afw_float32_t;
@@ -438,7 +445,7 @@ typedef int (*afw_utf8_octet_get_cb_t) (
 /**
  * @brief largest afw_integer_t
  */
-#define AFW_INTEGER_MAX  APR_INT64_MAX
+#define AFW_INTEGER_MAX  INT64_MAX
 
 /**
  * @brief largest afw_integer_t quoted
@@ -448,7 +455,7 @@ typedef int (*afw_utf8_octet_get_cb_t) (
 /**
  * @brief smallest afw_integer_t
  */
-#define AFW_INTEGER_MIN APR_INT64_MIN
+#define AFW_INTEGER_MIN INT64_MIN
 
 /**
  * @brief smallest afw_integer_t quoted
@@ -478,12 +485,12 @@ typedef int (*afw_utf8_octet_get_cb_t) (
 /**
  * @brief typedef for big signed int.
  */
-typedef apr_int64_t afw_integer_t;
+typedef int64_t afw_integer_t;
 
 /**
  * @brief Format string specifier used for afw_integer_t.
  */
-#define AFW_INTEGER_FMT "%" APR_INT64_T_FMT
+#define AFW_INTEGER_FMT "%" PRId64
 
 /**
  * @brief Format string specifier used for afw_integer_t without %.
@@ -491,7 +498,7 @@ typedef apr_int64_t afw_integer_t;
  * This can be used if additional specifiers are needed. For example,
  * printf("The number is %0" AFW_INTEGER_FMT_NO_PERCENT "\n", number);
  */
-#define AFW_INTEGER_FMT_NO_PERCENT APR_INT64_T_FMT
+#define AFW_INTEGER_FMT_NO_PERCENT PRId64
 
 /**
  * @brief afw_integer_t max digits.
@@ -506,7 +513,7 @@ typedef apr_int64_t afw_integer_t;
 /**
  * @brief Format string specifier used for afw_size_t.
  */
-#define AFW_SIZE_T_FMT "%" APR_SIZE_T_FMT
+#define AFW_SIZE_T_FMT "%zu"
 
 /**
  * @brief Format string specifier used for afw_size_t without %.
@@ -514,12 +521,12 @@ typedef apr_int64_t afw_integer_t;
  * This can be used if additional specifiers are needed. For example,
  * printf("The size is %0" AFW_SIZE_T_FMT_NO_PERCENT "\n", size);
  */
-#define AFW_SIZE_T_FMT_NO_PERCENT APR_SIZE_T_FMT
+#define AFW_SIZE_T_FMT_NO_PERCENT "zu"
 
 /**
  * @brief afw_size_t max.
  */
-#define AFW_SIZE_T_MAX APR_SIZE_MAX
+#define AFW_SIZE_T_MAX SIZE_MAX
 
 /**
  * @brief afw_size_t max digits.
@@ -542,7 +549,7 @@ typedef apr_int64_t afw_integer_t;
 /**
  * @brief typedef for big unsigned int.
  */
-typedef apr_uint64_t afw_unsigned_integer_t;
+typedef uint64_t afw_unsigned_integer_t;
 
 
 /** Boolean value. */
@@ -1637,8 +1644,8 @@ typedef union afw_c_types_u {
  * instead of UTC time.
  */
 typedef struct afw_time_with_offset_s {
-    apr_time_t time;
-    apr_time_t offset;
+    afw_integer_t time;
+    afw_integer_t offset;
 } afw_time_with_offset_t;
 
 

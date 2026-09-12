@@ -39,40 +39,46 @@ do { \
 
 /* Get now time as dateTime in specified pool. */
 AFW_DEFINE_STATIC_INLINE(void)
-impl_dateTime_tm_set(
-    afw_dateTime_t *dateTime, apr_time_exp_t *tm, afw_xctx_t *xctx)
+impl_dateTime_exploded_set(
+    afw_dateTime_t *dateTime, const afw_os_time_exploded_t *tm,
+    afw_xctx_t *xctx)
 {
+    (void)xctx;
+
     /* Make sure any sluff is cleared. */
     memset(dateTime, 0, sizeof(*dateTime));
 
     /* Fill in dateTime. */
-    dateTime->date.year = 1900 + tm->tm_year;
-    dateTime->date.month = tm->tm_mon + 1;
-    dateTime->date.day = tm->tm_mday;
-    dateTime->time.hour = tm->tm_hour;
-    dateTime->time.minute = tm->tm_min;
-    dateTime->time.second = tm->tm_sec;
-    dateTime->time.microsecond = tm->tm_usec;
-    dateTime->time_zone.hours = tm->tm_gmtoff / 3600;
-    dateTime->time_zone.minutes = abs(tm->tm_gmtoff / 60 % 60);
+    dateTime->date.year = tm->year;
+    dateTime->date.month = tm->month;
+    dateTime->date.day = tm->day;
+    dateTime->time.hour = tm->hour;
+    dateTime->time.minute = tm->minute;
+    dateTime->time.second = tm->second;
+    dateTime->time.microsecond = tm->microsecond;
+    dateTime->time_zone.hours = tm->gmtoff / 3600;
+    dateTime->time_zone.minutes = abs(tm->gmtoff / 60 % 60);
 }
 
 
 /* Get now time as time only in specified pool. */
 AFW_DEFINE_STATIC_INLINE(void)
-impl_time_tm_set(
-    afw_time_t *time, apr_time_exp_t *tm, afw_xctx_t *xctx)
+impl_time_exploded_set(
+    afw_time_t *time, const afw_os_time_exploded_t *tm,
+    afw_xctx_t *xctx)
 {
+    (void)xctx;
+
     /* Make sure any sluff is cleared. */
     memset(time, 0, sizeof(*time));
 
     /* Fill in time. */
-    time->time.hour = tm->tm_hour;
-    time->time.minute = tm->tm_min;
-    time->time.second = tm->tm_sec;
-    time->time.microsecond = tm->tm_usec;
-    time->time_zone.hours = tm->tm_gmtoff / 3600;
-    time->time_zone.minutes = abs(tm->tm_gmtoff / 60 % 60);
+    time->time.hour = tm->hour;
+    time->time.minute = tm->minute;
+    time->time.second = tm->second;
+    time->time.microsecond = tm->microsecond;
+    time->time_zone.hours = tm->gmtoff / 3600;
+    time->time_zone.minutes = abs(tm->gmtoff / 60 % 60);
 }
 
 
@@ -306,15 +312,10 @@ afw_dateTime_set_from_apr_time(
     apr_time_t apr_time,
     afw_xctx_t *xctx)
 {
-    apr_status_t rv;
-    apr_time_exp_t tm;
+    afw_os_time_exploded_t tm;
 
-    rv = apr_time_exp_lt(&tm, apr_time);
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_Z(general, apr, rv, "apr_time_exp_lt() failed",
-            xctx);
-    }
-    impl_dateTime_tm_set(dateTime, &tm, xctx);
+    afw_os_time_explode_local(&tm, (afw_os_time_t)apr_time, xctx);
+    impl_dateTime_exploded_set(dateTime, &tm, xctx);
 }
 
 
@@ -524,31 +525,22 @@ afw_dateTime_set_now(
     afw_dateTime_t *dateTime_local, afw_dateTime_t *dateTime_utc,
     afw_xctx_t *xctx)
 {
-    apr_status_t rv;
-    apr_time_exp_t tm;
-    apr_time_t now;
+    afw_os_time_exploded_t tm;
+    afw_os_time_t now;
 
     /* Make sure both will get same time. */
-    now = apr_time_now();
+    now = afw_os_time_now();
 
     /* If requested, set local dateTime to now. */
     if (dateTime_local) {
-        rv = apr_time_exp_lt(&tm, now);
-        if (rv != APR_SUCCESS) {
-            AFW_THROW_ERROR_RV_Z(general, apr, rv, "apr_time_exp_lt() failed",
-                xctx);
-        }
-        impl_dateTime_tm_set(dateTime_local, &tm, xctx);
+        afw_os_time_explode_local(&tm, now, xctx);
+        impl_dateTime_exploded_set(dateTime_local, &tm, xctx);
     }
 
     /* If requested, set utc dateTime to now. */
     if (dateTime_utc) {
-        rv = apr_time_exp_gmt(&tm, now);
-        if (rv != APR_SUCCESS) {
-            AFW_THROW_ERROR_RV_Z(general, apr, rv, "apr_time_exp_gmt() failed",
-                xctx);
-        }
-        impl_dateTime_tm_set(dateTime_utc, &tm, xctx);
+        afw_os_time_explode_utc(&tm, now, xctx);
+        impl_dateTime_exploded_set(dateTime_utc, &tm, xctx);
     }
 }
 
@@ -559,31 +551,22 @@ afw_time_set_now(
     afw_time_t *time_local, afw_time_t *time_utc,
     afw_xctx_t *xctx)
 {
-    apr_status_t rv;
-    apr_time_exp_t tm;
-    apr_time_t now;
+    afw_os_time_exploded_t tm;
+    afw_os_time_t now;
 
     /* Make sure both will get same time. */
-    now = apr_time_now();
+    now = afw_os_time_now();
 
     /* If requested, set local time. */
     if (time_local) {
-        rv = apr_time_exp_lt(&tm, now);
-        if (rv != APR_SUCCESS) {
-            AFW_THROW_ERROR_RV_Z(general, apr, rv, "apr_time_exp_lt() failed",
-                xctx);
-        }
-        impl_time_tm_set(time_local, &tm, xctx);
+        afw_os_time_explode_local(&tm, now, xctx);
+        impl_time_exploded_set(time_local, &tm, xctx);
     }
 
     /* If requested, set utc time. */
     if (time_utc) {
-        rv = apr_time_exp_gmt(&tm, now);
-        if (rv != APR_SUCCESS) {
-            AFW_THROW_ERROR_RV_Z(general, apr, rv, "apr_time_exp_gmt() failed",
-                xctx);
-        }
-        impl_time_tm_set(time_utc, &tm, xctx);
+        afw_os_time_explode_utc(&tm, now, xctx);
+        impl_time_exploded_set(time_utc, &tm, xctx);
     }
 }
 
@@ -619,18 +602,13 @@ AFW_DEFINE(void)
 afw_time_set_now_local(
     afw_time_t *time, afw_xctx_t *xctx)
 {
-    apr_status_t rv;
-    apr_time_exp_t tm;
+    afw_os_time_exploded_t tm;
 
     /* Explode now time. */
-    rv = apr_time_exp_lt(&tm, apr_time_now());
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_Z(general, apr, rv, "apr_time_exp_gmt() failed",
-            xctx);
-    }
+    afw_os_time_explode_local(&tm, afw_os_time_now(), xctx);
 
     /* Set time. */
-    impl_time_tm_set(time, &tm, xctx);
+    impl_time_exploded_set(time, &tm, xctx);
 }
 
 

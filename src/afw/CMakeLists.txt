@@ -80,6 +80,7 @@ if (UNIX)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         ${DW_LIBRARY}
         ${UNWIND_LIBRARY}
+        ${CMAKE_DL_LIBS}
     )
 endif()
 

@@ -335,7 +335,7 @@ impl_afw_adapter_journal_add_entry_internal(
     const afw_memory_t *encoded;
     afw_memory_t temp_raw;
     apr_status_t rv;
-    apr_time_exp_t now;
+    afw_os_time_exploded_t exploded;
     const afw_utf8_z_t *relative_entry_path_z;
     const afw_utf8_z_t *full_entry_path_z;
     const afw_utf8_z_t *full_entry_dir_path_z;
@@ -363,15 +363,10 @@ impl_afw_adapter_journal_add_entry_internal(
     encoded_len_be = afw_endian_native_to_big_uint64(encoded->size);
 
     /* Determine relative path from root for this entry. */
-    rv = apr_time_exp_gmt(&now, apr_time_now());
-    if (rv != APR_SUCCESS) {
-        AFW_ERROR_FOOTPRINT("apr_time_exp_gmt()");
-        AFW_THROW_ERROR_RV_Z(general, apr, rv, "apr_time_exp_gmt() failed",
-            xctx);
-    }
+    afw_os_time_explode_utc(&exploded, afw_os_time_now(), xctx);
     relative_entry_path_z = afw_utf8_z_printf(p, xctx, 
         "y%04d/m%02d/d%02d/h%02d",
-        now.tm_year + 1900, now.tm_mon + 1, now.tm_mday, now.tm_hour);
+        exploded.year, exploded.month, exploded.day, exploded.hour);
 
     /* Open lock file creating it if needed. */
     AFW_ERROR_FOOTPRINT("apr_file_open()");
@@ -422,11 +417,11 @@ impl_afw_adapter_journal_add_entry_internal(
      */
     old_full_entry_path_z = NULL;
     if (!first_entry &&
-        (  lock.century != now.tm_year / 100 + 19
-        || lock.year    != now.tm_year % 100
-        || lock.month   != now.tm_mon + 1
-        || lock.day     != now.tm_mday
-        || lock.hour    != now.tm_hour)
+        (  lock.century != exploded.year / 100
+        || lock.year    != exploded.year % 100
+        || lock.month   != exploded.month
+        || lock.day     != exploded.day
+        || lock.hour    != exploded.hour)
         )
     {
         char ymdh[32];
@@ -441,14 +436,15 @@ impl_afw_adapter_journal_add_entry_internal(
 
     /* Update lock struct. */
     lock.filler  = 0;
-    lock.century = (now.tm_year / 100) + 19;
-    lock.year    = now.tm_year % 100;
-    lock.month   = now.tm_mon + 1;
-    lock.day     = now.tm_mday;
-    lock.hour    = now.tm_hour;
-    lock.min     = now.tm_min;
-    lock.sec     = now.tm_sec;
-    lock.usec    = afw_endian_native_to_big_uint32(now.tm_usec);
+    lock.century = exploded.year / 100;
+    lock.year    = exploded.year % 100;
+    lock.month   = exploded.month;
+    lock.day     = exploded.day;
+    lock.hour    = exploded.hour;
+    lock.min     = exploded.minute;
+    lock.sec     = exploded.second;
+    lock.usec    = afw_endian_native_to_big_uint32(
+        exploded.microsecond);
 
     /* Path to file that will hold event. */
     full_entry_path_z = impl_journal_path_z(
