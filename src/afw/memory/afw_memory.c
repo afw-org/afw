@@ -107,24 +107,31 @@ static afw_size_t impl_callback(void *context,
     afw_xctx_t *xctx)
 {
     impl_memory_self_t *self = context;
-    afw_size_t count;
     const afw_octet_t *s;
+    afw_size_t remaining;
+    afw_size_t room;
+    afw_size_t n;
     impl_memory_buffer_segment_t *segment;
 
-    for (s = (const afw_octet_t *)buffer, count = size;
-        count > 0;
-        count--, s++)
-    {
+    (void)p;
+
+    s = (const afw_octet_t *)buffer;
+    remaining = size;
+    while (remaining > 0) {
         if (self->last->used == IMPL_BINARY_BUF_SEGMENT_SIZE) {
             segment = afw_pool_malloc_type(self->pub.p,
-                impl_memory_buffer_segment_t,
-                xctx);
+                impl_memory_buffer_segment_t, xctx);
             segment->next = NULL;
             segment->used = 0;
             self->last->next = segment;
             self->last = segment;
         }
-        self->last->s[self->last->used++] = *s;
+        room = IMPL_BINARY_BUF_SEGMENT_SIZE - self->last->used;
+        n = (remaining < room) ? remaining : room;
+        memcpy(self->last->s + self->last->used, s, n);
+        self->last->used += n;
+        s += n;
+        remaining -= n;
     }
 
     return size;

@@ -15,7 +15,6 @@
 #include "afw_curl_internal.h"
 
 #include <curl/curl.h>
-#include <apr_buckets.h>
 
 
 /**
@@ -36,14 +35,13 @@
  *    in chunks, and the callback is responsible for writing them to the
  *    appropriate location.
  * 
- * We can, by default, provide the callbacks internally and load data to and 
- * from the server using the apr_brigade_write() and apr_brigade_read() 
- * functions. This makes using the curl extension from Adaptive Script easy to 
- * use, but at the expense of increased memory usage. 
- * 
- * However, if the user wants to use their own callbacks, they can do so by 
- * passing them in as parameters from adaptive script, and we will use them 
- * instead of the internal ones.
+ * We can, by default, provide the callbacks internally and buffer the
+ * response with afw_memory_create_writer() (write addr+len, then
+ * retrieve_and_release). That makes http_* easy from Adaptive Script, at
+ * the expense of holding the whole body.
+ *
+ * If the user passes their own callbacks from Adaptive Script, those are
+ * used instead of the internal buffer.
  */
 
 /**
@@ -138,10 +136,10 @@ afw_curl_internal_response_cb(
     afw_curl_internal_write_cb_t * appdata = 
         (afw_curl_internal_write_cb_t *) userdata;
     afw_curl_internal_script_cb_t * writer = appdata->writer;
+    const afw_memory_writer_t *memory_writer;
     afw_memory_t buf;
     const afw_value_t *return_value;
     size_t realsize = 0;
-    apr_status_t rc;
 
     /* check to see if a callback was provided by adaptive script */
     if (writer && writer->callback) 
@@ -165,13 +163,14 @@ afw_curl_internal_response_cb(
     else 
     {
         realsize = size * nmemb;
-        rc = apr_brigade_write(appdata->response,
-            NULL, NULL, ptr, realsize);
-        if (rc != APR_SUCCESS) {
-            AFW_THROW_ERROR_Z(general, 
-                "Error writing response to internal buffer.", 
+        memory_writer = appdata->memory_writer;
+        if (!memory_writer) {
+            AFW_THROW_ERROR_Z(general,
+                "Error writing response to internal buffer.",
                 appdata->xctx);
         }
+        memory_writer->callback(memory_writer->context,
+            ptr, realsize, appdata->pool, appdata->xctx);
     }
 
     return realsize;
@@ -300,13 +299,12 @@ afw_curl_internal_register_response_callbacks(
     appdata = afw_xctx_calloc_type(afw_curl_internal_write_cb_t, xctx);
     appdata->pool = pool;
     appdata->xctx = xctx;
-    appdata->allocator = apr_bucket_alloc_create(
-        afw_pool_get_apr_pool(appdata->pool));
-    appdata->response = apr_brigade_create(
-        afw_pool_get_apr_pool(appdata->pool), appdata->allocator);
     appdata->headers = afw_array_create_unmanaged(pool, xctx);
     appdata->header = header;
     appdata->writer = writer;
+    if (!(writer && writer->callback)) {
+        appdata->memory_writer = afw_memory_create_writer(pool, xctx);
+    }
 
     res = curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *) appdata);
     if (res != CURLE_OK)
@@ -531,38 +529,20 @@ afw_curl_internal_options(
     }
 }
 
-afw_memory_t *
+const afw_memory_t *
 afw_curl_internal_parse_response(
     afw_curl_internal_write_cb_t    * response,
-    const afw_pool_t                * pool,
     afw_xctx_t                      * xctx)
 {
-    afw_memory_t * response_body = NULL;
+    const afw_memory_t *response_body;
 
-    if (response && response->response) {
-        apr_status_t rv;
-        apr_off_t len;
-        apr_size_t size;
-
-        response_body = afw_xctx_calloc_type(afw_memory_t, xctx);
-
-        /* the response field is an APR Bucket Brigade that needs to be flattened */
-        rv = apr_brigade_length(response->response, 1, &len);
-        if (rv != APR_SUCCESS || len < 0) {
-            AFW_THROW_ERROR_RV_Z(general, apr, rv,
-                "apr_brigade_length() failed.", xctx);
-        }
-        size = (apr_size_t) len;
-        response_body->ptr = apr_palloc(afw_pool_get_apr_pool(pool), size);
-
-        rv = apr_brigade_flatten(response->response, (char *)response_body->ptr, &size);
-        if (rv != APR_SUCCESS) {
-            AFW_THROW_ERROR_RV_Z(general, apr, rv,
-                "apr_brigade_flatten() failed.", xctx);
-        }
-        response_body->size = size;
+    if (!response || !response->memory_writer) {
+        return NULL;
     }
 
+    response_body = afw_memory_writer_retrieve_and_release(
+        response->memory_writer, xctx);
+    response->memory_writer = NULL;
     return response_body;
 }
 
@@ -587,7 +567,7 @@ afw_curl_internal_http_post(
     long response_code;
     const afw_value_t *value;
     const afw_iterator_old_t *header_iterator;
-    afw_memory_t * response_body;
+    const afw_memory_t *response_body;
     afw_utf8_t * encoded_response;
     afw_curl_internal_script_cb_t * header = NULL;
     afw_curl_internal_script_cb_t * writer = NULL;
@@ -729,7 +709,7 @@ afw_curl_internal_http_post(
         afw_object_set_property_as_integer_internal(result, afw_curl_v_response_code, response_code, xctx);
 
         /* parse the response body and attach it, too */
-        response_body = afw_curl_internal_parse_response(response, pool, xctx);
+        response_body = afw_curl_internal_parse_response(response, xctx);
         if (response_body && response_body->size) {
             encoded_response = afw_pool_calloc_type(pool, afw_utf8_t, xctx);
             afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
@@ -781,7 +761,7 @@ afw_curl_internal_http_get(
     long response_code;
     const afw_value_t * value;
     const afw_iterator_old_t * header_iterator;
-    afw_memory_t * response_body;
+    const afw_memory_t *response_body;
     afw_utf8_t * encoded_response;
     afw_curl_internal_script_cb_t * header = NULL;
     afw_curl_internal_script_cb_t * writer = NULL;
@@ -865,7 +845,7 @@ afw_curl_internal_http_get(
         afw_object_set_property_as_integer_internal(result, afw_curl_v_response_code, response_code, xctx);
 
         /* parse the response body and attach it, too */
-        response_body = afw_curl_internal_parse_response(response, pool, xctx);
+        response_body = afw_curl_internal_parse_response(response, xctx);
         if (response_body && response_body->size) {
             encoded_response = afw_pool_calloc_type(pool, afw_utf8_t, xctx);
             afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
@@ -918,7 +898,7 @@ afw_curl_internal_http_delete(
     long response_code;
     const afw_value_t *value;
     const afw_iterator_old_t *header_iterator;
-    afw_memory_t * response_body;
+    const afw_memory_t *response_body;
     afw_utf8_t * encoded_response;
     afw_curl_internal_script_cb_t * header = NULL;
     afw_curl_internal_script_cb_t * writer = NULL;
@@ -1003,7 +983,7 @@ afw_curl_internal_http_delete(
         afw_object_set_property_as_integer_internal(result, afw_curl_v_response_code, response_code, xctx);
 
         /* parse the response body and attach it, too */
-        response_body = afw_curl_internal_parse_response(response, pool, xctx);
+        response_body = afw_curl_internal_parse_response(response, xctx);
         if (response_body && response_body->size) {
             encoded_response = afw_pool_calloc_type(pool, afw_utf8_t, xctx);
             afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
@@ -1056,7 +1036,7 @@ afw_curl_internal_http_put(
     long response_code;
     const afw_value_t *value;
     const afw_iterator_old_t *header_iterator;
-    afw_memory_t * response_body;
+    const afw_memory_t *response_body;
     afw_utf8_t * encoded_response;
     afw_curl_internal_script_cb_t * header = NULL;
     afw_curl_internal_script_cb_t * writer = NULL;
@@ -1190,7 +1170,7 @@ afw_curl_internal_http_put(
         afw_object_set_property_as_integer_internal(result, afw_curl_v_response_code, response_code, xctx);
 
         /* parse the response body and attach it, too */
-        response_body = afw_curl_internal_parse_response(response, pool, xctx);
+        response_body = afw_curl_internal_parse_response(response, xctx);
         if (response_body && response_body->size) {
             encoded_response = afw_pool_calloc_type(pool, afw_utf8_t, xctx);
             afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
@@ -1243,7 +1223,7 @@ afw_curl_internal_http_patch(
     long response_code;
     const afw_value_t *value;
     const afw_iterator_old_t *header_iterator;
-    afw_memory_t * response_body;
+    const afw_memory_t *response_body;
     afw_utf8_t * encoded_response;
     afw_curl_internal_script_cb_t * header = NULL;
     afw_curl_internal_script_cb_t * writer = NULL;
@@ -1377,7 +1357,7 @@ afw_curl_internal_http_patch(
         afw_object_set_property_as_integer_internal(result, afw_curl_v_response_code, response_code, xctx);
 
         /* parse the response body and attach it, too */
-        response_body = afw_curl_internal_parse_response(response, pool, xctx);
+        response_body = afw_curl_internal_parse_response(response, xctx);
         if (response_body && response_body->size) {
             encoded_response = afw_pool_calloc_type(pool, afw_utf8_t, xctx);
             afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
@@ -1426,7 +1406,7 @@ afw_curl_internal_http_head(
     long response_code;
     const afw_value_t *value;
     const afw_iterator_old_t *header_iterator;
-    afw_memory_t * response_body;
+    const afw_memory_t *response_body;
     afw_utf8_t * encoded_response;
     afw_curl_internal_script_cb_t * header = NULL;
     afw_curl_internal_script_cb_t * writer = NULL;
@@ -1508,7 +1488,7 @@ afw_curl_internal_http_head(
         afw_object_set_property_as_integer_internal(result, afw_curl_v_response_code, response_code, xctx);
 
         /* parse the response body and attach it, too */
-        response_body = afw_curl_internal_parse_response(response, pool, xctx);
+        response_body = afw_curl_internal_parse_response(response, xctx);
         if (response_body && response_body->size) {
             encoded_response = afw_pool_calloc_type(pool, afw_utf8_t, xctx);
             afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
@@ -1557,7 +1537,7 @@ afw_curl_internal_http_options(
     long response_code;
     const afw_value_t *value;
     const afw_iterator_old_t *header_iterator;
-    afw_memory_t * response_body;
+    const afw_memory_t *response_body;
     afw_utf8_t * encoded_response;
     afw_curl_internal_script_cb_t * header = NULL;
     afw_curl_internal_script_cb_t * writer = NULL;
@@ -1641,7 +1621,7 @@ afw_curl_internal_http_options(
         afw_object_set_property_as_integer_internal(result, afw_curl_v_response_code, response_code, xctx);
 
         /* parse the response body and attach it, too */
-        response_body = afw_curl_internal_parse_response(response, pool, xctx);
+        response_body = afw_curl_internal_parse_response(response, xctx);
         if (response_body && response_body->size) {
             encoded_response = afw_pool_calloc_type(pool, afw_utf8_t, xctx);
             afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
