@@ -16,6 +16,7 @@
  */
 
 #include "afw_minimal.h"
+#include "afw_thread.h"
 #include "afw_lmdb.h"
 #include "afw_uuid.h"
 #include "generated/afw_lmdb_generated_internal.h"
@@ -88,7 +89,7 @@ typedef struct afw_lmdb_adapter_s {
     MDB_env *dbEnv;
     afw_lmdb_metadata_t *metadata;
     afw_void_hash_table_t *dbi_handles;
-    apr_thread_rwlock_t *dbLock;
+    afw_thread_rwlock_t *dbLock;
     /*
      * Bumped (under AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN) each time
      * indexDefinitions is published to internalConfig. Lets any indexer
@@ -514,16 +515,16 @@ do { \
             this_txn = session->transaction->txn; \
         } else { \
             if (exclusive) { \
-                apr_thread_rwlock_wrlock(adapter->dbLock); \
+                afw_thread_rwlock_wrlock(adapter->dbLock, this_xctx); \
             } else { \
-                apr_thread_rwlock_rdlock(adapter->dbLock); \
+                afw_thread_rwlock_rdlock(adapter->dbLock, this_xctx); \
             } \
             afw_trace_z(1, adapter->pub.trace_flag_index, \
                 NULL, (flags & MDB_RDONLY) ? "LMDB Begin read transaction" : \
                 "LMDB Begin write transaction", this_xctx); \
             this_rc = mdb_txn_begin(adapter->dbEnv, NULL, flags, &this_txn); \
             if (this_rc) { \
-                apr_thread_rwlock_unlock(adapter->dbLock); \
+                afw_thread_rwlock_unlock(adapter->dbLock, this_xctx); \
                 afw_trace_fz(1, adapter->pub.trace_flag_index, \
                     NULL, this_xctx, "LMDB transaction begin failed with error: " \
                     AFW_INTEGER_FMT, this_rc); \
@@ -595,7 +596,7 @@ do { \
             } \
             if (this_session) \
                 ((afw_lmdb_adapter_session_t *)this_session)->currTxn = NULL; \
-            apr_thread_rwlock_unlock(this_adapter->dbLock); \
+            afw_thread_rwlock_unlock(this_adapter->dbLock, this_xctx); \
         } \
         AFW_ERROR_RETHROW; \
     } \
@@ -669,12 +670,12 @@ do { \
             if (session) \
                 ((afw_lmdb_adapter_session_t *)session)->currTxn = this_txn; \
         } else { \
-            apr_thread_rwlock_rdlock(adapter->dbLock); \
+            afw_thread_rwlock_rdlock(adapter->dbLock, this_xctx); \
             afw_trace_z(1, adapter->pub.trace_flag_index, \
                 NULL, "LMDB Begin write transaction", this_xctx); \
             this_rc = mdb_txn_begin(adapter->dbEnv, NULL, 0, &this_txn); \
             if (this_rc) { \
-                apr_thread_rwlock_unlock(adapter->dbLock); \
+                afw_thread_rwlock_unlock(adapter->dbLock, this_xctx); \
                 afw_trace_fz(1, adapter->pub.trace_flag_index, \
                     NULL, this_xctx, "LMDB transaction begin failed with error: " \
                     AFW_INTEGER_FMT, this_rc); \
@@ -724,7 +725,7 @@ do { \
             if (this_session) \
                 ((afw_lmdb_adapter_session_t *)this_session)->currTxn = this_saved_currTxn; \
             if (!this_txnNested) { \
-                apr_thread_rwlock_unlock(this_adapter->dbLock); \
+                afw_thread_rwlock_unlock(this_adapter->dbLock, this_xctx); \
             } \
         } \
         AFW_ERROR_RETHROW; \

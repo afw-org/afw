@@ -695,10 +695,18 @@ afw_thread_t;
 /**
  * @brief Opaque `afw_thread_mutex_t`.
  *
- * See afw_thread.h for struct and more information.
+ * Same as `afw_os_mutex_t`. See afw_thread.h / afw_os.h.
  */
-typedef struct afw_thread_mutex_s
+typedef struct afw_os_mutex_s
 afw_thread_mutex_t;
+
+/**
+ * @brief Opaque `afw_thread_rwlock_t`.
+ *
+ * Same as `afw_os_rwlock_t`. See afw_thread.h / afw_os.h.
+ */
+typedef struct afw_os_rwlock_s
+afw_thread_rwlock_t;
 
 /**
  * @brief Opaque `afw_try_t`.

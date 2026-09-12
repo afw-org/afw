@@ -50,17 +50,6 @@ impl_lock_debug_write(
 }
 
 
-static void
-impl_lock_destroy(
-    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_lock_t *self = (afw_lock_t *)data;
-
-    /* Ignore errors. */
-    apr_thread_mutex_destroy(self->mutex);
-}
-
-
 /* Create a lock. */
 AFW_DEFINE(const afw_lock_t *)
 afw_lock_create_environment_nested_lock(
@@ -69,23 +58,14 @@ afw_lock_create_environment_nested_lock(
     afw_xctx_t *xctx)
 {
     afw_lock_t *self;
-    apr_status_t rv;
 
-    /*
-     * Create environment lock instance.  Use apr_pcalloc since
-     * afw_pool is not ready.
-     */
-    self = apr_pcalloc(afw_pool_get_apr_pool(p), sizeof(afw_lock_t));
+    self = afw_pool_calloc_type(p, afw_lock_t, xctx);
     self->lock_id = (lock_id)
         ? lock_id
         : afw_s_a_empty_string;
-    rv = apr_thread_mutex_create(&self->mutex,
-        APR_THREAD_MUTEX_NESTED, afw_pool_get_apr_pool(p));
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "'%ku' apr_thread_mutex_create() failed",
-            self->lock_id);
-    }
+    self->lock_type = afw_lock_type_thread_recursive_mutex;
+    self->mutex = afw_thread_mutex_create(
+        AFW_THREAD_MUTEX_NESTED, p, xctx);
 
     /* Return new instance. */
     return self;
@@ -123,16 +103,11 @@ afw_lock_create(
     afw_xctx_t *xctx)
 {
     afw_lock_t *self;
-    apr_status_t rv;
 
 #ifdef AFW_DEBUG_LOCK
     const afw_flag_t *flag;
 #endif
 
-    /*
-     * Create new instance.  Use apr_pcalloc if env->environment_lock
-     * is NULL.  This only happens during environment create.
-     */
     self = afw_pool_calloc_type(p, afw_lock_t, xctx);
     self->lock_id = (lock_id)
         ? lock_id
@@ -163,34 +138,14 @@ afw_lock_create(
     self->flag_index_debug = flag->flag_index;
 #endif
 
-    rv = apr_thread_mutex_create(&self->mutex,
+    self->mutex = afw_thread_mutex_create(
         ((insure_recursive_lock)
-            ? APR_THREAD_MUTEX_NESTED
-            : APR_THREAD_MUTEX_DEFAULT),
-        afw_pool_get_apr_pool(p));
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "'%ku' apr_thread_mutex_create() failed",
-            self->lock_id);
-    }
-
-    /* Destroy instance before pool is destroyed. */
-    afw_pool_register_cleanup_before(p,
-        self, NULL, impl_lock_destroy, xctx);
+            ? AFW_THREAD_MUTEX_NESTED
+            : AFW_THREAD_MUTEX_DEFAULT),
+        p, xctx);
 
     /* Return new instance. */
     return self;
-}
-
-
-static void
-impl_lock_destroy_rw(
-    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_lock_rw_t *self = (afw_lock_rw_t *)data;
-
-    /* Ignore errors. */
-    apr_thread_rwlock_destroy(self->lock.rwlock);
 }
 
 
@@ -221,7 +176,6 @@ afw_lock_create_rw(
     afw_xctx_t *xctx)
 {
     afw_lock_rw_t *self;
-    apr_status_t rv;
 
 #ifdef AFW_DEBUG_LOCK
     const afw_flag_t *flag;
@@ -255,16 +209,7 @@ afw_lock_create_rw(
     self->lock.flag_index_debug = flag->flag_index;
 #endif
 
-    rv = apr_thread_rwlock_create(&self->lock.rwlock, afw_pool_get_apr_pool(p));
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "'%ku' apr_thread_rwlock_create() failed",
-            self->lock.lock_id);
-    }
-
-    /* Destroy instance before pool is destroyed. */
-    afw_pool_register_cleanup_before(p,
-        self, NULL, impl_lock_destroy_rw, xctx);
+    self->lock.rwlock = afw_thread_rwlock_create(p, xctx);
 
     /* Return new instance. */
     return self;
@@ -277,16 +222,10 @@ AFW_DEFINE(void)
 afw_lock_obtain(const afw_lock_t *instance, afw_xctx_t *xctx)
 {
     afw_lock_t *self = (afw_lock_t *)instance;
-    apr_status_t rv;
 
     if (!instance) return;
 
-    rv = apr_thread_mutex_lock(self->mutex);
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "'%ku' apr_thread_mutex_lock() failed",
-            self->lock_id);
-    }
+    afw_thread_mutex_lock(self->mutex, xctx);
 }
 
 
@@ -307,16 +246,10 @@ AFW_DEFINE(void)
 afw_lock_release(const afw_lock_t *instance, afw_xctx_t *xctx)
 {
     afw_lock_t *self = (afw_lock_t *)instance;
-    apr_status_t rv;
 
     if (!instance) return;
 
-    rv = apr_thread_mutex_unlock(self->mutex);
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "'%ku' apr_thread_mutex_unlock() failed",
-            self->lock_id);
-    }
+    afw_thread_mutex_unlock(self->mutex, xctx);
 }
 
 
@@ -337,16 +270,10 @@ AFW_DEFINE(void)
 afw_lock_read_obtain(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
 {
     afw_lock_rw_t *self = (afw_lock_rw_t *)instance;
-    apr_status_t rv;
 
     if (!instance) return;
 
-    rv = apr_thread_rwlock_rdlock(self->lock.rwlock);
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "'%ku' apr_thread_rwlock_rdlock() failed",
-            self->lock.lock_id);
-    }
+    afw_thread_rwlock_rdlock(self->lock.rwlock, xctx);
 }
 
 
@@ -367,16 +294,10 @@ AFW_DEFINE(void)
 afw_lock_read_release(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
 {
     afw_lock_rw_t *self = (afw_lock_rw_t *)instance;
-    apr_status_t rv;
 
     if (!instance) return;
 
-    rv = apr_thread_rwlock_unlock(self->lock.rwlock);
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "'%ku' apr_thread_rwlock_unlock() failed",
-            self->lock.lock_id);
-    }
+    afw_thread_rwlock_unlock(self->lock.rwlock, xctx);
 }
 
 
@@ -397,16 +318,10 @@ AFW_DEFINE(void)
 afw_lock_write_obtain(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
 {
     afw_lock_rw_t *self = (afw_lock_rw_t *)instance;
-    apr_status_t rv;
 
     if (!instance) return;
 
-    rv = apr_thread_rwlock_wrlock(self->lock.rwlock);
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "'%ku' apr_thread_rwlock_wrlock() failed",
-            self->lock.lock_id);
-    }
+    afw_thread_rwlock_wrlock(self->lock.rwlock, xctx);
 }
 
 
@@ -426,16 +341,10 @@ AFW_DEFINE(void)
 afw_lock_write_release(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
 {
     afw_lock_rw_t *self = (afw_lock_rw_t *)instance;
-    apr_status_t rv;
 
     if (!instance) return;
 
-    rv = apr_thread_rwlock_unlock(self->lock.rwlock);
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            "'%ku' apr_thread_rwlock_unlock() failed",
-            self->lock.lock_id);
-    }
+    afw_thread_rwlock_unlock(self->lock.rwlock, xctx);
 }
 
 

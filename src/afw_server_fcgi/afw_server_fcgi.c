@@ -19,9 +19,7 @@
 #include "afw.h"
 #include "afw_request_impl.h"
 #include <fcgiapp.h>
-#include <apr_portable.h>
 #include <signal.h>
-#include <pthread.h>
 #include <unistd.h>
 #include <string.h>
 
@@ -79,8 +77,6 @@ impl_handle_shutdown_signal(int signum)
     afw_integer_t count;
     afw_server_fcgi_internal_server_thread_t *server_thread;
     const afw_thread_t *thread;
-    apr_os_thread_t *osthd;
-    apr_status_t rv;
 
     (void)signum;
 
@@ -105,14 +101,10 @@ impl_handle_shutdown_signal(int signum)
         count++, server_thread++)
     {
         thread = server_thread->thread;
-        if (!thread || !thread->apr_thread) {
+        if (!thread || !thread->os_thread) {
             continue;
         }
-        rv = apr_os_thread_get(&osthd, thread->apr_thread);
-        if (rv != APR_SUCCESS || !osthd) {
-            continue;
-        }
-        (void)pthread_kill(*osthd, SIGUSR1);
+        afw_os_thread_kill(thread->os_thread, SIGUSR1);
     }
 }
 
@@ -396,7 +388,7 @@ impl_afw_server_run(
         (afw_size_t)server->pub.thread_count,
         xctx);
 
-    /* The default thread attribute: detachable */
+    /* Joinable (default). thread_attr is currently unused. */
     thread_attr = afw_thread_attr_create(xctx->p, xctx);
 
 

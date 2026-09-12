@@ -50,10 +50,10 @@ struct afw_lock_s {
     union {
 
         /** @brief for type thread_mutex */
-        apr_thread_mutex_t *mutex;
+        afw_thread_mutex_t *mutex;
 
         /** @brief for type thread_read_write */
-        apr_thread_rwlock_t *rwlock;
+        afw_thread_rwlock_t *rwlock;
     };
     afw_lock_type_t lock_type;
 };

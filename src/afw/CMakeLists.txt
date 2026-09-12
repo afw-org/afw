@@ -77,10 +77,12 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 if (UNIX)
     find_library(DW_LIBRARY dw REQUIRED)
     find_library(UNWIND_LIBRARY unwind REQUIRED)
+    find_package(Threads REQUIRED)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         ${DW_LIBRARY}
         ${UNWIND_LIBRARY}
         ${CMAKE_DL_LIBS}
+        Threads::Threads
     )
 endif()
 

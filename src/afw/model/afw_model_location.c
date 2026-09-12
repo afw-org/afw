@@ -88,17 +88,11 @@ afw_model_location_create(
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_model_location_t *model_location;
-    apr_status_t rv;
 
     model_location = afw_pool_calloc_type(p, afw_model_location_t, xctx);
     model_location->model_location_adapter = adapter;
-    rv = apr_thread_mutex_create(&model_location->mutex,
-        APR_THREAD_MUTEX_UNNESTED, afw_pool_get_apr_pool(p));
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_Z(general, apr, rv,
-            "apr_thread_mutex_create() failed",
-            xctx);
-    }
+    model_location->mutex = afw_thread_mutex_create(
+        AFW_THREAD_MUTEX_UNNESTED, p, xctx);
 
     return model_location;
 }

@@ -10,6 +10,7 @@
 #define __AFW_THREAD_H__
 
 #include "afw_interface.h"
+#include "afw_os.h"
 
 /**
  * @addtogroup afw_thread
@@ -26,32 +27,29 @@
 
 AFW_BEGIN_DECLARES
 
-/** @brief Uses apr_thread_mutex_t asis. */
-#define afw_thread_mutex_create apr_thread_mutex_create
+/** @brief Platform default mutex (non-recursive on nix). */
+#define AFW_THREAD_MUTEX_DEFAULT  AFW_OS_MUTEX_DEFAULT
 
-/** @brief Uses apr_thread_mutex_t asis. */
-#define afw_thread_mutex_lock apr_thread_mutex_lock
+/** @brief Recursive mutex (was APR_THREAD_MUTEX_NESTED). */
+#define AFW_THREAD_MUTEX_NESTED   AFW_OS_MUTEX_NESTED
 
-/** @brief Uses apr_thread_mutex_trylock asis. */
-#define afw_thread_mutex_trylock apr_thread_mutex_trylock
+/** @brief Non-recursive mutex (was APR_THREAD_MUTEX_UNNESTED). */
+#define AFW_THREAD_MUTEX_UNNESTED AFW_OS_MUTEX_UNNESTED
 
-/** @brief Uses apr_thread_mutex_unlock asis. */
-#define afw_thread_mutex_unlock apr_thread_mutex_unlock
+/** @brief Mutex/rwlock are `afw_os_*` on `afw_pool` (see afw_os.h). */
+#define afw_thread_mutex_create  afw_os_mutex_create
+#define afw_thread_mutex_lock    afw_os_mutex_lock
+#define afw_thread_mutex_trylock afw_os_mutex_trylock
+#define afw_thread_mutex_unlock  afw_os_mutex_unlock
+#define afw_thread_mutex_destroy afw_os_mutex_destroy
 
-/** @brief Uses apr_thread_mutex_destroy asis. */
-#define afw_thread_mutex_destroy apr_thread_mutex_destroy
+#define afw_thread_rwlock_create  afw_os_rwlock_create
+#define afw_thread_rwlock_rdlock  afw_os_rwlock_rdlock
+#define afw_thread_rwlock_wrlock  afw_os_rwlock_wrlock
+#define afw_thread_rwlock_unlock  afw_os_rwlock_unlock
+#define afw_thread_rwlock_destroy afw_os_rwlock_destroy
 
-/** @brief Uses APR_THREAD_FUNC as AFW_THREAD_FUNCTION. */
-#define AFW_THREAD_FUNCTION APR_THREAD_FUNC
-
-/** @brief Typedef for thread start function. */
-typedef void *(AFW_THREAD_FUNCTION *afw_thread_function_t)
-    (const afw_thread_t *thread, void *arg);
-
-/** @brief Typedef for afw_thread_attr. */
-typedef struct afw_thread_attr_s afw_thread_attr_t;
-
-/** @brief Struct for public part of afw_pool_t. */
+/** @brief Struct for public part of afw_thread_t. */
 struct afw_thread_s {
     afw_thread_attr_t *thread_attr;
 
@@ -73,16 +71,19 @@ struct afw_thread_s {
     /** @brief The base xctx for the thread. */
     afw_xctx_t *xctx;
 
-    /** @brief The associated apr thread. */
-    apr_thread_t *apr_thread;
+    /** @brief Native OS thread (joinable). */
+    afw_os_thread_t *os_thread;
 };
 
 
 /**
- * @brief Create a thread attr
+ * @brief Create a thread attr.
  * @param p to use.
  * @param xctx of caller.
  * @return new thread attr.
+ *
+ * Currently unused by create (joinable POSIX default). Kept so
+ * callers can pass one; do not assume detach.
  */
 AFW_DECLARE(afw_thread_attr_t *)
 afw_thread_attr_create(
@@ -90,15 +91,14 @@ afw_thread_attr_create(
 
 
 /**
- * @brief Create a thread
- * @param thread_attr to use.
- * @param start_function to call when thread starts.
+ * @brief Create a joinable thread.
+ * @param thread_attr currently unused (joinable default).
+ * @param start_function to call when the thread starts.
  * @param start_function_arg to pass to start function.
  * @param name to be associated with thread.
  * @param thread_number to be associated with thread.
- * @param p to use.
  * @param xctx of caller.
- * @return new threadr.
+ * @return new thread.
  */
 AFW_DECLARE(const afw_thread_t *)
 afw_thread_create(
@@ -123,11 +123,12 @@ afw_thread_join(
 
 /**
  * @brief Macro to begin a mutex lock section.
- * @param xctx of caller.
+ * @param mutex to lock.
+ * @param xctx of caller (must be named xctx).
  *
  * Usage:
  *
- * AFW_THREAD_MUTEX_LOCK(xctx) {
+ * AFW_THREAD_MUTEX_LOCK(mutex, xctx) {
  *    ... a very small amount of code that doesn't call anything
  * }
  * AFW_THREAD_MUTEX_UNLOCK();
@@ -136,7 +137,7 @@ afw_thread_join(
 do { \
     afw_thread_mutex_t *this_mutex; \
     this_mutex = mutex; \
-    afw_thread_mutex_lock(mutex); \
+    afw_thread_mutex_lock(this_mutex, xctx); \
     AFW_TRY
 
 
@@ -148,7 +149,7 @@ do { \
  */
 #define AFW_THREAD_MUTEX_UNLOCK() \
 AFW_FINALLY { \
-    afw_thread_mutex_unlock(this_mutex); \
+    afw_thread_mutex_unlock(this_mutex, xctx); \
 } \
 AFW_ENDTRY; \
 } while(0)
