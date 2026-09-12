@@ -77,7 +77,7 @@ Unicode **code-point** tests (identifier, whitespace, Cc) live in **`src/afw/cod
 
 ICU: `afw_utf8.c` (NFC, to_lower, `afw_utf8_icu_error_name_z`) and `afw_code_point.c` (properties). Env decoder uses that wrap.
 
-`afw_utf8_printf` / `z_printf`: own formatter. Prefer `%ku` (`const afw_utf8_t *`; NULL is empty). `AFW_UTF8_FMT` (`%.*s`) is libc and copies n bytes on the AFW walk (interior `0` is data). libc `printf` with `%.*s` still stops at `0`. Assemble then **`create`**. Do not use these to write data files or round-trip octets — `.s` + `.len` / `as_memory`.
+`afw_utf8_printf` / `z_printf`: own formatter. Prefer `%ku` (`const afw_utf8_t *`; NULL is empty). `AFW_UTF8_FMT` (`%.*s`) is libc and copies n bytes on the AFW walk (interior `0` is data). libc `printf` with `%.*s` still stops at `0`. Assemble then **`create`**. Do not use these to write data files or round-trip octets — `.s` + `.len` / `as_memory`. Landed [#314](https://github.com/afw-org/afw/issues/314) / [PR #315](https://github.com/afw-org/afw/pull/315).
 
 LDAP filters, file-adapter paths (dir open, journal, object files), and VFS host-path joins: **concat `.len`**, then **`to_utf8_z`**. Do not glue those with `AFW_UTF8_FMT` / `apr_psprintf`.
 

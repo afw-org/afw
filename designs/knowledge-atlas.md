@@ -271,7 +271,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | **Gate** vs **lab**; **orchestrated** leaves (`orchestration.yaml`); blast **retired** (PR **#167**); handbook Developer Guide **Writing Tests**; gate `src/afw/tests/README.md`; extras SCHEMA in `tests-extra/`; C-only holes use `run_c_probe()` (`_afwdev.test.c_probe`) on a checked-in `*_probe.c` — not cmake; start with `afwdev prime-test-c-probe <path>`; `--env-mode valgrind` wraps those binaries with suite suppressions ([#207](https://github.com/afw-org/afw/issues/207); [`c-probes.md`](c-probes.md)); `--cdev`/`--fulldev` both `--install`, then prune leftover include-dir names (denylist; [`libafw-headers-and-api-surface.md`](libafw-headers-and-api-surface.md)) |
+| **Settled map** | **Gate** vs **lab**; **orchestrated** leaves (`orchestration.yaml`); blast **retired** (PR **#167**); handbook Developer Guide **Writing Tests**; gate `src/afw/tests/README.md`; extras SCHEMA in `tests-extra/`; C-only holes use `run_c_probe()` (`_afwdev.test.c_probe`) on a checked-in `*_probe.c` — not cmake; start with `afwdev prime-test-c-probe <path>`; `--env-mode valgrind` wraps those binaries with suite suppressions ([#207](https://github.com/afw-org/afw/issues/207); [`c-probes.md`](c-probes.md)); `--cdev`/`--fulldev` both `--install`, then prune leftover include-dir names (denylist; [`libafw-headers-and-api-surface.md`](libafw-headers-and-api-surface.md)). **`--scan`:** AFW printf format/type check (`_afwdev/build/printf_scan.py`, libclang ctypes, ~28s, no Python clang module) then analyze-build ([#314](https://github.com/afw-org/afw/issues/314)) |
 | **Day rules** | `afw-tests`, `afw-afwdev-python`, `afw-afwdev-generate` |
 | **Deep pads** | [`afwdev-test-recipe.md`](afwdev-test-recipe.md), [`c-probes.md`](c-probes.md), [`afwdev-advanced-test.md`](afwdev-advanced-test.md) (history), [`afwdev-blast.md`](afwdev-blast.md) (retired); `src/afw/tests-extra/{README,SCHEMA}.md`; handbook `guide/developer/writing-tests.xml` |
 | **Probe** | See recipe commands below |
@@ -290,7 +290,8 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 
 ```bash
 ./afwdev build --cdev          # day-to-day C/Python; also AFW_DEBUG_EVALUATION/LOCK/POOL
-./afwdev build --fulldev       # PR-shaped / docs-aware; same AFW_DEBUG_* defines
+./afwdev build --fulldev       # PR-shaped / docs-aware; same AFW_DEBUG_* defines; --scan includes printf check
+./afwdev build --scan          # after cmake: printf_scan then analyze-build
 ./afwdev build --define NAME   # extra C preprocessor define (repeatable)
 afwdev test -j
 afwdev test --test-pattern catalog-value-accessors --show-all
