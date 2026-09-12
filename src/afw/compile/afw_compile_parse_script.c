@@ -780,8 +780,8 @@ impl_parse_BreakStatement(afw_compile_parser_t *parser)
         label = impl_copy_token_identifier(parser);
         if (!impl_loop_label_is_active(parser, label)) {
             AFW_COMPILE_THROW_ERROR_FZ(
-                "Unknown loop label " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(&label->internal));
+                "Unknown loop label " AFW_UTF8_K_FMT_Q,
+                (&label->internal));
         }
         argc = 1;
     }
@@ -1039,8 +1039,8 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
                 afw_utf8_equal(base->reference.name, &name->internal))
             {
                 AFW_COMPILE_THROW_ERROR_FZ(
-                    "Interface " AFW_UTF8_FMT_Q " cannot extend itself",
-                    AFW_UTF8_FMT_ARG(&name->internal));
+                    "Interface " AFW_UTF8_K_FMT_Q " cannot extend itself",
+                    (&name->internal));
             }
             afw_vector_push(extends, parser->xctx) = base;
             afw_compile_get_token();
@@ -1151,8 +1151,8 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
         label = impl_copy_token_identifier(parser);
         if (!impl_loop_label_is_active(parser, label)) {
             AFW_COMPILE_THROW_ERROR_FZ(
-                "Unknown loop label " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(&label->internal));
+                "Unknown loop label " AFW_UTF8_K_FMT_Q,
+                (&label->internal));
         }
         argc = 1;
     }
@@ -1801,8 +1801,8 @@ impl_throw_check_id(
     id = &((const afw_value_string_t *)id_value)->internal;
     if (!afw_error_id_allowed_on_script_throw(id)) {
         AFW_COMPILE_THROW_ERROR_FZ(
-            "id " AFW_UTF8_FMT_Q " is not allowed on throw",
-            AFW_UTF8_FMT_ARG(id));
+            "id " AFW_UTF8_K_FMT_Q " is not allowed on throw",
+            (id));
     }
 }
 
@@ -2173,8 +2173,8 @@ impl_parse_LabeledStatement(
 
     if (impl_loop_label_is_active(parser, label)) {
         AFW_COMPILE_THROW_ERROR_FZ(
-            "Duplicate loop label " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(&label->internal));
+            "Duplicate loop label " AFW_UTF8_K_FMT_Q,
+            (&label->internal));
     }
 
     /* Caller already saw Identifier. Next token is ':'. */
@@ -2745,10 +2745,10 @@ impl_test_script_load_file_value(
             afw_pool_get_apr_pool(parser->p));
         if (rv != APR_SUCCESS) {
             AFW_COMPILE_THROW_ERROR_FZ(
-                "Failed to open '<<<' file " AFW_UTF8_FMT_Q
-                " (relative path " AFW_UTF8_FMT_Q ")",
-                AFW_UTF8_FMT_ARG(abs_path),
-                AFW_UTF8_FMT_ARG(rel_path));
+                "Failed to open '<<<' file " AFW_UTF8_K_FMT_Q
+                " (relative path " AFW_UTF8_K_FMT_Q ")",
+                (abs_path),
+                (rel_path));
         }
 
         /* Empty file is a valid empty string value. */
@@ -2760,8 +2760,8 @@ impl_test_script_load_file_value(
         in = fopen(abs_z, "rb");
         if (!in) {
             AFW_COMPILE_THROW_ERROR_FZ(
-                "Failed to open '<<<' file " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(abs_path));
+                "Failed to open '<<<' file " AFW_UTF8_K_FMT_Q,
+                (abs_path));
         }
 
         buff = afw_pool_malloc(parser->p, (afw_size_t)finfo.size,
@@ -2769,8 +2769,8 @@ impl_test_script_load_file_value(
         if (fread(buff, 1, (size_t)finfo.size, in) != (size_t)finfo.size) {
             fclose(in);
             AFW_COMPILE_THROW_ERROR_FZ(
-                "Failed to read '<<<' file " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(abs_path));
+                "Failed to read '<<<' file " AFW_UTF8_K_FMT_Q,
+                (abs_path));
         }
         fclose(in);
 
@@ -2778,8 +2778,8 @@ impl_test_script_load_file_value(
             (afw_size_t)finfo.size, parser->xctx))
         {
             AFW_COMPILE_THROW_ERROR_FZ(
-                "'<<<' file " AFW_UTF8_FMT_Q " is not valid UTF-8",
-                AFW_UTF8_FMT_ARG(abs_path));
+                "'<<<' file " AFW_UTF8_K_FMT_Q " is not valid UTF-8",
+                (abs_path));
         }
 
         result = afw_utf8_create((const afw_utf8_octet_t *)buff,
@@ -3231,8 +3231,8 @@ afw_compile_parse_TestScript(
                 afw_compile_intern_utf8(key), parser->xctx))
             {
                 AFW_COMPILE_THROW_ERROR_FZ(
-                    AFW_UTF8_FMT_Q " already specified",
-                    AFW_UTF8_FMT_ARG(key));
+                    AFW_UTF8_K_FMT_Q " already specified",
+                    (key));
             }
             if (afw_utf8_equal(key, afw_s_sourceType)) {
                 global_source_type = string;
@@ -3297,16 +3297,16 @@ afw_compile_parse_TestScript(
 
         else if (!test_object) {
             AFW_COMPILE_THROW_ERROR_FZ(
-                AFW_UTF8_FMT_Q " specified before 'test'",
-                AFW_UTF8_FMT_ARG(key));
+                AFW_UTF8_K_FMT_Q " specified before 'test'",
+                (key));
         }
 
         else {
             if (afw_object_has_property(test_object,
                 afw_compile_intern_utf8(key), parser->xctx)) {
                 AFW_COMPILE_THROW_ERROR_FZ(
-                    AFW_UTF8_FMT_Q " already specified",
-                    AFW_UTF8_FMT_ARG(key));
+                    AFW_UTF8_K_FMT_Q " already specified",
+                    (key));
             }
             afw_object_set_property_as_string_internal(test_object,
                 afw_compile_intern_utf8(key),
@@ -3319,10 +3319,10 @@ afw_compile_parse_TestScript(
                 parser->full_source,
                 string_offset, 4, parser->xctx);
             expect_location = afw_utf8_printf(parser->p, parser->xctx,
-                AFW_UTF8_FMT
+                AFW_UTF8_K_FMT
                 "+" AFW_SIZE_T_FMT
                 "[" AFW_SIZE_T_FMT ":" AFW_SIZE_T_FMT "]",
-                AFW_UTF8_FMT_ARG(test_script_id),
+                (test_script_id),
                 string_offset, source_line, source_column);
             afw_object_set_property_as_string_internal(test_object,
                 afw_v_expectLocation, expect_location, parser->xctx);
@@ -3358,10 +3358,10 @@ afw_compile_parse_TestScript(
                 parser->full_source,
                 string_offset, 4, parser->xctx);
             source_location = afw_utf8_printf(parser->p, parser->xctx,
-                AFW_UTF8_FMT
+                AFW_UTF8_K_FMT
                 "+" AFW_SIZE_T_FMT
                 "[" AFW_SIZE_T_FMT ":" AFW_SIZE_T_FMT "]",
-                AFW_UTF8_FMT_ARG(test_script_id),
+                (test_script_id),
                 string_offset, source_line, source_column);
             afw_object_set_property_as_string_internal(test_object,
                 afw_v_sourceLocation, source_location, parser->xctx);

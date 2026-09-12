@@ -341,7 +341,7 @@ afw_application_internal_application_conf_type_create_cede_p(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "type=application conf entry already specified.",
-            AFW_UTF8_FMT_ARG(source_location));
+            (source_location));
     }
 
     /* Log application starting. */
@@ -354,9 +354,9 @@ afw_application_internal_application_conf_type_create_cede_p(
     /* Get conf adapter.  It will not ever be released. */
     if (conf_adapter_id) {
         AFW_LOG_FZ(debug, xctx,
-            "Application specified confAdapterId " AFW_UTF8_FMT
+            "Application specified confAdapterId " AFW_UTF8_K_FMT
             ".",
-            AFW_UTF8_FMT_ARG(conf_adapter_id));
+            (conf_adapter_id));
         env->conf_adapter = afw_adapter_get_reference(conf_adapter_id, xctx);
         afw_adapter_impl_set_supported_core_object_type(env->conf_adapter,
             afw_s__AdaptiveServiceConf_, true, true, xctx);
@@ -401,7 +401,7 @@ afw_application_internal_application_conf_type_create_cede_p(
             AFW_LOG_FZ(err, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "%s",
-                AFW_UTF8_FMT_ARG(source_location),
+                (source_location),
                 AFW_ERROR_THROWN->message_z);
         }
 
@@ -416,7 +416,7 @@ afw_application_internal_application_conf_type_create_cede_p(
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "error logged _AdaptiveService_",
-                AFW_UTF8_FMT_ARG(source_location));
+                (source_location));
         }
 
         if (object) {
@@ -436,16 +436,15 @@ afw_application_internal_application_conf_type_create_cede_p(
                         AFW_LOG_FZ(warning, xctx,
                             AFW_UTF8_CONTEXTUAL_LABEL_FMT
                             "configuration type \"application\" ignored "
-                            "/" AFW_UTF8_FMT
-                            "/_AdaptiveConf_application/" AFW_UTF8_FMT
-                            "." AFW_UTF8_FMT
+                            "/" AFW_UTF8_K_FMT
+                            "/_AdaptiveConf_application/" AFW_UTF8_K_FMT
+                            "." AFW_UTF8_K_FMT
                             " because it is allowWrite=false or specified "
                             " in the conf file.",
-                            AFW_UTF8_FMT_ARG(source_location),
-                            AFW_UTF8_FMT_ARG(conf_adapter_id),
-                            AFW_UTF8_FMT_ARG(application_id),
-                            AFW_UTF8_FMT_ARG(
-                                afw_object_property_name_display_utf8(
+                            (source_location),
+                            (conf_adapter_id),
+                            (application_id),
+                            (afw_object_property_name_display_utf8(
                                     property_name, xctx)));
                     }
                 }
@@ -480,9 +479,9 @@ afw_application_internal_application_conf_type_create_cede_p(
         afw_v_extensionModulePaths, xctx);
     if (value) {
         detail_source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(source_location),
-            AFW_UTF8_FMT_ARG(afw_s_extensionModulePaths));
+            AFW_UTF8_K_FMT "/" AFW_UTF8_K_FMT,
+            (source_location),
+            (afw_s_extensionModulePaths));
         for (module_path_values = afw_value_to_null_terminated_values(value, p, xctx);
             *module_path_values;
             module_path_values++)
@@ -494,7 +493,7 @@ afw_application_internal_application_conf_type_create_cede_p(
                 AFW_THROW_ERROR_FZ(general, xctx,
                     AFW_UTF8_CONTEXTUAL_LABEL_FMT
                     "extensionModulePaths entries must evaluate to string",
-                    AFW_UTF8_FMT_ARG(detail_source_location));
+                    (detail_source_location));
             }
             module_path =
                 &((const afw_value_string_t *)evaluated)->internal;
@@ -515,9 +514,9 @@ afw_application_internal_application_conf_type_create_cede_p(
     env->root_file_paths = NULL;
     if (root_file_paths) {
         detail_source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(source_location),
-            AFW_UTF8_FMT_ARG(afw_s_rootFilePaths));
+            AFW_UTF8_K_FMT "/" AFW_UTF8_K_FMT,
+            (source_location),
+            (afw_s_rootFilePaths));
         normalized_root_file_paths = afw_object_create_unmanaged_new_p(p, xctx);
         for (iterator = NULL;;) {
             value = afw_object_get_next_property(root_file_paths, &iterator,
@@ -531,11 +530,10 @@ afw_application_internal_application_conf_type_create_cede_p(
             if (!afw_value_is_string(evaluated)) {
                 AFW_THROW_ERROR_FZ(general, xctx,
                     AFW_UTF8_CONTEXTUAL_LABEL_FMT
-                    "rootFilePaths." AFW_UTF8_FMT
+                    "rootFilePaths." AFW_UTF8_K_FMT
                     " must evaluate to string",
-                    AFW_UTF8_FMT_ARG(detail_source_location),
-                    AFW_UTF8_FMT_ARG(
-                        afw_object_property_name_display_utf8(
+                    (detail_source_location),
+                    (afw_object_property_name_display_utf8(
                             property_name, xctx)));
             }
             full_path = afw_file_insure_full_path(
@@ -567,9 +565,9 @@ afw_application_internal_application_conf_type_create_cede_p(
     if (env->application_qualified_variables) {
         detail_source_location = afw_utf8_printf(
             env->application_qualified_variables->p, xctx,
-            AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(source_location),
-            AFW_UTF8_FMT_ARG(afw_s_qualifiedVariables));
+            AFW_UTF8_K_FMT "/" AFW_UTF8_K_FMT,
+            (source_location),
+            (afw_s_qualifiedVariables));
         env->application_qualified_variables = afw_object_create_clone(
             env->application_qualified_variables, p, xctx);
         afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
@@ -584,9 +582,9 @@ afw_application_internal_application_conf_type_create_cede_p(
     /* Set supported core object type in adapter. */
     if (env->layout_adapter_id) {
         AFW_LOG_FZ(debug, xctx,
-            "Application specified layoutAdapterId " AFW_UTF8_FMT_Q
+            "Application specified layoutAdapterId " AFW_UTF8_K_FMT_Q
             ".",
-            AFW_UTF8_FMT_ARG(env->layout_adapter_id));
+            (env->layout_adapter_id));
         layout_adapter = afw_adapter_get_reference(env->layout_adapter_id, xctx);
         afw_adapter_impl_set_supported_core_object_type(layout_adapter,
             afw_s__AdaptiveLayoutComponentType_, true, true, xctx);
@@ -628,8 +626,8 @@ afw_application_internal_application_conf_type_create_cede_p(
             s = afw_value_convert_to_casted_utf8(value, p, xctx);
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Application onApplicationStartupComplete script returned value "
-                "other than 0 - " AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(s));
+                "other than 0 - " AFW_UTF8_K_FMT,
+                (s));
         }
         else {
             AFW_LOG_Z(info,
@@ -641,7 +639,7 @@ afw_application_internal_application_conf_type_create_cede_p(
   
     /* Log application startup complete. */
     AFW_LOG_FZ(info, xctx,
-        AFW_UTF8_FMT_Q " application startup complete.",
-        AFW_UTF8_FMT_ARG(application_id));
+        AFW_UTF8_K_FMT_Q " application startup complete.",
+        (application_id));
 
 }

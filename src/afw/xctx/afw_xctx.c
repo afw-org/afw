@@ -223,17 +223,17 @@ afw_xctx_scope_symbol_get_value_address(
         scope->block->scope_depth != symbol->parent_block->scope_depth)
     {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "symbol " AFW_UTF8_FMT_Q
+            "symbol " AFW_UTF8_K_FMT_Q
             " not found in current scope chain",
-            AFW_UTF8_FMT_ARG(&symbol->name->internal));
+            (&symbol->name->internal));
     }
 
     if (symbol->index >= scope->block->symbol_count) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "symbol " AFW_UTF8_FMT_Q
+            "symbol " AFW_UTF8_K_FMT_Q
             " index " AFW_SIZE_T_FMT
             " is out of range for scope",
-            AFW_UTF8_FMT_ARG(&symbol->name->internal), symbol->index);
+            (&symbol->name->internal), symbol->index);
     }
 
     return (const afw_value_t **)&scope->frame_slots[symbol->index];
@@ -300,9 +300,9 @@ afw_xctx_scope_symbol_get_value_by_name(
 
     if (!value_address) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "symbol name " AFW_UTF8_FMT_Q
+            "symbol name " AFW_UTF8_K_FMT_Q
             " not found in current scope chain",
-            AFW_UTF8_FMT_ARG(symbol_name));
+            (symbol_name));
     }
 
     return *value_address;
@@ -357,9 +357,9 @@ afw_xctx_scope_symbol_set_value_by_name(
 
     if (!value_address) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "symbol name " AFW_UTF8_FMT_Q
+            "symbol name " AFW_UTF8_K_FMT_Q
             " not found in current scope chain",
-            AFW_UTF8_FMT_ARG(symbol_name));
+            (symbol_name));
     }
 
     afw_value_slot_store(value_address, value, xctx);

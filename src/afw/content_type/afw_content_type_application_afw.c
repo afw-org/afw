@@ -259,14 +259,14 @@ impl_afw_stream_flush(
         header = afw_utf8_printf(self->cache_writer->p, xctx,
             AFW_INTEGER_FMT
             " " AFW_SIZE_T_FMT
-            " " AFW_UTF8_FMT
-            "%s" AFW_UTF8_FMT
+            " " AFW_UTF8_K_FMT
+            "%s" AFW_UTF8_K_FMT
             "\n",
             ++(xctx->write_sequence),
             size,
-            AFW_UTF8_FMT_ARG(self->pub.streamId),
+            (self->pub.streamId),
             (self->info && self->info->len > 0) ? " " : "",
-            AFW_UTF8_FMT_OPTIONAL_ARG(self->info) );
+            (self->info) );
 
         afw_writer_write_utf8(self->response_writer, header, xctx);
         afw_memory_writer_retrieve_using_callback_and_release(

@@ -188,10 +188,10 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                                 type_id, untyped_function_id, parser->xctx);
                             if (!function) {
                                 AFW_COMPILE_THROW_ERROR_FZ(
-                                    "Unknown built-in function '" AFW_UTF8_FMT
-                                    "<" AFW_UTF8_FMT ">'",
-                                    AFW_UTF8_FMT_ARG(untyped_function_id),
-                                    AFW_UTF8_FMT_ARG(type_id));
+                                    "Unknown built-in function '" AFW_UTF8_K_FMT
+                                    "<" AFW_UTF8_K_FMT ">'",
+                                    (untyped_function_id),
+                                    (type_id));
                             }
                         }
                         else {
@@ -200,8 +200,8 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                     }
                     if (!function) {
                         AFW_COMPILE_THROW_ERROR_FZ(
-                            "Unknown built-in function " AFW_UTF8_FMT_Q,
-                            AFW_UTF8_FMT_ARG(untyped_function_id));                        
+                            "Unknown built-in function " AFW_UTF8_K_FMT_Q,
+                            (untyped_function_id));                        
                     }
                     result = &function->pub;
                 }
@@ -210,8 +210,8 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                 else {
                     if (!parser->token->identifier_qualifier) {
                         AFW_COMPILE_THROW_ERROR_FZ(
-                            "Undeclared variable " AFW_UTF8_FMT_Q,
-                            AFW_UTF8_FMT_ARG(afw_compile_token_identifier()));
+                            "Undeclared variable " AFW_UTF8_K_FMT_Q,
+                            (afw_compile_token_identifier()));
                     }
                     result =
                         afw_value_qualified_variable_reference_create(
@@ -979,8 +979,8 @@ impl_type_lookup_name(
     }
 
     AFW_COMPILE_THROW_ERROR_FZ(
-        "Unknown type " AFW_UTF8_FMT_Q,
-        AFW_UTF8_FMT_ARG(&name->internal));
+        "Unknown type " AFW_UTF8_K_FMT_Q,
+        (&name->internal));
     return NULL;
 }
 
@@ -1000,8 +1000,8 @@ afw_compile_script_type_register(
         name->internal.s, name->internal.len))
     {
         AFW_COMPILE_THROW_ERROR_FZ(
-            "Type or interface " AFW_UTF8_FMT_Q " is already defined",
-            AFW_UTF8_FMT_ARG(&name->internal));
+            "Type or interface " AFW_UTF8_K_FMT_Q " is already defined",
+            (&name->internal));
     }
     afw_hash_table_set(parser->script_type_names,
         name->internal.s, name->internal.len, type,
@@ -1025,8 +1025,8 @@ afw_compile_script_type_reserve(
         name->internal.s, name->internal.len))
     {
         AFW_COMPILE_THROW_ERROR_FZ(
-            "Type or interface " AFW_UTF8_FMT_Q " is already defined",
-            AFW_UTF8_FMT_ARG(&name->internal));
+            "Type or interface " AFW_UTF8_K_FMT_Q " is already defined",
+            (&name->internal));
     }
     placeholder = impl_type_alloc(parser);
     placeholder->kind = afw_value_type_kind_reference;
@@ -1155,9 +1155,9 @@ afw_compile_script_types_resolve(
             name, stack, 0))
         {
             AFW_COMPILE_THROW_ERROR_FZ(
-                "Type " AFW_UTF8_FMT_Q
+                "Type " AFW_UTF8_K_FMT_Q
                 " circularly references itself",
-                AFW_UTF8_FMT_ARG(name));
+                (name));
         }
     }
 }

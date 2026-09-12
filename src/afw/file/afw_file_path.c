@@ -100,9 +100,9 @@ impl_canonicalize_root_dir_z(
     }
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(not_found, apr, rv, xctx,
-            "rootFilePaths host directory " AFW_UTF8_FMT_Q
+            "rootFilePaths host directory " AFW_UTF8_K_FMT_Q
             " could not be resolved (must exist as a directory)",
-            AFW_UTF8_FMT_ARG(host_root));
+            (host_root));
     }
 
     real_z = merged_z;

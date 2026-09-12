@@ -69,10 +69,9 @@ impl_compile_custom(
             &iterator, &property_name, xctx);
         if (!s) break;
         source_location = afw_utf8_printf(model->p, xctx,
-            AFW_UTF8_FMT "/custom/" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(path),
-            AFW_UTF8_FMT_ARG(
-                afw_object_property_name_display_utf8(property_name, xctx)));
+            AFW_UTF8_K_FMT "/custom/" AFW_UTF8_K_FMT,
+            (path),
+            (afw_object_property_name_display_utf8(property_name, xctx)));
         value = afw_compile_template_source(s, source_location,
             NULL, model->shared, NULL, xctx);
         afw_object_set_property(result, property_name, value, xctx);
@@ -118,9 +117,9 @@ impl_compile_property_type(
         pt->data_type = afw_environment_get_data_type(s, xctx);
         if (!pt->data_type) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                AFW_UTF8_FMT
+                AFW_UTF8_K_FMT
                 "/dataType is invalid",
-                AFW_UTF8_FMT_ARG(path));
+                (path));
         }
     }
 
@@ -170,8 +169,8 @@ impl_compile_property_type(
         afw_v_defaultValue, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_FMT "/defaultValue",
-            AFW_UTF8_FMT_ARG(path));
+            AFW_UTF8_K_FMT "/defaultValue",
+            (path));
         pt->default_value = afw_compile_template_source(
             s,source_location, NULL, model->shared, NULL, xctx);
     }
@@ -191,8 +190,8 @@ impl_compile_property_type(
         afw_v_onGetProperty, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_FMT "/onGetProperty",
-            AFW_UTF8_FMT_ARG(path));
+            AFW_UTF8_K_FMT "/onGetProperty",
+            (path));
         pt->onGetProperty = afw_compile_script_source(
             s, source_location, NULL, model->shared, NULL, xctx);
     }
@@ -202,8 +201,8 @@ impl_compile_property_type(
         afw_v_onGetInitialValue, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_FMT "/onGetInitialValue",
-            AFW_UTF8_FMT_ARG(path));
+            AFW_UTF8_K_FMT "/onGetInitialValue",
+            (path));
         pt->onGetInitialValue = afw_compile_script_source(
             s, source_location, NULL, model->shared, NULL, xctx);
     }
@@ -213,8 +212,8 @@ impl_compile_property_type(
         afw_v_onSetProperty, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_FMT "/onSetProperty",
-            AFW_UTF8_FMT_ARG(path));
+            AFW_UTF8_K_FMT "/onSetProperty",
+            (path));
         pt->onSetProperty = afw_compile_script_source(
             s, source_location, NULL, model->shared, NULL, xctx);
     }
@@ -643,8 +642,8 @@ impl_object_type_compile(
         afw_v_onGetInitialObjectId, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_FMT "/onGetInitialObjectId",
-            AFW_UTF8_FMT_ARG(path));
+            AFW_UTF8_K_FMT "/onGetInitialObjectId",
+            (path));
         ot->onGetInitialObjectId = afw_compile_script_source(s,
             source_location,
             NULL, model->shared, NULL, xctx);
@@ -711,8 +710,8 @@ impl_object_type_compile(
         afw_v_onAddObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_FMT "/onAddObject",
-            AFW_UTF8_FMT_ARG(path));
+            AFW_UTF8_K_FMT "/onAddObject",
+            (path));
         ot->onAddObject = afw_compile_script_source(
             s, source_location, NULL, shared, p, xctx);
     }
@@ -722,8 +721,8 @@ impl_object_type_compile(
         afw_v_onDeleteObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_FMT "/onDeleteObject",
-            AFW_UTF8_FMT_ARG(path));
+            AFW_UTF8_K_FMT "/onDeleteObject",
+            (path));
         ot->onDeleteObject = afw_compile_script_source(
             s, source_location, NULL, shared, p, xctx);
     }
@@ -733,8 +732,8 @@ impl_object_type_compile(
         afw_v_onGetObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_FMT "/onGetObject",
-            AFW_UTF8_FMT_ARG(path));
+            AFW_UTF8_K_FMT "/onGetObject",
+            (path));
         ot->onGetObject = afw_compile_script_source(
             s, source_location, NULL, shared, p, xctx);
     }
@@ -744,8 +743,8 @@ impl_object_type_compile(
         afw_v_onModifyObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_FMT "/onModifyObject",
-            AFW_UTF8_FMT_ARG(path));
+            AFW_UTF8_K_FMT "/onModifyObject",
+            (path));
         ot->onModifyObject = afw_compile_script_source(
             s, source_location, NULL, shared, p, xctx);
     }
@@ -755,8 +754,8 @@ impl_object_type_compile(
         afw_v_onReplaceObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_FMT "/onReplaceObject",
-            AFW_UTF8_FMT_ARG(path));
+            AFW_UTF8_K_FMT "/onReplaceObject",
+            (path));
         ot->onReplaceObject = afw_compile_script_source(s,
             source_location, NULL, shared, p, xctx);
     }
@@ -766,8 +765,8 @@ impl_object_type_compile(
         afw_v_onRetrieveObjects, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_FMT "/onRetrieveObjects",
-            AFW_UTF8_FMT_ARG(path));
+            AFW_UTF8_K_FMT "/onRetrieveObjects",
+            (path));
         ot->onRetrieveObjects = afw_compile_script_source(
             s, source_location, NULL, shared, p, xctx);
     }
@@ -821,7 +820,7 @@ afw_model_compile(
         afw_void_hash_table_t, p, xctx);
     path = afw_object_meta_get_path(object, xctx);
     model->objectType_path = afw_utf8_printf(p, xctx,
-        AFW_UTF8_FMT "/objectTypes/", AFW_UTF8_FMT_ARG(path));
+        AFW_UTF8_K_FMT "/objectTypes/", (path));
 
     /* custom */
     model->custom_variables = afw_object_get_property_as_object_internal(object,

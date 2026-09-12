@@ -83,9 +83,9 @@ afw_lock_create_environment_nested_lock(
         APR_THREAD_MUTEX_NESTED, afw_pool_get_apr_pool(p));
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            AFW_UTF8_FMT_Q
+            AFW_UTF8_K_FMT_Q
             " apr_thread_mutex_create() failed",
-            AFW_UTF8_FMT_ARG(self->lock_id));
+            (self->lock_id));
     }
 
     /* Return new instance. */
@@ -146,16 +146,16 @@ afw_lock_create(
 
 #ifdef AFW_DEBUG_LOCK
     self->flag_id_debug = afw_utf8_printf(p, xctx,
-        "debug:lock:" AFW_UTF8_FMT_Q,
-        AFW_UTF8_FMT_ARG(self->lock_id));
+        "debug:lock:" AFW_UTF8_K_FMT_Q,
+        (self->lock_id));
     flag = afw_environment_get_flag(self->flag_id_debug, xctx);
     if (!flag) {
         brief = afw_utf8_printf(p, xctx,
-            "Debug lock " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(self->lock_id));
+            "Debug lock " AFW_UTF8_K_FMT_Q,
+            (self->lock_id));
         description = afw_utf8_printf(p, xctx,
-            "Debug lock " AFW_UTF8_FMT_Q ".",
-            AFW_UTF8_FMT_ARG(self->lock_id));
+            "Debug lock " AFW_UTF8_K_FMT_Q ".",
+            (self->lock_id));
         afw_environment_register_flag(
             self->flag_id_debug, brief, description,
             afw_s_a_flag_debug_lock, xctx);
@@ -171,9 +171,9 @@ afw_lock_create(
         afw_pool_get_apr_pool(p));
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            AFW_UTF8_FMT_Q
+            AFW_UTF8_K_FMT_Q
             " apr_thread_mutex_create() failed",
-            AFW_UTF8_FMT_ARG(self->lock_id));
+            (self->lock_id));
     }
 
     /* Destroy instance before pool is destroyed. */
@@ -239,16 +239,16 @@ afw_lock_create_rw(
 
 #ifdef AFW_DEBUG_LOCK
     self->lock.flag_id_debug = afw_utf8_printf(p, xctx,
-        "debug:lock:" AFW_UTF8_FMT_Q,
-        AFW_UTF8_FMT_ARG(self->lock.lock_id));
+        "debug:lock:" AFW_UTF8_K_FMT_Q,
+        (self->lock.lock_id));
     flag = afw_environment_get_flag(self->lock.flag_id_debug, xctx);
     if (!flag) {
         brief = afw_utf8_printf(p, xctx,
-            "Debug lock " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(self->lock.lock_id));
+            "Debug lock " AFW_UTF8_K_FMT_Q,
+            (self->lock.lock_id));
         description = afw_utf8_printf(p, xctx,
-            "Debug lock " AFW_UTF8_FMT_Q ".",
-            AFW_UTF8_FMT_ARG(self->lock.lock_id));
+            "Debug lock " AFW_UTF8_K_FMT_Q ".",
+            (self->lock.lock_id));
         afw_environment_register_flag(
             self->lock.flag_id_debug, brief, description,
             afw_s_a_flag_debug_lock, xctx);
@@ -260,9 +260,9 @@ afw_lock_create_rw(
     rv = apr_thread_rwlock_create(&self->lock.rwlock, afw_pool_get_apr_pool(p));
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            AFW_UTF8_FMT_Q
+            AFW_UTF8_K_FMT_Q
             " apr_thread_rwlock_create() failed",
-            AFW_UTF8_FMT_ARG(self->lock.lock_id));
+            (self->lock.lock_id));
     }
 
     /* Destroy instance before pool is destroyed. */
@@ -287,9 +287,9 @@ afw_lock_obtain(const afw_lock_t *instance, afw_xctx_t *xctx)
     rv = apr_thread_mutex_lock(self->mutex);
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            AFW_UTF8_FMT_Q
+            AFW_UTF8_K_FMT_Q
             " apr_thread_mutex_lock() failed",
-            AFW_UTF8_FMT_ARG(self->lock_id));
+            (self->lock_id));
     }
 }
 
@@ -318,9 +318,9 @@ afw_lock_release(const afw_lock_t *instance, afw_xctx_t *xctx)
     rv = apr_thread_mutex_unlock(self->mutex);
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            AFW_UTF8_FMT_Q
+            AFW_UTF8_K_FMT_Q
             " apr_thread_mutex_unlock() failed",
-            AFW_UTF8_FMT_ARG(self->lock_id));
+            (self->lock_id));
     }
 }
 
@@ -349,9 +349,9 @@ afw_lock_read_obtain(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
     rv = apr_thread_rwlock_rdlock(self->lock.rwlock);
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            AFW_UTF8_FMT_Q
+            AFW_UTF8_K_FMT_Q
             " apr_thread_rwlock_rdlock() failed",
-            AFW_UTF8_FMT_ARG(self->lock.lock_id));
+            (self->lock.lock_id));
     }
 }
 
@@ -380,9 +380,9 @@ afw_lock_read_release(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
     rv = apr_thread_rwlock_unlock(self->lock.rwlock);
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            AFW_UTF8_FMT_Q
+            AFW_UTF8_K_FMT_Q
             " apr_thread_rwlock_unlock() failed",
-            AFW_UTF8_FMT_ARG(self->lock.lock_id));
+            (self->lock.lock_id));
     }
 }
 
@@ -411,9 +411,9 @@ afw_lock_write_obtain(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
     rv = apr_thread_rwlock_wrlock(self->lock.rwlock);
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            AFW_UTF8_FMT_Q
+            AFW_UTF8_K_FMT_Q
             " apr_thread_rwlock_wrlock() failed",
-            AFW_UTF8_FMT_ARG(self->lock.lock_id));
+            (self->lock.lock_id));
     }
 }
 
@@ -441,9 +441,9 @@ afw_lock_write_release(const afw_lock_rw_t *instance, afw_xctx_t *xctx)
     rv = apr_thread_rwlock_unlock(self->lock.rwlock);
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-            AFW_UTF8_FMT_Q
+            AFW_UTF8_K_FMT_Q
             " apr_thread_rwlock_unlock() failed",
-            AFW_UTF8_FMT_ARG(self->lock.lock_id));
+            (self->lock.lock_id));
     }
 }
 

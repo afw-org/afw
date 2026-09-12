@@ -196,9 +196,9 @@ impl_afw_value_optional_evaluate(
     /* Make there are at least the required number of parameters. */
     if (x.argc < x.function->numberOfRequiredParameters->internal) {
         AFW_THROW_ERROR_FZ(argument_error, xctx,
-            AFW_UTF8_FMT_Q
+            AFW_UTF8_K_FMT_Q
             " expects " AFW_SIZE_T_FMT " required parameters",
-            AFW_UTF8_FMT_ARG(&x.function->functionId->internal),
+            (&x.function->functionId->internal),
             x.function->numberOfRequiredParameters->internal);
     }
 
@@ -207,9 +207,9 @@ impl_afw_value_optional_evaluate(
         x.argc > x.function->maxNumberOfParameters->internal)
     {
         AFW_THROW_ERROR_FZ(argument_error, xctx,
-            AFW_UTF8_FMT_Q
+            AFW_UTF8_K_FMT_Q
             " expects no more than " AFW_SIZE_T_FMT " parameters",
-            AFW_UTF8_FMT_ARG(&x.function->functionId->internal),
+            (&x.function->functionId->internal),
             x.function->maxNumberOfParameters->internal);
     }
 
@@ -227,18 +227,18 @@ impl_afw_value_optional_evaluate(
         x.first_arg = afw_function_evaluate_parameter(&x, 1, NULL);
         if (!x.first_arg) {
             AFW_THROW_ERROR_FZ(argument_error, xctx,
-                "Polymorphic function " AFW_UTF8_FMT_Q
+                "Polymorphic function " AFW_UTF8_K_FMT_Q
                 " requires first parameter not be undefined",
-                AFW_UTF8_FMT_ARG(&self->function->functionId->internal));
+                (&self->function->functionId->internal));
         }
         x.data_type = afw_value_get_data_type(x.first_arg, xctx);
         x.function = afw_environment_registry_get_data_type_method(
             x.data_type, x.function->dataTypeMethodNumber, xctx);
         if (!x.function) {
             AFW_THROW_ERROR_FZ(argument_error, xctx,
-                AFW_UTF8_FMT_Q " is not a method of data type " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(&self->function->functionId->internal),
-                AFW_UTF8_FMT_ARG(&x.data_type->data_type_id));
+                AFW_UTF8_K_FMT_Q " is not a method of data type " AFW_UTF8_K_FMT_Q,
+                (&self->function->functionId->internal),
+                (&x.data_type->data_type_id));
         }
     }
 

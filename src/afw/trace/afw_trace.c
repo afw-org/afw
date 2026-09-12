@@ -30,10 +30,10 @@ afw_trace_write(
     msg = message;
     if (rti) {
         msg = afw_utf8_printf(xctx->p, xctx,
-            "Trace[" AFW_UTF8_FMT ":" AFW_UTF8_FMT "] " AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&rti->interface_name),
-            AFW_UTF8_FMT_ARG(&rti->implementation_id),
-            AFW_UTF8_FMT_ARG(message));
+            "Trace[" AFW_UTF8_K_FMT ":" AFW_UTF8_K_FMT "] " AFW_UTF8_K_FMT,
+            (&rti->interface_name),
+            (&rti->implementation_id),
+            (message));
     }
     afw_log_write(xctx->env->log, priority,
         source_z, msg, xctx);

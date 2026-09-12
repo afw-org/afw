@@ -697,8 +697,9 @@ afw_utf8_line_count_and_max_column(
  * only (no trailing `0`); z includes the trailing `0`. `printf` then
  * `create` (NFC / throw). Not a data-file writer.
  *
- * `AFW_UTF8_FMT` (`%.*s`) copies n bytes, including an interior 0
- * (AFW, not libc). Other `%s` forms (`%.2s`, `%*s`) are C.
+ * Prefer `AFW_UTF8_K_FMT` (`%ku`) for AFW printf. `AFW_UTF8_FMT`
+ * (`%.*s`) copies n bytes, including an interior 0 (AFW, not libc).
+ * Other `%s` forms (`%.2s`, `%*s`) are C.
  */
 
 AFW_DECLARE_ELLIPSIS(const afw_utf8_t *)

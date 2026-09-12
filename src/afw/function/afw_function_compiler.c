@@ -70,8 +70,8 @@ afw_function_execute_assert(
         AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(reason, 2, string);
         if (reason) {
             AFW_THROW_ERROR_FZ(assertion_failed, x->xctx,
-                "Assertion failed: " AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(&reason->internal));
+                "Assertion failed: " AFW_UTF8_K_FMT,
+                (&reason->internal));
         }
         else {
             AFW_THROW_ERROR_Z(assertion_failed, "Assertion failed", x->xctx);
@@ -1358,8 +1358,8 @@ afw_function_execute_compile_from_file(
             compile_type = afw_compile_type_template;
         else {
             AFW_THROW_ERROR_FZ(bad_request, xctx,
-                "Invalid compile type " AFW_UTF8_FMT_Q ".",
-                AFW_UTF8_FMT_ARG(compile_type_string));
+                "Invalid compile type " AFW_UTF8_K_FMT_Q ".",
+                (compile_type_string));
         }
     }
 

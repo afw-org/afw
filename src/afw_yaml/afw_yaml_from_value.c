@@ -437,9 +437,9 @@ void convert_value_to_yaml(
         afw_value_get_info(value, &info, wa->p, wa->xctx);
         AFW_THROW_ERROR_FZ(general, wa->xctx,
             "Unevaluated value encountered producing yaml "
-            "(" AFW_UTF8_FMT " " AFW_UTF8_FMT ")",
-            AFW_UTF8_FMT_ARG(info.value_inf_id),
-            AFW_UTF8_FMT_OPTIONAL_ARG(info.detail)
+            "(" AFW_UTF8_K_FMT " " AFW_UTF8_K_FMT ")",
+            (info.value_inf_id),
+            (info.detail)
         );
     }
 
@@ -507,8 +507,8 @@ void convert_value_to_yaml(
         else {
             AFW_THROW_ERROR_FZ(general, wa->xctx,
                 "Value data type is not supported for YAML "
-                "(" AFW_UTF8_FMT ")",
-                AFW_UTF8_FMT_ARG(&value_data_type->data_type_id));
+                "(" AFW_UTF8_K_FMT ")",
+                (&value_data_type->data_type_id));
         }
     }
 

@@ -1470,8 +1470,8 @@ impl_format_content(
             }
         }
         else {
-            AFW_THROW_ERROR_FZ(general, xctx,
-                "Unknown printf conversion \"%s\"", spec);
+            AFW_THROW_ERROR_Z(general,
+                "Unknown printf conversion", xctx);
         }
     }
 

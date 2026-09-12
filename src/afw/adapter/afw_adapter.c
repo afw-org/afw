@@ -166,9 +166,9 @@ afw_adapter_get_reference(
         }
         if (!instance) {
             AFW_THROW_ERROR_FZ(not_found, xctx,
-                "Adapter " AFW_UTF8_FMT_Q
+                "Adapter " AFW_UTF8_K_FMT_Q
                 " is not available",
-                AFW_UTF8_FMT_ARG(adapter_id));
+                (adapter_id));
         }
     }
 
@@ -370,8 +370,8 @@ impl_get_adapter_session_cache(const afw_utf8_t *adapter_id,
     /* Error if no valid adapter session. */
     if (!session_cache->session) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Unable to start session for adapter id " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(adapter_id));
+            "Unable to start session for adapter id " AFW_UTF8_K_FMT_Q,
+            (adapter_id));
     }
 
     /* Return result. */
@@ -631,7 +631,7 @@ afw_adapter_internal_conf_type_create_cede_p(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
             "adapterId properties is required",
-            AFW_UTF8_FMT_ARG(source_location));
+            (source_location));
     }
 
     /* See if adapter id already used. */
@@ -643,16 +643,16 @@ afw_adapter_internal_conf_type_create_cede_p(
             AFW_LOG_FZ(warning, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "adapter id afw is automatically defined.  Entry ignored.",
-                AFW_UTF8_FMT_ARG(source_location));
+                (source_location));
             return;
         }
 
         /* Any other adapter id already registered is an error. */
         else {
             AFW_THROW_ERROR_FZ(general, xctx,
-                AFW_UTF8_FMT " adapter " AFW_UTF8_FMT_Q " is already running",
-                source_location->len, source_location->s,
-                adapter_id->len, adapter_id->s);
+                AFW_UTF8_K_FMT " adapter " AFW_UTF8_K_FMT_Q " is already running",
+                (source_location),
+                (adapter_id));
         }
     }
 
@@ -783,9 +783,9 @@ impl_afw_service_type_start_cede_p (
     factory = afw_environment_get_adapter_type(adapter_type, xctx);
     if (!factory) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "adapterType " AFW_UTF8_FMT_Q
+            "adapterType " AFW_UTF8_K_FMT_Q
             " is not a registered adapter type",
-            AFW_UTF8_FMT_ARG(adapter_type));
+            (adapter_type));
     }
    
     /* Create adapter. */

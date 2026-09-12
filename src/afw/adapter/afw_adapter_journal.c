@@ -76,9 +76,9 @@ afw_adapter_journal_entry_consume(
     journal = afw_adapter_session_get_journal_interface(session, xctx);
     if (!journal) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "adapter_id " AFW_UTF8_FMT_Q
+            "adapter_id " AFW_UTF8_K_FMT_Q
             " session get_journal() returned NULL",
-            AFW_UTF8_FMT_ARG(&session->adapter->adapter_id));
+            (&session->adapter->adapter_id));
     }
 
     /* Get consumed property from update object. */
@@ -122,8 +122,8 @@ impl_get_journal_interface(const afw_utf8_t *adapter_id,
 
 error:
     AFW_THROW_ERROR_FZ(method_not_supported, xctx,
-        "Adapter " AFW_UTF8_FMT_Q " does not support journal",
-        AFW_UTF8_FMT_ARG(adapter_id));
+        "Adapter " AFW_UTF8_K_FMT_Q " does not support journal",
+        (adapter_id));
 }
 
 

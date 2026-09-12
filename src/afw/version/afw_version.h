@@ -70,8 +70,8 @@ do { \
     msg_z = afw_version_check(compiled_version); \
     if (msg_z) { \
         AFW_THROW_ERROR_FZ(general, xctx, \
-            AFW_UTF8_FMT " %s", \
-            AFW_UTF8_FMT_ARG(info), msg_z); \
+            AFW_UTF8_K_FMT " %s", \
+            (info), msg_z); \
     } \
 } while (0)
 

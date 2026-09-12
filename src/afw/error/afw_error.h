@@ -1052,7 +1052,8 @@ afw_error_write_log(afw_log_priority_t priority, const afw_error_t *error,
  * @param ... List of arguments need by format string.
  * @return pointer to message_wa in xctx->error.
  *
- * This function leaves xctx->error unchanged if it is successful.
+ * Uses AFW printf (`z_snprintf`) into message_wa. Size includes the
+ * trailing 0. Throws if the format/args are not valid UTF-8.
  *
  * This is for use with AFW_ERROR related macros for formatted message.
  * Messages are built in error's message_wa which is pre-allocated.
@@ -1068,7 +1069,8 @@ afw_error_message(afw_xctx_t *xctx, const afw_utf8_z_t *format, ...);
  * @param xctx of caller.
  * @return pointer to message_wa in xctx->error.
  *
- * This function leaves xctx->error unchanged if it is successful.
+ * Uses AFW printf (`z_snprintf`) into message_wa. Size includes the
+ * trailing 0. Throws if the format/args are not valid UTF-8.
  *
  * This is for use with AFW_ERROR related macros for formatted message.
  * Messages are built in error's message_wa which is pre-allocated.

@@ -1814,8 +1814,8 @@ afw_function_execute_regexp_match(
         xmlResetError(err);
         xmlRegFreeRegexp(rx);
         AFW_THROW_ERROR_FZ(argument_error, x->xctx,
-            AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(err_message));
+            AFW_UTF8_K_FMT,
+            (err_message));
     }
 
     /* xmlRegexpExec returns: 1 if it matches, 0 if not */

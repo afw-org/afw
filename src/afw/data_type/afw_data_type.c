@@ -284,10 +284,10 @@ impl_afw_data_type_from_double_convert_internal(
     else if (afw_data_type_is_integer(to_data_type)) {
         /*
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Cannot convert data type " AFW_UTF8_FMT_Q
-            " to " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(&instance->data_type_id),
-            AFW_UTF8_FMT_ARG(&to_data_type->data_type_id));
+            "Cannot convert data type " AFW_UTF8_K_FMT_Q
+            " to " AFW_UTF8_K_FMT_Q,
+            (&instance->data_type_id),
+            (&to_data_type->data_type_id));
          */
         i = (afw_integer_t)(*(const afw_double_t *)from_internal);
         //if (i != *(const afw_double_t *)from_internal) {
@@ -512,7 +512,7 @@ impl_afw_data_type_boolean_utf8_to_internal(
 
 error:
     AFW_THROW_ERROR_FZ(conversion_error, xctx,
-        "Not a valid boolean value " AFW_UTF8_FMT_Q ".",
+        "Not a valid boolean value " AFW_UTF8_K_FMT_Q ".",
         (int)len, s);
 }
 
