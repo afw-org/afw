@@ -12,9 +12,6 @@
 
 ## Install AdaptiveFramework Core dependencies
 
-    # Apache Run Time and Apache2 Dev
-    sudo apt-get install libapr1 libapr1-dev apache2-dev
-
     # libxml2
     sudo apt-get install libxml2 libxml2-dev
 
@@ -93,10 +90,9 @@ Eventually, these adapters will not be required, but rather enabled/disabled via
 ## TL;DR
 
     sudo apt-get install -y git libtool pkg-config clang-tools \
-        libapr1 libapr1-dev apache2-dev libxml2 libxml2-dev python3-pip python3-lxml \
+        libxml2 libxml2-dev python3-pip python3-lxml \
         libicu-dev libunwind-setjmp0-dev elfutils libdw-dev cmake \
         libmysqlclient-dev libdb-dev liblmdb-dev libcurl4-openssl-dev libssl-dev \
-        libaprutil1-dbd-mysql libaprutil1-dbd-sqlite3 libaprutil1-dbd-odbc libaprutil1-dbd-pgsql \
         libyaml-dev libfcgi-dev nginx gdb valgrind lsof default-jre doxygen \
         nodejs npm tmux vim locales bash-completion docker.io
     git clone https://github.com/afw-org/afw.git    
@@ -165,7 +161,7 @@ Eventually, these adapters will not be required, but rather enabled/disabled via
     zypper ref -s && \
     zypper -n --non-interactive in gcc9 gcc9-c++ \
         libtool apache2-devel cmake clang-tools \
-        libapr1 libapr1-devel libxml2 libxml2-devel \
+        libxml2 libxml2-devel \
         icu libicu-devel libunwind libunwind-devel \
         elfutils libdw1 libdw-devel libyaml-devel \
         FastCGI FastCGI-devel libmysqlclient-devel \

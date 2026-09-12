@@ -128,13 +128,6 @@ impl_afw_pool_destroy(
     afw_xctx_t * xctx);
 #endif
 
-#ifndef impl_afw_pool_get_apr_pool
-/* Declare method get_apr_pool */
-AFW_DECLARE_STATIC(apr_pool_t *)
-impl_afw_pool_get_apr_pool(
-    AFW_POOL_SELF_T *self);
-#endif
-
 #ifndef impl_afw_pool_calloc
 /* Declare method calloc */
 AFW_DECLARE_STATIC(void *)
@@ -214,8 +207,6 @@ impl_afw_pool_inf = {
     impl_afw_pool_get_reference,
     (afw_pool_destroy_t)
     impl_afw_pool_destroy,
-    (afw_pool_get_apr_pool_t)
-    impl_afw_pool_get_apr_pool,
     (afw_pool_calloc_t)
     impl_afw_pool_calloc,
     (afw_pool_malloc_t)

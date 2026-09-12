@@ -109,7 +109,7 @@ impl_afw_adapter_impl_index_get_index_definitions (
     const afw_adapter_t *adapter = (afw_adapter_t *)self->adapter;
     const afw_object_t *indexes;
     const afw_pool_t *pool;
-    apr_uint32_t generation;
+    afw_uint32_t generation;
 
     /*
      * Long-lived home for the cached copy: the session's own pool when

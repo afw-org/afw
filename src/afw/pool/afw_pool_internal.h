@@ -166,15 +166,6 @@ struct afw_pool_internal_self_s {
      */
     afw_size_t remaining;
 
-    /**
-     * @brief APR pool for afw_pool_get_apr_pool() callers, or NULL.
-     *
-     * Door for leftover APR function calls. NULL until first
-     * get_apr_pool(). Independent of the chunk store. Tracker destroy
-     * releases it. Never created if nobody calls.
-     */
-    apr_pool_t *public_apr_p;
-
     /** @brief Optional pool name. */
     const afw_utf8_t *name;
 

@@ -55,11 +55,6 @@ impl_heap_afw_pool_destroy(
     afw_xctx_t *xctx);
 #define impl_afw_pool_destroy impl_heap_afw_pool_destroy
 
-static apr_pool_t *
-impl_heap_afw_pool_get_apr_pool(
-    AFW_POOL_SELF_T *self);
-#define impl_afw_pool_get_apr_pool impl_heap_afw_pool_get_apr_pool
-
 static void *
 impl_heap_afw_pool_calloc(
     AFW_POOL_SELF_T *self,
@@ -86,7 +81,6 @@ impl_heap_afw_pool_free_memory(
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_SPECIFIC
 #undef impl_afw_pool_destroy
-#undef impl_afw_pool_get_apr_pool
 #undef impl_afw_pool_calloc
 #undef impl_afw_pool_malloc
 #undef impl_afw_pool_free_memory
@@ -107,13 +101,6 @@ impl_tracker_afw_pool_destroy(
 
 #define impl_afw_pool_destroy \
     impl_tracker_afw_pool_destroy
-
-static apr_pool_t *
-impl_tracker_afw_pool_get_apr_pool(
-    AFW_POOL_SELF_T * self);
-
-#define impl_afw_pool_get_apr_pool \
-    impl_tracker_afw_pool_get_apr_pool
 
 static void *
 impl_tracker_afw_pool_calloc(
@@ -157,7 +144,6 @@ impl_tracker_implementation_specific =
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef AFW_IMPLEMENTATION_SPECIFIC
 #undef impl_afw_pool_destroy
-#undef impl_afw_pool_get_apr_pool
 #undef impl_afw_pool_calloc
 #undef impl_afw_pool_malloc
 #undef impl_afw_pool_free_memory
@@ -405,25 +391,8 @@ impl_heap_allocate_self(const afw_pool_inf_t *inf)
 }
 
 
-/* Process base pool. Keeps the 4k chunks reachable until exit
- * (APR used to do this via its global allocator). */
+/* Process base pool. Keeps the 4k chunks reachable until exit. */
 static afw_pool_internal_self_t *impl_base_pool_self;
-
-
-static apr_pool_t *
-impl_lazy_public_apr_pool(AFW_POOL_SELF_T *self)
-{
-    int rv;
-
-    if (!self->public_apr_p) {
-        rv = apr_pool_create(&self->public_apr_p, NULL);
-        if (rv != APR_SUCCESS) {
-            self->public_apr_p = NULL;
-            return NULL;
-        }
-    }
-    return self->public_apr_p;
-}
 
 
 /* --------------------------- internal functions --------------------------- */
@@ -652,7 +621,7 @@ impl_heap_add_to_free_list(
     afw_xctx_t *xctx);
 
 static void *
-impl_heap_take_from_free_list_or_apr(
+impl_heap_take_from_free_list_or_chunk(
     AFW_POOL_SELF_T *self,
     afw_size_t total,
     afw_boolean_t *reused,
@@ -1130,11 +1099,6 @@ impl_heap_afw_pool_destroy(
 
     impl_account_destroy(self, xctx);
 
-    if (self->public_apr_p) {
-        apr_pool_destroy(self->public_apr_p);
-        self->public_apr_p = NULL;
-    }
-
     /* Walk chunks last: the heap self lives in the first chunk. */
     {
         afw_pool_chunk_t *chunk;
@@ -1151,17 +1115,6 @@ impl_heap_afw_pool_destroy(
             chunk = next;
         }
     }
-}
-
-/*
- * Implementation of method get_apr_pool for interface afw_pool.
- */
-apr_pool_t *
-impl_heap_afw_pool_get_apr_pool(
-    AFW_POOL_SELF_T * self)
-{
-    /* Door only. Not the chunk store. */
-    return impl_lazy_public_apr_pool(self);
 }
 
 static void *
@@ -1191,7 +1144,7 @@ impl_heap_malloc_internal(
         return NULL;
     }
 
-    start = impl_heap_take_from_free_list_or_apr(self, total, &reused,
+    start = impl_heap_take_from_free_list_or_chunk(self, total, &reused,
         xctx, unhandled);
     if (!start) {
         return NULL;
@@ -1437,7 +1390,6 @@ impl_mt_afw_pool_deregister_cleanup(
 #define impl_afw_pool_release impl_mt_afw_pool_release
 #define impl_afw_pool_get_reference impl_mt_afw_pool_get_reference
 #define impl_afw_pool_destroy impl_mt_afw_pool_destroy
-#define impl_afw_pool_get_apr_pool impl_heap_afw_pool_get_apr_pool
 #define impl_afw_pool_calloc impl_mt_afw_pool_calloc
 #define impl_afw_pool_malloc impl_mt_afw_pool_malloc
 #define impl_afw_pool_free_memory impl_mt_afw_pool_free_memory
@@ -1466,7 +1418,6 @@ impl_pool_mt_implementation_specific =
 #undef impl_afw_pool_release
 #undef impl_afw_pool_get_reference
 #undef impl_afw_pool_destroy
-#undef impl_afw_pool_get_apr_pool
 #undef impl_afw_pool_calloc
 #undef impl_afw_pool_malloc
 #undef impl_afw_pool_free_memory
@@ -1519,11 +1470,6 @@ impl_tracker_afw_pool_destroy(
         afw_pool_destroy(&self->first_child->pub, xctx);
     }
 
-    /* Lazy get_apr_pool() door, if anyone called it. Not the reservoir. */
-    if (self->public_apr_p) {
-        apr_pool_destroy(self->public_apr_p);
-    }
-
     /* Return leftovers. Unlink first so next is still the allocated
      * list, not a free-list overlay. */
     while (self->first_allocated_memory) {
@@ -1543,18 +1489,6 @@ impl_tracker_afw_pool_destroy(
     impl_remove_as_child(parent, self, xctx);
     afw_pool_free_memory(&parent->pub, self,
         sizeof(afw_pool_internal_self_t), xctx);
-}
-
-
-apr_pool_t *
-impl_tracker_afw_pool_get_apr_pool(
-    AFW_POOL_SELF_T * self)
-{
-    /*
-     * Door only. Independent APR pool so this does not open the heap
-     * door. Tracker destroy releases it.
-     */
-    return impl_lazy_public_apr_pool(self);
 }
 
 
@@ -1586,7 +1520,7 @@ impl_tracker_malloc_internal(
         return NULL;
     }
 
-    start = impl_heap_take_from_free_list_or_apr(self, total, &reused,
+    start = impl_heap_take_from_free_list_or_chunk(self, total, &reused,
         xctx, unhandled);
     if (!start) {
         return NULL;

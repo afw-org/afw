@@ -25,7 +25,7 @@
 #include "afw_adapter_journal_impl_declares.h"
 
 
-static apr_uint64_t
+static afw_uint64_t
 impl_cursor_from_utf8(const afw_utf8_t *s, afw_xctx_t *xctx)
 {
     afw_integer_t i;
@@ -34,7 +34,7 @@ impl_cursor_from_utf8(const afw_utf8_t *s, afw_xctx_t *xctx)
     if (i < 0) {
         AFW_THROW_ERROR_Z(general, "Invalid journal cursor", xctx);
     }
-    return (apr_uint64_t)i;
+    return (afw_uint64_t)i;
 }
 
 
@@ -74,7 +74,7 @@ impl_afw_adapter_journal_add_entry(
     MDB_dbi dbi;
     MDB_val key, data;
     MDB_cursor *cursor;
-    apr_uint64_t t = 0;
+    afw_uint64_t t = 0;
     int rc;
 
     AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
@@ -99,7 +99,7 @@ impl_afw_adapter_journal_add_entry(
             key.mv_data = (void *) &t;
             key.mv_size = sizeof(t);
         } else if (rc == 0) {
-            t = *((apr_uint64_t *)(key.mv_data));
+            t = *((afw_uint64_t *)(key.mv_data));
             AFW_ENDIAN_BIG_TO_NATIVE_64(&t);
         }
 
@@ -206,7 +206,7 @@ afw_lmdb_adapter_journal_get_entry_object(
     afw_lmdb_adapter_t * adapter,
     MDB_dbi dbi,
     MDB_txn * txn,
-    apr_uint64_t cursor,
+    afw_uint64_t cursor,
     afw_xctx_t *xctx)
 {
     const afw_object_t *object = NULL;
@@ -250,7 +250,7 @@ afw_lmdb_journal_get_first(
     afw_xctx_t *xctx)
 {
     const afw_object_t *entry;
-    apr_uint64_t cursor;
+    afw_uint64_t cursor;
 
     /* each entry is represented numerically */
     cursor = 1;
@@ -279,7 +279,7 @@ afw_lmdb_journal_get_by_cursor(
     afw_xctx_t *xctx)
 {
     const afw_object_t *entry;
-    apr_uint64_t cursor;
+    afw_uint64_t cursor;
 
     cursor = impl_cursor_from_utf8(entry_cursor, xctx);
 
@@ -308,7 +308,7 @@ afw_lmdb_journal_get_next_after_cursor(
     afw_xctx_t *xctx)
 {
     const afw_object_t *entry;
-    apr_uint64_t cursor;
+    afw_uint64_t cursor;
 
     /* set our cursor to one after the entry_cursor */
     cursor = impl_cursor_from_utf8(entry_cursor, xctx) + 1;
@@ -340,7 +340,7 @@ afw_lmdb_journal_get_next_for_consumer_after_cursor(
 {
     const afw_object_t *entry = NULL;
     MDB_dbi dbiConsumers;
-    apr_uint64_t cursor;
+    afw_uint64_t cursor;
     const afw_uuid_t *uuid;
     const afw_object_t *peer;
     const afw_utf8_t *advance_cursor;
@@ -446,7 +446,7 @@ impl_afw_adapter_journal_get_next_for_consumer(
     afw_xctx_t *xctx)
 {
     const afw_object_t *entry = NULL;
-    apr_uint64_t cursor;
+    afw_uint64_t cursor;
     MDB_dbi dbiConsumers;
     const afw_uuid_t *uuid;
     const afw_object_t *peer;
@@ -574,7 +574,7 @@ afw_lmdb_journal_advance_cursor_for_consumer(
     afw_xctx_t *xctx)
 {
     const afw_object_t *entry;
-    apr_uint64_t cursor;
+    afw_uint64_t cursor;
     MDB_dbi dbiConsumers;
     const afw_uuid_t *uuid;
     const afw_object_t *peer;

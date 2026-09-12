@@ -5553,29 +5553,6 @@ AFW_DEFINE(const afw_request_handler_t *)
 
     </method>
 
-    <method name="get_apr_pool">
-
-      <description>
-        Return an APR pool for leftover Apache APR function calls only.
-
-        This is a door for code that still calls APR, not the AFW pool's
-        own store. The heap store is AFW chunks, not this pool. Nothing
-        is created unless this is called; the first call makes an APR
-        pool, later calls return the same pointer, and destroy releases
-        it. On a tracker, this does not open the heap door.
-
-        Do not apr_pool_destroy the returned pool. Prefer AFW
-        malloc/calloc; need for this door should shrink.
-      </description>
-
-      <parameter name="instance" type="const afw_pool_t *">
-    <description>Pointer to this pool instance.</description>
-      </parameter>
-
-      <return type="apr_pool_t *" />
-
-    </method>
-
     <method name="calloc">
 
       <description>

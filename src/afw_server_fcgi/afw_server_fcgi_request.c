@@ -362,11 +362,11 @@ impl_afw_request_write_response_header(
 void
 impl_afw_request_write_raw_response_body(
     AFW_REQUEST_SELF_T *self,
-    apr_size_t size,
+    afw_size_t size,
     const void * buffer,
     afw_xctx_t *xctx)
 {
-    apr_size_t remaining;
+    afw_size_t remaining;
     const char *next;
     int rv;
     int n;

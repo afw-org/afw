@@ -263,7 +263,6 @@ afw_environment_create(
     int argc, const char * const *argv,
     const afw_error_t **environment_create_error)
 {
-    apr_status_t rv;
     afw_xctx_t *xctx;
     const afw_pool_t *p;
     afw_utf8_t *name;
@@ -276,13 +275,6 @@ afw_environment_create(
 
     /* Check and initialize libxml2 */
     LIBXML_TEST_VERSION
-
-    /* Initialize apr. */
-    rv = apr_initialize();
-    if (rv != APR_SUCCESS) {
-        *environment_create_error = &impl_early_error;
-        return NULL;
-    }
 
     /* Create base pool. */
     p = afw_pool_internal_create_base_pool();
@@ -298,8 +290,6 @@ afw_environment_create(
     /* Temporary way to handle errors. */
     AFW_ERROR_INTERNAL_ON_UNHANDLED(unhandled_error) {
         *environment_create_error = error;
-        //! @fixme Commented out apr_terminate() since it free's error memory.
-        //apr_terminate();
         return NULL;
     }
 
@@ -523,7 +513,6 @@ afw_environment_create(
      * will be release and the application will abort.
      */
     AFW_ERROR_INTERNAL_ON_UNHANDLED(unhandled_error) {
-        apr_terminate();
         abort();
     }
 
@@ -532,7 +521,6 @@ afw_environment_create(
     return xctx;
 
 early_error:
-    apr_terminate();
     return NULL;
 }
 
@@ -543,7 +531,6 @@ afw_environment_release(afw_xctx_t *xctx)
 {
     //! @fixme Causing exception because some things not cleaned up properly
     //! @fixme afw_pool_destroy(xctx->env->p, xctx);
-    //! @fixme apr_terminate();
     (void)xctx;
 }
 

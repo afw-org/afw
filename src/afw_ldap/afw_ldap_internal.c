@@ -214,7 +214,7 @@ afw_ldap_internal_create_object_from_entry(
     afw_ldap_object_type_attribute_t *attribute;
 
     if (!object_id || !object_id->s) {
-        object_id = afw_ldap_internal_get_object_id(self, e, FALSE, xctx);
+        object_id = afw_ldap_internal_get_object_id(self, e, false, xctx);
     }
 
     /*

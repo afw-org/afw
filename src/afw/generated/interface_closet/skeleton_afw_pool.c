@@ -54,17 +54,6 @@ impl_afw_pool_destroy(
 }
 
 /*
- * Implementation of method get_apr_pool for interface afw_pool.
- */
-apr_pool_t *
-impl_afw_pool_get_apr_pool(
-    AFW_POOL_SELF_T *self)
-{
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-}
-
-/*
  * Implementation of method calloc for interface afw_pool.
  */
 void *

@@ -56,13 +56,10 @@
  *   afwdev build --define AFW_DEBUG_POOL
  */
 
-/* Adaptive Framework still uses APR for get_apr_pool() and apr_initialize. */
-#include <apr_general.h>
-
-
 /* Common standard headers. */
 #include <stdio.h>
 #include <assert.h>
+#include <errno.h>
 #include <limits.h>
 #include <setjmp.h>
 #include <string.h>

@@ -785,75 +785,6 @@ impl_heap_chunks(afw_xctx_t *xctx)
     return 0;
 }
 
-/*
- * get_apr_pool() is a lazy door, not the chunk store. Tracker and heap
- * doors are independent; opening the tracker door does not open the
- * heap door.
- */
-static int
-impl_get_apr_pool(afw_xctx_t *xctx)
-{
-    const afw_pool_t *heap;
-    const afw_pool_t *tracker;
-    afw_pool_internal_self_t *heap_self;
-    afw_pool_internal_self_t *tracker_self;
-    apr_pool_t *a;
-    apr_pool_t *b;
-    apr_pool_t *heap_door;
-
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
-    tracker = afw_pool_tracker_create(heap, xctx);
-    heap_self = impl_self(heap);
-    tracker_self = impl_self(tracker);
-
-    if (heap_self->first_chunk == NULL) {
-        return impl_fail("get_apr_pool", "heap has no chunks");
-    }
-    if (tracker_self->public_apr_p != NULL) {
-        return impl_fail("get_apr_pool",
-            "tracker public APR exists before first call");
-    }
-    if (heap_self->public_apr_p != NULL) {
-        return impl_fail("get_apr_pool",
-            "heap public door was already open");
-    }
-
-    a = afw_pool_get_apr_pool(tracker);
-    if (!a) {
-        return impl_fail("get_apr_pool", "tracker door returned NULL");
-    }
-    if (tracker_self->public_apr_p != a) {
-        return impl_fail("get_apr_pool",
-            "tracker public_apr_p is not the returned pool");
-    }
-    if (heap_self->public_apr_p != NULL) {
-        return impl_fail("get_apr_pool",
-            "tracker door opened the heap public door");
-    }
-
-    b = afw_pool_get_apr_pool(tracker);
-    if (impl_expect_same_ptr(b, a, "get_apr_pool tracker second call")) {
-        return 1;
-    }
-
-    heap_door = afw_pool_get_apr_pool(heap);
-    if (!heap_door) {
-        return impl_fail("get_apr_pool", "heap door returned NULL");
-    }
-    if (heap_door == a) {
-        return impl_fail("get_apr_pool",
-            "heap door is the tracker door");
-    }
-    if (heap_self->public_apr_p != heap_door) {
-        return impl_fail("get_apr_pool",
-            "heap public_apr_p is not the returned pool");
-    }
-
-    afw_pool_release(tracker, xctx);
-    afw_pool_release(heap, xctx);
-    return 0;
-}
-
 static void
 impl_cleanup_nop(
     void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
@@ -1124,9 +1055,6 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "heap_chunks") == 0) {
         rc = impl_heap_chunks(xctx);
     }
-    else if (strcmp(case_name, "get_apr_pool") == 0) {
-        rc = impl_get_apr_pool(xctx);
-    }
     else if (strcmp(case_name, "deregister_cleanup") == 0) {
         rc = impl_deregister_cleanup(xctx);
     }
@@ -1155,7 +1083,7 @@ main(int argc, char **argv)
             "heap_malloc_free|tracker_malloc|tracker_optional_free|"
             "tracker_last_release|tracker_header|mixed_sizes|"
             "heap_whole_block|general_free_noop|tracker_parent|"
-            "unhandled_alloc|heap_chunks|get_apr_pool|"
+            "unhandled_alloc|heap_chunks|"
             "deregister_cleanup|"
             "nonadjacent_reuse|"
             "for_clone_churn|create_child_of_heap|double_free_throws"

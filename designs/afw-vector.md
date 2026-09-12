@@ -26,5 +26,5 @@
 - **Threads/locks** landed on `reduce-apr-threads`: `afw_os_mutex_*` / `rwlock_*` / `thread_*` in `os/nix` (pthreads); public names stay `afw_thread_mutex_*` / `afw_thread_rwlock_*`. Create takes `afw_pool` (cleanup destroys the pthread object). Nested = recursive; unnested = errorcheck. C11 `threads.h` is not the path. LMDB `dbLock` uses the AFW rwlock door (same lock order).
 - **Getopt** on `reduce-apr-getopt`: `afw_getopt_*` table + walker (`afw` + command skeleton). Help from the same table; switch on short char. No pool. `afwfcgi` still uses its strcmp loop.
 - **LDAP** on `reduce-apr-ldap`: OpenLDAP `ldap_url_parse` / `ldap_initialize` / `ldap_set_option` for setup; search/bind/CRUD already were `ldap_*`.
-- **Pools:** live rails [`remaining-apr.md`](remaining-apr.md). Heap store is 4k-aligned posix_memalign chunks (on `reduce-apr-pool`). `get_apr_pool` is a lazy door; `apr_initialize` remains. That is what can drop `apr-1`.
+- **Pools:** APR is gone from libafw. Heap store is 4k-aligned posix_memalign chunks. Live rails [`remaining-apr.md`](remaining-apr.md).
 - Already off APR: time/UUID/random/DSO/fnmatch/signal/cwd/realpath/mutex/rwlock/thread (`afw_os_*`); path join `afw_file_path_*`; host file I/O `afw_file_*`; curl default body memory writer; command argv `afw_getopt_*`; LDAP setup OpenLDAP.

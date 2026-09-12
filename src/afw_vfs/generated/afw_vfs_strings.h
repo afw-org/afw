@@ -1641,32 +1641,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_VFS_Q_zz__79f959ad442e \
-    "This is a list of vfsPath filename patterns whose host files should be marked as executable when written. For instance, ['*.as'] will mark Adaptive Scripts whose vfsPath ends with '.as' as executable.\n\nA PATTERN match uses Apache apr function apr_fnmatch() which interprets a pattern as follows:\n\nThere are no illegal patterns.\n\nPATTERN: Backslash followed by any character, including another backslash.\nMATCHES: That character exactly.\n\nPATTERN: ?\nMATCHES: Any single character.\n\nPATTERN: *\nMATCHES: Any sequence of zero or more characters. (Note that multiple *s in a row are equivalent to one.)\n\nPATTERN: Any character other than \\?*[ or a \\ at the end of the pattern\nMATCHES: That character exactly. (Case sensitive.)\n\nPATTERN: [ followed by a class description followed by ]\nMATCHES: A single character described by the class description. (Never matches, if the class description reaches until the end of the string without a ].) If the first character of the class description is ^ or !, the sense of the description is reversed. The rest of the class description is a list of single characters or pairs of characters separated by -. Any of those characters can have a backslash in front of them, which is ignored; this lets you use the characters ] and - in the character class, as well as ^ and ! at the beginning. The pattern matches a single character if it is one of the listed characters or falls into one of the listed ranges (inclusive, case sensitive). Ranges with the first character larger than the second are legal but never match. Edge cases: [] never matches, and [^] and [!] always match without consuming a character.\n\nNote that these patterns attempt to match the entire vfsPath, not just find a substring matching the pattern."
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__79f959ad442e */
-#define afw_vfs_s_zz__79f959ad442e \
-    (&afw_vfs_self_v_zz__79f959ad442e.internal)
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__79f959ad442e */
-#define afw_vfs_self_s_zz__79f959ad442e \
-    (afw_vfs_self_v_zz__79f959ad442e.internal)
-
-/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__79f959ad442e */
-extern const afw_value_string_t \
-    afw_vfs_self_v_zz__79f959ad442e;
-
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__79f959ad442e */
-#define afw_vfs_z_zz__79f959ad442e \
-    (afw_vfs_self_v_zz__79f959ad442e.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__79f959ad442e */
-#define afw_vfs_v_zz__79f959ad442e \
-    (&afw_vfs_self_v_zz__79f959ad442e.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__824be34f6220 \
     "This is the object type for the optional adapterTypeSpecific parameter of the retrieve_objects() adaptive function when the adapterType of the adapterId is vfs."
 
@@ -2469,6 +2443,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_VFS_Q_zz___afw__AdaptiveCollection__vfs_extension */
 #define afw_vfs_v_zz___afw__AdaptiveCollection__vfs_extension \
     (&afw_vfs_self_v_zz___afw__AdaptiveCollection__vfs_extension.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__a61297b5aeca \
+    "This is a list of vfsPath filename patterns whose host files should be marked as executable when written. For instance, ['*.as'] will mark Adaptive Scripts whose vfsPath ends with '.as' as executable.\n\nA PATTERN match uses POSIX fnmatch (`afw_os_fnmatch`) which interprets a pattern as follows:\n\nThere are no illegal patterns.\n\nPATTERN: Backslash followed by any character, including another backslash.\nMATCHES: That character exactly.\n\nPATTERN: ?\nMATCHES: Any single character.\n\nPATTERN: *\nMATCHES: Any sequence of zero or more characters. (Note that multiple *s in a row are equivalent to one.)\n\nPATTERN: Any character other than \\?*[ or a \\ at the end of the pattern\nMATCHES: That character exactly. (Case sensitive.)\n\nPATTERN: [ followed by a class description followed by ]\nMATCHES: A single character described by the class description. (Never matches, if the class description reaches until the end of the string without a ].) If the first character of the class description is ^ or !, the sense of the description is reversed. The rest of the class description is a list of single characters or pairs of characters separated by -. Any of those characters can have a backslash in front of them, which is ignored; this lets you use the characters ] and - in the character class, as well as ^ and ! at the beginning. The pattern matches a single character if it is one of the listed characters or falls into one of the listed ranges (inclusive, case sensitive). Ranges with the first character larger than the second are legal but never match. Edge cases: [] never matches, and [^] and [!] always match without consuming a character.\n\nNote that these patterns attempt to match the entire vfsPath, not just find a substring matching the pattern."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__a61297b5aeca */
+#define afw_vfs_s_zz__a61297b5aeca \
+    (&afw_vfs_self_v_zz__a61297b5aeca.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__a61297b5aeca */
+#define afw_vfs_self_s_zz__a61297b5aeca \
+    (afw_vfs_self_v_zz__a61297b5aeca.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__a61297b5aeca */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__a61297b5aeca;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__a61297b5aeca */
+#define afw_vfs_z_zz__a61297b5aeca \
+    (afw_vfs_self_v_zz__a61297b5aeca.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__a61297b5aeca */
+#define afw_vfs_v_zz__a61297b5aeca \
+    (&afw_vfs_self_v_zz__a61297b5aeca.pub)
 
 
 

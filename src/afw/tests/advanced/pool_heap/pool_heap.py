@@ -115,11 +115,6 @@ def run():
                 "large alloc adds a chunk; release walks the list",
             ),
             (
-                "get_apr_pool",
-                "get_apr_pool is a lazy door, not the chunk store; "
-                "tracker door does not open the heap door",
-            ),
-            (
                 "deregister_cleanup",
                 "deregister unlinks the entry and optional-frees it "
                 "on the tracker",

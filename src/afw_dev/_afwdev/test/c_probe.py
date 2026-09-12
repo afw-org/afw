@@ -70,15 +70,6 @@ def _caller_dir():
         del frame
 
 
-def _apr_includes():
-    try:
-        out = subprocess.check_output(
-            ["apr-1-config", "--includes"], text=True)
-        return out.split()
-    except (OSError, subprocess.CalledProcessError):
-        return ["-I/usr/include/apr-1.0"]
-
-
 def _include_and_libdir():
     include_afw = os.environ.get("AFW_INCLUDE_DIR", _DEFAULT_INCLUDE)
     libdir = os.environ.get("AFW_LIB_DIR", _DEFAULT_LIBDIR)
@@ -111,7 +102,6 @@ def compile_c_probe(
     if extra_cflags:
         cmd.extend(list(extra_cflags))
     cmd.extend(["-I", include_afw])
-    cmd.extend(_apr_includes())
     cmd.extend([
         "-o", dest, source,
         "-L", libdir, "-Wl,-rpath," + libdir,

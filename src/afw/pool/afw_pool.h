@@ -29,8 +29,6 @@
  *   posix_memalign chunks (not APR). Not a third AFW pool kind.
  * - afw_pool_create() of a heap is a heap (mt if the parent is mt).
  *   Of a tracker, a tracker. xctx->p is always single-thread heap.
- * - afw_pool_get_apr_pool() is a door for leftover APR function calls,
- *   not the heap's store.
  * - afw_pool_malloc_unhandled / calloc_unhandled never throw (NULL on
  *   failure). For environment/xctx create before current_try and
  *   evaluation_stack exist. Does not take the multithreaded pool lock
@@ -233,7 +231,7 @@ afw_pool_release_value_at_cleanup(
  * Does not take the multithreaded pool lock. Environment create is
  * one thread; later unhandled callers use xctx->p (single-thread
  * heap). If xctx is NULL, the block is not added to
- * pool_bytes_in_use (same as the old get_apr_pool door).
+ * pool_bytes_in_use.
  */
 AFW_DECLARE(void *)
 afw_pool_malloc_unhandled(

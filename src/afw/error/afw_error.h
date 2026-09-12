@@ -28,13 +28,6 @@ AFW_BEGIN_DECLARES
 #define AFW_ERROR_RV_SOURCE_ID_Z_NULL NULL
 
 /**
- * @brief APR rv source id.
- *
- * Registered in afw_environment_register_core.c.
- */
-#define AFW_ERROR_RV_SOURCE_ID_Z_apr "apr"
-
-/**
  * @brief ICU rv source id.
  *
  * Registered in afw_environment_register_core.c.
@@ -120,7 +113,7 @@ struct afw_error_s {
     /*IMPORTANT AFW_ERROR_CLEAR_PARTIAL() will clear up to decode_rv_wa. */
 
     /** @brief Place to optionally hold rv_decoded_z. */
-    /* Sized for strerror / apr_strerror / ICU names (was 23; too short for errno). */
+    /* Sized for strerror / ICU names (was 23; too short for errno). */
     afw_utf8_z_t decode_rv_wa[128];
 
     /** @brief Makes sure there is a zero terminator after decode_rv_wa. */

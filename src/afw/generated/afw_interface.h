@@ -6695,11 +6695,6 @@ typedef void
     const afw_pool_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_pool_get_apr_pool() */
-typedef apr_pool_t *
-(*afw_pool_get_apr_pool_t)(
-    const afw_pool_t * instance);
-
 /** @sa afw_pool_calloc() */
 typedef void *
 (*afw_pool_calloc_t)(
@@ -6751,7 +6746,6 @@ struct afw_pool_inf_s {
     afw_pool_release_t release;
     afw_pool_get_reference_t get_reference;
     afw_pool_destroy_t destroy;
-    afw_pool_get_apr_pool_t get_apr_pool;
     afw_pool_calloc_t calloc;
     afw_pool_malloc_t malloc;
     afw_pool_free_memory_t free_memory;
@@ -6824,31 +6818,6 @@ struct afw_pool_inf_s {
 (instance)->inf->destroy( \
     (instance), \
     (xctx) \
-)
-
-/**
- * @brief Call method `get_apr_pool` of interface `afw_pool`.
- *
- * Return an APR pool for leftover Apache APR function calls only.
- * 
- * This is a door for code that still calls APR, not the AFW pool's
- * own store. The heap store is AFW chunks, not this pool. Nothing
- * is created unless this is called; the first call makes an APR
- * pool, later calls return the same pointer, and destroy releases
- * it. On a tracker, this does not open the heap door.
- * 
- * Do not apr_pool_destroy the returned pool. Prefer AFW
- * malloc/calloc; need for this door should shrink.
- * @param instance Pointer to this pool instance.
- * @return Value of type `apr_pool_t *`.
- * @relates afw_pool_t
- * @see @ref afw_pool_s "afw_pool_t"
- */
-#define afw_pool_get_apr_pool( \
-    instance \
-) \
-(instance)->inf->get_apr_pool( \
-    (instance) \
 )
 
 /**
