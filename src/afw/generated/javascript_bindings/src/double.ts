@@ -343,7 +343,7 @@ export function afwIsFinite(client : any, number : number) : any {
 
 /**
  * Checks whether double value is in array of double array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  * 
  * @param {double} value -
  * 

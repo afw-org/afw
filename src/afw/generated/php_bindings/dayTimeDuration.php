@@ -276,7 +276,7 @@ class dayTimeDuration
      * is_in_dayTimeDuration()
      *
      * Checks whether dayTimeDuration value is in array of dayTimeDuration
-     * array and returns the boolean result.
+     * array and returns the boolean result. Empty array yields false.
      *
      * @param dayTimeDuration $value
      * @param array $array

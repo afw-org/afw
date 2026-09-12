@@ -2663,7 +2663,7 @@ afw_function_definition_is_in_anyURI;
  * @param x function execute parameter.
  *
  * Checks whether anyURI value is in array of anyURI array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5053,7 +5053,7 @@ afw_function_definition_is_in_base64Binary;
  * @param x function execute parameter.
  *
  * Checks whether base64Binary value is in array of base64Binary array and
- * returns the boolean result.
+ * returns the boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5821,7 +5821,7 @@ afw_function_definition_is_in_boolean;
  * @param x function execute parameter.
  *
  * Checks whether boolean value is in array of boolean array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8226,7 +8226,7 @@ afw_function_definition_is_in_dateTime;
  * @param x function execute parameter.
  *
  * Checks whether dateTime value is in array of dateTime array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9189,7 +9189,7 @@ afw_function_definition_is_in_date;
  * @param x function execute parameter.
  *
  * Checks whether date value is in array of date array and returns the boolean
- * result.
+ * result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10076,7 +10076,7 @@ afw_function_definition_is_in_dayTimeDuration;
  * @param x function execute parameter.
  *
  * Checks whether dayTimeDuration value is in array of dayTimeDuration array and
- * returns the boolean result.
+ * returns the boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10768,7 +10768,7 @@ afw_function_definition_is_in_dnsName;
  * @param x function execute parameter.
  *
  * Checks whether dnsName value is in array of dnsName array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11699,7 +11699,7 @@ afw_function_definition_is_in_double;
  * @param x function execute parameter.
  *
  * Checks whether double value is in array of double array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13243,7 +13243,7 @@ afw_function_definition_is_in_hexBinary;
  * @param x function execute parameter.
  *
  * Checks whether hexBinary value is in array of hexBinary array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15303,7 +15303,7 @@ afw_function_definition_is_in_integer;
  * @param x function execute parameter.
  *
  * Checks whether integer value is in array of integer array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -16242,7 +16242,7 @@ afw_function_definition_is_in_ipAddress;
  * @param x function execute parameter.
  *
  * Checks whether ipAddress value is in array of ipAddress array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22097,7 +22097,7 @@ afw_function_definition_is_in;
  * @param x function execute parameter.
  *
  * Checks whether `<dataType>` value is in array of `<dataType>` array and
- * returns the boolean result.
+ * returns the boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25124,7 +25124,7 @@ afw_function_definition_is_in_rfc822Name;
  * @param x function execute parameter.
  *
  * Checks whether rfc822Name value is in array of rfc822Name array and returns
- * the boolean result.
+ * the boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27403,7 +27403,7 @@ afw_function_definition_is_in_string;
  * @param x function execute parameter.
  *
  * Checks whether string value is in array of string array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29922,7 +29922,7 @@ afw_function_definition_is_in_time;
  * @param x function execute parameter.
  *
  * Checks whether time value is in array of time array and returns the boolean
- * result.
+ * result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30896,7 +30896,7 @@ afw_function_definition_is_in_x500Name;
  * @param x function execute parameter.
  *
  * Checks whether x500Name value is in array of x500Name array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32448,7 +32448,7 @@ afw_function_definition_is_in_yearMonthDuration;
  * @param x function execute parameter.
  *
  * Checks whether yearMonthDuration value is in array of yearMonthDuration array
- * and returns the boolean result.
+ * and returns the boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

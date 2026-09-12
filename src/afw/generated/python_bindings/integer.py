@@ -379,7 +379,7 @@ def is_in_integer(session, value, array):
     Checks whether a value is in an array
 
     Checks whether integer value is in array of integer array and returns the
-    boolean result.
+    boolean result. Empty array yields false.
 
     Args:
         value (int):

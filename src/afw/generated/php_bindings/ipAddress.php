@@ -200,7 +200,7 @@ class ipAddress
      * is_in_ipAddress()
      *
      * Checks whether ipAddress value is in array of ipAddress array and
-     * returns the boolean result.
+     * returns the boolean result. Empty array yields false.
      *
      * @param ipAddress $value
      * @param array $array

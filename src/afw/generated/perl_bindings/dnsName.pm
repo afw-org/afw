@@ -142,7 +142,7 @@ Value to check
 =head3 is_in_dnsName
 
 Checks whether dnsName value is in array of dnsName array and returns the
-boolean result.
+boolean result. Empty array yields false.
 Checks whether a value is in an array
 
 =head4 Parameters

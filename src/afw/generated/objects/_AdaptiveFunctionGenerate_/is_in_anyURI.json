@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "isInAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Checks whether anyURI value is in array of anyURI array and returns the boolean result.",
+    "description": "Checks whether anyURI value is in array of anyURI array and returns the boolean result. Empty array yields false.",
     "functionId": "is_in<anyURI>",
     "functionLabel": "is_in_anyURI",
     "parameters": [

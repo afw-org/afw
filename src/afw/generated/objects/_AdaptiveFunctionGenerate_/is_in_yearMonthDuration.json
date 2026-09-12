@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "isInYearMonthDuration",
     "category": "yearMonthDuration",
     "dataTypeMethod": true,
-    "description": "Checks whether yearMonthDuration value is in array of yearMonthDuration array and returns the boolean result.",
+    "description": "Checks whether yearMonthDuration value is in array of yearMonthDuration array and returns the boolean result. Empty array yields false.",
     "functionId": "is_in<yearMonthDuration>",
     "functionLabel": "is_in_yearMonthDuration",
     "parameters": [

@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "isInString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Checks whether string value is in array of string array and returns the boolean result.",
+    "description": "Checks whether string value is in array of string array and returns the boolean result. Empty array yields false.",
     "functionId": "is_in<string>",
     "functionLabel": "is_in_string",
     "parameters": [

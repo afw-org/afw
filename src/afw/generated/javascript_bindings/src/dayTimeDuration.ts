@@ -221,7 +221,7 @@ export function afwIsDayTimeDuration(client : any, value : any) : any {
 
 /**
  * Checks whether dayTimeDuration value is in array of dayTimeDuration array
- * and returns the boolean result.
+ * and returns the boolean result. Empty array yields false.
  * 
  * @param {dayTimeDuration} value -
  * 

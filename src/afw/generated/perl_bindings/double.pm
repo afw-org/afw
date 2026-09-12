@@ -272,7 +272,7 @@ Number to check
 =head3 is_in_double
 
 Checks whether double value is in array of double array and returns the
-boolean result.
+boolean result. Empty array yields false.
 Checks whether a value is in an array
 
 =head4 Parameters

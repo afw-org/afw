@@ -235,7 +235,7 @@ export function afwIsHexBinary(client : any, value : any) : any {
 
 /**
  * Checks whether hexBinary value is in array of hexBinary array and returns
- * the boolean result.
+ * the boolean result. Empty array yields false.
  * 
  * @param {hexBinary} value -
  * 

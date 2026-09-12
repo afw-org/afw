@@ -266,7 +266,7 @@ class time
      * is_in_time()
      *
      * Checks whether time value is in array of time array and returns the
-     * boolean result.
+     * boolean result. Empty array yields false.
      *
      * @param time $value
      * @param array $array

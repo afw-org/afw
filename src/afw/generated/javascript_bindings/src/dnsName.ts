@@ -175,7 +175,7 @@ export function afwIsDnsName(client : any, value : any) : any {
 
 /**
  * Checks whether dnsName value is in array of dnsName array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  * 
  * @param {dnsName} value -
  * 

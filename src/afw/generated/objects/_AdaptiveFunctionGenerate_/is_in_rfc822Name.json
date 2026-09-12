@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "isInRfc822Name",
     "category": "rfc822Name",
     "dataTypeMethod": true,
-    "description": "Checks whether rfc822Name value is in array of rfc822Name array and returns the boolean result.",
+    "description": "Checks whether rfc822Name value is in array of rfc822Name array and returns the boolean result. Empty array yields false.",
     "functionId": "is_in<rfc822Name>",
     "functionLabel": "is_in_rfc822Name",
     "parameters": [

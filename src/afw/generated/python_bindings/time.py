@@ -306,7 +306,7 @@ def is_in_time(session, value, array):
     Checks whether a value is in an array
 
     Checks whether time value is in array of time array and returns the
-    boolean result.
+    boolean result. Empty array yields false.
 
     Args:
         value (object):

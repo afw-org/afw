@@ -263,7 +263,7 @@ def is_in_x500Name(session, value, array):
     Checks whether a value is in an array
 
     Checks whether x500Name value is in array of x500Name array and returns
-    the boolean result.
+    the boolean result. Empty array yields false.
 
     Args:
         value (object):

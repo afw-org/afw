@@ -183,7 +183,7 @@ The second array.
 =head3 is_in_time
 
 Checks whether time value is in array of time array and returns the boolean
-result.
+result. Empty array yields false.
 Checks whether a value is in an array
 
 =head4 Parameters

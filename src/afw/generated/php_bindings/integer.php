@@ -320,7 +320,7 @@ class integer
      * is_in_integer()
      *
      * Checks whether integer value is in array of integer array and returns
-     * the boolean result.
+     * the boolean result. Empty array yields false.
      *
      * @param integer $value
      * @param array $array

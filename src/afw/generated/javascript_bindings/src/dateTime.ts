@@ -263,7 +263,7 @@ export function afwIsDateTime(client : any, value : any) : any {
 
 /**
  * Checks whether dateTime value is in array of dateTime array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  * 
  * @param {dateTime} value -
  * 

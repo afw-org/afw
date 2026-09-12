@@ -272,7 +272,7 @@ class boolean
      * is_in_boolean()
      *
      * Checks whether boolean value is in array of boolean array and returns
-     * the boolean result.
+     * the boolean result. Empty array yields false.
      *
      * @param boolean $value
      * @param array $array

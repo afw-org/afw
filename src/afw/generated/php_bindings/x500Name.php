@@ -228,7 +228,7 @@ class x500Name
      * is_in_x500Name()
      *
      * Checks whether x500Name value is in array of x500Name array and returns
-     * the boolean result.
+     * the boolean result. Empty array yields false.
      *
      * @param x500Name $value
      * @param array $array

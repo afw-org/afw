@@ -222,7 +222,7 @@ class dnsName
      * is_in_dnsName()
      *
      * Checks whether dnsName value is in array of dnsName array and returns
-     * the boolean result.
+     * the boolean result. Empty array yields false.
      *
      * @param dnsName $value
      * @param array $array

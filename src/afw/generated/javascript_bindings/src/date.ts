@@ -243,7 +243,7 @@ export function afwIsDate(client : any, value : any) : any {
 
 /**
  * Checks whether date value is in array of date array and returns the boolean
- * result.
+ * result. Empty array yields false.
  * 
  * @param {date} value -
  * 

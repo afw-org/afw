@@ -771,7 +771,7 @@ afw_function_execute_is(
  * See afw_function_bindings_internal.h for more information.
  *
  * Checks whether `<dataType>` value is in array of `<dataType>` array and
- * returns the boolean result.
+ * returns the boolean result. Empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
