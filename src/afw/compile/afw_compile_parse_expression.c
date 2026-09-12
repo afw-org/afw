@@ -188,8 +188,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                                 type_id, untyped_function_id, parser->xctx);
                             if (!function) {
                                 AFW_COMPILE_THROW_ERROR_FZ(
-                                    "Unknown built-in function '" AFW_UTF8_K_FMT
-                                    "<" AFW_UTF8_K_FMT ">'",
+                                    "Unknown built-in function '%ku<%ku>'",
                                     (untyped_function_id),
                                     (type_id));
                             }
@@ -200,7 +199,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                     }
                     if (!function) {
                         AFW_COMPILE_THROW_ERROR_FZ(
-                            "Unknown built-in function " AFW_UTF8_K_FMT_Q,
+                            "Unknown built-in function '%ku'",
                             (untyped_function_id));                        
                     }
                     result = &function->pub;
@@ -210,7 +209,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                 else {
                     if (!parser->token->identifier_qualifier) {
                         AFW_COMPILE_THROW_ERROR_FZ(
-                            "Undeclared variable " AFW_UTF8_K_FMT_Q,
+                            "Undeclared variable '%ku'",
                             (afw_compile_token_identifier()));
                     }
                     result =
@@ -979,7 +978,7 @@ impl_type_lookup_name(
     }
 
     AFW_COMPILE_THROW_ERROR_FZ(
-        "Unknown type " AFW_UTF8_K_FMT_Q,
+        "Unknown type '%ku'",
         (&name->internal));
     return NULL;
 }
@@ -1000,7 +999,7 @@ afw_compile_script_type_register(
         name->internal.s, name->internal.len))
     {
         AFW_COMPILE_THROW_ERROR_FZ(
-            "Type or interface " AFW_UTF8_K_FMT_Q " is already defined",
+            "Type or interface '%ku' is already defined",
             (&name->internal));
     }
     afw_hash_table_set(parser->script_type_names,
@@ -1025,7 +1024,7 @@ afw_compile_script_type_reserve(
         name->internal.s, name->internal.len))
     {
         AFW_COMPILE_THROW_ERROR_FZ(
-            "Type or interface " AFW_UTF8_K_FMT_Q " is already defined",
+            "Type or interface '%ku' is already defined",
             (&name->internal));
     }
     placeholder = impl_type_alloc(parser);
@@ -1155,8 +1154,7 @@ afw_compile_script_types_resolve(
             name, stack, 0))
         {
             AFW_COMPILE_THROW_ERROR_FZ(
-                "Type " AFW_UTF8_K_FMT_Q
-                " circularly references itself",
+                "Type '%ku' circularly references itself",
                 (name));
         }
     }

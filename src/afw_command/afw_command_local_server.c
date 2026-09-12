@@ -257,14 +257,14 @@ impl_process_directive(
     if (is_invalid) {
         if (string->len <= 30) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Invalid directive: " AFW_UTF8_K_FMT_Q,
+                "Invalid directive: '%ku'",
                 (string));
         }
         else {
             partial.s = string->s;
             partial.len = 30;
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Invalid directive beginning: " AFW_UTF8_K_FMT_Q,
+                "Invalid directive beginning: '%ku'",
                 (&partial));
         }
     }
@@ -368,8 +368,8 @@ impl_read_and_process_request(
                 string = afw_json_utf8_string_create(string, p, xctx);
                 input = (const afw_memory_t *)afw_utf8_printf(p, xctx,
                     "{\n"
-                    "    \"function\": \"" AFW_UTF8_K_FMT "\",\n"
-                    "    \"source\": " AFW_UTF8_K_FMT "\n"
+                    "    \"function\": \"%ku\",\n"
+                    "    \"source\": %ku\n"
                     "}\n",
                 (self->evaluate_function_id),
                 (string)

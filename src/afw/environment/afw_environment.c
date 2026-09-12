@@ -64,7 +64,7 @@ impl_module_path_from_property(
     }
     if (source_location) {
         detail_source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_K_FMT "/" AFW_UTF8_K_FMT,
+            "%ku/%ku",
             (source_location),
             (afw_s_modulePath));
     }
@@ -105,7 +105,7 @@ impl_internal_additional_register_default(
             type_id->s, type_id->len);
         if (!type) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Invalid environment registry type " AFW_UTF8_K_FMT_Q,
+                "Invalid environment registry type '%ku'",
                 (type_id));
         }
     }
@@ -167,7 +167,7 @@ impl_internal_additional_register_key_only(
             type_id->s, type_id->len);
         if (!type) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Invalid environment registry type " AFW_UTF8_K_FMT_Q,
+                "Invalid environment registry type '%ku'",
                 (type_id));
         }
 
@@ -207,7 +207,7 @@ impl_internal_additional_register_object(
             type_id->s, type_id->len);
         if (!type) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Invalid environment registry type " AFW_UTF8_K_FMT_Q,
+                "Invalid environment registry type '%ku'",
                 (type_id));
         }
 
@@ -573,7 +573,7 @@ afw_environment_create_registry_type(
             registry_type_id->s, registry_type_id->len);
         if (type) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "registry_type " AFW_UTF8_K_FMT_Q " is already assigned",
+                "registry_type '%ku' is already assigned",
                 (registry_type_id));
         }
 
@@ -701,7 +701,7 @@ afw_environment_registry_register(
         old_value = afw_hash_table_get(type->ht, key->s, key->len);
         if (old_value && !type->allow_reregister) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                AFW_UTF8_K_FMT_Q " " AFW_UTF8_K_FMT_Q " is already registered",
+                "'%ku' '%ku' is already registered",
                 (&impl_initial_types[type_number].registry_type_id),
                 (key));
         }
@@ -1049,8 +1049,7 @@ afw_environment_load_extension(
         if (extensionId) {
             if (extension_id && !afw_utf8_equal(extension_id, extensionId)) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "extension_id parameter " AFW_UTF8_K_FMT_Q
-                    " does not match properties.extension_id " AFW_UTF8_K_FMT_Q,
+                    "extension_id parameter '%ku' does not match properties.extension_id '%ku'",
                     (extension_id),
                     (extensionId));
             }
@@ -1062,9 +1061,7 @@ afw_environment_load_extension(
             if (module_path) {
                 if (!afw_utf8_equal(module_path, modulePath)) {
                     AFW_THROW_ERROR_FZ(general, xctx,
-                        "module_path parameter " AFW_UTF8_K_FMT_Q
-                        " does not match properties.modulePath "
-                        AFW_UTF8_K_FMT_Q,
+                        "module_path parameter '%ku' does not match properties.modulePath '%ku'",
                         (module_path),
                         (modulePath));
                 }
@@ -1116,7 +1113,7 @@ afw_environment_load_extension(
 
             if (!module_path) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "\"modulePath\" needed for \"extension\" " AFW_UTF8_K_FMT ".",
+                    "\"modulePath\" needed for \"extension\" %ku.",
                     (extension_id));
             }
 
@@ -1156,7 +1153,7 @@ afw_environment_load_extension(
             dso_suffix = afw_os_get_dso_suffix();
             if (!afw_utf8_ends_with(module_path, dso_suffix)) {
                 path_z = afw_utf8_z_printf(p, xctx,
-                    AFW_UTF8_K_FMT AFW_UTF8_K_FMT,
+                    "%ku%ku",
                     (module_path),
                     (dso_suffix));
                 rv = apr_dso_load(&(dso_handle), (const char *)path_z,
@@ -1165,7 +1162,7 @@ afw_environment_load_extension(
         }
         if (rv != APR_SUCCESS) {
             path_z = afw_utf8_z_printf(p, xctx,
-                AFW_CONFIG_INSTALL_FULL_LIBDIR "/" AFW_UTF8_K_FMT,
+                AFW_CONFIG_INSTALL_FULL_LIBDIR "/%ku",
                 (module_path));
             rv = apr_dso_load(&(dso_handle), (const char *)path_z,
                 afw_pool_get_apr_pool(p));
@@ -1173,7 +1170,7 @@ afw_environment_load_extension(
                 dso_suffix = afw_os_get_dso_suffix();
                 if (!afw_utf8_ends_with(module_path, dso_suffix)) {
                     path_z = afw_utf8_z_printf(p, xctx,
-                        AFW_CONFIG_INSTALL_FULL_LIBDIR "/" AFW_UTF8_K_FMT AFW_UTF8_K_FMT,
+                        AFW_CONFIG_INSTALL_FULL_LIBDIR "/%ku%ku",
                         (module_path),
                         (dso_suffix));
                     rv = apr_dso_load(&(dso_handle), (const char *)path_z,
@@ -1187,8 +1184,7 @@ afw_environment_load_extension(
             apr_dso_error(dso_handle, dsoError, sizeof(dsoError));
             afw_pool_release(p, xctx);
             AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
-                "Error loading extension extension_id=" AFW_UTF8_K_FMT_Q
-                " modulePath='%s': %s",
+                "Error loading extension extension_id='%ku' modulePath='%s': %s",
                 (extension_id_for_message), path_z, dsoError);
         }
             
@@ -1200,7 +1196,7 @@ afw_environment_load_extension(
             afw_pool_release(p, xctx);
             AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
                 "Error finding symbol " AFW_ENVIRONMENT_Q_EXTENSION_INSTANCE
-                " in extension_id=" AFW_UTF8_K_FMT_Q " modulePath='%s'",
+                " in extension_id='%ku' modulePath='%s'",
                 (extension_id_for_message), path_z);
         }
 
@@ -1238,7 +1234,7 @@ afw_environment_load_extension(
             afw_environemnt_registry_type_extension,
             extension_id, extension, xctx);
         AFW_LOG_FZ(info, xctx,
-            "Extension " AFW_UTF8_K_FMT_Q " loaded.",
+            "Extension '%ku' loaded.",
             (extension_id));
 
     }
@@ -1267,7 +1263,7 @@ afw_environment_register_data_type(
     /* Make sure data type is not already registered. */
         if (afw_environment_get_data_type(data_type_id, xctx)) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Data type " AFW_UTF8_K_FMT_Q " is already registered",
+                "Data type '%ku' is already registered",
                 (data_type_id));
         }
 
@@ -1438,7 +1434,7 @@ afw_environment_register_function(
                 &function->dataType->internal, xctx);
             if (!function->data_type) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                "dataType " AFW_UTF8_K_FMT_Q " doesn't exist",
+                "dataType '%ku' doesn't exist",
                 (&function->dataType->internal));
             }
             if (function->dataTypeMethodNumber != 0)
@@ -1744,32 +1740,31 @@ afw_environment_register_adapter_type(
             xctx);
 
         detail_flag_id = afw_utf8_printf(p, xctx,
-            "trace:adapterType:" AFW_UTF8_K_FMT ":detail",
+            "trace:adapterType:%ku:detail",
             (adapter_type));
 
         brief = afw_utf8_printf(p, xctx,
-            "Debug trace adapter type " AFW_UTF8_K_FMT,
+            "Debug trace adapter type %ku",
             (adapter_type));
 
         description = afw_utf8_printf(p, xctx,
             "This produces a basic plus additional detail trace for "
-            "all adapters of type " AFW_UTF8_K_FMT_Q ".",
+            "all adapters of type " "'%ku'.",
             (adapter_type));
 
         afw_environment_register_flag(detail_flag_id, brief, description,
             afw_s_a_flag_trace_adapter_detail, xctx);
 
         flag_id = afw_utf8_printf(p, xctx,
-            "trace:adapterType:" AFW_UTF8_K_FMT,
+            "trace:adapterType:%ku",
             (adapter_type));
 
         brief = afw_utf8_printf(p, xctx,
-            "Trace adapter type " AFW_UTF8_K_FMT_Q,
+            "Trace adapter type '%ku'",
             (adapter_type));
 
         description = afw_utf8_printf(p, xctx,
-            "This produces a basic trace of all adapters of type "
-                AFW_UTF8_K_FMT_Q ".",
+            "This produces a basic trace of all adapters of type '%ku'.",
             (adapter_type));
 
         afw_environment_register_flag(flag_id, brief, description,
@@ -1804,32 +1799,32 @@ afw_environment_register_authorization_handler_type(
             xctx);
 
         detail_flag_id = afw_utf8_printf(p, xctx,
-            "trace:authorizationHandlerType:" AFW_UTF8_K_FMT ":detail",
+            "trace:authorizationHandlerType:%ku:detail",
             (authorization_handler_type));
 
         brief = afw_utf8_printf(p, xctx,
-            "Debug trace authorizationHandler type " AFW_UTF8_K_FMT_Q,
+            "Debug trace authorizationHandler type '%ku'",
             (authorization_handler_type));
 
         description = afw_utf8_printf(p, xctx,
             "This produces a basic plus additional detail trace for "
-            "all authorizationHandlers of type " AFW_UTF8_K_FMT_Q ".",
+            "all authorizationHandlers of type " "'%ku'.",
             (authorization_handler_type));
 
         afw_environment_register_flag(detail_flag_id, brief, description,
             afw_s_a_flag_trace_authorizationHandler_detail, xctx);
 
         flag_id = afw_utf8_printf(p, xctx,
-            "trace:authorizationHandlerType:" AFW_UTF8_K_FMT,
+            "trace:authorizationHandlerType:%ku",
             (authorization_handler_type));
 
         brief = afw_utf8_printf(p, xctx,
-            "Trace authorizationHandler type " AFW_UTF8_K_FMT,
+            "Trace authorizationHandler type %ku",
             (authorization_handler_type));
 
         description = afw_utf8_printf(p, xctx,
             "This produces a basic trace of all authorizationHandlers "
-            "of type " AFW_UTF8_K_FMT_Q ".",
+            "of type " "'%ku'.",
             (authorization_handler_type));
 
         afw_environment_register_flag(flag_id, brief, description,

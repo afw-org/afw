@@ -35,10 +35,7 @@ afw_adapter_delete_object(
     impl_request.p = request->p;
     impl_request.journal_entry = journal_entry;
     impl_request.resource_id = afw_utf8_printf(impl_request.p, xctx,
-        "/"
-        AFW_UTF8_K_FMT "/"
-        AFW_UTF8_K_FMT "/"
-        AFW_UTF8_K_FMT,
+        "/%ku/%ku/%ku",
         (adapter_id),
         (object_type_id),
         (object_id));

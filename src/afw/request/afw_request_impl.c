@@ -31,7 +31,7 @@ afw_request_impl_trace_begin(
             xctx->p, xctx);
         afw_trace_fz(1, xctx->env->flag_index_trace_request,
             instance, xctx,
-            "RequestProperties=" AFW_UTF8_K_FMT,
+            "RequestProperties=%ku",
             (s)
         );
     }
@@ -40,9 +40,7 @@ afw_request_impl_trace_begin(
     {
         afw_trace_fz(1, xctx->env->flag_index_trace_request, 
             instance, xctx,
-            "Method=" AFW_UTF8_K_FMT
-            " uri=" AFW_UTF8_K_FMT
-            " query_string=" AFW_UTF8_K_FMT,
+            "Method=%ku uri=%ku query_string=%ku",
             (instance->method),
             (instance->uri),
             (instance->query_string));

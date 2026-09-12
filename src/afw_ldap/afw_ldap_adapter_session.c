@@ -357,7 +357,7 @@ impl_afw_adapter_session_add_object(
         object_type_id->s, object_type_id->len);
     if (!first_attribute) {
         AFW_THROW_ERROR_FZ(not_found, xctx,
-            "Object type " AFW_UTF8_K_FMT_Q " not found",
+            "Object type '%ku' not found",
             (object_type_id));
     }
 
@@ -459,7 +459,7 @@ impl_afw_adapter_session_modify_object(
         object_type_id->s, object_type_id->len);
     if (!first_attribute) {
         AFW_THROW_ERROR_FZ(not_found, xctx,
-            "Object type " AFW_UTF8_K_FMT_Q " not found",
+            "Object type '%ku' not found",
             (object_type_id));
     }
 
@@ -486,7 +486,7 @@ impl_afw_adapter_session_modify_object(
         if (!attribute || attribute->attribute_type->never_allow_write)
         {
             AFW_THROW_ERROR_FZ(read_only, xctx,
-                "Property " AFW_UTF8_K_FMT_Q " can not be modified",
+                "Property '%ku' can not be modified",
                 (property_name)
             );
         }

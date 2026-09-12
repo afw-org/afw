@@ -375,8 +375,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
 
             if (!afw_value_is_defined_and_evaluated(value)) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "add_value " AFW_UTF8_K_FMT_Q
-                    " must be a defined and evaluated value",
+                    "add_value '%ku' must be a defined and evaluated value",
                     (&first_property_name_entry->property_name.internal));
             }
 
@@ -454,8 +453,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
                         s = afw_object_path_make_property_name_expression(
                             first_property_name_entry, p, xctx);
                         AFW_THROW_ERROR_FZ(general, xctx,
-                            "Error: Value does not exist for property "
-                            AFW_UTF8_K_FMT_Q,
+                            "Error: Value does not exist for property '%ku'",
                             (s));
                     }
                     else {
@@ -470,7 +468,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
                 s = afw_object_path_make_property_name_expression(
                     first_property_name_entry, p, xctx);
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "Error: Value does not exist for property " AFW_UTF8_K_FMT,
+                    "Error: Value does not exist for property %ku",
                     (s));
             }
 
@@ -516,7 +514,7 @@ impl_add_reconcile_property(
     if (embedding_pt && !embedding_pt->allow_write) {
         //return; /** @fixme Ignore these on reconcile???
         AFW_THROW_ERROR_FZ(general, wa->xctx,
-            "Property " AFW_UTF8_K_FMT " can not be modified",
+            "Property %ku can not be modified",
             (embedding_property_name));
         //*/
     }
@@ -524,7 +522,7 @@ impl_add_reconcile_property(
     if (pt && !pt->allow_write) {
         // return; /** @fixme Ignore these on reconcile???
         AFW_THROW_ERROR_FZ(general, wa->xctx,
-            "Property " AFW_UTF8_K_FMT " can not be modified",
+            "Property %ku can not be modified",
             (afw_object_property_name_display_utf8(
                     property_name, wa->xctx)));
         //*/
@@ -599,7 +597,7 @@ impl_reconcile_object(
             property_name, wa->xctx);
         if (!pt) {
             AFW_THROW_ERROR_FZ(general, wa->xctx,
-                "Missing property type for " AFW_UTF8_K_FMT_Q,
+                "Missing property type for '%ku'",
                 (afw_object_property_name_display_utf8(
                     property_name, wa->xctx)));
         }
@@ -771,8 +769,7 @@ afw_adapter_modify_needed_to_reconcile(
         journal_entry, xctx);
     if (!object_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Object type " AFW_UTF8_K_FMT_Q
-            " does not exist in Adapter " AFW_UTF8_K_FMT_Q,
+            "Object type '%ku' does not exist in Adapter '%ku'",
             (*object_type_id),
             (*adapter_id));
     }
@@ -812,10 +809,7 @@ afw_adapter_modify_object(
     impl_request.p = request->p;
     impl_request.journal_entry = journal_entry;
     impl_request.resource_id = afw_utf8_printf(impl_request.p, xctx,
-        "/"
-        AFW_UTF8_K_FMT "/"
-        AFW_UTF8_K_FMT "/"
-        AFW_UTF8_K_FMT,
+        "/%ku/%ku/%ku",
         (adapter_id),
         (object_type_id),
         (object_id));

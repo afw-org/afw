@@ -63,7 +63,7 @@ impl_set_applicable_flags(
             return;
         }
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Flag " AFW_UTF8_K_FMT_Q " is not registered",
+            "Flag '%ku' is not registered",
             (flag_id));
     }
 
@@ -676,7 +676,7 @@ afw_flag_get_index(
     flag = afw_environment_get_flag(flag_id, xctx);
     if (!flag) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            AFW_UTF8_K_FMT_Q " is not a registered flagId",
+            "'%ku' is not a registered flagId",
             (flag_id));
     }
     return flag->flag_index;
@@ -721,7 +721,7 @@ afw_flag_environment_register_flag(
     {
         if (afw_environment_get_flag(flag_id, xctx)) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Flag " AFW_UTF8_K_FMT_Q " is already registered",
+                "Flag '%ku' is already registered",
                 (flag_id));
         }
 
@@ -791,8 +791,7 @@ afw_flag_environment_register_flag(
                 included_by_flag_id, xctx);
             if (!included_by) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "included_by_flag_id " AFW_UTF8_K_FMT_Q
-                    " not found for flag_id " AFW_UTF8_K_FMT_Q,
+                    "included_by_flag_id '%ku' not found for flag_id '%ku'",
                     (included_by_flag_id),
                     (flag_id));
             }

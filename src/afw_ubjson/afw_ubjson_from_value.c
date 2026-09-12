@@ -386,7 +386,7 @@ static void convert_value_to_ubjson(
         afw_value_get_info(value, &info, wa->p, wa->xctx);
         AFW_THROW_ERROR_FZ(general, wa->xctx,
             "Unevaluated value encountered producing ubjson "
-            "(" AFW_UTF8_K_FMT " " AFW_UTF8_K_FMT ")",
+            "(%ku %ku)",
             (info.value_inf_id),
             (info.detail)
         );

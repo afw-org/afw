@@ -102,11 +102,11 @@ MDB_dbi afw_lmdb_internal_open_database(
             database->len, dbi_p);
     } else if (rc == MDB_NOTFOUND) {
         AFW_THROW_ERROR_RV_FZ(not_found, lmdb, rc, xctx,
-            "Unable to open database: " AFW_UTF8_K_FMT_Q ".", 
+            "Unable to open database: '%ku'.", 
             (database));
     } else {
         AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
-            "Unable to open database: " AFW_UTF8_K_FMT_Q ".", 
+            "Unable to open database: '%ku'.", 
             (database));
     }
 
@@ -414,7 +414,7 @@ const afw_utf8_t * afw_lmdb_internal_resolve_object_id(
 
     if (!create_if_missing) {
         AFW_THROW_ERROR_FZ(not_found, xctx,
-            AFW_UTF8_K_FMT_Q " cannot be found.",
+            "'%ku' cannot be found.",
             (object_id));
     }
 

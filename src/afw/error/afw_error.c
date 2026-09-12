@@ -602,14 +602,14 @@ afw_error_to_utf8(
         " [code=%s(%d)"                /* code-decoded */
         " rv=%s%s%d%s%s"               /* source:rv-decoded */
 
-        "%s" AFW_UTF8_K_FMT "%s"         /* source location */
+        "%s%ku%s"         /* source location */
         "%.0" AFW_SIZE_T_FMT_NO_PERCENT
 
         "]"
 
-        "%s" AFW_UTF8_K_FMT              /* evaluation backtrace */
+        "%s%ku"              /* evaluation backtrace */
 
-        "%s" AFW_UTF8_K_FMT,             /* code backtrace */
+        "%s%ku",             /* code backtrace */
 
         /* message. */
         error->message_z,
@@ -664,7 +664,7 @@ afw_error_write_log(afw_log_priority_t priority,
             priority,
             afw_error_source_file(error),
             xctx,
-            "%s [" AFW_UTF8_K_FMT "%s%0d]",
+            "%s [%ku%s%0d]",
             error->message_z,
             (error->contextual->source_location),
             (error->contextual && error->contextual->value_offset != 0) ? " +" : "",

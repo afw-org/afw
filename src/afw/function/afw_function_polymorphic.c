@@ -1814,7 +1814,7 @@ afw_function_execute_regexp_match(
         xmlResetError(err);
         xmlRegFreeRegexp(rx);
         AFW_THROW_ERROR_FZ(argument_error, x->xctx,
-            AFW_UTF8_K_FMT,
+            "%ku",
             (err_message));
     }
 

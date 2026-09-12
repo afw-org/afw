@@ -30,7 +30,7 @@ afw_trace_write(
     msg = message;
     if (rti) {
         msg = afw_utf8_printf(xctx->p, xctx,
-            "Trace[" AFW_UTF8_K_FMT ":" AFW_UTF8_K_FMT "] " AFW_UTF8_K_FMT,
+            "Trace[%ku:%ku] %ku",
             (&rti->interface_name),
             (&rti->implementation_id),
             (message));

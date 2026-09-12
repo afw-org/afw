@@ -76,8 +76,7 @@ afw_adapter_journal_entry_consume(
     journal = afw_adapter_session_get_journal_interface(session, xctx);
     if (!journal) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "adapter_id " AFW_UTF8_K_FMT_Q
-            " session get_journal() returned NULL",
+            "adapter_id '%ku' session get_journal() returned NULL",
             (&session->adapter->adapter_id));
     }
 
@@ -122,7 +121,7 @@ impl_get_journal_interface(const afw_utf8_t *adapter_id,
 
 error:
     AFW_THROW_ERROR_FZ(method_not_supported, xctx,
-        "Adapter " AFW_UTF8_K_FMT_Q " does not support journal",
+        "Adapter '%ku' does not support journal",
         (adapter_id));
 }
 

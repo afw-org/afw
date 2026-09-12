@@ -493,7 +493,7 @@ afw_function_execute_open_file(
         &streamId->internal, x->xctx);
     if (number != (afw_size_t)-1) {
         AFW_THROW_ERROR_FZ(general, x->xctx,
-            "streamId " AFW_UTF8_K_FMT_Q " is already open",
+            "streamId '%ku' is already open",
             (&streamId->internal));
     }
 
@@ -515,7 +515,7 @@ afw_function_execute_open_file(
     if (number == (afw_size_t)-1) {
         afw_stream_release(stream, x->xctx);
         AFW_THROW_ERROR_FZ(general, x->xctx,
-            "streamId " AFW_UTF8_K_FMT_Q " could not be set",
+            "streamId '%ku' could not be set",
             (&streamId->internal));
     }
 
@@ -854,7 +854,7 @@ afw_function_execute_stream(
         x->xctx);
     if (number == (afw_size_t)-1) {
         AFW_THROW_ERROR_FZ(general, x->xctx,
-            "streamId " AFW_UTF8_K_FMT_Q " is not open",
+            "streamId '%ku' is not open",
             (&streamId->internal));
     }
 

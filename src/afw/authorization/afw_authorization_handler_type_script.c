@@ -74,7 +74,7 @@ afw_authorization_handler_type_script_create_cede_p(
     /* Get and prepare qualifiers. */
     detail_source_location = afw_utf8_printf(
         self->pub.properties->p, xctx,
-        AFW_UTF8_K_FMT "/authorizationCheck",
+        "%ku/authorizationCheck",
         (self->pub.source_location));
     self->authorization_check =
         afw_object_get_property_compile_script(
@@ -84,7 +84,7 @@ afw_authorization_handler_type_script_create_cede_p(
 
     /* Make context. */
     context_type_id = afw_utf8_printf(xctx->env->p, xctx,
-        "authorizationHandler-" AFW_UTF8_K_FMT,
+        "authorizationHandler-%ku",
         (&self->pub.authorization_handler_id));
     conf_object_type_id = afw_s__AdaptiveConf_authorizationHandler_script;
     context_type_object = afw_context_type_create(
@@ -122,7 +122,7 @@ afw_authorization_handler_type_script_create_cede_p(
     if (self->qualified_variables) {
         detail_source_location = afw_utf8_printf(
             self->qualified_variables->p, xctx,
-            AFW_UTF8_K_FMT "/" AFW_UTF8_K_FMT,
+            "%ku/%ku",
             (self->pub.source_location),
             (afw_s_qualifiedVariables));
         self->qualified_variables = afw_object_create_clone(

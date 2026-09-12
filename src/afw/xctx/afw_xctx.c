@@ -223,15 +223,13 @@ afw_xctx_scope_symbol_get_value_address(
         scope->block->scope_depth != symbol->parent_block->scope_depth)
     {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "symbol " AFW_UTF8_K_FMT_Q
-            " not found in current scope chain",
+            "symbol '%ku' not found in current scope chain",
             (&symbol->name->internal));
     }
 
     if (symbol->index >= scope->block->symbol_count) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "symbol " AFW_UTF8_K_FMT_Q
-            " index " AFW_SIZE_T_FMT
+            "symbol '%ku' index " AFW_SIZE_T_FMT
             " is out of range for scope",
             (&symbol->name->internal), symbol->index);
     }
@@ -300,8 +298,7 @@ afw_xctx_scope_symbol_get_value_by_name(
 
     if (!value_address) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "symbol name " AFW_UTF8_K_FMT_Q
-            " not found in current scope chain",
+            "symbol name '%ku' not found in current scope chain",
             (symbol_name));
     }
 
@@ -357,8 +354,7 @@ afw_xctx_scope_symbol_set_value_by_name(
 
     if (!value_address) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "symbol name " AFW_UTF8_K_FMT_Q
-            " not found in current scope chain",
+            "symbol name '%ku' not found in current scope chain",
             (symbol_name));
     }
 

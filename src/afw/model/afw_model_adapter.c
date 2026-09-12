@@ -87,10 +87,7 @@ afw_model_internal_require_mapped_adapter(
     }
 
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Model adapter " AFW_UTF8_K_FMT_Q
-        " has no mappedAdapterId; default processing for %s is not available. "
-        "Implement the corresponding on* hook on the model object type, "
-        "or configure mappedAdapterId.",
+        "Model adapter '%ku' has no mappedAdapterId; default processing for %s is not available. Implement the corresponding on* hook on the model object type, or configure mappedAdapterId.",
         (&adapter->pub.adapter_id),
         operation);
 }
@@ -250,7 +247,7 @@ impl_add_adapted_properties_from_adapter(
             }
             else if ((*pt)->required) {
                 afw_object_meta_add_error_fz(result, xctx,
-                    "Missing property " AFW_UTF8_K_FMT_Q,
+                    "Missing property '%ku'",
                     (&(*pt)->property_name.internal));
             }
         }
@@ -394,7 +391,7 @@ afw_model_internal_convert_property(
 
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Invalid property " AFW_UTF8_K_FMT_Q,
+        "Invalid property '%ku'",
         (from_property_name));
 }
 
@@ -443,7 +440,7 @@ afw_model_internal_convert_property_name(
 
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Invalid property " AFW_UTF8_K_FMT_Q,
+        "Invalid property '%ku'",
         (from_property_name));
 
 }
@@ -646,7 +643,7 @@ impl_execute_mapBackObject_thunk(
     }
     if (!mapped_object) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            AFW_UTF8_K_FMT_Q " expects 1 object parameter",
+            "'%ku' expects 1 object parameter",
             (thunk->name));
     }
 
@@ -709,7 +706,7 @@ impl_execute_returnObject_thunk(
     object = NULL;
     if (x->argc > 2) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            AFW_UTF8_K_FMT_Q " expects at most 2 parameters",
+            "'%ku' expects at most 2 parameters",
             (thunk->name));
     }
 
@@ -721,7 +718,7 @@ impl_execute_returnObject_thunk(
     }
     if (!object) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            AFW_UTF8_K_FMT_Q " expects 1 object parameter",
+            "'%ku' expects 1 object parameter",
             (thunk->name));
     }
 
@@ -731,7 +728,7 @@ impl_execute_returnObject_thunk(
         if (mapback_value) {
             if (!afw_value_is_boolean(mapback_value)) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    AFW_UTF8_K_FMT_Q " expects parameter 2 to be boolean",
+                    "'%ku' expects parameter 2 to be boolean",
                     (thunk->name));
             }
             if (((afw_value_boolean_t *)mapback_value)->internal) {
@@ -856,9 +853,7 @@ afw_model_adapter_create_cede_p(
     model_location_adapter = NULL;
     AFW_TRY {
         AFW_LOG_FZ(debug, xctx,
-            "Adapter " AFW_UTF8_K_FMT_Q
-            " specified modelLocationAdapterId " AFW_UTF8_K_FMT_Q
-            ".",
+            "Adapter '%ku' specified modelLocationAdapterId '%ku'.",
             (&adapter->adapter_id),
             (self->model_location_adapter_id));
         model_location_adapter = afw_adapter_get_reference(
@@ -866,8 +861,7 @@ afw_model_adapter_create_cede_p(
         if (!model_location_adapter->impl || !model_location_adapter->impl->model_location) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
-                "the specified modelLocationAdapterId " AFW_UTF8_K_FMT_Q
-                " does not hold _AdaptiveModel_ objects",
+                "the specified modelLocationAdapterId '%ku' does not hold _AdaptiveModel_ objects",
                 (source_location),
                 (self->model_location_adapter_id));
         }
@@ -963,16 +957,14 @@ impl_afw_adapter_create_adapter_session (
             self->model_location_adapter_id, xctx);
     if (!session->model_location_adapter) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Model adapter " AFW_UTF8_K_FMT_Q " is not available",
+            "Model adapter '%ku' is not available",
             (self->model_location_adapter_id));
     }
     session->model = afw_model_location_get_model(
         session->model_location_adapter, self->model_id, xctx);
     if (!session->model) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Model adapter " AFW_UTF8_K_FMT_Q
-            " model " AFW_UTF8_K_FMT_Q
-            " not found",
+            "Model adapter '%ku' model '%ku' not found",
             (self->model_location_adapter_id),
             (self->model_id));
     }
@@ -1379,7 +1371,7 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
             afw_object_meta_add_property_error_fz(
                 ctx->impl_request->request,
                 property_name, xctx,
-                "Invalid property " AFW_UTF8_K_FMT_Q,
+                "Invalid property '%ku'",
                 (afw_object_property_name_display_utf8(
                         property_name, xctx)));
         }
@@ -1623,7 +1615,7 @@ afw_model_internal_complete_ctx_default_modify_object(
             &(*entry)->first_property_name_entry->property_name.internal, xctx);
         if (!model_property_type) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Property name " AFW_UTF8_K_FMT_Q " invalid",
+                "Property name '%ku' invalid",
                 (&(*entry)->first_property_name_entry->property_name.internal));
         }
         afw_array_push_value(mapped_entry,

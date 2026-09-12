@@ -629,7 +629,7 @@ impl_object_path_parse(
 
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Error parsing object path " AFW_UTF8_K_FMT_Q " at offset %d",
+        "Error parsing object path '%ku' at offset %d",
         (parser.uri),
         (int)(prev_c - (const afw_octet_t *)parser.uri->s));
 }
@@ -723,7 +723,7 @@ afw_object_path_parse_simple(
 
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Invalid path " AFW_UTF8_K_FMT_Q,
+        "Invalid path '%ku'",
         (path));
 }
 

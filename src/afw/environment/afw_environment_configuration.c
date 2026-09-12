@@ -52,7 +52,7 @@ afw_environment_configure_with_object(
     if (!conf_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
-            "invalid type " AFW_UTF8_K_FMT_Q,
+            "invalid type '%ku'",
             (source_location),
             (type));
     }
@@ -89,7 +89,7 @@ afw_environment_configure_with_object_list(
 
         /* Source location will include entry number. */
         detail_source_location = afw_utf8_printf(xctx->env->p, xctx,
-            AFW_UTF8_K_FMT " entry %d",
+            "%ku entry %d",
             (source_location), count);
 
         if (!afw_value_is_object(value)) {
@@ -134,7 +134,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
     value = afw_object_get_property(entry, afw_v_modulePath, xctx);
     if (value) {
         detail_source_location = afw_utf8_printf(p, xctx,
-            AFW_UTF8_K_FMT "/" AFW_UTF8_K_FMT,
+            "%ku/%ku",
             (source_location),
             (afw_s_modulePath));
         value = afw_value_compile_and_evaluate_using(value,
@@ -156,8 +156,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
             value = afw_object_get_property(manifest, afw_v_modulePath, xctx);
             if (value) {
                 detail_source_location = afw_utf8_printf(p, xctx,
-                    AFW_UTF8_K_FMT "/_AdaptiveManifest_/" AFW_UTF8_K_FMT
-                    "/" AFW_UTF8_K_FMT,
+                    "%ku/_AdaptiveManifest_/%ku/%ku",
                     (source_location),
                     (extension_id),
                     (afw_s_modulePath));
@@ -178,7 +177,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
     if (!module_path) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
-            "\"modulePath\" needed for \"extension\" " AFW_UTF8_K_FMT ".",
+            "\"modulePath\" needed for \"extension\" %ku.",
             (source_location), 
             (extension_id));
     }
@@ -228,8 +227,7 @@ afw_environment_prepare_conf_type_properties(
     if (!conf_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
-            "type " AFW_UTF8_K_FMT_Q
-            " is not valid",
+            "type '%ku' is not valid",
             (source_location),
             (type));
     }
@@ -244,8 +242,7 @@ afw_environment_prepare_conf_type_properties(
         if (!subtype || subtype->len == 0) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
-                AFW_UTF8_K_FMT_Q
-                " property required for conf type " AFW_UTF8_K_FMT_Q,
+                "'%ku' property required for conf type '%ku'",
                 (source_location),
                 (conf_type->subtype_property_name),
                 (type));
@@ -262,8 +259,7 @@ afw_environment_prepare_conf_type_properties(
         if (!id || id->len == 0) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
-                " " AFW_UTF8_K_FMT_Q
-                " property required for conf type " AFW_UTF8_K_FMT_Q,
+                " '%ku' property required for conf type '%ku'",
                 (source_location),
                 (conf_type->id_property_name),
                 (type));
@@ -272,9 +268,7 @@ afw_environment_prepare_conf_type_properties(
 
     /* Construct path. */
     path = afw_utf8_printf(p, xctx,
-        "/afw/_AdaptiveConf_" AFW_UTF8_K_FMT
-        "%s" AFW_UTF8_K_FMT
-        "/" AFW_UTF8_K_FMT,
+        "/afw/_AdaptiveConf_%ku%s%ku/%ku",
         (type),
         (subtype) ? "_" : "",
         (subtype),

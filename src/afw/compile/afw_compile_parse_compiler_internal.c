@@ -52,7 +52,7 @@ impl_compiler_internal_full_name(afw_compile_parser_t *parser)
 
 /*
  * Unknown compiler-internal #Name for the given grammar context.
- * with_name_format_z must include one AFW_UTF8_K_FMT_Q.
+ * with_name_format_z must include one "'%ku'".
  */
 static void
 impl_compiler_internal_unknown(
@@ -227,7 +227,7 @@ impl_assignment_type_from_utf8(
 #undef XX
 
     AFW_COMPILE_THROW_ERROR_FZ(
-        "Invalid assignment type " AFW_UTF8_K_FMT_Q " in #assignment_target",
+        "Invalid assignment type '%ku' in #assignment_target",
         (s));
 }
 
@@ -453,7 +453,7 @@ impl_parse_compiler_internal_interface(afw_compile_parser_t *parser)
             afw_utf8_equal(base->reference.name, name))
         {
             AFW_COMPILE_THROW_ERROR_FZ(
-                "Interface " AFW_UTF8_K_FMT_Q " cannot extend itself",
+                "Interface '%ku' cannot extend itself",
                 (name));
         }
         if (!extends) {
@@ -1013,7 +1013,7 @@ afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser)
     }
 
     impl_compiler_internal_unknown(parser,
-        "Unknown compiler-internal statement " AFW_UTF8_K_FMT_Q,
+        "Unknown compiler-internal statement '%ku'",
         "Unknown compiler-internal statement");
     return NULL; /* not reached */
 }
@@ -1111,7 +1111,7 @@ afw_compile_parse_CompilerInternalValue(afw_compile_parser_t *parser)
     }
 
     impl_compiler_internal_unknown(parser,
-        "Unknown compiler-internal value " AFW_UTF8_K_FMT_Q,
+        "Unknown compiler-internal value '%ku'",
         "Unknown compiler-internal value");
     return NULL; /* not reached */
 }

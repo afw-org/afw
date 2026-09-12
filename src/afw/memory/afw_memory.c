@@ -367,7 +367,7 @@ afw_memory_decode_printable_hex(
 
 error:
     AFW_THROW_ERROR_FZ(conversion_error, xctx,
-        "Invalid printable hex value " AFW_UTF8_K_FMT_Q ".",
+        "Invalid printable hex value '%ku'.",
         (encoded));
 }
 

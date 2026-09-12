@@ -320,7 +320,7 @@ impl_initialize_and_start_service_using_conf(
     if (!service->service_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
-            "invalid service type " AFW_UTF8_K_FMT_Q,
+            "invalid service type '%ku'",
             (source_location),
             (service->type));
     }
@@ -337,7 +337,7 @@ impl_initialize_and_start_service_using_conf(
         {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
-                "missing 'conf/" AFW_UTF8_K_FMT "' property",
+                "missing 'conf/%ku' property",
                 (source_location),
                 (service->service_type->conf_type->
                     subtype_property_name));
@@ -357,7 +357,7 @@ impl_initialize_and_start_service_using_conf(
         {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
-                "missing " AFW_UTF8_K_FMT_Q " property",
+                "missing '%ku' property",
                 (conf_source_location),
                 (service->service_type->conf_type->id_property_name)
             );
@@ -367,16 +367,14 @@ impl_initialize_and_start_service_using_conf(
     /* service id */
     object_id = (service->conf_id) ? service->conf_id : afw_s_current;
     s = afw_utf8_printf(p, xctx,
-        AFW_UTF8_K_FMT
-        "-" AFW_UTF8_K_FMT,
+        "%ku-%ku",
         (service->type),
         (object_id));
     if (service->service_id.len > 0) {
         if (!afw_utf8_equal(&service->service_id, s)) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
-                "serviceId " AFW_UTF8_K_FMT_Q
-                " is not appropriate for this conf",
+                "serviceId '%ku' is not appropriate for this conf",
                 (source_location),
                 (s));
         }
@@ -386,8 +384,7 @@ impl_initialize_and_start_service_using_conf(
 
     /* conf objectType */
     s = afw_utf8_printf(p, xctx,
-        "_AdaptiveConf_" AFW_UTF8_K_FMT
-        "%s" AFW_UTF8_K_FMT,
+        "_AdaptiveConf_%ku%s%ku",
         (service->type),
         (service->conf_subtype) ? "_" : "",
         (service->conf_subtype));
@@ -507,7 +504,7 @@ impl_start_cb(
         }
         conf = afw_object_create_clone(conf, p, xctx);
         service->conf_source_location = afw_utf8_printf(
-            p, xctx, AFW_UTF8_K_FMT "/conf",
+            p, xctx, "%ku/conf",
             (source_location));
 
         /* Start service and release existing service if there is one. */
@@ -528,7 +525,7 @@ impl_start_cb(
                     AFW_ERROR_THROWN, p, xctx);
         }
         afw_error_write_log(afw_log_priority_err, AFW_ERROR_THROWN, xctx);
-        AFW_LOG_FZ(err, xctx, "Service " AFW_UTF8_K_FMT_Q " failed to start.",
+        AFW_LOG_FZ(err, xctx, "Service '%ku' failed to start.",
                 (service_id));
 
         /** @fixme Deal with error_service not NULL. */
@@ -628,7 +625,7 @@ impl_add_runtime_service_info_to_object(
         }
         if (len <= 0 || w_id.len < 1) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Invalid serviceId " AFW_UTF8_K_FMT_Q,
+                "Invalid serviceId '%ku'",
                 (service_id));
         }
         type = &w_type;
@@ -638,7 +635,7 @@ impl_add_runtime_service_info_to_object(
     service_type = afw_environment_get_service_type(type, xctx);
     if (!service_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Invalid type in serviceId " AFW_UTF8_K_FMT_Q,
+            "Invalid type in serviceId '%ku'",
             (service_id));
     }
 
@@ -657,8 +654,7 @@ impl_add_runtime_service_info_to_object(
                 conf_property->p, xctx), xctx);
         if (!subtype) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "missing 'conf/" AFW_UTF8_K_FMT
-                "' property in serviceId " AFW_UTF8_K_FMT_Q,
+                "missing 'conf/%ku' property in serviceId '%ku'",
                 (service_type->conf_type->subtype_property_name),
                 (service_id));
         }
@@ -668,8 +664,7 @@ impl_add_runtime_service_info_to_object(
 
     if (service_type->conf_type->id_runtime_object_type_id) {
         s = afw_utf8_printf(p, xctx,
-            "/afw/" AFW_UTF8_K_FMT
-            "/" AFW_UTF8_K_FMT,
+            "/afw/%ku/%ku",
             (service_type->conf_type->
                 id_runtime_object_type_id),
             (id));
@@ -679,13 +674,12 @@ impl_add_runtime_service_info_to_object(
 
     if (subtype) {
         conf_object_type_id = afw_utf8_printf(p, xctx,
-            "_AdaptiveConf_" AFW_UTF8_K_FMT
-            "." AFW_UTF8_K_FMT,
+            "_AdaptiveConf_%ku.%ku",
             (type), (subtype));
 
     } else {
         conf_object_type_id = afw_utf8_printf(p, xctx,
-            "_AdaptiveConf_" AFW_UTF8_K_FMT,
+            "_AdaptiveConf_%ku",
             (type));
     }
 
@@ -871,7 +865,7 @@ impl_AdaptiveService_cb(
                 original_object, afw_v_conf, xctx);
             if (!conf_property) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "missing conf property in serviceId " AFW_UTF8_K_FMT_Q,
+                    "missing conf property in serviceId '%ku'",
                     (service_id));
             }
 
@@ -1176,7 +1170,7 @@ impl_start_service(
             &service->service_id, xctx);
         afw_environment_register_service(&service->service_id, service,
             xctx);
-        AFW_LOG_FZ(debug, xctx, "Service " AFW_UTF8_K_FMT_Q " starting.",
+        AFW_LOG_FZ(debug, xctx, "Service '%ku' starting.",
             (&service->service_id));
         afw_service_type_start_cede_p(service->service_type,
             service->properties, service->p, xctx);
@@ -1184,8 +1178,7 @@ impl_start_service(
         if (existing_service) {
             /** @fixme Release pool. */
         }
-        AFW_LOG_FZ(info, xctx, "Service " AFW_UTF8_K_FMT_Q
-            " successfully started.",
+        AFW_LOG_FZ(info, xctx, "Service '%ku' successfully started.",
             (&service->service_id));
     }
     AFW_THREAD_MUTEX_UNLOCK();
@@ -1220,8 +1213,7 @@ afw_service_start(
     {
         description = afw_service_status_description(service->status);
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Service " AFW_UTF8_K_FMT_Q
-            " can not be started.  " AFW_UTF8_K_FMT,
+            "Service '%ku' can not be started.  %ku",
             (service_id),
             (description));
     }
@@ -1229,7 +1221,7 @@ afw_service_start(
     /* Should not get this condition, but fuss anyways. */
     if (!xctx->env->conf_adapter) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Can not start service " AFW_UTF8_K_FMT_Q,
+            "Can not start service '%ku'",
             (service_id));
     }
 
@@ -1270,7 +1262,7 @@ afw_service_stop(
     service = afw_environment_get_service(service_id, xctx);
     if (!service) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Service " AFW_UTF8_K_FMT_Q " is not running",
+            "Service '%ku' is not running",
             (service_id));
     }
 
@@ -1280,14 +1272,12 @@ afw_service_stop(
 
             AFW_TRY {
                     service->status = afw_service_status_stopping;
-                    AFW_LOG_FZ(debug, xctx, "Service " AFW_UTF8_K_FMT_Q
-                        " stopping.",
+                    AFW_LOG_FZ(debug, xctx, "Service '%ku' stopping.",
                         (&service->service_id));
                     service->status = afw_service_status_stopping;
                     afw_service_type_stop(service->service_type,
                         service->conf_id, xctx);
-                    AFW_LOG_FZ(info, xctx, "Service " AFW_UTF8_K_FMT_Q
-                        " successfully stopped.",
+                    AFW_LOG_FZ(info, xctx, "Service '%ku' successfully stopped.",
                         (&service->service_id));
                     service->status = afw_service_status_stopped;
             }
@@ -1307,8 +1297,7 @@ afw_service_stop(
         else {
             description = afw_service_status_description(service->status);
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Service " AFW_UTF8_K_FMT_Q
-                " can not be stopped.  " AFW_UTF8_K_FMT,
+                "Service '%ku' can not be stopped.  %ku",
                 (&service->service_id),
                 (description));
 
@@ -1334,7 +1323,7 @@ impl_restart_service(
         service->status = afw_service_status_restarting;
         existing_service = afw_environment_get_service(
             &service->service_id, xctx);
-        AFW_LOG_FZ(debug, xctx, "Service " AFW_UTF8_K_FMT_Q " restarting.",
+        AFW_LOG_FZ(debug, xctx, "Service '%ku' restarting.",
             (&service->service_id));
         afw_service_type_restart_cede_p(service->service_type,
             service->properties, service->p, xctx);
@@ -1342,8 +1331,7 @@ impl_restart_service(
         if (existing_service) {
             /** @fixme Release pool. */
         }
-        AFW_LOG_FZ(info, xctx, "Service " AFW_UTF8_K_FMT_Q
-            " successfully restarted.",
+        AFW_LOG_FZ(info, xctx, "Service '%ku' successfully restarted.",
             (&service->service_id));
     }
     AFW_THREAD_MUTEX_UNLOCK();
@@ -1414,7 +1402,7 @@ impl_restart_get_cb(
         service->has_service_conf = true;
 
         service->conf_source_location = afw_utf8_printf(
-            p, xctx, AFW_UTF8_K_FMT "/conf",
+            p, xctx, "%ku/conf",
             (source_location));
         conf = afw_object_get_property_as_object_internal(object,
             afw_v_conf, xctx);
@@ -1440,7 +1428,7 @@ impl_restart_get_cb(
                     AFW_ERROR_THROWN, p, xctx);
         }
         afw_error_write_log(afw_log_priority_err, AFW_ERROR_THROWN, xctx);
-        AFW_LOG_FZ(err, xctx, "Service " AFW_UTF8_K_FMT_Q " failed to start.",
+        AFW_LOG_FZ(err, xctx, "Service '%ku' failed to start.",
                 (service_id));
 
         /** @fixme Deal with error_service not NULL. */
@@ -1478,8 +1466,7 @@ afw_service_restart(
     if (!service || service->status != afw_service_status_running)
     {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Service " AFW_UTF8_K_FMT_Q
-            " cannot be restarted.  It is not running",
+            "Service '%ku' cannot be restarted.  It is not running",
             (service_id));
     }
 
@@ -1514,6 +1501,6 @@ afw_service_restart(
 
 error:
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Error starting service " AFW_UTF8_K_FMT_Q,
+        "Error starting service '%ku'",
         (service_id));
 }

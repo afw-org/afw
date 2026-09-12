@@ -30,13 +30,13 @@ impl_set_trace_flag_fields(
     /* authorization_handler_id_trace_flag_id */
     self->trace_flag_id =
         afw_utf8_printf(p, xctx,
-        "trace:authorizationHandlerId:" AFW_UTF8_K_FMT,
+        "trace:authorizationHandlerId:%ku",
         (&self->authorization_handler_id));
 
     /* authorization_handler_id_detail_flag_id */
     self->detail_flag_id =
         afw_utf8_printf(p, xctx,
-        "trace:authorizationHandlerId:" AFW_UTF8_K_FMT ":detail",
+        "trace:authorizationHandlerId:%ku:detail",
         (&self->authorization_handler_id));
 
     /* authorization_handler_id_detail_flag_index */
@@ -48,16 +48,16 @@ impl_set_trace_flag_fields(
             env_p, xctx);
 
         brief = afw_utf8_printf(env_p, xctx,
-            "Detail trace of authorizationHandlerId " AFW_UTF8_K_FMT_Q,
+            "Detail trace of authorizationHandlerId '%ku'",
             (&self->authorization_handler_id));
 
         description = afw_utf8_printf(env_p, xctx,
             "This produces a basic plus detail trace "
-            "of authorizationHandlerId " AFW_UTF8_K_FMT_Q ".",
+            "of authorizationHandlerId " "'%ku'.",
             (&self->authorization_handler_id));
 
         included_by_flag_id = afw_utf8_printf(env_p, xctx,
-            "trace:authorizationHandlerType:" AFW_UTF8_K_FMT ":detail",
+            "trace:authorizationHandlerType:%ku:detail",
             (self->authorization_handler_type_id));
 
         afw_environment_register_flag(flag_id, brief, description,
@@ -78,15 +78,15 @@ impl_set_trace_flag_fields(
             env_p, xctx);
 
         brief = afw_utf8_printf(env_p, xctx,
-            "Trace authorizationHandlerId " AFW_UTF8_K_FMT_Q,
+            "Trace authorizationHandlerId '%ku'",
             (&self->authorization_handler_id));
 
         description = afw_utf8_printf(env_p, xctx,
-            "This produces a basic trace of authorizationHandlerId " AFW_UTF8_K_FMT_Q ".",
+            "This produces a basic trace of authorizationHandlerId '%ku'.",
             (&self->authorization_handler_id));
 
         included_by_flag_id = afw_utf8_printf(env_p, xctx,
-            "trace:authorizationHandlerType:" AFW_UTF8_K_FMT,
+            "trace:authorizationHandlerType:%ku",
             (self->authorization_handler_type_id));
 
         afw_environment_register_flag(flag_id, brief, description,
@@ -143,31 +143,30 @@ afw_authorization_handler_impl_create_cede_p(
         afw_v_authorizationHandlerId, p, xctx);
     if (!s) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            AFW_UTF8_K_FMT " requires 'id' property.",
+            "%ku requires 'id' property.",
             (self->source_location));
     }
     afw_memory_copy(&self->authorization_handler_id, s);
 
     /* Create lock. */
     s = afw_utf8_printf(p, xctx,
-        "authorization_handler_id:" AFW_UTF8_K_FMT,
+        "authorization_handler_id:%ku",
         (&self->authorization_handler_id));
     if (!afw_environment_get_lock(s, xctx)) {
         self->authorization_handler_lock_rw = afw_lock_create_rw_and_register(
             afw_utf8_clone(s, xctx->env->p, xctx),
             afw_utf8_printf(xctx->env->p, xctx,
-                "Authorization handler id " AFW_UTF8_K_FMT_Q " read/write lock",
+                "Authorization handler id '%ku' read/write lock",
                 (&self->authorization_handler_id)),
             afw_utf8_printf(xctx->env->p, xctx,
-                "Read/write lock used internally by authorization_handler id "
-                AFW_UTF8_K_FMT_Q " implementation.",
+                "Read/write lock used internally by authorization_handler id '%ku' implementation.",
                 (&self->authorization_handler_id)),
             xctx);
     }
 
     /* Service id. */
     self->service_id = afw_utf8_printf(p, xctx,
-        "authorizationHandler-" AFW_UTF8_K_FMT,
+        "authorizationHandler-%ku",
         (&self->authorization_handler_id));
 
     /* priority default 9999 */
@@ -190,7 +189,7 @@ afw_authorization_handler_impl_create_cede_p(
 
     /* Trace create */
     afw_trace_fz(1, self->trace_flag_index, self, xctx,
-        "authorizationHandlerId " AFW_UTF8_K_FMT_Q " is being created",
+        "authorizationHandlerId '%ku' is being created",
         (&self->authorization_handler_id));
 
     /* Return new instance. */

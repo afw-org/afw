@@ -67,9 +67,7 @@ afw_adapter_retrieve_objects(
     impl_request.p = request->p;
     impl_request.journal_entry = journal_entry;
     impl_request.resource_id = afw_utf8_printf(impl_request.p, xctx,
-        "/"
-        AFW_UTF8_K_FMT "/"
-        AFW_UTF8_K_FMT "/",
+        "/%ku/%ku/",
         (adapter_id),
         (object_type_id));
     afw_object_set_property_as_string_internal(request,

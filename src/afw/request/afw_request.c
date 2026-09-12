@@ -198,7 +198,7 @@ afw_request_body_to_value(
         &content_type_id, xctx);
     if (!content_type) {
         AFW_THROW_ERROR_FZ(unsupported_content, xctx,
-            "Unsupported content-type " AFW_UTF8_K_FMT_Q ".",
+            "Unsupported content-type '%ku'.",
             (instance->content_type));
     }
 

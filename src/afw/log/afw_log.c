@@ -210,9 +210,9 @@ void afw_log_internal_register_logType_context_type(
     const afw_object_t *variable_definitions;
 
     context_type_id = afw_utf8_printf(xctx->env->p, xctx,
-        "logType-" AFW_UTF8_K_FMT, (log_type_id));
+        "logType-%ku", (log_type_id));
     conf_object_type_id = afw_utf8_printf(xctx->env->p, xctx,
-        "_AdaptiveConf_log_" AFW_UTF8_K_FMT, (log_type_id));
+        "_AdaptiveConf_log_%ku", (log_type_id));
     context_type_object = afw_context_type_create(
         context_type_id, xctx->env->p, xctx);
     qualifier_definitions =
@@ -527,9 +527,7 @@ impl_write_formatted_message(
         else {
             /* No time or program name[pid] */
             wa->formatted_message = afw_utf8_printf(wa->p, xctx,
-                "[" AFW_UTF8_K_FMT
-                " " AFW_UTF8_K_FMT
-                "] " AFW_UTF8_K_FMT,
+                "[%ku %ku] %ku",
                 (&xctx->env->application_id),
                 (xctx->uuid),
                 (wa->message));
@@ -700,7 +698,7 @@ impl_afw_service_type_start_cede_p (
     factory = afw_environment_get_log_type(log_type, xctx);
     if (!factory) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "logType " AFW_UTF8_K_FMT_Q " is not a registered log type.",
+            "logType '%ku' is not a registered log type.",
             (log_type));
     }
    
@@ -779,8 +777,7 @@ afw_log_impl_throw_property_invalid(
     afw_xctx_t *xctx)
 {
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Configuration type=log, logId=" AFW_UTF8_K_FMT_Q
-        " property name " AFW_UTF8_K_FMT_Q " is not valid.",
+        "Configuration type=log, logId='%ku' property name '%ku' is not valid.",
         (&log->log_id),
         (afw_object_property_name_display_utf8(property_name, xctx)));
 }
@@ -793,8 +790,7 @@ afw_log_impl_throw_property_required(
     afw_xctx_t *xctx)
 {
     AFW_THROW_ERROR_FZ(general, xctx,
-        "Configuration type=log, logId=" AFW_UTF8_K_FMT_Q
-        " property name " AFW_UTF8_K_FMT_Q " is required.",
+        "Configuration type=log, logId='%ku' property name '%ku' is required.",
         (&log->log_id),
         (afw_object_property_name_display_utf8(property_name, xctx)));
 }
@@ -841,7 +837,7 @@ afw_log_impl_create_cede_p(
 
     /* Service id. */
     self->service_id = afw_utf8_printf(p, xctx,
-        "log-" AFW_UTF8_K_FMT,
+        "log-%ku",
         (&self->log_id));
 
     /* Process <priority>, if they exists. */

@@ -40,10 +40,7 @@ afw_adapter_add_object(
     impl_request.p = request->p;
     impl_request.journal_entry = journal_entry;
     impl_request.resource_id = afw_utf8_printf(impl_request.p, xctx,
-        "/"
-        AFW_UTF8_K_FMT "/"
-        AFW_UTF8_K_FMT "/"
-        AFW_UTF8_K_FMT,
+        "/%ku/%ku/%ku",
         (adapter_id),
         (object_type_id),
         (suggested_object_id));
@@ -80,8 +77,7 @@ afw_adapter_add_object(
                 xctx);
             if (!journal) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "adapter_id " AFW_UTF8_K_FMT_Q
-                    " session get_journal() returned NULL",
+                    "adapter_id '%ku' session get_journal() returned NULL",
                     (&session->adapter->adapter_id));
             }
             object_id = afw_adapter_journal_add_entry(journal,

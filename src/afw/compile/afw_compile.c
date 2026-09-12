@@ -457,7 +457,7 @@ afw_compile_templates(
         /* If this is a template value, compile it. */
        if (afw_value_is_template(value)) {
             detail_source_location = afw_utf8_printf(object->p, xctx,
-                AFW_UTF8_K_FMT "/" AFW_UTF8_K_FMT,
+                "%ku/%ku",
                 (source_location),
                 (afw_object_property_name_display_utf8(
                         property_name, xctx)));
@@ -472,7 +472,7 @@ afw_compile_templates(
         /* Recursively process objects. */
         else if (recursive && afw_value_is_object(value)) {
             detail_source_location = afw_utf8_printf(object->p, xctx,
-                AFW_UTF8_K_FMT "/" AFW_UTF8_K_FMT,
+                "%ku/%ku",
                 (source_location),
                 (afw_object_property_name_display_utf8(
                         property_name, xctx)));
@@ -515,7 +515,7 @@ afw_compile_object_all_template_properties(
         object, &iterator, &property_name, xctx)))
     {
         detail_source_location = afw_utf8_printf(object->p, xctx,
-                AFW_UTF8_K_FMT " property " AFW_UTF8_K_FMT,
+                "%ku property %ku",
                 (source_location),
                 (afw_object_property_name_display_utf8(
                         property_name, xctx)));
@@ -524,7 +524,7 @@ afw_compile_object_all_template_properties(
             !afw_utf8_equal(&value_data_type->cType, afw_s_afw_utf8_t))
         {
             AFW_THROW_ERROR_FZ(general, xctx,
-                AFW_UTF8_K_FMT " is not a template",
+                "%ku is not a template",
                 (detail_source_location));
         }
         compiled_value = afw_compile_template_source(
@@ -588,8 +588,7 @@ afw_compile_source_location_of_value(
                 info.contextual->value_offset,
                 4, xctx);
             result = afw_utf8_printf(p, xctx,
-                AFW_UTF8_K_FMT
-                "+" AFW_SIZE_T_FMT
+                "%ku+" AFW_SIZE_T_FMT
                 "(" AFW_SIZE_T_FMT
                 ":" AFW_SIZE_T_FMT ")",
                 (info.contextual->source_location),
@@ -600,13 +599,12 @@ afw_compile_source_location_of_value(
         {
             if (info.contextual->value_offset == 0) {
                 result = afw_utf8_printf(p, xctx,
-                    AFW_UTF8_K_FMT,
+                    "%ku",
                     (info.contextual->source_location));
             }
             else {
                 result = afw_utf8_printf(p, xctx,
-                    AFW_UTF8_K_FMT
-                    "+" AFW_SIZE_T_FMT,
+                    "%ku+" AFW_SIZE_T_FMT,
                     (info.contextual->source_location),
                     info.contextual->value_offset);
             }

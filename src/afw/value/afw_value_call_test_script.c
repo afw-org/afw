@@ -266,7 +266,7 @@ impl_afw_value_optional_evaluate(
 
         if (info->compile_type == afw_compile_type_error) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "source_type=" AFW_UTF8_K_FMT_Q " is invalid",
+                "source_type='%ku' is invalid",
                 (source_type));
         }
 
@@ -628,7 +628,7 @@ impl_afw_value_produce_compiler_listing(
 
             if (info->compile_type == afw_compile_type_error) {
                 AFW_THROW_ERROR_FZ(general, xctx,
-                    "source_type=" AFW_UTF8_K_FMT_Q " is invalid",
+                    "source_type='%ku' is invalid",
                     (source_type));
             }
 
@@ -637,11 +637,10 @@ impl_afw_value_produce_compiler_listing(
                 self->contextual->compiled_value->full_source,
                 contextual.value_offset, 4, xctx);
             source_location = afw_utf8_printf(p, xctx,
-                AFW_UTF8_K_FMT
-                "+" AFW_SIZE_T_FMT
+                "%ku+" AFW_SIZE_T_FMT
                 "(" AFW_SIZE_T_FMT
                 ":" AFW_SIZE_T_FMT ")"
-                " test: " AFW_UTF8_K_FMT,
+                " test: %ku",
                 (self->contextual->source_location),
                 contextual.value_offset, line_number, column_number,
                 (test_name));

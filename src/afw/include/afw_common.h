@@ -775,8 +775,8 @@ typedef struct afw_utf8_array_s {
  * @brief Format string specifier used for afw_utf8_t with libc.
  *
  * libc `%.*s` (int len, char *). Stops at an interior 0. Use with
- * `fprintf` and `AFW_UTF8_FMT_ARG`. AFW printf prefers
- * `AFW_UTF8_K_FMT` (`%ku`, one `const afw_utf8_t *`).
+ * `fprintf` and `AFW_UTF8_FMT_ARG`. AFW printf uses `%ku` (one
+ * `const afw_utf8_t *`; NULL is empty).
  */
 #define AFW_UTF8_FMT "%.*s"
 
@@ -785,26 +785,9 @@ typedef struct afw_utf8_array_s {
  */
 #define AFW_UTF8_FMT_Q "'%.*s'"
 
-/**
- * @brief AFW printf specifier for trusted `afw_utf8_t *` (`%ku`).
- *
- * Argument is one `const afw_utf8_t *` (NULL is empty). Not for libc.
- */
-#define AFW_UTF8_K_FMT "%ku"
-
-/**
- * @brief Quoted AFW printf specifier for trusted `afw_utf8_t *`.
- */
-#define AFW_UTF8_K_FMT_Q "'%ku'"
-
-
-/** @brief Format string used for source location separator. */
-#define AFW_UTF8_CONTEXTUAL_LABEL_FMT_SEP "> "
-
 
 /** @brief Format string used for source location (AFW printf). */
-#define AFW_UTF8_CONTEXTUAL_LABEL_FMT \
-AFW_UTF8_K_FMT AFW_UTF8_CONTEXTUAL_LABEL_FMT_SEP
+#define AFW_UTF8_CONTEXTUAL_LABEL_FMT "%ku> "
 
 /**
  * @brief Convenience Macro for use with AFW_UTF8_FMT to specify arg.
