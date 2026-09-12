@@ -112,7 +112,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | **Probe** | Live system when debating models (`afwfcgi`, env registries) — not CI |
 | **Open** | More mantras as shared over time |
 | **Gap** | None critical; grow mantras pad, don’t invent phrases |
-| **Also** | Crash-shaped review lists: private Project + how-to issue; public `afw` one card at a time — [`agent-support.md`](agent-support.md) *Disclosure-sensitive C review*. Base vs private packages, Docker ICU/APR floor, ICU home: [`lineage-and-library-floor.md`](lineage-and-library-floor.md) |
+| **Also** | Crash-shaped review lists: private Project + how-to issue; public `afw` one card at a time — [`agent-support.md`](agent-support.md) *Disclosure-sensitive C review*. Base vs private packages, Docker ICU/APR floor, ICU home: [`lineage-and-library-floor.md`](lineage-and-library-floor.md); actually running cross-platform docker builds: [`docker-cross-platform-builds.md`](docker-cross-platform-builds.md) |
 | **Origin note** | Env/runtime “smaller chunks → live discovery → adapters click” discussion: genesis of this support-partner path (ah-ha → map) |
 
 ---
@@ -199,7 +199,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 |-------|---------|
 | **Settled map** | #158 closed (PR **#165**): host-specific wake + core `terminating` |
 | **Day rules** | `afw-server`, `afw-server-fcgi`, `afw-command` |
-| **Deep pad** | [`lineage-and-library-floor.md`](lineage-and-library-floor.md) — Docker bases are the ICU/APR floor (this Ubuntu container is not the oldest) |
+| **Deep pad** | [`lineage-and-library-floor.md`](lineage-and-library-floor.md) — Docker bases are the ICU/APR floor (this Ubuntu container is not the oldest; openSUSE Leap is, as of the RockyLinux 9 bump). Actually building those images: [`docker-cross-platform-builds.md`](docker-cross-platform-builds.md) — `afwdev build --docker` is a stub, no in-repo base-image publish workflow, buildx driver race, clean-context gotchas |
 | **Probe** | `src/afw/tests/advanced/afwfcgi_signal_shutdown/`; `afwfcgi --help`; after `--cdev`/`--install`, restart long-lived `afwfcgi` (stale process maps deleted `libafw` — CLI `afw` does not) |
 | **Open** | Drain timeout, SIGHUP, Windows service, general signal framework, every extension retrieve loop, `--local` read unblock |
 | **Gap** | Stale-`afwfcgi` and GDB `-n 1` notes now in `agent-support` live-stack playbook |

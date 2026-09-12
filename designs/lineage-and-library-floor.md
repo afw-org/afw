@@ -36,14 +36,17 @@ Any other AFW package next to this repo uses the same sibling layout. To drop th
 
 Develop against the **published image bases**, not against “whatever this workstation or this one container happens to have.” The in-tree `docker/images/afw-dev-base/` files are the matrix:
 
-| Dockerfile | Base |
-|------------|------|
-| `Dockerfile.alpine` | Alpine 3.16 |
-| `Dockerfile.ubuntu` | Ubuntu 22.04 |
-| `Dockerfile.rockylinux` | Rocky Linux 8.9 |
-| `Dockerfile.opensuse` | openSUSE Leap 15.5 |
+| Dockerfile | Base | ICU | APR |
+|------------|------|-----|-----|
+| `Dockerfile.alpine` | Alpine 3.16 | 71.1 | 1.7.2 |
+| `Dockerfile.ubuntu` | Ubuntu 22.04 | 70.1 | 1.7.0 |
+| `Dockerfile.rockylinux` | Rocky Linux **9** (bumped from 8.9 — [`docker-cross-platform-builds.md`](docker-cross-platform-builds.md) *RockyLinux base bumped*) | 67.1 | 1.7.0 |
+| `Dockerfile.opensuse` | openSUSE Leap 15.5 | 65.1 | 1.6.3 |
+| `Dockerfile.almalinux` | AlmaLinux 9 | 67.1 | — | not wired into `docker.py`'s build list and not published to `ghcr.io` (local-only image); see the docker pad |
 
-This development container is **Ubuntu 22.04** (ICU 70.1, APR 1.7 as of 2026-08). That is **not** the oldest base. Rocky 8 is the conservative end (RHEL 8-era ICU is about 60). An ICU or APR API that exists only on Ubuntu 22.04 can still fail the Rocky or Alpine image.
+Versions verified live (`pkg-config --modversion icu-uc`, `apr-1-config --version` inside each `afw-dev-base` image) as of 2026-09-10, after the Rocky 8→9 bump.
+
+This development container is **Ubuntu 22.04** (ICU 70.1, APR 1.7). That is **not** the oldest base. **openSUSE Leap 15.5 is now the conservative end** on both axes (ICU 65.1, APR 1.6.3) — Rocky moved off that spot when it bumped to 9 (ICU 67.1, same family as AlmaLinux 9). An ICU or APR API that exists only on Ubuntu 22.04 can still fail the openSUSE or Alpine image.
 
 `U8_NEXT` / `U8_APPEND` (the bounded ICU macros used in `afw_utf8`) are old enough for this matrix. “A newer ICU call” means **present on the oldest base**, not present on this container.
 
