@@ -1688,14 +1688,14 @@ afw_lmdb_transaction_t * afw_lmdb_transaction_create(
         a database lock to prevent another transactions from opening
         databases.
      */
-    apr_thread_rwlock_rdlock(session->adapter->dbLock);
+    afw_thread_rwlock_rdlock(session->adapter->dbLock, xctx);
 
     afw_trace_z(1, session->adapter->pub.trace_flag_index,
         NULL, "LMDB Begin read transaction.", xctx);
 
     rc = mdb_txn_begin(session->adapter->dbEnv, NULL, 0, &self->txn);
     if (rc) {
-        apr_thread_rwlock_unlock(session->adapter->dbLock);
+        afw_thread_rwlock_unlock(session->adapter->dbLock, xctx);
 
         afw_trace_fz(1, session->adapter->pub.trace_flag_index,
             NULL, xctx, "LMDB transaction begin failed with error: "
@@ -1736,7 +1736,7 @@ impl_afw_adapter_transaction_release (
     /* if our session still has an active transaction going, abort it */
     if (session->transaction) {
         mdb_txn_abort(self->txn);
-        apr_thread_rwlock_unlock(session->adapter->dbLock);
+        afw_thread_rwlock_unlock(session->adapter->dbLock, xctx);
 
         afw_trace_z(1, session->adapter->pub.trace_flag_index, 
             NULL, "LMDB Transaction aborted.", xctx);
@@ -1771,7 +1771,7 @@ impl_afw_adapter_transaction_commit (
 
     rc = mdb_txn_commit(self->txn);
     if (rc) {
-        apr_thread_rwlock_unlock(session->adapter->dbLock);
+        afw_thread_rwlock_unlock(session->adapter->dbLock, xctx);
 
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
             "Unable to commit transaction.", xctx);
@@ -1780,7 +1780,7 @@ impl_afw_adapter_transaction_commit (
     afw_trace_z(1, session->adapter->pub.trace_flag_index, 
         NULL, "LMDB Transaction committed.", xctx);
 
-    apr_thread_rwlock_unlock(session->adapter->dbLock);
+    afw_thread_rwlock_unlock(session->adapter->dbLock, xctx);
 
     /* clear our session transaction to prevent further commits */
     self->txn = NULL;

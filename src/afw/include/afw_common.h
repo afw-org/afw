@@ -59,11 +59,10 @@
 /* Adaptive Framework uses Apache Portable Runtime. */
 #include <apr_general.h>
 #include <apr_time.h>
-#include <apr_thread_proc.h>
-#include <apr_thread_rwlock.h>
 
 
 /* Common standard headers. */
+#include <stdio.h>
 #include <assert.h>
 #include <limits.h>
 #include <setjmp.h>
@@ -1552,26 +1551,8 @@ typedef enum afw_service_status_e {
 } afw_service_status_t;
 
 
-/** @brief Uses apr_thread_mutex_t asis.  See afw_thread.h. */
-#define afw_thread_mutex_t apr_thread_mutex_t
-
-/** @brief Uses apr_thread_mutex_t asis. */
-#define afw_thread_mutex_create apr_thread_mutex_create
-
-/** @brief Uses apr_thread_mutex_t asis. */
-#define afw_thread_mutex_lock apr_thread_mutex_lock
-
-/** @brief Uses apr_thread_mutex_trylock asis. */
-#define afw_thread_mutex_trylock apr_thread_mutex_trylock
-
-/** @brief Uses apr_thread_mutex_unlock asis. */
-#define afw_thread_mutex_unlock apr_thread_mutex_unlock
-
-/** @brief Uses apr_thread_mutex_destroy asis. */
-#define afw_thread_mutex_destroy apr_thread_mutex_destroy
-
-/** @brief Uses APR_THREAD_FUNC as AFW_THREAD_FUNCTION. */
-#define AFW_THREAD_FUNCTION APR_THREAD_FUNC
+/** @brief Thread start calling convention (empty on POSIX). */
+#define AFW_THREAD_FUNCTION
 
 /** @brief Typedef for thread start function. */
 typedef void

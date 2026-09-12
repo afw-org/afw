@@ -397,7 +397,7 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
         if we need to open a database in the future, that we haven't already
         opened.
      */
-    apr_thread_rwlock_create(&self->dbLock, afw_pool_get_apr_pool(p));
+    self->dbLock = afw_thread_rwlock_create(p, xctx);
 
     /* create our dbi_handles */
     self->dbi_handles = afw_hash_table_create(
@@ -435,7 +435,7 @@ impl_afw_adapter_destroy(
     }
 
     /* release our database reader/writer lock */
-    apr_thread_rwlock_destroy(self->dbLock);
+    afw_thread_rwlock_destroy(self->dbLock);
 
     /* close our LMDB environment */
     mdb_env_close(self->dbEnv);
@@ -602,11 +602,11 @@ impl_afw_adapter_get_additional_metrics (
                 info.me_numreaders, p, xctx), xctx);
     }
 
-    apr_thread_rwlock_rdlock(self->dbLock);
+    afw_thread_rwlock_rdlock(self->dbLock, xctx);
 
     rc = mdb_txn_begin(self->dbEnv, NULL, 0, &txn);
     if (rc) {
-        apr_thread_rwlock_unlock(self->dbLock);
+        afw_thread_rwlock_unlock(self->dbLock, xctx);
 
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
             "Unable to begin initial transaction.", xctx);
@@ -680,7 +680,7 @@ impl_afw_adapter_get_additional_metrics (
     afw_trace_z(1, self->pub.trace_flag_index, 
         NULL, "LMDB Transaction committed.", xctx);
 
-    apr_thread_rwlock_unlock(self->dbLock);
+    afw_thread_rwlock_unlock(self->dbLock, xctx);
 
     return metrics;
 }

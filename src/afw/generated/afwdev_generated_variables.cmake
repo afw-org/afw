@@ -399,8 +399,10 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     object/afw_object_view.c
     os/nix/afw_os.c
     os/nix/afw_os_log.c
+    os/nix/afw_os_thread.c
     os/win/afw_os.c
     os/win/afw_os_log.c
+    os/win/afw_os_thread.c
     pool/afw_pool.c
     query_criteria/afw_query_criteria.c
     request/afw_request.c

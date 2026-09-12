@@ -250,6 +250,95 @@ AFW_DECLARE(void)
 afw_os_dso_unload(afw_os_dso_t *dso);
 
 
+/** @brief Mutex allocated from an afw_pool; destroyed with that pool. */
+typedef struct afw_os_mutex_s afw_os_mutex_t;
+
+/** @brief Read/write lock allocated from an afw_pool. */
+typedef struct afw_os_rwlock_s afw_os_rwlock_t;
+
+/** @brief Native thread handle allocated from an afw_pool. */
+typedef struct afw_os_thread_s afw_os_thread_t;
+
+/** @brief Platform default mutex (non-recursive on nix). */
+#define AFW_OS_MUTEX_DEFAULT  0
+
+/** @brief Recursive mutex (APR NESTED). */
+#define AFW_OS_MUTEX_NESTED   1
+
+/** @brief Non-recursive mutex (APR UNNESTED). */
+#define AFW_OS_MUTEX_UNNESTED 2
+
+/**
+ * @brief Create a mutex in p. Destroyed when p is destroyed.
+ * @param flags AFW_OS_MUTEX_DEFAULT, NESTED, or UNNESTED.
+ */
+AFW_DECLARE(afw_os_mutex_t *)
+afw_os_mutex_create(
+    unsigned int flags,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE(void)
+afw_os_mutex_lock(afw_os_mutex_t *mutex, afw_xctx_t *xctx);
+
+/** @brief true if the lock was taken. */
+AFW_DECLARE(afw_boolean_t)
+afw_os_mutex_trylock(afw_os_mutex_t *mutex, afw_xctx_t *xctx);
+
+AFW_DECLARE(void)
+afw_os_mutex_unlock(afw_os_mutex_t *mutex, afw_xctx_t *xctx);
+
+/** @brief Idempotent. Pool cleanup also calls this. */
+AFW_DECLARE(void)
+afw_os_mutex_destroy(afw_os_mutex_t *mutex);
+
+/**
+ * @brief Create a read/write lock in p. Destroyed when p is destroyed.
+ */
+AFW_DECLARE(afw_os_rwlock_t *)
+afw_os_rwlock_create(
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE(void)
+afw_os_rwlock_rdlock(afw_os_rwlock_t *rwlock, afw_xctx_t *xctx);
+
+AFW_DECLARE(void)
+afw_os_rwlock_wrlock(afw_os_rwlock_t *rwlock, afw_xctx_t *xctx);
+
+AFW_DECLARE(void)
+afw_os_rwlock_unlock(afw_os_rwlock_t *rwlock, afw_xctx_t *xctx);
+
+/** @brief Idempotent. Pool cleanup also calls this. */
+AFW_DECLARE(void)
+afw_os_rwlock_destroy(afw_os_rwlock_t *rwlock);
+
+/** @brief Thread start function (pthread-style). */
+typedef void *(*afw_os_thread_start_t)(void *arg);
+
+/**
+ * @brief Create a joinable thread. Does not join on pool destroy.
+ */
+AFW_DECLARE(afw_os_thread_t *)
+afw_os_thread_create(
+    afw_os_thread_start_t start,
+    void *arg,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE(void)
+afw_os_thread_join(afw_os_thread_t *thread, afw_xctx_t *xctx);
+
+/**
+ * @brief Send signo to the thread (pthread_kill on nix).
+ *
+ * Safe to call from a signal handler. No-op if thread is NULL or
+ * already joined.
+ */
+AFW_DECLARE(void)
+afw_os_thread_kill(const afw_os_thread_t *thread, int signo);
+
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

@@ -46,8 +46,6 @@ static afw_boolean_t impl_keystore_ready = false;
 void
 afw_crypto_internal_keystore_initialize(afw_xctx_t *xctx)
 {
-    apr_status_t rv;
-
     if (impl_keystore_ready) {
         return;
     }
@@ -55,13 +53,8 @@ afw_crypto_internal_keystore_initialize(afw_xctx_t *xctx)
     /* OpenSSL 3 default provider init */
     OPENSSL_init_crypto(OPENSSL_INIT_LOAD_CONFIG, NULL);
 
-    rv = apr_thread_mutex_create(&impl_keystore_mutex,
-        APR_THREAD_MUTEX_UNNESTED,
-        afw_pool_get_apr_pool(xctx->env->p));
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_Z(general, apr, rv,
-            "afw_crypto: apr_thread_mutex_create failed", xctx);
-    }
+    impl_keystore_mutex = afw_thread_mutex_create(
+        AFW_THREAD_MUTEX_UNNESTED, xctx->env->p, xctx);
     impl_keystore_head = NULL;
     impl_keystore_count = 0;
     impl_keystore_ready = true;
@@ -73,11 +66,10 @@ afw_crypto_internal_keystore_shutdown(afw_xctx_t *xctx)
     afw_crypto_key_entry_t *e;
     afw_crypto_key_entry_t *next;
 
-    (void)xctx;
     if (!impl_keystore_ready || !impl_keystore_mutex) {
         return;
     }
-    apr_thread_mutex_lock(impl_keystore_mutex);
+    afw_thread_mutex_lock(impl_keystore_mutex, xctx);
     for (e = impl_keystore_head; e; e = next) {
         next = e->next;
         if (e->material) {
@@ -88,7 +80,7 @@ afw_crypto_internal_keystore_shutdown(afw_xctx_t *xctx)
     }
     impl_keystore_head = NULL;
     impl_keystore_count = 0;
-    apr_thread_mutex_unlock(impl_keystore_mutex);
+    afw_thread_mutex_unlock(impl_keystore_mutex, xctx);
 }
 
 const afw_memory_t *
@@ -469,9 +461,9 @@ afw_crypto_internal_import_key(
     }
     impl_set_usages_on_entry(e, usages, xctx);
 
-    apr_thread_mutex_lock(impl_keystore_mutex);
+    afw_thread_mutex_lock(impl_keystore_mutex, xctx);
     if (impl_keystore_count >= AFW_CRYPTO_MAX_KEYS) {
-        apr_thread_mutex_unlock(impl_keystore_mutex);
+        afw_thread_mutex_unlock(impl_keystore_mutex, xctx);
         OPENSSL_cleanse(e->material, e->material_size);
         free(e->material);
         free(e);
@@ -498,7 +490,7 @@ afw_crypto_internal_import_key(
     e->next = impl_keystore_head;
     impl_keystore_head = e;
     impl_keystore_count++;
-    apr_thread_mutex_unlock(impl_keystore_mutex);
+    afw_thread_mutex_unlock(impl_keystore_mutex, xctx);
 
     result = impl_make_cryptokey_object(e, usages, p, xctx);
     return result;
@@ -595,21 +587,21 @@ afw_crypto_internal_export_key(
     afw_octet_t *copy;
 
     id = impl_key_id_from_value(key_value, xctx);
-    apr_thread_mutex_lock(impl_keystore_mutex);
+    afw_thread_mutex_lock(impl_keystore_mutex, xctx);
     e = impl_find_entry(id);
     if (!e) {
-        apr_thread_mutex_unlock(impl_keystore_mutex);
+        afw_thread_mutex_unlock(impl_keystore_mutex, xctx);
         AFW_THROW_ERROR_Z(not_found, "error:crypto:unknown_key: keyId not in keystore", xctx);
     }
     if (!e->extractable) {
-        apr_thread_mutex_unlock(impl_keystore_mutex);
+        afw_thread_mutex_unlock(impl_keystore_mutex, xctx);
         AFW_THROW_ERROR_Z(argument_error, "error:crypto:not_extractable: key is not extractable", xctx);
     }
     copy = afw_pool_malloc(p, e->material_size, xctx);
     memcpy(copy, e->material, e->material_size);
     mem.ptr = copy;
     mem.size = e->material_size;
-    apr_thread_mutex_unlock(impl_keystore_mutex);
+    afw_thread_mutex_unlock(impl_keystore_mutex, xctx);
     return afw_value_create_unmanaged_base64Binary(&mem, p, xctx);
 }
 
@@ -623,20 +615,20 @@ afw_crypto_internal_destroy_key(
     afw_crypto_key_entry_t **pp;
 
     id = impl_key_id_from_value(key_value, xctx);
-    apr_thread_mutex_lock(impl_keystore_mutex);
+    afw_thread_mutex_lock(impl_keystore_mutex, xctx);
     for (pp = &impl_keystore_head; *pp; pp = &(*pp)->next) {
         if ((*pp)->key_id == id) {
             e = *pp;
             *pp = e->next;
             impl_keystore_count--;
-            apr_thread_mutex_unlock(impl_keystore_mutex);
+            afw_thread_mutex_unlock(impl_keystore_mutex, xctx);
             OPENSSL_cleanse(e->material, e->material_size);
             free(e->material);
             free(e);
             return;
         }
     }
-    apr_thread_mutex_unlock(impl_keystore_mutex);
+    afw_thread_mutex_unlock(impl_keystore_mutex, xctx);
     AFW_THROW_ERROR_Z(not_found, "error:crypto:unknown_key: keyId not in keystore", xctx);
 }
 
@@ -879,21 +871,21 @@ afw_crypto_internal_resolve_key(
         if (!impl_keystore_ready) {
             AFW_THROW_ERROR_Z(general, "error:crypto: keystore not initialized", xctx);
         }
-        apr_thread_mutex_lock(impl_keystore_mutex);
+        afw_thread_mutex_lock(impl_keystore_mutex, xctx);
         e = impl_find_entry(id);
         if (!e) {
-            apr_thread_mutex_unlock(impl_keystore_mutex);
+            afw_thread_mutex_unlock(impl_keystore_mutex, xctx);
             AFW_THROW_ERROR_Z(not_found, "error:crypto:unknown_key: keyId not in keystore", xctx);
         }
         if (required_usage && !impl_usage_allowed(e, required_usage)) {
-            apr_thread_mutex_unlock(impl_keystore_mutex);
+            afw_thread_mutex_unlock(impl_keystore_mutex, xctx);
             AFW_THROW_ERROR_Z(argument_error, "error:crypto:usage_not_permitted: key missing required usage",
                 xctx);
         }
         rk = impl_resolved_from_octets(e->material, e->material_size, xctx);
         rk->keystore_alg = e->alg;
         rk->key_length_bits = e->length_bits;
-        apr_thread_mutex_unlock(impl_keystore_mutex);
+        afw_thread_mutex_unlock(impl_keystore_mutex, xctx);
         return rk;
     }
 

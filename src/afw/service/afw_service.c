@@ -290,7 +290,6 @@ impl_initialize_and_start_service_using_conf(
     const afw_utf8_t *conf_source_location,
     afw_xctx_t *xctx)
 {
-    apr_status_t rv;
     const afw_utf8_t *s;
     const afw_pool_t *p = service->p;
     const afw_utf8_t *object_id;
@@ -390,13 +389,8 @@ impl_initialize_and_start_service_using_conf(
         service->conf_subtype);
     afw_object_meta_set_object_type_id(service->properties, s, xctx);
 
-    rv = apr_thread_mutex_create(
-            &service->mutex,
-            APR_THREAD_MUTEX_UNNESTED, afw_pool_get_apr_pool(p));
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_Z(general, apr, rv,
-            "apr_thread_mutex_create() failed", xctx);
-    }
+    service->mutex = afw_thread_mutex_create(
+        AFW_THREAD_MUTEX_UNNESTED, p, xctx);
 
     service->status = afw_service_status_ready_to_start;
     if (restart) {
