@@ -1,0 +1,4 @@
+build/
+node_modules
+linux_amd64
+linux_arm64
