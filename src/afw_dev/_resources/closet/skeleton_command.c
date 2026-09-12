@@ -14,7 +14,6 @@
 #include "afw.h"
 #include "generated/<afwdev {prefix}>generated_internal.h"
 #include "generated/<afwdev {prefix}>version_info.h"
-#include <apr_getopt.h>
 
 /* Self typedef for <afwdev {srcdir}> command. */
 typedef struct impl_<afwdev {srcdir}>_self_s {
@@ -55,16 +54,18 @@ typedef struct impl_<afwdev {srcdir}>_self_s {
 
 
 /* Command line options. */
-static const apr_getopt_option_t
+static const afw_getopt_option_t
 impl_options[] = {
     /** @todo Add/remove arguments to meet your needs. */
     /* long-option, short-option, has-arg flag, description. */
-    { "conf", 'f', TRUE, "Configuration file." },
-    { "extension", 'e', TRUE, "Extension to load." },
-    { "help", 'h', FALSE, "Print this help and exit successfully." },
-    { "type", 't', TRUE, "Type <Just an example>." },
-    { "version", 'v', FALSE, "Print version and exit successfully." },
-    { NULL, 0, 0, NULL }
+    AFW_GETOPT_OPTION("conf", 'f', true, "Configuration file."),
+    AFW_GETOPT_OPTION("extension", 'e', true, "Extension to load."),
+    AFW_GETOPT_OPTION("help", 'h', false,
+        "Print this help and exit successfully."),
+    AFW_GETOPT_OPTION("type", 't', true, "Type <Just an example>."),
+    AFW_GETOPT_OPTION("version", 'v', false,
+        "Print version and exit successfully."),
+    AFW_GETOPT_TABLE_END
 };
 
 
@@ -72,8 +73,6 @@ impl_options[] = {
 static void
 impl_print_usage(void)
 {
-    const apr_getopt_option_t *opt;
-
     /** @todo Fill in the correct usage and description HERE to match your command. */
 
     fprintf(stderr, "Usage: <afwdev {srcdir}> HERE Example [OPTION]... IN\n");
@@ -82,15 +81,7 @@ impl_print_usage(void)
     fprintf(stderr, "\n");
 
     fprintf(stderr, "OPTION:\n");
-    opt = &impl_options[0];
-    while (opt->name) {
-        fprintf(stderr, " -%c, --%-10s %s %s\n",
-            opt->optch,
-            opt->name,
-            (opt->has_arg) ? " ARG " : "     ",
-            opt->description);
-        opt++;
-    }
+    afw_getopt_print_options(stderr, impl_options);
     fprintf(stderr, "\n");
 
     fprintf(stderr, "HERE Add more documentation.\n");
@@ -104,24 +95,18 @@ impl_process_options(
     int argc, const char * const *argv,
     afw_xctx_t *xctx)
 {
-    apr_getopt_t *os;
+    afw_getopt_t os;
     int option_ch;
-    const char * option_arg;
+    const char *option_arg;
     int rv;
 
-    /* Parse parameters. */
-    if ((apr_getopt_init(&os, afw_pool_get_apr_pool(xctx->p), argc, argv))
-        != APR_SUCCESS)
-    {
-        fprintf(xctx->env->stderr_fd, "apr_getopt_init() error.\n");
-        return EXIT_FAILURE;
-    }
+    afw_getopt_init(&os, argc, argv);
 
     self->index_first_non_option = 1;
-    while ((rv = apr_getopt_long(os, impl_options, &option_ch, &option_arg))
-        == APR_SUCCESS)
+    while ((rv = afw_getopt_long(&os, impl_options, &option_ch,
+        &option_arg)) == AFW_GETOPT_OK)
     {
-        self->index_first_non_option = os->ind;
+        self->index_first_non_option = os.ind;
         switch (option_ch) {
 
         /** @todo Add/remove cases for each new option. */
@@ -164,11 +149,12 @@ impl_process_options(
         }
     }
 
-    /* Error if apr_getopt_long() returns other than success. */
-    if (rv != APR_EOF) {
+    /* Error if afw_getopt_long() returns other than EOF. */
+    if (rv != AFW_GETOPT_EOF) {
         fprintf(xctx->env->stderr_fd, "Try --help.\n");
         return EXIT_FAILURE;
     }
+    self->index_first_non_option = os.ind;
 
     /* Default type to a relaxed json syntax. */
     if (!self->type_in_z) {

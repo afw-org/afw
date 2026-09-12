@@ -9,7 +9,6 @@
 #include "afw.h"
 #include "afw_command_internal.h"
 #include "afw_command_local_server.h"
-#include <apr_getopt.h>
 #include <stdio.h>
 #include <signal.h>
 #include <stdlib.h>
@@ -91,19 +90,28 @@ impl_line_editing_cleanup(afw_command_self_t *self);
 
 
 /* Command line options. */
-static const apr_getopt_option_t opts[] = {
-    /* long-option, short-option, has-arg flag, description. */
-    { "allow", 'a', TRUE, "Content type used to output adaptive values." },
-    { "check", 'k', FALSE, "Parse but don't evaluate." },
-    { "conf", 'f', TRUE, "Configuration file." },
-    { "expression", 'x', TRUE, "The first string to evaluate." },
-    { "extension", 'e', TRUE, "Load extension." },
-    { "help", 'h', FALSE, "Print this help and exit successfully." },
-    { "local", 'l', TRUE, "Run in \"local\" mode with output to path or fd number." },
-    { "syntax", 's', TRUE, "expression, script, template, or test_script" },
-    { "type", 't', TRUE, "Content type of configuration file." },
-    { "version", 'v', FALSE, "Print version and exit successfully." },
-    { NULL, 0, 0, NULL }
+static const afw_getopt_option_t opts[] = {
+    AFW_GETOPT_OPTION("allow", 'a', true,
+        "Content type used to output adaptive values."),
+    AFW_GETOPT_OPTION("check", 'k', false,
+        "Parse but don't evaluate."),
+    AFW_GETOPT_OPTION("conf", 'f', true,
+        "Configuration file."),
+    AFW_GETOPT_OPTION("expression", 'x', true,
+        "The first string to evaluate."),
+    AFW_GETOPT_OPTION("extension", 'e', true,
+        "Load extension."),
+    AFW_GETOPT_OPTION("help", 'h', false,
+        "Print this help and exit successfully."),
+    AFW_GETOPT_OPTION("local", 'l', true,
+        "Run in \"local\" mode with output to path or fd number."),
+    AFW_GETOPT_OPTION("syntax", 's', true,
+        "expression, script, template, or test_script"),
+    AFW_GETOPT_OPTION("type", 't', true,
+        "Content type of configuration file."),
+    AFW_GETOPT_OPTION("version", 'v', false,
+        "Print version and exit successfully."),
+    AFW_GETOPT_TABLE_END
 };
 
 /** @fixme Figure out local and interactive for -s s. */
@@ -621,7 +629,6 @@ impl_evaluate(
 static void
 print_usage(void)
 {
-    const apr_getopt_option_t *opt;
     int rv;
 
     rv = fprintf(stderr, "Usage: afw [OPTION]... [IN]\n\n");
@@ -633,16 +640,8 @@ print_usage(void)
     rv = fprintf(stderr, "OPTION:\n");
     if (rv < 0) exit(EXIT_FAILURE);
 
-    opt = &opts[0];
-    while (opt->name) {
-        rv = fprintf(stderr, " -%c, --%-10s %s %s\n",
-            opt->optch,
-            opt->name,
-            (opt->has_arg) ? " ARG " : "     ",
-            opt->description);
-        if (rv < 0) exit(EXIT_FAILURE);
-        opt++;
-    }
+    rv = afw_getopt_print_options(stderr, opts);
+    if (rv < 0) exit(EXIT_FAILURE);
 
     rv = fprintf(stderr, "%s", impl_additional_help_text);
     if (rv < 0) exit(EXIT_FAILURE);
@@ -654,26 +653,20 @@ static int
 process_args_getopt(afw_command_self_t *self, int argc, const char * const *argv,
     afw_xctx_t *xctx)
 {
-    apr_getopt_t *os;
+    afw_getopt_t os;
     int option_ch;
-    const char * option_arg;
+    const char *option_arg;
     int rv;
 
-    /* Parse parameters. */
-    if ((apr_getopt_init(&os, afw_pool_get_apr_pool(xctx->p), argc, argv))
-        != APR_SUCCESS)
-    {
-        fprintf(xctx->env->stderr_fd, "apr_getopt_init() error.\n");
-        return EXIT_FAILURE;
-    }
+    afw_getopt_init(&os, argc, argv);
 
     self->compile_option = afw_compile_type_error;
     self->residual_check = afw_compile_residual_check_to_full;
     self->index_first_non_option = 1;
-    while ((rv = apr_getopt_long(os, opts, &option_ch, &option_arg))
-        == APR_SUCCESS)
+    while ((rv = afw_getopt_long(&os, opts, &option_ch, &option_arg))
+        == AFW_GETOPT_OK)
     {
-        self->index_first_non_option = os->ind;
+        self->index_first_non_option = os.ind;
         switch (option_ch) {
 
         case 'a':
@@ -763,11 +756,12 @@ process_args_getopt(afw_command_self_t *self, int argc, const char * const *argv
         }
     }
 
-    /* Error if apr_getopt_long() returns other than success. */
-    if (rv != APR_EOF) {
+    /* Error if afw_getopt_long() returns other than EOF. */
+    if (rv != AFW_GETOPT_EOF) {
         fprintf(xctx->env->stderr_fd, "Try --help.\n");
         return EXIT_FAILURE;
     }
+    self->index_first_non_option = os.ind;
 
     /* Normal return. */
     return EXIT_SUCCESS;

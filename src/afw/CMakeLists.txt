@@ -126,7 +126,8 @@ write_basic_package_version_file(
     COMPATIBILITY SameMajorVersion
 )
 
-# Install the CMake configuration file.
+# Install the CMake configuration file (versioned dir plus unversioned
+# lib/cmake/afw so find_package(afw) can see the current install).
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake
@@ -135,6 +136,15 @@ install(FILES
     cmake/afw_aprutil-config.cmake
     DESTINATION
         ${AFW_PACKAGE_INSTALL_CMAKEDIR}
+)
+install(FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake
+    cmake/afw_macros.cmake
+    cmake/afw_apr-config.cmake
+    cmake/afw_aprutil-config.cmake
+    DESTINATION
+        ${AFW_PACKAGE_INSTALL_CMAKEDIR_UNVERSIONED}
 )
 
 # Produce exports file for use by other projects  
@@ -149,6 +159,10 @@ install(TARGETS ${PROJECT_NAME}
 # Install Export file.
 install(EXPORT ${PROJECT_NAME}_EXPORTED_TARGETS
     DESTINATION ${AFW_PACKAGE_INSTALL_CMAKEDIR}
+    NAMESPACE afw::
+)
+install(EXPORT ${PROJECT_NAME}_EXPORTED_TARGETS
+    DESTINATION ${AFW_PACKAGE_INSTALL_CMAKEDIR_UNVERSIONED}
     NAMESPACE afw::
 )
 

@@ -12,6 +12,46 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 # This is the <afwdev {afwPackageId}> package.
 project(<afwdev {afwPackageLabel}>_package LANGUAGES C)
 
+# Versioned cmake dirs accumulate (afw-0.12.1 next to afw-0.12.2).
+# Unversioned find_package(afw) can pick the oldest. Point afw_DIR at
+# the highest PACKAGE_VERSION unless the caller already set it.
+if(NOT afw_DIR)
+    set(_afw_best_ver "")
+    set(_afw_best_dir "")
+    foreach(_root IN LISTS CMAKE_PREFIX_PATH CMAKE_SYSTEM_PREFIX_PATH)
+        foreach(_libdir lib lib64)
+            file(GLOB _afw_cfgs
+                "${_root}/${_libdir}/cmake/afw/afw-config.cmake"
+                "${_root}/${_libdir}/cmake/afw-*/afw-config.cmake")
+            foreach(_cfg IN LISTS _afw_cfgs)
+                get_filename_component(_dir "${_cfg}" DIRECTORY)
+                set(_vf "${_dir}/afw-config-version.cmake")
+                set(_ver "")
+                if(EXISTS "${_vf}")
+                    file(STRINGS "${_vf}" _ver_lines
+                        REGEX "^set\\(PACKAGE_VERSION \"")
+                    if(_ver_lines)
+                        list(GET _ver_lines 0 _ver_line)
+                        if(_ver_line MATCHES
+                            "set\\(PACKAGE_VERSION \"([^\"]+)\"")
+                            set(_ver "${CMAKE_MATCH_1}")
+                        endif()
+                    endif()
+                endif()
+                if(_ver AND
+                    (_afw_best_ver STREQUAL "" OR
+                     _ver VERSION_GREATER _afw_best_ver))
+                    set(_afw_best_ver "${_ver}")
+                    set(_afw_best_dir "${_dir}")
+                endif()
+            endforeach()
+        endforeach()
+    endforeach()
+    if(_afw_best_dir)
+        set(afw_DIR "${_afw_best_dir}")
+    endif()
+endif()
+
 # Find the required afw core package.
 find_package(afw REQUIRED)
 
