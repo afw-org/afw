@@ -14,7 +14,6 @@
 #include "afw.h"
 #include "afw_endian.h"
 #include "afw_ubjson.h"
-#include <apr_buckets.h>
 
 
 typedef struct from_value_wa_s {

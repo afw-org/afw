@@ -10,7 +10,6 @@
 #define __AFW_UUID_H__
 
 #include "afw_minimal.h"
-#include "apr_uuid.h"
 
 /**
  * @addtogroup afw_uuid
@@ -24,8 +23,13 @@
 
 AFW_BEGIN_DECLARES
 
-/* afw_uuid_t is the same as apr_uuid_t. */
-typedef apr_uuid_t afw_uuid_t;
+/** 16-byte RFC 4122 UUID. */
+typedef struct afw_uuid_s {
+    afw_byte_t data[16];
+} afw_uuid_t;
+
+/** Printed form is 8-4-4-4-12 hex with dashes (36 octets). */
+#define AFW_UUID_FORMATTED_LENGTH 36
 
 /*
  * Standard format UUID string are formatted as:

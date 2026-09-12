@@ -13,7 +13,6 @@
 
 #include "afw_internal.h"
 #include "afw_config.h"
-#include <apr_dso.h>
 #include <libxml/xmlversion.h>
 
 
@@ -379,11 +378,9 @@ afw_environment_create(
         const afw_array_t *args_array;
         const afw_utf8_t *arg;
         const afw_utf8_t *cwd;
-        char *cwd_z;
         afw_dateTime_t start_local;
         afw_dateTime_t start_utc;
         int ai;
-        apr_status_t rv;
 
         process_object = afw_object_create_unmanaged(p, xctx);
         afw_object_meta_set_ids(process_object, afw_s_afw,
@@ -406,9 +403,8 @@ afw_environment_create(
             afw_v_pid, (afw_integer_t)afw_os_get_pid(), xctx);
 
         /* cwd snapshot at environment create (not live). */
-        rv = apr_filepath_get(&cwd_z, 0, afw_pool_get_apr_pool(p));
-        if (rv == APR_SUCCESS && cwd_z) {
-            cwd = afw_utf8_create(cwd_z, AFW_UTF8_Z_LEN, p, xctx);
+        cwd = afw_os_getcwd(p, xctx);
+        if (cwd) {
             afw_object_set_property_as_string_internal(process_object,
                 afw_v_cwd, cwd, xctx);
         }
@@ -1024,11 +1020,9 @@ afw_environment_load_extension(
     const afw_object_t *properties,
     afw_xctx_t *xctx)
 {
-    apr_status_t rv;
-    apr_dso_handle_t *dso_handle;
+    afw_os_dso_t *dso_handle;
     const afw_extension_t *extension;
     const afw_utf8_z_t *path_z;
-    char dsoError[256];
     const afw_extension_t **extension_instance;
     const afw_pool_t *p;
     afw_environment_internal_t *env;
@@ -1147,54 +1141,48 @@ afw_environment_load_extension(
 
         /* Load the extension module. */
         path_z = afw_utf8_to_utf8_z(module_path, p, xctx);
-        rv = apr_dso_load(&(dso_handle), (const char *)path_z,
-            afw_pool_get_apr_pool(p));
-        if (rv != APR_SUCCESS) {
+        dso_handle = afw_os_dso_load(path_z, p, xctx);
+        if (!dso_handle) {
             dso_suffix = afw_os_get_dso_suffix();
             if (!afw_utf8_ends_with(module_path, dso_suffix)) {
                 path_z = afw_utf8_z_printf(p, xctx,
                     "%ku%ku",
                     module_path,
                     dso_suffix);
-                rv = apr_dso_load(&(dso_handle), (const char *)path_z,
-                    afw_pool_get_apr_pool(p));
+                dso_handle = afw_os_dso_load(path_z, p, xctx);
             }
         }
-        if (rv != APR_SUCCESS) {
+        if (!dso_handle) {
             path_z = afw_utf8_z_printf(p, xctx,
                 AFW_CONFIG_INSTALL_FULL_LIBDIR "/%ku",
                 module_path);
-            rv = apr_dso_load(&(dso_handle), (const char *)path_z,
-                afw_pool_get_apr_pool(p));
-            if (rv != APR_SUCCESS) {
+            dso_handle = afw_os_dso_load(path_z, p, xctx);
+            if (!dso_handle) {
                 dso_suffix = afw_os_get_dso_suffix();
                 if (!afw_utf8_ends_with(module_path, dso_suffix)) {
                     path_z = afw_utf8_z_printf(p, xctx,
                         AFW_CONFIG_INSTALL_FULL_LIBDIR "/%ku%ku",
                         module_path,
                         dso_suffix);
-                    rv = apr_dso_load(&(dso_handle), (const char *)path_z,
-                        afw_pool_get_apr_pool(p));
+                    dso_handle = afw_os_dso_load(path_z, p, xctx);
                 }
             }
         }
 
-        if (rv != APR_SUCCESS) {
-            memset(&dsoError, 0, sizeof(dsoError));
-            apr_dso_error(dso_handle, dsoError, sizeof(dsoError));
+        if (!dso_handle) {
             afw_pool_release(p, xctx);
-            AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
+            AFW_THROW_ERROR_FZ(general, xctx,
                 "Error loading extension extension_id='%ku' modulePath='%s': %s",
-                extension_id_for_message, path_z, dsoError);
+                extension_id_for_message, path_z, afw_os_dso_error());
         }
             
         /* Get the function pointer to the initialization function. */
-        rv = apr_dso_sym((apr_dso_handle_sym_t *)&extension_instance,
-            dso_handle, AFW_ENVIRONMENT_Q_EXTENSION_INSTANCE);
-        if (rv != APR_SUCCESS) {
-            apr_dso_unload(dso_handle);
+        extension_instance = (const afw_extension_t **)afw_os_dso_sym(
+            dso_handle, AFW_ENVIRONMENT_Q_EXTENSION_INSTANCE, xctx);
+        if (!extension_instance) {
+            afw_os_dso_unload(dso_handle);
             afw_pool_release(p, xctx);
-            AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
+            AFW_THROW_ERROR_FZ(general, xctx,
                 "Error finding symbol " AFW_ENVIRONMENT_Q_EXTENSION_INSTANCE
                 " in extension_id='%ku' modulePath='%s'",
                 extension_id_for_message, path_z);

@@ -1002,13 +1002,6 @@
  */
 
 /**
- * @defgroup afw_log_deprecated Deprecated log API
- * @ingroup afw_log
- *
- * Compatibility log surface; prefer current log interfaces and AFW_LOG macros.
- */
-
-/**
  * @defgroup afw_included_commands Commands
  *
  * Command / host srcdirs shipped in this **AFW base** package (primarily

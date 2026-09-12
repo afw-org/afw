@@ -11,8 +11,8 @@
 #include "afw_command_local_server.h"
 #include <apr_file_io.h>
 #include <apr_getopt.h>
-#include <apr_signal.h>
 #include <stdio.h>
+#include <signal.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -62,8 +62,8 @@ static void
 impl_install_terminating_signal_handlers(afw_xctx_t *xctx)
 {
     impl_signal_xctx = xctx;
-    apr_signal(SIGTERM, impl_handle_terminating_signal);
-    apr_signal(SIGINT, impl_handle_terminating_signal);
+    afw_os_signal(SIGTERM, impl_handle_terminating_signal);
+    afw_os_signal(SIGINT, impl_handle_terminating_signal);
 }
 
 

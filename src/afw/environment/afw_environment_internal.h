@@ -13,7 +13,6 @@
 #include "afw_environment.h"
 #include "afw_hash_table.h"
 #include "afw_vector.h"
-#include <apr_dso.h>
 
 /**
  * @addtogroup afw_environment_internal

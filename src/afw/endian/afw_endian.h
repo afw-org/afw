@@ -23,7 +23,12 @@
 
 AFW_BEGIN_DECLARES
 
-#define AFW_ENDIAN_IS_BIG APR_IS_BIGENDIAN
+#if defined(__BYTE_ORDER__) && defined(__ORDER_BIG_ENDIAN__)
+#define AFW_ENDIAN_IS_BIG \
+    ((__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__) ? 1 : 0)
+#else
+#define AFW_ENDIAN_IS_BIG 0
+#endif
 
 #define AFW_ENDIAN_SWAP(_X_, _Y_) \
     _X_ ^= _Y_; \

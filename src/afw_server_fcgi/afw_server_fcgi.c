@@ -19,7 +19,6 @@
 #include "afw.h"
 #include "afw_request_impl.h"
 #include <fcgiapp.h>
-#include <apr_signal.h>
 #include <apr_portable.h>
 #include <signal.h>
 #include <pthread.h>
@@ -123,8 +122,8 @@ static void
 impl_install_shutdown_signal_handlers(afw_xctx_t *xctx)
 {
     impl_server_xctx = xctx;
-    apr_signal(SIGTERM, impl_handle_shutdown_signal);
-    apr_signal(SIGINT, impl_handle_shutdown_signal);
+    afw_os_signal(SIGTERM, impl_handle_shutdown_signal);
+    afw_os_signal(SIGINT, impl_handle_shutdown_signal);
 }
 
 

@@ -19,6 +19,7 @@
 #include "afw_lmdb.h"
 #include "afw_uuid.h"
 #include "generated/afw_lmdb_generated_internal.h"
+#include "afw_hash_table.h"
 #include <lmdb.h>
 
 AFW_BEGIN_DECLARES
@@ -86,7 +87,7 @@ typedef struct afw_lmdb_adapter_s {
     const afw_object_t *internalConfig;
     MDB_env *dbEnv;
     afw_lmdb_metadata_t *metadata;
-    apr_hash_t *dbi_handles;
+    afw_void_hash_table_t *dbi_handles;
     apr_thread_rwlock_t *dbLock;
     /*
      * Bumped (under AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN) each time

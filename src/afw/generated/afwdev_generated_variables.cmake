@@ -147,8 +147,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     json/afw_json.h
     lock/afw_lock.h
     log/afw_log.h
-    log/afw_log_deprecated.h
-    log/afw_log_deprecated_interface.h
     log/afw_log_impl.h
     memory/afw_memory.h
     model/afw_model.h
@@ -374,7 +372,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     json/afw_json_from_value.c
     lock/afw_lock.c
     log/afw_log.c
-    log/afw_log_deprecated.c
     log/afw_log_file.c
     log/afw_log_standard.c
     memory/afw_memory.c

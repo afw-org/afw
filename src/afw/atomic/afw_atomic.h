@@ -10,6 +10,9 @@
 #define __AFW_ATOMIC_H__
 
 #include "afw_interface.h"
+#ifdef AFW_WINDOWS
+#include <apr_atomic.h>
+#endif
 
 /**
  * @addtogroup afw_atomic
