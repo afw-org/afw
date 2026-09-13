@@ -529,8 +529,14 @@ early_error:
 AFW_DEFINE(void)
 afw_environment_release(afw_xctx_t *xctx)
 {
-    //! @fixme Causing exception because some things not cleaned up properly
-    //! @fixme afw_pool_destroy(xctx->env->p, xctx);
+    /*
+     * Do not destroy env->p. It is the process base pool (env, the
+     * base xctx, and multithreaded_pool_lock live in it). Process
+     * exit reclaims the chunks; valgrind still-reachable via a
+     * static root is intended. Can change later if an embedder
+     * needs env create/destroy without process exit (join threads
+     * first, skip the MT lock, same TRY/FINALLY as xctx_release).
+     */
     (void)xctx;
 }
 

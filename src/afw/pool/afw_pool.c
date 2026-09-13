@@ -400,9 +400,10 @@ impl_heap_allocate_self(const afw_pool_inf_t *inf)
 
 
 /*
- * Process base pool. environment_release does not destroy it (the MT
- * lock lives in this pool). Keep this pointer so valgrind sees the
- * 4k chunks as still-reachable, not definitely lost.
+ * Process base pool. environment_release does not destroy it
+ * (intended: MT lock lives in this pool; process lifetime). Keep
+ * this pointer so valgrind sees the 4k chunks as still-reachable,
+ * not definitely lost.
  */
 static afw_pool_internal_self_t *impl_base_pool_self;
 
