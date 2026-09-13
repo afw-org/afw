@@ -61,11 +61,13 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 
 ---
 
-## Next slices (agreed order)
+## Next slices
 
-1. **FRV leftover — dropped** on `issue-2-frv`. No wrapper; pin on caller. Unique consume / eval-stack leftover / `#function_return_value` gone.
-2. **Runtime call-result hold** — evaluate-only inf (like `closure_binding`: display decompile, not recompile) for **managed built-in returns** if they still leftover. Identity **`push`** stays unwrapped. `pop`/`shift` are the scope-temp path ([PR #309](https://github.com/afw-org/afw/pull/309)), not this inf.
-3. **Merge 1 and 2** only if the infs are actually the same.
+Leftover wrapping is **dropped**. No `function_return_value`; pin on caller. Do **not** reopen unique consume, eval-stack leftover, or `#function_return_value`.
+
+No evaluate-only call-result inf for managed built-in returns. Builtins already extra-hold on the current `{ }` ([PR #308](https://github.com/afw-org/afw/pull/308)); `pop`/`shift` are the scope-temp path ([PR #309](https://github.com/afw-org/afw/pull/309)); identity `push` stays unwrapped. `pop_value` pops the call, not leftover wrappers. A managed header may still sit in `xctx->p` until the request pool dies — that is the managed world, not a new inf.
+
+**Next:** land `reduce-apr-pool` on `develop` ([`remaining-apr.md`](remaining-apr.md)).
 
 ---
 
@@ -79,7 +81,7 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 
 **Verify:** `./afwdev build --cdev`, `afwdev test -j`, `afwdev test -j --env-mode valgrind`: **4484 passed**, 71 skipped.
 
-Squash-merged [PR #326](https://github.com/afw-org/afw/pull/326) into `reduce-apr-pool` as `0bed0e4f`. `issue-2-frv` and `issue-2-frv-leftover` **deleted**. Next: land `reduce-apr-pool` on `develop` ([`remaining-apr.md`](remaining-apr.md)).
+Squash-merged [PR #326](https://github.com/afw-org/afw/pull/326) into `reduce-apr-pool` as `0bed0e4f`. `issue-2-frv` and `issue-2-frv-leftover` **deleted**. No twin leftover inf for managed built-in returns. Next: land `reduce-apr-pool` on `develop` ([`remaining-apr.md`](remaining-apr.md)).
 
 ---
 
@@ -142,5 +144,5 @@ What landed instead: unique `get_assignable_value` **transfers the occupant, set
 - `afwdev test --test-pattern 'language/script/script_result.as'`
 - `afwdev test --test-pattern 'language/script/loop_unbraced_body.as'` (`for-of-unbraced-let-same-name`)
 - `afwdev test --test-pattern 'test262/statements/try.as'` (`completion-values-fn-finally-normal`)
-- `afwdev test -T src/afw/tests-extra/issue-2 --show-all` — live table in `01-rss-hard-loops/README.md`. Unbraced assign / rebind / `compile_once_eval` / `array_push_pop` are **flat**. `function_return` stays under the bar. FRV leftover is still real in `self->p` until that `{ }` dies.
+- `afwdev test -T src/afw/tests-extra/issue-2 --show-all` — live table in `01-rss-hard-loops/README.md`. Unbraced assign / rebind / `compile_once_eval` / `array_push_pop` are **flat**. `function_return` stays under the bar. Leftover wrapping is gone (pin on caller).
 - Full PR bar: `./afwdev build --fulldev && afwdev test -j && afwdev test -j --env-mode valgrind`

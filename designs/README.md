@@ -63,7 +63,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`remaining-apr.md`](remaining-apr.md) | APR is gone from libafw. Heap store is AFW 4k chunks. |
 | [`afw-vector.md`](afw-vector.md) | C growable contiguous elements (`afw_vector`); typesafe overlay; not Adaptive `afw_array` |
 | [`afw-hash-table.md`](afw-hash-table.md) | C key→pointer map (`afw_hash_table`); typesafe overlay; **#301** on `develop` |
-| [`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md) | **PR #305** compile() is a unit; **PR #306** leave / `last_result`; **PR #307** isolate-at-clone + wrap unbraced; **PR #308** builtin lifetime hold; **PR #309** pop temp-on-scope. **FRV leftover dropped** (`issue-2-frv` off `reduce-apr-pool`). **Next:** runtime call-result hold if still leftover |
+| [`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md) | **PR #305** compile() is a unit; **PR #306** leave / `last_result`; **PR #307** isolate-at-clone + wrap unbraced; **PR #308** builtin lifetime hold; **PR #309** pop temp-on-scope. **FRV leftover dropped** (`issue-2-frv` off `reduce-apr-pool`). No leftover-wrapper inf; builtins pin on the current `{ }`. |
 
 ## Conventions
 
