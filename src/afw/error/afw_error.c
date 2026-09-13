@@ -340,17 +340,6 @@ impl_evaluation_backtrace(
             continue;
         }
 
-        /*
-         * Return occupants sit between the call and the next pair.
-         * Skip them so "(evaluating parameter N)" attaches to the call.
-         */
-        if (afw_xctx_evaluation_stack_is_parked_occupant(
-            xctx->evaluation_stack->entries[i].value))
-        {
-            continue;
-        }
-
-
         /* This should not need to be here, so just note to avoid crash. */
         if (xctx->evaluation_stack->entries[i].parameter_number < 100)
         {

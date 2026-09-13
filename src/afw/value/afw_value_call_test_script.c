@@ -314,8 +314,6 @@ impl_afw_value_optional_evaluate(
                 compiled_value = afw_value_call_built_in_function(
                     contextual, info->compile_function, 1, argv, p, xctx);
                 expected_value = afw_value_evaluate(compiled_value, p, xctx);
-                expected_value = afw_value_function_return_value_consume(
-                    expected_value, p, xctx);
             }
 
             error_in = error_in_compile_source;
@@ -335,8 +333,6 @@ impl_afw_value_optional_evaluate(
             error_in = error_in_evaluate_source;
             (void)error_in; /* In catch. Avoid "not used" error. */
             evaluated_value = afw_value_evaluate(compiled_value, p, xctx);
-            evaluated_value = afw_value_function_return_value_consume(
-                evaluated_value, p, xctx);
             error_in = error_in_other;
             (void)error_in; /* In catch. Avoid "not used" error. */
 

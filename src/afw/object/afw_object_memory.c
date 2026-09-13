@@ -455,7 +455,7 @@ afw_object_create_wrapper_with_options(
     self->wrapped = wrapped;
     /* Face holds the bag the same way for in_pool / and_pool / permanent. */
     afw_object_get_reference(wrapped, xctx);
-    afw_pool_register_cleanup_before(self->pub.p, self, NULL,
+    afw_pool_register_cleanup(self->pub.p, self, NULL,
         impl_managed_face_overlay_cleanup, xctx);
     /*
      * Carry meta (path, objectId, reconcilable, …) onto the face so

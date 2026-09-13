@@ -155,6 +155,9 @@ afw_function_execute_eval_script(
             }
         }
         AFW_FINALLY {
+            if (value) {
+                value = afw_value_get_assignable(value, xctx);
+            }
             afw_value_release(compiled, xctx);
         }
         AFW_ENDTRY;

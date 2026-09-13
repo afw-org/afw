@@ -106,8 +106,8 @@ def run():
             ),
             (
                 "leftover_child_heap",
-                "parent destroy runs leftover child heap and extra-held "
-                "tracker cleanups",
+                "parent run_cleanups then destroy runs leftover child "
+                "heap and extra-held tracker cleanups",
             ),
             (
                 "unhandled_alloc",

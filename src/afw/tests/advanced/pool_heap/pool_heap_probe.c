@@ -538,19 +538,20 @@ impl_leftover_child_heap(afw_xctx_t *xctx)
     tracker = afw_pool_tracker_create(child, xctx);
     child_cleanup = 0;
     tracker_cleanup = 0;
-    afw_pool_register_cleanup_before(child, &child_cleanup, NULL,
+    afw_pool_register_cleanup(child, &child_cleanup, NULL,
         impl_cleanup_set, xctx);
-    afw_pool_register_cleanup_before(tracker, &tracker_cleanup, NULL,
+    afw_pool_register_cleanup(tracker, &tracker_cleanup, NULL,
         impl_cleanup_set, xctx);
     afw_pool_get_reference(tracker, xctx);
+    afw_pool_run_cleanups(heap, xctx);
     afw_pool_destroy(heap, xctx);
     if (!child_cleanup) {
         return impl_fail("leftover_child_heap",
-            "parent destroy did not run leftover child heap cleanup");
+            "parent run_cleanups did not run leftover child heap cleanup");
     }
     if (!tracker_cleanup) {
         return impl_fail("leftover_child_heap",
-            "parent destroy did not run leftover tracker cleanup");
+            "parent run_cleanups did not run leftover tracker cleanup");
     }
     return 0;
 }
@@ -854,7 +855,7 @@ impl_deregister_cleanup(afw_xctx_t *xctx)
         return impl_fail("deregister_cleanup", "list not empty at start");
     }
 
-    afw_pool_register_cleanup_before(tracker, &marker, NULL,
+    afw_pool_register_cleanup(tracker, &marker, NULL,
         impl_cleanup_nop, xctx);
     if (self->first_allocated_memory == NULL) {
         return impl_fail("deregister_cleanup",

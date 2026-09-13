@@ -1149,7 +1149,7 @@ afw_os_dso_load(
     impl_set_dso_error(NULL);
     dso = afw_pool_calloc_type(p, afw_os_dso_t, xctx);
     dso->handle = handle;
-    afw_pool_register_cleanup_before(p, dso, NULL,
+    afw_pool_register_cleanup(p, dso, NULL,
         impl_dso_cleanup, xctx);
     return dso;
 }

@@ -6717,9 +6717,9 @@ typedef void
     afw_size_t size,
     afw_xctx_t * xctx);
 
-/** @sa afw_pool_register_cleanup_before() */
+/** @sa afw_pool_register_cleanup() */
 typedef void
-(*afw_pool_register_cleanup_before_t)(
+(*afw_pool_register_cleanup_t)(
     const afw_pool_t * instance,
     void * data,
     void * data2,
@@ -6733,6 +6733,12 @@ typedef void
     void * data,
     void * data2,
     afw_pool_cleanup_function_p_t cleanup,
+    afw_xctx_t * xctx);
+
+/** @sa afw_pool_run_cleanups() */
+typedef void
+(*afw_pool_run_cleanups_t)(
+    const afw_pool_t * instance,
     afw_xctx_t * xctx);
 
 /**
@@ -6749,8 +6755,9 @@ struct afw_pool_inf_s {
     afw_pool_calloc_t calloc;
     afw_pool_malloc_t malloc;
     afw_pool_free_memory_t free_memory;
-    afw_pool_register_cleanup_before_t register_cleanup_before;
+    afw_pool_register_cleanup_t register_cleanup;
     afw_pool_deregister_cleanup_t deregister_cleanup;
+    afw_pool_run_cleanups_t run_cleanups;
 };
 
 /**
@@ -6799,10 +6806,11 @@ struct afw_pool_inf_s {
 /**
  * @brief Call method `destroy` of interface `afw_pool`.
  *
- * Destroy this pool and remaining children, then pool cleanup
- * (callbacks, unchain, free this store, release parent).
- * Callers must own that subtree. Use afw_pool_release() for
- * ordinary lifetime.
+ * Free this pool and remaining children (unchain, leftover,
+ * free store, release parent). Does not run cleanup callbacks
+ * and must not fail. Call afw_pool_run_cleanups first if
+ * callbacks must run. Use afw_pool_release() for ordinary
+ * lifetime.
  * @param instance Pointer to this pool instance.
  * @param xctx This is the caller's xctx.
  * @relates afw_pool_t
@@ -6891,25 +6899,27 @@ struct afw_pool_inf_s {
 )
 
 /**
- * @brief Call method `register_cleanup_before` of interface `afw_pool`.
+ * @brief Call method `register_cleanup` of interface `afw_pool`.
  *
- * Register pool cleanup function for this pool.
+ * Register a cleanup function for this pool. The callback must
+ * not throw an uncaught error: that stops remaining callbacks
+ * on this pool. Catch inside the callback if work can fail.
  * @param instance Pointer to this pool instance.
  * @param data Data to pass to the cleanup function.
  * @param data2 Data2 to pass to the cleanup function.
- * @param cleanup Cleanup function to call when pool is released..
+ * @param cleanup Cleanup function to call when the pool is released.
  * @param xctx This is the caller's xctx.
  * @relates afw_pool_t
  * @see @ref afw_pool_s "afw_pool_t"
  */
-#define afw_pool_register_cleanup_before( \
+#define afw_pool_register_cleanup( \
     instance, \
     data, \
     data2, \
     cleanup, \
     xctx \
 ) \
-(instance)->inf->register_cleanup_before( \
+(instance)->inf->register_cleanup( \
     (instance), \
     (data), \
     (data2), \
@@ -6920,11 +6930,11 @@ struct afw_pool_inf_s {
 /**
  * @brief Call method `deregister_cleanup` of interface `afw_pool`.
  *
- * Deregister xctx cleanup function from this pool.
+ * Deregister a cleanup function from this pool.
  * @param instance Pointer to this pool instance.
- * @param data Data to pass to the cleanup function.
- * @param data2 Data2 to pass to the cleanup function.
- * @param cleanup Cleanup function to call when pool is released..
+ * @param data Data passed when the cleanup was registered.
+ * @param data2 Data2 passed when the cleanup was registered.
+ * @param cleanup Cleanup function to remove.
  * @param xctx This is the caller's xctx.
  * @relates afw_pool_t
  * @see @ref afw_pool_s "afw_pool_t"
@@ -6941,6 +6951,28 @@ struct afw_pool_inf_s {
     (data), \
     (data2), \
     (cleanup), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `run_cleanups` of interface `afw_pool`.
+ *
+ * Run registered cleanup callbacks on this pool and remaining
+ * children. Does not free storage. last-release (RC 0) still
+ * runs callbacks on the happy path. Call this before destroy
+ * when tearing down with RC remaining (xctx_release). May
+ * throw; destroy still frees storage.
+ * @param instance Pointer to this pool instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_pool_t
+ * @see @ref afw_pool_s "afw_pool_t"
+ */
+#define afw_pool_run_cleanups( \
+    instance, \
+    xctx \
+) \
+(instance)->inf->run_cleanups( \
+    (instance), \
     (xctx) \
 )
 
@@ -7278,6 +7310,15 @@ struct afw_value_inf_s {
      * data_type (produce type may be known earlier).
      */
     const afw_data_type_t     * is_evaluated_of_data_type;
+
+    /**
+     * True if this value is reference-counted. get_assignable_value of a
+     * managed value is get_reference of self. Closures are managed (they
+     * hold their enclosing scope). False for unmanaged (pool lifetime)
+     * and permanents. When true, get_assignable_for_p_lifetime may
+     * register a release cleanup on any pool.
+     */
+    afw_boolean_t is_managed;
 };
 
 /**

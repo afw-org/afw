@@ -88,6 +88,9 @@ afw_compile_and_evaluate(
         result = afw_value_evaluate(compiled_value, p, xctx);
     }
     AFW_FINALLY {
+        if (result) {
+            result = afw_value_get_assignable(result, xctx);
+        }
         if (compiled_value &&
             compiled_value->inf == &afw_value_compiled_value_inf)
         {

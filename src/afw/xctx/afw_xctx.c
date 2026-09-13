@@ -634,13 +634,23 @@ AFW_DEFINE(void)
 afw_xctx_release(
     const afw_xctx_t *instance,
     afw_xctx_t *xctx)
-{  
+{
     /* Release streams. */
     afw_stream_internal_release_all_streams(xctx);
 
-    /* Release xctx's pool. */
+    /*
+     * Callbacks first (may throw), then destroy always frees storage.
+     * xctx lives in instance->p; return before AFW_ENDTRY.
+     */
     if (instance->p) {
-        afw_pool_destroy(instance->p, xctx);
+        AFW_TRY {
+            afw_pool_run_cleanups(instance->p, xctx);
+        }
+        AFW_FINALLY {
+            afw_pool_destroy(instance->p, xctx);
+            return;
+        }
+        AFW_ENDTRY;
     }
 }
 
@@ -1026,95 +1036,24 @@ afw_xctx_scope_release(
 }
 
 
-/*
- * Parked parameter occupants are defined_and_evaluated (or a leftover
- * return-temp wrapper). Call frames are graph infs and are not.
- */
-AFW_DEFINE(afw_boolean_t)
-afw_xctx_evaluation_stack_is_parked_occupant(const afw_value_t *v)
-{
-    if (!v ||
-        ((afw_size_t)v <= 4096) ||
-        (((afw_size_t)v) & (sizeof(void *) - 1)) != 0)
-    {
-        return false;
-    }
-    if (afw_value_is_function_return_value(v)) {
-        return true;
-    }
-    /* Extra holds have optional_release. Graph calls on the stack do not. */
-    if (!v->inf || !v->inf->optional_release) {
-        return false;
-    }
-    return afw_value_is_defined_and_evaluated(v);
-}
-
-
-/*
- * Pop a VALUE, releasing parked occupant holds. Skip leftover
- * parameter-number pairs so a number slot is never used as a value
- * pointer.
- */
 AFW_DEFINE(void)
 afw_xctx_evaluation_stack_pop_value_impl(afw_xctx_t *xctx)
 {
-    afw_xctx_evaluation_stack_t *stack;
-    const afw_value_t *v;
-
-    stack = xctx->evaluation_stack;
-    while (stack->count > 0) {
-        if (AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id ==
-            afw_s_parameter_number)
-        {
-            afw_vector_pop(stack, xctx);
-            if (stack->count > 0) {
-                afw_vector_pop(stack, xctx);
-            }
-            continue;
-        }
-        v = AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value;
-        if (afw_xctx_evaluation_stack_is_parked_occupant(v)) {
-            afw_value_release(v, xctx);
-            afw_vector_pop(stack, xctx);
-            continue;
-        }
-        break;
-    }
-    if (stack->count > 0) {
-        afw_vector_pop(stack, xctx);
+    if (xctx->evaluation_stack && xctx->evaluation_stack->count > 0) {
+        afw_vector_pop(xctx->evaluation_stack, xctx);
     }
 }
 
 
-/*
- * Rewind evaluation stack to saved_top. Release parked occupant holds.
- * Skip parameter-number pairs without treating the number as a value
- * pointer.
- */
 AFW_DEFINE(void)
 afw_xctx_evaluation_stack_rewind(
     afw_size_t save_count,
     afw_xctx_t *xctx)
 {
-    afw_xctx_evaluation_stack_t *stack;
-    const afw_value_t *v;
-
-    stack = xctx->evaluation_stack;
-    while (stack->count > save_count) {
-        if (AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id ==
-            afw_s_parameter_number)
-        {
-            stack->count--;
-            if (stack->count > save_count) {
-                stack->count--;
-            }
-            continue;
-        }
-        v = AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value;
-        if (afw_xctx_evaluation_stack_is_parked_occupant(v)) {
-            afw_value_release(v, xctx);
-        }
-        stack->count--;
+    if (xctx->evaluation_stack &&
+        xctx->evaluation_stack->count > save_count)
+    {
+        xctx->evaluation_stack->count = save_count;
     }
 }
 
@@ -1150,23 +1089,40 @@ afw_xctx_scope_set_last_result(
 }
 
 
-/* Assignable held until current scope->p last-release. */
+/* Assignable held until scope->p last-release. */
 AFW_DEFINE(const afw_value_t *)
-afw_xctx_scope_get_assignable_for_lifetime(
+afw_xctx_scope_get_assignable_for_p_lifetime(
     const afw_value_t *value,
+    const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx)
 {
-    const afw_xctx_scope_t *scope;
-
     if (!value || afw_value_is_void(value)) {
         return value ? value : afw_value_void;
     }
+    if (!value->inf || !value->inf->optional_release) {
+        return value;
+    }
+    if (scope &&
+        afw_pool_is_value_release_registered(value, scope->p, xctx))
+    {
+        return value;
+    }
     value = afw_value_get_assignable(value, xctx);
-    scope = afw_xctx_scope_current(xctx);
     if (scope) {
         afw_pool_release_value_at_cleanup(value, scope->p, xctx);
     }
     return value;
+}
+
+
+/* Assignable held until current scope->p last-release. */
+AFW_DEFINE(const afw_value_t *)
+afw_xctx_scope_get_assignable_for_scope_lifetime(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    return afw_xctx_scope_get_assignable_for_p_lifetime(
+        value, afw_xctx_scope_current(xctx), xctx);
 }
 
 
@@ -1176,7 +1132,7 @@ afw_xctx_scope_set_last_result_for_lifetime(
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
-    value = afw_xctx_scope_get_assignable_for_lifetime(value, xctx);
+    value = afw_xctx_scope_get_assignable_for_scope_lifetime(value, xctx);
     afw_xctx_scope_set_last_result(value, xctx);
     return value;
 }

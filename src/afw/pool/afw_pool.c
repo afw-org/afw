@@ -52,6 +52,11 @@ impl_pool_implementation_specific =
 #define AFW_IMPLEMENTATION_SPECIFIC &impl_pool_implementation_specific
 
 static void
+impl_afw_pool_run_cleanups(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx);
+
+static void
 impl_heap_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx);
@@ -426,6 +431,7 @@ impl_unlink_child(
     afw_pool_internal_self_t *prev;
     afw_pool_internal_self_t *sibling;
 
+    (void)xctx;
     for (prev = NULL, sibling = parent->first_child;
         sibling;
         prev = sibling, sibling = sibling->next_sibling)
@@ -441,8 +447,6 @@ impl_unlink_child(
             return;
         }
     }
-
-    AFW_THROW_ERROR_Z(general, "Not a child of parent", xctx);
 }
 
 
@@ -993,27 +997,41 @@ impl_tracker_return_leftovers(
 
 
 /*
- * Callbacks, unchain, free this store, drop the child hold on the
- * parent. Children must already be gone (last-release throws if not;
- * destroy walked them first).
+ * Run cleanup callbacks only. Storage stays so sibling callbacks can
+ * still value_release tracker-allocated managed headers.
+ */
+static void
+impl_pool_run_cleanups(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+{
+    afw_pool_cleanup_t *e;
+
+    /*
+     * Detach the list first. A callback may last-release this pool
+     * (closure drops its scope); that must not walk the same list.
+     */
+    e = self->first_cleanup;
+    self->first_cleanup = NULL;
+    for (; e; e = e->next_cleanup) {
+        e->cleanup(e->data, e->data2, &self->pub, xctx);
+    }
+}
+
+
+/*
+ * Unchain, free this store, drop the child hold on the parent.
+ * Callbacks must already have run.
  *
  * Heap: release parent before free_chunks. xctx lives in xctx->p;
  * mt parent release takes the lock with xctx.
- * Tracker: header is in the parent heap; return it, then release
- * parent.
+ * Tracker: header is in the parent heap; return leftovers, then
+ * release parent.
  */
 static void
-impl_pool_cleanup(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+impl_pool_teardown_store(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
-    afw_pool_cleanup_t *e;
     afw_pool_internal_self_t *parent;
     afw_boolean_t parent_destroying;
     afw_boolean_t is_tracker;
-
-    for (e = self->first_cleanup; e; e = e->next_cleanup) {
-        e->cleanup(e->data, e->data2, &self->pub, xctx);
-    }
-    self->first_cleanup = NULL;
 
     parent = self->parent;
     parent_destroying = parent && parent->destroying;
@@ -1053,17 +1071,67 @@ impl_pool_cleanup(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 
 
 static void
+impl_pool_cleanup(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+{
+    impl_pool_run_cleanups(self, xctx);
+    impl_pool_teardown_store(self, xctx);
+}
+
+
+static void
+impl_pool_mark_destroying(AFW_POOL_SELF_T *self)
+{
+    afw_pool_internal_self_t *child;
+
+    self->destroying = true;
+    for (child = self->first_child; child; child = child->next_sibling) {
+        impl_pool_mark_destroying(child);
+    }
+}
+
+
+static void
+impl_pool_destroy_run_all_cleanups(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    afw_pool_internal_self_t *child;
+    afw_pool_internal_self_t *next;
+
+    for (child = self->first_child; child; child = next) {
+        next = child->next_sibling;
+        impl_pool_destroy_run_all_cleanups(child, xctx);
+    }
+    impl_pool_run_cleanups(self, xctx);
+}
+
+
+static void
+impl_pool_destroy_teardown_all(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    while (self->first_child) {
+        afw_pool_internal_self_t *child;
+
+        child = self->first_child;
+        impl_pool_destroy_teardown_all(child, xctx);
+        if (self->first_child == child) {
+            impl_unlink_child(self, child, xctx);
+        }
+    }
+    impl_pool_teardown_store(self, xctx);
+}
+
+
+static void
 impl_pool_destroy(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
-    if (self->destroying) {
-        return;
+    if (!self->destroying) {
+        impl_clear_delay(self, xctx);
+        impl_pool_mark_destroying(self);
     }
-    impl_clear_delay(self, xctx);
-    self->destroying = true;
-    while (self->first_child) {
-        afw_pool_destroy(&self->first_child->pub, xctx);
-    }
-    impl_pool_cleanup(self, xctx);
+    impl_pool_destroy_teardown_all(self, xctx);
 }
 
 
@@ -1085,6 +1153,11 @@ impl_afw_pool_release(
     }
 
     if (--(self->reference_count) == 0) {
+        if (self->destroying) {
+            /* Parent destroy still owns leftover/free. */
+            impl_pool_run_cleanups(self, xctx);
+            return NULL;
+        }
         if (self->first_child) {
             AFW_THROW_ERROR_Z(general,
                 "Pool last-release with children remaining", xctx);
@@ -1134,6 +1207,22 @@ impl_afw_pool_get_reference(
 
     /* Increment reference count. */
     self->reference_count++;
+}
+
+/*
+ * Implementation of method run_cleanups for interface afw_pool.
+ */
+static void
+impl_afw_pool_run_cleanups(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "run_cleanups");
+    if (!self->destroying) {
+        impl_clear_delay(self, xctx);
+        impl_pool_mark_destroying(self);
+    }
+    impl_pool_destroy_run_all_cleanups(self, xctx);
 }
 
 /*
@@ -1248,10 +1337,10 @@ impl_heap_afw_pool_free_memory(
 }
 
 /*
- * Implementation of method register_cleanup_before for interface afw_pool.
+ * Implementation of method register_cleanup for interface afw_pool.
  */
 void
-impl_afw_pool_register_cleanup_before(
+impl_afw_pool_register_cleanup(
     AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
@@ -1261,7 +1350,7 @@ impl_afw_pool_register_cleanup_before(
     afw_pool_cleanup_t *e;
 
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
-        "register_cleanup_before %p %p",
+        "register_cleanup %p %p",
         data, cleanup);
 
     /* Allocate entry which will also make sure its ok to use pool. */
@@ -1335,6 +1424,14 @@ impl_mt_afw_pool_get_reference(
 }
 
 static void
+impl_mt_afw_pool_run_cleanups(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    impl_afw_pool_run_cleanups(self, xctx);
+}
+
+static void
 impl_mt_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
@@ -1389,7 +1486,7 @@ impl_mt_afw_pool_free_memory(
 }
 
 static void
-impl_mt_afw_pool_register_cleanup_before(
+impl_mt_afw_pool_register_cleanup(
     AFW_POOL_SELF_T *self,
     void *data,
     void *data2,
@@ -1397,7 +1494,7 @@ impl_mt_afw_pool_register_cleanup_before(
     afw_xctx_t *xctx)
 {
     IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        impl_afw_pool_register_cleanup_before(
+        impl_afw_pool_register_cleanup(
             self, data, data2, cleanup, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
@@ -1420,12 +1517,13 @@ impl_mt_afw_pool_deregister_cleanup(
 
 #define impl_afw_pool_release impl_mt_afw_pool_release
 #define impl_afw_pool_get_reference impl_mt_afw_pool_get_reference
+#define impl_afw_pool_run_cleanups impl_mt_afw_pool_run_cleanups
 #define impl_afw_pool_destroy impl_mt_afw_pool_destroy
 #define impl_afw_pool_calloc impl_mt_afw_pool_calloc
 #define impl_afw_pool_malloc impl_mt_afw_pool_malloc
 #define impl_afw_pool_free_memory impl_mt_afw_pool_free_memory
-#define impl_afw_pool_register_cleanup_before \
-    impl_mt_afw_pool_register_cleanup_before
+#define impl_afw_pool_register_cleanup \
+    impl_mt_afw_pool_register_cleanup
 #define impl_afw_pool_deregister_cleanup impl_mt_afw_pool_deregister_cleanup
 
 #define AFW_IMPLEMENTATION_ID "heap_multithreaded"
@@ -1448,11 +1546,12 @@ impl_pool_mt_implementation_specific =
 #undef AFW_POOL_INF_ONLY
 #undef impl_afw_pool_release
 #undef impl_afw_pool_get_reference
+#undef impl_afw_pool_run_cleanups
 #undef impl_afw_pool_destroy
 #undef impl_afw_pool_calloc
 #undef impl_afw_pool_malloc
 #undef impl_afw_pool_free_memory
-#undef impl_afw_pool_register_cleanup_before
+#undef impl_afw_pool_register_cleanup
 #undef impl_afw_pool_deregister_cleanup
 
 
@@ -1817,6 +1916,32 @@ impl_release_value_at_cleanup(
 }
 
 
+AFW_DEFINE(afw_boolean_t)
+afw_pool_is_value_release_registered(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_pool_internal_self_t *self;
+    afw_pool_cleanup_t *e;
+
+    (void)xctx;
+    if (!value || !p) {
+        return false;
+    }
+    self = (afw_pool_internal_self_t *)p;
+    for (e = self->first_cleanup; e; e = e->next_cleanup) {
+        if (e->cleanup == impl_release_value_at_cleanup &&
+            e->data == (void *)value &&
+            e->data2 == NULL)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 /* Release a value when a pool is destroyed. */
 AFW_DEFINE(void)
 afw_pool_release_value_at_cleanup(
@@ -1827,6 +1952,13 @@ afw_pool_release_value_at_cleanup(
     if (!value) {
         return;
     }
-    afw_pool_register_cleanup_before(p, (void *)value, NULL,
+    /* Permanents / compile literals: nothing to release. */
+    if (!value->inf || !value->inf->optional_release) {
+        return;
+    }
+    if (afw_pool_is_value_release_registered(value, p, xctx)) {
+        return;
+    }
+    afw_pool_register_cleanup(p, (void *)value, NULL,
         impl_release_value_at_cleanup, xctx);
 }

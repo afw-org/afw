@@ -522,39 +522,6 @@ impl_parse_compiler_internal_list_expression(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- *# Runtime return temp. One Expression is the occupant.
- *
- * CompilerInternalFunctionReturnValue ::=
- *     '#function_return_value' '(' Expression ')'
- *
- *<<<ebnf*/
-static const afw_value_t *
-impl_parse_compiler_internal_function_return_value(
-    afw_compile_parser_t *parser)
-{
-    const afw_value_t *inner;
-
-    afw_compile_get_token();
-    if (!afw_compile_token_is(open_parenthesis)) {
-        AFW_COMPILE_THROW_ERROR_Z(
-            "Expecting '(' after #function_return_value");
-    }
-
-    inner = afw_compile_parse_Expression(parser);
-
-    afw_compile_get_token();
-    if (!afw_compile_token_is(close_parenthesis)) {
-        AFW_COMPILE_THROW_ERROR_Z(
-            "Expecting ')' after #function_return_value");
-    }
-
-    return afw_value_function_return_value_create(
-        inner, parser->p, parser->xctx);
-}
-
-
-/*ebnf>>>
- *
  *# Parts are Expressions (string segments and nested #block expressions).
  *# At least one part is required.
  *
@@ -998,10 +965,6 @@ afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser)
         return impl_parse_compiler_internal_block(parser);
     }
 
-    if (impl_compiler_internal_name_is(parser, "function_return_value")) {
-        return impl_parse_compiler_internal_function_return_value(parser);
-    }
-
     if (impl_compiler_internal_name_is(parser, "closure_binding")) {
         impl_compiler_internal_closure_binding_not_recompilable(parser);
         return NULL; /* not reached */
@@ -1073,10 +1036,6 @@ afw_compile_parse_CompilerInternalValue(afw_compile_parser_t *parser)
 
     if (impl_compiler_internal_name_is(parser, "list_expression")) {
         return impl_parse_compiler_internal_list_expression(parser);
-    }
-
-    if (impl_compiler_internal_name_is(parser, "function_return_value")) {
-        return impl_parse_compiler_internal_function_return_value(parser);
     }
 
     if (impl_compiler_internal_name_is(parser, "script_function")) {

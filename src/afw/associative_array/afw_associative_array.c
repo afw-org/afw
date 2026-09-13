@@ -147,7 +147,7 @@ afw_associative_array_get (
      */
     if (value && self->get_reference_value) {
         self->get_reference_value(value, xctx);
-        afw_pool_register_cleanup_before(xctx->p, (void *)value, self->release_value,
+        afw_pool_register_cleanup(xctx->p, (void *)value, self->release_value,
             impl_release_value, xctx);
     }
 

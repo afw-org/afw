@@ -44,7 +44,7 @@ afw_ldap_internal_search_s(
     rv = ldap_search_s(session->ld, (char *)dn, ldap_scope, (char *)filter,
         afw_ldap_internal_allattrs, 0, &result);
     if (result) {
-        afw_pool_register_cleanup_before(session->pub.p, result, NULL,
+        afw_pool_register_cleanup(session->pub.p, result, NULL,
             afw_ldap_internal_cleanup_ldap_msgfree, xctx);
     }
     if (rv != LDAP_SUCCESS) {
@@ -88,7 +88,7 @@ afw_ldap_internal_get_object_id(
 
     dn_z = ldap_get_dn(self->ld, e);
     if (dn_z) {
-        afw_pool_register_cleanup_before(self->pub.p, dn_z, NULL,
+        afw_pool_register_cleanup(self->pub.p, dn_z, NULL,
             afw_ldap_internal_cleanup_ldap_memfree,
             xctx);
     }
