@@ -379,16 +379,31 @@ impl_afw_value_optional_evaluate(
         }
 
         /*
-         * Return temp for a real occupant. void/undefined stay as-is so a
-         * : void procedure is the void singleton and does not write
-         * script_result.
+         * Pin a real occupant on the caller while this frame is still
+         * alive. No Adaptive caller: clone into xctx->p (host).
          */
         if (result &&
             !afw_value_is_undefined(result) &&
             !afw_value_is_void(result))
         {
-            result = afw_value_function_return_value_create(
-                result, p, xctx);
+            const afw_xctx_scope_t *caller;
+
+            caller = afw_xctx_scope_of_caller(xctx);
+            if (caller) {
+                result = afw_xctx_scope_get_assignable_for_p_lifetime(
+                    result, caller, xctx);
+            }
+            else {
+                const afw_data_type_t *dt;
+
+                dt = result->inf
+                    ? result->inf->is_evaluated_of_data_type
+                    : NULL;
+                if (dt && dt->clone_value_unmanaged) {
+                    result = afw_value_clone_unmanaged(
+                        result, xctx->p, xctx);
+                }
+            }
         }
     }
 

@@ -61,7 +61,7 @@ afw_function_execute_add_entries(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(target, 1, array);
     target = (const afw_value_array_t *)
-        afw_xctx_scope_get_assignable_for_lifetime(
+        afw_xctx_scope_get_assignable_for_scope_lifetime(
             &target->pub, x->xctx);
 
     for (count = 2; count <= x->argc; count++) {
@@ -450,7 +450,7 @@ afw_function_execute_reverse(
 
     data_type = afw_array_get_data_type(array->internal, x->xctx);
     result = (const afw_value_array_t *)
-        afw_xctx_scope_get_assignable_for_lifetime(
+        afw_xctx_scope_get_assignable_for_scope_lifetime(
             afw_array_create_managed(data_type, x->xctx)->value,
             x->xctx);
     setter = afw_array_get_setter(result->internal, x->xctx);
@@ -553,7 +553,7 @@ afw_function_execute_slice(
     /* Create and return an array with slice. Stay mutable. */
     data_type = afw_array_get_data_type(array->internal, x->xctx);
     result = (const afw_value_array_t *)
-        afw_xctx_scope_get_assignable_for_lifetime(
+        afw_xctx_scope_get_assignable_for_scope_lifetime(
             afw_array_create_managed(data_type, x->xctx)->value,
             x->xctx);
     for (iterator = NULL, count = 0; count < end; count++) {
@@ -659,7 +659,7 @@ afw_function_execute_pop(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
     array = (const afw_value_array_t *)
-        afw_xctx_scope_get_assignable_for_lifetime(
+        afw_xctx_scope_get_assignable_for_scope_lifetime(
             &array->pub, x->xctx);
 
     value = afw_array_pop_value(array->internal, NULL, x->xctx);
@@ -711,7 +711,7 @@ afw_function_execute_push(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
     array = (const afw_value_array_t *)
-        afw_xctx_scope_get_assignable_for_lifetime(
+        afw_xctx_scope_get_assignable_for_scope_lifetime(
             &array->pub, x->xctx);
 
     for (i = 2; i <= x->argc; i++) {
@@ -762,7 +762,7 @@ afw_function_execute_shift(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
     array = (const afw_value_array_t *)
-        afw_xctx_scope_get_assignable_for_lifetime(
+        afw_xctx_scope_get_assignable_for_scope_lifetime(
             &array->pub, x->xctx);
 
     value = afw_array_shift_value(array->internal, NULL, x->xctx);
@@ -828,7 +828,7 @@ afw_function_execute_splice(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
     array = (const afw_value_array_t *)
-        afw_xctx_scope_get_assignable_for_lifetime(
+        afw_xctx_scope_get_assignable_for_scope_lifetime(
             &array->pub, x->xctx);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(integer, 2, integer);
 
@@ -859,7 +859,7 @@ afw_function_execute_splice(
     }
 
     removed = ((const afw_value_array_t *)
-        afw_xctx_scope_get_assignable_for_lifetime(
+        afw_xctx_scope_get_assignable_for_scope_lifetime(
             afw_array_create_managed(NULL, x->xctx)->value,
             x->xctx))->internal;
     for (i = 0; i < delete_count; i++) {
@@ -924,7 +924,7 @@ afw_function_execute_unshift(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
     array = (const afw_value_array_t *)
-        afw_xctx_scope_get_assignable_for_lifetime(
+        afw_xctx_scope_get_assignable_for_scope_lifetime(
             &array->pub, x->xctx);
 
     /* Insert in order at 0, 1, 2, ... so relative order is preserved. */

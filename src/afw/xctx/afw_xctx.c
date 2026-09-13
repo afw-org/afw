@@ -1157,23 +1157,32 @@ afw_xctx_scope_set_last_result(
 }
 
 
-/* Assignable held until current scope->p last-release. */
+/* Assignable held until scope->p last-release. */
 AFW_DEFINE(const afw_value_t *)
-afw_xctx_scope_get_assignable_for_lifetime(
+afw_xctx_scope_get_assignable_for_p_lifetime(
     const afw_value_t *value,
+    const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx)
 {
-    const afw_xctx_scope_t *scope;
-
     if (!value || afw_value_is_void(value)) {
         return value ? value : afw_value_void;
     }
     value = afw_value_get_assignable(value, xctx);
-    scope = afw_xctx_scope_current(xctx);
     if (scope) {
         afw_pool_release_value_at_cleanup(value, scope->p, xctx);
     }
     return value;
+}
+
+
+/* Assignable held until current scope->p last-release. */
+AFW_DEFINE(const afw_value_t *)
+afw_xctx_scope_get_assignable_for_scope_lifetime(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    return afw_xctx_scope_get_assignable_for_p_lifetime(
+        value, afw_xctx_scope_current(xctx), xctx);
 }
 
 
@@ -1183,7 +1192,7 @@ afw_xctx_scope_set_last_result_for_lifetime(
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
-    value = afw_xctx_scope_get_assignable_for_lifetime(value, xctx);
+    value = afw_xctx_scope_get_assignable_for_scope_lifetime(value, xctx);
     afw_xctx_scope_set_last_result(value, xctx);
     return value;
 }

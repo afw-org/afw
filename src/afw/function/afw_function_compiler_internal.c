@@ -1647,7 +1647,7 @@ afw_function_execute_return(
             result = afw_value_void;
         }
     }
-    result = afw_xctx_scope_set_last_result_for_lifetime(result, xctx);
+    afw_xctx_scope_set_last_result(result, xctx);
     afw_xctx_statement_flow_set_type(return, xctx);
     return result;
 }

@@ -298,6 +298,18 @@ AFW_VECTOR_STRUCT(afw_xctx_scope_p_vector_s, const afw_xctx_scope_t *);
     : NULL)
 
 /**
+ * @brief Scope that invoked the current frame, or NULL.
+ *
+ * The entry under current. Compiled-value sentinel is NULL, so a
+ * top-level call has no Adaptive caller. After a script function
+ * body, nested `{ }` have unwound and this is the caller `{ }`.
+ */
+#define afw_xctx_scope_of_caller(xctx) \
+    ((xctx->scope_stack->count >= 2) \
+    ? xctx->scope_stack->entries[xctx->scope_stack->count - 2] \
+    : NULL)
+
+/**
  * @brief Store a non-void statement result on the current scope.
  * @param value statement result.
  * @param xctx of caller.
@@ -325,8 +337,26 @@ afw_xctx_scope_set_last_result(
  * result use this.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_xctx_scope_get_assignable_for_lifetime(
+afw_xctx_scope_get_assignable_for_scope_lifetime(
     const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Get an assignable and keep it until this scope ends.
+ * @param value to keep. Void and NULL are returned unchanged.
+ * @param scope whose p last-release drops the hold, or NULL for
+ *    get_assignable only.
+ * @param xctx of caller.
+ * @return assignable value, or void/NULL unchanged.
+ *
+ * Same as get_assignable_for_scope_lifetime, but the pin scope is
+ * passed in (script function return uses the caller).
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_xctx_scope_get_assignable_for_p_lifetime(
+    const afw_value_t *value,
+    const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx);
 
 
@@ -336,9 +366,8 @@ afw_xctx_scope_get_assignable_for_lifetime(
  * @param xctx of caller.
  * @return held value, or void/NULL unchanged.
  *
- * afw_xctx_scope_get_assignable_for_lifetime() then
- * afw_xctx_scope_set_last_result(). Nested `{ }` adopt and return()
- * use this.
+ * afw_xctx_scope_get_assignable_for_scope_lifetime() then
+ * afw_xctx_scope_set_last_result(). Nested `{ }` adopt uses this.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_xctx_scope_set_last_result_for_lifetime(
