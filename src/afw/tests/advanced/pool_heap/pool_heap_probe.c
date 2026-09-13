@@ -22,7 +22,7 @@
  * boots a core environment and calls the C pool API.
  *
  * Optional free is afw_pool_free_memory(p, address, size, xctx) on the
- * pool that allocated. General APR pools no-op.
+ * pool that allocated.
  *
  * Same shape as tests/advanced/pool_alloc/pool_alloc_probe.c.
  *
@@ -511,6 +511,47 @@ impl_create_child_of_heap(afw_xctx_t *xctx)
     afw_pool_release(tracker, xctx);
     afw_pool_release(child, xctx);
     afw_pool_release(heap, xctx);
+    return 0;
+}
+
+static void
+impl_cleanup_set(
+    void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)data2;
+    (void)p;
+    (void)xctx;
+    *((int *)data) = 1;
+}
+
+static int
+impl_leftover_child_heap(afw_xctx_t *xctx)
+{
+    const afw_pool_t *heap;
+    const afw_pool_t *child;
+    const afw_pool_t *tracker;
+    int child_cleanup;
+    int tracker_cleanup;
+
+    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    child = afw_pool_create(heap, xctx);
+    tracker = afw_pool_tracker_create(child, xctx);
+    child_cleanup = 0;
+    tracker_cleanup = 0;
+    afw_pool_register_cleanup_before(child, &child_cleanup, NULL,
+        impl_cleanup_set, xctx);
+    afw_pool_register_cleanup_before(tracker, &tracker_cleanup, NULL,
+        impl_cleanup_set, xctx);
+    afw_pool_get_reference(tracker, xctx);
+    afw_pool_destroy(heap, xctx);
+    if (!child_cleanup) {
+        return impl_fail("leftover_child_heap",
+            "parent destroy did not run leftover child heap cleanup");
+    }
+    if (!tracker_cleanup) {
+        return impl_fail("leftover_child_heap",
+            "parent destroy did not run leftover tracker cleanup");
+    }
     return 0;
 }
 
@@ -1049,6 +1090,9 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "create_child_of_heap") == 0) {
         rc = impl_create_child_of_heap(xctx);
     }
+    else if (strcmp(case_name, "leftover_child_heap") == 0) {
+        rc = impl_leftover_child_heap(xctx);
+    }
     else if (strcmp(case_name, "unhandled_alloc") == 0) {
         rc = impl_unhandled_alloc(xctx);
     }
@@ -1086,7 +1130,8 @@ main(int argc, char **argv)
             "unhandled_alloc|heap_chunks|"
             "deregister_cleanup|"
             "nonadjacent_reuse|"
-            "for_clone_churn|create_child_of_heap|double_free_throws"
+            "for_clone_churn|create_child_of_heap|leftover_child_heap|"
+            "double_free_throws"
 #ifdef AFW_DEBUG_POOL
             "|debug_free_wrong_size|debug_free_wrong_pool"
             "|debug_free_poisons_user"

@@ -14,8 +14,10 @@
  * a heap, tracks live USER blocks, and returns them to the heap on
  * free or tracker destroy. The heap owns the free list (overlay on
  * freed blocks; else a bump from a 4k-aligned chunk). Destroy walks
- * the chunk list and free()s each. Single-thread heaps: create/use/
- * release on one thread. Multithreaded heap is lock wrappers.
+ * the chunk list and free()s each. Parent/child RC is the same for
+ * heap and tracker. Last-release does not call destroy. Single-thread
+ * heaps: create/use/release on one thread. Multithreaded heap is lock
+ * wrappers.
  * Heap live: [USER] or [size][pool][USER] if AFW_DEBUG_POOL.
  * Tracker live: [prev][next][size][USER], plus [pool] if debug.
  * Debug free fills USER with AFW_POOL_DEBUG_POISON (bad inf).
@@ -258,7 +260,8 @@ impl_account_destroy(afw_pool_internal_self_t *self, afw_xctx_t *xctx)
 static afw_pool_internal_self_t *
 impl_reservoir_heap(afw_pool_internal_self_t *self)
 {
-    while (self->parent) {
+    /* A heap is its own store even when it has an AFW parent. */
+    while (self->parent && !afw_pool_internal_is_heap(&self->pub)) {
         self = self->parent;
     }
     return self;
@@ -408,13 +411,14 @@ impl_add_child(
 {
     afw_pool_get_reference(&parent->pub, xctx);
 
+    child->parent = parent;
     child->next_sibling = parent->first_child;
     parent->first_child = child;
 }
 
 
 static void
-impl_remove_as_child(
+impl_unlink_child(
     afw_pool_internal_self_t *parent,
     afw_pool_internal_self_t *child,
     afw_xctx_t *xctx)
@@ -433,15 +437,30 @@ impl_remove_as_child(
             else {
                 prev->next_sibling = sibling->next_sibling;
             }
-            break;
+            child->next_sibling = NULL;
+            return;
         }
     }
 
-    if (!sibling) {
-        AFW_THROW_ERROR_Z(general, "Not a child of parent", xctx);
-    }
+    AFW_THROW_ERROR_Z(general, "Not a child of parent", xctx);
+}
 
-    afw_pool_release(&parent->pub, xctx);
+
+static void
+impl_link_as_child(
+    afw_pool_internal_self_t *parent,
+    afw_pool_internal_self_t *child,
+    afw_xctx_t *xctx)
+{
+    if (parent->thread) {
+        impl_add_child(parent, child, xctx);
+    }
+    else {
+        IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+            impl_add_child(parent, child, xctx);
+        }
+        IMPL_MULTITHREADED_LOCK_END;
+    }
 }
 
 
@@ -459,28 +478,13 @@ impl_heap_create(
     if (!self) {
         AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
     }
-    self->parent = NULL;
-    self->external_parent = afw_parent;
     self->pool_number = afw_atomic_integer_increment(
         &((afw_environment_t *)xctx->env)->pool_number);
     self->thread = xctx->thread;
 
-    /*
-     * Link onto the parent so destroy (and valgrind) can chase child
-     * heaps. parent stays NULL so this heap keeps its own chunks.
-     * add_child holds the parent.
-     */
     if (afw_parent) {
         parent_self = (afw_pool_internal_self_t *)afw_parent;
-        if (parent_self->thread) {
-            impl_add_child(parent_self, self, xctx);
-        }
-        else {
-            IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-                impl_add_child(parent_self, self, xctx);
-            }
-            IMPL_MULTITHREADED_LOCK_END;
-        }
+        impl_link_as_child(parent_self, self, xctx);
     }
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "create");
@@ -511,27 +515,14 @@ impl_create_for_tracker(
     self->pub.managed_p = parent->pub.managed_p
         ? parent->pub.managed_p
         : &parent->pub;
-    self->parent = parent;
     self->pool_number = afw_atomic_integer_increment(
         &((afw_environment_t *)xctx->env)->pool_number);
     self->reference_count = 1;
 
     /* Trackers allocate from the parent heap free list / chunks. */
     self->free_memory_head = parent->free_memory_head;
-
-    /* If parent, add this new child. */
-    if (parent) {
-        self->thread = parent->thread;
-        if (self->thread) {
-            impl_add_child(parent, self, xctx);
-        }
-        else {
-            IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-                impl_add_child(parent, self, xctx);
-            }
-            IMPL_MULTITHREADED_LOCK_END;
-        }
-    }
+    self->thread = parent->thread;
+    impl_link_as_child(parent, self, xctx);
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "create");
 
@@ -895,15 +886,44 @@ impl_debug_poison_user(void *user, afw_size_t size)
 
 /* --------------------------- pool implementations ------------------------- */
 
+static void
+impl_clear_delay(afw_pool_internal_self_t *self, afw_xctx_t *xctx)
+{
+    const afw_pool_t **pos;
+    afw_pool_internal_self_t *curr;
+
+    if (!self->error_delaying_release) {
+        return;
+    }
+    self->error_delaying_release = false;
+    if (!xctx) {
+        self->error_delaying_release_next = NULL;
+        return;
+    }
+    pos = &xctx->error_delaying_release_first;
+    while (*pos) {
+        curr = (afw_pool_internal_self_t *)(void *)*pos;
+        if (curr == self) {
+            *pos = (const afw_pool_t *)(void *)
+                curr->error_delaying_release_next;
+            curr->error_delaying_release_next = NULL;
+            return;
+        }
+        pos = (const afw_pool_t **)(void *)
+            &curr->error_delaying_release_next;
+    }
+    self->error_delaying_release_next = NULL;
+}
+
+
 /*
- * While error_processing_count > 0, last release/destroy is recorded
- * and skipped. Catching ENDTRY runs them when the count is 0 again.
- * Returns true if the caller should return without doing the work.
+ * While error_processing_count > 0, last release of a scope tracker
+ * is recorded and skipped. Catching ENDTRY runs
+ * afw_pool_release_delayed() when the count is 0 again.
  */
 static afw_boolean_t
 impl_error_delaying_release(
     AFW_POOL_SELF_T *self,
-    afw_boolean_t is_destroy,
     afw_xctx_t *xctx)
 {
     if (!xctx || xctx->error_processing_count == 0) {
@@ -919,94 +939,139 @@ impl_error_delaying_release(
     {
         return false;
     }
-    if (is_destroy) {
-        self->error_processing_destroy = true;
-    }
-    else if (self->error_delaying_release) {
+    if (self->error_delaying_release) {
         return true;
     }
-    else if (self->reference_count != 1) {
+    if (self->reference_count != 1) {
         return false;
     }
-    if (!self->error_delaying_release) {
-        self->error_delaying_release = true;
-        self->error_delaying_release_next =
-            (afw_pool_internal_self_t *)(void *)
-                xctx->error_delaying_release_first;
-        xctx->error_delaying_release_first = &self->pub;
-    }
+    self->error_delaying_release = true;
+    self->error_delaying_release_next =
+        (afw_pool_internal_self_t *)(void *)
+            xctx->error_delaying_release_first;
+    xctx->error_delaying_release_first = &self->pub;
     return true;
 }
 
 
-static int
-impl_pool_parent_depth(afw_pool_internal_self_t *p)
+static void
+impl_heap_free_chunks(afw_pool_internal_self_t *self)
 {
-    int depth;
+    afw_pool_chunk_t *chunk;
+    afw_pool_chunk_t *next;
 
-    for (depth = 0; p; p = p->parent) {
-        depth++;
+    chunk = self->first_chunk;
+    self->first_chunk = NULL;
+    self->current_chunk = NULL;
+    self->bump = NULL;
+    self->remaining = 0;
+    while (chunk) {
+        next = chunk->next;
+        free(chunk);
+        chunk = next;
     }
-    return depth;
 }
 
 
-AFW_DEFINE(void)
-afw_pool_error_processing_finish(afw_xctx_t *xctx)
+static void
+impl_tracker_return_leftovers(
+    afw_pool_internal_self_t *self, afw_xctx_t *xctx)
 {
-    afw_pool_internal_self_t *head;
-    afw_pool_internal_self_t *curr;
-    afw_pool_internal_self_t *pick;
-    afw_pool_internal_self_t **pos;
-    afw_pool_internal_self_t **pick_pos;
-    int pick_depth;
-    int depth;
-    afw_boolean_t do_destroy;
+    afw_pool_tracker_node_t *memory;
 
-    head = (afw_pool_internal_self_t *)(void *)
-        xctx->error_delaying_release_first;
-    xctx->error_delaying_release_first = NULL;
+    while (self->first_allocated_memory) {
+        memory = self->first_allocated_memory;
+        impl_tracker_unlink(&self->first_allocated_memory, memory);
+        impl_debug_poison_user(AFW_POOL_TRACKER_TO_USER(memory),
+            AFW_POOL_TRACKER_USER_SIZE(memory));
+        impl_heap_add_to_free_list(self, memory,
+            impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES,
+                AFW_POOL_TRACKER_USER_SIZE(memory), xctx, false),
+            xctx);
+    }
+}
 
-    while (head) {
-        pick = NULL;
-        pick_pos = &head;
-        pick_depth = -1;
-        pos = &head;
-        curr = head;
-        while (curr) {
-            if (curr->error_delaying_release) {
-                depth = impl_pool_parent_depth(curr);
-                if (depth >= pick_depth) {
-                    pick = curr;
-                    pick_pos = pos;
-                    pick_depth = depth;
-                }
-            }
-            pos = &curr->error_delaying_release_next;
-            curr = curr->error_delaying_release_next;
-        }
-        if (!pick) {
-            break;
-        }
-        *pick_pos = pick->error_delaying_release_next;
-        pick->error_delaying_release_next = NULL;
-        pick->error_delaying_release = false;
-        do_destroy = pick->error_processing_destroy;
-        pick->error_processing_destroy = false;
-        if (do_destroy) {
-            afw_pool_destroy(&pick->pub, xctx);
+
+/*
+ * Callbacks, unchain, free this store, drop the child hold on the
+ * parent. Children must already be gone (last-release throws if not;
+ * destroy walked them first).
+ *
+ * Heap: release parent before free_chunks. xctx lives in xctx->p;
+ * mt parent release takes the lock with xctx.
+ * Tracker: header is in the parent heap; return it, then release
+ * parent.
+ */
+static void
+impl_pool_cleanup(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+{
+    afw_pool_cleanup_t *e;
+    afw_pool_internal_self_t *parent;
+    afw_boolean_t parent_destroying;
+    afw_boolean_t is_tracker;
+
+    for (e = self->first_cleanup; e; e = e->next_cleanup) {
+        e->cleanup(e->data, e->data2, &self->pub, xctx);
+    }
+    self->first_cleanup = NULL;
+
+    parent = self->parent;
+    parent_destroying = parent && parent->destroying;
+    is_tracker = afw_pool_internal_is_tracker(&self->pub);
+    if (parent) {
+        if (parent->thread) {
+            impl_unlink_child(parent, self, xctx);
         }
         else {
-            afw_pool_release(&pick->pub, xctx);
+            IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+                impl_unlink_child(parent, self, xctx);
+            }
+            IMPL_MULTITHREADED_LOCK_END;
         }
     }
+
+    if (is_tracker) {
+        if (!parent) {
+            AFW_THROW_ERROR_Z(general, "Tracker has no parent", xctx);
+        }
+        impl_tracker_return_leftovers(self, xctx);
+        impl_account_destroy(self, xctx);
+        afw_pool_free_memory(&parent->pub, self,
+            sizeof(afw_pool_internal_self_t), xctx);
+        if (!parent_destroying) {
+            afw_pool_release(&parent->pub, xctx);
+        }
+    }
+    else {
+        impl_account_destroy(self, xctx);
+        if (parent && !parent_destroying) {
+            afw_pool_release(&parent->pub, xctx);
+        }
+        impl_heap_free_chunks(self);
+    }
+}
+
+
+static void
+impl_pool_destroy(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+{
+    if (self->destroying) {
+        return;
+    }
+    impl_clear_delay(self, xctx);
+    self->destroying = true;
+    while (self->first_child) {
+        afw_pool_destroy(&self->first_child->pub, xctx);
+    }
+    impl_pool_cleanup(self, xctx);
 }
 
 
 /*
  * Implementation of method release for interface afw_pool.
  *
- * Returns the pool if it still exists, or NULL if this call destroyed it.
+ * Returns the pool if it still exists, or NULL if this last-release
+ * ran cleanup.
  */
 const afw_pool_t *
 impl_afw_pool_release(
@@ -1015,16 +1080,45 @@ impl_afw_pool_release(
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "release");
 
-    if (impl_error_delaying_release(self, false, xctx)) {
+    if (impl_error_delaying_release(self, xctx)) {
         return &self->pub;
     }
 
-    /* Decrement reference count and release pools resources if zero. */
     if (--(self->reference_count) == 0) {
-        afw_pool_destroy(&self->pub, xctx);
+        if (self->first_child) {
+            AFW_THROW_ERROR_Z(general,
+                "Pool last-release with children remaining", xctx);
+        }
+        impl_pool_cleanup(self, xctx);
         return NULL;
     }
     return &self->pub;
+}
+
+
+AFW_DEFINE(void)
+afw_pool_release_delayed(
+    const afw_pool_t *instance,
+    afw_xctx_t *xctx)
+{
+    afw_pool_internal_self_t *self;
+    afw_pool_internal_self_t *child;
+    afw_pool_internal_self_t *next;
+
+    if (!instance || !xctx || !xctx->error_delaying_release_first) {
+        return;
+    }
+    self = (afw_pool_internal_self_t *)instance;
+    child = self->first_child;
+    while (child) {
+        next = child->next_sibling;
+        afw_pool_release_delayed(&child->pub, xctx);
+        child = next;
+    }
+    if (self->error_delaying_release) {
+        impl_clear_delay(self, xctx);
+        afw_pool_release(&self->pub, xctx);
+    }
 }
 
 
@@ -1042,32 +1136,6 @@ impl_afw_pool_get_reference(
     self->reference_count++;
 }
 
-static void
-impl_heap_abandon_chunks(afw_pool_internal_self_t *self)
-{
-    afw_pool_internal_self_t *child;
-    afw_pool_internal_self_t *next_child;
-    afw_pool_chunk_t *chunk;
-    afw_pool_chunk_t *next_chunk;
-
-    child = self->first_child;
-    self->first_child = NULL;
-    while (child) {
-        next_child = child->next_sibling;
-        if (afw_pool_internal_is_heap(&child->pub)) {
-            impl_heap_abandon_chunks(child);
-        }
-        child = next_child;
-    }
-    chunk = self->first_chunk;
-    self->first_chunk = NULL;
-    while (chunk) {
-        next_chunk = chunk->next;
-        free(chunk);
-        chunk = next_chunk;
-    }
-}
-
 /*
  * Implementation of method destroy for interface afw_pool.
  */
@@ -1076,107 +1144,8 @@ impl_heap_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_self_t *child;
-    afw_pool_internal_self_t *parent_self;
-    afw_pool_cleanup_t *e;
-
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
-
-    if (impl_error_delaying_release(self, true, xctx)) {
-        return;
-    }
-    self->error_delaying_release = false;
-
-    /*
-     * Call all of the cleanup routines for this pool before releasing children.
-     */
-    for (e = self->first_cleanup; e; e = e->next_cleanup) {
-        e->cleanup(e->data, e->data2, &self->pub, xctx);
-    }
-
-    /*
-     * Release children.
-     *
-     * Release of child sets self->first_child to its next sibling.
-     * Child heaps (evaluation_heap) are destroyed in afw_xctx_release
-     * before this pool; leftover extra-held trackers must not spin.
-     */
-    for (child = self->first_child;
-        child;
-        child = self->first_child)
-    {
-        afw_pool_release(&child->pub, xctx);
-        if (self->first_child == child) {
-            /* Delayed (throw path) or extra-held. Do not spin. */
-            break;
-        }
-    }
-
-    /* If tracker, parent is the heap. If heap, unlink from AFW parent. */
-    if (self->parent) {
-        impl_remove_as_child(self->parent, self, xctx);
-    }
-    else if (self->external_parent) {
-        parent_self = (afw_pool_internal_self_t *)self->external_parent;
-        if (parent_self->thread) {
-            impl_remove_as_child(parent_self, self, xctx);
-        }
-        else {
-            IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-                impl_remove_as_child(parent_self, self, xctx);
-            }
-            IMPL_MULTITHREADED_LOCK_END;
-        }
-    }
-
-    impl_account_destroy(self, xctx);
-
-    /*
-     * Leftover child heaps (evaluation_heap, object-option pools) have
-     * their own posix_memalign chunks. APR freed those when this heap's
-     * APR pool died. Recursively unlink and free chunks; do not run AFW
-     * destroy (extra-held trackers live in those chunks).
-     */
-    {
-        afw_pool_internal_self_t *prev;
-        afw_pool_internal_self_t *next_child;
-
-        prev = NULL;
-        child = self->first_child;
-        while (child) {
-            next_child = child->next_sibling;
-            if (afw_pool_internal_is_heap(&child->pub)) {
-                if (!prev) {
-                    self->first_child = next_child;
-                }
-                else {
-                    prev->next_sibling = next_child;
-                }
-                impl_heap_abandon_chunks(child);
-            }
-            else {
-                prev = child;
-            }
-            child = next_child;
-        }
-    }
-
-    /* Walk chunks last: the heap self lives in the first chunk. */
-    {
-        afw_pool_chunk_t *chunk;
-        afw_pool_chunk_t *next;
-
-        chunk = self->first_chunk;
-        self->first_chunk = NULL;
-        self->current_chunk = NULL;
-        self->bump = NULL;
-        self->remaining = 0;
-        while (chunk) {
-            next = chunk->next;
-            free(chunk);
-            chunk = next;
-        }
-    }
+    impl_pool_destroy(self, xctx);
 }
 
 static void *
@@ -1494,63 +1463,8 @@ impl_tracker_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_pool_tracker_node_t *memory;
-    afw_pool_internal_self_t *child;
-    afw_pool_internal_self_t *parent;
-    afw_pool_cleanup_t *e;
-
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
-
-    if (impl_error_delaying_release(self, true, xctx)) {
-        return;
-    }
-    self->error_delaying_release = false;
-
-    /* Tracker always has a parent. (needed to suppress valgrind error) */
-    if (!self->parent) {
-        AFW_THROW_ERROR_Z(general, "Tracker has no parent", xctx);
-    }
-    parent = self->parent;
-
-    /*
-     * Call all of the cleanup routines for this pool before releasing children.
-     */
-    for (e = self->first_cleanup; e; e = e->next_cleanup) {
-        e->cleanup(e->data, e->data2, &self->pub, xctx);
-    }
-
-    /* Release all of the children of this tracker. */
-    for (child = self->first_child;
-        child;
-        child = self->first_child)
-    {
-        afw_pool_release(&child->pub, xctx);
-    }
-
-    /* Leftover children honor destroy; do not reparent. */
-    while (self->first_child) {
-        afw_pool_destroy(&self->first_child->pub, xctx);
-    }
-
-    /* Return leftovers. Unlink first so next is still the allocated
-     * list, not a free-list overlay. */
-    while (self->first_allocated_memory) {
-        memory = self->first_allocated_memory;
-        impl_tracker_unlink(&self->first_allocated_memory, memory);
-        impl_debug_poison_user(AFW_POOL_TRACKER_TO_USER(memory),
-            AFW_POOL_TRACKER_USER_SIZE(memory));
-        impl_heap_add_to_free_list(self, memory,
-            impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES,
-                AFW_POOL_TRACKER_USER_SIZE(memory), xctx, false),
-            xctx);
-    }
-
-    impl_account_destroy(self, xctx);
-
-    /* Removed self as child of parent. Header was calloc’d from the heap. */
-    impl_remove_as_child(parent, self, xctx);
-    afw_pool_free_memory(&parent->pub, self,
-        sizeof(afw_pool_internal_self_t), xctx);
+    impl_pool_destroy(self, xctx);
 }
 
 

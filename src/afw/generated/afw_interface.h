@@ -6756,13 +6756,12 @@ struct afw_pool_inf_s {
 /**
  * @brief Call method `release` of interface `afw_pool`.
  *
- * Reduce the reference count to pool. If count reaches 0, afw_pool_destroy()
- * is called.
+ * Reduce the reference count. If it reaches 0, run pool cleanup
+ * (callbacks, unchain, free this store, release parent). Does not
+ * call destroy. Last-release with children remaining is an error.
  * 
- * Returns the pool instance if it still exists after this call, or NULL if
- * this call destroyed the pool (reference count reached zero). Callers that
- * hold other resources for the life of the pool can release them when the
- * return is NULL. If the return is NULL, do not use the pool pointer again.
+ * Returns the pool if it still exists, or NULL if this call ran
+ * cleanup. If the return is NULL, do not use the pool pointer again.
  * @param instance Pointer to this pool instance.
  * @param xctx This is the caller's xctx.
  * @return Pool instance if still referenced; NULL if this call destroyed the
@@ -6800,12 +6799,10 @@ struct afw_pool_inf_s {
 /**
  * @brief Call method `destroy` of interface `afw_pool`.
  *
- * Destroy the pool.
- * 
- * This function should be called with caution since pools will be destroyed
- * that
- * may still have a non-zero reference count. Function afw_pool_release()
- * should normally be used instead.
+ * Destroy this pool and remaining children, then pool cleanup
+ * (callbacks, unchain, free this store, release parent).
+ * Callers must own that subtree. Use afw_pool_release() for
+ * ordinary lifetime.
  * @param instance Pointer to this pool instance.
  * @param xctx This is the caller's xctx.
  * @relates afw_pool_t

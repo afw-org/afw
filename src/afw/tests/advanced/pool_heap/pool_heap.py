@@ -105,6 +105,11 @@ def run():
                 "afw_pool_create of a heap parent is a heap; free recycles",
             ),
             (
+                "leftover_child_heap",
+                "parent destroy runs leftover child heap and extra-held "
+                "tracker cleanups",
+            ),
+            (
                 "unhandled_alloc",
                 "calloc_unhandled never throws; NULL xctx does not "
                 "move in_use; block still dies with the heap",
@@ -149,7 +154,6 @@ def run():
         "Heap and heap-tracker pool implementations",
         cases,
         extra_cflags=tuple(extra),
-        extra_ldflags=("-lapr-1",),
     )
     tests = result.get("tests")
     if not isinstance(tests, list):

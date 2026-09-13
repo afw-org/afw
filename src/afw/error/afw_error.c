@@ -36,7 +36,7 @@ afw_error_processing_handled(afw_xctx_t *xctx)
     }
     xctx->error_processing_count--;
     if (xctx->error_processing_count == 0) {
-        afw_pool_error_processing_finish(xctx);
+        afw_pool_release_delayed(xctx->p, xctx);
     }
 }
 

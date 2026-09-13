@@ -66,8 +66,9 @@
  * decides multithreaded vs thread-specific. Heap / heap tracker are
  * single-thread only: create, use, and release on the same thread
  * (normally one compiled_value evaluate). Trackers are scope->p and
- * return memory to the heap. The heap store is 4k-aligned chunks;
- * destroy free()s the list.
+ * return memory to the heap. Parent/child RC is the same for both.
+ * Last-release does not call destroy. The heap store is 4k-aligned
+ * chunks; destroy free()s the list.
  *
  * Key functions: afw_pool_create(), afw_pool_create_as_managed_p(),
  * afw_pool_create_xctx_p(), afw_pool_tracker_create(),

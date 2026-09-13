@@ -128,7 +128,7 @@ struct afw_error_s {
 
 /**
  * @brief CATCH finished: decrement error_processing_count, and if it
- *     is 0 run waiting last release/destroy (inner first).
+ *     is 0 last-release delayed pools (ENDTRY, not rethrowing).
  */
 AFW_DECLARE(void)
 afw_error_processing_handled(afw_xctx_t *xctx);
@@ -172,7 +172,7 @@ afw_error_processing_handled(afw_xctx_t *xctx);
  * error was not marked caught, ENDTRY copies the saved error back and
  * longjmps to the outer try (rethrow). If it was caught, execution continues
  * after ENDTRY after afw_error_processing_handled() (count back to 0
- * runs waiting last release/destroy). On the non-rethrow path, ENDTRY
+ * last-releases delayed pools). On the non-rethrow path, ENDTRY
  * also restores the evaluation stack top to the offset saved at AFW_TRY
  * entry.
  *

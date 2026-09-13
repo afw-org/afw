@@ -35,7 +35,15 @@
  *   (create is one thread; later unhandled callers use xctx->p).
  * - Optional free is afw_pool_free_memory(p, address, size, xctx).
  * - Use afw_pool_calloc_type for typed zeroed allocs.
- * - Cleanup functions run before the pool is destroyed.
+ * - Last-release: decrement; if 0 and children remain, throw; else
+ *   callbacks, unchain, free this store, release parent. Does not
+ *   call destroy.
+ * - destroy: this pool and remaining children, then the same
+ *   cleanup (callbacks, unchain, free store, release parent).
+ *   Callers must own that subtree. Clears delayed last-release
+ *   marks.
+ * - afw_pool_release_delayed(): postorder, last-release delayed
+ *   pools. ENDTRY after a caught error.
  */
 
 AFW_BEGIN_DECLARES
@@ -211,6 +219,21 @@ AFW_DECLARE(void)
 afw_pool_release_value_at_cleanup(
     const afw_value_t *value,
     const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Last-release pools delayed during error processing.
+ * @param instance root of the walk (usually xctx->p).
+ * @param xctx of caller.
+ *
+ * Postorder children, then this pool if it was delayed. Called from
+ * ENDTRY after a caught error. No-op if nothing is delayed. Destroy
+ * is not involved.
+ */
+AFW_DECLARE(void)
+afw_pool_release_delayed(
+    const afw_pool_t *instance,
     afw_xctx_t *xctx);
 
 

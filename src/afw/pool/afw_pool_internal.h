@@ -169,18 +169,18 @@ struct afw_pool_internal_self_s {
     /** @brief Optional pool name. */
     const afw_utf8_t *name;
 
-    /** @brief Parent heap when this is a tracker. */
+    /**
+     * @brief AFW parent. Child holds it; listed on first_child.
+     *
+     * Same for heap and tracker. A heap still has its own chunks
+     * (`impl_reservoir_heap` stops at a heap).
+     */
     afw_pool_internal_self_t *parent;
 
-    /**
-     * @brief AFW parent when this is a heap (usually a general pool).
-     */
-    const afw_pool_t *external_parent;
-
-    /** @brief First tracker child of this heap. */
+    /** @brief First child (heap or tracker). */
     afw_pool_internal_self_t *first_child;
 
-    /** @brief Next sibling tracker. */
+    /** @brief Next sibling. */
     afw_pool_internal_self_t *next_sibling;
 
     /**
@@ -202,7 +202,7 @@ struct afw_pool_internal_self_s {
     afw_integer_t reference_count;
 
     /**
-     * Next pool delaying last release/destroy while
+     * Next pool delaying last release while
      * error_processing_count > 0.
      */
     afw_pool_internal_self_t *error_delaying_release_next;
@@ -210,8 +210,13 @@ struct afw_pool_internal_self_s {
     /** Already on xctx->error_delaying_release_first. */
     afw_boolean_t error_delaying_release;
 
-    /** Flush should destroy, not release. */
-    afw_boolean_t error_processing_destroy;
+    /**
+     * @brief This destroy is in progress.
+     *
+     * Children unlink without releasing this parent. Same for heap
+     * and tracker.
+     */
+    afw_boolean_t destroying;
 
     /** @brief Outstanding malloc/calloc (minus free/destroy). */
     afw_size_t bytes_allocated;
@@ -252,9 +257,6 @@ afw_pool_internal_is_heap_multithreaded(const afw_pool_t *p);
 
 AFW_DECLARE(afw_boolean_t)
 afw_pool_internal_is_tracker(const afw_pool_t *p);
-
-AFW_DECLARE(void)
-afw_pool_error_processing_finish(afw_xctx_t *xctx);
 
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_internal_heap_create(

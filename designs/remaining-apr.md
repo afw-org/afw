@@ -20,7 +20,7 @@ Containers, strings, files, threads, getopt, curl body, LDAP setup, and the pool
 
 `afw_environment_release` still does not destroy the process base pool (`@fixme`). Process-lifetime chunks stay reachable via a static root, so valgrind should report them as **still reachable**, not definitely lost.
 
-Per-eval `xctx->evaluation_heap` (and object-option heaps) are child heaps with their own chunks. When a parent heap dies, leftover child heaps are unlinked and their chunks `free()`d recursively (APR used to free those reservoirs when the parent APR pool died). AFW destroy/cleanups are not run on those leftovers. Trackers still live in the parent heap's chunks.
+Heap and tracker use the same parent/child RC. Last-`release` does not call `destroy`: decrement, throw if children remain, then cleanup (callbacks, unchain, free this store, `release` parent). `destroy` tears down this pool and remaining children, then that same cleanup, and clears delayed last-`release` marks. Callers must own that subtree (`xctx->p`, flag/log scratch pools, …). Heap: `release` parent before `free_chunks` (`xctx` lives in `xctx->p`). `afw_pool_release_delayed()` is a postorder last-`release` of delayed pools at ENDTRY after a caught error. Child heaps keep their own chunks (`impl_reservoir_heap` stops at a heap).
 
 Tune later: mmap, chunk size, per-chunk free lists.
 
