@@ -992,27 +992,41 @@ impl_tracker_return_leftovers(
 
 
 /*
- * Callbacks, unchain, free this store, drop the child hold on the
- * parent. Children must already be gone (last-release throws if not;
- * destroy walked them first).
+ * Run cleanup callbacks only. Storage stays so sibling callbacks can
+ * still value_release tracker-allocated managed headers.
+ */
+static void
+impl_pool_run_cleanups(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+{
+    afw_pool_cleanup_t *e;
+
+    /*
+     * Detach the list first. A callback may last-release this pool
+     * (closure drops its scope); that must not walk the same list.
+     */
+    e = self->first_cleanup;
+    self->first_cleanup = NULL;
+    for (; e; e = e->next_cleanup) {
+        e->cleanup(e->data, e->data2, &self->pub, xctx);
+    }
+}
+
+
+/*
+ * Unchain, free this store, drop the child hold on the parent.
+ * Callbacks must already have run.
  *
  * Heap: release parent before free_chunks. xctx lives in xctx->p;
  * mt parent release takes the lock with xctx.
- * Tracker: header is in the parent heap; return it, then release
- * parent.
+ * Tracker: header is in the parent heap; return leftovers, then
+ * release parent.
  */
 static void
-impl_pool_cleanup(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+impl_pool_teardown_store(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
-    afw_pool_cleanup_t *e;
     afw_pool_internal_self_t *parent;
     afw_boolean_t parent_destroying;
     afw_boolean_t is_tracker;
-
-    for (e = self->first_cleanup; e; e = e->next_cleanup) {
-        e->cleanup(e->data, e->data2, &self->pub, xctx);
-    }
-    self->first_cleanup = NULL;
 
     parent = self->parent;
     parent_destroying = parent && parent->destroying;
@@ -1052,6 +1066,60 @@ impl_pool_cleanup(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 
 
 static void
+impl_pool_cleanup(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+{
+    impl_pool_run_cleanups(self, xctx);
+    impl_pool_teardown_store(self, xctx);
+}
+
+
+static void
+impl_pool_mark_destroying(AFW_POOL_SELF_T *self)
+{
+    afw_pool_internal_self_t *child;
+
+    self->destroying = true;
+    for (child = self->first_child; child; child = child->next_sibling) {
+        impl_pool_mark_destroying(child);
+    }
+}
+
+
+static void
+impl_pool_destroy_run_all_cleanups(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    afw_pool_internal_self_t *child;
+    afw_pool_internal_self_t *next;
+
+    for (child = self->first_child; child; child = next) {
+        next = child->next_sibling;
+        impl_pool_destroy_run_all_cleanups(child, xctx);
+    }
+    impl_pool_run_cleanups(self, xctx);
+}
+
+
+static void
+impl_pool_destroy_teardown_all(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    while (self->first_child) {
+        afw_pool_internal_self_t *child;
+
+        child = self->first_child;
+        impl_pool_destroy_teardown_all(child, xctx);
+        if (self->first_child == child) {
+            impl_unlink_child(self, child, xctx);
+        }
+    }
+    impl_pool_teardown_store(self, xctx);
+}
+
+
+static void
 impl_pool_destroy(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
     if (self->destroying) {
@@ -1061,17 +1129,13 @@ impl_pool_destroy(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
         return;
     }
     impl_clear_delay(self, xctx);
-    self->destroying = true;
-    while (self->first_child) {
-        afw_pool_internal_self_t *child;
-
-        child = self->first_child;
-        afw_pool_destroy(&child->pub, xctx);
-        if (self->first_child == child) {
-            impl_unlink_child(self, child, xctx);
-        }
-    }
-    impl_pool_cleanup(self, xctx);
+    /*
+     * Mark the whole subtree destroying before any callback so a
+     * last-release of a descendant does not leftover/free early.
+     */
+    impl_pool_mark_destroying(self);
+    impl_pool_destroy_run_all_cleanups(self, xctx);
+    impl_pool_destroy_teardown_all(self, xctx);
 }
 
 
@@ -1093,6 +1157,11 @@ impl_afw_pool_release(
     }
 
     if (--(self->reference_count) == 0) {
+        if (self->destroying) {
+            /* Parent destroy still owns leftover/free. */
+            impl_pool_run_cleanups(self, xctx);
+            return NULL;
+        }
         if (self->first_child) {
             AFW_THROW_ERROR_Z(general,
                 "Pool last-release with children remaining", xctx);
