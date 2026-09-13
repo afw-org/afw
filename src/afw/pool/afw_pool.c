@@ -1085,10 +1085,19 @@ impl_afw_pool_release(
     }
 
     if (--(self->reference_count) == 0) {
+        /*
+         * Cleanup may release a value that last-releases this same
+         * pool (closure in a tracker that captures that tracker).
+         * Do not run cleanup reentrantly; the outer teardown owns it.
+         */
+        if (self->destroying) {
+            return NULL;
+        }
         if (self->first_child) {
             AFW_THROW_ERROR_Z(general,
                 "Pool last-release with children remaining", xctx);
         }
+        self->destroying = true;
         impl_pool_cleanup(self, xctx);
         return NULL;
     }
@@ -1806,6 +1815,85 @@ afw_pool_create_as_managed_p(
 }
 
 
+#ifdef AFW_DEBUG_POOL
+static const afw_pool_t *
+impl_allocating_pool(const void *user)
+{
+    const afw_pool_debug_prefix_t *pre;
+
+    if (!user) {
+        return NULL;
+    }
+    pre = (const afw_pool_debug_prefix_t *)((const char *)user -
+        sizeof(afw_pool_debug_prefix_t));
+    if ((afw_size_t)pre->pool == AFW_POOL_DEBUG_POISON) {
+        return NULL;
+    }
+    return pre->pool;
+}
+#endif
+
+
+static const afw_pool_t *
+impl_value_storage_pool(const void *user)
+{
+    const afw_value_t *v = (const afw_value_t *)user;
+    const afw_array_t *a;
+    const afw_object_t *o;
+
+    /*
+     * Dual-face object/array: the malloc USER is the instance, not
+     * the embedded value. Instance p is the allocating pool.
+     */
+    if (v && afw_value_is_array(v)) {
+        a = ((const afw_value_array_t *)v)->internal;
+        if (a && a->p) {
+            return a->p;
+        }
+    }
+    if (v && afw_value_is_object(v)) {
+        o = ((const afw_value_object_t *)v)->internal;
+        if (o && o->p) {
+            return o->p;
+        }
+    }
+#ifdef AFW_DEBUG_POOL
+    return impl_allocating_pool(user);
+#else
+    return NULL;
+#endif
+}
+
+
+AFW_DEFINE(afw_boolean_t)
+afw_pool_or_parent_holds(
+    const afw_pool_t *p,
+    const void *user,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_t *alloc;
+    afw_pool_internal_self_t *self;
+
+    (void)xctx;
+    if (!p || !user) {
+        return false;
+    }
+    alloc = impl_value_storage_pool(user);
+    if (!alloc) {
+        return false;
+    }
+    for (self = (afw_pool_internal_self_t *)p;
+        self;
+        self = self->parent)
+    {
+        if (&self->pub == alloc) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 /* Release the value registered with afw_pool_release_value_at_cleanup(). */
 static void
 impl_release_value_at_cleanup(
@@ -1817,6 +1905,32 @@ impl_release_value_at_cleanup(
 }
 
 
+AFW_DEFINE(afw_boolean_t)
+afw_pool_is_value_release_registered(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_pool_internal_self_t *self;
+    afw_pool_cleanup_t *e;
+
+    (void)xctx;
+    if (!value || !p) {
+        return false;
+    }
+    self = (afw_pool_internal_self_t *)p;
+    for (e = self->first_cleanup; e; e = e->next_cleanup) {
+        if (e->cleanup == impl_release_value_at_cleanup &&
+            e->data == (void *)value &&
+            e->data2 == NULL)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 /* Release a value when a pool is destroyed. */
 AFW_DEFINE(void)
 afw_pool_release_value_at_cleanup(
@@ -1825,6 +1939,20 @@ afw_pool_release_value_at_cleanup(
     afw_xctx_t *xctx)
 {
     if (!value) {
+        return;
+    }
+    /* Permanents / compile literals: nothing to release. */
+    if (!value->inf || !value->inf->optional_release) {
+        return;
+    }
+    /* p or a parent must hold the bytes. */
+    if (!afw_pool_or_parent_holds(p, value, xctx)) {
+        AFW_THROW_ERROR_Z(general,
+            "release_value_at_cleanup: value is not held by this pool "
+            "or a parent",
+            xctx);
+    }
+    if (afw_pool_is_value_release_registered(value, p, xctx)) {
         return;
     }
     afw_pool_register_cleanup_before(p, (void *)value, NULL,

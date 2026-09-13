@@ -1089,6 +1089,14 @@ afw_xctx_scope_get_assignable_for_p_lifetime(
     if (!value || afw_value_is_void(value)) {
         return value ? value : afw_value_void;
     }
+    if (!value->inf || !value->inf->optional_release) {
+        return value;
+    }
+    if (scope &&
+        afw_pool_is_value_release_registered(value, scope->p, xctx))
+    {
+        return value;
+    }
     value = afw_value_get_assignable(value, xctx);
     if (scope) {
         afw_pool_release_value_at_cleanup(value, scope->p, xctx);
