@@ -81,7 +81,7 @@ afw_array_create_with_options(
  * The transferred occupant is registered on the current scope pool
  * (`afw_pool_release_value_at_cleanup`) so it acts like a temp: it
  * dies with that `{ }` unless a slot `get_assignable_value`s it.
- * Do not `get_assignable_for_lifetime` on the pop result — that
+ * Do not `get_assignable_for_scope_lifetime` on the pop result — that
  * extra-bumps on top of the transfer.
  */
 AFW_DECLARE(const afw_array_t *)

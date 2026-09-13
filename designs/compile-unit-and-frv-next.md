@@ -1,4 +1,4 @@
-# Compile unit, leave, isolate-at-clone, builtin lifetime, pop temp-on-scope (landed); next: FRV
+# Compile unit, leave, isolate-at-clone, builtin lifetime, pop temp-on-scope (landed); FRV leftover dropped (`issue-2-frv`)
 
 **Audience:** next session. Not user docs (`whats-new.md` notes `slice` / `map` stay mutable).
 
@@ -8,6 +8,7 @@
 - [PR #307](https://github.com/afw-org/afw/pull/307) (`0c0816de`, 2026-09-10) — isolate last at `for (let)` clone; wrap unbraced loop bodies after parse in the current block.
 - [PR #308](https://github.com/afw-org/afw/pull/308) (`9a79eeb7`, 2026-09-10) — `get_assignable_for_lifetime` vs `set_last_result_for_lifetime`; mutating builtins hold the instance first; new array results `create_managed` then fill; `array()` / `create_array()` stay script wrappers.
 - [PR #309](https://github.com/afw-org/afw/pull/309) (`b484813f`, 2026-09-11) — managed `pop`/`shift` transfer, then `afw_pool_release_value_at_cleanup` on the current scope (temp). Contract: `afw_array_create_managed`. Soak **flat**. Do not `get_assignable_for_lifetime` on the pop result.
+- **`issue-2-frv`** (off `reduce-apr-pool`, 2026-09-13) — no `function_return_value` wrapper. Script return is `get_assignable_for_p_lifetime` on the **caller**. Closures are managed (`is_managed` inf flag). `destroy` is storage-only; `run_cleanups` first (`xctx_release`). `register_cleanup_before` → `register_cleanup`. Verify: `afwdev test -j` and `afwdev test -j --env-mode valgrind` **4484 passed**, 71 skipped.
 
 **Verify for #309:** `./afwdev build --fulldev`, `afwdev test -j`, and `afwdev test -j --env-mode valgrind`: **4449 passed**, 71 skipped.
 
@@ -62,30 +63,23 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 
 ## Next slices (agreed order)
 
-1. **FRV as stack leftover** — last of the leave/FRV wave. Two lifetimes (occupant vs wrapper). Unique consume mashed them. Sitting brief below. Open with “what do you think?”
-2. **Runtime call-result hold** — evaluate-only inf (like `closure_binding`: display decompile, not recompile) for **managed built-in returns** if they still leftover. Identity **`push`** stays unwrapped. `pop`/`shift` are the scope-temp path ([PR #309](https://github.com/afw-org/afw/pull/309)), not this inf. Keep separate from compile-time FRV until they match.
+1. **FRV leftover — dropped** on `issue-2-frv`. No wrapper; pin on caller. Unique consume / eval-stack leftover / `#function_return_value` gone.
+2. **Runtime call-result hold** — evaluate-only inf (like `closure_binding`: display decompile, not recompile) for **managed built-in returns** if they still leftover. Identity **`push`** stays unwrapped. `pop`/`shift` are the scope-temp path ([PR #309](https://github.com/afw-org/afw/pull/309)), not this inf.
 3. **Merge 1 and 2** only if the infs are actually the same.
 
 ---
 
-## FRV next sitting (2026-09-13)
+## FRV sitting (2026-09-13) — landed on `issue-2-frv`
 
-**Branch off `reduce-apr-pool`**, not `develop`. Do **not** merge `issue-2-frv-leftover` (tip `Broken`; written when last-`release` still called `destroy` and APR still reaped child reservoirs). Read that branch if useful; start the tree here.
+**Branch off `reduce-apr-pool`**, not `develop`. Did **not** merge `issue-2-frv-leftover`.
 
-Pool lifetime on `reduce-apr-pool` (authority: code + [`remaining-apr.md`](remaining-apr.md) — **do not write FRV into that pad**):
+**Shipped:** no `function_return_value` type. Script function produce path is `get_assignable_for_p_lifetime` on `scope_of_caller` while the callee frame is alive. `return()` is `set_last_result` (pointer); isolate-up is last_result → script_result → parent adopt. Closures are managed (`inf->is_managed`); pin may register on any scope `p`. `get_assignable` of managed is `get_reference` of self; unmanaged often `clone_managed`. Copy eval results out of the compile-unit pool before last-releasing `compiled`.
 
-- Last-`release` does not call `destroy`. Hits 0 with children remaining → throw.
-- `destroy` is subtree teardown **with** callbacks (xmlRegexp, LDAP, YAML, DSO). Do **not** skip callbacks on `destroy` to hide SIGSEGV.
-- Delayed last-`release` drains at ENDTRY (`afw_pool_release_delayed`). `destroy` clears delay marks.
-- Heap `release`s parent before `free_chunks` (`xctx` lives in `xctx->p`).
+**Pool (this branch; also [`remaining-apr.md`](remaining-apr.md)):** last-`release` still runs callbacks then teardown. **`destroy` is storage-only.** **`run_cleanups`** first (`xctx_release` TRY cleanups, FINALLY destroy). Subtree marked destroying before callbacks; leftover/free after; cleanup list detached so re-entry is a no-op. `register_cleanup_before` → `register_cleanup` (do not throw uncaught in a callback).
 
-**Reproduce:** leftover `destroy(xctx->p)` runs last-`release` callbacks on already-gone values (`0xbadf00d`). Probe: `return` → `set_last_result_for_lifetime` registering last-`release` of a value **already** on that `scope->p`. One callback must be one reference.
+**Verify:** `./afwdev build --cdev`, `afwdev test -j`, `afwdev test -j --env-mode valgrind`: **4484 passed**, 71 skipped.
 
-SIGSEGV set (same with destroy callbacks on): `pragma.as`, `type_check.as`, test262 `switch`/`for-of`/`try`/`optional-chaining`/`list`, `parse_bounds.as`, `get_retrieve.as`, `crud_hooks.as`, `authorization_check_function.as`, `exercise_script.as`, `return_values.as`, `closures.as`, `throw_rewind.as`, `wrapper_property_holds.as`, `pool_eval_lifetime.as`, `evaluate_once.as`. `multi-request-file` follows `afwfcgi` crash.
-
-**Partner:** Mike’s steps, one at a time. Do not scatter last-`release` skips in array/object/pool.
-
-When FRV is green, merge that fix **back into** `reduce-apr-pool` (or PR the stack). Do not PR pool to `develop` while those SIGSEGVs remain.
+When green, merge **back into** `reduce-apr-pool` (or PR the stack) before `develop`.
 
 ---
 
