@@ -364,12 +364,6 @@ AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_closure_binding_inf;
 
 
-/** @brief Value function return (return-temp) inf. */
-AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_function_return_value_inf;
-
-
-
 /** @brief Value list expression inf. */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_list_expression_inf;
@@ -877,19 +871,6 @@ afw_value_is_fully_evaluated(
     (A_VALUE) && \
     (A_VALUE)->inf == &afw_value_closure_binding_inf \
 )
-
-
-/**
- * @brief Macro to determine if value is a function return temp.
- * @param A_VALUE to test.
- * @return boolean result.
- */
-#define afw_value_is_function_return_value(A_VALUE) \
-( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_function_return_value_inf \
-)
-
 
 
 /**
@@ -1794,24 +1775,6 @@ afw_value_closure_binding_create(
 AFW_DEFINE(const afw_value_t *)
 afw_value_closure_binding_create_if_needed(
     const afw_value_t *value,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Create a function return temp wrapping a returned value.
- * @param return_value occupant being returned.
- * @param p pool for the wrapper.
- * @param xctx of caller.
- * @return Created afw_value_t.
- *
- * Wrapper RC starts at 1. Occupant is stored via
- * get_assignable_value. Last release of the wrapper releases the
- * occupant and frees the header.
- */
-AFW_DEFINE(const afw_value_t *)
-afw_value_function_return_value_create(
-    const afw_value_t *return_value,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 

@@ -440,8 +440,6 @@ impl_afw_value_optional_evaluate(
 
         AFW_ENDTRY;
 
-        afw_xctx_evaluation_stack_release_leftovers(xctx);
-
         /* Side-channel expects after return/error check; always release. */
         impl_test_script_check_stream_expect(test,
             afw_stream_number_stdout, afw_s_stdout,

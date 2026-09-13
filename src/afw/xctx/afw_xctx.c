@@ -1026,102 +1026,24 @@ afw_xctx_scope_release(
 }
 
 
-/*
- * Leftover return wrappers parked for the enclosing call's pop_value.
- * Call frames are graph infs and are not.
- */
-AFW_DEFINE(afw_boolean_t)
-afw_xctx_evaluation_stack_is_parked_occupant(const afw_value_t *v)
-{
-    if (!v ||
-        ((afw_size_t)v <= 4096) ||
-        (((afw_size_t)v) & (sizeof(void *) - 1)) != 0)
-    {
-        return false;
-    }
-    return afw_value_is_function_return_value(v);
-}
-
-
-/*
- * Release leftover return wrappers on top of the stack. Skip leftover
- * parameter-number pairs so a number slot is never used as a value
- * pointer.
- */
-AFW_DEFINE(void)
-afw_xctx_evaluation_stack_release_leftovers(
-    afw_xctx_t *xctx)
-{
-    afw_xctx_evaluation_stack_t *stack;
-    const afw_value_t *v;
-
-    stack = xctx->evaluation_stack;
-    if (!stack) {
-        return;
-    }
-    while (stack->count > 0) {
-        if (AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id ==
-            afw_s_parameter_number)
-        {
-            afw_vector_pop(stack, xctx);
-            if (stack->count > 0) {
-                afw_vector_pop(stack, xctx);
-            }
-            continue;
-        }
-        v = AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value;
-        if (afw_xctx_evaluation_stack_is_parked_occupant(v)) {
-            afw_value_release(v, xctx);
-            afw_vector_pop(stack, xctx);
-            continue;
-        }
-        break;
-    }
-}
-
-
-/*
- * Pop a VALUE, releasing leftover return wrappers first.
- */
 AFW_DEFINE(void)
 afw_xctx_evaluation_stack_pop_value_impl(afw_xctx_t *xctx)
 {
-    afw_xctx_evaluation_stack_release_leftovers(xctx);
     if (xctx->evaluation_stack && xctx->evaluation_stack->count > 0) {
         afw_vector_pop(xctx->evaluation_stack, xctx);
     }
 }
 
 
-/*
- * Rewind evaluation stack to saved_top. Release leftover return
- * wrappers. Skip parameter-number pairs without treating the number
- * as a value pointer.
- */
 AFW_DEFINE(void)
 afw_xctx_evaluation_stack_rewind(
     afw_size_t save_count,
     afw_xctx_t *xctx)
 {
-    afw_xctx_evaluation_stack_t *stack;
-    const afw_value_t *v;
-
-    stack = xctx->evaluation_stack;
-    while (stack->count > save_count) {
-        if (AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id ==
-            afw_s_parameter_number)
-        {
-            stack->count--;
-            if (stack->count > save_count) {
-                stack->count--;
-            }
-            continue;
-        }
-        v = AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value;
-        if (afw_xctx_evaluation_stack_is_parked_occupant(v)) {
-            afw_value_release(v, xctx);
-        }
-        stack->count--;
+    if (xctx->evaluation_stack &&
+        xctx->evaluation_stack->count > save_count)
+    {
+        xctx->evaluation_stack->count = save_count;
     }
 }
 

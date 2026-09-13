@@ -608,7 +608,6 @@ impl_evaluate(
     }
 
     AFW_FINALLY{
-        afw_xctx_evaluation_stack_release_leftovers(xctx);
         afw_adapter_session_commit_and_release_cache(error_occurred, xctx);
         afw_xctx_release(xctx, xctx);
         /* Special case: xctx is gone, so return before AFW_ENDTRY. */

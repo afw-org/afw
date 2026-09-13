@@ -150,10 +150,8 @@ impl_over_array(
 
             if (!callback(&e))
             {
-                afw_xctx_evaluation_stack_release_leftovers(e.xctx);
                 break;
             }
-            afw_xctx_evaluation_stack_release_leftovers(e.xctx);
         }
     }
 
@@ -169,10 +167,8 @@ impl_over_array(
             e.entry_result = afw_value_evaluate(e.functor, e.p, e.xctx);
             if (!callback(&e))
             {
-                afw_xctx_evaluation_stack_release_leftovers(e.xctx);
                 break;
             }
-            afw_xctx_evaluation_stack_release_leftovers(e.xctx);
         }
     }
 
@@ -286,16 +282,16 @@ impl_bag_of_bag(
                 AFW_THROW_ERROR_Z(argument_error,
                     "First argument must be a boolean function", x->xctx);
             }
-            is_true = ((const afw_value_boolean_t *)v)->internal;
-            afw_xctx_evaluation_stack_release_leftovers(x->xctx);
 
             /* If true, indicate and break if any_2 enough. */
-            if (is_true) {
+            if (((const afw_value_boolean_t *)v)->internal) {
+                is_true = true;
                 if (any_2) break;
             }
 
             /* If false, indicate and break if all must be true. */
             else {
+                is_true = false;
                 if (!any_2) break;
             }
         }
@@ -932,7 +928,6 @@ impl_partition(
     const afw_value_t *value;
     const afw_value_t *return_value;
     afw_size_t i, j;
-    afw_boolean_t is_less;
 
     /* Start pivot from high. */
     pivot = ctx->values[high];
@@ -946,14 +941,12 @@ impl_partition(
         return_value = afw_value_evaluate(ctx->compareFunction,
             ctx->p, ctx->xctx);
         AFW_VALUE_ASSERT_IS_DATA_TYPE(return_value, boolean, ctx->xctx);
-        is_less = ((const afw_value_boolean_t *)return_value)->internal;
-        afw_xctx_evaluation_stack_release_leftovers(ctx->xctx);
 
         /*
          * if compareFunction(values[j], pivot) is true, swap values[i] and
          * value[j] then increment i
          */
-        if (is_less)
+        if (((const afw_value_boolean_t *)return_value)->internal)
         {
             value = ctx->values[i];
             ctx->values[i] = ctx->values[j];
