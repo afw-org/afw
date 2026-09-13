@@ -314,8 +314,8 @@ afw_function_execute_property_delete_by_reference(
     reference = (const afw_value_reference_by_key_t *)value;
 
     /* The aggregate_value must be an object. */
-    object_value = afw_value_evaluate_and_park(
-        reference->aggregate_value, 1, x->p, x->xctx);
+    object_value = afw_value_evaluate(
+        reference->aggregate_value, x->p, x->xctx);
     if (!afw_value_is_object(object_value)) {
         AFW_THROW_ERROR_Z(general,
             "Expecting object reference", x->xctx);
@@ -323,8 +323,8 @@ afw_function_execute_property_delete_by_reference(
     object = (const afw_value_object_t *)object_value;
 
     /* The key must be a property name. */
-    key_value = afw_value_evaluate_and_park(
-        reference->key, 1, x->p, x->xctx);
+    key_value = afw_value_evaluate(
+        reference->key, x->p, x->xctx);
     if (!afw_value_is_string(key_value)) {
         AFW_THROW_ERROR_Z(general,
             "Expecting property reference", x->xctx);

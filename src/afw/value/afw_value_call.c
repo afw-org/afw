@@ -191,8 +191,7 @@ impl_afw_value_optional_evaluate(
      * called the appropriate create function, so those should not be
      * encountered here.
      */
-    function_value = afw_value_evaluate_and_park(
-        self->function_value, 1, p, xctx);
+    function_value = afw_value_evaluate(self->function_value, p, xctx);
 
     /*
      * This is most likely a script function call since built-ins are usually
@@ -392,7 +391,7 @@ afw_value_call_args_expand_spreads(
     for (i = 1; i <= argc_in; i++) {
         arg = argv_in[i];
         if (arg && afw_value_is_array_expression(arg)) {
-            evaled = afw_value_evaluate_and_park(arg, i, p, xctx);
+            evaled = afw_value_evaluate(arg, p, xctx);
             if (!afw_value_is_array(evaled)) {
                 AFW_THROW_ERROR_Z(general,
                     "Call-site spread (...) requires an array", xctx);

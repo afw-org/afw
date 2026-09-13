@@ -67,8 +67,8 @@ impl_over_array(
      * pass scalar string thresholds next to the bag.
      */
     for (e.n = 1; e.n <= functor_argc; e.n++) {
-        functor_argv[e.n] = afw_value_evaluate_and_park(
-            x->argv[e.n + 1], e.n + 1, e.p, e.xctx);
+        functor_argv[e.n] = afw_value_evaluate(
+            x->argv[e.n + 1], e.p, e.xctx);
         if (!e.entry_arg_ptr && afw_value_is_array(functor_argv[e.n])) {
             e.entry_arg_ptr = &functor_argv[e.n];
             e.array = ((const afw_value_array_t *)*e.entry_arg_ptr)->internal;
@@ -147,13 +147,13 @@ impl_over_array(
             }
 
             e.entry_result = afw_value_evaluate(e.functor, e.p, e.xctx);
-            e.entry_result = afw_value_function_return_value_consume(
-                e.entry_result, e.p, e.xctx);
 
             if (!callback(&e))
             {
+                afw_xctx_evaluation_stack_release_leftovers(e.xctx);
                 break;
             }
+            afw_xctx_evaluation_stack_release_leftovers(e.xctx);
         }
     }
 
@@ -167,12 +167,12 @@ impl_over_array(
             }
             e.entry_value = *e.entry_arg_ptr;
             e.entry_result = afw_value_evaluate(e.functor, e.p, e.xctx);
-            e.entry_result = afw_value_function_return_value_consume(
-                e.entry_result, e.p, e.xctx);
             if (!callback(&e))
             {
+                afw_xctx_evaluation_stack_release_leftovers(e.xctx);
                 break;
             }
+            afw_xctx_evaluation_stack_release_leftovers(e.xctx);
         }
     }
 
@@ -282,21 +282,20 @@ impl_bag_of_bag(
                 break;
             }
             v = afw_value_evaluate(call, x->p, x->xctx);
-            v = afw_value_function_return_value_consume(v, x->p, x->xctx);
             if (!afw_value_is_boolean(v)) {
                 AFW_THROW_ERROR_Z(argument_error,
                     "First argument must be a boolean function", x->xctx);
             }
+            is_true = ((const afw_value_boolean_t *)v)->internal;
+            afw_xctx_evaluation_stack_release_leftovers(x->xctx);
 
             /* If true, indicate and break if any_2 enough. */
-            if (((const afw_value_boolean_t *)v)->internal) {
-                is_true = true;
+            if (is_true) {
                 if (any_2) break;
             }
 
             /* If false, indicate and break if all must be true. */
             else {
-                is_true = false;
                 if (!any_2) break;
             }
         }
@@ -907,8 +906,6 @@ afw_function_execute_reduce(
         }
         f_argv[1] = accumulator;
         accumulator = afw_value_evaluate(call, x->p, x->xctx);
-        accumulator = afw_value_function_return_value_consume(
-            accumulator, x->p, x->xctx);
     }
 
     return accumulator;
@@ -935,6 +932,7 @@ impl_partition(
     const afw_value_t *value;
     const afw_value_t *return_value;
     afw_size_t i, j;
+    afw_boolean_t is_less;
 
     /* Start pivot from high. */
     pivot = ctx->values[high];
@@ -947,15 +945,15 @@ impl_partition(
         ctx->args[1] = ctx->values[j];
         return_value = afw_value_evaluate(ctx->compareFunction,
             ctx->p, ctx->xctx);
-        return_value = afw_value_function_return_value_consume(
-            return_value, ctx->p, ctx->xctx);
         AFW_VALUE_ASSERT_IS_DATA_TYPE(return_value, boolean, ctx->xctx);
+        is_less = ((const afw_value_boolean_t *)return_value)->internal;
+        afw_xctx_evaluation_stack_release_leftovers(ctx->xctx);
 
         /*
          * if compareFunction(values[j], pivot) is true, swap values[i] and
          * value[j] then increment i
          */
-        if (((const afw_value_boolean_t *)return_value)->internal)
+        if (is_less)
         {
             value = ctx->values[i];
             ctx->values[i] = ctx->values[j];

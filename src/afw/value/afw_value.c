@@ -40,6 +40,29 @@ afw_value_undefined =
 { &impl_value_undefined.pub };
 
 
+static const afw_value_t *
+impl_optional_evaluate(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!value || !value->inf || !value->inf->optional_evaluate) {
+        return value;
+    }
+    return value->inf->optional_evaluate(value, p, xctx);
+}
+
+
+AFW_DEFINE(const afw_value_t *)
+afw_value_evaluate_impl(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    return impl_optional_evaluate(value, p, xctx);
+}
+
+
 /* NULL-safe get_reference. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_add_reference(

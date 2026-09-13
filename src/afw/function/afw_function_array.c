@@ -133,7 +133,7 @@ afw_function_execute_array(
     /* Construct a new array with elements passed as arguments. */
     array = afw_array_create_script_wrapper(x->p, x->xctx);
     for (n = 1, arg = &x->argv[1]; n <= x->argc; n++, arg++) {
-        value = afw_value_evaluate_and_park(*arg, n, x->p, x->xctx);
+        value = afw_value_evaluate(*arg, x->p, x->xctx);
 
         /* If array expression, add each element of array. */
         if (afw_value_is_array_expression(*arg)) {
@@ -144,8 +144,7 @@ afw_function_execute_array(
                     if (!entry) {
                         break;
                     }
-                    entry = afw_value_evaluate_and_park(
-                        entry, n, x->p, x->xctx);
+                    entry = afw_value_evaluate(entry, x->p, x->xctx);
                     afw_array_push_value(array, entry, x->xctx);
                 }
             }

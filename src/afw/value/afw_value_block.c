@@ -129,10 +129,14 @@ afw_value_block_evaluate_block(
          * the `{ }`: promote last_result, then pop. Labeled
          * break/continue keep flowing until the matching loop
          * consumes them; each enclosing `{ }` still deactivates here.
+         *
+         * Isolate last_result first, then release leftover return
+         * wrappers while this `{ }` tracker is still alive.
          */
         if (afw_xctx_scope_current(xctx) == scope) {
             afw_xctx_scope_deactivate(scope, xctx);
         }
+        afw_xctx_evaluation_stack_release_leftovers(xctx);
         afw_xctx_scope_release(scope, xctx);
     }
     AFW_ENDTRY;

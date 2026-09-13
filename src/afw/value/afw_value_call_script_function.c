@@ -385,14 +385,10 @@ impl_afw_value_optional_evaluate(
          */
         if (result &&
             !afw_value_is_undefined(result) &&
-            !afw_value_is_void(result) &&
-            !afw_value_is_function_return_value(result))
+            !afw_value_is_void(result))
         {
-            const afw_pool_t *frv_p;
-
-            frv_p = xctx->evaluation_heap ? xctx->evaluation_heap : xctx->p;
             result = afw_value_function_return_value_create(
-                result, frv_p, xctx);
+                result, p, xctx);
         }
     }
 

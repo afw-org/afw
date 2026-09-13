@@ -285,7 +285,7 @@ afw_function_script_evaluate_parameter_with_type(
         return value;
     }
 
-    result = afw_value_evaluate_and_park(value, parameter_number, p, xctx);
+    result = afw_value_evaluate(value, p, xctx);
 
     /* #153: materialize utf8 sequences before check/convert. */
     if (wants_array_sequence) {
@@ -320,7 +320,7 @@ afw_function_script_assign_pattern(
      * script_function inf (slot_store). Faces isolate object/array literals.
      */
     if (value && !afw_value_is_undefined(value)) {
-        value = afw_value_evaluate_and_park(value, 1, p, xctx);
+        value = afw_value_evaluate(value, p, xctx);
     }
     impl_assign_value(target, value, assignment_type, p, xctx);
 }
@@ -341,7 +341,7 @@ impl_evaluate_pattern_default(
     if (!default_value) {
         return afw_value_undefined;
     }
-    return afw_value_evaluate_and_park(default_value, 1, p, xctx);
+    return afw_value_evaluate(default_value, p, xctx);
 }
 
 
@@ -477,8 +477,8 @@ impl_object_destructure(
     {
         if (ap->is_rename) {
             if (ap->property_name_expr) {
-                name_v = afw_value_evaluate_and_park(
-                    ap->property_name_expr, 1, p, xctx);
+                name_v = afw_value_evaluate(
+                    ap->property_name_expr, p, xctx);
                 bound_name = afw_object_require_string_property_name(
                     name_v, xctx);
             }
@@ -603,7 +603,7 @@ impl_assignment_target(
             (symbol->type.kind != afw_value_type_kind_data_type ||
                 symbol->type.data_type != afw_data_type_unevaluated))
         {
-            value = afw_value_evaluate_and_park(value, 1, p, xctx);
+            value = afw_value_evaluate(value, p, xctx);
         }
         afw_value_type_check_assignable(&symbol->type, value,
             "assignment", contextual, xctx);
@@ -631,7 +631,7 @@ impl_assign(
 {
     const afw_value_assignment_target_t *at;
 
-    value = afw_value_evaluate_and_park(value, 1, p, xctx);
+    value = afw_value_evaluate(value, p, xctx);
 
     if (assignment_type == afw_compile_assignment_type_use_assignment_targets)
     {
@@ -715,9 +715,9 @@ impl_assign_value(
         const afw_value_t *key;
         const afw_value_t *aggregate_value;
 
-        aggregate_value = afw_value_evaluate_and_park(
-            t->aggregate_value, 1, p, xctx);
-        key = afw_value_evaluate_and_park(t->key, 1, p, xctx);
+        aggregate_value = afw_value_evaluate(
+            t->aggregate_value, p, xctx);
+        key = afw_value_evaluate(t->key, p, xctx);
         aggregate_value = afw_value_get_assignable(aggregate_value, xctx);
 
         if (afw_value_is_object(aggregate_value)) {
@@ -895,7 +895,7 @@ afw_function_execute_assign(
     const afw_value_t *result;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(2);
-    /* Same door as let/const: impl_assign evaluate_and_park's the RHS.
+    /* Same door as let/const: impl_assign evaluates the RHS.
      * EVALUATE_PARAMETER extra-evaluates compiled_value (formal any). */
     result = impl_assign(x->argv[1], AFW_FUNCTION_ARGV(2),
         afw_compile_assignment_type_assign_only,
@@ -1843,8 +1843,7 @@ afw_function_execute_switch(
             default_pair = pair;
             continue;
         }
-        result = afw_value_function_return_value_consume(
-            afw_value_evaluate(functor, p, xctx), p, xctx);
+        result = afw_value_evaluate(functor, p, xctx);
         if (!afw_value_is_boolean(result)) {
             AFW_THROW_ERROR_Z(general,
                 "Expecting functor to return a boolean value",
