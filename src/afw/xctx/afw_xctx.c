@@ -635,15 +635,13 @@ afw_xctx_release(
     const afw_xctx_t *instance,
     afw_xctx_t *xctx)
 {
-    /* Release streams. */
-    afw_stream_internal_release_all_streams(xctx);
-
     /*
-     * Callbacks first (may throw), then destroy always frees storage.
-     * xctx lives in instance->p; return before AFW_ENDTRY.
+     * Streams and callbacks may throw (fclose, cleanup). destroy always
+     * frees storage. xctx lives in instance->p; return before AFW_ENDTRY.
      */
     if (instance->p) {
         AFW_TRY {
+            afw_stream_internal_release_all_streams(xctx);
             afw_pool_run_cleanups(instance->p, xctx);
         }
         AFW_FINALLY {
@@ -651,6 +649,9 @@ afw_xctx_release(
             return;
         }
         AFW_ENDTRY;
+    }
+    else {
+        afw_stream_internal_release_all_streams(xctx);
     }
 }
 

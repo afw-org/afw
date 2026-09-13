@@ -608,7 +608,14 @@ impl_evaluate(
     }
 
     AFW_FINALLY{
-        afw_adapter_session_commit_and_release_cache(error_occurred, xctx);
+        AFW_TRY {
+            afw_adapter_session_commit_and_release_cache(
+                error_occurred, xctx);
+        }
+        AFW_CATCH_UNHANDLED {
+            /* Do not skip xctx_release / destroy. */
+        }
+        AFW_ENDTRY;
         afw_xctx_release(xctx, xctx);
         /* Special case: xctx is gone, so return before AFW_ENDTRY. */
         if (keep_going) impl_print_end(self);

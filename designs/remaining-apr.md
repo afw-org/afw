@@ -34,7 +34,7 @@ FRV leftover is **in this branch** (squash [PR #326](https://github.com/afw-org/
 
 **Not blocking:** `afw_environment_release` still does not destroy the process base pool (`@fixme`; valgrind **still reachable**). mmap / chunk size / per-chunk free lists.
 
-**Keep:** last-`release` runs callbacks then teardown. `destroy` storage-only. `xctx_release` `TRY` `run_cleanups` `FINALLY` `destroy` (return before `ENDTRY`; `xctx` lives in `xctx->p`). Mark whole subtree `destroying` before callbacks; leftover/free after; detach `first_cleanup` before walking (nested last-`release` must not re-enter). Closures are managed (`inf->is_managed`); pin on any scope `p`. Dual-face object/array: one instance RC; unmanaged **value** `get_reference` / `release` **throw**. `get_assignable` of managed is `get_reference` of self; unmanaged often `clone_managed`. Copy compile-eval results out of the unit pool before last-releasing `compiled`.
+**Keep:** last-`release` runs callbacks then teardown. `destroy` storage-only. `xctx_release` `TRY` streams then `run_cleanups` `FINALLY` `destroy` (return before `ENDTRY`; `xctx` lives in `xctx->p`). Host FINALLY must catch adapter cache commit so `xctx_release` still runs. Mark whole subtree `destroying` before callbacks; leftover/free after; detach `first_cleanup` before walking (nested last-`release` must not re-enter). Closures are managed (`inf->is_managed`); pin on any scope `p`. Dual-face object/array: one instance RC; unmanaged **value** `get_reference` / `release` **throw**. `get_assignable` of managed is `get_reference` of self; unmanaged often `clone_managed`. Copy compile-eval results out of the unit pool before last-releasing `compiled`.
 
 ## Already done (do not re-litigate)
 
