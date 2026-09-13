@@ -79,7 +79,7 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 
 **Verify:** `./afwdev build --cdev`, `afwdev test -j`, `afwdev test -j --env-mode valgrind`: **4484 passed**, 71 skipped.
 
-When green, merge **back into** `reduce-apr-pool` (or PR the stack) before `develop`.
+Squash-merged [PR #326](https://github.com/afw-org/afw/pull/326) into `reduce-apr-pool` as `0bed0e4f`. `issue-2-frv` and `issue-2-frv-leftover` **deleted**. Next: land `reduce-apr-pool` on `develop` ([`remaining-apr.md`](remaining-apr.md)).
 
 ---
 

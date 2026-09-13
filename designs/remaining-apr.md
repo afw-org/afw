@@ -24,6 +24,18 @@ Heap and tracker use the same parent/child RC. Last-`release` does not call `des
 
 Tune later: mmap, chunk size, per-chunk free lists.
 
+## Next sitting: land `reduce-apr-pool` on `develop`
+
+FRV leftover is **in this branch** (squash [PR #326](https://github.com/afw-org/afw/pull/326) `0bed0e4f`). `issue-2-frv` and `issue-2-frv-leftover` are **deleted**. Do **not** reopen unique consume, eval-stack leftover FRV, or `#function_return_value`. Do **not** put callbacks back on `destroy` to hide SIGSEGV.
+
+**Verify already green** (2026-09-13): `./afwdev build --cdev`, `afwdev test -j`, `afwdev test -j --env-mode valgrind` — **4484 passed**, 71 skipped.
+
+**To land:** maintainer default `./afwdev build --fulldev` then PR **`reduce-apr-pool` → `develop`**. C API notes are in `whats-new.md` (`run_cleanups` / storage-only `destroy`, `register_cleanup`, `get_assignable_for_scope_lifetime` / `for_p_lifetime`).
+
+**Not blocking:** `afw_environment_release` still does not destroy the process base pool (`@fixme`; valgrind **still reachable**). mmap / chunk size / per-chunk free lists. Runtime call-result hold ([`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md) next slice).
+
+**Keep:** last-`release` runs callbacks then teardown. `destroy` storage-only. `xctx_release` `TRY` `run_cleanups` `FINALLY` `destroy` (return before `ENDTRY`; `xctx` lives in `xctx->p`). Mark whole subtree `destroying` before callbacks; leftover/free after; detach `first_cleanup` before walking (nested last-`release` must not re-enter). Closures are managed (`inf->is_managed`); pin on any scope `p`. Dual-face object/array: one instance RC; unmanaged **value** `get_reference` / `release` **throw**. `get_assignable` of managed is `get_reference` of self; unmanaged often `clone_managed`. Copy compile-eval results out of the unit pool before last-releasing `compiled`.
+
 ## Already done (do not re-litigate)
 
 | Sitting | What |
