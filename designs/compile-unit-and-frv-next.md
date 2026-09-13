@@ -68,6 +68,27 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 
 ---
 
+## FRV next sitting (2026-09-13)
+
+**Branch off `reduce-apr-pool`**, not `develop`. Do **not** merge `issue-2-frv-leftover` (tip `Broken`; written when last-`release` still called `destroy` and APR still reaped child reservoirs). Read that branch if useful; start the tree here.
+
+Pool lifetime on `reduce-apr-pool` (authority: code + [`remaining-apr.md`](remaining-apr.md) — **do not write FRV into that pad**):
+
+- Last-`release` does not call `destroy`. Hits 0 with children remaining → throw.
+- `destroy` is subtree teardown **with** callbacks (xmlRegexp, LDAP, YAML, DSO). Do **not** skip callbacks on `destroy` to hide SIGSEGV.
+- Delayed last-`release` drains at ENDTRY (`afw_pool_release_delayed`). `destroy` clears delay marks.
+- Heap `release`s parent before `free_chunks` (`xctx` lives in `xctx->p`).
+
+**Reproduce:** leftover `destroy(xctx->p)` runs last-`release` callbacks on already-gone values (`0xbadf00d`). Probe: `return` → `set_last_result_for_lifetime` registering last-`release` of a value **already** on that `scope->p`. One callback must be one reference.
+
+SIGSEGV set (same with destroy callbacks on): `pragma.as`, `type_check.as`, test262 `switch`/`for-of`/`try`/`optional-chaining`/`list`, `parse_bounds.as`, `get_retrieve.as`, `crud_hooks.as`, `authorization_check_function.as`, `exercise_script.as`, `return_values.as`, `closures.as`, `throw_rewind.as`, `wrapper_property_holds.as`, `pool_eval_lifetime.as`, `evaluate_once.as`. `multi-request-file` follows `afwfcgi` crash.
+
+**Partner:** Mike’s steps, one at a time. Do not scatter last-`release` skips in array/object/pool.
+
+When FRV is green, merge that fix **back into** `reduce-apr-pool` (or PR the stack). Do not PR pool to `develop` while those SIGSEGVs remain.
+
+---
+
 ## FRV next sitting (2026-09-11)
 
 Sept 8 talk + 2026-09-11 recall. **Do not start with implement.**
