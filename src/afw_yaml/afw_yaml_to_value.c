@@ -92,7 +92,7 @@ yaml_token_t * afw_yaml_parser_scan(
             parser->parser.problem_mark.column);
     }
 
-    afw_pool_register_cleanup_before(xctx->p, token, NULL,
+    afw_pool_register_cleanup(xctx->p, token, NULL,
         afw_yaml_token_cleanup, xctx);
 
     return token;

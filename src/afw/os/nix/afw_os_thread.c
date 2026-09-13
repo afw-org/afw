@@ -102,7 +102,7 @@ afw_os_mutex_create(
             "pthread_mutex_init() failed", xctx);
     }
     self->initialized = true;
-    afw_pool_register_cleanup_before(p, self, NULL,
+    afw_pool_register_cleanup(p, self, NULL,
         impl_mutex_cleanup, xctx);
     return self;
 }
@@ -187,7 +187,7 @@ afw_os_rwlock_create(
             "pthread_rwlock_init() failed", xctx);
     }
     self->initialized = true;
-    afw_pool_register_cleanup_before(p, self, NULL,
+    afw_pool_register_cleanup(p, self, NULL,
         impl_rwlock_cleanup, xctx);
     return self;
 }

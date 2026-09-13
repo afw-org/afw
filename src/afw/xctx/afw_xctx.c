@@ -638,9 +638,19 @@ afw_xctx_release(
     /* Release streams. */
     afw_stream_internal_release_all_streams(xctx);
 
-    /* Release xctx's pool. */
+    /*
+     * Callbacks first (may throw), then destroy always frees storage.
+     * xctx lives in instance->p; return before AFW_ENDTRY.
+     */
     if (instance->p) {
-        afw_pool_destroy(instance->p, xctx);
+        AFW_TRY {
+            afw_pool_run_cleanups(instance->p, xctx);
+        }
+        AFW_FINALLY {
+            afw_pool_destroy(instance->p, xctx);
+            return;
+        }
+        AFW_ENDTRY;
     }
 }
 

@@ -277,7 +277,7 @@ impl_afw_adapter_session_get_object(
     rv = ldap_search_s(self->ld, (char *)dn_z, ldap_scope, (char *)filter_z,
         afw_ldap_internal_allattrs, 0, &res);
     if (res) {
-        afw_pool_register_cleanup_before(xctx->p, res, NULL,
+        afw_pool_register_cleanup(xctx->p, res, NULL,
             afw_ldap_internal_cleanup_ldap_msgfree, xctx);
     }
     if (rv != LDAP_SUCCESS) {

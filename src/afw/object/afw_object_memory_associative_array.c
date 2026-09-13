@@ -133,7 +133,7 @@ impl_afw_object_associative_array_get (
      */
     if (object) {
         afw_object_get_reference(object, xctx);
-        afw_pool_register_cleanup_before(xctx->p, (void *)object, NULL,
+        afw_pool_register_cleanup(xctx->p, (void *)object, NULL,
             impl_release_object, xctx);
     }
 

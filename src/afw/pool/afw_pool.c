@@ -52,6 +52,11 @@ impl_pool_implementation_specific =
 #define AFW_IMPLEMENTATION_SPECIFIC &impl_pool_implementation_specific
 
 static void
+impl_afw_pool_run_cleanups(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx);
+
+static void
 impl_heap_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx);
@@ -1122,19 +1127,10 @@ impl_pool_destroy_teardown_all(
 static void
 impl_pool_destroy(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
-    if (self->destroying) {
-        if (self->parent) {
-            impl_unlink_child(self->parent, self, xctx);
-        }
-        return;
+    if (!self->destroying) {
+        impl_clear_delay(self, xctx);
+        impl_pool_mark_destroying(self);
     }
-    impl_clear_delay(self, xctx);
-    /*
-     * Mark the whole subtree destroying before any callback so a
-     * last-release of a descendant does not leftover/free early.
-     */
-    impl_pool_mark_destroying(self);
-    impl_pool_destroy_run_all_cleanups(self, xctx);
     impl_pool_destroy_teardown_all(self, xctx);
 }
 
@@ -1211,6 +1207,22 @@ impl_afw_pool_get_reference(
 
     /* Increment reference count. */
     self->reference_count++;
+}
+
+/*
+ * Implementation of method run_cleanups for interface afw_pool.
+ */
+static void
+impl_afw_pool_run_cleanups(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "run_cleanups");
+    if (!self->destroying) {
+        impl_clear_delay(self, xctx);
+        impl_pool_mark_destroying(self);
+    }
+    impl_pool_destroy_run_all_cleanups(self, xctx);
 }
 
 /*
@@ -1325,10 +1337,10 @@ impl_heap_afw_pool_free_memory(
 }
 
 /*
- * Implementation of method register_cleanup_before for interface afw_pool.
+ * Implementation of method register_cleanup for interface afw_pool.
  */
 void
-impl_afw_pool_register_cleanup_before(
+impl_afw_pool_register_cleanup(
     AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
@@ -1338,7 +1350,7 @@ impl_afw_pool_register_cleanup_before(
     afw_pool_cleanup_t *e;
 
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
-        "register_cleanup_before %p %p",
+        "register_cleanup %p %p",
         data, cleanup);
 
     /* Allocate entry which will also make sure its ok to use pool. */
@@ -1412,6 +1424,14 @@ impl_mt_afw_pool_get_reference(
 }
 
 static void
+impl_mt_afw_pool_run_cleanups(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    impl_afw_pool_run_cleanups(self, xctx);
+}
+
+static void
 impl_mt_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
@@ -1466,7 +1486,7 @@ impl_mt_afw_pool_free_memory(
 }
 
 static void
-impl_mt_afw_pool_register_cleanup_before(
+impl_mt_afw_pool_register_cleanup(
     AFW_POOL_SELF_T *self,
     void *data,
     void *data2,
@@ -1474,7 +1494,7 @@ impl_mt_afw_pool_register_cleanup_before(
     afw_xctx_t *xctx)
 {
     IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        impl_afw_pool_register_cleanup_before(
+        impl_afw_pool_register_cleanup(
             self, data, data2, cleanup, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
@@ -1497,12 +1517,13 @@ impl_mt_afw_pool_deregister_cleanup(
 
 #define impl_afw_pool_release impl_mt_afw_pool_release
 #define impl_afw_pool_get_reference impl_mt_afw_pool_get_reference
+#define impl_afw_pool_run_cleanups impl_mt_afw_pool_run_cleanups
 #define impl_afw_pool_destroy impl_mt_afw_pool_destroy
 #define impl_afw_pool_calloc impl_mt_afw_pool_calloc
 #define impl_afw_pool_malloc impl_mt_afw_pool_malloc
 #define impl_afw_pool_free_memory impl_mt_afw_pool_free_memory
-#define impl_afw_pool_register_cleanup_before \
-    impl_mt_afw_pool_register_cleanup_before
+#define impl_afw_pool_register_cleanup \
+    impl_mt_afw_pool_register_cleanup
 #define impl_afw_pool_deregister_cleanup impl_mt_afw_pool_deregister_cleanup
 
 #define AFW_IMPLEMENTATION_ID "heap_multithreaded"
@@ -1525,11 +1546,12 @@ impl_pool_mt_implementation_specific =
 #undef AFW_POOL_INF_ONLY
 #undef impl_afw_pool_release
 #undef impl_afw_pool_get_reference
+#undef impl_afw_pool_run_cleanups
 #undef impl_afw_pool_destroy
 #undef impl_afw_pool_calloc
 #undef impl_afw_pool_malloc
 #undef impl_afw_pool_free_memory
-#undef impl_afw_pool_register_cleanup_before
+#undef impl_afw_pool_register_cleanup
 #undef impl_afw_pool_deregister_cleanup
 
 
@@ -2016,6 +2038,6 @@ afw_pool_release_value_at_cleanup(
     if (afw_pool_is_value_release_registered(value, p, xctx)) {
         return;
     }
-    afw_pool_register_cleanup_before(p, (void *)value, NULL,
+    afw_pool_register_cleanup(p, (void *)value, NULL,
         impl_release_value_at_cleanup, xctx);
 }

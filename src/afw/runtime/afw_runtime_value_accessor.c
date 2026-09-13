@@ -742,7 +742,7 @@ impl_register_adapter_pin_cleanup(
     }
 
     AFW_TRY {
-        afw_pool_register_cleanup_before(
+        afw_pool_register_cleanup(
             p, (void *)held, NULL, impl_release_adapter_cleanup, xctx);
     }
     AFW_CATCH_UNHANDLED {

@@ -5497,17 +5497,18 @@ AFW_DEFINE(const afw_request_handler_t *)
       </description>
 
       <parameter name="instance" type="const afw_pool_t *">
-    <description>Pointer to this pool instance.</description>
+        <description>Pointer to this pool instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
+        <description>This is the caller's xctx.</description>
       </parameter>
 
       <return type="const afw_pool_t *">
-    <description>
-      Pool instance if still referenced; NULL if this call destroyed the pool.
-    </description>
+        <description>
+          Pool instance if still referenced; NULL if this call destroyed
+          the pool.
+        </description>
       </return>
 
     </method>
@@ -5519,11 +5520,11 @@ AFW_DEFINE(const afw_request_handler_t *)
       </description>
 
       <parameter name="instance" type="const afw_pool_t *">
-    <description>Pointer to this pool instance.</description>
+        <description>Pointer to this pool instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
+        <description>This is the caller's xctx.</description>
       </parameter>
 
       <return type="void" />
@@ -5533,18 +5534,19 @@ AFW_DEFINE(const afw_request_handler_t *)
     <method name="destroy">
 
       <description>
-        Destroy this pool and remaining children, then pool cleanup
-        (callbacks, unchain, free this store, release parent).
-        Callers must own that subtree. Use afw_pool_release() for
-        ordinary lifetime.
+        Free this pool and remaining children (unchain, leftover,
+        free store, release parent). Does not run cleanup callbacks
+        and must not fail. Call afw_pool_run_cleanups first if
+        callbacks must run. Use afw_pool_release() for ordinary
+        lifetime.
       </description>
 
       <parameter name="instance" type="const afw_pool_t *">
-    <description>Pointer to this pool instance.</description>
+        <description>Pointer to this pool instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
+        <description>This is the caller's xctx.</description>
       </parameter>
 
       <return type="void" />
@@ -5558,15 +5560,15 @@ AFW_DEFINE(const afw_request_handler_t *)
       </description>
 
       <parameter name="instance" type="const afw_pool_t *">
-    <description>Pointer to this pool instance.</description>
+        <description>Pointer to this pool instance.</description>
       </parameter>
 
       <parameter name="size" type="afw_size_t">
-    <description>Size of memory to allocate.</description>
+        <description>Size of memory to allocate.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
+        <description>This is the caller's xctx.</description>
       </parameter>
 
       <return type="void *" />
@@ -5580,15 +5582,15 @@ AFW_DEFINE(const afw_request_handler_t *)
       </description>
 
       <parameter name="instance" type="const afw_pool_t *">
-    <description>Pointer to this pool instance.</description>
+        <description>Pointer to this pool instance.</description>
       </parameter>
 
       <parameter name="size" type="afw_size_t">
-    <description>Size of memory to allocate.</description>
+        <description>Size of memory to allocate.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
+        <description>This is the caller's xctx.</description>
       </parameter>
 
       <return type="void *" />
@@ -5607,49 +5609,49 @@ AFW_DEFINE(const afw_request_handler_t *)
       </description>
 
       <parameter name="instance" type="const afw_pool_t *">
-    <description>Pointer to this pool instance.</description>
+        <description>Pointer to this pool instance.</description>
       </parameter>
 
       <parameter name="address" type="void *">
-    <description>Address of memory to free.</description>
+        <description>Address of memory to free.</description>
       </parameter>
 
       <parameter name="size" type="afw_size_t">
-    <description>Size passed to malloc/calloc for this address.</description>
+        <description>Size passed to malloc/calloc for this address.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
+        <description>This is the caller's xctx.</description>
       </parameter>
 
       <return type="void" />
 
     </method>
 
-    <method name="register_cleanup_before">
+    <method name="register_cleanup">
 
       <description>
-        Register pool cleanup function for this pool.
+        Register a cleanup function for this pool.
       </description>
 
       <parameter name="instance" type="const afw_pool_t *">
-    <description>Pointer to this pool instance.</description>
+        <description>Pointer to this pool instance.</description>
       </parameter>
 
       <parameter name="data" type="void *">
-    <description>Data to pass to the cleanup function.</description>
+        <description>Data to pass to the cleanup function.</description>
       </parameter>
 
       <parameter name="data2" type="void *">
-    <description>Data2 to pass to the cleanup function.</description>
+        <description>Data2 to pass to the cleanup function.</description>
       </parameter>
 
       <parameter name="cleanup" type="afw_pool_cleanup_function_p_t">
-    <description>Cleanup function to call when pool is released..</description>
+        <description>Cleanup function to call when the pool is released.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
+        <description>This is the caller's xctx.</description>
       </parameter>
 
       <return type="void" />
@@ -5659,27 +5661,49 @@ AFW_DEFINE(const afw_request_handler_t *)
     <method name="deregister_cleanup">
 
       <description>
-        Deregister xctx cleanup function from this pool.
+        Deregister a cleanup function from this pool.
       </description>
 
       <parameter name="instance" type="const afw_pool_t *">
-    <description>Pointer to this pool instance.</description>
+        <description>Pointer to this pool instance.</description>
       </parameter>
 
       <parameter name="data" type="void *">
-    <description>Data to pass to the cleanup function.</description>
+        <description>Data passed when the cleanup was registered.</description>
       </parameter>
 
       <parameter name="data2" type="void *">
-    <description>Data2 to pass to the cleanup function.</description>
+        <description>Data2 passed when the cleanup was registered.</description>
       </parameter>
 
       <parameter name="cleanup" type="afw_pool_cleanup_function_p_t">
-    <description>Cleanup function to call when pool is released..</description>
+        <description>Cleanup function to remove.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="run_cleanups">
+
+      <description>
+        Run registered cleanup callbacks on this pool and remaining
+        children. Does not free storage. last-release (RC 0) still
+        runs callbacks on the happy path. Call this before destroy
+        when tearing down with RC remaining (xctx_release). May
+        throw; destroy still frees storage.
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
       </parameter>
 
       <return type="void" />

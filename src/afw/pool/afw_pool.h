@@ -210,7 +210,7 @@ afw_pool_thread_create(
  * @param p pool whose destroy runs the release.
  * @param xctx of caller.
  *
- * Registers `afw_pool_register_cleanup_before()` so
+ * Registers `afw_pool_register_cleanup()` so
  * `afw_value_release()` runs before `p` is destroyed. Does not add
  * a reference; the caller already holds `value` (or otherwise owns
  * a matching release).
