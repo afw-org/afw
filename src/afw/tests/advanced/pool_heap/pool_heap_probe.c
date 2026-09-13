@@ -161,7 +161,7 @@ impl_heap_malloc_free(afw_xctx_t *xctx)
 
 /*
  * Tracker malloc: block on that tracker's allocated list,
- * in_use up. Allocation comes from the heap free list or heap APR.
+ * in_use up. Allocation comes from the heap free list or chunks.
  */
 static int
 impl_tracker_malloc(afw_xctx_t *xctx)

@@ -80,8 +80,8 @@ def run():
             ),
             (
                 "tracker_header",
-                "tracker header is APR/RSS, not a user block on the "
-                "allocated or free list",
+                "tracker header is calloc from the parent heap, not a "
+                "user block on the allocated or free list",
             ),
             (
                 "mixed_sizes",
