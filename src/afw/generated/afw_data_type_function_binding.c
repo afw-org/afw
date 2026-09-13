@@ -72,10 +72,12 @@ impl_afw_value_get_assignable_via_reference(
 /* Inf specific is always data type. */
 #define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_function_direct
 
-/* Define inf variables for data_type and is_evaluated_of_data_type. */
+/* Inf variables: data_type, is_evaluated_of_data_type, is_managed. */
+#undef AFW_IMPLEMENTATION_INF_VARIABLES
 #define AFW_IMPLEMENTATION_INF_VARIABLES \
     (const void *)&afw_data_type_function_direct, \
-    (const void *)&afw_data_type_function_direct
+    (const void *)&afw_data_type_function_direct, \
+    false
 
 /* Declares and rti/inf defines for interface afw_value */
 /* unmanaged function: get_reference/release throw; */
@@ -95,6 +97,11 @@ impl_afw_value_get_assignable_via_reference(
 #undef impl_afw_value_get_assignable_value
 
 /* Declares and rti/inf defines for interface afw_value */
+#undef AFW_IMPLEMENTATION_INF_VARIABLES
+#define AFW_IMPLEMENTATION_INF_VARIABLES \
+    (const void *)&afw_data_type_function_direct, \
+    (const void *)&afw_data_type_function_direct, \
+    true
 /* managed function: optional_release drops RC; */
 /* scalar last-release free_memorys via xctx->p. */
 /* get_reference / get_assignable_value bump. */
@@ -113,6 +120,11 @@ impl_afw_value_get_assignable_via_reference(
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
+#undef AFW_IMPLEMENTATION_INF_VARIABLES
+#define AFW_IMPLEMENTATION_INF_VARIABLES \
+    (const void *)&afw_data_type_function_direct, \
+    (const void *)&afw_data_type_function_direct, \
+    false
 /* permanent function: optional_release NULL; */
 /* get_reference / get_assignable_value as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_function"

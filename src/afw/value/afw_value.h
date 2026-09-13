@@ -874,6 +874,20 @@ afw_value_is_fully_evaluated(
 
 
 /**
+ * @brief True if value is reference-counted (managed).
+ *
+ * Inf flag, not a type test. Closures are managed. Unmanaged and
+ * permanents are not. Use after generate of afw_value_inf_t.
+ */
+#define afw_value_is_managed(A_VALUE) \
+( \
+    (A_VALUE) && \
+    (A_VALUE)->inf && \
+    (A_VALUE)->inf->is_managed \
+)
+
+
+/**
  * @brief Macro to determine if value is a qualified variable reference.
  * @param A_VALUE to test.
  * @return boolean result.

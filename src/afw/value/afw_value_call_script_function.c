@@ -380,7 +380,8 @@ impl_afw_value_optional_evaluate(
 
         /*
          * Pin a real occupant on the caller while this frame is still
-         * alive. No Adaptive caller: clone into xctx->p (host).
+         * alive. No Adaptive caller: get_assignable only (managed
+         * lives in xctx->p).
          */
         if (result &&
             !afw_value_is_undefined(result) &&
@@ -394,15 +395,7 @@ impl_afw_value_optional_evaluate(
                     result, caller, xctx);
             }
             else {
-                const afw_data_type_t *dt;
-
-                dt = result->inf
-                    ? result->inf->is_evaluated_of_data_type
-                    : NULL;
-                if (dt && dt->clone_value_unmanaged) {
-                    result = afw_value_clone_unmanaged(
-                        result, xctx->p, xctx);
-                }
+                result = afw_value_get_assignable(result, xctx);
             }
         }
     }

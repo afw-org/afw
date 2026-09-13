@@ -26,7 +26,8 @@
 /* Define inf variables for data_type and is_evaluated_of_data_type. */
 #define AFW_IMPLEMENTATION_INF_VARIABLES \
     (const void *)&afw_data_type_function_direct, \
-    NULL
+    NULL, \
+    false
 
 #define impl_afw_value_get_evaluated_meta \
     afw_value_internal_get_evaluated_meta_default

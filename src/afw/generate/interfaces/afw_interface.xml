@@ -5877,6 +5877,16 @@ AFW_DEFINE(const afw_request_handler_t *)
       </description>
     </inf_variable>
 
+    <inf_variable name="is_managed" type="afw_boolean_t">
+      <description>
+        True if this value is reference-counted. get_assignable_value of a
+        managed value is get_reference of self. Closures are managed (they
+        hold their enclosing scope). False for unmanaged (pool lifetime)
+        and permanents. When true, get_assignable_for_p_lifetime may
+        register a release cleanup on any pool.
+      </description>
+    </inf_variable>
+
     <method name="optional_release">
 
       <description>

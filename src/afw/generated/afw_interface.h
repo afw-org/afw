@@ -7278,6 +7278,15 @@ struct afw_value_inf_s {
      * data_type (produce type may be known earlier).
      */
     const afw_data_type_t     * is_evaluated_of_data_type;
+
+    /**
+     * True if this value is reference-counted. get_assignable_value of a
+     * managed value is get_reference of self. Closures are managed (they
+     * hold their enclosing scope). False for unmanaged (pool lifetime)
+     * and permanents. When true, get_assignable_for_p_lifetime may
+     * register a release cleanup on any pool.
+     */
+    afw_boolean_t is_managed;
 };
 
 /**

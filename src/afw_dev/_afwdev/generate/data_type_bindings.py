@@ -111,6 +111,15 @@ def _allocate_fn(type_id):
     return 'afw_value_' + type_id + '_allocate'
 
 
+def _write_value_inf_variables(fd, type_id, is_managed):
+    """data_type, is_evaluated_of_data_type, is_managed."""
+    fd.write('#undef AFW_IMPLEMENTATION_INF_VARIABLES\n')
+    fd.write('#define AFW_IMPLEMENTATION_INF_VARIABLES \\\n')
+    fd.write('    (const void *)&afw_data_type_' + type_id + '_direct, \\\n')
+    fd.write('    (const void *)&afw_data_type_' + type_id + '_direct, \\\n')
+    fd.write('    ' + ('true' if is_managed else 'false') + '\n')
+
+
 def _wants_compile_literal(obj):
     """Scalar literals the compiler mints (not process permanents)."""
     return obj.get('_meta_', {}).get('objectId') in (
@@ -1047,10 +1056,8 @@ def write_c_section(fd, prefix, obj):
     fd.write('\n/* Inf specific is always data type. */\n')
     fd.write('#define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_' + id + '_direct\n')
 
-    fd.write('\n/* Define inf variables for data_type and is_evaluated_of_data_type. */\n')
-    fd.write('#define AFW_IMPLEMENTATION_INF_VARIABLES \\\n')
-    fd.write('    (const void *)&afw_data_type_' + id + '_direct, \\\n')
-    fd.write('    (const void *)&afw_data_type_' + id + '_direct\n')
+    fd.write('\n/* Inf variables: data_type, is_evaluated_of_data_type, is_managed. */\n')
+    _write_value_inf_variables(fd, id, False)
 
     if not special:
 
@@ -1110,6 +1117,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('#undef impl_afw_value_get_assignable_value\n')
 
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
+        _write_value_inf_variables(fd, id, True)
         fd.write('/* managed ' + id + ': optional_release drops RC; */\n')
         fd.write('/* scalar last-release free_memorys via xctx->p. */\n')
         fd.write('/* get_reference / get_assignable_value bump. */\n')
@@ -1150,6 +1158,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('#undef AFW_VALUE_INF_ONLY\n')
 
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
+        _write_value_inf_variables(fd, id, False)
         fd.write('/* permanent ' + id + ': optional_release NULL; */\n')
         if id in ('object', 'array'):
             fd.write('/* get_reference as-is; get_assignable_value managed wrapper/clone. */\n')
@@ -1176,6 +1185,7 @@ def write_c_section(fd, prefix, obj):
 
         if _wants_compile_literal(obj):
             fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
+            _write_value_inf_variables(fd, id, False)
             fd.write('/* compile_literal ' + id + ': optional_release NULL; */\n')
             fd.write('/* get_reference / get_assignable_value as-is; clone copies. */\n')
             fd.write('#define AFW_IMPLEMENTATION_ID "compile_literal_' + id + '"\n')
@@ -1197,6 +1207,7 @@ def write_c_section(fd, prefix, obj):
 
         if id in ('object', 'array'):
             fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
+            _write_value_inf_variables(fd, id, True)
             fd.write('/* assignable ' + id + ': script face; pin the bag. */\n')
             fd.write('#define AFW_IMPLEMENTATION_ID "assignable_' + id + '"\n')
             fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_assignable_' +

@@ -426,6 +426,7 @@ impl_unlink_child(
     afw_pool_internal_self_t *prev;
     afw_pool_internal_self_t *sibling;
 
+    (void)xctx;
     for (prev = NULL, sibling = parent->first_child;
         sibling;
         prev = sibling, sibling = sibling->next_sibling)
@@ -441,8 +442,6 @@ impl_unlink_child(
             return;
         }
     }
-
-    AFW_THROW_ERROR_Z(general, "Not a child of parent", xctx);
 }
 
 
@@ -1056,12 +1055,21 @@ static void
 impl_pool_destroy(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
     if (self->destroying) {
+        if (self->parent) {
+            impl_unlink_child(self->parent, self, xctx);
+        }
         return;
     }
     impl_clear_delay(self, xctx);
     self->destroying = true;
     while (self->first_child) {
-        afw_pool_destroy(&self->first_child->pub, xctx);
+        afw_pool_internal_self_t *child;
+
+        child = self->first_child;
+        afw_pool_destroy(&child->pub, xctx);
+        if (self->first_child == child) {
+            impl_unlink_child(self, child, xctx);
+        }
     }
     impl_pool_cleanup(self, xctx);
 }
@@ -1085,19 +1093,10 @@ impl_afw_pool_release(
     }
 
     if (--(self->reference_count) == 0) {
-        /*
-         * Cleanup may release a value that last-releases this same
-         * pool (closure in a tracker that captures that tracker).
-         * Do not run cleanup reentrantly; the outer teardown owns it.
-         */
-        if (self->destroying) {
-            return NULL;
-        }
         if (self->first_child) {
             AFW_THROW_ERROR_Z(general,
                 "Pool last-release with children remaining", xctx);
         }
-        self->destroying = true;
         impl_pool_cleanup(self, xctx);
         return NULL;
     }
@@ -1944,13 +1943,6 @@ afw_pool_release_value_at_cleanup(
     /* Permanents / compile literals: nothing to release. */
     if (!value->inf || !value->inf->optional_release) {
         return;
-    }
-    /* p or a parent must hold the bytes. */
-    if (!afw_pool_or_parent_holds(p, value, xctx)) {
-        AFW_THROW_ERROR_Z(general,
-            "release_value_at_cleanup: value is not held by this pool "
-            "or a parent",
-            xctx);
     }
     if (afw_pool_is_value_release_registered(value, p, xctx)) {
         return;

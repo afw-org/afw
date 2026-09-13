@@ -217,8 +217,11 @@ afw_pool_thread_create(
  *
  * No-op if `value` has no optional_release (the callback would do
  * nothing). A second register of the same value on this same `p` is
- * a no-op (already handled). `p` or a parent must hold `value`;
- * otherwise this throws.
+ * a no-op (already handled).
+ *
+ * Managed values (RC, including closures) may be registered on any
+ * p: they stay alive while referenced. The callback drops that hold
+ * when p last-releases.
  */
 AFW_DECLARE(void)
 afw_pool_release_value_at_cleanup(

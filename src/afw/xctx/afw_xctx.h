@@ -350,8 +350,10 @@ afw_xctx_scope_get_assignable_for_scope_lifetime(
  * @param xctx of caller.
  * @return assignable value, or void/NULL unchanged.
  *
- * Same as get_assignable_for_scope_lifetime, but the pin scope is
- * passed in (script function return uses the caller).
+ * get_assignable (self-reference if managed, often clone_managed if
+ * unmanaged) then cleanup release on scope->p. Managed values
+ * (including closures) may use any scope: RC keeps them alive; the
+ * callback drops the extra hold when that p ends.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_xctx_scope_get_assignable_for_p_lifetime(
