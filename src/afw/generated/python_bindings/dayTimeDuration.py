@@ -322,7 +322,7 @@ def is_in_dayTimeDuration(session, value, array):
     Checks whether a value is in an array
 
     Checks whether dayTimeDuration value is in array of dayTimeDuration array
-    and returns the boolean result.
+    and returns the boolean result. Empty array yields false.
 
     Args:
         value (object):

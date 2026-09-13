@@ -217,7 +217,7 @@ export function afwIsBoolean(client : any, value : any) : any {
 
 /**
  * Checks whether boolean value is in array of boolean array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  * 
  * @param {boolean} value -
  * 

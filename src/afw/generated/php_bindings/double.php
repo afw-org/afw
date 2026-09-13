@@ -434,7 +434,7 @@ class double
      * is_in_double()
      *
      * Checks whether double value is in array of double array and returns the
-     * boolean result.
+     * boolean result. Empty array yields false.
      *
      * @param double $value
      * @param array $array

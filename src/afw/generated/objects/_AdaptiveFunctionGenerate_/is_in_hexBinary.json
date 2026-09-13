@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "isInHexBinary",
     "category": "hexBinary",
     "dataTypeMethod": true,
-    "description": "Checks whether hexBinary value is in array of hexBinary array and returns the boolean result.",
+    "description": "Checks whether hexBinary value is in array of hexBinary array and returns the boolean result. Empty array yields false.",
     "functionId": "is_in<hexBinary>",
     "functionLabel": "is_in_hexBinary",
     "parameters": [

@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "isInDouble",
     "category": "double",
     "dataTypeMethod": true,
-    "description": "Checks whether double value is in array of double array and returns the boolean result.",
+    "description": "Checks whether double value is in array of double array and returns the boolean result. Empty array yields false.",
     "functionId": "is_in<double>",
     "functionLabel": "is_in_double",
     "parameters": [

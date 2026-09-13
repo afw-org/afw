@@ -358,7 +358,7 @@ class anyURI
      * is_in_anyURI()
      *
      * Checks whether anyURI value is in array of anyURI array and returns the
-     * boolean result.
+     * boolean result. Empty array yields false.
      *
      * @param anyURI $value
      * @param array $array

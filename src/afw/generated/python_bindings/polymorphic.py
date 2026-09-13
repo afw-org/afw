@@ -897,7 +897,7 @@ def is_in(session, value, array):
     Checks whether a value is in an array
 
     Checks whether `<dataType>` value is in array of `<dataType>` array and
-    returns the boolean result.
+    returns the boolean result. Empty array yields false.
 
     Args:
         value (object):

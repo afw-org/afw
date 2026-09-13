@@ -229,7 +229,7 @@ class rfc822Name
      * is_in_rfc822Name()
      *
      * Checks whether rfc822Name value is in array of rfc822Name array and
-     * returns the boolean result.
+     * returns the boolean result. Empty array yields false.
      *
      * @param rfc822Name $value
      * @param array $array

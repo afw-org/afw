@@ -350,7 +350,7 @@ def is_in_base64Binary(session, value, array):
     Checks whether a value is in an array
 
     Checks whether base64Binary value is in array of base64Binary array and
-    returns the boolean result.
+    returns the boolean result. Empty array yields false.
 
     Args:
         value (object):

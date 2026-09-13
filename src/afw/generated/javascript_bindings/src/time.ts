@@ -216,7 +216,7 @@ export function afwIntersectionTime(client : any, array1 : any[], array2 : any[]
 
 /**
  * Checks whether time value is in array of time array and returns the boolean
- * result.
+ * result. Empty array yields false.
  * 
  * @param {time} value -
  * 

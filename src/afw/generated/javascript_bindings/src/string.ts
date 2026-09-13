@@ -383,7 +383,7 @@ export function afwIntersectionString(client : any, array1 : any[], array2 : any
 
 /**
  * Checks whether string value is in array of string array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  * 
  * @param {string} value -
  * 

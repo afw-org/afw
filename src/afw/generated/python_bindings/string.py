@@ -554,7 +554,7 @@ def is_in_string(session, value, array):
     Checks whether a value is in an array
 
     Checks whether string value is in array of string array and returns the
-    boolean result.
+    boolean result. Empty array yields false.
 
     Args:
         value (str):

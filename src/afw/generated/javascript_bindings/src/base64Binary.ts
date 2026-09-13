@@ -238,7 +238,7 @@ export function afwIsBase64Binary(client : any, value : any) : any {
 
 /**
  * Checks whether base64Binary value is in array of base64Binary array and
- * returns the boolean result.
+ * returns the boolean result. Empty array yields false.
  * 
  * @param {base64Binary} value -
  * 

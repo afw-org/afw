@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "isInBase64Binary",
     "category": "base64Binary",
     "dataTypeMethod": true,
-    "description": "Checks whether base64Binary value is in array of base64Binary array and returns the boolean result.",
+    "description": "Checks whether base64Binary value is in array of base64Binary array and returns the boolean result. Empty array yields false.",
     "functionId": "is_in<base64Binary>",
     "functionLabel": "is_in_base64Binary",
     "parameters": [

@@ -422,7 +422,7 @@ def is_in_anyURI(session, value, array):
     Checks whether a value is in an array
 
     Checks whether anyURI value is in array of anyURI array and returns the
-    boolean result.
+    boolean result. Empty array yields false.
 
     Args:
         value (object):

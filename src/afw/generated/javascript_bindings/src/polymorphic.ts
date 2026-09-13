@@ -612,7 +612,7 @@ export function afwIs(client : any, value : any) : any {
 
 /**
  * Checks whether `<dataType>` value is in array of `<dataType>` array and
- * returns the boolean result.
+ * returns the boolean result. Empty array yields false.
  * 
  * @param {} value -
  * 

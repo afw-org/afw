@@ -158,7 +158,7 @@ The second array.
 =head3 is_in_rfc822Name
 
 Checks whether rfc822Name value is in array of rfc822Name array and returns
-the boolean result.
+the boolean result. Empty array yields false.
 Checks whether a value is in an array
 
 =head4 Parameters

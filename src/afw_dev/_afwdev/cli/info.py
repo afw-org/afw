@@ -431,8 +431,9 @@ _info_build_all = {
     "action": "store_true",    
     "default": False,
     "help": "This is short for the build type context switches --cmake, "
-        "--docker, --docs, and --js. Does not enable --generate, --clean, "
-        "--install, or --scan (see --fulldev)."
+        "--docs, and --js. Does not enable --docker (cross-platform docker "
+        "builds are slow and stay explicit-only) or --generate, --clean, "
+        "--install, --scan (see --fulldev)."
 }
 
 _info_build_clean = {
@@ -491,8 +492,10 @@ _info_build_fulldev = {
     "default": False,
     "help": "Full package dev-install shortcut: enables --all, --generate, "
         "--clean, --install, --scan, and -j / parallel jobs. Same AFW_DEBUG_* "
-        "defines as --cdev. Use when the whole tree (C, docs, JS, docker tags) "
-        "should be rebuilt and installed. Explicit -j N still overrides."
+        "defines as --cdev. Use when the whole tree (C, docs, JS) should be "
+        "rebuilt and installed. Does not enable --docker — pass it "
+        "explicitly alongside --fulldev if you also want cross-platform "
+        "docker images built. Explicit -j N still overrides."
 }
 
 _info_build_define = {
@@ -607,10 +610,15 @@ afw-package.json file.
 
 The build switches --cmake, --docker, --docs, --js provide build type context
 that other switches, such as --clean, --install, and --generate will execute
-under. The --all selects all of those contexts (not generate/install).
+under. The --all selects --cmake, --docs, and --js (not generate/install).
+--docker is always explicit-only, even under --all/--fulldev — cross-platform
+docker image builds are slow (a full C compile per target platform) and
+should never be a side effect of routine dev-loop commands. Pass --docker
+yourself when you actually want to build docker images.
 
 Convenience profiles: --cdev (C day-to-day generate/clean/install/-j) and
---fulldev (all contexts plus generate/clean/install/scan/-j for a full dev install).
+--fulldev (--all contexts plus generate/clean/install/scan/-j for a full dev
+install; still excludes --docker unless passed explicitly).
 Both define AFW_DEBUG_EVALUATION, AFW_DEBUG_LOCK, and AFW_DEBUG_POOL. Pass extra
 C preprocessor defines with --define NAME or --define NAME=VALUE.
 """,

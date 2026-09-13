@@ -7,11 +7,13 @@
 # @details Orchestrates the cmake, docs, js, and docker build contexts.
 #          Context flags (build_cmake, build_docs, ...) are independent.
 #          --cdev enables clean, generate, install, and parallel jobs (-j)
-#          for C/Python work; --fulldev enables all contexts plus generate,
-#          clean, install, scan, and -j (full package dev install). --all
-#          enables every context only (not generate/install). With no context
-#          selected, cmake is the default. When --generate is set,
-#          `afwdev generate` runs first.
+#          for C/Python work; --fulldev enables generate, clean, install,
+#          scan, and -j (full package dev install), plus every context
+#          except docker. --all enables every context except docker only
+#          (not generate/install). docker stays explicit-only (--docker) —
+#          those builds are slow cross-platform image builds, not part of
+#          the routine dev loop. With no context selected, cmake is the
+#          default. When --generate is set, `afwdev generate` runs first.
 #
 
 ##
@@ -41,6 +43,14 @@ _BUILD_TYPE_CONTEXTS = (
     'js',
 )
 
+# --all / --fulldev sweep these contexts. docker is deliberately excluded:
+# cross-platform docker builds are slow (full C compile per target platform)
+# and must stay an explicit, deliberate --docker invocation, never a side
+# effect of the --fulldev dev loop many maintainers run often.
+_BUILD_TYPE_CONTEXTS_ALL = tuple(
+    context for context in _BUILD_TYPE_CONTEXTS if context != 'docker'
+)
+
 # --cdev and --fulldev both turn these on. --all does not.
 _BUILD_CONVENIENCE_SWITCHES = (
     'clean',
@@ -53,7 +63,8 @@ def apply_build_profile_flags(options):
     """Enable flags implied by --cdev / --fulldev / --all / default cmake.
 
     Both --cdev and --fulldev set --install (and --generate, --clean, -j).
-    --all only selects build contexts.
+    --all only selects build contexts, and never docker — pass --docker
+    explicitly to build cross-platform docker images.
     """
 
     def _ensure_parallel_jobs():
@@ -69,9 +80,11 @@ def apply_build_profile_flags(options):
         options['build_scan'] = True
         _ensure_parallel_jobs()
 
-    # --all sets all build type contexts (does not enable generate/install).
+    # --all sets all build type contexts except docker (does not enable
+    # generate/install). docker stays explicit-only; see
+    # _BUILD_TYPE_CONTEXTS_ALL.
     if options.get('build_all', False):
-        for build_type_context in _BUILD_TYPE_CONTEXTS:
+        for build_type_context in _BUILD_TYPE_CONTEXTS_ALL:
             options['build_' + build_type_context] = True
 
     # --cdev sets convenience switches for C/Python day-to-day work.

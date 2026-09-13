@@ -230,7 +230,7 @@ class yearMonthDuration
      * is_in_yearMonthDuration()
      *
      * Checks whether yearMonthDuration value is in array of yearMonthDuration
-     * array and returns the boolean result.
+     * array and returns the boolean result. Empty array yields false.
      *
      * @param yearMonthDuration $value
      * @param array $array

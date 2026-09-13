@@ -183,7 +183,7 @@ export function afwIntersectionRfc822Name(client : any, array1 : any[], array2 :
 
 /**
  * Checks whether rfc822Name value is in array of rfc822Name array and returns
- * the boolean result.
+ * the boolean result. Empty array yields false.
  * 
  * @param {rfc822Name} value -
  * 

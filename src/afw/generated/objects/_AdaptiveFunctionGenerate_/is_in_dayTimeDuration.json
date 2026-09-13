@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "isInDayTimeDuration",
     "category": "dayTimeDuration",
     "dataTypeMethod": true,
-    "description": "Checks whether dayTimeDuration value is in array of dayTimeDuration array and returns the boolean result.",
+    "description": "Checks whether dayTimeDuration value is in array of dayTimeDuration array and returns the boolean result. Empty array yields false.",
     "functionId": "is_in<dayTimeDuration>",
     "functionLabel": "is_in_dayTimeDuration",
     "parameters": [

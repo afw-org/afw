@@ -183,7 +183,7 @@ export function afwIntersectionX500Name(client : any, array1 : any[], array2 : a
 
 /**
  * Checks whether x500Name value is in array of x500Name array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  * 
  * @param {x500Name} value -
  * 

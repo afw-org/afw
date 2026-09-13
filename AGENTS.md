@@ -116,7 +116,7 @@ edit generate/ or hand C/Python  →  ./afwdev build --cdev  →  afwdev test -j
 
 **Full build and test before a PR** (maintainer default; also when the user asks for full verify):  
 `./afwdev build --fulldev` then `afwdev test -j --env-mode valgrind`.  
-`--fulldev` is short for **`--all --generate --clean --install --scan`** plus **parallel jobs (`-j`)**: all contexts (C, docs, JS, docker tags), regenerate from package metadata (including version), clean trees, install, and clang analyze-build. Valgrind is much slower — not for every edit. Note: **`--all` alone does not run generate or install**.
+`--fulldev` is short for **`--all --generate --clean --install --scan`** plus **parallel jobs (`-j`)**: C, docs, and JS contexts, regenerate from package metadata (including version), clean trees, install, and clang analyze-build. **`--docker` is excluded from both `--all` and `--fulldev`** — cross-platform docker image builds are slow (full C compile per target platform) and stay an explicit, deliberate `--docker` invocation, never a side effect of the routine dev loop; see [`designs/docker-cross-platform-builds.md`](designs/docker-cross-platform-builds.md). Valgrind is much slower — not for every edit. Note: **`--all` alone does not run generate or install**.
 
 Use **`./afwdev`** for builds that refresh/install `afwdev` itself; use **`afwdev`** (PATH) afterward for `test`, `validate`, etc.
 
@@ -158,7 +158,7 @@ afwdev test -j --env-mode valgrind   # much slower
 afwdev generate --srcdir-pattern '*'
 ```
 
-`--cdev` and `--fulldev` are convenience profiles (both include **`-j`** / parallel cmake unless you pass **`-j N`**). `--cdev` = generate/clean/install/-j for C work (default cmake context; no docs/JS/docker). `--fulldev` = `--all --generate --clean --install --scan` plus `-j` (version headers, Doxyfile `PROJECT_NUMBER`, handbook, JS, docker tags, clang scan). **`--all` alone does not generate or install.** Both define `AFW_DEBUG_EVALUATION`, `AFW_DEBUG_LOCK`, and `AFW_DEBUG_POOL` (runtime flags still off unless set). Extra C preprocessor defines: `afwdev build --define NAME` or `--define NAME=VALUE`. CMake output lives under `build/cmake/`.
+`--cdev` and `--fulldev` are convenience profiles (both include **`-j`** / parallel cmake unless you pass **`-j N`**). `--cdev` = generate/clean/install/-j for C work (default cmake context; no docs/JS/docker). `--fulldev` = `--all --generate --clean --install --scan` plus `-j` (version headers, Doxyfile `PROJECT_NUMBER`, handbook, JS, clang scan — **not** docker, which stays explicit-only even under `--fulldev`). **`--all` alone does not generate or install.** Both define `AFW_DEBUG_EVALUATION`, `AFW_DEBUG_LOCK`, and `AFW_DEBUG_POOL` (runtime flags still off unless set). Extra C preprocessor defines: `afwdev build --define NAME` or `--define NAME=VALUE`. CMake output lives under `build/cmake/`.
 
 ## Documentation
 

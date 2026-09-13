@@ -158,7 +158,7 @@ export function afwIpAddress(client : any, value : any) : any {
 
 /**
  * Checks whether ipAddress value is in array of ipAddress array and returns
- * the boolean result.
+ * the boolean result. Empty array yields false.
  * 
  * @param {ipAddress} value -
  * 

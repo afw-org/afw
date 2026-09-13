@@ -263,7 +263,7 @@ def is_in_rfc822Name(session, value, array):
     Checks whether a value is in an array
 
     Checks whether rfc822Name value is in array of rfc822Name array and
-    returns the boolean result.
+    returns the boolean result. Empty array yields false.
 
     Args:
         value (object):

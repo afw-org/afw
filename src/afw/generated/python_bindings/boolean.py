@@ -319,7 +319,7 @@ def is_in_boolean(session, value, array):
     Checks whether a value is in an array
 
     Checks whether boolean value is in array of boolean array and returns the
-    boolean result.
+    boolean result. Empty array yields false.
 
     Args:
         value (bool):

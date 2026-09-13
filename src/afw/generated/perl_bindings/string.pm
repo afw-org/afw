@@ -331,7 +331,7 @@ The second array.
 =head3 is_in_string
 
 Checks whether string value is in array of string array and returns the
-boolean result.
+boolean result. Empty array yields false.
 Checks whether a value is in an array
 
 =head4 Parameters

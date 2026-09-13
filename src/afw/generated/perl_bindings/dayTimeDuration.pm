@@ -181,7 +181,7 @@ Value to check
 =head3 is_in_dayTimeDuration
 
 Checks whether dayTimeDuration value is in array of dayTimeDuration array and
-returns the boolean result.
+returns the boolean result. Empty array yields false.
 Checks whether a value is in an array
 
 =head4 Parameters

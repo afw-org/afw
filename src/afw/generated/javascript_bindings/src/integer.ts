@@ -255,7 +255,7 @@ export function afwIntersectionInteger(client : any, array1 : any[], array2 : an
 
 /**
  * Checks whether integer value is in array of integer array and returns the
- * boolean result.
+ * boolean result. Empty array yields false.
  * 
  * @param {integer} value -
  * 

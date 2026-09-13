@@ -521,7 +521,7 @@ def is_in_double(session, value, array):
     Checks whether a value is in an array
 
     Checks whether double value is in array of double array and returns the
-    boolean result.
+    boolean result. Empty array yields false.
 
     Args:
         value (float):

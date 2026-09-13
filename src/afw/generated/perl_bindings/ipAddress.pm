@@ -131,7 +131,7 @@ Value to convert
 =head3 is_in_ipAddress
 
 Checks whether ipAddress value is in array of ipAddress array and returns the
-boolean result.
+boolean result. Empty array yields false.
 Checks whether a value is in an array
 
 =head4 Parameters

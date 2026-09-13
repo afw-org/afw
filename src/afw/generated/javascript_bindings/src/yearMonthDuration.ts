@@ -185,7 +185,7 @@ export function afwIntersectionYearMonthDuration(client : any, array1 : any[], a
 
 /**
  * Checks whether yearMonthDuration value is in array of yearMonthDuration
- * array and returns the boolean result.
+ * array and returns the boolean result. Empty array yields false.
  * 
  * @param {yearMonthDuration} value -
  * 
