@@ -211,9 +211,9 @@ afw_pool_thread_create(
  * @param xctx of caller.
  *
  * Registers `afw_pool_register_cleanup()` so
- * `afw_value_release()` runs before `p` is destroyed. Does not add
- * a reference; the caller already holds `value` (or otherwise owns
- * a matching release).
+ * `afw_value_release()` runs at last-release or run_cleanups.
+ * Does not add a reference; the caller already holds `value`
+ * (or otherwise owns a matching release).
  *
  * No-op if `value` has no optional_release (the callback would do
  * nothing). A second register of the same value on this same `p` is
@@ -221,7 +221,7 @@ afw_pool_thread_create(
  *
  * Managed values (RC, including closures) may be registered on any
  * p: they stay alive while referenced. The callback drops that hold
- * when p last-releases.
+ * when p last-releases or run_cleanups.
  */
 AFW_DECLARE(void)
 afw_pool_release_value_at_cleanup(
@@ -237,16 +237,6 @@ AFW_DECLARE(afw_boolean_t)
 afw_pool_is_value_release_registered(
     const afw_value_t *value,
     const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief True if p or a parent allocated this user pointer.
- */
-AFW_DECLARE(afw_boolean_t)
-afw_pool_or_parent_holds(
-    const afw_pool_t *p,
-    const void *user,
     afw_xctx_t *xctx);
 
 

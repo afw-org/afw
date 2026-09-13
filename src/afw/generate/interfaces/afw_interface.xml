@@ -5631,7 +5631,9 @@ AFW_DEFINE(const afw_request_handler_t *)
     <method name="register_cleanup">
 
       <description>
-        Register a cleanup function for this pool.
+        Register a cleanup function for this pool. The callback must
+        not throw an uncaught error: that stops remaining callbacks
+        on this pool. Catch inside the callback if work can fail.
       </description>
 
       <parameter name="instance" type="const afw_pool_t *">

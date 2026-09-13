@@ -634,7 +634,7 @@ AFW_DEFINE(void)
 afw_xctx_release(
     const afw_xctx_t *instance,
     afw_xctx_t *xctx)
-{  
+{
     /* Release streams. */
     afw_stream_internal_release_all_streams(xctx);
 

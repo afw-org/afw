@@ -6901,7 +6901,9 @@ struct afw_pool_inf_s {
 /**
  * @brief Call method `register_cleanup` of interface `afw_pool`.
  *
- * Register a cleanup function for this pool.
+ * Register a cleanup function for this pool. The callback must
+ * not throw an uncaught error: that stops remaining callbacks
+ * on this pool. Catch inside the callback if work can fail.
  * @param instance Pointer to this pool instance.
  * @param data Data to pass to the cleanup function.
  * @param data2 Data2 to pass to the cleanup function.
