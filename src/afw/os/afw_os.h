@@ -346,6 +346,17 @@ afw_os_thread_join(afw_os_thread_t *thread, afw_xctx_t *xctx);
 AFW_DECLARE(void)
 afw_os_thread_kill(const afw_os_thread_t *thread, int signo);
 
+/**
+ * @brief C-stack low address and size for the calling thread.
+ * @param base receives the lowest stack address, or NULL if unknown.
+ * @param size receives the stack size in bytes, or 0 if unknown.
+ *
+ * Does not throw. Linux uses pthread_getattr_np. Size 0 means skip
+ * headroom checks. Stack grows down: remaining is SP minus base.
+ */
+AFW_DECLARE(void)
+afw_os_c_stack_bounds(void **base, afw_size_t *size);
+
 
 AFW_END_DECLARES
 

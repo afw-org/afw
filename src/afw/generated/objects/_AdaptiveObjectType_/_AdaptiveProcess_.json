@@ -90,7 +90,7 @@
             "allowQuery": true,
             "brief": "Request/thread ST asked-for cap",
             "dataType": "integer",
-            "description": "Tripwire against thread single-thread asked-for bytes, not process poolBytesInUse. 0 = unlimited.",
+            "description": "Tripwire against request-thread ST asked-for bytes, not process poolBytesInUse and not the CLI base thread. 0 = unlimited.",
             "label": "Limit Request Pool Bytes",
             "runtime": {
                 "memberName": "limit_request_pool_bytes",

@@ -82,6 +82,16 @@ struct afw_thread_s {
 
     /** @brief High-water of pool_chunk_bytes. */
     afw_size_t peak_pool_chunk_bytes;
+
+    /**
+     * @brief Lowest C-stack address for this OS thread.
+     *
+     * Sampled at thread start. NULL if unknown; skip headroom checks.
+     */
+    void *c_stack_base;
+
+    /** @brief C-stack size in bytes. 0 if unknown. */
+    afw_size_t c_stack_size;
 };
 
 /**

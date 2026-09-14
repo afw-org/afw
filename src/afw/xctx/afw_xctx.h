@@ -87,6 +87,20 @@ afw_xctx_release(
     const afw_xctx_t *instance,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Throw payload_too_large if a resource cap would be exceeded.
+ * @param xctx of caller.
+ * @param extra_eval_slots slots about to be pushed (0 skips eval-stack).
+ *
+ * Checks evaluation-stack count, request-thread ST asked-for vs
+ * limitRequestPoolBytes, and C-stack remaining vs
+ * limitCStackHeadroomBytes. 0 on a cap is unlimited. Pool bytes
+ * are not enforced on the CLI base thread.
+ */
+AFW_DECLARE(void)
+afw_xctx_check_resource_limits(
+    afw_xctx_t *xctx, afw_size_t extra_eval_slots);
+
 
 
 /**
@@ -882,6 +896,7 @@ do { \
         " value %p inf " AFW_UTF8_FMT, \
         (const void *)_afw_eval_push_value, \
         _afw_eval_inf_len, _afw_eval_inf_s); \
+    afw_xctx_check_resource_limits((xctx), 1); \
     afw_vector_push_index_impl( \
         &(xctx)->evaluation_stack->internal, (xctx)); \
     AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value = \
@@ -890,6 +905,7 @@ do { \
 #else
 #define afw_xctx_evaluation_stack_push_value(VALUE, xctx) \
     do { \
+        afw_xctx_check_resource_limits((xctx), 1); \
         afw_vector_push_index_impl( \
             &(xctx)->evaluation_stack->internal, (xctx)); \
         AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value = (VALUE); \
@@ -911,6 +927,7 @@ do { \
         "push_parameter_number", \
         " n " AFW_SIZE_T_FMT, \
         _afw_eval_push_pn); \
+    afw_xctx_check_resource_limits((xctx), 2); \
     afw_vector_push_index_impl( \
         &(xctx)->evaluation_stack->internal, (xctx)); \
     AFW_XCTX_EVALUATION_STACK_LAST(xctx)->parameter_number = \
@@ -924,6 +941,7 @@ do { \
 #define afw_xctx_evaluation_stack_push_parameter_number( \
     PARAMETER_NUMBER, xctx) \
 do { \
+    afw_xctx_check_resource_limits((xctx), 2); \
     afw_vector_push_index_impl( \
         &(xctx)->evaluation_stack->internal, (xctx)); \
     AFW_XCTX_EVALUATION_STACK_LAST(xctx)->parameter_number = \

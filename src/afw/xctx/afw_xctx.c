@@ -38,6 +38,9 @@ impl_set_qualifier_stack(afw_xctx_t *xctx)
 }
 
 
+/* Extra eval-stack slots so Adaptive catch can run after the tripwire. */
+#define IMPL_EVAL_STACK_ERROR_HEADROOM ((afw_size_t)64)
+
 static void
 impl_set_evaluation_stack(afw_xctx_t *xctx)
 {
@@ -46,8 +49,18 @@ impl_set_evaluation_stack(afw_xctx_t *xctx)
     /*
      * Allocate the cap up front so the vector never grows (entry
      * pointers stay valid). Early xctx create cannot use AFW_TRY.
+     * Extra slots are for the error path; the tripwire uses the
+     * published limit.
      */
     n = xctx->env->limit_evaluation_stack_count;
+    if (n != 0) {
+        if (n > AFW_SIZE_T_MAX - IMPL_EVAL_STACK_ERROR_HEADROOM) {
+            n = AFW_SIZE_T_MAX;
+        }
+        else {
+            n += IMPL_EVAL_STACK_ERROR_HEADROOM;
+        }
+    }
     xctx->evaluation_stack = afw_vector_create_fixed_unhandled(
         afw_xctx_evaluation_stack_t, n, xctx->p, xctx);
 }
@@ -152,6 +165,77 @@ afw_xctx_internal_create_finishup(afw_xctx_t *xctx)
             xctx->thread->pool_bytes_in_use;
         xctx->snap_pool_chunk_bytes =
             xctx->thread->pool_chunk_bytes;
+    }
+}
+
+
+static afw_size_t
+impl_c_stack_remaining(const afw_thread_t *thread)
+{
+    const char *sp;
+    const char *low;
+    const char *high;
+    char probe;
+
+    if (!thread || !thread->c_stack_base || thread->c_stack_size == 0) {
+        return AFW_SIZE_T_MAX;
+    }
+    sp = &probe;
+    low = (const char *)thread->c_stack_base;
+    high = low + thread->c_stack_size;
+    if (sp < low || sp > high) {
+        return AFW_SIZE_T_MAX;
+    }
+    return (afw_size_t)(sp - low);
+}
+
+
+AFW_DEFINE(void)
+afw_xctx_check_resource_limits(
+    afw_xctx_t *xctx, afw_size_t extra_eval_slots)
+{
+    const afw_environment_t *env;
+    const afw_thread_t *thread;
+    afw_size_t limit;
+    afw_size_t remaining;
+
+    if (!xctx || !xctx->env) {
+        return;
+    }
+    if (xctx->error_processing_count > 0) {
+        return;
+    }
+    env = xctx->env;
+
+    limit = env->limit_evaluation_stack_count;
+    if (extra_eval_slots != 0 && limit != 0 &&
+        xctx->evaluation_stack &&
+        xctx->evaluation_stack->count + extra_eval_slots > limit)
+    {
+        AFW_THROW_ERROR_Z(payload_too_large,
+            "Evaluation stack limit exceeded.", xctx);
+    }
+
+    thread = xctx->thread;
+    if (!thread) {
+        return;
+    }
+
+    limit = env->limit_request_pool_bytes;
+    if (thread->type == afw_thread_type_request &&
+        limit != 0 && thread->pool_bytes_in_use >= limit)
+    {
+        AFW_THROW_ERROR_Z(payload_too_large,
+            "Request pool limit exceeded.", xctx);
+    }
+
+    limit = env->limit_c_stack_headroom_bytes;
+    if (limit != 0) {
+        remaining = impl_c_stack_remaining(thread);
+        if (remaining < limit) {
+            AFW_THROW_ERROR_Z(payload_too_large,
+                "C stack headroom exhausted.", xctx);
+        }
     }
 }
 

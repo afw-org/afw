@@ -33,6 +33,7 @@ impl_thread_start(void *data)
 {
     afw_thread_t *self = data;
 
+    afw_os_c_stack_bounds(&self->c_stack_base, &self->c_stack_size);
     return self->start_function(self, self->start_function_arg);
 }
 

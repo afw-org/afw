@@ -890,6 +890,25 @@ impl_heap_take_from_free_list_or_chunk(
     heap->bump = NULL;
     heap->remaining = 0;
 
+    if (!unhandled && xctx->error_processing_count == 0) {
+        afw_xctx_check_resource_limits(xctx, 0);
+        if (self->thread &&
+            self->thread->type == afw_thread_type_request)
+        {
+            afw_size_t limit;
+            afw_size_t asked;
+
+            limit = xctx->env->limit_request_pool_bytes;
+            asked = self->thread->pool_bytes_in_use;
+            if (limit != 0 &&
+                (asked >= limit || total > limit - asked))
+            {
+                AFW_THROW_ERROR_Z(payload_too_large,
+                    "Request pool limit exceeded.", xctx);
+            }
+        }
+    }
+
     chunk = impl_chunk_malloc(total, heap->chunk_min);
     if (!chunk) {
         if (unhandled) {

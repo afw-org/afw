@@ -343,6 +343,7 @@ afw_environment_create(
     thread->p = p;
     thread->os_thread = NULL;
     xctx->thread = thread;
+    afw_os_c_stack_bounds(&thread->c_stack_base, &thread->c_stack_size);
 
     /* Create data type method number hash table. */
     env->data_type_method_number_ht = afw_hash_table_create(

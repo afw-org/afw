@@ -17,6 +17,9 @@
  * pthread_* return the errno value, not -1 with errno set.
  */
 
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+#endif
 #include "afw.h"
 #include <pthread.h>
 #include <errno.h>
@@ -299,4 +302,36 @@ afw_os_thread_kill(const afw_os_thread_t *thread, int signo)
         return;
     }
     (void)pthread_kill(thread->tid, signo);
+}
+
+
+AFW_DEFINE(void)
+afw_os_c_stack_bounds(void **base, afw_size_t *size)
+{
+    pthread_attr_t attr;
+    void *addr;
+    size_t nbytes;
+    int err;
+
+    if (base) {
+        *base = NULL;
+    }
+    if (size) {
+        *size = 0;
+    }
+    err = pthread_getattr_np(pthread_self(), &attr);
+    if (err != 0) {
+        return;
+    }
+    err = pthread_attr_getstack(&attr, &addr, &nbytes);
+    pthread_attr_destroy(&attr);
+    if (err != 0 || !addr || nbytes == 0) {
+        return;
+    }
+    if (base) {
+        *base = addr;
+    }
+    if (size) {
+        *size = (afw_size_t)nbytes;
+    }
 }

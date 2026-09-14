@@ -151,3 +151,15 @@ afw_os_thread_kill(const afw_os_thread_t *thread, int signo)
     (void)thread;
     (void)signo;
 }
+
+
+AFW_DEFINE(void)
+afw_os_c_stack_bounds(void **base, afw_size_t *size)
+{
+    if (base) {
+        *base = NULL;
+    }
+    if (size) {
+        *size = 0;
+    }
+}

@@ -100873,7 +100873,7 @@ impl_992_property_dataType = {
 static const afw_runtime_property_t
 impl_992_property_description = {
     afw_v_description,
-    &afw_self_v_zz__88a07f314730.pub
+    &afw_self_v_zz__39669a761fb4.pub
 };
 
 static const afw_runtime_property_t

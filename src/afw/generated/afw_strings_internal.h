@@ -13835,6 +13835,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__39669a761fb4 \
+    "Tripwire against request-thread ST asked-for bytes, not process poolBytesInUse and not the CLI base thread. 0 = unlimited."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__39669a761fb4 */
+#define afw_s_zz__39669a761fb4 \
+    (&afw_self_v_zz__39669a761fb4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__39669a761fb4 */
+#define afw_self_s_zz__39669a761fb4 \
+    (afw_self_v_zz__39669a761fb4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__39669a761fb4 */
+extern const afw_value_string_t \
+    afw_self_v_zz__39669a761fb4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__39669a761fb4 */
+#define afw_z_zz__39669a761fb4 \
+    (afw_self_v_zz__39669a761fb4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__39669a761fb4 */
+#define afw_v_zz__39669a761fb4 \
+    (&afw_self_v_zz__39669a761fb4.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__39b93060fb4a \
     "Checks whether ipAddress value matches the regular expression regexp and return the boolean result."
 
@@ -32109,32 +32135,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__886802fc94bb */
 #define afw_v_zz__886802fc94bb \
     (&afw_self_v_zz__886802fc94bb.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__88a07f314730 \
-    "Tripwire against thread single-thread asked-for bytes, not process poolBytesInUse. 0 = unlimited."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__88a07f314730 */
-#define afw_s_zz__88a07f314730 \
-    (&afw_self_v_zz__88a07f314730.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__88a07f314730 */
-#define afw_self_s_zz__88a07f314730 \
-    (afw_self_v_zz__88a07f314730.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__88a07f314730 */
-extern const afw_value_string_t \
-    afw_self_v_zz__88a07f314730;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__88a07f314730 */
-#define afw_z_zz__88a07f314730 \
-    (afw_self_v_zz__88a07f314730.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__88a07f314730 */
-#define afw_v_zz__88a07f314730 \
-    (&afw_self_v_zz__88a07f314730.pub)
 
 
 
