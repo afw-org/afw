@@ -151,7 +151,8 @@ def run(options):
             'compare') is not None
         want_trend = options.get('trend') is not False and options.get(
             'trend') is not None
-        skip_run = (want_compare or want_trend) and not options.get('history')
+        skip_run = (want_compare or want_trend) and not (
+            options.get('history') or options.get('history_ref'))
 
         if skip_run:
             _run_compare_trend(options)

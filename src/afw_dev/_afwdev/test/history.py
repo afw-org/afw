@@ -63,7 +63,7 @@ def history_dir(options):
 
 
 def should_write_history(options):
-    if (options or {}).get("history"):
+    if (options or {}).get("history") or (options or {}).get("history_ref"):
         return True
     settings = (options or {}).get("afwdev_settings") or {}
     return bool(settings.get("test_history_dir"))
@@ -74,11 +74,35 @@ def _mode_suffix(mode):
     return safe or "afw"
 
 
-def history_filename(mode, when=None):
+def sanitize_ref_label(label):
+    """Filename-safe reference label, or empty if none."""
+    if not label or not str(label).strip():
+        return ""
+    safe = re.sub(r"[^A-Za-z0-9._-]+", "-", str(label).strip())
+    return safe.strip("-.")
+
+
+def is_reference_name(name):
+    return "-ref-" in os.path.basename(name or "")
+
+
+def is_reference_run(run):
+    if not run:
+        return False
+    if run.get("reference"):
+        return True
+    return is_reference_name(run.get("_basename") or run.get("_path") or "")
+
+
+def history_filename(mode, when=None, ref_label=None):
     when = when or datetime.now(timezone.utc)
     stamp = when.strftime("%Y-%m-%dT%H%M%S")
     stamp += "{:03d}Z".format(when.microsecond // 1000)
-    return "{}-{}.json".format(stamp, _mode_suffix(mode))
+    mode_s = _mode_suffix(mode)
+    label = sanitize_ref_label(ref_label)
+    if label:
+        return "{}-ref-{}-{}.json".format(stamp, label, mode_s)
+    return "{}-{}.json".format(stamp, mode_s)
 
 
 def list_run_files(dir_path, mode):
@@ -96,6 +120,24 @@ def list_run_files(dir_path, mode):
     return [os.path.join(dir_path, n) for n in names]
 
 
+def select_trend_files(dir_path, mode, count=TREND_DEFAULT_COUNT):
+    """All reference runs for mode plus the last N non-reference, oldest first."""
+    all_files = list_run_files(dir_path, mode)
+    refs = [p for p in all_files if is_reference_name(p)]
+    nonrefs = [p for p in all_files if not is_reference_name(p)]
+    count = max(1, int(count))
+    chosen = refs + nonrefs[-count:]
+    # Unique, keep timestamp order (basename sorts with the stamp prefix).
+    seen = set()
+    out = []
+    for p in sorted(chosen, key=lambda x: os.path.basename(x)):
+        if p in seen:
+            continue
+        seen.add(p)
+        out.append(p)
+    return out
+
+
 def load_run(path):
     with nfc.open(path, "r") as fd:
         data = nfc.json_load(fd)
@@ -111,10 +153,14 @@ def write_history(summary, options):
     dir_path = history_dir(options)
     mode = env_mode(options)
     os.makedirs(dir_path, exist_ok=True)
-    path = os.path.join(dir_path, history_filename(mode))
+    ref_label = sanitize_ref_label((options or {}).get("history_ref"))
+    path = os.path.join(dir_path, history_filename(mode, ref_label=ref_label or None))
     payload = dict(summary)
     payload.pop("_path", None)
     payload.pop("_basename", None)
+    if ref_label:
+        payload["reference"] = True
+        payload["label"] = ref_label
     with nfc.open(path, "w") as fd:
         nfc.json_dump(payload, fd, indent=2, sort_keys=True)
         fd.write("\n")
@@ -392,10 +438,9 @@ def resolve_trend_runs(options):
         for a in args:
             expanded = glob.glob(os.path.expanduser(a)) or [os.path.expanduser(a)]
             files.extend(expanded)
-        files = sorted(set(files))
+        files = sorted(set(files), key=lambda p: os.path.basename(p))
     else:
-        files = list_run_files(dir_path, mode)
-        files = files[-count:]
+        files = select_trend_files(dir_path, mode, count)
     if len(files) < 2:
         raise ValueError(
             "need at least two history files for --trend (mode {m})".format(
@@ -419,7 +464,14 @@ def _path_filter(options):
 
 
 def trend_runs(runs, options=None):
-    first = files_by_path(runs[0])
+    peer_run = None
+    for run in runs:
+        if is_reference_run(run):
+            peer_run = run
+            break
+    if peer_run is None:
+        peer_run = runs[0]
+    first = files_by_path(peer_run)
     last = files_by_path(runs[-1])
     rx = _path_filter(options)
     def ok(path):
@@ -428,6 +480,24 @@ def trend_runs(runs, options=None):
     last_p = {p for p in last if ok(p)}
     added = sorted(last_p - first_p)
     gone = sorted(first_p - last_p)
+    peer_paths = first_p & last_p
+    peer_ms = []
+    for run in runs:
+        by = files_by_path(run)
+        total = 0
+        n = 0
+        for pth in peer_paths:
+            row = by.get(pth)
+            if not row:
+                continue
+            m = _ms(row)
+            if m is None:
+                continue
+            total += m
+            n += 1
+        peer_ms.append({"ms": total, "n": n})
+    peer_label = peer_run.get("label") or (
+        "ref" if is_reference_run(peer_run) else "first")
     series_max_k = []
     for run in runs:
         mx = 0
@@ -480,6 +550,8 @@ def trend_runs(runs, options=None):
         "new": added,
         "gone": gone,
         "series_max_k": series_max_k,
+        "peer_ms": peer_ms,
+        "peer_label": peer_label,
         "movers": movers,
         "metric": metric,
     }
@@ -488,12 +560,22 @@ def trend_runs(runs, options=None):
 def print_trend(result, show_all=False):
     runs = result["runs"]
     msg.highlighted_info(
-        "Trend {n} runs  new {a}  gone {g}  (mode {m})".format(
+        "Trend {n} runs  new {a}  gone {g}  (mode {m}, peer {lab})".format(
             n=len(runs),
             a=len(result["new"]),
             g=len(result["gone"]),
             m=runs[0].get("mode") or "afw",
+            lab=result.get("peer_label") or "first",
         ))
+    peer = result.get("peer_ms") or []
+    if peer:
+        bits = []
+        for rec in peer:
+            bits.append("{:.1f}s".format((rec.get("ms") or 0) / 1000.0))
+        npeer = peer[-1].get("n") if peer else 0
+        msg.highlighted_info(
+            "Peer ms ({n} files):  {bits}".format(
+                n=npeer, bits="  ".join(bits)))
     maxes = result["series_max_k"]
     if any(x is not None for x in maxes):
         bits = []

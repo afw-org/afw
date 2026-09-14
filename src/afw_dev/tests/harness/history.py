@@ -2,8 +2,12 @@
 # -*- coding: utf-8 -*-
 """History compare/trend: path match, optional k, thresholds."""
 
+import os
+import tempfile
+
 from _afwdev.test.history import (
     compare_runs, file_record, trend_runs, _k_fatter, K_FLOOR_BYTES,
+    history_filename, is_reference_name, select_trend_files,
 )
 
 
@@ -100,6 +104,61 @@ def run():
         "test": "floor-constant",
         "description": "32k floor is the agreed k delta",
         "passed": K_FLOOR_BYTES == 32 * 1024,
+        "skip": False,
+    })
+
+    ref_name = history_filename("afw", ref_label="pre-mgg")
+    tests.append({
+        "test": "history-ref-filename",
+        "description": "-ref-LABEL- sits before -mode.json",
+        "passed": (
+            "-ref-pre-mgg-afw.json" in ref_name
+            and is_reference_name(ref_name)
+            and not is_reference_name("2026-09-14T010203000Z-afw.json")
+        ),
+        "skip": False,
+    })
+
+    tmp = tempfile.mkdtemp()
+    try:
+        open(os.path.join(tmp, "2026-01-01T000000000Z-ref-pre-mgg-afw.json"), "w").close()
+        open(os.path.join(tmp, "2026-02-01T000000000Z-afw.json"), "w").close()
+        open(os.path.join(tmp, "2026-03-01T000000000Z-afw.json"), "w").close()
+        open(os.path.join(tmp, "latest-afw.json"), "w").close()
+        selected = [os.path.basename(p) for p in select_trend_files(tmp, "afw", 1)]
+        tests.append({
+            "test": "trend-keeps-refs-plus-last-n",
+            "description": "refs never age out; last 1 ordinary run is kept",
+            "passed": (
+                "2026-01-01T000000000Z-ref-pre-mgg-afw.json" in selected
+                and "2026-03-01T000000000Z-afw.json" in selected
+                and "2026-02-01T000000000Z-afw.json" not in selected
+                and "latest-afw.json" not in selected
+            ),
+            "skip": False,
+        })
+    finally:
+        for name in os.listdir(tmp):
+            os.remove(os.path.join(tmp, name))
+        os.rmdir(tmp)
+
+    ref = _run([file_record("a.as", 10, 20 * 1024, 1, 0, 0)], commit="ref")
+    ref["reference"] = True
+    ref["label"] = "pre-mgg"
+    later = _run([
+        file_record("a.as", 10, 80 * 1024, 1, 0, 0),
+        file_record("new.as", 10, 8 * 1024, 1, 0, 0),
+    ], commit="later")
+    tr_ref = trend_runs([ref, later], {})
+    tests.append({
+        "test": "trend-peer-oldest-ref",
+        "description": "new/gone and movers vs oldest reference, not a later first",
+        "passed": (
+            tr_ref["peer_label"] == "pre-mgg"
+            and tr_ref["new"] == ["new.as"]
+            and tr_ref["peer_ms"][0]["ms"] == 10
+            and tr_ref["peer_ms"][1]["n"] == 1
+        ),
         "skip": False,
     })
 

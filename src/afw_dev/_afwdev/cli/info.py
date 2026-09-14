@@ -1051,6 +1051,19 @@ _info_test_history = {
         "With --compare/--trend, tests are run first so this record is included."
 }
 
+_info_test_history_ref = {
+    "optionName": "history_ref",
+    "arg": "--history-ref",
+    "action": "store",
+    "default": "",
+    "noprompt": True,
+    "help":
+        "Write this run as a reference baseline (implies --history). "
+        "Filename includes -ref-LABEL- (e.g. …-ref-pre-mgg-afw.json). "
+        "--trend always includes reference runs for this --env-mode plus "
+        "the last N ordinary runs. Peer totals use the oldest reference."
+}
+
 _info_test_history_dir = {
     "optionName": "history_dir",
     "arg": "--history-dir",
@@ -1083,10 +1096,12 @@ _info_test_trend = {
     "default": False,
     "noprompt": True,
     "help":
-        "Show k (or --trend-metric ms) across history runs. No args: last "
-        "10 for this --env-mode. A single integer is the run count. "
-        "Otherwise glob/paths of JSON files (same mode only). Does not run "
-        "tests unless --history is also given."
+        "Show k (or --trend-metric ms) across history runs. No args: all "
+        "reference runs for this --env-mode plus the last 10 ordinary runs. "
+        "A single integer is the ordinary-run count. Otherwise glob/paths "
+        "of JSON files (same mode only). Does not run tests unless --history "
+        "or --history-ref is also given. Peer ms is files in oldest "
+        "reference ∩ last run."
 }
 
 _info_test_trend_metric = {
@@ -1131,6 +1146,7 @@ _info_test = {
         _info_tests_path,
         _info_test_capture_goldens,
         _info_test_history,
+        _info_test_history_ref,
         _info_test_history_dir,
         _info_test_compare,
         _info_test_trend,
