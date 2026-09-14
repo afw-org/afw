@@ -79,6 +79,8 @@ ICU: `afw_utf8.c` (NFC, to_lower, `afw_utf8_icu_error_name_z`) and `afw_code_poi
 
 `afw_utf8_printf` / `z_printf`: own formatter. Prefer `%ku` (`const afw_utf8_t *`; NULL is empty). `AFW_UTF8_FMT` (`%.*s`) is libc and copies n bytes on the AFW walk (interior `0` is data). libc `printf` with `%.*s` still stops at `0`. Assemble then **`create`**. Do not use these to write data files or round-trip octets — `.s` + `.len` / `as_memory`. Landed [#314](https://github.com/afw-org/afw/issues/314) / [PR #315](https://github.com/afw-org/afw/pull/315).
 
+**Default `%s` throw stays.** Do not paper over dirty bytes with `%ks` when data must stay as-is (`%ks` is `forced_safe` / `^hex^`). **Next sitting (new branch):** error-in-error only — AFW printf while assembling an error must not throw. First cuts: `afw_error_to_utf8` (`message_z` / `rv_decoded_z` / backtraces) and `strerror` in `AFW_THROW_ERROR_*` (`afw_stream_fd.c`, `afw_writer.c`). Keep octets as-is if we need them; do not default those sites to `%ks`.
+
 LDAP filters, file-adapter paths (dir open, journal, object files), and VFS host-path joins: **concat `.len`**, then **`to_utf8_z`**. Do not glue those with `AFW_UTF8_FMT` / `apr_psprintf`.
 
 ## Related
