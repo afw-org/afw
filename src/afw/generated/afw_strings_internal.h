@@ -83905,6 +83905,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__This_eval_ST_asked_for_bytes \
+    "This-eval ST asked-for bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_eval_ST_asked_for_bytes */
+#define afw_s_zz__This_eval_ST_asked_for_bytes \
+    (&afw_self_v_zz__This_eval_ST_asked_for_bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_eval_ST_asked_for_bytes */
+#define afw_self_s_zz__This_eval_ST_asked_for_bytes \
+    (afw_self_v_zz__This_eval_ST_asked_for_bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__This_eval_ST_asked_for_bytes */
+extern const afw_value_string_t \
+    afw_self_v_zz__This_eval_ST_asked_for_bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_eval_ST_asked_for_bytes */
+#define afw_z_zz__This_eval_ST_asked_for_bytes \
+    (afw_self_v_zz__This_eval_ST_asked_for_bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__This_eval_ST_asked_for_bytes */
+#define afw_v_zz__This_eval_ST_asked_for_bytes \
+    (&afw_self_v_zz__This_eval_ST_asked_for_bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__This_executes_when_this_property_is_called_as_a_method \
     "This executes when this property is called as a method"
 
@@ -141023,6 +141049,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__dc655a179da7 */
 #define afw_v_zz__dc655a179da7 \
     (&afw_self_v_zz__dc655a179da7.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__dc7ca431dac2 \
+    "File-level xctx ST asked-for bytes (thread current minus snap) after all cases. Not process-wide. afwdev test shows this as KiB next to duration."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__dc7ca431dac2 */
+#define afw_s_zz__dc7ca431dac2 \
+    (&afw_self_v_zz__dc7ca431dac2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__dc7ca431dac2 */
+#define afw_self_s_zz__dc7ca431dac2 \
+    (afw_self_v_zz__dc7ca431dac2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__dc7ca431dac2 */
+extern const afw_value_string_t \
+    afw_self_v_zz__dc7ca431dac2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__dc7ca431dac2 */
+#define afw_z_zz__dc7ca431dac2 \
+    (afw_self_v_zz__dc7ca431dac2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__dc7ca431dac2 */
+#define afw_v_zz__dc7ca431dac2 \
+    (&afw_self_v_zz__dc7ca431dac2.pub)
 
 
 

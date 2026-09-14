@@ -33,7 +33,8 @@ from _afwdev.test.common import \
     get_test_environment, parse_test_run, print_test_response, find_test_groups, \
     load_test_environments, load_test_group_config, run_test, before_all, \
     before_each, after_all, after_each, test_group_matches_tags, \
-    test_path_for_display, clip_detail, outcome_flag, errors_only_console
+    test_path_for_display, clip_detail, outcome_flag, errors_only_console, \
+    xctx_bytes_from_response, format_test_timing
 
 
 ##
@@ -109,6 +110,7 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
     skipped = 0
     passed = 0
     failures = []
+    max_xctx_bytes = 0
 
     # save the current environment variables
     prevEnvVars = os.environ.copy()
@@ -130,7 +132,7 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
     # if --tags was specified (non-default), skip groups that do not match
     if not test_group_matches_tags(options, testGroupConfig):
         msg.debug("  Skipping test group because it doesn't match the specified tags")
-        return testGroup, 0, 0, 0, []
+        return testGroup, 0, 0, 0, [], 0
 
     # get the test environment for this test group
     testEnvironment = get_test_environment(testGroup, testEnvironments, testGroupConfig, work_dir_prefix)    
@@ -142,7 +144,7 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
                 'detail': "environment '{}' has no work_dir".format(
                     testEnvironment.get('name')),
                 'srcdir': srcdir,
-            }]
+            }], 0
         msg.debug("Using test environment: " + testEnvironment['name'] + ', work_dir = ' + testEnvironment['work_dir'])        
 
     test_group_start = time.time()
@@ -183,12 +185,17 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
 
             test_display = test_path_for_display(test, pwd)
             duration_ms = round((end - start) * 1000)
+            xctx_bytes = xctx_bytes_from_response(response)
+            if xctx_bytes is not None:
+                max_xctx_bytes = max(max_xctx_bytes, xctx_bytes)
 
             # Quiet human chatter when summary is the sole stdout artifact
             quiet_console = (options.get('output') == '-')
 
             if not quiet_console and msg.is_debug_mode() and (debug or error):
-                msg.highlighted_info("{}  ({}ms)".format(test_display, duration_ms)) 
+                msg.highlighted_info("{}  {}".format(
+                    test_display,
+                    format_test_timing(duration_ms, xctx_bytes))) 
 
             if error is not None and not quiet_console:
                 # Process death / runner exception: always show path + message.
@@ -230,7 +237,9 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             # Path for assertion failures / --show-all (process errors already
             # printed identity above).
             if error is None:
-                msg.highlighted_info("{}  ({}ms)".format(test_display, duration_ms))
+                msg.highlighted_info("{}  {}".format(
+                    test_display,
+                    format_test_timing(duration_ms, xctx_bytes)))
 
                 if debug:
                     msg.debug('---\n' + debug + '\n---\n')
@@ -263,7 +272,7 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
     if msg.is_debug_mode():
         msg.highlighted_info("Test group {} took {}ms".format(root, round((test_group_end - test_group_start) * 1000)))
 
-    return testGroup, passed, skipped, failed, failures
+    return testGroup, passed, skipped, failed, failures, max_xctx_bytes
 
 
 ##
@@ -305,6 +314,7 @@ def run(options, srcdirs):
     allTestResults = {}
     allFailures = []
     testEnvironments = []
+    max_xctx_bytes = 0
     
     # always include the python client for bindings in the system path
     if os.path.exists('src/afw_client/python'):
@@ -411,7 +421,7 @@ def run(options, srcdirs):
 
         pool.join()
         
-        for testGroup, passed, skipped, failed, group_failures, captured in results:
+        for testGroup, passed, skipped, failed, group_failures, group_xctx, captured in results:
             if captured:
                 sys.stdout.write(captured)
                 if not captured.endswith('\n'):
@@ -427,12 +437,14 @@ def run(options, srcdirs):
                 allTestResults[_srcdir] = [passed, skipped, failed]
             if group_failures:
                 allFailures.extend(group_failures)
+            if group_xctx:
+                max_xctx_bytes = max(max_xctx_bytes, group_xctx)
 
     else:
         # run sequentially
         try:
             for testGroup in allTestGroups:
-                _, passed, skipped, failed, group_failures, _captured = run_test_group(
+                _, passed, skipped, failed, group_failures, group_xctx, _captured = run_test_group(
                     testGroup, 
                     options, 
                     testEnvironments, 
@@ -448,6 +460,8 @@ def run(options, srcdirs):
                     allTestResults[_srcdir] = [passed, skipped, failed]
                 if group_failures:
                     allFailures.extend(group_failures)
+                if group_xctx:
+                    max_xctx_bytes = max(max_xctx_bytes, group_xctx)
 
         except KeyboardInterrupt:
             msg.error("Caught KeyboardInterrupt, terminating test runner")
@@ -457,4 +471,4 @@ def run(options, srcdirs):
             msg.error("Test runner caught Exception: " + str(e))
             sys.exit(1)
 
-    return allTestResults, allFailures
+    return allTestResults, allFailures, max_xctx_bytes

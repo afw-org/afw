@@ -34,7 +34,7 @@ from _afwdev.test import watch, runner, js
 from _afwdev.test.common import (
     find_test_groups, load_test_group_config, test_group_matches_tags,
     print_failure_digest, normalize_tests_paths, write_results_summary,
-    clip_detail)
+    clip_detail, xctx_bytes_to_k)
 
 
 ##
@@ -147,7 +147,7 @@ def run(options):
     else:
 
         start = time.time()
-        results, failures = runner.run(options, srcdirs)
+        results, failures, max_xctx_bytes = runner.run(options, srcdirs)
         end = time.time()
 
         # iterate over results dict and print results
@@ -197,6 +197,9 @@ def run(options):
 
             msg.highlighted_info("{} total".format(total_tests))
             msg.highlighted_info("Time:          {}s".format(elapsed))
+            max_k = xctx_bytes_to_k(max_xctx_bytes)
+            if max_k:
+                msg.highlighted_info("Memory:        max {}k xctx".format(max_k))
 
             # Console-only digest so parallel -j runs still end with greppable paths
             print_failure_digest(failures)
@@ -215,6 +218,8 @@ def run(options):
                 'total': total_tests,
             },
             'time_seconds': elapsed,
+            'max_xctx_bytes': max_xctx_bytes or 0,
+            'max_xctx_kbytes': xctx_bytes_to_k(max_xctx_bytes) or 0,
             'by_srcdir': {
                 srcdir: {
                     'passed': stats[0],

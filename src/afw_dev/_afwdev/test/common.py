@@ -68,6 +68,39 @@ def show_all_cases(options):
     return bool(pattern) and pattern != ".*"
 
 
+def xctx_bytes_from_response(response):
+    """File-level xctx asked-for bytes from a test_script result, or None."""
+    if not isinstance(response, dict):
+        return None
+    n = response.get("poolBytesInUse")
+    if n is None:
+        return None
+    try:
+        n = int(n)
+    except (TypeError, ValueError):
+        return None
+    if n < 0:
+        return None
+    return n
+
+
+def xctx_bytes_to_k(n):
+    """Asked-for bytes to KiB, rounding up. None if n is None."""
+    if n is None:
+        return None
+    if n <= 0:
+        return 0
+    return (int(n) + 1023) // 1024
+
+
+def format_test_timing(duration_ms, xctx_bytes=None):
+    """'(58ms)' or '(58ms, 12k)' for file lines that already show duration."""
+    k = xctx_bytes_to_k(xctx_bytes)
+    if k is None:
+        return "({}ms)".format(duration_ms)
+    return "({}ms, {}k)".format(duration_ms, k)
+
+
 def errors_only_console(options):
     """True when passing cases should stay off the console."""
     return options.get("errors", True) and not show_all_cases(options)
@@ -195,12 +228,14 @@ def write_results_summary(options, summary, tool_label="test"):
             if "passed" in t or "failed" in t:
                 fd.write(
                     "passed={p} failed={f} skipped={s} total={n}\n"
-                    "time_seconds={sec}\n".format(
+                    "time_seconds={sec}\n"
+                    "max_xctx_kbytes={k}\n".format(
                         p=t.get("passed", t.get("ok", 0)),
                         f=t.get("failed", t.get("fail", 0)),
                         s=t.get("skipped", t.get("timeout", 0)),
                         n=t.get("total", 0),
                         sec=summary.get("time_seconds", 0),
+                        k=summary.get("max_xctx_kbytes", 0),
                     ))
             else:
                 fd.write(nfc.json_dumps(summary, indent=2) + "\n")
