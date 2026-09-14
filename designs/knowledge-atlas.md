@@ -55,7 +55,8 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | Compile / call / spread | `afw-script-eval`; #140 / #181; `compiler_internal` kind-check |
 | Arrays / converts / UTF-8 | #39, converts pad, #153; #190 empty-match `replace`. C array/object vtables store **values**; `_as_<type>` vs `_internal`; meta getters still dest `p` |
 | Streams / VFS / retrieve | stream + vfs rules; #127; #49 |
-| afwdev / tests | recipe + tests-extra SCHEMA; #157; C probes #207 |
+| afwdev / tests | recipe + tests-extra SCHEMA; #157; C probes #207; test history `--compare` / `--trend` ([#329](https://github.com/afw-org/afw/issues/329)) |
+| Process telemetry / request caps | `process::` `peak*` / `limit*` / `rss`; application conf overrides; `response:metrics`; hermetic `payload_too_large` worker ([#329](https://github.com/afw-org/afw/issues/329)) |
 | Crypto | #74 pad |
 | Admin / Fiddle | atlas §16 (contract only) |
 | C vector / hash table | [`afw-vector.md`](afw-vector.md) (last `apr_array` [PR #310](https://github.com/afw-org/afw/pull/310)); [`afw-hash-table.md`](afw-hash-table.md) (last `apr_hash` converted) |

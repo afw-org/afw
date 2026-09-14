@@ -28,6 +28,7 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | Function metadata `maximumNumberOfParameters` | **`maxNumberOfParameters`**. [Rename](#maxnumberofparameters-issue-125) |
 | `checkIndividualObjectReadAccess` policies that only handle `query` | Also handle action **`read`**. [Adapter auth](#adapter-getretrieve-authorization-issue-90) |
 | `clone(get_object(…))` / `clone(retrieve_…)` just to set properties | **Not needed.** Get/retrieve already return a **mutable face**. Keep **`clone()`** for a **deep independent copy** (including nested objects). [Faces](#mutable-object-faces-issue-17) |
+| `process::maxPoolBytesInUse` / `maxPoolChunkBytes` | **`peakPoolBytesInUse`** / **`peakPoolChunkBytes`**. Policy caps are **`limitEvaluationStackCount`**, **`limitRequestPoolBytes`**, **`limitCStackHeadroomBytes`**. [Telemetry](#process-telemetry-and-request-caps-issue-329) |
 | `const x = compile(…)` then use `x` as a string/function | **`compile()` stores a unit.** Run it with **`evaluate(x)`** (or `evaluate(compile(…))`). **`app::name`** still evaluates on get (`#{…}` / `${…}` / call). [Templates](#compile-time-template-substitutions-issue-97) |
 | Log conf **`custom`** | **Gone** (it was never loaded). Use **`app::`** or log **`format`** / **`filter`**. Model **`custom::`** is unchanged. |
 
@@ -120,7 +121,8 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**`afw` CLI**](#interactive-afw-line-editing-and-history) | Optional interactive line editing and history ([#30](https://github.com/afw-org/afw/issues/30)); **`--allow` / `-a`** for result content type (YAML block strings, issue **[#14](https://github.com/afw-org/afw/issues/14)**) — see also [YAML / `--allow`](#afw---allow-and-yaml-value-output-issue-14) |
 | [**JSON Schema**](#json-schema-for-adaptive-object-types) ([#3](https://github.com/afw-org/afw/issues/3)) | Cleaner editor schemas for Adaptive object types |
 | [**Process env**](#process-environment-variables-issue-71) ([#71](https://github.com/afw-org/afw/issues/71)) | One `current` on `_AdaptiveEnvironmentVariables_` retrieve; values string if valid UTF-8 else hexBinary |
-| [**`process::`**](#process-ambient-environment-and-process-issues-71--74) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Ambient `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime`; live **`poolBytesInUse`** / **`maxPoolBytesInUse`** / **`poolChunkBytes`** / **`maxPoolChunkBytes`** (also on `_AdaptiveServer_/current`) |
+| [**`process::`**](#process-ambient-environment-and-process-issues-71--74) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Ambient `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime`; live pool telemetry (see [#329](#process-telemetry-and-request-caps-issue-329)) |
+| [**Process telemetry / request caps**](#process-telemetry-and-request-caps-issue-329) ([#329](https://github.com/afw-org/afw/issues/329)) | `peak*` highs; `limit*` tripwires (`payload_too_large`); optional application conf; `response:metrics`; `afwdev test --history` / `--compare` / `--trend` |
 | [**`afw_crypto`**](#crypto-extension-afw_crypto-issue-74-partial) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Optional extension: AES-GCM encrypt/decrypt/**seal**/**unseal**, digest/HMAC, keystore, key refs, PBKDF2; LDAP `bindParameters` recipe |
 | [**Templates**](#compile-time-template-substitutions-issue-97) ([#97](https://github.com/afw-org/afw/issues/97)) | `#{…}` compile, `${…}` on get, function from `#{…}` on **call**; `compile()` is a unit; log conf **`custom`** removed; path conf at configure; `on*` / log filter are scripts |
 | [**Adapter index `current::`**](#adapter-index-filtervalue-current-issue-54--partial) ([#54](https://github.com/afw-org/afw/issues/54) partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
@@ -334,7 +336,8 @@ New limit/cap property ids should use a **`max…`** prefix (`maxReadBytes`, `ma
 | Flag | Who | Role |
 |------|-----|------|
 | **`-T` / `--tests-path`** | `afwdev test` | Exclusive opt-in trees (e.g. `src/afw/tests-extra/…`); default `test -j` never scans those roots |
-| **`--output` / `--output-format`** | `afwdev test` | Write a machine summary (`json`, `json-compact`, or `text`) to a path or `-` |
+| **`--output` / `--output-format`** | `afwdev test` | Write a machine summary (`json`, `json-compact`, or `text`) to a path or `-` (includes per-file `ms` / `xctx_kbytes`) |
+| **`--history` / `--history-ref` / `--compare` / `--trend`** | `afwdev test` | Dated JSON under `~/.afw/test-history/` (or `test_history_dir`); compare/trend by test path. k optional so older `afw` still records timing |
 
 Recipes: [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md).
 
@@ -1368,9 +1371,14 @@ Process environment variables and invocation info are created at **environment c
 | **`afwVersion`** | Linked libafw version string |
 | **`startTime`** | Local dateTime when the Adaptive environment was created |
 | **`poolBytesInUse`** | Outstanding AFW malloc/calloc (asked-for). Live. |
-| **`maxPoolBytesInUse`** | High-water of `poolBytesInUse` |
+| **`peakPoolBytesInUse`** | High-water of `poolBytesInUse` (was `maxPoolBytesInUse`) |
 | **`poolChunkBytes`** | posix_memalign chunk bytes still held. Live. |
-| **`maxPoolChunkBytes`** | High-water of `poolChunkBytes` |
+| **`peakPoolChunkBytes`** | High-water of `poolChunkBytes` (was `maxPoolChunkBytes`) |
+| **`rss`** | Live process RSS in **bytes** (`process_rss()` is still KB) |
+| **`limitEvaluationStackCount`** | Adaptive eval-stack cap per xctx (default 500; **0** = unlimited) |
+| **`limitRequestPoolBytes`** | Request-thread ST asked-for cap (default 64MiB; **0** = unlimited). CLI is uncapped unless application conf sets this |
+| **`limitCStackHeadroomBytes`** | Minimum remaining C stack before `payload_too_large` (default 256KiB; **0** = unlimited) |
+| **`chunkMin` / `compileChunkMin` / `xctxChunkMin`** | Heap posix_memalign minima (rounded up to 4k) |
 
 Example:
 
@@ -1380,7 +1388,9 @@ assert(length(process::args) >= 1);
 const home = environment::HOME;
 ```
 
-**Not on `process::`:** HTTP/CGI parameters (`request::`) or a live-updating cwd. Pool counters also appear on **`_AdaptiveServer_/current`** (same process-wide numbers).
+**Not on `process::`:** HTTP/CGI parameters (`request::`) or a live-updating cwd. Pool **currents and peaks** also appear on **`_AdaptiveServer_/current`** (same process-wide numbers). Limits and chunk mins are on **`process::`**. Over-limit Adaptive eval throws **`payload_too_large`** (HTTP **413**). Optional **`type=application`** conf overrides any `limit*` / chunk min (`0` on a limit = unlimited). Flag **`response:metrics`** adds this-request `metrics` on `_AdaptiveResponse_` (off by default).
+
+See [Process telemetry](#process-telemetry-and-request-caps-issue-329).
 
 Hosts (`afw`, `afwfcgi`, …) no longer create their own process-env object. Context type **`process`** documents these bags; **`application`** parents it for the expression builder. Path-like conf templates use `contextType: "process"`.
 
@@ -1389,6 +1399,18 @@ Hosts (`afw`, `afwfcgi`, …) no longer create their own process-env object. Con
 ### Log conf `format` / `filter` context types
 
 Specialized log conf object types (`_AdaptiveConf_log_standard`, `_syslog`, `_event_log`) set **`contextType`** on **`format`** and **`filter`** to the matching runtime context id (`logType-standard`, `logType-syslog`, `logType-event_log`). Those context types parent **application** (and thus **process**) and document log write bags (`current::message` / `source` / `xctxUUID`, `log::`). Property meta inherits the shared definitions from `_AdaptiveConf_log` via **`parentPaths`** (use object option **`composite: true`** to see full meta). Log conf has no `custom` bag.
+
+[↑ Highlights](#highlights)
+
+---
+
+## Process telemetry and request caps (issue [#329](https://github.com/afw-org/afw/issues/329))
+
+Watch **`process::`** (and optional **`response:metrics`**) for asked-for pool bytes vs RSS. **Peaks** use `peak*`, not `max*` (`maxObjects` is still retrieve array shape).
+
+A request that exceeds **`limitRequestPoolBytes`** (request threads), **`limitEvaluationStackCount`**, or remaining C stack below **`limitCStackHeadroomBytes`** throws **`payload_too_large`** while there is still room to build the error. The worker stays up. Application conf can override those knobs; setting **`limitRequestPoolBytes`** in conf also applies to the `afw` CLI.
+
+`afwdev test` prints `(Nms, Xk)` on file lines and `Memory: max Xk xctx` on the run summary. **`--history`** / **`--history-ref LABEL`** write dated JSON; **`--compare`** / **`--trend`** diff by test path (k optional).
 
 [↑ Highlights](#highlights)
 
@@ -1897,6 +1919,7 @@ Must-change items are at the [top](#must-change-read-this-first). These are easi
 | Graceful process stop (SIGTERM/SIGINT) | [#158](https://github.com/afw-org/afw/issues/158) (closed) | PR **[#165](https://github.com/afw-org/afw/pull/165)** → `mgg-develop` |
 | Function reference prototypes ([#28](https://github.com/afw-org/afw/issues/28) Type spelling) | [#28](https://github.com/afw-org/afw/issues/28) | generate/docs on `mgg-develop` |
 | Remove deprecated `throw` / declare helpers | [#172](https://github.com/afw-org/afw/issues/172) | this branch |
+| Process telemetry, request caps, `response:metrics`, test history | [#329](https://github.com/afw-org/afw/issues/329) | this line |
 
 ---
 
