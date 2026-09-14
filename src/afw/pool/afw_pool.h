@@ -44,7 +44,7 @@
  * - Two numbers: asked-for (`bytes_allocated` /
  *   `env->pool_bytes_in_use`) vs chunks (`chunk_bytes` /
  *   `env->pool_chunk_bytes`). Env also keeps high-water
- *   `pool_bytes_in_use_max` / `pool_chunk_bytes_max`. Adaptive
+ *   `peak_pool_bytes_in_use` / `peak_pool_chunk_bytes`. Adaptive
  *   `pool_bytes_in_use()` vs `process_rss()`. This xctx:
  *   `afw_pool_subtree_*` on `xctx->p`.
  * - Last-release: decrement; if 0 and children remain, throw; else
@@ -66,6 +66,19 @@
  */
 
 AFW_BEGIN_DECLARES
+
+/**
+ * @brief Round a byte size up to the heap posix_memalign page.
+ * @param size bytes. 0 is unchanged (unlimited or "use default").
+ * @return 0 if size is 0; otherwise at least one page, multiple of
+ *    the page.
+ *
+ * Use this when storing env chunk_min / compile_chunk_min /
+ * xctx_chunk_min and byte limits. Heap create then does not redo
+ * the round.
+ */
+AFW_DECLARE(afw_size_t)
+afw_pool_round_up_chunk_size(afw_size_t size);
 
 /** @brief Typedef for registered cleanup functions. */
 typedef struct afw_pool_cleanup_s afw_pool_cleanup_t;
@@ -111,7 +124,7 @@ afw_pool_create(
 /**
  * @brief Create a single-thread heap (managed_p = self).
  * @param parent of new pool (may be multithreaded env/base).
- * @param chunk_min minimum posix_memalign size; 0 = default (64k).
+ * @param chunk_min minimum posix_memalign size; 0 = env->chunk_min.
  * @param xctx of caller.
  * @return new pool.
  *

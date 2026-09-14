@@ -184,9 +184,9 @@ do { \
             self->pool_number, \
             self->bytes_allocated, \
             (afw_size_t)xctx->env->pool_bytes_in_use, \
-            (afw_size_t)xctx->env->pool_bytes_in_use_max, \
+            (afw_size_t)xctx->env->peak_pool_bytes_in_use, \
             (afw_size_t)xctx->env->pool_chunk_bytes, \
-            (afw_size_t)xctx->env->pool_chunk_bytes_max, \
+            (afw_size_t)xctx->env->peak_pool_chunk_bytes, \
             afw_os_get_rss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
@@ -217,9 +217,9 @@ do { \
             self->pool_number, \
             self->bytes_allocated, \
             (afw_size_t)xctx->env->pool_bytes_in_use, \
-            (afw_size_t)xctx->env->pool_bytes_in_use_max, \
+            (afw_size_t)xctx->env->peak_pool_bytes_in_use, \
             (afw_size_t)xctx->env->pool_chunk_bytes, \
-            (afw_size_t)xctx->env->pool_chunk_bytes_max, \
+            (afw_size_t)xctx->env->peak_pool_chunk_bytes, \
             afw_os_get_rss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
@@ -241,8 +241,8 @@ static void
 impl_env_add_bytes(afw_environment_t *env, afw_size_t n)
 {
     env->pool_bytes_in_use += n;
-    if (env->pool_bytes_in_use > env->pool_bytes_in_use_max) {
-        env->pool_bytes_in_use_max = env->pool_bytes_in_use;
+    if (env->pool_bytes_in_use > env->peak_pool_bytes_in_use) {
+        env->peak_pool_bytes_in_use = env->pool_bytes_in_use;
     }
 }
 
@@ -251,8 +251,80 @@ static void
 impl_env_add_chunks(afw_environment_t *env, afw_size_t n)
 {
     env->pool_chunk_bytes += n;
-    if (env->pool_chunk_bytes > env->pool_chunk_bytes_max) {
-        env->pool_chunk_bytes_max = env->pool_chunk_bytes;
+    if (env->pool_chunk_bytes > env->peak_pool_chunk_bytes) {
+        env->peak_pool_chunk_bytes = env->pool_chunk_bytes;
+    }
+}
+
+
+static void
+impl_thread_add_bytes(const afw_thread_t *thread, afw_size_t n)
+{
+    afw_thread_t *t;
+
+    if (!thread || n == 0) {
+        return;
+    }
+    t = (afw_thread_t *)thread;
+    t->pool_bytes_in_use += n;
+    if (t->pool_bytes_in_use > t->peak_pool_bytes_in_use) {
+        t->peak_pool_bytes_in_use = t->pool_bytes_in_use;
+    }
+}
+
+
+static void
+impl_thread_sub_bytes(const afw_thread_t *thread, afw_size_t n)
+{
+    if (!thread || n == 0) {
+        return;
+    }
+    ((afw_thread_t *)thread)->pool_bytes_in_use -= n;
+}
+
+
+static void
+impl_thread_add_chunks(const afw_thread_t *thread, afw_size_t n)
+{
+    afw_thread_t *t;
+
+    if (!thread || n == 0) {
+        return;
+    }
+    t = (afw_thread_t *)thread;
+    t->pool_chunk_bytes += n;
+    if (t->pool_chunk_bytes > t->peak_pool_chunk_bytes) {
+        t->peak_pool_chunk_bytes = t->pool_chunk_bytes;
+    }
+}
+
+
+static void
+impl_thread_sub_chunks(const afw_thread_t *thread, afw_size_t n)
+{
+    if (!thread || n == 0) {
+        return;
+    }
+    ((afw_thread_t *)thread)->pool_chunk_bytes -= n;
+}
+
+
+static void
+impl_pool_set_owning_thread(
+    afw_pool_internal_self_t *self,
+    const afw_thread_t *thread)
+{
+    if (self->thread == thread) {
+        return;
+    }
+    if (self->thread) {
+        impl_thread_sub_bytes(self->thread, self->bytes_allocated);
+        impl_thread_sub_chunks(self->thread, self->chunk_bytes);
+    }
+    self->thread = thread;
+    if (thread) {
+        impl_thread_add_bytes(thread, self->bytes_allocated);
+        impl_thread_add_chunks(thread, self->chunk_bytes);
     }
 }
 
@@ -265,6 +337,7 @@ impl_account_alloc(
     if (xctx && xctx->env) {
         impl_env_add_bytes((afw_environment_t *)xctx->env, consumed);
     }
+    impl_thread_add_bytes(self->thread, consumed);
 }
 
 
@@ -277,6 +350,7 @@ impl_account_chunk_add(
     if (xctx && xctx->env) {
         impl_env_add_chunks((afw_environment_t *)xctx->env, size);
     }
+    impl_thread_add_chunks(self->thread, size);
 }
 
 
@@ -288,6 +362,7 @@ impl_account_free(
     if (xctx && xctx->env) {
         ((afw_environment_t *)xctx->env)->pool_bytes_in_use -= consumed;
     }
+    impl_thread_sub_bytes(self->thread, consumed);
 }
 
 
@@ -298,6 +373,7 @@ impl_account_destroy(afw_pool_internal_self_t *self, afw_xctx_t *xctx)
         ((afw_environment_t *)xctx->env)->pool_bytes_in_use -=
             self->bytes_allocated;
     }
+    impl_thread_sub_bytes(self->thread, self->bytes_allocated);
     self->bytes_allocated = 0;
 }
 
@@ -355,22 +431,40 @@ impl_same_chunk(afw_pool_internal_self_t *heap, void *a, void *b)
 }
 
 
-static afw_size_t
-impl_normalize_chunk_min(afw_size_t chunk_min)
+AFW_DEFINE(afw_size_t)
+afw_pool_round_up_chunk_size(afw_size_t size)
 {
-    afw_size_t rest;
+    afw_size_t rem;
+    afw_size_t add;
 
-    if (chunk_min == 0) {
-        return AFW_POOL_CHUNK_MIN;
+    if (size == 0) {
+        return 0;
     }
-    if (chunk_min < AFW_POOL_CHUNK_ALIGN) {
+    if (size < AFW_POOL_CHUNK_ALIGN) {
         return AFW_POOL_CHUNK_ALIGN;
     }
-    rest = chunk_min & (AFW_POOL_CHUNK_ALIGN - 1);
-    if (rest) {
-        chunk_min += AFW_POOL_CHUNK_ALIGN - rest;
+    rem = size & (AFW_POOL_CHUNK_ALIGN - 1);
+    if (rem == 0) {
+        return size;
     }
-    return chunk_min;
+    add = AFW_POOL_CHUNK_ALIGN - rem;
+    if (size > AFW_SIZE_T_MAX - add) {
+        return AFW_SIZE_T_MAX & ~(AFW_POOL_CHUNK_ALIGN - 1);
+    }
+    return size + add;
+}
+
+
+static afw_size_t
+impl_normalize_chunk_min(afw_size_t chunk_min, const afw_environment_t *env)
+{
+    if (chunk_min == 0) {
+        if (env) {
+            return env->chunk_min;
+        }
+        chunk_min = AFW_ENVIRONMENT_CHUNK_MIN;
+    }
+    return afw_pool_round_up_chunk_size(chunk_min);
 }
 
 
@@ -379,7 +473,6 @@ impl_chunk_need(afw_size_t min_payload, afw_size_t chunk_min)
 {
     afw_size_t header;
     afw_size_t need;
-    afw_size_t rem;
 
     header = AFW_POOL_ALIGN_UP(sizeof(afw_pool_chunk_t));
     if (min_payload > AFW_SIZE_T_MAX - header) {
@@ -389,15 +482,7 @@ impl_chunk_need(afw_size_t min_payload, afw_size_t chunk_min)
     if (need < chunk_min) {
         need = chunk_min;
     }
-    /* Whole pages so posix_memalign 4k alignment is legal. */
-    rem = need & (AFW_POOL_CHUNK_ALIGN - 1);
-    if (rem) {
-        if (need > AFW_SIZE_T_MAX - (AFW_POOL_CHUNK_ALIGN - rem)) {
-            return 0;
-        }
-        need += AFW_POOL_CHUNK_ALIGN - rem;
-    }
-    return need;
+    return afw_pool_round_up_chunk_size(need);
 }
 
 
@@ -426,7 +511,10 @@ impl_chunk_malloc(afw_size_t min_payload, afw_size_t chunk_min)
 
 
 static afw_pool_internal_self_t *
-impl_heap_allocate_self(const afw_pool_inf_t *inf, afw_size_t chunk_min)
+impl_heap_allocate_self(
+    const afw_pool_inf_t *inf,
+    afw_size_t chunk_min,
+    afw_xctx_t *xctx)
 {
     afw_size_t self_bytes;
     afw_pool_chunk_t *chunk;
@@ -434,8 +522,10 @@ impl_heap_allocate_self(const afw_pool_inf_t *inf, afw_size_t chunk_min)
     afw_pool_internal_self_t *self;
     char *usable;
     char *after_self;
+    const afw_environment_t *env;
 
-    chunk_min = impl_normalize_chunk_min(chunk_min);
+    env = (xctx && xctx->env) ? xctx->env : NULL;
+    chunk_min = impl_normalize_chunk_min(chunk_min, env);
     self_bytes = AFW_POOL_ALIGN_UP(
         sizeof(afw_pool_internal_self_with_free_memory_head_t));
     chunk = impl_chunk_malloc(self_bytes, chunk_min);
@@ -520,14 +610,14 @@ impl_link_as_child(
     afw_pool_internal_self_t *child,
     afw_xctx_t *xctx)
 {
-    if (parent->thread) {
-        impl_add_child(parent, child, xctx);
-    }
-    else {
+    if (afw_pool_internal_is_heap_multithreaded(&parent->pub)) {
         IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
             impl_add_child(parent, child, xctx);
         }
         IMPL_MULTITHREADED_LOCK_END;
+    }
+    else {
+        impl_add_child(parent, child, xctx);
     }
 }
 
@@ -543,13 +633,23 @@ impl_heap_create(
     afw_pool_internal_self_t *self;
     afw_pool_internal_self_t *parent_self;
 
-    self = impl_heap_allocate_self(inf, chunk_min);
+    self = impl_heap_allocate_self(inf, chunk_min, xctx);
     if (!self) {
         AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
     }
     self->pool_number = afw_atomic_integer_increment(
         &((afw_environment_t *)xctx->env)->pool_number);
-    self->thread = xctx->thread;
+    /*
+     * ST: owning AFW thread (including base). MT: NULL — shared,
+     * not "base". Do this before chunk accounting so env catalogs
+     * do not land on limitRequestPoolBytes.
+     */
+    if (afw_pool_internal_is_heap_multithreaded(&self->pub)) {
+        self->thread = NULL;
+    }
+    else {
+        self->thread = xctx->thread;
+    }
 
     if (afw_parent) {
         parent_self = (afw_pool_internal_self_t *)afw_parent;
@@ -559,6 +659,7 @@ impl_heap_create(
     if (xctx && xctx->env && self->chunk_bytes) {
         impl_env_add_chunks((afw_environment_t *)xctx->env,
             self->chunk_bytes);
+        impl_thread_add_chunks(self->thread, self->chunk_bytes);
     }
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "create");
@@ -791,6 +892,26 @@ impl_heap_take_from_free_list_or_chunk(
     }
     heap->bump = NULL;
     heap->remaining = 0;
+
+    if (!unhandled && xctx->error_processing_count == 0) {
+        afw_xctx_check_resource_limits(xctx, 0);
+        if (self->thread &&
+            (self->thread->type == afw_thread_type_request ||
+                xctx->env->limit_request_pool_apply_to_base))
+        {
+            afw_size_t limit;
+            afw_size_t asked;
+
+            limit = xctx->env->limit_request_pool_bytes;
+            asked = self->thread->pool_bytes_in_use;
+            if (limit != 0 &&
+                (asked >= limit || total > limit - asked))
+            {
+                AFW_THROW_ERROR_Z(payload_too_large,
+                    "Request pool limit exceeded.", xctx);
+            }
+        }
+    }
 
     chunk = impl_chunk_malloc(total, heap->chunk_min);
     if (!chunk) {
@@ -1040,6 +1161,7 @@ impl_heap_free_chunks(afw_pool_internal_self_t *self, afw_xctx_t *xctx)
         ((afw_environment_t *)xctx->env)->pool_chunk_bytes -=
             self->chunk_bytes;
     }
+    impl_thread_sub_chunks(self->thread, self->chunk_bytes);
     self->chunk_bytes = 0;
     self->chunk_count = 0;
     chunk = self->first_chunk;
@@ -1115,14 +1237,14 @@ impl_pool_teardown_store(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
     parent_destroying = parent && parent->destroying;
     is_tracker = afw_pool_internal_is_tracker(&self->pub);
     if (parent) {
-        if (parent->thread) {
-            impl_unlink_child(parent, self, xctx);
-        }
-        else {
+        if (afw_pool_internal_is_heap_multithreaded(&parent->pub)) {
             IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
                 impl_unlink_child(parent, self, xctx);
             }
             IMPL_MULTITHREADED_LOCK_END;
+        }
+        else {
+            impl_unlink_child(parent, self, xctx);
         }
     }
 
@@ -1796,9 +1918,6 @@ afw_pool_internal_heap_create(
         ? &impl_afw_pool_heap_multithreaded_inf
         : &impl_afw_pool_inf;
     self = impl_heap_create(parent, inf, chunk_min, xctx);
-    if (multithreaded) {
-        self->thread = NULL;
-    }
     return &self->pub;
 }
 
@@ -1857,7 +1976,8 @@ afw_pool_internal_create_base_pool()
     afw_pool_internal_self_t *self;
 
     self = impl_heap_allocate_self(
-        &impl_afw_pool_heap_multithreaded_inf, 0);
+        &impl_afw_pool_heap_multithreaded_inf,
+        AFW_ENVIRONMENT_CHUNK_MIN, NULL);
     if (!self) {
         return NULL;
     }
@@ -1882,10 +2002,10 @@ afw_pool_thread_create(
         size = sizeof(afw_thread_t);
     }
 
-    p = afw_pool_heap_create(xctx->p, 0, xctx);
+    p = afw_pool_heap_create(xctx->p, xctx->env->xctx_chunk_min, xctx);
     self = (AFW_POOL_SELF_T *)p;
     thread = afw_pool_calloc(p, size, xctx);
-    self->thread = thread;
+    impl_pool_set_owning_thread(self, thread);
     thread->p = p;
 
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,

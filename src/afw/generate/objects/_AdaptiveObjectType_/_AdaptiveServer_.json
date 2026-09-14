@@ -40,23 +40,23 @@
             "required": true,
             "unique": false
         },
-        "maxPoolBytesInUse": {
+        "peakPoolBytesInUse": {
             "allowQuery": true,
             "brief": "High-water of AFW asked-for bytes",
             "dataType": "integer",
             "description": "High-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-            "label": "Max Pool Bytes In Use",
+            "label": "Peak Pool Bytes In Use",
             "runtime": {
                 "zeroOffset": true,
                 "valueAccessor": "env_pool_stat"
             }
         },
-        "maxPoolChunkBytes": {
+        "peakPoolChunkBytes": {
             "allowQuery": true,
             "brief": "High-water of posix_memalign chunk bytes",
             "dataType": "integer",
             "description": "High-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-            "label": "Max Pool Chunk Bytes",
+            "label": "Peak Pool Chunk Bytes",
             "runtime": {
                 "zeroOffset": true,
                 "valueAccessor": "env_pool_stat"

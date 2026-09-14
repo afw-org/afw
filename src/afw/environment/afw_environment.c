@@ -272,6 +272,7 @@ afw_environment_create(
     const afw_utf8_z_t *s;
     afw_error_t *error;
     afw_try_t unhandled_error;
+    afw_thread_t *thread;
 
     /* Check and initialize libxml2 */
     LIBXML_TEST_VERSION
@@ -310,11 +311,24 @@ afw_environment_create(
     env->pub.pool_number = 1; /* see afw_pool_internal_create_base_pool() */
     env->pub.pool_chunk_bytes =
         ((const afw_pool_internal_self_t *)p)->chunk_bytes;
-    env->pub.pool_chunk_bytes_max = env->pub.pool_chunk_bytes;
-    env->pub.evaluation_stack_initial_count =
-        AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_INITIAL_COUNT;
-    env->pub.evaluation_stack_maximum_count =
-        AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_MAXIMUM_COUNT;
+    env->pub.peak_pool_chunk_bytes = env->pub.pool_chunk_bytes;
+    env->pub.limit_evaluation_stack_count =
+        AFW_ENVIRONMENT_LIMIT_EVALUATION_STACK_COUNT;
+    env->pub.limit_request_pool_bytes =
+        afw_pool_round_up_chunk_size(
+            AFW_ENVIRONMENT_LIMIT_REQUEST_POOL_BYTES);
+    env->pub.limit_c_stack_headroom_bytes =
+        afw_pool_round_up_chunk_size(
+            AFW_ENVIRONMENT_LIMIT_C_STACK_HEADROOM_BYTES);
+    env->pub.chunk_min = afw_pool_round_up_chunk_size(
+        AFW_ENVIRONMENT_CHUNK_MIN
+            ? AFW_ENVIRONMENT_CHUNK_MIN : 1);
+    env->pub.compile_chunk_min = afw_pool_round_up_chunk_size(
+        AFW_ENVIRONMENT_COMPILE_CHUNK_MIN
+            ? AFW_ENVIRONMENT_COMPILE_CHUNK_MIN : 1);
+    env->pub.xctx_chunk_min = afw_pool_round_up_chunk_size(
+        AFW_ENVIRONMENT_XCTX_CHUNK_MIN
+            ? AFW_ENVIRONMENT_XCTX_CHUNK_MIN : 1);
     env->pub.debug_fd = stderr;
     env->pub.stderr_fd = stderr;
     env->pub.stdout_fd = stdout;
@@ -326,6 +340,18 @@ afw_environment_create(
     env->base_xctx = xctx;
 
     /* >>>>>>>>> Errors can be thrown at this point. <<<<<<<<< */
+
+    /*
+     * Always-non-NULL xctx->thread. Base is not a pthread: do not
+     * call afw_thread_create(). Struct lives in env->p (MT).
+     */
+    thread = afw_xctx_calloc_type(afw_thread_t, xctx);
+    thread->type = afw_thread_type_base;
+    thread->xctx = xctx;
+    thread->p = p;
+    thread->os_thread = NULL;
+    xctx->thread = thread;
+    afw_os_c_stack_bounds(&thread->c_stack_base, &thread->c_stack_size);
 
     /* Create data type method number hash table. */
     env->data_type_method_number_ht = afw_hash_table_create(
@@ -350,6 +376,7 @@ afw_environment_create(
     else {
         xctx->name = &impl_default_name;
     }
+    thread->name = xctx->name;
     env->pub.program_name.s = xctx->name->s;
     env->pub.program_name.len = xctx->name->len;
 

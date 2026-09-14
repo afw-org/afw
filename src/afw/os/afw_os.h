@@ -255,6 +255,7 @@ afw_os_dso_unload(afw_os_dso_t *dso);
  * cleanup destroys the OS object. Threads are joinable — join is
  * the caller's job, not pool destroy. Public AFW names are
  * afw_thread_mutex_* / afw_thread_rwlock_* (see afw_thread.h).
+ * `afw_os_thread_t` is the common opaque (struct in this module).
  */
 
 /** @brief Mutex allocated from an afw_pool; destroyed with that pool. */
@@ -262,9 +263,6 @@ typedef struct afw_os_mutex_s afw_os_mutex_t;
 
 /** @brief Read/write lock allocated from an afw_pool. */
 typedef struct afw_os_rwlock_s afw_os_rwlock_t;
-
-/** @brief Native thread handle allocated from an afw_pool. */
-typedef struct afw_os_thread_s afw_os_thread_t;
 
 /** @brief Platform default mutex (non-recursive on nix). */
 #define AFW_OS_MUTEX_DEFAULT  0
@@ -347,6 +345,17 @@ afw_os_thread_join(afw_os_thread_t *thread, afw_xctx_t *xctx);
  */
 AFW_DECLARE(void)
 afw_os_thread_kill(const afw_os_thread_t *thread, int signo);
+
+/**
+ * @brief C-stack low address and size for the calling thread.
+ * @param base receives the lowest stack address, or NULL if unknown.
+ * @param size receives the stack size in bytes, or 0 if unknown.
+ *
+ * Does not throw. Linux uses pthread_getattr_np. Size 0 means skip
+ * headroom checks. Stack grows down: remaining is SP minus base.
+ */
+AFW_DECLARE(void)
+afw_os_c_stack_bounds(void **base, afw_size_t *size);
 
 
 AFW_END_DECLARES

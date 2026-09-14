@@ -252,6 +252,10 @@ a_flag_response_stdout_stream=response:stdout:stream
 a_flag_response_stdout_stream_brief=The stdout stream will be sent to a stream in the request's response
 a_flag_response_stdout_stream_description=Anything written to the stdout stream during a request will be sent to a stream in the request's response. If this flag is not on, but response:stdout is on, the stdout stream is included as the value of the \"stdout\" property of the response object.  If neither of these flags are on, the stream will be written to the server's stdout.  This flag requires content-type application/x-afw.
 
+a_flag_response_metrics=response:metrics
+a_flag_response_metrics_brief=Include this-request pool and eval-stack metrics in the response
+a_flag_response_metrics_description=When on, the response object includes a \"metrics\" property with this request's ST asked-for bytes, chunk bytes, and evaluation-stack count (xctx snapshot, not process peaks). Off by default. Not a stream; console/stderr/stdout stream ids are separate flags.
+
 a_flag_trace=trace
 a_flag_trace_brief=Basic traces
 a_flag_trace_description=This produces all basic traces.
@@ -329,6 +333,7 @@ BS
 size
 uint32
 env_pool_stat
+env_rss
 metrics
 adapter_metrics
 adapter_properties

@@ -9,7 +9,7 @@
 #ifndef __AFW_NUMBER_H__
 #define __AFW_NUMBER_H__
 
-#include "afw_common.h"
+#include "afw_interface.h"
 #include <float.h>
 
 /**

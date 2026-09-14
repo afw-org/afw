@@ -1277,6 +1277,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__05281925d3a6 \
+    "Outstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process::rss, process_rss(), and poolChunkBytes."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__05281925d3a6 */
+#define afw_s_zz__05281925d3a6 \
+    (&afw_self_v_zz__05281925d3a6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__05281925d3a6 */
+#define afw_self_s_zz__05281925d3a6 \
+    (afw_self_v_zz__05281925d3a6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__05281925d3a6 */
+extern const afw_value_string_t \
+    afw_self_v_zz__05281925d3a6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__05281925d3a6 */
+#define afw_z_zz__05281925d3a6 \
+    (afw_self_v_zz__05281925d3a6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__05281925d3a6 */
+#define afw_v_zz__05281925d3a6 \
+    (&afw_self_v_zz__05281925d3a6.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__05298253e207 \
     "function add<string> (\n    string: string,\n    values_1: any,\n    ...values_rest: any[]\n): string;\n"
 
@@ -2183,6 +2209,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__08aa9e278422 */
 #define afw_v_zz__08aa9e278422 \
     (&afw_self_v_zz__08aa9e278422.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__08c84d81ab6e \
+    "Live resident set size in bytes. afw_os_get_rss() and process_rss() are kilobytes; this property multiplies by 1024. 0 if unavailable. Not poolBytesInUse."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__08c84d81ab6e */
+#define afw_s_zz__08c84d81ab6e \
+    (&afw_self_v_zz__08c84d81ab6e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__08c84d81ab6e */
+#define afw_self_s_zz__08c84d81ab6e \
+    (afw_self_v_zz__08c84d81ab6e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__08c84d81ab6e */
+extern const afw_value_string_t \
+    afw_self_v_zz__08c84d81ab6e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__08c84d81ab6e */
+#define afw_z_zz__08c84d81ab6e \
+    (afw_self_v_zz__08c84d81ab6e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__08c84d81ab6e */
+#define afw_v_zz__08c84d81ab6e \
+    (&afw_self_v_zz__08c84d81ab6e.pub)
 
 
 
@@ -6737,6 +6789,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__1aefe7bb444e \
+    "Current evaluation-stack count on this xctx when the response is finished."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1aefe7bb444e */
+#define afw_s_zz__1aefe7bb444e \
+    (&afw_self_v_zz__1aefe7bb444e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1aefe7bb444e */
+#define afw_self_s_zz__1aefe7bb444e \
+    (afw_self_v_zz__1aefe7bb444e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__1aefe7bb444e */
+extern const afw_value_string_t \
+    afw_self_v_zz__1aefe7bb444e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__1aefe7bb444e */
+#define afw_z_zz__1aefe7bb444e \
+    (afw_self_v_zz__1aefe7bb444e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__1aefe7bb444e */
+#define afw_v_zz__1aefe7bb444e \
+    (&afw_self_v_zz__1aefe7bb444e.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__1af7dff0f375 \
     "function lt<hexBinary> (\n    arg1: hexBinary,\n    arg2: hexBinary\n): boolean;\n"
 
@@ -10399,6 +10477,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__2b4a01ba0b45 */
 #define afw_v_zz__2b4a01ba0b45 \
     (&afw_self_v_zz__2b4a01ba0b45.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2b4e0a221c66 \
+    "Process default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2b4e0a221c66 */
+#define afw_s_zz__2b4e0a221c66 \
+    (&afw_self_v_zz__2b4e0a221c66.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2b4e0a221c66 */
+#define afw_self_s_zz__2b4e0a221c66 \
+    (afw_self_v_zz__2b4e0a221c66.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2b4e0a221c66 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2b4e0a221c66;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2b4e0a221c66 */
+#define afw_z_zz__2b4e0a221c66 \
+    (afw_self_v_zz__2b4e0a221c66.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2b4e0a221c66 */
+#define afw_v_zz__2b4e0a221c66 \
+    (&afw_self_v_zz__2b4e0a221c66.pub)
 
 
 
@@ -20803,6 +20907,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__58806ddc9fda \
+    "Optional. If present, overrides process limitEvaluationStackCount for xctx created after this conf is processed. 0 = unlimited."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__58806ddc9fda */
+#define afw_s_zz__58806ddc9fda \
+    (&afw_self_v_zz__58806ddc9fda.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__58806ddc9fda */
+#define afw_self_s_zz__58806ddc9fda \
+    (afw_self_v_zz__58806ddc9fda.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__58806ddc9fda */
+extern const afw_value_string_t \
+    afw_self_v_zz__58806ddc9fda;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__58806ddc9fda */
+#define afw_z_zz__58806ddc9fda \
+    (afw_self_v_zz__58806ddc9fda.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__58806ddc9fda */
+#define afw_v_zz__58806ddc9fda \
+    (&afw_self_v_zz__58806ddc9fda.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__5891660f1531 \
     "function add_object_with_uri (\n    uri: anyURI,\n    object: object,\n    journal?: object,\n    adapterTypeSpecific?: object\n): object; // _AdaptiveJournalEntry_\n"
 
@@ -21297,6 +21427,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__5a5b522a1ce1 \
+    "Present when the response:metrics flag is on. This request's ST asked-for and chunk bytes (xctx snapshot) and evaluation-stack count. Not process-wide peaks. Not a stream id."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5a5b522a1ce1 */
+#define afw_s_zz__5a5b522a1ce1 \
+    (&afw_self_v_zz__5a5b522a1ce1.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5a5b522a1ce1 */
+#define afw_self_s_zz__5a5b522a1ce1 \
+    (afw_self_v_zz__5a5b522a1ce1.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5a5b522a1ce1 */
+extern const afw_value_string_t \
+    afw_self_v_zz__5a5b522a1ce1;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5a5b522a1ce1 */
+#define afw_z_zz__5a5b522a1ce1 \
+    (afw_self_v_zz__5a5b522a1ce1.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5a5b522a1ce1 */
+#define afw_v_zz__5a5b522a1ce1 \
+    (&afw_self_v_zz__5a5b522a1ce1.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__5a8e4eb5d81f \
     "function random_base64Binary (\n    numberOfOctets: integer\n): base64Binary;\n"
 
@@ -21449,6 +21605,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__5af71dba0882 */
 #define afw_v_zz__5af71dba0882 \
     (&afw_self_v_zz__5af71dba0882.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__5b05f568dad1 \
+    "Optional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5b05f568dad1 */
+#define afw_s_zz__5b05f568dad1 \
+    (&afw_self_v_zz__5b05f568dad1.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5b05f568dad1 */
+#define afw_self_s_zz__5b05f568dad1 \
+    (afw_self_v_zz__5b05f568dad1.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5b05f568dad1 */
+extern const afw_value_string_t \
+    afw_self_v_zz__5b05f568dad1;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5b05f568dad1 */
+#define afw_z_zz__5b05f568dad1 \
+    (afw_self_v_zz__5b05f568dad1.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5b05f568dad1 */
+#define afw_v_zz__5b05f568dad1 \
+    (&afw_self_v_zz__5b05f568dad1.pub)
 
 
 
@@ -21657,6 +21839,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__5bea29a3d9e7 */
 #define afw_v_zz__5bea29a3d9e7 \
     (&afw_self_v_zz__5bea29a3d9e7.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__5c34f69f28b6 \
+    "Optional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5c34f69f28b6 */
+#define afw_s_zz__5c34f69f28b6 \
+    (&afw_self_v_zz__5c34f69f28b6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5c34f69f28b6 */
+#define afw_self_s_zz__5c34f69f28b6 \
+    (afw_self_v_zz__5c34f69f28b6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5c34f69f28b6 */
+extern const afw_value_string_t \
+    afw_self_v_zz__5c34f69f28b6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5c34f69f28b6 */
+#define afw_z_zz__5c34f69f28b6 \
+    (afw_self_v_zz__5c34f69f28b6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5c34f69f28b6 */
+#define afw_v_zz__5c34f69f28b6 \
+    (&afw_self_v_zz__5c34f69f28b6.pub)
 
 
 
@@ -26883,6 +27091,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__70e75e2bba42 */
 #define afw_v_zz__70e75e2bba42 \
     (&afw_self_v_zz__70e75e2bba42.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__713e61355b2a \
+    "Optional. If present, overrides process xctxChunkMin. Rounded up to the heap page. 0 becomes one page."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__713e61355b2a */
+#define afw_s_zz__713e61355b2a \
+    (&afw_self_v_zz__713e61355b2a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__713e61355b2a */
+#define afw_self_s_zz__713e61355b2a \
+    (afw_self_v_zz__713e61355b2a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__713e61355b2a */
+extern const afw_value_string_t \
+    afw_self_v_zz__713e61355b2a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__713e61355b2a */
+#define afw_z_zz__713e61355b2a \
+    (afw_self_v_zz__713e61355b2a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__713e61355b2a */
+#define afw_v_zz__713e61355b2a \
+    (&afw_self_v_zz__713e61355b2a.pub)
 
 
 
@@ -32815,32 +33049,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__8acc80945adb \
-    "Outstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process_rss() and poolChunkBytes."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8acc80945adb */
-#define afw_s_zz__8acc80945adb \
-    (&afw_self_v_zz__8acc80945adb.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8acc80945adb */
-#define afw_self_s_zz__8acc80945adb \
-    (afw_self_v_zz__8acc80945adb.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8acc80945adb */
-extern const afw_value_string_t \
-    afw_self_v_zz__8acc80945adb;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8acc80945adb */
-#define afw_z_zz__8acc80945adb \
-    (afw_self_v_zz__8acc80945adb.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8acc80945adb */
-#define afw_v_zz__8acc80945adb \
-    (&afw_self_v_zz__8acc80945adb.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__8ae8286b5e1c \
     "function eq<password> (\n    arg1: password,\n    arg2: any\n): boolean;\n"
 
@@ -35077,6 +35285,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__94eb67969147 \
+    "Thread ST posix_memalign chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__94eb67969147 */
+#define afw_s_zz__94eb67969147 \
+    (&afw_self_v_zz__94eb67969147.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__94eb67969147 */
+#define afw_self_s_zz__94eb67969147 \
+    (afw_self_v_zz__94eb67969147.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__94eb67969147 */
+extern const afw_value_string_t \
+    afw_self_v_zz__94eb67969147;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__94eb67969147 */
+#define afw_z_zz__94eb67969147 \
+    (afw_self_v_zz__94eb67969147.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__94eb67969147 */
+#define afw_v_zz__94eb67969147 \
+    (&afw_self_v_zz__94eb67969147.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__950454c7b823 \
     "This function retrieves adaptive objects from an adapter, specified by adapterId, which match the type specified by objectType.\n\nThis function is only allowed when called during a request with content type 'application/x-afw'. An '_AdaptiveResponse_' object is written to the request's response as each object is retrieved. This '_AdaptiveResponse_' object has a 'result' property containing the retrieved object and a 'intermediate' property set to true.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied."
 
@@ -35437,6 +35671,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__970d49859dbc */
 #define afw_v_zz__970d49859dbc \
     (&afw_self_v_zz__970d49859dbc.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__972c925e79fe \
+    "Thread ST asked-for bytes minus the snapshot taken at xctx create. Not process::poolBytesInUse."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__972c925e79fe */
+#define afw_s_zz__972c925e79fe \
+    (&afw_self_v_zz__972c925e79fe.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__972c925e79fe */
+#define afw_self_s_zz__972c925e79fe \
+    (afw_self_v_zz__972c925e79fe.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__972c925e79fe */
+extern const afw_value_string_t \
+    afw_self_v_zz__972c925e79fe;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__972c925e79fe */
+#define afw_z_zz__972c925e79fe \
+    (afw_self_v_zz__972c925e79fe.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__972c925e79fe */
+#define afw_v_zz__972c925e79fe \
+    (&afw_self_v_zz__972c925e79fe.pub)
 
 
 
@@ -40459,6 +40719,58 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Adaptive_evaluation_stack_cap \
+    "Adaptive evaluation-stack cap"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_evaluation_stack_cap */
+#define afw_s_zz__Adaptive_evaluation_stack_cap \
+    (&afw_self_v_zz__Adaptive_evaluation_stack_cap.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_evaluation_stack_cap */
+#define afw_self_s_zz__Adaptive_evaluation_stack_cap \
+    (afw_self_v_zz__Adaptive_evaluation_stack_cap.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Adaptive_evaluation_stack_cap */
+extern const afw_value_string_t \
+    afw_self_v_zz__Adaptive_evaluation_stack_cap;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adaptive_evaluation_stack_cap */
+#define afw_z_zz__Adaptive_evaluation_stack_cap \
+    (afw_self_v_zz__Adaptive_evaluation_stack_cap.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_evaluation_stack_cap */
+#define afw_v_zz__Adaptive_evaluation_stack_cap \
+    (&afw_self_v_zz__Adaptive_evaluation_stack_cap.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Adaptive_evaluation_stack_depth \
+    "Adaptive evaluation-stack depth"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_evaluation_stack_depth */
+#define afw_s_zz__Adaptive_evaluation_stack_depth \
+    (&afw_self_v_zz__Adaptive_evaluation_stack_depth.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_evaluation_stack_depth */
+#define afw_self_s_zz__Adaptive_evaluation_stack_depth \
+    (afw_self_v_zz__Adaptive_evaluation_stack_depth.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Adaptive_evaluation_stack_depth */
+extern const afw_value_string_t \
+    afw_self_v_zz__Adaptive_evaluation_stack_depth;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adaptive_evaluation_stack_depth */
+#define afw_z_zz__Adaptive_evaluation_stack_depth \
+    (afw_self_v_zz__Adaptive_evaluation_stack_depth.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_evaluation_stack_depth */
+#define afw_v_zz__Adaptive_evaluation_stack_depth \
+    (&afw_self_v_zz__Adaptive_evaluation_stack_depth.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Adaptive_function_parameter_meta_ \
     "Adaptive function parameter meta."
 
@@ -43735,6 +44047,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__C_stack_remaining_required_before_throw \
+    "C-stack remaining required before throw"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__C_stack_remaining_required_before_throw */
+#define afw_s_zz__C_stack_remaining_required_before_throw \
+    (&afw_self_v_zz__C_stack_remaining_required_before_throw.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__C_stack_remaining_required_before_throw */
+#define afw_self_s_zz__C_stack_remaining_required_before_throw \
+    (afw_self_v_zz__C_stack_remaining_required_before_throw.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__C_stack_remaining_required_before_throw */
+extern const afw_value_string_t \
+    afw_self_v_zz__C_stack_remaining_required_before_throw;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__C_stack_remaining_required_before_throw */
+#define afw_z_zz__C_stack_remaining_required_before_throw \
+    (afw_self_v_zz__C_stack_remaining_required_before_throw.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__C_stack_remaining_required_before_throw */
+#define afw_v_zz__C_stack_remaining_required_before_throw \
+    (&afw_self_v_zz__C_stack_remaining_required_before_throw.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Camel_Case \
     "Camel Case"
 
@@ -45451,6 +45789,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Chunk_Min \
+    "Chunk Min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Chunk_Min */
+#define afw_s_zz__Chunk_Min \
+    (&afw_self_v_zz__Chunk_Min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Chunk_Min */
+#define afw_self_s_zz__Chunk_Min \
+    (afw_self_v_zz__Chunk_Min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Chunk_Min */
+extern const afw_value_string_t \
+    afw_self_v_zz__Chunk_Min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Chunk_Min */
+#define afw_z_zz__Chunk_Min \
+    (afw_self_v_zz__Chunk_Min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Chunk_Min */
+#define afw_v_zz__Chunk_Min \
+    (&afw_self_v_zz__Chunk_Min.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Clone__dataType__value \
     "Clone <dataType> value"
 
@@ -45837,6 +46201,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Compare_two_URIs_ */
 #define afw_v_zz__Compare_two_URIs_ \
     (&afw_self_v_zz__Compare_two_URIs_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Compile_Chunk_Min \
+    "Compile Chunk Min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Compile_Chunk_Min */
+#define afw_s_zz__Compile_Chunk_Min \
+    (&afw_self_v_zz__Compile_Chunk_Min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Compile_Chunk_Min */
+#define afw_self_s_zz__Compile_Chunk_Min \
+    (afw_self_v_zz__Compile_Chunk_Min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Compile_Chunk_Min */
+extern const afw_value_string_t \
+    afw_self_v_zz__Compile_Chunk_Min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Compile_Chunk_Min */
+#define afw_z_zz__Compile_Chunk_Min \
+    (afw_self_v_zz__Compile_Chunk_Min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Compile_Chunk_Min */
+#define afw_v_zz__Compile_Chunk_Min \
+    (&afw_self_v_zz__Compile_Chunk_Min.pub)
 
 
 
@@ -46435,6 +46825,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Compile_type_of_internal */
 #define afw_v_zz__Compile_type_of_internal \
     (&afw_self_v_zz__Compile_type_of_internal.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Compile_unit_heap_chunk_min \
+    "Compile-unit heap chunk min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Compile_unit_heap_chunk_min */
+#define afw_s_zz__Compile_unit_heap_chunk_min \
+    (&afw_self_v_zz__Compile_unit_heap_chunk_min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Compile_unit_heap_chunk_min */
+#define afw_self_s_zz__Compile_unit_heap_chunk_min \
+    (afw_self_v_zz__Compile_unit_heap_chunk_min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Compile_unit_heap_chunk_min */
+extern const afw_value_string_t \
+    afw_self_v_zz__Compile_unit_heap_chunk_min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Compile_unit_heap_chunk_min */
+#define afw_z_zz__Compile_unit_heap_chunk_min \
+    (afw_self_v_zz__Compile_unit_heap_chunk_min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Compile_unit_heap_chunk_min */
+#define afw_v_zz__Compile_unit_heap_chunk_min \
+    (&afw_self_v_zz__Compile_unit_heap_chunk_min.pub)
 
 
 
@@ -49897,6 +50313,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Current_process_RSS_in_bytes \
+    "Current process RSS in bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Current_process_RSS_in_bytes */
+#define afw_s_zz__Current_process_RSS_in_bytes \
+    (&afw_self_v_zz__Current_process_RSS_in_bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Current_process_RSS_in_bytes */
+#define afw_self_s_zz__Current_process_RSS_in_bytes \
+    (afw_self_v_zz__Current_process_RSS_in_bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Current_process_RSS_in_bytes */
+extern const afw_value_string_t \
+    afw_self_v_zz__Current_process_RSS_in_bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Current_process_RSS_in_bytes */
+#define afw_z_zz__Current_process_RSS_in_bytes \
+    (afw_self_v_zz__Current_process_RSS_in_bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Current_process_RSS_in_bytes */
+#define afw_v_zz__Current_process_RSS_in_bytes \
+    (&afw_self_v_zz__Current_process_RSS_in_bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Current_process_RSS_in_kilobytes \
     "Current process RSS in kilobytes"
 
@@ -52025,6 +52467,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Default_Value */
 #define afw_v_zz__Default_Value \
     (&afw_self_v_zz__Default_Value.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Default_heap_posix_memalign_size \
+    "Default heap posix_memalign size"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Default_heap_posix_memalign_size */
+#define afw_s_zz__Default_heap_posix_memalign_size \
+    (&afw_self_v_zz__Default_heap_posix_memalign_size.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Default_heap_posix_memalign_size */
+#define afw_self_s_zz__Default_heap_posix_memalign_size \
+    (afw_self_v_zz__Default_heap_posix_memalign_size.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Default_heap_posix_memalign_size */
+extern const afw_value_string_t \
+    afw_self_v_zz__Default_heap_posix_memalign_size;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Default_heap_posix_memalign_size */
+#define afw_z_zz__Default_heap_posix_memalign_size \
+    (afw_self_v_zz__Default_heap_posix_memalign_size.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Default_heap_posix_memalign_size */
+#define afw_v_zz__Default_heap_posix_memalign_size \
+    (&afw_self_v_zz__Default_heap_posix_memalign_size.pub)
 
 
 
@@ -54781,6 +55249,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Evaluated_when_setting_an_object_property */
 #define afw_v_zz__Evaluated_when_setting_an_object_property \
     (&afw_self_v_zz__Evaluated_when_setting_an_object_property.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Evaluation_Stack_Count \
+    "Evaluation Stack Count"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Evaluation_Stack_Count */
+#define afw_s_zz__Evaluation_Stack_Count \
+    (&afw_self_v_zz__Evaluation_Stack_Count.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Evaluation_Stack_Count */
+#define afw_self_s_zz__Evaluation_Stack_Count \
+    (afw_self_v_zz__Evaluation_Stack_Count.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Evaluation_Stack_Count */
+extern const afw_value_string_t \
+    afw_self_v_zz__Evaluation_Stack_Count;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Evaluation_Stack_Count */
+#define afw_z_zz__Evaluation_Stack_Count \
+    (afw_self_v_zz__Evaluation_Stack_Count.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Evaluation_Stack_Count */
+#define afw_v_zz__Evaluation_Stack_Count \
+    (&afw_self_v_zz__Evaluation_Stack_Count.pub)
 
 
 
@@ -62039,6 +62533,84 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Limit_C_Stack_Headroom_Bytes \
+    "Limit C Stack Headroom Bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Limit_C_Stack_Headroom_Bytes */
+#define afw_s_zz__Limit_C_Stack_Headroom_Bytes \
+    (&afw_self_v_zz__Limit_C_Stack_Headroom_Bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Limit_C_Stack_Headroom_Bytes */
+#define afw_self_s_zz__Limit_C_Stack_Headroom_Bytes \
+    (afw_self_v_zz__Limit_C_Stack_Headroom_Bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Limit_C_Stack_Headroom_Bytes */
+extern const afw_value_string_t \
+    afw_self_v_zz__Limit_C_Stack_Headroom_Bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Limit_C_Stack_Headroom_Bytes */
+#define afw_z_zz__Limit_C_Stack_Headroom_Bytes \
+    (afw_self_v_zz__Limit_C_Stack_Headroom_Bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Limit_C_Stack_Headroom_Bytes */
+#define afw_v_zz__Limit_C_Stack_Headroom_Bytes \
+    (&afw_self_v_zz__Limit_C_Stack_Headroom_Bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Limit_Evaluation_Stack_Count \
+    "Limit Evaluation Stack Count"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Limit_Evaluation_Stack_Count */
+#define afw_s_zz__Limit_Evaluation_Stack_Count \
+    (&afw_self_v_zz__Limit_Evaluation_Stack_Count.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Limit_Evaluation_Stack_Count */
+#define afw_self_s_zz__Limit_Evaluation_Stack_Count \
+    (afw_self_v_zz__Limit_Evaluation_Stack_Count.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Limit_Evaluation_Stack_Count */
+extern const afw_value_string_t \
+    afw_self_v_zz__Limit_Evaluation_Stack_Count;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Limit_Evaluation_Stack_Count */
+#define afw_z_zz__Limit_Evaluation_Stack_Count \
+    (afw_self_v_zz__Limit_Evaluation_Stack_Count.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Limit_Evaluation_Stack_Count */
+#define afw_v_zz__Limit_Evaluation_Stack_Count \
+    (&afw_self_v_zz__Limit_Evaluation_Stack_Count.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Limit_Request_Pool_Bytes \
+    "Limit Request Pool Bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Limit_Request_Pool_Bytes */
+#define afw_s_zz__Limit_Request_Pool_Bytes \
+    (&afw_self_v_zz__Limit_Request_Pool_Bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Limit_Request_Pool_Bytes */
+#define afw_self_s_zz__Limit_Request_Pool_Bytes \
+    (afw_self_v_zz__Limit_Request_Pool_Bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Limit_Request_Pool_Bytes */
+extern const afw_value_string_t \
+    afw_self_v_zz__Limit_Request_Pool_Bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Limit_Request_Pool_Bytes */
+#define afw_z_zz__Limit_Request_Pool_Bytes \
+    (afw_self_v_zz__Limit_Request_Pool_Bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Limit_Request_Pool_Bytes */
+#define afw_v_zz__Limit_Request_Pool_Bytes \
+    (&afw_self_v_zz__Limit_Request_Pool_Bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Limited_meta \
     "Limited meta"
 
@@ -63413,58 +63985,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Max_Concurrent */
 #define afw_v_zz__Max_Concurrent \
     (&afw_self_v_zz__Max_Concurrent.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Max_Pool_Bytes_In_Use \
-    "Max Pool Bytes In Use"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Max_Pool_Bytes_In_Use */
-#define afw_s_zz__Max_Pool_Bytes_In_Use \
-    (&afw_self_v_zz__Max_Pool_Bytes_In_Use.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Max_Pool_Bytes_In_Use */
-#define afw_self_s_zz__Max_Pool_Bytes_In_Use \
-    (afw_self_v_zz__Max_Pool_Bytes_In_Use.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Max_Pool_Bytes_In_Use */
-extern const afw_value_string_t \
-    afw_self_v_zz__Max_Pool_Bytes_In_Use;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Max_Pool_Bytes_In_Use */
-#define afw_z_zz__Max_Pool_Bytes_In_Use \
-    (afw_self_v_zz__Max_Pool_Bytes_In_Use.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Max_Pool_Bytes_In_Use */
-#define afw_v_zz__Max_Pool_Bytes_In_Use \
-    (&afw_self_v_zz__Max_Pool_Bytes_In_Use.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Max_Pool_Chunk_Bytes \
-    "Max Pool Chunk Bytes"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Max_Pool_Chunk_Bytes */
-#define afw_s_zz__Max_Pool_Chunk_Bytes \
-    (&afw_self_v_zz__Max_Pool_Chunk_Bytes.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Max_Pool_Chunk_Bytes */
-#define afw_self_s_zz__Max_Pool_Chunk_Bytes \
-    (afw_self_v_zz__Max_Pool_Chunk_Bytes.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Max_Pool_Chunk_Bytes */
-extern const afw_value_string_t \
-    afw_self_v_zz__Max_Pool_Chunk_Bytes;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Max_Pool_Chunk_Bytes */
-#define afw_z_zz__Max_Pool_Chunk_Bytes \
-    (afw_self_v_zz__Max_Pool_Chunk_Bytes.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Max_Pool_Chunk_Bytes */
-#define afw_v_zz__Max_Pool_Chunk_Bytes \
-    (&afw_self_v_zz__Max_Pool_Chunk_Bytes.pub)
 
 
 
@@ -67967,6 +68487,162 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Override_Adaptive_evaluation_stack_cap \
+    "Override Adaptive evaluation-stack cap"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_Adaptive_evaluation_stack_cap */
+#define afw_s_zz__Override_Adaptive_evaluation_stack_cap \
+    (&afw_self_v_zz__Override_Adaptive_evaluation_stack_cap.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_Adaptive_evaluation_stack_cap */
+#define afw_self_s_zz__Override_Adaptive_evaluation_stack_cap \
+    (afw_self_v_zz__Override_Adaptive_evaluation_stack_cap.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Override_Adaptive_evaluation_stack_cap */
+extern const afw_value_string_t \
+    afw_self_v_zz__Override_Adaptive_evaluation_stack_cap;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Override_Adaptive_evaluation_stack_cap */
+#define afw_z_zz__Override_Adaptive_evaluation_stack_cap \
+    (afw_self_v_zz__Override_Adaptive_evaluation_stack_cap.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Override_Adaptive_evaluation_stack_cap */
+#define afw_v_zz__Override_Adaptive_evaluation_stack_cap \
+    (&afw_self_v_zz__Override_Adaptive_evaluation_stack_cap.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Override_C_stack_remaining_required_before_throw \
+    "Override C-stack remaining required before throw"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_C_stack_remaining_required_before_throw */
+#define afw_s_zz__Override_C_stack_remaining_required_before_throw \
+    (&afw_self_v_zz__Override_C_stack_remaining_required_before_throw.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_C_stack_remaining_required_before_throw */
+#define afw_self_s_zz__Override_C_stack_remaining_required_before_throw \
+    (afw_self_v_zz__Override_C_stack_remaining_required_before_throw.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Override_C_stack_remaining_required_before_throw */
+extern const afw_value_string_t \
+    afw_self_v_zz__Override_C_stack_remaining_required_before_throw;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Override_C_stack_remaining_required_before_throw */
+#define afw_z_zz__Override_C_stack_remaining_required_before_throw \
+    (afw_self_v_zz__Override_C_stack_remaining_required_before_throw.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Override_C_stack_remaining_required_before_throw */
+#define afw_v_zz__Override_C_stack_remaining_required_before_throw \
+    (&afw_self_v_zz__Override_C_stack_remaining_required_before_throw.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Override_compile_unit_heap_chunk_min \
+    "Override compile-unit heap chunk min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_compile_unit_heap_chunk_min */
+#define afw_s_zz__Override_compile_unit_heap_chunk_min \
+    (&afw_self_v_zz__Override_compile_unit_heap_chunk_min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_compile_unit_heap_chunk_min */
+#define afw_self_s_zz__Override_compile_unit_heap_chunk_min \
+    (afw_self_v_zz__Override_compile_unit_heap_chunk_min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Override_compile_unit_heap_chunk_min */
+extern const afw_value_string_t \
+    afw_self_v_zz__Override_compile_unit_heap_chunk_min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Override_compile_unit_heap_chunk_min */
+#define afw_z_zz__Override_compile_unit_heap_chunk_min \
+    (afw_self_v_zz__Override_compile_unit_heap_chunk_min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Override_compile_unit_heap_chunk_min */
+#define afw_v_zz__Override_compile_unit_heap_chunk_min \
+    (&afw_self_v_zz__Override_compile_unit_heap_chunk_min.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Override_default_heap_posix_memalign_size \
+    "Override default heap posix_memalign size"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_default_heap_posix_memalign_size */
+#define afw_s_zz__Override_default_heap_posix_memalign_size \
+    (&afw_self_v_zz__Override_default_heap_posix_memalign_size.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_default_heap_posix_memalign_size */
+#define afw_self_s_zz__Override_default_heap_posix_memalign_size \
+    (afw_self_v_zz__Override_default_heap_posix_memalign_size.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Override_default_heap_posix_memalign_size */
+extern const afw_value_string_t \
+    afw_self_v_zz__Override_default_heap_posix_memalign_size;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Override_default_heap_posix_memalign_size */
+#define afw_z_zz__Override_default_heap_posix_memalign_size \
+    (afw_self_v_zz__Override_default_heap_posix_memalign_size.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Override_default_heap_posix_memalign_size */
+#define afw_v_zz__Override_default_heap_posix_memalign_size \
+    (&afw_self_v_zz__Override_default_heap_posix_memalign_size.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Override_request_thread_ST_asked_for_cap \
+    "Override request/thread ST asked-for cap"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_request_thread_ST_asked_for_cap */
+#define afw_s_zz__Override_request_thread_ST_asked_for_cap \
+    (&afw_self_v_zz__Override_request_thread_ST_asked_for_cap.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_request_thread_ST_asked_for_cap */
+#define afw_self_s_zz__Override_request_thread_ST_asked_for_cap \
+    (afw_self_v_zz__Override_request_thread_ST_asked_for_cap.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Override_request_thread_ST_asked_for_cap */
+extern const afw_value_string_t \
+    afw_self_v_zz__Override_request_thread_ST_asked_for_cap;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Override_request_thread_ST_asked_for_cap */
+#define afw_z_zz__Override_request_thread_ST_asked_for_cap \
+    (afw_self_v_zz__Override_request_thread_ST_asked_for_cap.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Override_request_thread_ST_asked_for_cap */
+#define afw_v_zz__Override_request_thread_ST_asked_for_cap \
+    (&afw_self_v_zz__Override_request_thread_ST_asked_for_cap.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Override_xctx_thread_heap_chunk_min \
+    "Override xctx/thread heap chunk min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_xctx_thread_heap_chunk_min */
+#define afw_s_zz__Override_xctx_thread_heap_chunk_min \
+    (&afw_self_v_zz__Override_xctx_thread_heap_chunk_min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_xctx_thread_heap_chunk_min */
+#define afw_self_s_zz__Override_xctx_thread_heap_chunk_min \
+    (afw_self_v_zz__Override_xctx_thread_heap_chunk_min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Override_xctx_thread_heap_chunk_min */
+extern const afw_value_string_t \
+    afw_self_v_zz__Override_xctx_thread_heap_chunk_min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Override_xctx_thread_heap_chunk_min */
+#define afw_z_zz__Override_xctx_thread_heap_chunk_min \
+    (afw_self_v_zz__Override_xctx_thread_heap_chunk_min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Override_xctx_thread_heap_chunk_min */
+#define afw_v_zz__Override_xctx_thread_heap_chunk_min \
+    (&afw_self_v_zz__Override_xctx_thread_heap_chunk_min.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Package_Srcdir_Info \
     "Package Srcdir Info"
 
@@ -68353,6 +69029,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Path_to_the_directory_holding_object_type_directories */
 #define afw_v_zz__Path_to_the_directory_holding_object_type_directories \
     (&afw_self_v_zz__Path_to_the_directory_holding_object_type_directories.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Peak_Pool_Bytes_In_Use \
+    "Peak Pool Bytes In Use"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Peak_Pool_Bytes_In_Use */
+#define afw_s_zz__Peak_Pool_Bytes_In_Use \
+    (&afw_self_v_zz__Peak_Pool_Bytes_In_Use.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Peak_Pool_Bytes_In_Use */
+#define afw_self_s_zz__Peak_Pool_Bytes_In_Use \
+    (afw_self_v_zz__Peak_Pool_Bytes_In_Use.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Peak_Pool_Bytes_In_Use */
+extern const afw_value_string_t \
+    afw_self_v_zz__Peak_Pool_Bytes_In_Use;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Peak_Pool_Bytes_In_Use */
+#define afw_z_zz__Peak_Pool_Bytes_In_Use \
+    (afw_self_v_zz__Peak_Pool_Bytes_In_Use.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Peak_Pool_Bytes_In_Use */
+#define afw_v_zz__Peak_Pool_Bytes_In_Use \
+    (&afw_self_v_zz__Peak_Pool_Bytes_In_Use.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Peak_Pool_Chunk_Bytes \
+    "Peak Pool Chunk Bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Peak_Pool_Chunk_Bytes */
+#define afw_s_zz__Peak_Pool_Chunk_Bytes \
+    (&afw_self_v_zz__Peak_Pool_Chunk_Bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Peak_Pool_Chunk_Bytes */
+#define afw_self_s_zz__Peak_Pool_Chunk_Bytes \
+    (afw_self_v_zz__Peak_Pool_Chunk_Bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Peak_Pool_Chunk_Bytes */
+extern const afw_value_string_t \
+    afw_self_v_zz__Peak_Pool_Chunk_Bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Peak_Pool_Chunk_Bytes */
+#define afw_z_zz__Peak_Pool_Chunk_Bytes \
+    (afw_self_v_zz__Peak_Pool_Chunk_Bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Peak_Pool_Chunk_Bytes */
+#define afw_v_zz__Peak_Pool_Chunk_Bytes \
+    (&afw_self_v_zz__Peak_Pool_Chunk_Bytes.pub)
 
 
 
@@ -71447,6 +72175,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Request_subject_ */
 #define afw_v_zz__Request_subject_ \
     (&afw_self_v_zz__Request_subject_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Request_thread_ST_asked_for_cap \
+    "Request/thread ST asked-for cap"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Request_thread_ST_asked_for_cap */
+#define afw_s_zz__Request_thread_ST_asked_for_cap \
+    (&afw_self_v_zz__Request_thread_ST_asked_for_cap.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Request_thread_ST_asked_for_cap */
+#define afw_self_s_zz__Request_thread_ST_asked_for_cap \
+    (afw_self_v_zz__Request_thread_ST_asked_for_cap.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Request_thread_ST_asked_for_cap */
+extern const afw_value_string_t \
+    afw_self_v_zz__Request_thread_ST_asked_for_cap;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Request_thread_ST_asked_for_cap */
+#define afw_z_zz__Request_thread_ST_asked_for_cap \
+    (afw_self_v_zz__Request_thread_ST_asked_for_cap.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Request_thread_ST_asked_for_cap */
+#define afw_v_zz__Request_thread_ST_asked_for_cap \
+    (&afw_self_v_zz__Request_thread_ST_asked_for_cap.pub)
 
 
 
@@ -83151,6 +83905,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__This_eval_ST_asked_for_bytes \
+    "This-eval ST asked-for bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_eval_ST_asked_for_bytes */
+#define afw_s_zz__This_eval_ST_asked_for_bytes \
+    (&afw_self_v_zz__This_eval_ST_asked_for_bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_eval_ST_asked_for_bytes */
+#define afw_self_s_zz__This_eval_ST_asked_for_bytes \
+    (afw_self_v_zz__This_eval_ST_asked_for_bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__This_eval_ST_asked_for_bytes */
+extern const afw_value_string_t \
+    afw_self_v_zz__This_eval_ST_asked_for_bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_eval_ST_asked_for_bytes */
+#define afw_z_zz__This_eval_ST_asked_for_bytes \
+    (afw_self_v_zz__This_eval_ST_asked_for_bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__This_eval_ST_asked_for_bytes */
+#define afw_v_zz__This_eval_ST_asked_for_bytes \
+    (&afw_self_v_zz__This_eval_ST_asked_for_bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__This_executes_when_this_property_is_called_as_a_method \
     "This executes when this property is called as a method"
 
@@ -85539,6 +86319,84 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__This_property_will_not_be_persisted */
 #define afw_v_zz__This_property_will_not_be_persisted \
     (&afw_self_v_zz__This_property_will_not_be_persisted.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__This_request_ST_asked_for_bytes \
+    "This-request ST asked-for bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_request_ST_asked_for_bytes */
+#define afw_s_zz__This_request_ST_asked_for_bytes \
+    (&afw_self_v_zz__This_request_ST_asked_for_bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_request_ST_asked_for_bytes */
+#define afw_self_s_zz__This_request_ST_asked_for_bytes \
+    (afw_self_v_zz__This_request_ST_asked_for_bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__This_request_ST_asked_for_bytes */
+extern const afw_value_string_t \
+    afw_self_v_zz__This_request_ST_asked_for_bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_request_ST_asked_for_bytes */
+#define afw_z_zz__This_request_ST_asked_for_bytes \
+    (afw_self_v_zz__This_request_ST_asked_for_bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__This_request_ST_asked_for_bytes */
+#define afw_v_zz__This_request_ST_asked_for_bytes \
+    (&afw_self_v_zz__This_request_ST_asked_for_bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__This_request_ST_chunk_bytes \
+    "This-request ST chunk bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_request_ST_chunk_bytes */
+#define afw_s_zz__This_request_ST_chunk_bytes \
+    (&afw_self_v_zz__This_request_ST_chunk_bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_request_ST_chunk_bytes */
+#define afw_self_s_zz__This_request_ST_chunk_bytes \
+    (afw_self_v_zz__This_request_ST_chunk_bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__This_request_ST_chunk_bytes */
+extern const afw_value_string_t \
+    afw_self_v_zz__This_request_ST_chunk_bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_request_ST_chunk_bytes */
+#define afw_z_zz__This_request_ST_chunk_bytes \
+    (afw_self_v_zz__This_request_ST_chunk_bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__This_request_ST_chunk_bytes */
+#define afw_v_zz__This_request_ST_chunk_bytes \
+    (&afw_self_v_zz__This_request_ST_chunk_bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__This_request_pool_and_eval_stack_metrics \
+    "This-request pool and eval-stack metrics"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_request_pool_and_eval_stack_metrics */
+#define afw_s_zz__This_request_pool_and_eval_stack_metrics \
+    (&afw_self_v_zz__This_request_pool_and_eval_stack_metrics.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_request_pool_and_eval_stack_metrics */
+#define afw_self_s_zz__This_request_pool_and_eval_stack_metrics \
+    (afw_self_v_zz__This_request_pool_and_eval_stack_metrics.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__This_request_pool_and_eval_stack_metrics */
+extern const afw_value_string_t \
+    afw_self_v_zz__This_request_pool_and_eval_stack_metrics;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_request_pool_and_eval_stack_metrics */
+#define afw_z_zz__This_request_pool_and_eval_stack_metrics \
+    (afw_self_v_zz__This_request_pool_and_eval_stack_metrics.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__This_request_pool_and_eval_stack_metrics */
+#define afw_v_zz__This_request_pool_and_eval_stack_metrics \
+    (&afw_self_v_zz__This_request_pool_and_eval_stack_metrics.pub)
 
 
 
@@ -88555,6 +89413,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__XCTX_UUID */
 #define afw_v_zz__XCTX_UUID \
     (&afw_self_v_zz__XCTX_UUID.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Xctx_Chunk_Min \
+    "Xctx Chunk Min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Xctx_Chunk_Min */
+#define afw_s_zz__Xctx_Chunk_Min \
+    (&afw_self_v_zz__Xctx_Chunk_Min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Xctx_Chunk_Min */
+#define afw_self_s_zz__Xctx_Chunk_Min \
+    (afw_self_v_zz__Xctx_Chunk_Min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Xctx_Chunk_Min */
+extern const afw_value_string_t \
+    afw_self_v_zz__Xctx_Chunk_Min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Xctx_Chunk_Min */
+#define afw_z_zz__Xctx_Chunk_Min \
+    (afw_self_v_zz__Xctx_Chunk_Min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Xctx_Chunk_Min */
+#define afw_v_zz__Xctx_Chunk_Min \
+    (&afw_self_v_zz__Xctx_Chunk_Min.pub)
 
 
 
@@ -123607,6 +124491,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__a11800d60aea \
+    "Optional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a11800d60aea */
+#define afw_s_zz__a11800d60aea \
+    (&afw_self_v_zz__a11800d60aea.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a11800d60aea */
+#define afw_self_s_zz__a11800d60aea \
+    (afw_self_v_zz__a11800d60aea.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__a11800d60aea */
+extern const afw_value_string_t \
+    afw_self_v_zz__a11800d60aea;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a11800d60aea */
+#define afw_z_zz__a11800d60aea \
+    (afw_self_v_zz__a11800d60aea.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__a11800d60aea */
+#define afw_v_zz__a11800d60aea \
+    (&afw_self_v_zz__a11800d60aea.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__a12992e382c3 \
     "Returns the zero-based index into <dataType> value of subString. If subString is not found, -1 is returned."
 
@@ -124097,6 +125007,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__a34921ab163a */
 #define afw_v_zz__a34921ab163a \
     (&afw_self_v_zz__a34921ab163a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__a37d5c254dfa \
+    "Tripwire: throw payload_too_large when remaining C stack is below this. 0 = unlimited."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a37d5c254dfa */
+#define afw_s_zz__a37d5c254dfa \
+    (&afw_self_v_zz__a37d5c254dfa.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a37d5c254dfa */
+#define afw_self_s_zz__a37d5c254dfa \
+    (afw_self_v_zz__a37d5c254dfa.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__a37d5c254dfa */
+extern const afw_value_string_t \
+    afw_self_v_zz__a37d5c254dfa;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a37d5c254dfa */
+#define afw_z_zz__a37d5c254dfa \
+    (afw_self_v_zz__a37d5c254dfa.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__a37d5c254dfa */
+#define afw_v_zz__a37d5c254dfa \
+    (&afw_self_v_zz__a37d5c254dfa.pub)
 
 
 
@@ -129119,6 +130055,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__b61ac784da35 \
+    "Optional. If present, overrides process limitCStackHeadroomBytes. 0 = unlimited."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b61ac784da35 */
+#define afw_s_zz__b61ac784da35 \
+    (&afw_self_v_zz__b61ac784da35.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b61ac784da35 */
+#define afw_self_s_zz__b61ac784da35 \
+    (afw_self_v_zz__b61ac784da35.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b61ac784da35 */
+extern const afw_value_string_t \
+    afw_self_v_zz__b61ac784da35;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b61ac784da35 */
+#define afw_z_zz__b61ac784da35 \
+    (afw_self_v_zz__b61ac784da35.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b61ac784da35 */
+#define afw_v_zz__b61ac784da35 \
+    (&afw_self_v_zz__b61ac784da35.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__b641791446d1 \
     "function debug (\n    value: any,\n    detail?: boolean\n): void;\n"
 
@@ -129691,6 +130653,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__b960e14e583e \
+    "Maximum Adaptive evaluation-stack frames for each xctx. The vector is allocated at this count. 0 = unlimited (lab)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b960e14e583e */
+#define afw_s_zz__b960e14e583e \
+    (&afw_self_v_zz__b960e14e583e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b960e14e583e */
+#define afw_self_s_zz__b960e14e583e \
+    (afw_self_v_zz__b960e14e583e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b960e14e583e */
+extern const afw_value_string_t \
+    afw_self_v_zz__b960e14e583e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b960e14e583e */
+#define afw_z_zz__b960e14e583e \
+    (afw_self_v_zz__b960e14e583e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b960e14e583e */
+#define afw_v_zz__b960e14e583e \
+    (&afw_self_v_zz__b960e14e583e.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__b99a10e41011 \
     "function flag_set (\n    flagId: string[],\n    setTo?: boolean\n): void;\n"
 
@@ -129817,6 +130805,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__b9eefb386513 */
 #define afw_v_zz__b9eefb386513 \
     (&afw_self_v_zz__b9eefb386513.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__ba0301c70e27 \
+    "Tripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ba0301c70e27 */
+#define afw_s_zz__ba0301c70e27 \
+    (&afw_self_v_zz__ba0301c70e27.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ba0301c70e27 */
+#define afw_self_s_zz__ba0301c70e27 \
+    (afw_self_v_zz__ba0301c70e27.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__ba0301c70e27 */
+extern const afw_value_string_t \
+    afw_self_v_zz__ba0301c70e27;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ba0301c70e27 */
+#define afw_z_zz__ba0301c70e27 \
+    (afw_self_v_zz__ba0301c70e27.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__ba0301c70e27 */
+#define afw_v_zz__ba0301c70e27 \
+    (&afw_self_v_zz__ba0301c70e27.pub)
 
 
 
@@ -132053,6 +133067,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__be076735ae7a */
 #define afw_v_zz__be076735ae7a \
     (&afw_self_v_zz__be076735ae7a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__be0769cc99ff \
+    "This-request metrics on _AdaptiveResponse_ when response:metrics is on. Values are the xctx snapshot (thread current minus snap), not process-wide peaks."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__be0769cc99ff */
+#define afw_s_zz__be0769cc99ff \
+    (&afw_self_v_zz__be0769cc99ff.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__be0769cc99ff */
+#define afw_self_s_zz__be0769cc99ff \
+    (afw_self_v_zz__be0769cc99ff.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__be0769cc99ff */
+extern const afw_value_string_t \
+    afw_self_v_zz__be0769cc99ff;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__be0769cc99ff */
+#define afw_z_zz__be0769cc99ff \
+    (afw_self_v_zz__be0769cc99ff.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__be0769cc99ff */
+#define afw_v_zz__be0769cc99ff \
+    (&afw_self_v_zz__be0769cc99ff.pub)
 
 
 
@@ -135693,6 +136733,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__cd242e2d9a87 */
 #define afw_v_zz__cd242e2d9a87 \
     (&afw_self_v_zz__cd242e2d9a87.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__cd29b100e4f4 \
+    "Process invocation, identity, pool telemetry, and environment knobs. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Issue #74 identity; issue #329 telemetry and knobs."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__cd29b100e4f4 */
+#define afw_s_zz__cd29b100e4f4 \
+    (&afw_self_v_zz__cd29b100e4f4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__cd29b100e4f4 */
+#define afw_self_s_zz__cd29b100e4f4 \
+    (afw_self_v_zz__cd29b100e4f4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__cd29b100e4f4 */
+extern const afw_value_string_t \
+    afw_self_v_zz__cd29b100e4f4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__cd29b100e4f4 */
+#define afw_z_zz__cd29b100e4f4 \
+    (afw_self_v_zz__cd29b100e4f4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__cd29b100e4f4 */
+#define afw_v_zz__cd29b100e4f4 \
+    (&afw_self_v_zz__cd29b100e4f4.pub)
 
 
 
@@ -139983,6 +141049,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__dc655a179da7 */
 #define afw_v_zz__dc655a179da7 \
     (&afw_self_v_zz__dc655a179da7.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__dc7ca431dac2 \
+    "File-level xctx ST asked-for bytes (thread current minus snap) after all cases. Not process-wide. afwdev test shows this as KiB next to duration."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__dc7ca431dac2 */
+#define afw_s_zz__dc7ca431dac2 \
+    (&afw_self_v_zz__dc7ca431dac2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__dc7ca431dac2 */
+#define afw_self_s_zz__dc7ca431dac2 \
+    (afw_self_v_zz__dc7ca431dac2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__dc7ca431dac2 */
+extern const afw_value_string_t \
+    afw_self_v_zz__dc7ca431dac2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__dc7ca431dac2 */
+#define afw_z_zz__dc7ca431dac2 \
+    (afw_self_v_zz__dc7ca431dac2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__dc7ca431dac2 */
+#define afw_v_zz__dc7ca431dac2 \
+    (&afw_self_v_zz__dc7ca431dac2.pub)
 
 
 
@@ -144485,6 +145577,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__efe44f4331a9 \
+    "posix_memalign minimum used when creating a compile-unit heap."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__efe44f4331a9 */
+#define afw_s_zz__efe44f4331a9 \
+    (&afw_self_v_zz__efe44f4331a9.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__efe44f4331a9 */
+#define afw_self_s_zz__efe44f4331a9 \
+    (afw_self_v_zz__efe44f4331a9.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__efe44f4331a9 */
+extern const afw_value_string_t \
+    afw_self_v_zz__efe44f4331a9;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__efe44f4331a9 */
+#define afw_z_zz__efe44f4331a9 \
+    (afw_self_v_zz__efe44f4331a9.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__efe44f4331a9 */
+#define afw_v_zz__efe44f4331a9 \
+    (&afw_self_v_zz__efe44f4331a9.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__effba8d3a09f \
     "Stream number objects will be written to as they are retrieved."
 
@@ -147761,6 +148879,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__f5fe889ee902 \
+    "Process default posix_memalign minimum for each xctx/thread heap. Every thread starts from this."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f5fe889ee902 */
+#define afw_s_zz__f5fe889ee902 \
+    (&afw_self_v_zz__f5fe889ee902.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f5fe889ee902 */
+#define afw_self_s_zz__f5fe889ee902 \
+    (afw_self_v_zz__f5fe889ee902.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__f5fe889ee902 */
+extern const afw_value_string_t \
+    afw_self_v_zz__f5fe889ee902;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f5fe889ee902 */
+#define afw_z_zz__f5fe889ee902 \
+    (afw_self_v_zz__f5fe889ee902.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__f5fe889ee902 */
+#define afw_v_zz__f5fe889ee902 \
+    (&afw_self_v_zz__f5fe889ee902.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__f61a8e12c123 \
     "Truncate double value to a whole number and returns integer result."
 
@@ -149733,32 +150877,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__fe03911705c2 */
 #define afw_v_zz__fe03911705c2 \
     (&afw_self_v_zz__fe03911705c2.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__fe4d73db7013 \
-    "Process invocation and identity for this Adaptive Framework environment. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Partial issue #74."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__fe4d73db7013 */
-#define afw_s_zz__fe4d73db7013 \
-    (&afw_self_v_zz__fe4d73db7013.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__fe4d73db7013 */
-#define afw_self_s_zz__fe4d73db7013 \
-    (afw_self_v_zz__fe4d73db7013.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__fe4d73db7013 */
-extern const afw_value_string_t \
-    afw_self_v_zz__fe4d73db7013;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__fe4d73db7013 */
-#define afw_z_zz__fe4d73db7013 \
-    (afw_self_v_zz__fe4d73db7013.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__fe4d73db7013 */
-#define afw_v_zz__fe4d73db7013 \
-    (&afw_self_v_zz__fe4d73db7013.pub)
 
 
 
@@ -165775,6 +166893,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__url_encode_string_ */
 #define afw_v_zz__url_encode_string_ \
     (&afw_self_v_zz__url_encode_string_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__xctx_thread_heap_chunk_min \
+    "xctx/thread heap chunk min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__xctx_thread_heap_chunk_min */
+#define afw_s_zz__xctx_thread_heap_chunk_min \
+    (&afw_self_v_zz__xctx_thread_heap_chunk_min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__xctx_thread_heap_chunk_min */
+#define afw_self_s_zz__xctx_thread_heap_chunk_min \
+    (afw_self_v_zz__xctx_thread_heap_chunk_min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__xctx_thread_heap_chunk_min */
+extern const afw_value_string_t \
+    afw_self_v_zz__xctx_thread_heap_chunk_min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__xctx_thread_heap_chunk_min */
+#define afw_z_zz__xctx_thread_heap_chunk_min \
+    (afw_self_v_zz__xctx_thread_heap_chunk_min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__xctx_thread_heap_chunk_min */
+#define afw_v_zz__xctx_thread_heap_chunk_min \
+    (&afw_self_v_zz__xctx_thread_heap_chunk_min.pub)
 
 
 

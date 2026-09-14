@@ -33,6 +33,7 @@ impl_thread_start(void *data)
 {
     afw_thread_t *self = data;
 
+    afw_os_c_stack_bounds(&self->c_stack_base, &self->c_stack_size);
     return self->start_function(self, self->start_function_arg);
 }
 
@@ -55,6 +56,7 @@ afw_thread_create(
     self->start_function_arg = start_function_arg;
     self->name = name;
     self->thread_number = thread_number;
+    self->type = afw_thread_type_request;
     self->xctx = afw_xctx_internal_create_thread_xctx(self, xctx);
 
     /* Joinable POSIX default; thread_attr is stored but unused. */

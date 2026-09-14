@@ -449,6 +449,12 @@ impl_afw_value_optional_evaluate(
             expect_stderr, afw_s_a_expect_stderr_mismatch, p, xctx);
     }
 
+    afw_object_set_property_as_integer_internal(
+        self->test_script_object_value->internal,
+        afw_v_poolBytesInUse,
+        (afw_integer_t)afw_xctx_pool_bytes_in_use(xctx),
+        xctx);
+
     return afw_value_create_unmanaged_object(
         self->test_script_object_value->internal, p, xctx);
 }

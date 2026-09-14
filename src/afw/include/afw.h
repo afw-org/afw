@@ -84,7 +84,6 @@
 #include "afw_utf8.h"
 #include "afw_uuid.h"
 #include "afw_value.h"
-#include "afw_vector.h"
 #include "afw_writer.h"
 
 #endif /* __AFW_H__ */

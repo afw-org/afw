@@ -615,6 +615,12 @@ AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveResponseAction_;
 
 /**
+ * @brief Runtime object inf for object type _AdaptiveResponseMetrics_
+ */
+AFW_DECLARE_CONST_DATA(afw_object_inf_t)
+afw_runtime_inf__AdaptiveResponseMetrics_;
+
+/**
  * @brief Runtime object inf for object type _AdaptiveResponse_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)

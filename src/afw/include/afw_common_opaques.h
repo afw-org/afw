@@ -392,6 +392,22 @@ typedef struct  afw_function_execute_s
 afw_function_execute_t;
 
 /**
+ * @brief Opaque `afw_hash_table_t`.
+ *
+ * Untyped header. See afw_hash_table.h for struct and overlays.
+ */
+typedef struct afw_hash_table_s
+afw_hash_table_t;
+
+/**
+ * @brief Opaque `afw_void_hash_table_t`.
+ *
+ * Usual drop-in overlay (`void *` values). See afw_hash_table.h.
+ */
+typedef struct afw_void_hash_table_s
+afw_void_hash_table_t;
+
+/**
  * @brief Opaque `afw_lock_t`.
  *
  * See afw_lock.h for struct and more information.
@@ -683,6 +699,14 @@ typedef struct afw_stream_anchor_s afw_stream_anchor_t;
  * Struct defined in afw_stream.h.
  */
 typedef struct afw_stream_s afw_stream_t;
+
+/**
+ * @brief Opaque `afw_os_thread_t`.
+ *
+ * Native thread handle. See afw_os.h for struct.
+ */
+typedef struct afw_os_thread_s
+afw_os_thread_t;
 
 /**
  * @brief Opaque `afw_thread_t`.

@@ -326,7 +326,7 @@ afw_compile_to_object(
 
     /* Create parser. */
     parser_p = (cede_p) ? p : afw_pool_heap_create(p,
-        AFW_POOL_CHUNK_ALIGN, xctx);
+        xctx->env->compile_chunk_min, xctx);
 
     if ((adapter_id || object_type_id || object_id) &&
         (!adapter_id || !object_type_id || !object_id))

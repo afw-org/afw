@@ -355,6 +355,63 @@
             },
             "type": "object"
         },
+        "_AdaptiveResponseMetrics_": {
+            "additionalProperties": true,
+            "description": "Present when the response:metrics flag is on. This request's ST asked-for and chunk bytes (xctx snapshot) and evaluation-stack count. Not process-wide peaks. Not a stream id.",
+            "markdownDescription": "Present when the response:metrics flag is on. This request's ST asked-for and chunk bytes (xctx snapshot) and evaluation-stack count. Not process-wide peaks. Not a stream id.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "evaluationStackCount": {
+                    "description": "Current evaluation-stack count on this xctx when the response is finished.",
+                    "markdownDescription": "**Evaluation Stack Count**\n\nCurrent evaluation-stack count on this xctx when the response is finished.",
+                    "title": "Evaluation Stack Count",
+                    "type": "integer"
+                },
+                "poolBytesInUse": {
+                    "description": "Thread ST asked-for bytes minus the snapshot taken at xctx create. Not process::poolBytesInUse.",
+                    "markdownDescription": "**Pool Bytes In Use**\n\nThread ST asked-for bytes minus the snapshot taken at xctx create. Not process::poolBytesInUse.",
+                    "title": "Pool Bytes In Use",
+                    "type": "integer"
+                },
+                "poolChunkBytes": {
+                    "description": "Thread ST posix_memalign chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes.",
+                    "markdownDescription": "**Pool Chunk Bytes**\n\nThread ST posix_memalign chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes.",
+                    "title": "Pool Chunk Bytes",
+                    "type": "integer"
+                }
+            },
+            "title": "Metrics",
+            "type": "object"
+        },
+        "_AdaptiveResponseMetrics_.propertyTypes": {
+            "properties": {
+                "evaluationStackCount": {
+                    "description": "Current evaluation-stack count on this xctx when the response is finished.",
+                    "markdownDescription": "**Evaluation Stack Count**\n\nCurrent evaluation-stack count on this xctx when the response is finished.",
+                    "title": "Evaluation Stack Count",
+                    "type": "integer"
+                },
+                "poolBytesInUse": {
+                    "description": "Thread ST asked-for bytes minus the snapshot taken at xctx create. Not process::poolBytesInUse.",
+                    "markdownDescription": "**Pool Bytes In Use**\n\nThread ST asked-for bytes minus the snapshot taken at xctx create. Not process::poolBytesInUse.",
+                    "title": "Pool Bytes In Use",
+                    "type": "integer"
+                },
+                "poolChunkBytes": {
+                    "description": "Thread ST posix_memalign chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes.",
+                    "markdownDescription": "**Pool Chunk Bytes**\n\nThread ST posix_memalign chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes.",
+                    "title": "Pool Chunk Bytes",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
         "_AdaptiveResponse_": {
             "additionalProperties": true,
             "properties": {
@@ -404,6 +461,17 @@
                     "markdownDescription": "**Intermediate**\n\nIf true, this is an intermediate response object containing a single result that will be followed by at least one more response object. If intermediate is missing or false, this is the final response object.",
                     "title": "Intermediate",
                     "type": "boolean"
+                },
+                "metrics": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveResponseMetrics_"
+                        }
+                    ],
+                    "description": "Present when the response:metrics flag is on. This request's ST asked-for and chunk bytes (xctx snapshot) and evaluation-stack count. Not process-wide peaks. Not a stream id.",
+                    "markdownDescription": "**Metrics**\n\nPresent when the response:metrics flag is on. This request's ST asked-for and chunk bytes (xctx snapshot) and evaluation-stack count. Not process-wide peaks. Not a stream id.",
+                    "title": "Metrics",
+                    "type": "object"
                 },
                 "result": {
                     "description": "The result if this is a single action request or intermediate response when no error occurred. If the 'actions' property is present, see that list of objects for results.",
@@ -484,6 +552,17 @@
                     "markdownDescription": "**Intermediate**\n\nIf true, this is an intermediate response object containing a single result that will be followed by at least one more response object. If intermediate is missing or false, this is the final response object.",
                     "title": "Intermediate",
                     "type": "boolean"
+                },
+                "metrics": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveResponseMetrics_"
+                        }
+                    ],
+                    "description": "Present when the response:metrics flag is on. This request's ST asked-for and chunk bytes (xctx snapshot) and evaluation-stack count. Not process-wide peaks. Not a stream id.",
+                    "markdownDescription": "**Metrics**\n\nPresent when the response:metrics flag is on. This request's ST asked-for and chunk bytes (xctx snapshot) and evaluation-stack count. Not process-wide peaks. Not a stream id.",
+                    "title": "Metrics",
+                    "type": "object"
                 },
                 "result": {
                     "description": "The result if this is a single action request or intermediate response when no error occurred. If the 'actions' property is present, see that list of objects for results.",
@@ -572,6 +651,17 @@
             "markdownDescription": "**Intermediate**\n\nIf true, this is an intermediate response object containing a single result that will be followed by at least one more response object. If intermediate is missing or false, this is the final response object.",
             "title": "Intermediate",
             "type": "boolean"
+        },
+        "metrics": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveResponseMetrics_"
+                }
+            ],
+            "description": "Present when the response:metrics flag is on. This request's ST asked-for and chunk bytes (xctx snapshot) and evaluation-stack count. Not process-wide peaks. Not a stream id.",
+            "markdownDescription": "**Metrics**\n\nPresent when the response:metrics flag is on. This request's ST asked-for and chunk bytes (xctx snapshot) and evaluation-stack count. Not process-wide peaks. Not a stream id.",
+            "title": "Metrics",
+            "type": "object"
         },
         "result": {
             "description": "The result if this is a single action request or intermediate response when no error occurred. If the 'actions' property is present, see that list of objects for results.",

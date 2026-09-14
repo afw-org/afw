@@ -654,14 +654,14 @@ afw_runtime_value_accessor_size(
 
 static const afw_utf8_t
 impl_brief_env_pool_stat =
-    AFW_UTF8_LITERAL("Read env pool current/max asked-for or chunk bytes");
+    AFW_UTF8_LITERAL("Read env pool current/peak asked-for or chunk bytes");
 
 static const afw_utf8_t
 impl_description_env_pool_stat =
     AFW_UTF8_LITERAL(
         "Ignores internal (zeroOffset). Property name selects "
-        "poolBytesInUse, maxPoolBytesInUse, poolChunkBytes, or "
-        "maxPoolChunkBytes from xctx->env. Returns an integer copy "
+        "poolBytesInUse, peakPoolBytesInUse, poolChunkBytes, or "
+        "peakPoolChunkBytes from xctx->env. Returns an integer copy "
         "in the caller pool. Atomically stored; no env lock.");
 
 static const afw_runtime_value_accessor_info_t
@@ -690,17 +690,61 @@ afw_runtime_value_accessor_env_pool_stat(
     if (afw_value_equal(prop->name, afw_v_poolBytesInUse, xctx)) {
         n = env->pool_bytes_in_use;
     }
-    else if (afw_value_equal(prop->name, afw_v_maxPoolBytesInUse, xctx)) {
-        n = env->pool_bytes_in_use_max;
+    else if (afw_value_equal(prop->name, afw_v_peakPoolBytesInUse, xctx)) {
+        n = env->peak_pool_bytes_in_use;
     }
     else if (afw_value_equal(prop->name, afw_v_poolChunkBytes, xctx)) {
         n = env->pool_chunk_bytes;
     }
-    else if (afw_value_equal(prop->name, afw_v_maxPoolChunkBytes, xctx)) {
-        n = env->pool_chunk_bytes_max;
+    else if (afw_value_equal(prop->name, afw_v_peakPoolChunkBytes, xctx)) {
+        n = env->peak_pool_chunk_bytes;
     }
     else {
         return NULL;
+    }
+    return afw_value_create_unmanaged_integer((afw_integer_t)n, p, xctx);
+}
+
+
+/* --- env_rss ------------------------------------------------------------- */
+
+static const afw_utf8_t
+impl_brief_env_rss =
+    AFW_UTF8_LITERAL("Read live process RSS in bytes");
+
+static const afw_utf8_t
+impl_description_env_rss =
+    AFW_UTF8_LITERAL(
+        "Ignores internal (zeroOffset). Calls afw_os_get_rss() "
+        "(kilobytes) and returns bytes (times 1024). 0 if "
+        "unavailable. Integer copy in the caller pool.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_env_rss = {
+    .key = afw_s_env_rss,
+    .function = afw_runtime_value_accessor_env_rss,
+    .brief = &impl_brief_env_rss,
+    .description = &impl_description_env_rss,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
+const afw_value_t *
+afw_runtime_value_accessor_env_rss(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_size_t kb;
+    afw_size_t n;
+
+    (void)prop;
+    (void)internal;
+    kb = afw_os_get_rss();
+    if (kb > AFW_SIZE_T_MAX / 1024) {
+        n = AFW_SIZE_T_MAX;
+    }
+    else {
+        n = kb * 1024;
     }
     return afw_value_create_unmanaged_integer((afw_integer_t)n, p, xctx);
 }
@@ -1385,6 +1429,7 @@ impl_core_value_accessor_infos[] = {
     &impl_info_null_terminated_array_of_values,
     &impl_info_size,
     &impl_info_env_pool_stat,
+    &impl_info_env_rss,
     &impl_info_service_startup,
     &impl_info_service_status,
     &impl_info_uint32,

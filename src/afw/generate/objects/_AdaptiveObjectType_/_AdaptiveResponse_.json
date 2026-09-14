@@ -35,6 +35,13 @@
             "description": "If true, this is an intermediate response object containing a single result that will be followed by at least one more response object. If intermediate is missing or false, this is the final response object.",
             "label": "Intermediate"
         },
+        "metrics": {
+            "brief": "This-request pool and eval-stack metrics",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveResponseMetrics_",
+            "description": "Present when the response:metrics flag is on. This request's ST asked-for and chunk bytes (xctx snapshot) and evaluation-stack count. Not process-wide peaks. Not a stream id.",
+            "label": "Metrics"
+        },
         "result": {
             "brief": "The result if this is a single action request and no error occurred",
             "description": "The result if this is a single action request or intermediate response when no error occurred. If the 'actions' property is present, see that list of objects for results.",

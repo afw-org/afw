@@ -37,6 +37,7 @@
 #include "afw_array.h"
 #include "afw_object.h"
 #include "afw_pool.h"
+#include "afw_vector.h"
 #include "afw_xctx.h"
 #include "afw_log.h"
 

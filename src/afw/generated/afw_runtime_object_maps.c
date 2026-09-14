@@ -3847,6 +3847,26 @@ impl_properties__AdaptiveProcess_[] = {
         afw_runtime_value_accessor_default
     },
     {
+        afw_v_chunkMin,
+        offsetof(afw_environment_t, chunk_min),
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_size,
+        afw_runtime_value_accessor_size
+    },
+    {
+        afw_v_compileChunkMin,
+        offsetof(afw_environment_t, compile_chunk_min),
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_size,
+        afw_runtime_value_accessor_size
+    },
+    {
         afw_v_cwd,
         offsetof(afw_environment_t, process_cwd),
         -1,
@@ -3857,7 +3877,37 @@ impl_properties__AdaptiveProcess_[] = {
         afw_runtime_value_accessor_indirect
     },
     {
-        afw_v_maxPoolBytesInUse,
+        afw_v_limitCStackHeadroomBytes,
+        offsetof(afw_environment_t, limit_c_stack_headroom_bytes),
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_size,
+        afw_runtime_value_accessor_size
+    },
+    {
+        afw_v_limitEvaluationStackCount,
+        offsetof(afw_environment_t, limit_evaluation_stack_count),
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_size,
+        afw_runtime_value_accessor_size
+    },
+    {
+        afw_v_limitRequestPoolBytes,
+        offsetof(afw_environment_t, limit_request_pool_bytes),
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_size,
+        afw_runtime_value_accessor_size
+    },
+    {
+        afw_v_peakPoolBytesInUse,
         0,
         -1,
         &afw_data_type_integer_direct,
@@ -3867,7 +3917,7 @@ impl_properties__AdaptiveProcess_[] = {
         afw_runtime_value_accessor_env_pool_stat
     },
     {
-        afw_v_maxPoolChunkBytes,
+        afw_v_peakPoolChunkBytes,
         0,
         -1,
         &afw_data_type_integer_direct,
@@ -3917,6 +3967,16 @@ impl_properties__AdaptiveProcess_[] = {
         afw_runtime_value_accessor_default
     },
     {
+        afw_v_rss,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_rss,
+        afw_runtime_value_accessor_env_rss
+    },
+    {
         afw_v_startTime,
         offsetof(afw_environment_t, process_start_time),
         -1,
@@ -3925,13 +3985,23 @@ impl_properties__AdaptiveProcess_[] = {
         NULL,
         &afw_self_s_indirect,
         afw_runtime_value_accessor_indirect
+    },
+    {
+        afw_v_xctxChunkMin,
+        offsetof(afw_environment_t, xctx_chunk_min),
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_size,
+        afw_runtime_value_accessor_size
     }
 };
 
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveProcess_ = {
     &afw_self_s__AdaptiveProcess_,
-    10,
+    17,
     &impl_properties__AdaptiveProcess_[0]
 };
 
@@ -4127,6 +4197,21 @@ impl_runtime_meta__AdaptiveResponseAction_ = {
 AFW_RUNTIME_OBJECT_INF( 
     afw_runtime_inf__AdaptiveResponseAction_, 
     impl_runtime_meta__AdaptiveResponseAction_);
+
+
+/* Runtime object map properties for _AdaptiveResponseMetrics_ objects. */
+
+static const afw_runtime_object_type_meta_t
+impl_runtime_meta__AdaptiveResponseMetrics_ = {
+    &afw_self_s__AdaptiveResponseMetrics_,
+    NULL,
+    offsetof(afw_runtime_const_object_instance_t, properties),
+    false,
+};
+
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveResponseMetrics_, 
+    impl_runtime_meta__AdaptiveResponseMetrics_);
 
 
 /* Runtime object map properties for _AdaptiveResponse_ objects. */
@@ -4397,7 +4482,7 @@ impl_properties__AdaptiveServer_[] = {
         afw_runtime_value_accessor_default
     },
     {
-        afw_v_maxPoolBytesInUse,
+        afw_v_peakPoolBytesInUse,
         0,
         -1,
         &afw_data_type_integer_direct,
@@ -4407,7 +4492,7 @@ impl_properties__AdaptiveServer_[] = {
         afw_runtime_value_accessor_env_pool_stat
     },
     {
-        afw_v_maxPoolChunkBytes,
+        afw_v_peakPoolChunkBytes,
         0,
         -1,
         &afw_data_type_integer_direct,
@@ -4956,6 +5041,7 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveRequestHandler_,
     &afw_runtime_inf__AdaptiveRequestProperties_,
     &afw_runtime_inf__AdaptiveResponseAction_,
+    &afw_runtime_inf__AdaptiveResponseMetrics_,
     &afw_runtime_inf__AdaptiveResponse_,
     &afw_runtime_inf__AdaptiveRootFilePaths_,
     &afw_runtime_inf__AdaptiveRuntimeCustom_,

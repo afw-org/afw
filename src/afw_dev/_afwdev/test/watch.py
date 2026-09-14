@@ -18,7 +18,8 @@ from watchdog.observers import Observer
 from _afwdev.common import msg, nfc
 from _afwdev.test.common import is_test_file, run_test, parse_test_run, \
     print_test_response, load_test_environments, load_test_group_config, \
-    before_all, before_each, after_all, after_each
+    before_all, before_each, after_all, after_each, \
+    xctx_bytes_from_response, format_test_timing
 
 ##
 # @brief Decorator for debouncing a function
@@ -100,7 +101,10 @@ class WatchEventHandler(watchdog.events.PatternMatchingEventHandler):
 
                 test_display = os.path.relpath(event.src_path)
                 duration_ms = round((end - start) * 1000)
-                msg.highlighted_info("{}  ({}ms)".format(test_display, duration_ms))
+                msg.highlighted_info("{}  {}".format(
+                    test_display,
+                    format_test_timing(
+                        duration_ms, xctx_bytes_from_response(response))))
                 if error is not None:
                     msg.error("\n    \u2717 {}\n".format(error))
                     msg.error("      test:  {}\n".format(test_display))

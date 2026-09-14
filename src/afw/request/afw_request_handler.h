@@ -10,7 +10,6 @@
 #define __AFW_REQUEST_HANDLER_H__
 
 #include "afw_interface.h"
-#include "afw_request.h"
 
 /**
  * @addtogroup afw_request_handler

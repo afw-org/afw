@@ -32,7 +32,7 @@ Heap and tracker use the same parent/child RC. Last-`release` does not call `des
 
 One ST heap per xctx (`xctx->p`). Scopes are trackers of that heap, not of the enclosing `{ }` (closures pin the inner tracker). No `evaluation_heap`. Managed values allocate in `p->managed_p` (job heap for this eval; do not swap mid-eval). Request: `xctx->p->managed_p` is `xctx->p`. `create_managed` takes `p`. Last-release of managed object/array uses `self->pub.p`. Evaluate of a compiled value **clones onto the caller’s `p`**.
 
-Process/server runtime objects expose live `poolBytesInUse` / `maxPoolBytesInUse` / `poolChunkBytes` / `maxPoolChunkBytes` (`env_pool_stat`).
+Process/server runtime objects expose live `poolBytesInUse` / `peakPoolBytesInUse` / `poolChunkBytes` / `peakPoolChunkBytes` (`env_pool_stat`). `process::rss` is bytes.
 
 Tune later: mmap, per-chunk free lists.
 

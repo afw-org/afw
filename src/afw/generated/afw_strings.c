@@ -933,6 +933,12 @@ afw_self_v_REQUEST_URI = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_RSS = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_RSS)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Reason = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Reason)
@@ -1902,6 +1908,12 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveResponseAction_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveResponseAction_)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v__AdaptiveResponseMetrics_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q__AdaptiveResponseMetrics_)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -2880,6 +2892,24 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_hasAdditionalDetail_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_hasAdditionalDetail_description)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_response_metrics = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_response_metrics)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_response_metrics_brief = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_response_metrics_brief)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_response_metrics_description = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_response_metrics_description)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -11133,6 +11163,18 @@ afw_self_v_checkRequired = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_chunkMin = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_chunkMin)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_chunk_min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_chunk_min)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_class = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_class)
@@ -11211,6 +11253,12 @@ afw_self_v_compile = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_compileChunkMin = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_compileChunkMin)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compileDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compileDate)
@@ -11274,6 +11322,12 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compileXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compileXpathExpression)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_compile_chunk_min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_compile_chunk_min)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -12189,6 +12243,12 @@ afw_self_v_env_pool_stat = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_env_rss = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_env_rss)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_environment = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_environment)
@@ -13020,6 +13080,12 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_evaluation = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_evaluation)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_evaluationStackCount = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_evaluationStackCount)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -16245,6 +16311,42 @@ afw_self_v_limit = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_limitCStackHeadroomBytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_limitCStackHeadroomBytes)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_limitEvaluationStackCount = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_limitEvaluationStackCount)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_limitRequestPoolBytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_limitRequestPoolBytes)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_limit_c_stack_headroom_bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_limit_c_stack_headroom_bytes)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_limit_evaluation_stack_count = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_limit_evaluation_stack_count)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_limit_request_pool_bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_limit_request_pool_bytes)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_line = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_line)
@@ -16830,18 +16932,6 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maxObjects = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maxObjects)
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_string_t)
-afw_self_v_maxPoolBytesInUse = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_maxPoolBytesInUse)
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_string_t)
-afw_self_v_maxPoolChunkBytes = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_maxPoolChunkBytes)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -18951,6 +19041,18 @@ afw_self_v_pathTokens = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_peakPoolBytesInUse = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_peakPoolBytesInUse)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_peakPoolChunkBytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_peakPoolChunkBytes)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_peerId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_peerId)
@@ -20184,6 +20286,12 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_round_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_round_double)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_rss = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_rss)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -22917,9 +23025,21 @@ afw_self_v_xacml = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_xctxChunkMin = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_xctxChunkMin)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_xctxUUID = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_xctxUUID)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_xctx_chunk_min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_xctx_chunk_min)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -23283,6 +23403,12 @@ afw_self_v_zz__04ef01a6af9c = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__05281925d3a6 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__05281925d3a6)
+};
+
+const afw_value_string_t
 afw_self_v_zz__05298253e207 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__05298253e207)
@@ -23490,6 +23616,12 @@ const afw_value_string_t
 afw_self_v_zz__08aa9e278422 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__08aa9e278422)
+};
+
+const afw_value_string_t
+afw_self_v_zz__08c84d81ab6e = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__08c84d81ab6e)
 };
 
 const afw_value_string_t
@@ -24543,6 +24675,12 @@ afw_self_v_zz__1ae53474be88 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__1aefe7bb444e = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__1aefe7bb444e)
+};
+
+const afw_value_string_t
 afw_self_v_zz__1af7dff0f375 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__1af7dff0f375)
@@ -25386,6 +25524,12 @@ const afw_value_string_t
 afw_self_v_zz__2b4a01ba0b45 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__2b4a01ba0b45)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2b4e0a221c66 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2b4e0a221c66)
 };
 
 const afw_value_string_t
@@ -27789,6 +27933,12 @@ afw_self_v_zz__587193500c39 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__58806ddc9fda = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__58806ddc9fda)
+};
+
+const afw_value_string_t
 afw_self_v_zz__5891660f1531 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__5891660f1531)
@@ -27903,6 +28053,12 @@ afw_self_v_zz__5a58c4574d57 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__5a5b522a1ce1 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__5a5b522a1ce1)
+};
+
+const afw_value_string_t
 afw_self_v_zz__5a8e4eb5d81f = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__5a8e4eb5d81f)
@@ -27936,6 +28092,12 @@ const afw_value_string_t
 afw_self_v_zz__5af71dba0882 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__5af71dba0882)
+};
+
+const afw_value_string_t
+afw_self_v_zz__5b05f568dad1 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__5b05f568dad1)
 };
 
 const afw_value_string_t
@@ -27984,6 +28146,12 @@ const afw_value_string_t
 afw_self_v_zz__5bea29a3d9e7 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__5bea29a3d9e7)
+};
+
+const afw_value_string_t
+afw_self_v_zz__5c34f69f28b6 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__5c34f69f28b6)
 };
 
 const afw_value_string_t
@@ -29190,6 +29358,12 @@ const afw_value_string_t
 afw_self_v_zz__70e75e2bba42 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__70e75e2bba42)
+};
+
+const afw_value_string_t
+afw_self_v_zz__713e61355b2a = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__713e61355b2a)
 };
 
 const afw_value_string_t
@@ -30561,12 +30735,6 @@ afw_self_v_zz__8acbb0f49dd2 = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__8acc80945adb = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__8acc80945adb)
-};
-
-const afw_value_string_t
 afw_self_v_zz__8ae8286b5e1c = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__8ae8286b5e1c)
@@ -31083,6 +31251,12 @@ afw_self_v_zz__94b8704ad0ea = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__94eb67969147 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__94eb67969147)
+};
+
+const afw_value_string_t
 afw_self_v_zz__950454c7b823 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__950454c7b823)
@@ -31164,6 +31338,12 @@ const afw_value_string_t
 afw_self_v_zz__970d49859dbc = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__970d49859dbc)
+};
+
+const afw_value_string_t
+afw_self_v_zz__972c925e79fe = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__972c925e79fe)
 };
 
 const afw_value_string_t
@@ -32325,6 +32505,18 @@ afw_self_v_zz__Adaptive_environment_administrative_functions = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Adaptive_evaluation_stack_cap = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Adaptive_evaluation_stack_cap)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Adaptive_evaluation_stack_depth = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Adaptive_evaluation_stack_depth)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Adaptive_function_parameter_meta_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Adaptive_function_parameter_meta_)
@@ -33081,6 +33273,12 @@ afw_self_v_zz__C_data_type_ = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__C_stack_remaining_required_before_throw = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__C_stack_remaining_required_before_throw)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Camel_Case = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Camel_Case)
@@ -33477,6 +33675,12 @@ afw_self_v_zz__Checks_whether_value_starts_with_a_string = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Chunk_Min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Chunk_Min)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Clone__dataType__value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Clone__dataType__value)
@@ -33564,6 +33768,12 @@ const afw_value_string_t
 afw_self_v_zz__Compare_two_URIs_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Compare_two_URIs_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Compile_Chunk_Min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Compile_Chunk_Min)
 };
 
 const afw_value_string_t
@@ -33702,6 +33912,12 @@ const afw_value_string_t
 afw_self_v_zz__Compile_type_of_internal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Compile_type_of_internal)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Compile_unit_heap_chunk_min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Compile_unit_heap_chunk_min)
 };
 
 const afw_value_string_t
@@ -34503,6 +34719,12 @@ afw_self_v_zz__Current_number_of_concurrent_threads = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Current_process_RSS_in_bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Current_process_RSS_in_bytes)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Current_process_RSS_in_kilobytes = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Current_process_RSS_in_kilobytes)
@@ -34992,6 +35214,12 @@ const afw_value_string_t
 afw_self_v_zz__Default_Value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Default_Value)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Default_heap_posix_memalign_size = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Default_heap_posix_memalign_size)
 };
 
 const afw_value_string_t
@@ -35628,6 +35856,12 @@ const afw_value_string_t
 afw_self_v_zz__Evaluated_when_setting_an_object_property = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Evaluated_when_setting_an_object_property)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Evaluation_Stack_Count = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Evaluation_Stack_Count)
 };
 
 const afw_value_string_t
@@ -37305,6 +37539,24 @@ afw_self_v_zz__Library_libafwyaml = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Limit_C_Stack_Headroom_Bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Limit_C_Stack_Headroom_Bytes)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Limit_Evaluation_Stack_Count = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Limit_Evaluation_Stack_Count)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Limit_Request_Pool_Bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Limit_Request_Pool_Bytes)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Limited_meta = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Limited_meta)
@@ -37620,18 +37872,6 @@ const afw_value_string_t
 afw_self_v_zz__Max_Concurrent = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Max_Concurrent)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Max_Pool_Bytes_In_Use = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Max_Pool_Bytes_In_Use)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Max_Pool_Chunk_Bytes = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Max_Pool_Chunk_Bytes)
 };
 
 const afw_value_string_t
@@ -38673,6 +38913,42 @@ afw_self_v_zz__Outstanding_AFW_pool_malloc_calloc_bytes = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Override_Adaptive_evaluation_stack_cap = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Override_Adaptive_evaluation_stack_cap)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Override_C_stack_remaining_required_before_throw = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Override_C_stack_remaining_required_before_throw)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Override_compile_unit_heap_chunk_min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Override_compile_unit_heap_chunk_min)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Override_default_heap_posix_memalign_size = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Override_default_heap_posix_memalign_size)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Override_request_thread_ST_asked_for_cap = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Override_request_thread_ST_asked_for_cap)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Override_xctx_thread_heap_chunk_min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Override_xctx_thread_heap_chunk_min)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Package_Srcdir_Info = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Package_Srcdir_Info)
@@ -38760,6 +39036,18 @@ const afw_value_string_t
 afw_self_v_zz__Path_to_the_directory_holding_object_type_directories = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Path_to_the_directory_holding_object_type_directories)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Peak_Pool_Bytes_In_Use = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Peak_Pool_Bytes_In_Use)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Peak_Pool_Chunk_Bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Peak_Pool_Chunk_Bytes)
 };
 
 const afw_value_string_t
@@ -39474,6 +39762,12 @@ const afw_value_string_t
 afw_self_v_zz__Request_subject_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Request_subject_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Request_thread_ST_asked_for_cap = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Request_thread_ST_asked_for_cap)
 };
 
 const afw_value_string_t
@@ -42177,6 +42471,12 @@ afw_self_v_zz__This_describes_this_source_directory_ = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__This_eval_ST_asked_for_bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__This_eval_ST_asked_for_bytes)
+};
+
+const afw_value_string_t
 afw_self_v_zz__This_executes_when_this_property_is_called_as_a_method = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__This_executes_when_this_property_is_called_as_a_method)
@@ -42726,6 +43026,24 @@ const afw_value_string_t
 afw_self_v_zz__This_property_will_not_be_persisted = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__This_property_will_not_be_persisted)
+};
+
+const afw_value_string_t
+afw_self_v_zz__This_request_ST_asked_for_bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__This_request_ST_asked_for_bytes)
+};
+
+const afw_value_string_t
+afw_self_v_zz__This_request_ST_chunk_bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__This_request_ST_chunk_bytes)
+};
+
+const afw_value_string_t
+afw_self_v_zz__This_request_pool_and_eval_stack_metrics = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__This_request_pool_and_eval_stack_metrics)
 };
 
 const afw_value_string_t
@@ -43422,6 +43740,12 @@ const afw_value_string_t
 afw_self_v_zz__XCTX_UUID = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__XCTX_UUID)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Xctx_Chunk_Min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Xctx_Chunk_Min)
 };
 
 const afw_value_string_t
@@ -51513,6 +51837,12 @@ afw_self_v_zz__a10ae596cfca = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__a11800d60aea = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__a11800d60aea)
+};
+
+const afw_value_string_t
 afw_self_v_zz__a12992e382c3 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__a12992e382c3)
@@ -51624,6 +51954,12 @@ const afw_value_string_t
 afw_self_v_zz__a34921ab163a = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__a34921ab163a)
+};
+
+const afw_value_string_t
+afw_self_v_zz__a37d5c254dfa = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__a37d5c254dfa)
 };
 
 const afw_value_string_t
@@ -52785,6 +53121,12 @@ afw_self_v_zz__b616f6f2868b = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__b61ac784da35 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__b61ac784da35)
+};
+
+const afw_value_string_t
 afw_self_v_zz__b641791446d1 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__b641791446d1)
@@ -52917,6 +53259,12 @@ afw_self_v_zz__b9439a03cc96 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__b960e14e583e = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__b960e14e583e)
+};
+
+const afw_value_string_t
 afw_self_v_zz__b99a10e41011 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__b99a10e41011)
@@ -52944,6 +53292,12 @@ const afw_value_string_t
 afw_self_v_zz__b9eefb386513 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__b9eefb386513)
+};
+
+const afw_value_string_t
+afw_self_v_zz__ba0301c70e27 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__ba0301c70e27)
 };
 
 const afw_value_string_t
@@ -53460,6 +53814,12 @@ const afw_value_string_t
 afw_self_v_zz__be076735ae7a = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__be076735ae7a)
+};
+
+const afw_value_string_t
+afw_self_v_zz__be0769cc99ff = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__be0769cc99ff)
 };
 
 const afw_value_string_t
@@ -54300,6 +54660,12 @@ const afw_value_string_t
 afw_self_v_zz__cd242e2d9a87 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__cd242e2d9a87)
+};
+
+const afw_value_string_t
+afw_self_v_zz__cd29b100e4f4 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__cd29b100e4f4)
 };
 
 const afw_value_string_t
@@ -55290,6 +55656,12 @@ const afw_value_string_t
 afw_self_v_zz__dc655a179da7 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__dc655a179da7)
+};
+
+const afw_value_string_t
+afw_self_v_zz__dc7ca431dac2 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__dc7ca431dac2)
 };
 
 const afw_value_string_t
@@ -56331,6 +56703,12 @@ afw_self_v_zz__ef5a6f97690c = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__efe44f4331a9 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__efe44f4331a9)
+};
+
+const afw_value_string_t
 afw_self_v_zz__effba8d3a09f = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__effba8d3a09f)
@@ -57087,6 +57465,12 @@ afw_self_v_zz__f5fb56a694fb = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__f5fe889ee902 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__f5fe889ee902)
+};
+
+const afw_value_string_t
 afw_self_v_zz__f61a8e12c123 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__f61a8e12c123)
@@ -57540,12 +57924,6 @@ const afw_value_string_t
 afw_self_v_zz__fe03911705c2 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__fe03911705c2)
-};
-
-const afw_value_string_t
-afw_self_v_zz__fe4d73db7013 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__fe4d73db7013)
 };
 
 const afw_value_string_t
@@ -61245,6 +61623,12 @@ afw_self_v_zz__url_encode_string_ = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__xctx_thread_heap_chunk_min = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__xctx_thread_heap_chunk_min)
+};
+
+const afw_value_string_t
 afw_self_v_zz__xpathExpression_related_functions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__xpathExpression_related_functions)
@@ -61576,6 +61960,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_REQUEST_METHOD,
     &afw_self_v_REQUEST_SCHEME,
     &afw_self_v_REQUEST_URI,
+    &afw_self_v_RSS,
     &afw_self_v_Reason,
     &afw_self_v_Reconcilable,
     &afw_self_v_Registers,
@@ -61738,6 +62123,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v__AdaptiveRequestHandler_,
     &afw_self_v__AdaptiveRequestProperties_,
     &afw_self_v__AdaptiveResponseAction_,
+    &afw_self_v__AdaptiveResponseMetrics_,
     &afw_self_v__AdaptiveResponse_,
     &afw_self_v__AdaptiveRootFilePaths_,
     &afw_self_v__AdaptiveRuntimeCustom_,
@@ -63025,6 +63411,8 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_checkIntermediateMode,
     &afw_self_v_checkOnly,
     &afw_self_v_checkRequired,
+    &afw_self_v_chunkMin,
+    &afw_self_v_chunk_min,
     &afw_self_v_class,
     &afw_self_v_clone,
     &afw_self_v_cloneArray,
@@ -63038,6 +63426,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_compareUri,
     &afw_self_v_compare_uri,
     &afw_self_v_compile,
+    &afw_self_v_compileChunkMin,
     &afw_self_v_compileDate,
     &afw_self_v_compileFromFile,
     &afw_self_v_compileJson,
@@ -63049,6 +63438,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_compileTime,
     &afw_self_v_compileType,
     &afw_self_v_compileXpathExpression,
+    &afw_self_v_compile_chunk_min,
     &afw_self_v_compile_from_file,
     &afw_self_v_compile_json,
     &afw_self_v_compile_regexp,
@@ -63201,6 +63591,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_entry,
     &afw_self_v_entryCursor,
     &afw_self_v_env_pool_stat,
+    &afw_self_v_env_rss,
     &afw_self_v_environment,
     &afw_self_v_eq,
     &afw_self_v_eqAnyURI,
@@ -63340,6 +63731,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_evaluate_with_retry,
     &afw_self_v_evaluated,
     &afw_self_v_evaluation,
+    &afw_self_v_evaluationStackCount,
     &afw_self_v_every,
     &afw_self_v_excludes,
     &afw_self_v_executionStartTimeLocal,
@@ -63875,6 +64267,12 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_libafwyaml,
     &afw_self_v_like,
     &afw_self_v_limit,
+    &afw_self_v_limitCStackHeadroomBytes,
+    &afw_self_v_limitEvaluationStackCount,
+    &afw_self_v_limitRequestPoolBytes,
+    &afw_self_v_limit_c_stack_headroom_bytes,
+    &afw_self_v_limit_evaluation_stack_count,
+    &afw_self_v_limit_request_pool_bytes,
     &afw_self_v_line,
     &afw_self_v_listing,
     &afw_self_v_load,
@@ -63973,8 +64371,6 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_maxNormalLength,
     &afw_self_v_maxNumberOfParameters,
     &afw_self_v_maxObjects,
-    &afw_self_v_maxPoolBytesInUse,
-    &afw_self_v_maxPoolChunkBytes,
     &afw_self_v_maxString,
     &afw_self_v_maxTime,
     &afw_self_v_maxValue,
@@ -64326,6 +64722,8 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_path,
     &afw_self_v_pathEmbedded,
     &afw_self_v_pathTokens,
+    &afw_self_v_peakPoolBytesInUse,
+    &afw_self_v_peakPoolChunkBytes,
     &afw_self_v_peerId,
     &afw_self_v_perform,
     &afw_self_v_permanent,
@@ -64532,6 +64930,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_round,
     &afw_self_v_roundDouble,
     &afw_self_v_round_double,
+    &afw_self_v_rss,
     &afw_self_v_rule_combining_algorithm,
     &afw_self_v_runtime,
     &afw_self_v_runtime_custom,
@@ -64986,7 +65385,9 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_writeln,
     &afw_self_v_x500Name,
     &afw_self_v_xacml,
+    &afw_self_v_xctxChunkMin,
     &afw_self_v_xctxUUID,
+    &afw_self_v_xctx_chunk_min,
     &afw_self_v_xml,
     &afw_self_v_xpath,
     &afw_self_v_xpathExpression,

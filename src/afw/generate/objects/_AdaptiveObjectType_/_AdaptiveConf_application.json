@@ -27,6 +27,22 @@
             "description": "This defines how authorization checking occurs in this application.",
             "label": "Authorization"
         },
+        "chunkMin": {
+            "allowQuery": true,
+            "brief": "Override default heap posix_memalign size",
+            "dataType": "integer",
+            "description": "Optional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page.",
+            "label": "Chunk Min",
+            "required": false
+        },
+        "compileChunkMin": {
+            "allowQuery": true,
+            "brief": "Override compile-unit heap chunk min",
+            "dataType": "integer",
+            "description": "Optional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page.",
+            "label": "Compile Chunk Min",
+            "required": false
+        },
         "confAdapterId": {
             "allowQuery": true,
             "allowWrite": false,
@@ -93,6 +109,30 @@
             "label": "Layouts Adapter",
             "required": false
         },
+        "limitCStackHeadroomBytes": {
+            "allowQuery": true,
+            "brief": "Override C-stack remaining required before throw",
+            "dataType": "integer",
+            "description": "Optional. If present, overrides process limitCStackHeadroomBytes. 0 = unlimited.",
+            "label": "Limit C Stack Headroom Bytes",
+            "required": false
+        },
+        "limitEvaluationStackCount": {
+            "allowQuery": true,
+            "brief": "Override Adaptive evaluation-stack cap",
+            "dataType": "integer",
+            "description": "Optional. If present, overrides process limitEvaluationStackCount for xctx created after this conf is processed. 0 = unlimited.",
+            "label": "Limit Evaluation Stack Count",
+            "required": false
+        },
+        "limitRequestPoolBytes": {
+            "allowQuery": true,
+            "brief": "Override request/thread ST asked-for cap",
+            "dataType": "integer",
+            "description": "Optional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited.",
+            "label": "Limit Request Pool Bytes",
+            "required": false
+        },
         "onApplicationStartupComplete": {
             "allowQuery": true,
             "brief": "Script to run when application startup completes",
@@ -124,6 +164,14 @@
             "dataType": "string",
             "description": "The title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",
             "label": "Title",
+            "required": false
+        },
+        "xctxChunkMin": {
+            "allowQuery": true,
+            "brief": "Override xctx/thread heap chunk min",
+            "dataType": "integer",
+            "description": "Optional. If present, overrides process xctxChunkMin. Rounded up to the heap page. 0 becomes one page.",
+            "label": "Xctx Chunk Min",
             "required": false
         }
     }

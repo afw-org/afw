@@ -112,10 +112,8 @@ struct afw_pool_chunk_s {
 #define AFW_POOL_ALIGN ((afw_size_t)16)
 #define AFW_POOL_ALIGN_UP(n) \
     (((n) + (AFW_POOL_ALIGN - 1)) & ~(AFW_POOL_ALIGN - 1))
-/** posix_memalign alignment (page). */
+/** posix_memalign alignment (page). Not an env knob. */
 #define AFW_POOL_CHUNK_ALIGN ((afw_size_t)4096)
-/** Minimum posix_memalign size (multiple of ALIGN). */
-#define AFW_POOL_CHUNK_MIN ((afw_size_t)65536)
 
 /*
  * Heap debug prefix is at least a free node so overlay on free does
@@ -206,10 +204,11 @@ struct afw_pool_internal_self_s {
     afw_pool_internal_self_t *next_sibling;
 
     /**
-     * @brief Creating thread, or NULL on the process main thread (afw).
+     * @brief Owning AFW thread for an ST pool, including base.
      *
-     * Heap and tracker are still single-thread: do not use from another
-     * thread even when this is NULL.
+     * NULL means not thread-owned (multithreaded / shared), not
+     * "this is the process main thread." Child-list locking uses
+     * the pool inf, not this pointer.
      */
     const afw_thread_t *thread;
 

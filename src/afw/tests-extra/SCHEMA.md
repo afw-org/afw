@@ -151,6 +151,7 @@ No Adaptive function; judges HTTP-ish status + body.
 | `expect-raw-<streamId>` | **x-afw:** framed content for that stream only (`header\\npayload` concat). |
 | `expect-raw-response` | Full raw body (all streams + framing). Alias: **`expectResponse`**. On local, compares full stdout (banner-normalized). |
 | `expectStatus` | HTTP-ish status code (REST); default 2xx success if omitted |
+| `expectError` | Action JSON: pass if `status` is `error` and `error.id` matches (e.g. `payload_too_large`). Sequential tests after this still run. |
 
 ### Golden capture (`<<<` + `--capture-goldens`)
 

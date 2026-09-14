@@ -10,7 +10,24 @@
 #define __AFW_ENVIRONMENT_H__
 
 #include "afw_interface.h"
-#include "afw_hash_table.h"
+
+/**
+ * Compile-time defaults copied into `afw_environment_t` at environment
+ * create. Do not use these directly; use `xctx->env-><field>`.
+ *
+ * Exception: the base pool is created before env exists
+ * (`afw_pool_internal_create_base_pool()`). That one call may use
+ * `AFW_ENVIRONMENT_CHUNK_MIN`. After env create, heap `chunk_min == 0`
+ * means `env->chunk_min`.
+ */
+#define AFW_ENVIRONMENT_LIMIT_EVALUATION_STACK_COUNT ((afw_size_t)500)
+#define AFW_ENVIRONMENT_LIMIT_REQUEST_POOL_BYTES \
+    ((afw_size_t)(64 * 1024 * 1024))
+#define AFW_ENVIRONMENT_LIMIT_C_STACK_HEADROOM_BYTES \
+    ((afw_size_t)(256 * 1024))
+#define AFW_ENVIRONMENT_CHUNK_MIN ((afw_size_t)65536)
+#define AFW_ENVIRONMENT_COMPILE_CHUNK_MIN ((afw_size_t)4096)
+#define AFW_ENVIRONMENT_XCTX_CHUNK_MIN ((afw_size_t)65536)
 
 /**
  * @addtogroup afw_environment

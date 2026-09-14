@@ -1,0 +1,32 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "This-request metrics on _AdaptiveResponse_ when response:metrics is on. Values are the xctx snapshot (thread current minus snap), not process-wide peaks.",
+    "objectType": "_AdaptiveResponseMetrics_",
+    "otherProperties": {},
+    "propertyTypes": {
+        "evaluationStackCount": {
+            "brief": "Adaptive evaluation-stack depth",
+            "dataType": "integer",
+            "description": "Current evaluation-stack count on this xctx when the response is finished.",
+            "label": "Evaluation Stack Count"
+        },
+        "poolBytesInUse": {
+            "brief": "This-request ST asked-for bytes",
+            "dataType": "integer",
+            "description": "Thread ST asked-for bytes minus the snapshot taken at xctx create. Not process::poolBytesInUse.",
+            "label": "Pool Bytes In Use"
+        },
+        "poolChunkBytes": {
+            "brief": "This-request ST chunk bytes",
+            "dataType": "integer",
+            "description": "Thread ST posix_memalign chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes.",
+            "label": "Pool Chunk Bytes"
+        }
+    }
+}

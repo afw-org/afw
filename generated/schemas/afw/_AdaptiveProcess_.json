@@ -3,8 +3,8 @@
     "$defs": {
         "_AdaptiveProcess_": {
             "additionalProperties": false,
-            "description": "Process invocation and identity for this Adaptive Framework environment. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Partial issue #74.",
-            "markdownDescription": "Process invocation and identity for this Adaptive Framework environment. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Partial issue #74.",
+            "description": "Process invocation, identity, pool telemetry, and environment knobs. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Issue #74 identity; issue #329 telemetry and knobs.",
+            "markdownDescription": "Process invocation, identity, pool telemetry, and environment knobs. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Issue #74 identity; issue #329 telemetry and knobs.",
             "properties": {
                 "_meta_": {
                     "additionalProperties": true,
@@ -31,22 +31,52 @@
                     "title": "Arguments",
                     "type": "array"
                 },
+                "chunkMin": {
+                    "description": "Process default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
+                    "markdownDescription": "**Chunk Min**\n\nProcess default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
+                    "title": "Chunk Min",
+                    "type": "integer"
+                },
+                "compileChunkMin": {
+                    "description": "posix_memalign minimum used when creating a compile-unit heap.",
+                    "markdownDescription": "**Compile Chunk Min**\n\nposix_memalign minimum used when creating a compile-unit heap.",
+                    "title": "Compile Chunk Min",
+                    "type": "integer"
+                },
                 "cwd": {
                     "description": "Process current working directory snapshot at environment create. Not updated if the process later changes directory.",
                     "markdownDescription": "**Working Directory**\n\nProcess current working directory snapshot at environment create. Not updated if the process later changes directory.",
                     "title": "Working Directory",
                     "type": "string"
                 },
-                "maxPoolBytesInUse": {
-                    "description": "High-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
-                    "markdownDescription": "**Max Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
-                    "title": "Max Pool Bytes In Use",
+                "limitCStackHeadroomBytes": {
+                    "description": "Tripwire: throw payload_too_large when remaining C stack is below this. 0 = unlimited.",
+                    "markdownDescription": "**Limit C Stack Headroom Bytes**\n\nTripwire: throw payload_too_large when remaining C stack is below this. 0 = unlimited.",
+                    "title": "Limit C Stack Headroom Bytes",
                     "type": "integer"
                 },
-                "maxPoolChunkBytes": {
+                "limitEvaluationStackCount": {
+                    "description": "Maximum Adaptive evaluation-stack frames for each xctx. The vector is allocated at this count. 0 = unlimited (lab).",
+                    "markdownDescription": "**Limit Evaluation Stack Count**\n\nMaximum Adaptive evaluation-stack frames for each xctx. The vector is allocated at this count. 0 = unlimited (lab).",
+                    "title": "Limit Evaluation Stack Count",
+                    "type": "integer"
+                },
+                "limitRequestPoolBytes": {
+                    "description": "Tripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
+                    "markdownDescription": "**Limit Request Pool Bytes**\n\nTripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
+                    "title": "Limit Request Pool Bytes",
+                    "type": "integer"
+                },
+                "peakPoolBytesInUse": {
+                    "description": "High-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
+                    "markdownDescription": "**Peak Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
+                    "title": "Peak Pool Bytes In Use",
+                    "type": "integer"
+                },
+                "peakPoolChunkBytes": {
                     "description": "High-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
-                    "markdownDescription": "**Max Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
-                    "title": "Max Pool Chunk Bytes",
+                    "markdownDescription": "**Peak Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
+                    "title": "Peak Pool Chunk Bytes",
                     "type": "integer"
                 },
                 "pid": {
@@ -56,8 +86,8 @@
                     "type": "integer"
                 },
                 "poolBytesInUse": {
-                    "description": "Outstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process_rss() and poolChunkBytes.",
-                    "markdownDescription": "**Pool Bytes In Use**\n\nOutstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process_rss() and poolChunkBytes.",
+                    "description": "Outstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process::rss, process_rss(), and poolChunkBytes.",
+                    "markdownDescription": "**Pool Bytes In Use**\n\nOutstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process::rss, process_rss(), and poolChunkBytes.",
                     "title": "Pool Bytes In Use",
                     "type": "integer"
                 },
@@ -73,12 +103,24 @@
                     "title": "Program Name",
                     "type": "string"
                 },
+                "rss": {
+                    "description": "Live resident set size in bytes. afw_os_get_rss() and process_rss() are kilobytes; this property multiplies by 1024. 0 if unavailable. Not poolBytesInUse.",
+                    "markdownDescription": "**RSS**\n\nLive resident set size in bytes. afw_os_get_rss() and process_rss() are kilobytes; this property multiplies by 1024. 0 if unavailable. Not poolBytesInUse.",
+                    "title": "RSS",
+                    "type": "integer"
+                },
                 "startTime": {
                     "description": "Local dateTime when the Adaptive environment was created for this process.",
                     "format": "date-time",
                     "markdownDescription": "**Start Time**\n\nLocal dateTime when the Adaptive environment was created for this process.",
                     "title": "Start Time",
                     "type": "string"
+                },
+                "xctxChunkMin": {
+                    "description": "Process default posix_memalign minimum for each xctx/thread heap. Every thread starts from this.",
+                    "markdownDescription": "**Xctx Chunk Min**\n\nProcess default posix_memalign minimum for each xctx/thread heap. Every thread starts from this.",
+                    "title": "Xctx Chunk Min",
+                    "type": "integer"
                 }
             },
             "title": "_AdaptiveProcess_",
@@ -104,22 +146,52 @@
                     "title": "Arguments",
                     "type": "array"
                 },
+                "chunkMin": {
+                    "description": "Process default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
+                    "markdownDescription": "**Chunk Min**\n\nProcess default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
+                    "title": "Chunk Min",
+                    "type": "integer"
+                },
+                "compileChunkMin": {
+                    "description": "posix_memalign minimum used when creating a compile-unit heap.",
+                    "markdownDescription": "**Compile Chunk Min**\n\nposix_memalign minimum used when creating a compile-unit heap.",
+                    "title": "Compile Chunk Min",
+                    "type": "integer"
+                },
                 "cwd": {
                     "description": "Process current working directory snapshot at environment create. Not updated if the process later changes directory.",
                     "markdownDescription": "**Working Directory**\n\nProcess current working directory snapshot at environment create. Not updated if the process later changes directory.",
                     "title": "Working Directory",
                     "type": "string"
                 },
-                "maxPoolBytesInUse": {
-                    "description": "High-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
-                    "markdownDescription": "**Max Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
-                    "title": "Max Pool Bytes In Use",
+                "limitCStackHeadroomBytes": {
+                    "description": "Tripwire: throw payload_too_large when remaining C stack is below this. 0 = unlimited.",
+                    "markdownDescription": "**Limit C Stack Headroom Bytes**\n\nTripwire: throw payload_too_large when remaining C stack is below this. 0 = unlimited.",
+                    "title": "Limit C Stack Headroom Bytes",
                     "type": "integer"
                 },
-                "maxPoolChunkBytes": {
+                "limitEvaluationStackCount": {
+                    "description": "Maximum Adaptive evaluation-stack frames for each xctx. The vector is allocated at this count. 0 = unlimited (lab).",
+                    "markdownDescription": "**Limit Evaluation Stack Count**\n\nMaximum Adaptive evaluation-stack frames for each xctx. The vector is allocated at this count. 0 = unlimited (lab).",
+                    "title": "Limit Evaluation Stack Count",
+                    "type": "integer"
+                },
+                "limitRequestPoolBytes": {
+                    "description": "Tripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
+                    "markdownDescription": "**Limit Request Pool Bytes**\n\nTripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
+                    "title": "Limit Request Pool Bytes",
+                    "type": "integer"
+                },
+                "peakPoolBytesInUse": {
+                    "description": "High-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
+                    "markdownDescription": "**Peak Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
+                    "title": "Peak Pool Bytes In Use",
+                    "type": "integer"
+                },
+                "peakPoolChunkBytes": {
                     "description": "High-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
-                    "markdownDescription": "**Max Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
-                    "title": "Max Pool Chunk Bytes",
+                    "markdownDescription": "**Peak Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
+                    "title": "Peak Pool Chunk Bytes",
                     "type": "integer"
                 },
                 "pid": {
@@ -129,8 +201,8 @@
                     "type": "integer"
                 },
                 "poolBytesInUse": {
-                    "description": "Outstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process_rss() and poolChunkBytes.",
-                    "markdownDescription": "**Pool Bytes In Use**\n\nOutstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process_rss() and poolChunkBytes.",
+                    "description": "Outstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process::rss, process_rss(), and poolChunkBytes.",
+                    "markdownDescription": "**Pool Bytes In Use**\n\nOutstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process::rss, process_rss(), and poolChunkBytes.",
                     "title": "Pool Bytes In Use",
                     "type": "integer"
                 },
@@ -146,12 +218,24 @@
                     "title": "Program Name",
                     "type": "string"
                 },
+                "rss": {
+                    "description": "Live resident set size in bytes. afw_os_get_rss() and process_rss() are kilobytes; this property multiplies by 1024. 0 if unavailable. Not poolBytesInUse.",
+                    "markdownDescription": "**RSS**\n\nLive resident set size in bytes. afw_os_get_rss() and process_rss() are kilobytes; this property multiplies by 1024. 0 if unavailable. Not poolBytesInUse.",
+                    "title": "RSS",
+                    "type": "integer"
+                },
                 "startTime": {
                     "description": "Local dateTime when the Adaptive environment was created for this process.",
                     "format": "date-time",
                     "markdownDescription": "**Start Time**\n\nLocal dateTime when the Adaptive environment was created for this process.",
                     "title": "Start Time",
                     "type": "string"
+                },
+                "xctxChunkMin": {
+                    "description": "Process default posix_memalign minimum for each xctx/thread heap. Every thread starts from this.",
+                    "markdownDescription": "**Xctx Chunk Min**\n\nProcess default posix_memalign minimum for each xctx/thread heap. Every thread starts from this.",
+                    "title": "Xctx Chunk Min",
+                    "type": "integer"
                 }
             },
             "type": "object"
@@ -159,8 +243,8 @@
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
-    "description": "Process invocation and identity for this Adaptive Framework environment. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Partial issue #74.",
-    "markdownDescription": "Process invocation and identity for this Adaptive Framework environment. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Partial issue #74.",
+    "description": "Process invocation, identity, pool telemetry, and environment knobs. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Issue #74 identity; issue #329 telemetry and knobs.",
+    "markdownDescription": "Process invocation, identity, pool telemetry, and environment knobs. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Issue #74 identity; issue #329 telemetry and knobs.",
     "properties": {
         "_meta_": {
             "additionalProperties": true,
@@ -187,22 +271,52 @@
             "title": "Arguments",
             "type": "array"
         },
+        "chunkMin": {
+            "description": "Process default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
+            "markdownDescription": "**Chunk Min**\n\nProcess default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
+            "title": "Chunk Min",
+            "type": "integer"
+        },
+        "compileChunkMin": {
+            "description": "posix_memalign minimum used when creating a compile-unit heap.",
+            "markdownDescription": "**Compile Chunk Min**\n\nposix_memalign minimum used when creating a compile-unit heap.",
+            "title": "Compile Chunk Min",
+            "type": "integer"
+        },
         "cwd": {
             "description": "Process current working directory snapshot at environment create. Not updated if the process later changes directory.",
             "markdownDescription": "**Working Directory**\n\nProcess current working directory snapshot at environment create. Not updated if the process later changes directory.",
             "title": "Working Directory",
             "type": "string"
         },
-        "maxPoolBytesInUse": {
-            "description": "High-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
-            "markdownDescription": "**Max Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
-            "title": "Max Pool Bytes In Use",
+        "limitCStackHeadroomBytes": {
+            "description": "Tripwire: throw payload_too_large when remaining C stack is below this. 0 = unlimited.",
+            "markdownDescription": "**Limit C Stack Headroom Bytes**\n\nTripwire: throw payload_too_large when remaining C stack is below this. 0 = unlimited.",
+            "title": "Limit C Stack Headroom Bytes",
             "type": "integer"
         },
-        "maxPoolChunkBytes": {
+        "limitEvaluationStackCount": {
+            "description": "Maximum Adaptive evaluation-stack frames for each xctx. The vector is allocated at this count. 0 = unlimited (lab).",
+            "markdownDescription": "**Limit Evaluation Stack Count**\n\nMaximum Adaptive evaluation-stack frames for each xctx. The vector is allocated at this count. 0 = unlimited (lab).",
+            "title": "Limit Evaluation Stack Count",
+            "type": "integer"
+        },
+        "limitRequestPoolBytes": {
+            "description": "Tripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
+            "markdownDescription": "**Limit Request Pool Bytes**\n\nTripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
+            "title": "Limit Request Pool Bytes",
+            "type": "integer"
+        },
+        "peakPoolBytesInUse": {
+            "description": "High-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
+            "markdownDescription": "**Peak Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
+            "title": "Peak Pool Bytes In Use",
+            "type": "integer"
+        },
+        "peakPoolChunkBytes": {
             "description": "High-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
-            "markdownDescription": "**Max Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
-            "title": "Max Pool Chunk Bytes",
+            "markdownDescription": "**Peak Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
+            "title": "Peak Pool Chunk Bytes",
             "type": "integer"
         },
         "pid": {
@@ -212,8 +326,8 @@
             "type": "integer"
         },
         "poolBytesInUse": {
-            "description": "Outstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process_rss() and poolChunkBytes.",
-            "markdownDescription": "**Pool Bytes In Use**\n\nOutstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process_rss() and poolChunkBytes.",
+            "description": "Outstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process::rss, process_rss(), and poolChunkBytes.",
+            "markdownDescription": "**Pool Bytes In Use**\n\nOutstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process::rss, process_rss(), and poolChunkBytes.",
             "title": "Pool Bytes In Use",
             "type": "integer"
         },
@@ -229,12 +343,24 @@
             "title": "Program Name",
             "type": "string"
         },
+        "rss": {
+            "description": "Live resident set size in bytes. afw_os_get_rss() and process_rss() are kilobytes; this property multiplies by 1024. 0 if unavailable. Not poolBytesInUse.",
+            "markdownDescription": "**RSS**\n\nLive resident set size in bytes. afw_os_get_rss() and process_rss() are kilobytes; this property multiplies by 1024. 0 if unavailable. Not poolBytesInUse.",
+            "title": "RSS",
+            "type": "integer"
+        },
         "startTime": {
             "description": "Local dateTime when the Adaptive environment was created for this process.",
             "format": "date-time",
             "markdownDescription": "**Start Time**\n\nLocal dateTime when the Adaptive environment was created for this process.",
             "title": "Start Time",
             "type": "string"
+        },
+        "xctxChunkMin": {
+            "description": "Process default posix_memalign minimum for each xctx/thread heap. Every thread starts from this.",
+            "markdownDescription": "**Xctx Chunk Min**\n\nProcess default posix_memalign minimum for each xctx/thread heap. Every thread starts from this.",
+            "title": "Xctx Chunk Min",
+            "type": "integer"
         }
     },
     "title": "_AdaptiveProcess_",
