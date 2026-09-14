@@ -14,7 +14,11 @@
             "brief": "Active Adaptive Framework core version",
             "dataType": "string",
             "description": "Version string of the linked libafw at process start.",
-            "label": "AFW Version"
+            "label": "AFW Version",
+            "runtime": {
+                "memberName": "afw_version",
+                "valueAccessor": "indirect"
+            }
         },
         "args": {
             "allowQuery": true,
@@ -22,35 +26,100 @@
             "dataType": "array",
             "dataTypeParameter": "string",
             "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
-            "label": "Arguments"
+            "label": "Arguments",
+            "runtime": {
+                "memberName": "process_args"
+            }
         },
         "cwd": {
             "allowQuery": true,
             "brief": "Working directory at environment create",
             "dataType": "string",
             "description": "Process current working directory snapshot at environment create. Not updated if the process later changes directory.",
-            "label": "Working Directory"
+            "label": "Working Directory",
+            "runtime": {
+                "memberName": "process_cwd",
+                "valueAccessor": "indirect"
+            }
+        },
+        "maxPoolBytesInUse": {
+            "allowQuery": true,
+            "brief": "High-water of AFW asked-for bytes",
+            "dataType": "integer",
+            "description": "High-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
+            "label": "Max Pool Bytes In Use",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_pool_stat"
+            }
+        },
+        "maxPoolChunkBytes": {
+            "allowQuery": true,
+            "brief": "High-water of posix_memalign chunk bytes",
+            "dataType": "integer",
+            "description": "High-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
+            "label": "Max Pool Chunk Bytes",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_pool_stat"
+            }
         },
         "pid": {
             "allowQuery": true,
             "brief": "Process id",
             "dataType": "integer",
             "description": "Operating system process id (or equivalent) at environment create.",
-            "label": "Pid"
+            "label": "Pid",
+            "runtime": {
+                "memberName": "process_pid"
+            }
+        },
+        "poolBytesInUse": {
+            "allowQuery": true,
+            "brief": "AFW asked-for bytes outstanding",
+            "dataType": "integer",
+            "description": "Outstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process_rss() and poolChunkBytes.",
+            "label": "Pool Bytes In Use",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_pool_stat"
+            }
+        },
+        "poolChunkBytes": {
+            "allowQuery": true,
+            "brief": "posix_memalign chunk bytes held",
+            "dataType": "integer",
+            "description": "Sum of heap posix_memalign chunks still held. Store mapped, not asked-for.",
+            "label": "Pool Chunk Bytes",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_pool_stat"
+            }
         },
         "programName": {
             "allowQuery": true,
             "brief": "Program base name",
             "dataType": "string",
             "description": "Base name of args[0] (last path segment), also available as env program_name (e.g. afw, afwfcgi).",
-            "label": "Program Name"
+            "label": "Program Name",
+            "runtime": {
+                "memberName": "program_name"
+            }
         },
         "startTime": {
             "allowQuery": true,
             "brief": "Process start time",
             "dataType": "dateTime",
             "description": "Local dateTime when the Adaptive environment was created for this process.",
-            "label": "Start Time"
+            "label": "Start Time",
+            "runtime": {
+                "memberName": "process_start_time",
+                "valueAccessor": "indirect"
+            }
         }
+    },
+    "runtime": {
+        "indirect": true,
+        "typedef": "afw_environment_t"
     }
 }

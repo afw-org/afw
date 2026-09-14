@@ -37,10 +37,34 @@
                     "title": "Working Directory",
                     "type": "string"
                 },
+                "maxPoolBytesInUse": {
+                    "description": "High-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
+                    "markdownDescription": "**Max Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
+                    "title": "Max Pool Bytes In Use",
+                    "type": "integer"
+                },
+                "maxPoolChunkBytes": {
+                    "description": "High-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
+                    "markdownDescription": "**Max Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
+                    "title": "Max Pool Chunk Bytes",
+                    "type": "integer"
+                },
                 "pid": {
                     "description": "Operating system process id (or equivalent) at environment create.",
                     "markdownDescription": "**Pid**\n\nOperating system process id (or equivalent) at environment create.",
                     "title": "Pid",
+                    "type": "integer"
+                },
+                "poolBytesInUse": {
+                    "description": "Outstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process_rss() and poolChunkBytes.",
+                    "markdownDescription": "**Pool Bytes In Use**\n\nOutstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process_rss() and poolChunkBytes.",
+                    "title": "Pool Bytes In Use",
+                    "type": "integer"
+                },
+                "poolChunkBytes": {
+                    "description": "Sum of heap posix_memalign chunks still held. Store mapped, not asked-for.",
+                    "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap posix_memalign chunks still held. Store mapped, not asked-for.",
+                    "title": "Pool Chunk Bytes",
                     "type": "integer"
                 },
                 "programName": {
@@ -86,10 +110,34 @@
                     "title": "Working Directory",
                     "type": "string"
                 },
+                "maxPoolBytesInUse": {
+                    "description": "High-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
+                    "markdownDescription": "**Max Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
+                    "title": "Max Pool Bytes In Use",
+                    "type": "integer"
+                },
+                "maxPoolChunkBytes": {
+                    "description": "High-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
+                    "markdownDescription": "**Max Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
+                    "title": "Max Pool Chunk Bytes",
+                    "type": "integer"
+                },
                 "pid": {
                     "description": "Operating system process id (or equivalent) at environment create.",
                     "markdownDescription": "**Pid**\n\nOperating system process id (or equivalent) at environment create.",
                     "title": "Pid",
+                    "type": "integer"
+                },
+                "poolBytesInUse": {
+                    "description": "Outstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process_rss() and poolChunkBytes.",
+                    "markdownDescription": "**Pool Bytes In Use**\n\nOutstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process_rss() and poolChunkBytes.",
+                    "title": "Pool Bytes In Use",
+                    "type": "integer"
+                },
+                "poolChunkBytes": {
+                    "description": "Sum of heap posix_memalign chunks still held. Store mapped, not asked-for.",
+                    "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap posix_memalign chunks still held. Store mapped, not asked-for.",
+                    "title": "Pool Chunk Bytes",
                     "type": "integer"
                 },
                 "programName": {
@@ -145,10 +193,34 @@
             "title": "Working Directory",
             "type": "string"
         },
+        "maxPoolBytesInUse": {
+            "description": "High-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
+            "markdownDescription": "**Max Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
+            "title": "Max Pool Bytes In Use",
+            "type": "integer"
+        },
+        "maxPoolChunkBytes": {
+            "description": "High-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
+            "markdownDescription": "**Max Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
+            "title": "Max Pool Chunk Bytes",
+            "type": "integer"
+        },
         "pid": {
             "description": "Operating system process id (or equivalent) at environment create.",
             "markdownDescription": "**Pid**\n\nOperating system process id (or equivalent) at environment create.",
             "title": "Pid",
+            "type": "integer"
+        },
+        "poolBytesInUse": {
+            "description": "Outstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process_rss() and poolChunkBytes.",
+            "markdownDescription": "**Pool Bytes In Use**\n\nOutstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process_rss() and poolChunkBytes.",
+            "title": "Pool Bytes In Use",
+            "type": "integer"
+        },
+        "poolChunkBytes": {
+            "description": "Sum of heap posix_memalign chunks still held. Store mapped, not asked-for.",
+            "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap posix_memalign chunks still held. Store mapped, not asked-for.",
+            "title": "Pool Chunk Bytes",
             "type": "integer"
         },
         "programName": {

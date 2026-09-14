@@ -465,6 +465,7 @@ static int
 impl_tracker_parent(afw_xctx_t *xctx)
 {
     const afw_pool_t *tracker;
+    const afw_pool_t *mt;
 
     tracker = afw_pool_tracker_create(xctx->env->p, xctx);
     if (!afw_pool_internal_is_tracker(tracker)) {
@@ -472,6 +473,12 @@ impl_tracker_parent(afw_xctx_t *xctx)
             "tracker under env->p heap failed");
     }
     afw_pool_release(tracker, xctx);
+    mt = afw_pool_multithread_create(xctx->env->p, xctx);
+    if (!afw_pool_internal_is_heap_multithreaded(mt)) {
+        return impl_fail("tracker_parent",
+            "multithread_create did not return an MT heap");
+    }
+    afw_pool_release(mt, xctx);
     return 0;
 }
 
@@ -487,9 +494,9 @@ impl_create_child_of_heap(afw_xctx_t *xctx)
 
     heap = afw_pool_create_xctx_p(xctx->p, xctx);
     child = afw_pool_create(heap, xctx);
-    if (!afw_pool_internal_is_heap(child)) {
+    if (!afw_pool_internal_is_tracker(child)) {
         return impl_fail("create_child_of_heap",
-            "afw_pool_create of a heap parent is not a heap");
+            "afw_pool_create of a ST heap parent is not a tracker");
     }
     before = impl_in_use(xctx);
     a = afw_pool_malloc(child, IMPL_SIZE_MEDIUM, xctx);
@@ -506,7 +513,7 @@ impl_create_child_of_heap(afw_xctx_t *xctx)
     tracker = afw_pool_tracker_create(child, xctx);
     if (!afw_pool_internal_is_tracker(tracker)) {
         return impl_fail("create_child_of_heap",
-            "tracker under create() heap failed");
+            "tracker under create() tracker failed");
     }
     afw_pool_release(tracker, xctx);
     afw_pool_release(child, xctx);
@@ -534,7 +541,7 @@ impl_leftover_child_heap(afw_xctx_t *xctx)
     int tracker_cleanup;
 
     heap = afw_pool_create_xctx_p(xctx->p, xctx);
-    child = afw_pool_create(heap, xctx);
+    child = afw_pool_create_xctx_p(heap, xctx);
     tracker = afw_pool_tracker_create(child, xctx);
     child_cleanup = 0;
     tracker_cleanup = 0;
@@ -764,9 +771,9 @@ impl_unhandled_alloc(afw_xctx_t *xctx)
 }
 
 /*
- * Heap create uses at least one 4k-aligned chunk. A request larger
- * than the remainder (and 4k) adds another chunk. Release walks the
- * list.
+ * Heap create uses at least one 64k-min, 4k-aligned chunk. A
+ * request larger than the remainder adds another chunk. Release
+ * walks the list.
  */
 static int
 impl_heap_chunks(afw_xctx_t *xctx)
@@ -785,13 +792,14 @@ impl_heap_chunks(afw_xctx_t *xctx)
     for (chunk = heap_self->first_chunk; chunk; chunk = chunk->next) {
         n++;
         if (chunk->size < AFW_POOL_CHUNK_MIN) {
-            return impl_fail("heap_chunks", "chunk smaller than 4k");
+            return impl_fail("heap_chunks", "chunk smaller than 64k");
         }
-        if ((chunk->size & (AFW_POOL_CHUNK_MIN - 1)) != 0) {
-            return impl_fail("heap_chunks", "chunk size not a 4k multiple");
+        if ((chunk->size & (AFW_POOL_CHUNK_ALIGN - 1)) != 0) {
+            return impl_fail("heap_chunks",
+                "chunk size not a 4k multiple");
         }
         if (((afw_size_t)(uintptr_t)chunk &
-            (AFW_POOL_CHUNK_MIN - 1)) != 0)
+            (AFW_POOL_CHUNK_ALIGN - 1)) != 0)
         {
             return impl_fail("heap_chunks", "chunk not 4k-aligned");
         }
@@ -803,7 +811,7 @@ impl_heap_chunks(afw_xctx_t *xctx)
     before = impl_in_use(xctx);
     a = afw_pool_malloc(heap, AFW_POOL_CHUNK_MIN, xctx);
     if (!a) {
-        return impl_fail("heap_chunks", "4k malloc returned NULL");
+        return impl_fail("heap_chunks", "64k malloc returned NULL");
     }
     n = 0;
     for (chunk = heap_self->first_chunk; chunk; chunk = chunk->next) {
@@ -815,7 +823,7 @@ impl_heap_chunks(afw_xctx_t *xctx)
 
     b = afw_pool_malloc(heap, AFW_POOL_CHUNK_MIN * 2, xctx);
     if (!b) {
-        return impl_fail("heap_chunks", "8k malloc returned NULL");
+        return impl_fail("heap_chunks", "128k malloc returned NULL");
     }
 
     afw_pool_free_memory(heap, a, AFW_POOL_CHUNK_MIN, xctx);

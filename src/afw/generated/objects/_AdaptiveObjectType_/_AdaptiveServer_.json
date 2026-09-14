@@ -40,6 +40,28 @@
             "required": true,
             "unique": false
         },
+        "maxPoolBytesInUse": {
+            "allowQuery": true,
+            "brief": "High-water of AFW asked-for bytes",
+            "dataType": "integer",
+            "description": "High-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "label": "Max Pool Bytes In Use",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_pool_stat"
+            }
+        },
+        "maxPoolChunkBytes": {
+            "allowQuery": true,
+            "brief": "High-water of posix_memalign chunk bytes",
+            "dataType": "integer",
+            "description": "High-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "label": "Max Pool Chunk Bytes",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_pool_stat"
+            }
+        },
         "maxConcurrent": {
             "allowQuery": true,
             "brief": "Maximum number of concurrent threads since server started",
@@ -51,6 +73,28 @@
                 "memberName": "max_concurrent"
             },
             "unique": false
+        },
+        "poolBytesInUse": {
+            "allowQuery": true,
+            "brief": "AFW asked-for bytes outstanding",
+            "dataType": "integer",
+            "description": "Outstanding malloc/calloc AFW has not given back. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "label": "Pool Bytes In Use",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_pool_stat"
+            }
+        },
+        "poolChunkBytes": {
+            "allowQuery": true,
+            "brief": "posix_memalign chunk bytes held",
+            "dataType": "integer",
+            "description": "Sum of heap posix_memalign chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "label": "Pool Chunk Bytes",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_pool_stat"
+            }
         },
         "requestCount": {
             "allowQuery": true,

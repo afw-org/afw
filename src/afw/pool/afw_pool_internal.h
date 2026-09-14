@@ -18,8 +18,9 @@
  * A pool is a heap unless it is a tracker. A tracker gets memory
  * from a heap, tracks live USER blocks, and returns them to the
  * heap on free or tracker destroy. The heap owns the free list and
- * a list of 4k-aligned posix_memalign chunks. Destroy free()s every
- * chunk.
+ * a list of posix_memalign chunks (4k-aligned, 64k minimum).
+ * Destroy free()s every chunk. Parent/child is lifetime only;
+ * store is the ancestor heap (`impl_reservoir_heap`).
  *
  * USER `size` is always the malloc/free_memory argument.
  *
@@ -101,7 +102,7 @@ struct afw_pool_free_node_s {
     afw_pool_free_node_t *next;
 };
 
-/** Heap 4k-aligned region. Destroy walks first_chunk and free()s each. */
+/** Heap region. Destroy walks first_chunk and free()s each. */
 typedef struct afw_pool_chunk_s afw_pool_chunk_t;
 struct afw_pool_chunk_s {
     afw_pool_chunk_t *next;
@@ -111,7 +112,10 @@ struct afw_pool_chunk_s {
 #define AFW_POOL_ALIGN ((afw_size_t)16)
 #define AFW_POOL_ALIGN_UP(n) \
     (((n) + (AFW_POOL_ALIGN - 1)) & ~(AFW_POOL_ALIGN - 1))
-#define AFW_POOL_CHUNK_MIN ((afw_size_t)4096)
+/** posix_memalign alignment (page). */
+#define AFW_POOL_CHUNK_ALIGN ((afw_size_t)4096)
+/** Minimum posix_memalign size (multiple of ALIGN). */
+#define AFW_POOL_CHUNK_MIN ((afw_size_t)65536)
 
 /*
  * Heap debug prefix is at least a free node so overlay on free does
@@ -165,6 +169,19 @@ struct afw_pool_internal_self_s {
      * @brief Bytes left at bump in current_chunk (heap only).
      */
     afw_size_t remaining;
+
+    /**
+     * @brief posix_memalign bytes still held (heap only).
+     *
+     * Not asked-for malloc. Trackers are 0; store is the ancestor
+     * heap.
+     */
+    afw_size_t chunk_bytes;
+
+    /**
+     * @brief Number of chunks on first_chunk (heap only).
+     */
+    afw_size_t chunk_count;
 
     /** @brief Optional pool name. */
     const afw_utf8_t *name;

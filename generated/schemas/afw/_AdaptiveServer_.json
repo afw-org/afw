@@ -37,6 +37,30 @@
                     "title": "Max Concurrent",
                     "type": "integer"
                 },
+                "maxPoolBytesInUse": {
+                    "description": "High-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Max Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Max Pool Bytes In Use",
+                    "type": "integer"
+                },
+                "maxPoolChunkBytes": {
+                    "description": "High-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Max Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Max Pool Chunk Bytes",
+                    "type": "integer"
+                },
+                "poolBytesInUse": {
+                    "description": "Outstanding malloc/calloc AFW has not given back. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Pool Bytes In Use**\n\nOutstanding malloc/calloc AFW has not given back. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Pool Bytes In Use",
+                    "type": "integer"
+                },
+                "poolChunkBytes": {
+                    "description": "Sum of heap posix_memalign chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap posix_memalign chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Pool Chunk Bytes",
+                    "type": "integer"
+                },
                 "requestCount": {
                     "description": "This is the total number of requests that have been processed since the server was started.",
                     "markdownDescription": "**Request Count**\n\nThis is the total number of requests that have been processed since the server was started.",
@@ -109,6 +133,30 @@
                     "description": "This is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time.",
                     "markdownDescription": "**Max Concurrent**\n\nThis is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time.",
                     "title": "Max Concurrent",
+                    "type": "integer"
+                },
+                "maxPoolBytesInUse": {
+                    "description": "High-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Max Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Max Pool Bytes In Use",
+                    "type": "integer"
+                },
+                "maxPoolChunkBytes": {
+                    "description": "High-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Max Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Max Pool Chunk Bytes",
+                    "type": "integer"
+                },
+                "poolBytesInUse": {
+                    "description": "Outstanding malloc/calloc AFW has not given back. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Pool Bytes In Use**\n\nOutstanding malloc/calloc AFW has not given back. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Pool Bytes In Use",
+                    "type": "integer"
+                },
+                "poolChunkBytes": {
+                    "description": "Sum of heap posix_memalign chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap posix_memalign chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Pool Chunk Bytes",
                     "type": "integer"
                 },
                 "requestCount": {
@@ -186,6 +234,30 @@
             "description": "This is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time.",
             "markdownDescription": "**Max Concurrent**\n\nThis is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time.",
             "title": "Max Concurrent",
+            "type": "integer"
+        },
+        "maxPoolBytesInUse": {
+            "description": "High-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Max Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "title": "Max Pool Bytes In Use",
+            "type": "integer"
+        },
+        "maxPoolChunkBytes": {
+            "description": "High-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Max Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "title": "Max Pool Chunk Bytes",
+            "type": "integer"
+        },
+        "poolBytesInUse": {
+            "description": "Outstanding malloc/calloc AFW has not given back. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Pool Bytes In Use**\n\nOutstanding malloc/calloc AFW has not given back. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "title": "Pool Bytes In Use",
+            "type": "integer"
+        },
+        "poolChunkBytes": {
+            "description": "Sum of heap posix_memalign chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Pool Chunk Bytes**\n\nSum of heap posix_memalign chunks still held. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "title": "Pool Chunk Bytes",
             "type": "integer"
         },
         "requestCount": {

@@ -473,7 +473,7 @@ impl_start_cb(
 
         /* Allocate and initialize new service instance. */
         old_service = service;
-        p = afw_pool_create(xctx->env->p, xctx);
+        p = afw_pool_multithread_create(xctx->env->p, xctx);
         service = afw_pool_calloc_type(p, afw_service_t, xctx);
         service->p = p;
         service->source_location = afw_utf8_clone(source_location,
@@ -1223,7 +1223,7 @@ afw_service_start(
     session = afw_adapter_session_create(
         &xctx->env->conf_adapter->adapter_id, xctx);
     AFW_TRY {
-        p = afw_pool_create(xctx->env->p, xctx);
+        p = afw_pool_multithread_create(xctx->env->p, xctx);
         afw_adapter_session_get_object(session, NULL,
             afw_s__AdaptiveServiceConf_, service_id,
             &ctx, impl_start_cb, NULL, p, xctx);
@@ -1384,7 +1384,7 @@ impl_restart_get_cb(
         }
 
         /* Allocate and initialize new service instance. */
-        p = afw_pool_create(xctx->env->p, xctx);
+        p = afw_pool_multithread_create(xctx->env->p, xctx);
         service = afw_pool_calloc_type(p, afw_service_t, xctx);
         service->p = p;
         service->source_location = afw_utf8_clone(source_location,
@@ -1473,7 +1473,7 @@ afw_service_restart(
     session = afw_adapter_session_create(
         &xctx->env->conf_adapter->adapter_id, xctx);
     AFW_TRY {
-        p = afw_pool_create(xctx->env->p, xctx);
+        p = afw_pool_multithread_create(xctx->env->p, xctx);
         afw_adapter_session_get_object(session, NULL,
             afw_s__AdaptiveServiceConf_, service_id,
             &ctx, impl_restart_get_cb, NULL, p, xctx);

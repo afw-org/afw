@@ -102,7 +102,8 @@ def run():
             ),
             (
                 "create_child_of_heap",
-                "afw_pool_create of a heap parent is a heap; free recycles",
+                "afw_pool_create of a ST heap parent is a tracker; "
+                "free recycles",
             ),
             (
                 "leftover_child_heap",
@@ -116,8 +117,9 @@ def run():
             ),
             (
                 "heap_chunks",
-                "heap store is 4k-aligned posix_memalign chunks; "
-                "large alloc adds a chunk; release walks the list",
+                "heap store is 64k-min, 4k-aligned posix_memalign "
+                "chunks; large alloc adds a chunk; release walks "
+                "the list",
             ),
             (
                 "deregister_cleanup",

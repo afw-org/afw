@@ -25,25 +25,40 @@
  * Key invariants:
  * - A pool is a heap unless it is a tracker. A tracker gets memory
  *   from a heap, tracks it, and returns it on free or tracker destroy.
- *   Multithreaded heap is lock wrappers. The heap owns 4k-aligned
- *   posix_memalign chunks (not APR). Not a third AFW pool kind.
- * - afw_pool_create() of a heap is a heap (mt if the parent is mt).
- *   Of a tracker, a tracker. xctx->p is always single-thread heap.
- * - afw_pool_malloc_unhandled / calloc_unhandled never throw (NULL on
- *   failure). For environment/xctx create before current_try and
- *   evaluation_stack exist. Does not take the multithreaded pool lock
- *   (create is one thread; later unhandled callers use xctx->p).
- * - Optional free is afw_pool_free_memory(p, address, size, xctx).
- * - Use afw_pool_calloc_type for typed zeroed allocs.
+ *   Multithreaded heap is lock wrappers. The heap owns posix_memalign
+ *   chunks (4k-aligned, 64k minimum). Not a third AFW pool kind.
+ * - Parent/child is lifetime only (last-release throws if children
+ *   remain). Store is the ancestor heap. Trackers may parent other
+ *   trackers.
+ * - One ST heap per xctx (`afw_pool_create_xctx_p`). Scope trackers
+ *   parent that heap, not the enclosing `{ }`. Closures pin the
+ *   inner tracker; the xctx heap outlives the outer `{ }`.
+ * - `afw_pool_create()` of a ST parent (xctx->p or tracker) is a
+ *   tracker. Of an MT parent, an MT heap. `env->p` is the process
+ *   MT heap. Things you start (conf, server, log, adapter) use
+ *   `afw_pool_multithread_create(env->p)`.
+ * - Two numbers: asked-for (`bytes_allocated` /
+ *   `env->pool_bytes_in_use`) vs chunks (`chunk_bytes` /
+ *   `env->pool_chunk_bytes`). Env also keeps high-water
+ *   `pool_bytes_in_use_max` / `pool_chunk_bytes_max`. Adaptive
+ *   `pool_bytes_in_use()` vs `process_rss()`. This xctx:
+ *   `afw_pool_subtree_*` on `xctx->p`.
  * - Last-release: decrement; if 0 and children remain, throw; else
  *   callbacks, unchain, free this store, release parent. Does not
- *   call destroy.
- * - destroy: this pool and remaining children, then the same
- *   cleanup (callbacks, unchain, free store, release parent).
- *   Callers must own that subtree. Clears delayed last-release
- *   marks.
- * - afw_pool_release_delayed(): postorder, last-release delayed
+ *   call destroy. "Children remaining" is a leaked child.
+ * - destroy: storage-only (must not fail). Call `run_cleanups`
+ *   first if callbacks must run (`xctx_release` does both).
+ * - `afw_pool_release_delayed()`: postorder last-release delayed
  *   pools. ENDTRY after a caught error.
+ * - `env->p` is process lifetime (valgrind still reachable is
+ *   intended).
+ *
+ * Debug:
+ * - Build `--cdev` / `--fulldev` defines `AFW_DEBUG_POOL`. Prefix
+ *   {pool,size} on free; poison `0x0BADF00D` so a dangling inf
+ *   faults. Runtime `debug:pool` / `debug:pool:detail` on a short
+ *   run, not a soak. gdb `afw_pool_print_debug_info(0, xctx->p,
+ *   xctx)`.
  */
 
 AFW_BEGIN_DECLARES
@@ -76,9 +91,8 @@ struct afw_pool_cleanup_s {
  * @param xctx of caller.
  * @return new pool.
  *
- * Heap if the parent is a heap (multithreaded lock wrappers if the
- * parent is multithreaded). Tracker if the parent is a tracker
- * (extra rule; may revisit).
+ * Tracker if the parent is a single-thread heap or a tracker.
+ * Multithreaded heap if the parent is multithreaded.
  *
  * env->p is a multithreaded heap. xctx->p is always a single-thread
  * heap (see afw_pool_create_xctx_p()). Thread-specific heaps are not
@@ -91,14 +105,29 @@ afw_pool_create(
 
 
 /**
+ * @brief Create a multithreaded heap (managed_p = self).
+ * @param parent must be a multithreaded heap (usually env->p).
+ * @param xctx of caller.
+ * @return new pool.
+ *
+ * For things you start: conf, server, log, adapter. Work from a
+ * request xctx on a pool that outlives that request.
+ */
+AFW_DECLARE(const afw_pool_t *)
+afw_pool_multithread_create(
+    const afw_pool_t *parent,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Create a pool whose managed_p is itself.
  * @param parent of new pool.
  * @param xctx of caller.
  * @return new pool.
  *
- * Same as afw_pool_create() then p->managed_p = p. Use for factory/conf
- * instance pools (adapter->p, server->p, …). Parent decides mt vs
- * single-thread. For xctx->p use afw_pool_create_xctx_p().
+ * Same as afw_pool_create() then p->managed_p = p. Prefer
+ * afw_pool_multithread_create() for factory/conf instance pools.
+ * For xctx->p use afw_pool_create_xctx_p().
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create_as_managed_p(
@@ -112,8 +141,8 @@ afw_pool_create_as_managed_p(
  * @param xctx of caller.
  * @return new pool.
  *
- * An xctx is one thread's work. Child xctx->p is a heap so optional
- * free can recycle. afw_pool_create() of a heap parent is a heap.
+ * An xctx is one thread's work. This is the only single-thread heap
+ * factory. afw_pool_create() of xctx->p is a tracker.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create_xctx_p(
@@ -134,6 +163,49 @@ AFW_DECLARE(const afw_pool_t *)
 afw_pool_tracker_create(
     const afw_pool_t *parent,
     afw_xctx_t *xctx);
+
+
+/**
+ * @brief Outstanding malloc/calloc on this pool (asked-for).
+ *
+ * Trackers and heaps each count their own allocs. Not chunk RSS.
+ */
+AFW_DECLARE(afw_size_t)
+afw_pool_bytes_allocated(const afw_pool_t *instance);
+
+
+/**
+ * @brief posix_memalign bytes still held (heap only; 0 on a tracker).
+ */
+AFW_DECLARE(afw_size_t)
+afw_pool_chunk_bytes(const afw_pool_t *instance);
+
+
+/**
+ * @brief Number of chunks (heap only; 0 on a tracker).
+ */
+AFW_DECLARE(afw_size_t)
+afw_pool_chunk_count(const afw_pool_t *instance);
+
+
+/**
+ * @brief Asked-for bytes for this pool and descendants.
+ *
+ * Single-thread trees only (xctx->p). For process total use
+ * env->pool_bytes_in_use.
+ */
+AFW_DECLARE(afw_size_t)
+afw_pool_subtree_bytes_allocated(const afw_pool_t *instance);
+
+
+/**
+ * @brief Chunk bytes for this pool and descendant heaps.
+ *
+ * Single-thread trees only (xctx->p). For process total use
+ * env->pool_chunk_bytes.
+ */
+AFW_DECLARE(afw_size_t)
+afw_pool_subtree_chunk_bytes(const afw_pool_t *instance);
 
 
 /**

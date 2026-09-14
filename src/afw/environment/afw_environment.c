@@ -308,6 +308,9 @@ afw_environment_create(
     };
     env->pub.p = p;
     env->pub.pool_number = 1; /* see afw_pool_internal_create_base_pool() */
+    env->pub.pool_chunk_bytes =
+        ((const afw_pool_internal_self_t *)p)->chunk_bytes;
+    env->pub.pool_chunk_bytes_max = env->pub.pool_chunk_bytes;
     env->pub.evaluation_stack_initial_count =
         AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_INITIAL_COUNT;
     env->pub.evaluation_stack_maximum_count =
@@ -368,43 +371,43 @@ afw_environment_create(
         const afw_array_t *args_array;
         const afw_utf8_t *arg;
         const afw_utf8_t *cwd;
-        afw_dateTime_t start_local;
-        afw_dateTime_t start_utc;
         int ai;
 
-        process_object = afw_object_create_unmanaged(p, xctx);
-        afw_object_meta_set_ids(process_object, afw_s_afw,
-            afw_s__AdaptiveProcess_, afw_s_current, xctx);
-
-        /* programName — base name of args[0] (e.g. afw, afwfcgi). */
-        afw_object_set_property_as_string_internal(process_object,
-            afw_v_programName, &env->pub.program_name, xctx);
-
-        /* process::args — ECMAScript-style name (issue #74); use length() for count. */
+        /* Snapshot on env for the runtime process object (live pool stats). */
         args_array = afw_array_create_unmanaged_of(afw_data_type_string, p, xctx);
         for (ai = 0; ai < argc; ai++) {
             arg = afw_utf8_create(argv[ai], AFW_UTF8_Z_LEN, p, xctx);
             afw_array_of_string_add_internal(args_array, arg, xctx);
         }
+        env->pub.process_args = args_array;
+        env->pub.process_pid = (afw_integer_t)afw_os_get_pid();
+        cwd = afw_os_getcwd(p, xctx);
+        env->pub.process_cwd = cwd;
+        env->pub.afw_version = afw_version_string();
+        env->pub.process_start_time = afw_dateTime_now_local(p, xctx);
+
+        /*
+         * Memory object until runtime maps exist (register_core).
+         * process:: during that window is identity only.
+         */
+        process_object = afw_object_create_unmanaged(p, xctx);
+        afw_object_meta_set_ids(process_object, afw_s_afw,
+            afw_s__AdaptiveProcess_, afw_s_current, xctx);
+
+        afw_object_set_property_as_string_internal(process_object,
+            afw_v_programName, &env->pub.program_name, xctx);
         afw_object_set_property_as_array_internal(process_object,
             afw_v_args, args_array, xctx);
-
         afw_object_set_property_as_integer_internal(process_object,
-            afw_v_pid, (afw_integer_t)afw_os_get_pid(), xctx);
-
-        /* cwd snapshot at environment create (not live). */
-        cwd = afw_os_getcwd(p, xctx);
+            afw_v_pid, env->pub.process_pid, xctx);
         if (cwd) {
             afw_object_set_property_as_string_internal(process_object,
                 afw_v_cwd, cwd, xctx);
         }
-
         afw_object_set_property_as_string_internal(process_object,
-            afw_v_afwVersion, afw_version_string(), xctx);
-
-        afw_dateTime_set_now(&start_local, &start_utc, xctx);
+            afw_v_afwVersion, env->pub.afw_version, xctx);
         afw_object_set_property_as_dateTime_internal(process_object,
-            afw_v_startTime, &start_local, xctx);
+            afw_v_startTime, env->pub.process_start_time, xctx);
 
         env->pub.process_object = process_object;
     }
@@ -448,7 +451,15 @@ afw_environment_create(
             env->pub.environment_variables_object, false, xctx);
     }
     if (env->pub.process_object) {
-        afw_runtime_env_set_object(env->pub.process_object, false, xctx);
+        const afw_object_t *rt;
+
+        rt = afw_runtime_object_create_indirect(
+            afw_s__AdaptiveProcess_, afw_s_current,
+            (void *)&env->pub, p, xctx);
+        env->pub.process_object = rt;
+        afw_runtime_env_set_object(rt, true, xctx);
+        afw_xctx_qualifier_stack_qualifier_object_push(
+            afw_s_process, rt, true, xctx->p, xctx);
     }
 
     /* Register registry type objects and property names. */

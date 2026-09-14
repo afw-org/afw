@@ -13,11 +13,11 @@
  * A pool is a heap unless it is a tracker. A tracker gets memory from
  * a heap, tracks live USER blocks, and returns them to the heap on
  * free or tracker destroy. The heap owns the free list (overlay on
- * freed blocks; else a bump from a 4k-aligned chunk). Destroy walks
- * the chunk list and free()s each. Parent/child RC is the same for
- * heap and tracker. Last-release does not call destroy. Single-thread
- * heaps: create/use/release on one thread. Multithreaded heap is lock
- * wrappers.
+ * freed blocks; else a bump from a 64k-min, 4k-aligned chunk).
+ * Destroy walks the chunk list and free()s each. Parent/child is
+ * lifetime only; store is the ancestor heap. Last-release does not
+ * call destroy. Single-thread heaps: create/use/release on one
+ * thread. Multithreaded heap is lock wrappers.
  * Heap live: [USER] or [size][pool][USER] if AFW_DEBUG_POOL.
  * Tracker live: [prev][next][size][USER], plus [pool] if debug.
  * Debug free fills USER with AFW_POOL_DEBUG_POISON (bad inf).
@@ -174,7 +174,8 @@ do { \
         fprintf(fd, \
             ">debug pool %s " AFW_INTEGER_FMT \
             " in_use " AFW_SIZE_T_FMT \
-            " total " AFW_SIZE_T_FMT \
+            " total " AFW_SIZE_T_FMT "/" AFW_SIZE_T_FMT \
+            " chunks " AFW_SIZE_T_FMT "/" AFW_SIZE_T_FMT \
             " rss " AFW_SIZE_T_FMT " KB" \
             " refs " AFW_INTEGER_FMT \
             " parent " AFW_INTEGER_FMT \
@@ -183,6 +184,9 @@ do { \
             self->pool_number, \
             self->bytes_allocated, \
             (afw_size_t)xctx->env->pool_bytes_in_use, \
+            (afw_size_t)xctx->env->pool_bytes_in_use_max, \
+            (afw_size_t)xctx->env->pool_chunk_bytes, \
+            (afw_size_t)xctx->env->pool_chunk_bytes_max, \
             afw_os_get_rss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
@@ -203,7 +207,8 @@ do { \
         fprintf(fd, \
             ">debug pool " format_z " " AFW_INTEGER_FMT \
             " in_use " AFW_SIZE_T_FMT \
-            " total " AFW_SIZE_T_FMT \
+            " total " AFW_SIZE_T_FMT "/" AFW_SIZE_T_FMT \
+            " chunks " AFW_SIZE_T_FMT "/" AFW_SIZE_T_FMT \
             " rss " AFW_SIZE_T_FMT " KB" \
             " refs " AFW_INTEGER_FMT \
             " parent " AFW_INTEGER_FMT \
@@ -212,6 +217,9 @@ do { \
             self->pool_number, \
             self->bytes_allocated, \
             (afw_size_t)xctx->env->pool_bytes_in_use, \
+            (afw_size_t)xctx->env->pool_bytes_in_use_max, \
+            (afw_size_t)xctx->env->pool_chunk_bytes, \
+            (afw_size_t)xctx->env->pool_chunk_bytes_max, \
             afw_os_get_rss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
@@ -230,12 +238,44 @@ do { \
 
 
 static void
+impl_env_add_bytes(afw_environment_t *env, afw_size_t n)
+{
+    env->pool_bytes_in_use += n;
+    if (env->pool_bytes_in_use > env->pool_bytes_in_use_max) {
+        env->pool_bytes_in_use_max = env->pool_bytes_in_use;
+    }
+}
+
+
+static void
+impl_env_add_chunks(afw_environment_t *env, afw_size_t n)
+{
+    env->pool_chunk_bytes += n;
+    if (env->pool_chunk_bytes > env->pool_chunk_bytes_max) {
+        env->pool_chunk_bytes_max = env->pool_chunk_bytes;
+    }
+}
+
+
+static void
 impl_account_alloc(
     afw_pool_internal_self_t *self, afw_size_t consumed, afw_xctx_t *xctx)
 {
     self->bytes_allocated += consumed;
     if (xctx && xctx->env) {
-        ((afw_environment_t *)xctx->env)->pool_bytes_in_use += consumed;
+        impl_env_add_bytes((afw_environment_t *)xctx->env, consumed);
+    }
+}
+
+
+static void
+impl_account_chunk_add(
+    afw_pool_internal_self_t *self, afw_size_t size, afw_xctx_t *xctx)
+{
+    self->chunk_count++;
+    self->chunk_bytes += size;
+    if (xctx && xctx->env) {
+        impl_env_add_chunks((afw_environment_t *)xctx->env, size);
     }
 }
 
@@ -330,13 +370,13 @@ impl_chunk_need(afw_size_t min_payload)
     if (need < AFW_POOL_CHUNK_MIN) {
         need = AFW_POOL_CHUNK_MIN;
     }
-    /* Whole pages so posix_memalign/aligned_alloc 4k is legal. */
-    rem = need & (AFW_POOL_CHUNK_MIN - 1);
+    /* Whole pages so posix_memalign 4k alignment is legal. */
+    rem = need & (AFW_POOL_CHUNK_ALIGN - 1);
     if (rem) {
-        if (need > AFW_SIZE_T_MAX - (AFW_POOL_CHUNK_MIN - rem)) {
+        if (need > AFW_SIZE_T_MAX - (AFW_POOL_CHUNK_ALIGN - rem)) {
             return 0;
         }
-        need += AFW_POOL_CHUNK_MIN - rem;
+        need += AFW_POOL_CHUNK_ALIGN - rem;
     }
     return need;
 }
@@ -355,7 +395,7 @@ impl_chunk_malloc(afw_size_t min_payload)
         return NULL;
     }
     mem = NULL;
-    rv = posix_memalign(&mem, AFW_POOL_CHUNK_MIN, need);
+    rv = posix_memalign(&mem, AFW_POOL_CHUNK_ALIGN, need);
     if (rv != 0 || !mem) {
         return NULL;
     }
@@ -390,6 +430,8 @@ impl_heap_allocate_self(const afw_pool_inf_t *inf)
     self->pub.managed_p = &self->pub;
     self->first_chunk = chunk;
     self->current_chunk = chunk;
+    self->chunk_count = 1;
+    self->chunk_bytes = chunk->size;
     after_self = usable + self_bytes;
     self->bump = after_self;
     self->remaining = (afw_size_t)(impl_chunk_end(chunk) - after_self);
@@ -402,8 +444,8 @@ impl_heap_allocate_self(const afw_pool_inf_t *inf)
 /*
  * Process base pool. environment_release does not destroy it
  * (intended: MT lock lives in this pool; process lifetime). Keep
- * this pointer so valgrind sees the 4k chunks as still-reachable,
- * not definitely lost.
+ * this pointer so valgrind sees the chunks as still-reachable, not
+ * definitely lost.
  */
 static afw_pool_internal_self_t *impl_base_pool_self;
 
@@ -492,6 +534,11 @@ impl_heap_create(
         impl_link_as_child(parent_self, self, xctx);
     }
 
+    if (xctx && xctx->env && self->chunk_bytes) {
+        impl_env_add_chunks((afw_environment_t *)xctx->env,
+            self->chunk_bytes);
+    }
+
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "create");
 
     return self;
@@ -524,8 +571,9 @@ impl_create_for_tracker(
         &((afw_environment_t *)xctx->env)->pool_number);
     self->reference_count = 1;
 
-    /* Trackers allocate from the parent heap free list / chunks. */
-    self->free_memory_head = parent->free_memory_head;
+    /* Store is the ancestor heap; parent is lifetime only. */
+    self->free_memory_head =
+        impl_reservoir_heap(parent)->free_memory_head;
     self->thread = parent->thread;
     impl_link_as_child(parent, self, xctx);
 
@@ -729,6 +777,7 @@ impl_heap_take_from_free_list_or_chunk(
         }
         AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
     }
+    impl_account_chunk_add(heap, chunk->size, xctx);
     chunk->next = heap->first_chunk;
     heap->first_chunk = chunk;
     heap->current_chunk = chunk;
@@ -960,11 +1009,17 @@ impl_error_delaying_release(
 
 
 static void
-impl_heap_free_chunks(afw_pool_internal_self_t *self)
+impl_heap_free_chunks(afw_pool_internal_self_t *self, afw_xctx_t *xctx)
 {
     afw_pool_chunk_t *chunk;
     afw_pool_chunk_t *next;
 
+    if (xctx && xctx->env && self->chunk_bytes) {
+        ((afw_environment_t *)xctx->env)->pool_chunk_bytes -=
+            self->chunk_bytes;
+    }
+    self->chunk_bytes = 0;
+    self->chunk_count = 0;
     chunk = self->first_chunk;
     self->first_chunk = NULL;
     self->current_chunk = NULL;
@@ -1066,7 +1121,7 @@ impl_pool_teardown_store(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
         if (parent && !parent_destroying) {
             afw_pool_release(&parent->pub, xctx);
         }
-        impl_heap_free_chunks(self);
+        impl_heap_free_chunks(self, xctx);
     }
 }
 
@@ -1830,10 +1885,14 @@ afw_pool_print_debug_info(
         printf("  ");
     }
     printf(
-        "pool " AFW_INTEGER_FMT " " AFW_SIZE_T_FMT " refs " AFW_INTEGER_FMT
+        "pool " AFW_INTEGER_FMT " in_use " AFW_SIZE_T_FMT
+        " chunks " AFW_SIZE_T_FMT " " AFW_SIZE_T_FMT
+        " refs " AFW_INTEGER_FMT
         " parent " AFW_INTEGER_FMT "\n",
         self->pool_number,
         self->bytes_allocated,
+        self->chunk_count,
+        self->chunk_bytes,
         self->reference_count,
         self->parent ? self->parent->pool_number : (afw_integer_t)0);
 
@@ -1882,14 +1941,118 @@ afw_pool_create(
     }
 
     /*
-     * Extra rule (ok for now): create() of a tracker is a tracker, so
-     * we do not make a heap under a tracker. May revisit.
+     * Single-thread parent (xctx->p or a tracker): tracker. Store is
+     * the ancestor heap. Multithreaded parent: MT heap (conf,
+     * server, log, adapter).
      */
-    if (afw_pool_internal_is_tracker(parent)) {
+    if (afw_pool_internal_is_tracker(parent) ||
+        !afw_pool_internal_is_heap_multithreaded(parent))
+    {
         return afw_pool_tracker_create(parent, xctx);
     }
-    return afw_pool_internal_heap_create(parent,
-        afw_pool_internal_is_heap_multithreaded(parent), xctx);
+    return afw_pool_internal_heap_create(parent, true, xctx);
+}
+
+
+AFW_DEFINE(const afw_pool_t *)
+afw_pool_multithread_create(
+    const afw_pool_t *parent,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_t *p;
+
+    if (!parent) {
+        AFW_THROW_ERROR_Z(general, "Parent required", xctx);
+    }
+    if (!afw_pool_internal_is_heap_multithreaded(parent)) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_pool_multithread_create() parent must be a "
+            "multithreaded heap",
+            xctx);
+    }
+    p = afw_pool_internal_heap_create(parent, true, xctx);
+    ((afw_pool_t *)p)->managed_p = p;
+    return p;
+}
+
+
+AFW_DEFINE(afw_size_t)
+afw_pool_bytes_allocated(const afw_pool_t *instance)
+{
+    if (!instance) {
+        return 0;
+    }
+    return ((const afw_pool_internal_self_t *)instance)->bytes_allocated;
+}
+
+
+AFW_DEFINE(afw_size_t)
+afw_pool_chunk_bytes(const afw_pool_t *instance)
+{
+    if (!instance) {
+        return 0;
+    }
+    return ((const afw_pool_internal_self_t *)instance)->chunk_bytes;
+}
+
+
+AFW_DEFINE(afw_size_t)
+afw_pool_chunk_count(const afw_pool_t *instance)
+{
+    if (!instance) {
+        return 0;
+    }
+    return ((const afw_pool_internal_self_t *)instance)->chunk_count;
+}
+
+
+static afw_size_t
+impl_subtree_bytes_allocated(const afw_pool_internal_self_t *self)
+{
+    const afw_pool_internal_self_t *child;
+    afw_size_t n;
+
+    n = self->bytes_allocated;
+    for (child = self->first_child; child; child = child->next_sibling) {
+        n += impl_subtree_bytes_allocated(child);
+    }
+    return n;
+}
+
+
+static afw_size_t
+impl_subtree_chunk_bytes(const afw_pool_internal_self_t *self)
+{
+    const afw_pool_internal_self_t *child;
+    afw_size_t n;
+
+    n = self->chunk_bytes;
+    for (child = self->first_child; child; child = child->next_sibling) {
+        n += impl_subtree_chunk_bytes(child);
+    }
+    return n;
+}
+
+
+AFW_DEFINE(afw_size_t)
+afw_pool_subtree_bytes_allocated(const afw_pool_t *instance)
+{
+    if (!instance) {
+        return 0;
+    }
+    return impl_subtree_bytes_allocated(
+        (const afw_pool_internal_self_t *)instance);
+}
+
+
+AFW_DEFINE(afw_size_t)
+afw_pool_subtree_chunk_bytes(const afw_pool_t *instance)
+{
+    if (!instance) {
+        return 0;
+    }
+    return impl_subtree_chunk_bytes(
+        (const afw_pool_internal_self_t *)instance);
 }
 
 

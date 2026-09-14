@@ -2535,7 +2535,8 @@ afw_compile_lexical_parser_create(
             unit_p = p;
         }
         else {
-            unit_p = afw_pool_create(p, xctx);
+            /* Compile unit needs its own ST heap (not a tracker). */
+            unit_p = afw_pool_create_xctx_p(p, xctx);
         }
         use_shared = afw_compile_shared_create(unit_p, xctx);
         shared_created = true;
