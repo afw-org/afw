@@ -67,7 +67,7 @@ Leftover wrapping is **dropped**. No `function_return_value`; pin on caller. Do 
 
 No evaluate-only call-result inf for managed built-in returns. Builtins already extra-hold on the current `{ }` ([PR #308](https://github.com/afw-org/afw/pull/308)); `pop`/`shift` are the scope-temp path ([PR #309](https://github.com/afw-org/afw/pull/309)); identity `push` stays unwrapped. `pop_value` pops the call, not leftover wrappers. A managed header may still sit in `xctx->p` until the request pool dies — that is the managed world, not a new inf.
 
-Compile units use `afw_pool_heap_create(parent, 4k)` (own ST heap). Managed eval allocs use `p->managed_p`. **Next:** PR `reduce-apr-pool` → `develop` ([`remaining-apr.md`](remaining-apr.md)). Gate 2026-09-14: **4484 passed** (`fulldev` + `test -j` + valgrind).
+Compile units use `afw_pool_heap_create(parent, 4k)` (own ST heap). Managed eval allocs use `p->managed_p`. **Next:** [PR #327](https://github.com/afw-org/afw/pull/327) ([`remaining-apr.md`](remaining-apr.md)). Gate 2026-09-14: **4484 passed** (`fulldev` + `test -j` + valgrind).
 
 ---
 

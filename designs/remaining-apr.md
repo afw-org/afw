@@ -36,7 +36,7 @@ Process/server runtime objects expose live `poolBytesInUse` / `maxPoolBytesInUse
 
 Tune later: mmap, per-chunk free lists.
 
-## Next: PR `reduce-apr-pool` → `develop`
+## Next: [PR #327](https://github.com/afw-org/afw/pull/327) `reduce-apr-pool` → `develop`
 
 FRV leftover wrapping is **dropped** (squash [PR #326](https://github.com/afw-org/afw/pull/326)). Do **not** reopen unique consume, eval-stack leftover FRV, `#function_return_value`, or a call-result leftover inf. Do **not** put callbacks back on `destroy` to hide SIGSEGV.
 
