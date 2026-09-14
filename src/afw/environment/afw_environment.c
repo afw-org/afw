@@ -310,11 +310,16 @@ afw_environment_create(
     env->pub.pool_number = 1; /* see afw_pool_internal_create_base_pool() */
     env->pub.pool_chunk_bytes =
         ((const afw_pool_internal_self_t *)p)->chunk_bytes;
-    env->pub.pool_chunk_bytes_max = env->pub.pool_chunk_bytes;
-    env->pub.evaluation_stack_initial_count =
-        AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_INITIAL_COUNT;
-    env->pub.evaluation_stack_maximum_count =
-        AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_MAXIMUM_COUNT;
+    env->pub.peak_pool_chunk_bytes = env->pub.pool_chunk_bytes;
+    env->pub.limit_evaluation_stack_count =
+        AFW_ENVIRONMENT_LIMIT_EVALUATION_STACK_COUNT;
+    env->pub.limit_request_pool_bytes =
+        AFW_ENVIRONMENT_LIMIT_REQUEST_POOL_BYTES;
+    env->pub.limit_c_stack_headroom_bytes =
+        AFW_ENVIRONMENT_LIMIT_C_STACK_HEADROOM_BYTES;
+    env->pub.chunk_min = AFW_ENVIRONMENT_CHUNK_MIN;
+    env->pub.compile_chunk_min = AFW_ENVIRONMENT_COMPILE_CHUNK_MIN;
+    env->pub.xctx_chunk_min = AFW_ENVIRONMENT_XCTX_CHUNK_MIN;
     env->pub.debug_fd = stderr;
     env->pub.stderr_fd = stderr;
     env->pub.stdout_fd = stdout;

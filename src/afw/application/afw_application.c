@@ -255,9 +255,9 @@ afw_application_internal_register_basic_application_context_type(
         NULL, NULL,
         xctx);
     afw_context_variable_definition_add_z(variable_definitions,
-        afw_s_maxPoolBytesInUse, afw_s_runtime,
+        afw_s_peakPoolBytesInUse, afw_s_runtime,
         &afw_value_unmanaged_integer_inf,
-        "Max Pool Bytes In Use",
+        "Peak Pool Bytes In Use",
         "High-water of poolBytesInUse.",
         NULL, NULL,
         xctx);
@@ -269,10 +269,59 @@ afw_application_internal_register_basic_application_context_type(
         NULL, NULL,
         xctx);
     afw_context_variable_definition_add_z(variable_definitions,
-        afw_s_maxPoolChunkBytes, afw_s_runtime,
+        afw_s_peakPoolChunkBytes, afw_s_runtime,
         &afw_value_unmanaged_integer_inf,
-        "Max Pool Chunk Bytes",
+        "Peak Pool Chunk Bytes",
         "High-water of poolChunkBytes.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_rss, afw_s_runtime,
+        &afw_value_unmanaged_integer_inf,
+        "RSS",
+        "Current process RSS in bytes.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_limitEvaluationStackCount, afw_s_runtime,
+        &afw_value_unmanaged_integer_inf,
+        "Limit Evaluation Stack Count",
+        "Adaptive evaluation-stack cap for each xctx.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_limitRequestPoolBytes, afw_s_runtime,
+        &afw_value_unmanaged_integer_inf,
+        "Limit Request Pool Bytes",
+        "Request/thread ST asked-for cap. 0 = unlimited.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_limitCStackHeadroomBytes, afw_s_runtime,
+        &afw_value_unmanaged_integer_inf,
+        "Limit C Stack Headroom Bytes",
+        "C-stack remaining required before throw. 0 = unlimited.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_chunkMin, afw_s_runtime,
+        &afw_value_unmanaged_integer_inf,
+        "Chunk Min",
+        "Default heap posix_memalign size when create passes 0.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_compileChunkMin, afw_s_runtime,
+        &afw_value_unmanaged_integer_inf,
+        "Compile Chunk Min",
+        "Compile-unit heap chunk min.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_xctxChunkMin, afw_s_runtime,
+        &afw_value_unmanaged_integer_inf,
+        "Xctx Chunk Min",
+        "xctx/thread heap chunk min.",
         NULL, NULL,
         xctx);
 

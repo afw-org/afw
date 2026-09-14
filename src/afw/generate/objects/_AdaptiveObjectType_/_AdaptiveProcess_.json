@@ -6,7 +6,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "Process invocation and identity for this Adaptive Framework environment. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Partial issue #74.",
+    "description": "Process invocation, identity, pool telemetry, and environment knobs. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Issue #74 identity; issue #329 telemetry and knobs.",
     "objectType": "_AdaptiveProcess_",
     "propertyTypes": {
         "afwVersion": {
@@ -31,6 +31,28 @@
                 "memberName": "process_args"
             }
         },
+        "chunkMin": {
+            "allowQuery": true,
+            "brief": "Default heap posix_memalign size",
+            "dataType": "integer",
+            "description": "Process default minimum posix_memalign chunk size. Heap create with chunk_min 0 uses this. Align (4k) and internal packing stay pool implementation.",
+            "label": "Chunk Min",
+            "runtime": {
+                "memberName": "chunk_min",
+                "valueAccessor": "size"
+            }
+        },
+        "compileChunkMin": {
+            "allowQuery": true,
+            "brief": "Compile-unit heap chunk min",
+            "dataType": "integer",
+            "description": "posix_memalign minimum used when creating a compile-unit heap.",
+            "label": "Compile Chunk Min",
+            "runtime": {
+                "memberName": "compile_chunk_min",
+                "valueAccessor": "size"
+            }
+        },
         "cwd": {
             "allowQuery": true,
             "brief": "Working directory at environment create",
@@ -42,23 +64,56 @@
                 "valueAccessor": "indirect"
             }
         },
-        "maxPoolBytesInUse": {
+        "limitCStackHeadroomBytes": {
+            "allowQuery": true,
+            "brief": "C-stack remaining required before throw",
+            "dataType": "integer",
+            "description": "Tripwire: throw payload_too_large when remaining C stack is below this. 0 = unlimited.",
+            "label": "Limit C Stack Headroom Bytes",
+            "runtime": {
+                "memberName": "limit_c_stack_headroom_bytes",
+                "valueAccessor": "size"
+            }
+        },
+        "limitEvaluationStackCount": {
+            "allowQuery": true,
+            "brief": "Adaptive evaluation-stack cap",
+            "dataType": "integer",
+            "description": "Maximum Adaptive evaluation-stack frames for each xctx. The vector is allocated at this count. 0 = unlimited (lab).",
+            "label": "Limit Evaluation Stack Count",
+            "runtime": {
+                "memberName": "limit_evaluation_stack_count",
+                "valueAccessor": "size"
+            }
+        },
+        "limitRequestPoolBytes": {
+            "allowQuery": true,
+            "brief": "Request/thread ST asked-for cap",
+            "dataType": "integer",
+            "description": "Tripwire against thread single-thread asked-for bytes, not process poolBytesInUse. 0 = unlimited.",
+            "label": "Limit Request Pool Bytes",
+            "runtime": {
+                "memberName": "limit_request_pool_bytes",
+                "valueAccessor": "size"
+            }
+        },
+        "peakPoolBytesInUse": {
             "allowQuery": true,
             "brief": "High-water of AFW asked-for bytes",
             "dataType": "integer",
             "description": "High-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
-            "label": "Max Pool Bytes In Use",
+            "label": "Peak Pool Bytes In Use",
             "runtime": {
                 "zeroOffset": true,
                 "valueAccessor": "env_pool_stat"
             }
         },
-        "maxPoolChunkBytes": {
+        "peakPoolChunkBytes": {
             "allowQuery": true,
             "brief": "High-water of posix_memalign chunk bytes",
             "dataType": "integer",
             "description": "High-water of poolChunkBytes since environment create. Store still mapped, not asked-for.",
-            "label": "Max Pool Chunk Bytes",
+            "label": "Peak Pool Chunk Bytes",
             "runtime": {
                 "zeroOffset": true,
                 "valueAccessor": "env_pool_stat"
@@ -78,7 +133,7 @@
             "allowQuery": true,
             "brief": "AFW asked-for bytes outstanding",
             "dataType": "integer",
-            "description": "Outstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process_rss() and poolChunkBytes.",
+            "description": "Outstanding malloc/calloc AFW has not given back (prefixes and rounding included). Not process RSS; see process::rss, process_rss(), and poolChunkBytes.",
             "label": "Pool Bytes In Use",
             "runtime": {
                 "zeroOffset": true,
@@ -106,6 +161,17 @@
                 "memberName": "program_name"
             }
         },
+        "rss": {
+            "allowQuery": true,
+            "brief": "Current process RSS in bytes",
+            "dataType": "integer",
+            "description": "Live resident set size in bytes. afw_os_get_rss() and process_rss() are kilobytes; this property multiplies by 1024. 0 if unavailable. Not poolBytesInUse.",
+            "label": "RSS",
+            "runtime": {
+                "zeroOffset": true,
+                "valueAccessor": "env_rss"
+            }
+        },
         "startTime": {
             "allowQuery": true,
             "brief": "Process start time",
@@ -115,6 +181,17 @@
             "runtime": {
                 "memberName": "process_start_time",
                 "valueAccessor": "indirect"
+            }
+        },
+        "xctxChunkMin": {
+            "allowQuery": true,
+            "brief": "xctx/thread heap chunk min",
+            "dataType": "integer",
+            "description": "Process default posix_memalign minimum for each xctx/thread heap. Every thread starts from this.",
+            "label": "Xctx Chunk Min",
+            "runtime": {
+                "memberName": "xctx_chunk_min",
+                "valueAccessor": "size"
             }
         }
     },

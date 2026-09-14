@@ -47,13 +47,7 @@ impl_set_evaluation_stack(afw_xctx_t *xctx)
      * Allocate the cap up front so the vector never grows (entry
      * pointers stay valid). Early xctx create cannot use AFW_TRY.
      */
-    n = xctx->env->evaluation_stack_maximum_count;
-    if (n == 0) {
-        n = xctx->env->evaluation_stack_initial_count;
-    }
-    if (n == 0) {
-        n = AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_MAXIMUM_COUNT;
-    }
+    n = xctx->env->limit_evaluation_stack_count;
     xctx->evaluation_stack = afw_vector_create_fixed_unhandled(
         afw_xctx_evaluation_stack_t, n, xctx->p, xctx);
 }
@@ -105,10 +99,7 @@ afw_xctx_internal_create_initialize(
     {
         afw_size_t n;
 
-        n = env->pub.evaluation_stack_maximum_count;
-        if (n == 0) {
-            n = AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_MAXIMUM_COUNT;
-        }
+        n = env->pub.limit_evaluation_stack_count;
         self->scope_stack = afw_vector_create_fixed_unhandled(
             afw_xctx_scope_p_vector_t, n, p, self);
     }
@@ -192,7 +183,7 @@ afw_xctx_create(
     afw_xctx_t *self;
 
     /* Create a new pool for xctx and initialize. */
-    p = afw_pool_heap_create(xctx->p, 0, xctx);
+    p = afw_pool_heap_create(xctx->p, xctx->env->xctx_chunk_min, xctx);
     self = afw_xctx_internal_create_initialize(xctx->current_try,
         NULL, (afw_environment_internal_t *)xctx->env, p);
     if (!self) {

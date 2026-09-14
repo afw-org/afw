@@ -48,7 +48,7 @@ AFW_BEGIN_DECLARES
 
 
 #define AFW_VALUE_COMPILER_LISTING_IF_NOT_LIMIT_EXCEEDED \
-    if (writer->indent > xctx->env->evaluation_stack_maximum_count) { \
+    if (writer->indent > xctx->env->limit_evaluation_stack_count) { \
         afw_writer_write_z(writer, ">>> Limit exceeded", xctx); \
         afw_writer_write_eol(writer, xctx); \
     } \

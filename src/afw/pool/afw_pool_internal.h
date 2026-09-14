@@ -112,10 +112,8 @@ struct afw_pool_chunk_s {
 #define AFW_POOL_ALIGN ((afw_size_t)16)
 #define AFW_POOL_ALIGN_UP(n) \
     (((n) + (AFW_POOL_ALIGN - 1)) & ~(AFW_POOL_ALIGN - 1))
-/** posix_memalign alignment (page). */
+/** posix_memalign alignment (page). Not an env knob. */
 #define AFW_POOL_CHUNK_ALIGN ((afw_size_t)4096)
-/** Minimum posix_memalign size (multiple of ALIGN). */
-#define AFW_POOL_CHUNK_MIN ((afw_size_t)65536)
 
 /*
  * Heap debug prefix is at least a free node so overlay on free does

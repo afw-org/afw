@@ -339,7 +339,7 @@ afw_runtime_value_accessor_size(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Runtime value accessor for env pool current/max stats.
+ * @brief Runtime value accessor for env pool current/peak stats.
  * @param prop selects which env field (poolBytesInUse, …).
  * @param internal unused (zeroOffset).
  * @param p is pool to use.
@@ -348,6 +348,19 @@ afw_runtime_value_accessor_size(
  */
 const afw_value_t *
 afw_runtime_value_accessor_env_pool_stat(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
+ * @brief Runtime value accessor for live process RSS in bytes.
+ * @param prop unused.
+ * @param internal unused (zeroOffset).
+ * @param p is pool to use.
+ * @param xctx of caller.
+ * @return integer copy of current RSS in bytes (KB * 1024).
+ */
+const afw_value_t *
+afw_runtime_value_accessor_env_rss(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 

@@ -184,9 +184,9 @@ do { \
             self->pool_number, \
             self->bytes_allocated, \
             (afw_size_t)xctx->env->pool_bytes_in_use, \
-            (afw_size_t)xctx->env->pool_bytes_in_use_max, \
+            (afw_size_t)xctx->env->peak_pool_bytes_in_use, \
             (afw_size_t)xctx->env->pool_chunk_bytes, \
-            (afw_size_t)xctx->env->pool_chunk_bytes_max, \
+            (afw_size_t)xctx->env->peak_pool_chunk_bytes, \
             afw_os_get_rss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
@@ -217,9 +217,9 @@ do { \
             self->pool_number, \
             self->bytes_allocated, \
             (afw_size_t)xctx->env->pool_bytes_in_use, \
-            (afw_size_t)xctx->env->pool_bytes_in_use_max, \
+            (afw_size_t)xctx->env->peak_pool_bytes_in_use, \
             (afw_size_t)xctx->env->pool_chunk_bytes, \
-            (afw_size_t)xctx->env->pool_chunk_bytes_max, \
+            (afw_size_t)xctx->env->peak_pool_chunk_bytes, \
             afw_os_get_rss(), \
             self->reference_count, \
             (afw_integer_t)((self->parent) \
@@ -241,8 +241,8 @@ static void
 impl_env_add_bytes(afw_environment_t *env, afw_size_t n)
 {
     env->pool_bytes_in_use += n;
-    if (env->pool_bytes_in_use > env->pool_bytes_in_use_max) {
-        env->pool_bytes_in_use_max = env->pool_bytes_in_use;
+    if (env->pool_bytes_in_use > env->peak_pool_bytes_in_use) {
+        env->peak_pool_bytes_in_use = env->pool_bytes_in_use;
     }
 }
 
@@ -251,8 +251,8 @@ static void
 impl_env_add_chunks(afw_environment_t *env, afw_size_t n)
 {
     env->pool_chunk_bytes += n;
-    if (env->pool_chunk_bytes > env->pool_chunk_bytes_max) {
-        env->pool_chunk_bytes_max = env->pool_chunk_bytes;
+    if (env->pool_chunk_bytes > env->peak_pool_chunk_bytes) {
+        env->peak_pool_chunk_bytes = env->pool_chunk_bytes;
     }
 }
 
@@ -356,12 +356,18 @@ impl_same_chunk(afw_pool_internal_self_t *heap, void *a, void *b)
 
 
 static afw_size_t
-impl_normalize_chunk_min(afw_size_t chunk_min)
+impl_normalize_chunk_min(afw_size_t chunk_min, const afw_environment_t *env)
 {
     afw_size_t rest;
 
     if (chunk_min == 0) {
-        return AFW_POOL_CHUNK_MIN;
+        if (env) {
+            chunk_min = env->chunk_min;
+        }
+        else {
+            /* Base pool: env does not exist yet. */
+            chunk_min = AFW_ENVIRONMENT_CHUNK_MIN;
+        }
     }
     if (chunk_min < AFW_POOL_CHUNK_ALIGN) {
         return AFW_POOL_CHUNK_ALIGN;
@@ -426,7 +432,10 @@ impl_chunk_malloc(afw_size_t min_payload, afw_size_t chunk_min)
 
 
 static afw_pool_internal_self_t *
-impl_heap_allocate_self(const afw_pool_inf_t *inf, afw_size_t chunk_min)
+impl_heap_allocate_self(
+    const afw_pool_inf_t *inf,
+    afw_size_t chunk_min,
+    afw_xctx_t *xctx)
 {
     afw_size_t self_bytes;
     afw_pool_chunk_t *chunk;
@@ -434,8 +443,10 @@ impl_heap_allocate_self(const afw_pool_inf_t *inf, afw_size_t chunk_min)
     afw_pool_internal_self_t *self;
     char *usable;
     char *after_self;
+    const afw_environment_t *env;
 
-    chunk_min = impl_normalize_chunk_min(chunk_min);
+    env = (xctx && xctx->env) ? xctx->env : NULL;
+    chunk_min = impl_normalize_chunk_min(chunk_min, env);
     self_bytes = AFW_POOL_ALIGN_UP(
         sizeof(afw_pool_internal_self_with_free_memory_head_t));
     chunk = impl_chunk_malloc(self_bytes, chunk_min);
@@ -543,7 +554,7 @@ impl_heap_create(
     afw_pool_internal_self_t *self;
     afw_pool_internal_self_t *parent_self;
 
-    self = impl_heap_allocate_self(inf, chunk_min);
+    self = impl_heap_allocate_self(inf, chunk_min, xctx);
     if (!self) {
         AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
     }
@@ -1857,7 +1868,8 @@ afw_pool_internal_create_base_pool()
     afw_pool_internal_self_t *self;
 
     self = impl_heap_allocate_self(
-        &impl_afw_pool_heap_multithreaded_inf, 0);
+        &impl_afw_pool_heap_multithreaded_inf,
+        AFW_ENVIRONMENT_CHUNK_MIN, NULL);
     if (!self) {
         return NULL;
     }
@@ -1882,7 +1894,7 @@ afw_pool_thread_create(
         size = sizeof(afw_thread_t);
     }
 
-    p = afw_pool_heap_create(xctx->p, 0, xctx);
+    p = afw_pool_heap_create(xctx->p, xctx->env->xctx_chunk_min, xctx);
     self = (AFW_POOL_SELF_T *)p;
     thread = afw_pool_calloc(p, size, xctx);
     self->thread = thread;

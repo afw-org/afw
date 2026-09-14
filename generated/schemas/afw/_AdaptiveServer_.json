@@ -37,16 +37,16 @@
                     "title": "Max Concurrent",
                     "type": "integer"
                 },
-                "maxPoolBytesInUse": {
+                "peakPoolBytesInUse": {
                     "description": "High-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-                    "markdownDescription": "**Max Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-                    "title": "Max Pool Bytes In Use",
+                    "markdownDescription": "**Peak Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Peak Pool Bytes In Use",
                     "type": "integer"
                 },
-                "maxPoolChunkBytes": {
+                "peakPoolChunkBytes": {
                     "description": "High-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-                    "markdownDescription": "**Max Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-                    "title": "Max Pool Chunk Bytes",
+                    "markdownDescription": "**Peak Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Peak Pool Chunk Bytes",
                     "type": "integer"
                 },
                 "poolBytesInUse": {
@@ -135,16 +135,16 @@
                     "title": "Max Concurrent",
                     "type": "integer"
                 },
-                "maxPoolBytesInUse": {
+                "peakPoolBytesInUse": {
                     "description": "High-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-                    "markdownDescription": "**Max Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-                    "title": "Max Pool Bytes In Use",
+                    "markdownDescription": "**Peak Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Peak Pool Bytes In Use",
                     "type": "integer"
                 },
-                "maxPoolChunkBytes": {
+                "peakPoolChunkBytes": {
                     "description": "High-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-                    "markdownDescription": "**Max Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-                    "title": "Max Pool Chunk Bytes",
+                    "markdownDescription": "**Peak Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Peak Pool Chunk Bytes",
                     "type": "integer"
                 },
                 "poolBytesInUse": {
@@ -236,16 +236,16 @@
             "title": "Max Concurrent",
             "type": "integer"
         },
-        "maxPoolBytesInUse": {
+        "peakPoolBytesInUse": {
             "description": "High-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-            "markdownDescription": "**Max Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-            "title": "Max Pool Bytes In Use",
+            "markdownDescription": "**Peak Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "title": "Peak Pool Bytes In Use",
             "type": "integer"
         },
-        "maxPoolChunkBytes": {
+        "peakPoolChunkBytes": {
             "description": "High-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-            "markdownDescription": "**Max Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
-            "title": "Max Pool Chunk Bytes",
+            "markdownDescription": "**Peak Pool Chunk Bytes**\n\nHigh-water of poolChunkBytes since environment create. Process-wide, same as /afw/_AdaptiveProcess_/current.",
+            "title": "Peak Pool Chunk Bytes",
             "type": "integer"
         },
         "poolBytesInUse": {

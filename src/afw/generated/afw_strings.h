@@ -3955,6 +3955,32 @@ afw_self_v_REQUEST_URI;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_RSS \
+    "RSS"
+
+/** @brief 'afw_utf8_t' for AFW_Q_RSS */
+#define afw_s_RSS \
+    (&afw_self_v_RSS.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_RSS */
+#define afw_self_s_RSS \
+    (afw_self_v_RSS.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_RSS */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_RSS;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_RSS */
+#define afw_z_RSS \
+    (afw_self_v_RSS.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_RSS */
+#define afw_v_RSS \
+    (&afw_self_v_RSS.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_Reason \
     "Reason"
 
@@ -48155,6 +48181,58 @@ afw_self_v_checkRequired;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_chunkMin \
+    "chunkMin"
+
+/** @brief 'afw_utf8_t' for AFW_Q_chunkMin */
+#define afw_s_chunkMin \
+    (&afw_self_v_chunkMin.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_chunkMin */
+#define afw_self_s_chunkMin \
+    (afw_self_v_chunkMin.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_chunkMin */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_chunkMin;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_chunkMin */
+#define afw_z_chunkMin \
+    (afw_self_v_chunkMin.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_chunkMin */
+#define afw_v_chunkMin \
+    (&afw_self_v_chunkMin.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_chunk_min \
+    "chunk_min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_chunk_min */
+#define afw_s_chunk_min \
+    (&afw_self_v_chunk_min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_chunk_min */
+#define afw_self_s_chunk_min \
+    (afw_self_v_chunk_min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_chunk_min */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_chunk_min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_chunk_min */
+#define afw_z_chunk_min \
+    (afw_self_v_chunk_min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_chunk_min */
+#define afw_v_chunk_min \
+    (&afw_self_v_chunk_min.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_class \
     "class"
 
@@ -48493,6 +48571,32 @@ afw_self_v_compile;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_compileChunkMin \
+    "compileChunkMin"
+
+/** @brief 'afw_utf8_t' for AFW_Q_compileChunkMin */
+#define afw_s_compileChunkMin \
+    (&afw_self_v_compileChunkMin.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_compileChunkMin */
+#define afw_self_s_compileChunkMin \
+    (afw_self_v_compileChunkMin.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_compileChunkMin */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_compileChunkMin;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_compileChunkMin */
+#define afw_z_compileChunkMin \
+    (afw_self_v_compileChunkMin.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_compileChunkMin */
+#define afw_v_compileChunkMin \
+    (&afw_self_v_compileChunkMin.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_compileDate \
     "compileDate"
 
@@ -48775,6 +48879,32 @@ afw_self_v_compileXpathExpression;
 /** @brief 'const afw_value_t *' for AFW_Q_compileXpathExpression */
 #define afw_v_compileXpathExpression \
     (&afw_self_v_compileXpathExpression.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_compile_chunk_min \
+    "compile_chunk_min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_compile_chunk_min */
+#define afw_s_compile_chunk_min \
+    (&afw_self_v_compile_chunk_min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_compile_chunk_min */
+#define afw_self_s_compile_chunk_min \
+    (afw_self_v_compile_chunk_min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_compile_chunk_min */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_compile_chunk_min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_compile_chunk_min */
+#define afw_z_compile_chunk_min \
+    (afw_self_v_compile_chunk_min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_compile_chunk_min */
+#define afw_v_compile_chunk_min \
+    (&afw_self_v_compile_chunk_min.pub)
 
 
 
@@ -52727,6 +52857,32 @@ afw_self_v_env_pool_stat;
 /** @brief 'const afw_value_t *' for AFW_Q_env_pool_stat */
 #define afw_v_env_pool_stat \
     (&afw_self_v_env_pool_stat.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_env_rss \
+    "env_rss"
+
+/** @brief 'afw_utf8_t' for AFW_Q_env_rss */
+#define afw_s_env_rss \
+    (&afw_self_v_env_rss.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_env_rss */
+#define afw_self_s_env_rss \
+    (afw_self_v_env_rss.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_env_rss */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_env_rss;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_env_rss */
+#define afw_z_env_rss \
+    (afw_self_v_env_rss.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_env_rss */
+#define afw_v_env_rss \
+    (&afw_self_v_env_rss.pub)
 
 
 
@@ -70307,6 +70463,162 @@ afw_self_v_limit;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_limitCStackHeadroomBytes \
+    "limitCStackHeadroomBytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_limitCStackHeadroomBytes */
+#define afw_s_limitCStackHeadroomBytes \
+    (&afw_self_v_limitCStackHeadroomBytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_limitCStackHeadroomBytes */
+#define afw_self_s_limitCStackHeadroomBytes \
+    (afw_self_v_limitCStackHeadroomBytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_limitCStackHeadroomBytes */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_limitCStackHeadroomBytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_limitCStackHeadroomBytes */
+#define afw_z_limitCStackHeadroomBytes \
+    (afw_self_v_limitCStackHeadroomBytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_limitCStackHeadroomBytes */
+#define afw_v_limitCStackHeadroomBytes \
+    (&afw_self_v_limitCStackHeadroomBytes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_limitEvaluationStackCount \
+    "limitEvaluationStackCount"
+
+/** @brief 'afw_utf8_t' for AFW_Q_limitEvaluationStackCount */
+#define afw_s_limitEvaluationStackCount \
+    (&afw_self_v_limitEvaluationStackCount.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_limitEvaluationStackCount */
+#define afw_self_s_limitEvaluationStackCount \
+    (afw_self_v_limitEvaluationStackCount.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_limitEvaluationStackCount */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_limitEvaluationStackCount;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_limitEvaluationStackCount */
+#define afw_z_limitEvaluationStackCount \
+    (afw_self_v_limitEvaluationStackCount.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_limitEvaluationStackCount */
+#define afw_v_limitEvaluationStackCount \
+    (&afw_self_v_limitEvaluationStackCount.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_limitRequestPoolBytes \
+    "limitRequestPoolBytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_limitRequestPoolBytes */
+#define afw_s_limitRequestPoolBytes \
+    (&afw_self_v_limitRequestPoolBytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_limitRequestPoolBytes */
+#define afw_self_s_limitRequestPoolBytes \
+    (afw_self_v_limitRequestPoolBytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_limitRequestPoolBytes */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_limitRequestPoolBytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_limitRequestPoolBytes */
+#define afw_z_limitRequestPoolBytes \
+    (afw_self_v_limitRequestPoolBytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_limitRequestPoolBytes */
+#define afw_v_limitRequestPoolBytes \
+    (&afw_self_v_limitRequestPoolBytes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_limit_c_stack_headroom_bytes \
+    "limit_c_stack_headroom_bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_limit_c_stack_headroom_bytes */
+#define afw_s_limit_c_stack_headroom_bytes \
+    (&afw_self_v_limit_c_stack_headroom_bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_limit_c_stack_headroom_bytes */
+#define afw_self_s_limit_c_stack_headroom_bytes \
+    (afw_self_v_limit_c_stack_headroom_bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_limit_c_stack_headroom_bytes */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_limit_c_stack_headroom_bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_limit_c_stack_headroom_bytes */
+#define afw_z_limit_c_stack_headroom_bytes \
+    (afw_self_v_limit_c_stack_headroom_bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_limit_c_stack_headroom_bytes */
+#define afw_v_limit_c_stack_headroom_bytes \
+    (&afw_self_v_limit_c_stack_headroom_bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_limit_evaluation_stack_count \
+    "limit_evaluation_stack_count"
+
+/** @brief 'afw_utf8_t' for AFW_Q_limit_evaluation_stack_count */
+#define afw_s_limit_evaluation_stack_count \
+    (&afw_self_v_limit_evaluation_stack_count.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_limit_evaluation_stack_count */
+#define afw_self_s_limit_evaluation_stack_count \
+    (afw_self_v_limit_evaluation_stack_count.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_limit_evaluation_stack_count */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_limit_evaluation_stack_count;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_limit_evaluation_stack_count */
+#define afw_z_limit_evaluation_stack_count \
+    (afw_self_v_limit_evaluation_stack_count.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_limit_evaluation_stack_count */
+#define afw_v_limit_evaluation_stack_count \
+    (&afw_self_v_limit_evaluation_stack_count.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_limit_request_pool_bytes \
+    "limit_request_pool_bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_limit_request_pool_bytes */
+#define afw_s_limit_request_pool_bytes \
+    (&afw_self_v_limit_request_pool_bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_limit_request_pool_bytes */
+#define afw_self_s_limit_request_pool_bytes \
+    (afw_self_v_limit_request_pool_bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_limit_request_pool_bytes */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_limit_request_pool_bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_limit_request_pool_bytes */
+#define afw_z_limit_request_pool_bytes \
+    (afw_self_v_limit_request_pool_bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_limit_request_pool_bytes */
+#define afw_v_limit_request_pool_bytes \
+    (&afw_self_v_limit_request_pool_bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_line \
     "line"
 
@@ -72851,58 +73163,6 @@ afw_self_v_maxObjects;
 /** @brief 'const afw_value_t *' for AFW_Q_maxObjects */
 #define afw_v_maxObjects \
     (&afw_self_v_maxObjects.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_maxPoolBytesInUse \
-    "maxPoolBytesInUse"
-
-/** @brief 'afw_utf8_t' for AFW_Q_maxPoolBytesInUse */
-#define afw_s_maxPoolBytesInUse \
-    (&afw_self_v_maxPoolBytesInUse.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_maxPoolBytesInUse */
-#define afw_self_s_maxPoolBytesInUse \
-    (afw_self_v_maxPoolBytesInUse.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_maxPoolBytesInUse */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_maxPoolBytesInUse;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_maxPoolBytesInUse */
-#define afw_z_maxPoolBytesInUse \
-    (afw_self_v_maxPoolBytesInUse.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_maxPoolBytesInUse */
-#define afw_v_maxPoolBytesInUse \
-    (&afw_self_v_maxPoolBytesInUse.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_maxPoolChunkBytes \
-    "maxPoolChunkBytes"
-
-/** @brief 'afw_utf8_t' for AFW_Q_maxPoolChunkBytes */
-#define afw_s_maxPoolChunkBytes \
-    (&afw_self_v_maxPoolChunkBytes.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_maxPoolChunkBytes */
-#define afw_self_s_maxPoolChunkBytes \
-    (afw_self_v_maxPoolChunkBytes.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_maxPoolChunkBytes */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_maxPoolChunkBytes;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_maxPoolChunkBytes */
-#define afw_z_maxPoolChunkBytes \
-    (afw_self_v_maxPoolChunkBytes.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_maxPoolChunkBytes */
-#define afw_v_maxPoolChunkBytes \
-    (&afw_self_v_maxPoolChunkBytes.pub)
 
 
 
@@ -82033,6 +82293,58 @@ afw_self_v_pathTokens;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_peakPoolBytesInUse \
+    "peakPoolBytesInUse"
+
+/** @brief 'afw_utf8_t' for AFW_Q_peakPoolBytesInUse */
+#define afw_s_peakPoolBytesInUse \
+    (&afw_self_v_peakPoolBytesInUse.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_peakPoolBytesInUse */
+#define afw_self_s_peakPoolBytesInUse \
+    (afw_self_v_peakPoolBytesInUse.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_peakPoolBytesInUse */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_peakPoolBytesInUse;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_peakPoolBytesInUse */
+#define afw_z_peakPoolBytesInUse \
+    (afw_self_v_peakPoolBytesInUse.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_peakPoolBytesInUse */
+#define afw_v_peakPoolBytesInUse \
+    (&afw_self_v_peakPoolBytesInUse.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_peakPoolChunkBytes \
+    "peakPoolChunkBytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_peakPoolChunkBytes */
+#define afw_s_peakPoolChunkBytes \
+    (&afw_self_v_peakPoolChunkBytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_peakPoolChunkBytes */
+#define afw_self_s_peakPoolChunkBytes \
+    (afw_self_v_peakPoolChunkBytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_peakPoolChunkBytes */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_peakPoolChunkBytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_peakPoolChunkBytes */
+#define afw_z_peakPoolChunkBytes \
+    (afw_self_v_peakPoolChunkBytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_peakPoolChunkBytes */
+#define afw_v_peakPoolChunkBytes \
+    (&afw_self_v_peakPoolChunkBytes.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_peerId \
     "peerId"
 
@@ -87385,6 +87697,32 @@ afw_self_v_round_double;
 /** @brief 'const afw_value_t *' for AFW_Q_round_double */
 #define afw_v_round_double \
     (&afw_self_v_round_double.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_rss \
+    "rss"
+
+/** @brief 'afw_utf8_t' for AFW_Q_rss */
+#define afw_s_rss \
+    (&afw_self_v_rss.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_rss */
+#define afw_self_s_rss \
+    (afw_self_v_rss.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_rss */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_rss;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_rss */
+#define afw_z_rss \
+    (afw_self_v_rss.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_rss */
+#define afw_v_rss \
+    (&afw_self_v_rss.pub)
 
 
 
@@ -99219,6 +99557,32 @@ afw_self_v_xacml;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_xctxChunkMin \
+    "xctxChunkMin"
+
+/** @brief 'afw_utf8_t' for AFW_Q_xctxChunkMin */
+#define afw_s_xctxChunkMin \
+    (&afw_self_v_xctxChunkMin.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_xctxChunkMin */
+#define afw_self_s_xctxChunkMin \
+    (afw_self_v_xctxChunkMin.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_xctxChunkMin */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_xctxChunkMin;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_xctxChunkMin */
+#define afw_z_xctxChunkMin \
+    (afw_self_v_xctxChunkMin.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_xctxChunkMin */
+#define afw_v_xctxChunkMin \
+    (&afw_self_v_xctxChunkMin.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_xctxUUID \
     "xctxUUID"
 
@@ -99241,6 +99605,32 @@ afw_self_v_xctxUUID;
 /** @brief 'const afw_value_t *' for AFW_Q_xctxUUID */
 #define afw_v_xctxUUID \
     (&afw_self_v_xctxUUID.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_xctx_chunk_min \
+    "xctx_chunk_min"
+
+/** @brief 'afw_utf8_t' for AFW_Q_xctx_chunk_min */
+#define afw_s_xctx_chunk_min \
+    (&afw_self_v_xctx_chunk_min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_xctx_chunk_min */
+#define afw_self_s_xctx_chunk_min \
+    (afw_self_v_xctx_chunk_min.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_xctx_chunk_min */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_xctx_chunk_min;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_xctx_chunk_min */
+#define afw_z_xctx_chunk_min \
+    (afw_self_v_xctx_chunk_min.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_xctx_chunk_min */
+#define afw_v_xctx_chunk_min \
+    (&afw_self_v_xctx_chunk_min.pub)
 
 
 

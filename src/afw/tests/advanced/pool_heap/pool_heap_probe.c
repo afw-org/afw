@@ -791,8 +791,8 @@ impl_heap_chunks(afw_xctx_t *xctx)
     n = 0;
     for (chunk = heap_self->first_chunk; chunk; chunk = chunk->next) {
         n++;
-        if (chunk->size < AFW_POOL_CHUNK_MIN) {
-            return impl_fail("heap_chunks", "chunk smaller than 64k");
+        if (chunk->size < xctx->env->chunk_min) {
+            return impl_fail("heap_chunks", "chunk smaller than chunk_min");
         }
         if ((chunk->size & (AFW_POOL_CHUNK_ALIGN - 1)) != 0) {
             return impl_fail("heap_chunks",
@@ -809,9 +809,9 @@ impl_heap_chunks(afw_xctx_t *xctx)
     }
 
     before = impl_in_use(xctx);
-    a = afw_pool_malloc(heap, AFW_POOL_CHUNK_MIN, xctx);
+    a = afw_pool_malloc(heap, xctx->env->chunk_min, xctx);
     if (!a) {
-        return impl_fail("heap_chunks", "64k malloc returned NULL");
+        return impl_fail("heap_chunks", "chunk_min malloc returned NULL");
     }
     n = 0;
     for (chunk = heap_self->first_chunk; chunk; chunk = chunk->next) {
@@ -821,13 +821,14 @@ impl_heap_chunks(afw_xctx_t *xctx)
         return impl_fail("heap_chunks", "large malloc did not add a chunk");
     }
 
-    b = afw_pool_malloc(heap, AFW_POOL_CHUNK_MIN * 2, xctx);
+    b = afw_pool_malloc(heap, xctx->env->chunk_min * 2, xctx);
     if (!b) {
-        return impl_fail("heap_chunks", "128k malloc returned NULL");
+        return impl_fail("heap_chunks",
+            "2*chunk_min malloc returned NULL");
     }
 
-    afw_pool_free_memory(heap, a, AFW_POOL_CHUNK_MIN, xctx);
-    afw_pool_free_memory(heap, b, AFW_POOL_CHUNK_MIN * 2, xctx);
+    afw_pool_free_memory(heap, a, xctx->env->chunk_min, xctx);
+    afw_pool_free_memory(heap, b, xctx->env->chunk_min * 2, xctx);
     afw_pool_release(heap, xctx);
     if (impl_expect_in_use(xctx, before, "heap_chunks after release")) {
         return 1;

@@ -329,6 +329,7 @@ BS
 size
 uint32
 env_pool_stat
+env_rss
 metrics
 adapter_metrics
 adapter_properties

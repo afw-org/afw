@@ -53,7 +53,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-/* Default evaluation_stack_maximum_count is 500. A braced while body
+/* Default limitEvaluationStackCount is 500. A braced while body
    is its own block: AFW_ENDTRY resets the stack each iteration and
    hides the leak. A single-statement for body does not. */
 let last;

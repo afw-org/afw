@@ -1558,13 +1558,6 @@ typedef void
 /** @brief Typedef for afw_thread_attr. */
 typedef struct afw_thread_attr_s afw_thread_attr_t;
 
-/** @brief Default for afw_environment_t evaluation_stack_initial_count. */
-#define AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_INITIAL_COUNT 100
-
-/** @brief Default for afw_environment_t evaluation_stack_maximum_count. */
-#define AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_MAXIMUM_COUNT 500
-
-
 /** @brief Typedef for union of all cType. */
 typedef union afw_c_types_u {
 
@@ -1889,11 +1882,50 @@ struct afw_environment_s {
     /** @brief Used by function execution. */
     const afw_function_environment_t *function_environment;
 
-    /** @brief initial_count used to create xctx's evaluation stack. */
-    afw_size_t evaluation_stack_initial_count;
+    /**
+     * @brief Adaptive evaluation-stack cap for each xctx.
+     *
+     * Vector is allocated at this count (`create_fixed_unhandled`).
+     * Default `AFW_ENVIRONMENT_LIMIT_EVALUATION_STACK_COUNT`. Do not
+     * use the `#define` after env create; use this field.
+     */
+    afw_size_t limit_evaluation_stack_count;
 
-    /** @brief maximum_count used to create xctx's evaluation stack. */
-    afw_size_t evaluation_stack_maximum_count;
+    /**
+     * @brief Request/thread ST asked-for cap (bytes). 0 = unlimited.
+     *
+     * Default `AFW_ENVIRONMENT_LIMIT_REQUEST_POOL_BYTES`.
+     */
+    afw_size_t limit_request_pool_bytes;
+
+    /**
+     * @brief C-stack remaining required before throw. 0 = unlimited.
+     *
+     * Default `AFW_ENVIRONMENT_LIMIT_C_STACK_HEADROOM_BYTES`.
+     */
+    afw_size_t limit_c_stack_headroom_bytes;
+
+    /**
+     * @brief Default heap posix_memalign size when create passes 0.
+     *
+     * Default `AFW_ENVIRONMENT_CHUNK_MIN`. Align and packing stay
+     * pool implementation, not env knobs.
+     */
+    afw_size_t chunk_min;
+
+    /**
+     * @brief Compile-unit heap chunk_min.
+     *
+     * Default `AFW_ENVIRONMENT_COMPILE_CHUNK_MIN`.
+     */
+    afw_size_t compile_chunk_min;
+
+    /**
+     * @brief xctx/thread heap chunk_min (process default).
+     *
+     * Default `AFW_ENVIRONMENT_XCTX_CHUNK_MIN`.
+     */
+    afw_size_t xctx_chunk_min;
 
     /** @brief Copy of director log's mask for short circuit tests. */
     afw_log_priority_mask_t log_mask;
@@ -1913,7 +1945,7 @@ struct afw_environment_s {
     AFW_ATOMIC afw_size_t pool_bytes_in_use;
 
     /** @brief High-water of pool_bytes_in_use. */
-    AFW_ATOMIC afw_size_t pool_bytes_in_use_max;
+    AFW_ATOMIC afw_size_t peak_pool_bytes_in_use;
 
     /**
      * @brief Sum of every heap's chunk_bytes (posix_memalign held).
@@ -1924,7 +1956,7 @@ struct afw_environment_s {
     AFW_ATOMIC afw_size_t pool_chunk_bytes;
 
     /** @brief High-water of pool_chunk_bytes. */
-    AFW_ATOMIC afw_size_t pool_chunk_bytes_max;
+    AFW_ATOMIC afw_size_t peak_pool_chunk_bytes;
 
     /** @brief Indicates that environment is terminating. */
     afw_boolean_t terminating;

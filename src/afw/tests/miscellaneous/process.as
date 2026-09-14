@@ -26,12 +26,26 @@ assert(length(p.afwVersion) > 0);
 assert(meta(p.startTime).dataType === "dateTime");
 assert(meta(p.poolBytesInUse).dataType === "integer");
 assert(p.poolBytesInUse >= 0);
-assert(meta(p.maxPoolBytesInUse).dataType === "integer");
-assert(p.maxPoolBytesInUse >= p.poolBytesInUse);
+assert(meta(p.peakPoolBytesInUse).dataType === "integer");
+assert(p.peakPoolBytesInUse >= p.poolBytesInUse);
 assert(meta(p.poolChunkBytes).dataType === "integer");
 assert(p.poolChunkBytes >= 0);
-assert(meta(p.maxPoolChunkBytes).dataType === "integer");
-assert(p.maxPoolChunkBytes >= p.poolChunkBytes);
+assert(meta(p.peakPoolChunkBytes).dataType === "integer");
+assert(p.peakPoolChunkBytes >= p.poolChunkBytes);
+assert(meta(p.rss).dataType === "integer");
+assert(p.rss >= 0);
+assert(meta(p.limitEvaluationStackCount).dataType === "integer");
+assert(p.limitEvaluationStackCount === 500);
+assert(meta(p.limitRequestPoolBytes).dataType === "integer");
+assert(p.limitRequestPoolBytes === 67108864);
+assert(meta(p.limitCStackHeadroomBytes).dataType === "integer");
+assert(p.limitCStackHeadroomBytes === 262144);
+assert(meta(p.chunkMin).dataType === "integer");
+assert(p.chunkMin === 65536);
+assert(meta(p.compileChunkMin).dataType === "integer");
+assert(p.compileChunkMin === 4096);
+assert(meta(p.xctxChunkMin).dataType === "integer");
+assert(p.xctxChunkMin === 65536);
 return 0;
 
 
@@ -50,14 +64,18 @@ assert(process::startTime === p.startTime);
 assert(length(process::args) === length(p.args));
 assert(process::args[0] === p.args[0]);
 assert(meta(process::poolBytesInUse).dataType === "integer");
-/* Capture current first: a live max>=cur expression can lose if
- * reading max allocates before reading current. */
+/* Capture current first: a live peak>=cur expression can lose if
+ * reading peak allocates before reading current. */
 let cur = process::poolBytesInUse;
-let mx = process::maxPoolBytesInUse;
-assert(mx >= cur);
+let peak = process::peakPoolBytesInUse;
+assert(peak >= cur);
 cur = process::poolChunkBytes;
-mx = process::maxPoolChunkBytes;
-assert(mx >= cur);
+peak = process::peakPoolChunkBytes;
+assert(peak >= cur);
+assert(meta(process::rss).dataType === "integer");
+assert(process::rss >= 0);
+assert(process::limitEvaluationStackCount === 500);
+assert(process::chunkMin === 65536);
 return 0;
 
 
