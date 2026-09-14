@@ -35,6 +35,7 @@ from _afwdev.test.common import (
     find_test_groups, load_test_group_config, test_group_matches_tags,
     print_failure_digest, normalize_tests_paths, write_results_summary,
     clip_detail, xctx_bytes_to_k)
+from _afwdev.test import history as test_history
 
 
 ##
@@ -146,8 +147,19 @@ def run(options):
 
     else:
 
+        want_compare = options.get('compare') is not False and options.get(
+            'compare') is not None
+        want_trend = options.get('trend') is not False and options.get(
+            'trend') is not None
+        skip_run = (want_compare or want_trend) and not options.get('history')
+
+        if skip_run:
+            _run_compare_trend(options)
+            sys.exit(0)
+
         start = time.time()
-        results, failures, max_xctx_bytes = runner.run(options, srcdirs)
+        results, failures, max_xctx_bytes, file_records = runner.run(
+            options, srcdirs)
         end = time.time()
 
         # iterate over results dict and print results
@@ -204,7 +216,7 @@ def run(options):
             # Console-only digest so parallel -j runs still end with greppable paths
             print_failure_digest(failures)
 
-        write_results_summary(options, {
+        summary = {
             'srcdirs': {
                 'passed': srcdirs_passed,
                 'failed': srcdirs_failed,
@@ -220,6 +232,10 @@ def run(options):
             'time_seconds': elapsed,
             'max_xctx_bytes': max_xctx_bytes or 0,
             'max_xctx_kbytes': xctx_bytes_to_k(max_xctx_bytes) or 0,
+            'mode': test_history.env_mode(options),
+            'git': test_history.git_meta(),
+            'files': sorted(
+                file_records or [], key=lambda r: r.get('path') or ''),
             'by_srcdir': {
                 srcdir: {
                     'passed': stats[0],
@@ -228,7 +244,6 @@ def run(options):
                 }
                 for srcdir, stats in results.items()
             },
-            # Paths + clipped details for agents/CI
             'failures': [
                 {
                     'test': f.get('test'),
@@ -238,9 +253,44 @@ def run(options):
                 }
                 for f in (failures or [])
             ],
-        }, tool_label='test')
+        }
+        write_results_summary(options, summary, tool_label='test')
+
+        if test_history.should_write_history(options):
+            test_history.write_history(summary, options)
+
+        if want_compare or want_trend:
+            _run_compare_trend(options)
 
         if total_failed > 0:
             sys.exit(1)
         else:
-            sys.exit(0) 
+            sys.exit(0)
+
+
+def _run_compare_trend(options):
+    want_compare = options.get('compare') is not False and options.get(
+        'compare') is not None
+    want_trend = options.get('trend') is not False and options.get(
+        'trend') is not None
+    show_all = bool(options.get('show_all'))
+    if want_compare:
+        try:
+            old_p, new_p = test_history.resolve_compare_paths(options)
+            old = test_history.load_run(old_p)
+            new = test_history.load_run(new_p)
+            if (old.get('mode') or 'afw') != (new.get('mode') or 'afw'):
+                msg.error_exit(
+                    "refusing to compare mixed env-mode ({a} vs {b})".format(
+                        a=old.get('mode'), b=new.get('mode')))
+            test_history.print_compare(
+                test_history.compare_runs(old, new), show_all=show_all)
+        except (ValueError, OSError) as e:
+            msg.error_exit(str(e))
+    if want_trend:
+        try:
+            runs = test_history.resolve_trend_runs(options)
+            test_history.print_trend(
+                test_history.trend_runs(runs, options), show_all=show_all)
+        except (ValueError, OSError) as e:
+            msg.error_exit(str(e)) 

@@ -1,0 +1,552 @@
+#! /usr/bin/env python3
+##
+# @file history.py
+# @brief Dated test-run records, --compare, and --trend.
+#
+# Per-file rows: path, ms, xctx_kbytes (null if the binary did not stamp
+# poolBytesInUse). k is the signal; ms is noisy. Failed paths are not
+# flagged for k/ms. Compare/trend never fail the process in v1.
+#
+
+import glob
+import os
+import re
+import subprocess
+from datetime import datetime, timezone
+
+from _afwdev.common import msg, nfc
+from _afwdev.test.common import xctx_bytes_to_k
+
+DEFAULT_HISTORY_DIR = os.path.expanduser("~/.afw/test-history")
+K_RATIO = 1.5
+K_FLOOR_BYTES = 32 * 1024
+MS_RATIO = 2.0
+MS_FLOOR_MS = 200
+TREND_DEFAULT_COUNT = 10
+TREND_TOP = 10
+NEW_GONE_LIST_MAX = 20
+
+
+def git_meta(cwd=None):
+    """Short commit, branch, dirty flag. Empty dict fields if not a git tree."""
+    meta = {"commit": None, "branch": None, "dirty": False}
+    kw = dict(stderr=subprocess.DEVNULL, text=True, cwd=cwd or os.getcwd())
+    try:
+        meta["commit"] = subprocess.check_output(
+            ["git", "rev-parse", "--short", "HEAD"], **kw).strip()
+        meta["branch"] = subprocess.check_output(
+            ["git", "branch", "--show-current"], **kw).strip() or None
+        dirty = subprocess.check_output(
+            ["git", "status", "--porcelain"], **kw)
+        meta["dirty"] = bool(dirty.strip())
+    except Exception:
+        pass
+    return meta
+
+
+def env_mode(options):
+    return (options or {}).get("mode") or "afw"
+
+
+def history_dir(options):
+    """Resolved history directory, or None if history is not in play."""
+    explicit = (options or {}).get("history_dir") or ""
+    if explicit:
+        return os.path.expanduser(explicit)
+    settings = (options or {}).get("afwdev_settings") or {}
+    setting = settings.get("test_history_dir") or ""
+    if setting:
+        return os.path.expanduser(setting)
+    if (options or {}).get("history"):
+        return DEFAULT_HISTORY_DIR
+    return DEFAULT_HISTORY_DIR
+
+
+def should_write_history(options):
+    if (options or {}).get("history"):
+        return True
+    settings = (options or {}).get("afwdev_settings") or {}
+    return bool(settings.get("test_history_dir"))
+
+
+def _mode_suffix(mode):
+    safe = re.sub(r"[^A-Za-z0-9._-]+", "-", str(mode or "afw"))
+    return safe or "afw"
+
+
+def history_filename(mode, when=None):
+    when = when or datetime.now(timezone.utc)
+    stamp = when.strftime("%Y-%m-%dT%H%M%S")
+    stamp += "{:03d}Z".format(when.microsecond // 1000)
+    return "{}-{}.json".format(stamp, _mode_suffix(mode))
+
+
+def list_run_files(dir_path, mode):
+    """Dated run JSON paths for mode, oldest first. Skips latest-* symlinks."""
+    if not dir_path or not os.path.isdir(dir_path):
+        return []
+    suffix = "-" + _mode_suffix(mode) + ".json"
+    names = []
+    for name in os.listdir(dir_path):
+        if name.startswith("latest"):
+            continue
+        if name.endswith(suffix):
+            names.append(name)
+    names.sort()
+    return [os.path.join(dir_path, n) for n in names]
+
+
+def load_run(path):
+    with nfc.open(path, "r") as fd:
+        data = nfc.json_load(fd)
+    if not isinstance(data, dict):
+        raise ValueError("history file is not an object: " + path)
+    data["_path"] = path
+    data["_basename"] = os.path.basename(path)
+    return data
+
+
+def write_history(summary, options):
+    """Write dated JSON and latest-{mode}.json symlink. Returns the path."""
+    dir_path = history_dir(options)
+    mode = env_mode(options)
+    os.makedirs(dir_path, exist_ok=True)
+    path = os.path.join(dir_path, history_filename(mode))
+    payload = dict(summary)
+    payload.pop("_path", None)
+    payload.pop("_basename", None)
+    with nfc.open(path, "w") as fd:
+        nfc.json_dump(payload, fd, indent=2, sort_keys=True)
+        fd.write("\n")
+    latest = os.path.join(dir_path, "latest-{}.json".format(_mode_suffix(mode)))
+    try:
+        if os.path.islink(latest) or os.path.exists(latest):
+            os.remove(latest)
+        os.symlink(os.path.basename(path), latest)
+    except OSError:
+        pass
+    msg.highlighted_info("Wrote test history to " + path)
+    return path
+
+
+def files_by_path(run):
+    out = {}
+    for row in (run or {}).get("files") or []:
+        if not isinstance(row, dict):
+            continue
+        path = row.get("path")
+        if path:
+            out[path] = row
+    return out
+
+
+def _failed(row):
+    return int((row or {}).get("failed") or 0) > 0
+
+
+def _k_bytes(row):
+    if not row:
+        return None
+    if row.get("xctx_bytes") is not None:
+        try:
+            n = int(row.get("xctx_bytes"))
+            return n if n >= 0 else None
+        except (TypeError, ValueError):
+            pass
+    k = row.get("xctx_kbytes")
+    if k is None:
+        return None
+    try:
+        k = int(k)
+    except (TypeError, ValueError):
+        return None
+    if k < 0:
+        return None
+    return k * 1024
+
+
+def _ms(row):
+    if not row:
+        return None
+    n = row.get("ms")
+    if n is None:
+        return None
+    try:
+        n = int(n)
+    except (TypeError, ValueError):
+        return None
+    return n if n >= 0 else None
+
+
+def _k_fatter(old_row, new_row):
+    """True if new k is out of family vs old."""
+    if _failed(old_row) or _failed(new_row):
+        return False
+    old_b = _k_bytes(old_row)
+    new_b = _k_bytes(new_row)
+    if old_b is None or new_b is None or old_b <= 0:
+        return False
+    if new_b <= old_b:
+        return False
+    return (new_b > old_b * K_RATIO) and (new_b - old_b >= K_FLOOR_BYTES)
+
+
+def _k_thinner(old_row, new_row):
+    if _failed(old_row) or _failed(new_row):
+        return False
+    old_b = _k_bytes(old_row)
+    new_b = _k_bytes(new_row)
+    if old_b is None or new_b is None or new_b <= 0:
+        return False
+    if new_b >= old_b:
+        return False
+    return (old_b > new_b * K_RATIO) and (old_b - new_b >= K_FLOOR_BYTES)
+
+
+def _ms_slower(old_row, new_row):
+    if _failed(old_row) or _failed(new_row):
+        return False
+    old_m = _ms(old_row)
+    new_m = _ms(new_row)
+    if old_m is None or new_m is None or old_m <= 0:
+        return False
+    if new_m <= old_m:
+        return False
+    return (new_m > old_m * MS_RATIO) and (new_m - old_m >= MS_FLOOR_MS)
+
+
+def _ms_faster(old_row, new_row):
+    if _failed(old_row) or _failed(new_row):
+        return False
+    old_m = _ms(old_row)
+    new_m = _ms(new_row)
+    if old_m is None or new_m is None or new_m <= 0:
+        return False
+    if new_m >= old_m:
+        return False
+    return (old_m > new_m * MS_RATIO) and (old_m - new_m >= MS_FLOOR_MS)
+
+
+def _ratio_k(old_row, new_row):
+    old_b = _k_bytes(old_row)
+    new_b = _k_bytes(new_row)
+    if not old_b or new_b is None:
+        return 0
+    return float(new_b) / float(old_b)
+
+
+def compare_runs(old, new):
+    """Return a dict: compared/new/gone paths and k/ms movers."""
+    old_files = files_by_path(old)
+    new_files = files_by_path(new)
+    old_paths = set(old_files)
+    new_paths = set(new_files)
+    compared = sorted(old_paths & new_paths)
+    added = sorted(new_paths - old_paths)
+    gone = sorted(old_paths - new_paths)
+    k_missing = 0
+    fatter = []
+    thinner = []
+    slower = []
+    faster = []
+    for path in compared:
+        o = old_files[path]
+        n = new_files[path]
+        if _k_bytes(o) is None or _k_bytes(n) is None:
+            k_missing += 1
+        if _k_fatter(o, n):
+            fatter.append(path)
+        if _k_thinner(o, n):
+            thinner.append(path)
+        if _ms_slower(o, n):
+            slower.append(path)
+        if _ms_faster(o, n):
+            faster.append(path)
+    fatter.sort(key=lambda p: _ratio_k(old_files[p], new_files[p]), reverse=True)
+    return {
+        "compared": compared,
+        "added": added,
+        "gone": gone,
+        "k_missing": k_missing,
+        "fatter": fatter,
+        "thinner": thinner,
+        "slower": slower,
+        "faster": faster,
+        "old_files": old_files,
+        "new_files": new_files,
+        "old": old,
+        "new": new,
+    }
+
+
+def _run_label(run):
+    return (run.get("git") or {}).get("commit") or run.get("_basename") or "?"
+
+
+def print_compare(result, show_all=False):
+    old = result["old"]
+    new = result["new"]
+    n_comp = len(result["compared"])
+    msg.highlighted_info(
+        "Compared {n}  new {a}  gone {g}  (mode {m}, {oc} → {nc})".format(
+            n=n_comp,
+            a=len(result["added"]),
+            g=len(result["gone"]),
+            m=old.get("mode") or new.get("mode") or "afw",
+            oc=_run_label(old),
+            nc=_run_label(new),
+        ))
+    if result["k_missing"]:
+        msg.highlighted_info(
+            "k missing in {n} compared path(s) (old afw / non-test_script)".format(
+                n=result["k_missing"]))
+    msg.highlighted_info(
+        "Memory:  {f} fatter  {t} thinner  (threshold {r}× and +{kb}k)".format(
+            f=len(result["fatter"]),
+            t=len(result["thinner"]),
+            r=K_RATIO,
+            kb=K_FLOOR_BYTES // 1024,
+        ))
+    msg.highlighted_info(
+        "Time:    {s} slower  {f} faster   (noisy; {r}× and +{ms}ms)".format(
+            s=len(result["slower"]),
+            f=len(result["faster"]),
+            r=int(MS_RATIO),
+            ms=MS_FLOOR_MS,
+        ))
+    old_files = result["old_files"]
+    new_files = result["new_files"]
+    show = result["fatter"] if not show_all else result["fatter"]
+    if show:
+        msg.highlighted_info("")
+        msg.highlighted_info("Fatter k:")
+        for path in show[:TREND_TOP] if not show_all else show:
+            o = old_files[path]
+            n = new_files[path]
+            ok = xctx_bytes_to_k(_k_bytes(o)) or 0
+            nk = xctx_bytes_to_k(_k_bytes(n)) or 0
+            msg.highlighted_info(
+                "  {ok}k → {nk}k  {path}".format(ok=ok, nk=nk, path=path))
+    def _list(title, paths):
+        if not paths:
+            return
+        msg.highlighted_info("")
+        msg.highlighted_info(title + " ({n}):".format(n=len(paths)))
+        if len(paths) > NEW_GONE_LIST_MAX and not show_all:
+            for p in paths[:NEW_GONE_LIST_MAX]:
+                msg.highlighted_info("  " + p)
+            msg.highlighted_info(
+                "  … {n} more (use --show-all)".format(
+                    n=len(paths) - NEW_GONE_LIST_MAX))
+        else:
+            for p in paths:
+                msg.highlighted_info("  " + p)
+    _list("New", result["added"])
+    _list("Gone", result["gone"])
+
+
+def resolve_compare_paths(options):
+    """Return (old_path, new_path) from --compare args and history dir."""
+    args = options.get("compare")
+    if args is False or args is None:
+        raise ValueError("compare not requested")
+    dir_path = history_dir(options)
+    mode = env_mode(options)
+    runs = list_run_files(dir_path, mode)
+    if isinstance(args, str):
+        args = [args]
+    args = list(args or [])
+    if len(args) == 0:
+        if len(runs) < 2:
+            raise ValueError(
+                "need at least two history files for mode {m} in {d}".format(
+                    m=mode, d=dir_path))
+        return runs[-2], runs[-1]
+    if len(args) == 1:
+        if not runs:
+            raise ValueError(
+                "no history files for mode {m} in {d} to use as newer".format(
+                    m=mode, d=dir_path))
+        return os.path.expanduser(args[0]), runs[-1]
+    if len(args) >= 2:
+        return os.path.expanduser(args[0]), os.path.expanduser(args[1])
+    raise ValueError("invalid --compare arguments")
+
+
+def resolve_trend_runs(options):
+    """Load run dicts oldest-first for --trend."""
+    args = options.get("trend")
+    if args is False or args is None:
+        raise ValueError("trend not requested")
+    dir_path = history_dir(options)
+    mode = env_mode(options)
+    if isinstance(args, str):
+        args = [args]
+    args = list(args or [])
+    count = TREND_DEFAULT_COUNT
+    files = []
+    if len(args) == 1 and re.fullmatch(r"[0-9]+", args[0]):
+        count = max(1, int(args[0]))
+        args = []
+    if args:
+        for a in args:
+            expanded = glob.glob(os.path.expanduser(a)) or [os.path.expanduser(a)]
+            files.extend(expanded)
+        files = sorted(set(files))
+    else:
+        files = list_run_files(dir_path, mode)
+        files = files[-count:]
+    if len(files) < 2:
+        raise ValueError(
+            "need at least two history files for --trend (mode {m})".format(
+                m=mode))
+    runs = [load_run(p) for p in files]
+    modes = {(r.get("mode") or "afw") for r in runs}
+    if len(modes) > 1:
+        raise ValueError(
+            "refusing mixed env-mode in --trend: " + ", ".join(sorted(modes)))
+    return runs
+
+
+def _path_filter(options):
+    pattern = (options or {}).get("test-pattern") or ".*"
+    if pattern == ".*":
+        return None
+    try:
+        return re.compile(pattern)
+    except re.error as e:
+        msg.error_exit("Invalid --test-pattern regex: " + str(e))
+
+
+def trend_runs(runs, options=None):
+    first = files_by_path(runs[0])
+    last = files_by_path(runs[-1])
+    rx = _path_filter(options)
+    def ok(path):
+        return True if rx is None else bool(rx.search(path))
+    first_p = {p for p in first if ok(p)}
+    last_p = {p for p in last if ok(p)}
+    added = sorted(last_p - first_p)
+    gone = sorted(first_p - last_p)
+    series_max_k = []
+    for run in runs:
+        mx = 0
+        any_k = False
+        for path, row in files_by_path(run).items():
+            if not ok(path):
+                continue
+            b = _k_bytes(row)
+            if b is None:
+                continue
+            any_k = True
+            mx = max(mx, b)
+        series_max_k.append(xctx_bytes_to_k(mx) if any_k else None)
+    movers = []
+    metric = ((options or {}).get("trend_metric") or "k").strip().lower()
+    for path in sorted(first_p & last_p):
+        o = first[path]
+        n = last[path]
+        if metric == "ms":
+            old_v, new_v = _ms(o), _ms(n)
+        else:
+            old_v, new_v = _k_bytes(o), _k_bytes(n)
+            if old_v is not None:
+                old_v = xctx_bytes_to_k(old_v)
+            if new_v is not None:
+                new_v = xctx_bytes_to_k(new_v)
+        if old_v is None or new_v is None or old_v <= 0:
+            continue
+        ratio = float(new_v) / float(old_v)
+        ks = []
+        for run in runs:
+            row = files_by_path(run).get(path)
+            if metric == "ms":
+                ks.append(_ms(row))
+            else:
+                b = _k_bytes(row)
+                ks.append(xctx_bytes_to_k(b) if b is not None else None)
+        present = [x for x in ks if x is not None]
+        movers.append({
+            "path": path,
+            "first": old_v,
+            "last": new_v,
+            "min": min(present) if present else None,
+            "max": max(present) if present else None,
+            "ratio": ratio,
+        })
+    movers.sort(key=lambda m: m["ratio"], reverse=True)
+    return {
+        "runs": runs,
+        "new": added,
+        "gone": gone,
+        "series_max_k": series_max_k,
+        "movers": movers,
+        "metric": metric,
+    }
+
+
+def print_trend(result, show_all=False):
+    runs = result["runs"]
+    msg.highlighted_info(
+        "Trend {n} runs  new {a}  gone {g}  (mode {m})".format(
+            n=len(runs),
+            a=len(result["new"]),
+            g=len(result["gone"]),
+            m=runs[0].get("mode") or "afw",
+        ))
+    maxes = result["series_max_k"]
+    if any(x is not None for x in maxes):
+        bits = []
+        for run, k in zip(runs, maxes):
+            label = run.get("_basename") or _run_label(run)
+            if label.endswith(".json"):
+                label = label[:-5]
+            bits.append("{}:{}k".format(label, k if k is not None else "-"))
+        msg.highlighted_info("Run max k:  " + "  ".join(bits))
+    movers = result["movers"]
+    show = movers if show_all else movers[:TREND_TOP]
+    if show:
+        msg.highlighted_info("")
+        unit = "ms" if result["metric"] == "ms" else "k"
+        msg.highlighted_info("Top movers ({u}, first → last):".format(u=unit))
+        for m in show:
+            msg.highlighted_info(
+                "  {f}{u} → {l}{u}  ({r:.2f}×)  min {mn} max {mx}  {path}".format(
+                    f=m["first"],
+                    l=m["last"],
+                    u=unit,
+                    r=m["ratio"],
+                    mn=m["min"],
+                    mx=m["max"],
+                    path=m["path"],
+                ))
+    def _list(title, paths):
+        if not paths:
+            return
+        msg.highlighted_info("")
+        msg.highlighted_info(title + " ({n}):".format(n=len(paths)))
+        listing = paths if show_all or len(paths) <= NEW_GONE_LIST_MAX else paths[:NEW_GONE_LIST_MAX]
+        for p in listing:
+            msg.highlighted_info("  " + p)
+        if len(paths) > len(listing):
+            msg.highlighted_info(
+                "  … {n} more (use --show-all)".format(
+                    n=len(paths) - len(listing)))
+    _list("New since first run", result["new"])
+    _list("Gone since first run", result["gone"])
+
+
+def file_record(path, duration_ms, xctx_bytes, num_passed, num_skipped, num_failed):
+    rec = {
+        "path": path,
+        "ms": int(duration_ms),
+        "passed": int(num_passed),
+        "skipped": int(num_skipped),
+        "failed": int(num_failed),
+        "xctx_bytes": None,
+        "xctx_kbytes": None,
+    }
+    if xctx_bytes is not None:
+        rec["xctx_bytes"] = int(xctx_bytes)
+        rec["xctx_kbytes"] = xctx_bytes_to_k(xctx_bytes)
+    return rec

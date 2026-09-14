@@ -1038,6 +1038,66 @@ _info_tests_path = {
         "src/afw/tests-extra/ (firehose, progressive, lab leaves)."
 }
 
+_info_test_history = {
+    "optionName": "history",
+    "arg": "--history",
+    "action": "store_true",
+    "default": False,
+    "noprompt": True,
+    "help":
+        "After the run, write a dated JSON record (per-file ms and xctx k) "
+        "under --history-dir (default ~/.afw/test-history/). Also set "
+        "test_history_dir in afwdev-settings.json to write on every run. "
+        "With --compare/--trend, tests are run first so this record is included."
+}
+
+_info_test_history_dir = {
+    "optionName": "history_dir",
+    "arg": "--history-dir",
+    "action": "store",
+    "default": "",
+    "noprompt": True,
+    "help":
+        "Directory for --history / --compare / --trend. Default "
+        "~/.afw/test-history/ (or test_history_dir in afwdev-settings.json)."
+}
+
+_info_test_compare = {
+    "optionName": "compare",
+    "arg": "--compare",
+    "nargs": "*",
+    "default": False,
+    "noprompt": True,
+    "help":
+        "Compare two history JSON files by test path. No args: latest vs "
+        "previous in --history-dir for this --env-mode. One path: that file "
+        "vs latest. Two paths: older then newer. Does not run tests unless "
+        "--history is also given. k is the signal (1.5× and +32k); ms is "
+        "listed but noisy. Does not fail the process."
+}
+
+_info_test_trend = {
+    "optionName": "trend",
+    "arg": "--trend",
+    "nargs": "*",
+    "default": False,
+    "noprompt": True,
+    "help":
+        "Show k (or --trend-metric ms) across history runs. No args: last "
+        "10 for this --env-mode. A single integer is the run count. "
+        "Otherwise glob/paths of JSON files (same mode only). Does not run "
+        "tests unless --history is also given."
+}
+
+_info_test_trend_metric = {
+    "optionName": "trend_metric",
+    "arg": "--trend-metric",
+    "action": "store",
+    "default": "k",
+    "noprompt": True,
+    "help": "Metric for --trend movers: k (default, xctx KiB) or ms."
+}
+
 _info_test_capture_goldens = {
     "optionName": "capture_goldens",
     "arg": "--capture-goldens",
@@ -1070,6 +1130,11 @@ _info_test = {
         _info_srcdir_pattern, 
         _info_tests_path,
         _info_test_capture_goldens,
+        _info_test_history,
+        _info_test_history_dir,
+        _info_test_compare,
+        _info_test_trend,
+        _info_test_trend_metric,
         _info_test_watch,
         _info_test_jobs,
         _info_test_env_mode,

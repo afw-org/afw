@@ -35,6 +35,7 @@ from _afwdev.test.common import \
     before_each, after_all, after_each, test_group_matches_tags, \
     test_path_for_display, clip_detail, outcome_flag, errors_only_console, \
     xctx_bytes_from_response, format_test_timing
+from _afwdev.test.history import file_record
 
 
 ##
@@ -111,6 +112,7 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
     passed = 0
     failures = []
     max_xctx_bytes = 0
+    file_records = []
 
     # save the current environment variables
     prevEnvVars = os.environ.copy()
@@ -132,7 +134,7 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
     # if --tags was specified (non-default), skip groups that do not match
     if not test_group_matches_tags(options, testGroupConfig):
         msg.debug("  Skipping test group because it doesn't match the specified tags")
-        return testGroup, 0, 0, 0, [], 0
+        return testGroup, 0, 0, 0, [], 0, []
 
     # get the test environment for this test group
     testEnvironment = get_test_environment(testGroup, testEnvironments, testGroupConfig, work_dir_prefix)    
@@ -144,7 +146,7 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
                 'detail': "environment '{}' has no work_dir".format(
                     testEnvironment.get('name')),
                 'srcdir': srcdir,
-            }], 0
+            }], 0, []
         msg.debug("Using test environment: " + testEnvironment['name'] + ', work_dir = ' + testEnvironment['work_dir'])        
 
     test_group_start = time.time()
@@ -188,6 +190,9 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
             xctx_bytes = xctx_bytes_from_response(response)
             if xctx_bytes is not None:
                 max_xctx_bytes = max(max_xctx_bytes, xctx_bytes)
+            file_records.append(file_record(
+                test_display, duration_ms, xctx_bytes,
+                numPassed, numSkipped, numFailures))
 
             # Quiet human chatter when summary is the sole stdout artifact
             quiet_console = (options.get('output') == '-')
@@ -272,7 +277,7 @@ def _run_test_group_body(testGroup, options, testEnvironments, work_dir_prefix):
     if msg.is_debug_mode():
         msg.highlighted_info("Test group {} took {}ms".format(root, round((test_group_end - test_group_start) * 1000)))
 
-    return testGroup, passed, skipped, failed, failures, max_xctx_bytes
+    return testGroup, passed, skipped, failed, failures, max_xctx_bytes, file_records
 
 
 ##
@@ -315,6 +320,7 @@ def run(options, srcdirs):
     allFailures = []
     testEnvironments = []
     max_xctx_bytes = 0
+    all_file_records = []
     
     # always include the python client for bindings in the system path
     if os.path.exists('src/afw_client/python'):
@@ -421,7 +427,7 @@ def run(options, srcdirs):
 
         pool.join()
         
-        for testGroup, passed, skipped, failed, group_failures, group_xctx, captured in results:
+        for testGroup, passed, skipped, failed, group_failures, group_xctx, group_files, captured in results:
             if captured:
                 sys.stdout.write(captured)
                 if not captured.endswith('\n'):
@@ -439,12 +445,14 @@ def run(options, srcdirs):
                 allFailures.extend(group_failures)
             if group_xctx:
                 max_xctx_bytes = max(max_xctx_bytes, group_xctx)
+            if group_files:
+                all_file_records.extend(group_files)
 
     else:
         # run sequentially
         try:
             for testGroup in allTestGroups:
-                _, passed, skipped, failed, group_failures, group_xctx, _captured = run_test_group(
+                _, passed, skipped, failed, group_failures, group_xctx, group_files, _captured = run_test_group(
                     testGroup, 
                     options, 
                     testEnvironments, 
@@ -462,6 +470,8 @@ def run(options, srcdirs):
                     allFailures.extend(group_failures)
                 if group_xctx:
                     max_xctx_bytes = max(max_xctx_bytes, group_xctx)
+                if group_files:
+                    all_file_records.extend(group_files)
 
         except KeyboardInterrupt:
             msg.error("Caught KeyboardInterrupt, terminating test runner")
@@ -471,4 +481,4 @@ def run(options, srcdirs):
             msg.error("Test runner caught Exception: " + str(e))
             sys.exit(1)
 
-    return allTestResults, allFailures, max_xctx_bytes
+    return allTestResults, allFailures, max_xctx_bytes, all_file_records

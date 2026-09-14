@@ -78,10 +78,10 @@ def add_args(subparsers, info):
                 help=help)
 
         else:
-            parser.add_argument(
-                *args,
-                nargs=arg.get('nargs'),
-                help=help)
+            kw = dict(nargs=arg.get('nargs'), help=help)
+            if 'default' in arg:
+                kw['default'] = arg.get('default')
+            parser.add_argument(*args, **kw)
 
     handler = SUBCOMMAND_HANDLERS.get(info['subcommand'])
     if handler is None:
