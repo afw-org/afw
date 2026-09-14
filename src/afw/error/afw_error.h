@@ -421,6 +421,9 @@ do { \
  * @param format_z format for error message
  * @param ... for format_z
  *
+ * Formats with `afw_utf8_z_snprintf_safe_v`: dirty `%s` / `%ku` encode
+ * (`forced_safe`) instead of throwing while building the error.
+ *
  * Always follow with a semicolon;
  */
 #define AFW_THROW_ERROR_FZ(code, xctx, format_z, ...) \

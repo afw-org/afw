@@ -731,6 +731,31 @@ afw_utf8_z_snprintf_vas(
     afw_xctx_t *xctx);
 
 /**
+ * @brief Real function for afw_utf8_printf_safe (format `s` + `len`).
+ * @see afw_utf8_printf_safe
+ */
+AFW_DECLARE_ELLIPSIS(const afw_utf8_t *)
+afw_utf8_printf_safe_as(
+    const afw_pool_t *p, afw_xctx_t *xctx,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, ...);
+
+AFW_DECLARE(const afw_utf8_t *)
+afw_utf8_printf_safe_vas(
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+AFW_DECLARE_ELLIPSIS(afw_size_t)
+afw_utf8_z_snprintf_safe_as(
+    afw_utf8_z_t *dest, afw_size_t size, afw_xctx_t *xctx,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, ...);
+
+AFW_DECLARE(afw_size_t)
+afw_utf8_z_snprintf_safe_vas(
+    afw_utf8_z_t *dest, afw_size_t size,
+    const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
+    afw_xctx_t *xctx);
+
+/**
  * @brief AFW printf (viewable text, not a data-file writer).
  * @param p pool used for result.
  * @param xctx of caller.
@@ -774,10 +799,17 @@ afw_utf8_z_snprintf_vas(
  * | `%%ks` | `utf8_z` | Like `%%s`, but **`forced_safe`** on invalid UTF-8. |
  *
  * `%%s` is `utf8_z` and **throws** if not valid UTF-8. `%%ks` is the
- * only dirty substitution. NULL `%%ku` / `%%km` is empty (zero width;
- * no dummy pointer). On `%%k`, `-` / width / precision / `*` are like
- * `%%s` (precision = max **input** bytes). Other flags and length
- * modifiers throw.
+ * only dirty substitution on the default walk. NULL `%%ku` / `%%km`
+ * is empty (zero width; no dummy pointer). On `%%k`, `-` / width /
+ * precision / `*` are like `%%s` (precision = max **input** bytes).
+ * Other flags and length modifiers throw.
+ *
+ * **`_safe`:** same walk, but `%%s`, `%%ku`, and `AFW_UTF8_FMT`
+ * (`%%.*s`) `forced_safe` instead of throw or raw copy. Format
+ * literals stay as-is. Assemble then **`create`**. Error `*_fz` and
+ * `afw_error_to_utf8` use this so assembling or reporting an error
+ * cannot throw because of dirty bytes. Bad spec / invalid format
+ * UTF-8 / OOM still throw.
  *
  * **Size** is the buffer needed to hold that result type (not C
  * `snprintf`): utf8 payload only (no trailing `0`); z includes the `0`.
@@ -896,6 +928,26 @@ afw_utf8_z_snprintf_vas(
 #define afw_utf8_z_snprintf_vu(dest, size, format, ap, xctx) \
     afw_utf8_z_snprintf_vas((dest), (size), \
         (format)->s, (format)->len, (ap), (xctx))
+
+#define afw_utf8_printf_safe(p, xctx, format_z, ...) \
+    afw_utf8_printf_safe_as((p), (xctx), \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        ##__VA_ARGS__)
+
+#define afw_utf8_printf_safe_v(format_z, ap, p, xctx) \
+    afw_utf8_printf_safe_vas( \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        (ap), (p), (xctx))
+
+#define afw_utf8_z_snprintf_safe(dest, size, xctx, format_z, ...) \
+    afw_utf8_z_snprintf_safe_as((dest), (size), (xctx), \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        ##__VA_ARGS__)
+
+#define afw_utf8_z_snprintf_safe_v(dest, size, format_z, ap, xctx) \
+    afw_utf8_z_snprintf_safe_vas((dest), (size), \
+        (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
+        (ap), (xctx))
 
 
 /**

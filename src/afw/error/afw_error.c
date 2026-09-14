@@ -20,8 +20,8 @@ impl_error_format_message(
     const afw_utf8_z_t *format_z,
     va_list ap)
 {
-    /* Size includes the trailing 0 (z dest). */
-    afw_utf8_z_snprintf_v(
+    /* Size includes the trailing 0 (z dest). %s / %ku are forced_safe. */
+    afw_utf8_z_snprintf_safe_v(
         &xctx->error->message_wa[0],
         sizeof(xctx->error->message_wa),
         format_z, ap, xctx);
@@ -271,6 +271,7 @@ impl_evaluation_backtrace(
 {
     const afw_writer_t *w;
     afw_utf8_t s;
+    afw_utf8_t *copied;
     const afw_utf8_t *result;
     afw_value_info_t info;
     char buf[AFW_INTEGER_MAX_BUFFER];
@@ -556,7 +557,17 @@ impl_evaluation_backtrace(
     }
     
     afw_utf8_writer_current_string(w, &s, xctx);
-    result = afw_utf8_create(s.s, s.len, p, xctx);
+    /*
+     * Copy octets only. message_z or source may be dirty; create()
+     * would throw while reporting. Callers forced_safe.
+     */
+    copied = afw_pool_calloc_type(p, afw_utf8_t, xctx);
+    if (s.len) {
+        copied->s = afw_pool_malloc(p, s.len, xctx);
+        memcpy((void *)copied->s, s.s, s.len);
+        copied->len = s.len;
+    }
+    result = copied;
     afw_writer_release(w, xctx);
     return result;
 }
@@ -586,7 +597,7 @@ afw_error_to_utf8(
 
     evaluation_backtrace = impl_evaluation_backtrace(error, p, xctx);
 
-    result = afw_utf8_printf(p, xctx,
+    result = afw_utf8_printf_safe(p, xctx,
         "%s"                           /* message. */
         " [code=%s(%d)"                /* code-decoded */
         " rv=%s%s%d%s%s"               /* source:rv-decoded */
@@ -649,27 +660,27 @@ afw_error_write_log(afw_log_priority_t priority,
 
     if (error->contextual && error->contextual->source_location)
     {
-        afw_log_write_fz(xctx->env->log,
-            priority,
-            afw_error_source_file(error),
-            xctx,
+        s = afw_utf8_printf_safe(xctx->p, xctx,
             "%s [%ku%s%0d]",
             error->message_z,
             error->contextual->source_location,
-            (error->contextual && error->contextual->value_offset != 0) ? " +" : "",
-            (error->contextual && error->contextual->value_offset != 0)
+            (error->contextual->value_offset != 0) ? " +" : "",
+            (error->contextual->value_offset != 0)
                 ? error->contextual->value_offset
-                : 0
-            );
+                : 0);
+        afw_log_write(xctx->env->log,
+            priority,
+            afw_error_source_file(error),
+            s, xctx);
     }
 
     else {
-        afw_log_write_fz(xctx->env->log,
+        s = afw_utf8_printf_safe(xctx->p, xctx, "%s",
+            error->message_z);
+        afw_log_write(xctx->env->log,
             priority,
             afw_error_source_file(error),
-            xctx,
-            "%s",
-            error->message_z);
+            s, xctx);
     }
 
     if (true /** @fixme */) {
@@ -878,6 +889,28 @@ impl_utf8_forced_safe_value(
 }
 
 
+static const afw_utf8_t *
+impl_utf8_z_value_for_error(
+    const afw_utf8_z_t *s_z,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *encoded;
+
+    if (!s_z) {
+        return afw_s_a_empty_string;
+    }
+    /* FZ already encoded; do not forced_safe again (`^` → `^^`). */
+    if (afw_utf8_is_valid(
+        (const afw_utf8_octet_t *)s_z, AFW_UTF8_Z_LEN, xctx))
+    {
+        return afw_utf8_create(s_z, AFW_UTF8_Z_LEN, p, xctx);
+    }
+    encoded = afw_utf8_z_create_forced_safe(s_z, p, xctx);
+    return afw_utf8_create(encoded->s, encoded->len, p, xctx);
+}
+
+
 /* Add error info to an existing object. */
 AFW_DECLARE(void)
 afw_error_add_to_object(
@@ -1000,15 +1033,15 @@ afw_error_add_to_object(
     if (error->rv_decoded_z) {
         afw_object_set_property_as_string_internal(object,
             afw_v_rvDecoded,
-            afw_utf8_create(error->rv_decoded_z,
-                AFW_UTF8_Z_LEN, p, xctx),
+            impl_utf8_z_value_for_error(
+                error->rv_decoded_z, p, xctx),
             xctx);
     }
 
     afw_object_set_property_as_string_internal(object,
         afw_v_message,
-        afw_utf8_create(error->message_z,
-            AFW_UTF8_Z_LEN, p, xctx),
+        impl_utf8_z_value_for_error(
+            error->message_z, p, xctx),
         xctx);
 
     afw_object_set_property_as_string_internal(object,

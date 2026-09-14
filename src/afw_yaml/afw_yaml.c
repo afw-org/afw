@@ -196,7 +196,7 @@ const afw_utf8_t * afw_yaml_from_error(afw_xctx_t *xctx)
         }
     }
 
-    return afw_utf8_printf(xctx->p, xctx,
+    return afw_utf8_printf_safe(xctx->p, xctx,
         "\"status\": \"error\",\n"
         "\"errorCode\": %d,\n"
         "\"id\": %s,\n"

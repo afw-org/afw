@@ -50,6 +50,14 @@ def run():
                 "error object backtrace is forced_safe then NFC",
             ),
             (
+                "printf-safe-walk",
+                "printf_safe encodes %s and %ku; format caret stays",
+            ),
+            (
+                "error-fz-dirty",
+                "FZ dirty %s/%ku keep original error; object encodes",
+            ),
+            (
                 "icu-error-name",
                 "icu error name wrap, no unicode include in env",
             ),

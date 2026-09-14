@@ -611,7 +611,8 @@
  * **Internal** is NFC `afw_utf8_t`. **External** (libc, APR, LDAP, logs)
  * uses a named door: `to_utf8_z` / `z_create`, `forced_safe`, or
  * `as_memory`. **Printf** (`afw_utf8_printf`) is viewable text: `%%ku` /
- * `%%ks` / `%%km`, then `create` (not whole-buffer `forced_safe`). libc
+ * `%%ks` / `%%km`, then `create` (not whole-buffer `forced_safe`). Error
+ * dump uses `afw_utf8_printf_safe` (`%%s` / `%%ku` encode). libc
  * `fprintf` still uses `AFW_UTF8_FMT`.
  *
  * **Naming (short name does more):**
