@@ -10,18 +10,30 @@ import {MonacoProvider} from "@afw/react-monaco";
 import {AppCoreProvider} from "./App/AppCoreProvider";
 import {AppContext} from "./context";
 
-import {rest} from "msw";
-import {server} from "@afw/test/build/cjs/__mocks__/server";
-import {mswPostCallback, mswGetCallback} from "@afw/test/build/cjs/__mocks__/handlers";
-import {render, waitForElementToBeRemoved, userEvent} from "@afw/test";
+import {vi} from "vitest";
+// `rest`/`server`/`mswPostCallback`/`mswGetCallback` must come from this same
+// "@afw/test" package import (not a separate deep "@afw/test/build/cjs/..."
+// path) - setupTests.js's beforeAll(() => server.listen(...)) registers
+// handlers on the `server` singleton resolved this way, and a deep-path
+// import resolves a *different* build variant (esm vs cjs), landing on a
+// distinct module instance with its own unconnected `server`/mock functions,
+// so server.use()/mock assertions here would silently talk to a server
+// nothing is actually listening on. Named imports of these specifically fail
+// once this file (a plain .js, not .jsx) has gone through its own esbuild
+// JSX transform (see jsxInJs() in vitest.config.js) - Vite's static
+// named-export detection doesn't reliably survive that, so a namespace
+// import/destructure is used instead.
+import * as afwTest from "@afw/test";
+
+const {rest, server, mswPostCallback, mswGetCallback, render, waitForElementToBeRemoved, userEvent} = afwTest;
 
 
-// mock MU components that use Fade (Collapse/Tree) based on react-transition-group 
-jest.mock("@mui/material", () => {
-    const materialUI = jest.requireActual("@mui/material");
+// mock MU components that use Fade (Collapse/Tree) based on react-transition-group
+vi.mock("@mui/material", async () => {
+    const materialUI = await vi.importActual("@mui/material");
     return {
         ...materialUI,
-        Fade: jest.fn(({ children }) => children),
+        Fade: vi.fn(({ children }) => children),
     };
 });
 

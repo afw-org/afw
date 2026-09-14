@@ -405,10 +405,10 @@ const Test = (wrapper) => {
 
             expect(screen.getByLabelText("myprop")).toBeInTheDocument();
 
-            await act(async () => {
+            act(() => {
                 property.setName("newprop");
-                await waitFor(() => expect(screen.getByLabelText("newprop")).toBeInTheDocument());
-            }); 
+            });
+            await waitFor(() => expect(screen.getByLabelText("newprop")).toBeInTheDocument());
         });
     });
 
@@ -547,13 +547,12 @@ const Test = (wrapper) => {
                     expect(onChanged).toHaveBeenCalledTimes(1);
                     expect(onChanged).toHaveBeenCalledWith(expect.objectContaining({ eventId: "onChanged", value: testValues[1] }));      
 
-                    await act(async() => {                       
-                        trace("discard changes", () => { 
-                            property.discardChanges();                        
+                    act(() => {
+                        trace("discard changes", () => {
+                            property.discardChanges();
                         });
-                        const input = screen.getByLabelText(label);
-                        await waitFor(() => expect(input.value).toBe(expectedTestValues[0]));
-                    });   
+                    });
+                    await waitFor(() => expect(screen.getByLabelText(label).value).toBe(expectedTestValues[0]));
                 }                     
             }); 
 
@@ -578,10 +577,10 @@ const Test = (wrapper) => {
     
                 await waitFor(() => expect(screen.getByLabelText("myprop")).toBeInTheDocument());
     
-                await act(async () => {
+                act(() => {
                     property.setName("newprop");
-                    await waitFor(() => expect(screen.getByLabelText("newprop")).toBeInTheDocument());
                 });
+                await waitFor(() => expect(screen.getByLabelText("newprop")).toBeInTheDocument());
 
             });
 
@@ -607,11 +606,11 @@ const Test = (wrapper) => {
     
                 expect(screen.getByLabelText(label).value).toBe(expectedTestValues[0]);
     
-                if (testValues.length > 1) {                    
-                    await act(async () => {
+                if (testValues.length > 1) {
+                    act(() => {
                         property.setValue(testValues[1]);
-                        await waitFor(() => expect(screen.getByLabelText(label).value).toBe(expectedTestValues[1]));
                     });
+                    await waitFor(() => expect(screen.getByLabelText(label).value).toBe(expectedTestValues[1]));
                 }
 
             });
@@ -721,11 +720,11 @@ const Test = (wrapper) => {
             // \fixme requirements aren't quite clear on what happens when a TZ is omitted or provided 
             expect(onChanged).toHaveBeenCalledWith(expect.objectContaining({ eventId: "onChanged", value: "1981-08-13+00:00" }));            
            
-            await act(async() => {
+            act(() => {
                 property.discardChanges();
-                await waitFor(() => expect(input.value).toBe("1978-07-31"));
-            });           
-        }); 
+            });
+            await waitFor(() => expect(input.value).toBe("1978-07-31"));
+        });
 
         test("Change property name via AfwProperty setName()", async () => {
             const property = new AfwProperty({ 
@@ -745,10 +744,10 @@ const Test = (wrapper) => {
 
             expect(screen.getByText("myprop")).toBeInTheDocument();
 
-            await act(async () => {
+            act(() => {
                 property.setName("newprop");
-                await waitFor(() => expect(screen.getByText("newprop")).toBeInTheDocument());
             });
+            await waitFor(() => expect(screen.getByText("newprop")).toBeInTheDocument());
         });
 
         test("Change property value via AfwProperty setValue()", async () => {
@@ -769,10 +768,10 @@ const Test = (wrapper) => {
 
             expect(screen.getByLabelText("myprop", { selector: "input" }).value).toBe("1978-07-31");
 
-            await act(async () => {
+            act(() => {
                 property.setValue("1981-08-13");
-                await waitFor(() => expect(screen.getByLabelText("myprop", { selector: "input" }).value).toBe("1981-08-13"));
             });
+            await waitFor(() => expect(screen.getByLabelText("myprop", { selector: "input" }).value).toBe("1981-08-13"));
         });
     });
     

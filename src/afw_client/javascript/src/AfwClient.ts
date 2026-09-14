@@ -2,8 +2,6 @@
 import {AfwStreams} from "./AfwStreams";
 import {IPerformPayload, IJSONObject, IJSON} from "./model/types";
 
-import {TextEncoder} from "util";
-
 type AfwClientConfig = {
     url?                : string;           /* The default url for all requests (overridden by individual functions) */
     contentType?        : string;           /* Content-Type for the client request */

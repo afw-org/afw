@@ -1,6 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {fireEvent, render, waitFor, waitForElementToBeRemoved, screen} from "@testing-library/react";
-import {renderHook} from "@testing-library/react-hooks";
+import {act, fireEvent, render, waitFor, waitForElementToBeRemoved, screen, renderHook} from "@testing-library/react";
 import {withProfiler} from "@afw/test";
 
 import {ObjectEditor, ObjectResponsive, useModel} from "@afw/react";
@@ -531,11 +530,15 @@ const Test = (wrapper) => {
                         
             
             const editBtn = screen.getByLabelText("Edit Object");
-            editBtn.click();
+            act(() => {
+                editBtn.click();
+            });
 
-            const cancelBtn = screen.getByLabelText("Cancel");
-            cancelBtn.click();                               
-            
+            const cancelBtn = await screen.findByLabelText("Cancel");
+            act(() => {
+                cancelBtn.click();
+            });
+
             await waitFor(() => expect(screen.getByLabelText("Edit Object")).toBeInTheDocument());
             
         });

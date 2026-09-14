@@ -186,10 +186,10 @@ export const useEventId = ({ object, property, eventId }) => {
                 object.removeEventListener(eventId, onEvent);                
             };
         } else if (property && eventId) {
-            const onEvent = property.addEventListener(eventId, 
-                (event) => { 
-                    if (isMounted()) 
-                        setEvent(event); 
+            const onEvent = property.addEventListener(eventId,
+                (event) => {
+                    if (isMounted())
+                        setEvent(event);
                 }
             );
 

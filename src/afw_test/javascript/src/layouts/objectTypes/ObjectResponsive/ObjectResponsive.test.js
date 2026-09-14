@@ -1,6 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {fireEvent, render, waitFor, screen, act} from "@testing-library/react";
-import {renderHook} from "@testing-library/react-hooks";
+import {fireEvent, render, waitFor, screen, act, renderHook} from "@testing-library/react";
 import {withProfiler} from "@afw/test";
 
 import {ObjectResponsive, useModel} from "@afw/react";
@@ -580,25 +579,23 @@ export const TestBasic = (wrapper) => {
             }
         }
             
-        await act(async() => {
+        act(() => {
             // now, discard the changes
             object.discardChanges();
-
-            await new Promise(resolve => setTimeout(resolve, 2000));
-
-            // verify each property value has been reset
-            for (let [dataType, propertyType] of Object.entries(objectTypeObject.propertyTypes)) {
-                const {label, expectedTestValues} = propertyType;
-
-                // skip certain dataTypes for now 
-                if (dataType === "array" || dataType === "object" || dataType === "time" || dataType === "date" || dataType === "dateTime")
-                    continue;
-                    
-                const input = screen.getByLabelText(label);                                             
-                    
-                await waitFor(() => expect(input.value).toBe(expectedTestValues[0]));                
-            }
         });
+
+        // verify each property value has been reset
+        for (let [dataType, propertyType] of Object.entries(objectTypeObject.propertyTypes)) {
+            const {label, expectedTestValues} = propertyType;
+
+            // skip certain dataTypes for now
+            if (dataType === "array" || dataType === "object" || dataType === "time" || dataType === "date" || dataType === "dateTime")
+                continue;
+
+            const input = screen.getByLabelText(label);
+
+            await waitFor(() => expect(input.value).toBe(expectedTestValues[0]));
+        }
 
     });
         
@@ -630,12 +627,12 @@ export const TestBasic = (wrapper) => {
 
         expect(screen.getByLabelText("prop1").value).toBe("value1");
 
-        await act(async () => {
+        act(() => {
             const property = object.getProperty("prop1");
             property.setName("prop2");
-
-            await waitFor(() => expect(screen.getByLabelText("prop2").value).toBe("value1"));
         });
+
+        await waitFor(() => expect(screen.getByLabelText("prop2").value).toBe("value1"));
 
     });
         
@@ -666,12 +663,12 @@ export const TestBasic = (wrapper) => {
 
         expect(screen.getByLabelText("prop1").value).toBe("value1");
 
-        await act(async () => {
+        act(() => {
             const property = object.getProperty("prop1");
             property.setValue("value2");
-
-            await waitFor(() => expect(screen.getByLabelText("prop1").value).toBe("value2"));
         });
+
+        await waitFor(() => expect(screen.getByLabelText("prop1").value).toBe("value2"));
 
     });
     

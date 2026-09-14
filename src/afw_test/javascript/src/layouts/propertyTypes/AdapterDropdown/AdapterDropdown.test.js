@@ -1,8 +1,8 @@
 // See the 'COPYING' file in the project root for licensing information.
 import React from "react";
 
-import {waitFor, fireEvent, render, screen, act} from "@testing-library/react";
-import {withProfiler} from "@afw/test";
+import {waitFor, render, screen} from "@testing-library/react";
+import {withProfiler, userEvent} from "@afw/test";
 
 import {AdapterDropdown} from "@afw/react";
 
@@ -57,18 +57,18 @@ const Test = (wrapper) => {
         await waitFor(() => expect(screen.getByText("Select an Adapter from the list.")).toBeInTheDocument());   
         await waitFor(() => expect(screen.getByLabelText("Select Adapter")).toHaveTextContent("afw"));  
 
-        await act(async () => {            
-            fireEvent.mouseDown(screen.getByRole("button"));
+        // userEvent (not raw fireEvent/.click()) is what reliably opens/closes
+        // a MUI Select in tests
+        await userEvent.click(screen.getByRole("button"));
 
-            // wait for render with options            
-            await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
+        // wait for render with options
+        await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
 
-            const options = screen.getAllByRole("option");            
-            options[3].click();                    
-            
-            // wait options to disappear
-            await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));
-        });
+        const options = screen.getAllByRole("option");
+        await userEvent.click(options[3]);
+
+        // wait options to disappear
+        await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));
                
         await waitFor(() => expect(onChanged).toHaveBeenCalled());                
 

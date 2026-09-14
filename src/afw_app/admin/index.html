@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      /*
+       *    Workaround a monaco bug that throws an unhandled rejection:
+       *    https://github.com/microsoft/monaco-editor/issues/2382
+       */
+      window.addEventListener("unhandledrejection", function(event) {
+          if (event.reason && event.reason.name === "Canceled") {
+              // monaco editor promise cancellation
+              event.preventDefault();
+              event.stopImmediatePropagation();
+          }
+      });
+    </script>
+    <meta charset="utf-8">
+    <link rel="icon" href="%BASE_URL%favicon.ico" />
+    <meta name="viewport" content="minimum-scale=1, width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+
+    <link rel="manifest" href="%BASE_URL%manifest.json">
+
+    <title>Adaptive Framework Admin</title>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/index.js"></script>
+  </body>
+</html>

@@ -6,4 +6,4 @@
 # create .env
 version=`afwdev --version-string`
 echo "Configuring for version: $version"
-echo "REACT_APP_VERSION=$version" > .env
+echo "VITE_VERSION=$version" > .env

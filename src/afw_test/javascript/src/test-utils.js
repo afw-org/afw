@@ -9,7 +9,6 @@ import {rest} from "msw";
 
 import {server} from "./__mocks__/server";
 import {mswPostCallback, mswGetCallback} from "./__mocks__/handlers";
-import {unstable_trace, unstable_wrap} from "scheduler/tracing";
 
 export const withProfiler = (Component, id = "withProfiler") => {
 
@@ -71,11 +70,15 @@ const toHaveCommittedTimes = (SnapshotProfiler, expectedNumCommits) => {
     expect(SnapshotProfiler.__numCommits).toBe(expectedNumCommits);
 };
 
-export const trace = (msg, func) => {
-    return unstable_trace(msg, performance.now(), func);
-};
+/*
+ * React's experimental interaction-tracing API (scheduler/tracing,
+ * unstable_trace/unstable_wrap) was removed entirely as of React 18 - these
+ * are inert passthroughs kept only for call-site compatibility (neither is
+ * actually called by any test today).
+ */
+export const trace = (msg, func) => func();
 
-export {unstable_wrap as wrap};
+export const wrap = (func) => func;
 
 expect.extend({
     toHaveCommittedTimes,

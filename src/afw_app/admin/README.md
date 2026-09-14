@@ -22,7 +22,9 @@ In order to build the web application, you must have NodeJS and NPM installed on
 
 #### Design
 
-ReactJS is a Javascript-based framework that also supports ES6 (ECMAScript 6).  This app was created using the create-react-app, which handles many of the underlying web packaging complexities for us, such as Babel (a Javascript transpiler), webpack (a bundling tool), along with a default browser service worker in order to create a modern Progressive Web App (PWA).
+ReactJS is a Javascript-based framework that also supports ES6 (ECMAScript 6).  This app is built with [Vite](https://vitejs.dev), which handles the underlying web packaging complexities for us - dev server, esbuild/Rollup-based bundling and transpilation - along with a default browser service worker in order to create a modern Progressive Web App (PWA).
+
+The sibling workspace packages this app depends on (`@afw/client`, `@afw/react`, `@afw/react-material-ui`, `@afw/react-monaco`) are consumed directly as source - they have no separate build step of their own. Vite compiles them as part of this app's own build/dev graph, the same way it compiles the app's own source, so editing a sibling package's source hot-reloads here without a rebuild.
 
 The app itself may be compiled with a prefix (defaulted to "/apps/afw/admin/"), which allows a web server to identify requests for the app to separate it's URI from the RESTful ones provided by the adapters.  Using this prefix, the app leverages React Router to break apart its major layouts into the following URI's:
 
@@ -45,9 +47,7 @@ The directory structure is laid out as follows:
 ```
     |-- public/
     |   |-- favicon.ico
-    |   |-- index.html
     |   |-- manifest.json
-    |   |-- monaco-editor/
     |-- src/
     |   |-- Admin/
     |   |-- App/
@@ -64,13 +64,15 @@ The directory structure is laid out as follows:
     |   |-- test-utils.js
     |   |-- utils.js
     |-- build_app.sh
+    |-- index.html
     |-- package.json    
-    |-- prebuild.sh
     |-- prestart.sh
+    |-- vite.config.js
+    |-- vitest.config.js
 ```
 
 * public
-  * Once bundled, the public directory contains any static assets used by the app, including its main index.html from which to launch.
+  * Static assets Vite copies through to the build output unmodified (favicon, manifest, PWA icons). The app's `index.html` entry point lives at the package root, not here (Vite's convention).
 * src
   * Admin
   * App
@@ -84,8 +86,14 @@ The directory structure is laid out as follows:
   * Tools
 * build_app.sh
   * shell script to build the application.
+* index.html
+  * The app's entry point (Vite convention - references `src/index.js` directly via a `<script type="module">` tag).
 * package.json
   * Configuration file for the app, specifying all required dependencies and build/test/run targets.
+* vite.config.js
+  * Vite's dev server / production build configuration.
+* vitest.config.js
+  * Test-only configuration, kept separate from vite.config.js so build-time-only plugins (Monaco's worker bundling) aren't pulled into test runs.
 
 
 ### Building
