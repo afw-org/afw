@@ -195,7 +195,7 @@ afw_function_execute_bag(
 
     array = (const afw_value_array_t *)
         afw_xctx_scope_get_assignable_for_scope_lifetime(
-            afw_array_create_managed(x->data_type, x->xctx)->value,
+            afw_array_create_managed(x->data_type, x->p, x->xctx)->value,
             x->xctx);
 
     for (i = 1; i <= x->argc; i++) {
@@ -1062,7 +1062,7 @@ afw_function_execute_intersection(
     }
     result = (const afw_value_array_t *)
         afw_xctx_scope_get_assignable_for_scope_lifetime(
-            afw_array_create_managed(data_type, x->xctx)->value,
+            afw_array_create_managed(data_type, x->p, x->xctx)->value,
             x->xctx);
 
     for (iterator = NULL;;) {
@@ -2298,7 +2298,7 @@ afw_function_execute_split(
     }
 
     result = afw_xctx_scope_get_assignable_for_scope_lifetime(
-        afw_array_create_managed(afw_data_type_string, x->xctx)->value,
+        afw_array_create_managed(afw_data_type_string, x->p, x->xctx)->value,
         x->xctx);
     array = ((const afw_value_array_t *)result)->internal;
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
@@ -2670,7 +2670,7 @@ afw_function_execute_union(
 
     result = (const afw_value_array_t *)
         afw_xctx_scope_get_assignable_for_scope_lifetime(
-            afw_array_create_managed(data_type, x->xctx)->value,
+            afw_array_create_managed(data_type, x->p, x->xctx)->value,
             x->xctx);
     impl_add_nondups_to_array(data_type, array1->internal,
         result->internal, x->xctx);

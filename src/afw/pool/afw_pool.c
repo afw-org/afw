@@ -356,7 +356,26 @@ impl_same_chunk(afw_pool_internal_self_t *heap, void *a, void *b)
 
 
 static afw_size_t
-impl_chunk_need(afw_size_t min_payload)
+impl_normalize_chunk_min(afw_size_t chunk_min)
+{
+    afw_size_t rest;
+
+    if (chunk_min == 0) {
+        return AFW_POOL_CHUNK_MIN;
+    }
+    if (chunk_min < AFW_POOL_CHUNK_ALIGN) {
+        return AFW_POOL_CHUNK_ALIGN;
+    }
+    rest = chunk_min & (AFW_POOL_CHUNK_ALIGN - 1);
+    if (rest) {
+        chunk_min += AFW_POOL_CHUNK_ALIGN - rest;
+    }
+    return chunk_min;
+}
+
+
+static afw_size_t
+impl_chunk_need(afw_size_t min_payload, afw_size_t chunk_min)
 {
     afw_size_t header;
     afw_size_t need;
@@ -367,8 +386,8 @@ impl_chunk_need(afw_size_t min_payload)
         return 0;
     }
     need = header + min_payload;
-    if (need < AFW_POOL_CHUNK_MIN) {
-        need = AFW_POOL_CHUNK_MIN;
+    if (need < chunk_min) {
+        need = chunk_min;
     }
     /* Whole pages so posix_memalign 4k alignment is legal. */
     rem = need & (AFW_POOL_CHUNK_ALIGN - 1);
@@ -383,14 +402,14 @@ impl_chunk_need(afw_size_t min_payload)
 
 
 static afw_pool_chunk_t *
-impl_chunk_malloc(afw_size_t min_payload)
+impl_chunk_malloc(afw_size_t min_payload, afw_size_t chunk_min)
 {
     afw_size_t need;
     void *mem;
     afw_pool_chunk_t *chunk;
     int rv;
 
-    need = impl_chunk_need(min_payload);
+    need = impl_chunk_need(min_payload, chunk_min);
     if (need == 0) {
         return NULL;
     }
@@ -407,7 +426,7 @@ impl_chunk_malloc(afw_size_t min_payload)
 
 
 static afw_pool_internal_self_t *
-impl_heap_allocate_self(const afw_pool_inf_t *inf)
+impl_heap_allocate_self(const afw_pool_inf_t *inf, afw_size_t chunk_min)
 {
     afw_size_t self_bytes;
     afw_pool_chunk_t *chunk;
@@ -416,9 +435,10 @@ impl_heap_allocate_self(const afw_pool_inf_t *inf)
     char *usable;
     char *after_self;
 
+    chunk_min = impl_normalize_chunk_min(chunk_min);
     self_bytes = AFW_POOL_ALIGN_UP(
         sizeof(afw_pool_internal_self_with_free_memory_head_t));
-    chunk = impl_chunk_malloc(self_bytes);
+    chunk = impl_chunk_malloc(self_bytes, chunk_min);
     if (!chunk) {
         return NULL;
     }
@@ -432,6 +452,7 @@ impl_heap_allocate_self(const afw_pool_inf_t *inf)
     self->current_chunk = chunk;
     self->chunk_count = 1;
     self->chunk_bytes = chunk->size;
+    self->chunk_min = chunk_min;
     after_self = usable + self_bytes;
     self->bump = after_self;
     self->remaining = (afw_size_t)(impl_chunk_end(chunk) - after_self);
@@ -516,12 +537,13 @@ static afw_pool_internal_self_t *
 impl_heap_create(
     const afw_pool_t *afw_parent,
     const afw_pool_inf_t *inf,
+    afw_size_t chunk_min,
     afw_xctx_t *xctx)
 {
     afw_pool_internal_self_t *self;
     afw_pool_internal_self_t *parent_self;
 
-    self = impl_heap_allocate_self(inf);
+    self = impl_heap_allocate_self(inf, chunk_min);
     if (!self) {
         AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
     }
@@ -770,7 +792,7 @@ impl_heap_take_from_free_list_or_chunk(
     heap->bump = NULL;
     heap->remaining = 0;
 
-    chunk = impl_chunk_malloc(total);
+    chunk = impl_chunk_malloc(total, heap->chunk_min);
     if (!chunk) {
         if (unhandled) {
             return NULL;
@@ -1760,6 +1782,7 @@ AFW_DEFINE(const afw_pool_t *)
 afw_pool_internal_heap_create(
     const afw_pool_t *parent,
     afw_boolean_t multithreaded,
+    afw_size_t chunk_min,
     afw_xctx_t *xctx)
 {
     AFW_POOL_SELF_T *self;
@@ -1772,7 +1795,7 @@ afw_pool_internal_heap_create(
     inf = multithreaded
         ? &impl_afw_pool_heap_multithreaded_inf
         : &impl_afw_pool_inf;
-    self = impl_heap_create(parent, inf, xctx);
+    self = impl_heap_create(parent, inf, chunk_min, xctx);
     if (multithreaded) {
         self->thread = NULL;
     }
@@ -1781,13 +1804,15 @@ afw_pool_internal_heap_create(
 
 
 AFW_DEFINE(const afw_pool_t *)
-afw_pool_create_xctx_p(
-    const afw_pool_t *parent, afw_xctx_t *xctx)
+afw_pool_heap_create(
+    const afw_pool_t *parent,
+    afw_size_t chunk_min,
+    afw_xctx_t *xctx)
 {
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
-    return afw_pool_internal_heap_create(parent, false, xctx);
+    return afw_pool_internal_heap_create(parent, false, chunk_min, xctx);
 }
 
 
@@ -1831,7 +1856,8 @@ afw_pool_internal_create_base_pool()
 {
     afw_pool_internal_self_t *self;
 
-    self = impl_heap_allocate_self(&impl_afw_pool_heap_multithreaded_inf);
+    self = impl_heap_allocate_self(
+        &impl_afw_pool_heap_multithreaded_inf, 0);
     if (!self) {
         return NULL;
     }
@@ -1856,7 +1882,7 @@ afw_pool_thread_create(
         size = sizeof(afw_thread_t);
     }
 
-    p = afw_pool_create_xctx_p(xctx->p, xctx);
+    p = afw_pool_heap_create(xctx->p, 0, xctx);
     self = (AFW_POOL_SELF_T *)p;
     thread = afw_pool_calloc(p, size, xctx);
     self->thread = thread;
@@ -1950,7 +1976,7 @@ afw_pool_create(
     {
         return afw_pool_tracker_create(parent, xctx);
     }
-    return afw_pool_internal_heap_create(parent, true, xctx);
+    return afw_pool_internal_heap_create(parent, true, 0, xctx);
 }
 
 
@@ -1959,8 +1985,6 @@ afw_pool_multithread_create(
     const afw_pool_t *parent,
     afw_xctx_t *xctx)
 {
-    const afw_pool_t *p;
-
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
@@ -1970,9 +1994,7 @@ afw_pool_multithread_create(
             "multithreaded heap",
             xctx);
     }
-    p = afw_pool_internal_heap_create(parent, true, xctx);
-    ((afw_pool_t *)p)->managed_p = p;
-    return p;
+    return afw_pool_internal_heap_create(parent, true, 0, xctx);
 }
 
 

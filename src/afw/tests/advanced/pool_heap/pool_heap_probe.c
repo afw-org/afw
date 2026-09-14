@@ -122,7 +122,7 @@ impl_heap_malloc_free(afw_xctx_t *xctx)
     afw_size_t before;
     afw_size_t after_alloc;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     before = impl_in_use(xctx);
 
     a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
@@ -174,7 +174,7 @@ impl_tracker_malloc(afw_xctx_t *xctx)
     afw_size_t before;
     afw_size_t after_alloc;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     tracker = afw_pool_tracker_create(heap, xctx);
     self = impl_self(tracker);
     before = impl_in_use(xctx);
@@ -231,7 +231,7 @@ impl_tracker_optional_free(afw_xctx_t *xctx)
     void *b;
     afw_size_t before;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     tracker = afw_pool_tracker_create(heap, xctx);
     self = impl_self(tracker);
     before = impl_in_use(xctx);
@@ -277,7 +277,7 @@ impl_tracker_last_release(afw_xctx_t *xctx)
     void *b;
     afw_size_t before;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     parent_tracker = afw_pool_tracker_create(heap, xctx);
     before = impl_in_use(xctx);
     child_tracker = afw_pool_tracker_create(heap, xctx);
@@ -320,7 +320,7 @@ impl_tracker_header(afw_xctx_t *xctx)
     afw_size_t before;
     void *a;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     heap_self = impl_self(heap);
     before = impl_in_use(xctx);
 
@@ -372,7 +372,7 @@ impl_mixed_sizes(afw_xctx_t *xctx)
     void *large_b;
 
     /* Separate heaps so leftover 32 does not combine with 200. */
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     small_a = afw_pool_malloc(heap, IMPL_SIZE_SMALL, xctx);
     memset(small_a, 0x11, IMPL_SIZE_SMALL);
     afw_pool_free_memory(heap, small_a, IMPL_SIZE_SMALL, xctx);
@@ -383,7 +383,7 @@ impl_mixed_sizes(afw_xctx_t *xctx)
     afw_pool_free_memory(heap, small_b, IMPL_SIZE_SMALL, xctx);
     afw_pool_release(heap, xctx);
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     large_a = afw_pool_malloc(heap, IMPL_SIZE_LARGE, xctx);
     memset(large_a, 0x22, IMPL_SIZE_LARGE);
     afw_pool_free_memory(heap, large_a, IMPL_SIZE_LARGE, xctx);
@@ -409,7 +409,7 @@ impl_heap_whole_block(afw_xctx_t *xctx)
     void *b;
     void *c;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
     memset(a, 0x41, IMPL_SIZE_MEDIUM);
     afw_pool_free_memory(heap, a, IMPL_SIZE_MEDIUM, xctx);
@@ -492,7 +492,7 @@ impl_create_child_of_heap(afw_xctx_t *xctx)
     void *b;
     afw_size_t before;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     child = afw_pool_create(heap, xctx);
     if (!afw_pool_internal_is_tracker(child)) {
         return impl_fail("create_child_of_heap",
@@ -540,8 +540,8 @@ impl_leftover_child_heap(afw_xctx_t *xctx)
     int child_cleanup;
     int tracker_cleanup;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
-    child = afw_pool_create_xctx_p(heap, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
+    child = afw_pool_heap_create(heap, 0, xctx);
     tracker = afw_pool_tracker_create(child, xctx);
     child_cleanup = 0;
     tracker_cleanup = 0;
@@ -572,7 +572,7 @@ impl_debug_free_wrong_size(afw_xctx_t *xctx)
     int threw;
     int unexpected;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
     threw = 0;
     unexpected = 0;
@@ -614,7 +614,7 @@ impl_debug_free_wrong_pool(afw_xctx_t *xctx)
     int threw;
     int unexpected;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     tracker = afw_pool_tracker_create(heap, xctx);
     a = afw_pool_malloc(tracker, IMPL_SIZE_MEDIUM, xctx);
     threw = 0;
@@ -656,7 +656,7 @@ impl_debug_free_poisons_user(afw_xctx_t *xctx)
     void *a;
     afw_size_t i;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
     memset(a, 0x11, IMPL_SIZE_MEDIUM);
     afw_pool_free_memory(heap, a, IMPL_SIZE_MEDIUM, xctx);
@@ -681,7 +681,7 @@ impl_double_free_throws(afw_xctx_t *xctx)
     int threw;
     int unexpected;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
     memset(a, 0x77, IMPL_SIZE_MEDIUM);
     afw_pool_free_memory(heap, a, IMPL_SIZE_MEDIUM, xctx);
@@ -732,7 +732,7 @@ impl_unhandled_alloc(afw_xctx_t *xctx)
     afw_size_t before;
     afw_size_t after_alloc;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     before = impl_in_use(xctx);
 
     a = afw_pool_calloc_unhandled(heap, IMPL_SIZE_MEDIUM, xctx);
@@ -786,7 +786,7 @@ impl_heap_chunks(afw_xctx_t *xctx)
     afw_size_t n;
     afw_size_t before;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     heap_self = impl_self(heap);
     n = 0;
     for (chunk = heap_self->first_chunk; chunk; chunk = chunk->next) {
@@ -855,7 +855,7 @@ impl_deregister_cleanup(afw_xctx_t *xctx)
     void *entry;
     void *again;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     tracker = afw_pool_tracker_create(heap, xctx);
     self = impl_self(tracker);
 
@@ -902,7 +902,7 @@ impl_nonadjacent_reuse(afw_xctx_t *xctx)
     void *d;
     void *e;
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
     b = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
     c = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
@@ -1008,7 +1008,7 @@ impl_for_clone_churn(afw_xctx_t *xctx)
     afw_size_t small_size;
     static const afw_size_t small_sizes[] = { 16, 24, 32, 40, 48 };
 
-    heap = afw_pool_create_xctx_p(xctx->p, xctx);
+    heap = afw_pool_heap_create(xctx->p, 0, xctx);
     heap_self = impl_self(heap);
     signal(SIGALRM, impl_churn_alarm);
     alarm(15);

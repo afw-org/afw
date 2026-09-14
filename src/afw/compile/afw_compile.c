@@ -325,7 +325,8 @@ afw_compile_to_object(
     const afw_pool_t *parser_p;
 
     /* Create parser. */
-    parser_p = (cede_p) ? p : afw_pool_create_xctx_p(p, xctx);
+    parser_p = (cede_p) ? p : afw_pool_heap_create(p,
+        AFW_POOL_CHUNK_ALIGN, xctx);
 
     if ((adapter_id || object_type_id || object_id) &&
         (!adapter_id || !object_type_id || !object_id))

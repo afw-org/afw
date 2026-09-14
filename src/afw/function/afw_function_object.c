@@ -556,7 +556,7 @@ afw_function_execute_entries(
 
     result = (const afw_value_array_t *)
         afw_xctx_scope_get_assignable_for_scope_lifetime(
-            afw_array_create_managed(NULL, x->xctx)->value,
+            afw_array_create_managed(NULL, x->p, x->xctx)->value,
             x->xctx);
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(
@@ -567,7 +567,7 @@ afw_function_execute_entries(
         name_value = property_name;
         pair = ((const afw_value_array_t *)
             afw_xctx_scope_get_assignable_for_scope_lifetime(
-                afw_array_create_managed(NULL, x->xctx)->value,
+                afw_array_create_managed(NULL, x->p, x->xctx)->value,
                 x->xctx))->internal;
         afw_array_push_value(pair, name_value, x->xctx);
         afw_array_push_value(pair, value, x->xctx);
@@ -623,7 +623,7 @@ afw_function_execute_keys(
 
     result = (const afw_value_array_t *)
         afw_xctx_scope_get_assignable_for_scope_lifetime(
-            afw_array_create_managed(afw_data_type_string, x->xctx)->value,
+            afw_array_create_managed(afw_data_type_string, x->p, x->xctx)->value,
             x->xctx);
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(
@@ -685,7 +685,7 @@ afw_function_execute_values(
 
     result = (const afw_value_array_t *)
         afw_xctx_scope_get_assignable_for_scope_lifetime(
-            afw_array_create_managed(NULL, x->xctx)->value,
+            afw_array_create_managed(NULL, x->p, x->xctx)->value,
             x->xctx);
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(

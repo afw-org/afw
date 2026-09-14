@@ -451,7 +451,7 @@ afw_function_execute_reverse(
     data_type = afw_array_get_data_type(array->internal, x->xctx);
     result = (const afw_value_array_t *)
         afw_xctx_scope_get_assignable_for_scope_lifetime(
-            afw_array_create_managed(data_type, x->xctx)->value,
+            afw_array_create_managed(data_type, x->p, x->xctx)->value,
             x->xctx);
     setter = afw_array_get_setter(result->internal, x->xctx);
     for (iterator = NULL;;) {
@@ -554,7 +554,7 @@ afw_function_execute_slice(
     data_type = afw_array_get_data_type(array->internal, x->xctx);
     result = (const afw_value_array_t *)
         afw_xctx_scope_get_assignable_for_scope_lifetime(
-            afw_array_create_managed(data_type, x->xctx)->value,
+            afw_array_create_managed(data_type, x->p, x->xctx)->value,
             x->xctx);
     for (iterator = NULL, count = 0; count < end; count++) {
         value = afw_array_get_next_value(array->internal, &iterator, x->xctx);
@@ -860,7 +860,7 @@ afw_function_execute_splice(
 
     removed = ((const afw_value_array_t *)
         afw_xctx_scope_get_assignable_for_scope_lifetime(
-            afw_array_create_managed(NULL, x->xctx)->value,
+            afw_array_create_managed(NULL, x->p, x->xctx)->value,
             x->xctx))->internal;
     for (i = 0; i < delete_count; i++) {
         value = afw_array_get_entry_value(array->internal, start, x->xctx);

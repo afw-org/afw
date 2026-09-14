@@ -63,8 +63,9 @@ afw_array_create_with_options(
 
 
 /**
- * @brief Create a managed memory array in xctx->p.
+ * @brief Create a managed memory array in p->managed_p.
  * @param data_type if array only holds one data type or NULL.
+ * @param p evaluation pool (job heap is p->managed_p).
  * @param xctx of caller.
  * @return instance (reference count 1).
  *
@@ -87,11 +88,12 @@ afw_array_create_with_options(
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed(
     const afw_data_type_t *data_type,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
 /**
- * @brief Managed clone of an existing array into xctx->p.
+ * @brief Managed clone of an existing array into p->managed_p.
  * @param from array to copy elements from.
  * @param xctx of caller.
  * @return managed array, or from if already this implementation.
@@ -106,7 +108,7 @@ afw_array_create_managed_clone(
 
 
 /**
- * @brief True if array is the new managed memory bag (xctx->p, slots).
+ * @brief True if array is the new managed memory bag (p->managed_p, slots).
  */
 AFW_DECLARE(afw_boolean_t)
 afw_array_is_memory_managed(const afw_array_t *array);

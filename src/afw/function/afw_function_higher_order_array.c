@@ -659,7 +659,7 @@ afw_function_execute_filter(
 
     result = (const afw_value_array_t *)
         afw_xctx_scope_get_assignable_for_scope_lifetime(
-            afw_array_create_managed(NULL, x->xctx)->value,
+            afw_array_create_managed(NULL, x->p, x->xctx)->value,
             x->xctx);
     data.filtered_array = result->internal;
     impl_over_array(x, impl_filter_cb, (void *)&data);
@@ -825,7 +825,7 @@ afw_function_execute_map(
 
     result = (const afw_value_array_t *)
         afw_xctx_scope_get_assignable_for_scope_lifetime(
-            afw_array_create_managed(NULL, x->xctx)->value,
+            afw_array_create_managed(NULL, x->p, x->xctx)->value,
             x->xctx);
     data.mapped_array = result->internal;
     impl_over_array(x, impl_map_cb, (void *)&data);
@@ -1092,7 +1092,7 @@ afw_function_execute_sort(
     /* Return sorted array. */
     result = (const afw_value_array_t *)
         afw_xctx_scope_get_assignable_for_scope_lifetime(
-            afw_array_create_managed(data_type, ctx.xctx)->value,
+            afw_array_create_managed(data_type, ctx.p, ctx.xctx)->value,
             ctx.xctx);
     for (i = 0; i < ctx.count; i++) {
         afw_array_push_value(result->internal, ctx.values[i], ctx.xctx);

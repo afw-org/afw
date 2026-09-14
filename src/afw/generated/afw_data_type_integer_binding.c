@@ -370,7 +370,7 @@ afw_value_integer_create_managed(
 {
     afw_value_integer_managed_t *v;
 
-    v = afw_pool_calloc(xctx->p,
+    v = afw_pool_calloc(xctx->p->managed_p,
         sizeof(afw_value_integer_managed_t), xctx);
     v->inf = &afw_value_managed_integer_inf;
     v->internal = internal;
@@ -576,7 +576,7 @@ impl_afw_value_managed_optional_release(
     }
     self->reference_count--;
     if (self->reference_count == 0) {
-        afw_pool_free_memory(xctx->p, self,
+        afw_pool_free_memory(xctx->p->managed_p, self,
             sizeof(afw_value_integer_managed_t), xctx);
     }
 }

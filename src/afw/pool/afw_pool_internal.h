@@ -183,6 +183,11 @@ struct afw_pool_internal_self_s {
      */
     afw_size_t chunk_count;
 
+    /**
+     * @brief Minimum posix_memalign size for this heap (0 = default).
+     */
+    afw_size_t chunk_min;
+
     /** @brief Optional pool name. */
     const afw_utf8_t *name;
 
@@ -279,6 +284,7 @@ AFW_DECLARE(const afw_pool_t *)
 afw_pool_internal_heap_create(
     const afw_pool_t *parent,
     afw_boolean_t multithreaded,
+    afw_size_t chunk_min,
     afw_xctx_t *xctx);
 
 extern void

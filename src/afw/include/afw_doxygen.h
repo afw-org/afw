@@ -62,7 +62,7 @@
  *
  * Adaptive Framework hierarchical memory pools.
  *
- * One ST heap per xctx (`afw_pool_create_xctx_p`). `afw_pool_create()`
+ * One ST heap per xctx (`afw_pool_heap_create`). `afw_pool_create()`
  * of a ST parent is a tracker; of an MT parent, an MT heap.
  * `afw_pool_multithread_create(env->p)` for conf/server/log/adapter.
  * Trackers are scope->p and return memory to the ancestor heap.
@@ -70,8 +70,8 @@
  * The heap store is 64k-min, 4k-aligned chunks; destroy free()s the
  * list.
  *
- * Key functions: afw_pool_create(), afw_pool_multithread_create(),
- * afw_pool_create_as_managed_p(), afw_pool_create_xctx_p(),
+ * Key functions: afw_pool_create(), afw_pool_heap_create(),
+ * afw_pool_multithread_create(), afw_pool_create_as_managed_p(),
  * afw_pool_tracker_create(),
  * afw_pool_calloc(), afw_pool_malloc(),
  * afw_pool_calloc_unhandled(), afw_pool_malloc_unhandled(),

@@ -374,7 +374,7 @@ afw_value_base64Binary_create_managed(
     afw_size_t size;
 
     size = (internal) ? internal->size : 0;
-    v = afw_pool_calloc(xctx->p,
+    v = afw_pool_calloc(xctx->p->managed_p,
         sizeof(afw_value_base64Binary_managed_t) + size, xctx);
     v->inf = &afw_value_managed_base64Binary_inf;
     v->internal.size = (internal) ? internal->size : 0;
@@ -424,7 +424,7 @@ afw_value_base64Binary_create_managed_slice(
         AFW_THROW_ERROR_Z(general,
             "managed slice offset/size out of range", xctx);
     }
-    v = afw_pool_calloc(xctx->p, sizeof(afw_value_base64Binary_managed_slice_t), xctx);
+    v = afw_pool_calloc(xctx->p->managed_p, sizeof(afw_value_base64Binary_managed_slice_t), xctx);
     v->inf = &afw_value_managed_slice_base64Binary_inf;
     v->internal.ptr = base->ptr + offset;
     v->internal.size = size;
@@ -613,7 +613,7 @@ impl_afw_value_managed_optional_release(
     }
     self->reference_count--;
     if (self->reference_count == 0) {
-        afw_pool_free_memory(xctx->p, self,
+        afw_pool_free_memory(xctx->p->managed_p, self,
             sizeof(afw_value_base64Binary_managed_t) + self->internal.size, xctx);
     }
 }
@@ -686,7 +686,7 @@ impl_afw_value_managed_slice_optional_release(
         if (self->containing_value) {
             afw_value_release(&self->containing_value->pub, xctx);
         }
-        afw_pool_free_memory(xctx->p, self,
+        afw_pool_free_memory(xctx->p->managed_p, self,
             sizeof(afw_value_base64Binary_managed_slice_t), xctx);
     }
 }

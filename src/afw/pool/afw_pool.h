@@ -30,13 +30,17 @@
  * - Parent/child is lifetime only (last-release throws if children
  *   remain). Store is the ancestor heap. Trackers may parent other
  *   trackers.
- * - One ST heap per xctx (`afw_pool_create_xctx_p`). Scope trackers
+ * - One ST heap per xctx (`afw_pool_heap_create`). Scope trackers
  *   parent that heap, not the enclosing `{ }`. Closures pin the
  *   inner tracker; the xctx heap outlives the outer `{ }`.
  * - `afw_pool_create()` of a ST parent (xctx->p or tracker) is a
  *   tracker. Of an MT parent, an MT heap. `env->p` is the process
  *   MT heap. Things you start (conf, server, log, adapter) use
- *   `afw_pool_multithread_create(env->p)`.
+ *   `afw_pool_multithread_create(env->p)`. Compile units use
+ *   `afw_pool_heap_create` (own chunks; optional smaller chunk_min).
+ * - Managed values allocate in `p->managed_p` (job heap for this
+ *   evaluation). Do not change managed_p mid-eval. Request xctx:
+ *   `xctx->p->managed_p` is `xctx->p`.
  * - Two numbers: asked-for (`bytes_allocated` /
  *   `env->pool_bytes_in_use`) vs chunks (`chunk_bytes` /
  *   `env->pool_chunk_bytes`). Env also keeps high-water
@@ -94,13 +98,30 @@ struct afw_pool_cleanup_s {
  * Tracker if the parent is a single-thread heap or a tracker.
  * Multithreaded heap if the parent is multithreaded.
  *
- * env->p is a multithreaded heap. xctx->p is always a single-thread
- * heap (see afw_pool_create_xctx_p()). Thread-specific heaps are not
- * safe from another thread.
+ * env->p is a multithreaded heap. xctx->p is a single-thread heap
+ * (`afw_pool_heap_create`). Thread-specific heaps are not safe from
+ * another thread.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create(
     const afw_pool_t *parent,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create a single-thread heap (managed_p = self).
+ * @param parent of new pool (may be multithreaded env/base).
+ * @param chunk_min minimum posix_memalign size; 0 = default (64k).
+ * @param xctx of caller.
+ * @return new pool.
+ *
+ * Own chunks. xctx->p and compile units use this. afw_pool_create()
+ * of the result is a tracker.
+ */
+AFW_DECLARE(const afw_pool_t *)
+afw_pool_heap_create(
+    const afw_pool_t *parent,
+    afw_size_t chunk_min,
     afw_xctx_t *xctx);
 
 
@@ -126,26 +147,10 @@ afw_pool_multithread_create(
  * @return new pool.
  *
  * Same as afw_pool_create() then p->managed_p = p. Prefer
- * afw_pool_multithread_create() for factory/conf instance pools.
- * For xctx->p use afw_pool_create_xctx_p().
+ * afw_pool_multithread_create() / afw_pool_heap_create().
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create_as_managed_p(
-    const afw_pool_t *parent,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Create xctx->p (managed_p = self, always single-threaded).
- * @param parent of new pool (may be multithreaded env/base).
- * @param xctx of caller.
- * @return new pool.
- *
- * An xctx is one thread's work. This is the only single-thread heap
- * factory. afw_pool_create() of xctx->p is a tracker.
- */
-AFW_DECLARE(const afw_pool_t *)
-afw_pool_create_xctx_p(
     const afw_pool_t *parent,
     afw_xctx_t *xctx);
 

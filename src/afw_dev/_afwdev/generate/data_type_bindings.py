@@ -1579,7 +1579,7 @@ def write_c_section(fd, prefix, obj):
                 fd.write('    afw_size_t len;\n')
                 fd.write('\n')
                 fd.write('    len = (internal) ? internal->len : 0;\n')
-                fd.write('    v = afw_pool_calloc(xctx->p,\n')
+                fd.write('    v = afw_pool_calloc(xctx->p->managed_p,\n')
                 fd.write('        sizeof(afw_value_' + id +
                          '_managed_t) + len, xctx);\n')
                 fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
@@ -1594,7 +1594,7 @@ def write_c_section(fd, prefix, obj):
                 fd.write('    afw_size_t size;\n')
                 fd.write('\n')
                 fd.write('    size = (internal) ? internal->size : 0;\n')
-                fd.write('    v = afw_pool_calloc(xctx->p,\n')
+                fd.write('    v = afw_pool_calloc(xctx->p->managed_p,\n')
                 fd.write('        sizeof(afw_value_' + id +
                          '_managed_t) + size, xctx);\n')
                 fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
@@ -1628,7 +1628,7 @@ def write_c_section(fd, prefix, obj):
                     fd.write('            xctx);\n')
                     fd.write('    }\n')
                 if _scalar_holdable_create(id):
-                    fd.write('    v = afw_pool_calloc(xctx->p,\n')
+                    fd.write('    v = afw_pool_calloc(xctx->p->managed_p,\n')
                     fd.write('        sizeof(afw_value_' + id +
                              '_managed_t), xctx);\n')
                 else:
@@ -1643,7 +1643,7 @@ def write_c_section(fd, prefix, obj):
             else:
                 fd.write('\n')
                 if _scalar_holdable_create(id):
-                    fd.write('    v = afw_pool_calloc(xctx->p,\n')
+                    fd.write('    v = afw_pool_calloc(xctx->p->managed_p,\n')
                     fd.write('        sizeof(afw_value_' + id +
                              '_managed_t), xctx);\n')
                 else:
@@ -1698,7 +1698,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('        AFW_THROW_ERROR_Z(general,\n')
             fd.write('            "managed slice offset/len out of range", xctx);\n')
             fd.write('    }\n')
-            fd.write('    v = afw_pool_calloc(xctx->p, sizeof(afw_value_' + id +
+            fd.write('    v = afw_pool_calloc(xctx->p->managed_p, sizeof(afw_value_' + id +
                      '_managed_slice_t), xctx);\n')
             fd.write('    v->inf = &afw_value_managed_slice_' + id + '_inf;\n')
             fd.write('    v->internal.s = base->s + offset;\n')
@@ -1745,7 +1745,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('        AFW_THROW_ERROR_Z(general,\n')
             fd.write('            "managed slice offset/size out of range", xctx);\n')
             fd.write('    }\n')
-            fd.write('    v = afw_pool_calloc(xctx->p, sizeof(afw_value_' + id +
+            fd.write('    v = afw_pool_calloc(xctx->p->managed_p, sizeof(afw_value_' + id +
                      '_managed_slice_t), xctx);\n')
             fd.write('    v->inf = &afw_value_managed_slice_' + id + '_inf;\n')
             fd.write('    v->internal.ptr = base->ptr + offset;\n')
@@ -2128,7 +2128,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('    self->reference_count--;\n')
             if _scalar_holdable_create(id):
                 fd.write('    if (self->reference_count == 0) {\n')
-                fd.write('        afw_pool_free_memory(xctx->p, self,\n')
+                fd.write('        afw_pool_free_memory(xctx->p->managed_p, self,\n')
                 fd.write('            ' + _managed_free_size_expr(id, ctype) +
                          ', xctx);\n')
                 fd.write('    }\n')
@@ -2395,7 +2395,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('        if (self->containing_value) {\n')
             fd.write('            afw_value_release(&self->containing_value->pub, xctx);\n')
             fd.write('        }\n')
-            fd.write('        afw_pool_free_memory(xctx->p, self,\n')
+            fd.write('        afw_pool_free_memory(xctx->p->managed_p, self,\n')
             fd.write('            sizeof(afw_value_' + id +
                      '_managed_slice_t), xctx);\n')
             fd.write('    }\n')
