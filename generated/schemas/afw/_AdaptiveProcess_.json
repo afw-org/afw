@@ -62,8 +62,8 @@
                     "type": "integer"
                 },
                 "limitRequestPoolBytes": {
-                    "description": "Tripwire against request-thread ST asked-for bytes, not process poolBytesInUse and not the CLI base thread. 0 = unlimited.",
-                    "markdownDescription": "**Limit Request Pool Bytes**\n\nTripwire against request-thread ST asked-for bytes, not process poolBytesInUse and not the CLI base thread. 0 = unlimited.",
+                    "description": "Tripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
+                    "markdownDescription": "**Limit Request Pool Bytes**\n\nTripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
                     "title": "Limit Request Pool Bytes",
                     "type": "integer"
                 },
@@ -177,8 +177,8 @@
                     "type": "integer"
                 },
                 "limitRequestPoolBytes": {
-                    "description": "Tripwire against request-thread ST asked-for bytes, not process poolBytesInUse and not the CLI base thread. 0 = unlimited.",
-                    "markdownDescription": "**Limit Request Pool Bytes**\n\nTripwire against request-thread ST asked-for bytes, not process poolBytesInUse and not the CLI base thread. 0 = unlimited.",
+                    "description": "Tripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
+                    "markdownDescription": "**Limit Request Pool Bytes**\n\nTripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
                     "title": "Limit Request Pool Bytes",
                     "type": "integer"
                 },
@@ -302,8 +302,8 @@
             "type": "integer"
         },
         "limitRequestPoolBytes": {
-            "description": "Tripwire against request-thread ST asked-for bytes, not process poolBytesInUse and not the CLI base thread. 0 = unlimited.",
-            "markdownDescription": "**Limit Request Pool Bytes**\n\nTripwire against request-thread ST asked-for bytes, not process poolBytesInUse and not the CLI base thread. 0 = unlimited.",
+            "description": "Tripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
+            "markdownDescription": "**Limit Request Pool Bytes**\n\nTripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
             "title": "Limit Request Pool Bytes",
             "type": "integer"
         },

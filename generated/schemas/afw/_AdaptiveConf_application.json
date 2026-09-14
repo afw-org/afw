@@ -134,6 +134,18 @@
                     "title": "Authorization",
                     "type": "object"
                 },
+                "chunkMin": {
+                    "description": "Optional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "markdownDescription": "**Chunk Min**\n\nOptional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "title": "Chunk Min",
+                    "type": "integer"
+                },
+                "compileChunkMin": {
+                    "description": "Optional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "markdownDescription": "**Compile Chunk Min**\n\nOptional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "title": "Compile Chunk Min",
+                    "type": "integer"
+                },
                 "confAdapterId": {
                     "description": "This is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
                     "markdownDescription": "**Conf Adapter**\n\nThis is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
@@ -201,6 +213,24 @@
                     "markdownDescription": "**Layouts Adapter**\n\nThis is the adapterId that locates Adaptive Layout Component objects.",
                     "title": "Layouts Adapter",
                     "type": "string"
+                },
+                "limitCStackHeadroomBytes": {
+                    "description": "Optional. If present, overrides process limitCStackHeadroomBytes. 0 = unlimited.",
+                    "markdownDescription": "**Limit C Stack Headroom Bytes**\n\nOptional. If present, overrides process limitCStackHeadroomBytes. 0 = unlimited.",
+                    "title": "Limit C Stack Headroom Bytes",
+                    "type": "integer"
+                },
+                "limitEvaluationStackCount": {
+                    "description": "Optional. If present, overrides process limitEvaluationStackCount for xctx created after this conf is processed. 0 = unlimited.",
+                    "markdownDescription": "**Limit Evaluation Stack Count**\n\nOptional. If present, overrides process limitEvaluationStackCount for xctx created after this conf is processed. 0 = unlimited.",
+                    "title": "Limit Evaluation Stack Count",
+                    "type": "integer"
+                },
+                "limitRequestPoolBytes": {
+                    "description": "Optional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited.",
+                    "markdownDescription": "**Limit Request Pool Bytes**\n\nOptional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited.",
+                    "title": "Limit Request Pool Bytes",
+                    "type": "integer"
                 },
                 "onApplicationStartupComplete": {
                     "description": "This is an optional script to run after this application has completed startup but before starting to process requests. The script can perform additional startup functions or request that the application terminate. All permanent and immediate services will have been started before the script is called. If the script fails or explicitly returns a value other than 0, the application will terminate.",
@@ -247,6 +277,12 @@
                     "markdownDescription": "**Type**\n\nConfiguration type.",
                     "title": "Type",
                     "type": "string"
+                },
+                "xctxChunkMin": {
+                    "description": "Optional. If present, overrides process xctxChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "markdownDescription": "**Xctx Chunk Min**\n\nOptional. If present, overrides process xctxChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "title": "Xctx Chunk Min",
+                    "type": "integer"
                 }
             },
             "title": "_AdaptiveConf_application",
@@ -274,6 +310,18 @@
                     "markdownDescription": "**Authorization**\n\nThis defines how authorization checking occurs in this application.",
                     "title": "Authorization",
                     "type": "object"
+                },
+                "chunkMin": {
+                    "description": "Optional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "markdownDescription": "**Chunk Min**\n\nOptional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "title": "Chunk Min",
+                    "type": "integer"
+                },
+                "compileChunkMin": {
+                    "description": "Optional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "markdownDescription": "**Compile Chunk Min**\n\nOptional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "title": "Compile Chunk Min",
+                    "type": "integer"
                 },
                 "confAdapterId": {
                     "description": "This is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
@@ -343,6 +391,24 @@
                     "title": "Layouts Adapter",
                     "type": "string"
                 },
+                "limitCStackHeadroomBytes": {
+                    "description": "Optional. If present, overrides process limitCStackHeadroomBytes. 0 = unlimited.",
+                    "markdownDescription": "**Limit C Stack Headroom Bytes**\n\nOptional. If present, overrides process limitCStackHeadroomBytes. 0 = unlimited.",
+                    "title": "Limit C Stack Headroom Bytes",
+                    "type": "integer"
+                },
+                "limitEvaluationStackCount": {
+                    "description": "Optional. If present, overrides process limitEvaluationStackCount for xctx created after this conf is processed. 0 = unlimited.",
+                    "markdownDescription": "**Limit Evaluation Stack Count**\n\nOptional. If present, overrides process limitEvaluationStackCount for xctx created after this conf is processed. 0 = unlimited.",
+                    "title": "Limit Evaluation Stack Count",
+                    "type": "integer"
+                },
+                "limitRequestPoolBytes": {
+                    "description": "Optional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited.",
+                    "markdownDescription": "**Limit Request Pool Bytes**\n\nOptional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited.",
+                    "title": "Limit Request Pool Bytes",
+                    "type": "integer"
+                },
                 "onApplicationStartupComplete": {
                     "description": "This is an optional script to run after this application has completed startup but before starting to process requests. The script can perform additional startup functions or request that the application terminate. All permanent and immediate services will have been started before the script is called. If the script fails or explicitly returns a value other than 0, the application will terminate.",
                     "markdownDescription": "**Application Startup Complete**\n\nThis is an optional script to run after this application has completed startup but before starting to process requests. The script can perform additional startup functions or request that the application terminate. All permanent and immediate services will have been started before the script is called. If the script fails or explicitly returns a value other than 0, the application will terminate.",
@@ -376,6 +442,12 @@
                     "markdownDescription": "**Title**\n\nThe title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",
                     "title": "Title",
                     "type": "string"
+                },
+                "xctxChunkMin": {
+                    "description": "Optional. If present, overrides process xctxChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "markdownDescription": "**Xctx Chunk Min**\n\nOptional. If present, overrides process xctxChunkMin. Rounded up to the heap page. 0 becomes one page.",
+                    "title": "Xctx Chunk Min",
+                    "type": "integer"
                 }
             },
             "type": "object"
@@ -488,6 +560,18 @@
             "title": "Authorization",
             "type": "object"
         },
+        "chunkMin": {
+            "description": "Optional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page.",
+            "markdownDescription": "**Chunk Min**\n\nOptional. If present, overrides process chunkMin. Rounded up to the heap page. 0 becomes one page.",
+            "title": "Chunk Min",
+            "type": "integer"
+        },
+        "compileChunkMin": {
+            "description": "Optional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page.",
+            "markdownDescription": "**Compile Chunk Min**\n\nOptional. If present, overrides process compileChunkMin. Rounded up to the heap page. 0 becomes one page.",
+            "title": "Compile Chunk Min",
+            "type": "integer"
+        },
         "confAdapterId": {
             "description": "This is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
             "markdownDescription": "**Conf Adapter**\n\nThis is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
@@ -556,6 +640,24 @@
             "title": "Layouts Adapter",
             "type": "string"
         },
+        "limitCStackHeadroomBytes": {
+            "description": "Optional. If present, overrides process limitCStackHeadroomBytes. 0 = unlimited.",
+            "markdownDescription": "**Limit C Stack Headroom Bytes**\n\nOptional. If present, overrides process limitCStackHeadroomBytes. 0 = unlimited.",
+            "title": "Limit C Stack Headroom Bytes",
+            "type": "integer"
+        },
+        "limitEvaluationStackCount": {
+            "description": "Optional. If present, overrides process limitEvaluationStackCount for xctx created after this conf is processed. 0 = unlimited.",
+            "markdownDescription": "**Limit Evaluation Stack Count**\n\nOptional. If present, overrides process limitEvaluationStackCount for xctx created after this conf is processed. 0 = unlimited.",
+            "title": "Limit Evaluation Stack Count",
+            "type": "integer"
+        },
+        "limitRequestPoolBytes": {
+            "description": "Optional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited.",
+            "markdownDescription": "**Limit Request Pool Bytes**\n\nOptional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited.",
+            "title": "Limit Request Pool Bytes",
+            "type": "integer"
+        },
         "onApplicationStartupComplete": {
             "description": "This is an optional script to run after this application has completed startup but before starting to process requests. The script can perform additional startup functions or request that the application terminate. All permanent and immediate services will have been started before the script is called. If the script fails or explicitly returns a value other than 0, the application will terminate.",
             "markdownDescription": "**Application Startup Complete**\n\nThis is an optional script to run after this application has completed startup but before starting to process requests. The script can perform additional startup functions or request that the application terminate. All permanent and immediate services will have been started before the script is called. If the script fails or explicitly returns a value other than 0, the application will terminate.",
@@ -601,6 +703,12 @@
             "markdownDescription": "**Type**\n\nConfiguration type.",
             "title": "Type",
             "type": "string"
+        },
+        "xctxChunkMin": {
+            "description": "Optional. If present, overrides process xctxChunkMin. Rounded up to the heap page. 0 becomes one page.",
+            "markdownDescription": "**Xctx Chunk Min**\n\nOptional. If present, overrides process xctxChunkMin. Rounded up to the heap page. 0 becomes one page.",
+            "title": "Xctx Chunk Min",
+            "type": "integer"
         }
     },
     "title": "_AdaptiveConf_application",

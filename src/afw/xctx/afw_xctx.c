@@ -53,13 +53,16 @@ impl_set_evaluation_stack(afw_xctx_t *xctx)
      * published limit.
      */
     n = xctx->env->limit_evaluation_stack_count;
-    if (n != 0) {
-        if (n > AFW_SIZE_T_MAX - IMPL_EVAL_STACK_ERROR_HEADROOM) {
-            n = AFW_SIZE_T_MAX;
-        }
-        else {
-            n += IMPL_EVAL_STACK_ERROR_HEADROOM;
-        }
+    if (n == 0) {
+        xctx->evaluation_stack = afw_vector_create(
+            afw_xctx_evaluation_stack_t, 64, xctx->p, xctx);
+        return;
+    }
+    if (n > AFW_SIZE_T_MAX - IMPL_EVAL_STACK_ERROR_HEADROOM) {
+        n = AFW_SIZE_T_MAX;
+    }
+    else {
+        n += IMPL_EVAL_STACK_ERROR_HEADROOM;
     }
     xctx->evaluation_stack = afw_vector_create_fixed_unhandled(
         afw_xctx_evaluation_stack_t, n, xctx->p, xctx);
@@ -222,8 +225,10 @@ afw_xctx_check_resource_limits(
     }
 
     limit = env->limit_request_pool_bytes;
-    if (thread->type == afw_thread_type_request &&
-        limit != 0 && thread->pool_bytes_in_use >= limit)
+    if (limit != 0 &&
+        (thread->type == afw_thread_type_request ||
+            env->limit_request_pool_apply_to_base) &&
+        thread->pool_bytes_in_use >= limit)
     {
         AFW_THROW_ERROR_Z(payload_too_large,
             "Request pool limit exceeded.", xctx);

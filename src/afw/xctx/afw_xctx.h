@@ -95,7 +95,8 @@ afw_xctx_release(
  * Checks evaluation-stack count, request-thread ST asked-for vs
  * limitRequestPoolBytes, and C-stack remaining vs
  * limitCStackHeadroomBytes. 0 on a cap is unlimited. Pool bytes
- * are not enforced on the CLI base thread.
+ * are not enforced on the CLI base thread unless application
+ * conf set limitRequestPoolBytes.
  */
 AFW_DECLARE(void)
 afw_xctx_check_resource_limits(

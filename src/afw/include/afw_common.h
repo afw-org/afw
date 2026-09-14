@@ -1914,6 +1914,14 @@ struct afw_environment_s {
     afw_size_t limit_request_pool_bytes;
 
     /**
+     * @brief True when application conf set limitRequestPoolBytes.
+     *
+     * Then the cap also applies to the CLI base thread. Absent conf
+     * leaves CLI uncapped.
+     */
+    afw_boolean_t limit_request_pool_apply_to_base;
+
+    /**
      * @brief C-stack remaining required before throw. 0 = unlimited.
      *
      * Default `AFW_ENVIRONMENT_LIMIT_C_STACK_HEADROOM_BYTES`.

@@ -315,12 +315,20 @@ afw_environment_create(
     env->pub.limit_evaluation_stack_count =
         AFW_ENVIRONMENT_LIMIT_EVALUATION_STACK_COUNT;
     env->pub.limit_request_pool_bytes =
-        AFW_ENVIRONMENT_LIMIT_REQUEST_POOL_BYTES;
+        afw_pool_round_up_chunk_size(
+            AFW_ENVIRONMENT_LIMIT_REQUEST_POOL_BYTES);
     env->pub.limit_c_stack_headroom_bytes =
-        AFW_ENVIRONMENT_LIMIT_C_STACK_HEADROOM_BYTES;
-    env->pub.chunk_min = AFW_ENVIRONMENT_CHUNK_MIN;
-    env->pub.compile_chunk_min = AFW_ENVIRONMENT_COMPILE_CHUNK_MIN;
-    env->pub.xctx_chunk_min = AFW_ENVIRONMENT_XCTX_CHUNK_MIN;
+        afw_pool_round_up_chunk_size(
+            AFW_ENVIRONMENT_LIMIT_C_STACK_HEADROOM_BYTES);
+    env->pub.chunk_min = afw_pool_round_up_chunk_size(
+        AFW_ENVIRONMENT_CHUNK_MIN
+            ? AFW_ENVIRONMENT_CHUNK_MIN : 1);
+    env->pub.compile_chunk_min = afw_pool_round_up_chunk_size(
+        AFW_ENVIRONMENT_COMPILE_CHUNK_MIN
+            ? AFW_ENVIRONMENT_COMPILE_CHUNK_MIN : 1);
+    env->pub.xctx_chunk_min = afw_pool_round_up_chunk_size(
+        AFW_ENVIRONMENT_XCTX_CHUNK_MIN
+            ? AFW_ENVIRONMENT_XCTX_CHUNK_MIN : 1);
     env->pub.debug_fd = stderr;
     env->pub.stderr_fd = stderr;
     env->pub.stdout_fd = stdout;

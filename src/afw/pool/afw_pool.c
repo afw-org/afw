@@ -431,28 +431,40 @@ impl_same_chunk(afw_pool_internal_self_t *heap, void *a, void *b)
 }
 
 
+AFW_DEFINE(afw_size_t)
+afw_pool_round_up_chunk_size(afw_size_t size)
+{
+    afw_size_t rem;
+    afw_size_t add;
+
+    if (size == 0) {
+        return 0;
+    }
+    if (size < AFW_POOL_CHUNK_ALIGN) {
+        return AFW_POOL_CHUNK_ALIGN;
+    }
+    rem = size & (AFW_POOL_CHUNK_ALIGN - 1);
+    if (rem == 0) {
+        return size;
+    }
+    add = AFW_POOL_CHUNK_ALIGN - rem;
+    if (size > AFW_SIZE_T_MAX - add) {
+        return AFW_SIZE_T_MAX & ~(AFW_POOL_CHUNK_ALIGN - 1);
+    }
+    return size + add;
+}
+
+
 static afw_size_t
 impl_normalize_chunk_min(afw_size_t chunk_min, const afw_environment_t *env)
 {
-    afw_size_t rest;
-
     if (chunk_min == 0) {
         if (env) {
-            chunk_min = env->chunk_min;
+            return env->chunk_min;
         }
-        else {
-            /* Base pool: env does not exist yet. */
-            chunk_min = AFW_ENVIRONMENT_CHUNK_MIN;
-        }
+        chunk_min = AFW_ENVIRONMENT_CHUNK_MIN;
     }
-    if (chunk_min < AFW_POOL_CHUNK_ALIGN) {
-        return AFW_POOL_CHUNK_ALIGN;
-    }
-    rest = chunk_min & (AFW_POOL_CHUNK_ALIGN - 1);
-    if (rest) {
-        chunk_min += AFW_POOL_CHUNK_ALIGN - rest;
-    }
-    return chunk_min;
+    return afw_pool_round_up_chunk_size(chunk_min);
 }
 
 
@@ -461,7 +473,6 @@ impl_chunk_need(afw_size_t min_payload, afw_size_t chunk_min)
 {
     afw_size_t header;
     afw_size_t need;
-    afw_size_t rem;
 
     header = AFW_POOL_ALIGN_UP(sizeof(afw_pool_chunk_t));
     if (min_payload > AFW_SIZE_T_MAX - header) {
@@ -471,15 +482,7 @@ impl_chunk_need(afw_size_t min_payload, afw_size_t chunk_min)
     if (need < chunk_min) {
         need = chunk_min;
     }
-    /* Whole pages so posix_memalign 4k alignment is legal. */
-    rem = need & (AFW_POOL_CHUNK_ALIGN - 1);
-    if (rem) {
-        if (need > AFW_SIZE_T_MAX - (AFW_POOL_CHUNK_ALIGN - rem)) {
-            return 0;
-        }
-        need += AFW_POOL_CHUNK_ALIGN - rem;
-    }
-    return need;
+    return afw_pool_round_up_chunk_size(need);
 }
 
 
@@ -893,7 +896,8 @@ impl_heap_take_from_free_list_or_chunk(
     if (!unhandled && xctx->error_processing_count == 0) {
         afw_xctx_check_resource_limits(xctx, 0);
         if (self->thread &&
-            self->thread->type == afw_thread_type_request)
+            (self->thread->type == afw_thread_type_request ||
+                xctx->env->limit_request_pool_apply_to_base))
         {
             afw_size_t limit;
             afw_size_t asked;

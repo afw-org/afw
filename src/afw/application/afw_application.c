@@ -40,6 +40,50 @@ impl_conf_object_cb(
 }
 
 
+#define IMPL_KNOB_AS_IS 0
+#define IMPL_KNOB_LIMIT_BYTES 1
+#define IMPL_KNOB_CHUNK_MIN 2
+
+static void
+impl_apply_optional_size_limit(
+    const afw_object_t *properties,
+    const afw_value_t *property_name,
+    afw_size_t *dest,
+    afw_boolean_t *present,
+    int knob,
+    const afw_utf8_t *source_location,
+    afw_xctx_t *xctx)
+{
+    afw_boolean_t found;
+    afw_integer_t n;
+    afw_size_t size;
+
+    n = afw_object_get_property_as_integer_internal(
+        properties, property_name, &found, xctx);
+    if (!found) {
+        return;
+    }
+    if (n < 0) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_UTF8_CONTEXTUAL_LABEL_FMT
+            "%ku must be a non-negative integer",
+            source_location,
+            &((const afw_value_string_t *)property_name)->internal);
+    }
+    size = (afw_size_t)n;
+    if (knob == IMPL_KNOB_LIMIT_BYTES) {
+        size = afw_pool_round_up_chunk_size(size);
+    }
+    else if (knob == IMPL_KNOB_CHUNK_MIN) {
+        size = afw_pool_round_up_chunk_size(size ? size : 1);
+    }
+    *dest = size;
+    if (present) {
+        *present = true;
+    }
+}
+
+
 /*
  * Note: Make sure to update
  * afw_application_internal_register_basic_application_context_type()
@@ -533,6 +577,32 @@ afw_application_internal_application_conf_type_create_cede_p(
     afw_object_meta_set_ids(env->application_object, afw_s_afw,
         afw_s__AdaptiveApplication_, afw_s_current, xctx);
     afw_runtime_env_set_object(env->application_object, false, xctx);
+
+    impl_apply_optional_size_limit(properties,
+        afw_v_limitEvaluationStackCount,
+        &env->limit_evaluation_stack_count, NULL,
+        IMPL_KNOB_AS_IS, source_location, xctx);
+    impl_apply_optional_size_limit(properties,
+        afw_v_limitRequestPoolBytes,
+        &env->limit_request_pool_bytes,
+        &env->limit_request_pool_apply_to_base,
+        IMPL_KNOB_LIMIT_BYTES, source_location, xctx);
+    impl_apply_optional_size_limit(properties,
+        afw_v_limitCStackHeadroomBytes,
+        &env->limit_c_stack_headroom_bytes, NULL,
+        IMPL_KNOB_LIMIT_BYTES, source_location, xctx);
+    impl_apply_optional_size_limit(properties,
+        afw_v_chunkMin,
+        &env->chunk_min, NULL,
+        IMPL_KNOB_CHUNK_MIN, source_location, xctx);
+    impl_apply_optional_size_limit(properties,
+        afw_v_compileChunkMin,
+        &env->compile_chunk_min, NULL,
+        IMPL_KNOB_CHUNK_MIN, source_location, xctx);
+    impl_apply_optional_size_limit(properties,
+        afw_v_xctxChunkMin,
+        &env->xctx_chunk_min, NULL,
+        IMPL_KNOB_CHUNK_MIN, source_location, xctx);
 
     /* If extensions specified, load them. */
     value = afw_object_get_property(env->application_object,

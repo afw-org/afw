@@ -67,6 +67,19 @@
 
 AFW_BEGIN_DECLARES
 
+/**
+ * @brief Round a byte size up to the heap posix_memalign page.
+ * @param size bytes. 0 is unchanged (unlimited or "use default").
+ * @return 0 if size is 0; otherwise at least one page, multiple of
+ *    the page.
+ *
+ * Use this when storing env chunk_min / compile_chunk_min /
+ * xctx_chunk_min and byte limits. Heap create then does not redo
+ * the round.
+ */
+AFW_DECLARE(afw_size_t)
+afw_pool_round_up_chunk_size(afw_size_t size);
+
 /** @brief Typedef for registered cleanup functions. */
 typedef struct afw_pool_cleanup_s afw_pool_cleanup_t;
 
