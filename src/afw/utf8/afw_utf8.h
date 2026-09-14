@@ -794,7 +794,7 @@ afw_utf8_z_snprintf_safe_vas(
  *
  * | Spec | Parameter | Behavior |
  * |------|-----------|----------|
- * | `%%ku` | `const afw_utf8_t *` | Trusted UTF-8: copy `.s` for `.len` (interior `0` is data). |
+ * | `%%ku` | `const afw_utf8_t *` | Trusted UTF-8: copy `.s` for `.len` (interior `0` is data). On `_safe`, `forced_safe`. |
  * | `%%km` | `const afw_memory_t *` | Always hex of the octets (uppercase pairs, no `0x`). |
  * | `%%ks` | `utf8_z` | Like `%%s`, but **`forced_safe`** on invalid UTF-8. |
  *
@@ -929,6 +929,7 @@ afw_utf8_z_snprintf_safe_vas(
     afw_utf8_z_snprintf_vas((dest), (size), \
         (format)->s, (format)->len, (ap), (xctx))
 
+/* See afw_utf8_printf: `_safe` encodes %s / %ku / AFW_UTF8_FMT. */
 #define afw_utf8_printf_safe(p, xctx, format_z, ...) \
     afw_utf8_printf_safe_as((p), (xctx), \
         (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
