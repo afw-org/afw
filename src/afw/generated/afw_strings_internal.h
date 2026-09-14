@@ -6789,6 +6789,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__1aefe7bb444e \
+    "Current evaluation-stack count on this xctx when the response is finished."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1aefe7bb444e */
+#define afw_s_zz__1aefe7bb444e \
+    (&afw_self_v_zz__1aefe7bb444e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1aefe7bb444e */
+#define afw_self_s_zz__1aefe7bb444e \
+    (afw_self_v_zz__1aefe7bb444e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__1aefe7bb444e */
+extern const afw_value_string_t \
+    afw_self_v_zz__1aefe7bb444e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__1aefe7bb444e */
+#define afw_z_zz__1aefe7bb444e \
+    (afw_self_v_zz__1aefe7bb444e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__1aefe7bb444e */
+#define afw_v_zz__1aefe7bb444e \
+    (&afw_self_v_zz__1aefe7bb444e.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__1af7dff0f375 \
     "function lt<hexBinary> (\n    arg1: hexBinary,\n    arg2: hexBinary\n): boolean;\n"
 
@@ -21401,6 +21427,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__5a5b522a1ce1 \
+    "Present when the response:metrics flag is on. This request's ST asked-for and chunk bytes (xctx snapshot) and evaluation-stack count. Not process-wide peaks. Not a stream id."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5a5b522a1ce1 */
+#define afw_s_zz__5a5b522a1ce1 \
+    (&afw_self_v_zz__5a5b522a1ce1.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5a5b522a1ce1 */
+#define afw_self_s_zz__5a5b522a1ce1 \
+    (afw_self_v_zz__5a5b522a1ce1.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5a5b522a1ce1 */
+extern const afw_value_string_t \
+    afw_self_v_zz__5a5b522a1ce1;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5a5b522a1ce1 */
+#define afw_z_zz__5a5b522a1ce1 \
+    (afw_self_v_zz__5a5b522a1ce1.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5a5b522a1ce1 */
+#define afw_v_zz__5a5b522a1ce1 \
+    (&afw_self_v_zz__5a5b522a1ce1.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__5a8e4eb5d81f \
     "function random_base64Binary (\n    numberOfOctets: integer\n): base64Binary;\n"
 
@@ -35233,6 +35285,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__94eb67969147 \
+    "Thread ST posix_memalign chunk bytes minus the snapshot taken at xctx create. Not process::poolChunkBytes."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__94eb67969147 */
+#define afw_s_zz__94eb67969147 \
+    (&afw_self_v_zz__94eb67969147.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__94eb67969147 */
+#define afw_self_s_zz__94eb67969147 \
+    (afw_self_v_zz__94eb67969147.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__94eb67969147 */
+extern const afw_value_string_t \
+    afw_self_v_zz__94eb67969147;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__94eb67969147 */
+#define afw_z_zz__94eb67969147 \
+    (afw_self_v_zz__94eb67969147.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__94eb67969147 */
+#define afw_v_zz__94eb67969147 \
+    (&afw_self_v_zz__94eb67969147.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__950454c7b823 \
     "This function retrieves adaptive objects from an adapter, specified by adapterId, which match the type specified by objectType.\n\nThis function is only allowed when called during a request with content type 'application/x-afw'. An '_AdaptiveResponse_' object is written to the request's response as each object is retrieved. This '_AdaptiveResponse_' object has a 'result' property containing the retrieved object and a 'intermediate' property set to true.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied."
 
@@ -35593,6 +35671,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__970d49859dbc */
 #define afw_v_zz__970d49859dbc \
     (&afw_self_v_zz__970d49859dbc.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__972c925e79fe \
+    "Thread ST asked-for bytes minus the snapshot taken at xctx create. Not process::poolBytesInUse."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__972c925e79fe */
+#define afw_s_zz__972c925e79fe \
+    (&afw_self_v_zz__972c925e79fe.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__972c925e79fe */
+#define afw_self_s_zz__972c925e79fe \
+    (afw_self_v_zz__972c925e79fe.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__972c925e79fe */
+extern const afw_value_string_t \
+    afw_self_v_zz__972c925e79fe;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__972c925e79fe */
+#define afw_z_zz__972c925e79fe \
+    (afw_self_v_zz__972c925e79fe.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__972c925e79fe */
+#define afw_v_zz__972c925e79fe \
+    (&afw_self_v_zz__972c925e79fe.pub)
 
 
 
@@ -40637,6 +40741,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_evaluation_stack_cap */
 #define afw_v_zz__Adaptive_evaluation_stack_cap \
     (&afw_self_v_zz__Adaptive_evaluation_stack_cap.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Adaptive_evaluation_stack_depth \
+    "Adaptive evaluation-stack depth"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_evaluation_stack_depth */
+#define afw_s_zz__Adaptive_evaluation_stack_depth \
+    (&afw_self_v_zz__Adaptive_evaluation_stack_depth.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_evaluation_stack_depth */
+#define afw_self_s_zz__Adaptive_evaluation_stack_depth \
+    (afw_self_v_zz__Adaptive_evaluation_stack_depth.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Adaptive_evaluation_stack_depth */
+extern const afw_value_string_t \
+    afw_self_v_zz__Adaptive_evaluation_stack_depth;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adaptive_evaluation_stack_depth */
+#define afw_z_zz__Adaptive_evaluation_stack_depth \
+    (afw_self_v_zz__Adaptive_evaluation_stack_depth.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_evaluation_stack_depth */
+#define afw_v_zz__Adaptive_evaluation_stack_depth \
+    (&afw_self_v_zz__Adaptive_evaluation_stack_depth.pub)
 
 
 
@@ -55119,6 +55249,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Evaluated_when_setting_an_object_property */
 #define afw_v_zz__Evaluated_when_setting_an_object_property \
     (&afw_self_v_zz__Evaluated_when_setting_an_object_property.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Evaluation_Stack_Count \
+    "Evaluation Stack Count"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Evaluation_Stack_Count */
+#define afw_s_zz__Evaluation_Stack_Count \
+    (&afw_self_v_zz__Evaluation_Stack_Count.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Evaluation_Stack_Count */
+#define afw_self_s_zz__Evaluation_Stack_Count \
+    (afw_self_v_zz__Evaluation_Stack_Count.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Evaluation_Stack_Count */
+extern const afw_value_string_t \
+    afw_self_v_zz__Evaluation_Stack_Count;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Evaluation_Stack_Count */
+#define afw_z_zz__Evaluation_Stack_Count \
+    (afw_self_v_zz__Evaluation_Stack_Count.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Evaluation_Stack_Count */
+#define afw_v_zz__Evaluation_Stack_Count \
+    (&afw_self_v_zz__Evaluation_Stack_Count.pub)
 
 
 
@@ -86137,6 +86293,84 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__This_property_will_not_be_persisted */
 #define afw_v_zz__This_property_will_not_be_persisted \
     (&afw_self_v_zz__This_property_will_not_be_persisted.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__This_request_ST_asked_for_bytes \
+    "This-request ST asked-for bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_request_ST_asked_for_bytes */
+#define afw_s_zz__This_request_ST_asked_for_bytes \
+    (&afw_self_v_zz__This_request_ST_asked_for_bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_request_ST_asked_for_bytes */
+#define afw_self_s_zz__This_request_ST_asked_for_bytes \
+    (afw_self_v_zz__This_request_ST_asked_for_bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__This_request_ST_asked_for_bytes */
+extern const afw_value_string_t \
+    afw_self_v_zz__This_request_ST_asked_for_bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_request_ST_asked_for_bytes */
+#define afw_z_zz__This_request_ST_asked_for_bytes \
+    (afw_self_v_zz__This_request_ST_asked_for_bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__This_request_ST_asked_for_bytes */
+#define afw_v_zz__This_request_ST_asked_for_bytes \
+    (&afw_self_v_zz__This_request_ST_asked_for_bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__This_request_ST_chunk_bytes \
+    "This-request ST chunk bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_request_ST_chunk_bytes */
+#define afw_s_zz__This_request_ST_chunk_bytes \
+    (&afw_self_v_zz__This_request_ST_chunk_bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_request_ST_chunk_bytes */
+#define afw_self_s_zz__This_request_ST_chunk_bytes \
+    (afw_self_v_zz__This_request_ST_chunk_bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__This_request_ST_chunk_bytes */
+extern const afw_value_string_t \
+    afw_self_v_zz__This_request_ST_chunk_bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_request_ST_chunk_bytes */
+#define afw_z_zz__This_request_ST_chunk_bytes \
+    (afw_self_v_zz__This_request_ST_chunk_bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__This_request_ST_chunk_bytes */
+#define afw_v_zz__This_request_ST_chunk_bytes \
+    (&afw_self_v_zz__This_request_ST_chunk_bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__This_request_pool_and_eval_stack_metrics \
+    "This-request pool and eval-stack metrics"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_request_pool_and_eval_stack_metrics */
+#define afw_s_zz__This_request_pool_and_eval_stack_metrics \
+    (&afw_self_v_zz__This_request_pool_and_eval_stack_metrics.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__This_request_pool_and_eval_stack_metrics */
+#define afw_self_s_zz__This_request_pool_and_eval_stack_metrics \
+    (afw_self_v_zz__This_request_pool_and_eval_stack_metrics.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__This_request_pool_and_eval_stack_metrics */
+extern const afw_value_string_t \
+    afw_self_v_zz__This_request_pool_and_eval_stack_metrics;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_request_pool_and_eval_stack_metrics */
+#define afw_z_zz__This_request_pool_and_eval_stack_metrics \
+    (afw_self_v_zz__This_request_pool_and_eval_stack_metrics.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__This_request_pool_and_eval_stack_metrics */
+#define afw_v_zz__This_request_pool_and_eval_stack_metrics \
+    (&afw_self_v_zz__This_request_pool_and_eval_stack_metrics.pub)
 
 
 
@@ -132807,6 +133041,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__be076735ae7a */
 #define afw_v_zz__be076735ae7a \
     (&afw_self_v_zz__be076735ae7a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__be0769cc99ff \
+    "This-request metrics on _AdaptiveResponse_ when response:metrics is on. Values are the xctx snapshot (thread current minus snap), not process-wide peaks."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__be0769cc99ff */
+#define afw_s_zz__be0769cc99ff \
+    (&afw_self_v_zz__be0769cc99ff.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__be0769cc99ff */
+#define afw_self_s_zz__be0769cc99ff \
+    (afw_self_v_zz__be0769cc99ff.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__be0769cc99ff */
+extern const afw_value_string_t \
+    afw_self_v_zz__be0769cc99ff;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__be0769cc99ff */
+#define afw_z_zz__be0769cc99ff \
+    (afw_self_v_zz__be0769cc99ff.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__be0769cc99ff */
+#define afw_v_zz__be0769cc99ff \
+    (&afw_self_v_zz__be0769cc99ff.pub)
 
 
 

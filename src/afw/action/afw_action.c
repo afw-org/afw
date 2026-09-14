@@ -220,6 +220,34 @@ impl_add_stream_properties(
 }
 
 
+static void
+impl_add_metrics_properties(
+    const afw_object_t *response,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *metrics;
+    afw_size_t eval_count;
+
+    if (!afw_flag_by_id_is_active(afw_s_a_flag_response_metrics, xctx)) {
+        return;
+    }
+    metrics = afw_object_create_embedded(response, afw_v_metrics, xctx);
+    afw_object_set_property_as_integer_internal(metrics,
+        afw_v_poolBytesInUse,
+        (afw_integer_t)afw_xctx_pool_bytes_in_use(xctx), xctx);
+    afw_object_set_property_as_integer_internal(metrics,
+        afw_v_poolChunkBytes,
+        (afw_integer_t)afw_xctx_pool_chunk_bytes(xctx), xctx);
+    eval_count = 0;
+    if (xctx->evaluation_stack) {
+        eval_count = xctx->evaluation_stack->count;
+    }
+    afw_object_set_property_as_integer_internal(metrics,
+        afw_v_evaluationStackCount,
+        (afw_integer_t)eval_count, xctx);
+}
+
+
 
 /* Perform actions(s) specified in _AdaptiveActions_ object. */
 AFW_DEFINE(const afw_object_t *)
@@ -410,6 +438,7 @@ afw_action_perform(
 
     AFW_FINALLY{
         impl_add_stream_properties(response, p, xctx);
+        impl_add_metrics_properties(response, xctx);
     }
 
     AFW_ENDTRY;

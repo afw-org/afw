@@ -565,6 +565,13 @@ afw_flag_internal_early_register_core(afw_xctx_t *xctx)
         afw_s_a_flag_response_stdout_stream,
         xctx);
 
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_response_metrics,
+        afw_s_a_flag_response_metrics_brief,
+        afw_s_a_flag_response_metrics_description,
+        NULL,
+        xctx);
+
 
     /* Register flag trace:detail */
     afw_flag_environment_register_flag(

@@ -4199,6 +4199,21 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptiveResponseAction_);
 
 
+/* Runtime object map properties for _AdaptiveResponseMetrics_ objects. */
+
+static const afw_runtime_object_type_meta_t
+impl_runtime_meta__AdaptiveResponseMetrics_ = {
+    &afw_self_s__AdaptiveResponseMetrics_,
+    NULL,
+    offsetof(afw_runtime_const_object_instance_t, properties),
+    false,
+};
+
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveResponseMetrics_, 
+    impl_runtime_meta__AdaptiveResponseMetrics_);
+
+
 /* Runtime object map properties for _AdaptiveResponse_ objects. */
 
 static const afw_runtime_object_type_meta_t
@@ -5026,6 +5041,7 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveRequestHandler_,
     &afw_runtime_inf__AdaptiveRequestProperties_,
     &afw_runtime_inf__AdaptiveResponseAction_,
+    &afw_runtime_inf__AdaptiveResponseMetrics_,
     &afw_runtime_inf__AdaptiveResponse_,
     &afw_runtime_inf__AdaptiveRootFilePaths_,
     &afw_runtime_inf__AdaptiveRuntimeCustom_,

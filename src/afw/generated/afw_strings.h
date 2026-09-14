@@ -8193,6 +8193,32 @@ afw_self_v__AdaptiveResponseAction_;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q__AdaptiveResponseMetrics_ \
+    "_AdaptiveResponseMetrics_"
+
+/** @brief 'afw_utf8_t' for AFW_Q__AdaptiveResponseMetrics_ */
+#define afw_s__AdaptiveResponseMetrics_ \
+    (&afw_self_v__AdaptiveResponseMetrics_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q__AdaptiveResponseMetrics_ */
+#define afw_self_s__AdaptiveResponseMetrics_ \
+    (afw_self_v__AdaptiveResponseMetrics_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q__AdaptiveResponseMetrics_ */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v__AdaptiveResponseMetrics_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q__AdaptiveResponseMetrics_ */
+#define afw_z__AdaptiveResponseMetrics_ \
+    (afw_self_v__AdaptiveResponseMetrics_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q__AdaptiveResponseMetrics_ */
+#define afw_v__AdaptiveResponseMetrics_ \
+    (&afw_self_v__AdaptiveResponseMetrics_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q__AdaptiveResponse_ \
     "_AdaptiveResponse_"
 
@@ -12427,6 +12453,84 @@ afw_self_v_a_flag_response_error_hasAdditionalDetail_description;
 /** @brief 'const afw_value_t *' for AFW_Q_a_flag_response_error_hasAdditionalDetail_description */
 #define afw_v_a_flag_response_error_hasAdditionalDetail_description \
     (&afw_self_v_a_flag_response_error_hasAdditionalDetail_description.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_response_metrics \
+    "response:metrics"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_response_metrics */
+#define afw_s_a_flag_response_metrics \
+    (&afw_self_v_a_flag_response_metrics.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_response_metrics */
+#define afw_self_s_a_flag_response_metrics \
+    (afw_self_v_a_flag_response_metrics.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_response_metrics */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_response_metrics;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_response_metrics */
+#define afw_z_a_flag_response_metrics \
+    (afw_self_v_a_flag_response_metrics.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_response_metrics */
+#define afw_v_a_flag_response_metrics \
+    (&afw_self_v_a_flag_response_metrics.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_response_metrics_brief \
+    "Include this-request pool and eval-stack metrics in the response"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_response_metrics_brief */
+#define afw_s_a_flag_response_metrics_brief \
+    (&afw_self_v_a_flag_response_metrics_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_response_metrics_brief */
+#define afw_self_s_a_flag_response_metrics_brief \
+    (afw_self_v_a_flag_response_metrics_brief.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_response_metrics_brief */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_response_metrics_brief;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_response_metrics_brief */
+#define afw_z_a_flag_response_metrics_brief \
+    (afw_self_v_a_flag_response_metrics_brief.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_response_metrics_brief */
+#define afw_v_a_flag_response_metrics_brief \
+    (&afw_self_v_a_flag_response_metrics_brief.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_response_metrics_description \
+    "When on, the response object includes a \\\"metrics\\\" property with this request\'s ST asked-for bytes, chunk bytes, and evaluation-stack count (xctx snapshot, not process peaks). Off by default. Not a stream; console/stderr/stdout stream ids are separate flags."
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_response_metrics_description */
+#define afw_s_a_flag_response_metrics_description \
+    (&afw_self_v_a_flag_response_metrics_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_response_metrics_description */
+#define afw_self_s_a_flag_response_metrics_description \
+    (afw_self_v_a_flag_response_metrics_description.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_response_metrics_description */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_response_metrics_description;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_response_metrics_description */
+#define afw_z_a_flag_response_metrics_description \
+    (afw_self_v_a_flag_response_metrics_description.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_response_metrics_description */
+#define afw_v_a_flag_response_metrics_description \
+    (&afw_self_v_a_flag_response_metrics_description.pub)
 
 
 
@@ -56497,6 +56601,32 @@ afw_self_v_evaluation;
 /** @brief 'const afw_value_t *' for AFW_Q_evaluation */
 #define afw_v_evaluation \
     (&afw_self_v_evaluation.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_evaluationStackCount \
+    "evaluationStackCount"
+
+/** @brief 'afw_utf8_t' for AFW_Q_evaluationStackCount */
+#define afw_s_evaluationStackCount \
+    (&afw_self_v_evaluationStackCount.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_evaluationStackCount */
+#define afw_self_s_evaluationStackCount \
+    (afw_self_v_evaluationStackCount.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_evaluationStackCount */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_evaluationStackCount;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_evaluationStackCount */
+#define afw_z_evaluationStackCount \
+    (afw_self_v_evaluationStackCount.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_evaluationStackCount */
+#define afw_v_evaluationStackCount \
+    (&afw_self_v_evaluationStackCount.pub)
 
 
 
