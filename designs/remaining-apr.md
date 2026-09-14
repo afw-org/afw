@@ -22,15 +22,27 @@ Containers, strings, files, threads, getopt, curl body, LDAP setup, and the pool
 
 Heap and tracker use the same parent/child RC. Last-`release` does not call `destroy`: decrement, throw if children remain, then cleanup (callbacks, unchain, free this store, `release` parent). **`destroy` is storage-only** (must not fail): unchain, leftover, free store, `release` parent. Call **`afw_pool_run_cleanups`** first if callbacks must run (`xctx_release` does both). `destroy` clears delayed last-`release` marks. Callers must own that subtree (`xctx->p`, flag/log scratch pools, …). Heap: `release` parent before `free_chunks` (`xctx` lives in `xctx->p`). `afw_pool_release_delayed()` is a postorder last-`release` of delayed pools at ENDTRY after a caught error. Child heaps keep their own chunks (`impl_reservoir_heap` stops at a heap).
 
-Tune later: mmap, per-chunk free lists. Chunk minimum is 64k (`afw_pool_heap_create` can override).
+## Pool doors (live)
 
-## Next sitting: land `reduce-apr-pool` on `develop`
+| Door | What |
+|------|------|
+| `afw_pool_heap_create(parent, chunk_min, xctx)` | ST heap, `managed_p = self`. `chunk_min` 0 → 64k. xctx/thread heaps. Compile units use **4k**. |
+| `afw_pool_multithread_create(env->p)` | MT job heap, `managed_p = self`. Conf, adapter, server, log. |
+| `afw_pool_create(parent)` | Tracker if ST parent; MT heap if MT parent. Parent/child is **lifetime** only; store is the ancestor heap. |
 
-FRV leftover is **in this branch** (squash [PR #326](https://github.com/afw-org/afw/pull/326) `0bed0e4f`). `issue-2-frv` and `issue-2-frv-leftover` are **deleted**. Do **not** reopen unique consume, eval-stack leftover FRV, `#function_return_value`, or a call-result leftover inf for managed built-in returns. Do **not** put callbacks back on `destroy` to hide SIGSEGV.
+One ST heap per xctx (`xctx->p`). Scopes are trackers of that heap, not of the enclosing `{ }` (closures pin the inner tracker). No `evaluation_heap`. Managed values allocate in `p->managed_p` (job heap for this eval; do not swap mid-eval). Request: `xctx->p->managed_p` is `xctx->p`. `create_managed` takes `p`. Last-release of managed object/array uses `self->pub.p`. Evaluate of a compiled value **clones onto the caller’s `p`**.
 
-**Verify already green** (2026-09-13): `./afwdev build --cdev`, `afwdev test -j`, `afwdev test -j --env-mode valgrind` — **4484 passed**, 71 skipped.
+Process/server runtime objects expose live `poolBytesInUse` / `maxPoolBytesInUse` / `poolChunkBytes` / `maxPoolChunkBytes` (`env_pool_stat`).
 
-**To land:** maintainer default `./afwdev build --fulldev` then PR **`reduce-apr-pool` → `develop`**. C API notes are in `whats-new.md` (`run_cleanups` / storage-only `destroy`, `register_cleanup`, `get_assignable_for_scope_lifetime` / `for_p_lifetime`).
+Tune later: mmap, per-chunk free lists.
+
+## Next: PR `reduce-apr-pool` → `develop`
+
+FRV leftover wrapping is **dropped** (squash [PR #326](https://github.com/afw-org/afw/pull/326)). Do **not** reopen unique consume, eval-stack leftover FRV, `#function_return_value`, or a call-result leftover inf. Do **not** put callbacks back on `destroy` to hide SIGSEGV.
+
+**Verify** (2026-09-14): `./afwdev build --fulldev`, `afwdev test -j`, `afwdev test -j --env-mode valgrind` — **4484 passed**, 71 skipped.
+
+C API notes: `whats-new.md` (`run_cleanups` / storage-only `destroy`, `register_cleanup`, `get_assignable_for_scope_lifetime` / `for_p_lifetime`, 64k-min chunks).
 
 **Not blocking:** process base pool is process lifetime (valgrind **still reachable**). mmap / per-chunk free lists.
 
@@ -50,6 +62,6 @@ FRV leftover is **in this branch** (squash [PR #326](https://github.com/afw-org/
 | LDAP setup | OpenLDAP `ldap_*` |
 | Dead time | `from_apr_time` gone |
 | Unhandled alloc | `afw_pool_malloc_unhandled` / `calloc_unhandled` |
-| Reservoir | 4k `posix_memalign` chunks; destroy walks `first_chunk` |
+| Reservoir | 64k-min, 4k-aligned `posix_memalign` chunks; destroy walks `first_chunk` |
 
 `afwfcgi` argv is still a strcmp loop (never APR getopt).

@@ -67,7 +67,7 @@ Leftover wrapping is **dropped**. No `function_return_value`; pin on caller. Do 
 
 No evaluate-only call-result inf for managed built-in returns. Builtins already extra-hold on the current `{ }` ([PR #308](https://github.com/afw-org/afw/pull/308)); `pop`/`shift` are the scope-temp path ([PR #309](https://github.com/afw-org/afw/pull/309)); identity `push` stays unwrapped. `pop_value` pops the call, not leftover wrappers. A managed header may still sit in `xctx->p` until the request pool dies — that is the managed world, not a new inf.
 
-**Next:** land `reduce-apr-pool` on `develop` ([`remaining-apr.md`](remaining-apr.md)).
+Compile units use `afw_pool_heap_create(parent, 4k)` (own ST heap). Managed eval allocs use `p->managed_p`. **Next:** PR `reduce-apr-pool` → `develop` ([`remaining-apr.md`](remaining-apr.md)). Gate 2026-09-14: **4484 passed** (`fulldev` + `test -j` + valgrind).
 
 ---
 
@@ -85,7 +85,9 @@ Squash-merged [PR #326](https://github.com/afw-org/afw/pull/326) into `reduce-ap
 
 ---
 
-## FRV next sitting (2026-09-11)
+## FRV next sitting (2026-09-11) — history
+
+**Dropped.** Leftover wrapping did not land. Do not treat this section as current (no `function_return_value.c`). See **Next slices** above.
 
 Sept 8 talk + 2026-09-11 recall. **Do not start with implement.**
 
@@ -116,7 +118,7 @@ What landed instead: unique `get_assignable_value` **transfers the occupant, set
 - Should `xctx->script_result` go back to a raw pointer with no `slot_store`.
 - Hosts (CLI, `test_script`) have no enclosing Adaptive call: `get_assignable` of the occupant, then `release` the wrapper — not a named `consume()` in `execute_*`.
 
-**Probes:** `language/script/return_temps.as`; RSS `function_return`; `script_result.as`. Code: `afw_value_function_return_value.c` (unique consume vs last `optional_release`); wrap site in script-function execute.
+**Probes (of the dropped plan):** `language/script/return_temps.as`; RSS `function_return`; `script_result.as`. There is no `function_return_value.c` on this branch.
 
 ---
 
