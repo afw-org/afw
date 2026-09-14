@@ -1887,7 +1887,7 @@ Must-change items are at the [top](#must-change-read-this-first). These are easi
 | Mutable object faces (shared instances) | [#17](https://github.com/afw-org/afw/issues/17) (closed) | PR **[#150](https://github.com/afw-org/afw/pull/150)** → `mgg-develop` (this file + `designs/issue-17-mutable-object-faces.md`) |
 | UTF-8 code-point sequences (`s[i]`, for-of, formals) | [#153](https://github.com/afw-org/afw/issues/153) | issue-#153 branch → `mgg-develop` (this file + `designs/utf8-code-point-sequences.md`) |
 | AFW printf `%ku`/`%ks`/`%km`; drop APR strings; `--scan` format check | [#314](https://github.com/afw-org/afw/issues/314) | [PR #315](https://github.com/afw-org/afw/pull/315) |
-| Error dump `printf_safe` (`%s`/`%ku` encode; no throw-in-throw) | — | this PR |
+| Error dump `printf_safe` (`%s`/`%ku` encode; no throw-in-throw) | — | [PR #328](https://github.com/afw-org/afw/pull/328) |
 | Array semantics (dense arrays, elision, `create_array`) | [#39](https://github.com/afw-org/afw/issues/39) | on `mgg-develop` |
 | Conversion functions (type-named; no `null()` / `function()`) | — | on `mgg-develop` (see `designs/conversion-functions.md`) |
 | Runtime catalog / accessors | [#149](https://github.com/afw-org/afw/issues/149) (under [#2](https://github.com/afw-org/afw/issues/2)) | on `mgg-develop` |
