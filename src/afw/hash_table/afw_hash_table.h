@@ -72,8 +72,6 @@ struct afw_hash_table_s {
     void *free_entries;
 };
 
-typedef struct afw_hash_table_s afw_hash_table_t;
-
 /**
  * @brief Stack iterator. Do not hold across grow.
  *
@@ -130,7 +128,6 @@ struct struct_name { \
  * @brief Hash table of untyped pointers (usual drop-in).
  */
 AFW_HASH_TABLE_STRUCT(afw_void_hash_table_s, void *);
-typedef struct afw_void_hash_table_s afw_void_hash_table_t;
 
 /**
  * @brief Create a hash table for the specified typedef.

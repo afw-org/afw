@@ -255,6 +255,7 @@ afw_os_dso_unload(afw_os_dso_t *dso);
  * cleanup destroys the OS object. Threads are joinable — join is
  * the caller's job, not pool destroy. Public AFW names are
  * afw_thread_mutex_* / afw_thread_rwlock_* (see afw_thread.h).
+ * `afw_os_thread_t` is the common opaque (struct in this module).
  */
 
 /** @brief Mutex allocated from an afw_pool; destroyed with that pool. */
@@ -262,9 +263,6 @@ typedef struct afw_os_mutex_s afw_os_mutex_t;
 
 /** @brief Read/write lock allocated from an afw_pool. */
 typedef struct afw_os_rwlock_s afw_os_rwlock_t;
-
-/** @brief Native thread handle allocated from an afw_pool. */
-typedef struct afw_os_thread_s afw_os_thread_t;
 
 /** @brief Platform default mutex (non-recursive on nix). */
 #define AFW_OS_MUTEX_DEFAULT  0

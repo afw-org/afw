@@ -21,25 +21,40 @@
 /**
  * @file afw_common.h
  * @brief Common types, macros, and includes used throughout AFW.
- * 
- * This header contains `#include`s for common headers that do not have other
- * Adaptive Framework dependencies, typedefs required by afw_interface.h,
- * as well as other `#define`s and typedefs that are common to all Adaptive
- * Framework applications.
  *
- * This header is included by afw_interface.h, afw_minimal.h, and afw.h, there
- * is no need to include it directly.
+ * Early shared substrate: C library includes, opaque typedefs, defines,
+ * and complete structs that must exist before the generated interfaces.
+ * Included by afw_interface.h. Do not include this header directly.
  *
- * The major Adaptive Framework headers are arranged as follows:
+ * What to include:
  *
- * Major AFW header        | description
- * ----------------------- | -----------
- * afw_common.h            | This header.  Included by afw_interface.h, afw_minimal.h, and afw.h.
- * afw_common_opaques.h    | Contains common opaque typedefs. Included by afw_common.h.
- * afw_interface.h         | Generated AFW interface header.  Can be included in all headers other than opaque only ones.
- * afw_interface_opaques.h | Generated AFW interface opaques.  Included by afw_common.h.
- * afw_minimal.h           | Contains `#include`s for some core headers that only `#include` afw_interface.h.  Can be included in headers that are not included by afw_minimal.h.
- * afw.h                   | Contains `#include`s for most core headers and will generally be included in all Adaptive Framework .c files.  
+ * You are writing                         | Include
+ * --------------------------------------- | -------
+ * libafw C under src/afw/                 | afw_internal.h only
+ * Extension, command, or application C    | afw.h only
+ * A module header                         | afw_interface.h; if that is
+ *                                         | not enough, afw_minimal.h
+ *
+ * Do not include a peer afw_*.h from a module header. A pointer to
+ * another type uses the opaque afw_*_t (afw_common_opaques.h and
+ * generated afw_interface_opaques.h). Put a complete struct in this
+ * header when it is embedded in another early struct, or a similar
+ * special case. Otherwise the struct stays in its module header.
+ *
+ * Header stack (each line includes the one above):
+ *
+ *     afw_common.h  (plus opaques and generated interface opaques)
+ *     afw_interface.h     generated contracts and call macros
+ *     afw_minimal.h       bootstrap set; include order is resolved here
+ *     afw.h               C umbrella for extensions, commands, and apps
+ *     afw_internal.h      libafw C only
+ *
+ * Headers in the minimal set include only afw_interface.h from AFW.
+ * They must not include afw_minimal.h. If one of them needs another
+ * member of the set (for example xctx needs vector macros), add that
+ * include to afw_minimal.h before the header that needs it.
+ *
+ * afw_minimal.h is for other headers, not a thinner API for C files.
  */
 
 /*
@@ -2150,9 +2165,22 @@ struct afw_xctx_s {
     const afw_environment_t *env;
 
     /**
-     * Thread associate with xctx or NULL if base xctx.
+     * Associated AFW thread. Always set: base xctx has type `base`
+     * (no pthread). Nested xctx copies the parent pointer.
      */
     const afw_thread_t *thread;
+
+    /**
+     * Thread pool_bytes_in_use copied at xctx create. Usage is
+     * thread current minus this (`afw_xctx_pool_bytes_in_use` in
+     * afw_thread.h).
+     */
+    afw_size_t snap_pool_bytes_in_use;
+
+    /**
+     * Thread pool_chunk_bytes copied at xctx create.
+     */
+    afw_size_t snap_pool_chunk_bytes;
 
     /**
      * Request instance associated with xctx or NULL.

@@ -10,7 +10,6 @@
 #define __AFW_XCTX_H__
 
 #include "afw_interface.h"
-#include "afw_vector.h"
 
 /**
  * @addtogroup afw_xctx
@@ -831,9 +830,6 @@ AFW_VECTOR_STRUCT(afw_xctx_evaluation_stack_s,
 
 
 #ifdef AFW_DEBUG_EVALUATION
-#include <stdio.h>
-#include "afw_utf8.h"
-
 #define AFW_XCTX_DEBUG_EVALUATION_PRINT(xctx, op_z, extra_fmt_z, ...) \
 do { \
     if ((xctx) && (xctx)->env && (xctx)->env->debug_fd && \

@@ -204,10 +204,11 @@ struct afw_pool_internal_self_s {
     afw_pool_internal_self_t *next_sibling;
 
     /**
-     * @brief Creating thread, or NULL on the process main thread (afw).
+     * @brief Owning AFW thread for an ST pool, including base.
      *
-     * Heap and tracker are still single-thread: do not use from another
-     * thread even when this is NULL.
+     * NULL means not thread-owned (multithreaded / shared), not
+     * "this is the process main thread." Child-list locking uses
+     * the pool inf, not this pointer.
      */
     const afw_thread_t *thread;
 

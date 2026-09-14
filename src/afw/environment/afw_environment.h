@@ -10,7 +10,6 @@
 #define __AFW_ENVIRONMENT_H__
 
 #include "afw_interface.h"
-#include "afw_hash_table.h"
 
 /**
  * Compile-time defaults copied into `afw_environment_t` at environment

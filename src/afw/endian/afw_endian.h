@@ -9,7 +9,7 @@
 #ifndef __AFW_ENDIAN_H__
 #define __AFW_ENDIAN_H__
 
-#include "afw_common.h"
+#include "afw_interface.h"
 
 /**
  * @addtogroup afw_endian

@@ -9,8 +9,7 @@
 #ifndef __AFW_OBJECT_PATH_H
 #define __AFW_OBJECT_PATH_H
 
-#include "afw_interface.h"
-#include "afw_data_type_typedefs.h"
+#include "afw_minimal.h"
 
 /**
  * @addtogroup afw_object_path

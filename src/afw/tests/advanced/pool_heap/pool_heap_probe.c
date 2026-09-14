@@ -123,6 +123,10 @@ impl_heap_malloc_free(afw_xctx_t *xctx)
     afw_size_t after_alloc;
 
     heap = afw_pool_heap_create(xctx->p, 0, xctx);
+    if (impl_self(heap)->thread != xctx->thread) {
+        return impl_fail("heap_malloc_free",
+            "ST heap thread != xctx->thread");
+    }
     before = impl_in_use(xctx);
 
     a = afw_pool_malloc(heap, IMPL_SIZE_MEDIUM, xctx);
@@ -1064,6 +1068,13 @@ main(int argc, char **argv)
         (const char * const *)argv, &create_error);
     if (!xctx) {
         fprintf(stderr, "environment create failed\n");
+        return 2;
+    }
+    if (!xctx->thread ||
+        xctx->thread->type != afw_thread_type_base ||
+        xctx->thread->os_thread != NULL)
+    {
+        fprintf(stderr, "base xctx thread not attached\n");
         return 2;
     }
 

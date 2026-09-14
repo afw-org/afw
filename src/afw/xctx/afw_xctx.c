@@ -145,6 +145,14 @@ afw_xctx_internal_create_finishup(afw_xctx_t *xctx)
 
     /* Push application qualifiers if appropriate. */
     afw_application_internal_push_qualifiers(xctx);
+
+    /* Snapshot thread currents after this xctx's thread is set. */
+    if (xctx->thread) {
+        xctx->snap_pool_bytes_in_use =
+            xctx->thread->pool_bytes_in_use;
+        xctx->snap_pool_chunk_bytes =
+            xctx->thread->pool_chunk_bytes;
+    }
 }
 
 

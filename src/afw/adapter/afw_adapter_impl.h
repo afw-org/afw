@@ -10,7 +10,6 @@
 #define __AFW_ADAPTER_IMPL_H__
 
 #include "afw_interface.h"
-#include "afw_hash_table.h"
 
 /**
  * @addtogroup afw_adapter_impl

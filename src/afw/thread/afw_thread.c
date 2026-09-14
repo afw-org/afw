@@ -55,6 +55,7 @@ afw_thread_create(
     self->start_function_arg = start_function_arg;
     self->name = name;
     self->thread_number = thread_number;
+    self->type = afw_thread_type_request;
     self->xctx = afw_xctx_internal_create_thread_xctx(self, xctx);
 
     /* Joinable POSIX default; thread_attr is stored but unused. */

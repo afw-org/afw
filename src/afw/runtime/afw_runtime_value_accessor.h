@@ -9,7 +9,7 @@
 #ifndef __AFW_RUNTIME_VALUE_ACCESSOR_H__
 #define __AFW_RUNTIME_VALUE_ACCESSOR_H__
 
-#include "afw_runtime.h"
+#include "afw_interface.h"
 
 AFW_BEGIN_DECLARES
 

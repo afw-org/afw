@@ -272,6 +272,7 @@ afw_environment_create(
     const afw_utf8_z_t *s;
     afw_error_t *error;
     afw_try_t unhandled_error;
+    afw_thread_t *thread;
 
     /* Check and initialize libxml2 */
     LIBXML_TEST_VERSION
@@ -332,6 +333,17 @@ afw_environment_create(
 
     /* >>>>>>>>> Errors can be thrown at this point. <<<<<<<<< */
 
+    /*
+     * Always-non-NULL xctx->thread. Base is not a pthread: do not
+     * call afw_thread_create(). Struct lives in env->p (MT).
+     */
+    thread = afw_xctx_calloc_type(afw_thread_t, xctx);
+    thread->type = afw_thread_type_base;
+    thread->xctx = xctx;
+    thread->p = p;
+    thread->os_thread = NULL;
+    xctx->thread = thread;
+
     /* Create data type method number hash table. */
     env->data_type_method_number_ht = afw_hash_table_create(
         afw_void_hash_table_t, p, xctx);
@@ -355,6 +367,7 @@ afw_environment_create(
     else {
         xctx->name = &impl_default_name;
     }
+    thread->name = xctx->name;
     env->pub.program_name.s = xctx->name->s;
     env->pub.program_name.len = xctx->name->len;
 
