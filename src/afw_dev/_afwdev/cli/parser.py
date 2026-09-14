@@ -79,8 +79,11 @@ def add_args(subparsers, info):
 
         else:
             kw = dict(nargs=arg.get('nargs'), help=help)
-            if 'default' in arg:
-                kw['default'] = arg.get('default')
+            # Only pass a non-format sentinel (False) so --compare/--trend
+            # can tell "omitted" from "flag with no paths". String defaults
+            # like "{implementation_id}" must stay for set_package to format.
+            if arg.get('default', None) is False:
+                kw['default'] = False
             parser.add_argument(*args, **kw)
 
     handler = SUBCOMMAND_HANDLERS.get(info['subcommand'])

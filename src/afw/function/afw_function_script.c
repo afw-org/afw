@@ -158,7 +158,14 @@ afw_function_execute_eval_script(
             if (value) {
                 value = afw_value_get_assignable(value, xctx);
             }
-            afw_value_release(compiled, xctx);
+            /*
+             * If throwing, keep the compile unit until the xctx ends so
+             * outer CATCH can still read error->contextual (source
+             * location lives in the unit heap).
+             */
+            if (xctx->error_processing_count == 0) {
+                afw_value_release(compiled, xctx);
+            }
         }
         AFW_ENDTRY;
     }
