@@ -278,7 +278,7 @@ afw_array_create_managed_from_values(
     const afw_pool_t *p;
     afw_size_t i;
 
-    p = xctx->p;
+    p = xctx->p->managed_p;
     self = afw_pool_calloc(p,
         sizeof(afw_array_from_values_self_t) +
         sizeof(afw_value_array_t),
@@ -319,7 +319,7 @@ afw_array_create_managed_from_objects(
     const afw_pool_t *p;
     afw_size_t i;
 
-    p = xctx->p;
+    p = xctx->p->managed_p;
     values = NULL;
     if (count > 0) {
         values = afw_pool_malloc(p, count * sizeof(afw_value_t *), xctx);
@@ -389,7 +389,7 @@ afw_array_create_managed_from_c_array(
             xctx);
     }
 
-    p = xctx->p;
+    p = xctx->p->managed_p;
     count = impl_count_c_array(internal, indirect, data_type, count, xctx);
     if (count == 0) {
         return afw_array_create_managed_from_values(
@@ -503,11 +503,11 @@ impl_afw_array_managed_from_values_release(
                 afw_value_release(self->values[i], xctx);
             }
         }
-        afw_pool_free_memory(xctx->p, (void *)self->values,
+        afw_pool_free_memory(self->pub.p, (void *)self->values,
             self->count * sizeof(const afw_value_t *), xctx);
         self->values = NULL;
     }
-    afw_pool_free_memory(xctx->p, self,
+    afw_pool_free_memory(self->pub.p, self,
         sizeof(afw_array_from_values_self_t) +
         sizeof(afw_value_array_t), xctx);
 }

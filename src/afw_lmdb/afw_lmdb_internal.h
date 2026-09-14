@@ -98,7 +98,7 @@ typedef struct afw_lmdb_adapter_s {
      * indexer otherwise never notices index_create/index_remove done by
      * another session).
      */
-    apr_uint32_t indexDefinitionsGeneration;
+    afw_uint32_t indexDefinitionsGeneration;
 } afw_lmdb_adapter_t;
 
 typedef struct afw_lmdb_journal_s {
@@ -153,7 +153,7 @@ typedef struct afw_lmdb_adapter_impl_index_s {
     MDB_txn *txn;
     /* Generation of adapter->indexDefinitionsGeneration that pub.
        indexDefinitions currently reflects (issue #252 item 3). */
-    apr_uint32_t definitionsGeneration;
+    afw_uint32_t definitionsGeneration;
 } afw_lmdb_adapter_impl_index_t;
 
 typedef struct impl_afw_adapter_impl_index_cursor_self_s {

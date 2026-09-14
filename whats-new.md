@@ -45,9 +45,10 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | `_internal` | C payload of that type (`afw_utf8_t`, `afw_integer_t`, …). |
 | `convert_to_*` | Convert to another representation. |
 | `create_unmanaged` / `_new_p` / `_cede_p` | Lives in dest `p`. |
-| `create_managed` | Frame in this `xctx->p`. |
+| `create_managed` | Frame in **`p->managed_p`** (pass the evaluation `p`). |
 | `get_assignable` | Isolate into a slot. |
-| `afw_xctx_scope_get_assignable_for_lifetime` | `get_assignable` plus release when the current scope ends. Does **not** write `last_result`. Mutating builtins hold the instance first; new array results `create_managed` then fill. `array()` / `create_array()` stay unmanaged script wrappers in `x->p`. |
+| `afw_xctx_scope_get_assignable_for_scope_lifetime` | `get_assignable` plus release when the **current** scope ends. Does **not** write `last_result`. Mutating builtins hold the instance first; new array results `create_managed` then fill. `array()` / `create_array()` stay unmanaged script wrappers in `x->p`. |
+| `afw_xctx_scope_get_assignable_for_p_lifetime` | Same pin on a **passed** scope (script function return uses the caller). Managed values (including closures) may use any scope. |
 | `afw_v_foo` | Object **property name** (a value). `afw_s_foo` is still utf8 for type ids and other utf8 APIs. |
 | dest `p` | Evaluate, clone, or extra allocation (iterator / meta). **Not** on value getters. |
 
@@ -67,11 +68,28 @@ Utf8 ingest is a **different** table: `create` / `to_` copy; `create_no_copy` / 
 | `apr_getopt_long` in `afw` / command skeleton | **`afw_getopt_long`** with an `afw_getopt_option_t` table (help from the same table). No APR pool. `afwfcgi` still uses its strcmp loop. A **make-command** package’s `find_package(afw)` picks the **newest** installed cmake config (versioned `lib/cmake/afw-*` dirs accumulate). |
 | LDAP `apr_ldap_url_parse` / `apr_ldap_init` / `apr_ldap_set_option` | OpenLDAP **`ldap_url_parse`**, **`ldap_initialize`**, **`ldap_set_option`**. Search/bind/CRUD were already `ldap_*`. |
 | `afw_dateTime_set_from_apr_time` / `create_from_apr_time` | **`afw_dateTime_set_from_os_time`**. No in-tree callers after file I/O. |
+| `apr_initialize` / `afw_pool_get_apr_pool` / linking `apr-1` / APR as the AFW pool | **libafw does not use APR.** Heap store is AFW 64k-min, 4k-aligned chunks (`afw_pool_heap_create` can use a smaller `chunk_min`; compile units use 4k). `find_package(afw)` and `afw.pc` no longer require APR. Do not pass an APR pool. You may still link APR **in your own tree** if you use it yourself — AFW will not provide it. |
 | Object `property_name` as `const afw_utf8_t *` | **`const afw_value_t *`** on object get/set/has/remove, create_embedded, meta, `throw_property_*`. `afw_s_foo` → **`afw_v_foo`** (or your package `*_v_*`). See the [checklist](#object-property-names-as-values-issue-2) if you maintain another repo that links this libafw. |
 | `get_property_as_string` / `afw_value_as_string` as a utf8 peel; dest `p` on those getters | **`_as_<type>`** is a typed value pointer (`const afw_value_string_t *`). C payload is **`_internal`**. Convert is **`convert_to_*`**. Getters do **not** evaluate and do **not** take dest `p`. [Typed values](#typed-value-pointers-vs-c-internals) |
 | `afw_array_get_next_value(..., p, xctx)` / `push_internal` / `get_next_internal` | Drop dest `p` on `get_next_value` / `get_entry_value`. Gone: `push_internal`, `insert_internal`, `remove_internal`, `get_next_internal`, `get_entry_internal`. Use **`push_value`** / **`get_next_value`** or typed `array_of_<type>_add` / `_add_internal`. [Typed values](#typed-value-pointers-vs-c-internals) |
 | `afw_value_as_assignable` / `compile_and_evaluate_as` | **`afw_value_get_assignable`**. **`afw_value_compile_and_evaluate_using`**. [Typed values](#typed-value-pointers-vs-c-internals) |
-| Object/array create that “owns a pool” as `create_managed` | **`create_unmanaged`** (live in `p`), **`create_unmanaged_new_p`**, **`create_unmanaged_cede_p`**. **`create_managed`** is a **frame** (no pool, lives in this `xctx->p`). Isolate with **`get_assignable`**. Unmanaged object/array **value** `get_reference` / `release` **throw**. [Value lifetime](#value-lifetime--memory-management-issue-2--alphabeta) |
+| Object/array create that “owns a pool” as `create_managed` | **`create_unmanaged`** (live in `p`), **`create_unmanaged_new_p`**, **`create_unmanaged_cede_p`**. **`create_managed(p, xctx)`** is a **frame** (slots + RC in **`p->managed_p`**). Isolate with **`get_assignable`**. Unmanaged object/array **value** `get_reference` / `release` **throw**. [Value lifetime](#value-lifetime--memory-management-issue-2--alphabeta) |
+| `afw_pool_create(heap)` as a nested heap; `afw_pool_create_xctx_p` | **`afw_pool_create`** of a single-thread parent is a **tracker**. ST heap: **`afw_pool_heap_create(parent, chunk_min, xctx)`** (`0` = 64k). Job/MT: **`afw_pool_multithread_create(env->p)`**. |
+| `afw_xctx_scope_get_assignable_for_lifetime` | **`get_assignable_for_scope_lifetime`** (current `{ }`). Script return uses **`get_assignable_for_p_lifetime`** on the caller. |
+| `afw_pool_register_cleanup_before` | **`afw_pool_register_cleanup`**. Callbacks must not throw uncaught (that stops the rest of the list). |
+| `afw_pool_destroy` that ran cleanup callbacks | **`destroy` is storage-only** (must not fail). **`afw_pool_run_cleanups`** first if callbacks must run (`xctx_release` does both). Last-`release` (RC 0) still runs callbacks then teardown. |
+
+### Updating another repository (pre-mgg-develop)
+
+If you are bringing a **sibling AFW package** or other C that linked old libafw up to this line, work the [C programmers](#c-programmers) table **in order**, then the checklists below. You do **not** need APR to build or link AFW.
+
+1. **Rebuild and reinstall** that tree against this AFW install (same `--cdev` / `--fulldev` vintage). Mixing old DSOs with new `libafw` is unsupported.
+2. **Drop APR as an AFW dependency:** no `apr-1` / `apr-util` in that package’s cmake/`pkg-config` **because of AFW**; no `afw_pool_get_apr_pool`; no `apr_initialize` for AFW; `afw_common.h` no longer includes `<apr_strings.h>`. Grep `apr_`, `get_apr_pool`, `APR_`.
+3. **Pools:** `afw_pool_heap_create` / `afw_pool_create` (tracker if ST parent) / `afw_pool_multithread_create`. `create_managed` takes **`p`** and allocates in **`p->managed_p`**. `destroy` is storage-only; **`run_cleanups`** first. [Value lifetime](#value-lifetime--memory-management-issue-2--alphabeta)
+4. **Names as values:** object get/set take `const afw_value_t *` — `afw_s_foo` → **`afw_v_foo`**. [Checklist](#object-property-names-as-values-issue-2)
+5. **UTF-8 printf / throw:** `%ku` / `%ks` / `%km`; no `AFW_UTF8_FMT_ARG` on AFW walks. [Printf](#how-to-fix-printf--throw-formats-in-another-repository)
+6. **Threads / files / getopt / curl body / LDAP setup** as in the table above (no APR pool, no `apr_file_*` / `apr_thread_*` / `apr_getopt_long` / `apr_brigade_*` / `apr_ldap_*` **via AFW**).
+7. **Typed values / arrays:** `_as_<type>` vs `_internal`; drop dest `p` on getters; no `push_internal`. [Typed values](#typed-value-pointers-vs-c-internals)
 
 **Details:** [libafw C API cleanup](#libafw-c-api-cleanup-release-ready-surface).
 
@@ -102,13 +120,13 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**`afw` CLI**](#interactive-afw-line-editing-and-history) | Optional interactive line editing and history ([#30](https://github.com/afw-org/afw/issues/30)); **`--allow` / `-a`** for result content type (YAML block strings, issue **[#14](https://github.com/afw-org/afw/issues/14)**) — see also [YAML / `--allow`](#afw---allow-and-yaml-value-output-issue-14) |
 | [**JSON Schema**](#json-schema-for-adaptive-object-types) ([#3](https://github.com/afw-org/afw/issues/3)) | Cleaner editor schemas for Adaptive object types |
 | [**Process env**](#process-environment-variables-issue-71) ([#71](https://github.com/afw-org/afw/issues/71)) | One `current` on `_AdaptiveEnvironmentVariables_` retrieve; values string if valid UTF-8 else hexBinary |
-| [**`process::`**](#process-ambient-environment-and-process-issues-71--74) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Ambient `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime` at env create (with `environment::`) |
+| [**`process::`**](#process-ambient-environment-and-process-issues-71--74) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Ambient `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime`; live **`poolBytesInUse`** / **`maxPoolBytesInUse`** / **`poolChunkBytes`** / **`maxPoolChunkBytes`** (also on `_AdaptiveServer_/current`) |
 | [**`afw_crypto`**](#crypto-extension-afw_crypto-issue-74-partial) ([#74](https://github.com/afw-org/afw/issues/74) partial) | Optional extension: AES-GCM encrypt/decrypt/**seal**/**unseal**, digest/HMAC, keystore, key refs, PBKDF2; LDAP `bindParameters` recipe |
 | [**Templates**](#compile-time-template-substitutions-issue-97) ([#97](https://github.com/afw-org/afw/issues/97)) | `#{…}` compile, `${…}` on get, function from `#{…}` on **call**; `compile()` is a unit; log conf **`custom`** removed; path conf at configure; `on*` / log filter are scripts |
 | [**Adapter index `current::`**](#adapter-index-filtervalue-current-issue-54--partial) ([#54](https://github.com/afw-org/afw/issues/54) partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
 | [**C builders / afwdev**](#c-api-docs-and-full-package-builds-issue-1) ([#1](https://github.com/afw-org/afw/issues/1)) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
 | [**C vector / hash table**](#c-vector-and-hash-table) | **`afw_vector`** and **`afw_hash_table`** on `afw.h` for C growable lists and name→pointer maps (not Adaptive `afw_array`) |
-| [**Value / memory (α/β)**](#value-lifetime--memory-management-issue-2--alphabeta) ([#2](https://github.com/afw-org/afw/issues/2), [#277](https://github.com/afw-org/afw/issues/277)) | Two worlds: **unmanaged** in dest `p` / tracker; **managed** in this `xctx->p`. Slot protocol; `create_unmanaged` / `_new_p` / `_cede_p`; frames `create_managed`; last_return is the slot ([#62](https://github.com/afw-org/afw/issues/62)) |
+| [**Value / memory (α/β)**](#value-lifetime--memory-management-issue-2--alphabeta) ([#2](https://github.com/afw-org/afw/issues/2), [#277](https://github.com/afw-org/afw/issues/277)) | Two worlds: **unmanaged** in dest `p` / tracker; **managed** in **`p->managed_p`**. One ST heap per xctx; `create()` of ST is a tracker; compile units own a heap. Slot protocol; last_return is the slot ([#62](https://github.com/afw-org/afw/issues/62)). Hard-loop soaks for assign / `array_push_pop` / `function_return` are **flat** or under the bar — **[#2](https://github.com/afw-org/afw/issues/2) not closed** (refinements still coming) |
 | [**`stringify` / `decompile` / listing**](#stringify-decompile-compiler-listing-and-binary-text) ([#18](https://github.com/afw-org/afw/issues/18)) | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
 | [**UTF-8 create / set / forced_safe**](#utf-8-create-set-and-forced_safe) ([#314](https://github.com/afw-org/afw/issues/314)) | C doors: short **`create`/`set` copy**; **`no_copy`** points; **`forced_safe`** encodes invalid runs as `^hex^`. **`afw_utf8_printf`**: `%ku` / `%ks` / `%km`; assemble then **`create`**. libc `fprintf` still uses `AFW_UTF8_FMT`. Checklist for **other repos**. `--scan` type-checks AFW printf |
 | [**UTF-8 in JSON / Fiddle**](#utf-8-in-json-results-and-python-local-mode) | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
@@ -554,7 +572,7 @@ Compile errors / runtime NFC throws on error paths look like: `AFW_UTF8_FMT` in 
 | `"…" AFW_UTF8_FMT …`, `AFW_UTF8_FMT_ARG(s)` in **`afw_utf8_printf`** / **`z_printf`** / **`AFW_THROW_ERROR_FZ`** | `"…%ku…"`, pass **`s`** (one pointer). Quoted: `"…'%ku'…"`. |
 | `AFW_UTF8_FMT` + `FMT_ARG` in **`fprintf`** / **`FCGX_FPrintF`** / **`syslog`** | **Leave it.** That is libc. |
 | `%s` of bytes that might not be UTF-8 (OS error, LDAP, backtrace) | **`%ks`**. |
-| `apr_pstrdup` / `apr_pstrndup` / `apr_psprintf` | **`afw_utf8_z_create`** / **`to_utf8_z`** / **`afw_utf8_printf`**. Add `#include <apr_strings.h>` only if you still call APR string APIs yourself. |
+| `apr_pstrdup` / `apr_pstrndup` / `apr_psprintf` | **`afw_utf8_z_create`** / **`to_utf8_z`** / **`afw_utf8_printf`**. **libafw does not use APR.** Include `<apr_strings.h>` only if **your** tree still calls APR string APIs for non-AFW reasons. |
 | `AFW_UTF8_FMT_OPTIONAL_ARG(s)` / `OPTIONAL_UNDEFINED_ARG(s)` | Pass **`s`** to **`%ku`** (NULL prints nothing). |
 | Hand-rolled `(int)s->len, s->s` after you already switched the format to `%ku` | Pass **`s`**. Extra ints are a crash. |
 
@@ -929,22 +947,22 @@ Tests: `src/afw/tests/language/script/object_expression_names.as`.
 
 ## Value lifetime / memory management (issue [#2](https://github.com/afw-org/afw/issues/2)) — alpha/beta
 
-**Issue [#2](https://github.com/afw-org/afw/issues/2)** / **[#277](https://github.com/afw-org/afw/issues/277)** — campaign continues. Slot protocol landed. Pool split landed. Closures / throw-path rewind (**[#35](https://github.com/afw-org/afw/issues/35)**) bind at store. Two worlds (unmanaged vs managed) are how values live now. **Not** a finished memory-management productization (α/β).
+**Issue [#2](https://github.com/afw-org/afw/issues/2)** / **[#277](https://github.com/afw-org/afw/issues/277)** — campaign continues. This line is a **major #2 step**: APR is gone from libafw; one ST heap per xctx; managed allocs use **`p->managed_p`**; hard-loop soaks that used to climb (`array_push_pop`, `function_return`) are **flat** or under the bar. **Not closed** — refinements still coming. α/β.
 
 ### Two worlds
 
 | | Unmanaged | Managed |
 |---|---|---|
-| Where | dest `p` / a tracker | this evaluation’s `xctx->p` |
+| Where | dest `p` / a tracker | this evaluation’s **`p->managed_p`** (request: `xctx->p`) |
 | Death | that pool is destroyed | last hold, then the header is freed |
 | Typical use | temps, compile unit, eval result clone | anything a variable / property / array slot **holds** |
 
 C object/array creates:
 
 - **`create_unmanaged`** — lives in `p`
-- **`create_unmanaged_new_p`** — new child pool
+- **`create_unmanaged_new_p`** — new child of `p->managed_p`
 - **`create_unmanaged_cede_p`** — you pass the pool
-- **`create_managed`** — **frame** (no pool; slots + refcount in this `xctx->p`)
+- **`create_managed(p, xctx)`** — **frame** (slots + RC in **`p->managed_p`**)
 
 Unmanaged object/array **values** do not take `get_reference` / `release` (they throw). Use **`get_assignable`** to isolate into a slot. Instance `get_reference` on the object still pins its pool (adapters, faces). Rebuild out-of-tree C against this line ([C rebuild](#c-programmers)).
 
@@ -958,7 +976,9 @@ Assignment, **`return`**, and a call that is not void set the script’s running
 
 - Prefer **shared permanent Adaptive values** (`afw_v_*`) for known scalars where safe.
 - **Slot protocol:** assign / parameters hold the new value and release the old; scope last-release walks slots; C-style `for` and **`for-of` `let`/`const`** clone the loop-local scope per iteration. No `var` hoist, no TDZ, no `for-in`.
-- **Pools:** destroy-is-lifetime. Script eval uses a **heap** + **trackers**.
+- **Pools:** **libafw does not use APR.** `afw_pool_heap_create` (ST, own chunks; default 64k min, compile units 4k), `afw_pool_create` (tracker if ST parent), `afw_pool_multithread_create` (conf/adapter/server). One ST heap per xctx; scopes are trackers of that heap. `destroy` is storage-only; **`run_cleanups`** first. Process base pool is process lifetime (valgrind **still reachable** is intended).
+- **Script return:** pin on the caller (`get_assignable_for_p_lifetime`). No leftover function-return wrapper inf.
+- **Live counters:** `process::poolBytesInUse` / `maxPoolBytesInUse` / `poolChunkBytes` / `maxPoolChunkBytes` (same numbers on `_AdaptiveServer_/current`).
 - **Objects/arrays:** dual face; C uses **`afw_object_as_value` / `afw_array_as_value`**. Overlay **`set`** on look-through faces holds the local overlay. Get/retrieve already return a **face** — do not `clone()` just to set properties.
 - **`afw_pool_release`**: returns the pool or **NULL** if that call destroyed it.
 - **Closures (#35):** literals wrap a script function as a closure when stored (same as assign/`return`). Throw-path tests: `src/afw/tests/language/script/throw_rewind.as`.
@@ -970,7 +990,7 @@ Assignment, **`return`**, and a call that is not void set the script’s running
 ### Not done yet (do not rely on)
 
 - Adaptive `clone()` is not the C `clone_unmanaged` / `clone_managed` pair.
-- Renaming `clone_or_reference` → `get_reference` in user-facing C docs; dropping generated slice infs; heap free-list mixed-size tuning.
+- Renaming `clone_or_reference` → `get_reference` in user-facing C docs; dropping generated slice infs; mmap / per-chunk free lists.
 
 Statement evaluation `p` **is** each `{ }` frame’s tracker when that `{ }` has a frame (PR **#287**). Nested empty `{ }` is not a frame. Large nested `eval` comment tests (`comments-bmp-*.as`) run in default `afwdev test -j`.
 
@@ -1062,11 +1082,12 @@ These landed for product reasons too, but share the **same rebuild** for C consu
 | Work | C impact (summary) |
 |------|--------------------|
 | [Object / array helpers](#object-and-array-helpers-issue-55) ([#55](https://github.com/afw-org/afw/issues/55)) | `afw_array_setter` reshape |
-| [Value / memory](#value-lifetime--memory-management-issue-2--alphabeta) ([#2](https://github.com/afw-org/afw/issues/2)) | Pool/value lifetime and faces |
+| [Value / memory](#value-lifetime--memory-management-issue-2--alphabeta) ([#2](https://github.com/afw-org/afw/issues/2)) | Pool/value lifetime and faces; **no APR in libafw** |
 | [UTF-8 code-point sequences](#utf-8-code-point-sequences-issue-153) ([#153](https://github.com/afw-org/afw/issues/153)) | Iterator redesign; legacy cursor → **`afw_iterator_old`** |
 | [Typed value pointers](#typed-value-pointers-vs-c-internals) | `_as_<type>` vs `_internal` vs `convert_to_*`; array dest `p` and `_internal` vtable methods |
 | [Mutable object faces](#mutable-object-faces-issue-17) ([#17](https://github.com/afw-org/afw/issues/17)) | Face/value paths if you link those APIs |
 | [C vector / hash table](#c-vector-and-hash-table) | New `afw_vector` / `afw_hash_table` on `afw.h` |
+| APR | **Gone from libafw.** No `apr-1` to link; no `get_apr_pool`. Heap is AFW chunks. |
 
 ### Upgrade hygiene
 
@@ -1346,6 +1367,10 @@ Process environment variables and invocation info are created at **environment c
 | **`cwd`** | Working directory **snapshot** at environment create (not updated after `chdir`) |
 | **`afwVersion`** | Linked libafw version string |
 | **`startTime`** | Local dateTime when the Adaptive environment was created |
+| **`poolBytesInUse`** | Outstanding AFW malloc/calloc (asked-for). Live. |
+| **`maxPoolBytesInUse`** | High-water of `poolBytesInUse` |
+| **`poolChunkBytes`** | posix_memalign chunk bytes still held. Live. |
+| **`maxPoolChunkBytes`** | High-water of `poolChunkBytes` |
 
 Example:
 
@@ -1355,7 +1380,7 @@ assert(length(process::args) >= 1);
 const home = environment::HOME;
 ```
 
-**Not on `process::`:** HTTP/CGI parameters (`request::`), server metrics (`_AdaptiveServer_/current`), or a live-updating cwd.
+**Not on `process::`:** HTTP/CGI parameters (`request::`) or a live-updating cwd. Pool counters also appear on **`_AdaptiveServer_/current`** (same process-wide numbers).
 
 Hosts (`afw`, `afwfcgi`, …) no longer create their own process-env object. Context type **`process`** documents these bags; **`application`** parents it for the expression builder. Path-like conf templates use `contextType: "process"`.
 

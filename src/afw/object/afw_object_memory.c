@@ -104,12 +104,12 @@ afw_object_create_with_options(
 
 AFW_DEFINE(const afw_object_t *)
 afw_object_create_managed(
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_object_internal_memory_object_t *self;
-    const afw_pool_t *p;
 
-    p = xctx->p;
+    p = p->managed_p;
     self = afw_pool_calloc_type(p,
         afw_object_internal_memory_object_t, xctx);
     self->pub.inf = &impl_afw_object_managed_inf;
@@ -141,7 +141,7 @@ afw_object_create_wrapper_managed(
         return wrapped;
     }
     self = (afw_object_internal_memory_object_t *)
-        afw_object_create_managed(xctx);
+        afw_object_create_managed(xctx->p, xctx);
     self->wrapped = wrapped;
     afw_object_get_reference(wrapped, xctx);
     if (wrapped->meta.meta_object) {
@@ -387,7 +387,7 @@ afw_object_create_managed_clone(
         afw_object_get_reference(from, xctx);
         return from;
     }
-    to = afw_object_create_managed(xctx);
+    to = afw_object_create_managed(xctx->p, xctx);
     impl_copy_into_managed(to, from, xctx);
     return to;
 }
@@ -455,7 +455,7 @@ afw_object_create_wrapper_with_options(
     self->wrapped = wrapped;
     /* Face holds the bag the same way for in_pool / and_pool / permanent. */
     afw_object_get_reference(wrapped, xctx);
-    afw_pool_register_cleanup_before(self->pub.p, self, NULL,
+    afw_pool_register_cleanup(self->pub.p, self, NULL,
         impl_managed_face_overlay_cleanup, xctx);
     /*
      * Carry meta (path, objectId, reconcilable, …) onto the face so
@@ -1127,7 +1127,7 @@ impl_afw_object_managed_release(
         afw_object_release(self->wrapped, xctx);
         self->wrapped = NULL;
     }
-    afw_pool_free_memory(xctx->p, self,
+    afw_pool_free_memory(self->pub.p, self,
         sizeof(afw_object_internal_memory_object_t), xctx);
 }
 

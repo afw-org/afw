@@ -10,9 +10,6 @@
 #define __AFW_ATOMIC_H__
 
 #include "afw_interface.h"
-#ifdef AFW_WINDOWS
-#include <apr_atomic.h>
-#endif
 
 /**
  * @addtogroup afw_atomic
@@ -80,7 +77,7 @@ afw_atomic_uint32_decrement(
     AFW_ATOMIC afw_uint32_t *mem)
 {
 #ifdef AFW_WINDOWS
-    return apr_atomic_dec32(mem);
+    return (afw_uint32_t)InterlockedDecrement((LONG *)mem);
 #else
     return --(*mem);
 #endif
@@ -112,7 +109,7 @@ afw_atomic_uint32_increment(
     AFW_ATOMIC afw_uint32_t *mem)
 {
 #ifdef AFW_WINDOWS
-    return apr_atomic_inc32(mem);
+    return (afw_uint32_t)InterlockedIncrement((LONG *)mem);
 #else
     return  ++(*mem);
 #endif

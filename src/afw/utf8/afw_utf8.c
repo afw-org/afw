@@ -78,10 +78,10 @@ afw_utf8_from_code_point(afw_utf8_octet_t utf8_z[5], afw_code_point_t cp,
     UBool isError;
     int32_t i = 0;
 
-    isError = FALSE;
+    isError = false;
     U8_APPEND((afw_octet_t *)utf8_z, i, 4, cp, isError);
     utf8_z[i] = 0;
-    return (isError == FALSE);
+    return !isError;
 }
 
 
@@ -2113,7 +2113,7 @@ afw_utf8_z_equal(
     const afw_utf8_z_t *s1, const afw_utf8_z_t *s2)
 {
     return (s1 && s2 && (strcmp((const char *)s1, (const char *)s2) == 0
-        || s1 == s2)) ? TRUE : FALSE;
+        || s1 == s2)) ? true : false;
 }
 
 

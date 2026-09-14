@@ -57,22 +57,6 @@ target_link_directories(${PROJECT_NAME} PUBLIC
     "$<INSTALL_INTERFACE:${AFW_PACKAGE_INSTALL_LIBDIR}>"
 )
 
-# Using AFW provided afw_apr-config, include apr.
-set(AFW_APR_DIR cmake)
-find_package(AFW_APR REQUIRED)
-target_include_directories(${PROJECT_NAME} PUBLIC
-    ${AFW_APR_INCLUDE_DIRECTORIES})
-target_link_libraries(${PROJECT_NAME} PUBLIC
-    ${AFW_APR_LINK_LIBRARIES})
-
-# Using AFW provided afw_aprutil-config, include apr-util.
-set(AFW_APRUTIL_DIR cmake)
-find_package(AFW_APRUTIL REQUIRED)
-target_include_directories(${PROJECT_NAME} PUBLIC
-    ${AFW_APRUTIL_INCLUDE_DIRECTORIES})
-target_link_libraries(${PROJECT_NAME} PUBLIC
-    ${AFW_APRUTIL_LINK_LIBRARIES})
-
 # Libraries dw and unwind used for traceback on linux
 if (UNIX)
     find_library(DW_LIBRARY dw REQUIRED)
@@ -132,8 +116,6 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake
     cmake/afw_macros.cmake
-    cmake/afw_apr-config.cmake
-    cmake/afw_aprutil-config.cmake
     DESTINATION
         ${AFW_PACKAGE_INSTALL_CMAKEDIR}
 )
@@ -141,8 +123,6 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake
     cmake/afw_macros.cmake
-    cmake/afw_apr-config.cmake
-    cmake/afw_aprutil-config.cmake
     DESTINATION
         ${AFW_PACKAGE_INSTALL_CMAKEDIR_UNVERSIONED}
 )

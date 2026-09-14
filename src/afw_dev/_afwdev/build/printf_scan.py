@@ -343,7 +343,6 @@ def _is_intish(spelling):
         "int8_t", "int16_t", "int32_t", "int64_t",
         "uint8_t", "uint16_t", "uint32_t", "uint64_t",
         "afw_integer_t", "afw_size_t", "afw_byte_t",
-        "apr_size_t", "apr_int64_t", "apr_uint64_t",
         "enum",
     )
     return any(k in s for k in keys)

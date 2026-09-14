@@ -17,7 +17,10 @@
  *
  * A pool is a heap unless it is a tracker. A tracker gets memory
  * from a heap, tracks live USER blocks, and returns them to the
- * heap on free or tracker destroy. The heap owns the free list.
+ * heap on free or tracker destroy. The heap owns the free list and
+ * a list of posix_memalign chunks (4k-aligned, 64k minimum).
+ * Destroy free()s every chunk. Parent/child is lifetime only;
+ * store is the ancestor heap (`impl_reservoir_heap`).
  *
  * USER `size` is always the malloc/free_memory argument.
  *
@@ -99,6 +102,21 @@ struct afw_pool_free_node_s {
     afw_pool_free_node_t *next;
 };
 
+/** Heap region. Destroy walks first_chunk and free()s each. */
+typedef struct afw_pool_chunk_s afw_pool_chunk_t;
+struct afw_pool_chunk_s {
+    afw_pool_chunk_t *next;
+    afw_size_t size;
+};
+
+#define AFW_POOL_ALIGN ((afw_size_t)16)
+#define AFW_POOL_ALIGN_UP(n) \
+    (((n) + (AFW_POOL_ALIGN - 1)) & ~(AFW_POOL_ALIGN - 1))
+/** posix_memalign alignment (page). */
+#define AFW_POOL_CHUNK_ALIGN ((afw_size_t)4096)
+/** Minimum posix_memalign size (multiple of ALIGN). */
+#define AFW_POOL_CHUNK_MIN ((afw_size_t)65536)
+
 /*
  * Heap debug prefix is at least a free node so overlay on free does
  * not touch USER. [size][pool] stay immediately before USER.
@@ -130,39 +148,61 @@ struct afw_pool_internal_self_s {
     afw_integer_t pool_number;
 
     /**
-     * @brief Heap reservoir APR pool (current impl). Trackers share it.
+     * @brief First malloc chunk (heap only). Trackers leave this NULL.
      *
-     * This is how the heap holds memory today (free list, else
-     * apr_palloc). It is not the afw_pool_get_apr_pool() door. A
-     * future heap might not be APR-backed.
+     * Destroy walks this list and free()s every chunk. The heap self
+     * lives in the first allocated chunk.
      */
-    apr_pool_t *apr_p;
+    afw_pool_chunk_t *first_chunk;
 
     /**
-     * @brief APR pool for afw_pool_get_apr_pool() callers, or NULL.
-     *
-     * Door for leftover APR function calls. NULL until first
-     * get_apr_pool(). Heap: for now aliases apr_p. Tracker: first call
-     * creates a child of the heap reservoir (not get_apr_pool(heap));
-     * tracker destroy releases it. Never created if nobody calls.
+     * @brief Chunk currently used for bump allocation (heap only).
      */
-    apr_pool_t *public_apr_p;
+    afw_pool_chunk_t *current_chunk;
+
+    /**
+     * @brief Next unused byte in current_chunk (heap only).
+     */
+    char *bump;
+
+    /**
+     * @brief Bytes left at bump in current_chunk (heap only).
+     */
+    afw_size_t remaining;
+
+    /**
+     * @brief posix_memalign bytes still held (heap only).
+     *
+     * Not asked-for malloc. Trackers are 0; store is the ancestor
+     * heap.
+     */
+    afw_size_t chunk_bytes;
+
+    /**
+     * @brief Number of chunks on first_chunk (heap only).
+     */
+    afw_size_t chunk_count;
+
+    /**
+     * @brief Minimum posix_memalign size for this heap (0 = default).
+     */
+    afw_size_t chunk_min;
 
     /** @brief Optional pool name. */
     const afw_utf8_t *name;
 
-    /** @brief Parent heap when this is a tracker. */
+    /**
+     * @brief AFW parent. Child holds it; listed on first_child.
+     *
+     * Same for heap and tracker. A heap still has its own chunks
+     * (`impl_reservoir_heap` stops at a heap).
+     */
     afw_pool_internal_self_t *parent;
 
-    /**
-     * @brief AFW parent when this is a heap (usually a general pool).
-     */
-    const afw_pool_t *external_parent;
-
-    /** @brief First tracker child of this heap. */
+    /** @brief First child (heap or tracker). */
     afw_pool_internal_self_t *first_child;
 
-    /** @brief Next sibling tracker. */
+    /** @brief Next sibling. */
     afw_pool_internal_self_t *next_sibling;
 
     /**
@@ -184,7 +224,7 @@ struct afw_pool_internal_self_s {
     afw_integer_t reference_count;
 
     /**
-     * Next pool delaying last release/destroy while
+     * Next pool delaying last release while
      * error_processing_count > 0.
      */
     afw_pool_internal_self_t *error_delaying_release_next;
@@ -192,8 +232,13 @@ struct afw_pool_internal_self_s {
     /** Already on xctx->error_delaying_release_first. */
     afw_boolean_t error_delaying_release;
 
-    /** Flush should destroy, not release. */
-    afw_boolean_t error_processing_destroy;
+    /**
+     * @brief This destroy is in progress.
+     *
+     * Children unlink without releasing this parent. Same for heap
+     * and tracker.
+     */
+    afw_boolean_t destroying;
 
     /** @brief Outstanding malloc/calloc (minus free/destroy). */
     afw_size_t bytes_allocated;
@@ -235,13 +280,11 @@ afw_pool_internal_is_heap_multithreaded(const afw_pool_t *p);
 AFW_DECLARE(afw_boolean_t)
 afw_pool_internal_is_tracker(const afw_pool_t *p);
 
-AFW_DECLARE(void)
-afw_pool_error_processing_finish(afw_xctx_t *xctx);
-
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_internal_heap_create(
     const afw_pool_t *parent,
     afw_boolean_t multithreaded,
+    afw_size_t chunk_min,
     afw_xctx_t *xctx);
 
 extern void

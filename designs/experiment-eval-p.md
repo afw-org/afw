@@ -12,9 +12,9 @@ When a `{ }` **has a frame**, statement eval `p` is that frame’s **`scope->p`*
 
 Nested `{ }` with **no symbols** is not a frame. It keeps caller `p` (already the enclosing tracker once the parent flipped).
 
-`while` / `do_while` / classic `for` / `for_of` (not `for (let)`) eval the **body** on a per-trip tracker under `evaluation_heap` and last-release it at the end of the trip. Condition stays on enclosing `p`. `for (let)` still clones the wrapper.
+`while` / `do_while` / classic `for` / `for_of` (not `for (let)`) eval the **body** on a per-trip tracker of **`xctx->p`** (the one ST heap; no `evaluation_heap`) and last-release it at the end of the trip. Condition stays on enclosing `p`. `for (let)` still clones the wrapper.
 
-**Compile is not eval scratch.** `afw_compile*()` is a C API: `shared->p`, else `parent->p` (and `parent->shared` if set), else dest `p` (`cede_p` is dest `p` as the unit; otherwise `afw_pool_create(dest p)`). Adaptive `compile()` / `eval<script>` pass **`xctx->p`**. Do not veto dest `p` inside compile.
+**Compile is not eval scratch.** `afw_compile*()` is a C API: `shared->p`, else `parent->p` (and `parent->shared` if set), else dest `p` (`cede_p` is dest `p` as the unit; otherwise `afw_pool_heap_create(dest p, 4k)`). Adaptive `compile()` / `eval<script>` pass **`xctx->p`** as parent. Do not veto dest `p` inside compile.
 
 Caller `p` owns `shared` (model `on*`, `compile_templates`). If this parser **created** `shared`, `parser_finish` releases `temp_p` (literal lookup table) so the unit can last-release. Passed-in `shared` is not managed here.
 
@@ -49,8 +49,7 @@ Ripped `FIXME_GET_IT_WORKING`. Default `afwdev test -j`: **4304 passed**, 71 ski
 
 ## Still not this experiment
 
-- `#267` `create(tracker)` extra rule (may revisit)
-- FRV dest `p` on `evaluation_heap`
+- `afw_pool_create()` of a ST parent is a tracker (live; [`remaining-apr.md`](remaining-apr.md))
 - `test_script` isolate of `result` / `error` (unmanaged object set still stores the pointer)
 - Destructure extra-eval of a compile unit without `release`
 - [#277](https://github.com/afw-org/afw/issues/277) follow-ups: Adaptive `clone()`, `qualifier("current")` snapshot, `double_free_throws` skip, unevaluated clone-out of script_function / closure

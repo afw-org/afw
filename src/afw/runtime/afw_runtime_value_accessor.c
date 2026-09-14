@@ -650,6 +650,62 @@ afw_runtime_value_accessor_size(
 }
 
 
+/* --- env_pool_stat ------------------------------------------------------- */
+
+static const afw_utf8_t
+impl_brief_env_pool_stat =
+    AFW_UTF8_LITERAL("Read env pool current/max asked-for or chunk bytes");
+
+static const afw_utf8_t
+impl_description_env_pool_stat =
+    AFW_UTF8_LITERAL(
+        "Ignores internal (zeroOffset). Property name selects "
+        "poolBytesInUse, maxPoolBytesInUse, poolChunkBytes, or "
+        "maxPoolChunkBytes from xctx->env. Returns an integer copy "
+        "in the caller pool. Atomically stored; no env lock.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_env_pool_stat = {
+    .key = afw_s_env_pool_stat,
+    .function = afw_runtime_value_accessor_env_pool_stat,
+    .brief = &impl_brief_env_pool_stat,
+    .description = &impl_description_env_pool_stat,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
+const afw_value_t *
+afw_runtime_value_accessor_env_pool_stat(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_size_t n;
+    const afw_environment_t *env;
+
+    (void)internal;
+    if (!xctx || !xctx->env || !prop || !prop->name) {
+        return NULL;
+    }
+    env = xctx->env;
+    if (afw_value_equal(prop->name, afw_v_poolBytesInUse, xctx)) {
+        n = env->pool_bytes_in_use;
+    }
+    else if (afw_value_equal(prop->name, afw_v_maxPoolBytesInUse, xctx)) {
+        n = env->pool_bytes_in_use_max;
+    }
+    else if (afw_value_equal(prop->name, afw_v_poolChunkBytes, xctx)) {
+        n = env->pool_chunk_bytes;
+    }
+    else if (afw_value_equal(prop->name, afw_v_maxPoolChunkBytes, xctx)) {
+        n = env->pool_chunk_bytes_max;
+    }
+    else {
+        return NULL;
+    }
+    return afw_value_create_unmanaged_integer((afw_integer_t)n, p, xctx);
+}
+
+
 /* --- uint32 -------------------------------------------------------------- */
 
 static const afw_utf8_t
@@ -742,7 +798,7 @@ impl_register_adapter_pin_cleanup(
     }
 
     AFW_TRY {
-        afw_pool_register_cleanup_before(
+        afw_pool_register_cleanup(
             p, (void *)held, NULL, impl_release_adapter_cleanup, xctx);
     }
     AFW_CATCH_UNHANDLED {
@@ -1328,6 +1384,7 @@ impl_core_value_accessor_infos[] = {
     &impl_info_null_terminated_array_of_pointers,
     &impl_info_null_terminated_array_of_values,
     &impl_info_size,
+    &impl_info_env_pool_stat,
     &impl_info_service_startup,
     &impl_info_service_status,
     &impl_info_uint32,

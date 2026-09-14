@@ -80,8 +80,8 @@ def run():
             ),
             (
                 "tracker_header",
-                "tracker header is APR/RSS, not a user block on the "
-                "allocated or free list",
+                "tracker header is calloc from the parent heap, not a "
+                "user block on the allocated or free list",
             ),
             (
                 "mixed_sizes",
@@ -102,12 +102,24 @@ def run():
             ),
             (
                 "create_child_of_heap",
-                "afw_pool_create of a heap parent is a heap; free recycles",
+                "afw_pool_create of a ST heap parent is a tracker; "
+                "free recycles",
             ),
             (
-                "get_apr_pool",
-                "tracker get_apr_pool is lazy, a child of the heap "
-                "reservoir, and dies with the tracker",
+                "leftover_child_heap",
+                "parent run_cleanups then destroy runs leftover child "
+                "heap and extra-held tracker cleanups",
+            ),
+            (
+                "unhandled_alloc",
+                "calloc_unhandled never throws; NULL xctx does not "
+                "move in_use; block still dies with the heap",
+            ),
+            (
+                "heap_chunks",
+                "heap store is 64k-min, 4k-aligned posix_memalign "
+                "chunks; large alloc adds a chunk; release walks "
+                "the list",
             ),
             (
                 "deregister_cleanup",
@@ -144,7 +156,6 @@ def run():
         "Heap and heap-tracker pool implementations",
         cases,
         extra_cflags=tuple(extra),
-        extra_ldflags=("-lapr-1",),
     )
     tests = result.get("tests")
     if not isinstance(tests, list):

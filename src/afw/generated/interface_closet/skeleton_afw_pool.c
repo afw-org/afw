@@ -54,17 +54,6 @@ impl_afw_pool_destroy(
 }
 
 /*
- * Implementation of method get_apr_pool for interface afw_pool.
- */
-apr_pool_t *
-impl_afw_pool_get_apr_pool(
-    AFW_POOL_SELF_T *self)
-{
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-}
-
-/*
  * Implementation of method calloc for interface afw_pool.
  */
 void *
@@ -105,10 +94,10 @@ impl_afw_pool_free_memory(
 }
 
 /*
- * Implementation of method register_cleanup_before for interface afw_pool.
+ * Implementation of method register_cleanup for interface afw_pool.
  */
 void
-impl_afw_pool_register_cleanup_before(
+impl_afw_pool_register_cleanup(
     AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
@@ -128,6 +117,18 @@ impl_afw_pool_deregister_cleanup(
     void * data,
     void * data2,
     afw_pool_cleanup_function_p_t cleanup,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method run_cleanups for interface afw_pool.
+ */
+void
+impl_afw_pool_run_cleanups(
+    AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx)
 {
     /** @todo Add code to implement method. */

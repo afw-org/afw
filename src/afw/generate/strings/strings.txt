@@ -328,6 +328,7 @@ NS
 BS
 size
 uint32
+env_pool_stat
 metrics
 adapter_metrics
 adapter_properties

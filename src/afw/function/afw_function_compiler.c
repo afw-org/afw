@@ -816,6 +816,8 @@ afw_function_execute_test_script(
     }
 
     AFW_FINALLY {
+        /* Copy out of the unit pool before last-release of compiled. */
+        result = afw_object_create_managed_clone(result, xctx);
         if (afw_value_is_compiled_value(compiled)) {
             afw_value_release(compiled, xctx);
         }
@@ -823,7 +825,7 @@ afw_function_execute_test_script(
     AFW_ENDTRY;
 
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
-    return afw_value_create_unmanaged_object(result, x->p, xctx);
+    return result->value;
 }
 
 
@@ -950,6 +952,8 @@ afw_function_execute_test_template(
     }
 
     AFW_FINALLY {
+        /* Copy out of the unit pool before last-release of compiled. */
+        result = afw_object_create_managed_clone(result, xctx);
         if (afw_value_is_compiled_value(compiled)) {
             afw_value_release(compiled, xctx);
         }
@@ -957,7 +961,7 @@ afw_function_execute_test_template(
     AFW_ENDTRY;
   
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
-    return afw_value_create_unmanaged_object(result, x->p, xctx);
+    return result->value;
 }
 
 

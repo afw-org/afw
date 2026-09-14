@@ -50,6 +50,10 @@ impl_assignable_get_assignable_value(
 #define AFW_IMPLEMENTATION_ID "compiled_value_assignable"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_compiled_value_assignable_inf
+#define AFW_IMPLEMENTATION_INF_VARIABLES \
+    NULL, \
+    NULL, \
+    true
 #define AFW_VALUE_INF_ONLY
 #define impl_afw_value_optional_release impl_assignable_optional_release
 #define impl_afw_value_get_reference impl_assignable_get_reference

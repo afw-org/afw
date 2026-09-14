@@ -298,6 +298,18 @@ AFW_VECTOR_STRUCT(afw_xctx_scope_p_vector_s, const afw_xctx_scope_t *);
     : NULL)
 
 /**
+ * @brief Scope that invoked the current frame, or NULL.
+ *
+ * The entry under current. Compiled-value sentinel is NULL, so a
+ * top-level call has no Adaptive caller. After a script function
+ * body, nested `{ }` have unwound and this is the caller `{ }`.
+ */
+#define afw_xctx_scope_of_caller(xctx) \
+    ((xctx->scope_stack->count >= 2) \
+    ? xctx->scope_stack->entries[xctx->scope_stack->count - 2] \
+    : NULL)
+
+/**
  * @brief Store a non-void statement result on the current scope.
  * @param value statement result.
  * @param xctx of caller.
@@ -325,8 +337,28 @@ afw_xctx_scope_set_last_result(
  * result use this.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_xctx_scope_get_assignable_for_lifetime(
+afw_xctx_scope_get_assignable_for_scope_lifetime(
     const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Get an assignable and keep it until this scope ends.
+ * @param value to keep. Void and NULL are returned unchanged.
+ * @param scope whose p last-release drops the hold, or NULL for
+ *    get_assignable only.
+ * @param xctx of caller.
+ * @return assignable value, or void/NULL unchanged.
+ *
+ * get_assignable (self-reference if managed, often clone_managed if
+ * unmanaged) then cleanup release on scope->p. Managed values
+ * (including closures) may use any scope: RC keeps them alive; the
+ * callback drops the extra hold when that p ends.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_xctx_scope_get_assignable_for_p_lifetime(
+    const afw_value_t *value,
+    const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx);
 
 
@@ -336,9 +368,8 @@ afw_xctx_scope_get_assignable_for_lifetime(
  * @param xctx of caller.
  * @return held value, or void/NULL unchanged.
  *
- * afw_xctx_scope_get_assignable_for_lifetime() then
- * afw_xctx_scope_set_last_result(). Nested `{ }` adopt and return()
- * use this.
+ * afw_xctx_scope_get_assignable_for_scope_lifetime() then
+ * afw_xctx_scope_set_last_result(). Nested `{ }` adopt uses this.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_xctx_scope_set_last_result_for_lifetime(
@@ -939,11 +970,6 @@ do { \
 /**
  * @brief Pop top VALUE off execution stack.
  * @param xctx of caller.
- *
- * Leftover function_return_value temps above the VALUE are released
- * then popped. Leftover parameter-number pairs are skipped (same as
- * rewind) so a number slot is never treated as a value pointer.
- * Then the VALUE is popped.
  */
 #ifdef AFW_DEBUG_EVALUATION
 #define afw_xctx_evaluation_stack_pop_value(xctx) \
@@ -965,9 +991,8 @@ do { \
  * @param xctx of caller.
  *
  * Use only when top is the parameter-number marker. Pops the marker
- * and writes VALUE into the number slot (call, then 0 or more returns).
- * VALUE must be a real occupant (extra reference for pop_value). To take the
- * pair off with nothing to keep, use afw_xctx_evaluation_stack_pop().
+ * and writes VALUE into the number slot. To take the pair off with
+ * nothing to keep, use afw_xctx_evaluation_stack_pop().
  */
 #ifdef AFW_DEBUG_EVALUATION
 #define afw_xctx_evaluation_stack_pop_parameter_number(VALUE, xctx) \
@@ -988,14 +1013,11 @@ do { \
 
 
 /**
- * @brief Rewind evaluation stack to saved_top, releasing function_return_value temps.
+ * @brief Rewind evaluation stack to saved_top.
  * @param save_count entry count to restore to.
  * @param xctx of caller.
  *
- * Walks from current count down to save_count. Releases each
- * function_return_value. Other entries (call values, parameter-number
- * pairs) are skipped. Then sets count to save_count. Used by AFW_ENDTRY
- * and restore_top so throw rewind does not leak return temps.
+ * Used by AFW_ENDTRY and restore_top.
  */
 AFW_DECLARE(void)
 afw_xctx_evaluation_stack_rewind(
@@ -1005,10 +1027,6 @@ afw_xctx_evaluation_stack_rewind(
 AFW_DECLARE(void)
 afw_xctx_evaluation_stack_pop_value_impl(
     afw_xctx_t *xctx);
-
-AFW_DECLARE(afw_boolean_t)
-afw_xctx_evaluation_stack_is_parked_occupant(
-    const afw_value_t *value);
 
 
 /**

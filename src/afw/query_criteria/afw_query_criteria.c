@@ -1051,7 +1051,7 @@ impl_parse_string_relation(
         if (entry->op_specific == NULL) {
             IMPL_STRING_THROW_ERROR_Z("regexp syntax error");
         }
-        afw_pool_register_cleanup_before(parser->p,
+        afw_pool_register_cleanup(parser->p,
             (void *)entry->op_specific, NULL,
             impl_query_criteria_regexp_cleanup, parser->xctx);
     }
@@ -1561,7 +1561,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
                 AFW_THROW_ERROR_Z(general, "regexp syntax error",
                     parser->xctx);
             }
-            afw_pool_register_cleanup_before(parser->p,
+            afw_pool_register_cleanup(parser->p,
                 (void *)entry->op_specific, NULL,
                 impl_query_criteria_regexp_cleanup, parser->xctx);
         }

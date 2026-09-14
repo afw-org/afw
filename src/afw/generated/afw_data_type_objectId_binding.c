@@ -91,10 +91,12 @@ impl_afw_value_get_assignable_via_reference(
 /* Inf specific is always data type. */
 #define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_objectId_direct
 
-/* Define inf variables for data_type and is_evaluated_of_data_type. */
+/* Inf variables: data_type, is_evaluated_of_data_type, is_managed. */
+#undef AFW_IMPLEMENTATION_INF_VARIABLES
 #define AFW_IMPLEMENTATION_INF_VARIABLES \
     (const void *)&afw_data_type_objectId_direct, \
-    (const void *)&afw_data_type_objectId_direct
+    (const void *)&afw_data_type_objectId_direct, \
+    false
 
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_value(
@@ -119,6 +121,11 @@ impl_afw_value_get_assignable_value(
 #undef impl_afw_value_get_assignable_value
 
 /* Declares and rti/inf defines for interface afw_value */
+#undef AFW_IMPLEMENTATION_INF_VARIABLES
+#define AFW_IMPLEMENTATION_INF_VARIABLES \
+    (const void *)&afw_data_type_objectId_direct, \
+    (const void *)&afw_data_type_objectId_direct, \
+    true
 /* managed objectId: optional_release drops RC; */
 /* scalar last-release free_memorys via xctx->p. */
 /* get_reference / get_assignable_value bump. */
@@ -154,6 +161,11 @@ impl_afw_value_get_assignable_value(
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
+#undef AFW_IMPLEMENTATION_INF_VARIABLES
+#define AFW_IMPLEMENTATION_INF_VARIABLES \
+    (const void *)&afw_data_type_objectId_direct, \
+    (const void *)&afw_data_type_objectId_direct, \
+    false
 /* permanent objectId: optional_release NULL; */
 /* get_reference / get_assignable_value as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_objectId"
@@ -362,7 +374,7 @@ afw_value_objectId_create_managed(
     afw_size_t len;
 
     len = (internal) ? internal->len : 0;
-    v = afw_pool_calloc(xctx->p,
+    v = afw_pool_calloc(xctx->p->managed_p,
         sizeof(afw_value_objectId_managed_t) + len, xctx);
     v->inf = &afw_value_managed_objectId_inf;
     v->internal.len = len;
@@ -412,7 +424,7 @@ afw_value_objectId_create_managed_slice(
         AFW_THROW_ERROR_Z(general,
             "managed slice offset/len out of range", xctx);
     }
-    v = afw_pool_calloc(xctx->p, sizeof(afw_value_objectId_managed_slice_t), xctx);
+    v = afw_pool_calloc(xctx->p->managed_p, sizeof(afw_value_objectId_managed_slice_t), xctx);
     v->inf = &afw_value_managed_slice_objectId_inf;
     v->internal.s = base->s + offset;
     v->internal.len = len;
@@ -601,7 +613,7 @@ impl_afw_value_managed_optional_release(
     }
     self->reference_count--;
     if (self->reference_count == 0) {
-        afw_pool_free_memory(xctx->p, self,
+        afw_pool_free_memory(xctx->p->managed_p, self,
             sizeof(afw_value_objectId_managed_t) + self->internal.len, xctx);
     }
 }
@@ -674,7 +686,7 @@ impl_afw_value_managed_slice_optional_release(
         if (self->containing_value) {
             afw_value_release(&self->containing_value->pub, xctx);
         }
-        afw_pool_free_memory(xctx->p, self,
+        afw_pool_free_memory(xctx->p->managed_p, self,
             sizeof(afw_value_objectId_managed_slice_t), xctx);
     }
 }

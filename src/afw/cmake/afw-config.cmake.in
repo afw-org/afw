@@ -30,10 +30,6 @@ include("@AFW_PACKAGE_INSTALL_FULL_CMAKEDIR@/afw_macros.cmake")
 
 # Find the dependencies
 include(CMakeFindDependencyMacro)
-set(AFW_APR_DIR "@AFW_PACKAGE_INSTALL_FULL_CMAKEDIR@")
-find_dependency(AFW_APR)
-set(AFW_APRUTIL_DIR "@AFW_PACKAGE_INSTALL_FULL_CMAKEDIR@")
-find_dependency(AFW_APRUTIL)
 find_dependency(ICU COMPONENTS uc i18n)
 find_dependency(LibXml2)
 

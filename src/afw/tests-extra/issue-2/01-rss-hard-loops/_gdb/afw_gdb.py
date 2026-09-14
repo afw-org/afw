@@ -65,24 +65,28 @@ def _find_xctx():
 
 def _heap_bytes(xctx):
     try:
-        heap = xctx["evaluation_heap"]
+        heap = xctx["p"]
     except Exception as e:
-        return "evaluation_heap unreadable: %s" % e
+        return "xctx->p unreadable: %s" % e
     if heap == 0:
-        return "evaluation_heap is NULL"
+        return "xctx->p is NULL"
     try:
         ty = gdb.lookup_type("afw_pool_internal_self_t").pointer()
         self = heap.cast(ty)
         n = int(self["bytes_allocated"])
+        chunks = int(self["chunk_bytes"])
+        nchunks = int(self["chunk_count"])
         rc = int(self["reference_count"])
         num = int(self["pool_number"])
         return (
-            "evaluation_heap %s  pool_number=%s  reference_count=%s  "
-            "bytes_allocated=%s (%s MiB)"
-            % (heap, num, rc, n, "%.2f" % (n / 1024.0 / 1024.0))
+            "xctx->p %s  pool_number=%s  refs=%s  "
+            "bytes_allocated=%s (%s MiB)  "
+            "chunks=%s chunk_bytes=%s (%s MiB)"
+            % (heap, num, rc, n, "%.2f" % (n / 1024.0 / 1024.0),
+               nchunks, chunks, "%.2f" % (chunks / 1024.0 / 1024.0))
         )
     except Exception as e:
-        return "evaluation_heap %s (could not cast to afw_pool_internal_self_t: %s)" % (
+        return "xctx->p %s (could not cast to afw_pool_internal_self_t: %s)" % (
             heap, e)
 
 
@@ -91,8 +95,17 @@ def _env_pool_and_rss(xctx):
     try:
         env = xctx["env"]
         n = int(env["pool_bytes_in_use"])
-        bits.append("env->pool_bytes_in_use=%s (%s MiB)" % (
-            n, "%.2f" % (n / 1024.0 / 1024.0)))
+        nmax = int(env["pool_bytes_in_use_max"])
+        bits.append("env->pool_bytes_in_use=%s max=%s (%s/%s MiB)" % (
+            n, nmax,
+            "%.2f" % (n / 1024.0 / 1024.0),
+            "%.2f" % (nmax / 1024.0 / 1024.0)))
+        c = int(env["pool_chunk_bytes"])
+        cmax = int(env["pool_chunk_bytes_max"])
+        bits.append("env->pool_chunk_bytes=%s max=%s (%s/%s MiB)" % (
+            c, cmax,
+            "%.2f" % (c / 1024.0 / 1024.0),
+            "%.2f" % (cmax / 1024.0 / 1024.0)))
     except Exception as e:
         bits.append("env->pool_bytes_in_use unreadable: %s" % e)
     # Prefer /proc: inferior-call of afw_os_get_rss() after SIGSTOP can
@@ -126,7 +139,7 @@ class AfwRss(gdb.Command):
 
 
 class AfwHeap(gdb.Command):
-    """Print evaluation_heap bytes_allocated plus env in_use / VmRSS."""
+    """Print xctx->p asked-for/chunks plus env in_use / VmRSS."""
 
     def __init__(self):
         super(AfwHeap, self).__init__("afw-heap", gdb.COMMAND_USER)

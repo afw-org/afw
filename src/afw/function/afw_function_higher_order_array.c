@@ -67,8 +67,8 @@ impl_over_array(
      * pass scalar string thresholds next to the bag.
      */
     for (e.n = 1; e.n <= functor_argc; e.n++) {
-        functor_argv[e.n] = afw_value_evaluate_and_park(
-            x->argv[e.n + 1], e.n + 1, e.p, e.xctx);
+        functor_argv[e.n] = afw_value_evaluate(
+            x->argv[e.n + 1], e.p, e.xctx);
         if (!e.entry_arg_ptr && afw_value_is_array(functor_argv[e.n])) {
             e.entry_arg_ptr = &functor_argv[e.n];
             e.array = ((const afw_value_array_t *)*e.entry_arg_ptr)->internal;
@@ -147,8 +147,6 @@ impl_over_array(
             }
 
             e.entry_result = afw_value_evaluate(e.functor, e.p, e.xctx);
-            e.entry_result = afw_value_function_return_value_consume(
-                e.entry_result, e.p, e.xctx);
 
             if (!callback(&e))
             {
@@ -167,8 +165,6 @@ impl_over_array(
             }
             e.entry_value = *e.entry_arg_ptr;
             e.entry_result = afw_value_evaluate(e.functor, e.p, e.xctx);
-            e.entry_result = afw_value_function_return_value_consume(
-                e.entry_result, e.p, e.xctx);
             if (!callback(&e))
             {
                 break;
@@ -282,7 +278,6 @@ impl_bag_of_bag(
                 break;
             }
             v = afw_value_evaluate(call, x->p, x->xctx);
-            v = afw_value_function_return_value_consume(v, x->p, x->xctx);
             if (!afw_value_is_boolean(v)) {
                 AFW_THROW_ERROR_Z(argument_error,
                     "First argument must be a boolean function", x->xctx);
@@ -663,8 +658,8 @@ afw_function_execute_filter(
     const afw_value_array_t *result;
 
     result = (const afw_value_array_t *)
-        afw_xctx_scope_get_assignable_for_lifetime(
-            afw_array_create_managed(NULL, x->xctx)->value,
+        afw_xctx_scope_get_assignable_for_scope_lifetime(
+            afw_array_create_managed(NULL, x->p, x->xctx)->value,
             x->xctx);
     data.filtered_array = result->internal;
     impl_over_array(x, impl_filter_cb, (void *)&data);
@@ -829,8 +824,8 @@ afw_function_execute_map(
     const afw_value_array_t *result;
 
     result = (const afw_value_array_t *)
-        afw_xctx_scope_get_assignable_for_lifetime(
-            afw_array_create_managed(NULL, x->xctx)->value,
+        afw_xctx_scope_get_assignable_for_scope_lifetime(
+            afw_array_create_managed(NULL, x->p, x->xctx)->value,
             x->xctx);
     data.mapped_array = result->internal;
     impl_over_array(x, impl_map_cb, (void *)&data);
@@ -907,8 +902,6 @@ afw_function_execute_reduce(
         }
         f_argv[1] = accumulator;
         accumulator = afw_value_evaluate(call, x->p, x->xctx);
-        accumulator = afw_value_function_return_value_consume(
-            accumulator, x->p, x->xctx);
     }
 
     return accumulator;
@@ -947,8 +940,6 @@ impl_partition(
         ctx->args[1] = ctx->values[j];
         return_value = afw_value_evaluate(ctx->compareFunction,
             ctx->p, ctx->xctx);
-        return_value = afw_value_function_return_value_consume(
-            return_value, ctx->p, ctx->xctx);
         AFW_VALUE_ASSERT_IS_DATA_TYPE(return_value, boolean, ctx->xctx);
 
         /*
@@ -1100,8 +1091,8 @@ afw_function_execute_sort(
 
     /* Return sorted array. */
     result = (const afw_value_array_t *)
-        afw_xctx_scope_get_assignable_for_lifetime(
-            afw_array_create_managed(data_type, ctx.xctx)->value,
+        afw_xctx_scope_get_assignable_for_scope_lifetime(
+            afw_array_create_managed(data_type, ctx.p, ctx.xctx)->value,
             ctx.xctx);
     for (i = 0; i < ctx.count; i++) {
         afw_array_push_value(result->internal, ctx.values[i], ctx.xctx);

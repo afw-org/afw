@@ -339,17 +339,15 @@ afw_runtime_value_accessor_size(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Runtime value accessor for afw_uint32_t as afw_integer_t.
- * @param prop is associated afw_runtime_object_map_property_t.
- * @param internal is pointer to afw_size_t for result afw_value_t.
+ * @brief Runtime value accessor for env pool current/max stats.
+ * @param prop selects which env field (poolBytesInUse, …).
+ * @param internal unused (zeroOffset).
  * @param p is pool to use.
  * @param xctx of caller.
- * @return afw_value_t representing value.
- *
- * The data_type in prop must be integer.
+ * @return integer copy of the selected env counter.
  */
 const afw_value_t *
-afw_runtime_value_accessor_uint32(
+afw_runtime_value_accessor_env_pool_stat(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 

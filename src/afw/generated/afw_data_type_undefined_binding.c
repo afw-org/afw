@@ -51,10 +51,12 @@ impl_afw_value_get_assignable_via_reference(
 /* Inf specific is always data type. */
 #define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_undefined_direct
 
-/* Define inf variables for data_type and is_evaluated_of_data_type. */
+/* Inf variables: data_type, is_evaluated_of_data_type, is_managed. */
+#undef AFW_IMPLEMENTATION_INF_VARIABLES
 #define AFW_IMPLEMENTATION_INF_VARIABLES \
     (const void *)&afw_data_type_undefined_direct, \
-    (const void *)&afw_data_type_undefined_direct
+    (const void *)&afw_data_type_undefined_direct, \
+    false
 
 /* Declares and rti/inf defines for interface afw_value */
 /* permanent undefined (special type): optional_release NULL; */

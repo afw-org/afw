@@ -782,7 +782,8 @@ afw_object_create_with_options(
 
 
 /**
- * @brief Create a managed memory object in xctx->p.
+ * @brief Create a managed memory object in p->managed_p.
+ * @param p evaluation pool (job heap is p->managed_p).
  * @param xctx of caller.
  * @return instance (reference count 1).
  *
@@ -794,6 +795,7 @@ afw_object_create_with_options(
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_managed(
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 

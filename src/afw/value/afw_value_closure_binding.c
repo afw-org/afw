@@ -21,6 +21,10 @@
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_closure_binding_inf
 #define AFW_VALUE_SELF_T afw_value_closure_binding_t
 #define impl_afw_value_create_iterator NULL
+#define AFW_IMPLEMENTATION_INF_VARIABLES \
+    (const void *)&afw_data_type_function_direct, \
+    NULL, \
+    true
 #include "afw_value_impl_declares.h"
 
 

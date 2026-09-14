@@ -194,8 +194,8 @@ afw_function_execute_bag(
     }
 
     array = (const afw_value_array_t *)
-        afw_xctx_scope_get_assignable_for_lifetime(
-            afw_array_create_managed(x->data_type, x->xctx)->value,
+        afw_xctx_scope_get_assignable_for_scope_lifetime(
+            afw_array_create_managed(x->data_type, x->p, x->xctx)->value,
             x->xctx);
 
     for (i = 1; i <= x->argc; i++) {
@@ -301,7 +301,7 @@ afw_function_execute_clone(
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
 
     result = afw_value_clone(value, x->p, x->xctx);
-    return afw_xctx_scope_get_assignable_for_lifetime(result, x->xctx);
+    return afw_xctx_scope_get_assignable_for_scope_lifetime(result, x->xctx);
 }
 
 
@@ -1061,8 +1061,8 @@ afw_function_execute_intersection(
             x->xctx);
     }
     result = (const afw_value_array_t *)
-        afw_xctx_scope_get_assignable_for_lifetime(
-            afw_array_create_managed(data_type, x->xctx)->value,
+        afw_xctx_scope_get_assignable_for_scope_lifetime(
+            afw_array_create_managed(data_type, x->p, x->xctx)->value,
             x->xctx);
 
     for (iterator = NULL;;) {
@@ -2297,8 +2297,8 @@ afw_function_execute_split(
         limit = limit_value->internal;
     }
 
-    result = afw_xctx_scope_get_assignable_for_lifetime(
-        afw_array_create_managed(afw_data_type_string, x->xctx)->value,
+    result = afw_xctx_scope_get_assignable_for_scope_lifetime(
+        afw_array_create_managed(afw_data_type_string, x->p, x->xctx)->value,
         x->xctx);
     array = ((const afw_value_array_t *)result)->internal;
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
@@ -2669,8 +2669,8 @@ afw_function_execute_union(
     }
 
     result = (const afw_value_array_t *)
-        afw_xctx_scope_get_assignable_for_lifetime(
-            afw_array_create_managed(data_type, x->xctx)->value,
+        afw_xctx_scope_get_assignable_for_scope_lifetime(
+            afw_array_create_managed(data_type, x->p, x->xctx)->value,
             x->xctx);
     impl_add_nondups_to_array(data_type, array1->internal,
         result->internal, x->xctx);
@@ -3151,7 +3151,7 @@ afw_function_execute_freeze(
      * freeze that handle. Assign later bumps the frozen face instead of
      * wrapping a raw immutable instance into a mutable overlay.
      */
-    value = afw_xctx_scope_get_assignable_for_lifetime(value, x->xctx);
+    value = afw_xctx_scope_get_assignable_for_scope_lifetime(value, x->xctx);
 
     if (afw_value_is_object(value)) {
         object = (const afw_value_object_t *)value;

@@ -31,7 +31,7 @@ impl_set_qualifier_stack(afw_xctx_t *xctx)
 {
     /*
      * Fixed size: entry pointers stay valid. Early xctx create cannot
-     * use AFW_TRY / afw_pool_calloc().
+     * use AFW_TRY / throwing afw_pool_calloc().
      */
     xctx->qualifier_stack = afw_vector_create_fixed_unhandled(
         afw_xctx_qualifier_stack_t, 100, xctx->p, xctx);
@@ -69,15 +69,18 @@ afw_xctx_internal_create_initialize(
     afw_xctx_t *self;
 
     if (!error) {
-        /* Allocate cleared afw_error_t. */
-        error = apr_pcalloc(afw_pool_get_apr_pool(p), sizeof(afw_error_t));
+        /* No xctx yet; cannot AFW_THROW. */
+        error = afw_pool_calloc_unhandled(p, sizeof(afw_error_t), NULL);
+        if (!error) {
+            return NULL;
+        }
     }
 
-    /* Initialize self. */
-    self = apr_pcalloc(afw_pool_get_apr_pool(p), sizeof(afw_xctx_t));
+    /* Initialize self. evaluation_stack is not ready; no AFW_TRY. */
+    self = afw_pool_calloc_unhandled(p, sizeof(afw_xctx_t), NULL);
     if (!self) {
         AFW_THROW_UNHANDLED_ERROR(unhandled_error, error, general,
-            na, 0, "apr_pcalloc() failed");
+            na, 0, "afw_pool_calloc_unhandled() failed");
     }
     self->p = p;
     self->script_result = afw_value_undefined;
@@ -90,9 +93,13 @@ afw_xctx_internal_create_initialize(
     self->flags = (afw_boolean_t *)env->pub.default_flags;
     /*! \fixme stream_anchor may be too early??? */
     self->stream_anchor = afw_stream_internal_stream_anchor_create(self);
+    if (!self->stream_anchor) {
+        AFW_THROW_UNHANDLED_ERROR(unhandled_error, error, memory,
+            na, 0, "allocation failed");
+    }
 
     /*
-     * Fixed vector: xctx init cannot use AFW_TRY / afw_pool_calloc.
+     * Fixed vector: xctx init cannot use AFW_TRY / throwing calloc.
      * Cap matches evaluation stack so nested scopes cannot outrun eval.
      */
     {
@@ -185,7 +192,7 @@ afw_xctx_create(
     afw_xctx_t *self;
 
     /* Create a new pool for xctx and initialize. */
-    p = afw_pool_create_xctx_p(xctx->p, xctx);
+    p = afw_pool_heap_create(xctx->p, 0, xctx);
     self = afw_xctx_internal_create_initialize(xctx->current_try,
         NULL, (afw_environment_internal_t *)xctx->env, p);
     if (!self) {
@@ -627,13 +634,24 @@ AFW_DEFINE(void)
 afw_xctx_release(
     const afw_xctx_t *instance,
     afw_xctx_t *xctx)
-{  
-    /* Release streams. */
-    afw_stream_internal_release_all_streams(xctx);
-
-    /* Release xctx's pool. */
+{
+    /*
+     * Streams and callbacks may throw (fclose, cleanup). destroy always
+     * frees storage. xctx lives in instance->p; return before AFW_ENDTRY.
+     */
     if (instance->p) {
-        afw_pool_destroy(instance->p, xctx);
+        AFW_TRY {
+            afw_stream_internal_release_all_streams(xctx);
+            afw_pool_run_cleanups(instance->p, xctx);
+        }
+        AFW_FINALLY {
+            afw_pool_destroy(instance->p, xctx);
+            return;
+        }
+        AFW_ENDTRY;
+    }
+    else {
+        afw_stream_internal_release_all_streams(xctx);
     }
 }
 
@@ -771,10 +789,8 @@ afw_xctx_scope_create(
             xctx);
     }
     
-    if (!xctx->evaluation_heap) {
-        xctx->evaluation_heap = afw_pool_create_xctx_p(xctx->p, xctx);
-    }
-    p = afw_pool_tracker_create(xctx->evaluation_heap, xctx);
+    /* One ST heap per xctx. Scope tracker parent is that heap. */
+    p = afw_pool_tracker_create(xctx->p, xctx);
     scope = afw_pool_calloc(p,
         (
             sizeof(afw_xctx_scope_t) + // Size of struct.
@@ -1019,95 +1035,24 @@ afw_xctx_scope_release(
 }
 
 
-/*
- * Parked parameter occupants are defined_and_evaluated (or a leftover
- * return-temp wrapper). Call frames are graph infs and are not.
- */
-AFW_DEFINE(afw_boolean_t)
-afw_xctx_evaluation_stack_is_parked_occupant(const afw_value_t *v)
-{
-    if (!v ||
-        ((afw_size_t)v <= 4096) ||
-        (((afw_size_t)v) & (sizeof(void *) - 1)) != 0)
-    {
-        return false;
-    }
-    if (afw_value_is_function_return_value(v)) {
-        return true;
-    }
-    /* Extra holds have optional_release. Graph calls on the stack do not. */
-    if (!v->inf || !v->inf->optional_release) {
-        return false;
-    }
-    return afw_value_is_defined_and_evaluated(v);
-}
-
-
-/*
- * Pop a VALUE, releasing parked occupant holds. Skip leftover
- * parameter-number pairs so a number slot is never used as a value
- * pointer.
- */
 AFW_DEFINE(void)
 afw_xctx_evaluation_stack_pop_value_impl(afw_xctx_t *xctx)
 {
-    afw_xctx_evaluation_stack_t *stack;
-    const afw_value_t *v;
-
-    stack = xctx->evaluation_stack;
-    while (stack->count > 0) {
-        if (AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id ==
-            afw_s_parameter_number)
-        {
-            afw_vector_pop(stack, xctx);
-            if (stack->count > 0) {
-                afw_vector_pop(stack, xctx);
-            }
-            continue;
-        }
-        v = AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value;
-        if (afw_xctx_evaluation_stack_is_parked_occupant(v)) {
-            afw_value_release(v, xctx);
-            afw_vector_pop(stack, xctx);
-            continue;
-        }
-        break;
-    }
-    if (stack->count > 0) {
-        afw_vector_pop(stack, xctx);
+    if (xctx->evaluation_stack && xctx->evaluation_stack->count > 0) {
+        afw_vector_pop(xctx->evaluation_stack, xctx);
     }
 }
 
 
-/*
- * Rewind evaluation stack to saved_top. Release parked occupant holds.
- * Skip parameter-number pairs without treating the number as a value
- * pointer.
- */
 AFW_DEFINE(void)
 afw_xctx_evaluation_stack_rewind(
     afw_size_t save_count,
     afw_xctx_t *xctx)
 {
-    afw_xctx_evaluation_stack_t *stack;
-    const afw_value_t *v;
-
-    stack = xctx->evaluation_stack;
-    while (stack->count > save_count) {
-        if (AFW_XCTX_EVALUATION_STACK_LAST(xctx)->entry_id ==
-            afw_s_parameter_number)
-        {
-            stack->count--;
-            if (stack->count > save_count) {
-                stack->count--;
-            }
-            continue;
-        }
-        v = AFW_XCTX_EVALUATION_STACK_LAST(xctx)->value;
-        if (afw_xctx_evaluation_stack_is_parked_occupant(v)) {
-            afw_value_release(v, xctx);
-        }
-        stack->count--;
+    if (xctx->evaluation_stack &&
+        xctx->evaluation_stack->count > save_count)
+    {
+        xctx->evaluation_stack->count = save_count;
     }
 }
 
@@ -1143,23 +1088,40 @@ afw_xctx_scope_set_last_result(
 }
 
 
-/* Assignable held until current scope->p last-release. */
+/* Assignable held until scope->p last-release. */
 AFW_DEFINE(const afw_value_t *)
-afw_xctx_scope_get_assignable_for_lifetime(
+afw_xctx_scope_get_assignable_for_p_lifetime(
     const afw_value_t *value,
+    const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx)
 {
-    const afw_xctx_scope_t *scope;
-
     if (!value || afw_value_is_void(value)) {
         return value ? value : afw_value_void;
     }
+    if (!value->inf || !value->inf->optional_release) {
+        return value;
+    }
+    if (scope &&
+        afw_pool_is_value_release_registered(value, scope->p, xctx))
+    {
+        return value;
+    }
     value = afw_value_get_assignable(value, xctx);
-    scope = afw_xctx_scope_current(xctx);
     if (scope) {
         afw_pool_release_value_at_cleanup(value, scope->p, xctx);
     }
     return value;
+}
+
+
+/* Assignable held until current scope->p last-release. */
+AFW_DEFINE(const afw_value_t *)
+afw_xctx_scope_get_assignable_for_scope_lifetime(
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    return afw_xctx_scope_get_assignable_for_p_lifetime(
+        value, afw_xctx_scope_current(xctx), xctx);
 }
 
 
@@ -1169,7 +1131,7 @@ afw_xctx_scope_set_last_result_for_lifetime(
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
-    value = afw_xctx_scope_get_assignable_for_lifetime(value, xctx);
+    value = afw_xctx_scope_get_assignable_for_scope_lifetime(value, xctx);
     afw_xctx_scope_set_last_result(value, xctx);
     return value;
 }

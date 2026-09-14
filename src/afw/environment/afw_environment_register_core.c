@@ -20,9 +20,6 @@
 extern void
 afw_function_internal_prepare_environment(afw_xctx_t *xctx);
 
-static const afw_utf8_t impl_s_apr =
-AFW_UTF8_LITERAL("apr");
-
 static const afw_utf8_t impl_s_icu = 
 AFW_UTF8_LITERAL("icu");
 
@@ -31,14 +28,6 @@ AFW_UTF8_LITERAL("errno");
 
 static const afw_utf8_t impl_s_description_initialEnvironmentVariables =
     AFW_UTF8_LITERAL("Environment variables when environment was created.");
-
-/* APR RV decoder. */
-static const afw_utf8_z_t * impl_rv_decoder_z_apr(int rv,
-    afw_utf8_z_t *wa, afw_size_t wa_size)
-{
-    return apr_strerror(rv, wa, wa_size);
-}
-
 
 /* ICU RV decoder. */
 static const afw_utf8_z_t * impl_rv_decoder_z_icu(int rv,
@@ -269,10 +258,6 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
     env->core_data_types_registered = true;
     env->core_functions_registered = true;
     env->core_object_type_maps_registered = true;
-
-    /* Register APR RV decoder. */
-    afw_environment_register_error_rv_decoder(&impl_s_apr,
-        impl_rv_decoder_z_apr, xctx);
 
     /* Register ICU RV decoder. */
     afw_environment_register_error_rv_decoder(&impl_s_icu,

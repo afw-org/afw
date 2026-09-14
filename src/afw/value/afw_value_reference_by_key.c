@@ -106,13 +106,13 @@ impl_afw_value_optional_evaluate(
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
 
-    v = afw_value_evaluate_and_park(self->aggregate_value, 1, p, xctx);
+    v = afw_value_evaluate(self->aggregate_value, p, xctx);
 
     /* If value is single object, index is property name. */
     if (afw_value_is_object(v)) {
         object_value = (const afw_value_object_t *)v;
 
-        key = afw_value_evaluate_and_park(self->key, 1, p, xctx);
+        key = afw_value_evaluate(self->key, p, xctx);
         key = afw_object_require_string_property_name(key, xctx);
 
         v = afw_object_get_property(object_value->internal, key, xctx);
@@ -124,7 +124,7 @@ impl_afw_value_optional_evaluate(
     else if (afw_value_is_array(v)) {
         list = (const afw_value_array_t *)v;
 
-        key = afw_value_evaluate_and_park(self->key, 1, p, xctx);
+        key = afw_value_evaluate(self->key, p, xctx);
         if (!afw_value_is_integer(key)) {
             AFW_THROW_ERROR_Z(argument_error,
                 "Index must be integer for array", xctx);
@@ -152,7 +152,7 @@ impl_afw_value_optional_evaluate(
         afw_integer_t index;
         afw_size_t count;
 
-        key = afw_value_evaluate_and_park(self->key, 1, p, xctx);
+        key = afw_value_evaluate(self->key, p, xctx);
         if (!afw_value_is_integer(key)) {
             AFW_THROW_ERROR_Z(argument_error,
                 "Index must be integer for string code-point sequence",

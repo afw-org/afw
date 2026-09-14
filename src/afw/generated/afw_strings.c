@@ -9123,6 +9123,12 @@ afw_self_v_afw_environment_registry_type_t = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_afw_environment_t = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_afw_environment_t)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_extension = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_extension)
@@ -12174,6 +12180,12 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_entryCursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_entryCursor)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_env_pool_stat = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_env_pool_stat)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -16821,6 +16833,18 @@ afw_self_v_maxObjects = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_maxPoolBytesInUse = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_maxPoolBytesInUse)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_maxPoolChunkBytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_maxPoolChunkBytes)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maxString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maxString)
@@ -19017,6 +19041,12 @@ afw_self_v_poolBytesInUse = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_poolChunkBytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_poolChunkBytes)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_pool_bytes_in_use = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_pool_bytes_in_use)
@@ -19107,9 +19137,33 @@ afw_self_v_processRss = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_process_args = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_process_args)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_process_cwd = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_process_cwd)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_process_pid = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_process_pid)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_process_rss = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_process_rss)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_process_start_time = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_process_start_time)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -19134,6 +19188,12 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_programName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_programName)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_program_name = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_program_name)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -29115,6 +29175,12 @@ afw_self_v_zz__70ae5338ab59 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__70d3524d9c3c = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__70d3524d9c3c)
+};
+
+const afw_value_string_t
 afw_self_v_zz__70de85d6ee2c = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__70de85d6ee2c)
@@ -30495,6 +30561,12 @@ afw_self_v_zz__8acbb0f49dd2 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__8acc80945adb = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__8acc80945adb)
+};
+
+const afw_value_string_t
 afw_self_v_zz__8ae8286b5e1c = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__8ae8286b5e1c)
@@ -30714,6 +30786,12 @@ const afw_value_string_t
 afw_self_v_zz__8e97026f8db1 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__8e97026f8db1)
+};
+
+const afw_value_string_t
+afw_self_v_zz__8ec7cd8b3998 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__8ec7cd8b3998)
 };
 
 const afw_value_string_t
@@ -31662,6 +31740,12 @@ const afw_value_string_t
 afw_self_v_zz__AFW_Version = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__AFW_Version)
+};
+
+const afw_value_string_t
+afw_self_v_zz__AFW_asked_for_bytes_outstanding = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__AFW_asked_for_bytes_outstanding)
 };
 
 const afw_value_string_t
@@ -36033,6 +36117,18 @@ afw_self_v_zz__Has_Errors = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__High_water_of_AFW_asked_for_bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__High_water_of_AFW_asked_for_bytes)
+};
+
+const afw_value_string_t
+afw_self_v_zz__High_water_of_posix_memalign_chunk_bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__High_water_of_posix_memalign_chunk_bytes)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Higher_order_array_functions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Higher_order_array_functions)
@@ -37527,6 +37623,18 @@ afw_self_v_zz__Max_Concurrent = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Max_Pool_Bytes_In_Use = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Max_Pool_Bytes_In_Use)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Max_Pool_Chunk_Bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Max_Pool_Chunk_Bytes)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Maximum_Length = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Maximum_Length)
@@ -38736,6 +38844,18 @@ const afw_value_string_t
 afw_self_v_zz__Polymorphic_overrides = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Polymorphic_overrides)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Pool_Bytes_In_Use = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Pool_Bytes_In_Use)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Pool_Chunk_Bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Pool_Chunk_Bytes)
 };
 
 const afw_value_string_t
@@ -51339,6 +51459,12 @@ afw_self_v_zz__a01af9ad30ef = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__a0269d001036 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__a0269d001036)
+};
+
+const afw_value_string_t
 afw_self_v_zz__a0358f5fab1c = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__a0358f5fab1c)
@@ -52422,6 +52548,12 @@ const afw_value_string_t
 afw_self_v_zz__b22887b4783b = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__b22887b4783b)
+};
+
+const afw_value_string_t
+afw_self_v_zz__b22e2671b198 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__b22e2671b198)
 };
 
 const afw_value_string_t
@@ -54033,6 +54165,12 @@ afw_self_v_zz__ca3dea8bd4bc = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__ca53085ad706 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__ca53085ad706)
+};
+
+const afw_value_string_t
 afw_self_v_zz__ca8b2f0e504b = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__ca8b2f0e504b)
@@ -55311,6 +55449,12 @@ afw_self_v_zz__df8be5266662 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__df95466724ee = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__df95466724ee)
+};
+
+const afw_value_string_t
 afw_self_v_zz__dfad35967c23 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__dfad35967c23)
@@ -55368,6 +55512,12 @@ const afw_value_string_t
 afw_self_v_zz__e0da4d09be58 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__e0da4d09be58)
+};
+
+const afw_value_string_t
+afw_self_v_zz__e0de21953eb7 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__e0de21953eb7)
 };
 
 const afw_value_string_t
@@ -60201,6 +60351,12 @@ afw_self_v_zz__one_and_only_yearMonthDuration_ = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__posix_memalign_chunk_bytes_held = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__posix_memalign_chunk_bytes_held)
+};
+
+const afw_value_string_t
 afw_self_v_zz__pow_double_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__pow_double_)
@@ -62537,6 +62693,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_afw_environment_conf_type_t,
     &afw_self_v_afw_environment_default_register_additional_t,
     &afw_self_v_afw_environment_registry_type_t,
+    &afw_self_v_afw_environment_t,
     &afw_self_v_afw_extension,
     &afw_self_v_afw_extension_t,
     &afw_self_v_afw_flag_t,
@@ -63043,6 +63200,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_entries,
     &afw_self_v_entry,
     &afw_self_v_entryCursor,
+    &afw_self_v_env_pool_stat,
     &afw_self_v_environment,
     &afw_self_v_eq,
     &afw_self_v_eqAnyURI,
@@ -63815,6 +63973,8 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_maxNormalLength,
     &afw_self_v_maxNumberOfParameters,
     &afw_self_v_maxObjects,
+    &afw_self_v_maxPoolBytesInUse,
+    &afw_self_v_maxPoolChunkBytes,
     &afw_self_v_maxString,
     &afw_self_v_maxTime,
     &afw_self_v_maxValue,
@@ -64181,6 +64341,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_polymorphicExecuteFunctionEvaluatesFirstParameter,
     &afw_self_v_polymorphicOverrides,
     &afw_self_v_poolBytesInUse,
+    &afw_self_v_poolChunkBytes,
     &afw_self_v_pool_bytes_in_use,
     &afw_self_v_pop,
     &afw_self_v_port,
@@ -64196,11 +64357,16 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_priority,
     &afw_self_v_process,
     &afw_self_v_processRss,
+    &afw_self_v_process_args,
+    &afw_self_v_process_cwd,
+    &afw_self_v_process_pid,
     &afw_self_v_process_rss,
+    &afw_self_v_process_start_time,
     &afw_self_v_processingOrder,
     &afw_self_v_processing_order,
     &afw_self_v_produces,
     &afw_self_v_programName,
+    &afw_self_v_program_name,
     &afw_self_v_properties,
     &afw_self_v_property,
     &afw_self_v_propertyDelete,

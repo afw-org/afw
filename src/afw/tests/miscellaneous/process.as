@@ -24,6 +24,14 @@ assert(length(p.cwd) > 0, "cwd non-empty");
 assert(meta(p.afwVersion).dataType === "string");
 assert(length(p.afwVersion) > 0);
 assert(meta(p.startTime).dataType === "dateTime");
+assert(meta(p.poolBytesInUse).dataType === "integer");
+assert(p.poolBytesInUse >= 0);
+assert(meta(p.maxPoolBytesInUse).dataType === "integer");
+assert(p.maxPoolBytesInUse >= p.poolBytesInUse);
+assert(meta(p.poolChunkBytes).dataType === "integer");
+assert(p.poolChunkBytes >= 0);
+assert(meta(p.maxPoolChunkBytes).dataType === "integer");
+assert(p.maxPoolChunkBytes >= p.poolChunkBytes);
 return 0;
 
 
@@ -41,6 +49,15 @@ assert(process::afwVersion === p.afwVersion);
 assert(process::startTime === p.startTime);
 assert(length(process::args) === length(p.args));
 assert(process::args[0] === p.args[0]);
+assert(meta(process::poolBytesInUse).dataType === "integer");
+/* Capture current first: a live max>=cur expression can lose if
+ * reading max allocates before reading current. */
+let cur = process::poolBytesInUse;
+let mx = process::maxPoolBytesInUse;
+assert(mx >= cur);
+cur = process::poolChunkBytes;
+mx = process::maxPoolChunkBytes;
+assert(mx >= cur);
 return 0;
 
 

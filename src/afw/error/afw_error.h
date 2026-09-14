@@ -28,13 +28,6 @@ AFW_BEGIN_DECLARES
 #define AFW_ERROR_RV_SOURCE_ID_Z_NULL NULL
 
 /**
- * @brief APR rv source id.
- *
- * Registered in afw_environment_register_core.c.
- */
-#define AFW_ERROR_RV_SOURCE_ID_Z_apr "apr"
-
-/**
  * @brief ICU rv source id.
  *
  * Registered in afw_environment_register_core.c.
@@ -120,7 +113,7 @@ struct afw_error_s {
     /*IMPORTANT AFW_ERROR_CLEAR_PARTIAL() will clear up to decode_rv_wa. */
 
     /** @brief Place to optionally hold rv_decoded_z. */
-    /* Sized for strerror / apr_strerror / ICU names (was 23; too short for errno). */
+    /* Sized for strerror / ICU names (was 23; too short for errno). */
     afw_utf8_z_t decode_rv_wa[128];
 
     /** @brief Makes sure there is a zero terminator after decode_rv_wa. */
@@ -135,7 +128,7 @@ struct afw_error_s {
 
 /**
  * @brief CATCH finished: decrement error_processing_count, and if it
- *     is 0 run waiting last release/destroy (inner first).
+ *     is 0 last-release delayed pools (ENDTRY, not rethrowing).
  */
 AFW_DECLARE(void)
 afw_error_processing_handled(afw_xctx_t *xctx);
@@ -179,7 +172,7 @@ afw_error_processing_handled(afw_xctx_t *xctx);
  * error was not marked caught, ENDTRY copies the saved error back and
  * longjmps to the outer try (rethrow). If it was caught, execution continues
  * after ENDTRY after afw_error_processing_handled() (count back to 0
- * runs waiting last release/destroy). On the non-rethrow path, ENDTRY
+ * last-releases delayed pools). On the non-rethrow path, ENDTRY
  * also restores the evaluation stack top to the offset saved at AFW_TRY
  * entry.
  *

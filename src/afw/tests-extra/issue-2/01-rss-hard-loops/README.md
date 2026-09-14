@@ -150,7 +150,7 @@ Useful hunts after Ctrl-C (**no debug flags** on a soak):
    create / `get_assignable_value`; `array_push_pop` sits in managed
    setter push / pop.
 2. `afw-heap` / `afw-rss` — three numbers: VmRSS,
-   `evaluation_heap->bytes_allocated`, `env->pool_bytes_in_use`.
+   `xctx->p` `bytes_allocated` / `chunk_bytes`, `env->pool_bytes_in_use`.
    Two interrupts 5s apart:
    - RSS up, in_use flat → APR (tracker headers, pages not returned).
      `try_catch` is this shape, under the fail bar.

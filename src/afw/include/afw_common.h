@@ -56,13 +56,10 @@
  *   afwdev build --define AFW_DEBUG_POOL
  */
 
-/* Adaptive Framework still uses APR for pool backing (get_apr_pool door). */
-#include <apr_general.h>
-
-
 /* Common standard headers. */
 #include <stdio.h>
 #include <assert.h>
+#include <errno.h>
 #include <limits.h>
 #include <setjmp.h>
 #include <string.h>
@@ -1820,6 +1817,21 @@ struct afw_environment_s {
      */
     const afw_object_t *process_object;
 
+    /** @brief Command-line args for process:: (env pool). */
+    const afw_array_t *process_args;
+
+    /** @brief cwd snapshot at environment create. */
+    const afw_utf8_t *process_cwd;
+
+    /** @brief pid at environment create. */
+    afw_integer_t process_pid;
+
+    /** @brief Start time at environment create. */
+    const afw_dateTime_t *process_start_time;
+
+    /** @brief Active libafw version string. */
+    const afw_utf8_t *afw_version;
+
     /** @brief Adaptive framework core adapter. */
     const afw_adapter_t *afw_adapter;
 
@@ -1899,6 +1911,20 @@ struct afw_environment_s {
      * Atomic; multithreaded pools update it.
      */
     AFW_ATOMIC afw_size_t pool_bytes_in_use;
+
+    /** @brief High-water of pool_bytes_in_use. */
+    AFW_ATOMIC afw_size_t pool_bytes_in_use_max;
+
+    /**
+     * @brief Sum of every heap's chunk_bytes (posix_memalign held).
+     *
+     * Asked-for is pool_bytes_in_use. This is store still mapped.
+     * Atomic; multithreaded heaps update it.
+     */
+    AFW_ATOMIC afw_size_t pool_chunk_bytes;
+
+    /** @brief High-water of pool_chunk_bytes. */
+    AFW_ATOMIC afw_size_t pool_chunk_bytes_max;
 
     /** @brief Indicates that environment is terminating. */
     afw_boolean_t terminating;
@@ -2170,12 +2196,6 @@ struct afw_xctx_s {
      * evaluate).
      */
     afw_xctx_scope_p_vector_t *scope_stack;
-
-    /**
-     * Heap scopes make trackers of. Created lazily (child of xctx->p).
-     * Not a tracker and not swapped by compiled_value evaluate.
-     */
-    const afw_pool_t *evaluation_heap;
 
     /**
      * The execution context (xctx) evaluation stack.

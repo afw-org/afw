@@ -420,7 +420,14 @@ impl_read_and_process_request(
 
     AFW_FINALLY{
         xctx->request = NULL;
-        afw_adapter_session_commit_and_release_cache(error_occurred, xctx);
+        AFW_TRY {
+            afw_adapter_session_commit_and_release_cache(
+                error_occurred, xctx);
+        }
+        AFW_CATCH_UNHANDLED {
+            /* Do not skip xctx_release / destroy. */
+        }
+        AFW_ENDTRY;
         /* Special case: xctx is gone, so return before AFW_ENDTRY. */
         if (keep_going) {
             afw_command_local_server_write_end(self);

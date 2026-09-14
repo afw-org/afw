@@ -247,6 +247,34 @@ afw_application_internal_register_basic_application_context_type(
         "Local dateTime when the Adaptive environment was created.",
         NULL, NULL,
         xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_poolBytesInUse, afw_s_runtime,
+        &afw_value_unmanaged_integer_inf,
+        "Pool Bytes In Use",
+        "Outstanding AFW malloc/calloc bytes (asked-for).",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_maxPoolBytesInUse, afw_s_runtime,
+        &afw_value_unmanaged_integer_inf,
+        "Max Pool Bytes In Use",
+        "High-water of poolBytesInUse.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_poolChunkBytes, afw_s_runtime,
+        &afw_value_unmanaged_integer_inf,
+        "Pool Chunk Bytes",
+        "posix_memalign chunk bytes still held.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_maxPoolChunkBytes, afw_s_runtime,
+        &afw_value_unmanaged_integer_inf,
+        "Max Pool Chunk Bytes",
+        "High-water of poolChunkBytes.",
+        NULL, NULL,
+        xctx);
 
     afw_environment_register_context_type(afw_s_process,
         process_context_type_object, xctx);

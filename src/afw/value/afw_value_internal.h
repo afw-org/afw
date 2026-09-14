@@ -467,26 +467,6 @@ struct afw_value_closure_binding_s {
 
 
 /**
- * @brief Struct for function return value (return-temp experiment).
- *
- * Wraps a returned occupant. Last release of this wrapper releases the
- * inner value and frees the wrapper.
- */
-struct afw_value_function_return_value_s {
-    /* Value inf union with afw_value_t pub to reduce casting needed. */
-    union {
-        const afw_value_inf_t *inf;
-        afw_value_t pub;
-    };
-
-    const afw_value_t *return_value;
-    const afw_pool_t *p;
-    afw_size_t reference_count;
-};
-
-
-
-/**
  * @brief Struct for compiled value value.
  *
  * This is the top level value return from the adaptive compiler when the

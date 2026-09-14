@@ -801,7 +801,7 @@ impl_10_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_10_property_description = {
     afw_vfs_v_description,
-    &afw_vfs_self_v_zz__79f959ad442e.pub
+    &afw_vfs_self_v_zz__a61297b5aeca.pub
 };
 
 static const afw_runtime_property_t

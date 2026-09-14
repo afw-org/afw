@@ -33,9 +33,6 @@ def generate(generated_by, options):
             'Generated declare/define helpers for prefix `' + prefix + '`.')
         
         fd.write('\n\n')
-        fd.write('#include <apr_general.h>\n')
-
-        fd.write('\n\n')
         fd.write('/**\n')
         fd.write(' * ' + uprefix + 'BEGIN_DECLARES goes before declares and \n')
         fd.write(' * ' + uprefix + 'END_DECLARES at end in ' + srcdir + '*.h files.\n')

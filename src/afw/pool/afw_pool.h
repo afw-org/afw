@@ -25,15 +25,44 @@
  * Key invariants:
  * - A pool is a heap unless it is a tracker. A tracker gets memory
  *   from a heap, tracks it, and returns it on free or tracker destroy.
- *   Multithreaded heap is lock wrappers. APR is the heap reservoir,
- *   not a third AFW pool kind.
- * - afw_pool_create() of a heap is a heap (mt if the parent is mt).
- *   Of a tracker, a tracker. xctx->p is always single-thread heap.
- * - afw_pool_get_apr_pool() is a door for leftover APR function calls,
- *   not the heap's store.
- * - Optional free is afw_pool_free_memory(p, address, size, xctx).
- * - Use afw_pool_calloc_type for typed zeroed allocs.
- * - Cleanup functions run before the pool is destroyed.
+ *   Multithreaded heap is lock wrappers. The heap owns posix_memalign
+ *   chunks (4k-aligned, 64k minimum). Not a third AFW pool kind.
+ * - Parent/child is lifetime only (last-release throws if children
+ *   remain). Store is the ancestor heap. Trackers may parent other
+ *   trackers.
+ * - One ST heap per xctx (`afw_pool_heap_create`). Scope trackers
+ *   parent that heap, not the enclosing `{ }`. Closures pin the
+ *   inner tracker; the xctx heap outlives the outer `{ }`.
+ * - `afw_pool_create()` of a ST parent (xctx->p or tracker) is a
+ *   tracker. Of an MT parent, an MT heap. `env->p` is the process
+ *   MT heap. Things you start (conf, server, log, adapter) use
+ *   `afw_pool_multithread_create(env->p)`. Compile units use
+ *   `afw_pool_heap_create` (own chunks; optional smaller chunk_min).
+ * - Managed values allocate in `p->managed_p` (job heap for this
+ *   evaluation). Do not change managed_p mid-eval. Request xctx:
+ *   `xctx->p->managed_p` is `xctx->p`.
+ * - Two numbers: asked-for (`bytes_allocated` /
+ *   `env->pool_bytes_in_use`) vs chunks (`chunk_bytes` /
+ *   `env->pool_chunk_bytes`). Env also keeps high-water
+ *   `pool_bytes_in_use_max` / `pool_chunk_bytes_max`. Adaptive
+ *   `pool_bytes_in_use()` vs `process_rss()`. This xctx:
+ *   `afw_pool_subtree_*` on `xctx->p`.
+ * - Last-release: decrement; if 0 and children remain, throw; else
+ *   callbacks, unchain, free this store, release parent. Does not
+ *   call destroy. "Children remaining" is a leaked child.
+ * - destroy: storage-only (must not fail). Call `run_cleanups`
+ *   first if callbacks must run (`xctx_release` does both).
+ * - `afw_pool_release_delayed()`: postorder last-release delayed
+ *   pools. ENDTRY after a caught error.
+ * - `env->p` is process lifetime (valgrind still reachable is
+ *   intended).
+ *
+ * Debug:
+ * - Build `--cdev` / `--fulldev` defines `AFW_DEBUG_POOL`. Prefix
+ *   {pool,size} on free; poison `0x0BADF00D` so a dangling inf
+ *   faults. Runtime `debug:pool` / `debug:pool:detail` on a short
+ *   run, not a soak. gdb `afw_pool_print_debug_info(0, xctx->p,
+ *   xctx)`.
  */
 
 AFW_BEGIN_DECLARES
@@ -66,16 +95,47 @@ struct afw_pool_cleanup_s {
  * @param xctx of caller.
  * @return new pool.
  *
- * Heap if the parent is a heap (multithreaded lock wrappers if the
- * parent is multithreaded). Tracker if the parent is a tracker
- * (extra rule; may revisit).
+ * Tracker if the parent is a single-thread heap or a tracker.
+ * Multithreaded heap if the parent is multithreaded.
  *
- * env->p is a multithreaded heap. xctx->p is always a single-thread
- * heap (see afw_pool_create_xctx_p()). Thread-specific heaps are not
- * safe from another thread.
+ * env->p is a multithreaded heap. xctx->p is a single-thread heap
+ * (`afw_pool_heap_create`). Thread-specific heaps are not safe from
+ * another thread.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create(
+    const afw_pool_t *parent,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create a single-thread heap (managed_p = self).
+ * @param parent of new pool (may be multithreaded env/base).
+ * @param chunk_min minimum posix_memalign size; 0 = default (64k).
+ * @param xctx of caller.
+ * @return new pool.
+ *
+ * Own chunks. xctx->p and compile units use this. afw_pool_create()
+ * of the result is a tracker.
+ */
+AFW_DECLARE(const afw_pool_t *)
+afw_pool_heap_create(
+    const afw_pool_t *parent,
+    afw_size_t chunk_min,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create a multithreaded heap (managed_p = self).
+ * @param parent must be a multithreaded heap (usually env->p).
+ * @param xctx of caller.
+ * @return new pool.
+ *
+ * For things you start: conf, server, log, adapter. Work from a
+ * request xctx on a pool that outlives that request.
+ */
+AFW_DECLARE(const afw_pool_t *)
+afw_pool_multithread_create(
     const afw_pool_t *parent,
     afw_xctx_t *xctx);
 
@@ -86,27 +146,11 @@ afw_pool_create(
  * @param xctx of caller.
  * @return new pool.
  *
- * Same as afw_pool_create() then p->managed_p = p. Use for factory/conf
- * instance pools (adapter->p, server->p, …). Parent decides mt vs
- * single-thread. For xctx->p use afw_pool_create_xctx_p().
+ * Same as afw_pool_create() then p->managed_p = p. Prefer
+ * afw_pool_multithread_create() / afw_pool_heap_create().
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create_as_managed_p(
-    const afw_pool_t *parent,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Create xctx->p (managed_p = self, always single-threaded).
- * @param parent of new pool (may be multithreaded env/base).
- * @param xctx of caller.
- * @return new pool.
- *
- * An xctx is one thread's work. Child xctx->p is a heap so optional
- * free can recycle. afw_pool_create() of a heap parent is a heap.
- */
-AFW_DECLARE(const afw_pool_t *)
-afw_pool_create_xctx_p(
     const afw_pool_t *parent,
     afw_xctx_t *xctx);
 
@@ -124,6 +168,49 @@ AFW_DECLARE(const afw_pool_t *)
 afw_pool_tracker_create(
     const afw_pool_t *parent,
     afw_xctx_t *xctx);
+
+
+/**
+ * @brief Outstanding malloc/calloc on this pool (asked-for).
+ *
+ * Trackers and heaps each count their own allocs. Not chunk RSS.
+ */
+AFW_DECLARE(afw_size_t)
+afw_pool_bytes_allocated(const afw_pool_t *instance);
+
+
+/**
+ * @brief posix_memalign bytes still held (heap only; 0 on a tracker).
+ */
+AFW_DECLARE(afw_size_t)
+afw_pool_chunk_bytes(const afw_pool_t *instance);
+
+
+/**
+ * @brief Number of chunks (heap only; 0 on a tracker).
+ */
+AFW_DECLARE(afw_size_t)
+afw_pool_chunk_count(const afw_pool_t *instance);
+
+
+/**
+ * @brief Asked-for bytes for this pool and descendants.
+ *
+ * Single-thread trees only (xctx->p). For process total use
+ * env->pool_bytes_in_use.
+ */
+AFW_DECLARE(afw_size_t)
+afw_pool_subtree_bytes_allocated(const afw_pool_t *instance);
+
+
+/**
+ * @brief Chunk bytes for this pool and descendant heaps.
+ *
+ * Single-thread trees only (xctx->p). For process total use
+ * env->pool_chunk_bytes.
+ */
+AFW_DECLARE(afw_size_t)
+afw_pool_subtree_chunk_bytes(const afw_pool_t *instance);
 
 
 /**
@@ -158,6 +245,17 @@ afw_pool_thread_create(
 
 
 /**
+ * @brief Macro to allocate cleared memory for type without throwing.
+ * @param instance of pool.
+ * @param type to allocate.
+ * @param xctx of caller or NULL.
+ * @return pointer to memory or NULL.
+ */
+#define afw_pool_calloc_type_unhandled(instance, type, xctx) \
+    (type *) afw_pool_calloc_unhandled(instance, sizeof(type), xctx)
+
+
+/**
  * @brief Macro to allocate uncleared memory to hold type in pool.
  * @param instance of pool.
  * @param type to allocate.
@@ -189,15 +287,90 @@ afw_pool_thread_create(
  * @param p pool whose destroy runs the release.
  * @param xctx of caller.
  *
- * Registers `afw_pool_register_cleanup_before()` so
- * `afw_value_release()` runs before `p` is destroyed. Does not add
- * a reference; the caller already holds `value` (or otherwise owns
- * a matching release).
+ * Registers `afw_pool_register_cleanup()` so
+ * `afw_value_release()` runs at last-release or run_cleanups.
+ * Does not add a reference; the caller already holds `value`
+ * (or otherwise owns a matching release).
+ *
+ * No-op if `value` has no optional_release (the callback would do
+ * nothing). A second register of the same value on this same `p` is
+ * a no-op (already handled).
+ *
+ * Managed values (RC, including closures) may be registered on any
+ * p: they stay alive while referenced. The callback drops that hold
+ * when p last-releases or run_cleanups.
  */
 AFW_DECLARE(void)
 afw_pool_release_value_at_cleanup(
     const afw_value_t *value,
     const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief True if this value already has a cleanup release on p.
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_pool_is_value_release_registered(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Last-release pools delayed during error processing.
+ * @param instance root of the walk (usually xctx->p).
+ * @param xctx of caller.
+ *
+ * Postorder children, then this pool if it was delayed. Called from
+ * ENDTRY after a caught error. No-op if nothing is delayed. Destroy
+ * is not involved.
+ */
+AFW_DECLARE(void)
+afw_pool_release_delayed(
+    const afw_pool_t *instance,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Allocate uncleared memory without throwing.
+ * @param instance of pool.
+ * @param size of memory to allocate.
+ * @param xctx of caller, or NULL before xctx exists.
+ * @return pointer to memory, or NULL on failure (including size 0).
+ *
+ * For the short window at the start of afw_environment_create and
+ * during xctx_internal_create_initialize: no AFW_TRY yet, and
+ * AFW_LOCK_BEGIN is AFW_TRY. After xctx_internal_create_initialize,
+ * environment_create's internal jmp buf is current_try and throwing
+ * calloc is fine. The host AFW_TRY (afwfcgi / afw) is after create
+ * returns.
+ *
+ * Does not take the multithreaded pool lock. Environment create is
+ * one thread; later unhandled callers use xctx->p (single-thread
+ * heap). If xctx is NULL, the block is not added to
+ * pool_bytes_in_use.
+ */
+AFW_DECLARE(void *)
+afw_pool_malloc_unhandled(
+    const afw_pool_t *instance,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Allocate cleared memory without throwing.
+ * @param instance of pool.
+ * @param size of memory to allocate.
+ * @param xctx of caller, or NULL before xctx exists.
+ * @return pointer to memory, or NULL on failure (including size 0).
+ *
+ * See afw_pool_malloc_unhandled().
+ */
+AFW_DECLARE(void *)
+afw_pool_calloc_unhandled(
+    const afw_pool_t *instance,
+    afw_size_t size,
     afw_xctx_t *xctx);
 
 

@@ -36,7 +36,7 @@ afw_error_processing_handled(afw_xctx_t *xctx)
     }
     xctx->error_processing_count--;
     if (xctx->error_processing_count == 0) {
-        afw_pool_error_processing_finish(xctx);
+        afw_pool_release_delayed(xctx->p, xctx);
     }
 }
 
@@ -339,17 +339,6 @@ impl_evaluation_backtrace(
                 xctx->evaluation_stack->entries[i].parameter_number;
             continue;
         }
-
-        /*
-         * Return occupants sit between the call and the next pair.
-         * Skip them so "(evaluating parameter N)" attaches to the call.
-         */
-        if (afw_xctx_evaluation_stack_is_parked_occupant(
-            xctx->evaluation_stack->entries[i].value))
-        {
-            continue;
-        }
-
 
         /* This should not need to be here, so just note to avoid crash. */
         if (xctx->evaluation_stack->entries[i].parameter_number < 100)

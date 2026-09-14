@@ -179,10 +179,7 @@ docker build --build-arg BIN=&lt;alpine-based .tar file&gt; -t afwfcgi:alpine -f
             <code># Fetch source for Adaptive Framework
 git clone https://github.com/afw-org/afw.git</code>
             <header>Install AdaptiveFramework Core dependencies</header>
-            <code># Apache Run Time and Apache2 Dev
-sudo apt-get install -y libapr1 libapr1-dev apache2-dev
-
-# libxml2
+            <code># libxml2
 sudo apt-get install -y libxml2 libxml2-dev
 
 # libicu for Unicode support
@@ -217,7 +214,7 @@ pip install -r python-requirements.txt</code>
             <code>cd afw
 ./afwdev build --install</code>            
             <header>TL;DR</header>
-            <code>sudo apt-get install git libapr1 libapr1-dev apache2-dev libxml2 libxml2-dev libicu-dev libmysqlclient-dev libdb-dev liblmdb-dev libcurl4-openssl-dev libssl-dev libyaml-dev libfcgi-dev nginx libunwind-setjmp0-dev elfutils libdw-dev
+            <code>sudo apt-get install git libxml2 libxml2-dev libicu-dev libmysqlclient-dev libdb-dev liblmdb-dev libcurl4-openssl-dev libssl-dev libyaml-dev libfcgi-dev nginx libunwind-setjmp0-dev elfutils libdw-dev
 git clone https://github.com/afw-org/afw.git
 cd afw
 ./afwdev build --install</code>            

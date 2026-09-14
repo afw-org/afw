@@ -192,7 +192,7 @@ afw_array_create_with_options(
     self->setter.array = (const afw_array_t *)self;
 
     if (!self->unmanaged) {
-        afw_pool_register_cleanup_before(p, self, NULL,
+        afw_pool_register_cleanup(p, self, NULL,
             impl_managed_array_elements_cleanup, xctx);
     }
 
@@ -205,12 +205,12 @@ afw_array_create_with_options(
 AFW_DEFINE(const afw_array_t *)
 afw_array_create_managed(
     const afw_data_type_t *data_type,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_memory_internal_array_t *self;
-    const afw_pool_t *p;
 
-    p = xctx->p;
+    p = p->managed_p;
     self = afw_pool_calloc_type(p, afw_memory_internal_array_t, xctx);
     self->pub.inf = &impl_afw_array_managed_inf;
     self->pub.p = p;
@@ -284,7 +284,7 @@ afw_array_create_managed_clone(
         return from;
     }
     data_type = afw_array_get_data_type(from, xctx);
-    to = afw_array_create_managed(data_type, xctx);
+    to = afw_array_create_managed(data_type, xctx->p, xctx);
     if (from->inf == &impl_afw_array_inf &&
         !afw_array_is_memory_wrapper(from))
     {
@@ -352,7 +352,7 @@ afw_array_create_wrapper_with_options(
     /* Face holds the array the same way for in_pool / and_pool / permanent. */
     afw_array_get_reference(wrapped, xctx);
     if (self->unmanaged) {
-        afw_pool_register_cleanup_before(self->pub.p, self, NULL,
+        afw_pool_register_cleanup(self->pub.p, self, NULL,
             impl_managed_array_elements_cleanup, xctx);
     }
 
@@ -1170,7 +1170,7 @@ impl_afw_array_managed_release(
         afw_vector_release(self->values, xctx);
         self->values = NULL;
     }
-    afw_pool_free_memory(xctx->p, self,
+    afw_pool_free_memory(self->pub.p, self,
         sizeof(afw_memory_internal_array_t), xctx);
 }
 
