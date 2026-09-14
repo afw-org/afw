@@ -152,7 +152,7 @@ describe("ModelsTable Tests", () => {
         expect(deleteBtn).not.toBeEnabled();
 
         /* locate the checkbox to select this row */
-        const cell = screen.getByRole("cell", { name: /select table row/i });        
+        const cell = await screen.findByRole("cell", { name: /select table row/i });        
         const checkbox = within(cell).getByRole("checkbox");        
 
         checkbox.click();
@@ -211,7 +211,7 @@ describe("ModelsTable Tests", () => {
         expect(deleteBtn).not.toBeEnabled();
 
         /* locate the checkbox to select this row */
-        const cell = screen.getByRole("cell", { name: /select table row/i });        
+        const cell = await screen.findByRole("cell", { name: /select table row/i });        
         const checkbox = within(cell).getByRole("checkbox");        
 
         checkbox.click();

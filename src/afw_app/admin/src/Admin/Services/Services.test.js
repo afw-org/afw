@@ -363,7 +363,7 @@ describe("Services Tests", () => {
             await waitFor(() => expect(screen.getByLabelText("Authorization Handler")).toBeInTheDocument());
             await waitFor(() => expect(screen.getByLabelText("Journal Adapter")).toBeInTheDocument());              
             
-            const authHandler = screen.getByRole("button", { name: /Authorization Handler */i });
+            const authHandler = screen.getByRole("combobox", { name: /Authorization Handler */i });
             let authHandlerOpts;
             fireEvent.mouseDown(authHandler);                                   
             await waitFor(() => expect(authHandlerOpts = screen.queryAllByRole("option")).not.toHaveLength(0));            
@@ -378,7 +378,7 @@ describe("Services Tests", () => {
             await waitFor(() => expect(screen.getByLabelText("Filename Suffix")).toBeInTheDocument());
             await waitFor(() => expect(screen.getByLabelText("Root *")).toBeInTheDocument());
 
-            const contentType = screen.getByRole("button", { name: /Content Type */i });
+            const contentType = screen.getByRole("combobox", { name: /Content Type */i });
             fireEvent.mouseDown(contentType);   
             let contentTypeOpts;                                
             await waitFor(() => expect(contentTypeOpts = screen.queryAllByRole("option")).not.toHaveLength(0));                    
@@ -457,7 +457,7 @@ describe("Services Tests", () => {
             await waitFor(() => expect(screen.getByLabelText("Authorization Handler")).toBeInTheDocument());
             await waitFor(() => expect(screen.getByLabelText("Journal Adapter")).toBeInTheDocument());               
             
-            const authHandler = screen.getByRole("button", { name: /Authorization Handler */i });
+            const authHandler = screen.getByRole("combobox", { name: /Authorization Handler */i });
             fireEvent.mouseDown(authHandler);           
             let authHandlerOpts;                        
             await waitFor(() => expect(authHandlerOpts = screen.queryAllByRole("option")).not.toHaveLength(0));            
@@ -472,7 +472,7 @@ describe("Services Tests", () => {
 
             // select the model adapterId                        
             const modelAdapter = within(screen.getByTestId("model-location-adapter-dropdown"));
-            fireEvent.mouseDown(modelAdapter.getByRole("button"));   
+            fireEvent.mouseDown(modelAdapter.getByRole("combobox"));   
             let modelAdapterOpts;                  
             await waitFor(() => expect(modelAdapterOpts = screen.queryAllByRole("option")).not.toHaveLength(0));            
             modelAdapterOpts[0].click();
@@ -485,7 +485,7 @@ describe("Services Tests", () => {
             
             // select the model
             const models = within(screen.getByTestId("model-dropdown"));
-            fireEvent.mouseDown(models.getByRole("button"));                                               
+            fireEvent.mouseDown(models.getByRole("combobox"));                                               
             let modelOpts;
             await waitFor(() => expect(modelOpts = screen.queryAllByRole("option")).not.toHaveLength(0));            
             modelOpts[0].click();
@@ -494,7 +494,7 @@ describe("Services Tests", () => {
             
             // select he mapped adapter
             const mappedAdapter = within(screen.getByTestId("mapped-adapter-dropdown"));
-            fireEvent.mouseDown(mappedAdapter.getByRole("button"));  
+            fireEvent.mouseDown(mappedAdapter.getByRole("combobox"));  
             let mappedAdapterOpts;                                                          
             await waitFor(() => expect(mappedAdapterOpts = screen.queryAllByRole("option")).not.toHaveLength(0));                      
             mappedAdapterOpts[7].click();
@@ -723,7 +723,7 @@ describe("Services Tests", () => {
             await waitForSpinner();  
             
             // examine the General tab
-            fireEvent.click(screen.getByLabelText("General"));
+            fireEvent.click(await screen.findByLabelText("General"));
             for (const property of Object.keys(serviceMeta.result.propertyTypes)) {
                 const label = serviceMeta.result.propertyTypes[property].label;
                 const value = fileService[property];
@@ -772,12 +772,12 @@ describe("Services Tests", () => {
             await waitForSpinner(); 
 
             // examine the General tab
-            fireEvent.click(screen.getByLabelText("General"));            
+            fireEvent.click(await screen.findByLabelText("General"));            
             await waitFor(() => expect(screen.getByLabelText("Service Id")).toHaveValue("adapter-files"));                
             const radioGroup = screen.getByLabelText("Startup Condition");
             const utils = within(radioGroup);            
             
-            await waitFor(() => expect(utils.getByLabelText("Immediate")).toHaveAttribute("checked"));
+            await waitFor(() => expect(utils.getByLabelText("Immediate")).toBeChecked());
             // change the serviceId
             fireEvent.change(screen.getByLabelText("Service Id"), { target: { value: "adapter-filesXYZ" } });      
 
@@ -820,7 +820,7 @@ describe("Services Tests", () => {
             await waitForSpinner(); 
             
             // examine the General tab
-            fireEvent.click(screen.getByLabelText("General"));
+            fireEvent.click(await screen.findByLabelText("General"));
             for (const property of Object.keys(serviceMeta.result.propertyTypes)) {
                 const label = serviceMeta.result.propertyTypes[property].label;
                 const value = modelService[property];
@@ -863,7 +863,7 @@ describe("Services Tests", () => {
             const radioGroup = screen.getByLabelText("Startup Condition");
             const utils = within(radioGroup);            
             
-            await waitFor(() => expect(utils.getByLabelText("Immediate")).toHaveAttribute("checked"));
+            await waitFor(() => expect(utils.getByLabelText("Immediate")).toBeChecked());
             // change the serviceId
             fireEvent.change(screen.getByLabelText("Service Id"), { target: { value: "adapter-tierXYZ" } });      
 
@@ -908,7 +908,7 @@ describe("Services Tests", () => {
             await waitForSpinner();     
             
             // examine the General tab
-            fireEvent.click(screen.getByLabelText("General"));
+            fireEvent.click(await screen.findByLabelText("General"));
             for (const property of Object.keys(serviceMeta.result.propertyTypes)) {
                 const label = serviceMeta.result.propertyTypes[property].label;
                 const value = syslogService[property];
@@ -993,7 +993,7 @@ describe("Services Tests", () => {
             await waitForSpinner(); 
             
             // examine the General tab
-            fireEvent.click(screen.getByLabelText("General"));
+            fireEvent.click(await screen.findByLabelText("General"));
             for (const property of Object.keys(serviceMeta.result.propertyTypes)) {
                 const label = serviceMeta.result.propertyTypes[property].label;
                 const value = authHandlerService[property];

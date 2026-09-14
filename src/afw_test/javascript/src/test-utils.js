@@ -214,17 +214,17 @@ expect.extend({
             };
 
         for (const call of received.mock.calls) {
-            const objGot = JSON.stringify(call[1]);
+            const objGot = JSON.stringify(call[1].body);
             if (objGot.indexOf(JSON.stringify("function") + ":" + JSON.stringify(functionId)) >= 0)
                 return {
                     pass: true,
                     message: () => "Adaptive function " + functionId + " was called."
-                };            
+                };
         }
 
         return {
             pass: false,
-            message: () => "Adaptive function " + functionId + " was not called.",            
+            message: () => "Adaptive function " + functionId + " was not called.",
         };
     },
 
@@ -269,7 +269,7 @@ expect.extend({
             };
   
         for (const call of received.mock.calls) {
-            const objGot = JSON.stringify(call[1]);
+            const objGot = JSON.stringify(call[1].body);
             if (property && (value !== undefined)) {
                 if (objGot.indexOf(JSON.stringify(property) + ":" + JSON.stringify(value)) >= 0)      
                     return { 
@@ -307,7 +307,7 @@ expect.extend({
                 message: () => "No calls made"
             };    
         
-        const objGot = JSON.stringify(received.mock.calls[ received.mock.calls.length - 1 ]);
+        const objGot = JSON.stringify(received.mock.calls[ received.mock.calls.length - 1 ][1].body);
         if (property && (value !== undefined)) {
             if (objGot.indexOf(JSON.stringify(property) + ":" + JSON.stringify(value)) >= 0)      
                 return { 

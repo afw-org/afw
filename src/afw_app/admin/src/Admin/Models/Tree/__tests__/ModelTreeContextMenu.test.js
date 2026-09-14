@@ -98,9 +98,9 @@ describe("ModelTreeContextMenu Tests", () => {
         userEvent.click(test1, { button: 2 });
 
         const menu = await screen.findByRole("menu");
-        within(menu).getByRole("menuitem", { name: "New Object Type" });
-        within(menu).getByRole("menuitem", { name: "New Property Type" });
-        within(menu).getByRole("menuitem", { name: "New Custom Variable" });
+        await within(menu).findByRole("menuitem", { name: "New Object Type" });
+        await within(menu).findByRole("menuitem", { name: "New Property Type" });
+        await within(menu).findByRole("menuitem", { name: "New Custom Variable" });
     });
 
     test("Model create object type, cancel", async () => {
@@ -169,7 +169,7 @@ describe("ModelTreeContextMenu Tests", () => {
         userEvent.click(test1, { button: 2 });
 
         const menu = await screen.findByRole("menu");
-        const newObjType = within(menu).getByRole("menuitem", { name: "New Object Type" });
+        const newObjType = await within(menu).findByRole("menuitem", { name: "New Object Type" });
 
         fireEvent.click(newObjType);
 
@@ -248,7 +248,7 @@ describe("ModelTreeContextMenu Tests", () => {
         userEvent.click(test1, { button: 2 });
 
         const menu = await screen.findByRole("menu");
-        const newObjType = within(menu).getByRole("menuitem", { name: "New Property Type" });
+        const newObjType = await within(menu).findByRole("menuitem", { name: "New Property Type" });
 
         fireEvent.click(newObjType);
 
@@ -327,7 +327,7 @@ describe("ModelTreeContextMenu Tests", () => {
         userEvent.click(test1, { button: 2 });
 
         const menu = await screen.findByRole("menu");
-        const newObjType = within(menu).getByRole("menuitem", { name: "New Custom Variable" });
+        const newObjType = await within(menu).findByRole("menuitem", { name: "New Custom Variable" });
 
         fireEvent.click(newObjType);
 

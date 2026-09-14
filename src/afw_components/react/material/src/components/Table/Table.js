@@ -113,9 +113,9 @@ const TableHeader = (props) => {
                     (selectionMode !== "none") &&
                         <MuiTableCell padding="checkbox">
                             { (selectionMode !== "single") &&
-                                <Checkbox 
-                                    inputProps={{
-                                        "aria-label": "Select All Rows"
+                                <Checkbox
+                                    slotProps={{
+                                        input: { "aria-label": "Select All Rows" }
                                     }}
                                     icon={<CheckCircleOutlined style={{ opacity: "0.5" }} />}   
                                     checkedIcon={<CheckCircle />}
@@ -177,9 +177,9 @@ const TableBody = (props) => {
                                     padding="checkbox" 
                                     width={16}
                                 >
-                                    <Checkbox                                                     
-                                        inputProps={{
-                                            "aria-label": "Select Table Row " + rowIndex
+                                    <Checkbox
+                                        slotProps={{
+                                            input: { "aria-label": "Select Table Row " + rowIndex }
                                         }}
                                         icon={<CheckCircleOutlined className={classes.CheckboxHover} />}
                                         checkedIcon={<CheckCircle />}
@@ -332,7 +332,7 @@ export const Table = (props) => {
 
         if (selectionMode === "none")
             return;
-            
+
         let selected = state.selected;
 
         if (selected.includes(row))

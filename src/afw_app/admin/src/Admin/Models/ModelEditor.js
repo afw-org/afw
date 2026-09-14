@@ -309,7 +309,7 @@ export const ModelEditor = (props) => {
         if (hash) {
             dispatch({ type: "PERSPECTIVE", perspective: hash.substring(1) });
         } else if (theme && !isMobile) {
-            /* on larger displays, set the default perspective to Tree view */              
+            /* on larger displays, set the default perspective to Tree view */
             dispatch({ type: "PERSPECTIVE", perspective: "tree" });
         }
     }, [theme, hash, isMobile]);
@@ -401,12 +401,12 @@ export const ModelEditor = (props) => {
      * Dropdown button.  The perspective propagates down to every child
      * component that renders a part of the Model.
      */
-    const onSelectPerspective = (perspective) => { 
-        if (perspective) {       
+    const onSelectPerspective = (perspective) => {
+        if (perspective) {
             dispatch({ type: "PERSPECTIVE", perspective });
 
             history.push( pathname + "#" + perspective );
-        }    
+        }
     };
 
     const onRestartModelAdapter = async (modelAdapterId) => {

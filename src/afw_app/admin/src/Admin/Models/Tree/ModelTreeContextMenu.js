@@ -128,9 +128,9 @@ export const ModelTreeContextMenu = (props) => {
     } = state;
 
     useEffect(() => {
-        const node = contextMenuNode;        
+        const node = contextMenuNode;
         let contextMenuItems = [];
-        
+
         if (model && contextMenuNode && editable) {
 
             if (node.type === "model")
