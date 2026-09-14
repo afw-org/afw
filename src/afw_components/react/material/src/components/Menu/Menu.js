@@ -72,7 +72,14 @@ const MenuItem = (props) => {
                 </Box>
                 {
                     description && (
-                        <Box sx={{ marginLeft: canCheck ? 4.5 : undefined, maxWidth: "1200px", whiteSpace: "pre-wrap" }}>
+                        <Box sx={[{
+                            maxWidth: "1200px",
+                            whiteSpace: "pre-wrap"
+                        }, canCheck ? {
+                            marginLeft: 4.5
+                        } : {
+                            marginLeft: null
+                        }]}>
                             <Typography variant="caption" color="textSecondary">{ description }</Typography>
                         </Box>
                     )
@@ -81,7 +88,6 @@ const MenuItem = (props) => {
         </MuiMenuItem>
     );
 };
-
 const MenuItems = ({ items }) => {
     return items.map((item) => {
         if (item.type === "divider") 
@@ -95,12 +101,9 @@ const MenuItems = ({ items }) => {
             return <MenuItem {...item} />;
     });
 };
-
 const MenuList = forwardRef((props, ref) => {
     const theme = useTheme();
-
     const { open, placement, items, autoFocus, anchorEl, anchorPosition } = props;
-
     return (
         <Popper        
             open={open}    
@@ -148,14 +151,11 @@ const MenuList = forwardRef((props, ref) => {
         </Popper>
     );
 });
-
 const SubMenu = (props) => {
     const [open, setOpen] = useState(false);
     const menuRef = useRef(null);
     const theme = useTheme();
-
     const { label, disabled, subMenu, onClick } = props;
-
     return (
         <MuiMenuItem
             ref={menuRef}
@@ -191,7 +191,6 @@ const SubMenu = (props) => {
         </MuiMenuItem>
     );
 };
-
 export const Menu = forwardRef((props, ref) => {
     const { 
         open, 
@@ -204,9 +203,7 @@ export const Menu = forwardRef((props, ref) => {
         "data-testid": dataTestId,
         "data-component-type": dataComponentType,
     } = props;
-
     if (!open) return null;
-
     const onClickAway = () => undefined;
     
     return (
@@ -227,5 +224,4 @@ export const Menu = forwardRef((props, ref) => {
         </ClickAwayListener>
     );
 });
-
 export default Menu;

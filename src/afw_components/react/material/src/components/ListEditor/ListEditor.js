@@ -13,7 +13,7 @@ import Button from "../Button";
 import Typography from "../Typography";
 
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
@@ -123,29 +123,28 @@ export const ListEditor = (props) => {
                 <List disablePadding>
                     {
                         (props.items && props.items.length) ? props.items.map((item, index) => 
-                            <ListItem 
+                            <ListItemButton
                                 dense
-                                key={index} 
-                                role={undefined}                                  
-                                button
+                                key={index}
+                                role={undefined}
                                 component="li"
-                                onClick={() => handleToggle(item, index)} 
+                                onClick={() => handleToggle(item, index)}
                                 onDoubleClick={() => props.onEditItem(item)}
-                                selected={checked.includes(index) ? true : false}          
-                                disableGutters={true}                                      
+                                selected={checked.includes(index) ? true : false}
+                                disableGutters={true}
                             >
-                                <IconButton 
+                                <IconButton
                                     size="small"
                                     aria-label="delete"
                                     onClick={() => onDeleteItems(item)}
                                 >
                                     <CloseIcon color="error" />
                                 </IconButton>
-                                <ListItemText 
-                                    primary={item.text} 
-                                    secondary={item.secondary} 
-                                />   
-                            </ListItem>
+                                <ListItemText
+                                    primary={item.text}
+                                    secondary={item.secondary}
+                                />
+                            </ListItemButton>
                         ) :
                             <Typography color="textSecondary" text="(No Values)" />
                     }                    

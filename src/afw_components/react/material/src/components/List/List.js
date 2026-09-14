@@ -8,6 +8,7 @@
 
 import MuiList from "@mui/material/List";
 import MuiListItem from "@mui/material/ListItem";
+import MuiListItemButton from "@mui/material/ListItemButton";
 
 import {AdaptiveComponent, useClasses} from "@afw/react";
 
@@ -38,18 +39,21 @@ export const List = ({
             disablePadding={true}                    
         >
             {
-                contains.map((item, index) => 
-                    <MuiListItem 
-                        className={classes.root}
-                        key={index}
-                        role={undefined}
-                        button={selectable}
-                        onClick={() => onClick && onClick(item, index)}      
-                        disableGutters                          
-                    >
-                        <AdaptiveComponent {...rest} layoutComponent={item} />                        
-                    </MuiListItem>
-                )
+                contains.map((item, index) => {
+                    const ListItemComponent = selectable ? MuiListItemButton : MuiListItem;
+
+                    return (
+                        <ListItemComponent
+                            className={classes.root}
+                            key={index}
+                            role={undefined}
+                            onClick={() => onClick && onClick(item, index)}
+                            disableGutters
+                        >
+                            <AdaptiveComponent {...rest} layoutComponent={item} />
+                        </ListItemComponent>
+                    );
+                })
             }
         </MuiList>                                    
     );

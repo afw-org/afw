@@ -126,7 +126,9 @@ const FunctionExamples = ({ functionId, parameters, returns }) => {
                         text: "Expression",
                         contains: 
                             <div style={{ padding: theme.spacing(2), backgroundColor: theme.palette.background.paper }}>                                            
-                                <Typography color="inherit" size="5" style={{ whiteSpace: "pre", fontFamily: "Roboto mono" }} text={functionId + "()"} />                                                                                 
+                                <Typography size="5" style={{ whiteSpace: "pre", fontFamily: "Roboto mono" }} text={functionId + "()"} sx={{
+                                    color: "inherit"
+                                }} />                                                                                 
                             </div>
                     },
                     {
@@ -138,10 +140,12 @@ const FunctionExamples = ({ functionId, parameters, returns }) => {
                                     <div style={{ height: theme.spacing(1) }} />
                                     <div style={{ padding: theme.spacing(2), backgroundColor: theme.palette.background.paper }}>                                                 
                                         <Typography 
-                                            color="inherit"
                                             size="5"
-                                            style={{ whiteSpace: "pre", fontFamily: "Roboto mono" }} 
+                                            style={{ whiteSpace: "pre", fontFamily: "Roboto mono" }}
                                             text={JSON.stringify(requestSyntax, null, 4)} 
+                                            sx={{
+                                                color: "inherit"
+                                            }} 
                                         />                                                    
                                     </div>
                                 </div>
@@ -150,10 +154,12 @@ const FunctionExamples = ({ functionId, parameters, returns }) => {
                                     <div style={{ height: theme.spacing(1) }} />
                                     <div style={{ padding: theme.spacing(2), backgroundColor: theme.palette.background.paper }}>
                                         <Typography 
-                                            color="inherit"
                                             size="5"
                                             style={{ whiteSpace: "pre", fontFamily: "Roboto mono" }}
-                                            text={JSON.stringify(responseSyntax, null, 4)} 
+                                            text={JSON.stringify(responseSyntax, null, 4)}
+                                            sx={{
+                                                color: "inherit"
+                                            }} 
                                         />                                                
                                     </div>
                                 </div>

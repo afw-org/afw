@@ -16,19 +16,20 @@ export const Toolbar = (props) => {
             disableGutters={true}
             variant={props.dense ? "dense" : "regular"}                    
         >
-            <Grid 
-                container 
-                spacing={props.spacing} 
-                alignItems={props.alignItems} 
-                justify={props.justify}
-            >                        
+            <Grid
+                container
+                spacing={props.spacing}
+                sx={{
+                    alignItems: props.alignItems,
+                    justifyContent: props.justify
+                }}>
                 {
-                    props.contains && props.contains.map((item, index) => 
-                        item ? 
-                            <Grid key={index} item xs={props.width === "auto" ? true : false}>
+                    props.contains && props.contains.map((item, index) =>
+                        item ?
+                            <Grid key={index} size={props.width === "auto" ? true : false}>
                                 <AdaptiveComponent layoutComponent={item} />
-                            </Grid> 
-                            : 
+                            </Grid>
+                            :
                             <AdaptiveComponent layoutComponent={item} />
                     )
                 }

@@ -6,7 +6,7 @@
 import {useContext, useEffect, useState, useCallback, useLayoutEffect, useMemo} from "react";
 import {useLocation} from "react-router";
 import {css} from "@emotion/css";
-import {useTheme} from "@emotion/react";
+import {useTheme} from "@mui/material/styles";
 
 import {AppContext, ConfigContext, AppCoreContext, NotificationContext} from "./context";
 

@@ -1,31 +1,37 @@
 // See the 'COPYING' file in the project root for licensing information.
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import AdapterMoment from "@mui/lab/AdapterMoment";
-import MuiDateTimePicker from "@mui/lab/DateTimePicker";
-import TextField from "@mui/material/TextField";
+import moment from "moment";
+
+import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
+import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
+import {DateTimePicker as MuiDateTimePicker} from "@mui/x-date-pickers/DateTimePicker";
 
 export const DateTimePicker = ({ value, label, id, description, onChanged }) => {
     let date;
     if (value) {
         const parsed = Date.parse(value);
         if (typeof parsed == "number")
-            date = new Date(Date.parse(value));        
+            date = moment(parsed);
     }
-    
+
     return (
         <LocalizationProvider dateAdapter={AdapterMoment}>
-            <MuiDateTimePicker 
+            <MuiDateTimePicker
                 label={label}
-                id={id}
                 value={date}
-                onChange={(date) => {                        
-                    onChanged(date.format("YYYY-MM-DDTHH:mm:ssZ"));
+                onChange={(date) => {
+                    if (date)
+                        onChanged(date.format("YYYY-MM-DDTHH:mm:ssZ"));
                 }}
-                clearable
-                inputFormat="MM/DD/YYYY hh:mm a"                
-                helperText={description}
-                fullWidth
-                renderInput={(params) => <TextField {...params} id={id} variant="standard" helperText={description} />}
+                format="MM/DD/YYYY hh:mm a"
+                slotProps={{
+                    field: { clearable: true },
+                    textField: {
+                        id,
+                        variant: "standard",
+                        helperText: description,
+                        fullWidth: true
+                    }
+                }}
             />
         </LocalizationProvider>
     );

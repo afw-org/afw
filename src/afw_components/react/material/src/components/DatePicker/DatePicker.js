@@ -2,10 +2,9 @@
 import {useEffect, useState} from "react";
 import moment from "moment";
 
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import AdapterMoment from "@mui/lab/AdapterMoment";
-import MuiDatePicker from "@mui/lab/DatePicker";
-import TextField from "@mui/material/TextField";
+import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
+import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
+import {DatePicker as MuiDatePicker} from "@mui/x-date-pickers/DatePicker";
 
 import TimezonePicker from "../TimezonePicker";
 
@@ -33,9 +32,12 @@ export const DatePicker = (props) => {
             props.onChanged( momentDate.format("YYYY-MM-DDZ") );
     };
 
-    const onDateChanged = (value) => {        
+    const onDateChanged = (value) => {
+        if (!value)
+            return;
+
         const offset = momentDate.utcOffset();
-        value.utcOffset(offset);        
+        value.utcOffset(offset);
         onChanged(value);
     };
 
@@ -51,16 +53,20 @@ export const DatePicker = (props) => {
         <LocalizationProvider dateAdapter={AdapterMoment}>            
             <div style={{ display: "flex" }}>
                 <div style={{ marginRight: "8px" }}>
-                    <MuiDatePicker 
-                        id={props.id}
+                    <MuiDatePicker
                         label={props.label}
                         aria-label={props["aria-label"]}
-                        value={date.toDate()}
+                        value={date}
                         onChange={onDateChanged}
                         format="YYYY-MM-DD"
-                        helperText={props.description}
-                        fullWidth                        
-                        renderInput={(params) => <TextField {...params} id={props.id} variant="standard" helperText={props.description} />}
+                        slotProps={{
+                            textField: {
+                                id: props.id,
+                                variant: "standard",
+                                helperText: props.description,
+                                fullWidth: true
+                            }
+                        }}
                     />
                 </div>
                 <div style={{ flex: 1 }}>

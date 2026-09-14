@@ -59,7 +59,7 @@ const Test = (wrapper) => {
 
         // userEvent (not raw fireEvent/.click()) is what reliably opens/closes
         // a MUI Select in tests
-        await userEvent.click(screen.getByRole("button"));
+        await userEvent.click(screen.getByRole("combobox"));
 
         // wait for render with options
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));

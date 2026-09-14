@@ -9,7 +9,7 @@
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "peerDependencies": {
-    "@mui/material": "^5.0.0"
+    "@mui/material": "^9.4.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.3"

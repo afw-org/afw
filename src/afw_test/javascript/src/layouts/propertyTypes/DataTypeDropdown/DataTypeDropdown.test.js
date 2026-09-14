@@ -58,7 +58,7 @@ const Test = (wrapper) => {
         );
         
         await screen.findByLabelText("Select Datatype");        
-        const button = await screen.findByRole("button");
+        const button = await screen.findByRole("combobox");
         
         // userEvent (not a raw fireEvent.mouseDown) is what reliably opens a
         // MUI Select in tests

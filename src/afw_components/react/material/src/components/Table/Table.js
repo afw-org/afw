@@ -21,7 +21,7 @@ import IconButton from "@mui/material/IconButton";
 import ViewColumn from "@mui/icons-material/ViewColumn";
 import FilterList from "@mui/icons-material/FilterList";
 
-import CheckCircleOutline from "@mui/icons-material/CheckCircleOutline";
+import CheckCircleOutlined from "@mui/icons-material/CheckCircleOutlined";
 import CheckCircle from "@mui/icons-material/CheckCircle";
 
 import {useClasses} from "@afw/react";
@@ -117,7 +117,7 @@ const TableHeader = (props) => {
                                     inputProps={{
                                         "aria-label": "Select All Rows"
                                     }}
-                                    icon={<CheckCircleOutline style={{ opacity: "0.5" }} />}   
+                                    icon={<CheckCircleOutlined style={{ opacity: "0.5" }} />}   
                                     checkedIcon={<CheckCircle />}
                                     checked={rows && (selected.length === rows.length)}
                                     onChange={(event, checked) => onSelectAllRows(checked)}
@@ -181,7 +181,7 @@ const TableBody = (props) => {
                                         inputProps={{
                                             "aria-label": "Select Table Row " + rowIndex
                                         }}
-                                        icon={<CheckCircleOutline className={classes.CheckboxHover} />}
+                                        icon={<CheckCircleOutlined className={classes.CheckboxHover} />}
                                         checkedIcon={<CheckCircle />}
                                         checked={selected.includes(row)}
                                     />

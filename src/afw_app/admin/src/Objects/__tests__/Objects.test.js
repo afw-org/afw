@@ -44,7 +44,7 @@ describe("Objects Tests", () => {
         await waitFor(() => expect(screen.getByLabelText("Object Type")).not.toBeDisabled());
 
 
-        fireEvent.mouseDown(screen.getByRole("button", { name: /adapter /i }));
+        fireEvent.mouseDown(screen.getByRole("combobox", { name: /adapter/i }));
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled()); 
         await waitForSpinner();

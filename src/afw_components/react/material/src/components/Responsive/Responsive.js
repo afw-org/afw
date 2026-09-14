@@ -60,7 +60,7 @@ export const ResponsiveCol = (props) => {
     const breakpointsObj = getBreakpoints(breakpoints);
     
     return (
-        <Grid style={{ width: String(100 / numCols) + "%", ...style }} item {...breakpointsObj}>
+        <Grid style={{ width: String(100 / numCols) + "%", ...style }} size={breakpointsObj}>
             <AdaptiveComponent {...rest} layoutComponent={contains} />
         </Grid>
     );   
@@ -81,14 +81,15 @@ export const ResponsiveRow = (props) => {
     const {style, columns, spacing, justify, alignItems, alignContent, ...rest} = props;
 
     return (
-        <Grid 
-            style={style} 
-            container 
+        <Grid
+            style={style}
+            container
             spacing={spacing}
-            justifyContent={justify}
-            alignItems={alignItems}
-            alignContent={alignContent}
-        >
+            sx={{
+                justifyContent: justify,
+                alignItems: alignItems,
+                alignContent: alignContent
+            }}>
             {
                 columns.map((child, index) => 
                     <ResponsiveCol 
@@ -148,9 +149,11 @@ export const Responsive = (props) => {
             className={className}
             style={style} 
             container         
-            justifyContent={justify}
             align={align}
             spacing={spacing}
+            sx={{
+                justifyContent: justify
+            }}
         >
             {
                 rows && rows.map((child, index) =>                    
@@ -164,7 +167,7 @@ export const Responsive = (props) => {
                     const muiBreakpoints = getBreakpoints(breakpoints);
 
                     return (
-                        <Grid key={index} item {...muiBreakpoints}>
+                        <Grid key={index} size={muiBreakpoints}>
                             <AdaptiveComponent layoutComponent={contains} />
                         </Grid>
                     );

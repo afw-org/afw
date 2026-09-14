@@ -15,7 +15,7 @@ import Icon from "../Icon";
 
 export const Dropdown = (props) => {
 
-    const {id, "data-testid": dataTestid, options, label, description, disabled, placeholder, required, className, style} = props;
+    const {id, "data-testid": dataTestid, "aria-label": ariaLabel, options, label, description, disabled, placeholder, required, className, style} = props;
 
     const onChange = (event) => {
         let key = event.target.value;
@@ -73,14 +73,15 @@ export const Dropdown = (props) => {
                 label &&
                     <InputLabel id={id ? (id + "-label") : undefined}>{label}</InputLabel>
             }
-            <Select 
+            <Select
                 id={id}
                 data-testid={dataTestid}
-                labelId={id ? (id + "-label") : undefined}                
+                aria-label={label ? undefined : ariaLabel}
+                labelId={id ? (id + "-label") : undefined}
                 value={(options && options.length) ? selectedKey : ""}
                 onChange={onChange}
                 placeholder={placeholder}
-                variant="standard"    
+                variant="standard"
             >
                 { dropdownOptions }
             </Select>

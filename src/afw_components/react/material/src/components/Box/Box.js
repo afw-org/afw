@@ -24,13 +24,17 @@ export const BoxItem = ({ contains, ...rest }) => {
 export const Box = ({ contains, ...rest }) => {       
 
     return (
-        <MuiBox display="flex" {...rest}>
+        <MuiBox
+            {...rest}
+            sx={[{
+                display: "flex"
+            }, ...(Array.isArray(rest.sx) ? rest.sx : [rest.sx])]}>
             {
                 contains && contains.map((boxItem, index) => 
                     <BoxItem key={index} {...boxItem} />
                 )
             }
-        </MuiBox>                                    
+        </MuiBox>
     );
 };
 
