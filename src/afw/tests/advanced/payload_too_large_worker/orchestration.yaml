@@ -1,0 +1,34 @@
+version: 1
+description: >
+  One-thread afwfcgi: a request that hits payload_too_large must not
+  take down the worker; the next request still serves.
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 90
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: warmup
+    sourceType: script
+    source: |
+      return 1;
+    expect: 1
+  - name: trip-eval-stack
+    description: Uncaught recursion exceeds conf limitEvaluationStackCount
+    sourceType: script
+    source: |
+      function rec(n) {
+          if (n <= 0) {
+              return 0;
+          }
+          return rec(n - 1);
+      }
+      return rec(80);
+    expectError: payload_too_large
+  - name: worker-still-serves
+    sourceType: script
+    source: |
+      return 2;
+    expect: 2

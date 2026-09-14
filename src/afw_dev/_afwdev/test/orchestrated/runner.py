@@ -651,9 +651,40 @@ def _run_test_item(item, work_dir, source_leaf, ctx, timeout, doc_feed,
         item, body_bytes, work_dir, source_leaf, options, debug_parts)
 
 
+def _response_error_id(response):
+    """Return Adaptive error id from a perform JSON body, or None."""
+    if not isinstance(response, dict):
+        return None
+    err = response.get("error")
+    if isinstance(err, dict) and err.get("id"):
+        return err.get("id")
+    actions = response.get("actions")
+    if isinstance(actions, list):
+        for act in actions:
+            if not isinstance(act, dict):
+                continue
+            if act.get("status") == "error":
+                e = act.get("error")
+                if isinstance(e, dict) and e.get("id"):
+                    return e.get("id")
+    return None
+
+
 def _judge_action_json_response(item, response, body_text, name, source_type,
                                 syntax):
     """Shared expect / expect-stdout judging for JSON action responses."""
+    expect_error = item.get("expectError")
+    if expect_error:
+        actual_id = _response_error_id(response)
+        if actual_id != expect_error:
+            raise AfwdevRunnerError(
+                "test {!r}: expected error id {!r}, got status={!r} id={!r}".format(
+                    name, expect_error,
+                    (response or {}).get("status"), actual_id),
+                object=response if isinstance(response, dict) else None,
+            )
+        return
+
     adapt = adaptive_error_from_response(response)
     if adapt is not None:
         raise adapt
