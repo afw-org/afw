@@ -12,18 +12,20 @@ export const ModelSpreadsheet = ({ model }) => {
         if (!value)
             return [];
 
+        const propertyTypes = value.getPropertyValue("propertyTypes");
+
         return acc.concat(
-            [                 
+            [
                 {
                     objectType: cur.getName(),
                     required: "",
                     dataType: "",
                     propertyName: "",
-                    description: value.getDescription(),                    
-                },                
+                    description: value.getDescription(),
+                },
             ]
         ).concat(
-            cur.getValue().getPropertyValue("propertyTypes").getProperties().filter(p => !p.getInheritedFrom()).map(p => 
+            propertyTypes ? propertyTypes.getProperties().filter(p => !p.getInheritedFrom()).map(p =>
                 ({
                     objectType: "",
                     required: p.getValue()?.getPropertyValue("required") ? "true" : "",
@@ -31,9 +33,7 @@ export const ModelSpreadsheet = ({ model }) => {
                     dataType: p.getValue()?.getPropertyValue("dataType"),
                     description: p.getValue()?.getPropertyValue("description")
                 })
-            )
-        ).concat(
-            []
+            ) : []
         );
     }, []);
 

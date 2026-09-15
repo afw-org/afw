@@ -25,7 +25,9 @@ describe("ModelSpreadsheet Tests", () => {
                         dataType: "string"
                     }
                 }
-            }
+            },
+            /* obj2 deliberately has no propertyTypes - a minimal object type with none defined yet */
+            obj2: {}
         },
         _meta_: {
             objectId: "test1",
