@@ -17,50 +17,54 @@
     --active-color: var(--active_color);
 }
 
-.jexcel {
+/*
+ * jspreadsheet-ce v5 renamed its CSS class prefix from "jexcel" to "jss_" (and
+ * restructured the internal dropdown/calendar widgets) - selectors below were
+ * updated against the v5 default stylesheet and runtime class names. A couple
+ * of v4-only classes (jexcel_cursor, jexcel_border_main) no longer exist in
+ * v5 at all and have been dropped rather than left targeting nothing.
+ */
+
+.jss_worksheet {
     border-bottom: 1px solid var(--jexcel_border_color);
     border-right: 1px solid var(--jexcel_border_color);
 }
 
-.jexcel > tbody > tr > td,
-.jexcel > thead > tr > td {
+.jss_worksheet > tbody > tr > td,
+.jss_worksheet > thead > tr > td {
     border-top: 1px solid var(--jexcel_border_color);
     border-left: 1px solid var(--jexcel_border_color);
     background-color: var(--jexcel_content_background);
     color: var(--jexcel_content_color);
 }
 
-.jexcel > tbody > tr > td:first-child,
-.jexcel > thead > tr > td {
+.jss_worksheet > tbody > tr > td:first-child,
+.jss_worksheet > thead > tr > td {
     background-color: var(--jexcel_header_background);
     color: var(--jexcel_header_color);
 }
 
-.jexcel > thead > tr > td.selected,
-.jexcel > tbody > tr.selected > td:first-child {
+.jss_worksheet > thead > tr > td.selected,
+.jss_worksheet > tbody > tr.selected > td:first-child {
     background-color: var(--jexcel_header_background_highlighted);
     color: var(--jexcel_header_color_highlighted);
 }
 
-.jexcel > tbody > tr > td.jexcel_cursor a {
-    color: var(--active-color);
-}
-
-.jexcel_pagination > div > div {
+.jss_pagination > div > div {
     color: var(--jexcel_header_color);
     background: var(--jexcel_header_background);
     border: 1px solid var(--jexcel_border_color);
 }
 
-.jexcel_page,
-.jexcel_container input,
-.jexcel_container select {
+.jss_page,
+.jss_container input,
+.jss_container select {
     color: var(--jexcel_header_color);
     background: var(--jexcel_header_background);
     border: 1px solid var(--jexcel_border_color);
 }
 
-.jexcel_contextmenu {
+.jss_contextmenu {
     border: 1px solid var(--jexcel_border_color);
     background: var(--jexcel_menu_background);
     color: var(--jexcel_menu_color);
@@ -69,121 +73,86 @@
     -moz-box-shadow: var(--jexcel_menu_box_shadow);
 }
 
-.jexcel_contextmenu > div a {
+.jss_contextmenu > div a {
     color: var(--jexcel_menu_color);
 }
 
-.jexcel_contextmenu > div:not(.contextmenu-line):hover a {
+.jss_contextmenu > div:not(.contextmenu-line):hover a {
     color: var(--jexcel_menu_color_highlighted);
 }
 
-.jexcel_contextmenu > div:not(.contextmenu-line):hover {
+.jss_contextmenu > div:not(.contextmenu-line):hover {
     background: var(--jexcel_menu_background_highlighted);
 }
 
-.jexcel_dropdown .jdropdown-container,
-.jexcel_dropdown .jdropdown-content {
+.jss_dropdown .jdropdown-container,
+.jss_dropdown .jdropdown-picker {
     background-color: var(--jexcel_content_background);
     color: var(--jexcel_content_color);
 }
 
-.jexcel_dropdown .jdropdown-item {
-    color: var(--jexcel_content_color);
-}
-
-.jexcel_dropdown .jdropdown-item:hover,
-.jexcel_dropdown .jdropdown-selected,
-.jexcel_dropdown .jdropdown-cursor {
+.jss_dropdown .jdropdown-header:hover,
+.jss_dropdown .jdropdown-header.selected {
     background-color: var(--jexcel_content_background_highlighted);
     color: var(--jexcel_content_color_highlighted);
 }
 
-.jexcel .jcalendar-content {
-    background-color: var(--jexcel_header_background);
-    color: var(--jexcel_header_color);
-}
-
-.jexcel .jcalendar-content > table {
-    background-color: var(--jexcel_content_background);
+.jss_toolbar i {
     color: var(--jexcel_content_color);
 }
 
-.jexcel .jcalendar-weekday {
-    background-color: var(--jexcel_content_background_highlighted);
-    color: var(--jexcel_content_color_highlighted);
-}
-
-.jexcel .jcalendar-sunday {
-    color: var(--jexcel_header_color);
-}
-
-.jexcel .jcalendar-selected {
-    background-color: var(--jexcel_content_background_highlighted);
-    color: var(--jexcel_content_color_highlighted);
-}
-
-.jexcel_toolbar i.jexcel_toolbar_item {
-    color: var(--jexcel_content_color);
-}
-
-.jexcel_toolbar i.jexcel_toolbar_item:hover {
+.jss_toolbar i:hover {
     background: var(--jexcel_content_background_highlighted);
     color: var(--jexcel_content_color_highlighted);
 }
 
-.jexcel_toolbar {
+.jss_toolbar {
     background: var(--jexcel_header_background);
 }
 
-.jexcel_content::-webkit-scrollbar-track {
+.jss_content::-webkit-scrollbar-track {
     background: var(--jexcel_background_head);
 }
 
-.jexcel_content::-webkit-scrollbar-thumb {
+.jss_content::-webkit-scrollbar-thumb {
     background: var(--jexcel_background_head_highlighted);
 }
 
-
-.jexcel_border_main {
-    border: 1px solid #000;
-    border-color: var(--jexcel_border_color_highlighted);
-}
-
-.jexcel .highlight {
+.jss_worksheet .highlight {
     background-color: var(--jexcel_content_background_highlighted);
 }
 
-.jexcel .highlight-bottom {
+.jss_worksheet .highlight-bottom {
     border-bottom: 1px solid var(--jexcel_border_color_highlighted);
 }
-.jexcel .highlight-right {
+.jss_worksheet .highlight-right {
     border-right: 1px solid var(--jexcel_border_color_highlighted);
 }
-.jexcel .highlight-left {
+.jss_worksheet .highlight-left {
     border-left: 1px solid var(--jexcel_border_color_highlighted);
 }
-.jexcel .highlight-top {
+.jss_worksheet .highlight-top {
     border-top: 1px solid var(--jexcel_border_color_highlighted);
 }
-.jexcel .copying-top {
+.jss_worksheet .copying-top {
     border-top-color: var(--jexcel_border_color_highlighted);
 }
-.jexcel .copying-right {
+.jss_worksheet .copying-right {
     border-right-color: var(--jexcel_border_color_highlighted);
 }
-.jexcel .copying-left {
+.jss_worksheet .copying-left {
     border-left-color: var(--jexcel_border_color_highlighted);
 }
-.jexcel .copying-bottom {
+.jss_worksheet .copying-bottom {
     border-bottom-color: var(--jexcel_border_color_highlighted);
 }
-.jexcel_border_main, .jexcel .highlight-top.highlight-left, .jexcel .highlight-top, .jexcel .highlight-left {
+.jss_worksheet .highlight-top.highlight-left, .jss_worksheet .highlight-top, .jss_worksheet .highlight-left {
     -webkit-box-shadow: unset;
     box-shadow: unset;
 }
-.jexcel_about {
+.jss_about {
     display: none;
 }
-.jexcel_textarea {
+.jss_textarea {
     display: none;
 }

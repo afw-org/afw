@@ -102,18 +102,22 @@ export const Spreadsheet = (props) => {
 
     const onchange = useCallback((instance, cell, x, y, value, oldValue) => {
 
-        const column = jspreadsheet.getColumnNameFromId([x, y]);
+        const column = jspreadsheet.helpers.getCellNameFromCoords(x, y);
         const meta = el.current.getMeta(column);
 
         onCellChanged(instance, cell, x, y, value, oldValue, meta);
     }, [onCellChanged]);
-    
+
     useEffect(() => {
         const container = containerRef.current;
-        el.current = jspreadsheet(container, { 
-            data, columns, meta, minDimensions, defaultColAlign: "left", 
-            editable, about: false, onchange,
-            ...rest
+        /* jspreadsheet-ce v5 returns an array of worksheet instances; this component only ever creates one */
+        [el.current] = jspreadsheet(container, {
+            about: false, onchange,
+            worksheets: [{
+                data, columns, meta, minDimensions, defaultColAlign: "left",
+                editable,
+                ...rest
+            }],
         });
 
         /*
