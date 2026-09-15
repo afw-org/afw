@@ -194,7 +194,7 @@ export const ModelObjectTypeCopy = (props) => {
 
     /* When an object type is checked */
     const onSelectObjectTypeId = (objectTypeId, checked) => {
-        let selected = selectedObjectTypes;
+        let selected = {...selectedObjectTypes};
 
         if (checked)
             selected[objectTypeId] = checked;
@@ -351,7 +351,7 @@ export const ModelObjectTypeMap = (props) => {
 
     /* When an object type is checked */
     const onSelectObjectTypeId = (objectTypeId, checked) => {
-        let selected = selectedObjectTypes;
+        let selected = {...selectedObjectTypes};
 
         if (checked)
             selected[objectTypeId] = checked;

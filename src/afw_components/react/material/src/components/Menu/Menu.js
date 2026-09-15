@@ -187,6 +187,7 @@ const SubMenu = (props) => {
             </Box>
             <MenuList
                 open={open}
+                // eslint-disable-next-line react-hooks/refs -- standard MUI anchor-to-ref pattern; MenuList itself returns null while !open, so the null anchorEl on the ref's not-yet-attached first render is never actually rendered
                 anchorEl={menuRef.current}
                 placement={theme?.direction === "rtl" ? "left" : "right-start"}
                 items={subMenu.items}

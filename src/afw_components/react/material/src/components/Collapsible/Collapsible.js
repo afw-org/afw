@@ -63,6 +63,7 @@ export const Collapsible = (props) => {
     const [isCollapsed, setCollapsed] = useState((props.isCollapsed === false) ? false : true);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- isCollapsed is also imperatively toggled by onToggleCollapse below, so it can't be a pure useMemo derivation of props.isCollapsed alone
         setCollapsed((props.isCollapsed === false) ? false : true);
     }, [props.isCollapsed]);
    

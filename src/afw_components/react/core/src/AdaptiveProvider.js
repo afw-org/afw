@@ -1,7 +1,9 @@
 // See the 'COPYING' file in the project root for licensing information.
+import {useEffect, useMemo} from "react";
+
 import {
-    ComponentsContext, 
-    QualifiersContext,   
+    ComponentsContext,
+    QualifiersContext,
     ClipboardContext,
 } from "./context";
 
@@ -54,13 +56,15 @@ export const AdaptiveProvider = ({
     onCopy, 
     clipboard 
 }) => {
-    const AfwLayoutRegistry = new AdaptiveLayoutRegistry();
+    const AfwLayoutRegistry = useMemo(() => new AdaptiveLayoutRegistry(), []);
 
-    /* 
-     *  export the layout registry to the global window object, so third-party extensions 
-     *  can locate it and register their layouts and components 
+    /*
+     *  export the layout registry to the global window object, so third-party extensions
+     *  can locate it and register their layouts and components
      */
-    window.AfwLayoutRegistry = AfwLayoutRegistry;
+    useEffect(() => {
+        window.AfwLayoutRegistry = AfwLayoutRegistry;
+    }, [AfwLayoutRegistry]);
 
     return (
         <ComponentsContext.Provider value={componentRegistry}>

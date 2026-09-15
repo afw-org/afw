@@ -783,6 +783,7 @@ export const Fiddle = () => {
      */
     const addRecentFile = ({ label, path, isLocal }) => {
         if (!storage.recent)
+            // eslint-disable-next-line react-hooks/immutability -- storage is mutated in place then announced via onStorageChanged below, this file's established convention for the storage blob (see onSaveLocalFile, onConfirmDelete)
             storage.recent = [];
         
         /* look to see if it's already in recent */
@@ -1014,6 +1015,7 @@ export const Fiddle = () => {
      */
     const onConfirmDelete = () => {
         let newStorage = { ...storage };
+        // eslint-disable-next-line react-hooks/immutability -- storage is mutated in place then announced via onStorageChanged below, this file's established convention for the storage blob (see onSaveLocalFile, addRecentFile)
         delete storage["scripts"][activeTabLabel];
         
         onTabClose(state.activeTab);
@@ -1103,7 +1105,8 @@ export const Fiddle = () => {
                         selectedFlags={state.selectedFlags}
                         setSelectedFlags={selectedFlags => dispatch({ type: "SET_SELECTED_FLAGS", selectedFlags })}
                         inputLabel={activeTabLabel}                        
-                        onNewFile={onNewFile}                        
+                        onNewFile={onNewFile}
+                        // eslint-disable-next-line react-hooks/immutability -- onOpenRecentFile calls addRecentFile, which mutates storage in place, this file's established convention (see addRecentFile above); only runs when actually invoked, not during this render
                         onOpenRecent={onOpenRecentFile}
                         onSaveFile={onSaveFile}
                         onSaveFileAs={onSaveFileAs}

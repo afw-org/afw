@@ -21,6 +21,7 @@ export const Tabs = (props) => {
     const theme = useTheme();
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- selectedTab is also imperatively set by the tab-click handler below, so it can't be a pure useMemo derivation of props.selectedTab alone
         setSelectedTab(props.selectedTab || 0);
     }, [props.selectedTab, props.tabs]);
 

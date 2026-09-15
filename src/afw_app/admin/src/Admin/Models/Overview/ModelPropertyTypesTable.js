@@ -195,7 +195,7 @@ export const ModelPropertyTypeCopy = (props) => {
     };
 
     const onSelectProperty = (propertyName, checked) => {
-        let selected = selectedPropertyTypes;
+        let selected = {...selectedPropertyTypes};
 
         if (checked)
             selected[propertyName] = true;

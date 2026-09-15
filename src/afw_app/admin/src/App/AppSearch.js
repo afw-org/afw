@@ -476,6 +476,9 @@ const AppSearch = () => {
                 smDown={true}
                 contains={
                     <>
+                        {
+                            /* eslint-disable react-hooks/refs -- handleSearchChange reads searchTextField.current, but only once actually invoked as an event handler, not during this render */
+                        }
                         <TextField
                             inputRef={searchTextField}
                             placeholder="Search..."
@@ -495,8 +498,9 @@ const AppSearch = () => {
                             }}
                             variant="standard"
                             onChange={debounce(handleSearchChange, 150)}
-                            id="help-search-field"                
-                        />  
+                            id="help-search-field"
+                        />
+                        {/* eslint-enable react-hooks/refs */}
                         <Popper
                             open={Boolean(anchorEl)}                
                             anchorEl={anchorEl}                            
@@ -570,6 +574,7 @@ const AppSearch = () => {
                                             ),   
                                             "aria-label": "Search"                                                                                                                
                                         }}
+                                        //eslint-disable-next-line react-hooks/refs -- handleMobileSearchChange reads mobileSearchTextField.current, but only once actually invoked as an event handler, not during this render
                                         onChange={debounce(handleMobileSearchChange, 150)}
                                         id="mobile-search-field"
                                     />  
