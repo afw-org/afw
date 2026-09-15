@@ -74,20 +74,22 @@ export const darkTheme = {
  * A HOC to wrap the useMediaQuery hook in order to get preferred settings.
  */
 export const withMediaQuery = (Component) => {
-    return (props) => {
+    const WithMediaQuery = (props) => {
         const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
         const prefersHighContrast = useMediaQuery("(prefers-contrast: high)");
         const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
         const prefersReducedTransparency = useMediaQuery("(prefers-reduced-transparency: reduce)");
 
         return (
-            <Component 
-                prefersDarkMode={prefersDarkMode} 
+            <Component
+                prefersDarkMode={prefersDarkMode}
                 prefersHighContrast={prefersHighContrast}
                 prefersReducedMotion={prefersReducedMotion}
                 prefersReducedTransparency={prefersReducedTransparency}
-                {...props} 
+                {...props}
             />
         );
     };
+    WithMediaQuery.displayName = `withMediaQuery(${Component.displayName || Component.name || "Component"})`;
+    return WithMediaQuery;
 };

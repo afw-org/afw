@@ -6,10 +6,13 @@ import Loading from "../common/Loading";
 import Versions from "../Admin/Versions";
 import NoRoute from "../common/NoRoute";
 
-const Loadable = Component => (props) => 
-    <Suspense fallback={<Loading />}>
-        <Component {...props} />
-    </Suspense>;
+const Loadable = Component => function Loadable(props) {
+    return (
+        <Suspense fallback={<Loading />}>
+            <Component {...props} />
+        </Suspense>
+    );
+};
 
 /* create Loadable (async) components for code-splitting on routes */
 const LoadableHome = Loadable(lazy(() =>

@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-export const TimePicker = () => ({ id, label, description, placeholder, value, onChanged }) => {
+export const TimePicker = () => function TimePicker({ id, label, description, placeholder, value, onChanged }) {
     return (
         <div>
             { 

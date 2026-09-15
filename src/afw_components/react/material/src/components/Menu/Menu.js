@@ -153,6 +153,7 @@ const MenuList = forwardRef((props, ref) => {
         </Popper>
     );
 });
+MenuList.displayName = "MenuList";
 const SubMenu = (props) => {
     const [open, setOpen] = useState(false);
     const menuRef = useRef(null);
@@ -226,4 +227,5 @@ export const Menu = forwardRef((props, ref) => {
         </ClickAwayListener>
     );
 });
+Menu.displayName = "Menu";
 export default Menu;

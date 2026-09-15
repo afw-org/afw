@@ -317,5 +317,6 @@ const SplitPane = forwardRef((props, parentRef) => {
         </div>
     );
 });
+SplitPane.displayName = "SplitPane";
 
 export default SplitPane;

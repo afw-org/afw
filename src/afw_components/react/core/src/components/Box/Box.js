@@ -46,8 +46,8 @@ export const Box = (props) => {
 Box.Item = (props) => {
 
     return (
-        <AdaptiveComponent 
-            {...props} 
+        <AdaptiveComponent
+            {...props}
             data-component-type={ctx(props, "BoxItem")}
             layoutComponent={{
                 componentType: "BoxItem",
@@ -56,6 +56,7 @@ Box.Item = (props) => {
         />
     );
 };
+Box.Item.displayName = "Box.Item";
 
 
 /**

@@ -62,5 +62,6 @@ export const AdaptiveComponent = forwardRef((props, ref) => {
 
     return render(componentDefinitions, layoutComponent, fallback, newProps);
 });
+AdaptiveComponent.displayName = "AdaptiveComponent";
 
 export default AdaptiveComponent;

@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-export const DatePicker = () => ({ id, label, description, placeholder, value, onChanged }) => {
+export const DatePicker = () => function DatePicker({ id, label, description, placeholder, value, onChanged }) {
     return (
         <div>
             { 

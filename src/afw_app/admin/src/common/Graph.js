@@ -53,5 +53,6 @@ export const Graph = forwardRef( (props, ref) => {
         <div id={id} style={style} ref={containerRef} />
     );
 });
+Graph.displayName = "Graph";
 
 export default Graph;

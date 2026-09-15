@@ -129,6 +129,7 @@ export const ObjectFlattened = memo((props) => {
         />
     );
 });
+ObjectFlattened.displayName = "ObjectFlattened";
 
 
 export default ObjectFlattened;
