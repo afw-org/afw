@@ -1,6 +1,6 @@
 # Compile unit, leave, isolate-at-clone, builtin lifetime, pop temp-on-scope (landed); FRV leftover dropped (`issue-2-frv`)
 
-**Audience:** next session. Not user docs (`whats-new.md` notes `slice` / `map` stay mutable).
+**Audience:** maintainers. Not user docs (`whats-new.md` notes `slice` / `map` stay mutable).
 
 **Landed on `develop`:**
 - [PR #305](https://github.com/afw-org/afw/pull/305) (`0fc0f2b8`, 2026-09-09) — `compile()` is a unit; `app::` get of compiled templates.
@@ -61,13 +61,13 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 
 ---
 
-## Next slices
+## After leftover wrapping (dropped)
 
 Leftover wrapping is **dropped**. No `function_return_value`; pin on caller. Do **not** reopen unique consume, eval-stack leftover, or `#function_return_value`.
 
 No evaluate-only call-result inf for managed built-in returns. Builtins already extra-hold on the current `{ }` ([PR #308](https://github.com/afw-org/afw/pull/308)); `pop`/`shift` are the scope-temp path ([PR #309](https://github.com/afw-org/afw/pull/309)); identity `push` stays unwrapped. `pop_value` pops the call, not leftover wrappers. A managed header may still sit in `xctx->p` until the request pool dies — that is the managed world, not a new inf.
 
-Compile units use `afw_pool_heap_create(parent, 4k)` (own ST heap). Managed eval allocs use `p->managed_p`. **Next:** [PR #327](https://github.com/afw-org/afw/pull/327) ([`remaining-apr.md`](remaining-apr.md)). Gate 2026-09-14: **4484 passed** (`fulldev` + `test -j` + valgrind).
+Compile units use `afw_pool_heap_create(parent, 4k)` (own ST heap). Managed eval allocs use `p->managed_p`. **Landed:** [PR #327](https://github.com/afw-org/afw/pull/327) ([`remaining-apr.md`](remaining-apr.md)). Gate 2026-09-14: **4484 passed** (`fulldev` + `test -j` + valgrind).
 
 ---
 
@@ -81,7 +81,7 @@ Compile units use `afw_pool_heap_create(parent, 4k)` (own ST heap). Managed eval
 
 **Verify:** `./afwdev build --cdev`, `afwdev test -j`, `afwdev test -j --env-mode valgrind`: **4484 passed**, 71 skipped.
 
-Squash-merged [PR #326](https://github.com/afw-org/afw/pull/326) into `reduce-apr-pool` as `0bed0e4f`. `issue-2-frv` and `issue-2-frv-leftover` **deleted**. No twin leftover inf for managed built-in returns. Next: land `reduce-apr-pool` on `develop` ([`remaining-apr.md`](remaining-apr.md)).
+Squash-merged [PR #326](https://github.com/afw-org/afw/pull/326) into `reduce-apr-pool` as `0bed0e4f`. `issue-2-frv` and `issue-2-frv-leftover` **deleted**. No twin leftover inf for managed built-in returns. `reduce-apr-pool` landed on `develop` as [PR #327](https://github.com/afw-org/afw/pull/327) ([`remaining-apr.md`](remaining-apr.md)).
 
 ---
 

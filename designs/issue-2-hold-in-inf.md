@@ -3,7 +3,7 @@
 **Audience:** maintainers / assistants. **Not** handbook.
 
 **GitHub:** [#2](https://github.com/afw-org/afw/issues/2).  
-**How close (scoreboard):** [Live status](#live-status-2026-09-15--how-close-is-2) below. If this pad’s older “Order / Parked” lists, the RSS lab README, `experiment-brainstorm.md` “next session”, or the GitHub issue body disagree with that section, **the live status wins** until someone updates it.
+**How close (scoreboard):** [Live status](#live-status-2026-09-15--how-close-is-2) below. If this pad’s older “Order / Parked” lists, the RSS lab README, the two-worlds pad, or the GitHub issue body disagree with that section, **the live status wins** until someone updates it.
 
 **On `develop`:** pool two-impls ([PR #267](https://github.com/afw-org/afw/pull/267)). Two worlds (unmanaged dest `p` / managed `xctx->p`) **[#277](https://github.com/afw-org/afw/issues/277) closed** (PR **#278**) — pad [`experiment-brainstorm.md`](experiment-brainstorm.md). `issue-2-managed-p` is gone.
 
