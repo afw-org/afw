@@ -2,4 +2,6 @@
 import {DataTypeDropdown, Providers} from "@afw/test/build/esm/coreTests";
 import componentRegistry from "../..";
 
-describe("Core Layout Tests for [DataTypeDropdown]", () => DataTypeDropdown(Providers(componentRegistry)));
+describe("Core Layout Tests for [DataTypeDropdown]", () => {
+    DataTypeDropdown(Providers(componentRegistry));
+});

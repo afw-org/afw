@@ -2,4 +2,6 @@
 import {ObjectEditor, Providers} from "@afw/test/build/esm/coreTests";
 import componentRegistry from "../..";
 
-describe("Core Layout Tests for [ObjectEditor]", () => ObjectEditor(Providers(componentRegistry)));
+describe("Core Layout Tests for [ObjectEditor]", () => {
+    ObjectEditor(Providers(componentRegistry));
+});
