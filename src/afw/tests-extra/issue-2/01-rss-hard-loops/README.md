@@ -18,12 +18,13 @@ Do not mix these:
    in the current block first, so `for (let x of []) let x` still
    clashes). Temps die with that frame. **Flat** (was ~80–131 MiB/s
    after #306).
-4. **`function_return`** (`i = f()` **inside** `{ }`) is **under the bar**
-   (~0.5 MiB/s). FRV leftover sits in the body tracker and dies with it.
-   Unbraced `while (true) i = f();` is wrapped the same way now.
-5. **`array_push_pop`** is **flat** on this branch: managed `pop`/`shift`
-   register the transferred extra-hold on the current scope (temp).
-   `function_return` stays under the bar. See the table.
+4. **`function_return`** (`i = f()` inside `{ }`) still **grows**, about
+   **1.5 MiB/s** (2026-09-15). That is **under the fail line** (8 MiB/s
+   RSS, 2 MiB/s in_use). There is **no** leftover function-return wrapper
+   type ([PR #326](https://github.com/afw-org/afw/pull/326)). Do not add
+   one back. Unbraced `while (true) i = f();` is wrapped the same way.
+5. **`array_push_pop`** is **flat**: `pop`/`shift` extra-hold is a temp
+   on the current scope.
 
 `empty_stmt` / `*_no_brace` still split surface syntax. Unbraced loop
 bodies are `{ }` at compile. The Python judge uses
@@ -79,35 +80,55 @@ python3 src/afw/tests-extra/issue-2/01-rss-hard-loops/_rss.py integer_assign --d
 Underscore dir on purpose: `afwdev test` must not evaluate these as tests
 (they do not return).
 
-Measured **2026-09-10** on `feature/loop-save-last-at-top` after isolate-at-clone
-and wrap-unbraced-body (8 s soaks, 2 s warmup). Previous column is the same
-day on `develop` after [PR #306](https://github.com/afw-org/afw/pull/306).
-`in_use` is `env->pool_bytes_in_use` (AFW malloc not given back). Valgrind
-on `afwdev test -j` does **not** catch these — request-end bulk-free hides them.
+Measured **2026-09-15** on `develop` `63831efa` after pin-on-caller
+([PR #326](https://github.com/afw-org/afw/pull/326)) and APR-out
+([PR #327](https://github.com/afw-org/afw/pull/327)). Same 8 s soaks,
+2 s warmup as the previous column (**2026-09-10**, after
+[PR #307](https://github.com/afw-org/afw/pull/307)). `in_use` is
+`env->pool_bytes_in_use` (AFW malloc not given back). Valgrind on
+`afwdev test -j` does **not** catch these — request-end bulk-free hides
+them. gdb `in_use` can occasionally return garbage; if RSS is flat and
+`in_use` is huge or ~0, rerun that one workload.
 
-| name | what | RSS / in_use (now) | was (#306) |
-|------|------|--------------------|------------|
-| `empty_stmt` | `while (true);` | RSS flat (passed) | RSS flat; `in_use` sampler garbage |
-| `empty_loop` | `while (true) {}` | **flat / flat** | flat / flat |
-| `integer_assign_no_brace` | unbraced `i = i + 1` | **flat / flat** | **~131 MiB/s both** |
-| `integer_assign` | braced `i = i + 1` | **flat / flat** | ~1.6 MiB/s (under bar) |
-| `object_prop_assign_no_brace` | unbraced `o.x = i` | **flat / flat** | **~82 MiB/s both** |
-| `object_prop_assign` | braced `o.x = i` | under bar | under bar |
-| `array_index_assign_no_brace` | unbraced `a[0] = i` | **flat / flat** | **~80 MiB/s both** |
-| `array_index_assign` | braced `a[0] = i` | under bar | under bar |
-| `object_rebind` | `o = { n: i }` | **flat / flat** | **~51 MiB/s RSS** |
-| `array_rebind` | `a = [i]` | under bar | under bar |
-| `string_same_size` | `"x"` / `"y"` overwrite | under bar | under bar |
-| `function_return` | `i = f()` inside `{ }` | **~0.5 MiB/s both** (under bar) | ~0.5 MiB/s (under bar) |
-| `try_catch` | throw/catch each iter | under bar | under bar |
-| `closure_rebind` | rebind capturing function | **flat / flat** | **~77 MiB/s both** |
-| `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** | **~82 MiB/s both** |
-| `array_push_pop` | push then pop | **flat / ~0** (temp on scope) | **~42 MiB/s both** (#308) |
-| `array_append` | unbounded `push` | **must grow** (harness) | must grow |
+Fail line: RSS **8 MiB/s**, in_use **2 MiB/s**. `array_append` must grow.
 
-`function_return`: unique FRV consume still leaves the wrapper in `self->p`.
-The soak body is a `{ }` frame, so that pool dies each trip. Unbraced
-`i = f()` is wrapped the same way now.
+| name | what | RSS / in_use (2026-09-15) | was (2026-09-10) |
+|------|------|---------------------------|------------------|
+| `empty_stmt` | `while (true);` | **flat / flat** | RSS flat |
+| `empty_loop` | `while (true) {}` | **flat / flat** | **flat / flat** |
+| `integer_assign_no_brace` | unbraced `i = i + 1` | **flat / flat** | **flat / flat** |
+| `integer_assign` | braced `i = i + 1` | **flat / flat** | **flat / flat** |
+| `object_prop_assign_no_brace` | unbraced `o.x = i` | **flat / flat** | **flat / flat** |
+| `object_prop_assign` | braced `o.x = i` | **flat / flat** | under bar |
+| `array_index_assign_no_brace` | unbraced `a[0] = i` | **flat / flat** | **flat / flat** |
+| `array_index_assign` | braced `a[0] = i` | **flat / flat** | under bar |
+| `object_rebind` | `o = { n: i }` | **flat / flat** | **flat / flat** |
+| `array_rebind` | `a = [i]` | **flat / flat** | under bar |
+| `string_same_size` | `"x"` / `"y"` overwrite | **flat / flat** | under bar |
+| `function_return` | `i = f()` inside `{ }` | **~1.5 MiB/s both** (under bar) | **~0.5 MiB/s both** (under bar) |
+| `try_catch` | throw/catch each iter | RSS flat-or-down / ~0.3 MiB/s in_use | under bar |
+| `closure_rebind` | rebind capturing function | **flat / flat** | **flat / flat** |
+| `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** | **flat / flat** |
+| `array_push_pop` | push then pop | **flat / flat** | **flat / ~0** |
+| `array_append` | unbounded `push` | **must grow** (~2.8 MiB/s both) | must grow |
+
+`function_return`: still grows (~1.6 MiB/s RSS, ~1.5 MiB/s in_use on two
+runs). Under the fail line. No `function_return_value` wrapper. Pin is
+on the caller. Do not reopen leftover wrapping to “fix” this slope.
+
+## Server soaks (same day)
+
+These are `afwfcgi` firehose leaves, not the hard-loop table. They **pass**
+if requests succeed. They do **not** record `process::poolBytesInUse`.
+Process size sampled from `/proc` on the `afwfcgi` pid while the leaf ran:
+
+| leaf | what | result (2026-09-15) |
+|------|------|---------------------|
+| `issue-2/02-pool-eval-soak` | 20 s object / nested-eval / function-return-object | **PASS**. `afwfcgi` RSS **flat** 25344 kB |
+| `07-firehose-blast-style` | 30 s mixed cheap scripts | **PASS**. `afwfcgi` RSS ~39–41 MB (~0.09 MiB/s wander) |
+| `07b-firehose-catalog-pool` | 40 requests (hits `maxRequests` in ~0.3 s) | **PASS**. Too short for a slope |
+
+`07b` is not a long-running leak lab as written.
 
 `array_push_pop`: `push` `slot_store`s; `pop`/`shift` transfer then
 `afw_pool_release_value_at_cleanup` on the current scope (see
@@ -146,18 +167,17 @@ src/afw/tests-extra/issue-2/01-rss-hard-loops/_tools/gdb-attach.sh
 Useful hunts after Ctrl-C (**no debug flags** on a soak):
 
 1. `afw-bt` — braced empty `{ }` should sit in while / boolean, not
-   tracker create. Remaining climbs: `function_return` sits in FRV
-   create / `get_assignable_value`; `array_push_pop` sits in managed
-   setter push / pop.
+   tracker create. Remaining climb: `function_return` (`i = f()`).
+   `array_push_pop` is flat.
 2. `afw-heap` / `afw-rss` — three numbers: VmRSS,
    `xctx->p` `bytes_allocated` / `chunk_bytes`, `env->pool_bytes_in_use`.
    Two interrupts 5s apart:
-   - RSS up, in_use flat → APR (tracker headers, pages not returned).
-     `try_catch` is this shape, under the fail bar.
-   - RSS and in_use up together → AFW malloc not given back (`xctx->p`
-     or leftovers on a tracker that never last-releases). That is
-     `function_return` and `array_push_pop`.
-   - heap `bytes_allocated` up with in_use → eval-heap malloc not
+   - RSS up, in_use flat → pages not returned to the OS (not AFW
+     asked-for). `try_catch` can look like this; still under the fail
+     line.
+   - RSS and in_use up together → AFW malloc not given back. That is
+     `function_return` today. `array_push_pop` is flat.
+   - heap `bytes_allocated` up with in_use → xctx heap malloc not
      given back.
 3. Do **not** `call afw_os_get_rss()` from gdb after SIGSTOP.
    `>debug pool` tags: `in_use` (this pool), `total` (env), `rss`
@@ -201,10 +221,10 @@ If a symbol is missing (`nm` on this `libafw` may not export
 
 ## What “fixed” looks like
 
-Assign / overlay / rebind / empty `{ }` / `array_push_pop` are at
-allocator noise on this branch. Remaining red: `function_return` (FRV
-wrapper leftover, under the bar). `array_append` should still grow.
-`try_catch` may show a small RSS-only APR climb; that is not `in_use`.
+Assign / overlay / rebind / empty `{ }` / `array_push_pop` stay at
+allocator noise. Remaining growth in this lab: `function_return`
+(~1.5 MiB/s, under the fail line). `array_append` should still grow.
+`try_catch` may show a small in_use climb; still under the bar.
 
 Do not put these loops in the default gate. Correctness of assign/faces
 already lives under `src/afw/tests/language/script/`.

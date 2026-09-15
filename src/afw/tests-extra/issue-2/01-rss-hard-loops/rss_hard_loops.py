@@ -3,9 +3,8 @@
 """Opt-in RSS / in_use soaks for issue #2 hard-loop Adaptive Scripts.
 
 Not in default `afwdev test -j`. Assign / overlay / rebind / unbraced
-loop body soaks are flat after isolate-at-clone and wrap-unbraced-body.
-Remaining climb: array_push_pop (managed entry in `xctx->p` + pop
-transfer). function_return is under the 2 MiB/s bar. Live table:
+loop body / array_push_pop soaks are flat. function_return still
+climbs (~1.5 MiB/s, under the 2 MiB/s in_use bar). Live table:
 README.md. Measure-only: AFW_ISSUE2_RSS_ASSERT=0.
 
     afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-loops --show-all
@@ -27,8 +26,8 @@ from _rss import format_report, sample_afw_script, workload_path  # noqa: E402
 
 # After warmup, RSS above this rate is "still leaking".
 STABLE_MAX_KIB_S = 8 * 1024  # 8 MiB/s
-# in_use bytes/s. empty `{ }` / assign ~0; remaining climb is
-# array_push_pop (~50 MiB/s).
+# in_use bytes/s. empty `{ }` / assign / array_push_pop ~0;
+# remaining climb is function_return (~1.5 MiB/s).
 STABLE_MAX_IN_USE_B_S = 2 * 1024 * 1024  # 2 MiB/s
 
 GROWTH_MIN_KIB_S = 256  # harness RSS
@@ -104,7 +103,7 @@ WORKLOADS = [
     },
     {
         "name": "function_return",
-        "description": "i = f() (FRV wrapper left in caller p — still climbs)",
+        "description": "i = f() (still climbs ~1.5 MiB/s, under bar; no leftover wrapper)",
         "expect_rss_growth": False,
         "expect_in_use_growth": False,
     },
@@ -128,7 +127,7 @@ WORKLOADS = [
     },
     {
         "name": "array_push_pop",
-        "description": "push then pop (managed entry in xctx->p — still climbs)",
+        "description": "push then pop (temp on current scope)",
         "expect_rss_growth": False,
         "expect_in_use_growth": False,
     },
