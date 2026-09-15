@@ -6,11 +6,9 @@
  *
  */
 
-import {
-    TimePicker, 
-    Typography,
-    useOperational,
-} from "@afw/react";
+import {TimePicker} from "../../../components/TimePicker/TimePicker";
+import {Typography} from "../../../components/Typography/Typography";
+import {useOperational} from "../../../hooks";
 
 export const Time = (props) => {
     

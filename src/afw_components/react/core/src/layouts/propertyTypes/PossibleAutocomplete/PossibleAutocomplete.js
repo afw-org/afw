@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {Autocomplete} from "@afw/react";
+import {Autocomplete} from "../../../components/Autocomplete/Autocomplete";
 
 export const PossibleAutocomplete = (props) => {
     const {property} = props;

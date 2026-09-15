@@ -1,8 +1,10 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {memo, useMemo} from "react";
 
-import {Table, Typography, TextField} from "@afw/react";
-import {useAdaptiveLayout, useOperational, useForceUpdate} from "@afw/react";
+import {Table} from "../../../components/Table/Table";
+import {Typography} from "../../../components/Typography/Typography";
+import {TextField} from "../../../components/TextField/TextField";
+import {useAdaptiveLayout, useOperational, useForceUpdate} from "../../../hooks";
 
 
 const flatten = (flattened, property, indent, index) => {

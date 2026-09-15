@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./EditableCallout.propTypes";
 import {IEditableCalloutProps} from "./EditableCallout.types";
 import fallback from "./EditableCallout.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

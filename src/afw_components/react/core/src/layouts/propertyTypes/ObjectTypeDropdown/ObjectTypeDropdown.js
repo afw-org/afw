@@ -2,9 +2,9 @@
 import {useState, useCallback, useEffect} from "react";
 import PropTypes from "prop-types";
 
-import {Autocomplete} from "@afw/react";
+import {Autocomplete} from "../../../components/Autocomplete/Autocomplete";
 
-import {useRetrieveObjects} from "@afw/react";
+import {useRetrieveObjects} from "../../../hooks";
 
 const objectTypeId = "_AdaptiveObjectType_";
 const objectOptions = {

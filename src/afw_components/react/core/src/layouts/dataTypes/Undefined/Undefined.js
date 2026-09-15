@@ -8,13 +8,10 @@
 
 import {useState} from "react";
 
-import {
-    Typography, 
-    DataTypeDropdown, 
-    ObjectTypeDropdown,
-    useOperational,
-    useAfwProperty,
-} from "@afw/react";
+import {Typography} from "../../../components/Typography/Typography";
+import {DataTypeDropdown} from "../../propertyTypes/DataTypeDropdown/DataTypeDropdown";
+import {ObjectTypeDropdown} from "../../propertyTypes/ObjectTypeDropdown/ObjectTypeDropdown";
+import {useOperational, useAfwProperty} from "../../../hooks";
 
 /**
  * Handles unknown dataTypes.

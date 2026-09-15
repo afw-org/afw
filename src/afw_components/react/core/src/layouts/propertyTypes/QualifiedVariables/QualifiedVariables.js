@@ -1,10 +1,8 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {   
-    Typography, 
-    Table
-} from "@afw/react";
+import {Typography} from "../../../components/Typography/Typography";
+import {Table} from "../../../components/Table/Table";
 
-import {useOperational} from "@afw/react";
+import {useOperational} from "../../../hooks";
 
 const ReadonlyQualifiedVariables = (props) => {
     const {property} = props;

@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./Picker.propTypes";
 import {IPickerProps} from "./Picker.types";
 import fallback from "./Picker.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

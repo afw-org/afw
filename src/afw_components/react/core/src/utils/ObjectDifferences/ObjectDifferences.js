@@ -1,18 +1,16 @@
 // See the 'COPYING' file in the project root for licensing information.
 import PropTypes from "prop-types";
 
-import {
-    Icon,
-    Responsive,
-    DiffEditor,
-    Tabs,
-    Tooltip,
-    Typography,
-    useTheme,
-} from "@afw/react";
+import {Icon} from "../../components/Icon/Icon";
+import {Responsive} from "../../components/Responsive/Responsive";
+import {DiffEditor} from "../../components/DiffEditor/DiffEditor";
+import {Tabs} from "../../components/Tabs/Tabs";
+import {Tooltip} from "../../components/Tooltip/Tooltip";
+import {Typography} from "../../components/Typography/Typography";
+import {useTheme} from "../../hooks";
 
 import {AfwObject} from "@afw/client";
-import {stable_stringify, isObject, isArray} from "@afw/react";
+import {stable_stringify, isObject, isArray} from "../utils";
 
 /* The property name that is being added/removed/modified */
 const ObjectDifferencesPropertyName = (props) => {

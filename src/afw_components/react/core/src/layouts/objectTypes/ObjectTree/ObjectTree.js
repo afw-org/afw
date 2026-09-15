@@ -2,16 +2,14 @@
 import {useState, useMemo} from "react";
 import PropTypes from "prop-types";
 
-import {
-    Button,
-    Divider,
-    Tree
-} from "@afw/react";
+import {Button} from "../../../components/Button/Button";
+import {Divider} from "../../../components/Divider/Divider";
+import {Tree} from "../../../components/Tree/Tree";
 
 import {PropertyResponsive} from "../ObjectResponsive";
 
 //import {useOperational} from "@afw/react";
-import {useAdaptiveLayout, useTheme} from "@afw/react";
+import {useAdaptiveLayout, useTheme} from "../../../hooks";
 import {AfwObject} from "@afw/client";
 
 

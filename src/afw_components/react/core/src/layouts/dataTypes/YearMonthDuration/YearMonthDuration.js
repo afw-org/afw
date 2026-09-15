@@ -6,11 +6,9 @@
  *
  */
 
-import {
-    Typography, 
-    TextField,
-    useOperational,
-} from "@afw/react";
+import {Typography} from "../../../components/Typography/Typography";
+import {TextField} from "../../../components/TextField/TextField";
+import {useOperational} from "../../../hooks";
 
 /**
  * Handles dataType=yearMonthDuration

@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./Breadcrumb.propTypes";
 import {IBreadcrumbProps} from "./Breadcrumb.types";
 import fallback from "./Breadcrumb.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

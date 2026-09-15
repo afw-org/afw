@@ -7,7 +7,7 @@ import {
 
 import {AdaptiveLayoutRegistry} from "./layouts";
 import {ModelProvider} from "./ModelProvider";
-import {isArray} from "@afw/react";
+import {isArray} from "./utils/utils";
 
 
 /**

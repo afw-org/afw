@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./Toggle.propTypes";
 import {IToggleProps} from "./Toggle.types";
 import fallback from "./Toggle.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

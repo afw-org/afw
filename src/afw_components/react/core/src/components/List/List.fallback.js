@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {AdaptiveComponent} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
 
 export const List = ({ contains }) => {
     return (

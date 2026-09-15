@@ -5,12 +5,10 @@ import PropTypes from "prop-types";
 import PropertyResponsive from "./PropertyResponsive";
 import {DataTypeDropdown, ObjectTypeDropdown} from "../../propertyTypes";
 
-import {
-    Button,
-    Dialog,
-    TextField,
-    useTheme,
-} from "@afw/react";
+import {Button} from "../../../components/Button/Button";
+import {Dialog} from "../../../components/Dialog/Dialog";
+import {TextField} from "../../../components/TextField/TextField";
+import {useTheme} from "../../../hooks";
 
 import {AfwProperty} from "@afw/client";
 

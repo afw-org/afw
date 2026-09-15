@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./TimezonePicker.propTypes";
 import {ITimezonePickerProps} from "./TimezonePicker.types";
 import fallback from "./TimezonePicker.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

@@ -8,13 +8,11 @@
 
 import {useState} from "react";
 
-import {
-    Button,
-    CodeEditor,
-    TextField, 
-    Typography,
-    useOperational
-} from "@afw/react";
+import {Button} from "../../../components/Button/Button";
+import {CodeEditor} from "../../../components/CodeEditor/CodeEditor";
+import {TextField} from "../../../components/TextField/TextField";
+import {Typography} from "../../../components/Typography/Typography";
+import {useOperational} from "../../../hooks";
 
 import {ExpandableComponent} from "../../../utils";
 import propTypes from "../dataTypes.propTypes";

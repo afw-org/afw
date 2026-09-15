@@ -10,8 +10,8 @@ import {memo} from "react";
 import {propTypes, defaultProps} from "./Spinner.propTypes";
 import fallback from "./Spinner.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

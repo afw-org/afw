@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./EditableLabel.propTypes";
 import {IEditableLabelProps} from "./EditableLabel.types";
 import fallback from "./EditableLabel.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

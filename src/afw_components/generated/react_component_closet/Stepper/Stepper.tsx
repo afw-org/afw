@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./Stepper.propTypes";
 import {IStepperProps} from "./Stepper.types";
 import fallback from "./Stepper.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

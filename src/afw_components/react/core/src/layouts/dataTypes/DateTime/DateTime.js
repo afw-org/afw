@@ -6,11 +6,9 @@
  *
  */
 
-import {
-    Typography, 
-    DateTimePicker,
-    useOperational,
-} from "@afw/react";
+import {Typography} from "../../../components/Typography/Typography";
+import {DateTimePicker} from "../../../components/DateTimePicker/DateTimePicker";
+import {useOperational} from "../../../hooks";
 
 /**
  * Handles dataType=dateTime

@@ -1,10 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useCallback, useState, useMemo} from "react";
 
-import {
-    useOperational, 
-    useAfwValue,
-} from "@afw/react";
+import {useOperational, useAfwValue} from "../../hooks";
 
 import {AfwValue} from "@afw/client";
 import {layoutByDataType} from "../registry";

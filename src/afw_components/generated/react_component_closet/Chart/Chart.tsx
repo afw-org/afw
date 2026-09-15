@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./Chart.propTypes";
 import {IChartProps} from "./Chart.types";
 import fallback from "./Chart.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

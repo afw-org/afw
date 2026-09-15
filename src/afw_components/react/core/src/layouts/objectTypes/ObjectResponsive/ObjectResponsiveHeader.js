@@ -3,19 +3,13 @@ import {useState} from "react";
 
 import {propTypes, defaultProps} from "./ObjectResponsive.propTypes";
 
-import {
-    Button,
-    Dialog,
-    TextField,
-    Tooltip,
-    Typography
-} from "@afw/react";
+import {Button} from "../../../components/Button/Button";
+import {Dialog} from "../../../components/Dialog/Dialog";
+import {TextField} from "../../../components/TextField/TextField";
+import {Tooltip} from "../../../components/Tooltip/Tooltip";
+import {Typography} from "../../../components/Typography/Typography";
 
-import {
-    useOperational, 
-    useAdaptiveLayout,
-    useTheme,
-} from "@afw/react";
+import {useOperational, useAdaptiveLayout, useTheme} from "../../../hooks";
 
 import {ObjectResponsiveToolbar} from "./ObjectResponsiveToolbar";
 

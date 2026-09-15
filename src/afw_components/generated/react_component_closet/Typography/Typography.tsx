@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./Typography.propTypes";
 import {ITypographyProps} from "./Typography.types";
 import fallback from "./Typography.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

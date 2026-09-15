@@ -6,13 +6,10 @@
  *
  */
 
-import {
-    CodeEditor,
-    TextField,
-    Typography,
-    useOperational,
-    useTheme,
-} from "@afw/react";
+import {CodeEditor} from "../../../components/CodeEditor/CodeEditor";
+import {TextField} from "../../../components/TextField/TextField";
+import {Typography} from "../../../components/Typography/Typography";
+import {useOperational, useTheme} from "../../../hooks";
 
 import {ExpandableComponent} from "../../../utils";
 

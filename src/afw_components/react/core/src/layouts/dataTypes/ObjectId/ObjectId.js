@@ -6,14 +6,10 @@
  *
  */
 
-import {
-    TextField, 
-    Typography, 
-    Link,
-    useOperational,
-    useRouteBasePath,
-    useAfwProperty,
-} from "@afw/react";
+import {TextField} from "../../../components/TextField/TextField";
+import {Typography} from "../../../components/Typography/Typography";
+import {Link} from "../../../components/Link/Link";
+import {useOperational, useRouteBasePath, useAfwProperty} from "../../../hooks";
 
 /**
  * Handles dataType=objectId
