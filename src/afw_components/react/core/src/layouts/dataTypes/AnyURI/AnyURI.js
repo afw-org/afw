@@ -9,8 +9,9 @@
 import {memo} from "react";
 import propTypes from "../dataTypes.propTypes";
 
-import {TextField, Link} from "@afw/react";
-import {useOperational, useRouteBasePath} from "@afw/react";
+import {TextField} from "../../../components/TextField/TextField";
+import {Link} from "../../../components/Link/Link";
+import {useOperational, useRouteBasePath} from "../../../hooks";
 
 /**
  * dataType:  AnyURI

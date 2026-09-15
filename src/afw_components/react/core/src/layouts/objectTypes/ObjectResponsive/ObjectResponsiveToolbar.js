@@ -1,12 +1,10 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useMemo} from "react";
 
-import {
-    Button,
-    Menu
-} from "@afw/react";
+import {Button} from "../../../components/Button/Button";
+import {Menu} from "../../../components/Menu/Menu";
 
-import {useOperational, useAdaptiveLayout} from "@afw/react";
+import {useOperational, useAdaptiveLayout} from "../../../hooks";
 import {ObjectResponsiveProperty, ObjectResponsivePropertyOther} from "./ObjectResponsiveProperty";
 
 

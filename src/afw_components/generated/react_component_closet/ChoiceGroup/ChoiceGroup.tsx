@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./ChoiceGroup.propTypes";
 import {IChoiceGroupProps} from "./ChoiceGroup.types";
 import fallback from "./ChoiceGroup.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

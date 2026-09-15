@@ -1,8 +1,8 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useMemo} from "react";
 
-import {useContextTypes} from "@afw/react";
-import {QualifiersContext} from "@afw/react";
+import {useContextTypes} from "./hooks";
+import {QualifiersContext} from "./context";
 
 
 /**

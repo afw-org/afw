@@ -10,8 +10,8 @@ import {memo} from "react";
 import {propTypes, defaultProps} from "./DatePicker.propTypes";
 import fallback from "./DatePicker.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

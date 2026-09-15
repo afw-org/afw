@@ -9,19 +9,13 @@
 import {useState, useEffect} from "react";
 import PropTypes from "prop-types";
 
-import {
-    Button,
-    Dialog,
-    Link,
-    List,
-    ListEditor,
-    Typography,
-    useRouteBasePath, 
-    useOperational, 
-    useAfwProperty, 
-    useEventId,
-    useTheme,
-} from "@afw/react";
+import {Button} from "../../../components/Button/Button";
+import {Dialog} from "../../../components/Dialog/Dialog";
+import {Link} from "../../../components/Link/Link";
+import {List} from "../../../components/List/List";
+import {ListEditor} from "../../../components/ListEditor/ListEditor";
+import {Typography} from "../../../components/Typography/Typography";
+import {useRouteBasePath, useOperational, useAfwProperty, useEventId, useTheme} from "../../../hooks";
 
 import ValueLayout from "../../ValueLayout";
 import {AdaptiveLayoutMergeProviders} from "../../AdaptiveLayout";

@@ -1,12 +1,10 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useRef} from "react";
 
-import {ctx} from "@afw/react";
-import {    
-    useOperational,
-    TextField,
-    Typography
-} from "@afw/react";
+import {ctx} from "../../utils/utils";
+import {useOperational} from "../../hooks";
+import {TextField} from "../TextField/TextField";
+import {Typography} from "../Typography/Typography";
 
 export const EditableLabel = (props) => {
 

@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./TimeDuration.propTypes";
 import {ITimeDurationProps} from "./TimeDuration.types";
 import fallback from "./TimeDuration.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

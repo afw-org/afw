@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./Slider.propTypes";
 import {ISliderProps} from "./Slider.types";
 import fallback from "./Slider.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

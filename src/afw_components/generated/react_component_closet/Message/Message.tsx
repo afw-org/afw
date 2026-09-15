@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./Message.propTypes";
 import {IMessageProps} from "./Message.types";
 import fallback from "./Message.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

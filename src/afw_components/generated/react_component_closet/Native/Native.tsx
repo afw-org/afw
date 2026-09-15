@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./Native.propTypes";
 import {INativeProps} from "./Native.types";
 import fallback from "./Native.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

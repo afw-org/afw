@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./Tooltip.propTypes";
 import {ITooltipProps} from "./Tooltip.types";
 import fallback from "./Tooltip.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

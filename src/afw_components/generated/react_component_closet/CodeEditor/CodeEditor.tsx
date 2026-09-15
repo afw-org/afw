@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./CodeEditor.propTypes";
 import {ICodeEditorProps} from "./CodeEditor.types";
 import fallback from "./CodeEditor.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

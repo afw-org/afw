@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {AdaptiveLayoutContext} from "@afw/react";
-import {useAdaptiveLayout} from "@afw/react";
+import {AdaptiveLayoutContext} from "../../context";
+import {useAdaptiveLayout} from "../../hooks";
 
 
 /**

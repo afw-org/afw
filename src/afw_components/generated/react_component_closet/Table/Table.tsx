@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./Table.propTypes";
 import {ITableProps} from "./Table.types";
 import fallback from "./Table.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

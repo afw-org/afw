@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./Icon.propTypes";
 import {IIconProps} from "./Icon.types";
 import fallback from "./Icon.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

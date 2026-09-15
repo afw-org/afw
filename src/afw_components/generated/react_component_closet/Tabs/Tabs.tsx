@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./Tabs.propTypes";
 import {ITabsProps} from "./Tabs.types";
 import fallback from "./Tabs.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

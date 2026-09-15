@@ -2,8 +2,8 @@
 import {useMemo, useCallback} from "react";
 import PropTypes from "prop-types";
 
-import {Dropdown} from "@afw/react";
-import {useAdapters} from "@afw/react";
+import {Dropdown} from "../../../components/Dropdown/Dropdown";
+import {useAdapters} from "../../../hooks";
 
 /* \fixme find an appropriate home for these */    
 const AdapterIcons = {

@@ -832,8 +832,11 @@ def generate_typescript(fd, objectTypes, objectType, componentType, implementati
     fd.write('import {' + propsInterface + '} from "./' + implementationId + '.types";\n')
     fd.write('import fallback from "./' + implementationId + '.fallback";\n')
     fd.write('\n')
-    fd.write('import {AdaptiveComponent} from "@afw/react";\n')
-    fd.write('import {ctx} from "@afw/react";\n')
+    # Relative, not "@afw/react" - self-importing the package's own public
+    # name creates a Rollup circular-chunk dependency (the component is
+    # itself re-exported through that same barrel).
+    fd.write('import {AdaptiveComponent} from "../AdaptiveComponent";\n')
+    fd.write('import {ctx} from "../../utils/utils";\n')
     fd.write('\n')
 
     #generate_typescript_types(fd, objectTypes, objectType, componentType, implementationId, layoutComponentType)
@@ -894,8 +897,11 @@ def generate_javascript(fd, objectTypes, objectType, componentType, implementati
     fd.write('import {propTypes, defaultProps} from "./' + implementationId + '.propTypes";\n')
     fd.write('import fallback from "./' + implementationId + '.fallback";\n')
     fd.write('\n')
-    fd.write('import {AdaptiveComponent} from "@afw/react";\n')
-    fd.write('import {ctx} from "@afw/react";\n')
+    # Relative, not "@afw/react" - self-importing the package's own public
+    # name creates a Rollup circular-chunk dependency (the component is
+    # itself re-exported through that same barrel).
+    fd.write('import {AdaptiveComponent} from "../AdaptiveComponent";\n')
+    fd.write('import {ctx} from "../../utils/utils";\n')
     fd.write('\n')
     fd.write('\n')
     fd.write('/**\n')

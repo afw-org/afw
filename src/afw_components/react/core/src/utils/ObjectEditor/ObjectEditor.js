@@ -14,22 +14,17 @@ import {Prompt} from "react-router-dom";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import {
-    Button,
-    Dialog,
-    Menu,
-    CodeEditor,
-    Spinner,
-    ToggleButtons,
-    Typography,
-    ObjectDifferences,
-    OperationalContext,
-    AdaptiveLayoutMergeProviders,
-    useEventId,
-    useModel,
-    useIsMounted,
-    useTheme,
-} from "@afw/react";
+import {Button} from "../../components/Button/Button";
+import {Dialog} from "../../components/Dialog/Dialog";
+import {Menu} from "../../components/Menu/Menu";
+import {CodeEditor} from "../../components/CodeEditor/CodeEditor";
+import {Spinner} from "../../components/Spinner/Spinner";
+import {ToggleButtons} from "../../components/ToggleButtons/ToggleButtons";
+import {Typography} from "../../components/Typography/Typography";
+import {ObjectDifferences} from "../ObjectDifferences/ObjectDifferences";
+import {OperationalContext} from "../../context";
+import {AdaptiveLayoutMergeProviders} from "../../layouts/AdaptiveLayout/AdaptiveLayout";
+import {useEventId, useModel, useIsMounted, useTheme} from "../../hooks";
 
 import {AfwObject, objectGet} from "@afw/client";
 

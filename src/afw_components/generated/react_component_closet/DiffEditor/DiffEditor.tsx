@@ -11,8 +11,8 @@ import {propTypes, defaultProps} from "./DiffEditor.propTypes";
 import {IDiffEditorProps} from "./DiffEditor.types";
 import fallback from "./DiffEditor.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

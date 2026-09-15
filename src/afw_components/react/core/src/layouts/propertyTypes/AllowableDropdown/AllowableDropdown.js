@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {Dropdown} from "@afw/react";
+import {Dropdown} from "../../../components/Dropdown/Dropdown";
 
 export const AllowableDropdown = (props) => {
     const {property} = props;

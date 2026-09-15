@@ -1,7 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useMemo} from "react";
 
-import {Autocomplete} from "@afw/react";
+import {Autocomplete} from "../../../components/Autocomplete/Autocomplete";
 
 export const PropertyTypeDropdown = (props) => {
 

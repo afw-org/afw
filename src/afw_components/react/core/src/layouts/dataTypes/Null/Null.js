@@ -6,11 +6,9 @@
  *
  */
 
-import {
-    TextField, 
-    Typography,
-    useOperational,
-} from "@afw/react";
+import {TextField} from "../../../components/TextField/TextField";
+import {Typography} from "../../../components/Typography/Typography";
+import {useOperational} from "../../../hooks";
 
 /**
  * Handles dataType=null

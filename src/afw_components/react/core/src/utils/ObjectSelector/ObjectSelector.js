@@ -1,7 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useClasses} from "../../hooks";
 
-import {Typography} from "@afw/react";
+import {Typography} from "../../components/Typography/Typography";
 
 const ObjectSelectorStyles = theme => ({    
     gridListTileBar: {

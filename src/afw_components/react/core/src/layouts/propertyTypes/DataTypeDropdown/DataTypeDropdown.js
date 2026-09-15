@@ -2,9 +2,9 @@
 import {useMemo, useCallback} from "react";
 import PropTypes from "prop-types";
 
-import {Dropdown} from "@afw/react";
+import {Dropdown} from "../../../components/Dropdown/Dropdown";
 
-import {useDataTypes} from "@afw/react";
+import {useDataTypes} from "../../../hooks";
 
 /**
  * 

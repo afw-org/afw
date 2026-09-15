@@ -8,12 +8,10 @@
 
 import {useState} from "react";
 
-import {
-    Button,
-    TextField,
-    Typography,
-    useOperational
-} from "@afw/react";
+import {Button} from "../../../components/Button/Button";
+import {TextField} from "../../../components/TextField/TextField";
+import {Typography} from "../../../components/Typography/Typography";
+import {useOperational} from "../../../hooks";
 
 
 /**

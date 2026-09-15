@@ -10,8 +10,8 @@ import {memo} from "react";
 import {propTypes, defaultProps} from "./Chart.propTypes";
 import fallback from "./Chart.fallback";
 
-import {AdaptiveComponent} from "@afw/react";
-import {ctx} from "@afw/react";
+import {AdaptiveComponent} from "../AdaptiveComponent";
+import {ctx} from "../../utils/utils";
 
 
 /**

@@ -1,7 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {forwardRef, isValidElement, cloneElement, createElement} from "react";
 import {useComponents} from "../hooks";
-import {cls} from "@afw/react";
+import {cls} from "../utils/utils";
 
 /**
  * This is the main entry point for rendering a React component, given basic layout 

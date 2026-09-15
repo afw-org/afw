@@ -2,20 +2,14 @@
 import {cloneElement, useState, useEffect, useCallback} from "react";
 import PropTypes from "prop-types";
 
-import {
-    Button,
-    Dialog,
-    Responsive,
-    TextField,
-    Tooltip,
-    Typography,
-    useOperational, 
-    useEventId, 
-    useAfwProperty, 
-    useLayoutParameters,  
-    useTheme,
-    PropertyLayout,
-} from "@afw/react";
+import {Button} from "../../../components/Button/Button";
+import {Dialog} from "../../../components/Dialog/Dialog";
+import {Responsive} from "../../../components/Responsive/Responsive";
+import {TextField} from "../../../components/TextField/TextField";
+import {Tooltip} from "../../../components/Tooltip/Tooltip";
+import {Typography} from "../../../components/Typography/Typography";
+import {useOperational, useEventId, useAfwProperty, useLayoutParameters, useTheme} from "../../../hooks";
+import {PropertyLayout} from "../../PropertyLayout/PropertyLayout";
 
 const Breakpoints = {
     small:                  PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),

@@ -1,17 +1,15 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useEffect} from "react";
 
-import {
-    Button,
-    Dialog,
-    Message,
-    Table,
-    TextField,
-    Typography,
-} from "@afw/react";
+import {Button} from "../../../components/Button/Button";
+import {Dialog} from "../../../components/Dialog/Dialog";
+import {Message} from "../../../components/Message/Message";
+import {Table} from "../../../components/Table/Table";
+import {TextField} from "../../../components/TextField/TextField";
+import {Typography} from "../../../components/Typography/Typography";
 
 import {Template} from "../../dataTypes/Template";
-import {useOperational, useEventId} from "@afw/react";
+import {useOperational, useEventId} from "../../../hooks";
 
 
 /**

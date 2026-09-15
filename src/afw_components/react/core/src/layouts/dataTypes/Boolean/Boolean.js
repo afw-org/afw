@@ -6,11 +6,9 @@
  *
  */
 
-import {
-    Checkbox, 
-    Typography, 
-    useOperational
-} from "@afw/react";
+import {Checkbox} from "../../../components/Checkbox/Checkbox";
+import {Typography} from "../../../components/Typography/Typography";
+import {useOperational} from "../../../hooks";
 
 /**
  * Handles dataType=boolean

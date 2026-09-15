@@ -1,8 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {
-    Autocomplete,
-    TextField, 
-} from "@afw/react";
+import {Autocomplete} from "../../../components/Autocomplete/Autocomplete";
+import {TextField} from "../../../components/TextField/TextField";
 import { useEventId } from "../../../hooks";
 
 const stringOptions = [

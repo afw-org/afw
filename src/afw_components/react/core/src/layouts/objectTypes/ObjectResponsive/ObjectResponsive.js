@@ -15,26 +15,17 @@ import {ObjectResponsiveHeader} from "./ObjectResponsiveHeader";
 import {AfwObject} from "@afw/client";
 
 /* common components in react-core */
-import {    
-    Checkbox,
-    Collapsible,
-    Divider,
-    Link,
-    Paper,
-    Responsive,
-    Typography
-} from "@afw/react";
+import {Checkbox} from "../../../components/Checkbox/Checkbox";
+import {Collapsible} from "../../../components/Collapsible/Collapsible";
+import {Divider} from "../../../components/Divider/Divider";
+import {Link} from "../../../components/Link/Link";
+import {Paper} from "../../../components/Paper/Paper";
+import {Responsive} from "../../../components/Responsive/Responsive";
+import {Typography} from "../../../components/Typography/Typography";
 
 /* hooks from react-core */
-import {
-    useEventId,
-    useModel,
-    useOperational,
-    useAdaptiveLayout,    
-    useRouteBasePath,
-    useObjectEditor,
-    AdaptiveLayoutContext,    
-} from "@afw/react";
+import {useEventId, useModel, useOperational, useAdaptiveLayout, useRouteBasePath, useObjectEditor} from "../../../hooks";
+import {AdaptiveLayoutContext} from "../../../context";
 
 import {OperationalContext, OperationalMode} from "../../../context";
 import {useTheme, useClasses} from "../../../hooks";
