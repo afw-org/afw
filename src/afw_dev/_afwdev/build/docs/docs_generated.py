@@ -180,6 +180,54 @@ def generate_data_types(options, docsHtml, generate_sidenav):
         fp.write(docsHtml.page(doc_root, "Data Types", breadcrumbs, nav_items, content))
 
 ##
+# @brief Formats a parameter's/return's dataType (and dataTypeParameter, if
+#        any) into a short human-readable type spelling for the reference docs.
+# @param docsHtml The DocsHtml object
+# @param p The parameter or returns object
+#
+def _format_function_type(docsHtml, p):
+
+    dataType = p.get('dataType')
+    dataTypeParameter = p.get('dataTypeParameter')
+
+    if dataType == 'array' and dataTypeParameter:
+        type_str = 'array of ' + dataTypeParameter
+    elif dataType == 'function' and dataTypeParameter:
+        type_str = dataTypeParameter
+    elif dataTypeParameter:
+        type_str = '{} ({})'.format(dataType or 'any', dataTypeParameter)
+    else:
+        type_str = dataType or 'any'
+
+    return docsHtml.literal(docsHtml.escape(type_str))
+
+##
+# @brief Builds the comma-separated "Notes" cell (optional, can be undefined,
+#        minArgs, polymorphic, ...) for a parameter or returns object.
+# @param docsHtml The DocsHtml object
+# @param p The parameter or returns object
+#
+def _format_function_notes(docsHtml, p):
+
+    notes = []
+
+    if p.get('optional'):
+        notes.append('optional')
+    if p.get('canBeUndefined'):
+        notes.append('can be undefined')
+
+    minArgs = p.get('minArgs')
+    if minArgs is not None and minArgs != -1:
+        notes.append('{} or more values'.format(minArgs))
+
+    if p.get('polymorphicDataType'):
+        notes.append('polymorphic data type')
+    if p.get('polymorphicDataTypeParameter'):
+        notes.append('polymorphic data type parameter')
+
+    return docsHtml.escape(', '.join(notes))
+
+##
 # @brief This function generates an individual function
 # @param fp The file pointer to write the page to
 # @param src The source data for the function
@@ -190,31 +238,69 @@ def generate_data_types(options, docsHtml, generate_sidenav):
 #
 def generate_function(fp, src, breadcrumbs, nav_items, docsHtml, doc_root):
 
-    functionId = src["functionId"]    
+    functionId = src["functionId"]
 
-    msg.info("        Building Reference for Function: " + functionId)    
+    msg.info("        Building Reference for Function: " + functionId)
 
     intro_para = docsHtml.paragraph(
-        "The following is a list of properties for the function <code>{}</code>:".format(functionId)        
-    )    
+        "The following is a list of properties for the function <code>{}</code>:".format(functionId)
+    )
 
     def map_function_field(f):
-        val = f[1]           
-        if type(val) is dict or type(val) is list:       
+        val = f[1]
+        if type(val) is dict or type(val) is list:
             val = nfc.json_dumps(val, indent=4)
         elif type(val) is bool:
             val = str(val).lower()
-        
+
         return [docsHtml.literal(f[0]), docsHtml.escape(str(val)) ]
+
+    # parameters and returns are rendered as their own structured tables
+    # below, instead of being JSON-dumped into the generic property table.
+    scalar_items = [
+        i for i in src.items() if i[0] not in ('parameters', 'returns')
+    ]
 
     func_table = docsHtml.table(
         [ "Property", "Value" ],
-        list(map(map_function_field, src.items()))
-    )    
+        list(map(map_function_field, scalar_items))
+    )
 
     header = docsHtml.heading(functionId)
 
-    content = header + intro_para + func_table    
+    content = header + intro_para + func_table
+
+    parameters = src.get('parameters')
+    if parameters:
+
+        def map_parameter(p):
+            return [
+                docsHtml.literal(docsHtml.escape(p.get('name', ''))),
+                _format_function_type(docsHtml, p),
+                docsHtml.escape(p.get('description') or p.get('brief') or ''),
+                _format_function_notes(docsHtml, p)
+            ]
+
+        parameters_table = docsHtml.table(
+            [ "Name", "Data Type", "Description", "Notes" ],
+            list(map(map_parameter, parameters))
+        )
+
+        content += docsHtml.heading("Parameters", level=2) + parameters_table
+
+    returns = src.get('returns')
+    if returns:
+
+        returns_table = docsHtml.table(
+            [ "Data Type", "Description", "Notes" ],
+            [[
+                _format_function_type(docsHtml, returns),
+                docsHtml.escape(returns.get('description') or returns.get('brief') or ''),
+                _format_function_notes(docsHtml, returns)
+            ]]
+        )
+
+        content += docsHtml.heading("Returns", level=2) + returns_table
 
     fp.write(docsHtml.page(doc_root, functionId, breadcrumbs, nav_items, content))
 
