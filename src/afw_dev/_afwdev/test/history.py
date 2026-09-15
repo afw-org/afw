@@ -3,9 +3,10 @@
 # @file history.py
 # @brief Dated test-run records, --compare, and --trend.
 #
-# Per-file rows: path, ms, xctx_kbytes (null if the binary did not stamp
-# poolBytesInUse). k is the signal; ms is noisy. Failed paths are not
-# flagged for k/ms. Compare/trend never fail the process in v1.
+# Per-file rows: path, ms, xctx_bytes (null if the binary did not stamp
+# poolBytesInUse). Console shows comma-separated bytes. ms is noisy.
+# Failed paths are not flagged for bytes/ms. Compare/trend never fail the
+# process in v1.
 #
 
 import glob
@@ -15,11 +16,11 @@ import subprocess
 from datetime import datetime, timezone
 
 from _afwdev.common import msg, nfc
-from _afwdev.test.common import xctx_bytes_to_k
+from _afwdev.test.common import format_xctx_bytes
 
 DEFAULT_HISTORY_DIR = os.path.expanduser("~/.afw/test-history")
-K_RATIO = 1.5
-K_FLOOR_BYTES = 32 * 1024
+BYTES_RATIO = 1.5
+BYTES_FLOOR = 32 * 1024
 MS_RATIO = 2.0
 MS_FLOOR_MS = 200
 TREND_DEFAULT_COUNT = 10
@@ -190,25 +191,35 @@ def _failed(row):
     return int((row or {}).get("failed") or 0) > 0
 
 
-def _k_bytes(row):
+def _xctx_bytes(row):
+    """Asked-for bytes from a file row, or None."""
     if not row:
         return None
-    if row.get("xctx_bytes") is not None:
-        try:
-            n = int(row.get("xctx_bytes"))
-            return n if n >= 0 else None
-        except (TypeError, ValueError):
-            pass
-    k = row.get("xctx_kbytes")
-    if k is None:
+    n = row.get("xctx_bytes")
+    if n is None:
         return None
     try:
-        k = int(k)
+        n = int(n)
     except (TypeError, ValueError):
         return None
-    if k < 0:
-        return None
-    return k * 1024
+    return n if n >= 0 else None
+
+
+def _trend_metric(options):
+    """'ms' or 'bytes'."""
+    raw = ((options or {}).get("trend_metric") or "bytes")
+    metric = str(raw).strip().lower()
+    if metric == "ms":
+        return "ms"
+    return "bytes"
+
+
+def _fmt_metric(n, metric):
+    if n is None:
+        return "-"
+    if metric == "ms":
+        return str(int(n))
+    return format_xctx_bytes(n) or "0"
 
 
 def _ms(row):
@@ -224,29 +235,29 @@ def _ms(row):
     return n if n >= 0 else None
 
 
-def _k_fatter(old_row, new_row):
-    """True if new k is out of family vs old."""
+def _bytes_fatter(old_row, new_row):
+    """True if new xctx bytes is out of family vs old."""
     if _failed(old_row) or _failed(new_row):
         return False
-    old_b = _k_bytes(old_row)
-    new_b = _k_bytes(new_row)
+    old_b = _xctx_bytes(old_row)
+    new_b = _xctx_bytes(new_row)
     if old_b is None or new_b is None or old_b <= 0:
         return False
     if new_b <= old_b:
         return False
-    return (new_b > old_b * K_RATIO) and (new_b - old_b >= K_FLOOR_BYTES)
+    return (new_b > old_b * BYTES_RATIO) and (new_b - old_b >= BYTES_FLOOR)
 
 
-def _k_thinner(old_row, new_row):
+def _bytes_thinner(old_row, new_row):
     if _failed(old_row) or _failed(new_row):
         return False
-    old_b = _k_bytes(old_row)
-    new_b = _k_bytes(new_row)
+    old_b = _xctx_bytes(old_row)
+    new_b = _xctx_bytes(new_row)
     if old_b is None or new_b is None or new_b <= 0:
         return False
     if new_b >= old_b:
         return False
-    return (old_b > new_b * K_RATIO) and (old_b - new_b >= K_FLOOR_BYTES)
+    return (old_b > new_b * BYTES_RATIO) and (old_b - new_b >= BYTES_FLOOR)
 
 
 def _ms_slower(old_row, new_row):
@@ -273,16 +284,16 @@ def _ms_faster(old_row, new_row):
     return (old_m > new_m * MS_RATIO) and (old_m - new_m >= MS_FLOOR_MS)
 
 
-def _ratio_k(old_row, new_row):
-    old_b = _k_bytes(old_row)
-    new_b = _k_bytes(new_row)
+def _ratio_bytes(old_row, new_row):
+    old_b = _xctx_bytes(old_row)
+    new_b = _xctx_bytes(new_row)
     if not old_b or new_b is None:
         return 0
     return float(new_b) / float(old_b)
 
 
 def compare_runs(old, new):
-    """Return a dict: compared/new/gone paths and k/ms movers."""
+    """Return a dict: compared/new/gone paths and bytes/ms movers."""
     old_files = files_by_path(old)
     new_files = files_by_path(new)
     old_paths = set(old_files)
@@ -290,7 +301,7 @@ def compare_runs(old, new):
     compared = sorted(old_paths & new_paths)
     added = sorted(new_paths - old_paths)
     gone = sorted(old_paths - new_paths)
-    k_missing = 0
+    bytes_missing = 0
     fatter = []
     thinner = []
     slower = []
@@ -298,22 +309,23 @@ def compare_runs(old, new):
     for path in compared:
         o = old_files[path]
         n = new_files[path]
-        if _k_bytes(o) is None or _k_bytes(n) is None:
-            k_missing += 1
-        if _k_fatter(o, n):
+        if _xctx_bytes(o) is None or _xctx_bytes(n) is None:
+            bytes_missing += 1
+        if _bytes_fatter(o, n):
             fatter.append(path)
-        if _k_thinner(o, n):
+        if _bytes_thinner(o, n):
             thinner.append(path)
         if _ms_slower(o, n):
             slower.append(path)
         if _ms_faster(o, n):
             faster.append(path)
-    fatter.sort(key=lambda p: _ratio_k(old_files[p], new_files[p]), reverse=True)
+    fatter.sort(
+        key=lambda p: _ratio_bytes(old_files[p], new_files[p]), reverse=True)
     return {
         "compared": compared,
         "added": added,
         "gone": gone,
-        "k_missing": k_missing,
+        "bytes_missing": bytes_missing,
         "fatter": fatter,
         "thinner": thinner,
         "slower": slower,
@@ -342,16 +354,18 @@ def print_compare(result, show_all=False):
             oc=_run_label(old),
             nc=_run_label(new),
         ))
-    if result["k_missing"]:
+    if result["bytes_missing"]:
         msg.highlighted_info(
-            "k missing in {n} compared path(s) (old afw / non-test_script)".format(
-                n=result["k_missing"]))
+            "bytes missing in {n} compared path(s) "
+            "(old afw / non-test_script)".format(
+                n=result["bytes_missing"]))
     msg.highlighted_info(
-        "Memory:  {f} fatter  {t} thinner  (threshold {r}× and +{kb}k)".format(
+        "Memory:  {f} fatter  {t} thinner  "
+        "(threshold {r}× and +{floor})".format(
             f=len(result["fatter"]),
             t=len(result["thinner"]),
-            r=K_RATIO,
-            kb=K_FLOOR_BYTES // 1024,
+            r=BYTES_RATIO,
+            floor=format_xctx_bytes(BYTES_FLOOR),
         ))
     msg.highlighted_info(
         "Time:    {s} slower  {f} faster   (noisy; {r}× and +{ms}ms)".format(
@@ -365,14 +379,15 @@ def print_compare(result, show_all=False):
     show = result["fatter"] if not show_all else result["fatter"]
     if show:
         msg.highlighted_info("")
-        msg.highlighted_info("Fatter k:")
+        msg.highlighted_info("Fatter:")
         for path in show[:TREND_TOP] if not show_all else show:
             o = old_files[path]
             n = new_files[path]
-            ok = xctx_bytes_to_k(_k_bytes(o)) or 0
-            nk = xctx_bytes_to_k(_k_bytes(n)) or 0
             msg.highlighted_info(
-                "  {ok}k → {nk}k  {path}".format(ok=ok, nk=nk, path=path))
+                "  {ob} → {nb}  {path}".format(
+                    ob=_fmt_metric(_xctx_bytes(o), "bytes"),
+                    nb=_fmt_metric(_xctx_bytes(n), "bytes"),
+                    path=path))
     def _list(title, paths):
         if not paths:
             return
@@ -498,44 +513,39 @@ def trend_runs(runs, options=None):
         peer_ms.append({"ms": total, "n": n})
     peer_label = peer_run.get("label") or (
         "ref" if is_reference_run(peer_run) else "first")
-    series_max_k = []
+    series_max = []
     for run in runs:
         mx = 0
-        any_k = False
+        any_b = False
         for path, row in files_by_path(run).items():
             if not ok(path):
                 continue
-            b = _k_bytes(row)
+            b = _xctx_bytes(row)
             if b is None:
                 continue
-            any_k = True
+            any_b = True
             mx = max(mx, b)
-        series_max_k.append(xctx_bytes_to_k(mx) if any_k else None)
+        series_max.append(mx if any_b else None)
     movers = []
-    metric = ((options or {}).get("trend_metric") or "k").strip().lower()
+    metric = _trend_metric(options)
     for path in sorted(first_p & last_p):
         o = first[path]
         n = last[path]
         if metric == "ms":
             old_v, new_v = _ms(o), _ms(n)
         else:
-            old_v, new_v = _k_bytes(o), _k_bytes(n)
-            if old_v is not None:
-                old_v = xctx_bytes_to_k(old_v)
-            if new_v is not None:
-                new_v = xctx_bytes_to_k(new_v)
+            old_v, new_v = _xctx_bytes(o), _xctx_bytes(n)
         if old_v is None or new_v is None or old_v <= 0:
             continue
         ratio = float(new_v) / float(old_v)
-        ks = []
+        series = []
         for run in runs:
             row = files_by_path(run).get(path)
             if metric == "ms":
-                ks.append(_ms(row))
+                series.append(_ms(row))
             else:
-                b = _k_bytes(row)
-                ks.append(xctx_bytes_to_k(b) if b is not None else None)
-        present = [x for x in ks if x is not None]
+                series.append(_xctx_bytes(row))
+        present = [x for x in series if x is not None]
         movers.append({
             "path": path,
             "first": old_v,
@@ -549,7 +559,7 @@ def trend_runs(runs, options=None):
         "runs": runs,
         "new": added,
         "gone": gone,
-        "series_max_k": series_max_k,
+        "series_max": series_max,
         "peer_ms": peer_ms,
         "peer_label": peer_label,
         "movers": movers,
@@ -576,30 +586,30 @@ def print_trend(result, show_all=False):
         msg.highlighted_info(
             "Peer ms ({n} files):  {bits}".format(
                 n=npeer, bits="  ".join(bits)))
-    maxes = result["series_max_k"]
+    maxes = result.get("series_max") or []
+    metric = result.get("metric") or "bytes"
     if any(x is not None for x in maxes):
         bits = []
-        for run, k in zip(runs, maxes):
+        for run, n in zip(runs, maxes):
             label = run.get("_basename") or _run_label(run)
             if label.endswith(".json"):
                 label = label[:-5]
-            bits.append("{}:{}k".format(label, k if k is not None else "-"))
-        msg.highlighted_info("Run max k:  " + "  ".join(bits))
+            bits.append("{}:{}".format(label, _fmt_metric(n, "bytes")))
+        msg.highlighted_info("Run max:  " + "  ".join(bits))
     movers = result["movers"]
     show = movers if show_all else movers[:TREND_TOP]
     if show:
         msg.highlighted_info("")
-        unit = "ms" if result["metric"] == "ms" else "k"
+        unit = "ms" if metric == "ms" else "bytes"
         msg.highlighted_info("Top movers ({u}, first → last):".format(u=unit))
         for m in show:
             msg.highlighted_info(
-                "  {f}{u} → {l}{u}  ({r:.2f}×)  min {mn} max {mx}  {path}".format(
-                    f=m["first"],
-                    l=m["last"],
-                    u=unit,
+                "  {f} → {l}  ({r:.2f}×)  min {mn} max {mx}  {path}".format(
+                    f=_fmt_metric(m["first"], metric),
+                    l=_fmt_metric(m["last"], metric),
                     r=m["ratio"],
-                    mn=m["min"],
-                    mx=m["max"],
+                    mn=_fmt_metric(m["min"], metric),
+                    mx=_fmt_metric(m["max"], metric),
                     path=m["path"],
                 ))
     def _list(title, paths):
@@ -626,9 +636,7 @@ def file_record(path, duration_ms, xctx_bytes, num_passed, num_skipped, num_fail
         "skipped": int(num_skipped),
         "failed": int(num_failed),
         "xctx_bytes": None,
-        "xctx_kbytes": None,
     }
     if xctx_bytes is not None:
         rec["xctx_bytes"] = int(xctx_bytes)
-        rec["xctx_kbytes"] = xctx_bytes_to_k(xctx_bytes)
     return rec

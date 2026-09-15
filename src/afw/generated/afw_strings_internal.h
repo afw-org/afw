@@ -19997,6 +19997,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__55c176fdb793 \
+    "File-level xctx ST asked-for bytes (thread current minus snap) after all cases. Not process-wide. afwdev test prints this next to duration."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__55c176fdb793 */
+#define afw_s_zz__55c176fdb793 \
+    (&afw_self_v_zz__55c176fdb793.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__55c176fdb793 */
+#define afw_self_s_zz__55c176fdb793 \
+    (afw_self_v_zz__55c176fdb793.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__55c176fdb793 */
+extern const afw_value_string_t \
+    afw_self_v_zz__55c176fdb793;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__55c176fdb793 */
+#define afw_z_zz__55c176fdb793 \
+    (afw_self_v_zz__55c176fdb793.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__55c176fdb793 */
+#define afw_v_zz__55c176fdb793 \
+    (&afw_self_v_zz__55c176fdb793.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__55cded7724d3 \
     "function replace<anyURI> (\n    value: anyURI,\n    match: string,\n    replacement: string,\n    limit?: integer\n): string;\n"
 
@@ -141049,32 +141075,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__dc655a179da7 */
 #define afw_v_zz__dc655a179da7 \
     (&afw_self_v_zz__dc655a179da7.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__dc7ca431dac2 \
-    "File-level xctx ST asked-for bytes (thread current minus snap) after all cases. Not process-wide. afwdev test shows this as KiB next to duration."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__dc7ca431dac2 */
-#define afw_s_zz__dc7ca431dac2 \
-    (&afw_self_v_zz__dc7ca431dac2.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__dc7ca431dac2 */
-#define afw_self_s_zz__dc7ca431dac2 \
-    (afw_self_v_zz__dc7ca431dac2.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__dc7ca431dac2 */
-extern const afw_value_string_t \
-    afw_self_v_zz__dc7ca431dac2;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__dc7ca431dac2 */
-#define afw_z_zz__dc7ca431dac2 \
-    (afw_self_v_zz__dc7ca431dac2.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__dc7ca431dac2 */
-#define afw_v_zz__dc7ca431dac2 \
-    (&afw_self_v_zz__dc7ca431dac2.pub)
 
 
 

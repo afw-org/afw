@@ -335,8 +335,8 @@ New limit/cap property ids should use a **`max…`** prefix (`maxReadBytes`, `ma
 | Flag | Who | Role |
 |------|-----|------|
 | **`-T` / `--tests-path`** | `afwdev test` | Exclusive opt-in trees (e.g. `src/afw/tests-extra/…`); default `test -j` never scans those roots |
-| **`--output` / `--output-format`** | `afwdev test` | Write a machine summary (`json`, `json-compact`, or `text`) to a path or `-` (includes per-file `ms` / `xctx_kbytes`) |
-| **`--history` / `--history-ref` / `--compare` / `--trend`** | `afwdev test` | Dated JSON under `~/.afw/test-history/` (or `test_history_dir`); compare/trend by test path. k optional so older `afw` still records timing |
+| **`--output` / `--output-format`** | `afwdev test` | Write a machine summary (`json`, `json-compact`, or `text`) to a path or `-` (includes per-file `ms` / `xctx_bytes`) |
+| **`--history` / `--history-ref` / `--compare` / `--trend`** | `afwdev test` | Dated JSON under `~/.afw/test-history/` (or `test_history_dir`); compare/trend by test path. xctx bytes optional so older `afw` still records timing |
 
 Recipes: [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md).
 
@@ -1400,7 +1400,7 @@ Watch **`process::`** (and optional **`response:metrics`**) for asked-for pool b
 
 A request that exceeds **`limitRequestPoolBytes`** (request threads), **`limitEvaluationStackCount`**, or remaining C stack below **`limitCStackHeadroomBytes`** throws **`payload_too_large`** when there is still room to build the error. If allocation itself fails, the error is **`memory`**. Either is OK; the worker stays up. Application conf can override those knobs; setting **`limitRequestPoolBytes`** in conf also applies to the `afw` CLI. A positive retrieve **`maxObjects`** is a separate cardinality throw (`payload_too_large`) and is not the request memory cap.
 
-`afwdev test` prints `(Nms, Xk)` on file lines and `Memory: max Xk xctx` on the run summary. **`--history`** / **`--history-ref LABEL`** write dated JSON; **`--compare`** / **`--trend`** diff by test path (k optional).
+`afwdev test` prints `(Nms, max N xctx)` on file lines (comma-separated xctx asked-for bytes) and `Memory: max N xctx` on the run summary. **`--history`** / **`--history-ref LABEL`** write dated JSON; **`--compare`** / **`--trend`** diff by test path (bytes optional).
 
 [↑ Highlights](#highlights)
 

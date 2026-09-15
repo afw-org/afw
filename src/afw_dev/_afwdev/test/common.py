@@ -84,21 +84,25 @@ def xctx_bytes_from_response(response):
     return n
 
 
-def xctx_bytes_to_k(n):
-    """Asked-for bytes to KiB, rounding up. None if n is None."""
+def format_xctx_bytes(n):
+    """Comma-separated asked-for bytes, or None if n is missing."""
     if n is None:
         return None
-    if n <= 0:
-        return 0
-    return (int(n) + 1023) // 1024
+    try:
+        n = int(n)
+    except (TypeError, ValueError):
+        return None
+    if n < 0:
+        return None
+    return "{:,}".format(n)
 
 
 def format_test_timing(duration_ms, xctx_bytes=None):
-    """'(58ms)' or '(58ms, 12k)' for file lines that already show duration."""
-    k = xctx_bytes_to_k(xctx_bytes)
-    if k is None:
+    """'(58ms)' or '(58ms, max 12,288 xctx)' for file lines that show duration."""
+    shown = format_xctx_bytes(xctx_bytes)
+    if shown is None:
         return "({}ms)".format(duration_ms)
-    return "({}ms, {}k)".format(duration_ms, k)
+    return "({}ms, max {} xctx)".format(duration_ms, shown)
 
 
 def errors_only_console(options):
@@ -229,13 +233,13 @@ def write_results_summary(options, summary, tool_label="test"):
                 fd.write(
                     "passed={p} failed={f} skipped={s} total={n}\n"
                     "time_seconds={sec}\n"
-                    "max_xctx_kbytes={k}\n".format(
+                    "max_xctx_bytes={b}\n".format(
                         p=t.get("passed", t.get("ok", 0)),
                         f=t.get("failed", t.get("fail", 0)),
                         s=t.get("skipped", t.get("timeout", 0)),
                         n=t.get("total", 0),
                         sec=summary.get("time_seconds", 0),
-                        k=summary.get("max_xctx_kbytes", 0),
+                        b=summary.get("max_xctx_bytes", 0),
                     ))
             else:
                 fd.write(nfc.json_dumps(summary, indent=2) + "\n")

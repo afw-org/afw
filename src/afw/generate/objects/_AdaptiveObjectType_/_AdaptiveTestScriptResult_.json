@@ -40,7 +40,7 @@
         "poolBytesInUse": {
             "brief": "This-eval ST asked-for bytes",
             "dataType": "integer",
-            "description": "File-level xctx ST asked-for bytes (thread current minus snap) after all cases. Not process-wide. afwdev test shows this as KiB next to duration.",
+            "description": "File-level xctx ST asked-for bytes (thread current minus snap) after all cases. Not process-wide. afwdev test prints this next to duration.",
             "label": "Pool Bytes In Use"
         },
         "tests": {

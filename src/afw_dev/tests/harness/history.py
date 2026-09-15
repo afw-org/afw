@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""History compare/trend: path match, optional k, thresholds."""
+"""History compare/trend: path match, optional bytes, thresholds."""
 
 import os
 import tempfile
 
+from _afwdev.test.common import format_test_timing, format_xctx_bytes
 from _afwdev.test.history import (
-    compare_runs, file_record, trend_runs, _k_fatter, K_FLOOR_BYTES,
+    compare_runs, file_record, trend_runs, _bytes_fatter, BYTES_FLOOR,
     history_filename, is_reference_name, select_trend_files,
 )
 
@@ -16,7 +17,7 @@ def _run(files, mode="afw", commit="abc"):
         "mode": mode,
         "git": {"commit": commit, "branch": "develop", "dirty": False},
         "files": files,
-        "max_xctx_kbytes": 0,
+        "max_xctx_bytes": 0,
     }
 
 
@@ -27,12 +28,24 @@ def run():
     small = file_record("a.as", 50, 10 * 1024, 1, 0, 0)
     huge = file_record("a.as", 50, 200 * 1024, 1, 0, 0)
     tests.append({
-        "test": "k-fatter-threshold",
-        "description": "10k → 200k is fatter; 10k → 12k is not",
+        "test": "bytes-fatter-threshold",
+        "description": "10KiB → 200KiB is fatter; 10KiB → 12KiB is not",
         "passed": (
-            _k_fatter(small, huge) is True
-            and _k_fatter(small, file_record("a.as", 50, 12 * 1024, 1, 0, 0))
+            _bytes_fatter(small, huge) is True
+            and _bytes_fatter(
+                small, file_record("a.as", 50, 12 * 1024, 1, 0, 0))
             is False
+        ),
+        "skip": False,
+    })
+
+    tests.append({
+        "test": "format-xctx-bytes-commas",
+        "description": "console memory uses comma-separated max N xctx",
+        "passed": (
+            format_xctx_bytes(195097776) == "195,097,776"
+            and format_test_timing(58, 12288) == "(58ms, max 12,288 xctx)"
+            and format_test_timing(58) == "(58ms)"
         ),
         "skip": False,
     })
@@ -49,7 +62,7 @@ def run():
         file_record("fail.as", 10, 400 * 1024, 0, 0, 1),
         file_record("nok.as", 10, None, 1, 0, 0),
     ], commit="new")
-    # old keep 40k, new keep 200k → fatter (5× and +160k)
+    # old keep 40KiB, new keep 200KiB → fatter (5× and +160KiB)
     r = compare_runs(old, new)
     tests.append({
         "test": "compare-new-gone",
@@ -65,7 +78,7 @@ def run():
     })
     tests.append({
         "test": "compare-fatter-skips-failed",
-        "description": "failed paths are not k-flagged; keep.as is fatter",
+        "description": "failed paths are not bytes-flagged; keep.as is fatter",
         "passed": (
             r["fatter"] == ["keep.as"]
             and "fail.as" not in r["fatter"]
@@ -73,9 +86,9 @@ def run():
         "skip": False,
     })
     tests.append({
-        "test": "compare-k-missing-counted",
-        "description": "nok.as has no k on new; keep has k on both",
-        "passed": r["k_missing"] >= 1,
+        "test": "compare-bytes-missing-counted",
+        "description": "nok.as has no bytes on new; keep has bytes on both",
+        "passed": r["bytes_missing"] >= 1,
         "skip": False,
     })
 
@@ -88,22 +101,23 @@ def run():
     tr = trend_runs([t1, t2, t3], {})
     tests.append({
         "test": "trend-new-and-movers",
-        "description": "b.as is new; a.as 20k→80k is a mover",
+        "description": "b.as is new; a.as 20480→81920 bytes is a mover",
         "passed": (
             tr["new"] == ["b.as"]
             and tr["gone"] == []
             and tr["movers"]
             and tr["movers"][0]["path"] == "a.as"
-            and tr["movers"][0]["first"] == 20
-            and tr["movers"][0]["last"] == 80
+            and tr["movers"][0]["first"] == 20 * 1024
+            and tr["movers"][0]["last"] == 80 * 1024
+            and tr["metric"] == "bytes"
         ),
         "skip": False,
     })
 
     tests.append({
         "test": "floor-constant",
-        "description": "32k floor is the agreed k delta",
-        "passed": K_FLOOR_BYTES == 32 * 1024,
+        "description": "32,768 byte floor is the agreed bytes delta",
+        "passed": BYTES_FLOOR == 32 * 1024,
         "skip": False,
     })
 
