@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const Modal = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const Modal = (props) => {
 
 
 Modal.propTypes = propTypes;
-Modal.defaultProps = defaultProps;
 Modal.displayName = "Modal";
 
 export default memo(Modal);

@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const Spinner = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const Spinner = (props) => {
 
 
 Spinner.propTypes = propTypes;
-Spinner.defaultProps = defaultProps;
 Spinner.displayName = "Spinner";
 
 export default memo(Spinner);

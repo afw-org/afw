@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const DateTimePicker : React.FunctionComponent<IDateTimePickerProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const DateTimePicker : React.FunctionComponent<IDateTimePickerProps> = (p
 
 
 DateTimePicker.propTypes = propTypes;
-DateTimePicker.defaultProps = defaultProps;
 DateTimePicker.displayName = "DateTimePicker";
 
 export default React.memo(DateTimePicker);

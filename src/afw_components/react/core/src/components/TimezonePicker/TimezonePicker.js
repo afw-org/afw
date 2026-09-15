@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const TimezonePicker = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const TimezonePicker = (props) => {
 
 
 TimezonePicker.propTypes = propTypes;
-TimezonePicker.defaultProps = defaultProps;
 TimezonePicker.displayName = "TimezonePicker";
 
 export default memo(TimezonePicker);

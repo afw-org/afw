@@ -61,9 +61,6 @@ Skeleton.propTypes = {
     width:                              PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
 };
 
-Skeleton.defaultProps = {
-};
-
 Skeleton.displayName = "Skeleton";
 
 export default memo(Skeleton);

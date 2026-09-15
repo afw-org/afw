@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const Snackbar = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const Snackbar = (props) => {
 
 
 Snackbar.propTypes = propTypes;
-Snackbar.defaultProps = defaultProps;
 Snackbar.displayName = "Snackbar";
 
 export default memo(Snackbar);

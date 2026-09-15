@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const Dialog = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const Dialog = (props) => {
 
 
 Dialog.propTypes = propTypes;
-Dialog.defaultProps = defaultProps;
 Dialog.displayName = "Dialog";
 
 export default memo(Dialog);

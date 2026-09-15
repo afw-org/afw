@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const Tabs : React.FunctionComponent<ITabsProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const Tabs : React.FunctionComponent<ITabsProps> = (props) => {
 
 
 Tabs.propTypes = propTypes;
-Tabs.defaultProps = defaultProps;
 Tabs.displayName = "Tabs";
 
 export default React.memo(Tabs);

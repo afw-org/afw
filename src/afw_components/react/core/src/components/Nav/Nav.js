@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const Nav = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const Nav = (props) => {
 
 
 Nav.propTypes = propTypes;
-Nav.defaultProps = defaultProps;
 Nav.displayName = "Nav";
 
 export default memo(Nav);

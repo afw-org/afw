@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const Button = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const Button = (props) => {
 
 
 Button.propTypes = propTypes;
-Button.defaultProps = defaultProps;
 Button.displayName = "Button";
 
 export default memo(Button);

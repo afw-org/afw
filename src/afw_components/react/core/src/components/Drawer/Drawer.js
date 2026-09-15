@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const Drawer = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const Drawer = (props) => {
 
 
 Drawer.propTypes = propTypes;
-Drawer.defaultProps = defaultProps;
 Drawer.displayName = "Drawer";
 
 export default memo(Drawer);

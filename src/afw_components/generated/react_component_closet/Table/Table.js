@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const Table = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const Table = (props) => {
 
 
 Table.propTypes = propTypes;
-Table.defaultProps = defaultProps;
 Table.displayName = "Table";
 
 export default memo(Table);

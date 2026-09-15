@@ -196,7 +196,4 @@ ListEditor.propTypes = {
     items:                              PropTypes.arrayOf(PropTypes.shape(ListEditor_Item)),
 };
 
-ListEditor.defaultProps = {
-};
-
 export default ListEditor;

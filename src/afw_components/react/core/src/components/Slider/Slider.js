@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const Slider = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const Slider = (props) => {
 
 
 Slider.propTypes = propTypes;
-Slider.defaultProps = defaultProps;
 Slider.displayName = "Slider";
 
 export default memo(Slider);

@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const Toolbar = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const Toolbar = (props) => {
 
 
 Toolbar.propTypes = propTypes;
-Toolbar.defaultProps = defaultProps;
 Toolbar.displayName = "Toolbar";
 
 export default memo(Toolbar);

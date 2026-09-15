@@ -217,7 +217,4 @@ Responsive.propTypes = {
     spacing:            PropTypes.number,
 };
 
-Responsive.defaultProps = {
-};
-
 export default Responsive;

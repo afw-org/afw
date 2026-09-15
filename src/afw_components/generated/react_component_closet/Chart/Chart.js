@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const Chart = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const Chart = (props) => {
 
 
 Chart.propTypes = propTypes;
-Chart.defaultProps = defaultProps;
 Chart.displayName = "Chart";
 
 export default memo(Chart);

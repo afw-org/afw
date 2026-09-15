@@ -29,6 +29,8 @@ import {ctx} from "@afw/react";
  */
 export const Dropdown : React.FunctionComponent<IDropdownProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -44,7 +46,6 @@ export const Dropdown : React.FunctionComponent<IDropdownProps> = (props) => {
 
 
 Dropdown.propTypes = propTypes;
-Dropdown.defaultProps = defaultProps;
 Dropdown.displayName = "Dropdown";
 
 export default React.memo(Dropdown);

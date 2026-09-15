@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const Checkbox = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const Checkbox = (props) => {
 
 
 Checkbox.propTypes = propTypes;
-Checkbox.defaultProps = defaultProps;
 Checkbox.displayName = "Checkbox";
 
 export default memo(Checkbox);

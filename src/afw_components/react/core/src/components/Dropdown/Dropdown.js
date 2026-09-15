@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const Dropdown = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const Dropdown = (props) => {
 
 
 Dropdown.propTypes = propTypes;
-Dropdown.defaultProps = defaultProps;
 Dropdown.displayName = "Dropdown";
 
 export default memo(Dropdown);

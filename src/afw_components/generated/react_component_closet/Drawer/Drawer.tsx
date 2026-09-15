@@ -29,6 +29,8 @@ import {ctx} from "@afw/react";
  */
 export const Drawer : React.FunctionComponent<IDrawerProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -44,7 +46,6 @@ export const Drawer : React.FunctionComponent<IDrawerProps> = (props) => {
 
 
 Drawer.propTypes = propTypes;
-Drawer.defaultProps = defaultProps;
 Drawer.displayName = "Drawer";
 
 export default React.memo(Drawer);

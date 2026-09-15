@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const Stepper = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const Stepper = (props) => {
 
 
 Stepper.propTypes = propTypes;
-Stepper.defaultProps = defaultProps;
 Stepper.displayName = "Stepper";
 
 export default memo(Stepper);

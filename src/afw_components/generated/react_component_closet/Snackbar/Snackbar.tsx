@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const Snackbar : React.FunctionComponent<ISnackbarProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const Snackbar : React.FunctionComponent<ISnackbarProps> = (props) => {
 
 
 Snackbar.propTypes = propTypes;
-Snackbar.defaultProps = defaultProps;
 Snackbar.displayName = "Snackbar";
 
 export default React.memo(Snackbar);

@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const Typography = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const Typography = (props) => {
 
 
 Typography.propTypes = propTypes;
-Typography.defaultProps = defaultProps;
 Typography.displayName = "Typography";
 
 export default memo(Typography);

@@ -28,12 +28,12 @@ import MuiTextField from "@mui/material/TextField";
 export const Autocomplete = (props) => {
 
     const [input, setInput] = useState();
-    const { 
-        id, "data-testid": dataTestId, 
-        "data-component-type": dataComponentType, 
+    const {
+        id, "data-testid": dataTestId,
+        "data-component-type": dataComponentType,
         "aria-label": ariaLabel,
-        options, label, isLoading, value, description, 
-        disabled, error, noOptionsText, onChanged, onCreateOption, placeholder
+        options, label, isLoading = false, value, description,
+        disabled = false, error, noOptionsText, onChanged, onCreateOption, placeholder
     } = props;
 
     const getOptionLabel = (option) => {
@@ -183,11 +183,6 @@ Autocomplete.propTypes = {
      * The option value for the Autocomplete component.
      */
     value:                              PropTypes.shape(Autocomplete_Options),
-};
-
-Autocomplete.defaultProps = {
-    isLoading:          false,
-    disabled:           false,
 };
 
 export default Autocomplete;

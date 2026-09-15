@@ -29,6 +29,8 @@ import {ctx} from "@afw/react";
  */
 export const EditableCallout : React.FunctionComponent<IEditableCalloutProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -44,7 +46,6 @@ export const EditableCallout : React.FunctionComponent<IEditableCalloutProps> = 
 
 
 EditableCallout.propTypes = propTypes;
-EditableCallout.defaultProps = defaultProps;
 EditableCallout.displayName = "EditableCallout";
 
 export default React.memo(EditableCallout);

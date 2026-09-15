@@ -857,6 +857,8 @@ def generate_typescript(fd, objectTypes, objectType, componentType, implementati
     fd.write(' */\n')
     fd.write('export const ' + implementationId + ' : React.FunctionComponent<' + propsInterface + '> = (props) => {\n')
     fd.write('\n')
+    fd.write('    props = {...defaultProps, ...props};\n')
+    fd.write('\n')
     fd.write('    return (\n')
     fd.write('        <AdaptiveComponent \n')
     fd.write('            {...props} \n')
@@ -873,7 +875,6 @@ def generate_typescript(fd, objectTypes, objectType, componentType, implementati
     fd.write('\n')
 
     fd.write(implementationId + '.propTypes = propTypes;\n')
-    fd.write(implementationId + '.defaultProps = defaultProps;\n')
     fd.write(implementationId + '.displayName = "' + implementationId + '";\n')
 
     fd.write('\n')
@@ -915,6 +916,8 @@ def generate_javascript(fd, objectTypes, objectType, componentType, implementati
     fd.write(' */\n')
     fd.write('export const ' + implementationId + ' = (props) => {\n')
     fd.write('\n')
+    fd.write('    props = {...defaultProps, ...props};\n')
+    fd.write('\n')
     fd.write('    return (\n')
     fd.write('        <AdaptiveComponent \n')
     fd.write('            {...props} \n')
@@ -931,7 +934,6 @@ def generate_javascript(fd, objectTypes, objectType, componentType, implementati
     fd.write('\n')
 
     fd.write(implementationId + '.propTypes = propTypes;\n')
-    fd.write(implementationId + '.defaultProps = defaultProps;\n')
     fd.write(implementationId + '.displayName = "' + implementationId + '";\n')
 
     fd.write('\n')

@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const Image : React.FunctionComponent<IImageProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const Image : React.FunctionComponent<IImageProps> = (props) => {
 
 
 Image.propTypes = propTypes;
-Image.defaultProps = defaultProps;
 Image.displayName = "Image";
 
 export default React.memo(Image);

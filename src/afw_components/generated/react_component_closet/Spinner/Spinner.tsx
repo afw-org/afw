@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const Spinner : React.FunctionComponent<ISpinnerProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const Spinner : React.FunctionComponent<ISpinnerProps> = (props) => {
 
 
 Spinner.propTypes = propTypes;
-Spinner.defaultProps = defaultProps;
 Spinner.displayName = "Spinner";
 
 export default React.memo(Spinner);

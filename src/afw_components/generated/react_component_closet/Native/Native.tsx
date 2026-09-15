@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const Native : React.FunctionComponent<INativeProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const Native : React.FunctionComponent<INativeProps> = (props) => {
 
 
 Native.propTypes = propTypes;
-Native.defaultProps = defaultProps;
 Native.displayName = "Native";
 
 export default React.memo(Native);

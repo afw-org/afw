@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const List = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const List = (props) => {
 
 
 List.propTypes = propTypes;
-List.defaultProps = defaultProps;
 List.displayName = "List";
 
 export default memo(List);

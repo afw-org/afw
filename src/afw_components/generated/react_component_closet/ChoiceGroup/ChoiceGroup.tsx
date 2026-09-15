@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const ChoiceGroup : React.FunctionComponent<IChoiceGroupProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const ChoiceGroup : React.FunctionComponent<IChoiceGroupProps> = (props) 
 
 
 ChoiceGroup.propTypes = propTypes;
-ChoiceGroup.defaultProps = defaultProps;
 ChoiceGroup.displayName = "ChoiceGroup";
 
 export default React.memo(ChoiceGroup);

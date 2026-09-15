@@ -31,6 +31,8 @@ import {ctx} from "@afw/react";
  */
 export const Responsive : React.FunctionComponent<IResponsiveProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -46,7 +48,6 @@ export const Responsive : React.FunctionComponent<IResponsiveProps> = (props) =>
 
 
 Responsive.propTypes = propTypes;
-Responsive.defaultProps = defaultProps;
 Responsive.displayName = "Responsive";
 
 export default React.memo(Responsive);

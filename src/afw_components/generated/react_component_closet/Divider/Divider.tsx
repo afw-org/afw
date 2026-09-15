@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const Divider : React.FunctionComponent<IDividerProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const Divider : React.FunctionComponent<IDividerProps> = (props) => {
 
 
 Divider.propTypes = propTypes;
-Divider.defaultProps = defaultProps;
 Divider.displayName = "Divider";
 
 export default React.memo(Divider);

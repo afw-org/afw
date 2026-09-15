@@ -263,7 +263,4 @@ Tree.propTypes = {
     selectedKeys:                       PropTypes.arrayOf(PropTypes.string),
 };
 
-Tree.defaultProps = {
-};
-
 export default Tree;

@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const TextField = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const TextField = (props) => {
 
 
 TextField.propTypes = propTypes;
-TextField.defaultProps = defaultProps;
 TextField.displayName = "TextField";
 
 export default memo(TextField);

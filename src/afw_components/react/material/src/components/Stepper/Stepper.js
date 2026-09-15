@@ -63,7 +63,4 @@ Stepper.propTypes = {
     steps:                              PropTypes.arrayOf(PropTypes.string),
 };
 
-Stepper.defaultProps = {
-};
-
 export default Stepper;

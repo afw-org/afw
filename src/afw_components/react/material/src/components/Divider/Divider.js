@@ -30,7 +30,4 @@ export const Divider = (props) => {
 Divider.propTypes = {
 };
 
-Divider.defaultProps = {
-};
-
 export default memo(Divider);

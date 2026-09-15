@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const Box : React.FunctionComponent<IBoxProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const Box : React.FunctionComponent<IBoxProps> = (props) => {
 
 
 Box.propTypes = propTypes;
-Box.defaultProps = defaultProps;
 Box.displayName = "Box";
 
 export default React.memo(Box);

@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const Message = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const Message = (props) => {
 
 
 Message.propTypes = propTypes;
-Message.defaultProps = defaultProps;
 Message.displayName = "Message";
 
 export default memo(Message);
