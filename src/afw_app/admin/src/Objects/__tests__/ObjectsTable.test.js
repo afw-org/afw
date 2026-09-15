@@ -11,6 +11,7 @@ import Objects from "../Objects";
 describe("ObjectsTable Tests", () => { 
 
     // \fixme There is a timing issue here that needs investigation.  Sometimes selecting adapterId doesn't work
+    // eslint-disable-next-line jest/no-disabled-tests -- deliberately skipped pending the timing fix above, not unimplemented
     test.skip("Retrieve _AdaptiveObjectType_ objects", async () => {
         const history = createMemoryHistory();
         history.push("/Objects");

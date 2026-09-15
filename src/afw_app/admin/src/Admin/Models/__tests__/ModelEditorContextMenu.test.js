@@ -165,6 +165,8 @@ describe("ModelEditorContextMenu Tests", () => {
 
     });
 
+    /* eslint-disable jest/no-disabled-tests, jest/expect-expect -- acknowledged, tracked TODOs for the remaining context menu actions, not yet implemented */
+
     test.skip("Edit Model", async () => {
 
     });
@@ -173,10 +175,10 @@ describe("ModelEditorContextMenu Tests", () => {
 
     });
 
-    test.skip("Edit Model", async () => {
+    test.skip("Refresh Model", async () => {
 
     });
-    
+
     test.skip("New", async () => {
 
     });
@@ -204,5 +206,7 @@ describe("ModelEditorContextMenu Tests", () => {
     test.skip("Deploy to Service", async () => {
 
     });
+
+    /* eslint-enable jest/no-disabled-tests, jest/expect-expect */
 
 });

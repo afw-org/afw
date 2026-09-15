@@ -106,6 +106,12 @@ module.exports = tseslint.config(
             // request shape they answer) - these are plain data imports,
             // not jest.mock()-managed module mocks.
             "jest/no-mocks-import": "off",
+            // Testing Library's findBy*/getBy* queries throw (and so
+            // effectively assert) when the element isn't found, even
+            // though they're not literally an expect() call.
+            "jest/expect-expect": ["warn", {
+                assertFunctionNames: ["expect", "**.findBy*", "**.getBy*", "**.findAllBy*", "**.getAllBy*"],
+            }],
         },
     }
 );

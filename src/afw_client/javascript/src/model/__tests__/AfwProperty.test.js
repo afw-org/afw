@@ -126,6 +126,7 @@ describe("AfwProperty Tests", () => {
         expect(pType).toEqual(objectTypeObject.propertyTypes.prop1);
     });
 
+    // eslint-disable-next-line jest/expect-expect -- \fixme: needs a mocked object-type registry to assert anything meaningful (verified getObjectTypeObject() returns undefined without one, not a real check)
     test("getObjectTypeObject()", async () => {
 
         const objectTypeObject = {
