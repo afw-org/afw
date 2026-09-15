@@ -2,7 +2,6 @@
 import AfwClient from "../../AfwClient";
 
 import {AfwModel, AfwObject, AfwProperty, AfwArray, AfwArrayEntry} from "..";
-import {isObject, isArray} from "../../utils";
 import {waitFor, mswPostCallback} from "@afw/test";
 
 describe("AfwObject Tests", () => {
@@ -323,14 +322,11 @@ describe("AfwObject Tests", () => {
 
         await obj.initialize();
 
-        for (const [p, v] of Object.entries(object)) {
-            if (isObject(v)) 
-                expect(obj.getPropertyValue(p)).toBeInstanceOf(AfwObject);                
-            else if (isArray(v))
-                expect(obj.getPropertyValue(p)).toBeInstanceOf(AfwArray);
-            else
-                expect(obj.getPropertyValue(p)).toBe(v);
-        }
+        expect(obj.getPropertyValue("prop1")).toBe("abc");
+        expect(obj.getPropertyValue("prop2")).toBe(123);
+        expect(obj.getPropertyValue("prop3")).toBe(true);
+        expect(obj.getPropertyValue("prop4")).toBeInstanceOf(AfwObject);
+        expect(obj.getPropertyValue("prop5")).toBeInstanceOf(AfwArray);
 
     });
 
@@ -842,15 +838,12 @@ describe("AfwObject Tests", () => {
         
         obj.fromJSON( JSON.stringify(object) );
         
-        for (const p of obj.getProperties()) {  
-            if (p.getDataType() === "object")
-                expect(JSON.stringify(object[p.getName()], null, 4)).toBe(obj.getPropertyValue(p.getName()).stringify());
-            else if (p.getDataType() === "array")                  
-                expect(JSON.stringify(object[p.getName()], null, 4)).toBe(obj.getPropertyValue(p.getName()).stringify());                
-            else
-                expect(object[p.getName()]).toBe(obj.getPropertyValue(p.getName()));
-        }
-        
+        expect(object.prop1).toBe(obj.getPropertyValue("prop1"));
+        expect(object.prop2).toBe(obj.getPropertyValue("prop2"));
+        expect(object.prop3).toBe(obj.getPropertyValue("prop3"));
+        expect(JSON.stringify(object.prop4, null, 4)).toBe(obj.getPropertyValue("prop4").stringify());
+        expect(JSON.stringify(object.prop5, null, 4)).toBe(obj.getPropertyValue("prop5").stringify());
+
     });
 
     test("getErrors()", async () => {

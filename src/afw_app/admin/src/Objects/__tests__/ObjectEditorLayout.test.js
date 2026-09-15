@@ -44,6 +44,8 @@ describe("ObjectsEditorLayout Tests", () => {
 
         await waitForSpinner();
         
+        let objectPropertiesChecked = 0, arrayPropertiesChecked = 0, scalarPropertiesChecked = 0;
+
         for (const [propertyName, propertyType] of Object.entries(objectTypeObject.result.propertyTypes)) {
             if (propertyName === "_meta_")
                 continue;
@@ -52,26 +54,38 @@ describe("ObjectsEditorLayout Tests", () => {
             const value = objectTypeObject.result[propertyName];
 
             if (value && dataType === "object") {
+                objectPropertiesChecked++;
                 let propertyButton;
+                // eslint-disable-next-line jest/no-conditional-expect -- guarded against vacuousness below (objectPropertiesChecked)
                 await waitFor(() => expect(propertyButton = screen.getByRole("button", { name: label })).toBeInTheDocument());
 
-                // click on the propertyType to expand the embedded object              
+                // click on the propertyType to expand the embedded object
                 fireEvent.click(propertyButton);
             }
 
             else if (value && dataType === "array") {
+                arrayPropertiesChecked++;
                 let list;
+                // eslint-disable-next-line jest/no-conditional-expect -- guarded against vacuousness below (arrayPropertiesChecked)
                 await waitFor(() => expect(list = screen.getByRole("list", { name: label })).toBeInTheDocument());
 
                 for (const v of value) {
+                    // eslint-disable-next-line jest/no-conditional-expect -- guarded against vacuousness below (arrayPropertiesChecked)
                     expect(within(list).getByText(v)).toBeInTheDocument();
                 }
             }
 
             else if (value) {
-                await waitFor(() => expect(screen.getByLabelText(label)).toHaveTextContent(value));                    
+                scalarPropertiesChecked++;
+                // eslint-disable-next-line jest/no-conditional-expect -- guarded against vacuousness below (scalarPropertiesChecked)
+                await waitFor(() => expect(screen.getByLabelText(label)).toHaveTextContent(value));
             }
         }
+
+        // guard against the fixture changing in a way that silently makes one of the branches above vacuous
+        expect(objectPropertiesChecked).toBeGreaterThan(0);
+        expect(arrayPropertiesChecked).toBeGreaterThan(0);
+        expect(scalarPropertiesChecked).toBeGreaterThan(0);
 
     });
 
@@ -139,7 +153,9 @@ describe("ObjectsEditorLayout Tests", () => {
 
         await waitForSpinner();
         
-        for (const [propertyName, propertyType] of Object.entries(objectTypeObject.result.propertyTypes)) {            
+        let objectPropertiesChecked = 0, booleanPropertiesChecked = 0, scalarPropertiesChecked = 0;
+
+        for (const [propertyName, propertyType] of Object.entries(objectTypeObject.result.propertyTypes)) {
             if (propertyName === "_meta_")
                 continue;
 
@@ -147,10 +163,12 @@ describe("ObjectsEditorLayout Tests", () => {
             const value = objectTypeObject.result[propertyName];
 
             if (value && dataType === "object") {
+                objectPropertiesChecked++;
                 let propertyButton;
+                // eslint-disable-next-line jest/no-conditional-expect -- guarded against vacuousness below (objectPropertiesChecked)
                 await waitFor(() => expect(propertyButton = screen.getByRole("button", { name: label })).toBeInTheDocument());
 
-                // click on the propertyType to expand the embedded object           
+                // click on the propertyType to expand the embedded object
                 fireEvent.click(propertyButton);
             }
 
@@ -166,13 +184,23 @@ describe("ObjectsEditorLayout Tests", () => {
             }
 
             else if (value !== undefined) {
-                if (dataType === "boolean" && value === true)
-                    await waitFor(() => expect(screen.getByLabelText(label)).toBeChecked());                    
-                else {   
-                    await waitFor(() => expect(screen.getByLabelText(label)).toHaveValue(value));                    
+                if (dataType === "boolean" && value === true) {
+                    booleanPropertiesChecked++;
+                    // eslint-disable-next-line jest/no-conditional-expect -- guarded against vacuousness below (booleanPropertiesChecked)
+                    await waitFor(() => expect(screen.getByLabelText(label)).toBeChecked());
+                }
+                else {
+                    scalarPropertiesChecked++;
+                    // eslint-disable-next-line jest/no-conditional-expect -- guarded against vacuousness below (scalarPropertiesChecked)
+                    await waitFor(() => expect(screen.getByLabelText(label)).toHaveValue(value));
                 }
             }
         }
+
+        // guard against the fixture changing in a way that silently makes one of the branches above vacuous
+        expect(objectPropertiesChecked).toBeGreaterThan(0);
+        expect(booleanPropertiesChecked).toBeGreaterThan(0);
+        expect(scalarPropertiesChecked).toBeGreaterThan(0);
     });
 
     test("View editable object in different perspectives", async () => {
