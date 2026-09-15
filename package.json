@@ -92,8 +92,7 @@
   "devDependencies": {
     "@swc/cli": "^0.1.51",
     "@swc/core": "^1.2.139",
-    "@testing-library/cypress": "^8.0.1",
-    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^13.0.1",
     "jsdom": "^24.0.0",
