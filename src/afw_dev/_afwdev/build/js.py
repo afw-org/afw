@@ -103,9 +103,19 @@ def build(options):
 
         if package_json is None:
             msg.error_exit('Could not parse ' + package_json_file)
-        
+
         module_name = package_json.get('name')
         module_location = 'build/js/modules/' + afwPackageId + '/' + module_name
+
+        # Some js-module srcdirs (e.g. @afw/client, the react component
+        # packages) are source-first - consumed directly by whichever
+        # bundler is doing the consuming (Vite, Vitest), with no "build"
+        # script and no build/ output of their own. There's nothing to
+        # copy for those into the static distribution; skip them here
+        # rather than failing on a directory that was never going to exist.
+        if not os.path.exists(module + '/build'):
+            msg.highlighted_info('  Skipping ' + module_name + ' (source-first, no build/ output)')
+            continue
 
         # remove the "scripts" part of package.json
         package_json.pop('scripts', None)
