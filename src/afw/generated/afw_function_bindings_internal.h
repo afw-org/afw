@@ -923,11 +923,15 @@ afw_function_definition_retrieve_objects;
  * Options, specific to the adapterId, can be optionally supplied.
  * 
  * This function materializes all matching objects into a returned array. Use
- * maxObjects to bound how many objects may be collected (default 100; 0 means
- * unlimited). When the max would be exceeded, payload_too_large is thrown. For
- * large result sets prefer retrieve_objects_to_response,
- * retrieve_objects_to_stream, or retrieve_objects_to_callback so objects need
- * not all be held in memory at once.
+ * maxObjects to bound how many objects may be collected (default 0, unlimited).
+ * A positive maxObjects throws payload_too_large when that count would be
+ * exceeded, if the request pool still has room to throw. Request memory is
+ * capped separately by limitRequestPoolBytes: that cap may throw
+ * payload_too_large when it trips with room to build the error, or a memory
+ * error if allocation fails. For large result sets prefer
+ * retrieve_objects_to_response, retrieve_objects_to_stream, or
+ * retrieve_objects_to_callback so objects need not all be held in memory at
+ * once.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -969,10 +973,13 @@ afw_function_definition_retrieve_objects;
  *       Where ${adapterType} is the adapter type id.
  *
  *   maxObjects - (optional integer) Maximum number of objects that may be
- *       collected into the returned array. Default is 100. Set to 0 for
- *       unlimited. When exceeded, the function fails with payload_too_large.
- *       This bounds memory for materializing retrieves only; progressive
- *       retrieve_* functions are not limited by this parameter.
+ *       collected into the returned array. Default is 0 (unlimited). A positive
+ *       value fails with payload_too_large when exceeded, if the request pool
+ *       still has room to throw. This is an optional cardinality bound, not the
+ *       request memory cap. Runaway materialize is stopped by
+ *       limitRequestPoolBytes (payload_too_large when the cap trips with room
+ *       to throw) or by allocation failure (memory). Progressive retrieve_*
+ *       functions are not limited by this parameter.
  *
  * Returns:
  *
@@ -1235,9 +1242,13 @@ afw_function_definition_retrieve_objects_with_uri;
  * Options, specific to the adapterId, can be optionally supplied.
  * 
  * This function materializes all matching objects into a returned array. Use
- * maxObjects to bound how many objects may be collected (default 100; 0 means
- * unlimited). When the max would be exceeded, payload_too_large is thrown. For
- * large result sets prefer progressive retrieve functions.
+ * maxObjects to bound how many objects may be collected (default 0, unlimited).
+ * A positive maxObjects throws payload_too_large when that count would be
+ * exceeded, if the request pool still has room to throw. Request memory is
+ * capped separately by limitRequestPoolBytes: that cap may throw
+ * payload_too_large when it trips with room to build the error, or a memory
+ * error if allocation fails. For large result sets prefer progressive retrieve
+ * functions.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -1273,10 +1284,13 @@ afw_function_definition_retrieve_objects_with_uri;
  *       Where ${adapterType} is the adapter type id.
  *
  *   maxObjects - (optional integer) Maximum number of objects that may be
- *       collected into the returned array. Default is 100. Set to 0 for
- *       unlimited. When exceeded, the function fails with payload_too_large.
- *       This bounds memory for materializing retrieves only; progressive
- *       retrieve_* functions are not limited by this parameter.
+ *       collected into the returned array. Default is 0 (unlimited). A positive
+ *       value fails with payload_too_large when exceeded, if the request pool
+ *       still has room to throw. This is an optional cardinality bound, not the
+ *       request memory cap. Runaway materialize is stopped by
+ *       limitRequestPoolBytes (payload_too_large when the cap trips with room
+ *       to throw) or by allocation failure (memory). Progressive retrieve_*
+ *       functions are not limited by this parameter.
  *
  * Returns:
  *

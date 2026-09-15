@@ -5,24 +5,18 @@
 //? description: issue #49 - retrieve_objects maxObjects bounds materializing array
 //? sourceType: script
 //?
-//? test: default_max_throws_on_large_catalog
-//? description: Default maxObjects 100 throws payload_too_large for large OT catalog
+//? test: default_unlimited_returns_full_catalog
+//? description: Default maxObjects 0 returns full AdaptiveObjectType catalog
 //? expect: 0
 //? source: ...
 
-let caught = false;
-try {
-    retrieve_objects("afw", "_AdaptiveObjectType_");
-} catch (e) {
-    assert(e.id === "payload_too_large");
-    caught = true;
-}
-assert(caught);
+const objects = retrieve_objects("afw", "_AdaptiveObjectType_");
+assert(length(objects) > 100);
 return 0;
 
 //?
 //? test: maxObjects_zero_unlimited
-//? description: maxObjects 0 returns full AdaptiveObjectType catalog
+//? description: Explicit maxObjects 0 still returns full AdaptiveObjectType catalog
 //? expect: 0
 //? source: ...
 
@@ -47,8 +41,18 @@ assert(caught);
 return 0;
 
 //?
+//? test: with_uri_default_unlimited
+//? description: retrieve_objects_with_uri default maxObjects 0 returns full catalog
+//? expect: 0
+//? source: ...
+
+const objects = retrieve_objects_with_uri(anyURI("/afw/_AdaptiveObjectType_/"));
+assert(length(objects) > 100);
+return 0;
+
+//?
 //? test: with_uri_maxObjects_zero
-//? description: retrieve_objects_with_uri honors maxObjects 0
+//? description: retrieve_objects_with_uri honors explicit maxObjects 0
 //? expect: 0
 //? source: ...
 
@@ -58,14 +62,15 @@ assert(length(objects) > 100);
 return 0;
 
 //?
-//? test: with_uri_default_max_throws
-//? description: retrieve_objects_with_uri default max throws on large catalog
+//? test: with_uri_explicit_small
+//? description: retrieve_objects_with_uri maxObjects 2 throws when catalog exceeds 2
 //? expect: 0
 //? source: ...
 
 let caught = false;
 try {
-    retrieve_objects_with_uri(anyURI("/afw/_AdaptiveObjectType_/"));
+    retrieve_objects_with_uri(
+        anyURI("/afw/_AdaptiveObjectType_/"), undefined, undefined, 2);
 } catch (e) {
     assert(e.id === "payload_too_large");
     caught = true;

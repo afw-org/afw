@@ -486,8 +486,8 @@ export class AfwModel {
                 \fixme temporary until bindings fixed up 
                 \fixme return everything, including abort controller
             */
-            /* maxObjects default is 100 (issue #49); core has far more
-             * object types, so OT preload must opt into unlimited (0). */
+            /* maxObjects default is 0 unlimited (issue #49); keep sending
+             * 0 so older servers with default 100 still load full OT catalogs. */
             const action: IJSONObject = { 
                 "function": "retrieve_objects", 
                 adapterId, objectType: objectTypeId,
@@ -632,8 +632,8 @@ export class AfwModel {
             \fixme temporary until bindings fixed up 
             \fixme return everything, including abort controller
         */
-        /* maxObjects: server default 100 is too low for core metadata
-         * catalogs (issue #49); client default 0 = unlimited for UI loads. */
+        /* maxObjects: server default is 0 unlimited (issue #49); client
+         * default 0 matches that and still works on older default-100 servers. */
         const action: IJSONObject = { 
             "function": "retrieve_objects", 
             adapterId, objectType: objectTypeId, queryCriteria,

@@ -21,8 +21,8 @@ loading those packages if you need their entries here.
 After changing accessors (or to re-snapshot core):
 
 ```bash
-# From package root; maxObjects 0 = unlimited (do not omit on larger catalogs)
-afw -x 'retrieve_objects("afw", "_AdaptiveRuntimeValueAccessor_", {}, undefined, undefined, 0)'
+# From package root; default maxObjects 0 is unlimited
+afw -x 'retrieve_objects("afw", "_AdaptiveRuntimeValueAccessor_")'
 ```
 
 Service start lines go to stderr; JSON array is stdout. Sort by `key` when

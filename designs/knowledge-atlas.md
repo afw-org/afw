@@ -186,11 +186,11 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | Want | How |
 |------|-----|
 | Kind list | `AFW_ENVIRONMENT_REGISTRY_TYPE_MAP` or `_AdaptiveEnvironmentRegistry_/current` / registry types |
-| All of one kind | `retrieve_objects(afw, _Adaptive…_, maxObjects=0)` |
+| All of one kind | `retrieve_objects(afw, _Adaptive…_)` (default `maxObjects` **0** = unlimited) |
 | One | `get_object` / `/afw/<type>/<id>` |
 | Accessor contract | `/afw/_AdaptiveRuntimeValueAccessor_/<key>` |
 
-**maxObjects:** default ~100 may error (`payload_too_large`); **0 = unlimited**.
+**maxObjects:** default **0** = unlimited. A positive cap throws `payload_too_large` if the pool still has room. Request memory is `limitRequestPoolBytes` (`payload_too_large` or `memory`).
 
 ---
 

@@ -28,7 +28,7 @@ libafw is not only a script engine. Hosts, adapters, and policies plug in throug
 
 **Materializing** adaptive functions build a full result array:
 
-- `retrieve_objects` / `retrieve_objects_with_uri` — optional **`maxObjects`** (default **100**, **0** = unlimited). Over max → **`payload_too_large`**. Enforced in `function/afw_function_adapter.c` when adding to the array, **not** in the session wrapper.
+- `retrieve_objects` / `retrieve_objects_with_uri` — optional **`maxObjects`** (default **0** = unlimited). A positive cap → **`payload_too_large`** when exceeded, if the request pool still has room to throw. Enforced in `function/afw_function_adapter.c` when adding to the array, **not** in the session wrapper. Request memory is **`limitRequestPoolBytes`** (`payload_too_large` when the cap trips with room to throw, or **`memory`** if allocation fails).
 
 **Progressive** paths (no array max from `maxObjects`):
 

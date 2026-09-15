@@ -18,7 +18,7 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 |-------------|----|
 | `throw "…" { … }` | `throw "…" data { … }` (optional `id "not_found"`). A variable also named `data` is `throw "…" data data`. [Error codes](#error-codes-trycatch-and-http-issue-33) |
 | `open_file` / `stream` return `-1`; `get_stream_error` | They **throw**. `get_stream_error`, `open_uri`, and `open_response` are **gone**. [File streams](#file-streams-open_file-and-friends) |
-| `retrieve_objects` / `…_with_uri` with no cap | Default **`maxObjects` is 100**. Full dumps need **`maxObjects: 0`** or a progressive `retrieve_objects_to_*`. Over the limit → **`payload_too_large`**. [Retrieve](#materializing-retrieve-maxobjects-issue-49) |
+| `retrieve_objects` / `…_with_uri` with no cap | Default **`maxObjects` is 0** (unlimited). Pass a **positive** `maxObjects` only when you want a cardinality fail-closed (`payload_too_large` if the pool still has room to throw). Server memory is **`limitRequestPoolBytes`** (`payload_too_large` or a **`memory`** error). [Retrieve](#materializing-retrieve-maxobjects-issue-49) |
 | `stringify` for Adaptive-looking text (`date("…")`, …) | **`stringify` is pure JSON**. Use **`decompile`** for Adaptive compiled form. [stringify / decompile](#stringify-decompile-compiler-listing-and-binary-text) |
 | `e.id` names `cast_error`, `arg_error`, `undefined`, `code`, … | `conversion_error`, `argument_error`, `undefined_value`, `coding_error`, … Some HTTP statuses changed (syntax **400**, missing adapter **404**). Prefer **`e.id`**. [Error codes](#error-codes-trycatch-and-http-issue-33) |
 | `null()` / `function()` converts; `empty_array`; `(array of …)` / `(object "OT")` | Those converts are gone (use the literal / function value). **`create_array(n)`**. Type spellings are a hard cut. [Converts](#conversion-functions-type-named), [Types](#adaptive-script-types-issue-28), [Arrays](#array-semantics-issue-39) |
@@ -110,9 +110,9 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Expression property names**](#expression-property-names-in-object-values-issue-38) ([#38](https://github.com/afw-org/afw/issues/38)) | Object values may use `{ [expression]: value }` (same idea as `obj[expr]` get/set) |
 | [**Qualifier snapshots**](#list-active-qualified-variables-issue-9) ([#9](https://github.com/afw-org/afw/issues/9)) | **`qualifier(name)`** / **`qualifiers()`** return **fresh listable objects** (not live proxies); optional **`includeUntrusted`**; missing name → **nullish**; can be **large** |
 | [**Multi-frame `::` get**](#multi-frame-get-aligned-with-snapshots) | Stacked same-name qualifiers: first **defining** frame wins (was “first matching frame only”); aligned with snapshot semantics (landed with [#15](https://github.com/afw-org/afw/issues/15) work) |
-| [**Retrieve arrays**](#materializing-retrieve-maxobjects-issue-49) ([#49](https://github.com/afw-org/afw/issues/49)) | Optional **`maxObjects`** on materializing `retrieve_objects` / `…_with_uri` (default **100**, **0** = unlimited; over max → **`payload_too_large`**) |
+| [**Retrieve arrays**](#materializing-retrieve-maxobjects-issue-49) ([#49](https://github.com/afw-org/afw/issues/49)) | Optional **`maxObjects`** on materializing `retrieve_objects` / `…_with_uri` (default **0** = unlimited; positive cap → **`payload_too_large`** if the pool still has room). Request memory is **`limitRequestPoolBytes`** |
 | [**Progressive retrieve release**](#progressive-retrieve-release-issue-127) ([#127](https://github.com/afw-org/afw/issues/127)) | Write-only progressive paths **release each object after encode/flush** (`to_response` / `to_stream` / HTTP collection list) so large sets do not hold every adapter object until the request ends |
-| [**Admin / JS client**](#admin--afwclient-after-the-default-of-100) | `AfwModel` sends **`maxObjects: 0`** for full metadata catalogs so admin loads after the [#49](https://github.com/afw-org/afw/issues/49) default of 100 |
+| [**Admin / JS client**](#admin--afwclient) | `AfwModel` still sends **`maxObjects: 0`** for catalogs (same as the server default now) |
 | [**Adapter auth**](#adapter-getretrieve-authorization-issue-90) ([#90](https://github.com/afw-org/afw/issues/90)) | `checkIndividualObjectReadAccess` wiring fixed + tests (action **`read`** as well as **`query`**) |
 | [**File streams**](#file-streams-open_file-and-friends) ([#103](https://github.com/afw-org/afw/issues/103)) | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** (not `-1` / `get_stream_error`) |
 | [**Conf path templates**](#conf-path-templates-issue-15) ([#15](https://github.com/afw-org/afw/issues/15)) | Path-like conf properties are **templates** at create/start; host dirs often resolved to full path; VFS `vfsMap` / LDAP `url` too |
@@ -1177,22 +1177,22 @@ Older builds stopped **`qualifier::name` get** after the **first matching qualif
 
 **Issue [#49](https://github.com/afw-org/afw/issues/49)** (partial)
 
-`retrieve_objects` and `retrieve_objects_with_uri` build a **full result array** in memory. To keep large dumps from exhausting the server, they now accept an optional trailing parameter:
+`retrieve_objects` and `retrieve_objects_with_uri` build a **full result array** in memory. They accept an optional trailing **`maxObjects`**:
 
 | Parameter | Default | Meaning |
 |-----------|---------|---------|
-| **`maxObjects`** | **100** | Maximum objects collected into the returned array |
-| | **0** | Unlimited |
-| Over max | — | Throws **`payload_too_large`** (`e.id === "payload_too_large"`) |
+| **`maxObjects`** | **0** | Unlimited (collect the whole match set) |
+| | **positive** | Maximum objects collected into the returned array |
+| Over a positive max | — | Throws **`payload_too_large`** if the request pool still has room to throw |
 
 ```adaptive
-/* Default max 100 — large catalogs fail with payload_too_large */
+/* Default 0 — full catalogs are returned */
 retrieve_objects("afw", "_AdaptiveObjectType_");
 
-/* Explicit unlimited when you intentionally want the full set */
+/* Explicit 0 is the same as omitting it */
 retrieve_objects("afw", "_AdaptiveObjectType_", undefined, undefined, undefined, 0);
 
-/* Cap a filtered retrieve */
+/* Cap a filtered retrieve (cardinality fail-closed) */
 retrieve_objects("data", "Person", { filter: { op: "eq", property: "status", value: "active" } },
     undefined, undefined, 50);
 ```
@@ -1200,8 +1200,10 @@ retrieve_objects("data", "Person", { filter: { op: "eq", property: "status", val
 Same idea for URI form (parameter order: `uri`, `options?`, `adapterTypeSpecific?`, **`maxObjects?`**):
 
 ```adaptive
-retrieve_objects_with_uri(anyURI("/afw/_AdaptiveObjectType_/"), undefined, undefined, 0);
+retrieve_objects_with_uri(anyURI("/afw/_AdaptiveObjectType_/"));
 ```
+
+**Server memory** is not this count. Request threads are capped by **`limitRequestPoolBytes`** (default 64MiB; application conf; **0** = unlimited). That cap may throw **`payload_too_large`** when it trips with room to build the error, or a **`memory`** error if allocation fails. Either is an out-of-memory class failure; the worker stays up. A positive **`maxObjects`** is how you get a **cardinality** `payload_too_large` you can expect while the pool still has room. See [request caps](#process-telemetry-and-request-caps-issue-329).
 
 ### Progressive retrieve is not capped by `maxObjects`
 
@@ -1215,16 +1217,14 @@ They still use the same adapter session underneath; only the **array-building** 
 
 `maxObjects` is **not** an adapter conf property and **not** RQL/client paging—those remain longer-term [#49](https://github.com/afw-org/afw/issues/49) work.
 
-### Admin / `@afw/client` after the default of 100
+### Admin / `@afw/client`
 
-Core metadata catalogs (object types, etc.) are larger than 100. Materializing retrieves used by the admin SPA (Home boot `loadObjectTypes`, Documentation Schema via `useRetrieveObjects`) therefore failed with **`payload_too_large`** until the JS client was updated.
-
-**`AfwModel`** (`@afw/client`) now sends **`maxObjects: 0`** (unlimited) for:
+**`AfwModel`** (`@afw/client`) still sends **`maxObjects: 0`** for:
 
 - `loadObjectTypes`
 - `retrieveObjects` (default; callers can still pass a positive limit)
 
-Rebuild/install the admin app (or full JS install) and hard-refresh the browser. Progressive `retrieve_objects_to_response` (already used by the Objects browser) remains the better pattern for large **instance** data; that client story is still open under [#49](https://github.com/afw-org/afw/issues/49).
+That matches the server default. Progressive `retrieve_objects_to_response` (already used by the Objects browser) remains the better pattern for large **instance** data; that client story is still open under [#49](https://github.com/afw-org/afw/issues/49).
 
 [↑ Highlights](#highlights)
 
@@ -1408,7 +1408,7 @@ Specialized log conf object types (`_AdaptiveConf_log_standard`, `_syslog`, `_ev
 
 Watch **`process::`** (and optional **`response:metrics`**) for asked-for pool bytes vs RSS. **Peaks** use `peak*`, not `max*` (`maxObjects` is still retrieve array shape).
 
-A request that exceeds **`limitRequestPoolBytes`** (request threads), **`limitEvaluationStackCount`**, or remaining C stack below **`limitCStackHeadroomBytes`** throws **`payload_too_large`** while there is still room to build the error. The worker stays up. Application conf can override those knobs; setting **`limitRequestPoolBytes`** in conf also applies to the `afw` CLI.
+A request that exceeds **`limitRequestPoolBytes`** (request threads), **`limitEvaluationStackCount`**, or remaining C stack below **`limitCStackHeadroomBytes`** throws **`payload_too_large`** when there is still room to build the error. If allocation itself fails, the error is **`memory`**. Either is OK; the worker stays up. Application conf can override those knobs; setting **`limitRequestPoolBytes`** in conf also applies to the `afw` CLI. A positive retrieve **`maxObjects`** is a separate cardinality throw (`payload_too_large`) and is not the request memory cap.
 
 `afwdev test` prints `(Nms, Xk)` on file lines and `Memory: max Xk xctx` on the run summary. **`--history`** / **`--history-ref LABEL`** write dated JSON; **`--compare`** / **`--trend`** diff by test path (k optional).
 

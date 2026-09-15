@@ -55,7 +55,7 @@ Complementary, not substitutes:
 | Track | Role |
 |-------|------|
 | **#2** (this) | Lifetimes, refcount/pool ownership, value identity, OOM resilience story |
-| **#49** / maxObjects | Author-visible caps on materializing retrieves |
+| **#49** / maxObjects | Optional author-visible cardinality cap on materializing retrieves (default 0 = unlimited). Request memory is `limitRequestPoolBytes`. |
 | **#127** | Progressive release after stream/to_response write |
 | **#35** store-time bind | Object/array literals and nested assign hold the defining scope (depends on #2 slot protocol). `after2-*` in `closures.as` run. |
 | **#9** snapshots | Large fresh memory objects; stress #2 if retained |

@@ -69,12 +69,12 @@ Shape: **symptom → layer → probe → code / doc entry**.
 
 | Want | How |
 |------|-----|
-| All of a kind | `retrieve_objects(afw, _Adaptive…_, maxObjects=0)` |
+| All of a kind | `retrieve_objects(afw, _Adaptive…_)` (default `maxObjects` **0** = unlimited) |
 | One | `get_object` / `/afw/<type>/<id>` |
 | Accessor policy | `/afw/_AdaptiveRuntimeValueAccessor_/<key>` |
 | Everything-ish | `/afw/_AdaptiveEnvironmentRegistry_/current` — **materializes** each kind (functions dominate); prefer typed retrieves |
 
-**maxObjects:** default ~100 may error; **0 = unlimited**.
+**maxObjects:** default **0** = unlimited. A positive cap throws `payload_too_large` if the pool still has room. Request memory is `limitRequestPoolBytes` (`payload_too_large` or `memory`).
 
 **Adapter catalog (shipped pattern):** `referenceCount` lock+snapshot; `stopping_*` lock+copy; `metrics`/`properties` pointer under lock, **live while active** — do not cache across stop without a session ref. The lock is only the load: after unlock nothing owns that object unless the caller already holds a session. Views + `metaFull`: clone permanent OT propertyTypes onto view pool.
 
@@ -202,7 +202,7 @@ Do **not** implement admin JS unless asked. The support model is the C/request c
 |-------|--------|
 | Symptom | “Why is there no file adapter?” when `_AdaptiveAdapterType_` lists `file` |
 | Layer | **Type** = factory in the env (`_AdaptiveAdapterType_`). **Instance** = started service (`_AdaptiveAdapter_`, `adapter-…`). Conf / `service_start` creates instances. |
-| Probe | Retrieve both object types with `maxObjects=0`. Minimal conf often has only instance `afw`. |
+| Probe | Retrieve both object types (default `maxObjects` 0 is unlimited). Minimal conf often has only instance `afw`. |
 | Entry | atlas §5 and §7; `afw-core-services`; `service_start` / `service_stop` |
 | Status | **Filled** |
 
