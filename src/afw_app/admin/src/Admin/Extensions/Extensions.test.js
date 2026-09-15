@@ -51,11 +51,9 @@ describe("Extensions Tests", () => {
             expect(utils.getByText(extensionVersion + " " + afwCompiledVersion)).toBeInTheDocument();            
 
             // find the matching manifest entry
-            for (const manifest_entry of manifest.result) {
-                if (manifest_entry.extensionId === extensionId) {
-                    expect(utils.getByText(manifest_entry.brief)).toBeInTheDocument();
-                }
-            }
+            const manifest_entry = manifest.result.find(m => m.extensionId === extensionId);
+            expect(manifest_entry).toBeDefined();
+            expect(utils.getByText(manifest_entry.brief)).toBeInTheDocument();
         }        
 
         /* now look for all manifest entries */
@@ -158,57 +156,43 @@ describe("Extensions Tests", () => {
         /* wait for manifest, extensions, etc to finish */
         await waitForSpinner();
 
-        let loaded = false;
-        for (const manifest_entry of manifest.result) {
-            if (loaded)
-                break;
+        const loadedExtensionIds = new Set(Object.values(extensions).map(({extensionId}) => extensionId));
+        const manifest_entry = manifest.result.find(({extensionId}) => !loadedExtensionIds.has(extensionId));
+        expect(manifest_entry).toBeDefined();
+        const {extensionId} = manifest_entry;
 
-            const {extensionId} = manifest_entry;
+        const loadBtn = screen.getByLabelText("Load Extension");
+        await waitFor(() => expect(screen.getByText(extensionId)).toBeInTheDocument());
 
-            let found = false;
-            for (const [, value] of Object.entries(extensions)) {
-                const {extensionId: id} = value;
-                if (extensionId === id)
-                    found = true;
-            }
+        // clear requests and start over from here
+        mswPostCallback.mockClear();
 
-            if (!found) {
-                const loadBtn = screen.getByLabelText("Load Extension");                                
-                await waitFor(() => expect(screen.getByText(extensionId)).toBeInTheDocument());
+        /* extension not loaded */
+        const row = screen.getByText(extensionId).closest("tr");
 
-                // clear requests and start over from here
-                mswPostCallback.mockClear();
+        /* select the fow */
+        fireEvent.click(row);
 
-                /* extension not loaded */
-                const row = screen.getByText(extensionId).closest("tr");                       
+        await waitFor(() => expect(loadBtn).toBeEnabled());
 
-                /* select the fow */
-                fireEvent.click(row);
+        /* load the extension */
+        fireEvent.click(loadBtn);
 
-                await waitFor(() => expect(loadBtn).toBeEnabled());
+        await waitFor(() => expect(screen.getByLabelText("Yes")).toBeInTheDocument());
 
-                /* load the extension */
-                fireEvent.click(loadBtn);
-                
-                await waitFor(() => expect(screen.getByLabelText("Yes")).toBeInTheDocument());                
-                
-                const yesBtn = screen.getByLabelText("Yes");      
-                await waitFor(() => expect(yesBtn).toBeEnabled());
+        const yesBtn = screen.getByLabelText("Yes");
+        await waitFor(() => expect(yesBtn).toBeEnabled());
 
-                fireEvent.click(yesBtn);                
+        fireEvent.click(yesBtn);
 
-                await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("extension_load"));
-                await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("extension_id", extensionId));                     
+        await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("extension_load"));
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("extension_id", extensionId));
 
-                /* The extension should not be selected now, and "Load Extension" disabled */
-                await waitFor(() => expect(screen.getByLabelText("Load Extension")).toBeDisabled());    
+        /* The extension should not be selected now, and "Load Extension" disabled */
+        await waitFor(() => expect(screen.getByLabelText("Load Extension")).toBeDisabled());
 
-                /* wait for manifest reload to finish */
-                await waitForSpinner();
-
-                loaded = true;
-            }
-        }
+        /* wait for manifest reload to finish */
+        await waitForSpinner();
     });
 
     test("Loads an extension and adds it to startup", async () => {
@@ -356,7 +340,7 @@ describe("Extensions Tests", () => {
         fireEvent.click(screen.getByLabelText("Load on startup"));
         fireEvent.click(screen.getByLabelText("Yes"));
         
-        await waitFor(() => expect(mswPostCallback.mock.calls.length > 15 ));
+        await waitFor(() => expect(mswPostCallback.mock.calls.length).toBeGreaterThan(15));
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("extension_load"));
 
         for (const unloadedExtensionId of unloadedExtensions) {            
@@ -422,15 +406,15 @@ describe("Extensions Tests", () => {
         await waitForSpinner();      
     });
 
-    test("Add an Extension", async () => {
+    test("Add an Extension - Add button enables after entering a module path", async () => {
 
-        render( <Extensions /> );        
-        
+        render( <Extensions /> );
+
         server.use(
             rest.post("/afw", (req, res, ctx) => {
                 const {function: functionId} = req.body;
 
-                if (functionId === "extension_load_by_module_path") { 
+                if (functionId === "extension_load_by_module_path") {
                     mswPostCallback("/afw", req, res, ctx);
 
                     return res(
@@ -442,13 +426,13 @@ describe("Extensions Tests", () => {
                     );
                 }
             })
-        );        
-        
-        expect(await screen.findByText("Extension Id")).toBeInTheDocument();        
+        );
+
+        expect(await screen.findByText("Extension Id")).toBeInTheDocument();
         expect(await screen.findByLabelText("Load Extension")).toBeInTheDocument();
         expect(await screen.findByLabelText("Refresh")).toBeInTheDocument();
-        expect(await screen.findByLabelText("Details")).toBeInTheDocument();      
-        
+        expect(await screen.findByLabelText("Details")).toBeInTheDocument();
+
         /* wait for manifest, extensions, etc to finish */
         await waitForSpinner();
 
@@ -458,7 +442,7 @@ describe("Extensions Tests", () => {
         fireEvent.click(addBtn);
 
         await waitFor(() => expect(screen.getByRole("textbox", { name: "Module Path" })).toBeInTheDocument());
-        expect(screen.getByRole("button", { name: "Add" })).not.toBeEnabled();       
+        expect(screen.getByRole("button", { name: "Add" })).not.toBeEnabled();
 
         fireEvent.change(screen.getByRole("textbox", { name: "Module Path" }), { target: { value: "libmyext" }});
         expect(screen.getByRole("button", { name: "Add" })).toBeEnabled();

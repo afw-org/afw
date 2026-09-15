@@ -66,6 +66,13 @@ module.exports = tseslint.config(
             // happens via separate hand-maintained *.propTypes.js files per
             // component rather than full-coverage inline PropTypes.
             "react/prop-types": "off",
+            // Almost entirely concentrated in @afw/client's hand-written TS
+            // domain model (AfwObject.ts, AfwArray.ts, AfwValue.ts, etc).
+            // Properly replacing `any` there requires real type-design work
+            // against AFW's runtime value shapes, not a quick lint fix -
+            // downgraded to non-blocking pending that as deliberate,
+            // separate follow-up work.
+            "@typescript-eslint/no-explicit-any": "warn",
         },
     },
     {
@@ -94,6 +101,11 @@ module.exports = tseslint.config(
         },
         rules: {
             ...jest.configs["flat/recommended"].rules,
+            // @afw/test organizes its static JSON test fixtures under
+            // __mocks__-named directories by convention (mirroring the
+            // request shape they answer) - these are plain data imports,
+            // not jest.mock()-managed module mocks.
+            "jest/no-mocks-import": "off",
         },
     }
 );
