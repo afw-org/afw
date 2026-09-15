@@ -134,6 +134,7 @@ export const ArrayResponsive = (props) => {
             });
         }
 
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- items is also imperatively set by onSave/onDelete elsewhere, so it can't be a pure useMemo derivation of property alone
         setItems(items);
     }, [property, onChanged]);
 

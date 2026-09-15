@@ -192,6 +192,7 @@ export const PropertyResponsiveRename = ({
 
     useEffect(() => {
         if (property)
+            // eslint-disable-next-line react-hooks/set-state-in-effect -- newName is also imperatively set elsewhere as the user edits it, so it can't be a pure useMemo derivation of property alone
             setNewName(property.getName());
     }, [property]);
 

@@ -31,9 +31,11 @@ export const CustomVariableEditor = (props) => {
 
     useEffect(() => {
         if (variable)
+            // eslint-disable-next-line react-hooks/set-state-in-effect -- newName is also imperatively set elsewhere (onSave/onDismiss/onChanged below), so it can't be a pure useMemo derivation of variable alone
             setNewName(variable.getName());
     }, [variable]);
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- savable is also imperatively set elsewhere (onSave/onDismiss/onChanged below), so it can't be a pure useMemo derivation of changed alone
     useEffect(() => setSavable(true), [changed]);
 
     /* When the name of the property is changed, determine if it's savable */
@@ -159,7 +161,8 @@ export const CustomVariables = (props) => {
             const properties = custom.getValue().getProperties().sort(
                 (A, B) => A.getName().toLowerCase().localeCompare(B.getName().toLowerCase())
             );
-            
+
+            // eslint-disable-next-line react-hooks/set-state-in-effect -- variableNames is also imperatively recomputed elsewhere after add/remove, so it can't be a pure useMemo derivation of custom alone
             setVariableNames(properties.map(p => p.getName()));
         }
     }, [custom]);

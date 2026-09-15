@@ -30,12 +30,14 @@ export const ObjectResponsivePropertyOther = (props) => {
     const {open, adapterId, propertyType, onDismiss, onSave} = props;    
     
     useEffect(() => {
+        /* eslint-disable react-hooks/set-state-in-effect -- name/dataType/dataTypeParameter are also imperatively set via the onChanged handlers below, so they can't be pure useMemo derivations of open/propertyType alone */
         if (open) {
             /* reset state values when re-opened */
             setName();
             setDataType(propertyType ? propertyType.dataType : undefined);
             setDataTypeParameter(propertyType ? propertyType.dataTypeParameter : undefined);
         }
+        /* eslint-enable react-hooks/set-state-in-effect */
     }, [open, propertyType]);
 
     const onSaveProperty = () => {
