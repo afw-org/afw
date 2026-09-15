@@ -32,9 +32,9 @@ export const TextField = ({
             onBlur={onBlur}
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={autoFocus}        
-            inputProps={{
-                "aria-label": ariaLabel
-            }}        
+            slotProps={{
+                htmlInput: { "aria-label": ariaLabel }
+            }}
             variant="standard"
             error={error}
         />

@@ -37,12 +37,12 @@ const Objects = () => {
 
     const [operation, setOperation] = useState("retrieve");
     const [queryCriteria, setQueryCriteria] = useState("");
-    const [objectId, setObjectId] = useState();        
+    const [objectId, setObjectId] = useState();
     const [selectedObjectTypeId, setSelectedObjectTypeId] = useState();
     const [selectedObjectTypeObject, setSelectedObjectTypeObject] = useState();
     const [showNewObject, setShowNewObject] = useState(false);
     const [buildQueryCriteria, setBuildQueryCriteria] = useState(false);
-    const [showHelp, setShowHelp] = useState(false);        
+    const [showHelp, setShowHelp] = useState(false);
     const [selectedObject, setSelectedObject] = useState(); 
     const [selectedAdapter, setSelectedAdapter] = useState();
     const [selectedAdapterId, setSelectedAdapterId] = useState();

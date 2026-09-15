@@ -20,7 +20,7 @@ export const ModelProvider = ({ client, debounce, children }) => {
     useEffect(() => {
         /* create a default AfwModel object */
         if (client)
-            setModel( new AfwModel({ client, debounce }) );                
+            setModel( new AfwModel({ client, debounce }) );
     }, [client, debounce]);
 
     return (
