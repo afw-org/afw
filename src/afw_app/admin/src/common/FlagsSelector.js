@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {useState, useEffect} from "react";
+import {useState, useMemo} from "react";
 
 import {
     Button,
@@ -12,7 +12,6 @@ import {useFlags} from "@afw/react";
 export const FlagsSelector = (props) => {
 
     const [menuTarget, setMenuTarget] = useState();
-    const [menuItems, setMenuItems] = useState([]);
 
     const {flags} = useFlags();
     const {isMobile} = useApplication();
@@ -39,7 +38,7 @@ export const FlagsSelector = (props) => {
         setMenuTarget();
     };
 
-    useEffect(() => {
+    const menuItems = useMemo(() => {
 
         const isChecked = (flag) => {
             let checked, disabled;
@@ -64,23 +63,22 @@ export const FlagsSelector = (props) => {
         };
 
         if (flags) {
-            setMenuItems(
-                flags.map(flag => {
-                    const {checked, disabled} = isChecked(flag);
+            return flags.map(flag => {
+                const {checked, disabled} = isChecked(flag);
 
-                    return ({
-                        key: flag.flagId,
-                        label: flag.flagId,
-                        description: flag.description,
-                        canCheck: true,
-                        checked: checked,
-                        disabled: disabled,
-                        onClick: () => onSelectFlag(flag)
-                    });
-                })
-            );
+                return ({
+                    key: flag.flagId,
+                    label: flag.flagId,
+                    description: flag.description,
+                    canCheck: true,
+                    checked: checked,
+                    disabled: disabled,
+                    onClick: () => onSelectFlag(flag)
+                });
+            });
         }
-        // eslint-disable-next-line
+        return [];
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [flags, selectedFlags]);
 
     return (

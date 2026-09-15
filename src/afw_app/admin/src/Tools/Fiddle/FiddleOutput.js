@@ -30,7 +30,8 @@ const useErrorObject = ({ error }) => {
         if (model && error)
             setError();
         else {
-            setErrorObject();        
+            // eslint-disable-next-line react-hooks/set-state-in-effect -- this effect is fundamentally async (setError above awaits obj.initialize()); the sync clear-to-undefined here is the fallback path of the same effect, not a pure derivation
+            setErrorObject();
         }
 
     }, [model, error]);
