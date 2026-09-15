@@ -451,7 +451,7 @@ struct afw_value_call_test_script_s {
 /**
  * @brief Struct for closure binding value.
  *
- * This is a closure binding.
+ * Managed header in xctx->p. Last-release free_memorys it.
  */
 struct afw_value_closure_binding_s {
     /* Value inf union with afw_value_t pub to reduce casting needed. */

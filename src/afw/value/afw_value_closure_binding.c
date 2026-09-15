@@ -36,8 +36,15 @@ afw_value_closure_binding_create(
     afw_xctx_t *xctx)
 {
     AFW_VALUE_SELF_T *self;
-    self = afw_pool_calloc_type(
-        enclosing_lexical_scope->p, AFW_VALUE_SELF_T, xctx);
+
+    /*
+     * Header on the xctx heap, not a scope tracker leftover list. Capture
+     * still points at enclosing_lexical_scope. Named-call rebind of `f`
+     * mints a wrapper that last-release free_memorys; do not pile headers
+     * on the names-frame tracker. Loop clone / escape may still hold the
+     * pointer after the creating `{ }` dies.
+     */
+    self = afw_pool_calloc_type(xctx->p, AFW_VALUE_SELF_T, xctx);
     self->inf = &afw_value_closure_binding_inf;
     self->script_function_definition = script_function_definition;
     self->enclosing_lexical_scope = enclosing_lexical_scope;
@@ -105,6 +112,7 @@ impl_afw_value_optional_release(
     if (self->reference_count == 1) {
         self->reference_count = 0;
         afw_xctx_scope_release(self->enclosing_lexical_scope, xctx);
+        afw_pool_free_memory_type(xctx->p, self, AFW_VALUE_SELF_T, xctx);
         return;
     }
     self->reference_count--;
