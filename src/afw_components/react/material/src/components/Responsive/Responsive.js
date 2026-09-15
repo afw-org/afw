@@ -50,20 +50,31 @@ const getBreakpoints = (breakpoints) => {
     return breaks;
 };
 
-export const ResponsiveCol = (props) => {   
-               
+export const ResponsiveCol = (props) => {
+
     const {style, contains, breakpoints, numCols, ...rest} = props;
 
     if (!contains)
         return null;
-    
+
     const breakpointsObj = getBreakpoints(breakpoints);
-    
+    const hasBreakpoints = Object.keys(breakpointsObj).length > 0;
+
+    /*
+     * When explicit breakpoints are given, let Grid's own size-driven width
+     * (which already accounts for gap-based spacing) apply undisturbed --
+     * a hardcoded percentage width here would fight it and, depending on
+     * spacing, overflow the row. Only fall back to an even 100/numCols
+     * split when no breakpoints were specified at all.
+     */
     return (
-        <Grid style={{ width: String(100 / numCols) + "%", ...style }} size={breakpointsObj}>
+        <Grid
+            style={hasBreakpoints ? style : { width: String(100 / numCols) + "%", ...style }}
+            size={hasBreakpoints ? breakpointsObj : 12 / numCols}
+        >
             <AdaptiveComponent {...rest} layoutComponent={contains} />
         </Grid>
-    );   
+    );
 };
 
 ResponsiveCol.propTypes = {
