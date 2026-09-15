@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {useState, useEffect, useCallback, useRef} from "react";
+import {useState, useEffect, useCallback, useMemo, useRef} from "react";
 import {Prompt, useRouteMatch, useLocation} from "react-router";
 
 import ObjectEditorLayout from "./ObjectEditorLayout";
@@ -42,37 +42,38 @@ const ObjectEditor = ({ onNextObject, onPreviousObject, onSelectObject }) => {
     const [objectDifferences, setObjectDifferences] = useState();
     const [showObjectDifferencesModal, setShowObjectDifferencesModal] = useState(false);
     const [editMode, setEditMode] = useState();
-    const [adapterId, setAdapterId] = useState();
-    const [objectTypeId, setObjectTypeId] = useState();
-    const [objectId, setObjectId] = useState();
     const [isProcessing, setIsProcessing] = useState();
-    const [embeddedObject, setEmbeddedObject] = useState();
-    
-    const {object, isLoading, error, savable} = useGetObject({ adapterId, objectTypeId, objectId, objectOptions });
-    const {notification} = useApplication();
+
     const match = useRouteMatch();
     const location = useLocation();
-    const theme = useTheme();    
-    const isMounted = useIsMounted();
-    const layoutRef = useRef();
 
-    useEffect(() => {
+    const {adapterId, objectTypeId, objectId, embeddedObject} = useMemo(() => {
         if (match.params) {
             const {adapterId, objectTypeId, objectId} = match.params;
 
-            setAdapterId( decodeURIComponent(adapterId) );
-            setObjectTypeId( decodeURIComponent(objectTypeId) );
-            setObjectId( decodeURIComponent(objectId) );
-
+            let embeddedObject;
             if (!match.isExact) {
                 /* we must have requested an embeddedObject */
-                const embeddedObject = location.pathname.split("/" + adapterId + "/" + objectTypeId + "/" + objectId + "/")[1];
-                setEmbeddedObject(embeddedObject.split("/"));
-            } else {
-                setEmbeddedObject();
+                const embeddedObjectPath = location.pathname.split("/" + adapterId + "/" + objectTypeId + "/" + objectId + "/")[1];
+                embeddedObject = embeddedObjectPath.split("/");
             }
+
+            return {
+                adapterId: decodeURIComponent(adapterId),
+                objectTypeId: decodeURIComponent(objectTypeId),
+                objectId: decodeURIComponent(objectId),
+                embeddedObject,
+            };
         }
+
+        return {};
     }, [match, location]);
+
+    const {object, isLoading, error, savable} = useGetObject({ adapterId, objectTypeId, objectId, objectOptions });
+    const {notification} = useApplication();
+    const theme = useTheme();
+    const isMounted = useIsMounted();
+    const layoutRef = useRef();
 
     useEffect(() => onSelectObject(object), [onSelectObject, object]);
 

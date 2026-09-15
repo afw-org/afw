@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {useState, useEffect} from "react";
+import {useMemo} from "react";
 import {Route, Switch, useRouteMatch} from "react-router";
 
 import {
@@ -40,7 +40,6 @@ const objectOptions = {
 export const ObjectTypes = () => {
 
     const theme = useTheme();
-    const [objectTypesHash, setObjectTypesHash] = useState();
     const match = useRouteMatch();
 
     const {adapterId} = match.params;
@@ -52,14 +51,14 @@ export const ObjectTypes = () => {
         objectOptions
     });
 
-    useEffect(() => {
+    const objectTypesHash = useMemo(() => {
         if (objectTypeObjects) {
-            const objectTypesHash = Object.assign(
+            return Object.assign(
+                {},
                 ...objectTypeObjects.map(i => ({[i.getPath()]: i}))
             );
-
-            setObjectTypesHash(objectTypesHash);
         }
+        return undefined;
     }, [objectTypeObjects]);
     
     if (isLoading) {

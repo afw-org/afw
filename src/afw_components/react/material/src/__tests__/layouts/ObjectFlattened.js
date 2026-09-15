@@ -2,4 +2,6 @@
 import {ObjectFlattened, Providers} from "@afw/test/build/esm/coreTests";
 import componentRegistry from "../..";
 
-describe("Core Layout Tests for [ObjectFlattened]", () => ObjectFlattened(Providers(componentRegistry)));
+describe("Core Layout Tests for [ObjectFlattened]", () => {
+    ObjectFlattened(Providers(componentRegistry));
+});

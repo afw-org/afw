@@ -111,6 +111,7 @@ export const useLocalJSONStorage = (identifier, initialValue) => {
                     afwStorage[identifier] = initialValue;
                     localStorage.setItem("afw", JSON.stringify(afwStorage));
                 }
+                // eslint-disable-next-line react-hooks/set-state-in-effect -- reads localStorage, an external store that can also change from other tabs/windows; storage is also written back via onChanged below
                 setStorage(afwStorage[identifier]);
             } catch (e) {
                 /* incognito mode?  size limit? */

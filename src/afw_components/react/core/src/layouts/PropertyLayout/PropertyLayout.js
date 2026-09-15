@@ -18,6 +18,7 @@ export const PropertyLayout = (props) => {
     const Layout = layoutByProperty({ property, operational });
 
     if (Layout) {
+        // eslint-disable-next-line react-hooks/static-components -- Layout is looked up from the registry (an existing, stably-defined component), not created here
         return <Layout {...props} />;
     } else return null;
 };

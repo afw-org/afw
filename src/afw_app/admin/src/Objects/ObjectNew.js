@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {useState, useEffect, useCallback, useRef} from "react";
+import {useState, useEffect, useCallback, useMemo, useRef} from "react";
 
 import {
     AdapterDropdown,
@@ -35,7 +35,6 @@ const ObjectNew = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isInitializing, setIsInitializing] = useState(false);
     const [objectTypeObject, setObjectTypeObject] = useState();
-    const [canNext, setCanNext] = useState(false);    
     const [, setObjectChanged] = useState();
     const [error, setError] = useState();    
     const [showError, setShowError] = useState(false);
@@ -49,30 +48,30 @@ const ObjectNew = (props) => {
     const {notification} = useApplication();
     
     useEffect(() => {
+        /* eslint-disable react-hooks/set-state-in-effect -- adapterId/objectTypeId are also imperatively set by the onChanged handlers below, so they can't be pure useMemo derivations of props alone */
         setAdapterId(props.adapterId);
         setObjectTypeId(props.objectTypeId);
+        /* eslint-enable react-hooks/set-state-in-effect */
     }, [props.adapterId, props.objectTypeId]);
 
     /**
      * canNext()
-     * 
+     *
      * Returns true/false if the "Next" button should be enabled.  For example, if
      * the user enters an objectId that already exists, then we shouldn't be able to.
      */
-    useEffect(() => {
-        let canNext = true;
-
+    const canNext = useMemo(() => {
         /* "afw" adapter is always read-only */
         if (adapterId === "afw")
-            canNext = false;
+            return false;
 
         if (!objectTypeId)
-            canNext = false;
+            return false;
 
         if (objectTypeObject && objectTypeObject.getPropertyValue("allowAdd") === false)
-            canNext = false;
+            return false;
 
-        setCanNext(canNext);
+        return true;
     }, [adapterId, objectTypeId, objectTypeObject]);
 
     /**

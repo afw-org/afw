@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {useState, useEffect} from "react";
+import {useState, useEffect, useMemo} from "react";
 
 import {
     Button,
@@ -286,7 +286,7 @@ export const ServiceStepDetailed = (props) => {
             return <ServiceNewAdapterLdap confObject={confObject} />;
 
     } else if (serviceType === "authorizationHandler") {
-        //eslint-disable-next-line
+        // no subtype-specific view for this type - falls through to the generic renderer below
     }
 
     /*
@@ -325,16 +325,15 @@ export const ServiceStepDetailed = (props) => {
 
 const CreateButton = ({ className, style, id, confObject, onCreateService }) => {
 
-    const [canCreate, setCanCreate] = useState(false);
-    const changed = useEventId({ object: confObject, eventId: "onChildChanged" });    
+    const changed = useEventId({ object: confObject, eventId: "onChildChanged" });
 
-    useEffect(() => {
+    const canCreate = useMemo(() => {
         if (confObject) {
             const errors = confObject.validate();
-            if (!errors || errors.length === 0) {                
-                setCanCreate(true);                                   
-            }
+            return !errors || errors.length === 0;
         }
+        return false;
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- changed drives re-validation, not read directly
     }, [changed, confObject]);
 
     return (
@@ -383,10 +382,12 @@ export const ServiceNew = (props) => {
     const changed = useEventId({ object: confObject, eventId: "onSavable" });
     const values = useValues(confObject);
 
-    useEffect(() => {        
-        if (confObject && changed && idProperty && values && values[idProperty]) {                      
+    useEffect(() => {
+        /* eslint-disable react-hooks/set-state-in-effect -- canNext is also imperatively set/reset by the step-navigation handlers below (onDismiss, the type-select handler, onNext), not purely derived from this effect's own deps alone */
+        if (confObject && changed && idProperty && values && values[idProperty]) {
             setCanNext(true);
         } else setCanNext(false);
+        /* eslint-enable react-hooks/set-state-in-effect */
     }, [changed, confObject, idProperty, values]);
    
     const onSelectServiceType = (serviceTypeObject, serviceSubtypeObject) => {
@@ -476,8 +477,9 @@ export const ServiceNew = (props) => {
         }
     };     
 
-    const steps = [            
-        <ServiceStepSelect 
+    /* eslint-disable react/jsx-key -- indexed by activeStep below, never rendered as a list */
+    const steps = [
+        <ServiceStepSelect
             {...props}
             onSelectServiceType={onSelectServiceType}
         />,
@@ -497,6 +499,7 @@ export const ServiceNew = (props) => {
             serviceSubtype={serviceSubtype}
         />
     ];
+    /* eslint-enable react/jsx-key */
 
     return (
         <Dialog             

@@ -134,6 +134,7 @@ export const LayoutViewContextMenu = (props) => {
             event.stopPropagation();
             setLayoutsMenuTarget();
             onChanged(layoutParameters);
+            // eslint-disable-next-line react-hooks/immutability -- safe recursive self-reference: onClick only runs after buildMenu's own useCallback assignment has completed
             setLayoutOptionsMenu(buildMenu(layoutParameters));
         };
 
@@ -315,7 +316,8 @@ export const LayoutViewContextMenu = (props) => {
     }, [onChanged]);
 
     useEffect(() => {
-        setLayoutOptionsMenu(buildMenu(layoutParameters));        
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- layoutOptionsMenu is also imperatively recomputed by onClick above, so it can't be a pure useMemo derivation
+        setLayoutOptionsMenu(buildMenu(layoutParameters));
     }, [layoutParameters, buildMenu]);
 
     return (

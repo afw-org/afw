@@ -37,7 +37,7 @@ const Documentation = () => {
                     if (["DataTypes", "Functions", "Schema", "Components"].includes(doc))
                         return <Reference doc={doc} />;
                     else
-                        null;             
+                        return null;
                 }} />
                 <Route path="/Documentation/:category" render={(props) => {
                     const category = props.match.params.category;

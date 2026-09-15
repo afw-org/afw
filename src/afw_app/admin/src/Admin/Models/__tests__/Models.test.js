@@ -20,7 +20,7 @@ describe("Models Tests", () => {
         mswPostCallback.mockClear();
     });
 
-    test("Test Breadcrumbs with different routes", async () => {
+    test("Breadcrumbs with different routes", async () => {
 
         const history = createMemoryHistory();
         history.push("/Admin/Models");
@@ -87,7 +87,7 @@ describe("Models Tests", () => {
                 
     });
 
-    test("Test ContextualHelp", async () => {
+    test("ContextualHelp", async () => {
 
         const history = createMemoryHistory();
         history.push("/Admin/Models");

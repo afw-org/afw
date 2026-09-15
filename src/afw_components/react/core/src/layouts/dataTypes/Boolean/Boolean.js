@@ -13,7 +13,7 @@ import {useOperational} from "../../../hooks";
 /**
  * Handles dataType=boolean
  */
-export const _Boolean = (props) => {
+export const Boolean = (props) => {
     const {editable} = useOperational(props);
     const {id, "aria-label": ariaLabel, value, defaultValue, valueMeta = {}, onChanged} = props;
     const {brief, description} = valueMeta;
@@ -33,6 +33,6 @@ export const _Boolean = (props) => {
         return <Typography aria-label={ariaLabel} text={(value !== undefined) ? String(value) : ""} />;    
 };
 
-_Boolean.displayName = "Boolean";
+Boolean.displayName = "Boolean";
 
-export default _Boolean;
+export default Boolean;

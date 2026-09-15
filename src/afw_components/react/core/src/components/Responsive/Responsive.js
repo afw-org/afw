@@ -75,7 +75,8 @@ Responsive.Col = (props) => {
         />
     );
 };
-
+Responsive.Col.displayName = "Responsive.Col";
+Responsive.Row.displayName = "Responsive.Row";
 
 Responsive.propTypes = propTypes;
 Responsive.displayName = "Responsive";

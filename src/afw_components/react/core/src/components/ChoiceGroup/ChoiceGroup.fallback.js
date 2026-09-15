@@ -30,7 +30,7 @@ export const ChoiceGroup = (props) => {
                             }}
                             disabled={disabled}
                         />
-                        <label for={option.value}>{option.label}</label>
+                        <label htmlFor={option.value}>{option.label}</label>
                     </div>
                 )
             }

@@ -50,7 +50,7 @@ const AppBar = () => {
     const location = useLocation();
     const {menuExpanded} = useApplication();
 
-    /* eslint no-unused-vars: [2, {"args": "after-used", "varsIgnorePattern": "ignore"}] */
+    /* eslint @typescript-eslint/no-unused-vars: [2, {"args": "after-used", "varsIgnorePattern": "ignore"}] */
     let [ignore, pathname, ...rest] = location.pathname.split("/");
     if (pathname === "/")
         pathname = "/Home";

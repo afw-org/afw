@@ -51,7 +51,7 @@ const AppNavMobile = (props) => {
 
     return (
         <>
-            <div className={className} position="static">
+            <div className={className}>
                 <div className={classes.drawerHeader}>
                     <Tooltip 
                         style={{ margin: "0 auto" }}
@@ -115,7 +115,7 @@ const AppNavMini = (props) => {
 
     return (
         <>
-            <div className={className} position="static">
+            <div className={className}>
                 <div className={classes.drawerHeader}>
                     <Tooltip 
                         style={{ margin: "0 auto" }}
@@ -233,11 +233,13 @@ const AppNav = (props) => {
             else if (pathname.startsWith("/Tools"))
                 toolsOpen = true;
 
+            /* eslint-disable react-hooks/set-state-in-effect -- these also toggle independently via each group's onGroupClick handler, so they can't be pure useMemo derivations of location alone */
             setDocsOpen(docsOpen);
             setAdminOpen(adminOpen);
             setToolsOpen(toolsOpen);
             setServicesOpen(servicesOpen);
             setDocRefOpen(docRefOpen);
+            /* eslint-enable react-hooks/set-state-in-effect */
         }
     }, [location]);
 
@@ -256,7 +258,7 @@ const AppNav = (props) => {
 
     const drawer = (
         <>
-            <div className={className} position="static">
+            <div className={className}>
                 <Paper className={classes.drawerHeader}>
                     <div style={{ paddingLeft: theme.spacing(1), flex: 1, display: "flex", alignItems: "baseline", justifyContent: "space-between" }}>
                         <div>

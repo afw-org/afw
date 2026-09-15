@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {useState, useEffect} from "react";
+import {useMemo} from "react";
 
 import vline from "../images/vline.png";
 import lastnode from "../images/lastnode.png";
@@ -34,11 +34,9 @@ const HierarchyStyles = theme => ({
 
 export const InheritanceTree = (props) => {
 
-    const [ancestors, setAncestors] = useState();
-    const [descendants, setDescendants] = useState();
     const classes = useClasses(HierarchyStyles);
 
-    useEffect(() => {
+    const {ancestors, descendants} = useMemo(() => {
         const buildAncestors = (object) => {
             let ancestors = {};
             const objects = props.objects;
@@ -78,9 +76,11 @@ export const InheritanceTree = (props) => {
             return descendants;
         };
         
-        setAncestors(buildAncestors(props.object));
-        setDescendants(buildDescendants(props.object));
-    }, [props.object, props.objects, props.direction]);
+        return {
+            ancestors: buildAncestors(props.object),
+            descendants: buildDescendants(props.object),
+        };
+    }, [props.object, props.objects]);
     
     const buildTree = (tree) => {
         if (!tree) 

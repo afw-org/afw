@@ -40,6 +40,7 @@ export function objectGet(object, selector) {
 export function debounce(func, wait, immediate) {
     var timeout;
     return function() {
+        // eslint-disable-next-line @typescript-eslint/no-this-alias -- captured so `later` can forward the caller's `this`, which an arrow function here could not do
         var context = this, args = arguments;
         var later = function() {
             timeout = null;

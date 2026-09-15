@@ -68,6 +68,6 @@ describe("Home Tests", () => {
         
         await waitForSpinner();               
         
-        await waitFor(() => expect(screen.getByText("Error Loading Application Data")));
+        await waitFor(() => expect(screen.getByText("Error Loading Application Data")).toBeInTheDocument());
     });    
 });

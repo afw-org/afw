@@ -30,7 +30,7 @@ export const Toolbar = (props) => {
                                 <AdaptiveComponent layoutComponent={item} />
                             </Grid>
                             :
-                            <AdaptiveComponent layoutComponent={item} />
+                            <AdaptiveComponent key={index} layoutComponent={item} />
                     )
                 }
             </Grid>

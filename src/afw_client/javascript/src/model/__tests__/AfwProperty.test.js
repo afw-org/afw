@@ -18,7 +18,7 @@ describe("AfwProperty Tests", () => {
         expect(property).toBeInstanceOf(AfwProperty);
     });
 
-    test("Test remove()", async () => {
+    test("remove()", async () => {
 
         const obj = new AfwObject({
             model, 
@@ -36,7 +36,7 @@ describe("AfwProperty Tests", () => {
         expect(obj.getPropertyValue("prop1")).toBeUndefined();
     });
 
-    test("Test isOtherPropertyType()", async () => {
+    test("isOtherPropertyType()", async () => {
 
         const obj = new AfwObject({
             model, 
@@ -64,7 +64,7 @@ describe("AfwProperty Tests", () => {
         expect(prop2.isOtherPropertyType()).toBe(true);
     });
 
-    test("Test getName()", async () => {
+    test("getName()", async () => {
 
         const obj = new AfwObject({
             model, 
@@ -79,7 +79,7 @@ describe("AfwProperty Tests", () => {
         expect(prop.getName()).toBe("prop1");
     });
 
-    test("Test getPath()", async () => {
+    test("getPath()", async () => {
 
         const obj = new AfwObject({
             model, 
@@ -101,7 +101,7 @@ describe("AfwProperty Tests", () => {
         expect(prop2.getPath()).toBe("/afw/_AdaptiveObject_/test/prop1/prop2");
     });
 
-    test("Test getPropertyType()", async () => {
+    test("getPropertyType()", async () => {
 
         const objectTypeObject = {
             propertyTypes: {
@@ -126,7 +126,8 @@ describe("AfwProperty Tests", () => {
         expect(pType).toEqual(objectTypeObject.propertyTypes.prop1);
     });
 
-    test("Test getObjectTypeObject()", async () => {
+    // eslint-disable-next-line jest/expect-expect -- \fixme: needs a mocked object-type registry to assert anything meaningful (verified getObjectTypeObject() returns undefined without one, not a real check)
+    test("getObjectTypeObject()", async () => {
 
         const objectTypeObject = {
             propertyTypes: {
@@ -155,7 +156,7 @@ describe("AfwProperty Tests", () => {
         // \fixme implement
     });
 
-    test("Test setName()", async () => {
+    test("setName()", async () => {
 
         const obj = new AfwObject({
             model, 
@@ -174,7 +175,7 @@ describe("AfwProperty Tests", () => {
         expect(obj.getPropertyValue("prop2")).toBe("abc");
     });
 
-    test("Test validate()", async () => {
+    test("validate()", async () => {
 
         const objectTypeObject = {
             propertyTypes: {
@@ -201,7 +202,7 @@ describe("AfwProperty Tests", () => {
         // \fixme check invalid value
     });
 
-    test("Test meta properties", async () => {
+    test("meta properties", async () => {
 
         const property = new AfwProperty({ 
             propertyName: "myarray", 

@@ -337,7 +337,7 @@ const ServiceEditor = (props) => {
 
                 if (!response.controller.signal.aborted)
                     setServiceConf(serviceConf);
-            // eslint-disable-next-line no-empty
+             
             } catch (error) {
                 if (response && !response.controller.signal.aborted)
                     notification({ message: error, type: "error" });

@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {useState, useEffect} from "react";
+import {useState, useMemo} from "react";
 import {Route, Switch, useLocation} from "react-router";
 
 import {
@@ -25,19 +25,15 @@ import {ContextualHelpRoutes} from "./ContextualHelp";
  */
 const Schema = () => {
 
-    const [breadcrumbItems, setBreadcrumbItems] = useState([]);
     const [showHelp, setShowHelp] = useState(false);
-    const [adapterId, setAdapterId] = useState();
-    const [adapter, setAdapter] = useState();
-    const [error, setError] = useState();
 
     const theme = useTheme();
     const {pathname} = useLocation();
     const {adapters} = useAppCore();
 
     /* parse the pathname and break it into Breadcrumbs */
-    useEffect(() => {
-        let [, adapterId, objectType, propertyType] = pathname.split("/").splice(2); // eslint-disable-line
+    const {adapterId, breadcrumbItems} = useMemo(() => {
+        let [, adapterId, objectType, propertyType] = pathname.split("/").splice(2);
 
         let breadcrumbItems = [
             { text: "Admin", key: "Admin", link: "/Admin" },
@@ -46,40 +42,35 @@ const Schema = () => {
 
         /* construct our breadcrumb trail from the matching path */
         if (adapterId)
-            breadcrumbItems.push({ 
-                text: adapterId, key: adapterId, 
-                link: "/Admin/Schema/" + adapterId 
+            breadcrumbItems.push({
+                text: adapterId, key: adapterId,
+                link: "/Admin/Schema/" + adapterId
             });
 
-        if (objectType) 
-            breadcrumbItems.push({ 
-                text: objectType, key: objectType, 
-                link: "/Admin/Schema/" + adapterId + "/" + objectType 
+        if (objectType)
+            breadcrumbItems.push({
+                text: objectType, key: objectType,
+                link: "/Admin/Schema/" + adapterId + "/" + objectType
             });
 
-        if (propertyType) 
-            breadcrumbItems.push({ 
-                text: propertyType, key: propertyType, 
+        if (propertyType)
+            breadcrumbItems.push({
+                text: propertyType, key: propertyType,
                 link: "/Admin/Schema/" + adapterId + "/" + objectType + "/" + propertyType
             });
 
-        setAdapterId(adapterId);
-        setBreadcrumbItems(breadcrumbItems);
+        return {adapterId, breadcrumbItems};
     }, [pathname]);
 
-    useEffect(() => {
+    const {adapter, error} = useMemo(() => {
         if (adapters && adapterId) {
-            let found = false;
-            adapters.forEach(a => {
-                if (a.adapterId === adapterId) {
-                    setAdapter(a);
-                    found = true;
-                }
-            });
-
-            if (!found)
-                setError("AdapterId not found");
+            const found = adapters.find(a => a.adapterId === adapterId);
+            if (found)
+                return {adapter: found, error: undefined};
+            else
+                return {adapter: undefined, error: "AdapterId not found"};
         }
+        return {adapter: undefined, error: undefined};
     }, [adapterId, adapters]);
 
     /* Report any errors */

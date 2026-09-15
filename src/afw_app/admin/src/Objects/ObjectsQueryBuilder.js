@@ -102,13 +102,15 @@ const Condition = ({ total, index, objectTypeObject, operator, arg, onChanged })
 
     const theme = useTheme();
 
-    useEffect(() => {        
+    useEffect(() => {
+        /* eslint-disable react-hooks/set-state-in-effect -- operation/propertyName/value are also imperatively set by onChange below, so they can't be pure useMemo derivations of arg alone */
         if (arg.name)
             setOperation(arg.name);
         if (arg.args && arg.args[0])
             setPropertyName(arg.args[0]);
         if (arg.args && arg.args[1])
             setValue(arg.args[1]);
+        /* eslint-enable react-hooks/set-state-in-effect */
     }, [arg, arg.name, arg.args]);
 
     const onChange = (operation, propertyName, value) => {
@@ -191,10 +193,12 @@ const Group = ({ objectTypeObject, parsedQuery, onChanged, prefix, depth }) => {
     const theme = useTheme();
 
     useEffect(() => {
+        /* eslint-disable react-hooks/set-state-in-effect -- operator/args are also imperatively edited by the add/remove/change handlers below, so they can't be pure useMemo derivations of parsedQuery alone */
         if (parsedQuery) {
             setOperator(parsedQuery.name);
             setArgs(parsedQuery.args);
         }
+        /* eslint-enable react-hooks/set-state-in-effect */
     }, [parsedQuery]);
     
     const addGroup = () => {         
@@ -472,6 +476,7 @@ const ObjectsQueryBuilderDialog = ({ open, queryCriteria, objectTypeObject, onDi
     const theme = useTheme();
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- criteria is also imperatively set by onCancel/onChanged below, so it can't be a pure useMemo derivation of queryCriteria alone
         setCriteria(queryCriteria);
     }, [queryCriteria]);
 

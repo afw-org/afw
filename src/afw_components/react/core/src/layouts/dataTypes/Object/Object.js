@@ -19,6 +19,9 @@ import {
 import {AdaptiveLayoutMergeProviders} from "../../AdaptiveLayout";
 import {layoutByObject} from "../../registry";
 
+/* eslint-disable react-hooks/rules-of-hooks -- named _Object (not Object) to avoid shadowing the
+   global Object, which breaks SWC's own compiled-output interop calls within this module; the
+   leading underscore defeats react-hooks' PascalCase component-name detection */
 /**
  * Handles dataType=object
  */
@@ -88,6 +91,7 @@ export const _Object = (props) => {
         </AdaptiveLayoutMergeProviders>
     );
 };
+/* eslint-enable react-hooks/rules-of-hooks */
 
 _Object.displayName = "Object";
 

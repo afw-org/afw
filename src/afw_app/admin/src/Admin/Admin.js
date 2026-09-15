@@ -85,9 +85,9 @@ export const Admin = ({ children }) => {
     );
 };
 
-export default () => 
+const AdminRoutes = () =>
     <Admin>
-        <RouteBasePathContext.Provider value="/Objects">        
+        <RouteBasePathContext.Provider value="/Objects">
             <Route exact path="/Admin/Status" component={Status} />
             <Route path="/Admin/Server" component={Server} />
             <Route path="/Admin/Application" component={Application} />
@@ -104,3 +104,5 @@ export default () =>
             <Route exact path="/Admin" component={Status} />
         </RouteBasePathContext.Provider>
     </Admin>;
+
+export default AdminRoutes;

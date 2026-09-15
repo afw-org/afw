@@ -133,6 +133,7 @@ export class AfwArrayEntry extends AfwValue {
      *
      * Validates a list entry conforms to its propertyType.
      */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars -- reserved for recursive validation, not yet implemented
     validate(recurse: boolean): any[] {
         /* \fixme */
         return [];

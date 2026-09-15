@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {useEffect, useState} from "react";
+import {useEffect, useState, useMemo} from "react";
 
 import {
     Button,
@@ -21,28 +21,26 @@ import {useApplication, useTheme} from "../../hooks";
 export const LocalStorageTree = ({ storage, selectedFiles, allowSelectDirectories = false, onSelectFiles }) => {
 
     const [expandedKeys, setExpandedKeys] = useState([]);
-    const [tree, setTree] = useState([]);
 
-    useEffect(() => {
-
+    const tree = useMemo(() => {
         let children = [];
         if (storage && storage.scripts) {
             children = Object.keys(storage.scripts).map(file => ({
                 key: "/LocalStorage/" + file,
                 label: file,
-                path: "/LocalStorage/" + file,                
+                path: "/LocalStorage/" + file,
             }));
         }
 
-        setTree([
+        return [
             {
                 key: "LocalStorage",
                 label: "Local Storage",
                 path: "/LocalStorage/",
                 isDirectory: true,
-                children,                
+                children,
             }
-        ]);
+        ];
     }, [storage]);
 
     const onSelectTreeNode = (node) => {
@@ -56,16 +54,17 @@ export const LocalStorageTree = ({ storage, selectedFiles, allowSelectDirectorie
     };
 
     return (
-        <Tree 
+        <Tree
             selectionMode="single"
-            children={tree}  
             expandedKeys={expandedKeys}
             onNodeToggle={setExpandedKeys}
             onSelectTreeNode={onSelectTreeNode}
-            defaultExpandIcon={<Icon iconName="chevron_right" />}                 
-            defaultCollapseIcon={<Icon iconName="expand_more" />}     
-            defaultEndIcon={<Icon iconName="insert_drive_file" />}            
-        />
+            defaultExpandIcon={<Icon iconName="chevron_right" />}
+            defaultCollapseIcon={<Icon iconName="expand_more" />}
+            defaultEndIcon={<Icon iconName="insert_drive_file" />}
+        >
+            {tree}
+        </Tree>
     );
 };
 
@@ -154,6 +153,7 @@ export const VfsTree = ({ vfsAdapters, selectedFiles, onSelectFiles, allowSelect
         if (newFolder) {
             const {node, folder} = newFolder;
             if (!node.children)
+                // eslint-disable-next-line react-hooks/immutability -- this whole tree/keyNodeMap structure is built and maintained via in-place node mutation throughout this component (see fetchFiles above); not attempting a full rewrite of that convention here
                 node.children = [];
 
             const key = node.key + "%2F" + folder;
@@ -168,8 +168,9 @@ export const VfsTree = ({ vfsAdapters, selectedFiles, onSelectFiles, allowSelect
                 children: [],
                 icon: "folder"
             };
-            node.children.push(treeItem);            
+            node.children.push(treeItem);
 
+            // eslint-disable-next-line react-hooks/set-state-in-effect -- reacts to the newFolder prop changing (a one-shot "a folder was just created" signal), not a pure derivation
             setKeyNodeMap(keyNodeMap => {
                 keyNodeMap[key] = treeItem;
                 return keyNodeMap;
@@ -242,17 +243,18 @@ export const VfsTree = ({ vfsAdapters, selectedFiles, onSelectFiles, allowSelect
     };
 
     return (
-        <Tree 
+        <Tree
             selectionMode="single"
-            children={tree}
             onNodeToggle={onNodeToggle}
             onSelectTreeNode={onSelectTreeNode}
-            selectedKeys={selectedFiles}       
-            expandedKeys={expandedKeys}                        
-            defaultExpandIcon={<Icon iconName="chevron_right" />}                 
-            defaultCollapseIcon={<Icon iconName="expand_more" />}     
-            defaultEndIcon={<Icon iconName="insert_drive_file" />}            
-        />
+            selectedKeys={selectedFiles}
+            expandedKeys={expandedKeys}
+            defaultExpandIcon={<Icon iconName="chevron_right" />}
+            defaultCollapseIcon={<Icon iconName="expand_more" />}
+            defaultEndIcon={<Icon iconName="insert_drive_file" />}
+        >
+            {tree}
+        </Tree>
     );
 };
 

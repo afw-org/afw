@@ -734,17 +734,18 @@ export const ModelTree = ({ model, reload }) => {
                 onChange={debounce((size) => dispatch({ type: "RESIZE", size }), 200)}
             >
                 <div style={{ padding: theme.spacing(0.5), height: "100%", overflow: "auto" }}>                
-                    <Tree 
+                    <Tree
                         data-testid="admin-admin-models-tree"
                         aria-label={modelId}
-                        children={tree}   
-                        onSelectTreeNode={onSelectTreeNode}                    
+                        onSelectTreeNode={onSelectTreeNode}
                         selectionMode="single"
                         expandedKeys={expandedKeys}
                         onNodeToggle={(node) => dispatch({ type: "TOGGLE_TREE_NODE", node })}
                         selectedKeys={selectedKeys}
                         onContextMenu={editable ? onContextMenu : undefined}
-                    />
+                    >
+                        {tree}
+                    </Tree>
                 </div>
                 <div style={{ padding: theme.spacing(0.5), height: "100%", width: "100%", overflow: "auto" }}>
                     <ModelTreeView 

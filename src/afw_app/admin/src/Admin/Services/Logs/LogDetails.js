@@ -23,7 +23,7 @@ const LogDetails = ({ log }) => {
                     <Message
                         contains={
                             <div>
-                                <span>To edit this Log's configuration, </span>
+                                <span>To edit this Log&apos;s configuration, </span>
                                 <Link style={{ display: "inline-block" }} url={"/Admin/Services/" + encodeURIComponent(serviceId)} text="click here" />
                                 <span>.</span>
                             </div>

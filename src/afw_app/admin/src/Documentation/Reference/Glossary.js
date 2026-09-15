@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {useEffect, useState} from "react";
+import {useEffect, useState, useMemo} from "react";
 
 import {
     Table,
@@ -41,8 +41,7 @@ export const Glossary = () => {
     
     const theme = useTheme();
     const [glossary, setGlossary] = useState();
-    const [terms, setTerms] = useState([]);
-    
+
     useEffect(() => {
         const controller = new AbortController();
 
@@ -65,19 +64,18 @@ export const Glossary = () => {
         };
     }, []);
 
-    useEffect(() => {
+    const terms = useMemo(() => {
         if (glossary) {
             let terms = getChildElementsByName(glossary, "Term");
 
-            terms = terms.sort((a, b) => {
+            return terms.sort((a, b) => {
                 let aIdentifier = getFirstChildElementByName(a, "Identifier").childNodes[0].nodeValue;
                 let bIdentifier = getFirstChildElementByName(b, "Identifier").childNodes[0].nodeValue;
 
                 return (aIdentifier.toLowerCase().localeCompare(bIdentifier.toLowerCase()));
             });
-
-            setTerms(terms);
         }
+        return [];
     }, [glossary]);
 
     return (

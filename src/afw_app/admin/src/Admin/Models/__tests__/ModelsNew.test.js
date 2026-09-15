@@ -146,7 +146,8 @@ describe("ModelsNew Tests", () => {
 
     });
 
+    // eslint-disable-next-line jest/no-disabled-tests, jest/expect-expect -- acknowledged, tracked TODO, not yet implemented
     test.skip("New Model Step2 Map", async () => {
-        
+
     });
 });

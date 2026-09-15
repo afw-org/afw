@@ -231,6 +231,7 @@ describe("ModelsTable Tests", () => {
 
     });
 
+    /* eslint-disable jest/no-disabled-tests, jest/expect-expect -- acknowledged, tracked TODOs, not yet implemented */
     test.skip("Delete multiple models", async () => {
 
     });
@@ -268,5 +269,6 @@ describe("ModelsTable Tests", () => {
     test.skip("Import Model", async () => {
 
     });
+    /* eslint-enable jest/no-disabled-tests, jest/expect-expect */
 
 });

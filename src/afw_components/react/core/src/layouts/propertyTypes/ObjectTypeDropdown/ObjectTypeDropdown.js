@@ -91,8 +91,10 @@ export const ObjectTypeDropdown = (props) => {
             });
         }
 
+        /* eslint-disable react-hooks/set-state-in-effect -- objectTypeOptions/selectedObjectTypeOption are coordinated across three effects below reacting to different inputs (value, autoSelect, etc), not a pure derivation of any one effect's own deps */
         setSelectedObjectTypeOption();
         setObjectTypeOptions(objectTypeOptions);
+        /* eslint-enable react-hooks/set-state-in-effect */
     }, [ignoreAdaptive, objects, requireEntity]);
 
     useEffect(() => {         
@@ -128,13 +130,15 @@ export const ObjectTypeDropdown = (props) => {
         if (selectedObjectTypeOption) {
             if (onChanged)
                 onChanged(selectedObjectTypeOption.key, selectedObjectTypeOption.objectTypeObject);
+            // eslint-disable-next-line react-hooks/set-state-in-effect -- coordinated across the other effects here (see the one above), not a pure derivation of this effect's own deps alone
             setSelectedObjectTypeOption(selectedObjectTypeOption);
-        }                    
+        }
     }, [autoSelect, defaultFirstNonAdaptive, objectTypeOptions, onChanged, value]);
 
     useEffect(() => {
         for (let option of objectTypeOptions) {
             if (option.key === value)
+                // eslint-disable-next-line react-hooks/set-state-in-effect -- coordinated across the other effects here (see the one above), not a pure derivation of this effect's own deps alone
                 setSelectedObjectTypeOption(option);
         }
     }, [value, objectTypeOptions]);

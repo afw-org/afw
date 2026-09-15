@@ -356,6 +356,7 @@ export const ObjectEditor = (props) => {
         };
 
         if (props.object && props.object instanceof AfwObject) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect -- sibling branch of the async initObject path above (same effect, same setter)
             setObject(props.object);
         } else if (props.object && model)
             initObject(props.object);

@@ -138,9 +138,10 @@ export const ModelObjectTypeSelector = ({ adapterId, onSelect }) => {
                 }}
                 selectedKeys={selectedKeys}
                 dense={true}
-                children={children}
-            />   
-            
+            >
+                {children}
+            </Tree>
+
     );
     
 };

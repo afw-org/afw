@@ -217,7 +217,8 @@ export const useValues = (object) => {
     useDebugValue(object ? object.getPath() : "[object]");
 
     useEffect(() => {
-        if (object) {            
+        if (object) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect -- seeds the initial value before subscribing to object's own change events below; object is an external, imperatively-mutated store, not render-computable state
             setValues( object.getPropertyValues() );
 
             const onChanged = object.addEventListener("onChanged", () => {

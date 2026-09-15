@@ -2,7 +2,6 @@
 import AfwClient from "../../AfwClient";
 
 import {AfwModel, AfwObject, AfwProperty, AfwArray, AfwArrayEntry} from "..";
-import {isObject, isArray} from "../../utils";
 import {waitFor, mswPostCallback} from "@afw/test";
 
 describe("AfwObject Tests", () => {
@@ -109,7 +108,7 @@ describe("AfwObject Tests", () => {
         });
     });
 
-    test("Test custom objectTypeObject", async () => {
+    test("custom objectTypeObject", async () => {
 
         const object = {
             prop1: "abc",
@@ -160,7 +159,7 @@ describe("AfwObject Tests", () => {
 
     });
 
-    test("Test clone", async () => {
+    test("clone", async () => {
 
         const obj = new AfwObject({ 
             model, 
@@ -181,7 +180,7 @@ describe("AfwObject Tests", () => {
 
     });
 
-    test("Test discardChanges", async () => {
+    test("discardChanges", async () => {
 
         const obj = new AfwObject({ 
             model, 
@@ -200,7 +199,7 @@ describe("AfwObject Tests", () => {
 
     });
 
-    test("Test getEmbeddingObject", async () => {
+    test("getEmbeddingObject", async () => {
 
         const obj = new AfwObject({
             model,
@@ -218,7 +217,7 @@ describe("AfwObject Tests", () => {
 
     });
 
-    test("Test getModel()", async () => {
+    test("getModel()", async () => {
 
         const obj = new AfwObject({
             model,
@@ -232,7 +231,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getModel()).toBe(model);
     });
 
-    test("Test getPropertyType()", async () => {
+    test("getPropertyType()", async () => {
 
         const object = { prop1: "abc" };
         const objectTypeObject = {
@@ -252,7 +251,7 @@ describe("AfwObject Tests", () => {
 
     });
 
-    test("Test getPropertyType() with otherProperties", async () => {
+    test("getPropertyType() with otherProperties", async () => {
 
         const object = { prop1: "abc" };
         const objectTypeObject = {
@@ -277,7 +276,7 @@ describe("AfwObject Tests", () => {
 
     });
 
-    test("Test getProperties()/getProperty()", async () => {
+    test("getProperties()/getProperty()", async () => {
 
         const object = { 
             prop1: "abc",
@@ -304,7 +303,7 @@ describe("AfwObject Tests", () => {
         }
     });
 
-    test("Test getPropertyValue()", async () => {
+    test("getPropertyValue()", async () => {
 
         const object = { 
             prop1: "abc",
@@ -323,18 +322,15 @@ describe("AfwObject Tests", () => {
 
         await obj.initialize();
 
-        for (const [p, v] of Object.entries(object)) {
-            if (isObject(v)) 
-                expect(obj.getPropertyValue(p)).toBeInstanceOf(AfwObject);                
-            else if (isArray(v))
-                expect(obj.getPropertyValue(p)).toBeInstanceOf(AfwArray);
-            else
-                expect(obj.getPropertyValue(p)).toBe(v);
-        }
+        expect(obj.getPropertyValue("prop1")).toBe("abc");
+        expect(obj.getPropertyValue("prop2")).toBe(123);
+        expect(obj.getPropertyValue("prop3")).toBe(true);
+        expect(obj.getPropertyValue("prop4")).toBeInstanceOf(AfwObject);
+        expect(obj.getPropertyValue("prop5")).toBeInstanceOf(AfwArray);
 
     });
 
-    test("Test getPropertyValues()", async () => {
+    test("getPropertyValues()", async () => {
 
         const object = { 
             prop1: "abc",
@@ -361,7 +357,7 @@ describe("AfwObject Tests", () => {
         }
     });
 
-    test("Test getPropertyValues() after adding values", async () => {
+    test("getPropertyValues() after adding values", async () => {
 
         const object = { 
             prop1: "abc",
@@ -392,7 +388,7 @@ describe("AfwObject Tests", () => {
         }
     });
 
-    test("Test getObjectTypeObject()", async () => {
+    test("getObjectTypeObject()", async () => {
 
         const object = { prop1: "abc" };
         const objectTypeObject = {
@@ -413,7 +409,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getObjectTypeObject()).toBe(objectTypeObject);
     });
 
-    test("Test getAdapterId()", async () => {
+    test("getAdapterId()", async () => {
 
         const obj = new AfwObject({
             model,
@@ -428,7 +424,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getAdapterId()).toBe("afw");
     });
 
-    test("Test getMetaProperty()", async () => {
+    test("getMetaProperty()", async () => {
 
         const obj = new AfwObject({
             model,
@@ -454,7 +450,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getMetaProperty("none")).toBeUndefined();    
     });
 
-    test("Test getMetaObject()", async () => {
+    test("getMetaObject()", async () => {
 
         const obj = new AfwObject({
             model,
@@ -479,7 +475,7 @@ describe("AfwObject Tests", () => {
         expect(metaObject.getPropertyValue("none")).toBeUndefined();    
     });
 
-    test("Test renameProperty()", async () => {
+    test("renameProperty()", async () => {
 
         const object = { prop1: "abc" };
         const objectTypeObject = {            
@@ -500,7 +496,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getPropertyValue("prop1")).toBeUndefined();
     });
 
-    test("Test removeProperty()", async () => {
+    test("removeProperty()", async () => {
 
         const object = { prop1: "abc" };
         const objectTypeObject = {            
@@ -520,7 +516,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getPropertyValue("prop1")).toBeUndefined();
     });
 
-    test("Test setMetaProperty()", async () => {
+    test("setMetaProperty()", async () => {
         const object = {
             _meta_: {
                 path: "/afw/_AdaptiveObject_/test",
@@ -539,7 +535,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getMetaProperty("allowChange")).toBe(false);
     });
 
-    test("Test setAdapterId()", async () => {
+    test("setAdapterId()", async () => {
         const object = {
             _meta_: {
                 path: "/afw/_AdaptiveObject_/test"
@@ -557,7 +553,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getAdapterId()).toBe("test");
     });
 
-    test("Test setObjectTypeId()", async () => {
+    test("setObjectTypeId()", async () => {
         const object = {
             _meta_: {
                 path: "/afw/_AdaptiveObject_/test"
@@ -575,7 +571,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getObjectTypeId()).toBe("_NewObjectType_");
     });
 
-    test("Test setObjectId()", async () => {
+    test("setObjectId()", async () => {
 
         const object = {
             _meta_: {
@@ -594,7 +590,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getObjectId()).toBe("test2");
     });
 
-    test("Test setPath()", async () => {
+    test("setPath()", async () => {
 
         const object = {
             _meta_: {
@@ -614,7 +610,7 @@ describe("AfwObject Tests", () => {
 
     });
 
-    test("Test newProperty()", async () => {
+    test("newProperty()", async () => {
 
         const object = { prop1: "abc" };
         const objectTypeObject = {            
@@ -635,7 +631,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getPropertyValue("prop2")).toBe(123);
     });
 
-    test("Test setPropertyValue()", async () => {
+    test("setPropertyValue()", async () => {
         const object = { prop1: "abc" };
         const objectTypeObject = {            
             propertyTypes: {
@@ -679,7 +675,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getPropertyValue("prop5")).toBeInstanceOf(AfwArray);
     });
     
-    test("Test forEach()", async () => {
+    test("forEach()", async () => {
 
         const object = { 
             prop1: "abc",
@@ -704,7 +700,7 @@ describe("AfwObject Tests", () => {
         });
     });
 
-    test("Test map()", async () => {
+    test("map()", async () => {
 
         const object = { 
             prop1: "abc",
@@ -730,7 +726,7 @@ describe("AfwObject Tests", () => {
         }
     });
 
-    test("Test getEmbeddingProperty()", async () => {
+    test("getEmbeddingProperty()", async () => {
 
         const object = {             
             prop1: {
@@ -746,7 +742,7 @@ describe("AfwObject Tests", () => {
 
     });
 
-    test("Test getOriginal()", async () => {
+    test("getOriginal()", async () => {
 
         const object = {             
             prop1: "abc"
@@ -762,7 +758,7 @@ describe("AfwObject Tests", () => {
         });
     });
 
-    test("Test getOriginal() with embedded object", async () => {
+    test("getOriginal() with embedded object", async () => {
 
         const object = {             
             prop1: "abc",
@@ -784,7 +780,7 @@ describe("AfwObject Tests", () => {
         });
     });
 
-    test("Test getOriginal() with renaming an embedded object property", async () => {
+    test("getOriginal() with renaming an embedded object property", async () => {
 
         const object = {             
             prop1: "abc",
@@ -808,7 +804,7 @@ describe("AfwObject Tests", () => {
         });
     });
 
-    test("Test hasProperty()", async () => {
+    test("hasProperty()", async () => {
         const object = {             
             prop1: "abc"
         };
@@ -821,7 +817,7 @@ describe("AfwObject Tests", () => {
         expect(obj.hasProperty("prop2")).toBe(false);
     });
 
-    test("Test fromJSON()", async () => {
+    test("fromJSON()", async () => {
 
         const object = { 
             prop1: "abc",
@@ -842,18 +838,15 @@ describe("AfwObject Tests", () => {
         
         obj.fromJSON( JSON.stringify(object) );
         
-        for (const p of obj.getProperties()) {  
-            if (p.getDataType() === "object")
-                expect(JSON.stringify(object[p.getName()], null, 4)).toBe(obj.getPropertyValue(p.getName()).stringify());
-            else if (p.getDataType() === "array")                  
-                expect(JSON.stringify(object[p.getName()], null, 4)).toBe(obj.getPropertyValue(p.getName()).stringify());                
-            else
-                expect(object[p.getName()]).toBe(obj.getPropertyValue(p.getName()));
-        }
-        
+        expect(object.prop1).toBe(obj.getPropertyValue("prop1"));
+        expect(object.prop2).toBe(obj.getPropertyValue("prop2"));
+        expect(object.prop3).toBe(obj.getPropertyValue("prop3"));
+        expect(JSON.stringify(object.prop4, null, 4)).toBe(obj.getPropertyValue("prop4").stringify());
+        expect(JSON.stringify(object.prop5, null, 4)).toBe(obj.getPropertyValue("prop5").stringify());
+
     });
 
-    test("Test getErrors()", async () => {
+    test("getErrors()", async () => {
 
         const obj = new AfwObject({
             model,
@@ -896,7 +889,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getErrors()).toHaveLength(2);
     });
 
-    test("Test hasErrors()", async () => {
+    test("hasErrors()", async () => {
         const obj = new AfwObject({
             model,
             adapterId: "afw",
@@ -923,7 +916,7 @@ describe("AfwObject Tests", () => {
         expect(obj.hasErrors()).toBe(true);
     });
 
-    test("Test stringify()", async () => {
+    test("stringify()", async () => {
         const object = { 
             prop1: "abc",
             prop2: 123,
@@ -956,7 +949,7 @@ describe("AfwObject Tests", () => {
         
     });
 
-    test("Test toJSON()", async () => {
+    test("toJSON()", async () => {
 
         const object = { 
             prop1: "abc",
@@ -978,7 +971,7 @@ describe("AfwObject Tests", () => {
         expect(obj.toJSON()).toStrictEqual(object);
     });
 
-    test("Test validate()", async () => {
+    test("validate()", async () => {
 
         const object = { prop1: "abc" };        
 
@@ -1015,7 +1008,7 @@ describe("AfwObject Tests", () => {
         
     });
 
-    test("Test getJSONSchema()", async () => {
+    test("getJSONSchema()", async () => {
         const object = { 
             prop1: "abc",
             prop2: 123,
@@ -1078,7 +1071,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getJSONSchema().properties).toEqual(expect.objectContaining(jsonSchema.properties));
     });
 
-    test("Test refresh()", async () => {
+    test("refresh()", async () => {
 
         const obj = new AfwObject({
             model,
@@ -1100,7 +1093,7 @@ describe("AfwObject Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
     });
 
-    test("Test reconcile()", async () => {
+    test("reconcile()", async () => {
         const obj = new AfwObject({
             model,
             adapterId: "afw",
@@ -1122,7 +1115,7 @@ describe("AfwObject Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
     });
 
-    test("Test replace()", async () => {
+    test("replace()", async () => {
         const obj = new AfwObject({
             model,
             adapterId: "afw",
@@ -1144,7 +1137,7 @@ describe("AfwObject Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
     });
 
-    test("Test modify()", async () => {
+    test("modify()", async () => {
         const obj = new AfwObject({
             model,
             adapterId: "afw",
@@ -1165,7 +1158,7 @@ describe("AfwObject Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
     });
 
-    test("Test add()", async () => {
+    test("add()", async () => {
         const obj = new AfwObject({
             model,
             adapterId: "afw",
@@ -1187,7 +1180,7 @@ describe("AfwObject Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
     });
 
-    test("Test onChanged", async () => {
+    test("onChanged", async () => {
 
         const onChanged = jest.fn();
 
@@ -1215,7 +1208,7 @@ describe("AfwObject Tests", () => {
         await waitFor(() => expect(onChanged).toHaveBeenCalled());
     });
 
-    test("Test onSavable", async () => {
+    test("onSavable", async () => {
 
         const onSavable = jest.fn();
 
@@ -1241,7 +1234,7 @@ describe("AfwObject Tests", () => {
 
     });
 
-    test("Test onPropertiesChanged", async () => {
+    test("onPropertiesChanged", async () => {
 
         const onPropertiesChanged = jest.fn();
 
@@ -1265,7 +1258,7 @@ describe("AfwObject Tests", () => {
         await waitFor(() => expect(onPropertiesChanged).toHaveBeenCalled());
     });
 
-    test("Test onDiscardChanges", async () => {
+    test("onDiscardChanges", async () => {
 
         const onDiscardChanges = jest.fn();
 

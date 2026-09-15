@@ -824,7 +824,8 @@ export const ObjectResponsive = (props) => {
         const {preferredComponent, preferredComponentProps} = getPreferredComponent(property);
 
         /* pass along recursive options, but exclude filterProperties, since they'll rarely be recursive. */
-        const {filterProperties, ...embeddedFilterOptions} = filterOptions;  // eslint-disable-line no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const {filterProperties, ...embeddedFilterOptions} = filterOptions;
 
         let mergedLayoutParameters = { 
             ...layoutParameters, 

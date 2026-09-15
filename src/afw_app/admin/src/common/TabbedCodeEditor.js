@@ -331,6 +331,7 @@ export const CodeEditor = forwardRef((props, ref) => {
         </div>
     );
 });
+CodeEditor.displayName = "CodeEditor";
 
 
 /**
@@ -477,5 +478,6 @@ export const TabbedCodeEditor = forwardRef((props, ref) => {
         </div>
     );
 });
+TabbedCodeEditor.displayName = "TabbedCodeEditor";
 
 export default TabbedCodeEditor;

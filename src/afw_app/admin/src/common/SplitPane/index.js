@@ -25,6 +25,7 @@ export const SplitPane = forwardRef((props, ref) => {
         <ReactSplitPane {...props} ref={ref} />
     );
 });
+SplitPane.displayName = "SplitPane";
 
 export default SplitPane;
 export { Pane };

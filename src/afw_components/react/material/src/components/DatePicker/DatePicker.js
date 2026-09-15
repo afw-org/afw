@@ -16,13 +16,15 @@ export const DatePicker = (props) => {
     const value = props.value;
 
     useEffect(() => {
+        /* eslint-disable react-hooks/set-state-in-effect -- momentDate is also imperatively set by onChanged below, so it can't be a pure useMemo derivation of value alone */
         if (value) {
             const momentDate = moment(value, "YYYY-MM-DDZ");
-            const offset = momentDate.format("Z");   
-     
+            const offset = momentDate.format("Z");
+
             setMomentDate(momentDate);
-            setOffset(offset);  
+            setOffset(offset);
         }
+        /* eslint-enable react-hooks/set-state-in-effect */
     }, [value]);
 
 

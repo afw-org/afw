@@ -468,7 +468,7 @@ export class AfwModel {
         if (adapterId) {
             const objectTypeId = "_AdaptiveObjectType_";
 
-            let options = { ...objectOptions };
+            const options = { ...objectOptions };
             options.objectId = true;
             options.path = true;
             options.composite = true;
@@ -509,7 +509,7 @@ export class AfwModel {
     } : IGetObjectParams) : IGetObjectResponse
     {
         /* default objectOptions, if using the model wrapper */
-        let options: IObjectOptions = { ...objectOptions };
+        const options: IObjectOptions = { ...objectOptions };
         if (modelOptions.adaptiveObject) {            
             options.objectId = true;
             options.path = true;
@@ -526,8 +526,7 @@ export class AfwModel {
         };      
         
         const {result, ...rest} = this.client.perform(action);
-        let object : Promise<IAnyObject|AfwObject>;
-        object = new Promise((resolve, reject) => {
+        const object : Promise<IAnyObject|AfwObject> = new Promise((resolve, reject) => {
             result().then(res => {
                 if (modelOptions.adaptiveObject) {                    
                     new AfwObject({ 
@@ -611,7 +610,7 @@ export class AfwModel {
         if (!objectTypeId)
             throw new Error("This operation requires an objectTypeId.");        
             
-        let options: IObjectOptions = { ...objectOptions };
+        const options: IObjectOptions = { ...objectOptions };
         options.objectId = true;
         options.path = true;
         options.objectType = true;
@@ -628,11 +627,10 @@ export class AfwModel {
         };      
         
         const {result, ...rest} = this.client.perform(action);
-        let objects : Promise<AfwObject[]|IAnyObject[]>;
-        objects = new Promise((resolve, reject) => {
+        const objects : Promise<AfwObject[]|IAnyObject[]> = new Promise((resolve, reject) => {
             result().then((res : IAnyObject[]) => {
                 if (modelOptions.adaptiveObject) {                                        
-                    let resolvedObjects = res.map(object => new AfwObject({ 
+                    const resolvedObjects = res.map(object => new AfwObject({ 
                         model: this, object, objectTypeId, adapterId
                     }));
                     if (modelOptions.initialize) {

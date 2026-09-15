@@ -57,8 +57,8 @@ export const ModelObjectTypes = (props) => {
 
             // use it for the AfwObject
             objectTypeObject.fromJSON(src);
-        } catch (error) {
-            //eslint-disable-next-line
+        } catch {
+            // ignore - src is mid-edit and not valid JSON yet
         }
     };
     

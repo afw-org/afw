@@ -300,7 +300,7 @@ export const Table = (props) => {
 
     useEffect(() => {
         dispatch({ type: "ROWS_CHANGE", rows });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
     }, [rows]);
 
     const onSortColumn = (column) => {

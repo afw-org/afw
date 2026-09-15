@@ -62,14 +62,16 @@ const Objects = () => {
      * This routine parses out the application object and uses the configured defaultAdapterId
      * as the default chosen adapterId.
      */
-    useEffect(() => {        
-        if (pathname && pathname.split("/").length > 2) 
+    useEffect(() => {
+        /* eslint-disable react-hooks/set-state-in-effect -- selectedAdapterId is also imperatively set by onSelectAdapterId below, so it can't be a pure useMemo derivation */
+        if (pathname && pathname.split("/").length > 2)
             setSelectedAdapterId(pathname.split("/")[2]);
         else if (application)
             setSelectedAdapterId(application.getPropertyValue("defaultAdapterId"));
-        else 
+        else
             // default to afw, if path and application do not specify
             setSelectedAdapterId("afw");
+        /* eslint-enable react-hooks/set-state-in-effect */
     }, [pathname, application]);
 
     /**

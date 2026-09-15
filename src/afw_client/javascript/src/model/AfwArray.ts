@@ -143,7 +143,7 @@ export class AfwArray extends AfwEvent {
             this.entries();
 
         if (this._entries) {
-            for (let entry of this._entries) {
+            for (const entry of this._entries) {
                 yield entry;
             }
         }
@@ -156,7 +156,7 @@ export class AfwArray extends AfwEvent {
             this.entries();
 
         if (this._entries) {
-            for (let entry of this._entries) {
+            for (const entry of this._entries) {
                 if (entry.getValue() === value)
                     return true;
             }
@@ -175,7 +175,7 @@ export class AfwArray extends AfwEvent {
         if (!this._entries)
             this.entries();
 
-        let listJSON: IAnyObject = [];
+        const listJSON: IAnyObject = [];
 
         if (this._entries) {
             this._entries.forEach((entry) => {            

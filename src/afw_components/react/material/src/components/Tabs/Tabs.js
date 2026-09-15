@@ -21,13 +21,14 @@ export const Tabs = (props) => {
     const theme = useTheme();
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- selectedTab is also imperatively set by the tab-click handler below, so it can't be a pure useMemo derivation of props.selectedTab alone
         setSelectedTab(props.selectedTab || 0);
     }, [props.selectedTab, props.tabs]);
 
     if (!props.tabs)
         return null;
 
-    // eslint-disable-next-line no-unused-vars
+    /* eslint @typescript-eslint/no-unused-vars: [2, {"args": "after-used", "varsIgnorePattern": "ignore"}] */
     let {style = { height: "100%" }, tabs, gapSpace, onTabSwitch, orientation, selectedTab: ignore, ...rest} = props;
     
     return (

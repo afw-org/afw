@@ -19,5 +19,6 @@ Box.Item = (props) => {
         </div>
     );
 };
+Box.Item.displayName = "Box.Item";
 
 export default Box;

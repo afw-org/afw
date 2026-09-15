@@ -97,11 +97,12 @@ const AppSettings = (props) => {
     const [timeout, setTimeout] = useState(30000);    
 
     useEffect(() => {
-        if (storage && storage.flags) 
+        /* eslint-disable react-hooks/set-state-in-effect -- initializes from storage once loaded; selectedFlags/timeout are then locally user-editable (onSelectFlags, the timeout field below) */
+        if (storage && storage.flags)
             setSelectedFlags(storage.flags);
         if (storage && storage.timeout)
-            setTimeout(storage.timeout);    
-        
+            setTimeout(storage.timeout);
+        /* eslint-enable react-hooks/set-state-in-effect */
     }, [storage]);
    
     const onApply = () => {
@@ -159,7 +160,7 @@ const AppSettings = (props) => {
         }
 
         if (save) {
-            let updatedStorage = storage;
+            let updatedStorage = { ...storage };
             if (selectedFlags)
                 updatedStorage.flags = selectedFlags;
             if (timeout)

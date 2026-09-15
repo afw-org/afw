@@ -13,7 +13,7 @@ import {useOperational} from "../../../hooks";
 /**
  * Handles dataType=date
  */
-export const _Date = (props) => {
+export const Date = (props) => {
     
     const {editable} = useOperational(props);
     const {id, value, valueMeta = {}, onChanged, onValidate} = props;
@@ -37,6 +37,6 @@ export const _Date = (props) => {
     }
 };
 
-_Date.displayName = "Date";
+Date.displayName = "Date";
 
-export default _Date;
+export default Date;
