@@ -115,7 +115,7 @@ class App extends React.Component {
      */
     componentDidCatch(catchError, catchInfo) {
         if (catchInfo && catchInfo.componentStack)
-            /*eslint-disable no-console */
+             
             console.log(catchInfo.componentStack);
 
         this.setState({ catchError, catchInfo });

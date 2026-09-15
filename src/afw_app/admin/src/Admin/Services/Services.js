@@ -447,10 +447,11 @@ export const Services = () => {
                                             onClick={() => dispatch({ type: "CONFIRM_DELETE" })}
                                             disabled={!selectedService} 
                                         />,
-                                        <Button 
+                                        <Button
                                             data-testid="ServiceReloadBtn"
-                                            variant="text" 
-                                            icon="refresh" 
+                                            variant="text"
+                                            key="refresh"
+                                            icon="refresh"
                                             label="Refresh"
                                             onClick={onReloadServices} 
                                         />

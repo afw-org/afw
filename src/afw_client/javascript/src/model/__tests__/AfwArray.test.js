@@ -71,7 +71,7 @@ describe("AfwArray Tests", () => {
 
     });
 
-    test("Test entries()", async () => {
+    test("entries()", async () => {
         
         let value = [ "abc", "def", "ghi" ];
         let list = new AfwArray({ value });
@@ -90,7 +90,7 @@ describe("AfwArray Tests", () => {
         }
     });
 
-    test("Test getAt()", async () => {
+    test("getAt()", async () => {
 
         const value = [ "abc", "def", "ghi" ];
         const list = new AfwArray({ value });        
@@ -100,7 +100,7 @@ describe("AfwArray Tests", () => {
         expect(list.getAt(2).getValue()).toBe(value[2]);
     });
 
-    test("Test forEach()", async () => {
+    test("forEach()", async () => {
 
         const value = [ "abc", "def", "ghi" ];
         const list = new AfwArray({ value });        
@@ -111,7 +111,7 @@ describe("AfwArray Tests", () => {
         });
     });
 
-    test("Test map()", async () => {
+    test("map()", async () => {
         const value = [ "abc", "def", "ghi" ];
         const list = new AfwArray({ value });  
 
@@ -122,7 +122,7 @@ describe("AfwArray Tests", () => {
         });
     });
 
-    test("Test newValue()", async () => {
+    test("newValue()", async () => {
         const value = [ "abc", true, 42 ];
 
         const list = new AfwArray({ value });
@@ -134,7 +134,7 @@ describe("AfwArray Tests", () => {
         expect(list.getAt(3).getValue()).toBe("xyz");
     });
 
-    test("Test removeValue", async () => {
+    test("removeValue", async () => {
         const value = [ "abc", true, 42 ];
 
         const list = new AfwArray({ value });
@@ -152,7 +152,7 @@ describe("AfwArray Tests", () => {
         expect(list.length).toBe(0);
     });
 
-    test("Test iterator()", async () => {
+    test("iterator()", async () => {
 
         const value = [ "abc", "def", "ghi" ];
         const list = new AfwArray({ value });        
@@ -166,7 +166,7 @@ describe("AfwArray Tests", () => {
         }
     });
 
-    test("Test includes()", async () => {
+    test("includes()", async () => {
 
         const value = [ "abc", "def", "ghi" ];
         const list = new AfwArray({ value }); 
@@ -175,7 +175,7 @@ describe("AfwArray Tests", () => {
         expect(list.includes(123)).toBe(false);
     });
 
-    test("Test toJSON", async () => {
+    test("toJSON", async () => {
 
         const value = [
             "abc", "def", "ghi"
@@ -188,7 +188,7 @@ describe("AfwArray Tests", () => {
         ]);
     });
 
-    test("Test validate()", async () => {
+    test("validate()", async () => {
 
         const value = [ "abc", "def", "ghi" ];
         const list = new AfwArray({ value }); 
@@ -197,7 +197,7 @@ describe("AfwArray Tests", () => {
         expect(list.validate()).toBe(true);
     });
 
-    test("Test onChanged", async () => {
+    test("onChanged", async () => {
 
         const onChanged = jest.fn();
 

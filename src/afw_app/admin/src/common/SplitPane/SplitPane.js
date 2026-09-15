@@ -11,7 +11,7 @@ function unFocus(document, window) {
         try {
             window.getSelection().removeAllRanges();
             // eslint-disable-next-line no-empty
-        } catch (e) {}
+        } catch {}
     }
 }
 
@@ -133,7 +133,7 @@ const SplitPane = forwardRef((props, parentRef) => {
                             return;
                         }
                         // Integer division
-                        // eslint-disable-next-line no-bitwise
+                         
                         positionDelta = ~~(positionDelta / step) * step;
                     }
                     let sizeDelta = isPrimaryFirst ? positionDelta : -positionDelta;

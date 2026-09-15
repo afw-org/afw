@@ -5,7 +5,7 @@ import {ReadableStream} from "web-streams-polyfill/es6";
 
 describe("AfwStreams tests", () => {
 
-    test("Test readFull", async () => {
+    test("readFull", async () => {
         const encoder = new TextEncoder();
         const decoder = new TextDecoder("utf-8");
 

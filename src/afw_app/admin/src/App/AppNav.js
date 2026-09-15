@@ -51,7 +51,7 @@ const AppNavMobile = (props) => {
 
     return (
         <>
-            <div className={className} position="static">
+            <div className={className}>
                 <div className={classes.drawerHeader}>
                     <Tooltip 
                         style={{ margin: "0 auto" }}
@@ -115,7 +115,7 @@ const AppNavMini = (props) => {
 
     return (
         <>
-            <div className={className} position="static">
+            <div className={className}>
                 <div className={classes.drawerHeader}>
                     <Tooltip 
                         style={{ margin: "0 auto" }}
@@ -256,7 +256,7 @@ const AppNav = (props) => {
 
     const drawer = (
         <>
-            <div className={className} position="static">
+            <div className={className}>
                 <Paper className={classes.drawerHeader}>
                     <div style={{ paddingLeft: theme.spacing(1), flex: 1, display: "flex", alignItems: "baseline", justifyContent: "space-between" }}>
                         <div>

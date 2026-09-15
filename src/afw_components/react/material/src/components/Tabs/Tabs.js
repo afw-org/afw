@@ -27,7 +27,7 @@ export const Tabs = (props) => {
     if (!props.tabs)
         return null;
 
-    // eslint-disable-next-line no-unused-vars
+    /* eslint @typescript-eslint/no-unused-vars: [2, {"args": "after-used", "varsIgnorePattern": "ignore"}] */
     let {style = { height: "100%" }, tabs, gapSpace, onTabSwitch, orientation, selectedTab: ignore, ...rest} = props;
     
     return (

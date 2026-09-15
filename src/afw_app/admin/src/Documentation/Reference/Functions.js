@@ -108,7 +108,8 @@ const FunctionParameters = ({ parameters }) => {
 };
 
 
-// eslint-disable-next-line no-unused-vars
+ 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- currently commented out below pending the \fixme decision
 const FunctionExamples = ({ functionId, parameters, returns }) => {
     const theme = useTheme();
 

@@ -48,7 +48,7 @@ export class AfwStreams {
      */
     async read(size : number) {   
 
-        let array : Uint8Array = new Uint8Array(size);
+        const array : Uint8Array = new Uint8Array(size);
         let remaining : number = size;        
         let arrayPos : number = 0;
 
@@ -62,7 +62,7 @@ export class AfwStreams {
         while (remaining > 0) {           
 
             /* check if our current chunk is adequate */
-            let available = this.chunk.length - this.cursor;
+            const available = this.chunk.length - this.cursor;
             if (available > remaining) {                                
                 array.set( this.chunk.slice(this.cursor, this.cursor + remaining), arrayPos );
                 this.cursor += remaining;
@@ -245,7 +245,7 @@ export class AfwStreams {
      * The response/result streams are interpreted as JSON, while all else is plaintext.
      */
     async readStreams() {        
-        let streams : { [streamId : string] : any} = {};
+        const streams : { [streamId : string] : any} = {};
 
         while (!this.done) {            
             const {streamId, data} = await this.readFrame(true);

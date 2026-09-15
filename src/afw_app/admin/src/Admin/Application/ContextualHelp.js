@@ -142,11 +142,12 @@ const PropertyObjectHelp = ({ object, property }) => {
                             });
                             if (scriptObjectTypeObject) {
                                 return (
-                                    <PropertyScriptReturnsHelp 
-                                        propertyType={_propertyType} 
-                                        objectTypeObject={scriptObjectTypeObject} 
+                                    <PropertyScriptReturnsHelp
+                                        key={_propertyName}
+                                        propertyType={_propertyType}
+                                        objectTypeObject={scriptObjectTypeObject}
                                     />
-                                );                                     
+                                );
                             }
                         } 
 

@@ -34,7 +34,6 @@ export const ModelReview = (props) => {
                         <Button
                             variant="contained"
                             color="primary"
-                            variant="contained"
                             label="Apply Changes"
                             onClick={onSave}                            
                         />        

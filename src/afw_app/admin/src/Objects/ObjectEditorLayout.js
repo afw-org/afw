@@ -987,7 +987,7 @@ const ObjectEditorLayout = (props, ref) => {
                                     {
                                         try {                            
                                             object.fromJSON(json);
-                                        } catch (e) {
+                                        } catch {
                                             // \fixme no need for global notification here.  alert user, but don't record it in notifications?
                                             notification({ message: "Unable to parse JSON.", type: "error" });
                                             return;

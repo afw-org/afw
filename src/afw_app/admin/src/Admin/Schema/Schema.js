@@ -37,7 +37,7 @@ const Schema = () => {
 
     /* parse the pathname and break it into Breadcrumbs */
     useEffect(() => {
-        let [, adapterId, objectType, propertyType] = pathname.split("/").splice(2); // eslint-disable-line
+        let [, adapterId, objectType, propertyType] = pathname.split("/").splice(2);  
 
         let breadcrumbItems = [
             { text: "Admin", key: "Admin", link: "/Admin" },

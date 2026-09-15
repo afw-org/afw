@@ -25,7 +25,7 @@ const AuthorizationHandlerDetails = ({ authHandler }) => {
                     <Message
                         contains={
                             <div>
-                                <span>To edit this handler's configuration, </span>
+                                <span>To edit this handler&apos;s configuration, </span>
                                 <Link style={{ display: "inline-block" }} url={"/Admin/Services/" + encodeURIComponent(serviceId)} text="Click here" />
                             </div>
                         }

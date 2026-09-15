@@ -96,7 +96,7 @@ export const ModelDiagram = (props) => {
             };
     
             if (objectTypeObjects) {
-                // eslint-disable-next-line 
+                 
                 for (let [path, objectTypeObject] of Object.entries(objectTypeObjects)) {
                     let node = {
                         id: path,
@@ -126,8 +126,7 @@ export const ModelDiagram = (props) => {
                     diagram.nodes.push(node);
                 }
     
-                // eslint-disable-next-line 
-                for (let [path, objectTypeObject] of Object.entries(objectTypeObjects)) {
+                for (const [, objectTypeObject] of Object.entries(objectTypeObjects)) {
                     let parentPaths = objectTypeObject.getResolvedParentPaths();
                     parentPaths && objectTypeObject.getResolvedParentPaths().forEach((parentPath) => {
                         if (nodeHash[parentPath]) {

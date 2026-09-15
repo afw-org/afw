@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-/* eslint-disable no-use-before-define */
+ 
 import {useState, useEffect, useRef} from "react";
 import {Route, Switch, useRouteMatch} from "react-router";
 

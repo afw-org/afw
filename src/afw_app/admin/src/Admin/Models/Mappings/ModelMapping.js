@@ -341,12 +341,13 @@ export const ModelMapping = (props) => {
 
                         return (
                             <div key={objectType}>
-                                <Tree 
+                                <Tree
                                     selectionMode="none"
                                     dense={true}
                                     expandedKeys={expandedKeys}
                                     onNodeToggle={setExpandedKeys}
-                                    children={[
+                                >
+                                    {[
                                         {
                                             key: objectType,
                                             contains: 
@@ -394,8 +395,8 @@ export const ModelMapping = (props) => {
                                             modelObjectTypeObject: modelObjectTypeObject,
                                             children: [ buildPropertyMappings(objectType, modelObjectTypeObject, propertyTypes) ]                                         
                                         }
-                                    ]}  
-                                />
+                                    ]}
+                                </Tree>
                             </div>
                         );
                     })

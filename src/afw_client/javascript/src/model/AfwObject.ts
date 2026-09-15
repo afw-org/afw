@@ -1,6 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {
-    AfwArray,
     AfwProperty,
     AfwEvent,
     AfwModel,
@@ -219,7 +218,7 @@ export class AfwObject extends AfwEvent {
         const model = this.getModel();
         const adapterId = this.getAdapterId();
        
-        let obj = new AfwObject({
+        const obj = new AfwObject({
             model, adapterId, objectTypeId, objectId,
             object: this.toJSON(),
             path, parent, propertyName, objectTypeObject,
@@ -320,7 +319,7 @@ export class AfwObject extends AfwEvent {
      *             reference embedded property names.
      */
     getProperty(name: string | string[]) : AfwProperty | undefined {
-        let {properties, object} = this;
+        const {properties, object} = this;
 
         if (!name)
             return undefined;
@@ -343,16 +342,14 @@ export class AfwObject extends AfwEvent {
             const value = object ? object[name] : undefined;
 
             /* determine the propertyType */
-            let propertyType : (IPropertyType | undefined);            
-            
             /* Get the propertyType.  We use otherProperties here, because a new property may have *just*
                been added and no value yet assigned.  If this is a problem later, then we have to adjust for
-               both cases.  See CustomVariables for use case. 
+               both cases.  See CustomVariables for use case.
 
                Note:  There may be a use-case for passing false to useOtherProperties.
              */
-            propertyType = this.getPropertyType(name);
-            if (!propertyType) {               
+            const propertyType : (IPropertyType | undefined) = this.getPropertyType(name);
+            if (!propertyType) {
                 return undefined;
             }
 
@@ -371,7 +368,8 @@ export class AfwObject extends AfwEvent {
         const {object, properties} = this;
         const objectTypeObject = this.getObjectTypeObject();
 
-        let props: AfwProperty[] = [], keys: string[] = [];
+        const props: AfwProperty[] = [];
+        let keys: string[] = [];
 
         /* use keys from the ObjectType object definition */
         if (objectTypeObject && objectTypeObject.propertyTypes)
@@ -437,7 +435,7 @@ export class AfwObject extends AfwEvent {
     {  
         const {object} = this;
 
-        let obj : { [prop: string] : any } = {};        
+        const obj : { [prop: string] : any } = {};        
 
         object && Object.keys(object).forEach(key => {
             if (key === "_meta_")
@@ -985,7 +983,7 @@ export class AfwObject extends AfwEvent {
      * @param {boolean} meta Should the JSON object include _meta_ data.
      */
     toJSON(meta : boolean = false) {
-        let object: IAnyObject = {};
+        const object: IAnyObject = {};
         
         const properties = this.getProperties();        
         for (const property of properties) {     
@@ -1014,7 +1012,7 @@ export class AfwObject extends AfwEvent {
 
         /* go through each property and make sure they are valid */        
         for (const property of this.getProperties()) {            
-            let error = property.validate(recurse);            
+            const error = property.validate(recurse);            
             if (error && error.length > 0)
                 errors = errors.concat(error);
         }
@@ -1027,8 +1025,8 @@ export class AfwObject extends AfwEvent {
      */
     getJSONSchema(objectTypeObject = this.getObjectTypeObject(), recurseMeta : boolean = true) {
         const model = this.getModel();
-        let jsonSchema : IJSONSchema = { type: "object", properties: {} };
-        let requiredProperties: string[] = [];
+        const jsonSchema : IJSONSchema = { type: "object", properties: {} };
+        const requiredProperties: string[] = [];
 
         if (!model)
             throw new Error("Cannot get JSON Schema without an underlying data model.");

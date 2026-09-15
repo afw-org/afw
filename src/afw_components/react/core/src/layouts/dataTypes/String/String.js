@@ -126,11 +126,11 @@ const Plaintext = (props) => {
 };
 
 /**
- * _String
+ * String
  * 
  * Handles dataType=string 
  */
-export const _String = (props) => {
+export const String = (props) => {
     
     const {editable} = useOperational(props);
 
@@ -164,6 +164,6 @@ export const _String = (props) => {
     }
 };
 
-_String.propTypes = propTypes;
+String.propTypes = propTypes;
 
-export default _String;
+export default String;

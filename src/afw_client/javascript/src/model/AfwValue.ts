@@ -402,10 +402,11 @@ export class AfwValue extends AfwEvent {
      *
      * Validates a value conforms to its propertyType.
      */
-    // eslint-disable-next-line no-unused-vars
+     
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars -- reserved for recursive validation, not yet implemented
     validate(recurse: boolean = false) : any[] {
 
-        let errors: any[] = [];
+        const errors: any[] = [];
 
         return errors;
 

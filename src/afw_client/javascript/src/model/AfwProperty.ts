@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {AfwObject, AfwArray, AfwValue, AfwEventId} from ".";
+import {AfwValue, AfwEventId} from ".";
 
 interface PropertyType {
     dataType?:          string;
@@ -133,9 +133,9 @@ export class AfwProperty extends AfwValue {
         }
 
         if (this.getDataType() === "object" && recurse) {
-            let object = this.getValue();
+            const object = this.getValue();
             if (object) {
-                let embeddedErrors = object.validate(recurse);
+                const embeddedErrors = object.validate(recurse);
                 if (embeddedErrors && embeddedErrors.length > 0)
                     errors = errors.concat(embeddedErrors);
             }

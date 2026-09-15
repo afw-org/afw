@@ -56,16 +56,17 @@ export const LocalStorageTree = ({ storage, selectedFiles, allowSelectDirectorie
     };
 
     return (
-        <Tree 
+        <Tree
             selectionMode="single"
-            children={tree}  
             expandedKeys={expandedKeys}
             onNodeToggle={setExpandedKeys}
             onSelectTreeNode={onSelectTreeNode}
-            defaultExpandIcon={<Icon iconName="chevron_right" />}                 
-            defaultCollapseIcon={<Icon iconName="expand_more" />}     
-            defaultEndIcon={<Icon iconName="insert_drive_file" />}            
-        />
+            defaultExpandIcon={<Icon iconName="chevron_right" />}
+            defaultCollapseIcon={<Icon iconName="expand_more" />}
+            defaultEndIcon={<Icon iconName="insert_drive_file" />}
+        >
+            {tree}
+        </Tree>
     );
 };
 
@@ -242,17 +243,18 @@ export const VfsTree = ({ vfsAdapters, selectedFiles, onSelectFiles, allowSelect
     };
 
     return (
-        <Tree 
+        <Tree
             selectionMode="single"
-            children={tree}
             onNodeToggle={onNodeToggle}
             onSelectTreeNode={onSelectTreeNode}
-            selectedKeys={selectedFiles}       
-            expandedKeys={expandedKeys}                        
-            defaultExpandIcon={<Icon iconName="chevron_right" />}                 
-            defaultCollapseIcon={<Icon iconName="expand_more" />}     
-            defaultEndIcon={<Icon iconName="insert_drive_file" />}            
-        />
+            selectedKeys={selectedFiles}
+            expandedKeys={expandedKeys}
+            defaultExpandIcon={<Icon iconName="chevron_right" />}
+            defaultCollapseIcon={<Icon iconName="expand_more" />}
+            defaultEndIcon={<Icon iconName="insert_drive_file" />}
+        >
+            {tree}
+        </Tree>
     );
 };
 

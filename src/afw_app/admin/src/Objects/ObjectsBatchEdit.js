@@ -593,7 +593,7 @@ const ObjectsBatchEditModal = (props) => {
                                             const mods = JSON.parse(newValue);                                            
                                             setMods(mods);
                                         // eslint-disable-next-line no-empty
-                                        } catch (e) {}
+                                        } catch {}
                                     }}
                                 /> :
                                 <ObjectsBatchEdit 

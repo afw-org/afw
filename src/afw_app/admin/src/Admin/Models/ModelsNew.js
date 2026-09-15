@@ -347,8 +347,9 @@ export const ModelsNew = ({ open, adapterId, onCreate, onDismiss }) => {
         dispatch({ type: "ON_MAP", model });
     };
 
+    /* eslint-disable react/jsx-key -- indexed by state.step below, never rendered as a list */
     const StepContains = [
-        <Step1Contains 
+        <Step1Contains
             {...state}
             dispatch={dispatch}
         />,
@@ -396,9 +397,8 @@ export const ModelsNew = ({ open, adapterId, onCreate, onDismiss }) => {
             }}
             onMap={onMap}
         />
-    ];    
-
-    
+    ];
+    /* eslint-enable react/jsx-key */
 
     return (
         <Dialog 

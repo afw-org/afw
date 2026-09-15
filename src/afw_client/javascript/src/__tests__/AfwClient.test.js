@@ -109,7 +109,7 @@ describe("AfwClient Tests", () => {
 
     describe("Test Perform()", () => {
 
-        test("Test result", async () => {
+        test("result", async () => {
             server.use(
                 rest.post("http://localhost/afw", (req, res, ctx) => {
                     return res(
@@ -129,7 +129,7 @@ describe("AfwClient Tests", () => {
             expect(result).toBe(2);
         });
 
-        test("Test response", async () => {
+        test("response", async () => {
             server.use(
                 rest.post("http://localhost/afw", (req, res, ctx) => {
                     return res(

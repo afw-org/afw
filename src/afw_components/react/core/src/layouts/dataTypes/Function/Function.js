@@ -16,7 +16,7 @@ import {
 /**
  * Handle dataType=function
  */
-export const _Function = (props) => {
+export const Function = (props) => {
     
     const {editable} = useOperational(props);
     const {id, autoFocus, value, valueMeta = {}, onChanged, onValidate} = props;
@@ -45,4 +45,4 @@ export const _Function = (props) => {
 
 Function.displayName = "Function";
 
-export default _Function;
+export default Function;

@@ -90,11 +90,12 @@ export const ObjectTree = (props) => {
         return (     
             <div style={{ height: "100%" }}>    
                 <div style={{ maxHeight: (selectedTreeNode ? "60%" : undefined), overflow: "auto", padding: "4px" }}> 
-                    <Tree 
-                        children={treeChildren}   
+                    <Tree
                         onSelectTreeNode={onSelectTreeNode}
                         selectionMode="single"
-                    />
+                    >
+                        {treeChildren}
+                    </Tree>
                 </div>
                 {
                     selectedTreeNode &&             
@@ -124,11 +125,12 @@ export const ObjectTree = (props) => {
         );
     } else {
         return (            
-            <Tree 
-                children={treeChildren}   
-                onSelectTreeNode={onSelectTreeNode}             
+            <Tree
+                onSelectTreeNode={onSelectTreeNode}
                 selectionMode="single"
-            />
+            >
+                {treeChildren}
+            </Tree>
         );
     }
 };

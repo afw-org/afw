@@ -33,7 +33,7 @@ export const AdapterDetailsLmdb = ({ adapter }) => {
                                             <Message 
                                                 contains={
                                                     <div>
-                                                        <span>To edit this adapter's configuration, </span>
+                                                        <span>To edit this adapter&apos;s configuration, </span>
                                                         <Link style={{ display: "inline-block" }} url={"/Admin/Services/" + encodeURIComponent(adapterId)} text="click here" />
                                                         <span>.</span>
                                                     </div>

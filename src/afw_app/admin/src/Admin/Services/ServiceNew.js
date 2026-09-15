@@ -286,7 +286,7 @@ export const ServiceStepDetailed = (props) => {
             return <ServiceNewAdapterLdap confObject={confObject} />;
 
     } else if (serviceType === "authorizationHandler") {
-        //eslint-disable-next-line
+        // no subtype-specific view for this type - falls through to the generic renderer below
     }
 
     /*
@@ -476,8 +476,9 @@ export const ServiceNew = (props) => {
         }
     };     
 
-    const steps = [            
-        <ServiceStepSelect 
+    /* eslint-disable react/jsx-key -- indexed by activeStep below, never rendered as a list */
+    const steps = [
+        <ServiceStepSelect
             {...props}
             onSelectServiceType={onSelectServiceType}
         />,
@@ -497,6 +498,7 @@ export const ServiceNew = (props) => {
             serviceSubtype={serviceSubtype}
         />
     ];
+    /* eslint-enable react/jsx-key */
 
     return (
         <Dialog             

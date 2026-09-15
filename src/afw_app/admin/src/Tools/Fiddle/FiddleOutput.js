@@ -208,7 +208,7 @@ export const Result = (props) => {
 
         try {
             tests = JSON.parse(result).tests;
-        } catch (e) {
+        } catch {
             // \fixme handle error here
         }
 

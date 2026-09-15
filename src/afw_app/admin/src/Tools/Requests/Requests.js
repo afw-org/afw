@@ -97,8 +97,8 @@ const requestsReducer = (state, action) => {
             const headers = JSON.parse(updatedTabs[0].source);
             headers["Content-Type"] = contentType;
             updatedTabs[0].source = JSON.stringify(headers, null, 4);
-        } catch (e) {
-            //eslint-disable-next-line
+        } catch {
+            // ignore - source is not valid JSON, leave it untouched
         }
 
         return ({
@@ -121,8 +121,8 @@ const requestsReducer = (state, action) => {
             const headers = JSON.parse(updatedTabs[0].source);
             headers["Accept"] = accept;
             updatedTabs[0].source = JSON.stringify(headers, null, 4);
-        } catch (e) {
-            //eslint-disable-next-line
+        } catch {
+            // ignore - source is not valid JSON, leave it untouched
         }
 
         return ({
@@ -147,7 +147,7 @@ const requestsReducer = (state, action) => {
                 headers = JSON.parse(action.source);                
                 // valid JSON                
             // eslint-disable-next-line no-empty
-            } catch (e) {}
+            } catch {}
         }
 
         return ({
