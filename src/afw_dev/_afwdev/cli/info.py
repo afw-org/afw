@@ -579,7 +579,7 @@ _info_build_scan = {
     "action": "store_true",    
     "default": False,
     "help": "After the C build: AFW printf format/argument scan "
-        "(libclang types for %ku/%km/%ks and standard conversions), "
+        "(libclang types for %%ku/%%km/%%ks and standard conversions), "
         "then clang analyze-build. Errors fail the build."
 }
 
