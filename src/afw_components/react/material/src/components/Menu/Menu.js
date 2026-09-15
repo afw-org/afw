@@ -90,15 +90,17 @@ const MenuItem = (props) => {
 };
 const MenuItems = ({ items }) => {
     return items.map((item) => {
-        if (item.type === "divider") 
-            return <Divider key={item.key} />;
+        const {key, ...rest} = item;
+
+        if (item.type === "divider")
+            return <Divider key={key} />;
         else if (item.type === "header")
-            return <MenuHeader {...item} />;
-        else if (item.subMenu) 
+            return <MenuHeader key={key} {...rest} />;
+        else if (item.subMenu)
             // eslint-disable-next-line @typescript-eslint/no-use-before-define
-            return <SubMenu {...item} />;
-        else 
-            return <MenuItem {...item} />;
+            return <SubMenu key={key} {...rest} />;
+        else
+            return <MenuItem key={key} {...rest} />;
     });
 };
 const MenuList = forwardRef((props, ref) => {

@@ -791,40 +791,43 @@ const DefaultMainContent = ({ model }) => {
  */
 export const ModelTreeView = (props) => {
 
-    const { model, selectedNode, onReloadTree } = props;
+    const { model, selectedNode: selectedNodeWithKey, onReloadTree } = props;
 
     let mainContent = null;
 
-    if (selectedNode) {
+    if (selectedNodeWithKey) {
+
+        // eslint-disable-next-line no-unused-vars
+        const {key, ...selectedNode} = selectedNodeWithKey;
 
         let property;
         if (selectedNode.propertyName && model.hasProperty(selectedNode.propertyName))
             property = model.getProperty(selectedNode.propertyName);
 
-        if (selectedNode.type === "objectTypes")         
-            mainContent = <ObjectTypesMainContent {...props} {...selectedNode} property={property} onReloadTree={onReloadTree} />;        
+        if (selectedNode.type === "objectTypes")
+            mainContent = <ObjectTypesMainContent {...props} {...selectedNode} property={property} onReloadTree={onReloadTree} />;
 
         else if (selectedNode.type === "onFunctions")
-            mainContent = <OnFunctionsMainContent {...props} {...selectedNode} property={property} onReloadTree={onReloadTree} />;               
+            mainContent = <OnFunctionsMainContent {...props} {...selectedNode} property={property} onReloadTree={onReloadTree} />;
 
-        else if (selectedNode.type === "propertyTypes") 
-            mainContent = <PropertyTypesMainContent {...props} {...selectedNode} onReloadTree={onReloadTree} />;        
+        else if (selectedNode.type === "propertyTypes")
+            mainContent = <PropertyTypesMainContent {...props} {...selectedNode} onReloadTree={onReloadTree} />;
 
         else if (selectedNode.type === "customs")
             mainContent = <CustomVariablesMainContent {...props} {...selectedNode} onReloadTree={onReloadTree} />;
 
-        else if (selectedNode.type === "objectType")         
-            mainContent = <ObjectTypeMainContent {...props} {...selectedNode} property={property} onReloadTree={onReloadTree} />;        
+        else if (selectedNode.type === "objectType")
+            mainContent = <ObjectTypeMainContent {...props} {...selectedNode} property={property} onReloadTree={onReloadTree} />;
 
         else if (selectedNode.type === "propertyType")
             mainContent = <PropertyTypeMainContent {...props} {...selectedNode} property={property} onReloadTree={onReloadTree} />;
-        
-        else if (selectedNode.propertyName)       
+
+        else if (selectedNode.propertyName)
             mainContent = <ActionMainContent {...selectedNode} {...props} onReloadTree={onReloadTree} />;
 
         else if (selectedNode.type === "model")
             mainContent = <DefaultMainContent {...props} {...selectedNode} onReloadTree={onReloadTree} />;
-        
+
     }
 
     return mainContent;
