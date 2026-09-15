@@ -121,7 +121,7 @@ describe("Services Tests", () => {
         const row = screen.getByText("test1").closest("tr");
         fireEvent.click(row);
 
-        await waitFor(() => expect(screen.getByLabelText("Start")));
+        await waitFor(() => expect(screen.getByLabelText("Start")).toBeInTheDocument());
         fireEvent.click(screen.getByLabelText("Start"));
       
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("service_start"));
@@ -157,7 +157,7 @@ describe("Services Tests", () => {
         const row = screen.getByText("syslog").closest("tr");
         fireEvent.click(row);
 
-        await waitFor(() => expect(screen.getByLabelText("Stop")));
+        await waitFor(() => expect(screen.getByLabelText("Stop")).toBeInTheDocument());
         fireEvent.click(screen.getByLabelText("Stop"));
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("service_stop"));
@@ -195,7 +195,7 @@ describe("Services Tests", () => {
         const row = screen.getByText("syslog").closest("tr");
         fireEvent.click(row);
 
-        await waitFor(() => expect(screen.getByLabelText("Restart")));
+        await waitFor(() => expect(screen.getByLabelText("Restart")).toBeInTheDocument());
         fireEvent.click(screen.getByLabelText("Restart"));
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("service_restart"));
@@ -232,7 +232,7 @@ describe("Services Tests", () => {
         let row = screen.getByText("test1").closest("tr");
         fireEvent.click(row);
 
-        await waitFor(() => expect(screen.getByLabelText("Start")));
+        await waitFor(() => expect(screen.getByLabelText("Start")).toBeInTheDocument());
         fireEvent.click(screen.getByLabelText("Start"));
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("service_start"));
@@ -259,7 +259,7 @@ describe("Services Tests", () => {
         row = screen.getByText("test1").closest("tr");
         fireEvent.click(row);
 
-        await waitFor(() => expect(screen.getByLabelText("Stop")));
+        await waitFor(() => expect(screen.getByLabelText("Stop")).toBeInTheDocument());
         fireEvent.click(screen.getByLabelText("Stop"));
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWith(
@@ -301,7 +301,7 @@ describe("Services Tests", () => {
         fireEvent.click(screen.getByLabelText("Delete"));
 
         // confirm Delete
-        await waitFor(() => expect(screen.getByLabelText("Confirm Delete")));
+        await waitFor(() => expect(screen.getByLabelText("Confirm Delete")).toBeInTheDocument());
         fireEvent.click(screen.getByLabelText("Confirm Delete"));       
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("delete_object_with_uri"));      
@@ -538,7 +538,7 @@ describe("Services Tests", () => {
             expect(await screen.findByLabelText("Cancel")).toBeInTheDocument();                                     
     
             // render the baseElement (body) to also include the New Service dialog
-            await waitFor(() => expect(screen.getByLabelText("syslog")));
+            await waitFor(() => expect(screen.getByLabelText("syslog")).toBeInTheDocument());
 
             await waitFor(() => expect(screen.getByLabelText("Next")).toHaveAttribute("disabled"));
             fireEvent.click(screen.getByLabelText("syslog"));
@@ -643,7 +643,7 @@ describe("Services Tests", () => {
             
     
             // render the baseElement (body) to also include the New Service dialog
-            await waitFor(() => expect(screen.getByLabelText("script")));
+            await waitFor(() => expect(screen.getByLabelText("script")).toBeInTheDocument());
 
             await waitFor(() => expect(screen.getByLabelText("Next")).toHaveAttribute("disabled"));
             fireEvent.click(screen.getByLabelText("script"));
@@ -716,7 +716,7 @@ describe("Services Tests", () => {
             const row = screen.getByText("files").closest("tr");
             fireEvent.click(row);
 
-            await waitFor(() => expect(screen.getByLabelText("Edit")));
+            await waitFor(() => expect(screen.getByLabelText("Edit")).toBeInTheDocument());
             fireEvent.click(screen.getByLabelText("Edit"));
 
             await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());       
@@ -724,13 +724,13 @@ describe("Services Tests", () => {
             
             // examine the General tab
             fireEvent.click(await screen.findByLabelText("General"));
-            for (const property of Object.keys(serviceMeta.result.propertyTypes)) {
+            const propertiesWithValues = Object.keys(serviceMeta.result.propertyTypes).filter(property => fileService[property]);
+            expect(propertiesWithValues.length).toBeGreaterThan(0);
+            for (const property of propertiesWithValues) {
                 const label = serviceMeta.result.propertyTypes[property].label;
                 const value = fileService[property];
 
-                if (value) {
-                    await waitFor(() => expect(screen.getByLabelText(label)).toHaveTextContent(value));                    
-                }
+                await waitFor(() => expect(screen.getByLabelText(label)).toHaveTextContent(value));
             }    
             
             // examine the Configuration tab
@@ -761,7 +761,7 @@ describe("Services Tests", () => {
             const row = screen.getByText("files").closest("tr");
             fireEvent.click(row);
 
-            await waitFor(() => expect(screen.getByLabelText("Edit")));
+            await waitFor(() => expect(screen.getByLabelText("Edit")).toBeInTheDocument());
             fireEvent.click(screen.getByLabelText("Edit"));
 
             await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());        
@@ -813,7 +813,7 @@ describe("Services Tests", () => {
             const row = screen.getByText("models").closest("tr");
             fireEvent.click(row);
 
-            await waitFor(() => expect(screen.getByLabelText("Edit")));
+            await waitFor(() => expect(screen.getByLabelText("Edit")).toBeInTheDocument());
             fireEvent.click(screen.getByLabelText("Edit"));
 
             await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());      
@@ -821,13 +821,13 @@ describe("Services Tests", () => {
             
             // examine the General tab
             fireEvent.click(await screen.findByLabelText("General"));
-            for (const property of Object.keys(serviceMeta.result.propertyTypes)) {
+            const propertiesWithValues = Object.keys(serviceMeta.result.propertyTypes).filter(property => modelService[property]);
+            expect(propertiesWithValues.length).toBeGreaterThan(0);
+            for (const property of propertiesWithValues) {
                 const label = serviceMeta.result.propertyTypes[property].label;
                 const value = modelService[property];
 
-                if (value) {
-                    await waitFor(() => expect(screen.getByLabelText(label)).toHaveTextContent(value));
-                }
+                await waitFor(() => expect(screen.getByLabelText(label)).toHaveTextContent(value));
             }                   
             
             // examine the Configuration tab
@@ -852,7 +852,7 @@ describe("Services Tests", () => {
             const row = screen.getByText("tier").closest("tr");
             fireEvent.click(row);
 
-            await waitFor(() => expect(screen.getByLabelText("Edit")));
+            await waitFor(() => expect(screen.getByLabelText("Edit")).toBeInTheDocument());
             fireEvent.click(screen.getByLabelText("Edit"));
 
             await waitFor(() => expect(screen.getByLabelText("Edit Object")).toBeInTheDocument());
@@ -901,7 +901,7 @@ describe("Services Tests", () => {
             const row = screen.getByText("syslog").closest("tr");
             fireEvent.click(row);
 
-            await waitFor(() => expect(screen.getByLabelText("Edit")));
+            await waitFor(() => expect(screen.getByLabelText("Edit")).toBeInTheDocument());
             fireEvent.click(screen.getByLabelText("Edit"));
 
             await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());  
@@ -909,13 +909,13 @@ describe("Services Tests", () => {
             
             // examine the General tab
             fireEvent.click(await screen.findByLabelText("General"));
-            for (const property of Object.keys(serviceMeta.result.propertyTypes)) {
+            const propertiesWithValues = Object.keys(serviceMeta.result.propertyTypes).filter(property => syslogService[property]);
+            expect(propertiesWithValues.length).toBeGreaterThan(0);
+            for (const property of propertiesWithValues) {
                 const label = serviceMeta.result.propertyTypes[property].label;
                 const value = syslogService[property];
 
-                if (value) {
-                    await waitFor(() => expect(screen.getByLabelText(label)).toHaveTextContent(value));
-                }
+                await waitFor(() => expect(screen.getByLabelText(label)).toHaveTextContent(value));
             }                   
             
             // examine the Configuration tab
@@ -940,7 +940,7 @@ describe("Services Tests", () => {
             const row = screen.getByText("syslog").closest("tr");
             fireEvent.click(row);
 
-            await waitFor(() => expect(screen.getByLabelText("Edit")));
+            await waitFor(() => expect(screen.getByLabelText("Edit")).toBeInTheDocument());
             fireEvent.click(screen.getByLabelText("Edit"));
 
             await waitFor(() => expect(screen.getByLabelText("Edit Object")).toBeInTheDocument());
@@ -986,7 +986,7 @@ describe("Services Tests", () => {
             const row = screen.getByText("auth-script").closest("tr");
             fireEvent.click(row);
 
-            await waitFor(() => expect(screen.getByLabelText("Edit")));
+            await waitFor(() => expect(screen.getByLabelText("Edit")).toBeInTheDocument());
             fireEvent.click(screen.getByLabelText("Edit"));
 
             await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());      
@@ -994,13 +994,13 @@ describe("Services Tests", () => {
             
             // examine the General tab
             fireEvent.click(await screen.findByLabelText("General"));
-            for (const property of Object.keys(serviceMeta.result.propertyTypes)) {
+            const propertiesWithValues = Object.keys(serviceMeta.result.propertyTypes).filter(property => authHandlerService[property]);
+            expect(propertiesWithValues.length).toBeGreaterThan(0);
+            for (const property of propertiesWithValues) {
                 const label = serviceMeta.result.propertyTypes[property].label;
                 const value = authHandlerService[property];
 
-                if (value) {
-                    await waitFor(() => expect(screen.getByLabelText(label)).toHaveTextContent(value));
-                }
+                await waitFor(() => expect(screen.getByLabelText(label)).toHaveTextContent(value));
             }                   
             
             // examine the Configuration tab
@@ -1025,7 +1025,7 @@ describe("Services Tests", () => {
             const row = screen.getByText("auth-script").closest("tr");
             fireEvent.click(row);
 
-            await waitFor(() => expect(screen.getByLabelText("Edit")));
+            await waitFor(() => expect(screen.getByLabelText("Edit")).toBeInTheDocument());
             fireEvent.click(screen.getByLabelText("Edit"));
 
             await waitFor(() => expect(screen.getByLabelText("Edit Object")).toBeInTheDocument());
