@@ -233,11 +233,13 @@ const AppNav = (props) => {
             else if (pathname.startsWith("/Tools"))
                 toolsOpen = true;
 
+            /* eslint-disable react-hooks/set-state-in-effect -- these also toggle independently via each group's onGroupClick handler, so they can't be pure useMemo derivations of location alone */
             setDocsOpen(docsOpen);
             setAdminOpen(adminOpen);
             setToolsOpen(toolsOpen);
             setServicesOpen(servicesOpen);
             setDocRefOpen(docRefOpen);
+            /* eslint-enable react-hooks/set-state-in-effect */
         }
     }, [location]);
 

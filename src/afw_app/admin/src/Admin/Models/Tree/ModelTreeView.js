@@ -503,6 +503,7 @@ const ActionMainContent = ({ model, propertyName }) => {
             if (property) {
                 const value = property.getValue();
 
+                // eslint-disable-next-line react-hooks/set-state-in-effect -- resets the editable tab when propertyName changes; tab is then locally mutable via user edits below, so it can't be a pure useMemo derivation
                 setTab({
                     source: value,
                     key: property.getName(),            
@@ -534,20 +535,18 @@ const ActionMainContent = ({ model, propertyName }) => {
                             onSaveSource={() => {
                                 /*! \fixme when a user requests to save the source from a Ctl-S inside the editor */                                    
                             }}
-                            onSourceChanged={(newValue) => {    
+                            onSourceChanged={(newValue) => {
                                 property.setValue(newValue);
 
-                                tab.source = newValue ? newValue : "";
-                                setTab({...tab});
+                                setTab({...tab, source: newValue ? newValue : ""});
                             }}
                         />
                     </QualifiersProvider>
                 }
                 onRemove={() => {
                     property.setValue();
-                    tab.source = tab.format = undefined;
 
-                    setTab({ ...tab });
+                    setTab({ ...tab, source: undefined, format: undefined });
                 }}
             />;
     } 
@@ -572,19 +571,18 @@ const ActionMainContent = ({ model, propertyName }) => {
                             size="small"
                             variant="outlined"
                             onClick={() => {
-                                tab.format = "script";
-                                tab.source = "\n/**\n";
-                                tab.source += " * " + property.getName();
+                                let source = "\n/**\n";
+                                source += " * " + property.getName();
 
                                 if (property.getSkeleton()) {
-                                    tab.source = property.getSkeleton();
-                                } else if (property.getDescription()) {     
-                                    tab.source += "\n * \n";         
-                                    tab.source += commentWrapped(property.getDescription());
-                                    tab.source += "\n */\n\n";
-                                }                                
+                                    source = property.getSkeleton();
+                                } else if (property.getDescription()) {
+                                    source += "\n * \n";
+                                    source += commentWrapped(property.getDescription());
+                                    source += "\n */\n\n";
+                                }
 
-                                setTab({...tab});
+                                setTab({...tab, format: "script", source});
                             }}
                         />                        
                     </div>

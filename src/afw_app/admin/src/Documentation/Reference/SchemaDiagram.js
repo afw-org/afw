@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {useState, useEffect, useRef} from "react";
+import {useState, useMemo, useRef} from "react";
 
 import {
     Callout
@@ -42,8 +42,7 @@ export const ModelDiagram = (props) => {
         setObjectTypeObject(objectTypeObject);        
     };
 
-    const [diagram, setDiagram] = useState({ nodes: [], edges: [] });
-    const [options, ] = useState({
+    const optionsRef = useRef({
         width: "100%",
         height: "100%",
         autoResize: true,
@@ -72,89 +71,93 @@ export const ModelDiagram = (props) => {
 
         const Network = theGraph.current.Network;
         const nodePositions = Network.getPositions();
-        
+
         if (Object.keys(nodePositions).length > 0 && Network.layoutEngine.options.hierarchical.enabled) {
-            options.layout.hierarchical = false;
-            Network.setOptions(options);
+            optionsRef.current.layout.hierarchical = false;
+            Network.setOptions(optionsRef.current);
 
             theGraph.current.Network.fit();
         }
     };
-    const [events,] = useState({
+    const eventsRef = useRef({
         stabilized: onStabilized,
         selectNode: onSelectNode,
         deselectNode: onDeselectNode,
         dragStart: onDragStart,
-    });    
+    });
 
-    useEffect(() => {
+    const diagram = useMemo(() => {
         if (objectTypeObjects) {
             const nodeHash = {};
             const diagram = {
                 nodes: [],
                 edges: [],
             };
-    
-            if (objectTypeObjects) {
-                 
-                for (let [path, objectTypeObject] of Object.entries(objectTypeObjects)) {
-                    let node = {
-                        id: path,
-                        font: {
-                            multi: "html",
-                            face: "Segoe UI WestEuropean,Segoe UI,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif",
-                            
-                        },
-                        heightConstraint: {
-                            minimum: 100,
-                            valign: "top",
-                        },
-                        widthConstraint: {
-                            maximum: 200,
-                        },
-                        shadow: true,
-                        borderWidth: 1,
-                        color: {
-                            border: "#004578",
-                            background: "white"
-                        },
-                        physics: false,
-                        label: "<b>" + objectTypeObject.getObjectId() + "</b>\n\n" + objectTypeObject.getPropertyValue("description"),                    
-                    };
-    
-                    nodeHash[path] = node;
-                    diagram.nodes.push(node);
-                }
-    
-                for (const [, objectTypeObject] of Object.entries(objectTypeObjects)) {
-                    let parentPaths = objectTypeObject.getResolvedParentPaths();
-                    parentPaths && objectTypeObject.getResolvedParentPaths().forEach((parentPath) => {
-                        if (nodeHash[parentPath]) {
-                            diagram.edges.push({
-                                from: objectTypeObject.getPath(),
-                                to: parentPath,
-                                smooth: true,
-                                shadow: true,
-                            });
-                        }
-                    });
-                }
+
+            for (let [path, objectTypeObject] of Object.entries(objectTypeObjects)) {
+                let node = {
+                    id: path,
+                    font: {
+                        multi: "html",
+                        face: "Segoe UI WestEuropean,Segoe UI,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif",
+
+                    },
+                    heightConstraint: {
+                        minimum: 100,
+                        valign: "top",
+                    },
+                    widthConstraint: {
+                        maximum: 200,
+                    },
+                    shadow: true,
+                    borderWidth: 1,
+                    color: {
+                        border: "#004578",
+                        background: "white"
+                    },
+                    physics: false,
+                    label: "<b>" + objectTypeObject.getObjectId() + "</b>\n\n" + objectTypeObject.getPropertyValue("description"),
+                };
+
+                nodeHash[path] = node;
+                diagram.nodes.push(node);
             }
-    
-            setDiagram(diagram);
+
+            for (const [, objectTypeObject] of Object.entries(objectTypeObjects)) {
+                let parentPaths = objectTypeObject.getResolvedParentPaths();
+                parentPaths && objectTypeObject.getResolvedParentPaths().forEach((parentPath) => {
+                    if (nodeHash[parentPath]) {
+                        diagram.edges.push({
+                            from: objectTypeObject.getPath(),
+                            to: parentPath,
+                            smooth: true,
+                            shadow: true,
+                        });
+                    }
+                });
+            }
+
+            return diagram;
         }
 
+        return { nodes: [], edges: [] };
     }, [objectTypeObjects]);
     
     return (
         <>
-            <Graph 
+            {
+                /* eslint-disable react-hooks/refs -- Graph/vis-network is an imperative library that
+                   takes optionsRef/eventsRef's config once at mount, not reactive UI state; optionsRef
+                   is mutated later only from onStabilized (an event callback, not during render) */
+            }
+            <Graph
                 ref={theGraph}
                 style={{ height: "calc(100vh - 250px)" }}
                 graph={diagram}
-                options={options}
-                events={events}
+                options={optionsRef.current}
+                events={eventsRef.current}
             />
+            {/* eslint-enable react-hooks/refs */}
             {
                 nodeCalloutVisible &&
                     <Callout 

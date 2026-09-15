@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
  
-import {useState, useEffect, useRef} from "react";
+import {useState, useMemo, useRef} from "react";
 import {Route, Switch, useRouteMatch} from "react-router";
 
 import AdapterDetails from "./AdapterDetails";
@@ -25,10 +25,7 @@ const AdaptersDiagram = () => {
     const [nodeCalloutVisible, setNodeCalloutVisible] = useState();
     const [targetPosition, setTargetPosition] = useState();
     const [selectedNode, setSelectedNode] = useState();
-    const [diagram, setDiagram] = useState({ 
-        nodes: [], edges: []
-    });
-    const [options,] = useState({
+    const optionsRef = useRef({
         width: "100%",
         height: "100%",
         autoResize: true,
@@ -59,8 +56,6 @@ const AdaptersDiagram = () => {
         }
     });
     
-    const [nodeHash, setNodeHash] = useState();
-
     const {adapters} = useAppCore();
     const theGraph = useRef(null);
 
@@ -97,15 +92,15 @@ const AdaptersDiagram = () => {
         let Network = theGraph.current.Network;
         let nodePositions = Network.getPositions();
         
-        if (Object.keys(nodePositions).length > 0 && Network.layoutEngine.options.hierarchical.enabled) {            
-            options.layout.hierarchical = false;
-            Network.setOptions(options);
+        if (Object.keys(nodePositions).length > 0 && Network.layoutEngine.options.hierarchical.enabled) {
+            optionsRef.current.layout.hierarchical = false;
+            Network.setOptions(optionsRef.current);
 
             theGraph.current.Network.fit();
         }
     };
 
-    const [events,] = useState({
+    const eventsRef = useRef({
         stabilized: onStabilized,
         selectNode: onSelectNode,
         deselectNode: onDeselectNode,
@@ -114,7 +109,7 @@ const AdaptersDiagram = () => {
     });
     
 
-    useEffect(() => {
+    const {diagram, nodeHash} = useMemo(() => {
         const databaseImage = () => {
             let image = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\"  width=\"64\" height=\"64\" viewBox=\"0 0 24 24\"><path fill=\"#004578\" d=\"M12,3C7.58,3 4,4.79 4,7C4,9.21 7.58,11 12,11C16.42,11 20,9.21 20,7C20,4.79 16.42,3 12,3M4,9V12C4,14.21 7.58,16 12,16C16.42,16 20,14.21 20,12V9C20,11.21 16.42,13 12,13C7.58,13 4,11.21 4,9M4,14V17C4,19.21 7.58,21 12,21C16.42,21 20,19.21 20,17V14C20,16.21 16.42,18 12,18C7.58,18 4,16.21 4,14Z\" /></svg>";
     
@@ -239,20 +234,27 @@ const AdaptersDiagram = () => {
                 }
             });
             
-            setDiagram(diagram);
-            setNodeHash(nodeHash);            
+            return {diagram, nodeHash};
         }
+
+        return {diagram: { nodes: [], edges: [] }, nodeHash: undefined};
     }, [adapters]);
 
     return (
         <>
-            <Graph 
+            {
+                /* eslint-disable react-hooks/refs -- Graph/vis-network is an imperative library that
+                   takes optionsRef/eventsRef's config once at mount, not reactive UI state; optionsRef
+                   is mutated later only from onStabilized (an event callback, not during render) */
+            }
+            <Graph
                 ref={theGraph}
                 style={{ height: "100%" }}
                 graph={diagram}
-                options={options}
-                events={events}
+                options={optionsRef.current}
+                events={eventsRef.current}
             />
+            {/* eslint-enable react-hooks/refs */}
             {
                 nodeCalloutVisible &&                 
                     <Callout                           
