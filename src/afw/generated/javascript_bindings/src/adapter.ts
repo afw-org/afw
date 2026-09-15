@@ -632,10 +632,7 @@ export function afwReplaceObjectWithUri(client : any, uri : any, object : object
  * would be exceeded, if the request pool still has room to throw. Request
  * memory is capped separately by limitRequestPoolBytes: that cap may throw
  * payload_too_large when it trips with room to build the error, or a memory
- * error if allocation fails. For large result sets prefer
- * retrieve_objects_to_response, retrieve_objects_to_stream, or
- * retrieve_objects_to_callback so objects need not all be held in memory at
- * once.
+ * error if allocation fails.
  * 
  * @param {string} adapterId - Id of adapter containing objects to retrieve.
  * 
@@ -663,8 +660,7 @@ export function afwReplaceObjectWithUri(client : any, uri : any, object : object
  *     still has room to throw. This is an optional cardinality bound, not the
  *     request memory cap. Runaway materialize is stopped by
  *     limitRequestPoolBytes (payload_too_large when the cap trips with room
- *     to throw) or by allocation failure (memory). Progressive retrieve_*
- *     functions are not limited by this parameter.
+ *     to throw) or by allocation failure (memory).
  * 
  * @returns {array} This is the array of objects retrieved.
  */
@@ -892,8 +888,7 @@ export function afwRetrieveObjectsToStream(client : any, streamNumber : number, 
  * would be exceeded, if the request pool still has room to throw. Request
  * memory is capped separately by limitRequestPoolBytes: that cap may throw
  * payload_too_large when it trips with room to build the error, or a memory
- * error if allocation fails. For large result sets prefer progressive
- * retrieve functions.
+ * error if allocation fails.
  * 
  * @param {anyURI} uri - URI of objects to retrieve. If a URI begins with a
  *     single slash ('/'), it is the local object path. A query string can be
@@ -917,8 +912,7 @@ export function afwRetrieveObjectsToStream(client : any, streamNumber : number, 
  *     still has room to throw. This is an optional cardinality bound, not the
  *     request memory cap. Runaway materialize is stopped by
  *     limitRequestPoolBytes (payload_too_large when the cap trips with room
- *     to throw) or by allocation failure (memory). Progressive retrieve_*
- *     functions are not limited by this parameter.
+ *     to throw) or by allocation failure (memory).
  * 
  * @returns {array} This is the array of objects retrieved.
  */

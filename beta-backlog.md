@@ -117,7 +117,7 @@ delete the remote `mgg-develop` name when nobody needs the tip.
   - **Kept:** `afw_object_create_merged` (actions); `afw_object_aggregate_external_create` (**live** — `afw_command_local_server` request properties); object **option** `composite` (views / parentPaths — different thing).
   - **Residual:** memory `clone_on_set` field always false; not productized.
   - Product mutable look-through remains **faces** (`create_wrapper_*`), not these APIs.
-- **#127** (progressive retrieve release): **not** app-only. C still has `@fixme Need corresponding releases` on script/materialize `impl_retrieve_cb` in `afw_function_adapter.c`; stream/to_response paths differ. Caps/faces landed earlier; progressive **release** still C (+ any app progressive consumer). Blocked on focused work / Jeremy for end-to-end progressive path, not “only app.”
+- **#127** (progressive retrieve release): **closed** for write-only `to_response` / `to_stream` / HTTP list. Residual: `@fixme Need corresponding releases` on script/materialize `impl_retrieve_cb` in `afw_function_adapter.c` (script may retain the object). Not an admin conversion task.
 
 ### Session wrap-up — 2026-08-06 (cleanup + managed face pin)
 
@@ -422,7 +422,7 @@ When closing a fixme: remove or rewrite skip, fix asserts to Adaptive style, kee
 _Not a commitment — fill in as “must be true before we call it beta.”_
 
 - [ ] Memory / long-running story credible (**#2**): managed values, pools, no silent leak under realistic server/script load
-- [ ] Large materializations constrained or progressive where needed (**#49**, **#127**, client progressive path)
+- [x] Large materializing retrieve no longer a default-100 landmine (**#49** `maxObjects` default 0); request memory is **`limitRequestPoolBytes`** (**#329**). Progressive retrieve remains optional (**#127**).
 - [ ] Snapshot / debug APIs (e.g. **#9** `qualifier`/`qualifiers`) documented as non-hot-path and size-aware; not used as everyday data access
 - [ ] User-facing behavior documented in `whats-new.md` / real docs as appropriate
 - [x] `mgg-develop` merged to `develop` ([PR #179](https://github.com/afw-org/afw/pull/179); retarget checklist done); `develop` → `main` when beta-ready

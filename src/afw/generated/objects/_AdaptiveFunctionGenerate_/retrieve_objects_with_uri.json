@@ -3,7 +3,7 @@
     "brief": "Retrieve adaptive object with URI",
     "camelCaseFunctionLabel": "retrieveObjectsWithUri",
     "category": "adapter",
-    "description": "Retrieve adaptive objects with a given URI.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied.\n\nThis function materializes all matching objects into a returned array. Use maxObjects to bound how many objects may be collected (default 0, unlimited). A positive maxObjects throws payload_too_large when that count would be exceeded, if the request pool still has room to throw. Request memory is capped separately by limitRequestPoolBytes: that cap may throw payload_too_large when it trips with room to build the error, or a memory error if allocation fails. For large result sets prefer progressive retrieve functions.",
+    "description": "Retrieve adaptive objects with a given URI.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied.\n\nThis function materializes all matching objects into a returned array. Use maxObjects to bound how many objects may be collected (default 0, unlimited). A positive maxObjects throws payload_too_large when that count would be exceeded, if the request pool still has room to throw. Request memory is capped separately by limitRequestPoolBytes: that cap may throw payload_too_large when it trips with room to build the error, or a memory error if allocation fails.",
     "errorsThrown": [
         {
             "error": "payload_too_large",
@@ -48,7 +48,7 @@
         {
             "brief": "Maximum objects to return",
             "dataType": "integer",
-            "description": "Maximum number of objects that may be collected into the returned array. Default is 0 (unlimited). A positive value fails with payload_too_large when exceeded, if the request pool still has room to throw. This is an optional cardinality bound, not the request memory cap. Runaway materialize is stopped by limitRequestPoolBytes (payload_too_large when the cap trips with room to throw) or by allocation failure (memory). Progressive retrieve_* functions are not limited by this parameter.",
+            "description": "Maximum number of objects that may be collected into the returned array. Default is 0 (unlimited). A positive value fails with payload_too_large when exceeded, if the request pool still has room to throw. This is an optional cardinality bound, not the request memory cap. Runaway materialize is stopped by limitRequestPoolBytes (payload_too_large when the cap trips with room to throw) or by allocation failure (memory).",
             "name": "maxObjects",
             "optional": true
         }

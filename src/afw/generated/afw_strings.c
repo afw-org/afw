@@ -26649,12 +26649,6 @@ afw_self_v_zz__4159e64fd53e = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__4164146c9ddf = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__4164146c9ddf)
-};
-
-const afw_value_string_t
 afw_self_v_zz__416e2aa70b13 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__416e2aa70b13)
@@ -27228,12 +27222,6 @@ const afw_value_string_t
 afw_self_v_zz__4c8335e57dfe = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__4c8335e57dfe)
-};
-
-const afw_value_string_t
-afw_self_v_zz__4c8fdb28782b = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__4c8fdb28782b)
 };
 
 const afw_value_string_t
@@ -29001,6 +28989,12 @@ afw_self_v_zz__6a741df5fc72 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__6aa19e716456 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__6aa19e716456)
+};
+
+const afw_value_string_t
 afw_self_v_zz__6abc58de8414 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__6abc58de8414)
@@ -29250,6 +29244,12 @@ const afw_value_string_t
 afw_self_v_zz__6ec5cbe9499f = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__6ec5cbe9499f)
+};
+
+const afw_value_string_t
+afw_self_v_zz__6edb29d3ffff = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__6edb29d3ffff)
 };
 
 const afw_value_string_t
@@ -29976,12 +29976,6 @@ const afw_value_string_t
 afw_self_v_zz__7e45649857d3 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__7e45649857d3)
-};
-
-const afw_value_string_t
-afw_self_v_zz__7e65f5ede2b3 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__7e65f5ede2b3)
 };
 
 const afw_value_string_t
@@ -30780,6 +30774,12 @@ const afw_value_string_t
 afw_self_v_zz__8b4880a8f6ec = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__8b4880a8f6ec)
+};
+
+const afw_value_string_t
+afw_self_v_zz__8b73ee6ae53a = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__8b73ee6ae53a)
 };
 
 const afw_value_string_t

@@ -928,10 +928,7 @@ afw_function_definition_retrieve_objects;
  * exceeded, if the request pool still has room to throw. Request memory is
  * capped separately by limitRequestPoolBytes: that cap may throw
  * payload_too_large when it trips with room to build the error, or a memory
- * error if allocation fails. For large result sets prefer
- * retrieve_objects_to_response, retrieve_objects_to_stream, or
- * retrieve_objects_to_callback so objects need not all be held in memory at
- * once.
+ * error if allocation fails.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -978,8 +975,7 @@ afw_function_definition_retrieve_objects;
  *       still has room to throw. This is an optional cardinality bound, not the
  *       request memory cap. Runaway materialize is stopped by
  *       limitRequestPoolBytes (payload_too_large when the cap trips with room
- *       to throw) or by allocation failure (memory). Progressive retrieve_*
- *       functions are not limited by this parameter.
+ *       to throw) or by allocation failure (memory).
  *
  * Returns:
  *
@@ -1247,8 +1243,7 @@ afw_function_definition_retrieve_objects_with_uri;
  * exceeded, if the request pool still has room to throw. Request memory is
  * capped separately by limitRequestPoolBytes: that cap may throw
  * payload_too_large when it trips with room to build the error, or a memory
- * error if allocation fails. For large result sets prefer progressive retrieve
- * functions.
+ * error if allocation fails.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -1289,8 +1284,7 @@ afw_function_definition_retrieve_objects_with_uri;
  *       still has room to throw. This is an optional cardinality bound, not the
  *       request memory cap. Runaway materialize is stopped by
  *       limitRequestPoolBytes (payload_too_large when the cap trips with room
- *       to throw) or by allocation failure (memory). Progressive retrieve_*
- *       functions are not limited by this parameter.
+ *       to throw) or by allocation failure (memory).
  *
  * Returns:
  *

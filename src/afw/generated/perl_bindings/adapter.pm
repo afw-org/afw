@@ -559,10 +559,7 @@ A positive maxObjects throws payload_too_large when that count would be
 exceeded, if the request pool still has room to throw. Request memory is
 capped separately by limitRequestPoolBytes: that cap may throw
 payload_too_large when it trips with room to build the error, or a memory
-error if allocation fails. For large result sets prefer
-retrieve_objects_to_response, retrieve_objects_to_stream, or
-retrieve_objects_to_callback so objects need not all be held in memory at
-once.
+error if allocation fails.
 Retrieve adaptive objects
 
 =head4 Parameters
@@ -603,8 +600,7 @@ Default is 0 (unlimited). A positive value fails with payload_too_large when
 exceeded, if the request pool still has room to throw. This is an optional
 cardinality bound, not the request memory cap. Runaway materialize is stopped
 by limitRequestPoolBytes (payload_too_large when the cap trips with room to
-throw) or by allocation failure (memory). Progressive retrieve_* functions are
-not limited by this parameter.
+throw) or by allocation failure (memory).
 
 =head3 retrieve_objects_to_callback
 
@@ -772,8 +768,7 @@ A positive maxObjects throws payload_too_large when that count would be
 exceeded, if the request pool still has room to throw. Request memory is
 capped separately by limitRequestPoolBytes: that cap may throw
 payload_too_large when it trips with room to build the error, or a memory
-error if allocation fails. For large result sets prefer progressive retrieve
-functions.
+error if allocation fails.
 Retrieve adaptive object with URI
 
 =head4 Parameters
@@ -806,8 +801,7 @@ Default is 0 (unlimited). A positive value fails with payload_too_large when
 exceeded, if the request pool still has room to throw. This is an optional
 cardinality bound, not the request memory cap. Runaway materialize is stopped
 by limitRequestPoolBytes (payload_too_large when the cap trips with room to
-throw) or by allocation failure (memory). Progressive retrieve_* functions are
-not limited by this parameter.
+throw) or by allocation failure (memory).
 
 =head3 retrieve_objects_with_uri_to_callback
 

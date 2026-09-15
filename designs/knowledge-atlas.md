@@ -226,7 +226,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | **Day rules** | `afw-core-services`, `afw-model-adapter`, `afw-adapter-index` |
 | **Deep pads** | Issue/theme pads as needed; model optional `mappedAdapterId` (#109) in model rule |
 | **Probe** | Adapter CRUD via tests; `service_start/stop/restart/get`; lifecycle leaf under `tests-extra` |
-| **Open** | Index create/txn residuals (#54/#57); more adapter types; retrieve paging vs progressive stream (not the same as #49 limit); catalog `composite`/`normalize` cost **[#331](https://github.com/afw-org/afw/issues/331)** (`check_object_errors.as` / `object_options.as`) |
+| **Open** | Index create/txn residuals (#54/#57); more adapter types; RQL paging if we want it (#49); catalog `composite`/`normalize` cost **[#331](https://github.com/afw-org/afw/issues/331)** (`check_object_errors.as` / `object_options.as`) |
 | **Gap** | No dedicated “adapter write path” playbook — use core-services + tests |
 
 ---

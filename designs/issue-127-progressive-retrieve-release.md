@@ -37,7 +37,7 @@ So write-only progressive CBs **must** `afw_object_release` after successful wri
 
 - **to_callback / materialize**: need a coherent get_reference + release when script does *not* retain, without breaking faces that do. Closer to #2 / value lifetime.
 - **Extra refs** from `process_object_from_adapter` + empty-options `view_create` (both get_reference; empty options returns same instance) may leave elevated pool RC after a single CB release — progressive free-as-you-go is still better than zero release on to_response; full accounting is #2.
-- **Admin / JS progressive consumer** — out of scope for core fix.
+- **Admin / JS** — Objects browser already uses progressive write. Not a conversion requirement for other admin retrieves.
 - **maxObjects** — #49 only on materializing array functions (default 0 = unlimited).
 
 ## Tests (core, no app)

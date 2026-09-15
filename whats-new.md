@@ -112,7 +112,6 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Multi-frame `::` get**](#multi-frame-get-aligned-with-snapshots) | Stacked same-name qualifiers: first **defining** frame wins (was “first matching frame only”); aligned with snapshot semantics (landed with [#15](https://github.com/afw-org/afw/issues/15) work) |
 | [**Retrieve arrays**](#materializing-retrieve-maxobjects-issue-49) ([#49](https://github.com/afw-org/afw/issues/49)) | Optional **`maxObjects`** on materializing `retrieve_objects` / `…_with_uri` (default **0** = unlimited; positive cap → **`payload_too_large`** if the pool still has room). Request memory is **`limitRequestPoolBytes`** |
 | [**Progressive retrieve release**](#progressive-retrieve-release-issue-127) ([#127](https://github.com/afw-org/afw/issues/127)) | Write-only progressive paths **release each object after encode/flush** (`to_response` / `to_stream` / HTTP collection list) so large sets do not hold every adapter object until the request ends |
-| [**Admin / JS client**](#admin--afwclient) | `AfwModel` still sends **`maxObjects: 0`** for catalogs (same as the server default now) |
 | [**Adapter auth**](#adapter-getretrieve-authorization-issue-90) ([#90](https://github.com/afw-org/afw/issues/90)) | `checkIndividualObjectReadAccess` wiring fixed + tests (action **`read`** as well as **`query`**) |
 | [**File streams**](#file-streams-open_file-and-friends) ([#103](https://github.com/afw-org/afw/issues/103)) | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** (not `-1` / `get_stream_error`) |
 | [**Conf path templates**](#conf-path-templates-issue-15) ([#15](https://github.com/afw-org/afw/issues/15)) | Path-like conf properties are **templates** at create/start; host dirs often resolved to full path; VFS `vfsMap` / LDAP `url` too |
@@ -1213,18 +1212,9 @@ These APIs are for large result sets **without** materializing one array on the 
 - `retrieve_objects_to_stream` / `…_to_stream`
 - `retrieve_objects_to_callback` / `…_to_callback`
 
-They still use the same adapter session underneath; only the **array-building** functions enforce `maxObjects`. Safe **release after write** on progressive write paths is issue **[#127](https://github.com/afw-org/afw/issues/127)** (next section). Broader long-running memory / OOM handling is issue **[#2](https://github.com/afw-org/afw/issues/2)**.
+They still use the same adapter session underneath; only the **array-building** functions enforce `maxObjects`. Safe **release after write** on those write paths is issue **[#127](https://github.com/afw-org/afw/issues/127)** (next section). Broader long-running memory / OOM handling is issue **[#2](https://github.com/afw-org/afw/issues/2)**.
 
-`maxObjects` is **not** an adapter conf property and **not** RQL/client paging—those remain longer-term [#49](https://github.com/afw-org/afw/issues/49) work.
-
-### Admin / `@afw/client`
-
-**`AfwModel`** (`@afw/client`) still sends **`maxObjects: 0`** for:
-
-- `loadObjectTypes`
-- `retrieveObjects` (default; callers can still pass a positive limit)
-
-That matches the server default. Progressive `retrieve_objects_to_response` (already used by the Objects browser) remains the better pattern for large **instance** data; that client story is still open under [#49](https://github.com/afw-org/afw/issues/49).
+`maxObjects` is **not** an adapter conf property. Server memory for a request is **`limitRequestPoolBytes`**.
 
 [↑ Highlights](#highlights)
 
@@ -1893,7 +1883,7 @@ Must-change items are at the [top](#must-change-read-this-first). These are easi
 | Long-running memory / OOM | [#2](https://github.com/afw-org/afw/issues/2) | [#133](https://github.com/afw-org/afw/pull/133) (partial α/β on `mgg-develop`; more open) |
 | C API Doxygen / builders + `--fulldev` | [#1](https://github.com/afw-org/afw/issues/1) | [#132](https://github.com/afw-org/afw/pull/132) |
 | Adapter index `current::` | [#54](https://github.com/afw-org/afw/issues/54) | [#130](https://github.com/afw-org/afw/pull/130) (partial; see [#57](https://github.com/afw-org/afw/issues/57)) |
-| `qualifier` / `qualifiers` snapshots + admin `maxObjects: 0` | [#9](https://github.com/afw-org/afw/issues/9) | [#129](https://github.com/afw-org/afw/pull/129) |
+| `qualifier` / `qualifiers` snapshots | [#9](https://github.com/afw-org/afw/issues/9) | [#129](https://github.com/afw-org/afw/pull/129) |
 | Multi-frame `::` get + conf path templates + `process::` ambient | [#15](https://github.com/afw-org/afw/issues/15) (also [#71](https://github.com/afw-org/afw/issues/71)/[#74](https://github.com/afw-org/afw/issues/74) partial) | [#135](https://github.com/afw-org/afw/pull/135) |
 | Object / array helpers | [#55](https://github.com/afw-org/afw/issues/55) (closed) | [#134](https://github.com/afw-org/afw/pull/134) |
 | `afw_crypto` + secrets composition | [#74](https://github.com/afw-org/afw/issues/74) (partial; stays open for readpass) | [#136](https://github.com/afw-org/afw/pull/136) |

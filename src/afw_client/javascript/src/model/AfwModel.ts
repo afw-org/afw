@@ -32,13 +32,6 @@ interface IRetrieveObjectsParams {
     queryCriteria?: string;
     objectOptions?: IObjectOptions;
     modelOptions?:  IModelOptions;
-    /**
-     * Bound on materializing retrieve_objects (issue #49). Server default is
-     * 100 when omitted; this client defaults to 0 (unlimited) because admin/UI
-     * paths routinely load full metadata catalogs (200+ object types, etc.).
-     * Pass a positive limit when browsing large instance data.
-     */
-    maxObjects?:    number;
 }
 
 interface IConfig {
@@ -486,13 +479,10 @@ export class AfwModel {
                 \fixme temporary until bindings fixed up 
                 \fixme return everything, including abort controller
             */
-            /* maxObjects default is 0 unlimited (issue #49); keep sending
-             * 0 so older servers with default 100 still load full OT catalogs. */
             const action: IJSONObject = { 
                 "function": "retrieve_objects", 
                 adapterId, objectType: objectTypeId,
-                options: <IJSONObject>options,
-                maxObjects: 0,
+                options: <IJSONObject>options,             
             };      
             
             const objectTypeObjects = await this.client.perform(action).result();            
@@ -611,8 +601,7 @@ export class AfwModel {
         adapterId, 
         queryCriteria, 
         objectOptions = {}, 
-        modelOptions = { adaptiveObject: true, initialize: true },
-        maxObjects = 0,
+        modelOptions = { adaptiveObject: true, initialize: true }
     } : IRetrieveObjectsParams) : IRetrieveObjectsResponse
     {
 
@@ -632,13 +621,10 @@ export class AfwModel {
             \fixme temporary until bindings fixed up 
             \fixme return everything, including abort controller
         */
-        /* maxObjects: server default is 0 unlimited (issue #49); client
-         * default 0 matches that and still works on older default-100 servers. */
         const action: IJSONObject = { 
             "function": "retrieve_objects", 
             adapterId, objectType: objectTypeId, queryCriteria,
-            options: <IJSONObject>options,
-            maxObjects,
+            options: <IJSONObject>options,             
         };      
         
         const {result, ...rest} = this.client.perform(action);

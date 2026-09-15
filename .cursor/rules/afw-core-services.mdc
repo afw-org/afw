@@ -30,16 +30,11 @@ libafw is not only a script engine. Hosts, adapters, and policies plug in throug
 
 - `retrieve_objects` / `retrieve_objects_with_uri` — optional **`maxObjects`** (default **0** = unlimited). A positive cap → **`payload_too_large`** when exceeded, if the request pool still has room to throw. Enforced in `function/afw_function_adapter.c` when adding to the array, **not** in the session wrapper. Request memory is **`limitRequestPoolBytes`** (`payload_too_large` when the cap trips with room to throw, or **`memory`** if allocation fails).
 
-**Progressive** paths (no array max from `maxObjects`):
-
-| Path | Behavior |
-|------|----------|
-| `retrieve_objects_to_response` / `_to_stream` / `_to_callback` | Per-object write/callback; intended release-as-you-go (**#127** for safe release after write) |
-| Admin Objects UI | Progressive server write; client may still materialize full set |
+**Progressive** paths (`retrieve_objects_to_response` / `_to_stream` / `_to_callback`) are not limited by `maxObjects`. Release-after-write is **#127**. They are optional write-as-you-go APIs, not a client conversion requirement.
 
 Session wrapper (`adapter/afw_adapter_impl.c`) handles **auth** (`query` always; per-object `read` if `checkIndividualObjectReadAccess`) and special/no_dupe CBs — **not** the array size policy.
 
-Long-term still open on #49: RQL/client paging, streaming product story. Long-running/OOM: **#2**.
+Long-term still open on #49: RQL paging if we want it. Long-running/OOM: **#2**. Request memory: **`limitRequestPoolBytes`**.
 
 ## Request, content type, action
 

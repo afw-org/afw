@@ -754,10 +754,7 @@ class adapter
      * count would be exceeded, if the request pool still has room to throw.
      * Request memory is capped separately by limitRequestPoolBytes: that cap
      * may throw payload_too_large when it trips with room to build the error,
-     * or a memory error if allocation fails. For large result sets prefer
-     * retrieve_objects_to_response, retrieve_objects_to_stream, or
-     * retrieve_objects_to_callback so objects need not all be held in memory
-     * at once.
+     * or a memory error if allocation fails.
      *
      * @param string $adapterId Id of adapter containing objects to retrieve.
      * @param string $objectType Id of adaptive object type of objects to
@@ -791,8 +788,7 @@ class adapter
      *                            stopped by limitRequestPoolBytes
      *                            (payload_too_large when the cap trips with
      *                            room to throw) or by allocation failure
-     *                            (memory). Progressive retrieve_* functions
-     *                            are not limited by this parameter.
+     *                            (memory).
      *
      * @return array This is the array of objects retrieved.
      */
@@ -1052,8 +1048,7 @@ class adapter
      * count would be exceeded, if the request pool still has room to throw.
      * Request memory is capped separately by limitRequestPoolBytes: that cap
      * may throw payload_too_large when it trips with room to build the error,
-     * or a memory error if allocation fails. For large result sets prefer
-     * progressive retrieve functions.
+     * or a memory error if allocation fails.
      *
      * @param anyURI $uri URI of objects to retrieve. If a URI begins with a
      *                    single slash ('/'), it is the local object path. A
@@ -1084,8 +1079,7 @@ class adapter
      *                            stopped by limitRequestPoolBytes
      *                            (payload_too_large when the cap trips with
      *                            room to throw) or by allocation failure
-     *                            (memory). Progressive retrieve_* functions
-     *                            are not limited by this parameter.
+     *                            (memory).
      *
      * @return array This is the array of objects retrieved.
      */

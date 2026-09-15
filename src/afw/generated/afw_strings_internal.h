@@ -15343,32 +15343,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__4164146c9ddf \
-    "This function retrieves adaptive objects from an adapter, specified by adapterId, which match the type specified by objectType.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied.\n\nThis function materializes all matching objects into a returned array. Use maxObjects to bound how many objects may be collected (default 0, unlimited). A positive maxObjects throws payload_too_large when that count would be exceeded, if the request pool still has room to throw. Request memory is capped separately by limitRequestPoolBytes: that cap may throw payload_too_large when it trips with room to build the error, or a memory error if allocation fails. For large result sets prefer retrieve_objects_to_response, retrieve_objects_to_stream, or retrieve_objects_to_callback so objects need not all be held in memory at once."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4164146c9ddf */
-#define afw_s_zz__4164146c9ddf \
-    (&afw_self_v_zz__4164146c9ddf.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4164146c9ddf */
-#define afw_self_s_zz__4164146c9ddf \
-    (afw_self_v_zz__4164146c9ddf.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__4164146c9ddf */
-extern const afw_value_string_t \
-    afw_self_v_zz__4164146c9ddf;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__4164146c9ddf */
-#define afw_z_zz__4164146c9ddf \
-    (afw_self_v_zz__4164146c9ddf.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__4164146c9ddf */
-#define afw_v_zz__4164146c9ddf \
-    (&afw_self_v_zz__4164146c9ddf.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__416e2aa70b13 \
     "Checks for <dataType> arg1 is greater than <dataType> arg2 and return the boolean result."
 
@@ -17861,32 +17835,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__4c8335e57dfe */
 #define afw_v_zz__4c8335e57dfe \
     (&afw_self_v_zz__4c8335e57dfe.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__4c8fdb28782b \
-    "Retrieve adaptive objects with a given URI.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied.\n\nThis function materializes all matching objects into a returned array. Use maxObjects to bound how many objects may be collected (default 0, unlimited). A positive maxObjects throws payload_too_large when that count would be exceeded, if the request pool still has room to throw. Request memory is capped separately by limitRequestPoolBytes: that cap may throw payload_too_large when it trips with room to build the error, or a memory error if allocation fails. For large result sets prefer progressive retrieve functions."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4c8fdb28782b */
-#define afw_s_zz__4c8fdb28782b \
-    (&afw_self_v_zz__4c8fdb28782b.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4c8fdb28782b */
-#define afw_self_s_zz__4c8fdb28782b \
-    (afw_self_v_zz__4c8fdb28782b.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__4c8fdb28782b */
-extern const afw_value_string_t \
-    afw_self_v_zz__4c8fdb28782b;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__4c8fdb28782b */
-#define afw_z_zz__4c8fdb28782b \
-    (afw_self_v_zz__4c8fdb28782b.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__4c8fdb28782b */
-#define afw_v_zz__4c8fdb28782b \
-    (&afw_self_v_zz__4c8fdb28782b.pub)
 
 
 
@@ -25535,6 +25483,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__6aa19e716456 \
+    "Maximum number of objects that may be collected into the returned array. Default is 0 (unlimited). A positive value fails with payload_too_large when exceeded, if the request pool still has room to throw. This is an optional cardinality bound, not the request memory cap. Runaway materialize is stopped by limitRequestPoolBytes (payload_too_large when the cap trips with room to throw) or by allocation failure (memory)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6aa19e716456 */
+#define afw_s_zz__6aa19e716456 \
+    (&afw_self_v_zz__6aa19e716456.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6aa19e716456 */
+#define afw_self_s_zz__6aa19e716456 \
+    (afw_self_v_zz__6aa19e716456.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__6aa19e716456 */
+extern const afw_value_string_t \
+    afw_self_v_zz__6aa19e716456;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__6aa19e716456 */
+#define afw_z_zz__6aa19e716456 \
+    (afw_self_v_zz__6aa19e716456.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__6aa19e716456 */
+#define afw_v_zz__6aa19e716456 \
+    (&afw_self_v_zz__6aa19e716456.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__6abc58de8414 \
     "Produce a default _AdaptiveAction_ object for an replace object request to a model adapter."
 
@@ -26623,6 +26597,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__6ec5cbe9499f */
 #define afw_v_zz__6ec5cbe9499f \
     (&afw_self_v_zz__6ec5cbe9499f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__6edb29d3ffff \
+    "This function retrieves adaptive objects from an adapter, specified by adapterId, which match the type specified by objectType.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied.\n\nThis function materializes all matching objects into a returned array. Use maxObjects to bound how many objects may be collected (default 0, unlimited). A positive maxObjects throws payload_too_large when that count would be exceeded, if the request pool still has room to throw. Request memory is capped separately by limitRequestPoolBytes: that cap may throw payload_too_large when it trips with room to build the error, or a memory error if allocation fails."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6edb29d3ffff */
+#define afw_s_zz__6edb29d3ffff \
+    (&afw_self_v_zz__6edb29d3ffff.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6edb29d3ffff */
+#define afw_self_s_zz__6edb29d3ffff \
+    (afw_self_v_zz__6edb29d3ffff.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__6edb29d3ffff */
+extern const afw_value_string_t \
+    afw_self_v_zz__6edb29d3ffff;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__6edb29d3ffff */
+#define afw_z_zz__6edb29d3ffff \
+    (afw_self_v_zz__6edb29d3ffff.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__6edb29d3ffff */
+#define afw_v_zz__6edb29d3ffff \
+    (&afw_self_v_zz__6edb29d3ffff.pub)
 
 
 
@@ -29769,32 +29769,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__7e45649857d3 */
 #define afw_v_zz__7e45649857d3 \
     (&afw_self_v_zz__7e45649857d3.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__7e65f5ede2b3 \
-    "Maximum number of objects that may be collected into the returned array. Default is 0 (unlimited). A positive value fails with payload_too_large when exceeded, if the request pool still has room to throw. This is an optional cardinality bound, not the request memory cap. Runaway materialize is stopped by limitRequestPoolBytes (payload_too_large when the cap trips with room to throw) or by allocation failure (memory). Progressive retrieve_* functions are not limited by this parameter."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7e65f5ede2b3 */
-#define afw_s_zz__7e65f5ede2b3 \
-    (&afw_self_v_zz__7e65f5ede2b3.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7e65f5ede2b3 */
-#define afw_self_s_zz__7e65f5ede2b3 \
-    (afw_self_v_zz__7e65f5ede2b3.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__7e65f5ede2b3 */
-extern const afw_value_string_t \
-    afw_self_v_zz__7e65f5ede2b3;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7e65f5ede2b3 */
-#define afw_z_zz__7e65f5ede2b3 \
-    (afw_self_v_zz__7e65f5ede2b3.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__7e65f5ede2b3 */
-#define afw_v_zz__7e65f5ede2b3 \
-    (&afw_self_v_zz__7e65f5ede2b3.pub)
 
 
 
@@ -33253,6 +33227,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__8b4880a8f6ec */
 #define afw_v_zz__8b4880a8f6ec \
     (&afw_self_v_zz__8b4880a8f6ec.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__8b73ee6ae53a \
+    "Retrieve adaptive objects with a given URI.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied.\n\nThis function materializes all matching objects into a returned array. Use maxObjects to bound how many objects may be collected (default 0, unlimited). A positive maxObjects throws payload_too_large when that count would be exceeded, if the request pool still has room to throw. Request memory is capped separately by limitRequestPoolBytes: that cap may throw payload_too_large when it trips with room to build the error, or a memory error if allocation fails."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8b73ee6ae53a */
+#define afw_s_zz__8b73ee6ae53a \
+    (&afw_self_v_zz__8b73ee6ae53a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8b73ee6ae53a */
+#define afw_self_s_zz__8b73ee6ae53a \
+    (afw_self_v_zz__8b73ee6ae53a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__8b73ee6ae53a */
+extern const afw_value_string_t \
+    afw_self_v_zz__8b73ee6ae53a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8b73ee6ae53a */
+#define afw_z_zz__8b73ee6ae53a \
+    (afw_self_v_zz__8b73ee6ae53a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__8b73ee6ae53a */
+#define afw_v_zz__8b73ee6ae53a \
+    (&afw_self_v_zz__8b73ee6ae53a.pub)
 
 
 

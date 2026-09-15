@@ -5,7 +5,7 @@
 **Architecture (preferred map):** [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) — generate → maps → accessors → env registration → #149 checklist.  
 **Value accessor catalog snapshot:** [`runtime-value-accessors.md`](runtime-value-accessors.md) (from live `afw -x` retrieve).  
 **Parent / umbrella:** GitHub **[#2 Memory management](https://github.com/afw-org/afw/issues/2)** and [`memory-management.md`](memory-management.md).  
-**Related:** [#49](https://github.com/afw-org/afw/issues/49) `maxObjects` (default **0** = unlimited), [#127](https://github.com/afw-org/afw/issues/127) progressive release, admin `AfwModel` still sends `maxObjects: 0` for metadata catalogs.  
+**Related:** [#49](https://github.com/afw-org/afw/issues/49) `maxObjects` (default **0** = unlimited), [#127](https://github.com/afw-org/afw/issues/127) progressive release. Request memory is `limitRequestPoolBytes`.  
 **GitHub tracking issue:** [#149](https://github.com/afw-org/afw/issues/149) (parent pointer on [#2](https://github.com/afw-org/afw/issues/2)).
 
 ---
@@ -46,7 +46,7 @@ Admin SPA patterns that hit this world:
 
 - `get_object_with_uri` → `/afw/_AdaptiveEnvironmentRegistry_/current` (e.g. Services UI after start/stop)
 - `retrieve_objects` on `_AdaptiveManifest_`, extensions, **`_AdaptiveObjectType_`** catalogs
-- Client may send **`maxObjects: 0`**; that matches the server default (unlimited). A positive cap is cardinality fail-closed (`payload_too_large` if the pool still has room). Request memory is `limitRequestPoolBytes`.
+- Default **`maxObjects` is 0** (unlimited). A positive cap is cardinality fail-closed (`payload_too_large` if the pool still has room). Request memory is `limitRequestPoolBytes`.
 
 Dominant cost for catalogs is usually **count × serialize**, not #17 faces.
 
