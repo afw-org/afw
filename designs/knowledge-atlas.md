@@ -54,7 +54,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | Script language | #62 pad; #33 errors; #172 must-change |
 | Compile / call / spread | `afw-script-eval`; #140 / #181; `compiler_internal` kind-check |
 | Arrays / converts / UTF-8 | #39, converts pad, #153; #190 empty-match `replace`. C array/object vtables store **values**; `_as_<type>` vs `_internal`; meta getters still dest `p` |
-| Streams / VFS / retrieve | stream + vfs rules; #127; #49 |
+| Streams / VFS / retrieve | stream + vfs rules; #127; #49; catalog composite soak **[#331](https://github.com/afw-org/afw/issues/331)** |
 | afwdev / tests | recipe + tests-extra SCHEMA; #157; C probes #207; test history `--compare` / `--trend` ([#329](https://github.com/afw-org/afw/issues/329)) |
 | Process telemetry / request caps | `process::` `peak*` / `limit*` / `rss`; application conf overrides; `response:metrics`; hermetic `payload_too_large` worker ([#329](https://github.com/afw-org/afw/issues/329)) |
 | Crypto | #74 pad |
@@ -226,7 +226,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | **Day rules** | `afw-core-services`, `afw-model-adapter`, `afw-adapter-index` |
 | **Deep pads** | Issue/theme pads as needed; model optional `mappedAdapterId` (#109) in model rule |
 | **Probe** | Adapter CRUD via tests; `service_start/stop/restart/get`; lifecycle leaf under `tests-extra` |
-| **Open** | Index create/txn residuals (#54/#57); more adapter types; retrieve paging vs progressive stream (not the same as #49 limit) |
+| **Open** | Index create/txn residuals (#54/#57); more adapter types; retrieve paging vs progressive stream (not the same as #49 limit); catalog `composite`/`normalize` cost **[#331](https://github.com/afw-org/afw/issues/331)** (`check_object_errors.as` / `object_options.as`) |
 | **Gap** | No dedicated “adapter write path” playbook — use core-services + tests |
 
 ---
