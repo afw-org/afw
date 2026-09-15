@@ -1,7 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 
 import {AfwStreams} from "../AfwStreams";
-import {ReadableStream} from "web-streams-polyfill/es6";
+import {ReadableStream} from "web-streams-polyfill";
 
 describe("AfwStreams tests", () => {
 

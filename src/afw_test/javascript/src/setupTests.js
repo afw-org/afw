@@ -2,7 +2,7 @@
 import {vi} from "vitest";
 import {configure} from "@testing-library/dom";
 import {server} from "@afw/test";
-import {ReadableStream} from "web-streams-polyfill/es6";
+import {ReadableStream} from "web-streams-polyfill";
 import "@testing-library/jest-dom";
 
 /*

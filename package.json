@@ -60,12 +60,12 @@
     "@mui/x-date-pickers": "^9.13.0",
     "@mui/x-tree-view": "^9.13.0",
     "@types/react-dom": "^18.3.1",
-    "cross-env": "^7.0.3",
+    "cross-env": "^10.1.0",
     "esm": "^3.2.25",
     "jspreadsheet-ce": "^5.0.4",
     "material-design-icons-iconfont": "^6.1.0",
     "mdi-material-ui": "^8.0.0",
-    "moment-timezone": "^0.5.33",
+    "moment-timezone": "^0.6.4",
     "npm-run-all": "^4.1.5",
     "prop-types": "^15.7.2",
     "react": "^18.3.1",
@@ -80,7 +80,7 @@
     "vis-data": "^8.0.5",
     "vis-network": "^10.1.2",
     "vis-util": "^6.0.2",
-    "web-streams-polyfill": "^3.0.3"
+    "web-streams-polyfill": "^4.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
