@@ -3,9 +3,64 @@
 **Audience:** maintainers / assistants. **Not** handbook.
 
 **GitHub:** [#2](https://github.com/afw-org/afw/issues/2).  
+**How close (scoreboard):** [Live status](#live-status-2026-09-15--how-close-is-2) below. If this pad’s older “Order / Parked” lists, the RSS lab README, `experiment-brainstorm.md` “next session”, or the GitHub issue body disagree with that section, **the live status wins** until someone updates it.
+
 **On `develop`:** pool two-impls ([PR #267](https://github.com/afw-org/afw/pull/267)). Two worlds (unmanaged dest `p` / managed `xctx->p`) **[#277](https://github.com/afw-org/afw/issues/277) closed** (PR **#278**) — pad [`experiment-brainstorm.md`](experiment-brainstorm.md). `issue-2-managed-p` is gone.
 
-**This pad is the rails for inf methods** (hold vs assignable, faces, MUST NOT). **Two worlds, create names, last_return slot:** [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)). **Eval `p`:** [`experiment-eval-p.md`](experiment-eval-p.md) ([PR #287](https://github.com/afw-org/afw/pull/287)). The 2026-08-21 story is [`issue-2-lifetime.md`](issue-2-lifetime.md) (history). If a leak tempts a helper *around* assign, operators, or the compiler — **stop and ask**.
+**This pad is the rails for inf methods** (`get_reference` / `get_assignable_value`, faces, MUST NOT). **Two worlds, create names, last_return slot:** [`experiment-brainstorm.md`](experiment-brainstorm.md) ([#277](https://github.com/afw-org/afw/issues/277)). **Eval `p`:** [`experiment-eval-p.md`](experiment-eval-p.md) ([PR #287](https://github.com/afw-org/afw/pull/287)). Pool doors: [`remaining-apr.md`](remaining-apr.md). The 2026-08-21 story is [`issue-2-lifetime.md`](issue-2-lifetime.md) (history — do not copy wording). If a leak tempts a helper *around* assign, operators, or the compiler — **stop and ask**.
+
+---
+
+## Live status (2026-09-15) — how close is #2?
+
+**Still open.** Do not close. The **protocol is the system** on `develop`. The **campaign is not complete**. This section is the scoreboard for “how close”; it is not a sitting plan and not a rewrite of the rails below.
+
+**Complete when** all of these are true (then remaining items are follow-up issues or explicit will-not-do):
+
+1. Protocol matches the tree (maps and the GitHub body stop teaching dropped plans).
+2. Script scope lifetimes are correct for the doors we already named: assign, overlay, rebind, `return`, closures, throw rewind, `last_result`. Product tests green; RSS soaks **flat or under an agreed bar**.
+3. A long-lived `afwfcgi` does not silently climb on firehose / nested-eval soaks (process/server pool stats — request-end valgrind hides leftovers).
+4. Parked polish is split off or will-not-do. Allocator tuning is not a close gate.
+
+“One request can loop forever without climbing” is the close bar we have been using. **Values that survive a request** (adapter cache, reused compile units, runtime objects pin until the **caller** pool dies) is a separate remainder — child issue or will-not-do, not silent “#2 done.”
+
+### Landed on `develop` (do not re-litigate)
+
+Slot protocol; pool two-impls ([PR #267](https://github.com/afw-org/afw/pull/267)); two worlds **#277** closed (PR **#278**); names as values (PR **#220**); closures / throw-path rewind (**#35** closed); compile-literal + intern **#280**; `script_result` ([#62](https://github.com/afw-org/afw/issues/62) closed); dest `p` ripped; scope RC 1 + `parent_scope_block` / `scope_depth`; eval `p` = `scope->p` when `{ }` has a frame ([PR #287](https://github.com/afw-org/afw/pull/287)); `compile()` is a unit ([PR #305](https://github.com/afw-org/afw/pull/305)); **every `{ }` is a scope** + `last_result` on the running frame ([PR #306](https://github.com/afw-org/afw/pull/306)); isolate last at clone + wrap unbraced loop bodies ([PR #307](https://github.com/afw-org/afw/pull/307)); builtin lifetime ([PR #308](https://github.com/afw-org/afw/pull/308)); managed `pop`/`shift` temp on current scope ([PR #309](https://github.com/afw-org/afw/pull/309)); script return pins on the caller — **no** `function_return_value` wrapper ([PR #326](https://github.com/afw-org/afw/pull/326)); APR gone from libafw, one ST heap per xctx, managed allocs in `p->managed_p` ([PR #327](https://github.com/afw-org/afw/pull/327)).
+
+Hard-loop soaks for assign / overlay / rebind / empty `{ }` / unbraced loop body / `array_push_pop` were **flat** (lab table 2026-09-10). `function_return` was **under the bar** on that table; pin-on-caller and APR-out landed **after** it — **remeasure** before treating those slopes as current. Gate 2026-09-14: `./afwdev build --fulldev` + `afwdev test -j` + valgrind **4484 passed**, 71 skipped.
+
+Complementary, not this close bar: request caps / `process::` telemetry ([#329](https://github.com/afw-org/afw/issues/329) / [PR #330](https://github.com/afw-org/afw/pull/330)); retrieve `maxObjects` ([#49](https://github.com/afw-org/afw/issues/49)); progressive release ([#127](https://github.com/afw-org/afw/issues/127)); qualifier snapshots ([#9](https://github.com/afw-org/afw/issues/9)).
+
+### Still inside #2 (decide or do before close)
+
+| Item | Why it is still #2 |
+|------|---------------------|
+| **Evidence** | RSS table is 2026-09-10 (before [PR #326](https://github.com/afw-org/afw/pull/326) / [PR #327](https://github.com/afw-org/afw/pull/327)). Remeasure `src/afw/tests-extra/issue-2/01-rss-hard-loops/`. Run `02-pool-eval-soak` and firehose `07` / `07b` with process/server pool stats. Write the table. |
+| **Unevaluated clone-out** | `compiled_value` evaluate only `clone_unmanaged`s evaluated data types. Functions / closures as the compile/eval result keep a pointer from the unit. Agree clone vs extra-hold vs “don’t last-release the unit,” then a small vertical or a test that states the contract. |
+| **Watch (leak, not crash)** | Splice copy-out then later assign; unassigned unmanaged temps in a tight loop; `readln` grows the line in `x->p` (`@fixme #2` in `afw_function_stream.c`). Soak or will-not-do. |
+| **Escape past one xctx** | Runtime objects / adapter cache / reused compile units. #149 closed the accessor slice. Clone-into-requestor-pool under the lock is a later option — **child issue or will-not-do**, not silent close. |
+
+### Parked — not close-blockers unless we say so
+
+Adaptive `clone()` still calls `afw_value_clone()` (script `clone()` already extra-holds; aligning with `clone_unmanaged` / `clone_managed` is C-surface). Adapter clones / clone-of-unmanaged meta. `qualifier("current")` snapshot tail. `double_free_throws` skip (wrong throw prefix). Tracker allocated list forward-only. mmap / per-chunk free lists. Heap mixed-size rewrite **withdrawn** (14k concat nest ~0.05s after #287). Do not add `get_base`. Do not mint a mutable face over `environment::`, `process::`, `request::`, `application::`, or adapter/custom conf objects. Overlay `o.x = i` / `o = { n: i }` are **not** parked leak verticals — those soaks were flat.
+
+### Do not start (dropped or parked)
+
+- Unique consume, eval-stack leftover, `#function_return_value`, or a call-result leftover inf.
+- Hop dest `p` / wrap at execute / helpers around assign.
+- Heap size-class rewrite for the 14k nest.
+- **`designs/maps/` harvest** — decided, not started. Topic-named current kit later; do not copy live maps in the meantime.
+
+### Where truth lives
+
+| Kind | Open |
+|------|------|
+| **This scoreboard** | This section |
+| **Live maps** | This pad (rails); [`experiment-brainstorm.md`](experiment-brainstorm.md); [`experiment-eval-p.md`](experiment-eval-p.md); [`remaining-apr.md`](remaining-apr.md) |
+| **Lab** | [`src/afw/tests-extra/issue-2/`](../src/afw/tests-extra/issue-2/) — table in `01-rss-hard-loops/README.md` (dated; remeasure) |
+| **History — do not copy wording** | [`issue-2-lifetime.md`](issue-2-lifetime.md), [`issue-2-hold-in-inf-plan.md`](issue-2-hold-in-inf-plan.md), [`memory-management.md`](memory-management.md) |
+| **Code / tests** | Ground truth. When they disagree with a pad, fix the pad. |
 
 Keep from `develop`: slot protocol, pool split, two worlds **#277**, `#35` store-time bind, `#245` then **every `{ }` is a scope** ([PR #306](https://github.com/afw-org/afw/pull/306)), `#246`/`#247` honest heap/tracker.
 
