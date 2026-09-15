@@ -82,6 +82,7 @@ export const ResponsiveRow = (props) => {
 
     return (
         <Grid
+            size={12}
             style={style}
             container
             spacing={spacing}
