@@ -2,7 +2,7 @@
 
 import {forwardRef, useRef, useEffect} from "react";
 
-import "vis-network/dist/dist/vis-network.min.css";
+import "vis-network/styles/vis-network.min.css";
 import {Network} from "vis-network";
 
 const defaultOptions = {

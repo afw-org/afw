@@ -77,9 +77,9 @@
     "typeface-roboto-mono": "^1.1.13",
     "typescript": "^4.3.2",
     "util": "^0.12.4",
-    "vis-data": "^7.1.2",
-    "vis-network": "^9.0.4",
-    "vis-util": "^5.0.2",
+    "vis-data": "^8.0.5",
+    "vis-network": "^10.1.2",
+    "vis-util": "^6.0.2",
     "web-streams-polyfill": "^3.0.3"
   },
   "devDependencies": {
