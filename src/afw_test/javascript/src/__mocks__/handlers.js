@@ -23,9 +23,16 @@ const streamFromJSON = (json) => {
     return data;
 };
 
+// Absolute URLs (as a host-agnostic RegExp, not a plain string), not relative
+// paths: msw's Node-side setupServer matches relative patterns against
+// `window.location`, which is a browser convenience this test environment
+// doesn't reliably provide. Different test packages construct AfwClient with
+// either no url (defaults to the literal "http://localhost/afw") or a
+// relative "/afw" (resolved against jsdom's default test URL,
+// "http://localhost:3000/") - the port needs to stay optional to match both.
 export const handlers = [
 
-    rest.post("/afw", async (req, res, ctx) => {
+    rest.post(/^http:\/\/localhost(:\d+)?\/afw$/, async (req, res, ctx) => {
         mswPostCallback("/afw", req, res, ctx);
 
         //const accept = req.headers.get("accept");
@@ -159,7 +166,7 @@ export const handlers = [
         }
     }),
 
-    rest.get("/:adapterId/:objectTypeId/:objectId", async (req, res, ctx) => {
+    rest.get(/^http:\/\/localhost(:\d+)?\/(?<adapterId>[^/]+)\/(?<objectTypeId>[^/]+)\/(?<objectId>[^/]+)$/, async (req, res, ctx) => {
         const {adapterId, objectTypeId, objectId} = req.params;
 
         mswGetCallback("/" + adapterId + "/" + objectTypeId + "/" + objectId, req, res, ctx);

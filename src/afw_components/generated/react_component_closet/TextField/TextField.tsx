@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const TextField : React.FunctionComponent<ITextFieldProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const TextField : React.FunctionComponent<ITextFieldProps> = (props) => {
 
 
 TextField.propTypes = propTypes;
-TextField.defaultProps = defaultProps;
 TextField.displayName = "TextField";
 
 export default React.memo(TextField);

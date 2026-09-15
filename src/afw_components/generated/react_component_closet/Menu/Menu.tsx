@@ -29,6 +29,8 @@ import {ctx} from "@afw/react";
  */
 export const Menu : React.FunctionComponent<IMenuProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -44,7 +46,6 @@ export const Menu : React.FunctionComponent<IMenuProps> = (props) => {
 
 
 Menu.propTypes = propTypes;
-Menu.defaultProps = defaultProps;
 Menu.displayName = "Menu";
 
 export default React.memo(Menu);

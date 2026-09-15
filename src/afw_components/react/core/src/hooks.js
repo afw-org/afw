@@ -8,7 +8,7 @@
 
 import {useContext, useState, useEffect, useCallback, useReducer, useDebugValue, useMemo, useRef} from "react";
 import {css} from "@emotion/css";
-import {useTheme} from "@emotion/react";
+import {useTheme} from "@mui/material/styles";
 //import {unstable_trace as trace} from "scheduler/tracing";
 
 import {
@@ -186,10 +186,10 @@ export const useEventId = ({ object, property, eventId }) => {
                 object.removeEventListener(eventId, onEvent);                
             };
         } else if (property && eventId) {
-            const onEvent = property.addEventListener(eventId, 
-                (event) => { 
-                    if (isMounted()) 
-                        setEvent(event); 
+            const onEvent = property.addEventListener(eventId,
+                (event) => {
+                    if (isMounted())
+                        setEvent(event);
                 }
             );
 
@@ -420,7 +420,7 @@ export const useGetObject = ({ objectUri, adapterId, objectTypeId, objectId, obj
 };
 
 
-const retrieveObjects_initialState = { isLoading: false };
+const retrieveObjects_initialState = { isLoading: false, refresh: false };
 
 const retrieveObjectsReducer = (state, action) => {
     switch (action.type) {
@@ -496,8 +496,8 @@ export const useRetrieveObjects = ({ adapterId, objectTypeId, queryCriteria, obj
     
     useDebugValue(state.isLoading ? "Loading" : state.error ? "Found Error" : state.objects ? (state.objects.length + " Objects") : "[Unknown]");
 
-    const model = useModel();    
-    
+    const model = useModel();
+
     const onRefresh = () => dispatch({ type: "refresh" });
 
     const key = calcKey({ adapterId, objectTypeId, queryCriteria, objectOptions, modelOptions });
@@ -506,7 +506,7 @@ export const useRetrieveObjects = ({ adapterId, objectTypeId, queryCriteria, obj
         let response;
         let onInvalidate;
 
-        const retrieveObjects = async () => {            
+        const retrieveObjects = async () => {
             dispatch({ type: "retrieving" });
             
             try {

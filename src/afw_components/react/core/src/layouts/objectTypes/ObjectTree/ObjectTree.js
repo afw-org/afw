@@ -83,7 +83,7 @@ export const ObjectTree = (props) => {
         setSelectedTreeNode(node);
     };
     
-    const {splitView} = props;
+    const {splitView = true} = props;
     //const {editable} = useOperational(props);
 
     if (splitView) {
@@ -137,10 +137,6 @@ ObjectTree.propTypes = {
     object:                 PropTypes.instanceOf(AfwObject).isRequired,
     splitView:              PropTypes.bool,
     editable:               PropTypes.bool,
-};
-
-ObjectTree.defaultProps = {
-    splitView:              true,
 };
 
 export default ObjectTree;

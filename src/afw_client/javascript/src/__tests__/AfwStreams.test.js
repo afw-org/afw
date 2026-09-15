@@ -2,7 +2,6 @@
 
 import {AfwStreams} from "../AfwStreams";
 import {ReadableStream} from "web-streams-polyfill/es6";
-import {TextEncoder, TextDecoder} from "util";
 
 describe("AfwStreams tests", () => {
 

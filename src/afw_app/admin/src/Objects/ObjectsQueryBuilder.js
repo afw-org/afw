@@ -354,7 +354,10 @@ const ObjectsQueryBuilder = ({ queryCriteria, objectTypeObject, onChanged }) => 
 
     const parsedQuery = useMemo(() => {
 
-        const parse = (str) => {            
+        const parse = (str) => {
+
+            if (!str)
+                return undefined;
 
             if (str[0] === "(") {
                 let operator = "and";

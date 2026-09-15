@@ -13,23 +13,23 @@ const Loadable = Component => (props) =>
 
 /* create Loadable (async) components for code-splitting on routes */
 const LoadableHome = Loadable(lazy(() =>
-    import("../Home/Home"  /* webpackChunkName: "home" */)
+    import("../Home/Home")
 ));
 
 const LoadableAdmin = Loadable(lazy(() =>
-    import("../Admin/Admin"  /* webpackChunkName: "admin" */)
+    import("../Admin/Admin")
 ));
 
 const LoadableDocumentation = Loadable(lazy(() =>
-    import("../Documentation/Documentation"  /* webpackChunkName: "documentation" */)
+    import("../Documentation/Documentation")
 ));
 
 const LoadableObjects = Loadable(lazy(() =>
-    import("../Objects/Objects"  /* webpackChunkName: "objects" */)
+    import("../Objects/Objects")
 ));
 
 const LoadableTools = Loadable(lazy(() =>
-    import("../Tools/Tools"  /* webpackChunkName: "tools" */)
+    import("../Tools/Tools")
 ));
 
 

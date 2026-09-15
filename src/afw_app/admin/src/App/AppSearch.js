@@ -476,21 +476,23 @@ const AppSearch = () => {
                 smDown={true}
                 contains={
                     <>
-                        <TextField           
-                            inputRef={searchTextField}                 
-                            placeholder="Search..."                                      
-                            InputProps={{
-                                disableUnderline: true,
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <Search />
-                                    </InputAdornment>
-                                ),
-                                className: classes.helpTextField,          
-                                inputProps: {
+                        <TextField
+                            inputRef={searchTextField}
+                            placeholder="Search..."
+                            slotProps={{
+                                input: {
+                                    disableUnderline: true,
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <Search />
+                                        </InputAdornment>
+                                    ),
+                                    className: classes.helpTextField,
+                                },
+                                htmlInput: {
                                     "aria-label": "Search"
-                                }                                
-                            }}                            
+                                }
+                            }}
                             variant="standard"
                             onChange={debounce(handleSearchChange, 150)}
                             id="help-search-field"                

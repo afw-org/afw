@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const ListEditor = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const ListEditor = (props) => {
 
 
 ListEditor.propTypes = propTypes;
-ListEditor.defaultProps = defaultProps;
 ListEditor.displayName = "ListEditor";
 
 export default memo(ListEditor);

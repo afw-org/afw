@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const TimePicker : React.FunctionComponent<ITimePickerProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const TimePicker : React.FunctionComponent<ITimePickerProps> = (props) =>
 
 
 TimePicker.propTypes = propTypes;
-TimePicker.defaultProps = defaultProps;
 TimePicker.displayName = "TimePicker";
 
 export default React.memo(TimePicker);

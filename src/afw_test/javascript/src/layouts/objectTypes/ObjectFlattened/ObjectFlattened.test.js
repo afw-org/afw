@@ -1,6 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {render, waitFor, screen} from "@testing-library/react";
-import {renderHook} from "@testing-library/react-hooks";
+import {render, waitFor, screen, renderHook} from "@testing-library/react";
 import {withProfiler} from "@afw/test";
 
 import {ObjectFlattened, useModel} from "@afw/react";

@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const DatePicker = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const DatePicker = (props) => {
 
 
 DatePicker.propTypes = propTypes;
-DatePicker.defaultProps = defaultProps;
 DatePicker.displayName = "DatePicker";
 
 export default memo(DatePicker);

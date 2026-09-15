@@ -10,7 +10,7 @@ const Resizer = (props) => {
         onMouseDown,
         onTouchEnd,
         onTouchStart,
-        resizerClassName,
+        resizerClassName = RESIZER_DEFAULT_CLASSNAME,
         split,
         style,
     } = props;
@@ -44,10 +44,6 @@ const Resizer = (props) => {
             }}
         />
     );    
-};
-
-Resizer.defaultProps = {
-    resizerClassName: RESIZER_DEFAULT_CLASSNAME,
 };
 
 export default Resizer;

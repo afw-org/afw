@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const DropdownEditor = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const DropdownEditor = (props) => {
 
 
 DropdownEditor.propTypes = propTypes;
-DropdownEditor.defaultProps = defaultProps;
 DropdownEditor.displayName = "DropdownEditor";
 
 export default memo(DropdownEditor);

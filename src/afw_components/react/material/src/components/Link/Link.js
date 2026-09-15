@@ -84,7 +84,4 @@ Link.propTypes = {
     url:                                PropTypes.string,
 };
 
-Link.defaultProps = {
-};
-
 export default memo(Link);

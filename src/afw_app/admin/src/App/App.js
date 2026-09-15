@@ -411,7 +411,7 @@ class App extends React.Component {
             /* No errors, so process the normal App routes */
             component = (
                 <BrowserRouter                 
-                    basename={process.env.PUBLIC_URL}
+                    basename={import.meta.env.BASE_URL}
                     getUserConfirmation={(payload, callback) => {          
                         const allowTransition = window.confirm(payload);
                         callback(allowTransition);                        

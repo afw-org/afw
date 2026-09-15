@@ -75,7 +75,7 @@ describe("ObjectsQueryBuilder Tests", () => {
 
         fireEvent.click(screen.getByLabelText("Condition"));
         await waitFor(() => expect(within(screen.getByLabelText("Property")).getByRole("combobox")).toBeInTheDocument());
-        await waitFor(() => expect(screen.getByRole("button", { name: /equals/i })).toBeInTheDocument());
+        await waitFor(() => expect(screen.getByLabelText("Operator")).toBeInTheDocument());
         await waitFor(() => expect(screen.getByRole("textbox", { name: "Value" })).toBeInTheDocument());
 
         // select a property        
@@ -91,7 +91,7 @@ describe("ObjectsQueryBuilder Tests", () => {
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0)); 
 
         // select a comparison operator
-        fireEvent.mouseDown(screen.getByRole("button", { name: /equals/i }));
+        fireEvent.mouseDown(screen.getByLabelText("Operator"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         const operatorOpts = screen.getAllByRole("option");
         operatorOpts[0].click();        

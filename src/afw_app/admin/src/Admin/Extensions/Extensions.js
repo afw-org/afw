@@ -304,7 +304,7 @@ const Extensions = () => {
     const model = useModel();
     const theme = useTheme();
     const isMounted = useIsMounted();
-    
+
     const breadcrumbItems = useBreadcrumbs(breadcrumbsRoot);
 
     const extensionsMap = useMemo(() => {
@@ -346,25 +346,25 @@ const Extensions = () => {
             dispatch({ type: "LOADING_CONFIGURATION" });
 
             try {
-                const {applicationId, confAdapterId} = application.getPropertyValues();    
+                const {applicationId, confAdapterId} = application.getPropertyValues();
                 const response = model.getObject({
-                    objectTypeId: "_AdaptiveConf_application", 
-                    objectId: applicationId, 
+                    objectTypeId: "_AdaptiveConf_application",
+                    objectId: applicationId,
                     adapterId: confAdapterId
                 });
                 controller = response.controller;
 
-                const applicationConf = await response.object;      
+                const applicationConf = await response.object;
                 if (!controller.signal.aborted)
                     dispatch({ type: "APPLICATION_CONF_LOADED", applicationConf });
-                    
+
 
             } catch (error) {
                 if (!controller.signal.aborted) {
                     dispatch({ type: "ERROR", error });
                     notification({ message: error, type: "error" });
                 }
-            }            
+            }
         };
 
         if (application && extensions && manifests) {            
@@ -403,7 +403,7 @@ const Extensions = () => {
     };
     
     const onLoadExtensions = async (onAppStartup) => {
-        
+
         dispatch({ type: "EXTENSIONS_LOADING" });
 
         try {           
@@ -448,12 +448,12 @@ const Extensions = () => {
 
             notification({ message: "Extensions loaded and application refreshed.", type: "success", duration: 3000 });
             dispatch({ type: "EXTENSIONS_LOADED" });
-        } catch (error) {            
+        } catch (error) {
             notification({ message: error, type: "error" });
             dispatch({ type: "ERROR", error });
         }
     };
-    
+
     const onRefresh = async () => {
         /* simply reload configuration props */
         await reloadManifests();

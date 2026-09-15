@@ -9,7 +9,6 @@ import {rest} from "msw";
 
 import {server} from "./__mocks__/server";
 import {mswPostCallback, mswGetCallback} from "./__mocks__/handlers";
-import {unstable_trace, unstable_wrap} from "scheduler/tracing";
 
 export const withProfiler = (Component, id = "withProfiler") => {
 
@@ -71,11 +70,15 @@ const toHaveCommittedTimes = (SnapshotProfiler, expectedNumCommits) => {
     expect(SnapshotProfiler.__numCommits).toBe(expectedNumCommits);
 };
 
-export const trace = (msg, func) => {
-    return unstable_trace(msg, performance.now(), func);
-};
+/*
+ * React's experimental interaction-tracing API (scheduler/tracing,
+ * unstable_trace/unstable_wrap) was removed entirely as of React 18 - these
+ * are inert passthroughs kept only for call-site compatibility (neither is
+ * actually called by any test today).
+ */
+export const trace = (msg, func) => func();
 
-export {unstable_wrap as wrap};
+export const wrap = (func) => func;
 
 expect.extend({
     toHaveCommittedTimes,
@@ -211,17 +214,17 @@ expect.extend({
             };
 
         for (const call of received.mock.calls) {
-            const objGot = JSON.stringify(call[1]);
+            const objGot = JSON.stringify(call[1].body);
             if (objGot.indexOf(JSON.stringify("function") + ":" + JSON.stringify(functionId)) >= 0)
                 return {
                     pass: true,
                     message: () => "Adaptive function " + functionId + " was called."
-                };            
+                };
         }
 
         return {
             pass: false,
-            message: () => "Adaptive function " + functionId + " was not called.",            
+            message: () => "Adaptive function " + functionId + " was not called.",
         };
     },
 
@@ -266,7 +269,7 @@ expect.extend({
             };
   
         for (const call of received.mock.calls) {
-            const objGot = JSON.stringify(call[1]);
+            const objGot = JSON.stringify(call[1].body);
             if (property && (value !== undefined)) {
                 if (objGot.indexOf(JSON.stringify(property) + ":" + JSON.stringify(value)) >= 0)      
                     return { 
@@ -304,7 +307,7 @@ expect.extend({
                 message: () => "No calls made"
             };    
         
-        const objGot = JSON.stringify(received.mock.calls[ received.mock.calls.length - 1 ]);
+        const objGot = JSON.stringify(received.mock.calls[ received.mock.calls.length - 1 ][1].body);
         if (property && (value !== undefined)) {
             if (objGot.indexOf(JSON.stringify(property) + ":" + JSON.stringify(value)) >= 0)      
                 return { 

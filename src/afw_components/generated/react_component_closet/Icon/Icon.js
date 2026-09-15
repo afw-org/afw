@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const Icon = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const Icon = (props) => {
 
 
 Icon.propTypes = propTypes;
-Icon.defaultProps = defaultProps;
 Icon.displayName = "Icon";
 
 export default memo(Icon);

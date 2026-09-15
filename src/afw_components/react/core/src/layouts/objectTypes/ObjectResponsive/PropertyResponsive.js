@@ -395,7 +395,7 @@ export const PropertyResponsive = (props) => {
     const dataTestId = props["data-testid"];
 
     /* track changes to the property and re-render */
-    useEventId({ property, eventId: "onDiscardChanges" }); 
+    useEventId({ property, eventId: "onDiscardChanges" });
     useEventId({ property, eventId: "onChanged" });
 
     /* Capture changes by the component and save them in the property value */

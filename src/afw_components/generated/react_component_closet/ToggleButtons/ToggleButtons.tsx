@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const ToggleButtons : React.FunctionComponent<IToggleButtonsProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const ToggleButtons : React.FunctionComponent<IToggleButtonsProps> = (pro
 
 
 ToggleButtons.propTypes = propTypes;
-ToggleButtons.defaultProps = defaultProps;
 ToggleButtons.displayName = "ToggleButtons";
 
 export default React.memo(ToggleButtons);

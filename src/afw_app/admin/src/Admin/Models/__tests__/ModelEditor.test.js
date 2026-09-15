@@ -277,8 +277,14 @@ describe("ModelEditor Tests", () => {
         await waitForSpinner();
 
         const overviewBtn = await screen.findByRole("button", { name: "Show Overview" });
+
+        /* the editor defaults to the Tree View perspective shortly after mount;
+         * wait for that to settle so this click is a real selection change,
+         * not a no-op re-click of an already-active exclusive toggle button */
+        await waitFor(() => expect(overviewBtn).toHaveAttribute("aria-pressed", "false"));
+
         fireEvent.click(overviewBtn);
-        await waitFor(() => expect(history.location.hash).toBe("#overview"));        
+        await waitFor(() => expect(history.location.hash).toBe("#overview"));
 
         const spreadsheetBtn = await screen.findByRole("button", { name: "Show Spreadsheet" });
         fireEvent.click(spreadsheetBtn);

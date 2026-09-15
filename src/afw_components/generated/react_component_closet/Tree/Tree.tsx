@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const Tree : React.FunctionComponent<ITreeProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const Tree : React.FunctionComponent<ITreeProps> = (props) => {
 
 
 Tree.propTypes = propTypes;
-Tree.defaultProps = defaultProps;
 Tree.displayName = "Tree";
 
 export default React.memo(Tree);

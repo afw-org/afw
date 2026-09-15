@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const Link = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const Link = (props) => {
 
 
 Link.propTypes = propTypes;
-Link.defaultProps = defaultProps;
 Link.displayName = "Link";
 
 export default memo(Link);

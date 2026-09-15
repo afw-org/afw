@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const TimePicker = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const TimePicker = (props) => {
 
 
 TimePicker.propTypes = propTypes;
-TimePicker.defaultProps = defaultProps;
 TimePicker.displayName = "TimePicker";
 
 export default memo(TimePicker);

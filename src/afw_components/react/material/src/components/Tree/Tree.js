@@ -8,8 +8,8 @@
 
 import PropTypes from "prop-types";
 
-import TreeView from "@mui/lab/TreeView";
-import TreeItem from "@mui/lab/TreeItem";
+import {SimpleTreeView} from "@mui/x-tree-view/SimpleTreeView";
+import {TreeItem} from "@mui/x-tree-view/TreeItem";
 import Collapse from "@mui/material/Collapse";
 import {alpha} from "@mui/material/styles";
 import SvgIcon from "@mui/material/SvgIcon";
@@ -60,7 +60,7 @@ const StyledTreeItem = (props) => {
     const classes = useClasses(Styles);
 
     return (
-        <TreeItem {...props} classes={classes} TransitionComponent={Collapse} />
+        <TreeItem {...props} classes={classes} slots={{ ...props.slots, groupTransition: Collapse }} />
     );
 };
 
@@ -93,6 +93,15 @@ export const Tree = (props) => {
         if (props.onContextMenu)
             props.onContextMenu(event, node);
     };
+
+    /*
+     * MUI X's icon slots take a component reference, not a rendered element,
+     * so a caller-supplied override element (a pre-rendered <Icon .../>) is
+     * wrapped in a small component that just returns it.
+     */
+    const ExpandIcon = () => defaultExpandIcon || <PlusSquare style={{ color: theme.palette.primary.main }} />;
+    const CollapseIcon = () => defaultCollapseIcon || <MinusSquare style={{ color: theme.palette.primary.main }} />;
+    const EndIcon = () => defaultEndIcon || <CloseSquare style={{ color: theme.palette.primary.main }} />;
 
     const renderLabel = (node) => {
         
@@ -129,14 +138,21 @@ export const Tree = (props) => {
     };
 
     const renderChild = (node) => (
-        <StyledTreeItem 
+        <StyledTreeItem
             key={node.key}
             data-testid={node["data-testid"]}
-            nodeId={node.key}
+            itemId={node.key}
             label={renderLabel(node)}
-            icon={node.icon ? <Icon iconName={node.icon} /> : undefined}
-            expandIcon={node.expandIcon ? <Icon iconName={node.expandIcon} /> : undefined}
-            collapseIcon={node.collapseIcon ? <Icon iconName={node.collapseIcon} /> : undefined}
+            slots={{
+                icon: node.icon ? Icon : undefined,
+                expandIcon: node.expandIcon ? Icon : undefined,
+                collapseIcon: node.collapseIcon ? Icon : undefined,
+            }}
+            slotProps={{
+                icon: { iconName: node.icon },
+                expandIcon: { iconName: node.expandIcon },
+                collapseIcon: { iconName: node.collapseIcon },
+            }}
             onContextMenu={(event) => onContextMenu(event, node)}
         >
             {
@@ -147,26 +163,28 @@ export const Tree = (props) => {
     );
 
     return (
-        <TreeView 
+        <SimpleTreeView
             id={props.id}
             aria-label={props["aria-label"]}
             data-testid={props["data-testid"]}
             data-component-type={props["data-component-type"]}
             className={props.className}
             style={props.style}
-            defaultCollapseIcon={defaultCollapseIcon || <MinusSquare style={{ color: theme.palette.primary.main }} />}
-            defaultExpandIcon={defaultExpandIcon || <PlusSquare style={{ color: theme.palette.primary.main }} />}
-            defaultEndIcon={defaultEndIcon || <CloseSquare style={{ color: theme.palette.primary.main }} />}  
-            onNodeToggle={onNodeToggle} 
-            onNodeSelect={() => undefined}
-            expanded={expandedKeys}
-            selected={selectedKeys}
+            slots={{
+                expandIcon: ExpandIcon,
+                collapseIcon: CollapseIcon,
+                endIcon: EndIcon,
+            }}
+            onExpandedItemsChange={onNodeToggle}
+            onSelectedItemsChange={() => undefined}
+            expandedItems={expandedKeys}
+            selectedItems={selectedKeys}
         >
             {
                 props.children ?
                     props.children.map(renderChild) : null
-            }    
-        </TreeView>
+            }
+        </SimpleTreeView>
     );
 
 };
@@ -243,9 +261,6 @@ Tree.propTypes = {
      * The keys of nodes in this tree that are selected.
      */
     selectedKeys:                       PropTypes.arrayOf(PropTypes.string),
-};
-
-Tree.defaultProps = {
 };
 
 export default Tree;

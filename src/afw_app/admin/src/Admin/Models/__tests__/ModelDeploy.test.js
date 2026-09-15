@@ -174,7 +174,7 @@ describe("ModelDeploy Tests", () => {
         let nextBtn = within(dialog).getByRole("button", { name: "Next" });
         fireEvent.click(nextBtn);
 
-        await screen.findByRole("button", { name: /journal adapter/i });
+        await screen.findByRole("combobox", { name: /journal adapter/i });
 
         let deployBtn = within(dialog).getByRole("button", { name: "Deploy" });
         expect(deployBtn).toBeDisabled();

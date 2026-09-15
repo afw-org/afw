@@ -29,6 +29,8 @@ import {ctx} from "@afw/react";
  */
 export const Modal : React.FunctionComponent<IModalProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -44,7 +46,6 @@ export const Modal : React.FunctionComponent<IModalProps> = (props) => {
 
 
 Modal.propTypes = propTypes;
-Modal.defaultProps = defaultProps;
 Modal.displayName = "Modal";
 
 export default React.memo(Modal);

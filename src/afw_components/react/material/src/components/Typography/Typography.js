@@ -17,20 +17,27 @@ const sizeMap = {
     "11": "h1",    
 };
 
-export const Typography = ({ size = "4", text, ...rest }) => {            
+export const Typography = ({ size = "4", text, paragraph, sx, ...rest }) => {
     if (!text)
         return null;
 
     const theSize = sizeMap[size];
-        
+
+    /*
+     * MUI removed the `paragraph` prop entirely (its own suggested
+     * replacement, straight from their migration guide: component="p"
+     * plus the bottom margin it used to apply for you).
+     */
     return (
-        <MuiTypography 
-            {...rest}            
-            variant={theSize}             
+        <MuiTypography
+            {...rest}
+            variant={theSize}
+            component={paragraph ? "p" : rest.component}
+            sx={paragraph ? { marginBottom: 2, ...sx } : sx}
         >
             {text}
         </MuiTypography>
-    );           
+    );
 };
 
 export default Typography;

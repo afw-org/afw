@@ -29,6 +29,8 @@ import {ctx} from "@afw/react";
  */
 export const Skeleton = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -44,7 +46,6 @@ export const Skeleton = (props) => {
 
 
 Skeleton.propTypes = propTypes;
-Skeleton.defaultProps = defaultProps;
 Skeleton.displayName = "Skeleton";
 
 export default memo(Skeleton);

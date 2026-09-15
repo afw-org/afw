@@ -42,7 +42,7 @@ describe("Requests Tests", () => {
 
         // select GET
         const methodDropdown = within(screen.getByTestId("requests-method"));
-        fireEvent.mouseDown(methodDropdown.getByRole("button"));
+        fireEvent.mouseDown(methodDropdown.getByRole("combobox"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         let opts = screen.getAllByRole("option");
         opts[1].click();
@@ -52,7 +52,7 @@ describe("Requests Tests", () => {
         
         // select JSON
         const contentTypeDropdown = within(screen.getByTestId("requests-accept"));
-        fireEvent.mouseDown(contentTypeDropdown.getByRole("button"));
+        fireEvent.mouseDown(contentTypeDropdown.getByRole("combobox"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         opts = screen.getAllByRole("option");
         opts[0].click();
@@ -97,7 +97,7 @@ describe("Requests Tests", () => {
 
         // select GET
         const methodDropdown = within(screen.getByTestId("requests-method"));
-        fireEvent.mouseDown(methodDropdown.getByRole("button"));
+        fireEvent.mouseDown(methodDropdown.getByRole("combobox"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         let opts = screen.getAllByRole("option");
         opts[1].click();
@@ -107,7 +107,7 @@ describe("Requests Tests", () => {
         
         // select XML
         const contentTypeDropdown = within(screen.getByTestId("requests-accept"));
-        fireEvent.mouseDown(contentTypeDropdown.getByRole("button"));
+        fireEvent.mouseDown(contentTypeDropdown.getByRole("combobox"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         opts = screen.getAllByRole("option");
         opts[1].click();
@@ -151,7 +151,7 @@ describe("Requests Tests", () => {
 
         // select JSON
         const contentTypeDropdown = within(screen.getByTestId("requests-accept"));
-        fireEvent.mouseDown(contentTypeDropdown.getByRole("button"));
+        fireEvent.mouseDown(contentTypeDropdown.getByRole("combobox"));
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
         const opts = screen.getAllByRole("option");
         opts[0].click();

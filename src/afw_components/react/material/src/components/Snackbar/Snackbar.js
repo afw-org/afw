@@ -85,7 +85,4 @@ Snackbar.propTypes = {
     type:                               PropTypes.string,
 };
 
-Snackbar.defaultProps = {
-};
-
 export default memo(Snackbar);

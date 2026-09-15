@@ -56,7 +56,7 @@ export const ModelOverviewEditable = (props) => {
                     {
                         key: "objectTypes",
                         text: "Object Types",
-                        badge: objectTypes.getProperties() ? objectTypes.getProperties().length : 0,
+                        badge: objectTypes ? objectTypes.getProperties().length : 0,
                         contains:                                          
                             <ModelObjectTypesTable 
                                 {...props}

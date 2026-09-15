@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const Link : React.FunctionComponent<ILinkProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const Link : React.FunctionComponent<ILinkProps> = (props) => {
 
 
 Link.propTypes = propTypes;
-Link.defaultProps = defaultProps;
 Link.displayName = "Link";
 
 export default React.memo(Link);

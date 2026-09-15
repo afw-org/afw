@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const Tooltip = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const Tooltip = (props) => {
 
 
 Tooltip.propTypes = propTypes;
-Tooltip.defaultProps = defaultProps;
 Tooltip.displayName = "Tooltip";
 
 export default memo(Tooltip);

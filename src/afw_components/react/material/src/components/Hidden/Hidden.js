@@ -9,9 +9,45 @@
 import {memo} from "react";
 import PropTypes from "prop-types";
 
-import MuiHidden from "@mui/material/Hidden";
+import Box from "@mui/material/Box";
 
 import {AdaptiveComponent} from "@afw/react";
+
+/*
+ * MUI's own <Hidden> component was removed in v7 (replaced by the `sx` prop
+ * or useMediaQuery, per its own migration guide) - this rebuilds the same
+ * xsDown/xsUp/.../only API on top of a breakpoint-keyed `sx.display`, since
+ * that's the public prop contract other AFW layouts already depend on.
+ */
+const breakpointOrder = ["xs", "sm", "md", "lg", "xl"];
+
+const computeHiddenBreakpoints = ({
+    xsDown, smDown, mdDown, lgDown, xlDown,
+    xsUp, smUp, mdUp, lgUp, xlUp,
+    only,
+}) => {
+    if (only) {
+        const onlyBreakpoints = Array.isArray(only) ? only : [only];
+        return new Set(onlyBreakpoints);
+    }
+
+    const downMap = {xs: xsDown, sm: smDown, md: mdDown, lg: lgDown, xl: xlDown};
+    const upMap = {xs: xsUp, sm: smUp, md: mdUp, lg: lgUp, xl: xlUp};
+    const hidden = new Set();
+
+    breakpointOrder.forEach((bp, index) => {
+        breakpointOrder.forEach((downBp, downIndex) => {
+            if (downMap[downBp] && index <= downIndex)
+                hidden.add(bp);
+        });
+        breakpointOrder.forEach((upBp, upIndex) => {
+            if (upMap[upBp] && index >= upIndex)
+                hidden.add(bp);
+        });
+    });
+
+    return hidden;
+};
 
 /**
  * Implementation Id : Hidden
@@ -25,31 +61,32 @@ import {AdaptiveComponent} from "@afw/react";
  * usable from a variety of screen devices.
  * 
  */
-export const Hidden = ({ 
-    className, xsDown, xsUp, smDown, smUp, mdDown, mdUp, lgDown, lgUp, 
+export const Hidden = ({
+    className, xsDown, xsUp, smDown, smUp, mdDown, mdUp, lgDown, lgUp,
     xlDown, xlUp, only, contains
 }) => {
 
+    const hiddenBreakpoints = computeHiddenBreakpoints({
+        xsDown, smDown, mdDown, lgDown, xlDown,
+        xsUp, smUp, mdUp, lgUp, xlUp,
+        only,
+    });
+
+    const display = {};
+    breakpointOrder.forEach(bp => {
+        display[bp] = hiddenBreakpoints.has(bp) ? "none" : "block";
+    });
+
     return (
-        <MuiHidden            
-            className={className}                
-            xsDown={xsDown}
-            xsUp={xsUp}
-            smDown={smDown}
-            smUp={smUp}
-            mdDown={mdDown}
-            mdUp={mdUp}
-            lgDown={lgDown}
-            lgUp={lgUp}
-            xlDown={xlDown}
-            xlUp={xlUp}
-            only={only}
+        <Box
+            className={className}
+            sx={{ display }}
         >
-            { 
-                contains ? 
+            {
+                contains ?
                     <AdaptiveComponent layoutComponent={contains} /> : null
             }
-        </MuiHidden>
+        </Box>
     );
 };
 

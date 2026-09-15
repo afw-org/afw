@@ -19,7 +19,7 @@ export const Checkbox = ({
             checked={value ? true : false}
             onChange={(event, checked) => onChanged ? onChanged(checked) : undefined}
             disabled={disabled}
-            inputProps={ ariaLabel ? { "aria-label": ariaLabel, } : undefined}
+            slotProps={ ariaLabel ? { input: { "aria-label": ariaLabel } } : undefined}
         />
     );
 
@@ -50,7 +50,7 @@ export const Checkbox = ({
                                 checked={value ? true : false}
                                 onChange={(event, checked) => onChanged ? onChanged(checked) : undefined}
                                 disabled={disabled}
-                                inputProps={ ariaLabel ? { "aria-label": ariaLabel, } : undefined}
+                                slotProps={ ariaLabel ? { input: { "aria-label": ariaLabel } } : undefined}
                             />
                         }
                         label={label}

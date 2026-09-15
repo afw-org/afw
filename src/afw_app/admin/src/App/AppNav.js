@@ -248,8 +248,7 @@ const AppNav = (props) => {
             return location.pathname.startsWith(item.url);
     };
 
-    // eslint-disable-next-line no-undef
-    const version = process.env.REACT_APP_VERSION;
+    const version = import.meta.env.VITE_VERSION;
 
     const title = application ? 
         (application.getPropertyValue("title") ? application.getPropertyValue("title") : application.getPropertyValue("applicationId")) :

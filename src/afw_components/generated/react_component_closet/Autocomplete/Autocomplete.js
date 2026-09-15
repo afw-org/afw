@@ -29,6 +29,8 @@ import {ctx} from "@afw/react";
  */
 export const Autocomplete = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -44,7 +46,6 @@ export const Autocomplete = (props) => {
 
 
 Autocomplete.propTypes = propTypes;
-Autocomplete.defaultProps = defaultProps;
 Autocomplete.displayName = "Autocomplete";
 
 export default memo(Autocomplete);

@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const Picker = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const Picker = (props) => {
 
 
 Picker.propTypes = propTypes;
-Picker.defaultProps = defaultProps;
 Picker.displayName = "Picker";
 
 export default memo(Picker);

@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const SpinButton = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const SpinButton = (props) => {
 
 
 SpinButton.propTypes = propTypes;
-SpinButton.defaultProps = defaultProps;
 SpinButton.displayName = "SpinButton";
 
 export default memo(SpinButton);

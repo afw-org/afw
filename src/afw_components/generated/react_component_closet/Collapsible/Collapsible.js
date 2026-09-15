@@ -30,6 +30,8 @@ import {ctx} from "@afw/react";
  */
 export const Collapsible = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -45,7 +47,6 @@ export const Collapsible = (props) => {
 
 
 Collapsible.propTypes = propTypes;
-Collapsible.defaultProps = defaultProps;
 Collapsible.displayName = "Collapsible";
 
 export default memo(Collapsible);

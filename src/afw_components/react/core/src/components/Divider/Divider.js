@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const Divider = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const Divider = (props) => {
 
 
 Divider.propTypes = propTypes;
-Divider.defaultProps = defaultProps;
 Divider.displayName = "Divider";
 
 export default memo(Divider);

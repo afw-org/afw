@@ -1,8 +1,8 @@
 // See the 'COPYING' file in the project root for licensing information.
 import React from "react";
 
-import {waitFor, fireEvent, render, screen, act} from "@testing-library/react";
-import {withProfiler} from "@afw/test";
+import {waitFor, render, screen} from "@testing-library/react";
+import {withProfiler, userEvent} from "@afw/test";
 
 import {DataTypeDropdown} from "@afw/react";
 
@@ -58,22 +58,20 @@ const Test = (wrapper) => {
         );
         
         await screen.findByLabelText("Select Datatype");        
-        const button = await screen.findByRole("button");
+        const button = await screen.findByRole("combobox");
         
+        // userEvent (not a raw fireEvent.mouseDown) is what reliably opens a
+        // MUI Select in tests
+        await userEvent.click(button);
         await waitFor(() => {
-            fireEvent.mouseDown(button);
-
             expect(screen.queryAllByRole("option")).not.toHaveLength(0);
         });
 
-        // \fixme I don't think this act() is necessary anymore
-        await act(async () => {                                      
-            const options = screen.getAllByRole("option");
-            options[1].click();                                             
+        const options = screen.getAllByRole("option");
+        await userEvent.click(options[1]);
 
-            // wait options to disappear
-            await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));
-        });
+        // wait options to disappear
+        await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));
 
         await waitFor(() => expect(onChanged).toHaveBeenCalled());    
         

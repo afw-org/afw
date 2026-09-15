@@ -29,6 +29,8 @@ import {ctx} from "@afw/react";
  */
 export const Paper : React.FunctionComponent<IPaperProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -44,7 +46,6 @@ export const Paper : React.FunctionComponent<IPaperProps> = (props) => {
 
 
 Paper.propTypes = propTypes;
-Paper.defaultProps = defaultProps;
 Paper.displayName = "Paper";
 
 export default React.memo(Paper);

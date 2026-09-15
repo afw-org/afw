@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const CodeEditor = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const CodeEditor = (props) => {
 
 
 CodeEditor.propTypes = propTypes;
-CodeEditor.defaultProps = defaultProps;
 CodeEditor.displayName = "CodeEditor";
 
 export default memo(CodeEditor);

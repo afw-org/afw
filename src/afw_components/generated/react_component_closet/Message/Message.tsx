@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const Message : React.FunctionComponent<IMessageProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const Message : React.FunctionComponent<IMessageProps> = (props) => {
 
 
 Message.propTypes = propTypes;
-Message.defaultProps = defaultProps;
 Message.displayName = "Message";
 
 export default React.memo(Message);

@@ -25,6 +25,8 @@ import {ctx} from "@afw/react";
  */
 export const DiffEditor = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -40,7 +42,6 @@ export const DiffEditor = (props) => {
 
 
 DiffEditor.propTypes = propTypes;
-DiffEditor.defaultProps = defaultProps;
 DiffEditor.displayName = "DiffEditor";
 
 export default memo(DiffEditor);

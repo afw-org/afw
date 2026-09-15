@@ -152,7 +152,7 @@ export const Models = () => {
     const {application} = useAppCore();    
 
     const {
-        objects: models = [],
+        objects,
         isLoading: isLoadingModels,
         onRefresh,
         error: errorModels,
@@ -184,6 +184,9 @@ export const Models = () => {
         }
     }, [pathname, hash, application]);
 
+    const models = objects || [];
+    const modelsReady = !errorModels && !isLoadingModels && (objects !== undefined);
+
     /* When multiple adapters are used to store models, the user can select one */
     const onSelectAdapterId = (adapterId) => dispatch({ type: "SELECT_ADAPTER", adapterId });   
 
@@ -195,13 +198,13 @@ export const Models = () => {
         >
             <Header {...state} />
             <div style={{ flex: 1, overflow: "auto" }}>
-                { isLoadingModels && <Loading message="Loading Models..." /> }
+                { !modelsReady && !errorModels && <Loading message="Loading Models..." /> }
                 { isLoadingModel && <Loading message={"Loading " + state.modelId} /> }
                 { errorModels && <Error message="Error occurred while loading models." /> }
                 { errorModel && <Error message={"Error occurred while loading the model " + state.modelId} /> }
                 <Switch>
                     <Route exact path="/Admin/Models/" render={props =>
-                        (!errorModels && !isLoadingModels) ? <ModelsTable 
+                        modelsReady ? <ModelsTable
                             {...props} 
                             {...state}                             
                             models={models} 
@@ -210,7 +213,7 @@ export const Models = () => {
                         /> : null
                     } />
                     <Route exact path="/Admin/Models/:adapterId" render={props =>
-                        (!errorModels && !isLoadingModels) ? <ModelsTable 
+                        modelsReady ? <ModelsTable
                             {...props} 
                             {...state}                             
                             models={models} 

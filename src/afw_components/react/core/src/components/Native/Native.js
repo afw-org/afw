@@ -27,6 +27,8 @@ import {ctx} from "@afw/react";
  */
 export const Native = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -42,7 +44,6 @@ export const Native = (props) => {
 
 
 Native.propTypes = propTypes;
-Native.defaultProps = defaultProps;
 Native.displayName = "Native";
 
 export default memo(Native);

@@ -30,9 +30,16 @@ const CompactAccordion = styled((props) => (
     }
 }));
 
+/*
+ * Rendered as a <div> (instead of AccordionSummary's default <button>) since
+ * onRenderHeader/headerItems can include their own interactive buttons -
+ * ButtonBase still supplies role="button"/keyboard handling/the expand-collapse
+ * click behavior on non-native elements, so this keeps a real <button> from
+ * ending up nested inside another <button>, which is invalid HTML.
+ */
 const CompactAccordionSummary = styled((props) => (
-    <AccordionSummary {...props} />
-))(() => ({    
+    <AccordionSummary {...props} component="div" />
+))(() => ({
     minHeight: "0px !important",
     padding: "0 12px 0 0px",    
     "& .Mui-expanded": {},

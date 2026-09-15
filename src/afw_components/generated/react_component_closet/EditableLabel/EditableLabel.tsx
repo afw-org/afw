@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const EditableLabel : React.FunctionComponent<IEditableLabelProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const EditableLabel : React.FunctionComponent<IEditableLabelProps> = (pro
 
 
 EditableLabel.propTypes = propTypes;
-EditableLabel.defaultProps = defaultProps;
 EditableLabel.displayName = "EditableLabel";
 
 export default React.memo(EditableLabel);

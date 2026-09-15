@@ -1,7 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {Fragment} from "react";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Icon from "@mui/material/Icon";
 import Collapse from "@mui/material/Collapse";
@@ -76,7 +76,7 @@ export const Nav = (props) => {
                 {
                     props.items && props.items.map((item, index) => (
                         <Fragment key={index}>
-                            <ListItem 
+                            <ListItemButton
                                 role="menuitem"
                                 component="nav"                            
                                 dense
@@ -130,7 +130,7 @@ export const Nav = (props) => {
                                         )
                                     }    
                                 </div>
-                            </ListItem>
+                            </ListItemButton>
                             {
                                 item.items && (
                                     <Collapse in={item.isExpanded} unmountOnExit>

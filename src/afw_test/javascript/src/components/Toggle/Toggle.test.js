@@ -30,7 +30,7 @@ const Test = (wrapper, Toggle) => {
                 { wrapper }
             );        
             
-            fireEvent.click(queryByRole("checkbox"));
+            fireEvent.click(queryByRole("switch"));
 
             expect(onChanged).toHaveBeenCalled();
         });

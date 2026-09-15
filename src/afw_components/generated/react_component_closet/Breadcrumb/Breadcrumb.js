@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const Breadcrumb = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const Breadcrumb = (props) => {
 
 
 Breadcrumb.propTypes = propTypes;
-Breadcrumb.defaultProps = defaultProps;
 Breadcrumb.displayName = "Breadcrumb";
 
 export default memo(Breadcrumb);

@@ -52,7 +52,7 @@ const Test = (wrapper, Autocomplete) => {
             
             expect(screen.queryByDisplayValue(/You Complete Me!/)).toBeInTheDocument();  
 
-            const input = screen.getByLabelText("Autocomplete Label");
+            const input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
             expect(input).toBeInTheDocument();
 
             input.focus();
@@ -88,7 +88,7 @@ const Test = (wrapper, Autocomplete) => {
             
             expect(screen.queryByDisplayValue(/This is option 1!/)).toBeInTheDocument();              
 
-            const input = screen.getByLabelText("Autocomplete Label");
+            const input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
             expect(input).toBeInTheDocument();
 
             input.focus();
@@ -132,7 +132,7 @@ const Test = (wrapper, Autocomplete) => {
             
             expect(screen.queryByDisplayValue(/This is option 1!/)).toBeInTheDocument();              
 
-            const input = screen.getByLabelText("Autocomplete Label");
+            const input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
             expect(input).toBeInTheDocument();
 
             input.focus();
@@ -179,7 +179,7 @@ const Test = (wrapper, Autocomplete) => {
             
             expect(screen.queryByDisplayValue(/This is option 1!/)).toBeInTheDocument();              
 
-            let input = screen.getByLabelText("Autocomplete Label");
+            let input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
             expect(input).toBeInTheDocument();
 
             input.focus();
@@ -191,7 +191,7 @@ const Test = (wrapper, Autocomplete) => {
 
             expect(onChanged).toHaveBeenLastCalledWith(options[1]);            
 
-            input = screen.getByLabelText("Autocomplete Label");
+            input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
             input.focus();
             fireEvent.change(document.activeElement, { target: { value: "This is option 3!" } });
             expect(input.value).toBe("This is option 3!");
@@ -201,7 +201,7 @@ const Test = (wrapper, Autocomplete) => {
 
             expect(onChanged).toHaveBeenLastCalledWith(options[2]);
 
-            input = screen.getByLabelText("Autocomplete Label");
+            input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
             input.focus();
             fireEvent.change(document.activeElement, { target: { value: "This is option 4!" } });
             expect(input.value).toBe("This is option 4!");
@@ -211,7 +211,7 @@ const Test = (wrapper, Autocomplete) => {
 
             expect(onChanged).toHaveBeenLastCalledWith(options[3]);
             
-            input = screen.getByLabelText("Autocomplete Label");
+            input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
             input.focus();
             fireEvent.change(document.activeElement, { target: { value: "This is option 2!" } });
             expect(input.value).toBe("This is option 2!");
@@ -253,7 +253,7 @@ const Test = (wrapper, Autocomplete) => {
             
             expect(screen.queryByDisplayValue(/This is option 1!/)).toBeInTheDocument();              
 
-            const input = screen.getByLabelText("Autocomplete Label");
+            const input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
             expect(input).toBeInTheDocument();
 
             input.focus();
@@ -297,7 +297,7 @@ const Test = (wrapper, Autocomplete) => {
             
             expect(screen.queryByDisplayValue(/This is option 1!/)).toBeInTheDocument();      
             
-            const input = screen.getByLabelText("Autocomplete Label");
+            const input = screen.getByLabelText("Autocomplete Label", { selector: "input" });
             expect(input).toBeInTheDocument();
             input.focus();
 

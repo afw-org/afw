@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const Button : React.FunctionComponent<IButtonProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const Button : React.FunctionComponent<IButtonProps> = (props) => {
 
 
 Button.propTypes = propTypes;
-Button.defaultProps = defaultProps;
 Button.displayName = "Button";
 
 export default React.memo(Button);

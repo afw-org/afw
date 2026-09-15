@@ -26,6 +26,8 @@ import {ctx} from "@afw/react";
  */
 export const TimeDuration = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -41,7 +43,6 @@ export const TimeDuration = (props) => {
 
 
 TimeDuration.propTypes = propTypes;
-TimeDuration.defaultProps = defaultProps;
 TimeDuration.displayName = "TimeDuration";
 
 export default memo(TimeDuration);

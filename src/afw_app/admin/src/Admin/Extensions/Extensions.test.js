@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {server, rest, render, waitFor, within, screen, fireEvent, mswPostCallback, waitForSpinner} from "../test-utils";
+import {server, rest, render, waitFor, within, screen, fireEvent, mswPostCallback, waitForSpinner, waitForElementToBeRemoved} from "../test-utils";
 import Extensions from "./Extensions";
 
 import environmentRegistry from "@afw/test/build/cjs/__mocks__/get_object/afw/_AdaptiveEnvironmentRegistry_/current.json";
@@ -82,13 +82,24 @@ describe("Extensions Tests", () => {
         /* wait for manifest, extensions, etc to finish */
         await waitForSpinner();
 
+        /* wait for every manifest row to be rendered, so the table's internal
+         * row-tracking effect has settled before we start selecting rows below;
+         * also give the (independently-loading) application configuration fetch
+         * a chance to settle, since it isn't reflected by waitForSpinner() if it
+         * starts after the spinner's first check already resolved */
+        for (const manifest_entry of manifest.result) {
+            await screen.findByText(manifest_entry.extensionId);
+        }
+        await new Promise(resolve => setTimeout(resolve, 50));
+
         for (const manifest_entry of manifest.result) {
             const {extensionId, brief, description, modulePath, registers} = manifest_entry;
 
-            const row = screen.getByText(extensionId).closest("tr");           
+            const row = (await screen.findByText(extensionId)).closest("tr");
             const detailsBtn = screen.getByLabelText("Details");
 
             fireEvent.click(row);
+            await waitFor(() => expect(detailsBtn).toBeEnabled());
             fireEvent.click(detailsBtn);
 
             await waitFor(() => expect(screen.getByLabelText("Brief")).toHaveTextContent(brief));
@@ -104,9 +115,10 @@ describe("Extensions Tests", () => {
 
             // close the dialog
             const closeBtn = screen.getByLabelText("Close Dialog");
+            fireEvent.click(closeBtn);
+            await waitForElementToBeRemoved(() => screen.queryByLabelText("Close Dialog"));
 
             // un-check the row
-            fireEvent.click(closeBtn);
             fireEvent.click(row);
         }
 
@@ -211,6 +223,16 @@ describe("Extensions Tests", () => {
         /* wait for manifest, extensions, etc to finish */
         await waitForSpinner();
 
+        /* wait for every manifest row to be rendered, so the table's internal
+         * row-tracking effect has settled before we start selecting rows below;
+         * also give the (independently-loading) application configuration fetch
+         * a chance to settle, since it isn't reflected by waitForSpinner() if it
+         * starts after the spinner's first check already resolved */
+        for (const manifest_entry of manifest.result) {
+            await screen.findByText(manifest_entry.extensionId);
+        }
+        await new Promise(resolve => setTimeout(resolve, 50));
+
         let unloadedExtensionId;
         for (const manifest_entry of manifest.result) {
             const {extensionId} = manifest_entry;
@@ -251,11 +273,14 @@ describe("Extensions Tests", () => {
         // clear requests and start from here
         mswPostCallback.mockClear();
         
-        fireEvent.click(screen.getByLabelText("Load on startup"));
+        const loadOnStartupCheckbox = screen.getByLabelText("Load on startup");
+        fireEvent.click(loadOnStartupCheckbox);
+        await waitFor(() => expect(loadOnStartupCheckbox).toBeChecked());
+
         fireEvent.click(screen.getByLabelText("Yes"));
-                
+
         /* wait for extension_load request to occur */
-        await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("extension_load"));            
+        await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("extension_load"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("extension_id", unloadedExtensionId));
 
         /* also wait for the reconcile_object call to update the startup configuration */
@@ -278,6 +303,16 @@ describe("Extensions Tests", () => {
         
         /* wait for manifest, extensions, etc to finish */
         await waitForSpinner();
+
+        /* wait for every manifest row to be rendered, so the table's internal
+         * row-tracking effect has settled before we start selecting rows below;
+         * also give the (independently-loading) application configuration fetch
+         * a chance to settle, since it isn't reflected by waitForSpinner() if it
+         * starts after the spinner's first check already resolved */
+        for (const manifest_entry of manifest.result) {
+            await screen.findByText(manifest_entry.extensionId);
+        }
+        await new Promise(resolve => setTimeout(resolve, 50));
 
         let unloadedExtensions = [];
         for (const manifest_entry of manifest.result) {

@@ -1,9 +1,8 @@
 // See the 'COPYING' file in the project root for licensing information.
 import React from "react";
 
-import {waitFor, fireEvent, render, screen, act} from "@testing-library/react";
-import {renderHook} from "@testing-library/react-hooks";
-import {withProfiler} from "@afw/test";
+import {waitFor, render, screen, renderHook} from "@testing-library/react";
+import {withProfiler, userEvent} from "@afw/test";
 
 import {PropertyTypeDropdown, useModel} from "@afw/react";
 import {AfwObject} from "@afw/client";
@@ -89,16 +88,15 @@ const Test = (wrapper) => {
         
         const combobox = screen.getByRole("combobox");
 
-        await act(async () => {
-            fireEvent.mouseDown(combobox);
-            fireEvent.click(combobox);
+        // userEvent (not raw fireEvent/.click()) is what reliably opens/closes
+        // a MUI Autocomplete in tests
+        await userEvent.click(combobox);
 
-            // \fixme hack:  wait for icons to load via dynamic import()
-            await timeout(1000);
+        // \fixme hack:  wait for icons to load via dynamic import()
+        await timeout(1000);
 
-            const options = screen.getAllByRole("option");
-            options[1].click();                              
-        });
+        const options = screen.getAllByRole("option");
+        await userEvent.click(options[1]);
                
         await waitFor(() => expect(onChanged).toHaveBeenCalled());                
 

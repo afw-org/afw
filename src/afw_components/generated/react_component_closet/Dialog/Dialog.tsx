@@ -29,6 +29,8 @@ import {ctx} from "@afw/react";
  */
 export const Dialog : React.FunctionComponent<IDialogProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -44,7 +46,6 @@ export const Dialog : React.FunctionComponent<IDialogProps> = (props) => {
 
 
 Dialog.propTypes = propTypes;
-Dialog.defaultProps = defaultProps;
 Dialog.displayName = "Dialog";
 
 export default React.memo(Dialog);

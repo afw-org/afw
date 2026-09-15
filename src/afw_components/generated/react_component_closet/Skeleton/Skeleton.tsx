@@ -30,6 +30,8 @@ import {ctx} from "@afw/react";
  */
 export const Skeleton : React.FunctionComponent<ISkeletonProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -45,7 +47,6 @@ export const Skeleton : React.FunctionComponent<ISkeletonProps> = (props) => {
 
 
 Skeleton.propTypes = propTypes;
-Skeleton.defaultProps = defaultProps;
 Skeleton.displayName = "Skeleton";
 
 export default React.memo(Skeleton);

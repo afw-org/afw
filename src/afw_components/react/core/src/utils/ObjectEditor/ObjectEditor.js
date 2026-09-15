@@ -675,13 +675,6 @@ ObjectEditor.propTypes = {
     warnNavigateAway:                   PropTypes.bool,
 };
 
-ObjectEditor.defaultProps = {
-    displayMoreButton:                  true,
-    displayCancelButton:                true,
-    displaySaveButton:                  true,
-    warnNavigateAway:                   true,
-};
-
 ObjectEditor.displayName = "ObjectEditor";
 
 export default ObjectEditor;

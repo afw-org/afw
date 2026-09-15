@@ -16,7 +16,7 @@ const Test = (wrapper, DatePicker) => {
                 { wrapper }
             );        
            
-            expect(screen.queryByLabelText("Date Picker")).toBeInTheDocument(); 
+            expect(screen.queryByLabelText("Date Picker", { selector: "input" })).toBeInTheDocument(); 
         });
         
     });

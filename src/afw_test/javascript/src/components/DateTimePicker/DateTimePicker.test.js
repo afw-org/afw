@@ -20,9 +20,9 @@ const Test = (wrapper, DateTimePicker) => {
                 { wrapper }
             );        
            
-            expect(screen.queryByLabelText("DateTime Picker")).toBeInTheDocument(); 
+            expect(screen.queryByLabelText("DateTime Picker", { selector: "input" })).toBeInTheDocument();
 
-            const input = screen.getByLabelText("DateTime Picker");
+            const input = screen.getByLabelText("DateTime Picker", { selector: "input" });
             
             //input.focus();
             //fireEvent.change(document.activeElement, { target: { value: "08/13/1981 00:00 pm"}});          

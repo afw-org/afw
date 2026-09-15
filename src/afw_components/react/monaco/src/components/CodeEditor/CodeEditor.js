@@ -211,10 +211,10 @@ export const CodeEditor = React.forwardRef((props, ref) => {
     }, [readOnly, showLineNumbers, showMinimap]);
 
     useEffect(() => {
-        if (editorRef.current) {
-            window.monaco.editor.setModelLanguage(editorRef.current.getModel(), language);
+        if (editorRef.current && monaco) {
+            monaco.editor.setModelLanguage(editorRef.current.getModel(), language);
         }
-    }, [language]);
+    }, [monaco, language]);
 
     useEffect(() => {
         if (editorRef.current && uri && schema && schemaUri) {            

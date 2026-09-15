@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const Icon : React.FunctionComponent<IIconProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const Icon : React.FunctionComponent<IIconProps> = (props) => {
 
 
 Icon.propTypes = propTypes;
-Icon.defaultProps = defaultProps;
 Icon.displayName = "Icon";
 
 export default React.memo(Icon);

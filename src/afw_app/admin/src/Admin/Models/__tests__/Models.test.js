@@ -38,7 +38,7 @@ describe("Models Tests", () => {
         let list = within(view).getByRole("list");
 
         within(list).getByRole("link", { name: "Admin" });
-        within(list).getByRole("link", { name: "Models" });
+        await within(list).findByRole("link", { name: "Models" });
 
         expect(within(list).queryByRole("link", { name: "models" })).not.toBeInTheDocument();
 

@@ -50,20 +50,31 @@ const getBreakpoints = (breakpoints) => {
     return breaks;
 };
 
-export const ResponsiveCol = (props) => {   
-               
+export const ResponsiveCol = (props) => {
+
     const {style, contains, breakpoints, numCols, ...rest} = props;
 
     if (!contains)
         return null;
-    
+
     const breakpointsObj = getBreakpoints(breakpoints);
-    
+    const hasBreakpoints = Object.keys(breakpointsObj).length > 0;
+
+    /*
+     * When explicit breakpoints are given, let Grid's own size-driven width
+     * (which already accounts for gap-based spacing) apply undisturbed --
+     * a hardcoded percentage width here would fight it and, depending on
+     * spacing, overflow the row. Only fall back to an even 100/numCols
+     * split when no breakpoints were specified at all.
+     */
     return (
-        <Grid style={{ width: String(100 / numCols) + "%", ...style }} item {...breakpointsObj}>
+        <Grid
+            style={hasBreakpoints ? style : { width: String(100 / numCols) + "%", ...style }}
+            size={hasBreakpoints ? breakpointsObj : 12 / numCols}
+        >
             <AdaptiveComponent {...rest} layoutComponent={contains} />
         </Grid>
-    );   
+    );
 };
 
 ResponsiveCol.propTypes = {
@@ -81,14 +92,16 @@ export const ResponsiveRow = (props) => {
     const {style, columns, spacing, justify, alignItems, alignContent, ...rest} = props;
 
     return (
-        <Grid 
-            style={style} 
-            container 
+        <Grid
+            size={12}
+            style={style}
+            container
             spacing={spacing}
-            justifyContent={justify}
-            alignItems={alignItems}
-            alignContent={alignContent}
-        >
+            sx={{
+                justifyContent: justify,
+                alignItems: alignItems,
+                alignContent: alignContent
+            }}>
             {
                 columns.map((child, index) => 
                     <ResponsiveCol 
@@ -148,9 +161,11 @@ export const Responsive = (props) => {
             className={className}
             style={style} 
             container         
-            justifyContent={justify}
             align={align}
             spacing={spacing}
+            sx={{
+                justifyContent: justify
+            }}
         >
             {
                 rows && rows.map((child, index) =>                    
@@ -164,7 +179,7 @@ export const Responsive = (props) => {
                     const muiBreakpoints = getBreakpoints(breakpoints);
 
                     return (
-                        <Grid key={index} item {...muiBreakpoints}>
+                        <Grid key={index} size={muiBreakpoints}>
                             <AdaptiveComponent layoutComponent={contains} />
                         </Grid>
                     );
@@ -200,9 +215,6 @@ Responsive.propTypes = {
      * Spacing between rows.
      */
     spacing:            PropTypes.number,
-};
-
-Responsive.defaultProps = {
 };
 
 export default Responsive;

@@ -29,6 +29,8 @@ import {ctx} from "@afw/react";
  */
 export const Hidden : React.FunctionComponent<IHiddenProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -44,7 +46,6 @@ export const Hidden : React.FunctionComponent<IHiddenProps> = (props) => {
 
 
 Hidden.propTypes = propTypes;
-Hidden.defaultProps = defaultProps;
 Hidden.displayName = "Hidden";
 
 export default React.memo(Hidden);

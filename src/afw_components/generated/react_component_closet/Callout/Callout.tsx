@@ -28,6 +28,8 @@ import {ctx} from "@afw/react";
  */
 export const Callout : React.FunctionComponent<ICalloutProps> = (props) => {
 
+    props = {...defaultProps, ...props};
+
     return (
         <AdaptiveComponent 
             {...props} 
@@ -43,7 +45,6 @@ export const Callout : React.FunctionComponent<ICalloutProps> = (props) => {
 
 
 Callout.propTypes = propTypes;
-Callout.defaultProps = defaultProps;
 Callout.displayName = "Callout";
 
 export default React.memo(Callout);
