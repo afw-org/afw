@@ -51,7 +51,6 @@
   ],
   "dependencies": {
     "@axe-core/react": "^4.1.1",
-    "@date-io/moment": "^2.11.0",
     "@emotion/css": "^11.9.0",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
