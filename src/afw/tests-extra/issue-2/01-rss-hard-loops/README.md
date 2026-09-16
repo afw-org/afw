@@ -79,9 +79,10 @@ python3 src/afw/tests-extra/issue-2/01-rss-hard-loops/_rss.py integer_assign --d
 Underscore dir on purpose: `afwdev test` must not evaluate these as tests
 (they do not return).
 
-Measured **2026-09-16** on `issue-2-stale-maps` `b7d3cae2` (not yet on
+Measured **2026-09-16** on `issue-2-stale-maps` (not yet on
 `develop`). Same 8 s soaks, 2 s warmup as **2026-09-15** (`develop`
-`63831efa`). `in_use` is `env->pool_bytes_in_use` (AFW malloc not given
+`63831efa`). Nested `{ }` last plant dropped after this table
+(`try.as` SIGSEGV); soaks unchanged. `in_use` is `env->pool_bytes_in_use` (AFW malloc not given
 back). Valgrind on `afwdev test -j` does **not** catch these —
 request-end bulk-free hides them. gdb `in_use` can occasionally return
 garbage; if RSS is flat and `in_use` is huge or ~0, rerun that one
