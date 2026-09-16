@@ -40,17 +40,9 @@ AFW_BEGIN_DECLARES
  *
  * The size of these on some systems may be different.
  */
-AFW_DEFINE_STATIC_INLINE(afw_size_t)
-afw_safe_cast_off_to_size(afw_off_t off, afw_xctx_t *xctx)
-{
-    afw_size_t result = (afw_size_t)off;
-
-    if (result != off) {
-        AFW_THROW_ERROR_Z(general, "Type safe error", xctx);
-    }
-
-    return result;
-}
+AFW_DECLARE(afw_size_t)
+afw_safe_cast_off_to_size(
+    afw_off_t off, afw_xctx_t *xctx);
 
 
 /**
@@ -60,17 +52,9 @@ afw_safe_cast_off_to_size(afw_off_t off, afw_xctx_t *xctx)
  *
  * The size of these on some systems may be different.
  */
-AFW_DEFINE_STATIC_INLINE(afw_size_t)
-afw_safe_cast_integer_to_size(afw_integer_t integer, afw_xctx_t *xctx)
-{
-    afw_size_t result = (afw_size_t)integer;
-
-    if (result != integer) {
-        AFW_THROW_ERROR_Z(general, "Type safe error", xctx);
-    }
-
-    return result;
-}
+AFW_DECLARE(afw_size_t)
+afw_safe_cast_integer_to_size(
+    afw_integer_t integer, afw_xctx_t *xctx);
 
 
 
@@ -81,17 +65,9 @@ afw_safe_cast_integer_to_size(afw_integer_t integer, afw_xctx_t *xctx)
  *
  * The size of these on some systems may be different.
  */
-AFW_DEFINE_STATIC_INLINE(int)
-afw_safe_cast_integer_to_int(afw_integer_t integer, afw_xctx_t *xctx)
-{
-    int result = (int)integer;
-
-    if (result != integer) {
-        AFW_THROW_ERROR_Z(general, "Type safe error", xctx);
-    }
-
-    return result;
-}
+AFW_DECLARE(int)
+afw_safe_cast_integer_to_int(
+    afw_integer_t integer, afw_xctx_t *xctx);
 
 
 
@@ -102,17 +78,9 @@ afw_safe_cast_integer_to_int(afw_integer_t integer, afw_xctx_t *xctx)
  *
  * The size of these on some systems may be different.
  */
-AFW_DEFINE_STATIC_INLINE(int)
-afw_safe_cast_size_to_int(afw_size_t size, afw_xctx_t *xctx)
-{
-    int result = (int)size;
-
-    if (result != size) {
-        AFW_THROW_ERROR_Z(general, "Type safe error", xctx);
-    }
-
-    return result;
-}
+AFW_DECLARE(int)
+afw_safe_cast_size_to_int(
+    afw_size_t size, afw_xctx_t *xctx);
 
 
 
@@ -123,17 +91,9 @@ afw_safe_cast_size_to_int(afw_size_t size, afw_xctx_t *xctx)
  *
  * The size of these on some systems may be different.
  */
-AFW_DEFINE_STATIC_INLINE(afw_integer_t)
-afw_safe_cast_size_to_integer(afw_size_t size, afw_xctx_t *xctx)
-{
-    afw_integer_t result = (afw_integer_t)size;
-
-    if (result != size) {
-        AFW_THROW_ERROR_Z(general, "Type safe error", xctx);
-    }
-
-    return result;
-}
+AFW_DECLARE(afw_integer_t)
+afw_safe_cast_size_to_integer(
+    afw_size_t size, afw_xctx_t *xctx);
 
 
 
@@ -144,17 +104,9 @@ afw_safe_cast_size_to_integer(afw_size_t size, afw_xctx_t *xctx)
  *
  * The size of these on some systems may be different.
  */
-AFW_DEFINE_STATIC_INLINE(afw_int32_t)
-afw_safe_cast_size_to_int32(afw_size_t size, afw_xctx_t *xctx)
-{
-    afw_int32_t result = (afw_int32_t)size;
-
-    if (result != size) {
-        AFW_THROW_ERROR_Z(general, "Type safe error", xctx);
-    }
-
-    return result;
-}
+AFW_DECLARE(afw_int32_t)
+afw_safe_cast_size_to_int32(
+    afw_size_t size, afw_xctx_t *xctx);
 
 
 
@@ -165,17 +117,9 @@ afw_safe_cast_size_to_int32(afw_size_t size, afw_xctx_t *xctx)
  *
  * The size of these on some systems may be different.
  */
-AFW_DEFINE_STATIC_INLINE(afw_uint32_t)
-afw_safe_cast_size_to_uint32(afw_size_t size, afw_xctx_t *xctx)
-{
-    afw_uint32_t result = (afw_uint32_t)size;
-
-    if (result != size) {
-        AFW_THROW_ERROR_Z(general, "Type safe error", xctx);
-    }
-
-    return result;
-}
+AFW_DECLARE(afw_uint32_t)
+afw_safe_cast_size_to_uint32(
+    afw_size_t size, afw_xctx_t *xctx);
 
 
 AFW_END_DECLARES

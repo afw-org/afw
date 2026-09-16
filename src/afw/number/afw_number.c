@@ -450,3 +450,35 @@ afw_number_bytes_needed_integer(afw_integer_t i)
 
     return result;
 }
+
+
+AFW_DEFINE(afw_double_t)
+afw_number_utf8_to_double(
+    const afw_utf8_t *s, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_double_t d;
+    afw_boolean_t is_double;
+    afw_size_t len;
+
+    len = afw_number_parse(s->s, s->len, NULL, &d, &is_double, p, xctx);
+    if (!is_double || len != s->len) {
+        AFW_THROW_ERROR_Z(conversion_error, "Invalid double", xctx);
+    }
+    return d;
+}
+
+
+AFW_DEFINE(afw_integer_t)
+afw_number_utf8_to_integer(
+    const afw_utf8_t *s, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_integer_t i;
+    afw_boolean_t is_double;
+    afw_size_t len;
+
+    len = afw_number_parse(s->s, s->len, &i, NULL, &is_double, p, xctx);
+    if (is_double || len != s->len) {
+        AFW_THROW_ERROR_Z(conversion_error, "Invalid integer", xctx);
+    }
+    return i;
+}

@@ -861,3 +861,36 @@ afw_log_impl_create_cede_p(
     /* Return new log. */
     return self;
 }
+
+
+AFW_DEFINE(void)
+afw_log_write_z(
+    const afw_log_t * instance,
+    afw_log_priority_t priority,
+    const afw_utf8_z_t * source_z,
+    const afw_utf8_z_t * message_z,
+    afw_xctx_t *xctx)
+{
+    afw_utf8_t message;
+
+    message.s = message_z;
+    message.len = strlen(message_z);
+    afw_log_write(instance, priority, source_z, &message, xctx);
+}
+
+
+AFW_DEFINE(void)
+afw_log_write_fz(
+    const afw_log_t * instance,
+    afw_log_priority_t priority,
+    const afw_utf8_z_t * source_z,
+    afw_xctx_t *xctx,
+    const afw_utf8_z_t * format_z,
+    ...)
+{
+    va_list ap;
+
+    va_start(ap, format_z);
+    afw_log_write_vz(instance, priority, source_z, format_z, ap, xctx);
+    va_end(ap);
+}

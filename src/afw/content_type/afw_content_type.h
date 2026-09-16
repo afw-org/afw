@@ -28,28 +28,22 @@
 AFW_BEGIN_DECLARES
 
 /** @fixme Decide what to do in dynamo_db code. */
-AFW_DEFINE_STATIC_INLINE(afw_utf8_t *)
+AFW_DECLARE(afw_utf8_t *)
 afw_content_type_x_to_utf8_with_options(
     const afw_content_type_t * instance,
     const afw_value_t * value,
     const afw_object_options_t *options,
-    afw_xctx_t *xctx)
-{
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
-}
+    afw_xctx_t *xctx);
 
 /** @fixme Decide what to do in dynamo_db code. */
-AFW_DEFINE_STATIC_INLINE(const afw_value_t *)
+AFW_DECLARE(const afw_value_t *)
 afw_content_type_x_to_object_value_with_ids(
     const afw_content_type_t * instance,
     const afw_utf8_t * string,
     const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
-    afw_xctx_t *xctx)
-{
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**

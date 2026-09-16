@@ -656,3 +656,33 @@ afw_object_property_count(
 
     return result;
 }
+
+
+AFW_DEFINE(void)
+afw_object_parse_entity_path_from_path(
+    afw_utf8_t *entity_path,
+    const afw_utf8_t *path)
+{
+    const afw_utf8_octet_t *s;
+
+    entity_path->s = path->s;
+    entity_path->len = path->len;
+    for (s = path->s + path->len - 1;
+        s > path->s && *s != '/';
+        s--)
+    {
+        if (*s == '.') {
+            entity_path->len = s - path->s;
+        }
+    }
+}
+
+
+AFW_DEFINE(const afw_object_t *)
+afw_object_get_entity(const afw_object_t *object, afw_xctx_t *xctx)
+{
+    const afw_object_t *entity;
+
+    AFW_OBJECT_GET_ENTITY(entity, object);
+    return entity;
+}

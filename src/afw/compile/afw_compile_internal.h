@@ -1161,17 +1161,8 @@ afw_function_script_assign_pattern(
     afw_xctx_t *xctx);
 
 /* Needs get_code_point_impl declared above (via get_code_point macro). */
-AFW_DEFINE_STATIC_INLINE(afw_code_point_t)
-afw_compile_peek_code_point(afw_compile_parser_t *parser)
-{
-    afw_size_t cursor;
-    afw_code_point_t cp;
-
-    afw_compile_save_cursor(cursor);
-    cp = afw_compile_get_code_point();
-    afw_compile_restore_cursor(cursor);
-    return cp;
-}
+AFW_DECLARE(afw_code_point_t)
+afw_compile_peek_code_point(afw_compile_parser_t *parser);
 
 
 /*

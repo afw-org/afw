@@ -832,16 +832,10 @@ afw_environment_registry_get_without_xctx(
  *
  * Gets the registry type number assigned to a registry type name.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_environment_registry_type_t *)
+AFW_DECLARE(const afw_environment_registry_type_t *)
 afw_environment_get_registry_type(
     const afw_utf8_t *property_name,
-    afw_xctx_t *xctx)
-{
-    return afw_environment_registry_get(
-        afw_environemnt_registry_type_registry_type,
-        property_name,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -854,18 +848,11 @@ afw_environment_get_registry_type(
  * Singletons are useful for associating a name with a major struct or object
  * that needs to be accessed across an AFW application.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_singleton(
     const afw_utf8_t *singleton_key,
     const void *void_ptr,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_singleton,
-        singleton_key,
-        void_ptr,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -874,15 +861,9 @@ afw_environment_register_singleton(
  * @param xctx of caller.
  * @return Pointer to singleton value or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(void *)
+AFW_DECLARE(void *)
 afw_environment_get_singleton(
-    const afw_utf8_t *singleton_key, afw_xctx_t *xctx)
-{
-    return afw_environment_registry_get(
-        afw_environemnt_registry_type_singleton,
-        singleton_key,
-        xctx);
-}
+    const afw_utf8_t *singleton_key, afw_xctx_t *xctx);
 
 
 /**
@@ -907,16 +888,10 @@ afw_environment_register_adapter_type(
  * @param xctx of caller.
  * @return Associated instance or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_adapter_factory_t *)
+AFW_DECLARE(const afw_adapter_factory_t *)
 afw_environment_get_adapter_type(
     const afw_utf8_t *adapter_type,
-    afw_xctx_t *xctx)
-{
-    return (const afw_adapter_factory_t *) afw_environment_registry_get(
-        afw_environemnt_registry_type_adapter_type,
-        adapter_type,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -925,18 +900,11 @@ afw_environment_get_adapter_type(
  * @param anchor instance to register.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_adapter_id(
     const afw_utf8_t *adapter_id,
     const afw_adapter_id_anchor_t *anchor,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_adapter_id,
-        adapter_id,
-        anchor,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -945,16 +913,10 @@ afw_environment_register_adapter_id(
  * @param xctx of caller.
  * @return Associated adapter id anchor or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_adapter_id_anchor_t *)
+AFW_DECLARE(const afw_adapter_id_anchor_t *)
 afw_environment_get_adapter_id(
     const afw_utf8_t *adapter_id,
-    afw_xctx_t *xctx)
-{
-    return (const afw_adapter_id_anchor_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_adapter_id,
-        adapter_id,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -983,17 +945,10 @@ afw_environment_register_authorization_handler_type(
  * @param xctx of caller.
  * @return Associated instance or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_authorization_handler_factory_t *)
+AFW_DECLARE(const afw_authorization_handler_factory_t *)
 afw_environment_get_authorization_handler_type(
     const afw_utf8_t *authorization_handler_type,
-    afw_xctx_t *xctx)
-{
-    return (const afw_authorization_handler_factory_t *)
-        afw_environment_registry_get(
-            afw_environemnt_registry_type_authorization_handler_type,
-            authorization_handler_type,
-            xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1003,18 +958,11 @@ afw_environment_get_authorization_handler_type(
  * @param anchor instance to register.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_authorization_handler_id(
     const afw_utf8_t *authorization_handler_id,
     const afw_authorization_handler_id_anchor_t *anchor,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_authorization_handler_id,
-        authorization_handler_id,
-        anchor,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1025,17 +973,10 @@ afw_environment_register_authorization_handler_id(
  * @param xctx of caller.
  * @return Associated authorization handler id anchor or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_authorization_handler_id_anchor_t *)
+AFW_DECLARE(const afw_authorization_handler_id_anchor_t *)
 afw_environment_get_authorization_handler_id(
     const afw_utf8_t *authorization_handler_id,
-    afw_xctx_t *xctx)
-{
-    return (const afw_authorization_handler_id_anchor_t *)
-        afw_environment_registry_get(
-            afw_environemnt_registry_type_authorization_handler_id,
-            authorization_handler_id,
-            xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1085,15 +1026,10 @@ afw_environment_create_and_register_conf_type(
  * @param xctx of caller.
  * @return Associated afw_environment_conf_type_t or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_environment_conf_type_t *)
+AFW_DECLARE(const afw_environment_conf_type_t *)
 afw_environment_get_conf_type(
-const afw_utf8_t *type,
-    afw_xctx_t *xctx)
-{
-    return (const afw_environment_conf_type_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_conf_type,
-        type, xctx);
-}
+    const afw_utf8_t *type,
+    afw_xctx_t *xctx);
 
 
 
@@ -1161,18 +1097,11 @@ afw_environment_prepare_conf_type_properties(
  * @param Content type struct.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_content_type(
     const afw_utf8_t *type,
     const afw_content_type_t *content_type,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_content_type,
-        type,
-        content_type,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1182,15 +1111,10 @@ afw_environment_register_content_type(
  * @param xctx of caller.
  * @return Pointer to associated afw_content_type_t struct or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_content_type_t *)
+AFW_DECLARE(const afw_content_type_t *)
 afw_environment_get_content_type(
     const afw_utf8_t *type,
-    afw_xctx_t *xctx)
-{
-    return (afw_content_type_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_content_type,
-        type, xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1200,18 +1124,11 @@ afw_environment_get_content_type(
  * @param context type object.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_context_type(
     const afw_utf8_t *context_type_id,
     const afw_object_t *context_type_object,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_context_type,
-        context_type_id,
-        context_type_object,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1222,15 +1139,10 @@ afw_environment_register_context_type(
  * @param xctx of caller.
  * @return context_type_object.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_object_t *)
+AFW_DECLARE(const afw_object_t *)
 afw_environment_get_context_type(
     const afw_utf8_t *context_type_id,
-    afw_xctx_t *xctx)
-{
-    return (const afw_object_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_context_type,
-        context_type_id, xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1267,15 +1179,10 @@ afw_environment_register_data_types(
  * @param xctx of caller.
  * @return Associated instance or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_data_type_t *)
+AFW_DECLARE(const afw_data_type_t *)
 afw_environment_get_data_type(
     const afw_utf8_t *type,
-    afw_xctx_t *xctx)
-{
-    return (const afw_data_type_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_data_type,
-        type, xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1285,18 +1192,11 @@ afw_environment_get_data_type(
  * @param rv_decoder function.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_error_rv_decoder(
     const afw_utf8_t *rv_source_id,
     afw_environment_error_rv_decoder_z_t rv_decoder,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_error_rv_decoder,
-        rv_source_id,
-        rv_decoder,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1306,15 +1206,10 @@ afw_environment_register_error_rv_decoder(
  * @param xctx of caller.
  * @return Decoder function or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(afw_environment_error_rv_decoder_z_t)
+AFW_DECLARE(afw_environment_error_rv_decoder_z_t)
 afw_environment_get_error_rv_decoder(
     const afw_utf8_t *rv_source_id,
-    afw_xctx_t *xctx)
-{
-    return (afw_environment_error_rv_decoder_z_t)afw_environment_registry_get(
-        afw_environemnt_registry_type_error_rv_decoder,
-        rv_source_id, xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1340,16 +1235,10 @@ afw_flag_environment_register_flag( \
  * @param xctx of caller.
  * @return associated instance or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const  afw_flag_t *)
+AFW_DECLARE(const  afw_flag_t *)
 afw_environment_get_flag(
     const afw_utf8_t *flag_id,
-    afw_xctx_t *xctx)
-{
-    return ( afw_flag_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_flag,
-        flag_id,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1388,18 +1277,11 @@ afw_environment_register_functions(
  * @param value `const afw_value_string_t` (often a generated permanent).
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_string_literal(
     const afw_utf8_t *string,
     const afw_value_string_t *value,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_string_literal,
-        string,
-        value,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1424,16 +1306,10 @@ afw_environment_register_string_literals(
  * @param xctx of caller.
  * @return `const afw_value_string_t` or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_value_string_t *)
+AFW_DECLARE(const afw_value_string_t *)
 afw_environment_get_string_literal(
     const afw_utf8_t *string,
-    afw_xctx_t *xctx)
-{
-    return (const afw_value_string_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_string_literal,
-        string,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -1442,16 +1318,10 @@ afw_environment_get_string_literal(
  * @param xctx of caller.
  * @return Associated instance or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_value_function_definition_t *)
+AFW_DECLARE(const afw_value_function_definition_t *)
 afw_environment_get_function(
     const afw_utf8_t *function_id,
-    afw_xctx_t *xctx)
-{
-    return (const afw_value_function_definition_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_function,
-        function_id,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -1488,18 +1358,11 @@ afw_environment_registry_get_data_type_method(
  * @param lock instance to register.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_lock(
     const afw_utf8_t *lock_id,
     const afw_lock_t *lock,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_lock,
-        lock_id,
-        lock,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -1508,16 +1371,10 @@ afw_environment_register_lock(
  * @param xctx of caller.
  * @return Associated lock or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_lock_t *)
+AFW_DECLARE(const afw_lock_t *)
 afw_environment_get_lock(
     const afw_utf8_t *log_type,
-    afw_xctx_t *xctx)
-{
-    return (const afw_lock_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_log_type,
-        log_type,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -1526,18 +1383,11 @@ afw_environment_get_lock(
  * @param log_factory instance to register.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_log_type(
     const afw_utf8_t *log_type,
     const afw_log_factory_t *log_factory,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_log_type,
-        log_type,
-        log_factory,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1547,16 +1397,10 @@ afw_environment_register_log_type(
  * @param xctx of caller.
  * @return Associated instance or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_log_factory_t *)
+AFW_DECLARE(const afw_log_factory_t *)
 afw_environment_get_log_type(
     const afw_utf8_t *log_type,
-    afw_xctx_t *xctx)
-{
-    return (const afw_log_factory_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_log_type,
-        log_type,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -1568,18 +1412,11 @@ afw_environment_get_log_type(
  * If you want this log to be called for all environment log requests,
  * call afw_log_add_to_environment() instead.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_log(
     const afw_utf8_t *log_id,
     const afw_log_t *log,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_log,
-        log_id,
-        log,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1589,16 +1426,10 @@ afw_environment_register_log(
  * @param xctx of caller.
  * @return Associated instance or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_log_t *)
+AFW_DECLARE(const afw_log_t *)
 afw_environment_get_log(
     const afw_utf8_t *log_id,
-    afw_xctx_t *xctx)
-{
-    return (const afw_log_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_log,
-        log_id,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1608,18 +1439,11 @@ afw_environment_get_log(
  * @param function struct to register.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_policy_combining_algorithm(
     const afw_utf8_t *policy_combining_algorithm_id,
     const afw_value_function_definition_t *function,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_policy_combining_algorithm,
-        policy_combining_algorithm_id,
-        function,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1630,16 +1454,10 @@ afw_environment_register_policy_combining_algorithm(
  * @param xctx of caller.
  * @return Associated struct or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_value_function_definition_t *)
+AFW_DECLARE(const afw_value_function_definition_t *)
 afw_environment_get_policy_combining_algorithm(
     const afw_utf8_t *policy_combining_algorithm_id,
-    afw_xctx_t *xctx)
-{
-    return (const afw_value_function_definition_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_policy_combining_algorithm,
-        policy_combining_algorithm_id,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1650,18 +1468,11 @@ afw_environment_get_policy_combining_algorithm(
  * @param request_handler_factory instance to register.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_request_handler_type(
     const afw_utf8_t *handler_type,
     const afw_request_handler_factory_t *request_handler_factory,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_request_handler_type,
-        handler_type,
-        request_handler_factory,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1672,18 +1483,10 @@ afw_environment_register_request_handler_type(
  * @param xctx of caller.
  * @return Associated instance or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_request_handler_factory_t *)
+AFW_DECLARE(const afw_request_handler_factory_t *)
 afw_environment_get_request_handler_type(
     const afw_utf8_t *handler_type,
-    afw_xctx_t *xctx)
-
-{
-    return (const afw_request_handler_factory_t *)
-        afw_environment_registry_get(
-        afw_environemnt_registry_type_request_handler_type,
-        handler_type,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -1692,18 +1495,11 @@ afw_environment_get_request_handler_type(
  * @param function struct to register.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_rule_combining_algorithm(
     const afw_utf8_t *rule_combining_algorithm_id,
     const afw_value_function_definition_t *function,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_rule_combining_algorithm,
-        rule_combining_algorithm_id,
-        function,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1714,16 +1510,10 @@ afw_environment_register_rule_combining_algorithm(
  * @param xctx of caller.
  * @return Associated struct or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_value_function_definition_t *)
+AFW_DECLARE(const afw_value_function_definition_t *)
 afw_environment_get_rule_combining_algorithm(
     const afw_utf8_t *rule_combining_algorithm_id,
-    afw_xctx_t *xctx)
-{
-    return (const afw_value_function_definition_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_rule_combining_algorithm,
-        rule_combining_algorithm_id,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1734,18 +1524,11 @@ afw_environment_get_rule_combining_algorithm(
  * @param custom handling information.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_runtime_custom(
     const afw_utf8_t *object_type_id,
     const afw_runtime_custom_t *custom,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_runtime_custom,
-        object_type_id,
-        custom,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -1754,18 +1537,10 @@ afw_environment_register_runtime_custom(
  * @param xctx of caller.
  * @return Associated afw_runtime_custom_t pointer or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_runtime_custom_t *)
+AFW_DECLARE(const afw_runtime_custom_t *)
 afw_environment_get_runtime_custom(
     const afw_utf8_t *object_type_id,
-    afw_xctx_t *xctx)
-
-{
-    return (const afw_runtime_custom_t *)
-        afw_environment_registry_get(
-        afw_environemnt_registry_type_runtime_custom,
-        object_type_id,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -1774,18 +1549,11 @@ afw_environment_get_runtime_custom(
  * @param inf pointer associated with object map.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_runtime_object_map_inf(
     const afw_utf8_t *object_type_id,
     const afw_object_inf_t *inf,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_runtime_object_map_inf,
-        object_type_id,
-        inf,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -1794,16 +1562,10 @@ afw_environment_register_runtime_object_map_inf(
  * @param xctx of caller.
  * @return Associated interface pointer or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_object_inf_t *)
+AFW_DECLARE(const afw_object_inf_t *)
 afw_environment_get_runtime_object_map_inf(
     const afw_utf8_t *object_type_id,
-    afw_xctx_t *xctx)
-{
-    return (const afw_object_inf_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_runtime_object_map_inf,
-        object_type_id,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -1855,18 +1617,11 @@ afw_environment_get_runtime_value_accessor_info(
  * @param service instance.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_service(
     const afw_utf8_t *service_id,
     afw_service_t *service,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_service,
-        service_id,
-        service,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -1875,16 +1630,10 @@ afw_environment_register_service(
  * @param xctx of caller.
  * @return associated instance or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(afw_service_t *)
+AFW_DECLARE(afw_service_t *)
 afw_environment_get_service(
     const afw_utf8_t *service_id,
-    afw_xctx_t *xctx)
-{
-    return (afw_service_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_service,
-        service_id,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1894,18 +1643,11 @@ afw_environment_get_service(
  * @param service_type instance.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_service_type(
     const afw_utf8_t *service_type_id,
     const afw_service_type_t *service_type,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_service_type,
-        service_type_id,
-        service_type,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1916,16 +1658,10 @@ afw_environment_register_service_type(
  * @param xctx of caller.
  * @return associated instance or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_service_type_t *)
+AFW_DECLARE(const afw_service_type_t *)
 afw_environment_get_service_type(
     const afw_utf8_t *service_type_id,
-    afw_xctx_t *xctx)
-{
-    return (afw_service_type_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_service_type,
-        service_type_id,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 
@@ -1937,18 +1673,11 @@ afw_environment_get_service_type(
  *
  * value_inf_id should be the same as inf->rti->implementation_id
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_value_inf(
     const afw_utf8_t *value_inf_id,
     const afw_value_inf_t *value_inf,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_value_inf,
-        value_inf_id,
-        value_inf,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -1957,16 +1686,10 @@ afw_environment_register_value_inf(
  * @param xctx of caller.
  * @return Associated interface pointer or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_value_inf_t *)
+AFW_DECLARE(const afw_value_inf_t *)
 afw_environment_get_value_inf(
     const afw_utf8_t *value_inf_id,
-    afw_xctx_t *xctx)
-{
-    return (const afw_value_inf_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_value_inf,
-        value_inf_id,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 
 /**

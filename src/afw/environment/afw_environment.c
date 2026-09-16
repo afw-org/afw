@@ -1884,3 +1884,513 @@ afw_environment_set_stdout_fd(FILE *fd, afw_xctx_t *xctx)
     env = (afw_environment_internal_t *)xctx->env;
     env->pub.stdout_fd = fd;
 }
+
+
+/* Registry get/register wrappers (were header inlines). */
+
+AFW_DEFINE(const afw_environment_registry_type_t *)
+afw_environment_get_registry_type(
+    const afw_utf8_t *property_name,
+    afw_xctx_t *xctx)
+{
+    return afw_environment_registry_get(
+        afw_environemnt_registry_type_registry_type,
+        property_name,
+        xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_singleton(
+    const afw_utf8_t *singleton_key,
+    const void *void_ptr,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_singleton,
+        singleton_key,
+        void_ptr,
+        xctx);
+}
+
+AFW_DEFINE(void *)
+afw_environment_get_singleton(
+    const afw_utf8_t *singleton_key, afw_xctx_t *xctx)
+{
+    return afw_environment_registry_get(
+        afw_environemnt_registry_type_singleton,
+        singleton_key,
+        xctx);
+}
+
+AFW_DEFINE(const afw_adapter_factory_t *)
+afw_environment_get_adapter_type(
+    const afw_utf8_t *adapter_type,
+    afw_xctx_t *xctx)
+{
+    return (const afw_adapter_factory_t *) afw_environment_registry_get(
+        afw_environemnt_registry_type_adapter_type,
+        adapter_type,
+        xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_adapter_id(
+    const afw_utf8_t *adapter_id,
+    const afw_adapter_id_anchor_t *anchor,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_adapter_id,
+        adapter_id,
+        anchor,
+        xctx);
+}
+
+AFW_DEFINE(const afw_adapter_id_anchor_t *)
+afw_environment_get_adapter_id(
+    const afw_utf8_t *adapter_id,
+    afw_xctx_t *xctx)
+{
+    return (const afw_adapter_id_anchor_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_adapter_id,
+        adapter_id,
+        xctx);
+}
+
+AFW_DEFINE(const afw_authorization_handler_factory_t *)
+afw_environment_get_authorization_handler_type(
+    const afw_utf8_t *authorization_handler_type,
+    afw_xctx_t *xctx)
+{
+    return (const afw_authorization_handler_factory_t *)
+        afw_environment_registry_get(
+            afw_environemnt_registry_type_authorization_handler_type,
+            authorization_handler_type,
+            xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_authorization_handler_id(
+    const afw_utf8_t *authorization_handler_id,
+    const afw_authorization_handler_id_anchor_t *anchor,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_authorization_handler_id,
+        authorization_handler_id,
+        anchor,
+        xctx);
+}
+
+AFW_DEFINE(const afw_authorization_handler_id_anchor_t *)
+afw_environment_get_authorization_handler_id(
+    const afw_utf8_t *authorization_handler_id,
+    afw_xctx_t *xctx)
+{
+    return (const afw_authorization_handler_id_anchor_t *)
+        afw_environment_registry_get(
+            afw_environemnt_registry_type_authorization_handler_id,
+            authorization_handler_id,
+            xctx);
+}
+
+AFW_DEFINE(const afw_environment_conf_type_t *)
+afw_environment_get_conf_type(
+    const afw_utf8_t *type,
+    afw_xctx_t *xctx)
+{
+    return (const afw_environment_conf_type_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_conf_type,
+        type, xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_content_type(
+    const afw_utf8_t *type,
+    const afw_content_type_t *content_type,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_content_type,
+        type,
+        content_type,
+        xctx);
+}
+
+AFW_DEFINE(const afw_content_type_t *)
+afw_environment_get_content_type(
+    const afw_utf8_t *type,
+    afw_xctx_t *xctx)
+{
+    return (afw_content_type_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_content_type,
+        type, xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_context_type(
+    const afw_utf8_t *context_type_id,
+    const afw_object_t *context_type_object,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_context_type,
+        context_type_id,
+        context_type_object,
+        xctx);
+}
+
+AFW_DEFINE(const afw_object_t *)
+afw_environment_get_context_type(
+    const afw_utf8_t *context_type_id,
+    afw_xctx_t *xctx)
+{
+    return (const afw_object_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_context_type,
+        context_type_id, xctx);
+}
+
+AFW_DEFINE(const afw_data_type_t *)
+afw_environment_get_data_type(
+    const afw_utf8_t *type,
+    afw_xctx_t *xctx)
+{
+    return (const afw_data_type_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_data_type,
+        type, xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_error_rv_decoder(
+    const afw_utf8_t *rv_source_id,
+    afw_environment_error_rv_decoder_z_t rv_decoder,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_error_rv_decoder,
+        rv_source_id,
+        rv_decoder,
+        xctx);
+}
+
+AFW_DEFINE(afw_environment_error_rv_decoder_z_t)
+afw_environment_get_error_rv_decoder(
+    const afw_utf8_t *rv_source_id,
+    afw_xctx_t *xctx)
+{
+    return (afw_environment_error_rv_decoder_z_t)afw_environment_registry_get(
+        afw_environemnt_registry_type_error_rv_decoder,
+        rv_source_id, xctx);
+}
+
+AFW_DEFINE(const  afw_flag_t *)
+afw_environment_get_flag(
+    const afw_utf8_t *flag_id,
+    afw_xctx_t *xctx)
+{
+    return ( afw_flag_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_flag,
+        flag_id,
+        xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_string_literal(
+    const afw_utf8_t *string,
+    const afw_value_string_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_string_literal,
+        string,
+        value,
+        xctx);
+}
+
+AFW_DEFINE(const afw_value_string_t *)
+afw_environment_get_string_literal(
+    const afw_utf8_t *string,
+    afw_xctx_t *xctx)
+{
+    return (const afw_value_string_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_string_literal,
+        string,
+        xctx);
+}
+
+AFW_DEFINE(const afw_value_function_definition_t *)
+afw_environment_get_function(
+    const afw_utf8_t *function_id,
+    afw_xctx_t *xctx)
+{
+    return (const afw_value_function_definition_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_function,
+        function_id,
+        xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_lock(
+    const afw_utf8_t *lock_id,
+    const afw_lock_t *lock,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_lock,
+        lock_id,
+        lock,
+        xctx);
+}
+
+AFW_DEFINE(const afw_lock_t *)
+afw_environment_get_lock(
+    const afw_utf8_t *log_type,
+    afw_xctx_t *xctx)
+{
+    return (const afw_lock_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_log_type,
+        log_type,
+        xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_log_type(
+    const afw_utf8_t *log_type,
+    const afw_log_factory_t *log_factory,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_log_type,
+        log_type,
+        log_factory,
+        xctx);
+}
+
+AFW_DEFINE(const afw_log_factory_t *)
+afw_environment_get_log_type(
+    const afw_utf8_t *log_type,
+    afw_xctx_t *xctx)
+{
+    return (const afw_log_factory_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_log_type,
+        log_type,
+        xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_log(
+    const afw_utf8_t *log_id,
+    const afw_log_t *log,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_log,
+        log_id,
+        log,
+        xctx);
+}
+
+AFW_DEFINE(const afw_log_t *)
+afw_environment_get_log(
+    const afw_utf8_t *log_id,
+    afw_xctx_t *xctx)
+{
+    return (const afw_log_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_log,
+        log_id,
+        xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_policy_combining_algorithm(
+    const afw_utf8_t *policy_combining_algorithm_id,
+    const afw_value_function_definition_t *function,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_policy_combining_algorithm,
+        policy_combining_algorithm_id,
+        function,
+        xctx);
+}
+
+AFW_DEFINE(const afw_value_function_definition_t *)
+afw_environment_get_policy_combining_algorithm(
+    const afw_utf8_t *policy_combining_algorithm_id,
+    afw_xctx_t *xctx)
+{
+    return (const afw_value_function_definition_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_policy_combining_algorithm,
+        policy_combining_algorithm_id,
+        xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_request_handler_type(
+    const afw_utf8_t *handler_type,
+    const afw_request_handler_factory_t *request_handler_factory,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_request_handler_type,
+        handler_type,
+        request_handler_factory,
+        xctx);
+}
+
+AFW_DEFINE(const afw_request_handler_factory_t *)
+afw_environment_get_request_handler_type(
+    const afw_utf8_t *handler_type,
+    afw_xctx_t *xctx)
+{
+    return (const afw_request_handler_factory_t *)
+        afw_environment_registry_get(
+        afw_environemnt_registry_type_request_handler_type,
+        handler_type,
+        xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_rule_combining_algorithm(
+    const afw_utf8_t *rule_combining_algorithm_id,
+    const afw_value_function_definition_t *function,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_rule_combining_algorithm,
+        rule_combining_algorithm_id,
+        function,
+        xctx);
+}
+
+AFW_DEFINE(const afw_value_function_definition_t *)
+afw_environment_get_rule_combining_algorithm(
+    const afw_utf8_t *rule_combining_algorithm_id,
+    afw_xctx_t *xctx)
+{
+    return (const afw_value_function_definition_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_rule_combining_algorithm,
+        rule_combining_algorithm_id,
+        xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_runtime_custom(
+    const afw_utf8_t *object_type_id,
+    const afw_runtime_custom_t *custom,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_runtime_custom,
+        object_type_id,
+        custom,
+        xctx);
+}
+
+AFW_DEFINE(const afw_runtime_custom_t *)
+afw_environment_get_runtime_custom(
+    const afw_utf8_t *object_type_id,
+    afw_xctx_t *xctx)
+{
+    return (const afw_runtime_custom_t *)
+        afw_environment_registry_get(
+        afw_environemnt_registry_type_runtime_custom,
+        object_type_id,
+        xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_runtime_object_map_inf(
+    const afw_utf8_t *object_type_id,
+    const afw_object_inf_t *inf,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_runtime_object_map_inf,
+        object_type_id,
+        inf,
+        xctx);
+}
+
+AFW_DEFINE(const afw_object_inf_t *)
+afw_environment_get_runtime_object_map_inf(
+    const afw_utf8_t *object_type_id,
+    afw_xctx_t *xctx)
+{
+    return (const afw_object_inf_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_runtime_object_map_inf,
+        object_type_id,
+        xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_service(
+    const afw_utf8_t *service_id,
+    afw_service_t *service,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_service,
+        service_id,
+        service,
+        xctx);
+}
+
+AFW_DEFINE(afw_service_t *)
+afw_environment_get_service(
+    const afw_utf8_t *service_id,
+    afw_xctx_t *xctx)
+{
+    return (afw_service_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_service,
+        service_id,
+        xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_service_type(
+    const afw_utf8_t *service_type_id,
+    const afw_service_type_t *service_type,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_service_type,
+        service_type_id,
+        service_type,
+        xctx);
+}
+
+AFW_DEFINE(const afw_service_type_t *)
+afw_environment_get_service_type(
+    const afw_utf8_t *service_type_id,
+    afw_xctx_t *xctx)
+{
+    return (afw_service_type_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_service_type,
+        service_type_id,
+        xctx);
+}
+
+AFW_DEFINE(void)
+afw_environment_register_value_inf(
+    const afw_utf8_t *value_inf_id,
+    const afw_value_inf_t *value_inf,
+    afw_xctx_t *xctx)
+{
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_value_inf,
+        value_inf_id,
+        value_inf,
+        xctx);
+}
+
+AFW_DEFINE(const afw_value_inf_t *)
+afw_environment_get_value_inf(
+    const afw_utf8_t *value_inf_id,
+    afw_xctx_t *xctx)
+{
+    return (const afw_value_inf_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_value_inf,
+        value_inf_id,
+        xctx);
+}

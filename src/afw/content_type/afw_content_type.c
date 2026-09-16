@@ -59,3 +59,27 @@ afw_content_type_value_to_raw(
 
     return afw_memory_writer_retrieve_and_release(writer, xctx);
 }
+
+
+AFW_DEFINE(afw_utf8_t *)
+afw_content_type_x_to_utf8_with_options(
+    const afw_content_type_t * instance,
+    const afw_value_t * value,
+    const afw_object_options_t *options,
+    afw_xctx_t *xctx)
+{
+    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+}
+
+
+AFW_DEFINE(const afw_value_t *)
+afw_content_type_x_to_object_value_with_ids(
+    const afw_content_type_t * instance,
+    const afw_utf8_t * string,
+    const afw_utf8_t *adapter_id,
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *object_id,
+    afw_xctx_t *xctx)
+{
+    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+}

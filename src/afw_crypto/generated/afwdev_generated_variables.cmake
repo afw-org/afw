@@ -23,7 +23,7 @@
 #
 
 # Header files that are installed for public use.
-# Excludes *_internal.h / afw_internal.h (libafw/package private).
+# Excludes *_internal.h / *_internal_*.h / afw_internal.h (libafw/package private).
 # Srcdir CMakeLists may also list(FILTER ...); keep both consistent.
 set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST 
     afw_crypto.h

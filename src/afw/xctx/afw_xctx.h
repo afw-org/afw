@@ -236,11 +236,8 @@ afw_xctx_check_resource_limits(
  * @param xctx of caller.
  * @return true if environment terminating.
  */
-AFW_DEFINE_STATIC_INLINE(afw_boolean_t)
-afw_xctx_environment_is_terminating(afw_xctx_t *xctx)
-{
-    return xctx->env->terminating;
-}
+#define afw_xctx_environment_is_terminating(xctx) \
+    ((xctx)->env->terminating)
 
 
 /**
