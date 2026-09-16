@@ -34,9 +34,29 @@ def build(options):
     if msg.is_verbose_mode() or msg.is_debug_mode():
         output = None
 
-    # first make sure node_modules are installed
-    if not os.path.exists('node_modules'):
-        msg.highlighted_info('Installing node modules...')
+    # first make sure node_modules are installed and not stale relative to
+    # package-lock.json (e.g. after a branch switch or pull that changed a
+    # package.json). npm itself maintains node_modules/.package-lock.json as
+    # a snapshot of the lockfile as of the last successful install, updating
+    # its mtime on every run -- comparing that against package-lock.json's
+    # mtime is cheap and, unlike a content diff, isn't tripped up by
+    # platform-specific optional dependencies (e.g. esbuild's per-OS/arch
+    # binaries) that are legitimately in the lockfile but not in this
+    # node_modules.
+    node_modules_missing = not os.path.exists('node_modules')
+    node_modules_snapshot = os.path.join('node_modules', '.package-lock.json')
+    node_modules_stale = (
+        not node_modules_missing
+        and os.path.exists('package-lock.json')
+        and os.path.exists(node_modules_snapshot)
+        and os.path.getmtime('package-lock.json') > os.path.getmtime(node_modules_snapshot)
+    )
+
+    if node_modules_missing or node_modules_stale:
+        if node_modules_missing:
+            msg.highlighted_info('Installing node modules...')
+        else:
+            msg.highlighted_info('node_modules is stale relative to package-lock.json. Reinstalling node modules...')
         rc = subprocess.run(['npm', 'install'], stdout=output)
         if rc.returncode != 0:
             msg.error_exit('npm install failed')
