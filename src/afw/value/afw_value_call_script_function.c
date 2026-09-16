@@ -411,9 +411,14 @@ impl_afw_value_optional_evaluate(
             afw_xctx_scope_release(parameter_scope, xctx);
         }
 
-        /* If no parameter scope, just deactivate enclosing scope. */
-        else {
-            afw_xctx_scope_deactivate(enclosing_lexical_scope, xctx);
+        /*
+         * 0-param: pop the enclosing we pushed. Do not script_result_set
+         * — that last belongs to the defining frame, not this call
+         * (extra RC on let f = function(){} in a loop).
+         */
+        else if (afw_xctx_scope_current(xctx) == enclosing_lexical_scope) {
+            afw_vector_pop(xctx->scope_stack, xctx);
+            afw_xctx_scope_release(enclosing_lexical_scope, xctx);
         }
 
         afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
