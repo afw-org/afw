@@ -76,6 +76,7 @@ def run():
     )
     leftovers = (
         "afw_pool_internal.h",
+        "afw_xctx_internal_members.h",
         "afw_declare_helpers.h",
         "afw_function_bindings.h",
         "afw_const_objects.h",
@@ -91,6 +92,7 @@ def run():
         is_leftover_installed_header("afw_pool.h") is False
         and is_leftover_installed_header("afw_data_type_bindings.h") is False
         and is_leftover_installed_header("afw_pool_internal.h") is True
+        and is_leftover_installed_header("afw_xctx_internal_members.h") is True
         and is_leftover_installed_header("afw_function_bindings.h") is True
         and is_leftover_installed_header("afw_declare_helpers.h") is True
         and is_leftover_installed_header("skeleton_adapter.h") is True

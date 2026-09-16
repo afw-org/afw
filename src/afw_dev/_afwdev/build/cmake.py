@@ -75,7 +75,7 @@ def is_leftover_installed_header(name):
     """True if this basename should not remain in the install include dir."""
     if not name or not name.endswith('.h'):
         return False
-    if name.endswith('_internal.h'):
+    if name.endswith('_internal.h') or '_internal_' in name:
         return True
     if name in _LEFTOVER_HEADER_EXACT:
         return True

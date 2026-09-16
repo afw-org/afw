@@ -9,6 +9,7 @@
 #ifndef __AFW_INTERNAL_H__
 #define __AFW_INTERNAL_H__
 
+#define AFW_XCTX_INTERNAL_MEMBERS
 
 /**
  * @file afw_internal.h
