@@ -176,9 +176,9 @@ afw_value_block_evaluate_statement(
 
     /*
      * Nested `{ }`: child deactivate isolates last into script_result.
-     * Return that occupant so evaluate_statements set_last_result
-     * (pointer) on the parent — a prior parent last must not stomp
-     * it at parent deactivate. Void if the child did not write.
+     * If it wrote, clear this frame's last so a prior assignment does
+     * not stomp at deactivate. A later return pin (try) can set last
+     * again after this returns.
      */
     if (afw_value_is_block(statement)) {
         const afw_value_t *saved_script_result;
@@ -188,7 +188,7 @@ afw_value_block_evaluate_statement(
             x, (const afw_value_block_t *)statement, p, xctx,
             false);
         if (xctx->script_result != saved_script_result) {
-            return xctx->script_result;
+            afw_xctx_scope_clear_last_result(xctx);
         }
         return afw_value_void;
     }

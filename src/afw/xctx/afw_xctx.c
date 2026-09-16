@@ -1175,6 +1175,20 @@ afw_xctx_scope_set_last_result(
 }
 
 
+/* Void current last. set_last_result() cannot. */
+AFW_DEFINE(void)
+afw_xctx_scope_clear_last_result(
+    afw_xctx_t *xctx)
+{
+    const afw_xctx_scope_t *scope;
+
+    scope = afw_xctx_scope_current(xctx);
+    if (scope) {
+        ((afw_xctx_scope_t *)scope)->last_result = afw_value_void;
+    }
+}
+
+
 /* Assignable held until scope->p last-release. */
 AFW_DEFINE(const afw_value_t *)
 afw_xctx_scope_get_assignable_for_p_lifetime(

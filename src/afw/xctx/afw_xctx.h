@@ -339,6 +339,19 @@ afw_xctx_scope_set_last_result(
 
 
 /**
+ * @brief Set current last_result to void.
+ * @param xctx of caller.
+ *
+ * set_last_result() ignores void so a prior last is sticky. Nested
+ * `{ }` that already isolated into script_result uses this so parent
+ * deactivate does not stomp. No-op if there is no current scope.
+ */
+AFW_DECLARE(void)
+afw_xctx_scope_clear_last_result(
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Get an assignable and keep it until the current scope ends.
  * @param value to keep. Void and NULL are returned unchanged.
  * @param xctx of caller.
