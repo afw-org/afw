@@ -66,6 +66,26 @@ afw_object_string_property_name_internal(
 }
 
 
+/*
+ * Return object, or throw if only a path was given (registry lookup
+ * is not implemented; afw_cache_* callers should not hit this).
+ */
+AFW_DEFINE(const afw_object_t *)
+afw_object_resolve_instance(
+    const afw_object_t *object,
+    const afw_utf8_t *path,
+    afw_xctx_t *xctx)
+{
+    if (object) {
+        return object;
+    }
+    if (!path) {
+        return NULL;
+    }
+    AFW_THROW_ERROR_FZ(coding_error, xctx, "'%ku'", path);
+}
+
+
 /* Set an object to immutable if it is not already. */
 AFW_DEFINE(void)
 afw_object_set_immutable(

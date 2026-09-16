@@ -10,7 +10,7 @@
  * @file afw_xctx_internal_members.h
  * @brief Non-public members of struct afw_xctx_s.
  *
- * Included from struct afw_xctx_s in afw_common.h only when
+ * Included from struct afw_xctx_s in afw_xctx.h only when
  * AFW_XCTX_INTERNAL_MEMBERS is defined (afw_internal.h). Do not
  * include this file directly. Public fields stay a prefix of the
  * struct so a short view is a valid prefix of the full one.

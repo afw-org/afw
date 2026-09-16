@@ -1025,7 +1025,7 @@ afw_xctx_scope_p_vector_t;
  * @brief Execution context (`afw_xctx_t`): scopes, stack, statement_flow.
  *
  * Unit of work for evaluation and requests. See group afw_xctx and
- * afw_xctx.h / struct in afw_common.h.
+ * afw_xctx.h.
  */
 typedef struct afw_xctx_s
 afw_xctx_t;
