@@ -45,7 +45,6 @@ const fiddleLocalStorageDefault = { scripts: {}, recent: [] };
 
 /* default initial fiddle state */
 const initialState = {
-    initialHeight:          0,
     defaultPanelSize:       "100%",
     tabs:                   [],
     selectedFlags:          [ 
@@ -123,12 +122,6 @@ const reducer = (state, action) => {
     
     switch (action.type) {
 
-    case "INIT_HEIGHT":
-        return ({
-            ...state,
-            initialHeight: action.height
-        });
-
     case "LOADING_FUNCTIONS_VARIABLES":
         return ({
             ...state,
@@ -141,14 +134,13 @@ const reducer = (state, action) => {
             spinnerText: undefined
         });
 
-    case "OPEN_OUTPUT": {    
-        const defaultPanelSize = (state.defaultPanelSize === "100%") ? 
-            0.6 * state.initialHeight : state.defaultPanelSize;
+    case "OPEN_OUTPUT": {
+        const defaultPanelSize = (state.defaultPanelSize === "100%") ?
+            "60%" : state.defaultPanelSize;
 
         return ({
             ...state,
             defaultPanelSize,
-            outputPanelSize: state.initialHeight - defaultPanelSize,
             stdout: action.stdout,
             stderr: action.stderr,
             listing: action.listing,
@@ -171,7 +163,6 @@ const reducer = (state, action) => {
         return ({
             ...state,
             defaultPanelSize: "100%",
-            outputPanelSize: 0,
             error: undefined,
             result: undefined,
             resultDataType: undefined,
@@ -412,7 +403,6 @@ const reducer = (state, action) => {
         return ({
             ...state,
             defaultPanelSize: action.defaultPanelSize,
-            outputPanelSize: state.initialHeight - action.defaultPanelSize,
         });
 
     case "SOURCE_CHANGED": {
@@ -606,7 +596,6 @@ export const Fiddle = () => {
 
     const client                                        = useRef();
     const editorRef                                     = useRef();
-    const splitPaneRef                                  = useRef();
 
     const theme                                         = useTheme();
     const {functions, error: errorFunctions}            = useFunctions();
@@ -628,10 +617,6 @@ export const Fiddle = () => {
             url: "/afw",
             accept: "application/x-afw",
         });        
-    }, []);
-
-    useEffect(() => {
-        dispatch({ type: "INIT_HEIGHT", height: splitPaneRef.current.clientHeight });
     }, []);
 
     /**
@@ -682,7 +667,7 @@ export const Fiddle = () => {
 
             return { result, resultDataType };
         } catch (e) {            
-            dispatch({ type: "OPEN_OUTPUT", error: e });            
+            dispatch({ type: "OPEN_OUTPUT", error: e });
         }
 
         return {};
@@ -1080,9 +1065,8 @@ export const Fiddle = () => {
                 state.spinnerText && 
                     <Spinner size="large" label={state.spinnerText} fullScreen={true}  />
             } 
-            <SplitPane 
-                ref={splitPaneRef}
-                style={{ display: state.spinnerText ? "none" : "flex", position: undefined }} 
+            <SplitPane
+                style={{ display: state.spinnerText ? "none" : "flex", position: undefined }}
                 split="horizontal" 
                 minSize={200} 
                 size={size}
@@ -1155,8 +1139,7 @@ export const Fiddle = () => {
                     format={state.evaluatedFormat}
                     subformat={state.evaluatedSubformat}
                     size={state.defaultPanelSize}
-                    outputPanelSize={state.outputPanelSize}
-                    error={state.error}                    
+                    error={state.error}
                     result={state.result}
                     resultDataType={state.resultDataType}
                     listing={state.listing}

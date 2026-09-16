@@ -16,6 +16,8 @@ const Pane = (props) => {
         flex: 1,
         position: "relative",
         outline: "none",
+        minHeight: 0,
+        minWidth: 0,
     };
 
     if (size !== undefined) {

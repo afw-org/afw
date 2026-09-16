@@ -343,24 +343,23 @@ export const EvaluationOutput = (props) => {
     const {
         format,
         subformat,
-        listing, 
-        result, 
-        stdout, 
-        stderr, 
-        error, 
-        onClear, 
+        listing,
+        result,
+        stdout,
+        stderr,
+        error,
+        onClear,
         size,
-        outputPanelSize,
     } = props;
 
     if (!result && !error && !listing)
         return <div />;
 
     return (
-        <div 
-            role="region" 
-            aria-label="Evaluation Output" 
-            style={{ display: "flex", flexDirection: "column", height: outputPanelSize }}
+        <div
+            role="region"
+            aria-label="Evaluation Output"
+            style={{ display: "flex", flexDirection: "column", height: "100%" }}
         >
             <div style={{ textAlign: "right", marginRight: "4px", marginTop: "4px" }}>
                 <Button 

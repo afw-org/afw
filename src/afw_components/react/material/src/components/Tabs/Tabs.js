@@ -64,7 +64,7 @@ export const Tabs = (props) => {
                         />)
                 }
             </MuiTabs>                    
-            <div style={{ flex: 1, marginTop: gapSpace, ...(tabs[selectedTab]?.style) }}>
+            <div style={{ flex: 1, minHeight: 0, marginTop: gapSpace, ...(tabs[selectedTab]?.style) }}>
                 {
                     tabs[selectedTab] && (
                         <AdaptiveComponent {...rest} layoutComponent={tabs[selectedTab].contains} />
