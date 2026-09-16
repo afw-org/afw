@@ -67,9 +67,9 @@ Date.now = function() {
 
 // Establish API mocking before all tests.
 beforeAll(() => server.listen({
-    onUnhandledRequest(req) {
-        server.printHandlers();
-        console.error("Found an unhandled %s request to %s", req.method, req.url.href);
+    onUnhandledRequest(request) {
+        server.listHandlers().forEach((handler) => console.log(handler.info.header));
+        console.error("Found an unhandled %s request to %s", request.method, request.url);
     }
 }));
 /*

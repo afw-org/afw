@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {server, rest, render, waitFor, fireEvent, screen, waitForSpinner, mswPostCallback} from "../../test-utils";
+import {server, http, HttpResponse, render, waitFor, fireEvent, screen, waitForSpinner, mswPostCallback} from "../../test-utils";
 import Fiddle from "./Fiddle";
 
 describe("Fiddle Tests", () => {    
@@ -36,12 +36,12 @@ describe("Fiddle Tests", () => {
         mswPostCallback.mockClear();
 
         server.use(
-            rest.post("/afw", (req, res, ctx) => {
-                mswPostCallback("/afw", req, res, ctx);
-                return res(
-                    ctx.status(200),
-                    ctx.set("Content-Type", "application/x-afw"),
-                    ctx.body("1 31 response\n{\"result\":2,\"status\":\"success\"}2 0 end\n")
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers, body});
+                return new HttpResponse(
+                    "1 31 response\n{\"result\":2,\"status\":\"success\"}2 0 end\n",
+                    { headers: { "Content-Type": "application/x-afw" } }
                 );
             })
         );
@@ -75,12 +75,12 @@ describe("Fiddle Tests", () => {
         mswPostCallback.mockClear();
 
         server.use(
-            rest.post("/afw", (req, res, ctx) => {
-                mswPostCallback("/afw", req, res, ctx);
-                return res(
-                    ctx.status(200),
-                    ctx.set("Content-Type", "application/x-afw"),
-                    ctx.body("1 722 response\n{\"result\":\"\\n\\n#\\n#  Compiled Adaptive Value Listing\\n#\\n#  Source location: script\\n#\\n---CompiledValue e02a7d14-d4f1-4b57-b00d-60a303950402\\n\\n    1 | 1+1\\n      + compiled_value: [\\n0-0   +     block number=0: [\\n0-3   +         call: [\\n      +             function_definition return\\n0-3   +             call: [\\n      +                 function_definition add\\n      +                 evaluated_integer 1\\n      +                 evaluated_integer 1\\n      +             ]\\n      +         ]\\n      +     ]\\n      + ]\\n\\n\\n---Symbols e02a7d14-d4f1-4b57-b00d-60a303950402\\n\\nblock=0 depth=0 entries=0 : [\\n]\\n\\n\\n\\n---Literals e02a7d14-d4f1-4b57-b00d-60a303950402\\nLiterals coming soon\\n\\n\\n---\\n\",\"status\":\"success\"}2 0 end"),                    
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers, body});
+                return new HttpResponse(
+                    "1 722 response\n{\"result\":\"\\n\\n#\\n#  Compiled Adaptive Value Listing\\n#\\n#  Source location: script\\n#\\n---CompiledValue e02a7d14-d4f1-4b57-b00d-60a303950402\\n\\n    1 | 1+1\\n      + compiled_value: [\\n0-0   +     block number=0: [\\n0-3   +         call: [\\n      +             function_definition return\\n0-3   +             call: [\\n      +                 function_definition add\\n      +                 evaluated_integer 1\\n      +                 evaluated_integer 1\\n      +             ]\\n      +         ]\\n      +     ]\\n      + ]\\n\\n\\n---Symbols e02a7d14-d4f1-4b57-b00d-60a303950402\\n\\nblock=0 depth=0 entries=0 : [\\n]\\n\\n\\n\\n---Literals e02a7d14-d4f1-4b57-b00d-60a303950402\\nLiterals coming soon\\n\\n\\n---\\n\",\"status\":\"success\"}2 0 end",
+                    { headers: { "Content-Type": "application/x-afw" } }
                 );
             })
         );
@@ -159,12 +159,12 @@ describe("Fiddle Tests", () => {
         fireEvent.click(traceFlag);
 
         server.use(
-            rest.post("/afw", (req, res, ctx) => {
-                mswPostCallback("/afw", req, res, ctx);
-                return res(
-                    ctx.status(200),
-                    ctx.set("Content-Type", "application/x-afw"),
-                    ctx.body("1 31 response\n{\"result\":2,\"status\":\"success\"}2 0 end\n")
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers, body});
+                return new HttpResponse(
+                    "1 31 response\n{\"result\":2,\"status\":\"success\"}2 0 end\n",
+                    { headers: { "Content-Type": "application/x-afw" } }
                 );
             })
         );

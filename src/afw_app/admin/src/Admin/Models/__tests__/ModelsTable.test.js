@@ -1,14 +1,15 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {
-    server, 
-    rest, 
-    render, 
+    server,
+    http,
+    HttpResponse,
+    render,
     fireEvent,
-    waitFor,     
+    waitFor,
     waitForElementToBeRemoved,
-    within, 
-    screen, 
-    mswPostCallback, 
+    within,
+    screen,
+    mswPostCallback,
     waitForSpinner
 } from "../../test-utils";
 import {Router} from "react-router-dom";
@@ -39,19 +40,17 @@ describe("ModelsTable Tests", () => {
 
         /* respond to the retrieve_objects with no models */
         server.use(
-            rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, adapterId} = req.body;
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                const {function: functionId, adapterId} = body;
 
-                if (functionId === "retrieve_objects" && adapterId === "models") { 
-                    mswPostCallback("/afw", req, res, ctx);
+                if (functionId === "retrieve_objects" && adapterId === "models") {
+                    mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers, body});
 
-                    return res(
-                        ctx.status(200),
-                        ctx.json({
-                            status: "success",
-                            result: []
-                        })
-                    );
+                    return HttpResponse.json({
+                        status: "success",
+                        result: []
+                    });
                 }
             })
         );
@@ -76,19 +75,17 @@ describe("ModelsTable Tests", () => {
 
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
-            rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, adapterId} = req.body;
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                const {function: functionId, adapterId} = body;
 
-                if (functionId === "retrieve_objects" && adapterId === "models") { 
-                    mswPostCallback("/afw", req, res, ctx);
+                if (functionId === "retrieve_objects" && adapterId === "models") {
+                    mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers, body});
 
-                    return res(
-                        ctx.status(200),
-                        ctx.json({
-                            status: "success",
-                            result: [ test1Model ]
-                        })
-                    );
+                    return HttpResponse.json({
+                        status: "success",
+                        result: [ test1Model ]
+                    });
                 }
             })
         );
@@ -118,19 +115,17 @@ describe("ModelsTable Tests", () => {
 
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
-            rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, adapterId} = req.body;
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                const {function: functionId, adapterId} = body;
 
-                if (functionId === "retrieve_objects" && adapterId === "models") { 
-                    mswPostCallback("/afw", req, res, ctx);
+                if (functionId === "retrieve_objects" && adapterId === "models") {
+                    mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers, body});
 
-                    return res(
-                        ctx.status(200),
-                        ctx.json({
-                            status: "success",
-                            result: [ test1Model ]
-                        })
-                    );
+                    return HttpResponse.json({
+                        status: "success",
+                        result: [ test1Model ]
+                    });
                 }
             })
         );
@@ -177,19 +172,17 @@ describe("ModelsTable Tests", () => {
 
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
-            rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, adapterId} = req.body;
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                const {function: functionId, adapterId} = body;
 
-                if (functionId === "retrieve_objects" && adapterId === "models") { 
-                    mswPostCallback("/afw", req, res, ctx);
+                if (functionId === "retrieve_objects" && adapterId === "models") {
+                    mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers, body});
 
-                    return res(
-                        ctx.status(200),
-                        ctx.json({
-                            status: "success",
-                            result: [ test1Model ]
-                        })
-                    );
+                    return HttpResponse.json({
+                        status: "success",
+                        result: [ test1Model ]
+                    });
                 }
             })
         );

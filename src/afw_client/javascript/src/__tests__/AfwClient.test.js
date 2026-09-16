@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {server, rest} from "@afw/test";
+import {server, http, HttpResponse} from "@afw/test";
 
 import {AfwClient} from "../AfwClient";
 
@@ -14,29 +14,25 @@ describe("AfwClient Tests", () => {
     test("onRequest should be called", async () => {
         const onRequest = jest.fn();
 
-        server.use(            
-            rest.get("http://localhost/afw", (req, res, ctx) => {                
-                return res(
-                    ctx.status(200),
-                );
+        server.use(
+            http.get("http://localhost/afw", () => {
+                return new HttpResponse();
             })
         );
-        
-        const client = new AfwClient();        
+
+        const client = new AfwClient();
         client.addOn("onRequest", onRequest);
-        await client.get("http://localhost/afw").response;        
-        
+        await client.get("http://localhost/afw").response;
+
         expect(onRequest).toHaveBeenCalled();
     });
 
     test("onRequest should not be called, after removing on", async () => {
         const onRequest = jest.fn();
 
-        server.use(            
-            rest.get("http://localhost/afw", (req, res, ctx) => {                
-                return res(
-                    ctx.status(200),
-                );
+        server.use(
+            http.get("http://localhost/afw", () => {
+                return new HttpResponse();
             })
         );
         
@@ -53,15 +49,13 @@ describe("AfwClient Tests", () => {
     test("onResponse should be called", async () => {
         const onResponse = jest.fn();
 
-        server.use(            
-            rest.get("http://localhost/afw", (req, res, ctx) => {                
-                return res(
-                    ctx.status(200),
-                );
+        server.use(
+            http.get("http://localhost/afw", () => {
+                return new HttpResponse();
             })
         );
-        
-        const client = new AfwClient();        
+
+        const client = new AfwClient();
         client.addOn("onResponse", onResponse);
         await client.get("http://localhost/afw").response;        
         
@@ -72,18 +66,16 @@ describe("AfwClient Tests", () => {
         const onResponseError = jest.fn();
 
         server.use(
-            rest.get("http://localhost/afw", (req, res, ctx) => {
-                return res(
-                    ctx.status(500),
-                );
+            http.get("http://localhost/afw", () => {
+                return new HttpResponse(null, {status: 500});
             })
         );
-        
-        const client = new AfwClient();        
+
+        const client = new AfwClient();
         client.addOn("onResponseError", onResponseError);
         const {response} = client.get("http://localhost/afw");
-        await response;    
-        
+        await response;
+
         expect(onResponseError).toHaveBeenCalled();
     });
 
@@ -91,11 +83,8 @@ describe("AfwClient Tests", () => {
         const onResponseError = jest.fn();
 
         server.use(
-            rest.get("http://localhost/afw", (req, res, ctx) => {
-                return res(
-                    ctx.status(200),
-                    ctx.json({})
-                );
+            http.get("http://localhost/afw", () => {
+                return HttpResponse.json({});
             })
         );
         
@@ -111,11 +100,8 @@ describe("AfwClient Tests", () => {
 
         test("result", async () => {
             server.use(
-                rest.post("http://localhost/afw", (req, res, ctx) => {
-                    return res(
-                        ctx.status(200),
-                        ctx.json({ result: 2, status: "success" })
-                    );
+                http.post("http://localhost/afw", () => {
+                    return HttpResponse.json({ result: 2, status: "success" });
                 })
             );
 
@@ -131,11 +117,8 @@ describe("AfwClient Tests", () => {
 
         test("response", async () => {
             server.use(
-                rest.post("http://localhost/afw", (req, res, ctx) => {
-                    return res(
-                        ctx.status(200),
-                        ctx.json({ result: 2, status: "success" })
-                    );
+                http.post("http://localhost/afw", () => {
+                    return HttpResponse.json({ result: 2, status: "success" });
                 })
             );
 
@@ -152,11 +135,8 @@ describe("AfwClient Tests", () => {
 
         test("Perform returns an error", async () => {
             server.use(
-                rest.post("http://localhost/afw", (req, res, ctx) => {
-                    return res(
-                        ctx.status(200),
-                        ctx.json({ status: "error", error: "It didn't work" })
-                    );
+                http.post("http://localhost/afw", () => {
+                    return HttpResponse.json({ status: "error", error: "It didn't work" });
                 })
             );
 
@@ -177,11 +157,10 @@ describe("AfwClient Tests", () => {
 
         test("Perform over streams", async () => {
             server.use(
-                rest.post("http://localhost/afw", (req, res, ctx) => {
-                    return res(
-                        ctx.status(200),
-                        ctx.set("Content-Type", "application/x-afw"),
-                        ctx.body("1 31 response\n{\"result\":2,\"status\":\"success\"}2 0 end\n")
+                http.post("http://localhost/afw", () => {
+                    return new HttpResponse(
+                        "1 31 response\n{\"result\":2,\"status\":\"success\"}2 0 end\n",
+                        { headers: { "Content-Type": "application/x-afw" } }
                     );
                 })
             );
@@ -199,10 +178,10 @@ describe("AfwClient Tests", () => {
         test("Handle error with HTML response", async () => {
         
             server.use(
-                rest.post("http://localhost/afw", (req, res, ctx) => {                    
-                    return res(
-                        ctx.status(500),                        
-                        ctx.body("<html><h1>An Error occurred.</h1></html>")
+                http.post("http://localhost/afw", () => {
+                    return new HttpResponse(
+                        "<html><h1>An Error occurred.</h1></html>",
+                        { status: 500 }
                     );
                 })
             );
@@ -225,11 +204,8 @@ describe("AfwClient Tests", () => {
         test("controller abort()", async () => {
             
             server.use(
-                rest.post("http://localhost/afw", (req, res, ctx) => {                    
-                    return res(
-                        ctx.status(200),
-                        ctx.json({ status: "success" })
-                    );
+                http.post("http://localhost/afw", () => {
+                    return HttpResponse.json({ status: "success" });
                 })
             );
             
@@ -250,13 +226,13 @@ describe("AfwClient Tests", () => {
 
             expect(controller.signal.aborted).toBe(true);
             /*
-             * msw@1.x's fetch interceptor (@mswjs/interceptors/lib/interceptors/fetch)
-             * resolves a matched request straight from the mock handler and never
-             * consults request.signal, so an aborted signal doesn't reject the
-             * fetch() promise under this mock - only real fetch implementations
-             * honor it. Revisit once on msw 2.x's undici-based interceptor.
+             * msw 2.x's fetch interceptor consults request.signal and rejects
+             * with a real AbortError, unlike msw 1.x which resolved a matched
+             * request straight from the mock handler regardless of the
+             * signal's state.
              */
-            expect(thrownError).toBeUndefined();
+            expect(thrownError).toBeInstanceOf(DOMException);
+            expect(thrownError.name).toBe("AbortError");
         });
         
     });    

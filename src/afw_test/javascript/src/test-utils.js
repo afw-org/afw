@@ -5,7 +5,7 @@ import {render} from "@testing-library/react";
 import {ThemeProvider, createTheme} from "@mui/material/styles";
 import {waitForElementToBeRemoved} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import {rest} from "msw";
+import {http, HttpResponse} from "msw";
 
 import {server} from "./__mocks__/server";
 import {mswPostCallback, mswGetCallback} from "./__mocks__/handlers";
@@ -359,4 +359,4 @@ export const waitForSpinner = async () => {
 // re-export everything
 export * from "@testing-library/react";
 export { customRender as render, AllTheProviders };
-export { rest, server, userEvent, mswPostCallback, mswGetCallback };
+export { http, HttpResponse, server, userEvent, mswPostCallback, mswGetCallback };
