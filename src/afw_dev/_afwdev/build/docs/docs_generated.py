@@ -249,11 +249,16 @@ def generate_function(fp, src, breadcrumbs, nav_items, docsHtml, doc_root):
     def map_function_field(f):
         val = f[1]
         if type(val) is dict or type(val) is list:
-            val = nfc.json_dumps(val, indent=4)
-        elif type(val) is bool:
-            val = str(val).lower()
+            # render as a formatted code block instead of dumping into a
+            # plain table cell, which loses indentation (white-space: pre-line
+            # collapses runs of spaces) and reads poorly for anything nested
+            val = docsHtml.code(docsHtml.escape(nfc.json_dumps(val, indent=4)))
+        else:
+            if type(val) is bool:
+                val = str(val).lower()
+            val = docsHtml.escape(str(val))
 
-        return [docsHtml.literal(f[0]), docsHtml.escape(str(val)) ]
+        return [docsHtml.literal(f[0]), val]
 
     # parameters and returns are rendered as their own structured tables
     # below, instead of being JSON-dumped into the generic property table.
@@ -305,6 +310,31 @@ def generate_function(fp, src, breadcrumbs, nav_items, docsHtml, doc_root):
     fp.write(docsHtml.page(doc_root, functionId, breadcrumbs, nav_items, content))
 
 ##
+# @brief Builds the comma-separated "Notes" cell (required, unique,
+#        default value, possible values, ...) for an object type property.
+# @param docsHtml The DocsHtml object
+# @param p The property type object
+#
+def _format_object_type_property_notes(docsHtml, p):
+
+    notes = []
+
+    if p.get('required'):
+        notes.append('required')
+    if p.get('unique'):
+        notes.append('unique')
+
+    defaultValue = p.get('defaultValue')
+    if defaultValue is not None:
+        notes.append('default: {}'.format(defaultValue))
+
+    possibleValues = p.get('possibleValues')
+    if possibleValues:
+        notes.append('one of: {}'.format(', '.join(str(v) for v in possibleValues)))
+
+    return docsHtml.escape(', '.join(notes))
+
+##
 # @brief This function generates the page for an object type
 # @param fp The file pointer to write the page to
 # @param src The source data for the object type
@@ -315,38 +345,73 @@ def generate_function(fp, src, breadcrumbs, nav_items, docsHtml, doc_root):
 #
 def generate_object_type(fp, src, breadcrumbs, nav_items, docsHtml, doc_root):
 
-    objectType = src["objectType"]    
+    objectType = src["objectType"]
 
-    msg.info("        Building Reference for Object Type: " + objectType)    
+    msg.info("        Building Reference for Object Type: " + objectType)
 
     intro_para = docsHtml.paragraph(
-        "The following is a list of properties for the object type <code>{}</code>:".format(objectType)        
-    )    
+        "The following is a list of properties for the object type <code>{}</code>:".format(objectType)
+    )
 
     def map_object_type_field(o):
-        val = o[1]        
+        val = o[1]
         if type(val) is dict or type(val) is list:
-            val = nfc.json_dumps(val, indent=4)
-        elif type(val) is bool:
-            val = str(val).lower()
+            # render as a formatted code block instead of dumping into a
+            # plain table cell, which loses indentation (white-space: pre-line
+            # collapses runs of spaces) and reads poorly for anything nested
+            val = docsHtml.code(docsHtml.escape(nfc.json_dumps(val, indent=4)))
+        else:
+            if type(val) is bool:
+                val = str(val).lower()
+            val = docsHtml.escape(str(val))
 
         return [
             docsHtml.literal(o[0]),
-            docsHtml.escape(str(val))
-        ]            
+            val
+        ]
+
+    # propertyTypes is rendered as its own structured table below, instead
+    # of being JSON-dumped whole into the generic property table
+    scalar_items = [
+        i for i in src.items() if i[0] != 'propertyTypes'
+    ]
 
     object_type_table = docsHtml.table(
         [ "Property", "Value" ],
-        list(map(map_object_type_field, src.items()))
-    )    
+        list(map(map_object_type_field, scalar_items))
+    )
 
-    header = docsHtml.heading(objectType)    
+    header = docsHtml.heading(objectType)
 
     content = header + intro_para + object_type_table
 
+    propertyTypes = src.get('propertyTypes')
+    if propertyTypes:
+
+        def map_property_type(item):
+            pName, p = item
+            return [
+                docsHtml.literal(docsHtml.escape(pName)),
+                _format_function_type(docsHtml, p),
+                docsHtml.escape(p.get('description') or p.get('brief') or ''),
+                _format_object_type_property_notes(docsHtml, p)
+            ]
+
+        rows = list(map(map_property_type, (
+            item for item in propertyTypes.items() if item[0] != '_meta_'
+        )))
+
+        if rows:
+            properties_table = docsHtml.table(
+                [ "Property", "Data Type", "Description", "Notes" ],
+                rows
+            )
+
+            content += docsHtml.heading("Properties", level=2) + properties_table
+
     content += docsHtml.spacer()
     content += docsHtml.paragraph(
-        "Click " + docsHtml.link("here", "index.html") + 
+        "Click " + docsHtml.link("here", "index.html") +
         " for a complete list of object types and their descriptions."
     )
 
