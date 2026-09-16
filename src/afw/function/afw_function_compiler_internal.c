@@ -159,11 +159,10 @@ impl_keep_if_return(
 
 
 /*
- * Loop `{ }` body: evaluate_block so last is not extra-held on the
- * enclosing clone/script. Child deactivate isolated last into
- * script_result; point current last at that occupant (no hold).
- * Clone isolates original last into the slot; the new clone's last
- * stays void. Unbraced body is still evaluate_statement.
+ * Loop `{ }` body: evaluate_block. Child deactivate isolates last into
+ * script_result. Point parent last at that occupant (pointer only) so a
+ * prior last does not stomp it at parent deactivate. Unbraced body is
+ * still evaluate_statement.
  */
 static inline const afw_value_t *
 impl_evaluate_loop_body(
@@ -2247,18 +2246,13 @@ afw_function_execute_try(
     AFW_FINALLY {
         afw_xctx_scope_unwind(scope_at_entry, xctx);
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(2) {
-            const afw_value_t *saved_script_result;
-
             /*
-             * finally is always a `{ }`. Do not evaluate_statement:
-             * that adopts last onto the parent. A normal finally
-             * must not replace a pending try/catch return; adopt
-             * only nested assignment when there is no return, or
-             * the finally return itself.
+             * finally is always a `{ }`. Child deactivate isolates last
+             * into script_result; void last does not stomp a pending
+             * try/catch return.
              */
             afw_xctx_statement_flow_set_type(sequential, xctx);
             xctx->statement_flow_label = NULL;
-            saved_script_result = xctx->script_result;
             if (afw_value_is_block(x->argv[2])) {
                 afw_value_block_evaluate_block(x,
                     (const afw_value_block_t *)x->argv[2],
@@ -2282,18 +2276,11 @@ afw_function_execute_try(
                     this_result = afw_xctx_script_result_get(xctx);
                 }
                 result = this_result;
-                afw_xctx_scope_set_last_result_for_lifetime(result, xctx);
                 AFW_ERROR_MARK_CAUGHT;
             }
             else if (afw_xctx_statement_flow_is_type(rethrow, xctx))
             {
                 use_type = afw_xctx_statement_flow_sequential;
-            }
-            else if (use_type != afw_xctx_statement_flow_return &&
-                xctx->script_result != saved_script_result)
-            {
-                afw_xctx_scope_set_last_result_for_lifetime(
-                    xctx->script_result, xctx);
             }
         }
     }
