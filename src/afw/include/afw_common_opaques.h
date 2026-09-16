@@ -322,7 +322,7 @@ afw_context_cb_variable_t;
  * @brief Process-wide environment (`afw_environment_t`).
  *
  * Registry fabric accessed as `xctx->env`. See group afw_environment and
- * afw_environment.h / registration in afw_environment_register_core.c.
+ * afw_environment.h.
  */
 typedef struct afw_environment_s
 afw_environment_t;
