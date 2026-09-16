@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {render, waitFor, within, fireEvent, screen, waitForSpinner, server, rest, mswPostCallback, mswGetCallback} from "../../test-utils";
+import {render, waitFor, within, fireEvent, screen, waitForSpinner, server, http, HttpResponse, mswPostCallback, mswGetCallback} from "../../test-utils";
 import Requests from "./Requests";
 
 describe("Requests Tests", () => {    
@@ -22,12 +22,9 @@ describe("Requests Tests", () => {
     test("Make GET request to /afw/_AdaptiveObjectType_/_AdaptiveObjectType_ with JSON accept", async () => {
 
         server.use(
-            rest.get("/afw/_AdaptiveObjectType_/_AdaptiveObjectType_", async (req, res, ctx) => {
-                mswGetCallback("/afw/_AdaptiveObjectType_/_AdaptiveObjectType_", req, res, ctx);                
-                return res(
-                    ctx.status(200),
-                    ctx.json({})
-                );
+            http.get("/afw/_AdaptiveObjectType_/_AdaptiveObjectType_", ({request}) => {
+                mswGetCallback("/afw/_AdaptiveObjectType_/_AdaptiveObjectType_", {method: request.method, url: request.url, headers: request.headers});
+                return HttpResponse.json({});
             })
         );
 
@@ -64,11 +61,9 @@ describe("Requests Tests", () => {
             "/afw/_AdaptiveObjectType_/_AdaptiveObjectType_",
             expect.objectContaining({
                 method: "GET"
-            }),
-            expect.anything(),
-            expect.anything()
-        ));     
-        await waitForSpinner();  
+            })
+        ));
+        await waitForSpinner();
 
         expect(await screen.findByText("{}")).toBeInTheDocument();
 
@@ -77,12 +72,9 @@ describe("Requests Tests", () => {
     test("Make GET request to /afw/_AdaptiveObjectType_/_AdaptiveObjectType_ with XML accept", async () => {
 
         server.use(
-            rest.get("/afw/_AdaptiveObjectType_/_AdaptiveObjectType_", async (req, res, ctx) => {
-                mswGetCallback("/afw/_AdaptiveObjectType_/_AdaptiveObjectType_", req, res, ctx);                
-                return res(
-                    ctx.status(200),
-                    ctx.xml("<xml />")
-                );
+            http.get("/afw/_AdaptiveObjectType_/_AdaptiveObjectType_", ({request}) => {
+                mswGetCallback("/afw/_AdaptiveObjectType_/_AdaptiveObjectType_", {method: request.method, url: request.url, headers: request.headers});
+                return HttpResponse.xml("<xml />");
             })
         );
 
@@ -119,11 +111,9 @@ describe("Requests Tests", () => {
             "/afw/_AdaptiveObjectType_/_AdaptiveObjectType_",
             expect.objectContaining({
                 method: "GET"
-            }),
-            expect.anything(),
-            expect.anything()
-        ));     
-        await waitForSpinner();  
+            })
+        ));
+        await waitForSpinner();
 
         expect(await screen.findByText("<xml />")).toBeInTheDocument();
 
@@ -161,10 +151,8 @@ describe("Requests Tests", () => {
         
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWith(
             "/afw",
-            expect.anything(),
-            expect.anything(),
             expect.anything()
-        )); 
+        ));
         await waitForSpinner();
 
     });

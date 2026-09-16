@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {server, rest, render, waitFor, within, screen, fireEvent, mswPostCallback, waitForSpinner, waitForElementToBeRemoved} from "../test-utils";
+import {server, http, HttpResponse, render, waitFor, within, screen, fireEvent, mswPostCallback, waitForSpinner, waitForElementToBeRemoved} from "../test-utils";
 import Extensions from "./Extensions";
 
 import environmentRegistry from "@afw/test/build/cjs/__mocks__/get_object/afw/_AdaptiveEnvironmentRegistry_/current.json";
@@ -361,22 +361,20 @@ describe("Extensions Tests", () => {
         render( <Extensions /> );        
         
         server.use(
-            rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId} = req.body;
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                const {function: functionId} = body;
 
-                if (functionId === "extension_load_by_module_path") { 
-                    mswPostCallback("/afw", req, res, ctx);
+                if (functionId === "extension_load_by_module_path") {
+                    mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers, body});
 
-                    return res(
-                        ctx.status(200),
-                        ctx.json({
-                            status: "success",
-                            result: "my_ext"
-                        })
-                    );
+                    return HttpResponse.json({
+                        status: "success",
+                        result: "my_ext"
+                    });
                 }
             })
-        );        
+        );
         
         expect(await screen.findByText("Extension Id")).toBeInTheDocument();        
         expect(await screen.findByLabelText("Load Extension")).toBeInTheDocument();
@@ -411,19 +409,17 @@ describe("Extensions Tests", () => {
         render( <Extensions /> );
 
         server.use(
-            rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId} = req.body;
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                const {function: functionId} = body;
 
                 if (functionId === "extension_load_by_module_path") {
-                    mswPostCallback("/afw", req, res, ctx);
+                    mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers, body});
 
-                    return res(
-                        ctx.status(200),
-                        ctx.json({
-                            status: "success",
-                            result: "my_ext"
-                        })
-                    );
+                    return HttpResponse.json({
+                        status: "success",
+                        result: "my_ext"
+                    });
                 }
             })
         );

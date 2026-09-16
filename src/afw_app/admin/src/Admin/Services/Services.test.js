@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {MemoryRouter} from "react-router-dom";
-import {render, waitFor, within, fireEvent, screen, waitForElementToBeRemoved, mswPostCallback, waitForSpinner, server, rest} from "../test-utils";
+import {render, waitFor, within, fireEvent, screen, waitForElementToBeRemoved, mswPostCallback, waitForSpinner, server, http, HttpResponse} from "../test-utils";
 import Services from "./Services";
 
 import serviceMeta from "@afw/test/build/cjs/__mocks__/get_object/afw/_AdaptiveObjectType_/_AdaptiveService_.json";
@@ -48,21 +48,19 @@ describe("Services Tests", () => {
     test("Services displays error when unable to retrieve services", async () => {
 
         server.use(
-            rest.post("/afw", (req, res, ctx) => {                  
-                mswPostCallback("/afw", req, res, ctx);
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers, body});
 
-                const {function: functionId, objectType} = req.body;                               
+                const {function: functionId, objectType} = body;
 
-                if (functionId === "retrieve_objects" && objectType === "_AdaptiveServiceConf_") {                                             
-                    return res(
-                        ctx.status(200),
-                        ctx.json({
-                            status: "error",
-                            error: {
-                                message: "An error occurred"
-                            }
-                        })
-                    );
+                if (functionId === "retrieve_objects" && objectType === "_AdaptiveServiceConf_") {
+                    return HttpResponse.json({
+                        status: "error",
+                        error: {
+                            message: "An error occurred"
+                        }
+                    });
                 }
             })
         );

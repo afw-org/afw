@@ -1,13 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {
-    server, 
-    rest, 
-    render, 
-    waitFor, 
-    within, 
-    screen, 
-    fireEvent, 
-    mswPostCallback, 
+    server,
+    http,
+    HttpResponse,
+    render,
+    waitFor,
+    within,
+    screen,
+    fireEvent,
+    mswPostCallback,
     waitForSpinner
 } from "../../test-utils";
 import {Router} from "react-router-dom";
@@ -51,31 +52,29 @@ describe("Models Tests", () => {
 
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
-            rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, uri} = req.body;
-                
-                if (functionId === "get_object_with_uri" && uri === "/models/_AdaptiveModel_/test") { 
-                    mswPostCallback("/afw", req, res, ctx);
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                const {function: functionId, uri} = body;
 
-                    return res(
-                        ctx.status(200),
-                        ctx.json({
-                            status: "success",
-                            result: {
-                                modelId: "test",
-                                description: "This is a test model",
-                                _meta_: {
-                                    objectId: "test",
-                                    objectType: "_AdaptiveModel_",
-                                    path: "/models/_AdaptiveModel_/test",
-                                    reconcilable: "{}"
-                                }
+                if (functionId === "get_object_with_uri" && uri === "/models/_AdaptiveModel_/test") {
+                    mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers, body});
+
+                    return HttpResponse.json({
+                        status: "success",
+                        result: {
+                            modelId: "test",
+                            description: "This is a test model",
+                            _meta_: {
+                                objectId: "test",
+                                objectType: "_AdaptiveModel_",
+                                path: "/models/_AdaptiveModel_/test",
+                                reconcilable: "{}"
                             }
-                        })
-                    );
+                        }
+                    });
                 }
             })
-        ); 
+        );
 
         /* push /Admin/Models/models/test onto the history route */        
         history.push("/Admin/Models/models/test");
@@ -120,25 +119,23 @@ describe("Models Tests", () => {
         history.push("/Admin/Models/xyz");
 
         server.use(
-            rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, adapterId} = req.body;
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                const {function: functionId, adapterId} = body;
 
-                if (functionId === "retrieve_objects" && adapterId === "xyz") { 
-                    mswPostCallback("/afw", req, res, ctx);
+                if (functionId === "retrieve_objects" && adapterId === "xyz") {
+                    mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers, body});
 
-                    return res(
-                        ctx.status(200),
-                        ctx.json({
-                            status: "error",
-                            error: {
-                                error: true,
-                                message: "Error opening /afw/config/_AdaptiveServiceConf_/adapter-xyz.json"                                
-                            }
-                        })
-                    );
+                    return HttpResponse.json({
+                        status: "error",
+                        error: {
+                            error: true,
+                            message: "Error opening /afw/config/_AdaptiveServiceConf_/adapter-xyz.json"
+                        }
+                    });
                 }
             })
-        );  
+        );
 
         render(
             <Router history={history}>
@@ -160,25 +157,23 @@ describe("Models Tests", () => {
         history.push("/Admin/Models/models/xyz");
 
         server.use(
-            rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, uri} = req.body;
-                
-                if (functionId === "get_object_with_uri" && uri === "/models/_AdaptiveModel_/xyz") { 
-                    mswPostCallback("/afw", req, res, ctx);
+            http.post("/afw", async ({request}) => {
+                const body = await request.clone().json();
+                const {function: functionId, uri} = body;
 
-                    return res(
-                        ctx.status(200),
-                        ctx.json({
-                            status: "error",
-                            error: {
-                                error: true,
-                                message: "Error opening /afw/models/_AdaptiveModel_/xyz.json errno 2"                                
-                            }
-                        })
-                    );
+                if (functionId === "get_object_with_uri" && uri === "/models/_AdaptiveModel_/xyz") {
+                    mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers, body});
+
+                    return HttpResponse.json({
+                        status: "error",
+                        error: {
+                            error: true,
+                            message: "Error opening /afw/models/_AdaptiveModel_/xyz.json errno 2"
+                        }
+                    });
                 }
             })
-        ); 
+        );
 
         render(
             <Router history={history}>

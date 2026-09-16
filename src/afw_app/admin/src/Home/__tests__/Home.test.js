@@ -1,7 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {createMemoryHistory} from "history";
 import {Router} from "react-router-dom";
-import {waitForSpinner, mswPostCallback, mswGetCallback, screen, server, rest} from "../../test-utils";
+import {waitForSpinner, mswPostCallback, mswGetCallback, screen, server, http, HttpResponse} from "../../test-utils";
 
 import {render, waitFor} from "../../test-utils";
 
@@ -44,19 +44,13 @@ describe("Home Tests", () => {
         history.push("/Home");
 
         server.use(
-            rest.post("/afw", (req, res, ctx) => {
-                mswPostCallback("/afw", req, res, ctx);
-                return res(
-                    ctx.status(502, "Bad Gateway"),    
-                    ctx.text("Bad Gateway")                
-                );
+            http.post("/afw", ({request}) => {
+                mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers});
+                return HttpResponse.text("Bad Gateway", {status: 502, statusText: "Bad Gateway"});
             }),
-            rest.get("/*", (req, res, ctx) => {   
-                mswGetCallback("/afw", req, res, ctx);             
-                return res(
-                    ctx.status(502, "Bad Gateway"),                    
-                    ctx.text("Bad Gateway")
-                );
+            http.get("/*", ({request}) => {
+                mswGetCallback("/afw", {method: request.method, url: request.url, headers: request.headers});
+                return HttpResponse.text("Bad Gateway", {status: 502, statusText: "Bad Gateway"});
             })
         );
         

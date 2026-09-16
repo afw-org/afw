@@ -25,7 +25,7 @@ import {vi} from "vitest";
 // import/destructure is used instead.
 import * as afwTest from "@afw/test";
 
-const {rest, server, mswPostCallback, mswGetCallback, render, waitForElementToBeRemoved, userEvent} = afwTest;
+const {http, HttpResponse, server, mswPostCallback, mswGetCallback, render, waitForElementToBeRemoved, userEvent} = afwTest;
 
 
 // mock MU components that use Fade (Collapse/Tree) based on react-transition-group
@@ -84,4 +84,4 @@ export const waitForSpinner = async () => {
 // re-export everything
 export * from "@testing-library/react";
 export { customRender as render, AllTheProviders };
-export { rest, server, userEvent, mswPostCallback, mswGetCallback };
+export { http, HttpResponse, server, userEvent, mswPostCallback, mswGetCallback };

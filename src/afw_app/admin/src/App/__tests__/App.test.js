@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {render, waitFor, screen} from "../../test-utils";
-import {waitForSpinner, mswPostCallback, mswGetCallback, server, rest} from "../../test-utils";
+import {waitForSpinner, mswPostCallback, mswGetCallback, server, http, HttpResponse} from "../../test-utils";
 import App from "../App";
 
 
@@ -23,19 +23,13 @@ describe("App Tests", () => {
     test("Handle error when unable to fetch data", async () => {        
 
         server.use(
-            rest.post("/afw", (req, res, ctx) => {
-                mswPostCallback("/afw", req, res, ctx);
-                return res(
-                    ctx.status(502, "Bad Gateway"),    
-                    ctx.text("Bad Gateway")                
-                );
+            http.post("/afw", ({request}) => {
+                mswPostCallback("/afw", {method: request.method, url: request.url, headers: request.headers});
+                return HttpResponse.text("Bad Gateway", {status: 502, statusText: "Bad Gateway"});
             }),
-            rest.get("/*", (req, res, ctx) => {    
-                mswGetCallback("/afw", req, res, ctx); 
-                return res(
-                    ctx.status(502, "Bad Gateway"),                    
-                    ctx.text("Bad Gateway")
-                );
+            http.get("/*", ({request}) => {
+                mswGetCallback("/afw", {method: request.method, url: request.url, headers: request.headers});
+                return HttpResponse.text("Bad Gateway", {status: 502, statusText: "Bad Gateway"});
             })
         );
         
