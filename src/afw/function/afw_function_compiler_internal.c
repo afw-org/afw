@@ -159,11 +159,27 @@ impl_keep_if_return(
 
 
 /*
- * Loop `{ }` body: evaluate_block so last is not extra-held on the
- * enclosing clone/script. Child deactivate isolated last into
- * script_result; point current last at that occupant (no hold).
- * Clone isolates original last into the slot; the new clone's last
- * stays void. Unbraced body is still evaluate_statement.
+ * Body/catch/finally `{ }` already isolated a return into script_result.
+ * Hold it on this frame so a later finally isolate does not drop it.
+ */
+static void
+impl_try_keep_return(afw_xctx_t *xctx)
+{
+    const afw_value_t *v;
+
+    if (!afw_xctx_statement_flow_is_type(return, xctx)) {
+        return;
+    }
+    v = afw_xctx_script_result_get(xctx);
+    v = afw_xctx_scope_get_assignable_for_scope_lifetime(v, xctx);
+    afw_xctx_scope_set_last_result(v, xctx);
+}
+
+
+/*
+ * Loop `{ }` body: evaluate_block. Last stays on that frame; deactivate
+ * isolates. If the body wrote script_result, clear parent last so
+ * deactivate does not stomp. Unbraced body is still evaluate_statement.
  */
 static inline const afw_value_t *
 impl_evaluate_loop_body(
@@ -182,8 +198,7 @@ impl_evaluate_loop_body(
         afw_value_block_evaluate_block(x,
             (const afw_value_block_t *)body, p, xctx, false);
         if (xctx->script_result != saved_script_result) {
-            afw_xctx_scope_set_last_result(
-                xctx->script_result, xctx);
+            afw_xctx_scope_clear_last_result(xctx);
         }
         return afw_value_void;
     }
@@ -2073,39 +2088,37 @@ afw_function_execute_try(
 {
     afw_xctx_t *xctx = x->xctx;
     const afw_pool_t *p = x->p;
-    const afw_value_t *result;
-    const afw_value_t *this_result;
     const afw_object_t *error_object;
     const afw_value_t *error_value;
+    const afw_value_t *saved_label;
     const afw_xctx_scope_t *scope_at_entry;
+    const afw_xctx_scope_t *scope;
     afw_xctx_statement_flow_t use_type;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
 
-    result = afw_value_void;
+    /*
+     * Try does not write last. Body, catch, and finally run as
+     * statements on their own frames. If this try completes (caught
+     * or no throw), return the current last; uncaught percolates.
+     */
     use_type = afw_xctx_statement_flow_get(xctx);
-
     scope_at_entry = afw_xctx_scope_current(xctx);
     AFW_TRY {
-        this_result = afw_value_block_evaluate_statement(
+        afw_value_block_evaluate_statement(
             x, x->argv[1], p, xctx);
         use_type = afw_xctx_statement_flow_get(xctx);
-        result = impl_keep_if_return(result, this_result, xctx);
-        if (afw_xctx_statement_flow_is_type(return, xctx) &&
-            (!result || afw_value_is_void(result)))
-        {
-            result = afw_xctx_script_result_get(xctx);
-        }
+        impl_try_keep_return(xctx);
     }
 
     AFW_CATCH_UNHANDLED {
         afw_xctx_scope_unwind(scope_at_entry, xctx);
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(3) {
             /*
-             * Catch body is always a block when there is a binding (arg 4
-             * or Pattern reparse with bind as first statement). Plain catch
-             * without a binding evaluates argv[3] as a statement list/block.
+             * Catch body is a block when there is a binding (arg 4
+             * or Pattern reparse with bind as first statement). Plain
+             * catch without a binding evaluates argv[3] as a statement.
              */
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4) ||
                 (afw_value_is_block(x->argv[3]) &&
@@ -2123,23 +2136,20 @@ afw_function_execute_try(
                         xctx);
                 }
                 /*
-                 * Bind the error after the catch frame exists, then the
-                 * same statement-list last_return rules as evaluate_block.
-                 * Do not call evaluate_block: it would create the scope
-                 * again. Empty catch writes nothing (UpdateEmpty).
+                 * Bind the error after the catch frame exists. Do not
+                 * call evaluate_block: it would create the scope again.
                  */
-                const afw_xctx_scope_t *scope;
+                const afw_xctx_scope_t *catch_scope;
                 const afw_pool_t *eval_p;
                 const afw_error_t *caught_error = &this_THROWN_ERROR;
                 const afw_value_block_t *block =
                     (const afw_value_block_t *)x->argv[3];
-                scope = NULL;
-                this_result = afw_value_void;
+                catch_scope = NULL;
                 AFW_TRY{
-                    scope = afw_xctx_scope_create(
+                    catch_scope = afw_xctx_scope_create(
                         block, afw_xctx_scope_current(xctx), xctx);
-                    afw_xctx_scope_activate(scope, xctx);
-                    eval_p = scope->p;
+                    afw_xctx_scope_activate(catch_scope, xctx);
+                    eval_p = catch_scope->p;
                     error_object = afw_error_to_object(
                         caught_error, eval_p, xctx);
                     error_value = afw_value_create_unmanaged_object(
@@ -2199,44 +2209,27 @@ afw_function_execute_try(
                         impl_assign_value(err_target, error_value,
                             afw_compile_assignment_type_let, eval_p, xctx);
                     }
-                    this_result = afw_value_block_evaluate_statements(
+                    afw_value_block_evaluate_statements(
                         x, block, stmt_start, eval_p, xctx);
                 }
                 AFW_FINALLY{
-                    if (scope) {
-                        if (afw_xctx_scope_current(xctx) == scope) {
-                            afw_xctx_scope_deactivate(scope, xctx);
+                    if (catch_scope) {
+                        if (afw_xctx_scope_current(xctx) == catch_scope) {
+                            afw_xctx_scope_deactivate(catch_scope, xctx);
                         }
-                        if (!afw_value_is_void(this_result)) {
-                            this_result =
-                                afw_xctx_script_result_get(xctx);
-                        }
-                        afw_xctx_scope_release(scope, xctx);
+                        afw_xctx_scope_release(catch_scope, xctx);
                     }
                 }
                 AFW_ENDTRY;
             }
             else {
-                this_result = afw_value_block_evaluate_statement(
+                afw_value_block_evaluate_statement(
                     x, x->argv[3], p, xctx);
             }
-            if (afw_xctx_statement_flow_is_type(break, xctx) ||
-                afw_xctx_statement_flow_is_type(continue, xctx))
-            {
-                use_type = afw_xctx_statement_flow_get(xctx);
-            }
-            else if (afw_xctx_statement_flow_is_type(return, xctx)) {
-                use_type = afw_xctx_statement_flow_return;
-                if (!this_result || afw_value_is_void(this_result)) {
-                    this_result = afw_xctx_script_result_get(xctx);
-                }
-                result = this_result;
-            }
-            else if (afw_xctx_statement_flow_is_type(rethrow, xctx)) {
+            use_type = afw_xctx_statement_flow_get(xctx);
+            impl_try_keep_return(xctx);
+            if (afw_xctx_statement_flow_is_type(rethrow, xctx)) {
                 AFW_ERROR_RETHROW;
-            }
-            else {
-                /* Catch completed: void. Nested assignment wrote the slot. */
             }
         }
         else {
@@ -2247,53 +2240,38 @@ afw_function_execute_try(
     AFW_FINALLY {
         afw_xctx_scope_unwind(scope_at_entry, xctx);
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(2) {
-            const afw_value_t *saved_script_result;
-
+            saved_label = xctx->statement_flow_label;
             /*
-             * finally is always a `{ }`. Do not evaluate_statement:
-             * that adopts last onto the parent. A normal finally
-             * must not replace a pending try/catch return; adopt
-             * only nested assignment when there is no return, or
-             * the finally return itself.
+             * Sequential so finally runs after break/return. evaluate_block
+             * so a normal finally does not clear the caller's last
+             * (pending return). evaluate_statement would reset flow then
+             * treat the finally `{ }` as a nested statement that clears.
              */
             afw_xctx_statement_flow_set_type(sequential, xctx);
             xctx->statement_flow_label = NULL;
-            saved_script_result = xctx->script_result;
             if (afw_value_is_block(x->argv[2])) {
                 afw_value_block_evaluate_block(x,
                     (const afw_value_block_t *)x->argv[2],
                     p, xctx, false);
-                this_result = afw_value_void;
             }
             else {
-                this_result = afw_value_block_evaluate_statement(
+                afw_value_block_evaluate_statement(
                     x, x->argv[2], p, xctx);
             }
             if (afw_xctx_statement_flow_is_type(break, xctx) ||
-                afw_xctx_statement_flow_is_type(continue, xctx))
+                afw_xctx_statement_flow_is_type(continue, xctx) ||
+                afw_xctx_statement_flow_is_type(return, xctx))
             {
                 use_type = afw_xctx_statement_flow_get(xctx);
-                AFW_ERROR_MARK_CAUGHT;
-            }
-            else if (afw_xctx_statement_flow_is_type(return, xctx))
-            {
-                use_type = afw_xctx_statement_flow_return;
-                if (!this_result || afw_value_is_void(this_result)) {
-                    this_result = afw_xctx_script_result_get(xctx);
-                }
-                result = this_result;
-                afw_xctx_scope_set_last_result_for_lifetime(result, xctx);
+                impl_try_keep_return(xctx);
                 AFW_ERROR_MARK_CAUGHT;
             }
             else if (afw_xctx_statement_flow_is_type(rethrow, xctx))
             {
                 use_type = afw_xctx_statement_flow_sequential;
             }
-            else if (use_type != afw_xctx_statement_flow_return &&
-                xctx->script_result != saved_script_result)
-            {
-                afw_xctx_scope_set_last_result_for_lifetime(
-                    xctx->script_result, xctx);
+            else {
+                xctx->statement_flow_label = saved_label;
             }
         }
     }
@@ -2301,7 +2279,11 @@ afw_function_execute_try(
     AFW_ENDTRY;
 
     afw_xctx_statement_flow_set(use_type, xctx);
-    return impl_statement_result_or_void(result, xctx);
+    scope = afw_xctx_scope_current(xctx);
+    if (scope && scope->last_result) {
+        return scope->last_result;
+    }
+    return afw_value_void;
 }
 
 

@@ -328,15 +328,26 @@ AFW_VECTOR_STRUCT(afw_xctx_scope_p_vector_s, const afw_xctx_scope_t *);
  * @param value statement result.
  * @param xctx of caller.
  *
- * Pointer only. Void, NULL, and no current scope are ignored. Last
- * that does not live in this p uses
- * afw_xctx_scope_set_last_result_for_lifetime() instead. Isolate out of this
- * frame is script_result_set at deactivate, or at clone of this
- * frame.
+ * Pointer only. Void, NULL, and no current scope are ignored. Isolate
+ * out of this frame is script_result_set_value at deactivate, or at
+ * clone while this p is still alive.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_set_last_result(
     const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Set current last_result to void.
+ * @param xctx of caller.
+ *
+ * set_last_result() ignores void so a prior last is sticky. Nested
+ * `{ }` that already isolated into script_result uses this so parent
+ * deactivate does not stomp. No-op if there is no current scope.
+ */
+AFW_DECLARE(void)
+afw_xctx_scope_clear_last_result(
     afw_xctx_t *xctx);
 
 
@@ -383,7 +394,7 @@ afw_xctx_scope_get_assignable_for_p_lifetime(
  * @return held value, or void/NULL unchanged.
  *
  * afw_xctx_scope_get_assignable_for_scope_lifetime() then
- * afw_xctx_scope_set_last_result(). Nested `{ }` adopt uses this.
+ * afw_xctx_scope_set_last_result().
  */
 AFW_DECLARE(const afw_value_t *)
 afw_xctx_scope_set_last_result_for_lifetime(

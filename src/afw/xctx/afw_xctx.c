@@ -979,12 +979,11 @@ afw_xctx_scope_clone(
     }
 
     /*
-     * Isolate this trip's last now. Deactivate of the original skips
-     * script_result_set (it is not the running iteration). Clone last
-     * stays void so it will not override the slot until this iteration
-     * writes last.
+     * Isolate original last while its p is still alive. Void/NULL is
+     * a no-op. Deactivate of the original skips script_result_set.
+     * Clone last stays void from create.
      */
-    afw_xctx_script_result_set(original_scope->last_result, xctx);
+    afw_xctx_script_result_set_value(original_scope->last_result, xctx);
 
     /* Original is no longer the running iteration. */
     ((afw_xctx_scope_t *)original_scope)->cloned = true;
@@ -1172,6 +1171,20 @@ afw_xctx_scope_set_last_result(
     scope = afw_xctx_scope_current(xctx);
     if (scope) {
         ((afw_xctx_scope_t *)scope)->last_result = value;
+    }
+}
+
+
+/* Void current last. set_last_result() cannot. */
+AFW_DEFINE(void)
+afw_xctx_scope_clear_last_result(
+    afw_xctx_t *xctx)
+{
+    const afw_xctx_scope_t *scope;
+
+    scope = afw_xctx_scope_current(xctx);
+    if (scope) {
+        ((afw_xctx_scope_t *)scope)->last_result = afw_value_void;
     }
 }
 

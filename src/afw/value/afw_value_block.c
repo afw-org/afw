@@ -174,7 +174,12 @@ afw_value_block_evaluate_statement(
     afw_xctx_statement_flow_set_type(sequential, xctx);
     xctx->statement_flow_label = NULL;
 
-    /* If statement is block, handle special. */
+    /*
+     * Nested `{ }`: child deactivate isolates last into script_result.
+     * If it wrote, clear this frame's last so a prior assignment does
+     * not stomp at deactivate. A later return pin (try) can set last
+     * again after this returns.
+     */
     if (afw_value_is_block(statement)) {
         const afw_value_t *saved_script_result;
 
@@ -183,8 +188,7 @@ afw_value_block_evaluate_statement(
             x, (const afw_value_block_t *)statement, p, xctx,
             false);
         if (xctx->script_result != saved_script_result) {
-            afw_xctx_scope_set_last_result_for_lifetime(
-                xctx->script_result, xctx);
+            afw_xctx_scope_clear_last_result(xctx);
         }
         return afw_value_void;
     }

@@ -1,6 +1,6 @@
 # Compile unit, leave, isolate-at-clone, builtin lifetime, pop temp-on-scope (landed); FRV leftover dropped (`issue-2-frv`)
 
-**Audience:** next session. Not user docs (`whats-new.md` notes `slice` / `map` stay mutable).
+**Audience:** maintainers. Not user docs (`whats-new.md` notes `slice` / `map` stay mutable).
 
 **Landed on `develop`:**
 - [PR #305](https://github.com/afw-org/afw/pull/305) (`0fc0f2b8`, 2026-09-09) — `compile()` is a unit; `app::` get of compiled templates.
@@ -61,13 +61,13 @@ Rails: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) (*Frame, last_result*)
 
 ---
 
-## Next slices
+## After leftover wrapping (dropped)
 
 Leftover wrapping is **dropped**. No `function_return_value`; pin on caller. Do **not** reopen unique consume, eval-stack leftover, or `#function_return_value`.
 
 No evaluate-only call-result inf for managed built-in returns. Builtins already extra-hold on the current `{ }` ([PR #308](https://github.com/afw-org/afw/pull/308)); `pop`/`shift` are the scope-temp path ([PR #309](https://github.com/afw-org/afw/pull/309)); identity `push` stays unwrapped. `pop_value` pops the call, not leftover wrappers. A managed header may still sit in `xctx->p` until the request pool dies — that is the managed world, not a new inf.
 
-Compile units use `afw_pool_heap_create(parent, 4k)` (own ST heap). Managed eval allocs use `p->managed_p`. **Next:** [PR #327](https://github.com/afw-org/afw/pull/327) ([`remaining-apr.md`](remaining-apr.md)). Gate 2026-09-14: **4484 passed** (`fulldev` + `test -j` + valgrind).
+Compile units use `afw_pool_heap_create(parent, 4k)` (own ST heap). Managed eval allocs use `p->managed_p`. **Landed:** [PR #327](https://github.com/afw-org/afw/pull/327) ([`remaining-apr.md`](remaining-apr.md)). Gate 2026-09-14: **4484 passed** (`fulldev` + `test -j` + valgrind).
 
 ---
 
@@ -75,13 +75,13 @@ Compile units use `afw_pool_heap_create(parent, 4k)` (own ST heap). Managed eval
 
 **Branch off `reduce-apr-pool`**, not `develop`. Did **not** merge `issue-2-frv-leftover`.
 
-**Shipped:** no `function_return_value` type. Script function produce path is `get_assignable_for_p_lifetime` on `scope_of_caller` while the callee frame is alive. `return()` is `set_last_result` (pointer); isolate-up is last_result → script_result → parent adopt. Closures are managed (`inf->is_managed`); pin may register on any scope `p`. `get_assignable` of managed is `get_reference` of self; unmanaged often `clone_managed`. Copy eval results out of the compile-unit pool before last-releasing `compiled`.
+**Shipped:** no `function_return_value` type. Script function produce path is `get_assignable_for_p_lifetime` on `scope_of_caller` while the callee frame is alive. `return()` is `set_last_result` (pointer); isolate-up is last_result → `script_result`. Nested `{ }` that wrote `script_result` **clears** parent last (do not plant the occupant). Try `keep_return` extra-holds a real `return` so a normal finally does not drop it. Closures are managed (`inf->is_managed`); pin may register on any scope `p`. `get_assignable` of managed is `get_reference` of self; unmanaged often `clone_managed`. Copy eval results out of the compile-unit pool before last-releasing `compiled`.
 
 **Pool (this branch; also [`remaining-apr.md`](remaining-apr.md)):** last-`release` still runs callbacks then teardown. **`destroy` is storage-only.** **`run_cleanups`** first (`xctx_release` TRY cleanups, FINALLY destroy). Subtree marked destroying before callbacks; leftover/free after; cleanup list detached so re-entry is a no-op. `register_cleanup_before` → `register_cleanup` (do not throw uncaught in a callback).
 
 **Verify:** `./afwdev build --cdev`, `afwdev test -j`, `afwdev test -j --env-mode valgrind`: **4484 passed**, 71 skipped.
 
-Squash-merged [PR #326](https://github.com/afw-org/afw/pull/326) into `reduce-apr-pool` as `0bed0e4f`. `issue-2-frv` and `issue-2-frv-leftover` **deleted**. No twin leftover inf for managed built-in returns. Next: land `reduce-apr-pool` on `develop` ([`remaining-apr.md`](remaining-apr.md)).
+Squash-merged [PR #326](https://github.com/afw-org/afw/pull/326) into `reduce-apr-pool` as `0bed0e4f`. `issue-2-frv` and `issue-2-frv-leftover` **deleted**. No twin leftover inf for managed built-in returns. `reduce-apr-pool` landed on `develop` as [PR #327](https://github.com/afw-org/afw/pull/327) ([`remaining-apr.md`](remaining-apr.md)).
 
 ---
 
@@ -146,5 +146,5 @@ What landed instead: unique `get_assignable_value` **transfers the occupant, set
 - `afwdev test --test-pattern 'language/script/script_result.as'`
 - `afwdev test --test-pattern 'language/script/loop_unbraced_body.as'` (`for-of-unbraced-let-same-name`)
 - `afwdev test --test-pattern 'test262/statements/try.as'` (`completion-values-fn-finally-normal`)
-- `afwdev test -T src/afw/tests-extra/issue-2 --show-all` — live table in `01-rss-hard-loops/README.md`. Unbraced assign / rebind / `compile_once_eval` / `array_push_pop` are **flat**. `function_return` stays under the bar. Leftover wrapping is gone (pin on caller).
+- `afwdev test -T src/afw/tests-extra/issue-2 --show-all` — live table in `01-rss-hard-loops/README.md`. Unbraced assign / rebind / `compile_once_eval` / `array_push_pop` / `function_return` are **flat** on this branch. Leftover wrapping is gone (pin on caller). `try_catch` in_use is OS backtrace.
 - Full PR bar: `./afwdev build --fulldev && afwdev test -j && afwdev test -j --env-mode valgrind`
