@@ -260,13 +260,13 @@ struct afw_pool_internal_tracker_self_s {
 
 
 /**
- * Heap-child tracker (scope). Same methods as tracker plus last-release
- * delay. Extra fields only on this create path.
+ * Scope pool. Same store as tracker plus last-release delay while a
+ * script throw is handled. Extra fields only on this create path.
  */
-typedef struct afw_pool_internal_tracker_delay_self_s
-afw_pool_internal_tracker_delay_self_t;
+typedef struct afw_pool_internal_scope_self_s
+afw_pool_internal_scope_self_t;
 
-struct afw_pool_internal_tracker_delay_self_s {
+struct afw_pool_internal_scope_self_s {
 
     afw_pool_internal_tracker_self_t tracker;
 

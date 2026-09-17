@@ -877,8 +877,8 @@ afw_xctx_scope_create(
             xctx);
     }
     
-    /* One ST heap per xctx. Scope tracker parent is that heap. */
-    p = afw_pool_tracker_create(xctx->p, xctx);
+    /* One ST heap per xctx. Scope pool parent is that heap. */
+    p = afw_pool_scope_create(xctx->p, xctx);
     scope = afw_pool_calloc(p,
         (
             sizeof(afw_xctx_scope_t) + // Size of struct.

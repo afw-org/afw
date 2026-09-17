@@ -41,8 +41,8 @@ AFW_LOCK_END;
     ((afw_pool_internal_heap_self_t *)(self))
 #define impl_as_tracker(self) \
     ((afw_pool_internal_tracker_self_t *)(self))
-#define impl_as_tracker_delay(self) \
-    ((afw_pool_internal_tracker_delay_self_t *)(self))
+#define impl_as_scope(self) \
+    ((afw_pool_internal_scope_self_t *)(self))
 
 /*
  * The pool methods begin with 'impl_afw_pool_' only.
@@ -201,35 +201,35 @@ impl_tracker_implementation_specific =
 #undef impl_afw_pool_garbage_collect
 
 /*
- * Heap-child tracker. Same malloc/free/collect as tracker. Release
- * can delay last-release; self has error_delaying_release_next.
+ * Scope pool (evaluation `{ }`). Same malloc/free/collect as tracker.
+ * Last-release can delay while a script throw is handled.
  */
-#define AFW_IMPLEMENTATION_ID "tracker_delay"
-#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_tracker_delay_inf
+#define AFW_IMPLEMENTATION_ID "scope"
+#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_scope_inf
 
 static const afw_pool_t *
-impl_tracker_delay_afw_pool_release(
+impl_scope_afw_pool_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx);
 
 #define impl_afw_pool_release \
-    impl_tracker_delay_afw_pool_release
+    impl_scope_afw_pool_release
 
 static void
-impl_tracker_delay_afw_pool_run_cleanups(
+impl_scope_afw_pool_run_cleanups(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx);
 
 #define impl_afw_pool_run_cleanups \
-    impl_tracker_delay_afw_pool_run_cleanups
+    impl_scope_afw_pool_run_cleanups
 
 static void
-impl_tracker_delay_afw_pool_destroy(
+impl_scope_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx);
 
 #define impl_afw_pool_destroy \
-    impl_tracker_delay_afw_pool_destroy
+    impl_scope_afw_pool_destroy
 
 #define impl_afw_pool_calloc \
     impl_tracker_afw_pool_calloc
@@ -815,8 +815,7 @@ impl_create_for_tracker(
 
     /*
      * Header is a parent-pool user block so destroy can free_memory
-     * it. Not on this tracker’s allocated list. Heap-child uses the
-     * delay self; nested tracker uses the small self.
+     * it. Not on this tracker’s allocated list.
      */
     self = afw_pool_calloc(&parent->pub, self_bytes, xctx);
     self->pub.inf = inf;
@@ -1189,10 +1188,10 @@ impl_debug_poison_user(void *user, afw_size_t size)
 
 static void
 impl_clear_delay(
-    afw_pool_internal_tracker_delay_self_t *me, afw_xctx_t *xctx)
+    afw_pool_internal_scope_self_t *me, afw_xctx_t *xctx)
 {
     const afw_pool_t **pos;
-    afw_pool_internal_tracker_delay_self_t *curr;
+    afw_pool_internal_scope_self_t *curr;
 
     if (!me->error_delaying_release) {
         return;
@@ -1204,7 +1203,7 @@ impl_clear_delay(
     }
     pos = &xctx->error_delaying_release_first;
     while (*pos) {
-        curr = impl_as_tracker_delay(
+        curr = impl_as_scope(
             (afw_pool_internal_self_t *)(void *)*pos);
         if (curr == me) {
             *pos = curr->error_delaying_release_next;
@@ -1218,13 +1217,13 @@ impl_clear_delay(
 
 
 /*
- * While error_processing_count > 0, last release of a heap-child
- * tracker is recorded and skipped. Catching ENDTRY runs
+ * While error_processing_count > 0, last release of a scope pool
+ * is recorded and skipped. Catching ENDTRY runs
  * afw_pool_release_delayed() when the count is 0 again.
  */
 static afw_boolean_t
 impl_error_delaying_release(
-    afw_pool_internal_tracker_delay_self_t *me,
+    afw_pool_internal_scope_self_t *me,
     afw_xctx_t *xctx)
 {
     afw_pool_internal_self_t *self;
@@ -1392,10 +1391,10 @@ impl_tracker_teardown(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 
 
 static void
-impl_tracker_delay_teardown(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+impl_scope_teardown(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
     impl_tracker_teardown_store(self,
-        sizeof(afw_pool_internal_tracker_delay_self_t), xctx);
+        sizeof(afw_pool_internal_scope_self_t), xctx);
 }
 
 
@@ -1496,10 +1495,10 @@ afw_pool_release_delayed(
         afw_pool_release_delayed(&child->pub, xctx);
         child = next;
     }
-    if (self->pub.inf == &impl_afw_pool_tracker_delay_inf) {
-        afw_pool_internal_tracker_delay_self_t *delay;
+    if (self->pub.inf == &impl_afw_pool_scope_inf) {
+        afw_pool_internal_scope_self_t *delay;
 
-        delay = impl_as_tracker_delay(self);
+        delay = impl_as_scope(self);
         if (delay->error_delaying_release) {
             impl_clear_delay(delay, xctx);
             afw_pool_release(&self->pub, xctx);
@@ -1922,25 +1921,25 @@ impl_tracker_afw_pool_destroy(
 }
 
 const afw_pool_t *
-impl_tracker_delay_afw_pool_release(
+impl_scope_afw_pool_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "release");
-    if (impl_error_delaying_release(impl_as_tracker_delay(self), xctx)) {
+    if (impl_error_delaying_release(impl_as_scope(self), xctx)) {
         return &self->pub;
     }
-    return impl_release_common(self, xctx, impl_tracker_delay_teardown);
+    return impl_release_common(self, xctx, impl_scope_teardown);
 }
 
 static void
-impl_tracker_delay_afw_pool_run_cleanups(
+impl_scope_afw_pool_run_cleanups(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "run_cleanups");
     if (!self->destroying) {
-        impl_clear_delay(impl_as_tracker_delay(self), xctx);
+        impl_clear_delay(impl_as_scope(self), xctx);
         impl_pool_mark_destroying(self);
     }
     impl_run_child_cleanups(self, xctx);
@@ -1948,17 +1947,17 @@ impl_tracker_delay_afw_pool_run_cleanups(
 }
 
 static void
-impl_tracker_delay_afw_pool_destroy(
+impl_scope_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
     if (!self->destroying) {
-        impl_clear_delay(impl_as_tracker_delay(self), xctx);
+        impl_clear_delay(impl_as_scope(self), xctx);
         impl_pool_mark_destroying(self);
     }
     impl_destroy_children(self, xctx);
-    impl_tracker_delay_teardown(self, xctx);
+    impl_scope_teardown(self, xctx);
 }
 
 
@@ -2306,7 +2305,6 @@ afw_pool_tracker_create(
 {
     AFW_POOL_SELF_T *self;
     AFW_POOL_SELF_T *parent_self;
-    const afw_pool_inf_t *inf;
 
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
@@ -2320,16 +2318,33 @@ afw_pool_tracker_create(
     }
 
     parent_self = (AFW_POOL_SELF_T *)parent;
-    if (afw_pool_internal_is_heap(parent)) {
-        inf = &impl_afw_pool_tracker_delay_inf;
-        self = impl_create_for_tracker(parent_self, inf,
-            sizeof(afw_pool_internal_tracker_delay_self_t), xctx);
+    self = impl_create_for_tracker(parent_self, &impl_afw_pool_tracker_inf,
+        sizeof(afw_pool_internal_tracker_self_t), xctx);
+    return &self->pub;
+}
+
+
+AFW_DEFINE(const afw_pool_t *)
+afw_pool_scope_create(
+    const afw_pool_t *parent, afw_xctx_t *xctx)
+{
+    AFW_POOL_SELF_T *self;
+    AFW_POOL_SELF_T *parent_self;
+
+    if (!parent) {
+        AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
-    else {
-        inf = &impl_afw_pool_tracker_inf;
-        self = impl_create_for_tracker(parent_self, inf,
-            sizeof(afw_pool_internal_tracker_self_t), xctx);
+    if (!afw_pool_internal_is_heap(parent) &&
+        !afw_pool_internal_is_tracker(parent))
+    {
+        AFW_THROW_ERROR_Z(general,
+            "afw_pool_scope_create() parent must be a heap or tracker",
+            xctx);
     }
+
+    parent_self = (AFW_POOL_SELF_T *)parent;
+    self = impl_create_for_tracker(parent_self, &impl_afw_pool_scope_inf,
+        sizeof(afw_pool_internal_scope_self_t), xctx);
     return &self->pub;
 }
 
