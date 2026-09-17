@@ -34,25 +34,25 @@ static const afw_utf8_t impl_media_types[] = {
 
 /* Raw begin object list. */
 static const afw_memory_t impl_raw_begin_object_list = {
-    (const afw_byte_t *)"[\n",
+    (const afw_octet_t *)"[\n",
     sizeof("[\n") - 1
 };
 
 /* Raw object separator. */
 static const afw_memory_t impl_raw_object_separator = {
-    (const afw_byte_t *)",\n",
+    (const afw_octet_t *)",\n",
     sizeof(",\n") - 1
 };
 
 /* Raw last object separator. */
 static const afw_memory_t impl_raw_last_object_separator = {
-    (const afw_byte_t *)"\n",
+    (const afw_octet_t *)"\n",
     sizeof("\n") - 1
 };
 
 /* Raw end object list. */
 static const afw_memory_t impl_raw_end_object_list = {
-    (const afw_byte_t *)"]\n",
+    (const afw_octet_t *)"]\n",
     sizeof("]\n") - 1
 };
 
@@ -196,7 +196,7 @@ const afw_utf8_t * afw_yaml_from_error(afw_xctx_t *xctx)
         }
     }
 
-    return afw_utf8_printf_safe(xctx->p, xctx,
+    return afw_utf8_printf_ks(xctx->p, xctx,
         "\"status\": \"error\",\n"
         "\"errorCode\": %d,\n"
         "\"id\": %s,\n"
@@ -205,8 +205,8 @@ const afw_utf8_t * afw_yaml_from_error(afw_xctx_t *xctx)
         "\"lineNumber\": %d,\n"
         "\"rvSourceId\": %s,\n"
         "\"rv\": %d,\n"
-        "\"rvDecoded\": %s,\n"
-        "\"message\": %s\n",
+        "\"rvDecoded\": %ks,\n"
+        "\"message\": %ks\n",
         error->code,
         afw_error_code_id_z(error),
         impl_u8z_to_yaml(afw_error_source_file(error), xctx),

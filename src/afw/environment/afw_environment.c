@@ -308,9 +308,8 @@ afw_environment_create(
             "afw_pool_calloc_unhandled() failed");
     };
     env->p = p;
-    env->pool_number = 1; /* see afw_pool_internal_create_base_pool() */
     env->pool_chunk_bytes =
-        ((const afw_pool_internal_self_t *)p)->chunk_bytes;
+        ((const afw_pool_internal_heap_self_t *)p)->chunk_bytes;
     env->peak_pool_chunk_bytes = env->pool_chunk_bytes;
     env->limit_evaluation_stack_count =
         AFW_ENVIRONMENT_LIMIT_EVALUATION_STACK_COUNT;
@@ -350,7 +349,9 @@ afw_environment_create(
     thread->xctx = xctx;
     thread->p = p;
     thread->os_thread = NULL;
+    thread->pool_number = 1;
     xctx->thread = thread;
+    ((afw_pool_internal_self_t *)p)->thread = thread;
     afw_os_c_stack_bounds(&thread->c_stack_base, &thread->c_stack_size);
 
     /* Create data type method number hash table. */
@@ -1204,7 +1205,7 @@ afw_environment_load_extension(
         if (!dso_handle) {
             afw_pool_release(p, xctx);
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Error loading extension extension_id='%ku' modulePath='%s': %s",
+                "Error loading extension extension_id='%ku' modulePath='%s': %ks",
                 extension_id_for_message, path_z, afw_os_dso_error());
         }
             

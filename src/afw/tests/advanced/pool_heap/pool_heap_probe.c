@@ -51,6 +51,18 @@ impl_self(const afw_pool_t *p)
     return (afw_pool_internal_self_t *)p;
 }
 
+static afw_pool_internal_heap_self_t *
+impl_heap(const afw_pool_t *p)
+{
+    return (afw_pool_internal_heap_self_t *)p;
+}
+
+static afw_pool_internal_tracker_self_t *
+impl_tracker_self(const afw_pool_t *p)
+{
+    return (afw_pool_internal_tracker_self_t *)p;
+}
+
 static int
 impl_fail(const char *label, const char *detail)
 {
@@ -174,7 +186,7 @@ impl_tracker_malloc(afw_xctx_t *xctx)
 {
     const afw_pool_t *heap;
     const afw_pool_t *tracker;
-    afw_pool_internal_self_t *self;
+    afw_pool_internal_tracker_self_t *self;
     afw_pool_tracker_node_t *node;
     void *a;
     afw_size_t before;
@@ -182,7 +194,7 @@ impl_tracker_malloc(afw_xctx_t *xctx)
 
     heap = afw_pool_heap_create(xctx->p, 0, xctx);
     tracker = afw_pool_tracker_create(heap, xctx);
-    self = impl_self(tracker);
+    self = impl_tracker_self(tracker);
     before = impl_in_use(xctx);
 
     if (self->first_allocated_memory != NULL) {
@@ -202,11 +214,11 @@ impl_tracker_malloc(afw_xctx_t *xctx)
         return impl_fail("tracker_malloc",
             "block is not first on this tracker's allocated list");
     }
-    if (node->prev != NULL) {
+    if (AFW_POOL_TRACKER_IS_FREED(node)) {
         return impl_fail("tracker_malloc",
-            "first allocated block prev is not NULL");
+            "new block is marked freed");
     }
-    if (node->next != NULL) {
+    if (AFW_POOL_TRACKER_NEXT(node) != NULL) {
         return impl_fail("tracker_malloc",
             "single allocated block next is not NULL");
     }
@@ -223,35 +235,47 @@ impl_tracker_malloc(afw_xctx_t *xctx)
 }
 
 /*
- * Tracker optional free: unlink from the tracker list, return the
- * whole WITH_LINKS chunk to the heap. Destroy must not return it
- * a second time. Same-size reuse on that tracker works.
+ * Tracker optional free: mark on the allocated list, do not return
+ * to the heap. in_use drops. garbage_collect returns marked blocks
+ * for reuse. Destroy of leftovers must not double-add.
  */
 static int
 impl_tracker_optional_free(afw_xctx_t *xctx)
 {
     const afw_pool_t *heap;
     const afw_pool_t *tracker;
-    afw_pool_internal_self_t *self;
+    afw_pool_internal_tracker_self_t *self;
+    afw_pool_tracker_node_t *node;
     void *a;
     void *b;
     afw_size_t before;
 
     heap = afw_pool_heap_create(xctx->p, 0, xctx);
     tracker = afw_pool_tracker_create(heap, xctx);
-    self = impl_self(tracker);
+    self = impl_tracker_self(tracker);
     before = impl_in_use(xctx);
 
     a = afw_pool_malloc(tracker, IMPL_SIZE_MEDIUM, xctx);
     memset(a, 0xc1, IMPL_SIZE_MEDIUM);
     afw_pool_free_memory(tracker, a, IMPL_SIZE_MEDIUM, xctx);
 
-    if (self->first_allocated_memory != NULL) {
+    node = AFW_POOL_TRACKER_NODE(a);
+    if (self->first_allocated_memory != node) {
         return impl_fail("tracker_optional_free",
-            "block still on allocated list after free");
+            "block not on allocated list after free");
+    }
+    if (!AFW_POOL_TRACKER_IS_FREED(node)) {
+        return impl_fail("tracker_optional_free",
+            "block not marked freed");
     }
     if (impl_expect_in_use(xctx, before, "tracker_optional_free after free")) {
         return 1;
+    }
+
+    afw_pool_garbage_collect(tracker, xctx);
+    if (self->first_allocated_memory != NULL) {
+        return impl_fail("tracker_optional_free",
+            "marked block still on list after collect");
     }
 
     b = afw_pool_malloc(tracker, IMPL_SIZE_MEDIUM, xctx);
@@ -261,7 +285,7 @@ impl_tracker_optional_free(afw_xctx_t *xctx)
     memset(b, 0xc2, IMPL_SIZE_MEDIUM);
     afw_pool_free_memory(tracker, b, IMPL_SIZE_MEDIUM, xctx);
 
-    /* Last-release must not double-free the already-returned block. */
+    /* Last-release must not double-free the marked leftover. */
     afw_pool_release(tracker, xctx);
     afw_pool_release(heap, xctx);
     return 0;
@@ -321,17 +345,17 @@ impl_tracker_header(afw_xctx_t *xctx)
 {
     const afw_pool_t *heap;
     const afw_pool_t *tracker;
-    afw_pool_internal_self_t *heap_self;
-    afw_pool_internal_self_t *tracker_self;
+    afw_pool_internal_heap_self_t *heap_self;
+    afw_pool_internal_tracker_self_t *tracker_self;
     afw_size_t before;
     void *a;
 
     heap = afw_pool_heap_create(xctx->p, 0, xctx);
-    heap_self = impl_self(heap);
+    heap_self = impl_heap(heap);
     before = impl_in_use(xctx);
 
     tracker = afw_pool_tracker_create(heap, xctx);
-    tracker_self = impl_self(tracker);
+    tracker_self = impl_tracker_self(tracker);
 
     if (impl_in_use(xctx) <= before) {
         return impl_fail("tracker_header",
@@ -510,6 +534,7 @@ impl_create_child_of_heap(afw_xctx_t *xctx)
     if (impl_expect_in_use(xctx, before, "create_child_of_heap after free")) {
         return 1;
     }
+    afw_pool_garbage_collect(child, xctx);
     b = afw_pool_malloc(child, IMPL_SIZE_MEDIUM, xctx);
     if (impl_expect_same_ptr(b, a, "create_child_of_heap reuse")) {
         return 1;
@@ -785,7 +810,7 @@ static int
 impl_heap_chunks(afw_xctx_t *xctx)
 {
     const afw_pool_t *heap;
-    afw_pool_internal_self_t *heap_self;
+    afw_pool_internal_heap_self_t *heap_self;
     afw_pool_chunk_t *chunk;
     void *a;
     void *b;
@@ -793,7 +818,7 @@ impl_heap_chunks(afw_xctx_t *xctx)
     afw_size_t before;
 
     heap = afw_pool_heap_create(xctx->p, 0, xctx);
-    heap_self = impl_self(heap);
+    heap_self = impl_heap(heap);
     n = 0;
     for (chunk = heap_self->first_chunk; chunk; chunk = chunk->next) {
         n++;
@@ -858,13 +883,13 @@ impl_deregister_cleanup(afw_xctx_t *xctx)
     static int marker;
     const afw_pool_t *heap;
     const afw_pool_t *tracker;
-    afw_pool_internal_self_t *self;
+    afw_pool_internal_tracker_self_t *self;
     void *entry;
     void *again;
 
     heap = afw_pool_heap_create(xctx->p, 0, xctx);
     tracker = afw_pool_tracker_create(heap, xctx);
-    self = impl_self(tracker);
+    self = impl_tracker_self(tracker);
 
     if (self->first_allocated_memory != NULL) {
         return impl_fail("deregister_cleanup", "list not empty at start");
@@ -880,9 +905,17 @@ impl_deregister_cleanup(afw_xctx_t *xctx)
 
     afw_pool_deregister_cleanup(tracker, &marker, NULL,
         impl_cleanup_nop, xctx);
+    if (self->first_allocated_memory == NULL ||
+        !AFW_POOL_TRACKER_IS_FREED(self->first_allocated_memory))
+    {
+        return impl_fail("deregister_cleanup",
+            "cleanup entry not marked after deregister");
+    }
+
+    afw_pool_garbage_collect(tracker, xctx);
     if (self->first_allocated_memory != NULL) {
         return impl_fail("deregister_cleanup",
-            "cleanup entry still on allocated list");
+            "cleanup entry still on allocated list after collect");
     }
 
     again = afw_pool_malloc(tracker, sizeof(afw_pool_cleanup_t), xctx);
@@ -946,7 +979,7 @@ impl_nonadjacent_reuse(afw_xctx_t *xctx)
  */
 static int
 impl_free_list_walk_ok(
-    afw_pool_internal_self_t *heap_self,
+    afw_pool_internal_heap_self_t *heap_self,
     const char *label)
 {
     afw_pool_free_node_t *slow;
@@ -1008,7 +1041,7 @@ impl_for_clone_churn(afw_xctx_t *xctx)
 {
     const afw_pool_t *heap;
     const afw_pool_t *tracker;
-    afw_pool_internal_self_t *heap_self;
+    afw_pool_internal_heap_self_t *heap_self;
     void *scope;
     void *small;
     afw_size_t i;
@@ -1016,7 +1049,7 @@ impl_for_clone_churn(afw_xctx_t *xctx)
     static const afw_size_t small_sizes[] = { 16, 24, 32, 40, 48 };
 
     heap = afw_pool_heap_create(xctx->p, 0, xctx);
-    heap_self = impl_self(heap);
+    heap_self = impl_heap(heap);
     signal(SIGALRM, impl_churn_alarm);
     alarm(15);
 

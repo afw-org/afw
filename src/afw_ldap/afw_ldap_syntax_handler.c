@@ -316,7 +316,7 @@ impl_syntax_handler_single_binary_to_ber(
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_size_t size;
-    const afw_byte_t *ptr;
+    const afw_octet_t *ptr;
     struct berval **result;
     const afw_data_type_t *value_data_type;
 
@@ -332,7 +332,7 @@ impl_syntax_handler_single_binary_to_ber(
     }
     else if (afw_utf8_equal(&value_data_type->cType, afw_s_afw_utf8_t)) {
         size = ((afw_value_string_t *)value)->internal.len;
-        ptr = (afw_byte_t *)((afw_value_string_t *)value)->internal.s;
+        ptr = (afw_octet_t *)((afw_value_string_t *)value)->internal.s;
     }
     else {
         AFW_THROW_ERROR_Z(general,

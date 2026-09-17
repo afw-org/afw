@@ -20,8 +20,8 @@ impl_error_format_message(
     const afw_utf8_z_t *format_z,
     va_list ap)
 {
-    /* Size includes the trailing 0 (z dest). %s / %ku are forced_safe. */
-    afw_utf8_z_snprintf_safe_v(
+    /* Size includes the trailing 0 (z dest). %s / %ku are ks-encoded. */
+    afw_utf8_z_snprintf_ks_v(
         &xctx->error->message_wa[0],
         sizeof(xctx->error->message_wa),
         format_z, ap, xctx);
@@ -79,6 +79,22 @@ static const afw_utf8_t impl_s_a_html_unknown =
 
 
 AFW_DEFINE(void)
+afw_error_release_backtrace(
+    afw_error_t *error,
+    afw_xctx_t *xctx)
+{
+    const afw_value_hexBinary_t *bt;
+
+    if (!error || !error->backtrace) {
+        return;
+    }
+    bt = error->backtrace;
+    error->backtrace = NULL;
+    afw_value_release(&bt->pub, xctx);
+}
+
+
+AFW_DEFINE(void)
 afw_error_rv_set_z(
     afw_error_code_t code,
     const afw_utf8_z_t *rv_source_id_z,
@@ -97,7 +113,16 @@ afw_error_rv_set_z(
     xctx->error->source_z = source_z;
     xctx->error->message_z = message_z;
 
-    if (code != afw_error_code_memory) {
+    afw_error_release_backtrace(xctx->error, xctx);
+    /*
+     * Capture only if this xctx has response:error:backtrace on.
+     * env->flag_index_* is the slot; the boolean is xctx->flags
+     * (env defaults until flag_set / action _flags_ copies them).
+     */
+    if (code != afw_error_code_memory &&
+        afw_flag_is_active(
+            xctx->env->flag_index_response_error_backtrace, xctx))
+    {
         xctx->error->backtrace = afw_os_backtrace(code, -1, xctx);
     }
 
@@ -559,7 +584,7 @@ impl_evaluation_backtrace(
     afw_utf8_writer_current_string(w, &s, xctx);
     /*
      * Copy octets only. message_z or source may be dirty; create()
-     * would throw while reporting. Callers forced_safe.
+     * would throw while reporting. Callers ks-encode.
      */
     copied = afw_pool_calloc_type(p, afw_utf8_t, xctx);
     if (s.len) {
@@ -597,10 +622,10 @@ afw_error_to_utf8(
 
     evaluation_backtrace = impl_evaluation_backtrace(error, p, xctx);
 
-    result = afw_utf8_printf_safe(p, xctx,
-        "%s"                           /* message. */
+    result = afw_utf8_printf_ks(p, xctx,
+        "%ks"                          /* message. */
         " [code=%s(%d)"                /* code-decoded */
-        " rv=%s%s%d%s%s"               /* source:rv-decoded */
+        " rv=%s%s%d%s%ks"              /* source:rv-decoded */
 
         "%s%ku%s"         /* source location */
         "%.0" AFW_SIZE_T_FMT_NO_PERCENT
@@ -609,7 +634,7 @@ afw_error_to_utf8(
 
         "%s%ku"              /* evaluation backtrace */
 
-        "%s%ku",             /* code backtrace */
+        "%s%km",             /* code backtrace */
 
         /* message. */
         error->message_z,
@@ -643,8 +668,10 @@ afw_error_to_utf8(
             ? evaluation_backtrace : NULL,
 
         /* code backtrace */
-        (do_code_backtrace && error->backtrace) ? "\nCode backtrace:\n" : "",
-        (do_code_backtrace && error->backtrace) ? error->backtrace : NULL
+        (do_code_backtrace && error->backtrace)
+            ? "\nCode backtrace:\n" : "",
+        (do_code_backtrace && error->backtrace)
+            ? &error->backtrace->internal : NULL
     );
 
     return result;
@@ -660,8 +687,8 @@ afw_error_write_log(afw_log_priority_t priority,
 
     if (error->contextual && error->contextual->source_location)
     {
-        s = afw_utf8_printf_safe(xctx->p, xctx,
-            "%s [%ku%s%0d]",
+        s = afw_utf8_printf_ks(xctx->p, xctx,
+            "%ks [%ku%s%0d]",
             error->message_z,
             error->contextual->source_location,
             (error->contextual->value_offset != 0) ? " +" : "",
@@ -675,7 +702,7 @@ afw_error_write_log(afw_log_priority_t priority,
     }
 
     else {
-        s = afw_utf8_printf_safe(xctx->p, xctx, "%s",
+        s = afw_utf8_printf_ks(xctx->p, xctx, "%ks",
             error->message_z);
         afw_log_write(xctx->env->log,
             priority,
@@ -776,9 +803,12 @@ afw_error_print(FILE *fp, const afw_error_t *error)
     if (error->backtrace) {
         rv = fputs("\nbacktrace:\n", fp);
         if (rv < 0) goto return_rv;
-        if (error->backtrace->len > 0 && error->backtrace->s) {
-            if (fwrite(error->backtrace->s, 1, error->backtrace->len,
-                fp) != error->backtrace->len)
+        if (error->backtrace->internal.size > 0 &&
+            error->backtrace->internal.ptr)
+        {
+            if (fwrite(error->backtrace->internal.ptr, 1,
+                error->backtrace->internal.size, fp) !=
+                error->backtrace->internal.size)
             {
                 rv = -1;
                 goto return_rv;
@@ -872,10 +902,11 @@ impl_add_contextual(
 }
 
 
-/* Adaptive string for a diagnostic utf8: forced_safe, then NFC. */
+/* Adaptive string for a diagnostic utf8: ks encode, then NFC. */
 static const afw_utf8_t *
-impl_utf8_forced_safe_value(
-    const afw_utf8_t *s,
+impl_octets_ks_value(
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -884,8 +915,21 @@ impl_utf8_forced_safe_value(
     if (!s) {
         return NULL;
     }
-    encoded = afw_utf8_create_forced_safe(s->s, s->len, p, xctx);
+    encoded = afw_utf8_create_ks(s, len, p, xctx);
     return afw_utf8_create(encoded->s, encoded->len, p, xctx);
+}
+
+
+static const afw_utf8_t *
+impl_utf8_ks_value(
+    const afw_utf8_t *s,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!s) {
+        return NULL;
+    }
+    return impl_octets_ks_value(s->s, s->len, p, xctx);
 }
 
 
@@ -900,13 +944,13 @@ impl_utf8_z_value_for_error(
     if (!s_z) {
         return afw_s_a_empty_string;
     }
-    /* FZ already encoded; do not forced_safe again (`^` → `^^`). */
+    /* FZ already encoded; do not ks-encode again (`^` → `^^`). */
     if (afw_utf8_is_valid(
         (const afw_utf8_octet_t *)s_z, AFW_UTF8_Z_LEN, xctx))
     {
         return afw_utf8_create(s_z, AFW_UTF8_Z_LEN, p, xctx);
     }
-    encoded = afw_utf8_z_create_forced_safe(s_z, p, xctx);
+    encoded = afw_utf8_z_create_ks(s_z, p, xctx);
     return afw_utf8_create(encoded->s, encoded->len, p, xctx);
 }
 
@@ -961,7 +1005,9 @@ afw_error_add_to_object(
     {
         afw_object_set_property_as_string_internal(object,
             afw_v_backtrace,
-            impl_utf8_forced_safe_value(error->backtrace, p, xctx),
+            impl_octets_ks_value(
+                (const afw_utf8_octet_t *)error->backtrace->internal.ptr,
+                error->backtrace->internal.size, p, xctx),
             xctx);
     }
 
@@ -973,7 +1019,7 @@ afw_error_add_to_object(
         if (evaluation_backtrace) {
             afw_object_set_property_as_string_internal(object,
                 afw_v_backtraceEvaluation,
-                impl_utf8_forced_safe_value(evaluation_backtrace, p, xctx),
+                impl_utf8_ks_value(evaluation_backtrace, p, xctx),
                 xctx);
         }
     }

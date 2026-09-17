@@ -36,8 +36,27 @@
 #include <elfutils/libdwfl.h>
 #endif
 
-static const afw_utf8_t impl_s_no_memory_for_backtrace =
-    AFW_UTF8_LITERAL("No memory for backtrace");
+static const afw_value_hexBinary_t impl_no_memory_hexBinary = {
+    { &afw_value_permanent_hexBinary_inf },
+    {
+        (const afw_octet_t *)"No memory for backtrace",
+        sizeof("No memory for backtrace") - 1
+    }
+};
+
+static const afw_value_hexBinary_t *
+impl_finish_backtrace(
+    char *start, char *s, afw_size_t cap, afw_xctx_t *xctx)
+{
+    afw_memory_t mem;
+    const afw_value_hexBinary_t *v;
+
+    mem.ptr = (const afw_octet_t *)start;
+    mem.size = (afw_size_t)(s - start);
+    v = afw_value_hexBinary_create_no_throw(&mem, xctx->p, xctx);
+    afw_pool_free_memory_no_throw(xctx->p, start, cap, xctx);
+    return v ? v : &impl_no_memory_hexBinary;
+}
 
 static const afw_utf8_t impl_dso_suffix =
     AFW_UTF8_LITERAL(".so");
@@ -710,7 +729,7 @@ afw_os_get_dso_suffix()
  *     optimizations are turned on.
  */
 #ifdef __MACH__
-AFW_DEFINE(const afw_utf8_t *)
+AFW_DEFINE(const afw_value_hexBinary_t *)
 afw_os_backtrace(
     afw_error_code_t code,
     int max_backtrace,
@@ -720,9 +739,10 @@ afw_os_backtrace(
     int i, max;
     int frames;
     char ** strs;
-    afw_byte_t *s; 
+    char *s;
+    char *start;
     afw_size_t len;
-    afw_utf8_t *trace = NULL;
+    afw_size_t cap;
     int wlen;
 
     /*
@@ -744,22 +764,25 @@ afw_os_backtrace(
      * truncated to what will fit.  The average line size is assumed to
      * be 100 plus 10 extra lines for other error info.
      */
-    len = (max + 10) * 100;
-    s = afw_pool_malloc_unhandled(xctx->p, len, xctx);
-    if (!s) return &impl_s_no_memory_for_backtrace;
-    trace = afw_pool_malloc_unhandled(xctx->p, sizeof(afw_utf8_t), xctx);
-    if (!trace) return &impl_s_no_memory_for_backtrace;
-    trace->s = s;
+    cap = (max + 10) * 100;
+    len = cap;
+    s = afw_pool_malloc_no_throw(xctx->p, cap, xctx);
+    if (!s) return &impl_no_memory_hexBinary;
+    start = s;
     *s++ = '\n';
     len--;
 
     frames = backtrace(callstack, 128);
-    if (!frames)
-        return NULL; 
+    if (!frames) {
+        afw_pool_free_memory_no_throw(xctx->p, start, cap, xctx);
+        return NULL;
+    }
 
     strs = backtrace_symbols(callstack, frames);
-    if (!strs)
+    if (!strs) {
+        afw_pool_free_memory_no_throw(xctx->p, start, cap, xctx);
         return NULL;
+    }
 
     for (i = 0; i < frames; i++) {
         wlen = snprintf(s, len, "%s\n", strs[i]);
@@ -770,13 +793,11 @@ afw_os_backtrace(
     
     free(strs);
 
-    trace->len = s - trace->s;
-
-    return trace;
+    return impl_finish_backtrace(start, s, cap, xctx);
 }
 
 #else
-AFW_DEFINE(const afw_utf8_t *)
+AFW_DEFINE(const afw_value_hexBinary_t *)
 afw_os_backtrace(
     afw_error_code_t code,
     int max_backtrace,
@@ -792,15 +813,16 @@ afw_os_backtrace(
     Dwarf_Addr addr;
     Dwfl_Module *module;
     Dwfl_Line *line;
-    const afw_utf8_octet_t *function_name;
+    const char *function_name;
     unw_cursor_t cursor;
     unw_context_t uc;
     int i, max;
     int rc;
 
-    afw_utf8_octet_t *s;
+    char *s;
+    char *start;
     afw_size_t len;
-    afw_utf8_t *trace = NULL;
+    afw_size_t cap;
     int wlen;
 
     /*
@@ -822,18 +844,18 @@ afw_os_backtrace(
      * truncated to what will fit.  The average line size is assumed to
      * be 100 plus 10 extra lines for other error info.
      */
-    len = (max + 10) * 100;
-    s = afw_pool_malloc_unhandled(xctx->p, len, xctx);
-    if (!s) return &impl_s_no_memory_for_backtrace;
-    trace = afw_pool_malloc_unhandled(xctx->p, sizeof(afw_utf8_t), xctx);
-    if (!trace) return &impl_s_no_memory_for_backtrace;
-    trace->s = s;
+    cap = (max + 10) * 100;
+    len = cap;
+    s = afw_pool_malloc_no_throw(xctx->p, cap, xctx);
+    if (!s) return &impl_no_memory_hexBinary;
+    start = s;
     *s++ = '\n';
     len--;
 
     dwfl = dwfl_begin(&callbacks);
     if (!dwfl) {
-        return &impl_s_no_memory_for_backtrace;
+        afw_pool_free_memory_no_throw(xctx->p, start, cap, xctx);
+        return &impl_no_memory_hexBinary;
     }
 
     dwfl_linux_proc_report(dwfl, getpid());
@@ -844,7 +866,7 @@ afw_os_backtrace(
     if (rc) {
         /* error occurred, initializing cursor for local unwinding */
         dwfl_end(dwfl);
-        return trace;
+        return impl_finish_backtrace(start, s, cap, xctx);
     }
 
     for (i = 0; unw_step(&cursor) > 0 && i < max; i++) {
@@ -892,12 +914,10 @@ afw_os_backtrace(
         }
     }
     
-    trace->len = s - trace->s;
-
     /* free resources from dwfl_begin */
     dwfl_end(dwfl);
 
-    return trace;
+    return impl_finish_backtrace(start, s, cap, xctx);
 }
 #endif
 

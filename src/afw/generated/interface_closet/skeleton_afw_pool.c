@@ -67,6 +67,19 @@ impl_afw_pool_calloc(
 }
 
 /*
+ * Implementation of method calloc_no_throw for interface afw_pool.
+ */
+void *
+impl_afw_pool_calloc_no_throw(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
  * Implementation of method malloc for interface afw_pool.
  */
 void *
@@ -80,10 +93,37 @@ impl_afw_pool_malloc(
 }
 
 /*
+ * Implementation of method malloc_no_throw for interface afw_pool.
+ */
+void *
+impl_afw_pool_malloc_no_throw(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
  * Implementation of method free_memory for interface afw_pool.
  */
 void
 impl_afw_pool_free_memory(
+    AFW_POOL_SELF_T *self,
+    void * address,
+    afw_size_t size,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method free_memory_no_throw for interface afw_pool.
+ */
+void
+impl_afw_pool_free_memory_no_throw(
     AFW_POOL_SELF_T *self,
     void * address,
     afw_size_t size,
@@ -128,6 +168,18 @@ impl_afw_pool_deregister_cleanup(
  */
 void
 impl_afw_pool_run_cleanups(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method garbage_collect for interface afw_pool.
+ */
+void
+impl_afw_pool_garbage_collect(
     AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx)
 {

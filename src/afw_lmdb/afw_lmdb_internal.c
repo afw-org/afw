@@ -448,7 +448,7 @@ const afw_utf8_t * afw_lmdb_internal_resolve_object_id(
     afw_lmdb_internal_set_key(&reverse_key,
         object_type_id, uuid, p, xctx);
 
-    raw_value.ptr = (const afw_byte_t *)object_id->s;
+    raw_value.ptr = (const afw_octet_t *)object_id->s;
     raw_value.size = object_id->len;
 
     rc = afw_lmdb_internal_create_entry(

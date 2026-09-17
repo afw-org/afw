@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Named utf8 doors: create/set copy vs no_copy, forced_safe encode, property
+Named utf8 doors: create/set copy vs no_copy, ks encode, property
 name, printf, from_memory / as_memory.
 """
 
@@ -11,7 +11,7 @@ from _afwdev.test.c_probe import run_c_probe
 def run():
     return run_c_probe(
         "utf8_named_doors_probe.c",
-        "UTF-8 named doors (create/set/no_copy/forced_safe)",
+        "UTF-8 named doors (create/set/no_copy/ks)",
         [
             (
                 "create-set-copy",
@@ -22,16 +22,16 @@ def run():
                 "create_no_copy/set_no_copy point at input; trunc throws",
             ),
             (
-                "forced-safe",
-                "forced_safe encode: caret, 0xff, NUL, LF, invalid run",
+                "ks",
+                "ks encode: caret, 0xff, NUL, LF, invalid run",
             ),
             (
                 "property-name",
                 "create_property_name is encode then NFC",
             ),
             (
-                "printf-safe",
-                "%s throws on invalid UTF-8; %ks is forced_safe",
+                "printf-ks",
+                "%s throws on invalid UTF-8; %ks is ks encoding",
             ),
             (
                 "printf-nul",
@@ -39,7 +39,7 @@ def run():
             ),
             (
                 "printf-k",
-                "%ku / %km, width/precision, C %d/%s, dest size",
+                "%ku / %km / %kx / %kX, width/precision, C %d/%s, dest size",
             ),
             (
                 "printf-throws",
@@ -47,11 +47,11 @@ def run():
             ),
             (
                 "error-backtrace",
-                "error object backtrace is forced_safe then NFC",
+                "OS backtrace only if flag on; object backtrace is ks",
             ),
             (
-                "printf-safe-walk",
-                "printf_safe encodes %s and %ku; format caret stays",
+                "printf-ks-walk",
+                "printf_ks encodes %s and %ku; format caret stays",
             ),
             (
                 "error-fz-dirty",

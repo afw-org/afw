@@ -381,10 +381,12 @@ typedef double afw_double_t;
 /** @brief Unicode code point. */
 typedef afw_int32_t afw_code_point_t;
 
-/** * @brief A byte of memory (unsigned). */
-typedef unsigned char afw_byte_t;
-
-/** * @brief 8 bits (unsigned). */
+/**
+ * @brief 8-bit unsigned memory unit.
+ *
+ * CHAR_BIT is 8. There is no separate "byte that might not be 8 bits."
+ * UTF-8 code units stay `afw_utf8_octet_t` (`char`) for pointer signedness.
+ */
 typedef unsigned char afw_octet_t;
 
 /**
@@ -696,7 +698,7 @@ typedef const afw_value_t *
  *            use afw_utf8_from_memory() instead.
  */
 typedef struct afw_memory_s {
-    const afw_byte_t *ptr;
+    const afw_octet_t *ptr;
     afw_size_t size;
 } afw_memory_t;
 
@@ -1785,6 +1787,14 @@ typedef void
 
 
 
+
+/*
+ * Data-type typedefs (`afw_value_hexBinary_t`, …). After the complete
+ * internals in this header (`afw_yearMonthDuration_t`, …). This
+ * generated file includes afw_minimal.h, so it cannot sit next to
+ * afw_interface_opaques.h.
+ */
+#include "afw_data_type_typedefs.h"
 
 AFW_END_DECLARES
 

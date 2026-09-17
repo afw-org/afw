@@ -476,13 +476,13 @@ afw_memory_writer_retrieve_and_release(
 
 AFW_DEFINE(const afw_memory_t *)
 afw_memory_create(
-    const afw_byte_t *ptr,
+    const afw_octet_t *ptr,
     afw_size_t size,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_memory_t *result;
-    afw_byte_t *copy;
+    afw_octet_t *copy;
 
     result = afw_pool_malloc_type(p, afw_memory_t, xctx);
     if (size > 0 && ptr) {
@@ -501,7 +501,7 @@ afw_memory_create(
 
 AFW_DEFINE(const afw_memory_t *)
 afw_memory_create_no_copy(
-    const afw_byte_t *ptr,
+    const afw_octet_t *ptr,
     afw_size_t size,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -518,7 +518,7 @@ afw_memory_create_no_copy(
 AFW_DEFINE(void)
 afw_memory_set(
     afw_memory_t *to,
-    const afw_byte_t *ptr,
+    const afw_octet_t *ptr,
     afw_size_t size,
     const afw_pool_t *p,
     afw_xctx_t *xctx)

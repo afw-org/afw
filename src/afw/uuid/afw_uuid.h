@@ -25,7 +25,7 @@ AFW_BEGIN_DECLARES
 
 /** 16-byte RFC 4122 UUID. */
 typedef struct afw_uuid_s {
-    afw_byte_t data[16];
+    afw_octet_t data[16];
 } afw_uuid_t;
 
 /** Printed form is 8-4-4-4-12 hex with dashes (36 octets). */

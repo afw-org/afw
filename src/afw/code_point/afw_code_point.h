@@ -62,7 +62,7 @@ afw_code_point_is_whitespace_or_eol(afw_code_point_t cp);
 /**
  * @brief True if cp is Unicode general category Cc (NUL, C0, DEL, C1).
  *
- * Used by forced_safe encode. Does not include Cf or Zs.
+ * Used by ks encode. Does not include Cf or Zs.
  */
 AFW_DECLARE(afw_boolean_t)
 afw_code_point_is_control(afw_code_point_t cp);

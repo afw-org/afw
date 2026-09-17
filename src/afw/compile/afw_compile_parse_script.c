@@ -2660,7 +2660,7 @@ impl_test_script_load_file_value(
     afw_size_t i;
     afw_file_info_t info;
     FILE *in;
-    afw_byte_t *buff;
+    afw_octet_t *buff;
     const afw_utf8_t *result;
 
     if (!rel_path || rel_path->len == 0) {

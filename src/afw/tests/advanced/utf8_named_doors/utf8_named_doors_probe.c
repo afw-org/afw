@@ -13,7 +13,7 @@
 
 /**
  * @file utf8_named_doors_probe.c
- * @brief C probe for create/set/no_copy/forced_safe/property_name.
+ * @brief C probe for create/set/no_copy/ks/property_name.
  */
 
 static int
@@ -142,55 +142,55 @@ impl_no_copy(const afw_pool_t *p, afw_xctx_t *xctx)
 }
 
 static int
-impl_forced_safe(const afw_pool_t *p, afw_xctx_t *xctx)
+impl_ks(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t *c;
     char in[8];
     afw_utf8_t to;
 
-    c = afw_utf8_create_forced_safe(
+    c = afw_utf8_create_ks(
         (const afw_utf8_octet_t *)"hello", 5, p, xctx);
-    if (impl_eq(c, "hello", 5, "forced_safe hello")) {
+    if (impl_eq(c, "hello", 5, "ks hello")) {
         return 1;
     }
 
     /* FOO + caret + BAR → FOO^^BAR */
-    c = afw_utf8_create_forced_safe(
+    c = afw_utf8_create_ks(
         (const afw_utf8_octet_t *)"FOO^BAR", 7, p, xctx);
-    if (impl_eq(c, "FOO^^BAR", 8, "forced_safe caret")) {
+    if (impl_eq(c, "FOO^^BAR", 8, "ks caret")) {
         return 1;
     }
 
     /* FOO + 0xFF → FOO^FF^ */
     in[0] = 'F'; in[1] = 'O'; in[2] = 'O'; in[3] = (char)0xff;
-    c = afw_utf8_create_forced_safe((const afw_utf8_octet_t *)in, 4, p, xctx);
-    if (impl_eq(c, "FOO^FF^", 7, "forced_safe 0xff")) {
+    c = afw_utf8_create_ks((const afw_utf8_octet_t *)in, 4, p, xctx);
+    if (impl_eq(c, "FOO^FF^", 7, "ks 0xff")) {
         return 1;
     }
 
     /* NUL is Cc → ^00^ */
     in[0] = 'a'; in[1] = 0; in[2] = 'b';
-    c = afw_utf8_create_forced_safe((const afw_utf8_octet_t *)in, 3, p, xctx);
-    if (impl_eq(c, "a^00^b", 6, "forced_safe nul")) {
+    c = afw_utf8_create_ks((const afw_utf8_octet_t *)in, 3, p, xctx);
+    if (impl_eq(c, "a^00^b", 6, "ks nul")) {
         return 1;
     }
 
     /* newline stays */
     in[0] = 'a'; in[1] = '\n'; in[2] = 'b';
-    c = afw_utf8_create_forced_safe((const afw_utf8_octet_t *)in, 3, p, xctx);
-    if (impl_eq(c, "a\nb", 3, "forced_safe lf")) {
+    c = afw_utf8_create_ks((const afw_utf8_octet_t *)in, 3, p, xctx);
+    if (impl_eq(c, "a\nb", 3, "ks lf")) {
         return 1;
     }
 
     /* run of two invalid bytes in one pair */
     in[0] = (char)0xc0; in[1] = (char)0x80;
-    c = afw_utf8_create_forced_safe((const afw_utf8_octet_t *)in, 2, p, xctx);
-    if (impl_eq(c, "^C080^", 6, "forced_safe run")) {
+    c = afw_utf8_create_ks((const afw_utf8_octet_t *)in, 2, p, xctx);
+    if (impl_eq(c, "^C080^", 6, "ks run")) {
         return 1;
     }
 
-    afw_utf8_set_forced_safe(&to, (const afw_utf8_octet_t *)in, 2, p, xctx);
-    if (impl_eq(&to, "^C080^", 6, "set_forced_safe")) {
+    afw_utf8_set_ks(&to, (const afw_utf8_octet_t *)in, 2, p, xctx);
+    if (impl_eq(&to, "^C080^", 6, "set_ks")) {
         return 1;
     }
     return 0;
@@ -236,7 +236,7 @@ impl_printf_bad_s(const afw_pool_t *p, afw_xctx_t *xctx)
 }
 
 static int
-impl_printf_safe(const afw_pool_t *p, afw_xctx_t *xctx)
+impl_printf_ks(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t *c;
     char bad[4];
@@ -331,10 +331,18 @@ impl_printf_k(const afw_pool_t *p, afw_xctx_t *xctx)
 
     raw[0] = 0x00;
     raw[1] = 0xff;
-    mem.ptr = (const afw_byte_t *)raw;
+    mem.ptr = (const afw_octet_t *)raw;
     mem.size = 2;
+    c = afw_utf8_printf(p, xctx, "%kX", &mem);
+    if (impl_eq(c, "00FF", 4, "printf %kX")) {
+        return 1;
+    }
+    c = afw_utf8_printf(p, xctx, "%kx", &mem);
+    if (impl_eq(c, "00ff", 4, "printf %kx")) {
+        return 1;
+    }
     c = afw_utf8_printf(p, xctx, "%km", &mem);
-    if (impl_eq(c, "00FF", 4, "printf %km")) {
+    if (impl_eq(c, "^00FF^", 6, "printf %km")) {
         return 1;
     }
 
@@ -382,8 +390,8 @@ impl_printf_k(const afw_pool_t *p, afw_xctx_t *xctx)
     if (impl_eq(c, "   hello", 8, "%*ku")) {
         return 1;
     }
-    c = afw_utf8_printf(p, xctx, "%.1km", &mem);
-    if (impl_eq(c, "00", 2, "%.1km")) {
+    c = afw_utf8_printf(p, xctx, "%.1kX", &mem);
+    if (impl_eq(c, "00", 2, "%.1kX")) {
         return 1;
     }
     c = afw_utf8_printf(p, xctx, "%5d", 3);
@@ -460,28 +468,77 @@ impl_contains(const afw_utf8_t *s, const char *z, afw_size_t n)
 static int
 impl_error_backtrace(const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_utf8_t fake;
+    afw_memory_t fake;
+    const afw_value_hexBinary_t *fake_v;
     char in[3];
     const afw_object_t *obj;
     const afw_utf8_t *got;
     const afw_utf8_t *dump;
     int rc;
+    int saw;
+
+    rc = 0;
+    afw_flag_set(afw_s_a_flag_response_error_backtrace, false, xctx);
+    saw = 0;
+    AFW_TRY {
+        AFW_THROW_ERROR_Z(general, "no-os-backtrace", xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        if (this_THROWN_ERROR.backtrace) {
+            fprintf(stderr, "error-backtrace: captured with flag off\n");
+            rc = 1;
+        }
+        saw = 1;
+    }
+    AFW_ENDTRY;
+    if (!saw) {
+        fprintf(stderr, "error-backtrace: flag-off throw did not throw\n");
+        return 1;
+    }
+    if (rc) {
+        return rc;
+    }
+
+    afw_flag_set(afw_s_a_flag_response_error_backtrace, true, xctx);
+    saw = 0;
+    AFW_TRY {
+        AFW_THROW_ERROR_Z(general, "os-backtrace", xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        if (!this_THROWN_ERROR.backtrace) {
+            fprintf(stderr, "error-backtrace: missing with flag on\n");
+            rc = 1;
+        }
+        saw = 1;
+    }
+    AFW_ENDTRY;
+    if (!saw) {
+        fprintf(stderr, "error-backtrace: flag-on throw did not throw\n");
+        return 1;
+    }
+    if (rc) {
+        return rc;
+    }
 
     in[0] = 'x';
     in[1] = (char)0xff;
     in[2] = 'y';
-    fake.s = (const afw_utf8_octet_t *)in;
-    fake.len = 3;
-
-    afw_flag_set(afw_s_a_flag_response_error_backtrace, true, xctx);
+    fake.ptr = (const afw_octet_t *)in;
+    fake.size = 3;
+    fake_v = afw_value_hexBinary_create_no_throw(&fake, xctx->p, xctx);
+    if (!fake_v) {
+        fprintf(stderr, "error-backtrace: create_no_throw failed\n");
+        return 1;
+    }
 
     rc = 0;
-    AFW_TRY {
-        AFW_THROW_ERROR_Z(general, "probe", xctx);
-    }
-    AFW_CATCH_UNHANDLED {
-        xctx->error->backtrace = &fake;
-        obj = afw_error_to_object(xctx->error, p, xctx);
+    {
+        afw_error_t e;
+
+        memset(&e, 0, sizeof(e));
+        e.message_z = "probe";
+        e.backtrace = fake_v;
+        obj = afw_error_to_object(&e, p, xctx);
         got = afw_object_get_property_as_string_internal(
             obj, afw_v_backtrace, xctx);
         if (!got || got->len != 6 ||
@@ -491,18 +548,18 @@ impl_error_backtrace(const afw_pool_t *p, afw_xctx_t *xctx)
                 (unsigned long)(got ? got->len : 0));
             rc = 1;
         }
-        dump = afw_error_to_utf8(xctx->error, p, xctx);
+        dump = afw_error_to_utf8(&e, p, xctx);
         if (!impl_contains(dump, "x^FF^y", 6)) {
             fprintf(stderr, "error_to_utf8 dirty backtrace\n");
             rc = 1;
         }
     }
-    AFW_ENDTRY;
+    afw_value_release(&fake_v->pub, xctx);
     return rc;
 }
 
 static int
-impl_printf_safe_walk(const afw_pool_t *p, afw_xctx_t *xctx)
+impl_printf_ks_walk(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t *c;
     afw_utf8_t u;
@@ -516,22 +573,22 @@ impl_printf_safe_walk(const afw_pool_t *p, afw_xctx_t *xctx)
     u.s = (const afw_utf8_octet_t *)bad;
     u.len = 2;
 
-    c = afw_utf8_printf_safe(p, xctx, "n=%s", bad);
-    if (impl_eq(c, "n=x^FF^", 7, "printf_safe %s")) {
+    c = afw_utf8_printf_ks(p, xctx, "n=%s", bad);
+    if (impl_eq(c, "n=x^FF^", 7, "printf_ks %s")) {
         return 1;
     }
-    c = afw_utf8_printf_safe(p, xctx, "n=%ku", &u);
-    if (impl_eq(c, "n=x^FF^", 7, "printf_safe %ku")) {
+    c = afw_utf8_printf_ks(p, xctx, "n=%ku", &u);
+    if (impl_eq(c, "n=x^FF^", 7, "printf_ks %ku")) {
         return 1;
     }
-    c = afw_utf8_printf_safe(p, xctx, "a^b=%s", "ok");
-    if (impl_eq(c, "a^b=ok", 6, "printf_safe caret format")) {
+    c = afw_utf8_printf_ks(p, xctx, "a^b=%s", "ok");
+    if (impl_eq(c, "a^b=ok", 6, "printf_ks caret format")) {
         return 1;
     }
-    n = afw_utf8_z_snprintf_safe(zbuf, sizeof(zbuf), xctx,
+    n = afw_utf8_z_snprintf_ks(zbuf, sizeof(zbuf), xctx,
         "n=%s", bad);
     if (n != 8 || strcmp((const char *)zbuf, "n=x^FF^") != 0) {
-        fprintf(stderr, "z_snprintf_safe: n=%lu %s\n",
+        fprintf(stderr, "z_snprintf_ks: n=%lu %s\n",
             (unsigned long)n, (const char *)zbuf);
         return 1;
     }
@@ -688,14 +745,14 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "no-copy") == 0) {
         rc = impl_no_copy(p, xctx);
     }
-    else if (strcmp(case_name, "forced-safe") == 0) {
-        rc = impl_forced_safe(p, xctx);
+    else if (strcmp(case_name, "ks") == 0) {
+        rc = impl_ks(p, xctx);
     }
     else if (strcmp(case_name, "property-name") == 0) {
         rc = impl_property_name(p, xctx);
     }
-    else if (strcmp(case_name, "printf-safe") == 0) {
-        rc = impl_printf_safe(p, xctx);
+    else if (strcmp(case_name, "printf-ks") == 0) {
+        rc = impl_printf_ks(p, xctx);
     }
     else if (strcmp(case_name, "printf-nul") == 0) {
         rc = impl_printf_nul(p, xctx);
@@ -709,8 +766,8 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "error-backtrace") == 0) {
         rc = impl_error_backtrace(p, xctx);
     }
-    else if (strcmp(case_name, "printf-safe-walk") == 0) {
-        rc = impl_printf_safe_walk(p, xctx);
+    else if (strcmp(case_name, "printf-ks-walk") == 0) {
+        rc = impl_printf_ks_walk(p, xctx);
     }
     else if (strcmp(case_name, "error-fz-dirty") == 0) {
         rc = impl_error_fz_dirty(p, xctx);
@@ -723,9 +780,9 @@ main(int argc, char **argv)
     }
     else {
         fprintf(stderr, "usage: utf8_named_doors_probe "
-            "create-set-copy|no-copy|forced-safe|property-name|"
-            "printf-safe|printf-nul|printf-k|printf-throws|"
-            "error-backtrace|printf-safe-walk|error-fz-dirty|"
+            "create-set-copy|no-copy|ks|property-name|"
+            "printf-ks|printf-nul|printf-k|printf-throws|"
+            "error-backtrace|printf-ks-walk|error-fz-dirty|"
             "icu-error-name|from-memory\n");
         rc = 2;
     }

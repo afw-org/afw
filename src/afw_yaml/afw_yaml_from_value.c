@@ -68,7 +68,7 @@ static void convert_value_to_yaml(
     from_value_wa_t *wa,
     const afw_value_t *value);
 
-AFW_DEFINE_STATIC_INLINE(void) impl_putc(from_value_wa_t *wa, afw_byte_t c)
+AFW_DEFINE_STATIC_INLINE(void) impl_putc(from_value_wa_t *wa, afw_octet_t c)
 {
     char ch;
 

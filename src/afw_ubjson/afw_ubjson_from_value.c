@@ -28,7 +28,7 @@ typedef struct from_value_wa_s {
 } from_value_wa_t;
 
 
-AFW_DEFINE_STATIC_INLINE(void) impl_putc(from_value_wa_t *wa, afw_byte_t c)
+AFW_DEFINE_STATIC_INLINE(void) impl_putc(from_value_wa_t *wa, afw_octet_t c)
 {
     char ch;
 

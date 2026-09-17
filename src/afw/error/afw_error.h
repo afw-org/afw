@@ -87,8 +87,15 @@ struct afw_error_s {
     /** @brief Human readable decode of rv. */
     const afw_utf8_z_t * rv_decoded_z;
 
-    /** @brief If not memory error and afw_os_backtrace() supplies one. */
-    const afw_utf8_t *backtrace;
+    /**
+     * @brief OS backtrace when response:error:backtrace is on.
+     *
+     * Captured only if the flag is active and this is not a memory
+     * error. Managed hexBinary of OS octets (not necessarily UTF-8).
+     * NULL if none. Caller of afw_os_backtrace() must
+     * afw_value_release() when finished.
+     */
+    const afw_value_hexBinary_t *backtrace;
 
     /**
      * @brief If syntax error, this is cursor when parse error occurred or 0.
@@ -421,8 +428,9 @@ do { \
  * @param format_z format for error message
  * @param ... for format_z
  *
- * Formats with `afw_utf8_z_snprintf_safe_v`: dirty `%s` / `%ku` encode
- * (`forced_safe`) instead of throwing while building the error.
+ * Formats with `afw_utf8_z_snprintf_ks_v`: dirty `%s` / `%ku` use
+ * ks encoding instead of throwing while building the error.
+ * Prefer `%ks` / `%km` for bytes that might not be UTF-8.
  *
  * Always follow with a semicolon;
  */
@@ -905,6 +913,7 @@ do {\
     afw_xctx_evaluation_stack_rewind(this_TOP_OFFSET, xctx); \
     if (this_ERROR_OCCURRED && this_ERROR_CAUGHT) { \
         afw_error_processing_handled(xctx); \
+        afw_error_release_backtrace(&this_THROWN_ERROR, xctx); \
     } \
 } while (0)
 
@@ -942,6 +951,17 @@ do {\
  *
  * This function leaves xctx->error unchanged if it is successful.
  */
+/**
+ * @brief Release error->backtrace if set.
+ *
+ * Safe if backtrace is NULL or a permanent value.
+ */
+AFW_DECLARE(void)
+afw_error_release_backtrace(
+    afw_error_t *error,
+    afw_xctx_t *xctx);
+
+
 AFW_DECLARE(const afw_object_t *)
 afw_error_to_object(
     const afw_error_t *error,

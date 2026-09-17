@@ -87,7 +87,7 @@ yaml_token_t * afw_yaml_parser_scan(
     rc = yaml_parser_scan(&parser->parser, token);
     if (rc == 0) {
         AFW_THROW_ERROR_RV_FZ(general, yaml_parser, rc, xctx,
-            "Error:  %s, near line %d, column %d",
+            "Error:  %ks, near line %d, column %d",
             parser->parser.problem, parser->parser.problem_mark.line,
             parser->parser.problem_mark.column);
     }

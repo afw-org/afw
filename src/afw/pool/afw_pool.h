@@ -24,18 +24,22 @@
  *
  * Key invariants:
  * - A pool is a heap unless it is a tracker. A tracker gets memory
- *   from a heap, tracks it, and returns it on free or tracker destroy.
+ *   from a heap and tracks it. Destroy returns the chain to the
+ *   ancestor heap. free_memory on a tracker marks; it does not
+ *   return the block until destroy or garbage_collect.
  *   Multithreaded heap is lock wrappers. The heap owns posix_memalign
  *   chunks (4k-aligned, 64k minimum). Not a third AFW pool kind.
  * - Parent/child is lifetime only (last-release throws if children
  *   remain). Store is the ancestor heap. Trackers may parent other
  *   trackers.
- * - One ST heap per xctx (`afw_pool_heap_create`). Scope trackers
- *   parent that heap, not the enclosing `{ }`. Closures pin the
- *   inner tracker; the xctx heap outlives the outer `{ }`.
+ * - One ST heap per xctx (`afw_pool_heap_create`). Evaluation `{ }`
+ *   uses `afw_pool_scope_create` (last-release delay while a script
+ *   throw is handled). Closures pin the inner scope; the xctx heap
+ *   outlives the outer `{ }`.
  * - `afw_pool_create()` of a ST parent (xctx->p or tracker) is a
- *   tracker. Of an MT parent, an MT heap. `env->p` is the process
- *   MT heap. Things you start (conf, server, log, adapter) use
+ *   tracker (not a scope). Of an MT parent, an MT heap. `env->p`
+ *   is the process MT heap. Things you start (conf, server, log,
+ *   adapter) use
  *   `afw_pool_multithread_create(env->p)`. Compile units use
  *   `afw_pool_heap_create` (own chunks; optional smaller chunk_min).
  * - Managed values allocate in `p->managed_p` (job heap for this
@@ -169,16 +173,34 @@ afw_pool_create_as_managed_p(
 
 
 /**
- * @brief Create a tracker (scope pool).
+ * @brief Create a tracker.
  * @param parent heap or tracker.
  * @param xctx of caller.
- * @return tracker. managed_p is the heap.
+ * @return tracker. managed_p is the ancestor heap.
  *
- * Single-thread only, same thread as the parent. Used as scope->p.
- * The tracker header is a heap block (`free_memory` on destroy).
+ * Single-thread only, same thread as the parent. No last-release
+ * delay on throw. For evaluation `{ }`, use afw_pool_scope_create().
+ * The tracker header is a parent-pool block (`free_memory` on
+ * destroy).
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_tracker_create(
+    const afw_pool_t *parent,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create a scope pool (evaluation `{ }`).
+ * @param parent heap or tracker.
+ * @param xctx of caller.
+ * @return scope pool. managed_p is the ancestor heap.
+ *
+ * Same store as a tracker. Last-release is delayed while
+ * error_processing_count > 0 so CATCH can still use values from
+ * this `{ }`. ENDTRY calls afw_pool_release_delayed().
+ */
+AFW_DECLARE(const afw_pool_t *)
+afw_pool_scope_create(
     const afw_pool_t *parent,
     afw_xctx_t *xctx);
 

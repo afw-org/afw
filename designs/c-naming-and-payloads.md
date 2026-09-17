@@ -1,7 +1,7 @@
 # C naming: values vs utf8/memory payloads
 
 **Audience:** maintainers and assistants.  
-**Not user docs.** User-facing rename map: [`whats-new.md`](../whats-new.md) (UTF-8 create / set / forced_safe).  
+**Not user docs.** User-facing rename map: [`whats-new.md`](../whats-new.md) (UTF-8 create / set / ks).  
 **Code:** `src/afw/utf8/afw_utf8.h`, `src/afw/memory/afw_memory.h`, `src/afw/value/afw_value.h`, generated data-type bindings.  
 **#2** still owns value `managed` / `unmanaged` / `permanent`. The value methods are `get_reference` (bump) and `get_assignable_value` (slot occupant). `clone_or_reference` is a compatibility name for `get_reference`.
 
@@ -38,7 +38,7 @@ Most scalars are one chunk (`afw_integer_t`). Objects/arrays are a `const` point
 - Mixed predicates spell both types in argument order (`starts_with_utf8_z`).
 - **`from_memory` / `as_memory`**: utf8 ↔ `afw_memory_t`. No `afw_raw_t`.
 
-**Internal** is NFC `afw_utf8_t` (`.s` + `.len`). **External** is not that world. Spell **external C string** or **external octets** when the shape matters. Cross with a named door: `to_utf8_z` / `z_create` (C string, throw if interior `0`), `forced_safe` (encode for logs/names), `as_memory` / write with `len` (octets + size). `afw_utf8_utf8_z_t` is the utf8 + z pair when the buffer is already a C string (literal / `z_create`); generated strings use `afw_s_*` / `afw_z_*`.
+**Internal** is NFC `afw_utf8_t` (`.s` + `.len`). **External** is not that world. Spell **external C string** or **external octets** when the shape matters. Cross with a named door: `to_utf8_z` / `z_create` (C string, throw if interior `0`), `ks` (encode for logs/names), `as_memory` / write with `len` (octets + size). `afw_utf8_utf8_z_t` is the utf8 + z pair when the buffer is already a C string (literal / `z_create`); generated strings use `afw_s_*` / `afw_z_*`.
 
 `AFW_UTF8_LITERAL` is a trusted C `"…"` initializer. ASCII (including `\n`) is always UTF-8 NFC. `\x` or a non-UTF-8 source file is a programmer error. AFW does not support EBCDIC.
 
@@ -47,10 +47,10 @@ Most scalars are one chunk (`afw_integer_t`). Objects/arrays are a `const` point
 | Policy | Invalid / Cc become | NFC? | Adaptive value / property name? |
 |--------|---------------------|------|----------------------------------|
 | **`create` / `set`** | Throw | Yes | Yes (if you wrap it) |
-| **`forced_safe`** | `^` + uppercase hex + `^` (runs); `^^` = caret | **No** | **No** |
+| **`ks`** | `^` + uppercase hex + `^` (runs); `^^` = caret | **No** | **No** |
 | **`create_property_name`** | Same encode | Then NFC | **Yes** — a name |
 
-Valid UTF-8 text passes through encode. Unicode **Cc** (`afw_code_point_is_control`) and invalid UTF-8 bytes are hex. **Whitespace/EOL** (`afw_code_point_is_whitespace_or_eol`) stays text. `forced_safe` always **copies**. `printf` / `z_printf` assemble then **`create`** (throw). `%ks` is the only `forced_safe` conversion. Authority: `src/afw/utf8/afw_utf8.h`.
+Valid UTF-8 text passes through encode. Unicode **Cc** (`afw_code_point_is_control`) and invalid UTF-8 bytes are hex. **Whitespace/EOL** (`afw_code_point_is_whitespace_or_eol`) stays text. `ks` always **copies**. `printf` / `z_printf` assemble then **`create`** (throw). `%ks` is the only `ks` conversion. Authority: `src/afw/utf8/afw_utf8.h`.
 
 Env / FCGI names: only three `create_property_name` callers. Documented in object types + `whats-new`.
 
@@ -69,7 +69,7 @@ Do **not** rename `afw_value_create_managed_<dt>` to `afw_value_create_<dt>`. `a
 
 **Gotcha:** a walker that treats `afw_utf8_t->s` as a C string needs a trailing `0`. Old `create` could point at a `z` buffer. New `create` copies **without** a `0`. The RQL origin string uses `create_no_copy` onto `afw_utf8_z_create` for that.
 
-**External C string:** `afw_utf8_to_utf8_z`, `afw_utf8_z_create`, and `afw_utf8_array_to_utf8_z_with_separator` throw if the length-prefixed bytes contain a `0` (pieces and separator). `afw_utf8_z_array_with_separator` checks the separator the same way. A C string cannot hold that value. Length-prefixed concat (`array_to_utf8_with_separator`) stays internal and does not throw. Do not ban `\0`/`\x00` in the lexer. `forced_safe` still encodes U+0000 as `^00^`. `%ku` keeps interior `0` as data. `z_printf` of interior `0` throws. File logical paths already rejected an embedded NUL (`afw_file_path.c`).
+**External C string:** `afw_utf8_to_utf8_z`, `afw_utf8_z_create`, and `afw_utf8_array_to_utf8_z_with_separator` throw if the length-prefixed bytes contain a `0` (pieces and separator). `afw_utf8_z_array_with_separator` checks the separator the same way. A C string cannot hold that value. Length-prefixed concat (`array_to_utf8_with_separator`) stays internal and does not throw. Do not ban `\0`/`\x00` in the lexer. `ks` still encodes U+0000 as `^00^`. `%ku` keeps interior `0` as data. `z_printf` of interior `0` throws. File logical paths already rejected an embedded NUL (`afw_file_path.c`).
 
 ## Code points vs UTF-8
 
@@ -79,7 +79,7 @@ ICU: `afw_utf8.c` (NFC, to_lower, `afw_utf8_icu_error_name_z`) and `afw_code_poi
 
 `afw_utf8_printf` / `z_printf`: own formatter. Prefer `%ku` (`const afw_utf8_t *`; NULL is empty). `AFW_UTF8_FMT` (`%.*s`) is libc and copies n bytes on the AFW walk (interior `0` is data). libc `printf` with `%.*s` still stops at `0`. Assemble then **`create`**. Do not use these to write data files or round-trip octets — `.s` + `.len` / `as_memory`. Landed [#314](https://github.com/afw-org/afw/issues/314) / [PR #315](https://github.com/afw-org/afw/pull/315).
 
-**Default `%s` throw stays.** Do not paper over dirty bytes with `%ks` when data must stay as-is (`%ks` is `forced_safe` / `^hex^`). **Error-in-error:** `afw_utf8_printf_safe` / `z_snprintf_safe` — same walk, but `%s`, `%ku`, and `AFW_UTF8_FMT` encode instead of throw. Used by error `*_fz`, `afw_error_to_utf8`, YAML-from-error, and error object `message` / `rvDecoded` / backtrace. Not a keep-octets door.
+**Default `%s` throw stays.** Do not paper over dirty bytes with `%ks` when data must stay as-is (`%ks` is `ks` / `^hex^`). **Error-in-error:** `afw_utf8_printf_ks` / `z_snprintf_ks` — same walk, but `%s`, `%ku`, and `AFW_UTF8_FMT` encode instead of throw. Used by error `*_fz`, `afw_error_to_utf8`, YAML-from-error, and error object `message` / `rvDecoded` / backtrace. Not a keep-octets door.
 
 LDAP filters, file-adapter paths (dir open, journal, object files), and VFS host-path joins: **concat `.len`**, then **`to_utf8_z`**. Do not glue those with `AFW_UTF8_FMT` / `apr_psprintf`.
 

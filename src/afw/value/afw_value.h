@@ -2111,6 +2111,24 @@ afw_value_symbol_reference_create(
  *
  * Empty or NULL input yields an empty string value.
  */
+/**
+ * @brief Create a managed hexBinary without throwing.
+ * @param internal octets to copy (may be NULL).
+ * @param p caller pool; storage is p->managed_p.
+ * @param xctx of caller.
+ * @return managed hexBinary (caller must release), or NULL.
+ *
+ * Same layout and last-release as create_managed. calloc_no_throw on
+ * p->managed_p. Last-release uses xctx->p->managed_p, so p should be
+ * xctx->p or a tracker of that heap. For error-path code.
+ */
+AFW_DECLARE(const afw_value_hexBinary_t *)
+afw_value_hexBinary_create_no_throw(
+    const afw_memory_t *internal,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_from_external_octets(
     const afw_utf8_octet_t *s,

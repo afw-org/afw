@@ -1356,7 +1356,7 @@ impl_afw_data_type_raw_clone_internal(
 {
     const afw_memory_t *from;
     afw_memory_t *to;
-    afw_byte_t *ptr;
+    afw_octet_t *ptr;
 
     memset(to_internal, 0, sizeof(afw_utf8_t));
     from = from_internal;

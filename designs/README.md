@@ -22,12 +22,12 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`knowledge-atlas.md`](knowledge-atlas.md) | **Topic atlas** — area → rules/pads/probes/gaps; **how the C surface fits**; admin/Fiddle §16. Start here for “where is X?” |
 | [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) | **Whole story** — why AFW is shaped this way, how parts relate (values, compile, pools, env, hosts). Keep and correct; do not trim maps. Not always-on rules |
 | [`mantras-and-working-style.md`](mantras-and-working-style.md) | Mike mantras + partnership habits (subset; grow when shared); philosophy/taste questions — **not** always-on |
-| [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) | **#2 inf-method rails** + **live status (how close, 2026-09-15)** at top. Two worlds / last_return: **#277** pad wins if they disagree. Eval `p`: [`experiment-eval-p.md`](experiment-eval-p.md) wins. Live leak table: `src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md` |
+| [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) | **#2 inf-method rails** + **live status (how close, 2026-09-17)** at top. Two worlds / last_return: **#277** pad wins if they disagree. Eval `p`: [`experiment-eval-p.md`](experiment-eval-p.md) wins. Live leak table: `src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md` |
 | [`issue-2-hold-in-inf-plan.md`](issue-2-hold-in-inf-plan.md) | **Dated** assignable-inf verticals (V1–V7). Do not execute again; current maps are rails + two worlds + eval `p` |
 | [`issue-2-lifetime.md`](issue-2-lifetime.md) | **#2 08-21 story** — history; two worlds **#277** supersedes “managed owns a pool” / “scalars are not a pair”. Live soaks are the lab README, not this pad’s “next vertical” list |
 | [`memory-management.md`](memory-management.md) | Umbrella **#2** archaeology / old phases (live maps: rails + two worlds + eval `p`) |
 | [`issue-2-property-name-values.md`](issue-2-property-name-values.md) | **#2** — object property names as `const afw_value_t *` (landed PR **#220** + wrap-cleanup; script/JSON string-only) |
-| [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | Value vs utf8/memory payloads; `create` / `set` / `no_copy` / `forced_safe`; code_point dir |
+| [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | Value vs utf8/memory payloads; `create` / `set` / `no_copy` / `ks`; code_point dir |
 | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | **#149 closed** (PRs #160–#162) — architecture map: generate maps, OT `runtime`, accessors, env registration, checklist; keep for **#2** follow-on |
 | [`runtime-value-accessors.md`](runtime-value-accessors.md) | Live catalog snapshot of `_AdaptiveRuntimeValueAccessor_` (refresh via `afw -x` retrieve) |
 | [`afwdev-test-recipe.md`](afwdev-test-recipe.md) | Gate vs lab: `test -j`, `-T` / `tests-extra`, firehose, `--output`, valgrind notes |
@@ -60,7 +60,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`sibling-afw-package.md`](sibling-afw-package.md) | Another Git repo next to this base: layout, write wall, sandbox, prime kit |
 | [`experiment-brainstorm.md`](experiment-brainstorm.md) | **#277 closed** (PR **#278**) — unmanaged / managed two worlds (`create_unmanaged` / frames `create_managed`; last_return slot) |
 | [`experiment-eval-p.md`](experiment-eval-p.md) | **#287 landed** — eval `p` = `scope->p` when `{ }` has a frame; throwaway compile/eval loops flatten; BMP in default `test -j` |
-| [`remaining-apr.md`](remaining-apr.md) | APR gone. 64k-min chunks; `heap_create` / `create()` tracker / `p->managed_p`. |
+| [`remaining-apr.md`](remaining-apr.md) | APR gone. 64k-min chunks; `heap_create` / `create()` tracker / `scope_create` / `p->managed_p`. |
 | [`afw-vector.md`](afw-vector.md) | C growable contiguous elements (`afw_vector`); typesafe overlay; not Adaptive `afw_array` |
 | [`afw-hash-table.md`](afw-hash-table.md) | C key→pointer map (`afw_hash_table`); typesafe overlay; **#301** on `develop` |
 | [`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md) | **PR #305**–**#309**; FRV leftover **dropped**. Compile unit is `heap_create` (4k). Managed allocs `p->managed_p`. |

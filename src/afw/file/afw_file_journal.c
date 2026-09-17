@@ -354,7 +354,7 @@ impl_afw_adapter_journal_add_entry_internal(
     if (first_entry) {
         first_entry_save_path = afw_utf8_concat(xctx->p, xctx,
             adapter->root, &impl_s_path_to_first, NULL);
-        temp_raw.ptr = (const afw_byte_t *)relative_entry_path_z;
+        temp_raw.ptr = (const afw_octet_t *)relative_entry_path_z;
         temp_raw.size = strlen(relative_entry_path_z);
         afw_file_from_memory(first_entry_save_path, &temp_raw,
             afw_file_mode_write, xctx);

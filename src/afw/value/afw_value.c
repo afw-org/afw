@@ -850,7 +850,7 @@ afw_value_create_from_external_octets(
 {
     const afw_utf8_t *string;
     afw_memory_t memory;
-    const afw_byte_t *copy;
+    const afw_octet_t *copy;
 
     if (len == AFW_UTF8_Z_LEN) {
         len = (s) ? strlen(s) : 0;
@@ -872,6 +872,38 @@ afw_value_create_from_external_octets(
     memory.ptr = copy;
     memory.size = len;
     return afw_value_create_unmanaged_hexBinary(&memory, p, xctx);
+}
+
+
+AFW_DEFINE(const afw_value_hexBinary_t *)
+afw_value_hexBinary_create_no_throw(
+    const afw_memory_t *internal,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_value_hexBinary_managed_t *v;
+    afw_size_t size;
+    const afw_pool_t *managed_p;
+
+    if (!p || !p->managed_p) {
+        return NULL;
+    }
+    managed_p = p->managed_p;
+    size = (internal) ? internal->size : 0;
+    v = afw_pool_calloc_no_throw(managed_p,
+        sizeof(afw_value_hexBinary_managed_t) + size, xctx);
+    if (!v) {
+        return NULL;
+    }
+    v->inf = &afw_value_managed_hexBinary_inf;
+    v->internal.size = size;
+    v->internal.ptr = (const afw_octet_t *)v +
+        sizeof(afw_value_hexBinary_managed_t);
+    if (internal && internal->ptr && size) {
+        memcpy((void *)v->internal.ptr, internal->ptr, size);
+    }
+    v->reference_count = 1;
+    return (const afw_value_hexBinary_t *)v;
 }
 
 

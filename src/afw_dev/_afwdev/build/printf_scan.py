@@ -27,11 +27,11 @@ _CXTranslationUnit_KeepGoing = 0x200
 # format_index, first_vararg_index (0-based).
 _FUNCS = {
     "afw_utf8_printf_as": (2, 4),
-    "afw_utf8_printf_safe_as": (2, 4),
+    "afw_utf8_printf_ks_as": (2, 4),
     "afw_utf8_z_printf_as": (2, 4),
     "afw_utf8_snprintf_as": (3, 5),
     "afw_utf8_z_snprintf_as": (3, 5),
-    "afw_utf8_z_snprintf_safe_as": (3, 5),
+    "afw_utf8_z_snprintf_ks_as": (3, 5),
     "afw_utf8_printf_len_as": (1, 3),
     "afw_utf8_z_printf_len_as": (1, 3),
     "afw_error_set_fz": (3, 4),
@@ -269,7 +269,7 @@ def parse_format(fmt):
             i += 1
             if kind == "u":
                 slots.append("utf8_ptr")
-            elif kind == "m":
+            elif kind in ("m", "x", "X"):
                 slots.append("memory_ptr")
             elif kind == "s":
                 slots.append("cstr")
@@ -344,7 +344,7 @@ def _is_intish(spelling):
         "size_t", "ssize_t", "ptrdiff_t", "intptr_t", "uintptr_t",
         "int8_t", "int16_t", "int32_t", "int64_t",
         "uint8_t", "uint16_t", "uint32_t", "uint64_t",
-        "afw_integer_t", "afw_size_t", "afw_byte_t",
+        "afw_integer_t", "afw_size_t", "afw_octet_t",
         "enum",
     )
     return any(k in s for k in keys)

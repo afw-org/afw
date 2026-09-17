@@ -65,17 +65,22 @@
  * One ST heap per xctx (`afw_pool_heap_create`). `afw_pool_create()`
  * of a ST parent is a tracker; of an MT parent, an MT heap.
  * `afw_pool_multithread_create(env->p)` for conf/server/log/adapter.
- * Trackers are scope->p and return memory to the ancestor heap.
- * Parent/child is lifetime only. Last-release does not call destroy.
+ * Trackers get memory from the ancestor heap. Evaluation `{ }` uses
+ * a scope pool (`afw_pool_scope_create`). Destroy returns the chain
+ * to the ancestor heap. Parent/child is lifetime only. Last-release
+ * does not call destroy.
  * The heap store is 64k-min, 4k-aligned chunks; destroy free()s the
  * list.
  *
  * Key functions: afw_pool_create(), afw_pool_heap_create(),
  * afw_pool_multithread_create(), afw_pool_create_as_managed_p(),
- * afw_pool_tracker_create(),
+ * afw_pool_tracker_create(), afw_pool_scope_create(),
  * afw_pool_calloc(), afw_pool_malloc(),
+ * afw_pool_calloc_no_throw(), afw_pool_malloc_no_throw(),
  * afw_pool_calloc_unhandled(), afw_pool_malloc_unhandled(),
- * afw_pool_free_memory(), afw_xctx_malloc() / afw_xctx_free(),
+ * afw_pool_free_memory(), afw_pool_free_memory_no_throw(),
+ * afw_pool_garbage_collect(),
+ * afw_xctx_malloc() / afw_xctx_free(),
  * afw_pool_release_value_at_cleanup().
  * `afw_memory_malloc` / `calloc` / `free` (`p, xctx` last) live in
  * `afw_memory.h`.
@@ -537,7 +542,7 @@
  * Untyped pointer+length (`afw_memory_t`) plus copy/encode helpers.
  *
  * Same dest/copy verbs as @ref afw_utf8 (`create` copies, `create_no_copy`
- * points, `set` / `set_no_copy`) but **no NFC** and no `forced_safe`.
+ * points, `set` / `set_no_copy`) but **no NFC** and no `ks`.
  * Cast utf8 → memory with `afw_utf8_as_memory`; the other way is
  * `afw_utf8_from_memory` (NFC). There is no `afw_raw_t`.
  */
@@ -609,11 +614,12 @@
  * **values** (`afw_value_*`) are what can `get_reference` / release.
  *
  * **Internal** is NFC `afw_utf8_t`. **External** (libc, APR, LDAP, logs)
- * uses a named door: `to_utf8_z` / `z_create`, `forced_safe`, or
+ * uses a named door: `to_utf8_z` / `z_create`, `ks`, or
  * `as_memory`. **Printf** (`afw_utf8_printf`) is viewable text: `%%ku` /
- * `%%ks` / `%%km`, then `create` (not whole-buffer `forced_safe`). Error
- * dump uses `afw_utf8_printf_safe` (`%%s` / `%%ku` encode). libc
- * `fprintf` still uses `AFW_UTF8_FMT`.
+ * `%%ks` / `%%km` / `%%kx` / `%%kX`, then `create` (not whole-buffer
+ * `ks`). Error dump uses `afw_utf8_printf_ks` (`%%s` /
+ * `%%ku` encode; `%%km` always encodes). libc `fprintf` still uses
+ * `AFW_UTF8_FMT`.
  *
  * **Naming (short name does more):**
  *
@@ -631,7 +637,7 @@
  * | `set_no_copy` / `z_set_no_copy` | Caller `afw_utf8_t *` | Point; no `p` |
  * | `clone` | New `const` in `p` | Copy struct + `.s` |
  * | `to_utf8_z` / `z_create` | `utf8_z` | External C string; throw if embedded 0 |
- * | `forced_safe` | create/set (always copy) | External encode; `^hex^`; not NFC; not a value |
+ * | `ks` | create/set (always copy) | External encode; `^hex^`; not NFC; not a value |
  * | `create_property_name` | New `const` in `p` | Same encode, then NFC (is a name) |
  *
  * `p` only if something new lives there.

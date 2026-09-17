@@ -53,15 +53,15 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | `afw_v_foo` | Object **property name** (a value). `afw_s_foo` is still utf8 for type ids and other utf8 APIs. |
 | dest `p` | Evaluate, clone, or extra allocation (iterator / meta). **Not** on value getters. |
 
-Utf8 ingest is a **different** table: `create` / `to_` copy; `create_no_copy` / `z_as_utf8` point. Do not read `afw_utf8_z_as_utf8` as a typed value pointer. [UTF-8 doors](#utf-8-create-set-and-forced_safe). Detail for `_as_<type>`: [Typed values](#typed-value-pointers-vs-c-internals).
+Utf8 ingest is a **different** table: `create` / `to_` copy; `create_no_copy` / `z_as_utf8` point. Do not read `afw_utf8_z_as_utf8` as a typed value pointer. [UTF-8 doors](#utf-8-create-set-and-ks). Detail for `_as_<type>`: [Typed values](#typed-value-pointers-vs-c-internals).
 
 | Change this | To |
 |-------------|----|
 | Leftover headers in `/usr/local/include/afw/` after a rebuild | `./afwdev build --cdev` or `--fulldev` (both **`--install`**). CMake does not delete dropped headers; afwdev then removes a leftover list (internals, old generated names, deprecated leftovers). Another package’s **public** headers in that dir stay. If that package still installed `*_internal.h` or `*_declare_helpers.h` there, reinstall **it**. [Upgrade hygiene](#upgrade-hygiene) |
 | `#include` of core internals or package `*_declare_helpers.h` | `#include "afw.h"`. Core **`AFW_DECLARE` / `AFW_DEFINE` / `AFW_BEGIN_DECLARES`** live in **`afw_common.h`**. Package `*_declare_helpers.h` is **not generated**. |
 | Type name `afw_iterator` as the old opaque cursor | That name is the new **keyless** iterator. Legacy cursor is **`afw_iterator_old`**. [#153](#utf-8-code-point-sequences-issue-153) |
-| `afw_utf8_create` / `create_copy` / `from_utf8_z` / `from_raw` | **`create` always copies** (old `create_copy`). Point without copy is **`create_no_copy`**. `from_utf8_z` → **`utf8_z_to_utf8`** (copy) or **`utf8_z_as_utf8`** (point). `from_raw` / `as_raw` → **`from_memory` / `as_memory`**. Env/request names that are not UTF-8 are **`^` + hex + `^`**, not `_NONUTF8_` + whole-name hex. [UTF-8 doors](#utf-8-create-set-and-forced_safe) |
-| `afw_utf8_printf` / `z_printf` / `AFW_THROW_ERROR_FZ` with `AFW_UTF8_FMT` + `FMT_ARG(s)` | **`%ku`** and pass **`s`** (one `const afw_utf8_t *`; NULL is empty). Keep `AFW_UTF8_FMT` / `FMT_ARG` only for **libc** `fprintf`. Default `%s` of dirty bytes **throws** — use **`%ks`**. Error `*_fz` / `error_to_utf8` use **`printf_safe`**. Do not write data files with these (assemble then **`create`**). [UTF-8 printf](#utf-8-create-set-and-forced_safe) |
+| `afw_utf8_create` / `create_copy` / `from_utf8_z` / `from_raw` | **`create` always copies** (old `create_copy`). Point without copy is **`create_no_copy`**. `from_utf8_z` → **`utf8_z_to_utf8`** (copy) or **`utf8_z_as_utf8`** (point). `from_raw` / `as_raw` → **`from_memory` / `as_memory`**. Env/request names that are not UTF-8 are **`^` + hex + `^`**, not `_NONUTF8_` + whole-name hex. [UTF-8 doors](#utf-8-create-set-and-ks) |
+| `afw_utf8_printf` / `z_printf` / `AFW_THROW_ERROR_FZ` with `AFW_UTF8_FMT` + `FMT_ARG(s)` | **`%ku`** and pass **`s`** (one `const afw_utf8_t *`; NULL is empty). Keep `AFW_UTF8_FMT` / `FMT_ARG` only for **libc** `fprintf`. Default `%s` of dirty bytes **throws** — use **`%ks`**. Error `*_fz` / `error_to_utf8` use **`printf_ks`**. Do not write data files with these (assemble then **`create`**). [UTF-8 printf](#utf-8-create-set-and-ks) |
 | `#include <apr_strings.h>` via `afw_common.h`; `apr_pstrdup` / `apr_psprintf` / `apr_pstrndup` | **`afw_common.h` no longer includes it.** Use **`z_create`** / **`to_utf8_z`** / **`afw_utf8_printf`**. `OPTIONAL_ARG` / `OPTIONAL_UNDEFINED_ARG` are **gone** (`%ku` of NULL is empty). |
 | File/VFS `apr_filepath_merge` / `apr_file_*` / `apr_dir_*` / `apr_stat` | **`afw_file_path_*`** (canonicalize, join-under-root) and **`afw_file_*`** (`stat`, `open`, `mkdir_p`, dir listing) in `afw_file.h`. File adapter **`delete_object` of a missing file throws** (`not_found`); APR used to ignore that error. A VFS/host symlink whose realpath leaves the map/`rootFilePaths` root is rejected. |
 | `apr_thread_mutex_*` / `apr_thread_rwlock_*` / `apr_thread_create` via `afw_thread_mutex_*` aliases and `get_apr_pool` | **`afw_thread_mutex_create(flags, p, xctx)`**; lock/unlock take **`xctx`**. Nested is recursive; unnested is not. Same for **`afw_thread_rwlock_*`**. Native thread is **`afw_os_thread_*`** in `os/`. Do not pass an APR pool. |
@@ -75,7 +75,9 @@ Utf8 ingest is a **different** table: `create` / `to_` copy; `create_no_copy` / 
 | `afw_array_get_next_value(..., p, xctx)` / `push_internal` / `get_next_internal` | Drop dest `p` on `get_next_value` / `get_entry_value`. Gone: `push_internal`, `insert_internal`, `remove_internal`, `get_next_internal`, `get_entry_internal`. Use **`push_value`** / **`get_next_value`** or typed `array_of_<type>_add` / `_add_internal`. [Typed values](#typed-value-pointers-vs-c-internals) |
 | `afw_value_as_assignable` / `compile_and_evaluate_as` | **`afw_value_get_assignable`**. **`afw_value_compile_and_evaluate_using`**. [Typed values](#typed-value-pointers-vs-c-internals) |
 | Object/array create that “owns a pool” as `create_managed` | **`create_unmanaged`** (live in `p`), **`create_unmanaged_new_p`**, **`create_unmanaged_cede_p`**. **`create_managed(p, xctx)`** is a **frame** (slots + RC in **`p->managed_p`**). Isolate with **`get_assignable`**. Unmanaged object/array **value** `get_reference` / `release` **throw**. [Value lifetime](#value-lifetime--memory-management-issue-2--alphabeta) |
-| `afw_pool_create(heap)` as a nested heap; `afw_pool_create_xctx_p` | **`afw_pool_create`** of a single-thread parent is a **tracker**. ST heap: **`afw_pool_heap_create(parent, chunk_min, xctx)`** (`0` = 64k). Job/MT: **`afw_pool_multithread_create(env->p)`**. |
+| `afw_pool_create(heap)` as a nested heap; `afw_pool_create_xctx_p` | **`afw_pool_create`** of a single-thread parent is a **tracker**. ST heap: **`afw_pool_heap_create(parent, chunk_min, xctx)`** (`0` = 64k). Job/MT: **`afw_pool_multithread_create(env->p)`**. Evaluation `{ }` is **`afw_pool_scope_create`**. |
+| `afw_byte_t` | **`afw_octet_t`**. `afw_utf8_octet_t` stays `char`. |
+| `error->backtrace` as a pool utf8 / `afw_os_backtrace` returning a buffer | **`const afw_value_hexBinary_t *`** (NULL if none). Captured only when this xctx has **`response:error:backtrace`** on (not a memory error). **`afw_error_release_backtrace`**. Error object property is still a **`ks`** string of those octets. A request can set it with **`_flags_`** / **`flag_set`**. The `afw` command defaults **`response:error`** on. |
 | `afw_xctx_scope_get_assignable_for_lifetime` | **`get_assignable_for_scope_lifetime`** (current `{ }`). Script return uses **`get_assignable_for_p_lifetime`** on the caller. |
 | `afw_pool_register_cleanup_before` | **`afw_pool_register_cleanup`**. Callbacks must not throw uncaught (that stops the rest of the list). |
 | `afw_pool_destroy` that ran cleanup callbacks | **`destroy` is storage-only** (must not fail). **`afw_pool_run_cleanups`** first if callbacks must run (`xctx_release` does both). Last-`release` (RC 0) still runs callbacks then teardown. |
@@ -86,9 +88,9 @@ If you are bringing a **sibling AFW package** or other C that linked old libafw 
 
 1. **Rebuild and reinstall** that tree against this AFW install (same `--cdev` / `--fulldev` vintage). Mixing old DSOs with new `libafw` is unsupported.
 2. **Drop APR as an AFW dependency:** no `apr-1` / `apr-util` in that package’s cmake/`pkg-config` **because of AFW**; no `afw_pool_get_apr_pool`; no `apr_initialize` for AFW; `afw_common.h` no longer includes `<apr_strings.h>`. Grep `apr_`, `get_apr_pool`, `APR_`.
-3. **Pools:** `afw_pool_heap_create` / `afw_pool_create` (tracker if ST parent) / `afw_pool_multithread_create`. `create_managed` takes **`p`** and allocates in **`p->managed_p`**. `destroy` is storage-only; **`run_cleanups`** first. [Value lifetime](#value-lifetime--memory-management-issue-2--alphabeta)
+3. **Pools:** `afw_pool_heap_create` / `afw_pool_create` (tracker if ST parent) / `afw_pool_scope_create` (`{ }`) / `afw_pool_multithread_create`. `create_managed` takes **`p`** and allocates in **`p->managed_p`**. `destroy` is storage-only; **`run_cleanups`** first. [Value lifetime](#value-lifetime--memory-management-issue-2--alphabeta)
 4. **Names as values:** object get/set take `const afw_value_t *` — `afw_s_foo` → **`afw_v_foo`**. [Checklist](#object-property-names-as-values-issue-2)
-5. **UTF-8 printf / throw:** `%ku` / `%ks` / `%km`; no `AFW_UTF8_FMT_ARG` on AFW walks. [Printf](#how-to-fix-printf--throw-formats-in-another-repository)
+5. **UTF-8 printf / throw:** `%ku` / `%ks` / `%km` / `%kx` / `%kX`; no `AFW_UTF8_FMT_ARG` on AFW walks. [Printf](#how-to-fix-printf--throw-formats-in-another-repository)
 6. **Threads / files / getopt / curl body / LDAP setup** as in the table above (no APR pool, no `apr_file_*` / `apr_thread_*` / `apr_getopt_long` / `apr_brigade_*` / `apr_ldap_*` **via AFW**).
 7. **Typed values / arrays:** `_as_<type>` vs `_internal`; drop dest `p` on getters; no `push_internal`. [Typed values](#typed-value-pointers-vs-c-internals)
 
@@ -127,9 +129,9 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Adapter index `current::`**](#adapter-index-filtervalue-current-issue-54--partial) ([#54](https://github.com/afw-org/afw/issues/54) partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
 | [**C builders / afwdev**](#c-api-docs-and-full-package-builds-issue-1) ([#1](https://github.com/afw-org/afw/issues/1)) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
 | [**C vector / hash table**](#c-vector-and-hash-table) | **`afw_vector`** and **`afw_hash_table`** on `afw.h` for C growable lists and name→pointer maps (not Adaptive `afw_array`) |
-| [**Value / memory (α/β)**](#value-lifetime--memory-management-issue-2--alphabeta) ([#2](https://github.com/afw-org/afw/issues/2), [#277](https://github.com/afw-org/afw/issues/277)) | Two worlds: **unmanaged** in dest `p` / tracker; **managed** in **`p->managed_p`**. One ST heap per xctx; `create()` of ST is a tracker; compile units own a heap. Slot protocol; last_return is the slot ([#62](https://github.com/afw-org/afw/issues/62)). Hard-loop soaks for assign / `array_push_pop` / `function_return` are **flat** or under the bar — **[#2](https://github.com/afw-org/afw/issues/2) not closed** (refinements still coming) |
+| [**Value / memory (α/β)**](#value-lifetime--memory-management-issue-2--alphabeta) ([#2](https://github.com/afw-org/afw/issues/2), [#277](https://github.com/afw-org/afw/issues/277)) | Two worlds: **unmanaged** in dest `p` / tracker; **managed** in **`p->managed_p`**. One ST heap per xctx; `create()` of ST is a tracker; `{ }` is a **scope pool**. Slot protocol; last_return is the slot ([#62](https://github.com/afw-org/afw/issues/62)). Hard-loop soaks including `try_catch` are **flat** — **[#2](https://github.com/afw-org/afw/issues/2) not closed** |
 | [**`stringify` / `decompile` / listing**](#stringify-decompile-compiler-listing-and-binary-text) ([#18](https://github.com/afw-org/afw/issues/18)) | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
-| [**UTF-8 create / set / forced_safe**](#utf-8-create-set-and-forced_safe) ([#314](https://github.com/afw-org/afw/issues/314)) | C doors: short **`create`/`set` copy**; **`no_copy`** points; **`forced_safe`** encodes invalid runs as `^hex^`. **`afw_utf8_printf`**: `%ku` / `%ks` / `%km`; assemble then **`create`**. Error dump **`printf_safe`**. libc `fprintf` still uses `AFW_UTF8_FMT`. Checklist for **other repos**. `--scan` type-checks AFW printf |
+| [**UTF-8 create / set / ks**](#utf-8-create-set-and-ks) ([#314](https://github.com/afw-org/afw/issues/314)) | C doors: short **`create`/`set` copy**; **`no_copy`** points; **`ks`** encodes invalid runs as `^hex^`. **`afw_utf8_printf`**: `%ku` / `%ks` / `%km` / `%kx` / `%kX`; assemble then **`create`**. Error dump **`printf_ks`**. libc `fprintf` still uses `AFW_UTF8_FMT`. Checklist for **other repos**. `--scan` type-checks AFW printf |
 | [**UTF-8 in JSON / Fiddle**](#utf-8-in-json-results-and-python-local-mode) | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
 | [**Python `Session("local")`**](#utf-8-in-json-results-and-python-local-mode) | Local FIFO client uses **binary octet** framing so large/UTF-8 responses no longer hang |
 | [**Param / catch Patterns**](#function-parameter-and-catch-patterns-issue-140) ([#140](https://github.com/afw-org/afw/issues/140)) | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys; type syntax for later checking |
@@ -535,7 +537,7 @@ This is generate/docs presentation only; Adaptive function call semantics are un
 
 ---
 
-## UTF-8 create, set, and forced_safe
+## UTF-8 create, set, and ks encoding
 
 C `afw_utf8_t` doors now say **who owns the little struct** and **whether `.s` is a copy**.
 
@@ -551,17 +553,19 @@ C `afw_utf8_t` doors now say **who owns the little struct** and **whether `.s` i
 
 `afw_memory_t` uses the same verbs (no NFC). There is no `afw_raw_t`.
 
-**`forced_safe`** (create/set, always copy): valid UTF-8 text passes through; `^` becomes `^^`; Unicode control (Cc) and invalid UTF-8 **runs** become `^` + uppercase hex + `^`. Tab/LF/CR and other whitespace/EOL stay as text. Result is valid UTF-8, **not** promised NFC, **not** an Adaptive value.
+**`ks`** (create/set, always copy): valid UTF-8 text passes through; `^` becomes `^^`; Unicode control (Cc) and invalid UTF-8 **runs** become `^` + uppercase hex + `^`. Tab/LF/CR and other whitespace/EOL stay as text. Result is valid UTF-8, **not** promised NFC, **not** an Adaptive value.
 
-**`afw_utf8_printf` / `z_printf`** assemble with their own formatter, then **`create`** (NFC / throw). They do **not** `forced_safe` the whole result. Use these for **viewable** text (logs, traces). Do **not** use them to write data files or round-trip octets — write `.s` + `.len` or **`as_memory`**. **`AFW_THROW_ERROR_FZ`**, **`afw_error_to_utf8`**, and the error object use **`printf_safe` / `z_snprintf_safe`**: `%s` and `%ku` **`forced_safe`** instead of throw, so assembling or reporting an error cannot throw because of dirty bytes. Authority: `src/afw/utf8/afw_utf8.h`.
+**`afw_utf8_printf` / `z_printf`** assemble with their own formatter, then **`create`** (NFC / throw). They do **not** ks-encode the whole result. Use these for **viewable** text (logs, traces). Do **not** use them to write data files or round-trip octets — write `.s` + `.len` or **`as_memory`**. **`AFW_THROW_ERROR_FZ`**, **`afw_error_to_utf8`**, and the error object use **`printf_ks` / `z_snprintf_ks`**: `%s` and `%ku` **`ks`** instead of throw, so assembling or reporting an error cannot throw because of dirty bytes. Authority: `src/afw/utf8/afw_utf8.h`.
 
 | Spec | Pass | Notes |
 |------|------|--------|
 | **`%ku`** | `const afw_utf8_t *` | Trusted UTF-8. Interior `0` is data. **NULL is empty** (zero width). |
-| **`%ks`** | C string (`utf8_z`) | Dirty text: **`forced_safe`** instead of throw. |
-| **`%km`** | `const afw_memory_t *` | Always hex of the octets. |
-| **`%s`** | C string | **Throws** if not valid UTF-8. On **`printf_safe`** / error `*_fz`, **`forced_safe`**. |
-| **`AFW_UTF8_FMT` + `FMT_ARG`** | int len, `char *` | **libc only** (`fprintf`, FCGX, syslog). On the AFW walk, exact `%.*s` copies n bytes (including U+0000). On **`printf_safe`**, encode. |
+| **`%ks`** | C string (`utf8_z`) | Dirty text: **`ks`** instead of throw. |
+| **`%km`** | `const afw_memory_t *` | Always `ks` on the octets. |
+| **`%kx`** | `const afw_memory_t *` | Always lowercase hex pairs. |
+| **`%kX`** | `const afw_memory_t *` | Always uppercase hex pairs. |
+| **`%s`** | C string | **Throws** if not valid UTF-8. On **`printf_ks`** / error `*_fz`, **`ks`**. |
+| **`AFW_UTF8_FMT` + `FMT_ARG`** | int len, `char *` | **libc only** (`fprintf`, FCGX, syslog). On the AFW walk, exact `%.*s` copies n bytes (including U+0000). On **`printf_ks`**, encode. |
 
 `z_printf` of interior `0` **throws**. `OPTIONAL_ARG` / `OPTIONAL_UNDEFINED_ARG` are **gone**.
 
@@ -573,7 +577,7 @@ Compile errors / runtime NFC throws on error paths look like: `AFW_UTF8_FMT` in 
 |----------------------------|-----------|
 | `"…" AFW_UTF8_FMT …`, `AFW_UTF8_FMT_ARG(s)` in **`afw_utf8_printf`** / **`z_printf`** / **`AFW_THROW_ERROR_FZ`** | `"…%ku…"`, pass **`s`** (one pointer). Quoted: `"…'%ku'…"`. |
 | `AFW_UTF8_FMT` + `FMT_ARG` in **`fprintf`** / **`FCGX_FPrintF`** / **`syslog`** | **Leave it.** That is libc. |
-| `%s` of bytes that might not be UTF-8 (OS error, LDAP, backtrace) | **`%ks`** on default printf. Error `*_fz` / `error_to_utf8` already **`printf_safe`**. |
+| `%s` of bytes that might not be UTF-8 (OS error, LDAP, backtrace) | **`%ks`** on default printf. Error `*_fz` / `error_to_utf8` already **`printf_ks`**. |
 | `apr_pstrdup` / `apr_pstrndup` / `apr_psprintf` | **`afw_utf8_z_create`** / **`to_utf8_z`** / **`afw_utf8_printf`**. **libafw does not use APR.** Include `<apr_strings.h>` only if **your** tree still calls APR string APIs for non-AFW reasons. |
 | `AFW_UTF8_FMT_OPTIONAL_ARG(s)` / `OPTIONAL_UNDEFINED_ARG(s)` | Pass **`s`** to **`%ku`** (NULL prints nothing). |
 | Hand-rolled `(int)s->len, s->s` after you already switched the format to `%ku` | Pass **`s`**. Extra ints are a crash. |
@@ -595,11 +599,11 @@ AFW_THROW_ERROR_FZ
 
 Rebuild that package against this libafw. Mixing old DSOs with a new `libafw` is **unsupported**.
 
-**`create_property_name`**: same encode as `forced_safe`, then NFC. Used for process env and FCGI/CGI request parameter names.
+**`create_property_name`**: same encode as `ks`, then NFC. Used for process env and FCGI/CGI request parameter names.
 
 `AFW_UTF8_LITERAL` is still a trusted C `"…"` initializer (no check). ASCII including `\n` is always UTF-8 NFC.
 
-`eq_ignore_case` walks each string with its own code-point offset (mixed-width such as `"iX"` vs `"İX"`). Error-object `backtrace` is `forced_safe` then NFC.
+`eq_ignore_case` walks each string with its own code-point offset (mixed-width such as `"iX"` vs `"İX"`). Error-object `backtrace` property is **`ks`** of the OS octets (C field is managed hexBinary).
 
 LDAP filters, file-adapter paths, and **VFS host paths** that used to glue pieces with `AFW_UTF8_FMT` now **concat `.len`**, then **`to_utf8_z`**. An interior `0` throws at that door instead of becoming a truncated or `^00^`-encoded path/filter.
 
@@ -949,7 +953,7 @@ Tests: `src/afw/tests/language/script/object_expression_names.as`.
 
 ## Value lifetime / memory management (issue [#2](https://github.com/afw-org/afw/issues/2)) — alpha/beta
 
-**Issue [#2](https://github.com/afw-org/afw/issues/2)** / **[#277](https://github.com/afw-org/afw/issues/277)** — campaign continues. This line is a **major #2 step**: APR is gone from libafw; one ST heap per xctx; managed allocs use **`p->managed_p`**; hard-loop soaks that used to climb (`array_push_pop`, `function_return`) are **flat** or under the bar. **Not closed** — refinements still coming. α/β.
+**Issue [#2](https://github.com/afw-org/afw/issues/2)** / **[#277](https://github.com/afw-org/afw/issues/277)** — campaign continues. This line is a **major #2 step**: APR is gone from libafw; one ST heap per xctx; managed allocs use **`p->managed_p`**; hard-loop soaks that used to climb (`array_push_pop`, `function_return`, `try_catch`) are **flat**. **Not closed** — refinements still coming. α/β.
 
 ### Two worlds
 
@@ -978,7 +982,7 @@ Assignment, **`return`**, and a call that is not void set the script’s running
 
 - Prefer **shared permanent Adaptive values** (`afw_v_*`) for known scalars where safe.
 - **Slot protocol:** assign / parameters hold the new value and release the old; scope last-release walks slots; C-style `for` and **`for-of` `let`/`const`** clone the loop-local scope per iteration. No `var` hoist, no TDZ, no `for-in`.
-- **Pools:** **libafw does not use APR.** `afw_pool_heap_create` (ST, own chunks; default 64k min, compile units 4k), `afw_pool_create` (tracker if ST parent), `afw_pool_multithread_create` (conf/adapter/server). One ST heap per xctx; scopes are trackers of that heap. `destroy` is storage-only; **`run_cleanups`** first. Process base pool is process lifetime (valgrind **still reachable** is intended).
+- **Pools:** **libafw does not use APR.** `afw_pool_heap_create` (ST, own chunks; default 64k min, compile units 4k), `afw_pool_create` (tracker if ST parent), `afw_pool_scope_create` (evaluation `{ }`), `afw_pool_multithread_create` (conf/adapter/server). One ST heap per xctx. Tracker `free_memory` marks; `garbage_collect` returns marked. `destroy` is storage-only; **`run_cleanups`** first. Process base pool is process lifetime (valgrind **still reachable** is intended).
 - **Script return:** pin on the caller (`get_assignable_for_p_lifetime`). No leftover function-return wrapper inf.
 - **Live counters:** `process::poolBytesInUse` / `maxPoolBytesInUse` / `poolChunkBytes` / `maxPoolChunkBytes` (same numbers on `_AdaptiveServer_/current`).
 - **Objects/arrays:** dual face; C uses **`afw_object_as_value` / `afw_array_as_value`**. Overlay **`set`** on look-through faces holds the local overlay. Get/retrieve already return a **face** — do not `clone()` just to set properties.
@@ -994,7 +998,7 @@ Assignment, **`return`**, and a call that is not void set the script’s running
 - Adaptive `clone()` is not the C `clone_unmanaged` / `clone_managed` pair.
 - Renaming `clone_or_reference` → `get_reference` in user-facing C docs; dropping generated slice infs; mmap / per-chunk free lists.
 
-Statement evaluation `p` **is** each `{ }` frame’s tracker when that `{ }` has a frame (PR **#287**). Nested empty `{ }` is not a frame. Large nested `eval` comment tests (`comments-bmp-*.as`) run in default `afwdev test -j`.
+Statement evaluation `p` **is** each `{ }` frame’s scope pool when that `{ }` has a frame (PR **#287**). Nested empty `{ }` is not a frame. Large nested `eval` comment tests (`comments-bmp-*.as`) run in default `afwdev test -j`.
 
 [↑ Highlights](#highlights)
 
@@ -1333,7 +1337,7 @@ Language reference **Templates and Expressions** (including **Templates in appli
 
 `retrieve_objects("afw", "_AdaptiveEnvironmentVariables_")` now returns a **single** `current` object (process environment), not two identical ones. The `environment::` qualifier is unchanged.
 
-Property **values** from the host environment are Adaptive **string** when the bytes are valid UTF-8 (NFC), otherwise **hexBinary** (raw octets preserved). Property **names** that are not valid UTF-8 use **`forced_safe`**: valid text stays, invalid runs are `^` + uppercase hex + `^`, and a caret in a valid name becomes `^^`. A bad value no longer prevents AFW from starting.
+Property **values** from the host environment are Adaptive **string** when the bytes are valid UTF-8 (NFC), otherwise **hexBinary** (raw octets preserved). Property **names** that are not valid UTF-8 use **`ks`**: valid text stays, invalid runs are `^` + uppercase hex + `^`, and a caret in a valid name becomes `^^`. A bad value no longer prevents AFW from starting.
 
 Request CGI/FCGI-like parameters remain under `_AdaptiveRequestProperties_` / `request::` (separate from process env).
 
@@ -1859,7 +1863,7 @@ Must-change items are at the [top](#must-change-read-this-first). These are easi
 - **VFS:** empty-file read works; replace/modify no longer leaves trailing bytes. Set `maxReadBytes` on servers. [VFS](#vfs-adapter-afw_vfs)
 - **Templates:** `` `\#` `` / `` `\$` `` emit literal `#` / `$` (they used to be an invalid escape). [Templates](#compile-time-template-substitutions-issue-97)
 - **JSON / Fiddle UTF-8:** multi-byte text in `stringify` / Fiddle should display correctly; do not rely on the old `\ufffffff0…` escapes. Out-of-tree Python `Session("local")` needs the updated client. [UTF-8 JSON](#utf-8-in-json-results-and-python-local-mode)
-- **C printf / throw formats:** `AFW_UTF8_FMT` + `FMT_ARG` in `afw_utf8_printf` is a **va_list crash** on this line — use **`%ku`**. Dirty `%s` **throws** on default printf; error `*_fz` encodes. [UTF-8 printf](#utf-8-create-set-and-forced_safe)
+- **C printf / throw formats:** `AFW_UTF8_FMT` + `FMT_ARG` in `afw_utf8_printf` is a **va_list crash** on this line — use **`%ku`**. Dirty `%s` **throws** on default printf; error `*_fz` encodes. [UTF-8 printf](#utf-8-create-set-and-ks)
 - **Schemas:** regenerate before depending on updated editor/validate behavior. [JSON Schema](#json-schema-for-adaptive-object-types)
 - **Model conf:** pure-script adapters may drop `mappedAdapterId`; if you omit it, every used op must be implemented in `on*`. [Model adapters](#pure-script-model-adapters)
 
@@ -1899,7 +1903,7 @@ Must-change items are at the [top](#must-change-read-this-first). These are easi
 | Mutable object faces (shared instances) | [#17](https://github.com/afw-org/afw/issues/17) (closed) | PR **[#150](https://github.com/afw-org/afw/pull/150)** → `mgg-develop` (this file + `designs/issue-17-mutable-object-faces.md`) |
 | UTF-8 code-point sequences (`s[i]`, for-of, formals) | [#153](https://github.com/afw-org/afw/issues/153) | issue-#153 branch → `mgg-develop` (this file + `designs/utf8-code-point-sequences.md`) |
 | AFW printf `%ku`/`%ks`/`%km`; drop APR strings; `--scan` format check | [#314](https://github.com/afw-org/afw/issues/314) | [PR #315](https://github.com/afw-org/afw/pull/315) |
-| Error dump `printf_safe` (`%s`/`%ku` encode; no throw-in-throw) | — | [PR #328](https://github.com/afw-org/afw/pull/328) |
+| Error dump `printf_ks` (`%s`/`%ku` encode; no throw-in-throw) | — | [PR #328](https://github.com/afw-org/afw/pull/328) |
 | Array semantics (dense arrays, elision, `create_array`) | [#39](https://github.com/afw-org/afw/issues/39) | on `mgg-develop` |
 | Conversion functions (type-named; no `null()` / `function()`) | — | on `mgg-develop` (see `designs/conversion-functions.md`) |
 | Runtime catalog / accessors | [#149](https://github.com/afw-org/afw/issues/149) (under [#2](https://github.com/afw-org/afw/issues/2)) | on `mgg-develop` |

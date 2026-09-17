@@ -10,6 +10,7 @@
 #define __AFW_POOL_INTERNAL_H__
 
 #include "afw_interface.h"
+#include <stdint.h>
 
 /**
  * @file afw_pool_internal.h
@@ -17,19 +18,23 @@
  *
  * A pool is a heap unless it is a tracker. A tracker gets memory
  * from a heap, tracks live USER blocks, and returns them to the
- * heap on free or tracker destroy. The heap owns the free list and
- * a list of posix_memalign chunks (4k-aligned, 64k minimum).
- * Destroy free()s every chunk. Parent/child is lifetime only;
- * store is the ancestor heap (`impl_reservoir_heap`).
+ * heap on tracker destroy (or garbage_collect for marked frees).
+ * The heap owns the free list and a list of posix_memalign chunks
+ * (4k-aligned, 64k minimum). Destroy free()s every chunk.
+ * Parent/child is lifetime only; store is the ancestor heap
+ * (`impl_reservoir_heap`).
+ *
+ * Heap and tracker have different self structs. Common prefix is
+ * `afw_pool_internal_self_t`.
  *
  * USER `size` is always the malloc/free_memory argument.
  *
  * Heap live: [USER] or, if AFW_DEBUG_POOL, [size][pool][USER].
- * Tracker live: [prev][next][size][USER] or, if AFW_DEBUG_POOL,
- * [prev][next][size][pool][USER]. With debug, [size][pool] is
- * immediately before USER on both.
+ * Tracker live: [next][size][USER] or, if AFW_DEBUG_POOL,
+ * [next][size][pool][USER]. Low bit of next marks a freed block.
+ * With debug, [size][pool] is immediately before USER on both.
  *
- * Freed blocks overlay afw_pool_free_node_t at the block start.
+ * Freed heap blocks overlay afw_pool_free_node_t at the block start.
  */
 
 AFW_BEGIN_DECLARES
@@ -62,9 +67,7 @@ typedef struct afw_pool_debug_prefix_s {
 
 typedef struct afw_pool_tracker_node_s afw_pool_tracker_node_t;
 struct afw_pool_tracker_node_s {
-    /* Doubly linked for now. Forward-only + a later GC walk is enough;
-     * still tiny vs an APR pool per scope. Do not change now. */
-    afw_pool_tracker_node_t *prev;
+    /* Forward-only. Low bit of next marks freed (collect / destroy). */
     afw_pool_tracker_node_t *next;
 #ifdef AFW_DEBUG_POOL
     afw_pool_debug_prefix_t debug;
@@ -74,6 +77,8 @@ struct afw_pool_tracker_node_s {
 };
 
 #define AFW_POOL_TRACKER_PREFIX_BYTES sizeof(afw_pool_tracker_node_t)
+
+#define AFW_POOL_TRACKER_FREED_BIT ((uintptr_t)1)
 
 #define AFW_POOL_TRACKER_NODE(user) \
     ((afw_pool_tracker_node_t *)((char *)(user) - \
@@ -87,6 +92,17 @@ struct afw_pool_tracker_node_s {
 #else
 #define AFW_POOL_TRACKER_USER_SIZE(node) ((node)->size)
 #endif
+
+#define AFW_POOL_TRACKER_NEXT(node) \
+    ((afw_pool_tracker_node_t *) \
+        ((uintptr_t)((node)->next) & ~AFW_POOL_TRACKER_FREED_BIT))
+
+#define AFW_POOL_TRACKER_IS_FREED(node) \
+    (((uintptr_t)((node)->next) & AFW_POOL_TRACKER_FREED_BIT) != 0)
+
+#define AFW_POOL_TRACKER_MARK_FREED(node) \
+    ((node)->next = (afw_pool_tracker_node_t *) \
+        ((uintptr_t)((node)->next) | AFW_POOL_TRACKER_FREED_BIT))
 
 #define AFW_POOL_HEAP_ALLOC_START(user) \
     ((void *)((char *)(user) - AFW_POOL_HEAP_PREFIX_BYTES))
@@ -135,6 +151,9 @@ struct afw_pool_internal_free_memory_head_s {
     afw_pool_free_node_t *first;
 };
 
+/**
+ * Common prefix of heap and tracker self. First field of both.
+ */
 typedef struct afw_pool_internal_self_s
 afw_pool_internal_self_t;
 
@@ -142,58 +161,19 @@ struct afw_pool_internal_self_s {
 
     afw_pool_t pub;
 
-    /** @brief Unique number for pool. */
+    /** @brief Debug id: thread->pool_number at create. */
     afw_integer_t pool_number;
 
     /**
-     * @brief First malloc chunk (heap only). Trackers leave this NULL.
+     * @brief Creating / owning AFW thread, including MT and base.
      *
-     * Destroy walks this list and free()s every chunk. The heap self
-     * lives in the first allocated chunk.
+     * Identity and ST byte counts. MT asked-for / chunks stay off
+     * thread->pool_bytes_in_use.
      */
-    afw_pool_chunk_t *first_chunk;
-
-    /**
-     * @brief Chunk currently used for bump allocation (heap only).
-     */
-    afw_pool_chunk_t *current_chunk;
-
-    /**
-     * @brief Next unused byte in current_chunk (heap only).
-     */
-    char *bump;
-
-    /**
-     * @brief Bytes left at bump in current_chunk (heap only).
-     */
-    afw_size_t remaining;
-
-    /**
-     * @brief posix_memalign bytes still held (heap only).
-     *
-     * Not asked-for malloc. Trackers are 0; store is the ancestor
-     * heap.
-     */
-    afw_size_t chunk_bytes;
-
-    /**
-     * @brief Number of chunks on first_chunk (heap only).
-     */
-    afw_size_t chunk_count;
-
-    /**
-     * @brief Minimum posix_memalign size for this heap (0 = default).
-     */
-    afw_size_t chunk_min;
-
-    /** @brief Optional pool name. */
-    const afw_utf8_t *name;
+    const afw_thread_t *thread;
 
     /**
      * @brief AFW parent. Child holds it; listed on first_child.
-     *
-     * Same for heap and tracker. A heap still has its own chunks
-     * (`impl_reservoir_heap` stops at a heap).
      */
     afw_pool_internal_self_t *parent;
 
@@ -202,15 +182,6 @@ struct afw_pool_internal_self_s {
 
     /** @brief Next sibling. */
     afw_pool_internal_self_t *next_sibling;
-
-    /**
-     * @brief Owning AFW thread for an ST pool, including base.
-     *
-     * NULL means not thread-owned (multithreaded / shared), not
-     * "this is the process main thread." Child-list locking uses
-     * the pool inf, not this pointer.
-     */
-    const afw_thread_t *thread;
 
     /** @brief First cleanup function. */
     afw_pool_cleanup_t *first_cleanup;
@@ -222,37 +193,91 @@ struct afw_pool_internal_self_s {
      */
     afw_integer_t reference_count;
 
-    /**
-     * Next pool delaying last release while
-     * error_processing_count > 0.
-     */
-    afw_pool_internal_self_t *error_delaying_release_next;
-
-    /** Already on xctx->error_delaying_release_first. */
-    afw_boolean_t error_delaying_release;
-
-    /**
-     * @brief This destroy is in progress.
-     *
-     * Children unlink without releasing this parent. Same for heap
-     * and tracker.
-     */
-    afw_boolean_t destroying;
-
     /** @brief Outstanding malloc/calloc (minus free/destroy). */
     afw_size_t bytes_allocated;
 
     /**
-     * @brief First live tracker allocation (tracker only).
+     * @brief This destroy is in progress.
+     *
+     * Children unlink without releasing this parent.
      */
-    afw_pool_tracker_node_t *first_allocated_memory;
+    afw_boolean_t destroying;
+};
+
+
+typedef struct afw_pool_internal_heap_self_s
+afw_pool_internal_heap_self_t;
+
+struct afw_pool_internal_heap_self_s {
+
+    afw_pool_internal_self_t common;
 
     /**
-     * @brief Free memory head.
+     * @brief First malloc chunk.
      *
-     * Heap-owned free list. Trackers share the parent heap's head.
+     * Destroy walks this list and free()s every chunk. The heap
+     * self lives in the first allocated chunk.
      */
+    afw_pool_chunk_t *first_chunk;
+
+    /** @brief Chunk currently used for bump allocation. */
+    afw_pool_chunk_t *current_chunk;
+
+    /** @brief Next unused byte in current_chunk. */
+    char *bump;
+
+    /** @brief Bytes left at bump in current_chunk. */
+    afw_size_t remaining;
+
+    /**
+     * @brief posix_memalign bytes still held.
+     *
+     * Not asked-for malloc.
+     */
+    afw_size_t chunk_bytes;
+
+    /** @brief Number of chunks on first_chunk. */
+    afw_size_t chunk_count;
+
+    /** @brief Minimum posix_memalign size (0 = default). */
+    afw_size_t chunk_min;
+
+    /** @brief Heap-owned free list head. */
     afw_pool_internal_free_memory_head_t *free_memory_head;
+};
+
+
+typedef struct afw_pool_internal_tracker_self_s
+afw_pool_internal_tracker_self_t;
+
+struct afw_pool_internal_tracker_self_s {
+
+    afw_pool_internal_self_t common;
+
+    /** @brief First live or marked allocation. */
+    afw_pool_tracker_node_t *first_allocated_memory;
+};
+
+
+/**
+ * Scope pool. Same store as tracker plus last-release delay while a
+ * script throw is handled. Extra fields only on this create path.
+ */
+typedef struct afw_pool_internal_scope_self_s
+afw_pool_internal_scope_self_t;
+
+struct afw_pool_internal_scope_self_s {
+
+    afw_pool_internal_tracker_self_t tracker;
+
+    /**
+     * Next pool delaying last release while
+     * error_processing_count > 0.
+     */
+    const afw_pool_t *error_delaying_release_next;
+
+    /** Already on xctx->error_delaying_release_first. */
+    afw_boolean_t error_delaying_release;
 };
 
 
@@ -260,7 +285,7 @@ typedef struct afw_pool_internal_self_with_free_memory_head_s
 afw_pool_internal_self_with_free_memory_head_t;
 struct afw_pool_internal_self_with_free_memory_head_s {
 
-    afw_pool_internal_self_t common;
+    afw_pool_internal_heap_self_t heap;
 
     /* Don't access this directly. Use free_memory_head pointer instead. */
     afw_pool_internal_free_memory_head_t memory_for_free_memory_head;

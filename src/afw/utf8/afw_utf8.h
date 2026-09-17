@@ -38,7 +38,7 @@
  * | External | Door |
  * |----------|------|
  * | C string | `afw_utf8_to_utf8_z` / `z_create` (throw if interior `0`) |
- * | Encode for logs/names | `forced_safe` (not promised NFC) |
+ * | Encode for logs/names | `ks` (not promised NFC) |
  * | Octets + size | `as_memory` / write with `len` (NULs are data) |
  *
  * Generated literals: `afw_s_*` (internal) and `afw_z_*` (external C
@@ -67,7 +67,7 @@
  * | `set` / `set_no_copy` | Fill yours from octets + len |
  * | `clone` | Copy an existing `afw_utf8_t` (struct + bytes) |
  * | `to_utf8_z` / `z_create` | External C string (throw if embedded 0) |
- * | `forced_safe` | External encode; invalid/Cc as `^hex^`; not NFC; not a value |
+ * | `ks` | External encode; invalid/Cc as `^hex^`; not NFC; not a value |
  * | `create_property_name` | Same encode, then NFC (property name only) |
  *
  * `AFW_UTF8_LITERAL` is a trusted C `"…"` initializer (no check).
@@ -486,12 +486,12 @@ afw_utf8_z_set_no_copy(
     afw_xctx_t *xctx);
 
 /**
- * @brief Set to from a forced_safe encoding of s (always copy).
+ * @brief Set to from a ks encoding of s (always copy).
  *
  * Result is valid utf-8, not promised NFC, not an Adaptive value.
  */
 AFW_DECLARE(void)
-afw_utf8_set_forced_safe(
+afw_utf8_set_ks(
     afw_utf8_t *to,
     const afw_utf8_octet_t *s,
     afw_size_t len,
@@ -499,34 +499,34 @@ afw_utf8_set_forced_safe(
     afw_xctx_t *xctx);
 
 /**
- * @brief Ingest a 0-terminated C string with forced_safe encode (copy).
+ * @brief Ingest a 0-terminated C string with ks encode (copy).
  */
 AFW_DECLARE(void)
-afw_utf8_z_set_forced_safe(
+afw_utf8_z_set_ks(
     afw_utf8_t *to,
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Create a forced_safe utf-8 in p (encode, always copy, no NFC).
+ * @brief Create a ks utf-8 in p (encode, always copy, no NFC).
  *
  * Encode: valid text passes through; '^' becomes '^^'; Unicode Cc
  * (U_CONTROL_CHAR) and invalid utf-8 runs become '^' + uppercase hex + '^'.
  * Whitespace/EOL is left as text. Never NFC-throws. Not an Adaptive value.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_utf8_create_forced_safe(
+afw_utf8_create_ks(
     const afw_utf8_octet_t *s,
     afw_size_t len,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
- * @brief Ingest a 0-terminated C string with forced_safe encode (new utf8).
+ * @brief Ingest a 0-terminated C string with ks encode (new utf8).
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_utf8_z_create_forced_safe(
+afw_utf8_z_create_ks(
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -534,7 +534,7 @@ afw_utf8_z_create_forced_safe(
 /**
  * @brief Create an object property name from untrusted external name octets.
  *
- * Same encode as create_forced_safe, then NFC. Result is a property name.
+ * Same encode as create_ks, then NFC. Result is a property name.
  */
 AFW_DECLARE(const afw_utf8_t *)
 afw_utf8_create_property_name(
@@ -731,26 +731,26 @@ afw_utf8_z_snprintf_vas(
     afw_xctx_t *xctx);
 
 /**
- * @brief Real function for afw_utf8_printf_safe (format `s` + `len`).
- * @see afw_utf8_printf_safe
+ * @brief Real function for afw_utf8_printf_ks (format `s` + `len`).
+ * @see afw_utf8_printf_ks
  */
 AFW_DECLARE_ELLIPSIS(const afw_utf8_t *)
-afw_utf8_printf_safe_as(
+afw_utf8_printf_ks_as(
     const afw_pool_t *p, afw_xctx_t *xctx,
     const afw_utf8_octet_t *format_s, afw_size_t format_len, ...);
 
 AFW_DECLARE(const afw_utf8_t *)
-afw_utf8_printf_safe_vas(
+afw_utf8_printf_ks_vas(
     const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 AFW_DECLARE_ELLIPSIS(afw_size_t)
-afw_utf8_z_snprintf_safe_as(
+afw_utf8_z_snprintf_ks_as(
     afw_utf8_z_t *dest, afw_size_t size, afw_xctx_t *xctx,
     const afw_utf8_octet_t *format_s, afw_size_t format_len, ...);
 
 AFW_DECLARE(afw_size_t)
-afw_utf8_z_snprintf_safe_vas(
+afw_utf8_z_snprintf_ks_vas(
     afw_utf8_z_t *dest, afw_size_t size,
     const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
     afw_xctx_t *xctx);
@@ -763,8 +763,8 @@ afw_utf8_z_snprintf_safe_vas(
  * @param ... arguments for @a format_z.
  * @return utf8 in @a p.
  *
- * Assemble, then **`create`** (NFC / throw). Do not `forced_safe` the
- * whole buffer. For octets or round-trip, write `.s` + `.len` /
+ * Assemble, then **`create`** (NFC / throw). Do not ks-encode the
+ * whole result. For octets or round-trip, write `.s` + `.len` /
  * `as_memory`.
  *
  * Prefix `afw_utf8_` vs `afw_utf8_z_` is the **result**. Suffix is the
@@ -794,22 +794,26 @@ afw_utf8_z_snprintf_safe_vas(
  *
  * | Spec | Parameter | Behavior |
  * |------|-----------|----------|
- * | `%%ku` | `const afw_utf8_t *` | Trusted UTF-8: copy `.s` for `.len` (interior `0` is data). On `_safe`, `forced_safe`. |
- * | `%%km` | `const afw_memory_t *` | Always hex of the octets (uppercase pairs, no `0x`). |
- * | `%%ks` | `utf8_z` | Like `%%s`, but **`forced_safe`** on invalid UTF-8. |
+ * | `%%ku` | `const afw_utf8_t *` | Trusted UTF-8: copy `.s` for `.len` (interior `0` is data). On `_ks`, `ks`. |
+ * | `%%km` | `const afw_memory_t *` | Always `ks` on the octets (text through; dirty runs `^hex^`). |
+ * | `%%kx` | `const afw_memory_t *` | Always lowercase hex pairs (no `0x`). |
+ * | `%%kX` | `const afw_memory_t *` | Always uppercase hex pairs (no `0x`). |
+ * | `%%ks` | `utf8_z` | Like `%%s`, but **`ks`** on invalid UTF-8. |
  *
- * `%%s` is `utf8_z` and **throws** if not valid UTF-8. `%%ks` is the
- * only dirty substitution on the default walk. NULL `%%ku` / `%%km`
- * is empty (zero width; no dummy pointer). On `%%k`, `-` / width /
- * precision / `*` are like `%%s` (precision = max **input** bytes).
- * Other flags and length modifiers throw.
+ * `%%s` is `utf8_z` and **throws** if not valid UTF-8. `%%ks` and
+ * `%%km` are dirty substitutions on the default walk. NULL `%%ku` /
+ * `%%km` / `%%kx` / `%%kX` is empty (zero width; no dummy pointer).
+ * On `%%k`, `-` / width / precision / `*` are like `%%s`
+ * (precision = max **input** bytes). Other flags and length
+ * modifiers throw.
  *
- * **`_safe`:** same walk, but `%%s`, `%%ku`, and `AFW_UTF8_FMT`
- * (`%%.*s`) `forced_safe` instead of throw or raw copy. Format
- * literals stay as-is. Assemble then **`create`**. Error `*_fz` and
- * `afw_error_to_utf8` use this so assembling or reporting an error
- * cannot throw because of dirty bytes. Bad spec / invalid format
- * UTF-8 / OOM still throw.
+ * **`_ks`:** same walk, but `%%s`, `%%ku`, and `AFW_UTF8_FMT`
+ * (`%%.*s`) `ks` instead of throw or raw copy (what `%%ks`
+ * does, on those conversions). `%%km` always `ks` (default
+ * and `_ks`). Format literals stay as-is. Assemble then **`create`**.
+ * Error `*_fz` and `afw_error_to_utf8` use this so assembling or
+ * reporting an error cannot throw because of dirty bytes. Bad spec /
+ * invalid format UTF-8 / OOM still throw.
  *
  * **Size** is the buffer needed to hold that result type (not C
  * `snprintf`): utf8 payload only (no trailing `0`); z includes the `0`.
@@ -929,24 +933,24 @@ afw_utf8_z_snprintf_safe_vas(
     afw_utf8_z_snprintf_vas((dest), (size), \
         (format)->s, (format)->len, (ap), (xctx))
 
-/* See afw_utf8_printf: `_safe` encodes %s / %ku / AFW_UTF8_FMT. */
-#define afw_utf8_printf_safe(p, xctx, format_z, ...) \
-    afw_utf8_printf_safe_as((p), (xctx), \
+/* See afw_utf8_printf: `_ks` encodes %s / %ku / AFW_UTF8_FMT. */
+#define afw_utf8_printf_ks(p, xctx, format_z, ...) \
+    afw_utf8_printf_ks_as((p), (xctx), \
         (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
         ##__VA_ARGS__)
 
-#define afw_utf8_printf_safe_v(format_z, ap, p, xctx) \
-    afw_utf8_printf_safe_vas( \
+#define afw_utf8_printf_ks_v(format_z, ap, p, xctx) \
+    afw_utf8_printf_ks_vas( \
         (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
         (ap), (p), (xctx))
 
-#define afw_utf8_z_snprintf_safe(dest, size, xctx, format_z, ...) \
-    afw_utf8_z_snprintf_safe_as((dest), (size), (xctx), \
+#define afw_utf8_z_snprintf_ks(dest, size, xctx, format_z, ...) \
+    afw_utf8_z_snprintf_ks_as((dest), (size), (xctx), \
         (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
         ##__VA_ARGS__)
 
-#define afw_utf8_z_snprintf_safe_v(dest, size, format_z, ap, xctx) \
-    afw_utf8_z_snprintf_safe_vas((dest), (size), \
+#define afw_utf8_z_snprintf_ks_v(dest, size, format_z, ap, xctx) \
+    afw_utf8_z_snprintf_ks_vas((dest), (size), \
         (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
         (ap), (xctx))
 
@@ -964,7 +968,7 @@ afw_utf8_z_snprintf_safe_vas(
  *
  * The input is assumed to already be valid utf-8. Throws if the
  * length-prefixed bytes contain a 0. A C string cannot represent that
- * value. `forced_safe` still encodes U+0000 as `^00^`. `z_printf` of
+ * value. `ks` still encodes U+0000 as `^00^`. `z_printf` of
  * interior `0` throws.
  */
 AFW_DECLARE(const afw_utf8_z_t *)

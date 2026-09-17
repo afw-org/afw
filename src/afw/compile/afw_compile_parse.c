@@ -193,7 +193,7 @@ afw_compile_parse_embellish_error(
         AFW_SIZE_T_FMT
         " column "
         AFW_SIZE_T_FMT
-        ": %s",
+        ": %ks",
         parser->token->token_source_offset, line, column,
         error->message_z);
 

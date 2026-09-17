@@ -29,8 +29,11 @@ Heap and tracker use the same parent/child RC. Last-`release` does not call `des
 | `afw_pool_heap_create(parent, chunk_min, xctx)` | ST heap, `managed_p = self`. `chunk_min` 0 → 64k. xctx/thread heaps. Compile units use **4k**. |
 | `afw_pool_multithread_create(env->p)` | MT job heap, `managed_p = self`. Conf, adapter, server, log. |
 | `afw_pool_create(parent)` | Tracker if ST parent; MT heap if MT parent. Parent/child is **lifetime** only; store is the ancestor heap. |
+| `afw_pool_tracker_create(parent)` | Tracker. No throw last-release delay. Heap or tracker parent. |
+| `afw_pool_scope_create(parent)` | Evaluation `{ }`. Same store as a tracker; last-release delayed while `error_processing_count` > 0. |
+| `malloc_no_throw` / `calloc_no_throw` / `free_memory_no_throw` | Same as malloc/calloc/free; NULL / no-op instead of throw. |
 
-One ST heap per xctx (`xctx->p`). Scopes are trackers of that heap, not of the enclosing `{ }` (closures pin the inner tracker). No `evaluation_heap`. Managed values allocate in `p->managed_p` (job heap for this eval; do not swap mid-eval). Request: `xctx->p->managed_p` is `xctx->p`. `create_managed` takes `p`. Last-release of managed object/array uses `self->pub.p`. Evaluate of a compiled value **clones onto the caller’s `p`**.
+One ST heap per xctx (`xctx->p`). Evaluation `{ }` uses `afw_pool_scope_create` of that heap (closures pin the inner scope). No `evaluation_heap`. Managed values allocate in `p->managed_p` (job heap for this eval; do not swap mid-eval). Request: `xctx->p->managed_p` is `xctx->p`. `create_managed` takes `p`. Last-release of managed object/array uses `self->pub.p`. Evaluate of a compiled value **clones onto the caller’s `p`**.
 
 Process/server runtime objects expose live `poolBytesInUse` / `peakPoolBytesInUse` / `poolChunkBytes` / `peakPoolChunkBytes` (`env_pool_stat`). `process::rss` is bytes.
 
@@ -53,7 +56,7 @@ C API notes: `whats-new.md` (`run_cleanups` / storage-only `destroy`, `register_
 | Sitting | What |
 |---------|------|
 | Vector / hash | `afw_vector`, `afw_hash_table` |
-| Strings / printf | AFW `%ku` / `%ks` / `%km` |
+| Strings / printf | AFW `%ku` / `%ks` / `%km` / `%kx` / `%kX` |
 | C11 + `afw_os_*` | DSO, time, random, fnmatch, signal, cwd, realpath, UUID |
 | Filepath + file I/O | `afw_file_path_*` / `afw_file_*` |
 | Threads | pthreads via `afw_os_*`; public `afw_thread_*` |
@@ -61,7 +64,7 @@ C API notes: `whats-new.md` (`run_cleanups` / storage-only `destroy`, `register_
 | Getopt | `afw_getopt_*` in libafw |
 | LDAP setup | OpenLDAP `ldap_*` |
 | Dead time | `from_apr_time` gone |
-| Unhandled alloc | `afw_pool_malloc_unhandled` / `calloc_unhandled` |
+| Unhandled alloc | `malloc_no_throw` / `calloc_no_throw` on the inf; helpers still dispatch |
 | Reservoir | 64k-min, 4k-aligned `posix_memalign` chunks; destroy walks `first_chunk` |
 
 `afwfcgi` argv is still a strcmp loop (never APR getopt).
