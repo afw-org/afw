@@ -1570,9 +1570,6 @@ typedef void
 *(AFW_THREAD_FUNCTION *afw_thread_function_t)
     (const afw_thread_t *thread, void *arg);
 
-/** @brief Typedef for afw_thread_attr. */
-typedef struct afw_thread_attr_s afw_thread_attr_t;
-
 /** @brief Typedef for union of all cType. */
 typedef union afw_c_types_u {
 
@@ -1787,28 +1784,6 @@ typedef void
     void *data, afw_xctx_t *xctx);
 
 
-
-
-/**
- * @brief Per-compile policy (flags as defaults; #compile overrides this only).
- *
- * Snapshot of effective compile:* knobs for one compiled unit. Process flags
- * are defaults; #compile mutates this snapshot only (never process flags).
- * Type checks resolve policy via contextual->compiled_value, else flags.
- * See designs/pragma-hash-design.md and afw_compile_parse_pragma.c.
- */
-struct afw_compile_policy_s {
-    /** Full typeCheck (compile + runtime). compile_only wins if both set. */
-    afw_boolean_t type_check;
-    /** Compile-time type checking only. */
-    afw_boolean_t type_check_compile_only;
-    /** Require annotations when type checking is active. */
-    afw_boolean_t no_implicit_any;
-    /** Strict null/undefined assignability when type checking is active. */
-    afw_boolean_t strict_null_checks;
-    /** Prefer unoptimized built-in call evaluation. */
-    afw_boolean_t no_optimize;
-};
 
 
 AFW_END_DECLARES

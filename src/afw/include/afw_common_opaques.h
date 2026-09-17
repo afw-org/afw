@@ -733,6 +733,14 @@ typedef struct afw_thread_s
 afw_thread_t;
 
 /**
+ * @brief Opaque `afw_thread_attr_t`.
+ *
+ * Defined in afw_thread.c. See afw_thread.h.
+ */
+typedef struct afw_thread_attr_s
+afw_thread_attr_t;
+
+/**
  * @brief Opaque `afw_thread_mutex_t`.
  *
  * Same as `afw_os_mutex_t`. See afw_thread.h / afw_os.h.
@@ -848,7 +856,7 @@ afw_value_closure_binding_t;
  * @brief Opaque `afw_compile_policy_t`.
  *
  * Per-compile policy (flag defaults + #compile overrides). Full struct in
- * afw_common.h; also stored on afw_value_compiled_value_t.
+ * afw_compile.h; also stored on afw_value_compiled_value_t.
  */
 typedef struct afw_compile_policy_s
 afw_compile_policy_t;
