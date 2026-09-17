@@ -82,8 +82,10 @@ Underscore dir on purpose: `afwdev test` must not evaluate these as tests
 Measured **2026-09-16**; isolate sitting on `develop` as
 [PR #340](https://github.com/afw-org/afw/pull/340). Same 8 s soaks,
 2 s warmup as **2026-09-15**. Nested `{ }` last plant dropped
-(`try.as` SIGSEGV); soaks unchanged. `try_catch` leftover is
-[#341](https://github.com/afw-org/afw/issues/341). `in_use` is `env->pool_bytes_in_use` (AFW malloc not given
+(`try.as` SIGSEGV); soaks unchanged. `try_catch` in_use is **flat**
+(2026-09-17): managed hexBinary backtrace released on caught ENDTRY
+([#341](https://github.com/afw-org/afw/issues/341)).
+`in_use` is `env->pool_bytes_in_use` (AFW malloc not given
 back). Valgrind on `afwdev test -j` does **not** catch these —
 request-end bulk-free hides them. gdb `in_use` can occasionally return
 garbage; if RSS is flat and `in_use` is huge or ~0, rerun that one
@@ -105,7 +107,7 @@ Fail line: RSS **8 MiB/s**, in_use **2 MiB/s**. `array_append` must grow.
 | `array_rebind` | `a = [i]` | **flat / flat** | **flat / flat** |
 | `string_same_size` | `"x"` / `"y"` overwrite | **flat / flat** | **flat / flat** |
 | `function_return` | `i = f()` inside `{ }` | **flat / flat** | **~1.5 MiB/s both** (under bar) |
-| `try_catch` | throw/catch each iter | RSS wander / **~0.25 MiB/s in_use** (OS backtrace) | RSS flat-or-down / ~0.3 MiB/s |
+| `try_catch` | throw/catch each iter | **flat / flat** (2026-09-17) | RSS wander / ~0.25 MiB/s in_use |
 | `closure_rebind` | rebind capturing function | **flat / flat** | **flat / flat** |
 | `compile_once_eval` | compile once, `evaluate` loop | **flat / flat** | **flat / flat** |
 | `array_push_pop` | push then pop | **flat / flat** | **flat / flat** |
@@ -115,9 +117,9 @@ Fail line: RSS **8 MiB/s**, in_use **2 MiB/s**. `array_append` must grow.
 0-param call does not isolate enclosing last). No `function_return_value`
 wrapper. Pin is on the caller.
 
-`try_catch`: `afw_os_backtrace` ~11 KiB on `xctx->p` every `throw`,
-previous pointer dropped. Not script RC. Release-on-overwrite is a later
-sitting; do not skip capture as a paper-over.
+`try_catch`: `afw_os_backtrace` returns a managed hexBinary; caught
+ENDTRY / overwrite `afw_value_release`s it. 15 s soak 2026-09-17:
+in_use **0 B/s**. Do not skip capture.
 
 ## Server soaks (same day)
 
@@ -171,15 +173,15 @@ Useful hunts after Ctrl-C (**no debug flags** on a soak):
 
 1. `afw-bt` — braced empty `{ }` should sit in while / boolean, not
    tracker create. `function_return` and `array_push_pop` are flat.
-   Remaining climb in this lab: `try_catch` (OS backtrace).
+   Remaining climb in this lab: none of the hard-loop table
+   (`try_catch` backtrace leftover closed).
 2. `afw-heap` / `afw-rss` — three numbers: VmRSS,
    `xctx->p` `bytes_allocated` / `chunk_bytes`, `env->pool_bytes_in_use`.
    Two interrupts 5s apart:
    - RSS up, in_use flat → pages not returned to the OS (not AFW
      asked-for).
-   - RSS and in_use up together → AFW malloc not given back. That is
-     `try_catch` today (`afw_os_backtrace` on `xctx->p`).
-     `function_return` / `array_push_pop` are flat.
+   - RSS and in_use up together → AFW malloc not given back.
+     `try_catch` / `function_return` / `array_push_pop` are flat.
    - heap `bytes_allocated` up with in_use → xctx heap malloc not
      given back.
 3. Do **not** `call afw_os_get_rss()` from gdb after SIGSTOP.
@@ -226,7 +228,7 @@ If a symbol is missing (`nm` on this `libafw` may not export
 
 Assign / overlay / rebind / empty `{ }` / `array_push_pop` /
 `function_return` stay at allocator noise. Remaining growth in this
-lab: `try_catch` (~0.25 MiB/s in_use, OS backtrace). `array_append`
+lab: hard-loop table is flat. `array_append`
 should still grow.
 
 Do not put these loops in the default gate. Correctness of assign/faces

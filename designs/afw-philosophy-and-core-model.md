@@ -123,7 +123,7 @@ Live maps: rails [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md), two worlds 
 - **Permanent** / **compiled unit** = immutable; holds are no-ops. **Everything in a compiled unit is immutable.** Script mutates a **face** over literals, not the compiled instance.
 - **Eval `p`** is `scope->p` when `{ }` has a frame. Nested empty `{ }` is not a frame. Temps land on that tracker and die with last-release.
 - **`get_reference` / `release`** are not “GC for everything.” Classic example: `closure_binding` holding a **scope** so symbols survive `}`. Slot fill is `get_assignable_value`.
-- Pools: general APR (`afw_pool_create*`) plus evaluation heap/tracker (single-thread). No reparent on destroy.
+- Pools: heap + tracker (mt = lock wrappers); evaluation `{ }` is a scope pool. No reparent on destroy. APR is gone.
 
 Short scripts and request-scoped work were production-proven early because **destroying the request pool** papered over incomplete escape polish. Long-running processes need the full hold protocol — that is why **#2** remains a first-class campaign.
 
