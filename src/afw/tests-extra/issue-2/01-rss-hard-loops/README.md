@@ -84,7 +84,7 @@ Measured **2026-09-16**; isolate sitting on `develop` as
 2 s warmup as **2026-09-15**. Nested `{ }` last plant dropped
 (`try.as` SIGSEGV); soaks unchanged. `try_catch` in_use is **flat**
 (2026-09-17): managed hexBinary backtrace released on caught ENDTRY
-([#341](https://github.com/afw-org/afw/issues/341)).
+([#341](https://github.com/afw-org/afw/issues/341) / [PR #354](https://github.com/afw-org/afw/pull/354)).
 `in_use` is `env->pool_bytes_in_use` (AFW malloc not given
 back). Valgrind on `afwdev test -j` does **not** catch these —
 request-end bulk-free hides them. gdb `in_use` can occasionally return
