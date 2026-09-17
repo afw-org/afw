@@ -23,7 +23,7 @@ afw_doxygen.h
 
 | Context | Include |
 |---------|---------|
-| Core `src/afw/**/*.c` | **`afw_internal.h` only** (pulls `afw.h` + internals + generated registration) |
+| Core `src/afw/**/*.c` | **`afw_internal.h` only** (defines xctx/env internal-member flags, then `afw.h` + internals + generated registration) |
 | Extension / command `.c` | **`afw.h`** — never `afw_internal.h` |
 | New public module header | Prefer `#include "afw_interface.h"`; use `afw_minimal.h` only if it must stay in the minimal set (must not be pulled *by* `afw_minimal.h` itself) |
 | Headers under `afw_minimal.h` | Only depend on `afw_interface.h` / non-AFW deps — keep the minimal contract |

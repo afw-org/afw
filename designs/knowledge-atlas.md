@@ -137,7 +137,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 |-------|---------|
 | **Settled map** | One subdirectory ≈ one concern; includes hierarchy; pools/xctx/errors patterns |
 | **Day rules** | `afw-core-layout`, `afw-c-runtime`, `afw-headers` |
-| **Deep pad** | C containers: [`afw-vector.md`](afw-vector.md), [`afw-hash-table.md`](afw-hash-table.md) |
+| **Deep pad** | C containers: [`afw-vector.md`](afw-vector.md), [`afw-hash-table.md`](afw-hash-table.md); headers/install: [`libafw-headers-and-api-surface.md`](libafw-headers-and-api-surface.md) (PR **#350** prefix/tail) |
 | **Probe** | Open matching `src/afw/<module>/`; public API via `afw.h` / generated interface headers |
 | **Open** | Line-length soft preference (~80); no mass reformat |
 | **Gap** | Non-pool cleanup mantra (NULL + TRY/FINALLY) lives in rules + workspace MEMORY — already in `afw-c-runtime` |

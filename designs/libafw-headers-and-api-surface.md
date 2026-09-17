@@ -10,14 +10,14 @@
 | Include | Who | Role |
 |---------|-----|------|
 | **`afw.h`** | Extensions, commands, apps (and anything using libafw from C) | **One convenient public umbrella**: call API **and** interface **impl helpers**. Fat on purpose — AFW is a framework, not a micro-library. Avoid header hell for implementers. |
-| **`afw_internal.h`** | **`src/afw/**/*.c` only** | libafw implementation: `afw.h` + core `*_internal.h` + register/generated glue. May change any build. |
+| **`afw_internal.h`** | **`src/afw/**/*.c` only** | libafw implementation: defines `AFW_XCTX_INTERNAL_MEMBERS` / `AFW_ENVIRONMENT_INTERNAL_MEMBERS` then `afw.h` + core `*_internal.h` + register/generated glue. May change any build. |
 | **`<pkg>_internal.h`** | That extension/command package only | Same idea inside a package (`afw_lmdb_internal.h`, `afw_command_internal.h`, …). |
 
 ### Header graph (not a second public API)
 
 | Header | Role |
 |--------|------|
-| **`afw_common.h`** | Early shared substrate (APR, opaques, typedefs/`#define`s needed by interfaces + peers). **Frozen placement** — some things “wanted” module headers but live here to avoid cycles. Do not reshuffle casually. |
+| **`afw_common.h`** | Early shared substrate (C types, utf8/memory/dateTime, enums/structs generated interfaces embed). Complete `afw_xctx_s` / `afw_environment_s` / `afw_compile_policy_s` live in their module headers. |
 | **`afw_interface.h`** (generated) | Contracts + call macros. Module headers typically `#include "afw_interface.h"` only. |
 | **`afw_minimal.h`** | **Header bootstrap**, not a thinner app API. Included by **other headers** (and first from `afw.h`); **not** by `.c` files. Curated closed set after interfaces; membership left alone unless forced. |
 | **`*_impl.h` / `*_impl_declares.h`** | Implementers of interfaces. On `afw.h` for convenience. Generated `*_impl_declares.h` from implementer `.c` only. |
@@ -31,8 +31,14 @@ afw_minimal.h     ← headers needing bootstrap set
         ↑
 afw.h             ← .c convenience (call + impl)
         ↑
-afw_internal.h    ← libafw .c only
+afw_internal.h    ← libafw .c only (defines xctx/env internal-member flags first)
 ```
+
+### Public prefix / core tail (PR #350)
+
+`afw_xctx_s` and `afw_environment_s` are **one type, two views**. Public `afw.h` sees a prefix (fields public macros and hosts load). Core `.c` files include `afw_internal.h`, which `#define`s `AFW_XCTX_INTERNAL_MEMBERS` / `AFW_ENVIRONMENT_INTERNAL_MEMBERS` **before** `afw.h`, so the same struct grows a tail from `afw_xctx_internal_members.h` / `afw_environment_internal_members.h`. Do not `sizeof` / copy an xctx or env. C probes that need tail fields (e.g. heap `chunk_min`) must `-D` the env flag and `-I` the module dir; installed `afw.h` is the short view.
+
+Public prefix still includes `xctx->evaluation_stack` (`AFW_TRY` rewind), `env->log` / `terminating` / compile and debug-evaluation flag indexes (`AFW_LOG`, type-check macros). Header static inlines are gone except `afw_associative_array_template.h`.
 
 ### Version / ABI
 
@@ -43,8 +49,8 @@ afw_internal.h    ← libafw .c only
 ### Install policy (current)
 
 - **Default install = public + implementer surface:** transitive needs of `afw.h` plus generated `*_impl_declares.h` (and related impl helpers such as `afw_adapter_impl_index.h` used by in-tree adapters).
-- **Do not install:** core `*_internal.h` / `afw_internal.h`, generated register/bindings/const-objects glue (`*_function_bindings_internal.h`, etc.), `afw_strings_internal.h`, deprecated leftovers (`model_location`, `array_template`, any residual `declare_helpers`). `log_deprecated*` is gone from the tree; prune still denylists leftover installs.
-- Filters live in `src/afw/CMakeLists.txt` (and generators omit `*_internal.h` from the public list).
+- **Do not install:** core `*_internal.h` / `*_internal_*.h` (e.g. `afw_xctx_internal_members.h`) / `afw_internal.h`, generated register/bindings/const-objects glue (`*_function_bindings_internal.h`, etc.), `afw_strings_internal.h`, deprecated leftovers (`model_location`, `array_template`, any residual `declare_helpers`). `log_deprecated*` is gone from the tree; prune still denylists leftover installs.
+- Filters live in `src/afw/CMakeLists.txt` (and generators omit names containing `_internal` from the public list).
 - **cmake `--install` does not delete** files dropped from `PUBLIC_HEADER` (additive). `--cdev` and `--fulldev` both enable `--install`; after that cmake install, afwdev prunes a **denylist** in the prefix include dir: `*_internal.h`, CMakeLists denylist names (`declare_helpers`, `log_deprecated*`, `model_location`, `array_template`, `skeleton_*`), old generated public names (`afw_function_bindings.h`, `afw_const_objects.h`, `afw_generated.h`), and package `*_declare_helpers.h`. Not a wipe: another package’s public headers in `include/afw` stay; if they still installed `*_internal.h` or `*_declare_helpers.h` there, those two globs remove them (reinstall that package). C probes also put extra `-I` (source-tree internals) before the install include dir. Code: `prune_leftover_installed_headers()` in `_afwdev/build/cmake.py`. Gate: `src/afw_dev/tests/build_profiles.py`.
 - Optional later: “dev headers” install if someone asks.
 - Monorepo builds still see full source includes at **build** time; filter applies to **install**.
@@ -81,15 +87,14 @@ If unsure whether something is sense 1 vs 2, prefer **not promoting** to public 
 
 **Explicitly deferred (not this PR):**
 
-- Struct/body exposure on non-generated public headers (separate pass).
-- Optional nits: `afw_object_type_internal_create`, `afw_runtime_get_internal_session`, whether `afw_components.h` belongs on `afw.h`.
+- Optional nits: `afw_runtime_get_internal_session`, whether `afw_components.h` belongs on `afw.h`.
 - Package `*_declare_helpers.h` **no longer generated** (#172). Core macros live in `afw_common.h`.
 - Doxygen: default = public C API; Adaptive `execute_*` catalog lives under internal groups — optional later **dev docs** profile (`INTERNAL_DOCS=YES`), not re-public the catalog.
 
 ## Work notes
 
 - No known current out-of-tree `#include` of core `*_internal.h`; residual risk is **symbols** that should be internal still declared on public headers, or **public-looking** APIs that are core-only.
-- `AFW_DECLARE_INTERNAL` / `AFW_DEFINE_INTERNAL` = not external API (no export declspec). Prefer those symbols in `*_internal.h`, not on the `afw.h` surface. If an extension/command legitimately needs a helper, promote to `AFW_DECLARE` and document under impl/public.
+- Internal functions and data in `*_internal.h` are **plain C** (no `AFW_DECLARE` / `AFW_DEFINE`). `extern` only for data, not functions. If an extension/command legitimately needs a helper, promote to `AFW_DECLARE` on a public header.
 - `afw_runtime_object_maps.h` stays public: extensions reference exported core `afw_runtime_inf_*` symbols.
 
 ## Generated file banners (soon — not done yet)
@@ -143,7 +148,7 @@ same shot.
 | `afw_flag_internal_early_register_core` | `afw_flag.h` | `flag/afw_flag_internal.h` (`afw_flag.c`) |
 | `afw_lock_create_environment_nested_lock` | `afw_lock.h` | `lock/afw_lock_internal.h` (`afw_lock.c`) |
 
-Still public with `@internal` layouts/comments (later passes): lock struct bodies, adapter id anchor, pool thread create comment, etc.
+Moved off `afw.h` (PR **#350**): `afw_object_type_internal_create`, unhandled pool alloc / delayed release, `AFW_ERROR_INTERNAL_ON_UNHANDLED`, lock struct bodies, adapter id anchor, content-type stubs. `AFW_TRY` rewind and `afw_os_backtrace` stay public (macros / OS portability).
 
 ### Generated register / bindings (internal, not installed)
 
@@ -171,3 +176,4 @@ Plain C (undecorated). Core: via `afw_internal.h`. Packages: package-private inc
 | 2026-08-12 | Victory note for branch; three senses of “internal”; deferred structs / declare_helpers removal / optional nits. |
 | 2026-08-14 | Package `*_declare_helpers.h` no longer generated (#172). |
 | 2026-09-01 | afwdev `--cdev`/`--fulldev` `--install` prunes leftover include-dir names (denylist, not wipe). C probes search extra `-I` before the install include dir. |
+| 2026-09-17 | [PR **#350**](https://github.com/afw-org/afw/pull/350): public xctx/env **prefix**; core tail via `AFW_XCTX_INTERNAL_MEMBERS` / `AFW_ENVIRONMENT_INTERNAL_MEMBERS` in `afw_internal.h` (`*_internal_members.h`). Structs in `afw_xctx.h` / `afw_environment.h` / `afw_compile.h`. Header static inlines gone except associative-array template. Core-only decls in `*_internal.h` without `AFW_DECLARE`. Public macros still freeze a few prefix fields (`evaluation_stack` for TRY; env `log` / `terminating` / type-check flag indexes). |
