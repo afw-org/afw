@@ -75,7 +75,7 @@ struct afw_vfs_adapter_internal_session_context_s {
 };
 
 
-extern const afw_adapter_t *
+const afw_adapter_t *
 afw_vfs_adapter_internal_create_cede_p(
     const afw_object_t *properties,
     const afw_pool_t *p,
@@ -83,7 +83,7 @@ afw_vfs_adapter_internal_create_cede_p(
 
 
 
-extern const afw_adapter_session_t *
+const afw_adapter_session_t *
 afw_vfs_adapter_internal_session_create(
     afw_vfs_adapter_internal_t *adapter,
     afw_xctx_t *xctx);

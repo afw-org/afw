@@ -286,7 +286,7 @@ afw_pool_internal_heap_create(
     afw_size_t chunk_min,
     afw_xctx_t *xctx);
 
-extern void
+void
 afw_pool_print_debug_info(
     int indent,
     const afw_pool_t *pool,

@@ -2666,7 +2666,7 @@ afw_compile_current_raw_token(
 }
 
 
-AFW_DEFINE(afw_code_point_t)
+afw_code_point_t
 afw_compile_peek_code_point(afw_compile_parser_t *parser)
 {
     afw_size_t cursor;

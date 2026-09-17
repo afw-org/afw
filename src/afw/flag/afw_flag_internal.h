@@ -32,7 +32,7 @@ AFW_BEGIN_DECLARES
  *
  * Called from afw_environment_register_core.c.
  */
-extern void
+void
 afw_flag_internal_early_register_core(afw_xctx_t *xctx);
 
 AFW_END_DECLARES

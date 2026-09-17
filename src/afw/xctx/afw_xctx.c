@@ -69,7 +69,7 @@ impl_set_evaluation_stack(afw_xctx_t *xctx)
 }
 
 
-AFW_DEFINE(afw_xctx_t *)
+afw_xctx_t *
 afw_xctx_internal_create_initialize(
     afw_try_t *unhandled_error,
     afw_error_t *error,
@@ -136,7 +136,7 @@ afw_xctx_internal_create_initialize(
 }
 
 
-AFW_DEFINE(void)
+void
 afw_xctx_internal_create_finishup(afw_xctx_t *xctx)
 {
     /*
@@ -245,7 +245,7 @@ afw_xctx_check_resource_limits(
 }
 
 
-AFW_DEFINE(afw_xctx_t *)
+afw_xctx_t *
 afw_xctx_internal_create_thread_xctx(
     const afw_thread_t *thread, afw_xctx_t *xctx) 
 {

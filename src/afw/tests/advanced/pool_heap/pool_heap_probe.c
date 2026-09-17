@@ -26,7 +26,9 @@
  *
  * Same shape as tests/advanced/pool_alloc/pool_alloc_probe.c.
  *
- * Compiles with extra -I to src/afw/pool for afw_pool_internal.h.
+ * Compiles with extra -I to src/afw/pool and src/afw/environment,
+ * and -DAFW_ENVIRONMENT_INTERNAL_MEMBERS so env->chunk_min and
+ * pool_bytes_in_use are visible (not on the public env prefix).
  */
 
 #define IMPL_SIZE_SMALL  ((afw_size_t)32)
