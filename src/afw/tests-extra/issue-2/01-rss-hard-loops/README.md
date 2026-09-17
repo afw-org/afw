@@ -117,9 +117,13 @@ Fail line: RSS **8 MiB/s**, in_use **2 MiB/s**. `array_append` must grow.
 0-param call does not isolate enclosing last). No `function_return_value`
 wrapper. Pin is on the caller.
 
-`try_catch`: `afw_os_backtrace` returns a managed hexBinary; caught
-ENDTRY / overwrite `afw_value_release`s it. 15 s soak 2026-09-17:
-in_use **0 B/s**. Do not skip capture.
+`try_catch`: `afw_os_backtrace` returns a managed hexBinary and is
+called only when this xctx has **`response:error:backtrace`** on
+(`xctx->flags`; action `_flags_` / `flag_set` override env
+defaults). The `afw` command defaults `response:error` on, so this
+soak still captures; caught ENDTRY / overwrite `afw_value_release`s
+it. 15 s soak 2026-09-17: in_use **0 B/s**. Do not skip capture as a
+paper-over.
 
 ## Server soaks (same day)
 

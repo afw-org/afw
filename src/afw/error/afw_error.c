@@ -114,7 +114,15 @@ afw_error_rv_set_z(
     xctx->error->message_z = message_z;
 
     afw_error_release_backtrace(xctx->error, xctx);
-    if (code != afw_error_code_memory) {
+    /*
+     * Capture only if this xctx has response:error:backtrace on.
+     * env->flag_index_* is the slot; the boolean is xctx->flags
+     * (env defaults until flag_set / action _flags_ copies them).
+     */
+    if (code != afw_error_code_memory &&
+        afw_flag_is_active(
+            xctx->env->flag_index_response_error_backtrace, xctx))
+    {
         xctx->error->backtrace = afw_os_backtrace(code, -1, xctx);
     }
 

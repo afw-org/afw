@@ -475,6 +475,50 @@ impl_error_backtrace(const afw_pool_t *p, afw_xctx_t *xctx)
     const afw_utf8_t *got;
     const afw_utf8_t *dump;
     int rc;
+    int saw;
+
+    rc = 0;
+    afw_flag_set(afw_s_a_flag_response_error_backtrace, false, xctx);
+    saw = 0;
+    AFW_TRY {
+        AFW_THROW_ERROR_Z(general, "no-os-backtrace", xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        if (this_THROWN_ERROR.backtrace) {
+            fprintf(stderr, "error-backtrace: captured with flag off\n");
+            rc = 1;
+        }
+        saw = 1;
+    }
+    AFW_ENDTRY;
+    if (!saw) {
+        fprintf(stderr, "error-backtrace: flag-off throw did not throw\n");
+        return 1;
+    }
+    if (rc) {
+        return rc;
+    }
+
+    afw_flag_set(afw_s_a_flag_response_error_backtrace, true, xctx);
+    saw = 0;
+    AFW_TRY {
+        AFW_THROW_ERROR_Z(general, "os-backtrace", xctx);
+    }
+    AFW_CATCH_UNHANDLED {
+        if (!this_THROWN_ERROR.backtrace) {
+            fprintf(stderr, "error-backtrace: missing with flag on\n");
+            rc = 1;
+        }
+        saw = 1;
+    }
+    AFW_ENDTRY;
+    if (!saw) {
+        fprintf(stderr, "error-backtrace: flag-on throw did not throw\n");
+        return 1;
+    }
+    if (rc) {
+        return rc;
+    }
 
     in[0] = 'x';
     in[1] = (char)0xff;
@@ -486,8 +530,6 @@ impl_error_backtrace(const afw_pool_t *p, afw_xctx_t *xctx)
         fprintf(stderr, "error-backtrace: create_no_throw failed\n");
         return 1;
     }
-
-    afw_flag_set(afw_s_a_flag_response_error_backtrace, true, xctx);
 
     rc = 0;
     {

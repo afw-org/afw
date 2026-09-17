@@ -47,7 +47,7 @@ def run():
             ),
             (
                 "error-backtrace",
-                "error object backtrace is ks then NFC",
+                "OS backtrace only if flag on; object backtrace is ks",
             ),
             (
                 "printf-ks-walk",

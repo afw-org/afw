@@ -41,11 +41,11 @@ Live examples: `src/afw/tests/advanced/pool_alloc/` (SIZE_MAX overflow), `pool_h
 
 `afwdev test --env-mode valgrind` still wraps `.as` via the `afw` CLI. The same mode wraps C probes: python mode pushes a run context; the helper runs each case under valgrind with `valgrind.suppress`. A fail prints valgrind `kind` and top frames (not only “Valgrind Error(s) detected.”). `--error-detail` adds source/expect/backtrace for any fail. Full valgrind XML stays `--debug`. `-j` prints each test group as one block.
 
-A throw calls `afw_os_backtrace` (except memory errors). libunwind then trips Memcheck `Param` `write(buf)` / `msync(start)` under `_ULx86_64_step`. That is **not** the hole under test. The suite suppressions cover it, including portable `...` / `_ULx86_64_step` blocks so a new `.so` path does not reopen the noise.
+A throw calls `afw_os_backtrace` only when **`response:error:backtrace`** is on (and it is not a memory error). C probes do not default that flag; the `error-backtrace` case turns it on. libunwind then trips Memcheck `Param` `write(buf)` / `msync(start)` under `_ULx86_64_step`. That is **not** the hole under test. The suite suppressions cover it, including portable `...` / `_ULx86_64_step` blocks so a new `.so` path does not reopen the noise.
 
 Standalone valgrind on the compiled binary, without that file, can still report the noise. Judge the probe by exit code and by the helper wrap.
 
-**Decided not:** skip backtrace on every probe throw (`AFW_NO_BACKTRACE` or similar). That would hide the throw path from Memcheck. Error-object `backtrace` is `ks` then NFC ([#206](https://github.com/afw-org/afw/issues/206)).
+**Decided not:** a compile-time `AFW_NO_BACKTRACE` skip-all. Capture follows the product flag. Error-object `backtrace` is `ks` then NFC ([#206](https://github.com/afw-org/afw/issues/206)).
 
 Python-mode files are loaded under a unique module name (not a shared `test`). Two `.py` files in one process no longer inherit `run()` from each other.
 
