@@ -69,6 +69,13 @@
             <item>
                 The variable name of null-terminated strings end with a <literal>_z</literal>. 
             </item>
+            <item>
+                Source file copyright banners stay 
+                <literal>Copyright (c) 2010-2024 Clemson University</literal>
+                (or the range already on that file). Do not roll the end
+                year forward to the current calendar year when adding or
+                editing a file.
+            </item>
         </list>  
     </section>    
     <section>

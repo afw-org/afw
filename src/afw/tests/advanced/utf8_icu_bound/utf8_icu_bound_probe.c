@@ -2,7 +2,7 @@
 /*
  * Adaptive Framework UTF-8 to_lower / compare bound probe
  *
- * Copyright (c) 2010-2026 Clemson University
+ * Copyright (c) 2010-2024 Clemson University
  *
  */
 

@@ -2,7 +2,7 @@
 /*
  * Adaptive Framework pool alloc/free-list probe
  *
- * Copyright (c) 2010-2026 Clemson University
+ * Copyright (c) 2010-2024 Clemson University
  *
  */
 
