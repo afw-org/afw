@@ -27,25 +27,6 @@
 
 AFW_BEGIN_DECLARES
 
-/** @fixme Decide what to do in dynamo_db code. */
-AFW_DECLARE(afw_utf8_t *)
-afw_content_type_x_to_utf8_with_options(
-    const afw_content_type_t * instance,
-    const afw_value_t * value,
-    const afw_object_options_t *options,
-    afw_xctx_t *xctx);
-
-/** @fixme Decide what to do in dynamo_db code. */
-AFW_DECLARE(const afw_value_t *)
-afw_content_type_x_to_object_value_with_ids(
-    const afw_content_type_t * instance,
-    const afw_utf8_t * string,
-    const afw_utf8_t *adapter_id,
-    const afw_utf8_t *object_type_id,
-    const afw_utf8_t *object_id,
-    afw_xctx_t *xctx);
-
-
 /**
  * @brief Register content type with its id and all of its media types.
  * @param content_type to register.

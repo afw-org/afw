@@ -11,7 +11,7 @@
  * @brief Adaptive Framework OS Specific Functions for *nix systems
  */
 
-#include "afw.h"
+#include "afw_internal.h"
 #include <sys/types.h> 
 #include <sys/utsname.h>
 #include <sys/time.h>

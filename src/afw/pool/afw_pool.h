@@ -258,17 +258,6 @@ afw_pool_thread_create(
 
 
 /**
- * @brief Macro to allocate cleared memory for type without throwing.
- * @param instance of pool.
- * @param type to allocate.
- * @param xctx of caller or NULL.
- * @return pointer to memory or NULL.
- */
-#define afw_pool_calloc_type_unhandled(instance, type, xctx) \
-    (type *) afw_pool_calloc_unhandled(instance, sizeof(type), xctx)
-
-
-/**
  * @brief Macro to allocate uncleared memory to hold type in pool.
  * @param instance of pool.
  * @param type to allocate.
@@ -327,63 +316,6 @@ AFW_DECLARE(afw_boolean_t)
 afw_pool_is_value_release_registered(
     const afw_value_t *value,
     const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Last-release pools delayed during error processing.
- * @param instance root of the walk (usually xctx->p).
- * @param xctx of caller.
- *
- * Postorder children, then this pool if it was delayed. Called from
- * ENDTRY after a caught error. No-op if nothing is delayed. Destroy
- * is not involved.
- */
-AFW_DECLARE(void)
-afw_pool_release_delayed(
-    const afw_pool_t *instance,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Allocate uncleared memory without throwing.
- * @param instance of pool.
- * @param size of memory to allocate.
- * @param xctx of caller, or NULL before xctx exists.
- * @return pointer to memory, or NULL on failure (including size 0).
- *
- * For the short window at the start of afw_environment_create and
- * during xctx_internal_create_initialize: no AFW_TRY yet, and
- * AFW_LOCK_BEGIN is AFW_TRY. After xctx_internal_create_initialize,
- * environment_create's internal jmp buf is current_try and throwing
- * calloc is fine. The host AFW_TRY (afwfcgi / afw) is after create
- * returns.
- *
- * Does not take the multithreaded pool lock. Environment create is
- * one thread; later unhandled callers use xctx->p (single-thread
- * heap). If xctx is NULL, the block is not added to
- * pool_bytes_in_use.
- */
-AFW_DECLARE(void *)
-afw_pool_malloc_unhandled(
-    const afw_pool_t *instance,
-    afw_size_t size,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Allocate cleared memory without throwing.
- * @param instance of pool.
- * @param size of memory to allocate.
- * @param xctx of caller, or NULL before xctx exists.
- * @return pointer to memory, or NULL on failure (including size 0).
- *
- * See afw_pool_malloc_unhandled().
- */
-AFW_DECLARE(void *)
-afw_pool_calloc_unhandled(
-    const afw_pool_t *instance,
-    afw_size_t size,
     afw_xctx_t *xctx);
 
 

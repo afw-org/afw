@@ -46,39 +46,6 @@ AFW_BEGIN_DECLARES
 
 
 /**
- * @internal
- * @brief Adapter id struct used for afw_register_adapter_id.
- *
- * Reading and modifying this struct must be protected by
- * env->adapter_id_anchor_lock.
- */
-struct afw_adapter_id_anchor_s {
-    
-    /** @brief Adapter id. */
-    const afw_utf8_t *adapter_id;
-    
-    /** @brief Adapter type id. */
-    const afw_utf8_t *adapter_type_id;
-    
-    /** @brief Adapter instance or NULL. */
-    const afw_adapter_t *adapter;
-
-    /** @brief Associated properties. */
-    const afw_object_t *properties;
-
-    /** @brief Associated service id or NULL. */
-    const afw_utf8_t *service_id;
-
-    /** @brief Reference count for this instance of adapter. */
-    afw_integer_t reference_count;
-
-    /** @brief First/next stopping adapter or NULL. */
-    afw_adapter_id_anchor_t *stopping;
-};
-
-
-
-/**
  * @brief Prepare expression evaluation context for adapter::.
  * @param adapter for which the request is being made.
  * @param p used for result.

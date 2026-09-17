@@ -72,22 +72,6 @@ struct afw_object_type_property_type_s {
 
 
 /**
- * @brief Create an object type.
- * @param adapter
- * @param object_type_object
- * @param p for result.
- * @param xctx of caller.
- * @return object type.
- */
-const afw_object_type_t *
-afw_object_type_internal_create(
-    const afw_adapter_t *adapter,
-    const afw_object_t *object_type_object,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
  * @brief Get a object type property.
  * @param object_type
  * @param property_name is the object type property name.

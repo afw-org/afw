@@ -11,6 +11,7 @@
 
 #include "afw_interface.h"
 #include "afw_environment.h"
+#include "afw_error.h"
 #include "afw_hash_table.h"
 #include "afw_vector.h"
 
@@ -41,6 +42,19 @@ AFW_VECTOR_STRUCT(afw_environment_data_type_methods_vector_s,
  * Core view of afw_environment_s (public prefix plus internal tail).
  */
 typedef struct afw_environment_s afw_environment_internal_t;
+
+
+/**
+ * Catch unhandled errors during environment create (libafw only).
+ *
+ *  afw_try_t unhandled_error;
+ *  AFW_ERROR_INTERNAL_ON_UNHANDLED(unhandled_error) {
+ *      abort();
+ *  }
+ */
+#define AFW_ERROR_INTERNAL_ON_UNHANDLED(__TRY_) \
+    (__TRY_).prev = NULL;\
+    if ((setjmp((__TRY_).throw_jmp_buf)) != 0)
 
 
 /* Register anything that is part of libafw. */

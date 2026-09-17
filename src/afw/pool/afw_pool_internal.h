@@ -267,19 +267,19 @@ struct afw_pool_internal_self_with_free_memory_head_s {
 };
 
 
-AFW_DECLARE(const afw_pool_t *)
+const afw_pool_t *
 afw_pool_internal_create_base_pool();
 
-AFW_DECLARE(afw_boolean_t)
+afw_boolean_t
 afw_pool_internal_is_heap(const afw_pool_t *p);
 
-AFW_DECLARE(afw_boolean_t)
+afw_boolean_t
 afw_pool_internal_is_heap_multithreaded(const afw_pool_t *p);
 
-AFW_DECLARE(afw_boolean_t)
+afw_boolean_t
 afw_pool_internal_is_tracker(const afw_pool_t *p);
 
-AFW_DECLARE(const afw_pool_t *)
+const afw_pool_t *
 afw_pool_internal_heap_create(
     const afw_pool_t *parent,
     afw_boolean_t multithreaded,
@@ -291,6 +291,35 @@ afw_pool_print_debug_info(
     int indent,
     const afw_pool_t *pool,
     afw_xctx_t *xctx);
+
+
+/**
+ * Last-release pools delayed during error processing (ENDTRY).
+ */
+void
+afw_pool_release_delayed(
+    const afw_pool_t *instance,
+    afw_xctx_t *xctx);
+
+
+/**
+ * Allocate without throwing. Env-create / xctx-init window only.
+ * xctx may be NULL.
+ */
+void *
+afw_pool_malloc_unhandled(
+    const afw_pool_t *instance,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+void *
+afw_pool_calloc_unhandled(
+    const afw_pool_t *instance,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+#define afw_pool_calloc_type_unhandled(instance, type, xctx) \
+    (type *) afw_pool_calloc_unhandled(instance, sizeof(type), xctx)
 
 AFW_END_DECLARES
 

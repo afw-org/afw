@@ -51,7 +51,7 @@ impl_lock_debug_write(
 
 
 /* Create a lock. */
-AFW_DEFINE(const afw_lock_t *)
+const afw_lock_t *
 afw_lock_create_environment_nested_lock(
     const afw_utf8_t *lock_id,
     const afw_pool_t *p,

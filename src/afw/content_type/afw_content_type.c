@@ -61,7 +61,7 @@ afw_content_type_value_to_raw(
 }
 
 
-AFW_DEFINE(afw_utf8_t *)
+afw_utf8_t *
 afw_content_type_x_to_utf8_with_options(
     const afw_content_type_t * instance,
     const afw_value_t * value,
@@ -72,7 +72,7 @@ afw_content_type_x_to_utf8_with_options(
 }
 
 
-AFW_DEFINE(const afw_value_t *)
+const afw_value_t *
 afw_content_type_x_to_object_value_with_ids(
     const afw_content_type_t * instance,
     const afw_utf8_t * string,

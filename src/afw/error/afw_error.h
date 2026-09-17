@@ -699,30 +699,6 @@ do { \
 } while (0)
 
 /**
- * @internal
- * @brief Macro used inside afw_environment.c to catch unhandle errors.
- *
- * This macro is normally only used in afw_environment.c to catch errors
- * thrown in an xctx that are not handled.  This should normally not occur
- * and will usually result in termination.
- *
- * Example:
- *
- *  afw_try_t unhandled_error;
- *
- *  AFW_ERROR_INTERNAL_ON_UNHANDLED(unhandled_error) {
- *
- *      ...                 Body executed on unhandled error.
- *
- *      abort();
- *  }
- */
-#define AFW_ERROR_INTERNAL_ON_UNHANDLED(__TRY_) \
-    (__TRY_).prev = NULL;\
-    if ((setjmp((__TRY_).throw_jmp_buf)) != 0)
-
-
-/**
  * @brief Copy an error struct.
  * @param to must be sizeof(afw_error_t)
  * @param from is address of error to copy.

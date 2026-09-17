@@ -32,6 +32,7 @@
 #include "afw_application_internal.h"
 #include "afw_authorization_internal.h"
 #include "afw_compile_internal.h"
+#include "afw_content_type_internal.h"
 #include "afw_const_objects_internal.h"
 #include "afw_environment_internal.h"
 #include "afw_file_internal.h"
