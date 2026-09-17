@@ -236,7 +236,7 @@ impl_printf_bad_s(const afw_pool_t *p, afw_xctx_t *xctx)
 }
 
 static int
-impl_printf_safe(const afw_pool_t *p, afw_xctx_t *xctx)
+impl_printf_ks(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t *c;
     char bad[4];
@@ -510,7 +510,7 @@ impl_error_backtrace(const afw_pool_t *p, afw_xctx_t *xctx)
 }
 
 static int
-impl_printf_safe_walk(const afw_pool_t *p, afw_xctx_t *xctx)
+impl_printf_ks_walk(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t *c;
     afw_utf8_t u;
@@ -524,22 +524,22 @@ impl_printf_safe_walk(const afw_pool_t *p, afw_xctx_t *xctx)
     u.s = (const afw_utf8_octet_t *)bad;
     u.len = 2;
 
-    c = afw_utf8_printf_safe(p, xctx, "n=%s", bad);
-    if (impl_eq(c, "n=x^FF^", 7, "printf_safe %s")) {
+    c = afw_utf8_printf_ks(p, xctx, "n=%s", bad);
+    if (impl_eq(c, "n=x^FF^", 7, "printf_ks %s")) {
         return 1;
     }
-    c = afw_utf8_printf_safe(p, xctx, "n=%ku", &u);
-    if (impl_eq(c, "n=x^FF^", 7, "printf_safe %ku")) {
+    c = afw_utf8_printf_ks(p, xctx, "n=%ku", &u);
+    if (impl_eq(c, "n=x^FF^", 7, "printf_ks %ku")) {
         return 1;
     }
-    c = afw_utf8_printf_safe(p, xctx, "a^b=%s", "ok");
-    if (impl_eq(c, "a^b=ok", 6, "printf_safe caret format")) {
+    c = afw_utf8_printf_ks(p, xctx, "a^b=%s", "ok");
+    if (impl_eq(c, "a^b=ok", 6, "printf_ks caret format")) {
         return 1;
     }
-    n = afw_utf8_z_snprintf_safe(zbuf, sizeof(zbuf), xctx,
+    n = afw_utf8_z_snprintf_ks(zbuf, sizeof(zbuf), xctx,
         "n=%s", bad);
     if (n != 8 || strcmp((const char *)zbuf, "n=x^FF^") != 0) {
-        fprintf(stderr, "z_snprintf_safe: n=%lu %s\n",
+        fprintf(stderr, "z_snprintf_ks: n=%lu %s\n",
             (unsigned long)n, (const char *)zbuf);
         return 1;
     }
@@ -702,8 +702,8 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "property-name") == 0) {
         rc = impl_property_name(p, xctx);
     }
-    else if (strcmp(case_name, "printf-safe") == 0) {
-        rc = impl_printf_safe(p, xctx);
+    else if (strcmp(case_name, "printf-ks") == 0) {
+        rc = impl_printf_ks(p, xctx);
     }
     else if (strcmp(case_name, "printf-nul") == 0) {
         rc = impl_printf_nul(p, xctx);
@@ -717,8 +717,8 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "error-backtrace") == 0) {
         rc = impl_error_backtrace(p, xctx);
     }
-    else if (strcmp(case_name, "printf-safe-walk") == 0) {
-        rc = impl_printf_safe_walk(p, xctx);
+    else if (strcmp(case_name, "printf-ks-walk") == 0) {
+        rc = impl_printf_ks_walk(p, xctx);
     }
     else if (strcmp(case_name, "error-fz-dirty") == 0) {
         rc = impl_error_fz_dirty(p, xctx);
@@ -732,8 +732,8 @@ main(int argc, char **argv)
     else {
         fprintf(stderr, "usage: utf8_named_doors_probe "
             "create-set-copy|no-copy|forced-safe|property-name|"
-            "printf-safe|printf-nul|printf-k|printf-throws|"
-            "error-backtrace|printf-safe-walk|error-fz-dirty|"
+            "printf-ks|printf-nul|printf-k|printf-throws|"
+            "error-backtrace|printf-ks-walk|error-fz-dirty|"
             "icu-error-name|from-memory\n");
         rc = 2;
     }

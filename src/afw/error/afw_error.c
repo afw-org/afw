@@ -21,7 +21,7 @@ impl_error_format_message(
     va_list ap)
 {
     /* Size includes the trailing 0 (z dest). %s / %ku are forced_safe. */
-    afw_utf8_z_snprintf_safe_v(
+    afw_utf8_z_snprintf_ks_v(
         &xctx->error->message_wa[0],
         sizeof(xctx->error->message_wa),
         format_z, ap, xctx);
@@ -597,7 +597,7 @@ afw_error_to_utf8(
 
     evaluation_backtrace = impl_evaluation_backtrace(error, p, xctx);
 
-    result = afw_utf8_printf_safe(p, xctx,
+    result = afw_utf8_printf_ks(p, xctx,
         "%ks"                          /* message. */
         " [code=%s(%d)"                /* code-decoded */
         " rv=%s%s%d%s%ks"              /* source:rv-decoded */
@@ -662,7 +662,7 @@ afw_error_write_log(afw_log_priority_t priority,
 
     if (error->contextual && error->contextual->source_location)
     {
-        s = afw_utf8_printf_safe(xctx->p, xctx,
+        s = afw_utf8_printf_ks(xctx->p, xctx,
             "%ks [%ku%s%0d]",
             error->message_z,
             error->contextual->source_location,
@@ -677,7 +677,7 @@ afw_error_write_log(afw_log_priority_t priority,
     }
 
     else {
-        s = afw_utf8_printf_safe(xctx->p, xctx, "%ks",
+        s = afw_utf8_printf_ks(xctx->p, xctx, "%ks",
             error->message_z);
         afw_log_write(xctx->env->log,
             priority,

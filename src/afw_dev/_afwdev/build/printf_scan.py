@@ -27,11 +27,11 @@ _CXTranslationUnit_KeepGoing = 0x200
 # format_index, first_vararg_index (0-based).
 _FUNCS = {
     "afw_utf8_printf_as": (2, 4),
-    "afw_utf8_printf_safe_as": (2, 4),
+    "afw_utf8_printf_ks_as": (2, 4),
     "afw_utf8_z_printf_as": (2, 4),
     "afw_utf8_snprintf_as": (3, 5),
     "afw_utf8_z_snprintf_as": (3, 5),
-    "afw_utf8_z_snprintf_safe_as": (3, 5),
+    "afw_utf8_z_snprintf_ks_as": (3, 5),
     "afw_utf8_printf_len_as": (1, 3),
     "afw_utf8_z_printf_len_as": (1, 3),
     "afw_error_set_fz": (3, 4),

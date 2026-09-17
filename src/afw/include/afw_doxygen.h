@@ -614,7 +614,7 @@
  * uses a named door: `to_utf8_z` / `z_create`, `forced_safe`, or
  * `as_memory`. **Printf** (`afw_utf8_printf`) is viewable text: `%%ku` /
  * `%%ks` / `%%km` / `%%kx` / `%%kX`, then `create` (not whole-buffer
- * `forced_safe`). Error dump uses `afw_utf8_printf_safe` (`%%s` /
+ * `forced_safe`). Error dump uses `afw_utf8_printf_ks` (`%%s` /
  * `%%ku` encode; `%%km` always encodes). libc `fprintf` still uses
  * `AFW_UTF8_FMT`.
  *

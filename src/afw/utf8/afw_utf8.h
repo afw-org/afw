@@ -731,26 +731,26 @@ afw_utf8_z_snprintf_vas(
     afw_xctx_t *xctx);
 
 /**
- * @brief Real function for afw_utf8_printf_safe (format `s` + `len`).
- * @see afw_utf8_printf_safe
+ * @brief Real function for afw_utf8_printf_ks (format `s` + `len`).
+ * @see afw_utf8_printf_ks
  */
 AFW_DECLARE_ELLIPSIS(const afw_utf8_t *)
-afw_utf8_printf_safe_as(
+afw_utf8_printf_ks_as(
     const afw_pool_t *p, afw_xctx_t *xctx,
     const afw_utf8_octet_t *format_s, afw_size_t format_len, ...);
 
 AFW_DECLARE(const afw_utf8_t *)
-afw_utf8_printf_safe_vas(
+afw_utf8_printf_ks_vas(
     const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 AFW_DECLARE_ELLIPSIS(afw_size_t)
-afw_utf8_z_snprintf_safe_as(
+afw_utf8_z_snprintf_ks_as(
     afw_utf8_z_t *dest, afw_size_t size, afw_xctx_t *xctx,
     const afw_utf8_octet_t *format_s, afw_size_t format_len, ...);
 
 AFW_DECLARE(afw_size_t)
-afw_utf8_z_snprintf_safe_vas(
+afw_utf8_z_snprintf_ks_vas(
     afw_utf8_z_t *dest, afw_size_t size,
     const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
     afw_xctx_t *xctx);
@@ -794,7 +794,7 @@ afw_utf8_z_snprintf_safe_vas(
  *
  * | Spec | Parameter | Behavior |
  * |------|-----------|----------|
- * | `%%ku` | `const afw_utf8_t *` | Trusted UTF-8: copy `.s` for `.len` (interior `0` is data). On `_safe`, `forced_safe`. |
+ * | `%%ku` | `const afw_utf8_t *` | Trusted UTF-8: copy `.s` for `.len` (interior `0` is data). On `_ks`, `forced_safe`. |
  * | `%%km` | `const afw_memory_t *` | Always `forced_safe` on the octets (text through; dirty runs `^hex^`). |
  * | `%%kx` | `const afw_memory_t *` | Always lowercase hex pairs (no `0x`). |
  * | `%%kX` | `const afw_memory_t *` | Always uppercase hex pairs (no `0x`). |
@@ -807,12 +807,13 @@ afw_utf8_z_snprintf_safe_vas(
  * (precision = max **input** bytes). Other flags and length
  * modifiers throw.
  *
- * **`_safe`:** same walk, but `%%s`, `%%ku`, and `AFW_UTF8_FMT`
- * (`%%.*s`) `forced_safe` instead of throw or raw copy. `%%km` always
- * `forced_safe` (default and `_safe`). Format literals stay as-is.
- * Assemble then **`create`**. Error `*_fz` and `afw_error_to_utf8`
- * use this so assembling or reporting an error cannot throw because
- * of dirty bytes. Bad spec / invalid format UTF-8 / OOM still throw.
+ * **`_ks`:** same walk, but `%%s`, `%%ku`, and `AFW_UTF8_FMT`
+ * (`%%.*s`) `forced_safe` instead of throw or raw copy (what `%%ks`
+ * does, on those conversions). `%%km` always `forced_safe` (default
+ * and `_ks`). Format literals stay as-is. Assemble then **`create`**.
+ * Error `*_fz` and `afw_error_to_utf8` use this so assembling or
+ * reporting an error cannot throw because of dirty bytes. Bad spec /
+ * invalid format UTF-8 / OOM still throw.
  *
  * **Size** is the buffer needed to hold that result type (not C
  * `snprintf`): utf8 payload only (no trailing `0`); z includes the `0`.
@@ -932,24 +933,24 @@ afw_utf8_z_snprintf_safe_vas(
     afw_utf8_z_snprintf_vas((dest), (size), \
         (format)->s, (format)->len, (ap), (xctx))
 
-/* See afw_utf8_printf: `_safe` encodes %s / %ku / AFW_UTF8_FMT. */
-#define afw_utf8_printf_safe(p, xctx, format_z, ...) \
-    afw_utf8_printf_safe_as((p), (xctx), \
+/* See afw_utf8_printf: `_ks` encodes %s / %ku / AFW_UTF8_FMT. */
+#define afw_utf8_printf_ks(p, xctx, format_z, ...) \
+    afw_utf8_printf_ks_as((p), (xctx), \
         (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
         ##__VA_ARGS__)
 
-#define afw_utf8_printf_safe_v(format_z, ap, p, xctx) \
-    afw_utf8_printf_safe_vas( \
+#define afw_utf8_printf_ks_v(format_z, ap, p, xctx) \
+    afw_utf8_printf_ks_vas( \
         (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
         (ap), (p), (xctx))
 
-#define afw_utf8_z_snprintf_safe(dest, size, xctx, format_z, ...) \
-    afw_utf8_z_snprintf_safe_as((dest), (size), (xctx), \
+#define afw_utf8_z_snprintf_ks(dest, size, xctx, format_z, ...) \
+    afw_utf8_z_snprintf_ks_as((dest), (size), (xctx), \
         (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
         ##__VA_ARGS__)
 
-#define afw_utf8_z_snprintf_safe_v(dest, size, format_z, ap, xctx) \
-    afw_utf8_z_snprintf_safe_vas((dest), (size), \
+#define afw_utf8_z_snprintf_ks_v(dest, size, format_z, ap, xctx) \
+    afw_utf8_z_snprintf_ks_vas((dest), (size), \
         (const afw_utf8_octet_t *)(format_z), AFW_UTF8_Z_LEN, \
         (ap), (xctx))
 

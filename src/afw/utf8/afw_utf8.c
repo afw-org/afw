@@ -1082,7 +1082,7 @@ impl_format_content(
     const afw_utf8_octet_t *format_s,
     afw_size_t format_len,
     va_list ap,
-    afw_boolean_t safe,
+    afw_boolean_t ks,
     afw_xctx_t *xctx)
 {
     impl_fmt_out_t o;
@@ -1167,7 +1167,7 @@ impl_format_content(
             n = va_arg(ap, int);
             s = va_arg(ap, const char *);
             if (n > 0 && s) {
-                if (safe) {
+                if (ks) {
                     impl_out_forced_safe(&o,
                         (const afw_utf8_octet_t *)s,
                         (afw_size_t)n);
@@ -1331,7 +1331,7 @@ impl_format_content(
                 if (u && u->s && u->len) {
                     in_len = impl_prec_cap(u->len, have_prec, prec);
                 }
-                if (safe) {
+                if (ks) {
                     out_len = impl_forced_safe_len(
                         (u && u->s) ? u->s : NULL, in_len);
                 }
@@ -1368,7 +1368,7 @@ impl_format_content(
                 impl_out_spaces(&o, pad);
             }
             if (kind == 'u' && u && u->s && in_len) {
-                if (safe) {
+                if (ks) {
                     impl_out_forced_safe(&o, u->s, in_len);
                 }
                 else {
@@ -1432,7 +1432,7 @@ impl_format_content(
             if (!s) {
                 s = "";
             }
-            if (safe) {
+            if (ks) {
                 in_len = strlen(s);
                 in_len = impl_prec_cap(in_len, have_prec, prec);
                 out_len = impl_forced_safe_len(
@@ -1542,7 +1542,7 @@ impl_format_content(
 static const afw_utf8_t *
 impl_printf_vas(
     const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
-    const afw_pool_t *p, afw_boolean_t safe, afw_xctx_t *xctx)
+    const afw_pool_t *p, afw_boolean_t ks, afw_xctx_t *xctx)
 {
     va_list ap2;
     afw_size_t n;
@@ -1550,14 +1550,14 @@ impl_printf_vas(
 
     va_copy(ap2, ap);
     n = impl_format_content(
-        NULL, 0, format_s, format_len, ap2, safe, xctx);
+        NULL, 0, format_s, format_len, ap2, ks, xctx);
     va_end(ap2);
     if (n == 0) {
         return afw_s_a_empty_string;
     }
     dest = afw_pool_malloc(p, n, xctx);
     impl_format_content(
-        dest, n, format_s, format_len, ap, safe, xctx);
+        dest, n, format_s, format_len, ap, ks, xctx);
     return afw_utf8_nfc(dest, n,
         afw_utf8_nfc_option_create, p, xctx);
 }
@@ -1567,7 +1567,7 @@ static afw_size_t
 impl_z_snprintf(
     afw_utf8_z_t *dest, afw_size_t size,
     const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
-    afw_boolean_t safe, afw_xctx_t *xctx)
+    afw_boolean_t ks, afw_xctx_t *xctx)
 {
     afw_size_t needed;
     afw_size_t produced;
@@ -1575,7 +1575,7 @@ impl_z_snprintf(
 
     cap = (size > 0) ? size - 1 : 0;
     needed = impl_format_content(
-        dest, cap, format_s, format_len, ap, safe, xctx);
+        dest, cap, format_s, format_len, ap, ks, xctx);
     if (size == 0 || !dest) {
         return 0;
     }
@@ -1615,7 +1615,7 @@ afw_utf8_printf_as(
 
 
 AFW_DEFINE(const afw_utf8_t *)
-afw_utf8_printf_safe_vas(
+afw_utf8_printf_ks_vas(
     const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
@@ -1625,7 +1625,7 @@ afw_utf8_printf_safe_vas(
 
 
 AFW_DEFINE_ELLIPSIS(const afw_utf8_t *)
-afw_utf8_printf_safe_as(
+afw_utf8_printf_ks_as(
     const afw_pool_t *p, afw_xctx_t *xctx,
     const afw_utf8_octet_t *format_s, afw_size_t format_len, ...)
 {
@@ -1633,7 +1633,7 @@ afw_utf8_printf_safe_as(
     const afw_utf8_t *result;
 
     va_start(ap, format_len);
-    result = afw_utf8_printf_safe_vas(
+    result = afw_utf8_printf_ks_vas(
         format_s, format_len, ap, p, xctx);
     va_end(ap);
     return result;
@@ -1793,7 +1793,7 @@ afw_utf8_z_snprintf_as(
 
 
 AFW_DEFINE(afw_size_t)
-afw_utf8_z_snprintf_safe_vas(
+afw_utf8_z_snprintf_ks_vas(
     afw_utf8_z_t *dest, afw_size_t size,
     const afw_utf8_octet_t *format_s, afw_size_t format_len, va_list ap,
     afw_xctx_t *xctx)
@@ -1804,7 +1804,7 @@ afw_utf8_z_snprintf_safe_vas(
 
 
 AFW_DEFINE_ELLIPSIS(afw_size_t)
-afw_utf8_z_snprintf_safe_as(
+afw_utf8_z_snprintf_ks_as(
     afw_utf8_z_t *dest, afw_size_t size, afw_xctx_t *xctx,
     const afw_utf8_octet_t *format_s, afw_size_t format_len, ...)
 {
@@ -1812,7 +1812,7 @@ afw_utf8_z_snprintf_safe_as(
     afw_size_t n;
 
     va_start(ap, format_len);
-    n = afw_utf8_z_snprintf_safe_vas(
+    n = afw_utf8_z_snprintf_ks_vas(
         dest, size, format_s, format_len, ap, xctx);
     va_end(ap);
     return n;

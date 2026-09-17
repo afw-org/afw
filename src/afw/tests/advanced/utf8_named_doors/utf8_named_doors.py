@@ -30,7 +30,7 @@ def run():
                 "create_property_name is encode then NFC",
             ),
             (
-                "printf-safe",
+                "printf-ks",
                 "%s throws on invalid UTF-8; %ks is forced_safe",
             ),
             (
@@ -50,8 +50,8 @@ def run():
                 "error object backtrace is forced_safe then NFC",
             ),
             (
-                "printf-safe-walk",
-                "printf_safe encodes %s and %ku; format caret stays",
+                "printf-ks-walk",
+                "printf_ks encodes %s and %ku; format caret stays",
             ),
             (
                 "error-fz-dirty",
