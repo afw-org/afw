@@ -36,7 +36,7 @@ Complementary, not this close bar: request caps / `process::` telemetry ([#329](
 
 | Item | Why it is still #2 |
 |------|---------------------|
-| **Evidence** | **2026-09-17** hard-loop table including `try_catch` **flat**. Isolate sitting [PR #340](https://github.com/afw-org/afw/pull/340). Server soaks not remeasured (`02` / `07` / `07b` still 2026-09-15). |
+| **Evidence** | **2026-09-17** hard-loop table including `try_catch` **flat**. Isolate sitting [PR #340](https://github.com/afw-org/afw/pull/340). Server soaks remeasured after [PR #354](https://github.com/afw-org/afw/pull/354): `02` RSS **flat** 24576 kB; `07` wander 43.5→46 MiB then flat-ish (same shape as 2026-09-15); `07b` still too short (0.28 s). |
 | **Managed on `xctx->p` / compiled results** | [#342](https://github.com/afw-org/afw/issues/342). Includes unevaluated clone-out (`compiled_value` evaluate only `clone_unmanaged`s evaluated data types; functions/closures keep a pointer from the unit). Discussion first. |
 | **Watch (leak, not crash)** | Splice copy-out then later assign; unassigned unmanaged temps in a tight loop; `readln` grows the line in `x->p` (`@fixme #2` in `afw_function_stream.c`). Soak or will-not-do. |
 | **Escape past one xctx** | Runtime objects / adapter cache / reused compile units. #149 closed the accessor slice. Clone-into-requestor-pool under the lock is a later option — **child issue or will-not-do**, not silent close. |

@@ -129,13 +129,15 @@ paper-over.
 
 These are `afwfcgi` firehose leaves, not the hard-loop table. They **pass**
 if requests succeed. They do **not** record `process::poolBytesInUse`.
-Process size sampled from `/proc` on the `afwfcgi` pid while the leaf ran:
+Process size sampled from `/proc` on the `afwfcgi` pid while the leaf ran.
 
-| leaf | what | result (2026-09-15) |
-|------|------|---------------------|
-| `issue-2/02-pool-eval-soak` | 20 s object / nested-eval / function-return-object | **PASS**. `afwfcgi` RSS **flat** 25344 kB |
-| `07-firehose-blast-style` | 30 s mixed cheap scripts | **PASS**. `afwfcgi` RSS ~39–41 MB (~0.09 MiB/s wander) |
-| `07b-firehose-catalog-pool` | 40 requests (hits `maxRequests` in ~0.3 s) | **PASS**. Too short for a slope |
+Remeasured **2026-09-17** on `develop` after [PR #354](https://github.com/afw-org/afw/pull/354) (1 s `/proc` VmRSS):
+
+| leaf | what | result (2026-09-17) | was (2026-09-15) |
+|------|------|---------------------|------------------|
+| `issue-2/02-pool-eval-soak` | 20 s object / nested-eval / function-return-object | **PASS**. RSS **flat** 24576 kB | **PASS**. flat 25344 kB |
+| `07-firehose-blast-style` | 30 s mixed cheap scripts | **PASS**. RSS 43.5→46.0 MiB then wander 46.0–46.8 (~0.08 MiB/s first-to-last; ~flat after ~10 s) | **PASS**. ~39–41 MB (~0.09 MiB/s wander) |
+| `07b-firehose-catalog-pool` | 40 requests (hits `maxRequests` in ~0.3 s) | **PASS** (0.28 s). No RSS samples | **PASS**. Too short for a slope |
 
 `07b` is not a long-running leak lab as written.
 
