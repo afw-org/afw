@@ -202,9 +202,6 @@ struct afw_pool_internal_self_s {
      * Children unlink without releasing this parent.
      */
     afw_boolean_t destroying;
-
-    /** Already on xctx->error_delaying_release_first. */
-    afw_boolean_t error_delaying_release;
 };
 
 
@@ -259,6 +256,19 @@ struct afw_pool_internal_tracker_self_s {
 
     /** @brief First live or marked allocation. */
     afw_pool_tracker_node_t *first_allocated_memory;
+};
+
+
+/**
+ * Heap-child tracker (scope). Same methods as tracker plus last-release
+ * delay. Extra fields only on this create path.
+ */
+typedef struct afw_pool_internal_tracker_delay_self_s
+afw_pool_internal_tracker_delay_self_t;
+
+struct afw_pool_internal_tracker_delay_self_s {
+
+    afw_pool_internal_tracker_self_t tracker;
 
     /**
      * Next pool delaying last release while
@@ -266,11 +276,8 @@ struct afw_pool_internal_tracker_self_s {
      */
     const afw_pool_t *error_delaying_release_next;
 
-    /** Parent was a heap at create (scope tracker). */
-    afw_boolean_t error_delay_eligible;
-
-    /** Marked blocks on the allocated list. */
-    afw_boolean_t needs_collect;
+    /** Already on xctx->error_delaying_release_first. */
+    afw_boolean_t error_delaying_release;
 };
 
 

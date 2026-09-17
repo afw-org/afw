@@ -41,6 +41,8 @@ AFW_LOCK_END;
     ((afw_pool_internal_heap_self_t *)(self))
 #define impl_as_tracker(self) \
     ((afw_pool_internal_tracker_self_t *)(self))
+#define impl_as_tracker_delay(self) \
+    ((afw_pool_internal_tracker_delay_self_t *)(self))
 
 /*
  * The pool methods begin with 'impl_afw_pool_' only.
@@ -183,6 +185,60 @@ impl_tracker_implementation_specific =
         /* multithreaded */ false,
         /* tracker */ true
     };
+
+#define AFW_IMPLEMENTATION_SPECIFIC &impl_tracker_implementation_specific
+
+#include "afw_pool_impl_declares.h"
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef AFW_IMPLEMENTATION_SPECIFIC
+#undef impl_afw_pool_release
+#undef impl_afw_pool_run_cleanups
+#undef impl_afw_pool_destroy
+#undef impl_afw_pool_calloc
+#undef impl_afw_pool_malloc
+#undef impl_afw_pool_free_memory
+#undef impl_afw_pool_garbage_collect
+
+/*
+ * Heap-child tracker. Same malloc/free/collect as tracker. Release
+ * can delay last-release; self has error_delaying_release_next.
+ */
+#define AFW_IMPLEMENTATION_ID "tracker_delay"
+#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_tracker_delay_inf
+
+static const afw_pool_t *
+impl_tracker_delay_afw_pool_release(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_release \
+    impl_tracker_delay_afw_pool_release
+
+static void
+impl_tracker_delay_afw_pool_run_cleanups(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_run_cleanups \
+    impl_tracker_delay_afw_pool_run_cleanups
+
+static void
+impl_tracker_delay_afw_pool_destroy(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_destroy \
+    impl_tracker_delay_afw_pool_destroy
+
+#define impl_afw_pool_calloc \
+    impl_tracker_afw_pool_calloc
+#define impl_afw_pool_malloc \
+    impl_tracker_afw_pool_malloc
+#define impl_afw_pool_free_memory \
+    impl_tracker_afw_pool_free_memory
+#define impl_afw_pool_garbage_collect \
+    impl_tracker_afw_pool_garbage_collect
 
 #define AFW_IMPLEMENTATION_SPECIFIC &impl_tracker_implementation_specific
 
@@ -748,9 +804,9 @@ static afw_pool_internal_self_t *
 impl_create_for_tracker(
     afw_pool_internal_self_t *parent,
     const afw_pool_inf_t *inf,
+    afw_size_t self_bytes,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_tracker_self_t *tracker;
     afw_pool_internal_self_t *self;
 
     if (!parent) {
@@ -759,11 +815,10 @@ impl_create_for_tracker(
 
     /*
      * Header is a parent-pool user block so destroy can free_memory
-     * it. Not on this tracker’s allocated list.
+     * it. Not on this tracker’s allocated list. Heap-child uses the
+     * delay self; nested tracker uses the small self.
      */
-    tracker = afw_pool_calloc(&parent->pub,
-        sizeof(afw_pool_internal_tracker_self_t), xctx);
-    self = &tracker->common;
+    self = afw_pool_calloc(&parent->pub, self_bytes, xctx);
     self->pub.inf = inf;
     self->pub.managed_p = parent->pub.managed_p
         ? parent->pub.managed_p
@@ -771,8 +826,6 @@ impl_create_for_tracker(
     self->thread = parent->thread;
     impl_assign_pool_number(self);
     self->reference_count = 1;
-    tracker->error_delay_eligible =
-        afw_pool_internal_is_heap(&parent->pub);
     impl_link_as_child(parent, self, xctx);
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "create");
@@ -1135,24 +1188,24 @@ impl_debug_poison_user(void *user, afw_size_t size)
 /* --------------------------- pool implementations ------------------------- */
 
 static void
-impl_clear_delay(afw_pool_internal_self_t *self, afw_xctx_t *xctx)
+impl_clear_delay(
+    afw_pool_internal_tracker_delay_self_t *me, afw_xctx_t *xctx)
 {
     const afw_pool_t **pos;
-    afw_pool_internal_tracker_self_t *curr;
-    afw_pool_internal_tracker_self_t *me;
+    afw_pool_internal_tracker_delay_self_t *curr;
 
-    if (!self->error_delaying_release) {
+    if (!me->error_delaying_release) {
         return;
     }
-    self->error_delaying_release = false;
-    me = impl_as_tracker(self);
+    me->error_delaying_release = false;
     if (!xctx) {
         me->error_delaying_release_next = NULL;
         return;
     }
     pos = &xctx->error_delaying_release_first;
     while (*pos) {
-        curr = impl_as_tracker((afw_pool_internal_self_t *)(void *)*pos);
+        curr = impl_as_tracker_delay(
+            (afw_pool_internal_self_t *)(void *)*pos);
         if (curr == me) {
             *pos = curr->error_delaying_release_next;
             curr->error_delaying_release_next = NULL;
@@ -1165,32 +1218,29 @@ impl_clear_delay(afw_pool_internal_self_t *self, afw_xctx_t *xctx)
 
 
 /*
- * While error_processing_count > 0, last release of a scope tracker
- * is recorded and skipped. Catching ENDTRY runs
+ * While error_processing_count > 0, last release of a heap-child
+ * tracker is recorded and skipped. Catching ENDTRY runs
  * afw_pool_release_delayed() when the count is 0 again.
  */
 static afw_boolean_t
 impl_error_delaying_release(
-    afw_pool_internal_tracker_self_t *tracker,
+    afw_pool_internal_tracker_delay_self_t *me,
     afw_xctx_t *xctx)
 {
     afw_pool_internal_self_t *self;
 
-    self = &tracker->common;
+    self = &me->tracker.common;
     if (!xctx || xctx->error_processing_count == 0) {
         return false;
     }
-    if (!tracker->error_delay_eligible) {
-        return false;
-    }
-    if (self->error_delaying_release) {
+    if (me->error_delaying_release) {
         return true;
     }
     if (self->reference_count != 1) {
         return false;
     }
-    self->error_delaying_release = true;
-    tracker->error_delaying_release_next =
+    me->error_delaying_release = true;
+    me->error_delaying_release_next =
         xctx->error_delaying_release_first;
     xctx->error_delaying_release_first = &self->pub;
     return true;
@@ -1236,7 +1286,6 @@ impl_tracker_return_leftovers(
     heap = impl_reservoir_heap(&tracker->common);
     curr = tracker->first_allocated_memory;
     tracker->first_allocated_memory = NULL;
-    tracker->needs_collect = false;
     while (curr) {
         next = AFW_POOL_TRACKER_NEXT(curr);
         impl_debug_poison_user(AFW_POOL_TRACKER_TO_USER(curr),
@@ -1311,7 +1360,10 @@ impl_heap_teardown_store(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 
 
 static void
-impl_tracker_teardown_store(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+impl_tracker_teardown_store(
+    AFW_POOL_SELF_T *self,
+    afw_size_t self_bytes,
+    afw_xctx_t *xctx)
 {
     afw_pool_internal_self_t *parent;
     afw_boolean_t parent_destroying;
@@ -1324,11 +1376,26 @@ impl_tracker_teardown_store(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
     impl_unlink_from_parent(self, xctx);
     impl_tracker_return_leftovers(impl_as_tracker(self), xctx);
     impl_account_destroy(self, xctx);
-    afw_pool_free_memory(&parent->pub, impl_as_tracker(self),
-        sizeof(afw_pool_internal_tracker_self_t), xctx);
+    afw_pool_free_memory(&parent->pub, self, self_bytes, xctx);
     if (!parent_destroying) {
         afw_pool_release(&parent->pub, xctx);
     }
+}
+
+
+static void
+impl_tracker_teardown(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+{
+    impl_tracker_teardown_store(self,
+        sizeof(afw_pool_internal_tracker_self_t), xctx);
+}
+
+
+static void
+impl_tracker_delay_teardown(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+{
+    impl_tracker_teardown_store(self,
+        sizeof(afw_pool_internal_tracker_delay_self_t), xctx);
 }
 
 
@@ -1429,9 +1496,14 @@ afw_pool_release_delayed(
         afw_pool_release_delayed(&child->pub, xctx);
         child = next;
     }
-    if (self->error_delaying_release) {
-        impl_clear_delay(self, xctx);
-        afw_pool_release(&self->pub, xctx);
+    if (self->pub.inf == &impl_afw_pool_tracker_delay_inf) {
+        afw_pool_internal_tracker_delay_self_t *delay;
+
+        delay = impl_as_tracker_delay(self);
+        if (delay->error_delaying_release) {
+            impl_clear_delay(delay, xctx);
+            afw_pool_release(&self->pub, xctx);
+        }
     }
 }
 
@@ -1820,10 +1892,7 @@ impl_tracker_afw_pool_release(
     afw_xctx_t *xctx)
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "release");
-    if (impl_error_delaying_release(impl_as_tracker(self), xctx)) {
-        return &self->pub;
-    }
-    return impl_release_common(self, xctx, impl_tracker_teardown_store);
+    return impl_release_common(self, xctx, impl_tracker_teardown);
 }
 
 static void
@@ -1833,7 +1902,6 @@ impl_tracker_afw_pool_run_cleanups(
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "run_cleanups");
     if (!self->destroying) {
-        impl_clear_delay(self, xctx);
         impl_pool_mark_destroying(self);
     }
     impl_run_child_cleanups(self, xctx);
@@ -1847,11 +1915,50 @@ impl_tracker_afw_pool_destroy(
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
     if (!self->destroying) {
-        impl_clear_delay(self, xctx);
         impl_pool_mark_destroying(self);
     }
     impl_destroy_children(self, xctx);
-    impl_tracker_teardown_store(self, xctx);
+    impl_tracker_teardown(self, xctx);
+}
+
+const afw_pool_t *
+impl_tracker_delay_afw_pool_release(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "release");
+    if (impl_error_delaying_release(impl_as_tracker_delay(self), xctx)) {
+        return &self->pub;
+    }
+    return impl_release_common(self, xctx, impl_tracker_delay_teardown);
+}
+
+static void
+impl_tracker_delay_afw_pool_run_cleanups(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "run_cleanups");
+    if (!self->destroying) {
+        impl_clear_delay(impl_as_tracker_delay(self), xctx);
+        impl_pool_mark_destroying(self);
+    }
+    impl_run_child_cleanups(self, xctx);
+    impl_pool_run_cleanups(self, xctx);
+}
+
+static void
+impl_tracker_delay_afw_pool_destroy(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
+    if (!self->destroying) {
+        impl_clear_delay(impl_as_tracker_delay(self), xctx);
+        impl_pool_mark_destroying(self);
+    }
+    impl_destroy_children(self, xctx);
+    impl_tracker_delay_teardown(self, xctx);
 }
 
 
@@ -1940,7 +2047,6 @@ impl_tracker_afw_pool_free_memory(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_tracker_self_t *tracker;
     afw_pool_tracker_node_t *node;
     afw_size_t total;
 
@@ -1963,8 +2069,6 @@ impl_tracker_afw_pool_free_memory(
         address, total);
     impl_account_free(self, total, xctx);
     AFW_POOL_TRACKER_MARK_FREED(node);
-    tracker = impl_as_tracker(self);
-    tracker->needs_collect = true;
 }
 
 
@@ -1981,9 +2085,6 @@ impl_tracker_afw_pool_garbage_collect(
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "garbage_collect");
     tracker = impl_as_tracker(self);
-    if (!tracker->needs_collect) {
-        return;
-    }
     heap = impl_reservoir_heap(self);
     prev = NULL;
     curr = tracker->first_allocated_memory;
@@ -2006,7 +2107,6 @@ impl_tracker_afw_pool_garbage_collect(
         }
         curr = next;
     }
-    tracker->needs_collect = false;
 }
 
 
@@ -2031,7 +2131,13 @@ afw_pool_internal_is_heap_multithreaded(const afw_pool_t *p)
 afw_boolean_t
 afw_pool_internal_is_tracker(const afw_pool_t *p)
 {
-    return p && p->inf == &impl_afw_pool_tracker_inf;
+    const afw_pool_internal_inf_implementation_specific_t *spec;
+
+    if (!p || !p->inf) {
+        return false;
+    }
+    spec = p->inf->rti.implementation_specific;
+    return spec && spec->is_tracker;
 }
 
 
@@ -2214,9 +2320,16 @@ afw_pool_tracker_create(
     }
 
     parent_self = (AFW_POOL_SELF_T *)parent;
-    inf = &impl_afw_pool_tracker_inf;
-
-    self = impl_create_for_tracker(parent_self, inf, xctx);
+    if (afw_pool_internal_is_heap(parent)) {
+        inf = &impl_afw_pool_tracker_delay_inf;
+        self = impl_create_for_tracker(parent_self, inf,
+            sizeof(afw_pool_internal_tracker_delay_self_t), xctx);
+    }
+    else {
+        inf = &impl_afw_pool_tracker_inf;
+        self = impl_create_for_tracker(parent_self, inf,
+            sizeof(afw_pool_internal_tracker_self_t), xctx);
+    }
     return &self->pub;
 }
 
