@@ -56,7 +56,7 @@ impl_convert_value_to_json(
     const afw_value_t *value);
 
 AFW_DEFINE_STATIC_INLINE(void)
-impl_putc(impl_from_value_wa_t *wa, afw_byte_t c)
+impl_putc(impl_from_value_wa_t *wa, afw_octet_t c)
 {
     char ch;
 

@@ -720,7 +720,7 @@ afw_os_backtrace(
     int i, max;
     int frames;
     char ** strs;
-    afw_byte_t *s; 
+    afw_octet_t *s; 
     afw_size_t len;
     afw_utf8_t *trace = NULL;
     int wlen;

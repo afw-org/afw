@@ -50,7 +50,7 @@ afw_file_to_memory(
     afw_xctx_t *xctx)
 {
     afw_memory_t *to_memory;
-    afw_byte_t *buff;
+    afw_octet_t *buff;
     FILE *in;
     afw_file_info_t info;
     const afw_utf8_z_t *file_path_z;
@@ -75,7 +75,7 @@ afw_file_to_memory(
         }
         if (file_size == 0) {
             to_memory->size = 0;
-            to_memory->ptr = (const afw_byte_t *)"";
+            to_memory->ptr = (const afw_octet_t *)"";
         }
         else {
             buff = afw_pool_malloc(p, file_size, xctx);
@@ -165,7 +165,7 @@ afw_file_from_memory(
     AFW_TRY {
         fd = afw_file_open(file_path_z, flags, xctx);
         afw_file_write_full(fd,
-            from_memory->ptr ? from_memory->ptr : (const afw_byte_t *)"",
+            from_memory->ptr ? from_memory->ptr : (const afw_octet_t *)"",
             from_memory->size, xctx);
     }
     AFW_FINALLY {

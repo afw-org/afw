@@ -1600,7 +1600,7 @@ def write_c_section(fd, prefix, obj):
                 fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
                 fd.write('    v->internal.size = (internal) ? '
                          'internal->size : 0;\n')
-                fd.write('    v->internal.ptr = (const afw_byte_t *)v +\n'
+                fd.write('    v->internal.ptr = (const afw_octet_t *)v +\n'
                          '        sizeof(afw_value_' + id + '_managed_t);\n')
                 fd.write('    if (internal && internal->ptr) {\n')
                 fd.write('       memcpy((void *)v->internal.ptr, '

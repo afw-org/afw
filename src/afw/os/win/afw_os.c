@@ -205,7 +205,7 @@ afw_os_backtrace(
 {
 
     afw_utf8_t *result;
-    afw_byte_t *s;
+    afw_octet_t *s;
     afw_size_t len;
     int wlen;
 

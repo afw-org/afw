@@ -349,13 +349,13 @@ afw_file_read(
     afw_size_t n,
     afw_xctx_t *xctx)
 {
-    afw_byte_t *out;
+    afw_octet_t *out;
     afw_size_t remain;
     afw_size_t total;
     ssize_t got;
     int err;
 
-    out = (afw_byte_t *)buf;
+    out = (afw_octet_t *)buf;
     remain = n;
     total = 0;
     while (remain > 0) {
@@ -386,12 +386,12 @@ afw_file_write_full(
     afw_size_t n,
     afw_xctx_t *xctx)
 {
-    const afw_byte_t *in;
+    const afw_octet_t *in;
     afw_size_t remain;
     ssize_t put;
     int err;
 
-    in = (const afw_byte_t *)buf;
+    in = (const afw_octet_t *)buf;
     remain = n;
     if (remain == 0) {
         return;

@@ -850,7 +850,7 @@ afw_value_create_from_external_octets(
 {
     const afw_utf8_t *string;
     afw_memory_t memory;
-    const afw_byte_t *copy;
+    const afw_octet_t *copy;
 
     if (len == AFW_UTF8_Z_LEN) {
         len = (s) ? strlen(s) : 0;

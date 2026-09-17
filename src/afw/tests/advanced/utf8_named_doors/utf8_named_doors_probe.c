@@ -331,7 +331,7 @@ impl_printf_k(const afw_pool_t *p, afw_xctx_t *xctx)
 
     raw[0] = 0x00;
     raw[1] = 0xff;
-    mem.ptr = (const afw_byte_t *)raw;
+    mem.ptr = (const afw_octet_t *)raw;
     mem.size = 2;
     c = afw_utf8_printf(p, xctx, "%km", &mem);
     if (impl_eq(c, "00FF", 4, "printf %km")) {

@@ -923,7 +923,7 @@ impl_out_forced_safe(
 
 static void
 impl_out_hex(
-    impl_fmt_out_t *o, const afw_byte_t *p, afw_size_t n)
+    impl_fmt_out_t *o, const afw_octet_t *p, afw_size_t n)
 {
     afw_size_t i;
 
@@ -1087,7 +1087,7 @@ impl_format_content(
     const afw_utf8_octet_t *start;
     const afw_utf8_t *u;
     const afw_memory_t *m;
-    const afw_byte_t *mp;
+    const afw_octet_t *mp;
     const char *s;
     void *pv;
     long long ll;

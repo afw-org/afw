@@ -28,7 +28,7 @@ impl_hex_nibble(char c)
 static void
 impl_uuid_format(char *buf, const afw_uuid_t *uuid)
 {
-    const afw_byte_t *d;
+    const afw_octet_t *d;
 
     d = uuid->data;
     sprintf(buf,
@@ -65,7 +65,7 @@ impl_uuid_parse(afw_uuid_t *uuid, const char *s)
         if (hi < 0 || lo < 0) {
             return false;
         }
-        uuid->data[di++] = (afw_byte_t)((hi << 4) | lo);
+        uuid->data[di++] = (afw_octet_t)((hi << 4) | lo);
         i++;
     }
     return di == 16;
@@ -76,8 +76,8 @@ impl_uuid_generate(afw_uuid_t *uuid, afw_xctx_t *xctx)
 {
     afw_os_random_bytes(uuid->data, sizeof(uuid->data), xctx);
     /* RFC 4122 version 4 / variant 10. */
-    uuid->data[6] = (afw_byte_t)((uuid->data[6] & 0x0f) | 0x40);
-    uuid->data[8] = (afw_byte_t)((uuid->data[8] & 0x3f) | 0x80);
+    uuid->data[6] = (afw_octet_t)((uuid->data[6] & 0x0f) | 0x40);
+    uuid->data[8] = (afw_octet_t)((uuid->data[8] & 0x3f) | 0x80);
 }
 
 

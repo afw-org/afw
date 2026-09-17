@@ -26,7 +26,7 @@
 static void
 impl_get_token(afw_command_local_parse_t *x)
 {
-    const afw_byte_t *start;
+    const afw_octet_t *start;
 
     for (;;) {
         if (x->cursor >= x->end) {
@@ -175,7 +175,7 @@ afw_command_local_parse_request(
         /* Second end of line starts payload. */
         if (x.token_type == afw_command_local_parse_token_type_end_of_line) {
             payload = afw_xctx_malloc_type(afw_memory_t, xctx);
-            payload->ptr = (const afw_byte_t *)x.cursor;
+            payload->ptr = (const afw_octet_t *)x.cursor;
             payload->size = x.end - x.cursor;
             return payload;
         }

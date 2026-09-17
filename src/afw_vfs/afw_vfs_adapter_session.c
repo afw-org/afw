@@ -251,7 +251,7 @@ impl_read_file_object(
     afw_file_info_t info;
     afw_file_dir_t *dir;
     afw_file_dirent_t ent;
-    afw_byte_t *buff;
+    afw_octet_t *buff;
     afw_size_t size;
     afw_size_t size_read;
     int fd;

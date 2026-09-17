@@ -35,13 +35,13 @@ static const afw_utf8_t impl_media_types[] = {
 
 /* Raw begin object list. */
 static const afw_memory_t impl_raw_begin_object_list = {
-    (const afw_byte_t *)"[",
+    (const afw_octet_t *)"[",
     sizeof("[") - 1
 };
 
 /* Raw end object list. */
 static const afw_memory_t impl_raw_end_object_list = {
-    (const afw_byte_t *)"]",
+    (const afw_octet_t *)"]",
     sizeof("[") - 1
 };
 

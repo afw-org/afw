@@ -34,25 +34,25 @@ static const afw_utf8_t impl_media_types[] = {
 
 /* Raw begin object list. */
 static const afw_memory_t impl_raw_begin_object_list = {
-    (const afw_byte_t *)"[\n",
+    (const afw_octet_t *)"[\n",
     sizeof("[\n") - 1
 };
 
 /* Raw object separator. */
 static const afw_memory_t impl_raw_object_separator = {
-    (const afw_byte_t *)",\n",
+    (const afw_octet_t *)",\n",
     sizeof(",\n") - 1
 };
 
 /* Raw last object separator. */
 static const afw_memory_t impl_raw_last_object_separator = {
-    (const afw_byte_t *)"\n",
+    (const afw_octet_t *)"\n",
     sizeof("\n") - 1
 };
 
 /* Raw end object list. */
 static const afw_memory_t impl_raw_end_object_list = {
-    (const afw_byte_t *)"]\n",
+    (const afw_octet_t *)"]\n",
     sizeof("]\n") - 1
 };
 

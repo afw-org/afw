@@ -39,8 +39,8 @@ typedef struct {
     const afw_pool_t *p;
     afw_xctx_t *xctx;
     const afw_memory_t *input;
-    const afw_byte_t *cursor;
-    const afw_byte_t *end;
+    const afw_octet_t *cursor;
+    const afw_octet_t *end;
     const afw_utf8_t *string; // Only for token type string
     afw_size_t line_number;
     afw_command_local_parse_token_type_t token_type;
