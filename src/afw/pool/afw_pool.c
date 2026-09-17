@@ -100,6 +100,29 @@ impl_heap_afw_pool_free_memory(
     afw_xctx_t *xctx);
 #define impl_afw_pool_free_memory impl_heap_afw_pool_free_memory
 
+static void
+impl_heap_afw_pool_free_memory_no_throw(
+    AFW_POOL_SELF_T *self,
+    void *address,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+#define impl_afw_pool_free_memory_no_throw \
+    impl_heap_afw_pool_free_memory_no_throw
+
+static void *
+impl_heap_afw_pool_calloc_no_throw(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+#define impl_afw_pool_calloc_no_throw impl_heap_afw_pool_calloc_no_throw
+
+static void *
+impl_heap_afw_pool_malloc_no_throw(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+#define impl_afw_pool_malloc_no_throw impl_heap_afw_pool_malloc_no_throw
+
 #include "afw_pool_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_SPECIFIC
@@ -109,6 +132,9 @@ impl_heap_afw_pool_free_memory(
 #undef impl_afw_pool_calloc
 #undef impl_afw_pool_malloc
 #undef impl_afw_pool_free_memory
+#undef impl_afw_pool_calloc_no_throw
+#undef impl_afw_pool_malloc_no_throw
+#undef impl_afw_pool_free_memory_no_throw
 
 #define AFW_POOL_INF_ONLY 1
 
@@ -179,6 +205,34 @@ impl_tracker_afw_pool_garbage_collect(
 #define impl_afw_pool_garbage_collect \
     impl_tracker_afw_pool_garbage_collect
 
+static void *
+impl_tracker_afw_pool_calloc_no_throw(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_calloc_no_throw \
+    impl_tracker_afw_pool_calloc_no_throw
+
+static void *
+impl_tracker_afw_pool_malloc_no_throw(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_malloc_no_throw \
+    impl_tracker_afw_pool_malloc_no_throw
+
+static void
+impl_tracker_afw_pool_free_memory_no_throw(
+    AFW_POOL_SELF_T *self,
+    void *address,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_free_memory_no_throw \
+    impl_tracker_afw_pool_free_memory_no_throw
+
 static const afw_pool_internal_inf_implementation_specific_t
 impl_tracker_implementation_specific =
     {
@@ -199,6 +253,9 @@ impl_tracker_implementation_specific =
 #undef impl_afw_pool_malloc
 #undef impl_afw_pool_free_memory
 #undef impl_afw_pool_garbage_collect
+#undef impl_afw_pool_calloc_no_throw
+#undef impl_afw_pool_malloc_no_throw
+#undef impl_afw_pool_free_memory_no_throw
 
 /*
  * Scope pool (evaluation `{ }`). Same malloc/free/collect as tracker.
@@ -239,6 +296,12 @@ impl_scope_afw_pool_destroy(
     impl_tracker_afw_pool_free_memory
 #define impl_afw_pool_garbage_collect \
     impl_tracker_afw_pool_garbage_collect
+#define impl_afw_pool_calloc_no_throw \
+    impl_tracker_afw_pool_calloc_no_throw
+#define impl_afw_pool_malloc_no_throw \
+    impl_tracker_afw_pool_malloc_no_throw
+#define impl_afw_pool_free_memory_no_throw \
+    impl_tracker_afw_pool_free_memory_no_throw
 
 #define AFW_IMPLEMENTATION_SPECIFIC &impl_tracker_implementation_specific
 
@@ -253,6 +316,9 @@ impl_scope_afw_pool_destroy(
 #undef impl_afw_pool_malloc
 #undef impl_afw_pool_free_memory
 #undef impl_afw_pool_garbage_collect
+#undef impl_afw_pool_calloc_no_throw
+#undef impl_afw_pool_malloc_no_throw
+#undef impl_afw_pool_free_memory_no_throw
 
 
 /* --------------------------- internal macros ------------------------------ */
@@ -1126,6 +1192,19 @@ impl_debug_prefix_set(
     pre->pool = &self->pub;
 }
 
+static afw_boolean_t
+impl_debug_prefix_ok(
+    AFW_POOL_SELF_T *self,
+    void *address,
+    afw_size_t size)
+{
+    afw_pool_debug_prefix_t *pre;
+
+    pre = (afw_pool_debug_prefix_t *)((char *)address -
+        sizeof(afw_pool_debug_prefix_t));
+    return pre->pool == &self->pub && pre->size == size;
+}
+
 static void
 impl_debug_check_prefix(
     AFW_POOL_SELF_T *self,
@@ -1179,6 +1258,7 @@ impl_debug_poison_user(void *user, afw_size_t size)
 }
 #else
 #define impl_debug_prefix_set(self, user, size) ((void)0)
+#define impl_debug_prefix_ok(self, address, size) (true)
 #define impl_debug_check_prefix(self, address, size, xctx) ((void)0)
 #define impl_debug_poison_user(user, size) ((void)0)
 #endif
@@ -1622,15 +1702,40 @@ impl_heap_afw_pool_malloc(
     return impl_heap_malloc_internal(self, size, xctx, false);
 }
 
+void *
+impl_heap_afw_pool_malloc_no_throw(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    return impl_heap_malloc_internal(self, size, xctx, true);
+}
+
+void *
+impl_heap_afw_pool_calloc_no_throw(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    void *result;
+
+    result = impl_heap_malloc_internal(self, size, xctx, true);
+    if (result) {
+        memset(result, 0, size);
+    }
+    return result;
+}
+
 /*
  * Implementation of method free_memory for interface afw_pool.
  */
-void
-impl_heap_afw_pool_free_memory(
+static void
+impl_heap_free_internal(
     AFW_POOL_SELF_T *self,
     void *address,
     afw_size_t size,
-    afw_xctx_t *xctx)
+    afw_xctx_t *xctx,
+    afw_boolean_t no_throw)
 {
     void *start;
     afw_size_t total;
@@ -1639,16 +1744,46 @@ impl_heap_afw_pool_free_memory(
         IMPL_PRINT_DEBUG_INFO_Z(detail, "free");
         return;
     }
-    impl_debug_check_prefix(self, address, size, xctx);
+    if (no_throw) {
+        if (!impl_debug_prefix_ok(self, address, size)) {
+            return;
+        }
+    }
+    else {
+        impl_debug_check_prefix(self, address, size, xctx);
+    }
     impl_debug_poison_user(address, size);
     total = impl_block_bytes(AFW_POOL_HEAP_PREFIX_BYTES, size,
-        xctx, false);
+        xctx, no_throw);
+    if (no_throw && total == 0) {
+        return;
+    }
     start = AFW_POOL_HEAP_ALLOC_START(address);
     IMPL_PRINT_DEBUG_INFO_FZ(
         detail, "free %p " AFW_SIZE_T_FMT,
         address, total);
     impl_account_free(self, total, xctx);
     impl_heap_add_to_free_list(impl_as_heap(self), start, total, xctx);
+}
+
+void
+impl_heap_afw_pool_free_memory(
+    AFW_POOL_SELF_T *self,
+    void *address,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    impl_heap_free_internal(self, address, size, xctx, false);
+}
+
+void
+impl_heap_afw_pool_free_memory_no_throw(
+    AFW_POOL_SELF_T *self,
+    void *address,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    impl_heap_free_internal(self, address, size, xctx, true);
 }
 
 /*
@@ -1801,6 +1936,42 @@ impl_mt_afw_pool_malloc(
     return result;
 }
 
+static void *
+impl_mt_afw_pool_calloc_no_throw(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    void *result;
+
+    if (!xctx || !xctx->env || !xctx->env->multithreaded_pool_lock) {
+        return impl_heap_afw_pool_calloc_no_throw(self, size, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        result = impl_heap_afw_pool_calloc_no_throw(self, size, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+    return result;
+}
+
+static void *
+impl_mt_afw_pool_malloc_no_throw(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    void *result;
+
+    if (!xctx || !xctx->env || !xctx->env->multithreaded_pool_lock) {
+        return impl_heap_afw_pool_malloc_no_throw(self, size, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        result = impl_heap_afw_pool_malloc_no_throw(self, size, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+    return result;
+}
+
 static void
 impl_mt_afw_pool_free_memory(
     AFW_POOL_SELF_T *self,
@@ -1810,6 +1981,23 @@ impl_mt_afw_pool_free_memory(
 {
     IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
         impl_heap_afw_pool_free_memory(self, address, size, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+}
+
+static void
+impl_mt_afw_pool_free_memory_no_throw(
+    AFW_POOL_SELF_T *self,
+    void *address,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    if (!xctx || !xctx->env || !xctx->env->multithreaded_pool_lock) {
+        impl_heap_afw_pool_free_memory_no_throw(self, address, size, xctx);
+        return;
+    }
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_heap_afw_pool_free_memory_no_throw(self, address, size, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
 }
@@ -1850,7 +2038,11 @@ impl_mt_afw_pool_deregister_cleanup(
 #define impl_afw_pool_destroy impl_mt_afw_pool_destroy
 #define impl_afw_pool_calloc impl_mt_afw_pool_calloc
 #define impl_afw_pool_malloc impl_mt_afw_pool_malloc
+#define impl_afw_pool_calloc_no_throw impl_mt_afw_pool_calloc_no_throw
+#define impl_afw_pool_malloc_no_throw impl_mt_afw_pool_malloc_no_throw
 #define impl_afw_pool_free_memory impl_mt_afw_pool_free_memory
+#define impl_afw_pool_free_memory_no_throw \
+    impl_mt_afw_pool_free_memory_no_throw
 #define impl_afw_pool_register_cleanup \
     impl_mt_afw_pool_register_cleanup
 #define impl_afw_pool_deregister_cleanup impl_mt_afw_pool_deregister_cleanup
@@ -1878,7 +2070,10 @@ impl_pool_mt_implementation_specific =
 #undef impl_afw_pool_destroy
 #undef impl_afw_pool_calloc
 #undef impl_afw_pool_malloc
+#undef impl_afw_pool_calloc_no_throw
+#undef impl_afw_pool_malloc_no_throw
 #undef impl_afw_pool_free_memory
+#undef impl_afw_pool_free_memory_no_throw
 #undef impl_afw_pool_register_cleanup
 #undef impl_afw_pool_deregister_cleanup
 
@@ -2039,12 +2234,39 @@ impl_tracker_afw_pool_malloc(
 }
 
 
+static void *
+impl_tracker_afw_pool_malloc_no_throw(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    return impl_tracker_malloc_internal(self, size, xctx, true);
+}
+
+
+static void *
+impl_tracker_afw_pool_calloc_no_throw(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    void *result;
+
+    result = impl_tracker_malloc_internal(self, size, xctx, true);
+    if (result) {
+        memset(result, 0, size);
+    }
+    return result;
+}
+
+
 static void
-impl_tracker_afw_pool_free_memory(
+impl_tracker_free_internal(
     AFW_POOL_SELF_T *self,
     void *address,
     afw_size_t size,
-    afw_xctx_t *xctx)
+    afw_xctx_t *xctx,
+    afw_boolean_t no_throw)
 {
     afw_pool_tracker_node_t *node;
     afw_size_t total;
@@ -2053,21 +2275,54 @@ impl_tracker_afw_pool_free_memory(
         IMPL_PRINT_DEBUG_INFO_Z(detail, "free");
         return;
     }
-    impl_debug_check_prefix(self, address, size, xctx);
+    if (no_throw) {
+        if (!impl_debug_prefix_ok(self, address, size)) {
+            return;
+        }
+    }
+    else {
+        impl_debug_check_prefix(self, address, size, xctx);
+    }
     node = AFW_POOL_TRACKER_NODE(address);
     if (AFW_POOL_TRACKER_IS_FREED(node)) {
+        if (no_throw) {
+            return;
+        }
         AFW_THROW_ERROR_Z(general,
             "afw_pool_free_memory: already freed",
             xctx);
     }
     impl_debug_poison_user(address, size);
     total = impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES, size,
-        xctx, false);
+        xctx, no_throw);
+    if (no_throw && total == 0) {
+        return;
+    }
     IMPL_PRINT_DEBUG_INFO_FZ(
         detail, "free %p " AFW_SIZE_T_FMT,
         address, total);
     impl_account_free(self, total, xctx);
     AFW_POOL_TRACKER_MARK_FREED(node);
+}
+
+static void
+impl_tracker_afw_pool_free_memory(
+    AFW_POOL_SELF_T *self,
+    void *address,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    impl_tracker_free_internal(self, address, size, xctx, false);
+}
+
+static void
+impl_tracker_afw_pool_free_memory_no_throw(
+    AFW_POOL_SELF_T *self,
+    void *address,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    impl_tracker_free_internal(self, address, size, xctx, true);
 }
 
 
@@ -2181,16 +2436,10 @@ afw_pool_malloc_unhandled(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    AFW_POOL_SELF_T *self;
-
     if (!instance) {
         return NULL;
     }
-    self = (AFW_POOL_SELF_T *)instance;
-    if (afw_pool_internal_is_tracker(instance)) {
-        return impl_tracker_malloc_internal(self, size, xctx, true);
-    }
-    return impl_heap_malloc_internal(self, size, xctx, true);
+    return afw_pool_malloc_no_throw(instance, size, xctx);
 }
 
 
@@ -2200,13 +2449,10 @@ afw_pool_calloc_unhandled(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    void *result;
-
-    result = afw_pool_malloc_unhandled(instance, size, xctx);
-    if (result) {
-        memset(result, 0, size);
+    if (!instance) {
+        return NULL;
     }
-    return result;
+    return afw_pool_calloc_no_throw(instance, size, xctx);
 }
 
 

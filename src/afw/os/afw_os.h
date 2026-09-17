@@ -95,7 +95,9 @@ afw_os_log_factory_get();
  *    influence whether producing backtrace is possible.
  * @param max_backtrace
  * @param xctx of caller.
- * @return octets (not necessarily UTF-8), or NULL if not possible.
+ * @return managed hexBinary of the OS octets (not necessarily
+ *     UTF-8), or NULL if not possible. Caller must
+ *     afw_value_release() when finished.
  *
  * IMPORTANT Implementation of this function must not do anything that might
  * throw an error or change xctx->error or a recursive error producing a
@@ -104,7 +106,7 @@ afw_os_log_factory_get();
  * If max_backtrace is -1 or greater than the implementation's max, the max is
  * used.  If 0 is specifed, no trace occurs.
  */
-AFW_DECLARE(const afw_memory_t *)
+AFW_DECLARE(const afw_value_hexBinary_t *)
 afw_os_backtrace(
     afw_error_code_t code,
     int max_backtrace,

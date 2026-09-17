@@ -137,6 +137,15 @@ impl_afw_pool_calloc(
     afw_xctx_t * xctx);
 #endif
 
+#ifndef impl_afw_pool_calloc_no_throw
+/* Declare method calloc_no_throw */
+AFW_DECLARE_STATIC(void *)
+impl_afw_pool_calloc_no_throw(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t * xctx);
+#endif
+
 #ifndef impl_afw_pool_malloc
 /* Declare method malloc */
 AFW_DECLARE_STATIC(void *)
@@ -146,10 +155,29 @@ impl_afw_pool_malloc(
     afw_xctx_t * xctx);
 #endif
 
+#ifndef impl_afw_pool_malloc_no_throw
+/* Declare method malloc_no_throw */
+AFW_DECLARE_STATIC(void *)
+impl_afw_pool_malloc_no_throw(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t * xctx);
+#endif
+
 #ifndef impl_afw_pool_free_memory
 /* Declare method free_memory */
 AFW_DECLARE_STATIC(void)
 impl_afw_pool_free_memory(
+    AFW_POOL_SELF_T *self,
+    void * address,
+    afw_size_t size,
+    afw_xctx_t * xctx);
+#endif
+
+#ifndef impl_afw_pool_free_memory_no_throw
+/* Declare method free_memory_no_throw */
+AFW_DECLARE_STATIC(void)
+impl_afw_pool_free_memory_no_throw(
     AFW_POOL_SELF_T *self,
     void * address,
     afw_size_t size,
@@ -225,10 +253,16 @@ impl_afw_pool_inf = {
     impl_afw_pool_destroy,
     (afw_pool_calloc_t)
     impl_afw_pool_calloc,
+    (afw_pool_calloc_no_throw_t)
+    impl_afw_pool_calloc_no_throw,
     (afw_pool_malloc_t)
     impl_afw_pool_malloc,
+    (afw_pool_malloc_no_throw_t)
+    impl_afw_pool_malloc_no_throw,
     (afw_pool_free_memory_t)
     impl_afw_pool_free_memory,
+    (afw_pool_free_memory_no_throw_t)
+    impl_afw_pool_free_memory_no_throw,
     (afw_pool_register_cleanup_t)
     impl_afw_pool_register_cleanup,
     (afw_pool_deregister_cleanup_t)

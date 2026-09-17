@@ -79,6 +79,22 @@ static const afw_utf8_t impl_s_a_html_unknown =
 
 
 AFW_DEFINE(void)
+afw_error_release_backtrace(
+    afw_error_t *error,
+    afw_xctx_t *xctx)
+{
+    const afw_value_hexBinary_t *bt;
+
+    if (!error || !error->backtrace) {
+        return;
+    }
+    bt = error->backtrace;
+    error->backtrace = NULL;
+    afw_value_release(&bt->pub, xctx);
+}
+
+
+AFW_DEFINE(void)
 afw_error_rv_set_z(
     afw_error_code_t code,
     const afw_utf8_z_t *rv_source_id_z,
@@ -97,6 +113,7 @@ afw_error_rv_set_z(
     xctx->error->source_z = source_z;
     xctx->error->message_z = message_z;
 
+    afw_error_release_backtrace(xctx->error, xctx);
     if (code != afw_error_code_memory) {
         xctx->error->backtrace = afw_os_backtrace(code, -1, xctx);
     }
@@ -646,7 +663,7 @@ afw_error_to_utf8(
         (do_code_backtrace && error->backtrace)
             ? "\nCode backtrace:\n" : "",
         (do_code_backtrace && error->backtrace)
-            ? error->backtrace : NULL
+            ? &error->backtrace->internal : NULL
     );
 
     return result;
@@ -778,9 +795,12 @@ afw_error_print(FILE *fp, const afw_error_t *error)
     if (error->backtrace) {
         rv = fputs("\nbacktrace:\n", fp);
         if (rv < 0) goto return_rv;
-        if (error->backtrace->size > 0 && error->backtrace->ptr) {
-            if (fwrite(error->backtrace->ptr, 1, error->backtrace->size,
-                fp) != error->backtrace->size)
+        if (error->backtrace->internal.size > 0 &&
+            error->backtrace->internal.ptr)
+        {
+            if (fwrite(error->backtrace->internal.ptr, 1,
+                error->backtrace->internal.size, fp) !=
+                error->backtrace->internal.size)
             {
                 rv = -1;
                 goto return_rv;
@@ -978,8 +998,8 @@ afw_error_add_to_object(
         afw_object_set_property_as_string_internal(object,
             afw_v_backtrace,
             impl_octets_ks_value(
-                (const afw_utf8_octet_t *)error->backtrace->ptr,
-                error->backtrace->size, p, xctx),
+                (const afw_utf8_octet_t *)error->backtrace->internal.ptr,
+                error->backtrace->internal.size, p, xctx),
             xctx);
     }
 

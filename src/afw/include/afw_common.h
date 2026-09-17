@@ -1788,6 +1788,14 @@ typedef void
 
 
 
+/*
+ * Data-type typedefs (`afw_value_hexBinary_t`, …). After the complete
+ * internals in this header (`afw_yearMonthDuration_t`, …). This
+ * generated file includes afw_minimal.h, so it cannot sit next to
+ * afw_interface_opaques.h.
+ */
+#include "afw_data_type_typedefs.h"
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

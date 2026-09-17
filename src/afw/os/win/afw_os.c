@@ -25,24 +25,26 @@
 #include <time.h>
 #include <signal.h>
 
-static const afw_memory_t impl_no_memory_for_backtrace = {
-    (const afw_octet_t *)"No memory for backtrace",
-    sizeof("No memory for backtrace") - 1
+static const afw_value_hexBinary_t impl_no_memory_hexBinary = {
+    { &afw_value_permanent_hexBinary_inf },
+    {
+        (const afw_octet_t *)"No memory for backtrace",
+        sizeof("No memory for backtrace") - 1
+    }
 };
 
-static const afw_memory_t *
-impl_memory_unhandled(
-    const afw_octet_t *ptr, afw_size_t size, afw_xctx_t *xctx)
+static const afw_value_hexBinary_t *
+impl_finish_backtrace(
+    char *start, char *s, afw_size_t cap, afw_xctx_t *xctx)
 {
-    afw_memory_t *m;
+    afw_memory_t mem;
+    const afw_value_hexBinary_t *v;
 
-    m = afw_pool_malloc_unhandled(xctx->p, sizeof(afw_memory_t), xctx);
-    if (!m) {
-        return &impl_no_memory_for_backtrace;
-    }
-    m->ptr = ptr;
-    m->size = size;
-    return m;
+    mem.ptr = (const afw_octet_t *)start;
+    mem.size = (afw_size_t)(s - start);
+    v = afw_value_hexBinary_create_no_throw(&mem, xctx->p, xctx);
+    afw_pool_free_memory_no_throw(xctx->p, start, cap, xctx);
+    return v ? v : &impl_no_memory_hexBinary;
 }
 
 static const afw_utf8_t
@@ -213,7 +215,7 @@ afw_os_get_dso_suffix()
 
 
 /*  Provide a backtrace if possible. */
-AFW_DEFINE(const afw_memory_t *)
+AFW_DEFINE(const afw_value_hexBinary_t *)
 afw_os_backtrace(
     afw_error_code_t code,
     int max_backtrace,
@@ -223,6 +225,7 @@ afw_os_backtrace(
     char *s;
     char *start;
     afw_size_t len;
+    afw_size_t cap;
     int wlen;
 
     USHORT frames;
@@ -258,9 +261,10 @@ afw_os_backtrace(
      * truncated to what will fit.  The average line size is assumed to
      * be 100 plus 10 extra lines for other error info.
      */
-    len = (max + 10) * 100;
-    s = afw_pool_malloc_unhandled(xctx->p, len, xctx);
-    if (!s) return &impl_no_memory_for_backtrace;
+    cap = (max + 10) * 100;
+    len = cap;
+    s = afw_pool_malloc_no_throw(xctx->p, cap, xctx);
+    if (!s) return &impl_no_memory_hexBinary;
     start = s;
 
     /* Capture backtrace stack. */
@@ -296,8 +300,7 @@ afw_os_backtrace(
         }
     }
 
-    return impl_memory_unhandled(
-        (const afw_octet_t *)start, (afw_size_t)(s - start), xctx);
+    return impl_finish_backtrace(start, s, cap, xctx);
 }
 
 

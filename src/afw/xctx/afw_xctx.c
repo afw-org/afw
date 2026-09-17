@@ -729,6 +729,7 @@ afw_xctx_release(
      */
     if (instance->p) {
         AFW_TRY {
+            afw_error_release_backtrace(xctx->error, xctx);
             afw_stream_internal_release_all_streams(xctx);
             afw_pool_run_cleanups(instance->p, xctx);
         }

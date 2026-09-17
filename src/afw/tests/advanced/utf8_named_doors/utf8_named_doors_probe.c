@@ -469,6 +469,7 @@ static int
 impl_error_backtrace(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_memory_t fake;
+    const afw_value_hexBinary_t *fake_v;
     char in[3];
     const afw_object_t *obj;
     const afw_utf8_t *got;
@@ -480,16 +481,22 @@ impl_error_backtrace(const afw_pool_t *p, afw_xctx_t *xctx)
     in[2] = 'y';
     fake.ptr = (const afw_octet_t *)in;
     fake.size = 3;
+    fake_v = afw_value_hexBinary_create_no_throw(&fake, xctx->p, xctx);
+    if (!fake_v) {
+        fprintf(stderr, "error-backtrace: create_no_throw failed\n");
+        return 1;
+    }
 
     afw_flag_set(afw_s_a_flag_response_error_backtrace, true, xctx);
 
     rc = 0;
-    AFW_TRY {
-        AFW_THROW_ERROR_Z(general, "probe", xctx);
-    }
-    AFW_CATCH_UNHANDLED {
-        xctx->error->backtrace = &fake;
-        obj = afw_error_to_object(xctx->error, p, xctx);
+    {
+        afw_error_t e;
+
+        memset(&e, 0, sizeof(e));
+        e.message_z = "probe";
+        e.backtrace = fake_v;
+        obj = afw_error_to_object(&e, p, xctx);
         got = afw_object_get_property_as_string_internal(
             obj, afw_v_backtrace, xctx);
         if (!got || got->len != 6 ||
@@ -499,13 +506,13 @@ impl_error_backtrace(const afw_pool_t *p, afw_xctx_t *xctx)
                 (unsigned long)(got ? got->len : 0));
             rc = 1;
         }
-        dump = afw_error_to_utf8(xctx->error, p, xctx);
+        dump = afw_error_to_utf8(&e, p, xctx);
         if (!impl_contains(dump, "x^FF^y", 6)) {
             fprintf(stderr, "error_to_utf8 dirty backtrace\n");
             rc = 1;
         }
     }
-    AFW_ENDTRY;
+    afw_value_release(&fake_v->pub, xctx);
     return rc;
 }
 

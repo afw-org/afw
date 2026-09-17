@@ -90,10 +90,11 @@ struct afw_error_s {
     /**
      * @brief If not memory error and afw_os_backtrace() supplies one.
      *
-     * Octets from the OS (not necessarily NFC UTF-8). NULL if none.
-     * Print with `%%km`.
+     * Managed hexBinary of OS octets (not necessarily UTF-8).
+     * NULL if none. Caller of afw_os_backtrace() must
+     * afw_value_release() when finished.
      */
-    const afw_memory_t *backtrace;
+    const afw_value_hexBinary_t *backtrace;
 
     /**
      * @brief If syntax error, this is cursor when parse error occurred or 0.
@@ -911,6 +912,7 @@ do {\
     afw_xctx_evaluation_stack_rewind(this_TOP_OFFSET, xctx); \
     if (this_ERROR_OCCURRED && this_ERROR_CAUGHT) { \
         afw_error_processing_handled(xctx); \
+        afw_error_release_backtrace(&this_THROWN_ERROR, xctx); \
     } \
 } while (0)
 
@@ -948,6 +950,17 @@ do {\
  *
  * This function leaves xctx->error unchanged if it is successful.
  */
+/**
+ * @brief Release error->backtrace if set.
+ *
+ * Safe if backtrace is NULL or a permanent value.
+ */
+AFW_DECLARE(void)
+afw_error_release_backtrace(
+    afw_error_t *error,
+    afw_xctx_t *xctx);
+
+
 AFW_DECLARE(const afw_object_t *)
 afw_error_to_object(
     const afw_error_t *error,

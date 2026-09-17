@@ -5575,6 +5575,30 @@ AFW_DEFINE(const afw_request_handler_t *)
 
     </method>
 
+    <method name="calloc_no_throw">
+
+      <description>
+        Allocate cleared memory in this pool. Returns NULL instead of
+        throwing (size 0 or allocation failure). For error-path and
+        other code that cannot throw.
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t">
+        <description>Size of memory to allocate.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx. May be NULL.</description>
+      </parameter>
+
+      <return type="void *" />
+
+    </method>
+
     <method name="malloc">
 
       <description>
@@ -5591,6 +5615,30 @@ AFW_DEFINE(const afw_request_handler_t *)
 
       <parameter name="xctx" type="afw_xctx_t *">
         <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void *" />
+
+    </method>
+
+    <method name="malloc_no_throw">
+
+      <description>
+        Allocate uncleared memory in this pool. Returns NULL instead
+        of throwing (size 0 or allocation failure). For error-path
+        and other code that cannot throw.
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t">
+        <description>Size of memory to allocate.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx. May be NULL.</description>
       </parameter>
 
       <return type="void *" />
@@ -5623,6 +5671,35 @@ AFW_DEFINE(const afw_request_handler_t *)
 
       <parameter name="xctx" type="afw_xctx_t *">
         <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="free_memory_no_throw">
+
+      <description>
+        Same as free_memory but does not throw (bad prefix, already
+        freed, size overflow). For error-path and other code that
+        cannot throw. No-op if address is NULL or the block cannot
+        be freed safely.
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="address" type="void *">
+        <description>Address of memory to free.</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t">
+        <description>Size passed to malloc/calloc for this address.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx. May be NULL.</description>
       </parameter>
 
       <return type="void" />
