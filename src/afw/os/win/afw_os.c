@@ -16,7 +16,7 @@
 #define _WIN32_WINNT 0x0601
 
 #define _CRT_RAND_S
-#include "afw.h"
+#include "afw_internal.h"
 #include "Dbghelp.h"
 #include <direct.h>
 #include <errno.h>

@@ -25,6 +25,19 @@
 
 AFW_BEGIN_DECLARES
 
+/**
+ * Adapter id registry entry. Protect with env->adapter_id_anchor_lock.
+ */
+struct afw_adapter_id_anchor_s {
+    const afw_utf8_t *adapter_id;
+    const afw_utf8_t *adapter_type_id;
+    const afw_adapter_t *adapter;
+    const afw_object_t *properties;
+    const afw_utf8_t *service_id;
+    afw_integer_t reference_count;
+    afw_adapter_id_anchor_t *stopping;
+};
+
 /** @brief Internal struct used by adapters for this xctx. */
 struct afw_adapter_xctx_internal_s {
     afw_boolean_t loading_object_types;

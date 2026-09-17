@@ -36,7 +36,7 @@ AFW_VECTOR_STRUCT(afw_xctx_internal_qualifier_stack_s,
  * @param error
  * @param p to use.
  */
-AFW_DECLARE(afw_xctx_t *)
+afw_xctx_t *
 afw_xctx_internal_create_initialize(
     afw_try_t *unhandled_error,
     afw_error_t *error,
@@ -48,7 +48,7 @@ afw_xctx_internal_create_initialize(
  * @brief Internal function used during xctx/environment create.
  * @param xctx of caller.
  */
-AFW_DECLARE(void)
+void
 afw_xctx_internal_create_finishup(afw_xctx_t *xctx);
 
 
@@ -58,7 +58,7 @@ afw_xctx_internal_create_finishup(afw_xctx_t *xctx);
  * @param thread
  * @param xctx of caller.
  */
-AFW_DECLARE(afw_xctx_t *)
+afw_xctx_t *
 afw_xctx_internal_create_thread_xctx(
     const afw_thread_t *thread, afw_xctx_t *xctx);
 

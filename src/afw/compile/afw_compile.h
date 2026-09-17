@@ -32,6 +32,27 @@
 AFW_BEGIN_DECLARES
 
 /**
+ * @brief Per-compile policy (flags as defaults; #compile overrides this only).
+ *
+ * Snapshot of effective compile:* knobs for one compiled unit. Process flags
+ * are defaults; #compile mutates this snapshot only (never process flags).
+ * Type checks resolve policy via contextual->compiled_value, else flags.
+ * See designs/pragma-hash-design.md and afw_compile_parse_pragma.c.
+ */
+struct afw_compile_policy_s {
+    /** Full typeCheck (compile + runtime). compile_only wins if both set. */
+    afw_boolean_t type_check;
+    /** Compile-time type checking only. */
+    afw_boolean_t type_check_compile_only;
+    /** Require annotations when type checking is active. */
+    afw_boolean_t no_implicit_any;
+    /** Strict null/undefined assignability when type checking is active. */
+    afw_boolean_t strict_null_checks;
+    /** Prefer unoptimized built-in call evaluation. */
+    afw_boolean_t no_optimize;
+};
+
+/**
  * @brief Initialize compile policy from current process/xctx flags.
  * @param policy out; fully written.
  * @param xctx of caller.

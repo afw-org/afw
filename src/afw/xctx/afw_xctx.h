@@ -22,12 +22,139 @@
  *
  * See @ref afw_xctx. An `afw_xctx_t` is a unit of work (request, eval, …).
  * Scopes use heap trackers for automatic cleanup; statement_flow drives
- * break/continue/return/rethrow without C++ exceptions. Struct layout is
- * in `afw_common.h`; this header is the public helper surface.
+ * break/continue/return/rethrow without C++ exceptions.
  */
 
 
 AFW_BEGIN_DECLARES
+
+/**
+ * @brief Execution context (`afw_xctx_t`): scopes, stack, statement_flow.
+ *
+ * Unit of work for evaluation and requests. See group afw_xctx.
+ * Opaque typedef is in afw_common_opaques.h.
+ */
+struct afw_xctx_s {
+
+    /**
+     * Default pool or execution context (xctx).
+     */
+    const afw_pool_t *p;
+
+    /**
+     * The execution context (xctx) name or type.
+     */
+    const afw_utf8_t *name;
+
+    /**
+     * The execution context (xctx) parent xctx.
+     */
+    afw_xctx_t *parent;
+
+    /**
+     * Adaptive Framework Environment. This points to the same environment as
+     * all other execution contexts in the same Adaptive Framework application.
+     */
+    const afw_environment_t *env;
+
+    /**
+     * Associated AFW thread. Always set: base xctx has type `base`
+     * (no pthread). Nested xctx copies the parent pointer.
+     */
+    const afw_thread_t *thread;
+
+    /**
+     * Thread pool_bytes_in_use copied at xctx create. Usage is
+     * thread current minus this (`afw_xctx_pool_bytes_in_use` in
+     * afw_thread.h).
+     */
+    afw_size_t snap_pool_bytes_in_use;
+
+    /**
+     * Thread pool_chunk_bytes copied at xctx create.
+     */
+    afw_size_t snap_pool_chunk_bytes;
+
+    /**
+     * Request instance associated with xctx or NULL.
+     */
+    const afw_request_t *request;
+
+    /**
+     * A UUID to identify this xctx.
+     */
+    const afw_utf8_t *uuid;
+
+    /**
+     * The execution context (xctx) properties. This is an untyped object.
+     */
+    const afw_object_t *properties;
+
+    /**
+     * Authorization mode value. This contains the value from one of the
+     * afw_authorization_mode_id_*_value variables from afw_authorization_h.
+     */
+    const afw_value_t *mode;
+
+    /**
+     * Anchor for steams available in xctx. See afw_stream.h.
+     */
+    const afw_stream_anchor_t *stream_anchor;
+
+    /**
+     * Error.
+     */
+    afw_error_t *error;
+
+    /**
+     * Nested throws still being processed. 0 is off. Last
+     * pool release/destroy waits until this is 0 again.
+     */
+    afw_size_t error_processing_count;
+
+    /**
+     * Current try.
+     */
+    afw_try_t * current_try;
+
+    /**
+     * The execution context (xctx) evaluation stack.
+     *
+     * Public for AFW_TRY rewind. May move later.
+     */
+    afw_xctx_evaluation_stack_t *evaluation_stack;
+
+    /**
+     * The number of flags.
+     */
+    afw_size_t flags_count;
+
+    /**
+     * Array of boolean flags. The size is flag_count.
+     */
+    const afw_boolean_t *flags;
+
+    /**
+     * This indicates that xctx->flags is a mutable copy for env->flags.
+     *
+     * During xctx create, xctx->flags is set to env->flags. If flags change
+     * for an xctx, xctx->flags is set to a mutable copy of env->flags and this
+     * variable is set to true.
+     */
+    afw_boolean_t flags_is_mutable_copy;
+
+    /**
+     * If true, evaluates should only used secure context variables.
+     * Use AFW_XCTX_SECURE_BEGIN and AFW_XCTX_SECURE_END for afw_xctx.h to
+     * modify this variable.
+     */
+    afw_boolean_t secure;
+
+#ifdef AFW_XCTX_INTERNAL_MEMBERS
+#include "afw_xctx_internal_members.h"
+#endif
+
+};
 
 /** Name of base xctx. */
 #define AFW_XCTX_Q_NAME_BASE "base"
@@ -109,11 +236,8 @@ afw_xctx_check_resource_limits(
  * @param xctx of caller.
  * @return true if environment terminating.
  */
-AFW_DEFINE_STATIC_INLINE(afw_boolean_t)
-afw_xctx_environment_is_terminating(afw_xctx_t *xctx)
-{
-    return xctx->env->terminating;
-}
+#define afw_xctx_environment_is_terminating(xctx) \
+    ((xctx)->env->terminating)
 
 
 /**

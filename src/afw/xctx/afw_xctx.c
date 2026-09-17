@@ -69,7 +69,7 @@ impl_set_evaluation_stack(afw_xctx_t *xctx)
 }
 
 
-AFW_DEFINE(afw_xctx_t *)
+afw_xctx_t *
 afw_xctx_internal_create_initialize(
     afw_try_t *unhandled_error,
     afw_error_t *error,
@@ -99,8 +99,8 @@ afw_xctx_internal_create_initialize(
     self->error = error;
     self->env = (const afw_environment_t *)env;
     error->xctx = self;
-    self->flags_count = env->pub.flags_count_allocated;
-    self->flags = (afw_boolean_t *)env->pub.default_flags;
+    self->flags_count = env->flags_count_allocated;
+    self->flags = (afw_boolean_t *)env->default_flags;
     /*! \fixme stream_anchor may be too early??? */
     self->stream_anchor = afw_stream_internal_stream_anchor_create(self);
     if (!self->stream_anchor) {
@@ -115,7 +115,7 @@ afw_xctx_internal_create_initialize(
     {
         afw_size_t n;
 
-        n = env->pub.limit_evaluation_stack_count;
+        n = env->limit_evaluation_stack_count;
         self->scope_stack = afw_vector_create_fixed_unhandled(
             afw_xctx_scope_p_vector_t, n, p, self);
     }
@@ -136,7 +136,7 @@ afw_xctx_internal_create_initialize(
 }
 
 
-AFW_DEFINE(void)
+void
 afw_xctx_internal_create_finishup(afw_xctx_t *xctx)
 {
     /*
@@ -245,7 +245,7 @@ afw_xctx_check_resource_limits(
 }
 
 
-AFW_DEFINE(afw_xctx_t *)
+afw_xctx_t *
 afw_xctx_internal_create_thread_xctx(
     const afw_thread_t *thread, afw_xctx_t *xctx) 
 {

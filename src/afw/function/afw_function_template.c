@@ -11,7 +11,7 @@
  * @brief Adaptive function execute implementations for category `template`.
  */
 
-#include "afw.h"
+#include "afw_internal.h"
 
 
 

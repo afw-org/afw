@@ -531,12 +531,13 @@ def _generate_subdir_afwdev_generated_variables(options, afw_package, srcdirInfo
 
         fd.write('\n')
         fd.write('# Header files that are installed for public use.\n')
-        fd.write('# Excludes *_internal.h / afw_internal.h (libafw/package private).\n')
+        fd.write('# Excludes *_internal.h / *_internal_*.h / '
+                 'afw_internal.h (libafw/package private).\n')
         fd.write('# Srcdir CMakeLists may also list(FILTER ...); keep both consistent.\n')
         fd.write('set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST \n')
         for rpaths in sorted(h_file_rpaths):
             base = os.path.basename(rpaths)
-            if base.endswith('_internal.h') or base == 'afw_internal.h':
+            if '_internal' in base and base.endswith('.h'):
                 continue
             fd.write('    ' + rpaths + '\n')
         fd.write(')\n')

@@ -122,6 +122,17 @@ afw_object_aggregate_external_self_s {
     } iterator; 
 } afw_object_aggregate_external_self_t;
 
+
+/**
+ * @brief Create an object type (libafw).
+ */
+const afw_object_type_t *
+afw_object_type_internal_create(
+    const afw_adapter_t *adapter,
+    const afw_object_t *object_type_object,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

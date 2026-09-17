@@ -96,24 +96,16 @@ afw_log_priority_to_priority_id(
  * @param priority enum to convert
  * @return priority_mask.
  */
-AFW_DEFINE_STATIC_INLINE(afw_log_priority_mask_t)
-afw_log_priority_mask(
-    afw_log_priority_t priority)
-{
-    return 1 << priority;
-}
+#define afw_log_priority_mask(priority) \
+    ((afw_log_priority_mask_t)(1 << (priority)))
 
 /**
  * @brief Get the priority mask for all equal or higher log priorities.
  * @param priority enum of lowest priority for mask.
  * @return priority_mask.
  */
-AFW_DEFINE_STATIC_INLINE(afw_log_priority_mask_t)
-afw_log_up_to_priority_mask(
-    afw_log_priority_t priority)
-{
-    return (1 << (priority + 1) ) - 1;
-}
+#define afw_log_up_to_priority_mask(priority) \
+    ((afw_log_priority_mask_t)((1 << ((priority) + 1)) - 1))
 
 /**
  * @brief Determined if log priority corresponding bit is on in mask.
@@ -121,12 +113,8 @@ afw_log_up_to_priority_mask(
  * @param priority to test.
  * @return true or false.
  */
-AFW_DEFINE_STATIC_INLINE(afw_boolean_t)
-afw_log_priority_in_mask(
-    afw_log_priority_mask_t mask, afw_log_priority_t priority)
-{
-    return ((1 << priority) & mask) != 0;
-}
+#define afw_log_priority_in_mask(mask, priority) \
+    ((((1 << (priority)) & (mask)) != 0))
 
 /**
  * @brief Set the corresponding bit for a priority in a mask.
@@ -135,20 +123,15 @@ afw_log_priority_in_mask(
  * @param value true or false.
  * @return true or false.
  */
-AFW_DEFINE_STATIC_INLINE(void)
-afw_log_set_priority_in_mask(
-    afw_log_priority_mask_t *mask,
-    afw_log_priority_t priority,
-    afw_boolean_t value)
-{
-    if (value) {
-        *mask |= (1 << priority);
-    }
-
-    else {
-        *mask &= ~(1 << priority);
-    }
-}
+#define afw_log_set_priority_in_mask(mask, priority, value) \
+    do { \
+        if (value) { \
+            *(mask) |= (1 << (priority)); \
+        } \
+        else { \
+            *(mask) &= ~(1 << (priority)); \
+        } \
+    } while (0)
 
 /**
  * @brief Log an afw_utf8_t message to environment's log.
@@ -203,21 +186,13 @@ afw_log_set_priority_in_mask(
  * @param message_z message to log.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_log_write_z(
     const afw_log_t * instance,
     afw_log_priority_t priority,
     const afw_utf8_z_t * source_z,
     const afw_utf8_z_t * message_z,
-    afw_xctx_t *xctx)
-{
-    afw_utf8_t message;
-
-    message.s = message_z;
-    message.len = strlen(message_z);
-    afw_log_write(instance, priority, source_z, &message,
-        xctx);
-}
+    afw_xctx_t *xctx);
 
 /**
  * @brief Log an message using a printf style format and va_list.
@@ -246,22 +221,14 @@ afw_log_write_vz(
  * @param format_z for message to log.
  * @param ... parameters for format.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_log_write_fz(
     const afw_log_t * instance,
     afw_log_priority_t priority,
     const afw_utf8_z_t * source_z,
     afw_xctx_t *xctx,
     const afw_utf8_z_t * format_z,
-    ...)
-{
-    va_list ap;
-
-    va_start(ap, format_z);
-    afw_log_write_vz(instance, priority, source_z, format_z,
-        ap, xctx);
-    va_end(ap);
-}
+    ...);
 
 
 /**

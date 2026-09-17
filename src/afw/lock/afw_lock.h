@@ -27,51 +27,6 @@
 
 AFW_BEGIN_DECLARES
 
-/**  @brief Lock type. */
-typedef enum {
-    afw_lock_type_global_mutex,
-    afw_lock_type_process_mutex,
-    afw_lock_type_thread_mutex,
-    afw_lock_type_thread_recursive_mutex,
-    afw_lock_type_thread_read_write
-} afw_lock_type_t;
-
-
-/**
- * @internal
- * @brief Internal struct of lock
- */
-struct afw_lock_s {
-    const afw_utf8_t *lock_id;
-    const afw_utf8_t *brief;
-    const afw_utf8_t *description;
-    const afw_utf8_t *flag_id_debug;
-    afw_size_t flag_index_debug;
-    union {
-
-        /** @brief for type thread_mutex */
-        afw_thread_mutex_t *mutex;
-
-        /** @brief for type thread_read_write */
-        afw_thread_rwlock_t *rwlock;
-    };
-    afw_lock_type_t lock_type;
-};
-
-
-/**
- * @internal
- * @brief Internal struct of read/write lock
- *
- * afw_lock_rw_s is the same struct as afw_lock_s but is done this way
- * to get a compile-time casting error if read/write only functions/macros
- * are used with non read/write locks.
- */
-struct afw_lock_rw_s {
-    struct afw_lock_s lock;
-};
-
-
 /**
  * @brief Create a lock that will last for life of pool.
  * @param lock_id

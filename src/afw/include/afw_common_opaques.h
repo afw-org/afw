@@ -322,7 +322,7 @@ afw_context_cb_variable_t;
  * @brief Process-wide environment (`afw_environment_t`).
  *
  * Registry fabric accessed as `xctx->env`. See group afw_environment and
- * afw_environment.h / registration in afw_environment_register_core.c.
+ * afw_environment.h.
  */
 typedef struct afw_environment_s
 afw_environment_t;
@@ -342,6 +342,22 @@ afw_environment_conf_type_t;
  */
 typedef struct afw_environment_registry_type_s
 afw_environment_registry_type_t;
+
+/**
+ * @brief Opaque vector of `afw_environment_registry_type_t *`.
+ *
+ * Completed in afw_environment_internal.h.
+ */
+typedef struct afw_environment_registry_type_p_vector_s
+afw_environment_registry_type_p_vector_t;
+
+/**
+ * @brief Opaque vector of data-type method vectors.
+ *
+ * Completed in afw_environment_internal.h.
+ */
+typedef struct afw_environment_data_type_methods_vector_s
+afw_environment_data_type_methods_vector_t;
 
 /**
  * @brief Error record for AFW_TRY / throw paths (`afw_error_t`).
@@ -717,6 +733,14 @@ typedef struct afw_thread_s
 afw_thread_t;
 
 /**
+ * @brief Opaque `afw_thread_attr_t`.
+ *
+ * Defined in afw_thread.c. See afw_thread.h.
+ */
+typedef struct afw_thread_attr_s
+afw_thread_attr_t;
+
+/**
  * @brief Opaque `afw_thread_mutex_t`.
  *
  * Same as `afw_os_mutex_t`. See afw_thread.h / afw_os.h.
@@ -832,7 +856,7 @@ afw_value_closure_binding_t;
  * @brief Opaque `afw_compile_policy_t`.
  *
  * Per-compile policy (flag defaults + #compile overrides). Full struct in
- * afw_common.h; also stored on afw_value_compiled_value_t.
+ * afw_compile.h; also stored on afw_value_compiled_value_t.
  */
 typedef struct afw_compile_policy_s
 afw_compile_policy_t;
@@ -1025,7 +1049,7 @@ afw_xctx_scope_p_vector_t;
  * @brief Execution context (`afw_xctx_t`): scopes, stack, statement_flow.
  *
  * Unit of work for evaluation and requests. See group afw_xctx and
- * afw_xctx.h / struct in afw_common.h.
+ * afw_xctx.h.
  */
 typedef struct afw_xctx_s
 afw_xctx_t;

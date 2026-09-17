@@ -50,7 +50,7 @@ impl_afw_authorization_handler_factory_create_authorization_handler_cede_p(
 
 
 /* Create type=script authorization handler. */
-AFW_DEFINE(const afw_authorization_handler_t *)
+const afw_authorization_handler_t *
 afw_authorization_handler_type_script_create_cede_p(
     const afw_object_t *properties,
     const afw_pool_t *p, afw_xctx_t *xctx)

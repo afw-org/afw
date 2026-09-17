@@ -158,7 +158,7 @@ afw_authorization_internal_set_control(
  * @brief Internal function called to register core authorization.
  * @param xctx of caller.
  */
-extern void
+void
 afw_authorization_internal_register(
     afw_xctx_t *xctx);
 
@@ -170,7 +170,7 @@ afw_authorization_internal_register(
  *
  * This function is called by afw_authorization_internal_register().
  */
-extern void
+void
 afw_authorization_internal_register_service_and_conf(
     afw_xctx_t *xctx);
 
@@ -182,7 +182,7 @@ afw_authorization_internal_register_service_and_conf(
  *
  * This function is called by afw_authorization_internal_register().
  */
-extern void
+void
 afw_authorization_internal_register_handler_type_script(
     afw_xctx_t *xctx);
 
@@ -195,7 +195,7 @@ afw_authorization_internal_register_handler_type_script(
  * @param xctx of caller.
  */
 /* Create type=afw authorization handler. */
-AFW_DECLARE(const afw_authorization_handler_t *)
+const afw_authorization_handler_t *
 afw_authorization_handler_type_script_create_cede_p(
     const afw_object_t *properties,
     const afw_pool_t *p, afw_xctx_t *xctx);

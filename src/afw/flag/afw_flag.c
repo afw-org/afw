@@ -171,7 +171,7 @@ impl_flag_add_included_by(
 
 
 
-/* Refresh env->pub.default_flags based on env->default_flag_ids. */
+/* Refresh env->default_flags based on env->default_flag_ids. */
 static void
 impl_refresh_default_flags(afw_xctx_t *xctx)
 {
@@ -870,7 +870,7 @@ afw_flag_set_default(
         /* If set and not already in list, add it. */
         if (set_to) {
             if (!internal_env->default_flag_ids || !*id) {
-                new_p = afw_pool_create(internal_env->pub.p, xctx);
+                new_p = afw_pool_create(internal_env->p, xctx);
                 new_ids = afw_pool_malloc(new_p,
                     (count + 2) * sizeof(afw_utf8_t **), xctx);
                 new_id = new_ids;

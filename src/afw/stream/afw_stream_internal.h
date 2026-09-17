@@ -31,14 +31,14 @@ AFW_BEGIN_DECLARES
  * @param xctx being created.
  * @return anchor, or NULL if unhandled alloc failed.
  */
-extern const afw_stream_anchor_t *
+const afw_stream_anchor_t *
 afw_stream_internal_stream_anchor_create(afw_xctx_t *xctx);
 
 /**
  * @brief Release all streams on an xctx (libafw only).
  * @param xctx of caller.
  */
-extern void
+void
 afw_stream_internal_release_all_streams(afw_xctx_t *xctx);
 
 AFW_END_DECLARES

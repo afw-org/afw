@@ -1369,7 +1369,7 @@ impl_afw_pool_release(
 }
 
 
-AFW_DEFINE(void)
+void
 afw_pool_release_delayed(
     const afw_pool_t *instance,
     afw_xctx_t *xctx)
@@ -1878,7 +1878,7 @@ impl_tracker_afw_pool_free_memory(
 /* ---------------------------- extern functions ---------------------------- */
 
 
-AFW_DEFINE(afw_boolean_t)
+afw_boolean_t
 afw_pool_internal_is_heap(const afw_pool_t *p)
 {
     return p && (p->inf == &impl_afw_pool_inf ||
@@ -1886,21 +1886,21 @@ afw_pool_internal_is_heap(const afw_pool_t *p)
 }
 
 
-AFW_DEFINE(afw_boolean_t)
+afw_boolean_t
 afw_pool_internal_is_heap_multithreaded(const afw_pool_t *p)
 {
     return p && p->inf == &impl_afw_pool_heap_multithreaded_inf;
 }
 
 
-AFW_DEFINE(afw_boolean_t)
+afw_boolean_t
 afw_pool_internal_is_tracker(const afw_pool_t *p)
 {
     return p && p->inf == &impl_afw_pool_tracker_inf;
 }
 
 
-AFW_DEFINE(const afw_pool_t *)
+const afw_pool_t *
 afw_pool_internal_heap_create(
     const afw_pool_t *parent,
     afw_boolean_t multithreaded,
@@ -1935,7 +1935,7 @@ afw_pool_heap_create(
 }
 
 
-AFW_DEFINE(void *)
+void *
 afw_pool_malloc_unhandled(
     const afw_pool_t *instance,
     afw_size_t size,
@@ -1954,7 +1954,7 @@ afw_pool_malloc_unhandled(
 }
 
 
-AFW_DEFINE(void *)
+void *
 afw_pool_calloc_unhandled(
     const afw_pool_t *instance,
     afw_size_t size,
@@ -1970,7 +1970,7 @@ afw_pool_calloc_unhandled(
 }
 
 
-AFW_DEFINE(const afw_pool_t *)
+const afw_pool_t *
 afw_pool_internal_create_base_pool()
 {
     afw_pool_internal_self_t *self;

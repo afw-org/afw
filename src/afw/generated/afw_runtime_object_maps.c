@@ -22,9 +22,8 @@
  * @brief Generated runtime object map registration implementation.
  */
 
-#include "afw.h"
-#include "afw_generated_internal.h"
 #include "afw_internal.h"
+#include "afw_generated_internal.h"
 
 
 

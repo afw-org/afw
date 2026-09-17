@@ -23,7 +23,6 @@
  */
 
 #include "afw.h"
-#include "afw_vfs_generated_internal.h"
 /*
  * generate/additional_includes/runtime_object_maps.h is added to generated
  * *runtime_object_maps.c.
@@ -33,6 +32,7 @@
 
 
 /* --------------------------------------------------------------------------- */
+#include "afw_vfs_generated_internal.h"
 
 
 

@@ -24,7 +24,7 @@
 AFW_BEGIN_DECLARES
 
 /** @brief Internal create environment log. */
-extern const afw_log_t * afw_log_internal_create_environment_log(
+const afw_log_t * afw_log_internal_create_environment_log(
     afw_xctx_t *xctx);
 
 /**

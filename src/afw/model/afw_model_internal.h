@@ -405,12 +405,12 @@ afw_model_internal_register_context_type_model(afw_xctx_t *xctx);
  * does further appropriated processing on returned object.  ctx must be
  * initialized before call.
  */
-extern const afw_object_t *
+const afw_object_t *
 afw_model_internal_create_basic_to_adapter_mapped_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx);
     
-extern afw_model_internal_context_t *
+afw_model_internal_context_t *
 afw_model_internal_create_skeleton_context(
     afw_runtime_object_indirect_t *runtime_object_level_skeleton,
     const afw_context_cb_variable_t * const *current_variables,
@@ -421,14 +421,14 @@ afw_model_internal_create_skeleton_context(
     afw_xctx_t *xctx);
 
 
-extern void
+void
 afw_model_internal_push_property_level_current(
     afw_model_internal_context_t *ctx,
     const afw_runtime_object_indirect_t *skeleton,
     afw_xctx_t *xctx);
 
 
-extern afw_model_internal_context_t *
+afw_model_internal_context_t *
 afw_model_internal_create_to_adapter_skeleton_context(
     afw_model_internal_adapter_session_self_t *self,
     afw_runtime_object_indirect_t *runtime_object_level_skeleton,
@@ -449,32 +449,32 @@ afw_model_internal_create_to_adapter_skeleton_context(
  * Throws if adapter has no mappedAdapterId. Use before any default-processing
  * path that would call the mapped backend (issue #109).
  */
-extern void
+void
 afw_model_internal_require_mapped_adapter(
     const afw_model_internal_adapter_self_t *adapter,
     const afw_utf8_z_t *operation,
     afw_xctx_t *xctx);
 
 
-extern void
+void
 afw_model_internal_complete_ctx_default_add_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx);
 
 
-extern void
+void
 afw_model_internal_complete_ctx_default_delete_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx);
 
 
-extern void
+void
 afw_model_internal_complete_ctx_default_modify_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx);
 
 
-extern void
+void
 afw_model_internal_complete_ctx_default_replace_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx);
@@ -534,7 +534,7 @@ afw_model_internal_context_current_runtime_ctx[];
  * @param p to use for result.
  * @param xctx of caller;
  */
-extern void
+void
 afw_model_internal_convert_property(
     const afw_model_object_type_t *object_type,
     afw_model_adapt_t adapt_type,
@@ -558,7 +558,7 @@ afw_model_internal_convert_property(
  * @param p to use for result.
  * @param xctx of caller;
  */
-extern void
+void
 afw_model_internal_convert_property_name(
     const afw_model_object_type_t *object_type,
     afw_model_adapt_t adapt_type,
@@ -576,7 +576,7 @@ afw_model_internal_convert_property_name(
  * @param xctx of caller.
  * @return converted query criteria.
  */
-extern const afw_query_criteria_t *
+const afw_query_criteria_t *
 afw_model_internal_convert_query_criteria(
     const afw_model_object_type_t *model_object_type,
     const afw_query_criteria_t *criteria,

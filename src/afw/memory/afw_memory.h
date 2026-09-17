@@ -127,29 +127,12 @@ memset((to), 0, sizeof(*(to)))
  *
  * Short name is safe: always copy. No NFC (untyped bytes).
  */
-AFW_DEFINE_STATIC_INLINE(const afw_memory_t *)
+AFW_DECLARE(const afw_memory_t *)
 afw_memory_create(
     const afw_byte_t *ptr,
     afw_size_t size,
     const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    afw_memory_t *result;
-    afw_byte_t *copy;
-
-    result = afw_pool_malloc_type(p, afw_memory_t, xctx);
-    if (size > 0 && ptr) {
-        copy = afw_pool_malloc(p, size, xctx);
-        memcpy(copy, ptr, size);
-        result->ptr = copy;
-        result->size = size;
-    }
-    else {
-        result->ptr = NULL;
-        result->size = 0;
-    }
-    return result;
-}
+    afw_xctx_t *xctx);
 
 
 /**
@@ -159,53 +142,34 @@ afw_memory_create(
  * @param p pool for the struct only.
  * @param xctx of caller.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_memory_t *)
+AFW_DECLARE(const afw_memory_t *)
 afw_memory_create_no_copy(
     const afw_byte_t *ptr,
     afw_size_t size,
     const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    afw_memory_t *result;
-
-    result = afw_pool_malloc_type(p, afw_memory_t, xctx);
-    result->ptr = ptr;
-    result->size = size;
-    return result;
-}
+    afw_xctx_t *xctx);
 
 
 /**
  * @brief Set a preallocated afw_memory_t (copy bytes into p).
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_memory_set(
     afw_memory_t *to,
     const afw_byte_t *ptr,
     afw_size_t size,
     const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_memory_t *created;
-
-    created = afw_memory_create(ptr, size, p, xctx);
-    to->ptr = created->ptr;
-    to->size = created->size;
-}
+    afw_xctx_t *xctx);
 
 
 /**
  * @brief Set a preallocated afw_memory_t pointing at ptr (no copy).
  */
-AFW_DEFINE_STATIC_INLINE(void)
-afw_memory_set_no_copy(
-    afw_memory_t *to,
-    const afw_byte_t *ptr,
-    afw_size_t size)
-{
-    to->ptr = ptr;
-    to->size = size;
-}
+#define afw_memory_set_no_copy(to, ptr, size) \
+    do { \
+        (to)->ptr = (ptr); \
+        (to)->size = (size); \
+    } while (0)
 
 
 
@@ -219,17 +183,9 @@ afw_memory_set_no_copy(
  *
  * The default pool from xctx will be used.
  */
-AFW_DEFINE_STATIC_INLINE(void *)
+AFW_DECLARE(void *)
 afw_memory_dup(const void *from,
-    afw_size_t size, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    void *result;
-    
-    if (size == 0) return NULL;
-    result = afw_pool_malloc(p, size, xctx);
-    memcpy(result, from, size);
-    return result;
-}
+    afw_size_t size, const afw_pool_t *p, afw_xctx_t *xctx);
 
 
 

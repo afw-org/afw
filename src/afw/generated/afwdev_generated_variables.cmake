@@ -23,7 +23,7 @@
 #
 
 # Header files that are installed for public use.
-# Excludes *_internal.h / afw_internal.h (libafw/package private).
+# Excludes *_internal.h / *_internal_*.h / afw_internal.h (libafw/package private).
 # Srcdir CMakeLists may also list(FILTER ...); keep both consistent.
 set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST 
     action/afw_action.h
@@ -261,6 +261,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     array/afw_array_memory.c
     ascii/afw_ascii.c
     associative_array/afw_associative_array.c
+    atomic/afw_atomic.c
     authorization/afw_authorization.c
     authorization/afw_authorization_handler_type_script.c
     authorization/afw_authorization_impl.c
@@ -281,6 +282,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     context/afw_context.c
     data_type/afw_data_type.c
     debug/afw_debug.c
+    endian/afw_endian.c
     environment/afw_environment.c
     environment/afw_environment_configuration.c
     environment/afw_environment_register_core.c
@@ -417,6 +419,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     runtime/afw_runtime.c
     runtime/afw_runtime_const_meta.c
     runtime/afw_runtime_value_accessor.c
+    safe_cast/afw_safe_cast.c
     service/afw_service.c
     service/afw_service_context.c
     stream/afw_stream.c

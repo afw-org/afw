@@ -13,21 +13,26 @@ import os
 from _afwdev.test.c_probe import run_c_probe
 
 
+def _afw_src():
+    """src/afw — internal headers are not installed."""
+    d = os.path.dirname(os.path.abspath(__file__))
+    while True:
+        cand = os.path.join(d, "pool", "afw_pool_internal.h")
+        if os.path.isfile(cand):
+            return os.path.dirname(os.path.dirname(cand))
+        parent = os.path.dirname(d)
+        if parent == d:
+            return os.path.join(d, "src", "afw")
+        d = parent
+
+
 def _pool_src():
     """src/afw/pool — afw_pool_internal.h is not an installed header.
 
     run_c_probe() searches extra -I before the install include dir so a
     leftover copy in the prefix cannot win.
     """
-    d = os.path.dirname(os.path.abspath(__file__))
-    while True:
-        cand = os.path.join(d, "pool")
-        if os.path.isfile(os.path.join(cand, "afw_pool_internal.h")):
-            return cand
-        parent = os.path.dirname(d)
-        if parent == d:
-            return cand
-        d = parent
+    return os.path.join(_afw_src(), "pool")
 
 
 def _lib_has_debug_pool():
@@ -54,7 +59,11 @@ def _lib_has_debug_pool():
 
 def run():
     debug_pool = _lib_has_debug_pool()
-    extra = ["-I", _pool_src()]
+    extra = [
+        "-I", _pool_src(),
+        "-I", os.path.join(_afw_src(), "environment"),
+        "-DAFW_ENVIRONMENT_INTERNAL_MEMBERS",
+    ]
     if debug_pool:
         extra.append("-DAFW_DEBUG_POOL")
     cases = [

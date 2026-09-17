@@ -18,10 +18,11 @@ endif()
 
 # Install supported public API only (what #include "afw.h" needs + interface
 # implementer *_impl_declares.h and related impl helpers).
-# Not installed: core *_internal.h / afw_internal.h, deprecated leftovers,
-# and other headers not on the public/impl surface. Source tree keeps them
-# for monorepo builds. See designs/libafw-headers-and-api-surface.md.
-list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*_internal\\.h$")
+# Not installed: core *_internal.h / *_internal_*.h / afw_internal.h,
+# deprecated leftovers, and other headers not on the public/impl surface.
+# Source tree keeps them for monorepo builds. See
+# designs/libafw-headers-and-api-surface.md.
+list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*_internal.*\\.h$")
 list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*/afw_internal\\.h$")
 list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*afw_declare_helpers\\.h$")
 list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*afw_model_location\\.h$")

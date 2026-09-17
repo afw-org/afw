@@ -456,24 +456,10 @@ afw_object_set_property_as_string_from_utf8_z(
  * @param entity_path is pointer to preallocated afw_utf8_t to put results.
  * @param path is path to parse.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_object_parse_entity_path_from_path(
     afw_utf8_t *entity_path,
-    const afw_utf8_t *path)
-{
-    const afw_utf8_octet_t *s;
-
-    entity_path->s = path->s;
-    entity_path->len = path->len;
-    for (s = path->s + path->len - 1;
-        s > path->s && *s != '/';
-        s--)
-    {
-        if (*s == '.') {
-            entity_path->len = s - path->s;
-        }
-    }
-}
+    const afw_utf8_t *path);
 
 
 /**
@@ -482,13 +468,8 @@ afw_object_parse_entity_path_from_path(
  * @param xctx of caller.
  * @return entity.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_object_t *)
-afw_object_get_entity(const afw_object_t *object, afw_xctx_t *xctx)
-{
-    const afw_object_t *entity;
-    AFW_OBJECT_GET_ENTITY(entity, object);
-    return entity;
-}
+AFW_DECLARE(const afw_object_t *)
+afw_object_get_entity(const afw_object_t *object, afw_xctx_t *xctx);
 
 
 
@@ -503,18 +484,11 @@ afw_object_get_entity(const afw_object_t *object, afw_xctx_t *xctx)
  * not NULL, use path to attempt to locate and return object from the current
  * xctx's object registry.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_object_t *)
+AFW_DECLARE(const afw_object_t *)
 afw_object_resolve_instance(
     const afw_object_t *object,
     const afw_utf8_t *path,
-    afw_xctx_t *xctx)
-{
-    if (object) return object;
-    if (!path) return NULL;
-    /* Will not happen if objects retrieved using afw_cache_* */
-    AFW_THROW_ERROR_FZ(coding_error, xctx, "'%ku'",
-        path);
-};
+    afw_xctx_t *xctx);
 
 
 

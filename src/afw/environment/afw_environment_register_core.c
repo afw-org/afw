@@ -240,17 +240,17 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
 
     /* Set infinity, minus infinity, and NaN */
     d0 = 0;
-    env->pub.infinity = 1 / d0;
-    env->pub.infinity_value =
-        afw_value_create_unmanaged_double(env->pub.infinity,
+    env->infinity = 1 / d0;
+    env->infinity_value =
+        afw_value_create_unmanaged_double(env->infinity,
             xctx->p, xctx);
-    env->pub.minus_infinity = -1 / d0;
-    env->pub.minus_infinity_value =
-        afw_value_create_unmanaged_double(env->pub.minus_infinity,
+    env->minus_infinity = -1 / d0;
+    env->minus_infinity_value =
+        afw_value_create_unmanaged_double(env->minus_infinity,
             xctx->p, xctx);
-    env->pub.NaN = sqrt(-1);
-    env->pub.NaN_value =
-        afw_value_create_unmanaged_double(env->pub.NaN,
+    env->NaN = sqrt(-1);
+    env->NaN_value =
+        afw_value_create_unmanaged_double(env->NaN,
             xctx->p, xctx);
 
     /* Register core generated data_types, functions, etc. */
@@ -280,10 +280,10 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
     afw_function_internal_prepare_environment(xctx);
 
     /* Create and register environment variable object. */
-    env->pub.initial_environment_variables =
+    env->initial_environment_variables =
         impl_create_environment_variables_object(xctx);
     afw_runtime_env_set_object(
-        env->pub.initial_environment_variables, false, xctx);
+        env->initial_environment_variables, false, xctx);
 
     /* Register basic application context type. */
     afw_application_internal_register_basic_application_context_type(

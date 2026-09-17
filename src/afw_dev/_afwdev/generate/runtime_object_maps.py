@@ -181,10 +181,17 @@ def generate(generated_by, options):
             fd, filename,
             'Generated runtime object map registration implementation.')
         fd.write('\n')
-        fd.write('#include "afw.h"\n')
+        extra = options.get('additional_includes_runtime_object_maps')
+        # Core passes #include "afw_internal.h" so offsetof sees internal
+        # members. Extension additional_includes is often a comment stub;
+        # those still need afw.h so afw_value_string_t is complete.
+        if extra and 'afw_internal.h' in extra:
+            fd.write(extra)
+        else:
+            fd.write('#include "afw.h"\n')
+            if extra:
+                fd.write(extra)
         fd.write('#include "' + options['prefix'] + 'generated_internal.h"\n')
-        if options.get('additional_includes_runtime_object_maps') is not None:
-            fd.write(options['additional_includes_runtime_object_maps'])
         fd.write('\n')
         for obj in list:
             write_c_map(fd, options['prefix'], obj, options, onGetValueCFunctionNames);

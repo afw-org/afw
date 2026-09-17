@@ -49,11 +49,8 @@ AFW_BEGIN_DECLARES
  * @param d is double to check.
  * @return true if number is finite.
  */
-AFW_DEFINE_STATIC_INLINE(afw_boolean_t)
-afw_number_is_finite(double d)
-{
-    return (d <= DBL_MAX && d >= -DBL_MAX);
-}
+#define afw_number_is_finite(d) \
+    ((d) <= DBL_MAX && (d) >= -DBL_MAX)
 
 
 /**
@@ -61,11 +58,7 @@ afw_number_is_finite(double d)
  * @param d is double to check.
  * @return true if number is positive infinity.
  */
-AFW_DEFINE_STATIC_INLINE(afw_boolean_t)
-afw_number_is_positive_infinity(double d)
-{
-    return (d > DBL_MAX);
-}
+#define afw_number_is_positive_infinity(d) ((d) > DBL_MAX)
 
 
 /**
@@ -73,11 +66,7 @@ afw_number_is_positive_infinity(double d)
  * @param d is double to check.
  * @return true if number is negative infinity.
  */
-AFW_DEFINE_STATIC_INLINE(afw_boolean_t)
-afw_number_is_negative_infinity(double d)
-{
-    return (d < -DBL_MAX);
-}
+#define afw_number_is_negative_infinity(d) ((d) < -DBL_MAX)
 
 
 /**
@@ -88,11 +77,7 @@ afw_number_is_negative_infinity(double d)
  * If a number is not a number (NaN) the number compared to itself will not be
  * true.
  */
-AFW_DEFINE_STATIC_INLINE(afw_boolean_t)
-afw_number_is_NaN(double d)
-{
-    return !(d == d);
-}
+#define afw_number_is_NaN(d) (!((d) == (d)))
 
 
 /**
@@ -173,20 +158,9 @@ afw_number_double_to_utf8(
  * @param xctx of caller.
  * @return double in internal representation.
  */
-AFW_DEFINE_STATIC_INLINE(afw_double_t)
+AFW_DECLARE(afw_double_t)
 afw_number_utf8_to_double(
-    const afw_utf8_t *s, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_double_t d;
-    afw_boolean_t is_double;
-    afw_size_t len;
-
-    len = afw_number_parse(s->s, s->len, NULL, &d, &is_double, p, xctx);
-    if (!is_double || len != s->len) {
-        AFW_THROW_ERROR_Z(conversion_error, "Invalid double", xctx);
-    }
-    return d;
-}
+    const afw_utf8_t *s, const afw_pool_t *p, afw_xctx_t *xctx);
 
 
 
@@ -225,20 +199,9 @@ afw_number_integer_set_u8(
  * @param xctx of caller.
  * @return integer in internal representation.
  */
-AFW_DEFINE_STATIC_INLINE(afw_integer_t)
+AFW_DECLARE(afw_integer_t)
 afw_number_utf8_to_integer(
-    const afw_utf8_t *s, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_integer_t i;
-    afw_boolean_t is_double;
-    afw_size_t len;
-
-    len = afw_number_parse(s->s, s->len, &i, NULL, &is_double, p, xctx);
-    if (is_double || len != s->len) {
-        AFW_THROW_ERROR_Z(conversion_error, "Invalid integer", xctx);
-    }
-    return i;
-}
+    const afw_utf8_t *s, const afw_pool_t *p, afw_xctx_t *xctx);
 
 
 

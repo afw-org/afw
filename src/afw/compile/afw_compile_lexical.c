@@ -2664,3 +2664,16 @@ afw_compile_current_raw_token(
         parser->token->token_source_len);
     return &v->internal;
 }
+
+
+afw_code_point_t
+afw_compile_peek_code_point(afw_compile_parser_t *parser)
+{
+    afw_size_t cursor;
+    afw_code_point_t cp;
+
+    afw_compile_save_cursor(cursor);
+    cp = afw_compile_get_code_point();
+    afw_compile_restore_cursor(cursor);
+    return cp;
+}
