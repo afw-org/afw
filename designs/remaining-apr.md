@@ -53,7 +53,7 @@ C API notes: `whats-new.md` (`run_cleanups` / storage-only `destroy`, `register_
 | Sitting | What |
 |---------|------|
 | Vector / hash | `afw_vector`, `afw_hash_table` |
-| Strings / printf | AFW `%ku` / `%ks` / `%km` |
+| Strings / printf | AFW `%ku` / `%ks` / `%km` / `%kx` / `%kX` |
 | C11 + `afw_os_*` | DSO, time, random, fnmatch, signal, cwd, realpath, UUID |
 | Filepath + file I/O | `afw_file_path_*` / `afw_file_*` |
 | Threads | pthreads via `afw_os_*`; public `afw_thread_*` |

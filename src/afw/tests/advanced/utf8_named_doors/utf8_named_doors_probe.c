@@ -333,8 +333,16 @@ impl_printf_k(const afw_pool_t *p, afw_xctx_t *xctx)
     raw[1] = 0xff;
     mem.ptr = (const afw_octet_t *)raw;
     mem.size = 2;
+    c = afw_utf8_printf(p, xctx, "%kX", &mem);
+    if (impl_eq(c, "00FF", 4, "printf %kX")) {
+        return 1;
+    }
+    c = afw_utf8_printf(p, xctx, "%kx", &mem);
+    if (impl_eq(c, "00ff", 4, "printf %kx")) {
+        return 1;
+    }
     c = afw_utf8_printf(p, xctx, "%km", &mem);
-    if (impl_eq(c, "00FF", 4, "printf %km")) {
+    if (impl_eq(c, "^00FF^", 6, "printf %km")) {
         return 1;
     }
 
@@ -382,8 +390,8 @@ impl_printf_k(const afw_pool_t *p, afw_xctx_t *xctx)
     if (impl_eq(c, "   hello", 8, "%*ku")) {
         return 1;
     }
-    c = afw_utf8_printf(p, xctx, "%.1km", &mem);
-    if (impl_eq(c, "00", 2, "%.1km")) {
+    c = afw_utf8_printf(p, xctx, "%.1kX", &mem);
+    if (impl_eq(c, "00", 2, "%.1kX")) {
         return 1;
     }
     c = afw_utf8_printf(p, xctx, "%5d", 3);
@@ -460,7 +468,7 @@ impl_contains(const afw_utf8_t *s, const char *z, afw_size_t n)
 static int
 impl_error_backtrace(const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_utf8_t fake;
+    afw_memory_t fake;
     char in[3];
     const afw_object_t *obj;
     const afw_utf8_t *got;
@@ -470,8 +478,8 @@ impl_error_backtrace(const afw_pool_t *p, afw_xctx_t *xctx)
     in[0] = 'x';
     in[1] = (char)0xff;
     in[2] = 'y';
-    fake.s = (const afw_utf8_octet_t *)in;
-    fake.len = 3;
+    fake.ptr = (const afw_octet_t *)in;
+    fake.size = 3;
 
     afw_flag_set(afw_s_a_flag_response_error_backtrace, true, xctx);
 

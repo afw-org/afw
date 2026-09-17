@@ -87,8 +87,13 @@ struct afw_error_s {
     /** @brief Human readable decode of rv. */
     const afw_utf8_z_t * rv_decoded_z;
 
-    /** @brief If not memory error and afw_os_backtrace() supplies one. */
-    const afw_utf8_t *backtrace;
+    /**
+     * @brief If not memory error and afw_os_backtrace() supplies one.
+     *
+     * Octets from the OS (not necessarily NFC UTF-8). NULL if none.
+     * Print with `%%km`.
+     */
+    const afw_memory_t *backtrace;
 
     /**
      * @brief If syntax error, this is cursor when parse error occurred or 0.

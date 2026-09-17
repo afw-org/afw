@@ -37,6 +37,8 @@ def run():
     check_slots("Adapter '%ku' is not available", ["utf8_ptr"])
     check_slots("/%ku/%ku/%ku", ["utf8_ptr", "utf8_ptr", "utf8_ptr"])
     check_slots("%km", ["memory_ptr"])
+    check_slots("%kx", ["memory_ptr"])
+    check_slots("%kX", ["memory_ptr"])
     check_slots("%ks", ["cstr"])
     check_slots("%s", ["cstr"])
     check_slots("%.*s", ["int", "cstr"])
@@ -72,6 +74,14 @@ def run():
     tests.append(_case(
         "type-km",
         "%km accepts afw_memory_t *",
+        type_ok("memory_ptr", "const afw_memory_t *")))
+    tests.append(_case(
+        "type-kx",
+        "%kx accepts afw_memory_t *",
+        type_ok("memory_ptr", "const afw_memory_t *")))
+    tests.append(_case(
+        "type-kX",
+        "%kX accepts afw_memory_t *",
         type_ok("memory_ptr", "const afw_memory_t *")))
     tests.append(_case(
         "type-ks",

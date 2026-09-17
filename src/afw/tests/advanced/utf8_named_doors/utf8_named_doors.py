@@ -39,7 +39,7 @@ def run():
             ),
             (
                 "printf-k",
-                "%ku / %km, width/precision, C %d/%s, dest size",
+                "%ku / %km / %kx / %kX, width/precision, C %d/%s, dest size",
             ),
             (
                 "printf-throws",

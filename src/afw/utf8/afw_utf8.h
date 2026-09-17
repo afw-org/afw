@@ -795,21 +795,24 @@ afw_utf8_z_snprintf_safe_vas(
  * | Spec | Parameter | Behavior |
  * |------|-----------|----------|
  * | `%%ku` | `const afw_utf8_t *` | Trusted UTF-8: copy `.s` for `.len` (interior `0` is data). On `_safe`, `forced_safe`. |
- * | `%%km` | `const afw_memory_t *` | Always hex of the octets (uppercase pairs, no `0x`). |
+ * | `%%km` | `const afw_memory_t *` | Always `forced_safe` on the octets (text through; dirty runs `^hex^`). |
+ * | `%%kx` | `const afw_memory_t *` | Always lowercase hex pairs (no `0x`). |
+ * | `%%kX` | `const afw_memory_t *` | Always uppercase hex pairs (no `0x`). |
  * | `%%ks` | `utf8_z` | Like `%%s`, but **`forced_safe`** on invalid UTF-8. |
  *
- * `%%s` is `utf8_z` and **throws** if not valid UTF-8. `%%ks` is the
- * only dirty substitution on the default walk. NULL `%%ku` / `%%km`
- * is empty (zero width; no dummy pointer). On `%%k`, `-` / width /
- * precision / `*` are like `%%s` (precision = max **input** bytes).
- * Other flags and length modifiers throw.
+ * `%%s` is `utf8_z` and **throws** if not valid UTF-8. `%%ks` and
+ * `%%km` are dirty substitutions on the default walk. NULL `%%ku` /
+ * `%%km` / `%%kx` / `%%kX` is empty (zero width; no dummy pointer).
+ * On `%%k`, `-` / width / precision / `*` are like `%%s`
+ * (precision = max **input** bytes). Other flags and length
+ * modifiers throw.
  *
  * **`_safe`:** same walk, but `%%s`, `%%ku`, and `AFW_UTF8_FMT`
- * (`%%.*s`) `forced_safe` instead of throw or raw copy. Format
- * literals stay as-is. Assemble then **`create`**. Error `*_fz` and
- * `afw_error_to_utf8` use this so assembling or reporting an error
- * cannot throw because of dirty bytes. Bad spec / invalid format
- * UTF-8 / OOM still throw.
+ * (`%%.*s`) `forced_safe` instead of throw or raw copy. `%%km` always
+ * `forced_safe` (default and `_safe`). Format literals stay as-is.
+ * Assemble then **`create`**. Error `*_fz` and `afw_error_to_utf8`
+ * use this so assembling or reporting an error cannot throw because
+ * of dirty bytes. Bad spec / invalid format UTF-8 / OOM still throw.
  *
  * **Size** is the buffer needed to hold that result type (not C
  * `snprintf`): utf8 payload only (no trailing `0`); z includes the `0`.

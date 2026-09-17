@@ -609,7 +609,7 @@ afw_error_to_utf8(
 
         "%s%ku"              /* evaluation backtrace */
 
-        "%s%ku",             /* code backtrace */
+        "%s%km",             /* code backtrace */
 
         /* message. */
         error->message_z,
@@ -643,8 +643,10 @@ afw_error_to_utf8(
             ? evaluation_backtrace : NULL,
 
         /* code backtrace */
-        (do_code_backtrace && error->backtrace) ? "\nCode backtrace:\n" : "",
-        (do_code_backtrace && error->backtrace) ? error->backtrace : NULL
+        (do_code_backtrace && error->backtrace)
+            ? "\nCode backtrace:\n" : "",
+        (do_code_backtrace && error->backtrace)
+            ? error->backtrace : NULL
     );
 
     return result;
@@ -776,9 +778,9 @@ afw_error_print(FILE *fp, const afw_error_t *error)
     if (error->backtrace) {
         rv = fputs("\nbacktrace:\n", fp);
         if (rv < 0) goto return_rv;
-        if (error->backtrace->len > 0 && error->backtrace->s) {
-            if (fwrite(error->backtrace->s, 1, error->backtrace->len,
-                fp) != error->backtrace->len)
+        if (error->backtrace->size > 0 && error->backtrace->ptr) {
+            if (fwrite(error->backtrace->ptr, 1, error->backtrace->size,
+                fp) != error->backtrace->size)
             {
                 rv = -1;
                 goto return_rv;
@@ -874,8 +876,9 @@ impl_add_contextual(
 
 /* Adaptive string for a diagnostic utf8: forced_safe, then NFC. */
 static const afw_utf8_t *
-impl_utf8_forced_safe_value(
-    const afw_utf8_t *s,
+impl_octets_forced_safe_value(
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -884,8 +887,21 @@ impl_utf8_forced_safe_value(
     if (!s) {
         return NULL;
     }
-    encoded = afw_utf8_create_forced_safe(s->s, s->len, p, xctx);
+    encoded = afw_utf8_create_forced_safe(s, len, p, xctx);
     return afw_utf8_create(encoded->s, encoded->len, p, xctx);
+}
+
+
+static const afw_utf8_t *
+impl_utf8_forced_safe_value(
+    const afw_utf8_t *s,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!s) {
+        return NULL;
+    }
+    return impl_octets_forced_safe_value(s->s, s->len, p, xctx);
 }
 
 
@@ -961,7 +977,9 @@ afw_error_add_to_object(
     {
         afw_object_set_property_as_string_internal(object,
             afw_v_backtrace,
-            impl_utf8_forced_safe_value(error->backtrace, p, xctx),
+            impl_octets_forced_safe_value(
+                (const afw_utf8_octet_t *)error->backtrace->ptr,
+                error->backtrace->size, p, xctx),
             xctx);
     }
 

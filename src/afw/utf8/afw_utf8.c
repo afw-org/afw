@@ -388,6 +388,7 @@ afw_utf8_nfc(
 #define IMPL_FORCED_SAFE_ESC ((afw_utf8_octet_t)'^')
 
 static const afw_utf8_octet_t impl_hex_digit[] = "0123456789ABCDEF";
+static const afw_utf8_octet_t impl_hex_digit_lower[] = "0123456789abcdef";
 
 typedef enum {
     impl_enc_text,
@@ -923,7 +924,10 @@ impl_out_forced_safe(
 
 static void
 impl_out_hex(
-    impl_fmt_out_t *o, const afw_octet_t *p, afw_size_t n)
+    impl_fmt_out_t *o,
+    const afw_octet_t *p,
+    afw_size_t n,
+    const afw_utf8_octet_t *digits)
 {
     afw_size_t i;
 
@@ -931,8 +935,8 @@ impl_out_hex(
         return;
     }
     for (i = 0; i < n; i++) {
-        impl_out_byte(o, impl_hex_digit[(p[i] >> 4) & 0x0f]);
-        impl_out_byte(o, impl_hex_digit[p[i] & 0x0f]);
+        impl_out_byte(o, digits[(p[i] >> 4) & 0x0f]);
+        impl_out_byte(o, digits[p[i] & 0x0f]);
     }
 }
 
@@ -1311,7 +1315,9 @@ impl_format_content(
                 AFW_THROW_ERROR_Z(general,
                     "%k allows only the '-' flag", xctx);
             }
-            if (kind != 'u' && kind != 'm' && kind != 's') {
+            if (kind != 'u' && kind != 'm' && kind != 's' &&
+                kind != 'x' && kind != 'X')
+            {
                 AFW_THROW_ERROR_Z(general,
                     "Unknown %k conversion kind", xctx);
             }
@@ -1333,13 +1339,19 @@ impl_format_content(
                     out_len = in_len;
                 }
             }
-            else if (kind == 'm') {
+            else if (kind == 'm' || kind == 'x' || kind == 'X') {
                 m = va_arg(ap, const afw_memory_t *);
                 if (m && m->ptr && m->size) {
                     in_len = impl_prec_cap(m->size, have_prec, prec);
                     mp = m->ptr;
                 }
-                out_len = in_len * 2;
+                if (kind == 'm') {
+                    out_len = impl_forced_safe_len(
+                        (const afw_utf8_octet_t *)mp, in_len);
+                }
+                else {
+                    out_len = in_len * 2;
+                }
             }
             else {
                 s = va_arg(ap, const char *);
@@ -1363,8 +1375,15 @@ impl_format_content(
                     impl_out_bytes(&o, u->s, in_len);
                 }
             }
-            else if (kind == 'm') {
-                impl_out_hex(&o, mp, in_len);
+            else if (kind == 'm' && mp && in_len) {
+                impl_out_forced_safe(&o,
+                    (const afw_utf8_octet_t *)mp, in_len);
+            }
+            else if (kind == 'x') {
+                impl_out_hex(&o, mp, in_len, impl_hex_digit_lower);
+            }
+            else if (kind == 'X') {
+                impl_out_hex(&o, mp, in_len, impl_hex_digit);
             }
             else if (kind == 's') {
                 impl_out_forced_safe(&o,

@@ -269,7 +269,7 @@ def parse_format(fmt):
             i += 1
             if kind == "u":
                 slots.append("utf8_ptr")
-            elif kind == "m":
+            elif kind in ("m", "x", "X"):
                 slots.append("memory_ptr")
             elif kind == "s":
                 slots.append("cstr")

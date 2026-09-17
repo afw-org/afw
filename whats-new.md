@@ -88,7 +88,7 @@ If you are bringing a **sibling AFW package** or other C that linked old libafw 
 2. **Drop APR as an AFW dependency:** no `apr-1` / `apr-util` in that package’s cmake/`pkg-config` **because of AFW**; no `afw_pool_get_apr_pool`; no `apr_initialize` for AFW; `afw_common.h` no longer includes `<apr_strings.h>`. Grep `apr_`, `get_apr_pool`, `APR_`.
 3. **Pools:** `afw_pool_heap_create` / `afw_pool_create` (tracker if ST parent) / `afw_pool_multithread_create`. `create_managed` takes **`p`** and allocates in **`p->managed_p`**. `destroy` is storage-only; **`run_cleanups`** first. [Value lifetime](#value-lifetime--memory-management-issue-2--alphabeta)
 4. **Names as values:** object get/set take `const afw_value_t *` — `afw_s_foo` → **`afw_v_foo`**. [Checklist](#object-property-names-as-values-issue-2)
-5. **UTF-8 printf / throw:** `%ku` / `%ks` / `%km`; no `AFW_UTF8_FMT_ARG` on AFW walks. [Printf](#how-to-fix-printf--throw-formats-in-another-repository)
+5. **UTF-8 printf / throw:** `%ku` / `%ks` / `%km` / `%kx` / `%kX`; no `AFW_UTF8_FMT_ARG` on AFW walks. [Printf](#how-to-fix-printf--throw-formats-in-another-repository)
 6. **Threads / files / getopt / curl body / LDAP setup** as in the table above (no APR pool, no `apr_file_*` / `apr_thread_*` / `apr_getopt_long` / `apr_brigade_*` / `apr_ldap_*` **via AFW**).
 7. **Typed values / arrays:** `_as_<type>` vs `_internal`; drop dest `p` on getters; no `push_internal`. [Typed values](#typed-value-pointers-vs-c-internals)
 
@@ -129,7 +129,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**C vector / hash table**](#c-vector-and-hash-table) | **`afw_vector`** and **`afw_hash_table`** on `afw.h` for C growable lists and name→pointer maps (not Adaptive `afw_array`) |
 | [**Value / memory (α/β)**](#value-lifetime--memory-management-issue-2--alphabeta) ([#2](https://github.com/afw-org/afw/issues/2), [#277](https://github.com/afw-org/afw/issues/277)) | Two worlds: **unmanaged** in dest `p` / tracker; **managed** in **`p->managed_p`**. One ST heap per xctx; `create()` of ST is a tracker; compile units own a heap. Slot protocol; last_return is the slot ([#62](https://github.com/afw-org/afw/issues/62)). Hard-loop soaks for assign / `array_push_pop` / `function_return` are **flat** or under the bar — **[#2](https://github.com/afw-org/afw/issues/2) not closed** (refinements still coming) |
 | [**`stringify` / `decompile` / listing**](#stringify-decompile-compiler-listing-and-binary-text) ([#18](https://github.com/afw-org/afw/issues/18)) | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
-| [**UTF-8 create / set / forced_safe**](#utf-8-create-set-and-forced_safe) ([#314](https://github.com/afw-org/afw/issues/314)) | C doors: short **`create`/`set` copy**; **`no_copy`** points; **`forced_safe`** encodes invalid runs as `^hex^`. **`afw_utf8_printf`**: `%ku` / `%ks` / `%km`; assemble then **`create`**. Error dump **`printf_safe`**. libc `fprintf` still uses `AFW_UTF8_FMT`. Checklist for **other repos**. `--scan` type-checks AFW printf |
+| [**UTF-8 create / set / forced_safe**](#utf-8-create-set-and-forced_safe) ([#314](https://github.com/afw-org/afw/issues/314)) | C doors: short **`create`/`set` copy**; **`no_copy`** points; **`forced_safe`** encodes invalid runs as `^hex^`. **`afw_utf8_printf`**: `%ku` / `%ks` / `%km` / `%kx` / `%kX`; assemble then **`create`**. Error dump **`printf_safe`**. libc `fprintf` still uses `AFW_UTF8_FMT`. Checklist for **other repos**. `--scan` type-checks AFW printf |
 | [**UTF-8 in JSON / Fiddle**](#utf-8-in-json-results-and-python-local-mode) | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
 | [**Python `Session("local")`**](#utf-8-in-json-results-and-python-local-mode) | Local FIFO client uses **binary octet** framing so large/UTF-8 responses no longer hang |
 | [**Param / catch Patterns**](#function-parameter-and-catch-patterns-issue-140) ([#140](https://github.com/afw-org/afw/issues/140)) | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys; type syntax for later checking |
@@ -559,7 +559,9 @@ C `afw_utf8_t` doors now say **who owns the little struct** and **whether `.s` i
 |------|------|--------|
 | **`%ku`** | `const afw_utf8_t *` | Trusted UTF-8. Interior `0` is data. **NULL is empty** (zero width). |
 | **`%ks`** | C string (`utf8_z`) | Dirty text: **`forced_safe`** instead of throw. |
-| **`%km`** | `const afw_memory_t *` | Always hex of the octets. |
+| **`%km`** | `const afw_memory_t *` | Always `forced_safe` on the octets. |
+| **`%kx`** | `const afw_memory_t *` | Always lowercase hex pairs. |
+| **`%kX`** | `const afw_memory_t *` | Always uppercase hex pairs. |
 | **`%s`** | C string | **Throws** if not valid UTF-8. On **`printf_safe`** / error `*_fz`, **`forced_safe`**. |
 | **`AFW_UTF8_FMT` + `FMT_ARG`** | int len, `char *` | **libc only** (`fprintf`, FCGX, syslog). On the AFW walk, exact `%.*s` copies n bytes (including U+0000). On **`printf_safe`**, encode. |
 
