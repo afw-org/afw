@@ -9,8 +9,6 @@
 #ifndef __AFW_INTERNAL_H__
 #define __AFW_INTERNAL_H__
 
-#define AFW_XCTX_INTERNAL_MEMBERS
-
 /**
  * @file afw_internal.h
  * @brief Umbrella internal header for libafw implementation files.
@@ -24,6 +22,9 @@
  *
  * See @ref afw_c_api_internal and `designs/libafw-headers-and-api-surface.md`.
  */
+
+#define AFW_XCTX_INTERNAL_MEMBERS
+#define AFW_ENVIRONMENT_INTERNAL_MEMBERS
 
 #include "afw.h"
 #include "afw_generated_internal.h"

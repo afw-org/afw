@@ -307,31 +307,31 @@ afw_environment_create(
         AFW_THROW_UNHANDLED_ERROR(&unhandled_error, error, general, na, 0,
             "afw_pool_calloc_unhandled() failed");
     };
-    env->pub.p = p;
-    env->pub.pool_number = 1; /* see afw_pool_internal_create_base_pool() */
-    env->pub.pool_chunk_bytes =
+    env->p = p;
+    env->pool_number = 1; /* see afw_pool_internal_create_base_pool() */
+    env->pool_chunk_bytes =
         ((const afw_pool_internal_self_t *)p)->chunk_bytes;
-    env->pub.peak_pool_chunk_bytes = env->pub.pool_chunk_bytes;
-    env->pub.limit_evaluation_stack_count =
+    env->peak_pool_chunk_bytes = env->pool_chunk_bytes;
+    env->limit_evaluation_stack_count =
         AFW_ENVIRONMENT_LIMIT_EVALUATION_STACK_COUNT;
-    env->pub.limit_request_pool_bytes =
+    env->limit_request_pool_bytes =
         afw_pool_round_up_chunk_size(
             AFW_ENVIRONMENT_LIMIT_REQUEST_POOL_BYTES);
-    env->pub.limit_c_stack_headroom_bytes =
+    env->limit_c_stack_headroom_bytes =
         afw_pool_round_up_chunk_size(
             AFW_ENVIRONMENT_LIMIT_C_STACK_HEADROOM_BYTES);
-    env->pub.chunk_min = afw_pool_round_up_chunk_size(
+    env->chunk_min = afw_pool_round_up_chunk_size(
         AFW_ENVIRONMENT_CHUNK_MIN
             ? AFW_ENVIRONMENT_CHUNK_MIN : 1);
-    env->pub.compile_chunk_min = afw_pool_round_up_chunk_size(
+    env->compile_chunk_min = afw_pool_round_up_chunk_size(
         AFW_ENVIRONMENT_COMPILE_CHUNK_MIN
             ? AFW_ENVIRONMENT_COMPILE_CHUNK_MIN : 1);
-    env->pub.xctx_chunk_min = afw_pool_round_up_chunk_size(
+    env->xctx_chunk_min = afw_pool_round_up_chunk_size(
         AFW_ENVIRONMENT_XCTX_CHUNK_MIN
             ? AFW_ENVIRONMENT_XCTX_CHUNK_MIN : 1);
-    env->pub.debug_fd = stderr;
-    env->pub.stderr_fd = stderr;
-    env->pub.stdout_fd = stdout;
+    env->debug_fd = stderr;
+    env->stderr_fd = stderr;
+    env->stdout_fd = stdout;
 
     /* Create and initialize base xctx. */
     xctx = afw_xctx_internal_create_initialize(&unhandled_error,
@@ -377,12 +377,12 @@ afw_environment_create(
         xctx->name = &impl_default_name;
     }
     thread->name = xctx->name;
-    env->pub.program_name.s = xctx->name->s;
-    env->pub.program_name.len = xctx->name->len;
+    env->program_name.s = xctx->name->s;
+    env->program_name.len = xctx->name->len;
 
     /* Application id */
-    env->pub.application_id.s = xctx->name->s;
-    env->pub.application_id.len = xctx->name->len;
+    env->application_id.s = xctx->name->s;
+    env->application_id.len = xctx->name->len;
 
     /*
      * Process ambient objects (environment:: / process::). Create before
@@ -390,7 +390,7 @@ afw_environment_create(
      * as runtime objects after register_core (object type maps ready).
      * Preload process env so multi-thread hosts are safe (issue #71 / #74).
      */
-    env->pub.environment_variables_object =
+    env->environment_variables_object =
         afw_environment_create_environment_variables_object(true, xctx);
 
     {
@@ -406,12 +406,12 @@ afw_environment_create(
             arg = afw_utf8_create(argv[ai], AFW_UTF8_Z_LEN, p, xctx);
             afw_array_of_string_add_internal(args_array, arg, xctx);
         }
-        env->pub.process_args = args_array;
-        env->pub.process_pid = (afw_integer_t)afw_os_get_pid();
+        env->process_args = args_array;
+        env->process_pid = (afw_integer_t)afw_os_get_pid();
         cwd = afw_os_getcwd(p, xctx);
-        env->pub.process_cwd = cwd;
-        env->pub.afw_version = afw_version_string();
-        env->pub.process_start_time = afw_dateTime_now_local(p, xctx);
+        env->process_cwd = cwd;
+        env->afw_version = afw_version_string();
+        env->process_start_time = afw_dateTime_now_local(p, xctx);
 
         /*
          * Memory object until runtime maps exist (register_core).
@@ -422,27 +422,27 @@ afw_environment_create(
             afw_s__AdaptiveProcess_, afw_s_current, xctx);
 
         afw_object_set_property_as_string_internal(process_object,
-            afw_v_programName, &env->pub.program_name, xctx);
+            afw_v_programName, &env->program_name, xctx);
         afw_object_set_property_as_array_internal(process_object,
             afw_v_args, args_array, xctx);
         afw_object_set_property_as_integer_internal(process_object,
-            afw_v_pid, env->pub.process_pid, xctx);
+            afw_v_pid, env->process_pid, xctx);
         if (cwd) {
             afw_object_set_property_as_string_internal(process_object,
                 afw_v_cwd, cwd, xctx);
         }
         afw_object_set_property_as_string_internal(process_object,
-            afw_v_afwVersion, env->pub.afw_version, xctx);
+            afw_v_afwVersion, env->afw_version, xctx);
         afw_object_set_property_as_dateTime_internal(process_object,
-            afw_v_startTime, env->pub.process_start_time, xctx);
+            afw_v_startTime, env->process_start_time, xctx);
 
-        env->pub.process_object = process_object;
+        env->process_object = process_object;
     }
 
     /* Finish up xctx creation (pushes ambient qualifiers including env/process). */
     afw_xctx_internal_create_finishup(xctx);
 
-    env->pub.log = afw_log_internal_create_environment_log(xctx);
+    env->log = afw_log_internal_create_environment_log(xctx);
 
     env->registry_names_ht = afw_hash_table_create(
         afw_void_hash_table_t, p, xctx);
@@ -473,17 +473,17 @@ afw_environment_create(
     afw_environment_internal_register_core(xctx);
 
     /* Runtime register process ambient objects (maps available after core). */
-    if (env->pub.environment_variables_object) {
+    if (env->environment_variables_object) {
         afw_runtime_env_set_object(
-            env->pub.environment_variables_object, false, xctx);
+            env->environment_variables_object, false, xctx);
     }
-    if (env->pub.process_object) {
+    if (env->process_object) {
         const afw_object_t *rt;
 
         rt = afw_runtime_object_create_indirect(
             afw_s__AdaptiveProcess_, afw_s_current,
-            (void *)&env->pub, p, xctx);
-        env->pub.process_object = rt;
+            (void *)env, p, xctx);
+        env->process_object = rt;
         afw_runtime_env_set_object(rt, true, xctx);
         afw_xctx_qualifier_stack_qualifier_object_push(
             afw_s_process, rt, true, xctx->p, xctx);
@@ -501,12 +501,12 @@ afw_environment_create(
     }
 
     /* Create multithreaded pool lock. */
-    env->pub.multithreaded_pool_lock =
+    env->multithreaded_pool_lock =
         afw_lock_create_environment_nested_lock(
             afw_s_a_lock_multithreaded_pool, p, xctx);
 
     /* Create environment lock. */
-    env->pub.environment_lock =
+    env->environment_lock =
         afw_lock_create_and_register(
             afw_s_a_lock_environment,
             afw_s_a_lock_environment_brief,
@@ -514,7 +514,7 @@ afw_environment_create(
             true, xctx);
 
     /* Create adapter id anchors lock. */
-    env->pub.adapter_id_anchor_lock =
+    env->adapter_id_anchor_lock =
         afw_lock_create_and_register(
             afw_s_a_lock_adapter_id_anchor,
             afw_s_a_lock_adapter_id_anchor_brief,
@@ -522,7 +522,7 @@ afw_environment_create(
             true, xctx);
 
     /* Create authorization handler id anchors rw lock. */
-    env->pub.authorization_handler_id_anchor_rw_lock =
+    env->authorization_handler_id_anchor_rw_lock =
         afw_lock_create_rw_and_register(
             afw_s_a_lock_authorization_handler_id_anchor,
             afw_s_a_lock_authorization_handler_id_anchor_brief,
@@ -530,7 +530,7 @@ afw_environment_create(
             xctx);
 
     /* Create active log list lock. */
-    env->pub.active_log_list_lock =
+    env->active_log_list_lock =
         afw_lock_create_and_register(
             afw_s_a_lock_log_list,
             afw_s_a_lock_log_list_brief,
@@ -538,7 +538,7 @@ afw_environment_create(
             true, xctx);
 
     /* Create flags lock. */
-    env->pub.flags_lock  =
+    env->flags_lock  =
         afw_lock_create_and_register(
             afw_s_a_lock_flags,
             afw_s_a_lock_flags_brief,
@@ -1065,7 +1065,7 @@ afw_environment_load_extension(
     const afw_utf8_t *extension_id_for_message;
 
     env = (afw_environment_internal_t *)xctx->env;
-    p = env->pub.p;
+    p = env->p;
 
     extensionId = NULL;
     modulePath = NULL;
@@ -1862,7 +1862,7 @@ afw_environment_set_debug_fd(FILE *fd, afw_xctx_t *xctx)
     afw_environment_internal_t *env;
 
     env = (afw_environment_internal_t *)xctx->env;
-    env->pub.debug_fd = fd;
+    env->debug_fd = fd;
 }
 
 
@@ -1872,7 +1872,7 @@ afw_environment_set_stderr_fd(FILE *fd, afw_xctx_t *xctx)
     afw_environment_internal_t *env;
 
     env = (afw_environment_internal_t *)xctx->env;
-    env->pub.stderr_fd = fd;
+    env->stderr_fd = fd;
 }
 
 
@@ -1882,7 +1882,7 @@ afw_environment_set_stdout_fd(FILE *fd, afw_xctx_t *xctx)
     afw_environment_internal_t *env;
 
     env = (afw_environment_internal_t *)xctx->env;
-    env->pub.stdout_fd = fd;
+    env->stdout_fd = fd;
 }
 
 

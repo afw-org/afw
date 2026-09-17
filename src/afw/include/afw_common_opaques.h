@@ -344,6 +344,22 @@ typedef struct afw_environment_registry_type_s
 afw_environment_registry_type_t;
 
 /**
+ * @brief Opaque vector of `afw_environment_registry_type_t *`.
+ *
+ * Completed in afw_environment_internal.h.
+ */
+typedef struct afw_environment_registry_type_p_vector_s
+afw_environment_registry_type_p_vector_t;
+
+/**
+ * @brief Opaque vector of data-type method vectors.
+ *
+ * Completed in afw_environment_internal.h.
+ */
+typedef struct afw_environment_data_type_methods_vector_s
+afw_environment_data_type_methods_vector_t;
+
+/**
  * @brief Error record for AFW_TRY / throw paths (`afw_error_t`).
  *
  * See group afw_error and afw_error.h for AFW_TRY / AFW_THROW_* usage.

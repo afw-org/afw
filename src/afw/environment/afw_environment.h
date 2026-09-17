@@ -380,6 +380,10 @@ struct afw_environment_s {
     /** @brief Flag index of trace:request:detail. */
     afw_size_t flag_index_trace_request_detail;
 
+#ifdef AFW_ENVIRONMENT_INTERNAL_MEMBERS
+#include "afw_environment_internal_members.h"
+#endif
+
 };
 
 
