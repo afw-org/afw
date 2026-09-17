@@ -5603,9 +5603,10 @@ AFW_DEFINE(const afw_request_handler_t *)
         Optionally free memory allocated from this pool. The caller
         passes the pool and the size used at malloc/calloc. If the
         implementation does not support optional free, the call does
-        nothing (destroy is still lifetime). Heap and heap tracker
-        return the chunk for reuse. Heap temporarily checks size
-        against the live chunk header and throws if they disagree.
+        nothing (destroy is still lifetime). Heap returns the block
+        to its free list. Tracker marks the block; destroy returns
+        the whole chain to the ancestor heap. Call garbage_collect
+        to return marked tracker blocks before destroy.
       </description>
 
       <parameter name="instance" type="const afw_pool_t *">
@@ -5698,6 +5699,29 @@ AFW_DEFINE(const afw_request_handler_t *)
         runs callbacks on the happy path. Call this before destroy
         when tearing down with RC remaining (xctx_release). May
         throw; destroy still frees storage.
+      </description>
+
+      <parameter name="instance" type="const afw_pool_t *">
+        <description>Pointer to this pool instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="garbage_collect">
+
+      <description>
+        Notify this pool that the caller thinks there is a reason to
+        reclaim optionally-freed memory before destroy. Heap does
+        nothing (free_memory already returned blocks to the free
+        list). Tracker returns marked blocks to the ancestor heap
+        and leaves live allocations. Normally unused: tracker
+        destroy already returns the whole chain.
       </description>
 
       <parameter name="instance" type="const afw_pool_t *">

@@ -134,3 +134,15 @@ impl_afw_pool_run_cleanups(
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
 }
+
+/*
+ * Implementation of method garbage_collect for interface afw_pool.
+ */
+void
+impl_afw_pool_garbage_collect(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}

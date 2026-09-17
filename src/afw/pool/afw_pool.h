@@ -24,7 +24,9 @@
  *
  * Key invariants:
  * - A pool is a heap unless it is a tracker. A tracker gets memory
- *   from a heap, tracks it, and returns it on free or tracker destroy.
+ *   from a heap and tracks it. Destroy returns the chain to the
+ *   ancestor heap. free_memory on a tracker marks; it does not
+ *   return the block until destroy or garbage_collect.
  *   Multithreaded heap is lock wrappers. The heap owns posix_memalign
  *   chunks (4k-aligned, 64k minimum). Not a third AFW pool kind.
  * - Parent/child is lifetime only (last-release throws if children
@@ -175,7 +177,8 @@ afw_pool_create_as_managed_p(
  * @return tracker. managed_p is the heap.
  *
  * Single-thread only, same thread as the parent. Used as scope->p.
- * The tracker header is a heap block (`free_memory` on destroy).
+ * The tracker header is a parent-pool block (`free_memory` on
+ * destroy).
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_tracker_create(

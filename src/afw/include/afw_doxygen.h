@@ -65,8 +65,9 @@
  * One ST heap per xctx (`afw_pool_heap_create`). `afw_pool_create()`
  * of a ST parent is a tracker; of an MT parent, an MT heap.
  * `afw_pool_multithread_create(env->p)` for conf/server/log/adapter.
- * Trackers are scope->p and return memory to the ancestor heap.
- * Parent/child is lifetime only. Last-release does not call destroy.
+ * Trackers are scope->p; destroy returns the chain to the ancestor
+ * heap. Parent/child is lifetime only. Last-release does not call
+ * destroy.
  * The heap store is 64k-min, 4k-aligned chunks; destroy free()s the
  * list.
  *
@@ -75,7 +76,8 @@
  * afw_pool_tracker_create(),
  * afw_pool_calloc(), afw_pool_malloc(),
  * afw_pool_calloc_unhandled(), afw_pool_malloc_unhandled(),
- * afw_pool_free_memory(), afw_xctx_malloc() / afw_xctx_free(),
+ * afw_pool_free_memory(), afw_pool_garbage_collect(),
+ * afw_xctx_malloc() / afw_xctx_free(),
  * afw_pool_release_value_at_cleanup().
  * `afw_memory_malloc` / `calloc` / `free` (`p, xctx` last) live in
  * `afw_memory.h`.

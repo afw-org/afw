@@ -161,9 +161,6 @@
     /** @brief Copy of director log's mask for short circuit tests. */
     afw_log_priority_mask_t log_mask;
 
-    /** @brief Used to give unique number for pool. */
-    AFW_ATOMIC afw_integer_t pool_number;
-
     /**
      * @brief Sum of every pool's bytes_allocated.
      *

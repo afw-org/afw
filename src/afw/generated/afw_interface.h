@@ -6741,6 +6741,12 @@ typedef void
     const afw_pool_t * instance,
     afw_xctx_t * xctx);
 
+/** @sa afw_pool_garbage_collect() */
+typedef void
+(*afw_pool_garbage_collect_t)(
+    const afw_pool_t * instance,
+    afw_xctx_t * xctx);
+
 /**
  * @brief Method table (inf) for interface `afw_pool`.
  *
@@ -6758,6 +6764,7 @@ struct afw_pool_inf_s {
     afw_pool_register_cleanup_t register_cleanup;
     afw_pool_deregister_cleanup_t deregister_cleanup;
     afw_pool_run_cleanups_t run_cleanups;
+    afw_pool_garbage_collect_t garbage_collect;
 };
 
 /**
@@ -6875,9 +6882,10 @@ struct afw_pool_inf_s {
  * Optionally free memory allocated from this pool. The caller
  * passes the pool and the size used at malloc/calloc. If the
  * implementation does not support optional free, the call does
- * nothing (destroy is still lifetime). Heap and heap tracker
- * return the chunk for reuse. Heap temporarily checks size
- * against the live chunk header and throws if they disagree.
+ * nothing (destroy is still lifetime). Heap returns the block
+ * to its free list. Tracker marks the block; destroy returns
+ * the whole chain to the ancestor heap. Call garbage_collect
+ * to return marked tracker blocks before destroy.
  * @param instance Pointer to this pool instance.
  * @param address Address of memory to free.
  * @param size Size passed to malloc/calloc for this address.
@@ -6972,6 +6980,29 @@ struct afw_pool_inf_s {
     xctx \
 ) \
 (instance)->inf->run_cleanups( \
+    (instance), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `garbage_collect` of interface `afw_pool`.
+ *
+ * Notify this pool that the caller thinks there is a reason to
+ * reclaim optionally-freed memory before destroy. Heap does
+ * nothing (free_memory already returned blocks to the free
+ * list). Tracker returns marked blocks to the ancestor heap
+ * and leaves live allocations. Normally unused: tracker
+ * destroy already returns the whole chain.
+ * @param instance Pointer to this pool instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_pool_t
+ * @see @ref afw_pool_s "afw_pool_t"
+ */
+#define afw_pool_garbage_collect( \
+    instance, \
+    xctx \
+) \
+(instance)->inf->garbage_collect( \
     (instance), \
     (xctx) \
 )

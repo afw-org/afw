@@ -185,6 +185,14 @@ impl_afw_pool_run_cleanups(
     AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
+
+#ifndef impl_afw_pool_garbage_collect
+/* Declare method garbage_collect */
+AFW_DECLARE_STATIC(void)
+impl_afw_pool_garbage_collect(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t * xctx);
+#endif
 #endif
 
 /* inf for interface afw_pool */
@@ -226,7 +234,9 @@ impl_afw_pool_inf = {
     (afw_pool_deregister_cleanup_t)
     impl_afw_pool_deregister_cleanup,
     (afw_pool_run_cleanups_t)
-    impl_afw_pool_run_cleanups
+    impl_afw_pool_run_cleanups,
+    (afw_pool_garbage_collect_t)
+    impl_afw_pool_garbage_collect
 };
 
 #undef _AFW_IMPLEMENTATION_ID_

@@ -54,6 +54,14 @@ struct afw_thread_s {
     /** @brief The thread number within the afw environment. */
     afw_integer_t thread_number;
 
+    /**
+     * @brief Last pool id assigned on this thread.
+     *
+     * Debug identity is thread_number plus this count. Not atomic;
+     * only this thread creates its pools.
+     */
+    afw_integer_t pool_number;
+
     /** @brief `base` or `request`. Not a NULL `xctx->thread`. */
     afw_thread_type_t type;
 
