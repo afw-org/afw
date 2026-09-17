@@ -15,6 +15,7 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 - Prefer existing patterns; match naming in `src/afw/doc/guide/developer/contributing.xml`.
 - Primary agent focus: **C + Python (afwdev)**. JS/admin app only when explicitly asked.
 - **Third-party deps must stay MIT-compatible** (AFW is MIT — see `LICENSE` / `COPYING`). Prefer BSD/MIT/Apache-2.0 libraries (e.g. **libedit** for line editing). Avoid GPL-only linkage such as **GNU readline**. If a package is on all supported distros (Ubuntu, Alpine, Rocky, OpenSUSE — see `docker/images/afw-dev-base/` and CI), it may be required; otherwise make it optional at CMake time and degrade gracefully. Keep Dockerfiles and build docs in sync with new packages.
+- **Do not bump Clemson copyright years.** File banners are `Copyright (c) 2010-2024 Clemson University` (a few files still say 2010-2023). Copy the year range from a **sibling file in the same directory**, not today's calendar. Do not write 2025 or 2026 on a Clemson line. New files: same banner as neighbors.
 
 ## Terminology (do not invent “bag” for objects)
 - Prefer **object** + **properties** / **property name**; ordered collections are **array** (historical renames: XACML-style **bag** → **list** → **array** so non-bag ops and array semantics could land cleanly).
