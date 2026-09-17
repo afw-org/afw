@@ -520,7 +520,7 @@ afw_application_internal_application_conf_type_create_cede_p(
             error = true;
             AFW_LOG_FZ(err, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
-                "%s",
+                "%ks",
                 source_location,
                 AFW_ERROR_THROWN->message_z);
         }

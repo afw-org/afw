@@ -598,9 +598,9 @@ afw_error_to_utf8(
     evaluation_backtrace = impl_evaluation_backtrace(error, p, xctx);
 
     result = afw_utf8_printf_safe(p, xctx,
-        "%s"                           /* message. */
+        "%ks"                          /* message. */
         " [code=%s(%d)"                /* code-decoded */
-        " rv=%s%s%d%s%s"               /* source:rv-decoded */
+        " rv=%s%s%d%s%ks"              /* source:rv-decoded */
 
         "%s%ku%s"         /* source location */
         "%.0" AFW_SIZE_T_FMT_NO_PERCENT
@@ -663,7 +663,7 @@ afw_error_write_log(afw_log_priority_t priority,
     if (error->contextual && error->contextual->source_location)
     {
         s = afw_utf8_printf_safe(xctx->p, xctx,
-            "%s [%ku%s%0d]",
+            "%ks [%ku%s%0d]",
             error->message_z,
             error->contextual->source_location,
             (error->contextual->value_offset != 0) ? " +" : "",
@@ -677,7 +677,7 @@ afw_error_write_log(afw_log_priority_t priority,
     }
 
     else {
-        s = afw_utf8_printf_safe(xctx->p, xctx, "%s",
+        s = afw_utf8_printf_safe(xctx->p, xctx, "%ks",
             error->message_z);
         afw_log_write(xctx->env->log,
             priority,

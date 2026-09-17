@@ -1205,7 +1205,7 @@ afw_environment_load_extension(
         if (!dso_handle) {
             afw_pool_release(p, xctx);
             AFW_THROW_ERROR_FZ(general, xctx,
-                "Error loading extension extension_id='%ku' modulePath='%s': %s",
+                "Error loading extension extension_id='%ku' modulePath='%s': %ks",
                 extension_id_for_message, path_z, afw_os_dso_error());
         }
             

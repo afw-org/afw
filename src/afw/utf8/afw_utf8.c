@@ -1454,8 +1454,8 @@ impl_format_content(
                 (const afw_utf8_octet_t *)s,
                 strlen(s), xctx))
             {
-                AFW_THROW_ERROR_Z(general,
-                    "%s is not valid UTF-8", xctx);
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    "%ks is not valid UTF-8", s);
             }
             else {
                 IMPL_SNPRINTF(s);

@@ -908,7 +908,7 @@ afw_object_meta_add_thrown_property_error(
 
     else if (index >= 0) {
         message = afw_utf8_printf(instance->p, xctx,
-                "[" AFW_INTEGER_FMT "] %s",
+                "[" AFW_INTEGER_FMT "] %ks",
                 index,
                 error->message_z);
     }

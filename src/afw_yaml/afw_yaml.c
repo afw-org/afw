@@ -205,8 +205,8 @@ const afw_utf8_t * afw_yaml_from_error(afw_xctx_t *xctx)
         "\"lineNumber\": %d,\n"
         "\"rvSourceId\": %s,\n"
         "\"rv\": %d,\n"
-        "\"rvDecoded\": %s,\n"
-        "\"message\": %s\n",
+        "\"rvDecoded\": %ks,\n"
+        "\"message\": %ks\n",
         error->code,
         afw_error_code_id_z(error),
         impl_u8z_to_yaml(afw_error_source_file(error), xctx),

@@ -428,6 +428,7 @@ do { \
  *
  * Formats with `afw_utf8_z_snprintf_safe_v`: dirty `%s` / `%ku` encode
  * (`forced_safe`) instead of throwing while building the error.
+ * Prefer `%ks` / `%km` for bytes that might not be UTF-8.
  *
  * Always follow with a semicolon;
  */

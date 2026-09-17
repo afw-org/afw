@@ -776,7 +776,7 @@ impl_resolve_parents(
     AFW_CATCH_UNHANDLED{
         *parent = NULL;
         afw_object_meta_add_error_fz((const afw_object_t *)self,
-            xctx, "Error resolving parentPaths - %s",
+            xctx, "Error resolving parentPaths - %ks",
             AFW_ERROR_THROWN->message_z);
     }
 

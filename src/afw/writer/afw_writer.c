@@ -83,7 +83,7 @@ impl_afw_writer_write(
                 err = EIO;
             }
             AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
-                "fwrite() failed: %s", strerror(err));
+                "fwrite() failed: %ks", strerror(err));
         }
     }
 }
@@ -106,7 +106,7 @@ impl_afw_writer_write_eol(
             err = EIO;
         }
         AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
-            "fwrite() failed: %s", strerror(err));
+            "fwrite() failed: %ks", strerror(err));
     }
 }
 
