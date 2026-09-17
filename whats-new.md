@@ -53,15 +53,15 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | `afw_v_foo` | Object **property name** (a value). `afw_s_foo` is still utf8 for type ids and other utf8 APIs. |
 | dest `p` | Evaluate, clone, or extra allocation (iterator / meta). **Not** on value getters. |
 
-Utf8 ingest is a **different** table: `create` / `to_` copy; `create_no_copy` / `z_as_utf8` point. Do not read `afw_utf8_z_as_utf8` as a typed value pointer. [UTF-8 doors](#utf-8-create-set-and-forced_safe). Detail for `_as_<type>`: [Typed values](#typed-value-pointers-vs-c-internals).
+Utf8 ingest is a **different** table: `create` / `to_` copy; `create_no_copy` / `z_as_utf8` point. Do not read `afw_utf8_z_as_utf8` as a typed value pointer. [UTF-8 doors](#utf-8-create-set-and-ks). Detail for `_as_<type>`: [Typed values](#typed-value-pointers-vs-c-internals).
 
 | Change this | To |
 |-------------|----|
 | Leftover headers in `/usr/local/include/afw/` after a rebuild | `./afwdev build --cdev` or `--fulldev` (both **`--install`**). CMake does not delete dropped headers; afwdev then removes a leftover list (internals, old generated names, deprecated leftovers). Another package’s **public** headers in that dir stay. If that package still installed `*_internal.h` or `*_declare_helpers.h` there, reinstall **it**. [Upgrade hygiene](#upgrade-hygiene) |
 | `#include` of core internals or package `*_declare_helpers.h` | `#include "afw.h"`. Core **`AFW_DECLARE` / `AFW_DEFINE` / `AFW_BEGIN_DECLARES`** live in **`afw_common.h`**. Package `*_declare_helpers.h` is **not generated**. |
 | Type name `afw_iterator` as the old opaque cursor | That name is the new **keyless** iterator. Legacy cursor is **`afw_iterator_old`**. [#153](#utf-8-code-point-sequences-issue-153) |
-| `afw_utf8_create` / `create_copy` / `from_utf8_z` / `from_raw` | **`create` always copies** (old `create_copy`). Point without copy is **`create_no_copy`**. `from_utf8_z` → **`utf8_z_to_utf8`** (copy) or **`utf8_z_as_utf8`** (point). `from_raw` / `as_raw` → **`from_memory` / `as_memory`**. Env/request names that are not UTF-8 are **`^` + hex + `^`**, not `_NONUTF8_` + whole-name hex. [UTF-8 doors](#utf-8-create-set-and-forced_safe) |
-| `afw_utf8_printf` / `z_printf` / `AFW_THROW_ERROR_FZ` with `AFW_UTF8_FMT` + `FMT_ARG(s)` | **`%ku`** and pass **`s`** (one `const afw_utf8_t *`; NULL is empty). Keep `AFW_UTF8_FMT` / `FMT_ARG` only for **libc** `fprintf`. Default `%s` of dirty bytes **throws** — use **`%ks`**. Error `*_fz` / `error_to_utf8` use **`printf_ks`**. Do not write data files with these (assemble then **`create`**). [UTF-8 printf](#utf-8-create-set-and-forced_safe) |
+| `afw_utf8_create` / `create_copy` / `from_utf8_z` / `from_raw` | **`create` always copies** (old `create_copy`). Point without copy is **`create_no_copy`**. `from_utf8_z` → **`utf8_z_to_utf8`** (copy) or **`utf8_z_as_utf8`** (point). `from_raw` / `as_raw` → **`from_memory` / `as_memory`**. Env/request names that are not UTF-8 are **`^` + hex + `^`**, not `_NONUTF8_` + whole-name hex. [UTF-8 doors](#utf-8-create-set-and-ks) |
+| `afw_utf8_printf` / `z_printf` / `AFW_THROW_ERROR_FZ` with `AFW_UTF8_FMT` + `FMT_ARG(s)` | **`%ku`** and pass **`s`** (one `const afw_utf8_t *`; NULL is empty). Keep `AFW_UTF8_FMT` / `FMT_ARG` only for **libc** `fprintf`. Default `%s` of dirty bytes **throws** — use **`%ks`**. Error `*_fz` / `error_to_utf8` use **`printf_ks`**. Do not write data files with these (assemble then **`create`**). [UTF-8 printf](#utf-8-create-set-and-ks) |
 | `#include <apr_strings.h>` via `afw_common.h`; `apr_pstrdup` / `apr_psprintf` / `apr_pstrndup` | **`afw_common.h` no longer includes it.** Use **`z_create`** / **`to_utf8_z`** / **`afw_utf8_printf`**. `OPTIONAL_ARG` / `OPTIONAL_UNDEFINED_ARG` are **gone** (`%ku` of NULL is empty). |
 | File/VFS `apr_filepath_merge` / `apr_file_*` / `apr_dir_*` / `apr_stat` | **`afw_file_path_*`** (canonicalize, join-under-root) and **`afw_file_*`** (`stat`, `open`, `mkdir_p`, dir listing) in `afw_file.h`. File adapter **`delete_object` of a missing file throws** (`not_found`); APR used to ignore that error. A VFS/host symlink whose realpath leaves the map/`rootFilePaths` root is rejected. |
 | `apr_thread_mutex_*` / `apr_thread_rwlock_*` / `apr_thread_create` via `afw_thread_mutex_*` aliases and `get_apr_pool` | **`afw_thread_mutex_create(flags, p, xctx)`**; lock/unlock take **`xctx`**. Nested is recursive; unnested is not. Same for **`afw_thread_rwlock_*`**. Native thread is **`afw_os_thread_*`** in `os/`. Do not pass an APR pool. |
@@ -129,7 +129,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**C vector / hash table**](#c-vector-and-hash-table) | **`afw_vector`** and **`afw_hash_table`** on `afw.h` for C growable lists and name→pointer maps (not Adaptive `afw_array`) |
 | [**Value / memory (α/β)**](#value-lifetime--memory-management-issue-2--alphabeta) ([#2](https://github.com/afw-org/afw/issues/2), [#277](https://github.com/afw-org/afw/issues/277)) | Two worlds: **unmanaged** in dest `p` / tracker; **managed** in **`p->managed_p`**. One ST heap per xctx; `create()` of ST is a tracker; compile units own a heap. Slot protocol; last_return is the slot ([#62](https://github.com/afw-org/afw/issues/62)). Hard-loop soaks for assign / `array_push_pop` / `function_return` are **flat** or under the bar — **[#2](https://github.com/afw-org/afw/issues/2) not closed** (refinements still coming) |
 | [**`stringify` / `decompile` / listing**](#stringify-decompile-compiler-listing-and-binary-text) ([#18](https://github.com/afw-org/afw/issues/18)) | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
-| [**UTF-8 create / set / forced_safe**](#utf-8-create-set-and-forced_safe) ([#314](https://github.com/afw-org/afw/issues/314)) | C doors: short **`create`/`set` copy**; **`no_copy`** points; **`forced_safe`** encodes invalid runs as `^hex^`. **`afw_utf8_printf`**: `%ku` / `%ks` / `%km` / `%kx` / `%kX`; assemble then **`create`**. Error dump **`printf_ks`**. libc `fprintf` still uses `AFW_UTF8_FMT`. Checklist for **other repos**. `--scan` type-checks AFW printf |
+| [**UTF-8 create / set / ks**](#utf-8-create-set-and-ks) ([#314](https://github.com/afw-org/afw/issues/314)) | C doors: short **`create`/`set` copy**; **`no_copy`** points; **`ks`** encodes invalid runs as `^hex^`. **`afw_utf8_printf`**: `%ku` / `%ks` / `%km` / `%kx` / `%kX`; assemble then **`create`**. Error dump **`printf_ks`**. libc `fprintf` still uses `AFW_UTF8_FMT`. Checklist for **other repos**. `--scan` type-checks AFW printf |
 | [**UTF-8 in JSON / Fiddle**](#utf-8-in-json-results-and-python-local-mode) | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
 | [**Python `Session("local")`**](#utf-8-in-json-results-and-python-local-mode) | Local FIFO client uses **binary octet** framing so large/UTF-8 responses no longer hang |
 | [**Param / catch Patterns**](#function-parameter-and-catch-patterns-issue-140) ([#140](https://github.com/afw-org/afw/issues/140)) | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys; type syntax for later checking |
@@ -535,7 +535,7 @@ This is generate/docs presentation only; Adaptive function call semantics are un
 
 ---
 
-## UTF-8 create, set, and forced_safe
+## UTF-8 create, set, and ks encoding
 
 C `afw_utf8_t` doors now say **who owns the little struct** and **whether `.s` is a copy**.
 
@@ -551,18 +551,18 @@ C `afw_utf8_t` doors now say **who owns the little struct** and **whether `.s` i
 
 `afw_memory_t` uses the same verbs (no NFC). There is no `afw_raw_t`.
 
-**`forced_safe`** (create/set, always copy): valid UTF-8 text passes through; `^` becomes `^^`; Unicode control (Cc) and invalid UTF-8 **runs** become `^` + uppercase hex + `^`. Tab/LF/CR and other whitespace/EOL stay as text. Result is valid UTF-8, **not** promised NFC, **not** an Adaptive value.
+**`ks`** (create/set, always copy): valid UTF-8 text passes through; `^` becomes `^^`; Unicode control (Cc) and invalid UTF-8 **runs** become `^` + uppercase hex + `^`. Tab/LF/CR and other whitespace/EOL stay as text. Result is valid UTF-8, **not** promised NFC, **not** an Adaptive value.
 
-**`afw_utf8_printf` / `z_printf`** assemble with their own formatter, then **`create`** (NFC / throw). They do **not** `forced_safe` the whole result. Use these for **viewable** text (logs, traces). Do **not** use them to write data files or round-trip octets — write `.s` + `.len` or **`as_memory`**. **`AFW_THROW_ERROR_FZ`**, **`afw_error_to_utf8`**, and the error object use **`printf_ks` / `z_snprintf_ks`**: `%s` and `%ku` **`forced_safe`** instead of throw, so assembling or reporting an error cannot throw because of dirty bytes. Authority: `src/afw/utf8/afw_utf8.h`.
+**`afw_utf8_printf` / `z_printf`** assemble with their own formatter, then **`create`** (NFC / throw). They do **not** ks-encode the whole result. Use these for **viewable** text (logs, traces). Do **not** use them to write data files or round-trip octets — write `.s` + `.len` or **`as_memory`**. **`AFW_THROW_ERROR_FZ`**, **`afw_error_to_utf8`**, and the error object use **`printf_ks` / `z_snprintf_ks`**: `%s` and `%ku` **`ks`** instead of throw, so assembling or reporting an error cannot throw because of dirty bytes. Authority: `src/afw/utf8/afw_utf8.h`.
 
 | Spec | Pass | Notes |
 |------|------|--------|
 | **`%ku`** | `const afw_utf8_t *` | Trusted UTF-8. Interior `0` is data. **NULL is empty** (zero width). |
-| **`%ks`** | C string (`utf8_z`) | Dirty text: **`forced_safe`** instead of throw. |
-| **`%km`** | `const afw_memory_t *` | Always `forced_safe` on the octets. |
+| **`%ks`** | C string (`utf8_z`) | Dirty text: **`ks`** instead of throw. |
+| **`%km`** | `const afw_memory_t *` | Always `ks` on the octets. |
 | **`%kx`** | `const afw_memory_t *` | Always lowercase hex pairs. |
 | **`%kX`** | `const afw_memory_t *` | Always uppercase hex pairs. |
-| **`%s`** | C string | **Throws** if not valid UTF-8. On **`printf_ks`** / error `*_fz`, **`forced_safe`**. |
+| **`%s`** | C string | **Throws** if not valid UTF-8. On **`printf_ks`** / error `*_fz`, **`ks`**. |
 | **`AFW_UTF8_FMT` + `FMT_ARG`** | int len, `char *` | **libc only** (`fprintf`, FCGX, syslog). On the AFW walk, exact `%.*s` copies n bytes (including U+0000). On **`printf_ks`**, encode. |
 
 `z_printf` of interior `0` **throws**. `OPTIONAL_ARG` / `OPTIONAL_UNDEFINED_ARG` are **gone**.
@@ -597,11 +597,11 @@ AFW_THROW_ERROR_FZ
 
 Rebuild that package against this libafw. Mixing old DSOs with a new `libafw` is **unsupported**.
 
-**`create_property_name`**: same encode as `forced_safe`, then NFC. Used for process env and FCGI/CGI request parameter names.
+**`create_property_name`**: same encode as `ks`, then NFC. Used for process env and FCGI/CGI request parameter names.
 
 `AFW_UTF8_LITERAL` is still a trusted C `"…"` initializer (no check). ASCII including `\n` is always UTF-8 NFC.
 
-`eq_ignore_case` walks each string with its own code-point offset (mixed-width such as `"iX"` vs `"İX"`). Error-object `backtrace` is `forced_safe` then NFC.
+`eq_ignore_case` walks each string with its own code-point offset (mixed-width such as `"iX"` vs `"İX"`). Error-object `backtrace` is `ks` then NFC.
 
 LDAP filters, file-adapter paths, and **VFS host paths** that used to glue pieces with `AFW_UTF8_FMT` now **concat `.len`**, then **`to_utf8_z`**. An interior `0` throws at that door instead of becoming a truncated or `^00^`-encoded path/filter.
 
@@ -1335,7 +1335,7 @@ Language reference **Templates and Expressions** (including **Templates in appli
 
 `retrieve_objects("afw", "_AdaptiveEnvironmentVariables_")` now returns a **single** `current` object (process environment), not two identical ones. The `environment::` qualifier is unchanged.
 
-Property **values** from the host environment are Adaptive **string** when the bytes are valid UTF-8 (NFC), otherwise **hexBinary** (raw octets preserved). Property **names** that are not valid UTF-8 use **`forced_safe`**: valid text stays, invalid runs are `^` + uppercase hex + `^`, and a caret in a valid name becomes `^^`. A bad value no longer prevents AFW from starting.
+Property **values** from the host environment are Adaptive **string** when the bytes are valid UTF-8 (NFC), otherwise **hexBinary** (raw octets preserved). Property **names** that are not valid UTF-8 use **`ks`**: valid text stays, invalid runs are `^` + uppercase hex + `^`, and a caret in a valid name becomes `^^`. A bad value no longer prevents AFW from starting.
 
 Request CGI/FCGI-like parameters remain under `_AdaptiveRequestProperties_` / `request::` (separate from process env).
 
@@ -1861,7 +1861,7 @@ Must-change items are at the [top](#must-change-read-this-first). These are easi
 - **VFS:** empty-file read works; replace/modify no longer leaves trailing bytes. Set `maxReadBytes` on servers. [VFS](#vfs-adapter-afw_vfs)
 - **Templates:** `` `\#` `` / `` `\$` `` emit literal `#` / `$` (they used to be an invalid escape). [Templates](#compile-time-template-substitutions-issue-97)
 - **JSON / Fiddle UTF-8:** multi-byte text in `stringify` / Fiddle should display correctly; do not rely on the old `\ufffffff0…` escapes. Out-of-tree Python `Session("local")` needs the updated client. [UTF-8 JSON](#utf-8-in-json-results-and-python-local-mode)
-- **C printf / throw formats:** `AFW_UTF8_FMT` + `FMT_ARG` in `afw_utf8_printf` is a **va_list crash** on this line — use **`%ku`**. Dirty `%s` **throws** on default printf; error `*_fz` encodes. [UTF-8 printf](#utf-8-create-set-and-forced_safe)
+- **C printf / throw formats:** `AFW_UTF8_FMT` + `FMT_ARG` in `afw_utf8_printf` is a **va_list crash** on this line — use **`%ku`**. Dirty `%s` **throws** on default printf; error `*_fz` encodes. [UTF-8 printf](#utf-8-create-set-and-ks)
 - **Schemas:** regenerate before depending on updated editor/validate behavior. [JSON Schema](#json-schema-for-adaptive-object-types)
 - **Model conf:** pure-script adapters may drop `mappedAdapterId`; if you omit it, every used op must be implemented in `on*`. [Model adapters](#pure-script-model-adapters)
 

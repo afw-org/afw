@@ -12,7 +12,7 @@
  * @brief Implementation of afw_object interface for FCGI request properties.
  *
  * Lazy object over FCGX request envp. Values are Adaptive string when valid
- * UTF-8 (NFC), otherwise hexBinary. Non-UTF-8 names use forced_safe encode.
+ * UTF-8 (NFC), otherwise hexBinary. Non-UTF-8 names use ks encode.
  * First access caches into an internal memory object; retrieve prefers cache
  * and does not emit duplicates from envp.
  */

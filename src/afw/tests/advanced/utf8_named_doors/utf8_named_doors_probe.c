@@ -13,7 +13,7 @@
 
 /**
  * @file utf8_named_doors_probe.c
- * @brief C probe for create/set/no_copy/forced_safe/property_name.
+ * @brief C probe for create/set/no_copy/ks/property_name.
  */
 
 static int
@@ -142,55 +142,55 @@ impl_no_copy(const afw_pool_t *p, afw_xctx_t *xctx)
 }
 
 static int
-impl_forced_safe(const afw_pool_t *p, afw_xctx_t *xctx)
+impl_ks(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_utf8_t *c;
     char in[8];
     afw_utf8_t to;
 
-    c = afw_utf8_create_forced_safe(
+    c = afw_utf8_create_ks(
         (const afw_utf8_octet_t *)"hello", 5, p, xctx);
-    if (impl_eq(c, "hello", 5, "forced_safe hello")) {
+    if (impl_eq(c, "hello", 5, "ks hello")) {
         return 1;
     }
 
     /* FOO + caret + BAR → FOO^^BAR */
-    c = afw_utf8_create_forced_safe(
+    c = afw_utf8_create_ks(
         (const afw_utf8_octet_t *)"FOO^BAR", 7, p, xctx);
-    if (impl_eq(c, "FOO^^BAR", 8, "forced_safe caret")) {
+    if (impl_eq(c, "FOO^^BAR", 8, "ks caret")) {
         return 1;
     }
 
     /* FOO + 0xFF → FOO^FF^ */
     in[0] = 'F'; in[1] = 'O'; in[2] = 'O'; in[3] = (char)0xff;
-    c = afw_utf8_create_forced_safe((const afw_utf8_octet_t *)in, 4, p, xctx);
-    if (impl_eq(c, "FOO^FF^", 7, "forced_safe 0xff")) {
+    c = afw_utf8_create_ks((const afw_utf8_octet_t *)in, 4, p, xctx);
+    if (impl_eq(c, "FOO^FF^", 7, "ks 0xff")) {
         return 1;
     }
 
     /* NUL is Cc → ^00^ */
     in[0] = 'a'; in[1] = 0; in[2] = 'b';
-    c = afw_utf8_create_forced_safe((const afw_utf8_octet_t *)in, 3, p, xctx);
-    if (impl_eq(c, "a^00^b", 6, "forced_safe nul")) {
+    c = afw_utf8_create_ks((const afw_utf8_octet_t *)in, 3, p, xctx);
+    if (impl_eq(c, "a^00^b", 6, "ks nul")) {
         return 1;
     }
 
     /* newline stays */
     in[0] = 'a'; in[1] = '\n'; in[2] = 'b';
-    c = afw_utf8_create_forced_safe((const afw_utf8_octet_t *)in, 3, p, xctx);
-    if (impl_eq(c, "a\nb", 3, "forced_safe lf")) {
+    c = afw_utf8_create_ks((const afw_utf8_octet_t *)in, 3, p, xctx);
+    if (impl_eq(c, "a\nb", 3, "ks lf")) {
         return 1;
     }
 
     /* run of two invalid bytes in one pair */
     in[0] = (char)0xc0; in[1] = (char)0x80;
-    c = afw_utf8_create_forced_safe((const afw_utf8_octet_t *)in, 2, p, xctx);
-    if (impl_eq(c, "^C080^", 6, "forced_safe run")) {
+    c = afw_utf8_create_ks((const afw_utf8_octet_t *)in, 2, p, xctx);
+    if (impl_eq(c, "^C080^", 6, "ks run")) {
         return 1;
     }
 
-    afw_utf8_set_forced_safe(&to, (const afw_utf8_octet_t *)in, 2, p, xctx);
-    if (impl_eq(&to, "^C080^", 6, "set_forced_safe")) {
+    afw_utf8_set_ks(&to, (const afw_utf8_octet_t *)in, 2, p, xctx);
+    if (impl_eq(&to, "^C080^", 6, "set_ks")) {
         return 1;
     }
     return 0;
@@ -696,8 +696,8 @@ main(int argc, char **argv)
     else if (strcmp(case_name, "no-copy") == 0) {
         rc = impl_no_copy(p, xctx);
     }
-    else if (strcmp(case_name, "forced-safe") == 0) {
-        rc = impl_forced_safe(p, xctx);
+    else if (strcmp(case_name, "ks") == 0) {
+        rc = impl_ks(p, xctx);
     }
     else if (strcmp(case_name, "property-name") == 0) {
         rc = impl_property_name(p, xctx);
@@ -731,7 +731,7 @@ main(int argc, char **argv)
     }
     else {
         fprintf(stderr, "usage: utf8_named_doors_probe "
-            "create-set-copy|no-copy|forced-safe|property-name|"
+            "create-set-copy|no-copy|ks|property-name|"
             "printf-ks|printf-nul|printf-k|printf-throws|"
             "error-backtrace|printf-ks-walk|error-fz-dirty|"
             "icu-error-name|from-memory\n");

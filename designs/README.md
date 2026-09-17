@@ -27,7 +27,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`issue-2-lifetime.md`](issue-2-lifetime.md) | **#2 08-21 story** — history; two worlds **#277** supersedes “managed owns a pool” / “scalars are not a pair”. Live soaks are the lab README, not this pad’s “next vertical” list |
 | [`memory-management.md`](memory-management.md) | Umbrella **#2** archaeology / old phases (live maps: rails + two worlds + eval `p`) |
 | [`issue-2-property-name-values.md`](issue-2-property-name-values.md) | **#2** — object property names as `const afw_value_t *` (landed PR **#220** + wrap-cleanup; script/JSON string-only) |
-| [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | Value vs utf8/memory payloads; `create` / `set` / `no_copy` / `forced_safe`; code_point dir |
+| [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | Value vs utf8/memory payloads; `create` / `set` / `no_copy` / `ks`; code_point dir |
 | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | **#149 closed** (PRs #160–#162) — architecture map: generate maps, OT `runtime`, accessors, env registration, checklist; keep for **#2** follow-on |
 | [`runtime-value-accessors.md`](runtime-value-accessors.md) | Live catalog snapshot of `_AdaptiveRuntimeValueAccessor_` (refresh via `afw -x` retrieve) |
 | [`afwdev-test-recipe.md`](afwdev-test-recipe.md) | Gate vs lab: `test -j`, `-T` / `tests-extra`, firehose, `--output`, valgrind notes |

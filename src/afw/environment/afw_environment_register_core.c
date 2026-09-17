@@ -200,7 +200,7 @@ impl_create_environment_variables_object(
 
     /*
      * Snapshot process environ at startup. Names that are not valid UTF-8 use
-     * forced_safe encode (^hex^); values are string if valid UTF-8 else
+     * ks encode (^hex^); values are string if valid UTF-8 else
      * hexBinary. Never
      * fail environment create because of a single bad entry.
      */

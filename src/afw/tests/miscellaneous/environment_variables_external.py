@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Tests for process environment boundary: valid UTF-8 → string, invalid → hexBinary,
-non-UTF-8 names → forced_safe encode (^ + hex run + ^). Uses a small C helper
+non-UTF-8 names → ks encode (^ + hex run + ^). Uses a small C helper
 to setenv raw bytes then exec afw (issue #71 related external-octets handling).
 """
 
@@ -145,7 +145,7 @@ def run():
         ),
         (
             "bad_name_nonutf8_prefix",
-            "Invalid UTF-8 env name exposed as forced_safe ^hex^",
+            "Invalid UTF-8 env name exposed as ks ^hex^",
             textwrap.dedent(
                 """\
                 const e = get_object("afw", "_AdaptiveEnvironmentVariables_", "current");

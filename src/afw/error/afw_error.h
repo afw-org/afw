@@ -426,8 +426,8 @@ do { \
  * @param format_z format for error message
  * @param ... for format_z
  *
- * Formats with `afw_utf8_z_snprintf_ks_v`: dirty `%s` / `%ku` encode
- * (`forced_safe`) instead of throwing while building the error.
+ * Formats with `afw_utf8_z_snprintf_ks_v`: dirty `%s` / `%ku` use
+ * ks encoding instead of throwing while building the error.
  * Prefer `%ks` / `%km` for bytes that might not be UTF-8.
  *
  * Always follow with a semicolon;

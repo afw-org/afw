@@ -233,7 +233,7 @@ generate/ metadata + interface XML
 
 **Errors:** `get_info()` → contextual → exact span in that unit’s `full_source`. Nested compile+eval prints each source as the stack changes. `decompile()` is compiled-form Adaptive (recompilable when supported), not original pretty source. `stringify()` is JSON of an evaluated value. Listing is the human tree.
 
-**Print / untrusted bytes:** `forced_safe` makes viewable UTF-8 (`^hex^` for invalid/Cc, `^^` for caret) — not NFC, not a value. Default `afw_utf8_printf` / `z_printf` assemble then `create` (throw). Error dump uses `printf_ks` (`%s` / `%ku` encode). Property names at env/FCGI boundaries: same encode, then NFC (`create_property_name`).
+**Print / untrusted bytes:** `ks` makes viewable UTF-8 (`^hex^` for invalid/Cc, `^^` for caret) — not NFC, not a value. Default `afw_utf8_printf` / `z_printf` assemble then `create` (throw). Error dump uses `printf_ks` (`%s` / `%ku` encode). Property names at env/FCGI boundaries: same encode, then NFC (`create_property_name`).
 
 ---
 
@@ -243,7 +243,7 @@ generate/ metadata + interface XML
 |-----|------|
 | [`../AGENTS.md`](../AGENTS.md) | System map, agent mission, knowledge map |
 | [`knowledge-atlas.md`](knowledge-atlas.md) | Topic → rules / pad / probe (the index, not a second story) |
-| [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | Value vs utf8/memory doors; `forced_safe`; code_point |
+| [`c-naming-and-payloads.md`](c-naming-and-payloads.md) | Value vs utf8/memory doors; `ks`; code_point |
 | [`mantras-and-working-style.md`](mantras-and-working-style.md) | Mantras, anti-patterns, partnership habits (reference) |
 | [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) | **#2 inf-method rails** — hold vs assignable, MUST NOT |
 | [`experiment-brainstorm.md`](experiment-brainstorm.md) | **#277** two worlds, create names, last_return |

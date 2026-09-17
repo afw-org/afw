@@ -20,7 +20,7 @@ impl_error_format_message(
     const afw_utf8_z_t *format_z,
     va_list ap)
 {
-    /* Size includes the trailing 0 (z dest). %s / %ku are forced_safe. */
+    /* Size includes the trailing 0 (z dest). %s / %ku are ks-encoded. */
     afw_utf8_z_snprintf_ks_v(
         &xctx->error->message_wa[0],
         sizeof(xctx->error->message_wa),
@@ -559,7 +559,7 @@ impl_evaluation_backtrace(
     afw_utf8_writer_current_string(w, &s, xctx);
     /*
      * Copy octets only. message_z or source may be dirty; create()
-     * would throw while reporting. Callers forced_safe.
+     * would throw while reporting. Callers ks-encode.
      */
     copied = afw_pool_calloc_type(p, afw_utf8_t, xctx);
     if (s.len) {
@@ -874,9 +874,9 @@ impl_add_contextual(
 }
 
 
-/* Adaptive string for a diagnostic utf8: forced_safe, then NFC. */
+/* Adaptive string for a diagnostic utf8: ks encode, then NFC. */
 static const afw_utf8_t *
-impl_octets_forced_safe_value(
+impl_octets_ks_value(
     const afw_utf8_octet_t *s,
     afw_size_t len,
     const afw_pool_t *p,
@@ -887,13 +887,13 @@ impl_octets_forced_safe_value(
     if (!s) {
         return NULL;
     }
-    encoded = afw_utf8_create_forced_safe(s, len, p, xctx);
+    encoded = afw_utf8_create_ks(s, len, p, xctx);
     return afw_utf8_create(encoded->s, encoded->len, p, xctx);
 }
 
 
 static const afw_utf8_t *
-impl_utf8_forced_safe_value(
+impl_utf8_ks_value(
     const afw_utf8_t *s,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -901,7 +901,7 @@ impl_utf8_forced_safe_value(
     if (!s) {
         return NULL;
     }
-    return impl_octets_forced_safe_value(s->s, s->len, p, xctx);
+    return impl_octets_ks_value(s->s, s->len, p, xctx);
 }
 
 
@@ -916,13 +916,13 @@ impl_utf8_z_value_for_error(
     if (!s_z) {
         return afw_s_a_empty_string;
     }
-    /* FZ already encoded; do not forced_safe again (`^` → `^^`). */
+    /* FZ already encoded; do not ks-encode again (`^` → `^^`). */
     if (afw_utf8_is_valid(
         (const afw_utf8_octet_t *)s_z, AFW_UTF8_Z_LEN, xctx))
     {
         return afw_utf8_create(s_z, AFW_UTF8_Z_LEN, p, xctx);
     }
-    encoded = afw_utf8_z_create_forced_safe(s_z, p, xctx);
+    encoded = afw_utf8_z_create_ks(s_z, p, xctx);
     return afw_utf8_create(encoded->s, encoded->len, p, xctx);
 }
 
@@ -977,7 +977,7 @@ afw_error_add_to_object(
     {
         afw_object_set_property_as_string_internal(object,
             afw_v_backtrace,
-            impl_octets_forced_safe_value(
+            impl_octets_ks_value(
                 (const afw_utf8_octet_t *)error->backtrace->ptr,
                 error->backtrace->size, p, xctx),
             xctx);
@@ -991,7 +991,7 @@ afw_error_add_to_object(
         if (evaluation_backtrace) {
             afw_object_set_property_as_string_internal(object,
                 afw_v_backtraceEvaluation,
-                impl_utf8_forced_safe_value(evaluation_backtrace, p, xctx),
+                impl_utf8_ks_value(evaluation_backtrace, p, xctx),
                 xctx);
         }
     }

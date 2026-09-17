@@ -382,10 +382,10 @@ afw_utf8_nfc(
 
 
 /*
- * forced_safe encode: valid text through; '^' -> '^^'; Cc and invalid
+ * ks encode: valid text through; '^' -> '^^'; Cc and invalid
  * utf-8 runs -> '^' + uppercase hex + '^'. Whitespace/EOL left as text.
  */
-#define IMPL_FORCED_SAFE_ESC ((afw_utf8_octet_t)'^')
+#define IMPL_KS_ESC ((afw_utf8_octet_t)'^')
 
 static const afw_utf8_octet_t impl_hex_digit[] = "0123456789ABCDEF";
 static const afw_utf8_octet_t impl_hex_digit_lower[] = "0123456789abcdef";
@@ -397,7 +397,7 @@ typedef enum {
 } impl_enc_kind_t;
 
 static impl_enc_kind_t
-impl_forced_safe_kind(
+impl_ks_kind(
     const afw_utf8_octet_t *s,
     afw_size_t len,
     afw_size_t i,
@@ -433,7 +433,7 @@ impl_forced_safe_kind(
 }
 
 static const afw_utf8_t *
-impl_utf8_encode_forced_safe(
+impl_utf8_encode_ks(
     const afw_utf8_octet_t *s,
     afw_size_t len,
     const afw_pool_t *p,
@@ -459,7 +459,7 @@ impl_utf8_encode_forced_safe(
     need = 0;
     in_hex = false;
     for (i = 0; i < len; i = end) {
-        kind = impl_forced_safe_kind(s, len, i, &end);
+        kind = impl_ks_kind(s, len, i, &end);
         if (kind == impl_enc_hex) {
             if (!in_hex) {
                 need += 1;
@@ -490,10 +490,10 @@ impl_utf8_encode_forced_safe(
     o = 0;
     in_hex = false;
     for (i = 0; i < len; i = end) {
-        kind = impl_forced_safe_kind(s, len, i, &end);
+        kind = impl_ks_kind(s, len, i, &end);
         if (kind == impl_enc_hex) {
             if (!in_hex) {
-                out[o++] = IMPL_FORCED_SAFE_ESC;
+                out[o++] = IMPL_KS_ESC;
                 in_hex = true;
             }
             for (b = i; b < end; b++) {
@@ -503,12 +503,12 @@ impl_utf8_encode_forced_safe(
         }
         else {
             if (in_hex) {
-                out[o++] = IMPL_FORCED_SAFE_ESC;
+                out[o++] = IMPL_KS_ESC;
                 in_hex = false;
             }
             if (kind == impl_enc_caret) {
-                out[o++] = IMPL_FORCED_SAFE_ESC;
-                out[o++] = IMPL_FORCED_SAFE_ESC;
+                out[o++] = IMPL_KS_ESC;
+                out[o++] = IMPL_KS_ESC;
             }
             else {
                 memcpy(out + o, s + i, end - i);
@@ -517,7 +517,7 @@ impl_utf8_encode_forced_safe(
         }
     }
     if (in_hex) {
-        out[o++] = IMPL_FORCED_SAFE_ESC;
+        out[o++] = IMPL_KS_ESC;
     }
     result->len = o;
     return result;
@@ -630,29 +630,29 @@ afw_utf8_z_set_no_copy(
 
 
 AFW_DEFINE(const afw_utf8_t *)
-afw_utf8_create_forced_safe(
+afw_utf8_create_ks(
     const afw_utf8_octet_t *s,
     afw_size_t len,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    return impl_utf8_encode_forced_safe(s, len, p, xctx);
+    return impl_utf8_encode_ks(s, len, p, xctx);
 }
 
 
 AFW_DEFINE(const afw_utf8_t *)
-afw_utf8_z_create_forced_safe(
+afw_utf8_z_create_ks(
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    return impl_utf8_encode_forced_safe(
+    return impl_utf8_encode_ks(
         (const afw_utf8_octet_t *)s_z, AFW_UTF8_Z_LEN, p, xctx);
 }
 
 
 AFW_DEFINE(void)
-afw_utf8_set_forced_safe(
+afw_utf8_set_ks(
     afw_utf8_t *to,
     const afw_utf8_octet_t *s,
     afw_size_t len,
@@ -661,20 +661,20 @@ afw_utf8_set_forced_safe(
 {
     const afw_utf8_t *created;
 
-    created = impl_utf8_encode_forced_safe(s, len, p, xctx);
+    created = impl_utf8_encode_ks(s, len, p, xctx);
     to->s = created->s;
     to->len = created->len;
 }
 
 
 AFW_DEFINE(void)
-afw_utf8_z_set_forced_safe(
+afw_utf8_z_set_ks(
     afw_utf8_t *to,
     const afw_utf8_z_t *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_utf8_set_forced_safe(to, (const afw_utf8_octet_t *)s_z,
+    afw_utf8_set_ks(to, (const afw_utf8_octet_t *)s_z,
         AFW_UTF8_Z_LEN, p, xctx);
 }
 
@@ -688,7 +688,7 @@ afw_utf8_create_property_name(
 {
     const afw_utf8_t *encoded;
 
-    encoded = impl_utf8_encode_forced_safe(s, len, p, xctx);
+    encoded = impl_utf8_encode_ks(s, len, p, xctx);
     return afw_utf8_create(encoded->s, encoded->len, p, xctx);
 }
 
@@ -874,7 +874,7 @@ impl_out_byte(impl_fmt_out_t *o, afw_utf8_octet_t b)
 
 
 static void
-impl_out_forced_safe(
+impl_out_ks(
     impl_fmt_out_t *o,
     const afw_utf8_octet_t *s,
     afw_size_t len)
@@ -890,10 +890,10 @@ impl_out_forced_safe(
     }
     in_hex = false;
     for (i = 0; i < len; i = end) {
-        kind = impl_forced_safe_kind(s, len, i, &end);
+        kind = impl_ks_kind(s, len, i, &end);
         if (kind == impl_enc_hex) {
             if (!in_hex) {
-                impl_out_byte(o, IMPL_FORCED_SAFE_ESC);
+                impl_out_byte(o, IMPL_KS_ESC);
                 in_hex = true;
             }
             for (b = i; b < end; b++) {
@@ -904,12 +904,12 @@ impl_out_forced_safe(
         }
         else {
             if (in_hex) {
-                impl_out_byte(o, IMPL_FORCED_SAFE_ESC);
+                impl_out_byte(o, IMPL_KS_ESC);
                 in_hex = false;
             }
             if (kind == impl_enc_caret) {
-                impl_out_byte(o, IMPL_FORCED_SAFE_ESC);
-                impl_out_byte(o, IMPL_FORCED_SAFE_ESC);
+                impl_out_byte(o, IMPL_KS_ESC);
+                impl_out_byte(o, IMPL_KS_ESC);
             }
             else {
                 impl_out_bytes(o, s + i, end - i);
@@ -917,7 +917,7 @@ impl_out_forced_safe(
         }
     }
     if (in_hex) {
-        impl_out_byte(o, IMPL_FORCED_SAFE_ESC);
+        impl_out_byte(o, IMPL_KS_ESC);
     }
 }
 
@@ -952,7 +952,7 @@ impl_out_spaces(impl_fmt_out_t *o, afw_size_t n)
 
 
 static afw_size_t
-impl_forced_safe_len(
+impl_ks_len(
     const afw_utf8_octet_t *s, afw_size_t len)
 {
     impl_fmt_out_t c;
@@ -960,7 +960,7 @@ impl_forced_safe_len(
     c.dest = NULL;
     c.cap = 0;
     c.needed = 0;
-    impl_out_forced_safe(&c, s, len);
+    impl_out_ks(&c, s, len);
     return c.needed;
 }
 
@@ -1168,7 +1168,7 @@ impl_format_content(
             s = va_arg(ap, const char *);
             if (n > 0 && s) {
                 if (ks) {
-                    impl_out_forced_safe(&o,
+                    impl_out_ks(&o,
                         (const afw_utf8_octet_t *)s,
                         (afw_size_t)n);
                 }
@@ -1332,7 +1332,7 @@ impl_format_content(
                     in_len = impl_prec_cap(u->len, have_prec, prec);
                 }
                 if (ks) {
-                    out_len = impl_forced_safe_len(
+                    out_len = impl_ks_len(
                         (u && u->s) ? u->s : NULL, in_len);
                 }
                 else {
@@ -1346,7 +1346,7 @@ impl_format_content(
                     mp = m->ptr;
                 }
                 if (kind == 'm') {
-                    out_len = impl_forced_safe_len(
+                    out_len = impl_ks_len(
                         (const afw_utf8_octet_t *)mp, in_len);
                 }
                 else {
@@ -1357,7 +1357,7 @@ impl_format_content(
                 s = va_arg(ap, const char *);
                 in_len = s ? strlen(s) : 0;
                 in_len = impl_prec_cap(in_len, have_prec, prec);
-                out_len = impl_forced_safe_len(
+                out_len = impl_ks_len(
                     (const afw_utf8_octet_t *)s, in_len);
             }
             pad = 0;
@@ -1369,14 +1369,14 @@ impl_format_content(
             }
             if (kind == 'u' && u && u->s && in_len) {
                 if (ks) {
-                    impl_out_forced_safe(&o, u->s, in_len);
+                    impl_out_ks(&o, u->s, in_len);
                 }
                 else {
                     impl_out_bytes(&o, u->s, in_len);
                 }
             }
             else if (kind == 'm' && mp && in_len) {
-                impl_out_forced_safe(&o,
+                impl_out_ks(&o,
                     (const afw_utf8_octet_t *)mp, in_len);
             }
             else if (kind == 'x') {
@@ -1386,7 +1386,7 @@ impl_format_content(
                 impl_out_hex(&o, mp, in_len, impl_hex_digit);
             }
             else if (kind == 's') {
-                impl_out_forced_safe(&o,
+                impl_out_ks(&o,
                     (const afw_utf8_octet_t *)s, in_len);
             }
             if (minus) {
@@ -1435,7 +1435,7 @@ impl_format_content(
             if (ks) {
                 in_len = strlen(s);
                 in_len = impl_prec_cap(in_len, have_prec, prec);
-                out_len = impl_forced_safe_len(
+                out_len = impl_ks_len(
                     (const afw_utf8_octet_t *)s, in_len);
                 pad = 0;
                 if (width > 0 && (afw_size_t)width > out_len) {
@@ -1444,7 +1444,7 @@ impl_format_content(
                 if (!minus) {
                     impl_out_spaces(&o, pad);
                 }
-                impl_out_forced_safe(&o,
+                impl_out_ks(&o,
                     (const afw_utf8_octet_t *)s, in_len);
                 if (minus) {
                     impl_out_spaces(&o, pad);

@@ -13,7 +13,7 @@
  *
  * Lazy object over process environ/getenv. Values are Adaptive string when the
  * external bytes are valid UTF-8 (NFC), otherwise hexBinary. Property names that
- * are not valid UTF-8 are exposed with a forced_safe encode (^hex^). First
+ * are not valid UTF-8 are exposed with a ks encode (^hex^). First
  * access caches into an internal memory object; retrieve prefers
  * cached/set properties and does not emit duplicates.
  */

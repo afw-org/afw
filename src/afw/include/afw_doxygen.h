@@ -539,7 +539,7 @@
  * Untyped pointer+length (`afw_memory_t`) plus copy/encode helpers.
  *
  * Same dest/copy verbs as @ref afw_utf8 (`create` copies, `create_no_copy`
- * points, `set` / `set_no_copy`) but **no NFC** and no `forced_safe`.
+ * points, `set` / `set_no_copy`) but **no NFC** and no `ks`.
  * Cast utf8 → memory with `afw_utf8_as_memory`; the other way is
  * `afw_utf8_from_memory` (NFC). There is no `afw_raw_t`.
  */
@@ -611,10 +611,10 @@
  * **values** (`afw_value_*`) are what can `get_reference` / release.
  *
  * **Internal** is NFC `afw_utf8_t`. **External** (libc, APR, LDAP, logs)
- * uses a named door: `to_utf8_z` / `z_create`, `forced_safe`, or
+ * uses a named door: `to_utf8_z` / `z_create`, `ks`, or
  * `as_memory`. **Printf** (`afw_utf8_printf`) is viewable text: `%%ku` /
  * `%%ks` / `%%km` / `%%kx` / `%%kX`, then `create` (not whole-buffer
- * `forced_safe`). Error dump uses `afw_utf8_printf_ks` (`%%s` /
+ * `ks`). Error dump uses `afw_utf8_printf_ks` (`%%s` /
  * `%%ku` encode; `%%km` always encodes). libc `fprintf` still uses
  * `AFW_UTF8_FMT`.
  *
@@ -634,7 +634,7 @@
  * | `set_no_copy` / `z_set_no_copy` | Caller `afw_utf8_t *` | Point; no `p` |
  * | `clone` | New `const` in `p` | Copy struct + `.s` |
  * | `to_utf8_z` / `z_create` | `utf8_z` | External C string; throw if embedded 0 |
- * | `forced_safe` | create/set (always copy) | External encode; `^hex^`; not NFC; not a value |
+ * | `ks` | create/set (always copy) | External encode; `^hex^`; not NFC; not a value |
  * | `create_property_name` | New `const` in `p` | Same encode, then NFC (is a name) |
  *
  * `p` only if something new lives there.
