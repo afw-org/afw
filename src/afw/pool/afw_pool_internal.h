@@ -308,6 +308,7 @@ const afw_pool_t *
 afw_pool_internal_heap_create(
     const afw_pool_t *parent,
     afw_boolean_t multithreaded,
+    afw_boolean_t as_managed_p,
     afw_size_t chunk_min,
     afw_xctx_t *xctx);
 

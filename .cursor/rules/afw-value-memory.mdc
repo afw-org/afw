@@ -12,10 +12,10 @@ Use when changing value lifetime, reference count, create/allocate APIs, data ty
 
 ## Pool and scope model
 
-- **Two impls:** heap and tracker (mt = lock wrappers on heap). APR is gone. `create()` of a ST parent is a tracker; of an MT parent, an MT heap. Base/`env->p` is mt heap. `xctx->p` is ST heap (`afw_pool_heap_create`). Live: [`remaining-apr.md`](../../designs/remaining-apr.md).
-- **Heap / tracker:** one ST heap per xctx. Evaluation `{ }` is `afw_pool_scope_create` of that heap (delay last-release on throw). Compile units are their own ST heap (4k min). **No reparent** on destroy. Statement eval `p` is `scope->p` when `{ }` has a frame (PR **#287**). Nested empty `{ }` is not a frame.
-- `managed_p`: job heaps set self; trackers inherit. Managed values allocate in `p->managed_p`. `create_managed` takes `p`. Pool-world object/array: `create_unmanaged` / `_new_p` / `_cede_p`.
-- `compiled_value` owns a dedicated compile heap (`heap_create`); evaluation scratch is the xctx heap / scope trackers.
+- **Two impls:** heap and tracker (mt = lock wrappers on heap). APR is gone. `create()` of a ST parent is a tracker; of an MT parent, an MT heap that inherits `managed_p`. Base/`env->p` is mt job heap. `xctx->p` is ST job heap (`afw_pool_heap_create_as_managed_p`). Live: [`remaining-apr.md`](../../designs/remaining-apr.md).
+- **Heap / tracker:** one ST job heap per xctx. Evaluation `{ }` is `afw_pool_scope_create` of that heap (delay last-release on throw). Compile units are ST heaps that inherit `managed_p` (4k min). **No reparent** on destroy. Statement eval `p` is `scope->p` when `{ }` has a frame (PR **#287**). Nested empty `{ }` is not a frame.
+- `managed_p`: job heaps (`*_as_managed_p`) set self; unmarked heap/MT create and trackers inherit. Managed values allocate in `p->managed_p`. `create_managed` takes `p`. Pool-world object/array: `create_unmanaged` / `_new_p` / `_cede_p`.
+- `compiled_value` lives in a compile heap (`heap_create`, inherit `managed_p`); evaluation scratch is the xctx heap / scope trackers.
 - Scope create/clone start at RC 1 (creator `release`s). `activate` / `deactivate` are stack push/pop. `closure_binding` `get_reference` / `release`. Last `release` at 0 walks `frame_slots[]`. Store-time bind for literals and nested assign is **#35**. Closure create-at-0; face overlay `set` takes the reference for `o.fn = function…`.
 - Short scripts: pool + scope bulk free is enough. **Long-running** needs correct managed escape paths (below).
 

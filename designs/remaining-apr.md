@@ -26,9 +26,11 @@ Heap and tracker use the same parent/child RC. Last-`release` does not call `des
 
 | Door | What |
 |------|------|
-| `afw_pool_heap_create(parent, chunk_min, xctx)` | ST heap, `managed_p = self`. `chunk_min` 0 → 64k. xctx/thread heaps. Compile units use **4k**. |
-| `afw_pool_multithread_create(env->p)` | MT job heap, `managed_p = self`. Conf, adapter, server, log. |
-| `afw_pool_create(parent)` | Tracker if ST parent; MT heap if MT parent. Parent/child is **lifetime** only; store is the ancestor heap. |
+| `afw_pool_heap_create(parent, chunk_min, xctx)` | ST heap, **inherits** `managed_p`. Compile units (own chunks; **4k**). |
+| `afw_pool_heap_create_as_managed_p(...)` | ST **job** heap, `managed_p = self`. xctx/thread. |
+| `afw_pool_multithread_create(env->p)` | MT heap, **inherits** `managed_p`. |
+| `afw_pool_multithread_create_as_managed_p(env->p)` | MT **job** heap, `managed_p = self`. Conf, adapter, server, log. |
+| `afw_pool_create(parent)` | Tracker if ST parent; MT heap that inherits `managed_p` if MT parent. Parent/child is **lifetime** only; store is the ancestor heap. |
 | `afw_pool_tracker_create(parent)` | Tracker. No throw last-release delay. Heap or tracker parent. |
 | `afw_pool_scope_create(parent)` | Evaluation `{ }`. Same store as a tracker; last-release delayed while `error_processing_count` > 0. |
 | `malloc_no_throw` / `calloc_no_throw` / `free_memory_no_throw` | Same as malloc/calloc/free; NULL / no-op instead of throw. |

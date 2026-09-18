@@ -280,7 +280,8 @@ afw_xctx_create(
     afw_xctx_t *self;
 
     /* Create a new pool for xctx and initialize. */
-    p = afw_pool_heap_create(xctx->p, xctx->env->xctx_chunk_min, xctx);
+    p = afw_pool_heap_create_as_managed_p(xctx->p,
+        xctx->env->xctx_chunk_min, xctx);
     self = afw_xctx_internal_create_initialize(xctx->current_try,
         NULL, (afw_environment_internal_t *)xctx->env, p);
     if (!self) {

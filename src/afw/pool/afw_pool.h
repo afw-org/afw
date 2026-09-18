@@ -37,13 +37,16 @@
  *   throw is handled). Closures pin the inner scope; the xctx heap
  *   outlives the outer `{ }`.
  * - `afw_pool_create()` of a ST parent (xctx->p or tracker) is a
- *   tracker (not a scope). Of an MT parent, an MT heap. `env->p`
- *   is the process MT heap. Things you start (conf, server, log,
- *   adapter) use
- *   `afw_pool_multithread_create(env->p)`. Compile units use
- *   `afw_pool_heap_create` (own chunks; optional smaller chunk_min).
- * - Managed values allocate in `p->managed_p` (job heap for this
- *   evaluation). Do not change managed_p mid-eval. Request xctx:
+ *   tracker (not a scope). Of an MT parent, an MT heap that
+ *   **inherits** managed_p. `env->p` is the process MT job heap.
+ *   Things you start (conf, server, log, adapter) use
+ *   `afw_pool_multithread_create_as_managed_p(env->p)`. Compile
+ *   units use `afw_pool_heap_create` (own chunks, inherit
+ *   managed_p; optional smaller chunk_min).
+ * - Job heaps set `managed_p = self` (`*_as_managed_p` and the
+ *   base/env pool). Unmarked heap/MT create inherits. Trackers
+ *   and scopes inherit. Managed values allocate in `p->managed_p`.
+ *   Do not change managed_p mid-eval. Request xctx:
  *   `xctx->p->managed_p` is `xctx->p`.
  * - Two numbers: asked-for (`bytes_allocated` /
  *   `env->pool_bytes_in_use`) vs chunks (`chunk_bytes` /
@@ -113,11 +116,12 @@ struct afw_pool_cleanup_s {
  * @return new pool.
  *
  * Tracker if the parent is a single-thread heap or a tracker.
- * Multithreaded heap if the parent is multithreaded.
+ * Multithreaded heap if the parent is multithreaded (inherits
+ * managed_p). Use multithread_create_as_managed_p for a job heap.
  *
- * env->p is a multithreaded heap. xctx->p is a single-thread heap
- * (`afw_pool_heap_create`). Thread-specific heaps are not safe from
- * another thread.
+ * env->p is a multithreaded job heap. xctx->p is a single-thread
+ * job heap (`afw_pool_heap_create_as_managed_p`). Thread-specific
+ * heaps are not safe from another thread.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create(
@@ -126,14 +130,14 @@ afw_pool_create(
 
 
 /**
- * @brief Create a single-thread heap (managed_p = self).
+ * @brief Create a single-thread heap that inherits managed_p.
  * @param parent of new pool (may be multithreaded env/base).
  * @param chunk_min minimum posix_memalign size; 0 = env->chunk_min.
  * @param xctx of caller.
  * @return new pool.
  *
- * Own chunks. xctx->p and compile units use this. afw_pool_create()
- * of the result is a tracker.
+ * Own chunks. Compile units and other bulk-free children use this.
+ * afw_pool_create() of the result is a tracker.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_heap_create(
@@ -143,13 +147,28 @@ afw_pool_heap_create(
 
 
 /**
- * @brief Create a multithreaded heap (managed_p = self).
+ * @brief Create a single-thread job heap (managed_p = self).
+ * @param parent of new pool (may be multithreaded env/base).
+ * @param chunk_min minimum posix_memalign size; 0 = env->chunk_min.
+ * @param xctx of caller.
+ * @return new pool.
+ *
+ * xctx->p and thread heaps use this.
+ */
+AFW_DECLARE(const afw_pool_t *)
+afw_pool_heap_create_as_managed_p(
+    const afw_pool_t *parent,
+    afw_size_t chunk_min,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create a multithreaded heap that inherits managed_p.
  * @param parent must be a multithreaded heap (usually env->p).
  * @param xctx of caller.
  * @return new pool.
  *
- * For things you start: conf, server, log, adapter. Work from a
- * request xctx on a pool that outlives that request.
+ * Child MT store, not a new job heap.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_multithread_create(
@@ -158,16 +177,16 @@ afw_pool_multithread_create(
 
 
 /**
- * @brief Create a pool whose managed_p is itself.
- * @param parent of new pool.
+ * @brief Create a multithreaded job heap (managed_p = self).
+ * @param parent must be a multithreaded heap (usually env->p).
  * @param xctx of caller.
  * @return new pool.
  *
- * Same as afw_pool_create() then p->managed_p = p. Prefer
- * afw_pool_multithread_create() / afw_pool_heap_create().
+ * For things you start: conf, server, log, adapter. Work from a
+ * request xctx on a pool that outlives that request.
  */
 AFW_DECLARE(const afw_pool_t *)
-afw_pool_create_as_managed_p(
+afw_pool_multithread_create_as_managed_p(
     const afw_pool_t *parent,
     afw_xctx_t *xctx);
 

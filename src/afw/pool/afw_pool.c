@@ -832,6 +832,7 @@ static afw_pool_internal_self_t *
 impl_heap_create(
     const afw_pool_t *afw_parent,
     const afw_pool_inf_t *inf,
+    afw_boolean_t as_managed_p,
     afw_size_t chunk_min,
     afw_xctx_t *xctx)
 {
@@ -844,6 +845,11 @@ impl_heap_create(
         AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
     }
     heap = impl_as_heap(self);
+    if (!as_managed_p && afw_parent) {
+        self->pub.managed_p = afw_parent->managed_p
+            ? afw_parent->managed_p
+            : afw_parent;
+    }
     self->thread = xctx->thread;
     impl_assign_pool_number(self);
 
@@ -2399,6 +2405,7 @@ const afw_pool_t *
 afw_pool_internal_heap_create(
     const afw_pool_t *parent,
     afw_boolean_t multithreaded,
+    afw_boolean_t as_managed_p,
     afw_size_t chunk_min,
     afw_xctx_t *xctx)
 {
@@ -2412,7 +2419,7 @@ afw_pool_internal_heap_create(
     inf = multithreaded
         ? &impl_afw_pool_heap_multithreaded_inf
         : &impl_afw_pool_inf;
-    self = impl_heap_create(parent, inf, chunk_min, xctx);
+    self = impl_heap_create(parent, inf, as_managed_p, chunk_min, xctx);
     return &self->pub;
 }
 
@@ -2426,7 +2433,22 @@ afw_pool_heap_create(
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
-    return afw_pool_internal_heap_create(parent, false, chunk_min, xctx);
+    return afw_pool_internal_heap_create(parent, false, false,
+        chunk_min, xctx);
+}
+
+
+AFW_DEFINE(const afw_pool_t *)
+afw_pool_heap_create_as_managed_p(
+    const afw_pool_t *parent,
+    afw_size_t chunk_min,
+    afw_xctx_t *xctx)
+{
+    if (!parent) {
+        AFW_THROW_ERROR_Z(general, "Parent required", xctx);
+    }
+    return afw_pool_internal_heap_create(parent, false, true,
+        chunk_min, xctx);
 }
 
 
@@ -2487,7 +2509,8 @@ afw_pool_thread_create(
         size = sizeof(afw_thread_t);
     }
 
-    p = afw_pool_heap_create(xctx->p, xctx->env->xctx_chunk_min, xctx);
+    p = afw_pool_heap_create_as_managed_p(xctx->p,
+        xctx->env->xctx_chunk_min, xctx);
     self = (AFW_POOL_SELF_T *)p;
     thread = afw_pool_calloc(p, size, xctx);
     impl_pool_set_owning_thread(impl_as_heap(self), thread);
@@ -2607,15 +2630,15 @@ afw_pool_create(
 
     /*
      * Single-thread parent (xctx->p or a tracker): tracker. Store is
-     * the ancestor heap. Multithreaded parent: MT heap (conf,
-     * server, log, adapter).
+     * the ancestor heap. Multithreaded parent: MT heap that inherits
+     * managed_p. Job heaps use multithread_create_as_managed_p.
      */
     if (afw_pool_internal_is_tracker(parent) ||
         !afw_pool_internal_is_heap_multithreaded(parent))
     {
         return afw_pool_tracker_create(parent, xctx);
     }
-    return afw_pool_internal_heap_create(parent, true, 0, xctx);
+    return afw_pool_internal_heap_create(parent, true, false, 0, xctx);
 }
 
 
@@ -2633,7 +2656,25 @@ afw_pool_multithread_create(
             "multithreaded heap",
             xctx);
     }
-    return afw_pool_internal_heap_create(parent, true, 0, xctx);
+    return afw_pool_internal_heap_create(parent, true, false, 0, xctx);
+}
+
+
+AFW_DEFINE(const afw_pool_t *)
+afw_pool_multithread_create_as_managed_p(
+    const afw_pool_t *parent,
+    afw_xctx_t *xctx)
+{
+    if (!parent) {
+        AFW_THROW_ERROR_Z(general, "Parent required", xctx);
+    }
+    if (!afw_pool_internal_is_heap_multithreaded(parent)) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_pool_multithread_create_as_managed_p() parent must "
+            "be a multithreaded heap",
+            xctx);
+    }
+    return afw_pool_internal_heap_create(parent, true, true, 0, xctx);
 }
 
 
@@ -2717,19 +2758,6 @@ afw_pool_subtree_chunk_bytes(const afw_pool_t *instance)
     }
     return impl_subtree_chunk_bytes(
         (const afw_pool_internal_self_t *)instance);
-}
-
-
-AFW_DEFINE(const afw_pool_t *)
-afw_pool_create_as_managed_p(
-    const afw_pool_t *parent,
-    afw_xctx_t *xctx)
-{
-    const afw_pool_t *p;
-
-    p = afw_pool_create(parent, xctx);
-    ((afw_pool_t *)p)->managed_p = p;
-    return p;
 }
 
 

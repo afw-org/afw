@@ -75,7 +75,7 @@ impl_job_heap(afw_xctx_t *xctx)
     const afw_value_t *result;
     afw_boolean_t threw;
 
-    job = afw_pool_heap_create(xctx->p, 0, xctx);
+    job = afw_pool_heap_create_as_managed_p(xctx->p, 0, xctx);
     value = afw_compile_to_value(&impl_source, NULL,
         afw_compile_type_script, NULL, job, xctx);
     result = afw_value_evaluate(value, xctx->p, xctx);
