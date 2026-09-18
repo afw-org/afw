@@ -437,8 +437,11 @@ afw_value_compiler_listing_to_string_instance(
         return self;
     }
 
-    /* Set self->compiled_value */
-    AFW_VALUE_ASSERT_IS(value, compiled_value, xctx);
+    /* Set self->compiled_value (unmanaged, assignable, or managed inf). */
+    if (!afw_value_is_compiled_value(value)) {
+        AFW_THROW_ERROR_Z(conversion_error,
+            "Expecting compiled_value", xctx);
+    }
     self->compiled_value = (const afw_value_compiled_value_t *)value;
     self->reference_id = self->compiled_value->reference_id;
 

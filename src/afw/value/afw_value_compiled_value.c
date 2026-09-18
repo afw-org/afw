@@ -202,9 +202,13 @@ impl_managed_optional_release(
     if (self->reference_count != 0) {
         return;
     }
-    /* Graph bytes stay in self->p until that job heap last-releases. */
-    afw_pool_free_memory(self->p, self,
-        sizeof(afw_value_compiled_value_t), xctx);
+    if (self->unit_owns_p) {
+        afw_pool_release(self->p, xctx);
+    }
+    else {
+        afw_pool_free_memory(self->p, self,
+            sizeof(afw_value_compiled_value_t), xctx);
+    }
 }
 
 

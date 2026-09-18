@@ -179,15 +179,9 @@ afw_compile_and_evaluate(
  * @return compiled or evaluated value.
  *
  * Either shared or p must be specified. The p used by the parser is
- * shared->p, else a child heap of p (or p itself when compiling managed).
- *
- * For a new compiled_value unit, p is the parent of that unit heap.
- * Adaptive compile() / eval<script> pass xctx->p. get_assignable_value
- * of a compiled_value extra-holds the unit pool when that unit is a
- * heap (dest p was a heap); it throws if dest p was a tracker (the
- * graph cannot be cloned). afw_value_release of the unmanaged
- * compiled_value releases the unit. JSON / object results use the
- * existing object get_assignable_value (clone_managed).
+ * shared->p, else a child heap of p->managed_p. Compiled units (script,
+ * template, test_script) are managed values (RC 1). JSON / relaxed_json
+ * return evaluated data.
  *
  * Either string or callback must be non-NULL.  If both are non-NULL, the
  * string will be processed first.
@@ -238,31 +232,6 @@ afw_compile_to_value_with_callback(
     afw_compile_to_value_with_callback(string, NULL, NULL, \
         source_location, compile_type, afw_compile_residual_check_to_full, \
         shared, p, xctx)
-
-
-/**
- * @brief Compile string to a managed compiled_value.
- * @param string to compile.
- * @param source_location to associate with compiled string or NULL.
- * @param compile_type Compile type (script, template, …; not JSON).
- * @param shared struct for shared compile resources or NULL.
- * @param p evaluation pool (job heap is p->managed_p).
- * @param xctx of caller.
- * @return managed compiled_value (reference count 1).
- *
- * Same lifetime as afw_object_create_managed: allocate in p->managed_p,
- * slot get_reference, last release free_memorys the header. Does not
- * cede dest p. Unmanaged compile_to_value is unchanged.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_compile_to_managed_value(
-    const afw_utf8_t *string,
-    const afw_utf8_t *source_location,
-    afw_compile_type_t compile_type,
-    const afw_compile_shared_t *shared,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
 
 
 /**

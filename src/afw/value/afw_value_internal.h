@@ -495,6 +495,9 @@ struct afw_value_internal_compiled_value_s {
      */
     afw_integer_t reference_count;
 
+    /** @brief True if last RC last-releases self->p (unit created that pool). */
+    afw_boolean_t unit_owns_p;
+
     /** @brief The parent compiled value or NULL. */
     const afw_value_compiled_value_t *parent;
 

@@ -91,9 +91,7 @@ afw_compile_and_evaluate(
         if (result) {
             result = afw_value_get_assignable(result, xctx);
         }
-        if (compiled_value &&
-            compiled_value->inf == &afw_value_compiled_value_inf)
-        {
+        if (afw_value_is_compiled_value(compiled_value)) {
             afw_value_release(compiled_value, xctx);
         }
     }
@@ -148,8 +146,6 @@ afw_compile_type_get_info(
 /*
  * Parse string to adaptive value with callback.
  *
- * managed: allocate the unit in p->managed_p, stamp managed inf, RC 1.
- * Do not cede dest p. Unmanaged path (managed false) is unchanged.
  */
 static const afw_value_t *
 impl_compile_to_value_with_callback(
@@ -161,7 +157,6 @@ impl_compile_to_value_with_callback(
     afw_compile_residual_check_t residual_check,
     const afw_compile_shared_t *shared,
     const afw_pool_t *p,
-    afw_boolean_t managed,
     afw_xctx_t *xctx)
 {
     afw_compile_parser_t *parser;
@@ -184,31 +179,18 @@ impl_compile_to_value_with_callback(
             xctx);
     }
 
-    if (managed) {
-        if (compile_type == afw_compile_type_json ||
-            compile_type == afw_compile_type_relaxed_json)
-        {
-            AFW_THROW_ERROR_Z(general,
-                "afw_compile_to_managed_value is for compiled units "
-                "(script, template), not JSON objects",
-                xctx);
-        }
-        if (!p && !shared) {
-            AFW_THROW_ERROR_Z(general,
-                "afw_compile_to_managed_value requires p or shared",
-                xctx);
-        }
-        if (p) {
-            p = p->managed_p;
-        }
+    if (p) {
+        p = p->managed_p;
     }
 
     /* Create parser. */
     parser = afw_compile_lexical_parser_create(
         string, callback, callback_data, source_location,
-        compile_type, residual_check, managed, shared, p,
+        compile_type, residual_check, false, shared, p,
         xctx);
-    if (managed) {
+    if (compile_type != afw_compile_type_json &&
+        compile_type != afw_compile_type_relaxed_json)
+    {
         parser->compiled_value->inf =
             &afw_value_managed_compiled_value_inf;
         parser->compiled_value->reference_count = 1;
@@ -343,23 +325,7 @@ afw_compile_to_value_with_callback(
 {
     return impl_compile_to_value_with_callback(
         string, callback, callback_data, source_location,
-        compile_type, residual_check, shared, p, false, xctx);
-}
-
-
-AFW_DEFINE(const afw_value_t *)
-afw_compile_to_managed_value(
-    const afw_utf8_t *string,
-    const afw_utf8_t *source_location,
-    afw_compile_type_t compile_type,
-    const afw_compile_shared_t *shared,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    return impl_compile_to_value_with_callback(
-        string, NULL, NULL, source_location,
-        compile_type, afw_compile_residual_check_to_full,
-        shared, p, true, xctx);
+        compile_type, residual_check, shared, p, xctx);
 }
 
 

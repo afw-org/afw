@@ -2523,7 +2523,7 @@ afw_compile_lexical_parser_create(
         shared_created = true;
     }
     else {
-        /* Compile unit needs its own ST heap (not a tracker). */
+        /* Child of dest p->managed_p (caller already passed managed_p). */
         unit_p = afw_pool_heap_create(p,
             xctx->env->compile_chunk_min, xctx);
         use_shared = afw_compile_shared_create(unit_p, xctx);
@@ -2562,6 +2562,7 @@ afw_compile_lexical_parser_create(
     parser->compiled_value->inf = &afw_value_compiled_value_inf;
     parser->compiled_value->p = parser->p;
     parser->compiled_value->shared = parser->shared;
+    parser->compiled_value->unit_owns_p = (shared == NULL);
     if (source_location) {
         /*
          * Caller source_location may be in dest p (a frame tracker).
