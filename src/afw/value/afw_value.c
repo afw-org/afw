@@ -332,7 +332,7 @@ afw_value_compile(
         source, NULL, NULL,
         source_location, data_type->compile_type,
         afw_compile_residual_check_to_full, \
-        NULL, NULL, p, xctx);
+        NULL, p, xctx);
 
     return compiled_value;
 }
@@ -371,7 +371,7 @@ afw_value_compile_as(
         source, NULL, NULL,
         source_location, compile_type,
         afw_compile_residual_check_to_full, \
-        NULL, NULL, p, xctx);
+        NULL, p, xctx);
 
     return compiled_value;
 }
@@ -1449,6 +1449,10 @@ afw_value_register_core_value_infs(afw_xctx_t *xctx)
     afw_environment_register_value_inf(
         &afw_value_compiled_value_assignable_inf.rti.implementation_id,
         &afw_value_compiled_value_assignable_inf, xctx);
+
+    afw_environment_register_value_inf(
+        &afw_value_managed_compiled_value_inf.rti.implementation_id,
+        &afw_value_managed_compiled_value_inf, xctx);
 
     afw_environment_register_value_inf(
         &afw_value_call_inf.rti.implementation_id,

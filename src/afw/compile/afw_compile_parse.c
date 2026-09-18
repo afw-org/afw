@@ -52,8 +52,6 @@
  *#
  *# Json - afw_compile_type_json and afw_compile_type_relaxed_json
  *#
- *# ParenthesizedExpression - afw_compile_type_parenthesized_expression
- *#
  *# Script - afw_compile_type_script
  *#
  *# Template - afw_compile_type_template

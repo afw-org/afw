@@ -130,11 +130,6 @@ static const char * impl_additional_help_text =
     "When option -s expression or -s template is specified, the input is\n"
     "evaluated one logical line at a time.\n"
     "\n"
-    "When option -s parentheses is specified, logical lines are evaluated up\n"
-    "up to the expression's closing parenthesis (')').  The parenthesized\n"
-    "expression can be preceded by any amount of whitespace, including\n"
-    "comments, and followed by whitespace up to the end of the line.\n"
-    "\n"
     "The conf option (-f) is used to specify the path to a configuration\n"
     "file.  By default, this file should be encoded with a relaxed json\n"
     "syntax, which accepts standard json, plus allows block comments\n"
@@ -554,13 +549,8 @@ impl_evaluate(
             self->callback, self->callback_data,
             self->source_location, self->compile_option,
             self->residual_check,
-            NULL, NULL, xctx->p, xctx);
+            NULL, xctx->p, xctx);
 
-        /*
-         * If option is parenthesized_expression, NULL can be returned if
-         * everything remaining is whitespace/comments.  In this case, set
-         * keep_going to false and break.
-         */
         if (!value) {
             keep_going = false;
             break;

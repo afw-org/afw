@@ -75,7 +75,7 @@ afw_function_execute_compile_script(
     result = afw_compile_to_value(
         &script->internal, AFW_FUNCTION_SOURCE_LOCATION,
         afw_compile_type_script,
-        NULL, NULL, x->xctx->p, x->xctx);
+        NULL, x->xctx->p, x->xctx);
 
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         listing = afw_function_evaluate_whitespace_parameter(x, 2);
@@ -140,7 +140,7 @@ afw_function_execute_eval_script(
     compiled = afw_compile_to_value(
         &script->internal, AFW_FUNCTION_SOURCE_LOCATION,
         afw_compile_type_script,
-        NULL, NULL, x->xctx->p, x->xctx);
+        NULL, x->xctx->p, x->xctx);
 
     {
         afw_xctx_t *xctx = x->xctx;

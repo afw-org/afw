@@ -1082,8 +1082,7 @@ afw_compile_lexical_parser_create(
     const afw_utf8_t *source_location,
     afw_compile_type_t compile_type,
     afw_compile_residual_check_t residual_check,
-    afw_boolean_t cede_p,
-    const afw_value_compiled_value_t *parent,
+    afw_boolean_t use_p,
     const afw_compile_shared_t *shared,
     const afw_pool_t *p,
     afw_xctx_t *xctx);

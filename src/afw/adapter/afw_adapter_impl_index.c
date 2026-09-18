@@ -281,7 +281,7 @@ afw_boolean_t afw_adapter_impl_index_filter_applicable(
         indexDefinition, afw_v_filter, xctx);
     if (filter) {
         filterValue = afw_compile_to_value(filter,  NULL,
-            afw_compile_type_script, NULL, NULL, object->p, xctx);
+            afw_compile_type_script, NULL, object->p, xctx);
     } else {
         /* No filter means it always passes */
         return true;
@@ -652,7 +652,7 @@ afw_boolean_t afw_adapter_impl_index_try(
         if (value_expression)
         {
             value = afw_compile_to_value(value_expression, NULL,
-                afw_compile_type_script, NULL, NULL, object->p, xctx);
+                afw_compile_type_script, NULL, object->p, xctx);
 
             /*
              * Evaluate the 'value' definition for the index.  This may generate

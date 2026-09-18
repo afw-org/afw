@@ -120,11 +120,11 @@ impl_afw_content_type_raw_to_object(
     string = afw_utf8_from_memory(raw, use_p, xctx);
 
     /*
-     * Call afw_compile_to_object() to convert json to object.  Always cede_p
-     * since subpool has already been created.  Return result.
+     * Call afw_compile_json_to_object() to convert json to object. Always cede
+     * use_p: that is dest p when cede_p, or the subpool we just made.
      */
     return afw_json_to_object_with_meta(string, source_location,
-        adapter_id, object_type_id, object_id, true, p, xctx);
+        adapter_id, object_type_id, object_id, true, use_p, xctx);
 }
 
 

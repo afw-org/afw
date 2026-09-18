@@ -490,6 +490,11 @@ struct afw_value_internal_compiled_value_s {
     /** @brief Pool containing value. */
     const afw_pool_t *p;
 
+    /**
+     * @brief Managed inf only (RC 1 at create). Unmanaged ignores this.
+     */
+    afw_integer_t reference_count;
+
     /** @brief The parent compiled value or NULL. */
     const afw_value_compiled_value_t *parent;
 

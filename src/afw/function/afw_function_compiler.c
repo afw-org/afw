@@ -778,7 +778,7 @@ afw_function_execute_test_script(
         compiled = afw_compile_to_value(
             &expression->internal, AFW_FUNCTION_SOURCE_LOCATION,
             afw_compile_type_script,
-            NULL, NULL, xctx->p, xctx);
+            NULL, xctx->p, xctx);
 
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(5)) {
             evaluated = afw_value_evaluate_with_additional_untrusted_qualified_variables(
@@ -914,7 +914,7 @@ afw_function_execute_test_template(
         compiled = afw_compile_to_value(
             &template->internal, AFW_FUNCTION_SOURCE_LOCATION,
             afw_compile_type_template,
-            NULL, NULL, xctx->p, xctx);
+            NULL, xctx->p, xctx);
 
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(5)) {
             evaluated = afw_value_evaluate_with_additional_untrusted_qualified_variables(
@@ -1380,7 +1380,7 @@ afw_function_execute_compile_from_file(
         result = afw_compile_to_value_with_callback(NULL,
             impl_octet_get_cb, self, file, compile_type, 
             afw_compile_residual_check_to_full,
-            NULL, NULL, xctx->p, xctx
+            NULL, xctx->p, xctx
         );
     }
     AFW_FINALLY {

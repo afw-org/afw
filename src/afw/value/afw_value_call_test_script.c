@@ -212,7 +212,7 @@ impl_afw_value_optional_evaluate(
         if (!source_type) {
             source_type = default_source_type;
         }
-        info = afw_compile_type_get_info_by_pneumonic(source_type, xctx);
+        info = afw_compile_type_get_info_by_mnemonic(source_type, xctx);
 
         expect = afw_object_get_property_as_string_internal(test,
             afw_v_expect, xctx);
@@ -619,7 +619,7 @@ impl_afw_value_produce_compiler_listing(
             if (!source_type) {
                 source_type = default_source_type;
             }
-            info = afw_compile_type_get_info_by_pneumonic(
+            info = afw_compile_type_get_info_by_mnemonic(
                 source_type, xctx);
 
             source = afw_object_get_property_as_string_internal(
@@ -647,7 +647,7 @@ impl_afw_value_produce_compiler_listing(
                 contextual.value_offset, line_number, column_number,
                 test_name);
             compiled_value = afw_compile_to_value(
-                source, source_location, info->compile_type, NULL, NULL,
+                source, source_location, info->compile_type, NULL,
                 xctx->p, xctx);
             source_location = source_location;
             compiled_value = compiled_value;

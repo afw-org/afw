@@ -2494,8 +2494,7 @@ afw_compile_lexical_parser_create(
     const afw_utf8_t *source_location,
     afw_compile_type_t compile_type,
     afw_compile_residual_check_t residual_check,
-    afw_boolean_t cede_p,
-    const afw_value_compiled_value_t *parent,
+    afw_boolean_t use_p,
     const afw_compile_shared_t *shared,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -2505,16 +2504,10 @@ afw_compile_lexical_parser_create(
     const afw_compile_shared_t *use_shared;
     afw_boolean_t shared_created;
 
-    if (cede_p && ( shared || parent)) {
-        AFW_THROW_ERROR_Z(general,
-            "afw_compile_lexical_parser_create() parameter cede_p true when "
-            "parent or shared is not NULL",
-            xctx);
-    }
-    if (!p && !shared && !parent) {
+    if (!p && !shared) {
         AFW_THROW_ERROR_Z(general,
             "afw_compile_lexical_parser_create() either "
-            "parent, shared or p must be non-NULL",
+            "shared or p must be non-NULL",
             xctx);
     }
 
@@ -2523,22 +2516,16 @@ afw_compile_lexical_parser_create(
         unit_p = shared->p;
         use_shared = shared;
     }
-    else if (parent && parent->shared) {
-        unit_p = parent->p;
-        use_shared = parent->shared;
+    else if (use_p) {
+        /* Allocate on dest p. Caller still last-releases dest p. */
+        unit_p = p;
+        use_shared = afw_compile_shared_create(unit_p, xctx);
+        shared_created = true;
     }
     else {
-        if (parent) {
-            unit_p = parent->p;
-        }
-        else if (cede_p) {
-            unit_p = p;
-        }
-        else {
-            /* Compile unit needs its own ST heap (not a tracker). */
-            unit_p = afw_pool_heap_create(p,
-                xctx->env->compile_chunk_min, xctx);
-        }
+        /* Compile unit needs its own ST heap (not a tracker). */
+        unit_p = afw_pool_heap_create(p,
+            xctx->env->compile_chunk_min, xctx);
         use_shared = afw_compile_shared_create(unit_p, xctx);
         shared_created = true;
     }
@@ -2554,7 +2541,6 @@ afw_compile_lexical_parser_create(
             afw_void_hash_table_t, s->temp_p, xctx);
     }
     parser->xctx = xctx;
-    parser->cede_p = cede_p;
     parser->error = xctx->error;
     parser->passed_source = source;
     parser->callback = callback,
@@ -2586,11 +2572,6 @@ afw_compile_lexical_parser_create(
             afw_utf8_clone(source_location, parser->p, xctx);
         parser->contextual.source_location =
             parser->compiled_value->source_location;
-    }
-    if (parent) {
-        parser->compiled_value->parent = parent;
-        parser->compiled_value->top_block = parent->current_block;
-        parser->compiled_value->current_block = parent->current_block;
     }
 
     /*

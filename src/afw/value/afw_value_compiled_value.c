@@ -69,6 +69,48 @@ impl_assignable_get_assignable_value(
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_SPECIFIER
 #undef AFW_IMPLEMENTATION_INF_LABEL
+#undef AFW_IMPLEMENTATION_INF_VARIABLES
+#undef impl_afw_value_optional_release
+#undef impl_afw_value_get_reference
+#undef impl_afw_value_get_assignable_value
+#undef impl_afw_value_create_iterator
+#undef impl_afw_value_get_evaluated_meta
+#undef impl_afw_value_get_evaluated_metas
+
+
+static void
+impl_managed_optional_release(
+    afw_value_compiled_value_t *self, afw_xctx_t *xctx);
+static const afw_value_t *
+impl_managed_get_reference(
+    afw_value_compiled_value_t *self, afw_xctx_t *xctx);
+static const afw_value_t *
+impl_managed_get_assignable_value(
+    afw_value_compiled_value_t *self, afw_xctx_t *xctx);
+
+#define AFW_IMPLEMENTATION_ID "managed_compiled_value"
+#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_compiled_value_inf
+#define AFW_IMPLEMENTATION_INF_VARIABLES \
+    NULL, \
+    NULL, \
+    true
+#define AFW_VALUE_INF_ONLY
+#define impl_afw_value_optional_release impl_managed_optional_release
+#define impl_afw_value_get_reference impl_managed_get_reference
+#define impl_afw_value_get_assignable_value \
+    impl_managed_get_assignable_value
+#define impl_afw_value_create_iterator NULL
+#define impl_afw_value_get_evaluated_meta \
+    afw_value_internal_get_evaluated_meta_default
+#define impl_afw_value_get_evaluated_metas \
+    afw_value_internal_get_evaluated_metas_default
+#include "afw_value_impl_declares.h"
+#undef AFW_VALUE_INF_ONLY
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_SPECIFIER
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef AFW_IMPLEMENTATION_INF_VARIABLES
 #undef impl_afw_value_optional_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
@@ -145,6 +187,44 @@ impl_assignable_get_assignable_value(
     afw_xctx_t *xctx)
 {
     return impl_assignable_get_reference(self, xctx);
+}
+
+
+static void
+impl_managed_optional_release(
+    afw_value_compiled_value_t *self,
+    afw_xctx_t *xctx)
+{
+    if (self->reference_count <= 0) {
+        return;
+    }
+    self->reference_count--;
+    if (self->reference_count != 0) {
+        return;
+    }
+    /* Graph bytes stay in self->p until that job heap last-releases. */
+    afw_pool_free_memory(self->p, self,
+        sizeof(afw_value_compiled_value_t), xctx);
+}
+
+
+static const afw_value_t *
+impl_managed_get_reference(
+    afw_value_compiled_value_t *self,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    self->reference_count++;
+    return &self->pub;
+}
+
+
+static const afw_value_t *
+impl_managed_get_assignable_value(
+    afw_value_compiled_value_t *self,
+    afw_xctx_t *xctx)
+{
+    return impl_managed_get_reference(self, xctx);
 }
 
 

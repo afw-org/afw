@@ -341,6 +341,11 @@ AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_compiled_value_assignable_inf;
 
 
+/** @brief Managed compiled_value (RC in p->managed_p, like managed object). */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_managed_compiled_value_inf;
+
+
 
 /** @brief Value function inf. */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
@@ -776,7 +781,8 @@ afw_value_is_fully_evaluated(
     (A_VALUE) && \
     ( \
         (A_VALUE)->inf == &afw_value_compiled_value_inf || \
-        (A_VALUE)->inf == &afw_value_compiled_value_assignable_inf \
+        (A_VALUE)->inf == &afw_value_compiled_value_assignable_inf || \
+        (A_VALUE)->inf == &afw_value_managed_compiled_value_inf \
     ) \
 )
 

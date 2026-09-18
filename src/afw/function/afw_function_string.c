@@ -472,7 +472,7 @@ afw_function_execute_eval_string(
     compiled = afw_compile_to_value(
         &script->internal, AFW_FUNCTION_SOURCE_LOCATION,
         afw_compile_type_script,
-        NULL, NULL, x->xctx->p, x->xctx);
+        NULL, x->xctx->p, x->xctx);
 
     {
         afw_xctx_t *xctx = x->xctx;
