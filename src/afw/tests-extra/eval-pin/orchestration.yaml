@@ -123,6 +123,51 @@ tests:
     source: <<< tests/eval_returns_unit.as
     expect: true
 
+  - name: growing-concat
+    sourceType: script
+    source: <<< tests/growing_concat.as
+    expect: true
+
+  - name: for-let-eval
+    sourceType: script
+    source: <<< tests/for_let_eval.as
+    expect: true
+
+  - name: throw-rewind-eval
+    sourceType: script
+    source: <<< tests/throw_rewind_eval.as
+    expect: true
+
+  - name: div0-inner
+    sourceType: script
+    source: <<< tests/div0_inner.as
+    expect: true
+
+  - name: eval-in-finally
+    sourceType: script
+    source: <<< tests/eval_in_finally.as
+    expect: true
+
+  - name: object-with-fn
+    sourceType: script
+    source: <<< tests/object_with_fn.as
+    expect: true
+
+  - name: try-keep-result
+    sourceType: script
+    source: <<< tests/try_keep_result.as
+    expect: true
+
+  - name: for-of-eval
+    sourceType: script
+    source: <<< tests/for_of_eval.as
+    expect: true
+
+  - name: deep-blocks
+    sourceType: script
+    source: <<< tests/deep_blocks.as
+    expect: true
+
 schedule:
   - sequential:
       - nested-eval-scalar
@@ -147,6 +192,15 @@ schedule:
       - eval-returns-array-of-objects
       - eval-returns-nested
       - eval-returns-unit
+      - growing-concat
+      - for-let-eval
+      - throw-rewind-eval
+      - div0-inner
+      - eval-in-finally
+      - object-with-fn
+      - try-keep-result
+      - for-of-eval
+      - deep-blocks
   - firehose:
       duration_s: 8
       concurrency: 2

@@ -1,0 +1,33 @@
+# Run: afwdev test -T src/afw/tests-extra/model-eval-soak
+# Opt-in. onGetObject evaluate(compile) every request on one afwfcgi.
+version: 1
+description: >
+  Firehose get_object through a model onGetObject that evaluate(compile)s
+  a managed object each request (dest p pin on the request).
+host: afwfcgi
+afwfcgi:
+  threads: 2
+timeout_s: 90
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: warmup
+    sourceType: script
+    source: <<< tests/get_eval.as
+    expect: true
+
+  - name: get-eval
+    sourceType: script
+    source: <<< tests/get_eval.as
+    expect: true
+
+schedule:
+  - sequential:
+      - warmup
+  - firehose:
+      duration_s: 12
+      concurrency: 2
+      fromTests: [get-eval]
+      seed: 3
+      stopOnError: true
