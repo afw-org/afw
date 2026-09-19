@@ -173,6 +173,16 @@ tests:
     source: <<< tests/inner_try.as
     expect: true
 
+  - name: return-eval-from-inner-block
+    sourceType: script
+    source: <<< tests/return_eval_from_inner_block.as
+    expect: true
+
+  - name: assign-eval-across-block
+    sourceType: script
+    source: <<< tests/assign_eval_across_block.as
+    expect: true
+
 schedule:
   - sequential:
       - nested-eval-scalar
@@ -207,6 +217,8 @@ schedule:
       - for-of-eval
       - deep-blocks
       - inner-try
+      - return-eval-from-inner-block
+      - assign-eval-across-block
   - firehose:
       duration_s: 8
       concurrency: 2
