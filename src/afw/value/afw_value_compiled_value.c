@@ -309,7 +309,20 @@ impl_afw_value_optional_evaluate(
             !afw_value_is_undefined(result) &&
             !afw_value_is_void(result))
         {
-            /* Managed result of this unit: pin on dest p. */
+            const afw_data_type_t *dt;
+
+            /*
+             * Compile-literal / unit-backed evaluated values have no
+             * optional_release and still live in the unit. Isolate as
+             * managed in dest p so eval<script> can last-release the
+             * unit. Already-managed is a bump. Then pin on dest p.
+             */
+            dt = result->inf
+                ? result->inf->is_evaluated_of_data_type
+                : NULL;
+            if (dt && dt->clone_value_managed) {
+                result = afw_value_clone_managed(result, p, xctx);
+            }
             afw_pool_release_value_at_cleanup(result, p, xctx);
         }
 
