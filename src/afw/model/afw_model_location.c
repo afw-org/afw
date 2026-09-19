@@ -10,6 +10,11 @@
 /**
  * @file afw_model_location.c
  * @brief Model location resolve and hybrid model loading.
+ *
+ * Compiled models hang off the location adapter (isModelLocation),
+ * not the model adapter. get_model returns first_model by model_id
+ * and compiles only on miss. Restart the location adapter to load
+ * a new _AdaptiveModel_; model-adapter stop/start alone does not.
  */
 
 #include "afw_internal.h"

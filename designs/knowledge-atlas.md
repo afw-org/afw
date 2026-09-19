@@ -222,7 +222,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | Adapters as normalized object stores; model maps; request handlers; auth; retrieve limits (#49) |
+| **Settled map** | Adapters as normalized object stores; model maps; request handlers; auth; retrieve limits (#49). Model `on*` compile is cached on the **location** adapter (`isModelLocation`); model-adapter restart alone does not reload. |
 | **Day rules** | `afw-core-services`, `afw-model-adapter`, `afw-adapter-index` |
 | **Deep pads** | Issue/theme pads as needed; model optional `mappedAdapterId` (#109) in model rule |
 | **Probe** | Adapter CRUD via tests; `service_start/stop/restart/get`; lifecycle leaf under `tests-extra` |

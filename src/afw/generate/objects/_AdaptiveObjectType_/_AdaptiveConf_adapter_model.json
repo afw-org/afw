@@ -39,7 +39,7 @@
             "allowQuery": true,
             "brief": "This is the id of the adapter that contains object type _AdaptiveModel_ and related objects",
             "dataType": "template",
-            "description": "This is the id of the adapter that contains object type _AdaptiveModel_ and related objects. That adapter must be configured with isModelLocation=true. Required for both hybrid and pure-script model adapters.",
+            "description": "This is the id of the adapter that contains object type _AdaptiveModel_ and related objects. That adapter must be configured with isModelLocation=true. Required for both hybrid and pure-script model adapters. Compiled on* scripts (and the rest of the model) are cached on that location adapter instance, not on this model adapter. Stop/start of the model adapter alone keeps the old compile. Changing the _AdaptiveModel_ object does not take effect until the location adapter is recreated; stop the model adapter first, then restart the location adapter, then start the model adapter.",
             "label": "Model Adapter",
             "required": true
         }
