@@ -3405,8 +3405,8 @@ struct afw_array_setter_inf_s {
  * Optional found (like object get_property_as_* helpers): pass a
  * pointer to receive whether an element was removed. Pass NULL if the
  * caller does not need that distinction. This matters when a stored
- * value pointer can itself be NULL or undefined: empty is
- * found==false; a removed NULL/undefined slot is found==true with a
+ * value pointer can itself be NULL or undefined: empty is found==false; a
+ * removed NULL/undefined slot is found==true with a
  * NULL or undefined return. For typical Adaptive Script use, empty
  * returns NULL which is_nullish / is_undefined treat as undefined
  * (ECMAScript-like empty pop). Prefer found or the return value over
