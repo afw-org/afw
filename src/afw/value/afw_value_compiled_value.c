@@ -309,15 +309,7 @@ impl_afw_value_optional_evaluate(
             !afw_value_is_undefined(result) &&
             !afw_value_is_void(result))
         {
-            const afw_data_type_t *dt;
-
-            dt = result->inf
-                ? result->inf->is_evaluated_of_data_type
-                : NULL;
-            if (dt && dt->clone_value_unmanaged) {
-                result = afw_value_clone_unmanaged(
-                    result, p, xctx);
-            }
+            afw_pool_release_value_at_cleanup(result, p, xctx);
         }
 
         if (xctx->script_result &&
