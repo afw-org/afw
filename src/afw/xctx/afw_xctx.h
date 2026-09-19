@@ -37,7 +37,9 @@ AFW_BEGIN_DECLARES
 struct afw_xctx_s {
 
     /**
-     * Default pool or execution context (xctx).
+     * This xctx's pool. ST heap, managed_p = self
+     * (`afw_pool_heap_create_as_managed_p`). create_managed(xctx->p)
+     * allocates here. Evaluation `{ }` scopes inherit this dest.
      */
     const afw_pool_t *p;
 

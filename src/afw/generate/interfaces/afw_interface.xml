@@ -234,7 +234,9 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
 
     <variable name="p" type="const afw_pool_t *">
       <description>
-        Adapter's pool. This pool will exist for the life of the adapter.
+        Adapter's pool for the life of the adapter. Created
+        multithread_create_as_managed_p (managed_p = self).
+        create_managed(adapter-&gt;p) allocates here.
       </description>
     </variable>
 
@@ -3472,7 +3474,10 @@ const afw_content_type_t *
     </description>
 
     <variable name="p" type="const afw_pool_t *">
-      <description>Pool used for afw_log resources.</description>
+      <description>
+        Log's pool for the life of the log. Created
+        multithread_create_as_managed_p (managed_p = self).
+      </description>
     </variable>
 
     <variable name="log_id" type="afw_utf8_t">

@@ -282,7 +282,9 @@ struct afw_adapter_s {
     const afw_adapter_inf_t *inf;
 
     /**
-     * Adapter's pool. This pool will exist for the life of the adapter.
+     * Adapter's pool for the life of the adapter. Created
+     * multithread_create_as_managed_p (managed_p = self).
+     * create_managed(adapter->p) allocates here.
      */
     const afw_pool_t * p;
 
@@ -4086,7 +4088,8 @@ struct afw_log_s {
     const afw_log_inf_t *inf;
 
     /**
-     * Pool used for afw_log resources.
+     * Log's pool for the life of the log. Created
+     * multithread_create_as_managed_p (managed_p = self).
      */
     const afw_pool_t * p;
 
