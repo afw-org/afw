@@ -1,0 +1,33 @@
+# Smoke: afwdev test -T src/afw/tests-extra/nasty-eval-soak
+# Longer: bump duration_s / timeout_s (hour: duration_s 3600, timeout_s 3900).
+version: 1
+description: >
+  Hostile nested evaluate/closures/throw/streams/templates on one
+  afwfcgi. Default 60s smoke.
+host: afwfcgi
+afwfcgi:
+  threads: 8
+timeout_s: 90
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: warmup
+    sourceType: script
+    source: <<< tests/nasty.as
+    expect: true
+
+  - name: nasty
+    sourceType: script
+    source: <<< tests/nasty.as
+    expect: true
+
+schedule:
+  - sequential:
+      - warmup
+  - firehose:
+      duration_s: 60
+      concurrency: 8
+      fromTests: [nasty]
+      seed: 2
+      stopOnError: true
