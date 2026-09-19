@@ -1,0 +1,22 @@
+{
+    "modelId": "Hostile",
+    "objectTypes": {
+        "Demo": {
+            "mappedObjectType": "Demo",
+            "onGetObject": "return current::useDefaultProcessing;",
+            "onAddObject": "return current::useDefaultProcessing;",
+            "onReplaceObject": "return current::useDefaultProcessing;",
+            "onModifyObject": "return current::useDefaultProcessing;",
+            "onDeleteObject": "return current::useDefaultProcessing;",
+            "propertyTypes": {
+                "msg": {
+                    "dataType": "string",
+                    "mappedPropertyName": "msg"
+                },
+                "tag": {
+                    "dataType": "string"
+                }
+            }
+        }
+    }
+}

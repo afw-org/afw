@@ -1,0 +1,13 @@
+{
+    "serviceId": "adapter-model",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "model",
+        "adapterId": "model",
+        "description": "Model adapter mapped to backend file",
+        "modelLocationAdapterId": "backend",
+        "modelId": "Hostile",
+        "mappedAdapterId": "backend"
+    }
+}

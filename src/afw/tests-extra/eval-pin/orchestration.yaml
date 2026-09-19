@@ -1,0 +1,160 @@
+# Run: afwdev test -T src/afw/tests-extra/eval-pin --show-all
+# Opt-in. Stresses compiled_value evaluate pin (dest p release, no clone_unmanaged).
+version: 1
+description: >
+  afwfcgi: evaluate(compile) returns a managed temp pinned on dest p.
+  Mutate after inner heap/scope death, compile-once eval-twice, template,
+  closure, throw-after-eval, firehose of the cheap cases.
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 180
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: nested-eval-scalar
+    sourceType: script
+    source: <<< tests/nested_eval_scalar.as
+    expect: 3
+
+  - name: nested-eval-object-mutate
+    sourceType: script
+    source: <<< tests/nested_eval_object.as
+    expect: true
+
+  - name: nested-eval-array-mutate
+    sourceType: script
+    source: <<< tests/nested_eval_array.as
+    expect: true
+
+  - name: compile-once-eval-twice-independent
+    sourceType: script
+    source: <<< tests/compile_once_eval_twice.as
+    expect: true
+
+  - name: nested-eval-string
+    sourceType: script
+    source: <<< tests/nested_eval_string.as
+    expect: "hello-world"
+
+  - name: template-eval
+    sourceType: script
+    source: <<< tests/template_eval.as
+    expect: true
+
+  - name: eval-returns-function
+    sourceType: script
+    source: <<< tests/eval_returns_function.as
+    expect: 3
+
+  - name: eval-returns-closure
+    sourceType: script
+    source: <<< tests/eval_returns_closure.as
+    expect: 7
+
+  - name: throw-in-inner-eval
+    sourceType: script
+    source: <<< tests/throw_in_inner.as
+    expect: true
+
+  - name: throw-after-eval-result-still-good
+    sourceType: script
+    source: <<< tests/throw_after_eval.as
+    expect: true
+
+  - name: many-inner-evals
+    sourceType: script
+    source: <<< tests/many_inner_evals.as
+    expect: 40
+
+  - name: eval-in-array-all-live
+    sourceType: script
+    source: <<< tests/eval_in_array.as
+    expect: true
+
+  - name: nested-eval-inside-eval
+    sourceType: script
+    source: <<< tests/nested_eval_inside.as
+    expect: 7
+
+  - name: permanent-and-undefined
+    sourceType: script
+    source: <<< tests/permanent.as
+    expect: true
+
+  - name: fn-return-object
+    sourceType: script
+    source: <<< tests/fn_return_object.as
+    expect: true
+
+  - name: inner-block-then-return
+    sourceType: script
+    source: <<< tests/inner_block.as
+    expect: true
+
+  - name: overwrite-object-loop
+    sourceType: script
+    source: <<< tests/overwrite_loop.as
+    expect: 29
+
+  - name: self-concat
+    sourceType: script
+    source: <<< tests/self_concat.as
+    expect: "abababab"
+
+  - name: compile-once-many
+    sourceType: script
+    source: <<< tests/compile_once_many.as
+    expect: 2
+
+  - name: eval-returns-array-of-objects
+    sourceType: script
+    source: <<< tests/eval_returns_array_of_objects.as
+    expect: true
+
+  - name: eval-returns-nested
+    sourceType: script
+    source: <<< tests/eval_returns_nested.as
+    expect: true
+
+  - name: eval-returns-unit
+    sourceType: script
+    source: <<< tests/eval_returns_unit.as
+    expect: true
+
+schedule:
+  - sequential:
+      - nested-eval-scalar
+      - nested-eval-object-mutate
+      - nested-eval-array-mutate
+      - compile-once-eval-twice-independent
+      - nested-eval-string
+      - template-eval
+      - eval-returns-function
+      - eval-returns-closure
+      - throw-in-inner-eval
+      - throw-after-eval-result-still-good
+      - many-inner-evals
+      - eval-in-array-all-live
+      - nested-eval-inside-eval
+      - permanent-and-undefined
+      - fn-return-object
+      - inner-block-then-return
+      - overwrite-object-loop
+      - self-concat
+      - compile-once-many
+      - eval-returns-array-of-objects
+      - eval-returns-nested
+      - eval-returns-unit
+  - firehose:
+      duration_s: 8
+      concurrency: 2
+      fromTests:
+        - nested-eval-object-mutate
+        - nested-eval-array-mutate
+        - compile-once-eval-twice-independent
+        - many-inner-evals
+        - fn-return-object
+      seed: 11
+      stopOnError: true
