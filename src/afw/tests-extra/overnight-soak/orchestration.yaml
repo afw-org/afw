@@ -2,8 +2,10 @@
 # Overnight: see README.md (duration_s / timeout_s / threads).
 #
 # Metrics: /tmp/afw-overnight-soak/metrics.tsv
-#   uuid \t process_rss_kb \t pool_bytes_in_use \t afw_adapter_getObjectCount
-# RSS first/last: rss-first.txt / rss-last.txt (KB). rss_check after firehose.
+#   uuid rss poolBytesInUse peakPoolBytesInUse poolChunkBytes
+#   peakPoolChunkBytes concurrent maxConcurrent requestCount getObjectCount
+# rss/pool* from process::; concurrent/requestCount from _AdaptiveServer_/current.
+# RSS first/last: rss-first.txt / rss-last.txt (process::rss bytes).
 version: 1
 description: >
   One hermetic afwfcgi, mixed pool (eval pin, model onGetObject

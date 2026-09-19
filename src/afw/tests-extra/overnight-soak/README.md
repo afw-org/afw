@@ -22,8 +22,23 @@ afwdev test -T src/afw/tests-extra/overnight-soak --show-all
 cat /tmp/afw-overnight-soak/rss-first.txt /tmp/afw-overnight-soak/rss-last.txt
 ```
 
-TSV columns: `uuid`, `process_rss` (KB), `pool_bytes_in_use`,
-`afw` adapter `getObjectCount`.
+TSV columns (tab-separated), from **`process::`** and
+**`_AdaptiveServer_/current`**:
+
+| col | source |
+|-----|--------|
+| uuid | `generate_uuid()` |
+| rss | `process::rss` (bytes) |
+| poolBytesInUse | `process::poolBytesInUse` |
+| peakPoolBytesInUse | `process::peakPoolBytesInUse` |
+| poolChunkBytes | `process::poolChunkBytes` |
+| peakPoolChunkBytes | `process::peakPoolChunkBytes` |
+| concurrent | server `concurrent` |
+| maxConcurrent | server `maxConcurrent` |
+| requestCount | server `requestCount` |
+| getObjectCount | `_AdaptiveAdapter_/afw` metrics |
+
+`rss_check` uses `process::rss` bytes (64 MiB growth cap).
 
 ## Overnight
 
