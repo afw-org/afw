@@ -1,0 +1,8 @@
+{
+    "title": "NastyEvalSoak",
+    "description": "Hostile nested eval/closures/streams on one afwfcgi.",
+    "rootFilePaths": {
+        "scratch": "scratch",
+        "tests": "tests"
+    }
+}

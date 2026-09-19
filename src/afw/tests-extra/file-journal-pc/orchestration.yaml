@@ -1,0 +1,35 @@
+# afwdev test -T src/afw/tests-extra/file-journal-pc --show-all
+# First shot: N = 100 in produce.as / consume.as / compare.as.
+# Adapter type is only in afw.conf (inbox + outbox); swap later.
+version: 1
+description: >
+  Sequential: produce N on inbox, consume via journal_* onto
+  outbox, compare. File adapters; change adapterType in afw.conf later.
+host: afwfcgi
+afwfcgi:
+  threads: 2
+timeout_s: 60
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: produce
+    sourceType: script
+    source: <<< tests/produce.as
+    expect: 100
+
+  - name: consume
+    sourceType: script
+    source: <<< tests/consume.as
+    expect: 100
+
+  - name: compare
+    sourceType: script
+    source: <<< tests/compare.as
+    expect: 100
+
+schedule:
+  - sequential:
+      - produce
+      - consume
+      - compare
