@@ -282,7 +282,9 @@ struct afw_adapter_s {
     const afw_adapter_inf_t *inf;
 
     /**
-     * Adapter's pool. This pool will exist for the life of the adapter.
+     * Adapter's pool for the life of the adapter. Created
+     * multithread_create_as_managed_p (managed_p = self).
+     * create_managed(adapter->p) allocates here.
      */
     const afw_pool_t * p;
 
@@ -2791,8 +2793,9 @@ struct afw_data_type_s {
     afw_data_type_clone_value_unmanaged_t clone_value_unmanaged;
 
     /**
-     * Clone this evaluated value managed in xctx->p (bump if already
-     * managed). Permanents as-is. NULL if this data type has no clone.
+     * Clone this evaluated value managed in p->managed_p (bump if
+     * already managed). Permanents as-is. NULL if this data type has
+     * no clone.
      */
     afw_data_type_clone_value_managed_t clone_value_managed;
 
@@ -3402,8 +3405,8 @@ struct afw_array_setter_inf_s {
  * Optional found (like object get_property_as_* helpers): pass a
  * pointer to receive whether an element was removed. Pass NULL if the
  * caller does not need that distinction. This matters when a stored
- * value pointer can itself be NULL or undefined: empty is
- * found==false; a removed NULL/undefined slot is found==true with a
+ * value pointer can itself be NULL or undefined: empty is found==false; a
+ * removed NULL/undefined slot is found==true with a
  * NULL or undefined return. For typical Adaptive Script use, empty
  * returns NULL which is_nullish / is_undefined treat as undefined
  * (ECMAScript-like empty pop). Prefer found or the return value over
@@ -4085,7 +4088,8 @@ struct afw_log_s {
     const afw_log_inf_t *inf;
 
     /**
-     * Pool used for afw_log resources.
+     * Log's pool for the life of the log. Created
+     * multithread_create_as_managed_p (managed_p = self).
      */
     const afw_pool_t * p;
 
@@ -7343,6 +7347,7 @@ typedef const afw_value_t *
 typedef const afw_value_t *
 (*afw_value_get_assignable_value_t)(
     const afw_value_t * instance,
+    const afw_pool_t * p,
     afw_xctx_t * xctx);
 
 /** @sa afw_value_create_iterator() */
@@ -7497,10 +7502,11 @@ struct afw_value_inf_s {
  *
  * Occupant for a slot (assign, param, overlay, call result). Matching
  * optional_release. Managed returns self (bump). Unmanaged promotes
- * or clones to managed in xctx->p. Permanent scalar is as-is;
+ * or clones to managed in p->managed_p. Permanent scalar is as-is;
  * permanent object/array is a managed wrapper/clone. Missing method
  * is a no-op (return instance).
  * @param instance Pointer to this adaptive value instance.
+ * @param p Dest pool (uses p->managed_p when promoting or cloning).
  * @param xctx This is the caller's xctx.
  * @return A value that fully supports being stored in a slot.
  * @relates afw_value_t
@@ -7508,10 +7514,12 @@ struct afw_value_inf_s {
  */
 #define afw_value_get_assignable_value( \
     instance, \
+    p, \
     xctx \
 ) \
 (instance)->inf->get_assignable_value( \
     (instance), \
+    (p), \
     (xctx) \
 )
 
@@ -7543,9 +7551,17 @@ struct afw_value_inf_s {
  *
  * This is an optional method used to evaluate an adaptive value. Normally
  * the afw_value_evaluate() macro should be used instead or calling this
- * method directly since it might be NULL.
+ * method directly since it might be NULL. For a compiled script or
+ * template, managed results live in p->managed_p and are pinned on
+ * p. If you keep the result on a C struct that outlives p,
+ * get_reference it; if you replace that field, release the old
+ * occupant.
  * @param instance Pointer to this adaptive value instance.
- * @param p Pool for result.
+ * @param p Dest pool. For a compiled script or template, managed results live
+ * in p->managed_p and are pinned on p (last-release of p is the matching
+ * release). Permanents stay as-is. If you keep the result on a C struct that
+ * outlives p, get_reference it; if you replace that field, release the old
+ * occupant.
  * @param xctx This is the caller's xctx.
  * @return Evaluated adaptive value.
  * @relates afw_value_t

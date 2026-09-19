@@ -280,7 +280,8 @@ afw_xctx_create(
     afw_xctx_t *self;
 
     /* Create a new pool for xctx and initialize. */
-    p = afw_pool_heap_create(xctx->p, xctx->env->xctx_chunk_min, xctx);
+    p = afw_pool_heap_create_as_managed_p(xctx->p,
+        xctx->env->xctx_chunk_min, xctx);
     self = afw_xctx_internal_create_initialize(xctx->current_try,
         NULL, (afw_environment_internal_t *)xctx->env, p);
     if (!self) {
@@ -421,16 +422,19 @@ afw_xctx_scope_symbol_set_value(
     afw_xctx_t *xctx)
 {
     const afw_value_t **value_address;
+    const afw_xctx_scope_t *scope;
 
+    scope = afw_xctx_scope_current(xctx);
     value_address = afw_xctx_scope_symbol_get_value_address(
-        symbol, afw_xctx_scope_current(xctx), xctx);
+        symbol, scope, xctx);
 
     /*
      * Prefer permanent undefined singleton over C NULL in slots so "bound
      * with undefined" is never confused with "not applicable" at the pointer
      * level (issue #131). let without initializer and nullish assigns land here.
      */
-    afw_value_slot_store(value_address, value, xctx);
+    afw_value_slot_store(value_address, value,
+        scope ? scope->p : xctx->p, xctx);
 }
 
 
@@ -443,6 +447,7 @@ afw_xctx_scope_symbol_set_value_by_name(
     afw_xctx_t *xctx)
 {
     const afw_value_t **value_address;
+    const afw_xctx_scope_t *scope;
 
     value_address = afw_xctx_scope_symbol_get_value_address_by_name(
         symbol_name, xctx);
@@ -453,7 +458,9 @@ afw_xctx_scope_symbol_set_value_by_name(
             symbol_name);
     }
 
-    afw_value_slot_store(value_address, value, xctx);
+    scope = afw_xctx_scope_current(xctx);
+    afw_value_slot_store(value_address, value,
+        scope ? scope->p : xctx->p, xctx);
 }
 
 
@@ -976,7 +983,7 @@ afw_xctx_scope_clone(
     /* Copy frame_slots[]; last_result stays void from create. */
     for (afw_size_t i = 0; i < scope->block->symbol_count; i++) {
         afw_value_slot_store(&scope->frame_slots[i],
-            original_scope->frame_slots[i], xctx);
+            original_scope->frame_slots[i], scope->p, xctx);
     }
 
     /*
@@ -1154,7 +1161,7 @@ afw_xctx_script_result_set_value(
     if (!value || afw_value_is_void(value)) {
         return;
     }
-    afw_value_slot_store(&xctx->script_result, value, xctx);
+    afw_value_slot_store(&xctx->script_result, value, xctx->p, xctx);
 }
 
 
@@ -1208,7 +1215,8 @@ afw_xctx_scope_get_assignable_for_p_lifetime(
     {
         return value;
     }
-    value = afw_value_get_assignable(value, xctx);
+    value = afw_value_get_assignable(value,
+        scope ? scope->p : xctx->p, xctx);
     if (scope) {
         afw_pool_release_value_at_cleanup(value, scope->p, xctx);
     }

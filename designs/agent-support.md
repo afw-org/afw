@@ -95,7 +95,7 @@ Shape: **symptom → layer → probe → code / doc entry**.
 **First questions**
 
 1. Is this **request-scoped** (pool teardown hides bugs) or **long-running** (escape must be correct)?  
-2. Is the value **permanent / managed / managed_slice / unmanaged** (two worlds: unmanaged in caller `p` / tracker; managed in this `xctx->p`)?  
+2. Is the value **permanent / managed / managed_slice / unmanaged** (two worlds: unmanaged in caller `p`; managed in dest `p->managed_p`)?  
 3. Did evaluation allocate into **`scope->p`** when the `{ }` has a frame (PR **#287**), or the intended pool?  
 4. Did a **closure** keep a scope alive (expected RC path)?
 

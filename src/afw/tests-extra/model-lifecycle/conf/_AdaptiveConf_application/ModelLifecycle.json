@@ -1,0 +1,5 @@
+{
+    "title": "ModelLifecycle",
+    "description": "afwfcgi model-on-file stop/start/swap/compile-fail leaf.",
+    "defaultAdapterId": "model"
+}

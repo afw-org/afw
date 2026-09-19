@@ -11261,32 +11261,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__2e0ce589b822 \
-    "This is the id of the adapter that contains object type _AdaptiveModel_ and related objects. That adapter must be configured with isModelLocation=true. Required for both hybrid and pure-script model adapters."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2e0ce589b822 */
-#define afw_s_zz__2e0ce589b822 \
-    (&afw_self_v_zz__2e0ce589b822.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2e0ce589b822 */
-#define afw_self_s_zz__2e0ce589b822 \
-    (afw_self_v_zz__2e0ce589b822.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2e0ce589b822 */
-extern const afw_value_string_t \
-    afw_self_v_zz__2e0ce589b822;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2e0ce589b822 */
-#define afw_z_zz__2e0ce589b822 \
-    (afw_self_v_zz__2e0ce589b822.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2e0ce589b822 */
-#define afw_v_zz__2e0ce589b822 \
-    (&afw_self_v_zz__2e0ce589b822.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__2e10429fceeb \
     "Compile regexp value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile)."
 
@@ -19603,6 +19577,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__53c2b691eb68 */
 #define afw_v_zz__53c2b691eb68 \
     (&afw_self_v_zz__53c2b691eb68.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__53e7ca46aa01 \
+    "This is the id of the adapter that contains object type _AdaptiveModel_ and related objects. That adapter must be configured with isModelLocation=true. Required for both hybrid and pure-script model adapters. Compiled on* scripts (and the rest of the model) are cached on that location adapter instance, not on this model adapter. Stop/start of the model adapter alone keeps the old compile. Changing the _AdaptiveModel_ object does not take effect until the location adapter is recreated; stop the model adapter first, then restart the location adapter, then start the model adapter."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__53e7ca46aa01 */
+#define afw_s_zz__53e7ca46aa01 \
+    (&afw_self_v_zz__53e7ca46aa01.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__53e7ca46aa01 */
+#define afw_self_s_zz__53e7ca46aa01 \
+    (afw_self_v_zz__53e7ca46aa01.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__53e7ca46aa01 */
+extern const afw_value_string_t \
+    afw_self_v_zz__53e7ca46aa01;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__53e7ca46aa01 */
+#define afw_z_zz__53e7ca46aa01 \
+    (afw_self_v_zz__53e7ca46aa01.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__53e7ca46aa01 */
+#define afw_v_zz__53e7ca46aa01 \
+    (&afw_self_v_zz__53e7ca46aa01.pub)
 
 
 
@@ -30549,6 +30549,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__80fc3822b1d5 */
 #define afw_v_zz__80fc3822b1d5 \
     (&afw_self_v_zz__80fc3822b1d5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__81079bfa29d6 \
+    "If specified, this adapter can hold _AdaptiveModel_ objects. The appropriate core objects associated with Adaptive Models will be added automatically for this adapter. Compiled models are cached on this adapter instance: a model adapter that uses this location loads on* once and reuses that compile until this location adapter is recreated. Replacing an _AdaptiveModel_ object on disk does not recompile a live model by itself."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__81079bfa29d6 */
+#define afw_s_zz__81079bfa29d6 \
+    (&afw_self_v_zz__81079bfa29d6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__81079bfa29d6 */
+#define afw_self_s_zz__81079bfa29d6 \
+    (afw_self_v_zz__81079bfa29d6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__81079bfa29d6 */
+extern const afw_value_string_t \
+    afw_self_v_zz__81079bfa29d6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__81079bfa29d6 */
+#define afw_z_zz__81079bfa29d6 \
+    (afw_self_v_zz__81079bfa29d6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__81079bfa29d6 */
+#define afw_v_zz__81079bfa29d6 \
+    (&afw_self_v_zz__81079bfa29d6.pub)
 
 
 
@@ -124851,32 +124877,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__a285bf02335a */
 #define afw_v_zz__a285bf02335a \
     (&afw_self_v_zz__a285bf02335a.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__a29b5062f70f \
-    "If specified, this adapter can hold _AdaptiveModel_ objects. The appropriate core objects associated with Adaptive Models will be added automatically for this adapter."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a29b5062f70f */
-#define afw_s_zz__a29b5062f70f \
-    (&afw_self_v_zz__a29b5062f70f.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a29b5062f70f */
-#define afw_self_s_zz__a29b5062f70f \
-    (afw_self_v_zz__a29b5062f70f.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a29b5062f70f */
-extern const afw_value_string_t \
-    afw_self_v_zz__a29b5062f70f;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a29b5062f70f */
-#define afw_z_zz__a29b5062f70f \
-    (afw_self_v_zz__a29b5062f70f.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a29b5062f70f */
-#define afw_v_zz__a29b5062f70f \
-    (&afw_self_v_zz__a29b5062f70f.pub)
 
 
 

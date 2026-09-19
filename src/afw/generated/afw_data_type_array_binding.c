@@ -59,10 +59,11 @@ impl_afw_value_permanent_get_reference(
     const afw_value_t *instance,
     afw_xctx_t *xctx);
 
-/* get_assignable_value with no dest p: bump via get_reference. */
+/* get_assignable_value: dest p unused; bump via get_reference. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_via_reference(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -88,11 +89,13 @@ impl_afw_value_get_assignable_via_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_value(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_permanent_get_assignable_value(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 AFW_DECLARE_STATIC(const afw_value_t *)
@@ -129,7 +132,7 @@ impl_afw_value_assignable_optional_release(
     (const void *)&afw_data_type_array_direct, \
     true
 /* managed array: optional_release drops RC; */
-/* scalar last-release free_memorys via xctx->p. */
+/* scalar last-release free_memorys via the stored p. */
 /* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_array"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_array_inf
@@ -374,6 +377,7 @@ afw_value_array_allocate(const afw_pool_t *p, afw_xctx_t *xctx)
 AFW_DEFINE(const afw_value_t *)
 afw_value_array_create_managed(
     const afw_array_t * internal,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_value_array_managed_t *v;
@@ -384,6 +388,7 @@ afw_value_array_create_managed(
             "managed array value",
             xctx);
     }
+    (void)p;
     v = afw_xctx_malloc(
         sizeof(afw_value_array_managed_t), xctx);
     v->inf = &afw_value_managed_array_inf;
@@ -427,10 +432,11 @@ afw_value_clone_array_unmanaged(
     return afw_value_array_create(to, p, xctx);
 }
 
-/* Clone evaluated array managed in xctx->p. */
+/* Clone evaluated array managed in p->managed_p. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_clone_array_managed(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     if (value->inf == &afw_value_permanent_array_inf) {
@@ -445,7 +451,7 @@ afw_value_clone_array_managed(
         const afw_array_t *to;
 
         from = ((const afw_value_array_t *)value)->internal;
-        to = afw_array_create_managed_clone(from, xctx);
+        to = afw_array_create_managed_clone(from, p, xctx);
         return to->value;
     }
 }
@@ -613,6 +619,7 @@ impl_afw_value_get_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_value(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_array_t *a;
@@ -622,13 +629,14 @@ impl_afw_value_get_assignable_value(
         afw_array_get_reference(a, xctx);
         return a->value;
     }
-    return afw_value_clone_managed(instance, xctx);
+    return afw_value_clone_managed(instance, p, xctx);
 }
 
 /* Permanent object/array: managed wrapper (object) or clone (array). */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_permanent_get_assignable_value(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_array_t *a;
@@ -642,7 +650,7 @@ impl_afw_value_permanent_get_assignable_value(
         afw_array_get_reference(a, xctx);
         return a->value;
     }
-    to = afw_array_create_managed_clone(a, xctx);
+    to = afw_array_create_managed_clone(a, p, xctx);
     return to->value;
 }
 
@@ -713,12 +721,14 @@ impl_afw_value_permanent_get_reference(
     return instance;
 }
 
-/* get_assignable_value: no dest p; bump via inf get_reference. */
+/* get_assignable_value: dest p unused; bump via inf get_reference. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_via_reference(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    (void)p;
     return afw_value_get_reference(instance, xctx);
 }
 

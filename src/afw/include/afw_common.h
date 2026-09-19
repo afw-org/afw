@@ -678,14 +678,15 @@ typedef const afw_value_t *
 
 
 /**
- * @brief Data type instance: clone value managed in xctx->p.
+ * @brief Data type instance: clone value managed in p->managed_p.
  *
  * Already managed: get_reference. Unmanaged: create_managed.
- * Permanents as-is. No dest p. Do not release the source.
+ * Permanents as-is. Do not release the source.
  */
 typedef const afw_value_t *
 (*afw_data_type_clone_value_managed_t)(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 

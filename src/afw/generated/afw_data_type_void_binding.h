@@ -109,6 +109,9 @@ struct afw_value_void_managed_s {
     /** @brief  Internal void * value. */
     void * internal;
 
+    /** @brief  Pool used at create (p->managed_p). */
+    const afw_pool_t *p;
+
     /** @brief  Reference count for value. */
     afw_size_t reference_count;
 };

@@ -65,8 +65,9 @@ afw_data_type_array;
  * Lifetime is the containing pool. get_reference and
  * optional_release throw (scalar, object, array).
  * Scalar get_assignable_value creates a managed holdable
- * in xctx->p. Object/array get_assignable_value: managed
- * occupant dual-face, else clone_managed.
+ * (create_managed with dest p). Object/array
+ * get_assignable_value: managed occupant dual-face, else
+ * clone_managed.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_array_inf;
@@ -84,9 +85,9 @@ afw_value_assignable_array_inf;
 /**
  * @brief Managed evaluated value inf for data type array.
  *
- * Start-at-1 holdable in xctx->p (caller must release).
+ * Start-at-1 holdable in p->managed_p (caller must release).
  * get_reference / get_assignable_value bump. Scalar
- * last-release free_memorys the header via xctx->p.
+ * last-release free_memorys the header via the stored p.
  * Object/array: instance last-release (embedded dual-face
  * has no extra header).
  */
@@ -203,6 +204,9 @@ struct afw_value_array_managed_s {
     /** @brief  Internal const afw_array_t * value. */
     const afw_array_t * internal;
 
+    /** @brief  Pool used at create (p->managed_p). */
+    const afw_pool_t *p;
+
     /** @brief  Reference count for value. */
     afw_size_t reference_count;
 };
@@ -248,6 +252,7 @@ afw_value_array_allocate(
 /**
  * @brief Create function for managed data type array value.
  * @param internal.
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
@@ -260,6 +265,7 @@ afw_value_array_allocate(
 AFW_DECLARE(const afw_value_t *)
 afw_value_array_create_managed(
     const afw_array_t * internal,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 #define afw_value_create_managed_array afw_value_array_create_managed
 
@@ -279,16 +285,18 @@ afw_value_clone_array_unmanaged(
     afw_xctx_t *xctx);
 
 /**
- * @brief Clone an evaluated array value managed in xctx->p.
+ * @brief Clone an evaluated array value managed in p->managed_p.
  * @param value evaluated array.
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return managed value (bump if already managed).
  *
- * Permanents as-is. Does not release the source. No dest p.
+ * Permanents as-is. Does not release the source.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone_array_managed(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**

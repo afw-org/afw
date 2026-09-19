@@ -270,15 +270,15 @@ afw_array_create_managed_from_values(
     const afw_data_type_t *data_type,
     const afw_value_t *const *values,
     afw_size_t count,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_array_from_values_self_t *self;
     afw_value_array_t *value;
     const afw_value_t **copied;
-    const afw_pool_t *p;
     afw_size_t i;
 
-    p = xctx->p->managed_p;
+    p = p->managed_p;
     self = afw_pool_calloc(p,
         sizeof(afw_array_from_values_self_t) +
         sizeof(afw_value_array_t),
@@ -297,7 +297,7 @@ afw_array_create_managed_from_values(
         copied = afw_pool_malloc(p,
             count * sizeof(const afw_value_t *), xctx);
         for (i = 0; i < count; i++) {
-            copied[i] = afw_value_get_assignable(values[i], xctx);
+            copied[i] = afw_value_get_assignable(values[i], p, xctx);
         }
         self->values = copied;
     }
@@ -311,15 +311,15 @@ AFW_DEFINE(const afw_array_t *)
 afw_array_create_managed_from_objects(
     const afw_object_t *const *objects,
     afw_size_t count,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t **values;
     const afw_value_t **v;
     const afw_object_t *const *o;
-    const afw_pool_t *p;
     afw_size_t i;
 
-    p = xctx->p->managed_p;
+    p = p->managed_p;
     values = NULL;
     if (count > 0) {
         values = afw_pool_malloc(p, count * sizeof(afw_value_t *), xctx);
@@ -329,7 +329,7 @@ afw_array_create_managed_from_objects(
     }
 
     return afw_array_create_managed_from_values(
-        afw_data_type_object, values, count, xctx);
+        afw_data_type_object, values, count, p, xctx);
 }
 
 
@@ -338,6 +338,7 @@ AFW_DEFINE(const afw_array_t *)
 afw_array_create_managed_from_null_terminated_values(
     const afw_data_type_t *data_type,
     const afw_value_t * const *values,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *const *v;
@@ -349,7 +350,7 @@ afw_array_create_managed_from_null_terminated_values(
     }
 
     return afw_array_create_managed_from_values(
-        data_type, values, count, xctx);
+        data_type, values, count, p, xctx);
 }
 
 
@@ -357,6 +358,7 @@ afw_array_create_managed_from_null_terminated_values(
 AFW_DEFINE(const afw_array_t *)
 afw_array_create_managed_from_null_terminated_objects(
     const afw_object_t *const *objects,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_object_t *const *o;
@@ -367,7 +369,7 @@ afw_array_create_managed_from_null_terminated_objects(
         for (o = objects; *o; count++, o++);
     }
 
-    return afw_array_create_managed_from_objects(objects, count, xctx);
+    return afw_array_create_managed_from_objects(objects, count, p, xctx);
 }
 
 
@@ -378,10 +380,10 @@ afw_array_create_managed_from_c_array(
     afw_boolean_t indirect,
     const afw_data_type_t *data_type,
     afw_size_t count,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t **values;
-    const afw_pool_t *p;
 
     if (!data_type) {
         AFW_THROW_ERROR_Z(general,
@@ -389,11 +391,11 @@ afw_array_create_managed_from_c_array(
             xctx);
     }
 
-    p = xctx->p->managed_p;
+    p = p->managed_p;
     count = impl_count_c_array(internal, indirect, data_type, count, xctx);
     if (count == 0) {
         return afw_array_create_managed_from_values(
-            data_type, NULL, 0, xctx);
+            data_type, NULL, 0, p, xctx);
     }
     if (!internal) {
         AFW_THROW_ERROR_Z(general,
@@ -404,7 +406,7 @@ afw_array_create_managed_from_c_array(
     values = impl_values_from_c_array(
         internal, indirect, data_type, count, p, xctx);
     return afw_array_create_managed_from_values(
-        data_type, values, count, xctx);
+        data_type, values, count, p, xctx);
 }
 
 

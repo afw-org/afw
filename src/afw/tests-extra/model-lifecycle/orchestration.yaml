@@ -1,0 +1,116 @@
+# Run: afwdev test -T src/afw/tests-extra/model-lifecycle --show-all
+# Opt-in only (not in default test -j).
+version: 1
+description: >
+  afwfcgi model adapter on a file backend: stop/start/restart, swap
+  compiled on* scripts, try to break model compile, mapped-adapter
+  down, request after recover.
+  Notes: compiled on* live on the location adapter (backend), not the
+  model service. Model-only restart keeps the old compile. Bad on*
+  does not fail service_start; the parse error is on the first get_object.
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 180
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: warmup-running
+    sourceType: script
+    source: <<< tests/warmup.as
+    expect: true
+
+  - name: get-via-model-maps-file
+    sourceType: script
+    source: <<< tests/get_mapped.as
+    expect: "seed"
+
+  - name: add-via-model-see-on-file
+    sourceType: script
+    source: <<< tests/add_roundtrip.as
+    expect: true
+
+  - name: replace-via-model
+    sourceType: script
+    source: <<< tests/replace_roundtrip.as
+    expect: "replaced"
+
+  - name: stop-model-backend-still-serves
+    sourceType: script
+    source: <<< tests/stop_model_backend_ok.as
+    expect: true
+
+  - name: get-model-while-stopped-fails
+    sourceType: script
+    source: <<< tests/get_model_stopped.as
+    expect: true
+
+  - name: swap-onGetObject-while-stopped-then-start
+    description: New compile must run; old useDefaultProcessing unit must not.
+    sourceType: script
+    source: <<< tests/swap_hook_v2.as
+    expect: "from-hook"
+
+  - name: mutate-model-while-running-still-old-until-restart
+    description: Disk replace of _AdaptiveModel_ must not change the live compile until restart.
+    sourceType: script
+    source: <<< tests/mutate_then_restart.as
+    expect: true
+
+  - name: compile-fail-syntax-onGetObject
+    sourceType: script
+    source: <<< tests/compile_fail_syntax.as
+    expect: true
+
+  - name: compile-fail-unclosed-defaultValue-template
+    sourceType: script
+    source: <<< tests/compile_fail_template.as
+    expect: true
+
+  - name: compile-fail-unclosed-onGetProperty
+    sourceType: script
+    source: <<< tests/compile_fail_onGetProperty.as
+    expect: true
+
+  - name: start-succeeds-throw-on-get
+    sourceType: script
+    source: <<< tests/throw_on_get.as
+    expect: true
+
+  - name: onGetObject-returns-integer-invalid
+    sourceType: script
+    source: <<< tests/invalid_return.as
+    expect: true
+
+  - name: onGetObject-evaluate-compile-object
+    description: Nested compile/eval in onGetObject; pin on dest p, not clone-out.
+    sourceType: script
+    source: <<< tests/eval_compile_in_hook.as
+    expect: true
+
+  - name: onGetObject-evaluate-compile-twice
+    description: Two gets; mutating the first must not change the second.
+    sourceType: script
+    source: <<< tests/eval_compile_twice.as
+    expect: true
+
+  - name: onGetObject-evaluate-compile-array-invalid
+    sourceType: script
+    source: <<< tests/eval_compile_array.as
+    expect: true
+
+  - name: mapped-stopped-while-model-up
+    sourceType: script
+    source: <<< tests/mapped_stopped.as
+    expect: true
+
+  - name: start-model-while-backend-down
+    sourceType: script
+    source: <<< tests/start_model_backend_down.as
+    expect: true
+
+  - name: recover-v1-and-get
+    sourceType: script
+    source: <<< tests/recover.as
+    expect: "seed"

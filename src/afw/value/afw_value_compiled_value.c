@@ -45,7 +45,8 @@ impl_assignable_get_reference(
     afw_value_compiled_value_t *self, afw_xctx_t *xctx);
 static const afw_value_t *
 impl_assignable_get_assignable_value(
-    afw_value_compiled_value_t *self, afw_xctx_t *xctx);
+    afw_value_compiled_value_t *self,
+    const afw_pool_t *p, afw_xctx_t *xctx);
 
 #define AFW_IMPLEMENTATION_ID "compiled_value_assignable"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
@@ -69,6 +70,49 @@ impl_assignable_get_assignable_value(
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_SPECIFIER
 #undef AFW_IMPLEMENTATION_INF_LABEL
+#undef AFW_IMPLEMENTATION_INF_VARIABLES
+#undef impl_afw_value_optional_release
+#undef impl_afw_value_get_reference
+#undef impl_afw_value_get_assignable_value
+#undef impl_afw_value_create_iterator
+#undef impl_afw_value_get_evaluated_meta
+#undef impl_afw_value_get_evaluated_metas
+
+
+static void
+impl_managed_optional_release(
+    afw_value_compiled_value_t *self, afw_xctx_t *xctx);
+static const afw_value_t *
+impl_managed_get_reference(
+    afw_value_compiled_value_t *self, afw_xctx_t *xctx);
+static const afw_value_t *
+impl_managed_get_assignable_value(
+    afw_value_compiled_value_t *self,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+#define AFW_IMPLEMENTATION_ID "managed_compiled_value"
+#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_compiled_value_inf
+#define AFW_IMPLEMENTATION_INF_VARIABLES \
+    NULL, \
+    NULL, \
+    true
+#define AFW_VALUE_INF_ONLY
+#define impl_afw_value_optional_release impl_managed_optional_release
+#define impl_afw_value_get_reference impl_managed_get_reference
+#define impl_afw_value_get_assignable_value \
+    impl_managed_get_assignable_value
+#define impl_afw_value_create_iterator NULL
+#define impl_afw_value_get_evaluated_meta \
+    afw_value_internal_get_evaluated_meta_default
+#define impl_afw_value_get_evaluated_metas \
+    afw_value_internal_get_evaluated_metas_default
+#include "afw_value_impl_declares.h"
+#undef AFW_VALUE_INF_ONLY
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_SPECIFIER
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef AFW_IMPLEMENTATION_INF_VARIABLES
 #undef impl_afw_value_optional_release
 #undef impl_afw_value_get_reference
 #undef impl_afw_value_get_assignable_value
@@ -102,8 +146,10 @@ impl_afw_value_get_reference(
 const afw_value_t *
 impl_afw_value_get_assignable_value(
     AFW_VALUE_SELF_T *self,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    (void)p;
     if (!self->p || afw_pool_internal_is_tracker(self->p)) {
         AFW_THROW_ERROR_Z(general,
             "get_assignable_value of compiled_value requires "
@@ -142,9 +188,55 @@ impl_assignable_get_reference(
 static const afw_value_t *
 impl_assignable_get_assignable_value(
     afw_value_compiled_value_t *self,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    (void)p;
     return impl_assignable_get_reference(self, xctx);
+}
+
+
+static void
+impl_managed_optional_release(
+    afw_value_compiled_value_t *self,
+    afw_xctx_t *xctx)
+{
+    if (self->reference_count <= 0) {
+        return;
+    }
+    self->reference_count--;
+    if (self->reference_count != 0) {
+        return;
+    }
+    if (self->unit_owns_p) {
+        afw_pool_release(self->p, xctx);
+    }
+    else {
+        afw_pool_free_memory(self->p, self,
+            sizeof(afw_value_compiled_value_t), xctx);
+    }
+}
+
+
+static const afw_value_t *
+impl_managed_get_reference(
+    afw_value_compiled_value_t *self,
+    afw_xctx_t *xctx)
+{
+    (void)xctx;
+    self->reference_count++;
+    return &self->pub;
+}
+
+
+static const afw_value_t *
+impl_managed_get_assignable_value(
+    afw_value_compiled_value_t *self,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    (void)p;
+    return impl_managed_get_reference(self, xctx);
 }
 
 
@@ -219,13 +311,19 @@ impl_afw_value_optional_evaluate(
         {
             const afw_data_type_t *dt;
 
+            /*
+             * Compile-literal / unit-backed evaluated values have no
+             * optional_release and still live in the unit. Isolate as
+             * managed in dest p so eval<script> can last-release the
+             * unit. Already-managed is a bump. Then pin on dest p.
+             */
             dt = result->inf
                 ? result->inf->is_evaluated_of_data_type
                 : NULL;
-            if (dt && dt->clone_value_unmanaged) {
-                result = afw_value_clone_unmanaged(
-                    result, p, xctx);
+            if (dt && dt->clone_value_managed) {
+                result = afw_value_clone_managed(result, p, xctx);
             }
+            afw_pool_release_value_at_cleanup(result, p, xctx);
         }
 
         if (xctx->script_result &&

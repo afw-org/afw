@@ -59,10 +59,11 @@ impl_afw_value_permanent_get_reference(
     const afw_value_t *instance,
     afw_xctx_t *xctx);
 
-/* get_assignable_value with no dest p: bump via get_reference. */
+/* get_assignable_value: dest p unused; bump via get_reference. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_via_reference(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -88,11 +89,12 @@ impl_afw_value_get_assignable_via_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_value(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /* Declares and rti/inf defines for interface afw_value */
 /* unmanaged null: get_reference/release throw; */
-/* get_assignable_value creates a managed holdable in xctx->p. */
+/* get_assignable_value creates a managed holdable in p->managed_p. */
 #define AFW_IMPLEMENTATION_ID "null"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_null_inf
@@ -114,7 +116,7 @@ impl_afw_value_get_assignable_value(
     (const void *)&afw_data_type_null_direct, \
     true
 /* managed null: optional_release drops RC; */
-/* scalar last-release free_memorys via xctx->p. */
+/* scalar last-release free_memorys via the stored p. */
 /* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_null"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_null_inf
@@ -332,10 +334,12 @@ afw_value_null_allocate(const afw_pool_t *p, afw_xctx_t *xctx)
 AFW_DEFINE(const afw_value_t *)
 afw_value_null_create_managed(
     void * internal,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     /* Permanent singleton; internal unused. */
     (void)internal;
+    (void)p;
     (void)xctx;
     return afw_value_null;
 }
@@ -373,10 +377,11 @@ afw_value_clone_null_unmanaged(
     return &cloned->pub;
 }
 
-/* Clone evaluated null managed in xctx->p. */
+/* Clone evaluated null managed in p->managed_p. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_clone_null_managed(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     if (value->inf == &afw_value_permanent_null_inf) {
@@ -386,6 +391,7 @@ afw_value_clone_null_managed(
             &value->inf->rti.implementation_id, "managed_")) {
         return afw_value_get_reference(value, xctx);
     }
+    (void)p;
     return afw_value_null;
 }
 
@@ -536,13 +542,15 @@ impl_afw_value_get_reference(
         "get_reference of unmanaged scalar", xctx);
 }
 
-/* Slot fill: promote to managed in xctx->p. */
+/* Slot fill: promote to managed in p->managed_p. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_value(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     (void)instance;
+    (void)p;
     (void)xctx;
     return afw_value_null;
 }
@@ -574,12 +582,14 @@ impl_afw_value_permanent_get_reference(
     return instance;
 }
 
-/* get_assignable_value: no dest p; bump via inf get_reference. */
+/* get_assignable_value: dest p unused; bump via inf get_reference. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_via_reference(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    (void)p;
     return afw_value_get_reference(instance, xctx);
 }
 

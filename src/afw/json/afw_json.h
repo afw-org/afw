@@ -139,7 +139,7 @@ afw_json_from_value_with_indent(
 #define afw_json_to_value(json, source_location, p, xctx) \
     afw_compile_to_value(json, source_location, \
         afw_compile_type_relaxed_json, \
-        NULL, NULL, p, xctx)
+        NULL, p, xctx)
 
 
 /**
@@ -151,7 +151,7 @@ afw_json_from_value_with_indent(
  * @return object instance.
  */
 #define afw_json_to_object(string, cede_p, p, xctx) \
-    afw_compile_to_object(string, NULL, NULL, NULL, NULL, \
+    afw_compile_json_to_object(string, NULL, NULL, NULL, NULL, \
         cede_p, p, xctx)
 
 
@@ -178,7 +178,7 @@ afw_json_from_value_with_indent(
 #define afw_json_to_object_with_meta(string, source_location, \
     adapter_id, object_type_id, object_id, \
     cede_p, p, xctx) \
-    afw_compile_to_object(string, source_location, \
+    afw_compile_json_to_object(string, source_location, \
         adapter_id, object_type_id, object_id, \
         cede_p, p, xctx)
 

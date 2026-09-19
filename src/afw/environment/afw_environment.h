@@ -55,7 +55,12 @@ AFW_BEGIN_DECLARES
  */
 struct afw_environment_s {
 
-    /** @brief Pool used to hold environment. */
+    /**
+     * @brief Process pool. MT heap, managed_p = self
+     * (`afw_pool_multithread_create_as_managed_p`). Conf, server,
+     * log, and adapter pools are usually the same kind of dest,
+     * parented here.
+     */
     const afw_pool_t *p;
 
     /** @brief Director log.  This log will direct to other logs. */

@@ -8,7 +8,7 @@
 
 ## Protocol
 
-When a `{ }` **has a frame**, statement eval `p` is that frame’s **`scope->p`** (tracker). Nested `evaluate` in a frame gets the same `p`. Temps land there and die with the frame’s last-release.
+When a `{ }` **has a frame**, statement eval `p` is that frame’s **`scope->p`**. Nested `evaluate` in a frame gets the same `p`. Temps land there and die with the frame’s last-release. `scope->p` is `afw_pool_scope_create` (ST heap, 4k, inherits `managed_p`; throw last-release delay).
 
 Nested `{ }` with **no symbols** is not a frame. It keeps caller `p` (already the enclosing tracker once the parent flipped).
 
@@ -18,7 +18,7 @@ Nested `{ }` with **no symbols** is not a frame. It keeps caller `p` (already th
 
 Caller `p` owns `shared` (model `on*`, `compile_templates`). If this parser **created** `shared`, `parser_finish` releases `temp_p` (literal lookup table) so the unit can last-release. Passed-in `shared` is not managed here.
 
-`afw_compile*()` returns unmanaged. `afw_value_release` of a `compiled_value` releases the unit pool. `get_assignable_value` stamps the assignable face when the unit is a heap (throws if dest `p` was a tracker). Untyped / `:unevaluated` assign **stores** the unit; a concrete data type extra-evaluates then `release`s a throwaway. `eval<script>` compile, evaluate, `afw_value_release`. Parser work area is calloc’d in the compile unit (dies with the unit).
+Script/template/test_script `afw_compile*()` returns a **managed** `compiled_value` (RC 1). Last RC last-releases the unit pool when the compile created it (`unit_owns_p`). `get_assignable_value` of the unit is a bump of self. Untyped / `:unevaluated` assign **stores** the unit; a concrete data type extra-evaluates then `release`s a throwaway. Parser work area is calloc’d in the compile unit (dies with the unit).
 
 `#{ }` uses the **outer `shared`** (compiles into that unit). The result may be a function that still needs the unit — no clone-out, so do not `release` a nested unit after evaluate.
 
@@ -52,7 +52,7 @@ Ripped `FIXME_GET_IT_WORKING`. Default `afwdev test -j`: **4304 passed**, 71 ski
 - `afw_pool_create()` of a ST parent is a tracker (live; [`remaining-apr.md`](remaining-apr.md))
 - `test_script` isolate of `result` / `error` (unmanaged object set still stores the pointer)
 - Destructure extra-eval of a compile unit without `release`
-- [#277](https://github.com/afw-org/afw/issues/277) follow-ups: Adaptive `clone()`, `qualifier("current")` snapshot, `double_free_throws` skip, unevaluated clone-out of script_function / closure
+- [#277](https://github.com/afw-org/afw/issues/277) follow-ups: Adaptive `clone()`, `qualifier("current")` snapshot, `double_free_throws` skip. Functions/closures as an eval result still alias the unit ([#342](https://github.com/afw-org/afw/issues/342)).
 
 ## MUST NOT
 
@@ -60,7 +60,7 @@ Ripped `FIXME_GET_IT_WORKING`. Default `afwdev test -j`: **4304 passed**, 71 ski
 - Wrap at execute / spreading `get_reference` in `execute_*`
 - Managed values on a tracker
 - Veto dest `p` inside `afw_compile*()` (Adaptive `compile()` passes `xctx->p` at the **call**)
-- `afw_pool_destroy` from `eval<script>` as the consume API (`afw_value_release` of the unmanaged unit)
+- `afw_pool_destroy` from `eval<script>` as the consume API (last RC of the managed unit last-releases the pool)
 - One-off retention patches at failing tests if the list is long — restore or change the protocol
 - Calling objects or compile units “bags”
 

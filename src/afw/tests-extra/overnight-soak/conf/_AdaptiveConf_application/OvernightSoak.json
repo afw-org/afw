@@ -1,0 +1,8 @@
+{
+    "title": "OvernightSoak",
+    "description": "One afwfcgi, mixed firehose, metrics append via rootFilePaths logs.",
+    "defaultAdapterId": "model",
+    "rootFilePaths": {
+        "logs": "/tmp/afw-overnight-soak"
+    }
+}

@@ -245,7 +245,7 @@ impl_push_cloned_into_managed(
         if (!obj) {
             return;
         }
-        obj = afw_object_create_managed_clone(obj, xctx);
+        obj = afw_object_create_managed_clone(obj, to->p, xctx);
         afw_array_push_value(to, obj->value, xctx);
         afw_object_release(obj, xctx);
         return;
@@ -255,7 +255,7 @@ impl_push_cloned_into_managed(
         if (!arr) {
             return;
         }
-        arr = afw_array_create_managed_clone(arr, xctx);
+        arr = afw_array_create_managed_clone(arr, to->p, xctx);
         afw_array_push_value(to, arr->value, xctx);
         afw_array_release(arr, xctx);
         return;
@@ -267,6 +267,7 @@ impl_push_cloned_into_managed(
 AFW_DEFINE(const afw_array_t *)
 afw_array_create_managed_clone(
     const afw_array_t *from,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_array_t *to;
@@ -284,7 +285,7 @@ afw_array_create_managed_clone(
         return from;
     }
     data_type = afw_array_get_data_type(from, xctx);
-    to = afw_array_create_managed(data_type, xctx->p, xctx);
+    to = afw_array_create_managed(data_type, p, xctx);
     if (from->inf == &impl_afw_array_inf &&
         !afw_array_is_memory_wrapper(from))
     {
@@ -783,7 +784,7 @@ impl_store_element(
     afw_xctx_t *xctx)
 {
     if (self->wrapped) {
-        afw_value_slot_store(slot, incoming, xctx);
+        afw_value_slot_store(slot, incoming, self->pub.p, xctx);
     }
     else {
         *slot = incoming;
@@ -1199,7 +1200,7 @@ impl_afw_array_managed_setter_push_value(
     was_empty = (array_self->values->count == 0);
     impl_note_value_data_type(array_self, value, was_empty, xctx);
     slot = impl_new_slot(array_self, array_self->values->count, xctx);
-    afw_value_slot_store(slot, value, xctx);
+    afw_value_slot_store(slot, value, array_self->pub.p, xctx);
 }
 
 
@@ -1221,7 +1222,7 @@ impl_afw_array_managed_setter_insert_value(
     at = impl_resolve_insert_index(index,
         array_self->values->count, xctx);
     slot = impl_new_slot(array_self, at, xctx);
-    afw_value_slot_store(slot, value, xctx);
+    afw_value_slot_store(slot, value, array_self->pub.p, xctx);
 }
 
 
@@ -1251,7 +1252,7 @@ impl_afw_array_managed_setter_set_value(
     if (!slot) {
         AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
     }
-    afw_value_slot_store(slot, value, xctx);
+    afw_value_slot_store(slot, value, array_self->pub.p, xctx);
 }
 
 

@@ -54,7 +54,6 @@ afw_compile_parse_CompileTimeSubstitution(afw_compile_parser_t *parser)
                 parser->token->token_source_offset),
             afw_compile_type_script,
             afw_compile_residual_check_to_close_brace,
-            NULL,
             parser->shared,
             parser->p,
             parser->xctx);

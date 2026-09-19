@@ -73,7 +73,7 @@ impl_compile_custom(
             path,
             afw_object_property_name_display_utf8(property_name, xctx));
         value = afw_compile_template_source(s, source_location,
-            NULL, model->shared, NULL, xctx);
+            model->shared, NULL, xctx);
         afw_object_set_property(result, property_name, value, xctx);
     }
 
@@ -171,7 +171,7 @@ impl_compile_property_type(
             "%ku/defaultValue",
             path);
         pt->default_value = afw_compile_template_source(
-            s,source_location, NULL, model->shared, NULL, xctx);
+            s,source_location, model->shared, NULL, xctx);
     }
 
     /* mappedPropertyName */
@@ -192,7 +192,7 @@ impl_compile_property_type(
             "%ku/onGetProperty",
             path);
         pt->onGetProperty = afw_compile_script_source(
-            s, source_location, NULL, model->shared, NULL, xctx);
+            s, source_location, model->shared, NULL, xctx);
     }
 
     /* onGetInitialValue */
@@ -203,7 +203,7 @@ impl_compile_property_type(
             "%ku/onGetInitialValue",
             path);
         pt->onGetInitialValue = afw_compile_script_source(
-            s, source_location, NULL, model->shared, NULL, xctx);
+            s, source_location, model->shared, NULL, xctx);
     }
 
     /* setProperty */
@@ -214,7 +214,7 @@ impl_compile_property_type(
             "%ku/onSetProperty",
             path);
         pt->onSetProperty = afw_compile_script_source(
-            s, source_location, NULL, model->shared, NULL, xctx);
+            s, source_location, model->shared, NULL, xctx);
     }
 
     /* Return property type struct. */
@@ -645,7 +645,7 @@ impl_object_type_compile(
             path);
         ot->onGetInitialObjectId = afw_compile_script_source(s,
             source_location,
-            NULL, model->shared, NULL, xctx);
+            model->shared, NULL, xctx);
     }
 
     /* mappedObjectType */
@@ -712,7 +712,7 @@ impl_object_type_compile(
             "%ku/onAddObject",
             path);
         ot->onAddObject = afw_compile_script_source(
-            s, source_location, NULL, shared, p, xctx);
+            s, source_location, shared, p, xctx);
     }
 
     /* onDeleteObject */
@@ -723,7 +723,7 @@ impl_object_type_compile(
             "%ku/onDeleteObject",
             path);
         ot->onDeleteObject = afw_compile_script_source(
-            s, source_location, NULL, shared, p, xctx);
+            s, source_location, shared, p, xctx);
     }
 
     /* onGetObject */
@@ -734,7 +734,7 @@ impl_object_type_compile(
             "%ku/onGetObject",
             path);
         ot->onGetObject = afw_compile_script_source(
-            s, source_location, NULL, shared, p, xctx);
+            s, source_location, shared, p, xctx);
     }
 
     /* onModifyObject */
@@ -745,7 +745,7 @@ impl_object_type_compile(
             "%ku/onModifyObject",
             path);
         ot->onModifyObject = afw_compile_script_source(
-            s, source_location, NULL, shared, p, xctx);
+            s, source_location, shared, p, xctx);
     }
 
     /* onReplaceObject */
@@ -756,7 +756,7 @@ impl_object_type_compile(
             "%ku/onReplaceObject",
             path);
         ot->onReplaceObject = afw_compile_script_source(s,
-            source_location, NULL, shared, p, xctx);
+            source_location, shared, p, xctx);
     }
 
     /* onRetrieveObjects */
@@ -767,7 +767,7 @@ impl_object_type_compile(
             "%ku/onRetrieveObjects",
             path);
         ot->onRetrieveObjects = afw_compile_script_source(
-            s, source_location, NULL, shared, p, xctx);
+            s, source_location, shared, p, xctx);
     }
 
     /* Compile otherProperties, if it exists. */

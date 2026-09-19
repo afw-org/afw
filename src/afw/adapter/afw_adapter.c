@@ -599,7 +599,7 @@ afw_adapter_internal_register_afw_adapter(afw_xctx_t *xctx)
     const afw_object_t *conf;
     const afw_pool_t *p;
 
-    p = afw_pool_create(xctx->env->p, xctx);
+    p = afw_pool_multithread_create_as_managed_p(xctx->env->p, xctx);
     conf = afw_object_create_unmanaged(p, xctx);
     afw_object_set_property(conf, afw_v_type, afw_v_adapter, xctx);
     afw_object_set_property(conf,

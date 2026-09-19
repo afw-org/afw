@@ -764,8 +764,8 @@ afw_object_create_with_options(
  * Slot protocol: a new property name is get_assignable_value once
  * (the name does not change later). The value is slot_store on set
  * and replace. Last object release releases remaining names and
- * values then free_memorys the header. No dest p. Unmanaged creates
- * are unchanged.
+ * values then free_memorys the header. Unmanaged creates are
+ * unchanged.
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_managed(
@@ -776,6 +776,7 @@ afw_object_create_managed(
 /**
  * @brief Managed look-through wrapper over another object.
  * @param wrapped base (usually permanent). Required.
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return managed object (reference count 1).
  *
@@ -786,12 +787,14 @@ afw_object_create_managed(
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_wrapper_managed(
     const afw_object_t *wrapped,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
 /**
- * @brief Managed clone of an existing object into xctx->p.
+ * @brief Managed clone of an existing object into p->managed_p.
  * @param from object to copy properties from.
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return managed object (reference count 1), or from if already
  *     this managed implementation (get_reference).
@@ -800,7 +803,7 @@ afw_object_create_wrapper_managed(
  * managed embedded (embedding_object + id so path composes). Nested
  * arrays are afw_array_create_managed_clone. A new property name is
  * get_assignable_value (names do not change on replace). Sideband
- * object_uri, id, and object_type_uri are utf8-cloned into xctx->p.
+ * object_uri, id, and object_type_uri are utf8-cloned into dest p.
  * Meta delta (parentPaths, reconcilable, …) copies onto a fresh
  * delta — not afw_object_meta_clone_and_set. Already-managed source
  * is held.
@@ -808,6 +811,7 @@ afw_object_create_wrapper_managed(
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_managed_clone(
     const afw_object_t *from,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -921,7 +925,7 @@ afw_object_is_memory_wrapper(const afw_object_t *object);
 
 
 /**
- * @brief True if object is the new managed memory bag (xctx->p, slots).
+ * @brief True if object is the new managed memory bag (p->managed_p, slots).
  * @param object to test (may be NULL).
  */
 AFW_DECLARE(afw_boolean_t)

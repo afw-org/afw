@@ -26,6 +26,11 @@
         referenced by the Model Adapter, using the 
         <literal>modelLocationAdapterId</literal> and 
         <literal>modelId</literal> parameter combination.
+        Compiled <literal>on*</literal> scripts are cached on that
+        location adapter. Restarting only the model adapter does not
+        recompile them; recreate the location adapter (typically stop
+        the model adapter first) after changing the
+        <literal>_AdaptiveModel_</literal> object.
     </paragraph>
     <header>
         Adaptive Model Example

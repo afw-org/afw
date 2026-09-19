@@ -60,10 +60,10 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`sibling-afw-package.md`](sibling-afw-package.md) | Another Git repo next to this base: layout, write wall, sandbox, prime kit |
 | [`experiment-brainstorm.md`](experiment-brainstorm.md) | **#277 closed** (PR **#278**) — unmanaged / managed two worlds (`create_unmanaged` / frames `create_managed`; last_return slot) |
 | [`experiment-eval-p.md`](experiment-eval-p.md) | **#287 landed** — eval `p` = `scope->p` when `{ }` has a frame; throwaway compile/eval loops flatten; BMP in default `test -j` |
-| [`remaining-apr.md`](remaining-apr.md) | APR gone. 64k-min chunks; `heap_create` / `create()` tracker / `scope_create` / `p->managed_p`. |
+| [`remaining-apr.md`](remaining-apr.md) | APR gone. 64k-min chunks; inherit vs `*_as_managed_p`; `scope_create` 4k inherit; evaluate **pins** dest `p`. |
 | [`afw-vector.md`](afw-vector.md) | C growable contiguous elements (`afw_vector`); typesafe overlay; not Adaptive `afw_array` |
 | [`afw-hash-table.md`](afw-hash-table.md) | C key→pointer map (`afw_hash_table`); typesafe overlay; **#301** on `develop` |
-| [`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md) | **PR #305**–**#309**; FRV leftover **dropped**. Compile unit is `heap_create` (4k). Managed allocs `p->managed_p`. |
+| [`compile-unit-and-frv-next.md`](compile-unit-and-frv-next.md) | **PR #305**–**#309**; FRV leftover **dropped**. Compile unit is managed `compiled_value` + `heap_create` (4k inherit). Evaluate pins dest `p`. |
 
 ## Conventions
 

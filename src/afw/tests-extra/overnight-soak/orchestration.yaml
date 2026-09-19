@@ -1,0 +1,195 @@
+# Smoke: afwdev test -T src/afw/tests-extra/overnight-soak
+# Overnight: see README.md (duration_s / timeout_s / threads).
+#
+# Metrics: /tmp/afw-overnight-soak/metrics.tsv
+#   uuid rss poolBytesInUse peakPoolBytesInUse poolChunkBytes
+#   peakPoolChunkBytes concurrent maxConcurrent requestCount getObjectCount
+# rss/pool* from process::; concurrent/requestCount from _AdaptiveServer_/current.
+# RSS first/last: rss-first.txt / rss-last.txt (process::rss bytes).
+version: 1
+description: >
+  One hermetic afwfcgi, mixed pool (eval pin, model onGetObject
+  evaluate(compile), catalog, file CRUD, REST, language-shaped scripts).
+  Sampler appends TSV; after firehose RSS must not grow 64 MiB from first sample.
+host: afwfcgi
+afwfcgi:
+  threads: 8
+timeout_s: 90
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: metrics-sample
+    sourceType: script
+    source: <<< tests/metrics_sample.as
+    expect: true
+
+  - name: metrics-readback
+    sourceType: script
+    source: <<< tests/metrics_readback.as
+    expect: true
+
+  - name: rss-check
+    sourceType: script
+    source: <<< tests/rss_check.as
+
+  - name: cheap
+    sourceType: script
+    source: <<< tests/cheap.as
+    expect: 190
+
+  - name: catalog
+    sourceType: script
+    source: <<< tests/catalog.as
+
+  - name: eval-object
+    sourceType: script
+    source: <<< tests/eval_object.as
+    expect: true
+
+  - name: eval-array
+    sourceType: script
+    source: <<< tests/eval_array.as
+    expect: true
+
+  - name: eval-closure
+    sourceType: script
+    source: <<< tests/eval_closure.as
+    expect: 7
+
+  - name: eval-throw
+    sourceType: script
+    source: <<< tests/eval_throw.as
+    expect: true
+
+  - name: self-concat
+    sourceType: script
+    source: <<< tests/self_concat.as
+    expect: true
+
+  - name: compile-once
+    sourceType: script
+    source: <<< tests/compile_once.as
+    expect: true
+
+  - name: nested-eval
+    sourceType: script
+    source: <<< tests/nested_eval.as
+    expect: true
+
+  - name: template
+    sourceType: script
+    source: <<< tests/template.as
+    expect: true
+
+  - name: model-get
+    sourceType: script
+    source: <<< tests/model_get.as
+    expect: true
+
+  - name: file-get
+    sourceType: script
+    source: <<< tests/file_get.as
+    expect: true
+
+  - name: adapter-churn
+    sourceType: script
+    source: <<< tests/adapter_churn.as
+    expect: true
+
+  - name: retrieve
+    sourceType: script
+    source: <<< tests/retrieve.as
+
+  - name: array-churn
+    sourceType: script
+    source: <<< tests/array_churn.as
+    expect: true
+
+  - name: array-push-pop
+    sourceType: script
+    source: <<< tests/array_push_pop.as
+    expect: true
+
+  - name: object-churn
+    sourceType: script
+    source: <<< tests/object_churn.as
+    expect: true
+
+  - name: for-let
+    sourceType: script
+    source: <<< tests/for_let.as
+    expect: true
+
+  - name: rest-get-seed
+    feed:
+      kind: rest
+      method: GET
+      path: /backend/Demo/seed
+      accept: application/json
+    expectStatus: 200
+
+  - name: suite-mini
+    sourceType: test_script
+    source: <<< tests/suites/mini_suite.as
+
+  - name: suite-function
+    sourceType: test_script
+    source: <<< tests/suites/function.as
+
+  - name: suite-let-const
+    sourceType: test_script
+    source: <<< tests/suites/let_const.as
+
+  - name: suite-for
+    sourceType: test_script
+    source: <<< tests/suites/for.as
+
+  - name: suite-void
+    sourceType: test_script
+    source: <<< tests/suites/void_result.as
+
+  - name: suite-pool-eval
+    sourceType: test_script
+    source: <<< tests/suites/pool_eval_lifetime.as
+
+schedule:
+  - sequential:
+      - metrics-sample
+      - metrics-readback
+  - firehose:
+      # Overnight: duration_s: 28800, timeout_s: 30000, threads: 16, concurrency: 24.
+      duration_s: 20
+      concurrency: 16
+      fromTests:
+        - cheap
+        - catalog
+        - eval-object
+        - eval-array
+        - eval-closure
+        - eval-throw
+        - self-concat
+        - compile-once
+        - nested-eval
+        - template
+        - model-get
+        - file-get
+        - adapter-churn
+        - retrieve
+        - array-churn
+        - array-push-pop
+        - object-churn
+        - for-let
+        - rest-get-seed
+        - suite-mini
+        - suite-function
+        - suite-let-const
+        - suite-for
+        - suite-void
+        - suite-pool-eval
+        - metrics-sample
+      policy: roundRobin
+      seed: 1
+      stopOnError: true
+  - sequential:
+      - rss-check

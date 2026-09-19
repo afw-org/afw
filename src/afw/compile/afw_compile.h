@@ -89,13 +89,13 @@ typedef enum afw_compile_residual_check_e {
 
 
 /**
- * @brief Return compile type info for a pneumonic.
- * @param pneumonic of a compile type. @see AFW_COMPILE_TYPE_MAP.
+ * @brief Return compile type info for a mnemonic.
+ * @param mnemonic of a compile type. @see AFW_COMPILE_TYPE_MAP.
  * @return info for compile type or info for error with no compile function.
  */
 AFW_DECLARE(const afw_compile_type_info_t *)
-afw_compile_type_get_info_by_pneumonic(
-    const afw_utf8_t *pneumonic,
+afw_compile_type_get_info_by_mnemonic(
+    const afw_utf8_t *mnemonic,
     const afw_xctx_t *xctx);
 
 
@@ -173,23 +173,17 @@ afw_compile_and_evaluate(
  * @param source_location to associate with compiled string or NULL.
  * @param compile_type Compile type.
  * @param residual_check option.
- * @param parent compiled value for contextual and shared resource or NULL.
  * @param shared struct for shared compile resources or NULL.
  * @param p to use for result or NULL.
  * @param xctx of caller.
- * @return value or NULL if afw_compile_type_parenthesized_expression and
- *    all input is whitespace or comments.
+ * @return compiled or evaluated value.
  *
- * Either shared, parent, or p must be specified.  The p used by the parser
- * is shared->p, parent->p, or p as available in that order.
- *
- * For a new compiled_value unit, p is the parent of that unit heap.
- * Adaptive compile() / eval<script> pass xctx->p. get_assignable_value
- * of a compiled_value extra-holds the unit pool when that unit is a
- * heap (dest p was a heap); it throws if dest p was a tracker (the
- * graph cannot be cloned). afw_value_release of the unmanaged
- * compiled_value releases the unit. JSON / object results use the
- * existing object get_assignable_value (clone_managed).
+ * Either shared or p must be specified. The p used by the parser is
+ * shared->p, else a child heap of p->managed_p. Compiled units (script,
+ * template, test_script) are managed values (RC 1). JSON / relaxed_json
+ * return evaluated data. Evaluate dest p is separate: pass the pool
+ * where you want managed results of running the unit (see
+ * afw_value_evaluate).
  *
  * Either string or callback must be non-NULL.  If both are non-NULL, the
  * string will be processed first.
@@ -208,7 +202,6 @@ afw_compile_to_value_with_callback(
     const afw_utf8_t *source_location,
     afw_compile_type_t compile_type,
     afw_compile_residual_check_t residual_check,
-    const afw_value_compiled_value_t *parent,
     const afw_compile_shared_t *shared,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -220,15 +213,13 @@ afw_compile_to_value_with_callback(
  * @param string to compile.
  * @param source_location to associate with compiled string or NULL.
  * @param compile_type Compile type.
- * @param parent compiled value for contextual and shared resource or NULL.
  * @param shared struct for shared compile resources or NULL.
  * @param p to use for result or NULL.
  * @param xctx of caller.
  * @return value
  *
- * Either shared, parent, or p must be specified.  The p used by the parser
- * is shared->p, parent->p, or p as available in that order. See
- * afw_compile_to_value_with_callback() for compile p / get_assignable_value.
+ * Either shared or p must be specified. See
+ * afw_compile_to_value_with_callback().
  *
  * This function can be used for callbacks of type afw_utf8_to_value_t.
  *
@@ -239,32 +230,29 @@ afw_compile_to_value_with_callback(
  * used to set the corresponding values in the new object.
  */
 #define afw_compile_to_value(string, source_location, compile_type, \
-    parent, shared, p, xctx) \
+    shared, p, xctx) \
     afw_compile_to_value_with_callback(string, NULL, NULL, \
         source_location, compile_type, afw_compile_residual_check_to_full, \
-        parent, shared, p, xctx)
-
+        shared, p, xctx)
 
 
 /**
  * @brief Compile script.
  * @param string containing script source to compile.
  * @param source_location to associate with compiled string or NULL.
- * @param parent compiled value for contextual and shared resource or NULL.
  * @param shared struct for shared compile resources or NULL.
  * @param p to use for result or NULL.
  * @param xctx of caller.
  * @return value
  *
- * Either shared, parent, or p must be specified.  The p used by the parser
- * is shared->p, parent->p, or p as available in that order.
+ * Either shared or p must be specified.
  */
-#define afw_compile_script_source(string, source_location, parent, shared, \
+#define afw_compile_script_source(string, source_location, shared, \
     p, xctx) \
     afw_compile_to_value_with_callback(string, NULL, NULL, \
         source_location, afw_compile_type_script, \
         afw_compile_residual_check_to_full, \
-        parent, shared, p, xctx)
+        shared, p, xctx)
 
 
 
@@ -272,20 +260,17 @@ afw_compile_to_value_with_callback(
  * @brief Compile script.
  * @param value containing hybrid to compile.
  * @param source_location to associate with compiled string or NULL.
- * @param parent compiled value for contextual and shared resource or NULL.
  * @param shared struct for shared compile resources or NULL.
  * @param p to use for result or NULL.
  * @param xctx of caller.
  * @return value
  *
- * Either shared, parent, or p must be specified.  The p used by the parser
- * is shared->p, parent->p, or p as available in that order.
+ * Either shared or p must be specified.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_compile_script(
     const afw_value_t *value,
     const afw_utf8_t *source_location,
-    const afw_value_compiled_value_t *parent,
     const afw_compile_shared_t *shared,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -297,21 +282,19 @@ afw_compile_script(
  * @brief Compile template.
  * @param string containing template source to compile.
  * @param source_location to associate with compiled string or NULL.
- * @param parent compiled value for contextual and shared resource or NULL.
  * @param shared struct for shared compile resources or NULL.
  * @param p to use for result or NULL.
  * @param xctx of caller.
  * @return value
  *
- * Either shared, parent, or p must be specified.  The p used by the parser
- * is shared->p, parent->p, or p as available in that order.
+ * Either shared or p must be specified.
  */
-#define afw_compile_template_source(string, source_location, parent, shared, \
+#define afw_compile_template_source(string, source_location, shared, \
     p, xctx) \
     afw_compile_to_value_with_callback(string, NULL, NULL, \
         source_location, afw_compile_type_template, \
         afw_compile_residual_check_to_full, \
-        parent, shared, p, xctx)
+        shared, p, xctx)
 
 
 
@@ -319,28 +302,25 @@ afw_compile_script(
  * @brief Compile template.
  * @param value containing hybrid to compile.
  * @param source_location to associate with compiled string or NULL.
- * @param parent compiled value for contextual and shared resource or NULL.
  * @param shared struct for shared compile resources or NULL.
  * @param p to use for result or NULL.
  * @param xctx of caller.
  * @return value
  *
- * Either shared, parent, or p must be specified.  The p used by the parser
- * is shared->p, parent->p, or p as available in that order.
+ * Either shared or p must be specified.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_compile_template(
     const afw_value_t *value,
     const afw_utf8_t *source_location,
-    const afw_value_compiled_value_t *parent,
     const afw_compile_shared_t *shared,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
 /**
- * @brief Compile string to adaptive object.
- * @param string to compile.
+ * @brief Compile a JSON string to an unmanaged object.
+ * @param string JSON to compile.
  * @param source_location to associate with compiled string or NULL.
  * @param adapter_id to use for created object or NULL.
  * @param object_type_id to use for created object or NULL.
@@ -348,17 +328,22 @@ afw_compile_template(
  * @param cede_p if true, cede control of p to the created object.
  * @param p to use for result or NULL.
  * @param xctx of caller.
- * @return object instance.
+ * @return unmanaged object instance.
+ *
+ * Old JSON-compiler door: string of JSON syntax → unmanaged
+ * `const afw_object_t *`. Callers (adapters, content-type raw_to_object)
+ * often make a pool, put bits in it, then cede that pool so object
+ * release last-releases the pool. That is intended.
  *
  * If source_location is NULL and path is specified, adapter_id,
  * object_type_id, and object_id will be used to produce a path that will
  * be used as the source location.
- * 
+ *
  * If adapter_id is NULL, object_type_id and object_id must be NULL. If they're
  * NULL, the object's meta will not be set.
  */
 AFW_DECLARE(const afw_object_t *)
-afw_compile_to_object(
+afw_compile_json_to_object(
     const afw_utf8_t *string,
     const afw_utf8_t *source_location,
     const afw_utf8_t *adapter_id,

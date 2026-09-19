@@ -59,10 +59,11 @@ impl_afw_value_permanent_get_reference(
     const afw_value_t *instance,
     afw_xctx_t *xctx);
 
-/* get_assignable_value with no dest p: bump via get_reference. */
+/* get_assignable_value: dest p unused; bump via get_reference. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_via_reference(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -88,11 +89,13 @@ impl_afw_value_get_assignable_via_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_value(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_permanent_get_assignable_value(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 AFW_DECLARE_STATIC(const afw_value_t *)
@@ -129,7 +132,7 @@ impl_afw_value_assignable_optional_release(
     (const void *)&afw_data_type_object_direct, \
     true
 /* managed object: optional_release drops RC; */
-/* scalar last-release free_memorys via xctx->p. */
+/* scalar last-release free_memorys via the stored p. */
 /* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_object"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_object_inf
@@ -374,6 +377,7 @@ afw_value_object_allocate(const afw_pool_t *p, afw_xctx_t *xctx)
 AFW_DEFINE(const afw_value_t *)
 afw_value_object_create_managed(
     const afw_object_t * internal,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_value_object_managed_t *v;
@@ -385,6 +389,7 @@ afw_value_object_create_managed(
             xctx);
     }
     afw_object_get_reference(internal, xctx);
+    (void)p;
     v = afw_xctx_malloc(
         sizeof(afw_value_object_managed_t), xctx);
     v->inf = &afw_value_managed_object_inf;
@@ -428,10 +433,11 @@ afw_value_clone_object_unmanaged(
     return afw_value_object_create(to, p, xctx);
 }
 
-/* Clone evaluated object managed in xctx->p. */
+/* Clone evaluated object managed in p->managed_p. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_clone_object_managed(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     if (value->inf == &afw_value_permanent_object_inf) {
@@ -446,7 +452,7 @@ afw_value_clone_object_managed(
         const afw_object_t *to;
 
         from = ((const afw_value_object_t *)value)->internal;
-        to = afw_object_create_managed_clone(from, xctx);
+        to = afw_object_create_managed_clone(from, p, xctx);
         return to->value;
     }
 }
@@ -617,6 +623,7 @@ impl_afw_value_get_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_value(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_object_t *obj;
@@ -634,9 +641,9 @@ impl_afw_value_get_assignable_value(
             "memory") &&
         !afw_object_is_memory_wrapper(obj))
     {
-        return afw_value_clone_managed(instance, xctx);
+        return afw_value_clone_managed(instance, p, xctx);
     }
-    w = afw_object_create_wrapper_managed(obj, xctx);
+    w = afw_object_create_wrapper_managed(obj, p, xctx);
     return w->value;
 }
 
@@ -644,6 +651,7 @@ impl_afw_value_get_assignable_value(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_permanent_get_assignable_value(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_object_t *obj;
@@ -657,7 +665,7 @@ impl_afw_value_permanent_get_assignable_value(
         afw_object_get_reference(obj, xctx);
         return obj->value;
     }
-    w = afw_object_create_wrapper_managed(obj, xctx);
+    w = afw_object_create_wrapper_managed(obj, p, xctx);
     return w->value;
 }
 
@@ -728,12 +736,14 @@ impl_afw_value_permanent_get_reference(
     return instance;
 }
 
-/* get_assignable_value: no dest p; bump via inf get_reference. */
+/* get_assignable_value: dest p unused; bump via inf get_reference. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_via_reference(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    (void)p;
     return afw_value_get_reference(instance, xctx);
 }
 

@@ -132,7 +132,7 @@ No Adaptive function; judges HTTP-ish status + body.
 
 | Field | Meaning |
 |-------|---------|
-| `sourceType` | Compile/eval type pneumonic: `script` (default), `expression`, `template`, `test_script`, `json`, … Required only when the work item has an action/eval payload. |
+| `sourceType` | Compile/eval type mnemonic: `script` (default), `expression`, `template`, `test_script`, `json`, … Required only when the work item has an action/eval payload. |
 | `source` | Payload text: inline string, or file form **`<<< rel/path`** (exact bytes; path relative to **leaf root**). Required for action feeds; **optional for `feed.kind: rest`** (method/path only). |
 
 **Convenience aliases (optional sugar, not required in north star):**

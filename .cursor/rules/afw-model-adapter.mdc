@@ -8,6 +8,8 @@ alwaysApply: false
 
 `adapterType=model` loads an `_AdaptiveModel_` from a **model location** adapter and optionally map-and-forwards to a **mapped** backend. Object/property **`on*`** hooks are Adaptive Script per request.
 
+**Compile cache (intended):** `on*` are compiled onto the **location** adapter (`isModelLocation`, `modelLocationAdapterId`), in `afw_model_location_get_model` (`first_model` list). Stop/start of the **model** adapter alone keeps that compile. Disk replace of `_AdaptiveModel_` is visible as a file object immediately; live `on*` change only when the **location** adapter is recreated (stop model first, then location, then start model). Probe: `tests-extra/model-lifecycle`.
+
 **Product text SSOT:** property `brief` / `description` (and related fields) on generate object types under `src/afw/generate/objects/_AdaptiveObjectType_/` — especially `_AdaptiveConf_adapter_model`, `_AdaptiveModelObjectType_`, `_AdaptiveModelPropertyType_`, `_AdaptiveModelCurrentOn*_`. Do not invent parallel long docs; regenerate after OT edits.
 
 Issue **#109** (Phase 1): **`mappedAdapterId` is optional**. Pure-script models that implement all used ops in `on*` need no dummy backend. Default processing without mapped must error clearly.

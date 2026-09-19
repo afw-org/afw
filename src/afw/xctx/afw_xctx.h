@@ -21,7 +21,7 @@
  * @brief Execution context (xctx): scopes, stack, and statement_flow helpers.
  *
  * See @ref afw_xctx. An `afw_xctx_t` is a unit of work (request, eval, …).
- * Scopes use heap trackers for automatic cleanup; statement_flow drives
+ * Scopes use ST heaps (4k chunks, inherit managed_p) for automatic cleanup; statement_flow drives
  * break/continue/return/rethrow without C++ exceptions.
  */
 
@@ -37,7 +37,9 @@ AFW_BEGIN_DECLARES
 struct afw_xctx_s {
 
     /**
-     * Default pool or execution context (xctx).
+     * This xctx's pool. ST heap, managed_p = self
+     * (`afw_pool_heap_create_as_managed_p`). create_managed(xctx->p)
+     * allocates here. Evaluation `{ }` scopes inherit this dest.
      */
     const afw_pool_t *p;
 

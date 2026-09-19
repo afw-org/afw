@@ -1,0 +1,12 @@
+{
+    "serviceId": "adapter-model",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "model",
+        "adapterId": "model",
+        "modelLocationAdapterId": "backend",
+        "modelId": "Soak",
+        "mappedAdapterId": "backend"
+    }
+}

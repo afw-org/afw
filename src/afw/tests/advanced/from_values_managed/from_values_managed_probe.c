@@ -48,7 +48,7 @@ impl_c_array(afw_xctx_t *xctx)
     ints[0] = 10;
     ints[1] = 20;
     array = afw_array_create_managed_from_c_array(
-        ints, false, afw_data_type_integer, 2, xctx);
+        ints, false, afw_data_type_integer, 2, xctx->p, xctx);
     if (afw_array_get_setter(array, xctx) != NULL) {
         fprintf(stderr, "c_array: setter should be NULL\n");
         return 1;
@@ -80,7 +80,7 @@ impl_values(afw_xctx_t *xctx)
     vals[0] = afw_value_create_unmanaged_integer(3, xctx->p, xctx);
     vals[1] = afw_value_create_unmanaged_integer(4, xctx->p, xctx);
     array = afw_array_create_managed_from_values(
-        afw_data_type_integer, vals, 2, xctx);
+        afw_data_type_integer, vals, 2, xctx->p, xctx);
     rc = 0;
     rc |= impl_expect_integer(array, 0, 3, xctx, "values");
     rc |= impl_expect_integer(array, 1, 4, xctx, "values");
@@ -94,7 +94,7 @@ impl_empty(afw_xctx_t *xctx)
     const afw_array_t *array;
 
     array = afw_array_create_managed_from_values(
-        afw_data_type_string, NULL, 0, xctx);
+        afw_data_type_string, NULL, 0, xctx->p, xctx);
     if (afw_array_get_count(array, xctx) != 0) {
         fprintf(stderr, "empty: count\n");
         return 1;

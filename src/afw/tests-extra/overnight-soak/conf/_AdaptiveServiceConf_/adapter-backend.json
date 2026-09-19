@@ -1,0 +1,13 @@
+{
+    "serviceId": "adapter-backend",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "file",
+        "adapterId": "backend",
+        "root": "objects/",
+        "filenameSuffix": ".json",
+        "contentType": "json",
+        "isModelLocation": true
+    }
+}

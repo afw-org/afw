@@ -1,0 +1,20 @@
+{
+    "modelId": "Soak",
+    "objectTypes": {
+        "Demo": {
+            "mappedObjectType": "Demo",
+            "onGetObject": "return evaluate(compile<script>(script('return { msg: \"from-eval\", tag: \"soak\" };')));",
+            "onAddObject": "return current::useDefaultProcessing;",
+            "onReplaceObject": "return current::useDefaultProcessing;",
+            "propertyTypes": {
+                "msg": {
+                    "dataType": "string",
+                    "mappedPropertyName": "msg"
+                },
+                "tag": {
+                    "dataType": "string"
+                }
+            }
+        }
+    }
+}

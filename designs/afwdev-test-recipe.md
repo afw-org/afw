@@ -28,6 +28,12 @@ afwdev test -T src/afw/tests-extra/07b-firehose-catalog-pool
 # 5) issue #2 hard-loop RSS lab (opt-in; not the default gate)
 # Live table: src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md
 afwdev test -T src/afw/tests-extra/issue-2/01-rss-hard-loops --show-all
+
+# 6) dest-p pin / model-on-file / overnight smoke (opt-in)
+afwdev test -T src/afw/tests-extra/eval-pin
+afwdev test -T src/afw/tests-extra/model-lifecycle
+mkdir -p /tmp/afw-overnight-soak
+afwdev test -T src/afw/tests-extra/overnight-soak
 ```
 
 ### Machine-readable summary (opt-in)

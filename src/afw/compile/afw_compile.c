@@ -38,7 +38,7 @@ AFW_COMPILE_TYPE_MAP(XX)
 
 
 static const afw_compile_type_info_t
-impl_compile_type_pneumonic[] = {
+impl_compile_type_mnemonic[] = {
 #define XX(name, data_type, compile_function, description)                     \
 {                                                                              \
     afw_compile_type_ ## name,                                                 \
@@ -81,19 +81,17 @@ afw_compile_and_evaluate(
     compiled_value = afw_compile_to_value_with_callback(
         string, NULL, NULL,
         source_location, compile_type,
-        afw_compile_residual_check_to_full, \
-        NULL, NULL, p, xctx);
+        afw_compile_residual_check_to_full,
+        NULL, p, xctx);
 
     AFW_TRY {
         result = afw_value_evaluate(compiled_value, p, xctx);
     }
     AFW_FINALLY {
         if (result) {
-            result = afw_value_get_assignable(result, xctx);
+            result = afw_value_get_assignable(result, p, xctx);
         }
-        if (compiled_value &&
-            compiled_value->inf == &afw_value_compiled_value_inf)
-        {
+        if (afw_value_is_compiled_value(compiled_value)) {
             afw_value_release(compiled_value, xctx);
         }
     }
@@ -104,41 +102,41 @@ afw_compile_and_evaluate(
 
 
 
-/* Return afw_compile_type_t for a pneumonic. */
+/* Return compile type info for a mnemonic. */
 AFW_DEFINE(const afw_compile_type_info_t *)
-afw_compile_type_get_info_by_pneumonic(
-    const afw_utf8_t *pneumonic,
+afw_compile_type_get_info_by_mnemonic(
+    const afw_utf8_t *mnemonic,
     const afw_xctx_t *xctx)
 {
     afw_compile_type_t compile_type;
 
     for (compile_type = afw_compile_type_error;
         compile_type < afw_compile_type_count &&
-        !afw_utf8_equal(pneumonic,
-            impl_compile_type_pneumonic[compile_type].name);
+        !afw_utf8_equal(mnemonic,
+            impl_compile_type_mnemonic[compile_type].name);
         compile_type++);
 
     if (compile_type >= afw_compile_type_count) {
         compile_type = afw_compile_type_error;
     }
 
-    return &impl_compile_type_pneumonic[compile_type];
+    return &impl_compile_type_mnemonic[compile_type];
 }
 
 
 
-/* Return pneumonic for a afw_compile_type_t. */
+/* Return compile type info for a afw_compile_type_t. */
 AFW_DEFINE(const afw_compile_type_info_t *)
 afw_compile_type_get_info(
     afw_compile_type_t compile_type,
     const afw_xctx_t *xctx)
 {
     const afw_compile_type_info_t *result;
-    result = &impl_compile_type_pneumonic[afw_compile_type_error];
+    result = &impl_compile_type_mnemonic[afw_compile_type_error];
     if (compile_type > 0 &&
         compile_type < afw_compile_type_count)
     {
-        result = &impl_compile_type_pneumonic[compile_type];
+        result = &impl_compile_type_mnemonic[compile_type];
     }
     return result;    
 }
@@ -147,16 +145,16 @@ afw_compile_type_get_info(
 
 /*
  * Parse string to adaptive value with callback.
+ *
  */
-AFW_DEFINE(const afw_value_t *)
-afw_compile_to_value_with_callback(
+static const afw_value_t *
+impl_compile_to_value_with_callback(
     const afw_utf8_t *string,
     afw_utf8_octet_get_cb_t callback,
     void *callback_data,
     const afw_utf8_t *source_location,
     afw_compile_type_t compile_type,
     afw_compile_residual_check_t residual_check,
-    const afw_value_compiled_value_t *parent,
     const afw_compile_shared_t *shared,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -181,10 +179,22 @@ afw_compile_to_value_with_callback(
             xctx);
     }
 
+    if (p) {
+        p = p->managed_p;
+    }
+
     /* Create parser. */
     parser = afw_compile_lexical_parser_create(
         string, callback, callback_data, source_location,
-        compile_type, residual_check, false, parent, shared, p, xctx);
+        compile_type, residual_check, false, shared, p,
+        xctx);
+    if (compile_type != afw_compile_type_json &&
+        compile_type != afw_compile_type_relaxed_json)
+    {
+        parser->compiled_value->inf =
+            &afw_value_managed_compiled_value_inf;
+        parser->compiled_value->reference_count = 1;
+    }
 
     /* Parse. */
     AFW_TRY{
@@ -206,11 +216,10 @@ afw_compile_to_value_with_callback(
             interim = &parser->compiled_value->root_value;
 
             /*
-             * There is no parent and this is not a script, surround root value
-             * with a block.
+             * Template / test_script: surround root value with a block.
              */
             block = NULL;
-            if (!parent && compile_type != afw_compile_type_script)
+            if (compile_type != afw_compile_type_script)
             {
                 block_argv = afw_pool_malloc_type(parser->p,
                     const afw_value_t *, xctx);
@@ -252,12 +261,9 @@ afw_compile_to_value_with_callback(
             }
 
             /*
-             * symbol_count is final, including on ancestors. Nested
-             * compile that shares a parent tree is skipped; the parent
-             * unit assigns.
+             * symbol_count is final, including on ancestors.
              */
-            if (parser->compiled_value->top_block &&
-                !parser->compiled_value->parent)
+            if (parser->compiled_value->top_block)
             {
                 afw_value_block_finalize_scope_tree(
                     parser->compiled_value->top_block, xctx);
@@ -305,11 +311,27 @@ afw_compile_to_value_with_callback(
 }
 
 
-/*
- * Implementation of method raw_to_object of interface afw_content_type.
- */
+AFW_DEFINE(const afw_value_t *)
+afw_compile_to_value_with_callback(
+    const afw_utf8_t *string,
+    afw_utf8_octet_get_cb_t callback,
+    void *callback_data,
+    const afw_utf8_t *source_location,
+    afw_compile_type_t compile_type,
+    afw_compile_residual_check_t residual_check,
+    const afw_compile_shared_t *shared,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    return impl_compile_to_value_with_callback(
+        string, callback, callback_data, source_location,
+        compile_type, residual_check, shared, p, xctx);
+}
+
+
+/* Compile a JSON string to an unmanaged object. */
 AFW_DEFINE(const afw_object_t *)
-afw_compile_to_object(
+afw_compile_json_to_object(
     const afw_utf8_t *string,
     const afw_utf8_t *source_location,
     const afw_utf8_t *adapter_id,
@@ -347,7 +369,8 @@ afw_compile_to_object(
     parser = afw_compile_lexical_parser_create(
         string, NULL, NULL, source_location,
         afw_compile_type_json, afw_compile_residual_check_to_full,
-        true, NULL, NULL, parser_p, xctx);
+        true, NULL, parser_p, xctx);
+    parser->cede_p = true;
     parser->compiled_value->full_source_type = afw_s_json;
 
     /* Parse. */
@@ -382,7 +405,6 @@ AFW_DEFINE(const afw_value_t *)
 afw_compile_script(
     const afw_value_t *value,
     const afw_utf8_t *source_location,
-    const afw_value_compiled_value_t *parent,
     const afw_compile_shared_t *shared,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -392,7 +414,7 @@ afw_compile_script(
     
     source = afw_value_convert_to_utf8(value, p, xctx);
     result = afw_compile_script_source(source,
-        source_location, parent, shared, p, xctx);
+        source_location, shared, p, xctx);
     return result;
 }
 
@@ -403,7 +425,6 @@ AFW_DEFINE(const afw_value_t *)
 afw_compile_template(
     const afw_value_t *value,
     const afw_utf8_t *source_location,
-    const afw_value_compiled_value_t *parent,
     const afw_compile_shared_t *shared,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -418,7 +439,7 @@ afw_compile_template(
 
     source = afw_value_convert_to_utf8(value, p, xctx);
     result = afw_compile_template_source(source,
-        source_location, parent, shared, p, xctx);
+        source_location, shared, p, xctx);
     return result;
 }
 
@@ -469,7 +490,7 @@ afw_compile_templates(
                 &((afw_value_template_t *)value)->internal,
                 detail_source_location,
                 afw_compile_type_template,
-                NULL, shared, NULL, xctx);
+                shared, NULL, xctx);
             afw_object_set_property(object, property_name, value, xctx);
         }
 
@@ -533,7 +554,7 @@ afw_compile_object_all_template_properties(
         }
         compiled_value = afw_compile_template_source(
             &((const afw_value_string_t *)value)->internal,
-            detail_source_location, NULL, shared, p, xctx);
+            detail_source_location, shared, p, xctx);
         afw_object_set_property(result, property_name, compiled_value, xctx);
     }  
     return result;
@@ -682,7 +703,7 @@ afw_compile_type_from_utf8(
     }
 
     /*
-     * cede_p true: type graph is allocated on caller pool p (not a
+     * use_p: type graph is allocated on caller pool p (not a
      * transient parser subpool). residual to_full ensures the whole
      * FunctionSignature string is a single Type.
      */
@@ -690,7 +711,7 @@ afw_compile_type_from_utf8(
         source, NULL, NULL, source_location,
         afw_compile_type_script,
         afw_compile_residual_check_to_full,
-        true, NULL, NULL, p, xctx);
+        true, NULL, p, xctx);
 
     type = NULL;
     failed = false;

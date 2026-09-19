@@ -504,7 +504,7 @@ const afw_value_t * afw_yaml_to_value(
  * Implementation of method raw_to_object of interface afw_content_type.
  *
  * Used by file (and similar) adapters when contentType is yaml. Mirrors
- * afw_compile_to_object: subpool when !cede_p, require object root, set ids.
+ * afw_compile_json_to_object: subpool when !cede_p, require object root, set ids.
  */
 const afw_object_t * afw_yaml_to_object(
     const afw_memory_t  * yaml,
@@ -547,7 +547,7 @@ const afw_object_t * afw_yaml_to_object(
 
     object = ((const afw_value_object_t *)value)->internal;
 
-    /* Same id policy as afw_compile_to_object (source_location is not path). */
+    /* Same id policy as afw_compile_json_to_object (source_location is not path). */
     if (adapter_id) {
         afw_object_meta_set_ids(object,
             adapter_id, object_type_id, object_id, xctx);

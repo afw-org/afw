@@ -500,7 +500,7 @@ afw_object_get_property_compile_script(
     }
 
     result = afw_compile_script(result,
-        source_location, NULL, shared, p, xctx);
+        source_location, shared, p, xctx);
 
     return result;
 }
@@ -533,7 +533,7 @@ afw_object_get_property_compile_template(
     }
 
     result = afw_compile_template(result,
-        source_location, NULL, shared, p, xctx);
+        source_location, shared, p, xctx);
 
     return result;
 }

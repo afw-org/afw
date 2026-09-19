@@ -9,12 +9,12 @@ This is `develop` truth ([#277](https://github.com/afw-org/afw/issues/277) **clo
 
 | | Unmanaged | Managed |
 |---|---|---|
-| Where | caller `p` / `scope->p` (usually a tracker) | this `xctx->p` (ST heap) |
-| Death | pool bulk-free | last RC, then `free_memory` of the header in `xctx->p` |
+| Where | caller `p` / `scope->p` | dest `p->managed_p` |
+| Death | pool bulk-free | last RC, then `free_memory` of the header via the stored p |
 | Role | temps, compile unit, snapshots | anything a slot / managed property / managed element **holds** |
 
 - Managed scalars: `get_reference` / `get_assignable_value` **bump self**.
-- Unmanaged scalar `get_assignable_value`: **promote** (`create_managed` in this `xctx->p`, RC 1).
+- Unmanaged scalar `get_assignable_value`: **promote** (`create_managed` in dest `p->managed_p`, RC 1).
 - Compile-unit scalar literals (integer / double / string): `compile_literal_*` inf — **as-is** in slots; `clone_*` **copies**. `true` / `null` / `undefined` / `0` / `1` / `""` stay process permanents. Eval temps stay unmanaged-promote. Compiler-only `afw_compile_literal_<dt>_create()`.
 - **#280 landed:** lexer mints token payloads as values; parse-word strings (`name == value`, identifier-like) register as environment registry type `string_literal` (key-only, `const afw_value_string_t *`). Say **environment registry**, not “catalog”. `get_string_literal` hits that first. Keywords pointer-compare interned `afw_v_*`. Symbol names, script function `param->name`, loop labels, type/interface declaration names are interned string values.
 - `afw_pool_release_value_at_cleanup`: extra pin that is not a slot.
@@ -35,11 +35,11 @@ Literal slot fill stayed pre-#277 after intern. The mixed-size concat + integer 
 
 **Later (not this loop):** heap free-list mixed sizes if a *new* long-running pattern shows first-fit walking a growing list. Possible later registry MAP flag “include in big object”; do not special-case size now. `source_location` as interned string after compile splice settles. Type-graph names (`type_property`, `type_function_param`, `reference.name`) still utf8 views.
 
-**Not the scoreboard.** How close / remaining soaks: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) *Live status (2026-09-17)* and [`src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md`](../src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md). Isolate sitting [PR #340](https://github.com/afw-org/afw/pull/340). `function_return` **flat**. `try_catch` **flat** ([#341](https://github.com/afw-org/afw/issues/341) / [PR #354](https://github.com/afw-org/afw/pull/354)). Managed compiled results [#342](https://github.com/afw-org/afw/issues/342). Parked **#277** residuals (Adaptive `clone()`, `qualifier("current")` snapshot, skip `double_free_throws`) — not a pool rewrite. Restart `afwfcgi` after install (stale mapped binary).
+**Not the scoreboard.** How close / remaining soaks: [`issue-2-hold-in-inf.md`](issue-2-hold-in-inf.md) *Live status (2026-09-19)* and [`src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md`](../src/afw/tests-extra/issue-2/01-rss-hard-loops/README.md). Isolate sitting [PR #340](https://github.com/afw-org/afw/pull/340). `function_return` **flat**. `try_catch` **flat** ([#341](https://github.com/afw-org/afw/issues/341) / [PR #354](https://github.com/afw-org/afw/pull/354)). Managed compiled_value + dest `p` + evaluate pin [PR #355](https://github.com/afw-org/afw/pull/355). Parked **#277** residuals (Adaptive `clone()`, `qualifier("current")` snapshot, skip `double_free_throws`) — not a pool rewrite. Restart `afwfcgi` after install (stale mapped binary).
 
-When **evaluation is done**, an **evaluated** result is an **unmanaged clone in dest `p`**. Functions/closures as the compile/eval result are not cloned that way yet (follow-up).
+When **evaluation of a compiled_value is done**, the result is **pinned on dest `p`** (`release_value_at_cleanup`) and returned as-is. Permanents stay permanents. Functions/closures as the result still alias the unit (the unit is a managed `compiled_value`).
 
-Dest `p` is often this `xctx->p` or a tracker under it — then the result is unmanaged in a pool this xctx already owns.
+Dest `p` is often a scope or `xctx->p`; managed alloc follows `p->managed_p`.
 
 ## C names (no aliases)
 
@@ -52,7 +52,7 @@ Options: `0` = live in `p`; `new_p` and `cede_p` are the two flags. All three na
 
 Wrappers: `create_wrapper_unmanaged`, `_unmanaged_new_p`, `_unmanaged_cede_p`.
 
-Clone: `afw_value_clone_unmanaged` (dest `p`) / `afw_value_clone_managed` (this `xctx->p`). Adaptive `clone()` is still `afw_value_clone()`.
+Clone: `afw_value_clone_unmanaged` (dest `p`) / `afw_value_clone_managed` (dest `p`, uses `p->managed_p`). Adaptive `clone()` is still `afw_value_clone()`.
 
 **Value `get_reference` / `release`:** only permanent (as-is) and `memory_managed` (bump / last-release). Unmanaged object/array **value** infs throw. Isolate with `get_assignable_value`. Do not stamp `afw_value_managed_*_inf` on a pool-world header.
 
@@ -62,7 +62,7 @@ Clone: `afw_value_clone_unmanaged` (dest `p`) / `afw_value_clone_managed` (this 
 
 ## Managed frames
 
-Separate inf (`memory_managed`), alloc in `xctx->p`, RC 1. Slots: new property name is `get_assignable_value` once; value is `slot_store`. Last frame release: remaining names/elements, then `free_memory` of the header.
+Separate inf (`memory_managed`), alloc in dest `p->managed_p`, RC 1. Slots: new property name is `get_assignable_value` once; value is `slot_store`. Last frame release: remaining names/elements, then `free_memory` of the header via the stored p.
 
 **Unmanaged `get_assignable_value` (object/array value)**
 
@@ -72,13 +72,13 @@ Separate inf (`memory_managed`), alloc in `xctx->p`, RC 1. Slots: new property n
 | generic `"memory"` object/array, not a wrapper | `clone_managed` |
 | view / wrapper / runtime / adapter | managed look-through wrapper (preserves meta) |
 
-`get_reference` / `slot_store` / `as_assignable` take `xctx` only (no dest `p`). `wrap_literal_*` uses that isolate, not value `get_reference`. `afw_object_meta_clone_and_set` throws if the instance is `memory_managed`. Walk `first_property` only on a real memory object. Full clone of unmanaged objects still drops some meta; fix later.
+`get_reference` takes `xctx` only. `get_assignable` / `slot_store` take dest `p`. `wrap_literal_*` uses that isolate, not value `get_reference`. `afw_object_meta_clone_and_set` throws if the instance is `memory_managed`. Walk `first_property` only on a real memory object. Full clone of unmanaged objects still drops some meta; fix later.
 
 ## Follow-ups
 
 - Adapter clones (held).
 - Clone-of-unmanaged object meta.
-- Unevaluated clone-out (script_function, closure).
+- Functions/closures as an eval result still alias the unit.
 - Adaptive `clone()` still the old function.
 - `qualifier("current")` snapshot list tail.
 - `double_free_throws` still skipped (prefix overlay).

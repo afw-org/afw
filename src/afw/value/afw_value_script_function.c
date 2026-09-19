@@ -104,12 +104,13 @@ impl_afw_value_get_reference(
 const afw_value_t *
 impl_afw_value_get_assignable_value(
     AFW_VALUE_SELF_T *self,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *binding;
 
     binding = afw_value_closure_binding_create_if_needed(
-        &self->pub, xctx);
+        &self->pub, p, xctx);
     if (binding == &self->pub) {
         return &self->pub;
     }

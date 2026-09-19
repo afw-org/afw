@@ -778,7 +778,7 @@ afw_function_execute_test_script(
         compiled = afw_compile_to_value(
             &expression->internal, AFW_FUNCTION_SOURCE_LOCATION,
             afw_compile_type_script,
-            NULL, NULL, xctx->p, xctx);
+            NULL, xctx->p, xctx);
 
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(5)) {
             evaluated = afw_value_evaluate_with_additional_untrusted_qualified_variables(
@@ -817,7 +817,7 @@ afw_function_execute_test_script(
 
     AFW_FINALLY {
         /* Copy out of the unit pool before last-release of compiled. */
-        result = afw_object_create_managed_clone(result, xctx);
+        result = afw_object_create_managed_clone(result, x->p, xctx);
         if (afw_value_is_compiled_value(compiled)) {
             afw_value_release(compiled, xctx);
         }
@@ -914,7 +914,7 @@ afw_function_execute_test_template(
         compiled = afw_compile_to_value(
             &template->internal, AFW_FUNCTION_SOURCE_LOCATION,
             afw_compile_type_template,
-            NULL, NULL, xctx->p, xctx);
+            NULL, xctx->p, xctx);
 
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(5)) {
             evaluated = afw_value_evaluate_with_additional_untrusted_qualified_variables(
@@ -953,7 +953,7 @@ afw_function_execute_test_template(
 
     AFW_FINALLY {
         /* Copy out of the unit pool before last-release of compiled. */
-        result = afw_object_create_managed_clone(result, xctx);
+        result = afw_object_create_managed_clone(result, x->p, xctx);
         if (afw_value_is_compiled_value(compiled)) {
             afw_value_release(compiled, xctx);
         }
@@ -1380,7 +1380,7 @@ afw_function_execute_compile_from_file(
         result = afw_compile_to_value_with_callback(NULL,
             impl_octet_get_cb, self, file, compile_type, 
             afw_compile_residual_check_to_full,
-            NULL, NULL, xctx->p, xctx
+            NULL, xctx->p, xctx
         );
     }
     AFW_FINALLY {

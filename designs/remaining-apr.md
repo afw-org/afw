@@ -26,14 +26,16 @@ Heap and tracker use the same parent/child RC. Last-`release` does not call `des
 
 | Door | What |
 |------|------|
-| `afw_pool_heap_create(parent, chunk_min, xctx)` | ST heap, `managed_p = self`. `chunk_min` 0 → 64k. xctx/thread heaps. Compile units use **4k**. |
-| `afw_pool_multithread_create(env->p)` | MT job heap, `managed_p = self`. Conf, adapter, server, log. |
-| `afw_pool_create(parent)` | Tracker if ST parent; MT heap if MT parent. Parent/child is **lifetime** only; store is the ancestor heap. |
+| `afw_pool_heap_create(parent, chunk_min, xctx)` | ST heap, **inherits** `managed_p`. Compile units (own chunks; **4k**). |
+| `afw_pool_heap_create_as_managed_p(...)` | ST **job** heap, `managed_p = self`. xctx/thread. |
+| `afw_pool_multithread_create(env->p)` | MT heap, **inherits** `managed_p`. |
+| `afw_pool_multithread_create_as_managed_p(env->p)` | MT **job** heap, `managed_p = self`. Conf, adapter, server, log. |
+| `afw_pool_create(parent)` | Tracker if ST parent; MT heap that inherits `managed_p` if MT parent. Parent/child is **lifetime** only; store is the ancestor heap. |
 | `afw_pool_tracker_create(parent)` | Tracker. No throw last-release delay. Heap or tracker parent. |
-| `afw_pool_scope_create(parent)` | Evaluation `{ }`. Same store as a tracker; last-release delayed while `error_processing_count` > 0. |
+| `afw_pool_scope_create(parent)` | Evaluation `{ }`. ST heap, 4k chunks, inherits `managed_p`; last-release delayed while `error_processing_count` > 0. |
 | `malloc_no_throw` / `calloc_no_throw` / `free_memory_no_throw` | Same as malloc/calloc/free; NULL / no-op instead of throw. |
 
-One ST heap per xctx (`xctx->p`). Evaluation `{ }` uses `afw_pool_scope_create` of that heap (closures pin the inner scope). No `evaluation_heap`. Managed values allocate in `p->managed_p` (job heap for this eval; do not swap mid-eval). Request: `xctx->p->managed_p` is `xctx->p`. `create_managed` takes `p`. Last-release of managed object/array uses `self->pub.p`. Evaluate of a compiled value **clones onto the caller’s `p`**.
+One ST heap per xctx (`xctx->p`, created `*_as_managed_p`). Evaluation `{ }` uses `afw_pool_scope_create` of that heap (closures pin the inner scope). No `evaluation_heap`. Managed values allocate in dest `p->managed_p` (follow the pointer; pool code does not look up `xctx->p`). Request: `xctx->p->managed_p` is `xctx->p`. `create_managed` / `clone_managed` / `get_assignable` / `slot_store` take dest `p`. Last-release of managed object/array uses `self->pub.p`. Evaluate of a compiled value **pins `script_result` on dest `p`** (`afw_pool_release_value_at_cleanup`) and returns it as-is — no `clone_unmanaged`.
 
 Process/server runtime objects expose live `poolBytesInUse` / `peakPoolBytesInUse` / `poolChunkBytes` / `peakPoolChunkBytes` (`env_pool_stat`). `process::rss` is bytes.
 
@@ -49,7 +51,7 @@ C API notes: `whats-new.md` (`run_cleanups` / storage-only `destroy`, `register_
 
 **Not blocking:** process base pool is process lifetime (valgrind **still reachable**). mmap / per-chunk free lists.
 
-**Keep:** last-`release` runs callbacks then teardown. `destroy` storage-only. `xctx_release` `TRY` streams then `run_cleanups` `FINALLY` `destroy` (return before `ENDTRY`; `xctx` lives in `xctx->p`). Host FINALLY must catch adapter cache commit so `xctx_release` still runs. Mark whole subtree `destroying` before callbacks; leftover/free after; detach `first_cleanup` before walking (nested last-`release` must not re-enter). Closures are managed (`inf->is_managed`); pin on any scope `p`. Dual-face object/array: one instance RC; unmanaged **value** `get_reference` / `release` **throw**. `get_assignable` of managed is `get_reference` of self; unmanaged often `clone_managed`. Copy compile-eval results out of the unit pool before last-releasing `compiled`.
+**Keep:** last-`release` runs callbacks then teardown. `destroy` storage-only. `xctx_release` `TRY` streams then `run_cleanups` `FINALLY` `destroy` (return before `ENDTRY`; `xctx` lives in `xctx->p`). Host FINALLY must catch adapter cache commit so `xctx_release` still runs. Mark whole subtree `destroying` before callbacks; leftover/free after; detach `first_cleanup` before walking (nested last-`release` must not re-enter). Closures are managed (`inf->is_managed`); pin on any dest `p`. Dual-face object/array: one instance RC; unmanaged **value** `get_reference` / `release` **throw**. `get_assignable` of managed is `get_reference` of self; unmanaged often `clone_managed` into dest `p->managed_p`. Script/template/test_script compile returns a **managed** `compiled_value` (RC 1). Evaluate pins the result on dest `p`; the unit is not last-released at evaluate.
 
 ## Already done (do not re-litigate)
 
