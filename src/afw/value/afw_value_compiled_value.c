@@ -309,6 +309,7 @@ impl_afw_value_optional_evaluate(
             !afw_value_is_undefined(result) &&
             !afw_value_is_void(result))
         {
+            /* Managed result of this unit: pin on dest p. */
             afw_pool_release_value_at_cleanup(result, p, xctx);
         }
 

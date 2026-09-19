@@ -359,7 +359,8 @@ afw_pool_thread_create(
  *
  * Managed values (RC, including closures) may be registered on any
  * p: they stay alive while referenced. The callback drops that hold
- * when p last-releases or run_cleanups.
+ * when p last-releases or run_cleanups. Evaluate of a compiled
+ * script/template registers the result here on dest p.
  */
 AFW_DECLARE(void)
 afw_pool_release_value_at_cleanup(

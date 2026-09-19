@@ -181,7 +181,9 @@ afw_compile_and_evaluate(
  * Either shared or p must be specified. The p used by the parser is
  * shared->p, else a child heap of p->managed_p. Compiled units (script,
  * template, test_script) are managed values (RC 1). JSON / relaxed_json
- * return evaluated data.
+ * return evaluated data. Evaluate dest p is separate: pass the pool
+ * where you want managed results of running the unit (see
+ * afw_value_evaluate).
  *
  * Either string or callback must be non-NULL.  If both are non-NULL, the
  * string will be processed first.

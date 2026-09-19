@@ -7551,9 +7551,17 @@ struct afw_value_inf_s {
  *
  * This is an optional method used to evaluate an adaptive value. Normally
  * the afw_value_evaluate() macro should be used instead or calling this
- * method directly since it might be NULL.
+ * method directly since it might be NULL. For a compiled script or
+ * template, managed results live in p->managed_p and are pinned on
+ * p. If you keep the result on a C struct that outlives p,
+ * get_reference it; if you replace that field, release the old
+ * occupant.
  * @param instance Pointer to this adaptive value instance.
- * @param p Pool for result.
+ * @param p Dest pool. For a compiled script or template, managed results live
+ * in p->managed_p and are pinned on p (last-release of p is the matching
+ * release). Permanents stay as-is. If you keep the result on a C struct that
+ * outlives p, get_reference it; if you replace that field, release the old
+ * occupant.
  * @param xctx This is the caller's xctx.
  * @return Evaluated adaptive value.
  * @relates afw_value_t

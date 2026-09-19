@@ -1176,9 +1176,15 @@ afw_value_contains(
 /**
  * @brief Evaluate value if needed using specific pool.
  * @param value to evaluate.
- * @param p to use.
+ * @param p dest pool.
  * @param xctx of caller.
  * @return evaluated value.
+ *
+ * For a compiled script or template, managed results live in
+ * p->managed_p and are pinned on p (last-release of p is the
+ * matching release). Permanents stay as-is. Store on a C struct
+ * that outlives p: get_reference. Replace that field: release
+ * the old occupant (or slot_store).
  */
 #define afw_value_evaluate(value, p, xctx) \
     afw_value_evaluate_impl(value, p, xctx)
@@ -1292,9 +1298,10 @@ afw_value_array_hold(
  * @param value to release, or NULL.
  * @param xctx of caller.
  *
- * Missing method, NULL, and undefined are no-ops. Unmanaged
- * compiled_value releases the unit pool (consume). Isolate first
- * with get_assignable_value if the occupant must outlive that.
+ * Missing method, NULL, and undefined are no-ops. Last RC of a
+ * managed compiled_value last-releases the unit pool. If you
+ * stored a result on a C struct and replace it, release the old
+ * occupant (or use slot_store).
  */
 AFW_DECLARE(void)
 afw_value_release(
