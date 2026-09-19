@@ -44,14 +44,28 @@ TSV columns (tab-separated), from **`process::`** and
 
 In `orchestration.yaml`:
 
-| Field | Smoke | Overnight |
-|-------|-------|-----------|
-| `afwfcgi.threads` | 8 | 16 |
+| Field | Smoke (default) | 8h run 2026-09-19 |
+|-------|-----------------|-------------------|
+| `afwfcgi.threads` | 8 | 32 |
 | `timeout_s` | 90 | 30000 |
 | `duration_s` | 20 | 28800 |
-| `concurrency` | 16 | 24 |
+| `concurrency` | 16 | 32 |
 | `stopOnError` | true | false |
 | `maxFailRate` | (unset) | 0.01 |
+
+That 8h run **passed** (`28806s`, `rss_check` held):
+
+| | |
+|--|--|
+| `requestCount` | 1 → 39,763,411 |
+| TSV samples | 1,529,362 |
+| `process::rss` | 23.8 → 66.1 MiB (peak 69.2) |
+| After warmup (skip first 5%) | 62.9–69.2 MiB |
+| `poolBytesInUse` | ~4.5–8.3 MiB |
+| `poolChunkBytes` | ~10.9–16.9 MiB |
+| `concurrent` | 1–29 (`maxConcurrent` 32) |
+
+RSS grew 42 MiB from the first sample (under 64 MiB). After warmup it sat in a ~6 MiB band. Default yaml stays the 20s smoke so `test -T tests-extra` is not 8 hours.
 
 `timeout_s` must exceed `duration_s`.
 
