@@ -156,7 +156,7 @@ afw_function_execute_eval_script(
         }
         AFW_FINALLY {
             if (value) {
-                value = afw_value_get_assignable(value, xctx);
+                value = afw_value_get_assignable(value, x->p, xctx);
             }
             /*
              * If throwing, keep the compile unit until the xctx ends so

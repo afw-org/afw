@@ -33,19 +33,22 @@ AFW_DEFINE(const afw_value_t *)
 afw_value_closure_binding_create(
     const afw_value_script_function_definition_t *script_function_definition,
     const afw_xctx_scope_t *enclosing_lexical_scope,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     AFW_VALUE_SELF_T *self;
 
     /*
-     * Header on the xctx heap, not a scope tracker leftover list. Capture
-     * still points at enclosing_lexical_scope. Named-call rebind of `f`
-     * mints a wrapper that last-release free_memorys; do not pile headers
-     * on the names-frame tracker. Loop clone / escape may still hold the
+     * Header in p->managed_p, not a scope leftover list. Capture still
+     * points at enclosing_lexical_scope. Named-call rebind of `f` mints
+     * a wrapper that last-release free_memorys; do not pile headers on
+     * the names-frame tracker. Loop clone / escape may still hold the
      * pointer after the creating `{ }` dies.
      */
-    self = afw_pool_calloc_type(xctx->p, AFW_VALUE_SELF_T, xctx);
+    p = p->managed_p;
+    self = afw_pool_calloc_type(p, AFW_VALUE_SELF_T, xctx);
     self->inf = &afw_value_closure_binding_inf;
+    self->p = p;
     self->script_function_definition = script_function_definition;
     self->enclosing_lexical_scope = enclosing_lexical_scope;
     /*
@@ -68,6 +71,7 @@ afw_value_closure_binding_create(
 AFW_DEFINE(const afw_value_t *)
 afw_value_closure_binding_create_if_needed(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_script_function_definition_t *function;
@@ -94,7 +98,7 @@ afw_value_closure_binding_create_if_needed(
         AFW_THROW_ERROR_Z(general,
             "Internal error: scope not found", xctx);
     }
-    return afw_value_closure_binding_create(function, scope, xctx);
+    return afw_value_closure_binding_create(function, scope, p, xctx);
 }
 
 
@@ -112,7 +116,7 @@ impl_afw_value_optional_release(
     if (self->reference_count == 1) {
         self->reference_count = 0;
         afw_xctx_scope_release(self->enclosing_lexical_scope, xctx);
-        afw_pool_free_memory_type(xctx->p, self, AFW_VALUE_SELF_T, xctx);
+        afw_pool_free_memory_type(self->p, self, AFW_VALUE_SELF_T, xctx);
         return;
     }
     self->reference_count--;
@@ -139,8 +143,10 @@ impl_afw_value_get_reference(
 const afw_value_t *
 impl_afw_value_get_assignable_value(
     AFW_VALUE_SELF_T *self,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    (void)p;
     return impl_afw_value_get_reference(self, xctx);
 }
 

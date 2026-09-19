@@ -1209,6 +1209,7 @@ afw_value_add_reference(
 /**
  * @brief NULL-safe `get_assignable_value`.
  * @param value to make a slot occupant, or NULL.
+ * @param p dest pool (uses p->managed_p when promoting or cloning).
  * @param xctx of caller.
  * @return assignable value, or NULL if value is NULL.
  *
@@ -1217,6 +1218,7 @@ afw_value_add_reference(
 AFW_DECLARE(const afw_value_t *)
 afw_value_get_assignable(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -1243,17 +1245,19 @@ afw_value_clone_unmanaged(
 
 
 /**
- * @brief Clone an evaluated value managed in xctx->p.
+ * @brief Clone an evaluated value managed in p->managed_p.
  * @param value evaluated (has is_evaluated_of_data_type).
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return managed value (bump if already managed).
  *
- * Permanents as-is. No dest p. Does not release the source. Throws if
+ * Permanents as-is. Does not release the source. Throws if
  * value is NULL, not evaluated, or has no clone.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone_managed(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -1303,6 +1307,7 @@ afw_value_release(
  * @brief Assign into a slot: make incoming assignable, then `release` old.
  * @param slot address of the stored pointer.
  * @param incoming value to store (NULL becomes undefined).
+ * @param p dest pool (uses p->managed_p when promoting or cloning).
  * @param xctx of caller.
  *
  * Same pointer is a no-op. Incoming is stored via get_assignable_value
@@ -1313,6 +1318,7 @@ AFW_DECLARE(void)
 afw_value_slot_store(
     const afw_value_t **slot,
     const afw_value_t *incoming,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -1769,6 +1775,7 @@ afw_value_common_create(
  * @brief Create a closure binding value.
  * @param script_function_definition script function to enclose.
  * @param enclosing_lexical_scope for closure binding.
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return Created afw_value_t.
  */
@@ -1776,6 +1783,7 @@ AFW_DEFINE(const afw_value_t *)
 afw_value_closure_binding_create(
     const afw_value_script_function_definition_t *script_function_definition,
     const afw_xctx_scope_t *enclosing_lexical_scope,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -1783,6 +1791,7 @@ afw_value_closure_binding_create(
 /**
  * @brief Bind a script function to the current lexical scope if needed.
  * @param value candidate value (any kind).
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return value, or a closure_binding holding the defining scope.
  *
@@ -1795,6 +1804,7 @@ afw_value_closure_binding_create(
 AFW_DEFINE(const afw_value_t *)
 afw_value_closure_binding_create_if_needed(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -2125,8 +2135,7 @@ afw_value_symbol_reference_create(
  * @return managed hexBinary (caller must release), or NULL.
  *
  * Same layout and last-release as create_managed. calloc_no_throw on
- * p->managed_p. Last-release uses xctx->p->managed_p, so p should be
- * xctx->p or a tracker of that heap. For error-path code.
+ * p->managed_p. Last-release uses the stored p. For error-path code.
  */
 AFW_DECLARE(const afw_value_hexBinary_t *)
 afw_value_hexBinary_create_no_throw(

@@ -2791,8 +2791,9 @@ struct afw_data_type_s {
     afw_data_type_clone_value_unmanaged_t clone_value_unmanaged;
 
     /**
-     * Clone this evaluated value managed in xctx->p (bump if already
-     * managed). Permanents as-is. NULL if this data type has no clone.
+     * Clone this evaluated value managed in p->managed_p (bump if
+     * already managed). Permanents as-is. NULL if this data type has
+     * no clone.
      */
     afw_data_type_clone_value_managed_t clone_value_managed;
 
@@ -7343,6 +7344,7 @@ typedef const afw_value_t *
 typedef const afw_value_t *
 (*afw_value_get_assignable_value_t)(
     const afw_value_t * instance,
+    const afw_pool_t * p,
     afw_xctx_t * xctx);
 
 /** @sa afw_value_create_iterator() */
@@ -7497,10 +7499,11 @@ struct afw_value_inf_s {
  *
  * Occupant for a slot (assign, param, overlay, call result). Matching
  * optional_release. Managed returns self (bump). Unmanaged promotes
- * or clones to managed in xctx->p. Permanent scalar is as-is;
+ * or clones to managed in p->managed_p. Permanent scalar is as-is;
  * permanent object/array is a managed wrapper/clone. Missing method
  * is a no-op (return instance).
  * @param instance Pointer to this adaptive value instance.
+ * @param p Dest pool (uses p->managed_p when promoting or cloning).
  * @param xctx This is the caller's xctx.
  * @return A value that fully supports being stored in a slot.
  * @relates afw_value_t
@@ -7508,10 +7511,12 @@ struct afw_value_inf_s {
  */
 #define afw_value_get_assignable_value( \
     instance, \
+    p, \
     xctx \
 ) \
 (instance)->inf->get_assignable_value( \
     (instance), \
+    (p), \
     (xctx) \
 )
 

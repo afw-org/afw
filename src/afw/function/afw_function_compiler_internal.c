@@ -733,7 +733,7 @@ impl_assign_value(
         aggregate_value = afw_value_evaluate(
             t->aggregate_value, p, xctx);
         key = afw_value_evaluate(t->key, p, xctx);
-        aggregate_value = afw_value_get_assignable(aggregate_value, xctx);
+        aggregate_value = afw_value_get_assignable(aggregate_value, p, xctx);
 
         if (afw_value_is_object(aggregate_value)) {
             object = ((const afw_value_object_t *)aggregate_value)->internal;

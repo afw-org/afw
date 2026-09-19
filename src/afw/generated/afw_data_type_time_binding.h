@@ -65,8 +65,9 @@ afw_data_type_time;
  * Lifetime is the containing pool. get_reference and
  * optional_release throw (scalar, object, array).
  * Scalar get_assignable_value creates a managed holdable
- * in xctx->p. Object/array get_assignable_value: managed
- * occupant dual-face, else clone_managed.
+ * (create_managed with dest p). Object/array
+ * get_assignable_value: managed occupant dual-face, else
+ * clone_managed.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_time_inf;
@@ -74,9 +75,9 @@ afw_value_unmanaged_time_inf;
 /**
  * @brief Managed evaluated value inf for data type time.
  *
- * Start-at-1 holdable in xctx->p (caller must release).
+ * Start-at-1 holdable in p->managed_p (caller must release).
  * get_reference / get_assignable_value bump. Scalar
- * last-release free_memorys the header via xctx->p.
+ * last-release free_memorys the header via the stored p.
  * Object/array: instance last-release (embedded dual-face
  * has no extra header).
  */
@@ -193,6 +194,9 @@ struct afw_value_time_managed_s {
     /** @brief  Internal afw_time_t value. */
     afw_time_t internal;
 
+    /** @brief  Pool used at create (p->managed_p). */
+    const afw_pool_t *p;
+
     /** @brief  Reference count for value. */
     afw_size_t reference_count;
 };
@@ -238,18 +242,20 @@ afw_value_time_allocate(
 /**
  * @brief Create function for managed data type time value.
  * @param internal.
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * Allocates in xctx->p. Starts at reference count 1
+ * Allocates in p->managed_p. Starts at reference count 1
  * (caller must release). get_reference /
  * get_assignable_value bump. Last-release
- * free_memorys the header via xctx->p.
+ * free_memorys the header via the stored p.
  * Copies *internal into the header when internal is non-NULL.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_time_create_managed(
     const afw_time_t * internal,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 #define afw_value_create_managed_time afw_value_time_create_managed
 
@@ -269,16 +275,18 @@ afw_value_clone_time_unmanaged(
     afw_xctx_t *xctx);
 
 /**
- * @brief Clone an evaluated time value managed in xctx->p.
+ * @brief Clone an evaluated time value managed in p->managed_p.
  * @param value evaluated time.
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return managed value (bump if already managed).
  *
- * Permanents as-is. Does not release the source. No dest p.
+ * Permanents as-is. Does not release the source.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone_time_managed(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
@@ -290,7 +298,7 @@ afw_value_clone_time_managed(
  *
  * Allocates in pool p; lifetime is the pool (no value refcount).
  * get_reference / release throw. get_assignable_value
- * creates a managed holdable in xctx->p.
+ * creates a managed holdable in p->managed_p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_time_create(const afw_time_t * internal,

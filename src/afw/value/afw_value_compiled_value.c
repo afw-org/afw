@@ -45,7 +45,8 @@ impl_assignable_get_reference(
     afw_value_compiled_value_t *self, afw_xctx_t *xctx);
 static const afw_value_t *
 impl_assignable_get_assignable_value(
-    afw_value_compiled_value_t *self, afw_xctx_t *xctx);
+    afw_value_compiled_value_t *self,
+    const afw_pool_t *p, afw_xctx_t *xctx);
 
 #define AFW_IMPLEMENTATION_ID "compiled_value_assignable"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
@@ -86,7 +87,8 @@ impl_managed_get_reference(
     afw_value_compiled_value_t *self, afw_xctx_t *xctx);
 static const afw_value_t *
 impl_managed_get_assignable_value(
-    afw_value_compiled_value_t *self, afw_xctx_t *xctx);
+    afw_value_compiled_value_t *self,
+    const afw_pool_t *p, afw_xctx_t *xctx);
 
 #define AFW_IMPLEMENTATION_ID "managed_compiled_value"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
@@ -144,8 +146,10 @@ impl_afw_value_get_reference(
 const afw_value_t *
 impl_afw_value_get_assignable_value(
     AFW_VALUE_SELF_T *self,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    (void)p;
     if (!self->p || afw_pool_internal_is_tracker(self->p)) {
         AFW_THROW_ERROR_Z(general,
             "get_assignable_value of compiled_value requires "
@@ -184,8 +188,10 @@ impl_assignable_get_reference(
 static const afw_value_t *
 impl_assignable_get_assignable_value(
     afw_value_compiled_value_t *self,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    (void)p;
     return impl_assignable_get_reference(self, xctx);
 }
 
@@ -226,8 +232,10 @@ impl_managed_get_reference(
 static const afw_value_t *
 impl_managed_get_assignable_value(
     afw_value_compiled_value_t *self,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    (void)p;
     return impl_managed_get_reference(self, xctx);
 }
 

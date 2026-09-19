@@ -129,6 +129,7 @@ impl_afw_value_get_reference(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_value(
     AFW_VALUE_SELF_T *self,
+    const afw_pool_t * p,
     afw_xctx_t * xctx);
 #endif
 

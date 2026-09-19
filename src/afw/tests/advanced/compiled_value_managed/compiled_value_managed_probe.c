@@ -52,7 +52,7 @@ impl_front_door(afw_xctx_t *xctx)
         fprintf(stderr, "front_door: is_compiled_value / is_managed\n");
         return 1;
     }
-    again = afw_value_get_assignable(value, xctx);
+    again = afw_value_get_assignable(value, xctx->p, xctx);
     if (again != value) {
         fprintf(stderr, "front_door: get_assignable is not self\n");
         return 1;

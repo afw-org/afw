@@ -260,15 +260,18 @@ struct afw_pool_internal_tracker_self_s {
 
 
 /**
- * Scope pool. Same store as tracker plus last-release delay while a
- * script throw is handled. Extra fields only on this create path.
+ * Scope pool. ST job heap (4k chunks) plus last-release delay while a
+ * script throw is handled.
  */
 typedef struct afw_pool_internal_scope_self_s
 afw_pool_internal_scope_self_t;
 
 struct afw_pool_internal_scope_self_s {
 
-    afw_pool_internal_tracker_self_t tracker;
+    afw_pool_internal_heap_self_t heap;
+
+    /* Don't access this directly. Use heap.free_memory_head. */
+    afw_pool_internal_free_memory_head_t memory_for_free_memory_head;
 
     /**
      * Next pool delaying last release while

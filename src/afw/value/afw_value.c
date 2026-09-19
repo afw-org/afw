@@ -80,12 +80,13 @@ afw_value_add_reference(
 AFW_DEFINE(const afw_value_t *)
 afw_value_get_assignable(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     if (!value || !value->inf || !value->inf->get_assignable_value) {
         return value;
     }
-    return afw_value_get_assignable_value(value, xctx);
+    return afw_value_get_assignable_value(value, p, xctx);
 }
 
 
@@ -109,6 +110,7 @@ AFW_DEFINE(void)
 afw_value_slot_store(
     const afw_value_t **slot,
     const afw_value_t *incoming,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *assignable;
@@ -127,7 +129,7 @@ afw_value_slot_store(
      */
     unmanaged_compiled_value =
         incoming && incoming->inf == &afw_value_compiled_value_inf;
-    assignable = afw_value_get_assignable(incoming, xctx);
+    assignable = afw_value_get_assignable(incoming, p, xctx);
     if (*slot == assignable) {
         return;
     }
@@ -554,10 +556,11 @@ afw_value_clone_unmanaged(
 }
 
 
-/* Clone an evaluated value managed in xctx->p. */
+/* Clone an evaluated value managed in p->managed_p. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_clone_managed(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_data_type_t *dt;
@@ -567,7 +570,7 @@ afw_value_clone_managed(
         AFW_THROW_ERROR_Z(conversion_error,
             "clone_managed requires an evaluated value", xctx);
     }
-    return dt->clone_value_managed(value, xctx);
+    return dt->clone_value_managed(value, p, xctx);
 }
 
 
@@ -902,6 +905,7 @@ afw_value_hexBinary_create_no_throw(
     if (internal && internal->ptr && size) {
         memcpy((void *)v->internal.ptr, internal->ptr, size);
     }
+    v->p = managed_p;
     v->reference_count = 1;
     return (const afw_value_hexBinary_t *)v;
 }

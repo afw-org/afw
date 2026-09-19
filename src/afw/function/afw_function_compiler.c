@@ -817,7 +817,7 @@ afw_function_execute_test_script(
 
     AFW_FINALLY {
         /* Copy out of the unit pool before last-release of compiled. */
-        result = afw_object_create_managed_clone(result, xctx);
+        result = afw_object_create_managed_clone(result, x->p, xctx);
         if (afw_value_is_compiled_value(compiled)) {
             afw_value_release(compiled, xctx);
         }
@@ -953,7 +953,7 @@ afw_function_execute_test_template(
 
     AFW_FINALLY {
         /* Copy out of the unit pool before last-release of compiled. */
-        result = afw_object_create_managed_clone(result, xctx);
+        result = afw_object_create_managed_clone(result, x->p, xctx);
         if (afw_value_is_compiled_value(compiled)) {
             afw_value_release(compiled, xctx);
         }

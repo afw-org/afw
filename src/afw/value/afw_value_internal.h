@@ -451,7 +451,7 @@ struct afw_value_call_test_script_s {
 /**
  * @brief Struct for closure binding value.
  *
- * Managed header in xctx->p. Last-release free_memorys it.
+ * Managed header in p->managed_p. Last-release free_memorys via stored p.
  */
 struct afw_value_closure_binding_s {
     /* Value inf union with afw_value_t pub to reduce casting needed. */
@@ -460,6 +460,7 @@ struct afw_value_closure_binding_s {
         afw_value_t pub;
     };
 
+    const afw_pool_t *p;
     const afw_value_script_function_definition_t *script_function_definition;
     const afw_xctx_scope_t *enclosing_lexical_scope;
     afw_size_t reference_count;

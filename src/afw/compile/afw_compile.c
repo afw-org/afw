@@ -89,7 +89,7 @@ afw_compile_and_evaluate(
     }
     AFW_FINALLY {
         if (result) {
-            result = afw_value_get_assignable(result, xctx);
+            result = afw_value_get_assignable(result, p, xctx);
         }
         if (afw_value_is_compiled_value(compiled_value)) {
             afw_value_release(compiled_value, xctx);

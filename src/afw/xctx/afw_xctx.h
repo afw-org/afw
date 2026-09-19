@@ -21,7 +21,7 @@
  * @brief Execution context (xctx): scopes, stack, and statement_flow helpers.
  *
  * See @ref afw_xctx. An `afw_xctx_t` is a unit of work (request, eval, …).
- * Scopes use heap trackers for automatic cleanup; statement_flow drives
+ * Scopes use ST heaps (4k chunks, inherit managed_p) for automatic cleanup; statement_flow drives
  * break/continue/return/rethrow without C++ exceptions.
  */
 

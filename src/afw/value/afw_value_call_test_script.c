@@ -352,7 +352,7 @@ impl_afw_value_optional_evaluate(
                  * freed string (0x0BADF00D).
                  */
                 afw_object_set_property(test, afw_v_result,
-                    afw_value_get_assignable(evaluated_value, xctx),
+                    afw_value_get_assignable(evaluated_value, p, xctx),
                     xctx);
 
                 passed_value =
@@ -434,7 +434,7 @@ impl_afw_value_optional_evaluate(
                     afw_value_create_unmanaged_object(
                         afw_error_to_object(AFW_ERROR_THROWN, p, xctx),
                         p, xctx),
-                    xctx),
+                    p, xctx),
                 xctx);
         }
 

@@ -32,10 +32,11 @@ impl_afw_value_permanent_get_reference(
     const afw_value_t *instance,
     afw_xctx_t *xctx);
 
-/* get_assignable_value with no dest p: bump via get_reference. */
+/* get_assignable_value: dest p unused; bump via get_reference. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_via_reference(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -172,12 +173,14 @@ impl_afw_value_permanent_get_reference(
     return instance;
 }
 
-/* get_assignable_value: no dest p; bump via inf get_reference. */
+/* get_assignable_value: dest p unused; bump via inf get_reference. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_via_reference(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    (void)p;
     return afw_value_get_reference(instance, xctx);
 }
 

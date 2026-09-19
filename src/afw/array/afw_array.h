@@ -72,7 +72,6 @@ afw_array_create_with_options(
  * The array owns stored values. Push/set/insert `slot_store`
  * (`get_assignable_value`). Replace, remove, and last array release
  * `release` occupants, then last-release `free_memory`s the header.
- * No dest p.
  *
  * Get / `at` peek: the array still holds, so the occupant only has to
  * last for this scope's evaluation. `get_assignable_value` if keeping
@@ -95,6 +94,7 @@ afw_array_create_managed(
 /**
  * @brief Managed clone of an existing array into p->managed_p.
  * @param from array to copy elements from.
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return managed array, or from if already this implementation.
  *
@@ -104,6 +104,7 @@ afw_array_create_managed(
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed_clone(
     const afw_array_t *from,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -360,7 +361,7 @@ afw_array_permanent_from_values_inf;
 
 
 /**
- * @brief inf for managed from_values arrays (xctx->p, RC).
+ * @brief inf for managed from_values arrays (p->managed_p, RC).
  */
 AFW_DECLARE_CONST_DATA(afw_array_inf_t)
 afw_array_managed_from_values_inf;
@@ -456,16 +457,18 @@ afw_array_create_unmanaged_from_c_array(
  * @param data_type if every element is that type, or NULL if mixed.
  * @param values is address of first value in array.
  * @param count is number of values.
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return instance (reference count 1). Dual face is managed_array.
  *
- * Each element is stored via get_assignable_value. No dest p.
+ * Each element is stored via get_assignable_value.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed_from_values(
     const afw_data_type_t *data_type,
     const afw_value_t *const *values,
     afw_size_t count,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -474,6 +477,7 @@ afw_array_create_managed_from_values(
  * @brief Create a managed from_values array from object pointers.
  * @param objects is address of first object in array.
  * @param count is number of objects.
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return instance (reference count 1). get_data_type() is object.
  */
@@ -481,6 +485,7 @@ AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed_from_objects(
     const afw_object_t *const *objects,
     afw_size_t count,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -489,6 +494,7 @@ afw_array_create_managed_from_objects(
  * @brief Create a managed from_values array from NULL-terminated values.
  * @param data_type if every element is that type, or NULL if mixed.
  * @param values is NULL terminated array of values.
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return instance (reference count 1).
  */
@@ -496,6 +502,7 @@ AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed_from_null_terminated_values(
     const afw_data_type_t *data_type,
     const afw_value_t *const *values,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -503,12 +510,14 @@ afw_array_create_managed_from_null_terminated_values(
 /**
  * @brief Create a managed from_values array from NULL-terminated objects.
  * @param objects is NULL terminated array of objects.
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return instance (reference count 1). get_data_type() is object.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed_from_null_terminated_objects(
     const afw_object_t *const *objects,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -519,10 +528,11 @@ afw_array_create_managed_from_null_terminated_objects(
  * @param indirect if true, array is array of pointers to internal values.
  * @param data_type of each element. Required.
  * @param count of entries in array or -1 for NULL-terminated pointer list.
+ * @param p dest pool (uses p->managed_p).
  * @param xctx of caller.
  * @return instance (reference count 1).
  *
- * Copies each internal into a managed value in xctx->p at create.
+ * Copies each internal into a managed value in p->managed_p at create.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_managed_from_c_array(
@@ -530,6 +540,7 @@ afw_array_create_managed_from_c_array(
     afw_boolean_t indirect,
     const afw_data_type_t *data_type,
     afw_size_t count,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 

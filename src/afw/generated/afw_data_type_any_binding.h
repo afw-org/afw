@@ -109,6 +109,9 @@ struct afw_value_any_managed_s {
     /** @brief  Internal const afw_value_t * value. */
     const afw_value_t * internal;
 
+    /** @brief  Pool used at create (p->managed_p). */
+    const afw_pool_t *p;
+
     /** @brief  Reference count for value. */
     afw_size_t reference_count;
 };

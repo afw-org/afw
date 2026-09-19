@@ -2366,8 +2366,9 @@ const afw_content_type_t *
 
     <variable name="clone_value_managed" type="afw_data_type_clone_value_managed_t">
       <description>
-        Clone this evaluated value managed in xctx-&gt;p (bump if already
-        managed). Permanents as-is. NULL if this data type has no clone.
+        Clone this evaluated value managed in p-&gt;managed_p (bump if
+        already managed). Permanents as-is. NULL if this data type has
+        no clone.
       </description>
     </variable>
 
@@ -6066,7 +6067,7 @@ AFW_DEFINE(const afw_request_handler_t *)
       <description>
         Occupant for a slot (assign, param, overlay, call result). Matching
         optional_release. Managed returns self (bump). Unmanaged promotes
-        or clones to managed in xctx->p. Permanent scalar is as-is;
+        or clones to managed in p-&gt;managed_p. Permanent scalar is as-is;
         permanent object/array is a managed wrapper/clone. Missing method
         is a no-op (return instance).
       </description>
@@ -6074,6 +6075,12 @@ AFW_DEFINE(const afw_request_handler_t *)
       <parameter name="instance" type="const afw_value_t *">
     <description>
           Pointer to this adaptive value instance.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+    <description>
+          Dest pool (uses p-&gt;managed_p when promoting or cloning).
         </description>
       </parameter>
 

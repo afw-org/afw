@@ -68,9 +68,9 @@
  * `afw_pool_multithread_create_as_managed_p(env->p)` for
  * conf/server/log/adapter.
  * Trackers get memory from the ancestor heap. Evaluation `{ }` uses
- * a scope pool (`afw_pool_scope_create`). Destroy returns the chain
- * to the ancestor heap. Parent/child is lifetime only. Last-release
- * does not call destroy.
+ * a scope pool (`afw_pool_scope_create`: ST job heap, 4k chunks).
+ * Destroy returns the chain to the ancestor heap. Parent/child is
+ * lifetime only. Last-release does not call destroy.
  * The heap store is 64k-min, 4k-aligned chunks; destroy free()s the
  * list.
  *

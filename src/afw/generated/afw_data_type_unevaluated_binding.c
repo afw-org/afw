@@ -53,10 +53,11 @@ impl_afw_value_permanent_get_reference(
     const afw_value_t *instance,
     afw_xctx_t *xctx);
 
-/* get_assignable_value with no dest p: bump via get_reference. */
+/* get_assignable_value: dest p unused; bump via get_reference. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_via_reference(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -103,7 +104,7 @@ impl_afw_value_get_assignable_via_reference(
     (const void *)&afw_data_type_unevaluated_direct, \
     true
 /* managed unevaluated: optional_release drops RC; */
-/* scalar last-release free_memorys via xctx->p. */
+/* scalar last-release free_memorys via the stored p. */
 /* get_reference / get_assignable_value bump. */
 #define AFW_IMPLEMENTATION_ID "managed_unevaluated"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_unevaluated_inf
@@ -271,7 +272,7 @@ afw_object_set_property_as_unevaluated_internal(
 
     if (afw_object_is_memory_managed(object) ||
         afw_object_is_memory_wrapper(object)) {
-        v = afw_value_unevaluated_create_managed(internal, xctx);
+        v = afw_value_unevaluated_create_managed(internal, object->p, xctx);
     }
     else {
         v = afw_value_unevaluated_create(internal, object->p, xctx);
@@ -327,14 +328,17 @@ afw_value_unevaluated_allocate(const afw_pool_t *p, afw_xctx_t *xctx)
 AFW_DEFINE(const afw_value_t *)
 afw_value_unevaluated_create_managed(
     const afw_value_t * internal,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_value_unevaluated_managed_t *v;
 
-    v = afw_pool_calloc(xctx->p->managed_p,
+    p = p->managed_p;
+    v = afw_pool_calloc(p,
         sizeof(afw_value_unevaluated_managed_t), xctx);
     v->inf = &afw_value_managed_unevaluated_inf;
     v->internal = internal;
+    v->p = p;
     v->reference_count = 1;
 
     return &v->pub;
@@ -375,10 +379,11 @@ afw_value_clone_unevaluated_unmanaged(
     return &cloned->pub;
 }
 
-/* Clone evaluated unevaluated managed in xctx->p. */
+/* Clone evaluated unevaluated managed in p->managed_p. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_clone_unevaluated_managed(
     const afw_value_t *value,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     if (value->inf == &afw_value_permanent_unevaluated_inf) {
@@ -390,7 +395,7 @@ afw_value_clone_unevaluated_managed(
     }
     return afw_value_unevaluated_create_managed(
         ((const afw_value_unevaluated_t *)value)->internal,
-        xctx);
+        p, xctx);
 }
 
 /* Convert data type unevaluated string to const afw_value_t * *. */
@@ -517,7 +522,7 @@ impl_afw_value_managed_optional_release(
     }
     self->reference_count--;
     if (self->reference_count == 0) {
-        afw_pool_free_memory(xctx->p->managed_p, self,
+        afw_pool_free_memory(self->p, self,
             sizeof(afw_value_unevaluated_managed_t), xctx);
     }
 }
@@ -560,12 +565,14 @@ impl_afw_value_permanent_get_reference(
     return instance;
 }
 
-/* get_assignable_value: no dest p; bump via inf get_reference. */
+/* get_assignable_value: dest p unused; bump via inf get_reference. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_assignable_via_reference(
     const afw_value_t *instance,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
+    (void)p;
     return afw_value_get_reference(instance, xctx);
 }
 
@@ -698,7 +705,7 @@ afw_array_of_unevaluated_add_internal(
 
     if (afw_array_is_memory_managed(instance) ||
         afw_array_is_memory_wrapper(instance)) {
-        v = afw_value_unevaluated_create_managed(value, xctx);
+        v = afw_value_unevaluated_create_managed(value, instance->p, xctx);
     }
     else {
         v = afw_value_unevaluated_create(value, instance->p, xctx);
