@@ -47,11 +47,11 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | `convert_to_*` | Convert to another representation. |
 | `create_unmanaged` / `_new_p` / `_cede_p` | Lives in dest `p`. |
 | `create_managed` | Frame in **`p->managed_p`** (pass the evaluation `p`). |
-| `get_assignable` | Isolate into a slot. |
+| `get_assignable` | Isolate into a slot (`value, p, xctx`). Promote/clone uses `p->managed_p`. |
 | `afw_xctx_scope_get_assignable_for_scope_lifetime` | `get_assignable` plus release when the **current** scope ends. Does **not** write `last_result`. Mutating builtins hold the instance first; new array results `create_managed` then fill. `array()` / `create_array()` stay unmanaged script wrappers in `x->p`. |
 | `afw_xctx_scope_get_assignable_for_p_lifetime` | Same pin on a **passed** scope (script function return uses the caller). Managed values (including closures) may use any scope. |
 | `afw_v_foo` | Object **property name** (a value). `afw_s_foo` is still utf8 for type ids and other utf8 APIs. |
-| dest `p` | Evaluate, clone, or extra allocation (iterator / meta). **Not** on value getters. |
+| dest `p` | Evaluate, clone, `create_managed`, `get_assignable` / `slot_store`, or extra allocation (iterator / meta). **Not** on value getters or `get_reference`. |
 
 Utf8 ingest is a **different** table: `create` / `to_` copy; `create_no_copy` / `z_as_utf8` point. Do not read `afw_utf8_z_as_utf8` as a typed value pointer. [UTF-8 doors](#utf-8-create-set-and-ks). Detail for `_as_<type>`: [Typed values](#typed-value-pointers-vs-c-internals).
 
@@ -961,7 +961,7 @@ Tests: `src/afw/tests/language/script/object_expression_names.as`.
 |---|---|---|
 | Where | dest `p` / a tracker | this evaluation’s **`p->managed_p`** (request: `xctx->p`) |
 | Death | that pool is destroyed | last hold, then the header is freed |
-| Typical use | temps, compile unit, eval result clone | anything a variable / property / array slot **holds** |
+| Typical use | temps, compile-unit contents | anything a variable / property / array slot **holds** |
 
 C object/array creates:
 
@@ -972,7 +972,7 @@ C object/array creates:
 
 Unmanaged object/array **values** do not take `get_reference` / `release` (they throw). Use **`get_assignable`** to isolate into a slot. Instance `get_reference` on the object still pins its pool (adapters, faces). Rebuild out-of-tree C against this line ([C rebuild](#c-programmers)).
 
-When a script evaluation finishes, an **evaluated** result is copied into the caller’s pool as unmanaged. Adaptive **`clone()`** is still a deep independent copy (including nested objects).
+When a compiled unit finishes evaluating, the result is a **managed** value pinned on dest `p` (that pool’s last-release is the matching `release`; `get_reference` to keep it). Permanents stay as-is. Adaptive **`clone()`** is still a deep independent copy (including nested objects).
 
 ### Script running result ([#62](https://github.com/afw-org/afw/issues/62))
 
@@ -982,7 +982,8 @@ Assignment, **`return`**, and a call that is not void set the script’s running
 
 - Prefer **shared permanent Adaptive values** (`afw_v_*`) for known scalars where safe.
 - **Slot protocol:** assign / parameters hold the new value and release the old; scope last-release walks slots; C-style `for` and **`for-of` `let`/`const`** clone the loop-local scope per iteration. No `var` hoist, no TDZ, no `for-in`.
-- **Pools:** **libafw does not use APR.** `afw_pool_heap_create` (ST, own chunks; default 64k min, compile units 4k), `afw_pool_create` (tracker if ST parent), `afw_pool_scope_create` (evaluation `{ }`), `afw_pool_multithread_create` (conf/adapter/server). One ST heap per xctx. Tracker `free_memory` marks; `garbage_collect` returns marked. `destroy` is storage-only; **`run_cleanups`** first. Process base pool is process lifetime (valgrind **still reachable** is intended).
+- **Pools:** **libafw does not use APR.** `afw_pool_heap_create` (ST, inherit `managed_p`; default 64k min, compile units 4k), `*_as_managed_p` (`managed_p = self`; xctx/thread/env), `afw_pool_create` (tracker if ST parent), `afw_pool_scope_create` (evaluation `{ }`: ST heap, 4k, inherit, throw last-release delay), `afw_pool_multithread_create` (conf/adapter/server). One ST job heap per xctx. Tracker `free_memory` marks; `garbage_collect` returns marked. `destroy` is storage-only; **`run_cleanups`** first. Process base pool is process lifetime (valgrind **still reachable** is intended).
+- **Compile unit:** script/template/test_script `compile()` is a **managed** `compiled_value`. Evaluate **pins** the result on dest `p` (no copy-out clone).
 - **Script return:** pin on the caller (`get_assignable_for_p_lifetime`). No leftover function-return wrapper inf.
 - **Live counters:** `process::poolBytesInUse` / `maxPoolBytesInUse` / `poolChunkBytes` / `maxPoolChunkBytes` (same numbers on `_AdaptiveServer_/current`).
 - **Objects/arrays:** dual face; C uses **`afw_object_as_value` / `afw_array_as_value`**. Overlay **`set`** on look-through faces holds the local overlay. Get/retrieve already return a **face** — do not `clone()` just to set properties.
