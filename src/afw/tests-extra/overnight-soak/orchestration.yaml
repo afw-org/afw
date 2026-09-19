@@ -1,0 +1,100 @@
+# Smoke: afwdev test -T src/afw/tests-extra/overnight-soak
+# Overnight: bump duration_s / timeout_s / threads / concurrency in this file
+#   (see README.md). Default is a short smoke so -T tests-extra is not 8h.
+#
+# Metrics TSV: /tmp/afw-overnight-soak/metrics.tsv
+#   uuid \t process_rss_kb \t pool_bytes_in_use \t afw_adapter_getObjectCount
+version: 1
+description: >
+  One hermetic afwfcgi, mixed request pool (eval pin, model onGetObject
+  evaluate(compile), catalog, file, throw), metrics sample appends TSV.
+host: afwfcgi
+afwfcgi:
+  threads: 8
+timeout_s: 90
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: metrics-sample
+    sourceType: script
+    source: <<< tests/metrics_sample.as
+    expect: true
+
+  - name: metrics-readback
+    sourceType: script
+    source: <<< tests/metrics_readback.as
+    expect: true
+
+  - name: cheap
+    sourceType: script
+    source: <<< tests/cheap.as
+    expect: 190
+
+  - name: catalog
+    sourceType: script
+    source: <<< tests/catalog.as
+
+  - name: eval-object
+    sourceType: script
+    source: <<< tests/eval_object.as
+    expect: true
+
+  - name: eval-array
+    sourceType: script
+    source: <<< tests/eval_array.as
+    expect: true
+
+  - name: eval-closure
+    sourceType: script
+    source: <<< tests/eval_closure.as
+    expect: 7
+
+  - name: eval-throw
+    sourceType: script
+    source: <<< tests/eval_throw.as
+    expect: true
+
+  - name: self-concat
+    sourceType: script
+    source: <<< tests/self_concat.as
+    expect: true
+
+  - name: compile-once
+    sourceType: script
+    source: <<< tests/compile_once.as
+    expect: true
+
+  - name: model-get
+    sourceType: script
+    source: <<< tests/model_get.as
+    expect: true
+
+  - name: file-get
+    sourceType: script
+    source: <<< tests/file_get.as
+    expect: true
+
+schedule:
+  - sequential:
+      - metrics-sample
+      - metrics-readback
+  - firehose:
+      # Overnight: duration_s: 28800, and timeout_s: 30000 above.
+      duration_s: 20
+      concurrency: 16
+      fromTests:
+        - cheap
+        - catalog
+        - eval-object
+        - eval-array
+        - eval-closure
+        - eval-throw
+        - self-concat
+        - compile-once
+        - model-get
+        - file-get
+        - metrics-sample
+      policy: roundRobin
+      seed: 1
+      stopOnError: true
