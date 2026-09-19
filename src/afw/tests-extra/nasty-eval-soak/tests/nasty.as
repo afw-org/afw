@@ -1,6 +1,13 @@
-/* Rube Goldberg leak hunt. One request; firehose repeats.
- * Do not return functions from evaluate(compile)/eval_from_file (#342).
- * Closures and methods live in this script. */
+/* Result: true.
+ *
+ * This script does not compute anything useful. If every nested
+ * evaluate/compile, closure, throw, stream, template, and bag of
+ * objects survives, it returns true. If anything leaks, dangles, or
+ * mis-evaluates, an assert fails or the process dies. One request;
+ * the firehose repeats it.
+ *
+ * Closures and methods live in this script. Do not return functions
+ * from evaluate(compile)/eval_from_file (#342). */
 function make_box(n) {
     let v = n;
     return {
