@@ -129,6 +129,30 @@ tests:
       accept: application/json
     expectStatus: 200
 
+  - name: suite-mini
+    sourceType: test_script
+    source: <<< tests/suites/mini_suite.as
+
+  - name: suite-function
+    sourceType: test_script
+    source: <<< tests/suites/function.as
+
+  - name: suite-let-const
+    sourceType: test_script
+    source: <<< tests/suites/let_const.as
+
+  - name: suite-for
+    sourceType: test_script
+    source: <<< tests/suites/for.as
+
+  - name: suite-void
+    sourceType: test_script
+    source: <<< tests/suites/void_result.as
+
+  - name: suite-pool-eval
+    sourceType: test_script
+    source: <<< tests/suites/pool_eval_lifetime.as
+
 schedule:
   - sequential:
       - metrics-sample
@@ -157,6 +181,12 @@ schedule:
         - object-churn
         - for-let
         - rest-get-seed
+        - suite-mini
+        - suite-function
+        - suite-let-const
+        - suite-for
+        - suite-void
+        - suite-pool-eval
         - metrics-sample
       policy: roundRobin
       seed: 1

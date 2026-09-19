@@ -55,17 +55,15 @@ In `orchestration.yaml`:
 
 `timeout_s` must exceed `duration_s`.
 
-Optional extra load (separate `afw` processes, not the soak `afwfcgi`):
-
 ```bash
 ./src/afw/tests-extra/overnight-soak/overnight-run.sh
 ```
 
-That script bumps nothing; it runs the leaf as committed, and can loop
-`language/` + `compiler/` tests on spare cores. Edit yaml first for an
-8h firehose.
+That only wipes the TSV/RSS files and runs this leaf. Edit yaml first
+for an 8h firehose. It does **not** loop `afwdev test -j`.
 
-Pool: eval pin (object/array/closure/throw/concat/compile-once/nested/
-template), model `onGetObject` evaluate(compile), file get/retrieve,
-add/replace/delete churn, REST GET, catalog, for-let / object / array
-churn, push/pop, metrics sample.
+Pool: eval pin, model `onGetObject` evaluate(compile), file CRUD,
+REST GET, catalog, language-shaped scripts, plus **gate `test_script`
+files** sent as FCGI actions (`04-include-test-script` pattern):
+`function`, `let_const`, `for`, `void_result`, `pool_eval_lifetime`,
+`mini_suite`. Copies live in `tests/suites/`.
