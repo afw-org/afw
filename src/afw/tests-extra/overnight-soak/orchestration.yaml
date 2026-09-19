@@ -158,7 +158,8 @@ schedule:
       - metrics-sample
       - metrics-readback
   - firehose:
-      # Overnight: duration_s: 28800, timeout_s: 30000, threads: 16, concurrency: 24.
+      # Overnight (2026-09-19 run): duration_s 28800, timeout_s 30000,
+      # threads 32, concurrency 32, stopOnError false, maxFailRate 0.01.
       duration_s: 20
       concurrency: 16
       fromTests:
