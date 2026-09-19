@@ -1,13 +1,14 @@
 # Smoke: afwdev test -T src/afw/tests-extra/overnight-soak
-# Overnight: bump duration_s / timeout_s / threads / concurrency in this file
-#   (see README.md). Default is a short smoke so -T tests-extra is not 8h.
+# Overnight: see README.md (duration_s / timeout_s / threads).
 #
-# Metrics TSV: /tmp/afw-overnight-soak/metrics.tsv
+# Metrics: /tmp/afw-overnight-soak/metrics.tsv
 #   uuid \t process_rss_kb \t pool_bytes_in_use \t afw_adapter_getObjectCount
+# RSS first/last: rss-first.txt / rss-last.txt (KB). rss_check after firehose.
 version: 1
 description: >
-  One hermetic afwfcgi, mixed request pool (eval pin, model onGetObject
-  evaluate(compile), catalog, file, throw), metrics sample appends TSV.
+  One hermetic afwfcgi, mixed pool (eval pin, model onGetObject
+  evaluate(compile), catalog, file CRUD, REST, language-shaped scripts).
+  Sampler appends TSV; after firehose RSS must not grow 64 MiB from first sample.
 host: afwfcgi
 afwfcgi:
   threads: 8
@@ -25,6 +26,10 @@ tests:
     sourceType: script
     source: <<< tests/metrics_readback.as
     expect: true
+
+  - name: rss-check
+    sourceType: script
+    source: <<< tests/rss_check.as
 
   - name: cheap
     sourceType: script
@@ -65,6 +70,16 @@ tests:
     source: <<< tests/compile_once.as
     expect: true
 
+  - name: nested-eval
+    sourceType: script
+    source: <<< tests/nested_eval.as
+    expect: true
+
+  - name: template
+    sourceType: script
+    source: <<< tests/template.as
+    expect: true
+
   - name: model-get
     sourceType: script
     source: <<< tests/model_get.as
@@ -75,12 +90,49 @@ tests:
     source: <<< tests/file_get.as
     expect: true
 
+  - name: adapter-churn
+    sourceType: script
+    source: <<< tests/adapter_churn.as
+    expect: true
+
+  - name: retrieve
+    sourceType: script
+    source: <<< tests/retrieve.as
+
+  - name: array-churn
+    sourceType: script
+    source: <<< tests/array_churn.as
+    expect: true
+
+  - name: array-push-pop
+    sourceType: script
+    source: <<< tests/array_push_pop.as
+    expect: true
+
+  - name: object-churn
+    sourceType: script
+    source: <<< tests/object_churn.as
+    expect: true
+
+  - name: for-let
+    sourceType: script
+    source: <<< tests/for_let.as
+    expect: true
+
+  - name: rest-get-seed
+    feed:
+      kind: rest
+      method: GET
+      path: /backend/Demo/seed
+      accept: application/json
+    expectStatus: 200
+
 schedule:
   - sequential:
       - metrics-sample
       - metrics-readback
   - firehose:
-      # Overnight: duration_s: 28800, and timeout_s: 30000 above.
+      # Overnight: duration_s: 28800, timeout_s: 30000, threads: 16, concurrency: 24.
       duration_s: 20
       concurrency: 16
       fromTests:
@@ -92,9 +144,20 @@ schedule:
         - eval-throw
         - self-concat
         - compile-once
+        - nested-eval
+        - template
         - model-get
         - file-get
+        - adapter-churn
+        - retrieve
+        - array-churn
+        - array-push-pop
+        - object-churn
+        - for-let
+        - rest-get-seed
         - metrics-sample
       policy: roundRobin
       seed: 1
       stopOnError: true
+  - sequential:
+      - rss-check
