@@ -168,6 +168,11 @@ tests:
     source: <<< tests/deep_blocks.as
     expect: true
 
+  - name: inner-try
+    sourceType: script
+    source: <<< tests/inner_try.as
+    expect: true
+
 schedule:
   - sequential:
       - nested-eval-scalar
@@ -201,6 +206,7 @@ schedule:
       - try-keep-result
       - for-of-eval
       - deep-blocks
+      - inner-try
   - firehose:
       duration_s: 8
       concurrency: 2
