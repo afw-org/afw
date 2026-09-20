@@ -62,8 +62,8 @@
  *   call destroy. "Children remaining" is a leaked child.
  * - destroy: storage-only (must not fail). Call `run_cleanups`
  *   first if callbacks must run (`xctx_release` does both).
- * - `afw_pool_release_delayed()`: postorder last-release delayed
- *   pools. ENDTRY after a caught error.
+ * - `afw_pool_release_delayed()`: last-release scopes delayed
+ *   while error_processing_count > 0. ENDTRY after a caught error.
  * - `env->p` is process lifetime (valgrind still reachable is
  *   intended).
  *

@@ -2140,28 +2140,18 @@ afw_pool_release_delayed(
     const afw_pool_t *instance,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_self_t *self;
-    afw_pool_internal_self_t *child;
-    afw_pool_internal_self_t *next;
+    const afw_pool_t *p;
+    afw_pool_internal_scope_self_t *delay;
 
-    if (!instance || !xctx || !xctx->error_delaying_release_first) {
+    (void)instance;
+    if (!xctx) {
         return;
     }
-    self = (afw_pool_internal_self_t *)instance;
-    child = self->first_child;
-    while (child) {
-        next = child->next_sibling;
-        afw_pool_release_delayed(&child->pub, xctx);
-        child = next;
-    }
-    if (self->pub.inf == &impl_afw_pool_scope_inf) {
-        afw_pool_internal_scope_self_t *delay;
-
-        delay = impl_as_scope(self);
-        if (delay->error_delaying_release) {
-            impl_clear_delay(delay, xctx);
-            afw_pool_release(&self->pub, xctx);
-        }
+    while (xctx->error_delaying_release_first) {
+        p = xctx->error_delaying_release_first;
+        delay = impl_as_scope((afw_pool_internal_self_t *)p);
+        impl_clear_delay(delay, xctx);
+        afw_pool_release(p, xctx);
     }
 }
 
