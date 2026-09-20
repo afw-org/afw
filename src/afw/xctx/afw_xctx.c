@@ -80,17 +80,17 @@ afw_xctx_internal_create_initialize(
 
     if (!error) {
         /* No xctx yet; cannot AFW_THROW. */
-        error = afw_pool_calloc_unhandled(p, sizeof(afw_error_t), NULL);
+        error = afw_pool_internal_calloc_unhandled(p, sizeof(afw_error_t), NULL);
         if (!error) {
             return NULL;
         }
     }
 
     /* Initialize self. evaluation_stack is not ready; no AFW_TRY. */
-    self = afw_pool_calloc_unhandled(p, sizeof(afw_xctx_t), NULL);
+    self = afw_pool_internal_calloc_unhandled(p, sizeof(afw_xctx_t), NULL);
     if (!self) {
         AFW_THROW_UNHANDLED_ERROR(unhandled_error, error, general,
-            na, 0, "afw_pool_calloc_unhandled() failed");
+            na, 0, "afw_pool_internal_calloc_unhandled() failed");
     }
     self->p = p;
     self->script_result = afw_value_undefined;
@@ -836,7 +836,7 @@ static void impl_scope_debug(
 
     printf("\n");
 
-    // afw_pool_print_debug_info(8, xctx->p, xctx);
+    // afw_pool_internal_print_debug_info(8, xctx->p, xctx);
     // printf("\n");
 
 }

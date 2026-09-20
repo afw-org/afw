@@ -47,6 +47,8 @@
 #include "afw_object_internal.h"
 #include "afw_object_view_internal.h"
 #include "afw_pool_internal.h"
+#include "afw_pool_heap_internal.h"
+#include "afw_pool_tracker_internal.h"
 #include "afw_request_handler_internal.h"
 #include "afw_runtime_internal.h"
 #include "afw_runtime_object_maps.h"

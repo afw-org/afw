@@ -30,7 +30,7 @@ AFW_BEGIN_DECLARES
  *
  * No pool yet: C calloc for the struct, C calloc for
  * memory_region. Does not throw. Caller passes the result to
- * afw_pool_internal_create_base_pool(). On failure after this
+ * afw_pool_heap_internal_create_base_pool(). On failure after this
  * returns, call afw_thread_internal_release_base_thread().
  */
 afw_thread_t *

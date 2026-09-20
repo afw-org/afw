@@ -287,12 +287,12 @@ afw_environment_create(
     thread = afw_thread_internal_create_base_thread();
     if (!thread) goto early_error;
 
-    p = afw_pool_internal_create_base_pool(thread);
+    p = afw_pool_heap_internal_create_base_pool(thread);
     if (!p) goto early_error;
     thread->p = p;
 
     /* Allocate cleared afw_error_t. No xctx/TRY yet. */
-    error = afw_pool_calloc_unhandled(p, sizeof(afw_error_t), NULL);
+    error = afw_pool_internal_calloc_unhandled(p, sizeof(afw_error_t), NULL);
     if (!error) {
         *environment_create_error = &impl_early_error;
         goto early_error;
@@ -312,11 +312,11 @@ afw_environment_create(
     }
 
     /* Allocate memory for env. Still before xctx exists. */
-    env = afw_pool_calloc_unhandled(p,
+    env = afw_pool_internal_calloc_unhandled(p,
         sizeof(afw_environment_internal_t), NULL);
     if (!env) {
         AFW_THROW_UNHANDLED_ERROR(&unhandled_error, error, general, na, 0,
-            "afw_pool_calloc_unhandled() failed");
+            "afw_pool_internal_calloc_unhandled() failed");
     };
     env->p = p;
     env->pool_chunk_bytes =
@@ -370,7 +370,7 @@ afw_environment_create(
     {
         const afw_pool_t *job;
 
-        job = afw_pool_internal_heap_create_st_for_thread(
+        job = afw_pool_heap_internal_create_st_for_thread(
             p, true, env->xctx_chunk_min, thread, xctx);
         xctx->p = job;
         thread->p = job;

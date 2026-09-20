@@ -25,7 +25,7 @@ alwaysApply: false
 | `value/` | Immutable value graph, evaluate/decompile (`afw-script-eval`, `afw-value-memory`) |
 | `compile/` | Syntaxes → values (`afw-compile`, `afw-compiler-ebnf`) |
 | `xctx/` | Execution context, scopes, statement_flow, qualifier/eval stacks (`afw-qualified-variables`) |
-| `pool/` | Hierarchical pools / subpools |
+| `pool/` | Hierarchical pools — shared `afw_pool.c`, heap/scope `afw_pool_heap.c`, tracker `afw_pool_tracker.c` |
 | `function/` | Built-in Adaptive function bodies (`afw-function`) |
 | `data_type/` | Helpers atop generated data-type bindings |
 | `environment/` | Registries + `afw_environment_register_core.c` bootstrap (`afw-environment`) |
