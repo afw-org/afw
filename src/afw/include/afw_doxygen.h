@@ -88,7 +88,7 @@
  * afw_xctx_malloc() / afw_xctx_free(),
  * afw_pool_release_value_at_cleanup().
  * `afw_memory_malloc` / `calloc` / `free` (`p, xctx` last) live in
- * `afw_memory.h`. ST heap chunks may come from @ref afw_memory_region.
+ * `afw_memory.h`. Heap chunks come from @ref afw_memory_region.
  *
  * @{
  */

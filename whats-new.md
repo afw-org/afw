@@ -1374,6 +1374,7 @@ Process environment variables and invocation info are created at **environment c
 | **`limitRequestPoolBytes`** | Request-thread ST asked-for cap (default 64MiB; **0** = unlimited). CLI is uncapped unless application conf sets this |
 | **`limitCStackHeadroomBytes`** | Minimum remaining C stack before `payload_too_large` (default 256KiB; **0** = unlimited) |
 | **`chunkMin` / `compileChunkMin` / `xctxChunkMin`** | Heap posix_memalign minima (rounded up to 4k) |
+| **`memoryRegionFreeListMaxBytes`** | Cap on the thread heap-chunk reuse list (default 256KiB; **0** = posix_memalign/free every get/free) |
 
 Example:
 
@@ -1383,7 +1384,7 @@ assert(length(process::args) >= 1);
 const home = environment::HOME;
 ```
 
-**Not on `process::`:** HTTP/CGI parameters (`request::`) or a live-updating cwd. Pool **currents and peaks** also appear on **`_AdaptiveServer_/current`** (same process-wide numbers). Limits and chunk mins are on **`process::`**. Over-limit Adaptive eval throws **`payload_too_large`** (HTTP **413**). Optional **`type=application`** conf overrides any `limit*` / chunk min (`0` on a limit = unlimited). Flag **`response:metrics`** adds this-request `metrics` on `_AdaptiveResponse_` (off by default).
+**Not on `process::`:** HTTP/CGI parameters (`request::`) or a live-updating cwd. Pool **currents and peaks**, **`pid`**, **`programName`**, and **`rss`** also appear on **`_AdaptiveServer_/current`** (same process-wide numbers). Limits, chunk mins, and **`memoryRegionFreeListMaxBytes`** are on **`process::`**. Over-limit Adaptive eval throws **`payload_too_large`** (HTTP **413**). Optional **`type=application`** conf overrides any `limit*` / chunk min / this cap (`0` on a limit = unlimited). Flag **`response:metrics`** adds this-request `metrics` on `_AdaptiveResponse_` (off by default).
 
 See [Process telemetry](#process-telemetry-and-request-caps-issue-329).
 

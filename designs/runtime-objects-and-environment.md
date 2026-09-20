@@ -261,7 +261,8 @@ Created at environment create (non-exhaustive):
 | `authorization_handler_id_anchor_rw_lock` | Auth handler anchors / stopping |
 | `active_log_list_lock` | Active logs |
 | `flags_lock` | Flags |
-| `multithreaded_pool_lock` | Nested pool / MT pool |
+
+MT pool methods take the thread `afw_memory_region` mutex (no env `multithreaded_pool_lock`).
 
 #149 work should **inventory and reuse** these (and any service/adapter-local locks) rather than inventing a parallel locking story.
 
