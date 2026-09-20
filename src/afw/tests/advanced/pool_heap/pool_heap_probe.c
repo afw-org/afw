@@ -502,6 +502,15 @@ impl_tracker_parent(afw_xctx_t *xctx)
         return impl_fail("tracker_parent",
             "tracker under env->p heap failed");
     }
+    {
+        const afw_pool_internal_inf_implementation_specific_t *spec;
+
+        spec = tracker->inf->rti.implementation_specific;
+        if (!spec || !spec->is_multithreaded) {
+            return impl_fail("tracker_parent",
+                "tracker under env->p is not MT inf");
+        }
+    }
     afw_pool_release(tracker, xctx);
     mt = afw_pool_multithread_create(xctx->env->p, xctx);
     if (!afw_pool_internal_is_heap_multithreaded(mt)) {

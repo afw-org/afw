@@ -663,7 +663,7 @@ impl_afw_adapter_create_adapter_session (
     impl_afw_adapter_session_self_t *session;
     const afw_pool_t *session_p;
 
-    session_p = afw_pool_create(xctx->p, xctx);
+    session_p = afw_pool_tracker_create(xctx->p, xctx);
     session = afw_pool_calloc_type(session_p, impl_afw_adapter_session_self_t, xctx);
     session->pub.inf = &impl_afw_adapter_session_inf;
     session->pub.adapter = self;

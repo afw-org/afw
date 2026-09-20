@@ -186,7 +186,7 @@ impl_refresh_default_flags(afw_xctx_t *xctx)
     if (!internal_env->default_flag_ids) return;
 
     AFW_LOCK_BEGIN(xctx->env->flags_lock) {
-        temp_p = afw_pool_create(xctx->p, xctx);
+        temp_p = afw_pool_tracker_create(xctx->p, xctx);
         flags_count = env->flags_count_allocated;
         flags = afw_pool_calloc(temp_p, sizeof(afw_boolean_t) * flags_count,
             xctx);

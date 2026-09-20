@@ -43,7 +43,7 @@ afw_associative_array_create(
     const afw_pool_t *new_p;
 
     /* Create new pool for object associative array. */
-    new_p = afw_pool_create(p, xctx);
+    new_p = afw_pool_tracker_create(p, xctx);
 
     /* Allocate self and initialize. */
     self = afw_pool_calloc_type(new_p, impl_associative_array_t, xctx);

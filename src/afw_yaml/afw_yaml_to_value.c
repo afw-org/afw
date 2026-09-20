@@ -530,7 +530,7 @@ const afw_object_t * afw_yaml_to_object(
     }
 
     /* If not cede_p, allocate a subpool owned by the created entity. */
-    use_p = (cede_p) ? p : afw_pool_create(p, xctx);
+    use_p = (cede_p) ? p : afw_pool_tracker_create(p, xctx);
 
     /*
      * Entity always cedes use_p (caller already ceded p, or we created a

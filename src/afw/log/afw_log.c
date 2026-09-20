@@ -483,7 +483,7 @@ impl_write_formatted_message(
     AFW_TRY {
 
         if (!wa->p) {
-            wa->p = afw_pool_create(xctx->p, xctx);
+            wa->p = afw_pool_tracker_create(xctx->p, xctx);
         }
 
         /* Add qualifiers, if needed.  Note: last one pushed has precedence. */

@@ -26,8 +26,8 @@ const afw_adapter_session_t *
 {
     <afwdev {prefixed_interface_name}>_self_t *self;
 
-    /* Using a subpool of the p passed, allocate and initialize self. */
-    p = afw_pool_create(p, xctx);
+    /* Using a tracker subpool of the p passed, allocate and initialize self. */
+    p = afw_pool_tracker_create(p, xctx);
     self = afw_pool_calloc_type(p,AFW_ADAPTER_SESSION_SELF_T, xctx);
     self->pub.inf = &impl_afw_adapter_session_inf;
     self->pub.p = p;

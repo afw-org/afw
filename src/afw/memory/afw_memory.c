@@ -388,7 +388,7 @@ afw_memory_create_writer(
     afw_memory_writer_t *writer;
     const afw_pool_t *self_p;
 
-    self_p = afw_pool_create(p, xctx);
+    self_p = afw_pool_tracker_create(p, xctx);
     self = afw_pool_calloc_type(self_p, impl_memory_self_t, xctx);
     writer = (afw_memory_writer_t *)self;
     writer->callback = impl_callback;

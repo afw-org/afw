@@ -80,7 +80,7 @@ main(int argc, char **argv)
     rc = 0;
 
     if (strcmp(case_name, "overflow") == 0) {
-        p = afw_pool_create(xctx->p, xctx);
+        p = afw_pool_tracker_create(xctx->p, xctx);
         rc = impl_expect_overflow(p, xctx, "overflow");
         afw_pool_release(p, xctx);
     }

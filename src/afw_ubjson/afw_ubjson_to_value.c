@@ -547,7 +547,7 @@ afw_ubjson_to_object(
     parser.cursor = 0;
     parser.embedding_object = NULL;
     parser.property_name = NULL;
-    parser.p = (cede_p) ? p : afw_pool_create(p, xctx);
+    parser.p = (cede_p) ? p : afw_pool_tracker_create(p, xctx);
     parser.cede_p = true;
     parser.depth = 0;
     parser.path = afw_object_path_make(

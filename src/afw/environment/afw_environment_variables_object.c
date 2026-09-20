@@ -125,7 +125,7 @@ afw_environment_create_environment_variables_object(
         AFW_UTF8_LITERAL("/afw/_AdaptiveEnvironmentVariables_/current");
 
     /* Allocate memory for self and initialize. */
-    p = afw_pool_create(xctx->p, xctx);
+    p = afw_pool_tracker_create(xctx->p, xctx);
     self = afw_pool_calloc_type(p, impl_self_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;

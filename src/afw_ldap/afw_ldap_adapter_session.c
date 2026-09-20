@@ -362,7 +362,7 @@ impl_afw_adapter_session_add_object(
     }
 
     /* Create mods vector. */
-    p = afw_pool_create(self->pub.p, xctx);
+    p = afw_pool_tracker_create(self->pub.p, xctx);
     mods = afw_vector_create(impl_ldap_mod_p_vector_t, 10, p, xctx);
 
     /* Add objectClass. */
@@ -464,7 +464,7 @@ impl_afw_adapter_session_modify_object(
     }
 
     /* Create mods. */
-    p = afw_pool_create(self->pub.p, xctx);
+    p = afw_pool_tracker_create(self->pub.p, xctx);
     mods = afw_vector_create(impl_ldap_mod_p_vector_t, 10, p, xctx);
     afw_memory_clear(&mod);
     for (e = entry; *e; e++) {

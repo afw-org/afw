@@ -310,7 +310,7 @@ impl_afw_adapter_session_retrieve_objects(
                 len -= adapter->filename_suffix->len;
             }
 
-            obj_p = afw_pool_create(p, xctx);
+            obj_p = afw_pool_tracker_create(p, xctx);
             object_id = afw_utf8_create(ent.name_z, len, obj_p, xctx);
             full_path = afw_utf8_concat(obj_p, xctx,
                 adapter->root,
@@ -368,7 +368,7 @@ impl_afw_adapter_session_get_object(
     const afw_pool_t *obj_p;
 
     /* Create pool for object and related memory. */
-    obj_p = afw_pool_create(p, xctx);
+    obj_p = afw_pool_tracker_create(p, xctx);
 
     /* Determine full path. */
     full_path = impl_get_full_path(adapter, object_type_id, object_id,

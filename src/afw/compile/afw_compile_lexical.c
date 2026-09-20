@@ -2460,7 +2460,7 @@ afw_compile_shared_create(
 
     shared = afw_pool_calloc_type(p, afw_compile_shared_t, xctx);
     shared->p = p;
-    shared->temp_p = afw_pool_create(p, xctx);
+    shared->temp_p = afw_pool_tracker_create(p, xctx);
     shared->string_literals = afw_hash_table_create(
         afw_void_hash_table_t, shared->temp_p, xctx);
 
@@ -2536,7 +2536,7 @@ afw_compile_lexical_parser_create(
     parser->shared_created = shared_created;
     if (parser->shared && !parser->shared->temp_p) {
         afw_compile_shared_t *s = (afw_compile_shared_t *)parser->shared;
-        s->temp_p = afw_pool_create(s->p, xctx);
+        s->temp_p = afw_pool_tracker_create(s->p, xctx);
         s->string_literals = afw_hash_table_create(
             afw_void_hash_table_t, s->temp_p, xctx);
     }

@@ -212,8 +212,9 @@ afw_pool_multithread_create_as_managed_p(
  * @param xctx of caller.
  * @return tracker. managed_p is the ancestor heap.
  *
- * Single-thread only, same thread as the parent. No last-release
- * delay on throw. For evaluation `{ }`, use afw_pool_scope_create().
+ * If the parent is multithreaded, methods are lock wrappers on
+ * the same region mutex as MT heaps. No last-release delay on
+ * throw. For evaluation `{ }`, use afw_pool_scope_create().
  * The tracker header is a parent-pool block (`free_memory` on
  * destroy).
  */

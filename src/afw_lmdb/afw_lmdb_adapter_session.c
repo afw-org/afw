@@ -555,7 +555,7 @@ void afw_lmdb_adapter_session_dump_objects(
 
 
         /* create temporary pool for object memory */
-        obj_p = afw_pool_create(p, xctx);
+        obj_p = afw_pool_tracker_create(p, xctx);
 
         afw_lmdb_internal_get_key(&rawKey, &object_type, &uuid);
         if (object_type.len == 0) {
