@@ -5,7 +5,7 @@ Heap and heap-tracker pool implementations.
 
 Script cannot see the allocated list or free-list reuse.
 This probe calls the C pool API and, for list/header checks, includes
-afw_pool_internal.h from the src tree.
+afw_pool_tracker_internal.h from the src tree (pulls heap + shared).
 """
 
 import os
@@ -27,7 +27,7 @@ def _afw_src():
 
 
 def _pool_src():
-    """src/afw/pool — afw_pool_internal.h is not an installed header.
+    """src/afw/pool — pool *_internal.h are not installed headers.
 
     run_c_probe() searches extra -I before the install include dir so a
     leftover copy in the prefix cannot win.
