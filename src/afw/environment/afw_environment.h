@@ -15,10 +15,11 @@
  * Compile-time defaults copied into `afw_environment_t` at environment
  * create. Do not use these directly; use `xctx->env-><field>`.
  *
- * Exception: the base pool is created before env exists
- * (`afw_pool_internal_create_base_pool()`). That one call may use
- * `AFW_ENVIRONMENT_CHUNK_MIN`. After env create, heap `chunk_min == 0`
- * means `env->chunk_min`.
+ * Exception: the base thread is created before env or the base pool
+ * exist (`afw_thread_internal_create_base_thread()`), then
+ * `afw_pool_internal_create_base_pool(thread)`. That pool create may
+ * use `AFW_ENVIRONMENT_CHUNK_MIN`. After env create, heap
+ * `chunk_min == 0` means `env->chunk_min`.
  */
 #define AFW_ENVIRONMENT_LIMIT_EVALUATION_STACK_COUNT ((afw_size_t)500)
 #define AFW_ENVIRONMENT_LIMIT_REQUEST_POOL_BYTES \

@@ -3405,24 +3405,6 @@ afw_self_v_a_lock_log_list_description = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_lock_multithreaded_pool = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_a_lock_multithreaded_pool)
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_lock_multithreaded_pool_brief = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_a_lock_multithreaded_pool_brief)
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_lock_multithreaded_pool_description = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_a_lock_multithreaded_pool_description)
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_log_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_log_description)
@@ -9270,6 +9252,12 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_log_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_log_t)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_afw_memory_region = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_afw_memory_region)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -57537,6 +57525,12 @@ afw_self_v_zz__f720266876f9 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__f75861dff9f9 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__f75861dff9f9)
+};
+
+const afw_value_string_t
 afw_self_v_zz__f7741a323316 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__f7741a323316)
@@ -63099,6 +63093,7 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_afw_log_factory,
     &afw_self_v_afw_log_factory_t,
     &afw_self_v_afw_log_t,
+    &afw_self_v_afw_memory_region,
     &afw_self_v_afw_memory_t,
     &afw_self_v_afw_model_internal_get_current_adapterId,
     &afw_self_v_afw_model_internal_get_current_adapterTypeSpecific,

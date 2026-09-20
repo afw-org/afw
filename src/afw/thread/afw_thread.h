@@ -68,6 +68,15 @@ struct afw_thread_s {
     /** @brief The thread specific pool for the thread. */
     const afw_pool_t *p;
 
+    /**
+     * @brief Heap chunk reuse for this thread. NULL until create.
+     *
+     * Created at thread create (including base). Heaps call
+     * afw_memory_region_get/free on this. release() is thread death
+     * only.
+     */
+    const afw_memory_region_t *memory_region;
+
     /** @brief The base xctx for the thread. */
     afw_xctx_t *xctx;
 

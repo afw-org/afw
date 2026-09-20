@@ -136,9 +136,6 @@ a_flag_compile_noOptimize=compile:noOptimize
 a_flag_compile_noOptimize_brief=Evaluate values that have not been optimized
 a_flag_compile_noOptimize_description=Normally, the optimized version of adaptive values are evaluated. Use this flag to indicate that the value before optimization should be evaluated instead. This should only be needed when debugging afw core. Process default; a script may override for one compile unit with #compile noOptimize; without changing this flag for the rest of the process (#compile noTypeCheck; does not clear noOptimize on the unit).
 
-a_lock_multithreaded_pool=multithreaded_pool
-a_lock_multithreaded_pool_brief=Multithreaded pool
-a_lock_multithreaded_pool_description=This lock is used internally by afw_pool.c when accessing multithreaded pools.
 
 a_lock_environment=environment:registry
 a_lock_environment_brief=Environment registry lock

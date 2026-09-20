@@ -88,7 +88,7 @@
  * afw_xctx_malloc() / afw_xctx_free(),
  * afw_pool_release_value_at_cleanup().
  * `afw_memory_malloc` / `calloc` / `free` (`p, xctx` last) live in
- * `afw_memory.h`.
+ * `afw_memory.h`. ST heap chunks may come from @ref afw_memory_region.
  *
  * @{
  */
@@ -98,6 +98,29 @@
  * @ingroup afw_c_api_internal
  *
  * Pool implementation details for libafw only.
+ */
+
+/** @} */
+
+/**
+ * @defgroup afw_memory_region Memory region
+ *
+ * Thread-owned reuse of page-aligned regions for heap chunks.
+ * Not a pool. Create with afw_memory_region_create(); the instance
+ * is C calloc and release() frees it. Cap 0 is posix_memalign/free
+ * on every get/free. Thread holds the pointer; release is thread
+ * death. Call methods via afw_memory_region_get() /
+ * afw_memory_region_free() / afw_memory_region_cleanup() /
+ * afw_memory_region_release().
+ *
+ * @{
+ */
+
+/**
+ * @defgroup afw_memory_region_internal Memory region internal
+ * @ingroup afw_c_api_internal
+ *
+ * memory_region implementation details for libafw only.
  */
 
 /** @} */
@@ -589,8 +612,15 @@
  *
  * Thread create/join helpers and thread attributes.
  *
- * AFW often uses APR thread primitives under these wrappers. Follow pool
- * and xctx rules when sharing data across threads.
+ * Follow pool and xctx rules when sharing data across threads.
+ * Each thread holds an @ref afw_memory_region for heap chunks.
+ */
+
+/**
+ * @defgroup afw_thread_internal Thread internal
+ * @ingroup afw_c_api_internal
+ *
+ * Base-thread bootstrap before the process pool exists.
  */
 
 /**

@@ -149191,6 +149191,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__f75861dff9f9 \
+    "Thread-owned reuse of page-aligned regions for heap chunks.\n      Not a pool. get() writes a 4k-aligned region and its actual\n      size through pointer parameters (size is requested on the way\n      in, actual on the way out). free() returns a region to a capped\n      list or to the system. cleanup() drains the list and keeps this\n      instance. release() is last-release of this instance (thread\n      death): cleanup then free the instance. Call methods via\n      afw_memory_region_*() macros. See group afw_memory_region."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f75861dff9f9 */
+#define afw_s_zz__f75861dff9f9 \
+    (&afw_self_v_zz__f75861dff9f9.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f75861dff9f9 */
+#define afw_self_s_zz__f75861dff9f9 \
+    (afw_self_v_zz__f75861dff9f9.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__f75861dff9f9 */
+extern const afw_value_string_t \
+    afw_self_v_zz__f75861dff9f9;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f75861dff9f9 */
+#define afw_z_zz__f75861dff9f9 \
+    (afw_self_v_zz__f75861dff9f9.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__f75861dff9f9 */
+#define afw_v_zz__f75861dff9f9 \
+    (&afw_self_v_zz__f75861dff9f9.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__f7741a323316 \
     "AFW shared object - libafwcrypto (OpenSSL-backed crypto functions for Adaptive Script; issue #74)."
 

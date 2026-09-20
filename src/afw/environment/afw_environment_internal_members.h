@@ -191,9 +191,6 @@
     /** @brief Lock for whole environment. */
     const afw_lock_t *environment_lock;
 
-    /** @brief Lock used internal to afw_pool.c. */
-    const afw_lock_t *multithreaded_pool_lock;
-
     /** @brief Lock for protecting changes to adapter id anchors. */
     const afw_lock_t *adapter_id_anchor_lock;
 

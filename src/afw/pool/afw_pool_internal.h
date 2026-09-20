@@ -295,8 +295,13 @@ struct afw_pool_internal_self_with_free_memory_head_s {
 };
 
 
+/**
+ * Create the process base MT pool. thread is the base thread already
+ * created; may be NULL only if create failed earlier. xctx does not
+ * exist yet.
+ */
 const afw_pool_t *
-afw_pool_internal_create_base_pool();
+afw_pool_internal_create_base_pool(const afw_thread_t *thread);
 
 afw_boolean_t
 afw_pool_internal_is_heap(const afw_pool_t *p);

@@ -14667,84 +14667,6 @@ afw_self_v_a_lock_log_list_description;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_a_lock_multithreaded_pool \
-    "multithreaded_pool"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_lock_multithreaded_pool */
-#define afw_s_a_lock_multithreaded_pool \
-    (&afw_self_v_a_lock_multithreaded_pool.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_lock_multithreaded_pool */
-#define afw_self_s_a_lock_multithreaded_pool \
-    (afw_self_v_a_lock_multithreaded_pool.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_lock_multithreaded_pool */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_lock_multithreaded_pool;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_lock_multithreaded_pool */
-#define afw_z_a_lock_multithreaded_pool \
-    (afw_self_v_a_lock_multithreaded_pool.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_lock_multithreaded_pool */
-#define afw_v_a_lock_multithreaded_pool \
-    (&afw_self_v_a_lock_multithreaded_pool.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_lock_multithreaded_pool_brief \
-    "Multithreaded pool"
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_lock_multithreaded_pool_brief */
-#define afw_s_a_lock_multithreaded_pool_brief \
-    (&afw_self_v_a_lock_multithreaded_pool_brief.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_lock_multithreaded_pool_brief */
-#define afw_self_s_a_lock_multithreaded_pool_brief \
-    (afw_self_v_a_lock_multithreaded_pool_brief.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_lock_multithreaded_pool_brief */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_lock_multithreaded_pool_brief;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_lock_multithreaded_pool_brief */
-#define afw_z_a_lock_multithreaded_pool_brief \
-    (afw_self_v_a_lock_multithreaded_pool_brief.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_lock_multithreaded_pool_brief */
-#define afw_v_a_lock_multithreaded_pool_brief \
-    (&afw_self_v_a_lock_multithreaded_pool_brief.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_a_lock_multithreaded_pool_description \
-    "This lock is used internally by afw_pool.c when accessing multithreaded pools."
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_lock_multithreaded_pool_description */
-#define afw_s_a_lock_multithreaded_pool_description \
-    (&afw_self_v_a_lock_multithreaded_pool_description.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_a_lock_multithreaded_pool_description */
-#define afw_self_s_a_lock_multithreaded_pool_description \
-    (afw_self_v_a_lock_multithreaded_pool_description.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_a_lock_multithreaded_pool_description */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_a_lock_multithreaded_pool_description;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_a_lock_multithreaded_pool_description */
-#define afw_z_a_lock_multithreaded_pool_description \
-    (afw_self_v_a_lock_multithreaded_pool_description.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_a_lock_multithreaded_pool_description */
-#define afw_v_a_lock_multithreaded_pool_description \
-    (&afw_self_v_a_lock_multithreaded_pool_description.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_a_log_description \
     "This configuration type adds a log and corresponding service to this Adaptive Framework environment."
 
@@ -40091,6 +40013,32 @@ afw_self_v_afw_log_t;
 /** @brief 'const afw_value_t *' for AFW_Q_afw_log_t */
 #define afw_v_afw_log_t \
     (&afw_self_v_afw_log_t.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afw_memory_region \
+    "afw_memory_region"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afw_memory_region */
+#define afw_s_afw_memory_region \
+    (&afw_self_v_afw_memory_region.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afw_memory_region */
+#define afw_self_s_afw_memory_region \
+    (afw_self_v_afw_memory_region.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afw_memory_region */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afw_memory_region;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afw_memory_region */
+#define afw_z_afw_memory_region \
+    (afw_self_v_afw_memory_region.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afw_memory_region */
+#define afw_v_afw_memory_region \
+    (&afw_self_v_afw_memory_region.pub)
 
 
 

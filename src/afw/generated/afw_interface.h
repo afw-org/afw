@@ -7114,6 +7114,283 @@ struct afw_pool_inf_s {
 /** @} */
 
 /**
+ * @addtogroup afw_memory_region_interface afw_memory_region
+ *
+ * Thread-owned reuse of page-aligned regions for heap chunks.
+ * Not a pool. get() writes a 4k-aligned region and its actual
+ * size through pointer parameters (size is requested on the way
+ * in, actual on the way out). free() returns a region to a capped
+ * list or to the system. cleanup() drains the list and keeps this
+ * instance. release() is last-release of this instance (thread
+ * death): cleanup then free the instance. Call methods via
+ * afw_memory_region_*() macros. See group afw_memory_region.
+ *
+ * @{
+ */
+
+
+/**
+ * @brief Public instance layout for interface `afw_memory_region`.
+ *
+ * API type name is `afw_memory_region_t` (see opaques).
+ * Call methods with `afw_memory_region_<method>(…)` macros.
+ * Implementations often embed this as the first field of
+ * a larger self struct in .c files.
+ */
+struct afw_memory_region_s {
+    const afw_memory_region_inf_t *inf;
+
+    /**
+     * Bytes currently handed out to heaps (not on the free list).
+     */
+    afw_size_t bytes_in_use;
+
+    /**
+     * Bytes sitting on the free list.
+     */
+    afw_size_t free_list_bytes;
+
+    /**
+     * Count of regions currently handed out.
+     */
+    afw_size_t regions_in_use;
+
+    /**
+     * Count of regions on the free list.
+     */
+    afw_size_t free_list_count;
+
+    /**
+     * get() satisfied from the free list.
+     */
+    afw_size_t get_hits;
+
+    /**
+     * get() that called posix_memalign.
+     */
+    afw_size_t get_misses;
+
+    /**
+     * free() that called free() because the list was at cap
+     * (including cap 0).
+     */
+    afw_size_t free_over_cap;
+
+    /**
+     * High-water of bytes_in_use.
+     */
+    afw_size_t peak_bytes_in_use;
+
+    /**
+     * High-water of free_list_bytes.
+     */
+    afw_size_t peak_free_list_bytes;
+
+    /**
+     * Cap on free_list_bytes. 0 means every free() goes to the
+     * system (today's posix_memalign/free).
+     */
+    afw_size_t free_list_max_bytes;
+};
+
+/** @brief String name of interface `afw_memory_region` (`AFW_MEMORY_REGION_INTERFACE_NAME`). */
+#define AFW_MEMORY_REGION_INTERFACE_NAME \
+"afw_memory_region"
+
+/** @sa afw_memory_region_get() */
+typedef void
+(*afw_memory_region_get_t)(
+    const afw_memory_region_t * instance,
+    void ** region,
+    afw_size_t * size,
+    afw_xctx_t * xctx);
+
+/** @sa afw_memory_region_free() */
+typedef void
+(*afw_memory_region_free_t)(
+    const afw_memory_region_t * instance,
+    void * region,
+    afw_size_t size,
+    afw_xctx_t * xctx);
+
+/** @sa afw_memory_region_cleanup() */
+typedef void
+(*afw_memory_region_cleanup_t)(
+    const afw_memory_region_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_memory_region_lock() */
+typedef void
+(*afw_memory_region_lock_t)(
+    const afw_memory_region_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_memory_region_unlock() */
+typedef void
+(*afw_memory_region_unlock_t)(
+    const afw_memory_region_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_memory_region_release() */
+typedef void
+(*afw_memory_region_release_t)(
+    const afw_memory_region_t * instance,
+    afw_xctx_t * xctx);
+
+/**
+ * @brief Method table (inf) for interface `afw_memory_region`.
+ *
+ * API type name is `afw_memory_region_inf_t`.
+ * Pointed to by the instance `inf` field; call macros use it.
+ */
+struct afw_memory_region_inf_s {
+    afw_interface_implementation_rti_t rti;
+    afw_memory_region_get_t get;
+    afw_memory_region_free_t free;
+    afw_memory_region_cleanup_t cleanup;
+    afw_memory_region_lock_t lock;
+    afw_memory_region_unlock_t unlock;
+    afw_memory_region_release_t release;
+};
+
+/**
+ * @brief Call method `get` of interface `afw_memory_region`.
+ *
+ * Write a page-aligned region through *region and its actual
+ * size through *size. *size is the requested size on entry and
+ * the rounded size actually returned on success. From the free
+ * list on a hit, or posix_memalign on a miss. On size 0,
+ * missing pointers, or allocation failure, *region is NULL and
+ * *size is 0. xctx may be NULL (environment create).
+ * @param instance Pointer to this memory_region instance.
+ * @param region Place to return the aligned region address. NULL on failure.
+ * @param size Requested size in bytes on entry. Actual size of the region on
+ * success. 0 on failure.
+ * @param xctx This is the caller's xctx. May be NULL.
+ * @relates afw_memory_region_t
+ * @see @ref afw_memory_region_s "afw_memory_region_t"
+ */
+#define afw_memory_region_get( \
+    instance, \
+    region, \
+    size, \
+    xctx \
+) \
+(instance)->inf->get( \
+    (instance), \
+    (region), \
+    (size), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `free` of interface `afw_memory_region`.
+ *
+ * Return a region from get(). If the free list is under cap,
+ * keep it for a later get(); otherwise call free(). No-op if
+ * region is NULL. size must be the actual size written by
+ * get(). xctx may be NULL.
+ * @param instance Pointer to this memory_region instance.
+ * @param region Address written by get().
+ * @param size Actual size written by get() for this address.
+ * @param xctx This is the caller's xctx. May be NULL.
+ * @relates afw_memory_region_t
+ * @see @ref afw_memory_region_s "afw_memory_region_t"
+ */
+#define afw_memory_region_free( \
+    instance, \
+    region, \
+    size, \
+    xctx \
+) \
+(instance)->inf->free( \
+    (instance), \
+    (region), \
+    (size), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `cleanup` of interface `afw_memory_region`.
+ *
+ * Drain the free list to free() and keep this instance. Cap 0
+ * is a no-op besides remaining available for metrics. Optional
+ * trim at request/base xctx end; do not call on nested xctx
+ * destroy.
+ * @param instance Pointer to this memory_region instance.
+ * @param xctx This is the caller's xctx. May be NULL.
+ * @relates afw_memory_region_t
+ * @see @ref afw_memory_region_s "afw_memory_region_t"
+ */
+#define afw_memory_region_cleanup( \
+    instance, \
+    xctx \
+) \
+(instance)->inf->cleanup( \
+    (instance), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `lock` of interface `afw_memory_region`.
+ *
+ * Obtain this region's mutex. Recursive so heap methods that
+ * already hold it can call get()/free(). xctx may be NULL.
+ * @param instance Pointer to this memory_region instance.
+ * @param xctx This is the caller's xctx. May be NULL.
+ * @relates afw_memory_region_t
+ * @see @ref afw_memory_region_s "afw_memory_region_t"
+ */
+#define afw_memory_region_lock( \
+    instance, \
+    xctx \
+) \
+(instance)->inf->lock( \
+    (instance), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `unlock` of interface `afw_memory_region`.
+ *
+ * Release this region's mutex. Pair with lock(). xctx may be
+ * NULL.
+ * @param instance Pointer to this memory_region instance.
+ * @param xctx This is the caller's xctx. May be NULL.
+ * @relates afw_memory_region_t
+ * @see @ref afw_memory_region_s "afw_memory_region_t"
+ */
+#define afw_memory_region_unlock( \
+    instance, \
+    xctx \
+) \
+(instance)->inf->unlock( \
+    (instance), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `release` of interface `afw_memory_region`.
+ *
+ * Last-release of this instance (thread death): cleanup then
+ * free the instance. Do not use the pointer after this call.
+ * @param instance Pointer to this memory_region instance.
+ * @param xctx This is the caller's xctx. May be NULL.
+ * @relates afw_memory_region_t
+ * @see @ref afw_memory_region_s "afw_memory_region_t"
+ */
+#define afw_memory_region_release( \
+    instance, \
+    xctx \
+) \
+(instance)->inf->release( \
+    (instance), \
+    (xctx) \
+)
+
+/** @} */
+
+/**
  * @addtogroup afw_adapter_journal_interface afw_adapter_journal
  *
  * Optional adapter journal for change history / event replay. Obtained

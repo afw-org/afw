@@ -5819,6 +5819,226 @@ AFW_DEFINE(const afw_request_handler_t *)
   </interface>
 
 
+  <interface name="afw_memory_region" id="afwmr">
+
+    <description>
+      Thread-owned reuse of page-aligned regions for heap chunks.
+      Not a pool. get() writes a 4k-aligned region and its actual
+      size through pointer parameters (size is requested on the way
+      in, actual on the way out). free() returns a region to a capped
+      list or to the system. cleanup() drains the list and keeps this
+      instance. release() is last-release of this instance (thread
+      death): cleanup then free the instance. Call methods via
+      afw_memory_region_*() macros. See group afw_memory_region.
+    </description>
+
+    <variable name="bytes_in_use" type="afw_size_t">
+      <description>
+        Bytes currently handed out to heaps (not on the free list).
+      </description>
+    </variable>
+
+    <variable name="free_list_bytes" type="afw_size_t">
+      <description>Bytes sitting on the free list.</description>
+    </variable>
+
+    <variable name="regions_in_use" type="afw_size_t">
+      <description>Count of regions currently handed out.</description>
+    </variable>
+
+    <variable name="free_list_count" type="afw_size_t">
+      <description>Count of regions on the free list.</description>
+    </variable>
+
+    <variable name="get_hits" type="afw_size_t">
+      <description>get() satisfied from the free list.</description>
+    </variable>
+
+    <variable name="get_misses" type="afw_size_t">
+      <description>get() that called posix_memalign.</description>
+    </variable>
+
+    <variable name="free_over_cap" type="afw_size_t">
+      <description>
+        free() that called free() because the list was at cap
+        (including cap 0).
+      </description>
+    </variable>
+
+    <variable name="peak_bytes_in_use" type="afw_size_t">
+      <description>High-water of bytes_in_use.</description>
+    </variable>
+
+    <variable name="peak_free_list_bytes" type="afw_size_t">
+      <description>High-water of free_list_bytes.</description>
+    </variable>
+
+    <variable name="free_list_max_bytes" type="afw_size_t">
+      <description>
+        Cap on free_list_bytes. 0 means every free() goes to the
+        system (today's posix_memalign/free).
+      </description>
+    </variable>
+
+    <method name="get">
+
+      <description>
+        Write a page-aligned region through *region and its actual
+        size through *size. *size is the requested size on entry and
+        the rounded size actually returned on success. From the free
+        list on a hit, or posix_memalign on a miss. On size 0,
+        missing pointers, or allocation failure, *region is NULL and
+        *size is 0. xctx may be NULL (environment create).
+      </description>
+
+      <parameter name="instance" type="const afw_memory_region_t *">
+        <description>Pointer to this memory_region instance.</description>
+      </parameter>
+
+      <parameter name="region" type="void **">
+        <description>
+          Place to return the aligned region address. NULL on
+          failure.
+        </description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t *">
+        <description>
+          Requested size in bytes on entry. Actual size of the
+          region on success. 0 on failure.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>
+          This is the caller's xctx. May be NULL.
+        </description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="free">
+
+      <description>
+        Return a region from get(). If the free list is under cap,
+        keep it for a later get(); otherwise call free(). No-op if
+        region is NULL. size must be the actual size written by
+        get(). xctx may be NULL.
+      </description>
+
+      <parameter name="instance" type="const afw_memory_region_t *">
+        <description>Pointer to this memory_region instance.</description>
+      </parameter>
+
+      <parameter name="region" type="void *">
+        <description>Address written by get().</description>
+      </parameter>
+
+      <parameter name="size" type="afw_size_t">
+        <description>Actual size written by get() for this address.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>
+          This is the caller's xctx. May be NULL.
+        </description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="cleanup">
+
+      <description>
+        Drain the free list to free() and keep this instance. Cap 0
+        is a no-op besides remaining available for metrics. Optional
+        trim at request/base xctx end; do not call on nested xctx
+        destroy.
+      </description>
+
+      <parameter name="instance" type="const afw_memory_region_t *">
+        <description>Pointer to this memory_region instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>
+          This is the caller's xctx. May be NULL.
+        </description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="lock">
+
+      <description>
+        Obtain this region's mutex. Recursive so heap methods that
+        already hold it can call get()/free(). xctx may be NULL.
+      </description>
+
+      <parameter name="instance" type="const afw_memory_region_t *">
+        <description>Pointer to this memory_region instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>
+          This is the caller's xctx. May be NULL.
+        </description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="unlock">
+
+      <description>
+        Release this region's mutex. Pair with lock(). xctx may be
+        NULL.
+      </description>
+
+      <parameter name="instance" type="const afw_memory_region_t *">
+        <description>Pointer to this memory_region instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>
+          This is the caller's xctx. May be NULL.
+        </description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="release">
+
+      <description>
+        Last-release of this instance (thread death): cleanup then
+        free the instance. Do not use the pointer after this call.
+      </description>
+
+      <parameter name="instance" type="const afw_memory_region_t *">
+        <description>Pointer to this memory_region instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>
+          This is the caller's xctx. May be NULL.
+        </description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+  </interface>
+
+
   <interface name="afw_adapter_journal" id="afwej">
 
     <description>

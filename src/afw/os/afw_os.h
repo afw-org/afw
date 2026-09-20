@@ -303,6 +303,24 @@ AFW_DECLARE(void)
 afw_os_mutex_destroy(afw_os_mutex_t *mutex);
 
 /**
+ * @brief Create a mutex with C calloc. No pool, does not throw.
+ * @param flags AFW_OS_MUTEX_DEFAULT, NESTED, or UNNESTED.
+ * @return mutex, or NULL on failure.
+ *
+ * For bootstrap objects that outlive any pool (memory_region).
+ * Pair with afw_os_mutex_free_unhandled().
+ */
+AFW_DECLARE(afw_os_mutex_t *)
+afw_os_mutex_create_unhandled(unsigned int flags);
+
+/**
+ * @brief Destroy and free a mutex from create_unhandled.
+ * @param mutex from create_unhandled. May be NULL.
+ */
+AFW_DECLARE(void)
+afw_os_mutex_free_unhandled(afw_os_mutex_t *mutex);
+
+/**
  * @brief Create a read/write lock in p. Destroyed when p is destroyed.
  */
 AFW_DECLARE(afw_os_rwlock_t *)

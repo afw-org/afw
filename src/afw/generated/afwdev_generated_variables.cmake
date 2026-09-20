@@ -121,6 +121,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_iterator_with_key_impl_declares.h
     generated/afw_log_factory_impl_declares.h
     generated/afw_log_impl_declares.h
+    generated/afw_memory_region_impl_declares.h
     generated/afw_object_associative_array_impl_declares.h
     generated/afw_object_impl_declares.h
     generated/afw_object_setter_impl_declares.h
@@ -150,6 +151,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     log/afw_log.h
     log/afw_log_impl.h
     memory/afw_memory.h
+    memory_region/afw_memory_region.h
     model/afw_model.h
     model/afw_model_location.h
     number/afw_number.h
@@ -216,6 +218,7 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/lock
     ${CMAKE_CURRENT_SOURCE_DIR}/log
     ${CMAKE_CURRENT_SOURCE_DIR}/memory
+    ${CMAKE_CURRENT_SOURCE_DIR}/memory_region
     ${CMAKE_CURRENT_SOURCE_DIR}/model
     ${CMAKE_CURRENT_SOURCE_DIR}/number
     ${CMAKE_CURRENT_SOURCE_DIR}/object
@@ -382,6 +385,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     log/afw_log_file.c
     log/afw_log_standard.c
     memory/afw_memory.c
+    memory_region/afw_memory_region.c
     model/afw_model.c
     model/afw_model_adapter.c
     model/afw_model_compile.c

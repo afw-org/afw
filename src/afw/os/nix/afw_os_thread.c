@@ -24,6 +24,7 @@
 #include <pthread.h>
 #include <errno.h>
 #include <signal.h>
+#include <stdlib.h>
 
 
 struct afw_os_mutex_s {
@@ -40,6 +41,38 @@ struct afw_os_thread_s {
     pthread_t tid;
     afw_boolean_t created;
 };
+
+
+static int
+impl_mutex_init(afw_os_mutex_t *self, unsigned int flags)
+{
+    pthread_mutexattr_t attr;
+    int err;
+    int kind;
+
+    if (flags == AFW_OS_MUTEX_NESTED) {
+        kind = PTHREAD_MUTEX_RECURSIVE;
+    }
+    else if (flags == AFW_OS_MUTEX_UNNESTED) {
+        kind = PTHREAD_MUTEX_ERRORCHECK;
+    }
+    else {
+        kind = PTHREAD_MUTEX_DEFAULT;
+    }
+
+    err = pthread_mutexattr_init(&attr);
+    if (err != 0) {
+        return err;
+    }
+    err = pthread_mutexattr_settype(&attr, kind);
+    if (err != 0) {
+        (void)pthread_mutexattr_destroy(&attr);
+        return err;
+    }
+    err = pthread_mutex_init(&self->mutex, &attr);
+    (void)pthread_mutexattr_destroy(&attr);
+    return err;
+}
 
 
 static void
@@ -71,35 +104,11 @@ afw_os_mutex_create(
     afw_xctx_t *xctx)
 {
     afw_os_mutex_t *self;
-    pthread_mutexattr_t attr;
     int err;
-    int kind;
 
     self = afw_pool_calloc_type(p, afw_os_mutex_t, xctx);
 
-    if (flags == AFW_OS_MUTEX_NESTED) {
-        kind = PTHREAD_MUTEX_RECURSIVE;
-    }
-    else if (flags == AFW_OS_MUTEX_UNNESTED) {
-        kind = PTHREAD_MUTEX_ERRORCHECK;
-    }
-    else {
-        kind = PTHREAD_MUTEX_DEFAULT;
-    }
-
-    err = pthread_mutexattr_init(&attr);
-    if (err != 0) {
-        AFW_THROW_ERROR_RV_Z(general, errno, err,
-            "pthread_mutexattr_init() failed", xctx);
-    }
-    err = pthread_mutexattr_settype(&attr, kind);
-    if (err != 0) {
-        (void)pthread_mutexattr_destroy(&attr);
-        AFW_THROW_ERROR_RV_Z(general, errno, err,
-            "pthread_mutexattr_settype() failed", xctx);
-    }
-    err = pthread_mutex_init(&self->mutex, &attr);
-    (void)pthread_mutexattr_destroy(&attr);
+    err = impl_mutex_init(self, flags);
     if (err != 0) {
         AFW_THROW_ERROR_RV_Z(general, errno, err,
             "pthread_mutex_init() failed", xctx);
@@ -108,6 +117,35 @@ afw_os_mutex_create(
     afw_pool_register_cleanup(p, self, NULL,
         impl_mutex_cleanup, xctx);
     return self;
+}
+
+
+AFW_DEFINE(afw_os_mutex_t *)
+afw_os_mutex_create_unhandled(unsigned int flags)
+{
+    afw_os_mutex_t *self;
+
+    self = (afw_os_mutex_t *)calloc(1, sizeof(afw_os_mutex_t));
+    if (!self) {
+        return NULL;
+    }
+    if (impl_mutex_init(self, flags) != 0) {
+        free(self);
+        return NULL;
+    }
+    self->initialized = true;
+    return self;
+}
+
+
+AFW_DEFINE(void)
+afw_os_mutex_free_unhandled(afw_os_mutex_t *mutex)
+{
+    if (!mutex) {
+        return;
+    }
+    afw_os_mutex_destroy(mutex);
+    free(mutex);
 }
 
 

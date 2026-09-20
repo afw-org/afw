@@ -80,6 +80,21 @@ afw_os_mutex_destroy(afw_os_mutex_t *mutex)
 }
 
 
+AFW_DEFINE(afw_os_mutex_t *)
+afw_os_mutex_create_unhandled(unsigned int flags)
+{
+    (void)flags;
+    return NULL;
+}
+
+
+AFW_DEFINE(void)
+afw_os_mutex_free_unhandled(afw_os_mutex_t *mutex)
+{
+    (void)mutex;
+}
+
+
 AFW_DEFINE(afw_os_rwlock_t *)
 afw_os_rwlock_create(
     const afw_pool_t *p,
