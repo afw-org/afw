@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Heap and tracker pool internals.
+ * Shared pool internals.
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -14,27 +14,21 @@
 
 /**
  * @file afw_pool_internal.h
- * @brief Pool internals (heap and tracker).
+ * @brief Shared pool internals (`afw_pool.c`).
  *
- * A pool is a heap unless it is a tracker. A tracker gets memory
- * from a heap, tracks live USER blocks, and returns them to the
- * heap on tracker destroy (or garbage_collect for marked frees).
- * The heap owns the free list and a list of posix_memalign chunks
- * (4k-aligned, 64k minimum). Destroy free()s every chunk.
- * Parent/child is lifetime only; store is the ancestor heap
- * (`impl_reservoir_heap`).
+ * Implementation is split:
+ * - `afw_pool.c` / this header - shared lifetime (parent/child, RC,
+ *   cleanups, accounting, debug)
+ * - `afw_pool_heap.c` / `afw_pool_heap_internal.h` - heap store,
+ *   scope delay, heap/scope infs
+ * - `afw_pool_tracker.c` / `afw_pool_tracker_internal.h` -
+ *   tracker allocated list, tracker infs
  *
- * Heap and tracker have different self structs. Common prefix is
- * `afw_pool_internal_self_t`.
+ * A pool is a heap unless it is a tracker. Parent/child is lifetime
+ * only. Common prefix is `afw_pool_internal_self_t`.
  *
- * USER `size` is always the malloc/free_memory argument.
- *
- * Heap live: [USER] or, if AFW_DEBUG_POOL, [size][pool][USER].
- * Tracker live: [next][size][USER] or, if AFW_DEBUG_POOL,
- * [next][size][pool][USER]. Low bit of next marks a freed block.
- * With debug, [size][pool] is immediately before USER on both.
- *
- * Freed heap blocks overlay afw_pool_free_node_t at the block start.
+ * USER `size` is always the malloc/free_memory argument. With
+ * AFW_DEBUG_POOL, [size][pool] is immediately before USER.
  */
 
 AFW_BEGIN_DECLARES
@@ -64,92 +58,6 @@ typedef struct afw_pool_debug_prefix_s {
 #else
 #define AFW_POOL_DEBUG_PREFIX_BYTES ((afw_size_t)0)
 #endif
-
-typedef struct afw_pool_tracker_node_s afw_pool_tracker_node_t;
-struct afw_pool_tracker_node_s {
-    /* Forward-only. Low bit of next marks freed (collect / destroy). */
-    afw_pool_tracker_node_t *next;
-#ifdef AFW_DEBUG_POOL
-    afw_pool_debug_prefix_t debug;
-#else
-    afw_size_t size;
-#endif
-};
-
-#define AFW_POOL_TRACKER_PREFIX_BYTES sizeof(afw_pool_tracker_node_t)
-
-#define AFW_POOL_TRACKER_FREED_BIT ((uintptr_t)1)
-
-#define AFW_POOL_TRACKER_NODE(user) \
-    ((afw_pool_tracker_node_t *)((char *)(user) - \
-        AFW_POOL_TRACKER_PREFIX_BYTES))
-
-#define AFW_POOL_TRACKER_TO_USER(node) \
-    ((void *)((char *)(node) + AFW_POOL_TRACKER_PREFIX_BYTES))
-
-#ifdef AFW_DEBUG_POOL
-#define AFW_POOL_TRACKER_USER_SIZE(node) ((node)->debug.size)
-#else
-#define AFW_POOL_TRACKER_USER_SIZE(node) ((node)->size)
-#endif
-
-#define AFW_POOL_TRACKER_NEXT(node) \
-    ((afw_pool_tracker_node_t *) \
-        ((uintptr_t)((node)->next) & ~AFW_POOL_TRACKER_FREED_BIT))
-
-#define AFW_POOL_TRACKER_IS_FREED(node) \
-    (((uintptr_t)((node)->next) & AFW_POOL_TRACKER_FREED_BIT) != 0)
-
-#define AFW_POOL_TRACKER_MARK_FREED(node) \
-    ((node)->next = (afw_pool_tracker_node_t *) \
-        ((uintptr_t)((node)->next) | AFW_POOL_TRACKER_FREED_BIT))
-
-#define AFW_POOL_HEAP_ALLOC_START(user) \
-    ((void *)((char *)(user) - AFW_POOL_HEAP_PREFIX_BYTES))
-
-#define AFW_POOL_HEAP_USER_FROM_START(start) \
-    ((void *)((char *)(start) + AFW_POOL_HEAP_PREFIX_BYTES))
-
-/** Free-list overlay at the start of a freed block. `total` is the whole block. */
-typedef struct afw_pool_free_node_s afw_pool_free_node_t;
-struct afw_pool_free_node_s {
-    afw_size_t total;
-    afw_pool_free_node_t *prev;
-    afw_pool_free_node_t *next;
-};
-
-/** Heap region. Destroy walks first_chunk and free()s each. */
-typedef struct afw_pool_chunk_s afw_pool_chunk_t;
-struct afw_pool_chunk_s {
-    afw_pool_chunk_t *next;
-    afw_size_t size;
-};
-
-#define AFW_POOL_ALIGN ((afw_size_t)16)
-#define AFW_POOL_ALIGN_UP(n) \
-    (((n) + (AFW_POOL_ALIGN - 1)) & ~(AFW_POOL_ALIGN - 1))
-/** posix_memalign alignment (page). Not an env knob. */
-#define AFW_POOL_CHUNK_ALIGN ((afw_size_t)4096)
-
-/*
- * Heap debug prefix is at least a free node so overlay on free does
- * not touch USER. [size][pool] stay immediately before USER.
- */
-#ifdef AFW_DEBUG_POOL
-#define AFW_POOL_HEAP_PREFIX_BYTES \
-    ((sizeof(afw_pool_debug_prefix_t) > sizeof(afw_pool_free_node_t)) \
-        ? sizeof(afw_pool_debug_prefix_t) \
-        : sizeof(afw_pool_free_node_t))
-#else
-#define AFW_POOL_HEAP_PREFIX_BYTES ((afw_size_t)0)
-#endif
-
-typedef struct afw_pool_internal_free_memory_head_s
-afw_pool_internal_free_memory_head_t;
-
-struct afw_pool_internal_free_memory_head_s {
-    afw_pool_free_node_t *first;
-};
 
 /**
  * Common prefix of heap and tracker self. First field of both.
@@ -205,148 +113,244 @@ struct afw_pool_internal_self_s {
 };
 
 
-typedef struct afw_pool_internal_heap_self_s
-afw_pool_internal_heap_self_t;
+#define impl_pool_region(self) \
+    ((self)->thread ? (self)->thread->memory_region : NULL)
 
-struct afw_pool_internal_heap_self_s {
-
-    afw_pool_internal_self_t common;
-
-    /**
-     * @brief First malloc chunk.
-     *
-     * Destroy walks this list and free()s every chunk. The heap
-     * self lives in the first allocated chunk.
-     */
-    afw_pool_chunk_t *first_chunk;
-
-    /** @brief Chunk currently used for bump allocation. */
-    afw_pool_chunk_t *current_chunk;
-
-    /** @brief Next unused byte in current_chunk. */
-    char *bump;
-
-    /** @brief Bytes left at bump in current_chunk. */
-    afw_size_t remaining;
-
-    /**
-     * @brief posix_memalign bytes still held.
-     *
-     * Not asked-for malloc.
-     */
-    afw_size_t chunk_bytes;
-
-    /** @brief Number of chunks on first_chunk. */
-    afw_size_t chunk_count;
-
-    /** @brief Minimum posix_memalign size (0 = default). */
-    afw_size_t chunk_min;
-
-    /** @brief Heap-owned free list head. */
-    afw_pool_internal_free_memory_head_t *free_memory_head;
-};
-
-
-typedef struct afw_pool_internal_tracker_self_s
-afw_pool_internal_tracker_self_t;
-
-struct afw_pool_internal_tracker_self_s {
-
-    afw_pool_internal_self_t common;
-
-    /** @brief First live or marked allocation. */
-    afw_pool_tracker_node_t *first_allocated_memory;
-};
-
-
-/**
- * Scope pool. ST job heap (4k chunks) plus last-release delay while a
- * script throw is handled.
+/*
+ * MT methods lock the pool's thread region (recursive so get/free
+ * inside malloc are fine). ST get/free do not lock. Uses xctx from
+ * the enclosing function.
  */
-typedef struct afw_pool_internal_scope_self_s
-afw_pool_internal_scope_self_t;
+#define IMPL_MULTITHREADED_LOCK_BEGIN(pool) \
+const afw_memory_region_t *_this_region = \
+    ((pool)->thread \
+        ? (pool)->thread->memory_region : NULL); \
+if (_this_region) { \
+    afw_memory_region_lock(_this_region, xctx); \
+} \
+AFW_TRY
 
-struct afw_pool_internal_scope_self_s {
-
-    afw_pool_internal_heap_self_t heap;
-
-    /* Don't access this directly. Use heap.free_memory_head. */
-    afw_pool_internal_free_memory_head_t memory_for_free_memory_head;
-
-    /**
-     * Next pool delaying last release while
-     * error_processing_count > 0.
-     */
-    const afw_pool_t *error_delaying_release_next;
-
-    /** Already on xctx->error_delaying_release_first. */
-    afw_boolean_t error_delaying_release;
-};
+#define IMPL_MULTITHREADED_LOCK_END \
+AFW_FINALLY { \
+    if (_this_region) { \
+        afw_memory_region_unlock(_this_region, xctx); \
+    } \
+} \
+AFW_ENDTRY
 
 
-typedef struct afw_pool_internal_self_with_free_memory_head_s
-afw_pool_internal_self_with_free_memory_head_t;
-struct afw_pool_internal_self_with_free_memory_head_s {
+#ifdef AFW_DEBUG_POOL
 
-    afw_pool_internal_heap_self_t heap;
+#define AFW_POOL_INTERNAL_DEBUG_LEVEL_detail  flag_index_debug_pool_detail
+#define AFW_POOL_INTERNAL_DEBUG_LEVEL_minimal flag_index_debug_pool
 
-    /* Don't access this directly. Use free_memory_head pointer instead. */
-    afw_pool_internal_free_memory_head_t memory_for_free_memory_head;
-};
+#define IMPL_PRINT_DEBUG_INFO_Z(level,info_z) \
+do { \
+    FILE *fd; \
+    if (xctx && xctx->env && xctx->env->debug_fd && \
+        afw_flag_is_active( \
+            xctx->env->AFW_POOL_INTERNAL_DEBUG_LEVEL_##level, xctx)) \
+    { \
+        fd = xctx->env->debug_fd; \
+        fprintf(fd, \
+            ">debug pool %s thread " AFW_INTEGER_FMT \
+            " pool " AFW_INTEGER_FMT \
+            " in_use " AFW_SIZE_T_FMT \
+            " total " AFW_SIZE_T_FMT "/" AFW_SIZE_T_FMT \
+            " chunks " AFW_SIZE_T_FMT "/" AFW_SIZE_T_FMT \
+            " rss " AFW_SIZE_T_FMT " KB" \
+            " refs " AFW_INTEGER_FMT \
+            " parent " AFW_INTEGER_FMT \
+            " (%s)\n", \
+            info_z, \
+            self->thread ? self->thread->thread_number : \
+                (afw_integer_t)0, \
+            self->pool_number, \
+            self->bytes_allocated, \
+            (afw_size_t)xctx->env->pool_bytes_in_use, \
+            (afw_size_t)xctx->env->peak_pool_bytes_in_use, \
+            (afw_size_t)xctx->env->pool_chunk_bytes, \
+            (afw_size_t)xctx->env->peak_pool_chunk_bytes, \
+            afw_os_get_rss(), \
+            self->reference_count, \
+            (afw_integer_t)((self->parent) \
+                ? self->parent->pool_number : 0), \
+            afw_utf8_z_source_file(AFW__FILE_LINE__)); \
+        fflush(fd); \
+    } \
+} while (0)
+
+#define IMPL_PRINT_DEBUG_INFO_FZ(level,format_z,...) \
+do { \
+    FILE *fd; \
+    if (xctx && xctx->env && xctx->env->debug_fd && \
+        afw_flag_is_active( \
+            xctx->env->AFW_POOL_INTERNAL_DEBUG_LEVEL_##level, xctx)) \
+    { \
+        fd = xctx->env->debug_fd; \
+        fprintf(fd, \
+            ">debug pool " format_z " thread " AFW_INTEGER_FMT \
+            " pool " AFW_INTEGER_FMT \
+            " in_use " AFW_SIZE_T_FMT \
+            " total " AFW_SIZE_T_FMT "/" AFW_SIZE_T_FMT \
+            " chunks " AFW_SIZE_T_FMT "/" AFW_SIZE_T_FMT \
+            " rss " AFW_SIZE_T_FMT " KB" \
+            " refs " AFW_INTEGER_FMT \
+            " parent " AFW_INTEGER_FMT \
+            " (%s)\n", \
+            __VA_ARGS__, \
+            self->thread ? self->thread->thread_number : \
+                (afw_integer_t)0, \
+            self->pool_number, \
+            self->bytes_allocated, \
+            (afw_size_t)xctx->env->pool_bytes_in_use, \
+            (afw_size_t)xctx->env->peak_pool_bytes_in_use, \
+            (afw_size_t)xctx->env->pool_chunk_bytes, \
+            (afw_size_t)xctx->env->peak_pool_chunk_bytes, \
+            afw_os_get_rss(), \
+            self->reference_count, \
+            (afw_integer_t)((self->parent) \
+                ? self->parent->pool_number : 0), \
+            afw_utf8_z_source_file(AFW__FILE_LINE__)); \
+        fflush(fd); \
+    } \
+} while (0)
+
+void
+impl_debug_prefix_set(
+    afw_pool_internal_self_t *self,
+    void *user,
+    afw_size_t size);
+
+afw_boolean_t
+impl_debug_prefix_ok(
+    afw_pool_internal_self_t *self,
+    void *address,
+    afw_size_t size);
+
+void
+impl_debug_check_prefix(
+    afw_pool_internal_self_t *self,
+    void *address,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+void
+impl_debug_poison_user(void *user, afw_size_t size);
+
+#else
+
+#define IMPL_PRINT_DEBUG_INFO_Z(level,info_z)
+#define IMPL_PRINT_DEBUG_INFO_FZ(level,format_z,...)
+#define impl_debug_prefix_set(self, user, size) ((void)0)
+#define impl_debug_prefix_ok(self, address, size) (true)
+#define impl_debug_check_prefix(self, address, size, xctx) ((void)0)
+#define impl_debug_poison_user(user, size) ((void)0)
+
+#endif
 
 
-/**
- * Create the process base MT pool. thread is the base thread already
- * created; may be NULL only if create failed earlier. xctx does not
- * exist yet.
- */
+void
+impl_env_add_bytes(afw_environment_t *env, afw_size_t n);
+
+void
+impl_env_add_chunks(afw_environment_t *env, afw_size_t n);
+
+void
+impl_thread_add_bytes(const afw_thread_t *thread, afw_size_t n);
+
+void
+impl_thread_sub_bytes(const afw_thread_t *thread, afw_size_t n);
+
+void
+impl_thread_add_chunks(const afw_thread_t *thread, afw_size_t n);
+
+void
+impl_thread_sub_chunks(const afw_thread_t *thread, afw_size_t n);
+
+afw_boolean_t
+impl_pool_is_multithreaded(const afw_pool_t *p);
+
+afw_boolean_t
+impl_counts_on_thread(const afw_pool_internal_self_t *self);
+
+void
+impl_assign_pool_number(afw_pool_internal_self_t *self);
+
+void
+impl_account_alloc(
+    afw_pool_internal_self_t *self, afw_size_t consumed, afw_xctx_t *xctx);
+
+void
+impl_account_free(
+    afw_pool_internal_self_t *self, afw_size_t consumed, afw_xctx_t *xctx);
+
+void
+impl_account_destroy(afw_pool_internal_self_t *self, afw_xctx_t *xctx);
+
+void
+impl_link_as_child(
+    afw_pool_internal_self_t *parent,
+    afw_pool_internal_self_t *child,
+    afw_xctx_t *xctx);
+
+void
+impl_unlink_from_parent(
+    afw_pool_internal_self_t *self, afw_xctx_t *xctx);
+
+void
+impl_pool_run_cleanups(
+    afw_pool_internal_self_t *self, afw_xctx_t *xctx);
+
+void
+impl_pool_mark_destroying(afw_pool_internal_self_t *self);
+
+void
+impl_destroy_children(
+    afw_pool_internal_self_t *self, afw_xctx_t *xctx);
+
+void
+impl_run_child_cleanups(
+    afw_pool_internal_self_t *self, afw_xctx_t *xctx);
+
 const afw_pool_t *
-afw_pool_internal_create_base_pool(const afw_thread_t *thread);
+impl_release_common(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx,
+    void (*teardown)(afw_pool_internal_self_t *self, afw_xctx_t *xctx));
+
+void
+impl_afw_pool_get_reference(
+    afw_pool_internal_self_t *self,
+    afw_xctx_t *xctx);
+
+void
+impl_afw_pool_register_cleanup(
+    afw_pool_internal_self_t *self,
+    void *data,
+    void *data2,
+    afw_pool_cleanup_function_p_t cleanup,
+    afw_xctx_t *xctx);
+
+void
+impl_afw_pool_deregister_cleanup(
+    afw_pool_internal_self_t *self,
+    void *data,
+    void *data2,
+    afw_pool_cleanup_function_p_t cleanup,
+    afw_xctx_t *xctx);
 
 afw_boolean_t
 afw_pool_internal_is_heap(const afw_pool_t *p);
 
 afw_boolean_t
-afw_pool_internal_is_heap_multithreaded(const afw_pool_t *p);
-
-afw_boolean_t
 afw_pool_internal_is_tracker(const afw_pool_t *p);
-
-/**
- * ST job heap for this thread. Parent may be MT (env->p). This is the
- * thread-handoff door; heap_create() follows parent ST/MT.
- */
-const afw_pool_t *
-afw_pool_internal_heap_create_st_for_thread(
-    const afw_pool_t *parent,
-    afw_boolean_t as_managed_p,
-    afw_size_t chunk_min,
-    const afw_thread_t *thread,
-    afw_xctx_t *xctx);
-
-const afw_pool_t *
-afw_pool_internal_heap_create(
-    const afw_pool_t *parent,
-    afw_boolean_t multithreaded,
-    afw_boolean_t as_managed_p,
-    afw_size_t chunk_min,
-    afw_xctx_t *xctx);
 
 void
 afw_pool_print_debug_info(
     int indent,
     const afw_pool_t *pool,
     afw_xctx_t *xctx);
-
-
-/**
- * Last-release pools delayed during error processing (ENDTRY).
- */
-void
-afw_pool_release_delayed(
-    const afw_pool_t *instance,
-    afw_xctx_t *xctx);
-
 
 /**
  * Allocate without throwing. Env-create / xctx-init window only.
