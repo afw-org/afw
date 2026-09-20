@@ -18,7 +18,7 @@
  * A tracker gets memory from a heap, tracks live USER blocks, and
  * returns them to the heap on tracker destroy (or garbage_collect
  * for marked frees). Includes the heap store header because collect
- * and destroy call `impl_heap_add_to_free_list`.
+ * and destroy call `afw_pool_heap_internal_add_to_free_list`.
  *
  * Tracker live: [next][size][USER] or, if AFW_DEBUG_POOL,
  * [next][size][pool][USER]. Low bit of next marks a freed block.
@@ -78,7 +78,7 @@ struct afw_pool_internal_tracker_self_s {
 };
 
 
-#define impl_as_tracker(self) \
+#define afw_pool_tracker_internal_as_tracker(self) \
     ((afw_pool_internal_tracker_self_t *)(self))
 
 AFW_END_DECLARES

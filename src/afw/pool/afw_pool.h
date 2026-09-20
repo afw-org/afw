@@ -62,7 +62,7 @@
  *   call destroy. "Children remaining" is a leaked child.
  * - destroy: storage-only (must not fail). Call `run_cleanups`
  *   first if callbacks must run (`xctx_release` does both).
- * - `afw_pool_release_delayed()`: last-release scopes delayed
+ * - `afw_pool_heap_internal_release_delayed()`: last-release scopes delayed
  *   while error_processing_count > 0. ENDTRY after a caught error.
  * - `env->p` is process lifetime (valgrind still reachable is
  *   intended).
@@ -71,7 +71,7 @@
  * - Build `--cdev` / `--fulldev` defines `AFW_DEBUG_POOL`. Prefix
  *   {pool,size} on free; poison `0x0BADF00D` so a dangling inf
  *   faults. Runtime `debug:pool` / `debug:pool:detail` on a short
- *   run, not a soak. gdb `afw_pool_print_debug_info(0, xctx->p,
+ *   run, not a soak. gdb `afw_pool_internal_print_debug_info(0, xctx->p,
  *   xctx)`.
  */
 
@@ -232,7 +232,7 @@ afw_pool_tracker_create(
  *
  * Last-release is delayed while error_processing_count > 0 so CATCH
  * can still use values from this `{ }`. ENDTRY calls
- * afw_pool_release_delayed().
+ * afw_pool_heap_internal_release_delayed().
  *
  * Inherits managed_p. Do not create a `{ }` with *_as_managed_p:
  * managed values dest'd at that frame would die with the `{ }`.

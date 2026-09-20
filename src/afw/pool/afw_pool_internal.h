@@ -113,7 +113,7 @@ struct afw_pool_internal_self_s {
 };
 
 
-#define impl_pool_region(self) \
+#define afw_pool_internal_region(self) \
     ((self)->thread ? (self)->thread->memory_region : NULL)
 
 /*
@@ -217,115 +217,115 @@ do { \
 } while (0)
 
 void
-impl_debug_prefix_set(
+afw_pool_internal_debug_prefix_set(
     afw_pool_internal_self_t *self,
     void *user,
     afw_size_t size);
 
 afw_boolean_t
-impl_debug_prefix_ok(
+afw_pool_internal_debug_prefix_ok(
     afw_pool_internal_self_t *self,
     void *address,
     afw_size_t size);
 
 void
-impl_debug_check_prefix(
+afw_pool_internal_debug_check_prefix(
     afw_pool_internal_self_t *self,
     void *address,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 void
-impl_debug_poison_user(void *user, afw_size_t size);
+afw_pool_internal_debug_poison_user(void *user, afw_size_t size);
 
 #else
 
 #define IMPL_PRINT_DEBUG_INFO_Z(level,info_z)
 #define IMPL_PRINT_DEBUG_INFO_FZ(level,format_z,...)
-#define impl_debug_prefix_set(self, user, size) ((void)0)
-#define impl_debug_prefix_ok(self, address, size) (true)
-#define impl_debug_check_prefix(self, address, size, xctx) ((void)0)
-#define impl_debug_poison_user(user, size) ((void)0)
+#define afw_pool_internal_debug_prefix_set(self, user, size) ((void)0)
+#define afw_pool_internal_debug_prefix_ok(self, address, size) (true)
+#define afw_pool_internal_debug_check_prefix(self, address, size, xctx) ((void)0)
+#define afw_pool_internal_debug_poison_user(user, size) ((void)0)
 
 #endif
 
 
 void
-impl_env_add_bytes(afw_environment_t *env, afw_size_t n);
+afw_pool_internal_env_add_bytes(afw_environment_t *env, afw_size_t n);
 
 void
-impl_env_add_chunks(afw_environment_t *env, afw_size_t n);
+afw_pool_internal_env_add_chunks(afw_environment_t *env, afw_size_t n);
 
 void
-impl_thread_add_bytes(const afw_thread_t *thread, afw_size_t n);
+afw_pool_internal_thread_add_bytes(const afw_thread_t *thread, afw_size_t n);
 
 void
-impl_thread_sub_bytes(const afw_thread_t *thread, afw_size_t n);
+afw_pool_internal_thread_sub_bytes(const afw_thread_t *thread, afw_size_t n);
 
 void
-impl_thread_add_chunks(const afw_thread_t *thread, afw_size_t n);
+afw_pool_internal_thread_add_chunks(const afw_thread_t *thread, afw_size_t n);
 
 void
-impl_thread_sub_chunks(const afw_thread_t *thread, afw_size_t n);
+afw_pool_internal_thread_sub_chunks(const afw_thread_t *thread, afw_size_t n);
 
 afw_boolean_t
-impl_pool_is_multithreaded(const afw_pool_t *p);
+afw_pool_internal_is_multithreaded(const afw_pool_t *p);
 
 afw_boolean_t
-impl_counts_on_thread(const afw_pool_internal_self_t *self);
+afw_pool_internal_counts_on_thread(const afw_pool_internal_self_t *self);
 
 void
-impl_assign_pool_number(afw_pool_internal_self_t *self);
+afw_pool_internal_assign_pool_number(afw_pool_internal_self_t *self);
 
 void
-impl_account_alloc(
+afw_pool_internal_account_alloc(
     afw_pool_internal_self_t *self, afw_size_t consumed, afw_xctx_t *xctx);
 
 void
-impl_account_free(
+afw_pool_internal_account_free(
     afw_pool_internal_self_t *self, afw_size_t consumed, afw_xctx_t *xctx);
 
 void
-impl_account_destroy(afw_pool_internal_self_t *self, afw_xctx_t *xctx);
+afw_pool_internal_account_destroy(afw_pool_internal_self_t *self, afw_xctx_t *xctx);
 
 void
-impl_link_as_child(
+afw_pool_internal_link_as_child(
     afw_pool_internal_self_t *parent,
     afw_pool_internal_self_t *child,
     afw_xctx_t *xctx);
 
 void
-impl_unlink_from_parent(
+afw_pool_internal_unlink_from_parent(
     afw_pool_internal_self_t *self, afw_xctx_t *xctx);
 
 void
-impl_pool_run_cleanups(
+afw_pool_internal_run_cleanups(
     afw_pool_internal_self_t *self, afw_xctx_t *xctx);
 
 void
-impl_pool_mark_destroying(afw_pool_internal_self_t *self);
+afw_pool_internal_mark_destroying(afw_pool_internal_self_t *self);
 
 void
-impl_destroy_children(
+afw_pool_internal_destroy_children(
     afw_pool_internal_self_t *self, afw_xctx_t *xctx);
 
 void
-impl_run_child_cleanups(
+afw_pool_internal_run_child_cleanups(
     afw_pool_internal_self_t *self, afw_xctx_t *xctx);
 
 const afw_pool_t *
-impl_release_common(
+afw_pool_internal_release_common(
     afw_pool_internal_self_t *self,
     afw_xctx_t *xctx,
     void (*teardown)(afw_pool_internal_self_t *self, afw_xctx_t *xctx));
 
 void
-impl_afw_pool_get_reference(
+afw_pool_internal_get_reference(
     afw_pool_internal_self_t *self,
     afw_xctx_t *xctx);
 
 void
-impl_afw_pool_register_cleanup(
+afw_pool_internal_register_cleanup(
     afw_pool_internal_self_t *self,
     void *data,
     void *data2,
@@ -333,7 +333,7 @@ impl_afw_pool_register_cleanup(
     afw_xctx_t *xctx);
 
 void
-impl_afw_pool_deregister_cleanup(
+afw_pool_internal_deregister_cleanup(
     afw_pool_internal_self_t *self,
     void *data,
     void *data2,
@@ -347,7 +347,7 @@ afw_boolean_t
 afw_pool_internal_is_tracker(const afw_pool_t *p);
 
 void
-afw_pool_print_debug_info(
+afw_pool_internal_print_debug_info(
     int indent,
     const afw_pool_t *pool,
     afw_xctx_t *xctx);
@@ -357,19 +357,19 @@ afw_pool_print_debug_info(
  * xctx may be NULL.
  */
 void *
-afw_pool_malloc_unhandled(
+afw_pool_internal_malloc_unhandled(
     const afw_pool_t *instance,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 void *
-afw_pool_calloc_unhandled(
+afw_pool_internal_calloc_unhandled(
     const afw_pool_t *instance,
     afw_size_t size,
     afw_xctx_t *xctx);
 
-#define afw_pool_calloc_type_unhandled(instance, type, xctx) \
-    (type *) afw_pool_calloc_unhandled(instance, sizeof(type), xctx)
+#define afw_pool_internal_calloc_type_unhandled(instance, type, xctx) \
+    (type *) afw_pool_internal_calloc_unhandled(instance, sizeof(type), xctx)
 
 AFW_END_DECLARES
 

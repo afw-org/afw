@@ -28,9 +28,9 @@
  * generated static prototypes so the infs take the common
  * implementations.
  */
-#define impl_afw_pool_get_reference impl_afw_pool_get_reference
-#define impl_afw_pool_register_cleanup impl_afw_pool_register_cleanup
-#define impl_afw_pool_deregister_cleanup impl_afw_pool_deregister_cleanup
+#define impl_afw_pool_get_reference afw_pool_internal_get_reference
+#define impl_afw_pool_register_cleanup afw_pool_internal_register_cleanup
+#define impl_afw_pool_deregister_cleanup afw_pool_internal_deregister_cleanup
 
 /*
  * Some tracker methods begin with 'impl_tracker_afw_pool_'; the rest
@@ -242,7 +242,7 @@ impl_mt_tracker_afw_pool_calloc_no_throw(
     const afw_memory_region_t *region;
     void *result;
 
-    region = impl_pool_region(self);
+    region = afw_pool_internal_region(self);
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
@@ -262,7 +262,7 @@ impl_mt_tracker_afw_pool_malloc_no_throw(
     const afw_memory_region_t *region;
     void *result;
 
-    region = impl_pool_region(self);
+    region = afw_pool_internal_region(self);
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
@@ -295,7 +295,7 @@ impl_mt_tracker_afw_pool_free_memory_no_throw(
 {
     const afw_memory_region_t *region;
 
-    region = impl_pool_region(self);
+    region = afw_pool_internal_region(self);
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
@@ -432,9 +432,9 @@ impl_create_for_tracker(
         ? parent->pub.managed_p
         : &parent->pub;
     self->thread = parent->thread;
-    impl_assign_pool_number(self);
+    afw_pool_internal_assign_pool_number(self);
     self->reference_count = 1;
-    impl_link_as_child(parent, self, xctx);
+    afw_pool_internal_link_as_child(parent, self, xctx);
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "create");
 
@@ -449,15 +449,15 @@ impl_tracker_return_leftovers(
     afw_pool_tracker_node_t *curr;
     afw_pool_tracker_node_t *next;
 
-    heap = impl_reservoir_heap(&tracker->common);
+    heap = afw_pool_heap_internal_reservoir_heap(&tracker->common);
     curr = tracker->first_allocated_memory;
     tracker->first_allocated_memory = NULL;
     while (curr) {
         next = AFW_POOL_TRACKER_NEXT(curr);
-        impl_debug_poison_user(AFW_POOL_TRACKER_TO_USER(curr),
+        afw_pool_internal_debug_poison_user(AFW_POOL_TRACKER_TO_USER(curr),
             AFW_POOL_TRACKER_USER_SIZE(curr));
-        impl_heap_add_to_free_list(heap, curr,
-            impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES,
+        afw_pool_heap_internal_add_to_free_list(heap, curr,
+            afw_pool_heap_internal_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES,
                 AFW_POOL_TRACKER_USER_SIZE(curr), xctx, false),
             xctx);
         curr = next;
@@ -479,9 +479,9 @@ impl_tracker_teardown_store(
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Tracker has no parent", xctx);
     }
-    impl_unlink_from_parent(self, xctx);
-    impl_tracker_return_leftovers(impl_as_tracker(self), xctx);
-    impl_account_destroy(self, xctx);
+    afw_pool_internal_unlink_from_parent(self, xctx);
+    impl_tracker_return_leftovers(afw_pool_tracker_internal_as_tracker(self), xctx);
+    afw_pool_internal_account_destroy(self, xctx);
     afw_pool_free_memory(&parent->pub, self, self_bytes, xctx);
     if (!parent_destroying) {
         afw_pool_release(&parent->pub, xctx);
@@ -504,7 +504,7 @@ impl_tracker_afw_pool_release(
     afw_xctx_t *xctx)
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "release");
-    return impl_release_common(self, xctx, impl_tracker_teardown);
+    return afw_pool_internal_release_common(self, xctx, impl_tracker_teardown);
 }
 
 static void
@@ -514,10 +514,10 @@ impl_tracker_afw_pool_run_cleanups(
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "run_cleanups");
     if (!self->destroying) {
-        impl_pool_mark_destroying(self);
+        afw_pool_internal_mark_destroying(self);
     }
-    impl_run_child_cleanups(self, xctx);
-    impl_pool_run_cleanups(self, xctx);
+    afw_pool_internal_run_child_cleanups(self, xctx);
+    afw_pool_internal_run_cleanups(self, xctx);
 }
 
 void
@@ -527,9 +527,9 @@ impl_tracker_afw_pool_destroy(
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
     if (!self->destroying) {
-        impl_pool_mark_destroying(self);
+        afw_pool_internal_mark_destroying(self);
     }
-    impl_destroy_children(self, xctx);
+    afw_pool_internal_destroy_children(self, xctx);
     impl_tracker_teardown(self, xctx);
 }
 
@@ -556,20 +556,20 @@ impl_tracker_malloc_internal(
             xctx);
     }
 
-    total = impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES, size,
+    total = afw_pool_heap_internal_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES, size,
         xctx, unhandled);
     if (unhandled && total == 0) {
         return NULL;
     }
 
-    start = impl_heap_take_from_free_list_or_chunk(
-        impl_reservoir_heap(self), total, &reused, xctx, unhandled);
+    start = afw_pool_heap_internal_take_from_free_list_or_chunk(
+        afw_pool_heap_internal_reservoir_heap(self), total, &reused, xctx, unhandled);
     if (!start) {
         return NULL;
     }
     IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
         reused ? "reuse" : "chunk", size);
-    tracker = impl_as_tracker(self);
+    tracker = afw_pool_tracker_internal_as_tracker(self);
     node = (afw_pool_tracker_node_t *)start;
     node->next = tracker->first_allocated_memory;
     tracker->first_allocated_memory = node;
@@ -581,7 +581,7 @@ impl_tracker_malloc_internal(
     node->size = size;
 #endif
     if (xctx) {
-        impl_account_alloc(self, total, xctx);
+        afw_pool_internal_account_alloc(self, total, xctx);
     }
     return user;
 }
@@ -653,12 +653,12 @@ impl_tracker_free_internal(
         return;
     }
     if (no_throw) {
-        if (!impl_debug_prefix_ok(self, address, size)) {
+        if (!afw_pool_internal_debug_prefix_ok(self, address, size)) {
             return;
         }
     }
     else {
-        impl_debug_check_prefix(self, address, size, xctx);
+        afw_pool_internal_debug_check_prefix(self, address, size, xctx);
     }
     node = AFW_POOL_TRACKER_NODE(address);
     if (AFW_POOL_TRACKER_IS_FREED(node)) {
@@ -669,8 +669,8 @@ impl_tracker_free_internal(
             "afw_pool_free_memory: already freed",
             xctx);
     }
-    impl_debug_poison_user(address, size);
-    total = impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES, size,
+    afw_pool_internal_debug_poison_user(address, size);
+    total = afw_pool_heap_internal_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES, size,
         xctx, no_throw);
     if (no_throw && total == 0) {
         return;
@@ -678,7 +678,7 @@ impl_tracker_free_internal(
     IMPL_PRINT_DEBUG_INFO_FZ(
         detail, "free %p " AFW_SIZE_T_FMT,
         address, total);
-    impl_account_free(self, total, xctx);
+    afw_pool_internal_account_free(self, total, xctx);
     AFW_POOL_TRACKER_MARK_FREED(node);
 }
 
@@ -715,8 +715,8 @@ impl_tracker_afw_pool_garbage_collect(
     afw_pool_tracker_node_t *next;
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "garbage_collect");
-    tracker = impl_as_tracker(self);
-    heap = impl_reservoir_heap(self);
+    tracker = afw_pool_tracker_internal_as_tracker(self);
+    heap = afw_pool_heap_internal_reservoir_heap(self);
     prev = NULL;
     curr = tracker->first_allocated_memory;
     while (curr) {
@@ -728,8 +728,8 @@ impl_tracker_afw_pool_garbage_collect(
             else {
                 tracker->first_allocated_memory = next;
             }
-            impl_heap_add_to_free_list(heap, curr,
-                impl_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES,
+            afw_pool_heap_internal_add_to_free_list(heap, curr,
+                afw_pool_heap_internal_block_bytes(AFW_POOL_TRACKER_PREFIX_BYTES,
                     AFW_POOL_TRACKER_USER_SIZE(curr), xctx, false),
                 xctx);
         }
@@ -760,7 +760,7 @@ afw_pool_tracker_create(
 
     parent_self = (AFW_POOL_SELF_T *)parent;
     self = impl_create_for_tracker(parent_self,
-        impl_pool_is_multithreaded(parent)
+        afw_pool_internal_is_multithreaded(parent)
             ? &impl_afw_pool_tracker_multithreaded_inf
             : &impl_afw_pool_tracker_inf,
         sizeof(afw_pool_internal_tracker_self_t), xctx);

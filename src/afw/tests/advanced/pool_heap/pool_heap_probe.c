@@ -472,7 +472,7 @@ impl_general_free_noop(afw_xctx_t *xctx)
 
     p = xctx->env->p;
     if (!afw_pool_internal_is_heap(p) ||
-        !afw_pool_internal_is_heap_multithreaded(p))
+        !afw_pool_heap_internal_is_multithreaded(p))
     {
         return impl_fail("general_free_noop",
             "env->p is not a multithreaded heap");
@@ -513,13 +513,13 @@ impl_tracker_parent(afw_xctx_t *xctx)
     }
     afw_pool_release(tracker, xctx);
     mt = afw_pool_create(xctx->env->p, xctx);
-    if (!afw_pool_internal_is_heap_multithreaded(mt)) {
+    if (!afw_pool_heap_internal_is_multithreaded(mt)) {
         return impl_fail("tracker_parent",
             "afw_pool_create of MT parent is not an MT heap");
     }
     afw_pool_release(mt, xctx);
     mt = afw_pool_multithread_create(xctx->env->p, xctx);
-    if (!afw_pool_internal_is_heap_multithreaded(mt)) {
+    if (!afw_pool_heap_internal_is_multithreaded(mt)) {
         return impl_fail("tracker_parent",
             "multithread_create did not return an MT heap");
     }
@@ -541,7 +541,7 @@ impl_create_child_of_heap(afw_xctx_t *xctx)
     child = afw_pool_create(heap, xctx);
     if (!afw_pool_internal_is_heap(child) ||
         afw_pool_internal_is_tracker(child) ||
-        afw_pool_internal_is_heap_multithreaded(child))
+        afw_pool_heap_internal_is_multithreaded(child))
     {
         return impl_fail("create_child_of_heap",
             "afw_pool_create of a ST heap parent is not a ST heap");
@@ -787,7 +787,7 @@ impl_unhandled_alloc(afw_xctx_t *xctx)
     heap = afw_pool_heap_create(xctx->p, 0, xctx);
     before = impl_in_use(xctx);
 
-    a = afw_pool_calloc_unhandled(heap, IMPL_SIZE_MEDIUM, xctx);
+    a = afw_pool_internal_calloc_unhandled(heap, IMPL_SIZE_MEDIUM, xctx);
     if (!a) {
         return impl_fail("unhandled_alloc", "calloc_unhandled returned NULL");
     }
@@ -800,11 +800,11 @@ impl_unhandled_alloc(afw_xctx_t *xctx)
     if (after_alloc <= before) {
         return impl_fail("unhandled_alloc", "in_use did not increase");
     }
-    if (afw_pool_malloc_unhandled(heap, 0, xctx) != NULL) {
+    if (afw_pool_internal_malloc_unhandled(heap, 0, xctx) != NULL) {
         return impl_fail("unhandled_alloc", "size 0 did not return NULL");
     }
 
-    b = afw_pool_malloc_unhandled(heap, IMPL_SIZE_SMALL, NULL);
+    b = afw_pool_internal_malloc_unhandled(heap, IMPL_SIZE_SMALL, NULL);
     if (!b) {
         return impl_fail("unhandled_alloc",
             "NULL xctx malloc returned NULL");

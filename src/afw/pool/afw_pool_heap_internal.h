@@ -22,7 +22,7 @@
  *
  * Heap live: [USER] or, if AFW_DEBUG_POOL, [size][pool][USER].
  * Freed heap blocks overlay afw_pool_free_node_t at the block start.
- * Tracker gets blocks from this store (`impl_reservoir_heap`).
+ * Tracker gets blocks from this store (`afw_pool_heap_internal_reservoir_heap`).
  */
 
 AFW_BEGIN_DECLARES
@@ -153,31 +153,31 @@ struct afw_pool_internal_self_with_free_memory_head_s {
 };
 
 
-#define impl_as_heap(self) \
+#define afw_pool_heap_internal_as_heap(self) \
     ((afw_pool_internal_heap_self_t *)(self))
-#define impl_as_scope(self) \
+#define afw_pool_heap_internal_as_scope(self) \
     ((afw_pool_internal_scope_self_t *)(self))
 
 
 afw_pool_internal_heap_self_t *
-impl_reservoir_heap(afw_pool_internal_self_t *self);
+afw_pool_heap_internal_reservoir_heap(afw_pool_internal_self_t *self);
 
 afw_size_t
-impl_block_bytes(
+afw_pool_heap_internal_block_bytes(
     afw_size_t prefix_bytes,
     afw_size_t user_size,
     afw_xctx_t *xctx,
     afw_boolean_t unhandled);
 
 void
-impl_heap_add_to_free_list(
+afw_pool_heap_internal_add_to_free_list(
     afw_pool_internal_heap_self_t *heap,
     void *start,
     afw_size_t total,
     afw_xctx_t *xctx);
 
 void *
-impl_heap_take_from_free_list_or_chunk(
+afw_pool_heap_internal_take_from_free_list_or_chunk(
     afw_pool_internal_heap_self_t *heap,
     afw_size_t total,
     afw_boolean_t *reused,
@@ -190,17 +190,17 @@ impl_heap_take_from_free_list_or_chunk(
  * exist yet.
  */
 const afw_pool_t *
-afw_pool_internal_create_base_pool(const afw_thread_t *thread);
+afw_pool_heap_internal_create_base_pool(const afw_thread_t *thread);
 
 afw_boolean_t
-afw_pool_internal_is_heap_multithreaded(const afw_pool_t *p);
+afw_pool_heap_internal_is_multithreaded(const afw_pool_t *p);
 
 /**
  * ST job heap for this thread. Parent may be MT (env->p). This is the
  * thread-handoff door; heap_create() follows parent ST/MT.
  */
 const afw_pool_t *
-afw_pool_internal_heap_create_st_for_thread(
+afw_pool_heap_internal_create_st_for_thread(
     const afw_pool_t *parent,
     afw_boolean_t as_managed_p,
     afw_size_t chunk_min,
@@ -208,7 +208,7 @@ afw_pool_internal_heap_create_st_for_thread(
     afw_xctx_t *xctx);
 
 const afw_pool_t *
-afw_pool_internal_heap_create(
+afw_pool_heap_internal_create(
     const afw_pool_t *parent,
     afw_boolean_t multithreaded,
     afw_boolean_t as_managed_p,
@@ -219,7 +219,7 @@ afw_pool_internal_heap_create(
  * Last-release pools delayed during error processing (ENDTRY).
  */
 void
-afw_pool_release_delayed(
+afw_pool_heap_internal_release_delayed(
     const afw_pool_t *instance,
     afw_xctx_t *xctx);
 

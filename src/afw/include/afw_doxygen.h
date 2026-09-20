@@ -82,7 +82,7 @@
  * afw_pool_tracker_create(), afw_pool_scope_create(),
  * afw_pool_calloc(), afw_pool_malloc(),
  * afw_pool_calloc_no_throw(), afw_pool_malloc_no_throw(),
- * afw_pool_calloc_unhandled(), afw_pool_malloc_unhandled(),
+ * afw_pool_internal_calloc_unhandled(), afw_pool_internal_malloc_unhandled(),
  * afw_pool_free_memory(), afw_pool_free_memory_no_throw(),
  * afw_pool_garbage_collect(),
  * afw_xctx_malloc() / afw_xctx_free(),

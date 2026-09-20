@@ -28,9 +28,9 @@
  * generated static prototypes so the infs take the common
  * implementations.
  */
-#define impl_afw_pool_get_reference impl_afw_pool_get_reference
-#define impl_afw_pool_register_cleanup impl_afw_pool_register_cleanup
-#define impl_afw_pool_deregister_cleanup impl_afw_pool_deregister_cleanup
+#define impl_afw_pool_get_reference afw_pool_internal_get_reference
+#define impl_afw_pool_register_cleanup afw_pool_internal_register_cleanup
+#define impl_afw_pool_deregister_cleanup afw_pool_internal_deregister_cleanup
 
 #define AFW_IMPLEMENTATION_ID "heap"
 
@@ -272,7 +272,7 @@ impl_mt_scope_afw_pool_calloc_no_throw(
     const afw_memory_region_t *region;
     void *result;
 
-    region = impl_pool_region(self);
+    region = afw_pool_internal_region(self);
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
@@ -292,7 +292,7 @@ impl_mt_scope_afw_pool_malloc_no_throw(
     const afw_memory_region_t *region;
     void *result;
 
-    region = impl_pool_region(self);
+    region = afw_pool_internal_region(self);
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
@@ -325,7 +325,7 @@ impl_mt_scope_afw_pool_free_memory_no_throw(
 {
     const afw_memory_region_t *region;
 
-    region = impl_pool_region(self);
+    region = afw_pool_internal_region(self);
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
@@ -446,13 +446,13 @@ impl_pool_set_owning_thread(
         return;
     }
     if (self->thread) {
-        impl_thread_sub_bytes(self->thread, self->bytes_allocated);
-        impl_thread_sub_chunks(self->thread, heap->chunk_bytes);
+        afw_pool_internal_thread_sub_bytes(self->thread, self->bytes_allocated);
+        afw_pool_internal_thread_sub_chunks(self->thread, heap->chunk_bytes);
     }
     self->thread = thread;
     if (thread) {
-        impl_thread_add_bytes(thread, self->bytes_allocated);
-        impl_thread_add_chunks(thread, heap->chunk_bytes);
+        afw_pool_internal_thread_add_bytes(thread, self->bytes_allocated);
+        afw_pool_internal_thread_add_chunks(thread, heap->chunk_bytes);
     }
 }
 
@@ -463,21 +463,21 @@ impl_account_chunk_add(
     heap->chunk_count++;
     heap->chunk_bytes += size;
     if (xctx && xctx->env) {
-        impl_env_add_chunks((afw_environment_t *)xctx->env, size);
+        afw_pool_internal_env_add_chunks((afw_environment_t *)xctx->env, size);
     }
-    if (impl_counts_on_thread(&heap->common)) {
-        impl_thread_add_chunks(heap->common.thread, size);
+    if (afw_pool_internal_counts_on_thread(&heap->common)) {
+        afw_pool_internal_thread_add_chunks(heap->common.thread, size);
     }
 }
 
 afw_pool_internal_heap_self_t *
-impl_reservoir_heap(afw_pool_internal_self_t *self)
+afw_pool_heap_internal_reservoir_heap(afw_pool_internal_self_t *self)
 {
     /* A heap is its own store even when it has an AFW parent. */
     while (self->parent && !afw_pool_internal_is_heap(&self->pub)) {
         self = self->parent;
     }
-    return impl_as_heap(self);
+    return afw_pool_heap_internal_as_heap(self);
 }
 
 
@@ -693,25 +693,25 @@ impl_heap_create(
     if (!self) {
         AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
     }
-    heap = impl_as_heap(self);
+    heap = afw_pool_heap_internal_as_heap(self);
     if (!as_managed_p && afw_parent) {
         self->pub.managed_p = afw_parent->managed_p
             ? afw_parent->managed_p
             : afw_parent;
     }
     self->thread = thread;
-    impl_assign_pool_number(self);
+    afw_pool_internal_assign_pool_number(self);
 
     if (afw_parent) {
         parent_self = (afw_pool_internal_self_t *)afw_parent;
-        impl_link_as_child(parent_self, self, xctx);
+        afw_pool_internal_link_as_child(parent_self, self, xctx);
     }
 
     if (xctx && xctx->env && heap->chunk_bytes) {
-        impl_env_add_chunks((afw_environment_t *)xctx->env,
+        afw_pool_internal_env_add_chunks((afw_environment_t *)xctx->env,
             heap->chunk_bytes);
-        if (impl_counts_on_thread(self)) {
-            impl_thread_add_chunks(self->thread, heap->chunk_bytes);
+        if (afw_pool_internal_counts_on_thread(self)) {
+            afw_pool_internal_thread_add_chunks(self->thread, heap->chunk_bytes);
         }
     }
 
@@ -745,7 +745,7 @@ impl_heap_free_unlink(
 
 
 afw_size_t
-impl_block_bytes(
+afw_pool_heap_internal_block_bytes(
     afw_size_t prefix_bytes,
     afw_size_t user_size,
     afw_xctx_t *xctx,
@@ -780,14 +780,14 @@ impl_block_bytes(
 
 
 void
-impl_heap_add_to_free_list(
+afw_pool_heap_internal_add_to_free_list(
     afw_pool_internal_heap_self_t *heap,
     void *start,
     afw_size_t total,
     afw_xctx_t *xctx);
 
 void *
-impl_heap_take_from_free_list_or_chunk(
+afw_pool_heap_internal_take_from_free_list_or_chunk(
     afw_pool_internal_heap_self_t *heap,
     afw_size_t total,
     afw_boolean_t *reused,
@@ -881,7 +881,7 @@ impl_heap_take_from_free_list_or_chunk(
     if (heap->current_chunk &&
         heap->remaining >= sizeof(afw_pool_free_node_t))
     {
-        impl_heap_add_to_free_list(heap, heap->bump,
+        afw_pool_heap_internal_add_to_free_list(heap, heap->bump,
             heap->remaining, xctx);
     }
     heap->bump = NULL;
@@ -946,7 +946,7 @@ impl_heap_take_from_free_list_or_chunk(
 
 
 void
-impl_heap_add_to_free_list(
+afw_pool_heap_internal_add_to_free_list(
     afw_pool_internal_heap_self_t *heap,
     void *start,
     afw_size_t total,
@@ -1027,7 +1027,7 @@ impl_clear_delay(
     }
     pos = &xctx->error_delaying_release_first;
     while (*pos) {
-        curr = impl_as_scope(
+        curr = afw_pool_heap_internal_as_scope(
             (afw_pool_internal_self_t *)(void *)*pos);
         if (curr == me) {
             *pos = curr->error_delaying_release_next;
@@ -1043,7 +1043,7 @@ impl_clear_delay(
 /*
  * While error_processing_count > 0, last release of a scope pool
  * is recorded and skipped. Catching ENDTRY runs
- * afw_pool_release_delayed() when the count is 0 again.
+ * afw_pool_heap_internal_release_delayed() when the count is 0 again.
  */
 static afw_boolean_t
 impl_error_delaying_release(
@@ -1082,8 +1082,8 @@ impl_heap_free_chunks(afw_pool_internal_heap_self_t *heap, afw_xctx_t *xctx)
         ((afw_environment_t *)xctx->env)->pool_chunk_bytes -=
             heap->chunk_bytes;
     }
-    if (impl_counts_on_thread(&heap->common)) {
-        impl_thread_sub_chunks(heap->common.thread, heap->chunk_bytes);
+    if (afw_pool_internal_counts_on_thread(&heap->common)) {
+        afw_pool_internal_thread_sub_chunks(heap->common.thread, heap->chunk_bytes);
     }
     heap->chunk_bytes = 0;
     heap->chunk_count = 0;
@@ -1112,12 +1112,12 @@ impl_heap_teardown_store(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 
     parent = self->parent;
     parent_destroying = parent && parent->destroying;
-    impl_unlink_from_parent(self, xctx);
-    impl_account_destroy(self, xctx);
+    afw_pool_internal_unlink_from_parent(self, xctx);
+    afw_pool_internal_account_destroy(self, xctx);
     if (parent && !parent_destroying) {
         afw_pool_release(&parent->pub, xctx);
     }
-    impl_heap_free_chunks(impl_as_heap(self), xctx);
+    impl_heap_free_chunks(afw_pool_heap_internal_as_heap(self), xctx);
 }
 
 static void
@@ -1132,10 +1132,10 @@ impl_scope_afw_pool_release(
     afw_xctx_t *xctx)
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "release");
-    if (impl_error_delaying_release(impl_as_scope(self), xctx)) {
+    if (impl_error_delaying_release(afw_pool_heap_internal_as_scope(self), xctx)) {
         return &self->pub;
     }
-    return impl_release_common(self, xctx, impl_scope_teardown);
+    return afw_pool_internal_release_common(self, xctx, impl_scope_teardown);
 }
 
 static void
@@ -1145,11 +1145,11 @@ impl_scope_afw_pool_run_cleanups(
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "run_cleanups");
     if (!self->destroying) {
-        impl_clear_delay(impl_as_scope(self), xctx);
-        impl_pool_mark_destroying(self);
+        impl_clear_delay(afw_pool_heap_internal_as_scope(self), xctx);
+        afw_pool_internal_mark_destroying(self);
     }
-    impl_run_child_cleanups(self, xctx);
-    impl_pool_run_cleanups(self, xctx);
+    afw_pool_internal_run_child_cleanups(self, xctx);
+    afw_pool_internal_run_cleanups(self, xctx);
 }
 
 static void
@@ -1159,10 +1159,10 @@ impl_scope_afw_pool_destroy(
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
     if (!self->destroying) {
-        impl_clear_delay(impl_as_scope(self), xctx);
-        impl_pool_mark_destroying(self);
+        impl_clear_delay(afw_pool_heap_internal_as_scope(self), xctx);
+        afw_pool_internal_mark_destroying(self);
     }
-    impl_destroy_children(self, xctx);
+    afw_pool_internal_destroy_children(self, xctx);
     impl_scope_teardown(self, xctx);
 }
 
@@ -1175,12 +1175,12 @@ impl_heap_afw_pool_release(
     afw_xctx_t *xctx)
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "release");
-    return impl_release_common(self, xctx, impl_heap_teardown_store);
+    return afw_pool_internal_release_common(self, xctx, impl_heap_teardown_store);
 }
 
 
 void
-afw_pool_release_delayed(
+afw_pool_heap_internal_release_delayed(
     const afw_pool_t *instance,
     afw_xctx_t *xctx)
 {
@@ -1193,7 +1193,7 @@ afw_pool_release_delayed(
     }
     while (xctx->error_delaying_release_first) {
         p = xctx->error_delaying_release_first;
-        delay = impl_as_scope((afw_pool_internal_self_t *)p);
+        delay = afw_pool_heap_internal_as_scope((afw_pool_internal_self_t *)p);
         impl_clear_delay(delay, xctx);
         afw_pool_release(p, xctx);
     }
@@ -1209,10 +1209,10 @@ impl_heap_afw_pool_run_cleanups(
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "run_cleanups");
     if (!self->destroying) {
-        impl_pool_mark_destroying(self);
+        afw_pool_internal_mark_destroying(self);
     }
-    impl_run_child_cleanups(self, xctx);
-    impl_pool_run_cleanups(self, xctx);
+    afw_pool_internal_run_child_cleanups(self, xctx);
+    afw_pool_internal_run_cleanups(self, xctx);
 }
 
 /*
@@ -1225,9 +1225,9 @@ impl_heap_afw_pool_destroy(
 {
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "destroy");
     if (!self->destroying) {
-        impl_pool_mark_destroying(self);
+        afw_pool_internal_mark_destroying(self);
     }
-    impl_destroy_children(self, xctx);
+    afw_pool_internal_destroy_children(self, xctx);
     impl_heap_teardown_store(self, xctx);
 }
 
@@ -1252,13 +1252,13 @@ impl_heap_malloc_internal(
             xctx);
     }
 
-    total = impl_block_bytes(AFW_POOL_HEAP_PREFIX_BYTES, size,
+    total = afw_pool_heap_internal_block_bytes(AFW_POOL_HEAP_PREFIX_BYTES, size,
         xctx, unhandled);
     if (unhandled && total == 0) {
         return NULL;
     }
 
-    start = impl_heap_take_from_free_list_or_chunk(impl_as_heap(self),
+    start = afw_pool_heap_internal_take_from_free_list_or_chunk(afw_pool_heap_internal_as_heap(self),
         total, &reused, xctx, unhandled);
     if (!start) {
         return NULL;
@@ -1266,10 +1266,10 @@ impl_heap_malloc_internal(
     IMPL_PRINT_DEBUG_INFO_FZ(detail, "alloc %s " AFW_SIZE_T_FMT,
         reused ? "reuse" : "chunk", size);
     if (xctx) {
-        impl_account_alloc(self, total, xctx);
+        afw_pool_internal_account_alloc(self, total, xctx);
     }
     user = AFW_POOL_HEAP_USER_FROM_START(start);
-    impl_debug_prefix_set(self, user, size);
+    afw_pool_internal_debug_prefix_set(self, user, size);
     return user;
 }
 
@@ -1344,15 +1344,15 @@ impl_heap_free_internal(
         return;
     }
     if (no_throw) {
-        if (!impl_debug_prefix_ok(self, address, size)) {
+        if (!afw_pool_internal_debug_prefix_ok(self, address, size)) {
             return;
         }
     }
     else {
-        impl_debug_check_prefix(self, address, size, xctx);
+        afw_pool_internal_debug_check_prefix(self, address, size, xctx);
     }
-    impl_debug_poison_user(address, size);
-    total = impl_block_bytes(AFW_POOL_HEAP_PREFIX_BYTES, size,
+    afw_pool_internal_debug_poison_user(address, size);
+    total = afw_pool_heap_internal_block_bytes(AFW_POOL_HEAP_PREFIX_BYTES, size,
         xctx, no_throw);
     if (no_throw && total == 0) {
         return;
@@ -1361,8 +1361,8 @@ impl_heap_free_internal(
     IMPL_PRINT_DEBUG_INFO_FZ(
         detail, "free %p " AFW_SIZE_T_FMT,
         address, total);
-    impl_account_free(self, total, xctx);
-    impl_heap_add_to_free_list(impl_as_heap(self), start, total, xctx);
+    afw_pool_internal_account_free(self, total, xctx);
+    afw_pool_heap_internal_add_to_free_list(afw_pool_heap_internal_as_heap(self), start, total, xctx);
 }
 
 void
@@ -1421,7 +1421,7 @@ impl_mt_afw_pool_get_reference(
     afw_xctx_t *xctx)
 {
     IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        impl_afw_pool_get_reference(self, xctx);
+        afw_pool_internal_get_reference(self, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
 }
@@ -1485,7 +1485,7 @@ impl_mt_afw_pool_calloc_no_throw(
     void *result;
 
     /* xctx init cannot AFW_TRY. */
-    region = impl_pool_region(self);
+    region = afw_pool_internal_region(self);
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
@@ -1505,7 +1505,7 @@ impl_mt_afw_pool_malloc_no_throw(
     const afw_memory_region_t *region;
     void *result;
 
-    region = impl_pool_region(self);
+    region = afw_pool_internal_region(self);
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
@@ -1538,7 +1538,7 @@ impl_mt_afw_pool_free_memory_no_throw(
 {
     const afw_memory_region_t *region;
 
-    region = impl_pool_region(self);
+    region = afw_pool_internal_region(self);
     if (region) {
         afw_memory_region_lock(region, xctx);
     }
@@ -1557,7 +1557,7 @@ impl_mt_afw_pool_register_cleanup(
     afw_xctx_t *xctx)
 {
     IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        impl_afw_pool_register_cleanup(
+        afw_pool_internal_register_cleanup(
             self, data, data2, cleanup, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
@@ -1572,7 +1572,7 @@ impl_mt_afw_pool_deregister_cleanup(
     afw_xctx_t *xctx)
 {
     IMPL_MULTITHREADED_LOCK_BEGIN(self) {
-        impl_afw_pool_deregister_cleanup(
+        afw_pool_internal_deregister_cleanup(
             self, data, data2, cleanup, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
@@ -1624,13 +1624,13 @@ impl_pool_mt_implementation_specific =
 #undef impl_afw_pool_deregister_cleanup
 
 afw_boolean_t
-afw_pool_internal_is_heap_multithreaded(const afw_pool_t *p)
+afw_pool_heap_internal_is_multithreaded(const afw_pool_t *p)
 {
     return p && p->inf == &impl_afw_pool_heap_multithreaded_inf;
 }
 
 const afw_pool_t *
-afw_pool_internal_heap_create(
+afw_pool_heap_internal_create(
     const afw_pool_t *parent,
     afw_boolean_t multithreaded,
     afw_boolean_t as_managed_p,
@@ -1655,7 +1655,7 @@ afw_pool_internal_heap_create(
 
 
 const afw_pool_t *
-afw_pool_internal_heap_create_st_for_thread(
+afw_pool_heap_internal_create_st_for_thread(
     const afw_pool_t *parent,
     afw_boolean_t as_managed_p,
     afw_size_t chunk_min,
@@ -1688,8 +1688,8 @@ afw_pool_heap_create(
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
-    return afw_pool_internal_heap_create(parent,
-        impl_pool_is_multithreaded(parent), false,
+    return afw_pool_heap_internal_create(parent,
+        afw_pool_internal_is_multithreaded(parent), false,
         chunk_min, xctx);
 }
 
@@ -1703,13 +1703,13 @@ afw_pool_heap_create_as_managed_p(
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
-    return afw_pool_internal_heap_create(parent,
-        impl_pool_is_multithreaded(parent), true,
+    return afw_pool_heap_internal_create(parent,
+        afw_pool_internal_is_multithreaded(parent), true,
         chunk_min, xctx);
 }
 
 const afw_pool_t *
-afw_pool_internal_create_base_pool(const afw_thread_t *thread)
+afw_pool_heap_internal_create_base_pool(const afw_thread_t *thread)
 {
     afw_pool_internal_self_t *self;
 
@@ -1726,7 +1726,7 @@ afw_pool_internal_create_base_pool(const afw_thread_t *thread)
     }
     self->pool_number = 1;
     self->thread = thread;
-    impl_base_pool_self = impl_as_heap(self);
+    impl_base_pool_self = afw_pool_heap_internal_as_heap(self);
     return &self->pub;
 }
 
@@ -1765,10 +1765,10 @@ afw_pool_thread_create(
     thread->memory_region = region;
     AFW_TRY {
         self = (AFW_POOL_SELF_T *)
-            afw_pool_internal_heap_create_st_for_thread(
+            afw_pool_heap_internal_create_st_for_thread(
                 xctx->p, true, xctx->env->xctx_chunk_min,
                 thread, xctx);
-        impl_pool_set_owning_thread(impl_as_heap(self), thread);
+        impl_pool_set_owning_thread(afw_pool_heap_internal_as_heap(self), thread);
         thread->p = &self->pub;
     }
     AFW_CATCH_UNHANDLED {
@@ -1803,7 +1803,7 @@ afw_pool_scope_create(
     }
 
     self = impl_heap_create(parent,
-        impl_pool_is_multithreaded(parent)
+        afw_pool_internal_is_multithreaded(parent)
             ? &impl_afw_pool_scope_multithreaded_inf
             : &impl_afw_pool_scope_inf,
         false,
@@ -1829,8 +1829,8 @@ afw_pool_create(
      * managed_p. Tracker is afw_pool_tracker_create(). Job heaps
      * use *_as_managed_p.
      */
-    return afw_pool_internal_heap_create(parent,
-        impl_pool_is_multithreaded(parent), false, 0, xctx);
+    return afw_pool_heap_internal_create(parent,
+        afw_pool_internal_is_multithreaded(parent), false, 0, xctx);
 }
 
 
@@ -1842,13 +1842,13 @@ afw_pool_multithread_create(
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
-    if (!afw_pool_internal_is_heap_multithreaded(parent)) {
+    if (!afw_pool_heap_internal_is_multithreaded(parent)) {
         AFW_THROW_ERROR_Z(general,
             "afw_pool_multithread_create() parent must be a "
             "multithreaded heap",
             xctx);
     }
-    return afw_pool_internal_heap_create(parent, true, false, 0, xctx);
+    return afw_pool_heap_internal_create(parent, true, false, 0, xctx);
 }
 
 
@@ -1860,13 +1860,13 @@ afw_pool_multithread_create_as_managed_p(
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
-    if (!afw_pool_internal_is_heap_multithreaded(parent)) {
+    if (!afw_pool_heap_internal_is_multithreaded(parent)) {
         AFW_THROW_ERROR_Z(general,
             "afw_pool_multithread_create_as_managed_p() parent must "
             "be a multithreaded heap",
             xctx);
     }
-    return afw_pool_internal_heap_create(parent, true, true, 0, xctx);
+    return afw_pool_heap_internal_create(parent, true, true, 0, xctx);
 }
 
 AFW_DEFINE(afw_size_t)
@@ -1875,7 +1875,7 @@ afw_pool_chunk_bytes(const afw_pool_t *instance)
     if (!instance || !afw_pool_internal_is_heap(instance)) {
         return 0;
     }
-    return impl_as_heap(instance)->chunk_bytes;
+    return afw_pool_heap_internal_as_heap(instance)->chunk_bytes;
 }
 
 
@@ -1885,5 +1885,5 @@ afw_pool_chunk_count(const afw_pool_t *instance)
     if (!instance || !afw_pool_internal_is_heap(instance)) {
         return 0;
     }
-    return impl_as_heap(instance)->chunk_count;
+    return afw_pool_heap_internal_as_heap(instance)->chunk_count;
 }

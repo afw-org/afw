@@ -24,7 +24,7 @@
 
 
 void
-impl_env_add_bytes(afw_environment_t *env, afw_size_t n)
+afw_pool_internal_env_add_bytes(afw_environment_t *env, afw_size_t n)
 {
     env->pool_bytes_in_use += n;
     if (env->pool_bytes_in_use > env->peak_pool_bytes_in_use) {
@@ -34,7 +34,7 @@ impl_env_add_bytes(afw_environment_t *env, afw_size_t n)
 
 
 void
-impl_env_add_chunks(afw_environment_t *env, afw_size_t n)
+afw_pool_internal_env_add_chunks(afw_environment_t *env, afw_size_t n)
 {
     env->pool_chunk_bytes += n;
     if (env->pool_chunk_bytes > env->peak_pool_chunk_bytes) {
@@ -44,7 +44,7 @@ impl_env_add_chunks(afw_environment_t *env, afw_size_t n)
 
 
 void
-impl_thread_add_bytes(const afw_thread_t *thread, afw_size_t n)
+afw_pool_internal_thread_add_bytes(const afw_thread_t *thread, afw_size_t n)
 {
     afw_thread_t *t;
 
@@ -60,7 +60,7 @@ impl_thread_add_bytes(const afw_thread_t *thread, afw_size_t n)
 
 
 void
-impl_thread_sub_bytes(const afw_thread_t *thread, afw_size_t n)
+afw_pool_internal_thread_sub_bytes(const afw_thread_t *thread, afw_size_t n)
 {
     if (!thread || n == 0) {
         return;
@@ -70,7 +70,7 @@ impl_thread_sub_bytes(const afw_thread_t *thread, afw_size_t n)
 
 
 void
-impl_thread_add_chunks(const afw_thread_t *thread, afw_size_t n)
+afw_pool_internal_thread_add_chunks(const afw_thread_t *thread, afw_size_t n)
 {
     afw_thread_t *t;
 
@@ -86,7 +86,7 @@ impl_thread_add_chunks(const afw_thread_t *thread, afw_size_t n)
 
 
 void
-impl_thread_sub_chunks(const afw_thread_t *thread, afw_size_t n)
+afw_pool_internal_thread_sub_chunks(const afw_thread_t *thread, afw_size_t n)
 {
     if (!thread || n == 0) {
         return;
@@ -96,7 +96,7 @@ impl_thread_sub_chunks(const afw_thread_t *thread, afw_size_t n)
 
 
 afw_boolean_t
-impl_pool_is_multithreaded(const afw_pool_t *p)
+afw_pool_internal_is_multithreaded(const afw_pool_t *p)
 {
     const afw_pool_internal_inf_implementation_specific_t *spec;
 
@@ -109,16 +109,16 @@ impl_pool_is_multithreaded(const afw_pool_t *p)
 
 
 afw_boolean_t
-impl_counts_on_thread(const afw_pool_internal_self_t *self)
+afw_pool_internal_counts_on_thread(const afw_pool_internal_self_t *self)
 {
     if (!self->thread) {
         return false;
     }
-    return !impl_pool_is_multithreaded(&self->pub);
+    return !afw_pool_internal_is_multithreaded(&self->pub);
 }
 
 void
-impl_assign_pool_number(afw_pool_internal_self_t *self)
+afw_pool_internal_assign_pool_number(afw_pool_internal_self_t *self)
 {
     afw_thread_t *thread;
 
@@ -131,41 +131,41 @@ impl_assign_pool_number(afw_pool_internal_self_t *self)
 
 
 void
-impl_account_alloc(
+afw_pool_internal_account_alloc(
     afw_pool_internal_self_t *self, afw_size_t consumed, afw_xctx_t *xctx)
 {
     self->bytes_allocated += consumed;
     if (xctx && xctx->env) {
-        impl_env_add_bytes((afw_environment_t *)xctx->env, consumed);
+        afw_pool_internal_env_add_bytes((afw_environment_t *)xctx->env, consumed);
     }
-    if (impl_counts_on_thread(self)) {
-        impl_thread_add_bytes(self->thread, consumed);
+    if (afw_pool_internal_counts_on_thread(self)) {
+        afw_pool_internal_thread_add_bytes(self->thread, consumed);
     }
 }
 
 void
-impl_account_free(
+afw_pool_internal_account_free(
     afw_pool_internal_self_t *self, afw_size_t consumed, afw_xctx_t *xctx)
 {
     self->bytes_allocated -= consumed;
     if (xctx && xctx->env) {
         ((afw_environment_t *)xctx->env)->pool_bytes_in_use -= consumed;
     }
-    if (impl_counts_on_thread(self)) {
-        impl_thread_sub_bytes(self->thread, consumed);
+    if (afw_pool_internal_counts_on_thread(self)) {
+        afw_pool_internal_thread_sub_bytes(self->thread, consumed);
     }
 }
 
 
 void
-impl_account_destroy(afw_pool_internal_self_t *self, afw_xctx_t *xctx)
+afw_pool_internal_account_destroy(afw_pool_internal_self_t *self, afw_xctx_t *xctx)
 {
     if (xctx && xctx->env) {
         ((afw_environment_t *)xctx->env)->pool_bytes_in_use -=
             self->bytes_allocated;
     }
-    if (impl_counts_on_thread(self)) {
-        impl_thread_sub_bytes(self->thread, self->bytes_allocated);
+    if (afw_pool_internal_counts_on_thread(self)) {
+        afw_pool_internal_thread_sub_bytes(self->thread, self->bytes_allocated);
     }
     self->bytes_allocated = 0;
 }
@@ -211,12 +211,12 @@ impl_unlink_child(
 }
 
 void
-impl_link_as_child(
+afw_pool_internal_link_as_child(
     afw_pool_internal_self_t *parent,
     afw_pool_internal_self_t *child,
     afw_xctx_t *xctx)
 {
-    if (impl_pool_is_multithreaded(&parent->pub)) {
+    if (afw_pool_internal_is_multithreaded(&parent->pub)) {
         IMPL_MULTITHREADED_LOCK_BEGIN(parent) {
             impl_add_child(parent, child, xctx);
         }
@@ -229,7 +229,7 @@ impl_link_as_child(
 
 #ifdef AFW_DEBUG_POOL
 void
-impl_debug_prefix_set(
+afw_pool_internal_debug_prefix_set(
     AFW_POOL_SELF_T *self,
     void *user,
     afw_size_t size)
@@ -243,7 +243,7 @@ impl_debug_prefix_set(
 }
 
 afw_boolean_t
-impl_debug_prefix_ok(
+afw_pool_internal_debug_prefix_ok(
     AFW_POOL_SELF_T *self,
     void *address,
     afw_size_t size)
@@ -256,7 +256,7 @@ impl_debug_prefix_ok(
 }
 
 void
-impl_debug_check_prefix(
+afw_pool_internal_debug_check_prefix(
     AFW_POOL_SELF_T *self,
     void *address,
     afw_size_t size,
@@ -279,7 +279,7 @@ impl_debug_check_prefix(
 }
 
 void
-impl_debug_poison_user(void *user, afw_size_t size)
+afw_pool_internal_debug_poison_user(void *user, afw_size_t size)
 {
     afw_size_t i;
     afw_size_t n;
@@ -313,7 +313,7 @@ impl_debug_poison_user(void *user, afw_size_t size)
  * still value_release tracker-allocated managed headers.
  */
 void
-impl_pool_run_cleanups(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+afw_pool_internal_run_cleanups(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
     afw_pool_cleanup_t *e;
 
@@ -330,7 +330,7 @@ impl_pool_run_cleanups(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 
 
 void
-impl_unlink_from_parent(
+afw_pool_internal_unlink_from_parent(
     AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
     afw_pool_internal_self_t *parent;
@@ -339,7 +339,7 @@ impl_unlink_from_parent(
     if (!parent) {
         return;
     }
-    if (impl_pool_is_multithreaded(&parent->pub)) {
+    if (afw_pool_internal_is_multithreaded(&parent->pub)) {
         IMPL_MULTITHREADED_LOCK_BEGIN(parent) {
             impl_unlink_child(parent, self, xctx);
         }
@@ -351,19 +351,19 @@ impl_unlink_from_parent(
 }
 
 void
-impl_pool_mark_destroying(AFW_POOL_SELF_T *self)
+afw_pool_internal_mark_destroying(AFW_POOL_SELF_T *self)
 {
     afw_pool_internal_self_t *child;
 
     self->destroying = true;
     for (child = self->first_child; child; child = child->next_sibling) {
-        impl_pool_mark_destroying(child);
+        afw_pool_internal_mark_destroying(child);
     }
 }
 
 
 void
-impl_destroy_children(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+afw_pool_internal_destroy_children(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
     while (self->first_child) {
         afw_pool_internal_self_t *child;
@@ -378,7 +378,7 @@ impl_destroy_children(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 
 
 void
-impl_run_child_cleanups(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
+afw_pool_internal_run_child_cleanups(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 {
     afw_pool_internal_self_t *child;
     afw_pool_internal_self_t *next;
@@ -393,21 +393,21 @@ impl_run_child_cleanups(AFW_POOL_SELF_T *self, afw_xctx_t *xctx)
 
 
 const afw_pool_t *
-impl_release_common(
+afw_pool_internal_release_common(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx,
     void (*teardown)(AFW_POOL_SELF_T *self, afw_xctx_t *xctx))
 {
     if (--(self->reference_count) == 0) {
         if (self->destroying) {
-            impl_pool_run_cleanups(self, xctx);
+            afw_pool_internal_run_cleanups(self, xctx);
             return NULL;
         }
         if (self->first_child) {
             AFW_THROW_ERROR_Z(general,
                 "Pool last-release with children remaining", xctx);
         }
-        impl_pool_run_cleanups(self, xctx);
+        afw_pool_internal_run_cleanups(self, xctx);
         teardown(self, xctx);
         return NULL;
     }
@@ -419,7 +419,7 @@ impl_release_common(
  * Implementation of method get_reference for interface afw_pool.
  */
 void
-impl_afw_pool_get_reference(
+afw_pool_internal_get_reference(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
@@ -432,7 +432,7 @@ impl_afw_pool_get_reference(
  * Implementation of method register_cleanup for interface afw_pool.
  */
 void
-impl_afw_pool_register_cleanup(
+afw_pool_internal_register_cleanup(
     AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
@@ -460,7 +460,7 @@ impl_afw_pool_register_cleanup(
  * Implementation of method deregister_cleanup for interface afw_pool.
  */
 void
-impl_afw_pool_deregister_cleanup(
+afw_pool_internal_deregister_cleanup(
     AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
@@ -509,7 +509,7 @@ afw_pool_internal_is_heap(const afw_pool_t *p)
 
 
 void *
-afw_pool_malloc_unhandled(
+afw_pool_internal_malloc_unhandled(
     const afw_pool_t *instance,
     afw_size_t size,
     afw_xctx_t *xctx)
@@ -522,7 +522,7 @@ afw_pool_malloc_unhandled(
 
 
 void *
-afw_pool_calloc_unhandled(
+afw_pool_internal_calloc_unhandled(
     const afw_pool_t *instance,
     afw_size_t size,
     afw_xctx_t *xctx)
@@ -534,7 +534,7 @@ afw_pool_calloc_unhandled(
 }
 
 void
-afw_pool_print_debug_info(
+afw_pool_internal_print_debug_info(
     int indent,
     const afw_pool_t *pool,
     afw_xctx_t *xctx)
@@ -550,7 +550,7 @@ afw_pool_print_debug_info(
     chunk_count = 0;
     chunk_bytes = 0;
     if (afw_pool_internal_is_heap(pool)) {
-        heap = impl_as_heap(self);
+        heap = afw_pool_heap_internal_as_heap(self);
         chunk_count = heap->chunk_count;
         chunk_bytes = heap->chunk_bytes;
     }
@@ -572,7 +572,7 @@ afw_pool_print_debug_info(
         self->parent ? self->parent->pool_number : (afw_integer_t)0);
 
     for (child = self->first_child; child; child = child->next_sibling) {
-        afw_pool_print_debug_info(indent + 2, &child->pub, xctx);
+        afw_pool_internal_print_debug_info(indent + 2, &child->pub, xctx);
     }
 }
 
@@ -607,7 +607,7 @@ impl_subtree_chunk_bytes(const afw_pool_internal_self_t *self)
 
     n = 0;
     if (afw_pool_internal_is_heap(&self->pub)) {
-        n = impl_as_heap(self)->chunk_bytes;
+        n = afw_pool_heap_internal_as_heap(self)->chunk_bytes;
     }
     for (child = self->first_child; child; child = child->next_sibling) {
         n += impl_subtree_chunk_bytes(child);
