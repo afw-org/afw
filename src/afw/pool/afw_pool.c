@@ -2985,16 +2985,12 @@ afw_pool_create(
     }
 
     /*
-     * Single-thread parent (xctx->p or a tracker): tracker. Store is
-     * the ancestor heap. Multithreaded parent: MT heap that inherits
-     * managed_p. Job heaps use multithread_create_as_managed_p.
+     * Heap like the parent: ST or MT (lock wrappers). Inherits
+     * managed_p. Tracker is afw_pool_tracker_create(). Job heaps
+     * use *_as_managed_p.
      */
-    if (afw_pool_internal_is_tracker(parent) ||
-        !afw_pool_internal_is_heap_multithreaded(parent))
-    {
-        return afw_pool_tracker_create(parent, xctx);
-    }
-    return afw_pool_internal_heap_create(parent, true, false, 0, xctx);
+    return afw_pool_internal_heap_create(parent,
+        impl_pool_is_multithreaded(parent), false, 0, xctx);
 }
 
 

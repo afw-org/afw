@@ -63,8 +63,8 @@
  * Adaptive Framework hierarchical memory pools.
  *
  * One ST job heap per xctx (`afw_pool_heap_create_as_managed_p`).
- * `afw_pool_create()` of a ST parent is a tracker; of an MT parent,
- * an MT heap that inherits managed_p.
+ * `afw_pool_create()` is a heap like the parent (ST or MT),
+ * inherits managed_p. Tracker is `afw_pool_tracker_create()`.
  * `afw_pool_multithread_create_as_managed_p(env->p)` for
  * conf/server/log/adapter.
  * Trackers get memory from the ancestor heap. Evaluation `{ }` uses

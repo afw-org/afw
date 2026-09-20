@@ -512,6 +512,12 @@ impl_tracker_parent(afw_xctx_t *xctx)
         }
     }
     afw_pool_release(tracker, xctx);
+    mt = afw_pool_create(xctx->env->p, xctx);
+    if (!afw_pool_internal_is_heap_multithreaded(mt)) {
+        return impl_fail("tracker_parent",
+            "afw_pool_create of MT parent is not an MT heap");
+    }
+    afw_pool_release(mt, xctx);
     mt = afw_pool_multithread_create(xctx->env->p, xctx);
     if (!afw_pool_internal_is_heap_multithreaded(mt)) {
         return impl_fail("tracker_parent",
@@ -533,9 +539,16 @@ impl_create_child_of_heap(afw_xctx_t *xctx)
 
     heap = afw_pool_heap_create(xctx->p, 0, xctx);
     child = afw_pool_create(heap, xctx);
-    if (!afw_pool_internal_is_tracker(child)) {
+    if (!afw_pool_internal_is_heap(child) ||
+        afw_pool_internal_is_tracker(child) ||
+        afw_pool_internal_is_heap_multithreaded(child))
+    {
         return impl_fail("create_child_of_heap",
-            "afw_pool_create of a ST heap parent is not a tracker");
+            "afw_pool_create of a ST heap parent is not a ST heap");
+    }
+    if (child->managed_p != heap->managed_p) {
+        return impl_fail("create_child_of_heap",
+            "create() did not inherit managed_p");
     }
     before = impl_in_use(xctx);
     a = afw_pool_malloc(child, IMPL_SIZE_MEDIUM, xctx);
@@ -543,7 +556,6 @@ impl_create_child_of_heap(afw_xctx_t *xctx)
     if (impl_expect_in_use(xctx, before, "create_child_of_heap after free")) {
         return 1;
     }
-    afw_pool_garbage_collect(child, xctx);
     b = afw_pool_malloc(child, IMPL_SIZE_MEDIUM, xctx);
     if (impl_expect_same_ptr(b, a, "create_child_of_heap reuse")) {
         return 1;
@@ -553,7 +565,7 @@ impl_create_child_of_heap(afw_xctx_t *xctx)
     tracker = afw_pool_tracker_create(child, xctx);
     if (!afw_pool_internal_is_tracker(tracker)) {
         return impl_fail("create_child_of_heap",
-            "tracker under create() tracker failed");
+            "tracker under create() heap failed");
     }
     afw_pool_release(tracker, xctx);
     afw_pool_release(child, xctx);

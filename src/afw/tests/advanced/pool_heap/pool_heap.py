@@ -111,7 +111,7 @@ def run():
             ),
             (
                 "create_child_of_heap",
-                "afw_pool_create of a ST heap parent is a tracker; "
+                "afw_pool_create of a ST heap parent is a ST heap; "
                 "free recycles",
             ),
             (

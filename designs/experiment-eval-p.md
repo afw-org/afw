@@ -49,7 +49,7 @@ Ripped `FIXME_GET_IT_WORKING`. Default `afwdev test -j`: **4304 passed**, 71 ski
 
 ## Still not this experiment
 
-- `afw_pool_create()` of a ST parent is a tracker (live; [`remaining-apr.md`](remaining-apr.md))
+- `afw_pool_create()` is a heap like the parent; tracker is `afw_pool_tracker_create()` (live; [`remaining-apr.md`](remaining-apr.md))
 - `test_script` isolate of `result` / `error` (unmanaged object set still stores the pointer)
 - Destructure extra-eval of a compile unit without `release`
 - [#277](https://github.com/afw-org/afw/issues/277) follow-ups: Adaptive `clone()`, `qualifier("current")` snapshot, `double_free_throws` skip. Functions/closures as an eval result still alias the unit ([#342](https://github.com/afw-org/afw/issues/342)).
