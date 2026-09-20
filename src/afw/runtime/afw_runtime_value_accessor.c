@@ -750,6 +750,80 @@ afw_runtime_value_accessor_env_rss(
 }
 
 
+/* --- env_pid ------------------------------------------------------------- */
+
+static const afw_utf8_t
+impl_brief_env_pid =
+    AFW_UTF8_LITERAL("Read env process pid");
+
+static const afw_utf8_t
+impl_description_env_pid =
+    AFW_UTF8_LITERAL(
+        "Ignores internal (zeroOffset). Returns env->process_pid "
+        "as an integer copy in the caller pool.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_env_pid = {
+    .key = afw_s_env_pid,
+    .function = afw_runtime_value_accessor_env_pid,
+    .brief = &impl_brief_env_pid,
+    .description = &impl_description_env_pid,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
+const afw_value_t *
+afw_runtime_value_accessor_env_pid(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)prop;
+    (void)internal;
+    if (!xctx || !xctx->env) {
+        return NULL;
+    }
+    return afw_value_create_unmanaged_integer(
+        xctx->env->process_pid, p, xctx);
+}
+
+
+/* --- env_program_name ---------------------------------------------------- */
+
+static const afw_utf8_t
+impl_brief_env_program_name =
+    AFW_UTF8_LITERAL("Read env program name");
+
+static const afw_utf8_t
+impl_description_env_program_name =
+    AFW_UTF8_LITERAL(
+        "Ignores internal (zeroOffset). Returns env->program_name "
+        "as a string. Empty name is NULL.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_env_program_name = {
+    .key = afw_s_env_program_name,
+    .function = afw_runtime_value_accessor_env_program_name,
+    .brief = &impl_brief_env_program_name,
+    .description = &impl_description_env_program_name,
+    .copies_under_lock = false,
+    .returns_live_reference = true
+};
+
+const afw_value_t *
+afw_runtime_value_accessor_env_program_name(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    (void)prop;
+    (void)internal;
+    if (!xctx || !xctx->env || xctx->env->program_name.len == 0) {
+        return NULL;
+    }
+    return afw_value_create_unmanaged_string(
+        &xctx->env->program_name, p, xctx);
+}
+
+
 /* --- uint32 -------------------------------------------------------------- */
 
 static const afw_utf8_t
@@ -1430,6 +1504,8 @@ impl_core_value_accessor_infos[] = {
     &impl_info_size,
     &impl_info_env_pool_stat,
     &impl_info_env_rss,
+    &impl_info_env_pid,
+    &impl_info_env_program_name,
     &impl_info_service_startup,
     &impl_info_service_status,
     &impl_info_uint32,

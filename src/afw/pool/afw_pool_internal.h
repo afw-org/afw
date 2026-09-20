@@ -295,8 +295,13 @@ struct afw_pool_internal_self_with_free_memory_head_s {
 };
 
 
+/**
+ * Create the process base MT pool. thread is the base thread already
+ * created; may be NULL only if create failed earlier. xctx does not
+ * exist yet.
+ */
 const afw_pool_t *
-afw_pool_internal_create_base_pool();
+afw_pool_internal_create_base_pool(const afw_thread_t *thread);
 
 afw_boolean_t
 afw_pool_internal_is_heap(const afw_pool_t *p);
@@ -306,6 +311,18 @@ afw_pool_internal_is_heap_multithreaded(const afw_pool_t *p);
 
 afw_boolean_t
 afw_pool_internal_is_tracker(const afw_pool_t *p);
+
+/**
+ * ST job heap for this thread. Parent may be MT (env->p). This is the
+ * thread-handoff door; heap_create() follows parent ST/MT.
+ */
+const afw_pool_t *
+afw_pool_internal_heap_create_st_for_thread(
+    const afw_pool_t *parent,
+    afw_boolean_t as_managed_p,
+    afw_size_t chunk_min,
+    const afw_thread_t *thread,
+    afw_xctx_t *xctx);
 
 const afw_pool_t *
 afw_pool_internal_heap_create(

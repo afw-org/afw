@@ -1,0 +1,4 @@
+{
+    "name": "afw_memory_region",
+    "description": "Thread-owned reuse of page-aligned regions for heap chunks.\n      Not a pool. get() writes a 4k-aligned region and its actual\n      size through pointer parameters (size is requested on the way\n      in, actual on the way out). free() returns a region to a capped\n      list or to the system. cleanup() drains the list and keeps this\n      instance. release() is last-release of this instance (thread\n      death): cleanup then free the instance. Call methods via\n      afw_memory_region_*() macros. See group afw_memory_region."
+}

@@ -165,7 +165,7 @@ afw_array_create_with_options(
 
     /* If new_p, own pool is a child of p->managed_p. */
     if (AFW_ARRAY_MEMORY_OPTION_IS(options, new_p)) {
-        p = afw_pool_create(p->managed_p, xctx);
+        p = afw_pool_tracker_create(p->managed_p, xctx);
     }
 
     /* Allocate memory for self. */

@@ -58,6 +58,7 @@
 #include "afw_lock.h"
 #include "afw_log_impl.h"
 #include "afw_memory.h"
+#include "afw_memory_region.h"
 #include "afw_model.h"
 #include "afw_number.h"
 #include "afw_object_impl.h"

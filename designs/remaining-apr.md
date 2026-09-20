@@ -18,7 +18,7 @@ Containers, strings, files, threads, getopt, curl body, LDAP setup, and the pool
 | Type aliases | LMDB `apr_uint32_t` / `apr_uint64_t` → `afw_uint*`; FCGI `apr_size_t` → `afw_size_t` |
 | Windows `apr_atomic_*` | `InterlockedIncrement` / `Decrement` |
 
-`afw_environment_release` does not destroy the process base pool (intended: process lifetime; MT lock lives in it). Process-lifetime chunks stay reachable via a static root, so valgrind should report them as **still reachable**, not definitely lost.
+`afw_environment_release` does not destroy the process base pool (intended: process lifetime). Process-lifetime chunks stay reachable via a static root, so valgrind should report them as **still reachable**, not definitely lost. Heap chunks come from the thread `afw_memory_region` (capped free list). MT pool methods take that region's mutex.
 
 Heap and tracker use the same parent/child RC. Last-`release` does not call `destroy`: decrement, throw if children remain, then cleanup (callbacks, unchain, free this store, `release` parent). **`destroy` is storage-only** (must not fail): unchain, leftover, free store, `release` parent. Call **`afw_pool_run_cleanups`** first if callbacks must run (`xctx_release` does both). `destroy` clears delayed last-`release` marks. Callers must own that subtree (`xctx->p`, flag/log scratch pools, …). Heap: `release` parent before `free_chunks` (`xctx` lives in `xctx->p`). `afw_pool_release_delayed()` is a postorder last-`release` of delayed pools at ENDTRY after a caught error. Child heaps keep their own chunks (`impl_reservoir_heap` stops at a heap).
 
@@ -30,8 +30,8 @@ Heap and tracker use the same parent/child RC. Last-`release` does not call `des
 | `afw_pool_heap_create_as_managed_p(...)` | ST **job** heap, `managed_p = self`. xctx/thread. |
 | `afw_pool_multithread_create(env->p)` | MT heap, **inherits** `managed_p`. |
 | `afw_pool_multithread_create_as_managed_p(env->p)` | MT **job** heap, `managed_p = self`. Conf, adapter, server, log. |
-| `afw_pool_create(parent)` | Tracker if ST parent; MT heap that inherits `managed_p` if MT parent. Parent/child is **lifetime** only; store is the ancestor heap. |
-| `afw_pool_tracker_create(parent)` | Tracker. No throw last-release delay. Heap or tracker parent. |
+| `afw_pool_create(parent)` | Heap like the parent (ST or MT lock wrappers), inherits `managed_p`. Parent/child is **lifetime** only. |
+| `afw_pool_tracker_create(parent)` | Tracker. ST or MT lock wrappers from the parent. No throw last-release delay. Heap or tracker parent. |
 | `afw_pool_scope_create(parent)` | Evaluation `{ }`. ST heap, 4k chunks, inherits `managed_p`; last-release delayed while `error_processing_count` > 0. |
 | `malloc_no_throw` / `calloc_no_throw` / `free_memory_no_throw` | Same as malloc/calloc/free; NULL / no-op instead of throw. |
 
@@ -39,7 +39,7 @@ One ST heap per xctx (`xctx->p`, created `*_as_managed_p`). Evaluation `{ }` use
 
 Process/server runtime objects expose live `poolBytesInUse` / `peakPoolBytesInUse` / `poolChunkBytes` / `peakPoolChunkBytes` (`env_pool_stat`). `process::rss` is bytes.
 
-Tune later: mmap, per-chunk free lists.
+Heap chunks: thread `afw_memory_region` (`memoryRegionFreeListMaxBytes`, default 256KiB, 0 = no reuse). [#358](https://github.com/afw-org/afw/issues/358).
 
 ## Landed on `develop`: [PR #327](https://github.com/afw-org/afw/pull/327)
 

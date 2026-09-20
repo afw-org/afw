@@ -63,12 +63,12 @@
  * Adaptive Framework hierarchical memory pools.
  *
  * One ST job heap per xctx (`afw_pool_heap_create_as_managed_p`).
- * `afw_pool_create()` of a ST parent is a tracker; of an MT parent,
- * an MT heap that inherits managed_p.
+ * `afw_pool_create()` is a heap like the parent (ST or MT),
+ * inherits managed_p. Tracker is `afw_pool_tracker_create()`.
  * `afw_pool_multithread_create_as_managed_p(env->p)` for
  * conf/server/log/adapter.
  * Trackers get memory from the ancestor heap. Evaluation `{ }` uses
- * a scope pool (`afw_pool_scope_create`: ST heap, 4k chunks,
+ * a scope pool (`afw_pool_scope_create` of dest p, 4k chunks,
  * inherits managed_p).
  * Destroy returns the chain to the ancestor heap. Parent/child is
  * lifetime only. Last-release does not call destroy.
@@ -88,7 +88,7 @@
  * afw_xctx_malloc() / afw_xctx_free(),
  * afw_pool_release_value_at_cleanup().
  * `afw_memory_malloc` / `calloc` / `free` (`p, xctx` last) live in
- * `afw_memory.h`.
+ * `afw_memory.h`. Heap chunks come from @ref afw_memory_region.
  *
  * @{
  */
@@ -98,6 +98,29 @@
  * @ingroup afw_c_api_internal
  *
  * Pool implementation details for libafw only.
+ */
+
+/** @} */
+
+/**
+ * @defgroup afw_memory_region Memory region
+ *
+ * Thread-owned reuse of page-aligned regions for heap chunks.
+ * Not a pool. Create with afw_memory_region_create(); the instance
+ * is C calloc and release() frees it. Cap 0 is posix_memalign/free
+ * on every get/free. Thread holds the pointer; release is thread
+ * death. Call methods via afw_memory_region_get() /
+ * afw_memory_region_free() / afw_memory_region_cleanup() /
+ * afw_memory_region_release().
+ *
+ * @{
+ */
+
+/**
+ * @defgroup afw_memory_region_internal Memory region internal
+ * @ingroup afw_c_api_internal
+ *
+ * memory_region implementation details for libafw only.
  */
 
 /** @} */
@@ -589,8 +612,15 @@
  *
  * Thread create/join helpers and thread attributes.
  *
- * AFW often uses APR thread primitives under these wrappers. Follow pool
- * and xctx rules when sharing data across threads.
+ * Follow pool and xctx rules when sharing data across threads.
+ * Each thread holds an @ref afw_memory_region for heap chunks.
+ */
+
+/**
+ * @defgroup afw_thread_internal Thread internal
+ * @ingroup afw_c_api_internal
+ *
+ * Base-thread bootstrap before the process pool exists.
  */
 
 /**

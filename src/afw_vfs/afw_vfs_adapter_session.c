@@ -510,7 +510,7 @@ impl_process_directory(
                     }
                 }
 
-                object_p = afw_pool_create(ctx->p, xctx);
+                object_p = afw_pool_tracker_create(ctx->p, xctx);
                 {
                     afw_utf8_t name;
 
@@ -796,7 +796,7 @@ impl_afw_adapter_session_get_object(
     object = NULL;
     vfs_entry = impl_get_vfs_entry(self, object_id, xctx);
     if (vfs_entry) {
-        object_p = afw_pool_create(p, xctx);
+        object_p = afw_pool_tracker_create(p, xctx);
         object = impl_read_file_object(self, impl_request,
             vfs_entry, object_id, include_hidden, object_p, xctx);
         if (!object) {

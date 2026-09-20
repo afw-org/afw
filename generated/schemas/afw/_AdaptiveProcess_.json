@@ -67,6 +67,12 @@
                     "title": "Limit Request Pool Bytes",
                     "type": "integer"
                 },
+                "memoryRegionFreeListMaxBytes": {
+                    "description": "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
+                    "markdownDescription": "**Memory Region Free List Max Bytes**\n\nMaximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
+                    "title": "Memory Region Free List Max Bytes",
+                    "type": "integer"
+                },
                 "peakPoolBytesInUse": {
                     "description": "High-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
                     "markdownDescription": "**Peak Pool Bytes In Use**\n\nHigh-water of poolBytesInUse since environment create. Asked-for malloc/calloc (prefixes and rounding included), not process RSS.",
@@ -180,6 +186,12 @@
                     "description": "Tripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
                     "markdownDescription": "**Limit Request Pool Bytes**\n\nTripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
                     "title": "Limit Request Pool Bytes",
+                    "type": "integer"
+                },
+                "memoryRegionFreeListMaxBytes": {
+                    "description": "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
+                    "markdownDescription": "**Memory Region Free List Max Bytes**\n\nMaximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
+                    "title": "Memory Region Free List Max Bytes",
                     "type": "integer"
                 },
                 "peakPoolBytesInUse": {
@@ -305,6 +317,12 @@
             "description": "Tripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
             "markdownDescription": "**Limit Request Pool Bytes**\n\nTripwire against request-thread ST asked-for bytes, not process poolBytesInUse. Application conf can override this and then it also applies to the CLI base thread. 0 = unlimited.",
             "title": "Limit Request Pool Bytes",
+            "type": "integer"
+        },
+        "memoryRegionFreeListMaxBytes": {
+            "description": "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
+            "markdownDescription": "**Memory Region Free List Max Bytes**\n\nMaximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
+            "title": "Memory Region Free List Max Bytes",
             "type": "integer"
         },
         "peakPoolBytesInUse": {

@@ -113,7 +113,7 @@ impl_afw_content_type_raw_to_object(
     /* If not cede_p, get subpool now to use for afw_utf8_from_memory(). */
     use_p = p;
     if (!cede_p) {
-        use_p = afw_pool_create(p, xctx);
+        use_p = afw_pool_tracker_create(p, xctx);
     }
 
     /* Convert raw to utf8. An error may be thrown if not valid utf-8. */

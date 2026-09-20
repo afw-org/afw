@@ -12,6 +12,7 @@
  */
 
 #include "afw_internal.h"
+#include <stdlib.h>
 
 
 
@@ -25,6 +26,46 @@ afw_thread_attr_create(
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     return afw_pool_calloc_type(p, afw_thread_attr_t, xctx);
+}
+
+
+afw_thread_t *
+afw_thread_internal_create_base_thread(void)
+{
+    afw_thread_t *self;
+    const afw_memory_region_t *region;
+
+    self = (afw_thread_t *)calloc(1, sizeof(afw_thread_t));
+    if (!self) {
+        return NULL;
+    }
+    self->type = afw_thread_type_base;
+    self->os_thread = NULL;
+    self->pool_number = 1;
+    region = afw_memory_region_create(
+        AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES, NULL);
+    if (!region) {
+        free(self);
+        return NULL;
+    }
+    self->memory_region = region;
+    return self;
+}
+
+
+void
+afw_thread_internal_release_base_thread(
+    afw_thread_t *thread,
+    afw_xctx_t *xctx)
+{
+    if (!thread) {
+        return;
+    }
+    if (thread->memory_region) {
+        afw_memory_region_release(thread->memory_region, xctx);
+        thread->memory_region = NULL;
+    }
+    free(thread);
 }
 
 

@@ -316,7 +316,7 @@ afw_content_type_application_afw_stream_create(
     self = afw_pool_calloc_type(p,
         afw_content_type_application_afw_stream_self_t, xctx);
     self->pub.inf = &impl_afw_stream_inf;
-    self->pub.p = afw_pool_create(p, xctx);
+    self->pub.p = afw_pool_tracker_create(p, xctx);
     self->pub.streamId = streamId;
     self->pub.write_cb = &impl_afw_stream_write_cb;
     self->response_writer = response_stream;

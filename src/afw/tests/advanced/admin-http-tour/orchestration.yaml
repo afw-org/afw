@@ -81,6 +81,10 @@ tests:
     source: |
       const s = get_object("afw", "_AdaptiveServer_", "current");
       assert(s != null);
+      assert(s.pid === process::pid);
+      assert(s.programName === process::programName);
+      assert(s.rss > 0);
+      assert(process::rss > 0);
       const info = retrieve_objects(
           "afw", "_AdaptiveSystemInfo_",
           undefined, undefined, undefined, 0);

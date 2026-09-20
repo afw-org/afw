@@ -1305,6 +1305,7 @@ Several different “managed by pool” stories coexist; **validate case by case
   `AFW_LOCK_BEGIN(xctx->env->multithreaded_pool_lock)` … `AFW_LOCK_END`.
 - So: **one process-wide multithreaded pool lock** (not per-pool), registered at env create.
 - Env base pool uses this inf so any thread can allocate from `env->p`.
+- **Later (#358):** that env lock is gone. MT heap/tracker methods take the thread `afw_memory_region` mutex.
 
 **Still “mostly APR wrappers”:** ownership and bulk free are APR pool lifecycle; AFW adds refcount, parent/child tree, optional free-list reuse, prefixes, cleanups, and the lock layer for multi. Individual free is possible but secondary to destroy-at-scope/request.
 
@@ -1888,6 +1889,7 @@ Register at env bootstrap so paths like `/afw/_AdaptiveObjectType_/…` resolve 
 - Original pair: **single-thread `pool`** + **`multithreaded`** lock wrapper; both APR-backed full pools (own `apr_p`).
 - Base env pool = multithreaded; thread-specific lineage starts at `afw_pool_create_thread` (`thread` field → non-locking infs for children).
 - Multi uses env-wide `multithreaded_pool_lock`. Subpool pair deferred to next discussion.
+  **Later (#358):** no env pool lock; MT methods take the thread `afw_memory_region` mutex.
 
 ### 2026-07-23 — objects/arrays as interfaces; managed containers
 

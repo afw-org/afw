@@ -592,7 +592,7 @@ afw_value_compiler_listing_to_string(
     afw_size_t len;
 
     /* Create self and ary in its own pool. */
-    temp_pool = afw_pool_create(p, xctx);
+    temp_pool = afw_pool_tracker_create(p, xctx);
 
     self = afw_value_compiler_listing_to_string_instance(
         value, NULL, tab, temp_pool, xctx);

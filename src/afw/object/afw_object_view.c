@@ -1361,7 +1361,7 @@ afw_object_view_create(
     }
 
     /* Create view common. */
-    p = afw_pool_create(p, xctx);
+    p = afw_pool_tracker_create(p, xctx);
     view = afw_pool_calloc_type(p, afw_object_view_internal_view_t, xctx);
     view->p = p;
     view->reference_count = 1;

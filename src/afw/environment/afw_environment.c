@@ -277,9 +277,19 @@ afw_environment_create(
     /* Check and initialize libxml2 */
     LIBXML_TEST_VERSION
 
-    /* Create base pool. */
-    p = afw_pool_internal_create_base_pool();
+    /*
+     * Base thread first (no pool yet): C calloc + memory_region.
+     * Then the base MT pool, with thread set from the start.
+     */
+    thread = NULL;
+    xctx = NULL;
+    p = NULL;
+    thread = afw_thread_internal_create_base_thread();
+    if (!thread) goto early_error;
+
+    p = afw_pool_internal_create_base_pool(thread);
     if (!p) goto early_error;
+    thread->p = p;
 
     /* Allocate cleared afw_error_t. No xctx/TRY yet. */
     error = afw_pool_calloc_unhandled(p, sizeof(afw_error_t), NULL);
@@ -290,6 +300,7 @@ afw_environment_create(
 
     /* Temporary way to handle errors. */
     AFW_ERROR_INTERNAL_ON_UNHANDLED(unhandled_error) {
+        afw_thread_internal_release_base_thread(thread, xctx);
         *environment_create_error = error;
         return NULL;
     }
@@ -328,6 +339,8 @@ afw_environment_create(
     env->xctx_chunk_min = afw_pool_round_up_chunk_size(
         AFW_ENVIRONMENT_XCTX_CHUNK_MIN
             ? AFW_ENVIRONMENT_XCTX_CHUNK_MIN : 1);
+    env->memory_region_free_list_max_bytes =
+        AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES;
     env->debug_fd = stderr;
     env->stderr_fd = stderr;
     env->stdout_fd = stdout;
@@ -342,17 +355,26 @@ afw_environment_create(
 
     /*
      * Always-non-NULL xctx->thread. Base is not a pthread: do not
-     * call afw_thread_create(). Struct lives in env->p (MT).
+     * call afw_thread_create(). Struct was calloc'd before the pool.
      */
-    thread = afw_xctx_calloc_type(afw_thread_t, xctx);
-    thread->type = afw_thread_type_base;
     thread->xctx = xctx;
-    thread->p = p;
-    thread->os_thread = NULL;
-    thread->pool_number = 1;
     xctx->thread = thread;
-    ((afw_pool_internal_self_t *)p)->thread = thread;
     afw_os_c_stack_bounds(&thread->c_stack_base, &thread->c_stack_size);
+    afw_memory_region_set_free_list_max_bytes(thread->memory_region,
+        env->memory_region_free_list_max_bytes, xctx);
+
+    /*
+     * ST job heap for the base xctx. env->p stays MT. Thread handoff:
+     * ST even though parent is env->p.
+     */
+    {
+        const afw_pool_t *job;
+
+        job = afw_pool_internal_heap_create_st_for_thread(
+            p, true, env->xctx_chunk_min, thread, xctx);
+        xctx->p = job;
+        thread->p = job;
+    }
 
     /* Create data type method number hash table. */
     env->data_type_method_number_ht = afw_hash_table_create(
@@ -501,11 +523,6 @@ afw_environment_create(
             type->property_name, (void *)type, xctx);
     }
 
-    /* Create multithreaded pool lock. */
-    env->multithreaded_pool_lock =
-        afw_lock_create_environment_nested_lock(
-            afw_s_a_lock_multithreaded_pool, p, xctx);
-
     /* Create environment lock. */
     env->environment_lock =
         afw_lock_create_and_register(
@@ -560,6 +577,7 @@ afw_environment_create(
     return xctx;
 
 early_error:
+    afw_thread_internal_release_base_thread(thread, xctx);
     return NULL;
 }
 
@@ -569,8 +587,8 @@ AFW_DEFINE(void)
 afw_environment_release(afw_xctx_t *xctx)
 {
     /*
-     * Do not destroy env->p. It is the process base pool (env, the
-     * base xctx, and multithreaded_pool_lock live in it). Process
+     * Do not destroy env->p. It is the process base pool (env and
+     * the base xctx live in it). Process
      * exit reclaims the chunks; valgrind still-reachable via a
      * static root is intended. Can change later if an embedder
      * needs env create/destroy without process exit (join threads

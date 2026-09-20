@@ -738,6 +738,28 @@ typedef struct afw_pool_inf_s
 afw_pool_inf_t;
 
 /**
+ * @brief Opaque instance type for interface `afw_memory_region`.
+ *
+ * Public name is `afw_memory_region_t`. Full
+ * `struct afw_memory_region_s` is in the generated
+ * interface header. Call methods via
+ * `afw_memory_region_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
+typedef struct afw_memory_region_s
+afw_memory_region_t;
+
+/**
+ * @brief Vtable/inf type for interface `afw_memory_region`.
+ *
+ * Public name is `afw_memory_region_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
+typedef struct afw_memory_region_inf_s
+afw_memory_region_inf_t;
+
+/**
  * @brief Opaque instance type for interface `afw_adapter_journal`.
  *
  * Public name is `afw_adapter_journal_t`. Full

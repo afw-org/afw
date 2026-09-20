@@ -32,15 +32,15 @@
  * - Parent/child is lifetime only (last-release throws if children
  *   remain). Store is the ancestor heap. Trackers may parent other
  *   trackers.
- * - One ST job heap per xctx (`afw_pool_heap_create_as_managed_p`).
- *   Evaluation `{ }` uses `afw_pool_scope_create` (ST heap, 4k
- *   chunks, inherits managed_p, last-release delay while a script
- *   throw is handled).
+ * - One ST job heap per xctx (thread handoff off env->p, including
+ *   base). `{ }` is `afw_pool_scope_create` of dest `p` (top:
+ *   evaluate dest; nested: parent scope->p). Heap/scope/tracker
+ *   follow parent ST/MT.
  *   Closures pin the inner scope; the xctx heap outlives the outer
  *   `{ }`.
- * - `afw_pool_create()` of a ST parent (xctx->p or tracker) is a
- *   tracker (not a scope). Of an MT parent, an MT heap that
- *   **inherits** managed_p. `env->p` is the process MT job heap.
+ * - `afw_pool_create()` is a heap like the parent (ST or MT lock
+ *   wrappers), **inherits** managed_p. Tracker is
+ *   `afw_pool_tracker_create()`. `env->p` is the process MT job heap.
  *   Things you start (conf, server, log, adapter) use
  *   `afw_pool_multithread_create_as_managed_p(env->p)`. Compile
  *   units use `afw_pool_heap_create` (own chunks, inherit
@@ -62,8 +62,8 @@
  *   call destroy. "Children remaining" is a leaked child.
  * - destroy: storage-only (must not fail). Call `run_cleanups`
  *   first if callbacks must run (`xctx_release` does both).
- * - `afw_pool_release_delayed()`: postorder last-release delayed
- *   pools. ENDTRY after a caught error.
+ * - `afw_pool_release_delayed()`: last-release scopes delayed
+ *   while error_processing_count > 0. ENDTRY after a caught error.
  * - `env->p` is process lifetime (valgrind still reachable is
  *   intended).
  *
@@ -118,9 +118,9 @@ struct afw_pool_cleanup_s {
  * @param xctx of caller.
  * @return new pool.
  *
- * Tracker if the parent is a single-thread heap or a tracker.
- * Multithreaded heap if the parent is multithreaded (inherits
- * managed_p). Use multithread_create_as_managed_p for a job heap.
+ * Heap like the parent: ST heap or MT heap (lock wrappers).
+ * Inherits managed_p. Use afw_pool_tracker_create() for a tracker.
+ * Use *_as_managed_p for a job heap.
  *
  * env->p is a multithreaded job heap. xctx->p is a single-thread
  * job heap (`afw_pool_heap_create_as_managed_p`). Thread-specific
@@ -140,7 +140,7 @@ afw_pool_create(
  * @return new pool.
  *
  * Own chunks. Compile units and other bulk-free children use this.
- * afw_pool_create() of the result is a tracker.
+ * ST/MT follows the parent.
  *
  * Inherits parent->managed_p, so create_managed(this) still
  * allocates on the ancestor dest. Use heap_create_as_managed_p
@@ -212,8 +212,9 @@ afw_pool_multithread_create_as_managed_p(
  * @param xctx of caller.
  * @return tracker. managed_p is the ancestor heap.
  *
- * Single-thread only, same thread as the parent. No last-release
- * delay on throw. For evaluation `{ }`, use afw_pool_scope_create().
+ * If the parent is multithreaded, methods are lock wrappers on
+ * the same region mutex as MT heaps. No last-release delay on
+ * throw. For evaluation `{ }`, use afw_pool_scope_create().
  * The tracker header is a parent-pool block (`free_memory` on
  * destroy).
  */

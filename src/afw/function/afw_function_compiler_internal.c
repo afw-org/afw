@@ -2147,7 +2147,7 @@ afw_function_execute_try(
                 catch_scope = NULL;
                 AFW_TRY{
                     catch_scope = afw_xctx_scope_create(
-                        block, afw_xctx_scope_current(xctx), xctx);
+                        block, afw_xctx_scope_current(xctx), p, xctx);
                     afw_xctx_scope_activate(catch_scope, xctx);
                     eval_p = catch_scope->p;
                     error_object = afw_error_to_object(

@@ -54,7 +54,7 @@ afw_utf8_stream_create(
     impl_utf8_stream_self_t *self;
 
     /* Create self and ary in its own pool. */
-    p = afw_pool_create(p, xctx);
+    p = afw_pool_tracker_create(p, xctx);
     self = afw_pool_calloc_type(p,
         impl_utf8_stream_self_t,
         xctx);

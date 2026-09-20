@@ -736,7 +736,7 @@ main(int argc, char **argv)
     }
 
     case_name = (argc > 1) ? argv[1] : "";
-    p = afw_pool_create(xctx->p, xctx);
+    p = afw_pool_tracker_create(xctx->p, xctx);
     rc = 0;
 
     if (strcmp(case_name, "create-set-copy") == 0) {

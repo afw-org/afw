@@ -97,6 +97,17 @@
                 "valueAccessor": "size"
             }
         },
+        "memoryRegionFreeListMaxBytes": {
+            "allowQuery": true,
+            "brief": "Cap on thread memory_region free list",
+            "dataType": "integer",
+            "description": "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free.",
+            "label": "Memory Region Free List Max Bytes",
+            "runtime": {
+                "memberName": "memory_region_free_list_max_bytes",
+                "valueAccessor": "size"
+            }
+        },
         "peakPoolBytesInUse": {
             "allowQuery": true,
             "brief": "High-water of AFW asked-for bytes",

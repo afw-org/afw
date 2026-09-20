@@ -57,6 +57,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | Streams / VFS / retrieve | stream + vfs rules; #127; #49; catalog composite soak **[#331](https://github.com/afw-org/afw/issues/331)** |
 | afwdev / tests | recipe + tests-extra SCHEMA; #157; C probes #207; test history `--compare` / `--trend` ([#329](https://github.com/afw-org/afw/issues/329)) |
 | Process telemetry / request caps | `process::` `peak*` / `limit*` / `rss`; application conf overrides; `response:metrics`; hermetic `payload_too_large` worker ([#329](https://github.com/afw-org/afw/issues/329)) |
+| Heap chunk reuse | Thread `afw_memory_region`; `memoryRegionFreeListMaxBytes` ([#358](https://github.com/afw-org/afw/issues/358)). Record is the issue body. |
 | Crypto | #74 pad |
 | Admin / Fiddle | atlas §16 (contract only) |
 | C vector / hash table | [`afw-vector.md`](afw-vector.md) (last `apr_array` [PR #310](https://github.com/afw-org/afw/pull/310)); [`afw-hash-table.md`](afw-hash-table.md) (last `apr_hash` converted) |

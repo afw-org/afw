@@ -2077,7 +2077,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
 
     while (1)
     {
-        p = afw_pool_create(pool, xctx);
+        p = afw_pool_tracker_create(pool, xctx);
 
         /* get the next value from this cursor */
         object = afw_adapter_impl_index_cursor_get_next_object(
