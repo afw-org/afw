@@ -31,6 +31,13 @@ AFW_BEGIN_DECLARES
 #define AFW_MEMORY_REGION_ALIGN ((afw_size_t)4096)
 
 /**
+ * @brief Default cap on free_list_bytes. 0 on create() is still
+ * passthrough (posix_memalign/free every get/free).
+ */
+#define AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES \
+    ((afw_size_t)(256 * 1024))
+
+/**
  * @brief Create a memory_region instance.
  * @param free_list_max_bytes cap on the free list; 0 = no reuse.
  * @param xctx of caller. May be NULL (environment create).

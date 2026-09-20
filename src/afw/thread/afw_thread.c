@@ -42,7 +42,8 @@ afw_thread_internal_create_base_thread(void)
     self->type = afw_thread_type_base;
     self->os_thread = NULL;
     self->pool_number = 1;
-    region = afw_memory_region_create(0, NULL);
+    region = afw_memory_region_create(
+        AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES, NULL);
     if (!region) {
         free(self);
         return NULL;
