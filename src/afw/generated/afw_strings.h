@@ -52887,6 +52887,32 @@ afw_self_v_entryCursor;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_env_pid \
+    "env_pid"
+
+/** @brief 'afw_utf8_t' for AFW_Q_env_pid */
+#define afw_s_env_pid \
+    (&afw_self_v_env_pid.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_env_pid */
+#define afw_self_s_env_pid \
+    (afw_self_v_env_pid.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_env_pid */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_env_pid;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_env_pid */
+#define afw_z_env_pid \
+    (afw_self_v_env_pid.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_env_pid */
+#define afw_v_env_pid \
+    (&afw_self_v_env_pid.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_env_pool_stat \
     "env_pool_stat"
 
@@ -52909,6 +52935,32 @@ afw_self_v_env_pool_stat;
 /** @brief 'const afw_value_t *' for AFW_Q_env_pool_stat */
 #define afw_v_env_pool_stat \
     (&afw_self_v_env_pool_stat.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_env_program_name \
+    "env_program_name"
+
+/** @brief 'afw_utf8_t' for AFW_Q_env_program_name */
+#define afw_s_env_program_name \
+    (&afw_self_v_env_program_name.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_env_program_name */
+#define afw_self_s_env_program_name \
+    (afw_self_v_env_program_name.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_env_program_name */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_env_program_name;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_env_program_name */
+#define afw_z_env_program_name \
+    (afw_self_v_env_program_name.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_env_program_name */
+#define afw_v_env_program_name \
+    (&afw_self_v_env_program_name.pub)
 
 
 

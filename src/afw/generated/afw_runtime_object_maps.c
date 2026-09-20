@@ -4511,6 +4511,16 @@ impl_properties__AdaptiveServer_[] = {
         afw_runtime_value_accessor_env_pool_stat
     },
     {
+        afw_v_pid,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_pid,
+        afw_runtime_value_accessor_env_pid
+    },
+    {
         afw_v_poolBytesInUse,
         0,
         -1,
@@ -4531,6 +4541,16 @@ impl_properties__AdaptiveServer_[] = {
         afw_runtime_value_accessor_env_pool_stat
     },
     {
+        afw_v_programName,
+        0,
+        -1,
+        &afw_data_type_string_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_program_name,
+        afw_runtime_value_accessor_env_program_name
+    },
+    {
         afw_v_requestCount,
         offsetof(afw_server_t, request_count),
         -1,
@@ -4539,6 +4559,16 @@ impl_properties__AdaptiveServer_[] = {
         NULL,
         &afw_self_s_default,
         afw_runtime_value_accessor_default
+    },
+    {
+        afw_v_rss,
+        0,
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_env_rss,
+        afw_runtime_value_accessor_env_rss
     },
     {
         afw_v_serverType,
@@ -4595,7 +4625,7 @@ impl_properties__AdaptiveServer_[] = {
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveServer_ = {
     &afw_self_s__AdaptiveServer_,
-    14,
+    17,
     &impl_properties__AdaptiveServer_[0]
 };
 

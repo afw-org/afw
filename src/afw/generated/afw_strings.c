@@ -12225,9 +12225,21 @@ afw_self_v_entryCursor = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_env_pid = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_env_pid)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_env_pool_stat = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_env_pool_stat)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_env_program_name = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_env_program_name)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
@@ -27903,6 +27915,12 @@ afw_self_v_zz__5811fc41b66d = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__58228efaf085 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__58228efaf085)
+};
+
+const afw_value_string_t
 afw_self_v_zz__582c329c9e34 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__582c329c9e34)
@@ -28893,6 +28911,12 @@ afw_self_v_zz__687b30df1f8f = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__688db2957ce3 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__688db2957ce3)
+};
+
+const afw_value_string_t
 afw_self_v_zz__6890dc3a418f = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__6890dc3a418f)
@@ -29028,6 +29052,12 @@ const afw_value_string_t
 afw_self_v_zz__6aff19dd5ff2 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__6aff19dd5ff2)
+};
+
+const afw_value_string_t
+afw_self_v_zz__6affaf867e19 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__6affaf867e19)
 };
 
 const afw_value_string_t
@@ -34755,6 +34785,12 @@ afw_self_v_zz__Current_process_RSS_in_kilobytes = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Current_process_resident_memory_in_bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Current_process_resident_memory_in_bytes)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Custom_variables_accessed_throughout_this_Object_Type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Custom_variables_accessed_throughout_this_Object_Type)
@@ -38697,6 +38733,12 @@ afw_self_v_zz__Open_the_connection_immediately = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Operating_system_process_id = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Operating_system_process_id)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Optional_Choice = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Optional_Choice)
@@ -39258,6 +39300,12 @@ const afw_value_string_t
 afw_self_v_zz__Print_value_followed_by___n_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Print_value_followed_by___n_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Process_Id = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Process_Id)
 };
 
 const afw_value_string_t
@@ -39828,6 +39876,12 @@ const afw_value_string_t
 afw_self_v_zz__Reregister_of_a_key_is_allowed = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Reregister_of_a_key_is_allowed)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Resident_Memory = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Resident_Memory)
 };
 
 const afw_value_string_t
@@ -63627,7 +63681,9 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_entries,
     &afw_self_v_entry,
     &afw_self_v_entryCursor,
+    &afw_self_v_env_pid,
     &afw_self_v_env_pool_stat,
+    &afw_self_v_env_program_name,
     &afw_self_v_env_rss,
     &afw_self_v_environment,
     &afw_self_v_eq,

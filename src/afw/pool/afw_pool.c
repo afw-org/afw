@@ -1142,6 +1142,9 @@ impl_heap_create(
         thread = xctx->thread;
     }
     if (!thread || !thread->memory_region) {
+        if (!xctx) {
+            return NULL;
+        }
         AFW_THROW_ERROR_Z(general,
             "Heap requires thread->memory_region", xctx);
     }
@@ -1292,6 +1295,7 @@ impl_heap_take_from_free_list_or_chunk(
     afw_pool_free_node_t *slow;
     afw_pool_free_node_t *fast;
     afw_pool_chunk_t *chunk;
+    const afw_memory_region_t *region;
     char *end;
     void *start;
 
@@ -1396,8 +1400,16 @@ impl_heap_take_from_free_list_or_chunk(
         }
     }
 
-    chunk = impl_chunk_malloc(total, heap->chunk_min,
-        heap->common.thread->memory_region, xctx);
+    region = (heap->common.thread)
+        ? heap->common.thread->memory_region : NULL;
+    if (!region) {
+        if (unhandled || !xctx) {
+            return NULL;
+        }
+        AFW_THROW_ERROR_Z(general,
+            "Heap requires thread->memory_region", xctx);
+    }
+    chunk = impl_chunk_malloc(total, heap->chunk_min, region, xctx);
     if (!chunk) {
         if (unhandled) {
             return NULL;
@@ -1644,6 +1656,7 @@ impl_heap_free_chunks(afw_pool_internal_heap_self_t *heap, afw_xctx_t *xctx)
 {
     afw_pool_chunk_t *chunk;
     afw_pool_chunk_t *next;
+    const afw_memory_region_t *region;
     afw_size_t size;
 
     if (xctx && xctx->env && heap->chunk_bytes) {
@@ -1660,12 +1673,14 @@ impl_heap_free_chunks(afw_pool_internal_heap_self_t *heap, afw_xctx_t *xctx)
     heap->current_chunk = NULL;
     heap->bump = NULL;
     heap->remaining = 0;
+    region = (heap->common.thread)
+        ? heap->common.thread->memory_region : NULL;
     while (chunk) {
         next = chunk->next;
         size = chunk->size;
-        afw_memory_region_free(
-            heap->common.thread->memory_region,
-            chunk, size, xctx);
+        if (region) {
+            afw_memory_region_free(region, chunk, size, xctx);
+        }
         chunk = next;
     }
 }

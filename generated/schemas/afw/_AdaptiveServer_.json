@@ -49,6 +49,12 @@
                     "title": "Peak Pool Chunk Bytes",
                     "type": "integer"
                 },
+                "pid": {
+                    "description": "Operating system process id. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Process Id**\n\nOperating system process id. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Process Id",
+                    "type": "integer"
+                },
                 "poolBytesInUse": {
                     "description": "Outstanding malloc/calloc AFW has not given back. Process-wide, same as /afw/_AdaptiveProcess_/current.",
                     "markdownDescription": "**Pool Bytes In Use**\n\nOutstanding malloc/calloc AFW has not given back. Process-wide, same as /afw/_AdaptiveProcess_/current.",
@@ -61,10 +67,22 @@
                     "title": "Pool Chunk Bytes",
                     "type": "integer"
                 },
+                "programName": {
+                    "description": "Base name of args[0] (last path segment). Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Program Name**\n\nBase name of args[0] (last path segment). Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Program Name",
+                    "type": "string"
+                },
                 "requestCount": {
                     "description": "This is the total number of requests that have been processed since the server was started.",
                     "markdownDescription": "**Request Count**\n\nThis is the total number of requests that have been processed since the server was started.",
                     "title": "Request Count",
+                    "type": "integer"
+                },
+                "rss": {
+                    "description": "Live resident set size in bytes (what the OS currently has in RAM for this process). Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Resident Memory**\n\nLive resident set size in bytes (what the OS currently has in RAM for this process). Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Resident Memory",
                     "type": "integer"
                 },
                 "serverType": {
@@ -147,6 +165,12 @@
                     "title": "Peak Pool Chunk Bytes",
                     "type": "integer"
                 },
+                "pid": {
+                    "description": "Operating system process id. Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Process Id**\n\nOperating system process id. Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Process Id",
+                    "type": "integer"
+                },
                 "poolBytesInUse": {
                     "description": "Outstanding malloc/calloc AFW has not given back. Process-wide, same as /afw/_AdaptiveProcess_/current.",
                     "markdownDescription": "**Pool Bytes In Use**\n\nOutstanding malloc/calloc AFW has not given back. Process-wide, same as /afw/_AdaptiveProcess_/current.",
@@ -159,10 +183,22 @@
                     "title": "Pool Chunk Bytes",
                     "type": "integer"
                 },
+                "programName": {
+                    "description": "Base name of args[0] (last path segment). Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Program Name**\n\nBase name of args[0] (last path segment). Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Program Name",
+                    "type": "string"
+                },
                 "requestCount": {
                     "description": "This is the total number of requests that have been processed since the server was started.",
                     "markdownDescription": "**Request Count**\n\nThis is the total number of requests that have been processed since the server was started.",
                     "title": "Request Count",
+                    "type": "integer"
+                },
+                "rss": {
+                    "description": "Live resident set size in bytes (what the OS currently has in RAM for this process). Same as /afw/_AdaptiveProcess_/current.",
+                    "markdownDescription": "**Resident Memory**\n\nLive resident set size in bytes (what the OS currently has in RAM for this process). Same as /afw/_AdaptiveProcess_/current.",
+                    "title": "Resident Memory",
                     "type": "integer"
                 },
                 "serverType": {
@@ -248,6 +284,12 @@
             "title": "Peak Pool Chunk Bytes",
             "type": "integer"
         },
+        "pid": {
+            "description": "Operating system process id. Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Process Id**\n\nOperating system process id. Same as /afw/_AdaptiveProcess_/current.",
+            "title": "Process Id",
+            "type": "integer"
+        },
         "poolBytesInUse": {
             "description": "Outstanding malloc/calloc AFW has not given back. Process-wide, same as /afw/_AdaptiveProcess_/current.",
             "markdownDescription": "**Pool Bytes In Use**\n\nOutstanding malloc/calloc AFW has not given back. Process-wide, same as /afw/_AdaptiveProcess_/current.",
@@ -260,10 +302,22 @@
             "title": "Pool Chunk Bytes",
             "type": "integer"
         },
+        "programName": {
+            "description": "Base name of args[0] (last path segment). Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Program Name**\n\nBase name of args[0] (last path segment). Same as /afw/_AdaptiveProcess_/current.",
+            "title": "Program Name",
+            "type": "string"
+        },
         "requestCount": {
             "description": "This is the total number of requests that have been processed since the server was started.",
             "markdownDescription": "**Request Count**\n\nThis is the total number of requests that have been processed since the server was started.",
             "title": "Request Count",
+            "type": "integer"
+        },
+        "rss": {
+            "description": "Live resident set size in bytes (what the OS currently has in RAM for this process). Same as /afw/_AdaptiveProcess_/current.",
+            "markdownDescription": "**Resident Memory**\n\nLive resident set size in bytes (what the OS currently has in RAM for this process). Same as /afw/_AdaptiveProcess_/current.",
+            "title": "Resident Memory",
             "type": "integer"
         },
         "serverType": {
