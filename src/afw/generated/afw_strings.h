@@ -73557,6 +73557,58 @@ afw_self_v_memberName;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_memoryRegionFreeListMaxBytes \
+    "memoryRegionFreeListMaxBytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionFreeListMaxBytes */
+#define afw_s_memoryRegionFreeListMaxBytes \
+    (&afw_self_v_memoryRegionFreeListMaxBytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memoryRegionFreeListMaxBytes */
+#define afw_self_s_memoryRegionFreeListMaxBytes \
+    (afw_self_v_memoryRegionFreeListMaxBytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memoryRegionFreeListMaxBytes */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionFreeListMaxBytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memoryRegionFreeListMaxBytes */
+#define afw_z_memoryRegionFreeListMaxBytes \
+    (afw_self_v_memoryRegionFreeListMaxBytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memoryRegionFreeListMaxBytes */
+#define afw_v_memoryRegionFreeListMaxBytes \
+    (&afw_self_v_memoryRegionFreeListMaxBytes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_memory_region_free_list_max_bytes \
+    "memory_region_free_list_max_bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_memory_region_free_list_max_bytes */
+#define afw_s_memory_region_free_list_max_bytes \
+    (&afw_self_v_memory_region_free_list_max_bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_memory_region_free_list_max_bytes */
+#define afw_self_s_memory_region_free_list_max_bytes \
+    (afw_self_v_memory_region_free_list_max_bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_memory_region_free_list_max_bytes */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_memory_region_free_list_max_bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_memory_region_free_list_max_bytes */
+#define afw_z_memory_region_free_list_max_bytes \
+    (afw_self_v_memory_region_free_list_max_bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_memory_region_free_list_max_bytes */
+#define afw_v_memory_region_free_list_max_bytes \
+    (&afw_self_v_memory_region_free_list_max_bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_message \
     "message"
 

@@ -2846,7 +2846,7 @@ afw_pool_thread_create(
             "Unable to allocate thread", xctx);
     }
     region = afw_memory_region_create(
-        AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES, xctx);
+        xctx->env->memory_region_free_list_max_bytes, xctx);
     if (!region) {
         free(thread);
         AFW_THROW_ERROR_Z(memory,

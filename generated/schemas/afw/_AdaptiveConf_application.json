@@ -232,6 +232,12 @@
                     "title": "Limit Request Pool Bytes",
                     "type": "integer"
                 },
+                "memoryRegionFreeListMaxBytes": {
+                    "description": "Optional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = posix_memalign/free on every get/free.",
+                    "markdownDescription": "**Memory Region Free List Max Bytes**\n\nOptional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = posix_memalign/free on every get/free.",
+                    "title": "Memory Region Free List Max Bytes",
+                    "type": "integer"
+                },
                 "onApplicationStartupComplete": {
                     "description": "This is an optional script to run after this application has completed startup but before starting to process requests. The script can perform additional startup functions or request that the application terminate. All permanent and immediate services will have been started before the script is called. If the script fails or explicitly returns a value other than 0, the application will terminate.",
                     "markdownDescription": "**Application Startup Complete**\n\nThis is an optional script to run after this application has completed startup but before starting to process requests. The script can perform additional startup functions or request that the application terminate. All permanent and immediate services will have been started before the script is called. If the script fails or explicitly returns a value other than 0, the application will terminate.",
@@ -407,6 +413,12 @@
                     "description": "Optional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited.",
                     "markdownDescription": "**Limit Request Pool Bytes**\n\nOptional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited.",
                     "title": "Limit Request Pool Bytes",
+                    "type": "integer"
+                },
+                "memoryRegionFreeListMaxBytes": {
+                    "description": "Optional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = posix_memalign/free on every get/free.",
+                    "markdownDescription": "**Memory Region Free List Max Bytes**\n\nOptional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = posix_memalign/free on every get/free.",
+                    "title": "Memory Region Free List Max Bytes",
                     "type": "integer"
                 },
                 "onApplicationStartupComplete": {
@@ -656,6 +668,12 @@
             "description": "Optional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited.",
             "markdownDescription": "**Limit Request Pool Bytes**\n\nOptional. If present, overrides process limitRequestPoolBytes and applies to the CLI base thread as well as request threads. 0 = unlimited.",
             "title": "Limit Request Pool Bytes",
+            "type": "integer"
+        },
+        "memoryRegionFreeListMaxBytes": {
+            "description": "Optional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = posix_memalign/free on every get/free.",
+            "markdownDescription": "**Memory Region Free List Max Bytes**\n\nOptional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = posix_memalign/free on every get/free.",
+            "title": "Memory Region Free List Max Bytes",
             "type": "integer"
         },
         "onApplicationStartupComplete": {

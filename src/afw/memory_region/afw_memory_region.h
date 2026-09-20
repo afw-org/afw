@@ -50,6 +50,20 @@ afw_memory_region_create(
     afw_size_t free_list_max_bytes,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Set the free-list cap on an existing instance.
+ * @param instance from create(). May be NULL.
+ * @param free_list_max_bytes 0 = no reuse.
+ * @param xctx of caller. May be NULL.
+ *
+ * Does not drain the list. Later free() uses the new cap.
+ */
+AFW_DECLARE(void)
+afw_memory_region_set_free_list_max_bytes(
+    const afw_memory_region_t *instance,
+    afw_size_t free_list_max_bytes,
+    afw_xctx_t *xctx);
+
 AFW_END_DECLARES
 
 /** @} */

@@ -298,3 +298,21 @@ afw_memory_region_create(
     self->pub.free_list_max_bytes = free_list_max_bytes;
     return &self->pub;
 }
+
+
+AFW_DEFINE(void)
+afw_memory_region_set_free_list_max_bytes(
+    const afw_memory_region_t *instance,
+    afw_size_t free_list_max_bytes,
+    afw_xctx_t *xctx)
+{
+    impl_afw_memory_region_self_t *self;
+
+    if (!instance) {
+        return;
+    }
+    self = (impl_afw_memory_region_self_t *)instance;
+    impl_lock(self, xctx);
+    self->pub.free_list_max_bytes = free_list_max_bytes;
+    impl_unlock(self, xctx);
+}

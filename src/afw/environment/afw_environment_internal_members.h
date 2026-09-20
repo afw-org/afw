@@ -158,6 +158,13 @@
      */
     afw_size_t xctx_chunk_min;
 
+    /**
+     * @brief Cap on each thread memory_region free list (bytes).
+     *
+     * Default `AFW_MEMORY_REGION_FREE_LIST_MAX_BYTES`. 0 = no reuse.
+     */
+    afw_size_t memory_region_free_list_max_bytes;
+
     /** @brief Copy of director log's mask for short circuit tests. */
     afw_log_priority_mask_t log_mask;
 

@@ -3906,6 +3906,16 @@ impl_properties__AdaptiveProcess_[] = {
         afw_runtime_value_accessor_size
     },
     {
+        afw_v_memoryRegionFreeListMaxBytes,
+        offsetof(afw_environment_t, memory_region_free_list_max_bytes),
+        -1,
+        &afw_data_type_integer_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_size,
+        afw_runtime_value_accessor_size
+    },
+    {
         afw_v_peakPoolBytesInUse,
         0,
         -1,
@@ -4000,7 +4010,7 @@ impl_properties__AdaptiveProcess_[] = {
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveProcess_ = {
     &afw_self_s__AdaptiveProcess_,
-    17,
+    18,
     &impl_properties__AdaptiveProcess_[0]
 };
 

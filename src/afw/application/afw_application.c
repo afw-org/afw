@@ -603,6 +603,15 @@ afw_application_internal_application_conf_type_create_cede_p(
         afw_v_xctxChunkMin,
         &env->xctx_chunk_min, NULL,
         IMPL_KNOB_CHUNK_MIN, source_location, xctx);
+    impl_apply_optional_size_limit(properties,
+        afw_v_memoryRegionFreeListMaxBytes,
+        &env->memory_region_free_list_max_bytes, NULL,
+        IMPL_KNOB_LIMIT_BYTES, source_location, xctx);
+    if (xctx->thread && xctx->thread->memory_region) {
+        afw_memory_region_set_free_list_max_bytes(
+            xctx->thread->memory_region,
+            env->memory_region_free_list_max_bytes, xctx);
+    }
 
     /* If extensions specified, load them. */
     value = afw_object_get_property(env->application_object,

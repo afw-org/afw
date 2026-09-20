@@ -25067,6 +25067,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__6890dc3a418f \
+    "Optional. If present, overrides process memoryRegionFreeListMaxBytes. Rounded up to the heap page. 0 = posix_memalign/free on every get/free."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6890dc3a418f */
+#define afw_s_zz__6890dc3a418f \
+    (&afw_self_v_zz__6890dc3a418f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6890dc3a418f */
+#define afw_self_s_zz__6890dc3a418f \
+    (afw_self_v_zz__6890dc3a418f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__6890dc3a418f */
+extern const afw_value_string_t \
+    afw_self_v_zz__6890dc3a418f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__6890dc3a418f */
+#define afw_z_zz__6890dc3a418f \
+    (afw_self_v_zz__6890dc3a418f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__6890dc3a418f */
+#define afw_v_zz__6890dc3a418f \
+    (&afw_self_v_zz__6890dc3a418f.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__68a004f57589 \
     "Determine if for regexp arg1 is not equal to the value or data type of arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be converted to the data type of arg1 before comparison."
 
@@ -44303,6 +44329,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Can_attempt_to_stop_this_service_ */
 #define afw_v_zz__Can_attempt_to_stop_this_service_ \
     (&afw_self_v_zz__Can_attempt_to_stop_this_service_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Cap_on_thread_memory_region_free_list \
+    "Cap on thread memory_region free list"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Cap_on_thread_memory_region_free_list */
+#define afw_s_zz__Cap_on_thread_memory_region_free_list \
+    (&afw_self_v_zz__Cap_on_thread_memory_region_free_list.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Cap_on_thread_memory_region_free_list */
+#define afw_self_s_zz__Cap_on_thread_memory_region_free_list \
+    (afw_self_v_zz__Cap_on_thread_memory_region_free_list.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Cap_on_thread_memory_region_free_list */
+extern const afw_value_string_t \
+    afw_self_v_zz__Cap_on_thread_memory_region_free_list;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Cap_on_thread_memory_region_free_list */
+#define afw_z_zz__Cap_on_thread_memory_region_free_list \
+    (afw_self_v_zz__Cap_on_thread_memory_region_free_list.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Cap_on_thread_memory_region_free_list */
+#define afw_v_zz__Cap_on_thread_memory_region_free_list \
+    (&afw_self_v_zz__Cap_on_thread_memory_region_free_list.pub)
 
 
 
@@ -64353,6 +64405,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Memory_Region_Free_List_Max_Bytes \
+    "Memory Region Free List Max Bytes"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Memory_Region_Free_List_Max_Bytes */
+#define afw_s_zz__Memory_Region_Free_List_Max_Bytes \
+    (&afw_self_v_zz__Memory_Region_Free_List_Max_Bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Memory_Region_Free_List_Max_Bytes */
+#define afw_self_s_zz__Memory_Region_Free_List_Max_Bytes \
+    (afw_self_v_zz__Memory_Region_Free_List_Max_Bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Memory_Region_Free_List_Max_Bytes */
+extern const afw_value_string_t \
+    afw_self_v_zz__Memory_Region_Free_List_Max_Bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Memory_Region_Free_List_Max_Bytes */
+#define afw_z_zz__Memory_Region_Free_List_Max_Bytes \
+    (afw_self_v_zz__Memory_Region_Free_List_Max_Bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Memory_Region_Free_List_Max_Bytes */
+#define afw_v_zz__Memory_Region_Free_List_Max_Bytes \
+    (&afw_self_v_zz__Memory_Region_Free_List_Max_Bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Method_Number \
     "Method Number"
 
@@ -68665,6 +68743,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Override_request_thread_ST_asked_for_cap */
 #define afw_v_zz__Override_request_thread_ST_asked_for_cap \
     (&afw_self_v_zz__Override_request_thread_ST_asked_for_cap.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Override_thread_memory_region_free_list_cap \
+    "Override thread memory_region free-list cap"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_thread_memory_region_free_list_cap */
+#define afw_s_zz__Override_thread_memory_region_free_list_cap \
+    (&afw_self_v_zz__Override_thread_memory_region_free_list_cap.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Override_thread_memory_region_free_list_cap */
+#define afw_self_s_zz__Override_thread_memory_region_free_list_cap \
+    (afw_self_v_zz__Override_thread_memory_region_free_list_cap.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Override_thread_memory_region_free_list_cap */
+extern const afw_value_string_t \
+    afw_self_v_zz__Override_thread_memory_region_free_list_cap;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Override_thread_memory_region_free_list_cap */
+#define afw_z_zz__Override_thread_memory_region_free_list_cap \
+    (afw_self_v_zz__Override_thread_memory_region_free_list_cap.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Override_thread_memory_region_free_list_cap */
+#define afw_v_zz__Override_thread_memory_region_free_list_cap \
+    (&afw_self_v_zz__Override_thread_memory_region_free_list_cap.pub)
 
 
 
@@ -147445,6 +147549,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f059cc3fabdb */
 #define afw_v_zz__f059cc3fabdb \
     (&afw_self_v_zz__f059cc3fabdb.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__f078b9b13903 \
+    "Maximum bytes a thread may keep on its memory_region free list for heap-chunk reuse. 0 = posix_memalign/free on every get/free."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f078b9b13903 */
+#define afw_s_zz__f078b9b13903 \
+    (&afw_self_v_zz__f078b9b13903.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f078b9b13903 */
+#define afw_self_s_zz__f078b9b13903 \
+    (afw_self_v_zz__f078b9b13903.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__f078b9b13903 */
+extern const afw_value_string_t \
+    afw_self_v_zz__f078b9b13903;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f078b9b13903 */
+#define afw_z_zz__f078b9b13903 \
+    (afw_self_v_zz__f078b9b13903.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__f078b9b13903 */
+#define afw_v_zz__f078b9b13903 \
+    (&afw_self_v_zz__f078b9b13903.pub)
 
 
 

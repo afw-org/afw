@@ -76,6 +76,7 @@ assert(meta(process::rss).dataType === "integer");
 assert(process::rss >= 0);
 assert(process::limitEvaluationStackCount === 500);
 assert(process::chunkMin === 65536);
+assert(process::memoryRegionFreeListMaxBytes === 262144);
 return 0;
 
 

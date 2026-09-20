@@ -16995,6 +16995,18 @@ afw_self_v_memberName = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_memoryRegionFreeListMaxBytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_memoryRegionFreeListMaxBytes)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_memory_region_free_list_max_bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_memory_region_free_list_max_bytes)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_message = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_message)
@@ -28881,6 +28893,12 @@ afw_self_v_zz__687b30df1f8f = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__6890dc3a418f = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__6890dc3a418f)
+};
+
+const afw_value_string_t
 afw_self_v_zz__68a004f57589 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__68a004f57589)
@@ -33318,6 +33336,12 @@ const afw_value_string_t
 afw_self_v_zz__Can_attempt_to_stop_this_service_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Can_attempt_to_stop_this_service_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Cap_on_thread_memory_region_free_list = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Cap_on_thread_memory_region_free_list)
 };
 
 const afw_value_string_t
@@ -37947,6 +37971,12 @@ afw_self_v_zz__Member_Name = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Memory_Region_Free_List_Max_Bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Memory_Region_Free_List_Max_Bytes)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Method_Number = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Method_Number)
@@ -38940,6 +38970,12 @@ const afw_value_string_t
 afw_self_v_zz__Override_request_thread_ST_asked_for_cap = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Override_request_thread_ST_asked_for_cap)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Override_thread_memory_region_free_list_cap = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Override_thread_memory_region_free_list_cap)
 };
 
 const afw_value_string_t
@@ -57123,6 +57159,12 @@ afw_self_v_zz__f059cc3fabdb = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__f078b9b13903 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__f078b9b13903)
+};
+
+const afw_value_string_t
 afw_self_v_zz__f07f74b55302 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__f07f74b55302)
@@ -64378,6 +64420,8 @@ static const afw_value_string_t * impl_string_literals[] = {
     &afw_self_v_max_time,
     &afw_self_v_mediaType,
     &afw_self_v_memberName,
+    &afw_self_v_memoryRegionFreeListMaxBytes,
+    &afw_self_v_memory_region_free_list_max_bytes,
     &afw_self_v_message,
     &afw_self_v_meta,
     &afw_self_v_metaFull,
