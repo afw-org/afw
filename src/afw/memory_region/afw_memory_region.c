@@ -11,9 +11,9 @@
  * @brief Default afw_memory_region: capped free list of posix_memalign
  *    pages for heaps.
  *
- * The instance is C calloc; release() frees it. A recursive mutex
- * covers get/free/cleanup and MT heap methods. Cap 0 is
- * posix_memalign/free on every get/free (metrics still update).
+ * The instance is C calloc; release() frees it. get/free/cleanup
+ * do not lock. MT heap/tracker wrappers call lock/unlock. Cap 0
+ * is posix_memalign/free on every get/free (metrics still update).
  */
 
 #include "afw_internal.h"
@@ -123,6 +123,7 @@ impl_afw_memory_region_get(
     void *mem;
     afw_size_t need;
 
+    (void)xctx;
     if (region) {
         *region = NULL;
     }
@@ -139,7 +140,6 @@ impl_afw_memory_region_get(
         return;
     }
 
-    impl_lock(self, xctx);
     if (pub->free_list_max_bytes != 0) {
         prev = &self->free_list;
         for (node = self->free_list; node; node = node->next) {
@@ -151,7 +151,6 @@ impl_afw_memory_region_get(
                 impl_account_in_use(pub, need);
                 *region = node;
                 *size = need;
-                impl_unlock(self, xctx);
                 return;
             }
             prev = &node->next;
@@ -161,14 +160,12 @@ impl_afw_memory_region_get(
     mem = impl_posix_memalign(need);
     if (!mem) {
         *size = 0;
-        impl_unlock(self, xctx);
         return;
     }
     pub->get_misses += 1;
     impl_account_in_use(pub, need);
     *region = mem;
     *size = need;
-    impl_unlock(self, xctx);
 }
 
 
@@ -185,12 +182,12 @@ impl_afw_memory_region_free(
     afw_memory_region_t *pub;
     impl_free_node_t *node;
 
+    (void)xctx;
     if (!region) {
         return;
     }
     pub = &self->pub;
     size = impl_round_up(size);
-    impl_lock(self, xctx);
     impl_account_returned(pub, size);
 
     if (pub->free_list_max_bytes != 0 &&
@@ -207,12 +204,10 @@ impl_afw_memory_region_free(
         if (pub->free_list_bytes > pub->peak_free_list_bytes) {
             pub->peak_free_list_bytes = pub->free_list_bytes;
         }
-        impl_unlock(self, xctx);
         return;
     }
 
     pub->free_over_cap += 1;
-    impl_unlock(self, xctx);
     free(region);
 }
 
@@ -228,12 +223,11 @@ impl_afw_memory_region_cleanup(
     impl_free_node_t *node;
     impl_free_node_t *next;
 
-    impl_lock(self, xctx);
+    (void)xctx;
     node = self->free_list;
     self->free_list = NULL;
     self->pub.free_list_count = 0;
     self->pub.free_list_bytes = 0;
-    impl_unlock(self, xctx);
     while (node) {
         next = node->next;
         free(node);

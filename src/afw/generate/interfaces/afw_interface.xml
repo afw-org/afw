@@ -5976,8 +5976,10 @@ AFW_DEFINE(const afw_request_handler_t *)
     <method name="lock">
 
       <description>
-        Obtain this region's mutex. Recursive so heap methods that
-        already hold it can call get()/free(). xctx may be NULL.
+        Obtain this region's mutex. ST get/free/cleanup do not
+        lock. MT heap/tracker wrappers call lock/unlock around
+        the ST methods. Recursive so those methods can call
+        get()/free(). xctx may be NULL.
       </description>
 
       <parameter name="instance" type="const afw_memory_region_t *">

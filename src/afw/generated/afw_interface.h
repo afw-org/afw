@@ -7334,8 +7334,10 @@ struct afw_memory_region_inf_s {
 /**
  * @brief Call method `lock` of interface `afw_memory_region`.
  *
- * Obtain this region's mutex. Recursive so heap methods that
- * already hold it can call get()/free(). xctx may be NULL.
+ * Obtain this region's mutex. ST get/free/cleanup do not
+ * lock. MT heap/tracker wrappers call lock/unlock around
+ * the ST methods. Recursive so those methods can call
+ * get()/free(). xctx may be NULL.
  * @param instance Pointer to this memory_region instance.
  * @param xctx This is the caller's xctx. May be NULL.
  * @relates afw_memory_region_t

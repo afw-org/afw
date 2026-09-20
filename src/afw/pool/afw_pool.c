@@ -33,7 +33,7 @@
 
 /*
  * MT heap methods lock the pool's thread region (recursive so
- * get/free inside malloc are fine). Same mutex ST get/free use.
+ * get/free inside malloc are fine). ST get/free do not lock.
  */
 #define IMPL_MULTITHREADED_LOCK_BEGIN(pool) \
 const afw_memory_region_t *_this_region = \
