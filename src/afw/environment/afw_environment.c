@@ -363,6 +363,19 @@ afw_environment_create(
     afw_memory_region_set_free_list_max_bytes(thread->memory_region,
         env->memory_region_free_list_max_bytes, xctx);
 
+    /*
+     * ST job heap for the base xctx. env->p stays MT. Thread handoff:
+     * ST even though parent is env->p.
+     */
+    {
+        const afw_pool_t *job;
+
+        job = afw_pool_internal_heap_create_st_for_thread(
+            p, true, env->xctx_chunk_min, thread, xctx);
+        xctx->p = job;
+        thread->p = job;
+    }
+
     /* Create data type method number hash table. */
     env->data_type_method_number_ht = afw_hash_table_create(
         afw_void_hash_table_t, p, xctx);

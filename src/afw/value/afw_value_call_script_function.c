@@ -181,7 +181,7 @@ impl_afw_value_optional_evaluate(
 
             /* Make a scope for parameters. */
             parameter_scope = afw_xctx_scope_create(
-                script->signature->block, enclosing_lexical_scope, xctx);
+                script->signature->block, enclosing_lexical_scope, p, xctx);
 
             /*
              * Parameter binding (TS/ES-like, recursive-safe).

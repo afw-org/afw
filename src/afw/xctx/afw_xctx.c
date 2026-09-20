@@ -226,9 +226,11 @@ afw_xctx_check_resource_limits(
 
     limit = env->limit_request_pool_bytes;
     if (limit != 0 &&
+        thread->pool_bytes_in_use >= limit &&
         (thread->type == afw_thread_type_request ||
-            env->limit_request_pool_apply_to_base) &&
-        thread->pool_bytes_in_use >= limit)
+            (env->limit_request_pool_apply_to_base &&
+                xctx != ((const afw_environment_internal_t *)env)->
+                    base_xctx)))
     {
         AFW_THROW_ERROR_Z(payload_too_large,
             "Request pool limit exceeded.", xctx);
@@ -847,9 +849,10 @@ AFW_DEFINE(const afw_xctx_scope_t *)
 afw_xctx_scope_create(
     const afw_value_block_t *block,
     const afw_xctx_scope_t *parent_lexical_scope,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_pool_t *p;
+    const afw_pool_t *scope_p;
     afw_xctx_scope_t *scope;
 
     if (!block) {
@@ -885,16 +888,21 @@ afw_xctx_scope_create(
             xctx);
     }
     
-    /* One ST heap per xctx. Scope pool parent is that heap. */
-    p = afw_pool_scope_create(xctx->p, xctx);
-    scope = afw_pool_calloc(p,
+    /* `{ }` pool follows dest p (top: evaluate dest; nested: parent
+     * scope->p). */
+    if (!p) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_xctx_scope_create(): p required", xctx);
+    }
+    scope_p = afw_pool_scope_create(p, xctx);
+    scope = afw_pool_calloc(scope_p,
         (
             sizeof(afw_xctx_scope_t) + // Size of struct.
             + (sizeof(afw_value_t *) * block->symbol_count ) // frame_slots[]
             - sizeof(afw_value_t *) // To account for the one in the struct.
         ),
         xctx);
-    scope->p = p;
+    scope->p = scope_p;
     scope->block = block;
     scope->reference_count = 1;
     scope->last_result = afw_value_void;
@@ -977,8 +985,20 @@ afw_xctx_scope_clone(
 {
     afw_xctx_scope_t *scope;
 
-    scope = (afw_xctx_scope_t *)afw_xctx_scope_create(
-        original_scope->block, original_scope->parent_lexical_scope, xctx);
+    {
+        const afw_pool_internal_self_t *parent_self;
+
+        parent_self = ((const afw_pool_internal_self_t *)
+            original_scope->p)->parent;
+        if (!parent_self) {
+            AFW_THROW_ERROR_Z(general,
+                "afw_xctx_scope_clone(): original scope pool has no parent",
+                xctx);
+        }
+        scope = (afw_xctx_scope_t *)afw_xctx_scope_create(
+            original_scope->block, original_scope->parent_lexical_scope,
+            &parent_self->pub, xctx);
+    }
 
     /* Copy frame_slots[]; last_result stays void from create. */
     for (afw_size_t i = 0; i < scope->block->symbol_count; i++) {

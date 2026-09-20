@@ -533,6 +533,8 @@ afw_xctx_scope_set_last_result_for_lifetime(
  * @brief Create a new scope.
  * @param block associated with this scope.
  * @param parent_lexical_scope of this scope or NULL for first one.
+ * @param p dest pool of this evaluate (top: evaluate dest; nested:
+ *    parent scope->p).
  * @param xctx of caller.
  * @return New xctx scope.
  *
@@ -597,6 +599,7 @@ AFW_DECLARE(const afw_xctx_scope_t *)
 afw_xctx_scope_create(
     const afw_value_block_t *block,
     const afw_xctx_scope_t *parent_lexical_scope,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 

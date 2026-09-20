@@ -116,7 +116,7 @@ afw_value_block_evaluate_block(
      * (compiled_value sentinel).
      */
     scope = afw_xctx_scope_create(self,
-        afw_xctx_scope_current(xctx), xctx);
+        afw_xctx_scope_current(xctx), p, xctx);
     afw_xctx_scope_activate(scope, xctx);
     eval_p = scope->p;
     AFW_TRY{
